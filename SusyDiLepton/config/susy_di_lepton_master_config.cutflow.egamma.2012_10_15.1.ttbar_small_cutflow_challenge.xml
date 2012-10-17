@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd"[
+  <!ENTITY cycle_config     SYSTEM "/Users/bjackson/work/Susy.00-01-07/SusyDiLepton/config/cycle_config.cutflow.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.xml">
+  <!ENTITY user_config      SYSTEM "/Users/bjackson/work/Susy.00-01-07/SusyDiLepton/config/user_config.cutflow.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.xml">
+  <!ENTITY input_data       SYSTEM "/Users/bjackson/work/Susy.00-01-07/SusyDiLepton/config/input_data.cutflow.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.xml">
+  <!ENTITY input_collection SYSTEM "/Users/bjackson/work/Susy.00-01-07/SusyDiLepton/config/input_collection.cutflow.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.xml">
+]>
+
+<!-- ======================================================================= -->
+<!-- @Project: SFrame - ROOT-based analysis framework for ATLAS              -->
+<!-- @Package: User                                                          -->
+<!--                                                                         -->
+<!-- @author Stefan Ask       <Stefan.Ask@cern.ch>           - Manchester    -->
+<!-- @author David Berge      <David.Berge@cern.ch>          - CERN          -->
+<!-- @author Johannes Haller  <Johannes.Haller@cern.ch>      - Hamburg       -->
+<!-- @author A. Krasznahorkay <Attila.Krasznahorkay@cern.ch> - CERN/Debrecen -->
+<!--                                                                         -->
+<!-- ======================================================================= -->
+
+<!--OutputLevel: Possibilities: VERBOSE, DEBUG, INFO, WARNING, ERROR, FATAL, ALWAYS -->
+<JobConfiguration JobName="SusyDiLeptonCutFlowCycle" OutputLevel="VERBOSE">
+
+  <!-- List of libraries to be loaded for the analysis. -->
+  <Library Name="libGenVector" />
+  <Library Name="libGraf" />
+  <Library Name="libCintex" />
+  <Library Name="libSFrameCintex" />
+  <Library Name="libSFramePlugIns" />
+
+  <Library Name="libD3PDObjects" />
+  <Library Name="libAtlasSFrameUtils" />
+  <Library Name="libGoodRunsLists" />
+  <Library Name="libegammaAnalysisUtils" />
+  <Library Name="libJetResolution" />
+  <Library Name="libMissingETUtility" />
+  <Library Name="libMuonEfficiencyCorrections" />
+  <Library Name="libMuonMomentumCorrections" />
+  <Library Name="libPileupReweighting" />
+  <Library Name="libReweightUtils" />
+  <Library Name="libCalibrationDataInterface" />
+  <Library Name="libSUSYTools" />
+  <Library Name="libSusyMatrixMethod" />
+  <Library Name="libHistFitterTree" />
+  <Library Name="libChargeFlip" />
+  <Library Name="libLeptonTruthTools" />
+  <Library Name="libReweightUtils" />
+  <Library Name="libDGTriggerReweight" />
+  <Library Name="libTriggerMatch" />
+  <Library Name="libApplyJetCalibration" />
+  <Library Name="libCommonTools" />
+  <Library Name="libSelectionTools" />
+  <Library Name="libSusyAnalysisTools" />
+  <Library Name="libSusyDiLepton" />
+
+  <!-- Packages that have to be uploaded and enabled on the PROOF cluster. -->
+  <!-- The standard SFrame libraries all create such a PAR package under   -->
+  <!-- SFRAME_LIB_DIR. For each custom library that is loaded in the       -->
+  <!-- configuration, a package also has to be defined...                  -->
+  <Package Name="SFrameCore.par" />
+  <Package Name="SFrameCintex.par" />
+  <Package Name="SFramePlugIns.par" />
+
+  <Package Name="RootCore.par" />
+  <Package Name="D3PDObjects.par" />
+  <Package Name="AtlasSFrameUtils.par" />
+  <Package Name="CommonTools.par" />
+  <Package Name="SelectionTools.par" />
+  <Package Name="SusyAnalysisTools.par" />
+  <Package Name="SusyDiLepton.par" />
+
+  <!-- List of cycles to be executed.                                       -->
+  <!-- Name: specifies the class name to be executed in this cycle          -->
+  <!-- name of Output-File: automically give by Name+Type+PostFix+".root"   -->
+  <!-- OutputDirectory: directory to which output is written                -->
+  <!--                  must finish with a "/"                              -->
+  <!-- PostFix: A string that should be added to the output file name.      -->
+  <!--          Can be useful for differentiating differently configured    -->
+  <!--          instances of the same cycle class.                          -->
+  <!-- RunMode: Can be "LOCAL" or "PROOF", depending on how you want to run -->
+  <!--          your analysis.                                              -->
+  <!-- ProofServer: Name of the PROOF server that you want to connect to.   -->
+  <!--              Set it to "" or "lite" to run PROOF-Lite on your local  -->
+  <!--              machine.                                                -->
+  <!-- ProofWorkDir: When working on a "real" PROOF cluster, the worker     -->
+  <!--               nodes write their output ntuple(s) into a local temp.  -->
+  <!--               file. These files are merged into a single file in a   -->
+  <!--               location accessible to all the nodes and the client    -->
+  <!--               machine (running SFrame) as well. Such a location can  -->
+  <!--               be specified here.                                     -->
+  <!-- ProofNodes: Maximum number of nodes to use from the PROOF farm. (Or  -->
+  <!--             the maximum number of cores to use in PROOF-Lite mode.)  -->
+  <!--             When set to "-1" (default setting) all available workers -->
+  <!--             are used.                                                -->
+  <!-- TargetLumi: luminosity value the output of this cycle is weighted to -->
+  &cycle_config;
+
+</JobConfiguration>

@@ -1,0 +1,17 @@
+/*
+// Dear emacs, this is -*- c++ -*-
+#ifndef SelectionTools_EtaCutTool_icc
+#define SelectionTools_EtaCutTool_icc
+
+// ============================================================================
+namespace SelectionTools {
+  // ----------------------------------------------------------------------------
+  template<class T> bool EtaCutTool::passed(T* t)
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    float eta = fabs(t->getTlv().Eta());
+    return passed(eta);
+  }
+}
+#endif // SelectionTools_EtaCutTool_icc
+*/

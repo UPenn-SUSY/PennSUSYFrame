@@ -1,0 +1,62 @@
+// Dear emacs, this is -*- c++ -*-
+#ifndef SelectionTools_MuonSelectionTool_h
+#define SelectionTools_MuonSelectionTool_h
+
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+
+// ============================================================================
+namespace SelectionTools
+{
+  // ==========================================================================
+  class MuonSelectionTool : public ToolBase
+  {
+  // --------------------------------------------------------------------------
+  public:
+    MuonSelectionTool(SCycleBase* parent, const char* name = "CutTool");
+    virtual ~MuonSelectionTool();
+
+    bool isBaseline(Muon*);
+    bool isSignal(Muon*);
+    bool isCosmic(Muon*);
+    bool isBad(Muon*);
+
+  // --------------------------------------------------------------------------
+  private:
+    // = user configurables =
+    // baseline cut values
+    double c_baseline_min_pt;
+    double c_baseline_max_pt;
+
+    double c_baseline_min_eta;
+    double c_baseline_max_eta;
+
+    // signal cut values
+    double c_signal_min_d0_sig;
+    double c_signal_max_d0_sig;
+
+    double c_signal_min_z0_sin_theta;
+    double c_signal_max_z0_sin_theta;
+
+    double c_signal_min_ptcone_cut;
+    double c_signal_max_ptcone_cut;
+
+    // cosmic muon cut values
+    double c_cosmic_min_d0;
+    double c_cosmic_max_d0;
+
+    double c_cosmic_min_z0;
+    double c_cosmic_max_z0;
+
+    // bad muon cut values
+    double c_bad_min_qoverp_ratio;
+    double c_bad_max_qoverp_ratio;
+
+    bool passCut(double test, double min, double max);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    ClassDef(MuonSelectionTool, 0);
+  };
+}
+
+#endif
