@@ -11,6 +11,33 @@ SelectionTools::MuonSelectionTool::MuonSelectionTool(
   DeclareProperty("baseline_min_eta", c_baseline_min_eta = -1);
   DeclareProperty("baseline_max_eta", c_baseline_max_eta = 2.4);
 
+  DeclareProperty( "baseline_min_b_layer_hits"
+                 , c_baseline_min_b_layer_hits = -1
+                 );
+  DeclareProperty( "baseline_max_b_layer_hits"
+                 , c_baseline_max_b_layer_hits = -1
+                 );
+
+  DeclareProperty("baseline_min_pixel_hits", c_baseline_min_pixel_hits = -1);
+  DeclareProperty("baseline_max_pixel_hits", c_baseline_max_pixel_hits = -1);
+
+  DeclareProperty("baseline_min_sct_hits", c_baseline_min_sct_hits = -1);
+  DeclareProperty("baseline_max_sct_hits", c_baseline_max_sct_hits = -1);
+
+  DeclareProperty("baseline_min_si_holes", c_baseline_min_si_holes = -1);
+  DeclareProperty("baseline_max_si_holes", c_baseline_max_si_holes = -1);
+
+  DeclareProperty("baseline_min_trt_hits", c_baseline_min_trt_hits = -1);
+  DeclareProperty("baseline_max_trt_hits", c_baseline_max_trt_hits = -1);
+
+  DeclareProperty( "baseline_min_trt_ol_fraction"
+                 , c_baseline_min_trt_ol_fraction = -1
+                 );
+  DeclareProperty( "baseline_max_trt_ol_fraction"
+                 , c_baseline_max_trt_ol_fraction = -1
+                 );
+
+
   DeclareProperty("signal_min_d0_sig", c_signal_min_d0_sig = -1);
   DeclareProperty("signal_max_d0_sig", c_signal_max_d0_sig = 3.);
 
@@ -39,6 +66,56 @@ SelectionTools::MuonSelectionTool::~MuonSelectionTool()
 // ----------------------------------------------------------------------------
 bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
 {
+  // Check for loose of combined muons
+  if (!mu->isCombinedMuon() && !mu->isSegmentTaggedMuon() && !mu->loose())
+    return false;
+
+  // Check number b-layer hits
+  int num_b_layer = mu->nBLHits();
+  if (mu->expectBLayerHit()) {
+    if (!passCut( num_b_layer
+                , c_baseline_min_b_layer_hits
+                , c_baseline_max_b_layer_hits
+                )
+       )
+      return false;
+  }
+
+  // Check number pixel hits
+  int num_pix = mu->nPixHits() + mu->nPixelDeadSensors();
+  if (!passCut(num_pix, c_baseline_min_pixel_hits, c_baseline_max_pixel_hits))
+    return false;
+
+  // Check number SCT hits
+  int num_sct = mu->nSCTHits() + mu->nSCTDeadSensors();
+  if (!passCut(num_sct, c_baseline_min_sct_hits, c_baseline_max_sct_hits))
+    return false;
+
+  // Check Si holes
+  int num_si_holes = mu->nPixHoles() + mu->nSCTHoles();
+  if (!passCut(num_si_holes, c_baseline_min_si_holes, c_baseline_max_si_holes))
+    return false;
+
+  // Check TRT hits & outlier ratio
+  float track_eta = fabs(-log(tan(mu->id_theta()/2)));
+  int num_trt = mu->nTRTHits() + mu->nTRTOutliers();
+  float trt_ol_fraction = float(mu->nTRTOutliers())/num_trt;
+
+  bool pass_n_trt = passCut( num_trt
+                           , c_baseline_min_trt_hits
+                           , c_baseline_max_trt_hits
+                           );
+  bool pass_trt_ol = passCut( num_trt
+                            , c_baseline_min_trt_ol_fraction
+                            , c_baseline_max_trt_ol_fraction
+                            );
+  if (track_eta > 0.1 && track_eta < 1.9) {
+    if (!pass_n_trt || !pass_trt_ol) return false;
+  }
+  else {
+    if (!pass_n_trt && !pass_trt_ol) return false;
+  }
+
   // Check for baseline pt
   double pt = mu->getTlv().Pt();
   if (!passCut(pt, c_baseline_min_pt, c_baseline_max_pt))

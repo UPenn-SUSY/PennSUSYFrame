@@ -27,8 +27,6 @@
   <Library Name="libSFrameCintex" />
   <Library Name="libSFramePlugIns" />
 
-  <Library Name="libD3PDObjects" />
-  <Library Name="libAtlasSFrameUtils" />
   <Library Name="libGoodRunsLists" />
   <Library Name="libegammaAnalysisUtils" />
   <Library Name="libJetResolution" />
@@ -47,6 +45,8 @@
   <Library Name="libDGTriggerReweight" />
   <Library Name="libTriggerMatch" />
   <Library Name="libApplyJetCalibration" />
+  <Library Name="libD3PDObjects" />
+  <Library Name="libAtlasSFrameUtils" />
   <Library Name="libCommonTools" />
   <Library Name="libSelectionTools" />
   <Library Name="libSusyAnalysisTools" />

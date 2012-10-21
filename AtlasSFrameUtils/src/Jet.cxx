@@ -45,7 +45,7 @@ void Jet::prepTlv( float mu
                  )
 {
   if (m_tlv_prepped == false) {
-    m_tlv = m_tlv_tool->tlv(*this, mu, num_vertices_2_trk);
+    m_tlv = m_tlv_tool->tlv(this, mu, num_vertices_2_trk);
     m_tlv_prepped = true;
   }
 }
@@ -54,7 +54,7 @@ void Jet::prepTlv( float mu
 void Jet::prepRawTlv()
 {
   if (m_raw_tlv_prepped == false) {
-    m_raw_tlv = m_tlv_tool->rawTlv(*this);
+    m_raw_tlv = m_tlv_tool->rawTlv(this);
     m_raw_tlv_prepped = true;
   }
 }
@@ -62,11 +62,17 @@ void Jet::prepRawTlv()
 // ----------------------------------------------------------------------------
 void Jet::print() const
 {
-  TLorentzVector tlv = getTlv();
+  TLorentzVector tlv     = getTlv();
+  TLorentzVector raw_tlv = getRawTlv();
 
-  std::cout << "\tpt:  " << tlv.Pt()
+  std::cout << "\traw pt:  " << raw_tlv.Pt()
+            << "\traw eta: " << raw_tlv.Eta()
+            << "\traw phi: " << raw_tlv.Phi()
+            << "\n"
+            << "\tpt:  " << tlv.Pt()
             << "\teta: " << tlv.Eta()
             << "\tphi: " << tlv.Phi()
+            << "\n"
             << "\tjvf: " << jvtxf()
             << "\tmv1: " << flavor_weight_MV1()
             << "\n";

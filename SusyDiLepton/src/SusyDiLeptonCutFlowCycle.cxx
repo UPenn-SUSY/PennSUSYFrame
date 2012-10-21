@@ -11,10 +11,10 @@ ClassImp( SusyDiLeptonCutFlowCycle );
 SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   CycleBase(),
   m_event(NULL),
+  m_met(NULL),
   m_electron_d3pdobject(NULL),
   m_jet_d3pdobject(NULL),
   m_mcevt_d3pdobject(NULL),
-  m_met_d3pdobject(NULL),
   m_muon_d3pdobject(NULL),
   m_trigger_d3pdobject(NULL),
   m_trigger_vec_d3pdobject(NULL),
@@ -40,9 +40,13 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::declareTools()
 {
-  DECLARE_TOOL(CommonTools::TLVTool          , "tlv"             );
-  DECLARE_TOOL(CommonTools::IsoCorrectionTool, "Electron_IsoCorr");
-  DECLARE_TOOL(CommonTools::IsoCorrectionTool, "Muon_IsoCorr"    );
+  DECLARE_TOOL(CommonTools::EgammaEnergyRescaleTool , "EgammaEnergyRescale" );
+  DECLARE_TOOL(CommonTools::MuonMomentumSmearingTool, "MuonMomentumSmearing");
+  DECLARE_TOOL(CommonTools::JetCalibTool            , "JetCalibration"      );
+
+  DECLARE_TOOL(CommonTools::IsoCorrectionTool       , "Electron_IsoCorr"    );
+  DECLARE_TOOL(CommonTools::IsoCorrectionTool       , "Muon_IsoCorr"        );
+  DECLARE_TOOL(CommonTools::TLVTool                 , "tlv"                 );
 
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Muon_Selection"    );
@@ -96,11 +100,12 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
       new D3PDReader::TriggerVecD3PDObject(m_entry_number
                                           , ""
                                           );
-  m_met_d3pdobject =
-      new D3PDReader::METD3PDObject(m_entry_number
-                                   , c_met_prefix.c_str()
-                                   , is_data()
-                                   );
+  m_met = new Met(m_entry_number, c_met_prefix.c_str(), is_data());
+  //m_met_d3pdobject =
+  //    new D3PDReader::METD3PDObject(m_entry_number
+  //                                 , c_met_prefix.c_str()
+  //                                 , is_data()
+  //                                 );
   m_vertex_d3pdobject =
       new D3PDReader::VertexD3PDObject(m_entry_number
                                       , "vx_", is_data()
@@ -129,6 +134,19 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
         = new D3PDReader::TruthMETD3PDObject(m_entry_number);
   }
 
+  GET_TOOL( egamma_energy_rescale
+          , CommonTools::EgammaEnergyRescaleTool
+          , "EgammaEnergyRescale"
+          );
+  GET_TOOL( muon_smearing
+          , CommonTools::MuonMomentumSmearingTool
+          , "MuonMomentumSmearing"
+          );
+  GET_TOOL( jet_calib
+          , CommonTools::JetCalibTool
+          , "JetCalibration"
+          );
+
   GET_TOOL(tlv_tool, CommonTools::TLVTool, "tlv");
   GET_TOOL(el_iso_corr_tool, CommonTools::IsoCorrectionTool, "Electron_IsoCorr");
   GET_TOOL(mu_iso_corr_tool, CommonTools::IsoCorrectionTool, "Muon_IsoCorr"    );
@@ -146,6 +164,8 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
           , "Muon_Selection"
           );
 
+  tlv_tool->init(egamma_energy_rescale, muon_smearing, jet_calib);
+
   m_electrons.init(tlv_tool, el_iso_corr_tool, electron_selection);
   m_muons.init(    tlv_tool, mu_iso_corr_tool);
   m_jets.init(     tlv_tool);
@@ -162,7 +182,8 @@ void SusyDiLeptonCutFlowCycle::EndInputDataImp( const SInputData& ) throw( SErro
   delete m_event;
   delete m_trigger_d3pdobject;
   delete m_trigger_vec_d3pdobject;
-  delete m_met_d3pdobject;
+  delete m_met;
+  // delete m_met_d3pdobject;
   delete m_vertex_d3pdobject;
   delete m_electron_d3pdobject;
   delete m_jet_d3pdobject;
@@ -199,11 +220,12 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& ) throw( SEr
            << SLogger::endmsg;
 
   // = get input trees from the d3pd objects =
-  m_event->ReadFrom(      GetInputTree(c_input_tree_name.c_str()));
+  m_event->ReadFrom(                 GetInputTree(c_input_tree_name.c_str()));
   // m_event_d3pdobject->ReadFrom(      GetInputTree(c_input_tree_name.c_str()));
   m_trigger_d3pdobject->ReadFrom(    GetInputTree(c_input_tree_name.c_str()));
   m_trigger_vec_d3pdobject->ReadFrom(GetInputTree(c_input_tree_name.c_str()));
-  m_met_d3pdobject->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
+  m_met->ReadFrom(                   GetInputTree(c_input_tree_name.c_str()));
+  // m_met_d3pdobject->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
   m_vertex_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
   m_electron_d3pdobject->ReadFrom(   GetInputTree(c_input_tree_name.c_str()));
   m_jet_d3pdobject->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
@@ -261,6 +283,7 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_electrons.clear();
   m_jets.clear();
   m_muons.clear();
+  m_met->clear();
 }
 
 // -----------------------------------------------------------------------------
@@ -269,4 +292,8 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_electrons.prepElectrons(m_electron_d3pdobject);
   m_muons.prepMuons(m_muon_d3pdobject);
   m_jets.prepJets(m_jet_d3pdobject);
+
+  // TODO get different object collection (baseline, etc)
+
+  m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
 }

@@ -4,20 +4,27 @@
 // ============================================================================
 #include "TLorentzVector.h"
 
+#include "EgammaEnergyRescaleTool.h"
+#include "MuonMomentumSmearingTool.h"
+#include "JetCalibTool.h"
+//#include "JetSmearingTool.h"
+
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Electron.h"
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/Jet.h"
 
-//#include "CommonTools/include/EgammaEnergyRescaleTool.h"
-//#include "CommonTools/include/JetCalibTool.h"
-//#include "CommonTools/include/JetSmearingTool.h"
-//#include "CommonTools/include/MuonMomentumSmearingTool.h"
-
 // ============================================================================
+// Forward declares
 class Electron;
 class Muon;
 class Jet;
+
+namespace CommonTools{
+  class EgammaEnergyRescaleTool;
+  class MuonMomentumSmearingTool;
+  class JetCalibTool;
+}
 
 // ============================================================================
 namespace CommonTools{
@@ -34,19 +41,28 @@ namespace CommonTools{
     TLVTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~TLVTool();
 
-    const TLorentzVector tlv(const Electron&);
-    const TLorentzVector tlv(const Muon&);
-    const TLorentzVector tlv( Jet&
+    void init( CommonTools::EgammaEnergyRescaleTool*
+             , CommonTools::MuonMomentumSmearingTool*
+             , CommonTools::JetCalibTool*
+             );
+
+    const TLorentzVector tlv(const Electron*);
+    const TLorentzVector tlv(const Muon*);
+    const TLorentzVector tlv( Jet*
                             , float mu
                             , int num_vetices_w_2_trks
                             );
 
-    const TLorentzVector rawTlv(const Electron&);
-    const TLorentzVector rawTlv(const Muon&);
-    const TLorentzVector rawTlv(const Jet&);
+    const TLorentzVector rawTlv(const Electron*);
+    const TLorentzVector rawTlv(const Muon*);
+    const TLorentzVector rawTlv(const Jet*);
 
   // --------------------------------------------------------------------------
   private:
+    CommonTools::EgammaEnergyRescaleTool* m_egamma_energy_rescale;
+    CommonTools::MuonMomentumSmearingTool* m_muon_smearing;
+    CommonTools::JetCalibTool* m_jet_calib;
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(TLVTool, 0);
   };

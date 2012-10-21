@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------
 JetContainer::JetContainer()
 {
-  m_user_lists.reserve(JET_N);
+  m_user_lists.resize(JET_N);
 }
 
 // ----------------------------------------------------------------------------
@@ -42,6 +42,9 @@ void JetContainer::prepJets(
 
   size_t term = m_master_list.size();
   for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    // TODO configure using correct mu and # vertices
+    m_master_list.at(jet_it).prepTlv(0, 0);
+    m_master_list.at(jet_it).prepRawTlv();
     m_user_lists.at(JET_ALL).push_back(&m_master_list.at(jet_it));
   }
 }

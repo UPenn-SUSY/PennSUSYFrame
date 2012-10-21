@@ -46,7 +46,7 @@ TLorentzVector Electron::getRawTlv() const
 void Electron::prepTlv()
 {
   if (m_tlv_prepped == false) {
-    m_tlv = m_tlv_tool->tlv(*this);
+    m_tlv = m_tlv_tool->tlv(this);
     m_tlv_prepped = true;
   }
 }
@@ -55,7 +55,7 @@ void Electron::prepTlv()
 void Electron::prepRawTlv()
 {
   if (m_raw_tlv_prepped == false) {
-    m_raw_tlv = m_tlv_tool->rawTlv(*this);
+    m_raw_tlv = m_tlv_tool->rawTlv(this);
     m_raw_tlv_prepped = true;
   }
 }
@@ -199,10 +199,16 @@ double Electron::topoetcone_corrected(int cone_size) const
 void Electron::print()
 {
   TLorentzVector tlv = getTlv();
+  TLorentzVector raw_tlv = getRawTlv();
 
-  std::cout << "\tpt: " << tlv.Pt()
+  std::cout << "\traw pt: "  << raw_tlv.Pt()
+            << "\traw eta: " << raw_tlv.Eta()
+            << "\traw phi: " << raw_tlv.Phi()
+            << "\n"
+            << "\tpt: "  << tlv.Pt()
             << "\teta: " << tlv.Eta()
             << "\tphi: " << tlv.Phi()
+            << "\n"
             << "\td0sig: " << getD0Significance()
             << "\tz0sinthata: " << getZ0SinTheta()
             // TODO Get proper number vertices for isolation

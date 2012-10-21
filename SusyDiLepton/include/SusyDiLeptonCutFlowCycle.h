@@ -6,12 +6,18 @@
 
 #include "AtlasSFrameUtils/include/CycleBase.h"
 #include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Electron.h"
 #include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/Jet.h"
 #include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/Met.h"
 
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
+#include "CommonTools/include/EgammaEnergyRescaleTool.h"
+#include "CommonTools/include/MuonMomentumSmearingTool.h"
 
 #include "D3PDObjects/include/ElectronD3PDObject.h"
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
@@ -94,6 +100,7 @@ private:
   ElectronContainer m_electrons;
   JetContainer      m_jets;
   MuonContainer     m_muons;
+  Met*              m_met;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // = D3PD readers =

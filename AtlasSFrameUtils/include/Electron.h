@@ -1,6 +1,6 @@
 // file:        Electron.h
 // author:      Brett Jackson       <brett.david.jackson@cern.ch>
-// created:     January 2012
+// created:     October 2012
 //------------------------------------------------------------------------------
 #ifndef AtlasSFrameUtils_Electron_h
 #define AtlasSFrameUtils_Electron_h

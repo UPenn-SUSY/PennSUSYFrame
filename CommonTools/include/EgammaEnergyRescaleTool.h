@@ -8,7 +8,7 @@
 #include "egammaAnalysisUtils/EnergyRescalerUpgrade.h"
 
 // ============================================================================
-class ElectronHandle;
+class Electron;
 
 // ============================================================================
 namespace CommonTools
@@ -26,7 +26,7 @@ namespace CommonTools
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // electrons
-    double getRescaledE(const Electron*);
+    double getRescaledE( const Electron*);
     double getRescaledEt(const Electron*);
 
   // --------------------------------------------------------------------------

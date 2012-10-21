@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------
 MuonContainer::MuonContainer()
 {
-  m_user_lists.reserve(MU_N);
+  m_user_lists.resize(MU_N);
 }
 
 // ----------------------------------------------------------------------------
@@ -45,6 +45,8 @@ void MuonContainer::prepMuons(
 
   size_t term = m_master_list.size();
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
+    m_master_list.at(mu_it).prepTlv();
+    m_master_list.at(mu_it).prepRawTlv();
     m_user_lists.at(MU_ALL).push_back(&m_master_list.at(mu_it));
   }
 }

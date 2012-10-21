@@ -13,7 +13,8 @@ class Event : public D3PDReader::EventInfoD3PDObject
 {
 public:
   // main constructor
-  Event(const ::Long64_t& master, const char* prefix = "", bool is_data = true );
+  Event(
+      const ::Long64_t& master, const char* prefix = "", bool is_data = true );
 
   double getPileUpWeight();
   double getLeptonEffWeight();

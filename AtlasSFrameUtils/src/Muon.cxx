@@ -46,7 +46,7 @@ TLorentzVector Muon::getRawTlv() const
 void Muon::prepTlv()
 {
   if (m_tlv_prepped == false) {
-    m_tlv = m_tlv_tool->tlv(*this);
+    m_tlv = m_tlv_tool->tlv(this);
     m_tlv_prepped = true;
   }
 }
@@ -55,7 +55,7 @@ void Muon::prepTlv()
 void Muon::prepRawTlv()
 {
   if (m_raw_tlv_prepped == false) {
-    m_raw_tlv = m_tlv_tool->rawTlv(*this);
+    m_raw_tlv = m_tlv_tool->rawTlv(this);
     m_raw_tlv_prepped = true;
   }
 }
@@ -167,11 +167,17 @@ double Muon::etcone(int cone_size) const
 // ----------------------------------------------------------------------------
 void Muon::print() const
 {
-  TLorentzVector tlv = getTlv();
+  TLorentzVector tlv     = getTlv();
+  TLorentzVector raw_tlv = getRawTlv();
 
-  std::cout << "\tpt: "  << tlv.Pt()
-            << "\teta: " << tlv.Eta()
-            << "\tphi: " << tlv.Phi()
+  std::cout << "\traw pt: "  << raw_tlv.Pt()
+            << "\traw eta: " << raw_tlv.Eta()
+            << "\traw phi: " << raw_tlv.Phi()
+            << "\n"
+            << "\tpt: "      << tlv.Pt()
+            << "\teta: "     << tlv.Eta()
+            << "\tphi: "     << tlv.Phi()
+            << "\n"
             // TODO Get proper number vertices for isolation
             << "\tptcone30/pt: " << getIsoCorr(
                 CommonTools::REL_PTCONE, 30, 0)

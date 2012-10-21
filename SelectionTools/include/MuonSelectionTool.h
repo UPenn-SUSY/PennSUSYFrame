@@ -31,6 +31,24 @@ namespace SelectionTools
     double c_baseline_min_eta;
     double c_baseline_max_eta;
 
+    int c_baseline_min_b_layer_hits;
+    int c_baseline_max_b_layer_hits;
+
+    int c_baseline_min_pixel_hits;
+    int c_baseline_max_pixel_hits;
+
+    int c_baseline_min_sct_hits;
+    int c_baseline_max_sct_hits;
+
+    int c_baseline_min_si_holes;
+    int c_baseline_max_si_holes;
+
+    int c_baseline_min_trt_hits;
+    int c_baseline_max_trt_hits;
+
+    double c_baseline_min_trt_ol_fraction;
+    double c_baseline_max_trt_ol_fraction;
+
     // signal cut values
     double c_signal_min_d0_sig;
     double c_signal_max_d0_sig;
