@@ -196,10 +196,12 @@ double Electron::topoetcone_corrected(int cone_size) const
 }
 
 // ----------------------------------------------------------------------------
-void Electron::print()
+void Electron::print(const VertexContainer& vertices) const
 {
   TLorentzVector tlv = getTlv();
   TLorentzVector raw_tlv = getRawTlv();
+
+  size_t num_good_vertices = vertices.num(VERT_GOOD);
 
   std::cout << "\traw pt: "  << raw_tlv.Pt()
             << "\traw eta: " << raw_tlv.Eta()
@@ -211,11 +213,24 @@ void Electron::print()
             << "\n"
             << "\td0sig: " << getD0Significance()
             << "\tz0sinthata: " << getZ0SinTheta()
-            // TODO Get proper number vertices for isolation
-            << "\tptcone30/pt: " << getIsoCorr(
+            << "\n"
+            << "\tptcone30 (no correction): " << getIsoCorr(
+                CommonTools::PTCONE, 30, 0)
+            << "\tptcone30/pt (no correction): " << getIsoCorr(
                 CommonTools::REL_PTCONE, 30, 0)
-            << "\tetcone30/pt: " << getIsoCorr(
+            << "\tetcone30 (no correction): " << getIsoCorr(
+                CommonTools::TOPOETCONE_CORR, 30, 0)
+            << "\tetcone30/pt (no correction): " << getIsoCorr(
                 CommonTools::REL_TOPOETCONE_CORR, 30, 0)
+            << "\n"
+            << "\tptcone30: " << getIsoCorr(
+                CommonTools::PTCONE, 30, num_good_vertices)
+            << "\tptcone30/pt: " << getIsoCorr(
+                CommonTools::REL_PTCONE, 30, num_good_vertices)
+            << "\tetcone30: " << getIsoCorr(
+                CommonTools::TOPOETCONE_CORR, 30, num_good_vertices)
+            << "\tetcone30/pt: " << getIsoCorr(
+                CommonTools::REL_TOPOETCONE_CORR, 30, num_good_vertices)
             << "\n";
 }
 

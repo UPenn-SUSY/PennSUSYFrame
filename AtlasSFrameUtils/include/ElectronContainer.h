@@ -6,8 +6,11 @@
 
 #include "ParticleElementBuilder.h"
 #include "Electron.h"
+#include "VertexContainer.h"
+
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
+
 #include "SelectionTools/include/ElectronSelectionTool.h"
 
 // ============================================================================
@@ -37,7 +40,7 @@ class ElectronContainer
     size_t num(ELECTRON_COLLECTIONS) const;
     const std::vector<Electron*>* getElectrons(ELECTRON_COLLECTIONS) const;
 
-    void print(ELECTRON_COLLECTIONS) const;
+    void print(ELECTRON_COLLECTIONS, const VertexContainer&) const;
 
   private:
     std::vector<Electron> m_master_list;

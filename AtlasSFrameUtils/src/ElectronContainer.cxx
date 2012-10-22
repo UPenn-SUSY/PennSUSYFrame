@@ -76,7 +76,9 @@ const std::vector<Electron*>* ElectronContainer::getElectrons(
 }
 
 // ----------------------------------------------------------------------------
-void ElectronContainer::print(ELECTRON_COLLECTIONS el_collection) const
+void ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
+                             , const VertexContainer& vertices
+                             ) const
 {
   std::cout << "================= Printing electron collection: "
             << el_collection << " =================\n";
@@ -84,6 +86,6 @@ void ElectronContainer::print(ELECTRON_COLLECTIONS el_collection) const
   size_t term = m_user_lists.at(el_collection).size();
   for (size_t el_it = 0; el_it != term; ++el_it) {
     std::cout << "Electron: " << el_it << "\n";
-    m_user_lists.at(el_collection).at(el_it)->print();
+    m_user_lists.at(el_collection).at(el_it)->print(vertices);
   }
 }

@@ -10,15 +10,19 @@
 #include "TLorentzVector.h"
 #include "ParticleElement.h"
 
-#include "D3PDObjects/include/ElectronD3PDObject.h"
+#include "VertexContainer.h"
+
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
+
+#include "D3PDObjects/include/ElectronD3PDObject.h"
 
 // ============================================================================
 namespace CommonTools
 {
   class TLVTool;
 }
+class VertexContainer;
 
 // ============================================================================
 class Electron : public ParticleElement<D3PDReader::ElectronD3PDObjectElement>
@@ -45,7 +49,7 @@ public:
   double getIsoCorr(
       CommonTools::ISO_TYPE, int cone_size, int num_vertex) const;
 
-  void print();
+  void print(const VertexContainer&) const;
 
   static bool eq(const Electron& el1, const Electron& el2);
   static bool lt(const Electron& el1, const Electron& el2);

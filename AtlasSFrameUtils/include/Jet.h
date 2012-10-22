@@ -9,10 +9,12 @@
 #include <vector>
 #include "TLorentzVector.h"
 #include "ParticleElement.h"
+
+#include "CommonTools/include/TLVTool.h"
+
 #include "D3PDObjects/include/JetD3PDObject.h"
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
 #include "D3PDObjects/include/VertexD3PDObject.h"
-#include "CommonTools/include/TLVTool.h"
 
 // ============================================================================
 namespace CommonTools

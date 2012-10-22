@@ -9,15 +9,20 @@
 #include <vector>
 #include "TLorentzVector.h"
 #include "ParticleElement.h"
-#include "D3PDObjects/include/MuonD3PDObject.h"
+
+#include "VertexContainer.h"
+
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
+
+#include "D3PDObjects/include/MuonD3PDObject.h"
 
 // ============================================================================
 namespace CommonTools
 {
   class TLVTool;
 }
+class VertexContainer;
 
 // ============================================================================
 class Muon : public ParticleElement<D3PDReader::MuonD3PDObjectElement>
@@ -43,7 +48,7 @@ public:
   double getIsoCorr(
       CommonTools::ISO_TYPE, int cone_size, int num_vertex) const;
 
-  void print() const;
+  void print(const VertexContainer&) const;
 
   static bool eq(const Muon& mu1, const Muon& mu2);
   static bool lt(const Muon& mu1, const Muon& mu2);

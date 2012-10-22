@@ -74,7 +74,9 @@ const std::vector<Muon*>* MuonContainer::getMuons(
 }
 
 // ----------------------------------------------------------------------------
-void MuonContainer::print(MUON_COLLECTIONS mu_collection) const
+void MuonContainer::print( MUON_COLLECTIONS mu_collection
+                         , const VertexContainer& vertices
+                         ) const
 {
   std::cout << "================= Printing muon collection: "
             << mu_collection << " =================\n";
@@ -82,6 +84,6 @@ void MuonContainer::print(MUON_COLLECTIONS mu_collection) const
   size_t term = m_user_lists.at(mu_collection).size();
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
     std::cout << "Muon: " << mu_it << "\n";
-    m_user_lists.at(mu_collection).at(mu_it)->print();
+    m_user_lists.at(mu_collection).at(mu_it)->print(vertices);
   }
 }

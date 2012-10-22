@@ -165,10 +165,12 @@ double Muon::etcone(int cone_size) const
 }
 
 // ----------------------------------------------------------------------------
-void Muon::print() const
+void Muon::print(const VertexContainer& vertices) const
 {
   TLorentzVector tlv     = getTlv();
   TLorentzVector raw_tlv = getRawTlv();
+
+  size_t num_good_vertices = vertices.num(VERT_GOOD);
 
   std::cout << "\traw pt: "  << raw_tlv.Pt()
             << "\traw eta: " << raw_tlv.Eta()
@@ -178,9 +180,10 @@ void Muon::print() const
             << "\teta: "     << tlv.Eta()
             << "\tphi: "     << tlv.Phi()
             << "\n"
-            // TODO Get proper number vertices for isolation
-            << "\tptcone30/pt: " << getIsoCorr(
+            << "\tptcone30/pt (no correction): " << getIsoCorr(
                 CommonTools::REL_PTCONE, 30, 0)
+            << "\tptcone30/pt: " << getIsoCorr(
+                CommonTools::REL_PTCONE, 30, num_good_vertices)
             << "\n";
 }
 

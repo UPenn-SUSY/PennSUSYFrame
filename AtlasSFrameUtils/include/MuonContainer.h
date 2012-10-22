@@ -6,6 +6,8 @@
 
 #include "ParticleElementBuilder.h"
 #include "Muon.h"
+#include "VertexContainer.h"
+
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
 
@@ -35,7 +37,7 @@ class MuonContainer
     size_t num(MUON_COLLECTIONS) const;
     const std::vector<Muon*>* getMuons(MUON_COLLECTIONS) const;
 
-    void print(MUON_COLLECTIONS) const;
+    void print(MUON_COLLECTIONS, const VertexContainer&) const;
 
   private:
     std::vector<Muon> m_master_list;

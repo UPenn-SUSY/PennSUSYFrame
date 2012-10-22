@@ -53,7 +53,7 @@
 	<Item Name="Electron_IsoCorr_etcone30_p2" Value="0" />
 	<Item Name="Electron_IsoCorr_etcone40_p1" Value="0" />
 	<Item Name="Electron_IsoCorr_etcone40_p2" Value="0" />
-	<Item Name="Electron_IsoCorr_ptcone20_p1" Value="0" />
+	<Item Name="Electron_IsoCorr_ptcone20_p1" Value="21.5" />
 	<Item Name="Electron_IsoCorr_ptcone20_p2" Value="0" />
 	<Item Name="Electron_IsoCorr_ptcone30_p1" Value="0" />
 	<Item Name="Electron_IsoCorr_ptcone30_p2" Value="0" />

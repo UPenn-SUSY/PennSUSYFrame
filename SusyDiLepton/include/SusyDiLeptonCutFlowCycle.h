@@ -13,6 +13,8 @@
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
 #include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Vertex.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
 
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
@@ -101,6 +103,7 @@ private:
   JetContainer      m_jets;
   MuonContainer     m_muons;
   Met*              m_met;
+  VertexContainer   m_vertices;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // = D3PD readers =

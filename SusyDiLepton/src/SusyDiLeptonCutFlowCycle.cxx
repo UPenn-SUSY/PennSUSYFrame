@@ -87,11 +87,6 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
            << SLogger::endmsg;
 
   m_event = new Event(m_entry_number, "", is_data());
-  // m_event_d3pdobject =
-  //     new D3PDReader::EventInfoD3PDObject(m_entry_number
-  //                                        , ""
-  //                                        , is_data()
-  //                                        );
   m_trigger_d3pdobject =
       new D3PDReader::TriggerD3PDObject(m_entry_number
                                        , ""
@@ -101,18 +96,15 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
                                           , ""
                                           );
   m_met = new Met(m_entry_number, c_met_prefix.c_str(), is_data());
-  //m_met_d3pdobject =
-  //    new D3PDReader::METD3PDObject(m_entry_number
-  //                                 , c_met_prefix.c_str()
-  //                                 , is_data()
-  //                                 );
   m_vertex_d3pdobject =
       new D3PDReader::VertexD3PDObject(m_entry_number
-                                      , "vx_", is_data()
+                                      , "vx_"
+                                      , is_data()
                                       );
   m_electron_d3pdobject =
       new D3PDReader::ElectronD3PDObject(m_entry_number
-                                        , "el_", is_data()
+                                        , "el_"
+                                        , is_data()
                                         );
   m_jet_d3pdobject =
       new D3PDReader::JetD3PDObject(m_entry_number
@@ -169,6 +161,7 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
   m_electrons.init(tlv_tool, el_iso_corr_tool, electron_selection);
   m_muons.init(    tlv_tool, mu_iso_corr_tool);
   m_jets.init(     tlv_tool);
+  m_vertices.init();
 }
 
 // ----------------------------------------------------------------------------
@@ -221,11 +214,9 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& ) throw( SEr
 
   // = get input trees from the d3pd objects =
   m_event->ReadFrom(                 GetInputTree(c_input_tree_name.c_str()));
-  // m_event_d3pdobject->ReadFrom(      GetInputTree(c_input_tree_name.c_str()));
   m_trigger_d3pdobject->ReadFrom(    GetInputTree(c_input_tree_name.c_str()));
   m_trigger_vec_d3pdobject->ReadFrom(GetInputTree(c_input_tree_name.c_str()));
   m_met->ReadFrom(                   GetInputTree(c_input_tree_name.c_str()));
-  // m_met_d3pdobject->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
   m_vertex_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
   m_electron_d3pdobject->ReadFrom(   GetInputTree(c_input_tree_name.c_str()));
   m_jet_d3pdobject->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
@@ -245,8 +236,6 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
            << "SusyDiLeptonCutFlowCycle::ExecuteEvent()"
            << "\n\trun number = "   << m_event->RunNumber()
            << " -- event number = " << m_event->EventNumber()
-           // << "\n\trun number = "   << m_event_d3pdobject->RunNumber()
-           // << " -- event number = " << m_event_d3pdobject->EventNumber()
            << SLogger::endmsg;
 
   // = Prep event by zeroing out old vent stuff
@@ -259,9 +248,12 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
             << "\t--\tevent number: " << m_event->EventNumber()
             << "\n";
 
-  m_electrons.print(EL_ALL);
-  m_muons.print(MU_ALL);
+  // m_vertices.print(VERT_ALL);
+  m_electrons.print(EL_ALL, m_vertices);
+  m_muons.print(MU_ALL, m_vertices);
   m_jets.print(JET_ALL);
+
+  // m_vertices.print(VERT_GOOD);
 }
 
 // ----------------------------------------------------------------------------
@@ -284,6 +276,7 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_jets.clear();
   m_muons.clear();
   m_met->clear();
+  m_vertices.clear();
 }
 
 // -----------------------------------------------------------------------------
@@ -292,6 +285,7 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_electrons.prepElectrons(m_electron_d3pdobject);
   m_muons.prepMuons(m_muon_d3pdobject);
   m_jets.prepJets(m_jet_d3pdobject);
+  m_vertices.prepVertices(m_vertex_d3pdobject, is_data());
 
   // TODO get different object collection (baseline, etc)
 
