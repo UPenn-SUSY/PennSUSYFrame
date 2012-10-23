@@ -161,6 +161,10 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
           , "Muon_Selection"
           );
 
+  m_electron_selection = electron_selection;
+  m_jet_selection = jet_selection;
+  m_muon_selection = muon_selection;
+
   tlv_tool->init(egamma_energy_rescale, muon_smearing, jet_calib);
 
   m_electrons.init(tlv_tool, el_iso_corr_tool);
@@ -255,8 +259,10 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
 
   // m_vertices.print(VERT_ALL);
   m_electrons.print(EL_ALL, m_vertices);
-  m_muons.print(MU_ALL, m_vertices);
-  m_jets.print(JET_ALL);
+  // m_muons.print(MU_ALL, m_vertices);
+  // m_jets.print(JET_ALL);
+
+  m_electrons.print(EL_BASELINE, m_vertices);
 
   // m_vertices.print(VERT_GOOD);
 }
@@ -293,7 +299,8 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_vertices.prepVertices(m_vertex_d3pdobject, is_data());
 
   // TODO get different object collection (baseline, etc)
-  // m_electrons.setCollection(EL_BASELINE, m_electron_selection->getBaselineElectrons(m_electrons.getObjects
+  m_electrons.setCollection( EL_BASELINE,
+      m_electron_selection->getBaselineElectrons(m_electrons));
 
   m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
 }

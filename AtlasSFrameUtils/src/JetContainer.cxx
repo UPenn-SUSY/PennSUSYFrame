@@ -65,10 +65,10 @@ size_t JetContainer::num(JET_COLLECTIONS jet_collection) const
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<Jet*>* JetContainer::getJets(
+const std::vector<Jet*> JetContainer::getJets(
     JET_COLLECTIONS jet_collection) const
 {
-  return &(m_user_lists.at(jet_collection));
+  return m_user_lists.at(jet_collection);
 }
 
 // ----------------------------------------------------------------------------

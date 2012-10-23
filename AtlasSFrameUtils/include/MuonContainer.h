@@ -35,7 +35,7 @@ class MuonContainer
     void setCollection(MUON_COLLECTIONS, std::vector<Muon*>);
 
     size_t num(MUON_COLLECTIONS) const;
-    const std::vector<Muon*>* getMuons(MUON_COLLECTIONS) const;
+    const std::vector<Muon*> getMuons(MUON_COLLECTIONS) const;
 
     void print(MUON_COLLECTIONS, const VertexContainer&) const;
 

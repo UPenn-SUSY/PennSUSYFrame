@@ -4,6 +4,7 @@
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
 
 // ============================================================================
 namespace SelectionTools
@@ -20,6 +21,18 @@ namespace SelectionTools
     bool isSignal(Muon*);
     bool isCosmic(Muon*);
     bool isBad(Muon*);
+
+    std::vector<Muon*> getBaselineMuons(const MuonContainer&);
+    std::vector<Muon*> getBaselineMuons(std::vector<Muon*> all_muons);
+
+    std::vector<Muon*> getSignalMuons(const MuonContainer&);
+    std::vector<Muon*> getSignalMuons(std::vector<Muon*> good_muons);
+
+    std::vector<Muon*> getCosmicMuons(const MuonContainer&);
+    std::vector<Muon*> getCosmicMuons(std::vector<Muon*> all_muons);
+
+    std::vector<Muon*> getBadMuons(const MuonContainer&);
+    std::vector<Muon*> getBadMuons(std::vector<Muon*> all_muons);
 
   // --------------------------------------------------------------------------
   private:

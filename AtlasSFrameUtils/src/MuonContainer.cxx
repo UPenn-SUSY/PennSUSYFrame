@@ -67,10 +67,10 @@ size_t MuonContainer::num(MUON_COLLECTIONS mu_collection) const
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<Muon*>* MuonContainer::getMuons(
+const std::vector<Muon*> MuonContainer::getMuons(
     MUON_COLLECTIONS mu_collection) const
 {
-  return &(m_user_lists.at(mu_collection));
+  return m_user_lists.at(mu_collection);
 }
 
 // ----------------------------------------------------------------------------

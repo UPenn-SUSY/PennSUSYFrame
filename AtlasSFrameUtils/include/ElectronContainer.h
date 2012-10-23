@@ -35,7 +35,7 @@ class ElectronContainer
     void setCollection(ELECTRON_COLLECTIONS, std::vector<Electron*>);
 
     size_t num(ELECTRON_COLLECTIONS) const;
-    const std::vector<Electron*>* getElectrons(ELECTRON_COLLECTIONS) const;
+    const std::vector<Electron*> getElectrons(ELECTRON_COLLECTIONS) const;
 
     void print(ELECTRON_COLLECTIONS, const VertexContainer&) const;
 

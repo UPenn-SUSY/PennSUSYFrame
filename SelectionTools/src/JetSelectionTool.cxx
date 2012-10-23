@@ -48,6 +48,10 @@ SelectionTools::JetSelectionTool::~JetSelectionTool()
 // ----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBaseline(Jet* jet)
 {
+  // Check that jet is not bad
+  if (isBadJet(jet))
+    return false;
+
   // Check for baseline pt
   double pt = jet->getTlv().Pt();
   if (!passCut(pt, c_baseline_min_pt, c_baseline_max_pt))

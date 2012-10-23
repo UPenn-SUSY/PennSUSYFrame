@@ -67,10 +67,10 @@ size_t ElectronContainer::num(ELECTRON_COLLECTIONS el_collection) const
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<Electron*>* ElectronContainer::getElectrons(
+const std::vector<Electron*> ElectronContainer::getElectrons(
     ELECTRON_COLLECTIONS el_collection) const
 {
-  return &(m_user_lists.at(el_collection));
+  return m_user_lists.at(el_collection);
 }
 
 // ----------------------------------------------------------------------------

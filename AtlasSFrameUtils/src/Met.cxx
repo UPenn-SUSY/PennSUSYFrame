@@ -87,10 +87,10 @@ void Met::prep( Event* event
 // ----------------------------------------------------------------------------
 void Met::addElectrons(ElectronContainer* electron_container)
 {
-  const std::vector<Electron*>* el = electron_container->getElectrons(EL_ALL);
+  const std::vector<Electron*> el = electron_container->getElectrons(EL_ALL);
 
   // initialize container vectors for electron parameters
-  int n_el = el->size();
+  int n_el = el.size();
   std::vector<float> el_pt;
   std::vector<float> el_eta;
   std::vector<float> el_phi;
@@ -111,8 +111,8 @@ void Met::addElectrons(ElectronContainer* electron_container)
   el_statusWord.reserve(n_el);
 
   // Loop over electrons and get each of their parameters and weights
-  std::vector<Electron*>::const_iterator el_it = el->begin();
-  std::vector<Electron*>::const_iterator el_term = el->end();
+  std::vector<Electron*>::const_iterator el_it = el.begin();
+  std::vector<Electron*>::const_iterator el_term = el.end();
   for (; el_it != el_term; ++el_it) {
     TLorentzVector el_tlv = (*el_it)->getTlv();
 
@@ -168,10 +168,10 @@ void Met::addElectrons(ElectronContainer* electron_container)
 // ----------------------------------------------------------------------------
 void Met::addJets(JetContainer* jet_container)
 {
-  const std::vector<Jet*>* jets = jet_container->getJets(JET_ALL);
+  const std::vector<Jet*> jets = jet_container->getJets(JET_ALL);
 
   // initialize container vectors for electron parameters
-  int n_jets = jets->size();
+  int n_jets = jets.size();
   std::vector<float> jet_pt;
   std::vector<float> jet_eta;
   std::vector<float> jet_phi;
@@ -196,8 +196,8 @@ void Met::addJets(JetContainer* jet_container)
   jet_statusWord.reserve(n_jets);
 
   // Loop over jets and get their parameters and weights
-  std::vector<Jet*>::const_iterator jet_it = jets->begin();
-  std::vector<Jet*>::const_iterator jet_term = jets->end();
+  std::vector<Jet*>::const_iterator jet_it = jets.begin();
+  std::vector<Jet*>::const_iterator jet_term = jets.end();
   for (; jet_it != jet_term; ++jet_it) {
     TLorentzVector jet_tlv     = (*jet_it)->getTlv();
     TLorentzVector jet_raw_tlv = (*jet_it)->getRawTlv();
@@ -287,10 +287,10 @@ void Met::addMet()
 // ----------------------------------------------------------------------------
 void Met::addMuons(MuonContainer* muon_container)
 {
-  const std::vector<Muon*>* muons = muon_container->getMuons(MU_GOOD);
+  const std::vector<Muon*> muons = muon_container->getMuons(MU_GOOD);
 
   // initialize container vectors for muon parameters
-  int n_mu = muons->size();
+  int n_mu = muons.size();
   std::vector<float> mu_pt;
   std::vector<float> mu_eta;
   std::vector<float> mu_phi;
@@ -319,8 +319,8 @@ void Met::addMuons(MuonContainer* muon_container)
   std::vector<float> unit_vec(1, 1.);
   std::vector<unsigned int> def_vec(1, MissingETTags::DEFAULT);
 
-  std::vector<Muon*>::const_iterator mu_it = muons->begin();
-  std::vector<Muon*>::const_iterator mu_term = muons->end();
+  std::vector<Muon*>::const_iterator mu_it = muons.begin();
+  std::vector<Muon*>::const_iterator mu_term = muons.end();
   for (; mu_it != mu_term; ++mu_it) {
     TLorentzVector mu_tlv = (*mu_it)->getTlv();
 

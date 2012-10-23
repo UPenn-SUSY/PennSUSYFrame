@@ -33,7 +33,7 @@ class JetContainer
     void setCollection(JET_COLLECTIONS, std::vector<Jet*>);
 
     size_t num(JET_COLLECTIONS) const;
-    const std::vector<Jet*>* getJets(JET_COLLECTIONS) const;
+    const std::vector<Jet*> getJets(JET_COLLECTIONS) const;
 
     void print(JET_COLLECTIONS) const;
 

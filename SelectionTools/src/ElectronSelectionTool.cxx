@@ -112,9 +112,9 @@ std::vector<Electron*>
     SelectionTools::ElectronSelectionTool::getBaselineElectrons(
         const ElectronContainer& electron_container)
 {
-  const std::vector<Electron*>* all_electrons =
+  const std::vector<Electron*> all_electrons =
     electron_container.getElectrons(EL_ALL);
-  return getBaselineElectrons(*all_electrons);
+  return getBaselineElectrons(all_electrons);
 }
 
 // ----------------------------------------------------------------------------
@@ -141,9 +141,9 @@ std::vector<Electron*>
     SelectionTools::ElectronSelectionTool::getSignalElectrons(
         const ElectronContainer& electron_container)
 {
-  const std::vector<Electron*>* good_electrons =
+  const std::vector<Electron*> good_electrons =
     electron_container.getElectrons(EL_GOOD);
-  return getSignalElectrons(*good_electrons);
+  return getSignalElectrons(good_electrons);
 }
 
 // ----------------------------------------------------------------------------
