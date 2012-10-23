@@ -22,6 +22,73 @@ SelectionTools::ObjectCleaningTool::~ObjectCleaningTool()
 }
 
 // ----------------------------------------------------------------------------
+void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
+    ElectronContainer& electrons,
+    MuonContainer& muons,
+    JetContainer& jets)
+{
+  std::vector<Electron*> good_electrons;
+  std::vector<Muon*>     good_muons;
+  std::vector<Jet*>      good_jets;
+
+  fullObjectCleaning( electrons.getElectrons(EL_BASELINE)
+                    , muons.getMuons(MU_BASELINE)
+                    , jets.getJets(JET_BASELINE)
+                    , good_electrons
+                    , good_muons
+                    , good_jets
+                    );
+
+  electrons.setCollection(EL_GOOD, good_electrons);
+  muons.setCollection(MU_GOOD, good_muons);
+  jets.setCollection(JET_GOOD, good_jets);
+}
+
+// ----------------------------------------------------------------------------
+void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
+    const std::vector<Electron*>& input_electrons,
+    const std::vector<Muon*>& input_muons,
+    const std::vector<Jet*>& input_jets,
+    std::vector<Electron*>& output_electrons,
+    std::vector<Muon*>& output_muons,
+    std::vector<Jet*>& output_jets)
+{
+  // do ee overlap removal
+  std::vector<Electron*> el_temp_1;
+  eeOverlapRemoval(input_electrons, el_temp_1);
+
+  // do ej overlap removal
+  std::vector<Jet*> jet_temp_1;
+  ejOverlapRemoval(el_temp_1, input_jets, jet_temp_1);
+
+  // do je overlap removal
+  std::vector<Electron*> el_temp_2;
+  jeOverlapRemoval(el_temp_1, jet_temp_1, el_temp_2);
+
+  // do jm overlap removal
+  std::vector<Muon*> mu_temp_1;
+  jmOverlapRemoval(jet_temp_1, input_muons, mu_temp_1);
+
+  // do em overlap removal
+  std::vector<Electron*> el_temp_3;
+  std::vector<Muon*> mu_temp_2;
+  emOverlapRemoval(el_temp_2, mu_temp_1, el_temp_3, mu_temp_2);
+
+  // do mm overlap removal
+  std::vector<Muon*> mu_temp_3;
+  mmOverlapRemoval(mu_temp_2, mu_temp_3);
+
+  // do SFOS mll cut
+  std::vector<Electron*> el_temp_4;
+  std::vector<Muon*> mu_temp_4;
+  mllOverlapRemoval(el_temp_3, mu_temp_3, el_temp_4, mu_temp_4);
+
+  output_electrons = el_temp_4;
+  output_jets = jet_temp_1;
+  output_muons = mu_temp_4;
+}
+
+// ----------------------------------------------------------------------------
 void SelectionTools::ObjectCleaningTool::eeOverlapRemoval(
     const std::vector<Electron*>& input_electrons,
     std::vector<Electron*>& output_electrons)

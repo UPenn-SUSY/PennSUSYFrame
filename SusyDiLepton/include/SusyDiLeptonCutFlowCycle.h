@@ -123,6 +123,7 @@ private:
   SelectionTools::ElectronSelectionTool* m_electron_selection;
   SelectionTools::JetSelectionTool*      m_jet_selection;
   SelectionTools::MuonSelectionTool*     m_muon_selection;
+  SelectionTools::ObjectCleaningTool*    m_object_cleaning;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();

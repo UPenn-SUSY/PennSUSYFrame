@@ -236,7 +236,7 @@ std::vector<Muon*>
 // ----------------------------------------------------------------------------
 std::vector<Muon*>
     SelectionTools::MuonSelectionTool::getSignalMuons(
-        std::vector<Muon*> good_muons)
+        const std::vector<Muon*>& good_muons)
 {
   size_t term = good_muons.size();
 

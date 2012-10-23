@@ -55,6 +55,8 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
   DECLARE_TOOL(SelectionTools::MuonSelectionTool    , "Muon_Selection"    );
 
+  DECLARE_TOOL(SelectionTools::ObjectCleaningTool, "Object_Cleaning");
+
   // TODO populate list of tools
 }
 
@@ -160,10 +162,15 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
           , SelectionTools::MuonSelectionTool
           , "Muon_Selection"
           );
+  GET_TOOL( object_cleaning
+          , SelectionTools::ObjectCleaningTool
+          , "Object_Cleaning"
+          );
 
   m_electron_selection = electron_selection;
   m_jet_selection = jet_selection;
   m_muon_selection = muon_selection;
+  m_object_cleaning = object_cleaning;
 
   tlv_tool->init(egamma_energy_rescale, muon_smearing, jet_calib);
 
@@ -318,9 +325,26 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_jets.setCollection( JET_BAD,
       m_jet_selection->getBadJets(m_jets));
 
-  // TODO get different object collection (baseline, etc)
+  // do overlap removal to get good objects
+  m_object_cleaning->SelectionTools::ObjectCleaningTool::fullObjectCleaning(
+      m_electrons, m_muons, m_jets);
 
+  // Get signal objects
+  m_electrons.setCollection( EL_SIGNAL,
+      m_electron_selection->getSignalElectrons(m_electrons));
 
+  m_muons.setCollection( MU_SIGNAL,
+      m_muon_selection->getSignalMuons(m_muons));
 
+  m_jets.setCollection( JET_CENTRAL,
+      m_jet_selection->getLJets(m_jets));
+
+  m_jets.setCollection( JET_B,
+      m_jet_selection->getBJets(m_jets));
+
+  m_jets.setCollection( JET_FORWARD,
+      m_jet_selection->getFJets(m_jets));
+
+  // Prep met for this event
   m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
 }

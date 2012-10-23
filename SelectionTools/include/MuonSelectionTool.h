@@ -18,15 +18,19 @@ namespace SelectionTools
     virtual ~MuonSelectionTool();
 
     bool isBaseline(Muon*);
-    bool isSignal(Muon*);
+    bool isSignal(Muon* /*, const VertexContainer&*/);
     bool isCosmic(Muon*);
     bool isBad(Muon*);
 
     std::vector<Muon*> getBaselineMuons(const MuonContainer&);
     std::vector<Muon*> getBaselineMuons(std::vector<Muon*> all_muons);
 
-    std::vector<Muon*> getSignalMuons(const MuonContainer&);
-    std::vector<Muon*> getSignalMuons(std::vector<Muon*> good_muons);
+    std::vector<Muon*> getSignalMuons( const MuonContainer&
+                                     // , const VertexContainer
+                                     );
+    std::vector<Muon*> getSignalMuons( const std::vector<Muon*>& good_muons
+                                     // , const VertexContainer&
+                                     );
 
     std::vector<Muon*> getCosmicMuons(const MuonContainer&);
     std::vector<Muon*> getCosmicMuons(std::vector<Muon*> all_muons);

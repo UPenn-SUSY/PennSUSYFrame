@@ -23,6 +23,18 @@ namespace SelectionTools
                       );
     virtual ~ObjectCleaningTool();
 
+    void fullObjectCleaning( ElectronContainer& electrons
+                           , MuonContainer&     muons
+                           , JetContainer&      jets
+                           );
+    void fullObjectCleaning( const std::vector<Electron*>& input_electrons
+                           , const std::vector<Muon*>&     input_muons
+                           , const std::vector<Jet*>&      input_jets
+                           , std::vector<Electron*>&       output_electrons
+                           , std::vector<Muon*>&           output_muon
+                           , std::vector<Jet*>&            output_jets
+                           );
+
     void eeOverlapRemoval( const std::vector<Electron*>& input_electrons
                          , std::vector<Electron*>& output_electrons
                          );
