@@ -207,7 +207,7 @@ std::vector<Muon*>
 // ----------------------------------------------------------------------------
 std::vector<Muon*>
     SelectionTools::MuonSelectionTool::getBaselineMuons(
-        std::vector<Muon*> all_muons)
+        const std::vector<Muon*>& all_muons)
 {
   size_t term = all_muons.size();
 
@@ -265,7 +265,7 @@ std::vector<Muon*>
 // ----------------------------------------------------------------------------
 std::vector<Muon*>
     SelectionTools::MuonSelectionTool::getCosmicMuons(
-        std::vector<Muon*> all_muons)
+        const std::vector<Muon*>& all_muons)
 {
   size_t term = all_muons.size();
 
@@ -294,7 +294,7 @@ std::vector<Muon*>
 // ----------------------------------------------------------------------------
 std::vector<Muon*>
     SelectionTools::MuonSelectionTool::getBadMuons(
-        std::vector<Muon*> all_muons)
+        const std::vector<Muon*>& all_muons)
 {
   size_t term = all_muons.size();
 

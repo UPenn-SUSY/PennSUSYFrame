@@ -120,7 +120,7 @@ std::vector<Electron*>
 // ----------------------------------------------------------------------------
 std::vector<Electron*>
     SelectionTools::ElectronSelectionTool::getBaselineElectrons(
-        std::vector<Electron*> all_electrons)
+        const std::vector<Electron*>& all_electrons)
 {
   size_t term = all_electrons.size();
 
@@ -149,7 +149,7 @@ std::vector<Electron*>
 // ----------------------------------------------------------------------------
 std::vector<Electron*>
     SelectionTools::ElectronSelectionTool::getSignalElectrons(
-        std::vector<Electron*> good_electrons)
+        const std::vector<Electron*>& good_electrons)
 {
   size_t term = good_electrons.size();
 

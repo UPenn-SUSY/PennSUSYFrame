@@ -25,11 +25,11 @@ namespace SelectionTools
 
     std::vector<Electron*> getBaselineElectrons(const ElectronContainer&);
     std::vector<Electron*> getBaselineElectrons(
-        std::vector<Electron*> all_electrons);
+        const std::vector<Electron*>& all_electrons);
 
     std::vector<Electron*> getSignalElectrons(const ElectronContainer&);
     std::vector<Electron*> getSignalElectrons(
-        std::vector<Electron*> good_electrons);
+        const std::vector<Electron*>& good_electrons);
 
   // --------------------------------------------------------------------------
   private:

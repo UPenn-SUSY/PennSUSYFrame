@@ -178,7 +178,7 @@ std::vector<Jet*>
 // ----------------------------------------------------------------------------
 std::vector<Jet*>
     SelectionTools::JetSelectionTool::getBaselineJets(
-        std::vector<Jet*> all_jets)
+        const std::vector<Jet*>& all_jets)
 {
   size_t term = all_jets.size();
 
@@ -207,7 +207,7 @@ std::vector<Jet*>
 // ----------------------------------------------------------------------------
 std::vector<Jet*>
     SelectionTools::JetSelectionTool::getLJets(
-        std::vector<Jet*> good_jets)
+        const std::vector<Jet*>& good_jets)
 {
   size_t term = good_jets.size();
 
@@ -236,7 +236,7 @@ std::vector<Jet*>
 // ----------------------------------------------------------------------------
 std::vector<Jet*>
     SelectionTools::JetSelectionTool::getBJets(
-        std::vector<Jet*> good_jets)
+        const std::vector<Jet*>& good_jets)
 {
   size_t term = good_jets.size();
 
@@ -265,7 +265,7 @@ std::vector<Jet*>
 // ----------------------------------------------------------------------------
 std::vector<Jet*>
     SelectionTools::JetSelectionTool::getFJets(
-        std::vector<Jet*> good_jets)
+        const std::vector<Jet*>& good_jets)
 {
   size_t term = good_jets.size();
 
@@ -294,7 +294,7 @@ std::vector<Jet*>
 // ----------------------------------------------------------------------------
 std::vector<Jet*>
     SelectionTools::JetSelectionTool::getBadJets(
-        std::vector<Jet*> all_jets)
+        const std::vector<Jet*>& all_jets)
 {
   size_t term = all_jets.size();
 

@@ -23,7 +23,8 @@ namespace SelectionTools
     bool isBad(Muon*);
 
     std::vector<Muon*> getBaselineMuons(const MuonContainer&);
-    std::vector<Muon*> getBaselineMuons(std::vector<Muon*> all_muons);
+    std::vector<Muon*> getBaselineMuons(
+        const std::vector<Muon*>& all_muons);
 
     std::vector<Muon*> getSignalMuons( const MuonContainer&
                                      // , const VertexContainer
@@ -33,10 +34,12 @@ namespace SelectionTools
                                      );
 
     std::vector<Muon*> getCosmicMuons(const MuonContainer&);
-    std::vector<Muon*> getCosmicMuons(std::vector<Muon*> all_muons);
+    std::vector<Muon*> getCosmicMuons(
+        const std::vector<Muon*>& all_muons);
 
     std::vector<Muon*> getBadMuons(const MuonContainer&);
-    std::vector<Muon*> getBadMuons(std::vector<Muon*> all_muons);
+    std::vector<Muon*> getBadMuons(
+        const std::vector<Muon*>& all_muons);
 
   // --------------------------------------------------------------------------
   private:
