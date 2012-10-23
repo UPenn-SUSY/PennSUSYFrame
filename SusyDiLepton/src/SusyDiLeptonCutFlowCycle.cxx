@@ -52,8 +52,8 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::TLVTool                 , "tlv"                 );
 
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
-  DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Muon_Selection"    );
-  DECLARE_TOOL(SelectionTools::MuonSelectionTool    , "Jet_Selection"     );
+  DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
+  DECLARE_TOOL(SelectionTools::MuonSelectionTool    , "Muon_Selection"    );
 
   // TODO populate list of tools
 }
@@ -298,9 +298,29 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_jets.prepJets(m_jet_d3pdobject);
   m_vertices.prepVertices(m_vertex_d3pdobject, is_data());
 
-  // TODO get different object collection (baseline, etc)
+  // Get baseline objects
   m_electrons.setCollection( EL_BASELINE,
       m_electron_selection->getBaselineElectrons(m_electrons));
+
+  m_muons.setCollection( MU_BASELINE,
+      m_muon_selection->getBaselineMuons(m_muons));
+
+  m_jets.setCollection( JET_BASELINE,
+      m_jet_selection->getBaselineJets(m_jets));
+
+  // Get bad/veto objects
+  m_muons.setCollection( MU_BAD,
+      m_muon_selection->getBadMuons(m_muons));
+
+  m_muons.setCollection( MU_COSMIC,
+      m_muon_selection->getCosmicMuons(m_muons));
+
+  m_jets.setCollection( JET_BAD,
+      m_jet_selection->getBadJets(m_jets));
+
+  // TODO get different object collection (baseline, etc)
+
+
 
   m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
 }

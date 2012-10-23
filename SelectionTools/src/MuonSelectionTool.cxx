@@ -214,9 +214,9 @@ std::vector<Muon*>
   std::vector<Muon*> baseline_muons;
   baseline_muons.reserve(term);
 
-  for (size_t el_it = 0; el_it != term; ++el_it) {
-    if (isBaseline(all_muons.at(el_it))) {
-      baseline_muons.push_back(all_muons.at(el_it));
+  for (size_t mu_it = 0; mu_it != term; ++mu_it) {
+    if (isBaseline(all_muons.at(mu_it))) {
+      baseline_muons.push_back(all_muons.at(mu_it));
     }
   }
 
@@ -243,9 +243,9 @@ std::vector<Muon*>
   std::vector<Muon*> signal_muons;
   signal_muons.reserve(term);
 
-  for (size_t el_it = 0; el_it != term; ++el_it) {
-    if (isSignal(good_muons.at(el_it))) {
-      signal_muons.push_back(good_muons.at(el_it));
+  for (size_t mu_it = 0; mu_it != term; ++mu_it) {
+    if (isSignal(good_muons.at(mu_it))) {
+      signal_muons.push_back(good_muons.at(mu_it));
     }
   }
 

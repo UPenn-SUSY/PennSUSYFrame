@@ -166,6 +166,151 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 }
 
 // ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getBaselineJets(
+        const JetContainer& jet_container)
+{
+  const std::vector<Jet*> all_jets =
+    jet_container.getJets(JET_ALL);
+  return getBaselineJets(all_jets);
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getBaselineJets(
+        std::vector<Jet*> all_jets)
+{
+  size_t term = all_jets.size();
+
+  std::vector<Jet*> baseline_jets;
+  baseline_jets.reserve(term);
+
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    if (isBaseline(all_jets.at(jet_it))) {
+      baseline_jets.push_back(all_jets.at(jet_it));
+    }
+  }
+
+  return baseline_jets;
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getLJets(
+        const JetContainer& jet_container)
+{
+  const std::vector<Jet*> good_jets =
+    jet_container.getJets(JET_GOOD);
+  return getLJets(good_jets);
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getLJets(
+        std::vector<Jet*> good_jets)
+{
+  size_t term = good_jets.size();
+
+  std::vector<Jet*> l_jets;
+  l_jets.reserve(term);
+
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    if (isLJet(good_jets.at(jet_it))) {
+      l_jets.push_back(good_jets.at(jet_it));
+    }
+  }
+
+  return l_jets;
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getBJets(
+        const JetContainer& jet_container)
+{
+  const std::vector<Jet*> good_jets =
+    jet_container.getJets(JET_GOOD);
+  return getBJets(good_jets);
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getBJets(
+        std::vector<Jet*> good_jets)
+{
+  size_t term = good_jets.size();
+
+  std::vector<Jet*> b_jets;
+  b_jets.reserve(term);
+
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    if (isBJet(good_jets.at(jet_it))) {
+      b_jets.push_back(good_jets.at(jet_it));
+    }
+  }
+
+  return b_jets;
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getFJets(
+        const JetContainer& jet_container)
+{
+  const std::vector<Jet*> good_jets =
+    jet_container.getJets(JET_GOOD);
+  return getFJets(good_jets);
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getFJets(
+        std::vector<Jet*> good_jets)
+{
+  size_t term = good_jets.size();
+
+  std::vector<Jet*> f_jets;
+  f_jets.reserve(term);
+
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    if (isFJet(good_jets.at(jet_it))) {
+      f_jets.push_back(good_jets.at(jet_it));
+    }
+  }
+
+  return f_jets;
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getBadJets(
+        const JetContainer& jet_container)
+{
+  const std::vector<Jet*> all_jets =
+    jet_container.getJets(JET_ALL);
+  return getBadJets(all_jets);
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Jet*>
+    SelectionTools::JetSelectionTool::getBadJets(
+        std::vector<Jet*> all_jets)
+{
+  size_t term = all_jets.size();
+
+  std::vector<Jet*> bad_jets;
+  bad_jets.reserve(term);
+
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    if (isBadJet(all_jets.at(jet_it))) {
+      bad_jets.push_back(all_jets.at(jet_it));
+    }
+  }
+
+  return bad_jets;
+}
+
+// ----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::passCut( double test
                                               , double min
                                               , double max

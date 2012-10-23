@@ -23,25 +23,25 @@ namespace SelectionTools
     bool isFJet(Jet*);
     bool isBadJet(Jet*);
 
-    // std::vector<Jet*> getBaselineJets(const JetContainer&);
-    // std::vector<Jet*> getBaselineJets(
-    //     std::vector<Jet*> all_jets);
+    std::vector<Jet*> getBaselineJets(const JetContainer&);
+    std::vector<Jet*> getBaselineJets(
+        std::vector<Jet*> all_jets);
 
-    // std::vector<Jet*> getLJets(const JetContainer&);
-    // std::vector<Jet*> getLJets(
-    //     std::vector<Jet*> good_jets);
+    std::vector<Jet*> getLJets(const JetContainer&);
+    std::vector<Jet*> getLJets(
+        std::vector<Jet*> good_jets);
 
-    // std::vector<Jet*> getBJets(const JetContainer&);
-    // std::vector<Jet*> getBJets(
-    //     std::vector<Jet*> good_jets);
+    std::vector<Jet*> getBJets(const JetContainer&);
+    std::vector<Jet*> getBJets(
+        std::vector<Jet*> good_jets);
 
-    // std::vector<Jet*> getFJets(const JetContainer&);
-    // std::vector<Jet*> getFJets(
-    //     std::vector<Jet*> good_jets);
+    std::vector<Jet*> getFJets(const JetContainer&);
+    std::vector<Jet*> getFJets(
+        std::vector<Jet*> good_jets);
 
-    // std::vector<Jet*> getBadJets(const JetContainer&);
-    // std::vector<Jet*> getBadJets(
-    //     std::vector<Jet*> good_jets);
+    std::vector<Jet*> getBadJets(const JetContainer&);
+    std::vector<Jet*> getBadJets(
+        std::vector<Jet*> good_jets);
 
   // --------------------------------------------------------------------------
   private:
