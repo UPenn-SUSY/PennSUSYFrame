@@ -1,0 +1,1911 @@
+// Dear emacs, this is -*- c++ -*-
+// -------------------------------------------------------------
+//             Code produced by D3PDMakerReader
+//
+//  author: Attila Krasznahorkay <Attila.Krasznahorkay@cern.ch>
+// -------------------------------------------------------------
+
+#include <TPRegexp.h>
+
+#include "../include/TriggerD3PDObject.h"
+
+ClassImp( D3PDReader::TriggerD3PDObject )
+
+namespace D3PDReader {
+
+   /**
+    * This constructor should be used when the object will be used to read
+    * variables from an existing ntuple. The object will also be able to
+    * output variables, but it will also need to read them from somewhere.
+    *
+    * @param master Reference to the variable holding the current event number
+    * @param prefix Prefix of the variables in the D3PD
+    */
+   TriggerD3PDObject::TriggerD3PDObject( const ::Long64_t& master, const char* prefix )
+      : TObject(),
+        EF_2e10_medium( this, ::TString( prefix ) + "EF_2e10_medium", &master ),
+        EF_2e10_medium_mu6( this, ::TString( prefix ) + "EF_2e10_medium_mu6", &master ),
+        EF_2e12_medium( this, ::TString( prefix ) + "EF_2e12_medium", &master ),
+        EF_2e12Thv_medium( this, ::TString( prefix ) + "EF_2e12Thv_medium", &master ),
+        EF_2e5_tight( this, ::TString( prefix ) + "EF_2e5_tight", &master ),
+        EF_2e5_tight_Jpsi( this, ::TString( prefix ) + "EF_2e5_tight_Jpsi", &master ),
+        EF_2g15_loose( this, ::TString( prefix ) + "EF_2g15_loose", &master ),
+        EF_2g20_loose( this, ::TString( prefix ) + "EF_2g20_loose", &master ),
+        EF_2mu10( this, ::TString( prefix ) + "EF_2mu10", &master ),
+        EF_2mu10_empty( this, ::TString( prefix ) + "EF_2mu10_empty", &master ),
+        EF_2mu10_loose( this, ::TString( prefix ) + "EF_2mu10_loose", &master ),
+        EF_2mu10_loose_empty( this, ::TString( prefix ) + "EF_2mu10_loose_empty", &master ),
+        EF_2mu10_loose_noOvlpRm( this, ::TString( prefix ) + "EF_2mu10_loose_noOvlpRm", &master ),
+        EF_2mu4( this, ::TString( prefix ) + "EF_2mu4", &master ),
+        EF_2mu4_Bmumu( this, ::TString( prefix ) + "EF_2mu4_Bmumu", &master ),
+        EF_2mu4_Bmumux( this, ::TString( prefix ) + "EF_2mu4_Bmumux", &master ),
+        EF_2mu4_DiMu( this, ::TString( prefix ) + "EF_2mu4_DiMu", &master ),
+        EF_2mu4_DiMu_SiTrk( this, ::TString( prefix ) + "EF_2mu4_DiMu_SiTrk", &master ),
+        EF_2mu4_DiMu_noVtx_noOS( this, ::TString( prefix ) + "EF_2mu4_DiMu_noVtx_noOS", &master ),
+        EF_2mu4_Jpsimumu( this, ::TString( prefix ) + "EF_2mu4_Jpsimumu", &master ),
+        EF_2mu4_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "EF_2mu4_Jpsimumu_IDTrkNoCut", &master ),
+        EF_2mu4_Upsimumu( this, ::TString( prefix ) + "EF_2mu4_Upsimumu", &master ),
+        EF_2mu6( this, ::TString( prefix ) + "EF_2mu6", &master ),
+        EF_2mu6_MSonly_g10_loose( this, ::TString( prefix ) + "EF_2mu6_MSonly_g10_loose", &master ),
+        EF_2mu6_NL( this, ::TString( prefix ) + "EF_2mu6_NL", &master ),
+        EF_e10_medium( this, ::TString( prefix ) + "EF_e10_medium", &master ),
+        EF_e10_medium_2mu6( this, ::TString( prefix ) + "EF_e10_medium_2mu6", &master ),
+        EF_e10_medium_mu10( this, ::TString( prefix ) + "EF_e10_medium_mu10", &master ),
+        EF_e10_medium_mu6( this, ::TString( prefix ) + "EF_e10_medium_mu6", &master ),
+        EF_e15_HLTtighter( this, ::TString( prefix ) + "EF_e15_HLTtighter", &master ),
+        EF_e15_medium( this, ::TString( prefix ) + "EF_e15_medium", &master ),
+        EF_e15_medium_xe30_noMu( this, ::TString( prefix ) + "EF_e15_medium_xe30_noMu", &master ),
+        EF_e15_tight( this, ::TString( prefix ) + "EF_e15_tight", &master ),
+        EF_e20_loose( this, ::TString( prefix ) + "EF_e20_loose", &master ),
+        EF_e20_medium( this, ::TString( prefix ) + "EF_e20_medium", &master ),
+        EF_e20_medium1( this, ::TString( prefix ) + "EF_e20_medium1", &master ),
+        EF_e20_medium_IDTrkNoCut( this, ::TString( prefix ) + "EF_e20_medium_IDTrkNoCut", &master ),
+        EF_e20_medium_SiTrk( this, ::TString( prefix ) + "EF_e20_medium_SiTrk", &master ),
+        EF_e20_medium_TRT( this, ::TString( prefix ) + "EF_e20_medium_TRT", &master ),
+        EF_e22_medium( this, ::TString( prefix ) + "EF_e22_medium", &master ),
+        EF_e22vh_medium1( this, ::TString( prefix ) + "EF_e22vh_medium1", &master ),
+        EF_e5_tight( this, ::TString( prefix ) + "EF_e5_tight", &master ),
+        EF_e5_tight_e4_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi", &master ),
+        EF_e5_tight_e4_etcut_Jpsi_SiTrk( this, ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi_SiTrk", &master ),
+        EF_e5_tight_e4_etcut_Jpsi_TRT( this, ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi_TRT", &master ),
+        EF_e5_tight_e5_NoCut( this, ::TString( prefix ) + "EF_e5_tight_e5_NoCut", &master ),
+        EF_e5_tight_e9_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight_e9_etcut_Jpsi", &master ),
+        EF_e60_loose( this, ::TString( prefix ) + "EF_e60_loose", &master ),
+        EF_e9_tight_e5_tight_Jpsi( this, ::TString( prefix ) + "EF_e9_tight_e5_tight_Jpsi", &master ),
+        EF_eb_physics( this, ::TString( prefix ) + "EF_eb_physics", &master ),
+        EF_eb_physics_empty( this, ::TString( prefix ) + "EF_eb_physics_empty", &master ),
+        EF_eb_physics_firstempty( this, ::TString( prefix ) + "EF_eb_physics_firstempty", &master ),
+        EF_eb_physics_noL1PS( this, ::TString( prefix ) + "EF_eb_physics_noL1PS", &master ),
+        EF_eb_physics_unpaired_iso( this, ::TString( prefix ) + "EF_eb_physics_unpaired_iso", &master ),
+        EF_eb_physics_unpaired_noniso( this, ::TString( prefix ) + "EF_eb_physics_unpaired_noniso", &master ),
+        EF_eb_random( this, ::TString( prefix ) + "EF_eb_random", &master ),
+        EF_eb_random_empty( this, ::TString( prefix ) + "EF_eb_random_empty", &master ),
+        EF_eb_random_firstempty( this, ::TString( prefix ) + "EF_eb_random_firstempty", &master ),
+        EF_eb_random_unpaired_iso( this, ::TString( prefix ) + "EF_eb_random_unpaired_iso", &master ),
+        EF_g100_etcut_g50_etcut( this, ::TString( prefix ) + "EF_g100_etcut_g50_etcut", &master ),
+        EF_g10_NoCut_cosmic( this, ::TString( prefix ) + "EF_g10_NoCut_cosmic", &master ),
+        EF_g11_etcut( this, ::TString( prefix ) + "EF_g11_etcut", &master ),
+        EF_g11_etcut_larcalib( this, ::TString( prefix ) + "EF_g11_etcut_larcalib", &master ),
+        EF_g150_etcut( this, ::TString( prefix ) + "EF_g150_etcut", &master ),
+        EF_g15_loose( this, ::TString( prefix ) + "EF_g15_loose", &master ),
+        EF_g15_loose_larcalib( this, ::TString( prefix ) + "EF_g15_loose_larcalib", &master ),
+        EF_g20_etcut( this, ::TString( prefix ) + "EF_g20_etcut", &master ),
+        EF_g20_etcut_xe30_noMu( this, ::TString( prefix ) + "EF_g20_etcut_xe30_noMu", &master ),
+        EF_g20_loose( this, ::TString( prefix ) + "EF_g20_loose", &master ),
+        EF_g20_loose_larcalib( this, ::TString( prefix ) + "EF_g20_loose_larcalib", &master ),
+        EF_g40_loose( this, ::TString( prefix ) + "EF_g40_loose", &master ),
+        EF_g40_loose_EFxe40_noMu( this, ::TString( prefix ) + "EF_g40_loose_EFxe40_noMu", &master ),
+        EF_g40_loose_larcalib( this, ::TString( prefix ) + "EF_g40_loose_larcalib", &master ),
+        EF_g40_tight( this, ::TString( prefix ) + "EF_g40_tight", &master ),
+        EF_g5_NoCut_cosmic( this, ::TString( prefix ) + "EF_g5_NoCut_cosmic", &master ),
+        EF_g60_loose( this, ::TString( prefix ) + "EF_g60_loose", &master ),
+        EF_g60_loose_larcalib( this, ::TString( prefix ) + "EF_g60_loose_larcalib", &master ),
+        EF_g80_loose( this, ::TString( prefix ) + "EF_g80_loose", &master ),
+        EF_g80_loose_larcalib( this, ::TString( prefix ) + "EF_g80_loose_larcalib", &master ),
+        EF_mu0_empty_NoAlg( this, ::TString( prefix ) + "EF_mu0_empty_NoAlg", &master ),
+        EF_mu0_firstempty_NoAlg( this, ::TString( prefix ) + "EF_mu0_firstempty_NoAlg", &master ),
+        EF_mu0_unpaired_iso_NoAlg( this, ::TString( prefix ) + "EF_mu0_unpaired_iso_NoAlg", &master ),
+        EF_mu10( this, ::TString( prefix ) + "EF_mu10", &master ),
+        EF_mu10_Jpsimumu( this, ::TString( prefix ) + "EF_mu10_Jpsimumu", &master ),
+        EF_mu10_NL( this, ::TString( prefix ) + "EF_mu10_NL", &master ),
+        EF_mu10_Upsimumu_FS( this, ::TString( prefix ) + "EF_mu10_Upsimumu_FS", &master ),
+        EF_mu10_loose( this, ::TString( prefix ) + "EF_mu10_loose", &master ),
+        EF_mu10_muCombTag_NoEF( this, ::TString( prefix ) + "EF_mu10_muCombTag_NoEF", &master ),
+        EF_mu11_empty_NoAlg( this, ::TString( prefix ) + "EF_mu11_empty_NoAlg", &master ),
+        EF_mu13( this, ::TString( prefix ) + "EF_mu13", &master ),
+        EF_mu13_MG( this, ::TString( prefix ) + "EF_mu13_MG", &master ),
+        EF_mu13_muCombTag_NoEF( this, ::TString( prefix ) + "EF_mu13_muCombTag_NoEF", &master ),
+        EF_mu15( this, ::TString( prefix ) + "EF_mu15", &master ),
+        EF_mu15_mu10_EFFS( this, ::TString( prefix ) + "EF_mu15_mu10_EFFS", &master ),
+        EF_mu15i( this, ::TString( prefix ) + "EF_mu15i", &master ),
+        EF_mu18( this, ::TString( prefix ) + "EF_mu18", &master ),
+        EF_mu18_MG( this, ::TString( prefix ) + "EF_mu18_MG", &master ),
+        EF_mu18_medium( this, ::TString( prefix ) + "EF_mu18_medium", &master ),
+        EF_mu20( this, ::TString( prefix ) + "EF_mu20", &master ),
+        EF_mu20_IDTrkNoCut( this, ::TString( prefix ) + "EF_mu20_IDTrkNoCut", &master ),
+        EF_mu20_MG( this, ::TString( prefix ) + "EF_mu20_MG", &master ),
+        EF_mu20_empty( this, ::TString( prefix ) + "EF_mu20_empty", &master ),
+        EF_mu20_muCombTag_NoEF( this, ::TString( prefix ) + "EF_mu20_muCombTag_NoEF", &master ),
+        EF_mu20i( this, ::TString( prefix ) + "EF_mu20i", &master ),
+        EF_mu22( this, ::TString( prefix ) + "EF_mu22", &master ),
+        EF_mu22_MG( this, ::TString( prefix ) + "EF_mu22_MG", &master ),
+        EF_mu4( this, ::TString( prefix ) + "EF_mu4", &master ),
+        EF_mu40_MSonly_barrel( this, ::TString( prefix ) + "EF_mu40_MSonly_barrel", &master ),
+        EF_mu40_MSonly_empty( this, ::TString( prefix ) + "EF_mu40_MSonly_empty", &master ),
+        EF_mu40_MSonly_tight( this, ::TString( prefix ) + "EF_mu40_MSonly_tight", &master ),
+        EF_mu40_MSonly_tighter( this, ::TString( prefix ) + "EF_mu40_MSonly_tighter", &master ),
+        EF_mu40_slow( this, ::TString( prefix ) + "EF_mu40_slow", &master ),
+        EF_mu40_slow_empty( this, ::TString( prefix ) + "EF_mu40_slow_empty", &master ),
+        EF_mu40_slow_outOfTime( this, ::TString( prefix ) + "EF_mu40_slow_outOfTime", &master ),
+        EF_mu4_DiMu( this, ::TString( prefix ) + "EF_mu4_DiMu", &master ),
+        EF_mu4_DiMu_FS_noOS( this, ::TString( prefix ) + "EF_mu4_DiMu_FS_noOS", &master ),
+        EF_mu4_Jpsimumu( this, ::TString( prefix ) + "EF_mu4_Jpsimumu", &master ),
+        EF_mu4_L1J10_matched( this, ::TString( prefix ) + "EF_mu4_L1J10_matched", &master ),
+        EF_mu4_L1J15_matched( this, ::TString( prefix ) + "EF_mu4_L1J15_matched", &master ),
+        EF_mu4_L1J20_matched( this, ::TString( prefix ) + "EF_mu4_L1J20_matched", &master ),
+        EF_mu4_L1J30_matched( this, ::TString( prefix ) + "EF_mu4_L1J30_matched", &master ),
+        EF_mu4_L1J50_matched( this, ::TString( prefix ) + "EF_mu4_L1J50_matched", &master ),
+        EF_mu4_L1J75_matched( this, ::TString( prefix ) + "EF_mu4_L1J75_matched", &master ),
+        EF_mu4_L1MU11_MSonly_cosmic( this, ::TString( prefix ) + "EF_mu4_L1MU11_MSonly_cosmic", &master ),
+        EF_mu4_L1MU11_cosmic( this, ::TString( prefix ) + "EF_mu4_L1MU11_cosmic", &master ),
+        EF_mu4_MSonly_cosmic( this, ::TString( prefix ) + "EF_mu4_MSonly_cosmic", &master ),
+        EF_mu4_Trk_Jpsi( this, ::TString( prefix ) + "EF_mu4_Trk_Jpsi", &master ),
+        EF_mu4_Trk_Upsi_FS( this, ::TString( prefix ) + "EF_mu4_Trk_Upsi_FS", &master ),
+        EF_mu4_Upsimumu_FS( this, ::TString( prefix ) + "EF_mu4_Upsimumu_FS", &master ),
+        EF_mu4_Upsimumu_SiTrk_FS( this, ::TString( prefix ) + "EF_mu4_Upsimumu_SiTrk_FS", &master ),
+        EF_mu4_Upsimumu_tight_FS( this, ::TString( prefix ) + "EF_mu4_Upsimumu_tight_FS", &master ),
+        EF_mu4_cosmic( this, ::TString( prefix ) + "EF_mu4_cosmic", &master ),
+        EF_mu4_j10_a4tc_EFFS( this, ::TString( prefix ) + "EF_mu4_j10_a4tc_EFFS", &master ),
+        EF_mu6( this, ::TString( prefix ) + "EF_mu6", &master ),
+        EF_mu6_DiMu_noOS( this, ::TString( prefix ) + "EF_mu6_DiMu_noOS", &master ),
+        EF_mu6_Jpsimumu( this, ::TString( prefix ) + "EF_mu6_Jpsimumu", &master ),
+        EF_mu6_Jpsimumu_SiTrk( this, ::TString( prefix ) + "EF_mu6_Jpsimumu_SiTrk", &master ),
+        EF_mu6_Jpsimumu_tight( this, ::TString( prefix ) + "EF_mu6_Jpsimumu_tight", &master ),
+        trig_EF_emcl_n( this, ::TString( prefix ) + "trig_EF_emcl_n", &master ),
+        trig_EF_emcl_pt( this, ::TString( prefix ) + "trig_EF_emcl_pt", &master ),
+        trig_EF_emcl_eta( this, ::TString( prefix ) + "trig_EF_emcl_eta", &master ),
+        trig_EF_emcl_phi( this, ::TString( prefix ) + "trig_EF_emcl_phi", &master ),
+        trig_EF_emcl_E_em( this, ::TString( prefix ) + "trig_EF_emcl_E_em", &master ),
+        trig_EF_emcl_E_had( this, ::TString( prefix ) + "trig_EF_emcl_E_had", &master ),
+        trig_EF_emcl_slw_n( this, ::TString( prefix ) + "trig_EF_emcl_slw_n", &master ),
+        trig_EF_emcl_slw_pt( this, ::TString( prefix ) + "trig_EF_emcl_slw_pt", &master ),
+        trig_EF_emcl_slw_eta( this, ::TString( prefix ) + "trig_EF_emcl_slw_eta", &master ),
+        trig_EF_emcl_slw_phi( this, ::TString( prefix ) + "trig_EF_emcl_slw_phi", &master ),
+        trig_EF_emcl_slw_E_em( this, ::TString( prefix ) + "trig_EF_emcl_slw_E_em", &master ),
+        trig_EF_emcl_slw_E_had( this, ::TString( prefix ) + "trig_EF_emcl_slw_E_had", &master ),
+        trig_EF_el_n( this, ::TString( prefix ) + "trig_EF_el_n", &master ),
+        trig_EF_el_E( this, ::TString( prefix ) + "trig_EF_el_E", &master ),
+        trig_EF_el_Et( this, ::TString( prefix ) + "trig_EF_el_Et", &master ),
+        trig_EF_el_pt( this, ::TString( prefix ) + "trig_EF_el_pt", &master ),
+        trig_EF_el_m( this, ::TString( prefix ) + "trig_EF_el_m", &master ),
+        trig_EF_el_eta( this, ::TString( prefix ) + "trig_EF_el_eta", &master ),
+        trig_EF_el_phi( this, ::TString( prefix ) + "trig_EF_el_phi", &master ),
+        trig_EF_el_px( this, ::TString( prefix ) + "trig_EF_el_px", &master ),
+        trig_EF_el_py( this, ::TString( prefix ) + "trig_EF_el_py", &master ),
+        trig_EF_el_pz( this, ::TString( prefix ) + "trig_EF_el_pz", &master ),
+        trig_EF_el_charge( this, ::TString( prefix ) + "trig_EF_el_charge", &master ),
+        trig_EF_el_author( this, ::TString( prefix ) + "trig_EF_el_author", &master ),
+        trig_EF_el_isEM( this, ::TString( prefix ) + "trig_EF_el_isEM", &master ),
+        trig_EF_el_loose( this, ::TString( prefix ) + "trig_EF_el_loose", &master ),
+        trig_EF_el_looseIso( this, ::TString( prefix ) + "trig_EF_el_looseIso", &master ),
+        trig_EF_el_medium( this, ::TString( prefix ) + "trig_EF_el_medium", &master ),
+        trig_EF_el_mediumIso( this, ::TString( prefix ) + "trig_EF_el_mediumIso", &master ),
+        trig_EF_el_mediumWithoutTrack( this, ::TString( prefix ) + "trig_EF_el_mediumWithoutTrack", &master ),
+        trig_EF_el_mediumIsoWithoutTrack( this, ::TString( prefix ) + "trig_EF_el_mediumIsoWithoutTrack", &master ),
+        trig_EF_el_tight( this, ::TString( prefix ) + "trig_EF_el_tight", &master ),
+        trig_EF_el_tightIso( this, ::TString( prefix ) + "trig_EF_el_tightIso", &master ),
+        trig_EF_el_tightWithoutTrack( this, ::TString( prefix ) + "trig_EF_el_tightWithoutTrack", &master ),
+        trig_EF_el_tightIsoWithoutTrack( this, ::TString( prefix ) + "trig_EF_el_tightIsoWithoutTrack", &master ),
+        trig_EF_el_loosePP( this, ::TString( prefix ) + "trig_EF_el_loosePP", &master ),
+        trig_EF_el_loosePPIso( this, ::TString( prefix ) + "trig_EF_el_loosePPIso", &master ),
+        trig_EF_el_mediumPP( this, ::TString( prefix ) + "trig_EF_el_mediumPP", &master ),
+        trig_EF_el_mediumPPIso( this, ::TString( prefix ) + "trig_EF_el_mediumPPIso", &master ),
+        trig_EF_el_tightPP( this, ::TString( prefix ) + "trig_EF_el_tightPP", &master ),
+        trig_EF_el_tightPPIso( this, ::TString( prefix ) + "trig_EF_el_tightPPIso", &master ),
+        trig_EF_el_EF_2e10_medium( this, ::TString( prefix ) + "trig_EF_el_EF_2e10_medium", &master ),
+        trig_EF_el_EF_2e10_medium_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_2e10_medium_mu6", &master ),
+        trig_EF_el_EF_2e12_medium( this, ::TString( prefix ) + "trig_EF_el_EF_2e12_medium", &master ),
+        trig_EF_el_EF_2e12Thv_medium( this, ::TString( prefix ) + "trig_EF_el_EF_2e12Thv_medium", &master ),
+        trig_EF_el_EF_2e5_tight( this, ::TString( prefix ) + "trig_EF_el_EF_2e5_tight", &master ),
+        trig_EF_el_EF_2e5_tight_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_2e5_tight_Jpsi", &master ),
+        trig_EF_el_EF_e10_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e10_medium", &master ),
+        trig_EF_el_EF_e10_medium_2mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e10_medium_2mu6", &master ),
+        trig_EF_el_EF_e10_medium_mu10( this, ::TString( prefix ) + "trig_EF_el_EF_e10_medium_mu10", &master ),
+        trig_EF_el_EF_e10_medium_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e10_medium_mu6", &master ),
+        trig_EF_el_EF_e15_HLTtighter( this, ::TString( prefix ) + "trig_EF_el_EF_e15_HLTtighter", &master ),
+        trig_EF_el_EF_e15_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e15_medium", &master ),
+        trig_EF_el_EF_e15_medium_xe30_noMu( this, ::TString( prefix ) + "trig_EF_el_EF_e15_medium_xe30_noMu", &master ),
+        trig_EF_el_EF_e15_tight( this, ::TString( prefix ) + "trig_EF_el_EF_e15_tight", &master ),
+        trig_EF_el_EF_e20_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e20_loose", &master ),
+        trig_EF_el_EF_e20_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium", &master ),
+        trig_EF_el_EF_e20_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium1", &master ),
+        trig_EF_el_EF_e20_medium_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium_IDTrkNoCut", &master ),
+        trig_EF_el_EF_e20_medium_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium_SiTrk", &master ),
+        trig_EF_el_EF_e20_medium_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium_TRT", &master ),
+        trig_EF_el_EF_e22_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e22_medium", &master ),
+        trig_EF_el_EF_e22vh_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1", &master ),
+        trig_EF_el_EF_e5_tight( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight", &master ),
+        trig_EF_el_EF_e5_tight_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi", &master ),
+        trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk", &master ),
+        trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT", &master ),
+        trig_EF_el_EF_e5_tight_e5_NoCut( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e5_NoCut", &master ),
+        trig_EF_el_EF_e5_tight_e9_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e9_etcut_Jpsi", &master ),
+        trig_EF_el_EF_e60_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e60_loose", &master ),
+        trig_EF_el_EF_e9_tight_e5_tight_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e9_tight_e5_tight_Jpsi", &master ),
+        trig_EF_el_EF_eb_physics( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics", &master ),
+        trig_EF_el_EF_eb_physics_empty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_empty", &master ),
+        trig_EF_el_EF_eb_physics_firstempty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_firstempty", &master ),
+        trig_EF_el_EF_eb_physics_noL1PS( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_noL1PS", &master ),
+        trig_EF_el_EF_eb_physics_unpaired_iso( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_unpaired_iso", &master ),
+        trig_EF_el_EF_eb_physics_unpaired_noniso( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_unpaired_noniso", &master ),
+        trig_EF_el_EF_eb_random( this, ::TString( prefix ) + "trig_EF_el_EF_eb_random", &master ),
+        trig_EF_el_EF_eb_random_empty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_random_empty", &master ),
+        trig_EF_el_EF_eb_random_firstempty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_random_firstempty", &master ),
+        trig_EF_el_EF_eb_random_unpaired_iso( this, ::TString( prefix ) + "trig_EF_el_EF_eb_random_unpaired_iso", &master ),
+        trig_EF_el_vertweight( this, ::TString( prefix ) + "trig_EF_el_vertweight", &master ),
+        trig_EF_el_hastrack( this, ::TString( prefix ) + "trig_EF_el_hastrack", &master ),
+        fHandles(),
+        fFromInput( kTRUE ),
+        fPrefix( prefix ) {
+
+      fHandles[ "EF_2e10_medium" ] = &EF_2e10_medium;
+      fHandles[ "EF_2e10_medium_mu6" ] = &EF_2e10_medium_mu6;
+      fHandles[ "EF_2e12_medium" ] = &EF_2e12_medium;
+      fHandles[ "EF_2e12Thv_medium" ] = &EF_2e12Thv_medium;
+      fHandles[ "EF_2e5_tight" ] = &EF_2e5_tight;
+      fHandles[ "EF_2e5_tight_Jpsi" ] = &EF_2e5_tight_Jpsi;
+      fHandles[ "EF_2g15_loose" ] = &EF_2g15_loose;
+      fHandles[ "EF_2g20_loose" ] = &EF_2g20_loose;
+      fHandles[ "EF_2mu10" ] = &EF_2mu10;
+      fHandles[ "EF_2mu10_empty" ] = &EF_2mu10_empty;
+      fHandles[ "EF_2mu10_loose" ] = &EF_2mu10_loose;
+      fHandles[ "EF_2mu10_loose_empty" ] = &EF_2mu10_loose_empty;
+      fHandles[ "EF_2mu10_loose_noOvlpRm" ] = &EF_2mu10_loose_noOvlpRm;
+      fHandles[ "EF_2mu4" ] = &EF_2mu4;
+      fHandles[ "EF_2mu4_Bmumu" ] = &EF_2mu4_Bmumu;
+      fHandles[ "EF_2mu4_Bmumux" ] = &EF_2mu4_Bmumux;
+      fHandles[ "EF_2mu4_DiMu" ] = &EF_2mu4_DiMu;
+      fHandles[ "EF_2mu4_DiMu_SiTrk" ] = &EF_2mu4_DiMu_SiTrk;
+      fHandles[ "EF_2mu4_DiMu_noVtx_noOS" ] = &EF_2mu4_DiMu_noVtx_noOS;
+      fHandles[ "EF_2mu4_Jpsimumu" ] = &EF_2mu4_Jpsimumu;
+      fHandles[ "EF_2mu4_Jpsimumu_IDTrkNoCut" ] = &EF_2mu4_Jpsimumu_IDTrkNoCut;
+      fHandles[ "EF_2mu4_Upsimumu" ] = &EF_2mu4_Upsimumu;
+      fHandles[ "EF_2mu6" ] = &EF_2mu6;
+      fHandles[ "EF_2mu6_MSonly_g10_loose" ] = &EF_2mu6_MSonly_g10_loose;
+      fHandles[ "EF_2mu6_NL" ] = &EF_2mu6_NL;
+      fHandles[ "EF_e10_medium" ] = &EF_e10_medium;
+      fHandles[ "EF_e10_medium_2mu6" ] = &EF_e10_medium_2mu6;
+      fHandles[ "EF_e10_medium_mu10" ] = &EF_e10_medium_mu10;
+      fHandles[ "EF_e10_medium_mu6" ] = &EF_e10_medium_mu6;
+      fHandles[ "EF_e15_HLTtighter" ] = &EF_e15_HLTtighter;
+      fHandles[ "EF_e15_medium" ] = &EF_e15_medium;
+      fHandles[ "EF_e15_medium_xe30_noMu" ] = &EF_e15_medium_xe30_noMu;
+      fHandles[ "EF_e15_tight" ] = &EF_e15_tight;
+      fHandles[ "EF_e20_loose" ] = &EF_e20_loose;
+      fHandles[ "EF_e20_medium" ] = &EF_e20_medium;
+      fHandles[ "EF_e20_medium1" ] = &EF_e20_medium1;
+      fHandles[ "EF_e20_medium_IDTrkNoCut" ] = &EF_e20_medium_IDTrkNoCut;
+      fHandles[ "EF_e20_medium_SiTrk" ] = &EF_e20_medium_SiTrk;
+      fHandles[ "EF_e20_medium_TRT" ] = &EF_e20_medium_TRT;
+      fHandles[ "EF_e22_medium" ] = &EF_e22_medium;
+      fHandles[ "EF_e22vh_medium1" ] = &EF_e22vh_medium1;
+      fHandles[ "EF_e5_tight" ] = &EF_e5_tight;
+      fHandles[ "EF_e5_tight_e4_etcut_Jpsi" ] = &EF_e5_tight_e4_etcut_Jpsi;
+      fHandles[ "EF_e5_tight_e4_etcut_Jpsi_SiTrk" ] = &EF_e5_tight_e4_etcut_Jpsi_SiTrk;
+      fHandles[ "EF_e5_tight_e4_etcut_Jpsi_TRT" ] = &EF_e5_tight_e4_etcut_Jpsi_TRT;
+      fHandles[ "EF_e5_tight_e5_NoCut" ] = &EF_e5_tight_e5_NoCut;
+      fHandles[ "EF_e5_tight_e9_etcut_Jpsi" ] = &EF_e5_tight_e9_etcut_Jpsi;
+      fHandles[ "EF_e60_loose" ] = &EF_e60_loose;
+      fHandles[ "EF_e9_tight_e5_tight_Jpsi" ] = &EF_e9_tight_e5_tight_Jpsi;
+      fHandles[ "EF_eb_physics" ] = &EF_eb_physics;
+      fHandles[ "EF_eb_physics_empty" ] = &EF_eb_physics_empty;
+      fHandles[ "EF_eb_physics_firstempty" ] = &EF_eb_physics_firstempty;
+      fHandles[ "EF_eb_physics_noL1PS" ] = &EF_eb_physics_noL1PS;
+      fHandles[ "EF_eb_physics_unpaired_iso" ] = &EF_eb_physics_unpaired_iso;
+      fHandles[ "EF_eb_physics_unpaired_noniso" ] = &EF_eb_physics_unpaired_noniso;
+      fHandles[ "EF_eb_random" ] = &EF_eb_random;
+      fHandles[ "EF_eb_random_empty" ] = &EF_eb_random_empty;
+      fHandles[ "EF_eb_random_firstempty" ] = &EF_eb_random_firstempty;
+      fHandles[ "EF_eb_random_unpaired_iso" ] = &EF_eb_random_unpaired_iso;
+      fHandles[ "EF_g100_etcut_g50_etcut" ] = &EF_g100_etcut_g50_etcut;
+      fHandles[ "EF_g10_NoCut_cosmic" ] = &EF_g10_NoCut_cosmic;
+      fHandles[ "EF_g11_etcut" ] = &EF_g11_etcut;
+      fHandles[ "EF_g11_etcut_larcalib" ] = &EF_g11_etcut_larcalib;
+      fHandles[ "EF_g150_etcut" ] = &EF_g150_etcut;
+      fHandles[ "EF_g15_loose" ] = &EF_g15_loose;
+      fHandles[ "EF_g15_loose_larcalib" ] = &EF_g15_loose_larcalib;
+      fHandles[ "EF_g20_etcut" ] = &EF_g20_etcut;
+      fHandles[ "EF_g20_etcut_xe30_noMu" ] = &EF_g20_etcut_xe30_noMu;
+      fHandles[ "EF_g20_loose" ] = &EF_g20_loose;
+      fHandles[ "EF_g20_loose_larcalib" ] = &EF_g20_loose_larcalib;
+      fHandles[ "EF_g40_loose" ] = &EF_g40_loose;
+      fHandles[ "EF_g40_loose_EFxe40_noMu" ] = &EF_g40_loose_EFxe40_noMu;
+      fHandles[ "EF_g40_loose_larcalib" ] = &EF_g40_loose_larcalib;
+      fHandles[ "EF_g40_tight" ] = &EF_g40_tight;
+      fHandles[ "EF_g5_NoCut_cosmic" ] = &EF_g5_NoCut_cosmic;
+      fHandles[ "EF_g60_loose" ] = &EF_g60_loose;
+      fHandles[ "EF_g60_loose_larcalib" ] = &EF_g60_loose_larcalib;
+      fHandles[ "EF_g80_loose" ] = &EF_g80_loose;
+      fHandles[ "EF_g80_loose_larcalib" ] = &EF_g80_loose_larcalib;
+      fHandles[ "EF_mu0_empty_NoAlg" ] = &EF_mu0_empty_NoAlg;
+      fHandles[ "EF_mu0_firstempty_NoAlg" ] = &EF_mu0_firstempty_NoAlg;
+      fHandles[ "EF_mu0_unpaired_iso_NoAlg" ] = &EF_mu0_unpaired_iso_NoAlg;
+      fHandles[ "EF_mu10" ] = &EF_mu10;
+      fHandles[ "EF_mu10_Jpsimumu" ] = &EF_mu10_Jpsimumu;
+      fHandles[ "EF_mu10_NL" ] = &EF_mu10_NL;
+      fHandles[ "EF_mu10_Upsimumu_FS" ] = &EF_mu10_Upsimumu_FS;
+      fHandles[ "EF_mu10_loose" ] = &EF_mu10_loose;
+      fHandles[ "EF_mu10_muCombTag_NoEF" ] = &EF_mu10_muCombTag_NoEF;
+      fHandles[ "EF_mu11_empty_NoAlg" ] = &EF_mu11_empty_NoAlg;
+      fHandles[ "EF_mu13" ] = &EF_mu13;
+      fHandles[ "EF_mu13_MG" ] = &EF_mu13_MG;
+      fHandles[ "EF_mu13_muCombTag_NoEF" ] = &EF_mu13_muCombTag_NoEF;
+      fHandles[ "EF_mu15" ] = &EF_mu15;
+      fHandles[ "EF_mu15_mu10_EFFS" ] = &EF_mu15_mu10_EFFS;
+      fHandles[ "EF_mu15i" ] = &EF_mu15i;
+      fHandles[ "EF_mu18" ] = &EF_mu18;
+      fHandles[ "EF_mu18_MG" ] = &EF_mu18_MG;
+      fHandles[ "EF_mu18_medium" ] = &EF_mu18_medium;
+      fHandles[ "EF_mu20" ] = &EF_mu20;
+      fHandles[ "EF_mu20_IDTrkNoCut" ] = &EF_mu20_IDTrkNoCut;
+      fHandles[ "EF_mu20_MG" ] = &EF_mu20_MG;
+      fHandles[ "EF_mu20_empty" ] = &EF_mu20_empty;
+      fHandles[ "EF_mu20_muCombTag_NoEF" ] = &EF_mu20_muCombTag_NoEF;
+      fHandles[ "EF_mu20i" ] = &EF_mu20i;
+      fHandles[ "EF_mu22" ] = &EF_mu22;
+      fHandles[ "EF_mu22_MG" ] = &EF_mu22_MG;
+      fHandles[ "EF_mu4" ] = &EF_mu4;
+      fHandles[ "EF_mu40_MSonly_barrel" ] = &EF_mu40_MSonly_barrel;
+      fHandles[ "EF_mu40_MSonly_empty" ] = &EF_mu40_MSonly_empty;
+      fHandles[ "EF_mu40_MSonly_tight" ] = &EF_mu40_MSonly_tight;
+      fHandles[ "EF_mu40_MSonly_tighter" ] = &EF_mu40_MSonly_tighter;
+      fHandles[ "EF_mu40_slow" ] = &EF_mu40_slow;
+      fHandles[ "EF_mu40_slow_empty" ] = &EF_mu40_slow_empty;
+      fHandles[ "EF_mu40_slow_outOfTime" ] = &EF_mu40_slow_outOfTime;
+      fHandles[ "EF_mu4_DiMu" ] = &EF_mu4_DiMu;
+      fHandles[ "EF_mu4_DiMu_FS_noOS" ] = &EF_mu4_DiMu_FS_noOS;
+      fHandles[ "EF_mu4_Jpsimumu" ] = &EF_mu4_Jpsimumu;
+      fHandles[ "EF_mu4_L1J10_matched" ] = &EF_mu4_L1J10_matched;
+      fHandles[ "EF_mu4_L1J15_matched" ] = &EF_mu4_L1J15_matched;
+      fHandles[ "EF_mu4_L1J20_matched" ] = &EF_mu4_L1J20_matched;
+      fHandles[ "EF_mu4_L1J30_matched" ] = &EF_mu4_L1J30_matched;
+      fHandles[ "EF_mu4_L1J50_matched" ] = &EF_mu4_L1J50_matched;
+      fHandles[ "EF_mu4_L1J75_matched" ] = &EF_mu4_L1J75_matched;
+      fHandles[ "EF_mu4_L1MU11_MSonly_cosmic" ] = &EF_mu4_L1MU11_MSonly_cosmic;
+      fHandles[ "EF_mu4_L1MU11_cosmic" ] = &EF_mu4_L1MU11_cosmic;
+      fHandles[ "EF_mu4_MSonly_cosmic" ] = &EF_mu4_MSonly_cosmic;
+      fHandles[ "EF_mu4_Trk_Jpsi" ] = &EF_mu4_Trk_Jpsi;
+      fHandles[ "EF_mu4_Trk_Upsi_FS" ] = &EF_mu4_Trk_Upsi_FS;
+      fHandles[ "EF_mu4_Upsimumu_FS" ] = &EF_mu4_Upsimumu_FS;
+      fHandles[ "EF_mu4_Upsimumu_SiTrk_FS" ] = &EF_mu4_Upsimumu_SiTrk_FS;
+      fHandles[ "EF_mu4_Upsimumu_tight_FS" ] = &EF_mu4_Upsimumu_tight_FS;
+      fHandles[ "EF_mu4_cosmic" ] = &EF_mu4_cosmic;
+      fHandles[ "EF_mu4_j10_a4tc_EFFS" ] = &EF_mu4_j10_a4tc_EFFS;
+      fHandles[ "EF_mu6" ] = &EF_mu6;
+      fHandles[ "EF_mu6_DiMu_noOS" ] = &EF_mu6_DiMu_noOS;
+      fHandles[ "EF_mu6_Jpsimumu" ] = &EF_mu6_Jpsimumu;
+      fHandles[ "EF_mu6_Jpsimumu_SiTrk" ] = &EF_mu6_Jpsimumu_SiTrk;
+      fHandles[ "EF_mu6_Jpsimumu_tight" ] = &EF_mu6_Jpsimumu_tight;
+      fHandles[ "trig_EF_emcl_n" ] = &trig_EF_emcl_n;
+      fHandles[ "trig_EF_emcl_pt" ] = &trig_EF_emcl_pt;
+      fHandles[ "trig_EF_emcl_eta" ] = &trig_EF_emcl_eta;
+      fHandles[ "trig_EF_emcl_phi" ] = &trig_EF_emcl_phi;
+      fHandles[ "trig_EF_emcl_E_em" ] = &trig_EF_emcl_E_em;
+      fHandles[ "trig_EF_emcl_E_had" ] = &trig_EF_emcl_E_had;
+      fHandles[ "trig_EF_emcl_slw_n" ] = &trig_EF_emcl_slw_n;
+      fHandles[ "trig_EF_emcl_slw_pt" ] = &trig_EF_emcl_slw_pt;
+      fHandles[ "trig_EF_emcl_slw_eta" ] = &trig_EF_emcl_slw_eta;
+      fHandles[ "trig_EF_emcl_slw_phi" ] = &trig_EF_emcl_slw_phi;
+      fHandles[ "trig_EF_emcl_slw_E_em" ] = &trig_EF_emcl_slw_E_em;
+      fHandles[ "trig_EF_emcl_slw_E_had" ] = &trig_EF_emcl_slw_E_had;
+      fHandles[ "trig_EF_el_n" ] = &trig_EF_el_n;
+      fHandles[ "trig_EF_el_E" ] = &trig_EF_el_E;
+      fHandles[ "trig_EF_el_Et" ] = &trig_EF_el_Et;
+      fHandles[ "trig_EF_el_pt" ] = &trig_EF_el_pt;
+      fHandles[ "trig_EF_el_m" ] = &trig_EF_el_m;
+      fHandles[ "trig_EF_el_eta" ] = &trig_EF_el_eta;
+      fHandles[ "trig_EF_el_phi" ] = &trig_EF_el_phi;
+      fHandles[ "trig_EF_el_px" ] = &trig_EF_el_px;
+      fHandles[ "trig_EF_el_py" ] = &trig_EF_el_py;
+      fHandles[ "trig_EF_el_pz" ] = &trig_EF_el_pz;
+      fHandles[ "trig_EF_el_charge" ] = &trig_EF_el_charge;
+      fHandles[ "trig_EF_el_author" ] = &trig_EF_el_author;
+      fHandles[ "trig_EF_el_isEM" ] = &trig_EF_el_isEM;
+      fHandles[ "trig_EF_el_loose" ] = &trig_EF_el_loose;
+      fHandles[ "trig_EF_el_looseIso" ] = &trig_EF_el_looseIso;
+      fHandles[ "trig_EF_el_medium" ] = &trig_EF_el_medium;
+      fHandles[ "trig_EF_el_mediumIso" ] = &trig_EF_el_mediumIso;
+      fHandles[ "trig_EF_el_mediumWithoutTrack" ] = &trig_EF_el_mediumWithoutTrack;
+      fHandles[ "trig_EF_el_mediumIsoWithoutTrack" ] = &trig_EF_el_mediumIsoWithoutTrack;
+      fHandles[ "trig_EF_el_tight" ] = &trig_EF_el_tight;
+      fHandles[ "trig_EF_el_tightIso" ] = &trig_EF_el_tightIso;
+      fHandles[ "trig_EF_el_tightWithoutTrack" ] = &trig_EF_el_tightWithoutTrack;
+      fHandles[ "trig_EF_el_tightIsoWithoutTrack" ] = &trig_EF_el_tightIsoWithoutTrack;
+      fHandles[ "trig_EF_el_loosePP" ] = &trig_EF_el_loosePP;
+      fHandles[ "trig_EF_el_loosePPIso" ] = &trig_EF_el_loosePPIso;
+      fHandles[ "trig_EF_el_mediumPP" ] = &trig_EF_el_mediumPP;
+      fHandles[ "trig_EF_el_mediumPPIso" ] = &trig_EF_el_mediumPPIso;
+      fHandles[ "trig_EF_el_tightPP" ] = &trig_EF_el_tightPP;
+      fHandles[ "trig_EF_el_tightPPIso" ] = &trig_EF_el_tightPPIso;
+      fHandles[ "trig_EF_el_EF_2e10_medium" ] = &trig_EF_el_EF_2e10_medium;
+      fHandles[ "trig_EF_el_EF_2e10_medium_mu6" ] = &trig_EF_el_EF_2e10_medium_mu6;
+      fHandles[ "trig_EF_el_EF_2e12_medium" ] = &trig_EF_el_EF_2e12_medium;
+      fHandles[ "trig_EF_el_EF_2e12Thv_medium" ] = &trig_EF_el_EF_2e12Thv_medium;
+      fHandles[ "trig_EF_el_EF_2e5_tight" ] = &trig_EF_el_EF_2e5_tight;
+      fHandles[ "trig_EF_el_EF_2e5_tight_Jpsi" ] = &trig_EF_el_EF_2e5_tight_Jpsi;
+      fHandles[ "trig_EF_el_EF_e10_medium" ] = &trig_EF_el_EF_e10_medium;
+      fHandles[ "trig_EF_el_EF_e10_medium_2mu6" ] = &trig_EF_el_EF_e10_medium_2mu6;
+      fHandles[ "trig_EF_el_EF_e10_medium_mu10" ] = &trig_EF_el_EF_e10_medium_mu10;
+      fHandles[ "trig_EF_el_EF_e10_medium_mu6" ] = &trig_EF_el_EF_e10_medium_mu6;
+      fHandles[ "trig_EF_el_EF_e15_HLTtighter" ] = &trig_EF_el_EF_e15_HLTtighter;
+      fHandles[ "trig_EF_el_EF_e15_medium" ] = &trig_EF_el_EF_e15_medium;
+      fHandles[ "trig_EF_el_EF_e15_medium_xe30_noMu" ] = &trig_EF_el_EF_e15_medium_xe30_noMu;
+      fHandles[ "trig_EF_el_EF_e15_tight" ] = &trig_EF_el_EF_e15_tight;
+      fHandles[ "trig_EF_el_EF_e20_loose" ] = &trig_EF_el_EF_e20_loose;
+      fHandles[ "trig_EF_el_EF_e20_medium" ] = &trig_EF_el_EF_e20_medium;
+      fHandles[ "trig_EF_el_EF_e20_medium1" ] = &trig_EF_el_EF_e20_medium1;
+      fHandles[ "trig_EF_el_EF_e20_medium_IDTrkNoCut" ] = &trig_EF_el_EF_e20_medium_IDTrkNoCut;
+      fHandles[ "trig_EF_el_EF_e20_medium_SiTrk" ] = &trig_EF_el_EF_e20_medium_SiTrk;
+      fHandles[ "trig_EF_el_EF_e20_medium_TRT" ] = &trig_EF_el_EF_e20_medium_TRT;
+      fHandles[ "trig_EF_el_EF_e22_medium" ] = &trig_EF_el_EF_e22_medium;
+      fHandles[ "trig_EF_el_EF_e22vh_medium1" ] = &trig_EF_el_EF_e22vh_medium1;
+      fHandles[ "trig_EF_el_EF_e5_tight" ] = &trig_EF_el_EF_e5_tight;
+      fHandles[ "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight_e4_etcut_Jpsi;
+      fHandles[ "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk" ] = &trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk;
+      fHandles[ "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT" ] = &trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT;
+      fHandles[ "trig_EF_el_EF_e5_tight_e5_NoCut" ] = &trig_EF_el_EF_e5_tight_e5_NoCut;
+      fHandles[ "trig_EF_el_EF_e5_tight_e9_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight_e9_etcut_Jpsi;
+      fHandles[ "trig_EF_el_EF_e60_loose" ] = &trig_EF_el_EF_e60_loose;
+      fHandles[ "trig_EF_el_EF_e9_tight_e5_tight_Jpsi" ] = &trig_EF_el_EF_e9_tight_e5_tight_Jpsi;
+      fHandles[ "trig_EF_el_EF_eb_physics" ] = &trig_EF_el_EF_eb_physics;
+      fHandles[ "trig_EF_el_EF_eb_physics_empty" ] = &trig_EF_el_EF_eb_physics_empty;
+      fHandles[ "trig_EF_el_EF_eb_physics_firstempty" ] = &trig_EF_el_EF_eb_physics_firstempty;
+      fHandles[ "trig_EF_el_EF_eb_physics_noL1PS" ] = &trig_EF_el_EF_eb_physics_noL1PS;
+      fHandles[ "trig_EF_el_EF_eb_physics_unpaired_iso" ] = &trig_EF_el_EF_eb_physics_unpaired_iso;
+      fHandles[ "trig_EF_el_EF_eb_physics_unpaired_noniso" ] = &trig_EF_el_EF_eb_physics_unpaired_noniso;
+      fHandles[ "trig_EF_el_EF_eb_random" ] = &trig_EF_el_EF_eb_random;
+      fHandles[ "trig_EF_el_EF_eb_random_empty" ] = &trig_EF_el_EF_eb_random_empty;
+      fHandles[ "trig_EF_el_EF_eb_random_firstempty" ] = &trig_EF_el_EF_eb_random_firstempty;
+      fHandles[ "trig_EF_el_EF_eb_random_unpaired_iso" ] = &trig_EF_el_EF_eb_random_unpaired_iso;
+      fHandles[ "trig_EF_el_vertweight" ] = &trig_EF_el_vertweight;
+      fHandles[ "trig_EF_el_hastrack" ] = &trig_EF_el_hastrack;
+   }
+
+   /**
+    * This constructor can be used when the object will only have to output
+    * (and temporarily store) new information into an output ntuple. For
+    * instance when one wants to create a selected/modified list of information.
+    *
+    * @param prefix Prefix of the variables in the D3PD
+    */
+   TriggerD3PDObject::TriggerD3PDObject( const char* prefix )
+      : TObject(),
+        EF_2e10_medium( this, ::TString( prefix ) + "EF_2e10_medium", 0 ),
+        EF_2e10_medium_mu6( this, ::TString( prefix ) + "EF_2e10_medium_mu6", 0 ),
+        EF_2e12_medium( this, ::TString( prefix ) + "EF_2e12_medium", 0 ),
+        EF_2e12Thv_medium( this, ::TString( prefix ) + "EF_2e12Thv_medium", 0 ),
+        EF_2e5_tight( this, ::TString( prefix ) + "EF_2e5_tight", 0 ),
+        EF_2e5_tight_Jpsi( this, ::TString( prefix ) + "EF_2e5_tight_Jpsi", 0 ),
+        EF_2g15_loose( this, ::TString( prefix ) + "EF_2g15_loose", 0 ),
+        EF_2g20_loose( this, ::TString( prefix ) + "EF_2g20_loose", 0 ),
+        EF_2mu10( this, ::TString( prefix ) + "EF_2mu10", 0 ),
+        EF_2mu10_empty( this, ::TString( prefix ) + "EF_2mu10_empty", 0 ),
+        EF_2mu10_loose( this, ::TString( prefix ) + "EF_2mu10_loose", 0 ),
+        EF_2mu10_loose_empty( this, ::TString( prefix ) + "EF_2mu10_loose_empty", 0 ),
+        EF_2mu10_loose_noOvlpRm( this, ::TString( prefix ) + "EF_2mu10_loose_noOvlpRm", 0 ),
+        EF_2mu4( this, ::TString( prefix ) + "EF_2mu4", 0 ),
+        EF_2mu4_Bmumu( this, ::TString( prefix ) + "EF_2mu4_Bmumu", 0 ),
+        EF_2mu4_Bmumux( this, ::TString( prefix ) + "EF_2mu4_Bmumux", 0 ),
+        EF_2mu4_DiMu( this, ::TString( prefix ) + "EF_2mu4_DiMu", 0 ),
+        EF_2mu4_DiMu_SiTrk( this, ::TString( prefix ) + "EF_2mu4_DiMu_SiTrk", 0 ),
+        EF_2mu4_DiMu_noVtx_noOS( this, ::TString( prefix ) + "EF_2mu4_DiMu_noVtx_noOS", 0 ),
+        EF_2mu4_Jpsimumu( this, ::TString( prefix ) + "EF_2mu4_Jpsimumu", 0 ),
+        EF_2mu4_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "EF_2mu4_Jpsimumu_IDTrkNoCut", 0 ),
+        EF_2mu4_Upsimumu( this, ::TString( prefix ) + "EF_2mu4_Upsimumu", 0 ),
+        EF_2mu6( this, ::TString( prefix ) + "EF_2mu6", 0 ),
+        EF_2mu6_MSonly_g10_loose( this, ::TString( prefix ) + "EF_2mu6_MSonly_g10_loose", 0 ),
+        EF_2mu6_NL( this, ::TString( prefix ) + "EF_2mu6_NL", 0 ),
+        EF_e10_medium( this, ::TString( prefix ) + "EF_e10_medium", 0 ),
+        EF_e10_medium_2mu6( this, ::TString( prefix ) + "EF_e10_medium_2mu6", 0 ),
+        EF_e10_medium_mu10( this, ::TString( prefix ) + "EF_e10_medium_mu10", 0 ),
+        EF_e10_medium_mu6( this, ::TString( prefix ) + "EF_e10_medium_mu6", 0 ),
+        EF_e15_HLTtighter( this, ::TString( prefix ) + "EF_e15_HLTtighter", 0 ),
+        EF_e15_medium( this, ::TString( prefix ) + "EF_e15_medium", 0 ),
+        EF_e15_medium_xe30_noMu( this, ::TString( prefix ) + "EF_e15_medium_xe30_noMu", 0 ),
+        EF_e15_tight( this, ::TString( prefix ) + "EF_e15_tight", 0 ),
+        EF_e20_loose( this, ::TString( prefix ) + "EF_e20_loose", 0 ),
+        EF_e20_medium( this, ::TString( prefix ) + "EF_e20_medium", 0 ),
+        EF_e20_medium1( this, ::TString( prefix ) + "EF_e20_medium1", 0 ),
+        EF_e20_medium_IDTrkNoCut( this, ::TString( prefix ) + "EF_e20_medium_IDTrkNoCut", 0 ),
+        EF_e20_medium_SiTrk( this, ::TString( prefix ) + "EF_e20_medium_SiTrk", 0 ),
+        EF_e20_medium_TRT( this, ::TString( prefix ) + "EF_e20_medium_TRT", 0 ),
+        EF_e22_medium( this, ::TString( prefix ) + "EF_e22_medium", 0 ),
+        EF_e22vh_medium1( this, ::TString( prefix ) + "EF_e22vh_medium1", 0 ),
+        EF_e5_tight( this, ::TString( prefix ) + "EF_e5_tight", 0 ),
+        EF_e5_tight_e4_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi", 0 ),
+        EF_e5_tight_e4_etcut_Jpsi_SiTrk( this, ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi_SiTrk", 0 ),
+        EF_e5_tight_e4_etcut_Jpsi_TRT( this, ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi_TRT", 0 ),
+        EF_e5_tight_e5_NoCut( this, ::TString( prefix ) + "EF_e5_tight_e5_NoCut", 0 ),
+        EF_e5_tight_e9_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight_e9_etcut_Jpsi", 0 ),
+        EF_e60_loose( this, ::TString( prefix ) + "EF_e60_loose", 0 ),
+        EF_e9_tight_e5_tight_Jpsi( this, ::TString( prefix ) + "EF_e9_tight_e5_tight_Jpsi", 0 ),
+        EF_eb_physics( this, ::TString( prefix ) + "EF_eb_physics", 0 ),
+        EF_eb_physics_empty( this, ::TString( prefix ) + "EF_eb_physics_empty", 0 ),
+        EF_eb_physics_firstempty( this, ::TString( prefix ) + "EF_eb_physics_firstempty", 0 ),
+        EF_eb_physics_noL1PS( this, ::TString( prefix ) + "EF_eb_physics_noL1PS", 0 ),
+        EF_eb_physics_unpaired_iso( this, ::TString( prefix ) + "EF_eb_physics_unpaired_iso", 0 ),
+        EF_eb_physics_unpaired_noniso( this, ::TString( prefix ) + "EF_eb_physics_unpaired_noniso", 0 ),
+        EF_eb_random( this, ::TString( prefix ) + "EF_eb_random", 0 ),
+        EF_eb_random_empty( this, ::TString( prefix ) + "EF_eb_random_empty", 0 ),
+        EF_eb_random_firstempty( this, ::TString( prefix ) + "EF_eb_random_firstempty", 0 ),
+        EF_eb_random_unpaired_iso( this, ::TString( prefix ) + "EF_eb_random_unpaired_iso", 0 ),
+        EF_g100_etcut_g50_etcut( this, ::TString( prefix ) + "EF_g100_etcut_g50_etcut", 0 ),
+        EF_g10_NoCut_cosmic( this, ::TString( prefix ) + "EF_g10_NoCut_cosmic", 0 ),
+        EF_g11_etcut( this, ::TString( prefix ) + "EF_g11_etcut", 0 ),
+        EF_g11_etcut_larcalib( this, ::TString( prefix ) + "EF_g11_etcut_larcalib", 0 ),
+        EF_g150_etcut( this, ::TString( prefix ) + "EF_g150_etcut", 0 ),
+        EF_g15_loose( this, ::TString( prefix ) + "EF_g15_loose", 0 ),
+        EF_g15_loose_larcalib( this, ::TString( prefix ) + "EF_g15_loose_larcalib", 0 ),
+        EF_g20_etcut( this, ::TString( prefix ) + "EF_g20_etcut", 0 ),
+        EF_g20_etcut_xe30_noMu( this, ::TString( prefix ) + "EF_g20_etcut_xe30_noMu", 0 ),
+        EF_g20_loose( this, ::TString( prefix ) + "EF_g20_loose", 0 ),
+        EF_g20_loose_larcalib( this, ::TString( prefix ) + "EF_g20_loose_larcalib", 0 ),
+        EF_g40_loose( this, ::TString( prefix ) + "EF_g40_loose", 0 ),
+        EF_g40_loose_EFxe40_noMu( this, ::TString( prefix ) + "EF_g40_loose_EFxe40_noMu", 0 ),
+        EF_g40_loose_larcalib( this, ::TString( prefix ) + "EF_g40_loose_larcalib", 0 ),
+        EF_g40_tight( this, ::TString( prefix ) + "EF_g40_tight", 0 ),
+        EF_g5_NoCut_cosmic( this, ::TString( prefix ) + "EF_g5_NoCut_cosmic", 0 ),
+        EF_g60_loose( this, ::TString( prefix ) + "EF_g60_loose", 0 ),
+        EF_g60_loose_larcalib( this, ::TString( prefix ) + "EF_g60_loose_larcalib", 0 ),
+        EF_g80_loose( this, ::TString( prefix ) + "EF_g80_loose", 0 ),
+        EF_g80_loose_larcalib( this, ::TString( prefix ) + "EF_g80_loose_larcalib", 0 ),
+        EF_mu0_empty_NoAlg( this, ::TString( prefix ) + "EF_mu0_empty_NoAlg", 0 ),
+        EF_mu0_firstempty_NoAlg( this, ::TString( prefix ) + "EF_mu0_firstempty_NoAlg", 0 ),
+        EF_mu0_unpaired_iso_NoAlg( this, ::TString( prefix ) + "EF_mu0_unpaired_iso_NoAlg", 0 ),
+        EF_mu10( this, ::TString( prefix ) + "EF_mu10", 0 ),
+        EF_mu10_Jpsimumu( this, ::TString( prefix ) + "EF_mu10_Jpsimumu", 0 ),
+        EF_mu10_NL( this, ::TString( prefix ) + "EF_mu10_NL", 0 ),
+        EF_mu10_Upsimumu_FS( this, ::TString( prefix ) + "EF_mu10_Upsimumu_FS", 0 ),
+        EF_mu10_loose( this, ::TString( prefix ) + "EF_mu10_loose", 0 ),
+        EF_mu10_muCombTag_NoEF( this, ::TString( prefix ) + "EF_mu10_muCombTag_NoEF", 0 ),
+        EF_mu11_empty_NoAlg( this, ::TString( prefix ) + "EF_mu11_empty_NoAlg", 0 ),
+        EF_mu13( this, ::TString( prefix ) + "EF_mu13", 0 ),
+        EF_mu13_MG( this, ::TString( prefix ) + "EF_mu13_MG", 0 ),
+        EF_mu13_muCombTag_NoEF( this, ::TString( prefix ) + "EF_mu13_muCombTag_NoEF", 0 ),
+        EF_mu15( this, ::TString( prefix ) + "EF_mu15", 0 ),
+        EF_mu15_mu10_EFFS( this, ::TString( prefix ) + "EF_mu15_mu10_EFFS", 0 ),
+        EF_mu15i( this, ::TString( prefix ) + "EF_mu15i", 0 ),
+        EF_mu18( this, ::TString( prefix ) + "EF_mu18", 0 ),
+        EF_mu18_MG( this, ::TString( prefix ) + "EF_mu18_MG", 0 ),
+        EF_mu18_medium( this, ::TString( prefix ) + "EF_mu18_medium", 0 ),
+        EF_mu20( this, ::TString( prefix ) + "EF_mu20", 0 ),
+        EF_mu20_IDTrkNoCut( this, ::TString( prefix ) + "EF_mu20_IDTrkNoCut", 0 ),
+        EF_mu20_MG( this, ::TString( prefix ) + "EF_mu20_MG", 0 ),
+        EF_mu20_empty( this, ::TString( prefix ) + "EF_mu20_empty", 0 ),
+        EF_mu20_muCombTag_NoEF( this, ::TString( prefix ) + "EF_mu20_muCombTag_NoEF", 0 ),
+        EF_mu20i( this, ::TString( prefix ) + "EF_mu20i", 0 ),
+        EF_mu22( this, ::TString( prefix ) + "EF_mu22", 0 ),
+        EF_mu22_MG( this, ::TString( prefix ) + "EF_mu22_MG", 0 ),
+        EF_mu4( this, ::TString( prefix ) + "EF_mu4", 0 ),
+        EF_mu40_MSonly_barrel( this, ::TString( prefix ) + "EF_mu40_MSonly_barrel", 0 ),
+        EF_mu40_MSonly_empty( this, ::TString( prefix ) + "EF_mu40_MSonly_empty", 0 ),
+        EF_mu40_MSonly_tight( this, ::TString( prefix ) + "EF_mu40_MSonly_tight", 0 ),
+        EF_mu40_MSonly_tighter( this, ::TString( prefix ) + "EF_mu40_MSonly_tighter", 0 ),
+        EF_mu40_slow( this, ::TString( prefix ) + "EF_mu40_slow", 0 ),
+        EF_mu40_slow_empty( this, ::TString( prefix ) + "EF_mu40_slow_empty", 0 ),
+        EF_mu40_slow_outOfTime( this, ::TString( prefix ) + "EF_mu40_slow_outOfTime", 0 ),
+        EF_mu4_DiMu( this, ::TString( prefix ) + "EF_mu4_DiMu", 0 ),
+        EF_mu4_DiMu_FS_noOS( this, ::TString( prefix ) + "EF_mu4_DiMu_FS_noOS", 0 ),
+        EF_mu4_Jpsimumu( this, ::TString( prefix ) + "EF_mu4_Jpsimumu", 0 ),
+        EF_mu4_L1J10_matched( this, ::TString( prefix ) + "EF_mu4_L1J10_matched", 0 ),
+        EF_mu4_L1J15_matched( this, ::TString( prefix ) + "EF_mu4_L1J15_matched", 0 ),
+        EF_mu4_L1J20_matched( this, ::TString( prefix ) + "EF_mu4_L1J20_matched", 0 ),
+        EF_mu4_L1J30_matched( this, ::TString( prefix ) + "EF_mu4_L1J30_matched", 0 ),
+        EF_mu4_L1J50_matched( this, ::TString( prefix ) + "EF_mu4_L1J50_matched", 0 ),
+        EF_mu4_L1J75_matched( this, ::TString( prefix ) + "EF_mu4_L1J75_matched", 0 ),
+        EF_mu4_L1MU11_MSonly_cosmic( this, ::TString( prefix ) + "EF_mu4_L1MU11_MSonly_cosmic", 0 ),
+        EF_mu4_L1MU11_cosmic( this, ::TString( prefix ) + "EF_mu4_L1MU11_cosmic", 0 ),
+        EF_mu4_MSonly_cosmic( this, ::TString( prefix ) + "EF_mu4_MSonly_cosmic", 0 ),
+        EF_mu4_Trk_Jpsi( this, ::TString( prefix ) + "EF_mu4_Trk_Jpsi", 0 ),
+        EF_mu4_Trk_Upsi_FS( this, ::TString( prefix ) + "EF_mu4_Trk_Upsi_FS", 0 ),
+        EF_mu4_Upsimumu_FS( this, ::TString( prefix ) + "EF_mu4_Upsimumu_FS", 0 ),
+        EF_mu4_Upsimumu_SiTrk_FS( this, ::TString( prefix ) + "EF_mu4_Upsimumu_SiTrk_FS", 0 ),
+        EF_mu4_Upsimumu_tight_FS( this, ::TString( prefix ) + "EF_mu4_Upsimumu_tight_FS", 0 ),
+        EF_mu4_cosmic( this, ::TString( prefix ) + "EF_mu4_cosmic", 0 ),
+        EF_mu4_j10_a4tc_EFFS( this, ::TString( prefix ) + "EF_mu4_j10_a4tc_EFFS", 0 ),
+        EF_mu6( this, ::TString( prefix ) + "EF_mu6", 0 ),
+        EF_mu6_DiMu_noOS( this, ::TString( prefix ) + "EF_mu6_DiMu_noOS", 0 ),
+        EF_mu6_Jpsimumu( this, ::TString( prefix ) + "EF_mu6_Jpsimumu", 0 ),
+        EF_mu6_Jpsimumu_SiTrk( this, ::TString( prefix ) + "EF_mu6_Jpsimumu_SiTrk", 0 ),
+        EF_mu6_Jpsimumu_tight( this, ::TString( prefix ) + "EF_mu6_Jpsimumu_tight", 0 ),
+        trig_EF_emcl_n( this, ::TString( prefix ) + "trig_EF_emcl_n", 0 ),
+        trig_EF_emcl_pt( this, ::TString( prefix ) + "trig_EF_emcl_pt", 0 ),
+        trig_EF_emcl_eta( this, ::TString( prefix ) + "trig_EF_emcl_eta", 0 ),
+        trig_EF_emcl_phi( this, ::TString( prefix ) + "trig_EF_emcl_phi", 0 ),
+        trig_EF_emcl_E_em( this, ::TString( prefix ) + "trig_EF_emcl_E_em", 0 ),
+        trig_EF_emcl_E_had( this, ::TString( prefix ) + "trig_EF_emcl_E_had", 0 ),
+        trig_EF_emcl_slw_n( this, ::TString( prefix ) + "trig_EF_emcl_slw_n", 0 ),
+        trig_EF_emcl_slw_pt( this, ::TString( prefix ) + "trig_EF_emcl_slw_pt", 0 ),
+        trig_EF_emcl_slw_eta( this, ::TString( prefix ) + "trig_EF_emcl_slw_eta", 0 ),
+        trig_EF_emcl_slw_phi( this, ::TString( prefix ) + "trig_EF_emcl_slw_phi", 0 ),
+        trig_EF_emcl_slw_E_em( this, ::TString( prefix ) + "trig_EF_emcl_slw_E_em", 0 ),
+        trig_EF_emcl_slw_E_had( this, ::TString( prefix ) + "trig_EF_emcl_slw_E_had", 0 ),
+        trig_EF_el_n( this, ::TString( prefix ) + "trig_EF_el_n", 0 ),
+        trig_EF_el_E( this, ::TString( prefix ) + "trig_EF_el_E", 0 ),
+        trig_EF_el_Et( this, ::TString( prefix ) + "trig_EF_el_Et", 0 ),
+        trig_EF_el_pt( this, ::TString( prefix ) + "trig_EF_el_pt", 0 ),
+        trig_EF_el_m( this, ::TString( prefix ) + "trig_EF_el_m", 0 ),
+        trig_EF_el_eta( this, ::TString( prefix ) + "trig_EF_el_eta", 0 ),
+        trig_EF_el_phi( this, ::TString( prefix ) + "trig_EF_el_phi", 0 ),
+        trig_EF_el_px( this, ::TString( prefix ) + "trig_EF_el_px", 0 ),
+        trig_EF_el_py( this, ::TString( prefix ) + "trig_EF_el_py", 0 ),
+        trig_EF_el_pz( this, ::TString( prefix ) + "trig_EF_el_pz", 0 ),
+        trig_EF_el_charge( this, ::TString( prefix ) + "trig_EF_el_charge", 0 ),
+        trig_EF_el_author( this, ::TString( prefix ) + "trig_EF_el_author", 0 ),
+        trig_EF_el_isEM( this, ::TString( prefix ) + "trig_EF_el_isEM", 0 ),
+        trig_EF_el_loose( this, ::TString( prefix ) + "trig_EF_el_loose", 0 ),
+        trig_EF_el_looseIso( this, ::TString( prefix ) + "trig_EF_el_looseIso", 0 ),
+        trig_EF_el_medium( this, ::TString( prefix ) + "trig_EF_el_medium", 0 ),
+        trig_EF_el_mediumIso( this, ::TString( prefix ) + "trig_EF_el_mediumIso", 0 ),
+        trig_EF_el_mediumWithoutTrack( this, ::TString( prefix ) + "trig_EF_el_mediumWithoutTrack", 0 ),
+        trig_EF_el_mediumIsoWithoutTrack( this, ::TString( prefix ) + "trig_EF_el_mediumIsoWithoutTrack", 0 ),
+        trig_EF_el_tight( this, ::TString( prefix ) + "trig_EF_el_tight", 0 ),
+        trig_EF_el_tightIso( this, ::TString( prefix ) + "trig_EF_el_tightIso", 0 ),
+        trig_EF_el_tightWithoutTrack( this, ::TString( prefix ) + "trig_EF_el_tightWithoutTrack", 0 ),
+        trig_EF_el_tightIsoWithoutTrack( this, ::TString( prefix ) + "trig_EF_el_tightIsoWithoutTrack", 0 ),
+        trig_EF_el_loosePP( this, ::TString( prefix ) + "trig_EF_el_loosePP", 0 ),
+        trig_EF_el_loosePPIso( this, ::TString( prefix ) + "trig_EF_el_loosePPIso", 0 ),
+        trig_EF_el_mediumPP( this, ::TString( prefix ) + "trig_EF_el_mediumPP", 0 ),
+        trig_EF_el_mediumPPIso( this, ::TString( prefix ) + "trig_EF_el_mediumPPIso", 0 ),
+        trig_EF_el_tightPP( this, ::TString( prefix ) + "trig_EF_el_tightPP", 0 ),
+        trig_EF_el_tightPPIso( this, ::TString( prefix ) + "trig_EF_el_tightPPIso", 0 ),
+        trig_EF_el_EF_2e10_medium( this, ::TString( prefix ) + "trig_EF_el_EF_2e10_medium", 0 ),
+        trig_EF_el_EF_2e10_medium_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_2e10_medium_mu6", 0 ),
+        trig_EF_el_EF_2e12_medium( this, ::TString( prefix ) + "trig_EF_el_EF_2e12_medium", 0 ),
+        trig_EF_el_EF_2e12Thv_medium( this, ::TString( prefix ) + "trig_EF_el_EF_2e12Thv_medium", 0 ),
+        trig_EF_el_EF_2e5_tight( this, ::TString( prefix ) + "trig_EF_el_EF_2e5_tight", 0 ),
+        trig_EF_el_EF_2e5_tight_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_2e5_tight_Jpsi", 0 ),
+        trig_EF_el_EF_e10_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e10_medium", 0 ),
+        trig_EF_el_EF_e10_medium_2mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e10_medium_2mu6", 0 ),
+        trig_EF_el_EF_e10_medium_mu10( this, ::TString( prefix ) + "trig_EF_el_EF_e10_medium_mu10", 0 ),
+        trig_EF_el_EF_e10_medium_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e10_medium_mu6", 0 ),
+        trig_EF_el_EF_e15_HLTtighter( this, ::TString( prefix ) + "trig_EF_el_EF_e15_HLTtighter", 0 ),
+        trig_EF_el_EF_e15_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e15_medium", 0 ),
+        trig_EF_el_EF_e15_medium_xe30_noMu( this, ::TString( prefix ) + "trig_EF_el_EF_e15_medium_xe30_noMu", 0 ),
+        trig_EF_el_EF_e15_tight( this, ::TString( prefix ) + "trig_EF_el_EF_e15_tight", 0 ),
+        trig_EF_el_EF_e20_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e20_loose", 0 ),
+        trig_EF_el_EF_e20_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium", 0 ),
+        trig_EF_el_EF_e20_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium1", 0 ),
+        trig_EF_el_EF_e20_medium_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium_IDTrkNoCut", 0 ),
+        trig_EF_el_EF_e20_medium_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium_SiTrk", 0 ),
+        trig_EF_el_EF_e20_medium_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e20_medium_TRT", 0 ),
+        trig_EF_el_EF_e22_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e22_medium", 0 ),
+        trig_EF_el_EF_e22vh_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1", 0 ),
+        trig_EF_el_EF_e5_tight( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight", 0 ),
+        trig_EF_el_EF_e5_tight_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi", 0 ),
+        trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk", 0 ),
+        trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT", 0 ),
+        trig_EF_el_EF_e5_tight_e5_NoCut( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e5_NoCut", 0 ),
+        trig_EF_el_EF_e5_tight_e9_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e9_etcut_Jpsi", 0 ),
+        trig_EF_el_EF_e60_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e60_loose", 0 ),
+        trig_EF_el_EF_e9_tight_e5_tight_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e9_tight_e5_tight_Jpsi", 0 ),
+        trig_EF_el_EF_eb_physics( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics", 0 ),
+        trig_EF_el_EF_eb_physics_empty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_empty", 0 ),
+        trig_EF_el_EF_eb_physics_firstempty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_firstempty", 0 ),
+        trig_EF_el_EF_eb_physics_noL1PS( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_noL1PS", 0 ),
+        trig_EF_el_EF_eb_physics_unpaired_iso( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_unpaired_iso", 0 ),
+        trig_EF_el_EF_eb_physics_unpaired_noniso( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_unpaired_noniso", 0 ),
+        trig_EF_el_EF_eb_random( this, ::TString( prefix ) + "trig_EF_el_EF_eb_random", 0 ),
+        trig_EF_el_EF_eb_random_empty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_random_empty", 0 ),
+        trig_EF_el_EF_eb_random_firstempty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_random_firstempty", 0 ),
+        trig_EF_el_EF_eb_random_unpaired_iso( this, ::TString( prefix ) + "trig_EF_el_EF_eb_random_unpaired_iso", 0 ),
+        trig_EF_el_vertweight( this, ::TString( prefix ) + "trig_EF_el_vertweight", 0 ),
+        trig_EF_el_hastrack( this, ::TString( prefix ) + "trig_EF_el_hastrack", 0 ),
+        fHandles(),
+        fFromInput( kFALSE ),
+        fPrefix( prefix ) {
+
+      fHandles[ "EF_2e10_medium" ] = &EF_2e10_medium;
+      fHandles[ "EF_2e10_medium_mu6" ] = &EF_2e10_medium_mu6;
+      fHandles[ "EF_2e12_medium" ] = &EF_2e12_medium;
+      fHandles[ "EF_2e12Thv_medium" ] = &EF_2e12Thv_medium;
+      fHandles[ "EF_2e5_tight" ] = &EF_2e5_tight;
+      fHandles[ "EF_2e5_tight_Jpsi" ] = &EF_2e5_tight_Jpsi;
+      fHandles[ "EF_2g15_loose" ] = &EF_2g15_loose;
+      fHandles[ "EF_2g20_loose" ] = &EF_2g20_loose;
+      fHandles[ "EF_2mu10" ] = &EF_2mu10;
+      fHandles[ "EF_2mu10_empty" ] = &EF_2mu10_empty;
+      fHandles[ "EF_2mu10_loose" ] = &EF_2mu10_loose;
+      fHandles[ "EF_2mu10_loose_empty" ] = &EF_2mu10_loose_empty;
+      fHandles[ "EF_2mu10_loose_noOvlpRm" ] = &EF_2mu10_loose_noOvlpRm;
+      fHandles[ "EF_2mu4" ] = &EF_2mu4;
+      fHandles[ "EF_2mu4_Bmumu" ] = &EF_2mu4_Bmumu;
+      fHandles[ "EF_2mu4_Bmumux" ] = &EF_2mu4_Bmumux;
+      fHandles[ "EF_2mu4_DiMu" ] = &EF_2mu4_DiMu;
+      fHandles[ "EF_2mu4_DiMu_SiTrk" ] = &EF_2mu4_DiMu_SiTrk;
+      fHandles[ "EF_2mu4_DiMu_noVtx_noOS" ] = &EF_2mu4_DiMu_noVtx_noOS;
+      fHandles[ "EF_2mu4_Jpsimumu" ] = &EF_2mu4_Jpsimumu;
+      fHandles[ "EF_2mu4_Jpsimumu_IDTrkNoCut" ] = &EF_2mu4_Jpsimumu_IDTrkNoCut;
+      fHandles[ "EF_2mu4_Upsimumu" ] = &EF_2mu4_Upsimumu;
+      fHandles[ "EF_2mu6" ] = &EF_2mu6;
+      fHandles[ "EF_2mu6_MSonly_g10_loose" ] = &EF_2mu6_MSonly_g10_loose;
+      fHandles[ "EF_2mu6_NL" ] = &EF_2mu6_NL;
+      fHandles[ "EF_e10_medium" ] = &EF_e10_medium;
+      fHandles[ "EF_e10_medium_2mu6" ] = &EF_e10_medium_2mu6;
+      fHandles[ "EF_e10_medium_mu10" ] = &EF_e10_medium_mu10;
+      fHandles[ "EF_e10_medium_mu6" ] = &EF_e10_medium_mu6;
+      fHandles[ "EF_e15_HLTtighter" ] = &EF_e15_HLTtighter;
+      fHandles[ "EF_e15_medium" ] = &EF_e15_medium;
+      fHandles[ "EF_e15_medium_xe30_noMu" ] = &EF_e15_medium_xe30_noMu;
+      fHandles[ "EF_e15_tight" ] = &EF_e15_tight;
+      fHandles[ "EF_e20_loose" ] = &EF_e20_loose;
+      fHandles[ "EF_e20_medium" ] = &EF_e20_medium;
+      fHandles[ "EF_e20_medium1" ] = &EF_e20_medium1;
+      fHandles[ "EF_e20_medium_IDTrkNoCut" ] = &EF_e20_medium_IDTrkNoCut;
+      fHandles[ "EF_e20_medium_SiTrk" ] = &EF_e20_medium_SiTrk;
+      fHandles[ "EF_e20_medium_TRT" ] = &EF_e20_medium_TRT;
+      fHandles[ "EF_e22_medium" ] = &EF_e22_medium;
+      fHandles[ "EF_e22vh_medium1" ] = &EF_e22vh_medium1;
+      fHandles[ "EF_e5_tight" ] = &EF_e5_tight;
+      fHandles[ "EF_e5_tight_e4_etcut_Jpsi" ] = &EF_e5_tight_e4_etcut_Jpsi;
+      fHandles[ "EF_e5_tight_e4_etcut_Jpsi_SiTrk" ] = &EF_e5_tight_e4_etcut_Jpsi_SiTrk;
+      fHandles[ "EF_e5_tight_e4_etcut_Jpsi_TRT" ] = &EF_e5_tight_e4_etcut_Jpsi_TRT;
+      fHandles[ "EF_e5_tight_e5_NoCut" ] = &EF_e5_tight_e5_NoCut;
+      fHandles[ "EF_e5_tight_e9_etcut_Jpsi" ] = &EF_e5_tight_e9_etcut_Jpsi;
+      fHandles[ "EF_e60_loose" ] = &EF_e60_loose;
+      fHandles[ "EF_e9_tight_e5_tight_Jpsi" ] = &EF_e9_tight_e5_tight_Jpsi;
+      fHandles[ "EF_eb_physics" ] = &EF_eb_physics;
+      fHandles[ "EF_eb_physics_empty" ] = &EF_eb_physics_empty;
+      fHandles[ "EF_eb_physics_firstempty" ] = &EF_eb_physics_firstempty;
+      fHandles[ "EF_eb_physics_noL1PS" ] = &EF_eb_physics_noL1PS;
+      fHandles[ "EF_eb_physics_unpaired_iso" ] = &EF_eb_physics_unpaired_iso;
+      fHandles[ "EF_eb_physics_unpaired_noniso" ] = &EF_eb_physics_unpaired_noniso;
+      fHandles[ "EF_eb_random" ] = &EF_eb_random;
+      fHandles[ "EF_eb_random_empty" ] = &EF_eb_random_empty;
+      fHandles[ "EF_eb_random_firstempty" ] = &EF_eb_random_firstempty;
+      fHandles[ "EF_eb_random_unpaired_iso" ] = &EF_eb_random_unpaired_iso;
+      fHandles[ "EF_g100_etcut_g50_etcut" ] = &EF_g100_etcut_g50_etcut;
+      fHandles[ "EF_g10_NoCut_cosmic" ] = &EF_g10_NoCut_cosmic;
+      fHandles[ "EF_g11_etcut" ] = &EF_g11_etcut;
+      fHandles[ "EF_g11_etcut_larcalib" ] = &EF_g11_etcut_larcalib;
+      fHandles[ "EF_g150_etcut" ] = &EF_g150_etcut;
+      fHandles[ "EF_g15_loose" ] = &EF_g15_loose;
+      fHandles[ "EF_g15_loose_larcalib" ] = &EF_g15_loose_larcalib;
+      fHandles[ "EF_g20_etcut" ] = &EF_g20_etcut;
+      fHandles[ "EF_g20_etcut_xe30_noMu" ] = &EF_g20_etcut_xe30_noMu;
+      fHandles[ "EF_g20_loose" ] = &EF_g20_loose;
+      fHandles[ "EF_g20_loose_larcalib" ] = &EF_g20_loose_larcalib;
+      fHandles[ "EF_g40_loose" ] = &EF_g40_loose;
+      fHandles[ "EF_g40_loose_EFxe40_noMu" ] = &EF_g40_loose_EFxe40_noMu;
+      fHandles[ "EF_g40_loose_larcalib" ] = &EF_g40_loose_larcalib;
+      fHandles[ "EF_g40_tight" ] = &EF_g40_tight;
+      fHandles[ "EF_g5_NoCut_cosmic" ] = &EF_g5_NoCut_cosmic;
+      fHandles[ "EF_g60_loose" ] = &EF_g60_loose;
+      fHandles[ "EF_g60_loose_larcalib" ] = &EF_g60_loose_larcalib;
+      fHandles[ "EF_g80_loose" ] = &EF_g80_loose;
+      fHandles[ "EF_g80_loose_larcalib" ] = &EF_g80_loose_larcalib;
+      fHandles[ "EF_mu0_empty_NoAlg" ] = &EF_mu0_empty_NoAlg;
+      fHandles[ "EF_mu0_firstempty_NoAlg" ] = &EF_mu0_firstempty_NoAlg;
+      fHandles[ "EF_mu0_unpaired_iso_NoAlg" ] = &EF_mu0_unpaired_iso_NoAlg;
+      fHandles[ "EF_mu10" ] = &EF_mu10;
+      fHandles[ "EF_mu10_Jpsimumu" ] = &EF_mu10_Jpsimumu;
+      fHandles[ "EF_mu10_NL" ] = &EF_mu10_NL;
+      fHandles[ "EF_mu10_Upsimumu_FS" ] = &EF_mu10_Upsimumu_FS;
+      fHandles[ "EF_mu10_loose" ] = &EF_mu10_loose;
+      fHandles[ "EF_mu10_muCombTag_NoEF" ] = &EF_mu10_muCombTag_NoEF;
+      fHandles[ "EF_mu11_empty_NoAlg" ] = &EF_mu11_empty_NoAlg;
+      fHandles[ "EF_mu13" ] = &EF_mu13;
+      fHandles[ "EF_mu13_MG" ] = &EF_mu13_MG;
+      fHandles[ "EF_mu13_muCombTag_NoEF" ] = &EF_mu13_muCombTag_NoEF;
+      fHandles[ "EF_mu15" ] = &EF_mu15;
+      fHandles[ "EF_mu15_mu10_EFFS" ] = &EF_mu15_mu10_EFFS;
+      fHandles[ "EF_mu15i" ] = &EF_mu15i;
+      fHandles[ "EF_mu18" ] = &EF_mu18;
+      fHandles[ "EF_mu18_MG" ] = &EF_mu18_MG;
+      fHandles[ "EF_mu18_medium" ] = &EF_mu18_medium;
+      fHandles[ "EF_mu20" ] = &EF_mu20;
+      fHandles[ "EF_mu20_IDTrkNoCut" ] = &EF_mu20_IDTrkNoCut;
+      fHandles[ "EF_mu20_MG" ] = &EF_mu20_MG;
+      fHandles[ "EF_mu20_empty" ] = &EF_mu20_empty;
+      fHandles[ "EF_mu20_muCombTag_NoEF" ] = &EF_mu20_muCombTag_NoEF;
+      fHandles[ "EF_mu20i" ] = &EF_mu20i;
+      fHandles[ "EF_mu22" ] = &EF_mu22;
+      fHandles[ "EF_mu22_MG" ] = &EF_mu22_MG;
+      fHandles[ "EF_mu4" ] = &EF_mu4;
+      fHandles[ "EF_mu40_MSonly_barrel" ] = &EF_mu40_MSonly_barrel;
+      fHandles[ "EF_mu40_MSonly_empty" ] = &EF_mu40_MSonly_empty;
+      fHandles[ "EF_mu40_MSonly_tight" ] = &EF_mu40_MSonly_tight;
+      fHandles[ "EF_mu40_MSonly_tighter" ] = &EF_mu40_MSonly_tighter;
+      fHandles[ "EF_mu40_slow" ] = &EF_mu40_slow;
+      fHandles[ "EF_mu40_slow_empty" ] = &EF_mu40_slow_empty;
+      fHandles[ "EF_mu40_slow_outOfTime" ] = &EF_mu40_slow_outOfTime;
+      fHandles[ "EF_mu4_DiMu" ] = &EF_mu4_DiMu;
+      fHandles[ "EF_mu4_DiMu_FS_noOS" ] = &EF_mu4_DiMu_FS_noOS;
+      fHandles[ "EF_mu4_Jpsimumu" ] = &EF_mu4_Jpsimumu;
+      fHandles[ "EF_mu4_L1J10_matched" ] = &EF_mu4_L1J10_matched;
+      fHandles[ "EF_mu4_L1J15_matched" ] = &EF_mu4_L1J15_matched;
+      fHandles[ "EF_mu4_L1J20_matched" ] = &EF_mu4_L1J20_matched;
+      fHandles[ "EF_mu4_L1J30_matched" ] = &EF_mu4_L1J30_matched;
+      fHandles[ "EF_mu4_L1J50_matched" ] = &EF_mu4_L1J50_matched;
+      fHandles[ "EF_mu4_L1J75_matched" ] = &EF_mu4_L1J75_matched;
+      fHandles[ "EF_mu4_L1MU11_MSonly_cosmic" ] = &EF_mu4_L1MU11_MSonly_cosmic;
+      fHandles[ "EF_mu4_L1MU11_cosmic" ] = &EF_mu4_L1MU11_cosmic;
+      fHandles[ "EF_mu4_MSonly_cosmic" ] = &EF_mu4_MSonly_cosmic;
+      fHandles[ "EF_mu4_Trk_Jpsi" ] = &EF_mu4_Trk_Jpsi;
+      fHandles[ "EF_mu4_Trk_Upsi_FS" ] = &EF_mu4_Trk_Upsi_FS;
+      fHandles[ "EF_mu4_Upsimumu_FS" ] = &EF_mu4_Upsimumu_FS;
+      fHandles[ "EF_mu4_Upsimumu_SiTrk_FS" ] = &EF_mu4_Upsimumu_SiTrk_FS;
+      fHandles[ "EF_mu4_Upsimumu_tight_FS" ] = &EF_mu4_Upsimumu_tight_FS;
+      fHandles[ "EF_mu4_cosmic" ] = &EF_mu4_cosmic;
+      fHandles[ "EF_mu4_j10_a4tc_EFFS" ] = &EF_mu4_j10_a4tc_EFFS;
+      fHandles[ "EF_mu6" ] = &EF_mu6;
+      fHandles[ "EF_mu6_DiMu_noOS" ] = &EF_mu6_DiMu_noOS;
+      fHandles[ "EF_mu6_Jpsimumu" ] = &EF_mu6_Jpsimumu;
+      fHandles[ "EF_mu6_Jpsimumu_SiTrk" ] = &EF_mu6_Jpsimumu_SiTrk;
+      fHandles[ "EF_mu6_Jpsimumu_tight" ] = &EF_mu6_Jpsimumu_tight;
+      fHandles[ "trig_EF_emcl_n" ] = &trig_EF_emcl_n;
+      fHandles[ "trig_EF_emcl_pt" ] = &trig_EF_emcl_pt;
+      fHandles[ "trig_EF_emcl_eta" ] = &trig_EF_emcl_eta;
+      fHandles[ "trig_EF_emcl_phi" ] = &trig_EF_emcl_phi;
+      fHandles[ "trig_EF_emcl_E_em" ] = &trig_EF_emcl_E_em;
+      fHandles[ "trig_EF_emcl_E_had" ] = &trig_EF_emcl_E_had;
+      fHandles[ "trig_EF_emcl_slw_n" ] = &trig_EF_emcl_slw_n;
+      fHandles[ "trig_EF_emcl_slw_pt" ] = &trig_EF_emcl_slw_pt;
+      fHandles[ "trig_EF_emcl_slw_eta" ] = &trig_EF_emcl_slw_eta;
+      fHandles[ "trig_EF_emcl_slw_phi" ] = &trig_EF_emcl_slw_phi;
+      fHandles[ "trig_EF_emcl_slw_E_em" ] = &trig_EF_emcl_slw_E_em;
+      fHandles[ "trig_EF_emcl_slw_E_had" ] = &trig_EF_emcl_slw_E_had;
+      fHandles[ "trig_EF_el_n" ] = &trig_EF_el_n;
+      fHandles[ "trig_EF_el_E" ] = &trig_EF_el_E;
+      fHandles[ "trig_EF_el_Et" ] = &trig_EF_el_Et;
+      fHandles[ "trig_EF_el_pt" ] = &trig_EF_el_pt;
+      fHandles[ "trig_EF_el_m" ] = &trig_EF_el_m;
+      fHandles[ "trig_EF_el_eta" ] = &trig_EF_el_eta;
+      fHandles[ "trig_EF_el_phi" ] = &trig_EF_el_phi;
+      fHandles[ "trig_EF_el_px" ] = &trig_EF_el_px;
+      fHandles[ "trig_EF_el_py" ] = &trig_EF_el_py;
+      fHandles[ "trig_EF_el_pz" ] = &trig_EF_el_pz;
+      fHandles[ "trig_EF_el_charge" ] = &trig_EF_el_charge;
+      fHandles[ "trig_EF_el_author" ] = &trig_EF_el_author;
+      fHandles[ "trig_EF_el_isEM" ] = &trig_EF_el_isEM;
+      fHandles[ "trig_EF_el_loose" ] = &trig_EF_el_loose;
+      fHandles[ "trig_EF_el_looseIso" ] = &trig_EF_el_looseIso;
+      fHandles[ "trig_EF_el_medium" ] = &trig_EF_el_medium;
+      fHandles[ "trig_EF_el_mediumIso" ] = &trig_EF_el_mediumIso;
+      fHandles[ "trig_EF_el_mediumWithoutTrack" ] = &trig_EF_el_mediumWithoutTrack;
+      fHandles[ "trig_EF_el_mediumIsoWithoutTrack" ] = &trig_EF_el_mediumIsoWithoutTrack;
+      fHandles[ "trig_EF_el_tight" ] = &trig_EF_el_tight;
+      fHandles[ "trig_EF_el_tightIso" ] = &trig_EF_el_tightIso;
+      fHandles[ "trig_EF_el_tightWithoutTrack" ] = &trig_EF_el_tightWithoutTrack;
+      fHandles[ "trig_EF_el_tightIsoWithoutTrack" ] = &trig_EF_el_tightIsoWithoutTrack;
+      fHandles[ "trig_EF_el_loosePP" ] = &trig_EF_el_loosePP;
+      fHandles[ "trig_EF_el_loosePPIso" ] = &trig_EF_el_loosePPIso;
+      fHandles[ "trig_EF_el_mediumPP" ] = &trig_EF_el_mediumPP;
+      fHandles[ "trig_EF_el_mediumPPIso" ] = &trig_EF_el_mediumPPIso;
+      fHandles[ "trig_EF_el_tightPP" ] = &trig_EF_el_tightPP;
+      fHandles[ "trig_EF_el_tightPPIso" ] = &trig_EF_el_tightPPIso;
+      fHandles[ "trig_EF_el_EF_2e10_medium" ] = &trig_EF_el_EF_2e10_medium;
+      fHandles[ "trig_EF_el_EF_2e10_medium_mu6" ] = &trig_EF_el_EF_2e10_medium_mu6;
+      fHandles[ "trig_EF_el_EF_2e12_medium" ] = &trig_EF_el_EF_2e12_medium;
+      fHandles[ "trig_EF_el_EF_2e12Thv_medium" ] = &trig_EF_el_EF_2e12Thv_medium;
+      fHandles[ "trig_EF_el_EF_2e5_tight" ] = &trig_EF_el_EF_2e5_tight;
+      fHandles[ "trig_EF_el_EF_2e5_tight_Jpsi" ] = &trig_EF_el_EF_2e5_tight_Jpsi;
+      fHandles[ "trig_EF_el_EF_e10_medium" ] = &trig_EF_el_EF_e10_medium;
+      fHandles[ "trig_EF_el_EF_e10_medium_2mu6" ] = &trig_EF_el_EF_e10_medium_2mu6;
+      fHandles[ "trig_EF_el_EF_e10_medium_mu10" ] = &trig_EF_el_EF_e10_medium_mu10;
+      fHandles[ "trig_EF_el_EF_e10_medium_mu6" ] = &trig_EF_el_EF_e10_medium_mu6;
+      fHandles[ "trig_EF_el_EF_e15_HLTtighter" ] = &trig_EF_el_EF_e15_HLTtighter;
+      fHandles[ "trig_EF_el_EF_e15_medium" ] = &trig_EF_el_EF_e15_medium;
+      fHandles[ "trig_EF_el_EF_e15_medium_xe30_noMu" ] = &trig_EF_el_EF_e15_medium_xe30_noMu;
+      fHandles[ "trig_EF_el_EF_e15_tight" ] = &trig_EF_el_EF_e15_tight;
+      fHandles[ "trig_EF_el_EF_e20_loose" ] = &trig_EF_el_EF_e20_loose;
+      fHandles[ "trig_EF_el_EF_e20_medium" ] = &trig_EF_el_EF_e20_medium;
+      fHandles[ "trig_EF_el_EF_e20_medium1" ] = &trig_EF_el_EF_e20_medium1;
+      fHandles[ "trig_EF_el_EF_e20_medium_IDTrkNoCut" ] = &trig_EF_el_EF_e20_medium_IDTrkNoCut;
+      fHandles[ "trig_EF_el_EF_e20_medium_SiTrk" ] = &trig_EF_el_EF_e20_medium_SiTrk;
+      fHandles[ "trig_EF_el_EF_e20_medium_TRT" ] = &trig_EF_el_EF_e20_medium_TRT;
+      fHandles[ "trig_EF_el_EF_e22_medium" ] = &trig_EF_el_EF_e22_medium;
+      fHandles[ "trig_EF_el_EF_e22vh_medium1" ] = &trig_EF_el_EF_e22vh_medium1;
+      fHandles[ "trig_EF_el_EF_e5_tight" ] = &trig_EF_el_EF_e5_tight;
+      fHandles[ "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight_e4_etcut_Jpsi;
+      fHandles[ "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk" ] = &trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk;
+      fHandles[ "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT" ] = &trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT;
+      fHandles[ "trig_EF_el_EF_e5_tight_e5_NoCut" ] = &trig_EF_el_EF_e5_tight_e5_NoCut;
+      fHandles[ "trig_EF_el_EF_e5_tight_e9_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight_e9_etcut_Jpsi;
+      fHandles[ "trig_EF_el_EF_e60_loose" ] = &trig_EF_el_EF_e60_loose;
+      fHandles[ "trig_EF_el_EF_e9_tight_e5_tight_Jpsi" ] = &trig_EF_el_EF_e9_tight_e5_tight_Jpsi;
+      fHandles[ "trig_EF_el_EF_eb_physics" ] = &trig_EF_el_EF_eb_physics;
+      fHandles[ "trig_EF_el_EF_eb_physics_empty" ] = &trig_EF_el_EF_eb_physics_empty;
+      fHandles[ "trig_EF_el_EF_eb_physics_firstempty" ] = &trig_EF_el_EF_eb_physics_firstempty;
+      fHandles[ "trig_EF_el_EF_eb_physics_noL1PS" ] = &trig_EF_el_EF_eb_physics_noL1PS;
+      fHandles[ "trig_EF_el_EF_eb_physics_unpaired_iso" ] = &trig_EF_el_EF_eb_physics_unpaired_iso;
+      fHandles[ "trig_EF_el_EF_eb_physics_unpaired_noniso" ] = &trig_EF_el_EF_eb_physics_unpaired_noniso;
+      fHandles[ "trig_EF_el_EF_eb_random" ] = &trig_EF_el_EF_eb_random;
+      fHandles[ "trig_EF_el_EF_eb_random_empty" ] = &trig_EF_el_EF_eb_random_empty;
+      fHandles[ "trig_EF_el_EF_eb_random_firstempty" ] = &trig_EF_el_EF_eb_random_firstempty;
+      fHandles[ "trig_EF_el_EF_eb_random_unpaired_iso" ] = &trig_EF_el_EF_eb_random_unpaired_iso;
+      fHandles[ "trig_EF_el_vertweight" ] = &trig_EF_el_vertweight;
+      fHandles[ "trig_EF_el_hastrack" ] = &trig_EF_el_hastrack;
+   }
+
+   /**
+    * @returns The branch name prefix used by the object
+    */
+   const char* TriggerD3PDObject::GetPrefix() const {
+
+      return fPrefix;
+   }
+
+   /**
+    * @param prefix The prefix that should be used for the variables
+    */
+   void TriggerD3PDObject::SetPrefix( const char* prefix ) {
+
+      EF_2e10_medium.SetName( ::TString( prefix ) + "EF_2e10_medium" );
+      EF_2e10_medium_mu6.SetName( ::TString( prefix ) + "EF_2e10_medium_mu6" );
+      EF_2e12_medium.SetName( ::TString( prefix ) + "EF_2e12_medium" );
+      EF_2e12Thv_medium.SetName( ::TString( prefix ) + "EF_2e12Thv_medium" );
+      EF_2e5_tight.SetName( ::TString( prefix ) + "EF_2e5_tight" );
+      EF_2e5_tight_Jpsi.SetName( ::TString( prefix ) + "EF_2e5_tight_Jpsi" );
+      EF_2g15_loose.SetName( ::TString( prefix ) + "EF_2g15_loose" );
+      EF_2g20_loose.SetName( ::TString( prefix ) + "EF_2g20_loose" );
+      EF_2mu10.SetName( ::TString( prefix ) + "EF_2mu10" );
+      EF_2mu10_empty.SetName( ::TString( prefix ) + "EF_2mu10_empty" );
+      EF_2mu10_loose.SetName( ::TString( prefix ) + "EF_2mu10_loose" );
+      EF_2mu10_loose_empty.SetName( ::TString( prefix ) + "EF_2mu10_loose_empty" );
+      EF_2mu10_loose_noOvlpRm.SetName( ::TString( prefix ) + "EF_2mu10_loose_noOvlpRm" );
+      EF_2mu4.SetName( ::TString( prefix ) + "EF_2mu4" );
+      EF_2mu4_Bmumu.SetName( ::TString( prefix ) + "EF_2mu4_Bmumu" );
+      EF_2mu4_Bmumux.SetName( ::TString( prefix ) + "EF_2mu4_Bmumux" );
+      EF_2mu4_DiMu.SetName( ::TString( prefix ) + "EF_2mu4_DiMu" );
+      EF_2mu4_DiMu_SiTrk.SetName( ::TString( prefix ) + "EF_2mu4_DiMu_SiTrk" );
+      EF_2mu4_DiMu_noVtx_noOS.SetName( ::TString( prefix ) + "EF_2mu4_DiMu_noVtx_noOS" );
+      EF_2mu4_Jpsimumu.SetName( ::TString( prefix ) + "EF_2mu4_Jpsimumu" );
+      EF_2mu4_Jpsimumu_IDTrkNoCut.SetName( ::TString( prefix ) + "EF_2mu4_Jpsimumu_IDTrkNoCut" );
+      EF_2mu4_Upsimumu.SetName( ::TString( prefix ) + "EF_2mu4_Upsimumu" );
+      EF_2mu6.SetName( ::TString( prefix ) + "EF_2mu6" );
+      EF_2mu6_MSonly_g10_loose.SetName( ::TString( prefix ) + "EF_2mu6_MSonly_g10_loose" );
+      EF_2mu6_NL.SetName( ::TString( prefix ) + "EF_2mu6_NL" );
+      EF_e10_medium.SetName( ::TString( prefix ) + "EF_e10_medium" );
+      EF_e10_medium_2mu6.SetName( ::TString( prefix ) + "EF_e10_medium_2mu6" );
+      EF_e10_medium_mu10.SetName( ::TString( prefix ) + "EF_e10_medium_mu10" );
+      EF_e10_medium_mu6.SetName( ::TString( prefix ) + "EF_e10_medium_mu6" );
+      EF_e15_HLTtighter.SetName( ::TString( prefix ) + "EF_e15_HLTtighter" );
+      EF_e15_medium.SetName( ::TString( prefix ) + "EF_e15_medium" );
+      EF_e15_medium_xe30_noMu.SetName( ::TString( prefix ) + "EF_e15_medium_xe30_noMu" );
+      EF_e15_tight.SetName( ::TString( prefix ) + "EF_e15_tight" );
+      EF_e20_loose.SetName( ::TString( prefix ) + "EF_e20_loose" );
+      EF_e20_medium.SetName( ::TString( prefix ) + "EF_e20_medium" );
+      EF_e20_medium1.SetName( ::TString( prefix ) + "EF_e20_medium1" );
+      EF_e20_medium_IDTrkNoCut.SetName( ::TString( prefix ) + "EF_e20_medium_IDTrkNoCut" );
+      EF_e20_medium_SiTrk.SetName( ::TString( prefix ) + "EF_e20_medium_SiTrk" );
+      EF_e20_medium_TRT.SetName( ::TString( prefix ) + "EF_e20_medium_TRT" );
+      EF_e22_medium.SetName( ::TString( prefix ) + "EF_e22_medium" );
+      EF_e22vh_medium1.SetName( ::TString( prefix ) + "EF_e22vh_medium1" );
+      EF_e5_tight.SetName( ::TString( prefix ) + "EF_e5_tight" );
+      EF_e5_tight_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi" );
+      EF_e5_tight_e4_etcut_Jpsi_SiTrk.SetName( ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi_SiTrk" );
+      EF_e5_tight_e4_etcut_Jpsi_TRT.SetName( ::TString( prefix ) + "EF_e5_tight_e4_etcut_Jpsi_TRT" );
+      EF_e5_tight_e5_NoCut.SetName( ::TString( prefix ) + "EF_e5_tight_e5_NoCut" );
+      EF_e5_tight_e9_etcut_Jpsi.SetName( ::TString( prefix ) + "EF_e5_tight_e9_etcut_Jpsi" );
+      EF_e60_loose.SetName( ::TString( prefix ) + "EF_e60_loose" );
+      EF_e9_tight_e5_tight_Jpsi.SetName( ::TString( prefix ) + "EF_e9_tight_e5_tight_Jpsi" );
+      EF_eb_physics.SetName( ::TString( prefix ) + "EF_eb_physics" );
+      EF_eb_physics_empty.SetName( ::TString( prefix ) + "EF_eb_physics_empty" );
+      EF_eb_physics_firstempty.SetName( ::TString( prefix ) + "EF_eb_physics_firstempty" );
+      EF_eb_physics_noL1PS.SetName( ::TString( prefix ) + "EF_eb_physics_noL1PS" );
+      EF_eb_physics_unpaired_iso.SetName( ::TString( prefix ) + "EF_eb_physics_unpaired_iso" );
+      EF_eb_physics_unpaired_noniso.SetName( ::TString( prefix ) + "EF_eb_physics_unpaired_noniso" );
+      EF_eb_random.SetName( ::TString( prefix ) + "EF_eb_random" );
+      EF_eb_random_empty.SetName( ::TString( prefix ) + "EF_eb_random_empty" );
+      EF_eb_random_firstempty.SetName( ::TString( prefix ) + "EF_eb_random_firstempty" );
+      EF_eb_random_unpaired_iso.SetName( ::TString( prefix ) + "EF_eb_random_unpaired_iso" );
+      EF_g100_etcut_g50_etcut.SetName( ::TString( prefix ) + "EF_g100_etcut_g50_etcut" );
+      EF_g10_NoCut_cosmic.SetName( ::TString( prefix ) + "EF_g10_NoCut_cosmic" );
+      EF_g11_etcut.SetName( ::TString( prefix ) + "EF_g11_etcut" );
+      EF_g11_etcut_larcalib.SetName( ::TString( prefix ) + "EF_g11_etcut_larcalib" );
+      EF_g150_etcut.SetName( ::TString( prefix ) + "EF_g150_etcut" );
+      EF_g15_loose.SetName( ::TString( prefix ) + "EF_g15_loose" );
+      EF_g15_loose_larcalib.SetName( ::TString( prefix ) + "EF_g15_loose_larcalib" );
+      EF_g20_etcut.SetName( ::TString( prefix ) + "EF_g20_etcut" );
+      EF_g20_etcut_xe30_noMu.SetName( ::TString( prefix ) + "EF_g20_etcut_xe30_noMu" );
+      EF_g20_loose.SetName( ::TString( prefix ) + "EF_g20_loose" );
+      EF_g20_loose_larcalib.SetName( ::TString( prefix ) + "EF_g20_loose_larcalib" );
+      EF_g40_loose.SetName( ::TString( prefix ) + "EF_g40_loose" );
+      EF_g40_loose_EFxe40_noMu.SetName( ::TString( prefix ) + "EF_g40_loose_EFxe40_noMu" );
+      EF_g40_loose_larcalib.SetName( ::TString( prefix ) + "EF_g40_loose_larcalib" );
+      EF_g40_tight.SetName( ::TString( prefix ) + "EF_g40_tight" );
+      EF_g5_NoCut_cosmic.SetName( ::TString( prefix ) + "EF_g5_NoCut_cosmic" );
+      EF_g60_loose.SetName( ::TString( prefix ) + "EF_g60_loose" );
+      EF_g60_loose_larcalib.SetName( ::TString( prefix ) + "EF_g60_loose_larcalib" );
+      EF_g80_loose.SetName( ::TString( prefix ) + "EF_g80_loose" );
+      EF_g80_loose_larcalib.SetName( ::TString( prefix ) + "EF_g80_loose_larcalib" );
+      EF_mu0_empty_NoAlg.SetName( ::TString( prefix ) + "EF_mu0_empty_NoAlg" );
+      EF_mu0_firstempty_NoAlg.SetName( ::TString( prefix ) + "EF_mu0_firstempty_NoAlg" );
+      EF_mu0_unpaired_iso_NoAlg.SetName( ::TString( prefix ) + "EF_mu0_unpaired_iso_NoAlg" );
+      EF_mu10.SetName( ::TString( prefix ) + "EF_mu10" );
+      EF_mu10_Jpsimumu.SetName( ::TString( prefix ) + "EF_mu10_Jpsimumu" );
+      EF_mu10_NL.SetName( ::TString( prefix ) + "EF_mu10_NL" );
+      EF_mu10_Upsimumu_FS.SetName( ::TString( prefix ) + "EF_mu10_Upsimumu_FS" );
+      EF_mu10_loose.SetName( ::TString( prefix ) + "EF_mu10_loose" );
+      EF_mu10_muCombTag_NoEF.SetName( ::TString( prefix ) + "EF_mu10_muCombTag_NoEF" );
+      EF_mu11_empty_NoAlg.SetName( ::TString( prefix ) + "EF_mu11_empty_NoAlg" );
+      EF_mu13.SetName( ::TString( prefix ) + "EF_mu13" );
+      EF_mu13_MG.SetName( ::TString( prefix ) + "EF_mu13_MG" );
+      EF_mu13_muCombTag_NoEF.SetName( ::TString( prefix ) + "EF_mu13_muCombTag_NoEF" );
+      EF_mu15.SetName( ::TString( prefix ) + "EF_mu15" );
+      EF_mu15_mu10_EFFS.SetName( ::TString( prefix ) + "EF_mu15_mu10_EFFS" );
+      EF_mu15i.SetName( ::TString( prefix ) + "EF_mu15i" );
+      EF_mu18.SetName( ::TString( prefix ) + "EF_mu18" );
+      EF_mu18_MG.SetName( ::TString( prefix ) + "EF_mu18_MG" );
+      EF_mu18_medium.SetName( ::TString( prefix ) + "EF_mu18_medium" );
+      EF_mu20.SetName( ::TString( prefix ) + "EF_mu20" );
+      EF_mu20_IDTrkNoCut.SetName( ::TString( prefix ) + "EF_mu20_IDTrkNoCut" );
+      EF_mu20_MG.SetName( ::TString( prefix ) + "EF_mu20_MG" );
+      EF_mu20_empty.SetName( ::TString( prefix ) + "EF_mu20_empty" );
+      EF_mu20_muCombTag_NoEF.SetName( ::TString( prefix ) + "EF_mu20_muCombTag_NoEF" );
+      EF_mu20i.SetName( ::TString( prefix ) + "EF_mu20i" );
+      EF_mu22.SetName( ::TString( prefix ) + "EF_mu22" );
+      EF_mu22_MG.SetName( ::TString( prefix ) + "EF_mu22_MG" );
+      EF_mu4.SetName( ::TString( prefix ) + "EF_mu4" );
+      EF_mu40_MSonly_barrel.SetName( ::TString( prefix ) + "EF_mu40_MSonly_barrel" );
+      EF_mu40_MSonly_empty.SetName( ::TString( prefix ) + "EF_mu40_MSonly_empty" );
+      EF_mu40_MSonly_tight.SetName( ::TString( prefix ) + "EF_mu40_MSonly_tight" );
+      EF_mu40_MSonly_tighter.SetName( ::TString( prefix ) + "EF_mu40_MSonly_tighter" );
+      EF_mu40_slow.SetName( ::TString( prefix ) + "EF_mu40_slow" );
+      EF_mu40_slow_empty.SetName( ::TString( prefix ) + "EF_mu40_slow_empty" );
+      EF_mu40_slow_outOfTime.SetName( ::TString( prefix ) + "EF_mu40_slow_outOfTime" );
+      EF_mu4_DiMu.SetName( ::TString( prefix ) + "EF_mu4_DiMu" );
+      EF_mu4_DiMu_FS_noOS.SetName( ::TString( prefix ) + "EF_mu4_DiMu_FS_noOS" );
+      EF_mu4_Jpsimumu.SetName( ::TString( prefix ) + "EF_mu4_Jpsimumu" );
+      EF_mu4_L1J10_matched.SetName( ::TString( prefix ) + "EF_mu4_L1J10_matched" );
+      EF_mu4_L1J15_matched.SetName( ::TString( prefix ) + "EF_mu4_L1J15_matched" );
+      EF_mu4_L1J20_matched.SetName( ::TString( prefix ) + "EF_mu4_L1J20_matched" );
+      EF_mu4_L1J30_matched.SetName( ::TString( prefix ) + "EF_mu4_L1J30_matched" );
+      EF_mu4_L1J50_matched.SetName( ::TString( prefix ) + "EF_mu4_L1J50_matched" );
+      EF_mu4_L1J75_matched.SetName( ::TString( prefix ) + "EF_mu4_L1J75_matched" );
+      EF_mu4_L1MU11_MSonly_cosmic.SetName( ::TString( prefix ) + "EF_mu4_L1MU11_MSonly_cosmic" );
+      EF_mu4_L1MU11_cosmic.SetName( ::TString( prefix ) + "EF_mu4_L1MU11_cosmic" );
+      EF_mu4_MSonly_cosmic.SetName( ::TString( prefix ) + "EF_mu4_MSonly_cosmic" );
+      EF_mu4_Trk_Jpsi.SetName( ::TString( prefix ) + "EF_mu4_Trk_Jpsi" );
+      EF_mu4_Trk_Upsi_FS.SetName( ::TString( prefix ) + "EF_mu4_Trk_Upsi_FS" );
+      EF_mu4_Upsimumu_FS.SetName( ::TString( prefix ) + "EF_mu4_Upsimumu_FS" );
+      EF_mu4_Upsimumu_SiTrk_FS.SetName( ::TString( prefix ) + "EF_mu4_Upsimumu_SiTrk_FS" );
+      EF_mu4_Upsimumu_tight_FS.SetName( ::TString( prefix ) + "EF_mu4_Upsimumu_tight_FS" );
+      EF_mu4_cosmic.SetName( ::TString( prefix ) + "EF_mu4_cosmic" );
+      EF_mu4_j10_a4tc_EFFS.SetName( ::TString( prefix ) + "EF_mu4_j10_a4tc_EFFS" );
+      EF_mu6.SetName( ::TString( prefix ) + "EF_mu6" );
+      EF_mu6_DiMu_noOS.SetName( ::TString( prefix ) + "EF_mu6_DiMu_noOS" );
+      EF_mu6_Jpsimumu.SetName( ::TString( prefix ) + "EF_mu6_Jpsimumu" );
+      EF_mu6_Jpsimumu_SiTrk.SetName( ::TString( prefix ) + "EF_mu6_Jpsimumu_SiTrk" );
+      EF_mu6_Jpsimumu_tight.SetName( ::TString( prefix ) + "EF_mu6_Jpsimumu_tight" );
+      trig_EF_emcl_n.SetName( ::TString( prefix ) + "trig_EF_emcl_n" );
+      trig_EF_emcl_pt.SetName( ::TString( prefix ) + "trig_EF_emcl_pt" );
+      trig_EF_emcl_eta.SetName( ::TString( prefix ) + "trig_EF_emcl_eta" );
+      trig_EF_emcl_phi.SetName( ::TString( prefix ) + "trig_EF_emcl_phi" );
+      trig_EF_emcl_E_em.SetName( ::TString( prefix ) + "trig_EF_emcl_E_em" );
+      trig_EF_emcl_E_had.SetName( ::TString( prefix ) + "trig_EF_emcl_E_had" );
+      trig_EF_emcl_slw_n.SetName( ::TString( prefix ) + "trig_EF_emcl_slw_n" );
+      trig_EF_emcl_slw_pt.SetName( ::TString( prefix ) + "trig_EF_emcl_slw_pt" );
+      trig_EF_emcl_slw_eta.SetName( ::TString( prefix ) + "trig_EF_emcl_slw_eta" );
+      trig_EF_emcl_slw_phi.SetName( ::TString( prefix ) + "trig_EF_emcl_slw_phi" );
+      trig_EF_emcl_slw_E_em.SetName( ::TString( prefix ) + "trig_EF_emcl_slw_E_em" );
+      trig_EF_emcl_slw_E_had.SetName( ::TString( prefix ) + "trig_EF_emcl_slw_E_had" );
+      trig_EF_el_n.SetName( ::TString( prefix ) + "trig_EF_el_n" );
+      trig_EF_el_E.SetName( ::TString( prefix ) + "trig_EF_el_E" );
+      trig_EF_el_Et.SetName( ::TString( prefix ) + "trig_EF_el_Et" );
+      trig_EF_el_pt.SetName( ::TString( prefix ) + "trig_EF_el_pt" );
+      trig_EF_el_m.SetName( ::TString( prefix ) + "trig_EF_el_m" );
+      trig_EF_el_eta.SetName( ::TString( prefix ) + "trig_EF_el_eta" );
+      trig_EF_el_phi.SetName( ::TString( prefix ) + "trig_EF_el_phi" );
+      trig_EF_el_px.SetName( ::TString( prefix ) + "trig_EF_el_px" );
+      trig_EF_el_py.SetName( ::TString( prefix ) + "trig_EF_el_py" );
+      trig_EF_el_pz.SetName( ::TString( prefix ) + "trig_EF_el_pz" );
+      trig_EF_el_charge.SetName( ::TString( prefix ) + "trig_EF_el_charge" );
+      trig_EF_el_author.SetName( ::TString( prefix ) + "trig_EF_el_author" );
+      trig_EF_el_isEM.SetName( ::TString( prefix ) + "trig_EF_el_isEM" );
+      trig_EF_el_loose.SetName( ::TString( prefix ) + "trig_EF_el_loose" );
+      trig_EF_el_looseIso.SetName( ::TString( prefix ) + "trig_EF_el_looseIso" );
+      trig_EF_el_medium.SetName( ::TString( prefix ) + "trig_EF_el_medium" );
+      trig_EF_el_mediumIso.SetName( ::TString( prefix ) + "trig_EF_el_mediumIso" );
+      trig_EF_el_mediumWithoutTrack.SetName( ::TString( prefix ) + "trig_EF_el_mediumWithoutTrack" );
+      trig_EF_el_mediumIsoWithoutTrack.SetName( ::TString( prefix ) + "trig_EF_el_mediumIsoWithoutTrack" );
+      trig_EF_el_tight.SetName( ::TString( prefix ) + "trig_EF_el_tight" );
+      trig_EF_el_tightIso.SetName( ::TString( prefix ) + "trig_EF_el_tightIso" );
+      trig_EF_el_tightWithoutTrack.SetName( ::TString( prefix ) + "trig_EF_el_tightWithoutTrack" );
+      trig_EF_el_tightIsoWithoutTrack.SetName( ::TString( prefix ) + "trig_EF_el_tightIsoWithoutTrack" );
+      trig_EF_el_loosePP.SetName( ::TString( prefix ) + "trig_EF_el_loosePP" );
+      trig_EF_el_loosePPIso.SetName( ::TString( prefix ) + "trig_EF_el_loosePPIso" );
+      trig_EF_el_mediumPP.SetName( ::TString( prefix ) + "trig_EF_el_mediumPP" );
+      trig_EF_el_mediumPPIso.SetName( ::TString( prefix ) + "trig_EF_el_mediumPPIso" );
+      trig_EF_el_tightPP.SetName( ::TString( prefix ) + "trig_EF_el_tightPP" );
+      trig_EF_el_tightPPIso.SetName( ::TString( prefix ) + "trig_EF_el_tightPPIso" );
+      trig_EF_el_EF_2e10_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e10_medium" );
+      trig_EF_el_EF_2e10_medium_mu6.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e10_medium_mu6" );
+      trig_EF_el_EF_2e12_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e12_medium" );
+      trig_EF_el_EF_2e12Thv_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e12Thv_medium" );
+      trig_EF_el_EF_2e5_tight.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e5_tight" );
+      trig_EF_el_EF_2e5_tight_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e5_tight_Jpsi" );
+      trig_EF_el_EF_e10_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e10_medium" );
+      trig_EF_el_EF_e10_medium_2mu6.SetName( ::TString( prefix ) + "trig_EF_el_EF_e10_medium_2mu6" );
+      trig_EF_el_EF_e10_medium_mu10.SetName( ::TString( prefix ) + "trig_EF_el_EF_e10_medium_mu10" );
+      trig_EF_el_EF_e10_medium_mu6.SetName( ::TString( prefix ) + "trig_EF_el_EF_e10_medium_mu6" );
+      trig_EF_el_EF_e15_HLTtighter.SetName( ::TString( prefix ) + "trig_EF_el_EF_e15_HLTtighter" );
+      trig_EF_el_EF_e15_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e15_medium" );
+      trig_EF_el_EF_e15_medium_xe30_noMu.SetName( ::TString( prefix ) + "trig_EF_el_EF_e15_medium_xe30_noMu" );
+      trig_EF_el_EF_e15_tight.SetName( ::TString( prefix ) + "trig_EF_el_EF_e15_tight" );
+      trig_EF_el_EF_e20_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20_loose" );
+      trig_EF_el_EF_e20_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20_medium" );
+      trig_EF_el_EF_e20_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20_medium1" );
+      trig_EF_el_EF_e20_medium_IDTrkNoCut.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20_medium_IDTrkNoCut" );
+      trig_EF_el_EF_e20_medium_SiTrk.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20_medium_SiTrk" );
+      trig_EF_el_EF_e20_medium_TRT.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20_medium_TRT" );
+      trig_EF_el_EF_e22_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e22_medium" );
+      trig_EF_el_EF_e22vh_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1" );
+      trig_EF_el_EF_e5_tight.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight" );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi" );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk" );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT" );
+      trig_EF_el_EF_e5_tight_e5_NoCut.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e5_NoCut" );
+      trig_EF_el_EF_e5_tight_e9_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight_e9_etcut_Jpsi" );
+      trig_EF_el_EF_e60_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e60_loose" );
+      trig_EF_el_EF_e9_tight_e5_tight_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e9_tight_e5_tight_Jpsi" );
+      trig_EF_el_EF_eb_physics.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics" );
+      trig_EF_el_EF_eb_physics_empty.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics_empty" );
+      trig_EF_el_EF_eb_physics_firstempty.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics_firstempty" );
+      trig_EF_el_EF_eb_physics_noL1PS.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics_noL1PS" );
+      trig_EF_el_EF_eb_physics_unpaired_iso.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics_unpaired_iso" );
+      trig_EF_el_EF_eb_physics_unpaired_noniso.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics_unpaired_noniso" );
+      trig_EF_el_EF_eb_random.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_random" );
+      trig_EF_el_EF_eb_random_empty.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_random_empty" );
+      trig_EF_el_EF_eb_random_firstempty.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_random_firstempty" );
+      trig_EF_el_EF_eb_random_unpaired_iso.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_random_unpaired_iso" );
+      trig_EF_el_vertweight.SetName( ::TString( prefix ) + "trig_EF_el_vertweight" );
+      trig_EF_el_hastrack.SetName( ::TString( prefix ) + "trig_EF_el_hastrack" );
+      return;
+   }
+
+   /**
+    * This function should be called every time a new TFile is opened
+    * by your analysis code.
+    *
+    * @param tree Pointer to the TTree with the variables
+    */
+   void TriggerD3PDObject::ReadFrom( TTree* tree ) {
+
+      // Check if the object will be able to read from the TTree:
+      if( ! fFromInput ) {
+         Error( "ReadFrom", "The object was not created with the correct" );
+         Error( "ReadFrom", "constructor to read data from a D3PD!" );
+         return;
+      }
+
+      EF_2e10_medium.ReadFrom( tree );
+      EF_2e10_medium_mu6.ReadFrom( tree );
+      EF_2e12_medium.ReadFrom( tree );
+      EF_2e12Thv_medium.ReadFrom( tree );
+      EF_2e5_tight.ReadFrom( tree );
+      EF_2e5_tight_Jpsi.ReadFrom( tree );
+      EF_2g15_loose.ReadFrom( tree );
+      EF_2g20_loose.ReadFrom( tree );
+      EF_2mu10.ReadFrom( tree );
+      EF_2mu10_empty.ReadFrom( tree );
+      EF_2mu10_loose.ReadFrom( tree );
+      EF_2mu10_loose_empty.ReadFrom( tree );
+      EF_2mu10_loose_noOvlpRm.ReadFrom( tree );
+      EF_2mu4.ReadFrom( tree );
+      EF_2mu4_Bmumu.ReadFrom( tree );
+      EF_2mu4_Bmumux.ReadFrom( tree );
+      EF_2mu4_DiMu.ReadFrom( tree );
+      EF_2mu4_DiMu_SiTrk.ReadFrom( tree );
+      EF_2mu4_DiMu_noVtx_noOS.ReadFrom( tree );
+      EF_2mu4_Jpsimumu.ReadFrom( tree );
+      EF_2mu4_Jpsimumu_IDTrkNoCut.ReadFrom( tree );
+      EF_2mu4_Upsimumu.ReadFrom( tree );
+      EF_2mu6.ReadFrom( tree );
+      EF_2mu6_MSonly_g10_loose.ReadFrom( tree );
+      EF_2mu6_NL.ReadFrom( tree );
+      EF_e10_medium.ReadFrom( tree );
+      EF_e10_medium_2mu6.ReadFrom( tree );
+      EF_e10_medium_mu10.ReadFrom( tree );
+      EF_e10_medium_mu6.ReadFrom( tree );
+      EF_e15_HLTtighter.ReadFrom( tree );
+      EF_e15_medium.ReadFrom( tree );
+      EF_e15_medium_xe30_noMu.ReadFrom( tree );
+      EF_e15_tight.ReadFrom( tree );
+      EF_e20_loose.ReadFrom( tree );
+      EF_e20_medium.ReadFrom( tree );
+      EF_e20_medium1.ReadFrom( tree );
+      EF_e20_medium_IDTrkNoCut.ReadFrom( tree );
+      EF_e20_medium_SiTrk.ReadFrom( tree );
+      EF_e20_medium_TRT.ReadFrom( tree );
+      EF_e22_medium.ReadFrom( tree );
+      EF_e22vh_medium1.ReadFrom( tree );
+      EF_e5_tight.ReadFrom( tree );
+      EF_e5_tight_e4_etcut_Jpsi.ReadFrom( tree );
+      EF_e5_tight_e4_etcut_Jpsi_SiTrk.ReadFrom( tree );
+      EF_e5_tight_e4_etcut_Jpsi_TRT.ReadFrom( tree );
+      EF_e5_tight_e5_NoCut.ReadFrom( tree );
+      EF_e5_tight_e9_etcut_Jpsi.ReadFrom( tree );
+      EF_e60_loose.ReadFrom( tree );
+      EF_e9_tight_e5_tight_Jpsi.ReadFrom( tree );
+      EF_eb_physics.ReadFrom( tree );
+      EF_eb_physics_empty.ReadFrom( tree );
+      EF_eb_physics_firstempty.ReadFrom( tree );
+      EF_eb_physics_noL1PS.ReadFrom( tree );
+      EF_eb_physics_unpaired_iso.ReadFrom( tree );
+      EF_eb_physics_unpaired_noniso.ReadFrom( tree );
+      EF_eb_random.ReadFrom( tree );
+      EF_eb_random_empty.ReadFrom( tree );
+      EF_eb_random_firstempty.ReadFrom( tree );
+      EF_eb_random_unpaired_iso.ReadFrom( tree );
+      EF_g100_etcut_g50_etcut.ReadFrom( tree );
+      EF_g10_NoCut_cosmic.ReadFrom( tree );
+      EF_g11_etcut.ReadFrom( tree );
+      EF_g11_etcut_larcalib.ReadFrom( tree );
+      EF_g150_etcut.ReadFrom( tree );
+      EF_g15_loose.ReadFrom( tree );
+      EF_g15_loose_larcalib.ReadFrom( tree );
+      EF_g20_etcut.ReadFrom( tree );
+      EF_g20_etcut_xe30_noMu.ReadFrom( tree );
+      EF_g20_loose.ReadFrom( tree );
+      EF_g20_loose_larcalib.ReadFrom( tree );
+      EF_g40_loose.ReadFrom( tree );
+      EF_g40_loose_EFxe40_noMu.ReadFrom( tree );
+      EF_g40_loose_larcalib.ReadFrom( tree );
+      EF_g40_tight.ReadFrom( tree );
+      EF_g5_NoCut_cosmic.ReadFrom( tree );
+      EF_g60_loose.ReadFrom( tree );
+      EF_g60_loose_larcalib.ReadFrom( tree );
+      EF_g80_loose.ReadFrom( tree );
+      EF_g80_loose_larcalib.ReadFrom( tree );
+      EF_mu0_empty_NoAlg.ReadFrom( tree );
+      EF_mu0_firstempty_NoAlg.ReadFrom( tree );
+      EF_mu0_unpaired_iso_NoAlg.ReadFrom( tree );
+      EF_mu10.ReadFrom( tree );
+      EF_mu10_Jpsimumu.ReadFrom( tree );
+      EF_mu10_NL.ReadFrom( tree );
+      EF_mu10_Upsimumu_FS.ReadFrom( tree );
+      EF_mu10_loose.ReadFrom( tree );
+      EF_mu10_muCombTag_NoEF.ReadFrom( tree );
+      EF_mu11_empty_NoAlg.ReadFrom( tree );
+      EF_mu13.ReadFrom( tree );
+      EF_mu13_MG.ReadFrom( tree );
+      EF_mu13_muCombTag_NoEF.ReadFrom( tree );
+      EF_mu15.ReadFrom( tree );
+      EF_mu15_mu10_EFFS.ReadFrom( tree );
+      EF_mu15i.ReadFrom( tree );
+      EF_mu18.ReadFrom( tree );
+      EF_mu18_MG.ReadFrom( tree );
+      EF_mu18_medium.ReadFrom( tree );
+      EF_mu20.ReadFrom( tree );
+      EF_mu20_IDTrkNoCut.ReadFrom( tree );
+      EF_mu20_MG.ReadFrom( tree );
+      EF_mu20_empty.ReadFrom( tree );
+      EF_mu20_muCombTag_NoEF.ReadFrom( tree );
+      EF_mu20i.ReadFrom( tree );
+      EF_mu22.ReadFrom( tree );
+      EF_mu22_MG.ReadFrom( tree );
+      EF_mu4.ReadFrom( tree );
+      EF_mu40_MSonly_barrel.ReadFrom( tree );
+      EF_mu40_MSonly_empty.ReadFrom( tree );
+      EF_mu40_MSonly_tight.ReadFrom( tree );
+      EF_mu40_MSonly_tighter.ReadFrom( tree );
+      EF_mu40_slow.ReadFrom( tree );
+      EF_mu40_slow_empty.ReadFrom( tree );
+      EF_mu40_slow_outOfTime.ReadFrom( tree );
+      EF_mu4_DiMu.ReadFrom( tree );
+      EF_mu4_DiMu_FS_noOS.ReadFrom( tree );
+      EF_mu4_Jpsimumu.ReadFrom( tree );
+      EF_mu4_L1J10_matched.ReadFrom( tree );
+      EF_mu4_L1J15_matched.ReadFrom( tree );
+      EF_mu4_L1J20_matched.ReadFrom( tree );
+      EF_mu4_L1J30_matched.ReadFrom( tree );
+      EF_mu4_L1J50_matched.ReadFrom( tree );
+      EF_mu4_L1J75_matched.ReadFrom( tree );
+      EF_mu4_L1MU11_MSonly_cosmic.ReadFrom( tree );
+      EF_mu4_L1MU11_cosmic.ReadFrom( tree );
+      EF_mu4_MSonly_cosmic.ReadFrom( tree );
+      EF_mu4_Trk_Jpsi.ReadFrom( tree );
+      EF_mu4_Trk_Upsi_FS.ReadFrom( tree );
+      EF_mu4_Upsimumu_FS.ReadFrom( tree );
+      EF_mu4_Upsimumu_SiTrk_FS.ReadFrom( tree );
+      EF_mu4_Upsimumu_tight_FS.ReadFrom( tree );
+      EF_mu4_cosmic.ReadFrom( tree );
+      EF_mu4_j10_a4tc_EFFS.ReadFrom( tree );
+      EF_mu6.ReadFrom( tree );
+      EF_mu6_DiMu_noOS.ReadFrom( tree );
+      EF_mu6_Jpsimumu.ReadFrom( tree );
+      EF_mu6_Jpsimumu_SiTrk.ReadFrom( tree );
+      EF_mu6_Jpsimumu_tight.ReadFrom( tree );
+      trig_EF_emcl_n.ReadFrom( tree );
+      trig_EF_emcl_pt.ReadFrom( tree );
+      trig_EF_emcl_eta.ReadFrom( tree );
+      trig_EF_emcl_phi.ReadFrom( tree );
+      trig_EF_emcl_E_em.ReadFrom( tree );
+      trig_EF_emcl_E_had.ReadFrom( tree );
+      trig_EF_emcl_slw_n.ReadFrom( tree );
+      trig_EF_emcl_slw_pt.ReadFrom( tree );
+      trig_EF_emcl_slw_eta.ReadFrom( tree );
+      trig_EF_emcl_slw_phi.ReadFrom( tree );
+      trig_EF_emcl_slw_E_em.ReadFrom( tree );
+      trig_EF_emcl_slw_E_had.ReadFrom( tree );
+      trig_EF_el_n.ReadFrom( tree );
+      trig_EF_el_E.ReadFrom( tree );
+      trig_EF_el_Et.ReadFrom( tree );
+      trig_EF_el_pt.ReadFrom( tree );
+      trig_EF_el_m.ReadFrom( tree );
+      trig_EF_el_eta.ReadFrom( tree );
+      trig_EF_el_phi.ReadFrom( tree );
+      trig_EF_el_px.ReadFrom( tree );
+      trig_EF_el_py.ReadFrom( tree );
+      trig_EF_el_pz.ReadFrom( tree );
+      trig_EF_el_charge.ReadFrom( tree );
+      trig_EF_el_author.ReadFrom( tree );
+      trig_EF_el_isEM.ReadFrom( tree );
+      trig_EF_el_loose.ReadFrom( tree );
+      trig_EF_el_looseIso.ReadFrom( tree );
+      trig_EF_el_medium.ReadFrom( tree );
+      trig_EF_el_mediumIso.ReadFrom( tree );
+      trig_EF_el_mediumWithoutTrack.ReadFrom( tree );
+      trig_EF_el_mediumIsoWithoutTrack.ReadFrom( tree );
+      trig_EF_el_tight.ReadFrom( tree );
+      trig_EF_el_tightIso.ReadFrom( tree );
+      trig_EF_el_tightWithoutTrack.ReadFrom( tree );
+      trig_EF_el_tightIsoWithoutTrack.ReadFrom( tree );
+      trig_EF_el_loosePP.ReadFrom( tree );
+      trig_EF_el_loosePPIso.ReadFrom( tree );
+      trig_EF_el_mediumPP.ReadFrom( tree );
+      trig_EF_el_mediumPPIso.ReadFrom( tree );
+      trig_EF_el_tightPP.ReadFrom( tree );
+      trig_EF_el_tightPPIso.ReadFrom( tree );
+      trig_EF_el_EF_2e10_medium.ReadFrom( tree );
+      trig_EF_el_EF_2e10_medium_mu6.ReadFrom( tree );
+      trig_EF_el_EF_2e12_medium.ReadFrom( tree );
+      trig_EF_el_EF_2e12Thv_medium.ReadFrom( tree );
+      trig_EF_el_EF_2e5_tight.ReadFrom( tree );
+      trig_EF_el_EF_2e5_tight_Jpsi.ReadFrom( tree );
+      trig_EF_el_EF_e10_medium.ReadFrom( tree );
+      trig_EF_el_EF_e10_medium_2mu6.ReadFrom( tree );
+      trig_EF_el_EF_e10_medium_mu10.ReadFrom( tree );
+      trig_EF_el_EF_e10_medium_mu6.ReadFrom( tree );
+      trig_EF_el_EF_e15_HLTtighter.ReadFrom( tree );
+      trig_EF_el_EF_e15_medium.ReadFrom( tree );
+      trig_EF_el_EF_e15_medium_xe30_noMu.ReadFrom( tree );
+      trig_EF_el_EF_e15_tight.ReadFrom( tree );
+      trig_EF_el_EF_e20_loose.ReadFrom( tree );
+      trig_EF_el_EF_e20_medium.ReadFrom( tree );
+      trig_EF_el_EF_e20_medium1.ReadFrom( tree );
+      trig_EF_el_EF_e20_medium_IDTrkNoCut.ReadFrom( tree );
+      trig_EF_el_EF_e20_medium_SiTrk.ReadFrom( tree );
+      trig_EF_el_EF_e20_medium_TRT.ReadFrom( tree );
+      trig_EF_el_EF_e22_medium.ReadFrom( tree );
+      trig_EF_el_EF_e22vh_medium1.ReadFrom( tree );
+      trig_EF_el_EF_e5_tight.ReadFrom( tree );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi.ReadFrom( tree );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk.ReadFrom( tree );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT.ReadFrom( tree );
+      trig_EF_el_EF_e5_tight_e5_NoCut.ReadFrom( tree );
+      trig_EF_el_EF_e5_tight_e9_etcut_Jpsi.ReadFrom( tree );
+      trig_EF_el_EF_e60_loose.ReadFrom( tree );
+      trig_EF_el_EF_e9_tight_e5_tight_Jpsi.ReadFrom( tree );
+      trig_EF_el_EF_eb_physics.ReadFrom( tree );
+      trig_EF_el_EF_eb_physics_empty.ReadFrom( tree );
+      trig_EF_el_EF_eb_physics_firstempty.ReadFrom( tree );
+      trig_EF_el_EF_eb_physics_noL1PS.ReadFrom( tree );
+      trig_EF_el_EF_eb_physics_unpaired_iso.ReadFrom( tree );
+      trig_EF_el_EF_eb_physics_unpaired_noniso.ReadFrom( tree );
+      trig_EF_el_EF_eb_random.ReadFrom( tree );
+      trig_EF_el_EF_eb_random_empty.ReadFrom( tree );
+      trig_EF_el_EF_eb_random_firstempty.ReadFrom( tree );
+      trig_EF_el_EF_eb_random_unpaired_iso.ReadFrom( tree );
+      trig_EF_el_vertweight.ReadFrom( tree );
+      trig_EF_el_hastrack.ReadFrom( tree );
+
+      return;
+   }
+
+   /**
+    * This function can be called to connect the active variables of the object
+    * to an output TTree. It can be called multiple times, then the variables
+    * will be written to multiple TTrees.
+    *
+    * @param tree Pointer to the TTree where the variables should be written
+    */
+   void TriggerD3PDObject::WriteTo( TTree* tree ) {
+
+      EF_2e10_medium.WriteTo( tree );
+      EF_2e10_medium_mu6.WriteTo( tree );
+      EF_2e12_medium.WriteTo( tree );
+      EF_2e12Thv_medium.WriteTo( tree );
+      EF_2e5_tight.WriteTo( tree );
+      EF_2e5_tight_Jpsi.WriteTo( tree );
+      EF_2g15_loose.WriteTo( tree );
+      EF_2g20_loose.WriteTo( tree );
+      EF_2mu10.WriteTo( tree );
+      EF_2mu10_empty.WriteTo( tree );
+      EF_2mu10_loose.WriteTo( tree );
+      EF_2mu10_loose_empty.WriteTo( tree );
+      EF_2mu10_loose_noOvlpRm.WriteTo( tree );
+      EF_2mu4.WriteTo( tree );
+      EF_2mu4_Bmumu.WriteTo( tree );
+      EF_2mu4_Bmumux.WriteTo( tree );
+      EF_2mu4_DiMu.WriteTo( tree );
+      EF_2mu4_DiMu_SiTrk.WriteTo( tree );
+      EF_2mu4_DiMu_noVtx_noOS.WriteTo( tree );
+      EF_2mu4_Jpsimumu.WriteTo( tree );
+      EF_2mu4_Jpsimumu_IDTrkNoCut.WriteTo( tree );
+      EF_2mu4_Upsimumu.WriteTo( tree );
+      EF_2mu6.WriteTo( tree );
+      EF_2mu6_MSonly_g10_loose.WriteTo( tree );
+      EF_2mu6_NL.WriteTo( tree );
+      EF_e10_medium.WriteTo( tree );
+      EF_e10_medium_2mu6.WriteTo( tree );
+      EF_e10_medium_mu10.WriteTo( tree );
+      EF_e10_medium_mu6.WriteTo( tree );
+      EF_e15_HLTtighter.WriteTo( tree );
+      EF_e15_medium.WriteTo( tree );
+      EF_e15_medium_xe30_noMu.WriteTo( tree );
+      EF_e15_tight.WriteTo( tree );
+      EF_e20_loose.WriteTo( tree );
+      EF_e20_medium.WriteTo( tree );
+      EF_e20_medium1.WriteTo( tree );
+      EF_e20_medium_IDTrkNoCut.WriteTo( tree );
+      EF_e20_medium_SiTrk.WriteTo( tree );
+      EF_e20_medium_TRT.WriteTo( tree );
+      EF_e22_medium.WriteTo( tree );
+      EF_e22vh_medium1.WriteTo( tree );
+      EF_e5_tight.WriteTo( tree );
+      EF_e5_tight_e4_etcut_Jpsi.WriteTo( tree );
+      EF_e5_tight_e4_etcut_Jpsi_SiTrk.WriteTo( tree );
+      EF_e5_tight_e4_etcut_Jpsi_TRT.WriteTo( tree );
+      EF_e5_tight_e5_NoCut.WriteTo( tree );
+      EF_e5_tight_e9_etcut_Jpsi.WriteTo( tree );
+      EF_e60_loose.WriteTo( tree );
+      EF_e9_tight_e5_tight_Jpsi.WriteTo( tree );
+      EF_eb_physics.WriteTo( tree );
+      EF_eb_physics_empty.WriteTo( tree );
+      EF_eb_physics_firstempty.WriteTo( tree );
+      EF_eb_physics_noL1PS.WriteTo( tree );
+      EF_eb_physics_unpaired_iso.WriteTo( tree );
+      EF_eb_physics_unpaired_noniso.WriteTo( tree );
+      EF_eb_random.WriteTo( tree );
+      EF_eb_random_empty.WriteTo( tree );
+      EF_eb_random_firstempty.WriteTo( tree );
+      EF_eb_random_unpaired_iso.WriteTo( tree );
+      EF_g100_etcut_g50_etcut.WriteTo( tree );
+      EF_g10_NoCut_cosmic.WriteTo( tree );
+      EF_g11_etcut.WriteTo( tree );
+      EF_g11_etcut_larcalib.WriteTo( tree );
+      EF_g150_etcut.WriteTo( tree );
+      EF_g15_loose.WriteTo( tree );
+      EF_g15_loose_larcalib.WriteTo( tree );
+      EF_g20_etcut.WriteTo( tree );
+      EF_g20_etcut_xe30_noMu.WriteTo( tree );
+      EF_g20_loose.WriteTo( tree );
+      EF_g20_loose_larcalib.WriteTo( tree );
+      EF_g40_loose.WriteTo( tree );
+      EF_g40_loose_EFxe40_noMu.WriteTo( tree );
+      EF_g40_loose_larcalib.WriteTo( tree );
+      EF_g40_tight.WriteTo( tree );
+      EF_g5_NoCut_cosmic.WriteTo( tree );
+      EF_g60_loose.WriteTo( tree );
+      EF_g60_loose_larcalib.WriteTo( tree );
+      EF_g80_loose.WriteTo( tree );
+      EF_g80_loose_larcalib.WriteTo( tree );
+      EF_mu0_empty_NoAlg.WriteTo( tree );
+      EF_mu0_firstempty_NoAlg.WriteTo( tree );
+      EF_mu0_unpaired_iso_NoAlg.WriteTo( tree );
+      EF_mu10.WriteTo( tree );
+      EF_mu10_Jpsimumu.WriteTo( tree );
+      EF_mu10_NL.WriteTo( tree );
+      EF_mu10_Upsimumu_FS.WriteTo( tree );
+      EF_mu10_loose.WriteTo( tree );
+      EF_mu10_muCombTag_NoEF.WriteTo( tree );
+      EF_mu11_empty_NoAlg.WriteTo( tree );
+      EF_mu13.WriteTo( tree );
+      EF_mu13_MG.WriteTo( tree );
+      EF_mu13_muCombTag_NoEF.WriteTo( tree );
+      EF_mu15.WriteTo( tree );
+      EF_mu15_mu10_EFFS.WriteTo( tree );
+      EF_mu15i.WriteTo( tree );
+      EF_mu18.WriteTo( tree );
+      EF_mu18_MG.WriteTo( tree );
+      EF_mu20.WriteTo( tree );
+      EF_mu20_IDTrkNoCut.WriteTo( tree );
+      EF_mu20_MG.WriteTo( tree );
+      EF_mu20_empty.WriteTo( tree );
+      EF_mu20_muCombTag_NoEF.WriteTo( tree );
+      EF_mu20i.WriteTo( tree );
+      EF_mu22.WriteTo( tree );
+      EF_mu22_MG.WriteTo( tree );
+      EF_mu4.WriteTo( tree );
+      EF_mu40_MSonly_barrel.WriteTo( tree );
+      EF_mu40_MSonly_empty.WriteTo( tree );
+      EF_mu40_MSonly_tight.WriteTo( tree );
+      EF_mu40_MSonly_tighter.WriteTo( tree );
+      EF_mu40_slow.WriteTo( tree );
+      EF_mu40_slow_empty.WriteTo( tree );
+      EF_mu40_slow_outOfTime.WriteTo( tree );
+      EF_mu4_DiMu.WriteTo( tree );
+      EF_mu4_DiMu_FS_noOS.WriteTo( tree );
+      EF_mu4_Jpsimumu.WriteTo( tree );
+      EF_mu4_L1J10_matched.WriteTo( tree );
+      EF_mu4_L1J15_matched.WriteTo( tree );
+      EF_mu4_L1J20_matched.WriteTo( tree );
+      EF_mu4_L1J30_matched.WriteTo( tree );
+      EF_mu4_L1J50_matched.WriteTo( tree );
+      EF_mu4_L1J75_matched.WriteTo( tree );
+      EF_mu4_L1MU11_MSonly_cosmic.WriteTo( tree );
+      EF_mu4_L1MU11_cosmic.WriteTo( tree );
+      EF_mu4_MSonly_cosmic.WriteTo( tree );
+      EF_mu4_Trk_Jpsi.WriteTo( tree );
+      EF_mu4_Trk_Upsi_FS.WriteTo( tree );
+      EF_mu4_Upsimumu_FS.WriteTo( tree );
+      EF_mu4_Upsimumu_SiTrk_FS.WriteTo( tree );
+      EF_mu4_Upsimumu_tight_FS.WriteTo( tree );
+      EF_mu4_cosmic.WriteTo( tree );
+      EF_mu4_j10_a4tc_EFFS.WriteTo( tree );
+      EF_mu6.WriteTo( tree );
+      EF_mu6_DiMu_noOS.WriteTo( tree );
+      EF_mu6_Jpsimumu.WriteTo( tree );
+      EF_mu6_Jpsimumu_SiTrk.WriteTo( tree );
+      EF_mu6_Jpsimumu_tight.WriteTo( tree );
+      trig_EF_emcl_n.WriteTo( tree );
+      trig_EF_emcl_pt.WriteTo( tree );
+      trig_EF_emcl_eta.WriteTo( tree );
+      trig_EF_emcl_phi.WriteTo( tree );
+      trig_EF_emcl_E_em.WriteTo( tree );
+      trig_EF_emcl_E_had.WriteTo( tree );
+      trig_EF_emcl_slw_n.WriteTo( tree );
+      trig_EF_emcl_slw_pt.WriteTo( tree );
+      trig_EF_emcl_slw_eta.WriteTo( tree );
+      trig_EF_emcl_slw_phi.WriteTo( tree );
+      trig_EF_emcl_slw_E_em.WriteTo( tree );
+      trig_EF_emcl_slw_E_had.WriteTo( tree );
+      trig_EF_el_n.WriteTo( tree );
+      trig_EF_el_E.WriteTo( tree );
+      trig_EF_el_Et.WriteTo( tree );
+      trig_EF_el_pt.WriteTo( tree );
+      trig_EF_el_m.WriteTo( tree );
+      trig_EF_el_eta.WriteTo( tree );
+      trig_EF_el_phi.WriteTo( tree );
+      trig_EF_el_px.WriteTo( tree );
+      trig_EF_el_py.WriteTo( tree );
+      trig_EF_el_pz.WriteTo( tree );
+      trig_EF_el_charge.WriteTo( tree );
+      trig_EF_el_author.WriteTo( tree );
+      trig_EF_el_isEM.WriteTo( tree );
+      trig_EF_el_loose.WriteTo( tree );
+      trig_EF_el_looseIso.WriteTo( tree );
+      trig_EF_el_medium.WriteTo( tree );
+      trig_EF_el_mediumIso.WriteTo( tree );
+      trig_EF_el_mediumWithoutTrack.WriteTo( tree );
+      trig_EF_el_mediumIsoWithoutTrack.WriteTo( tree );
+      trig_EF_el_tight.WriteTo( tree );
+      trig_EF_el_tightIso.WriteTo( tree );
+      trig_EF_el_tightWithoutTrack.WriteTo( tree );
+      trig_EF_el_tightIsoWithoutTrack.WriteTo( tree );
+      trig_EF_el_loosePP.WriteTo( tree );
+      trig_EF_el_loosePPIso.WriteTo( tree );
+      trig_EF_el_mediumPP.WriteTo( tree );
+      trig_EF_el_mediumPPIso.WriteTo( tree );
+      trig_EF_el_tightPP.WriteTo( tree );
+      trig_EF_el_tightPPIso.WriteTo( tree );
+      trig_EF_el_EF_2e10_medium.WriteTo( tree );
+      trig_EF_el_EF_2e10_medium_mu6.WriteTo( tree );
+      trig_EF_el_EF_2e12_medium.WriteTo( tree );
+      trig_EF_el_EF_2e12Thv_medium.WriteTo( tree );
+      trig_EF_el_EF_2e5_tight.WriteTo( tree );
+      trig_EF_el_EF_2e5_tight_Jpsi.WriteTo( tree );
+      trig_EF_el_EF_e10_medium.WriteTo( tree );
+      trig_EF_el_EF_e10_medium_2mu6.WriteTo( tree );
+      trig_EF_el_EF_e10_medium_mu10.WriteTo( tree );
+      trig_EF_el_EF_e10_medium_mu6.WriteTo( tree );
+      trig_EF_el_EF_e15_HLTtighter.WriteTo( tree );
+      trig_EF_el_EF_e15_medium.WriteTo( tree );
+      trig_EF_el_EF_e15_medium_xe30_noMu.WriteTo( tree );
+      trig_EF_el_EF_e15_tight.WriteTo( tree );
+      trig_EF_el_EF_e20_loose.WriteTo( tree );
+      trig_EF_el_EF_e20_medium.WriteTo( tree );
+      trig_EF_el_EF_e20_medium1.WriteTo( tree );
+      trig_EF_el_EF_e20_medium_IDTrkNoCut.WriteTo( tree );
+      trig_EF_el_EF_e20_medium_SiTrk.WriteTo( tree );
+      trig_EF_el_EF_e20_medium_TRT.WriteTo( tree );
+      trig_EF_el_EF_e22_medium.WriteTo( tree );
+      trig_EF_el_EF_e22vh_medium1.WriteTo( tree );
+      trig_EF_el_EF_e5_tight.WriteTo( tree );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi.WriteTo( tree );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk.WriteTo( tree );
+      trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT.WriteTo( tree );
+      trig_EF_el_EF_e5_tight_e5_NoCut.WriteTo( tree );
+      trig_EF_el_EF_e5_tight_e9_etcut_Jpsi.WriteTo( tree );
+      trig_EF_el_EF_e60_loose.WriteTo( tree );
+      trig_EF_el_EF_e9_tight_e5_tight_Jpsi.WriteTo( tree );
+      trig_EF_el_EF_eb_physics.WriteTo( tree );
+      trig_EF_el_EF_eb_physics_empty.WriteTo( tree );
+      trig_EF_el_EF_eb_physics_firstempty.WriteTo( tree );
+      trig_EF_el_EF_eb_physics_noL1PS.WriteTo( tree );
+      trig_EF_el_EF_eb_physics_unpaired_iso.WriteTo( tree );
+      trig_EF_el_EF_eb_physics_unpaired_noniso.WriteTo( tree );
+      trig_EF_el_EF_eb_random.WriteTo( tree );
+      trig_EF_el_EF_eb_random_empty.WriteTo( tree );
+      trig_EF_el_EF_eb_random_firstempty.WriteTo( tree );
+      trig_EF_el_EF_eb_random_unpaired_iso.WriteTo( tree );
+      trig_EF_el_vertweight.WriteTo( tree );
+      trig_EF_el_hastrack.WriteTo( tree );
+
+      return;
+   }
+
+   /**
+    * This is a convenience function for turning the branches active or
+    * inactive conveniently. If the parameter is set to <code>kTRUE</code>
+    * then the branches available from the input which match the given
+    * pattern are turned active.
+    * When it's set to <code>kFALSE</code> then all the variables matching
+    * the pattern are turned inactive.
+    *
+    * @param active Flag behaving as explained above
+    * @param pattern Regular expression specifying which branches to modify
+    */
+   void TriggerD3PDObject::SetActive( ::Bool_t active, const ::TString& pattern ) {
+
+      ::TPRegexp re( pattern );
+
+      std::map< TString, VarHandleBase* >::const_iterator itr = fHandles.begin();
+      std::map< TString, VarHandleBase* >::const_iterator end = fHandles.end();
+      for( ; itr != end; ++itr ) {
+         if( ! re.Match( itr->first ) ) continue;
+         if( active ) {
+            if( itr->second->IsAvailable() ) itr->second->SetActive( active );
+         } else {
+            itr->second->SetActive( active );
+         }
+      }
+      return;
+   }
+
+   /**
+    * This function can be used to read in all the branches from the input
+    * TTree which are set active for writing out. This can simplify writing
+    * event selector codes immensely. Remember to set the desired variable
+    * active before calling this function.
+    */
+   void TriggerD3PDObject::ReadAllActive() {
+
+      // Check if it makes sense to call this function:
+      if( ! fFromInput ) {
+         static ::Bool_t wPrinted = kFALSE;
+         if( ! wPrinted ) {
+            Warning( "ReadAllActive", "Function only meaningful when used on objects" );
+            Warning( "ReadAllActive", "which are used to read information from a D3PD" );
+            wPrinted = kTRUE;
+         }
+      }
+
+      if( EF_2e10_medium.IsActive() ) EF_2e10_medium();
+      if( EF_2e10_medium_mu6.IsActive() ) EF_2e10_medium_mu6();
+      if( EF_2e12_medium.IsActive() ) EF_2e12_medium();
+      if( EF_2e12Thv_medium.IsActive() ) EF_2e12Thv_medium();
+      if( EF_2e5_tight.IsActive() ) EF_2e5_tight();
+      if( EF_2e5_tight_Jpsi.IsActive() ) EF_2e5_tight_Jpsi();
+      if( EF_2g15_loose.IsActive() ) EF_2g15_loose();
+      if( EF_2g20_loose.IsActive() ) EF_2g20_loose();
+      if( EF_2mu10.IsActive() ) EF_2mu10();
+      if( EF_2mu10_empty.IsActive() ) EF_2mu10_empty();
+      if( EF_2mu10_loose.IsActive() ) EF_2mu10_loose();
+      if( EF_2mu10_loose_empty.IsActive() ) EF_2mu10_loose_empty();
+      if( EF_2mu10_loose_noOvlpRm.IsActive() ) EF_2mu10_loose_noOvlpRm();
+      if( EF_2mu4.IsActive() ) EF_2mu4();
+      if( EF_2mu4_Bmumu.IsActive() ) EF_2mu4_Bmumu();
+      if( EF_2mu4_Bmumux.IsActive() ) EF_2mu4_Bmumux();
+      if( EF_2mu4_DiMu.IsActive() ) EF_2mu4_DiMu();
+      if( EF_2mu4_DiMu_SiTrk.IsActive() ) EF_2mu4_DiMu_SiTrk();
+      if( EF_2mu4_DiMu_noVtx_noOS.IsActive() ) EF_2mu4_DiMu_noVtx_noOS();
+      if( EF_2mu4_Jpsimumu.IsActive() ) EF_2mu4_Jpsimumu();
+      if( EF_2mu4_Jpsimumu_IDTrkNoCut.IsActive() ) EF_2mu4_Jpsimumu_IDTrkNoCut();
+      if( EF_2mu4_Upsimumu.IsActive() ) EF_2mu4_Upsimumu();
+      if( EF_2mu6.IsActive() ) EF_2mu6();
+      if( EF_2mu6_MSonly_g10_loose.IsActive() ) EF_2mu6_MSonly_g10_loose();
+      if( EF_2mu6_NL.IsActive() ) EF_2mu6_NL();
+      if( EF_e10_medium.IsActive() ) EF_e10_medium();
+      if( EF_e10_medium_2mu6.IsActive() ) EF_e10_medium_2mu6();
+      if( EF_e10_medium_mu10.IsActive() ) EF_e10_medium_mu10();
+      if( EF_e10_medium_mu6.IsActive() ) EF_e10_medium_mu6();
+      if( EF_e15_HLTtighter.IsActive() ) EF_e15_HLTtighter();
+      if( EF_e15_medium.IsActive() ) EF_e15_medium();
+      if( EF_e15_medium_xe30_noMu.IsActive() ) EF_e15_medium_xe30_noMu();
+      if( EF_e15_tight.IsActive() ) EF_e15_tight();
+      if( EF_e20_loose.IsActive() ) EF_e20_loose();
+      if( EF_e20_medium.IsActive() ) EF_e20_medium();
+      if( EF_e20_medium1.IsActive() ) EF_e20_medium1();
+      if( EF_e20_medium_IDTrkNoCut.IsActive() ) EF_e20_medium_IDTrkNoCut();
+      if( EF_e20_medium_SiTrk.IsActive() ) EF_e20_medium_SiTrk();
+      if( EF_e20_medium_TRT.IsActive() ) EF_e20_medium_TRT();
+      if( EF_e22_medium.IsActive() ) EF_e22_medium();
+      if( EF_e22vh_medium1.IsActive() ) EF_e22vh_medium1();
+      if( EF_e5_tight.IsActive() ) EF_e5_tight();
+      if( EF_e5_tight_e4_etcut_Jpsi.IsActive() ) EF_e5_tight_e4_etcut_Jpsi();
+      if( EF_e5_tight_e4_etcut_Jpsi_SiTrk.IsActive() ) EF_e5_tight_e4_etcut_Jpsi_SiTrk();
+      if( EF_e5_tight_e4_etcut_Jpsi_TRT.IsActive() ) EF_e5_tight_e4_etcut_Jpsi_TRT();
+      if( EF_e5_tight_e5_NoCut.IsActive() ) EF_e5_tight_e5_NoCut();
+      if( EF_e5_tight_e9_etcut_Jpsi.IsActive() ) EF_e5_tight_e9_etcut_Jpsi();
+      if( EF_e60_loose.IsActive() ) EF_e60_loose();
+      if( EF_e9_tight_e5_tight_Jpsi.IsActive() ) EF_e9_tight_e5_tight_Jpsi();
+      if( EF_eb_physics.IsActive() ) EF_eb_physics();
+      if( EF_eb_physics_empty.IsActive() ) EF_eb_physics_empty();
+      if( EF_eb_physics_firstempty.IsActive() ) EF_eb_physics_firstempty();
+      if( EF_eb_physics_noL1PS.IsActive() ) EF_eb_physics_noL1PS();
+      if( EF_eb_physics_unpaired_iso.IsActive() ) EF_eb_physics_unpaired_iso();
+      if( EF_eb_physics_unpaired_noniso.IsActive() ) EF_eb_physics_unpaired_noniso();
+      if( EF_eb_random.IsActive() ) EF_eb_random();
+      if( EF_eb_random_empty.IsActive() ) EF_eb_random_empty();
+      if( EF_eb_random_firstempty.IsActive() ) EF_eb_random_firstempty();
+      if( EF_eb_random_unpaired_iso.IsActive() ) EF_eb_random_unpaired_iso();
+      if( EF_g100_etcut_g50_etcut.IsActive() ) EF_g100_etcut_g50_etcut();
+      if( EF_g10_NoCut_cosmic.IsActive() ) EF_g10_NoCut_cosmic();
+      if( EF_g11_etcut.IsActive() ) EF_g11_etcut();
+      if( EF_g11_etcut_larcalib.IsActive() ) EF_g11_etcut_larcalib();
+      if( EF_g150_etcut.IsActive() ) EF_g150_etcut();
+      if( EF_g15_loose.IsActive() ) EF_g15_loose();
+      if( EF_g15_loose_larcalib.IsActive() ) EF_g15_loose_larcalib();
+      if( EF_g20_etcut.IsActive() ) EF_g20_etcut();
+      if( EF_g20_etcut_xe30_noMu.IsActive() ) EF_g20_etcut_xe30_noMu();
+      if( EF_g20_loose.IsActive() ) EF_g20_loose();
+      if( EF_g20_loose_larcalib.IsActive() ) EF_g20_loose_larcalib();
+      if( EF_g40_loose.IsActive() ) EF_g40_loose();
+      if( EF_g40_loose_EFxe40_noMu.IsActive() ) EF_g40_loose_EFxe40_noMu();
+      if( EF_g40_loose_larcalib.IsActive() ) EF_g40_loose_larcalib();
+      if( EF_g40_tight.IsActive() ) EF_g40_tight();
+      if( EF_g5_NoCut_cosmic.IsActive() ) EF_g5_NoCut_cosmic();
+      if( EF_g60_loose.IsActive() ) EF_g60_loose();
+      if( EF_g60_loose_larcalib.IsActive() ) EF_g60_loose_larcalib();
+      if( EF_g80_loose.IsActive() ) EF_g80_loose();
+      if( EF_g80_loose_larcalib.IsActive() ) EF_g80_loose_larcalib();
+      if( EF_mu0_empty_NoAlg.IsActive() ) EF_mu0_empty_NoAlg();
+      if( EF_mu0_firstempty_NoAlg.IsActive() ) EF_mu0_firstempty_NoAlg();
+      if( EF_mu0_unpaired_iso_NoAlg.IsActive() ) EF_mu0_unpaired_iso_NoAlg();
+      if( EF_mu10.IsActive() ) EF_mu10();
+      if( EF_mu10_Jpsimumu.IsActive() ) EF_mu10_Jpsimumu();
+      if( EF_mu10_NL.IsActive() ) EF_mu10_NL();
+      if( EF_mu10_Upsimumu_FS.IsActive() ) EF_mu10_Upsimumu_FS();
+      if( EF_mu10_loose.IsActive() ) EF_mu10_loose();
+      if( EF_mu10_muCombTag_NoEF.IsActive() ) EF_mu10_muCombTag_NoEF();
+      if( EF_mu11_empty_NoAlg.IsActive() ) EF_mu11_empty_NoAlg();
+      if( EF_mu13.IsActive() ) EF_mu13();
+      if( EF_mu13_MG.IsActive() ) EF_mu13_MG();
+      if( EF_mu13_muCombTag_NoEF.IsActive() ) EF_mu13_muCombTag_NoEF();
+      if( EF_mu15.IsActive() ) EF_mu15();
+      if( EF_mu15_mu10_EFFS.IsActive() ) EF_mu15_mu10_EFFS();
+      if( EF_mu15i.IsActive() ) EF_mu15i();
+      if( EF_mu18.IsActive() ) EF_mu18();
+      if( EF_mu18_MG.IsActive() ) EF_mu18_MG();
+      if( EF_mu20.IsActive() ) EF_mu20();
+      if( EF_mu20_IDTrkNoCut.IsActive() ) EF_mu20_IDTrkNoCut();
+      if( EF_mu20_MG.IsActive() ) EF_mu20_MG();
+      if( EF_mu20_empty.IsActive() ) EF_mu20_empty();
+      if( EF_mu20_muCombTag_NoEF.IsActive() ) EF_mu20_muCombTag_NoEF();
+      if( EF_mu20i.IsActive() ) EF_mu20i();
+      if( EF_mu22.IsActive() ) EF_mu22();
+      if( EF_mu22_MG.IsActive() ) EF_mu22_MG();
+      if( EF_mu4.IsActive() ) EF_mu4();
+      if( EF_mu40_MSonly_barrel.IsActive() ) EF_mu40_MSonly_barrel();
+      if( EF_mu40_MSonly_empty.IsActive() ) EF_mu40_MSonly_empty();
+      if( EF_mu40_MSonly_tight.IsActive() ) EF_mu40_MSonly_tight();
+      if( EF_mu40_MSonly_tighter.IsActive() ) EF_mu40_MSonly_tighter();
+      if( EF_mu40_slow.IsActive() ) EF_mu40_slow();
+      if( EF_mu40_slow_empty.IsActive() ) EF_mu40_slow_empty();
+      if( EF_mu40_slow_outOfTime.IsActive() ) EF_mu40_slow_outOfTime();
+      if( EF_mu4_DiMu.IsActive() ) EF_mu4_DiMu();
+      if( EF_mu4_DiMu_FS_noOS.IsActive() ) EF_mu4_DiMu_FS_noOS();
+      if( EF_mu4_Jpsimumu.IsActive() ) EF_mu4_Jpsimumu();
+      if( EF_mu4_L1J10_matched.IsActive() ) EF_mu4_L1J10_matched();
+      if( EF_mu4_L1J15_matched.IsActive() ) EF_mu4_L1J15_matched();
+      if( EF_mu4_L1J20_matched.IsActive() ) EF_mu4_L1J20_matched();
+      if( EF_mu4_L1J30_matched.IsActive() ) EF_mu4_L1J30_matched();
+      if( EF_mu4_L1J50_matched.IsActive() ) EF_mu4_L1J50_matched();
+      if( EF_mu4_L1J75_matched.IsActive() ) EF_mu4_L1J75_matched();
+      if( EF_mu4_L1MU11_MSonly_cosmic.IsActive() ) EF_mu4_L1MU11_MSonly_cosmic();
+      if( EF_mu4_L1MU11_cosmic.IsActive() ) EF_mu4_L1MU11_cosmic();
+      if( EF_mu4_MSonly_cosmic.IsActive() ) EF_mu4_MSonly_cosmic();
+      if( EF_mu4_Trk_Jpsi.IsActive() ) EF_mu4_Trk_Jpsi();
+      if( EF_mu4_Trk_Upsi_FS.IsActive() ) EF_mu4_Trk_Upsi_FS();
+      if( EF_mu4_Upsimumu_FS.IsActive() ) EF_mu4_Upsimumu_FS();
+      if( EF_mu4_Upsimumu_SiTrk_FS.IsActive() ) EF_mu4_Upsimumu_SiTrk_FS();
+      if( EF_mu4_Upsimumu_tight_FS.IsActive() ) EF_mu4_Upsimumu_tight_FS();
+      if( EF_mu4_cosmic.IsActive() ) EF_mu4_cosmic();
+      if( EF_mu4_j10_a4tc_EFFS.IsActive() ) EF_mu4_j10_a4tc_EFFS();
+      if( EF_mu6.IsActive() ) EF_mu6();
+      if( EF_mu6_DiMu_noOS.IsActive() ) EF_mu6_DiMu_noOS();
+      if( EF_mu6_Jpsimumu.IsActive() ) EF_mu6_Jpsimumu();
+      if( EF_mu6_Jpsimumu_SiTrk.IsActive() ) EF_mu6_Jpsimumu_SiTrk();
+      if( EF_mu6_Jpsimumu_tight.IsActive() ) EF_mu6_Jpsimumu_tight();
+      if( trig_EF_emcl_n.IsActive() ) trig_EF_emcl_n();
+      if( trig_EF_emcl_pt.IsActive() ) trig_EF_emcl_pt();
+      if( trig_EF_emcl_eta.IsActive() ) trig_EF_emcl_eta();
+      if( trig_EF_emcl_phi.IsActive() ) trig_EF_emcl_phi();
+      if( trig_EF_emcl_E_em.IsActive() ) trig_EF_emcl_E_em();
+      if( trig_EF_emcl_E_had.IsActive() ) trig_EF_emcl_E_had();
+      if( trig_EF_emcl_slw_n.IsActive() ) trig_EF_emcl_slw_n();
+      if( trig_EF_emcl_slw_pt.IsActive() ) trig_EF_emcl_slw_pt();
+      if( trig_EF_emcl_slw_eta.IsActive() ) trig_EF_emcl_slw_eta();
+      if( trig_EF_emcl_slw_phi.IsActive() ) trig_EF_emcl_slw_phi();
+      if( trig_EF_emcl_slw_E_em.IsActive() ) trig_EF_emcl_slw_E_em();
+      if( trig_EF_emcl_slw_E_had.IsActive() ) trig_EF_emcl_slw_E_had();
+      if( trig_EF_el_n.IsActive() ) trig_EF_el_n();
+      if( trig_EF_el_E.IsActive() ) trig_EF_el_E();
+      if( trig_EF_el_Et.IsActive() ) trig_EF_el_Et();
+      if( trig_EF_el_pt.IsActive() ) trig_EF_el_pt();
+      if( trig_EF_el_m.IsActive() ) trig_EF_el_m();
+      if( trig_EF_el_eta.IsActive() ) trig_EF_el_eta();
+      if( trig_EF_el_phi.IsActive() ) trig_EF_el_phi();
+      if( trig_EF_el_px.IsActive() ) trig_EF_el_px();
+      if( trig_EF_el_py.IsActive() ) trig_EF_el_py();
+      if( trig_EF_el_pz.IsActive() ) trig_EF_el_pz();
+      if( trig_EF_el_charge.IsActive() ) trig_EF_el_charge();
+      if( trig_EF_el_author.IsActive() ) trig_EF_el_author();
+      if( trig_EF_el_isEM.IsActive() ) trig_EF_el_isEM();
+      if( trig_EF_el_loose.IsActive() ) trig_EF_el_loose();
+      if( trig_EF_el_looseIso.IsActive() ) trig_EF_el_looseIso();
+      if( trig_EF_el_medium.IsActive() ) trig_EF_el_medium();
+      if( trig_EF_el_mediumIso.IsActive() ) trig_EF_el_mediumIso();
+      if( trig_EF_el_mediumWithoutTrack.IsActive() ) trig_EF_el_mediumWithoutTrack();
+      if( trig_EF_el_mediumIsoWithoutTrack.IsActive() ) trig_EF_el_mediumIsoWithoutTrack();
+      if( trig_EF_el_tight.IsActive() ) trig_EF_el_tight();
+      if( trig_EF_el_tightIso.IsActive() ) trig_EF_el_tightIso();
+      if( trig_EF_el_tightWithoutTrack.IsActive() ) trig_EF_el_tightWithoutTrack();
+      if( trig_EF_el_tightIsoWithoutTrack.IsActive() ) trig_EF_el_tightIsoWithoutTrack();
+      if( trig_EF_el_loosePP.IsActive() ) trig_EF_el_loosePP();
+      if( trig_EF_el_loosePPIso.IsActive() ) trig_EF_el_loosePPIso();
+      if( trig_EF_el_mediumPP.IsActive() ) trig_EF_el_mediumPP();
+      if( trig_EF_el_mediumPPIso.IsActive() ) trig_EF_el_mediumPPIso();
+      if( trig_EF_el_tightPP.IsActive() ) trig_EF_el_tightPP();
+      if( trig_EF_el_tightPPIso.IsActive() ) trig_EF_el_tightPPIso();
+      if( trig_EF_el_EF_2e10_medium.IsActive() ) trig_EF_el_EF_2e10_medium();
+      if( trig_EF_el_EF_2e10_medium_mu6.IsActive() ) trig_EF_el_EF_2e10_medium_mu6();
+      if( trig_EF_el_EF_2e12_medium.IsActive() ) trig_EF_el_EF_2e12_medium();
+      if( trig_EF_el_EF_2e12Thv_medium.IsActive() ) trig_EF_el_EF_2e12Thv_medium();
+      if( trig_EF_el_EF_2e5_tight.IsActive() ) trig_EF_el_EF_2e5_tight();
+      if( trig_EF_el_EF_2e5_tight_Jpsi.IsActive() ) trig_EF_el_EF_2e5_tight_Jpsi();
+      if( trig_EF_el_EF_e10_medium.IsActive() ) trig_EF_el_EF_e10_medium();
+      if( trig_EF_el_EF_e10_medium_2mu6.IsActive() ) trig_EF_el_EF_e10_medium_2mu6();
+      if( trig_EF_el_EF_e10_medium_mu10.IsActive() ) trig_EF_el_EF_e10_medium_mu10();
+      if( trig_EF_el_EF_e10_medium_mu6.IsActive() ) trig_EF_el_EF_e10_medium_mu6();
+      if( trig_EF_el_EF_e15_HLTtighter.IsActive() ) trig_EF_el_EF_e15_HLTtighter();
+      if( trig_EF_el_EF_e15_medium.IsActive() ) trig_EF_el_EF_e15_medium();
+      if( trig_EF_el_EF_e15_medium_xe30_noMu.IsActive() ) trig_EF_el_EF_e15_medium_xe30_noMu();
+      if( trig_EF_el_EF_e15_tight.IsActive() ) trig_EF_el_EF_e15_tight();
+      if( trig_EF_el_EF_e20_loose.IsActive() ) trig_EF_el_EF_e20_loose();
+      if( trig_EF_el_EF_e20_medium.IsActive() ) trig_EF_el_EF_e20_medium();
+      if( trig_EF_el_EF_e20_medium1.IsActive() ) trig_EF_el_EF_e20_medium1();
+      if( trig_EF_el_EF_e20_medium_IDTrkNoCut.IsActive() ) trig_EF_el_EF_e20_medium_IDTrkNoCut();
+      if( trig_EF_el_EF_e20_medium_SiTrk.IsActive() ) trig_EF_el_EF_e20_medium_SiTrk();
+      if( trig_EF_el_EF_e20_medium_TRT.IsActive() ) trig_EF_el_EF_e20_medium_TRT();
+      if( trig_EF_el_EF_e22_medium.IsActive() ) trig_EF_el_EF_e22_medium();
+      if( trig_EF_el_EF_e22vh_medium1.IsActive() ) trig_EF_el_EF_e22vh_medium1();
+      if( trig_EF_el_EF_e5_tight.IsActive() ) trig_EF_el_EF_e5_tight();
+      if( trig_EF_el_EF_e5_tight_e4_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e5_tight_e4_etcut_Jpsi();
+      if( trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk.IsActive() ) trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_SiTrk();
+      if( trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT.IsActive() ) trig_EF_el_EF_e5_tight_e4_etcut_Jpsi_TRT();
+      if( trig_EF_el_EF_e5_tight_e5_NoCut.IsActive() ) trig_EF_el_EF_e5_tight_e5_NoCut();
+      if( trig_EF_el_EF_e5_tight_e9_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e5_tight_e9_etcut_Jpsi();
+      if( trig_EF_el_EF_e60_loose.IsActive() ) trig_EF_el_EF_e60_loose();
+      if( trig_EF_el_EF_e9_tight_e5_tight_Jpsi.IsActive() ) trig_EF_el_EF_e9_tight_e5_tight_Jpsi();
+      if( trig_EF_el_EF_eb_physics.IsActive() ) trig_EF_el_EF_eb_physics();
+      if( trig_EF_el_EF_eb_physics_empty.IsActive() ) trig_EF_el_EF_eb_physics_empty();
+      if( trig_EF_el_EF_eb_physics_firstempty.IsActive() ) trig_EF_el_EF_eb_physics_firstempty();
+      if( trig_EF_el_EF_eb_physics_noL1PS.IsActive() ) trig_EF_el_EF_eb_physics_noL1PS();
+      if( trig_EF_el_EF_eb_physics_unpaired_iso.IsActive() ) trig_EF_el_EF_eb_physics_unpaired_iso();
+      if( trig_EF_el_EF_eb_physics_unpaired_noniso.IsActive() ) trig_EF_el_EF_eb_physics_unpaired_noniso();
+      if( trig_EF_el_EF_eb_random.IsActive() ) trig_EF_el_EF_eb_random();
+      if( trig_EF_el_EF_eb_random_empty.IsActive() ) trig_EF_el_EF_eb_random_empty();
+      if( trig_EF_el_EF_eb_random_firstempty.IsActive() ) trig_EF_el_EF_eb_random_firstempty();
+      if( trig_EF_el_EF_eb_random_unpaired_iso.IsActive() ) trig_EF_el_EF_eb_random_unpaired_iso();
+      if( trig_EF_el_vertweight.IsActive() ) trig_EF_el_vertweight();
+      if( trig_EF_el_hastrack.IsActive() ) trig_EF_el_hastrack();
+
+      return;
+   }
+
+} // namespace D3PDReader
