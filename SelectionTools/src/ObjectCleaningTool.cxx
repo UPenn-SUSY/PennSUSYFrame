@@ -326,4 +326,3 @@ bool SelectionTools::ObjectCleaningTool::overlap( TLorentzVector& tlv1
   double dr = tlv1.DeltaR(tlv2);
   return (dr < dr_max);
 }
-

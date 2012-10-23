@@ -37,6 +37,7 @@
 #include "SelectionTools/include/ElectronSelectionTool.h"
 #include "SelectionTools/include/JetSelectionTool.h"
 #include "SelectionTools/include/MuonSelectionTool.h"
+#include "SelectionTools/include/ObjectCleaningTool.h"
 
 /**
 *   @short CycleBase class to run the Susy Di-lepton cut flow
@@ -117,6 +118,11 @@ private:
   D3PDReader::TruthD3PDObject*      m_truth_d3pdobject;
   D3PDReader::TruthMETD3PDObject*   m_met_truth_d3pdobject;
   D3PDReader::VertexD3PDObject*     m_vertex_d3pdobject;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  SelectionTools::ElectronSelectionTool* m_electron_selection;
+  SelectionTools::JetSelectionTool*      m_jet_selection;
+  SelectionTools::MuonSelectionTool*     m_muon_selection;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();

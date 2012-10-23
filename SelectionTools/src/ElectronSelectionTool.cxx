@@ -108,6 +108,64 @@ bool SelectionTools::ElectronSelectionTool::isSignal(Electron* el)
 }
 
 // ----------------------------------------------------------------------------
+std::vector<Electron*>
+    SelectionTools::ElectronSelectionTool::getBaselineElectrons(
+        const ElectronContainer& electron_container)
+{
+  const std::vector<Electron*>* all_electrons =
+    electron_container.getElectrons(EL_ALL);
+  return getBaselineElectrons(*all_electrons);
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Electron*>
+    SelectionTools::ElectronSelectionTool::getBaselineElectrons(
+        std::vector<Electron*> all_electrons)
+{
+  size_t term = all_electrons.size();
+
+  std::vector<Electron*> baseline_electrons;
+  baseline_electrons.reserve(term);
+
+  for (size_t el_it = 0; el_it != term; ++el_it) {
+    if (isBaseline(all_electrons.at(el_it))) {
+      baseline_electrons.push_back(all_electrons.at(el_it));
+    }
+  }
+
+  return baseline_electrons;
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Electron*>
+    SelectionTools::ElectronSelectionTool::getSignalElectrons(
+        const ElectronContainer& electron_container)
+{
+  const std::vector<Electron*>* good_electrons =
+    electron_container.getElectrons(EL_GOOD);
+  return getSignalElectrons(*good_electrons);
+}
+
+// ----------------------------------------------------------------------------
+std::vector<Electron*>
+    SelectionTools::ElectronSelectionTool::getSignalElectrons(
+        std::vector<Electron*> good_electrons)
+{
+  size_t term = good_electrons.size();
+
+  std::vector<Electron*> signal_electrons;
+  signal_electrons.reserve(term);
+
+  for (size_t el_it = 0; el_it != term; ++el_it) {
+    if (isSignal(good_electrons.at(el_it))) {
+      signal_electrons.push_back(good_electrons.at(el_it));
+    }
+  }
+
+  return signal_electrons;
+}
+
+// ----------------------------------------------------------------------------
 bool SelectionTools::ElectronSelectionTool::passCut( double test
                                                    , double min
                                                    , double max

@@ -15,12 +15,10 @@ ElectronContainer::~ElectronContainer()
 // ----------------------------------------------------------------------------
 void ElectronContainer::init(
     CommonTools::TLVTool* tlv_tool,
-    CommonTools::IsoCorrectionTool* iso_corr_tool,
-    SelectionTools::ElectronSelectionTool* selection_tool)
+    CommonTools::IsoCorrectionTool* iso_corr_tool)
 {
   m_tlv_tool = tlv_tool;
   m_iso_corr_tool = iso_corr_tool;
-  m_selection_tool = selection_tool;
 }
 
 // ----------------------------------------------------------------------------

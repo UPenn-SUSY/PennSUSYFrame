@@ -3,6 +3,7 @@
 #define SelectionTools_ElectronSelectionTool_h
 
 #include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
 
 #include "egammaAnalysisUtils/IsEMPlusPlusDefs.h"
@@ -21,6 +22,14 @@ namespace SelectionTools
 
     bool isBaseline(Electron*);
     bool isSignal(Electron*);
+
+    std::vector<Electron*> getBaselineElectrons(const ElectronContainer&);
+    std::vector<Electron*> getBaselineElectrons(
+        std::vector<Electron*> all_electrons);
+
+    std::vector<Electron*> getSignalElectrons(const ElectronContainer&);
+    std::vector<Electron*> getSignalElectrons(
+        std::vector<Electron*> good_electrons);
 
   // --------------------------------------------------------------------------
   private:

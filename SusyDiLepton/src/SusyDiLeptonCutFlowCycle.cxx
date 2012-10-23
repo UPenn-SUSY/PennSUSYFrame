@@ -20,7 +20,10 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_trigger_vec_d3pdobject(NULL),
   m_truth_d3pdobject(NULL),
   m_met_truth_d3pdobject(NULL),
-  m_vertex_d3pdobject(NULL)
+  m_vertex_d3pdobject(NULL),
+  m_electron_selection(NULL),
+  m_jet_selection(NULL),
+  m_muon_selection(NULL)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -117,6 +120,7 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
                                     , is_data()
                                     );
 
+  // Some of these readers are only initialized for MC
   if (!is_data()) {
     m_mcevt_d3pdobject
         = new D3PDReader::MCEvtD3PDObject(m_entry_number);
@@ -126,6 +130,7 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
         = new D3PDReader::TruthMETD3PDObject(m_entry_number);
   }
 
+  // Get helper tools required by containers
   GET_TOOL( egamma_energy_rescale
           , CommonTools::EgammaEnergyRescaleTool
           , "EgammaEnergyRescale"
@@ -158,7 +163,7 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
 
   tlv_tool->init(egamma_energy_rescale, muon_smearing, jet_calib);
 
-  m_electrons.init(tlv_tool, el_iso_corr_tool, electron_selection);
+  m_electrons.init(tlv_tool, el_iso_corr_tool);
   m_muons.init(    tlv_tool, mu_iso_corr_tool);
   m_jets.init(     tlv_tool);
   m_vertices.init();
@@ -288,6 +293,7 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_vertices.prepVertices(m_vertex_d3pdobject, is_data());
 
   // TODO get different object collection (baseline, etc)
+  // m_electrons.setCollection(EL_BASELINE, m_electron_selection->getBaselineElectrons(m_electrons.getObjects
 
   m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
 }

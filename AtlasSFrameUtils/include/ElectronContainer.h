@@ -11,8 +11,6 @@
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
 
-#include "SelectionTools/include/ElectronSelectionTool.h"
-
 // ============================================================================
 enum ELECTRON_COLLECTIONS { EL_ALL = 0  // Green tree snake
                           , EL_BASELINE // Baseline cuts
@@ -30,7 +28,6 @@ class ElectronContainer
 
     void init( CommonTools::TLVTool*
              , CommonTools::IsoCorrectionTool*
-             , SelectionTools::ElectronSelectionTool*
              );
 
     void clear();
@@ -48,7 +45,6 @@ class ElectronContainer
 
     CommonTools::TLVTool* m_tlv_tool;
     CommonTools::IsoCorrectionTool* m_iso_corr_tool;
-    SelectionTools::ElectronSelectionTool* m_selection_tool;
 };
 
 #endif
