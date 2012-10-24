@@ -132,6 +132,8 @@ private:
   void initD3PDReaders();
   void getTools();
 
+  void runCutFlow();
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Macro adding the functions for dictionary generation
   ClassDef(SusyDiLeptonCutFlowCycle, 0);

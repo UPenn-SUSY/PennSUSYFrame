@@ -293,6 +293,20 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
             << "\t--\tevent number: " << m_event->EventNumber()
             << "\n";
 
+  runCutFlow();
+
+  //
+  // m_vertices.print(VERT_ALL);
+  // m_electrons.print(EL_ALL, m_vertices);
+  // m_muons.print(MU_ALL, m_vertices);
+  // m_jets.print(JET_ALL);
+  // m_electrons.print(EL_BASELINE, m_vertices);
+  // m_vertices.print(VERT_GOOD);
+}
+
+// ----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::runCutFlow()
+{
   // Check GRL
   // TODO Check GRL
 
@@ -322,14 +336,6 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
 
   // Check for FCal region
   // TODO Check for FCal region
-
-  //
-  // m_vertices.print(VERT_ALL);
-  // m_electrons.print(EL_ALL, m_vertices);
-  // m_muons.print(MU_ALL, m_vertices);
-  // m_jets.print(JET_ALL);
-  // m_electrons.print(EL_BASELINE, m_vertices);
-  // m_vertices.print(VERT_GOOD);
 }
 
 // ----------------------------------------------------------------------------
