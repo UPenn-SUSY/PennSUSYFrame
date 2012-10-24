@@ -77,6 +77,14 @@ const std::vector<Vertex*>* VertexContainer::getVertexs(
 }
 
 // ----------------------------------------------------------------------------
+bool VertexContainer::firstGood(VERTEX_COLLECTIONS vert_collection) const
+{
+  std::vector<Vertex*> vertices = m_user_lists.at(vert_collection);
+  if (vertices.size() == 0) return false;
+  return vertices.at(0)->isGood();
+}
+
+// ----------------------------------------------------------------------------
 void VertexContainer::print(VERTEX_COLLECTIONS vert_collection) const
 {
   std::cout << "================= Printing vertex collection: "

@@ -309,6 +309,10 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
 {
   // Check GRL
   // TODO Check GRL
+  if (m_grl_tool->passed(*m_event)) {
+    // TODO flag event as failed GRL
+    // TODO reject event if critical cut
+  }
 
   // Check LAr error
   // TODO Check LAr error
@@ -321,15 +325,28 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
 
   // Check jet cleaning
   // TODO Check jet cleaning
+  if (m_jets.num(JET_BAD) > 0) {
+    // TODO flag event as failing bad jet veto
+    // TODO reject event if critical cut
+  }
 
   // Check primary vertex
-  // TODO Check primary vertex
+  if (m_vertices.firstGood(VERT_ALL) == false) {
+    // TODO flag event as failing good vertex
+    // TODO reject event if critical cut
+  }
 
   // Check for bad muons
-  // TODO Check for bad muons
+  if (m_muons.getMuons(MU_BAD).size() > 0) {
+    // TODO flag event as failing bad mu veto
+    // TODO reject event if critical cut
+  }
 
   // Check for cosmic muons
-  // TODO Check for cosmic muons
+  if (m_muons.getMuons(MU_COSMIC).size() > 0) {
+    // TODO flag event as failing cosmic mu veto
+    // TODO reject event if critical cut
+  }
 
   // Check TTC veto
   // TODO Check TTC veto

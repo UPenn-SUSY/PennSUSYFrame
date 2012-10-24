@@ -28,6 +28,7 @@ class VertexContainer
 
     size_t num(VERTEX_COLLECTIONS) const;
     const std::vector<Vertex*>* getVertexs(VERTEX_COLLECTIONS) const;
+    bool firstGood(VERTEX_COLLECTIONS) const;
 
     void print(VERTEX_COLLECTIONS) const;
 
