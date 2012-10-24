@@ -86,12 +86,6 @@ const TLorentzVector CommonTools::TLVTool::tlv( Jet* jet
                                               , int num_vetices_w_2_trks
                                               )
 {
-  // TODO Currently getting raw TLV. Get calibrated TLV when JetCalibTool is finished
-  // GET_TOOL( jet_calibration
-  //         , CommonTools::JetCalibTool
-  //         , "JetCalib"
-  //         );
-  // return jet_calibration->getConfiguredJet(jet, mu, num_vetices_w_2_trks);
   return m_jet_calib->getConfiguredJet(jet, mu, num_vetices_w_2_trks);
 }
 

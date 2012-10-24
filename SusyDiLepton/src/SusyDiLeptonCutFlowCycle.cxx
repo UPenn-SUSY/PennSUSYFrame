@@ -300,10 +300,11 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::getObjects()
 {
+  m_vertices.prepVertices(m_vertex_d3pdobject, is_data());
+
   m_electrons.prepElectrons(m_electron_d3pdobject);
   m_muons.prepMuons(m_muon_d3pdobject);
-  m_jets.prepJets(m_jet_d3pdobject);
-  m_vertices.prepVertices(m_vertex_d3pdobject, is_data());
+  m_jets.prepJets(m_jet_d3pdobject, m_event, m_vertices);
 
   // Get baseline objects
   m_electrons.setCollection( EL_BASELINE,
@@ -334,7 +335,7 @@ void SusyDiLeptonCutFlowCycle::getObjects()
       m_electron_selection->getSignalElectrons(m_electrons));
 
   m_muons.setCollection( MU_SIGNAL,
-      m_muon_selection->getSignalMuons(m_muons));
+      m_muon_selection->getSignalMuons(m_muons, m_vertices));
 
   m_jets.setCollection( JET_CENTRAL,
       m_jet_selection->getLJets(m_jets));

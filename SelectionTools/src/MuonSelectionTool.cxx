@@ -131,7 +131,8 @@ bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
 }
 
 // ----------------------------------------------------------------------------
-bool SelectionTools::MuonSelectionTool::isSignal(Muon* mu)
+bool SelectionTools::MuonSelectionTool::isSignal(
+    Muon* mu, const VertexContainer& vertices)
 {
   // check for signal d0 significance
   double d0_sig = fabs(mu->getD0Significance());
@@ -147,8 +148,7 @@ bool SelectionTools::MuonSelectionTool::isSignal(Muon* mu)
     return false;
 
   // Check for signal isolation
-  // TODO get proper value for num good vertices
-  int num_good_vertices = 0;
+  int num_good_vertices = vertices.num(VERT_GOOD);
   double ptcone30 = mu->getIsoCorr( CommonTools::PTCONE
                                   , 30
                                   , num_good_vertices
@@ -226,17 +226,17 @@ std::vector<Muon*>
 // ----------------------------------------------------------------------------
 std::vector<Muon*>
     SelectionTools::MuonSelectionTool::getSignalMuons(
-        const MuonContainer& muon_container)
+        const MuonContainer& muon_container, const VertexContainer& vertices)
 {
   const std::vector<Muon*> good_muons =
     muon_container.getMuons(MU_GOOD);
-  return getSignalMuons(good_muons);
+  return getSignalMuons(good_muons, vertices);
 }
 
 // ----------------------------------------------------------------------------
 std::vector<Muon*>
     SelectionTools::MuonSelectionTool::getSignalMuons(
-        const std::vector<Muon*>& good_muons)
+        const std::vector<Muon*>& good_muons, const VertexContainer& vertices)
 {
   size_t term = good_muons.size();
 
@@ -244,7 +244,7 @@ std::vector<Muon*>
   signal_muons.reserve(term);
 
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
-    if (isSignal(good_muons.at(mu_it))) {
+    if (isSignal(good_muons.at(mu_it), vertices)) {
       signal_muons.push_back(good_muons.at(mu_it));
     }
   }

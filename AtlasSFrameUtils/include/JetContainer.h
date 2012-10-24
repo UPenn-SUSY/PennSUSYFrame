@@ -5,7 +5,9 @@
 #include <vector>
 
 #include "ParticleElementBuilder.h"
+#include "Event.h"
 #include "Jet.h"
+#include "VertexContainer.h"
 #include "CommonTools/include/TLVTool.h"
 
 // ============================================================================
@@ -29,7 +31,10 @@ class JetContainer
     void init(CommonTools::TLVTool*);
 
     void clear();
-    void prepJets(D3PDReader::JetD3PDObject*);
+    void prepJets( D3PDReader::JetD3PDObject*
+                 , const Event*
+                 , const VertexContainer&
+                 );
     void setCollection(JET_COLLECTIONS, std::vector<Jet*>);
 
     size_t num(JET_COLLECTIONS) const;
