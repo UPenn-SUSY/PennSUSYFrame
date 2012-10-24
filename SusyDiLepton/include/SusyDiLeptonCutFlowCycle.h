@@ -125,8 +125,12 @@ private:
   SelectionTools::MuonSelectionTool*     m_muon_selection;
   SelectionTools::ObjectCleaningTool*    m_object_cleaning;
 
+  SelectionTools::GoodRunsListTool* m_grl_tool;
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();
+  void initD3PDReaders();
+  void getTools();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Macro adding the functions for dictionary generation

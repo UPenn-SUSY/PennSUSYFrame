@@ -23,7 +23,8 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_vertex_d3pdobject(NULL),
   m_electron_selection(NULL),
   m_jet_selection(NULL),
-  m_muon_selection(NULL)
+  m_muon_selection(NULL),
+  m_grl_tool(NULL)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -55,6 +56,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
   DECLARE_TOOL(SelectionTools::MuonSelectionTool    , "Muon_Selection"    );
 
+  DECLARE_TOOL(SelectionTools::GoodRunsListTool  , "GRL");
   DECLARE_TOOL(SelectionTools::ObjectCleaningTool, "Object_Cleaning");
 
   // TODO populate list of tools
@@ -91,6 +93,13 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
            << m_entry_number
            << SLogger::endmsg;
 
+  initD3PDReaders();
+  getTools();
+}
+
+// ----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::initD3PDReaders()
+{
   m_event = new Event(m_entry_number, "", is_data());
   m_trigger_d3pdobject =
       new D3PDReader::TriggerD3PDObject(m_entry_number
@@ -131,7 +140,11 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
     m_met_truth_d3pdobject
         = new D3PDReader::TruthMETD3PDObject(m_entry_number);
   }
+}
 
+// ----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::getTools()
+{
   // Get helper tools required by containers
   GET_TOOL( egamma_energy_rescale
           , CommonTools::EgammaEnergyRescaleTool
@@ -146,38 +159,54 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
           , "JetCalibration"
           );
 
+  // Initialize vertices
+  m_vertices.init();
+
+  // TLV tool
   GET_TOOL(tlv_tool, CommonTools::TLVTool, "tlv");
+  tlv_tool->init(egamma_energy_rescale, muon_smearing, jet_calib);
+
+  // Isolation correction tools
   GET_TOOL(el_iso_corr_tool, CommonTools::IsoCorrectionTool, "Electron_IsoCorr");
   GET_TOOL(mu_iso_corr_tool, CommonTools::IsoCorrectionTool, "Muon_IsoCorr"    );
 
+  // Electron selection
   GET_TOOL( electron_selection
           , SelectionTools::ElectronSelectionTool
           , "Electron_Selection"
           );
+  m_electron_selection = electron_selection;
+  m_electrons.init(tlv_tool, el_iso_corr_tool);
+
+  // Jet selection
   GET_TOOL( jet_selection
           , SelectionTools::JetSelectionTool
           , "Jet_Selection"
           );
+  m_jet_selection = jet_selection;
+  m_jets.init(tlv_tool);
+
+  // Muon selection
   GET_TOOL( muon_selection
           , SelectionTools::MuonSelectionTool
           , "Muon_Selection"
           );
+  m_muon_selection = muon_selection;
+  m_muons.init(tlv_tool, mu_iso_corr_tool);
+
+  // GRL
+  GET_TOOL( grl_tool
+          , SelectionTools::GoodRunsListTool
+          , "GRL"
+          );
+  m_grl_tool = grl_tool;
+
+  // Object cleaning for overlap removal, etc.
   GET_TOOL( object_cleaning
           , SelectionTools::ObjectCleaningTool
           , "Object_Cleaning"
           );
-
-  m_electron_selection = electron_selection;
-  m_jet_selection = jet_selection;
-  m_muon_selection = muon_selection;
   m_object_cleaning = object_cleaning;
-
-  tlv_tool->init(egamma_energy_rescale, muon_smearing, jet_calib);
-
-  m_electrons.init(tlv_tool, el_iso_corr_tool);
-  m_muons.init(    tlv_tool, mu_iso_corr_tool);
-  m_jets.init(     tlv_tool);
-  m_vertices.init();
 }
 
 // ----------------------------------------------------------------------------
@@ -264,13 +293,42 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
             << "\t--\tevent number: " << m_event->EventNumber()
             << "\n";
 
+  // Check GRL
+  // TODO Check GRL
+
+  // Check LAr error
+  // TODO Check LAr error
+
+  // Check Tile Error
+  // TODO Check Tile Error
+
+  // Check Tile hot spot
+  // TODO Check Tile hot spot
+
+  // Check jet cleaning
+  // TODO Check jet cleaning
+
+  // Check primary vertex
+  // TODO Check primary vertex
+
+  // Check for bad muons
+  // TODO Check for bad muons
+
+  // Check for cosmic muons
+  // TODO Check for cosmic muons
+
+  // Check TTC veto
+  // TODO Check TTC veto
+
+  // Check for FCal region
+  // TODO Check for FCal region
+
+  //
   // m_vertices.print(VERT_ALL);
-  m_electrons.print(EL_ALL, m_vertices);
+  // m_electrons.print(EL_ALL, m_vertices);
   // m_muons.print(MU_ALL, m_vertices);
   // m_jets.print(JET_ALL);
-
-  m_electrons.print(EL_BASELINE, m_vertices);
-
+  // m_electrons.print(EL_BASELINE, m_vertices);
   // m_vertices.print(VERT_GOOD);
 }
 
