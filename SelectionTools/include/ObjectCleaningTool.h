@@ -79,7 +79,7 @@ namespace SelectionTools
     double c_jm_cone_size;
     double c_em_cone_size;
     double c_mm_cone_size;
-    double c_min_mll;
+    double c_max_mll;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(ObjectCleaningTool, 0);

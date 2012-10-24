@@ -12,7 +12,7 @@ SelectionTools::ObjectCleaningTool::ObjectCleaningTool(
   DeclareProperty("jm_cone_size", c_jm_cone_size = 0.40);
   DeclareProperty("em_cone_size", c_em_cone_size = 0.10);
   DeclareProperty("mm_cone_size", c_mm_cone_size = 0.05);
-  DeclareProperty("min_mll"     , c_min_mll      = 12e3);
+  DeclareProperty("max_mll"     , c_max_mll      = 12e3);
 }
 
 // ----------------------------------------------------------------------------
@@ -345,7 +345,7 @@ void SelectionTools::ObjectCleaningTool::mllOverlapRemoval(
       float charge_2 = input_electrons.at(el_it_2)->charge();
       if (charge_1 * charge_2 < 0) {
         TLorentzVector tlv2 = input_electrons.at(el_it_2)->getTlv();
-        if ((tlv1+tlv2).Mag() > c_min_mll) {
+        if ((tlv1+tlv2).Mag() > c_max_mll) {
           keep_el.at(el_it_1) = false;
           keep_el.at(el_it_2) = false;
         }
@@ -362,7 +362,7 @@ void SelectionTools::ObjectCleaningTool::mllOverlapRemoval(
       float charge_2 = input_muons.at(mu_it_2)->charge();
       if (charge_1 * charge_2 < 0) {
         TLorentzVector tlv2 = input_muons.at(mu_it_2)->getTlv();
-        if ((tlv1+tlv2).Mag() > c_min_mll) {
+        if ((tlv1+tlv2).Mag() > c_max_mll) {
           keep_mu.at(mu_it_1) = false;
           keep_mu.at(mu_it_2) = false;
         }
