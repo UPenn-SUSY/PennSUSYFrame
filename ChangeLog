@@ -1,8 +1,12 @@
+2012-10-24 Elizabeth Hines <Elizabeth.Hines@cern.ch>
+	* Added EventCleaningTool
+
 2012-10-24 Brett Jackson <Brett.David.Jackson@cern.ch>
 	* Fixed jet calibration cuts
 	* Added checks for first event cleaning cuts
 	* Fixed SFOS removal in object cleaning
 	* Removed unused selection tool
+	* Added TriggerCutTool
 
 2012-10-22 Brett Jackson <Brett.David.Jackson@cern.ch>
 	* Created ChangeLog

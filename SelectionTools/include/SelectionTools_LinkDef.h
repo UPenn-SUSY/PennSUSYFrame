@@ -53,7 +53,6 @@
 // #pragma link C++ class SelectionTools::PtCutTool+;
 //#pragma link C++ class SelectionTools::SignCutTool+;
 //#pragma link C++ class SelectionTools::SusyDiLeptonSignalRegionCutTool+;
-//#pragma link C++ class SelectionTools::SusyDiLeptonTriggerCutTool+;
 //#pragma link C++ class SelectionTools::SusyDiLeptonTruthMatchCutTool+;
 //#pragma link C++ class SelectionTools::TRTHitCutTool+;
 //#pragma link C++ class SelectionTools::TileHotSpotCutTool+;

@@ -24,7 +24,9 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_electron_selection(NULL),
   m_jet_selection(NULL),
   m_muon_selection(NULL),
-  m_grl_tool(NULL)
+  m_object_cleaning(NULL),
+  m_grl_tool(NULL),
+  m_event_cleaning_tool(NULL)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -56,7 +58,8 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
   DECLARE_TOOL(SelectionTools::MuonSelectionTool    , "Muon_Selection"    );
 
-  DECLARE_TOOL(SelectionTools::GoodRunsListTool  , "GRL");
+  DECLARE_TOOL(SelectionTools::GoodRunsListTool  , "GRL"            );
+  DECLARE_TOOL(SelectionTools::EventCleaningTool , "Event_Cleaning" );
   DECLARE_TOOL(SelectionTools::ObjectCleaningTool, "Object_Cleaning");
 
   // TODO populate list of tools
@@ -201,6 +204,13 @@ void SusyDiLeptonCutFlowCycle::getTools()
           );
   m_grl_tool = grl_tool;
 
+  // Event cleaning tool
+  GET_TOOL( event_cleaning
+          , SelectionTools::EventCleaningTool
+          , "Event_Cleaning"
+          );
+  m_event_cleaning_tool = event_cleaning;
+
   // Object cleaning for overlap removal, etc.
   GET_TOOL( object_cleaning
           , SelectionTools::ObjectCleaningTool
@@ -315,16 +325,24 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
   }
 
   // Check LAr error
-  // TODO Check LAr error
+  if (m_event_cleaning_tool->passLARError(m_event) == false) {
+    // TODO flag event as failed LAr error
+    // TODO reject event if critical cut
+  }
 
   // Check Tile Error
-  // TODO Check Tile Error
+  if (m_event_cleaning_tool->passTileError(m_event) == false) {
+    // TODO flag event as failed tile error
+    // TODO reject event if critical cut
+  }
 
   // Check Tile hot spot
-  // TODO Check Tile hot spot
+  if (m_event_cleaning_tool->passTileHotSpot(m_event, m_jets) == false) {
+    // TODO flag event as failed tile hot spot
+    // TODO reject event if critical cut
+  }
 
   // Check jet cleaning
-  // TODO Check jet cleaning
   if (m_jets.num(JET_BAD) > 0) {
     // TODO flag event as failing bad jet veto
     // TODO reject event if critical cut
@@ -350,9 +368,17 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
 
   // Check TTC veto
   // TODO Check TTC veto
+  if (m_event_cleaning_tool->passIncompleteEvent(m_event) == false) {
+    // TODO flag event as failed incomplete event
+    // TODO reject event if critical cut
+  }
 
   // Check for FCal region
   // TODO Check for FCal region
+  if (m_event_cleaning_tool->passFCALCleaning(m_event, m_jets) == false) {
+    // TODO flag event as failed FCAL cleaning
+    // TODO reject event if critical cut
+  }
 }
 
 // ----------------------------------------------------------------------------

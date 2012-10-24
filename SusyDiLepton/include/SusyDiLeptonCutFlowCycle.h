@@ -35,6 +35,7 @@
 
 #include "SelectionTools/include/GoodRunsListTool.h"
 #include "SelectionTools/include/ElectronSelectionTool.h"
+#include "SelectionTools/include/EventCleaningTool.h"
 #include "SelectionTools/include/JetSelectionTool.h"
 #include "SelectionTools/include/MuonSelectionTool.h"
 #include "SelectionTools/include/ObjectCleaningTool.h"
@@ -126,6 +127,7 @@ private:
   SelectionTools::ObjectCleaningTool*    m_object_cleaning;
 
   SelectionTools::GoodRunsListTool* m_grl_tool;
+  SelectionTools::EventCleaningTool* m_event_cleaning_tool;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();

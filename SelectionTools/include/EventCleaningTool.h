@@ -17,28 +17,34 @@ namespace SelectionTools
   // ==========================================================================
   class EventCleaningTool : public ToolBase
   {
-    // --------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
   public:
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     EventCleaningTool( SCycleBase* parent
-			, const char* name = "EventCleaning"
-			);
+                     , const char* name = "EventCleaning"
+                     );
+    virtual ~EventCleaningTool();
 
+    bool passFCALCleaning(Event* , const JetContainer&);
     bool passFCALCleaning(Event* , const std::vector<Jet*>&);
+
     bool passLARError(Event*);
+
     bool passIncompleteEvent(Event*);
+
     bool passTileError(Event*);
+
+    bool passTileHotSpot(Event*, const JetContainer&);
     bool passTileHotSpot(Event*, const std::vector<Jet*>&);
 
-    virtual ~EventCleaningTool();
   // --------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    bool inFCALProblemArea(float, float, float);
+    bool inFCALProblemArea(float pt, float eta, float phi);
     bool checkFCALProblemRuns(Event*);
-    bool inTileHotSpot(float, float);
+    bool inTileHotSpot(float eta, float phi);
     bool checkTileHotSpotRuns(Event*);
-    
+
     double c_total_lumi;
 
     ClassDef(EventCleaningTool, 0);
