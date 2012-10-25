@@ -5,8 +5,8 @@
 #include "TLorentzVector.h"
 
 #include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Trigger.h"
 #include "AtlasSFrameUtils/include/TriggerVec.h"
@@ -22,7 +22,6 @@ namespace SelectionTools
   {
   // --------------------------------------------------------------------------
   public:
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     TriggerCutTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~TriggerCutTool();
 
@@ -32,10 +31,24 @@ namespace SelectionTools
 	  // double MuMuweight(std::vector<Muon>&);
 	  // double EMuweight(std::vector<Electron>&, std::vector<Muon>&);
 
-    // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // bool passedAnySingleOrDiLeptonTrigger( const Event&
-    //                                      , const Trigger&
-    //                                      );
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    bool passedAnySingleOrDiLeptonTrigger( const Event*
+                                         , const Trigger*
+                                         );
+
+    // Phase space channel
+    bool passedEEPhaseSpace( const ElectronContainer&
+                           , const MuonContainer&
+                           );
+    bool passedMuMuPhaseSpace( const ElectronContainer&
+                             , const MuonContainer&
+                             );
+    bool passedEMuPhaseSpace( const ElectronContainer&
+                            , const MuonContainer&
+                            );
+    bool passedMuEPhaseSpace( const ElectronContainer&
+                            , const MuonContainer&
+                            );
 
     // Trigger channel - event level check for trigger
     bool passedEETriggerChannel( const Event*
@@ -98,7 +111,6 @@ namespace SelectionTools
 
   // --------------------------------------------------------------------------
   private:
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool c_do_trigger_matching;
     // bool c_check_against_official;
 

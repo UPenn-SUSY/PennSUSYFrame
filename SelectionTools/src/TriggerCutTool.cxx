@@ -120,11 +120,12 @@ double SelectionTools::TriggerCutTool::EMuweight(std::vector<Electron>& el, std:
 
   return weight;
 }
+*/
 
 // ----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedAnySingleOrDiLeptonTrigger(
-    const Event& event,
-    const Trigger& trig)
+    const Event* event,
+    const Trigger* trig)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool pass_trigger = (  passedEETriggerChannel(  event, trig)
@@ -134,7 +135,38 @@ bool SelectionTools::TriggerCutTool::passedAnySingleOrDiLeptonTrigger(
                       );
   return pass_trigger;
 }
-*/
+
+// ----------------------------------------------------------------------------
+bool SelectionTools::TriggerCutTool::passedEEPhaseSpace(
+    const ElectronContainer& electrons,
+    const MuonContainer& /*muons*/)
+{
+  return true;
+}
+
+// ----------------------------------------------------------------------------
+bool SelectionTools::TriggerCutTool::passedMuMuPhaseSpace(
+    const ElectronContainer& /*electrons*/,
+    const MuonContainer& muons)
+{
+  return true;
+}
+
+// ----------------------------------------------------------------------------
+bool SelectionTools::TriggerCutTool::passedEMuPhaseSpace(
+    const ElectronContainer& electrons,
+    const MuonContainer& muons)
+{
+  return true;
+}
+
+// ----------------------------------------------------------------------------
+bool SelectionTools::TriggerCutTool::passedMuEPhaseSpace(
+    const ElectronContainer& electrons,
+    const MuonContainer& muons)
+{
+  return true;
+}
 
 // -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedEETriggerChannel(

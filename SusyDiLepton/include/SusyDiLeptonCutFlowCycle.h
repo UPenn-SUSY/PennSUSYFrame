@@ -41,6 +41,7 @@
 #include "SelectionTools/include/JetSelectionTool.h"
 #include "SelectionTools/include/MuonSelectionTool.h"
 #include "SelectionTools/include/ObjectCleaningTool.h"
+#include "SelectionTools/include/TriggerCutTool.h"
 
 /**
 *   @short CycleBase class to run the Susy Di-lepton cut flow
@@ -128,8 +129,9 @@ private:
   SelectionTools::MuonSelectionTool*     m_muon_selection;
   SelectionTools::ObjectCleaningTool*    m_object_cleaning;
 
-  SelectionTools::GoodRunsListTool* m_grl_tool;
+  SelectionTools::GoodRunsListTool*  m_grl_tool;
   SelectionTools::EventCleaningTool* m_event_cleaning_tool;
+  SelectionTools::TriggerCutTool*    m_trigger_cut_tool;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();

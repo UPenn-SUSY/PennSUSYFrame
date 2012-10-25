@@ -26,7 +26,8 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_muon_selection(NULL),
   m_object_cleaning(NULL),
   m_grl_tool(NULL),
-  m_event_cleaning_tool(NULL)
+  m_event_cleaning_tool(NULL),
+  m_trigger_cut_tool(NULL)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -61,6 +62,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(SelectionTools::GoodRunsListTool  , "GRL"            );
   DECLARE_TOOL(SelectionTools::EventCleaningTool , "Event_Cleaning" );
   DECLARE_TOOL(SelectionTools::ObjectCleaningTool, "Object_Cleaning");
+  DECLARE_TOOL(SelectionTools::TriggerCutTool    , "Trigger_Cut"    );
 
   // TODO populate list of tools
 }
@@ -192,6 +194,13 @@ void SusyDiLeptonCutFlowCycle::getTools()
   m_muon_selection = muon_selection;
   m_muons.init(tlv_tool, mu_iso_corr_tool);
 
+  // Object cleaning for overlap removal, etc.
+  GET_TOOL( object_cleaning
+          , SelectionTools::ObjectCleaningTool
+          , "Object_Cleaning"
+          );
+  m_object_cleaning = object_cleaning;
+
   // GRL
   GET_TOOL( grl_tool
           , SelectionTools::GoodRunsListTool
@@ -206,12 +215,11 @@ void SusyDiLeptonCutFlowCycle::getTools()
           );
   m_event_cleaning_tool = event_cleaning;
 
-  // Object cleaning for overlap removal, etc.
-  GET_TOOL( object_cleaning
-          , SelectionTools::ObjectCleaningTool
-          , "Object_Cleaning"
+  GET_TOOL( trigger_cut
+          , SelectionTools::TriggerCutTool
+          , "Trigger_Cut"
           );
-  m_object_cleaning = object_cleaning;
+  m_trigger_cut_tool = trigger_cut;
 }
 
 // ----------------------------------------------------------------------------
@@ -376,27 +384,42 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
 
   // Check for At least two leptons
   // TODO check for at least two leptons
-  //
+  size_t num_good_leptons = m_electrons.num(EL_GOOD) + m_muons.num(MU_GOOD);
+  if (num_good_leptons < 2) {
+    // TODO flag event as failed >= 2 leptons
+    // TODO reject event if critical cut
+  }
+
   // Check for exactly two leptons
   // TODO check for exactly two leptons
-  //
+  if (num_good_leptons != 2) {
+    // TODO flag event as failed == 2 leptons
+    // TODO reject event if critical cut
+  }
+
   // Check for signal leptons
   // TODO check for signal leptons
-  //
+  size_t num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
+  if (num_signal_leptons != 2) {
+    // TODO flag event as failed == 2 signal leptons
+    // TODO reject event if critical cut
+  }
+
   // Check flavor channel for this event
   // TODO check flavor channel
-  //
+
   // Check for valid pt phase space
   // TODO check for pt phase space
-  //
+
   // Check trigger for this event
   // TODO check event level trigger
-  //
+
   // Check trigger matching
   // TODO check trigger matching
-  //
+
   // Check sign channel for this event
   // TODO check sign channel for this event
+
 }
 
 // ----------------------------------------------------------------------------

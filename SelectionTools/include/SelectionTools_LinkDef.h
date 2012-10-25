@@ -13,11 +13,12 @@
 //
 // #pragma link C++ class MySuperClass+;
 #pragma link C++ class SelectionTools::ElectronSelectionTool+;
+#pragma link C++ class SelectionTools::EventCleaningTool+;
 #pragma link C++ class SelectionTools::GoodRunsListTool+;
 #pragma link C++ class SelectionTools::JetSelectionTool+;
 #pragma link C++ class SelectionTools::MuonSelectionTool+;
 #pragma link C++ class SelectionTools::ObjectCleaningTool+;
-#pragma link C++ class SelectionTools::EventCleaningTool+;
+#pragma link C++ class SelectionTools::TriggerCutTool+;
 
 //#pragma link C++ class SelectionTools::BTagCutTool+;
 // #pragma link C++ class SelectionTools::D0CutTool+;
