@@ -15,6 +15,7 @@
 #pragma link C++ class Vertex+;
 //#pragma link C++ class Photon+;
 //#pragma link C++ class Tau+;
-//#pragma link C++ class Trigger+;
+#pragma link C++ class Trigger+;
+#pragma link C++ class TriggerVec+;
 
 #endif // __CINT__

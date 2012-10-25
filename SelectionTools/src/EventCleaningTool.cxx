@@ -31,7 +31,6 @@ bool SelectionTools::EventCleaningTool::passFCALCleaning(
   bool passed_cut = true;
 
   size_t n_jets = jets.size();
-
   for (size_t jet_it=0; jet_it != n_jets && passed_cut; ++jet_it)
   {
     if (inFCALProblemArea( jets.at(jet_it)->getTlv().Pt()

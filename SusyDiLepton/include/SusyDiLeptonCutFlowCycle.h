@@ -5,14 +5,16 @@
 #include <map>
 
 #include "AtlasSFrameUtils/include/CycleBase.h"
-#include "AtlasSFrameUtils/include/Event.h"
 #include "AtlasSFrameUtils/include/Electron.h"
 #include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/Event.h"
 #include "AtlasSFrameUtils/include/Jet.h"
 #include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
-#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Trigger.h"
+#include "AtlasSFrameUtils/include/TriggerVec.h"
 #include "AtlasSFrameUtils/include/Vertex.h"
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
@@ -100,11 +102,13 @@ private:
   bool m_pass_me;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  Event*            m_event;
   ElectronContainer m_electrons;
+  Event*            m_event;
   JetContainer      m_jets;
-  MuonContainer     m_muons;
   Met*              m_met;
+  MuonContainer     m_muons;
+  Trigger*          m_trigger;
+  TriggerVec*       m_trigger_vec;
   VertexContainer   m_vertices;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -114,8 +118,6 @@ private:
   D3PDReader::MCEvtD3PDObject*      m_mcevt_d3pdobject;
   D3PDReader::METD3PDObject*        m_met_d3pdobject;
   D3PDReader::MuonD3PDObject*       m_muon_d3pdobject;
-  D3PDReader::TriggerD3PDObject*    m_trigger_d3pdobject;
-  D3PDReader::TriggerVecD3PDObject* m_trigger_vec_d3pdobject;
   D3PDReader::TruthD3PDObject*      m_truth_d3pdobject;
   D3PDReader::TruthMETD3PDObject*   m_met_truth_d3pdobject;
   D3PDReader::VertexD3PDObject*     m_vertex_d3pdobject;

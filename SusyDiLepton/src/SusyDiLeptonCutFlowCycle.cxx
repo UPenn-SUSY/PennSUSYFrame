@@ -12,12 +12,12 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   CycleBase(),
   m_event(NULL),
   m_met(NULL),
+  m_trigger(NULL),
+  m_trigger_vec(NULL),
   m_electron_d3pdobject(NULL),
   m_jet_d3pdobject(NULL),
   m_mcevt_d3pdobject(NULL),
   m_muon_d3pdobject(NULL),
-  m_trigger_d3pdobject(NULL),
-  m_trigger_vec_d3pdobject(NULL),
   m_truth_d3pdobject(NULL),
   m_met_truth_d3pdobject(NULL),
   m_vertex_d3pdobject(NULL),
@@ -104,15 +104,10 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
 void SusyDiLeptonCutFlowCycle::initD3PDReaders()
 {
   m_event = new Event(m_entry_number, "", is_data());
-  m_trigger_d3pdobject =
-      new D3PDReader::TriggerD3PDObject(m_entry_number
-                                       , ""
-                                       );
-  m_trigger_vec_d3pdobject =
-      new D3PDReader::TriggerVecD3PDObject(m_entry_number
-                                          , ""
-                                          );
+  m_trigger = new Trigger(m_entry_number, "");
+  m_trigger_vec = new TriggerVec(m_entry_number, "");
   m_met = new Met(m_entry_number, c_met_prefix.c_str(), is_data());
+
   m_vertex_d3pdobject =
       new D3PDReader::VertexD3PDObject(m_entry_number
                                       , "vx_"
@@ -228,10 +223,9 @@ void SusyDiLeptonCutFlowCycle::EndInputDataImp( const SInputData& ) throw( SErro
 
   // = clean up pointers =
   delete m_event;
-  delete m_trigger_d3pdobject;
-  delete m_trigger_vec_d3pdobject;
+  delete m_trigger;
+  delete m_trigger_vec;
   delete m_met;
-  // delete m_met_d3pdobject;
   delete m_vertex_d3pdobject;
   delete m_electron_d3pdobject;
   delete m_jet_d3pdobject;
@@ -269,8 +263,8 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& ) throw( SEr
 
   // = get input trees from the d3pd objects =
   m_event->ReadFrom(                 GetInputTree(c_input_tree_name.c_str()));
-  m_trigger_d3pdobject->ReadFrom(    GetInputTree(c_input_tree_name.c_str()));
-  m_trigger_vec_d3pdobject->ReadFrom(GetInputTree(c_input_tree_name.c_str()));
+  m_trigger->ReadFrom(               GetInputTree(c_input_tree_name.c_str()));
+  m_trigger_vec->ReadFrom(           GetInputTree(c_input_tree_name.c_str()));
   m_met->ReadFrom(                   GetInputTree(c_input_tree_name.c_str()));
   m_vertex_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
   m_electron_d3pdobject->ReadFrom(   GetInputTree(c_input_tree_name.c_str()));
@@ -379,6 +373,30 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
     // TODO flag event as failed FCAL cleaning
     // TODO reject event if critical cut
   }
+
+  // Check for At least two leptons
+  // TODO check for at least two leptons
+  //
+  // Check for exactly two leptons
+  // TODO check for exactly two leptons
+  //
+  // Check for signal leptons
+  // TODO check for signal leptons
+  //
+  // Check flavor channel for this event
+  // TODO check flavor channel
+  //
+  // Check for valid pt phase space
+  // TODO check for pt phase space
+  //
+  // Check trigger for this event
+  // TODO check event level trigger
+  //
+  // Check trigger matching
+  // TODO check trigger matching
+  //
+  // Check sign channel for this event
+  // TODO check sign channel for this event
 }
 
 // ----------------------------------------------------------------------------
