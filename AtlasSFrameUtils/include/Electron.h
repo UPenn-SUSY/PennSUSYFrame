@@ -54,10 +54,14 @@ public:
   static bool eq(const Electron& el1, const Electron& el2);
   static bool lt(const Electron& el1, const Electron& el2);
   static bool gt(const Electron& el1, const Electron& el2);
+  static bool le(const Electron& el1, const Electron& el2);
+  static bool ge(const Electron& el1, const Electron& el2);
 
   bool operator==(const Electron& rhs) const;
   bool operator<( const Electron& rhs) const;
   bool operator>( const Electron& rhs) const;
+  bool operator<=(const Electron& rhs) const;
+  bool operator>=(const Electron& rhs) const;
 
 private:
   TLorentzVector m_tlv;

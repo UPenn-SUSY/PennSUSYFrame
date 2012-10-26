@@ -53,10 +53,14 @@ public:
   static bool eq(const Muon& mu1, const Muon& mu2);
   static bool lt(const Muon& mu1, const Muon& mu2);
   static bool gt(const Muon& mu1, const Muon& mu2);
+  static bool le(const Muon& mu1, const Muon& mu2);
+  static bool ge(const Muon& mu1, const Muon& mu2);
 
   bool operator==(const Muon& rhs) const;
   bool operator<( const Muon& rhs) const;
   bool operator>( const Muon& rhs) const;
+  bool operator<=(const Muon& rhs) const;
+  bool operator>=(const Muon& rhs) const;
 
 private:
   TLorentzVector m_tlv;

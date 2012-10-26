@@ -47,7 +47,6 @@ void JetContainer::prepJets( D3PDReader::JetD3PDObject* jet_d3pdobject
     float mu = event->averageIntPerXing();
     int num_vertices_w_2_trks = vertices.num(VERT_GT_2);
 
-    // m_master_list.at(jet_it).prepTlv(0, 0);
     m_master_list.at(jet_it).prepTlv(mu, num_vertices_w_2_trks);
     m_master_list.at(jet_it).prepRawTlv();
     m_user_lists.at(JET_ALL).push_back(&m_master_list.at(jet_it));

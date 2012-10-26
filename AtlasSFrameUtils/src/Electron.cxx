@@ -253,6 +253,18 @@ bool Electron::gt(const Electron& el1, const Electron& el2)
 }
 
 // -----------------------------------------------------------------------------
+bool Electron::le(const Electron& el1, const Electron& el2)
+{
+  return (el1 <= el2);
+}
+
+// -----------------------------------------------------------------------------
+bool Electron::ge(const Electron& el1, const Electron& el2)
+{
+  return (el1 >= el2);
+}
+
+// -----------------------------------------------------------------------------
 bool Electron::operator==(const Electron& rhs) const
 {
   return (getTlv().Pt() == rhs.getTlv().Pt());
@@ -268,4 +280,16 @@ bool Electron::operator<(const Electron& rhs) const
 bool Electron::operator>(const Electron& rhs) const
 {
   return (getTlv().Pt() > rhs.getTlv().Pt());
+}
+
+// -----------------------------------------------------------------------------
+bool Electron::operator<=(const Electron& rhs) const
+{
+  return (getTlv().Pt() <= rhs.getTlv().Pt());
+}
+
+// -----------------------------------------------------------------------------
+bool Electron::operator>=(const Electron& rhs) const
+{
+  return (getTlv().Pt() >= rhs.getTlv().Pt());
 }

@@ -206,6 +206,18 @@ bool Muon::gt(const Muon& mu1, const Muon& mu2)
 }
 
 // -----------------------------------------------------------------------------
+bool Muon::le(const Muon& mu1, const Muon& mu2)
+{
+  return (mu1 <= mu2);
+}
+
+// -----------------------------------------------------------------------------
+bool Muon::ge(const Muon& mu1, const Muon& mu2)
+{
+  return (mu1 >= mu2);
+}
+
+// -----------------------------------------------------------------------------
 bool Muon::operator==(const Muon& rhs) const
 {
   return (getTlv().Pt() == rhs.getTlv().Pt());
@@ -221,4 +233,16 @@ bool Muon::operator<(const Muon& rhs) const
 bool Muon::operator>(const Muon& rhs) const
 {
   return (getTlv().Pt() > rhs.getTlv().Pt());
+}
+
+// -----------------------------------------------------------------------------
+bool Muon::operator<=(const Muon& rhs) const
+{
+  return (getTlv().Pt() <= rhs.getTlv().Pt());
+}
+
+// -----------------------------------------------------------------------------
+bool Muon::operator>=(const Muon& rhs) const
+{
+  return (getTlv().Pt() >= rhs.getTlv().Pt());
 }

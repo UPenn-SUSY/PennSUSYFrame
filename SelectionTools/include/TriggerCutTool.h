@@ -5,8 +5,8 @@
 #include "TLorentzVector.h"
 
 #include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Trigger.h"
 #include "AtlasSFrameUtils/include/TriggerVec.h"
@@ -17,6 +17,18 @@
 // ============================================================================
 namespace SelectionTools
 {
+  enum TRIG_PHASE { TRIG_NONE = 0
+                  , TRIG_EE_A
+                  , TRIG_EE_B
+                  , TRIG_MM_A
+                  , TRIG_MM_B
+                  , TRIG_MM_C
+                  , TRIG_MM_D
+                  , TRIG_EM_A
+                  , TRIG_EM_B
+                  , TRIG_N
+                  };
+
   // ==========================================================================
   class TriggerCutTool : public ToolBase
   {
@@ -28,8 +40,8 @@ namespace SelectionTools
     // // weights for simulation
 
 	  // double EEweight(std::vector<Electron>&);
-	  // double MuMuweight(std::vector<Muon>&);
-	  // double EMuweight(std::vector<Electron>&, std::vector<Muon>&);
+	  // double MMweight(std::vector<Muon>&);
+	  // double EMweight(std::vector<Electron>&, std::vector<Muon>&);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool passedAnySingleOrDiLeptonTrigger( const Event*
@@ -37,74 +49,79 @@ namespace SelectionTools
                                          );
 
     // Phase space channel
-    bool passedEEPhaseSpace( const ElectronContainer&
-                           , const MuonContainer&
-                           );
-    bool passedMuMuPhaseSpace( const ElectronContainer&
-                             , const MuonContainer&
-                             );
-    bool passedEMuPhaseSpace( const ElectronContainer&
-                            , const MuonContainer&
+    TRIG_PHASE getPhaseSpace( const std::vector<Electron*>&
+                            , const std::vector<Muon*>&
                             );
-    bool passedMuEPhaseSpace( const ElectronContainer&
-                            , const MuonContainer&
+    bool passedEEPhaseSpace( const std::vector<Electron*>&
+                           , const std::vector<Muon*>&
+                           );
+    bool passedMMPhaseSpace( const std::vector<Electron*>&
+                             , const std::vector<Muon*>&
+                             );
+    bool passedEMPhaseSpace( const std::vector<Electron*>&
+                            , const std::vector<Muon*>&
+                            );
+    bool passedMEPhaseSpace( const std::vector<Electron*>&
+                            , const std::vector<Muon*>&
                             );
 
     // Trigger channel - event level check for trigger
     bool passedEETriggerChannel( const Event*
                                , const Trigger*
                                );
-    bool passedMuMuTriggerChannel( const Event*
+    bool passedMMTriggerChannel( const Event*
                                  , const Trigger*
                                  );
-    bool passedEMuTriggerChannel( const Event*
+    bool passedEMTriggerChannel( const Event*
                                 , const Trigger*
                                 );
-    bool passedMuETriggerChannel( const Event*
+    bool passedMETriggerChannel( const Event*
                                 , const Trigger*
                                 );
 
-    // // Trigger matching
-    // bool passedEETriggerMatching( Event&
-    //                             , TriggerVecD3PDObject&
-    //                             , std::vector<Electron>&
-    //                             );
-    // bool passedMuMuTriggerMatching( Event&
-    //                               , TriggerVecD3PDObject&
-    //                               , std::vector<Muon>&
-    //                               );
-    // bool passedEMuTriggerMatching( Event&
-    //                              , TriggerVecD3PDObject&
-    //                              , std::vector<Electron>&
-    //                              , std::vector<Muon>&
-    //                              );
-    // bool passedMuETriggerMatching( Event&
-    //                              , TriggerVecD3PDObject&
-    //                              , std::vector<Electron>&
-    //                              , std::vector<Muon>&
-    //                              );
+    // Trigger matching
+    bool passedEETriggerMatching( const Event*
+                                , const TriggerVec*
+                                , const std::vector<Electron*>&
+                                , const std::vector<Muon*>&
+                                );
+    bool passedMMTriggerMatching( const Event*
+                                  , const TriggerVec*
+                                  , const std::vector<Electron*>&
+                                  , const std::vector<Muon*>&
+                                  );
+    bool passedEMTriggerMatching( const Event*
+                                 , const TriggerVec*
+                                 , const std::vector<Electron*>&
+                                 , const std::vector<Muon*>&
+                                 );
+    bool passedMETriggerMatching( const Event*
+                                 , const TriggerVec*
+                                 , const std::vector<Electron*>&
+                                 , const std::vector<Muon*>&
+                                 );
 
     // // the following functions are wrappers to call the official trigger
     // // match pachage
     // bool passedEETriggerMatch_anders(
     //     Event& event,
-    //     TriggerVecD3PDObject& trig_vec,
+    //     TriggerVec& trig_vec,
     //     std::vector<Electron>& el,
     //     bool debug=false);
-    // bool passedMuMuTriggerMatch_anders(
+    // bool passedMMTriggerMatch_anders(
     //     Event& event,
-    //     TriggerVecD3PDObject& trig_vec,
+    //     TriggerVec& trig_vec,
     //     std::vector<Muon>& mu,
     //     bool debug=false);
-    // bool passedEMuTriggerMatch_anders(
+    // bool passedEMTriggerMatch_anders(
     //     Event& event,
-    //     TriggerVecD3PDObject& trig_vec,
+    //     TriggerVec& trig_vec,
     //     std::vector<Electron>& el,
     //     std::vector<Muon>& mu,
     //     bool debug=false);
-    // bool passedMuETriggerMatch_anders(
+    // bool passedMETriggerMatch_anders(
     //     Event& event,
-    //     TriggerVecD3PDObject& trig_vec,
+    //     TriggerVec& trig_vec,
     //     std::vector<Electron>& el,
     //     std::vector<Muon>& mu,
     //     bool debug=false);
@@ -122,67 +139,69 @@ namespace SelectionTools
     bool passedEETrigger2012( const Event*
                             , const Trigger*
                             );
-    bool passedMuMuTrigger2012( const Event*
-                              , const Trigger*
-                              );
-    bool passedEMuTrigger2012( const Event*
-                             , const Trigger*
-                             );
-    bool passedMuETrigger2012( const Event*
-                             , const Trigger*
-                             );
+    bool passedMMTrigger2012( const Event*
+                            , const Trigger*
+                            );
+    bool passedEMTrigger2012( const Event*
+                            , const Trigger*
+                            );
+    bool passedMETrigger2012( const Event*
+                            , const Trigger*
+                            );
 
-    // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // // 2012 trigger selection criteria
-    // bool passedEETriggerMatching2012(
-    //     Event&,
-    //     TriggerVecD3PDObject&,
-    //     std::vector<Electron>&);
-    // bool passedMuMuTriggerMatching2012(
-    //     Event&,
-    //     TriggerVecD3PDObject&,
-    //     std::vector<Muon>&);
-    // bool passedEMuTriggerMatching2012(
-    //     Event&,
-    //     TriggerVecD3PDObject&,
-    //     std::vector<Electron>&,
-    //     std::vector<Muon>&);
-    // bool passedMuETriggerMatching2012(
-    //     Event&,
-    //     TriggerVecD3PDObject&,
-    //     std::vector<Electron>&,
-    //     std::vector<Muon>&);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // 2012 trigger selection criteria
+    bool passedEETriggerMatching2012( const Event*
+                                    , const TriggerVec*
+                                    , const std::vector<Electron*>&
+                                    , const std::vector<Muon*>&
+                                    );
+    bool passedMMTriggerMatching2012( const Event*
+                                    , const TriggerVec*
+                                    , const std::vector<Electron*>&
+                                    , const std::vector<Muon*>&
+                                    );
+    bool passedEMTriggerMatching2012( const Event*
+                                    , const TriggerVec*
+                                    , const std::vector<Electron*>&
+                                    , const std::vector<Muon*>&
+                                    );
+    bool passedMETriggerMatching2012( const Event*
+                                    , const TriggerVec*
+                                    , const std::vector<Electron*>&
+                                    , const std::vector<Muon*>&
+                                    );
 
 
-    // bool passedElectronTriggerMatch(
-    //     std::vector<Electron>&,
-    //     std::vector<int>& trigger_chain,
-    //     TriggerVecD3PDObject&,
-    //     size_t num_to_match,
-    //     double dr_cut,
-    //     double pt_cut);
+    bool matchElectronList( const std::vector<Electron*>&
+                          , const std::vector<int>* trigger_chain
+                          , const TriggerVec*
+                          , size_t num_to_match
+                          , double dr_cut
+                          , double pt_cut
+                          );
 
-    // bool passedElectronTriggerMatch(
-    //     Electron&,
-    //     std::vector<int>& trigger_chain,
-    //     TriggerVecD3PDObject&,
-    //     double dr_cut,
-    //     double pt_cut);
+    bool matchElectron( Electron*
+                      , const std::vector<int>* trigger_chain
+                      , const TriggerVec*
+                      , double dr_cut
+                      , double pt_cut
+                      );
 
-    // bool passedMuonTriggerMatch(
-    //     std::vector<Muon>&,
-    //     std::vector<int>& trigger_chain,
-    //     TriggerVecD3PDObject&,
-    //     size_t num_to_match,
-    //     double dr_cut,
-    //     double pt_cut);
+    bool matchMuonList( const std::vector<Muon*>&
+                      , const std::vector<int>* trigger_chain
+                      , const TriggerVec*
+                      , size_t num_to_match
+                      , double dr_cut
+                      , double pt_cut
+                      );
 
-    // bool passedMuonTriggerMatch(
-    //     Muon&,
-    //     std::vector<int>& trigger_chain,
-    //     TriggerVecD3PDObject&,
-    //     double dr_cut,
-    //     double pt_cut);
+    bool matchMuon( Muon*
+                  , const std::vector<int>* trigger_chain
+                  , const TriggerVec*
+                  , double dr_cut
+                  , double pt_cut
+                  );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(TriggerCutTool, 0);

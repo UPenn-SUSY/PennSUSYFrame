@@ -44,10 +44,14 @@ public:
   static bool eq(const Jet& jet1, const Jet& jet2);
   static bool lt(const Jet& jet1, const Jet& jet2);
   static bool gt(const Jet& jet1, const Jet& jet2);
+  static bool le(const Jet& jet1, const Jet& jet2);
+  static bool ge(const Jet& jet1, const Jet& jet2);
 
   bool operator==(const Jet& rhs) const;
   bool operator<( const Jet& rhs) const;
   bool operator>( const Jet& rhs) const;
+  bool operator<=(const Jet& rhs) const;
+  bool operator>=(const Jet& rhs) const;
 
 private:
   TLorentzVector m_tlv;

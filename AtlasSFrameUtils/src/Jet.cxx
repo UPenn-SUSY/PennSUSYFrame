@@ -97,6 +97,18 @@ bool Jet::gt(const Jet& jet1, const Jet& jet2)
 }
 
 // ----------------------------------------------------------------------------
+bool Jet::le(const Jet& jet1, const Jet& jet2)
+{
+  return (jet1 <= jet2);
+}
+
+// ----------------------------------------------------------------------------
+bool Jet::ge(const Jet& jet1, const Jet& jet2)
+{
+  return (jet1 >= jet2);
+}
+
+// ----------------------------------------------------------------------------
 bool Jet::operator==(const Jet& rhs) const
 {
   return (getTlv().Pt() == rhs.getTlv().Pt());
@@ -112,4 +124,16 @@ bool Jet::operator<(const Jet& rhs) const
 bool Jet::operator>(const Jet& rhs) const
 {
   return (getTlv().Pt() > rhs.getTlv().Pt());
+}
+
+// ----------------------------------------------------------------------------
+bool Jet::operator<=(const Jet& rhs) const
+{
+  return (getTlv().Pt() <= rhs.getTlv().Pt());
+}
+
+// ----------------------------------------------------------------------------
+bool Jet::operator>=(const Jet& rhs) const
+{
+  return (getTlv().Pt() >= rhs.getTlv().Pt());
 }
