@@ -410,12 +410,56 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
 
   // Check for valid pt phase space
   // TODO check for pt phase space
+  m_trigger_cut_tool->passedEEPhaseSpace( m_electrons.getElectrons(EL_GOOD)
+                                        , m_muons.getMuons(MU_GOOD)
+                                        );
+  m_trigger_cut_tool->passedMMPhaseSpace( m_electrons.getElectrons(EL_GOOD)
+                                        , m_muons.getMuons(MU_GOOD)
+                                        );
+  m_trigger_cut_tool->passedEMPhaseSpace( m_electrons.getElectrons(EL_GOOD)
+                                        , m_muons.getMuons(MU_GOOD)
+                                        );
+  m_trigger_cut_tool->passedMEPhaseSpace( m_electrons.getElectrons(EL_GOOD)
+                                        , m_muons.getMuons(MU_GOOD)
+                                        );
 
   // Check trigger for this event
   // TODO check event level trigger
+  m_trigger_cut_tool->passedEETriggerChannel( m_event
+                                            , m_trigger
+                                            );
+  m_trigger_cut_tool->passedMMTriggerChannel( m_event
+                                            , m_trigger
+                                            );
+  m_trigger_cut_tool->passedEMTriggerChannel( m_event
+                                            , m_trigger
+                                            );
+  m_trigger_cut_tool->passedMETriggerChannel( m_event
+                                            , m_trigger
+                                            );
 
   // Check trigger matching
   // TODO check trigger matching
+  m_trigger_cut_tool->passedEETriggerMatching( m_event
+                                             , m_trigger_vec
+                                             , m_electrons.getElectrons(EL_GOOD)
+                                             , m_muons.getMuons(MU_GOOD)
+                                             );
+  m_trigger_cut_tool->passedMMTriggerMatching( m_event
+                                             , m_trigger_vec
+                                             , m_electrons.getElectrons(EL_GOOD)
+                                             , m_muons.getMuons(MU_GOOD)
+                                             );
+  m_trigger_cut_tool->passedEMTriggerMatching( m_event
+                                             , m_trigger_vec
+                                             , m_electrons.getElectrons(EL_GOOD)
+                                             , m_muons.getMuons(MU_GOOD)
+                                             );
+  m_trigger_cut_tool->passedMETriggerMatching( m_event
+                                             , m_trigger_vec
+                                             , m_electrons.getElectrons(EL_GOOD)
+                                             , m_muons.getMuons(MU_GOOD)
+                                             );
 
   // Check sign channel for this event
   // TODO check sign channel for this event

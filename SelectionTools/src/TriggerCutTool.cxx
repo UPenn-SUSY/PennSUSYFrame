@@ -13,7 +13,9 @@ SelectionTools::TriggerCutTool::TriggerCutTool(
                                           // , c_check_against_official(false)
                                           // , m_triggerReweight(NULL)
 {
-  DeclareProperty("do_trigger_matching", c_do_trigger_matching = false);
+  DeclareProperty("do_trigger_matching"    , c_do_trigger_matching = false);
+  DeclareProperty("check_official_matching", c_check_against_official = false);
+  // c_check_against_official = true;
 
   // m_triggerReweight = new triggerReweight2Lep();
 
@@ -269,32 +271,40 @@ bool SelectionTools::TriggerCutTool::passedEETriggerMatching(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
-  return passedEETriggerMatching2012(event, trig_vec, electrons, muons);
+  bool pass_trigger_match =
+      passedEETriggerMatching2012(event, trig_vec, electrons, muons);
 
-  /*
   // TODO make user configurable trigger cut
-  bool my_code = passedEETriggerMatching2012(event, trig_vec, el);
-
   if (c_check_against_official) {
-    bool official_code = passedEETriggerMatch_anders(event, trig_vec, el);
+    bool official_code = passedEETriggerMatch_anders( event
+                                                    , trig_vec
+                                                    , electrons
+                                                    , muons
+                                                    );
 
-    if (my_code != official_code) {
-      printf("passedEETriggerMatching TEST FAILED (sasa), I, official: %d %d, lepton size: %d\n", my_code?1:0, official_code?1:0, (int) el.size());
-      if (el.size() > 1) {
-        TLorentzVector tlv1 = el[0].getTlv();
-        TLorentzVector tlv2 = el[1].getTlv();
-        printf("pTs: %lf %lf\n", tlv1.Pt(), tlv2.Pt() );
-      }
-      // If conflict, call trigger match again with debug turned on
-      passedEETriggerMatch_anders(event, trig_vec, el, true);
+    if (pass_trigger_match != official_code) {
+      std::cout << "passedEETriggerMatching TEST FAILED -- "
+                << " our code: " << pass_trigger_match
+                << " official: " << official_code
+                << " num_electrons: " << electrons.size()
+                << " num_muons: " << muons.size()
+                << "\n";
+
+      // if (el.size() > 1) {
+      //   TLorentzVector tlv1 = el[0].getTlv();
+      //   TLorentzVector tlv2 = el[1].getTlv();
+      //   printf("pTs: %lf %lf\n", tlv1.Pt(), tlv2.Pt() );
+      // }
+      // // If conflict, call trigger match again with debug turned on
+      // passedEETriggerMatch_anders(event, trig_vec, el, true);
     }
-    // else {
-    //   printf("passedEETriggerMatching TEST PASSED (sasa), I, official: %d %d, lepton size: %ld\n", my_code?1:0, official_code?1:0, el.size());
-    // }
+    else {
+      std::cout << "passedEETriggerMatching TEST PASSED -- "
+                << "\n";
+    }
   }
 
-  return my_code;
-  */
+  return pass_trigger_match;
 }
 
 // -----------------------------------------------------------------------------
@@ -304,36 +314,40 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatching(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
-  return passedMMTriggerMatching2012(event, trig_vec, electrons, muons);
+  bool pass_trigger_match =
+      passedMMTriggerMatching2012(event, trig_vec, electrons, muons);
 
-  /*
-  // std::cout << "passedMMTriggerMatching\n";
   // TODO make user configurable trigger cut
-  bool my_code = passedMMTriggerMatching2012(event, trig_vec, mu);
-
-//  double test_mc_weight = this->MMweight( mu );
-//  printf("test sasa muon MC weight: %lf\n", test_mc_weight);
-
   if (c_check_against_official) {
-    bool official_code = passedMMTriggerMatch_anders(event, trig_vec, mu);
+    bool official_code = passedMMTriggerMatch_anders( event
+                                                    , trig_vec
+                                                    , electrons
+                                                    , muons
+                                                    );
 
-    if (my_code != official_code) {
-      printf("passedMMTriggerMatching TEST FAILED (sasa), I, official: %d %d, lepton size: %d\n", my_code?1:0, official_code?1:0, (int) mu.size() );
-      if (mu.size() > 1) {
-        TLorentzVector tlv1 = mu[0].getTlv();
-        TLorentzVector tlv2 = mu[1].getTlv();
-        printf("pTs: %lf %lf\n", tlv1.Pt(), tlv2.Pt() );
-      }
-      // If conflict, call trigger match again with debug turned on
-      passedMMTriggerMatch_anders(event, trig_vec, mu, true);
+    if (pass_trigger_match != official_code) {
+      std::cout << "passedMMTriggerMatching TEST FAILED -- "
+                << " our code: " << pass_trigger_match
+                << " official: " << official_code
+                << " num_electrons: " << electrons.size()
+                << " num_muons: " << muons.size()
+                << "\n";
+
+      // if (mu.size() > 1) {
+      //   TLorentzVector tlv1 = mu[0].getTlv();
+      //   TLorentzVector tlv2 = mu[1].getTlv();
+      //   printf("pTs: %lf %lf\n", tlv1.Pt(), tlv2.Pt() );
+      // }
+      // // If conflict, call trigger match again with debug turned on
+      // passedMMTriggerMatch_anders(event, trig_vec, mu, true);
     }
-    // else {
-    //   printf("passedMMTriggerMatching TEST PASSED (sasa), I, official: %d %d, lepton size: %ld\n", my_code?1:0, official_code?1:0, mu.size());
-    // }
+    else {
+      std::cout << "passedMMTriggerMatching TEST PASSED -- "
+                << "\n";
+    }
   }
 
-  return my_code;
-  */
+  return pass_trigger_match;
 }
 
 // -----------------------------------------------------------------------------
@@ -343,33 +357,39 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatching(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
-  return passedEMTriggerMatching2012(event, trig_vec, electrons, muons);
+  bool pass_trigger_match =
+      passedEMTriggerMatching2012(event, trig_vec, electrons, muons);
 
-  /*
-  // std::cout << "passedEMTriggerMatching\n";
   // TODO make user configurable trigger cut
-  bool my_code = passedEMTriggerMatching2012(event, trig_vec, el, mu);
-
   if (c_check_against_official) {
-    bool official_code = passedEMTriggerMatch_anders(event, trig_vec, el, mu);
+    bool official_code = passedEMTriggerMatch_anders( event
+                                                    , trig_vec
+                                                    , electrons
+                                                    , muons
+                                                    );
 
-    if (my_code != official_code) {
-      printf("passedEMTriggerMatching TEST FAILED (sasa), I, official: %d %d, lepton size: %d %d\n", my_code?1:0, official_code?1:0, (int) el.size(), (int) mu.size() );
-      if (el.size() > 0 && mu.size() > 0) {
-        TLorentzVector el_tlv = el[0].getTlv();
-        TLorentzVector mu_tlv = mu[0].getTlv();
-        printf("pTs: %lf %lf\n", el_tlv.Pt(), mu_tlv.Pt() );
-      }
-      // If conflict, call trigger match again with debug turned on
-      passedEMTriggerMatch_anders(event, trig_vec, el, mu, true);
+    if (pass_trigger_match != official_code) {
+      std::cout << "passedEMTriggerMatching TEST FAILED -- "
+                << " our code: " << pass_trigger_match
+                << " official: " << official_code
+                << " num_electrons: " << electrons.size()
+                << " num_muons: " << muons.size()
+                << "\n";
+      // if (el.size() > 0 && mu.size() > 0) {
+      //   TLorentzVector el_tlv = el[0].getTlv();
+      //   TLorentzVector mu_tlv = mu[0].getTlv();
+      //   printf("pTs: %lf %lf\n", el_tlv.Pt(), mu_tlv.Pt() );
+      // }
+      // // If conflict, call trigger match again with debug turned on
+      // passedEMTriggerMatch_anders(event, trig_vec, el, mu, true);
     }
-    // else {
-    //   printf("passedEMTriggerMatching TEST PASSED (sasa), I, official: %d %d, lepton size: %ld %ld\n", my_code?1:0, official_code?1:0, el.size(), mu.size() );
-    // }
+    else {
+      std::cout << "passedMETriggerMatching TEST PASSED -- "
+                << "\n";
+    }
   }
 
-  return my_code;
-  */
+  return pass_trigger_match;
 }
 
 // -----------------------------------------------------------------------------
@@ -379,265 +399,40 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatching(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
-  return passedMETriggerMatching2012(event, trig_vec, electrons, muons);
+  bool pass_trigger_match =
+    passedMETriggerMatching2012(event, trig_vec, electrons, muons);
 
-  /*
-  // std::cout << "passedMETriggerMatching\n";
   // TODO make user configurable trigger cut
-  bool my_code = passedMETriggerMatching2012(event, trig_vec, el, mu);
-
   if (c_check_against_official) {
-    bool official_code = passedMETriggerMatch_anders(event, trig_vec, el, mu);
+    bool official_code = passedMETriggerMatch_anders( event
+                                                    , trig_vec
+                                                    , electrons
+                                                    , muons
+                                                    );
 
-    if (my_code != official_code) {
-      printf("passedMETriggerMatching TEST FAILED (sasa), I, official: %d %d, lepton size: %d %d\n", my_code?1:0, official_code?1:0, (int) el.size(), (int) mu.size() );
-      if (el.size() > 0 && mu.size() > 0) {
-        TLorentzVector el_tlv = el[0].getTlv();
-        TLorentzVector mu_tlv = mu[0].getTlv();
-        printf("pTs: %lf %lf\n", el_tlv.Pt(), mu_tlv.Pt() );
-      }
-      // If conflict, call trigger match again with debug turned on
-      passedMETriggerMatch_anders(event, trig_vec, el, mu, true);
+    if (pass_trigger_match != official_code) {
+      std::cout << "passedMETriggerMatching TEST FAILED -- "
+                << " our code: " << pass_trigger_match
+                << " official: " << official_code
+                << " num_electrons: " << electrons.size()
+                << " num_muons: " << muons.size()
+                << "\n";
+      // if (el.size() > 0 && mu.size() > 0) {
+      //   TLorentzVector el_tlv = el[0].getTlv();
+      //   TLorentzVector mu_tlv = mu[0].getTlv();
+      //   printf("pTs: %lf %lf\n", el_tlv.Pt(), mu_tlv.Pt() );
+      // }
+      // // If conflict, call trigger match again with debug turned on
+      // passedMETriggerMatch_anders(event, trig_vec, el, mu, true);
+    }
+    else {
+      std::cout << "passedEMTriggerMatching TEST PASSED -- "
+                << "\n";
     }
   }
 
-  return my_code;
-  */
+  return pass_trigger_match;
 }
-
-
-
-/*
-// -----------------------------------------------------------------------------
-bool SelectionTools::TriggerCutTool::passedEETriggerMatch_anders(
-    Event& event,
-    TriggerVec& trig_vec,
-    std::vector<Electron>& el,
-    bool / *debug* /)
-{
-  if (el.size()<2) return false;
-
-  if (!is_data()) return true;
-
-  TLorentzVector l1 = el[0].getTlv();
-  TLorentzVector l2 = el[1].getTlv();
-
-  // TODO do correct kinematic cuts for ee events
-  // if ( l1.Pt()<14000. || l2.Pt()<8000. ) return false; // region B kinematic cuts
-
-  TriggerMatch2Lep *triggerMatchTool = new TriggerMatch2Lep();
-
-  int run = event.RunNumber();
-
-  unsigned int electron_trigger_object_size = trig_vec.trig_EF_el_px()->size();
-  std::vector<float> *trig_EF_el_px = trig_vec.trig_EF_el_px();
-  std::vector<float> *trig_EF_el_py = trig_vec.trig_EF_el_py();
-  std::vector<float> *trig_EF_el_pz = trig_vec.trig_EF_el_pz();
-  std::vector<float> *trig_EF_el_E  = trig_vec.trig_EF_el_E();
-
-  std::vector<int> *trig_EF_el_EF_e12Tvh_loose1 = trig_vec.trig_EF_el_EF_e12Tvh_loose1();
-  std::vector<int> *trig_EF_el_EF_e24vh_medium1 = trig_vec.trig_EF_el_EF_e24vh_medium1();
-  std::vector<int> *trig_EF_el_EF_e24vh_medium1_e7_medium1 = trig_vec.trig_EF_el_EF_e24vh_medium1_e7_medium1();
-
-  bool pass_ee_trigger = triggerMatchTool->getElecTriggerMatch(
-      l1, l2, run, electron_trigger_object_size,
-      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
-      trig_EF_el_EF_e12Tvh_loose1,
-      trig_EF_el_EF_e24vh_medium1,
-      trig_EF_el_EF_e24vh_medium1_e7_medium1);
-
-  delete triggerMatchTool;
-  return pass_ee_trigger;
-}
-
-bool SelectionTools::TriggerCutTool::passedMMTriggerMatch_anders(
-    Event& event,
-    TriggerVec& trig_vec,
-    std::vector<Muon>& mu,
-    bool / *debug* /)
-{
-  if (mu.size()<2) return false;
-
-  if (!is_data()) return true;
-
-  TLorentzVector l1 = mu[0].getTlv();
-  TLorentzVector l2 = mu[1].getTlv();
-
-  // TODO do correct kinematic cuts for mumu events
-  // if ( l1.Pt()<14000. || l2.Pt()<8000. ) return false; // region B kinematic cuts
-
-  TriggerMatch2Lep *triggerMatchTool = new TriggerMatch2Lep();
-
-  int run = event.RunNumber();
-
-  std::vector<int> *trig_EF_el_EF_e12Tvh_medium1 =
-      trig_vec.trig_EF_el_EF_e12Tvh_medium1();
-
-  unsigned int muon_trigger_object_size =
-      trig_vec.trig_EF_trigmuonef_track_CB_eta()->size();
-  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_eta =
-      trig_vec.trig_EF_trigmuonef_track_CB_eta();
-  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_phi =
-      trig_vec.trig_EF_trigmuonef_track_CB_phi();
-  std::vector<std::vector<int> >   *trig_EF_trigmuonef_track_CB_hasCB =
-      trig_vec.trig_EF_trigmuonef_track_CB_hasCB();
-
-  std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight =
-      trig_vec.trig_EF_trigmuonef_EF_mu18_tight();
-  std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS =
-      trig_vec.trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS();
-   std::vector<int> *trig_EF_trigmuonef_EF_mu13 =
-      trig_vec.trig_EF_trigmuonef_EF_mu13();
-
-  bool pass_mumu_trigger = triggerMatchTool->getMuonTriggerMatch(
-      l1, l2, run, muon_trigger_object_size,
-      trig_EF_trigmuonef_track_CB_eta,
-      trig_EF_trigmuonef_track_CB_phi,
-      trig_EF_trigmuonef_track_CB_hasCB,
-      trig_EF_trigmuonef_EF_mu18_tight,
-      trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS,
-      trig_EF_trigmuonef_EF_mu13);
-
-  delete triggerMatchTool;
-  return pass_mumu_trigger;
-}
-
-bool SelectionTools::TriggerCutTool::passedEMTriggerMatch_anders(
-    Event& event,
-    TriggerVec& trig_vec,
-    std::vector<Electron>& el,
-    std::vector<Muon>& mu,
-    bool / *debug* /)
-{
-  if (el.size()<1 || mu.size()<1) return false;
-
-  if (!is_data()) return true;
-
-  TLorentzVector l1 = el[0].getTlv();
-  TLorentzVector l2 = mu[0].getTlv();
-
-  TriggerMatch2Lep *triggerMatchTool = new TriggerMatch2Lep();
-
-  int run = event.RunNumber();
-
-  unsigned int electron_trigger_object_size = trig_vec.trig_EF_el_px()->size();
-  std::vector<float> *trig_EF_el_px = trig_vec.trig_EF_el_px();
-  std::vector<float> *trig_EF_el_py = trig_vec.trig_EF_el_py();
-  std::vector<float> *trig_EF_el_pz = trig_vec.trig_EF_el_pz();
-  std::vector<float> *trig_EF_el_E  = trig_vec.trig_EF_el_E();
-
-  std::vector<int> *trig_EF_el_EF_e12Tvh_medium1 = trig_vec.trig_EF_el_EF_e12Tvh_medium1();
-
-  unsigned int muon_trigger_object_size =
-      trig_vec.trig_EF_trigmuonef_track_CB_eta()->size();
-  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_eta =
-      trig_vec.trig_EF_trigmuonef_track_CB_eta();
-  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_phi =
-      trig_vec.trig_EF_trigmuonef_track_CB_phi();
-  std::vector<std::vector<int> >   *trig_EF_trigmuonef_track_CB_hasCB =
-      trig_vec.trig_EF_trigmuonef_track_CB_hasCB();
-
-  std::vector<int> *trig_EF_trigmuonef_EF_mu8 =
-      trig_vec.trig_EF_trigmuonef_EF_mu8();
-
-  bool pass_emu_trigger = triggerMatchTool->getEmuTriggerMatch(
-      l1, l2, run,
-      electron_trigger_object_size,
-      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
-      muon_trigger_object_size,
-      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
-      trig_EF_trigmuonef_track_CB_hasCB,
-      trig_EF_el_EF_e12Tvh_medium1, trig_EF_trigmuonef_EF_mu8);
-
-  delete triggerMatchTool;
-  return pass_emu_trigger;
-}
-
-bool SelectionTools::TriggerCutTool::passedMETriggerMatch_anders(
-    Event& event,
-    TriggerVec& trig_vec,
-    std::vector<Electron>& el,
-    std::vector<Muon>& mu,
-    bool / *debug* /)
-{
-  // static int count(0); count++; if (count<10) { printf("test sasa passedMETriggerMatch calling the officieal code\n");  }
-
-  if (el.size()<1 || mu.size()<1) return false;
-
-  if (!is_data()) return true;
-
-  TLorentzVector l1 = el[0].getTlv();
-  TLorentzVector l2 = mu[0].getTlv();
-
-  // if ( l1.Pt()<10000. || l1.Pt()>=14000. || l2.Pt()<18000. ) return false; // region B kinematic cuts
-
-  TriggerMatch2Lep *triggerMatchTool = new TriggerMatch2Lep();
-
-  int run = event.RunNumber();
-
-  unsigned int electron_trigger_object_size = trig_vec.trig_EF_el_px()->size();
-  std::vector<float> *trig_EF_el_px = trig_vec.trig_EF_el_px();
-  std::vector<float> *trig_EF_el_py = trig_vec.trig_EF_el_py();
-  std::vector<float> *trig_EF_el_pz = trig_vec.trig_EF_el_pz();
-  std::vector<float> *trig_EF_el_E  = trig_vec.trig_EF_el_E();
-
-  std::vector<int> *trig_EF_el_EF_e7T_medium1 =
-      trig_vec.trig_EF_el_EF_e7T_medium1();
-  std::vector<int> *trig_EF_el_EF_e12Tvh_medium1 =
-      trig_vec.trig_EF_el_EF_e12Tvh_medium1();
-  std::vector<int> *trig_EF_el_EF_e12Tvh_loose1 =
-      trig_vec.trig_EF_el_EF_e12Tvh_loose1();
-  std::vector<int> *trig_EF_el_EF_e24vh_medium1_e7_medium1 =
-      trig_vec.trig_EF_el_EF_e24vh_medium1_e7_medium1();
-  std::vector<int> *trig_EF_el_EF_e24vh_medium1 =
-      trig_vec.trig_EF_el_EF_e24vh_medium1();
-
-  unsigned int muon_trigger_object_size =
-      trig_vec.trig_EF_trigmuonef_track_CB_eta()->size();
-  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_eta =
-      trig_vec.trig_EF_trigmuonef_track_CB_eta();
-  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_phi =
-      trig_vec.trig_EF_trigmuonef_track_CB_phi();
-  std::vector<std::vector<int> >   *trig_EF_trigmuonef_track_CB_hasCB =
-      trig_vec.trig_EF_trigmuonef_track_CB_hasCB();
-
-  std::vector<int> *trig_EF_trigmuonef_EF_mu8 =
-      trig_vec.trig_EF_trigmuonef_EF_mu8();
-  std::vector<int> *trig_EF_trigmuonef_EF_mu13 =
-      trig_vec.trig_EF_trigmuonef_EF_mu13();
-  std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight =
-      trig_vec.trig_EF_trigmuonef_EF_mu18_tight();
-  std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS =
-      trig_vec.trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS();
-
-  bool pass_mue_trigger = triggerMatchTool->getMueTriggerMatch(
-      l1, l2, run,
-      electron_trigger_object_size,
-      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
-      muon_trigger_object_size,
-      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
-      trig_EF_trigmuonef_track_CB_hasCB,
-      trig_EF_el_EF_e7T_medium1, trig_EF_trigmuonef_EF_mu18_tight);
-
-  bool pass_emu_trigger = triggerMatchTool->getEmuTriggerMatch(
-      l1, l2, run,
-      electron_trigger_object_size,
-      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
-      muon_trigger_object_size,
-      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
-      trig_EF_trigmuonef_track_CB_hasCB,
-      trig_EF_el_EF_e12Tvh_medium1, trig_EF_trigmuonef_EF_mu8);
-
-  // if (pass_emu_trigger) { printf("pass_mue_trigger override, before %d\n", pass_mue_trigger?1:0); pass_mue_trigger = false;  }
-
-  delete triggerMatchTool;
-  return pass_mue_trigger;
-}
-*/
-
-
-
-
 
 // ----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedEETrigger2012(
@@ -1068,4 +863,234 @@ bool SelectionTools::TriggerCutTool::matchMuon(
                       , dr_cut
                       , pt_cut
                       );
+}
+
+
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::TriggerCutTool::passedEETriggerMatch_anders(
+    const Event* event,
+    const TriggerVec* trig_vec,
+    const std::vector<Electron*>& electrons,
+    const std::vector<Muon*>& /*muons*/,
+    bool /*debug*/)
+{
+  if (electrons.size()<2) return false;
+  if (!is_data()) return true;
+
+  TLorentzVector l1 = electrons.at(0)->getTlv();
+  TLorentzVector l2 = electrons.at(1)->getTlv();
+
+  TriggerMatch2Lep *triggerMatchTool = new TriggerMatch2Lep();
+
+  int run = event->RunNumber();
+
+  size_t electron_trigger_object_size = trig_vec->trig_EF_el_px()->size();
+  std::vector<float>* trig_EF_el_px =
+      const_cast<std::vector<float>*>(trig_vec->trig_EF_el_px());
+  std::vector<float>* trig_EF_el_py =
+      const_cast<std::vector<float>*>(trig_vec->trig_EF_el_py());
+  std::vector<float>* trig_EF_el_pz =
+      const_cast<std::vector<float>*>(trig_vec->trig_EF_el_pz());
+  std::vector<float>* trig_EF_el_E =
+      const_cast<std::vector<float>*>(trig_vec->trig_EF_el_E());
+
+  std::vector<int>* trig_EF_el_EF_e12Tvh_loose1 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_el_EF_e12Tvh_loose1());
+  std::vector<int>* trig_EF_el_EF_e24vh_medium1 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_el_EF_e24vh_medium1());
+  std::vector<int>* trig_EF_el_EF_e24vh_medium1_e7_medium1 =
+      const_cast<std::vector<int>*>(
+          trig_vec->trig_EF_el_EF_e24vh_medium1_e7_medium1());
+
+  bool pass_ee_trigger = triggerMatchTool->getElecTriggerMatch(
+      l1, l2, run, electron_trigger_object_size,
+      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
+      trig_EF_el_EF_e12Tvh_loose1,
+      trig_EF_el_EF_e24vh_medium1,
+      trig_EF_el_EF_e24vh_medium1_e7_medium1);
+
+  delete triggerMatchTool;
+  return pass_ee_trigger;
+}
+
+bool SelectionTools::TriggerCutTool::passedMMTriggerMatch_anders(
+    const Event* event,
+    const TriggerVec* trig_vec,
+    const std::vector<Electron*>& /*electrons*/,
+    const std::vector<Muon*>& muons,
+    bool /*debug*/)
+{
+  if (muons.size()<2) return false;
+  if (!is_data()) return true;
+
+  TLorentzVector l1 = muons.at(0)->getTlv();
+  TLorentzVector l2 = muons.at(1)->getTlv();
+
+  TriggerMatch2Lep *triggerMatchTool = new TriggerMatch2Lep();
+
+  int run = event->RunNumber();
+
+  std::vector<int>* trig_EF_el_EF_e12Tvh_medium1 =
+      const_cast<std::vector<int>* >(trig_vec->trig_EF_el_EF_e12Tvh_medium1());
+
+  size_t muon_trigger_object_size =
+      trig_vec->trig_EF_trigmuonef_track_CB_eta()->size();
+  std::vector<std::vector<float> >* trig_EF_trigmuonef_track_CB_eta =
+      const_cast<std::vector<std::vector<float> >*>(
+          trig_vec->trig_EF_trigmuonef_track_CB_eta());
+  std::vector<std::vector<float> >* trig_EF_trigmuonef_track_CB_phi =
+      const_cast<std::vector<std::vector<float> >*>(
+          trig_vec->trig_EF_trigmuonef_track_CB_phi());
+  std::vector<std::vector<int> >* trig_EF_trigmuonef_track_CB_hasCB =
+      const_cast<std::vector<std::vector<int> >*>(
+          trig_vec->trig_EF_trigmuonef_track_CB_hasCB());
+
+  std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight =
+      const_cast<std::vector<int>*>(
+          trig_vec->trig_EF_trigmuonef_EF_mu18_tight());
+  std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS =
+      const_cast<std::vector<int>*>(
+          trig_vec->trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS());
+  std::vector<int> *trig_EF_trigmuonef_EF_mu13 =
+      const_cast<std::vector<int>*>(
+          trig_vec->trig_EF_trigmuonef_EF_mu13());
+
+  bool pass_mumu_trigger = triggerMatchTool->getMuonTriggerMatch(
+      l1, l2, run, muon_trigger_object_size,
+      trig_EF_trigmuonef_track_CB_eta,
+      trig_EF_trigmuonef_track_CB_phi,
+      trig_EF_trigmuonef_track_CB_hasCB,
+      trig_EF_trigmuonef_EF_mu18_tight,
+      trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS,
+      trig_EF_trigmuonef_EF_mu13);
+
+  delete triggerMatchTool;
+  return pass_mumu_trigger;
+}
+
+bool SelectionTools::TriggerCutTool::passedEMTriggerMatch_anders(
+    const Event* event,
+    const TriggerVec* trig_vec,
+    const std::vector<Electron*>& electrons,
+    const std::vector<Muon*>& muons,
+    bool /*debug*/)
+{
+  if (electrons.size()<1 || muons.size()<1) return false;
+  if (!is_data()) return true;
+
+  TLorentzVector l1 = electrons.at(0)->getTlv();
+  TLorentzVector l2 = muons.at(0)->getTlv();
+
+  TriggerMatch2Lep *triggerMatchTool = new TriggerMatch2Lep();
+
+  int run = event->RunNumber();
+
+  unsigned int electron_trigger_object_size = trig_vec->trig_EF_el_px()->size();
+  std::vector<float>* trig_EF_el_px = const_cast<std::vector<float>*>(trig_vec->trig_EF_el_px());
+  std::vector<float>* trig_EF_el_py = const_cast<std::vector<float>*>(trig_vec->trig_EF_el_py());
+  std::vector<float>* trig_EF_el_pz = const_cast<std::vector<float>*>(trig_vec->trig_EF_el_pz());
+  std::vector<float>* trig_EF_el_E  = const_cast<std::vector<float>*>(trig_vec->trig_EF_el_E());
+
+  std::vector<int>* trig_EF_el_EF_e12Tvh_medium1 = const_cast<std::vector<int>*>(trig_vec->trig_EF_el_EF_e12Tvh_medium1());
+
+  unsigned int muon_trigger_object_size =
+      trig_vec->trig_EF_trigmuonef_track_CB_eta()->size();
+  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_eta =
+      const_cast<std::vector<std::vector<float> >*>(trig_vec->trig_EF_trigmuonef_track_CB_eta());
+  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_phi =
+      const_cast<std::vector<std::vector<float> >*>(trig_vec->trig_EF_trigmuonef_track_CB_phi());
+  std::vector<std::vector<int> >   *trig_EF_trigmuonef_track_CB_hasCB =
+      const_cast<std::vector<std::vector<int> >*>(trig_vec->trig_EF_trigmuonef_track_CB_hasCB());
+
+  std::vector<int> *trig_EF_trigmuonef_EF_mu8 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_trigmuonef_EF_mu8());
+
+  bool pass_emu_trigger = triggerMatchTool->getEmuTriggerMatch(
+      l1, l2, run,
+      electron_trigger_object_size,
+      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
+      muon_trigger_object_size,
+      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
+      trig_EF_trigmuonef_track_CB_hasCB,
+      trig_EF_el_EF_e12Tvh_medium1, trig_EF_trigmuonef_EF_mu8);
+
+  delete triggerMatchTool;
+  return pass_emu_trigger;
+}
+
+bool SelectionTools::TriggerCutTool::passedMETriggerMatch_anders(
+    const Event* event,
+    const TriggerVec* trig_vec,
+    const std::vector<Electron*>& electrons,
+    const std::vector<Muon*>& muons,
+    bool /*debug*/)
+{
+  // static int count(0); count++; if (count<10) { printf("test sasa passedMETriggerMatch calling the officieal code\n");  }
+
+  if (electrons.size()<1 || muons.size()<1) return false;
+  if (!is_data()) return true;
+
+  TLorentzVector l1 = electrons.at(0)->getTlv();
+  TLorentzVector l2 = muons.at(0)->getTlv();
+
+  TriggerMatch2Lep *triggerMatchTool = new TriggerMatch2Lep();
+
+  int run = event->RunNumber();
+
+  size_t electron_trigger_object_size = trig_vec->trig_EF_el_px()->size();
+  std::vector<float>* trig_EF_el_px = const_cast<std::vector<float>*>(trig_vec->trig_EF_el_px());
+  std::vector<float>* trig_EF_el_py = const_cast<std::vector<float>*>(trig_vec->trig_EF_el_py());
+  std::vector<float>* trig_EF_el_pz = const_cast<std::vector<float>*>(trig_vec->trig_EF_el_pz());
+  std::vector<float>* trig_EF_el_E  = const_cast<std::vector<float>*>(trig_vec->trig_EF_el_E());
+
+  std::vector<int> *trig_EF_el_EF_e7T_medium1 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_el_EF_e7T_medium1());
+  std::vector<int> *trig_EF_el_EF_e12Tvh_medium1 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_el_EF_e12Tvh_medium1());
+  std::vector<int> *trig_EF_el_EF_e12Tvh_loose1 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_el_EF_e12Tvh_loose1());
+  std::vector<int> *trig_EF_el_EF_e24vh_medium1_e7_medium1 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_el_EF_e24vh_medium1_e7_medium1());
+  std::vector<int> *trig_EF_el_EF_e24vh_medium1 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_el_EF_e24vh_medium1());
+
+  size_t muon_trigger_object_size =
+      trig_vec->trig_EF_trigmuonef_track_CB_eta()->size();
+  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_eta =
+      const_cast<std::vector<std::vector<float> >* >(trig_vec->trig_EF_trigmuonef_track_CB_eta());
+  std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_phi =
+      const_cast<std::vector<std::vector<float> >* >(trig_vec->trig_EF_trigmuonef_track_CB_phi());
+  std::vector<std::vector<int> >   *trig_EF_trigmuonef_track_CB_hasCB =
+      const_cast<std::vector<std::vector<int> >* >(trig_vec->trig_EF_trigmuonef_track_CB_hasCB());
+
+  std::vector<int> *trig_EF_trigmuonef_EF_mu8 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_trigmuonef_EF_mu8());
+  std::vector<int> *trig_EF_trigmuonef_EF_mu13 =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_trigmuonef_EF_mu13());
+  std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_trigmuonef_EF_mu18_tight());
+  std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS =
+      const_cast<std::vector<int>*>(trig_vec->trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS());
+
+  bool pass_mue_trigger = triggerMatchTool->getMueTriggerMatch(
+      l1, l2, run,
+      electron_trigger_object_size,
+      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
+      muon_trigger_object_size,
+      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
+      trig_EF_trigmuonef_track_CB_hasCB,
+      trig_EF_el_EF_e7T_medium1, trig_EF_trigmuonef_EF_mu18_tight);
+
+  bool pass_emu_trigger = triggerMatchTool->getEmuTriggerMatch(
+      l1, l2, run,
+      electron_trigger_object_size,
+      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
+      muon_trigger_object_size,
+      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
+      trig_EF_trigmuonef_track_CB_hasCB,
+      trig_EF_el_EF_e12Tvh_medium1, trig_EF_trigmuonef_EF_mu8);
+
+  delete triggerMatchTool;
+  return pass_mue_trigger;
 }

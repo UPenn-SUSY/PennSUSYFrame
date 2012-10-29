@@ -1,3 +1,6 @@
+2012-10-26 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Updated trigger matching in TriggerCutTool
+
 2012-10-25 Brett Jackson <Brett.David.Jackson@cern.ch>
 	* Added Trigger handle class
 	* Added TriggerVec handle class

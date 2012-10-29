@@ -11,7 +11,7 @@
 #include "AtlasSFrameUtils/include/Trigger.h"
 #include "AtlasSFrameUtils/include/TriggerVec.h"
 
-// #include "TriggerMatch/TriggerMatch2Lep.h"
+#include "TriggerMatch/TriggerMatch2Lep.h"
 // #include "DGTriggerReweight/triggerReweight2Lep.h"
 
 // ============================================================================
@@ -101,35 +101,10 @@ namespace SelectionTools
                                  , const std::vector<Muon*>&
                                  );
 
-    // // the following functions are wrappers to call the official trigger
-    // // match pachage
-    // bool passedEETriggerMatch_anders(
-    //     Event& event,
-    //     TriggerVec& trig_vec,
-    //     std::vector<Electron>& el,
-    //     bool debug=false);
-    // bool passedMMTriggerMatch_anders(
-    //     Event& event,
-    //     TriggerVec& trig_vec,
-    //     std::vector<Muon>& mu,
-    //     bool debug=false);
-    // bool passedEMTriggerMatch_anders(
-    //     Event& event,
-    //     TriggerVec& trig_vec,
-    //     std::vector<Electron>& el,
-    //     std::vector<Muon>& mu,
-    //     bool debug=false);
-    // bool passedMETriggerMatch_anders(
-    //     Event& event,
-    //     TriggerVec& trig_vec,
-    //     std::vector<Electron>& el,
-    //     std::vector<Muon>& mu,
-    //     bool debug=false);
-
   // --------------------------------------------------------------------------
   private:
     bool c_do_trigger_matching;
-    // bool c_check_against_official;
+    bool c_check_against_official;
 
 	  // void testSasa();
 	  // triggerReweight2Lep *m_triggerReweight;
@@ -203,7 +178,35 @@ namespace SelectionTools
                   , double pt_cut
                   );
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // the following functions are wrappers to call the official trigger
+    // match pachage
+    bool passedEETriggerMatch_anders( const Event* event
+                                    , const TriggerVec* trig_vec
+                                    , const std::vector<Electron*>& electrons
+                                    , const std::vector<Muon*>& muons
+                                    , bool debug=false
+                                    );
+    bool passedMMTriggerMatch_anders( const Event* event
+                                    , const TriggerVec* trig_vec
+                                    , const std::vector<Electron*>& electrons
+                                    , const std::vector<Muon*>& muons
+                                    , bool debug=false
+                                    );
+    bool passedEMTriggerMatch_anders( const Event* event
+                                    , const TriggerVec* trig_vec
+                                    , const std::vector<Electron*>& electrons
+                                    , const std::vector<Muon*>& muons
+                                    , bool debug=false
+                                    );
+    bool passedMETriggerMatch_anders( const Event* event
+                                    , const TriggerVec* trig_vec
+                                    , const std::vector<Electron*>& electrons
+                                    , const std::vector<Muon*>& muons
+                                    , bool debug=false
+                                    );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(TriggerCutTool, 0);
   };
 }
