@@ -463,7 +463,6 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
 
   // Check sign channel for this event
   // TODO check sign channel for this event
-
 }
 
 // ----------------------------------------------------------------------------
