@@ -6,12 +6,7 @@
 
 #include "Vertex.h"
 
-// ============================================================================
-enum VERTEX_COLLECTIONS { VERT_ALL = 0  // Green tree snake
-                        , VERT_GOOD     // Vertices flagged as good
-                        , VERT_GT_2     // Vertices with more than two tracks
-                        , VERT_N
-                        };
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // ============================================================================
 class VertexContainer

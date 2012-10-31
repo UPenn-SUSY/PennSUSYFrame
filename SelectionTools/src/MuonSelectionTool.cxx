@@ -149,7 +149,7 @@ bool SelectionTools::MuonSelectionTool::isSignal(
 
   // Check for signal isolation
   int num_good_vertices = vertices.num(VERT_GOOD);
-  double ptcone30 = mu->getIsoCorr( CommonTools::PTCONE
+  double ptcone30 = mu->getIsoCorr( PTCONE
                                   , 30
                                   , num_good_vertices
                                   );

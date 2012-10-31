@@ -8,18 +8,10 @@
 #include "Event.h"
 #include "Jet.h"
 #include "VertexContainer.h"
-#include "CommonTools/include/TLVTool.h"
 
-// ============================================================================
-enum JET_COLLECTIONS { JET_ALL = 0  // Green tree snake
-                     , JET_BASELINE // Baseline cuts
-                     , JET_BAD      // Baseline + overlap removal
-                     , JET_GOOD     // Baseline + overlap removal
-                     , JET_CENTRAL  // Light central cuts
-                     , JET_B        // B-jet cuts
-                     , JET_FORWARD  // Forward cuts
-                     , JET_N
-                     };
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+#include "CommonTools/include/TLVTool.h"
 
 // ============================================================================
 class JetContainer

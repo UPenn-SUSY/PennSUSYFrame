@@ -220,21 +220,20 @@ void SusyAnalysisTools::EventDescription::setPassTriggerMatch(
 
 // ----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::setFlavorChannel(
-    SusyAnalysisTools::FLAVOR_CHANNEL flavor_channel)
+    FLAVOR_CHANNEL flavor_channel)
 {
   m_flavor_channel = flavor_channel;
 }
 
 // ----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::setPhaseSpace(
-    SusyAnalysisTools::PHASE_SPACE phase_space)
+    PHASE_SPACE phase_space)
 {
   m_phase_space = phase_space;
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPhaseSpace(
-    TRIG_PHASE trig_phase)
+void SusyAnalysisTools::EventDescription::setPhaseSpace(TRIG_PHASE trig_phase)
 {
   PHASE_SPACE phase_space = PHASE_NONE;
   switch (trig_phase) {
@@ -259,14 +258,14 @@ void SusyAnalysisTools::EventDescription::setPhaseSpace(
 
 // ----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::setTriggerChannel(
-    SusyAnalysisTools::TRIGGER_CHANNEL trigger_channel)
+    TRIGGER_CHANNEL trigger_channel)
 {
   m_trigger_channel = trigger_channel;
 }
 
 // ----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::setSignChannel(
-    SusyAnalysisTools::SIGN_CHANNEL sign_channel)
+    SIGN_CHANNEL sign_channel)
 {
   m_sign_channel = sign_channel;
 }
@@ -291,7 +290,7 @@ void SusyAnalysisTools::EventDescription::setCFCandidate(bool cf_candidate)
 
 // ----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::setTruthSignChannel(
-    SusyAnalysisTools::SIGN_CHANNEL truth_sign_channel)
+    SIGN_CHANNEL truth_sign_channel)
 {
   m_truth_sign_channel = truth_sign_channel;
 }
@@ -387,29 +386,25 @@ bool SusyAnalysisTools::EventDescription::getPassTriggerMatch()
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::FLAVOR_CHANNEL
-    SusyAnalysisTools::EventDescription::getFlavorChannel()
+FLAVOR_CHANNEL SusyAnalysisTools::EventDescription::getFlavorChannel()
 {
   return m_flavor_channel;
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::PHASE_SPACE
-    SusyAnalysisTools::EventDescription::getPhaseSpace()
+PHASE_SPACE SusyAnalysisTools::EventDescription::getPhaseSpace()
 {
   return m_phase_space;
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::TRIGGER_CHANNEL
-    SusyAnalysisTools::EventDescription::getTriggerChannel()
+TRIGGER_CHANNEL SusyAnalysisTools::EventDescription::getTriggerChannel()
 {
   return m_trigger_channel;
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::SIGN_CHANNEL
-    SusyAnalysisTools::EventDescription::getSignChannel()
+SIGN_CHANNEL SusyAnalysisTools::EventDescription::getSignChannel()
 {
   return m_sign_channel;
 }
@@ -433,8 +428,7 @@ bool SusyAnalysisTools::EventDescription::getCFCandidate()
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::SIGN_CHANNEL
-    SusyAnalysisTools::EventDescription::getTruthSignChannel()
+SIGN_CHANNEL SusyAnalysisTools::EventDescription::getTruthSignChannel()
 {
   return m_truth_sign_channel;
 }

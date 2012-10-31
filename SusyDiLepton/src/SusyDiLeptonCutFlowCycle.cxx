@@ -408,21 +408,20 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
   }
 
   // Check flavor channel for this event
-  SusyAnalysisTools::FLAVOR_CHANNEL flavor_channel =
-      SusyAnalysisTools::FLAVOR_NONE;
+  FLAVOR_CHANNEL flavor_channel = FLAVOR_NONE;
   if (num_good_el == 2 && num_good_mu == 0) {
-    flavor_channel = SusyAnalysisTools::FLAVOR_EE;
+    flavor_channel = FLAVOR_EE;
   }
   if (num_good_el == 0 && num_good_mu == 2) {
-    flavor_channel = SusyAnalysisTools::FLAVOR_MM;
+    flavor_channel = FLAVOR_MM;
   }
   if (num_good_el == 1 && num_good_mu == 1) {
-    flavor_channel = SusyAnalysisTools::FLAVOR_EM;
+    flavor_channel = FLAVOR_EM;
   }
   m_event->getEventDesc()->setFlavorChannel(flavor_channel);
 
   // Check for valid pt phase space
-  SusyAnalysisTools::TRIG_PHASE trigger_phase_space =
+  TRIG_PHASE trigger_phase_space =
       m_trigger_cut_tool->getPhaseSpace( m_electrons.getElectrons(EL_GOOD)
                                        , m_muons.getMuons(MU_GOOD)
                                        );
@@ -430,8 +429,7 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
 
   // Check trigger for this event
   // TODO check event level trigger
-  SusyAnalysisTools::TRIGGER_CHANNEL trigger_channel =
-      SusyAnalysisTools::TRIGGER_NONE;
+  TRIGGER_CHANNEL trigger_channel = TRIGGER_NONE;
   m_trigger_cut_tool->passedEETriggerChannel( m_event
                                             , m_trigger
                                             );

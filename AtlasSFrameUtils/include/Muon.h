@@ -17,6 +17,8 @@
 
 #include "D3PDObjects/include/MuonD3PDObject.h"
 
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 // ============================================================================
 namespace CommonTools
 {
@@ -45,8 +47,7 @@ public:
 
   int getNMuonStations() const;
 
-  double getIsoCorr(
-      CommonTools::ISO_TYPE, int cone_size, int num_vertex) const;
+  double getIsoCorr(ISO_TYPE, int cone_size, int num_vertex) const;
 
   void print(const VertexContainer&) const;
 

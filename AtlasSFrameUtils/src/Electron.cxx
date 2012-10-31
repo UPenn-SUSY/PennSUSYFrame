@@ -93,7 +93,7 @@ float Electron::getZ0SinTheta() const
 }
 
 // -----------------------------------------------------------------------------
-double Electron::getIsoCorr( CommonTools::ISO_TYPE iso_type
+double Electron::getIsoCorr( ISO_TYPE iso_type
                            , int cone_size
                            , int num_vertex
                            ) const
@@ -101,26 +101,26 @@ double Electron::getIsoCorr( CommonTools::ISO_TYPE iso_type
   double iso = 0;
 
   switch (iso_type) {
-    case CommonTools::REL_PTCONE         : // same as PTCONE
-    case CommonTools::PTCONE             : iso = ptcone(cone_size);
-                                           break;
-    case CommonTools::REL_ETCONE         : // same as ETCONE
-    case CommonTools::ETCONE             : iso = etcone(cone_size);
-                                           break;
-    case CommonTools::REL_TOPOETCONE     : // same as TOPOETCONE
-    case CommonTools::TOPOETCONE         : iso = topoetcone(cone_size);
-                                           break;
-    case CommonTools::REL_TOPOETCONE_CORR: // same as TOPOETCONE_CORR
-    case CommonTools::TOPOETCONE_CORR    : iso = topoetcone_corrected(cone_size);
+    case REL_PTCONE         : // same as PTCONE
+    case PTCONE             : iso = ptcone(cone_size);
+                              break;
+    case REL_ETCONE         : // same as ETCONE
+    case ETCONE             : iso = etcone(cone_size);
+                              break;
+    case REL_TOPOETCONE     : // same as TOPOETCONE
+    case TOPOETCONE         : iso = topoetcone(cone_size);
+                              break;
+    case REL_TOPOETCONE_CORR: // same as TOPOETCONE_CORR
+    case TOPOETCONE_CORR    : iso = topoetcone_corrected(cone_size);
                                            break;
   }
 
   iso -= m_iso_corr_tool->getIsoCorrection(iso_type, cone_size, num_vertex);
 
-  if (  iso_type == CommonTools::REL_PTCONE
-     || iso_type == CommonTools::REL_ETCONE
-     || iso_type == CommonTools::REL_TOPOETCONE
-     || iso_type == CommonTools::REL_TOPOETCONE_CORR
+  if (  iso_type == REL_PTCONE
+     || iso_type == REL_ETCONE
+     || iso_type == REL_TOPOETCONE
+     || iso_type == REL_TOPOETCONE_CORR
      ) {
     iso /= getTlv().Pt();
   }
@@ -215,22 +215,22 @@ void Electron::print(const VertexContainer& vertices) const
             << "\tz0sinthata: " << getZ0SinTheta()
             << "\n"
             << "\tptcone30 (no correction): " << getIsoCorr(
-                CommonTools::PTCONE, 30, 0)
+                PTCONE, 30, 0)
             << "\tptcone30/pt (no correction): " << getIsoCorr(
-                CommonTools::REL_PTCONE, 30, 0)
+                REL_PTCONE, 30, 0)
             << "\tetcone30 (no correction): " << getIsoCorr(
-                CommonTools::TOPOETCONE_CORR, 30, 0)
+                TOPOETCONE_CORR, 30, 0)
             << "\tetcone30/pt (no correction): " << getIsoCorr(
-                CommonTools::REL_TOPOETCONE_CORR, 30, 0)
+                REL_TOPOETCONE_CORR, 30, 0)
             << "\n"
             << "\tptcone30: " << getIsoCorr(
-                CommonTools::PTCONE, 30, num_good_vertices)
+                PTCONE, 30, num_good_vertices)
             << "\tptcone30/pt: " << getIsoCorr(
-                CommonTools::REL_PTCONE, 30, num_good_vertices)
+                REL_PTCONE, 30, num_good_vertices)
             << "\tetcone30: " << getIsoCorr(
-                CommonTools::TOPOETCONE_CORR, 30, num_good_vertices)
+                TOPOETCONE_CORR, 30, num_good_vertices)
             << "\tetcone30/pt: " << getIsoCorr(
-                CommonTools::REL_TOPOETCONE_CORR, 30, num_good_vertices)
+                REL_TOPOETCONE_CORR, 30, num_good_vertices)
             << "\n";
 }
 

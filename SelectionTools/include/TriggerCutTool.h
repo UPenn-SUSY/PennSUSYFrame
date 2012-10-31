@@ -39,9 +39,9 @@ namespace SelectionTools
                                          );
 
     // Phase space channel
-    SusyAnalysisTools::TRIG_PHASE getPhaseSpace( const std::vector<Electron*>&
-                                               , const std::vector<Muon*>&
-                                               );
+    TRIG_PHASE getPhaseSpace( const std::vector<Electron*>&
+                            , const std::vector<Muon*>&
+                            );
     bool passedEEPhaseSpace( const std::vector<Electron*>&
                            , const std::vector<Muon*>&
                            );

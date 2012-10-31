@@ -86,11 +86,11 @@ bool SelectionTools::ElectronSelectionTool::isSignal(Electron* el)
   // Check for signal isolation
   // TODO get proper value for num good vertices
   int num_good_vertices = 0;
-  double ptcone30 = el->getIsoCorr( CommonTools::PTCONE
+  double ptcone30 = el->getIsoCorr( PTCONE
                                   , 30
                                   , num_good_vertices
                                   );
-  double topoetcone30 = el->getIsoCorr( CommonTools::TOPOETCONE_CORR
+  double topoetcone30 = el->getIsoCorr( TOPOETCONE_CORR
                                       , 30
                                       , num_good_vertices
                                       );

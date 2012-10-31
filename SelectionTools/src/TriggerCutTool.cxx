@@ -137,7 +137,7 @@ bool SelectionTools::TriggerCutTool::passedAnySingleOrDiLeptonTrigger(
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::TRIG_PHASE SelectionTools::TriggerCutTool::getPhaseSpace(
+TRIG_PHASE SelectionTools::TriggerCutTool::getPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
@@ -156,9 +156,9 @@ SusyAnalysisTools::TRIG_PHASE SelectionTools::TriggerCutTool::getPhaseSpace(
     }
 
     if (pt_0 > 14. && pt_1 > 14.)
-      return SusyAnalysisTools::TRIG_EE_A;
+      return TRIG_EE_A;
     if (pt_0 > 25. && pt_1 > 10 && pt_1 < 14.)
-      return SusyAnalysisTools::TRIG_EE_B;
+      return TRIG_EE_B;
   }
   else if (num_el == 0 && num_mu == 2) {
     // mm channel
@@ -171,27 +171,21 @@ SusyAnalysisTools::TRIG_PHASE SelectionTools::TriggerCutTool::getPhaseSpace(
       pt_1 = pt_tmp;
     }
 
-    if (pt_0 > 18 && pt_1 > 18)
-      return SusyAnalysisTools::TRIG_MM_A;
-    if (pt_0 > 18 && pt_1 > 14 && pt_1 < 18)
-      return SusyAnalysisTools::TRIG_MM_B;
-    if (pt_0 > 18 && pt_1 > 8  && pt_1 < 14)
-      return SusyAnalysisTools::TRIG_MM_C;
-    if (pt_0 > 14 && pt_0 < 18 && pt_1 > 14 && pt_1 < 18)
-      return SusyAnalysisTools::TRIG_MM_D;
+    if (pt_0 > 18 && pt_1 > 18)                           return TRIG_MM_A;
+    if (pt_0 > 18 && pt_1 > 14 && pt_1 < 18)              return TRIG_MM_B;
+    if (pt_0 > 18 && pt_1 > 8  && pt_1 < 14)              return TRIG_MM_C;
+    if (pt_0 > 14 && pt_0 < 18 && pt_1 > 14 && pt_1 < 18) return TRIG_MM_D;
   }
   else if (num_el == 1 && num_mu == 1) {
     // em channel
     double pt_e = electrons.at(0)->getTlv().Pt()/1000.;
     double pt_m = muons.at(0)->getTlv().Pt()/1000.;
 
-    if (pt_e > 14 && pt_m > 8)
-      return SusyAnalysisTools::TRIG_EM_A;
-    if (pt_e > 10 && pt_e < 14 && pt_m > 18)
-      return SusyAnalysisTools::TRIG_EM_B;
+    if (pt_e > 14 && pt_m > 8)               return TRIG_EM_A;
+    if (pt_e > 10 && pt_e < 14 && pt_m > 18) return TRIG_EM_B;
   }
 
-  return SusyAnalysisTools::TRIG_NONE;
+  return TRIG_NONE;
 }
 
 // ----------------------------------------------------------------------------
@@ -199,9 +193,9 @@ bool SelectionTools::TriggerCutTool::passedEEPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
-  SusyAnalysisTools::TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  return (  phase == SusyAnalysisTools::TRIG_EE_A
-         || phase == SusyAnalysisTools::TRIG_EE_B
+  TRIG_PHASE phase = getPhaseSpace(electrons, muons);
+  return (  phase == TRIG_EE_A
+         || phase == TRIG_EE_B
          );
 }
 
@@ -210,11 +204,11 @@ bool SelectionTools::TriggerCutTool::passedMMPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
-  SusyAnalysisTools::TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  return (  phase == SusyAnalysisTools::TRIG_MM_A
-         || phase == SusyAnalysisTools::TRIG_MM_B
-         || phase == SusyAnalysisTools::TRIG_MM_C
-         || phase == SusyAnalysisTools::TRIG_MM_D
+  TRIG_PHASE phase = getPhaseSpace(electrons, muons);
+  return (  phase == TRIG_MM_A
+         || phase == TRIG_MM_B
+         || phase == TRIG_MM_C
+         || phase == TRIG_MM_D
          );
 }
 
@@ -223,8 +217,8 @@ bool SelectionTools::TriggerCutTool::passedEMPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
-  SusyAnalysisTools::TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  return (phase == SusyAnalysisTools::TRIG_EM_A);
+  TRIG_PHASE phase = getPhaseSpace(electrons, muons);
+  return (phase == TRIG_EM_A);
 }
 
 // ----------------------------------------------------------------------------
@@ -232,8 +226,8 @@ bool SelectionTools::TriggerCutTool::passedMEPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
 {
-  SusyAnalysisTools::TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  return (phase == SusyAnalysisTools::TRIG_EM_B);
+  TRIG_PHASE phase = getPhaseSpace(electrons, muons);
+  return (phase == TRIG_EM_B);
 }
 
 // -----------------------------------------------------------------------------
@@ -504,11 +498,8 @@ bool SelectionTools::TriggerCutTool::passedEETriggerMatching2012(
     const std::vector<Muon*>& muons)
 {
   // immediately fail events failing phase space selection
-  SusyAnalysisTools::TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  if (  phase != SusyAnalysisTools::TRIG_EE_A
-     && phase != SusyAnalysisTools::TRIG_EE_B
-     )
-    return false;
+  TRIG_PHASE phase = getPhaseSpace(electrons, muons);
+  if (  phase != TRIG_EE_A && phase != TRIG_EE_B ) return false;
   // if (electrons.size() < 2) return false;
 
   // Only do trigger matching on data. always set true for MC
@@ -516,13 +507,13 @@ bool SelectionTools::TriggerCutTool::passedEETriggerMatching2012(
   bool pass_trigger_match = false;
 
   // ee region A
-  if (phase == SusyAnalysisTools::TRIG_EE_A) {
+  if (phase == TRIG_EE_A) {
     pass_trigger_match = matchElectronList(
         electrons, trig_vec->trig_EF_el_EF_e12Tvh_loose1(), trig_vec,
         2, 0.15, 0);
   }
   // ee region B
-  if (phase == SusyAnalysisTools::TRIG_EE_B) {
+  if (phase == TRIG_EE_B) {
     // require the leading lepton matches with e24vh_medium1
     bool pass_single_match = false;
     if (*electrons.at(0) > *electrons.at(1)) {
@@ -556,11 +547,11 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatching2012(
     const std::vector<Muon*>& muons)
 {
   // immediately fail events failing phase space selection
-  SusyAnalysisTools::TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  if (  phase != SusyAnalysisTools::TRIG_MM_A
-     && phase != SusyAnalysisTools::TRIG_MM_B
-     && phase != SusyAnalysisTools::TRIG_MM_C
-     && phase != SusyAnalysisTools::TRIG_MM_D
+  TRIG_PHASE phase = getPhaseSpace(electrons, muons);
+  if (  phase != TRIG_MM_A
+     && phase != TRIG_MM_B
+     && phase != TRIG_MM_C
+     && phase != TRIG_MM_D
      )
     return false;
   // if (muons.size() < 2) return false;
@@ -579,7 +570,7 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatching2012(
 
 
   // mm region A
-  if (phase == SusyAnalysisTools::TRIG_MM_A) {
+  if (phase == TRIG_MM_A) {
       // require at least one muon matches with ef_mu18_tight
       bool pass_single_match = matchMuonList(
           muons, trig_vec->trig_EF_trigmuonef_EF_mu18_tight(),
@@ -594,7 +585,7 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatching2012(
       pass_trigger_match = (pass_single_match && pass_double_match);
   }
 
-  if (phase == SusyAnalysisTools::TRIG_MM_B) {
+  if (phase == TRIG_MM_B) {
     // require leading muon matches with EF_mu18_tight
     Muon* leading = muons.at(0);
     if (*muons.at(1) > *leading)
@@ -620,7 +611,7 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatching2012(
                          || pass_double_match_2
                          );
   }
-  if (phase == SusyAnalysisTools::TRIG_MM_C) {
+  if (phase == TRIG_MM_C) {
     // require leading muon matches with EF_mu18_tight
     Muon* leading = muons.at(0);
     if (*muons.at(1) > *leading)
@@ -638,7 +629,7 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatching2012(
     // check the && of the single and double match above
     pass_trigger_match = (pass_single_match && pass_double_match);
   }
-  if (phase == SusyAnalysisTools::TRIG_MM_D) {
+  if (phase == TRIG_MM_D) {
     // require both muons match with EF_mu13
     pass_trigger_match = matchMuonList(
         muons, trig_vec->trig_EF_trigmuonef_EF_mu13(),
@@ -656,8 +647,8 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatching2012(
     const std::vector<Muon*>& muons)
 {
   // immediately fail events failing phase space selection
-  SusyAnalysisTools::TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  if (phase != SusyAnalysisTools::TRIG_EM_A) return false;
+  TRIG_PHASE phase = getPhaseSpace(electrons, muons);
+  if (phase != TRIG_EM_A) return false;
   // if (electrons.size() < 1 || muons.size() < 1) return false;
 
   // Only do trigger matching on data. always set true for MC
@@ -665,7 +656,7 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatching2012(
   bool pass_trigger_match = false;
 
   // em region A
-  if (phase == SusyAnalysisTools::TRIG_EM_A) {
+  if (phase == TRIG_EM_A) {
     bool pass_electron_match = matchElectronList(
         electrons, trig_vec->trig_EF_trigmuonef_EF_mu8(),
         trig_vec, 1, 0.15, 0);
@@ -687,8 +678,8 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatching2012(
     const std::vector<Muon*>& muons)
 {
   // immediately fail events failing phase space selection
-  SusyAnalysisTools::TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  if (phase != SusyAnalysisTools::TRIG_EM_B) return false;
+  TRIG_PHASE phase = getPhaseSpace(electrons, muons);
+  if (phase != TRIG_EM_B) return false;
   // if (electrons.size() < 1 || muons.size() < 1) return false;
 
   // Only do trigger matching on data. always set true for MC
@@ -696,7 +687,7 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatching2012(
   bool pass_trigger_match = false;
 
   // em region A
-  if (phase == SusyAnalysisTools::TRIG_EM_A) {
+  if (phase == TRIG_EM_A) {
     bool pass_electron_match = matchElectronList(
         electrons, trig_vec->trig_EF_el_EF_e7T_medium1(),
         trig_vec, 1, 0.15, 0);

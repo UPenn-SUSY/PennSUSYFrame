@@ -8,18 +8,10 @@
 #include "Muon.h"
 #include "VertexContainer.h"
 
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
-
-// ============================================================================
-enum MUON_COLLECTIONS { MU_ALL = 0  // Green tree snake
-                      , MU_BASELINE // Baseline cuts
-                      , MU_GOOD     // Baseline + overlap removal
-                      , MU_SIGNAL   // Signal cuts
-                      , MU_BAD      // Bad muons
-                      , MU_COSMIC   // Cosmic muons
-                      , MU_N
-                      };
 
 // ============================================================================
 class MuonContainer

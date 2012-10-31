@@ -8,18 +8,11 @@
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
 
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 // ============================================================================
 namespace CommonTools{
 // ============================================================================
-  enum ISO_TYPE { PTCONE
-                , ETCONE
-                , TOPOETCONE
-                , TOPOETCONE_CORR
-                , REL_PTCONE
-                , REL_ETCONE
-                , REL_TOPOETCONE
-                , REL_TOPOETCONE_CORR
-                };
   /**
   * helper class to correct isolation for pileup
   */

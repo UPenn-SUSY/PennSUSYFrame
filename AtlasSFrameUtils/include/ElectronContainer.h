@@ -8,16 +8,10 @@
 #include "Electron.h"
 #include "VertexContainer.h"
 
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
-
-// ============================================================================
-enum ELECTRON_COLLECTIONS { EL_ALL = 0  // Green tree snake
-                          , EL_BASELINE // Baseline cuts
-                          , EL_GOOD     // Baseline + overlap removal
-                          , EL_SIGNAL   // Signal cuts
-                          , EL_N
-                          };
 
 // ============================================================================
 class ElectronContainer
