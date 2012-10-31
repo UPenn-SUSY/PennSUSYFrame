@@ -49,8 +49,15 @@ unsigned long long SusyAnalysisTools::EventDescription::toInt() const
                 << ADD_FLAVOR_CHANNEL);
   event_desc += (  static_cast<unsigned long long>(m_phase_space)
                 << ADD_PHASE_SPACE);
-  event_desc += (  static_cast<unsigned long long>(m_trigger_channel)
-                << ADD_TRIGGER_CHANNEL);
+  event_desc += (  static_cast<unsigned long long>(m_pass_ee_trigger)
+                << ADD_TRIGGER_EE);
+  event_desc += (  static_cast<unsigned long long>(m_pass_mm_trigger)
+                << ADD_TRIGGER_MM);
+  event_desc += (  static_cast<unsigned long long>(m_pass_em_trigger)
+                << ADD_TRIGGER_EM);
+  event_desc += (  static_cast<unsigned long long>(m_pass_me_trigger)
+                << ADD_TRIGGER_ME);
+
   event_desc += (  static_cast<unsigned long long>(m_pass_trigger_match)
                 << ADD_TRIGGER_MATCH);
   event_desc += (  static_cast<unsigned long long>(m_sign_channel)
@@ -101,6 +108,9 @@ SusyAnalysisTools::EventDescription&
   m_pass_2_good_leptons    = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_2_GOOD_LEPTONS    ) );
   m_pass_mll               = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_MLL               ) );
   m_pass_2_signal_leptons  = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_2_SIGNAL_LEPTONS  ) );
+  m_pass_ee_trigger        = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRIGGER_EE        ) );
+  m_pass_mm_trigger        = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRIGGER_MM        ) );
+  m_pass_em_trigger        = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRIGGER_EM        ) );
   m_pass_trigger_match     = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRIGGER_MATCH     ) );
   m_truth_matched          = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRUTH_MATCHED     ) );
   m_truth_prompt           = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRUTH_PROMPT      ) );
@@ -110,8 +120,6 @@ SusyAnalysisTools::EventDescription&
     static_cast<FLAVOR_CHANNEL>( ((1 << SIZE_FLAVOR )-1) & (rhs >> ADD_FLAVOR_CHANNEL) );
   m_phase_space =
     static_cast<PHASE_SPACE>( ((1 << SIZE_PHASE)-1) & (rhs >> ADD_PHASE_SPACE) );
-  m_trigger_channel =
-    static_cast<TRIGGER_CHANNEL>( ((1 << SIZE_TRIGGER)-1) & (rhs >> ADD_TRIGGER_CHANNEL) );
   m_sign_channel =
     static_cast<SIGN_CHANNEL>( ((1 << SIZE_SIGN)-1) & (rhs >> ADD_SIGN_CHANNEL) );
   m_truth_sign_channel =
@@ -257,10 +265,27 @@ void SusyAnalysisTools::EventDescription::setPhaseSpace(TRIG_PHASE trig_phase)
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setTriggerChannel(
-    TRIGGER_CHANNEL trigger_channel)
+void SusyAnalysisTools::EventDescription::setEETrigger(bool pass_ee_trigger)
 {
-  m_trigger_channel = trigger_channel;
+  m_pass_ee_trigger = pass_ee_trigger;
+}
+
+// ----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setMMTrigger(bool pass_mm_trigger)
+{
+  m_pass_mm_trigger = pass_mm_trigger;
+}
+
+// ----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setEMTrigger(bool pass_em_trigger)
+{
+  m_pass_em_trigger = pass_em_trigger;
+}
+
+// ----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setMETrigger(bool pass_me_trigger)
+{
+  m_pass_me_trigger = pass_me_trigger;
 }
 
 // ----------------------------------------------------------------------------
@@ -398,9 +423,21 @@ PHASE_SPACE SusyAnalysisTools::EventDescription::getPhaseSpace()
 }
 
 // ----------------------------------------------------------------------------
-TRIGGER_CHANNEL SusyAnalysisTools::EventDescription::getTriggerChannel()
+bool SusyAnalysisTools::EventDescription::isEETrigger()
 {
-  return m_trigger_channel;
+  return false;
+}
+
+// ----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::isMMTrigger()
+{
+  return false;
+}
+
+// ----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::isEMTrigger()
+{
+  return false;
 }
 
 // ----------------------------------------------------------------------------

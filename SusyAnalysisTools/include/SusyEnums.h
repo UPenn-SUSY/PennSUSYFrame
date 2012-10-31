@@ -8,12 +8,6 @@ enum FLAVOR_CHANNEL { FLAVOR_NONE = 0
                     , FLAVOR_EM   = 4
                     };
 
-enum TRIGGER_CHANNEL { TRIGGER_NONE = 0
-                     , TRIGGER_EE   = 1
-                     , TRIGGER_MM   = 2
-                     , TRIGGER_EM   = 4
-                     };
-
 enum PHASE_SPACE { PHASE_NONE = 0
                  , PHASE_EE   = 1
                  , PHASE_MM   = 2

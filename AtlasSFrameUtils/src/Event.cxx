@@ -97,3 +97,21 @@ SusyAnalysisTools::EventDescription* Event::getEventDesc()
 {
   return &m_event_desc;
 }
+
+// ----------------------------------------------------------------------------
+FLAVOR_CHANNEL Event::getFlavorChannel()
+{
+  return m_event_desc.getFlavorChannel();
+}
+
+// ----------------------------------------------------------------------------
+SIGN_CHANNEL Event::getSignChannel()
+{
+  return m_event_desc.getSignChannel();
+}
+
+// ----------------------------------------------------------------------------
+PHASE_SPACE Event::getPhaseSpace()
+{
+  return m_event_desc.getPhaseSpace();
+}

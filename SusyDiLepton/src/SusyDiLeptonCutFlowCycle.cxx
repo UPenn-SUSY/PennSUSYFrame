@@ -428,21 +428,32 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
   m_event->getEventDesc()->setPhaseSpace(trigger_phase_space);
 
   // Check trigger for this event
-  // TODO check event level trigger
-  TRIGGER_CHANNEL trigger_channel = TRIGGER_NONE;
-  m_trigger_cut_tool->passedEETriggerChannel( m_event
-                                            , m_trigger
-                                            );
-  m_trigger_cut_tool->passedMMTriggerChannel( m_event
-                                            , m_trigger
-                                            );
-  m_trigger_cut_tool->passedEMTriggerChannel( m_event
-                                            , m_trigger
-                                            );
-  m_trigger_cut_tool->passedMETriggerChannel( m_event
-                                            , m_trigger
-                                            );
-  m_event->getEventDesc()->setTriggerChannel(trigger_channel);
+  bool pass_ee_trigger = m_trigger_cut_tool->passedEETriggerChannel( m_event
+                                                                   , m_trigger
+                                                                   );
+  m_event->getEventDesc()->setEETrigger(pass_ee_trigger);
+
+  bool pass_mm_trigger = m_trigger_cut_tool->passedMMTriggerChannel( m_event
+                                                                   , m_trigger
+                                                                   );
+  m_event->getEventDesc()->setMMTrigger(pass_mm_trigger);
+
+  bool pass_em_trigger = m_trigger_cut_tool->passedEMTriggerChannel( m_event
+                                                                   , m_trigger
+                                                                   );
+  m_event->getEventDesc()->setEMTrigger(pass_em_trigger);
+
+  bool pass_me_trigger = m_trigger_cut_tool->passedMETriggerChannel( m_event
+                                                                   , m_trigger
+                                                                   );
+  m_event->getEventDesc()->setMETrigger(pass_me_trigger);
+  if ( pass_ee_trigger == false
+     && pass_mm_trigger == false
+     && pass_em_trigger == false
+     && pass_me_trigger == false
+     ) {
+    // TODO reject event if critical cut
+  }
 
   // Check trigger matching
   // TODO check trigger matching

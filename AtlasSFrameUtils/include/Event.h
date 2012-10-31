@@ -33,6 +33,10 @@ public:
   void setCrossSectionWeight(double weight);
   void setBTagWeight(double weight);
 
+  FLAVOR_CHANNEL  getFlavorChannel();
+  SIGN_CHANNEL    getSignChannel();
+  PHASE_SPACE     getPhaseSpace();
+
   SusyAnalysisTools::EventDescription* getEventDesc();
 
 private:
@@ -49,6 +53,5 @@ private:
   ClassDef(Event, 1);
 
 };
-
 
 #endif // AtlasSFrameUtils_Event_h

@@ -2,6 +2,7 @@
 	* Updates to event description class
 	* Collecting all enums into a single header
 	* Updates to cut flow cycle - Starting to make cuts!
+	* Updated handling of Trigger bits in event description
 
 2012-10-29 Brett Jackson <Brett.David.Jackson@cern.ch>
 	* Added event description class

@@ -39,7 +39,10 @@ namespace SusyAnalysisTools
       void setFlavorChannel(FLAVOR_CHANNEL);
       void setPhaseSpace(PHASE_SPACE);
       void setPhaseSpace(TRIG_PHASE);
-      void setTriggerChannel(TRIGGER_CHANNEL);
+      void setEETrigger(bool);
+      void setMMTrigger(bool);
+      void setEMTrigger(bool);
+      void setMETrigger(bool);
       void setSignChannel(SIGN_CHANNEL);
 
       void setTruthMatched(bool);
@@ -64,7 +67,9 @@ namespace SusyAnalysisTools
       bool getPassTriggerMatch();
       FLAVOR_CHANNEL  getFlavorChannel();
       PHASE_SPACE     getPhaseSpace();
-      TRIGGER_CHANNEL getTriggerChannel();
+      bool isEETrigger();
+      bool isMMTrigger();
+      bool isEMTrigger();
       SIGN_CHANNEL    getSignChannel();
 
       bool getTruthMatched();
@@ -74,35 +79,37 @@ namespace SusyAnalysisTools
 
     // ------------------------------------------------------------------------
     private:
-      static const unsigned long long SIZE_BOOL    = 1;
-      static const unsigned long long SIZE_FLAVOR  = 3;
-      static const unsigned long long SIZE_TRIGGER = 3;
-      static const unsigned long long SIZE_PHASE   = 4;
-      static const unsigned long long SIZE_SIGN    = 2;
+      static const unsigned int SIZE_BOOL    = 1;
+      static const unsigned int SIZE_FLAVOR  = 3;
+      static const unsigned int SIZE_PHASE   = 4;
+      static const unsigned int SIZE_SIGN    = 2;
 
-      static const unsigned long long ADD_GRL                = 0;
-      static const unsigned long long ADD_INCOMPLETE_EVENT   = 1;
-      static const unsigned long long ADD_LAR_ERROR          = 2;
-      static const unsigned long long ADD_TILE_ERROR         = 3;
-      static const unsigned long long ADD_TILE_CAL_HOT_SPOT  = 4;
-      static const unsigned long long ADD_BAD_JETS           = 5;
-      static const unsigned long long ADD_PRIMARY_VERTEX     = 6;
-      static const unsigned long long ADD_BAD_MUONS          = 7;
-      static const unsigned long long ADD_COSMIC_MUONS       = 8;
-      static const unsigned long long ADD_HFOR               = 9;
-      static const unsigned long long ADD_GE_2_GOOD_LEPTONS  = 10;
-      static const unsigned long long ADD_2_GOOD_LEPTONS     = 11;
-      static const unsigned long long ADD_MLL                = 12;
-      static const unsigned long long ADD_2_SIGNAL_LEPTONS   = 13;
-      static const unsigned long long ADD_FLAVOR_CHANNEL     = 14;
-      static const unsigned long long ADD_PHASE_SPACE        = 17;
-      static const unsigned long long ADD_TRIGGER_CHANNEL    = 21;
-      static const unsigned long long ADD_TRIGGER_MATCH      = 24;
-      static const unsigned long long ADD_SIGN_CHANNEL       = 25;
-      static const unsigned long long ADD_TRUTH_SIGN_CHANNEL = 30;
-      static const unsigned long long ADD_TRUTH_MATCHED      = 32;
-      static const unsigned long long ADD_TRUTH_PROMPT       = 33;
-      static const unsigned long long ADD_TRUTH_CF_CANDIDATE = 34;
+      static const unsigned int ADD_GRL                = 0;
+      static const unsigned int ADD_INCOMPLETE_EVENT   = 1;
+      static const unsigned int ADD_LAR_ERROR          = 2;
+      static const unsigned int ADD_TILE_ERROR         = 3;
+      static const unsigned int ADD_TILE_CAL_HOT_SPOT  = 4;
+      static const unsigned int ADD_BAD_JETS           = 5;
+      static const unsigned int ADD_PRIMARY_VERTEX     = 6;
+      static const unsigned int ADD_BAD_MUONS          = 7;
+      static const unsigned int ADD_COSMIC_MUONS       = 8;
+      static const unsigned int ADD_HFOR               = 9;
+      static const unsigned int ADD_GE_2_GOOD_LEPTONS  = 10;
+      static const unsigned int ADD_2_GOOD_LEPTONS     = 11;
+      static const unsigned int ADD_2_SIGNAL_LEPTONS   = 12;
+      static const unsigned int ADD_MLL                = 13;
+      static const unsigned int ADD_FLAVOR_CHANNEL     = 14;
+      static const unsigned int ADD_PHASE_SPACE        = 17;
+      static const unsigned int ADD_TRIGGER_EE         = 21;
+      static const unsigned int ADD_TRIGGER_MM         = 22;
+      static const unsigned int ADD_TRIGGER_EM         = 23;
+      static const unsigned int ADD_TRIGGER_ME         = 24;
+      static const unsigned int ADD_TRIGGER_MATCH      = 25;
+      static const unsigned int ADD_SIGN_CHANNEL       = 26;
+      static const unsigned int ADD_TRUTH_SIGN_CHANNEL = 30;
+      static const unsigned int ADD_TRUTH_MATCHED      = 32;
+      static const unsigned int ADD_TRUTH_PROMPT       = 33;
+      static const unsigned int ADD_TRUTH_CF_CANDIDATE = 34;
 
       bool            m_pass_grl;
       bool            m_pass_incomplete_event;
@@ -120,7 +127,10 @@ namespace SusyAnalysisTools
       bool            m_pass_2_signal_leptons;
       FLAVOR_CHANNEL  m_flavor_channel;
       PHASE_SPACE     m_phase_space;
-      TRIGGER_CHANNEL m_trigger_channel;
+      bool            m_pass_ee_trigger;
+      bool            m_pass_mm_trigger;
+      bool            m_pass_em_trigger;
+      bool            m_pass_me_trigger;
       bool            m_pass_trigger_match;
       SIGN_CHANNEL    m_sign_channel;
 
