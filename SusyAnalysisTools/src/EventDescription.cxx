@@ -23,6 +23,8 @@ unsigned long long SusyAnalysisTools::EventDescription::toInt() const
                 << ADD_INCOMPLETE_EVENT);
   event_desc += (  static_cast<unsigned long long>(m_pass_lar_error)
                 << ADD_LAR_ERROR);
+  event_desc += (  static_cast<unsigned long long>(m_pass_tile_error)
+                << ADD_TILE_ERROR);
   event_desc += (  static_cast<unsigned long long>(m_pass_tile_cal_hot_spot)
                 << ADD_TILE_CAL_HOT_SPOT);
   event_desc += (  static_cast<unsigned long long>(m_pass_bad_jets)
@@ -66,6 +68,12 @@ unsigned long long SusyAnalysisTools::EventDescription::toInt() const
 }
 
 // ----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::clear()
+{
+  *this = 0;
+}
+
+// ----------------------------------------------------------------------------
 SusyAnalysisTools::EventDescription&
     SusyAnalysisTools::EventDescription::operator=(
         const SusyAnalysisTools::EventDescription& rhs)
@@ -82,6 +90,7 @@ SusyAnalysisTools::EventDescription&
   m_pass_grl               = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_GRL               ) );
   m_pass_incomplete_event  = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_INCOMPLETE_EVENT  ) );
   m_pass_lar_error         = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_LAR_ERROR         ) );
+  m_pass_tile_error        = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TILE_ERROR        ) );
   m_pass_tile_cal_hot_spot = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TILE_CAL_HOT_SPOT ) );
   m_pass_bad_jets          = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_BAD_JETS          ) );
   m_pass_primary_vertex    = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_PRIMARY_VERTEX    ) );
@@ -118,7 +127,8 @@ void SusyAnalysisTools::EventDescription::setPassGrl(bool pass_grl)
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPassIncompleteEvent(bool pass_incomplete_event)
+void SusyAnalysisTools::EventDescription::setPassIncompleteEvent(
+    bool pass_incomplete_event)
 {
   m_pass_incomplete_event = pass_incomplete_event;
 }
@@ -130,7 +140,14 @@ void SusyAnalysisTools::EventDescription::setPassLarError(bool pass_lar_error)
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPassTileCalHotSpot(bool pass_tile_cal_hot_spot)
+void SusyAnalysisTools::EventDescription::setPassTileError(bool pass_tile_error)
+{
+  m_pass_tile_error = pass_tile_error;
+}
+
+// ----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setPassTileCalHotSpot(
+    bool pass_tile_cal_hot_spot)
 {
   m_pass_tile_cal_hot_spot = pass_tile_cal_hot_spot;
 }
@@ -142,7 +159,8 @@ void SusyAnalysisTools::EventDescription::setPassBadJets(bool pass_bad_jets)
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPassPrimaryVertex(bool pass_primary_vertex)
+void SusyAnalysisTools::EventDescription::setPassPrimaryVertex(
+    bool pass_primary_vertex)
 {
   m_pass_primary_vertex = pass_primary_vertex;
 }
@@ -154,7 +172,8 @@ void SusyAnalysisTools::EventDescription::setPassBadMuons(bool pass_bad_muons)
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPassCosmicMuons(bool pass_cosmic_muons)
+void SusyAnalysisTools::EventDescription::setPassCosmicMuons(
+    bool pass_cosmic_muons)
 {
   m_pass_cosmic_muons = pass_cosmic_muons;
 }
@@ -166,13 +185,15 @@ void SusyAnalysisTools::EventDescription::setPassHFOR(bool pass_hfor)
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPassGE2GoodLeptons(bool pass_ge_2_good_leptons)
+void SusyAnalysisTools::EventDescription::setPassGE2GoodLeptons(
+    bool pass_ge_2_good_leptons)
 {
   m_pass_ge_2_good_leptons = pass_ge_2_good_leptons;
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPass2GoodLeptons(bool pass_2_good_leptons)
+void SusyAnalysisTools::EventDescription::setPass2GoodLeptons(
+    bool pass_2_good_leptons)
 {
   m_pass_2_good_leptons = pass_2_good_leptons;
 }
@@ -184,37 +205,68 @@ void SusyAnalysisTools::EventDescription::setPassMll(bool pass_mll)
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPass2SignalLeptons(bool pass_2_signal_leptons)
+void SusyAnalysisTools::EventDescription::setPass2SignalLeptons(
+    bool pass_2_signal_leptons)
 {
   m_pass_2_signal_leptons = pass_2_signal_leptons;
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPassTriggerMatch(bool pass_trigger_match)
+void SusyAnalysisTools::EventDescription::setPassTriggerMatch(
+    bool pass_trigger_match)
 {
   m_pass_trigger_match = pass_trigger_match;
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setFlavorChannel(SusyAnalysisTools::FLAVOR_CHANNEL flavor_channel)
+void SusyAnalysisTools::EventDescription::setFlavorChannel(
+    SusyAnalysisTools::FLAVOR_CHANNEL flavor_channel)
 {
   m_flavor_channel = flavor_channel;
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setPhaseSpace(SusyAnalysisTools::PHASE_SPACE phase_space)
+void SusyAnalysisTools::EventDescription::setPhaseSpace(
+    SusyAnalysisTools::PHASE_SPACE phase_space)
 {
   m_phase_space = phase_space;
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setTriggerChannel(SusyAnalysisTools::TRIGGER_CHANNEL trigger_channel)
+void SusyAnalysisTools::EventDescription::setPhaseSpace(
+    TRIG_PHASE trig_phase)
+{
+  PHASE_SPACE phase_space = PHASE_NONE;
+  switch (trig_phase) {
+    case TRIG_EE_A : // treat all EE phase spaces the same
+    case TRIG_EE_B : phase_space = PHASE_EE;
+                     break;
+    case TRIG_MM_A : // treat all MM phase spaces the same
+    case TRIG_MM_B : // treat all MM phase spaces the same
+    case TRIG_MM_C : // treat all MM phase spaces the same
+    case TRIG_MM_D : phase_space = PHASE_MM;
+                     break;
+    case TRIG_EM_A : phase_space = PHASE_EM;
+                     break;
+    case TRIG_EM_B : phase_space = PHASE_ME;
+                     break;
+    default        : phase_space = PHASE_NONE;
+                     break;
+  };
+
+  setPhaseSpace(phase_space);
+}
+
+// ----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setTriggerChannel(
+    SusyAnalysisTools::TRIGGER_CHANNEL trigger_channel)
 {
   m_trigger_channel = trigger_channel;
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setSignChannel(SusyAnalysisTools::SIGN_CHANNEL sign_channel)
+void SusyAnalysisTools::EventDescription::setSignChannel(
+    SusyAnalysisTools::SIGN_CHANNEL sign_channel)
 {
   m_sign_channel = sign_channel;
 }
@@ -238,7 +290,8 @@ void SusyAnalysisTools::EventDescription::setCFCandidate(bool cf_candidate)
 }
 
 // ----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::setTruthSignChannel(SusyAnalysisTools::SIGN_CHANNEL truth_sign_channel)
+void SusyAnalysisTools::EventDescription::setTruthSignChannel(
+    SusyAnalysisTools::SIGN_CHANNEL truth_sign_channel)
 {
   m_truth_sign_channel = truth_sign_channel;
 }
@@ -259,6 +312,12 @@ bool SusyAnalysisTools::EventDescription::getPassIncompleteEVent()
 bool SusyAnalysisTools::EventDescription::getPassLarError()
 {
   return m_pass_lar_error;
+}
+
+// ----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassTileError()
+{
+  return m_pass_tile_error;
 }
 
 // ----------------------------------------------------------------------------
@@ -328,25 +387,29 @@ bool SusyAnalysisTools::EventDescription::getPassTriggerMatch()
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::FLAVOR_CHANNEL SusyAnalysisTools::EventDescription::getFlavorChannel()
+SusyAnalysisTools::FLAVOR_CHANNEL
+    SusyAnalysisTools::EventDescription::getFlavorChannel()
 {
   return m_flavor_channel;
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::PHASE_SPACE SusyAnalysisTools::EventDescription::getPhaseSpace()
+SusyAnalysisTools::PHASE_SPACE
+    SusyAnalysisTools::EventDescription::getPhaseSpace()
 {
   return m_phase_space;
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::TRIGGER_CHANNEL SusyAnalysisTools::EventDescription::getTriggerChannel()
+SusyAnalysisTools::TRIGGER_CHANNEL
+    SusyAnalysisTools::EventDescription::getTriggerChannel()
 {
   return m_trigger_channel;
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::SIGN_CHANNEL SusyAnalysisTools::EventDescription::getSignChannel()
+SusyAnalysisTools::SIGN_CHANNEL
+    SusyAnalysisTools::EventDescription::getSignChannel()
 {
   return m_sign_channel;
 }
@@ -370,7 +433,8 @@ bool SusyAnalysisTools::EventDescription::getCFCandidate()
 }
 
 // ----------------------------------------------------------------------------
-SusyAnalysisTools::SIGN_CHANNEL SusyAnalysisTools::EventDescription::getTruthSignChannel()
+SusyAnalysisTools::SIGN_CHANNEL
+    SusyAnalysisTools::EventDescription::getTruthSignChannel()
 {
   return m_truth_sign_channel;
 }

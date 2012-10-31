@@ -43,6 +43,8 @@
 #include "SelectionTools/include/ObjectCleaningTool.h"
 #include "SelectionTools/include/TriggerCutTool.h"
 
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 /**
 *   @short CycleBase class to run the Susy Di-lepton cut flow
 *

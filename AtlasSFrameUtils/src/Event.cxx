@@ -21,6 +21,18 @@ Event::Event( const ::Long64_t& master
 }
 
 // ----------------------------------------------------------------------------
+void Event::clear()
+{
+  m_event_desc.clear();
+
+  m_pile_up_weight       = 0.;
+  m_lepton_eff_weight    = 0.;
+  m_trigger_weight       = 0.;
+  m_cross_section_weight = 0.;
+  m_b_tag_weight         = 0.;
+}
+
+// ----------------------------------------------------------------------------
 double Event::getPileUpWeight()
 {
   return m_pile_up_weight;
@@ -78,4 +90,10 @@ void Event::setCrossSectionWeight(double weight)
 void Event::setBTagWeight(double weight)
 {
   m_b_tag_weight = weight;
+}
+
+// ----------------------------------------------------------------------------
+SusyAnalysisTools::EventDescription* Event::getEventDesc()
+{
+  return &m_event_desc;
 }

@@ -2,29 +2,31 @@
 #ifndef SusyAnalysisTools_EventDescription_h
 #define SusyAnalysisTools_EventDescription_h
 
+#include "SusyEnums.h"
+
 // ============================================================================
 namespace SusyAnalysisTools
 {
-  enum FLAVOR_CHANNEL { FLAVOR_NONE = 0
-                      , FLAVOR_EE   = 1
-                      , FLAVOR_MM   = 2
-                      , FLAVOR_EM   = 4
-                      };
-  enum TRIGGER_CHANNEL { TRIGGER_NONE = 0
-                       , TRIGGER_EE   = 1
-                       , TRIGGER_MM   = 2
-                       , TRIGGER_EM   = 4
-                       };
-  enum PHASE_SPACE { PHASE_NONE = 0
-                   , PHASE_EE   = 1
-                   , PHASE_MM   = 2
-                   , PHASE_EM   = 4
-                   , PHASE_ME   = 8
-                   };
-  enum SIGN_CHANNEL { SIGN_NONE = 0
-                    , SIGN_OS   = 1
-                    , SIGN_SS   = 2
-                    };
+  // enum FLAVOR_CHANNEL { FLAVOR_NONE = 0
+  //                     , FLAVOR_EE   = 1
+  //                     , FLAVOR_MM   = 2
+  //                     , FLAVOR_EM   = 4
+  //                     };
+  // enum TRIGGER_CHANNEL { TRIGGER_NONE = 0
+  //                      , TRIGGER_EE   = 1
+  //                      , TRIGGER_MM   = 2
+  //                      , TRIGGER_EM   = 4
+  //                      };
+  // enum PHASE_SPACE { PHASE_NONE = 0
+  //                  , PHASE_EE   = 1
+  //                  , PHASE_MM   = 2
+  //                  , PHASE_EM   = 4
+  //                  , PHASE_ME   = 8
+  //                  };
+  // enum SIGN_CHANNEL { SIGN_NONE = 0
+  //                   , SIGN_OS   = 1
+  //                   , SIGN_SS   = 2
+  //                   };
 
   // ==========================================================================
   class EventDescription
@@ -36,12 +38,14 @@ namespace SusyAnalysisTools
 
       unsigned long long toInt() const;
 
+      void clear();
       EventDescription& operator=(const EventDescription&);
       EventDescription& operator=(const unsigned long long&);
 
       void setPassGrl(bool);
       void setPassIncompleteEvent(bool);
       void setPassLarError(bool);
+      void setPassTileError(bool);
       void setPassTileCalHotSpot(bool);
       void setPassBadJets(bool);
       void setPassPrimaryVertex(bool);
@@ -55,6 +59,7 @@ namespace SusyAnalysisTools
       void setPassTriggerMatch(bool);
       void setFlavorChannel(FLAVOR_CHANNEL);
       void setPhaseSpace(PHASE_SPACE);
+      void setPhaseSpace(TRIG_PHASE);
       void setTriggerChannel(TRIGGER_CHANNEL);
       void setSignChannel(SIGN_CHANNEL);
 
@@ -66,6 +71,7 @@ namespace SusyAnalysisTools
       bool getPassGrl();
       bool getPassIncompleteEVent();
       bool getPassLarError();
+      bool getPassTileError();
       bool getPassTileCalHotSpot();
       bool getPassBadJets();
       bool getPassPrimaryVertex();
@@ -98,21 +104,22 @@ namespace SusyAnalysisTools
       static const unsigned long long ADD_GRL                = 0;
       static const unsigned long long ADD_INCOMPLETE_EVENT   = 1;
       static const unsigned long long ADD_LAR_ERROR          = 2;
-      static const unsigned long long ADD_TILE_CAL_HOT_SPOT  = 3;
-      static const unsigned long long ADD_BAD_JETS           = 4;
-      static const unsigned long long ADD_PRIMARY_VERTEX     = 5;
-      static const unsigned long long ADD_BAD_MUONS          = 6;
-      static const unsigned long long ADD_COSMIC_MUONS       = 7;
-      static const unsigned long long ADD_HFOR               = 8;
-      static const unsigned long long ADD_GE_2_GOOD_LEPTONS  = 9;
-      static const unsigned long long ADD_2_GOOD_LEPTONS     = 10;
-      static const unsigned long long ADD_MLL                = 11;
-      static const unsigned long long ADD_2_SIGNAL_LEPTONS   = 12;
-      static const unsigned long long ADD_FLAVOR_CHANNEL     = 13;
-      static const unsigned long long ADD_PHASE_SPACE        = 16;
-      static const unsigned long long ADD_TRIGGER_CHANNEL    = 20;
-      static const unsigned long long ADD_TRIGGER_MATCH      = 23;
-      static const unsigned long long ADD_SIGN_CHANNEL       = 24;
+      static const unsigned long long ADD_TILE_ERROR         = 3;
+      static const unsigned long long ADD_TILE_CAL_HOT_SPOT  = 4;
+      static const unsigned long long ADD_BAD_JETS           = 5;
+      static const unsigned long long ADD_PRIMARY_VERTEX     = 6;
+      static const unsigned long long ADD_BAD_MUONS          = 7;
+      static const unsigned long long ADD_COSMIC_MUONS       = 8;
+      static const unsigned long long ADD_HFOR               = 9;
+      static const unsigned long long ADD_GE_2_GOOD_LEPTONS  = 10;
+      static const unsigned long long ADD_2_GOOD_LEPTONS     = 11;
+      static const unsigned long long ADD_MLL                = 12;
+      static const unsigned long long ADD_2_SIGNAL_LEPTONS   = 13;
+      static const unsigned long long ADD_FLAVOR_CHANNEL     = 14;
+      static const unsigned long long ADD_PHASE_SPACE        = 17;
+      static const unsigned long long ADD_TRIGGER_CHANNEL    = 21;
+      static const unsigned long long ADD_TRIGGER_MATCH      = 24;
+      static const unsigned long long ADD_SIGN_CHANNEL       = 25;
       static const unsigned long long ADD_TRUTH_SIGN_CHANNEL = 30;
       static const unsigned long long ADD_TRUTH_MATCHED      = 32;
       static const unsigned long long ADD_TRUTH_PROMPT       = 33;
@@ -121,6 +128,7 @@ namespace SusyAnalysisTools
       bool            m_pass_grl;
       bool            m_pass_incomplete_event;
       bool            m_pass_lar_error;
+      bool            m_pass_tile_error;
       bool            m_pass_tile_cal_hot_spot;
       bool            m_pass_bad_jets;
       bool            m_pass_primary_vertex;

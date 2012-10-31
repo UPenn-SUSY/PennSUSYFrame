@@ -11,24 +11,14 @@
 #include "AtlasSFrameUtils/include/Trigger.h"
 #include "AtlasSFrameUtils/include/TriggerVec.h"
 
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 #include "TriggerMatch/TriggerMatch2Lep.h"
 // #include "DGTriggerReweight/triggerReweight2Lep.h"
 
 // ============================================================================
 namespace SelectionTools
 {
-  enum TRIG_PHASE { TRIG_NONE = 0
-                  , TRIG_EE_A
-                  , TRIG_EE_B
-                  , TRIG_MM_A
-                  , TRIG_MM_B
-                  , TRIG_MM_C
-                  , TRIG_MM_D
-                  , TRIG_EM_A
-                  , TRIG_EM_B
-                  , TRIG_N
-                  };
-
   // ==========================================================================
   class TriggerCutTool : public ToolBase
   {
@@ -49,9 +39,9 @@ namespace SelectionTools
                                          );
 
     // Phase space channel
-    TRIG_PHASE getPhaseSpace( const std::vector<Electron*>&
-                            , const std::vector<Muon*>&
-                            );
+    SusyAnalysisTools::TRIG_PHASE getPhaseSpace( const std::vector<Electron*>&
+                                               , const std::vector<Muon*>&
+                                               );
     bool passedEEPhaseSpace( const std::vector<Electron*>&
                            , const std::vector<Muon*>&
                            );
