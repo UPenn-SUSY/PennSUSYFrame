@@ -521,6 +521,8 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
     return false;
   }
 
+  // Reached the end of the cut flow. Return true to signify this event did
+  // not fail any critical cuts
   return true;
 }
 
