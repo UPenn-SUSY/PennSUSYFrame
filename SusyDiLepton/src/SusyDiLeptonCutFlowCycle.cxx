@@ -36,9 +36,27 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   DeclareProperty("is_egamma_stream", c_is_egamma_stream=false);
   DeclareProperty("print_event_info", c_print_event_info=false);
 
-  DeclareProperty("Met_prefix" , c_met_prefix="MET_Egamma10NoTau"    );
-  DeclareProperty("Muon_prefix", c_muon_prefix="mu_staco_"           );
+  DeclareProperty("Met_prefix" , c_met_prefix="MET_Egamma10NoTau" );
+  DeclareProperty("Muon_prefix", c_muon_prefix="mu_staco_"        );
   DeclareProperty("Jet_prefix" , c_jet_prefix="jet_AntiKt4LCTopo_");
+
+  DeclareProperty("Crit_grl"              , c_crit_grl              = true );
+  DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = true );
+  DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = true );
+  DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = true );
+  DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = true );
+  DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = true );
+  DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = true );
+  DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = true );
+  DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = true );
+  DeclareProperty("Crit_hfor"             , c_crit_hfor             = true );
+  DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep         = true );
+  DeclareProperty("Crit_2_lep"            , c_crit_2_lep            = false);
+  DeclareProperty("Crit_mll"              , c_crit_mll              = true );
+  DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep       = false);
+  DeclareProperty("Crit_phase_space"      , c_crit_phase_space      = false);
+  DeclareProperty("Crit_trigger"          , c_crit_trigger          = false);
+  DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   declareTools();
@@ -305,7 +323,8 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
             << "\t--\tevent number: " << m_event->EventNumber()
             << "\n";
 
-  runCutFlow();
+  bool pass_critical_cuts = runCutFlow();
+  if (!pass_critical_cuts) return;
 
   //
   // m_vertices.print(VERT_ALL);
@@ -317,69 +336,69 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
 }
 
 // ----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::runCutFlow()
+bool SusyDiLeptonCutFlowCycle::runCutFlow()
 {
   // Check GRL
   bool pass_grl = m_grl_tool->passed(*m_event);
   m_event->getEventDesc()->setPassGrl(pass_grl);
-  if (pass_grl == false) {
-    // TODO reject event if critical cut
+  if (c_crit_grl && pass_grl == false) {
+    return false;
   }
 
   // Check LAr error
   bool pass_lar_error = m_event_cleaning_tool->passLARError(m_event);
   m_event->getEventDesc()->setPassLarError(pass_lar_error);
-  if (pass_lar_error == false) {
-    // TODO reject event if critical cut
+  if (c_crit_lar_error && pass_lar_error == false) {
+    return false;
   }
 
   // Check Tile Error
   bool pass_tile_error = m_event_cleaning_tool->passTileError(m_event) == false;
   m_event->getEventDesc()->setPassTileError(pass_tile_error);
-  if (pass_tile_error == false) {
-    // TODO reject event if critical cut
+  if (c_crit_tile_error && pass_tile_error == false) {
+    return false;
   }
 
   // Check Tile hot spot
   bool pass_tile_hot_spot = m_event_cleaning_tool->passTileHotSpot(m_event, m_jets);
   m_event->getEventDesc()->setPassTileCalHotSpot(pass_tile_hot_spot);
-  if (pass_tile_hot_spot == false) {
-    // TODO reject event if critical cut
+  if (c_crit_tile_hot_spot && pass_tile_hot_spot == false) {
+    return false;
   }
 
   // Check jet cleaning
   bool pass_jet_cleaning = (m_jets.num(JET_BAD) > 0);
   m_event->getEventDesc()->setPassBadJets(pass_jet_cleaning);
-  if (pass_jet_cleaning == false) {
-    // TODO reject event if critical cut
+  if (c_crit_bad_jet_veto && pass_jet_cleaning == false) {
+    return false;
   }
 
   // Check primary vertex
   bool pass_good_vertex = m_vertices.firstGood(VERT_ALL);
   m_event->getEventDesc()->setPassPrimaryVertex(pass_good_vertex);
-  if (pass_good_vertex == false) {
-    // TODO reject event if critical cut
+  if (c_crit_primary_vertex && pass_good_vertex == false) {
+    return false;
   }
 
   // Check for bad muons
   bool pass_bad_muon_veto = (m_muons.getMuons(MU_BAD).size() > 0);
   m_event->getEventDesc()->setPassBadMuons(pass_bad_muon_veto);
-  if (pass_bad_muon_veto == false) {
-    // TODO reject event if critical cut
+  if (c_crit_bad_mu_veto && pass_bad_muon_veto == false) {
+    return false;
   }
 
   // Check for cosmic muons
   bool pass_cosmic_muon_veto = (m_muons.getMuons(MU_COSMIC).size() > 0);
   m_event->getEventDesc()->setPassCosmicMuons(pass_cosmic_muon_veto);
-  if (pass_cosmic_muon_veto == false) {
-    // TODO reject event if critical cut
+  if (c_crit_cosmic_mu_veto && pass_cosmic_muon_veto == false) {
+    return false;
   }
 
   // Check TTC veto
   bool pass_incomplete_event = m_event_cleaning_tool->passIncompleteEvent(m_event);
   m_event->getEventDesc()->setPassIncompleteEvent(pass_incomplete_event);
-  if (pass_incomplete_event == false) {
-    // TODO reject event if critical cut
+  if (c_crit_incomplete_event && pass_incomplete_event == false) {
+    return false;
   }
 
   // Check for At least two leptons
@@ -388,23 +407,25 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
   size_t num_good_leptons = num_good_el + num_good_mu;
   bool pass_ge_2_good_leptons = (num_good_leptons >= 2);
   m_event->getEventDesc()->setPassGE2GoodLeptons(pass_ge_2_good_leptons);
-  if (pass_ge_2_good_leptons == false) {
-    // TODO reject event if critical cut
+  if (c_crit_ge_2_lep && pass_ge_2_good_leptons == false) {
+    return false;
   }
 
   // Check for exactly two leptons
   bool pass_2_good_leptons = (num_good_leptons == 2);
   m_event->getEventDesc()->setPass2GoodLeptons(pass_2_good_leptons);
-  if (pass_2_good_leptons == false) {
-    // TODO reject event if critical cut
+  if (c_crit_2_lep && pass_2_good_leptons == false) {
+    return false;
   }
 
   // Check for signal leptons
-  size_t num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
+  size_t num_signal_leptons = ( m_electrons.num(EL_SIGNAL)
+                              + m_muons.num(MU_SIGNAL)
+                              );
   bool pass_2_signal_leptons = (num_signal_leptons == 2);
   m_event->getEventDesc()->setPass2SignalLeptons(pass_2_signal_leptons);
-  if (pass_2_signal_leptons == false) {
-    // TODO reject event if critical cut
+  if (c_crit_signal_lep && pass_2_signal_leptons == false) {
+    return false;
   }
 
   // Check flavor channel for this event
@@ -420,12 +441,24 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
   }
   m_event->getEventDesc()->setFlavorChannel(flavor_channel);
 
+  // Check sign channel for this event
+  SIGN_CHANNEL sign_channel = CommonTools::SignChannel::getSignChannel(
+      m_event->getFlavorChannel(),
+      m_electrons.getElectrons(EL_GOOD),
+      m_muons.getMuons(MU_GOOD));
+  m_event->getEventDesc()->setSignChannel(sign_channel);
+
   // Check for valid pt phase space
   TRIG_PHASE trigger_phase_space =
       m_trigger_cut_tool->getPhaseSpace( m_electrons.getElectrons(EL_GOOD)
                                        , m_muons.getMuons(MU_GOOD)
                                        );
   m_event->getEventDesc()->setPhaseSpace(trigger_phase_space);
+  if (  c_crit_phase_space
+     && m_event->getEventDesc()->getPhaseSpace() == PHASE_NONE
+     ) {
+    return false;
+  }
 
   // Check trigger for this event
   bool pass_ee_trigger = m_trigger_cut_tool->passedEETriggerChannel(
@@ -444,12 +477,13 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
       m_event, m_trigger);
   m_event->getEventDesc()->setMETrigger(pass_me_trigger);
 
-  if (  pass_ee_trigger == false
+  if (  c_crit_trigger
+     && pass_ee_trigger == false
      && pass_mm_trigger == false
      && pass_em_trigger == false
      && pass_me_trigger == false
      ) {
-    // TODO reject event if critical cut
+    return false;
   }
 
   // Check trigger matching
@@ -483,14 +517,11 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
     default:       pass_trigger_match = false;
   };
   m_event->getEventDesc()->setPassTriggerMatch(pass_trigger_match);
-  if (pass_trigger_match == false) {
-    // TODO reject event if critical cut
+  if (c_crit_trigger_match && pass_trigger_match == false) {
+    return false;
   }
 
-  // Check sign channel for this event
-  SIGN_CHANNEL sign_channel = CommonTools::SignChannel::getSignChannel(
-      m_event->getFlavorChannel(), m_electrons.getElectrons(EL_GOOD), m_muons.getMuons(MU_GOOD));
-  m_event->getEventDesc()->setSignChannel(sign_channel);
+  return true;
 }
 
 // ----------------------------------------------------------------------------

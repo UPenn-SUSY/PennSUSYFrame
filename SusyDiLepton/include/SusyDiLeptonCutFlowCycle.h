@@ -93,6 +93,25 @@ private:
   std::string c_muon_prefix;
   std::string c_jet_prefix;
 
+  // variables to flag cuts as "critical"
+  bool c_crit_grl;
+  bool c_crit_incomplete_event;
+  bool c_crit_lar_error;
+  bool c_crit_tile_error;
+  bool c_crit_tile_hot_spot;
+  bool c_crit_bad_jet_veto;
+  bool c_crit_primary_vertex;
+  bool c_crit_bad_mu_veto;
+  bool c_crit_cosmic_mu_veto;
+  bool c_crit_hfor;
+  bool c_crit_ge_2_lep;
+  bool c_crit_2_lep;
+  bool c_crit_mll;
+  bool c_crit_signal_lep;
+  bool c_crit_phase_space;
+  bool c_crit_trigger;
+  bool c_crit_trigger_match;
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool m_is_ee;
   bool m_is_mm;
@@ -141,7 +160,7 @@ private:
   void initD3PDReaders();
   void getTools();
 
-  void runCutFlow();
+  bool runCutFlow();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Macro adding the functions for dictionary generation
