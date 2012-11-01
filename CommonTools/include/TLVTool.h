@@ -1,6 +1,6 @@
 // Dear emacs, this is -*- c++ -*-
-#ifndef TLVTool_H
-#define TLVTool_H
+#ifndef CommonTools_TLVTool_H
+#define CommonTools_TLVTool_H
 // ============================================================================
 #include "TLorentzVector.h"
 
@@ -31,7 +31,7 @@ namespace CommonTools{
 // ============================================================================
   /**
   * Helper class to take two objects and compute the invariant mass of the
-    pair system
+  * pair system
   */
   class TLVTool : public ToolBase
   {

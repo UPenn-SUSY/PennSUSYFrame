@@ -457,29 +457,27 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
 
   // Check trigger matching
   // TODO check trigger matching
-  m_trigger_cut_tool->passedEETriggerMatching( m_event
-                                             , m_trigger_vec
-                                             , m_electrons.getElectrons(EL_GOOD)
-                                             , m_muons.getMuons(MU_GOOD)
-                                             );
-  m_trigger_cut_tool->passedMMTriggerMatching( m_event
-                                             , m_trigger_vec
-                                             , m_electrons.getElectrons(EL_GOOD)
-                                             , m_muons.getMuons(MU_GOOD)
-                                             );
-  m_trigger_cut_tool->passedEMTriggerMatching( m_event
-                                             , m_trigger_vec
-                                             , m_electrons.getElectrons(EL_GOOD)
-                                             , m_muons.getMuons(MU_GOOD)
-                                             );
-  m_trigger_cut_tool->passedMETriggerMatching( m_event
-                                             , m_trigger_vec
-                                             , m_electrons.getElectrons(EL_GOOD)
-                                             , m_muons.getMuons(MU_GOOD)
-                                             );
+  m_trigger_cut_tool->passedEETriggerMatching(
+      m_event, m_trigger_vec,
+      m_electrons.getElectrons(EL_GOOD),
+      m_muons.getMuons(MU_GOOD));
+  m_trigger_cut_tool->passedMMTriggerMatching(
+      m_event, m_trigger_vec,
+      m_electrons.getElectrons(EL_GOOD),
+      m_muons.getMuons(MU_GOOD));
+  m_trigger_cut_tool->passedEMTriggerMatching(
+      m_event, m_trigger_vec,
+      m_electrons.getElectrons(EL_GOOD),
+      m_muons.getMuons(MU_GOOD));
+  m_trigger_cut_tool->passedMETriggerMatching(
+      m_event, m_trigger_vec,
+      m_electrons.getElectrons(EL_GOOD),
+      m_muons.getMuons(MU_GOOD));
 
   // Check sign channel for this event
-  // TODO check sign channel for this event
+  SIGN_CHANNEL sign_channel = CommonTools::SignChannel::getSignChannel(
+      m_event->getFlavorChannel(), m_electrons.getElectrons(EL_GOOD), m_muons.getMuons(MU_GOOD));
+  m_event->getEventDesc()->setSignChannel(sign_channel);
 }
 
 // ----------------------------------------------------------------------------

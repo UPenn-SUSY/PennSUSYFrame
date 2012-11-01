@@ -1,3 +1,6 @@
+2012-11-01 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Added check for sign channel
+
 2012-10-31 Brett Jackson <Brett.David.Jackson@cern.ch>
 	* Updates to event description class
 	* Collecting all enums into a single header

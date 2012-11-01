@@ -60,14 +60,14 @@ namespace SelectionTools
                                , const Trigger*
                                );
     bool passedMMTriggerChannel( const Event*
-                                 , const Trigger*
-                                 );
+                               , const Trigger*
+                               );
     bool passedEMTriggerChannel( const Event*
-                                , const Trigger*
-                                );
+                               , const Trigger*
+                               );
     bool passedMETriggerChannel( const Event*
-                                , const Trigger*
-                                );
+                               , const Trigger*
+                               );
 
     // Trigger matching
     bool passedEETriggerMatching( const Event*
