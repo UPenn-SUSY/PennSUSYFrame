@@ -428,26 +428,23 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
   m_event->getEventDesc()->setPhaseSpace(trigger_phase_space);
 
   // Check trigger for this event
-  bool pass_ee_trigger = m_trigger_cut_tool->passedEETriggerChannel( m_event
-                                                                   , m_trigger
-                                                                   );
+  bool pass_ee_trigger = m_trigger_cut_tool->passedEETriggerChannel(
+      m_event, m_trigger);
   m_event->getEventDesc()->setEETrigger(pass_ee_trigger);
 
-  bool pass_mm_trigger = m_trigger_cut_tool->passedMMTriggerChannel( m_event
-                                                                   , m_trigger
-                                                                   );
+  bool pass_mm_trigger = m_trigger_cut_tool->passedMMTriggerChannel(
+      m_event, m_trigger);
   m_event->getEventDesc()->setMMTrigger(pass_mm_trigger);
 
-  bool pass_em_trigger = m_trigger_cut_tool->passedEMTriggerChannel( m_event
-                                                                   , m_trigger
-                                                                   );
+  bool pass_em_trigger = m_trigger_cut_tool->passedEMTriggerChannel(
+      m_event, m_trigger);
   m_event->getEventDesc()->setEMTrigger(pass_em_trigger);
 
-  bool pass_me_trigger = m_trigger_cut_tool->passedMETriggerChannel( m_event
-                                                                   , m_trigger
-                                                                   );
+  bool pass_me_trigger = m_trigger_cut_tool->passedMETriggerChannel(
+      m_event, m_trigger);
   m_event->getEventDesc()->setMETrigger(pass_me_trigger);
-  if ( pass_ee_trigger == false
+
+  if (  pass_ee_trigger == false
      && pass_mm_trigger == false
      && pass_em_trigger == false
      && pass_me_trigger == false
@@ -456,23 +453,39 @@ void SusyDiLeptonCutFlowCycle::runCutFlow()
   }
 
   // Check trigger matching
-  // TODO check trigger matching
-  m_trigger_cut_tool->passedEETriggerMatching(
-      m_event, m_trigger_vec,
-      m_electrons.getElectrons(EL_GOOD),
-      m_muons.getMuons(MU_GOOD));
-  m_trigger_cut_tool->passedMMTriggerMatching(
-      m_event, m_trigger_vec,
-      m_electrons.getElectrons(EL_GOOD),
-      m_muons.getMuons(MU_GOOD));
-  m_trigger_cut_tool->passedEMTriggerMatching(
-      m_event, m_trigger_vec,
-      m_electrons.getElectrons(EL_GOOD),
-      m_muons.getMuons(MU_GOOD));
-  m_trigger_cut_tool->passedMETriggerMatching(
-      m_event, m_trigger_vec,
-      m_electrons.getElectrons(EL_GOOD),
-      m_muons.getMuons(MU_GOOD));
+  bool pass_trigger_match = false;
+
+  switch (m_event->getPhaseSpace()) {
+    case PHASE_EE: pass_trigger_match =
+                      m_trigger_cut_tool->passedEETriggerMatching(
+                          m_event, m_trigger_vec,
+                          m_electrons.getElectrons(EL_GOOD),
+                          m_muons.getMuons(MU_GOOD));
+                   break;
+    case PHASE_MM: pass_trigger_match =
+                      m_trigger_cut_tool->passedMMTriggerMatching(
+                          m_event, m_trigger_vec,
+                          m_electrons.getElectrons(EL_GOOD),
+                          m_muons.getMuons(MU_GOOD));
+                   break;
+    case PHASE_EM: pass_trigger_match =
+                      m_trigger_cut_tool->passedEMTriggerMatching(
+                          m_event, m_trigger_vec,
+                          m_electrons.getElectrons(EL_GOOD),
+                          m_muons.getMuons(MU_GOOD));
+                   break;
+    case PHASE_ME: pass_trigger_match =
+                      m_trigger_cut_tool->passedMETriggerMatching(
+                          m_event, m_trigger_vec,
+                          m_electrons.getElectrons(EL_GOOD),
+                          m_muons.getMuons(MU_GOOD));
+                   break;
+    default:       pass_trigger_match = false;
+  };
+  m_event->getEventDesc()->setPassTriggerMatch(pass_trigger_match);
+  if (pass_trigger_match == false) {
+    // TODO reject event if critical cut
+  }
 
   // Check sign channel for this event
   SIGN_CHANNEL sign_channel = CommonTools::SignChannel::getSignChannel(
