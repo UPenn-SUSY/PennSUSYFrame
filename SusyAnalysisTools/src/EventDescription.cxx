@@ -13,63 +13,36 @@ SusyAnalysisTools::EventDescription::~EventDescription()
 }
 
 // ----------------------------------------------------------------------------
-unsigned long long SusyAnalysisTools::EventDescription::toInt() const
+ull_t SusyAnalysisTools::EventDescription::toInt() const
 {
-  unsigned long long event_desc = 0;
+  ull_t event_desc = 0;
 
-  event_desc += (  static_cast<unsigned long long>(m_pass_grl)
-                << ADD_GRL);
-  event_desc += (  static_cast<unsigned long long>(m_pass_incomplete_event)
-                << ADD_INCOMPLETE_EVENT);
-  event_desc += (  static_cast<unsigned long long>(m_pass_lar_error)
-                << ADD_LAR_ERROR);
-  event_desc += (  static_cast<unsigned long long>(m_pass_tile_error)
-                << ADD_TILE_ERROR);
-  event_desc += (  static_cast<unsigned long long>(m_pass_tile_cal_hot_spot)
-                << ADD_TILE_CAL_HOT_SPOT);
-  event_desc += (  static_cast<unsigned long long>(m_pass_bad_jets)
-                << ADD_BAD_JETS);
-  event_desc += (  static_cast<unsigned long long>(m_pass_primary_vertex)
-                << ADD_PRIMARY_VERTEX);
-  event_desc += (  static_cast<unsigned long long>(m_pass_bad_muons)
-                << ADD_BAD_MUONS);
-  event_desc += (  static_cast<unsigned long long>(m_pass_cosmic_muons)
-                << ADD_COSMIC_MUONS);
-  event_desc += (  static_cast<unsigned long long>(m_pass_hfor)
-                << ADD_HFOR);
-  event_desc += (static_cast<unsigned long long>(m_pass_ge_2_good_leptons)
-                << ADD_GE_2_GOOD_LEPTONS);
-  event_desc += (  static_cast<unsigned long long>(m_pass_2_good_leptons)
-                << ADD_2_GOOD_LEPTONS);
-  event_desc += (  static_cast<unsigned long long>(m_pass_mll)
-                << ADD_MLL);
-  event_desc += (  static_cast<unsigned long long>(m_pass_2_signal_leptons)
-                << ADD_2_SIGNAL_LEPTONS);
-  event_desc += (  static_cast<unsigned long long>(m_flavor_channel)
-                << ADD_FLAVOR_CHANNEL);
-  event_desc += (  static_cast<unsigned long long>(m_phase_space)
-                << ADD_PHASE_SPACE);
-  event_desc += (  static_cast<unsigned long long>(m_pass_ee_trigger)
-                << ADD_TRIGGER_EE);
-  event_desc += (  static_cast<unsigned long long>(m_pass_mm_trigger)
-                << ADD_TRIGGER_MM);
-  event_desc += (  static_cast<unsigned long long>(m_pass_em_trigger)
-                << ADD_TRIGGER_EM);
-  event_desc += (  static_cast<unsigned long long>(m_pass_me_trigger)
-                << ADD_TRIGGER_ME);
-
-  event_desc += (  static_cast<unsigned long long>(m_pass_trigger_match)
-                << ADD_TRIGGER_MATCH);
-  event_desc += (  static_cast<unsigned long long>(m_sign_channel)
-                << ADD_SIGN_CHANNEL);
-  event_desc += (  static_cast<unsigned long long>(m_truth_sign_channel)
-                << ADD_TRUTH_SIGN_CHANNEL);
-  event_desc += (  static_cast<unsigned long long>(m_truth_matched)
-                << ADD_TRUTH_MATCHED);
-  event_desc += (  static_cast<unsigned long long>(m_truth_prompt)
-                << ADD_TRUTH_PROMPT);
-  event_desc += (  static_cast<unsigned long long>(m_cf_candidate)
-                << ADD_TRUTH_CF_CANDIDATE);
+  event_desc += getIntComp(m_pass_grl              , ADD_GRL               );
+  event_desc += getIntComp(m_pass_incomplete_event , ADD_INCOMPLETE_EVENT  );
+  event_desc += getIntComp(m_pass_lar_error        , ADD_LAR_ERROR         );
+  event_desc += getIntComp(m_pass_tile_error       , ADD_TILE_ERROR        );
+  event_desc += getIntComp(m_pass_tile_cal_hot_spot, ADD_TILE_HOT_SPOT     );
+  event_desc += getIntComp(m_pass_bad_jets         , ADD_BAD_JETS          );
+  event_desc += getIntComp(m_pass_primary_vertex   , ADD_PRIMARY_VERTEX    );
+  event_desc += getIntComp(m_pass_bad_muons        , ADD_BAD_MUONS         );
+  event_desc += getIntComp(m_pass_cosmic_muons     , ADD_COSMIC_MUONS      );
+  event_desc += getIntComp(m_pass_hfor             , ADD_HFOR              );
+  event_desc += getIntComp(m_pass_ge_2_good_leptons, ADD_GE_2_GOOD_LEPTON  );
+  event_desc += getIntComp(m_pass_2_good_leptons   , ADD_2_GOOD_LEPTON     );
+  event_desc += getIntComp(m_pass_2_signal_leptons , ADD_2_SIGNAL_LEPTON   );
+  event_desc += getIntComp(m_pass_mll              , ADD_MLL               );
+  event_desc += getIntComp(m_flavor_channel        , ADD_FLAVOR_CHANNEL    );
+  event_desc += getIntComp(m_phase_space           , ADD_PHASE_SPACE       );
+  event_desc += getIntComp(m_pass_ee_trigger       , ADD_TRIGGER_EE        );
+  event_desc += getIntComp(m_pass_mm_trigger       , ADD_TRIGGER_MM        );
+  event_desc += getIntComp(m_pass_em_trigger       , ADD_TRIGGER_EM        );
+  event_desc += getIntComp(m_pass_me_trigger       , ADD_TRIGGER_ME        );
+  event_desc += getIntComp(m_pass_trigger_match    , ADD_TRIGGER_MATCH     );
+  event_desc += getIntComp(m_sign_channel          , ADD_SIGN_CHANNEL      );
+  event_desc += getIntComp(m_truth_sign_channel    , ADD_TRUTH_SIGN_CHANNEL);
+  event_desc += getIntComp(m_truth_matched         , ADD_TRUTH_MATCHED     );
+  event_desc += getIntComp(m_truth_prompt          , ADD_TRUTH_PROMPT      );
+  event_desc += getIntComp(m_cf_candidate          , ADD_TRUTH_CF_CAND);
 
   return event_desc;
 }
@@ -91,39 +64,50 @@ SusyAnalysisTools::EventDescription&
 
 // ----------------------------------------------------------------------------
 SusyAnalysisTools::EventDescription&
-    SusyAnalysisTools::EventDescription::operator=(
-        const unsigned long long& rhs)
+    SusyAnalysisTools::EventDescription::operator=(const ull_t& rhs)
 {
-  m_pass_grl               = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_GRL               ) );
-  m_pass_incomplete_event  = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_INCOMPLETE_EVENT  ) );
-  m_pass_lar_error         = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_LAR_ERROR         ) );
-  m_pass_tile_error        = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TILE_ERROR        ) );
-  m_pass_tile_cal_hot_spot = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TILE_CAL_HOT_SPOT ) );
-  m_pass_bad_jets          = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_BAD_JETS          ) );
-  m_pass_primary_vertex    = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_PRIMARY_VERTEX    ) );
-  m_pass_bad_muons         = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_BAD_MUONS         ) );
-  m_pass_cosmic_muons      = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_COSMIC_MUONS      ) );
-  m_pass_hfor              = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_HFOR              ) );
-  m_pass_ge_2_good_leptons = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_GE_2_GOOD_LEPTONS ) );
-  m_pass_2_good_leptons    = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_2_GOOD_LEPTONS    ) );
-  m_pass_mll               = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_MLL               ) );
-  m_pass_2_signal_leptons  = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_2_SIGNAL_LEPTONS  ) );
-  m_pass_ee_trigger        = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRIGGER_EE        ) );
-  m_pass_mm_trigger        = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRIGGER_MM        ) );
-  m_pass_em_trigger        = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRIGGER_EM        ) );
-  m_pass_trigger_match     = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRIGGER_MATCH     ) );
-  m_truth_matched          = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRUTH_MATCHED     ) );
-  m_truth_prompt           = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRUTH_PROMPT      ) );
-  m_cf_candidate           = ( ((1 << SIZE_BOOL)-1 ) & (rhs >> ADD_TRUTH_CF_CANDIDATE) );
+  m_pass_grl               = getCompFromInt(rhs, ADD_GRL              , SIZE_BOOL);
+  m_pass_incomplete_event  = getCompFromInt(rhs, ADD_INCOMPLETE_EVENT , SIZE_BOOL);
+  m_pass_lar_error         = getCompFromInt(rhs, ADD_LAR_ERROR        , SIZE_BOOL);
+  m_pass_tile_error        = getCompFromInt(rhs, ADD_TILE_ERROR       , SIZE_BOOL);
+  m_pass_tile_cal_hot_spot = getCompFromInt(rhs, ADD_TILE_HOT_SPOT    , SIZE_BOOL);
+  m_pass_bad_jets          = getCompFromInt(rhs, ADD_BAD_JETS         , SIZE_BOOL);
+  m_pass_primary_vertex    = getCompFromInt(rhs, ADD_PRIMARY_VERTEX   , SIZE_BOOL);
+  m_pass_bad_muons         = getCompFromInt(rhs, ADD_BAD_MUONS        , SIZE_BOOL);
+  m_pass_cosmic_muons      = getCompFromInt(rhs, ADD_COSMIC_MUONS     , SIZE_BOOL);
+  m_pass_hfor              = getCompFromInt(rhs, ADD_HFOR             , SIZE_BOOL);
+  m_pass_ge_2_good_leptons = getCompFromInt(rhs, ADD_GE_2_GOOD_LEPTON , SIZE_BOOL);
+  m_pass_2_good_leptons    = getCompFromInt(rhs, ADD_2_GOOD_LEPTON    , SIZE_BOOL);
+  m_pass_mll               = getCompFromInt(rhs, ADD_MLL              , SIZE_BOOL);
+  m_pass_2_signal_leptons  = getCompFromInt(rhs, ADD_2_SIGNAL_LEPTON  , SIZE_BOOL);
+  m_pass_ee_trigger        = getCompFromInt(rhs, ADD_TRIGGER_EE       , SIZE_BOOL);
+  m_pass_mm_trigger        = getCompFromInt(rhs, ADD_TRIGGER_MM       , SIZE_BOOL);
+  m_pass_em_trigger        = getCompFromInt(rhs, ADD_TRIGGER_EM       , SIZE_BOOL);
+  m_pass_trigger_match     = getCompFromInt(rhs, ADD_TRIGGER_MATCH    , SIZE_BOOL);
+  m_truth_matched          = getCompFromInt(rhs, ADD_TRUTH_MATCHED    , SIZE_BOOL);
+  m_truth_prompt           = getCompFromInt(rhs, ADD_TRUTH_PROMPT     , SIZE_BOOL);
+  m_cf_candidate           = getCompFromInt(rhs, ADD_TRUTH_CF_CAND    , SIZE_BOOL);
 
   m_flavor_channel =
-    static_cast<FLAVOR_CHANNEL>( ((1 << SIZE_FLAVOR )-1) & (rhs >> ADD_FLAVOR_CHANNEL) );
-  m_phase_space =
-    static_cast<PHASE_SPACE>( ((1 << SIZE_PHASE)-1) & (rhs >> ADD_PHASE_SPACE) );
-  m_sign_channel =
-    static_cast<SIGN_CHANNEL>( ((1 << SIZE_SIGN)-1) & (rhs >> ADD_SIGN_CHANNEL) );
-  m_truth_sign_channel =
-    static_cast<SIGN_CHANNEL>( ((1 << SIZE_SIGN)-1) & (rhs >> ADD_TRUTH_SIGN_CHANNEL) );
+    static_cast<FLAVOR_CHANNEL>( getCompFromInt( rhs
+                                               , ADD_FLAVOR_CHANNEL
+                                               , SIZE_FLAVOR
+                                               )
+                               );
+  m_phase_space = static_cast<PHASE_SPACE>(
+      getCompFromInt( rhs
+                    , ADD_PHASE_SPACE
+                    , SIZE_PHASE
+                    ) );
+  m_sign_channel = static_cast<SIGN_CHANNEL>(
+      getCompFromInt( rhs
+                    , ADD_SIGN_CHANNEL
+                    , SIZE_SIGN));
+  m_truth_sign_channel = static_cast<SIGN_CHANNEL>(
+      getCompFromInt( rhs
+                    , ADD_TRUTH_SIGN_CHANNEL
+                    , SIZE_SIGN
+                    ));
 
   return *this;
 }
@@ -468,4 +452,11 @@ bool SusyAnalysisTools::EventDescription::getCFCandidate()
 SIGN_CHANNEL SusyAnalysisTools::EventDescription::getTruthSignChannel()
 {
   return m_truth_sign_channel;
+}
+
+// ----------------------------------------------------------------------------
+unsigned int SusyAnalysisTools::EventDescription::getCompFromInt(
+    const ull_t& rhs, unsigned int address, unsigned int size)
+{
+  return ( ((1 << size)-1) & (rhs >> address) );
 }

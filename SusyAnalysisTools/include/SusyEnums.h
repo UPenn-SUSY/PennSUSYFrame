@@ -2,33 +2,35 @@
 #define SusyAnalysisTools_SusyEnums_h
 
 // TODO COMMENT!!!
-enum FLAVOR_CHANNEL { FLAVOR_NONE = 0
-                    , FLAVOR_EE   = 1
-                    , FLAVOR_MM   = 2
-                    , FLAVOR_EM   = 4
+typedef unsigned long long ull_t;
+
+enum FLAVOR_CHANNEL { FLAVOR_NONE = 0 // no flavor
+                    , FLAVOR_EE   = 1 // ee event
+                    , FLAVOR_MM   = 2 // mm event
+                    , FLAVOR_EM   = 4 // em event
                     };
 
-enum PHASE_SPACE { PHASE_NONE = 0
-                 , PHASE_EE   = 1
-                 , PHASE_MM   = 2
-                 , PHASE_EM   = 4
-                 , PHASE_ME   = 8
+enum PHASE_SPACE { PHASE_NONE = 0 // No phase space
+                 , PHASE_EE   = 1 // ee phase space
+                 , PHASE_MM   = 2 // mm phase space
+                 , PHASE_EM   = 4 // em phase space
+                 , PHASE_ME   = 8 // me phase space
                  };
 
-enum SIGN_CHANNEL { SIGN_NONE = 0
-                  , SIGN_OS   = 1
-                  , SIGN_SS   = 2
+enum SIGN_CHANNEL { SIGN_NONE = 0 // no sign channel
+                  , SIGN_OS   = 1 // OS event
+                  , SIGN_SS   = 2 // SS event
                   };
 
-enum TRIG_PHASE { TRIG_NONE = 0
-                , TRIG_EE_A
-                , TRIG_EE_B
-                , TRIG_MM_A
-                , TRIG_MM_B
-                , TRIG_MM_C
-                , TRIG_MM_D
-                , TRIG_EM_A
-                , TRIG_EM_B
+enum TRIG_PHASE { TRIG_NONE = 0 // No Trigger phase
+                , TRIG_EE_A     // EE region A
+                , TRIG_EE_B     // EE region B
+                , TRIG_MM_A     // MM region A
+                , TRIG_MM_B     // MM region B
+                , TRIG_MM_C     // MM region C
+                , TRIG_MM_D     // MM region D
+                , TRIG_EM_A     // EM region A
+                , TRIG_EM_B     // EM region B
                 , TRIG_N
                 };
 
