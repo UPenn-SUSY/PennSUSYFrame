@@ -20,7 +20,7 @@ namespace CommonTools{
     virtual ~MT2Tool();
 
     double getMT2();
-    double setMT2();
+    void setMT2();
 
   private:
 
