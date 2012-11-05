@@ -29,6 +29,13 @@ public:
   void clear();
   void prep(Event*, ElectronContainer*, MuonContainer* , JetContainer*);
 
+
+  TVector2 metRefFinalVec();
+  double   metRefFinalEt();
+  double   metRefFinalPhi();
+
+
+
 private:
   bool m_prepared;
   std::string m_jet_algo;
@@ -38,6 +45,8 @@ private:
   void addJets(JetContainer*);
   void addMet();
   void addMuons(MuonContainer*);
+
+  TVector2 m_met_vec;
 
   ClassDef(Met, 1);
 };

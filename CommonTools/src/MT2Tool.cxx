@@ -26,9 +26,9 @@ double CommonTools::MT2Tool::getMT2()
 }
 
 //----------------------------------------------------------------------------
-void CommonTools::MT2Tool::setMT2()
+void CommonTools::MT2Tool::setMT2(double mt2)
 {
-  double mt2 = 0;
+  //double mt2 = 0;
 
   m_MT2 = mt2;
 

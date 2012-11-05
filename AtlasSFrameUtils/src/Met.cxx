@@ -80,6 +80,8 @@ void Met::prep( Event* event
     addMuons(muons);
     addMet();
   }
+  METObject met_util = m_met_utility.getMissingET( METUtil::RefFinal );
+  m_met_vec.Set(met_util.etx(), met_util.ety());
 
   m_prepared = true;
 }
@@ -352,4 +354,39 @@ void Met::addMuons(MuonContainer* muon_container)
                                       , &mu_ms_phi
                                       , &mu_charge
                                       );
+}
+// ----------------------------------------------------------------------------
+TVector2 Met::metRefFinalVec()
+{
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!m_prepared) {
+    //m_logger << WARNING
+    //         << "Met not prepared for event! Setting default value:"
+    //         << "\n\tetx: 0\n\tety: 0" << SLogger::endmsg;
+    return TVector2(0,0);
+  }
+
+  return m_met_vec;
+
+}
+
+// ----------------------------------------------------------------------------
+double Met::metRefFinalEt()
+{
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!m_prepared) {
+    return -999;
+  }
+  return m_met_vec.Mod();
+
+}
+
+// ----------------------------------------------------------------------------
+double Met::metRefFinalPhi()
+{
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!m_prepared) {
+    return -999; 
+  }
+  return m_met_vec.Phi();
 }
