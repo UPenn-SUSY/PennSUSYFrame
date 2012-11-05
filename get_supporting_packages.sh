@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------
 # core SFrame package
 echo "Checking out SFrame package"
-svn co https://sframe.svn.sourceforge.net/svnroot/sframe/SFrame/tags/SFrame-03-06-04/ SFrame
+svn co https://sframe.svn.sourceforge.net/svnroot/sframe/SFrame/tags/SFrame-03-06-05/ SFrame
 mkdir SFrame/lib
 
 # ----------------------------------------------------------------------------
@@ -11,11 +11,10 @@ mkdir SFrame/lib
 echo "Checking out RootCore package"
 mkdir RootCore
 cd RootCore
-if [ "x$CERN_USER" = "x" ]; then 
+if [ "x$CERN_USER" = "x" ]; then
   svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-01-17 RootCore
   # svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-00-31 RootCore
-else 
-  # svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-01-13 RootCore
+else
   svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-01-17 RootCore
 fi
 cd RootCore
@@ -49,6 +48,6 @@ done
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # build RootCore packages
 cd ${ROOTCOREDIR}/..
-${ROOTCOREDIR}/scripts/build.sh 
+${ROOTCOREDIR}/scripts/build.sh
 mv RootCore.par ${SFRAME_LIB_PATH}
 cd ${SFRAME_DIR}/..

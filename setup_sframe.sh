@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set up RootCore 
+# set up RootCore
 source ${PWD}/RootCore/RootCore/scripts/setup.sh
 
 # set up core SFrame functionality

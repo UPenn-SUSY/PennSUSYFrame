@@ -1,6 +1,6 @@
 #include "include/MuonMomentumSmearingTool.h"
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::MuonMomentumSmearingTool::MuonMomentumSmearingTool(
     SCycleBase* parent,
     const char* name): ToolBase(parent, name),
@@ -9,20 +9,20 @@ CommonTools::MuonMomentumSmearingTool::MuonMomentumSmearingTool(
   init();
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::MuonMomentumSmearingTool::~MuonMomentumSmearingTool()
 {
   if (m_mcp_smear)
     delete m_mcp_smear;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::MuonMomentumSmearingTool::init()
 {
   DeclareProperty("smearing_function", c_smearing_function = "");
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::MuonMomentumSmearingTool::BeginInputData(const SInputData&)
 {
   // do nothing for data
@@ -60,13 +60,13 @@ void CommonTools::MuonMomentumSmearingTool::BeginInputData(const SInputData&)
 }
 
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::MuonMomentumSmearingTool::EndInputData(const SInputData&)
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::MuonMomentumSmearingTool::getSmearedPt(const Muon* mu)
 {
   double my_pt = mu->pt();
@@ -75,8 +75,10 @@ double CommonTools::MuonMomentumSmearingTool::getSmearedPt(const Muon* mu)
   if (!is_data()) {
     if (m_mcp_smear) {
       float pt_cb = mu->pt();
-      float pt_id = (mu->id_qoverp_exPV() !=0) ? fabs(sin(mu->id_theta_exPV())/mu->id_qoverp_exPV()) : 0;
-      float pt_ms = (mu->me_qoverp_exPV() !=0) ? fabs(sin(mu->me_theta_exPV())/mu->me_qoverp_exPV()) : 0;
+      float pt_id = (mu->id_qoverp_exPV() !=0) ?
+        fabs(sin(mu->id_theta_exPV())/mu->id_qoverp_exPV()) : 0;
+      float pt_ms = (mu->me_qoverp_exPV() !=0) ?
+        fabs(sin(mu->me_theta_exPV())/mu->me_qoverp_exPV()) : 0;
 
       // m_mcp_smear.SetSeed(EventNumber+iMu*1000000);
       int seed = static_cast<int>(1.e+5*fabs(mu->phi()));

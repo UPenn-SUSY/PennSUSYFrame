@@ -16,24 +16,24 @@
 #include "TriggerMatch/TriggerMatch2Lep.h"
 // #include "DGTriggerReweight/triggerReweight2Lep.h"
 
-// ============================================================================
+// =============================================================================
 namespace SelectionTools
 {
-  // ==========================================================================
+  // ===========================================================================
   class TriggerCutTool : public ToolBase
   {
-  // --------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   public:
     TriggerCutTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~TriggerCutTool();
 
     // // weights for simulation
 
-	  // double EEweight(std::vector<Electron>&);
-	  // double MMweight(std::vector<Muon>&);
-	  // double EMweight(std::vector<Electron>&, std::vector<Muon>&);
+    // double EEweight(std::vector<Electron>&);
+    // double MMweight(std::vector<Muon>&);
+    // double EMweight(std::vector<Electron>&, std::vector<Muon>&);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool passedAnySingleOrDiLeptonTrigger( const Event*
                                          , const Trigger*
                                          );
@@ -91,15 +91,15 @@ namespace SelectionTools
                                  , const std::vector<Muon*>&
                                  );
 
-  // --------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   private:
     bool c_do_trigger_matching;
     bool c_check_against_official;
 
-	  // void testSasa();
-	  // triggerReweight2Lep *m_triggerReweight;
+    // void testSasa();
+    // triggerReweight2Lep *m_triggerReweight;
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // 2012 trigger selection criteria
     bool passedEETrigger2012( const Event*
                             , const Trigger*
@@ -114,7 +114,7 @@ namespace SelectionTools
                             , const Trigger*
                             );
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // 2012 trigger selection criteria
     bool passedEETriggerMatching2012( const Event*
                                     , const TriggerVec*
@@ -168,7 +168,7 @@ namespace SelectionTools
                   , double pt_cut
                   );
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // the following functions are wrappers to call the official trigger
     // match pachage
     bool passedEETriggerMatch_anders( const Event* event
@@ -196,7 +196,7 @@ namespace SelectionTools
                                     , bool debug=false
                                     );
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(TriggerCutTool, 0);
   };
 }

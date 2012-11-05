@@ -1,17 +1,15 @@
 #include "include/EgammaEnergyRescaleTool.h"
 
-#include <math.h> // sasa add for fabs
+#include <math.h>
 
-// ----------------------------------------------------------------------------
-CommonTools::EgammaEnergyRescaleTool::EgammaEnergyRescaleTool( SCycleBase* parent
-                                                             , const char* name
-                                                             )
-                                                             : ToolBase(parent, name)
+// -----------------------------------------------------------------------------
+CommonTools::EgammaEnergyRescaleTool::EgammaEnergyRescaleTool(
+    SCycleBase* parent, const char* name) : ToolBase(parent, name)
 {
   DeclareProperty("apply_systematics", c_apply_systematics = 0);
   DeclareProperty("is_af2", c_is_af2 = false);
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // directory with energy rescale data
   // get default path for muon SF directory.  This comes from SUSYTools
   std::string maindir = "";
@@ -25,20 +23,20 @@ CommonTools::EgammaEnergyRescaleTool::EgammaEnergyRescaleTool( SCycleBase* paren
   m_eRescale.Init(energy_rescale_data, "2012", "es2010");;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::EgammaEnergyRescaleTool::BeginInputData(const SInputData&)
 {
   // do nothing
 }
 
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::EgammaEnergyRescaleTool::EndInputData(const SInputData&)
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::EgammaEnergyRescaleTool::getRescaledE(const Electron* p)
 {
   const float el_E_uncorrected = p->cl_E();
@@ -48,7 +46,7 @@ double CommonTools::EgammaEnergyRescaleTool::getRescaledE(const Electron* p)
   float el_cl_eta = p->cl_eta();
   float el_cl_phi = p->cl_phi();
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is_data()) {
     // Electron energy scale uncertainty
     el_E_corrected = m_eRescale.applyEnergyCorrection(
@@ -56,7 +54,7 @@ double CommonTools::EgammaEnergyRescaleTool::getRescaledE(const Electron* p)
         egRescaler::EnergyRescalerUpgrade::Electron,
         egRescaler::EnergyRescalerUpgrade::Nominal);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Do energy smearing in MC
     int seed = static_cast<int>(1.e+5*fabs(el_cl_phi));
     if (!seed) ++seed;
@@ -90,7 +88,7 @@ double CommonTools::EgammaEnergyRescaleTool::getRescaledE(const Electron* p)
   return el_E_corrected;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::EgammaEnergyRescaleTool::getRescaledEt(const Electron* p)
 {
   float el_E_corrected = getRescaledE(p);

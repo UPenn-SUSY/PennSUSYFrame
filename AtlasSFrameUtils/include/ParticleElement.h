@@ -1,5 +1,5 @@
 #ifndef AtlasSFrameTools_ParticleElement_h
-#define AtlasSFrameTools_ParticleElement_h 
+#define AtlasSFrameTools_ParticleElement_h
 
 #include "TLorentzVector.h"
 

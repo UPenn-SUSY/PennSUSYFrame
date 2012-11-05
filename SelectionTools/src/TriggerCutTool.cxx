@@ -5,9 +5,7 @@
 
 #include "include/TriggerCutTool.h"
 
-// #include "include/MersenneTwister.h" // random number generator, needed for testSasa only
-
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 SelectionTools::TriggerCutTool::TriggerCutTool(
     SCycleBase* parent, const char* name) : ToolBase(parent, name)
                                           // , c_check_against_official(false)
@@ -20,13 +18,15 @@ SelectionTools::TriggerCutTool::TriggerCutTool(
   // m_triggerReweight = new triggerReweight2Lep();
 
   // std::string directory = "./RootCore/DGTriggerReweight/data";
-  // std::string periods = "A-B3"; // this is the argument that needs to be modified for more data - change to "HCP" for the fall 2012 dataset
+  // // this is the argument that needs to be modified for more data - change to
+  // // "HCP" for the fall 2012 dataset
+  // std::string periods = "A-B3";
   // m_triggerReweight->setDbg(1);
   // m_triggerReweight->initialize(directory, periods);
   // m_triggerReweight->setDbg(0);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 SelectionTools::TriggerCutTool::~TriggerCutTool() {
 	// printf("test SelectionTools::TriggerCutTool::~TriggerCutTool()\n");
 
@@ -123,7 +123,7 @@ double SelectionTools::TriggerCutTool::EMweight(std::vector<Electron>& el, std::
 }
 */
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedAnySingleOrDiLeptonTrigger(
     const Event* event,
     const Trigger* trig)
@@ -136,7 +136,7 @@ bool SelectionTools::TriggerCutTool::passedAnySingleOrDiLeptonTrigger(
   return pass_trigger;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 TRIG_PHASE SelectionTools::TriggerCutTool::getPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
@@ -188,7 +188,7 @@ TRIG_PHASE SelectionTools::TriggerCutTool::getPhaseSpace(
   return TRIG_NONE;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedEEPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
@@ -199,7 +199,7 @@ bool SelectionTools::TriggerCutTool::passedEEPhaseSpace(
          );
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedMMPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
@@ -212,7 +212,7 @@ bool SelectionTools::TriggerCutTool::passedMMPhaseSpace(
          );
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedEMPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
@@ -221,7 +221,7 @@ bool SelectionTools::TriggerCutTool::passedEMPhaseSpace(
   return (phase == TRIG_EM_A);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedMEPhaseSpace(
     const std::vector<Electron*>& electrons,
     const std::vector<Muon*>& muons)
@@ -436,7 +436,7 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatching(
   return pass_trigger_match;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedEETrigger2012(
     const Event* /*event*/,
     const Trigger* trig)
@@ -450,7 +450,7 @@ bool SelectionTools::TriggerCutTool::passedEETrigger2012(
   return (pass_single_trigger || pass_double_trigger);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedMMTrigger2012(
     const Event* /*event*/,
     const Trigger* trig)
@@ -466,7 +466,7 @@ bool SelectionTools::TriggerCutTool::passedMMTrigger2012(
   return (pass_single_trigger || pass_double_trigger);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedEMTrigger2012(
     const Event* /*event*/,
     const Trigger* trig)
@@ -477,7 +477,7 @@ bool SelectionTools::TriggerCutTool::passedEMTrigger2012(
   return pass_trigger;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedMETrigger2012(
     const Event* /*event*/,
     const Trigger* trig)
@@ -490,7 +490,7 @@ bool SelectionTools::TriggerCutTool::passedMETrigger2012(
 
 
 // 2012 trigger selection criteria
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedEETriggerMatching2012(
     const Event* /*event*/,
     const TriggerVec* trig_vec,
@@ -539,7 +539,7 @@ bool SelectionTools::TriggerCutTool::passedEETriggerMatching2012(
   return pass_trigger_match;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedMMTriggerMatching2012(
     const Event* /*event*/,
     const TriggerVec* trig_vec,
@@ -639,7 +639,7 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatching2012(
   return pass_trigger_match;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedEMTriggerMatching2012(
     const Event* /*event*/,
     const TriggerVec* trig_vec,
@@ -670,7 +670,7 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatching2012(
   return pass_trigger_match;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedMETriggerMatching2012(
     const Event* /*event*/,
     const TriggerVec* trig_vec,
@@ -702,7 +702,7 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatching2012(
 }
 
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::matchElectronList(
     const std::vector<Electron*>& el,
     const std::vector<int>* trigger_chain,
@@ -760,7 +760,7 @@ bool SelectionTools::TriggerCutTool::matchElectronList(
   return false;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::matchElectron(
     Electron* el,
     const std::vector<int>* trigger_chain,
@@ -778,7 +778,7 @@ bool SelectionTools::TriggerCutTool::matchElectron(
                           );
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::matchMuonList(
     const std::vector<Muon*>& mu,
     const std::vector<int>* trigger_chain,
@@ -849,7 +849,7 @@ bool SelectionTools::TriggerCutTool::matchMuonList(
   return false;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::matchMuon(
     Muon* mu,
     const std::vector<int>* trigger_chain,

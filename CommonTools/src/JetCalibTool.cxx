@@ -1,6 +1,6 @@
 #include "include/JetCalibTool.h"
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::JetCalibTool::JetCalibTool( SCycleBase* parent
                                        , const char* name
                                        )
@@ -10,14 +10,14 @@ CommonTools::JetCalibTool::JetCalibTool( SCycleBase* parent
   DeclareProperty("is_af2", c_is_af2 = false);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::JetCalibTool::~JetCalibTool()
 {
   if (m_jet_calibration)
     delete m_jet_calibration;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::JetCalibTool::BeginInputData(const SInputData&)
 {
 
@@ -33,11 +33,11 @@ void CommonTools::JetCalibTool::BeginInputData(const SInputData&)
 
   std::string jes_config_file;
   if (c_is_af2){
-    jes_config_file
-      = maindir + "../ApplyJetCalibration/data/CalibrationConfigs/JES_August2012_AFII.config";
+    jes_config_file = maindir +
+      "../ApplyJetCalibration/data/CalibrationConfigs/JES_August2012_AFII.config";
   } else {
-    jes_config_file
-      = maindir + "../ApplyJetCalibration/data/CalibrationConfigs/JES_March2012.config";
+    jes_config_file = maindir +
+      "../ApplyJetCalibration/data/CalibrationConfigs/JES_March2012.config";
   }
 
   m_jet_calibration = new JetCalibrationTool( jet_algorithm
@@ -46,7 +46,7 @@ void CommonTools::JetCalibTool::BeginInputData(const SInputData&)
                                             );
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::JetCalibTool::EndInputData(const SInputData&)
 {
   // do nothing
@@ -57,13 +57,13 @@ TLorentzVector CommonTools::JetCalibTool::getConfiguredJet(
     float mu,
     int num_vetices_w_2_trks)
 {
-  TLorentzVector tlv = m_jet_calibration->ApplyOffsetEtaJES( jet->constscale_E()
-                                                           , jet->constscale_eta()
-                                                           , jet->EtaOrigin()
-                                                           , jet->PhiOrigin()
-                                                           , jet->MOrigin()
-                                                           , mu
-                                                           , num_vetices_w_2_trks
-                                                           );
+  TLorentzVector tlv = m_jet_calibration->ApplyOffsetEtaJES(
+      jet->constscale_E(),
+      jet->constscale_eta(),
+      jet->EtaOrigin(),
+      jet->PhiOrigin(),
+      jet->MOrigin(),
+      mu,
+      num_vetices_w_2_trks);
   return tlv;
 }

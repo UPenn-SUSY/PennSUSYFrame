@@ -5,22 +5,24 @@
 
 ClassImp(Electron)
 
-// ----------------------------------------------------------------------------
-  Electron::Electron( const ParticleElement<D3PDReader::ElectronD3PDObjectElement>& p
-                    , CommonTools::TLVTool* tlv_tool
-                    , CommonTools::IsoCorrectionTool* iso_corr_tool
-                    , int index
-                    )
-                    : ParticleElement<D3PDReader::ElectronD3PDObjectElement>(p,index,false)
-                    , m_tlv_prepped(false)
-                    , m_raw_tlv_prepped(false)
-                    , m_tlv_tool(tlv_tool)
-                    , m_iso_corr_tool(iso_corr_tool)
+// -----------------------------------------------------------------------------
+  Electron::Electron(
+      const ParticleElement<D3PDReader::ElectronD3PDObjectElement>& p,
+      CommonTools::TLVTool* tlv_tool,
+      CommonTools::IsoCorrectionTool* iso_corr_tool,
+      int index) : ParticleElement<D3PDReader::ElectronD3PDObjectElement>(p
+                                                                         ,index
+                                                                         ,false
+                                                                         )
+                 , m_tlv_prepped(false)
+                 , m_raw_tlv_prepped(false)
+                 , m_tlv_tool(tlv_tool)
+                 , m_iso_corr_tool(iso_corr_tool)
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 TLorentzVector Electron::getTlv() const
 {
   if (!m_tlv_prepped) {
@@ -31,7 +33,7 @@ TLorentzVector Electron::getTlv() const
   return m_tlv;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 TLorentzVector Electron::getRawTlv() const
 {
   if (!m_raw_tlv_prepped) {
@@ -42,7 +44,7 @@ TLorentzVector Electron::getRawTlv() const
   return m_raw_tlv;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void Electron::prepTlv()
 {
   if (m_tlv_prepped == false) {
@@ -51,7 +53,7 @@ void Electron::prepTlv()
   }
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void Electron::prepRawTlv()
 {
   if (m_raw_tlv_prepped == false) {
@@ -60,21 +62,21 @@ void Electron::prepRawTlv()
   }
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 float Electron::getEta() const
 {
   if (nSiHits() < 4) return cl_eta();
   return tracketa();
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 float Electron::getPhi() const
 {
   if (nSiHits() < 4) return cl_phi();
   return trackphi();
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 float Electron::getD0Significance() const
 {
   float d0     = trackd0pv();
@@ -83,7 +85,7 @@ float Electron::getD0Significance() const
   return d0/d0_sig;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 float Electron::getZ0SinTheta() const
 {
   float z0        = trackz0pv();

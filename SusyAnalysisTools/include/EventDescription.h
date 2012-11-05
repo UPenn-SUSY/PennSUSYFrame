@@ -25,7 +25,7 @@ namespace SusyAnalysisTools
       void setPassIncompleteEvent(bool);
       void setPassLarError(bool);
       void setPassTileError(bool);
-      void setPassTileCalHotSpot(bool);
+      void setPassTileHotSpot(bool);
       void setPassBadJets(bool);
       void setPassPrimaryVertex(bool);
       void setPassBadMuons(bool);
@@ -54,7 +54,7 @@ namespace SusyAnalysisTools
       bool getPassIncompleteEVent();
       bool getPassLarError();
       bool getPassTileError();
-      bool getPassTileCalHotSpot();
+      bool getPassTileHotSpot();
       bool getPassBadJets();
       bool getPassPrimaryVertex();
       bool getPassBadMuons();
@@ -115,7 +115,7 @@ namespace SusyAnalysisTools
       bool            m_pass_incomplete_event;
       bool            m_pass_lar_error;
       bool            m_pass_tile_error;
-      bool            m_pass_tile_cal_hot_spot;
+      bool            m_pass_tile_hot_spot;
       bool            m_pass_bad_jets;
       bool            m_pass_primary_vertex;
       bool            m_pass_bad_muons;
@@ -148,10 +148,10 @@ namespace SusyAnalysisTools
           return ( static_cast<ull_t>(component) << address );
         }
 
-      static unsigned int getCompFromInt( const ull_t& rhs
-                                        , unsigned int address
-                                        , unsigned int size
-                                        );
+      static unsigned int getComponent( const ull_t& rhs
+                                      , unsigned int address
+                                      , unsigned int size
+                                      );
   };
 
 } /* end of SusyAnalysisTools */

@@ -1,7 +1,8 @@
 # ======================
 # = top level Makefile =
 # ======================
-DIRS = SFrame AtlasSFrameUtils CommonTools D3PDObjects SelectionTools SusyAnalysisTools SusyDiLepton
+DIRS = SFrame AtlasSFrameUtils CommonTools D3PDObjects SelectionTools \
+	   SusyAnalysisTools SusyDiLepton
 
 all::
 	@ for dir in $(DIRS); \

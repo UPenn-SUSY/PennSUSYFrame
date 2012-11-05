@@ -54,16 +54,16 @@
 *  @author Brett Jackson
 * @version $Revision: 173 $
 */
-// ============================================================================
+// =============================================================================
 class SusyDiLeptonCutFlowCycle : public CycleBase
 {
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 public:
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   SusyDiLeptonCutFlowCycle();
   virtual ~SusyDiLeptonCutFlowCycle();
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   virtual void BeginCycleImp() throw(SError);
   virtual void EndCycleImp()   throw(SError);
   virtual void BeginInputDataImp(      const SInputData&) throw(SError);
@@ -71,14 +71,15 @@ public:
   virtual void BeginMasterInputDataImp(const SInputData&) throw(SError);
   virtual void EndMasterInputDataImp(  const SInputData&) throw(SError);
   virtual void BeginInputFileImp(      const SInputData&) throw(SError);
-  virtual void ExecuteEventImp(        const SInputData&, Double_t) throw(SError);
+  virtual void ExecuteEventImp(
+      const SInputData&, Double_t) throw(SError);
 
   void prepEvent();
   void getObjects();
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 private:
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // = user configurable variables =
   // Is this egamma or muon stream
   bool c_is_egamma_stream;
@@ -112,7 +113,7 @@ private:
   bool c_crit_trigger;
   bool c_crit_trigger_match;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool m_is_ee;
   bool m_is_mm;
   bool m_is_em;
@@ -124,7 +125,7 @@ private:
   bool m_pass_em;
   bool m_pass_me;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   ElectronContainer m_electrons;
   Event*            m_event;
   JetContainer      m_jets;
@@ -134,7 +135,7 @@ private:
   TriggerVec*       m_trigger_vec;
   VertexContainer   m_vertices;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // = D3PD readers =
   D3PDReader::ElectronD3PDObject*   m_electron_d3pdobject;
   D3PDReader::JetD3PDObject*        m_jet_d3pdobject;
@@ -145,7 +146,7 @@ private:
   D3PDReader::TruthMETD3PDObject*   m_met_truth_d3pdobject;
   D3PDReader::VertexD3PDObject*     m_vertex_d3pdobject;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   SelectionTools::ElectronSelectionTool* m_electron_selection;
   SelectionTools::JetSelectionTool*      m_jet_selection;
   SelectionTools::MuonSelectionTool*     m_muon_selection;
@@ -155,14 +156,24 @@ private:
   SelectionTools::EventCleaningTool* m_event_cleaning_tool;
   SelectionTools::TriggerCutTool*    m_trigger_cut_tool;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  unsigned int m_run_number;
+  unsigned int m_event_number;
+  ull_t m_event_desc_int;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();
+  void declareEventVariables();
+
   void initD3PDReaders();
   void getTools();
 
   bool runCutFlow();
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  void clearEventVariables();
+  void fillEventVariables();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Macro adding the functions for dictionary generation
   ClassDef(SusyDiLeptonCutFlowCycle, 0);
 

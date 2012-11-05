@@ -7,7 +7,7 @@
 
 ClassImp( SusyDiLeptonCutFlowCycle );
 
-// ============================================================================
+// =============================================================================
 SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   CycleBase(),
   m_event(NULL),
@@ -58,7 +58,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   DeclareProperty("Crit_trigger"          , c_crit_trigger          = false);
   DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   declareTools();
 }
 
@@ -85,26 +85,35 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   // TODO populate list of tools
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::declareEventVariables()
+{
+  DeclareVariable(m_run_number    , "run_number"  );
+  DeclareVariable(m_event_number  , "event_number");
+  DeclareVariable(m_event_desc_int, "event_desc"  );
+}
+
+// -----------------------------------------------------------------------------
 SusyDiLeptonCutFlowCycle::~SusyDiLeptonCutFlowCycle()
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::BeginCycleImp() throw( SError )
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::EndCycleImp() throw( SError )
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SError )
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
+    throw( SError )
 {
   m_logger << DEBUG
            << "SusyDiLeptonCutFlowCycle::eginInputData()"
@@ -117,10 +126,11 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& ) throw( SEr
            << SLogger::endmsg;
 
   initD3PDReaders();
+  declareEventVariables();
   getTools();
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::initD3PDReaders()
 {
   m_event = new Event(m_entry_number, "", is_data());
@@ -160,7 +170,7 @@ void SusyDiLeptonCutFlowCycle::initD3PDReaders()
   }
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::getTools()
 {
   // Get helper tools required by containers
@@ -185,8 +195,10 @@ void SusyDiLeptonCutFlowCycle::getTools()
   tlv_tool->init(egamma_energy_rescale, muon_smearing, jet_calib);
 
   // Isolation correction tools
-  GET_TOOL(el_iso_corr_tool, CommonTools::IsoCorrectionTool, "Electron_IsoCorr");
-  GET_TOOL(mu_iso_corr_tool, CommonTools::IsoCorrectionTool, "Muon_IsoCorr"    );
+  GET_TOOL(
+      el_iso_corr_tool, CommonTools::IsoCorrectionTool, "Electron_IsoCorr");
+  GET_TOOL(
+      mu_iso_corr_tool, CommonTools::IsoCorrectionTool, "Muon_IsoCorr"    );
 
   // Electron selection
   GET_TOOL( electron_selection
@@ -240,8 +252,9 @@ void SusyDiLeptonCutFlowCycle::getTools()
   m_trigger_cut_tool = trigger_cut;
 }
 
-// ----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::EndInputDataImp( const SInputData& ) throw( SError )
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::EndInputDataImp( const SInputData& )
+    throw( SError )
 {
   m_logger << DEBUG
            << "SusyDiLeptonCutFlowCycle::EndInputData()"
@@ -264,14 +277,16 @@ void SusyDiLeptonCutFlowCycle::EndInputDataImp( const SInputData& ) throw( SErro
   }
 }
 
-// ----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::BeginMasterInputDataImp( const SInputData& ) throw( SError )
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::BeginMasterInputDataImp( const SInputData& )
+    throw( SError )
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::EndMasterInputDataImp( const SInputData& /*id*/ ) throw( SError )
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::EndMasterInputDataImp( const SInputData& /*id*/ )
+    throw( SError )
 {
   m_logger << DEBUG
            << "EndMasterInputDataImp()"
@@ -280,8 +295,9 @@ void SusyDiLeptonCutFlowCycle::EndMasterInputDataImp( const SInputData& /*id*/ )
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& ) throw( SError )
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
+    throw( SError )
 {
   m_logger << DEBUG
            << "SusyDiLeptonCutFlowCycle::BeginInputFile()"
@@ -304,8 +320,9 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& ) throw( SEr
   }
 }
 
-// ----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) throw( SError )
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
+    throw( SError )
 {
   m_logger << DEBUG
            << "SusyDiLeptonCutFlowCycle::ExecuteEvent()"
@@ -318,13 +335,16 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
 
   getObjects();
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  std::cout << "run number: " << m_event->RunNumber()
-            << "\t--\tevent number: " << m_event->EventNumber()
-            << "\n";
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  ///std::cout << "run number: " << m_event->RunNumber()
+  ///          << "\t--\tevent number: " << m_event->EventNumber()
+  ///          << "\n";
 
   bool pass_critical_cuts = runCutFlow();
   if (!pass_critical_cuts) return;
+  return;
+
+  fillEventVariables();
 
   //
   // m_vertices.print(VERT_ALL);
@@ -335,7 +355,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t ) th
   // m_vertices.print(VERT_GOOD);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SusyDiLeptonCutFlowCycle::runCutFlow()
 {
   // Check GRL
@@ -353,15 +373,17 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   }
 
   // Check Tile Error
-  bool pass_tile_error = m_event_cleaning_tool->passTileError(m_event) == false;
+  bool pass_tile_error = m_event_cleaning_tool->passTileError(m_event);
   m_event->getEventDesc()->setPassTileError(pass_tile_error);
   if (c_crit_tile_error && pass_tile_error == false) {
     return false;
   }
 
   // Check Tile hot spot
-  bool pass_tile_hot_spot = m_event_cleaning_tool->passTileHotSpot(m_event, m_jets);
-  m_event->getEventDesc()->setPassTileCalHotSpot(pass_tile_hot_spot);
+  bool pass_tile_hot_spot = m_event_cleaning_tool->passTileHotSpot( m_event
+                                                                  , m_jets
+                                                                  );
+  m_event->getEventDesc()->setPassTileHotSpot(pass_tile_hot_spot);
   if (c_crit_tile_hot_spot && pass_tile_hot_spot == false) {
     return false;
   }
@@ -395,7 +417,8 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   }
 
   // Check TTC veto
-  bool pass_incomplete_event = m_event_cleaning_tool->passIncompleteEvent(m_event);
+  bool pass_incomplete_event =
+      m_event_cleaning_tool->passIncompleteEvent(m_event);
   m_event->getEventDesc()->setPassIncompleteEvent(pass_incomplete_event);
   if (c_crit_incomplete_event && pass_incomplete_event == false) {
     return false;
@@ -526,7 +549,23 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   return true;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::clearEventVariables()
+{
+  m_run_number     = 0.;
+  m_event_number   = 0.;
+  m_event_desc_int = 0.;
+}
+
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::fillEventVariables()
+{
+  m_run_number     = m_event->RunNumber();
+  m_event_number   = m_event->EventNumber();
+  m_event_desc_int = m_event->getEventDesc()->toInt();
+}
+
+// -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::prepEvent()
 {
   // set default values for constants, bools, and weights
@@ -549,6 +588,9 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_muons.clear();
   m_met->clear();
   m_vertices.clear();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  clearEventVariables();
 }
 
 // -----------------------------------------------------------------------------

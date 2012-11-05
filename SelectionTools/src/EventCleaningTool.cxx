@@ -1,6 +1,6 @@
 #include "include/EventCleaningTool.h"
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 SelectionTools::EventCleaningTool::EventCleaningTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
 {
@@ -8,20 +8,20 @@ SelectionTools::EventCleaningTool::EventCleaningTool(
 
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 SelectionTools::EventCleaningTool::~EventCleaningTool()
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passFCALCleaning(
     Event* event, const JetContainer& jets)
 {
   return passFCALCleaning(event, jets.getJets(JET_ALL));
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passFCALCleaning(
     Event* event, const std::vector<Jet*>& jets)
 {
@@ -46,7 +46,7 @@ bool SelectionTools::EventCleaningTool::passFCALCleaning(
   return passed_cut;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passLARError(Event* event)
 {
   m_logger << DEBUG
@@ -62,7 +62,7 @@ bool SelectionTools::EventCleaningTool::passLARError(Event* event)
   return true;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passIncompleteEvent(Event* event)
 {
   m_logger << DEBUG
@@ -82,7 +82,7 @@ bool SelectionTools::EventCleaningTool::passIncompleteEvent(Event* event)
 
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passTileError(Event* event)
 {
   m_logger << DEBUG
@@ -96,14 +96,14 @@ bool SelectionTools::EventCleaningTool::passTileError(Event* event)
 
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passTileHotSpot(
     Event* event, const JetContainer& jets)
 {
   return passTileHotSpot(event, jets.getJets(JET_ALL));
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passTileHotSpot(Event* event,
               const std::vector<Jet*>& jets
               )
@@ -118,13 +118,16 @@ bool SelectionTools::EventCleaningTool::passTileHotSpot(Event* event,
     {
       if (inTileHotSpot(jets.at(jet_it)->eta(),jets.at(jet_it)->phi()))
         {
-          if (jets.at(jet_it)->fracSamplingMax()>0.6 && jets.at(jet_it)->SamplingMax()==13) passed_cut=false;
+          if (  jets.at(jet_it)->fracSamplingMax()>0.6
+             && jets.at(jet_it)->SamplingMax()==13
+             )
+            passed_cut=false;
         }
     }
   return passed_cut;
 }
 
-// ---------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::checkFCALProblemRuns(Event* event)
 {
   return (  is_data()
@@ -134,7 +137,7 @@ bool SelectionTools::EventCleaningTool::checkFCALProblemRuns(Event* event)
          );
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::inFCALProblemArea(
     float pt, float eta, float phi)
 {
@@ -146,7 +149,7 @@ bool SelectionTools::EventCleaningTool::inFCALProblemArea(
   return true;
 }
 
-// ---------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::checkTileHotSpotRuns(Event* event)
 {
   return (  is_data()
@@ -156,7 +159,7 @@ bool SelectionTools::EventCleaningTool::checkTileHotSpotRuns(Event* event)
          );
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::inTileHotSpot(float eta, float phi)
 {
   // check if object is in Hot Spot

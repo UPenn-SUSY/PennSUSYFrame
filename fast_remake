@@ -1,7 +1,12 @@
-for dir in AtlasSFrameUtils CommonTools SelectionTools SusyAnalysisTools SusyDiLepton ; do 
+for dir in AtlasSFrameUtils \
+           CommonTools \
+           SelectionTools \
+           SusyAnalysisTools \
+           SusyDiLepton \
+           ; do
   echo $dir
   cd $dir
-  make distclean 
+  make distclean
   cd ..
 done
 make
