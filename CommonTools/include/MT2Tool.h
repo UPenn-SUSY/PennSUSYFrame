@@ -16,6 +16,8 @@ namespace CommonTools{
   class MT2Tool : public ToolBase
   {
   public:
+    MT2Tool(SCycleBase* parent, const char* name = "CutTool");
+    virtual ~MT2Tool();
 
     double getMT2();
     double setMT2();
