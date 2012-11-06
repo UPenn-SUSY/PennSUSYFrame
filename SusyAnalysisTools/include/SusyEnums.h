@@ -43,13 +43,15 @@ enum ELECTRON_COLLECTIONS { EL_ALL = 0  // Green tree snake
                           , EL_N
                           };
 
-enum JET_COLLECTIONS { JET_ALL = 0  // Green tree snake
-                     , JET_BASELINE // Baseline cuts
-                     , JET_BAD      // Baseline + overlap removal
-                     , JET_GOOD     // Baseline + overlap removal
-                     , JET_CENTRAL  // Light central cuts
-                     , JET_B        // B-jet cuts
-                     , JET_FORWARD  // Forward cuts
+enum JET_COLLECTIONS { JET_ALL = 0    // Green tree snake
+                     , JET_BASELINE   // Baseline cuts
+                     , JET_BAD        // Baseline + overlap removal
+                     , JET_GOOD       // Baseline + overlap removal
+                     , JET_LIGHT      // Light central cuts
+                     , JET_B          // B-jet cuts
+                     , JET_FORWARD    // Forward cuts
+		     , JET_ALL_SIGNAL //Signal light+b+forward
+		     , JET_ALL_CENTRAL//Signal light+b
                      , JET_N
                      };
 

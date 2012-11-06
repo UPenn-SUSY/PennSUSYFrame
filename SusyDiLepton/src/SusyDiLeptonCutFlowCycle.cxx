@@ -745,7 +745,7 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_muons.setCollection( MU_SIGNAL,
       m_muon_selection->getSignalMuons(m_muons, m_vertices));
 
-  m_jets.setCollection( JET_CENTRAL,
+  m_jets.setCollection( JET_LIGHT,
       m_jet_selection->getLJets(m_jets));
 
   m_jets.setCollection( JET_B,

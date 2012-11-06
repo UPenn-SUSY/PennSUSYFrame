@@ -23,10 +23,10 @@
 //#pragma link C++ class CommonTools::JetCalibTool+;
 //#pragma link C++ class CommonTools::JetSmearingTool+;
 //#pragma link C++ class CommonTools::LarHoleWeightTool+;
-//#pragma link C++ class CommonTools::MT2Tool+;
+#pragma link C++ class CommonTools::MT2Tool+;
 //#pragma link C++ class CommonTools::MuonEfficiencyRescaleTool+;
 //#pragma link C++ class CommonTools::PileUpScaleFactorTool+;
-//#pragma link C++ class CommonTools::TopTagTool+;
+#pragma link C++ class CommonTools::TopTagTool+;
 //#pragma link C++ class CommonTools::TriggerReweightTool+;
 
 #endif // __CINT__

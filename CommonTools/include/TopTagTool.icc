@@ -1,0 +1,70 @@
+// Dear emacs, this is -*- c++ -*-
+#ifndef CommonTools_TopTagTool_icc
+#define CommonTools_TopTagTool_icc
+
+#include <iostream>
+
+#include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/Met.h"
+
+//#include "CommonTools/include/MetTool.h"
+
+// ============================================================================
+namespace CommonTools {
+  // ----------------------------------------------------------------------------
+  template<class T1, class T2>
+  bool TopTagTool::isTopTagged( std::vector<Jet*>& jets
+			    , T1* lepton_1
+			    , T2* lepton_2
+			    , Met* met
+			    )
+  {
+       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // get TLV for jets
+
+    size_t n_jets = jets.size();
+    std::vector<TLorentzVector> jets_vec;
+    jets_vec.reserve(n_jets);
+
+    for (size_t jet_it=0; jet_it!=n_jets; ++jet_it) {
+      jets_vec.push_back(jets.at(jet_it)->getTlv());
+    }
+
+    // get TLV for leptons
+    TLorentzVector tlv_lep_1 = lepton_1->getTlv();
+    TLorentzVector tlv_lep_2 = lepton_2->getTlv();
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // get TVector2 for met
+    TVector2 met_vec = met->metRefFinalVec();
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // check top tag
+    int nsolutions = -1;
+    nsolutions = toptag( c_pt_j_cut
+                       , c_eff_cut
+                       , c_n_jet_scan
+                       , tlv_lep_1
+                       , tlv_lep_2
+                       , jets_vec
+                       , met_vec
+                       );
+
+    // if nsolutions > 0, we found ttbar flag
+    return (nsolutions > 0);
+
+  }
+  template<class T1, class T2>
+  bool TopTagTool::isTopTagged( const JetContainer& jets
+				, T1* lepton_1
+				, T2* lepton_2
+				, Met* met
+				)
+  {
+    // - - - - - - - - - - - - - - - - - - - - - -
+    //TO DO WHICH JET COLLECTION?
+    return isTopTagged(jets.getJets(JET_ALL_SIGNAL), lepton_1, lepton_2, met);
+  }
+
+}
+#endif // CommonTools_TopTagTool_icc
