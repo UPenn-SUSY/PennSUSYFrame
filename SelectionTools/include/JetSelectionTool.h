@@ -6,13 +6,13 @@
 #include "AtlasSFrameUtils/include/Jet.h"
 #include "AtlasSFrameUtils/include/JetContainer.h"
 
-// ============================================================================
+// =============================================================================
 namespace SelectionTools
 {
-  // ==========================================================================
+  // ===========================================================================
   class JetSelectionTool : public ToolBase
   {
-  // --------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   public:
     JetSelectionTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~JetSelectionTool();
@@ -43,7 +43,7 @@ namespace SelectionTools
     std::vector<Jet*> getBadJets(
         const std::vector<Jet*>& good_jets);
 
-  // --------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   private:
     // = user configurables =
     // baseline cut values
@@ -85,7 +85,7 @@ namespace SelectionTools
 
     bool passCut(double test, double min, double max);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(JetSelectionTool, 0);
   };
 }

@@ -7,27 +7,25 @@
 #include "AtlasSFrameUtils/include/CycleMacros.h"
 #include "AtlasSFrameUtils/include/Met.h"
 
-//#include "CommonTools/include/MetTool.h"
-
-// ============================================================================
+// =============================================================================
 namespace CommonTools {
-  // ----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   template<class T1, class T2>
   float MT2Tool::calculateMT2( T1* t1
-			       , T2* t2
-			       , Met* met
-			       , double minv
-			       )
+                             , T2* t2
+                             , Met* met
+                             , double minv
+                             )
   {
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     TLorentzVector tlv_1 = t1->getTlv();
     TLorentzVector tlv_2 = t2->getTlv();
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     TVector2 met_vec = met->metRefFinalVec();
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     double pa[3] = {tlv_1.M(), tlv_1.Px(), tlv_1.Py()};
     double pb[3] = {tlv_2.M(), tlv_2.Px(), tlv_2.Py()};
     double pmiss[3] = {0, met_vec.Px(), met_vec.Py()};

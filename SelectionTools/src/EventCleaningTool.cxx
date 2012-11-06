@@ -6,6 +6,8 @@ SelectionTools::EventCleaningTool::EventCleaningTool(
 {
   DeclareProperty("total_lumi", c_total_lumi = 0);
 
+  DeclareProperty("min_mll", c_mll_min = 20000.);
+  DeclareProperty("max_mll", c_mll_max = -1);
 }
 
 // -----------------------------------------------------------------------------
@@ -79,7 +81,6 @@ bool SelectionTools::EventCleaningTool::passIncompleteEvent(Event* event)
                << SLogger::endmsg;
     }
   return passed_cut;
-
 }
 
 // -----------------------------------------------------------------------------
@@ -128,6 +129,14 @@ bool SelectionTools::EventCleaningTool::passTileHotSpot(Event* event,
 }
 
 // -----------------------------------------------------------------------------
+bool SelectionTools::EventCleaningTool::passMllCut( FLAVOR_CHANNEL flavor,
+    const std::vector<Electron*>& el, const std::vector<Muon*>& mu)
+{
+  double mll = CommonTools::MllTool::getMll(flavor, el, mu);
+  return passCut(mll, c_mll_min, c_mll_max);
+}
+
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::checkFCALProblemRuns(Event* event)
 {
   return (  is_data()
@@ -167,5 +176,21 @@ bool SelectionTools::EventCleaningTool::inTileHotSpot(float eta, float phi)
   if (eta < -0.2 || eta > 0.1) return false;
   if (phi < 2.65 || phi > 2.75) return false;
 
+  return true;
+}
+
+// ----------------------------------------------------------------------------
+bool SelectionTools::EventCleaningTool::passCut( double test
+                                               , double min
+                                               , double max
+                                               )
+{
+  // if no test, return true
+  if (min < 0 && max < 0) return true;
+
+  if (min >= 0 && test < min) return false;
+  if (max >= 0 && test > max) return false;
+
+  // passed test
   return true;
 }

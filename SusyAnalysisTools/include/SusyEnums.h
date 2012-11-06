@@ -8,6 +8,7 @@ enum FLAVOR_CHANNEL { FLAVOR_NONE = 0 // no flavor
                     , FLAVOR_EE   = 1 // ee event
                     , FLAVOR_MM   = 2 // mm event
                     , FLAVOR_EM   = 4 // em event
+                    , FLAVOR_N
                     };
 
 enum PHASE_SPACE { PHASE_NONE = 0 // No phase space
@@ -15,6 +16,7 @@ enum PHASE_SPACE { PHASE_NONE = 0 // No phase space
                  , PHASE_MM   = 2 // mm phase space
                  , PHASE_EM   = 4 // em phase space
                  , PHASE_ME   = 8 // me phase space
+                 , PHASE_N
                  };
 
 enum SIGN_CHANNEL { SIGN_NONE = 0 // no sign channel

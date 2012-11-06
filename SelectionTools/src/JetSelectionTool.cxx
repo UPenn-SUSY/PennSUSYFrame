@@ -1,7 +1,7 @@
 #include <math.h>
 #include "include/JetSelectionTool.h"
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 SelectionTools::JetSelectionTool::JetSelectionTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
 {
@@ -39,13 +39,13 @@ SelectionTools::JetSelectionTool::JetSelectionTool(
   DeclareProperty("c_forward_max_eta", c_forward_max_eta = 4.9);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 SelectionTools::JetSelectionTool::~JetSelectionTool()
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBaseline(Jet* jet)
 {
   // Check that jet is not bad
@@ -66,7 +66,7 @@ bool SelectionTools::JetSelectionTool::isBaseline(Jet* jet)
   return true;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isLJet(Jet* jet)
 {
   // Check for light pt
@@ -93,7 +93,7 @@ bool SelectionTools::JetSelectionTool::isLJet(Jet* jet)
   return true;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBJet(Jet* jet)
 {
   // Check for b pt
@@ -115,7 +115,7 @@ bool SelectionTools::JetSelectionTool::isBJet(Jet* jet)
   return true;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isFJet(Jet* jet)
 {
   // Check for forward pt
@@ -132,12 +132,12 @@ bool SelectionTools::JetSelectionTool::isFJet(Jet* jet)
   return true;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 {
-  double emf = jet->emfrac();
-  double eta = jet->emscale_eta();
-  double chf = jet->sumPtTrk()/jet->getTlv().Pt();
+  double emf  = jet->emfrac();
+  double eta  = jet->emscale_eta();
+  double chf  = jet->sumPtTrk()/jet->getTlv().Pt();
   double fmax = jet->fracSamplingMax();
 
   // non-collision background & cosmics
@@ -165,17 +165,16 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
   return false;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 std::vector<Jet*>
     SelectionTools::JetSelectionTool::getBaselineJets(
         const JetContainer& jet_container)
 {
-  const std::vector<Jet*> all_jets =
-    jet_container.getJets(JET_ALL);
+  const std::vector<Jet*> all_jets = jet_container.getJets(JET_ALL);
   return getBaselineJets(all_jets);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 std::vector<Jet*>
     SelectionTools::JetSelectionTool::getBaselineJets(
         const std::vector<Jet*>& all_jets)
@@ -194,7 +193,7 @@ std::vector<Jet*>
   return baseline_jets;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 std::vector<Jet*>
     SelectionTools::JetSelectionTool::getLJets(
         const JetContainer& jet_container)
@@ -204,10 +203,9 @@ std::vector<Jet*>
   return getLJets(good_jets);
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getLJets(
-        const std::vector<Jet*>& good_jets)
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getLJets(
+    const std::vector<Jet*>& good_jets)
 {
   size_t term = good_jets.size();
 
@@ -223,20 +221,18 @@ std::vector<Jet*>
   return l_jets;
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getBJets(
-        const JetContainer& jet_container)
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBJets(
+    const JetContainer& jet_container)
 {
   const std::vector<Jet*> good_jets =
     jet_container.getJets(JET_GOOD);
   return getBJets(good_jets);
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getBJets(
-        const std::vector<Jet*>& good_jets)
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBJets(
+    const std::vector<Jet*>& good_jets)
 {
   size_t term = good_jets.size();
 
@@ -252,20 +248,18 @@ std::vector<Jet*>
   return b_jets;
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getFJets(
-        const JetContainer& jet_container)
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getFJets(
+    const JetContainer& jet_container)
 {
   const std::vector<Jet*> good_jets =
     jet_container.getJets(JET_GOOD);
   return getFJets(good_jets);
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getFJets(
-        const std::vector<Jet*>& good_jets)
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getFJets(
+    const std::vector<Jet*>& good_jets)
 {
   size_t term = good_jets.size();
 
@@ -281,20 +275,18 @@ std::vector<Jet*>
   return f_jets;
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getBadJets(
-        const JetContainer& jet_container)
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBadJets(
+    const JetContainer& jet_container)
 {
   const std::vector<Jet*> all_jets =
     jet_container.getJets(JET_ALL);
   return getBadJets(all_jets);
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getBadJets(
-        const std::vector<Jet*>& all_jets)
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBadJets(
+    const std::vector<Jet*>& all_jets)
 {
   size_t term = all_jets.size();
 
@@ -310,7 +302,7 @@ std::vector<Jet*>
   return bad_jets;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::passCut( double test
                                               , double min
                                               , double max

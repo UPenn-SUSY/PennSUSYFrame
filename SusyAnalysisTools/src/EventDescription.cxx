@@ -7,6 +7,12 @@ SusyAnalysisTools::EventDescription::EventDescription()
 }
 
 // -----------------------------------------------------------------------------
+SusyAnalysisTools::EventDescription::EventDescription(const ull_t evt_desc_int)
+{
+  set(evt_desc_int);
+}
+
+// -----------------------------------------------------------------------------
 SusyAnalysisTools::EventDescription::~EventDescription()
 {
   // do nothing
@@ -54,17 +60,13 @@ void SusyAnalysisTools::EventDescription::clear()
 }
 
 // -----------------------------------------------------------------------------
-SusyAnalysisTools::EventDescription&
-    SusyAnalysisTools::EventDescription::operator=(
-        const SusyAnalysisTools::EventDescription& rhs)
+void SusyAnalysisTools::EventDescription::set(const SusyAnalysisTools::EventDescription& rhs)
 {
-  *this = rhs.toInt();
-  return *this;
+  set(rhs.toInt());
 }
 
 // -----------------------------------------------------------------------------
-SusyAnalysisTools::EventDescription&
-    SusyAnalysisTools::EventDescription::operator=(const ull_t& rhs)
+void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
 {
   m_pass_grl               = getComponent(rhs, ADD_GRL             , SIZE_BOOL);
   m_pass_incomplete_event  = getComponent(rhs, ADD_INCOMPLETE_EVENT, SIZE_BOOL);
@@ -109,7 +111,22 @@ SusyAnalysisTools::EventDescription&
                   , ADD_TRUTH_SIGN_CHANNEL
                   , SIZE_SIGN
                   ) );
+}
 
+// -----------------------------------------------------------------------------
+SusyAnalysisTools::EventDescription&
+    SusyAnalysisTools::EventDescription::operator=(
+        const SusyAnalysisTools::EventDescription& rhs)
+{
+  set(rhs);
+  return *this;
+}
+
+// -----------------------------------------------------------------------------
+SusyAnalysisTools::EventDescription&
+    SusyAnalysisTools::EventDescription::operator=(const ull_t& rhs)
+{
+  set(rhs);
   return *this;
 }
 
@@ -410,19 +427,25 @@ PHASE_SPACE SusyAnalysisTools::EventDescription::getPhaseSpace()
 // -----------------------------------------------------------------------------
 bool SusyAnalysisTools::EventDescription::isEETrigger()
 {
-  return false;
+  return m_pass_ee_trigger;
 }
 
 // -----------------------------------------------------------------------------
 bool SusyAnalysisTools::EventDescription::isMMTrigger()
 {
-  return false;
+  return m_pass_mm_trigger;
 }
 
 // -----------------------------------------------------------------------------
 bool SusyAnalysisTools::EventDescription::isEMTrigger()
 {
-  return false;
+  return m_pass_em_trigger;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::isMETrigger()
+{
+  return m_pass_me_trigger;
 }
 
 // -----------------------------------------------------------------------------

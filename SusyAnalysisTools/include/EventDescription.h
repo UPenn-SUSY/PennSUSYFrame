@@ -13,11 +13,14 @@ namespace SusyAnalysisTools
     // ------------------------------------------------------------------------
     public:
       EventDescription();
+      EventDescription(ull_t);
       ~EventDescription();
 
       ull_t toInt() const;
 
       void clear();
+      void set (const EventDescription&);
+      void set (const ull_t&);
       EventDescription& operator=(const EventDescription&);
       EventDescription& operator=(const ull_t&);
 
@@ -70,6 +73,7 @@ namespace SusyAnalysisTools
       bool isEETrigger();
       bool isMMTrigger();
       bool isEMTrigger();
+      bool isMETrigger();
       SIGN_CHANNEL    getSignChannel();
 
       bool getTruthMatched();
