@@ -33,9 +33,11 @@ void CommonTools::JetCalibTool::BeginInputData(const SInputData&)
 
   std::string jes_config_file;
   if (c_is_af2){
+    std::cout << "setting up AF2\n";
     jes_config_file = maindir +
       "../ApplyJetCalibration/data/CalibrationConfigs/JES_August2012_AFII.config";
   } else {
+    std::cout << "setting up full sim\n";
     jes_config_file = maindir +
       "../ApplyJetCalibration/data/CalibrationConfigs/JES_March2012.config";
   }
@@ -44,6 +46,7 @@ void CommonTools::JetCalibTool::BeginInputData(const SInputData&)
                                             , jes_config_file
                                             , is_data()
                                             );
+  m_jet_calibration->UseGeV(false);
 }
 
 // -----------------------------------------------------------------------------
@@ -52,6 +55,7 @@ void CommonTools::JetCalibTool::EndInputData(const SInputData&)
   // do nothing
 }
 
+// -----------------------------------------------------------------------------
 TLorentzVector CommonTools::JetCalibTool::getConfiguredJet(
     Jet* jet,
     float mu,
@@ -65,5 +69,6 @@ TLorentzVector CommonTools::JetCalibTool::getConfiguredJet(
       jet->MOrigin(),
       mu,
       num_vetices_w_2_trks);
+
   return tlv;
 }

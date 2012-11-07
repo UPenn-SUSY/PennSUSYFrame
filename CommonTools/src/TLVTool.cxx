@@ -20,7 +20,7 @@ CommonTools::TLVTool::~TLVTool()
 
 // ----------------------------------------------------------------------------
 void CommonTools::TLVTool::init(
-    CommonTools::EgammaEnergyRescaleTool* egamma_energy_rescale,
+    CommonTools::EgammaEnergyRescaleTool*  egamma_energy_rescale,
     CommonTools::MuonMomentumSmearingTool* muon_smearing,
     CommonTools::JetCalibTool*             jet_calibration)
 {
