@@ -12,6 +12,7 @@ int main(int argc, char** argv)
   CutFlowDump cfd(t);
   cfd.Loop();
 
+  cfd.printToScreen();
   cfd.printToFile("cf.root");
 
   delete f;

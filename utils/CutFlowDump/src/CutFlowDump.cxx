@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "include/CutFlowDump.h"
 #include <TH2.h>
 #include <TStyle.h>
@@ -62,9 +63,10 @@ void CutFlowDump::Init(TTree *tree)
    fCurrent = -1;
    fChain->SetMakeClass(1);
 
-   fChain->SetBranchAddress("run_number"  , &m_run_number  , &b_run_number);
-   fChain->SetBranchAddress("event_number", &m_event_number, &b_event_number);
-   fChain->SetBranchAddress("event_desc"  , &m_event_desc  , &b_event_desc);
+   fChain->SetBranchAddress("run_number"     , &m_run_number  , &b_run_number);
+   fChain->SetBranchAddress("event_number"   , &m_event_number, &b_event_number);
+   fChain->SetBranchAddress("event_desc"     , &m_event_desc  , &b_event_desc);
+   fChain->SetBranchAddress("mc_event_weight", &m_mc_weight   , &b_mc_weight);
    Notify();
 }
 
@@ -177,64 +179,68 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase)
   SusyAnalysisTools::EventDescription evt_desc = m_event_desc;
   unsigned int bin_num = 0;
 
+  // TODO do configurable weights
+  // double weight = 1.;
+  double weight = m_mc_weight;
+
   // All events
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // GRL
   if (evt_desc.getPassGrl() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // incomplete event
   if (evt_desc.getPassIncompleteEVent() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // lar error
   if (evt_desc.getPassLarError() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // tile error
   if (evt_desc.getPassTileError() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // tile hot spot
   if (evt_desc.getPassTileHotSpot() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // bad jets
   if (evt_desc.getPassBadJets() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // primary vertex
   if (evt_desc.getPassPrimaryVertex() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // bad muons
   if (evt_desc.getPassBadMuons() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // cosmic muons
   if (evt_desc.getPassCosmicMuons() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // HFOR
   if (evt_desc.getPassHFOR() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // >= 2 good leptons
   if (evt_desc.getPassGE2GoodLeptons() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // == 2 good leptons
   if (evt_desc.getPass2GoodLeptons() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // mll
   if (evt_desc.getPassMll() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // 2 signal leptons
   if (evt_desc.getPass2SignalLeptons() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // flavor selection
   bool pass_flavor = false;
@@ -248,11 +254,11 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase)
     pass_flavor = true;
 
   if (pass_flavor == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // phase space selection
   if (evt_desc.getPhaseSpace() != phase) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // Trigger
   bool pass_trigger = false;
@@ -261,11 +267,11 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase)
   if (phase == PHASE_EM && evt_desc.isEMTrigger()) pass_trigger = true;
   if (phase == PHASE_ME && evt_desc.isMETrigger()) pass_trigger = true;
   if (pass_trigger == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // Trigger matching
   if (evt_desc.getPassTriggerMatch() == false) return;
-  fillHist(phase, bin_num++);
+  fillHist(phase, bin_num++, weight);
 
   // FLAVOR_CHANNEL  getFlavorChannel()
   // PHASE_SPACE     getPhaseSpace()
@@ -280,6 +286,60 @@ void CutFlowDump::fillHist( PHASE_SPACE phase
                           )
 {
   m_cutflow.at(phase)->Fill(cut_bin, weight);
+}
+
+// -----------------------------------------------------------------------------
+void CutFlowDump::printToScreen()
+{
+  printToScreen(PHASE_EE);
+  printToScreen(PHASE_MM);
+  printToScreen(PHASE_EM);
+  printToScreen(PHASE_ME);
+}
+
+// -----------------------------------------------------------------------------
+void CutFlowDump::printToScreen(PHASE_SPACE phase_space)
+{
+  if (  phase_space != PHASE_EE
+     && phase_space != PHASE_MM
+     && phase_space != PHASE_EM
+     && phase_space != PHASE_ME
+     )
+    return;
+
+  unsigned int line_width   = 50;
+  unsigned int label_field  = 20;
+  unsigned int weight_field = line_width - label_field - 2 - 3 - 2;
+
+  std::string single_line;
+  for (unsigned int i = 0; i != line_width; ++i) single_line += '=';
+  single_line = single_line + "\n";
+
+  std::cout << single_line;
+  std::cout << "= ";
+  if( phase_space == PHASE_EE)
+    std::cout << std::setw(line_width - 4) << "EE"; 
+  if( phase_space == PHASE_MM)
+    std::cout << std::setw(line_width - 4) << "MM";
+  if( phase_space == PHASE_EM)
+    std::cout << std::setw(line_width - 4) << "EM";
+  if( phase_space == PHASE_ME)
+    std::cout << std::setw(line_width - 4) << "ME";
+  std::cout << " =\n";
+  std::cout << single_line;
+
+  TH1D* cutflow = m_cutflow.at(phase_space);
+
+  unsigned int num_cuts = cutflow->GetXaxis()->GetNbins();
+
+  for (unsigned int bin_it = 0; bin_it != num_cuts; ++bin_it) {
+    std::string cut_name = cutflow->GetXaxis()->GetBinLabel(bin_it+1);
+    double weight = cutflow->GetBinContent(bin_it + 1);
+    std::cout << "= "  << std::setw(label_field)  << cut_name
+              << " = " << std::setw(weight_field) << weight
+              << " =\n";
+  }
+  std::cout << single_line;
 }
 
 // -----------------------------------------------------------------------------

@@ -13,9 +13,9 @@
 
 // Fixed size dimensions of array or collections stored in the TTree if any.
 
-/// enum WEIGHTS { WEIGHT_NONE = 0
-///              , WEIGHT_N
-///              };
+enum WEIGHTS { WEIGHT_NONE = 0
+             , WEIGHT_N
+             };
 
 class CutFlowDump {
 public :
@@ -27,10 +27,13 @@ public :
    UInt_t          m_event_number;
    ULong64_t       m_event_desc;
 
+   float           m_mc_weight;
+
    // List of branches
    TBranch        *b_run_number;   //!
    TBranch        *b_event_number;   //!
    TBranch        *b_event_desc;   //!
+   TBranch        *b_mc_weight;
 
    CutFlowDump(TTree *tree=0);
    virtual ~CutFlowDump();
@@ -47,6 +50,8 @@ public :
 
    void fillHist(PHASE_SPACE phase, unsigned int cut_bin, double weight = 1.);
 
+   void printToScreen();
+   void printToScreen(PHASE_SPACE phase_space);
    void printToFile(std::string out_file_name);
 
    std::vector<TH1D*> m_cutflow;
