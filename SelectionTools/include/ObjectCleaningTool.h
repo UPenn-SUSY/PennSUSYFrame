@@ -29,10 +29,12 @@ namespace SelectionTools
                            );
     void fullObjectCleaning( const std::vector<Electron*>& input_electrons
                            , const std::vector<Muon*>&     input_muons
-                           , const std::vector<Jet*>&      input_jets
+                           , const std::vector<Jet*>&      input_jets_good
+                           , const std::vector<Jet*>&      input_jets_bad
                            , std::vector<Electron*>&       output_electrons
                            , std::vector<Muon*>&           output_muon
-                           , std::vector<Jet*>&            output_jets
+                           , std::vector<Jet*>&            output_jets_good
+                           , std::vector<Jet*>&            output_jets_bad
                            );
 
     void eeOverlapRemoval( const std::vector<Electron*>& input_electrons
@@ -79,7 +81,7 @@ namespace SelectionTools
     double c_jm_cone_size;
     double c_em_cone_size;
     double c_mm_cone_size;
-    double c_max_mll;
+    double c_min_mll;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(ObjectCleaningTool, 0);

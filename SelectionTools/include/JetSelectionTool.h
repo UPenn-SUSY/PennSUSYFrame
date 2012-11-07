@@ -27,6 +27,14 @@ namespace SelectionTools
     std::vector<Jet*> getBaselineJets(
         const std::vector<Jet*>& all_jets);
 
+    std::vector<Jet*> getBaselineGoodJets(const JetContainer&);
+    std::vector<Jet*> getBaselineGoodJets(
+        const std::vector<Jet*>& all_jets);
+
+    std::vector<Jet*> getBaselineBadJets(const JetContainer&);
+    std::vector<Jet*> getBaselineBadJets(
+        const std::vector<Jet*>& all_jets);
+
     std::vector<Jet*> getLJets(const JetContainer&);
     std::vector<Jet*> getLJets(
         const std::vector<Jet*>& good_jets);
@@ -37,10 +45,6 @@ namespace SelectionTools
 
     std::vector<Jet*> getFJets(const JetContainer&);
     std::vector<Jet*> getFJets(
-        const std::vector<Jet*>& good_jets);
-
-    std::vector<Jet*> getBadJets(const JetContainer&);
-    std::vector<Jet*> getBadJets(
         const std::vector<Jet*>& good_jets);
 
   // ---------------------------------------------------------------------------

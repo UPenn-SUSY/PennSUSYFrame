@@ -48,10 +48,6 @@ SelectionTools::JetSelectionTool::~JetSelectionTool()
 // -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBaseline(Jet* jet)
 {
-  // Check that jet is not bad
-  if (isBadJet(jet))
-    return false;
-
   // Check for baseline pt
   double pt = jet->getTlv().Pt();
   if (!passCut(pt, c_baseline_min_pt, c_baseline_max_pt))
@@ -166,18 +162,16 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 }
 
 // -----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getBaselineJets(
-        const JetContainer& jet_container)
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineJets(
+    const JetContainer& jet_container)
 {
   const std::vector<Jet*> all_jets = jet_container.getJets(JET_ALL);
   return getBaselineJets(all_jets);
 }
 
 // -----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getBaselineJets(
-        const std::vector<Jet*>& all_jets)
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineJets(
+    const std::vector<Jet*>& all_jets)
 {
   size_t term = all_jets.size();
 
@@ -194,12 +188,66 @@ std::vector<Jet*>
 }
 
 // -----------------------------------------------------------------------------
-std::vector<Jet*>
-    SelectionTools::JetSelectionTool::getLJets(
-        const JetContainer& jet_container)
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineGoodJets(
+    const JetContainer& jet_container)
 {
-  const std::vector<Jet*> good_jets =
-    jet_container.getJets(JET_GOOD);
+  const std::vector<Jet*> all_jets = jet_container.getJets(JET_ALL);
+  return getBaselineGoodJets(all_jets);
+}
+
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineGoodJets(
+    const std::vector<Jet*>& all_jets)
+{
+  size_t term = all_jets.size();
+
+  std::vector<Jet*> baseline_jets;
+  baseline_jets.reserve(term);
+
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    if (  isBaseline(all_jets.at(jet_it))
+       && !isBadJet(all_jets.at(jet_it))
+       ) {
+      baseline_jets.push_back(all_jets.at(jet_it));
+    }
+  }
+
+  return baseline_jets;
+}
+
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineBadJets(
+    const JetContainer& jet_container)
+{
+  const std::vector<Jet*> all_jets = jet_container.getJets(JET_ALL);
+  return getBaselineBadJets(all_jets);
+}
+
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineBadJets(
+    const std::vector<Jet*>& all_jets)
+{
+  size_t term = all_jets.size();
+
+  std::vector<Jet*> baseline_jets;
+  baseline_jets.reserve(term);
+
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    if (  isBaseline(all_jets.at(jet_it))
+       && isBadJet(all_jets.at(jet_it))
+       ) {
+      baseline_jets.push_back(all_jets.at(jet_it));
+    }
+  }
+
+  return baseline_jets;
+}
+
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getLJets(
+    const JetContainer& jet_container)
+{
+  const std::vector<Jet*> good_jets = jet_container.getJets(JET_GOOD);
   return getLJets(good_jets);
 }
 
@@ -273,33 +321,6 @@ std::vector<Jet*> SelectionTools::JetSelectionTool::getFJets(
   }
 
   return f_jets;
-}
-
-// -----------------------------------------------------------------------------
-std::vector<Jet*> SelectionTools::JetSelectionTool::getBadJets(
-    const JetContainer& jet_container)
-{
-  const std::vector<Jet*> all_jets =
-    jet_container.getJets(JET_ALL);
-  return getBadJets(all_jets);
-}
-
-// -----------------------------------------------------------------------------
-std::vector<Jet*> SelectionTools::JetSelectionTool::getBadJets(
-    const std::vector<Jet*>& all_jets)
-{
-  size_t term = all_jets.size();
-
-  std::vector<Jet*> bad_jets;
-  bad_jets.reserve(term);
-
-  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
-    if (isBadJet(all_jets.at(jet_it))) {
-      bad_jets.push_back(all_jets.at(jet_it));
-    }
-  }
-
-  return bad_jets;
 }
 
 // -----------------------------------------------------------------------------

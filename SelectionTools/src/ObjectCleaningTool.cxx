@@ -12,7 +12,7 @@ SelectionTools::ObjectCleaningTool::ObjectCleaningTool(
   DeclareProperty("jm_cone_size", c_jm_cone_size = 0.40);
   DeclareProperty("em_cone_size", c_em_cone_size = 0.10);
   DeclareProperty("mm_cone_size", c_mm_cone_size = 0.05);
-  DeclareProperty("max_mll"     , c_max_mll      = 12e3);
+  DeclareProperty("min_mll"     , c_min_mll      = 12000);
 }
 
 // ----------------------------------------------------------------------------
@@ -30,62 +30,75 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   std::vector<Electron*> good_electrons;
   std::vector<Muon*>     good_muons;
   std::vector<Jet*>      good_jets;
+  std::vector<Jet*>      bad_jets;
 
   fullObjectCleaning( electrons.getElectrons(EL_BASELINE)
                     , muons.getMuons(MU_BASELINE)
-                    , jets.getJets(JET_BASELINE)
+                    , jets.getJets(JET_BASELINE_GOOD)
+                    , jets.getJets(JET_BASELINE_BAD)
                     , good_electrons
                     , good_muons
                     , good_jets
+                    , bad_jets
                     );
 
-  electrons.setCollection(EL_GOOD, good_electrons);
-  muons.setCollection(MU_GOOD, good_muons);
-  jets.setCollection(JET_GOOD, good_jets);
+  electrons.setCollection(EL_GOOD , good_electrons);
+  muons.setCollection(    MU_GOOD , good_muons    );
+  jets.setCollection(     JET_GOOD, good_jets     );
+  jets.setCollection(     JET_BAD , bad_jets      );
 }
 
 // ----------------------------------------------------------------------------
 void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
     const std::vector<Electron*>& input_electrons,
     const std::vector<Muon*>& input_muons,
-    const std::vector<Jet*>& input_jets,
+    const std::vector<Jet*>& input_jets_good,
+    const std::vector<Jet*>& input_jets_bad,
     std::vector<Electron*>& output_electrons,
     std::vector<Muon*>& output_muons,
-    std::vector<Jet*>& output_jets)
+    std::vector<Jet*>& output_jets_good,
+    std::vector<Jet*>& output_jets_bad)
 {
   // do ee overlap removal
   std::vector<Electron*> el_temp_1;
   eeOverlapRemoval(input_electrons, el_temp_1);
 
   // do ej overlap removal
-  std::vector<Jet*> jet_temp_1;
-  ejOverlapRemoval(el_temp_1, input_jets, jet_temp_1);
+  std::vector<Jet*> jet_good_temp_1;
+  std::vector<Jet*> jet_bad_temp_1;
+  ejOverlapRemoval(el_temp_1, input_jets_good, jet_good_temp_1);
+  ejOverlapRemoval(el_temp_1, input_jets_bad , jet_bad_temp_1 );
 
   // do je overlap removal
   std::vector<Electron*> el_temp_2;
-  jeOverlapRemoval(el_temp_1, jet_temp_1, el_temp_2);
+  std::vector<Electron*> el_temp_3;
+  jeOverlapRemoval(el_temp_1, jet_good_temp_1, el_temp_2);
+  jeOverlapRemoval(el_temp_2, jet_bad_temp_1 , el_temp_3);
 
   // do jm overlap removal
   std::vector<Muon*> mu_temp_1;
-  jmOverlapRemoval(jet_temp_1, input_muons, mu_temp_1);
+  std::vector<Muon*> mu_temp_2;
+  jmOverlapRemoval(jet_good_temp_1, input_muons, mu_temp_1);
+  jmOverlapRemoval(jet_bad_temp_1 , mu_temp_1  , mu_temp_2);
 
   // do em overlap removal
-  std::vector<Electron*> el_temp_3;
-  std::vector<Muon*> mu_temp_2;
-  emOverlapRemoval(el_temp_2, mu_temp_1, el_temp_3, mu_temp_2);
+  std::vector<Electron*> el_temp_4;
+  std::vector<Muon*> mu_temp_3;
+  emOverlapRemoval(el_temp_3, mu_temp_2, el_temp_4, mu_temp_3);
 
   // do mm overlap removal
-  std::vector<Muon*> mu_temp_3;
-  mmOverlapRemoval(mu_temp_2, mu_temp_3);
+  std::vector<Muon*> mu_temp_4;
+  mmOverlapRemoval(mu_temp_3, mu_temp_4);
 
   // do SFOS mll cut
-  std::vector<Electron*> el_temp_4;
-  std::vector<Muon*> mu_temp_4;
-  mllOverlapRemoval(el_temp_3, mu_temp_3, el_temp_4, mu_temp_4);
+  std::vector<Electron*> el_temp_5;
+  std::vector<Muon*> mu_temp_5;
+  mllOverlapRemoval(el_temp_4, mu_temp_4, el_temp_5, mu_temp_5);
 
-  output_electrons = el_temp_4;
-  output_jets = jet_temp_1;
-  output_muons = mu_temp_4;
+  output_electrons = el_temp_5;
+  output_jets_good = jet_good_temp_1;
+  output_jets_bad  = jet_bad_temp_1;
+  output_muons = mu_temp_5;
 }
 
 // ----------------------------------------------------------------------------
@@ -345,7 +358,7 @@ void SelectionTools::ObjectCleaningTool::mllOverlapRemoval(
       float charge_2 = input_electrons.at(el_it_2)->charge();
       if (charge_1 * charge_2 < 0) {
         TLorentzVector tlv2 = input_electrons.at(el_it_2)->getTlv();
-        if ((tlv1+tlv2).Mag() > c_max_mll) {
+        if ((tlv1+tlv2).Mag() < c_min_mll) {
           keep_el.at(el_it_1) = false;
           keep_el.at(el_it_2) = false;
         }
@@ -362,7 +375,7 @@ void SelectionTools::ObjectCleaningTool::mllOverlapRemoval(
       float charge_2 = input_muons.at(mu_it_2)->charge();
       if (charge_1 * charge_2 < 0) {
         TLorentzVector tlv2 = input_muons.at(mu_it_2)->getTlv();
-        if ((tlv1+tlv2).Mag() > c_max_mll) {
+        if ((tlv1+tlv2).Mag() < c_min_mll) {
           keep_mu.at(mu_it_1) = false;
           keep_mu.at(mu_it_2) = false;
         }

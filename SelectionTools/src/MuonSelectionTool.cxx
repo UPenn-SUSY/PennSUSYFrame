@@ -1,7 +1,7 @@
 #include <math.h>
 #include "include/MuonSelectionTool.h"
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 SelectionTools::MuonSelectionTool::MuonSelectionTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
 {
@@ -12,29 +12,29 @@ SelectionTools::MuonSelectionTool::MuonSelectionTool(
   DeclareProperty("baseline_max_eta", c_baseline_max_eta = 2.4);
 
   DeclareProperty( "baseline_min_b_layer_hits"
-                 , c_baseline_min_b_layer_hits = -1
+                 , c_baseline_min_b_layer_hits = 1
                  );
   DeclareProperty( "baseline_max_b_layer_hits"
                  , c_baseline_max_b_layer_hits = -1
                  );
 
-  DeclareProperty("baseline_min_pixel_hits", c_baseline_min_pixel_hits = -1);
+  DeclareProperty("baseline_min_pixel_hits", c_baseline_min_pixel_hits = 1);
   DeclareProperty("baseline_max_pixel_hits", c_baseline_max_pixel_hits = -1);
 
-  DeclareProperty("baseline_min_sct_hits", c_baseline_min_sct_hits = -1);
+  DeclareProperty("baseline_min_sct_hits", c_baseline_min_sct_hits = 5);
   DeclareProperty("baseline_max_sct_hits", c_baseline_max_sct_hits = -1);
 
   DeclareProperty("baseline_min_si_holes", c_baseline_min_si_holes = -1);
-  DeclareProperty("baseline_max_si_holes", c_baseline_max_si_holes = -1);
+  DeclareProperty("baseline_max_si_holes", c_baseline_max_si_holes = 2);
 
-  DeclareProperty("baseline_min_trt_hits", c_baseline_min_trt_hits = -1);
+  DeclareProperty("baseline_min_trt_hits", c_baseline_min_trt_hits = 6);
   DeclareProperty("baseline_max_trt_hits", c_baseline_max_trt_hits = -1);
 
   DeclareProperty( "baseline_min_trt_ol_fraction"
                  , c_baseline_min_trt_ol_fraction = -1
                  );
   DeclareProperty( "baseline_max_trt_ol_fraction"
-                 , c_baseline_max_trt_ol_fraction = -1
+                 , c_baseline_max_trt_ol_fraction = 0.9
                  );
 
 
@@ -57,13 +57,13 @@ SelectionTools::MuonSelectionTool::MuonSelectionTool(
   DeclareProperty("bad_max_qoverp_ratio", c_bad_max_qoverp_ratio= -1);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 SelectionTools::MuonSelectionTool::~MuonSelectionTool()
 {
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
 {
   // Check for loose of combined muons
@@ -105,10 +105,18 @@ bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
                            , c_baseline_min_trt_hits
                            , c_baseline_max_trt_hits
                            );
-  bool pass_trt_ol = passCut( num_trt
+  bool pass_trt_ol = passCut( trt_ol_fraction
                             , c_baseline_min_trt_ol_fraction
                             , c_baseline_max_trt_ol_fraction
                             );
+
+  // std::cout << "\tpt: " << mu->getTlv().Pt() << "\n";
+  // std::cout << "\ttrack_eta: " << track_eta << "\n";
+  // std::cout << "\tnum_trt: " << num_trt << "\n";
+  // std::cout << "\ttrt_ol_fraction: " << trt_ol_fraction << "\n";
+  // std::cout << "\tpass_n_trt: " << pass_n_trt << "\n";
+  // std::cout << "\tpass_trt_ol: " << pass_trt_ol << "\n";
+
   if (track_eta > 0.1 && track_eta < 1.9) {
     if (!pass_n_trt || !pass_trt_ol) return false;
   }
@@ -130,7 +138,7 @@ bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
   return true;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::MuonSelectionTool::isSignal(
     Muon* mu, const VertexContainer& vertices)
 {
@@ -159,55 +167,53 @@ bool SelectionTools::MuonSelectionTool::isSignal(
   if (!passCut(ptcone_ratio, c_signal_min_ptcone_cut, c_signal_max_ptcone_cut))
       return false;
 
-  // Passed all cuts. This is a signal muo1n
+  // Passed all cuts. This is a cosmic muon
   return true;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::MuonSelectionTool::isCosmic(Muon* mu)
 {
   // check for signal d0 significance
-  float d0 = mu->d0_exPV();
-  if (!passCut(d0, c_cosmic_min_d0, c_cosmic_max_d0))
-    return false;
+  float d0 = fabs(mu->d0_exPV());
+  if (passCut(d0, c_cosmic_min_d0, c_cosmic_max_d0))
+    return true;
 
   // check for signal z0 sin(theta)
   float z0 = fabs(mu->z0_exPV());
-  if (!passCut(z0, c_cosmic_min_z0, c_cosmic_max_z0))
-    return false;
+  if (passCut(z0, c_cosmic_min_z0, c_cosmic_max_z0))
+    return true;
 
-  // Passed all cuts. This is a signal muo1n
-  return true;
+  // Passed all cuts. This is a cosmic muon
+  return false;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::MuonSelectionTool::isBad(Muon* mu)
 {
   // check for signal d0 significance
   float cov_qoverp = mu->cov_qoverp_exPV();
   float qoverp     = mu->qoverp_exPV();
-  float ratio = fabs(sqrt(cov_qoverp)/qoverp);
+  float ratio = sqrt(cov_qoverp)/fabs(qoverp);
   if (!passCut(ratio, c_bad_min_qoverp_ratio, c_bad_max_qoverp_ratio))
     return false;
 
-  // Passed all cuts. This is a signal muo1n
+  // Passed all cuts. This is a bad muon
   return true;
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Muon*>
-    SelectionTools::MuonSelectionTool::getBaselineMuons(
-        const MuonContainer& muon_container)
+// -----------------------------------------------------------------------------
+std::vector<Muon*> SelectionTools::MuonSelectionTool::getBaselineMuons(
+    const MuonContainer& muon_container)
 {
   const std::vector<Muon*> all_muons =
     muon_container.getMuons(MU_ALL);
   return getBaselineMuons(all_muons);
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Muon*>
-    SelectionTools::MuonSelectionTool::getBaselineMuons(
-        const std::vector<Muon*>& all_muons)
+// -----------------------------------------------------------------------------
+std::vector<Muon*> SelectionTools::MuonSelectionTool::getBaselineMuons(
+    const std::vector<Muon*>& all_muons)
 {
   size_t term = all_muons.size();
 
@@ -215,7 +221,9 @@ std::vector<Muon*>
   baseline_muons.reserve(term);
 
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
-    if (isBaseline(all_muons.at(mu_it))) {
+    if (  isBaseline(all_muons.at(mu_it))
+       && !isBad(all_muons.at(mu_it))
+       ) {
       baseline_muons.push_back(all_muons.at(mu_it));
     }
   }
@@ -223,20 +231,18 @@ std::vector<Muon*>
   return baseline_muons;
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Muon*>
-    SelectionTools::MuonSelectionTool::getSignalMuons(
-        const MuonContainer& muon_container, const VertexContainer& vertices)
+// -----------------------------------------------------------------------------
+std::vector<Muon*> SelectionTools::MuonSelectionTool::getSignalMuons(
+    const MuonContainer& muon_container, const VertexContainer& vertices)
 {
   const std::vector<Muon*> good_muons =
     muon_container.getMuons(MU_GOOD);
   return getSignalMuons(good_muons, vertices);
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Muon*>
-    SelectionTools::MuonSelectionTool::getSignalMuons(
-        const std::vector<Muon*>& good_muons, const VertexContainer& vertices)
+// -----------------------------------------------------------------------------
+std::vector<Muon*> SelectionTools::MuonSelectionTool::getSignalMuons(
+    const std::vector<Muon*>& good_muons, const VertexContainer& vertices)
 {
   size_t term = good_muons.size();
 
@@ -252,65 +258,63 @@ std::vector<Muon*>
   return signal_muons;
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Muon*>
-    SelectionTools::MuonSelectionTool::getCosmicMuons(
-        const MuonContainer& muon_container)
+// -----------------------------------------------------------------------------
+std::vector<Muon*> SelectionTools::MuonSelectionTool::getCosmicMuons(
+    const MuonContainer& muon_container)
 {
-  const std::vector<Muon*> all_muons =
-    muon_container.getMuons(MU_ALL);
-  return getCosmicMuons(all_muons);
+  const std::vector<Muon*> good_muons =
+    muon_container.getMuons(MU_GOOD);
+  return getCosmicMuons(good_muons);
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Muon*>
-    SelectionTools::MuonSelectionTool::getCosmicMuons(
-        const std::vector<Muon*>& all_muons)
+// -----------------------------------------------------------------------------
+std::vector<Muon*> SelectionTools::MuonSelectionTool::getCosmicMuons(
+    const std::vector<Muon*>& good_muons)
 {
-  size_t term = all_muons.size();
+  size_t term = good_muons.size();
 
-  std::vector<Muon*> baseline_muons;
-  baseline_muons.reserve(term);
+  std::vector<Muon*> cosmic_muons;
+  cosmic_muons.reserve(term);
 
-  for (size_t el_it = 0; el_it != term; ++el_it) {
-    if (isCosmic(all_muons.at(el_it))) {
-      baseline_muons.push_back(all_muons.at(el_it));
+  for (size_t mu_it = 0; mu_it != term; ++mu_it) {
+    if (isCosmic(good_muons.at(mu_it))) {
+      cosmic_muons.push_back(good_muons.at(mu_it));
     }
   }
 
-  return baseline_muons;
+  return cosmic_muons;
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Muon*>
-    SelectionTools::MuonSelectionTool::getBadMuons(
-        const MuonContainer& muon_container)
+// -----------------------------------------------------------------------------
+std::vector<Muon*> SelectionTools::MuonSelectionTool::getBadMuons(
+    const MuonContainer& muon_container)
 {
   const std::vector<Muon*> all_muons =
     muon_container.getMuons(MU_ALL);
   return getBadMuons(all_muons);
 }
 
-// ----------------------------------------------------------------------------
-std::vector<Muon*>
-    SelectionTools::MuonSelectionTool::getBadMuons(
-        const std::vector<Muon*>& all_muons)
+// -----------------------------------------------------------------------------
+std::vector<Muon*> SelectionTools::MuonSelectionTool::getBadMuons(
+    const std::vector<Muon*>& all_muons)
 {
   size_t term = all_muons.size();
 
   std::vector<Muon*> bad_muons;
   bad_muons.reserve(term);
 
-  for (size_t el_it = 0; el_it != term; ++el_it) {
-    if (isBad(all_muons.at(el_it))) {
-      bad_muons.push_back(all_muons.at(el_it));
+  for (size_t mu_it = 0; mu_it != term; ++mu_it) {
+    if (  isBaseline(all_muons.at(mu_it))
+       && isBad(all_muons.at(mu_it))
+       ) {
+      bad_muons.push_back(all_muons.at(mu_it));
     }
   }
 
   return bad_muons;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool SelectionTools::MuonSelectionTool::passCut( double test
                                                , double min
                                                , double max
