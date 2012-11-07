@@ -85,6 +85,7 @@ void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
   m_pass_ee_trigger        = getComponent(rhs, ADD_TRIGGER_EE      , SIZE_BOOL);
   m_pass_mm_trigger        = getComponent(rhs, ADD_TRIGGER_MM      , SIZE_BOOL);
   m_pass_em_trigger        = getComponent(rhs, ADD_TRIGGER_EM      , SIZE_BOOL);
+  m_pass_me_trigger        = getComponent(rhs, ADD_TRIGGER_ME      , SIZE_BOOL);
   m_pass_trigger_match     = getComponent(rhs, ADD_TRIGGER_MATCH   , SIZE_BOOL);
   m_truth_matched          = getComponent(rhs, ADD_TRUTH_MATCHED   , SIZE_BOOL);
   m_truth_prompt           = getComponent(rhs, ADD_TRUTH_PROMPT    , SIZE_BOOL);

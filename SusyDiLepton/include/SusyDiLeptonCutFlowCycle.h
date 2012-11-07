@@ -162,6 +162,8 @@ private:
   unsigned int m_event_number;
   ull_t m_event_desc_int;
 
+  float m_mc_event_weight;
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();
   void declareEventVariables();

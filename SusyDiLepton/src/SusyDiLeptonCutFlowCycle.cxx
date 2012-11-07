@@ -106,9 +106,10 @@ void SusyDiLeptonCutFlowCycle::declareTools()
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::declareEventVariables()
 {
-  DeclareVariable(m_run_number    , "run_number"  );
-  DeclareVariable(m_event_number  , "event_number");
-  DeclareVariable(m_event_desc_int, "event_desc"  );
+  DeclareVariable(m_run_number     , "run_number"     );
+  DeclareVariable(m_event_number   , "event_number"   );
+  DeclareVariable(m_event_desc_int , "event_desc"     );
+  DeclareVariable(m_mc_event_weight, "mc_event_weight");
 }
 
 // -----------------------------------------------------------------------------
@@ -354,10 +355,6 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   getObjects();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  ///std::cout << "run number: " << m_event->RunNumber()
-  ///          << "\t--\tevent number: " << m_event->EventNumber()
-  ///          << "\n";
-
   bool pass_critical_cuts = runCutFlow();
   if (!pass_critical_cuts) {
     throw SError( SError::SkipEvent );
@@ -381,6 +378,18 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   m_event->getEventDesc()->setPassGrl(pass_grl);
   if (c_crit_grl && pass_grl == false) {
     std::cout << "Failed GRL --"
+              << " Run: "   << m_event->RunNumber()
+              << " Event: " << m_event->EventNumber()
+              << std::endl;
+    return false;
+  }
+
+  // Check TTC veto
+  bool pass_incomplete_event =
+      m_event_cleaning_tool->passIncompleteEvent(m_event);
+  m_event->getEventDesc()->setPassIncompleteEvent(pass_incomplete_event);
+  if (c_crit_incomplete_event && pass_incomplete_event == false) {
+    std::cout << "Failed incomplete event --"
               << " Run: "   << m_event->RunNumber()
               << " Event: " << m_event->EventNumber()
               << std::endl;
@@ -456,16 +465,8 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   }
 
   // Check for cosmic muons
-  bool pass_cosmic_muon_veto = (m_muons.getMuons(MU_COSMIC).size() == 0);
+  bool pass_cosmic_muon_veto = (m_muons.num(MU_COSMIC) == 0);
   m_event->getEventDesc()->setPassCosmicMuons(pass_cosmic_muon_veto);
-  // if (pass_cosmic_muon_veto == false) {
-  //   std::cout << "failed cosmic muon veto\n";
-  //   m_muons.print(MU_COSMIC, m_vertices);
-  // }
-  // else {
-  //   std::cout << "passed cosmic muon veto\n";
-  //   m_muons.print(MU_COSMIC, m_vertices);
-  // }
   if (c_crit_cosmic_mu_veto && pass_cosmic_muon_veto == false) {
     std::cout << "Failed cosmic muon veto --"
               << " Run: "   << m_event->RunNumber()
@@ -480,18 +481,6 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   m_event->getEventDesc()->setPassHFOR(pass_hfor);
   if (c_crit_hfor && pass_hfor == false) {
     std::cout << "Failed HFOR -- "
-              << " Run: "   << m_event->RunNumber()
-              << " Event: " << m_event->EventNumber()
-              << std::endl;
-    return false;
-  }
-
-  // Check TTC veto
-  bool pass_incomplete_event =
-      m_event_cleaning_tool->passIncompleteEvent(m_event);
-  m_event->getEventDesc()->setPassIncompleteEvent(pass_incomplete_event);
-  if (c_crit_incomplete_event && pass_incomplete_event == false) {
-    std::cout << "Failed incomplete event --"
               << " Run: "   << m_event->RunNumber()
               << " Event: " << m_event->EventNumber()
               << std::endl;
@@ -664,9 +653,11 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::clearEventVariables()
 {
-  m_run_number     = 0.;
-  m_event_number   = 0.;
-  m_event_desc_int = 0.;
+  m_run_number      = 0;
+  m_event_number    = 0;
+  m_event_desc_int  = 0.;
+
+  m_mc_event_weight = 1.;
 }
 
 // -----------------------------------------------------------------------------
@@ -675,6 +666,10 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
   m_run_number     = m_event->RunNumber();
   m_event_number   = m_event->EventNumber();
   m_event_desc_int = m_event->getEventDesc()->toInt();
+
+  if (!is_data()) {
+    m_mc_event_weight = m_truth_d3pdobject->mc_event_weight();
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -724,19 +719,23 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_jets.setCollection( JET_BASELINE,
       m_jet_selection->getBaselineJets(m_jets));
 
+  m_jets.setCollection( JET_BASELINE_GOOD,
+      m_jet_selection->getBaselineGoodJets(m_jets));
+
+  m_jets.setCollection( JET_BASELINE_BAD,
+      m_jet_selection->getBaselineBadJets(m_jets));
+
   // Get bad/veto objects
   m_muons.setCollection( MU_BAD,
       m_muon_selection->getBadMuons(m_muons));
 
-  m_muons.setCollection( MU_COSMIC,
-      m_muon_selection->getCosmicMuons(m_muons));
-
-  m_jets.setCollection( JET_BAD,
-      m_jet_selection->getBadJets(m_jets));
-
   // do overlap removal to get good objects
   m_object_cleaning->SelectionTools::ObjectCleaningTool::fullObjectCleaning(
       m_electrons, m_muons, m_jets);
+
+  // get cosmic muons
+  m_muons.setCollection( MU_COSMIC,
+      m_muon_selection->getCosmicMuons(m_muons));
 
   // Get signal objects
   m_electrons.setCollection( EL_SIGNAL,
