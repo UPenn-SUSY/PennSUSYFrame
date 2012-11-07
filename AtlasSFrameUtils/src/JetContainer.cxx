@@ -82,6 +82,8 @@ void JetContainer::print(JET_COLLECTIONS jet_collection) const
             << jet_collection << " =================\n";
 
   size_t term = m_user_lists.at(jet_collection).size();
+  std::cout << "Number Jets: " << term << "\n";
+
   for (size_t jet_it = 0; jet_it != term; ++jet_it) {
     std::cout << "Jet: " << jet_it << "\n";
     m_user_lists.at(jet_collection).at(jet_it)->print();

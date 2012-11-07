@@ -82,6 +82,8 @@ void MuonContainer::print( MUON_COLLECTIONS mu_collection
             << mu_collection << " =================\n";
 
   size_t term = m_user_lists.at(mu_collection).size();
+  std::cout << "Number muons: " << term << "\n";
+
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
     std::cout << "Muon: " << mu_it << "\n";
     m_user_lists.at(mu_collection).at(mu_it)->print(vertices);

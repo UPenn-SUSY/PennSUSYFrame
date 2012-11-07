@@ -21,12 +21,13 @@ void VertexContainer::init()
 // ----------------------------------------------------------------------------
 void VertexContainer::clear()
 {
-  for (VERTEX_COLLECTIONS vert_collection = VERT_ALL
+  for ( VERTEX_COLLECTIONS vert_collection = VERT_ALL
       ; vert_collection != VERT_N
       ; vert_collection = VERTEX_COLLECTIONS(vert_collection+1)
       ) {
     m_user_lists.at(vert_collection).clear();
   }
+  m_master_list.clear();
 }
 
 // ----------------------------------------------------------------------------
@@ -87,9 +88,6 @@ bool VertexContainer::firstGood(VERTEX_COLLECTIONS vert_collection) const
 // ----------------------------------------------------------------------------
 void VertexContainer::print(VERTEX_COLLECTIONS vert_collection) const
 {
-  std::cout << "================= Printing vertex collection: "
-            << vert_collection << " =================\n";
-
   size_t term = m_user_lists.at(vert_collection).size();
   for (size_t vert_it = 0; vert_it != term; ++vert_it) {
     std::cout << "Vertex: " << vert_it << "\n";

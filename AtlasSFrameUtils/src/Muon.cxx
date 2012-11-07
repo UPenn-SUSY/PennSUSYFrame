@@ -187,6 +187,8 @@ void Muon::print(const VertexContainer& vertices) const
             << "\n"
             << "\td0: "      << d0_exPV()
             << "\tz0: "      << z0_exPV()
+            << "\n"
+            << "\tfabs(sqrt(cov_qoverp)/qoverp): " << fabs(sqrt(cov_qoverp_exPV())/qoverp_exPV())
             << "\n";
 }
 

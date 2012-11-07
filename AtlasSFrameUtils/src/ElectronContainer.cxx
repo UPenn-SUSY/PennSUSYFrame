@@ -82,6 +82,8 @@ void ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
             << el_collection << " =================\n";
 
   size_t term = m_user_lists.at(el_collection).size();
+  std::cout << "Number electrons: " << term << "\n";
+
   for (size_t el_it = 0; el_it != term; ++el_it) {
     std::cout << "Electron: " << el_it << "\n";
     m_user_lists.at(el_collection).at(el_it)->print(vertices);
