@@ -7,6 +7,7 @@
 #include <TH1D.h>
 
 #include "SusyAnalysisTools/include/EventDescription.h"
+#include "SusyAnalysisTools/include/SRHelper.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // Header file for the classes stored in the TTree if any.
@@ -19,21 +20,23 @@ enum WEIGHTS { WEIGHT_NONE = 0
 
 class CutFlowDump {
 public :
-   TTree          *fChain;   //!pointer to the analyzed TTree or TChain
-   Int_t           fCurrent; //!current Tree number in a TChain
+   TTree* fChain;   //!pointer to the analyzed TTree or TChain
+   Int_t  fCurrent; //!current Tree number in a TChain
 
    // Declaration of leaf types
-   UInt_t          m_run_number;
-   UInt_t          m_event_number;
-   ULong64_t       m_event_desc;
+   UInt_t    m_run_number;
+   UInt_t    m_event_number;
+   ULong64_t m_event_desc;
+   ULong64_t m_sr_helper;
 
-   float           m_mc_weight;
+   float     m_mc_weight;
 
    // List of branches
-   TBranch        *b_run_number;   //!
-   TBranch        *b_event_number;   //!
-   TBranch        *b_event_desc;   //!
-   TBranch        *b_mc_weight;
+   TBranch* b_run_number;
+   TBranch* b_event_number;
+   TBranch* b_event_desc;
+   TBranch* b_sr_helper;
+   TBranch* b_mc_weight;
 
    CutFlowDump(TTree *tree=0);
    virtual ~CutFlowDump();

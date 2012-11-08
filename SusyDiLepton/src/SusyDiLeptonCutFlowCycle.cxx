@@ -115,6 +115,7 @@ void SusyDiLeptonCutFlowCycle::declareEventVariables()
   DeclareVariable(m_run_number     , "run_number"     );
   DeclareVariable(m_event_number   , "event_number"   );
   DeclareVariable(m_event_desc_int , "event_desc"     );
+  DeclareVariable(m_sr_helper_int  , "sr_helper"      );
   DeclareVariable(m_mc_event_weight, "mc_event_weight");
 }
 
@@ -706,9 +707,10 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::clearEventVariables()
 {
-  m_run_number      = 0;
-  m_event_number    = 0;
-  m_event_desc_int  = 0.;
+  m_run_number     = 0;
+  m_event_number   = 0;
+  m_event_desc_int = 0.;
+  m_sr_helper_int  = 0.;
 
   m_mc_event_weight = 1.;
 }
@@ -719,6 +721,7 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
   m_run_number     = m_event->RunNumber();
   m_event_number   = m_event->EventNumber();
   m_event_desc_int = m_event->getEventDesc()->toInt();
+  m_sr_helper_int = m_event->getSRHelper()->toInt();
 
   if (!is_data()) {
     m_mc_event_weight = m_truth_d3pdobject->mc_event_weight();

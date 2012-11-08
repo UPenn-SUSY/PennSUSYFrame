@@ -24,6 +24,7 @@ Event::Event( const ::Long64_t& master
 void Event::clear()
 {
   m_event_desc.clear();
+  m_sr_helper.clear();
 
   m_pile_up_weight       = 0.;
   m_lepton_eff_weight    = 0.;
@@ -96,6 +97,12 @@ void Event::setBTagWeight(double weight)
 SusyAnalysisTools::EventDescription* Event::getEventDesc()
 {
   return &m_event_desc;
+}
+
+// ----------------------------------------------------------------------------
+SusyAnalysisTools::SRHelper* Event::getSRHelper()
+{
+  return &m_sr_helper;
 }
 
 // ----------------------------------------------------------------------------

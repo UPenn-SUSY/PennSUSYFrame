@@ -10,6 +10,7 @@
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
 
 #include "SusyAnalysisTools/include/EventDescription.h"
+#include "SusyAnalysisTools/include/SRHelper.h"
 
 // ============================================================================
 class Event : public D3PDReader::EventInfoD3PDObject
@@ -38,6 +39,7 @@ public:
   PHASE_SPACE     getPhaseSpace();
 
   SusyAnalysisTools::EventDescription* getEventDesc();
+  SusyAnalysisTools::SRHelper* getSRHelper();
 
 private:
   // event weights
@@ -49,6 +51,7 @@ private:
 
   // Event description
   SusyAnalysisTools::EventDescription m_event_desc;
+  SusyAnalysisTools::SRHelper         m_sr_helper;
 
   ClassDef(Event, 1);
 

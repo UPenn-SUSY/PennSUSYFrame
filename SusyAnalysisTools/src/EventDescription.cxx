@@ -45,10 +45,22 @@ ull_t SusyAnalysisTools::EventDescription::toInt() const
   event_desc += getIntComp(m_pass_me_trigger       , ADD_TRIGGER_ME        );
   event_desc += getIntComp(m_pass_trigger_match    , ADD_TRIGGER_MATCH     );
   event_desc += getIntComp(m_sign_channel          , ADD_SIGN_CHANNEL      );
+
   event_desc += getIntComp(m_truth_sign_channel    , ADD_TRUTH_SIGN_CHANNEL);
   event_desc += getIntComp(m_truth_matched         , ADD_TRUTH_MATCHED     );
   event_desc += getIntComp(m_truth_prompt          , ADD_TRUTH_PROMPT      );
   event_desc += getIntComp(m_cf_candidate          , ADD_TRUTH_CF_CAND);
+
+  event_desc += getIntComp(m_pass_sr1 , ADD_SR_1);
+  event_desc += getIntComp(m_pass_sr2 , ADD_SR_2);
+  event_desc += getIntComp(m_pass_sr3 , ADD_SR_3);
+  event_desc += getIntComp(m_pass_sr4a, ADD_SR_4a);
+  event_desc += getIntComp(m_pass_sr4b, ADD_SR_4b);
+
+  event_desc += getIntComp(m_pass_cr1, ADD_CR_1);
+  event_desc += getIntComp(m_pass_cr2, ADD_CR_2);
+  event_desc += getIntComp(m_pass_cr3, ADD_CR_3);
+  event_desc += getIntComp(m_pass_cr4, ADD_CR_4);
 
   return event_desc;
 }
@@ -87,9 +99,16 @@ void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
   m_pass_em_trigger        = getComponent(rhs, ADD_TRIGGER_EM      , SIZE_BOOL);
   m_pass_me_trigger        = getComponent(rhs, ADD_TRIGGER_ME      , SIZE_BOOL);
   m_pass_trigger_match     = getComponent(rhs, ADD_TRIGGER_MATCH   , SIZE_BOOL);
+
   m_truth_matched          = getComponent(rhs, ADD_TRUTH_MATCHED   , SIZE_BOOL);
   m_truth_prompt           = getComponent(rhs, ADD_TRUTH_PROMPT    , SIZE_BOOL);
   m_cf_candidate           = getComponent(rhs, ADD_TRUTH_CF_CAND   , SIZE_BOOL);
+
+  m_pass_sr1  = getComponent(rhs, ADD_SR_1 , SIZE_BOOL);
+  m_pass_sr2  = getComponent(rhs, ADD_SR_2 , SIZE_BOOL);
+  m_pass_sr3  = getComponent(rhs, ADD_SR_3 , SIZE_BOOL);
+  m_pass_sr4a = getComponent(rhs, ADD_SR_4a, SIZE_BOOL);
+  m_pass_sr4b = getComponent(rhs, ADD_SR_4b, SIZE_BOOL);
 
   m_flavor_channel =
     static_cast<FLAVOR_CHANNEL>( getComponent( rhs
@@ -324,6 +343,60 @@ void SusyAnalysisTools::EventDescription::setTruthSignChannel(
 }
 
 // -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setSR1(bool pass)
+{
+  m_pass_sr1 = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setSR2(bool pass)
+{
+  m_pass_sr2 = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setSR3(bool pass)
+{
+  m_pass_sr3 = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setSR4a(bool pass)
+{
+  m_pass_sr4a = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setSR4b(bool pass)
+{
+  m_pass_sr4b = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setCR1(bool pass)
+{
+  m_pass_cr1 = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setCR2(bool pass)
+{
+  m_pass_cr2 = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setCR3(bool pass)
+{
+  m_pass_cr3 = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setCR4(bool pass)
+{
+  m_pass_cr4 = pass;
+}
+
+// -----------------------------------------------------------------------------
 bool SusyAnalysisTools::EventDescription::getPassGrl()
 {
   return m_pass_grl;
@@ -477,6 +550,61 @@ bool SusyAnalysisTools::EventDescription::getCFCandidate()
 SIGN_CHANNEL SusyAnalysisTools::EventDescription::getTruthSignChannel()
 {
   return m_truth_sign_channel;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassSR1()
+{
+  return m_pass_sr1;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassSR2()
+{
+  return m_pass_sr2;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassSR3()
+{
+  return m_pass_sr3;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassSR4a()
+{
+  return m_pass_sr4a;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassSR4b()
+{
+  return m_pass_sr4b;
+}
+
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassCR1()
+{
+  return m_pass_cr1;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassCR2()
+{
+  return m_pass_cr2;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassCR3()
+{
+  return m_pass_cr3;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassCR4()
+{
+  return m_pass_cr4;
 }
 
 // -----------------------------------------------------------------------------

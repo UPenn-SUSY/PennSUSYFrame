@@ -168,6 +168,7 @@ private:
   unsigned int m_run_number;
   unsigned int m_event_number;
   ull_t m_event_desc_int;
+  ull_t m_sr_helper_int;
 
   float m_mc_event_weight;
 

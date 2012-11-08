@@ -53,6 +53,17 @@ namespace SusyAnalysisTools
       void setCFCandidate(bool);
       void setTruthSignChannel(SIGN_CHANNEL);
 
+      void setSR1(bool);
+      void setSR2(bool);
+      void setSR3(bool);
+      void setSR4a(bool);
+      void setSR4b(bool);
+
+      void setCR1(bool);
+      void setCR2(bool);
+      void setCR3(bool);
+      void setCR4(bool);
+
       bool getPassGrl();
       bool getPassIncompleteEVent();
       bool getPassLarError();
@@ -80,6 +91,17 @@ namespace SusyAnalysisTools
       bool getTruthPrompt();
       bool getCFCandidate();
       SIGN_CHANNEL getTruthSignChannel();
+
+      bool getPassSR1();
+      bool getPassSR2();
+      bool getPassSR3();
+      bool getPassSR4a();
+      bool getPassSR4b();
+
+      bool getPassCR1();
+      bool getPassCR2();
+      bool getPassCR3();
+      bool getPassCR4();
 
     // ------------------------------------------------------------------------
     private:
@@ -114,6 +136,16 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_TRUTH_MATCHED      = 32;
       static const unsigned int ADD_TRUTH_PROMPT       = 33;
       static const unsigned int ADD_TRUTH_CF_CAND      = 34;
+      static const unsigned int ADD_SR_1               = 40;
+      static const unsigned int ADD_SR_2               = 41;
+      static const unsigned int ADD_SR_3               = 42;
+      static const unsigned int ADD_SR_4a              = 43;
+      static const unsigned int ADD_SR_4b              = 44;
+      static const unsigned int ADD_CR_1               = 50;
+      static const unsigned int ADD_CR_2               = 51;
+      static const unsigned int ADD_CR_3               = 52;
+      static const unsigned int ADD_CR_4               = 53;
+
 
       bool            m_pass_grl;
       bool            m_pass_incomplete_event;
@@ -142,6 +174,17 @@ namespace SusyAnalysisTools
       bool         m_truth_matched;
       bool         m_truth_prompt;
       bool         m_cf_candidate;
+
+      bool m_pass_sr1; // OS jet veto
+      bool m_pass_sr2; // SS jet veto
+      bool m_pass_sr3; // 2 jet
+      bool m_pass_sr4a; // MT2a
+      bool m_pass_sr4b; // MT2b
+
+      bool m_pass_cr1; // WW CR1
+      bool m_pass_cr2; // WW CR2
+      bool m_pass_cr3; // WW CR3
+      bool m_pass_cr4; // top CR
 
       // TODO move implementation to icc file
       template <class T>
