@@ -397,212 +397,212 @@ void SusyAnalysisTools::EventDescription::setCR4(bool pass)
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassGrl()
+bool SusyAnalysisTools::EventDescription::getPassGrl() const
 {
   return m_pass_grl;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassIncompleteEVent()
+bool SusyAnalysisTools::EventDescription::getPassIncompleteEVent() const
 {
   return m_pass_incomplete_event;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassLarError()
+bool SusyAnalysisTools::EventDescription::getPassLarError() const
 {
   return m_pass_lar_error;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassTileError()
+bool SusyAnalysisTools::EventDescription::getPassTileError() const
 {
   return m_pass_tile_error;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassTileHotSpot()
+bool SusyAnalysisTools::EventDescription::getPassTileHotSpot() const
 {
   return m_pass_tile_hot_spot;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassBadJets()
+bool SusyAnalysisTools::EventDescription::getPassBadJets() const
 {
   return m_pass_bad_jets;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassPrimaryVertex()
+bool SusyAnalysisTools::EventDescription::getPassPrimaryVertex() const
 {
   return m_pass_primary_vertex;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassBadMuons()
+bool SusyAnalysisTools::EventDescription::getPassBadMuons() const
 {
   return m_pass_bad_muons;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassCosmicMuons()
+bool SusyAnalysisTools::EventDescription::getPassCosmicMuons() const
 {
   return m_pass_cosmic_muons;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassHFOR()
+bool SusyAnalysisTools::EventDescription::getPassHFOR() const
 {
   return m_pass_hfor;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassGE2GoodLeptons()
+bool SusyAnalysisTools::EventDescription::getPassGE2GoodLeptons() const
 {
   return m_pass_ge_2_good_leptons;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPass2GoodLeptons()
+bool SusyAnalysisTools::EventDescription::getPass2GoodLeptons() const
 {
   return m_pass_2_good_leptons;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassMll()
+bool SusyAnalysisTools::EventDescription::getPassMll() const
 {
   return m_pass_mll;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPass2SignalLeptons()
+bool SusyAnalysisTools::EventDescription::getPass2SignalLeptons() const
 {
   return m_pass_2_signal_leptons;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassTriggerMatch()
+bool SusyAnalysisTools::EventDescription::getPassTriggerMatch() const
 {
   return m_pass_trigger_match;
 }
 
 // -----------------------------------------------------------------------------
-FLAVOR_CHANNEL SusyAnalysisTools::EventDescription::getFlavorChannel()
+FLAVOR_CHANNEL SusyAnalysisTools::EventDescription::getFlavorChannel() const
 {
   return m_flavor_channel;
 }
 
 // -----------------------------------------------------------------------------
-PHASE_SPACE SusyAnalysisTools::EventDescription::getPhaseSpace()
+PHASE_SPACE SusyAnalysisTools::EventDescription::getPhaseSpace() const
 {
   return m_phase_space;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::isEETrigger()
+bool SusyAnalysisTools::EventDescription::isEETrigger() const
 {
   return m_pass_ee_trigger;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::isMMTrigger()
+bool SusyAnalysisTools::EventDescription::isMMTrigger() const
 {
   return m_pass_mm_trigger;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::isEMTrigger()
+bool SusyAnalysisTools::EventDescription::isEMTrigger() const
 {
   return m_pass_em_trigger;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::isMETrigger()
+bool SusyAnalysisTools::EventDescription::isMETrigger() const
 {
   return m_pass_me_trigger;
 }
 
 // -----------------------------------------------------------------------------
-SIGN_CHANNEL SusyAnalysisTools::EventDescription::getSignChannel()
+SIGN_CHANNEL SusyAnalysisTools::EventDescription::getSignChannel() const
 {
   return m_sign_channel;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getTruthMatched()
+bool SusyAnalysisTools::EventDescription::getTruthMatched() const
 {
   return m_truth_matched;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getTruthPrompt()
+bool SusyAnalysisTools::EventDescription::getTruthPrompt() const
 {
   return m_truth_prompt;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getCFCandidate()
+bool SusyAnalysisTools::EventDescription::getCFCandidate() const
 {
   return m_cf_candidate;
 }
 
 // -----------------------------------------------------------------------------
-SIGN_CHANNEL SusyAnalysisTools::EventDescription::getTruthSignChannel()
+SIGN_CHANNEL SusyAnalysisTools::EventDescription::getTruthSignChannel() const
 {
   return m_truth_sign_channel;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassSR1()
+bool SusyAnalysisTools::EventDescription::getPassSR1() const
 {
   return m_pass_sr1;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassSR2()
+bool SusyAnalysisTools::EventDescription::getPassSR2() const
 {
   return m_pass_sr2;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassSR3()
+bool SusyAnalysisTools::EventDescription::getPassSR3() const
 {
   return m_pass_sr3;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassSR4a()
+bool SusyAnalysisTools::EventDescription::getPassSR4a() const
 {
   return m_pass_sr4a;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassSR4b()
+bool SusyAnalysisTools::EventDescription::getPassSR4b() const
 {
   return m_pass_sr4b;
 }
 
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassCR1()
+bool SusyAnalysisTools::EventDescription::getPassCR1() const
 {
   return m_pass_cr1;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassCR2()
+bool SusyAnalysisTools::EventDescription::getPassCR2() const
 {
   return m_pass_cr2;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassCR3()
+bool SusyAnalysisTools::EventDescription::getPassCR3() const
 {
   return m_pass_cr3;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassCR4()
+bool SusyAnalysisTools::EventDescription::getPassCR4() const
 {
   return m_pass_cr4;
 }

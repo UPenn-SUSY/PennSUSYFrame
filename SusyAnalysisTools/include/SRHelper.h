@@ -33,8 +33,9 @@ namespace SusyAnalysisTools
       void setPassSR2MetRel(bool);
       void setPassSR32LJet(bool);
       void setPassSR3MetRel(bool);
-      void setPassSR4aMetRel(bool);
-      void setPassSR4bMetRel(bool);
+      void setPassSR4MetRel(bool);
+      void setPassSR4aMt2(bool);
+      void setPassSR4bMt2(bool);
 
       bool getPassLJetVeto();
       bool getPassBJetVeto();
@@ -45,8 +46,9 @@ namespace SusyAnalysisTools
       bool getPassSR2MetRel();
       bool getPassSR32LJet();
       bool getPassSR3MetRel();
-      bool getPassSR4aMetRel();
-      bool getPassSR4bMetRel();
+      bool getPassSR4MetRel();
+      bool getPassSR4aMt2();
+      bool getPassSR4bMt2();
 
     // ------------------------------------------------------------------------
     private:
@@ -62,8 +64,9 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_SR2_MET_REL = 11;
       static const unsigned int ADD_SR3_2_L_JET = 12;
       static const unsigned int ADD_SR3_MET_REL = 13;
-      static const unsigned int ADD_SR4a_MT2    = 14;
-      static const unsigned int ADD_SR4b_MT2    = 15;
+      static const unsigned int ADD_SR4_MET_REL = 14;
+      static const unsigned int ADD_SR4a_MT2    = 15;
+      static const unsigned int ADD_SR4b_MT2    = 16;
 
 
       bool m_pass_l_jet_veto;
@@ -76,6 +79,7 @@ namespace SusyAnalysisTools
       bool m_pass_sr2_met_rel;
       bool m_pass_sr3_2_l_jet;
       bool m_pass_sr3_met_rel;
+      bool m_pass_sr4_met_rel;
       bool m_pass_sr4a_mt2;
       bool m_pass_sr4b_mt2;
 

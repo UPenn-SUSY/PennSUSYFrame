@@ -64,44 +64,44 @@ namespace SusyAnalysisTools
       void setCR3(bool);
       void setCR4(bool);
 
-      bool getPassGrl();
-      bool getPassIncompleteEVent();
-      bool getPassLarError();
-      bool getPassTileError();
-      bool getPassTileHotSpot();
-      bool getPassBadJets();
-      bool getPassPrimaryVertex();
-      bool getPassBadMuons();
-      bool getPassCosmicMuons();
-      bool getPassHFOR();
-      bool getPassGE2GoodLeptons();
-      bool getPass2GoodLeptons();
-      bool getPassMll();
-      bool getPass2SignalLeptons();
-      bool getPassTriggerMatch();
-      FLAVOR_CHANNEL  getFlavorChannel();
-      PHASE_SPACE     getPhaseSpace();
-      bool isEETrigger();
-      bool isMMTrigger();
-      bool isEMTrigger();
-      bool isMETrigger();
-      SIGN_CHANNEL    getSignChannel();
+      bool getPassGrl() const;
+      bool getPassIncompleteEVent() const;
+      bool getPassLarError() const;
+      bool getPassTileError() const;
+      bool getPassTileHotSpot() const;
+      bool getPassBadJets() const;
+      bool getPassPrimaryVertex() const;
+      bool getPassBadMuons() const;
+      bool getPassCosmicMuons() const;
+      bool getPassHFOR() const;
+      bool getPassGE2GoodLeptons() const;
+      bool getPass2GoodLeptons() const;
+      bool getPassMll() const;
+      bool getPass2SignalLeptons() const;
+      bool getPassTriggerMatch() const;
+      FLAVOR_CHANNEL  getFlavorChannel() const;
+      PHASE_SPACE     getPhaseSpace() const;
+      bool isEETrigger() const;
+      bool isMMTrigger() const;
+      bool isEMTrigger() const;
+      bool isMETrigger() const;
+      SIGN_CHANNEL    getSignChannel() const;
 
-      bool getTruthMatched();
-      bool getTruthPrompt();
-      bool getCFCandidate();
-      SIGN_CHANNEL getTruthSignChannel();
+      bool getTruthMatched() const;
+      bool getTruthPrompt() const;
+      bool getCFCandidate() const;
+      SIGN_CHANNEL getTruthSignChannel() const;
 
-      bool getPassSR1();
-      bool getPassSR2();
-      bool getPassSR3();
-      bool getPassSR4a();
-      bool getPassSR4b();
+      bool getPassSR1() const;
+      bool getPassSR2() const;
+      bool getPassSR3() const;
+      bool getPassSR4a() const;
+      bool getPassSR4b() const;
 
-      bool getPassCR1();
-      bool getPassCR2();
-      bool getPassCR3();
-      bool getPassCR4();
+      bool getPassCR1() const;
+      bool getPassCR2() const;
+      bool getPassCR3() const;
+      bool getPassCR4() const;
 
     // ------------------------------------------------------------------------
     private:

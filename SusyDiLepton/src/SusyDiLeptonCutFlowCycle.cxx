@@ -29,6 +29,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_grl_tool(NULL),
   m_event_cleaning_tool(NULL),
   m_trigger_cut_tool(NULL),
+  m_signal_region_tool(NULL),
   m_truth_match_tool(NULL)
 {
   // = declare user defined properties =
@@ -62,12 +63,12 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   // DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
   // DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons   = false);
 
-  DeclareProperty("Crit_grl"              , c_crit_grl              = false);
-  DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = false);
-  DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = false);
-  DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = false);
-  DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = false);
-  DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = false);
+  DeclareProperty("Crit_grl"              , c_crit_grl              = true);
+  DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = true);
+  DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = true);
+  DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = true);
+  DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = true);
+  DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = true);
   DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = false);
   DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = false);
   DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = false);
@@ -105,6 +106,8 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(SelectionTools::EventCleaningTool , "Event_Cleaning" );
   DECLARE_TOOL(SelectionTools::ObjectCleaningTool, "Object_Cleaning");
   DECLARE_TOOL(SelectionTools::TriggerCutTool    , "Trigger_Cut"    );
+
+  DECLARE_TOOL(SelectionTools::SignalRegionTool, "Signal_Regions");
 
   // TODO populate list of tools
 }
@@ -282,6 +285,12 @@ void SusyDiLeptonCutFlowCycle::getTools()
           );
   m_trigger_cut_tool = trigger_cut;
 
+  GET_TOOL( signal_region_tool
+          , SelectionTools::SignalRegionTool
+          , "Signal_Regions"
+          );
+  m_signal_region_tool = signal_region_tool;
+
   GET_TOOL( truth_match_tool
           , CommonTools::TruthMatchTool
           , "Truth_Match"
@@ -378,6 +387,8 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   if (!pass_critical_cuts) {
     throw SError( SError::SkipEvent );
   }
+
+  checkSignalRegions();
 
   fillEventVariables();
 
@@ -705,6 +716,17 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
 }
 
 // -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::checkSignalRegions()
+{
+  m_signal_region_tool->processSignalRegions(m_event
+                                            , m_electrons
+                                            , m_muons
+                                            , m_jets
+                                            , m_met
+                                            );
+}
+
+// -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::clearEventVariables()
 {
   m_run_number     = 0;
@@ -721,7 +743,7 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
   m_run_number     = m_event->RunNumber();
   m_event_number   = m_event->EventNumber();
   m_event_desc_int = m_event->getEventDesc()->toInt();
-  m_sr_helper_int = m_event->getSRHelper()->toInt();
+  m_sr_helper_int  = m_event->getSRHelper()->toInt();
 
   if (!is_data()) {
     m_mc_event_weight = m_truth_d3pdobject->mc_event_weight();

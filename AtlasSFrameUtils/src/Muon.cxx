@@ -5,7 +5,7 @@
 
 ClassImp(Muon)
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 Muon::Muon( const ParticleElement<D3PDReader::MuonD3PDObjectElement>& p
           , CommonTools::TLVTool* tlv_tool
           , CommonTools::IsoCorrectionTool* iso_corr_tool
@@ -20,7 +20,7 @@ Muon::Muon( const ParticleElement<D3PDReader::MuonD3PDObjectElement>& p
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 TLorentzVector Muon::getTlv() const
 {
   if (!m_tlv_prepped) {
@@ -31,7 +31,7 @@ TLorentzVector Muon::getTlv() const
   return m_tlv;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 TLorentzVector Muon::getRawTlv() const
 {
   if (!m_raw_tlv_prepped) {
@@ -42,7 +42,7 @@ TLorentzVector Muon::getRawTlv() const
   return m_raw_tlv;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void Muon::prepTlv()
 {
   if (m_tlv_prepped == false) {
@@ -51,7 +51,7 @@ void Muon::prepTlv()
   }
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void Muon::prepRawTlv()
 {
   if (m_raw_tlv_prepped == false) {
@@ -60,7 +60,7 @@ void Muon::prepRawTlv()
   }
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 float Muon::getD0Significance() const
 {
   float d0     = d0_exPV();
@@ -69,7 +69,7 @@ float Muon::getD0Significance() const
   return d0/sqrt(cov_d0);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 float Muon::getZ0SinTheta() const
 {
   float z0        = z0_exPV();
@@ -78,7 +78,7 @@ float Muon::getZ0SinTheta() const
   return z0*sin_theta;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 int Muon::getNMuonStations() const
 {
   int nStations = 0;
@@ -188,7 +188,8 @@ void Muon::print(const VertexContainer& vertices) const
             << "\td0: "      << d0_exPV()
             << "\tz0: "      << z0_exPV()
             << "\n"
-            << "\tfabs(sqrt(cov_qoverp)/qoverp): " << fabs(sqrt(cov_qoverp_exPV())/qoverp_exPV())
+            << "\tfabs(sqrt(cov_qoverp)/qoverp): "
+              << fabs(sqrt(cov_qoverp_exPV())/qoverp_exPV())
             << "\n";
 }
 

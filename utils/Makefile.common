@@ -59,9 +59,9 @@ OLIST = $(addprefix $(OBJDIR)/,$(patsubst %.$(SrcSuf),%.$(ObjSuf),$(notdir $(CPP
 
 
 # default list of objects to be made
-default: shlib executable 
+default: shlib executable
 
-# rule to generate shared object files 
+# rule to generate shared object files
 shlib : $(SH_LIB_FILE)
 
 # Rule to combine objects into a unix shared library
@@ -83,28 +83,28 @@ $(DICT_OBJ): $(DICT_FILE) | $(OBJDIR)
 	@echo "Compiling $<"
 	@$(CXX) $(CXXFLAGS) -c $(INCLUDES) -o $@ $<
 
-# rule to generate dictionary file 
+# rule to generate dictionary file
 $(DICT_FILE) : $(HLIST) $(DICT_LDEF)
-	@echo "Generating dictionary $@" 
+	@echo "Generating dictionary $@"
 	@$(shell root-config --exec-prefix)/bin/rootcint -f $(DICT_FILE) -c -p $(INCLUDES) $^
 
-# rule to compile all sources 
+# rule to compile all sources
 $(OBJDIR)/%.$(ObjSuf) : $(SRCDIR)/%.$(SrcSuf) | $(OBJDIR)
 	@echo "Compiling $<"
 	@$(CXX) $(CXXFLAGS) -c $< -o $(OBJDIR)/$(notdir $@) $(INCLUDES)
 
-# rule to make OBJDIR directory 
-$(OBJDIR): 
+# rule to make OBJDIR directory
+$(OBJDIR):
 	@mkdir -p $(OBJDIR)
 
-# rule to generate executable 
+# rule to generate executable
 executable: $(EXECUTABLE)
 
 # rule to generate the executable if there is one
-$(EXECUTABLE) : 
+$(EXECUTABLE) :
 	@$(CXX) -v $(wildcard $(SH_LIB_PATH)/*.so) $(BONUS_LIB_PATH) $(ROOTLIBS) -lMinuit -o $@
-	
-# rule to clean up environment 
+
+# rule to clean up environment
 clean:
 	@rm -rf $(EXECUTABLE)
 	@rm -rf $(OBJDIR)

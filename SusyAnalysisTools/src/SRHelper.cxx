@@ -33,6 +33,7 @@ ull_t SusyAnalysisTools::SRHelper::toInt() const
   event_desc += getIntComp(m_pass_sr2_met_rel, ADD_SR2_MET_REL);
   event_desc += getIntComp(m_pass_sr3_2_l_jet, ADD_SR3_2_L_JET);
   event_desc += getIntComp(m_pass_sr3_met_rel, ADD_SR3_MET_REL);
+  event_desc += getIntComp(m_pass_sr4_met_rel, ADD_SR4_MET_REL);
   event_desc += getIntComp(m_pass_sr4a_mt2   , ADD_SR4a_MT2   );
   event_desc += getIntComp(m_pass_sr4b_mt2   , ADD_SR4b_MT2   );
 
@@ -59,6 +60,14 @@ void SusyAnalysisTools::SRHelper::set(const ull_t& rhs)
   m_pass_f_jet_veto = getComponent(rhs, ADD_F_JET_VETO, SIZE_BOOL);
   m_pass_z_veto     = getComponent(rhs, ADD_Z_VETO    , SIZE_BOOL);
   m_pass_top_veto   = getComponent(rhs, ADD_TOP_VETO  , SIZE_BOOL);
+
+  m_pass_sr1_met_rel = getComponent(rhs, ADD_SR1_MET_REL, SIZE_BOOL);
+  m_pass_sr2_met_rel = getComponent(rhs, ADD_SR2_MET_REL, SIZE_BOOL);
+  m_pass_sr3_2_l_jet = getComponent(rhs, ADD_SR3_2_L_JET, SIZE_BOOL);
+  m_pass_sr3_met_rel = getComponent(rhs, ADD_SR3_MET_REL, SIZE_BOOL);
+  m_pass_sr4_met_rel = getComponent(rhs, ADD_SR4_MET_REL, SIZE_BOOL);
+  m_pass_sr4a_mt2    = getComponent(rhs, ADD_SR4a_MT2   , SIZE_BOOL);
+  m_pass_sr4b_mt2    = getComponent(rhs, ADD_SR4b_MT2   , SIZE_BOOL);
 }
 
 // -----------------------------------------------------------------------------
@@ -133,13 +142,19 @@ void SusyAnalysisTools::SRHelper::setPassSR3MetRel(bool pass)
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::SRHelper::setPassSR4aMetRel(bool pass)
+void SusyAnalysisTools::SRHelper::setPassSR4MetRel(bool pass)
+{
+  m_pass_sr4_met_rel = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::SRHelper::setPassSR4aMt2(bool pass)
 {
   m_pass_sr4a_mt2 = pass;
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::SRHelper::setPassSR4bMetRel(bool pass)
+void SusyAnalysisTools::SRHelper::setPassSR4bMt2(bool pass)
 {
   m_pass_sr4b_mt2 = pass;
 }
@@ -199,13 +214,19 @@ bool SusyAnalysisTools::SRHelper::getPassSR3MetRel()
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSR4aMetRel()
+bool SusyAnalysisTools::SRHelper::getPassSR4MetRel()
+{
+  return m_pass_sr4_met_rel;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::SRHelper::getPassSR4aMt2()
 {
   return m_pass_sr4a_mt2;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSR4bMetRel()
+bool SusyAnalysisTools::SRHelper::getPassSR4bMt2()
 {
   return m_pass_sr4b_mt2;
 }

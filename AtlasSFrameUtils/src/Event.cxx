@@ -16,6 +16,7 @@ Event::Event( const ::Long64_t& master
             , m_trigger_weight(1.)
             , m_cross_section_weight(1.)
             , m_b_tag_weight(1.)
+            , m_mll(0.)
 {
   // do nothing
 }
@@ -31,6 +32,8 @@ void Event::clear()
   m_trigger_weight       = 0.;
   m_cross_section_weight = 0.;
   m_b_tag_weight         = 0.;
+
+  m_mll = 0.;
 }
 
 // ----------------------------------------------------------------------------
@@ -91,6 +94,18 @@ void Event::setCrossSectionWeight(double weight)
 void Event::setBTagWeight(double weight)
 {
   m_b_tag_weight = weight;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setMll(double mll)
+{
+  m_mll = mll;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getMll()
+{
+  return m_mll;
 }
 
 // ----------------------------------------------------------------------------

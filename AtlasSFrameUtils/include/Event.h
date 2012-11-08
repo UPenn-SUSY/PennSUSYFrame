@@ -34,6 +34,9 @@ public:
   void setCrossSectionWeight(double weight);
   void setBTagWeight(double weight);
 
+  void setMll(double mll);
+  double getMll();
+
   FLAVOR_CHANNEL  getFlavorChannel();
   SIGN_CHANNEL    getSignChannel();
   PHASE_SPACE     getPhaseSpace();
@@ -48,6 +51,9 @@ private:
   double m_trigger_weight;
   double m_cross_section_weight;
   double m_b_tag_weight;
+
+  // useful event level variables
+  double m_mll;
 
   // Event description
   SusyAnalysisTools::EventDescription m_event_desc;

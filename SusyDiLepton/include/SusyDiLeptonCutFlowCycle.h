@@ -39,12 +39,13 @@
 #include "D3PDObjects/include/TruthMETD3PDObject.h"
 #include "D3PDObjects/include/VertexD3PDObject.h"
 
-#include "SelectionTools/include/GoodRunsListTool.h"
 #include "SelectionTools/include/ElectronSelectionTool.h"
 #include "SelectionTools/include/EventCleaningTool.h"
+#include "SelectionTools/include/GoodRunsListTool.h"
 #include "SelectionTools/include/JetSelectionTool.h"
 #include "SelectionTools/include/MuonSelectionTool.h"
 #include "SelectionTools/include/ObjectCleaningTool.h"
+#include "SelectionTools/include/SignalRegionTool.h"
 #include "SelectionTools/include/TriggerCutTool.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
@@ -161,6 +162,7 @@ private:
   SelectionTools::GoodRunsListTool*  m_grl_tool;
   SelectionTools::EventCleaningTool* m_event_cleaning_tool;
   SelectionTools::TriggerCutTool*    m_trigger_cut_tool;
+  SelectionTools::SignalRegionTool*  m_signal_region_tool;
 
   CommonTools::TruthMatchTool* m_truth_match_tool;
 
@@ -180,6 +182,7 @@ private:
   void getTools();
 
   bool runCutFlow();
+  void checkSignalRegions();
 
   void clearEventVariables();
   void fillEventVariables();

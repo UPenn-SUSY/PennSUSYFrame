@@ -165,6 +165,24 @@ void CutFlowDump::initCutFlowHists()
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Prompt leptons"   );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Opposite sign"    );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Same sign"        );
+
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR1 Z veto"  );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR1 jet veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR1 met-rel" );
+
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 Z veto"  );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 jet veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 met-rel" );
+
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 Z veto"  );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 jet veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 met-rel" );
+
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 Z veto"  );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 jet veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 met-rel" );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4a met-rel");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4b met-rel");
   }
 }
 
@@ -224,6 +242,7 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase)
   // cosmic muons
   if (evt_desc.getPassCosmicMuons() == false) return;
   fillHist(phase, bin_num++, weight);
+  // if (phase == PHASE_EE) std::cout << "event: " << m_event_number << "\n";
 
   // HFOR
   if (evt_desc.getPassHFOR() == false) return;
