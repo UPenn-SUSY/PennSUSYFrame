@@ -24,6 +24,7 @@
 #include "CommonTools/include/MuonMomentumSmearingTool.h"
 #include "CommonTools/include/SignChannel.h"
 #include "CommonTools/include/MllTool.h"
+#include "CommonTools/include/TruthMatchTool.h"
 
 #include "D3PDObjects/include/ElectronD3PDObject.h"
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
@@ -31,6 +32,7 @@
 #include "D3PDObjects/include/MCEvtD3PDObject.h"
 #include "D3PDObjects/include/METD3PDObject.h"
 #include "D3PDObjects/include/MuonD3PDObject.h"
+#include "D3PDObjects/include/MuonTruthD3PDObject.h"
 #include "D3PDObjects/include/TriggerD3PDObject.h"
 #include "D3PDObjects/include/TriggerVecD3PDObject.h"
 #include "D3PDObjects/include/TruthD3PDObject.h"
@@ -93,6 +95,7 @@ private:
 
   std::string c_met_prefix;
   std::string c_muon_prefix;
+  std::string c_muon_truth_prefix;
   std::string c_jet_prefix;
 
   // variables to flag cuts as "critical"
@@ -143,6 +146,7 @@ private:
   D3PDReader::MCEvtD3PDObject*      m_mcevt_d3pdobject;
   D3PDReader::METD3PDObject*        m_met_d3pdobject;
   D3PDReader::MuonD3PDObject*       m_muon_d3pdobject;
+  D3PDReader::MuonTruthD3PDObject*  m_muon_truth_d3pdobject;
   D3PDReader::TruthD3PDObject*      m_truth_d3pdobject;
   D3PDReader::TruthMETD3PDObject*   m_met_truth_d3pdobject;
   D3PDReader::VertexD3PDObject*     m_vertex_d3pdobject;
@@ -156,6 +160,8 @@ private:
   SelectionTools::GoodRunsListTool*  m_grl_tool;
   SelectionTools::EventCleaningTool* m_event_cleaning_tool;
   SelectionTools::TriggerCutTool*    m_trigger_cut_tool;
+
+  CommonTools::TruthMatchTool* m_truth_match_tool;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   unsigned int m_run_number;

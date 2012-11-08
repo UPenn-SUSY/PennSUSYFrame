@@ -18,6 +18,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_jet_d3pdobject(NULL),
   m_mcevt_d3pdobject(NULL),
   m_muon_d3pdobject(NULL),
+  m_muon_truth_d3pdobject(NULL),
   m_truth_d3pdobject(NULL),
   m_met_truth_d3pdobject(NULL),
   m_vertex_d3pdobject(NULL),
@@ -27,7 +28,8 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_object_cleaning(NULL),
   m_grl_tool(NULL),
   m_event_cleaning_tool(NULL),
-  m_trigger_cut_tool(NULL)
+  m_trigger_cut_tool(NULL),
+  m_truth_match_tool(NULL)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -36,9 +38,10 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   DeclareProperty("is_egamma_stream", c_is_egamma_stream=false);
   DeclareProperty("print_event_info", c_print_event_info=false);
 
-  DeclareProperty("Met_prefix" , c_met_prefix="MET_Egamma10NoTau" );
-  DeclareProperty("Muon_prefix", c_muon_prefix="mu_staco_"        );
-  DeclareProperty("Jet_prefix" , c_jet_prefix="jet_AntiKt4LCTopo_");
+  DeclareProperty("Met_prefix"      , c_met_prefix="MET_Egamma10NoTau" );
+  DeclareProperty("Muon_prefix"     , c_muon_prefix="mu_staco_"        );
+  DeclareProperty("MuonTruth_prefix", c_muon_truth_prefix="muonTruth_" );
+  DeclareProperty("Jet_prefix"      , c_jet_prefix="jet_AntiKt4LCTopo_");
 
   // DeclareProperty("Crit_grl"              , c_crit_grl              = true );
   // DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = true );
@@ -90,6 +93,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::IsoCorrectionTool       , "Electron_IsoCorr"    );
   DECLARE_TOOL(CommonTools::IsoCorrectionTool       , "Muon_IsoCorr"        );
   DECLARE_TOOL(CommonTools::TLVTool                 , "tlv"                 );
+  DECLARE_TOOL(CommonTools::TruthMatchTool          , "Truth_Match"         );
 
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
@@ -180,6 +184,11 @@ void SusyDiLeptonCutFlowCycle::initD3PDReaders()
 
   // Some of these readers are only initialized for MC
   if (!is_data()) {
+    m_muon_truth_d3pdobject =
+        new D3PDReader::MuonTruthD3PDObject(m_entry_number
+                                          , c_muon_truth_prefix.c_str()
+                                          );
+
     m_mcevt_d3pdobject
         = new D3PDReader::MCEvtD3PDObject(m_entry_number);
     m_truth_d3pdobject
@@ -269,6 +278,12 @@ void SusyDiLeptonCutFlowCycle::getTools()
           , "Trigger_Cut"
           );
   m_trigger_cut_tool = trigger_cut;
+
+  GET_TOOL( truth_match_tool
+          , CommonTools::TruthMatchTool
+          , "Truth_Match"
+          );
+  m_truth_match_tool = truth_match_tool;
 }
 
 // -----------------------------------------------------------------------------
@@ -288,6 +303,7 @@ void SusyDiLeptonCutFlowCycle::EndInputDataImp( const SInputData& )
   delete m_electron_d3pdobject;
   delete m_jet_d3pdobject;
   delete m_muon_d3pdobject;
+  delete m_muon_truth_d3pdobject;
 
   if (!is_data()) {
     delete m_mcevt_d3pdobject;
@@ -333,9 +349,10 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
   m_muon_d3pdobject->ReadFrom(       GetInputTree(c_input_tree_name.c_str()));
 
   if (!is_data()){
-    m_mcevt_d3pdobject->ReadFrom(    GetInputTree(c_input_tree_name.c_str()));
-    m_truth_d3pdobject->ReadFrom(    GetInputTree(c_input_tree_name.c_str()));
-    m_met_truth_d3pdobject->ReadFrom(GetInputTree(c_input_tree_name.c_str()));
+    m_mcevt_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
+    m_muon_truth_d3pdobject->ReadFrom(GetInputTree(c_input_tree_name.c_str()));
+    m_truth_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
+    m_met_truth_d3pdobject->ReadFrom( GetInputTree(c_input_tree_name.c_str()));
   }
 }
 
@@ -351,7 +368,6 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
 
   // = Prep event by zeroing out old vent stuff
   prepEvent();
-
   getObjects();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -645,6 +661,15 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
     return false;
   }
 
+  // Check for real leptons
+  bool pass_real_leptons = m_truth_match_tool->isRealLeptonEvent(
+      m_event->getFlavorChannel(),
+      m_electrons.getElectrons(EL_GOOD),
+      m_muons.getMuons(MU_GOOD),
+      m_muon_truth_d3pdobject);
+  // TODO cut on pass real leptons
+  // TODO skip event if this is a critical cut
+
   // Reached the end of the cut flow. Return true to signify this event did
   // not fail any critical cuts
   return true;
@@ -698,6 +723,9 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   clearEventVariables();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_truth_match_tool->prep(m_truth_d3pdobject);
 }
 
 // -----------------------------------------------------------------------------
