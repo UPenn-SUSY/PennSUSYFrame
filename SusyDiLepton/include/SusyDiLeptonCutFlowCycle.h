@@ -116,6 +116,7 @@ private:
   bool c_crit_phase_space;
   bool c_crit_trigger;
   bool c_crit_trigger_match;
+  bool c_crit_prompt_leptons;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool m_is_ee;

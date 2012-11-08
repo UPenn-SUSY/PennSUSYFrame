@@ -162,6 +162,9 @@ void CutFlowDump::initCutFlowHists()
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Phase space"      );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Trigger"          );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Trigger matching" );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Prompt leptons"   );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Opposite sign"    );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Same sign"        );
   }
 }
 
@@ -273,10 +276,20 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase)
   if (evt_desc.getPassTriggerMatch() == false) return;
   fillHist(phase, bin_num++, weight);
 
-  // FLAVOR_CHANNEL  getFlavorChannel()
-  // PHASE_SPACE     getPhaseSpace()
-  // SIGN_CHANNEL    getSignChannel()
+  // Flag prompt lepton events
+  if (evt_desc.getTruthPrompt())
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
 
+  // Flag OS events
+  if (evt_desc.getSignChannel() == SIGN_OS)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+  
+  // Flag SS events
+  if (evt_desc.getSignChannel() == SIGN_SS)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
 }
 
 // -----------------------------------------------------------------------------
