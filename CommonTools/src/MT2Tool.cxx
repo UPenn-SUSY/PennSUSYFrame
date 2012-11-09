@@ -1,33 +1,41 @@
 #include "include/MT2Tool.h"
 
-#include "AtlasSFrameUtils/include/CycleMacros.h"
-
-// -----------------------------------------------------------------------------
-CommonTools::MT2Tool::MT2Tool( SCycleBase* parent
-                             , const char* name
-                             )
-                             : ToolBase(parent, name)
+CommonTools::MT2Tool::MT2Tool()
 {
   // do nothing
 }
 
 // -----------------------------------------------------------------------------
-CommonTools::MT2Tool::~MT2Tool()
+double CommonTools::MT2Tool::getMt2( FLAVOR_CHANNEL flavor_channel
+                                   , const Met* met
+                                   , const std::vector<Electron*>& el
+                                   , const std::vector<Muon*>& mu
+                                   , double minv
+                                   )
 {
-  // do nothing
-}
+  double mt2 = 0.;
 
-// -----------------------------------------------------------------------------
-double CommonTools::MT2Tool::getMT2()
-{
-  return m_MT2;
-}
+  if (flavor_channel == FLAVOR_EE) {
+    mt2 = calcMt2( el.at(0)
+                 , el.at(1)
+                 , met
+                 , minv
+                 );
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    mt2 = calcMt2( mu.at(0)
+                 , mu.at(1)
+                 , met
+                 , minv
+                 );
+  }
+  else if (flavor_channel == FLAVOR_EM) {
+    mt2 = calcMt2( el.at(0)
+                 , mu.at(0)
+                 , met
+                 , minv
+                 );
+  }
 
-//------------------------------------------------------------------------------
-void CommonTools::MT2Tool::setMT2(double mt2)
-{
-  //double mt2 = 0;
-
-  m_MT2 = mt2;
-
+  return mt2;
 }

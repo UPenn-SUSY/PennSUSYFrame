@@ -111,6 +111,13 @@ void Event::setMll(double mll)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setMt2(double mt2)
+{
+  m_mt2 = mt2;
+  m_mt2_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 void Event::setMetRel(double met_rel)
 {
   m_met_rel = met_rel;
@@ -131,6 +138,14 @@ double Event::getMetRel()
   if (!m_met_rel_cached)
     std::cout << "WARNING! Asking for met_rel, but not yet cached!\n";
   return m_met_rel;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getMt2()
+{
+  if (!m_mt2_cached)
+    std::cout << "WARNING! Asking for mt2, but not yet cached!\n";
+  return m_mt2;
 }
 
 // ----------------------------------------------------------------------------

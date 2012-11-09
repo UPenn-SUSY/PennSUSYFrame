@@ -4,7 +4,6 @@
 // =============================================================================
 
 #include "TLorentzVector.h"
-#include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Met.h"
 
 #include "mt2_bisect.h"
@@ -13,27 +12,29 @@
 namespace CommonTools{
 
   // ===========================================================================
-  class MT2Tool : public ToolBase
+  class MT2Tool
   {
   // ---------------------------------------------------------------------------
   public:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    MT2Tool(SCycleBase* parent, const char* name = "CutTool");
-    virtual ~MT2Tool();
+    MT2Tool();
 
-    double getMT2();
-    void setMT2(double);
+    static double getMt2( FLAVOR_CHANNEL
+                        , const Met*
+                        , const std::vector<Electron*>&
+                        , const std::vector<Muon*>&
+                        , double minv = 0
+                        );
 
   // ---------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    double m_MT2;
-
-    template<class T1, class T2>
-    float calculateMT2(T1*, T2*, Met*, double minv =0);
+    template <class T1, class T2>
+      static double calcMt2(const T1*, const T2*, const Met*, double minv = 0);
   };
 
 }
+
 // Include the implementation:
 #ifndef __CINT__
 #include "MT2Tool.icc"

@@ -12,8 +12,6 @@
 #include "AtlasSFrameUtils/include/Event.h"
 #include "AtlasSFrameUtils/include/Met.h"
 
-#include "CommonTools/include/MllTool.h"
-
 // =============================================================================
 namespace SelectionTools
 {

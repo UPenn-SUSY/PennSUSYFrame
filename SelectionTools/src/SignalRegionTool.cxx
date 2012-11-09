@@ -80,9 +80,7 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
       passCut(met_rel, c_sr4_met_rel_min, c_sr4_met_rel_max));
 
   // Check mt2 cuts
-  // TODO get proper mt2 value
-  // double mt2 = ;
-  double mt2 = 0;
+  double mt2 = event->getMt2();;
   sr_helper->setPassSR4aMt2(
       passCut(mt2, c_sr4a_mt2_min, c_sr4a_mt2_max));
 

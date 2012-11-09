@@ -36,9 +36,11 @@ public:
 
   void setMll(double);
   void setMetRel(double);
+  void setMt2(double);
 
   double getMll();
   double getMetRel();
+  double getMt2();
 
   FLAVOR_CHANNEL  getFlavorChannel();
   SIGN_CHANNEL    getSignChannel();
@@ -58,9 +60,11 @@ private:
   // useful event level variables
   double m_mll;
   double m_met_rel;
+  double m_mt2;
 
   bool m_mll_cached;
   bool m_met_rel_cached;
+  bool m_mt2_cached;
 
   // Event description
   SusyAnalysisTools::EventDescription m_event_desc;

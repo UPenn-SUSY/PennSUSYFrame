@@ -24,6 +24,7 @@
 #include "CommonTools/include/MuonMomentumSmearingTool.h"
 #include "CommonTools/include/SignChannel.h"
 #include "CommonTools/include/MllTool.h"
+#include "CommonTools/include/MT2Tool.h"
 #include "CommonTools/include/TruthMatchTool.h"
 
 #include "D3PDObjects/include/ElectronD3PDObject.h"

@@ -4,25 +4,24 @@
 
 #include <iostream>
 
-#include "AtlasSFrameUtils/include/CycleMacros.h"
+// #include "AtlasSFrameUtils/include/CycleMacros.h"
 #include "AtlasSFrameUtils/include/Met.h"
 
 // =============================================================================
 namespace CommonTools {
   // ---------------------------------------------------------------------------
   template<class T1, class T2>
-  float MT2Tool::calculateMT2( T1* t1
-                             , T2* t2
-                             , Met* met
-                             , double minv
-                             )
+    double MT2Tool::calcMt2( const T1* t1
+                           , const T2* t2
+                           , const Met* met
+                           , double minv
+                           )
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     TLorentzVector tlv_1 = t1->getTlv();
     TLorentzVector tlv_2 = t2->getTlv();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     TVector2 met_vec = met->getMetRefFinalVec();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -33,8 +32,8 @@ namespace CommonTools {
     mt2_bisect::mt2 mt2_event;
     mt2_event.set_momenta(pa,pb,pmiss);
     mt2_event.set_mn(minv);
+
     return mt2_event.get_mt2();
-    return 0;
   }
 }
 #endif // CommonTools_MT2Tool_icc
