@@ -55,6 +55,8 @@ private:
   // useful event level variables
   double m_mll;
 
+  bool m_mll_cached;
+
   // Event description
   SusyAnalysisTools::EventDescription m_event_desc;
   SusyAnalysisTools::SRHelper         m_sr_helper;

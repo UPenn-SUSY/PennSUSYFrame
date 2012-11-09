@@ -129,6 +129,13 @@ bool SelectionTools::EventCleaningTool::passTileHotSpot(Event* event,
 }
 
 // -----------------------------------------------------------------------------
+bool SelectionTools::EventCleaningTool::passMllCut(Event* event)
+{
+  double mll = event->getMll();
+  return passCut(mll, c_mll_min, c_mll_max);
+}
+
+// -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passMllCut( FLAVOR_CHANNEL flavor,
     const std::vector<Electron*>& el, const std::vector<Muon*>& mu)
 {

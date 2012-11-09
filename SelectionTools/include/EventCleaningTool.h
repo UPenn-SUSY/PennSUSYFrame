@@ -39,6 +39,7 @@ namespace SelectionTools
     bool passTileHotSpot(Event*, const JetContainer&);
     bool passTileHotSpot(Event*, const std::vector<Jet*>&);
 
+    bool passMllCut(Event*);
     bool passMllCut( FLAVOR_CHANNEL
                    , const std::vector<Electron*>&
                    , const std::vector<Muon*>&

@@ -44,15 +44,15 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   SusyAnalysisTools::SRHelper*         sr_helper  = event->getSRHelper();
 
   // Check light jet veto
-  bool pass_l_jet_veto = jets.num(JET_LIGHT);
+  bool pass_l_jet_veto = (jets.num(JET_LIGHT) == 0);
   sr_helper->setPassLJetVeto(pass_l_jet_veto);
 
   // Check b jet veto
-  bool pass_b_jet_veto = jets.num(JET_B);
+  bool pass_b_jet_veto = (jets.num(JET_B) == 0);
   sr_helper->setPassBJetVeto(pass_b_jet_veto);
 
   // Check forward jet veto
-  bool pass_f_jet_veto = jets.num(JET_FORWARD);
+  bool pass_f_jet_veto = (jets.num(JET_FORWARD) == 0);
   sr_helper->setPassFJetVeto(pass_f_jet_veto);
 
   // Check z veto

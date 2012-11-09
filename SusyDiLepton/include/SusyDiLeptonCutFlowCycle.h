@@ -90,6 +90,7 @@ private:
 
   // turn on verbose print statements
   bool c_print_event_info; // turn on for debugging
+  bool c_super_verbose_info;
 
   std::string c_input_tree_name;
   std::string c_output_tree_name;
@@ -183,6 +184,10 @@ private:
 
   bool runCutFlow();
   void checkSignalRegions();
+
+  // This function computes event variables we only want for good events
+  // Call this only after you have determined the flavor channel!
+  void computeGoodEventVariables();
 
   void clearEventVariables();
   void fillEventVariables();

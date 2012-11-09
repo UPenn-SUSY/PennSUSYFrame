@@ -17,6 +17,7 @@ Event::Event( const ::Long64_t& master
             , m_cross_section_weight(1.)
             , m_b_tag_weight(1.)
             , m_mll(0.)
+            , m_mll_cached(false)
 {
   // do nothing
 }
@@ -34,6 +35,8 @@ void Event::clear()
   m_b_tag_weight         = 0.;
 
   m_mll = 0.;
+
+  m_mll_cached = false;
 }
 
 // ----------------------------------------------------------------------------
@@ -100,11 +103,14 @@ void Event::setBTagWeight(double weight)
 void Event::setMll(double mll)
 {
   m_mll = mll;
+  m_mll_cached = true;
 }
 
 // -----------------------------------------------------------------------------
 double Event::getMll()
 {
+  if (!m_mll_cached)
+    std::cout << "WARNING! Asking for mll, but not yet cached!\n";
   return m_mll;
 }
 

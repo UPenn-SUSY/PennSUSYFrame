@@ -66,7 +66,10 @@ void CutFlowDump::Init(TTree *tree)
    fChain->SetBranchAddress("run_number"     , &m_run_number  , &b_run_number);
    fChain->SetBranchAddress("event_number"   , &m_event_number, &b_event_number);
    fChain->SetBranchAddress("event_desc"     , &m_event_desc  , &b_event_desc);
+   fChain->SetBranchAddress("sr_helper"      , &m_sr_helper   , &b_sr_helper);
+
    fChain->SetBranchAddress("mc_event_weight", &m_mc_weight   , &b_mc_weight);
+
    Notify();
 }
 
@@ -166,20 +169,20 @@ void CutFlowDump::initCutFlowHists()
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Opposite sign"    );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "Same sign"        );
 
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR1 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR1 jet veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR1 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR1 met-rel" );
 
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 jet veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 met-rel" );
 
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 jet veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 met-rel" );
 
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 jet veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 met-rel" );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4a met-rel");
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4b met-rel");
@@ -197,7 +200,8 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase)
     return;
   }
 
-  SusyAnalysisTools::EventDescription evt_desc = m_event_desc;
+  SusyAnalysisTools::EventDescription evt_desc  = m_event_desc;
+  SusyAnalysisTools::SRHelper         sr_helper = m_sr_helper;
   unsigned int bin_num = 0;
 
   // TODO do configurable weights
@@ -309,6 +313,101 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase)
   if (evt_desc.getSignChannel() == SIGN_SS)
     fillHist(phase, bin_num, weight);
   ++bin_num;
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // SR helpers
+  bool pass_z_veto = sr_helper.getPassZVeto();
+  bool pass_l_jet_veto = sr_helper.getPassLJetVeto();
+  bool pass_b_jet_veto = sr_helper.getPassBJetVeto();
+  bool pass_f_jet_veto = sr_helper.getPassFJetVeto();
+  bool pass_total_jet_veto = (  pass_l_jet_veto
+                             && pass_b_jet_veto
+                             && pass_f_jet_veto
+                             );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // SR1
+  bool pass_sr1 = (evt_desc.getSignChannel() == SIGN_OS);
+
+  // SR1 jet veto
+  pass_sr1 = (pass_sr1 && pass_total_jet_veto);
+  if (pass_sr1)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR1 Z veto
+  pass_sr1 = (pass_sr1 && pass_z_veto);
+  if (pass_sr1)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR1 met-rel
+  pass_sr1 = (pass_sr1 && sr_helper.getPassSR1MetRel());
+  if (pass_sr1)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // SR2
+  bool pass_sr2 = (evt_desc.getSignChannel() == SIGN_SS);
+
+  // SR2 jet veto
+  pass_sr2 = (pass_sr2 && pass_total_jet_veto);
+  if (pass_sr2)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR2 Z veto
+  pass_sr2 = (pass_sr2 && pass_z_veto);
+  if (pass_sr2)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR2 met-rel
+  pass_sr2 = (pass_sr2 && sr_helper.getPassSR2MetRel());
+  if (pass_sr2)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // SR3
+  bool pass_sr3 = (evt_desc.getSignChannel() == SIGN_OS);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // SR4
+  bool pass_sr4 = (evt_desc.getSignChannel() == SIGN_OS);
+
+  // SR4 jet veto
+  pass_sr4 = (pass_sr4 && pass_total_jet_veto);
+  if (pass_sr4)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR4 Z veto
+  pass_sr4 = (pass_sr4 && pass_z_veto);
+  if (pass_sr4)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR4 met-rel
+  pass_sr4 = (pass_sr4 && sr_helper.getPassSR4MetRel());
+  if (pass_sr4)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR4a MT2 cut
+  pass_sr4 = (pass_sr4 && sr_helper.getPassSR4aMt2());
+  if (pass_sr4)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR4b MT2 cut
+  pass_sr4 = (pass_sr4 && sr_helper.getPassSR4bMt2());
+  if (pass_sr4)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+
 }
 
 // -----------------------------------------------------------------------------
