@@ -64,23 +64,23 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   // DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
   // DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons   = false);
 
-  DeclareProperty("Crit_grl"              , c_crit_grl              = true);
-  DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = true);
-  DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = true);
-  DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = true);
-  DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = true);
-  DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = true);
-  DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = true);
-  DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = true);
-  DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = true);
-  DeclareProperty("Crit_hfor"             , c_crit_hfor             = true);
-  DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep         = true);
-  DeclareProperty("Crit_2_lep"            , c_crit_2_lep            = true);
-  DeclareProperty("Crit_mll"              , c_crit_mll              = true);
-  DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep       = true);
-  DeclareProperty("Crit_phase_space"      , c_crit_phase_space      = true);
-  DeclareProperty("Crit_trigger"          , c_crit_trigger          = true);
-  DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = true);
+  DeclareProperty("Crit_grl"              , c_crit_grl              = false);
+  DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = false);
+  DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = false);
+  DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = false);
+  DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = false);
+  DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = false);
+  DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = false);
+  DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = false);
+  DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = false);
+  DeclareProperty("Crit_hfor"             , c_crit_hfor             = false);
+  DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep         = false);
+  DeclareProperty("Crit_2_lep"            , c_crit_2_lep            = false);
+  DeclareProperty("Crit_mll"              , c_crit_mll              = false);
+  DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep       = false);
+  DeclareProperty("Crit_phase_space"      , c_crit_phase_space      = false);
+  DeclareProperty("Crit_trigger"          , c_crit_trigger          = false);
+  DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
   DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons   = false);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -97,6 +97,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::IsoCorrectionTool       , "Electron_IsoCorr"    );
   DECLARE_TOOL(CommonTools::IsoCorrectionTool       , "Muon_IsoCorr"        );
   DECLARE_TOOL(CommonTools::TLVTool                 , "tlv"                 );
+  DECLARE_TOOL(CommonTools::TopTagTool              , "Top_Tag"             );
   DECLARE_TOOL(CommonTools::TruthMatchTool          , "Truth_Match"         );
 
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");

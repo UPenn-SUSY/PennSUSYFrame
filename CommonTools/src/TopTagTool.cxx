@@ -1,7 +1,8 @@
 #include "include/TopTagTool.h"
 
-#include "AtlasSFrameUtils/include/CycleMacros.h"
+// #include "AtlasSFrameUtils/include/CycleMacros.h"
 
+using namespace std;
 
 // -----------------------------------------------------------------------------
 CommonTools::TopTagTool::TopTagTool( SCycleBase* parent
@@ -9,7 +10,9 @@ CommonTools::TopTagTool::TopTagTool( SCycleBase* parent
                                    )
                                    : ToolBase(parent, name)
 {
-  // do nothing
+  DeclareProperty("pt_j_cut"  , c_pt_j_cut   = 30000. );
+  DeclareProperty("m_eff_cut" , c_eff_cut    = 100000.);
+  DeclareProperty("n_jet_scan", c_n_jet_scan = 3      );
 }
 
 // -----------------------------------------------------------------------------
@@ -18,14 +21,6 @@ CommonTools::TopTagTool::~TopTagTool()
   // do nothing
 }
 
-// -----------------------------------------------------------------------------
-void CommonTools::TopTagTool::init()
-{
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  DeclareProperty("pt_j_cut"  , c_pt_j_cut   = 30000. );
-  DeclareProperty("m_eff_cut" , c_eff_cut    = 100000.);
-  DeclareProperty("n_jet_scan", c_n_jet_scan = 3      );
-}
 // -----------------------------------------------------------------------------
 double CommonTools::TopTagTool::mct(Jet* j1, Jet* j2)
 {
@@ -114,7 +109,7 @@ bool CommonTools::TopTagTool::toptag0j( TLorentzVector v1l
   double rr=sqrt(pxus*pxus+pyus*pyus)/(2.*wmass);
   double fact=rr+sqrt(1+rr*rr);
 
-  //cout << "mctll " << mctll << " cut value " << wmass*fact << std::endl;
+  // cout << "mctll " << mctll << " cut value " << wmass*fact << std::endl;
   return mctll < wmass*fact ? true: false;
 }
 
@@ -197,16 +192,63 @@ bool CommonTools::TopTagTool::toptag2j( double ptjcut
     double mm2=(vjb[ij2]+v2l).M();
     double mmax2 = mm1>mm2 ? (mm1*mm1) : (mm2*mm2);
     double upl=mmax2/(tmass)+(tmass);
-    //cout << " i " << " mctjl " << mctjl << " mmax2 " << mmax2 <<
-    //" upl " << upl << endl;
+    // cout << " i " << " mctjl " << mctjl << " mmax2 " << mmax2 <<
+    // " upl " << upl << endl;
     if(mctjl < upl*factj )  ngcou++;
   }
 
   bool imctjl = ngcou>0 ? true : false;
-  //cout << " ll " << imctll << " ct " << imct << " jl " << imjl <<
-  //" ctlj " << imctjl << endl;
+  // cout << " ll " << imctjl << " ct " << imct << " jl " << imjl <<
+  // " ctlj " << imctjl << endl;
 
   return imct & imjl & imctjl;
+}
+
+// -----------------------------------------------------------------------------
+bool CommonTools::TopTagTool::isTopTagged( FLAVOR_CHANNEL flavor,
+    const Met* met,
+    const std::vector<Electron*>& el,
+    const std::vector<Muon*>& mu,
+    const std::vector<Jet*>& jet
+    )
+{
+  bool valid_flavor = false;
+  TLorentzVector tlv_0;
+  TLorentzVector tlv_1;
+
+
+  if (flavor == FLAVOR_EE) {
+    valid_flavor = true;
+
+    tlv_0 = el.at(0)->getTlv();
+    tlv_1 = el.at(1)->getTlv();
+  }
+  else if (flavor == FLAVOR_MM) {
+    valid_flavor = true;
+    tlv_0 = mu.at(0)->getTlv();
+    tlv_1 = mu.at(1)->getTlv();
+  }
+  else if (flavor == FLAVOR_EM) {
+    valid_flavor = true;
+    tlv_0 = el.at(0)->getTlv();
+    tlv_1 = mu.at(0)->getTlv();
+  }
+
+  // If we don't have a valid flavor, do not bother to do top tagging
+  if (!valid_flavor) return false;
+
+  // get TLV for jets
+  size_t n_jets = jet.size();
+  std::vector<TLorentzVector> jet_vec;
+  jet_vec.reserve(n_jets);
+  for (size_t jet_it=0; jet_it!=n_jets; ++jet_it) {
+    jet_vec.push_back(jet.at(jet_it)->getTlv());
+  }
+
+  // Get met vector
+  TVector2 met_vec = met->getMetRefFinalVec();
+
+  return isTopTagged(jet_vec, tlv_0, tlv_1, met_vec);
 }
 
 // -----------------------------------------------------------------------------
@@ -216,8 +258,6 @@ bool CommonTools::TopTagTool::isTopTagged(
     TLorentzVector& tlv_lep_2,
     TVector2& met_vec)
 {
-
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check top tag
   int nsolutions = -1;

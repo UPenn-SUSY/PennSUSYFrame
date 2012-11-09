@@ -12,6 +12,8 @@
 #include "AtlasSFrameUtils/include/Event.h"
 #include "AtlasSFrameUtils/include/Met.h"
 
+#include "CommonTools/include/TopTagTool.h"
+
 // =============================================================================
 namespace SelectionTools
 {
@@ -25,6 +27,9 @@ namespace SelectionTools
                      , const char* name = "EventCleaning"
                      );
     virtual ~SignalRegionTool();
+
+    void BeginInputData( const SInputData& id);
+    void EndInputData(   const SInputData& id);
 
     void processSignalRegions( Event*
                              , ElectronContainer&
@@ -75,6 +80,8 @@ namespace SelectionTools
     double c_sr4b_mt2_max;
 
     bool passCut(double test, double min, double max);
+
+    CommonTools::TopTagTool* m_top_tag_tool;
 
     ClassDef(SignalRegionTool, 0);
   };

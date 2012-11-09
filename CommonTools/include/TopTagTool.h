@@ -1,14 +1,16 @@
 // Dear emacs, this is -*- c++ -*-
 #ifndef CommonTools_TopTagTool_H
 #define CommonTools_TopTagTool_H
-// ============================================================================
 
 #include "TLorentzVector.h"
+
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/Jet.h"
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/JetContainer.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // //--- In the Loop Function:
 //
@@ -18,51 +20,41 @@
 //   // There is a ttbar
 // }
 
-
-
-// ============================================================================
-namespace CommonTools{
-// ============================================================================
-
+// =============================================================================
+namespace CommonTools
+{
+  // ===========================================================================
   class TopTagTool : public ToolBase
   {
+  // ---------------------------------------------------------------------------
   public:
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     TopTagTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~TopTagTool();
 
-    void init();
-
     double mct(Jet*,Jet*);
 
-    //bool isTopTagged();
+    bool isTopTagged( FLAVOR_CHANNEL
+                    , const Met*
+                    , const std::vector<Electron*>&
+                    , const std::vector<Muon*>&
+                    , const std::vector<Jet*>&
+                    );
 
     bool isTopTagged( std::vector<TLorentzVector>& jet_vec
-		      , TLorentzVector& lepton_1
-		      , TLorentzVector& lepton_2
-		      , TVector2& met_vec
-		      );
+		                , TLorentzVector& lepton_1
+		                , TLorentzVector& lepton_2
+		                , TVector2& met_vec
+		                );
 
-    template<class T1, class T2>
-    bool isTopTagged( std::vector<Jet*>&
-		      , T1* lepton_1
-		      , T2* lepton_2
-		      , Met* met
-		      );
-
-    template<class T1, class T2>
-    bool isTopTagged( const JetContainer& jets
-		      , T1* lepton_1
-		      , T2* lepton_2
-		      , Met* met_vec
-		      );
-
+  // -----------------------------------------------------------------------------
   private:
-
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     double c_pt_j_cut;
     double c_eff_cut;
     int    c_n_jet_scan;
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     double calc_mct(const TLorentzVector&, const TLorentzVector&);
 
     int toptag( double ptjcut
@@ -88,11 +80,9 @@ namespace CommonTools{
 
 
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(TopTagTool, 0);
-
   };
-
 }
 // Include the implementation:
 #ifndef __CINT__
@@ -101,4 +91,3 @@ namespace CommonTools{
 
 
 #endif
-

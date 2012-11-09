@@ -1,8 +1,11 @@
 #include "include/SignalRegionTool.h"
 
+#include "AtlasSFrameUtils/include/CycleMacros.h"
+
 // -----------------------------------------------------------------------------
 SelectionTools::SignalRegionTool::SignalRegionTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
+                                         , m_top_tag_tool(NULL)
 {
   DeclareProperty("z_window_mll_min", c_z_window_mll_min = 81200);
   DeclareProperty("z_window_mll_max", c_z_window_mll_max = 101200);
@@ -34,6 +37,22 @@ SelectionTools::SignalRegionTool::~SignalRegionTool()
 }
 
 // -----------------------------------------------------------------------------
+void SelectionTools::SignalRegionTool::BeginInputData(const SInputData&)
+{
+  GET_TOOL( top_tag_tool
+          , CommonTools::TopTagTool
+          , "Top_Tag"
+          );
+  m_top_tag_tool = top_tag_tool;
+}
+
+// -----------------------------------------------------------------------------
+void SelectionTools::SignalRegionTool::EndInputData(const SInputData&)
+{
+  // do nothing
+}
+
+// -----------------------------------------------------------------------------
 void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
     ElectronContainer& electrons,
     MuonContainer& muons,
@@ -55,14 +74,23 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   bool pass_f_jet_veto = (jets.num(JET_FORWARD) == 0);
   sr_helper->setPassFJetVeto(pass_f_jet_veto);
 
+  // check num light jets
+  bool pass_sr3_num_jets = (jets.num(JET_LIGHT) >= 2);
+  sr_helper->setPassSR32LJet(pass_sr3_num_jets);
+
   // Check z veto
   double mll = event->getMll();
   bool in_z_window = passCut(mll, c_z_window_mll_min, c_z_window_mll_max);
   sr_helper->setPassZVeto(!in_z_window);
 
   // Check top tag veto
-  bool pass_top_tag_veto = false;
-  sr_helper->setPassTopVeto(pass_top_tag_veto);
+  bool is_top_tagged = m_top_tag_tool->isTopTagged(
+      event_desc->getFlavorChannel(),
+      met,
+      electrons.getElectrons(EL_GOOD),
+      muons.getMuons(MU_GOOD),
+      jets.getJets(JET_ALL_SIGNAL) );
+  sr_helper->setPassTopVeto(!is_top_tagged);
 
   // Check MET-rel cuts
   double met_rel = event->getMetRel();;

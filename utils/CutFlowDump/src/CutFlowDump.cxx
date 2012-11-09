@@ -177,9 +177,13 @@ void CutFlowDump::initCutFlowHists()
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 met-rel" );
 
-    // m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 jet veto");
-    // m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 Z veto"  );
-    // m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 met-rel" );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 SF"          );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 2-light jets");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 Z veto"      );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 b jet veto"  );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 f jet feto"  );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 top tag veto");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 met-rel"     );
 
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 jet veto");
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 Z veto"  );
@@ -372,6 +376,51 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase)
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // SR3
   bool pass_sr3 = (evt_desc.getSignChannel() == SIGN_OS);
+
+  // SR3 same flavor
+  bool is_sf = (  evt_desc.getFlavorChannel() == FLAVOR_EE
+               || evt_desc.getFlavorChannel() == FLAVOR_MM
+               );
+  pass_sr3 = (pass_sr3 && is_sf);
+  if (pass_sr3)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR3 2 light jets
+  pass_sr3 = (pass_sr3 && sr_helper.getPassSR32LJet());
+  if (pass_sr3)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR3 Z veto
+  pass_sr3 = (pass_sr3 && pass_z_veto);
+  if (pass_sr3)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR3 b jet veto
+  pass_sr3 = (pass_sr3 && pass_b_jet_veto);
+  if (pass_sr3)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR3 forward jet veto
+  pass_sr3 = (pass_sr3 && pass_f_jet_veto);
+  if (pass_sr3)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR3 top tag veto
+  pass_sr3 = (pass_sr3 && sr_helper.getPassTopVeto());
+  if (pass_sr3)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
+
+  // SR3 met-rel
+  pass_sr3 = (pass_sr3 && sr_helper.getPassSR3MetRel());
+  if (pass_sr3)
+    fillHist(phase, bin_num, weight);
+  ++bin_num;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // SR4
