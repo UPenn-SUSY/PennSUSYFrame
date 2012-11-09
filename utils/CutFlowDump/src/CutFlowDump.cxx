@@ -177,15 +177,15 @@ void CutFlowDump::initCutFlowHists()
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR2 met-rel" );
 
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 jet veto");
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 Z veto"  );
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 met-rel" );
+    // m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 jet veto");
+    // m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 Z veto"  );
+    // m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR3 met-rel" );
 
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 jet veto");
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 Z veto"  );
     m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4 met-rel" );
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4a met-rel");
-    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4b met-rel");
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4a mt2"    );
+    m_cutflow.at(phase_it)->GetXaxis()->SetBinLabel(bin++, "SR4b mt2"    );
   }
 }
 

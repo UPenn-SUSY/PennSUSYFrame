@@ -927,6 +927,8 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_jets.setCollection( JET_FORWARD,
       m_jet_selection->getFJets(m_jets));
 
+  m_jets.setCombinedCollections();
+
   // TODO set jet collections like JET_ALL_SIGNAL and JET_ALL_CENTRAL
 
   // Prep met for this event

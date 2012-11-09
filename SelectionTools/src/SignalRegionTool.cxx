@@ -10,14 +10,14 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
   DeclareProperty("sr1_min_met_rel", c_sr1_met_rel_min = 100000.);
   DeclareProperty("sr1_max_met_rel", c_sr1_met_rel_max = -1);
 
-  DeclareProperty("sr2_min_met_rel", c_sr1_met_rel_min = 100000.);
-  DeclareProperty("sr2_max_met_rel", c_sr1_met_rel_max = -1);
+  DeclareProperty("sr2_min_met_rel", c_sr2_met_rel_min = 100000.);
+  DeclareProperty("sr2_max_met_rel", c_sr2_met_rel_max = -1);
 
-  DeclareProperty("sr3_min_met_rel", c_sr1_met_rel_min = 50000.);
-  DeclareProperty("sr3_max_met_rel", c_sr1_met_rel_max = -1);
+  DeclareProperty("sr3_min_met_rel", c_sr3_met_rel_min = 50000.);
+  DeclareProperty("sr3_max_met_rel", c_sr3_met_rel_max = -1);
 
-  DeclareProperty("sr4_min_met_rel", c_sr1_met_rel_min = 40000.);
-  DeclareProperty("sr4_max_met_rel", c_sr1_met_rel_max = -1);
+  DeclareProperty("sr4_min_met_rel", c_sr4_met_rel_min = 40000.);
+  DeclareProperty("sr4_max_met_rel", c_sr4_met_rel_max = -1);
 
   DeclareProperty("sr4a_min_mt2", c_sr4a_mt2_min = 90000.);
   DeclareProperty("sr4a_max_mt2", c_sr4a_mt2_max = -1);
@@ -65,9 +65,7 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   sr_helper->setPassTopVeto(pass_top_tag_veto);
 
   // Check MET-rel cuts
-  // TODO get proper met rel value
-  // double met_rel = ;
-  double met_rel = 0;
+  double met_rel = event->getMetRel();;
 
   sr_helper->setPassSR1MetRel(
       passCut(met_rel, c_sr1_met_rel_min, c_sr1_met_rel_max));

@@ -61,6 +61,30 @@ void JetContainer::setCollection( JET_COLLECTIONS jet_collection
   m_user_lists.at(jet_collection) = jets;
 }
 
+// -----------------------------------------------------------------------------
+void JetContainer::setCombinedCollections()
+{
+  std::vector<Jet*> l_jet = getJets(JET_LIGHT);
+  std::vector<Jet*> b_jet = getJets(JET_B);
+  std::vector<Jet*> f_jet = getJets(JET_FORWARD);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::vector<Jet*> all_central;
+  all_central.reserve(l_jet.size() + b_jet.size() );
+  all_central.insert(all_central.end(), l_jet.begin(), l_jet.end());
+  all_central.insert(all_central.end(), b_jet.begin(), b_jet.end());
+  setCollection(JET_ALL_CENTRAL, all_central);
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::vector<Jet*> all_signal;
+  all_signal.reserve( l_jet.size() + b_jet.size() + f_jet.size());
+  all_signal.insert(all_signal.end(), l_jet.begin(), l_jet.end());
+  all_signal.insert(all_signal.end(), b_jet.begin(), b_jet.end());
+  all_signal.insert(all_signal.end(), f_jet.begin(), f_jet.end());
+  setCollection(JET_ALL_SIGNAL, all_signal);
+}
+
+
 // ----------------------------------------------------------------------------
 size_t JetContainer::num(JET_COLLECTIONS jet_collection) const
 
