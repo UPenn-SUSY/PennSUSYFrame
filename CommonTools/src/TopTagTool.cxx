@@ -3,22 +3,22 @@
 #include "AtlasSFrameUtils/include/CycleMacros.h"
 
 
-//_____________________________________________________________________________
+// -----------------------------------------------------------------------------
 CommonTools::TopTagTool::TopTagTool( SCycleBase* parent
-                             , const char* name
-			       )
-  : ToolBase(parent, name)
-  
+                                   , const char* name
+                                   )
+                                   : ToolBase(parent, name)
 {
   // do nothing
 }
 
-//_____________________________________________________________________________
+// -----------------------------------------------------------------------------
 CommonTools::TopTagTool::~TopTagTool()
 {
   // do nothing
 }
-// ----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
 void CommonTools::TopTagTool::init()
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -26,25 +26,22 @@ void CommonTools::TopTagTool::init()
   DeclareProperty("m_eff_cut" , c_eff_cut    = 100000.);
   DeclareProperty("n_jet_scan", c_n_jet_scan = 3      );
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::TopTagTool::mct(Jet* j1, Jet* j2)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   TLorentzVector t1 = j1->getTlv();
   TLorentzVector t2 = j2->getTlv();
 
   return calc_mct(t1, t2);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::TopTagTool::calc_mct( const TLorentzVector& t1
                                         , const TLorentzVector& t2
                                         )
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // double mct = sqrt( fabs( (t1.Mt()+t2.Mt())*(t1.Mt()+t2.Mt()) - (t1-t2).Perp2()
-  //                        )
-  //                  );
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   float mct = (t1.Mt() + t2.Mt())*(t1.Mt() + t2.Mt()) - (t1-t2).Perp2();
   mct = (mct >= 0.) ? sqrt(mct) : sqrt(-mct);
 
@@ -52,7 +49,7 @@ double CommonTools::TopTagTool::calc_mct( const TLorentzVector& t1
 }
 
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 /*
  * Main method for the top-tagger algorithm described in ATL-COM-2011-XXX
  *
@@ -96,7 +93,8 @@ int CommonTools::TopTagTool::toptag( double ptjcut
   }
   return npairs;
 }
-// ----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
 bool CommonTools::TopTagTool::toptag0j( TLorentzVector v1l
                                       , TLorentzVector v2l
                                       , TVector2 met
@@ -119,6 +117,8 @@ bool CommonTools::TopTagTool::toptag0j( TLorentzVector v1l
   //cout << "mctll " << mctll << " cut value " << wmass*fact << std::endl;
   return mctll < wmass*fact ? true: false;
 }
+
+// -----------------------------------------------------------------------------
 bool CommonTools::TopTagTool::toptag2j( double ptjcut
                                       , double meffcut
                                       , TLorentzVector v1l
@@ -209,7 +209,7 @@ bool CommonTools::TopTagTool::toptag2j( double ptjcut
   return imct & imjl & imctjl;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool CommonTools::TopTagTool::isTopTagged(
     std::vector<TLorentzVector>& jets_vec,
     TLorentzVector& tlv_lep_1,

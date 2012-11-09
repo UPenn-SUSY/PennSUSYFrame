@@ -2,11 +2,11 @@
 #include "AtlasSFrameUtils/include/CycleMacros.h"
 
 
-//_____________________________________________________________________________
-CommonTools::PileUpScaleFactorTool::PileUpScaleFactorTool( SCycleBase* parent
-							   , const char* name
-							   )
-  : ToolBase(parent, name)
+// -----------------------------------------------------------------------------
+CommonTools::PileUpScaleFactorTool::PileUpScaleFactorTool(
+    SCycleBase* parent,
+    const char* name
+    ) : ToolBase(parent, name)
 {
   DeclareProperty("do_pile_up"      , c_do_pile_up_sf    = false);
   DeclareProperty("generate_mc_hist", c_generate_mc_hist = false);
@@ -18,21 +18,18 @@ CommonTools::PileUpScaleFactorTool::PileUpScaleFactorTool( SCycleBase* parent
 
   DeclareProperty("data_hist_name", c_data_hist_name = "LumiMetaData"       );
   DeclareProperty("mc_hist_name"  , c_mc_hist_name   = "MCPileupReweighting");
-
-
-  // do nothing
 }
 
-//_____________________________________________________________________________
+// -----------------------------------------------------------------------------
 CommonTools::PileUpScaleFactorTool::~PileUpScaleFactorTool()
 {
   // do nothing
 }
 
-//_____________________________________________________________________________
+// -----------------------------------------------------------------------------
 void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // if data, do nothing
   if (!is_data()) {
 
@@ -59,17 +56,6 @@ void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
 
       is_good = m_pile_up_reweight->Initialize();
     }
-    /*
-
-       else if (c_generate_mc_hist) {
-    // // From Dominick
-    // m_pile_up_reweight->AddPeriod(180164, 177986,180481); //associates mc runnumber 180164 with data period 177986 to 180481 (period B-D)
-    // m_pile_up_reweight->AddPeriod(183003, 180614,184169); //period E-H
-    // m_pile_up_reweight->AddPeriod(185649, 185353,186934); //period I-K1. For I-K you would change the last number to 187815
-    // m_pile_up_reweight->AddPeriod(185761, 186935,999999); //everything after K1. If you changed the previous line to I-K, change middle number of this line to 187816
-    // is_good = m_pile_up_reweight->initialize();
-    }
-    */
 
     if (is_good != 0) {
       m_logger << FATAL
@@ -84,74 +70,70 @@ void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
 
 
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::PileUpScaleFactorTool::EndInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do nothing
 }
 
 
 
-//_____________________________________________________________________________
-double CommonTools::PileUpScaleFactorTool::getPileupScaleFactor(const Event* event
-							      , const D3PDReader::TruthD3PDObject* truth
-							      )
+// -----------------------------------------------------------------------------
+double CommonTools::PileUpScaleFactorTool::getPileupScaleFactor(
+    const Event* event, const D3PDReader::TruthD3PDObject* truth)
 {
 
   if(!m_is_cached)
-    {
-      float sf = 1.;
-      
-      if (!is_data() && (c_do_pile_up_sf || c_generate_mc_hist)) {
-	float mu = 0.;
-	if (c_pile_up_var == "lbn")
-	  mu = event->lbn();
-	else if (c_pile_up_var == "averageIntPerXing")
-	  mu = event->averageIntPerXing();
-	// mu = truth->averageIntPerXing();
-	else if (c_pile_up_var == "actualIntPerXing")
-	  mu = event->actualIntPerXing();
-	// mu = truth->actualIntPerXing();
-	
-	sf = m_pile_up_reweight->GetCombinedWeight( event->RunNumber()
-						    , truth->mc_channel_number()
-						    , mu
-						    );
-	m_logger << DEBUG
-		 << "mu: " << mu
-		 << "\trun number: " << event->RunNumber()
-		 << "\tchannel number: " << truth->mc_channel_number()
-		 << "\tsf: " << sf
-		 << SLogger::endmsg;
-	if (sf < 0.) sf = 0.;
-      }
-      
-      m_is_cached = true;    
+  {
+    float sf = 1.;
+
+    if (!is_data() && (c_do_pile_up_sf || c_generate_mc_hist)) {
+      float mu = 0.;
+      if (c_pile_up_var == "lbn")
+        mu = event->lbn();
+      else if (c_pile_up_var == "averageIntPerXing")
+        mu = event->averageIntPerXing();
+      else if (c_pile_up_var == "actualIntPerXing")
+        mu = event->actualIntPerXing();
+
+      sf = m_pile_up_reweight->GetCombinedWeight( event->RunNumber()
+          , truth->mc_channel_number()
+          , mu
+          );
+      m_logger << DEBUG
+               << "mu: " << mu
+               << "\trun number: " << event->RunNumber()
+               << "\tchannel number: " << truth->mc_channel_number()
+               << "\tsf: " << sf
+               << SLogger::endmsg;
+      if (sf < 0.) sf = 0.;
     }
-  
+
+      m_is_cached = true;
+    }
+
   return m_pileup_sf;
-    
+
 }
 
 // ----------------------------------------------------------------------------
-double CommonTools::PileUpScaleFactorTool::getIntegratedLumiFraction( unsigned int run_number
-								      , unsigned int start
-								      , unsigned int end
-								      )
+double CommonTools::PileUpScaleFactorTool::getIntegratedLumiFraction(
+    unsigned int run_number,
+    unsigned int start,
+    unsigned int end)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   return m_pile_up_reweight->GetIntegratedLumiFraction( run_number
-							, start
-							, end
-							);
-  
+              , start
+              , end
+              );
 }
 
-// ----------------------------------------------------------------------------
-std::vector<double> CommonTools::PileUpScaleFactorTool::getIntegratedLumiVector()
+// -----------------------------------------------------------------------------
+std::vector<double>
+    CommonTools::PileUpScaleFactorTool::getIntegratedLumiVector()
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   return m_pile_up_reweight->getIntegratedLumiVector();
 }
-

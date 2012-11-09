@@ -123,7 +123,7 @@ int CommonTools::TruthMatchTool::matchBarcode(
     int barcode_to_match, const vector<int>* list_of_barcodes)
 {
   size_t term = list_of_barcodes->size();
-	for( size_t i = 0
+  for( size_t i = 0
      ; i != term
      ; ++i
      ) {
@@ -132,5 +132,5 @@ int CommonTools::TruthMatchTool::matchBarcode(
   }
 
   // -1 means no match
-	return -1;
+  return -1;
 }

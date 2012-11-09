@@ -17,7 +17,9 @@ Event::Event( const ::Long64_t& master
             , m_cross_section_weight(1.)
             , m_b_tag_weight(1.)
             , m_mll(0.)
+            , m_met_rel(0.)
             , m_mll_cached(false)
+            , m_met_rel_cached(false)
 {
   // do nothing
 }
@@ -34,9 +36,11 @@ void Event::clear()
   m_cross_section_weight = 0.;
   m_b_tag_weight         = 0.;
 
-  m_mll = 0.;
+  m_mll     = 0.;
+  m_met_rel = 0.;
 
-  m_mll_cached = false;
+  m_mll_cached     = false;
+  m_met_rel_cached = false;
 }
 
 // ----------------------------------------------------------------------------
@@ -107,11 +111,26 @@ void Event::setMll(double mll)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setMetRel(double met_rel)
+{
+  m_met_rel = met_rel;
+  m_met_rel_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 double Event::getMll()
 {
   if (!m_mll_cached)
     std::cout << "WARNING! Asking for mll, but not yet cached!\n";
   return m_mll;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getMetRel()
+{
+  if (!m_met_rel_cached)
+    std::cout << "WARNING! Asking for met_rel, but not yet cached!\n";
+  return m_met_rel;
 }
 
 // ----------------------------------------------------------------------------

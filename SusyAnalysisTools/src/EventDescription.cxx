@@ -72,7 +72,8 @@ void SusyAnalysisTools::EventDescription::clear()
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::EventDescription::set(const SusyAnalysisTools::EventDescription& rhs)
+void SusyAnalysisTools::EventDescription::set(
+    const SusyAnalysisTools::EventDescription& rhs)
 {
   set(rhs.toInt());
 }

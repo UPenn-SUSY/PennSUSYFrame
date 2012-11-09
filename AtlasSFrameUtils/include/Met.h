@@ -30,11 +30,15 @@ public:
   void prep(Event*, ElectronContainer*, MuonContainer* , JetContainer*);
 
 
-  TVector2 metRefFinalVec();
-  double   metRefFinalEt();
-  double   metRefFinalPhi();
+  TVector2 getMetRefFinalVec() const;
+  double   getMetRefFinalEt()  const;
+  double   getMetRefFinalPhi() const;
 
-
+  static double getMetRel( const Met*
+                         , const std::vector<Electron*>&
+                         , const std::vector<Muon*>&
+                         , const std::vector<Jet*>&
+                         );
 
 private:
   bool m_prepared;
@@ -46,10 +50,17 @@ private:
   void addMet();
   void addMuons(MuonContainer*);
 
+  template <class T>
+    static double getMinPhi(const Met*, const std::vector<T*>&);
+
   TVector2 m_met_vec;
 
   ClassDef(Met, 1);
 };
 
+// Include the implementation:
+#ifndef __CINT__
+#include "Met.icc"
+#endif // __CINT__
 
 #endif // AtlasSFrameUtils_Met_h

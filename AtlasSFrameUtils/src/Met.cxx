@@ -356,37 +356,65 @@ void Met::addMuons(MuonContainer* muon_container)
                                       );
 }
 // ----------------------------------------------------------------------------
-TVector2 Met::metRefFinalVec()
+TVector2 Met::getMetRefFinalVec() const
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!m_prepared) {
-    //m_logger << WARNING
-    //         << "Met not prepared for event! Setting default value:"
-    //         << "\n\tetx: 0\n\tety: 0" << SLogger::endmsg;
+    std::cout << "WARNING!!! "
+             << "Met not prepared for event! Setting default value:"
+             << "\n\tetx: 0\n\tety: 0\n";
     return TVector2(0,0);
   }
 
   return m_met_vec;
-
 }
 
 // ----------------------------------------------------------------------------
-double Met::metRefFinalEt()
+double Met::getMetRefFinalEt() const
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!m_prepared) {
+    std::cout << "WARNING!!! "
+             << "Met not prepared for event! Setting default value:"
+             << "\n\tet: -999\n";
     return -999;
   }
   return m_met_vec.Mod();
-
 }
 
 // ----------------------------------------------------------------------------
-double Met::metRefFinalPhi()
+double Met::getMetRefFinalPhi() const
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!m_prepared) {
-    return -999; 
+    std::cout << "WARNING!!! "
+             << "Met not prepared for event! Setting default value:"
+             << "\n\tphi: -999\n";
+    return -999;
   }
   return m_met_vec.Phi();
+}
+
+// -----------------------------------------------------------------------------
+double Met::getMetRel( const Met* met
+                     , const std::vector<Electron*>& el
+                     , const std::vector<Muon*>& mu
+                     , const std::vector<Jet*>& jet
+                     )
+{
+  float min_dphi = 9999;
+
+  // float dphi_el  = getMinPhi(met, el);
+  float dphi_mu  = getMinPhi(met, mu);
+  float dphi_jet = getMinPhi(met, jet);
+
+  // if (dphi_el  < min_dphi) min_dphi = dphi_el;
+  if (dphi_mu  < min_dphi) min_dphi = dphi_mu;
+  if (dphi_jet < min_dphi) min_dphi = dphi_jet;
+
+  double met_rel = met->getMetRefFinalEt();
+  if (min_dphi < 3.14159)
+    met_rel *= sin(min_dphi);
+
+  return met_rel;
 }

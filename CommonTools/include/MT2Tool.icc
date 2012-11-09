@@ -23,7 +23,7 @@ namespace CommonTools {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    TVector2 met_vec = met->metRefFinalVec();
+    TVector2 met_vec = met->getMetRefFinalVec();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     double pa[3] = {tlv_1.M(), tlv_1.Px(), tlv_1.Py()};

@@ -9,19 +9,18 @@
 
 //#include "CommonTools/include/MetTool.h"
 
-// ============================================================================
+// =============================================================================
 namespace CommonTools {
-  // ----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   template<class T1, class T2>
   bool TopTagTool::isTopTagged( std::vector<Jet*>& jets
-			    , T1* lepton_1
-			    , T2* lepton_2
-			    , Met* met
-			    )
+                              , T1* lepton_1
+                              , T2* lepton_2
+                              , Met* met
+                              )
   {
-       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // get TLV for jets
-
     size_t n_jets = jets.size();
     std::vector<TLorentzVector> jets_vec;
     jets_vec.reserve(n_jets);
@@ -34,11 +33,11 @@ namespace CommonTools {
     TLorentzVector tlv_lep_1 = lepton_1->getTlv();
     TLorentzVector tlv_lep_2 = lepton_2->getTlv();
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // get TVector2 for met
-    TVector2 met_vec = met->metRefFinalVec();
+    TVector2 met_vec = met->getMetRefFinalVec();
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // check top tag
     int nsolutions = -1;
     nsolutions = toptag( c_pt_j_cut
@@ -56,13 +55,13 @@ namespace CommonTools {
   }
   template<class T1, class T2>
   bool TopTagTool::isTopTagged( const JetContainer& jets
-				, T1* lepton_1
-				, T2* lepton_2
-				, Met* met
-				)
+                              , T1* lepton_1
+                              , T2* lepton_2
+                              , Met* met
+                              )
   {
-    // - - - - - - - - - - - - - - - - - - - - - -
-    //TO DO WHICH JET COLLECTION?
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // TODO WHICH JET COLLECTION?
     return isTopTagged(jets.getJets(JET_ALL_SIGNAL), lepton_1, lepton_2, met);
   }
 

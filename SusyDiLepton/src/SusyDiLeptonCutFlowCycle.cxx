@@ -797,13 +797,26 @@ void SusyDiLeptonCutFlowCycle::computeGoodEventVariables()
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute mll
-  double mll = CommonTools::MllTool::getMll( m_event->getFlavorChannel()
-                                           , m_electrons.getElectrons(EL_GOOD)
-                                           , m_muons.getMuons(MU_GOOD)
-                                           );
-  m_event->setMll(mll);
+  m_event->setMll(CommonTools::MllTool::getMll(
+        m_event->getFlavorChannel(),
+        m_electrons.getElectrons(EL_GOOD),
+        m_muons.getMuons(MU_GOOD)
+        ) );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute met and met-rel
+  m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
+  m_event->setMetRel(Met::getMetRel( m_met
+                                   , m_electrons.getElectrons(EL_GOOD)
+                                   , m_muons.getMuons(MU_GOOD)
+                                   , m_jets.getJets(JET_ALL_CENTRAL)
+                                   )
+                    );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute mt2
+  // TODO compute mt2
+
 }
 
 // -----------------------------------------------------------------------------
@@ -914,6 +927,10 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_jets.setCollection( JET_FORWARD,
       m_jet_selection->getFJets(m_jets));
 
+  // TODO set jet collections like JET_ALL_SIGNAL and JET_ALL_CENTRAL
+
   // Prep met for this event
-  m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
+  // Moved to computeGoodEventVariables()
+  // TODO remove this after validating
+  // m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
 }

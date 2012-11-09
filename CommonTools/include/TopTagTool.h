@@ -48,16 +48,16 @@ namespace CommonTools{
 		      , T2* lepton_2
 		      , Met* met
 		      );
-    
+
     template<class T1, class T2>
-    bool isTopTagged( const JetContainer& jets 
+    bool isTopTagged( const JetContainer& jets
 		      , T1* lepton_1
 		      , T2* lepton_2
 		      , Met* met_vec
 		      );
-    
+
   private:
- 
+
     double c_pt_j_cut;
     double c_eff_cut;
     int    c_n_jet_scan;
@@ -86,7 +86,7 @@ namespace CommonTools{
                  , int iopt
                  );
 
-   
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(TopTagTool, 0);
