@@ -30,7 +30,14 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_event_cleaning_tool(NULL),
   m_trigger_cut_tool(NULL),
   m_signal_region_tool(NULL),
-  m_truth_match_tool(NULL)
+  m_truth_match_tool(NULL),
+  m_mc_event_weight(NULL),
+  m_pile_up_weight(NULL),
+  m_lepton_weight(NULL),
+  m_b_tag_weight(NULL),
+  m_trigger_weight(NULL),
+  m_cross_section_weight(NULL),
+  m_charge_flip_weight(NULL)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -117,11 +124,17 @@ void SusyDiLeptonCutFlowCycle::declareTools()
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::declareEventVariables()
 {
-  DeclareVariable(m_run_number     , "run_number"     );
-  DeclareVariable(m_event_number   , "event_number"   );
-  DeclareVariable(m_event_desc_int , "event_desc"     );
-  DeclareVariable(m_sr_helper_int  , "sr_helper"      );
-  DeclareVariable(m_mc_event_weight, "mc_event_weight");
+  DeclareVariable(m_run_number          , "run_number"          );
+  DeclareVariable(m_event_number        , "event_number"        );
+  DeclareVariable(m_event_desc_int      , "event_desc"          );
+  DeclareVariable(m_sr_helper_int       , "sr_helper"           );
+  DeclareVariable(m_mc_event_weight     , "mc_event_weight"     );
+  DeclareVariable(m_pile_up_weight      , "pile_up_weight"      );
+  DeclareVariable(m_lepton_weight       , "lepton_weight"       );
+  DeclareVariable(m_b_tag_weight        , "b_tag_weight"        );
+  DeclareVariable(m_trigger_weight      , "trigger_weight"      );
+  DeclareVariable(m_cross_section_weight, "cross_section_weight");
+  DeclareVariable(m_charge_flip_weight  , "charge_flip_weight"  );
 }
 
 // -----------------------------------------------------------------------------
@@ -170,22 +183,22 @@ void SusyDiLeptonCutFlowCycle::initD3PDReaders()
   m_met = new Met(m_entry_number, c_met_prefix.c_str(), is_data());
 
   m_vertex_d3pdobject =
-      new D3PDReader::VertexD3PDObject(m_entry_number
+      new D3PDReader::VertexD3PDObject( m_entry_number
                                       , "vx_"
                                       , is_data()
                                       );
   m_electron_d3pdobject =
-      new D3PDReader::ElectronD3PDObject(m_entry_number
+      new D3PDReader::ElectronD3PDObject( m_entry_number
                                         , "el_"
                                         , is_data()
                                         );
   m_jet_d3pdobject =
-      new D3PDReader::JetD3PDObject(m_entry_number
+      new D3PDReader::JetD3PDObject( m_entry_number
                                    , c_jet_prefix.c_str()
                                    , is_data()
                                    );
   m_muon_d3pdobject =
-      new D3PDReader::MuonD3PDObject(m_entry_number
+      new D3PDReader::MuonD3PDObject( m_entry_number
                                     , c_muon_prefix.c_str()
                                     , is_data()
                                     );
@@ -193,9 +206,9 @@ void SusyDiLeptonCutFlowCycle::initD3PDReaders()
   // Some of these readers are only initialized for MC
   if (!is_data()) {
     m_muon_truth_d3pdobject =
-        new D3PDReader::MuonTruthD3PDObject(m_entry_number
-                                          , c_muon_truth_prefix.c_str()
-                                          );
+        new D3PDReader::MuonTruthD3PDObject( m_entry_number
+                                           , c_muon_truth_prefix.c_str()
+                                           );
 
     m_mcevt_d3pdobject
         = new D3PDReader::MCEvtD3PDObject(m_entry_number);
@@ -353,14 +366,14 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
            << SLogger::endmsg;
 
   // = get input trees from the d3pd objects =
-  m_event->ReadFrom(                 GetInputTree(c_input_tree_name.c_str()));
-  m_trigger->ReadFrom(               GetInputTree(c_input_tree_name.c_str()));
-  m_trigger_vec->ReadFrom(           GetInputTree(c_input_tree_name.c_str()));
-  m_met->ReadFrom(                   GetInputTree(c_input_tree_name.c_str()));
-  m_vertex_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
-  m_electron_d3pdobject->ReadFrom(   GetInputTree(c_input_tree_name.c_str()));
-  m_jet_d3pdobject->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
-  m_muon_d3pdobject->ReadFrom(       GetInputTree(c_input_tree_name.c_str()));
+  m_event->ReadFrom(              GetInputTree(c_input_tree_name.c_str()));
+  m_trigger->ReadFrom(            GetInputTree(c_input_tree_name.c_str()));
+  m_trigger_vec->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
+  m_met->ReadFrom(                GetInputTree(c_input_tree_name.c_str()));
+  m_vertex_d3pdobject->ReadFrom(  GetInputTree(c_input_tree_name.c_str()));
+  m_electron_d3pdobject->ReadFrom(GetInputTree(c_input_tree_name.c_str()));
+  m_jet_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
+  m_muon_d3pdobject->ReadFrom(    GetInputTree(c_input_tree_name.c_str()));
 
   if (!is_data()){
     m_mcevt_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
@@ -830,7 +843,13 @@ void SusyDiLeptonCutFlowCycle::clearEventVariables()
   m_event_desc_int = 0.;
   m_sr_helper_int  = 0.;
 
-  m_mc_event_weight = 1.;
+  m_mc_event_weight      = 1.;
+  m_pile_up_weight       = 1.;
+  m_lepton_weight        = 1.;
+  m_b_tag_weight         = 1.;
+  m_trigger_weight       = 1.;
+  m_cross_section_weight = 1.;
+  m_charge_flip_weight   = 1.;
 }
 
 // -----------------------------------------------------------------------------
@@ -843,6 +862,18 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
 
   if (!is_data()) {
     m_mc_event_weight = m_truth_d3pdobject->mc_event_weight();
+    // TODO fill m_pile_up_weight
+    m_pile_up_weight       = 1.;
+    // TODO fill m_lepton_weight
+    m_lepton_weight        = 1.;
+    // TODO fill m_b_tag_weight
+    m_b_tag_weight         = 1.;
+    // TODO fill m_trigger_weight
+    m_trigger_weight       = 1.;
+    // TODO fill m_cross_section_weight
+    m_cross_section_weight = 1.;
+    // TODO fill m_charge_flip_weight
+    m_charge_flip_weight   = 1.;
   }
 }
 

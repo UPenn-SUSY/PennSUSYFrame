@@ -176,6 +176,12 @@ private:
   ull_t m_sr_helper_int;
 
   float m_mc_event_weight;
+  double m_pile_up_weight;
+  double m_lepton_weight;
+  double m_b_tag_weight;
+  double m_trigger_weight;
+  double m_cross_section_weight;
+  double m_charge_flip_weight;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();

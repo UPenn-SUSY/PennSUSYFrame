@@ -24,8 +24,8 @@ namespace SelectionTools
   public:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     SignalRegionTool( SCycleBase* parent
-                     , const char* name = "EventCleaning"
-                     );
+                    , const char* name = "EventCleaning"
+                    );
     virtual ~SignalRegionTool();
 
     void BeginInputData( const SInputData& id);
