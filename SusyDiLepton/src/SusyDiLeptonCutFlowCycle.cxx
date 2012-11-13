@@ -34,6 +34,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_cross_section_sf_tool(NULL),
   m_b_tag_sf_tool(NULL),
   m_pileup_sf_tool(NULL),
+  m_egamma_sf_tool(NULL),
   m_mc_event_weight(NULL),
   m_pile_up_weight(NULL),
   m_lepton_weight(NULL),
@@ -332,7 +333,8 @@ void SusyDiLeptonCutFlowCycle::getTools()
   GET_TOOL(pile_up_sf, CommonTools::PileUpScaleFactorTool, "PileUpScaleFactor");
   m_pileup_sf_tool = pile_up_sf;
 
-
+  GET_TOOL(egamma_sf, CommonTools::EgammaScaleFactorTool, "EgammaSF");
+  m_egamma_sf_tool = egamma_sf;
 }
 
 // -----------------------------------------------------------------------------
