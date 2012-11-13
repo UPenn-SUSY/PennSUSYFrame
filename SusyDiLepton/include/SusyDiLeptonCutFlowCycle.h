@@ -27,6 +27,9 @@
 #include "CommonTools/include/MT2Tool.h"
 #include "CommonTools/include/TopTagTool.h"
 #include "CommonTools/include/TruthMatchTool.h"
+#include "CommonTools/include/CrossSectionScaleFactorTool.h"
+#include "CommonTools/include/BTagScaleFactorTool.h"
+#include "CommonTools/include/PileUpScaleFactorTool.h"
 
 #include "D3PDObjects/include/ElectronD3PDObject.h"
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
@@ -167,7 +170,10 @@ private:
   SelectionTools::TriggerCutTool*    m_trigger_cut_tool;
   SelectionTools::SignalRegionTool*  m_signal_region_tool;
 
-  CommonTools::TruthMatchTool* m_truth_match_tool;
+  CommonTools::TruthMatchTool*              m_truth_match_tool;
+  CommonTools::CrossSectionScaleFactorTool* m_cross_section_sf_tool;
+  CommonTools::BTagScaleFactorTool*         m_b_tag_sf_tool;
+  CommonTools::PileUpScaleFactorTool*       m_pileup_sf_tool;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   unsigned int m_run_number;

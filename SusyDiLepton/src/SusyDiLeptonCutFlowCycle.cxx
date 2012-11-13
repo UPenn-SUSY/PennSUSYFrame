@@ -31,6 +31,9 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_trigger_cut_tool(NULL),
   m_signal_region_tool(NULL),
   m_truth_match_tool(NULL),
+  m_cross_section_sf_tool(NULL),
+  m_b_tag_sf_tool(NULL),
+  m_pileup_sf_tool(NULL),
   m_mc_event_weight(NULL),
   m_pile_up_weight(NULL),
   m_lepton_weight(NULL),
@@ -160,7 +163,7 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
     throw( SError )
 {
   m_logger << DEBUG
-           << "SusyDiLeptonCutFlowCycle::eginInputData()"
+           << "SusyDiLeptonCutFlowCycle::beginInputData()"
            << SLogger::endmsg;
 
   // = initialize D3PD object readers =
@@ -311,6 +314,25 @@ void SusyDiLeptonCutFlowCycle::getTools()
           , "Truth_Match"
           );
   m_truth_match_tool = truth_match_tool;
+
+
+  //SF Tools
+
+  GET_TOOL( cross_section_sf
+	    , CommonTools::CrossSectionScaleFactorTool
+	    , "CrossSectionScaleFactor"
+	    );
+  
+  m_cross_section_sf_tool = cross_section_sf;
+
+
+  GET_TOOL(b_tag_sf, CommonTools::BTagScaleFactorTool, "BTagScaleFactor");
+  m_b_tag_sf_tool = b_tag_sf;
+
+  GET_TOOL(pile_up_sf, CommonTools::PileUpScaleFactorTool, "PileUpScaleFactor");
+  m_pileup_sf_tool = pile_up_sf;
+
+
 }
 
 // -----------------------------------------------------------------------------
@@ -906,6 +928,11 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_truth_match_tool->prep(m_truth_d3pdobject);
+
+  m_cross_section_sf_tool->clear();
+  m_b_tag_sf_tool->clear();
+  m_pileup_sf_tool->clear();
+
 }
 
 // -----------------------------------------------------------------------------
