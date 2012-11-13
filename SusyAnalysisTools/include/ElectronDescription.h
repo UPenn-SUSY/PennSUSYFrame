@@ -37,6 +37,8 @@ namespace SusyAnalysisTools
       void setPassZ0SinTheta(bool);
       void setPassPtIso(bool);
       void setPassCaloIso(bool);
+      void setPassLikelihoodMedium(bool);
+      void setPassLikelihoodTight(bool);
 
       bool getPassBaseline() const;
       bool getPassGood() const;
@@ -51,24 +53,28 @@ namespace SusyAnalysisTools
       bool getPassZ0SinTheta() const;
       bool getPassPtIso() const;
       bool getPassCaloIso() const;
+      bool getPassLikelihoodMedium() const;
+      bool getPassLikelihoodTight() const;
 
     // -------------------------------------------------------------------------
     private:
       static const unsigned int SIZE_BOOL = 1;
 
-      static const unsigned int ADD_BASELINE     = 0;
-      static const unsigned int ADD_GOOD         = 1;
-      static const unsigned int ADD_SIGNAL       = 2;
-      static const unsigned int ADD_CLUSTER_SEED = 3;
-      static const unsigned int ADD_OTX          = 4;
-      static const unsigned int ADD_MEDIUM_PP    = 5;
-      static const unsigned int ADD_BASELINE_PT  = 6;
-      static const unsigned int ADD_BASELINE_ETA = 7;
-      static const unsigned int ADD_TIGHT_PP     = 8;
-      static const unsigned int ADD_D0_SIG       = 9;
-      static const unsigned int ADD_Z0_SIN_THETA = 10;
-      static const unsigned int ADD_PT_ISO       = 11;
-      static const unsigned int ADD_CALO_ISO     = 12;
+      static const unsigned int ADD_BASELINE         = 0;
+      static const unsigned int ADD_GOOD             = 1;
+      static const unsigned int ADD_SIGNAL           = 2;
+      static const unsigned int ADD_CLUSTER_SEED     = 3;
+      static const unsigned int ADD_OTX              = 4;
+      static const unsigned int ADD_MEDIUM_PP        = 5;
+      static const unsigned int ADD_BASELINE_PT      = 6;
+      static const unsigned int ADD_BASELINE_ETA     = 7;
+      static const unsigned int ADD_TIGHT_PP         = 8;
+      static const unsigned int ADD_D0_SIG           = 9;
+      static const unsigned int ADD_Z0_SIN_THETA     = 10;
+      static const unsigned int ADD_PT_ISO           = 11;
+      static const unsigned int ADD_CALO_ISO         = 12;
+      static const unsigned int ADD_LIKELIHOOD_MED   = 13;
+      static const unsigned int ADD_LIKELIHOOD_TIGHT = 14;
 
       bool m_pass_baseline;
       bool m_pass_good;
@@ -83,6 +89,8 @@ namespace SusyAnalysisTools
       bool m_pass_z0_sin_theta;
       bool m_pass_pt_iso;
       bool m_pass_calo_iso;
+      bool m_pass_likelihood_medium;
+      bool m_pass_likelihood_tight;
 
       // TODO move implementation to icc file
       template <class T>
