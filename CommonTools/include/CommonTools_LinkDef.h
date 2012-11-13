@@ -18,7 +18,8 @@
 #pragma link C++ class CommonTools::TLVTool+;
 #pragma link C++ class CommonTools::TopTagTool+;
 #pragma link C++ class CommonTools::TruthMatchTool+;
-//#pragma link C++ class CommonTools::BTagSFTool+;
+#pragma link C++ class CommonTools::BTagScaleFactorTool+;
+// #pragma link C++ class CommonTools::BTagSFTool+;
 //#pragma link C++ class CommonTools::CrossSectionScaleFactorTool+;
 //#pragma link C++ class CommonTools::CutFlowHistTool+;
 //#pragma link C++ class CommonTools::DiLeptonTool+;
