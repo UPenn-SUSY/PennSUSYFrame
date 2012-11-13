@@ -23,7 +23,7 @@
 #pragma link C++ class CommonTools::CrossSectionScaleFactorTool+;
 //#pragma link C++ class CommonTools::CutFlowHistTool+;
 //#pragma link C++ class CommonTools::DiLeptonTool+;
-//#pragma link C++ class CommonTools::EgammaSFTool+;
+#pragma link C++ class CommonTools::EgammaScaleFactorTool+;
 //#pragma link C++ class CommonTools::JetCalibTool+;
 //#pragma link C++ class CommonTools::JetSmearingTool+;
 //#pragma link C++ class CommonTools::LarHoleWeightTool+;
