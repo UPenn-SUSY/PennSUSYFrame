@@ -29,10 +29,10 @@ namespace SusyAnalysisTools
       void setPassSignal(bool);
       void setPassClusterSeed(bool);
       void setPassOtx(bool);
-      void setPassMediumPp(bool);
+      void setPassMediumPP(bool);
       void setPassBaselinePt(bool);
       void setPassBaselineEta(bool);
-      void setPassTightPp(bool);
+      void setPassTightPP(bool);
       void setPassD0Sig(bool);
       void setPassZ0SinTheta(bool);
       void setPassPtIso(bool);
@@ -45,10 +45,10 @@ namespace SusyAnalysisTools
       bool getPassSignal() const;
       bool getPassClusterSeed() const;
       bool getPassOtx() const;
-      bool getPassMediumPp() const;
+      bool getPassMediumPP() const;
       bool getPassBaselinePt() const;
       bool getPassBaselineEta() const;
-      bool getPassTightPp() const;
+      bool getPassTightPP() const;
       bool getPassD0Sig() const;
       bool getPassZ0SinTheta() const;
       bool getPassPtIso() const;

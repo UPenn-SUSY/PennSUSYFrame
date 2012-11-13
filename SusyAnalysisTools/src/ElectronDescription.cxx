@@ -124,7 +124,7 @@ void SusyAnalysisTools::ElectronDescription::setPassOtx(bool pass)
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::ElectronDescription::setPassMediumPp(bool pass)
+void SusyAnalysisTools::ElectronDescription::setPassMediumPP(bool pass)
 {
   m_pass_medium_pp = pass;
 }
@@ -142,7 +142,7 @@ void SusyAnalysisTools::ElectronDescription::setPassBaselineEta(bool pass)
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::ElectronDescription::setPassTightPp(bool pass)
+void SusyAnalysisTools::ElectronDescription::setPassTightPP(bool pass)
 {
   m_pass_tight_pp = pass;
 }
@@ -214,7 +214,7 @@ bool SusyAnalysisTools::ElectronDescription::getPassOtx() const
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::ElectronDescription::getPassMediumPp() const
+bool SusyAnalysisTools::ElectronDescription::getPassMediumPP() const
 {
   return m_pass_medium_pp;
 }
@@ -232,7 +232,7 @@ bool SusyAnalysisTools::ElectronDescription::getPassBaselineEta() const
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::ElectronDescription::getPassTightPp() const
+bool SusyAnalysisTools::ElectronDescription::getPassTightPP() const
 {
   return m_pass_tight_pp;
 }

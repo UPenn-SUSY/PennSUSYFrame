@@ -14,9 +14,11 @@ ElectronContainer::~ElectronContainer()
 
 // ----------------------------------------------------------------------------
 void ElectronContainer::init(
+    SelectionTools::ElectronSelectionTool* electron_selection_tool,
     CommonTools::TLVTool* tlv_tool,
     CommonTools::IsoCorrectionTool* iso_corr_tool)
 {
+  m_electron_selection = electron_selection_tool;
   m_tlv_tool = tlv_tool;
   m_iso_corr_tool = iso_corr_tool;
 }
@@ -47,6 +49,8 @@ void ElectronContainer::prepElectrons(
   for (size_t el_it = 0; el_it != term; ++el_it) {
     m_master_list.at(el_it).prepTlv();
     m_master_list.at(el_it).prepRawTlv();
+
+    m_electron_selection->process(&m_master_list.at(el_it));
     m_user_lists.at(EL_ALL).push_back(&m_master_list.at(el_it));
   }
 }

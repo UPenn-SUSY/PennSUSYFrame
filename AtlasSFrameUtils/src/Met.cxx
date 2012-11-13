@@ -404,11 +404,11 @@ double Met::getMetRel( const Met* met
 {
   float min_dphi = 9999;
 
-  // float dphi_el  = getMinPhi(met, el);
+  float dphi_el  = getMinPhi(met, el);
   float dphi_mu  = getMinPhi(met, mu);
   float dphi_jet = getMinPhi(met, jet);
 
-  // if (dphi_el  < min_dphi) min_dphi = dphi_el;
+  if (dphi_el  < min_dphi) min_dphi = dphi_el;
   if (dphi_mu  < min_dphi) min_dphi = dphi_mu;
   if (dphi_jet < min_dphi) min_dphi = dphi_jet;
 

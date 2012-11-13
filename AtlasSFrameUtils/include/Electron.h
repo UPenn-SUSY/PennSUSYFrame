@@ -17,7 +17,10 @@
 
 #include "D3PDObjects/include/ElectronD3PDObject.h"
 
+#include "SusyAnalysisTools/include/ElectronDescription.h"
+
 // ============================================================================
+// namespace SelectionTools
 namespace CommonTools
 {
   class TLVTool;
@@ -48,6 +51,8 @@ public:
 
   double getIsoCorr(ISO_TYPE, int cone_size, int num_vertex) const;
 
+  SusyAnalysisTools::ElectronDescription* getElectronDesc();
+
   void print(const VertexContainer&) const;
 
   static bool eq(const Electron& el1, const Electron& el2);
@@ -76,6 +81,9 @@ private:
   double etcone(int cone_size) const;
   double topoetcone(int cone_size) const;
   double topoetcone_corrected(int cone_size) const;
+
+  // electron description
+  SusyAnalysisTools::ElectronDescription m_el_desc;
 
   ClassDef(Electron, 1);
 };

@@ -8,10 +8,18 @@
 #include "Electron.h"
 #include "VertexContainer.h"
 
-#include "SusyAnalysisTools/include/SusyEnums.h"
-
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
+
+#include "SelectionTools/include/ElectronSelectionTool.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+namespace SelectionTools
+{
+  class ElectronSelectionTool;
+}
 
 // ============================================================================
 class ElectronContainer
@@ -20,7 +28,8 @@ class ElectronContainer
     ElectronContainer();
     ~ElectronContainer();
 
-    void init( CommonTools::TLVTool*
+    void init( SelectionTools::ElectronSelectionTool*
+             , CommonTools::TLVTool*
              , CommonTools::IsoCorrectionTool*
              );
 
@@ -37,6 +46,7 @@ class ElectronContainer
     std::vector<Electron> m_master_list;
     std::vector<std::vector<Electron*> > m_user_lists;
 
+    SelectionTools::ElectronSelectionTool* m_electron_selection;
     CommonTools::TLVTool* m_tlv_tool;
     CommonTools::IsoCorrectionTool* m_iso_corr_tool;
 };

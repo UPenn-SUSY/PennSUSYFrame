@@ -10,6 +10,9 @@
 #include "egammaEvent/egammaPIDdefs.h"
 
 // ============================================================================
+class ElectronContainer;
+
+// =============================================================================
 namespace SelectionTools
 {
   // ==========================================================================
@@ -20,6 +23,7 @@ namespace SelectionTools
     ElectronSelectionTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~ElectronSelectionTool();
 
+    void process(Electron*);
     bool isBaseline(Electron*);
     bool isSignal(Electron*);
 

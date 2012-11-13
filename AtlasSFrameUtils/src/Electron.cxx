@@ -18,6 +18,7 @@ ClassImp(Electron)
                  , m_raw_tlv_prepped(false)
                  , m_tlv_tool(tlv_tool)
                  , m_iso_corr_tool(iso_corr_tool)
+                 , m_el_desc(0)
 {
   // do nothing
 }
@@ -195,6 +196,12 @@ double Electron::topoetcone_corrected(int cone_size) const
   };
 
   return iso;
+}
+
+// -----------------------------------------------------------------------------
+SusyAnalysisTools::ElectronDescription* Electron::getElectronDesc()
+{
+  return &m_el_desc;
 }
 
 // ----------------------------------------------------------------------------

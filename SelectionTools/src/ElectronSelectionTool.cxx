@@ -32,56 +32,51 @@ SelectionTools::ElectronSelectionTool::~ElectronSelectionTool()
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
-bool SelectionTools::ElectronSelectionTool::isBaseline(Electron* el)
+// -----------------------------------------------------------------------------
+void SelectionTools::ElectronSelectionTool::process(Electron* el)
 {
+  SusyAnalysisTools::ElectronDescription* el_desc = el->getElectronDesc();
+
   // check for cluster seeded electron
-  if (el->author() != 1 && el->author() != 3)
-    return false;
+  bool pass_clus_seed = (!(el->author() != 1 && el->author() != 3));
+  el_desc->setPassClusterSeed(pass_clus_seed);
 
   // check for electrons flagged as "BADCLUSELECTRON"
-  if ((el->OQ() & egammaPID::BADCLUSELECTRON) > 0)
-    return false;
+  bool pass_otx = (!((el->OQ() & egammaPID::BADCLUSELECTRON) > 0));
+  el_desc->setPassOtx(pass_otx);
 
   // check for medium++ electrons
   // TODO add option to recalculate med++
-  if (!el->mediumPP())
-    return false;
+  bool pass_med_pp = el->mediumPP();
+  el_desc->setPassMediumPP(pass_med_pp);
 
   // Check for baseline pt
   double pt = el->getTlv().Pt();
-  if (!passCut(pt, c_baseline_min_pt, c_baseline_max_pt))
-    return false;
+  bool pass_baseline_pt = passCut(pt, c_baseline_min_pt, c_baseline_max_pt);
+  el_desc->setPassBaselinePt(pass_baseline_pt);
 
   // Check for baseline eta
   double eta = fabs(el->getTlv().Eta());
-  if (!passCut(eta, c_baseline_min_eta, c_baseline_max_eta))
-    return false;
+  bool pass_baseline_eta = passCut(eta, c_baseline_min_eta, c_baseline_max_eta);
+  el_desc->setPassBaselineEta(pass_baseline_eta);
 
-  // Passed all cuts. This is a baseline eleectron
-  return true;
-}
-
-// ----------------------------------------------------------------------------
-bool SelectionTools::ElectronSelectionTool::isSignal(Electron* el)
-{
   // check for tight++ electrons
   // TODO add option to recalculate tight++
-  if (!el->tightPP())
-    return false;
+  bool pass_tight_pp = el->tightPP();
+  el_desc->setPassTightPP(pass_tight_pp);
 
   // check for signal d0 significance
   double d0_sig = fabs(el->getD0Significance());
-  if (!passCut(d0_sig, c_signal_min_d0_sig, c_signal_max_d0_sig))
-    return false;
+  bool pass_d0_sig = passCut(d0_sig, c_signal_min_d0_sig, c_signal_max_d0_sig);
+  el_desc->setPassD0Sig(pass_d0_sig);
 
   // check for signal z0 sin(theta)
   double z0_sin_theta = fabs(el->getZ0SinTheta());
-  if (!passCut( z0_sin_theta
-              , c_signal_min_z0_sin_theta
-              , c_signal_max_z0_sin_theta
-              ) )
-    return false;
+  bool pass_z0_sin_theta = passCut( z0_sin_theta
+                                  , c_signal_min_z0_sin_theta
+                                  , c_signal_max_z0_sin_theta
+                                  );
+  el_desc->setPassZ0SinTheta(pass_z0_sin_theta);
 
   // Check for signal isolation
   // TODO get proper value for num good vertices
@@ -94,17 +89,52 @@ bool SelectionTools::ElectronSelectionTool::isSignal(Electron* el)
                                       , 30
                                       , num_good_vertices
                                       );
-  double pt = el->getTlv().Pt();
   double ptcone_ratio = ptcone30/pt;
   double etcone_ratio = topoetcone30/pt;
 
-  if (!passCut(ptcone_ratio, c_signal_min_ptcone_cut, c_signal_max_ptcone_cut))
-      return false;
-  if (!passCut(etcone_ratio, c_signal_min_etcone_cut, c_signal_max_etcone_cut))
-      return false;
+  bool pass_ptcone = passCut( ptcone_ratio
+                            , c_signal_min_ptcone_cut
+                            , c_signal_max_ptcone_cut
+                            );
+  el_desc->setPassPtIso(pass_ptcone);
 
-  // Passed all cuts. This is a signal eleectron
-  return true;
+  bool pass_etcone = passCut( etcone_ratio
+                            , c_signal_min_etcone_cut
+                            , c_signal_max_etcone_cut
+                            );
+  el_desc->setPassCaloIso(pass_etcone);
+}
+
+// ----------------------------------------------------------------------------
+bool SelectionTools::ElectronSelectionTool::isBaseline(Electron* el)
+{
+  // Check if this electron passed all baseline cuts
+  SusyAnalysisTools::ElectronDescription* el_desc = el->getElectronDesc();
+  bool pass_baseline = (  el_desc->getPassClusterSeed()
+                       && el_desc->getPassOtx()
+                       && el_desc->getPassMediumPP()
+                       && el_desc->getPassBaselinePt()
+                       && el_desc->getPassBaselineEta()
+                       );
+  el_desc->setPassBaseline(pass_baseline);
+
+  return pass_baseline;
+}
+
+// ----------------------------------------------------------------------------
+bool SelectionTools::ElectronSelectionTool::isSignal(Electron* el)
+{
+  // check if this electron passed all signal cuts
+  SusyAnalysisTools::ElectronDescription* el_desc = el->getElectronDesc();
+  bool pass_signal = (  el_desc->getPassTightPP()
+                     && el_desc->getPassD0Sig()
+                     && el_desc->getPassZ0SinTheta()
+                     && el_desc->getPassPtIso()
+                     && el_desc->getPassCaloIso()
+                     );
+  el_desc->setPassSignal(pass_signal);
+
+  return pass_signal;
 }
 
 // ----------------------------------------------------------------------------
