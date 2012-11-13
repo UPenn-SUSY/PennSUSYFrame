@@ -259,7 +259,7 @@ void SusyDiLeptonCutFlowCycle::getTools()
           , "Electron_Selection"
           );
   m_electron_selection = electron_selection;
-  m_electrons.init(tlv_tool, el_iso_corr_tool);
+  m_electrons.init(electron_selection, tlv_tool, el_iso_corr_tool);
 
   // Jet selection
   GET_TOOL( jet_selection
