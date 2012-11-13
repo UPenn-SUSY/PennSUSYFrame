@@ -21,7 +21,7 @@ namespace CommonTools
     ~BTagScaleFactorTool();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+    void clear();
     double getSF(std::vector<Jet*>&);
 
   // ---------------------------------------------------------------------------

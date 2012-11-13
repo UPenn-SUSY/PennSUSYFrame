@@ -24,6 +24,8 @@ namespace CommonTools{
     void BeginInputData( const SInputData& id );
     void EndInputData( const SInputData& id );
     
+    void clear();
+
     double getPileupScaleFactor(const Event*,const D3PDReader::TruthD3PDObject*);
 
 

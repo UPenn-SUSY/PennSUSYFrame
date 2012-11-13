@@ -25,7 +25,11 @@ CommonTools::PileUpScaleFactorTool::~PileUpScaleFactorTool()
 {
   // do nothing
 }
-
+void CommonTools::PileUpScaleFactorTool::clear()
+{
+  m_is_cached = false;
+  m_pileup_sf =  -999;
+}
 // -----------------------------------------------------------------------------
 void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
 {

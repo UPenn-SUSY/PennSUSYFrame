@@ -21,7 +21,12 @@ CommonTools::BTagScaleFactorTool::~BTagScaleFactorTool()
 {
   // do nothing
 }
-
+// ----------------------------------------------------------------------------
+void CommonTools::BTagScaleFactorTool::clear()
+{
+  m_is_cached = false;
+  m_b_tag_sf = -999;
+}
 // ---------------------------------------------------------------------------
 double CommonTools::BTagScaleFactorTool::getSF(std::vector<Jet*>& jets)
 {
