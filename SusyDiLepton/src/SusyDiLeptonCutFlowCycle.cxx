@@ -106,12 +106,12 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::MuonMomentumSmearingTool, "MuonMomentumSmearing");
   DECLARE_TOOL(CommonTools::JetCalibTool            , "JetCalibration"      );
 
-  DECLARE_TOOL(CommonTools::IsoCorrectionTool          , "Electron_IsoCorr"    );
-  DECLARE_TOOL(CommonTools::IsoCorrectionTool          , "Muon_IsoCorr"        );
-  DECLARE_TOOL(CommonTools::TLVTool                    , "tlv"                 );
-  DECLARE_TOOL(CommonTools::TopTagTool                 , "Top_Tag"             );
-  DECLARE_TOOL(CommonTools::TruthMatchTool             , "Truth_Match"         );
-  DECLARE_TOOL(CommonTools::CrossSectionScaleFactorTool, "CrossSectionScaleFactor");
+  DECLARE_TOOL(CommonTools::IsoCorrectionTool          , "Electron_IsoCorr");
+  DECLARE_TOOL(CommonTools::IsoCorrectionTool          , "Muon_IsoCorr"    );
+  DECLARE_TOOL(CommonTools::TLVTool                    , "tlv"             );
+  DECLARE_TOOL(CommonTools::TopTagTool                 , "Top_Tag"         );
+  DECLARE_TOOL(CommonTools::TruthMatchTool             , "Truth_Match"     );
+  DECLARE_TOOL(CommonTools::CrossSectionScaleFactorTool, "CrossSectionSF");
   DECLARE_TOOL(CommonTools::PileUpScaleFactorTool      , "PileUpScaleFactor");
   DECLARE_TOOL(CommonTools::EgammaScaleFactorTool      , "EgammaSF");
   DECLARE_TOOL(CommonTools::BTagScaleFactorTool        , "BTagScaleFactor");
@@ -273,7 +273,7 @@ void SusyDiLeptonCutFlowCycle::getTools()
           , "Jet_Selection"
           );
   m_jet_selection = jet_selection;
-  m_jets.init(tlv_tool);
+  m_jets.init(jet_selection, tlv_tool);
 
   // Muon selection
   GET_TOOL( muon_selection
@@ -281,7 +281,7 @@ void SusyDiLeptonCutFlowCycle::getTools()
           , "Muon_Selection"
           );
   m_muon_selection = muon_selection;
-  m_muons.init(tlv_tool, mu_iso_corr_tool);
+  m_muons.init(muon_selection, tlv_tool, mu_iso_corr_tool);
 
   // Object cleaning for overlap removal, etc.
   GET_TOOL( object_cleaning
@@ -324,12 +324,10 @@ void SusyDiLeptonCutFlowCycle::getTools()
 
 
   //SF Tools
-
   GET_TOOL( cross_section_sf
-	    , CommonTools::CrossSectionScaleFactorTool
-	    , "CrossSectionScaleFactor"
-	    );
-  
+	        , CommonTools::CrossSectionScaleFactorTool
+	        , "CrossSectionSF"
+	        );
   m_cross_section_sf_tool = cross_section_sf;
 
 
@@ -963,8 +961,8 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_muons.setCollection( MU_BASELINE,
       m_muon_selection->getBaselineMuons(m_muons));
 
-  m_jets.setCollection( JET_BASELINE,
-      m_jet_selection->getBaselineJets(m_jets));
+  // m_jets.setCollection( JET_BASELINE,
+  //     m_jet_selection->getBaselineJets(m_jets));
 
   m_jets.setCollection( JET_BASELINE_GOOD,
       m_jet_selection->getBaselineGoodJets(m_jets));
