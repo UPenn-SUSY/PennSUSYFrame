@@ -46,86 +46,117 @@ SelectionTools::JetSelectionTool::~JetSelectionTool()
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::JetSelectionTool::isBaseline(Jet* jet)
+void SelectionTools::JetSelectionTool::process(Jet* jet)
 {
-  // Check for baseline pt
+  SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
+
   double pt = jet->getTlv().Pt();
-  if (!passCut(pt, c_baseline_min_pt, c_baseline_max_pt))
-    return false;
+  double eta = fabs(jet->getTlv().Eta());
+
+  // Check for baseline pt
+  bool pass_baseline_pt = passCut(pt, c_baseline_min_pt, c_baseline_max_pt);
+  jet_desc->setPassBaselinePt(pass_baseline_pt);
 
   // Check for baseline eta
-  double eta = fabs(jet->getTlv().Eta());
-  if (!passCut(eta, c_baseline_min_eta, c_baseline_max_eta))
-    return false;
+  bool pass_baseline_eta = passCut(eta, c_baseline_min_eta, c_baseline_max_eta);
+  jet_desc->setPassBaselineEta(pass_baseline_eta);
 
-  // Passed all cuts. This is a baseline jet
-  return true;
+  // Check for light pt
+  bool pass_l_pt = passCut(pt, c_light_min_pt, c_light_max_pt);
+  jet_desc->setPassLPt(pass_l_pt);
+
+  // Check for b pt
+  bool pass_b_pt = passCut(pt, c_b_min_pt, c_b_max_pt);
+  jet_desc->setPassBPt(pass_b_pt);
+
+  // Check for forward pt
+  bool pass_f_pt = passCut(pt, c_forward_min_pt, c_forward_max_pt);
+  jet_desc->setPassFPt(pass_f_pt);
+
+  // Check for central eta
+  bool pass_central_eta = passCut(eta, c_light_min_eta, c_light_max_eta);
+  jet_desc->setPassCentralEta(pass_central_eta);
+
+  // Check for forward eta
+  bool pass_forward_eta = passCut(eta, c_forward_min_eta, c_forward_max_eta);
+  jet_desc->setPassFEta(pass_forward_eta);
+
+  // Check for light jvf
+  double jvf = jet->jvtxf();
+  bool pass_jvf = passCut(jvf, c_light_min_jvf, c_light_max_jvf);
+  jet_desc->setPassJvf(pass_jvf);
+
+  // Check mv1 for b-tag
+  double mv1 = jet->flavor_weight_MV1();
+  bool pass_b_tag = passCut(mv1, c_b_min_mv1, c_b_max_mv1);
+  jet_desc->setPassBTag(pass_b_tag);
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::JetSelectionTool::isBaselineGood(Jet* jet)
+{
+  // Check if this jet passed all baseline cuts
+  SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
+  bool pass_baseline_good = (  jet_desc->getPassBaselinePt()
+                            && jet_desc->getPassBaselineEta()
+                            && !isBadJet(jet)
+                            );
+  jet_desc->setPassBaselineGood(pass_baseline_good);
+
+  return pass_baseline_good;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::JetSelectionTool::isBaselineBad(Jet* jet)
+{
+  // Check if this jet passed all baseline cuts
+  SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
+  bool pass_baseline_bad = (  jet_desc->getPassBaselinePt()
+                           && jet_desc->getPassBaselineEta()
+                           && isBadJet(jet)
+                           );
+  jet_desc->setPassBaselineBad(pass_baseline_bad);
+
+  return pass_baseline_bad;
 }
 
 // -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isLJet(Jet* jet)
 {
-  // Check for light pt
-  double pt = jet->getTlv().Pt();
-  if (!passCut(pt, c_light_min_pt, c_light_max_pt))
-    return false;
-
-  // Check for light eta
-  double eta = fabs(jet->getTlv().Eta());
-  if (!passCut(eta, c_light_min_eta, c_light_max_eta))
-    return false;
-
-  // Check for light jvf
-  double jvf = jet->jvtxf();
-  if (!passCut(jvf, c_light_min_jvf, c_light_max_jvf))
-    return false;
-
-  // Check for light mv1
-  double mv1 = jet->flavor_weight_MV1();
-  if (!passCut(mv1, c_light_min_mv1, c_light_max_mv1))
-    return false;
-
-  // Passed all cuts. This is a light-central jet
-  return true;
+  // Check if this jet passed all light jet cuts
+  SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
+  bool pass_light = (  jet_desc->getPassLPt()
+                    && jet_desc->getPassCentralEta()
+                    && jet_desc->getPassJvf()
+                    && (jet_desc->getPassBTag() == false)
+                    );
+  jet_desc->setPassLight(pass_light);
+  return pass_light;
 }
 
 // -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBJet(Jet* jet)
 {
-  // Check for b pt
-  double pt = jet->getTlv().Pt();
-  if (!passCut(pt, c_b_min_pt, c_b_max_pt))
-    return false;
-
-  // Check for b eta
-  double eta = fabs(jet->getTlv().Eta());
-  if (!passCut(eta, c_b_min_eta, c_b_max_eta))
-    return false;
-
-  // Check for b mv1
-  double mv1 = jet->flavor_weight_MV1();
-  if (!passCut(mv1, c_b_min_mv1, c_b_max_mv1))
-    return false;
-
-  // Passed all cuts. This is a b-jet
-  return true;
+  // Check if this jet passed all b jet cuts
+  SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
+  bool pass_b = (  jet_desc->getPassBPt()
+                && jet_desc->getPassCentralEta()
+                && jet_desc->getPassBTag()
+                );
+  jet_desc->setPassB(pass_b);
+  return pass_b;
 }
 
 // -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isFJet(Jet* jet)
 {
-  // Check for forward pt
-  double pt = jet->getTlv().Pt();
-  if (!passCut(pt, c_forward_min_pt, c_forward_max_pt))
-    return false;
-
-  // Check for forward eta
-  double eta = fabs(jet->getTlv().Eta());
-  if (!passCut(eta, c_forward_min_eta, c_forward_max_eta))
-    return false;
-
-  // Passed all cuts. This is a forward jet
-  return true;
+  // Check if this jet passed all forward jet cuts
+  SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
+  bool pass_forward = (  jet_desc->getPassFPt()
+                      && jet_desc->getPassFEta()
+                      );
+  jet_desc->setPassForward(pass_forward);
+  return pass_forward;
 }
 
 // -----------------------------------------------------------------------------
@@ -162,32 +193,6 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 }
 
 // -----------------------------------------------------------------------------
-std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineJets(
-    const JetContainer& jet_container)
-{
-  const std::vector<Jet*> all_jets = jet_container.getJets(JET_ALL);
-  return getBaselineJets(all_jets);
-}
-
-// -----------------------------------------------------------------------------
-std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineJets(
-    const std::vector<Jet*>& all_jets)
-{
-  size_t term = all_jets.size();
-
-  std::vector<Jet*> baseline_jets;
-  baseline_jets.reserve(term);
-
-  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
-    if (isBaseline(all_jets.at(jet_it))) {
-      baseline_jets.push_back(all_jets.at(jet_it));
-    }
-  }
-
-  return baseline_jets;
-}
-
-// -----------------------------------------------------------------------------
 std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineGoodJets(
     const JetContainer& jet_container)
 {
@@ -205,9 +210,7 @@ std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineGoodJets(
   baseline_jets.reserve(term);
 
   for (size_t jet_it = 0; jet_it != term; ++jet_it) {
-    if (  isBaseline(all_jets.at(jet_it))
-       && !isBadJet(all_jets.at(jet_it))
-       ) {
+    if (isBaselineGood(all_jets.at(jet_it))) {
       baseline_jets.push_back(all_jets.at(jet_it));
     }
   }
@@ -233,9 +236,7 @@ std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineBadJets(
   baseline_jets.reserve(term);
 
   for (size_t jet_it = 0; jet_it != term; ++jet_it) {
-    if (  isBaseline(all_jets.at(jet_it))
-       && isBadJet(all_jets.at(jet_it))
-       ) {
+    if (isBaselineBad(all_jets.at(jet_it))) {
       baseline_jets.push_back(all_jets.at(jet_it));
     }
   }

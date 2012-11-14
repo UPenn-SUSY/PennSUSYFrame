@@ -13,9 +13,11 @@ JetContainer::~JetContainer()
 }
 
 // ----------------------------------------------------------------------------
-void JetContainer::init( CommonTools::TLVTool* tlv_tool
+void JetContainer::init( SelectionTools::JetSelectionTool* jet_selection_tool
+                       , CommonTools::TLVTool* tlv_tool
                        )
 {
+  m_jet_selection = jet_selection_tool;
   m_tlv_tool = tlv_tool;
 }
 
@@ -49,6 +51,8 @@ void JetContainer::prepJets( D3PDReader::JetD3PDObject* jet_d3pdobject
 
     m_master_list.at(jet_it).prepTlv(mu, num_vertices_w_2_trks);
     m_master_list.at(jet_it).prepRawTlv();
+
+    m_jet_selection->process(&m_master_list.at(jet_it));
     m_user_lists.at(JET_ALL).push_back(&m_master_list.at(jet_it));
   }
 }

@@ -17,6 +17,7 @@
 
 #include "D3PDObjects/include/ElectronD3PDObject.h"
 
+#include "SusyAnalysisTools/include/SusyEnums.h"
 #include "SusyAnalysisTools/include/ElectronDescription.h"
 
 // ============================================================================

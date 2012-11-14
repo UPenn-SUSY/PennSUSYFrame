@@ -7,6 +7,9 @@
 #include "AtlasSFrameUtils/include/JetContainer.h"
 
 // =============================================================================
+class JetContainer;
+
+// =============================================================================
 namespace SelectionTools
 {
   // ===========================================================================
@@ -17,15 +20,13 @@ namespace SelectionTools
     JetSelectionTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~JetSelectionTool();
 
-    bool isBaseline(Jet*);
+    void process(Jet*);
+    bool isBaselineGood(Jet*);
+    bool isBaselineBad(Jet*);
     bool isLJet(Jet*);
     bool isBJet(Jet*);
     bool isFJet(Jet*);
     bool isBadJet(Jet*);
-
-    std::vector<Jet*> getBaselineJets(const JetContainer&);
-    std::vector<Jet*> getBaselineJets(
-        const std::vector<Jet*>& all_jets);
 
     std::vector<Jet*> getBaselineGoodJets(const JetContainer&);
     std::vector<Jet*> getBaselineGoodJets(

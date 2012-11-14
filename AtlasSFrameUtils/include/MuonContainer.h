@@ -8,10 +8,18 @@
 #include "Muon.h"
 #include "VertexContainer.h"
 
-#include "SusyAnalysisTools/include/SusyEnums.h"
-
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
+
+#include "SelectionTools/include/MuonSelectionTool.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+namespace SelectionTools
+{
+  class MuonSelectionTool;
+}
 
 // ============================================================================
 class MuonContainer
@@ -20,7 +28,10 @@ class MuonContainer
     MuonContainer();
     ~MuonContainer();
 
-    void init(CommonTools::TLVTool*, CommonTools::IsoCorrectionTool*);
+    void init( SelectionTools::MuonSelectionTool*
+             , CommonTools::TLVTool*
+             , CommonTools::IsoCorrectionTool*
+             );
 
     void clear();
     void prepMuons(D3PDReader::MuonD3PDObject*);
@@ -35,6 +46,7 @@ class MuonContainer
     std::vector<Muon> m_master_list;
     std::vector<std::vector<Muon*> > m_user_lists;
 
+    SelectionTools::MuonSelectionTool* m_muon_selection;
     CommonTools::TLVTool* m_tlv_tool;
     CommonTools::IsoCorrectionTool* m_iso_corr_tool;
 };

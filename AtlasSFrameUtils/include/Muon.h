@@ -18,6 +18,7 @@
 #include "D3PDObjects/include/MuonD3PDObject.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
+#include "SusyAnalysisTools/include/MuonDescription.h"
 
 // ============================================================================
 namespace CommonTools
@@ -49,6 +50,8 @@ public:
 
   double getIsoCorr(ISO_TYPE, int cone_size, int num_vertex) const;
 
+  SusyAnalysisTools::MuonDescription* getMuonDesc();
+
   void print(const VertexContainer&) const;
 
   static bool eq(const Muon& mu1, const Muon& mu2);
@@ -75,6 +78,9 @@ private:
 
   double ptcone(int cone_size) const;
   double etcone(int cone_size) const;
+
+  // muon description
+  SusyAnalysisTools::MuonDescription m_muon_desc;
 
   ClassDef(Muon, 1);
 };

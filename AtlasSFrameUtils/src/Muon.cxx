@@ -164,6 +164,12 @@ double Muon::etcone(int cone_size) const
   return iso;
 }
 
+// -----------------------------------------------------------------------------
+SusyAnalysisTools::MuonDescription* Muon::getMuonDesc()
+{
+  return &m_muon_desc;
+}
+
 // ----------------------------------------------------------------------------
 void Muon::print(const VertexContainer& vertices) const
 {

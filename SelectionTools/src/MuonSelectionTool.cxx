@@ -64,6 +64,12 @@ SelectionTools::MuonSelectionTool::~MuonSelectionTool()
 }
 
 // -----------------------------------------------------------------------------
+void SelectionTools::MuonSelectionTool::process(Muon* mu)
+{
+
+}
+
+// -----------------------------------------------------------------------------
 bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
 {
   // Check for loose of combined muons

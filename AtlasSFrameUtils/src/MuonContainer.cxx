@@ -13,10 +13,12 @@ MuonContainer::~MuonContainer()
 }
 
 // ----------------------------------------------------------------------------
-void MuonContainer::init( CommonTools::TLVTool* tlv_tool
+void MuonContainer::init( SelectionTools::MuonSelectionTool* muon_selection_tool
+                        , CommonTools::TLVTool* tlv_tool
                         , CommonTools::IsoCorrectionTool* iso_corr_tool
                         )
 {
+  m_muon_selection = muon_selection_tool;
   m_tlv_tool = tlv_tool;
   m_iso_corr_tool = iso_corr_tool;
 }
@@ -47,6 +49,8 @@ void MuonContainer::prepMuons(
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
     m_master_list.at(mu_it).prepTlv();
     m_master_list.at(mu_it).prepRawTlv();
+
+    m_muon_selection->process(&m_master_list.at(mu_it));
     m_user_lists.at(MU_ALL).push_back(&m_master_list.at(mu_it));
   }
 }

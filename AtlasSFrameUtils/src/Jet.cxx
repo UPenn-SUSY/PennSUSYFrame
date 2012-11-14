@@ -59,6 +59,12 @@ void Jet::prepRawTlv()
   }
 }
 
+// -----------------------------------------------------------------------------
+SusyAnalysisTools::JetDescription* Jet::getJetDesc()
+{
+  return &m_jet_desc;
+}
+
 // ----------------------------------------------------------------------------
 void Jet::print() const
 {

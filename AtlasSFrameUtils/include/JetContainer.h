@@ -9,9 +9,17 @@
 #include "Jet.h"
 #include "VertexContainer.h"
 
+#include "CommonTools/include/TLVTool.h"
+
+#include "SelectionTools/include/JetSelectionTool.h"
+
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
-#include "CommonTools/include/TLVTool.h"
+// =============================================================================
+namespace SelectionTools
+{
+  class JetSelectionTool;
+}
 
 // ============================================================================
 class JetContainer
@@ -20,7 +28,10 @@ class JetContainer
     JetContainer();
     ~JetContainer();
 
-    void init(CommonTools::TLVTool*);
+    void init( SelectionTools::JetSelectionTool*
+             , CommonTools::TLVTool*
+             );
+
 
     void clear();
     void prepJets( D3PDReader::JetD3PDObject*
@@ -39,6 +50,7 @@ class JetContainer
     std::vector<Jet> m_master_list;
     std::vector<std::vector<Jet*> > m_user_lists;
 
+    SelectionTools::JetSelectionTool* m_jet_selection;
     CommonTools::TLVTool* m_tlv_tool;
 };
 

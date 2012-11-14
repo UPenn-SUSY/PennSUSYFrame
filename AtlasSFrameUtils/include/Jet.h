@@ -16,6 +16,9 @@
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
 #include "D3PDObjects/include/VertexD3PDObject.h"
 
+#include "SusyAnalysisTools/include/SusyEnums.h"
+#include "SusyAnalysisTools/include/JetDescription.h"
+
 // ============================================================================
 namespace CommonTools
 {
@@ -39,6 +42,8 @@ public:
               );
   void prepRawTlv();
 
+  SusyAnalysisTools::JetDescription* getJetDesc();
+
   void print() const;
 
   static bool eq(const Jet& jet1, const Jet& jet2);
@@ -61,6 +66,9 @@ private:
   bool m_raw_tlv_prepped;
 
   CommonTools::TLVTool* m_tlv_tool;
+
+  // jet description
+  SusyAnalysisTools::JetDescription m_jet_desc;
 
   ClassDef(Jet, 1);
 };

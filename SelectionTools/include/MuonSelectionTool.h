@@ -6,6 +6,9 @@
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
 
+// =============================================================================
+class MuonContainer;
+
 // ============================================================================
 namespace SelectionTools
 {
@@ -17,6 +20,7 @@ namespace SelectionTools
     MuonSelectionTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~MuonSelectionTool();
 
+    void process(Muon*);
     bool isBaseline(Muon*);
     bool isSignal(Muon*, const VertexContainer&);
     bool isCosmic(Muon*);
