@@ -105,11 +105,15 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::MuonMomentumSmearingTool, "MuonMomentumSmearing");
   DECLARE_TOOL(CommonTools::JetCalibTool            , "JetCalibration"      );
 
-  DECLARE_TOOL(CommonTools::IsoCorrectionTool       , "Electron_IsoCorr"    );
-  DECLARE_TOOL(CommonTools::IsoCorrectionTool       , "Muon_IsoCorr"        );
-  DECLARE_TOOL(CommonTools::TLVTool                 , "tlv"                 );
-  DECLARE_TOOL(CommonTools::TopTagTool              , "Top_Tag"             );
-  DECLARE_TOOL(CommonTools::TruthMatchTool          , "Truth_Match"         );
+  DECLARE_TOOL(CommonTools::IsoCorrectionTool          , "Electron_IsoCorr"    );
+  DECLARE_TOOL(CommonTools::IsoCorrectionTool          , "Muon_IsoCorr"        );
+  DECLARE_TOOL(CommonTools::TLVTool                    , "tlv"                 );
+  DECLARE_TOOL(CommonTools::TopTagTool                 , "Top_Tag"             );
+  DECLARE_TOOL(CommonTools::TruthMatchTool             , "Truth_Match"         );
+  DECLARE_TOOL(CommonTools::CrossSectionScaleFactorTool, "CrossSectionScaleFactor");
+  DECLARE_TOOL(CommonTools::PileUpScaleFactorTool      , "PileUpScaleFactor");
+  DECLARE_TOOL(CommonTools::EgammaScaleFactorTool      , "EgammaSF");
+  DECLARE_TOOL(CommonTools::BTagScaleFactorTool        , "BTagScaleFactor");
 
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
