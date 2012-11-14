@@ -27,7 +27,7 @@
 //#pragma link C++ class CommonTools::JetCalibTool+;
 //#pragma link C++ class CommonTools::JetSmearingTool+;
 //#pragma link C++ class CommonTools::LarHoleWeightTool+;
-//#pragma link C++ class CommonTools::MuonEfficiencyRescaleTool+;
+#pragma link C++ class CommonTools::MuonScaleFactorTool+;
 #pragma link C++ class CommonTools::PileUpScaleFactorTool+;
 //#pragma link C++ class CommonTools::TriggerReweightTool+;
 

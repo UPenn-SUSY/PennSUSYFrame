@@ -35,6 +35,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_b_tag_sf_tool(NULL),
   m_pileup_sf_tool(NULL),
   m_egamma_sf_tool(NULL),
+  m_muon_sf_tool(NULL),
   m_mc_event_weight(NULL),
   m_pile_up_weight(NULL),
   m_lepton_weight(NULL),
@@ -114,6 +115,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::PileUpScaleFactorTool      , "PileUpScaleFactor");
   DECLARE_TOOL(CommonTools::EgammaScaleFactorTool      , "EgammaSF");
   DECLARE_TOOL(CommonTools::BTagScaleFactorTool        , "BTagScaleFactor");
+  DECLARE_TOOL(CommonTools::MuonScaleFactorTool        , "MuonSF");
 
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
@@ -339,6 +341,10 @@ void SusyDiLeptonCutFlowCycle::getTools()
 
   GET_TOOL(egamma_sf, CommonTools::EgammaScaleFactorTool, "EgammaSF");
   m_egamma_sf_tool = egamma_sf;
+
+  GET_TOOL(muon_sf, CommonTools::MuonScaleFactorTool, "MuonSF");
+  m_muon_sf_tool = muon_sf;
+
 }
 
 // -----------------------------------------------------------------------------
