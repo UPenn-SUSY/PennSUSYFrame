@@ -11,32 +11,32 @@ SelectionTools::JetSelectionTool::JetSelectionTool(
   DeclareProperty("baseline_min_eta", c_baseline_min_eta = -1);
   DeclareProperty("baseline_max_eta", c_baseline_max_eta = 4.9);
 
-  DeclareProperty("c_light_min_pt", c_light_min_pt = 25e3);
-  DeclareProperty("c_light_max_pt", c_light_max_pt = -1);
+  DeclareProperty("light_min_pt", c_light_min_pt = 25e3);
+  DeclareProperty("light_max_pt", c_light_max_pt = -1);
 
-  DeclareProperty("c_light_min_eta", c_light_min_eta = -1);
-  DeclareProperty("c_light_max_eta", c_light_max_eta = 2.5);
+  DeclareProperty("light_min_eta", c_light_min_eta = -1);
+  DeclareProperty("light_max_eta", c_light_max_eta = 2.5);
 
-  DeclareProperty("c_light_min_jvf", c_light_min_jvf = 0.2);
-  DeclareProperty("c_light_max_jvf", c_light_max_jvf = -1);
+  DeclareProperty("light_min_jvf", c_light_min_jvf = 0.2);
+  DeclareProperty("light_max_jvf", c_light_max_jvf = -1);
 
-  DeclareProperty("c_light_min_mv1", c_light_min_mv1 = -1);
-  DeclareProperty("c_light_max_mv1", c_light_max_mv1 = 0.122);
+  DeclareProperty("light_min_mv1", c_light_min_mv1 = -1);
+  DeclareProperty("light_max_mv1", c_light_max_mv1 = 0.122);
 
-  DeclareProperty("c_b_min_pt", c_b_min_pt = 20e3);
-  DeclareProperty("c_b_max_pt", c_b_max_pt = -1);
+  DeclareProperty("b_min_pt", c_b_min_pt = 20e3);
+  DeclareProperty("b_max_pt", c_b_max_pt = -1);
 
-  DeclareProperty("c_b_min_eta", c_b_min_eta = -1);
-  DeclareProperty("c_b_max_eta", c_b_max_eta = 2.5);
+  DeclareProperty("b_min_eta", c_b_min_eta = -1);
+  DeclareProperty("b_max_eta", c_b_max_eta = 2.5);
 
-  DeclareProperty("c_b_min_mv1", c_b_min_mv1 = 0.122);
-  DeclareProperty("c_b_max_mv1", c_b_max_mv1 = -1);
+  DeclareProperty("b_min_mv1", c_b_min_mv1 = 0.122);
+  DeclareProperty("b_max_mv1", c_b_max_mv1 = -1);
 
-  DeclareProperty("c_forward_min_pt", c_forward_min_pt = 30e3);
-  DeclareProperty("c_forward_max_pt", c_forward_max_pt = -1);
+  DeclareProperty("forward_min_pt", c_forward_min_pt = 30e3);
+  DeclareProperty("forward_max_pt", c_forward_max_pt = -1);
 
-  DeclareProperty("c_forward_min_eta", c_forward_min_eta = 2.5);
-  DeclareProperty("c_forward_max_eta", c_forward_max_eta = 4.9);
+  DeclareProperty("forward_min_eta", c_forward_min_eta = 2.5);
+  DeclareProperty("forward_max_eta", c_forward_max_eta = 4.9);
 }
 
 // -----------------------------------------------------------------------------
