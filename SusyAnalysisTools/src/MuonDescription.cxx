@@ -26,6 +26,25 @@ ull_t SusyAnalysisTools::MuonDescription::toInt() const
 
   mu_desc += getIntComp(m_pass_baseline, ADD_BASELINE);
 
+  mu_desc += getIntComp(m_pass_baseline    , ADD_BASELINE    );
+  mu_desc += getIntComp(m_pass_good        , ADD_GOOD        );
+  mu_desc += getIntComp(m_pass_signal      , ADD_SIGNAL      );
+  mu_desc += getIntComp(m_pass_bad         , ADD_BAD         );
+  mu_desc += getIntComp(m_pass_cosmic      , ADD_COSMIC      );
+  mu_desc += getIntComp(m_pass_loose       , ADD_LOOSE       );
+  mu_desc += getIntComp(m_pass_seg_tag     , ADD_SEG_TAG     );
+  mu_desc += getIntComp(m_pass_combined    , ADD_COMBINED    );
+  mu_desc += getIntComp(m_pass_b_layer     , ADD_B_LAYER     );
+  mu_desc += getIntComp(m_pass_pixel       , ADD_PIXEL       );
+  mu_desc += getIntComp(m_pass_sct         , ADD_SCT         );
+  mu_desc += getIntComp(m_pass_trt         , ADD_TRT         );
+  mu_desc += getIntComp(m_pass_si_holes    , ADD_SI_HOLES    );
+  mu_desc += getIntComp(m_pass_baseline_pt , ADD_BASELINE_PT );
+  mu_desc += getIntComp(m_pass_baseline_eta, ADD_BASELINE_ETA);
+  mu_desc += getIntComp(m_pass_d0_sig      , ADD_D0_SIG      );
+  mu_desc += getIntComp(m_pass_z0_sin_theta, ADD_Z0_SIN_THETA);
+  mu_desc += getIntComp(m_pass_pt_iso      , ADD_PT_ISO      );
+
   return mu_desc;
 }
 
@@ -69,6 +88,14 @@ void SusyAnalysisTools::MuonDescription::set(const ull_t& rhs)
 SusyAnalysisTools::MuonDescription&
     SusyAnalysisTools::MuonDescription::operator=(
         const SusyAnalysisTools::MuonDescription& rhs)
+{
+  set(rhs);
+  return *this;
+}
+
+// -----------------------------------------------------------------------------
+SusyAnalysisTools::MuonDescription&
+    SusyAnalysisTools::MuonDescription::operator=(const ull_t& rhs)
 {
   set(rhs);
   return *this;
