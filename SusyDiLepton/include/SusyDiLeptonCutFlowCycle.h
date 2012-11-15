@@ -193,6 +193,29 @@ private:
   double m_cross_section_weight;
   double m_charge_flip_weight;
 
+  unsigned int m_num_el_all;
+  unsigned int m_num_el_baseline;
+  unsigned int m_num_el_good;
+  unsigned int m_num_el_signal;
+
+  unsigned int m_num_mu_all;
+  unsigned int m_num_mu_baseline;
+  unsigned int m_num_mu_good;
+  unsigned int m_num_mu_bad;
+  unsigned int m_num_mu_cosmic;
+  unsigned int m_num_mu_signal;
+
+  unsigned int m_num_jet_all;
+  unsigned int m_num_jet_baseline_good;
+  unsigned int m_num_jet_baseline_bad;
+  unsigned int m_num_jet_good;
+  unsigned int m_num_jet_bad;
+  unsigned int m_num_jet_light;
+  unsigned int m_num_jet_b;
+  unsigned int m_num_jet_forward;
+  unsigned int m_num_jet_central;
+  unsigned int m_num_jet_signal;
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();
   void declareEventVariables();

@@ -19,8 +19,8 @@ namespace SusyAnalysisTools
       ull_t toInt() const;
 
       void clear();
-      void set (const MuonDescription&);
-      void set (const ull_t&);
+      void set(const MuonDescription&);
+      void set(const ull_t&);
       MuonDescription& operator=(const MuonDescription&);
       MuonDescription& operator=(const ull_t&);
 

@@ -34,7 +34,7 @@ class MuonContainer
              );
 
     void clear();
-    void prepMuons(D3PDReader::MuonD3PDObject*);
+    void prepMuons(D3PDReader::MuonD3PDObject*, const VertexContainer&);
     void setCollection(MUON_COLLECTIONS, std::vector<Muon*>);
 
     size_t num(MUON_COLLECTIONS) const;

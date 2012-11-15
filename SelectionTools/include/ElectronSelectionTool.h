@@ -23,7 +23,8 @@ namespace SelectionTools
     ElectronSelectionTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~ElectronSelectionTool();
 
-    void process(Electron*);
+    //void process(Electron*);
+    void process(Electron*, const VertexContainer&);
     bool isBaseline(Electron*);
     bool isSignal(Electron*);
 

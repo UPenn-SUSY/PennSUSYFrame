@@ -37,7 +37,8 @@ void MuonContainer::clear()
 
 // ----------------------------------------------------------------------------
 void MuonContainer::prepMuons(
-    D3PDReader::MuonD3PDObject* muon_d3pdobject)
+    D3PDReader::MuonD3PDObject* muon_d3pdobject,
+    const VertexContainer& vertices)
 {
   ParticleElementBuilder::build( m_master_list
                                , *muon_d3pdobject
@@ -50,7 +51,7 @@ void MuonContainer::prepMuons(
     m_master_list.at(mu_it).prepTlv();
     m_master_list.at(mu_it).prepRawTlv();
 
-    m_muon_selection->process(&m_master_list.at(mu_it));
+    m_muon_selection->process(&m_master_list.at(mu_it), vertices);
     m_user_lists.at(MU_ALL).push_back(&m_master_list.at(mu_it));
   }
 }

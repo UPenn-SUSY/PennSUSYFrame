@@ -78,7 +78,7 @@ void JetContainer::setCombinedCollections()
   all_central.insert(all_central.end(), l_jet.begin(), l_jet.end());
   all_central.insert(all_central.end(), b_jet.begin(), b_jet.end());
   setCollection(JET_ALL_CENTRAL, all_central);
-  
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::vector<Jet*> all_signal;
   all_signal.reserve( l_jet.size() + b_jet.size() + f_jet.size());

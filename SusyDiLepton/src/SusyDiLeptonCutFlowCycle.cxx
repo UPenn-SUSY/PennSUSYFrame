@@ -36,13 +36,33 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_pileup_sf_tool(NULL),
   m_egamma_sf_tool(NULL),
   m_muon_sf_tool(NULL),
-  m_mc_event_weight(NULL),
-  m_pile_up_weight(NULL),
-  m_lepton_weight(NULL),
-  m_b_tag_weight(NULL),
-  m_trigger_weight(NULL),
-  m_cross_section_weight(NULL),
-  m_charge_flip_weight(NULL)
+  m_mc_event_weight(0.),
+  m_pile_up_weight(0.),
+  m_lepton_weight(0.),
+  m_b_tag_weight(0.),
+  m_trigger_weight(0.),
+  m_cross_section_weight(0.),
+  m_charge_flip_weight(0.),
+  m_num_el_all(0.),
+  m_num_el_baseline(0.),
+  m_num_el_good(0.),
+  m_num_el_signal(0.),
+  m_num_mu_all(0.),
+  m_num_mu_baseline(0.),
+  m_num_mu_good(0.),
+  m_num_mu_bad(0.),
+  m_num_mu_cosmic(0.),
+  m_num_mu_signal(0.),
+  m_num_jet_all(0.),
+  m_num_jet_baseline_good(0.),
+  m_num_jet_baseline_bad(0.),
+  m_num_jet_good(0.),
+  m_num_jet_bad(0.),
+  m_num_jet_light(0.),
+  m_num_jet_b(0.),
+  m_num_jet_forward(0.),
+  m_num_jet_central(0.),
+  m_num_jet_signal(0.)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -145,6 +165,29 @@ void SusyDiLeptonCutFlowCycle::declareEventVariables()
   DeclareVariable(m_trigger_weight      , "trigger_weight"      );
   DeclareVariable(m_cross_section_weight, "cross_section_weight");
   DeclareVariable(m_charge_flip_weight  , "charge_flip_weight"  );
+
+  DeclareVariable(m_num_el_all            , "num_el_all"            );
+  DeclareVariable(m_num_el_baseline       , "num_el_baseline"       );
+  DeclareVariable(m_num_el_good           , "num_el_good"           );
+  DeclareVariable(m_num_el_signal         , "num_el_signal"         );
+
+  DeclareVariable(m_num_mu_all            , "num_mu_all"            );
+  DeclareVariable(m_num_mu_baseline       , "num_mu_baseline"       );
+  DeclareVariable(m_num_mu_good           , "num_mu_good"           );
+  DeclareVariable(m_num_mu_bad            , "num_mu_bad"            );
+  DeclareVariable(m_num_mu_cosmic         , "num_mu_cosmic"         );
+  DeclareVariable(m_num_mu_signal         , "num_mu_signal"         );
+
+  DeclareVariable(m_num_jet_all           , "num_jet_all"           );
+  DeclareVariable(m_num_jet_baseline_good , "num_jet_baseline_good" );
+  DeclareVariable(m_num_jet_baseline_bad  , "num_jet_baseline_bad"  );
+  DeclareVariable(m_num_jet_good          , "num_jet_good"          );
+  DeclareVariable(m_num_jet_bad           , "num_jet_bad"           );
+  DeclareVariable(m_num_jet_light         , "num_jet_light"         );
+  DeclareVariable(m_num_jet_b             , "num_jet_b"             );
+  DeclareVariable(m_num_jet_forward       , "num_jet_forward"       );
+  DeclareVariable(m_num_jet_central       , "num_jet_central"       );
+  DeclareVariable(m_num_jet_signal        , "num_jet_signal"        );
 }
 
 // -----------------------------------------------------------------------------
@@ -450,10 +493,13 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
 // -----------------------------------------------------------------------------
 bool SusyDiLeptonCutFlowCycle::runCutFlow()
 {
-  // if (  m_event->EventNumber() != 14645493
-  //    && m_event->EventNumber() != 7890259
-  //    && m_event->EventNumber() != 63844
-  //    && m_event->EventNumber() != 2201270
+  // if (! (  m_event->EventNumber() == 10342648
+  //       || m_event->EventNumber() == 13978696
+  //       || m_event->EventNumber() == 14498571
+  //       || m_event->EventNumber() == 311085
+  //       || m_event->EventNumber() == 560097
+  //       || m_event->EventNumber() == 63860
+  //       )
   //    )
   //   return false;
 
@@ -882,6 +928,29 @@ void SusyDiLeptonCutFlowCycle::clearEventVariables()
   m_trigger_weight       = 1.;
   m_cross_section_weight = 1.;
   m_charge_flip_weight   = 1.;
+
+  m_num_el_all = 0.;
+  m_num_el_baseline = 0.;
+  m_num_el_good = 0.;
+  m_num_el_signal = 0.;
+
+  m_num_mu_all = 0.;
+  m_num_mu_baseline = 0.;
+  m_num_mu_good = 0.;
+  m_num_mu_bad = 0.;
+  m_num_mu_cosmic = 0.;
+  m_num_mu_signal = 0.;
+
+  m_num_jet_all = 0.;
+  m_num_jet_baseline_good = 0.;
+  m_num_jet_baseline_bad = 0.;
+  m_num_jet_good = 0.;
+  m_num_jet_bad = 0.;
+  m_num_jet_light = 0.;
+  m_num_jet_b = 0.;
+  m_num_jet_forward = 0.;
+  m_num_jet_central = 0.;
+  m_num_jet_signal = 0.;
 }
 
 // -----------------------------------------------------------------------------
@@ -907,6 +976,30 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
     // TODO fill m_charge_flip_weight
     m_charge_flip_weight   = 1.;
   }
+
+
+  m_num_el_all            = m_electrons.num(EL_ALL);
+  m_num_el_baseline       = m_electrons.num(EL_BASELINE);
+  m_num_el_good           = m_electrons.num(EL_GOOD);
+  m_num_el_signal         = m_electrons.num(EL_SIGNAL);
+
+  m_num_mu_all            = m_muons.num(MU_ALL);
+  m_num_mu_baseline       = m_muons.num(MU_BASELINE);
+  m_num_mu_good           = m_muons.num(MU_GOOD);
+  m_num_mu_bad            = m_muons.num(MU_BAD);
+  m_num_mu_cosmic         = m_muons.num(MU_COSMIC);
+  m_num_mu_signal         = m_muons.num(MU_SIGNAL);
+
+  m_num_jet_all           = m_jets.num(JET_ALL);
+  m_num_jet_baseline_good = m_jets.num(JET_BASELINE_GOOD);
+  m_num_jet_baseline_bad  = m_jets.num(JET_BASELINE_BAD);
+  m_num_jet_good          = m_jets.num(JET_GOOD);
+  m_num_jet_bad           = m_jets.num(JET_BAD);
+  m_num_jet_light         = m_jets.num(JET_LIGHT);
+  m_num_jet_b             = m_jets.num(JET_B);
+  m_num_jet_forward       = m_jets.num(JET_FORWARD);
+  m_num_jet_central       = m_jets.num(JET_ALL_CENTRAL);
+  m_num_jet_signal        = m_jets.num(JET_ALL_SIGNAL);
 }
 
 // -----------------------------------------------------------------------------
@@ -950,8 +1043,8 @@ void SusyDiLeptonCutFlowCycle::getObjects()
 {
   m_vertices.prepVertices(m_vertex_d3pdobject, is_data());
 
-  m_electrons.prepElectrons(m_electron_d3pdobject);
-  m_muons.prepMuons(m_muon_d3pdobject);
+  m_electrons.prepElectrons(m_electron_d3pdobject, m_vertices);
+  m_muons.prepMuons(m_muon_d3pdobject, m_vertices);
   m_jets.prepJets(m_jet_d3pdobject, m_event, m_vertices);
 
   // Get baseline objects
@@ -987,7 +1080,7 @@ void SusyDiLeptonCutFlowCycle::getObjects()
       m_electron_selection->getSignalElectrons(m_electrons));
 
   m_muons.setCollection( MU_SIGNAL,
-      m_muon_selection->getSignalMuons(m_muons, m_vertices));
+      m_muon_selection->getSignalMuons(m_muons));
 
   m_jets.setCollection( JET_LIGHT,
       m_jet_selection->getLJets(m_jets));

@@ -99,7 +99,7 @@ bool SelectionTools::JetSelectionTool::isBaselineGood(Jet* jet)
   SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
   bool pass_baseline_good = (  jet_desc->getPassBaselinePt()
                             && jet_desc->getPassBaselineEta()
-                            && !isBadJet(jet)
+                            && (isBadJet(jet) == false)
                             );
   jet_desc->setPassBaselineGood(pass_baseline_good);
 

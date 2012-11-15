@@ -33,7 +33,8 @@ SelectionTools::ElectronSelectionTool::~ElectronSelectionTool()
 }
 
 // -----------------------------------------------------------------------------
-void SelectionTools::ElectronSelectionTool::process(Electron* el)
+void SelectionTools::ElectronSelectionTool::process(
+    Electron* el, const VertexContainer& vertices)
 {
   SusyAnalysisTools::ElectronDescription* el_desc = el->getElectronDesc();
 
@@ -79,8 +80,7 @@ void SelectionTools::ElectronSelectionTool::process(Electron* el)
   el_desc->setPassZ0SinTheta(pass_z0_sin_theta);
 
   // Check for signal isolation
-  // TODO get proper value for num good vertices
-  int num_good_vertices = 0;
+  int num_good_vertices = vertices.num(VERT_GOOD);
   double ptcone30 = el->getIsoCorr( PTCONE
                                   , 30
                                   , num_good_vertices

@@ -20,9 +20,9 @@ namespace SelectionTools
     MuonSelectionTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~MuonSelectionTool();
 
-    void process(Muon*);
+    void process(Muon*, const VertexContainer&);
     bool isBaseline(Muon*);
-    bool isSignal(Muon*, const VertexContainer&);
+    bool isSignal(Muon*);
     bool isCosmic(Muon*);
     bool isBad(Muon*);
 
@@ -30,12 +30,8 @@ namespace SelectionTools
     std::vector<Muon*> getBaselineMuons(
         const std::vector<Muon*>& all_muons);
 
-    std::vector<Muon*> getSignalMuons( const MuonContainer&
-                                     , const VertexContainer&
-                                     );
-    std::vector<Muon*> getSignalMuons( const std::vector<Muon*>& good_muons
-                                     , const VertexContainer&
-                                     );
+    std::vector<Muon*> getSignalMuons( const MuonContainer&);
+    std::vector<Muon*> getSignalMuons( const std::vector<Muon*>& good_muons);
 
     std::vector<Muon*> getCosmicMuons(const MuonContainer&);
     std::vector<Muon*> getCosmicMuons(

@@ -37,7 +37,8 @@ void ElectronContainer::clear()
 
 // ----------------------------------------------------------------------------
 void ElectronContainer::prepElectrons(
-    D3PDReader::ElectronD3PDObject* electron_d3pdobject)
+    D3PDReader::ElectronD3PDObject* electron_d3pdobject,
+    const VertexContainer& vertices)
 {
   ParticleElementBuilder::build( m_master_list
                                , *electron_d3pdobject
@@ -50,7 +51,7 @@ void ElectronContainer::prepElectrons(
     m_master_list.at(el_it).prepTlv();
     m_master_list.at(el_it).prepRawTlv();
 
-    m_electron_selection->process(&m_master_list.at(el_it));
+    m_electron_selection->process(&m_master_list.at(el_it), vertices);
     m_user_lists.at(EL_ALL).push_back(&m_master_list.at(el_it));
   }
 }

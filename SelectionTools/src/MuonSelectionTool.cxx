@@ -64,43 +64,57 @@ SelectionTools::MuonSelectionTool::~MuonSelectionTool()
 }
 
 // -----------------------------------------------------------------------------
-void SelectionTools::MuonSelectionTool::process(Muon* mu)
+void SelectionTools::MuonSelectionTool::process(
+    Muon* mu, const VertexContainer& vertices)
 {
+  SusyAnalysisTools::MuonDescription* mu_desc = mu->getMuonDesc();
 
-}
+  double pt  = mu->getTlv().Pt();
+  double eta = fabs(mu->getTlv().Eta());
 
-// -----------------------------------------------------------------------------
-bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
-{
   // Check for loose of combined muons
-  if (!mu->isCombinedMuon() && !mu->isSegmentTaggedMuon() && !mu->loose())
-    return false;
+  bool pass_combined = mu->isCombinedMuon();
+  mu_desc->setPassCombined(pass_combined);
+
+  bool pass_segment_tagged = mu->isSegmentTaggedMuon();
+  mu_desc->setPassSegTag(pass_segment_tagged);
+
+  bool pass_loose = mu->loose();
+  mu_desc->setPassLoose(pass_loose);
 
   // Check number b-layer hits
   int num_b_layer = mu->nBLHits();
-  if (mu->expectBLayerHit()) {
-    if (!passCut( num_b_layer
-                , c_baseline_min_b_layer_hits
-                , c_baseline_max_b_layer_hits
-                )
-       )
-      return false;
-  }
+  bool pass_b_layer = (  (mu->expectBLayerHit() == false)
+                      || passCut( num_b_layer
+                                , c_baseline_min_b_layer_hits
+                                , c_baseline_max_b_layer_hits
+                                )
+                      );
+  mu_desc->setPassBLayer(pass_b_layer);
 
   // Check number pixel hits
   int num_pix = mu->nPixHits() + mu->nPixelDeadSensors();
-  if (!passCut(num_pix, c_baseline_min_pixel_hits, c_baseline_max_pixel_hits))
-    return false;
+  bool pass_pixel_hits = passCut( num_pix
+                                , c_baseline_min_pixel_hits
+                                , c_baseline_max_pixel_hits
+                                );
+  mu_desc->setPassPixel(pass_pixel_hits);
 
   // Check number SCT hits
   int num_sct = mu->nSCTHits() + mu->nSCTDeadSensors();
-  if (!passCut(num_sct, c_baseline_min_sct_hits, c_baseline_max_sct_hits))
-    return false;
+  bool pass_sct_hits = passCut( num_sct
+                              , c_baseline_min_sct_hits
+                              , c_baseline_max_sct_hits
+                              );
+  mu_desc->setPassSct(pass_sct_hits);
 
   // Check Si holes
   int num_si_holes = mu->nPixHoles() + mu->nSCTHoles();
-  if (!passCut(num_si_holes, c_baseline_min_si_holes, c_baseline_max_si_holes))
-    return false;
+  bool pass_si_holes = passCut( num_si_holes
+                              , c_baseline_min_si_holes
+                              , c_baseline_max_si_holes
+                              );
+  mu_desc->setPassSiHoles(pass_si_holes);
 
   // Check TRT hits & outlier ratio
   float track_eta = fabs(-log(tan(mu->id_theta()/2)));
@@ -116,50 +130,35 @@ bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
                             , c_baseline_max_trt_ol_fraction
                             );
 
-  // std::cout << "\tpt: " << mu->getTlv().Pt() << "\n";
-  // std::cout << "\ttrack_eta: " << track_eta << "\n";
-  // std::cout << "\tnum_trt: " << num_trt << "\n";
-  // std::cout << "\ttrt_ol_fraction: " << trt_ol_fraction << "\n";
-  // std::cout << "\tpass_n_trt: " << pass_n_trt << "\n";
-  // std::cout << "\tpass_trt_ol: " << pass_trt_ol << "\n";
-
+  bool pass_trt = false;
   if (track_eta > 0.1 && track_eta < 1.9) {
-    if (!pass_n_trt || !pass_trt_ol) return false;
+    pass_trt = (pass_n_trt && pass_trt_ol);
   }
   else {
-    if (!pass_n_trt && !pass_trt_ol) return false;
+    pass_trt = (!pass_n_trt || pass_trt_ol);
   }
+  mu_desc->setPassTrt(pass_trt);
 
   // Check for baseline pt
-  double pt = mu->getTlv().Pt();
-  if (!passCut(pt, c_baseline_min_pt, c_baseline_max_pt))
-    return false;
+  bool pass_baseline_pt = passCut(pt, c_baseline_min_pt, c_baseline_max_pt);
+  mu_desc->setPassBaselinePt(pass_baseline_pt);
 
   // Check for baseline eta
-  double eta = fabs(mu->getTlv().Eta());
-  if (!passCut(eta, c_baseline_min_eta, c_baseline_max_eta))
-    return false;
+  bool pass_baseline_eta = passCut(eta, c_baseline_min_eta, c_baseline_max_eta);
+  mu_desc->setPassBaselineEta(pass_baseline_eta);
 
-  // Passed all cuts. This is a baseline muon
-  return true;
-}
-
-// -----------------------------------------------------------------------------
-bool SelectionTools::MuonSelectionTool::isSignal(
-    Muon* mu, const VertexContainer& vertices)
-{
   // check for signal d0 significance
   double d0_sig = fabs(mu->getD0Significance());
-  if (!passCut(d0_sig, c_signal_min_d0_sig, c_signal_max_d0_sig))
-    return false;
+  bool pass_d0_sig = passCut(d0_sig, c_signal_min_d0_sig, c_signal_max_d0_sig);
+  mu_desc->setPassD0Sig(pass_d0_sig);
 
   // check for signal z0 sin(theta)
   double z0_sin_theta = fabs(mu->getZ0SinTheta());
-  if (!passCut( z0_sin_theta
-              , c_signal_min_z0_sin_theta
-              , c_signal_max_z0_sin_theta
-              ) )
-    return false;
+  bool pass_z0_sin_theta = passCut( z0_sin_theta
+                                  , c_signal_min_z0_sin_theta
+                                  , c_signal_max_z0_sin_theta
+                                  );
+  mu_desc->setPassZ0SinTheta(pass_z0_sin_theta);
 
   // Check for signal isolation
   int num_good_vertices = vertices.num(VERT_GOOD);
@@ -167,14 +166,49 @@ bool SelectionTools::MuonSelectionTool::isSignal(
                                   , 30
                                   , num_good_vertices
                                   );
-  double pt = mu->getTlv().Pt();
   double ptcone_ratio = ptcone30/pt;
 
-  if (!passCut(ptcone_ratio, c_signal_min_ptcone_cut, c_signal_max_ptcone_cut))
-      return false;
+  bool pass_pt_iso = passCut( ptcone_ratio
+                            , c_signal_min_ptcone_cut
+                            , c_signal_max_ptcone_cut
+                            );
+  mu_desc->setPassPtIso(pass_pt_iso);
+}
 
-  // Passed all cuts. This is a cosmic muon
-  return true;
+// -----------------------------------------------------------------------------
+bool SelectionTools::MuonSelectionTool::isBaseline(Muon* mu)
+{
+  // Check if this muon passed all baseline cuts
+  SusyAnalysisTools::MuonDescription* mu_desc = mu->getMuonDesc();
+  bool pass_baseline = (  (  mu_desc->getPassCombined()
+                          || mu_desc->getPassSegTag()
+                          || mu_desc->getPassLoose()
+                          )
+                       && mu_desc->getPassBLayer()
+                       && mu_desc->getPassPixel()
+                       && mu_desc->getPassSct()
+                       && mu_desc->getPassSiHoles()
+                       && mu_desc->getPassTrt()
+                       && mu_desc->getPassBaselinePt()
+                       && mu_desc->getPassBaselineEta()
+                       );
+  mu_desc->setPassBaseline(pass_baseline);
+
+  return pass_baseline;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::MuonSelectionTool::isSignal(Muon* mu)
+{
+  // Check if this muon passed all signal cuts
+  SusyAnalysisTools::MuonDescription* mu_desc = mu->getMuonDesc();
+  bool pass_signal = (  mu_desc->getPassD0Sig()
+                     && mu_desc->getPassZ0SinTheta()
+                     && mu_desc->getPassPtIso()
+                     );
+  mu_desc->setPassSignal(pass_signal);
+
+  return pass_signal;
 }
 
 // -----------------------------------------------------------------------------
@@ -212,8 +246,7 @@ bool SelectionTools::MuonSelectionTool::isBad(Muon* mu)
 std::vector<Muon*> SelectionTools::MuonSelectionTool::getBaselineMuons(
     const MuonContainer& muon_container)
 {
-  const std::vector<Muon*> all_muons =
-    muon_container.getMuons(MU_ALL);
+  const std::vector<Muon*> all_muons = muon_container.getMuons(MU_ALL);
   return getBaselineMuons(all_muons);
 }
 
@@ -239,16 +272,16 @@ std::vector<Muon*> SelectionTools::MuonSelectionTool::getBaselineMuons(
 
 // -----------------------------------------------------------------------------
 std::vector<Muon*> SelectionTools::MuonSelectionTool::getSignalMuons(
-    const MuonContainer& muon_container, const VertexContainer& vertices)
+    const MuonContainer& muon_container)
 {
   const std::vector<Muon*> good_muons =
     muon_container.getMuons(MU_GOOD);
-  return getSignalMuons(good_muons, vertices);
+  return getSignalMuons(good_muons);
 }
 
 // -----------------------------------------------------------------------------
 std::vector<Muon*> SelectionTools::MuonSelectionTool::getSignalMuons(
-    const std::vector<Muon*>& good_muons, const VertexContainer& vertices)
+    const std::vector<Muon*>& good_muons)
 {
   size_t term = good_muons.size();
 
@@ -256,7 +289,7 @@ std::vector<Muon*> SelectionTools::MuonSelectionTool::getSignalMuons(
   signal_muons.reserve(term);
 
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
-    if (isSignal(good_muons.at(mu_it), vertices)) {
+    if (isSignal(good_muons.at(mu_it))) {
       signal_muons.push_back(good_muons.at(mu_it));
     }
   }
@@ -284,6 +317,7 @@ std::vector<Muon*> SelectionTools::MuonSelectionTool::getCosmicMuons(
 
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
     if (isCosmic(good_muons.at(mu_it))) {
+      good_muons.at(mu_it)->getMuonDesc()->setPassCosmic(true);
       cosmic_muons.push_back(good_muons.at(mu_it));
     }
   }
@@ -313,6 +347,7 @@ std::vector<Muon*> SelectionTools::MuonSelectionTool::getBadMuons(
     if (  isBaseline(all_muons.at(mu_it))
        && isBad(all_muons.at(mu_it))
        ) {
+      all_muons.at(mu_it)->getMuonDesc()->setPassBad(true);
       bad_muons.push_back(all_muons.at(mu_it));
     }
   }

@@ -47,18 +47,18 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   for (size_t el_it = 0; el_it != el_term; ++el_it) {
     good_electrons.at(el_it)->getElectronDesc()->setPassGood(true);
   }
-  // size_t mu_term = good_muons.size();
-  // for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
-  //   good_muons.at(mu_it)->getMuonDesc()->setPassGood(true);
-  // }
-  // size_t good_jet_term = good_jets.size();
-  // for (size_t jet_it = 0; jet_it != good_jet_term; ++jet_it) {
-  //   good_jets.at(jet_it)->getJetDesc()->setPassGood(true);
-  // }
-  // size_t jet_term = bad_jets.size();
-  // for (size_t jet_it = 0; jet_it != jet_term; ++jet_it) {
-  //   bad_jets.at(jet_it)->getJetDesc()->setPassBad(true);
-  // }
+  size_t mu_term = good_muons.size();
+  for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
+    good_muons.at(mu_it)->getMuonDesc()->setPassGood(true);
+  }
+  size_t good_jet_term = good_jets.size();
+  for (size_t jet_it = 0; jet_it != good_jet_term; ++jet_it) {
+    good_jets.at(jet_it)->getJetDesc()->setPassGood(true);
+  }
+  size_t jet_term = bad_jets.size();
+  for (size_t jet_it = 0; jet_it != jet_term; ++jet_it) {
+    bad_jets.at(jet_it)->getJetDesc()->setPassBad(true);
+  }
 
   // set collection lists
   electrons.setCollection(EL_GOOD , good_electrons);
@@ -117,7 +117,7 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   output_electrons = el_temp_5;
   output_jets_good = jet_good_temp_1;
   output_jets_bad  = jet_bad_temp_1;
-  output_muons = mu_temp_5;
+  output_muons     = mu_temp_5;
 }
 
 // ----------------------------------------------------------------------------

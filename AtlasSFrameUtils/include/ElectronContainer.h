@@ -34,7 +34,7 @@ class ElectronContainer
              );
 
     void clear();
-    void prepElectrons(D3PDReader::ElectronD3PDObject*);
+    void prepElectrons(D3PDReader::ElectronD3PDObject*, const VertexContainer&);
     void setCollection(ELECTRON_COLLECTIONS, std::vector<Electron*>);
 
     size_t num(ELECTRON_COLLECTIONS) const;
