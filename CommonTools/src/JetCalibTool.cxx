@@ -20,7 +20,6 @@ CommonTools::JetCalibTool::~JetCalibTool()
 // -----------------------------------------------------------------------------
 void CommonTools::JetCalibTool::BeginInputData(const SInputData&)
 {
-
   // Configure Jet calibration
   std::string jet_algorithm = "AntiKt4LCTopo";
 
