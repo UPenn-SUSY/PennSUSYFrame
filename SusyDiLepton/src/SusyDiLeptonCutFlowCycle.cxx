@@ -958,8 +958,7 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
     // TODO fill m_lepton_weight
     m_event->setLeptonEffWeight(1.);
 
-    // TODO fill m_b_tag_weight
-    m_event->setBTagWeight(1.);
+    m_event->setBTagWeight(m_b_tag_sf_tool->getSF(m_jets.getJets(JET_B)));
 
     // TODO fill m_trigger_weight
     m_event->setTriggerWeight(1.);

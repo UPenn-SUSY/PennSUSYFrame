@@ -212,3 +212,8 @@ TriggerReweight:
   do_trigger_weight: True
   el_trigger_map_file: ${SFRAME_DIR}/../data/electron_maps.root
   mu_trigger_map_file: ${SFRAME_DIR}/../data/muon_triggermaps.root
+
+BTagScaleFactor:
+  do_b_tag_sf:  True
+  calib_file:   ${ROOTCOREDIR}/../SUSYTools/data/BTagCalibration_JVF.env
+  calib_folder: ${ROOTCOREDIR}/../SUSYTools/data/

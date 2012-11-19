@@ -22,7 +22,7 @@ namespace CommonTools
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     void clear();
-    double getSF(std::vector<Jet*>&);
+    double getSF(const std::vector<Jet*>&);
 
   // ---------------------------------------------------------------------------
   private:

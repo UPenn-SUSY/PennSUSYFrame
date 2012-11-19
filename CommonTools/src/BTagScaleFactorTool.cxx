@@ -9,11 +9,11 @@ CommonTools::BTagScaleFactorTool::BTagScaleFactorTool( SCycleBase* parent
 {
   DeclareProperty("do_b_tag_sf", c_do_b_tag_sf = true);
   DeclareProperty( "calib_file"
-       , c_calibration_file = "SUSYTools/data/BTagCalibration_JVF.env"
-       );
+                 , c_calibration_file = "SUSYTools/data/BTagCalibration_JVF.env"
+                 );
   DeclareProperty( "calib_folder"
-       , c_calibration_folder = "SUSYTools/data/"
-       );
+                 , c_calibration_folder = "SUSYTools/data/"
+                 );
 }
 
 // ----------------------------------------------------------------------------
@@ -28,7 +28,7 @@ void CommonTools::BTagScaleFactorTool::clear()
   m_b_tag_sf = -999;
 }
 // ---------------------------------------------------------------------------
-double CommonTools::BTagScaleFactorTool::getSF(std::vector<Jet*>& jets)
+double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
 {
   if (!m_is_cached) {
     m_b_tag_sf = 1.;
@@ -50,6 +50,7 @@ double CommonTools::BTagScaleFactorTool::getSF(std::vector<Jet*>& jets)
       }
 
       std::pair<std::vector<float>, std::vector<float> > wgtbtag;
+      std::cout << "calibration file: " << c_calibration_file << "\n";
       wgtbtag = BTagCalib::BTagCalibrationFunction( pt_btag
                                                   , eta_btag
                                                   , val_btag
