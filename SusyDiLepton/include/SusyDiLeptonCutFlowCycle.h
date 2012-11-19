@@ -24,6 +24,7 @@
 #include "CommonTools/include/MuonMomentumSmearingTool.h"
 #include "CommonTools/include/SignChannel.h"
 #include "CommonTools/include/MllTool.h"
+#include "CommonTools/include/PtllTool.h"
 #include "CommonTools/include/MT2Tool.h"
 #include "CommonTools/include/TopTagTool.h"
 #include "CommonTools/include/TruthMatchTool.h"
@@ -56,6 +57,12 @@
 #include "SelectionTools/include/TriggerCutTool.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
+
+#include "CommonTools/include/EventOutputTool.h"
+#include "CommonTools/include/ElectronOutputTool.h"
+#include "CommonTools/include/MuonOutputTool.h"
+#include "CommonTools/include/JetOutputTool.h"
+#include "CommonTools/include/MetOutputTool.h"
 
 /**
 *   @short CycleBase class to run the Susy Di-lepton cut flow
@@ -179,6 +186,13 @@ private:
   CommonTools::EgammaScaleFactorTool*       m_egamma_sf_tool;
   CommonTools::MuonScaleFactorTool*         m_muon_sf_tool;
 
+
+  CommonTools::EventOutputTool*      m_event_output_tool;
+  CommonTools::ElectronOutputTool*   m_electron_output_tool;
+  CommonTools::MuonOutputTool*       m_muon_output_tool;
+  CommonTools::JetOutputTool*        m_jet_output_tool;
+  CommonTools::MetOutputTool*        m_met_output_tool;
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   unsigned int m_run_number;
   unsigned int m_event_number;
@@ -233,6 +247,7 @@ private:
   void clearEventVariables();
   void fillEventVariables();
 
+  void fillOutput();
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Macro adding the functions for dictionary generation
   ClassDef(SusyDiLeptonCutFlowCycle, 0);
