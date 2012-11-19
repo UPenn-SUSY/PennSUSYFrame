@@ -51,10 +51,13 @@ public :
    void initCutFlowHists();
    void checkEvent(PHASE_SPACE);
 
-   void fillHist(PHASE_SPACE phase, unsigned int cut_bin, double weight = 1.);
+   void fillHist( PHASE_SPACE phase
+                , unsigned int cut_bin
+                , double weight = 1.
+                );
 
    void printToScreen();
-   void printToScreen(PHASE_SPACE phase_space);
+   //void printToScreen(PHASE_SPACE phase_space);
    void printToFile(std::string out_file_name);
 
    std::vector<TH1D*> m_cutflow;

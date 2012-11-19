@@ -471,52 +471,42 @@ void CutFlowDump::fillHist( PHASE_SPACE phase
 // -----------------------------------------------------------------------------
 void CutFlowDump::printToScreen()
 {
-  printToScreen(PHASE_EE);
-  printToScreen(PHASE_MM);
-  printToScreen(PHASE_EM);
-  printToScreen(PHASE_ME);
-}
-
-// -----------------------------------------------------------------------------
-void CutFlowDump::printToScreen(PHASE_SPACE phase_space)
-{
-  if (  phase_space != PHASE_EE
-     && phase_space != PHASE_MM
-     && phase_space != PHASE_EM
-     && phase_space != PHASE_ME
-     )
-    return;
-
-  unsigned int line_width   = 50;
+  unsigned int line_width   = 80;
   unsigned int label_field  = 20;
-  unsigned int weight_field = line_width - label_field - 2 - 3 - 2;
+  unsigned int weight_field = (line_width - label_field - 4 - 4*3 )/4;
 
   std::string single_line;
   for (unsigned int i = 0; i != line_width; ++i) single_line += '=';
   single_line = single_line + "\n";
 
   std::cout << single_line;
-  std::cout << "= ";
-  if( phase_space == PHASE_EE)
-    std::cout << std::setw(line_width - 4) << "EE"; 
-  if( phase_space == PHASE_MM)
-    std::cout << std::setw(line_width - 4) << "MM";
-  if( phase_space == PHASE_EM)
-    std::cout << std::setw(line_width - 4) << "EM";
-  if( phase_space == PHASE_ME)
-    std::cout << std::setw(line_width - 4) << "ME";
-  std::cout << " =\n";
+  std::cout << "= "  << std::left  << std::setw(label_field)  << "Cut"
+            << " = " << std::right << std::setw(weight_field) << "EE"
+            << " = " << std::right << std::setw(weight_field) << "MM"
+            << " = " << std::right << std::setw(weight_field) << "EM"
+            << " = " << std::right << std::setw(weight_field) << "ME"
+            << " =\n";
   std::cout << single_line;
 
-  TH1D* cutflow = m_cutflow.at(phase_space);
+  TH1D* cutflow_ee = m_cutflow.at(PHASE_EE);
+  TH1D* cutflow_mm = m_cutflow.at(PHASE_MM);
+  TH1D* cutflow_em = m_cutflow.at(PHASE_EM);
+  TH1D* cutflow_me = m_cutflow.at(PHASE_ME);
 
-  unsigned int num_cuts = cutflow->GetXaxis()->GetNbins();
+  unsigned int num_cuts = cutflow_ee->GetXaxis()->GetNbins();
 
   for (unsigned int bin_it = 0; bin_it != num_cuts; ++bin_it) {
-    std::string cut_name = cutflow->GetXaxis()->GetBinLabel(bin_it+1);
-    double weight = cutflow->GetBinContent(bin_it + 1);
-    std::cout << "= "  << std::setw(label_field)  << cut_name
-              << " = " << std::setw(weight_field) << weight
+    std::string cut_name = cutflow_ee->GetXaxis()->GetBinLabel(bin_it+1);
+    double weight_ee = cutflow_ee->GetBinContent(bin_it + 1);
+    double weight_mm = cutflow_mm->GetBinContent(bin_it + 1);
+    double weight_em = cutflow_em->GetBinContent(bin_it + 1);
+    double weight_me = cutflow_me->GetBinContent(bin_it + 1);
+
+    std::cout << "= "  << std::left  << std::setw(label_field)  << cut_name
+              << " = " << std::right << std::setw(weight_field) << weight_ee
+              << " = " << std::right << std::setw(weight_field) << weight_mm
+              << " = " << std::right << std::setw(weight_field) << weight_em
+              << " = " << std::right << std::setw(weight_field) << weight_me
               << " =\n";
   }
   std::cout << single_line;
