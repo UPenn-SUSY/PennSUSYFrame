@@ -148,6 +148,15 @@ void SusyDiLeptonCutFlowCycle::declareTools()
 
   DECLARE_TOOL(SelectionTools::SignalRegionTool, "Signal_Regions");
 
+
+  //OutputTools
+
+  DECLARE_TOOL(CommonTools::EventOutputTool    , "EventOutput");
+  DECLARE_TOOL(CommonTools::ElectronOutputTool , "ElectronOutput");
+  DECLARE_TOOL(CommonTools::MuonOutputTool     , "MuonOutput");
+  DECLARE_TOOL(CommonTools::JetOutputTool      , "JetOutput");
+  DECLARE_TOOL(CommonTools::MetOutputTool      , "MetOutput");
+
   // TODO populate list of tools
 }
 
@@ -386,6 +395,21 @@ void SusyDiLeptonCutFlowCycle::getTools()
   GET_TOOL(muon_sf, CommonTools::MuonScaleFactorTool, "MuonSF");
   m_muon_sf_tool = muon_sf;
 
+
+  GET_TOOL(event_out, CommonTools::EventOutputTool, "EventOutput");
+  m_event_output_tool = event_out;
+
+  GET_TOOL(electron_out, CommonTools::ElectronOutputTool, "ElectronOutput");
+  m_electron_output_tool = electron_out;
+
+  GET_TOOL(muon_out, CommonTools::MuonOutputTool, "MuonOutput");
+  m_muon_output_tool = muon_out;
+
+  GET_TOOL(jet_out, CommonTools::JetOutputTool, "JetOutput");
+  m_jet_output_tool = jet_out;
+
+  GET_TOOL(met_out, CommonTools::MetOutputTool, "MetOutput");
+  m_met_output_tool = met_out;
 }
 
 // -----------------------------------------------------------------------------
@@ -482,6 +506,8 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
 
   fillEventVariables();
 
+  fillOutput();
+
   // m_vertices.print(VERT_ALL);
   // m_electrons.print(EL_ALL, m_vertices);
   // m_muons.print(MU_ALL, m_vertices);
@@ -502,26 +528,36 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   //       )
   //    )
   //   return false;
+//   if (! (  m_event->EventNumber() == 10342648
+//         || m_event->EventNumber() == 13978696
+//         || m_event->EventNumber() == 14498571
+//         || m_event->EventNumber() == 311085
+//         || m_event->EventNumber() == 560097
+//         || m_event->EventNumber() == 63860
+//         )
+//      )
+//     return false;
 
-  // std::cout << "============================================================\n";
-  // std::cout << "= event: " << m_event->EventNumber() << "\n";
-  // std::cout << "============================================================\n";
 
-  // m_electrons.print(EL_BASELINE  , m_vertices) ;
-  // m_muons.print(MU_BASELINE      , m_vertices) ;
-  // m_jets.print(JET_BASELINE_GOOD) ;
-  // m_jets.print(JET_BASELINE_BAD ) ;
+//   std::cout << "============================================================\n";
+//   std::cout << "= event: " << m_event->EventNumber() << "\n";
+//   std::cout << "============================================================\n";
 
-  // std::cout << "\n";
-  // std::cout << "After OL removal\n";
-  // m_electrons.print(EL_GOOD, m_vertices ) ;
-  // m_muons.print(MU_GOOD    , m_vertices ) ;
-  // m_jets.print(JET_GOOD) ;
-  // m_jets.print(JET_BAD ) ;
+//   m_electrons.print(EL_BASELINE  , m_vertices) ;
+//   m_muons.print(MU_BASELINE      , m_vertices) ;
+//   m_jets.print(JET_BASELINE_GOOD) ;
+//   m_jets.print(JET_BASELINE_BAD ) ;
 
-  // std::cout << "\n";
-  // std::cout << "Any cosmics?\n";
-  // m_muons.print(MU_COSMIC, m_vertices);
+//   std::cout << "\n";
+//   std::cout << "After OL removal\n";
+//   m_electrons.print(EL_GOOD, m_vertices ) ;
+//   m_muons.print(MU_GOOD    , m_vertices ) ;
+//   m_jets.print(JET_GOOD) ;
+//   m_jets.print(JET_BAD ) ;
+
+//   std::cout << "\n";
+//   std::cout << "Any cosmics?\n";
+//   m_muons.print(MU_COSMIC, m_vertices);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check GRL
@@ -911,6 +947,12 @@ void SusyDiLeptonCutFlowCycle::computeGoodEventVariables()
         m_met,
         m_electrons.getElectrons(EL_GOOD),
         m_muons.getMuons(MU_GOOD)));
+  
+  // compute ptll
+  m_event->setPtll(CommonTools::PtllTool::getPtll(m_event->getFlavorChannel(),
+						  m_electrons.getElectrons(EL_GOOD),
+						  m_muons.getMuons(MU_GOOD)));
+
 }
 
 // -----------------------------------------------------------------------------
@@ -1094,3 +1136,14 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   // Set "coimbined colelctions like JET_ALL_SIGNAL and JET_ALL_CENTRAL
   m_jets.setCombinedCollections();
 }
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::fillOutput()
+{
+
+  m_event_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_electron_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_muon_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_jet_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+ m_met_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+}
+
