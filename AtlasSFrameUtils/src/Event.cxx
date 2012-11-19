@@ -35,6 +35,9 @@ void Event::clear()
   m_trigger_weight       = 0.;
   m_cross_section_weight = 0.;
   m_b_tag_weight         = 0.;
+  m_k_factor             = 0.;
+  m_eff_times_cross_section =0.;
+
 
   m_mll     = 0.;
   m_met_rel = 0.;
@@ -72,7 +75,26 @@ double Event::getBTagWeight()
 {
   return m_b_tag_weight;
 }
-
+// ----------------------------------------------------------------------------
+double Event::getKFactor()
+{
+  return m_k_factor;
+}
+// ----------------------------------------------------------------------------
+double Event::getEffTimesXS()
+{
+  return m_eff_times_cross_section;
+}
+// ----------------------------------------------------------------------------
+double Event::getMCEventWeight()
+{
+  return m_mc_event_weight;
+}
+// ----------------------------------------------------------------------------
+int Event::getMCChannelNum()
+{
+  return m_mc_channel_num;
+}
 // ----------------------------------------------------------------------------
 void Event::setPileUpWeight(double weight)
 {
@@ -96,13 +118,32 @@ void Event::setCrossSectionWeight(double weight)
 {
   m_cross_section_weight = weight;
 }
-
 // ----------------------------------------------------------------------------
 void Event::setBTagWeight(double weight)
 {
   m_b_tag_weight = weight;
 }
 
+// ----------------------------------------------------------------------------
+void Event::setKFactor(double weight)
+{
+  m_k_factor = weight;
+}
+// ----------------------------------------------------------------------------
+void Event::setEffTimesXS(double weight)
+{
+  m_eff_times_cross_section = weight;
+}
+// ----------------------------------------------------------------------------
+void Event::setMCEventWeight(double weight)
+{
+  m_mc_event_weight = weight;
+}
+// ----------------------------------------------------------------------------
+void Event::setMCChannelNum(int channel)
+{
+  m_mc_channel_num = channel;
+}
 // -----------------------------------------------------------------------------
 void Event::setMll(double mll)
 {
@@ -115,6 +156,12 @@ void Event::setMt2(double mt2)
 {
   m_mt2 = mt2;
   m_mt2_cached = true;
+}
+// -----------------------------------------------------------------------------
+void Event::setPtll(double ptll)
+{
+  m_ptll = ptll;
+  m_ptll_cached = true;
 }
 
 // -----------------------------------------------------------------------------
@@ -146,6 +193,13 @@ double Event::getMt2()
   if (!m_mt2_cached)
     std::cout << "WARNING! Asking for mt2, but not yet cached!\n";
   return m_mt2;
+}
+// -----------------------------------------------------------------------------
+double Event::getPtll()
+{
+  if (!m_ptll_cached)
+    std::cout << "WARNING! Asking for pt_ll, but not yet cached!\n";
+  return m_ptll;
 }
 
 // ----------------------------------------------------------------------------

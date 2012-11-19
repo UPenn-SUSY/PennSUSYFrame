@@ -27,20 +27,30 @@ public:
   double getTriggerWeight();
   double getCrossSectionWeight();
   double getBTagWeight();
+  double getKFactor();
+  double getEffTimesXS();
+  double getMCEventWeight();
+  int getMCChannelNum();
 
   void setPileUpWeight(double weight);
   void setLeptonEffWeight(double weight);
   void setTriggerWeight(double weight);
   void setCrossSectionWeight(double weight);
   void setBTagWeight(double weight);
+  void setKFactor(double weight);
+  void setEffTimesXS(double weight);
+  void setMCEventWeight(double weight);
+  void setMCChannelNum(int channel);
 
   void setMll(double);
   void setMetRel(double);
   void setMt2(double);
+  void setPtll(double);
 
   double getMll();
   double getMetRel();
   double getMt2();
+  double getPtll();
 
   FLAVOR_CHANNEL  getFlavorChannel();
   SIGN_CHANNEL    getSignChannel();
@@ -56,15 +66,21 @@ private:
   double m_trigger_weight;
   double m_cross_section_weight;
   double m_b_tag_weight;
+  double m_eff_times_cross_section;
+  double m_k_factor;
+  double m_mc_event_weight;
+  int    m_mc_channel_num;
 
   // useful event level variables
   double m_mll;
   double m_met_rel;
   double m_mt2;
+  double m_ptll;
 
   bool m_mll_cached;
   bool m_met_rel_cached;
   bool m_mt2_cached;
+  bool m_ptll_cached;
 
   // Event description
   SusyAnalysisTools::EventDescription m_event_desc;
