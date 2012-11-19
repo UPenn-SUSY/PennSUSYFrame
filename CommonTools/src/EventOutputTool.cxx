@@ -114,7 +114,7 @@ void CommonTools::EventOutputTool::fillOutput(Event* event, ElectronContainer el
   m_sr_helper_int  = event->getSRHelper()->toInt();
  
   if (!is_data()) {
-    m_mc_channel_number =  event->mc_channel_number();
+    m_mc_channel_number =  event->getMCChannelNum();
   }
 
   m_actual_int_per_crossing  = event->actualIntPerXing();
