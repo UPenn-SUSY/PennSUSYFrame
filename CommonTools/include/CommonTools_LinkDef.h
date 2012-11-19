@@ -31,4 +31,11 @@
 #pragma link C++ class CommonTools::PileUpScaleFactorTool+;
 //#pragma link C++ class CommonTools::TriggerReweightTool+;
 
+#pragma link C++ class CommonTools::EventOutputTool+;
+#pragma link C++ class CommonTools::ElectronOutputTool+;
+#pragma link C++ class CommonTools::MuonOutputTool+;
+#pragma link C++ class CommonTools::JetOutputTool+;
+#pragma link C++ class CommonTools::MetOutputTool+;
+//#pragma link C++ class CommonTools::VertexOutputTool+;
+
 #endif // __CINT__
