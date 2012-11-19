@@ -13,9 +13,6 @@ CommonTools::ElectronOutputTool::ElectronOutputTool( SCycleBase* parent
 
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
   DeclareProperty("electron_container_name", c_electron_output_collection = "signal");
-  DeclareProperty("jet_container_name", c_jet_output_collection = "signal");
-  DeclareProperty("muon_container_name", c_muon_output_collection = "signal");
-
 
 }
 // ----------------------------------------------------------------------------
@@ -218,7 +215,31 @@ void CommonTools::ElectronOutputTool::fillOutput(Event* event, ElectronContainer
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill electron varaibles
 
-  std::vector<Electron*> el_vec = electrons.getElectrons(EL_SIGNAL);
+  std::vector<Electron*> el_vec; 
+
+  if (c_electron_output_collection == "signal" || c_electron_output_collection == "Signal")
+    {
+      el_vec = electrons.getElectrons(EL_SIGNAL);
+    }
+  else if(c_electron_output_collection == "good" || c_electron_output_collection == "Good")
+    {
+      el_vec =  electrons.getElectrons(EL_GOOD);
+    }
+  else if(c_electron_output_collection == "baseline" || c_electron_output_collection == "Baseline")
+    {
+      el_vec =  electrons.getElectrons(EL_BASELINE);
+    }
+  else if(c_electron_output_collection == "all" || c_electron_output_collection == "All")
+    {
+      el_vec =  electrons.getElectrons(EL_ALL);
+    }
+  else
+    {
+      m_logger << FATAL
+	       << "Could Not Parse Electron Output Level: " << c_electron_output_collection
+	       << SLogger::endmsg;
+      throw SError(SError::StopExecution);
+    }
 
   size_t num_el = el_vec.size();
 

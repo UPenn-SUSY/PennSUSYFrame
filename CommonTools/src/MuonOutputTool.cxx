@@ -12,8 +12,6 @@ CommonTools::MuonOutputTool::MuonOutputTool( SCycleBase* parent
 
 
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
-  DeclareProperty("electron_container_name", c_electron_output_collection = "signal");
-  DeclareProperty("jet_container_name", c_jet_output_collection = "signal");
   DeclareProperty("muon_container_name", c_muon_output_collection = "signal");
 
 
@@ -125,7 +123,33 @@ void CommonTools::MuonOutputTool::fillOutput(Event* event, ElectronContainer ele
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill muon varaibles
 
-  std::vector<Muon*> mu_vec = muons.getMuons(MU_SIGNAL);
+ 
+
+  std::vector<Muon*> mu_vec; 
+
+  if (c_muon_output_collection == "signal" || c_muon_output_collection == "Signal")
+    {
+      mu_vec = muons.getMuons(MU_SIGNAL);
+    }
+  else if(c_muon_output_collection == "good" || c_muon_output_collection == "Good")
+    {
+      mu_vec =  muons.getMuons(MU_GOOD);
+    }
+  else if(c_muon_output_collection == "baseline" || c_muon_output_collection == "Baseline")
+    {
+      mu_vec =  muons.getMuons(MU_BASELINE);
+    }
+  else if(c_muon_output_collection == "all" || c_muon_output_collection == "All")
+    {
+      mu_vec =  muons.getMuons(MU_ALL);
+    }
+  else
+    {
+      m_logger << FATAL
+	       << "Could Not Parse Muon Output Level: " << c_muon_output_collection
+	       << SLogger::endmsg;
+      throw SError(SError::StopExecution);
+    }
 
   size_t num_mu = mu_vec.size();
 

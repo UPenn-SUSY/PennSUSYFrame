@@ -12,10 +12,7 @@ CommonTools::JetOutputTool::JetOutputTool( SCycleBase* parent
 
 
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
-  DeclareProperty("electron_container_name", c_electron_output_collection = "signal");
   DeclareProperty("jet_container_name", c_jet_output_collection = "signal");
-  DeclareProperty("muon_container_name", c_muon_output_collection = "signal");
-
 
 }
 // ----------------------------------------------------------------------------
@@ -74,7 +71,41 @@ void CommonTools::JetOutputTool::fillOutput(Event* event, ElectronContainer elec
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill jet varaibles
 
-  std::vector<Jet*> jet_vec = jets.getJets(JET_ALL_SIGNAL);
+  std::vector<Jet*> jet_vec; 
+
+  if (c_jet_output_collection == "signal" || c_jet_output_collection == "Signal"
+      || c_jet_output_collection =="all_signal" || c_jet_output_collection == "All_Signal")
+    {
+      jet_vec = jets.getJets(JET_ALL_SIGNAL);
+    }
+  else if(c_jet_output_collection == "good" || c_jet_output_collection == "Good")
+    {
+      jet_vec =  jets.getJets(JET_GOOD);
+    }
+  else if(c_jet_output_collection == "baseline" || c_jet_output_collection == "Baseline")
+    {
+      jet_vec =  jets.getJets(JET_BASELINE);
+    }
+  else if(c_jet_output_collection == "all" || c_jet_output_collection == "All")
+    {
+      jet_vec =  jets.getJets(JET_ALL);
+    }
+  else if(c_jet_output_collection == "light" || c_jet_output_collection == "Light")
+    {
+      jet_vec =  jets.getJets(JET_LIGHT);
+    }
+  else if(c_jet_output_collection == "central" || c_jet_output_collection == "Central")
+    {
+      jet_vec =  jets.getJets(JET_ALL_CENTRAL);
+    }
+  else
+    {
+      m_logger << FATAL
+	       << "Could Not Parse Jet Output Level: " << c_jet_output_collection
+	       << SLogger::endmsg;
+      throw SError(SError::StopExecution);
+    }
+
 
   size_t num_jet = jet_vec.size();
  

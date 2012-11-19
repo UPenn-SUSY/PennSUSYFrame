@@ -39,8 +39,6 @@ namespace CommonTools
   private:
 
     bool c_do_detailed_output;
-    std::string c_electron_output_collection;
-    std::string c_muon_output_collection;
     std::string c_jet_output_collection;
 
 

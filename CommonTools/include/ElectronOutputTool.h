@@ -40,10 +40,7 @@ namespace CommonTools
 
     bool c_do_detailed_output;
     std::string c_electron_output_collection;
-    std::string c_muon_output_collection;
-    std::string c_jet_output_collection;
-
-
+ 
     //Variables to always output
     std::vector<double>          m_el_E;
     std::vector<double>          m_el_Et;
