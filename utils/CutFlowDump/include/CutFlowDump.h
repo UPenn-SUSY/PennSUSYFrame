@@ -36,7 +36,7 @@ public :
    ULong64_t m_event_desc;
    ULong64_t m_sr_helper;
 
-   float     m_mc_weight;
+   double    m_mc_weight;
    double    m_pile_up_weight;
    double    m_trigger_weight;
    double    m_lepton_weight;

@@ -22,16 +22,17 @@ public:
 
   void clear();
 
+  double getMCEventWeight();
   double getPileUpWeight();
   double getLeptonEffWeight();
   double getTriggerWeight();
-  double getCrossSectionWeight();
   double getBTagWeight();
+  double getCrossSectionWeight();
   double getKFactor();
   double getEffTimesXS();
-  double getMCEventWeight();
   int getMCChannelNum();
 
+  void setMCEventWeight(double weight);
   void setPileUpWeight(double weight);
   void setLeptonEffWeight(double weight);
   void setTriggerWeight(double weight);
@@ -39,7 +40,6 @@ public:
   void setBTagWeight(double weight);
   void setKFactor(double weight);
   void setEffTimesXS(double weight);
-  void setMCEventWeight(double weight);
   void setMCChannelNum(int channel);
 
   void setMll(double);

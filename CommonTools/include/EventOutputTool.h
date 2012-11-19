@@ -50,7 +50,6 @@ namespace CommonTools
     unsigned int m_event_desc_int;
     unsigned int m_sr_helper_int;
 
-    double m_event_weight;
     double m_mc_event_weight;
     double m_pileup_weight;
     double m_trigger_weight;

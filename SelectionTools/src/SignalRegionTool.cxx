@@ -95,6 +95,7 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   // Check MET-rel cuts
   double met_rel = event->getMetRel();;
 
+  // check Met-rel for each SR
   sr_helper->setPassSR1MetRel(
       passCut(met_rel, c_sr1_met_rel_min, c_sr1_met_rel_max));
 

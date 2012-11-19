@@ -21,7 +21,7 @@ Event::Event( const ::Long64_t& master
             , m_mll_cached(false)
             , m_met_rel_cached(false)
 {
-  // do nothing
+  clear();
 }
 
 // ----------------------------------------------------------------------------
@@ -30,20 +30,28 @@ void Event::clear()
   m_event_desc.clear();
   m_sr_helper.clear();
 
-  m_pile_up_weight       = 0.;
-  m_lepton_eff_weight    = 0.;
-  m_trigger_weight       = 0.;
-  m_cross_section_weight = 0.;
-  m_b_tag_weight         = 0.;
-  m_k_factor             = 0.;
-  m_eff_times_cross_section =0.;
+  m_mc_event_weight         = 1.;
+  m_pile_up_weight          = 1.;
+  m_lepton_eff_weight       = 1.;
+  m_trigger_weight          = 1.;
+  m_cross_section_weight    = 1.;
+  m_b_tag_weight            = 1.;
+  m_k_factor                = 1.;
+  m_eff_times_cross_section = 1.;
 
+  m_mc_channel_num = 0;
 
   m_mll     = 0.;
   m_met_rel = 0.;
 
   m_mll_cached     = false;
   m_met_rel_cached = false;
+}
+
+// ----------------------------------------------------------------------------
+double Event::getMCEventWeight()
+{
+  return m_mc_event_weight;
 }
 
 // ----------------------------------------------------------------------------
@@ -75,26 +83,31 @@ double Event::getBTagWeight()
 {
   return m_b_tag_weight;
 }
+
 // ----------------------------------------------------------------------------
 double Event::getKFactor()
 {
   return m_k_factor;
 }
+
 // ----------------------------------------------------------------------------
 double Event::getEffTimesXS()
 {
   return m_eff_times_cross_section;
 }
-// ----------------------------------------------------------------------------
-double Event::getMCEventWeight()
-{
-  return m_mc_event_weight;
-}
+
 // ----------------------------------------------------------------------------
 int Event::getMCChannelNum()
 {
   return m_mc_channel_num;
 }
+
+// ----------------------------------------------------------------------------
+void Event::setMCEventWeight(double weight)
+{
+  m_mc_event_weight = weight;
+}
+
 // ----------------------------------------------------------------------------
 void Event::setPileUpWeight(double weight)
 {
@@ -118,6 +131,7 @@ void Event::setCrossSectionWeight(double weight)
 {
   m_cross_section_weight = weight;
 }
+
 // ----------------------------------------------------------------------------
 void Event::setBTagWeight(double weight)
 {
@@ -129,21 +143,19 @@ void Event::setKFactor(double weight)
 {
   m_k_factor = weight;
 }
+
 // ----------------------------------------------------------------------------
 void Event::setEffTimesXS(double weight)
 {
   m_eff_times_cross_section = weight;
 }
-// ----------------------------------------------------------------------------
-void Event::setMCEventWeight(double weight)
-{
-  m_mc_event_weight = weight;
-}
+
 // ----------------------------------------------------------------------------
 void Event::setMCChannelNum(int channel)
 {
   m_mc_channel_num = channel;
 }
+
 // -----------------------------------------------------------------------------
 void Event::setMll(double mll)
 {
@@ -157,6 +169,7 @@ void Event::setMt2(double mt2)
   m_mt2 = mt2;
   m_mt2_cached = true;
 }
+
 // -----------------------------------------------------------------------------
 void Event::setPtll(double ptll)
 {

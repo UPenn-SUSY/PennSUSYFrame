@@ -35,34 +35,34 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_b_tag_sf_tool(NULL),
   m_pileup_sf_tool(NULL),
   m_egamma_sf_tool(NULL),
-  m_muon_sf_tool(NULL),
-  m_mc_event_weight(0.),
-  m_pile_up_weight(0.),
-  m_lepton_weight(0.),
-  m_b_tag_weight(0.),
-  m_trigger_weight(0.),
-  m_cross_section_weight(0.),
-  m_charge_flip_weight(0.),
-  m_num_el_all(0.),
-  m_num_el_baseline(0.),
-  m_num_el_good(0.),
-  m_num_el_signal(0.),
-  m_num_mu_all(0.),
-  m_num_mu_baseline(0.),
-  m_num_mu_good(0.),
-  m_num_mu_bad(0.),
-  m_num_mu_cosmic(0.),
-  m_num_mu_signal(0.),
-  m_num_jet_all(0.),
-  m_num_jet_baseline_good(0.),
-  m_num_jet_baseline_bad(0.),
-  m_num_jet_good(0.),
-  m_num_jet_bad(0.),
-  m_num_jet_light(0.),
-  m_num_jet_b(0.),
-  m_num_jet_forward(0.),
-  m_num_jet_central(0.),
-  m_num_jet_signal(0.)
+  m_muon_sf_tool(NULL)
+  // m_mc_event_weight(0.),
+  // m_pile_up_weight(0.),
+  // m_lepton_weight(0.),
+  // m_b_tag_weight(0.),
+  // m_trigger_weight(0.),
+  // m_cross_section_weight(0.),
+  // m_charge_flip_weight(0.),
+  // m_num_el_all(0.),
+  // m_num_el_baseline(0.),
+  // m_num_el_good(0.),
+  // m_num_el_signal(0.),
+  // m_num_mu_all(0.),
+  // m_num_mu_baseline(0.),
+  // m_num_mu_good(0.),
+  // m_num_mu_bad(0.),
+  // m_num_mu_cosmic(0.),
+  // m_num_mu_signal(0.),
+  // m_num_jet_all(0.),
+  // m_num_jet_baseline_good(0.),
+  // m_num_jet_baseline_bad(0.),
+  // m_num_jet_good(0.),
+  // m_num_jet_bad(0.),
+  // m_num_jet_light(0.),
+  // m_num_jet_b(0.),
+  // m_num_jet_forward(0.),
+  // m_num_jet_central(0.),
+  // m_num_jet_signal(0.)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -163,40 +163,40 @@ void SusyDiLeptonCutFlowCycle::declareTools()
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::declareEventVariables()
 {
-  DeclareVariable(m_run_number          , "run_number"          );
-  DeclareVariable(m_event_number        , "event_number"        );
-  DeclareVariable(m_event_desc_int      , "event_desc"          );
-  DeclareVariable(m_sr_helper_int       , "sr_helper"           );
-  DeclareVariable(m_mc_event_weight     , "mc_event_weight"     );
-  DeclareVariable(m_pile_up_weight      , "pile_up_weight"      );
-  DeclareVariable(m_lepton_weight       , "lepton_weight"       );
-  DeclareVariable(m_b_tag_weight        , "b_tag_weight"        );
-  DeclareVariable(m_trigger_weight      , "trigger_weight"      );
-  DeclareVariable(m_cross_section_weight, "cross_section_weight");
-  DeclareVariable(m_charge_flip_weight  , "charge_flip_weight"  );
+  // DeclareVariable(m_run_number          , "run_number"          );
+  // DeclareVariable(m_event_number        , "event_number"        );
+  // DeclareVariable(m_event_desc_int      , "event_desc"          );
+  // DeclareVariable(m_sr_helper_int       , "sr_helper"           );
+  // DeclareVariable(m_mc_event_weight     , "mc_event_weight"     );
+  // DeclareVariable(m_pile_up_weight      , "pile_up_weight"      );
+  // DeclareVariable(m_lepton_weight       , "lepton_weight"       );
+  // DeclareVariable(m_b_tag_weight        , "b_tag_weight"        );
+  // DeclareVariable(m_trigger_weight      , "trigger_weight"      );
+  // DeclareVariable(m_cross_section_weight, "cross_section_weight");
+  // DeclareVariable(m_charge_flip_weight  , "charge_flip_weight"  );
 
-  DeclareVariable(m_num_el_all            , "num_el_all"            );
-  DeclareVariable(m_num_el_baseline       , "num_el_baseline"       );
-  DeclareVariable(m_num_el_good           , "num_el_good"           );
-  DeclareVariable(m_num_el_signal         , "num_el_signal"         );
+  // DeclareVariable(m_num_el_all            , "num_el_all"            );
+  // DeclareVariable(m_num_el_baseline       , "num_el_baseline"       );
+  // DeclareVariable(m_num_el_good           , "num_el_good"           );
+  // DeclareVariable(m_num_el_signal         , "num_el_signal"         );
 
-  DeclareVariable(m_num_mu_all            , "num_mu_all"            );
-  DeclareVariable(m_num_mu_baseline       , "num_mu_baseline"       );
-  DeclareVariable(m_num_mu_good           , "num_mu_good"           );
-  DeclareVariable(m_num_mu_bad            , "num_mu_bad"            );
-  DeclareVariable(m_num_mu_cosmic         , "num_mu_cosmic"         );
-  DeclareVariable(m_num_mu_signal         , "num_mu_signal"         );
+  // DeclareVariable(m_num_mu_all            , "num_mu_all"            );
+  // DeclareVariable(m_num_mu_baseline       , "num_mu_baseline"       );
+  // DeclareVariable(m_num_mu_good           , "num_mu_good"           );
+  // DeclareVariable(m_num_mu_bad            , "num_mu_bad"            );
+  // DeclareVariable(m_num_mu_cosmic         , "num_mu_cosmic"         );
+  // DeclareVariable(m_num_mu_signal         , "num_mu_signal"         );
 
-  DeclareVariable(m_num_jet_all           , "num_jet_all"           );
-  DeclareVariable(m_num_jet_baseline_good , "num_jet_baseline_good" );
-  DeclareVariable(m_num_jet_baseline_bad  , "num_jet_baseline_bad"  );
-  DeclareVariable(m_num_jet_good          , "num_jet_good"          );
-  DeclareVariable(m_num_jet_bad           , "num_jet_bad"           );
-  DeclareVariable(m_num_jet_light         , "num_jet_light"         );
-  DeclareVariable(m_num_jet_b             , "num_jet_b"             );
-  DeclareVariable(m_num_jet_forward       , "num_jet_forward"       );
-  DeclareVariable(m_num_jet_central       , "num_jet_central"       );
-  DeclareVariable(m_num_jet_signal        , "num_jet_signal"        );
+  // DeclareVariable(m_num_jet_all           , "num_jet_all"           );
+  // DeclareVariable(m_num_jet_baseline_good , "num_jet_baseline_good" );
+  // DeclareVariable(m_num_jet_baseline_bad  , "num_jet_baseline_bad"  );
+  // DeclareVariable(m_num_jet_good          , "num_jet_good"          );
+  // DeclareVariable(m_num_jet_bad           , "num_jet_bad"           );
+  // DeclareVariable(m_num_jet_light         , "num_jet_light"         );
+  // DeclareVariable(m_num_jet_b             , "num_jet_b"             );
+  // DeclareVariable(m_num_jet_forward       , "num_jet_forward"       );
+  // DeclareVariable(m_num_jet_central       , "num_jet_central"       );
+  // DeclareVariable(m_num_jet_signal        , "num_jet_signal"        );
 }
 
 // -----------------------------------------------------------------------------
@@ -503,9 +503,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   }
 
   checkSignalRegions();
-
   fillEventVariables();
-
   fillOutput();
 
   // m_vertices.print(VERT_ALL);
@@ -528,36 +526,26 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   //       )
   //    )
   //   return false;
-//   if (! (  m_event->EventNumber() == 10342648
-//         || m_event->EventNumber() == 13978696
-//         || m_event->EventNumber() == 14498571
-//         || m_event->EventNumber() == 311085
-//         || m_event->EventNumber() == 560097
-//         || m_event->EventNumber() == 63860
-//         )
-//      )
-//     return false;
 
+  // std::cout << "============================================================\n";
+  // std::cout << "= event: " << m_event->EventNumber() << "\n";
+  // std::cout << "============================================================\n";
 
-//   std::cout << "============================================================\n";
-//   std::cout << "= event: " << m_event->EventNumber() << "\n";
-//   std::cout << "============================================================\n";
+  // m_electrons.print(EL_BASELINE  , m_vertices) ;
+  // m_muons.print(MU_BASELINE      , m_vertices) ;
+  // m_jets.print(JET_BASELINE_GOOD) ;
+  // m_jets.print(JET_BASELINE_BAD ) ;
 
-//   m_electrons.print(EL_BASELINE  , m_vertices) ;
-//   m_muons.print(MU_BASELINE      , m_vertices) ;
-//   m_jets.print(JET_BASELINE_GOOD) ;
-//   m_jets.print(JET_BASELINE_BAD ) ;
+  // std::cout << "\n";
+  // std::cout << "After OL removal\n";
+  // m_electrons.print(EL_GOOD, m_vertices ) ;
+  // m_muons.print(MU_GOOD    , m_vertices ) ;
+  // m_jets.print(JET_GOOD) ;
+  // m_jets.print(JET_BAD ) ;
 
-//   std::cout << "\n";
-//   std::cout << "After OL removal\n";
-//   m_electrons.print(EL_GOOD, m_vertices ) ;
-//   m_muons.print(MU_GOOD    , m_vertices ) ;
-//   m_jets.print(JET_GOOD) ;
-//   m_jets.print(JET_BAD ) ;
-
-//   std::cout << "\n";
-//   std::cout << "Any cosmics?\n";
-//   m_muons.print(MU_COSMIC, m_vertices);
+  // std::cout << "\n";
+  // std::cout << "Any cosmics?\n";
+  // m_muons.print(MU_COSMIC, m_vertices);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check GRL
@@ -947,7 +935,7 @@ void SusyDiLeptonCutFlowCycle::computeGoodEventVariables()
         m_met,
         m_electrons.getElectrons(EL_GOOD),
         m_muons.getMuons(MU_GOOD)));
-  
+
   // compute ptll
   m_event->setPtll(CommonTools::PtllTool::getPtll(m_event->getFlavorChannel(),
 						  m_electrons.getElectrons(EL_GOOD),
@@ -956,94 +944,30 @@ void SusyDiLeptonCutFlowCycle::computeGoodEventVariables()
 }
 
 // -----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::clearEventVariables()
-{
-  m_run_number     = 0;
-  m_event_number   = 0;
-  m_event_desc_int = 0.;
-  m_sr_helper_int  = 0.;
-
-  m_mc_event_weight      = 1.;
-  m_pile_up_weight       = 1.;
-  m_lepton_weight        = 1.;
-  m_b_tag_weight         = 1.;
-  m_trigger_weight       = 1.;
-  m_cross_section_weight = 1.;
-  m_charge_flip_weight   = 1.;
-
-  m_num_el_all = 0.;
-  m_num_el_baseline = 0.;
-  m_num_el_good = 0.;
-  m_num_el_signal = 0.;
-
-  m_num_mu_all = 0.;
-  m_num_mu_baseline = 0.;
-  m_num_mu_good = 0.;
-  m_num_mu_bad = 0.;
-  m_num_mu_cosmic = 0.;
-  m_num_mu_signal = 0.;
-
-  m_num_jet_all = 0.;
-  m_num_jet_baseline_good = 0.;
-  m_num_jet_baseline_bad = 0.;
-  m_num_jet_good = 0.;
-  m_num_jet_bad = 0.;
-  m_num_jet_light = 0.;
-  m_num_jet_b = 0.;
-  m_num_jet_forward = 0.;
-  m_num_jet_central = 0.;
-  m_num_jet_signal = 0.;
-}
-
-// -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::fillEventVariables()
 {
-  m_run_number     = m_event->RunNumber();
-  m_event_number   = m_event->EventNumber();
-  m_event_desc_int = m_event->getEventDesc()->toInt();
-  m_sr_helper_int  = m_event->getSRHelper()->toInt();
-
   if (!is_data()) {
-    m_mc_event_weight = m_truth_d3pdobject->mc_event_weight();
-    // TODO fill m_pile_up_weight
-    // m_pile_up_weight       = 1.;
-    m_pile_up_weight = m_pileup_sf_tool->getPileupScaleFactor(
-        m_event, m_truth_d3pdobject);
+    m_event->setMCEventWeight(m_truth_d3pdobject->mc_event_weight());
+
+    m_event->setPileUpWeight(m_pileup_sf_tool->getPileupScaleFactor(
+          m_event, m_truth_d3pdobject));
+
     // TODO fill m_lepton_weight
-    m_lepton_weight        = 1.;
+    m_event->setLeptonEffWeight(1.);
+
     // TODO fill m_b_tag_weight
-    m_b_tag_weight         = 1.;
+    m_event->setBTagWeight(1.);
+
     // TODO fill m_trigger_weight
-    m_trigger_weight       = 1.;
+    m_event->setTriggerWeight(1.);
+
     // TODO fill m_cross_section_weight
-    m_cross_section_weight = 1.;
+    m_event->setCrossSectionWeight(1.);
+    m_event->setKFactor(1.);
+    m_event->setEffTimesXS(1.);
+
     // TODO fill m_charge_flip_weight
-    m_charge_flip_weight   = 1.;
   }
-
-
-  m_num_el_all            = m_electrons.num(EL_ALL);
-  m_num_el_baseline       = m_electrons.num(EL_BASELINE);
-  m_num_el_good           = m_electrons.num(EL_GOOD);
-  m_num_el_signal         = m_electrons.num(EL_SIGNAL);
-
-  m_num_mu_all            = m_muons.num(MU_ALL);
-  m_num_mu_baseline       = m_muons.num(MU_BASELINE);
-  m_num_mu_good           = m_muons.num(MU_GOOD);
-  m_num_mu_bad            = m_muons.num(MU_BAD);
-  m_num_mu_cosmic         = m_muons.num(MU_COSMIC);
-  m_num_mu_signal         = m_muons.num(MU_SIGNAL);
-
-  m_num_jet_all           = m_jets.num(JET_ALL);
-  m_num_jet_baseline_good = m_jets.num(JET_BASELINE_GOOD);
-  m_num_jet_baseline_bad  = m_jets.num(JET_BASELINE_BAD);
-  m_num_jet_good          = m_jets.num(JET_GOOD);
-  m_num_jet_bad           = m_jets.num(JET_BAD);
-  m_num_jet_light         = m_jets.num(JET_LIGHT);
-  m_num_jet_b             = m_jets.num(JET_B);
-  m_num_jet_forward       = m_jets.num(JET_FORWARD);
-  m_num_jet_central       = m_jets.num(JET_ALL_CENTRAL);
-  m_num_jet_signal        = m_jets.num(JET_ALL_SIGNAL);
 }
 
 // -----------------------------------------------------------------------------
@@ -1069,9 +993,6 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_muons.clear();
   m_met->clear();
   m_vertices.clear();
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  clearEventVariables();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_truth_match_tool->prep(m_truth_d3pdobject);
@@ -1137,14 +1058,18 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   // Set "coimbined colelctions like JET_ALL_SIGNAL and JET_ALL_CENTRAL
   m_jets.setCombinedCollections();
 }
+
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::fillOutput()
 {
-
-  m_event_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
-  m_electron_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
-  m_muon_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
-  m_jet_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
- m_met_output_tool->fillOutput(m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_event_output_tool->fillOutput(
+      m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_electron_output_tool->fillOutput(
+      m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_muon_output_tool->fillOutput(
+      m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_jet_output_tool->fillOutput(
+      m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_met_output_tool->fillOutput(
+      m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
 }
-

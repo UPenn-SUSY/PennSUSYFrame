@@ -29,9 +29,8 @@ void CommonTools::EventOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_event_desc_int, "event_desc");
   DeclareVariable(m_sr_helper_int , "sr_helper" );
 
-  DeclareVariable(m_event_weight           , "event_weight"           );
   DeclareVariable(m_mc_event_weight        , "mc_event_weight"        );
-  DeclareVariable(m_pileup_weight          , "pileup_weight"          );
+  DeclareVariable(m_pileup_weight          , "pile_up_weight"         );
   DeclareVariable(m_trigger_weight         , "trigger_weight"         );
   DeclareVariable(m_lepton_weight          , "lepton_weight"          );
   DeclareVariable(m_b_tag_weight           , "b_tag_weight"           );
@@ -71,21 +70,20 @@ void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_
   m_event_desc_int = 0;
   m_sr_helper_int = 0;
 
-  m_event_weight            = 0.;
-  m_mc_event_weight         = 0.;
-  m_pileup_weight           = 0.;
-  m_trigger_weight          = 0.;
-  m_lepton_weight           = 0.;
-  m_b_tag_weight            = 0.;
-  m_cross_section_weight    = 0.;
-  m_k_factor                = 0.;
-  m_eff_times_cross_section = 0.;
-  m_fake_weight             = 0.;
-  m_fake_weight_max         = 0.;
-  m_fake_weight_min         = 0.;
-  m_charge_flip_weight      = 0.;
-  m_charge_flip_weight_max  = 0.;
-  m_charge_flip_weight_min  = 0.;
+  m_mc_event_weight         = 1.;
+  m_pileup_weight           = 1.;
+  m_trigger_weight          = 1.;
+  m_lepton_weight           = 1.;
+  m_b_tag_weight            = 1.;
+  m_cross_section_weight    = 1.;
+  m_k_factor                = 1.;
+  m_eff_times_cross_section = 1.;
+  m_fake_weight             = 1.;
+  m_fake_weight_max         = 1.;
+  m_fake_weight_min         = 1.;
+  m_charge_flip_weight      = 1.;
+  m_charge_flip_weight_max  = 1.;
+  m_charge_flip_weight_min  = 1.;
 
   m_mc_channel_number        = 0;
   m_actual_int_per_crossing  = 0;
@@ -97,22 +95,27 @@ void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_
 }
 
 // ----------------------------------------------------------------------------
-void CommonTools::EventOutputTool::fillOutput(Event* event, ElectronContainer electrons, MuonContainer muons, JetContainer jets, Met*, VertexContainer vertices)
+void CommonTools::EventOutputTool::fillOutput( Event* event
+                                             , ElectronContainer electrons
+                                             , MuonContainer muons
+                                             , JetContainer jets
+                                             , Met*
+                                             , VertexContainer vertices
+                                             )
 {
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_logger << VERBOSE
-           << "CommonTools::EventOutputTool::Fill"
+           << "CommonTools::EventOutputTool::fillOutput"
            << SLogger::endmsg;
 
   m_lbn          = event->lbn();
   m_run_number   = event->RunNumber();
   m_event_number = event->EventNumber();
-  
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill event description as integer
   m_event_desc_int = event->getEventDesc()->toInt();
   m_sr_helper_int  = event->getSRHelper()->toInt();
- 
+
   if (!is_data()) {
     m_mc_channel_number =  event->getMCChannelNum();
   }
@@ -122,7 +125,6 @@ void CommonTools::EventOutputTool::fillOutput(Event* event, ElectronContainer el
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill event weights
-  //m_event_weight            = event->get
   m_mc_event_weight         = event->getMCEventWeight();
   m_pileup_weight           = event->getPileUpWeight();
   m_trigger_weight          = event->getTriggerWeight();
@@ -132,16 +134,7 @@ void CommonTools::EventOutputTool::fillOutput(Event* event, ElectronContainer el
   m_k_factor                = event->getKFactor();
   m_eff_times_cross_section = event->getEffTimesXS();
 
-//  m_fake_weight     =
-//  m_fake_weight_min =
-//  m_fake_weight_max =
-
-//  m_charge_flip_weight     =
-//  m_charge_flip_weight_min =
-//  m_charge_flip_weight_max =
-
   m_mll  = event->getMll();
   m_ptll = event->getPtll();
   m_mt2  = event->getMt2();
-
 }
