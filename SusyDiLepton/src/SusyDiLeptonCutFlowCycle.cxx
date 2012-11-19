@@ -1006,7 +1006,9 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
   if (!is_data()) {
     m_mc_event_weight = m_truth_d3pdobject->mc_event_weight();
     // TODO fill m_pile_up_weight
-    m_pile_up_weight       = 1.;
+    // m_pile_up_weight       = 1.;
+    m_pile_up_weight = m_pileup_sf_tool->getPileupScaleFactor(
+        m_event, m_truth_d3pdobject);
     // TODO fill m_lepton_weight
     m_lepton_weight        = 1.;
     // TODO fill m_b_tag_weight
@@ -1077,7 +1079,6 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_cross_section_sf_tool->clear();
   m_b_tag_sf_tool->clear();
   m_pileup_sf_tool->clear();
-
 }
 
 // -----------------------------------------------------------------------------

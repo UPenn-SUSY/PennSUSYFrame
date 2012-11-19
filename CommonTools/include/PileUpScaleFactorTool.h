@@ -13,7 +13,6 @@
 // ============================================================================
 namespace CommonTools{
 // ============================================================================
-
   class PileUpScaleFactorTool : public ToolBase
   {
   public:
@@ -23,10 +22,12 @@ namespace CommonTools{
 
     void BeginInputData( const SInputData& id );
     void EndInputData( const SInputData& id );
-    
+
     void clear();
 
-    double getPileupScaleFactor(const Event*,const D3PDReader::TruthD3PDObject*);
+    double getPileupScaleFactor( const Event*
+                               , const D3PDReader::TruthD3PDObject*
+                               );
 
 
     double getIntegratedLumiFraction( unsigned int run_number
@@ -37,11 +38,9 @@ namespace CommonTools{
     std::vector<double> getIntegratedLumiVector();
 
   private:
-   
-
     //configurables
     bool c_do_pile_up_sf;
-    
+
     std::string c_pile_up_var;
     bool c_generate_mc_hist;
 
@@ -53,12 +52,12 @@ namespace CommonTools{
     //other stuff
 
     Root::TPileupReweighting* m_pile_up_reweight;
-    
+
     double m_pileup_sf;
     bool m_is_cached;
-    
+
     ClassDef(PileUpScaleFactorTool, 0);
-    
+
   };
 
 }

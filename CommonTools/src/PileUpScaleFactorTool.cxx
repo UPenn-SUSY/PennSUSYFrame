@@ -87,10 +87,10 @@ void CommonTools::PileUpScaleFactorTool::EndInputData(const SInputData&)
 double CommonTools::PileUpScaleFactorTool::getPileupScaleFactor(
     const Event* event, const D3PDReader::TruthD3PDObject* truth)
 {
-
   if(!m_is_cached)
   {
-    float sf = 1.;
+    // float sf = 1.;
+    m_pileup_sf = 1.;
 
     if (!is_data() && (c_do_pile_up_sf || c_generate_mc_hist)) {
       float mu = 0.;
@@ -101,24 +101,23 @@ double CommonTools::PileUpScaleFactorTool::getPileupScaleFactor(
       else if (c_pile_up_var == "actualIntPerXing")
         mu = event->actualIntPerXing();
 
-      sf = m_pile_up_reweight->GetCombinedWeight( event->RunNumber()
-          , truth->mc_channel_number()
-          , mu
-          );
+      m_pileup_sf = m_pile_up_reweight->GetCombinedWeight(
+          event->RunNumber(),
+          truth->mc_channel_number(),
+          mu);
       m_logger << DEBUG
                << "mu: " << mu
                << "\trun number: " << event->RunNumber()
                << "\tchannel number: " << truth->mc_channel_number()
-               << "\tsf: " << sf
+               << "\tpile up sf: " << m_pileup_sf
                << SLogger::endmsg;
-      if (sf < 0.) sf = 0.;
+      if (m_pileup_sf < 0.) m_pileup_sf = 0.;
     }
 
-      m_is_cached = true;
-    }
+    m_is_cached = true;
+  }
 
   return m_pileup_sf;
-
 }
 
 // ----------------------------------------------------------------------------

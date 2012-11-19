@@ -107,28 +107,28 @@ Electron_Selection:
     signal_max_z0_sin_theta: 0.4
 
 Jet_Selection:
-    baseline_min_eta:  -1
-    baseline_max_eta:  4.9
-    baseline_min_pt:   20000
-    baseline_max_pt:   -1
-    c_b_min_eta:       -1
-    c_b_max_eta:       2.5
-    c_b_min_pt:        20000
-    c_b_max_pt:        -1
-    c_b_max_mv1:       -1
-    c_b_min_mv1:       0.122
-    c_forward_min_pt:  30000
-    c_forward_max_pt:  -1
-    c_forward_min_eta: 2.5
-    c_forward_max_eta: 4.9
-    c_light_min_eta:   -1
-    c_light_max_eta:   2.5
-    c_light_min_pt:    25000
-    c_light_max_pt:    -1
-    c_light_min_jvf:   0.2
-    c_light_max_jvf:   -1
-    c_light_min_mv1:   -1
-    c_light_max_mv1:   0.122
+    baseline_min_eta: -1
+    baseline_max_eta: 4.9
+    baseline_min_pt:  20000
+    baseline_max_pt:  -1
+    b_min_eta:        -1
+    b_max_eta:        2.5
+    b_min_pt:         20000
+    b_max_pt:         -1
+    b_max_mv1:        -1
+    b_min_mv1:        0.122
+    forward_min_pt:   30000
+    forward_max_pt:   -1
+    forward_min_eta:  2.5
+    forward_max_eta:  4.9
+    light_min_eta:    -1
+    light_max_eta:    2.5
+    light_min_pt:     25000
+    light_max_pt:     -1
+    light_min_jvf:    0.2
+    light_max_jvf:    -1
+    light_min_mv1:    -1
+    light_max_mv1:    0.122
 
 Muon_Selection:
     bad_min_qoverp_ratio:         0.2
@@ -200,7 +200,8 @@ Signal_Regions:
 
 PileUpScaleFactor:
   do_pile_up:       True
-  data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_e24vhi_medium1_200841-205113.root
+# data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_e24vhi_medium1_200841-205113.root
+  data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200841-210308.root
   mc_file:          ${ROOTCOREDIR}/../PileupReweighting/share/mc12a_defaults.prw.root
   data_hist_name:   LumiMetaData
   generate_mc_hist: False
