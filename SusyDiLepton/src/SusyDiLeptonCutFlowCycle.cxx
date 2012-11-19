@@ -156,7 +156,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::MuonOutputTool     , "MuonOutput");
   DECLARE_TOOL(CommonTools::JetOutputTool      , "JetOutput");
   DECLARE_TOOL(CommonTools::MetOutputTool      , "MetOutput");
-
+  DECLARE_TOOL(CommonTools::VertexOutputTool   , "VertexOutput");
   // TODO populate list of tools
 }
 
@@ -410,6 +410,9 @@ void SusyDiLeptonCutFlowCycle::getTools()
 
   GET_TOOL(met_out, CommonTools::MetOutputTool, "MetOutput");
   m_met_output_tool = met_out;
+
+  GET_TOOL(vertex_out, CommonTools::VertexOutputTool, "VertexOutput");
+  m_vertex_output_tool = vertex_out;
 }
 
 // -----------------------------------------------------------------------------
@@ -1071,5 +1074,7 @@ void SusyDiLeptonCutFlowCycle::fillOutput()
   m_jet_output_tool->fillOutput(
       m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
   m_met_output_tool->fillOutput(
+      m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_vertex_output_tool->fillOutput(
       m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
 }
