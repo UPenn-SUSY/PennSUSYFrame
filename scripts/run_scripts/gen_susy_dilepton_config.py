@@ -34,15 +34,29 @@ def writeConfigLine(out_file, name, value):
     out_file.write(line)
 
 # ------------------------------------------------------------------------------
+def interpretEnvVariables(string):
+    if type(string) == str:
+        while not string.find("$") == -1:
+            search_begin = string.find("${") + 2
+            search_end = string.find("}")
+            search_key = string[search_begin:search_end]
+            string = string.replace( "${%s}" % search_key
+                                   , os.environ.get(search_key)
+                                   )
+    return string
+
+# ------------------------------------------------------------------------------
 def writeUserConfigs(out_file, config_dict):
     for cd in config_dict['UserConfig']:
         if type(config_dict['UserConfig'][cd]) == dict:
             for item in config_dict['UserConfig'][cd]:
                 name = '%s_%s' % (cd, item)
                 value = config_dict['UserConfig'][cd][item]
+                value = interpretEnvVariables(value)
                 writeConfigLine(out_file, name, value)
         else:
             value = config_dict['UserConfig'][cd]
+            value = interpretEnvVariables(value)
             writeConfigLine(out_file, cd, value)
 
 # ------------------------------------------------------------------------------

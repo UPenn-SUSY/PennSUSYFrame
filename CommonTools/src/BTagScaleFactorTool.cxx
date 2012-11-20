@@ -50,7 +50,6 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
       }
 
       std::pair<std::vector<float>, std::vector<float> > wgtbtag;
-      std::cout << "calibration file: " << c_calibration_file << "\n";
       wgtbtag = BTagCalib::BTagCalibrationFunction( pt_btag
                                                   , eta_btag
                                                   , val_btag
