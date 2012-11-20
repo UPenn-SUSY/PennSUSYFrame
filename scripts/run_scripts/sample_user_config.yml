@@ -214,6 +214,16 @@ TriggerReweight:
 
 BTagScaleFactor:
   do_b_tag_sf:  True
-  #calib_file:   ${ROOTCOREDIR}/../SUSYTools/data/BTagCalibration_JVF.env
   calib_file:   ${ROOTCOREDIR}/../SUSYTools/data/BTagCalibration.env
   calib_folder: ${ROOTCOREDIR}/../SUSYTools/data/
+
+MuonSF:
+  do_scaling: True
+  muon_type:  STACO_CB_plus_ST
+  # sf_dir:     ""
+  unit:       MeV
+
+
+EgammaSF:
+  do_scaling: True
+

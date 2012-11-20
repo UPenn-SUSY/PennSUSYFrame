@@ -1,14 +1,13 @@
 #include "AtlasSFrameUtils/include/CycleMacros.h"
 #include "include/MuonScaleFactorTool.h"
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::MuonScaleFactorTool::MuonScaleFactorTool( SCycleBase* parent
-                                                                 , const char* name
-                                                                 )
-                                                                 : ToolBase(parent, name)
-                                                                 , m_muon_sf(NULL)
+                                                     , const char* name
+                                                     )
+                                                     : ToolBase(parent, name)
+                                                     , m_muon_sf(NULL)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   DeclareProperty("do_scaling", c_do_scaling = false             );
   DeclareProperty("sf_dir"    , c_muon_sf_dir  = ""              );
   DeclareProperty("muon_type" , c_muon_type  = "STACO_CB_plus_ST");
@@ -33,23 +32,25 @@ CommonTools::MuonScaleFactorTool::MuonScaleFactorTool( SCycleBase* parent
   }
   m_file_name = c_muon_type + "_2012_SF.txt";
 
-  m_configuration = Analysis::AnalysisMuonConfigurableScaleFactors::AverageOverRuns;
+  m_configuration =
+      Analysis::AnalysisMuonConfigurableScaleFactors::AverageOverRuns;
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::MuonScaleFactorTool::~MuonScaleFactorTool()
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (m_muon_sf)
     delete m_muon_sf;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::MuonScaleFactorTool::BeginInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is_data() && c_do_scaling) {
     // Get muon SF values from pile up tool
-    GET_TOOL(pile_up_tool, CommonTools::PileUpScaleFactorTool, "PileUpScaleFactor");
+    GET_TOOL( pile_up_tool
+            , CommonTools::PileUpScaleFactorTool
+            , "PileUpScaleFactor"
+            );
 
     m_muon_sf_int_lum.clear();
     m_muon_sf_int_lum = pile_up_tool->getIntegratedLumiVector();
@@ -65,17 +66,15 @@ void CommonTools::MuonScaleFactorTool::BeginInputData(const SInputData&)
     m_muon_sf->Initialise();
   }
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::MuonScaleFactorTool::EndInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::MuonScaleFactorTool::getSF(Muon* mu)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   float sf = 1;
   if (!is_data() && c_do_scaling) {
     if (!m_muon_sf) {
@@ -92,10 +91,9 @@ double CommonTools::MuonScaleFactorTool::getSF(Muon* mu)
   return sf;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::MuonScaleFactorTool::getSFUncertainty(Muon* mu)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   float sf_unc = 0;
 
   if (!is_data() && c_do_scaling) {

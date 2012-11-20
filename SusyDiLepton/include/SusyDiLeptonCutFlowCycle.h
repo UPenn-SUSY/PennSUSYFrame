@@ -208,6 +208,9 @@ private:
   // Call this only after you have determined the flavor channel!
   void computeGoodEventVariables();
 
+  // get the lepton eff weight for this event.
+  double getLeptonEffWeight();
+
   void fillEventVariables();
   void fillOutput();
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

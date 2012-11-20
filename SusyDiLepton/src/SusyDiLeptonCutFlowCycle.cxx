@@ -947,6 +947,26 @@ void SusyDiLeptonCutFlowCycle::computeGoodEventVariables()
 }
 
 // -----------------------------------------------------------------------------
+double SusyDiLeptonCutFlowCycle::getLeptonEffWeight()
+{
+  double lepton_eff = 1.;
+
+  std::vector<Electron*> el_vec = m_electrons.getElectrons(EL_GOOD);
+  size_t el_term = el_vec.size();
+  for (size_t el_it = 0; el_it != el_term; ++el_it) {
+    lepton_eff *= m_egamma_sf_tool->getSF(el_vec.at(el_it));
+  }
+
+  std::vector<Muon*> mu_vec = m_muons.getMuons(MU_GOOD);
+  size_t mu_term = mu_vec.size();
+  for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
+    lepton_eff *= m_muon_sf_tool->getSF(mu_vec.at(mu_it));
+  }
+
+  return lepton_eff;
+}
+
+// -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::fillEventVariables()
 {
   if (!is_data()) {
@@ -955,11 +975,8 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
     m_event->setPileUpWeight(m_pileup_sf_tool->getPileupScaleFactor(
           m_event, m_truth_d3pdobject));
 
-    // TODO fill m_lepton_weight
-    m_event->setLeptonEffWeight(1.);
+    m_event->setLeptonEffWeight(getLeptonEffWeight());
 
-    // m_event->setBTagWeight(m_b_tag_sf_tool->getSF(m_jets.getJets(JET_B)));
-    // m_event->setBTagWeight(m_b_tag_sf_tool->getSF(m_jets.getJets(JET_ALL_SIGNAL)));
     m_event->setBTagWeight(m_b_tag_sf_tool->getSF(m_jets.getJets(JET_GOOD)));
 
     // TODO fill m_trigger_weight

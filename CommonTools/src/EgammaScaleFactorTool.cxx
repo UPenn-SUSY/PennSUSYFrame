@@ -1,38 +1,34 @@
 #include "include/EgammaScaleFactorTool.h"
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::EgammaScaleFactorTool::EgammaScaleFactorTool( SCycleBase* parent
-							   , const char* name
-							   )
-  : ToolBase(parent, name)
+                 , const char* name
+                 )
+                 : ToolBase(parent, name)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   DeclareProperty("do_scaling", c_do_scaling = false);
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::EgammaScaleFactorTool::BeginInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do nothing
 }
 
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::EgammaScaleFactorTool::EndInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do nothing
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::EgammaScaleFactorTool::getSF( Electron* el
-                                       , int set
-                                       , int rel
-                                       , int mode
-                                       , int range
-                                       )
+                                                , int set
+                                                , int rel
+                                                , int mode
+                                                , int range
+                                                )
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   double sf = 1.;
   if (!is_data() && c_do_scaling) {
     float cl_et = el->getRawTlv().E()/cosh(el->cl_eta());
@@ -56,15 +52,14 @@ double CommonTools::EgammaScaleFactorTool::getSF( Electron* el
   }
   return sf;
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double CommonTools::EgammaScaleFactorTool::getSFUncertainty( Electron* el
-                                                  , int set
-                                                  , int rel
-                                                  , int mode
-                                                  , int range
-                                                  )
+                                                           , int set
+                                                           , int rel
+                                                           , int mode
+                                                           , int range
+                                                           )
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   float sfUnc = 0.;
   if (!is_data() && c_do_scaling){
     float cl_et = el->getTlv().E()/cosh(el->cl_eta());
