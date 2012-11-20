@@ -5,10 +5,14 @@
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
 
 #include "ChargeFlip/chargeFlip.h"
 #include "LeptonTruthTools/RecoTruthMatch.h"
 #include "D3PDObjects/include/TruthD3PDObject.h"
+
 
 // =============================================================================
 namespace CommonTools
@@ -24,7 +28,12 @@ namespace CommonTools
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     void clear();
-    double getSF(int pdg_1,TLorentzVector* tlv_1, int pdg_2, TLorentzVector* tlv_2, TVector2* met_vector, const D3PDReader::TruthD3PDObject& mc, int syst);
+    double getSF(FLAVOR_CHANNEL flavor_channel
+		 , const std::vector<Electron*>& el
+		 , const std::vector<Muon*>& mu
+		 , const Met* met
+		 , const D3PDReader::TruthD3PDObject& mc
+		 , int syst);
     void BeginCycle();
     void PrepTruth(const D3PDReader::TruthD3PDObject& mc);
 

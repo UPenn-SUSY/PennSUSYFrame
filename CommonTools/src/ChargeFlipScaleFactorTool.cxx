@@ -67,11 +67,8 @@ void CommonTools::ChargeFlipScaleFactorTool::PrepTruth(const D3PDReader::TruthD3
       std::vector<int>* status_pointer = &status;
       std::vector<int> pdgId = stripConst(*(mc.mc_pdgId()));
       std::vector<int>* pdgId_pointer = &pdgId;
-      //std::cout<<"at vector of vectors parents: "<<std::endl;
       std::vector<vector<int> > parents = stripConstVector(*(mc.mc_parents()));
-      //std::cout<<"at vector of vecotrs children: "<<std::endl;
       std::vector<vector<int> > children = stripConstVector(*(mc.mc_children()));
-      //std::cout<<"done vectors of vecotrs"<<std::endl;
       
       std::vector<float> pt = stripConst(*(mc.mc_pt()));
       std::vector<float>* pt_pointer = &pt;
@@ -81,23 +78,10 @@ void CommonTools::ChargeFlipScaleFactorTool::PrepTruth(const D3PDReader::TruthD3
       std::vector<float>* phi_pointer = &phi;
       std::vector<float> m = stripConst(*(mc.mc_m()));
       std::vector<float>* m_pointer = &m;
-      
-      //std::cout<<"children after strip:"<<std::endl;
-      //   for (unsigned int index=0; index<children.size(); ++index)
-      //     {
-      //       std::cout<<"Index: "<<index<<" Size of the vector: "<<children.at(index).size()<<std::endl;
-      //     }
-      
+ 
       std::vector<vector<int> >* parent_pointer = &parents;
       std::vector<vector<int> >* children_pointer = &children;
       
-      //  for (unsigned int index=0; index<children_pointer->size(); ++index)
-      //    {
-      //      std::cout<<"Index: "<<index<<" Size of the vector: "<<children_pointer->at(index).size()<<std::endl;
-      //    }
-      
-
-      //  std::cout<<"pdg_size: "<<pdgId_pointer->size()<<std::endl;
       m_reco_truth_match = new RecoTruthMatch(dR, mc.mc_channel_number(), mc.mc_n(),
 					      barcode_pointer,status_pointer,pdgId_pointer,
 					      parent_pointer, children_pointer, 
@@ -112,22 +96,59 @@ void CommonTools::ChargeFlipScaleFactorTool::PrepTruth(const D3PDReader::TruthD3
 }
 
 // ---------------------------------------------------------------------------
-double CommonTools::ChargeFlipScaleFactorTool::getSF(int pdg_1,TLorentzVector* tlv_1, int pdg_2, TLorentzVector* tlv_2, TVector2* met_vector, const D3PDReader::TruthD3PDObject& mc, int syst)
+double CommonTools::ChargeFlipScaleFactorTool::getSF(FLAVOR_CHANNEL flavor_channel
+						     , const std::vector<Electron*>& el
+						     , const std::vector<Muon*>& mu
+						     , const Met* met
+						     , const D3PDReader::TruthD3PDObject& mc 
+						     , int syst)
 {
   if (!m_is_cached) {
     m_charge_flip_sf = 1.;
+
+
+    TVector2 met_vector = met->getMetRefFinalVec();
+    TVector2* met_vector_ptr = &met_vector;
+
+    if(flavor_channel == FLAVOR_MM)      
+      {
+	m_charge_flip_sf = 0;
+      }
+    else if(flavor_channel == FLAVOR_EE)
+      {
+	TLorentzVector tlv_1 = el.at(0)->getTlv();
+	TLorentzVector tlv_2 = el.at(1)->getTlv();
+	TLorentzVector* tlv_1_ptr = &tlv_1;
+	TLorentzVector* tlv_2_ptr = &tlv_2;
+
+	int pdg_1=11;
+	int pdg_2=11;
+
+	m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, met_vector_ptr,syst);
+	double overlap_corr =  m_charge_flip->overlapFrac().first;
+	m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
+      }
+    else if(flavor_channel == FLAVOR_EM)
+      {
+	TLorentzVector tlv_1 = el.at(0)->getTlv();
+	TLorentzVector tlv_2 = mu.at(0)->getTlv();
+	TLorentzVector* tlv_1_ptr = &tlv_1;
+	TLorentzVector* tlv_2_ptr = &tlv_2;
+
+	int pdg_1=11;
+	int pdg_2=13;
+
+	m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, met_vector_ptr,syst);
+	double overlap_corr =  m_charge_flip->overlapFrac().first;
+	m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
+ 
+      }
     
-    m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1, tlv_1, pdg_2, tlv_2, met_vector,syst);
-    double overlap_corr =  m_charge_flip->overlapFrac().first;
-
     
-    m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
-
-
     m_is_cached = true;
     m_logger << VERBOSE << "b-tag sf: " << m_charge_flip_sf << SLogger::endmsg;
   }
-
+  
 
   return m_charge_flip_sf;
 }
