@@ -61,7 +61,7 @@ namespace CommonTools
     std::vector<double>       m_mu_ptcone40;
 
 
-    std::vector<unsigned int> m_mu_desc;
+    std::vector<ull_t> m_mu_desc;
 
 
     // Detailed Variables to output only if configured to 

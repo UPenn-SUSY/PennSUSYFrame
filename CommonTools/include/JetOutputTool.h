@@ -50,7 +50,7 @@ namespace CommonTools
     std::vector<double>       m_jet_bjet_mv1;
     std::vector<double>       m_jet_dr_signal_lep;
     std::vector<double>       m_jet_jvf;
-    std::vector<unsigned int> m_jet_desc;
+    std::vector<ull_t> m_jet_desc;
 
 
  

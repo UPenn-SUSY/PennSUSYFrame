@@ -30,6 +30,7 @@
 #pragma link C++ class CommonTools::MuonScaleFactorTool+;
 #pragma link C++ class CommonTools::PileUpScaleFactorTool+;
 //#pragma link C++ class CommonTools::TriggerReweightTool+;
+#pragma link C++ class CommonTools::ChargeFlipScaleFactorTool+;
 
 #pragma link C++ class CommonTools::EventOutputTool+;
 #pragma link C++ class CommonTools::ElectronOutputTool+;

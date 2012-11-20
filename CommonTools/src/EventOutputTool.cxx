@@ -137,4 +137,13 @@ void CommonTools::EventOutputTool::fillOutput( Event* event
   m_mll  = event->getMll();
   m_ptll = event->getPtll();
   m_mt2  = event->getMt2();
+
+
+//  m_fake_weight = ;
+//  m_fake_weight_min =;
+//  m_fake_weight_max =;
+//
+//  m_charge_flip_weight = ;
+//  m_charge_flip_weight_min =;
+//  m_charge_flip_weight_max =;
 }

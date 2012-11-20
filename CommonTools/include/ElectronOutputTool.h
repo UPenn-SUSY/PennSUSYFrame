@@ -62,7 +62,7 @@ namespace CommonTools
     std::vector<double>          m_el_z0_sin_theta;
     std::vector<int>             m_el_charge;
     std::vector<double>          m_el_cf_smeared_pt;   
-    std::vector<unsigned int>    m_el_desc;
+    std::vector<ull_t>    m_el_desc;
 
    
     // Detailed Variables to output only if configured to 

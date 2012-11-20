@@ -17,6 +17,7 @@ INCLUDES += -I../RootCore/MissingETUtility/
 INCLUDES += -I../RootCore/MuonMomentumCorrections/
 INCLUDES += -I../RootCore/egammaAnalysisUtils/
 INCLUDES += -I../RootCore/LeptonTruthTools/
+INCLUDES += -I../RootCore/ChargeFlip/
 // INCLUDES += -I../RootCore/egammaAnalysisUtils/
 INCLUDES += -I../RootCore/egammaEvent/
 
