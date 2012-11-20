@@ -214,5 +214,6 @@ TriggerReweight:
 
 BTagScaleFactor:
   do_b_tag_sf:  True
-  calib_file:   ${ROOTCOREDIR}/../SUSYTools/data/BTagCalibration_JVF.env
+  #calib_file:   ${ROOTCOREDIR}/../SUSYTools/data/BTagCalibration_JVF.env
+  calib_file:   ${ROOTCOREDIR}/../SUSYTools/data/BTagCalibration.env
   calib_folder: ${ROOTCOREDIR}/../SUSYTools/data/

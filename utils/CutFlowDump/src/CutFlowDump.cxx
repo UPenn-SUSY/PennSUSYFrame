@@ -482,7 +482,7 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   // SR3 same flavor
   bool is_sf = (  evt_desc.getFlavorChannel() == FLAVOR_EE
                || evt_desc.getFlavorChannel() == FLAVOR_MM
-               // || true
+               || true
                );
   pass_sr3 = (pass_sr3 && is_sf);
   if (pass_sr3)

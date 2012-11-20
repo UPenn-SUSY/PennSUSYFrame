@@ -43,10 +43,12 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
       for (size_t jet_it=0; jet_it != jet_size; ++jet_it) {
         TLorentzVector jet_tlv = jets.at(jet_it)->getTlv();
 
+        if (jet_tlv.Pt() < 20000. || fabs(jet_tlv.Eta()) > 2.5) continue;
+
         pt_btag.push_back(jet_tlv.Pt());
         eta_btag.push_back(jet_tlv.Eta());
         val_btag.push_back(jets.at(jet_it)->flavor_weight_MV1());
-        pdgid_btag.push_back(0);// sasa (jet_it->flavor_truth_label());
+        pdgid_btag.push_back(jets.at(jet_it)->flavor_truth_label());
       }
 
       std::pair<std::vector<float>, std::vector<float> > wgtbtag;
@@ -55,6 +57,8 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
                                                   , val_btag
                                                   , pdgid_btag
                                                   , "MV1"
+                                                  // , "0_980"
+                                                  // , 0.980
                                                   , "0_122"
                                                   , 0.122
                                                   , c_calibration_file
