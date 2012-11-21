@@ -41,15 +41,15 @@ namespace D3PDReader {
         convFlag( parent.convFlag, index, this ),
         isConv( parent.isConv, index, this ),
         nConv( parent.nConv, index, this ),
-        nSingleTrackConv( parent.nSingleTrackConv, index, this ),
-        nDoubleTrackConv( parent.nDoubleTrackConv, index, this ),
-        maxEcell_time( parent.maxEcell_time, index, this ),
-        maxEcell_energy( parent.maxEcell_energy, index, this ),
-        maxEcell_onlId( parent.maxEcell_onlId, index, this ),
-        maxEcell_gain( parent.maxEcell_gain, index, this ),
-        maxEcell_x( parent.maxEcell_x, index, this ),
-        maxEcell_y( parent.maxEcell_y, index, this ),
-        maxEcell_z( parent.maxEcell_z, index, this ),
+// -- slimmed --         nSingleTrackConv( parent.nSingleTrackConv, index, this ),
+// -- slimmed --         nDoubleTrackConv( parent.nDoubleTrackConv, index, this ),
+// -- slimmed --         maxEcell_time( parent.maxEcell_time, index, this ),
+// -- slimmed --         maxEcell_energy( parent.maxEcell_energy, index, this ),
+// -- slimmed --         maxEcell_onlId( parent.maxEcell_onlId, index, this ),
+// -- slimmed --         maxEcell_gain( parent.maxEcell_gain, index, this ),
+// -- slimmed --         maxEcell_x( parent.maxEcell_x, index, this ),
+// -- slimmed --         maxEcell_y( parent.maxEcell_y, index, this ),
+// -- slimmed --         maxEcell_z( parent.maxEcell_z, index, this ),
 // MC only
         type( parent.type, index, this ),
         origin( parent.origin, index, this ),
@@ -68,22 +68,22 @@ namespace D3PDReader {
         truth_index( parent.truth_index, index, this ),
         truth_matched( parent.truth_matched, index, this ),
 // end MC only
-        mediumWithoutTrack( parent.mediumWithoutTrack, index, this ),
-        mediumIsoWithoutTrack( parent.mediumIsoWithoutTrack, index, this ),
-        tightWithoutTrack( parent.tightWithoutTrack, index, this ),
-        tightIsoWithoutTrack( parent.tightIsoWithoutTrack, index, this ),
-        loose( parent.loose, index, this ),
-        looseIso( parent.looseIso, index, this ),
-        medium( parent.medium, index, this ),
-        mediumIso( parent.mediumIso, index, this ),
-        tight( parent.tight, index, this ),
-        tightIso( parent.tightIso, index, this ),
+// -- slimmed --         mediumWithoutTrack( parent.mediumWithoutTrack, index, this ),
+// -- slimmed -- // -- slimmed --         mediumIsoWithoutTrack( parent.mediumIsoWithoutTrack, index, this ),
+// -- slimmed --         tightWithoutTrack( parent.tightWithoutTrack, index, this ),
+// -- slimmed -- // -- slimmed --         tightIsoWithoutTrack( parent.tightIsoWithoutTrack, index, this ),
+// -- slimmed --         loose( parent.loose, index, this ),
+// -- slimmed --         looseIso( parent.looseIso, index, this ),
+// -- slimmed --         medium( parent.medium, index, this ),
+// -- slimmed --         mediumIso( parent.mediumIso, index, this ),
+// -- slimmed --         tight( parent.tight, index, this ),
+// -- slimmed --         tightIso( parent.tightIso, index, this ),
         loosePP( parent.loosePP, index, this ),
-        loosePPIso( parent.loosePPIso, index, this ),
+// -- slimmed --         loosePPIso( parent.loosePPIso, index, this ),
         mediumPP( parent.mediumPP, index, this ),
-        mediumPPIso( parent.mediumPPIso, index, this ),
+// -- slimmed --         mediumPPIso( parent.mediumPPIso, index, this ),
         tightPP( parent.tightPP, index, this ),
-        tightPPIso( parent.tightPPIso, index, this ),
+// -- slimmed --         tightPPIso( parent.tightPPIso, index, this ),
         goodOQ( parent.goodOQ, index, this ),
         Ethad( parent.Ethad, index, this ),
         Ethad1( parent.Ethad1, index, this ),
@@ -260,10 +260,10 @@ namespace D3PDReader {
         nucone20_trk500MeV( parent.nucone20_trk500MeV, index, this ),
         nucone30_trk500MeV( parent.nucone30_trk500MeV, index, this ),
         nucone40_trk500MeV( parent.nucone40_trk500MeV, index, this ),
-        MET_Simplified20_wpx( parent.MET_Simplified20_wpx, index, this ),
-        MET_Simplified20_wpy( parent.MET_Simplified20_wpy, index, this ),
-        MET_Simplified20_wet( parent.MET_Simplified20_wet, index, this ),
-        MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord, index, this ),
+// -- slimmed --         MET_Simplified20_wpx( parent.MET_Simplified20_wpx, index, this ),
+// -- slimmed --         MET_Simplified20_wpy( parent.MET_Simplified20_wpy, index, this ),
+// -- slimmed --         MET_Simplified20_wet( parent.MET_Simplified20_wet, index, this ),
+// -- slimmed --         MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord, index, this ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx, index, this ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy, index, this ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet, index, this ),
@@ -272,18 +272,18 @@ namespace D3PDReader {
         MET_Egamma10NoTau_STVF_wpy( parent.MET_Egamma10NoTau_STVF_wpy, index, this ),
         MET_Egamma10NoTau_STVF_wet( parent.MET_Egamma10NoTau_STVF_wet, index, this ),
         MET_Egamma10NoTau_STVF_statusWord( parent.MET_Egamma10NoTau_STVF_statusWord, index, this ),
-        MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx, index, this ),
-        MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy, index, this ),
-        MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet, index, this ),
-        MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord, index, this ),
-        MET_wpx( parent.MET_wpx, index, this ),
-        MET_wpy( parent.MET_wpy, index, this ),
-        MET_wet( parent.MET_wet, index, this ),
-        MET_statusWord( parent.MET_statusWord, index, this ),
-        MET_STVF_wpx( parent.MET_STVF_wpx, index, this ),
-        MET_STVF_wpy( parent.MET_STVF_wpy, index, this ),
-        MET_STVF_wet( parent.MET_STVF_wet, index, this ),
-        MET_STVF_statusWord( parent.MET_STVF_statusWord, index, this ) , 
+// -- slimmed --         MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx, index, this ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy, index, this ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet, index, this ),
+// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord, index, this ),
+// -- slimmed --         MET_wpx( parent.MET_wpx, index, this ),
+// -- slimmed --         MET_wpy( parent.MET_wpy, index, this ),
+// -- slimmed --         MET_wet( parent.MET_wet, index, this ),
+// -- slimmed --         MET_statusWord( parent.MET_statusWord, index, this ),
+// -- slimmed --         MET_STVF_wpx( parent.MET_STVF_wpx, index, this ),
+// -- slimmed --         MET_STVF_wpy( parent.MET_STVF_wpy, index, this ),
+// -- slimmed --         MET_STVF_wet( parent.MET_STVF_wet, index, this ),
+// -- slimmed --         MET_STVF_statusWord( parent.MET_STVF_statusWord, index, this ) , 
 is_data(is_data) {
 
    }
@@ -317,15 +317,15 @@ is_data(is_data) {
         convFlag( parent.convFlag ),
         isConv( parent.isConv ),
         nConv( parent.nConv ),
-        nSingleTrackConv( parent.nSingleTrackConv ),
-        nDoubleTrackConv( parent.nDoubleTrackConv ),
-        maxEcell_time( parent.maxEcell_time ),
-        maxEcell_energy( parent.maxEcell_energy ),
-        maxEcell_onlId( parent.maxEcell_onlId ),
-        maxEcell_gain( parent.maxEcell_gain ),
-        maxEcell_x( parent.maxEcell_x ),
-        maxEcell_y( parent.maxEcell_y ),
-        maxEcell_z( parent.maxEcell_z ),
+// -- slimmed --         nSingleTrackConv( parent.nSingleTrackConv ),
+// -- slimmed --         nDoubleTrackConv( parent.nDoubleTrackConv ),
+// -- slimmed --         maxEcell_time( parent.maxEcell_time ),
+// -- slimmed --         maxEcell_energy( parent.maxEcell_energy ),
+// -- slimmed --         maxEcell_onlId( parent.maxEcell_onlId ),
+// -- slimmed --         maxEcell_gain( parent.maxEcell_gain ),
+// -- slimmed --         maxEcell_x( parent.maxEcell_x ),
+// -- slimmed --         maxEcell_y( parent.maxEcell_y ),
+// -- slimmed --         maxEcell_z( parent.maxEcell_z ),
 // MC only
         type( parent.type ),
         origin( parent.origin ),
@@ -344,22 +344,22 @@ is_data(is_data) {
         truth_index( parent.truth_index ),
         truth_matched( parent.truth_matched ),
 // end MC only
-        mediumWithoutTrack( parent.mediumWithoutTrack ),
-        mediumIsoWithoutTrack( parent.mediumIsoWithoutTrack ),
-        tightWithoutTrack( parent.tightWithoutTrack ),
-        tightIsoWithoutTrack( parent.tightIsoWithoutTrack ),
-        loose( parent.loose ),
-        looseIso( parent.looseIso ),
-        medium( parent.medium ),
-        mediumIso( parent.mediumIso ),
-        tight( parent.tight ),
-        tightIso( parent.tightIso ),
+// -- slimmed --         mediumWithoutTrack( parent.mediumWithoutTrack ),
+// -- slimmed -- // -- slimmed --         mediumIsoWithoutTrack( parent.mediumIsoWithoutTrack ),
+// -- slimmed --         tightWithoutTrack( parent.tightWithoutTrack ),
+// -- slimmed -- // -- slimmed --         tightIsoWithoutTrack( parent.tightIsoWithoutTrack ),
+// -- slimmed --         loose( parent.loose ),
+// -- slimmed --         looseIso( parent.looseIso ),
+// -- slimmed --         medium( parent.medium ),
+// -- slimmed --         mediumIso( parent.mediumIso ),
+// -- slimmed --         tight( parent.tight ),
+// -- slimmed --         tightIso( parent.tightIso ),
         loosePP( parent.loosePP ),
-        loosePPIso( parent.loosePPIso ),
+// -- slimmed --         loosePPIso( parent.loosePPIso ),
         mediumPP( parent.mediumPP ),
-        mediumPPIso( parent.mediumPPIso ),
+// -- slimmed --         mediumPPIso( parent.mediumPPIso ),
         tightPP( parent.tightPP ),
-        tightPPIso( parent.tightPPIso ),
+// -- slimmed --         tightPPIso( parent.tightPPIso ),
         goodOQ( parent.goodOQ ),
         Ethad( parent.Ethad ),
         Ethad1( parent.Ethad1 ),
@@ -536,10 +536,10 @@ is_data(is_data) {
         nucone20_trk500MeV( parent.nucone20_trk500MeV ),
         nucone30_trk500MeV( parent.nucone30_trk500MeV ),
         nucone40_trk500MeV( parent.nucone40_trk500MeV ),
-        MET_Simplified20_wpx( parent.MET_Simplified20_wpx ),
-        MET_Simplified20_wpy( parent.MET_Simplified20_wpy ),
-        MET_Simplified20_wet( parent.MET_Simplified20_wet ),
-        MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord ),
+// -- slimmed --         MET_Simplified20_wpx( parent.MET_Simplified20_wpx ),
+// -- slimmed --         MET_Simplified20_wpy( parent.MET_Simplified20_wpy ),
+// -- slimmed --         MET_Simplified20_wet( parent.MET_Simplified20_wet ),
+// -- slimmed --         MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet ),
@@ -548,18 +548,18 @@ is_data(is_data) {
         MET_Egamma10NoTau_STVF_wpy( parent.MET_Egamma10NoTau_STVF_wpy ),
         MET_Egamma10NoTau_STVF_wet( parent.MET_Egamma10NoTau_STVF_wet ),
         MET_Egamma10NoTau_STVF_statusWord( parent.MET_Egamma10NoTau_STVF_statusWord ),
-        MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx ),
-        MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy ),
-        MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet ),
-        MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord ),
-        MET_wpx( parent.MET_wpx ),
-        MET_wpy( parent.MET_wpy ),
-        MET_wet( parent.MET_wet ),
-        MET_statusWord( parent.MET_statusWord ),
-        MET_STVF_wpx( parent.MET_STVF_wpx ),
-        MET_STVF_wpy( parent.MET_STVF_wpy ),
-        MET_STVF_wet( parent.MET_STVF_wet ),
-        MET_STVF_statusWord( parent.MET_STVF_statusWord ) , 
+// -- slimmed --         MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet ),
+// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord ),
+// -- slimmed --         MET_wpx( parent.MET_wpx ),
+// -- slimmed --         MET_wpy( parent.MET_wpy ),
+// -- slimmed --         MET_wet( parent.MET_wet ),
+// -- slimmed --         MET_statusWord( parent.MET_statusWord ),
+// -- slimmed --         MET_STVF_wpx( parent.MET_STVF_wpx ),
+// -- slimmed --         MET_STVF_wpy( parent.MET_STVF_wpy ),
+// -- slimmed --         MET_STVF_wet( parent.MET_STVF_wet ),
+// -- slimmed --         MET_STVF_statusWord( parent.MET_STVF_statusWord ) , 
 is_data(is_data) {
 
    }
@@ -594,15 +594,15 @@ is_data(is_data) {
         convFlag( this, ::TString( prefix ) + "convFlag", &master ),
         isConv( this, ::TString( prefix ) + "isConv", &master ),
         nConv( this, ::TString( prefix ) + "nConv", &master ),
-        nSingleTrackConv( this, ::TString( prefix ) + "nSingleTrackConv", &master ),
-        nDoubleTrackConv( this, ::TString( prefix ) + "nDoubleTrackConv", &master ),
-        maxEcell_time( this, ::TString( prefix ) + "maxEcell_time", &master ),
-        maxEcell_energy( this, ::TString( prefix ) + "maxEcell_energy", &master ),
-        maxEcell_onlId( this, ::TString( prefix ) + "maxEcell_onlId", &master ),
-        maxEcell_gain( this, ::TString( prefix ) + "maxEcell_gain", &master ),
-        maxEcell_x( this, ::TString( prefix ) + "maxEcell_x", &master ),
-        maxEcell_y( this, ::TString( prefix ) + "maxEcell_y", &master ),
-        maxEcell_z( this, ::TString( prefix ) + "maxEcell_z", &master ),
+// -- slimmed --         nSingleTrackConv( this, ::TString( prefix ) + "nSingleTrackConv", &master ),
+// -- slimmed --         nDoubleTrackConv( this, ::TString( prefix ) + "nDoubleTrackConv", &master ),
+// -- slimmed --         maxEcell_time( this, ::TString( prefix ) + "maxEcell_time", &master ),
+// -- slimmed --         maxEcell_energy( this, ::TString( prefix ) + "maxEcell_energy", &master ),
+// -- slimmed --         maxEcell_onlId( this, ::TString( prefix ) + "maxEcell_onlId", &master ),
+// -- slimmed --         maxEcell_gain( this, ::TString( prefix ) + "maxEcell_gain", &master ),
+// -- slimmed --         maxEcell_x( this, ::TString( prefix ) + "maxEcell_x", &master ),
+// -- slimmed --         maxEcell_y( this, ::TString( prefix ) + "maxEcell_y", &master ),
+// -- slimmed --         maxEcell_z( this, ::TString( prefix ) + "maxEcell_z", &master ),
 // MC only
         type( this, ::TString( prefix ) + "type", &master ),
         origin( this, ::TString( prefix ) + "origin", &master ),
@@ -621,22 +621,22 @@ is_data(is_data) {
         truth_index( this, ::TString( prefix ) + "truth_index", &master ),
         truth_matched( this, ::TString( prefix ) + "truth_matched", &master ),
 // end MC only
-        mediumWithoutTrack( this, ::TString( prefix ) + "mediumWithoutTrack", &master ),
-        mediumIsoWithoutTrack( this, ::TString( prefix ) + "mediumIsoWithoutTrack", &master ),
-        tightWithoutTrack( this, ::TString( prefix ) + "tightWithoutTrack", &master ),
-        tightIsoWithoutTrack( this, ::TString( prefix ) + "tightIsoWithoutTrack", &master ),
-        loose( this, ::TString( prefix ) + "loose", &master ),
-        looseIso( this, ::TString( prefix ) + "looseIso", &master ),
-        medium( this, ::TString( prefix ) + "medium", &master ),
-        mediumIso( this, ::TString( prefix ) + "mediumIso", &master ),
-        tight( this, ::TString( prefix ) + "tight", &master ),
-        tightIso( this, ::TString( prefix ) + "tightIso", &master ),
+// -- slimmed --         mediumWithoutTrack( this, ::TString( prefix ) + "mediumWithoutTrack", &master ),
+// -- slimmed -- // -- slimmed --         mediumIsoWithoutTrack( this, ::TString( prefix ) + "mediumIsoWithoutTrack", &master ),
+// -- slimmed --         tightWithoutTrack( this, ::TString( prefix ) + "tightWithoutTrack", &master ),
+// -- slimmed -- // -- slimmed --         tightIsoWithoutTrack( this, ::TString( prefix ) + "tightIsoWithoutTrack", &master ),
+// -- slimmed --         loose( this, ::TString( prefix ) + "loose", &master ),
+// -- slimmed --         looseIso( this, ::TString( prefix ) + "looseIso", &master ),
+// -- slimmed --         medium( this, ::TString( prefix ) + "medium", &master ),
+// -- slimmed --         mediumIso( this, ::TString( prefix ) + "mediumIso", &master ),
+// -- slimmed --         tight( this, ::TString( prefix ) + "tight", &master ),
+// -- slimmed --         tightIso( this, ::TString( prefix ) + "tightIso", &master ),
         loosePP( this, ::TString( prefix ) + "loosePP", &master ),
-        loosePPIso( this, ::TString( prefix ) + "loosePPIso", &master ),
+// -- slimmed --         loosePPIso( this, ::TString( prefix ) + "loosePPIso", &master ),
         mediumPP( this, ::TString( prefix ) + "mediumPP", &master ),
-        mediumPPIso( this, ::TString( prefix ) + "mediumPPIso", &master ),
+// -- slimmed --         mediumPPIso( this, ::TString( prefix ) + "mediumPPIso", &master ),
         tightPP( this, ::TString( prefix ) + "tightPP", &master ),
-        tightPPIso( this, ::TString( prefix ) + "tightPPIso", &master ),
+// -- slimmed --         tightPPIso( this, ::TString( prefix ) + "tightPPIso", &master ),
         goodOQ( this, ::TString( prefix ) + "goodOQ", &master ),
         Ethad( this, ::TString( prefix ) + "Ethad", &master ),
         Ethad1( this, ::TString( prefix ) + "Ethad1", &master ),
@@ -813,10 +813,10 @@ is_data(is_data) {
         nucone20_trk500MeV( this, ::TString( prefix ) + "nucone20_trk500MeV", &master ),
         nucone30_trk500MeV( this, ::TString( prefix ) + "nucone30_trk500MeV", &master ),
         nucone40_trk500MeV( this, ::TString( prefix ) + "nucone40_trk500MeV", &master ),
-        MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", &master ),
-        MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", &master ),
-        MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", &master ),
-        MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", &master ),
+// -- slimmed --         MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", &master ),
+// -- slimmed --         MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", &master ),
+// -- slimmed --         MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", &master ),
+// -- slimmed --         MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", &master ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", &master ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", &master ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", &master ),
@@ -825,18 +825,18 @@ is_data(is_data) {
         MET_Egamma10NoTau_STVF_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy", &master ),
         MET_Egamma10NoTau_STVF_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet", &master ),
         MET_Egamma10NoTau_STVF_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord", &master ),
-        MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", &master ),
-        MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", &master ),
-        MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", &master ),
-        MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", &master ),
-        MET_wpx( this, ::TString( prefix ) + "MET_wpx", &master ),
-        MET_wpy( this, ::TString( prefix ) + "MET_wpy", &master ),
-        MET_wet( this, ::TString( prefix ) + "MET_wet", &master ),
-        MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", &master ),
-        MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", &master ),
-        MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", &master ),
-        MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", &master ),
-        MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", &master ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", &master ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", &master ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", &master ),
+// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", &master ),
+// -- slimmed --         MET_wpx( this, ::TString( prefix ) + "MET_wpx", &master ),
+// -- slimmed --         MET_wpy( this, ::TString( prefix ) + "MET_wpy", &master ),
+// -- slimmed --         MET_wet( this, ::TString( prefix ) + "MET_wet", &master ),
+// -- slimmed --         MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", &master ),
+// -- slimmed --         MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", &master ),
+// -- slimmed --         MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", &master ),
+// -- slimmed --         MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", &master ),
+// -- slimmed --         MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", &master ),
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) , 
@@ -862,15 +862,15 @@ is_data(is_data) {
       fHandles[ "convFlag" ] = &convFlag;
       fHandles[ "isConv" ] = &isConv;
       fHandles[ "nConv" ] = &nConv;
-      fHandles[ "nSingleTrackConv" ] = &nSingleTrackConv;
-      fHandles[ "nDoubleTrackConv" ] = &nDoubleTrackConv;
-      fHandles[ "maxEcell_time" ] = &maxEcell_time;
-      fHandles[ "maxEcell_energy" ] = &maxEcell_energy;
-      fHandles[ "maxEcell_onlId" ] = &maxEcell_onlId;
-      fHandles[ "maxEcell_gain" ] = &maxEcell_gain;
-      fHandles[ "maxEcell_x" ] = &maxEcell_x;
-      fHandles[ "maxEcell_y" ] = &maxEcell_y;
-      fHandles[ "maxEcell_z" ] = &maxEcell_z;
+// -- slimmed --       fHandles[ "nSingleTrackConv" ] = &nSingleTrackConv;
+// -- slimmed --       fHandles[ "nDoubleTrackConv" ] = &nDoubleTrackConv;
+// -- slimmed --       fHandles[ "maxEcell_time" ] = &maxEcell_time;
+// -- slimmed --       fHandles[ "maxEcell_energy" ] = &maxEcell_energy;
+// -- slimmed --       fHandles[ "maxEcell_onlId" ] = &maxEcell_onlId;
+// -- slimmed --       fHandles[ "maxEcell_gain" ] = &maxEcell_gain;
+// -- slimmed --       fHandles[ "maxEcell_x" ] = &maxEcell_x;
+// -- slimmed --       fHandles[ "maxEcell_y" ] = &maxEcell_y;
+// -- slimmed --       fHandles[ "maxEcell_z" ] = &maxEcell_z;
 if (!is_data) {
       fHandles[ "type" ] = &type;
       fHandles[ "origin" ] = &origin;
@@ -889,22 +889,22 @@ if (!is_data) {
       fHandles[ "truth_index" ] = &truth_index;
       fHandles[ "truth_matched" ] = &truth_matched;
 } // end !is_data
-      fHandles[ "mediumWithoutTrack" ] = &mediumWithoutTrack;
-      fHandles[ "mediumIsoWithoutTrack" ] = &mediumIsoWithoutTrack;
-      fHandles[ "tightWithoutTrack" ] = &tightWithoutTrack;
-      fHandles[ "tightIsoWithoutTrack" ] = &tightIsoWithoutTrack;
-      fHandles[ "loose" ] = &loose;
-      fHandles[ "looseIso" ] = &looseIso;
-      fHandles[ "medium" ] = &medium;
-      fHandles[ "mediumIso" ] = &mediumIso;
-      fHandles[ "tight" ] = &tight;
-      fHandles[ "tightIso" ] = &tightIso;
+// -- slimmed --       fHandles[ "mediumWithoutTrack" ] = &mediumWithoutTrack;
+// -- slimmed -- // -- slimmed --       fHandles[ "mediumIsoWithoutTrack" ] = &mediumIsoWithoutTrack;
+// -- slimmed --       fHandles[ "tightWithoutTrack" ] = &tightWithoutTrack;
+// -- slimmed -- // -- slimmed --       fHandles[ "tightIsoWithoutTrack" ] = &tightIsoWithoutTrack;
+// -- slimmed --       fHandles[ "loose" ] = &loose;
+// -- slimmed --       fHandles[ "looseIso" ] = &looseIso;
+// -- slimmed --       fHandles[ "medium" ] = &medium;
+// -- slimmed --       fHandles[ "mediumIso" ] = &mediumIso;
+// -- slimmed --       fHandles[ "tight" ] = &tight;
+// -- slimmed --       fHandles[ "tightIso" ] = &tightIso;
       fHandles[ "loosePP" ] = &loosePP;
-      fHandles[ "loosePPIso" ] = &loosePPIso;
+// -- slimmed --       fHandles[ "loosePPIso" ] = &loosePPIso;
       fHandles[ "mediumPP" ] = &mediumPP;
-      fHandles[ "mediumPPIso" ] = &mediumPPIso;
+// -- slimmed --       fHandles[ "mediumPPIso" ] = &mediumPPIso;
       fHandles[ "tightPP" ] = &tightPP;
-      fHandles[ "tightPPIso" ] = &tightPPIso;
+// -- slimmed --       fHandles[ "tightPPIso" ] = &tightPPIso;
       fHandles[ "goodOQ" ] = &goodOQ;
       fHandles[ "Ethad" ] = &Ethad;
       fHandles[ "Ethad1" ] = &Ethad1;
@@ -1081,10 +1081,10 @@ if (!is_data) {
       fHandles[ "nucone20_trk500MeV" ] = &nucone20_trk500MeV;
       fHandles[ "nucone30_trk500MeV" ] = &nucone30_trk500MeV;
       fHandles[ "nucone40_trk500MeV" ] = &nucone40_trk500MeV;
-      fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
-      fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
-      fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
-      fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
+// -- slimmed --       fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
+// -- slimmed --       fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
+// -- slimmed --       fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
+// -- slimmed --       fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
@@ -1093,18 +1093,18 @@ if (!is_data) {
       fHandles[ "MET_Egamma10NoTau_STVF_wpy" ] = &MET_Egamma10NoTau_STVF_wpy;
       fHandles[ "MET_Egamma10NoTau_STVF_wet" ] = &MET_Egamma10NoTau_STVF_wet;
       fHandles[ "MET_Egamma10NoTau_STVF_statusWord" ] = &MET_Egamma10NoTau_STVF_statusWord;
-      fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
-      fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
-      fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
-      fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
-      fHandles[ "MET_wpx" ] = &MET_wpx;
-      fHandles[ "MET_wpy" ] = &MET_wpy;
-      fHandles[ "MET_wet" ] = &MET_wet;
-      fHandles[ "MET_statusWord" ] = &MET_statusWord;
-      fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
-      fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
-      fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
-      fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
+// -- slimmed --       fHandles[ "MET_wpx" ] = &MET_wpx;
+// -- slimmed --       fHandles[ "MET_wpy" ] = &MET_wpy;
+// -- slimmed --       fHandles[ "MET_wet" ] = &MET_wet;
+// -- slimmed --       fHandles[ "MET_statusWord" ] = &MET_statusWord;
+// -- slimmed --       fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
+// -- slimmed --       fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
+// -- slimmed --       fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
+// -- slimmed --       fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
    }
 
    /**
@@ -1136,15 +1136,15 @@ if (!is_data) {
         convFlag( this, ::TString( prefix ) + "convFlag", 0 ),
         isConv( this, ::TString( prefix ) + "isConv", 0 ),
         nConv( this, ::TString( prefix ) + "nConv", 0 ),
-        nSingleTrackConv( this, ::TString( prefix ) + "nSingleTrackConv", 0 ),
-        nDoubleTrackConv( this, ::TString( prefix ) + "nDoubleTrackConv", 0 ),
-        maxEcell_time( this, ::TString( prefix ) + "maxEcell_time", 0 ),
-        maxEcell_energy( this, ::TString( prefix ) + "maxEcell_energy", 0 ),
-        maxEcell_onlId( this, ::TString( prefix ) + "maxEcell_onlId", 0 ),
-        maxEcell_gain( this, ::TString( prefix ) + "maxEcell_gain", 0 ),
-        maxEcell_x( this, ::TString( prefix ) + "maxEcell_x", 0 ),
-        maxEcell_y( this, ::TString( prefix ) + "maxEcell_y", 0 ),
-        maxEcell_z( this, ::TString( prefix ) + "maxEcell_z", 0 ),
+// -- slimmed --         nSingleTrackConv( this, ::TString( prefix ) + "nSingleTrackConv", 0 ),
+// -- slimmed --         nDoubleTrackConv( this, ::TString( prefix ) + "nDoubleTrackConv", 0 ),
+// -- slimmed --         maxEcell_time( this, ::TString( prefix ) + "maxEcell_time", 0 ),
+// -- slimmed --         maxEcell_energy( this, ::TString( prefix ) + "maxEcell_energy", 0 ),
+// -- slimmed --         maxEcell_onlId( this, ::TString( prefix ) + "maxEcell_onlId", 0 ),
+// -- slimmed --         maxEcell_gain( this, ::TString( prefix ) + "maxEcell_gain", 0 ),
+// -- slimmed --         maxEcell_x( this, ::TString( prefix ) + "maxEcell_x", 0 ),
+// -- slimmed --         maxEcell_y( this, ::TString( prefix ) + "maxEcell_y", 0 ),
+// -- slimmed --         maxEcell_z( this, ::TString( prefix ) + "maxEcell_z", 0 ),
 // MC only
         type( this, ::TString( prefix ) + "type", 0 ),
         origin( this, ::TString( prefix ) + "origin", 0 ),
@@ -1163,22 +1163,22 @@ if (!is_data) {
         truth_index( this, ::TString( prefix ) + "truth_index", 0 ),
         truth_matched( this, ::TString( prefix ) + "truth_matched", 0 ),
 // end MC only
-        mediumWithoutTrack( this, ::TString( prefix ) + "mediumWithoutTrack", 0 ),
-        mediumIsoWithoutTrack( this, ::TString( prefix ) + "mediumIsoWithoutTrack", 0 ),
-        tightWithoutTrack( this, ::TString( prefix ) + "tightWithoutTrack", 0 ),
-        tightIsoWithoutTrack( this, ::TString( prefix ) + "tightIsoWithoutTrack", 0 ),
-        loose( this, ::TString( prefix ) + "loose", 0 ),
-        looseIso( this, ::TString( prefix ) + "looseIso", 0 ),
-        medium( this, ::TString( prefix ) + "medium", 0 ),
-        mediumIso( this, ::TString( prefix ) + "mediumIso", 0 ),
-        tight( this, ::TString( prefix ) + "tight", 0 ),
-        tightIso( this, ::TString( prefix ) + "tightIso", 0 ),
+// -- slimmed --         mediumWithoutTrack( this, ::TString( prefix ) + "mediumWithoutTrack", 0 ),
+// -- slimmed -- // -- slimmed --         mediumIsoWithoutTrack( this, ::TString( prefix ) + "mediumIsoWithoutTrack", 0 ),
+// -- slimmed --         tightWithoutTrack( this, ::TString( prefix ) + "tightWithoutTrack", 0 ),
+// -- slimmed -- // -- slimmed --         tightIsoWithoutTrack( this, ::TString( prefix ) + "tightIsoWithoutTrack", 0 ),
+// -- slimmed --         loose( this, ::TString( prefix ) + "loose", 0 ),
+// -- slimmed --         looseIso( this, ::TString( prefix ) + "looseIso", 0 ),
+// -- slimmed --         medium( this, ::TString( prefix ) + "medium", 0 ),
+// -- slimmed --         mediumIso( this, ::TString( prefix ) + "mediumIso", 0 ),
+// -- slimmed --         tight( this, ::TString( prefix ) + "tight", 0 ),
+// -- slimmed --         tightIso( this, ::TString( prefix ) + "tightIso", 0 ),
         loosePP( this, ::TString( prefix ) + "loosePP", 0 ),
-        loosePPIso( this, ::TString( prefix ) + "loosePPIso", 0 ),
+// -- slimmed --         loosePPIso( this, ::TString( prefix ) + "loosePPIso", 0 ),
         mediumPP( this, ::TString( prefix ) + "mediumPP", 0 ),
-        mediumPPIso( this, ::TString( prefix ) + "mediumPPIso", 0 ),
+// -- slimmed --         mediumPPIso( this, ::TString( prefix ) + "mediumPPIso", 0 ),
         tightPP( this, ::TString( prefix ) + "tightPP", 0 ),
-        tightPPIso( this, ::TString( prefix ) + "tightPPIso", 0 ),
+// -- slimmed --         tightPPIso( this, ::TString( prefix ) + "tightPPIso", 0 ),
         goodOQ( this, ::TString( prefix ) + "goodOQ", 0 ),
         Ethad( this, ::TString( prefix ) + "Ethad", 0 ),
         Ethad1( this, ::TString( prefix ) + "Ethad1", 0 ),
@@ -1355,10 +1355,10 @@ if (!is_data) {
         nucone20_trk500MeV( this, ::TString( prefix ) + "nucone20_trk500MeV", 0 ),
         nucone30_trk500MeV( this, ::TString( prefix ) + "nucone30_trk500MeV", 0 ),
         nucone40_trk500MeV( this, ::TString( prefix ) + "nucone40_trk500MeV", 0 ),
-        MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", 0 ),
-        MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", 0 ),
-        MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", 0 ),
-        MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", 0 ),
+// -- slimmed --         MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", 0 ),
+// -- slimmed --         MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", 0 ),
+// -- slimmed --         MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", 0 ),
+// -- slimmed --         MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", 0 ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", 0 ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", 0 ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", 0 ),
@@ -1367,18 +1367,18 @@ if (!is_data) {
         MET_Egamma10NoTau_STVF_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy", 0 ),
         MET_Egamma10NoTau_STVF_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet", 0 ),
         MET_Egamma10NoTau_STVF_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord", 0 ),
-        MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", 0 ),
-        MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", 0 ),
-        MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", 0 ),
-        MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", 0 ),
-        MET_wpx( this, ::TString( prefix ) + "MET_wpx", 0 ),
-        MET_wpy( this, ::TString( prefix ) + "MET_wpy", 0 ),
-        MET_wet( this, ::TString( prefix ) + "MET_wet", 0 ),
-        MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", 0 ),
-        MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", 0 ),
-        MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", 0 ),
-        MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", 0 ),
-        MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", 0 ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", 0 ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", 0 ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", 0 ),
+// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", 0 ),
+// -- slimmed --         MET_wpx( this, ::TString( prefix ) + "MET_wpx", 0 ),
+// -- slimmed --         MET_wpy( this, ::TString( prefix ) + "MET_wpy", 0 ),
+// -- slimmed --         MET_wet( this, ::TString( prefix ) + "MET_wet", 0 ),
+// -- slimmed --         MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", 0 ),
+// -- slimmed --         MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", 0 ),
+// -- slimmed --         MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", 0 ),
+// -- slimmed --         MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", 0 ),
+// -- slimmed --         MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) , 
@@ -1404,15 +1404,15 @@ is_data(is_data) {
       fHandles[ "convFlag" ] = &convFlag;
       fHandles[ "isConv" ] = &isConv;
       fHandles[ "nConv" ] = &nConv;
-      fHandles[ "nSingleTrackConv" ] = &nSingleTrackConv;
-      fHandles[ "nDoubleTrackConv" ] = &nDoubleTrackConv;
-      fHandles[ "maxEcell_time" ] = &maxEcell_time;
-      fHandles[ "maxEcell_energy" ] = &maxEcell_energy;
-      fHandles[ "maxEcell_onlId" ] = &maxEcell_onlId;
-      fHandles[ "maxEcell_gain" ] = &maxEcell_gain;
-      fHandles[ "maxEcell_x" ] = &maxEcell_x;
-      fHandles[ "maxEcell_y" ] = &maxEcell_y;
-      fHandles[ "maxEcell_z" ] = &maxEcell_z;
+// -- slimmed --       fHandles[ "nSingleTrackConv" ] = &nSingleTrackConv;
+// -- slimmed --       fHandles[ "nDoubleTrackConv" ] = &nDoubleTrackConv;
+// -- slimmed --       fHandles[ "maxEcell_time" ] = &maxEcell_time;
+// -- slimmed --       fHandles[ "maxEcell_energy" ] = &maxEcell_energy;
+// -- slimmed --       fHandles[ "maxEcell_onlId" ] = &maxEcell_onlId;
+// -- slimmed --       fHandles[ "maxEcell_gain" ] = &maxEcell_gain;
+// -- slimmed --       fHandles[ "maxEcell_x" ] = &maxEcell_x;
+// -- slimmed --       fHandles[ "maxEcell_y" ] = &maxEcell_y;
+// -- slimmed --       fHandles[ "maxEcell_z" ] = &maxEcell_z;
 if (!is_data) {
       fHandles[ "type" ] = &type;
       fHandles[ "origin" ] = &origin;
@@ -1431,22 +1431,22 @@ if (!is_data) {
       fHandles[ "truth_index" ] = &truth_index;
       fHandles[ "truth_matched" ] = &truth_matched;
 } // end !is_data
-      fHandles[ "mediumWithoutTrack" ] = &mediumWithoutTrack;
-      fHandles[ "mediumIsoWithoutTrack" ] = &mediumIsoWithoutTrack;
-      fHandles[ "tightWithoutTrack" ] = &tightWithoutTrack;
-      fHandles[ "tightIsoWithoutTrack" ] = &tightIsoWithoutTrack;
-      fHandles[ "loose" ] = &loose;
-      fHandles[ "looseIso" ] = &looseIso;
-      fHandles[ "medium" ] = &medium;
-      fHandles[ "mediumIso" ] = &mediumIso;
-      fHandles[ "tight" ] = &tight;
-      fHandles[ "tightIso" ] = &tightIso;
+// -- slimmed --       fHandles[ "mediumWithoutTrack" ] = &mediumWithoutTrack;
+// -- slimmed -- // -- slimmed --       fHandles[ "mediumIsoWithoutTrack" ] = &mediumIsoWithoutTrack;
+// -- slimmed --       fHandles[ "tightWithoutTrack" ] = &tightWithoutTrack;
+// -- slimmed -- // -- slimmed --       fHandles[ "tightIsoWithoutTrack" ] = &tightIsoWithoutTrack;
+// -- slimmed --       fHandles[ "loose" ] = &loose;
+// -- slimmed --       fHandles[ "looseIso" ] = &looseIso;
+// -- slimmed --       fHandles[ "medium" ] = &medium;
+// -- slimmed --       fHandles[ "mediumIso" ] = &mediumIso;
+// -- slimmed --       fHandles[ "tight" ] = &tight;
+// -- slimmed --       fHandles[ "tightIso" ] = &tightIso;
       fHandles[ "loosePP" ] = &loosePP;
-      fHandles[ "loosePPIso" ] = &loosePPIso;
+// -- slimmed --       fHandles[ "loosePPIso" ] = &loosePPIso;
       fHandles[ "mediumPP" ] = &mediumPP;
-      fHandles[ "mediumPPIso" ] = &mediumPPIso;
+// -- slimmed --       fHandles[ "mediumPPIso" ] = &mediumPPIso;
       fHandles[ "tightPP" ] = &tightPP;
-      fHandles[ "tightPPIso" ] = &tightPPIso;
+// -- slimmed --       fHandles[ "tightPPIso" ] = &tightPPIso;
       fHandles[ "goodOQ" ] = &goodOQ;
       fHandles[ "Ethad" ] = &Ethad;
       fHandles[ "Ethad1" ] = &Ethad1;
@@ -1623,10 +1623,10 @@ if (!is_data) {
       fHandles[ "nucone20_trk500MeV" ] = &nucone20_trk500MeV;
       fHandles[ "nucone30_trk500MeV" ] = &nucone30_trk500MeV;
       fHandles[ "nucone40_trk500MeV" ] = &nucone40_trk500MeV;
-      fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
-      fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
-      fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
-      fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
+// -- slimmed --       fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
+// -- slimmed --       fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
+// -- slimmed --       fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
+// -- slimmed --       fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
@@ -1635,18 +1635,18 @@ if (!is_data) {
       fHandles[ "MET_Egamma10NoTau_STVF_wpy" ] = &MET_Egamma10NoTau_STVF_wpy;
       fHandles[ "MET_Egamma10NoTau_STVF_wet" ] = &MET_Egamma10NoTau_STVF_wet;
       fHandles[ "MET_Egamma10NoTau_STVF_statusWord" ] = &MET_Egamma10NoTau_STVF_statusWord;
-      fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
-      fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
-      fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
-      fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
-      fHandles[ "MET_wpx" ] = &MET_wpx;
-      fHandles[ "MET_wpy" ] = &MET_wpy;
-      fHandles[ "MET_wet" ] = &MET_wet;
-      fHandles[ "MET_statusWord" ] = &MET_statusWord;
-      fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
-      fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
-      fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
-      fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
+// -- slimmed --       fHandles[ "MET_wpx" ] = &MET_wpx;
+// -- slimmed --       fHandles[ "MET_wpy" ] = &MET_wpy;
+// -- slimmed --       fHandles[ "MET_wet" ] = &MET_wet;
+// -- slimmed --       fHandles[ "MET_statusWord" ] = &MET_statusWord;
+// -- slimmed --       fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
+// -- slimmed --       fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
+// -- slimmed --       fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
+// -- slimmed --       fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
    }
 
    /**
@@ -1682,15 +1682,15 @@ if (!is_data) {
       convFlag.SetName( ::TString( prefix ) + "convFlag" );
       isConv.SetName( ::TString( prefix ) + "isConv" );
       nConv.SetName( ::TString( prefix ) + "nConv" );
-      nSingleTrackConv.SetName( ::TString( prefix ) + "nSingleTrackConv" );
-      nDoubleTrackConv.SetName( ::TString( prefix ) + "nDoubleTrackConv" );
-      maxEcell_time.SetName( ::TString( prefix ) + "maxEcell_time" );
-      maxEcell_energy.SetName( ::TString( prefix ) + "maxEcell_energy" );
-      maxEcell_onlId.SetName( ::TString( prefix ) + "maxEcell_onlId" );
-      maxEcell_gain.SetName( ::TString( prefix ) + "maxEcell_gain" );
-      maxEcell_x.SetName( ::TString( prefix ) + "maxEcell_x" );
-      maxEcell_y.SetName( ::TString( prefix ) + "maxEcell_y" );
-      maxEcell_z.SetName( ::TString( prefix ) + "maxEcell_z" );
+// -- slimmed --       nSingleTrackConv.SetName( ::TString( prefix ) + "nSingleTrackConv" );
+// -- slimmed --       nDoubleTrackConv.SetName( ::TString( prefix ) + "nDoubleTrackConv" );
+// -- slimmed --       maxEcell_time.SetName( ::TString( prefix ) + "maxEcell_time" );
+// -- slimmed --       maxEcell_energy.SetName( ::TString( prefix ) + "maxEcell_energy" );
+// -- slimmed --       maxEcell_onlId.SetName( ::TString( prefix ) + "maxEcell_onlId" );
+// -- slimmed --       maxEcell_gain.SetName( ::TString( prefix ) + "maxEcell_gain" );
+// -- slimmed --       maxEcell_x.SetName( ::TString( prefix ) + "maxEcell_x" );
+// -- slimmed --       maxEcell_y.SetName( ::TString( prefix ) + "maxEcell_y" );
+// -- slimmed --       maxEcell_z.SetName( ::TString( prefix ) + "maxEcell_z" );
 if (!is_data) {
       type.SetName( ::TString( prefix ) + "type" );
       origin.SetName( ::TString( prefix ) + "origin" );
@@ -1709,22 +1709,22 @@ if (!is_data) {
       truth_index.SetName( ::TString( prefix ) + "truth_index" );
       truth_matched.SetName( ::TString( prefix ) + "truth_matched" );
 } // end !is_data
-      mediumWithoutTrack.SetName( ::TString( prefix ) + "mediumWithoutTrack" );
-      mediumIsoWithoutTrack.SetName( ::TString( prefix ) + "mediumIsoWithoutTrack" );
-      tightWithoutTrack.SetName( ::TString( prefix ) + "tightWithoutTrack" );
-      tightIsoWithoutTrack.SetName( ::TString( prefix ) + "tightIsoWithoutTrack" );
-      loose.SetName( ::TString( prefix ) + "loose" );
-      looseIso.SetName( ::TString( prefix ) + "looseIso" );
-      medium.SetName( ::TString( prefix ) + "medium" );
-      mediumIso.SetName( ::TString( prefix ) + "mediumIso" );
-      tight.SetName( ::TString( prefix ) + "tight" );
-      tightIso.SetName( ::TString( prefix ) + "tightIso" );
+// -- slimmed --       mediumWithoutTrack.SetName( ::TString( prefix ) + "mediumWithoutTrack" );
+// -- slimmed -- // -- slimmed --       mediumIsoWithoutTrack.SetName( ::TString( prefix ) + "mediumIsoWithoutTrack" );
+// -- slimmed --       tightWithoutTrack.SetName( ::TString( prefix ) + "tightWithoutTrack" );
+// -- slimmed -- // -- slimmed --       tightIsoWithoutTrack.SetName( ::TString( prefix ) + "tightIsoWithoutTrack" );
+// -- slimmed --       loose.SetName( ::TString( prefix ) + "loose" );
+// -- slimmed --       looseIso.SetName( ::TString( prefix ) + "looseIso" );
+// -- slimmed --       medium.SetName( ::TString( prefix ) + "medium" );
+// -- slimmed --       mediumIso.SetName( ::TString( prefix ) + "mediumIso" );
+// -- slimmed --       tight.SetName( ::TString( prefix ) + "tight" );
+// -- slimmed --       tightIso.SetName( ::TString( prefix ) + "tightIso" );
       loosePP.SetName( ::TString( prefix ) + "loosePP" );
-      loosePPIso.SetName( ::TString( prefix ) + "loosePPIso" );
+// -- slimmed --       loosePPIso.SetName( ::TString( prefix ) + "loosePPIso" );
       mediumPP.SetName( ::TString( prefix ) + "mediumPP" );
-      mediumPPIso.SetName( ::TString( prefix ) + "mediumPPIso" );
+// -- slimmed --       mediumPPIso.SetName( ::TString( prefix ) + "mediumPPIso" );
       tightPP.SetName( ::TString( prefix ) + "tightPP" );
-      tightPPIso.SetName( ::TString( prefix ) + "tightPPIso" );
+// -- slimmed --       tightPPIso.SetName( ::TString( prefix ) + "tightPPIso" );
       goodOQ.SetName( ::TString( prefix ) + "goodOQ" );
       Ethad.SetName( ::TString( prefix ) + "Ethad" );
       Ethad1.SetName( ::TString( prefix ) + "Ethad1" );
@@ -1901,10 +1901,10 @@ if (!is_data) {
       nucone20_trk500MeV.SetName( ::TString( prefix ) + "nucone20_trk500MeV" );
       nucone30_trk500MeV.SetName( ::TString( prefix ) + "nucone30_trk500MeV" );
       nucone40_trk500MeV.SetName( ::TString( prefix ) + "nucone40_trk500MeV" );
-      MET_Simplified20_wpx.SetName( ::TString( prefix ) + "MET_Simplified20_wpx" );
-      MET_Simplified20_wpy.SetName( ::TString( prefix ) + "MET_Simplified20_wpy" );
-      MET_Simplified20_wet.SetName( ::TString( prefix ) + "MET_Simplified20_wet" );
-      MET_Simplified20_statusWord.SetName( ::TString( prefix ) + "MET_Simplified20_statusWord" );
+// -- slimmed --       MET_Simplified20_wpx.SetName( ::TString( prefix ) + "MET_Simplified20_wpx" );
+// -- slimmed --       MET_Simplified20_wpy.SetName( ::TString( prefix ) + "MET_Simplified20_wpy" );
+// -- slimmed --       MET_Simplified20_wet.SetName( ::TString( prefix ) + "MET_Simplified20_wet" );
+// -- slimmed --       MET_Simplified20_statusWord.SetName( ::TString( prefix ) + "MET_Simplified20_statusWord" );
       MET_Egamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpx" );
       MET_Egamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpy" );
       MET_Egamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wet" );
@@ -1913,18 +1913,18 @@ if (!is_data) {
       MET_Egamma10NoTau_STVF_wpy.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy" );
       MET_Egamma10NoTau_STVF_wet.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet" );
       MET_Egamma10NoTau_STVF_statusWord.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord" );
-      MET_LooseEgamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx" );
-      MET_LooseEgamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy" );
-      MET_LooseEgamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet" );
-      MET_LooseEgamma10NoTau_statusWord.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord" );
-      MET_wpx.SetName( ::TString( prefix ) + "MET_wpx" );
-      MET_wpy.SetName( ::TString( prefix ) + "MET_wpy" );
-      MET_wet.SetName( ::TString( prefix ) + "MET_wet" );
-      MET_statusWord.SetName( ::TString( prefix ) + "MET_statusWord" );
-      MET_STVF_wpx.SetName( ::TString( prefix ) + "MET_STVF_wpx" );
-      MET_STVF_wpy.SetName( ::TString( prefix ) + "MET_STVF_wpy" );
-      MET_STVF_wet.SetName( ::TString( prefix ) + "MET_STVF_wet" );
-      MET_STVF_statusWord.SetName( ::TString( prefix ) + "MET_STVF_statusWord" );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx" );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy" );
+// -- slimmed --       MET_LooseEgamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet" );
+// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord" );
+// -- slimmed --       MET_wpx.SetName( ::TString( prefix ) + "MET_wpx" );
+// -- slimmed --       MET_wpy.SetName( ::TString( prefix ) + "MET_wpy" );
+// -- slimmed --       MET_wet.SetName( ::TString( prefix ) + "MET_wet" );
+// -- slimmed --       MET_statusWord.SetName( ::TString( prefix ) + "MET_statusWord" );
+// -- slimmed --       MET_STVF_wpx.SetName( ::TString( prefix ) + "MET_STVF_wpx" );
+// -- slimmed --       MET_STVF_wpy.SetName( ::TString( prefix ) + "MET_STVF_wpy" );
+// -- slimmed --       MET_STVF_wet.SetName( ::TString( prefix ) + "MET_STVF_wet" );
+// -- slimmed --       MET_STVF_statusWord.SetName( ::TString( prefix ) + "MET_STVF_statusWord" );
       return;
    }
 
@@ -1963,15 +1963,15 @@ if (!is_data) {
       convFlag.ReadFrom( tree );
       isConv.ReadFrom( tree );
       nConv.ReadFrom( tree );
-      nSingleTrackConv.ReadFrom( tree );
-      nDoubleTrackConv.ReadFrom( tree );
-      maxEcell_time.ReadFrom( tree );
-      maxEcell_energy.ReadFrom( tree );
-      maxEcell_onlId.ReadFrom( tree );
-      maxEcell_gain.ReadFrom( tree );
-      maxEcell_x.ReadFrom( tree );
-      maxEcell_y.ReadFrom( tree );
-      maxEcell_z.ReadFrom( tree );
+// -- slimmed --       nSingleTrackConv.ReadFrom( tree );
+// -- slimmed --       nDoubleTrackConv.ReadFrom( tree );
+// -- slimmed --       maxEcell_time.ReadFrom( tree );
+// -- slimmed --       maxEcell_energy.ReadFrom( tree );
+// -- slimmed --       maxEcell_onlId.ReadFrom( tree );
+// -- slimmed --       maxEcell_gain.ReadFrom( tree );
+// -- slimmed --       maxEcell_x.ReadFrom( tree );
+// -- slimmed --       maxEcell_y.ReadFrom( tree );
+// -- slimmed --       maxEcell_z.ReadFrom( tree );
 if (!is_data) {
       type.ReadFrom( tree );
       origin.ReadFrom( tree );
@@ -1990,22 +1990,22 @@ if (!is_data) {
       truth_index.ReadFrom( tree );
       truth_matched.ReadFrom( tree );
 } // end !is_data
-      mediumWithoutTrack.ReadFrom( tree );
-      mediumIsoWithoutTrack.ReadFrom( tree );
-      tightWithoutTrack.ReadFrom( tree );
-      tightIsoWithoutTrack.ReadFrom( tree );
-      loose.ReadFrom( tree );
-      looseIso.ReadFrom( tree );
-      medium.ReadFrom( tree );
-      mediumIso.ReadFrom( tree );
-      tight.ReadFrom( tree );
-      tightIso.ReadFrom( tree );
+// -- slimmed --       mediumWithoutTrack.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       mediumIsoWithoutTrack.ReadFrom( tree );
+// -- slimmed --       tightWithoutTrack.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       tightIsoWithoutTrack.ReadFrom( tree );
+// -- slimmed --       loose.ReadFrom( tree );
+// -- slimmed --       looseIso.ReadFrom( tree );
+// -- slimmed --       medium.ReadFrom( tree );
+// -- slimmed --       mediumIso.ReadFrom( tree );
+// -- slimmed --       tight.ReadFrom( tree );
+// -- slimmed --       tightIso.ReadFrom( tree );
       loosePP.ReadFrom( tree );
-      loosePPIso.ReadFrom( tree );
+// -- slimmed --       loosePPIso.ReadFrom( tree );
       mediumPP.ReadFrom( tree );
-      mediumPPIso.ReadFrom( tree );
+// -- slimmed --       mediumPPIso.ReadFrom( tree );
       tightPP.ReadFrom( tree );
-      tightPPIso.ReadFrom( tree );
+// -- slimmed --       tightPPIso.ReadFrom( tree );
       goodOQ.ReadFrom( tree );
       Ethad.ReadFrom( tree );
       Ethad1.ReadFrom( tree );
@@ -2182,10 +2182,10 @@ if (!is_data) {
       nucone20_trk500MeV.ReadFrom( tree );
       nucone30_trk500MeV.ReadFrom( tree );
       nucone40_trk500MeV.ReadFrom( tree );
-      MET_Simplified20_wpx.ReadFrom( tree );
-      MET_Simplified20_wpy.ReadFrom( tree );
-      MET_Simplified20_wet.ReadFrom( tree );
-      MET_Simplified20_statusWord.ReadFrom( tree );
+// -- slimmed --       MET_Simplified20_wpx.ReadFrom( tree );
+// -- slimmed --       MET_Simplified20_wpy.ReadFrom( tree );
+// -- slimmed --       MET_Simplified20_wet.ReadFrom( tree );
+// -- slimmed --       MET_Simplified20_statusWord.ReadFrom( tree );
       MET_Egamma10NoTau_wpx.ReadFrom( tree );
       MET_Egamma10NoTau_wpy.ReadFrom( tree );
       MET_Egamma10NoTau_wet.ReadFrom( tree );
@@ -2194,18 +2194,18 @@ if (!is_data) {
       MET_Egamma10NoTau_STVF_wpy.ReadFrom( tree );
       MET_Egamma10NoTau_STVF_wet.ReadFrom( tree );
       MET_Egamma10NoTau_STVF_statusWord.ReadFrom( tree );
-      MET_LooseEgamma10NoTau_wpx.ReadFrom( tree );
-      MET_LooseEgamma10NoTau_wpy.ReadFrom( tree );
-      MET_LooseEgamma10NoTau_wet.ReadFrom( tree );
-      MET_LooseEgamma10NoTau_statusWord.ReadFrom( tree );
-      MET_wpx.ReadFrom( tree );
-      MET_wpy.ReadFrom( tree );
-      MET_wet.ReadFrom( tree );
-      MET_statusWord.ReadFrom( tree );
-      MET_STVF_wpx.ReadFrom( tree );
-      MET_STVF_wpy.ReadFrom( tree );
-      MET_STVF_wet.ReadFrom( tree );
-      MET_STVF_statusWord.ReadFrom( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpx.ReadFrom( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpy.ReadFrom( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wet.ReadFrom( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.ReadFrom( tree );
+// -- slimmed --       MET_wpx.ReadFrom( tree );
+// -- slimmed --       MET_wpy.ReadFrom( tree );
+// -- slimmed --       MET_wet.ReadFrom( tree );
+// -- slimmed --       MET_statusWord.ReadFrom( tree );
+// -- slimmed --       MET_STVF_wpx.ReadFrom( tree );
+// -- slimmed --       MET_STVF_wpy.ReadFrom( tree );
+// -- slimmed --       MET_STVF_wet.ReadFrom( tree );
+// -- slimmed --       MET_STVF_statusWord.ReadFrom( tree );
 
       return;
    }
@@ -2239,15 +2239,15 @@ if (!is_data) {
       convFlag.WriteTo( tree );
       isConv.WriteTo( tree );
       nConv.WriteTo( tree );
-      nSingleTrackConv.WriteTo( tree );
-      nDoubleTrackConv.WriteTo( tree );
-      maxEcell_time.WriteTo( tree );
-      maxEcell_energy.WriteTo( tree );
-      maxEcell_onlId.WriteTo( tree );
-      maxEcell_gain.WriteTo( tree );
-      maxEcell_x.WriteTo( tree );
-      maxEcell_y.WriteTo( tree );
-      maxEcell_z.WriteTo( tree );
+// -- slimmed --       nSingleTrackConv.WriteTo( tree );
+// -- slimmed --       nDoubleTrackConv.WriteTo( tree );
+// -- slimmed --       maxEcell_time.WriteTo( tree );
+// -- slimmed --       maxEcell_energy.WriteTo( tree );
+// -- slimmed --       maxEcell_onlId.WriteTo( tree );
+// -- slimmed --       maxEcell_gain.WriteTo( tree );
+// -- slimmed --       maxEcell_x.WriteTo( tree );
+// -- slimmed --       maxEcell_y.WriteTo( tree );
+// -- slimmed --       maxEcell_z.WriteTo( tree );
 if (!is_data) {
       type.WriteTo( tree );
       origin.WriteTo( tree );
@@ -2266,22 +2266,22 @@ if (!is_data) {
       truth_index.WriteTo( tree );
       truth_matched.WriteTo( tree );
 } // end !is_data
-      mediumWithoutTrack.WriteTo( tree );
-      mediumIsoWithoutTrack.WriteTo( tree );
-      tightWithoutTrack.WriteTo( tree );
-      tightIsoWithoutTrack.WriteTo( tree );
-      loose.WriteTo( tree );
-      looseIso.WriteTo( tree );
-      medium.WriteTo( tree );
-      mediumIso.WriteTo( tree );
-      tight.WriteTo( tree );
-      tightIso.WriteTo( tree );
+// -- slimmed --       mediumWithoutTrack.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       mediumIsoWithoutTrack.WriteTo( tree );
+// -- slimmed --       tightWithoutTrack.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       tightIsoWithoutTrack.WriteTo( tree );
+// -- slimmed --       loose.WriteTo( tree );
+// -- slimmed --       looseIso.WriteTo( tree );
+// -- slimmed --       medium.WriteTo( tree );
+// -- slimmed --       mediumIso.WriteTo( tree );
+// -- slimmed --       tight.WriteTo( tree );
+// -- slimmed --       tightIso.WriteTo( tree );
       loosePP.WriteTo( tree );
-      loosePPIso.WriteTo( tree );
+// -- slimmed --       loosePPIso.WriteTo( tree );
       mediumPP.WriteTo( tree );
-      mediumPPIso.WriteTo( tree );
+// -- slimmed --       mediumPPIso.WriteTo( tree );
       tightPP.WriteTo( tree );
-      tightPPIso.WriteTo( tree );
+// -- slimmed --       tightPPIso.WriteTo( tree );
       goodOQ.WriteTo( tree );
       Ethad.WriteTo( tree );
       Ethad1.WriteTo( tree );
@@ -2458,10 +2458,10 @@ if (!is_data) {
       nucone20_trk500MeV.WriteTo( tree );
       nucone30_trk500MeV.WriteTo( tree );
       nucone40_trk500MeV.WriteTo( tree );
-      MET_Simplified20_wpx.WriteTo( tree );
-      MET_Simplified20_wpy.WriteTo( tree );
-      MET_Simplified20_wet.WriteTo( tree );
-      MET_Simplified20_statusWord.WriteTo( tree );
+// -- slimmed --       MET_Simplified20_wpx.WriteTo( tree );
+// -- slimmed --       MET_Simplified20_wpy.WriteTo( tree );
+// -- slimmed --       MET_Simplified20_wet.WriteTo( tree );
+// -- slimmed --       MET_Simplified20_statusWord.WriteTo( tree );
       MET_Egamma10NoTau_wpx.WriteTo( tree );
       MET_Egamma10NoTau_wpy.WriteTo( tree );
       MET_Egamma10NoTau_wet.WriteTo( tree );
@@ -2470,18 +2470,18 @@ if (!is_data) {
       MET_Egamma10NoTau_STVF_wpy.WriteTo( tree );
       MET_Egamma10NoTau_STVF_wet.WriteTo( tree );
       MET_Egamma10NoTau_STVF_statusWord.WriteTo( tree );
-      MET_LooseEgamma10NoTau_wpx.WriteTo( tree );
-      MET_LooseEgamma10NoTau_wpy.WriteTo( tree );
-      MET_LooseEgamma10NoTau_wet.WriteTo( tree );
-      MET_LooseEgamma10NoTau_statusWord.WriteTo( tree );
-      MET_wpx.WriteTo( tree );
-      MET_wpy.WriteTo( tree );
-      MET_wet.WriteTo( tree );
-      MET_statusWord.WriteTo( tree );
-      MET_STVF_wpx.WriteTo( tree );
-      MET_STVF_wpy.WriteTo( tree );
-      MET_STVF_wet.WriteTo( tree );
-      MET_STVF_statusWord.WriteTo( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpx.WriteTo( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpy.WriteTo( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wet.WriteTo( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.WriteTo( tree );
+// -- slimmed --       MET_wpx.WriteTo( tree );
+// -- slimmed --       MET_wpy.WriteTo( tree );
+// -- slimmed --       MET_wet.WriteTo( tree );
+// -- slimmed --       MET_statusWord.WriteTo( tree );
+// -- slimmed --       MET_STVF_wpx.WriteTo( tree );
+// -- slimmed --       MET_STVF_wpy.WriteTo( tree );
+// -- slimmed --       MET_STVF_wet.WriteTo( tree );
+// -- slimmed --       MET_STVF_statusWord.WriteTo( tree );
 
       return;
    }
@@ -2552,15 +2552,15 @@ if (!is_data) {
       if( convFlag.IsActive() ) convFlag();
       if( isConv.IsActive() ) isConv();
       if( nConv.IsActive() ) nConv();
-      if( nSingleTrackConv.IsActive() ) nSingleTrackConv();
-      if( nDoubleTrackConv.IsActive() ) nDoubleTrackConv();
-      if( maxEcell_time.IsActive() ) maxEcell_time();
-      if( maxEcell_energy.IsActive() ) maxEcell_energy();
-      if( maxEcell_onlId.IsActive() ) maxEcell_onlId();
-      if( maxEcell_gain.IsActive() ) maxEcell_gain();
-      if( maxEcell_x.IsActive() ) maxEcell_x();
-      if( maxEcell_y.IsActive() ) maxEcell_y();
-      if( maxEcell_z.IsActive() ) maxEcell_z();
+// -- slimmed --       if( nSingleTrackConv.IsActive() ) nSingleTrackConv();
+// -- slimmed --       if( nDoubleTrackConv.IsActive() ) nDoubleTrackConv();
+// -- slimmed --       if( maxEcell_time.IsActive() ) maxEcell_time();
+// -- slimmed --       if( maxEcell_energy.IsActive() ) maxEcell_energy();
+// -- slimmed --       if( maxEcell_onlId.IsActive() ) maxEcell_onlId();
+// -- slimmed --       if( maxEcell_gain.IsActive() ) maxEcell_gain();
+// -- slimmed --       if( maxEcell_x.IsActive() ) maxEcell_x();
+// -- slimmed --       if( maxEcell_y.IsActive() ) maxEcell_y();
+// -- slimmed --       if( maxEcell_z.IsActive() ) maxEcell_z();
 if (!is_data) {
       if( type.IsActive() ) type();
       if( origin.IsActive() ) origin();
@@ -2579,22 +2579,22 @@ if (!is_data) {
       if( truth_index.IsActive() ) truth_index();
       if( truth_matched.IsActive() ) truth_matched();
 } // end !is_data
-      if( mediumWithoutTrack.IsActive() ) mediumWithoutTrack();
-      if( mediumIsoWithoutTrack.IsActive() ) mediumIsoWithoutTrack();
-      if( tightWithoutTrack.IsActive() ) tightWithoutTrack();
-      if( tightIsoWithoutTrack.IsActive() ) tightIsoWithoutTrack();
-      if( loose.IsActive() ) loose();
-      if( looseIso.IsActive() ) looseIso();
-      if( medium.IsActive() ) medium();
-      if( mediumIso.IsActive() ) mediumIso();
-      if( tight.IsActive() ) tight();
-      if( tightIso.IsActive() ) tightIso();
+// -- slimmed --       if( mediumWithoutTrack.IsActive() ) mediumWithoutTrack();
+// -- slimmed -- // -- slimmed --       if( mediumIsoWithoutTrack.IsActive() ) mediumIsoWithoutTrack();
+// -- slimmed --       if( tightWithoutTrack.IsActive() ) tightWithoutTrack();
+// -- slimmed -- // -- slimmed --       if( tightIsoWithoutTrack.IsActive() ) tightIsoWithoutTrack();
+// -- slimmed --       if( loose.IsActive() ) loose();
+// -- slimmed --       if( looseIso.IsActive() ) looseIso();
+// -- slimmed --       if( medium.IsActive() ) medium();
+// -- slimmed --       if( mediumIso.IsActive() ) mediumIso();
+// -- slimmed --       if( tight.IsActive() ) tight();
+// -- slimmed --       if( tightIso.IsActive() ) tightIso();
       if( loosePP.IsActive() ) loosePP();
-      if( loosePPIso.IsActive() ) loosePPIso();
+// -- slimmed --       if( loosePPIso.IsActive() ) loosePPIso();
       if( mediumPP.IsActive() ) mediumPP();
-      if( mediumPPIso.IsActive() ) mediumPPIso();
+// -- slimmed --       if( mediumPPIso.IsActive() ) mediumPPIso();
       if( tightPP.IsActive() ) tightPP();
-      if( tightPPIso.IsActive() ) tightPPIso();
+// -- slimmed --       if( tightPPIso.IsActive() ) tightPPIso();
       if( goodOQ.IsActive() ) goodOQ();
       if( Ethad.IsActive() ) Ethad();
       if( Ethad1.IsActive() ) Ethad1();
@@ -2771,10 +2771,10 @@ if (!is_data) {
       if( nucone20_trk500MeV.IsActive() ) nucone20_trk500MeV();
       if( nucone30_trk500MeV.IsActive() ) nucone30_trk500MeV();
       if( nucone40_trk500MeV.IsActive() ) nucone40_trk500MeV();
-      if( MET_Simplified20_wpx.IsActive() ) MET_Simplified20_wpx();
-      if( MET_Simplified20_wpy.IsActive() ) MET_Simplified20_wpy();
-      if( MET_Simplified20_wet.IsActive() ) MET_Simplified20_wet();
-      if( MET_Simplified20_statusWord.IsActive() ) MET_Simplified20_statusWord();
+// -- slimmed --       if( MET_Simplified20_wpx.IsActive() ) MET_Simplified20_wpx();
+// -- slimmed --       if( MET_Simplified20_wpy.IsActive() ) MET_Simplified20_wpy();
+// -- slimmed --       if( MET_Simplified20_wet.IsActive() ) MET_Simplified20_wet();
+// -- slimmed --       if( MET_Simplified20_statusWord.IsActive() ) MET_Simplified20_statusWord();
       if( MET_Egamma10NoTau_wpx.IsActive() ) MET_Egamma10NoTau_wpx();
       if( MET_Egamma10NoTau_wpy.IsActive() ) MET_Egamma10NoTau_wpy();
       if( MET_Egamma10NoTau_wet.IsActive() ) MET_Egamma10NoTau_wet();
@@ -2783,18 +2783,18 @@ if (!is_data) {
       if( MET_Egamma10NoTau_STVF_wpy.IsActive() ) MET_Egamma10NoTau_STVF_wpy();
       if( MET_Egamma10NoTau_STVF_wet.IsActive() ) MET_Egamma10NoTau_STVF_wet();
       if( MET_Egamma10NoTau_STVF_statusWord.IsActive() ) MET_Egamma10NoTau_STVF_statusWord();
-      if( MET_LooseEgamma10NoTau_wpx.IsActive() ) MET_LooseEgamma10NoTau_wpx();
-      if( MET_LooseEgamma10NoTau_wpy.IsActive() ) MET_LooseEgamma10NoTau_wpy();
-      if( MET_LooseEgamma10NoTau_wet.IsActive() ) MET_LooseEgamma10NoTau_wet();
-      if( MET_LooseEgamma10NoTau_statusWord.IsActive() ) MET_LooseEgamma10NoTau_statusWord();
-      if( MET_wpx.IsActive() ) MET_wpx();
-      if( MET_wpy.IsActive() ) MET_wpy();
-      if( MET_wet.IsActive() ) MET_wet();
-      if( MET_statusWord.IsActive() ) MET_statusWord();
-      if( MET_STVF_wpx.IsActive() ) MET_STVF_wpx();
-      if( MET_STVF_wpy.IsActive() ) MET_STVF_wpy();
-      if( MET_STVF_wet.IsActive() ) MET_STVF_wet();
-      if( MET_STVF_statusWord.IsActive() ) MET_STVF_statusWord();
+// -- slimmed --       if( MET_LooseEgamma10NoTau_wpx.IsActive() ) MET_LooseEgamma10NoTau_wpx();
+// -- slimmed --       if( MET_LooseEgamma10NoTau_wpy.IsActive() ) MET_LooseEgamma10NoTau_wpy();
+// -- slimmed --       if( MET_LooseEgamma10NoTau_wet.IsActive() ) MET_LooseEgamma10NoTau_wet();
+// -- slimmed --       if( MET_LooseEgamma10NoTau_statusWord.IsActive() ) MET_LooseEgamma10NoTau_statusWord();
+// -- slimmed --       if( MET_wpx.IsActive() ) MET_wpx();
+// -- slimmed --       if( MET_wpy.IsActive() ) MET_wpy();
+// -- slimmed --       if( MET_wet.IsActive() ) MET_wet();
+// -- slimmed --       if( MET_statusWord.IsActive() ) MET_statusWord();
+// -- slimmed --       if( MET_STVF_wpx.IsActive() ) MET_STVF_wpx();
+// -- slimmed --       if( MET_STVF_wpy.IsActive() ) MET_STVF_wpy();
+// -- slimmed --       if( MET_STVF_wet.IsActive() ) MET_STVF_wet();
+// -- slimmed --       if( MET_STVF_statusWord.IsActive() ) MET_STVF_statusWord();
 
       return;
    }
@@ -2837,15 +2837,15 @@ if (!is_data) {
       convFlag()->clear();
       isConv()->clear();
       nConv()->clear();
-      nSingleTrackConv()->clear();
-      nDoubleTrackConv()->clear();
-      maxEcell_time()->clear();
-      maxEcell_energy()->clear();
-      maxEcell_onlId()->clear();
-      maxEcell_gain()->clear();
-      maxEcell_x()->clear();
-      maxEcell_y()->clear();
-      maxEcell_z()->clear();
+// -- slimmed --       nSingleTrackConv()->clear();
+// -- slimmed --       nDoubleTrackConv()->clear();
+// -- slimmed --       maxEcell_time()->clear();
+// -- slimmed --       maxEcell_energy()->clear();
+// -- slimmed --       maxEcell_onlId()->clear();
+// -- slimmed --       maxEcell_gain()->clear();
+// -- slimmed --       maxEcell_x()->clear();
+// -- slimmed --       maxEcell_y()->clear();
+// -- slimmed --       maxEcell_z()->clear();
 if (!is_data) {
       type()->clear();
       origin()->clear();
@@ -2864,22 +2864,22 @@ if (!is_data) {
       truth_index()->clear();
       truth_matched()->clear();
 } // end !is_data
-      mediumWithoutTrack()->clear();
-      mediumIsoWithoutTrack()->clear();
-      tightWithoutTrack()->clear();
-      tightIsoWithoutTrack()->clear();
-      loose()->clear();
-      looseIso()->clear();
-      medium()->clear();
-      mediumIso()->clear();
-      tight()->clear();
-      tightIso()->clear();
+// -- slimmed --       mediumWithoutTrack()->clear();
+// -- slimmed -- // -- slimmed --       mediumIsoWithoutTrack()->clear();
+// -- slimmed --       tightWithoutTrack()->clear();
+// -- slimmed -- // -- slimmed --       tightIsoWithoutTrack()->clear();
+// -- slimmed --       loose()->clear();
+// -- slimmed --       looseIso()->clear();
+// -- slimmed --       medium()->clear();
+// -- slimmed --       mediumIso()->clear();
+// -- slimmed --       tight()->clear();
+// -- slimmed --       tightIso()->clear();
       loosePP()->clear();
-      loosePPIso()->clear();
+// -- slimmed --       loosePPIso()->clear();
       mediumPP()->clear();
-      mediumPPIso()->clear();
+// -- slimmed --       mediumPPIso()->clear();
       tightPP()->clear();
-      tightPPIso()->clear();
+// -- slimmed --       tightPPIso()->clear();
       goodOQ()->clear();
       Ethad()->clear();
       Ethad1()->clear();
@@ -3056,10 +3056,10 @@ if (!is_data) {
       nucone20_trk500MeV()->clear();
       nucone30_trk500MeV()->clear();
       nucone40_trk500MeV()->clear();
-      MET_Simplified20_wpx()->clear();
-      MET_Simplified20_wpy()->clear();
-      MET_Simplified20_wet()->clear();
-      MET_Simplified20_statusWord()->clear();
+// -- slimmed --       MET_Simplified20_wpx()->clear();
+// -- slimmed --       MET_Simplified20_wpy()->clear();
+// -- slimmed --       MET_Simplified20_wet()->clear();
+// -- slimmed --       MET_Simplified20_statusWord()->clear();
       MET_Egamma10NoTau_wpx()->clear();
       MET_Egamma10NoTau_wpy()->clear();
       MET_Egamma10NoTau_wet()->clear();
@@ -3068,18 +3068,18 @@ if (!is_data) {
       MET_Egamma10NoTau_STVF_wpy()->clear();
       MET_Egamma10NoTau_STVF_wet()->clear();
       MET_Egamma10NoTau_STVF_statusWord()->clear();
-      MET_LooseEgamma10NoTau_wpx()->clear();
-      MET_LooseEgamma10NoTau_wpy()->clear();
-      MET_LooseEgamma10NoTau_wet()->clear();
-      MET_LooseEgamma10NoTau_statusWord()->clear();
-      MET_wpx()->clear();
-      MET_wpy()->clear();
-      MET_wet()->clear();
-      MET_statusWord()->clear();
-      MET_STVF_wpx()->clear();
-      MET_STVF_wpy()->clear();
-      MET_STVF_wet()->clear();
-      MET_STVF_statusWord()->clear();
+// -- slimmed --       MET_LooseEgamma10NoTau_wpx()->clear();
+// -- slimmed --       MET_LooseEgamma10NoTau_wpy()->clear();
+// -- slimmed --       MET_LooseEgamma10NoTau_wet()->clear();
+// -- slimmed --       MET_LooseEgamma10NoTau_statusWord()->clear();
+// -- slimmed --       MET_wpx()->clear();
+// -- slimmed --       MET_wpy()->clear();
+// -- slimmed --       MET_wet()->clear();
+// -- slimmed --       MET_statusWord()->clear();
+// -- slimmed --       MET_STVF_wpx()->clear();
+// -- slimmed --       MET_STVF_wpy()->clear();
+// -- slimmed --       MET_STVF_wet()->clear();
+// -- slimmed --       MET_STVF_statusWord()->clear();
 
       return;
    }
@@ -3198,51 +3198,51 @@ if (!is_data) {
       } else {
          nConv()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nSingleTrackConv.IsAvailable() ) {
-         nSingleTrackConv()->push_back( el.nSingleTrackConv() );
-      } else {
-         nSingleTrackConv()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nDoubleTrackConv.IsAvailable() ) {
-         nDoubleTrackConv()->push_back( el.nDoubleTrackConv() );
-      } else {
-         nDoubleTrackConv()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.maxEcell_time.IsAvailable() ) {
-         maxEcell_time()->push_back( el.maxEcell_time() );
-      } else {
-         maxEcell_time()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.maxEcell_energy.IsAvailable() ) {
-         maxEcell_energy()->push_back( el.maxEcell_energy() );
-      } else {
-         maxEcell_energy()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.maxEcell_onlId.IsAvailable() ) {
-         maxEcell_onlId()->push_back( el.maxEcell_onlId() );
-      } else {
-         maxEcell_onlId()->push_back( std::numeric_limits< unsigned int >::min() );
-      }
-      if( el.maxEcell_gain.IsAvailable() ) {
-         maxEcell_gain()->push_back( el.maxEcell_gain() );
-      } else {
-         maxEcell_gain()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.maxEcell_x.IsAvailable() ) {
-         maxEcell_x()->push_back( el.maxEcell_x() );
-      } else {
-         maxEcell_x()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.maxEcell_y.IsAvailable() ) {
-         maxEcell_y()->push_back( el.maxEcell_y() );
-      } else {
-         maxEcell_y()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.maxEcell_z.IsAvailable() ) {
-         maxEcell_z()->push_back( el.maxEcell_z() );
-      } else {
-         maxEcell_z()->push_back( std::numeric_limits< float >::min() );
-      }
+// -- slimmed --       if( el.nSingleTrackConv.IsAvailable() ) {
+// -- slimmed --          nSingleTrackConv()->push_back( el.nSingleTrackConv() );
+// -- slimmed --       } else {
+// -- slimmed --          nSingleTrackConv()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nDoubleTrackConv.IsAvailable() ) {
+// -- slimmed --          nDoubleTrackConv()->push_back( el.nDoubleTrackConv() );
+// -- slimmed --       } else {
+// -- slimmed --          nDoubleTrackConv()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.maxEcell_time.IsAvailable() ) {
+// -- slimmed --          maxEcell_time()->push_back( el.maxEcell_time() );
+// -- slimmed --       } else {
+// -- slimmed --          maxEcell_time()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.maxEcell_energy.IsAvailable() ) {
+// -- slimmed --          maxEcell_energy()->push_back( el.maxEcell_energy() );
+// -- slimmed --       } else {
+// -- slimmed --          maxEcell_energy()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.maxEcell_onlId.IsAvailable() ) {
+// -- slimmed --          maxEcell_onlId()->push_back( el.maxEcell_onlId() );
+// -- slimmed --       } else {
+// -- slimmed --          maxEcell_onlId()->push_back( std::numeric_limits< unsigned int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.maxEcell_gain.IsAvailable() ) {
+// -- slimmed --          maxEcell_gain()->push_back( el.maxEcell_gain() );
+// -- slimmed --       } else {
+// -- slimmed --          maxEcell_gain()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.maxEcell_x.IsAvailable() ) {
+// -- slimmed --          maxEcell_x()->push_back( el.maxEcell_x() );
+// -- slimmed --       } else {
+// -- slimmed --          maxEcell_x()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.maxEcell_y.IsAvailable() ) {
+// -- slimmed --          maxEcell_y()->push_back( el.maxEcell_y() );
+// -- slimmed --       } else {
+// -- slimmed --          maxEcell_y()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.maxEcell_z.IsAvailable() ) {
+// -- slimmed --          maxEcell_z()->push_back( el.maxEcell_z() );
+// -- slimmed --       } else {
+// -- slimmed --          maxEcell_z()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
 if (!is_data) {
       if( el.type.IsAvailable() ) {
          type()->push_back( el.type() );
@@ -3325,86 +3325,86 @@ if (!is_data) {
          truth_matched()->push_back( std::numeric_limits< int >::min() );
       }
 } // end !is_data
-      if( el.mediumWithoutTrack.IsAvailable() ) {
-         mediumWithoutTrack()->push_back( el.mediumWithoutTrack() );
-      } else {
-         mediumWithoutTrack()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.mediumIsoWithoutTrack.IsAvailable() ) {
-         mediumIsoWithoutTrack()->push_back( el.mediumIsoWithoutTrack() );
-      } else {
-         mediumIsoWithoutTrack()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.tightWithoutTrack.IsAvailable() ) {
-         tightWithoutTrack()->push_back( el.tightWithoutTrack() );
-      } else {
-         tightWithoutTrack()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.tightIsoWithoutTrack.IsAvailable() ) {
-         tightIsoWithoutTrack()->push_back( el.tightIsoWithoutTrack() );
-      } else {
-         tightIsoWithoutTrack()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.loose.IsAvailable() ) {
-         loose()->push_back( el.loose() );
-      } else {
-         loose()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.looseIso.IsAvailable() ) {
-         looseIso()->push_back( el.looseIso() );
-      } else {
-         looseIso()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.medium.IsAvailable() ) {
-         medium()->push_back( el.medium() );
-      } else {
-         medium()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.mediumIso.IsAvailable() ) {
-         mediumIso()->push_back( el.mediumIso() );
-      } else {
-         mediumIso()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.tight.IsAvailable() ) {
-         tight()->push_back( el.tight() );
-      } else {
-         tight()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.tightIso.IsAvailable() ) {
-         tightIso()->push_back( el.tightIso() );
-      } else {
-         tightIso()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.mediumWithoutTrack.IsAvailable() ) {
+// -- slimmed --          mediumWithoutTrack()->push_back( el.mediumWithoutTrack() );
+// -- slimmed --       } else {
+// -- slimmed --          mediumWithoutTrack()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed -- // -- slimmed --       if( el.mediumIsoWithoutTrack.IsAvailable() ) {
+// -- slimmed -- // -- slimmed --          mediumIsoWithoutTrack()->push_back( el.mediumIsoWithoutTrack() );
+// -- slimmed --       } else {
+// -- slimmed -- // -- slimmed --          mediumIsoWithoutTrack()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.tightWithoutTrack.IsAvailable() ) {
+// -- slimmed --          tightWithoutTrack()->push_back( el.tightWithoutTrack() );
+// -- slimmed --       } else {
+// -- slimmed --          tightWithoutTrack()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed -- // -- slimmed --       if( el.tightIsoWithoutTrack.IsAvailable() ) {
+// -- slimmed -- // -- slimmed --          tightIsoWithoutTrack()->push_back( el.tightIsoWithoutTrack() );
+// -- slimmed --       } else {
+// -- slimmed -- // -- slimmed --          tightIsoWithoutTrack()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.loose.IsAvailable() ) {
+// -- slimmed --          loose()->push_back( el.loose() );
+// -- slimmed --       } else {
+// -- slimmed --          loose()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.looseIso.IsAvailable() ) {
+// -- slimmed --          looseIso()->push_back( el.looseIso() );
+// -- slimmed --       } else {
+// -- slimmed --          looseIso()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.medium.IsAvailable() ) {
+// -- slimmed --          medium()->push_back( el.medium() );
+// -- slimmed --       } else {
+// -- slimmed --          medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.mediumIso.IsAvailable() ) {
+// -- slimmed --          mediumIso()->push_back( el.mediumIso() );
+// -- slimmed --       } else {
+// -- slimmed --          mediumIso()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.tight.IsAvailable() ) {
+// -- slimmed --          tight()->push_back( el.tight() );
+// -- slimmed --       } else {
+// -- slimmed --          tight()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.tightIso.IsAvailable() ) {
+// -- slimmed --          tightIso()->push_back( el.tightIso() );
+// -- slimmed --       } else {
+// -- slimmed --          tightIso()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.loosePP.IsAvailable() ) {
          loosePP()->push_back( el.loosePP() );
       } else {
          loosePP()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.loosePPIso.IsAvailable() ) {
-         loosePPIso()->push_back( el.loosePPIso() );
-      } else {
-         loosePPIso()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.loosePPIso.IsAvailable() ) {
+// -- slimmed --          loosePPIso()->push_back( el.loosePPIso() );
+// -- slimmed --       } else {
+// -- slimmed --          loosePPIso()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.mediumPP.IsAvailable() ) {
          mediumPP()->push_back( el.mediumPP() );
       } else {
          mediumPP()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.mediumPPIso.IsAvailable() ) {
-         mediumPPIso()->push_back( el.mediumPPIso() );
-      } else {
-         mediumPPIso()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.mediumPPIso.IsAvailable() ) {
+// -- slimmed --          mediumPPIso()->push_back( el.mediumPPIso() );
+// -- slimmed --       } else {
+// -- slimmed --          mediumPPIso()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.tightPP.IsAvailable() ) {
          tightPP()->push_back( el.tightPP() );
       } else {
          tightPP()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.tightPPIso.IsAvailable() ) {
-         tightPPIso()->push_back( el.tightPPIso() );
-      } else {
-         tightPPIso()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.tightPPIso.IsAvailable() ) {
+// -- slimmed --          tightPPIso()->push_back( el.tightPPIso() );
+// -- slimmed --       } else {
+// -- slimmed --          tightPPIso()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.goodOQ.IsAvailable() ) {
          goodOQ()->push_back( el.goodOQ() );
       } else {
@@ -4285,26 +4285,26 @@ if (!is_data) {
       } else {
          nucone40_trk500MeV()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.MET_Simplified20_wpx.IsAvailable() ) {
-         MET_Simplified20_wpx()->push_back( el.MET_Simplified20_wpx() );
-      } else {
-         MET_Simplified20_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_Simplified20_wpy.IsAvailable() ) {
-         MET_Simplified20_wpy()->push_back( el.MET_Simplified20_wpy() );
-      } else {
-         MET_Simplified20_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_Simplified20_wet.IsAvailable() ) {
-         MET_Simplified20_wet()->push_back( el.MET_Simplified20_wet() );
-      } else {
-         MET_Simplified20_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_Simplified20_statusWord.IsAvailable() ) {
-         MET_Simplified20_statusWord()->push_back( el.MET_Simplified20_statusWord() );
-      } else {
-         MET_Simplified20_statusWord()->push_back( vector<unsigned int>() );
-      }
+// -- slimmed --       if( el.MET_Simplified20_wpx.IsAvailable() ) {
+// -- slimmed --          MET_Simplified20_wpx()->push_back( el.MET_Simplified20_wpx() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_Simplified20_wpx()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_Simplified20_wpy.IsAvailable() ) {
+// -- slimmed --          MET_Simplified20_wpy()->push_back( el.MET_Simplified20_wpy() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_Simplified20_wpy()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_Simplified20_wet.IsAvailable() ) {
+// -- slimmed --          MET_Simplified20_wet()->push_back( el.MET_Simplified20_wet() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_Simplified20_wet()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_Simplified20_statusWord.IsAvailable() ) {
+// -- slimmed --          MET_Simplified20_statusWord()->push_back( el.MET_Simplified20_statusWord() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_Simplified20_statusWord()->push_back( vector<unsigned int>() );
+// -- slimmed --       }
       if( el.MET_Egamma10NoTau_wpx.IsAvailable() ) {
          MET_Egamma10NoTau_wpx()->push_back( el.MET_Egamma10NoTau_wpx() );
       } else {
@@ -4345,66 +4345,66 @@ if (!is_data) {
       } else {
          MET_Egamma10NoTau_STVF_statusWord()->push_back( vector<unsigned int>() );
       }
-      if( el.MET_LooseEgamma10NoTau_wpx.IsAvailable() ) {
-         MET_LooseEgamma10NoTau_wpx()->push_back( el.MET_LooseEgamma10NoTau_wpx() );
-      } else {
-         MET_LooseEgamma10NoTau_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_LooseEgamma10NoTau_wpy.IsAvailable() ) {
-         MET_LooseEgamma10NoTau_wpy()->push_back( el.MET_LooseEgamma10NoTau_wpy() );
-      } else {
-         MET_LooseEgamma10NoTau_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_LooseEgamma10NoTau_wet.IsAvailable() ) {
-         MET_LooseEgamma10NoTau_wet()->push_back( el.MET_LooseEgamma10NoTau_wet() );
-      } else {
-         MET_LooseEgamma10NoTau_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_LooseEgamma10NoTau_statusWord.IsAvailable() ) {
-         MET_LooseEgamma10NoTau_statusWord()->push_back( el.MET_LooseEgamma10NoTau_statusWord() );
-      } else {
-         MET_LooseEgamma10NoTau_statusWord()->push_back( vector<unsigned int>() );
-      }
-      if( el.MET_wpx.IsAvailable() ) {
-         MET_wpx()->push_back( el.MET_wpx() );
-      } else {
-         MET_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_wpy.IsAvailable() ) {
-         MET_wpy()->push_back( el.MET_wpy() );
-      } else {
-         MET_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_wet.IsAvailable() ) {
-         MET_wet()->push_back( el.MET_wet() );
-      } else {
-         MET_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_statusWord.IsAvailable() ) {
-         MET_statusWord()->push_back( el.MET_statusWord() );
-      } else {
-         MET_statusWord()->push_back( vector<unsigned int>() );
-      }
-      if( el.MET_STVF_wpx.IsAvailable() ) {
-         MET_STVF_wpx()->push_back( el.MET_STVF_wpx() );
-      } else {
-         MET_STVF_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_wpy.IsAvailable() ) {
-         MET_STVF_wpy()->push_back( el.MET_STVF_wpy() );
-      } else {
-         MET_STVF_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_wet.IsAvailable() ) {
-         MET_STVF_wet()->push_back( el.MET_STVF_wet() );
-      } else {
-         MET_STVF_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_statusWord.IsAvailable() ) {
-         MET_STVF_statusWord()->push_back( el.MET_STVF_statusWord() );
-      } else {
-         MET_STVF_statusWord()->push_back( vector<unsigned int>() );
-      }
+// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wpx.IsAvailable() ) {
+// -- slimmed --          MET_LooseEgamma10NoTau_wpx()->push_back( el.MET_LooseEgamma10NoTau_wpx() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_LooseEgamma10NoTau_wpx()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wpy.IsAvailable() ) {
+// -- slimmed --          MET_LooseEgamma10NoTau_wpy()->push_back( el.MET_LooseEgamma10NoTau_wpy() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_LooseEgamma10NoTau_wpy()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wet.IsAvailable() ) {
+// -- slimmed --          MET_LooseEgamma10NoTau_wet()->push_back( el.MET_LooseEgamma10NoTau_wet() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_LooseEgamma10NoTau_wet()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_LooseEgamma10NoTau_statusWord.IsAvailable() ) {
+// -- slimmed --          MET_LooseEgamma10NoTau_statusWord()->push_back( el.MET_LooseEgamma10NoTau_statusWord() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_LooseEgamma10NoTau_statusWord()->push_back( vector<unsigned int>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_wpx.IsAvailable() ) {
+// -- slimmed --          MET_wpx()->push_back( el.MET_wpx() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_wpx()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_wpy.IsAvailable() ) {
+// -- slimmed --          MET_wpy()->push_back( el.MET_wpy() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_wpy()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_wet.IsAvailable() ) {
+// -- slimmed --          MET_wet()->push_back( el.MET_wet() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_wet()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_statusWord.IsAvailable() ) {
+// -- slimmed --          MET_statusWord()->push_back( el.MET_statusWord() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_statusWord()->push_back( vector<unsigned int>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_STVF_wpx.IsAvailable() ) {
+// -- slimmed --          MET_STVF_wpx()->push_back( el.MET_STVF_wpx() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_STVF_wpx()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_STVF_wpy.IsAvailable() ) {
+// -- slimmed --          MET_STVF_wpy()->push_back( el.MET_STVF_wpy() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_STVF_wpy()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_STVF_wet.IsAvailable() ) {
+// -- slimmed --          MET_STVF_wet()->push_back( el.MET_STVF_wet() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_STVF_wet()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_STVF_statusWord.IsAvailable() ) {
+// -- slimmed --          MET_STVF_statusWord()->push_back( el.MET_STVF_statusWord() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_STVF_statusWord()->push_back( vector<unsigned int>() );
+// -- slimmed --       }
       return *this;
    }
 

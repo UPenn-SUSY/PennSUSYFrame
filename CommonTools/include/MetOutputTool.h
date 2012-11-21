@@ -32,8 +32,13 @@ namespace CommonTools
     virtual void BeginInputData( const SInputData& );
     virtual void BeginExecuteEvent( const SInputData&, Double_t );
 
-
-    void fillOutput(Event*, ElectronContainer, MuonContainer, JetContainer, Met*, VertexContainer );
+    void fillOutput( Event*
+                   , ElectronContainer&
+                   , MuonContainer&
+                   , JetContainer&
+                   , Met*
+                   , VertexContainer&
+                   );
 
   // ----------------------------------------------------------------------------
   private:
@@ -53,8 +58,8 @@ namespace CommonTools
     double m_met_phi;
     double m_met_sumet;
 
- 
-    // Detailed Variables to output only if configured to 
+
+    // Detailed Variables to output only if configured to
 
 
 

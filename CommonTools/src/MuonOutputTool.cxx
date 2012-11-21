@@ -108,105 +108,103 @@ void CommonTools::MuonOutputTool::BeginExecuteEvent( const SInputData&, Double_t
   m_mu_num_trt_ht_outliers.clear();
   m_mu_num_mdt_layers.clear();
   m_mu_desc.clear();
-
-
 }
 
 // ----------------------------------------------------------------------------
-void CommonTools::MuonOutputTool::fillOutput(Event* event, ElectronContainer electrons, MuonContainer muons, JetContainer jets, Met*, VertexContainer vertices)
+void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
+                                            , ElectronContainer& /*electrons*/
+                                            , MuonContainer& muons
+                                            , JetContainer& /*jets*/
+                                            , Met* /*met*/
+                                            , VertexContainer& vertices
+                                            )
 {
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_logger << VERBOSE
            << "CommonTools::MuonOutputTool::Fill"
            << SLogger::endmsg;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill muon varaibles
-
- 
 
   std::vector<Muon*> mu_vec; 
 
-  if (c_muon_output_collection == "signal" || c_muon_output_collection == "Signal")
-    {
-      mu_vec = muons.getMuons(MU_SIGNAL);
-    }
-  else if(c_muon_output_collection == "good" || c_muon_output_collection == "Good")
-    {
-      mu_vec =  muons.getMuons(MU_GOOD);
-    }
-  else if(c_muon_output_collection == "baseline" || c_muon_output_collection == "Baseline")
-    {
-      mu_vec =  muons.getMuons(MU_BASELINE);
-    }
-  else if(c_muon_output_collection == "all" || c_muon_output_collection == "All")
-    {
-      mu_vec =  muons.getMuons(MU_ALL);
-    }
-  else
-    {
-      m_logger << FATAL
-         << "Could Not Parse Muon Output Level: " << c_muon_output_collection
-         << SLogger::endmsg;
-      throw SError(SError::StopExecution);
-    }
+  if (  c_muon_output_collection == "signal"
+     || c_muon_output_collection == "Signal"
+     ) {
+    mu_vec = muons.getMuons(MU_SIGNAL);
+  }
+  else if(  c_muon_output_collection == "good"
+         || c_muon_output_collection == "Good"
+         ) {
+    mu_vec =  muons.getMuons(MU_GOOD);
+  }
+  else if(  c_muon_output_collection == "baseline"
+         || c_muon_output_collection == "Baseline"
+         ) {
+    mu_vec =  muons.getMuons(MU_BASELINE);
+  }
+  else if(  c_muon_output_collection == "all"
+         || c_muon_output_collection == "All"
+         ) {
+    mu_vec =  muons.getMuons(MU_ALL);
+  }
+  else {
+    m_logger << FATAL
+             << "Could Not Parse Muon Output Level: "
+             << c_muon_output_collection
+             << SLogger::endmsg;
+    throw SError(SError::StopExecution);
+  }
 
   size_t num_mu = mu_vec.size();
 
   int num_good_vtx = vertices.num(VERT_GOOD);
  
   // before storing muons to ntuple, we want to check the pt-ordering
-//   std::sort( cutflow.m_mu_signal.begin()
-//            , cutflow.m_mu_signal.end()
-//            , MuonHandle::gt
-//            );
+  // std::sort( cutflow.m_mu_signal.begin()
+  //          , cutflow.m_mu_signal.end()
+  //          , MuonHandle::gt
+  //          );
 
-  for (size_t mu_it=0; mu_it != num_mu; ++mu_it) 
-    {
-      TLorentzVector mu_tlv =  mu_vec.at(mu_it)->getTlv();
-          
-      m_mu_pt.push_back(mu_tlv.Pt());
-      m_mu_eta.push_back(mu_tlv.Eta());
-      m_mu_phi.push_back(mu_tlv.Phi());
-      m_mu_cov_d0.push_back(mu_vec.at(mu_it)->cov_d0_exPV());
-      m_mu_d0.push_back(mu_vec.at(mu_it)->d0_exPV());
-      m_mu_z0.push_back(mu_vec.at(mu_it)->z0_exPV());
-      m_mu_d0_sig.push_back(mu_vec.at(mu_it)->getD0Significance());
-      m_mu_z0_sin_theta.push_back(mu_vec.at(mu_it)->getZ0SinTheta());
-      m_mu_charge.push_back(static_cast<int>(mu_vec.at(mu_it)->charge()));
+  for (size_t mu_it=0; mu_it != num_mu; ++mu_it) {
+    TLorentzVector mu_tlv =  mu_vec.at(mu_it)->getTlv();
 
-      m_mu_etcone20.push_back(mu_vec.at(mu_it)->getIsoCorr(ETCONE, 20, num_good_vtx));
-      m_mu_etcone30.push_back(mu_vec.at(mu_it)->getIsoCorr(ETCONE, 30, num_good_vtx));
-      m_mu_etcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(ETCONE, 40, num_good_vtx));
-      m_mu_ptcone20.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
-      m_mu_ptcone30.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
-      m_mu_ptcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
+    m_mu_pt.push_back(mu_tlv.Pt());
+    m_mu_eta.push_back(mu_tlv.Eta());
+    m_mu_phi.push_back(mu_tlv.Phi());
+    m_mu_cov_d0.push_back(mu_vec.at(mu_it)->cov_d0_exPV());
+    m_mu_d0.push_back(mu_vec.at(mu_it)->d0_exPV());
+    m_mu_z0.push_back(mu_vec.at(mu_it)->z0_exPV());
+    m_mu_d0_sig.push_back(mu_vec.at(mu_it)->getD0Significance());
+    m_mu_z0_sin_theta.push_back(mu_vec.at(mu_it)->getZ0SinTheta());
+    m_mu_charge.push_back(static_cast<int>(mu_vec.at(mu_it)->charge()));
 
+    m_mu_etcone20.push_back(mu_vec.at(mu_it)->getIsoCorr(ETCONE, 20, num_good_vtx));
+    m_mu_etcone30.push_back(mu_vec.at(mu_it)->getIsoCorr(ETCONE, 30, num_good_vtx));
+    m_mu_etcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(ETCONE, 40, num_good_vtx));
+    m_mu_ptcone20.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
+    m_mu_ptcone30.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
+    m_mu_ptcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
 
-      m_mu_desc.push_back(mu_vec.at(mu_it)->getMuonDesc()->toInt());
-      if (c_do_detailed_output)
-  {
+    m_mu_desc.push_back(mu_vec.at(mu_it)->getMuonDesc()->toInt());
 
-    m_mu_raw_etcone20.push_back(mu_vec.at(mu_it)->etcone20());
-    m_mu_raw_etcone30.push_back(mu_vec.at(mu_it)->etcone30());
-    m_mu_raw_etcone40.push_back(mu_vec.at(mu_it)->etcone40());
-    m_mu_raw_ptcone20.push_back(mu_vec.at(mu_it)->ptcone20());
-    m_mu_raw_ptcone30.push_back(mu_vec.at(mu_it)->ptcone30());
-    m_mu_raw_ptcone40.push_back(mu_vec.at(mu_it)->ptcone40());
+    if (c_do_detailed_output) {
+      m_mu_raw_etcone20.push_back(mu_vec.at(mu_it)->etcone20());
+      m_mu_raw_etcone30.push_back(mu_vec.at(mu_it)->etcone30());
+      m_mu_raw_etcone40.push_back(mu_vec.at(mu_it)->etcone40());
+      m_mu_raw_ptcone20.push_back(mu_vec.at(mu_it)->ptcone20());
+      m_mu_raw_ptcone30.push_back(mu_vec.at(mu_it)->ptcone30());
+      m_mu_raw_ptcone40.push_back(mu_vec.at(mu_it)->ptcone40());
 
-    m_mu_b_layer_hits.push_back(mu_vec.at(mu_it)->nBLHits());
-    m_mu_num_pix_hits.push_back(mu_vec.at(mu_it)->nPixHits());
-    m_mu_num_sct_hits.push_back(mu_vec.at(mu_it)->nSCTHits());
-    m_mu_num_trt_hits.push_back(mu_vec.at(mu_it)->nTRTHits());
-    m_mu_expect_b_layer_hit.push_back(mu_vec.at(mu_it)->expectBLayerHit());
-    m_mu_num_pix_holes.push_back(mu_vec.at(mu_it)->nPixHoles());
-    m_mu_num_sct_holes.push_back(mu_vec.at(mu_it)->nSCTHoles());
-    m_mu_num_trt_outliers.push_back(mu_vec.at(mu_it)->nTRTOutliers());
-    m_mu_num_trt_ht_outliers.push_back(mu_vec.at(mu_it)->nTRTHighTOutliers());
-    m_mu_num_mdt_layers.push_back(mu_vec.at(mu_it)->getNMuonStations());
-
-  }
-
+      m_mu_b_layer_hits.push_back(mu_vec.at(mu_it)->nBLHits());
+      m_mu_num_pix_hits.push_back(mu_vec.at(mu_it)->nPixHits());
+      m_mu_num_sct_hits.push_back(mu_vec.at(mu_it)->nSCTHits());
+      m_mu_num_trt_hits.push_back(mu_vec.at(mu_it)->nTRTHits());
+      m_mu_expect_b_layer_hit.push_back(mu_vec.at(mu_it)->expectBLayerHit());
+      m_mu_num_pix_holes.push_back(mu_vec.at(mu_it)->nPixHoles());
+      m_mu_num_sct_holes.push_back(mu_vec.at(mu_it)->nSCTHoles());
+      m_mu_num_trt_outliers.push_back(mu_vec.at(mu_it)->nTRTOutliers());
+      m_mu_num_trt_ht_outliers.push_back(mu_vec.at(mu_it)->nTRTHighTOutliers());
+      m_mu_num_mdt_layers.push_back(mu_vec.at(mu_it)->getNMuonStations());
     }
+  }
 }
-

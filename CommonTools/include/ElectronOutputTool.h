@@ -13,59 +13,64 @@
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
-// ============================================================================
+// =============================================================================
 // Forward declare SusyDiLeptonCutFlowCycle
 class SusyDiLeptonCutFlowCycle;
 class SusyDiLeptonChargeFlipCycle;
-// ============================================================================
+// =============================================================================
 namespace CommonTools
 {
-// ============================================================================
+// =============================================================================
   class ElectronOutputTool : public ToolBase
   {
-  // ----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   public:
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ElectronOutputTool(SCycleBase* parent, const char* name = "OutputTool");
     virtual ~ElectronOutputTool();
 
     virtual void BeginInputData( const SInputData& );
     virtual void BeginExecuteEvent( const SInputData&, Double_t );
 
+    void fillOutput( Event*
+                   , ElectronContainer&
+                   , MuonContainer&
+                   , JetContainer&
+                   , Met*
+                   , VertexContainer&
+                   );
 
-    void fillOutput(Event*, ElectronContainer, MuonContainer, JetContainer, Met*, VertexContainer );
-
-  // ----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   private:
-
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool c_do_detailed_output;
     std::string c_electron_output_collection;
- 
+
     //Variables to always output
-    std::vector<double>          m_el_E;
-    std::vector<double>          m_el_Et;
-    std::vector<double>          m_el_pt;
-    std::vector<double>          m_el_eta;
-    std::vector<double>          m_el_eta_cl;
-    std::vector<double>          m_el_eta_track;
-    std::vector<double>          m_el_phi;
-    std::vector<double>          m_el_phi_cl;
-    std::vector<double>          m_el_phi_track;
-    std::vector<double>          m_el_d0;
-    std::vector<double>          m_el_d0_physics;
-    std::vector<double>          m_el_d0_pv;
-    std::vector<double>          m_el_z0;
-    std::vector<double>          m_el_z0_pv;
-    std::vector<double>          m_el_d0_pv_sig;
-    std::vector<double>          m_el_z0_pv_sig;
-    std::vector<double>          m_el_d0_sig;
-    std::vector<double>          m_el_z0_sin_theta;
-    std::vector<int>             m_el_charge;
-    std::vector<double>          m_el_cf_smeared_pt;   
+    std::vector<double>  m_el_E;
+    std::vector<double>  m_el_Et;
+    std::vector<double>  m_el_pt;
+    std::vector<double>  m_el_eta;
+    std::vector<double>  m_el_eta_cl;
+    std::vector<double>  m_el_eta_track;
+    std::vector<double>  m_el_phi;
+    std::vector<double>  m_el_phi_cl;
+    std::vector<double>  m_el_phi_track;
+    std::vector<double>  m_el_d0;
+    std::vector<double>  m_el_d0_physics;
+    std::vector<double>  m_el_d0_pv;
+    std::vector<double>  m_el_z0;
+    std::vector<double>  m_el_z0_pv;
+    std::vector<double>  m_el_d0_pv_sig;
+    std::vector<double>  m_el_z0_pv_sig;
+    std::vector<double>  m_el_d0_sig;
+    std::vector<double>  m_el_z0_sin_theta;
+    std::vector<int>     m_el_charge;
+    std::vector<double>  m_el_cf_smeared_pt;
     std::vector<ull_t>    m_el_desc;
 
-   
-    // Detailed Variables to output only if configured to 
+
+    // Detailed Variables to output only if configured to
 
     std::vector<unsigned int> m_el_OQ;
     std::vector<unsigned int> m_el_OQ_recalc;

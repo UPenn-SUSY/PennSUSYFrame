@@ -96,11 +96,11 @@ void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_
 
 // ----------------------------------------------------------------------------
 void CommonTools::EventOutputTool::fillOutput( Event* event
-                                             , ElectronContainer electrons
-                                             , MuonContainer muons
-                                             , JetContainer jets
-                                             , Met*
-                                             , VertexContainer vertices
+                                             , ElectronContainer& /*electrons*/
+                                             , MuonContainer& /*muons*/
+                                             , JetContainer& /*jets*/
+                                             , Met* /*met*/
+                                             , VertexContainer& /*vertices*/
                                              )
 {
   m_logger << VERBOSE

@@ -32,8 +32,13 @@ namespace CommonTools
     virtual void BeginInputData( const SInputData& );
     virtual void BeginExecuteEvent( const SInputData&, Double_t );
 
-
-    void fillOutput(Event*, ElectronContainer, MuonContainer, JetContainer, Met*, VertexContainer );
+    void fillOutput( Event*
+                   , ElectronContainer&
+                   , MuonContainer&
+                   , JetContainer&
+                   , Met*
+                   , VertexContainer&
+                   );
 
   // ----------------------------------------------------------------------------
   private:

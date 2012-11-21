@@ -37,7 +37,7 @@ void CommonTools::MetOutputTool::BeginInputData( const SInputData& )
   //Detailed Variables
   if(c_do_detailed_output)
     {
-      //No detailed output for now      
+      //No detailed output for now
     }
 
 }
@@ -51,18 +51,22 @@ void CommonTools::MetOutputTool::BeginExecuteEvent( const SInputData&, Double_t 
   m_met_phi    = 0;
   m_met_rel_delta_phi = 0.;
   m_met_sumet  = 0;
-  
+
 }
 
 // ----------------------------------------------------------------------------
-void CommonTools::MetOutputTool::fillOutput(Event* event, ElectronContainer electrons, MuonContainer muons, JetContainer jets, Met* met, VertexContainer vertices)
+void CommonTools::MetOutputTool::fillOutput( Event* event
+                                           , ElectronContainer& /*electrons*/
+                                           , MuonContainer& /*muons*/
+                                           , JetContainer& /*jets*/
+                                           , Met* met
+                                           , VertexContainer& /*vertices*/
+                                           )
 {
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_logger << VERBOSE
            << "CommonTools::MetOutputTool::Fill"
            << SLogger::endmsg;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill met varaibles
 
   m_met_et = met->getMetRefFinalEt();
@@ -71,13 +75,7 @@ void CommonTools::MetOutputTool::fillOutput(Event* event, ElectronContainer elec
   //  m_met_rel_delta_phi = ;
   //m_met_sumet
 
-
-  if (c_do_detailed_output)
-    {
-      
-      //do detailed otuput -- none for now
-    }
-
-    
+  if (c_do_detailed_output) {
+    //do detailed otuput -- none for now
+  }
 }
-

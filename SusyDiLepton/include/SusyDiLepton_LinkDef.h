@@ -13,6 +13,7 @@
 //
 // #pragma link C++ class MySuperClass+;
 #pragma link C++ class SusyDiLeptonCutFlowCycle+;
+#pragma link C++ class SusyDiLeptonPreselCycle+;
 #pragma link C++ class SusyDiLeptonCutFlowTool+;
 // #pragma link C++ class SusyDiLeptonChargeFlipCycle+;
 // #pragma link C++ class SusyDiLeptonFakeCycle+;

@@ -38,7 +38,7 @@ void CommonTools::VertexOutputTool::BeginInputData( const SInputData& )
   //Detailed Variables
   if(c_do_detailed_output)
     {
-      //No detailed output for now      
+      //No detailed output for now
     }
 
 }
@@ -52,58 +52,57 @@ void CommonTools::VertexOutputTool::BeginExecuteEvent( const SInputData&, Double
   m_vtx_z.clear();
   m_vtx_n_tracks.clear();
   m_vtx_sum_pt.clear();
-  
+
 }
 
 // ----------------------------------------------------------------------------
-void CommonTools::VertexOutputTool::fillOutput(Event* event, ElectronContainer electrons, MuonContainer muons, JetContainer jets, Met* met, VertexContainer vertices)
+void CommonTools::VertexOutputTool::fillOutput( Event* /*event*/
+                                              , ElectronContainer& /*electrons*/
+                                              , MuonContainer& /*muons*/
+                                              , JetContainer& /*jets*/
+                                              , Met* /*met*/
+                                              , VertexContainer& vertices
+                                              )
 {
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_logger << VERBOSE
            << "CommonTools::VertexOutputTool::Fill"
            << SLogger::endmsg;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill vertex varaibles
 
   const std::vector<Vertex*> *vertex_vec;
 
-  if(c_vertex_output_collection == "good" || c_vertex_output_collection == "Good"
-|| c_vertex_output_collection == "signal" || c_vertex_output_collection == "Signal")
-    {
-      vertex_vec = vertices.getVertexs(VERT_GOOD);
-    }
-  else if(c_vertex_output_collection == "all" || c_vertex_output_collection =="All")
-    {
-      vertex_vec = vertices.getVertexs(VERT_ALL);
-    }
-  else
-    {
-      m_logger << FATAL
-               << "Could Not Parse Electron Output Level: " << c_vertex_output_collection
-               << SLogger::endmsg;
-      throw SError(SError::StopExecution);
-    }
-
+  if(  c_vertex_output_collection == "good"
+    || c_vertex_output_collection == "Good"
+    || c_vertex_output_collection == "signal"
+    || c_vertex_output_collection == "Signal"
+    ) {
+    vertex_vec = vertices.getVertexs(VERT_GOOD);
+  }
+  else if(  c_vertex_output_collection == "all"
+         || c_vertex_output_collection =="All"
+         ) {
+    vertex_vec = vertices.getVertexs(VERT_ALL);
+  }
+  else {
+    m_logger << FATAL
+             << "Could Not Parse Electron Output Level: "
+             << c_vertex_output_collection
+             << SLogger::endmsg;
+    throw SError(SError::StopExecution);
+  }
 
   m_vtx_n = vertex_vec->size();
-  for (unsigned int vtx_it = 0; vtx_it != m_vtx_n; ++vtx_it) 
-    {
-      
-      m_vtx_x.push_back(vertex_vec->at(vtx_it)->x());
-      m_vtx_y.push_back(vertex_vec->at(vtx_it)->y());
-      m_vtx_z.push_back(vertex_vec->at(vtx_it)->z());
-      m_vtx_n_tracks.push_back(vertex_vec->at(vtx_it)->nTracks());
-      m_vtx_sum_pt.push_back(vertex_vec->at(vtx_it)->sumPt());
-    }
-
+  for (unsigned int vtx_it = 0; vtx_it != m_vtx_n; ++vtx_it) {
+    m_vtx_x.push_back(vertex_vec->at(vtx_it)->x());
+    m_vtx_y.push_back(vertex_vec->at(vtx_it)->y());
+    m_vtx_z.push_back(vertex_vec->at(vtx_it)->z());
+    m_vtx_n_tracks.push_back(vertex_vec->at(vtx_it)->nTracks());
+    m_vtx_sum_pt.push_back(vertex_vec->at(vtx_it)->sumPt());
+  }
 
   if (c_do_detailed_output)
-    {
-      
-      //do detailed otuput -- none for now
-    }
-
-    
+  {
+    //do detailed otuput -- none for now
+  }
 }
-

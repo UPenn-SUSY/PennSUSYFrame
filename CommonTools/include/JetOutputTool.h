@@ -32,8 +32,13 @@ namespace CommonTools
     virtual void BeginInputData( const SInputData& );
     virtual void BeginExecuteEvent( const SInputData&, Double_t );
 
-
-    void fillOutput(Event*, ElectronContainer, MuonContainer, JetContainer, Met*, VertexContainer );
+    void fillOutput( Event*
+                   , ElectronContainer&
+                   , MuonContainer&
+                   , JetContainer&
+                   , Met*
+                   , VertexContainer&
+                   );
 
   // ----------------------------------------------------------------------------
   private:
@@ -53,8 +58,8 @@ namespace CommonTools
     std::vector<ull_t> m_jet_desc;
 
 
- 
-    // Detailed Variables to output only if configured to 
+
+    // Detailed Variables to output only if configured to
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(JetOutputTool, 0);
