@@ -16,20 +16,3 @@ is_egamma_stream:   True
 UserConfigFile: ${SFRAME_DIR}/../scripts/run_scripts/sample_user_config.yml
 InputFiles:
   - ~/work/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1193_s1469_s1470_r3542_r3549_p1181_tid00950213_00/NTUP_SUSY.00950213._000715.root.1  
-
-
-
-
-#Global_Config:
-#    Jet_prefix:         jet_AntiKt4LCTopo_
-#    Met_prefix:         MET_Egamma10NoTau_
-#    MuonTruth_prefix:   muonTruth_
-#    Muon_prefix:        mu_staco_
-#    do_metadata:        False
-#    input_file_hists:   ''
-#    is_egamma_stream:   True
-#    input_tree_name:    susy
-#    output_tree_name:   output
-#    print_event_info:   False
-#    super_verbose_info: False
-#    is_af2:             False

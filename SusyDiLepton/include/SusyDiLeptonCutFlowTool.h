@@ -10,7 +10,7 @@
 #include "AtlasSFrameUtils/include/Event.h"
 #include "AtlasSFrameUtils/include/Jet.h"
 #include "AtlasSFrameUtils/include/JetContainer.h"
-// #include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
 #include "AtlasSFrameUtils/include/Trigger.h"
