@@ -272,10 +272,10 @@ namespace D3PDReader {
         nucone20_trkelstyle( parent.nucone20_trkelstyle, index, this ),
         nucone30_trkelstyle( parent.nucone30_trkelstyle, index, this ),
         nucone40_trkelstyle( parent.nucone40_trkelstyle, index, this ),
-        MET_Simplified20_wpx( parent.MET_Simplified20_wpx, index, this ),
-        MET_Simplified20_wpy( parent.MET_Simplified20_wpy, index, this ),
-        MET_Simplified20_wet( parent.MET_Simplified20_wet, index, this ),
-        MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord, index, this ),
+// -- slimmed --         MET_Simplified20_wpx( parent.MET_Simplified20_wpx, index, this ),
+// -- slimmed --         MET_Simplified20_wpy( parent.MET_Simplified20_wpy, index, this ),
+// -- slimmed --         MET_Simplified20_wet( parent.MET_Simplified20_wet, index, this ),
+// -- slimmed --         MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord, index, this ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx, index, this ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy, index, this ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet, index, this ),
@@ -284,18 +284,18 @@ namespace D3PDReader {
         MET_Egamma10NoTau_STVF_wpy( parent.MET_Egamma10NoTau_STVF_wpy, index, this ),
         MET_Egamma10NoTau_STVF_wet( parent.MET_Egamma10NoTau_STVF_wet, index, this ),
         MET_Egamma10NoTau_STVF_statusWord( parent.MET_Egamma10NoTau_STVF_statusWord, index, this ),
-        MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx, index, this ),
-        MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy, index, this ),
-        MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet, index, this ),
-        MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord, index, this ),
-        MET_wpx( parent.MET_wpx, index, this ),
-        MET_wpy( parent.MET_wpy, index, this ),
-        MET_wet( parent.MET_wet, index, this ),
-        MET_statusWord( parent.MET_statusWord, index, this ),
-        MET_STVF_wpx( parent.MET_STVF_wpx, index, this ),
-        MET_STVF_wpy( parent.MET_STVF_wpy, index, this ),
-        MET_STVF_wet( parent.MET_STVF_wet, index, this ),
-        MET_STVF_statusWord( parent.MET_STVF_statusWord, index, this ) , 
+// -- slimmed --         MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx, index, this ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy, index, this ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet, index, this ),
+// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord, index, this ),
+// -- slimmed --         MET_wpx( parent.MET_wpx, index, this ),
+// -- slimmed --         MET_wpy( parent.MET_wpy, index, this ),
+// -- slimmed --         MET_wet( parent.MET_wet, index, this ),
+// -- slimmed --         MET_statusWord( parent.MET_statusWord, index, this ),
+// -- slimmed --         MET_STVF_wpx( parent.MET_STVF_wpx, index, this ),
+// -- slimmed --         MET_STVF_wpy( parent.MET_STVF_wpy, index, this ),
+// -- slimmed --         MET_STVF_wet( parent.MET_STVF_wet, index, this ),
+// -- slimmed -- // -- slimmed --         MET_STVF_statusWord( parent.MET_STVF_statusWord, index, this ) , 
 is_data(is_data) {
 
    }
@@ -560,10 +560,10 @@ is_data(is_data) {
         nucone20_trkelstyle( parent.nucone20_trkelstyle ),
         nucone30_trkelstyle( parent.nucone30_trkelstyle ),
         nucone40_trkelstyle( parent.nucone40_trkelstyle ),
-        MET_Simplified20_wpx( parent.MET_Simplified20_wpx ),
-        MET_Simplified20_wpy( parent.MET_Simplified20_wpy ),
-        MET_Simplified20_wet( parent.MET_Simplified20_wet ),
-        MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord ),
+// -- slimmed --         MET_Simplified20_wpx( parent.MET_Simplified20_wpx ),
+// -- slimmed --         MET_Simplified20_wpy( parent.MET_Simplified20_wpy ),
+// -- slimmed --         MET_Simplified20_wet( parent.MET_Simplified20_wet ),
+// -- slimmed --         MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet ),
@@ -572,18 +572,18 @@ is_data(is_data) {
         MET_Egamma10NoTau_STVF_wpy( parent.MET_Egamma10NoTau_STVF_wpy ),
         MET_Egamma10NoTau_STVF_wet( parent.MET_Egamma10NoTau_STVF_wet ),
         MET_Egamma10NoTau_STVF_statusWord( parent.MET_Egamma10NoTau_STVF_statusWord ),
-        MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx ),
-        MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy ),
-        MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet ),
-        MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord ),
-        MET_wpx( parent.MET_wpx ),
-        MET_wpy( parent.MET_wpy ),
-        MET_wet( parent.MET_wet ),
-        MET_statusWord( parent.MET_statusWord ),
-        MET_STVF_wpx( parent.MET_STVF_wpx ),
-        MET_STVF_wpy( parent.MET_STVF_wpy ),
-        MET_STVF_wet( parent.MET_STVF_wet ),
-        MET_STVF_statusWord( parent.MET_STVF_statusWord ) , 
+// -- slimmed --         MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet ),
+// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord ),
+// -- slimmed --         MET_wpx( parent.MET_wpx ),
+// -- slimmed --         MET_wpy( parent.MET_wpy ),
+// -- slimmed --         MET_wet( parent.MET_wet ),
+// -- slimmed --         MET_statusWord( parent.MET_statusWord ),
+// -- slimmed --         MET_STVF_wpx( parent.MET_STVF_wpx ),
+// -- slimmed --         MET_STVF_wpy( parent.MET_STVF_wpy ),
+// -- slimmed --         MET_STVF_wet( parent.MET_STVF_wet ),
+// -- slimmed -- // -- slimmed --         MET_STVF_statusWord( parent.MET_STVF_statusWord ) , 
 is_data(is_data) {
 
    }
@@ -849,10 +849,10 @@ is_data(is_data) {
         nucone20_trkelstyle( this, ::TString( prefix ) + "nucone20_trkelstyle", &master ),
         nucone30_trkelstyle( this, ::TString( prefix ) + "nucone30_trkelstyle", &master ),
         nucone40_trkelstyle( this, ::TString( prefix ) + "nucone40_trkelstyle", &master ),
-        MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", &master ),
-        MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", &master ),
-        MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", &master ),
-        MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", &master ),
+// -- slimmed --         MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", &master ),
+// -- slimmed --         MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", &master ),
+// -- slimmed --         MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", &master ),
+// -- slimmed --         MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", &master ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", &master ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", &master ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", &master ),
@@ -861,18 +861,18 @@ is_data(is_data) {
         MET_Egamma10NoTau_STVF_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy", &master ),
         MET_Egamma10NoTau_STVF_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet", &master ),
         MET_Egamma10NoTau_STVF_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord", &master ),
-        MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", &master ),
-        MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", &master ),
-        MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", &master ),
-        MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", &master ),
-        MET_wpx( this, ::TString( prefix ) + "MET_wpx", &master ),
-        MET_wpy( this, ::TString( prefix ) + "MET_wpy", &master ),
-        MET_wet( this, ::TString( prefix ) + "MET_wet", &master ),
-        MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", &master ),
-        MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", &master ),
-        MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", &master ),
-        MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", &master ),
-        MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", &master ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", &master ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", &master ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", &master ),
+// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", &master ),
+// -- slimmed --         MET_wpx( this, ::TString( prefix ) + "MET_wpx", &master ),
+// -- slimmed --         MET_wpy( this, ::TString( prefix ) + "MET_wpy", &master ),
+// -- slimmed --         MET_wet( this, ::TString( prefix ) + "MET_wet", &master ),
+// -- slimmed --         MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", &master ),
+// -- slimmed --         MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", &master ),
+// -- slimmed --         MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", &master ),
+// -- slimmed --         MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", &master ),
+// -- slimmed -- // -- slimmed --         MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", &master ),
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) , 
@@ -1129,10 +1129,10 @@ if (!is_data) {
       fHandles[ "nucone20_trkelstyle" ] = &nucone20_trkelstyle;
       fHandles[ "nucone30_trkelstyle" ] = &nucone30_trkelstyle;
       fHandles[ "nucone40_trkelstyle" ] = &nucone40_trkelstyle;
-      fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
-      fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
-      fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
-      fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
+// -- slimmed --       fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
+// -- slimmed --       fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
+// -- slimmed --       fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
+// -- slimmed --       fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
@@ -1141,18 +1141,18 @@ if (!is_data) {
       fHandles[ "MET_Egamma10NoTau_STVF_wpy" ] = &MET_Egamma10NoTau_STVF_wpy;
       fHandles[ "MET_Egamma10NoTau_STVF_wet" ] = &MET_Egamma10NoTau_STVF_wet;
       fHandles[ "MET_Egamma10NoTau_STVF_statusWord" ] = &MET_Egamma10NoTau_STVF_statusWord;
-      fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
-      fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
-      fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
-      fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
-      fHandles[ "MET_wpx" ] = &MET_wpx;
-      fHandles[ "MET_wpy" ] = &MET_wpy;
-      fHandles[ "MET_wet" ] = &MET_wet;
-      fHandles[ "MET_statusWord" ] = &MET_statusWord;
-      fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
-      fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
-      fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
-      fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
+// -- slimmed --       fHandles[ "MET_wpx" ] = &MET_wpx;
+// -- slimmed --       fHandles[ "MET_wpy" ] = &MET_wpy;
+// -- slimmed --       fHandles[ "MET_wet" ] = &MET_wet;
+// -- slimmed --       fHandles[ "MET_statusWord" ] = &MET_statusWord;
+// -- slimmed --       fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
+// -- slimmed --       fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
+// -- slimmed --       fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
+// -- slimmed -- // -- slimmed --       fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
    }
 
    /**
@@ -1415,10 +1415,10 @@ if (!is_data) {
         nucone20_trkelstyle( this, ::TString( prefix ) + "nucone20_trkelstyle", 0 ),
         nucone30_trkelstyle( this, ::TString( prefix ) + "nucone30_trkelstyle", 0 ),
         nucone40_trkelstyle( this, ::TString( prefix ) + "nucone40_trkelstyle", 0 ),
-        MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", 0 ),
-        MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", 0 ),
-        MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", 0 ),
-        MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", 0 ),
+// -- slimmed --         MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", 0 ),
+// -- slimmed --         MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", 0 ),
+// -- slimmed --         MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", 0 ),
+// -- slimmed --         MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", 0 ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", 0 ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", 0 ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", 0 ),
@@ -1427,18 +1427,18 @@ if (!is_data) {
         MET_Egamma10NoTau_STVF_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy", 0 ),
         MET_Egamma10NoTau_STVF_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet", 0 ),
         MET_Egamma10NoTau_STVF_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord", 0 ),
-        MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", 0 ),
-        MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", 0 ),
-        MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", 0 ),
-        MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", 0 ),
-        MET_wpx( this, ::TString( prefix ) + "MET_wpx", 0 ),
-        MET_wpy( this, ::TString( prefix ) + "MET_wpy", 0 ),
-        MET_wet( this, ::TString( prefix ) + "MET_wet", 0 ),
-        MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", 0 ),
-        MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", 0 ),
-        MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", 0 ),
-        MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", 0 ),
-        MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", 0 ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", 0 ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", 0 ),
+// -- slimmed --         MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", 0 ),
+// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", 0 ),
+// -- slimmed --         MET_wpx( this, ::TString( prefix ) + "MET_wpx", 0 ),
+// -- slimmed --         MET_wpy( this, ::TString( prefix ) + "MET_wpy", 0 ),
+// -- slimmed --         MET_wet( this, ::TString( prefix ) + "MET_wet", 0 ),
+// -- slimmed --         MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", 0 ),
+// -- slimmed --         MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", 0 ),
+// -- slimmed --         MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", 0 ),
+// -- slimmed --         MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", 0 ),
+// -- slimmed -- // -- slimmed --         MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) , 
@@ -1695,10 +1695,10 @@ if (!is_data) {
       fHandles[ "nucone20_trkelstyle" ] = &nucone20_trkelstyle;
       fHandles[ "nucone30_trkelstyle" ] = &nucone30_trkelstyle;
       fHandles[ "nucone40_trkelstyle" ] = &nucone40_trkelstyle;
-      fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
-      fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
-      fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
-      fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
+// -- slimmed --       fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
+// -- slimmed --       fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
+// -- slimmed --       fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
+// -- slimmed --       fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
@@ -1707,18 +1707,18 @@ if (!is_data) {
       fHandles[ "MET_Egamma10NoTau_STVF_wpy" ] = &MET_Egamma10NoTau_STVF_wpy;
       fHandles[ "MET_Egamma10NoTau_STVF_wet" ] = &MET_Egamma10NoTau_STVF_wet;
       fHandles[ "MET_Egamma10NoTau_STVF_statusWord" ] = &MET_Egamma10NoTau_STVF_statusWord;
-      fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
-      fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
-      fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
-      fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
-      fHandles[ "MET_wpx" ] = &MET_wpx;
-      fHandles[ "MET_wpy" ] = &MET_wpy;
-      fHandles[ "MET_wet" ] = &MET_wet;
-      fHandles[ "MET_statusWord" ] = &MET_statusWord;
-      fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
-      fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
-      fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
-      fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
+// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
+// -- slimmed --       fHandles[ "MET_wpx" ] = &MET_wpx;
+// -- slimmed --       fHandles[ "MET_wpy" ] = &MET_wpy;
+// -- slimmed --       fHandles[ "MET_wet" ] = &MET_wet;
+// -- slimmed --       fHandles[ "MET_statusWord" ] = &MET_statusWord;
+// -- slimmed --       fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
+// -- slimmed --       fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
+// -- slimmed --       fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
+// -- slimmed -- // -- slimmed --       fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
    }
 
    /**
@@ -1985,10 +1985,10 @@ if (!is_data) {
       nucone20_trkelstyle.SetName( ::TString( prefix ) + "nucone20_trkelstyle" );
       nucone30_trkelstyle.SetName( ::TString( prefix ) + "nucone30_trkelstyle" );
       nucone40_trkelstyle.SetName( ::TString( prefix ) + "nucone40_trkelstyle" );
-      MET_Simplified20_wpx.SetName( ::TString( prefix ) + "MET_Simplified20_wpx" );
-      MET_Simplified20_wpy.SetName( ::TString( prefix ) + "MET_Simplified20_wpy" );
-      MET_Simplified20_wet.SetName( ::TString( prefix ) + "MET_Simplified20_wet" );
-      MET_Simplified20_statusWord.SetName( ::TString( prefix ) + "MET_Simplified20_statusWord" );
+// -- slimmed --       MET_Simplified20_wpx.SetName( ::TString( prefix ) + "MET_Simplified20_wpx" );
+// -- slimmed --       MET_Simplified20_wpy.SetName( ::TString( prefix ) + "MET_Simplified20_wpy" );
+// -- slimmed --       MET_Simplified20_wet.SetName( ::TString( prefix ) + "MET_Simplified20_wet" );
+// -- slimmed --       MET_Simplified20_statusWord.SetName( ::TString( prefix ) + "MET_Simplified20_statusWord" );
       MET_Egamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpx" );
       MET_Egamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpy" );
       MET_Egamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wet" );
@@ -1997,18 +1997,18 @@ if (!is_data) {
       MET_Egamma10NoTau_STVF_wpy.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy" );
       MET_Egamma10NoTau_STVF_wet.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet" );
       MET_Egamma10NoTau_STVF_statusWord.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord" );
-      MET_LooseEgamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx" );
-      MET_LooseEgamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy" );
-      MET_LooseEgamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet" );
-      MET_LooseEgamma10NoTau_statusWord.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord" );
-      MET_wpx.SetName( ::TString( prefix ) + "MET_wpx" );
-      MET_wpy.SetName( ::TString( prefix ) + "MET_wpy" );
-      MET_wet.SetName( ::TString( prefix ) + "MET_wet" );
-      MET_statusWord.SetName( ::TString( prefix ) + "MET_statusWord" );
-      MET_STVF_wpx.SetName( ::TString( prefix ) + "MET_STVF_wpx" );
-      MET_STVF_wpy.SetName( ::TString( prefix ) + "MET_STVF_wpy" );
-      MET_STVF_wet.SetName( ::TString( prefix ) + "MET_STVF_wet" );
-      MET_STVF_statusWord.SetName( ::TString( prefix ) + "MET_STVF_statusWord" );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx" );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy" );
+// -- slimmed --       MET_LooseEgamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet" );
+// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord" );
+// -- slimmed --       MET_wpx.SetName( ::TString( prefix ) + "MET_wpx" );
+// -- slimmed --       MET_wpy.SetName( ::TString( prefix ) + "MET_wpy" );
+// -- slimmed --       MET_wet.SetName( ::TString( prefix ) + "MET_wet" );
+// -- slimmed --       MET_statusWord.SetName( ::TString( prefix ) + "MET_statusWord" );
+// -- slimmed --       MET_STVF_wpx.SetName( ::TString( prefix ) + "MET_STVF_wpx" );
+// -- slimmed --       MET_STVF_wpy.SetName( ::TString( prefix ) + "MET_STVF_wpy" );
+// -- slimmed --       MET_STVF_wet.SetName( ::TString( prefix ) + "MET_STVF_wet" );
+// -- slimmed -- // -- slimmed --       MET_STVF_statusWord.SetName( ::TString( prefix ) + "MET_STVF_statusWord" );
       return;
    }
 
@@ -2278,10 +2278,10 @@ if (!is_data) {
       nucone20_trkelstyle.ReadFrom( tree );
       nucone30_trkelstyle.ReadFrom( tree );
       nucone40_trkelstyle.ReadFrom( tree );
-      MET_Simplified20_wpx.ReadFrom( tree );
-      MET_Simplified20_wpy.ReadFrom( tree );
-      MET_Simplified20_wet.ReadFrom( tree );
-      MET_Simplified20_statusWord.ReadFrom( tree );
+// -- slimmed --       MET_Simplified20_wpx.ReadFrom( tree );
+// -- slimmed --       MET_Simplified20_wpy.ReadFrom( tree );
+// -- slimmed --       MET_Simplified20_wet.ReadFrom( tree );
+// -- slimmed --       MET_Simplified20_statusWord.ReadFrom( tree );
       MET_Egamma10NoTau_wpx.ReadFrom( tree );
       MET_Egamma10NoTau_wpy.ReadFrom( tree );
       MET_Egamma10NoTau_wet.ReadFrom( tree );
@@ -2290,18 +2290,18 @@ if (!is_data) {
       MET_Egamma10NoTau_STVF_wpy.ReadFrom( tree );
       MET_Egamma10NoTau_STVF_wet.ReadFrom( tree );
       MET_Egamma10NoTau_STVF_statusWord.ReadFrom( tree );
-      MET_LooseEgamma10NoTau_wpx.ReadFrom( tree );
-      MET_LooseEgamma10NoTau_wpy.ReadFrom( tree );
-      MET_LooseEgamma10NoTau_wet.ReadFrom( tree );
-      MET_LooseEgamma10NoTau_statusWord.ReadFrom( tree );
-      MET_wpx.ReadFrom( tree );
-      MET_wpy.ReadFrom( tree );
-      MET_wet.ReadFrom( tree );
-      MET_statusWord.ReadFrom( tree );
-      MET_STVF_wpx.ReadFrom( tree );
-      MET_STVF_wpy.ReadFrom( tree );
-      MET_STVF_wet.ReadFrom( tree );
-      MET_STVF_statusWord.ReadFrom( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpx.ReadFrom( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpy.ReadFrom( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wet.ReadFrom( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.ReadFrom( tree );
+// -- slimmed --       MET_wpx.ReadFrom( tree );
+// -- slimmed --       MET_wpy.ReadFrom( tree );
+// -- slimmed --       MET_wet.ReadFrom( tree );
+// -- slimmed --       MET_statusWord.ReadFrom( tree );
+// -- slimmed --       MET_STVF_wpx.ReadFrom( tree );
+// -- slimmed --       MET_STVF_wpy.ReadFrom( tree );
+// -- slimmed --       MET_STVF_wet.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       MET_STVF_statusWord.ReadFrom( tree );
 
       return;
    }
@@ -2566,10 +2566,10 @@ if (!is_data) {
       nucone20_trkelstyle.WriteTo( tree );
       nucone30_trkelstyle.WriteTo( tree );
       nucone40_trkelstyle.WriteTo( tree );
-      MET_Simplified20_wpx.WriteTo( tree );
-      MET_Simplified20_wpy.WriteTo( tree );
-      MET_Simplified20_wet.WriteTo( tree );
-      MET_Simplified20_statusWord.WriteTo( tree );
+// -- slimmed --       MET_Simplified20_wpx.WriteTo( tree );
+// -- slimmed --       MET_Simplified20_wpy.WriteTo( tree );
+// -- slimmed --       MET_Simplified20_wet.WriteTo( tree );
+// -- slimmed --       MET_Simplified20_statusWord.WriteTo( tree );
       MET_Egamma10NoTau_wpx.WriteTo( tree );
       MET_Egamma10NoTau_wpy.WriteTo( tree );
       MET_Egamma10NoTau_wet.WriteTo( tree );
@@ -2578,18 +2578,18 @@ if (!is_data) {
       MET_Egamma10NoTau_STVF_wpy.WriteTo( tree );
       MET_Egamma10NoTau_STVF_wet.WriteTo( tree );
       MET_Egamma10NoTau_STVF_statusWord.WriteTo( tree );
-      MET_LooseEgamma10NoTau_wpx.WriteTo( tree );
-      MET_LooseEgamma10NoTau_wpy.WriteTo( tree );
-      MET_LooseEgamma10NoTau_wet.WriteTo( tree );
-      MET_LooseEgamma10NoTau_statusWord.WriteTo( tree );
-      MET_wpx.WriteTo( tree );
-      MET_wpy.WriteTo( tree );
-      MET_wet.WriteTo( tree );
-      MET_statusWord.WriteTo( tree );
-      MET_STVF_wpx.WriteTo( tree );
-      MET_STVF_wpy.WriteTo( tree );
-      MET_STVF_wet.WriteTo( tree );
-      MET_STVF_statusWord.WriteTo( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpx.WriteTo( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wpy.WriteTo( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_wet.WriteTo( tree );
+// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.WriteTo( tree );
+// -- slimmed --       MET_wpx.WriteTo( tree );
+// -- slimmed --       MET_wpy.WriteTo( tree );
+// -- slimmed --       MET_wet.WriteTo( tree );
+// -- slimmed --       MET_statusWord.WriteTo( tree );
+// -- slimmed --       MET_STVF_wpx.WriteTo( tree );
+// -- slimmed --       MET_STVF_wpy.WriteTo( tree );
+// -- slimmed --       MET_STVF_wet.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       MET_STVF_statusWord.WriteTo( tree );
 
       return;
    }
@@ -2891,10 +2891,10 @@ if (!is_data) {
       if( nucone20_trkelstyle.IsActive() ) nucone20_trkelstyle();
       if( nucone30_trkelstyle.IsActive() ) nucone30_trkelstyle();
       if( nucone40_trkelstyle.IsActive() ) nucone40_trkelstyle();
-      if( MET_Simplified20_wpx.IsActive() ) MET_Simplified20_wpx();
-      if( MET_Simplified20_wpy.IsActive() ) MET_Simplified20_wpy();
-      if( MET_Simplified20_wet.IsActive() ) MET_Simplified20_wet();
-      if( MET_Simplified20_statusWord.IsActive() ) MET_Simplified20_statusWord();
+// -- slimmed --       if( MET_Simplified20_wpx.IsActive() ) MET_Simplified20_wpx();
+// -- slimmed --       if( MET_Simplified20_wpy.IsActive() ) MET_Simplified20_wpy();
+// -- slimmed --       if( MET_Simplified20_wet.IsActive() ) MET_Simplified20_wet();
+// -- slimmed --       if( MET_Simplified20_statusWord.IsActive() ) MET_Simplified20_statusWord();
       if( MET_Egamma10NoTau_wpx.IsActive() ) MET_Egamma10NoTau_wpx();
       if( MET_Egamma10NoTau_wpy.IsActive() ) MET_Egamma10NoTau_wpy();
       if( MET_Egamma10NoTau_wet.IsActive() ) MET_Egamma10NoTau_wet();
@@ -2903,18 +2903,18 @@ if (!is_data) {
       if( MET_Egamma10NoTau_STVF_wpy.IsActive() ) MET_Egamma10NoTau_STVF_wpy();
       if( MET_Egamma10NoTau_STVF_wet.IsActive() ) MET_Egamma10NoTau_STVF_wet();
       if( MET_Egamma10NoTau_STVF_statusWord.IsActive() ) MET_Egamma10NoTau_STVF_statusWord();
-      if( MET_LooseEgamma10NoTau_wpx.IsActive() ) MET_LooseEgamma10NoTau_wpx();
-      if( MET_LooseEgamma10NoTau_wpy.IsActive() ) MET_LooseEgamma10NoTau_wpy();
-      if( MET_LooseEgamma10NoTau_wet.IsActive() ) MET_LooseEgamma10NoTau_wet();
-      if( MET_LooseEgamma10NoTau_statusWord.IsActive() ) MET_LooseEgamma10NoTau_statusWord();
-      if( MET_wpx.IsActive() ) MET_wpx();
-      if( MET_wpy.IsActive() ) MET_wpy();
-      if( MET_wet.IsActive() ) MET_wet();
-      if( MET_statusWord.IsActive() ) MET_statusWord();
-      if( MET_STVF_wpx.IsActive() ) MET_STVF_wpx();
-      if( MET_STVF_wpy.IsActive() ) MET_STVF_wpy();
-      if( MET_STVF_wet.IsActive() ) MET_STVF_wet();
-      if( MET_STVF_statusWord.IsActive() ) MET_STVF_statusWord();
+// -- slimmed --       if( MET_LooseEgamma10NoTau_wpx.IsActive() ) MET_LooseEgamma10NoTau_wpx();
+// -- slimmed --       if( MET_LooseEgamma10NoTau_wpy.IsActive() ) MET_LooseEgamma10NoTau_wpy();
+// -- slimmed --       if( MET_LooseEgamma10NoTau_wet.IsActive() ) MET_LooseEgamma10NoTau_wet();
+// -- slimmed --       if( MET_LooseEgamma10NoTau_statusWord.IsActive() ) MET_LooseEgamma10NoTau_statusWord();
+// -- slimmed --       if( MET_wpx.IsActive() ) MET_wpx();
+// -- slimmed --       if( MET_wpy.IsActive() ) MET_wpy();
+// -- slimmed --       if( MET_wet.IsActive() ) MET_wet();
+// -- slimmed --       if( MET_statusWord.IsActive() ) MET_statusWord();
+// -- slimmed --       if( MET_STVF_wpx.IsActive() ) MET_STVF_wpx();
+// -- slimmed --       if( MET_STVF_wpy.IsActive() ) MET_STVF_wpy();
+// -- slimmed --       if( MET_STVF_wet.IsActive() ) MET_STVF_wet();
+// -- slimmed -- // -- slimmed --       if( MET_STVF_statusWord.IsActive() ) MET_STVF_statusWord();
 
       return;
    }
@@ -3188,10 +3188,10 @@ if (!is_data) {
       nucone20_trkelstyle()->clear();
       nucone30_trkelstyle()->clear();
       nucone40_trkelstyle()->clear();
-      MET_Simplified20_wpx()->clear();
-      MET_Simplified20_wpy()->clear();
-      MET_Simplified20_wet()->clear();
-      MET_Simplified20_statusWord()->clear();
+// -- slimmed --       MET_Simplified20_wpx()->clear();
+// -- slimmed --       MET_Simplified20_wpy()->clear();
+// -- slimmed --       MET_Simplified20_wet()->clear();
+// -- slimmed --       MET_Simplified20_statusWord()->clear();
       MET_Egamma10NoTau_wpx()->clear();
       MET_Egamma10NoTau_wpy()->clear();
       MET_Egamma10NoTau_wet()->clear();
@@ -3200,18 +3200,18 @@ if (!is_data) {
       MET_Egamma10NoTau_STVF_wpy()->clear();
       MET_Egamma10NoTau_STVF_wet()->clear();
       MET_Egamma10NoTau_STVF_statusWord()->clear();
-      MET_LooseEgamma10NoTau_wpx()->clear();
-      MET_LooseEgamma10NoTau_wpy()->clear();
-      MET_LooseEgamma10NoTau_wet()->clear();
-      MET_LooseEgamma10NoTau_statusWord()->clear();
-      MET_wpx()->clear();
-      MET_wpy()->clear();
-      MET_wet()->clear();
-      MET_statusWord()->clear();
-      MET_STVF_wpx()->clear();
-      MET_STVF_wpy()->clear();
-      MET_STVF_wet()->clear();
-      MET_STVF_statusWord()->clear();
+// -- slimmed --       MET_LooseEgamma10NoTau_wpx()->clear();
+// -- slimmed --       MET_LooseEgamma10NoTau_wpy()->clear();
+// -- slimmed --       MET_LooseEgamma10NoTau_wet()->clear();
+// -- slimmed --       MET_LooseEgamma10NoTau_statusWord()->clear();
+// -- slimmed --       MET_wpx()->clear();
+// -- slimmed --       MET_wpy()->clear();
+// -- slimmed --       MET_wet()->clear();
+// -- slimmed --       MET_statusWord()->clear();
+// -- slimmed --       MET_STVF_wpx()->clear();
+// -- slimmed --       MET_STVF_wpy()->clear();
+// -- slimmed --       MET_STVF_wet()->clear();
+// -- slimmed -- // -- slimmed --       MET_STVF_statusWord()->clear();
 
       return;
    }
@@ -4477,26 +4477,26 @@ if (!is_data) {
       } else {
          nucone40_trkelstyle()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.MET_Simplified20_wpx.IsAvailable() ) {
-         MET_Simplified20_wpx()->push_back( el.MET_Simplified20_wpx() );
-      } else {
-         MET_Simplified20_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_Simplified20_wpy.IsAvailable() ) {
-         MET_Simplified20_wpy()->push_back( el.MET_Simplified20_wpy() );
-      } else {
-         MET_Simplified20_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_Simplified20_wet.IsAvailable() ) {
-         MET_Simplified20_wet()->push_back( el.MET_Simplified20_wet() );
-      } else {
-         MET_Simplified20_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_Simplified20_statusWord.IsAvailable() ) {
-         MET_Simplified20_statusWord()->push_back( el.MET_Simplified20_statusWord() );
-      } else {
-         MET_Simplified20_statusWord()->push_back( vector<unsigned int>() );
-      }
+// -- slimmed --       if( el.MET_Simplified20_wpx.IsAvailable() ) {
+// -- slimmed --          MET_Simplified20_wpx()->push_back( el.MET_Simplified20_wpx() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_Simplified20_wpx()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_Simplified20_wpy.IsAvailable() ) {
+// -- slimmed --          MET_Simplified20_wpy()->push_back( el.MET_Simplified20_wpy() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_Simplified20_wpy()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_Simplified20_wet.IsAvailable() ) {
+// -- slimmed --          MET_Simplified20_wet()->push_back( el.MET_Simplified20_wet() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_Simplified20_wet()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_Simplified20_statusWord.IsAvailable() ) {
+// -- slimmed --          MET_Simplified20_statusWord()->push_back( el.MET_Simplified20_statusWord() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_Simplified20_statusWord()->push_back( vector<unsigned int>() );
+// -- slimmed --       }
       if( el.MET_Egamma10NoTau_wpx.IsAvailable() ) {
          MET_Egamma10NoTau_wpx()->push_back( el.MET_Egamma10NoTau_wpx() );
       } else {
@@ -4537,66 +4537,66 @@ if (!is_data) {
       } else {
          MET_Egamma10NoTau_STVF_statusWord()->push_back( vector<unsigned int>() );
       }
-      if( el.MET_LooseEgamma10NoTau_wpx.IsAvailable() ) {
-         MET_LooseEgamma10NoTau_wpx()->push_back( el.MET_LooseEgamma10NoTau_wpx() );
-      } else {
-         MET_LooseEgamma10NoTau_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_LooseEgamma10NoTau_wpy.IsAvailable() ) {
-         MET_LooseEgamma10NoTau_wpy()->push_back( el.MET_LooseEgamma10NoTau_wpy() );
-      } else {
-         MET_LooseEgamma10NoTau_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_LooseEgamma10NoTau_wet.IsAvailable() ) {
-         MET_LooseEgamma10NoTau_wet()->push_back( el.MET_LooseEgamma10NoTau_wet() );
-      } else {
-         MET_LooseEgamma10NoTau_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_LooseEgamma10NoTau_statusWord.IsAvailable() ) {
-         MET_LooseEgamma10NoTau_statusWord()->push_back( el.MET_LooseEgamma10NoTau_statusWord() );
-      } else {
-         MET_LooseEgamma10NoTau_statusWord()->push_back( vector<unsigned int>() );
-      }
-      if( el.MET_wpx.IsAvailable() ) {
-         MET_wpx()->push_back( el.MET_wpx() );
-      } else {
-         MET_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_wpy.IsAvailable() ) {
-         MET_wpy()->push_back( el.MET_wpy() );
-      } else {
-         MET_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_wet.IsAvailable() ) {
-         MET_wet()->push_back( el.MET_wet() );
-      } else {
-         MET_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_statusWord.IsAvailable() ) {
-         MET_statusWord()->push_back( el.MET_statusWord() );
-      } else {
-         MET_statusWord()->push_back( vector<unsigned int>() );
-      }
-      if( el.MET_STVF_wpx.IsAvailable() ) {
-         MET_STVF_wpx()->push_back( el.MET_STVF_wpx() );
-      } else {
-         MET_STVF_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_wpy.IsAvailable() ) {
-         MET_STVF_wpy()->push_back( el.MET_STVF_wpy() );
-      } else {
-         MET_STVF_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_wet.IsAvailable() ) {
-         MET_STVF_wet()->push_back( el.MET_STVF_wet() );
-      } else {
-         MET_STVF_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_statusWord.IsAvailable() ) {
-         MET_STVF_statusWord()->push_back( el.MET_STVF_statusWord() );
-      } else {
-         MET_STVF_statusWord()->push_back( vector<unsigned int>() );
-      }
+// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wpx.IsAvailable() ) {
+// -- slimmed --          MET_LooseEgamma10NoTau_wpx()->push_back( el.MET_LooseEgamma10NoTau_wpx() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_LooseEgamma10NoTau_wpx()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wpy.IsAvailable() ) {
+// -- slimmed --          MET_LooseEgamma10NoTau_wpy()->push_back( el.MET_LooseEgamma10NoTau_wpy() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_LooseEgamma10NoTau_wpy()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wet.IsAvailable() ) {
+// -- slimmed --          MET_LooseEgamma10NoTau_wet()->push_back( el.MET_LooseEgamma10NoTau_wet() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_LooseEgamma10NoTau_wet()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_LooseEgamma10NoTau_statusWord.IsAvailable() ) {
+// -- slimmed --          MET_LooseEgamma10NoTau_statusWord()->push_back( el.MET_LooseEgamma10NoTau_statusWord() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_LooseEgamma10NoTau_statusWord()->push_back( vector<unsigned int>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_wpx.IsAvailable() ) {
+// -- slimmed --          MET_wpx()->push_back( el.MET_wpx() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_wpx()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_wpy.IsAvailable() ) {
+// -- slimmed --          MET_wpy()->push_back( el.MET_wpy() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_wpy()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_wet.IsAvailable() ) {
+// -- slimmed --          MET_wet()->push_back( el.MET_wet() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_wet()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_statusWord.IsAvailable() ) {
+// -- slimmed --          MET_statusWord()->push_back( el.MET_statusWord() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_statusWord()->push_back( vector<unsigned int>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_STVF_wpx.IsAvailable() ) {
+// -- slimmed --          MET_STVF_wpx()->push_back( el.MET_STVF_wpx() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_STVF_wpx()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_STVF_wpy.IsAvailable() ) {
+// -- slimmed --          MET_STVF_wpy()->push_back( el.MET_STVF_wpy() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_STVF_wpy()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed --       if( el.MET_STVF_wet.IsAvailable() ) {
+// -- slimmed --          MET_STVF_wet()->push_back( el.MET_STVF_wet() );
+// -- slimmed --       } else {
+// -- slimmed --          MET_STVF_wet()->push_back( vector<float>() );
+// -- slimmed --       }
+// -- slimmed -- // -- slimmed --       if( el.MET_STVF_statusWord.IsAvailable() ) {
+// -- slimmed -- // -- slimmed --          MET_STVF_statusWord()->push_back( el.MET_STVF_statusWord() );
+// -- slimmed --       } else {
+// -- slimmed -- // -- slimmed --          MET_STVF_statusWord()->push_back( vector<unsigned int>() );
+// -- slimmed --       }
       return *this;
    }
 
