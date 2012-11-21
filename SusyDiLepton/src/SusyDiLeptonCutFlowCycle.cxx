@@ -51,25 +51,6 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   DeclareProperty("MuonTruth_prefix", c_muon_truth_prefix="muonTruth_" );
   DeclareProperty("Jet_prefix"      , c_jet_prefix="jet_AntiKt4LCTopo_");
 
-  // DeclareProperty("Crit_grl"              , c_crit_grl              = false);
-  // DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = false);
-  // DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = false);
-  // DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = false);
-  // DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = false);
-  // DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = false);
-  // DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = false);
-  // DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = false);
-  // DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = false);
-  // DeclareProperty("Crit_hfor"             , c_crit_hfor             = false);
-  // DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep         = false);
-  // DeclareProperty("Crit_2_lep"            , c_crit_2_lep            = false);
-  // DeclareProperty("Crit_mll"              , c_crit_mll              = false);
-  // DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep       = false);
-  // DeclareProperty("Crit_phase_space"      , c_crit_phase_space      = false);
-  // DeclareProperty("Crit_trigger"          , c_crit_trigger          = false);
-  // DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
-  // DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons   = false);
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   declareTools();
 }
@@ -421,13 +402,6 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   getObjects();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // bool pass_critical_cuts = runCutFlow();
-  // if (!pass_critical_cuts) {
-  //   throw SError( SError::SkipEvent );
-  // }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool pass_critical_cuts = m_cut_flow->runBasicCutFlow( m_event
                                                        , m_electrons
                                                        , m_muons
@@ -441,7 +415,12 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw SError( SError::SkipEvent );
   }
 
-  m_cut_flow->computeGoodEventVariables(m_event, m_electrons, m_muons, m_jets, m_met);
+  m_cut_flow->computeGoodEventVariables( m_event
+                                       , m_electrons
+                                       , m_muons
+                                       , m_jets
+                                       , m_met
+                                       );
 
   pass_critical_cuts = m_cut_flow->runAdvancedCutFlow( m_event
                                                      , m_electrons
