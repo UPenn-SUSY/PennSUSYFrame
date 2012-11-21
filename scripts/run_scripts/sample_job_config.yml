@@ -13,7 +13,7 @@ output_tree_name: output
 is_egamma_stream:   True
 
 
-UserConfigFile: scripts/run_scripts/sample_user_config.yml
+UserConfigFile: ${SFRAME_DIR}/../scripts/run_scripts/sample_user_config.yml
 InputFiles:
   - ~/work/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1193_s1469_s1470_r3542_r3549_p1181_tid00950213_00/NTUP_SUSY.00950213._000715.root.1  
 

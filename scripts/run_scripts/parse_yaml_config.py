@@ -18,12 +18,24 @@ def parseInputs():
     return config_dict
 
 # ------------------------------------------------------------------------------
+def interpretEnvVariables(string):
+    if type(string) == str:
+        while not string.find("$") == -1:
+            search_begin = string.find("${") + 2
+            search_end = string.find("}")
+            search_key = string[search_begin:search_end]
+            string = string.replace( "${%s}" % search_key
+                                   , os.environ.get(search_key)
+                                   )
+    return string
+
+# ------------------------------------------------------------------------------
 def processConfigFile(global_config_file_name):
     print 'global_config_file_name: %s ' % global_config_file_name
     global_config_file = open(global_config_file_name)
     config_dict = yaml.load(global_config_file)
 
-    user_config_file_name = config_dict['UserConfigFile']
+    user_config_file_name = interpretEnvVariables(config_dict['UserConfigFile'])
     print 'user_config_file_name: %s' % user_config_file_name
     user_config_file = open(user_config_file_name)
     config_dict['UserConfig'] = yaml.load(user_config_file)
