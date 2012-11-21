@@ -65,6 +65,8 @@
 #include "CommonTools/include/MetOutputTool.h"
 #include "CommonTools/include/VertexOutputTool.h"
 
+#include "SusyDiLeptonCutFlowTool.h"
+
 /**
 *   @short CycleBase class to run the Susy Di-lepton cut flow
 *
@@ -170,6 +172,8 @@ private:
   D3PDReader::VertexD3PDObject*     m_vertex_d3pdobject;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  SusyDiLeptonCutFlowTool* m_cut_flow;
+
   SelectionTools::ElectronSelectionTool* m_electron_selection;
   SelectionTools::JetSelectionTool*      m_jet_selection;
   SelectionTools::MuonSelectionTool*     m_muon_selection;
@@ -196,17 +200,18 @@ private:
   CommonTools::VertexOutputTool*     m_vertex_output_tool;
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();
-  void declareEventVariables();
 
   void initD3PDReaders();
   void getTools();
 
-  bool runCutFlow();
+  // bool runCutFlow();
   void checkSignalRegions();
 
+  /*/
   // This function computes event variables we only want for good events
   // Call this only after you have determined the flavor channel!
   void computeGoodEventVariables();
+  */
 
   // get the lepton eff weight for this event.
   double getLeptonEffWeight();

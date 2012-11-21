@@ -4,9 +4,9 @@
 
 // ----------------------------------------------------------------------------
 CommonTools::MuonOutputTool::MuonOutputTool( SCycleBase* parent
-                                                         , const char* name
-                                                         )
-                                                         : ToolBase(parent, name)
+                                           , const char* name
+                                           )
+                                           : ToolBase(parent, name)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -146,8 +146,8 @@ void CommonTools::MuonOutputTool::fillOutput(Event* event, ElectronContainer ele
   else
     {
       m_logger << FATAL
-	       << "Could Not Parse Muon Output Level: " << c_muon_output_collection
-	       << SLogger::endmsg;
+         << "Could Not Parse Muon Output Level: " << c_muon_output_collection
+         << SLogger::endmsg;
       throw SError(SError::StopExecution);
     }
 
@@ -185,27 +185,27 @@ void CommonTools::MuonOutputTool::fillOutput(Event* event, ElectronContainer ele
 
       m_mu_desc.push_back(mu_vec.at(mu_it)->getMuonDesc()->toInt());
       if (c_do_detailed_output)
-	{
+  {
 
-	  m_mu_raw_etcone20.push_back(mu_vec.at(mu_it)->etcone20());
-	  m_mu_raw_etcone30.push_back(mu_vec.at(mu_it)->etcone30());
-	  m_mu_raw_etcone40.push_back(mu_vec.at(mu_it)->etcone40());
-	  m_mu_raw_ptcone20.push_back(mu_vec.at(mu_it)->ptcone20());
-	  m_mu_raw_ptcone30.push_back(mu_vec.at(mu_it)->ptcone30());
-	  m_mu_raw_ptcone40.push_back(mu_vec.at(mu_it)->ptcone40());
+    m_mu_raw_etcone20.push_back(mu_vec.at(mu_it)->etcone20());
+    m_mu_raw_etcone30.push_back(mu_vec.at(mu_it)->etcone30());
+    m_mu_raw_etcone40.push_back(mu_vec.at(mu_it)->etcone40());
+    m_mu_raw_ptcone20.push_back(mu_vec.at(mu_it)->ptcone20());
+    m_mu_raw_ptcone30.push_back(mu_vec.at(mu_it)->ptcone30());
+    m_mu_raw_ptcone40.push_back(mu_vec.at(mu_it)->ptcone40());
 
-	  m_mu_b_layer_hits.push_back(mu_vec.at(mu_it)->nBLHits());
-	  m_mu_num_pix_hits.push_back(mu_vec.at(mu_it)->nPixHits());
-	  m_mu_num_sct_hits.push_back(mu_vec.at(mu_it)->nSCTHits());
-	  m_mu_num_trt_hits.push_back(mu_vec.at(mu_it)->nTRTHits());
-	  m_mu_expect_b_layer_hit.push_back(mu_vec.at(mu_it)->expectBLayerHit());
-	  m_mu_num_pix_holes.push_back(mu_vec.at(mu_it)->nPixHoles());
-	  m_mu_num_sct_holes.push_back(mu_vec.at(mu_it)->nSCTHoles());
-	  m_mu_num_trt_outliers.push_back(mu_vec.at(mu_it)->nTRTOutliers());
-	  m_mu_num_trt_ht_outliers.push_back(mu_vec.at(mu_it)->nTRTHighTOutliers());
-	  m_mu_num_mdt_layers.push_back(mu_vec.at(mu_it)->getNMuonStations());
+    m_mu_b_layer_hits.push_back(mu_vec.at(mu_it)->nBLHits());
+    m_mu_num_pix_hits.push_back(mu_vec.at(mu_it)->nPixHits());
+    m_mu_num_sct_hits.push_back(mu_vec.at(mu_it)->nSCTHits());
+    m_mu_num_trt_hits.push_back(mu_vec.at(mu_it)->nTRTHits());
+    m_mu_expect_b_layer_hit.push_back(mu_vec.at(mu_it)->expectBLayerHit());
+    m_mu_num_pix_holes.push_back(mu_vec.at(mu_it)->nPixHoles());
+    m_mu_num_sct_holes.push_back(mu_vec.at(mu_it)->nSCTHoles());
+    m_mu_num_trt_outliers.push_back(mu_vec.at(mu_it)->nTRTOutliers());
+    m_mu_num_trt_ht_outliers.push_back(mu_vec.at(mu_it)->nTRTHighTOutliers());
+    m_mu_num_mdt_layers.push_back(mu_vec.at(mu_it)->getNMuonStations());
 
-	}
+  }
 
     }
 }

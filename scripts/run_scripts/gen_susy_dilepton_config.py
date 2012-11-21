@@ -76,7 +76,7 @@ def writeConfigXml(config_dict, out_file):
     f.write( """<JobConfiguration JobName="%(JobName)s" OutputLevel="%(OutputLevel)s">
 """ % config_dict)
 
-    # write libraries that must be loaded for cycle to run 
+    # write libraries that must be loaded for cycle to run
     f.write("""  <!-- List of libraries to be loaded for the analysis. -->
   <Library Name="libGenVector" />
   <Library Name="libGraf" />

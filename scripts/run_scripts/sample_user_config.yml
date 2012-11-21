@@ -5,25 +5,25 @@ Muon_prefix:        mu_staco_
 do_metadata:        False
 input_file_hists:   ''
 
-Crit:
-    2_lep:            False
-    bad_jet_veto:     False
-    bad_mu_veto:      False
-    cosmic_mu_veto:   False
-    ge_2_lep:         False
-    grl:              False
-    hfor:             False
-    incomplete_event: False
-    lar_error:        False
-    mll:              False
-    phase_space:      False
-    primary_vertex:   False
-    prompt_leptons:   False
-    signal_lep:       False
-    tile_error:       False
-    tile_hot_spot:    False
-    trigger:          False
-    trigger_match:    False
+CutFlow:
+    Crit_2_lep:            False
+    Crit_bad_jet_veto:     False
+    Crit_bad_mu_veto:      False
+    Crit_cosmic_mu_veto:   False
+    Crit_ge_2_lep:         False
+    Crit_grl:              False
+    Crit_hfor:             False
+    Crit_incomplete_event: False
+    Crit_lar_error:        False
+    Crit_mll:              False
+    Crit_phase_space:      False
+    Crit_primary_vertex:   False
+    Crit_prompt_leptons:   False
+    Crit_signal_lep:       False
+    Crit_tile_error:       False
+    Crit_tile_hot_spot:    False
+    Crit_trigger:          False
+    Crit_trigger_match:    False
 
 EgammaEnergyRescale:
     apply_systematics: 0

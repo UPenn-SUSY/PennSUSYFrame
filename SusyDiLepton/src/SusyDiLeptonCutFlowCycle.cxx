@@ -22,6 +22,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_truth_d3pdobject(NULL),
   m_met_truth_d3pdobject(NULL),
   m_vertex_d3pdobject(NULL),
+  m_cut_flow(NULL),
   m_electron_selection(NULL),
   m_jet_selection(NULL),
   m_muon_selection(NULL),
@@ -36,33 +37,6 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_pileup_sf_tool(NULL),
   m_egamma_sf_tool(NULL),
   m_muon_sf_tool(NULL)
-  // m_mc_event_weight(0.),
-  // m_pile_up_weight(0.),
-  // m_lepton_weight(0.),
-  // m_b_tag_weight(0.),
-  // m_trigger_weight(0.),
-  // m_cross_section_weight(0.),
-  // m_charge_flip_weight(0.),
-  // m_num_el_all(0.),
-  // m_num_el_baseline(0.),
-  // m_num_el_good(0.),
-  // m_num_el_signal(0.),
-  // m_num_mu_all(0.),
-  // m_num_mu_baseline(0.),
-  // m_num_mu_good(0.),
-  // m_num_mu_bad(0.),
-  // m_num_mu_cosmic(0.),
-  // m_num_mu_signal(0.),
-  // m_num_jet_all(0.),
-  // m_num_jet_baseline_good(0.),
-  // m_num_jet_baseline_bad(0.),
-  // m_num_jet_good(0.),
-  // m_num_jet_bad(0.),
-  // m_num_jet_light(0.),
-  // m_num_jet_b(0.),
-  // m_num_jet_forward(0.),
-  // m_num_jet_central(0.),
-  // m_num_jet_signal(0.)
 {
   // = declare user defined properties =
   DeclareProperty("input_tree_name" , c_input_tree_name="presel");
@@ -77,43 +51,24 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   DeclareProperty("MuonTruth_prefix", c_muon_truth_prefix="muonTruth_" );
   DeclareProperty("Jet_prefix"      , c_jet_prefix="jet_AntiKt4LCTopo_");
 
-  // DeclareProperty("Crit_grl"              , c_crit_grl              = true );
-  // DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = true );
-  // DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = true );
-  // DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = true );
-  // DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = true );
-  // DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = true );
-  // DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = true );
-  // DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = true );
-  // DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = true );
-  // DeclareProperty("Crit_hfor"             , c_crit_hfor             = true );
-  // DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep         = true );
+  // DeclareProperty("Crit_grl"              , c_crit_grl              = false);
+  // DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = false);
+  // DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = false);
+  // DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = false);
+  // DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = false);
+  // DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = false);
+  // DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = false);
+  // DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = false);
+  // DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = false);
+  // DeclareProperty("Crit_hfor"             , c_crit_hfor             = false);
+  // DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep         = false);
   // DeclareProperty("Crit_2_lep"            , c_crit_2_lep            = false);
-  // DeclareProperty("Crit_mll"              , c_crit_mll              = true );
+  // DeclareProperty("Crit_mll"              , c_crit_mll              = false);
   // DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep       = false);
   // DeclareProperty("Crit_phase_space"      , c_crit_phase_space      = false);
   // DeclareProperty("Crit_trigger"          , c_crit_trigger          = false);
   // DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
   // DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons   = false);
-
-  DeclareProperty("Crit_grl"              , c_crit_grl              = false);
-  DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = false);
-  DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = false);
-  DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = false);
-  DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = false);
-  DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = false);
-  DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = false);
-  DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = false);
-  DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = false);
-  DeclareProperty("Crit_hfor"             , c_crit_hfor             = false);
-  DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep         = false);
-  DeclareProperty("Crit_2_lep"            , c_crit_2_lep            = false);
-  DeclareProperty("Crit_mll"              , c_crit_mll              = false);
-  DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep       = false);
-  DeclareProperty("Crit_phase_space"      , c_crit_phase_space      = false);
-  DeclareProperty("Crit_trigger"          , c_crit_trigger          = false);
-  DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
-  DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons   = false);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   declareTools();
@@ -122,6 +77,8 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::declareTools()
 {
+  DECLARE_TOOL(SusyDiLeptonCutFlowTool, "CutFlow");
+
   DECLARE_TOOL(CommonTools::EgammaEnergyRescaleTool , "EgammaEnergyRescale" );
   DECLARE_TOOL(CommonTools::MuonMomentumSmearingTool, "MuonMomentumSmearing");
   DECLARE_TOOL(CommonTools::JetCalibTool            , "JetCalibration"      );
@@ -149,54 +106,13 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(SelectionTools::SignalRegionTool, "Signal_Regions");
 
 
-  //OutputTools
-
+  // Output Tools
   DECLARE_TOOL(CommonTools::EventOutputTool    , "EventOutput");
   DECLARE_TOOL(CommonTools::ElectronOutputTool , "ElectronOutput");
   DECLARE_TOOL(CommonTools::MuonOutputTool     , "MuonOutput");
   DECLARE_TOOL(CommonTools::JetOutputTool      , "JetOutput");
   DECLARE_TOOL(CommonTools::MetOutputTool      , "MetOutput");
   DECLARE_TOOL(CommonTools::VertexOutputTool   , "VertexOutput");
-  // TODO populate list of tools
-}
-
-// -----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::declareEventVariables()
-{
-  // DeclareVariable(m_run_number          , "run_number"          );
-  // DeclareVariable(m_event_number        , "event_number"        );
-  // DeclareVariable(m_event_desc_int      , "event_desc"          );
-  // DeclareVariable(m_sr_helper_int       , "sr_helper"           );
-  // DeclareVariable(m_mc_event_weight     , "mc_event_weight"     );
-  // DeclareVariable(m_pile_up_weight      , "pile_up_weight"      );
-  // DeclareVariable(m_lepton_weight       , "lepton_weight"       );
-  // DeclareVariable(m_b_tag_weight        , "b_tag_weight"        );
-  // DeclareVariable(m_trigger_weight      , "trigger_weight"      );
-  // DeclareVariable(m_cross_section_weight, "cross_section_weight");
-  // DeclareVariable(m_charge_flip_weight  , "charge_flip_weight"  );
-
-  // DeclareVariable(m_num_el_all            , "num_el_all"            );
-  // DeclareVariable(m_num_el_baseline       , "num_el_baseline"       );
-  // DeclareVariable(m_num_el_good           , "num_el_good"           );
-  // DeclareVariable(m_num_el_signal         , "num_el_signal"         );
-
-  // DeclareVariable(m_num_mu_all            , "num_mu_all"            );
-  // DeclareVariable(m_num_mu_baseline       , "num_mu_baseline"       );
-  // DeclareVariable(m_num_mu_good           , "num_mu_good"           );
-  // DeclareVariable(m_num_mu_bad            , "num_mu_bad"            );
-  // DeclareVariable(m_num_mu_cosmic         , "num_mu_cosmic"         );
-  // DeclareVariable(m_num_mu_signal         , "num_mu_signal"         );
-
-  // DeclareVariable(m_num_jet_all           , "num_jet_all"           );
-  // DeclareVariable(m_num_jet_baseline_good , "num_jet_baseline_good" );
-  // DeclareVariable(m_num_jet_baseline_bad  , "num_jet_baseline_bad"  );
-  // DeclareVariable(m_num_jet_good          , "num_jet_good"          );
-  // DeclareVariable(m_num_jet_bad           , "num_jet_bad"           );
-  // DeclareVariable(m_num_jet_light         , "num_jet_light"         );
-  // DeclareVariable(m_num_jet_b             , "num_jet_b"             );
-  // DeclareVariable(m_num_jet_forward       , "num_jet_forward"       );
-  // DeclareVariable(m_num_jet_central       , "num_jet_central"       );
-  // DeclareVariable(m_num_jet_signal        , "num_jet_signal"        );
 }
 
 // -----------------------------------------------------------------------------
@@ -232,7 +148,6 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
            << SLogger::endmsg;
 
   initD3PDReaders();
-  declareEventVariables();
   getTools();
 }
 
@@ -284,6 +199,12 @@ void SusyDiLeptonCutFlowCycle::initD3PDReaders()
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::getTools()
 {
+  GET_TOOL( cut_flow_tool
+          , SusyDiLeptonCutFlowTool
+          , "CutFlow"
+          );
+  m_cut_flow = cut_flow_tool;
+
   // Get helper tools required by containers
   GET_TOOL( egamma_energy_rescale
           , CommonTools::EgammaEnergyRescaleTool
@@ -500,11 +421,42 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   getObjects();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  bool pass_critical_cuts = runCutFlow();
+  // bool pass_critical_cuts = runCutFlow();
+  // if (!pass_critical_cuts) {
+  //   throw SError( SError::SkipEvent );
+  // }
+
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  bool pass_critical_cuts = m_cut_flow->runBasicCutFlow( m_event
+                                                       , m_electrons
+                                                       , m_muons
+                                                       , m_jets
+                                                       , m_vertices
+                                                       , m_trigger
+                                                       , m_trigger_vec
+                                                       , m_muon_truth_d3pdobject
+                                                       );
   if (!pass_critical_cuts) {
     throw SError( SError::SkipEvent );
   }
 
+  m_cut_flow->computeGoodEventVariables(m_event, m_electrons, m_muons, m_jets, m_met);
+
+  pass_critical_cuts = m_cut_flow->runAdvancedCutFlow( m_event
+                                                     , m_electrons
+                                                     , m_muons
+                                                     , m_jets
+                                                     , m_vertices
+                                                     , m_trigger
+                                                     , m_trigger_vec
+                                                     , m_muon_truth_d3pdobject
+                                                     );
+  if (!pass_critical_cuts) {
+    throw SError( SError::SkipEvent );
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   checkSignalRegions();
   fillEventVariables();
   fillOutput();
@@ -517,6 +469,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   // m_vertices.print(VERT_GOOD);
 }
 
+/*
 // -----------------------------------------------------------------------------
 bool SusyDiLeptonCutFlowCycle::runCutFlow()
 {
@@ -899,6 +852,7 @@ bool SusyDiLeptonCutFlowCycle::runCutFlow()
   // not fail any critical cuts
   return true;
 }
+*/
 
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowCycle::checkSignalRegions()
@@ -911,40 +865,40 @@ void SusyDiLeptonCutFlowCycle::checkSignalRegions()
                                             );
 }
 
-// -----------------------------------------------------------------------------
-void SusyDiLeptonCutFlowCycle::computeGoodEventVariables()
-{
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // compute mll
-  m_event->setMll(CommonTools::MllTool::getMll(
-        m_event->getFlavorChannel(),
-        m_electrons.getElectrons(EL_GOOD),
-        m_muons.getMuons(MU_GOOD)
-        ) );
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // compute met and met-rel
-  m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
-  m_event->setMetRel(Met::getMetRel( m_met
-                                   , m_electrons.getElectrons(EL_GOOD)
-                                   , m_muons.getMuons(MU_GOOD)
-                                   , m_jets.getJets(JET_ALL_CENTRAL)
-                                   )
-                    );
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // compute mt2
-  m_event->setMt2(CommonTools::MT2Tool::getMt2( m_event->getFlavorChannel(),
-        m_met,
-        m_electrons.getElectrons(EL_GOOD),
-        m_muons.getMuons(MU_GOOD)));
-
-  // compute ptll
-  m_event->setPtll(CommonTools::PtllTool::getPtll(m_event->getFlavorChannel(),
-						  m_electrons.getElectrons(EL_GOOD),
-						  m_muons.getMuons(MU_GOOD)));
-
-}
+// // -----------------------------------------------------------------------------
+// void SusyDiLeptonCutFlowCycle::computeGoodEventVariables()
+// {
+//   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//   // compute mll
+//   m_event->setMll(CommonTools::MllTool::getMll(
+//         m_event->getFlavorChannel(),
+//         m_electrons.getElectrons(EL_GOOD),
+//         m_muons.getMuons(MU_GOOD)
+//         ) );
+// 
+//   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//   // compute met and met-rel
+//   m_met->prep(m_event, &m_electrons, &m_muons, &m_jets);
+//   m_event->setMetRel(Met::getMetRel( m_met
+//                                    , m_electrons.getElectrons(EL_GOOD)
+//                                    , m_muons.getMuons(MU_GOOD)
+//                                    , m_jets.getJets(JET_ALL_CENTRAL)
+//                                    )
+//                     );
+// 
+//   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//   // compute mt2
+//   m_event->setMt2(CommonTools::MT2Tool::getMt2( m_event->getFlavorChannel(),
+//         m_met,
+//         m_electrons.getElectrons(EL_GOOD),
+//         m_muons.getMuons(MU_GOOD)));
+// 
+//   // compute ptll
+//   m_event->setPtll(CommonTools::PtllTool::getPtll(m_event->getFlavorChannel(),
+// 						  m_electrons.getElectrons(EL_GOOD),
+// 						  m_muons.getMuons(MU_GOOD)));
+// 
+// }
 
 // -----------------------------------------------------------------------------
 double SusyDiLeptonCutFlowCycle::getLeptonEffWeight()
