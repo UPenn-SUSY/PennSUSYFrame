@@ -49,12 +49,11 @@ namespace CommonTools
     //Variables to always output
 
     unsigned int              m_vtx_n;
-    std::vector<double>       m_vtx_x;
-    std::vector<double>       m_vtx_y;
-    std::vector<double>       m_vtx_z;
+    std::vector<float>        m_vtx_x;
+    std::vector<float>        m_vtx_y;
+    std::vector<float>        m_vtx_z;
     std::vector<unsigned int> m_vtx_n_tracks;
-    std::vector<double>       m_vtx_sum_pt;
-
+    std::vector<float>        m_vtx_sum_pt;
 
     // Detailed Variables to output only if configured to
 

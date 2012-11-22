@@ -208,9 +208,9 @@ PileUpScaleFactor:
   pile_up_var:      averageIntPerXing
 
 TriggerReweight:
-  do_trigger_weight: True
-  el_trigger_map_file: ${SFRAME_DIR}/../data/electron_maps.root
-  mu_trigger_map_file: ${SFRAME_DIR}/../data/muon_triggermaps.root
+  do_trigger_sf:           True
+  trigger_reweight_dir:    ${ROOTCOREDIR}/../DGTriggerReweight/data/
+  trigger_reweight_period: HCP
 
 BTagScaleFactor:
   do_b_tag_sf:  True
@@ -227,3 +227,6 @@ MuonSF:
 EgammaSF:
   do_scaling: True
 
+ChargeFlipSF:
+  do_charge_flip_sf: True
+  path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root

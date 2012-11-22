@@ -48,13 +48,12 @@ namespace CommonTools
 
 
     //Variables to always output
-    std::vector<double>       m_jet_pt;
-    std::vector<double>       m_jet_eta;
-    std::vector<double>       m_jet_phi;
-    //std::vector<double>       m_jet_bjet_combnn;
-    std::vector<double>       m_jet_bjet_mv1;
-    std::vector<double>       m_jet_dr_signal_lep;
-    std::vector<double>       m_jet_jvf;
+    std::vector<float> m_jet_pt;
+    std::vector<float> m_jet_eta;
+    std::vector<float> m_jet_phi;
+    std::vector<float> m_jet_bjet_mv1;
+    std::vector<float> m_jet_dr_signal_lep;
+    std::vector<float> m_jet_jvf;
     std::vector<ull_t> m_jet_desc;
 
 

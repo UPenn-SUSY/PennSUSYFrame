@@ -56,7 +56,7 @@ namespace CommonTools
     ull_t m_event_desc_int;
     ull_t m_sr_helper_int;
 
-    double m_mc_event_weight;
+    short  m_mc_event_weight;
     double m_pileup_weight;
     double m_trigger_weight;
     double m_lepton_weight;
@@ -72,12 +72,12 @@ namespace CommonTools
     double m_charge_flip_weight_min;
 
     unsigned int m_mc_channel_number;
-    double m_actual_int_per_crossing;
-    double m_average_int_per_crossing;
+    float m_actual_int_per_crossing;
+    float m_average_int_per_crossing;
 
-    double m_mll;
-    double m_ptll;
-    double m_mt2;
+    float m_mll;
+    float m_ptll;
+    float m_mt2;
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

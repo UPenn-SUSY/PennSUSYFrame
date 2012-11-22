@@ -36,12 +36,12 @@ public :
    ULong64_t m_event_desc;
    ULong64_t m_sr_helper;
 
-   double    m_mc_weight;
-   double    m_pile_up_weight;
-   double    m_trigger_weight;
-   double    m_lepton_weight;
-   double    m_b_tag_weight;
-   double    m_cross_section_weight;
+   short  m_mc_weight;
+   double m_pile_up_weight;
+   double m_trigger_weight;
+   double m_lepton_weight;
+   double m_b_tag_weight;
+   double m_cross_section_weight;
 
    // List of branches
    TBranch* b_run_number;

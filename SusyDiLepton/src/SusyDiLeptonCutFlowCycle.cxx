@@ -513,14 +513,12 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
     m_event->setKFactor(1.);
     m_event->setEffTimesXS(1.);
 
-    // TODO fill m_charge_flip_weight
     m_event->setChargeFlipWeight(m_charge_flip_sf_tool->getSF(m_event->getFlavorChannel(),
 						 m_electrons.getElectrons(EL_GOOD),
 						 m_muons.getMuons(MU_GOOD),
 						 m_met,
 						 m_truth_d3pdobject,
 						 0));   
-    
   }
 }
 

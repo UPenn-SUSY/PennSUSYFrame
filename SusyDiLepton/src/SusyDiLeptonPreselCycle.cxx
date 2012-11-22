@@ -158,6 +158,39 @@ void SusyDiLeptonPreselCycle::initD3PDReaders()
     m_met_truth_d3pdobject
         = new D3PDReader::TruthMETD3PDObject(m_entry_number);
   }
+
+  m_event->SetActive(              kTRUE, ".*");
+  m_met->SetActive(                kTRUE, ".*");
+  m_trigger->SetActive(            kTRUE, ".*");
+  m_trigger_vec->SetActive(        kTRUE, ".*");
+  m_vertex_d3pdobject->SetActive(  kTRUE, ".*");
+  m_electron_d3pdobject->SetActive(kTRUE, ".*");
+  m_jet_d3pdobject->SetActive(     kTRUE, ".*");
+  m_muon_d3pdobject->SetActive(    kTRUE, ".*");
+
+  if (!is_data()) {
+    m_mcevt_d3pdobject->SetActive(     kTRUE, ".*");
+    m_muon_truth_d3pdobject->SetActive(kTRUE, ".*");
+    m_truth_d3pdobject->SetActive(     kTRUE, ".*");
+    m_met_truth_d3pdobject->SetActive( kTRUE, ".*");
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_event->WriteTo(              GetOutputTree(c_output_tree_name.c_str()));
+  m_met->WriteTo(                GetOutputTree(c_output_tree_name.c_str()));
+  m_trigger->WriteTo(            GetOutputTree(c_output_tree_name.c_str()));
+  m_trigger_vec->WriteTo(        GetOutputTree(c_output_tree_name.c_str()));
+  m_vertex_d3pdobject->WriteTo(  GetOutputTree(c_output_tree_name.c_str()));
+  m_electron_d3pdobject->WriteTo(GetOutputTree(c_output_tree_name.c_str()));
+  m_jet_d3pdobject->WriteTo(     GetOutputTree(c_output_tree_name.c_str()));
+  m_muon_d3pdobject->WriteTo(    GetOutputTree(c_output_tree_name.c_str()));
+
+  if (!is_data()) {
+    m_mcevt_d3pdobject->WriteTo(     GetOutputTree(c_output_tree_name.c_str()));
+    m_muon_truth_d3pdobject->WriteTo(GetOutputTree(c_output_tree_name.c_str()));
+    m_truth_d3pdobject->WriteTo(     GetOutputTree(c_output_tree_name.c_str()));
+    m_met_truth_d3pdobject->WriteTo( GetOutputTree(c_output_tree_name.c_str()));
+  }
 }
 
 // -----------------------------------------------------------------------------

@@ -152,7 +152,6 @@ private:
   D3PDReader::ElectronD3PDObject*   m_electron_d3pdobject;
   D3PDReader::JetD3PDObject*        m_jet_d3pdobject;
   D3PDReader::MCEvtD3PDObject*      m_mcevt_d3pdobject;
-  D3PDReader::METD3PDObject*        m_met_d3pdobject;
   D3PDReader::MuonD3PDObject*       m_muon_d3pdobject;
   D3PDReader::MuonTruthD3PDObject*  m_muon_truth_d3pdobject;
   D3PDReader::TruthD3PDObject*      m_truth_d3pdobject;

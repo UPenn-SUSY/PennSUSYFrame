@@ -48,15 +48,13 @@ namespace CommonTools
     std::string c_muon_output_collection;
     std::string c_jet_output_collection;
 
-
     //Variables to always output
 
-
-    double m_met_et;
-    double m_met_rel_et;
-    double m_met_rel_delta_phi;
-    double m_met_phi;
-    double m_met_sumet;
+    float m_met_et;
+    float m_met_rel_et;
+    float m_met_rel_delta_phi;
+    float m_met_phi;
+    float m_met_sumet;
 
 
     // Detailed Variables to output only if configured to
