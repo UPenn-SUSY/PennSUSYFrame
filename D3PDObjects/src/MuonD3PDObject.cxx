@@ -168,20 +168,20 @@ namespace D3PDReader {
         nTRTDeadStraws( parent.nTRTDeadStraws, index, this ),
         expectBLayerHit( parent.expectBLayerHit, index, this ),
         nMDTHits( parent.nMDTHits, index, this ),
-        nMDTHoles( parent.nMDTHoles, index, this ),
+// -- slimmed --         nMDTHoles( parent.nMDTHoles, index, this ),
         nCSCEtaHits( parent.nCSCEtaHits, index, this ),
-        nCSCEtaHoles( parent.nCSCEtaHoles, index, this ),
+// -- slimmed --         nCSCEtaHoles( parent.nCSCEtaHoles, index, this ),
         nCSCUnspoiledEtaHits( parent.nCSCUnspoiledEtaHits, index, this ),
         nCSCPhiHits( parent.nCSCPhiHits, index, this ),
-        nCSCPhiHoles( parent.nCSCPhiHoles, index, this ),
+// -- slimmed --         nCSCPhiHoles( parent.nCSCPhiHoles, index, this ),
         nRPCEtaHits( parent.nRPCEtaHits, index, this ),
-        nRPCEtaHoles( parent.nRPCEtaHoles, index, this ),
+// -- slimmed --         nRPCEtaHoles( parent.nRPCEtaHoles, index, this ),
         nRPCPhiHits( parent.nRPCPhiHits, index, this ),
-        nRPCPhiHoles( parent.nRPCPhiHoles, index, this ),
+// -- slimmed --         nRPCPhiHoles( parent.nRPCPhiHoles, index, this ),
         nTGCEtaHits( parent.nTGCEtaHits, index, this ),
-        nTGCEtaHoles( parent.nTGCEtaHoles, index, this ),
+// -- slimmed --         nTGCEtaHoles( parent.nTGCEtaHoles, index, this ),
         nTGCPhiHits( parent.nTGCPhiHits, index, this ),
-        nTGCPhiHoles( parent.nTGCPhiHoles, index, this ),
+// -- slimmed --         nTGCPhiHoles( parent.nTGCPhiHoles, index, this ),
         nprecisionLayers( parent.nprecisionLayers, index, this ),
         nprecisionHoleLayers( parent.nprecisionHoleLayers, index, this ),
         nphiLayers( parent.nphiLayers, index, this ),
@@ -197,22 +197,22 @@ namespace D3PDReader {
         nMDTEMHits( parent.nMDTEMHits, index, this ),
         nMDTEOHits( parent.nMDTEOHits, index, this ),
         nMDTEEHits( parent.nMDTEEHits, index, this ),
-        nRPCLayer1EtaHits( parent.nRPCLayer1EtaHits, index, this ),
-        nRPCLayer2EtaHits( parent.nRPCLayer2EtaHits, index, this ),
-        nRPCLayer3EtaHits( parent.nRPCLayer3EtaHits, index, this ),
-        nRPCLayer1PhiHits( parent.nRPCLayer1PhiHits, index, this ),
-        nRPCLayer2PhiHits( parent.nRPCLayer2PhiHits, index, this ),
-        nRPCLayer3PhiHits( parent.nRPCLayer3PhiHits, index, this ),
-        nTGCLayer1EtaHits( parent.nTGCLayer1EtaHits, index, this ),
-        nTGCLayer2EtaHits( parent.nTGCLayer2EtaHits, index, this ),
-        nTGCLayer3EtaHits( parent.nTGCLayer3EtaHits, index, this ),
-        nTGCLayer4EtaHits( parent.nTGCLayer4EtaHits, index, this ),
-        nTGCLayer1PhiHits( parent.nTGCLayer1PhiHits, index, this ),
-        nTGCLayer2PhiHits( parent.nTGCLayer2PhiHits, index, this ),
-        nTGCLayer3PhiHits( parent.nTGCLayer3PhiHits, index, this ),
-        nTGCLayer4PhiHits( parent.nTGCLayer4PhiHits, index, this ),
-        barrelSectors( parent.barrelSectors, index, this ),
-        endcapSectors( parent.endcapSectors, index, this ),
+// -- slimmed --         nRPCLayer1EtaHits( parent.nRPCLayer1EtaHits, index, this ),
+// -- slimmed --         nRPCLayer2EtaHits( parent.nRPCLayer2EtaHits, index, this ),
+// -- slimmed --         nRPCLayer3EtaHits( parent.nRPCLayer3EtaHits, index, this ),
+// -- slimmed --         nRPCLayer1PhiHits( parent.nRPCLayer1PhiHits, index, this ),
+// -- slimmed --         nRPCLayer2PhiHits( parent.nRPCLayer2PhiHits, index, this ),
+// -- slimmed --         nRPCLayer3PhiHits( parent.nRPCLayer3PhiHits, index, this ),
+// -- slimmed --         nTGCLayer1EtaHits( parent.nTGCLayer1EtaHits, index, this ),
+// -- slimmed --         nTGCLayer2EtaHits( parent.nTGCLayer2EtaHits, index, this ),
+// -- slimmed --         nTGCLayer3EtaHits( parent.nTGCLayer3EtaHits, index, this ),
+// -- slimmed --         nTGCLayer4EtaHits( parent.nTGCLayer4EtaHits, index, this ),
+// -- slimmed --         nTGCLayer1PhiHits( parent.nTGCLayer1PhiHits, index, this ),
+// -- slimmed --         nTGCLayer2PhiHits( parent.nTGCLayer2PhiHits, index, this ),
+// -- slimmed --         nTGCLayer3PhiHits( parent.nTGCLayer3PhiHits, index, this ),
+// -- slimmed --         nTGCLayer4PhiHits( parent.nTGCLayer4PhiHits, index, this ),
+// -- slimmed --         barrelSectors( parent.barrelSectors, index, this ),
+// -- slimmed --         endcapSectors( parent.endcapSectors, index, this ),
         trackd0( parent.trackd0, index, this ),
         trackz0( parent.trackz0, index, this ),
         trackphi( parent.trackphi, index, this ),
@@ -456,20 +456,20 @@ is_data(is_data) {
         nTRTDeadStraws( parent.nTRTDeadStraws ),
         expectBLayerHit( parent.expectBLayerHit ),
         nMDTHits( parent.nMDTHits ),
-        nMDTHoles( parent.nMDTHoles ),
+// -- slimmed --         nMDTHoles( parent.nMDTHoles ),
         nCSCEtaHits( parent.nCSCEtaHits ),
-        nCSCEtaHoles( parent.nCSCEtaHoles ),
+// -- slimmed --         nCSCEtaHoles( parent.nCSCEtaHoles ),
         nCSCUnspoiledEtaHits( parent.nCSCUnspoiledEtaHits ),
         nCSCPhiHits( parent.nCSCPhiHits ),
-        nCSCPhiHoles( parent.nCSCPhiHoles ),
+// -- slimmed --         nCSCPhiHoles( parent.nCSCPhiHoles ),
         nRPCEtaHits( parent.nRPCEtaHits ),
-        nRPCEtaHoles( parent.nRPCEtaHoles ),
+// -- slimmed --         nRPCEtaHoles( parent.nRPCEtaHoles ),
         nRPCPhiHits( parent.nRPCPhiHits ),
-        nRPCPhiHoles( parent.nRPCPhiHoles ),
+// -- slimmed --         nRPCPhiHoles( parent.nRPCPhiHoles ),
         nTGCEtaHits( parent.nTGCEtaHits ),
-        nTGCEtaHoles( parent.nTGCEtaHoles ),
+// -- slimmed --         nTGCEtaHoles( parent.nTGCEtaHoles ),
         nTGCPhiHits( parent.nTGCPhiHits ),
-        nTGCPhiHoles( parent.nTGCPhiHoles ),
+// -- slimmed --         nTGCPhiHoles( parent.nTGCPhiHoles ),
         nprecisionLayers( parent.nprecisionLayers ),
         nprecisionHoleLayers( parent.nprecisionHoleLayers ),
         nphiLayers( parent.nphiLayers ),
@@ -485,22 +485,22 @@ is_data(is_data) {
         nMDTEMHits( parent.nMDTEMHits ),
         nMDTEOHits( parent.nMDTEOHits ),
         nMDTEEHits( parent.nMDTEEHits ),
-        nRPCLayer1EtaHits( parent.nRPCLayer1EtaHits ),
-        nRPCLayer2EtaHits( parent.nRPCLayer2EtaHits ),
-        nRPCLayer3EtaHits( parent.nRPCLayer3EtaHits ),
-        nRPCLayer1PhiHits( parent.nRPCLayer1PhiHits ),
-        nRPCLayer2PhiHits( parent.nRPCLayer2PhiHits ),
-        nRPCLayer3PhiHits( parent.nRPCLayer3PhiHits ),
-        nTGCLayer1EtaHits( parent.nTGCLayer1EtaHits ),
-        nTGCLayer2EtaHits( parent.nTGCLayer2EtaHits ),
-        nTGCLayer3EtaHits( parent.nTGCLayer3EtaHits ),
-        nTGCLayer4EtaHits( parent.nTGCLayer4EtaHits ),
-        nTGCLayer1PhiHits( parent.nTGCLayer1PhiHits ),
-        nTGCLayer2PhiHits( parent.nTGCLayer2PhiHits ),
-        nTGCLayer3PhiHits( parent.nTGCLayer3PhiHits ),
-        nTGCLayer4PhiHits( parent.nTGCLayer4PhiHits ),
-        barrelSectors( parent.barrelSectors ),
-        endcapSectors( parent.endcapSectors ),
+// -- slimmed --         nRPCLayer1EtaHits( parent.nRPCLayer1EtaHits ),
+// -- slimmed --         nRPCLayer2EtaHits( parent.nRPCLayer2EtaHits ),
+// -- slimmed --         nRPCLayer3EtaHits( parent.nRPCLayer3EtaHits ),
+// -- slimmed --         nRPCLayer1PhiHits( parent.nRPCLayer1PhiHits ),
+// -- slimmed --         nRPCLayer2PhiHits( parent.nRPCLayer2PhiHits ),
+// -- slimmed --         nRPCLayer3PhiHits( parent.nRPCLayer3PhiHits ),
+// -- slimmed --         nTGCLayer1EtaHits( parent.nTGCLayer1EtaHits ),
+// -- slimmed --         nTGCLayer2EtaHits( parent.nTGCLayer2EtaHits ),
+// -- slimmed --         nTGCLayer3EtaHits( parent.nTGCLayer3EtaHits ),
+// -- slimmed --         nTGCLayer4EtaHits( parent.nTGCLayer4EtaHits ),
+// -- slimmed --         nTGCLayer1PhiHits( parent.nTGCLayer1PhiHits ),
+// -- slimmed --         nTGCLayer2PhiHits( parent.nTGCLayer2PhiHits ),
+// -- slimmed --         nTGCLayer3PhiHits( parent.nTGCLayer3PhiHits ),
+// -- slimmed --         nTGCLayer4PhiHits( parent.nTGCLayer4PhiHits ),
+// -- slimmed --         barrelSectors( parent.barrelSectors ),
+// -- slimmed --         endcapSectors( parent.endcapSectors ),
         trackd0( parent.trackd0 ),
         trackz0( parent.trackz0 ),
         trackphi( parent.trackphi ),
@@ -745,20 +745,20 @@ is_data(is_data) {
         nTRTDeadStraws( this, ::TString( prefix ) + "nTRTDeadStraws", &master ),
         expectBLayerHit( this, ::TString( prefix ) + "expectBLayerHit", &master ),
         nMDTHits( this, ::TString( prefix ) + "nMDTHits", &master ),
-        nMDTHoles( this, ::TString( prefix ) + "nMDTHoles", &master ),
+// -- slimmed --         nMDTHoles( this, ::TString( prefix ) + "nMDTHoles", &master ),
         nCSCEtaHits( this, ::TString( prefix ) + "nCSCEtaHits", &master ),
-        nCSCEtaHoles( this, ::TString( prefix ) + "nCSCEtaHoles", &master ),
+// -- slimmed --         nCSCEtaHoles( this, ::TString( prefix ) + "nCSCEtaHoles", &master ),
         nCSCUnspoiledEtaHits( this, ::TString( prefix ) + "nCSCUnspoiledEtaHits", &master ),
         nCSCPhiHits( this, ::TString( prefix ) + "nCSCPhiHits", &master ),
-        nCSCPhiHoles( this, ::TString( prefix ) + "nCSCPhiHoles", &master ),
+// -- slimmed --         nCSCPhiHoles( this, ::TString( prefix ) + "nCSCPhiHoles", &master ),
         nRPCEtaHits( this, ::TString( prefix ) + "nRPCEtaHits", &master ),
-        nRPCEtaHoles( this, ::TString( prefix ) + "nRPCEtaHoles", &master ),
+// -- slimmed --         nRPCEtaHoles( this, ::TString( prefix ) + "nRPCEtaHoles", &master ),
         nRPCPhiHits( this, ::TString( prefix ) + "nRPCPhiHits", &master ),
-        nRPCPhiHoles( this, ::TString( prefix ) + "nRPCPhiHoles", &master ),
+// -- slimmed --         nRPCPhiHoles( this, ::TString( prefix ) + "nRPCPhiHoles", &master ),
         nTGCEtaHits( this, ::TString( prefix ) + "nTGCEtaHits", &master ),
-        nTGCEtaHoles( this, ::TString( prefix ) + "nTGCEtaHoles", &master ),
+// -- slimmed --         nTGCEtaHoles( this, ::TString( prefix ) + "nTGCEtaHoles", &master ),
         nTGCPhiHits( this, ::TString( prefix ) + "nTGCPhiHits", &master ),
-        nTGCPhiHoles( this, ::TString( prefix ) + "nTGCPhiHoles", &master ),
+// -- slimmed --         nTGCPhiHoles( this, ::TString( prefix ) + "nTGCPhiHoles", &master ),
         nprecisionLayers( this, ::TString( prefix ) + "nprecisionLayers", &master ),
         nprecisionHoleLayers( this, ::TString( prefix ) + "nprecisionHoleLayers", &master ),
         nphiLayers( this, ::TString( prefix ) + "nphiLayers", &master ),
@@ -774,22 +774,22 @@ is_data(is_data) {
         nMDTEMHits( this, ::TString( prefix ) + "nMDTEMHits", &master ),
         nMDTEOHits( this, ::TString( prefix ) + "nMDTEOHits", &master ),
         nMDTEEHits( this, ::TString( prefix ) + "nMDTEEHits", &master ),
-        nRPCLayer1EtaHits( this, ::TString( prefix ) + "nRPCLayer1EtaHits", &master ),
-        nRPCLayer2EtaHits( this, ::TString( prefix ) + "nRPCLayer2EtaHits", &master ),
-        nRPCLayer3EtaHits( this, ::TString( prefix ) + "nRPCLayer3EtaHits", &master ),
-        nRPCLayer1PhiHits( this, ::TString( prefix ) + "nRPCLayer1PhiHits", &master ),
-        nRPCLayer2PhiHits( this, ::TString( prefix ) + "nRPCLayer2PhiHits", &master ),
-        nRPCLayer3PhiHits( this, ::TString( prefix ) + "nRPCLayer3PhiHits", &master ),
-        nTGCLayer1EtaHits( this, ::TString( prefix ) + "nTGCLayer1EtaHits", &master ),
-        nTGCLayer2EtaHits( this, ::TString( prefix ) + "nTGCLayer2EtaHits", &master ),
-        nTGCLayer3EtaHits( this, ::TString( prefix ) + "nTGCLayer3EtaHits", &master ),
-        nTGCLayer4EtaHits( this, ::TString( prefix ) + "nTGCLayer4EtaHits", &master ),
-        nTGCLayer1PhiHits( this, ::TString( prefix ) + "nTGCLayer1PhiHits", &master ),
-        nTGCLayer2PhiHits( this, ::TString( prefix ) + "nTGCLayer2PhiHits", &master ),
-        nTGCLayer3PhiHits( this, ::TString( prefix ) + "nTGCLayer3PhiHits", &master ),
-        nTGCLayer4PhiHits( this, ::TString( prefix ) + "nTGCLayer4PhiHits", &master ),
-        barrelSectors( this, ::TString( prefix ) + "barrelSectors", &master ),
-        endcapSectors( this, ::TString( prefix ) + "endcapSectors", &master ),
+// -- slimmed --         nRPCLayer1EtaHits( this, ::TString( prefix ) + "nRPCLayer1EtaHits", &master ),
+// -- slimmed --         nRPCLayer2EtaHits( this, ::TString( prefix ) + "nRPCLayer2EtaHits", &master ),
+// -- slimmed --         nRPCLayer3EtaHits( this, ::TString( prefix ) + "nRPCLayer3EtaHits", &master ),
+// -- slimmed --         nRPCLayer1PhiHits( this, ::TString( prefix ) + "nRPCLayer1PhiHits", &master ),
+// -- slimmed --         nRPCLayer2PhiHits( this, ::TString( prefix ) + "nRPCLayer2PhiHits", &master ),
+// -- slimmed --         nRPCLayer3PhiHits( this, ::TString( prefix ) + "nRPCLayer3PhiHits", &master ),
+// -- slimmed --         nTGCLayer1EtaHits( this, ::TString( prefix ) + "nTGCLayer1EtaHits", &master ),
+// -- slimmed --         nTGCLayer2EtaHits( this, ::TString( prefix ) + "nTGCLayer2EtaHits", &master ),
+// -- slimmed --         nTGCLayer3EtaHits( this, ::TString( prefix ) + "nTGCLayer3EtaHits", &master ),
+// -- slimmed --         nTGCLayer4EtaHits( this, ::TString( prefix ) + "nTGCLayer4EtaHits", &master ),
+// -- slimmed --         nTGCLayer1PhiHits( this, ::TString( prefix ) + "nTGCLayer1PhiHits", &master ),
+// -- slimmed --         nTGCLayer2PhiHits( this, ::TString( prefix ) + "nTGCLayer2PhiHits", &master ),
+// -- slimmed --         nTGCLayer3PhiHits( this, ::TString( prefix ) + "nTGCLayer3PhiHits", &master ),
+// -- slimmed --         nTGCLayer4PhiHits( this, ::TString( prefix ) + "nTGCLayer4PhiHits", &master ),
+// -- slimmed --         barrelSectors( this, ::TString( prefix ) + "barrelSectors", &master ),
+// -- slimmed --         endcapSectors( this, ::TString( prefix ) + "endcapSectors", &master ),
         trackd0( this, ::TString( prefix ) + "trackd0", &master ),
         trackz0( this, ::TString( prefix ) + "trackz0", &master ),
         trackphi( this, ::TString( prefix ) + "trackphi", &master ),
@@ -1025,20 +1025,20 @@ is_data(is_data) {
       fHandles[ "nTRTDeadStraws" ] = &nTRTDeadStraws;
       fHandles[ "expectBLayerHit" ] = &expectBLayerHit;
       fHandles[ "nMDTHits" ] = &nMDTHits;
-      fHandles[ "nMDTHoles" ] = &nMDTHoles;
+// -- slimmed --       fHandles[ "nMDTHoles" ] = &nMDTHoles;
       fHandles[ "nCSCEtaHits" ] = &nCSCEtaHits;
-      fHandles[ "nCSCEtaHoles" ] = &nCSCEtaHoles;
+// -- slimmed --       fHandles[ "nCSCEtaHoles" ] = &nCSCEtaHoles;
       fHandles[ "nCSCUnspoiledEtaHits" ] = &nCSCUnspoiledEtaHits;
       fHandles[ "nCSCPhiHits" ] = &nCSCPhiHits;
-      fHandles[ "nCSCPhiHoles" ] = &nCSCPhiHoles;
+// -- slimmed --       fHandles[ "nCSCPhiHoles" ] = &nCSCPhiHoles;
       fHandles[ "nRPCEtaHits" ] = &nRPCEtaHits;
-      fHandles[ "nRPCEtaHoles" ] = &nRPCEtaHoles;
+// -- slimmed --       fHandles[ "nRPCEtaHoles" ] = &nRPCEtaHoles;
       fHandles[ "nRPCPhiHits" ] = &nRPCPhiHits;
-      fHandles[ "nRPCPhiHoles" ] = &nRPCPhiHoles;
+// -- slimmed --       fHandles[ "nRPCPhiHoles" ] = &nRPCPhiHoles;
       fHandles[ "nTGCEtaHits" ] = &nTGCEtaHits;
-      fHandles[ "nTGCEtaHoles" ] = &nTGCEtaHoles;
+// -- slimmed --       fHandles[ "nTGCEtaHoles" ] = &nTGCEtaHoles;
       fHandles[ "nTGCPhiHits" ] = &nTGCPhiHits;
-      fHandles[ "nTGCPhiHoles" ] = &nTGCPhiHoles;
+// -- slimmed --       fHandles[ "nTGCPhiHoles" ] = &nTGCPhiHoles;
       fHandles[ "nprecisionLayers" ] = &nprecisionLayers;
       fHandles[ "nprecisionHoleLayers" ] = &nprecisionHoleLayers;
       fHandles[ "nphiLayers" ] = &nphiLayers;
@@ -1054,22 +1054,22 @@ is_data(is_data) {
       fHandles[ "nMDTEMHits" ] = &nMDTEMHits;
       fHandles[ "nMDTEOHits" ] = &nMDTEOHits;
       fHandles[ "nMDTEEHits" ] = &nMDTEEHits;
-      fHandles[ "nRPCLayer1EtaHits" ] = &nRPCLayer1EtaHits;
-      fHandles[ "nRPCLayer2EtaHits" ] = &nRPCLayer2EtaHits;
-      fHandles[ "nRPCLayer3EtaHits" ] = &nRPCLayer3EtaHits;
-      fHandles[ "nRPCLayer1PhiHits" ] = &nRPCLayer1PhiHits;
-      fHandles[ "nRPCLayer2PhiHits" ] = &nRPCLayer2PhiHits;
-      fHandles[ "nRPCLayer3PhiHits" ] = &nRPCLayer3PhiHits;
-      fHandles[ "nTGCLayer1EtaHits" ] = &nTGCLayer1EtaHits;
-      fHandles[ "nTGCLayer2EtaHits" ] = &nTGCLayer2EtaHits;
-      fHandles[ "nTGCLayer3EtaHits" ] = &nTGCLayer3EtaHits;
-      fHandles[ "nTGCLayer4EtaHits" ] = &nTGCLayer4EtaHits;
-      fHandles[ "nTGCLayer1PhiHits" ] = &nTGCLayer1PhiHits;
-      fHandles[ "nTGCLayer2PhiHits" ] = &nTGCLayer2PhiHits;
-      fHandles[ "nTGCLayer3PhiHits" ] = &nTGCLayer3PhiHits;
-      fHandles[ "nTGCLayer4PhiHits" ] = &nTGCLayer4PhiHits;
-      fHandles[ "barrelSectors" ] = &barrelSectors;
-      fHandles[ "endcapSectors" ] = &endcapSectors;
+// -- slimmed --       fHandles[ "nRPCLayer1EtaHits" ] = &nRPCLayer1EtaHits;
+// -- slimmed --       fHandles[ "nRPCLayer2EtaHits" ] = &nRPCLayer2EtaHits;
+// -- slimmed --       fHandles[ "nRPCLayer3EtaHits" ] = &nRPCLayer3EtaHits;
+// -- slimmed --       fHandles[ "nRPCLayer1PhiHits" ] = &nRPCLayer1PhiHits;
+// -- slimmed --       fHandles[ "nRPCLayer2PhiHits" ] = &nRPCLayer2PhiHits;
+// -- slimmed --       fHandles[ "nRPCLayer3PhiHits" ] = &nRPCLayer3PhiHits;
+// -- slimmed --       fHandles[ "nTGCLayer1EtaHits" ] = &nTGCLayer1EtaHits;
+// -- slimmed --       fHandles[ "nTGCLayer2EtaHits" ] = &nTGCLayer2EtaHits;
+// -- slimmed --       fHandles[ "nTGCLayer3EtaHits" ] = &nTGCLayer3EtaHits;
+// -- slimmed --       fHandles[ "nTGCLayer4EtaHits" ] = &nTGCLayer4EtaHits;
+// -- slimmed --       fHandles[ "nTGCLayer1PhiHits" ] = &nTGCLayer1PhiHits;
+// -- slimmed --       fHandles[ "nTGCLayer2PhiHits" ] = &nTGCLayer2PhiHits;
+// -- slimmed --       fHandles[ "nTGCLayer3PhiHits" ] = &nTGCLayer3PhiHits;
+// -- slimmed --       fHandles[ "nTGCLayer4PhiHits" ] = &nTGCLayer4PhiHits;
+// -- slimmed --       fHandles[ "barrelSectors" ] = &barrelSectors;
+// -- slimmed --       fHandles[ "endcapSectors" ] = &endcapSectors;
       fHandles[ "trackd0" ] = &trackd0;
       fHandles[ "trackz0" ] = &trackz0;
       fHandles[ "trackphi" ] = &trackphi;
@@ -1311,20 +1311,20 @@ if (!is_data) {
         nTRTDeadStraws( this, ::TString( prefix ) + "nTRTDeadStraws", 0 ),
         expectBLayerHit( this, ::TString( prefix ) + "expectBLayerHit", 0 ),
         nMDTHits( this, ::TString( prefix ) + "nMDTHits", 0 ),
-        nMDTHoles( this, ::TString( prefix ) + "nMDTHoles", 0 ),
+// -- slimmed --         nMDTHoles( this, ::TString( prefix ) + "nMDTHoles", 0 ),
         nCSCEtaHits( this, ::TString( prefix ) + "nCSCEtaHits", 0 ),
-        nCSCEtaHoles( this, ::TString( prefix ) + "nCSCEtaHoles", 0 ),
+// -- slimmed --         nCSCEtaHoles( this, ::TString( prefix ) + "nCSCEtaHoles", 0 ),
         nCSCUnspoiledEtaHits( this, ::TString( prefix ) + "nCSCUnspoiledEtaHits", 0 ),
         nCSCPhiHits( this, ::TString( prefix ) + "nCSCPhiHits", 0 ),
-        nCSCPhiHoles( this, ::TString( prefix ) + "nCSCPhiHoles", 0 ),
+// -- slimmed --         nCSCPhiHoles( this, ::TString( prefix ) + "nCSCPhiHoles", 0 ),
         nRPCEtaHits( this, ::TString( prefix ) + "nRPCEtaHits", 0 ),
-        nRPCEtaHoles( this, ::TString( prefix ) + "nRPCEtaHoles", 0 ),
+// -- slimmed --         nRPCEtaHoles( this, ::TString( prefix ) + "nRPCEtaHoles", 0 ),
         nRPCPhiHits( this, ::TString( prefix ) + "nRPCPhiHits", 0 ),
-        nRPCPhiHoles( this, ::TString( prefix ) + "nRPCPhiHoles", 0 ),
+// -- slimmed --         nRPCPhiHoles( this, ::TString( prefix ) + "nRPCPhiHoles", 0 ),
         nTGCEtaHits( this, ::TString( prefix ) + "nTGCEtaHits", 0 ),
-        nTGCEtaHoles( this, ::TString( prefix ) + "nTGCEtaHoles", 0 ),
+// -- slimmed --         nTGCEtaHoles( this, ::TString( prefix ) + "nTGCEtaHoles", 0 ),
         nTGCPhiHits( this, ::TString( prefix ) + "nTGCPhiHits", 0 ),
-        nTGCPhiHoles( this, ::TString( prefix ) + "nTGCPhiHoles", 0 ),
+// -- slimmed --         nTGCPhiHoles( this, ::TString( prefix ) + "nTGCPhiHoles", 0 ),
         nprecisionLayers( this, ::TString( prefix ) + "nprecisionLayers", 0 ),
         nprecisionHoleLayers( this, ::TString( prefix ) + "nprecisionHoleLayers", 0 ),
         nphiLayers( this, ::TString( prefix ) + "nphiLayers", 0 ),
@@ -1340,22 +1340,22 @@ if (!is_data) {
         nMDTEMHits( this, ::TString( prefix ) + "nMDTEMHits", 0 ),
         nMDTEOHits( this, ::TString( prefix ) + "nMDTEOHits", 0 ),
         nMDTEEHits( this, ::TString( prefix ) + "nMDTEEHits", 0 ),
-        nRPCLayer1EtaHits( this, ::TString( prefix ) + "nRPCLayer1EtaHits", 0 ),
-        nRPCLayer2EtaHits( this, ::TString( prefix ) + "nRPCLayer2EtaHits", 0 ),
-        nRPCLayer3EtaHits( this, ::TString( prefix ) + "nRPCLayer3EtaHits", 0 ),
-        nRPCLayer1PhiHits( this, ::TString( prefix ) + "nRPCLayer1PhiHits", 0 ),
-        nRPCLayer2PhiHits( this, ::TString( prefix ) + "nRPCLayer2PhiHits", 0 ),
-        nRPCLayer3PhiHits( this, ::TString( prefix ) + "nRPCLayer3PhiHits", 0 ),
-        nTGCLayer1EtaHits( this, ::TString( prefix ) + "nTGCLayer1EtaHits", 0 ),
-        nTGCLayer2EtaHits( this, ::TString( prefix ) + "nTGCLayer2EtaHits", 0 ),
-        nTGCLayer3EtaHits( this, ::TString( prefix ) + "nTGCLayer3EtaHits", 0 ),
-        nTGCLayer4EtaHits( this, ::TString( prefix ) + "nTGCLayer4EtaHits", 0 ),
-        nTGCLayer1PhiHits( this, ::TString( prefix ) + "nTGCLayer1PhiHits", 0 ),
-        nTGCLayer2PhiHits( this, ::TString( prefix ) + "nTGCLayer2PhiHits", 0 ),
-        nTGCLayer3PhiHits( this, ::TString( prefix ) + "nTGCLayer3PhiHits", 0 ),
-        nTGCLayer4PhiHits( this, ::TString( prefix ) + "nTGCLayer4PhiHits", 0 ),
-        barrelSectors( this, ::TString( prefix ) + "barrelSectors", 0 ),
-        endcapSectors( this, ::TString( prefix ) + "endcapSectors", 0 ),
+// -- slimmed --         nRPCLayer1EtaHits( this, ::TString( prefix ) + "nRPCLayer1EtaHits", 0 ),
+// -- slimmed --         nRPCLayer2EtaHits( this, ::TString( prefix ) + "nRPCLayer2EtaHits", 0 ),
+// -- slimmed --         nRPCLayer3EtaHits( this, ::TString( prefix ) + "nRPCLayer3EtaHits", 0 ),
+// -- slimmed --         nRPCLayer1PhiHits( this, ::TString( prefix ) + "nRPCLayer1PhiHits", 0 ),
+// -- slimmed --         nRPCLayer2PhiHits( this, ::TString( prefix ) + "nRPCLayer2PhiHits", 0 ),
+// -- slimmed --         nRPCLayer3PhiHits( this, ::TString( prefix ) + "nRPCLayer3PhiHits", 0 ),
+// -- slimmed --         nTGCLayer1EtaHits( this, ::TString( prefix ) + "nTGCLayer1EtaHits", 0 ),
+// -- slimmed --         nTGCLayer2EtaHits( this, ::TString( prefix ) + "nTGCLayer2EtaHits", 0 ),
+// -- slimmed --         nTGCLayer3EtaHits( this, ::TString( prefix ) + "nTGCLayer3EtaHits", 0 ),
+// -- slimmed --         nTGCLayer4EtaHits( this, ::TString( prefix ) + "nTGCLayer4EtaHits", 0 ),
+// -- slimmed --         nTGCLayer1PhiHits( this, ::TString( prefix ) + "nTGCLayer1PhiHits", 0 ),
+// -- slimmed --         nTGCLayer2PhiHits( this, ::TString( prefix ) + "nTGCLayer2PhiHits", 0 ),
+// -- slimmed --         nTGCLayer3PhiHits( this, ::TString( prefix ) + "nTGCLayer3PhiHits", 0 ),
+// -- slimmed --         nTGCLayer4PhiHits( this, ::TString( prefix ) + "nTGCLayer4PhiHits", 0 ),
+// -- slimmed --         barrelSectors( this, ::TString( prefix ) + "barrelSectors", 0 ),
+// -- slimmed --         endcapSectors( this, ::TString( prefix ) + "endcapSectors", 0 ),
         trackd0( this, ::TString( prefix ) + "trackd0", 0 ),
         trackz0( this, ::TString( prefix ) + "trackz0", 0 ),
         trackphi( this, ::TString( prefix ) + "trackphi", 0 ),
@@ -1591,20 +1591,20 @@ is_data(is_data) {
       fHandles[ "nTRTDeadStraws" ] = &nTRTDeadStraws;
       fHandles[ "expectBLayerHit" ] = &expectBLayerHit;
       fHandles[ "nMDTHits" ] = &nMDTHits;
-      fHandles[ "nMDTHoles" ] = &nMDTHoles;
+// -- slimmed --       fHandles[ "nMDTHoles" ] = &nMDTHoles;
       fHandles[ "nCSCEtaHits" ] = &nCSCEtaHits;
-      fHandles[ "nCSCEtaHoles" ] = &nCSCEtaHoles;
+// -- slimmed --       fHandles[ "nCSCEtaHoles" ] = &nCSCEtaHoles;
       fHandles[ "nCSCUnspoiledEtaHits" ] = &nCSCUnspoiledEtaHits;
       fHandles[ "nCSCPhiHits" ] = &nCSCPhiHits;
-      fHandles[ "nCSCPhiHoles" ] = &nCSCPhiHoles;
+// -- slimmed --       fHandles[ "nCSCPhiHoles" ] = &nCSCPhiHoles;
       fHandles[ "nRPCEtaHits" ] = &nRPCEtaHits;
-      fHandles[ "nRPCEtaHoles" ] = &nRPCEtaHoles;
+// -- slimmed --       fHandles[ "nRPCEtaHoles" ] = &nRPCEtaHoles;
       fHandles[ "nRPCPhiHits" ] = &nRPCPhiHits;
-      fHandles[ "nRPCPhiHoles" ] = &nRPCPhiHoles;
+// -- slimmed --       fHandles[ "nRPCPhiHoles" ] = &nRPCPhiHoles;
       fHandles[ "nTGCEtaHits" ] = &nTGCEtaHits;
-      fHandles[ "nTGCEtaHoles" ] = &nTGCEtaHoles;
+// -- slimmed --       fHandles[ "nTGCEtaHoles" ] = &nTGCEtaHoles;
       fHandles[ "nTGCPhiHits" ] = &nTGCPhiHits;
-      fHandles[ "nTGCPhiHoles" ] = &nTGCPhiHoles;
+// -- slimmed --       fHandles[ "nTGCPhiHoles" ] = &nTGCPhiHoles;
       fHandles[ "nprecisionLayers" ] = &nprecisionLayers;
       fHandles[ "nprecisionHoleLayers" ] = &nprecisionHoleLayers;
       fHandles[ "nphiLayers" ] = &nphiLayers;
@@ -1620,22 +1620,22 @@ is_data(is_data) {
       fHandles[ "nMDTEMHits" ] = &nMDTEMHits;
       fHandles[ "nMDTEOHits" ] = &nMDTEOHits;
       fHandles[ "nMDTEEHits" ] = &nMDTEEHits;
-      fHandles[ "nRPCLayer1EtaHits" ] = &nRPCLayer1EtaHits;
-      fHandles[ "nRPCLayer2EtaHits" ] = &nRPCLayer2EtaHits;
-      fHandles[ "nRPCLayer3EtaHits" ] = &nRPCLayer3EtaHits;
-      fHandles[ "nRPCLayer1PhiHits" ] = &nRPCLayer1PhiHits;
-      fHandles[ "nRPCLayer2PhiHits" ] = &nRPCLayer2PhiHits;
-      fHandles[ "nRPCLayer3PhiHits" ] = &nRPCLayer3PhiHits;
-      fHandles[ "nTGCLayer1EtaHits" ] = &nTGCLayer1EtaHits;
-      fHandles[ "nTGCLayer2EtaHits" ] = &nTGCLayer2EtaHits;
-      fHandles[ "nTGCLayer3EtaHits" ] = &nTGCLayer3EtaHits;
-      fHandles[ "nTGCLayer4EtaHits" ] = &nTGCLayer4EtaHits;
-      fHandles[ "nTGCLayer1PhiHits" ] = &nTGCLayer1PhiHits;
-      fHandles[ "nTGCLayer2PhiHits" ] = &nTGCLayer2PhiHits;
-      fHandles[ "nTGCLayer3PhiHits" ] = &nTGCLayer3PhiHits;
-      fHandles[ "nTGCLayer4PhiHits" ] = &nTGCLayer4PhiHits;
-      fHandles[ "barrelSectors" ] = &barrelSectors;
-      fHandles[ "endcapSectors" ] = &endcapSectors;
+// -- slimmed --       fHandles[ "nRPCLayer1EtaHits" ] = &nRPCLayer1EtaHits;
+// -- slimmed --       fHandles[ "nRPCLayer2EtaHits" ] = &nRPCLayer2EtaHits;
+// -- slimmed --       fHandles[ "nRPCLayer3EtaHits" ] = &nRPCLayer3EtaHits;
+// -- slimmed --       fHandles[ "nRPCLayer1PhiHits" ] = &nRPCLayer1PhiHits;
+// -- slimmed --       fHandles[ "nRPCLayer2PhiHits" ] = &nRPCLayer2PhiHits;
+// -- slimmed --       fHandles[ "nRPCLayer3PhiHits" ] = &nRPCLayer3PhiHits;
+// -- slimmed --       fHandles[ "nTGCLayer1EtaHits" ] = &nTGCLayer1EtaHits;
+// -- slimmed --       fHandles[ "nTGCLayer2EtaHits" ] = &nTGCLayer2EtaHits;
+// -- slimmed --       fHandles[ "nTGCLayer3EtaHits" ] = &nTGCLayer3EtaHits;
+// -- slimmed --       fHandles[ "nTGCLayer4EtaHits" ] = &nTGCLayer4EtaHits;
+// -- slimmed --       fHandles[ "nTGCLayer1PhiHits" ] = &nTGCLayer1PhiHits;
+// -- slimmed --       fHandles[ "nTGCLayer2PhiHits" ] = &nTGCLayer2PhiHits;
+// -- slimmed --       fHandles[ "nTGCLayer3PhiHits" ] = &nTGCLayer3PhiHits;
+// -- slimmed --       fHandles[ "nTGCLayer4PhiHits" ] = &nTGCLayer4PhiHits;
+// -- slimmed --       fHandles[ "barrelSectors" ] = &barrelSectors;
+// -- slimmed --       fHandles[ "endcapSectors" ] = &endcapSectors;
       fHandles[ "trackd0" ] = &trackd0;
       fHandles[ "trackz0" ] = &trackz0;
       fHandles[ "trackphi" ] = &trackphi;
@@ -1881,20 +1881,20 @@ if (!is_data) {
       nTRTDeadStraws.SetName( ::TString( prefix ) + "nTRTDeadStraws" );
       expectBLayerHit.SetName( ::TString( prefix ) + "expectBLayerHit" );
       nMDTHits.SetName( ::TString( prefix ) + "nMDTHits" );
-      nMDTHoles.SetName( ::TString( prefix ) + "nMDTHoles" );
+// -- slimmed --       nMDTHoles.SetName( ::TString( prefix ) + "nMDTHoles" );
       nCSCEtaHits.SetName( ::TString( prefix ) + "nCSCEtaHits" );
-      nCSCEtaHoles.SetName( ::TString( prefix ) + "nCSCEtaHoles" );
+// -- slimmed --       nCSCEtaHoles.SetName( ::TString( prefix ) + "nCSCEtaHoles" );
       nCSCUnspoiledEtaHits.SetName( ::TString( prefix ) + "nCSCUnspoiledEtaHits" );
       nCSCPhiHits.SetName( ::TString( prefix ) + "nCSCPhiHits" );
-      nCSCPhiHoles.SetName( ::TString( prefix ) + "nCSCPhiHoles" );
+// -- slimmed --       nCSCPhiHoles.SetName( ::TString( prefix ) + "nCSCPhiHoles" );
       nRPCEtaHits.SetName( ::TString( prefix ) + "nRPCEtaHits" );
-      nRPCEtaHoles.SetName( ::TString( prefix ) + "nRPCEtaHoles" );
+// -- slimmed --       nRPCEtaHoles.SetName( ::TString( prefix ) + "nRPCEtaHoles" );
       nRPCPhiHits.SetName( ::TString( prefix ) + "nRPCPhiHits" );
-      nRPCPhiHoles.SetName( ::TString( prefix ) + "nRPCPhiHoles" );
+// -- slimmed --       nRPCPhiHoles.SetName( ::TString( prefix ) + "nRPCPhiHoles" );
       nTGCEtaHits.SetName( ::TString( prefix ) + "nTGCEtaHits" );
-      nTGCEtaHoles.SetName( ::TString( prefix ) + "nTGCEtaHoles" );
+// -- slimmed --       nTGCEtaHoles.SetName( ::TString( prefix ) + "nTGCEtaHoles" );
       nTGCPhiHits.SetName( ::TString( prefix ) + "nTGCPhiHits" );
-      nTGCPhiHoles.SetName( ::TString( prefix ) + "nTGCPhiHoles" );
+// -- slimmed --       nTGCPhiHoles.SetName( ::TString( prefix ) + "nTGCPhiHoles" );
       nprecisionLayers.SetName( ::TString( prefix ) + "nprecisionLayers" );
       nprecisionHoleLayers.SetName( ::TString( prefix ) + "nprecisionHoleLayers" );
       nphiLayers.SetName( ::TString( prefix ) + "nphiLayers" );
@@ -1910,22 +1910,22 @@ if (!is_data) {
       nMDTEMHits.SetName( ::TString( prefix ) + "nMDTEMHits" );
       nMDTEOHits.SetName( ::TString( prefix ) + "nMDTEOHits" );
       nMDTEEHits.SetName( ::TString( prefix ) + "nMDTEEHits" );
-      nRPCLayer1EtaHits.SetName( ::TString( prefix ) + "nRPCLayer1EtaHits" );
-      nRPCLayer2EtaHits.SetName( ::TString( prefix ) + "nRPCLayer2EtaHits" );
-      nRPCLayer3EtaHits.SetName( ::TString( prefix ) + "nRPCLayer3EtaHits" );
-      nRPCLayer1PhiHits.SetName( ::TString( prefix ) + "nRPCLayer1PhiHits" );
-      nRPCLayer2PhiHits.SetName( ::TString( prefix ) + "nRPCLayer2PhiHits" );
-      nRPCLayer3PhiHits.SetName( ::TString( prefix ) + "nRPCLayer3PhiHits" );
-      nTGCLayer1EtaHits.SetName( ::TString( prefix ) + "nTGCLayer1EtaHits" );
-      nTGCLayer2EtaHits.SetName( ::TString( prefix ) + "nTGCLayer2EtaHits" );
-      nTGCLayer3EtaHits.SetName( ::TString( prefix ) + "nTGCLayer3EtaHits" );
-      nTGCLayer4EtaHits.SetName( ::TString( prefix ) + "nTGCLayer4EtaHits" );
-      nTGCLayer1PhiHits.SetName( ::TString( prefix ) + "nTGCLayer1PhiHits" );
-      nTGCLayer2PhiHits.SetName( ::TString( prefix ) + "nTGCLayer2PhiHits" );
-      nTGCLayer3PhiHits.SetName( ::TString( prefix ) + "nTGCLayer3PhiHits" );
-      nTGCLayer4PhiHits.SetName( ::TString( prefix ) + "nTGCLayer4PhiHits" );
-      barrelSectors.SetName( ::TString( prefix ) + "barrelSectors" );
-      endcapSectors.SetName( ::TString( prefix ) + "endcapSectors" );
+// -- slimmed --       nRPCLayer1EtaHits.SetName( ::TString( prefix ) + "nRPCLayer1EtaHits" );
+// -- slimmed --       nRPCLayer2EtaHits.SetName( ::TString( prefix ) + "nRPCLayer2EtaHits" );
+// -- slimmed --       nRPCLayer3EtaHits.SetName( ::TString( prefix ) + "nRPCLayer3EtaHits" );
+// -- slimmed --       nRPCLayer1PhiHits.SetName( ::TString( prefix ) + "nRPCLayer1PhiHits" );
+// -- slimmed --       nRPCLayer2PhiHits.SetName( ::TString( prefix ) + "nRPCLayer2PhiHits" );
+// -- slimmed --       nRPCLayer3PhiHits.SetName( ::TString( prefix ) + "nRPCLayer3PhiHits" );
+// -- slimmed --       nTGCLayer1EtaHits.SetName( ::TString( prefix ) + "nTGCLayer1EtaHits" );
+// -- slimmed --       nTGCLayer2EtaHits.SetName( ::TString( prefix ) + "nTGCLayer2EtaHits" );
+// -- slimmed --       nTGCLayer3EtaHits.SetName( ::TString( prefix ) + "nTGCLayer3EtaHits" );
+// -- slimmed --       nTGCLayer4EtaHits.SetName( ::TString( prefix ) + "nTGCLayer4EtaHits" );
+// -- slimmed --       nTGCLayer1PhiHits.SetName( ::TString( prefix ) + "nTGCLayer1PhiHits" );
+// -- slimmed --       nTGCLayer2PhiHits.SetName( ::TString( prefix ) + "nTGCLayer2PhiHits" );
+// -- slimmed --       nTGCLayer3PhiHits.SetName( ::TString( prefix ) + "nTGCLayer3PhiHits" );
+// -- slimmed --       nTGCLayer4PhiHits.SetName( ::TString( prefix ) + "nTGCLayer4PhiHits" );
+// -- slimmed --       barrelSectors.SetName( ::TString( prefix ) + "barrelSectors" );
+// -- slimmed --       endcapSectors.SetName( ::TString( prefix ) + "endcapSectors" );
       trackd0.SetName( ::TString( prefix ) + "trackd0" );
       trackz0.SetName( ::TString( prefix ) + "trackz0" );
       trackphi.SetName( ::TString( prefix ) + "trackphi" );
@@ -2174,20 +2174,20 @@ if (!is_data) {
       nTRTDeadStraws.ReadFrom( tree );
       expectBLayerHit.ReadFrom( tree );
       nMDTHits.ReadFrom( tree );
-      nMDTHoles.ReadFrom( tree );
+// -- slimmed --       nMDTHoles.ReadFrom( tree );
       nCSCEtaHits.ReadFrom( tree );
-      nCSCEtaHoles.ReadFrom( tree );
+// -- slimmed --       nCSCEtaHoles.ReadFrom( tree );
       nCSCUnspoiledEtaHits.ReadFrom( tree );
       nCSCPhiHits.ReadFrom( tree );
-      nCSCPhiHoles.ReadFrom( tree );
+// -- slimmed --       nCSCPhiHoles.ReadFrom( tree );
       nRPCEtaHits.ReadFrom( tree );
-      nRPCEtaHoles.ReadFrom( tree );
+// -- slimmed --       nRPCEtaHoles.ReadFrom( tree );
       nRPCPhiHits.ReadFrom( tree );
-      nRPCPhiHoles.ReadFrom( tree );
+// -- slimmed --       nRPCPhiHoles.ReadFrom( tree );
       nTGCEtaHits.ReadFrom( tree );
-      nTGCEtaHoles.ReadFrom( tree );
+// -- slimmed --       nTGCEtaHoles.ReadFrom( tree );
       nTGCPhiHits.ReadFrom( tree );
-      nTGCPhiHoles.ReadFrom( tree );
+// -- slimmed --       nTGCPhiHoles.ReadFrom( tree );
       nprecisionLayers.ReadFrom( tree );
       nprecisionHoleLayers.ReadFrom( tree );
       nphiLayers.ReadFrom( tree );
@@ -2203,22 +2203,22 @@ if (!is_data) {
       nMDTEMHits.ReadFrom( tree );
       nMDTEOHits.ReadFrom( tree );
       nMDTEEHits.ReadFrom( tree );
-      nRPCLayer1EtaHits.ReadFrom( tree );
-      nRPCLayer2EtaHits.ReadFrom( tree );
-      nRPCLayer3EtaHits.ReadFrom( tree );
-      nRPCLayer1PhiHits.ReadFrom( tree );
-      nRPCLayer2PhiHits.ReadFrom( tree );
-      nRPCLayer3PhiHits.ReadFrom( tree );
-      nTGCLayer1EtaHits.ReadFrom( tree );
-      nTGCLayer2EtaHits.ReadFrom( tree );
-      nTGCLayer3EtaHits.ReadFrom( tree );
-      nTGCLayer4EtaHits.ReadFrom( tree );
-      nTGCLayer1PhiHits.ReadFrom( tree );
-      nTGCLayer2PhiHits.ReadFrom( tree );
-      nTGCLayer3PhiHits.ReadFrom( tree );
-      nTGCLayer4PhiHits.ReadFrom( tree );
-      barrelSectors.ReadFrom( tree );
-      endcapSectors.ReadFrom( tree );
+// -- slimmed --       nRPCLayer1EtaHits.ReadFrom( tree );
+// -- slimmed --       nRPCLayer2EtaHits.ReadFrom( tree );
+// -- slimmed --       nRPCLayer3EtaHits.ReadFrom( tree );
+// -- slimmed --       nRPCLayer1PhiHits.ReadFrom( tree );
+// -- slimmed --       nRPCLayer2PhiHits.ReadFrom( tree );
+// -- slimmed --       nRPCLayer3PhiHits.ReadFrom( tree );
+// -- slimmed --       nTGCLayer1EtaHits.ReadFrom( tree );
+// -- slimmed --       nTGCLayer2EtaHits.ReadFrom( tree );
+// -- slimmed --       nTGCLayer3EtaHits.ReadFrom( tree );
+// -- slimmed --       nTGCLayer4EtaHits.ReadFrom( tree );
+// -- slimmed --       nTGCLayer1PhiHits.ReadFrom( tree );
+// -- slimmed --       nTGCLayer2PhiHits.ReadFrom( tree );
+// -- slimmed --       nTGCLayer3PhiHits.ReadFrom( tree );
+// -- slimmed --       nTGCLayer4PhiHits.ReadFrom( tree );
+// -- slimmed --       barrelSectors.ReadFrom( tree );
+// -- slimmed --       endcapSectors.ReadFrom( tree );
       trackd0.ReadFrom( tree );
       trackz0.ReadFrom( tree );
       trackphi.ReadFrom( tree );
@@ -2462,20 +2462,20 @@ if (!is_data) {
       nTRTDeadStraws.WriteTo( tree );
       expectBLayerHit.WriteTo( tree );
       nMDTHits.WriteTo( tree );
-      nMDTHoles.WriteTo( tree );
+// -- slimmed --       nMDTHoles.WriteTo( tree );
       nCSCEtaHits.WriteTo( tree );
-      nCSCEtaHoles.WriteTo( tree );
+// -- slimmed --       nCSCEtaHoles.WriteTo( tree );
       nCSCUnspoiledEtaHits.WriteTo( tree );
       nCSCPhiHits.WriteTo( tree );
-      nCSCPhiHoles.WriteTo( tree );
+// -- slimmed --       nCSCPhiHoles.WriteTo( tree );
       nRPCEtaHits.WriteTo( tree );
-      nRPCEtaHoles.WriteTo( tree );
+// -- slimmed --       nRPCEtaHoles.WriteTo( tree );
       nRPCPhiHits.WriteTo( tree );
-      nRPCPhiHoles.WriteTo( tree );
+// -- slimmed --       nRPCPhiHoles.WriteTo( tree );
       nTGCEtaHits.WriteTo( tree );
-      nTGCEtaHoles.WriteTo( tree );
+// -- slimmed --       nTGCEtaHoles.WriteTo( tree );
       nTGCPhiHits.WriteTo( tree );
-      nTGCPhiHoles.WriteTo( tree );
+// -- slimmed --       nTGCPhiHoles.WriteTo( tree );
       nprecisionLayers.WriteTo( tree );
       nprecisionHoleLayers.WriteTo( tree );
       nphiLayers.WriteTo( tree );
@@ -2491,22 +2491,22 @@ if (!is_data) {
       nMDTEMHits.WriteTo( tree );
       nMDTEOHits.WriteTo( tree );
       nMDTEEHits.WriteTo( tree );
-      nRPCLayer1EtaHits.WriteTo( tree );
-      nRPCLayer2EtaHits.WriteTo( tree );
-      nRPCLayer3EtaHits.WriteTo( tree );
-      nRPCLayer1PhiHits.WriteTo( tree );
-      nRPCLayer2PhiHits.WriteTo( tree );
-      nRPCLayer3PhiHits.WriteTo( tree );
-      nTGCLayer1EtaHits.WriteTo( tree );
-      nTGCLayer2EtaHits.WriteTo( tree );
-      nTGCLayer3EtaHits.WriteTo( tree );
-      nTGCLayer4EtaHits.WriteTo( tree );
-      nTGCLayer1PhiHits.WriteTo( tree );
-      nTGCLayer2PhiHits.WriteTo( tree );
-      nTGCLayer3PhiHits.WriteTo( tree );
-      nTGCLayer4PhiHits.WriteTo( tree );
-      barrelSectors.WriteTo( tree );
-      endcapSectors.WriteTo( tree );
+// -- slimmed --       nRPCLayer1EtaHits.WriteTo( tree );
+// -- slimmed --       nRPCLayer2EtaHits.WriteTo( tree );
+// -- slimmed --       nRPCLayer3EtaHits.WriteTo( tree );
+// -- slimmed --       nRPCLayer1PhiHits.WriteTo( tree );
+// -- slimmed --       nRPCLayer2PhiHits.WriteTo( tree );
+// -- slimmed --       nRPCLayer3PhiHits.WriteTo( tree );
+// -- slimmed --       nTGCLayer1EtaHits.WriteTo( tree );
+// -- slimmed --       nTGCLayer2EtaHits.WriteTo( tree );
+// -- slimmed --       nTGCLayer3EtaHits.WriteTo( tree );
+// -- slimmed --       nTGCLayer4EtaHits.WriteTo( tree );
+// -- slimmed --       nTGCLayer1PhiHits.WriteTo( tree );
+// -- slimmed --       nTGCLayer2PhiHits.WriteTo( tree );
+// -- slimmed --       nTGCLayer3PhiHits.WriteTo( tree );
+// -- slimmed --       nTGCLayer4PhiHits.WriteTo( tree );
+// -- slimmed --       barrelSectors.WriteTo( tree );
+// -- slimmed --       endcapSectors.WriteTo( tree );
       trackd0.WriteTo( tree );
       trackz0.WriteTo( tree );
       trackphi.WriteTo( tree );
@@ -2787,20 +2787,20 @@ if (!is_data) {
       if( nTRTDeadStraws.IsActive() ) nTRTDeadStraws();
       if( expectBLayerHit.IsActive() ) expectBLayerHit();
       if( nMDTHits.IsActive() ) nMDTHits();
-      if( nMDTHoles.IsActive() ) nMDTHoles();
+// -- slimmed --       if( nMDTHoles.IsActive() ) nMDTHoles();
       if( nCSCEtaHits.IsActive() ) nCSCEtaHits();
-      if( nCSCEtaHoles.IsActive() ) nCSCEtaHoles();
+// -- slimmed --       if( nCSCEtaHoles.IsActive() ) nCSCEtaHoles();
       if( nCSCUnspoiledEtaHits.IsActive() ) nCSCUnspoiledEtaHits();
       if( nCSCPhiHits.IsActive() ) nCSCPhiHits();
-      if( nCSCPhiHoles.IsActive() ) nCSCPhiHoles();
+// -- slimmed --       if( nCSCPhiHoles.IsActive() ) nCSCPhiHoles();
       if( nRPCEtaHits.IsActive() ) nRPCEtaHits();
-      if( nRPCEtaHoles.IsActive() ) nRPCEtaHoles();
+// -- slimmed --       if( nRPCEtaHoles.IsActive() ) nRPCEtaHoles();
       if( nRPCPhiHits.IsActive() ) nRPCPhiHits();
-      if( nRPCPhiHoles.IsActive() ) nRPCPhiHoles();
+// -- slimmed --       if( nRPCPhiHoles.IsActive() ) nRPCPhiHoles();
       if( nTGCEtaHits.IsActive() ) nTGCEtaHits();
-      if( nTGCEtaHoles.IsActive() ) nTGCEtaHoles();
+// -- slimmed --       if( nTGCEtaHoles.IsActive() ) nTGCEtaHoles();
       if( nTGCPhiHits.IsActive() ) nTGCPhiHits();
-      if( nTGCPhiHoles.IsActive() ) nTGCPhiHoles();
+// -- slimmed --       if( nTGCPhiHoles.IsActive() ) nTGCPhiHoles();
       if( nprecisionLayers.IsActive() ) nprecisionLayers();
       if( nprecisionHoleLayers.IsActive() ) nprecisionHoleLayers();
       if( nphiLayers.IsActive() ) nphiLayers();
@@ -2816,22 +2816,22 @@ if (!is_data) {
       if( nMDTEMHits.IsActive() ) nMDTEMHits();
       if( nMDTEOHits.IsActive() ) nMDTEOHits();
       if( nMDTEEHits.IsActive() ) nMDTEEHits();
-      if( nRPCLayer1EtaHits.IsActive() ) nRPCLayer1EtaHits();
-      if( nRPCLayer2EtaHits.IsActive() ) nRPCLayer2EtaHits();
-      if( nRPCLayer3EtaHits.IsActive() ) nRPCLayer3EtaHits();
-      if( nRPCLayer1PhiHits.IsActive() ) nRPCLayer1PhiHits();
-      if( nRPCLayer2PhiHits.IsActive() ) nRPCLayer2PhiHits();
-      if( nRPCLayer3PhiHits.IsActive() ) nRPCLayer3PhiHits();
-      if( nTGCLayer1EtaHits.IsActive() ) nTGCLayer1EtaHits();
-      if( nTGCLayer2EtaHits.IsActive() ) nTGCLayer2EtaHits();
-      if( nTGCLayer3EtaHits.IsActive() ) nTGCLayer3EtaHits();
-      if( nTGCLayer4EtaHits.IsActive() ) nTGCLayer4EtaHits();
-      if( nTGCLayer1PhiHits.IsActive() ) nTGCLayer1PhiHits();
-      if( nTGCLayer2PhiHits.IsActive() ) nTGCLayer2PhiHits();
-      if( nTGCLayer3PhiHits.IsActive() ) nTGCLayer3PhiHits();
-      if( nTGCLayer4PhiHits.IsActive() ) nTGCLayer4PhiHits();
-      if( barrelSectors.IsActive() ) barrelSectors();
-      if( endcapSectors.IsActive() ) endcapSectors();
+// -- slimmed --       if( nRPCLayer1EtaHits.IsActive() ) nRPCLayer1EtaHits();
+// -- slimmed --       if( nRPCLayer2EtaHits.IsActive() ) nRPCLayer2EtaHits();
+// -- slimmed --       if( nRPCLayer3EtaHits.IsActive() ) nRPCLayer3EtaHits();
+// -- slimmed --       if( nRPCLayer1PhiHits.IsActive() ) nRPCLayer1PhiHits();
+// -- slimmed --       if( nRPCLayer2PhiHits.IsActive() ) nRPCLayer2PhiHits();
+// -- slimmed --       if( nRPCLayer3PhiHits.IsActive() ) nRPCLayer3PhiHits();
+// -- slimmed --       if( nTGCLayer1EtaHits.IsActive() ) nTGCLayer1EtaHits();
+// -- slimmed --       if( nTGCLayer2EtaHits.IsActive() ) nTGCLayer2EtaHits();
+// -- slimmed --       if( nTGCLayer3EtaHits.IsActive() ) nTGCLayer3EtaHits();
+// -- slimmed --       if( nTGCLayer4EtaHits.IsActive() ) nTGCLayer4EtaHits();
+// -- slimmed --       if( nTGCLayer1PhiHits.IsActive() ) nTGCLayer1PhiHits();
+// -- slimmed --       if( nTGCLayer2PhiHits.IsActive() ) nTGCLayer2PhiHits();
+// -- slimmed --       if( nTGCLayer3PhiHits.IsActive() ) nTGCLayer3PhiHits();
+// -- slimmed --       if( nTGCLayer4PhiHits.IsActive() ) nTGCLayer4PhiHits();
+// -- slimmed --       if( barrelSectors.IsActive() ) barrelSectors();
+// -- slimmed --       if( endcapSectors.IsActive() ) endcapSectors();
       if( trackd0.IsActive() ) trackd0();
       if( trackz0.IsActive() ) trackz0();
       if( trackphi.IsActive() ) trackphi();
@@ -3084,20 +3084,20 @@ if (!is_data) {
       nTRTDeadStraws()->clear();
       expectBLayerHit()->clear();
       nMDTHits()->clear();
-      nMDTHoles()->clear();
+// -- slimmed --       nMDTHoles()->clear();
       nCSCEtaHits()->clear();
-      nCSCEtaHoles()->clear();
+// -- slimmed --       nCSCEtaHoles()->clear();
       nCSCUnspoiledEtaHits()->clear();
       nCSCPhiHits()->clear();
-      nCSCPhiHoles()->clear();
+// -- slimmed --       nCSCPhiHoles()->clear();
       nRPCEtaHits()->clear();
-      nRPCEtaHoles()->clear();
+// -- slimmed --       nRPCEtaHoles()->clear();
       nRPCPhiHits()->clear();
-      nRPCPhiHoles()->clear();
+// -- slimmed --       nRPCPhiHoles()->clear();
       nTGCEtaHits()->clear();
-      nTGCEtaHoles()->clear();
+// -- slimmed --       nTGCEtaHoles()->clear();
       nTGCPhiHits()->clear();
-      nTGCPhiHoles()->clear();
+// -- slimmed --       nTGCPhiHoles()->clear();
       nprecisionLayers()->clear();
       nprecisionHoleLayers()->clear();
       nphiLayers()->clear();
@@ -3113,22 +3113,22 @@ if (!is_data) {
       nMDTEMHits()->clear();
       nMDTEOHits()->clear();
       nMDTEEHits()->clear();
-      nRPCLayer1EtaHits()->clear();
-      nRPCLayer2EtaHits()->clear();
-      nRPCLayer3EtaHits()->clear();
-      nRPCLayer1PhiHits()->clear();
-      nRPCLayer2PhiHits()->clear();
-      nRPCLayer3PhiHits()->clear();
-      nTGCLayer1EtaHits()->clear();
-      nTGCLayer2EtaHits()->clear();
-      nTGCLayer3EtaHits()->clear();
-      nTGCLayer4EtaHits()->clear();
-      nTGCLayer1PhiHits()->clear();
-      nTGCLayer2PhiHits()->clear();
-      nTGCLayer3PhiHits()->clear();
-      nTGCLayer4PhiHits()->clear();
-      barrelSectors()->clear();
-      endcapSectors()->clear();
+// -- slimmed --       nRPCLayer1EtaHits()->clear();
+// -- slimmed --       nRPCLayer2EtaHits()->clear();
+// -- slimmed --       nRPCLayer3EtaHits()->clear();
+// -- slimmed --       nRPCLayer1PhiHits()->clear();
+// -- slimmed --       nRPCLayer2PhiHits()->clear();
+// -- slimmed --       nRPCLayer3PhiHits()->clear();
+// -- slimmed --       nTGCLayer1EtaHits()->clear();
+// -- slimmed --       nTGCLayer2EtaHits()->clear();
+// -- slimmed --       nTGCLayer3EtaHits()->clear();
+// -- slimmed --       nTGCLayer4EtaHits()->clear();
+// -- slimmed --       nTGCLayer1PhiHits()->clear();
+// -- slimmed --       nTGCLayer2PhiHits()->clear();
+// -- slimmed --       nTGCLayer3PhiHits()->clear();
+// -- slimmed --       nTGCLayer4PhiHits()->clear();
+// -- slimmed --       barrelSectors()->clear();
+// -- slimmed --       endcapSectors()->clear();
       trackd0()->clear();
       trackz0()->clear();
       trackphi()->clear();
@@ -3965,21 +3965,21 @@ if (!is_data) {
       } else {
          nMDTHits()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nMDTHoles.IsAvailable() ) {
-         nMDTHoles()->push_back( el.nMDTHoles() );
-      } else {
-         nMDTHoles()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.nMDTHoles.IsAvailable() ) {
+// -- slimmed --          nMDTHoles()->push_back( el.nMDTHoles() );
+// -- slimmed --       } else {
+// -- slimmed --          nMDTHoles()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.nCSCEtaHits.IsAvailable() ) {
          nCSCEtaHits()->push_back( el.nCSCEtaHits() );
       } else {
          nCSCEtaHits()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nCSCEtaHoles.IsAvailable() ) {
-         nCSCEtaHoles()->push_back( el.nCSCEtaHoles() );
-      } else {
-         nCSCEtaHoles()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.nCSCEtaHoles.IsAvailable() ) {
+// -- slimmed --          nCSCEtaHoles()->push_back( el.nCSCEtaHoles() );
+// -- slimmed --       } else {
+// -- slimmed --          nCSCEtaHoles()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.nCSCUnspoiledEtaHits.IsAvailable() ) {
          nCSCUnspoiledEtaHits()->push_back( el.nCSCUnspoiledEtaHits() );
       } else {
@@ -3990,51 +3990,51 @@ if (!is_data) {
       } else {
          nCSCPhiHits()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nCSCPhiHoles.IsAvailable() ) {
-         nCSCPhiHoles()->push_back( el.nCSCPhiHoles() );
-      } else {
-         nCSCPhiHoles()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.nCSCPhiHoles.IsAvailable() ) {
+// -- slimmed --          nCSCPhiHoles()->push_back( el.nCSCPhiHoles() );
+// -- slimmed --       } else {
+// -- slimmed --          nCSCPhiHoles()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.nRPCEtaHits.IsAvailable() ) {
          nRPCEtaHits()->push_back( el.nRPCEtaHits() );
       } else {
          nRPCEtaHits()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nRPCEtaHoles.IsAvailable() ) {
-         nRPCEtaHoles()->push_back( el.nRPCEtaHoles() );
-      } else {
-         nRPCEtaHoles()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.nRPCEtaHoles.IsAvailable() ) {
+// -- slimmed --          nRPCEtaHoles()->push_back( el.nRPCEtaHoles() );
+// -- slimmed --       } else {
+// -- slimmed --          nRPCEtaHoles()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.nRPCPhiHits.IsAvailable() ) {
          nRPCPhiHits()->push_back( el.nRPCPhiHits() );
       } else {
          nRPCPhiHits()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nRPCPhiHoles.IsAvailable() ) {
-         nRPCPhiHoles()->push_back( el.nRPCPhiHoles() );
-      } else {
-         nRPCPhiHoles()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.nRPCPhiHoles.IsAvailable() ) {
+// -- slimmed --          nRPCPhiHoles()->push_back( el.nRPCPhiHoles() );
+// -- slimmed --       } else {
+// -- slimmed --          nRPCPhiHoles()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.nTGCEtaHits.IsAvailable() ) {
          nTGCEtaHits()->push_back( el.nTGCEtaHits() );
       } else {
          nTGCEtaHits()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nTGCEtaHoles.IsAvailable() ) {
-         nTGCEtaHoles()->push_back( el.nTGCEtaHoles() );
-      } else {
-         nTGCEtaHoles()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.nTGCEtaHoles.IsAvailable() ) {
+// -- slimmed --          nTGCEtaHoles()->push_back( el.nTGCEtaHoles() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCEtaHoles()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.nTGCPhiHits.IsAvailable() ) {
          nTGCPhiHits()->push_back( el.nTGCPhiHits() );
       } else {
          nTGCPhiHits()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nTGCPhiHoles.IsAvailable() ) {
-         nTGCPhiHoles()->push_back( el.nTGCPhiHoles() );
-      } else {
-         nTGCPhiHoles()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.nTGCPhiHoles.IsAvailable() ) {
+// -- slimmed --          nTGCPhiHoles()->push_back( el.nTGCPhiHoles() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCPhiHoles()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.nprecisionLayers.IsAvailable() ) {
          nprecisionLayers()->push_back( el.nprecisionLayers() );
       } else {
@@ -4110,86 +4110,86 @@ if (!is_data) {
       } else {
          nMDTEEHits()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.nRPCLayer1EtaHits.IsAvailable() ) {
-         nRPCLayer1EtaHits()->push_back( el.nRPCLayer1EtaHits() );
-      } else {
-         nRPCLayer1EtaHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nRPCLayer2EtaHits.IsAvailable() ) {
-         nRPCLayer2EtaHits()->push_back( el.nRPCLayer2EtaHits() );
-      } else {
-         nRPCLayer2EtaHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nRPCLayer3EtaHits.IsAvailable() ) {
-         nRPCLayer3EtaHits()->push_back( el.nRPCLayer3EtaHits() );
-      } else {
-         nRPCLayer3EtaHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nRPCLayer1PhiHits.IsAvailable() ) {
-         nRPCLayer1PhiHits()->push_back( el.nRPCLayer1PhiHits() );
-      } else {
-         nRPCLayer1PhiHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nRPCLayer2PhiHits.IsAvailable() ) {
-         nRPCLayer2PhiHits()->push_back( el.nRPCLayer2PhiHits() );
-      } else {
-         nRPCLayer2PhiHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nRPCLayer3PhiHits.IsAvailable() ) {
-         nRPCLayer3PhiHits()->push_back( el.nRPCLayer3PhiHits() );
-      } else {
-         nRPCLayer3PhiHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nTGCLayer1EtaHits.IsAvailable() ) {
-         nTGCLayer1EtaHits()->push_back( el.nTGCLayer1EtaHits() );
-      } else {
-         nTGCLayer1EtaHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nTGCLayer2EtaHits.IsAvailable() ) {
-         nTGCLayer2EtaHits()->push_back( el.nTGCLayer2EtaHits() );
-      } else {
-         nTGCLayer2EtaHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nTGCLayer3EtaHits.IsAvailable() ) {
-         nTGCLayer3EtaHits()->push_back( el.nTGCLayer3EtaHits() );
-      } else {
-         nTGCLayer3EtaHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nTGCLayer4EtaHits.IsAvailable() ) {
-         nTGCLayer4EtaHits()->push_back( el.nTGCLayer4EtaHits() );
-      } else {
-         nTGCLayer4EtaHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nTGCLayer1PhiHits.IsAvailable() ) {
-         nTGCLayer1PhiHits()->push_back( el.nTGCLayer1PhiHits() );
-      } else {
-         nTGCLayer1PhiHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nTGCLayer2PhiHits.IsAvailable() ) {
-         nTGCLayer2PhiHits()->push_back( el.nTGCLayer2PhiHits() );
-      } else {
-         nTGCLayer2PhiHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nTGCLayer3PhiHits.IsAvailable() ) {
-         nTGCLayer3PhiHits()->push_back( el.nTGCLayer3PhiHits() );
-      } else {
-         nTGCLayer3PhiHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nTGCLayer4PhiHits.IsAvailable() ) {
-         nTGCLayer4PhiHits()->push_back( el.nTGCLayer4PhiHits() );
-      } else {
-         nTGCLayer4PhiHits()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.barrelSectors.IsAvailable() ) {
-         barrelSectors()->push_back( el.barrelSectors() );
-      } else {
-         barrelSectors()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.endcapSectors.IsAvailable() ) {
-         endcapSectors()->push_back( el.endcapSectors() );
-      } else {
-         endcapSectors()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.nRPCLayer1EtaHits.IsAvailable() ) {
+// -- slimmed --          nRPCLayer1EtaHits()->push_back( el.nRPCLayer1EtaHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nRPCLayer1EtaHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nRPCLayer2EtaHits.IsAvailable() ) {
+// -- slimmed --          nRPCLayer2EtaHits()->push_back( el.nRPCLayer2EtaHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nRPCLayer2EtaHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nRPCLayer3EtaHits.IsAvailable() ) {
+// -- slimmed --          nRPCLayer3EtaHits()->push_back( el.nRPCLayer3EtaHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nRPCLayer3EtaHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nRPCLayer1PhiHits.IsAvailable() ) {
+// -- slimmed --          nRPCLayer1PhiHits()->push_back( el.nRPCLayer1PhiHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nRPCLayer1PhiHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nRPCLayer2PhiHits.IsAvailable() ) {
+// -- slimmed --          nRPCLayer2PhiHits()->push_back( el.nRPCLayer2PhiHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nRPCLayer2PhiHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nRPCLayer3PhiHits.IsAvailable() ) {
+// -- slimmed --          nRPCLayer3PhiHits()->push_back( el.nRPCLayer3PhiHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nRPCLayer3PhiHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nTGCLayer1EtaHits.IsAvailable() ) {
+// -- slimmed --          nTGCLayer1EtaHits()->push_back( el.nTGCLayer1EtaHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCLayer1EtaHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nTGCLayer2EtaHits.IsAvailable() ) {
+// -- slimmed --          nTGCLayer2EtaHits()->push_back( el.nTGCLayer2EtaHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCLayer2EtaHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nTGCLayer3EtaHits.IsAvailable() ) {
+// -- slimmed --          nTGCLayer3EtaHits()->push_back( el.nTGCLayer3EtaHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCLayer3EtaHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nTGCLayer4EtaHits.IsAvailable() ) {
+// -- slimmed --          nTGCLayer4EtaHits()->push_back( el.nTGCLayer4EtaHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCLayer4EtaHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nTGCLayer1PhiHits.IsAvailable() ) {
+// -- slimmed --          nTGCLayer1PhiHits()->push_back( el.nTGCLayer1PhiHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCLayer1PhiHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nTGCLayer2PhiHits.IsAvailable() ) {
+// -- slimmed --          nTGCLayer2PhiHits()->push_back( el.nTGCLayer2PhiHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCLayer2PhiHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nTGCLayer3PhiHits.IsAvailable() ) {
+// -- slimmed --          nTGCLayer3PhiHits()->push_back( el.nTGCLayer3PhiHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCLayer3PhiHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.nTGCLayer4PhiHits.IsAvailable() ) {
+// -- slimmed --          nTGCLayer4PhiHits()->push_back( el.nTGCLayer4PhiHits() );
+// -- slimmed --       } else {
+// -- slimmed --          nTGCLayer4PhiHits()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.barrelSectors.IsAvailable() ) {
+// -- slimmed --          barrelSectors()->push_back( el.barrelSectors() );
+// -- slimmed --       } else {
+// -- slimmed --          barrelSectors()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.endcapSectors.IsAvailable() ) {
+// -- slimmed --          endcapSectors()->push_back( el.endcapSectors() );
+// -- slimmed --       } else {
+// -- slimmed --          endcapSectors()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trackd0.IsAvailable() ) {
          trackd0()->push_back( el.trackd0() );
       } else {
