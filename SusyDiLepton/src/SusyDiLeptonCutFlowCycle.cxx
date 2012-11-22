@@ -74,6 +74,8 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::EgammaScaleFactorTool      , "EgammaSF");
   DECLARE_TOOL(CommonTools::BTagScaleFactorTool        , "BTagScaleFactor");
   DECLARE_TOOL(CommonTools::MuonScaleFactorTool        , "MuonSF");
+  DECLARE_TOOL(CommonTools::ChargeFlipScaleFactorTool  , "ChargeFlipSF");
+  DECLARE_TOOL(CommonTools::TriggerReweightTool        , "TriggerReweight");
 
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
@@ -297,7 +299,13 @@ void SusyDiLeptonCutFlowCycle::getTools()
   GET_TOOL(muon_sf, CommonTools::MuonScaleFactorTool, "MuonSF");
   m_muon_sf_tool = muon_sf;
 
+  GET_TOOL(charge_flip_sf, CommonTools::ChargeFlipScaleFactorTool, "ChargeFlipSF");
+  m_charge_flip_sf_tool = charge_flip_sf;
 
+  GET_TOOL(trigger_reweight, CommonTools::TriggerReweightTool, "TriggerReweight");
+  m_trigger_reweight_tool = trigger_reweight;
+
+  //Get All the Output Tools
   GET_TOOL(event_out, CommonTools::EventOutputTool, "EventOutput");
   m_event_output_tool = event_out;
 
@@ -493,14 +501,26 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
     m_event->setBTagWeight(m_b_tag_sf_tool->getSF(m_jets.getJets(JET_GOOD)));
 
     // TODO fill m_trigger_weight
-    m_event->setTriggerWeight(1.);
-
+    m_event->setTriggerWeight(m_trigger_reweight_tool->getTriggerWeight(
+          m_event->getFlavorChannel(),
+          m_electrons.getElectrons(EL_GOOD),
+	  m_muons.getMuons(MU_GOOD),
+	  m_vertices));
+    
+    
     // TODO fill m_cross_section_weight
     m_event->setCrossSectionWeight(1.);
     m_event->setKFactor(1.);
     m_event->setEffTimesXS(1.);
 
     // TODO fill m_charge_flip_weight
+    m_event->setChargeFlipWeight(m_charge_flip_sf_tool->getSF(m_event->getFlavorChannel(),
+						 m_electrons.getElectrons(EL_GOOD),
+						 m_muons.getMuons(MU_GOOD),
+						 m_met,
+						 m_truth_d3pdobject,
+						 0));   
+    
   }
 }
 
@@ -534,6 +554,8 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_cross_section_sf_tool->clear();
   m_b_tag_sf_tool->clear();
   m_pileup_sf_tool->clear();
+  m_charge_flip_sf_tool->clear();
+  m_trigger_reweight_tool->clear();
 }
 
 // -----------------------------------------------------------------------------
