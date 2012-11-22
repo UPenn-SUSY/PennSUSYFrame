@@ -50,22 +50,22 @@ namespace D3PDReader {
 
       /// Did this event pass trigger EF_2e12Tvh_loose1
       VarHandle< Bool_t > EF_2e12Tvh_loose1;
-      /// Did this event pass trigger EF_2e5_tight1_Jpsi
-      VarHandle< Bool_t > EF_2e5_tight1_Jpsi;
+// -- slimmed --       /// Did this event pass trigger EF_2e5_tight1_Jpsi
+// -- slimmed --       VarHandle< Bool_t > EF_2e5_tight1_Jpsi;
       /// Did this event pass trigger EF_2e7T_loose1_mu6
       VarHandle< Bool_t > EF_2e7T_loose1_mu6;
       /// Did this event pass trigger EF_2e7T_medium1_mu6
       VarHandle< Bool_t > EF_2e7T_medium1_mu6;
-      /// Did this event pass trigger EF_2g15vh_medium_g10_medium
-      VarHandle< Bool_t > EF_2g15vh_medium_g10_medium;
-      /// Did this event pass trigger EF_2g20vh_medium
-      VarHandle< Bool_t > EF_2g20vh_medium;
-      /// Did this event pass trigger EF_2g40_loose
-      VarHandle< Bool_t > EF_2g40_loose;
+// -- slimmed --       /// Did this event pass trigger EF_2g15vh_medium_g10_medium
+// -- slimmed --       VarHandle< Bool_t > EF_2g15vh_medium_g10_medium;
+// -- slimmed --       /// Did this event pass trigger EF_2g20vh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_2g20vh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_2g40_loose
+// -- slimmed --       VarHandle< Bool_t > EF_2g40_loose;
       /// Did this event pass trigger EF_2mu10
       VarHandle< Bool_t > EF_2mu10;
-      /// Did this event pass trigger EF_2mu10_MSonly_g10_loose
-      VarHandle< Bool_t > EF_2mu10_MSonly_g10_loose;
+// -- slimmed --       /// Did this event pass trigger EF_2mu10_MSonly_g10_loose
+// -- slimmed --       VarHandle< Bool_t > EF_2mu10_MSonly_g10_loose;
       /// Did this event pass trigger EF_2mu13
       VarHandle< Bool_t > EF_2mu13;
       /// Did this event pass trigger EF_2mu13_Zmumu_IDTrkNoCut
@@ -106,20 +106,20 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_2mu4T_DiMu_l2muonSA;
       /// Did this event pass trigger EF_2mu4T_DiMu_noVtx_noOS
       VarHandle< Bool_t > EF_2mu4T_DiMu_noVtx_noOS;
-      /// Did this event pass trigger EF_2mu4T_Jpsimumu
-      VarHandle< Bool_t > EF_2mu4T_Jpsimumu;
-      /// Did this event pass trigger EF_2mu4T_Jpsimumu_Barrel
-      VarHandle< Bool_t > EF_2mu4T_Jpsimumu_Barrel;
-      /// Did this event pass trigger EF_2mu4T_Jpsimumu_BarrelOnly
-      VarHandle< Bool_t > EF_2mu4T_Jpsimumu_BarrelOnly;
-      /// Did this event pass trigger EF_2mu4T_Jpsimumu_IDTrkNoCut
-      VarHandle< Bool_t > EF_2mu4T_Jpsimumu_IDTrkNoCut;
-      /// Did this event pass trigger EF_2mu4T_Upsimumu
-      VarHandle< Bool_t > EF_2mu4T_Upsimumu;
-      /// Did this event pass trigger EF_2mu4T_Upsimumu_Barrel
-      VarHandle< Bool_t > EF_2mu4T_Upsimumu_Barrel;
-      /// Did this event pass trigger EF_2mu4T_Upsimumu_BarrelOnly
-      VarHandle< Bool_t > EF_2mu4T_Upsimumu_BarrelOnly;
+// -- slimmed --       /// Did this event pass trigger EF_2mu4T_Jpsimumu
+// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_Jpsimumu;
+// -- slimmed --       /// Did this event pass trigger EF_2mu4T_Jpsimumu_Barrel
+// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_Jpsimumu_Barrel;
+// -- slimmed --       /// Did this event pass trigger EF_2mu4T_Jpsimumu_BarrelOnly
+// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_Jpsimumu_BarrelOnly;
+// -- slimmed --       /// Did this event pass trigger EF_2mu4T_Jpsimumu_IDTrkNoCut
+// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       /// Did this event pass trigger EF_2mu4T_Upsimumu
+// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_Upsimumu;
+// -- slimmed --       /// Did this event pass trigger EF_2mu4T_Upsimumu_Barrel
+// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_Upsimumu_Barrel;
+// -- slimmed --       /// Did this event pass trigger EF_2mu4T_Upsimumu_BarrelOnly
+// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_Upsimumu_BarrelOnly;
       /// Did this event pass trigger EF_2mu4T_xe60
       VarHandle< Bool_t > EF_2mu4T_xe60;
       /// Did this event pass trigger EF_2mu4T_xe60_tclcw
@@ -138,10 +138,10 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_2mu6_DiMu_DY25;
       /// Did this event pass trigger EF_2mu6_DiMu_noVtx_noOS
       VarHandle< Bool_t > EF_2mu6_DiMu_noVtx_noOS;
-      /// Did this event pass trigger EF_2mu6_Jpsimumu
-      VarHandle< Bool_t > EF_2mu6_Jpsimumu;
-      /// Did this event pass trigger EF_2mu6_Upsimumu
-      VarHandle< Bool_t > EF_2mu6_Upsimumu;
+// -- slimmed --       /// Did this event pass trigger EF_2mu6_Jpsimumu
+// -- slimmed --       VarHandle< Bool_t > EF_2mu6_Jpsimumu;
+// -- slimmed --       /// Did this event pass trigger EF_2mu6_Upsimumu
+// -- slimmed --       VarHandle< Bool_t > EF_2mu6_Upsimumu;
       /// Did this event pass trigger EF_2mu6i_DiMu_DY
       VarHandle< Bool_t > EF_2mu6i_DiMu_DY;
       /// Did this event pass trigger EF_2mu6i_DiMu_DY_2j25_a4tchad
@@ -168,18 +168,18 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_e13_etcutTrk_xs60;
       /// Did this event pass trigger EF_e13_etcutTrk_xs60_dphi2j15xe20
       VarHandle< Bool_t > EF_e13_etcutTrk_xs60_dphi2j15xe20;
-      /// Did this event pass trigger EF_e14_tight1_e4_etcut_Jpsi
-      VarHandle< Bool_t > EF_e14_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this event pass trigger EF_e14_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarHandle< Bool_t > EF_e14_tight1_e4_etcut_Jpsi;
       /// Did this event pass trigger EF_e15vh_medium1
       VarHandle< Bool_t > EF_e15vh_medium1;
       /// Did this event pass trigger EF_e18_loose1
       VarHandle< Bool_t > EF_e18_loose1;
-      /// Did this event pass trigger EF_e18_loose1_g25_medium
-      VarHandle< Bool_t > EF_e18_loose1_g25_medium;
+// -- slimmed --       /// Did this event pass trigger EF_e18_loose1_g25_medium
+// -- slimmed --       VarHandle< Bool_t > EF_e18_loose1_g25_medium;
       /// Did this event pass trigger EF_e18_medium1
       VarHandle< Bool_t > EF_e18_medium1;
-      /// Did this event pass trigger EF_e18_medium1_g25_loose
-      VarHandle< Bool_t > EF_e18_medium1_g25_loose;
+// -- slimmed --       /// Did this event pass trigger EF_e18_medium1_g25_loose
+// -- slimmed --       VarHandle< Bool_t > EF_e18_medium1_g25_loose;
       /// Did this event pass trigger EF_e18vh_medium1
       VarHandle< Bool_t > EF_e18vh_medium1;
       /// Did this event pass trigger EF_e18vh_medium1_2e7T_medium1
@@ -188,10 +188,10 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_e20_etcutTrk_xe30_dphi2j15xe20;
       /// Did this event pass trigger EF_e20_etcutTrk_xs60_dphi2j15xe20
       VarHandle< Bool_t > EF_e20_etcutTrk_xs60_dphi2j15xe20;
-      /// Did this event pass trigger EF_e20vhT_medium1_g6T_etcut_Upsi
-      VarHandle< Bool_t > EF_e20vhT_medium1_g6T_etcut_Upsi;
-      /// Did this event pass trigger EF_e20vhT_tight1_g6T_etcut_Upsi
-      VarHandle< Bool_t > EF_e20vhT_tight1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       /// Did this event pass trigger EF_e20vhT_medium1_g6T_etcut_Upsi
+// -- slimmed -- // -- slimmed --       VarHandle< Bool_t > EF_e20vhT_medium1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       /// Did this event pass trigger EF_e20vhT_tight1_g6T_etcut_Upsi
+// -- slimmed -- // -- slimmed --       VarHandle< Bool_t > EF_e20vhT_tight1_g6T_etcut_Upsi;
       /// Did this event pass trigger EF_e22vh_loose
       VarHandle< Bool_t > EF_e22vh_loose;
       /// Did this event pass trigger EF_e22vh_loose0
@@ -248,18 +248,18 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_e45_medium1;
       /// Did this event pass trigger EF_e5_tight1
       VarHandle< Bool_t > EF_e5_tight1;
-      /// Did this event pass trigger EF_e5_tight1_e14_etcut_Jpsi
-      VarHandle< Bool_t > EF_e5_tight1_e14_etcut_Jpsi;
-      /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi
-      VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi;
-      /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_L2StarB
-      VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
-      /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_L2StarC
-      VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
+// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e14_etcut_Jpsi
+// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e14_etcut_Jpsi;
+// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_L2StarB
+// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
+// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_L2StarC
+// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
       /// Did this event pass trigger EF_e5_tight1_e5_NoCut
       VarHandle< Bool_t > EF_e5_tight1_e5_NoCut;
-      /// Did this event pass trigger EF_e5_tight1_e9_etcut_Jpsi
-      VarHandle< Bool_t > EF_e5_tight1_e9_etcut_Jpsi;
+// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e9_etcut_Jpsi
+// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e9_etcut_Jpsi;
       /// Did this event pass trigger EF_e60_medium1
       VarHandle< Bool_t > EF_e60_medium1;
       /// Did this event pass trigger EF_e7T_loose1
@@ -270,8 +270,8 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_e7T_medium1;
       /// Did this event pass trigger EF_e7T_medium1_2mu6
       VarHandle< Bool_t > EF_e7T_medium1_2mu6;
-      /// Did this event pass trigger EF_e9_tight1_e4_etcut_Jpsi
-      VarHandle< Bool_t > EF_e9_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this event pass trigger EF_e9_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarHandle< Bool_t > EF_e9_tight1_e4_etcut_Jpsi;
       /// Did this event pass trigger EF_eb_physics
       VarHandle< Bool_t > EF_eb_physics;
       /// Did this event pass trigger EF_eb_physics_empty
@@ -292,80 +292,80 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_eb_random_firstempty;
       /// Did this event pass trigger EF_eb_random_unpaired_iso
       VarHandle< Bool_t > EF_eb_random_unpaired_iso;
-      /// Did this event pass trigger EF_g100_loose
-      VarHandle< Bool_t > EF_g100_loose;
-      /// Did this event pass trigger EF_g10_NoCut_cosmic
-      VarHandle< Bool_t > EF_g10_NoCut_cosmic;
-      /// Did this event pass trigger EF_g10_loose
-      VarHandle< Bool_t > EF_g10_loose;
-      /// Did this event pass trigger EF_g10_medium
-      VarHandle< Bool_t > EF_g10_medium;
-      /// Did this event pass trigger EF_g120_loose
-      VarHandle< Bool_t > EF_g120_loose;
-      /// Did this event pass trigger EF_g12Tvh_loose
-      VarHandle< Bool_t > EF_g12Tvh_loose;
-      /// Did this event pass trigger EF_g12Tvh_loose_larcalib
-      VarHandle< Bool_t > EF_g12Tvh_loose_larcalib;
-      /// Did this event pass trigger EF_g15_loose
-      VarHandle< Bool_t > EF_g15_loose;
-      /// Did this event pass trigger EF_g15vh_medium
-      VarHandle< Bool_t > EF_g15vh_medium;
-      /// Did this event pass trigger EF_g200_etcut
-      VarHandle< Bool_t > EF_g200_etcut;
-      /// Did this event pass trigger EF_g20_etcut
-      VarHandle< Bool_t > EF_g20_etcut;
-      /// Did this event pass trigger EF_g20_loose
-      VarHandle< Bool_t > EF_g20_loose;
-      /// Did this event pass trigger EF_g20_loose_larcalib
-      VarHandle< Bool_t > EF_g20_loose_larcalib;
-      /// Did this event pass trigger EF_g20_medium
-      VarHandle< Bool_t > EF_g20_medium;
-      /// Did this event pass trigger EF_g30_loose_g20_loose
-      VarHandle< Bool_t > EF_g30_loose_g20_loose;
-      /// Did this event pass trigger EF_g30_medium_g20_medium
-      VarHandle< Bool_t > EF_g30_medium_g20_medium;
-      /// Did this event pass trigger EF_g35_loose_g25_loose
-      VarHandle< Bool_t > EF_g35_loose_g25_loose;
-      /// Did this event pass trigger EF_g35_loose_g30_loose
-      VarHandle< Bool_t > EF_g35_loose_g30_loose;
-      /// Did this event pass trigger EF_g40_loose
-      VarHandle< Bool_t > EF_g40_loose;
-      /// Did this event pass trigger EF_g40_loose_L2EFxe60
-      VarHandle< Bool_t > EF_g40_loose_L2EFxe60;
-      /// Did this event pass trigger EF_g40_loose_L2EFxe60_tclcw
-      VarHandle< Bool_t > EF_g40_loose_L2EFxe60_tclcw;
-      /// Did this event pass trigger EF_g40_loose_g25_loose
-      VarHandle< Bool_t > EF_g40_loose_g25_loose;
-      /// Did this event pass trigger EF_g40_loose_g30_loose
-      VarHandle< Bool_t > EF_g40_loose_g30_loose;
-      /// Did this event pass trigger EF_g40_loose_larcalib
-      VarHandle< Bool_t > EF_g40_loose_larcalib;
-      /// Did this event pass trigger EF_g5_NoCut_cosmic
-      VarHandle< Bool_t > EF_g5_NoCut_cosmic;
-      /// Did this event pass trigger EF_g60_loose
-      VarHandle< Bool_t > EF_g60_loose;
-      /// Did this event pass trigger EF_g60_loose_larcalib
-      VarHandle< Bool_t > EF_g60_loose_larcalib;
-      /// Did this event pass trigger EF_g80_loose
-      VarHandle< Bool_t > EF_g80_loose;
-      /// Did this event pass trigger EF_g80_loose_larcalib
-      VarHandle< Bool_t > EF_g80_loose_larcalib;
+// -- slimmed --       /// Did this event pass trigger EF_g100_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g100_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g10_NoCut_cosmic
+// -- slimmed --       VarHandle< Bool_t > EF_g10_NoCut_cosmic;
+// -- slimmed --       /// Did this event pass trigger EF_g10_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g10_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g10_medium
+// -- slimmed --       VarHandle< Bool_t > EF_g10_medium;
+// -- slimmed --       /// Did this event pass trigger EF_g120_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g120_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g12Tvh_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g12Tvh_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g12Tvh_loose_larcalib
+// -- slimmed --       VarHandle< Bool_t > EF_g12Tvh_loose_larcalib;
+// -- slimmed --       /// Did this event pass trigger EF_g15_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g15_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g15vh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_g15vh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_g200_etcut
+// -- slimmed --       VarHandle< Bool_t > EF_g200_etcut;
+// -- slimmed --       /// Did this event pass trigger EF_g20_etcut
+// -- slimmed --       VarHandle< Bool_t > EF_g20_etcut;
+// -- slimmed --       /// Did this event pass trigger EF_g20_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g20_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g20_loose_larcalib
+// -- slimmed --       VarHandle< Bool_t > EF_g20_loose_larcalib;
+// -- slimmed --       /// Did this event pass trigger EF_g20_medium
+// -- slimmed --       VarHandle< Bool_t > EF_g20_medium;
+// -- slimmed --       /// Did this event pass trigger EF_g30_loose_g20_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g30_loose_g20_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g30_medium_g20_medium
+// -- slimmed --       VarHandle< Bool_t > EF_g30_medium_g20_medium;
+// -- slimmed --       /// Did this event pass trigger EF_g35_loose_g25_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g35_loose_g25_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g35_loose_g30_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g35_loose_g30_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g40_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g40_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g40_loose_L2EFxe60
+// -- slimmed --       VarHandle< Bool_t > EF_g40_loose_L2EFxe60;
+// -- slimmed --       /// Did this event pass trigger EF_g40_loose_L2EFxe60_tclcw
+// -- slimmed --       VarHandle< Bool_t > EF_g40_loose_L2EFxe60_tclcw;
+// -- slimmed --       /// Did this event pass trigger EF_g40_loose_g25_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g40_loose_g25_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g40_loose_g30_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g40_loose_g30_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g40_loose_larcalib
+// -- slimmed --       VarHandle< Bool_t > EF_g40_loose_larcalib;
+// -- slimmed --       /// Did this event pass trigger EF_g5_NoCut_cosmic
+// -- slimmed --       VarHandle< Bool_t > EF_g5_NoCut_cosmic;
+// -- slimmed --       /// Did this event pass trigger EF_g60_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g60_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g60_loose_larcalib
+// -- slimmed --       VarHandle< Bool_t > EF_g60_loose_larcalib;
+// -- slimmed --       /// Did this event pass trigger EF_g80_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g80_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g80_loose_larcalib
+// -- slimmed --       VarHandle< Bool_t > EF_g80_loose_larcalib;
       /// Did this event pass trigger EF_mu10
       VarHandle< Bool_t > EF_mu10;
-      /// Did this event pass trigger EF_mu10_Jpsimumu
-      VarHandle< Bool_t > EF_mu10_Jpsimumu;
+// -- slimmed --       /// Did this event pass trigger EF_mu10_Jpsimumu
+// -- slimmed --       VarHandle< Bool_t > EF_mu10_Jpsimumu;
       /// Did this event pass trigger EF_mu10_MSonly
       VarHandle< Bool_t > EF_mu10_MSonly;
-      /// Did this event pass trigger EF_mu10_Upsimumu_tight_FS
-      VarHandle< Bool_t > EF_mu10_Upsimumu_tight_FS;
-      /// Did this event pass trigger EF_mu10i_g10_medium
-      VarHandle< Bool_t > EF_mu10i_g10_medium;
-      /// Did this event pass trigger EF_mu10i_g10_medium_TauMass
-      VarHandle< Bool_t > EF_mu10i_g10_medium_TauMass;
-      /// Did this event pass trigger EF_mu10i_loose_g12Tvh_medium
-      VarHandle< Bool_t > EF_mu10i_loose_g12Tvh_medium;
-      /// Did this event pass trigger EF_mu10i_loose_g12Tvh_medium_TauMass
-      VarHandle< Bool_t > EF_mu10i_loose_g12Tvh_medium_TauMass;
+// -- slimmed --       /// Did this event pass trigger EF_mu10_Upsimumu_tight_FS
+// -- slimmed --       VarHandle< Bool_t > EF_mu10_Upsimumu_tight_FS;
+// -- slimmed --       /// Did this event pass trigger EF_mu10i_g10_medium
+// -- slimmed --       VarHandle< Bool_t > EF_mu10i_g10_medium;
+// -- slimmed --       /// Did this event pass trigger EF_mu10i_g10_medium_TauMass
+// -- slimmed --       VarHandle< Bool_t > EF_mu10i_g10_medium_TauMass;
+// -- slimmed --       /// Did this event pass trigger EF_mu10i_loose_g12Tvh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_mu10i_loose_g12Tvh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_mu10i_loose_g12Tvh_medium_TauMass
+// -- slimmed --       VarHandle< Bool_t > EF_mu10i_loose_g12Tvh_medium_TauMass;
       /// Did this event pass trigger EF_mu11_empty_NoAlg
       VarHandle< Bool_t > EF_mu11_empty_NoAlg;
       /// Did this event pass trigger EF_mu13
@@ -374,10 +374,10 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_mu15;
       /// Did this event pass trigger EF_mu18
       VarHandle< Bool_t > EF_mu18;
-      /// Did this event pass trigger EF_mu18_2g10_loose
-      VarHandle< Bool_t > EF_mu18_2g10_loose;
-      /// Did this event pass trigger EF_mu18_2g10_medium
-      VarHandle< Bool_t > EF_mu18_2g10_medium;
+// -- slimmed --       /// Did this event pass trigger EF_mu18_2g10_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu18_2g10_loose;
+// -- slimmed --       /// Did this event pass trigger EF_mu18_2g10_medium
+// -- slimmed --       VarHandle< Bool_t > EF_mu18_2g10_medium;
       /// Did this event pass trigger EF_mu18_IDTrkNoCut_tight
       VarHandle< Bool_t > EF_mu18_IDTrkNoCut_tight;
       /// Did this event pass trigger EF_mu18_medium
@@ -392,22 +392,22 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_mu18_tight_mu8_EFFS;
       /// Did this event pass trigger EF_mu18i4_tight
       VarHandle< Bool_t > EF_mu18i4_tight;
-      /// Did this event pass trigger EF_mu20i_tight_g5_loose_TauMass
-      VarHandle< Bool_t > EF_mu20i_tight_g5_loose_TauMass;
-      /// Did this event pass trigger EF_mu20i_tight_g5_medium
-      VarHandle< Bool_t > EF_mu20i_tight_g5_medium;
-      /// Did this event pass trigger EF_mu20i_tight_g5_medium_TauMass
-      VarHandle< Bool_t > EF_mu20i_tight_g5_medium_TauMass;
+// -- slimmed --       /// Did this event pass trigger EF_mu20i_tight_g5_loose_TauMass
+// -- slimmed --       VarHandle< Bool_t > EF_mu20i_tight_g5_loose_TauMass;
+// -- slimmed --       /// Did this event pass trigger EF_mu20i_tight_g5_medium
+// -- slimmed --       VarHandle< Bool_t > EF_mu20i_tight_g5_medium;
+// -- slimmed --       /// Did this event pass trigger EF_mu20i_tight_g5_medium_TauMass
+// -- slimmed --       VarHandle< Bool_t > EF_mu20i_tight_g5_medium_TauMass;
       /// Did this event pass trigger EF_mu20it_tight
       VarHandle< Bool_t > EF_mu20it_tight;
       /// Did this event pass trigger EF_mu22_IDTrkNoCut_tight
       VarHandle< Bool_t > EF_mu22_IDTrkNoCut_tight;
       /// Did this event pass trigger EF_mu24
       VarHandle< Bool_t > EF_mu24;
-      /// Did this event pass trigger EF_mu24_g20vh_loose
-      VarHandle< Bool_t > EF_mu24_g20vh_loose;
-      /// Did this event pass trigger EF_mu24_g20vh_medium
-      VarHandle< Bool_t > EF_mu24_g20vh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_mu24_g20vh_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu24_g20vh_loose;
+// -- slimmed --       /// Did this event pass trigger EF_mu24_g20vh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_mu24_g20vh_medium;
       /// Did this event pass trigger EF_mu24_j65_a4tchad
       VarHandle< Bool_t > EF_mu24_j65_a4tchad;
       /// Did this event pass trigger EF_mu24_j65_a4tchad_EFxe40
@@ -522,10 +522,10 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_mu4T_j80_a4tchad_L2FS_matched;
       /// Did this event pass trigger EF_mu4T_j80_a4tchad_matched
       VarHandle< Bool_t > EF_mu4T_j80_a4tchad_matched;
-      /// Did this event pass trigger EF_mu4Ti_g20Tvh_medium
-      VarHandle< Bool_t > EF_mu4Ti_g20Tvh_medium;
-      /// Did this event pass trigger EF_mu4Ti_g20Tvh_medium_TauMass
-      VarHandle< Bool_t > EF_mu4Ti_g20Tvh_medium_TauMass;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Ti_g20Tvh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Ti_g20Tvh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Ti_g20Tvh_medium_TauMass
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Ti_g20Tvh_medium_TauMass;
       /// Did this event pass trigger EF_mu4Tmu6_Bmumu
       VarHandle< Bool_t > EF_mu4Tmu6_Bmumu;
       /// Did this event pass trigger EF_mu4Tmu6_Bmumu_Barrel
@@ -540,16 +540,16 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_mu4Tmu6_DiMu_Barrel;
       /// Did this event pass trigger EF_mu4Tmu6_DiMu_noVtx_noOS
       VarHandle< Bool_t > EF_mu4Tmu6_DiMu_noVtx_noOS;
-      /// Did this event pass trigger EF_mu4Tmu6_Jpsimumu
-      VarHandle< Bool_t > EF_mu4Tmu6_Jpsimumu;
-      /// Did this event pass trigger EF_mu4Tmu6_Jpsimumu_Barrel
-      VarHandle< Bool_t > EF_mu4Tmu6_Jpsimumu_Barrel;
-      /// Did this event pass trigger EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
-      VarHandle< Bool_t > EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
-      /// Did this event pass trigger EF_mu4Tmu6_Upsimumu
-      VarHandle< Bool_t > EF_mu4Tmu6_Upsimumu;
-      /// Did this event pass trigger EF_mu4Tmu6_Upsimumu_Barrel
-      VarHandle< Bool_t > EF_mu4Tmu6_Upsimumu_Barrel;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Tmu6_Jpsimumu
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Tmu6_Jpsimumu;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Tmu6_Jpsimumu_Barrel
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Tmu6_Jpsimumu_Barrel;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Tmu6_Upsimumu
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Tmu6_Upsimumu;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Tmu6_Upsimumu_Barrel
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Tmu6_Upsimumu_Barrel;
       /// Did this event pass trigger EF_mu4_L1MU11_MSonly_cosmic
       VarHandle< Bool_t > EF_mu4_L1MU11_MSonly_cosmic;
       /// Did this event pass trigger EF_mu4_L1MU11_cosmic
@@ -568,12 +568,12 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_mu60_slow_outOfTime_tight1;
       /// Did this event pass trigger EF_mu60_slow_tight1
       VarHandle< Bool_t > EF_mu60_slow_tight1;
-      /// Did this event pass trigger EF_mu6_Jpsimumu_tight
-      VarHandle< Bool_t > EF_mu6_Jpsimumu_tight;
+// -- slimmed --       /// Did this event pass trigger EF_mu6_Jpsimumu_tight
+// -- slimmed --       VarHandle< Bool_t > EF_mu6_Jpsimumu_tight;
       /// Did this event pass trigger EF_mu6_MSonly
       VarHandle< Bool_t > EF_mu6_MSonly;
-      /// Did this event pass trigger EF_mu6_Trk_Jpsi_loose
-      VarHandle< Bool_t > EF_mu6_Trk_Jpsi_loose;
+// -- slimmed --       /// Did this event pass trigger EF_mu6_Trk_Jpsi_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu6_Trk_Jpsi_loose;
       /// Did this event pass trigger EF_mu8
       VarHandle< Bool_t > EF_mu8;
       /// Did this event pass trigger EF_mu8_4j45_a4tchad_L2FS
@@ -584,18 +584,18 @@ namespace D3PDReader {
       // = The lines below were picked up from the MC D3PD, but I think they will be
       // = applicable to data as well
       // =============================================================================
-      /// Did this event pass trigger EF_2g15vh_loose_g10_loose
-      VarHandle< Bool_t > EF_2g15vh_loose_g10_loose;
-      /// Did this event pass trigger EF_2g15vh_medium
-      VarHandle< Bool_t > EF_2g15vh_medium;
-      /// Did this event pass trigger EF_2g20_loose
-      VarHandle< Bool_t > EF_2g20_loose;
-      /// Did this event pass trigger EF_2g30_loose
-      VarHandle< Bool_t > EF_2g30_loose;
-      /// Did this event pass trigger EF_2mu10_MSonly_g10_loose_EMPTY
-      VarHandle< Bool_t > EF_2mu10_MSonly_g10_loose_EMPTY;
-      /// Did this event pass trigger EF_2mu10_MSonly_g10_loose_UNPAIRED_ISO
-      VarHandle< Bool_t > EF_2mu10_MSonly_g10_loose_UNPAIRED_ISO;
+// -- slimmed --       /// Did this event pass trigger EF_2g15vh_loose_g10_loose
+// -- slimmed --       VarHandle< Bool_t > EF_2g15vh_loose_g10_loose;
+// -- slimmed --       /// Did this event pass trigger EF_2g15vh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_2g15vh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_2g20_loose
+// -- slimmed --       VarHandle< Bool_t > EF_2g20_loose;
+// -- slimmed --       /// Did this event pass trigger EF_2g30_loose
+// -- slimmed --       VarHandle< Bool_t > EF_2g30_loose;
+// -- slimmed --       /// Did this event pass trigger EF_2mu10_MSonly_g10_loose_EMPTY
+// -- slimmed --       VarHandle< Bool_t > EF_2mu10_MSonly_g10_loose_EMPTY;
+// -- slimmed --       /// Did this event pass trigger EF_2mu10_MSonly_g10_loose_UNPAIRED_ISO
+// -- slimmed --       VarHandle< Bool_t > EF_2mu10_MSonly_g10_loose_UNPAIRED_ISO;
       /// Did this event pass trigger EF_2mu4T_xe50_tclcw
       VarHandle< Bool_t > EF_2mu4T_xe50_tclcw;
       /// Did this event pass trigger EF_e12Tvh_loose1_mu8
@@ -604,16 +604,16 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_e12Tvh_medium1_mu10;
       /// Did this event pass trigger EF_e12Tvh_medium1_mu6
       VarHandle< Bool_t > EF_e12Tvh_medium1_mu6;
-      /// Did this event pass trigger EF_e18_loose1_g35_loose
-      VarHandle< Bool_t > EF_e18_loose1_g35_loose;
-      /// Did this event pass trigger EF_e18_loose1_g35_medium
-      VarHandle< Bool_t > EF_e18_loose1_g35_medium;
-      /// Did this event pass trigger EF_e18_medium1_g25_medium
-      VarHandle< Bool_t > EF_e18_medium1_g25_medium;
-      /// Did this event pass trigger EF_e18_medium1_g35_loose
-      VarHandle< Bool_t > EF_e18_medium1_g35_loose;
-      /// Did this event pass trigger EF_e18_medium1_g35_medium
-      VarHandle< Bool_t > EF_e18_medium1_g35_medium;
+// -- slimmed --       /// Did this event pass trigger EF_e18_loose1_g35_loose
+// -- slimmed --       VarHandle< Bool_t > EF_e18_loose1_g35_loose;
+// -- slimmed --       /// Did this event pass trigger EF_e18_loose1_g35_medium
+// -- slimmed --       VarHandle< Bool_t > EF_e18_loose1_g35_medium;
+// -- slimmed --       /// Did this event pass trigger EF_e18_medium1_g25_medium
+// -- slimmed --       VarHandle< Bool_t > EF_e18_medium1_g25_medium;
+// -- slimmed --       /// Did this event pass trigger EF_e18_medium1_g35_loose
+// -- slimmed --       VarHandle< Bool_t > EF_e18_medium1_g35_loose;
+// -- slimmed --       /// Did this event pass trigger EF_e18_medium1_g35_medium
+// -- slimmed --       VarHandle< Bool_t > EF_e18_medium1_g35_medium;
       /// Did this event pass trigger EF_e22vh_medium1_IdScan
       VarHandle< Bool_t > EF_e22vh_medium1_IdScan;
       /// Did this event pass trigger EF_e22vh_medium1_SiTrk
@@ -622,58 +622,58 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_e22vh_medium1_TRT;
       /// Did this event pass trigger EF_e45_etcut
       VarHandle< Bool_t > EF_e45_etcut;
-      /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_IdScan
-      VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_IdScan;
-      /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_SiTrk
-      VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
-      /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_TRT
-      VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_TRT;
+// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_IdScan
+// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_IdScan;
+// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_SiTrk
+// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
+// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_TRT
+// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_TRT;
       /// Did this event pass trigger EF_e60_etcut
       VarHandle< Bool_t > EF_e60_etcut;
-      /// Did this event pass trigger EF_g12Tvh_medium
-      VarHandle< Bool_t > EF_g12Tvh_medium;
-      /// Did this event pass trigger EF_g15vh_loose
-      VarHandle< Bool_t > EF_g15vh_loose;
-      /// Did this event pass trigger EF_g20Tvh_medium
-      VarHandle< Bool_t > EF_g20Tvh_medium;
-      /// Did this event pass trigger EF_g20vh_medium
-      VarHandle< Bool_t > EF_g20vh_medium;
-      /// Did this event pass trigger EF_g40_loose_EFxe50
-      VarHandle< Bool_t > EF_g40_loose_EFxe50;
-      /// Did this event pass trigger EF_g40_loose_L2EFxe50
-      VarHandle< Bool_t > EF_g40_loose_L2EFxe50;
-      /// Did this event pass trigger EF_mu10i_g10_loose
-      VarHandle< Bool_t > EF_mu10i_g10_loose;
-      /// Did this event pass trigger EF_mu10i_g10_loose_TauMass
-      VarHandle< Bool_t > EF_mu10i_g10_loose_TauMass;
-      /// Did this event pass trigger EF_mu10i_loose_g12Tvh_loose
-      VarHandle< Bool_t > EF_mu10i_loose_g12Tvh_loose;
-      /// Did this event pass trigger EF_mu10i_loose_g12Tvh_loose_TauMass
-      VarHandle< Bool_t > EF_mu10i_loose_g12Tvh_loose_TauMass;
-      /// Did this event pass trigger EF_mu18_2g15_loose
-      VarHandle< Bool_t > EF_mu18_2g15_loose;
-      /// Did this event pass trigger EF_mu18_g20vh_loose
-      VarHandle< Bool_t > EF_mu18_g20vh_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g12Tvh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_g12Tvh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_g15vh_loose
+// -- slimmed --       VarHandle< Bool_t > EF_g15vh_loose;
+// -- slimmed --       /// Did this event pass trigger EF_g20Tvh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_g20Tvh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_g20vh_medium
+// -- slimmed --       VarHandle< Bool_t > EF_g20vh_medium;
+// -- slimmed --       /// Did this event pass trigger EF_g40_loose_EFxe50
+// -- slimmed --       VarHandle< Bool_t > EF_g40_loose_EFxe50;
+// -- slimmed --       /// Did this event pass trigger EF_g40_loose_L2EFxe50
+// -- slimmed --       VarHandle< Bool_t > EF_g40_loose_L2EFxe50;
+// -- slimmed --       /// Did this event pass trigger EF_mu10i_g10_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu10i_g10_loose;
+// -- slimmed --       /// Did this event pass trigger EF_mu10i_g10_loose_TauMass
+// -- slimmed --       VarHandle< Bool_t > EF_mu10i_g10_loose_TauMass;
+// -- slimmed --       /// Did this event pass trigger EF_mu10i_loose_g12Tvh_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu10i_loose_g12Tvh_loose;
+// -- slimmed --       /// Did this event pass trigger EF_mu10i_loose_g12Tvh_loose_TauMass
+// -- slimmed --       VarHandle< Bool_t > EF_mu10i_loose_g12Tvh_loose_TauMass;
+// -- slimmed --       /// Did this event pass trigger EF_mu18_2g15_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu18_2g15_loose;
+// -- slimmed --       /// Did this event pass trigger EF_mu18_g20vh_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu18_g20vh_loose;
       /// Did this event pass trigger EF_mu18it_tight
       VarHandle< Bool_t > EF_mu18it_tight;
-      /// Did this event pass trigger EF_mu20i_tight_g5_loose
-      VarHandle< Bool_t > EF_mu20i_tight_g5_loose;
+// -- slimmed --       /// Did this event pass trigger EF_mu20i_tight_g5_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu20i_tight_g5_loose;
       /// Did this event pass trigger EF_mu24_j65_a4tchad_EFxe50_tclcw
       VarHandle< Bool_t > EF_mu24_j65_a4tchad_EFxe50_tclcw;
       /// Did this event pass trigger EF_mu24_tight_2j35_a4tchad
       VarHandle< Bool_t > EF_mu24_tight_2j35_a4tchad;
       /// Did this event pass trigger EF_mu24_tight_4j35_a4tchad
       VarHandle< Bool_t > EF_mu24_tight_4j35_a4tchad;
-      /// Did this event pass trigger EF_mu4T_Trk_Jpsi
-      VarHandle< Bool_t > EF_mu4T_Trk_Jpsi;
+// -- slimmed --       /// Did this event pass trigger EF_mu4T_Trk_Jpsi
+// -- slimmed --       VarHandle< Bool_t > EF_mu4T_Trk_Jpsi;
       /// Did this event pass trigger EF_mu4T_j360_a4tchad_L2FS_matched
       VarHandle< Bool_t > EF_mu4T_j360_a4tchad_L2FS_matched;
       /// Did this event pass trigger EF_mu4T_j360_a4tchad_matched
       VarHandle< Bool_t > EF_mu4T_j360_a4tchad_matched;
-      /// Did this event pass trigger EF_mu4Ti_g20Tvh_loose
-      VarHandle< Bool_t > EF_mu4Ti_g20Tvh_loose;
-      /// Did this event pass trigger EF_mu4Ti_g20Tvh_loose_TauMass
-      VarHandle< Bool_t > EF_mu4Ti_g20Tvh_loose_TauMass;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Ti_g20Tvh_loose
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Ti_g20Tvh_loose;
+// -- slimmed --       /// Did this event pass trigger EF_mu4Ti_g20Tvh_loose_TauMass
+// -- slimmed --       VarHandle< Bool_t > EF_mu4Ti_g20Tvh_loose_TauMass;
       /// Did this event pass trigger EF_mu6i
       VarHandle< Bool_t > EF_mu6i;
 

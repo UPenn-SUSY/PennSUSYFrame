@@ -44,8 +44,8 @@ namespace D3PDReader {
 
       /// Did this object pass the chain EF_2e12Tvh_loose1
       VarProxy< int > trig_EF_el_EF_2e12Tvh_loose1;
-      /// Did this object pass the chain EF_2e5_tight1_Jpsi
-      VarProxy< int > trig_EF_el_EF_2e5_tight1_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_2e5_tight1_Jpsi
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_2e5_tight1_Jpsi;
       /// Did this object pass the chain EF_2e7T_loose1_mu6
       VarProxy< int > trig_EF_el_EF_2e7T_loose1_mu6;
       /// Did this object pass the chain EF_2e7T_medium1_mu6
@@ -64,18 +64,18 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e13_etcutTrk_xs60;
       /// Did this object pass the chain EF_e13_etcutTrk_xs60_dphi2j15xe20
       VarProxy< int > trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20;
-      /// Did this object pass the chain EF_e14_tight1_e4_etcut_Jpsi
-      VarProxy< int > trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e14_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
       /// Did this object pass the chain EF_e15vh_medium1
       VarProxy< int > trig_EF_el_EF_e15vh_medium1;
       /// Did this object pass the chain EF_e18_loose1
       VarProxy< int > trig_EF_el_EF_e18_loose1;
-      /// Did this object pass the chain EF_e18_loose1_g25_medium
-      VarProxy< int > trig_EF_el_EF_e18_loose1_g25_medium;
+// -- slimmed --       /// Did this object pass the chain EF_e18_loose1_g25_medium
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e18_loose1_g25_medium;
       /// Did this object pass the chain EF_e18_medium1
       VarProxy< int > trig_EF_el_EF_e18_medium1;
-      /// Did this object pass the chain EF_e18_medium1_g25_loose
-      VarProxy< int > trig_EF_el_EF_e18_medium1_g25_loose;
+// -- slimmed --       /// Did this object pass the chain EF_e18_medium1_g25_loose
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e18_medium1_g25_loose;
       /// Did this object pass the chain EF_e18vh_medium1
       VarProxy< int > trig_EF_el_EF_e18vh_medium1;
       /// Did this object pass the chain EF_e18vh_medium1_2e7T_medium1
@@ -84,10 +84,10 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20;
       /// Did this object pass the chain EF_e20_etcutTrk_xs60_dphi2j15xe20
       VarProxy< int > trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20;
-      /// Did this object pass the chain EF_e20vhT_medium1_g6T_etcut_Upsi
-      VarProxy< int > trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
-      /// Did this object pass the chain EF_e20vhT_tight1_g6T_etcut_Upsi
-      VarProxy< int > trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_e20vhT_medium1_g6T_etcut_Upsi
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_e20vhT_tight1_g6T_etcut_Upsi
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi;
       /// Did this object pass the chain EF_e22vh_loose
       VarProxy< int > trig_EF_el_EF_e22vh_loose;
       /// Did this object pass the chain EF_e22vh_loose0
@@ -144,18 +144,18 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e45_medium1;
       /// Did this object pass the chain EF_e5_tight1
       VarProxy< int > trig_EF_el_EF_e5_tight1;
-      /// Did this object pass the chain EF_e5_tight1_e14_etcut_Jpsi
-      VarProxy< int > trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi
-      VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_L2StarB
-      VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_L2StarC
-      VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e14_etcut_Jpsi
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_L2StarB
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_L2StarC
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
       /// Did this object pass the chain EF_e5_tight1_e5_NoCut
       VarProxy< int > trig_EF_el_EF_e5_tight1_e5_NoCut;
-      /// Did this object pass the chain EF_e5_tight1_e9_etcut_Jpsi
-      VarProxy< int > trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e9_etcut_Jpsi
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi;
       /// Did this object pass the chain EF_e60_medium1
       VarProxy< int > trig_EF_el_EF_e60_medium1;
       /// Did this object pass the chain EF_e7T_loose1
@@ -166,8 +166,8 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e7T_medium1;
       /// Did this object pass the chain EF_e7T_medium1_2mu6
       VarProxy< int > trig_EF_el_EF_e7T_medium1_2mu6;
-      /// Did this object pass the chain EF_e9_tight1_e4_etcut_Jpsi
-      VarProxy< int > trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e9_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
       /// Did this object pass the chain EF_eb_physics
       VarProxy< int > trig_EF_el_EF_eb_physics;
       /// Did this object pass the chain EF_eb_physics_empty
@@ -245,8 +245,8 @@ namespace D3PDReader {
       // =============================================================================
       /// Did this object pass the chain EF_2mu10
       VarProxy< int > trig_EF_trigmuonef_EF_2mu10;
-      /// Did this object pass the chain EF_2mu10_MSonly_g10_loose
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
+// -- slimmed --       /// Did this object pass the chain EF_2mu10_MSonly_g10_loose
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
       /// Did this object pass the chain EF_2mu13
       VarProxy< int > trig_EF_trigmuonef_EF_2mu13;
       /// Did this object pass the chain EF_2mu13_Zmumu_IDTrkNoCut
@@ -287,20 +287,20 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA;
       /// Did this object pass the chain EF_2mu4T_DiMu_noVtx_noOS
       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS;
-      /// Did this object pass the chain EF_2mu4T_Jpsimumu
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
-      /// Did this object pass the chain EF_2mu4T_Jpsimumu_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
-      /// Did this object pass the chain EF_2mu4T_Jpsimumu_BarrelOnly
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_Jpsimumu_IDTrkNoCut
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
-      /// Did this object pass the chain EF_2mu4T_Upsimumu
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
-      /// Did this object pass the chain EF_2mu4T_Upsimumu_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
-      /// Did this object pass the chain EF_2mu4T_Upsimumu_BarrelOnly
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_BarrelOnly
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_IDTrkNoCut
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_BarrelOnly
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
       /// Did this object pass the chain EF_2mu4T_xe60
       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_xe60;
       /// Did this object pass the chain EF_2mu4T_xe60_tclcw
@@ -319,10 +319,10 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_2mu6_DiMu_DY25;
       /// Did this object pass the chain EF_2mu6_DiMu_noVtx_noOS
       VarProxy< int > trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS;
-      /// Did this object pass the chain EF_2mu6_Jpsimumu
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu6_Jpsimumu;
-      /// Did this object pass the chain EF_2mu6_Upsimumu
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu6_Upsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu6_Jpsimumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu6_Jpsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu6_Upsimumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu6_Upsimumu;
       /// Did this object pass the chain EF_2mu6i_DiMu_DY
       VarProxy< int > trig_EF_trigmuonef_EF_2mu6i_DiMu_DY;
       /// Did this object pass the chain EF_2mu6i_DiMu_DY_2j25_a4tchad
@@ -337,20 +337,20 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw;
       /// Did this object pass the chain EF_mu10
       VarProxy< int > trig_EF_trigmuonef_EF_mu10;
-      /// Did this object pass the chain EF_mu10_Jpsimumu
-      VarProxy< int > trig_EF_trigmuonef_EF_mu10_Jpsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_mu10_Jpsimumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10_Jpsimumu;
       /// Did this object pass the chain EF_mu10_MSonly
       VarProxy< int > trig_EF_trigmuonef_EF_mu10_MSonly;
-      /// Did this object pass the chain EF_mu10_Upsimumu_tight_FS
-      VarProxy< int > trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
-      /// Did this object pass the chain EF_mu10i_g10_medium
-      VarProxy< int > trig_EF_trigmuonef_EF_mu10i_g10_medium;
-      /// Did this object pass the chain EF_mu10i_g10_medium_TauMass
-      VarProxy< int > trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass;
-      /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium
-      VarProxy< int > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
-      /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium_TauMass
-      VarProxy< int > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu10_Upsimumu_tight_FS
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
+// -- slimmed --       /// Did this object pass the chain EF_mu10i_g10_medium
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10i_g10_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu10i_g10_medium_TauMass
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium_TauMass
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
       /// Did this object pass the chain EF_mu11_empty_NoAlg
       VarProxy< int > trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
       /// Did this object pass the chain EF_mu13
@@ -359,10 +359,10 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_mu15;
       /// Did this object pass the chain EF_mu18
       VarProxy< int > trig_EF_trigmuonef_EF_mu18;
-      /// Did this object pass the chain EF_mu18_2g10_loose
-      VarProxy< int > trig_EF_trigmuonef_EF_mu18_2g10_loose;
-      /// Did this object pass the chain EF_mu18_2g10_medium
-      VarProxy< int > trig_EF_trigmuonef_EF_mu18_2g10_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu18_2g10_loose
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu18_2g10_loose;
+// -- slimmed --       /// Did this object pass the chain EF_mu18_2g10_medium
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu18_2g10_medium;
       /// Did this object pass the chain EF_mu18_IDTrkNoCut_tight
       VarProxy< int > trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
       /// Did this object pass the chain EF_mu18_medium
@@ -377,22 +377,22 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
       /// Did this object pass the chain EF_mu18i4_tight
       VarProxy< int > trig_EF_trigmuonef_EF_mu18i4_tight;
-      /// Did this object pass the chain EF_mu20i_tight_g5_loose_TauMass
-      VarProxy< int > trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass;
-      /// Did this object pass the chain EF_mu20i_tight_g5_medium
-      VarProxy< int > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium;
-      /// Did this object pass the chain EF_mu20i_tight_g5_medium_TauMass
-      VarProxy< int > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu20i_tight_g5_loose_TauMass
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu20i_tight_g5_medium
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu20i_tight_g5_medium_TauMass
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
       /// Did this object pass the chain EF_mu20it_tight
       VarProxy< int > trig_EF_trigmuonef_EF_mu20it_tight;
       /// Did this object pass the chain EF_mu22_IDTrkNoCut_tight
       VarProxy< int > trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight;
       /// Did this object pass the chain EF_mu24
       VarProxy< int > trig_EF_trigmuonef_EF_mu24;
-      /// Did this object pass the chain EF_mu24_g20vh_loose
-      VarProxy< int > trig_EF_trigmuonef_EF_mu24_g20vh_loose;
-      /// Did this object pass the chain EF_mu24_g20vh_medium
-      VarProxy< int > trig_EF_trigmuonef_EF_mu24_g20vh_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu24_g20vh_loose
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu24_g20vh_loose;
+// -- slimmed --       /// Did this object pass the chain EF_mu24_g20vh_medium
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu24_g20vh_medium;
       /// Did this object pass the chain EF_mu24_j65_a4tchad
       VarProxy< int > trig_EF_trigmuonef_EF_mu24_j65_a4tchad;
       /// Did this object pass the chain EF_mu24_j65_a4tchad_EFxe40
@@ -507,10 +507,10 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched;
       /// Did this object pass the chain EF_mu4T_j80_a4tchad_matched
       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
-      /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium_TauMass
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium_TauMass
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
       /// Did this object pass the chain EF_mu4Tmu6_Bmumu
       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu;
       /// Did this object pass the chain EF_mu4Tmu6_Bmumu_Barrel
@@ -525,16 +525,16 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel;
       /// Did this object pass the chain EF_mu4Tmu6_DiMu_noVtx_noOS
       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS;
-      /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
-      /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
-      /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
-      /// Did this object pass the chain EF_mu4Tmu6_Upsimumu
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
-      /// Did this object pass the chain EF_mu4Tmu6_Upsimumu_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
       /// Did this object pass the chain EF_mu4_L1MU11_MSonly_cosmic
       VarProxy< int > trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic;
       /// Did this object pass the chain EF_mu4_L1MU11_cosmic
@@ -553,12 +553,12 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1;
       /// Did this object pass the chain EF_mu60_slow_tight1
       VarProxy< int > trig_EF_trigmuonef_EF_mu60_slow_tight1;
-      /// Did this object pass the chain EF_mu6_Jpsimumu_tight
-      VarProxy< int > trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu6_Jpsimumu_tight
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
       /// Did this object pass the chain EF_mu6_MSonly
       VarProxy< int > trig_EF_trigmuonef_EF_mu6_MSonly;
-      /// Did this object pass the chain EF_mu6_Trk_Jpsi_loose
-      VarProxy< int > trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
+// -- slimmed --       /// Did this object pass the chain EF_mu6_Trk_Jpsi_loose
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
       /// Did this object pass the chain EF_mu8
       VarProxy< int > trig_EF_trigmuonef_EF_mu8;
       /// Did this object pass the chain EF_mu8_4j45_a4tchad_L2FS
@@ -582,16 +582,16 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e12Tvh_medium1_mu10;
       /// Did this object pass the chain EF_e12Tvh_medium1_mu6
       VarProxy< int > trig_EF_el_EF_e12Tvh_medium1_mu6;
-      /// Did this object pass the chain EF_e18_loose1_g35_loose
-      VarProxy< int > trig_EF_el_EF_e18_loose1_g35_loose;
-      /// Did this object pass the chain EF_e18_loose1_g35_medium
-      VarProxy< int > trig_EF_el_EF_e18_loose1_g35_medium;
-      /// Did this object pass the chain EF_e18_medium1_g25_medium
-      VarProxy< int > trig_EF_el_EF_e18_medium1_g25_medium;
-      /// Did this object pass the chain EF_e18_medium1_g35_loose
-      VarProxy< int > trig_EF_el_EF_e18_medium1_g35_loose;
-      /// Did this object pass the chain EF_e18_medium1_g35_medium
-      VarProxy< int > trig_EF_el_EF_e18_medium1_g35_medium;
+// -- slimmed --       /// Did this object pass the chain EF_e18_loose1_g35_loose
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e18_loose1_g35_loose;
+// -- slimmed --       /// Did this object pass the chain EF_e18_loose1_g35_medium
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e18_loose1_g35_medium;
+// -- slimmed --       /// Did this object pass the chain EF_e18_medium1_g25_medium
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e18_medium1_g25_medium;
+// -- slimmed --       /// Did this object pass the chain EF_e18_medium1_g35_loose
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e18_medium1_g35_loose;
+// -- slimmed --       /// Did this object pass the chain EF_e18_medium1_g35_medium
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e18_medium1_g35_medium;
       /// Did this object pass the chain EF_e22vh_medium1_IdScan
       VarProxy< int > trig_EF_el_EF_e22vh_medium1_IdScan;
       /// Did this object pass the chain EF_e22vh_medium1_SiTrk
@@ -600,12 +600,12 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e22vh_medium1_TRT;
       /// Did this object pass the chain EF_e45_etcut
       VarProxy< int > trig_EF_el_EF_e45_etcut;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_IdScan
-      VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_SiTrk
-      VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_TRT
-      VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_IdScan
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_SiTrk
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_TRT
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT;
       /// Did this object pass the chain EF_e60_etcut
       VarProxy< int > trig_EF_el_EF_e60_etcut;
       
@@ -658,8 +658,8 @@ namespace D3PDReader {
 
       /// Did this object pass the chain EF_2e12Tvh_loose1
       VarHandle< vector<int>* > trig_EF_el_EF_2e12Tvh_loose1;
-      /// Did this object pass the chain EF_2e5_tight1_Jpsi
-      VarHandle< vector<int>* > trig_EF_el_EF_2e5_tight1_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_2e5_tight1_Jpsi
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_2e5_tight1_Jpsi;
       /// Did this object pass the chain EF_2e7T_loose1_mu6
       VarHandle< vector<int>* > trig_EF_el_EF_2e7T_loose1_mu6;
       /// Did this object pass the chain EF_2e7T_medium1_mu6
@@ -678,18 +678,18 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e13_etcutTrk_xs60;
       /// Did this object pass the chain EF_e13_etcutTrk_xs60_dphi2j15xe20
       VarHandle< vector<int>* > trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20;
-      /// Did this object pass the chain EF_e14_tight1_e4_etcut_Jpsi
-      VarHandle< vector<int>* > trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e14_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
       /// Did this object pass the chain EF_e15vh_medium1
       VarHandle< vector<int>* > trig_EF_el_EF_e15vh_medium1;
       /// Did this object pass the chain EF_e18_loose1
       VarHandle< vector<int>* > trig_EF_el_EF_e18_loose1;
-      /// Did this object pass the chain EF_e18_loose1_g25_medium
-      VarHandle< vector<int>* > trig_EF_el_EF_e18_loose1_g25_medium;
+// -- slimmed --       /// Did this object pass the chain EF_e18_loose1_g25_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e18_loose1_g25_medium;
       /// Did this object pass the chain EF_e18_medium1
       VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1;
-      /// Did this object pass the chain EF_e18_medium1_g25_loose
-      VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1_g25_loose;
+// -- slimmed --       /// Did this object pass the chain EF_e18_medium1_g25_loose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1_g25_loose;
       /// Did this object pass the chain EF_e18vh_medium1
       VarHandle< vector<int>* > trig_EF_el_EF_e18vh_medium1;
       /// Did this object pass the chain EF_e18vh_medium1_2e7T_medium1
@@ -698,10 +698,10 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20;
       /// Did this object pass the chain EF_e20_etcutTrk_xs60_dphi2j15xe20
       VarHandle< vector<int>* > trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20;
-      /// Did this object pass the chain EF_e20vhT_medium1_g6T_etcut_Upsi
-      VarHandle< vector<int>* > trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
-      /// Did this object pass the chain EF_e20vhT_tight1_g6T_etcut_Upsi
-      VarHandle< vector<int>* > trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_e20vhT_medium1_g6T_etcut_Upsi
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_e20vhT_tight1_g6T_etcut_Upsi
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi;
       /// Did this object pass the chain EF_e22vh_loose
       VarHandle< vector<int>* > trig_EF_el_EF_e22vh_loose;
       /// Did this object pass the chain EF_e22vh_loose0
@@ -758,18 +758,18 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e45_medium1;
       /// Did this object pass the chain EF_e5_tight1
       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1;
-      /// Did this object pass the chain EF_e5_tight1_e14_etcut_Jpsi
-      VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi
-      VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_L2StarB
-      VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_L2StarC
-      VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e14_etcut_Jpsi
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_L2StarB
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_L2StarC
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
       /// Did this object pass the chain EF_e5_tight1_e5_NoCut
       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e5_NoCut;
-      /// Did this object pass the chain EF_e5_tight1_e9_etcut_Jpsi
-      VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e9_etcut_Jpsi
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi;
       /// Did this object pass the chain EF_e60_medium1
       VarHandle< vector<int>* > trig_EF_el_EF_e60_medium1;
       /// Did this object pass the chain EF_e7T_loose1
@@ -780,8 +780,8 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e7T_medium1;
       /// Did this object pass the chain EF_e7T_medium1_2mu6
       VarHandle< vector<int>* > trig_EF_el_EF_e7T_medium1_2mu6;
-      /// Did this object pass the chain EF_e9_tight1_e4_etcut_Jpsi
-      VarHandle< vector<int>* > trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
+// -- slimmed --       /// Did this object pass the chain EF_e9_tight1_e4_etcut_Jpsi
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
       /// Did this object pass the chain EF_eb_physics
       VarHandle< vector<int>* > trig_EF_el_EF_eb_physics;
       /// Did this object pass the chain EF_eb_physics_empty
@@ -859,8 +859,8 @@ namespace D3PDReader {
       // =============================================================================
       /// Did this object pass the chain EF_2mu10
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu10;
-      /// Did this object pass the chain EF_2mu10_MSonly_g10_loose
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
+// -- slimmed --       /// Did this object pass the chain EF_2mu10_MSonly_g10_loose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
       /// Did this object pass the chain EF_2mu13
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu13;
       /// Did this object pass the chain EF_2mu13_Zmumu_IDTrkNoCut
@@ -901,20 +901,20 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA;
       /// Did this object pass the chain EF_2mu4T_DiMu_noVtx_noOS
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS;
-      /// Did this object pass the chain EF_2mu4T_Jpsimumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
-      /// Did this object pass the chain EF_2mu4T_Jpsimumu_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
-      /// Did this object pass the chain EF_2mu4T_Jpsimumu_BarrelOnly
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_Jpsimumu_IDTrkNoCut
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
-      /// Did this object pass the chain EF_2mu4T_Upsimumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
-      /// Did this object pass the chain EF_2mu4T_Upsimumu_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
-      /// Did this object pass the chain EF_2mu4T_Upsimumu_BarrelOnly
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_BarrelOnly
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_IDTrkNoCut
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_BarrelOnly
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
       /// Did this object pass the chain EF_2mu4T_xe60
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_xe60;
       /// Did this object pass the chain EF_2mu4T_xe60_tclcw
@@ -933,10 +933,10 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu6_DiMu_DY25;
       /// Did this object pass the chain EF_2mu6_DiMu_noVtx_noOS
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS;
-      /// Did this object pass the chain EF_2mu6_Jpsimumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu6_Jpsimumu;
-      /// Did this object pass the chain EF_2mu6_Upsimumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu6_Upsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu6_Jpsimumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu6_Jpsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu6_Upsimumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu6_Upsimumu;
       /// Did this object pass the chain EF_2mu6i_DiMu_DY
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu6i_DiMu_DY;
       /// Did this object pass the chain EF_2mu6i_DiMu_DY_2j25_a4tchad
@@ -951,20 +951,20 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw;
       /// Did this object pass the chain EF_mu10
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10;
-      /// Did this object pass the chain EF_mu10_Jpsimumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_Jpsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_mu10_Jpsimumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_Jpsimumu;
       /// Did this object pass the chain EF_mu10_MSonly
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_MSonly;
-      /// Did this object pass the chain EF_mu10_Upsimumu_tight_FS
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
-      /// Did this object pass the chain EF_mu10i_g10_medium
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_g10_medium;
-      /// Did this object pass the chain EF_mu10i_g10_medium_TauMass
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass;
-      /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
-      /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium_TauMass
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu10_Upsimumu_tight_FS
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
+// -- slimmed --       /// Did this object pass the chain EF_mu10i_g10_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_g10_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu10i_g10_medium_TauMass
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium_TauMass
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
       /// Did this object pass the chain EF_mu11_empty_NoAlg
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
       /// Did this object pass the chain EF_mu13
@@ -973,10 +973,10 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu15;
       /// Did this object pass the chain EF_mu18
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18;
-      /// Did this object pass the chain EF_mu18_2g10_loose
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_2g10_loose;
-      /// Did this object pass the chain EF_mu18_2g10_medium
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_2g10_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu18_2g10_loose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_2g10_loose;
+// -- slimmed --       /// Did this object pass the chain EF_mu18_2g10_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_2g10_medium;
       /// Did this object pass the chain EF_mu18_IDTrkNoCut_tight
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
       /// Did this object pass the chain EF_mu18_medium
@@ -991,22 +991,22 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
       /// Did this object pass the chain EF_mu18i4_tight
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18i4_tight;
-      /// Did this object pass the chain EF_mu20i_tight_g5_loose_TauMass
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass;
-      /// Did this object pass the chain EF_mu20i_tight_g5_medium
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium;
-      /// Did this object pass the chain EF_mu20i_tight_g5_medium_TauMass
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu20i_tight_g5_loose_TauMass
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu20i_tight_g5_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu20i_tight_g5_medium_TauMass
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
       /// Did this object pass the chain EF_mu20it_tight
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20it_tight;
       /// Did this object pass the chain EF_mu22_IDTrkNoCut_tight
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight;
       /// Did this object pass the chain EF_mu24
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24;
-      /// Did this object pass the chain EF_mu24_g20vh_loose
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_g20vh_loose;
-      /// Did this object pass the chain EF_mu24_g20vh_medium
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_g20vh_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu24_g20vh_loose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_g20vh_loose;
+// -- slimmed --       /// Did this object pass the chain EF_mu24_g20vh_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_g20vh_medium;
       /// Did this object pass the chain EF_mu24_j65_a4tchad
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_j65_a4tchad;
       /// Did this object pass the chain EF_mu24_j65_a4tchad_EFxe40
@@ -1121,10 +1121,10 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched;
       /// Did this object pass the chain EF_mu4T_j80_a4tchad_matched
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
-      /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium_TauMass
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium_TauMass
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
       /// Did this object pass the chain EF_mu4Tmu6_Bmumu
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu;
       /// Did this object pass the chain EF_mu4Tmu6_Bmumu_Barrel
@@ -1139,16 +1139,16 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel;
       /// Did this object pass the chain EF_mu4Tmu6_DiMu_noVtx_noOS
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS;
-      /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
-      /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
-      /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
-      /// Did this object pass the chain EF_mu4Tmu6_Upsimumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
-      /// Did this object pass the chain EF_mu4Tmu6_Upsimumu_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
       /// Did this object pass the chain EF_mu4_L1MU11_MSonly_cosmic
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic;
       /// Did this object pass the chain EF_mu4_L1MU11_cosmic
@@ -1167,12 +1167,12 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1;
       /// Did this object pass the chain EF_mu60_slow_tight1
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu60_slow_tight1;
-      /// Did this object pass the chain EF_mu6_Jpsimumu_tight
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu6_Jpsimumu_tight
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
       /// Did this object pass the chain EF_mu6_MSonly
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_MSonly;
-      /// Did this object pass the chain EF_mu6_Trk_Jpsi_loose
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
+// -- slimmed --       /// Did this object pass the chain EF_mu6_Trk_Jpsi_loose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
       /// Did this object pass the chain EF_mu8
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu8;
       /// Did this object pass the chain EF_mu8_4j45_a4tchad_L2FS
@@ -1196,16 +1196,16 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e12Tvh_medium1_mu10;
       /// Did this object pass the chain EF_e12Tvh_medium1_mu6
       VarHandle< vector<int>* > trig_EF_el_EF_e12Tvh_medium1_mu6;
-      /// Did this object pass the chain EF_e18_loose1_g35_loose
-      VarHandle< vector<int>* > trig_EF_el_EF_e18_loose1_g35_loose;
-      /// Did this object pass the chain EF_e18_loose1_g35_medium
-      VarHandle< vector<int>* > trig_EF_el_EF_e18_loose1_g35_medium;
-      /// Did this object pass the chain EF_e18_medium1_g25_medium
-      VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1_g25_medium;
-      /// Did this object pass the chain EF_e18_medium1_g35_loose
-      VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1_g35_loose;
-      /// Did this object pass the chain EF_e18_medium1_g35_medium
-      VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1_g35_medium;
+// -- slimmed --       /// Did this object pass the chain EF_e18_loose1_g35_loose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e18_loose1_g35_loose;
+// -- slimmed --       /// Did this object pass the chain EF_e18_loose1_g35_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e18_loose1_g35_medium;
+// -- slimmed --       /// Did this object pass the chain EF_e18_medium1_g25_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1_g25_medium;
+// -- slimmed --       /// Did this object pass the chain EF_e18_medium1_g35_loose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1_g35_loose;
+// -- slimmed --       /// Did this object pass the chain EF_e18_medium1_g35_medium
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e18_medium1_g35_medium;
       /// Did this object pass the chain EF_e22vh_medium1_IdScan
       VarHandle< vector<int>* > trig_EF_el_EF_e22vh_medium1_IdScan;
       /// Did this object pass the chain EF_e22vh_medium1_SiTrk
@@ -1214,12 +1214,12 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e22vh_medium1_TRT;
       /// Did this object pass the chain EF_e45_etcut
       VarHandle< vector<int>* > trig_EF_el_EF_e45_etcut;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_IdScan
-      VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_SiTrk
-      VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
-      /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_TRT
-      VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_IdScan
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_SiTrk
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
+// -- slimmed --       /// Did this object pass the chain EF_e5_tight1_e4_etcut_Jpsi_TRT
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT;
       /// Did this object pass the chain EF_e60_etcut
       VarHandle< vector<int>* > trig_EF_el_EF_e60_etcut;
       

@@ -23,7 +23,7 @@ namespace D3PDReader {
     */
    TriggerVecD3PDObjectElement::TriggerVecD3PDObjectElement( size_t index, const TriggerVecD3PDObject& parent )
       : trig_EF_el_EF_2e12Tvh_loose1( parent.trig_EF_el_EF_2e12Tvh_loose1, index, this ),
-        trig_EF_el_EF_2e5_tight1_Jpsi( parent.trig_EF_el_EF_2e5_tight1_Jpsi, index, this ),
+// -- slimmed --         trig_EF_el_EF_2e5_tight1_Jpsi( parent.trig_EF_el_EF_2e5_tight1_Jpsi, index, this ),
         trig_EF_el_EF_2e7T_loose1_mu6( parent.trig_EF_el_EF_2e7T_loose1_mu6, index, this ),
         trig_EF_el_EF_2e7T_medium1_mu6( parent.trig_EF_el_EF_2e7T_medium1_mu6, index, this ),
         trig_EF_el_EF_e11_etcut( parent.trig_EF_el_EF_e11_etcut, index, this ),
@@ -33,18 +33,18 @@ namespace D3PDReader {
         trig_EF_el_EF_e12Tvh_medium1_mu8( parent.trig_EF_el_EF_e12Tvh_medium1_mu8, index, this ),
         trig_EF_el_EF_e13_etcutTrk_xs60( parent.trig_EF_el_EF_e13_etcutTrk_xs60, index, this ),
         trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20( parent.trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20, index, this ),
-        trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi, index, this ),
+// -- slimmed --         trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi, index, this ),
         trig_EF_el_EF_e15vh_medium1( parent.trig_EF_el_EF_e15vh_medium1, index, this ),
         trig_EF_el_EF_e18_loose1( parent.trig_EF_el_EF_e18_loose1, index, this ),
-        trig_EF_el_EF_e18_loose1_g25_medium( parent.trig_EF_el_EF_e18_loose1_g25_medium, index, this ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g25_medium( parent.trig_EF_el_EF_e18_loose1_g25_medium, index, this ),
         trig_EF_el_EF_e18_medium1( parent.trig_EF_el_EF_e18_medium1, index, this ),
-        trig_EF_el_EF_e18_medium1_g25_loose( parent.trig_EF_el_EF_e18_medium1_g25_loose, index, this ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g25_loose( parent.trig_EF_el_EF_e18_medium1_g25_loose, index, this ),
         trig_EF_el_EF_e18vh_medium1( parent.trig_EF_el_EF_e18vh_medium1, index, this ),
         trig_EF_el_EF_e18vh_medium1_2e7T_medium1( parent.trig_EF_el_EF_e18vh_medium1_2e7T_medium1, index, this ),
         trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20( parent.trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20, index, this ),
         trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20( parent.trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20, index, this ),
-        trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi( parent.trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi, index, this ),
-        trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi( parent.trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi, index, this ),
+// -- slimmed -- // -- slimmed --         trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi( parent.trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi, index, this ),
+// -- slimmed -- // -- slimmed --         trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi( parent.trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi, index, this ),
         trig_EF_el_EF_e22vh_loose( parent.trig_EF_el_EF_e22vh_loose, index, this ),
         trig_EF_el_EF_e22vh_loose0( parent.trig_EF_el_EF_e22vh_loose0, index, this ),
         trig_EF_el_EF_e22vh_loose1( parent.trig_EF_el_EF_e22vh_loose1, index, this ),
@@ -73,18 +73,18 @@ namespace D3PDReader {
         trig_EF_el_EF_e24vhi_medium1( parent.trig_EF_el_EF_e24vhi_medium1, index, this ),
         trig_EF_el_EF_e45_medium1( parent.trig_EF_el_EF_e45_medium1, index, this ),
         trig_EF_el_EF_e5_tight1( parent.trig_EF_el_EF_e5_tight1, index, this ),
-        trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi, index, this ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi, index, this ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB, index, this ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC, index, this ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi, index, this ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi, index, this ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB, index, this ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC, index, this ),
         trig_EF_el_EF_e5_tight1_e5_NoCut( parent.trig_EF_el_EF_e5_tight1_e5_NoCut, index, this ),
-        trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi, index, this ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi, index, this ),
         trig_EF_el_EF_e60_medium1( parent.trig_EF_el_EF_e60_medium1, index, this ),
         trig_EF_el_EF_e7T_loose1( parent.trig_EF_el_EF_e7T_loose1, index, this ),
         trig_EF_el_EF_e7T_loose1_2mu6( parent.trig_EF_el_EF_e7T_loose1_2mu6, index, this ),
         trig_EF_el_EF_e7T_medium1( parent.trig_EF_el_EF_e7T_medium1, index, this ),
         trig_EF_el_EF_e7T_medium1_2mu6( parent.trig_EF_el_EF_e7T_medium1_2mu6, index, this ),
-        trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi, index, this ),
+// -- slimmed --         trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi, index, this ),
         trig_EF_el_EF_eb_physics( parent.trig_EF_el_EF_eb_physics, index, this ),
         trig_EF_el_EF_eb_physics_empty( parent.trig_EF_el_EF_eb_physics_empty, index, this ),
         trig_EF_el_EF_eb_physics_firstempty( parent.trig_EF_el_EF_eb_physics_firstempty, index, this ),
@@ -147,7 +147,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
         trig_EF_trigmuonef_EF_2mu10( parent.trig_EF_trigmuonef_EF_2mu10, index, this ),
-        trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose( parent.trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose( parent.trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose, index, this ),
         trig_EF_trigmuonef_EF_2mu13( parent.trig_EF_trigmuonef_EF_2mu13, index, this ),
         trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut, index, this ),
         trig_EF_trigmuonef_EF_2mu13_l2muonSA( parent.trig_EF_trigmuonef_EF_2mu13_l2muonSA, index, this ),
@@ -168,13 +168,13 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1( parent.trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1, index, this ),
         trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA( parent.trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA, index, this ),
         trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS( parent.trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS, index, this ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu, index, this ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel, index, this ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly, index, this ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut, index, this ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu, index, this ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel, index, this ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly, index, this ),
         trig_EF_trigmuonef_EF_2mu4T_xe60( parent.trig_EF_trigmuonef_EF_2mu4T_xe60, index, this ),
         trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw( parent.trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw, index, this ),
         trig_EF_trigmuonef_EF_2mu6( parent.trig_EF_trigmuonef_EF_2mu6, index, this ),
@@ -184,8 +184,8 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu6_DiMu_DY20( parent.trig_EF_trigmuonef_EF_2mu6_DiMu_DY20, index, this ),
         trig_EF_trigmuonef_EF_2mu6_DiMu_DY25( parent.trig_EF_trigmuonef_EF_2mu6_DiMu_DY25, index, this ),
         trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS( parent.trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS, index, this ),
-        trig_EF_trigmuonef_EF_2mu6_Jpsimumu( parent.trig_EF_trigmuonef_EF_2mu6_Jpsimumu, index, this ),
-        trig_EF_trigmuonef_EF_2mu6_Upsimumu( parent.trig_EF_trigmuonef_EF_2mu6_Upsimumu, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu6_Jpsimumu( parent.trig_EF_trigmuonef_EF_2mu6_Jpsimumu, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu6_Upsimumu( parent.trig_EF_trigmuonef_EF_2mu6_Upsimumu, index, this ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY( parent.trig_EF_trigmuonef_EF_2mu6i_DiMu_DY, index, this ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad( parent.trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad, index, this ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS( parent.trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS, index, this ),
@@ -193,19 +193,19 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu8_EFxe30( parent.trig_EF_trigmuonef_EF_2mu8_EFxe30, index, this ),
         trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw( parent.trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw, index, this ),
         trig_EF_trigmuonef_EF_mu10( parent.trig_EF_trigmuonef_EF_mu10, index, this ),
-        trig_EF_trigmuonef_EF_mu10_Jpsimumu( parent.trig_EF_trigmuonef_EF_mu10_Jpsimumu, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10_Jpsimumu( parent.trig_EF_trigmuonef_EF_mu10_Jpsimumu, index, this ),
         trig_EF_trigmuonef_EF_mu10_MSonly( parent.trig_EF_trigmuonef_EF_mu10_MSonly, index, this ),
-        trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS( parent.trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS, index, this ),
-        trig_EF_trigmuonef_EF_mu10i_g10_medium( parent.trig_EF_trigmuonef_EF_mu10i_g10_medium, index, this ),
-        trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass, index, this ),
-        trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium( parent.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium, index, this ),
-        trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS( parent.trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_g10_medium( parent.trig_EF_trigmuonef_EF_mu10i_g10_medium, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium( parent.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass, index, this ),
         trig_EF_trigmuonef_EF_mu11_empty_NoAlg( parent.trig_EF_trigmuonef_EF_mu11_empty_NoAlg, index, this ),
         trig_EF_trigmuonef_EF_mu13( parent.trig_EF_trigmuonef_EF_mu13, index, this ),
         trig_EF_trigmuonef_EF_mu15( parent.trig_EF_trigmuonef_EF_mu15, index, this ),
         trig_EF_trigmuonef_EF_mu18( parent.trig_EF_trigmuonef_EF_mu18, index, this ),
-        trig_EF_trigmuonef_EF_mu18_2g10_loose( parent.trig_EF_trigmuonef_EF_mu18_2g10_loose, index, this ),
-        trig_EF_trigmuonef_EF_mu18_2g10_medium( parent.trig_EF_trigmuonef_EF_mu18_2g10_medium, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu18_2g10_loose( parent.trig_EF_trigmuonef_EF_mu18_2g10_loose, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu18_2g10_medium( parent.trig_EF_trigmuonef_EF_mu18_2g10_medium, index, this ),
         trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight( parent.trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight, index, this ),
         trig_EF_trigmuonef_EF_mu18_medium( parent.trig_EF_trigmuonef_EF_mu18_medium, index, this ),
         trig_EF_trigmuonef_EF_mu18_tight( parent.trig_EF_trigmuonef_EF_mu18_tight, index, this ),
@@ -213,14 +213,14 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu18_tight_e7_medium1( parent.trig_EF_trigmuonef_EF_mu18_tight_e7_medium1, index, this ),
         trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS( parent.trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS, index, this ),
         trig_EF_trigmuonef_EF_mu18i4_tight( parent.trig_EF_trigmuonef_EF_mu18i4_tight, index, this ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass, index, this ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_medium( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium, index, this ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass, index, this ),
         trig_EF_trigmuonef_EF_mu20it_tight( parent.trig_EF_trigmuonef_EF_mu20it_tight, index, this ),
         trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight( parent.trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight, index, this ),
         trig_EF_trigmuonef_EF_mu24( parent.trig_EF_trigmuonef_EF_mu24, index, this ),
-        trig_EF_trigmuonef_EF_mu24_g20vh_loose( parent.trig_EF_trigmuonef_EF_mu24_g20vh_loose, index, this ),
-        trig_EF_trigmuonef_EF_mu24_g20vh_medium( parent.trig_EF_trigmuonef_EF_mu24_g20vh_medium, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu24_g20vh_loose( parent.trig_EF_trigmuonef_EF_mu24_g20vh_loose, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu24_g20vh_medium( parent.trig_EF_trigmuonef_EF_mu24_g20vh_medium, index, this ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad( parent.trig_EF_trigmuonef_EF_mu24_j65_a4tchad, index, this ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40( parent.trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40, index, this ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw( parent.trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw, index, this ),
@@ -278,8 +278,8 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose( parent.trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose, index, this ),
         trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched( parent.trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched, index, this ),
         trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched( parent.trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched, index, this ),
-        trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium( parent.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium, index, this ),
-        trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium( parent.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass, index, this ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu, index, this ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel, index, this ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux, index, this ),
@@ -287,11 +287,11 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_DiMu, index, this ),
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel, index, this ),
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS( parent.trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS, index, this ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu, index, this ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel, index, this ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut, index, this ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu, index, this ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel, index, this ),
         trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic( parent.trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic, index, this ),
         trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic( parent.trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic, index, this ),
         trig_EF_trigmuonef_EF_mu4_empty_NoAlg( parent.trig_EF_trigmuonef_EF_mu4_empty_NoAlg, index, this ),
@@ -301,9 +301,9 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu6( parent.trig_EF_trigmuonef_EF_mu6, index, this ),
         trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1( parent.trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1, index, this ),
         trig_EF_trigmuonef_EF_mu60_slow_tight1( parent.trig_EF_trigmuonef_EF_mu60_slow_tight1, index, this ),
-        trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight( parent.trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight( parent.trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight, index, this ),
         trig_EF_trigmuonef_EF_mu6_MSonly( parent.trig_EF_trigmuonef_EF_mu6_MSonly, index, this ),
-        trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose( parent.trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose, index, this ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose( parent.trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose, index, this ),
         trig_EF_trigmuonef_EF_mu8( parent.trig_EF_trigmuonef_EF_mu8, index, this ),
         trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS( parent.trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS, index, this ),
         trig_EF_trigmuonef_track_MuonType( parent.trig_EF_trigmuonef_track_MuonType, index, this ),
@@ -315,27 +315,27 @@ namespace D3PDReader {
         trig_EF_trigmuonef_track_SA_eta( parent.trig_EF_trigmuonef_track_SA_eta, index, this ),
         trig_EF_trigmuonef_track_SA_phi( parent.trig_EF_trigmuonef_track_SA_phi, index, this ),
         trig_EF_trigmuonef_track_SA_hasSA( parent.trig_EF_trigmuonef_track_SA_hasSA, index, this ),
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
         trig_EF_el_EF_e12Tvh_loose1_mu8( parent.trig_EF_el_EF_e12Tvh_loose1_mu8, index, this ),
         trig_EF_el_EF_e12Tvh_medium1_mu10( parent.trig_EF_el_EF_e12Tvh_medium1_mu10, index, this ),
         trig_EF_el_EF_e12Tvh_medium1_mu6( parent.trig_EF_el_EF_e12Tvh_medium1_mu6, index, this ),
-        trig_EF_el_EF_e18_loose1_g35_loose( parent.trig_EF_el_EF_e18_loose1_g35_loose, index, this ),
-        trig_EF_el_EF_e18_loose1_g35_medium( parent.trig_EF_el_EF_e18_loose1_g35_medium, index, this ),
-        trig_EF_el_EF_e18_medium1_g25_medium( parent.trig_EF_el_EF_e18_medium1_g25_medium, index, this ),
-        trig_EF_el_EF_e18_medium1_g35_loose( parent.trig_EF_el_EF_e18_medium1_g35_loose, index, this ),
-        trig_EF_el_EF_e18_medium1_g35_medium( parent.trig_EF_el_EF_e18_medium1_g35_medium, index, this ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g35_loose( parent.trig_EF_el_EF_e18_loose1_g35_loose, index, this ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g35_medium( parent.trig_EF_el_EF_e18_loose1_g35_medium, index, this ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g25_medium( parent.trig_EF_el_EF_e18_medium1_g25_medium, index, this ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g35_loose( parent.trig_EF_el_EF_e18_medium1_g35_loose, index, this ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g35_medium( parent.trig_EF_el_EF_e18_medium1_g35_medium, index, this ),
         trig_EF_el_EF_e22vh_medium1_IdScan( parent.trig_EF_el_EF_e22vh_medium1_IdScan, index, this ),
         trig_EF_el_EF_e22vh_medium1_SiTrk( parent.trig_EF_el_EF_e22vh_medium1_SiTrk, index, this ),
         trig_EF_el_EF_e22vh_medium1_TRT( parent.trig_EF_el_EF_e22vh_medium1_TRT, index, this ),
         trig_EF_el_EF_e45_etcut( parent.trig_EF_el_EF_e45_etcut, index, this ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan, index, this ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk, index, this ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT, index, this ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan, index, this ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk, index, this ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT, index, this ),
         trig_EF_el_EF_e60_etcut( parent.trig_EF_el_EF_e60_etcut, index, this )
-    
+
   {
 
    }
@@ -351,7 +351,7 @@ namespace D3PDReader {
    TriggerVecD3PDObjectElement::TriggerVecD3PDObjectElement( const TriggerVecD3PDObjectElement& parent )
       : TObject( parent ),
         trig_EF_el_EF_2e12Tvh_loose1( parent.trig_EF_el_EF_2e12Tvh_loose1 ),
-        trig_EF_el_EF_2e5_tight1_Jpsi( parent.trig_EF_el_EF_2e5_tight1_Jpsi ),
+// -- slimmed --         trig_EF_el_EF_2e5_tight1_Jpsi( parent.trig_EF_el_EF_2e5_tight1_Jpsi ),
         trig_EF_el_EF_2e7T_loose1_mu6( parent.trig_EF_el_EF_2e7T_loose1_mu6 ),
         trig_EF_el_EF_2e7T_medium1_mu6( parent.trig_EF_el_EF_2e7T_medium1_mu6 ),
         trig_EF_el_EF_e11_etcut( parent.trig_EF_el_EF_e11_etcut ),
@@ -361,18 +361,18 @@ namespace D3PDReader {
         trig_EF_el_EF_e12Tvh_medium1_mu8( parent.trig_EF_el_EF_e12Tvh_medium1_mu8 ),
         trig_EF_el_EF_e13_etcutTrk_xs60( parent.trig_EF_el_EF_e13_etcutTrk_xs60 ),
         trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20( parent.trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20 ),
-        trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi ),
+// -- slimmed --         trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi ),
         trig_EF_el_EF_e15vh_medium1( parent.trig_EF_el_EF_e15vh_medium1 ),
         trig_EF_el_EF_e18_loose1( parent.trig_EF_el_EF_e18_loose1 ),
-        trig_EF_el_EF_e18_loose1_g25_medium( parent.trig_EF_el_EF_e18_loose1_g25_medium ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g25_medium( parent.trig_EF_el_EF_e18_loose1_g25_medium ),
         trig_EF_el_EF_e18_medium1( parent.trig_EF_el_EF_e18_medium1 ),
-        trig_EF_el_EF_e18_medium1_g25_loose( parent.trig_EF_el_EF_e18_medium1_g25_loose ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g25_loose( parent.trig_EF_el_EF_e18_medium1_g25_loose ),
         trig_EF_el_EF_e18vh_medium1( parent.trig_EF_el_EF_e18vh_medium1 ),
         trig_EF_el_EF_e18vh_medium1_2e7T_medium1( parent.trig_EF_el_EF_e18vh_medium1_2e7T_medium1 ),
         trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20( parent.trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20 ),
         trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20( parent.trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20 ),
-        trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi( parent.trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi ),
-        trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi( parent.trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi ),
+// -- slimmed -- // -- slimmed --         trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi( parent.trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi ),
+// -- slimmed -- // -- slimmed --         trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi( parent.trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi ),
         trig_EF_el_EF_e22vh_loose( parent.trig_EF_el_EF_e22vh_loose ),
         trig_EF_el_EF_e22vh_loose0( parent.trig_EF_el_EF_e22vh_loose0 ),
         trig_EF_el_EF_e22vh_loose1( parent.trig_EF_el_EF_e22vh_loose1 ),
@@ -401,18 +401,18 @@ namespace D3PDReader {
         trig_EF_el_EF_e24vhi_medium1( parent.trig_EF_el_EF_e24vhi_medium1 ),
         trig_EF_el_EF_e45_medium1( parent.trig_EF_el_EF_e45_medium1 ),
         trig_EF_el_EF_e5_tight1( parent.trig_EF_el_EF_e5_tight1 ),
-        trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC ),
         trig_EF_el_EF_e5_tight1_e5_NoCut( parent.trig_EF_el_EF_e5_tight1_e5_NoCut ),
-        trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi( parent.trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi ),
         trig_EF_el_EF_e60_medium1( parent.trig_EF_el_EF_e60_medium1 ),
         trig_EF_el_EF_e7T_loose1( parent.trig_EF_el_EF_e7T_loose1 ),
         trig_EF_el_EF_e7T_loose1_2mu6( parent.trig_EF_el_EF_e7T_loose1_2mu6 ),
         trig_EF_el_EF_e7T_medium1( parent.trig_EF_el_EF_e7T_medium1 ),
         trig_EF_el_EF_e7T_medium1_2mu6( parent.trig_EF_el_EF_e7T_medium1_2mu6 ),
-        trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi ),
+// -- slimmed --         trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi( parent.trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi ),
         trig_EF_el_EF_eb_physics( parent.trig_EF_el_EF_eb_physics ),
         trig_EF_el_EF_eb_physics_empty( parent.trig_EF_el_EF_eb_physics_empty ),
         trig_EF_el_EF_eb_physics_firstempty( parent.trig_EF_el_EF_eb_physics_firstempty ),
@@ -475,7 +475,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
         trig_EF_trigmuonef_EF_2mu10( parent.trig_EF_trigmuonef_EF_2mu10 ),
-        trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose( parent.trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose( parent.trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose ),
         trig_EF_trigmuonef_EF_2mu13( parent.trig_EF_trigmuonef_EF_2mu13 ),
         trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut ),
         trig_EF_trigmuonef_EF_2mu13_l2muonSA( parent.trig_EF_trigmuonef_EF_2mu13_l2muonSA ),
@@ -496,13 +496,13 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1( parent.trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1 ),
         trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA( parent.trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA ),
         trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS( parent.trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly( parent.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly ),
         trig_EF_trigmuonef_EF_2mu4T_xe60( parent.trig_EF_trigmuonef_EF_2mu4T_xe60 ),
         trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw( parent.trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw ),
         trig_EF_trigmuonef_EF_2mu6( parent.trig_EF_trigmuonef_EF_2mu6 ),
@@ -512,8 +512,8 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu6_DiMu_DY20( parent.trig_EF_trigmuonef_EF_2mu6_DiMu_DY20 ),
         trig_EF_trigmuonef_EF_2mu6_DiMu_DY25( parent.trig_EF_trigmuonef_EF_2mu6_DiMu_DY25 ),
         trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS( parent.trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS ),
-        trig_EF_trigmuonef_EF_2mu6_Jpsimumu( parent.trig_EF_trigmuonef_EF_2mu6_Jpsimumu ),
-        trig_EF_trigmuonef_EF_2mu6_Upsimumu( parent.trig_EF_trigmuonef_EF_2mu6_Upsimumu ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu6_Jpsimumu( parent.trig_EF_trigmuonef_EF_2mu6_Jpsimumu ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu6_Upsimumu( parent.trig_EF_trigmuonef_EF_2mu6_Upsimumu ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY( parent.trig_EF_trigmuonef_EF_2mu6i_DiMu_DY ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad( parent.trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS( parent.trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS ),
@@ -521,19 +521,19 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu8_EFxe30( parent.trig_EF_trigmuonef_EF_2mu8_EFxe30 ),
         trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw( parent.trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw ),
         trig_EF_trigmuonef_EF_mu10( parent.trig_EF_trigmuonef_EF_mu10 ),
-        trig_EF_trigmuonef_EF_mu10_Jpsimumu( parent.trig_EF_trigmuonef_EF_mu10_Jpsimumu ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10_Jpsimumu( parent.trig_EF_trigmuonef_EF_mu10_Jpsimumu ),
         trig_EF_trigmuonef_EF_mu10_MSonly( parent.trig_EF_trigmuonef_EF_mu10_MSonly ),
-        trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS( parent.trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS ),
-        trig_EF_trigmuonef_EF_mu10i_g10_medium( parent.trig_EF_trigmuonef_EF_mu10i_g10_medium ),
-        trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass ),
-        trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium( parent.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium ),
-        trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS( parent.trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_g10_medium( parent.trig_EF_trigmuonef_EF_mu10i_g10_medium ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium( parent.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass ),
         trig_EF_trigmuonef_EF_mu11_empty_NoAlg( parent.trig_EF_trigmuonef_EF_mu11_empty_NoAlg ),
         trig_EF_trigmuonef_EF_mu13( parent.trig_EF_trigmuonef_EF_mu13 ),
         trig_EF_trigmuonef_EF_mu15( parent.trig_EF_trigmuonef_EF_mu15 ),
         trig_EF_trigmuonef_EF_mu18( parent.trig_EF_trigmuonef_EF_mu18 ),
-        trig_EF_trigmuonef_EF_mu18_2g10_loose( parent.trig_EF_trigmuonef_EF_mu18_2g10_loose ),
-        trig_EF_trigmuonef_EF_mu18_2g10_medium( parent.trig_EF_trigmuonef_EF_mu18_2g10_medium ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu18_2g10_loose( parent.trig_EF_trigmuonef_EF_mu18_2g10_loose ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu18_2g10_medium( parent.trig_EF_trigmuonef_EF_mu18_2g10_medium ),
         trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight( parent.trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight ),
         trig_EF_trigmuonef_EF_mu18_medium( parent.trig_EF_trigmuonef_EF_mu18_medium ),
         trig_EF_trigmuonef_EF_mu18_tight( parent.trig_EF_trigmuonef_EF_mu18_tight ),
@@ -541,14 +541,14 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu18_tight_e7_medium1( parent.trig_EF_trigmuonef_EF_mu18_tight_e7_medium1 ),
         trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS( parent.trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS ),
         trig_EF_trigmuonef_EF_mu18i4_tight( parent.trig_EF_trigmuonef_EF_mu18i4_tight ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_medium( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass ),
         trig_EF_trigmuonef_EF_mu20it_tight( parent.trig_EF_trigmuonef_EF_mu20it_tight ),
         trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight( parent.trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight ),
         trig_EF_trigmuonef_EF_mu24( parent.trig_EF_trigmuonef_EF_mu24 ),
-        trig_EF_trigmuonef_EF_mu24_g20vh_loose( parent.trig_EF_trigmuonef_EF_mu24_g20vh_loose ),
-        trig_EF_trigmuonef_EF_mu24_g20vh_medium( parent.trig_EF_trigmuonef_EF_mu24_g20vh_medium ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu24_g20vh_loose( parent.trig_EF_trigmuonef_EF_mu24_g20vh_loose ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu24_g20vh_medium( parent.trig_EF_trigmuonef_EF_mu24_g20vh_medium ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad( parent.trig_EF_trigmuonef_EF_mu24_j65_a4tchad ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40( parent.trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40 ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw( parent.trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw ),
@@ -606,8 +606,8 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose( parent.trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose ),
         trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched( parent.trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched ),
         trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched( parent.trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched ),
-        trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium( parent.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium ),
-        trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium( parent.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass( parent.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux ),
@@ -615,11 +615,11 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_DiMu ),
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel ),
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS( parent.trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel( parent.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel ),
         trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic( parent.trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic ),
         trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic( parent.trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic ),
         trig_EF_trigmuonef_EF_mu4_empty_NoAlg( parent.trig_EF_trigmuonef_EF_mu4_empty_NoAlg ),
@@ -629,9 +629,9 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu6( parent.trig_EF_trigmuonef_EF_mu6 ),
         trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1( parent.trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1 ),
         trig_EF_trigmuonef_EF_mu60_slow_tight1( parent.trig_EF_trigmuonef_EF_mu60_slow_tight1 ),
-        trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight( parent.trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight( parent.trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight ),
         trig_EF_trigmuonef_EF_mu6_MSonly( parent.trig_EF_trigmuonef_EF_mu6_MSonly ),
-        trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose( parent.trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose( parent.trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose ),
         trig_EF_trigmuonef_EF_mu8( parent.trig_EF_trigmuonef_EF_mu8 ),
         trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS( parent.trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS ),
         trig_EF_trigmuonef_track_MuonType( parent.trig_EF_trigmuonef_track_MuonType ),
@@ -643,28 +643,28 @@ namespace D3PDReader {
         trig_EF_trigmuonef_track_SA_eta( parent.trig_EF_trigmuonef_track_SA_eta ),
         trig_EF_trigmuonef_track_SA_phi( parent.trig_EF_trigmuonef_track_SA_phi ),
         trig_EF_trigmuonef_track_SA_hasSA( parent.trig_EF_trigmuonef_track_SA_hasSA ),
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
         trig_EF_el_EF_e12Tvh_loose1_mu8( parent.trig_EF_el_EF_e12Tvh_loose1_mu8 ),
         trig_EF_el_EF_e12Tvh_medium1_mu10( parent.trig_EF_el_EF_e12Tvh_medium1_mu10 ),
         trig_EF_el_EF_e12Tvh_medium1_mu6( parent.trig_EF_el_EF_e12Tvh_medium1_mu6 ),
-        trig_EF_el_EF_e18_loose1_g35_loose( parent.trig_EF_el_EF_e18_loose1_g35_loose ),
-        trig_EF_el_EF_e18_loose1_g35_medium( parent.trig_EF_el_EF_e18_loose1_g35_medium ),
-        trig_EF_el_EF_e18_medium1_g25_medium( parent.trig_EF_el_EF_e18_medium1_g25_medium ),
-        trig_EF_el_EF_e18_medium1_g35_loose( parent.trig_EF_el_EF_e18_medium1_g35_loose ),
-        trig_EF_el_EF_e18_medium1_g35_medium( parent.trig_EF_el_EF_e18_medium1_g35_medium ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g35_loose( parent.trig_EF_el_EF_e18_loose1_g35_loose ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g35_medium( parent.trig_EF_el_EF_e18_loose1_g35_medium ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g25_medium( parent.trig_EF_el_EF_e18_medium1_g25_medium ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g35_loose( parent.trig_EF_el_EF_e18_medium1_g35_loose ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g35_medium( parent.trig_EF_el_EF_e18_medium1_g35_medium ),
         trig_EF_el_EF_e22vh_medium1_IdScan( parent.trig_EF_el_EF_e22vh_medium1_IdScan ),
         trig_EF_el_EF_e22vh_medium1_SiTrk( parent.trig_EF_el_EF_e22vh_medium1_SiTrk ),
         trig_EF_el_EF_e22vh_medium1_TRT( parent.trig_EF_el_EF_e22vh_medium1_TRT ),
         trig_EF_el_EF_e45_etcut( parent.trig_EF_el_EF_e45_etcut ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT( parent.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT ),
         trig_EF_el_EF_e60_etcut( parent.trig_EF_el_EF_e60_etcut )
-    
-  
+
+
  {
 
    }
@@ -680,7 +680,7 @@ namespace D3PDReader {
    TriggerVecD3PDObject::TriggerVecD3PDObject( const ::Long64_t& master, const char* prefix )
       : TObject(),
         trig_EF_el_EF_2e12Tvh_loose1( this, ::TString( prefix ) + "trig_EF_el_EF_2e12Tvh_loose1", &master ),
-        trig_EF_el_EF_2e5_tight1_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_2e5_tight1_Jpsi", &master ),
+// -- slimmed --         trig_EF_el_EF_2e5_tight1_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_2e5_tight1_Jpsi", &master ),
         trig_EF_el_EF_2e7T_loose1_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_2e7T_loose1_mu6", &master ),
         trig_EF_el_EF_2e7T_medium1_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_2e7T_medium1_mu6", &master ),
         trig_EF_el_EF_e11_etcut( this, ::TString( prefix ) + "trig_EF_el_EF_e11_etcut", &master ),
@@ -690,18 +690,18 @@ namespace D3PDReader {
         trig_EF_el_EF_e12Tvh_medium1_mu8( this, ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu8", &master ),
         trig_EF_el_EF_e13_etcutTrk_xs60( this, ::TString( prefix ) + "trig_EF_el_EF_e13_etcutTrk_xs60", &master ),
         trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20( this, ::TString( prefix ) + "trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20", &master ),
-        trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi", &master ),
+// -- slimmed --         trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi", &master ),
         trig_EF_el_EF_e15vh_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e15vh_medium1", &master ),
         trig_EF_el_EF_e18_loose1( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1", &master ),
-        trig_EF_el_EF_e18_loose1_g25_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g25_medium", &master ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g25_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g25_medium", &master ),
         trig_EF_el_EF_e18_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1", &master ),
-        trig_EF_el_EF_e18_medium1_g25_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_loose", &master ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g25_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_loose", &master ),
         trig_EF_el_EF_e18vh_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e18vh_medium1", &master ),
         trig_EF_el_EF_e18vh_medium1_2e7T_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e18vh_medium1_2e7T_medium1", &master ),
         trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20( this, ::TString( prefix ) + "trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20", &master ),
         trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20( this, ::TString( prefix ) + "trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20", &master ),
-        trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi( this, ::TString( prefix ) + "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi", &master ),
-        trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi( this, ::TString( prefix ) + "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi", &master ),
+// -- slimmed -- // -- slimmed --         trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi( this, ::TString( prefix ) + "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi", &master ),
+// -- slimmed -- // -- slimmed --         trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi( this, ::TString( prefix ) + "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi", &master ),
         trig_EF_el_EF_e22vh_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose", &master ),
         trig_EF_el_EF_e22vh_loose0( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose0", &master ),
         trig_EF_el_EF_e22vh_loose1( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose1", &master ),
@@ -730,18 +730,18 @@ namespace D3PDReader {
         trig_EF_el_EF_e24vhi_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e24vhi_medium1", &master ),
         trig_EF_el_EF_e45_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e45_medium1", &master ),
         trig_EF_el_EF_e5_tight1( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1", &master ),
-        trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi", &master ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi", &master ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB", &master ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC", &master ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi", &master ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi", &master ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB", &master ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC", &master ),
         trig_EF_el_EF_e5_tight1_e5_NoCut( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e5_NoCut", &master ),
-        trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi", &master ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi", &master ),
         trig_EF_el_EF_e60_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e60_medium1", &master ),
         trig_EF_el_EF_e7T_loose1( this, ::TString( prefix ) + "trig_EF_el_EF_e7T_loose1", &master ),
         trig_EF_el_EF_e7T_loose1_2mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e7T_loose1_2mu6", &master ),
         trig_EF_el_EF_e7T_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e7T_medium1", &master ),
         trig_EF_el_EF_e7T_medium1_2mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e7T_medium1_2mu6", &master ),
-        trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi", &master ),
+// -- slimmed --         trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi", &master ),
         trig_EF_el_EF_eb_physics( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics", &master ),
         trig_EF_el_EF_eb_physics_empty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_empty", &master ),
         trig_EF_el_EF_eb_physics_firstempty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_firstempty", &master ),
@@ -804,7 +804,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
         trig_EF_trigmuonef_EF_2mu10( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10", &master ),
-        trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose", &master ),
         trig_EF_trigmuonef_EF_2mu13( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13", &master ),
         trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut", &master ),
         trig_EF_trigmuonef_EF_2mu13_l2muonSA( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13_l2muonSA", &master ),
@@ -825,13 +825,13 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1", &master ),
         trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA", &master ),
         trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS", &master ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu", &master ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel", &master ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly", &master ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut", &master ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu", &master ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel", &master ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly", &master ),
         trig_EF_trigmuonef_EF_2mu4T_xe60( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_xe60", &master ),
         trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw", &master ),
         trig_EF_trigmuonef_EF_2mu6( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6", &master ),
@@ -841,8 +841,8 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu6_DiMu_DY20( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_DY20", &master ),
         trig_EF_trigmuonef_EF_2mu6_DiMu_DY25( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_DY25", &master ),
         trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS", &master ),
-        trig_EF_trigmuonef_EF_2mu6_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Jpsimumu", &master ),
-        trig_EF_trigmuonef_EF_2mu6_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Upsimumu", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu6_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Jpsimumu", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu6_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Upsimumu", &master ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY", &master ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad", &master ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS", &master ),
@@ -850,19 +850,19 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu8_EFxe30( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu8_EFxe30", &master ),
         trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw", &master ),
         trig_EF_trigmuonef_EF_mu10( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10", &master ),
-        trig_EF_trigmuonef_EF_mu10_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Jpsimumu", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Jpsimumu", &master ),
         trig_EF_trigmuonef_EF_mu10_MSonly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_MSonly", &master ),
-        trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS", &master ),
-        trig_EF_trigmuonef_EF_mu10i_g10_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium", &master ),
-        trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass", &master ),
-        trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium", &master ),
-        trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_g10_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass", &master ),
         trig_EF_trigmuonef_EF_mu11_empty_NoAlg( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu11_empty_NoAlg", &master ),
         trig_EF_trigmuonef_EF_mu13( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu13", &master ),
         trig_EF_trigmuonef_EF_mu15( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu15", &master ),
         trig_EF_trigmuonef_EF_mu18( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18", &master ),
-        trig_EF_trigmuonef_EF_mu18_2g10_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_loose", &master ),
-        trig_EF_trigmuonef_EF_mu18_2g10_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_medium", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu18_2g10_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_loose", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu18_2g10_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_medium", &master ),
         trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight", &master ),
         trig_EF_trigmuonef_EF_mu18_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_medium", &master ),
         trig_EF_trigmuonef_EF_mu18_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight", &master ),
@@ -870,14 +870,14 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu18_tight_e7_medium1( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight_e7_medium1", &master ),
         trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS", &master ),
         trig_EF_trigmuonef_EF_mu18i4_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18i4_tight", &master ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass", &master ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium", &master ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass", &master ),
         trig_EF_trigmuonef_EF_mu20it_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20it_tight", &master ),
         trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight", &master ),
         trig_EF_trigmuonef_EF_mu24( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24", &master ),
-        trig_EF_trigmuonef_EF_mu24_g20vh_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_loose", &master ),
-        trig_EF_trigmuonef_EF_mu24_g20vh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_medium", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu24_g20vh_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_loose", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu24_g20vh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_medium", &master ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad", &master ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40", &master ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw", &master ),
@@ -935,8 +935,8 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose", &master ),
         trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched", &master ),
         trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched", &master ),
-        trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium", &master ),
-        trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass", &master ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu", &master ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel", &master ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux", &master ),
@@ -944,11 +944,11 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu", &master ),
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel", &master ),
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS", &master ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu", &master ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel", &master ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut", &master ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu", &master ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel", &master ),
         trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic", &master ),
         trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic", &master ),
         trig_EF_trigmuonef_EF_mu4_empty_NoAlg( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_empty_NoAlg", &master ),
@@ -958,9 +958,9 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu6( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6", &master ),
         trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1", &master ),
         trig_EF_trigmuonef_EF_mu60_slow_tight1( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu60_slow_tight1", &master ),
-        trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight", &master ),
         trig_EF_trigmuonef_EF_mu6_MSonly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_MSonly", &master ),
-        trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose", &master ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose", &master ),
         trig_EF_trigmuonef_EF_mu8( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu8", &master ),
         trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS", &master ),
         trig_EF_trigmuonef_track_MuonType( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_MuonType", &master ),
@@ -972,33 +972,33 @@ namespace D3PDReader {
         trig_EF_trigmuonef_track_SA_eta( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_eta", &master ),
         trig_EF_trigmuonef_track_SA_phi( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_phi", &master ),
         trig_EF_trigmuonef_track_SA_hasSA( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_hasSA", &master ),
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
         trig_EF_el_EF_e12Tvh_loose1_mu8( this, ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_loose1_mu8", &master ),
         trig_EF_el_EF_e12Tvh_medium1_mu10( this, ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu10", &master ),
         trig_EF_el_EF_e12Tvh_medium1_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu6", &master ),
-        trig_EF_el_EF_e18_loose1_g35_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_loose", &master ),
-        trig_EF_el_EF_e18_loose1_g35_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_medium", &master ),
-        trig_EF_el_EF_e18_medium1_g25_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_medium", &master ),
-        trig_EF_el_EF_e18_medium1_g35_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_loose", &master ),
-        trig_EF_el_EF_e18_medium1_g35_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_medium", &master ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g35_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_loose", &master ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g35_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_medium", &master ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g25_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_medium", &master ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g35_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_loose", &master ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g35_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_medium", &master ),
         trig_EF_el_EF_e22vh_medium1_IdScan( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_IdScan", &master ),
         trig_EF_el_EF_e22vh_medium1_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_SiTrk", &master ),
         trig_EF_el_EF_e22vh_medium1_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_TRT", &master ),
         trig_EF_el_EF_e45_etcut( this, ::TString( prefix ) + "trig_EF_el_EF_e45_etcut", &master ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan", &master ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk", &master ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT", &master ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan", &master ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk", &master ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT", &master ),
         trig_EF_el_EF_e60_etcut( this, ::TString( prefix ) + "trig_EF_el_EF_e60_etcut", &master ),
-    
+
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) {
 
       fHandles[ "trig_EF_el_EF_2e12Tvh_loose1" ] = &trig_EF_el_EF_2e12Tvh_loose1;
-      fHandles[ "trig_EF_el_EF_2e5_tight1_Jpsi" ] = &trig_EF_el_EF_2e5_tight1_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_2e5_tight1_Jpsi" ] = &trig_EF_el_EF_2e5_tight1_Jpsi;
       fHandles[ "trig_EF_el_EF_2e7T_loose1_mu6" ] = &trig_EF_el_EF_2e7T_loose1_mu6;
       fHandles[ "trig_EF_el_EF_2e7T_medium1_mu6" ] = &trig_EF_el_EF_2e7T_medium1_mu6;
       fHandles[ "trig_EF_el_EF_e11_etcut" ] = &trig_EF_el_EF_e11_etcut;
@@ -1008,18 +1008,18 @@ namespace D3PDReader {
       fHandles[ "trig_EF_el_EF_e12Tvh_medium1_mu8" ] = &trig_EF_el_EF_e12Tvh_medium1_mu8;
       fHandles[ "trig_EF_el_EF_e13_etcutTrk_xs60" ] = &trig_EF_el_EF_e13_etcutTrk_xs60;
       fHandles[ "trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20" ] = &trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20;
-      fHandles[ "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
       fHandles[ "trig_EF_el_EF_e15vh_medium1" ] = &trig_EF_el_EF_e15vh_medium1;
       fHandles[ "trig_EF_el_EF_e18_loose1" ] = &trig_EF_el_EF_e18_loose1;
-      fHandles[ "trig_EF_el_EF_e18_loose1_g25_medium" ] = &trig_EF_el_EF_e18_loose1_g25_medium;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_loose1_g25_medium" ] = &trig_EF_el_EF_e18_loose1_g25_medium;
       fHandles[ "trig_EF_el_EF_e18_medium1" ] = &trig_EF_el_EF_e18_medium1;
-      fHandles[ "trig_EF_el_EF_e18_medium1_g25_loose" ] = &trig_EF_el_EF_e18_medium1_g25_loose;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_medium1_g25_loose" ] = &trig_EF_el_EF_e18_medium1_g25_loose;
       fHandles[ "trig_EF_el_EF_e18vh_medium1" ] = &trig_EF_el_EF_e18vh_medium1;
       fHandles[ "trig_EF_el_EF_e18vh_medium1_2e7T_medium1" ] = &trig_EF_el_EF_e18vh_medium1_2e7T_medium1;
       fHandles[ "trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20" ] = &trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20;
       fHandles[ "trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20" ] = &trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20;
-      fHandles[ "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi" ] = &trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
-      fHandles[ "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi" ] = &trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       fHandles[ "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi" ] = &trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       fHandles[ "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi" ] = &trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi;
       fHandles[ "trig_EF_el_EF_e22vh_loose" ] = &trig_EF_el_EF_e22vh_loose;
       fHandles[ "trig_EF_el_EF_e22vh_loose0" ] = &trig_EF_el_EF_e22vh_loose0;
       fHandles[ "trig_EF_el_EF_e22vh_loose1" ] = &trig_EF_el_EF_e22vh_loose1;
@@ -1048,18 +1048,18 @@ namespace D3PDReader {
       fHandles[ "trig_EF_el_EF_e24vhi_medium1" ] = &trig_EF_el_EF_e24vhi_medium1;
       fHandles[ "trig_EF_el_EF_e45_medium1" ] = &trig_EF_el_EF_e45_medium1;
       fHandles[ "trig_EF_el_EF_e5_tight1" ] = &trig_EF_el_EF_e5_tight1;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
       fHandles[ "trig_EF_el_EF_e5_tight1_e5_NoCut" ] = &trig_EF_el_EF_e5_tight1_e5_NoCut;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi;
       fHandles[ "trig_EF_el_EF_e60_medium1" ] = &trig_EF_el_EF_e60_medium1;
       fHandles[ "trig_EF_el_EF_e7T_loose1" ] = &trig_EF_el_EF_e7T_loose1;
       fHandles[ "trig_EF_el_EF_e7T_loose1_2mu6" ] = &trig_EF_el_EF_e7T_loose1_2mu6;
       fHandles[ "trig_EF_el_EF_e7T_medium1" ] = &trig_EF_el_EF_e7T_medium1;
       fHandles[ "trig_EF_el_EF_e7T_medium1_2mu6" ] = &trig_EF_el_EF_e7T_medium1_2mu6;
-      fHandles[ "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
       fHandles[ "trig_EF_el_EF_eb_physics" ] = &trig_EF_el_EF_eb_physics;
       fHandles[ "trig_EF_el_EF_eb_physics_empty" ] = &trig_EF_el_EF_eb_physics_empty;
       fHandles[ "trig_EF_el_EF_eb_physics_firstempty" ] = &trig_EF_el_EF_eb_physics_firstempty;
@@ -1122,7 +1122,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
       fHandles[ "trig_EF_trigmuonef_EF_2mu10" ] = &trig_EF_trigmuonef_EF_2mu10;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose" ] = &trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose" ] = &trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
       fHandles[ "trig_EF_trigmuonef_EF_2mu13" ] = &trig_EF_trigmuonef_EF_2mu13;
       fHandles[ "trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut;
       fHandles[ "trig_EF_trigmuonef_EF_2mu13_l2muonSA" ] = &trig_EF_trigmuonef_EF_2mu13_l2muonSA;
@@ -1143,13 +1143,13 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1" ] = &trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1;
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA" ] = &trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA;
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS" ] = &trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_xe60" ] = &trig_EF_trigmuonef_EF_2mu4T_xe60;
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw" ] = &trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6" ] = &trig_EF_trigmuonef_EF_2mu6;
@@ -1159,8 +1159,8 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_2mu6_DiMu_DY20" ] = &trig_EF_trigmuonef_EF_2mu6_DiMu_DY20;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6_DiMu_DY25" ] = &trig_EF_trigmuonef_EF_2mu6_DiMu_DY25;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS" ] = &trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu6_Jpsimumu" ] = &trig_EF_trigmuonef_EF_2mu6_Jpsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu6_Upsimumu" ] = &trig_EF_trigmuonef_EF_2mu6_Upsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu6_Jpsimumu" ] = &trig_EF_trigmuonef_EF_2mu6_Jpsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu6_Upsimumu" ] = &trig_EF_trigmuonef_EF_2mu6_Upsimumu;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY" ] = &trig_EF_trigmuonef_EF_2mu6i_DiMu_DY;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad" ] = &trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS" ] = &trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS;
@@ -1168,19 +1168,19 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_2mu8_EFxe30" ] = &trig_EF_trigmuonef_EF_2mu8_EFxe30;
       fHandles[ "trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw" ] = &trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw;
       fHandles[ "trig_EF_trigmuonef_EF_mu10" ] = &trig_EF_trigmuonef_EF_mu10;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10_Jpsimumu" ] = &trig_EF_trigmuonef_EF_mu10_Jpsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10_Jpsimumu" ] = &trig_EF_trigmuonef_EF_mu10_Jpsimumu;
       fHandles[ "trig_EF_trigmuonef_EF_mu10_MSonly" ] = &trig_EF_trigmuonef_EF_mu10_MSonly;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS" ] = &trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10i_g10_medium" ] = &trig_EF_trigmuonef_EF_mu10i_g10_medium;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium" ] = &trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS" ] = &trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10i_g10_medium" ] = &trig_EF_trigmuonef_EF_mu10i_g10_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium" ] = &trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
       fHandles[ "trig_EF_trigmuonef_EF_mu11_empty_NoAlg" ] = &trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
       fHandles[ "trig_EF_trigmuonef_EF_mu13" ] = &trig_EF_trigmuonef_EF_mu13;
       fHandles[ "trig_EF_trigmuonef_EF_mu15" ] = &trig_EF_trigmuonef_EF_mu15;
       fHandles[ "trig_EF_trigmuonef_EF_mu18" ] = &trig_EF_trigmuonef_EF_mu18;
-      fHandles[ "trig_EF_trigmuonef_EF_mu18_2g10_loose" ] = &trig_EF_trigmuonef_EF_mu18_2g10_loose;
-      fHandles[ "trig_EF_trigmuonef_EF_mu18_2g10_medium" ] = &trig_EF_trigmuonef_EF_mu18_2g10_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu18_2g10_loose" ] = &trig_EF_trigmuonef_EF_mu18_2g10_loose;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu18_2g10_medium" ] = &trig_EF_trigmuonef_EF_mu18_2g10_medium;
       fHandles[ "trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight" ] = &trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
       fHandles[ "trig_EF_trigmuonef_EF_mu18_medium" ] = &trig_EF_trigmuonef_EF_mu18_medium;
       fHandles[ "trig_EF_trigmuonef_EF_mu18_tight" ] = &trig_EF_trigmuonef_EF_mu18_tight;
@@ -1188,14 +1188,14 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_mu18_tight_e7_medium1" ] = &trig_EF_trigmuonef_EF_mu18_tight_e7_medium1;
       fHandles[ "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS" ] = &trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
       fHandles[ "trig_EF_trigmuonef_EF_mu18i4_tight" ] = &trig_EF_trigmuonef_EF_mu18i4_tight;
-      fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass;
-      fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_medium;
-      fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
       fHandles[ "trig_EF_trigmuonef_EF_mu20it_tight" ] = &trig_EF_trigmuonef_EF_mu20it_tight;
       fHandles[ "trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight" ] = &trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight;
       fHandles[ "trig_EF_trigmuonef_EF_mu24" ] = &trig_EF_trigmuonef_EF_mu24;
-      fHandles[ "trig_EF_trigmuonef_EF_mu24_g20vh_loose" ] = &trig_EF_trigmuonef_EF_mu24_g20vh_loose;
-      fHandles[ "trig_EF_trigmuonef_EF_mu24_g20vh_medium" ] = &trig_EF_trigmuonef_EF_mu24_g20vh_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu24_g20vh_loose" ] = &trig_EF_trigmuonef_EF_mu24_g20vh_loose;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu24_g20vh_medium" ] = &trig_EF_trigmuonef_EF_mu24_g20vh_medium;
       fHandles[ "trig_EF_trigmuonef_EF_mu24_j65_a4tchad" ] = &trig_EF_trigmuonef_EF_mu24_j65_a4tchad;
       fHandles[ "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40" ] = &trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40;
       fHandles[ "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw" ] = &trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw;
@@ -1253,8 +1253,8 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose" ] = &trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose;
       fHandles[ "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched" ] = &trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched;
       fHandles[ "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched" ] = &trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium" ] = &trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium" ] = &trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux;
@@ -1262,11 +1262,11 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_DiMu;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
       fHandles[ "trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic" ] = &trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic;
       fHandles[ "trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic" ] = &trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic;
       fHandles[ "trig_EF_trigmuonef_EF_mu4_empty_NoAlg" ] = &trig_EF_trigmuonef_EF_mu4_empty_NoAlg;
@@ -1276,9 +1276,9 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_mu6" ] = &trig_EF_trigmuonef_EF_mu6;
       fHandles[ "trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1" ] = &trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1;
       fHandles[ "trig_EF_trigmuonef_EF_mu60_slow_tight1" ] = &trig_EF_trigmuonef_EF_mu60_slow_tight1;
-      fHandles[ "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight" ] = &trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight" ] = &trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
       fHandles[ "trig_EF_trigmuonef_EF_mu6_MSonly" ] = &trig_EF_trigmuonef_EF_mu6_MSonly;
-      fHandles[ "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose" ] = &trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose" ] = &trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
       fHandles[ "trig_EF_trigmuonef_EF_mu8" ] = &trig_EF_trigmuonef_EF_mu8;
       fHandles[ "trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS" ] = &trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS;
       fHandles[ "trig_EF_trigmuonef_track_MuonType" ] = &trig_EF_trigmuonef_track_MuonType;
@@ -1290,27 +1290,27 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_track_SA_eta" ] = &trig_EF_trigmuonef_track_SA_eta;
       fHandles[ "trig_EF_trigmuonef_track_SA_phi" ] = &trig_EF_trigmuonef_track_SA_phi;
       fHandles[ "trig_EF_trigmuonef_track_SA_hasSA" ] = &trig_EF_trigmuonef_track_SA_hasSA;
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
       fHandles[ "trig_EF_el_EF_e12Tvh_loose1_mu8" ] = &trig_EF_el_EF_e12Tvh_loose1_mu8;
       fHandles[ "trig_EF_el_EF_e12Tvh_medium1_mu10" ] = &trig_EF_el_EF_e12Tvh_medium1_mu10;
       fHandles[ "trig_EF_el_EF_e12Tvh_medium1_mu6" ] = &trig_EF_el_EF_e12Tvh_medium1_mu6;
-      fHandles[ "trig_EF_el_EF_e18_loose1_g35_loose" ] = &trig_EF_el_EF_e18_loose1_g35_loose;
-      fHandles[ "trig_EF_el_EF_e18_loose1_g35_medium" ] = &trig_EF_el_EF_e18_loose1_g35_medium;
-      fHandles[ "trig_EF_el_EF_e18_medium1_g25_medium" ] = &trig_EF_el_EF_e18_medium1_g25_medium;
-      fHandles[ "trig_EF_el_EF_e18_medium1_g35_loose" ] = &trig_EF_el_EF_e18_medium1_g35_loose;
-      fHandles[ "trig_EF_el_EF_e18_medium1_g35_medium" ] = &trig_EF_el_EF_e18_medium1_g35_medium;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_loose1_g35_loose" ] = &trig_EF_el_EF_e18_loose1_g35_loose;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_loose1_g35_medium" ] = &trig_EF_el_EF_e18_loose1_g35_medium;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_medium1_g25_medium" ] = &trig_EF_el_EF_e18_medium1_g25_medium;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_medium1_g35_loose" ] = &trig_EF_el_EF_e18_medium1_g35_loose;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_medium1_g35_medium" ] = &trig_EF_el_EF_e18_medium1_g35_medium;
       fHandles[ "trig_EF_el_EF_e22vh_medium1_IdScan" ] = &trig_EF_el_EF_e22vh_medium1_IdScan;
       fHandles[ "trig_EF_el_EF_e22vh_medium1_SiTrk" ] = &trig_EF_el_EF_e22vh_medium1_SiTrk;
       fHandles[ "trig_EF_el_EF_e22vh_medium1_TRT" ] = &trig_EF_el_EF_e22vh_medium1_TRT;
       fHandles[ "trig_EF_el_EF_e45_etcut" ] = &trig_EF_el_EF_e45_etcut;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT;
       fHandles[ "trig_EF_el_EF_e60_etcut" ] = &trig_EF_el_EF_e60_etcut;
-    
+
    }
 
    /**
@@ -1323,7 +1323,7 @@ namespace D3PDReader {
    TriggerVecD3PDObject::TriggerVecD3PDObject( const char* prefix )
       : TObject(),
         trig_EF_el_EF_2e12Tvh_loose1( this, ::TString( prefix ) + "trig_EF_el_EF_2e12Tvh_loose1", 0 ),
-        trig_EF_el_EF_2e5_tight1_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_2e5_tight1_Jpsi", 0 ),
+// -- slimmed --         trig_EF_el_EF_2e5_tight1_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_2e5_tight1_Jpsi", 0 ),
         trig_EF_el_EF_2e7T_loose1_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_2e7T_loose1_mu6", 0 ),
         trig_EF_el_EF_2e7T_medium1_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_2e7T_medium1_mu6", 0 ),
         trig_EF_el_EF_e11_etcut( this, ::TString( prefix ) + "trig_EF_el_EF_e11_etcut", 0 ),
@@ -1333,18 +1333,18 @@ namespace D3PDReader {
         trig_EF_el_EF_e12Tvh_medium1_mu8( this, ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu8", 0 ),
         trig_EF_el_EF_e13_etcutTrk_xs60( this, ::TString( prefix ) + "trig_EF_el_EF_e13_etcutTrk_xs60", 0 ),
         trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20( this, ::TString( prefix ) + "trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20", 0 ),
-        trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi", 0 ),
+// -- slimmed --         trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi", 0 ),
         trig_EF_el_EF_e15vh_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e15vh_medium1", 0 ),
         trig_EF_el_EF_e18_loose1( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1", 0 ),
-        trig_EF_el_EF_e18_loose1_g25_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g25_medium", 0 ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g25_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g25_medium", 0 ),
         trig_EF_el_EF_e18_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1", 0 ),
-        trig_EF_el_EF_e18_medium1_g25_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_loose", 0 ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g25_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_loose", 0 ),
         trig_EF_el_EF_e18vh_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e18vh_medium1", 0 ),
         trig_EF_el_EF_e18vh_medium1_2e7T_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e18vh_medium1_2e7T_medium1", 0 ),
         trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20( this, ::TString( prefix ) + "trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20", 0 ),
         trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20( this, ::TString( prefix ) + "trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20", 0 ),
-        trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi( this, ::TString( prefix ) + "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi", 0 ),
-        trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi( this, ::TString( prefix ) + "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi", 0 ),
+// -- slimmed -- // -- slimmed --         trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi( this, ::TString( prefix ) + "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi", 0 ),
+// -- slimmed -- // -- slimmed --         trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi( this, ::TString( prefix ) + "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi", 0 ),
         trig_EF_el_EF_e22vh_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose", 0 ),
         trig_EF_el_EF_e22vh_loose0( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose0", 0 ),
         trig_EF_el_EF_e22vh_loose1( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose1", 0 ),
@@ -1373,18 +1373,18 @@ namespace D3PDReader {
         trig_EF_el_EF_e24vhi_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e24vhi_medium1", 0 ),
         trig_EF_el_EF_e45_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e45_medium1", 0 ),
         trig_EF_el_EF_e5_tight1( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1", 0 ),
-        trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi", 0 ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi", 0 ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB", 0 ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC", 0 ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi", 0 ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi", 0 ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB", 0 ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC", 0 ),
         trig_EF_el_EF_e5_tight1_e5_NoCut( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e5_NoCut", 0 ),
-        trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi", 0 ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi", 0 ),
         trig_EF_el_EF_e60_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e60_medium1", 0 ),
         trig_EF_el_EF_e7T_loose1( this, ::TString( prefix ) + "trig_EF_el_EF_e7T_loose1", 0 ),
         trig_EF_el_EF_e7T_loose1_2mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e7T_loose1_2mu6", 0 ),
         trig_EF_el_EF_e7T_medium1( this, ::TString( prefix ) + "trig_EF_el_EF_e7T_medium1", 0 ),
         trig_EF_el_EF_e7T_medium1_2mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e7T_medium1_2mu6", 0 ),
-        trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi", 0 ),
+// -- slimmed --         trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi", 0 ),
         trig_EF_el_EF_eb_physics( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics", 0 ),
         trig_EF_el_EF_eb_physics_empty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_empty", 0 ),
         trig_EF_el_EF_eb_physics_firstempty( this, ::TString( prefix ) + "trig_EF_el_EF_eb_physics_firstempty", 0 ),
@@ -1447,7 +1447,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
         trig_EF_trigmuonef_EF_2mu10( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10", 0 ),
-        trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose", 0 ),
         trig_EF_trigmuonef_EF_2mu13( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13", 0 ),
         trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut", 0 ),
         trig_EF_trigmuonef_EF_2mu13_l2muonSA( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13_l2muonSA", 0 ),
@@ -1468,13 +1468,13 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1", 0 ),
         trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA", 0 ),
         trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS", 0 ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu", 0 ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel", 0 ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly", 0 ),
-        trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut", 0 ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_upsimumu", 0 ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_upsimumu_Barrel", 0 ),
-        trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_upsimumu_BarrelOnly", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_upsimumu", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_upsimumu_Barrel", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_upsimumu_BarrelOnly", 0 ),
         trig_EF_trigmuonef_EF_2mu4T_xe60( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_xe60", 0 ),
         trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw", 0 ),
         trig_EF_trigmuonef_EF_2mu6( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6", 0 ),
@@ -1484,8 +1484,8 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu6_DiMu_DY20( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_DY20", 0 ),
         trig_EF_trigmuonef_EF_2mu6_DiMu_DY25( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_DY25", 0 ),
         trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS", 0 ),
-        trig_EF_trigmuonef_EF_2mu6_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Jpsimumu", 0 ),
-        trig_EF_trigmuonef_EF_2mu6_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_upsimumu", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu6_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Jpsimumu", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_2mu6_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_upsimumu", 0 ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY", 0 ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad", 0 ),
         trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS", 0 ),
@@ -1493,19 +1493,19 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_2mu8_EFxe30( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu8_EFxe30", 0 ),
         trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw", 0 ),
         trig_EF_trigmuonef_EF_mu10( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10", 0 ),
-        trig_EF_trigmuonef_EF_mu10_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Jpsimumu", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Jpsimumu", 0 ),
         trig_EF_trigmuonef_EF_mu10_MSonly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_MSonly", 0 ),
-        trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_upsimumu_tight_FS", 0 ),
-        trig_EF_trigmuonef_EF_mu10i_g10_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium", 0 ),
-        trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass", 0 ),
-        trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium", 0 ),
-        trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_upsimumu_tight_FS", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_g10_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass", 0 ),
         trig_EF_trigmuonef_EF_mu11_empty_NoAlg( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu11_empty_NoAlg", 0 ),
         trig_EF_trigmuonef_EF_mu13( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu13", 0 ),
         trig_EF_trigmuonef_EF_mu15( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu15", 0 ),
         trig_EF_trigmuonef_EF_mu18( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18", 0 ),
-        trig_EF_trigmuonef_EF_mu18_2g10_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_loose", 0 ),
-        trig_EF_trigmuonef_EF_mu18_2g10_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_medium", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu18_2g10_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_loose", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu18_2g10_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_medium", 0 ),
         trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight", 0 ),
         trig_EF_trigmuonef_EF_mu18_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_medium", 0 ),
         trig_EF_trigmuonef_EF_mu18_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight", 0 ),
@@ -1513,14 +1513,14 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu18_tight_e7_medium1( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight_e7_medium1", 0 ),
         trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS", 0 ),
         trig_EF_trigmuonef_EF_mu18i4_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18i4_tight", 0 ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass", 0 ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium", 0 ),
-        trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass", 0 ),
         trig_EF_trigmuonef_EF_mu20it_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20it_tight", 0 ),
         trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight", 0 ),
         trig_EF_trigmuonef_EF_mu24( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24", 0 ),
-        trig_EF_trigmuonef_EF_mu24_g20vh_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_loose", 0 ),
-        trig_EF_trigmuonef_EF_mu24_g20vh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_medium", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu24_g20vh_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_loose", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu24_g20vh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_medium", 0 ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad", 0 ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40", 0 ),
         trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw", 0 ),
@@ -1578,8 +1578,8 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose", 0 ),
         trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched", 0 ),
         trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched", 0 ),
-        trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium", 0 ),
-        trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass", 0 ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu", 0 ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel", 0 ),
         trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux", 0 ),
@@ -1587,11 +1587,11 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu", 0 ),
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel", 0 ),
         trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS", 0 ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu", 0 ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel", 0 ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut", 0 ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_upsimumu", 0 ),
-        trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_upsimumu_Barrel", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_upsimumu", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_upsimumu_Barrel", 0 ),
         trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic", 0 ),
         trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic", 0 ),
         trig_EF_trigmuonef_EF_mu4_empty_NoAlg( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_empty_NoAlg", 0 ),
@@ -1601,9 +1601,9 @@ namespace D3PDReader {
         trig_EF_trigmuonef_EF_mu6( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6", 0 ),
         trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1", 0 ),
         trig_EF_trigmuonef_EF_mu60_slow_tight1( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu60_slow_tight1", 0 ),
-        trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight", 0 ),
         trig_EF_trigmuonef_EF_mu6_MSonly( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_MSonly", 0 ),
-        trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose", 0 ),
+// -- slimmed --         trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose", 0 ),
         trig_EF_trigmuonef_EF_mu8( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu8", 0 ),
         trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS( this, ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS", 0 ),
         trig_EF_trigmuonef_track_MuonType( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_MuonType", 0 ),
@@ -1615,33 +1615,33 @@ namespace D3PDReader {
         trig_EF_trigmuonef_track_SA_eta( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_eta", 0 ),
         trig_EF_trigmuonef_track_SA_phi( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_phi", 0 ),
         trig_EF_trigmuonef_track_SA_hasSA( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_hasSA", 0 ),
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
         trig_EF_el_EF_e12Tvh_loose1_mu8( this, ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_loose1_mu8", 0 ),
         trig_EF_el_EF_e12Tvh_medium1_mu10( this, ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu10", 0 ),
         trig_EF_el_EF_e12Tvh_medium1_mu6( this, ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu6", 0 ),
-        trig_EF_el_EF_e18_loose1_g35_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_loose", 0 ),
-        trig_EF_el_EF_e18_loose1_g35_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_medium", 0 ),
-        trig_EF_el_EF_e18_medium1_g25_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_medium", 0 ),
-        trig_EF_el_EF_e18_medium1_g35_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_loose", 0 ),
-        trig_EF_el_EF_e18_medium1_g35_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_medium", 0 ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g35_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_loose", 0 ),
+// -- slimmed --         trig_EF_el_EF_e18_loose1_g35_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_medium", 0 ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g25_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_medium", 0 ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g35_loose( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_loose", 0 ),
+// -- slimmed --         trig_EF_el_EF_e18_medium1_g35_medium( this, ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_medium", 0 ),
         trig_EF_el_EF_e22vh_medium1_IdScan( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_IdScan", 0 ),
         trig_EF_el_EF_e22vh_medium1_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_SiTrk", 0 ),
         trig_EF_el_EF_e22vh_medium1_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_TRT", 0 ),
         trig_EF_el_EF_e45_etcut( this, ::TString( prefix ) + "trig_EF_el_EF_e45_etcut", 0 ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan", 0 ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk", 0 ),
-        trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT", 0 ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan", 0 ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk", 0 ),
+// -- slimmed --         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT( this, ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT", 0 ),
         trig_EF_el_EF_e60_etcut( this, ::TString( prefix ) + "trig_EF_el_EF_e60_etcut", 0 ),
-    
+
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) {
 
       fHandles[ "trig_EF_el_EF_2e12Tvh_loose1" ] = &trig_EF_el_EF_2e12Tvh_loose1;
-      fHandles[ "trig_EF_el_EF_2e5_tight1_Jpsi" ] = &trig_EF_el_EF_2e5_tight1_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_2e5_tight1_Jpsi" ] = &trig_EF_el_EF_2e5_tight1_Jpsi;
       fHandles[ "trig_EF_el_EF_2e7T_loose1_mu6" ] = &trig_EF_el_EF_2e7T_loose1_mu6;
       fHandles[ "trig_EF_el_EF_2e7T_medium1_mu6" ] = &trig_EF_el_EF_2e7T_medium1_mu6;
       fHandles[ "trig_EF_el_EF_e11_etcut" ] = &trig_EF_el_EF_e11_etcut;
@@ -1651,18 +1651,18 @@ namespace D3PDReader {
       fHandles[ "trig_EF_el_EF_e12Tvh_medium1_mu8" ] = &trig_EF_el_EF_e12Tvh_medium1_mu8;
       fHandles[ "trig_EF_el_EF_e13_etcutTrk_xs60" ] = &trig_EF_el_EF_e13_etcutTrk_xs60;
       fHandles[ "trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20" ] = &trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20;
-      fHandles[ "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
       fHandles[ "trig_EF_el_EF_e15vh_medium1" ] = &trig_EF_el_EF_e15vh_medium1;
       fHandles[ "trig_EF_el_EF_e18_loose1" ] = &trig_EF_el_EF_e18_loose1;
-      fHandles[ "trig_EF_el_EF_e18_loose1_g25_medium" ] = &trig_EF_el_EF_e18_loose1_g25_medium;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_loose1_g25_medium" ] = &trig_EF_el_EF_e18_loose1_g25_medium;
       fHandles[ "trig_EF_el_EF_e18_medium1" ] = &trig_EF_el_EF_e18_medium1;
-      fHandles[ "trig_EF_el_EF_e18_medium1_g25_loose" ] = &trig_EF_el_EF_e18_medium1_g25_loose;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_medium1_g25_loose" ] = &trig_EF_el_EF_e18_medium1_g25_loose;
       fHandles[ "trig_EF_el_EF_e18vh_medium1" ] = &trig_EF_el_EF_e18vh_medium1;
       fHandles[ "trig_EF_el_EF_e18vh_medium1_2e7T_medium1" ] = &trig_EF_el_EF_e18vh_medium1_2e7T_medium1;
       fHandles[ "trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20" ] = &trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20;
       fHandles[ "trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20" ] = &trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20;
-      fHandles[ "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi" ] = &trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
-      fHandles[ "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi" ] = &trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       fHandles[ "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi" ] = &trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
+// -- slimmed -- // -- slimmed --       fHandles[ "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi" ] = &trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi;
       fHandles[ "trig_EF_el_EF_e22vh_loose" ] = &trig_EF_el_EF_e22vh_loose;
       fHandles[ "trig_EF_el_EF_e22vh_loose0" ] = &trig_EF_el_EF_e22vh_loose0;
       fHandles[ "trig_EF_el_EF_e22vh_loose1" ] = &trig_EF_el_EF_e22vh_loose1;
@@ -1691,18 +1691,18 @@ namespace D3PDReader {
       fHandles[ "trig_EF_el_EF_e24vhi_medium1" ] = &trig_EF_el_EF_e24vhi_medium1;
       fHandles[ "trig_EF_el_EF_e45_medium1" ] = &trig_EF_el_EF_e45_medium1;
       fHandles[ "trig_EF_el_EF_e5_tight1" ] = &trig_EF_el_EF_e5_tight1;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
       fHandles[ "trig_EF_el_EF_e5_tight1_e5_NoCut" ] = &trig_EF_el_EF_e5_tight1_e5_NoCut;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi" ] = &trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi;
       fHandles[ "trig_EF_el_EF_e60_medium1" ] = &trig_EF_el_EF_e60_medium1;
       fHandles[ "trig_EF_el_EF_e7T_loose1" ] = &trig_EF_el_EF_e7T_loose1;
       fHandles[ "trig_EF_el_EF_e7T_loose1_2mu6" ] = &trig_EF_el_EF_e7T_loose1_2mu6;
       fHandles[ "trig_EF_el_EF_e7T_medium1" ] = &trig_EF_el_EF_e7T_medium1;
       fHandles[ "trig_EF_el_EF_e7T_medium1_2mu6" ] = &trig_EF_el_EF_e7T_medium1_2mu6;
-      fHandles[ "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi" ] = &trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
       fHandles[ "trig_EF_el_EF_eb_physics" ] = &trig_EF_el_EF_eb_physics;
       fHandles[ "trig_EF_el_EF_eb_physics_empty" ] = &trig_EF_el_EF_eb_physics_empty;
       fHandles[ "trig_EF_el_EF_eb_physics_firstempty" ] = &trig_EF_el_EF_eb_physics_firstempty;
@@ -1765,7 +1765,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
       fHandles[ "trig_EF_trigmuonef_EF_2mu10" ] = &trig_EF_trigmuonef_EF_2mu10;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose" ] = &trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose" ] = &trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
       fHandles[ "trig_EF_trigmuonef_EF_2mu13" ] = &trig_EF_trigmuonef_EF_2mu13;
       fHandles[ "trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut;
       fHandles[ "trig_EF_trigmuonef_EF_2mu13_l2muonSA" ] = &trig_EF_trigmuonef_EF_2mu13_l2muonSA;
@@ -1786,13 +1786,13 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1" ] = &trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1;
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA" ] = &trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA;
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS" ] = &trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly" ] = &trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_xe60" ] = &trig_EF_trigmuonef_EF_2mu4T_xe60;
       fHandles[ "trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw" ] = &trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6" ] = &trig_EF_trigmuonef_EF_2mu6;
@@ -1802,8 +1802,8 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_2mu6_DiMu_DY20" ] = &trig_EF_trigmuonef_EF_2mu6_DiMu_DY20;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6_DiMu_DY25" ] = &trig_EF_trigmuonef_EF_2mu6_DiMu_DY25;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS" ] = &trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu6_Jpsimumu" ] = &trig_EF_trigmuonef_EF_2mu6_Jpsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_2mu6_Upsimumu" ] = &trig_EF_trigmuonef_EF_2mu6_Upsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu6_Jpsimumu" ] = &trig_EF_trigmuonef_EF_2mu6_Jpsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_2mu6_Upsimumu" ] = &trig_EF_trigmuonef_EF_2mu6_Upsimumu;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY" ] = &trig_EF_trigmuonef_EF_2mu6i_DiMu_DY;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad" ] = &trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad;
       fHandles[ "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS" ] = &trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS;
@@ -1811,19 +1811,19 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_2mu8_EFxe30" ] = &trig_EF_trigmuonef_EF_2mu8_EFxe30;
       fHandles[ "trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw" ] = &trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw;
       fHandles[ "trig_EF_trigmuonef_EF_mu10" ] = &trig_EF_trigmuonef_EF_mu10;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10_Jpsimumu" ] = &trig_EF_trigmuonef_EF_mu10_Jpsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10_Jpsimumu" ] = &trig_EF_trigmuonef_EF_mu10_Jpsimumu;
       fHandles[ "trig_EF_trigmuonef_EF_mu10_MSonly" ] = &trig_EF_trigmuonef_EF_mu10_MSonly;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS" ] = &trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10i_g10_medium" ] = &trig_EF_trigmuonef_EF_mu10i_g10_medium;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium" ] = &trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
-      fHandles[ "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS" ] = &trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10i_g10_medium" ] = &trig_EF_trigmuonef_EF_mu10i_g10_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium" ] = &trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
       fHandles[ "trig_EF_trigmuonef_EF_mu11_empty_NoAlg" ] = &trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
       fHandles[ "trig_EF_trigmuonef_EF_mu13" ] = &trig_EF_trigmuonef_EF_mu13;
       fHandles[ "trig_EF_trigmuonef_EF_mu15" ] = &trig_EF_trigmuonef_EF_mu15;
       fHandles[ "trig_EF_trigmuonef_EF_mu18" ] = &trig_EF_trigmuonef_EF_mu18;
-      fHandles[ "trig_EF_trigmuonef_EF_mu18_2g10_loose" ] = &trig_EF_trigmuonef_EF_mu18_2g10_loose;
-      fHandles[ "trig_EF_trigmuonef_EF_mu18_2g10_medium" ] = &trig_EF_trigmuonef_EF_mu18_2g10_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu18_2g10_loose" ] = &trig_EF_trigmuonef_EF_mu18_2g10_loose;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu18_2g10_medium" ] = &trig_EF_trigmuonef_EF_mu18_2g10_medium;
       fHandles[ "trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight" ] = &trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
       fHandles[ "trig_EF_trigmuonef_EF_mu18_medium" ] = &trig_EF_trigmuonef_EF_mu18_medium;
       fHandles[ "trig_EF_trigmuonef_EF_mu18_tight" ] = &trig_EF_trigmuonef_EF_mu18_tight;
@@ -1831,14 +1831,14 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_mu18_tight_e7_medium1" ] = &trig_EF_trigmuonef_EF_mu18_tight_e7_medium1;
       fHandles[ "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS" ] = &trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
       fHandles[ "trig_EF_trigmuonef_EF_mu18i4_tight" ] = &trig_EF_trigmuonef_EF_mu18i4_tight;
-      fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass;
-      fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_medium;
-      fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
       fHandles[ "trig_EF_trigmuonef_EF_mu20it_tight" ] = &trig_EF_trigmuonef_EF_mu20it_tight;
       fHandles[ "trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight" ] = &trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight;
       fHandles[ "trig_EF_trigmuonef_EF_mu24" ] = &trig_EF_trigmuonef_EF_mu24;
-      fHandles[ "trig_EF_trigmuonef_EF_mu24_g20vh_loose" ] = &trig_EF_trigmuonef_EF_mu24_g20vh_loose;
-      fHandles[ "trig_EF_trigmuonef_EF_mu24_g20vh_medium" ] = &trig_EF_trigmuonef_EF_mu24_g20vh_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu24_g20vh_loose" ] = &trig_EF_trigmuonef_EF_mu24_g20vh_loose;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu24_g20vh_medium" ] = &trig_EF_trigmuonef_EF_mu24_g20vh_medium;
       fHandles[ "trig_EF_trigmuonef_EF_mu24_j65_a4tchad" ] = &trig_EF_trigmuonef_EF_mu24_j65_a4tchad;
       fHandles[ "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40" ] = &trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40;
       fHandles[ "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw" ] = &trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw;
@@ -1896,8 +1896,8 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose" ] = &trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose;
       fHandles[ "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched" ] = &trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched;
       fHandles[ "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched" ] = &trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium" ] = &trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium" ] = &trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass" ] = &trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux;
@@ -1905,11 +1905,11 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_DiMu;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel;
       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
-      fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel" ] = &trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
       fHandles[ "trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic" ] = &trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic;
       fHandles[ "trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic" ] = &trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic;
       fHandles[ "trig_EF_trigmuonef_EF_mu4_empty_NoAlg" ] = &trig_EF_trigmuonef_EF_mu4_empty_NoAlg;
@@ -1919,9 +1919,9 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_EF_mu6" ] = &trig_EF_trigmuonef_EF_mu6;
       fHandles[ "trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1" ] = &trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1;
       fHandles[ "trig_EF_trigmuonef_EF_mu60_slow_tight1" ] = &trig_EF_trigmuonef_EF_mu60_slow_tight1;
-      fHandles[ "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight" ] = &trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight" ] = &trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
       fHandles[ "trig_EF_trigmuonef_EF_mu6_MSonly" ] = &trig_EF_trigmuonef_EF_mu6_MSonly;
-      fHandles[ "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose" ] = &trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
+// -- slimmed --       fHandles[ "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose" ] = &trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
       fHandles[ "trig_EF_trigmuonef_EF_mu8" ] = &trig_EF_trigmuonef_EF_mu8;
       fHandles[ "trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS" ] = &trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS;
       fHandles[ "trig_EF_trigmuonef_track_MuonType" ] = &trig_EF_trigmuonef_track_MuonType;
@@ -1933,27 +1933,27 @@ namespace D3PDReader {
       fHandles[ "trig_EF_trigmuonef_track_SA_eta" ] = &trig_EF_trigmuonef_track_SA_eta;
       fHandles[ "trig_EF_trigmuonef_track_SA_phi" ] = &trig_EF_trigmuonef_track_SA_phi;
       fHandles[ "trig_EF_trigmuonef_track_SA_hasSA" ] = &trig_EF_trigmuonef_track_SA_hasSA;
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
       fHandles[ "trig_EF_el_EF_e12Tvh_loose1_mu8" ] = &trig_EF_el_EF_e12Tvh_loose1_mu8;
       fHandles[ "trig_EF_el_EF_e12Tvh_medium1_mu10" ] = &trig_EF_el_EF_e12Tvh_medium1_mu10;
       fHandles[ "trig_EF_el_EF_e12Tvh_medium1_mu6" ] = &trig_EF_el_EF_e12Tvh_medium1_mu6;
-      fHandles[ "trig_EF_el_EF_e18_loose1_g35_loose" ] = &trig_EF_el_EF_e18_loose1_g35_loose;
-      fHandles[ "trig_EF_el_EF_e18_loose1_g35_medium" ] = &trig_EF_el_EF_e18_loose1_g35_medium;
-      fHandles[ "trig_EF_el_EF_e18_medium1_g25_medium" ] = &trig_EF_el_EF_e18_medium1_g25_medium;
-      fHandles[ "trig_EF_el_EF_e18_medium1_g35_loose" ] = &trig_EF_el_EF_e18_medium1_g35_loose;
-      fHandles[ "trig_EF_el_EF_e18_medium1_g35_medium" ] = &trig_EF_el_EF_e18_medium1_g35_medium;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_loose1_g35_loose" ] = &trig_EF_el_EF_e18_loose1_g35_loose;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_loose1_g35_medium" ] = &trig_EF_el_EF_e18_loose1_g35_medium;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_medium1_g25_medium" ] = &trig_EF_el_EF_e18_medium1_g25_medium;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_medium1_g35_loose" ] = &trig_EF_el_EF_e18_medium1_g35_loose;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e18_medium1_g35_medium" ] = &trig_EF_el_EF_e18_medium1_g35_medium;
       fHandles[ "trig_EF_el_EF_e22vh_medium1_IdScan" ] = &trig_EF_el_EF_e22vh_medium1_IdScan;
       fHandles[ "trig_EF_el_EF_e22vh_medium1_SiTrk" ] = &trig_EF_el_EF_e22vh_medium1_SiTrk;
       fHandles[ "trig_EF_el_EF_e22vh_medium1_TRT" ] = &trig_EF_el_EF_e22vh_medium1_TRT;
       fHandles[ "trig_EF_el_EF_e45_etcut" ] = &trig_EF_el_EF_e45_etcut;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
-      fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk;
+// -- slimmed --       fHandles[ "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT" ] = &trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT;
       fHandles[ "trig_EF_el_EF_e60_etcut" ] = &trig_EF_el_EF_e60_etcut;
-    
+
    }
 
    /**
@@ -1970,7 +1970,7 @@ namespace D3PDReader {
    void TriggerVecD3PDObject::SetPrefix( const char* prefix ) {
 
       trig_EF_el_EF_2e12Tvh_loose1.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e12Tvh_loose1" );
-      trig_EF_el_EF_2e5_tight1_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e5_tight1_Jpsi" );
+// -- slimmed --       trig_EF_el_EF_2e5_tight1_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e5_tight1_Jpsi" );
       trig_EF_el_EF_2e7T_loose1_mu6.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e7T_loose1_mu6" );
       trig_EF_el_EF_2e7T_medium1_mu6.SetName( ::TString( prefix ) + "trig_EF_el_EF_2e7T_medium1_mu6" );
       trig_EF_el_EF_e11_etcut.SetName( ::TString( prefix ) + "trig_EF_el_EF_e11_etcut" );
@@ -1980,18 +1980,18 @@ namespace D3PDReader {
       trig_EF_el_EF_e12Tvh_medium1_mu8.SetName( ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu8" );
       trig_EF_el_EF_e13_etcutTrk_xs60.SetName( ::TString( prefix ) + "trig_EF_el_EF_e13_etcutTrk_xs60" );
       trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20.SetName( ::TString( prefix ) + "trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20" );
-      trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi" );
+// -- slimmed --       trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi" );
       trig_EF_el_EF_e15vh_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e15vh_medium1" );
       trig_EF_el_EF_e18_loose1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_loose1" );
-      trig_EF_el_EF_e18_loose1_g25_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g25_medium" );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g25_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g25_medium" );
       trig_EF_el_EF_e18_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1" );
-      trig_EF_el_EF_e18_medium1_g25_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_loose" );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g25_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_loose" );
       trig_EF_el_EF_e18vh_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18vh_medium1" );
       trig_EF_el_EF_e18vh_medium1_2e7T_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18vh_medium1_2e7T_medium1" );
       trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20" );
       trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20" );
-      trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi" );
-      trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi" );
+// -- slimmed -- // -- slimmed --       trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi" );
+// -- slimmed -- // -- slimmed --       trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi" );
       trig_EF_el_EF_e22vh_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose" );
       trig_EF_el_EF_e22vh_loose0.SetName( ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose0" );
       trig_EF_el_EF_e22vh_loose1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e22vh_loose1" );
@@ -2020,18 +2020,18 @@ namespace D3PDReader {
       trig_EF_el_EF_e24vhi_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e24vhi_medium1" );
       trig_EF_el_EF_e45_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e45_medium1" );
       trig_EF_el_EF_e5_tight1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1" );
-      trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi" );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi" );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB" );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC" );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi" );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi" );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB" );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC" );
       trig_EF_el_EF_e5_tight1_e5_NoCut.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e5_NoCut" );
-      trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi" );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi" );
       trig_EF_el_EF_e60_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e60_medium1" );
       trig_EF_el_EF_e7T_loose1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e7T_loose1" );
       trig_EF_el_EF_e7T_loose1_2mu6.SetName( ::TString( prefix ) + "trig_EF_el_EF_e7T_loose1_2mu6" );
       trig_EF_el_EF_e7T_medium1.SetName( ::TString( prefix ) + "trig_EF_el_EF_e7T_medium1" );
       trig_EF_el_EF_e7T_medium1_2mu6.SetName( ::TString( prefix ) + "trig_EF_el_EF_e7T_medium1_2mu6" );
-      trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi" );
+// -- slimmed --       trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi" );
       trig_EF_el_EF_eb_physics.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics" );
       trig_EF_el_EF_eb_physics_empty.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics_empty" );
       trig_EF_el_EF_eb_physics_firstempty.SetName( ::TString( prefix ) + "trig_EF_el_EF_eb_physics_firstempty" );
@@ -2094,7 +2094,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
       trig_EF_trigmuonef_EF_2mu10.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10" );
-      trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose" );
       trig_EF_trigmuonef_EF_2mu13.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13" );
       trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut" );
       trig_EF_trigmuonef_EF_2mu13_l2muonSA.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu13_l2muonSA" );
@@ -2115,13 +2115,13 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1" );
       trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA" );
       trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS" );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu" );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel" );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly" );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut" );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu" );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel" );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly" );
       trig_EF_trigmuonef_EF_2mu4T_xe60.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_xe60" );
       trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw" );
       trig_EF_trigmuonef_EF_2mu6.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6" );
@@ -2131,8 +2131,8 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu6_DiMu_DY20.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_DY20" );
       trig_EF_trigmuonef_EF_2mu6_DiMu_DY25.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_DY25" );
       trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS" );
-      trig_EF_trigmuonef_EF_2mu6_Jpsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Jpsimumu" );
-      trig_EF_trigmuonef_EF_2mu6_Upsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Upsimumu" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu6_Jpsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Jpsimumu" );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu6_Upsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6_Upsimumu" );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY" );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad" );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS" );
@@ -2140,19 +2140,19 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu8_EFxe30.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu8_EFxe30" );
       trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw" );
       trig_EF_trigmuonef_EF_mu10.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10" );
-      trig_EF_trigmuonef_EF_mu10_Jpsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Jpsimumu" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10_Jpsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Jpsimumu" );
       trig_EF_trigmuonef_EF_mu10_MSonly.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_MSonly" );
-      trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS" );
-      trig_EF_trigmuonef_EF_mu10i_g10_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium" );
-      trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass" );
-      trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium" );
-      trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_g10_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass" );
       trig_EF_trigmuonef_EF_mu11_empty_NoAlg.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu11_empty_NoAlg" );
       trig_EF_trigmuonef_EF_mu13.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu13" );
       trig_EF_trigmuonef_EF_mu15.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu15" );
       trig_EF_trigmuonef_EF_mu18.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18" );
-      trig_EF_trigmuonef_EF_mu18_2g10_loose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_loose" );
-      trig_EF_trigmuonef_EF_mu18_2g10_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_medium" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu18_2g10_loose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_loose" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu18_2g10_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_2g10_medium" );
       trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight" );
       trig_EF_trigmuonef_EF_mu18_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_medium" );
       trig_EF_trigmuonef_EF_mu18_tight.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight" );
@@ -2160,14 +2160,14 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu18_tight_e7_medium1.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight_e7_medium1" );
       trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS" );
       trig_EF_trigmuonef_EF_mu18i4_tight.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu18i4_tight" );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass" );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium" );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass" );
       trig_EF_trigmuonef_EF_mu20it_tight.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu20it_tight" );
       trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight" );
       trig_EF_trigmuonef_EF_mu24.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24" );
-      trig_EF_trigmuonef_EF_mu24_g20vh_loose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_loose" );
-      trig_EF_trigmuonef_EF_mu24_g20vh_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_medium" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu24_g20vh_loose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_loose" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu24_g20vh_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_g20vh_medium" );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad" );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40" );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw" );
@@ -2225,8 +2225,8 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose" );
       trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched" );
       trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched" );
-      trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium" );
-      trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass" );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu" );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel" );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux" );
@@ -2234,11 +2234,11 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu" );
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel" );
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS" );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu" );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel" );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut" );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu" );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel" );
       trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic" );
       trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic" );
       trig_EF_trigmuonef_EF_mu4_empty_NoAlg.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu4_empty_NoAlg" );
@@ -2248,9 +2248,9 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu6.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6" );
       trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1" );
       trig_EF_trigmuonef_EF_mu60_slow_tight1.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu60_slow_tight1" );
-      trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight" );
       trig_EF_trigmuonef_EF_mu6_MSonly.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_MSonly" );
-      trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose" );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose" );
       trig_EF_trigmuonef_EF_mu8.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu8" );
       trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS" );
       trig_EF_trigmuonef_track_MuonType.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_track_MuonType" );
@@ -2262,27 +2262,27 @@ namespace D3PDReader {
       trig_EF_trigmuonef_track_SA_eta.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_eta" );
       trig_EF_trigmuonef_track_SA_phi.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_phi" );
       trig_EF_trigmuonef_track_SA_hasSA.SetName( ::TString( prefix ) + "trig_EF_trigmuonef_track_SA_hasSA" );
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
       trig_EF_el_EF_e12Tvh_loose1_mu8.SetName( ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_loose1_mu8" );
       trig_EF_el_EF_e12Tvh_medium1_mu10.SetName( ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu10" );
       trig_EF_el_EF_e12Tvh_medium1_mu6.SetName( ::TString( prefix ) + "trig_EF_el_EF_e12Tvh_medium1_mu6" );
-      trig_EF_el_EF_e18_loose1_g35_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_loose" );
-      trig_EF_el_EF_e18_loose1_g35_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_medium" );
-      trig_EF_el_EF_e18_medium1_g25_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_medium" );
-      trig_EF_el_EF_e18_medium1_g35_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_loose" );
-      trig_EF_el_EF_e18_medium1_g35_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_medium" );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g35_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_loose" );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g35_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_loose1_g35_medium" );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g25_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g25_medium" );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g35_loose.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_loose" );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g35_medium.SetName( ::TString( prefix ) + "trig_EF_el_EF_e18_medium1_g35_medium" );
       trig_EF_el_EF_e22vh_medium1_IdScan.SetName( ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_IdScan" );
       trig_EF_el_EF_e22vh_medium1_SiTrk.SetName( ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_SiTrk" );
       trig_EF_el_EF_e22vh_medium1_TRT.SetName( ::TString( prefix ) + "trig_EF_el_EF_e22vh_medium1_TRT" );
       trig_EF_el_EF_e45_etcut.SetName( ::TString( prefix ) + "trig_EF_el_EF_e45_etcut" );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan" );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk" );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT" );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan" );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk" );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.SetName( ::TString( prefix ) + "trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT" );
       trig_EF_el_EF_e60_etcut.SetName( ::TString( prefix ) + "trig_EF_el_EF_e60_etcut" );
-    
+
       return;
    }
 
@@ -2302,7 +2302,7 @@ namespace D3PDReader {
       }
 
       trig_EF_el_EF_2e12Tvh_loose1.ReadFrom( tree );
-      trig_EF_el_EF_2e5_tight1_Jpsi.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_2e5_tight1_Jpsi.ReadFrom( tree );
       trig_EF_el_EF_2e7T_loose1_mu6.ReadFrom( tree );
       trig_EF_el_EF_2e7T_medium1_mu6.ReadFrom( tree );
       trig_EF_el_EF_e11_etcut.ReadFrom( tree );
@@ -2312,18 +2312,18 @@ namespace D3PDReader {
       trig_EF_el_EF_e12Tvh_medium1_mu8.ReadFrom( tree );
       trig_EF_el_EF_e13_etcutTrk_xs60.ReadFrom( tree );
       trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20.ReadFrom( tree );
-      trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.ReadFrom( tree );
       trig_EF_el_EF_e15vh_medium1.ReadFrom( tree );
       trig_EF_el_EF_e18_loose1.ReadFrom( tree );
-      trig_EF_el_EF_e18_loose1_g25_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g25_medium.ReadFrom( tree );
       trig_EF_el_EF_e18_medium1.ReadFrom( tree );
-      trig_EF_el_EF_e18_medium1_g25_loose.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g25_loose.ReadFrom( tree );
       trig_EF_el_EF_e18vh_medium1.ReadFrom( tree );
       trig_EF_el_EF_e18vh_medium1_2e7T_medium1.ReadFrom( tree );
       trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20.ReadFrom( tree );
       trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20.ReadFrom( tree );
-      trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.ReadFrom( tree );
-      trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.ReadFrom( tree );
       trig_EF_el_EF_e22vh_loose.ReadFrom( tree );
       trig_EF_el_EF_e22vh_loose0.ReadFrom( tree );
       trig_EF_el_EF_e22vh_loose1.ReadFrom( tree );
@@ -2352,18 +2352,18 @@ namespace D3PDReader {
       trig_EF_el_EF_e24vhi_medium1.ReadFrom( tree );
       trig_EF_el_EF_e45_medium1.ReadFrom( tree );
       trig_EF_el_EF_e5_tight1.ReadFrom( tree );
-      trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.ReadFrom( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.ReadFrom( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.ReadFrom( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.ReadFrom( tree );
       trig_EF_el_EF_e5_tight1_e5_NoCut.ReadFrom( tree );
-      trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.ReadFrom( tree );
       trig_EF_el_EF_e60_medium1.ReadFrom( tree );
       trig_EF_el_EF_e7T_loose1.ReadFrom( tree );
       trig_EF_el_EF_e7T_loose1_2mu6.ReadFrom( tree );
       trig_EF_el_EF_e7T_medium1.ReadFrom( tree );
       trig_EF_el_EF_e7T_medium1_2mu6.ReadFrom( tree );
-      trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.ReadFrom( tree );
       trig_EF_el_EF_eb_physics.ReadFrom( tree );
       trig_EF_el_EF_eb_physics_empty.ReadFrom( tree );
       trig_EF_el_EF_eb_physics_firstempty.ReadFrom( tree );
@@ -2426,7 +2426,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
       trig_EF_trigmuonef_EF_2mu10.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu13.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu13_l2muonSA.ReadFrom( tree );
@@ -2447,13 +2447,13 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu4T_xe60.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu6.ReadFrom( tree );
@@ -2463,8 +2463,8 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu6_DiMu_DY20.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu6_DiMu_DY25.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu6_Jpsimumu.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_2mu6_Upsimumu.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu6_Jpsimumu.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu6_Upsimumu.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS.ReadFrom( tree );
@@ -2472,19 +2472,19 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu8_EFxe30.ReadFrom( tree );
       trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu10.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu10_Jpsimumu.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10_Jpsimumu.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu10_MSonly.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu10i_g10_medium.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_g10_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu11_empty_NoAlg.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu13.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu15.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu18.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu18_2g10_loose.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu18_2g10_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu18_2g10_loose.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu18_2g10_medium.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu18_medium.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu18_tight.ReadFrom( tree );
@@ -2492,14 +2492,14 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu18_tight_e7_medium1.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu18i4_tight.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu20it_tight.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu24.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu24_g20vh_loose.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu24_g20vh_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu24_g20vh_loose.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu24_g20vh_medium.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw.ReadFrom( tree );
@@ -2557,8 +2557,8 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux.ReadFrom( tree );
@@ -2566,11 +2566,11 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu4_empty_NoAlg.ReadFrom( tree );
@@ -2580,9 +2580,9 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu6.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu60_slow_tight1.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu6_MSonly.ReadFrom( tree );
-      trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.ReadFrom( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu8.ReadFrom( tree );
       trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS.ReadFrom( tree );
       trig_EF_trigmuonef_track_MuonType.ReadFrom( tree );
@@ -2594,27 +2594,27 @@ namespace D3PDReader {
       trig_EF_trigmuonef_track_SA_eta.ReadFrom( tree );
       trig_EF_trigmuonef_track_SA_phi.ReadFrom( tree );
       trig_EF_trigmuonef_track_SA_hasSA.ReadFrom( tree );
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
       trig_EF_el_EF_e12Tvh_loose1_mu8.ReadFrom( tree );
       trig_EF_el_EF_e12Tvh_medium1_mu10.ReadFrom( tree );
       trig_EF_el_EF_e12Tvh_medium1_mu6.ReadFrom( tree );
-      trig_EF_el_EF_e18_loose1_g35_loose.ReadFrom( tree );
-      trig_EF_el_EF_e18_loose1_g35_medium.ReadFrom( tree );
-      trig_EF_el_EF_e18_medium1_g25_medium.ReadFrom( tree );
-      trig_EF_el_EF_e18_medium1_g35_loose.ReadFrom( tree );
-      trig_EF_el_EF_e18_medium1_g35_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g35_loose.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g35_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g25_medium.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g35_loose.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g35_medium.ReadFrom( tree );
       trig_EF_el_EF_e22vh_medium1_IdScan.ReadFrom( tree );
       trig_EF_el_EF_e22vh_medium1_SiTrk.ReadFrom( tree );
       trig_EF_el_EF_e22vh_medium1_TRT.ReadFrom( tree );
       trig_EF_el_EF_e45_etcut.ReadFrom( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.ReadFrom( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.ReadFrom( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.ReadFrom( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.ReadFrom( tree );
       trig_EF_el_EF_e60_etcut.ReadFrom( tree );
-    
+
 
       return;
    }
@@ -2629,7 +2629,7 @@ namespace D3PDReader {
    void TriggerVecD3PDObject::WriteTo( TTree* tree ) {
 
       trig_EF_el_EF_2e12Tvh_loose1.WriteTo( tree );
-      trig_EF_el_EF_2e5_tight1_Jpsi.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_2e5_tight1_Jpsi.WriteTo( tree );
       trig_EF_el_EF_2e7T_loose1_mu6.WriteTo( tree );
       trig_EF_el_EF_2e7T_medium1_mu6.WriteTo( tree );
       trig_EF_el_EF_e11_etcut.WriteTo( tree );
@@ -2639,18 +2639,18 @@ namespace D3PDReader {
       trig_EF_el_EF_e12Tvh_medium1_mu8.WriteTo( tree );
       trig_EF_el_EF_e13_etcutTrk_xs60.WriteTo( tree );
       trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20.WriteTo( tree );
-      trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.WriteTo( tree );
       trig_EF_el_EF_e15vh_medium1.WriteTo( tree );
       trig_EF_el_EF_e18_loose1.WriteTo( tree );
-      trig_EF_el_EF_e18_loose1_g25_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g25_medium.WriteTo( tree );
       trig_EF_el_EF_e18_medium1.WriteTo( tree );
-      trig_EF_el_EF_e18_medium1_g25_loose.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g25_loose.WriteTo( tree );
       trig_EF_el_EF_e18vh_medium1.WriteTo( tree );
       trig_EF_el_EF_e18vh_medium1_2e7T_medium1.WriteTo( tree );
       trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20.WriteTo( tree );
       trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20.WriteTo( tree );
-      trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.WriteTo( tree );
-      trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.WriteTo( tree );
       trig_EF_el_EF_e22vh_loose.WriteTo( tree );
       trig_EF_el_EF_e22vh_loose0.WriteTo( tree );
       trig_EF_el_EF_e22vh_loose1.WriteTo( tree );
@@ -2679,18 +2679,18 @@ namespace D3PDReader {
       trig_EF_el_EF_e24vhi_medium1.WriteTo( tree );
       trig_EF_el_EF_e45_medium1.WriteTo( tree );
       trig_EF_el_EF_e5_tight1.WriteTo( tree );
-      trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.WriteTo( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.WriteTo( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.WriteTo( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.WriteTo( tree );
       trig_EF_el_EF_e5_tight1_e5_NoCut.WriteTo( tree );
-      trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.WriteTo( tree );
       trig_EF_el_EF_e60_medium1.WriteTo( tree );
       trig_EF_el_EF_e7T_loose1.WriteTo( tree );
       trig_EF_el_EF_e7T_loose1_2mu6.WriteTo( tree );
       trig_EF_el_EF_e7T_medium1.WriteTo( tree );
       trig_EF_el_EF_e7T_medium1_2mu6.WriteTo( tree );
-      trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.WriteTo( tree );
       trig_EF_el_EF_eb_physics.WriteTo( tree );
       trig_EF_el_EF_eb_physics_empty.WriteTo( tree );
       trig_EF_el_EF_eb_physics_firstempty.WriteTo( tree );
@@ -2754,7 +2754,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
       trig_EF_trigmuonef_EF_2mu10.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu13.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu13_l2muonSA.WriteTo( tree );
@@ -2775,13 +2775,13 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu4T_xe60.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu6.WriteTo( tree );
@@ -2791,8 +2791,8 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu6_DiMu_DY20.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu6_DiMu_DY25.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu6_Jpsimumu.WriteTo( tree );
-      trig_EF_trigmuonef_EF_2mu6_Upsimumu.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu6_Jpsimumu.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu6_Upsimumu.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS.WriteTo( tree );
@@ -2800,19 +2800,19 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu8_EFxe30.WriteTo( tree );
       trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu10.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu10_Jpsimumu.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10_Jpsimumu.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu10_MSonly.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu10i_g10_medium.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_g10_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu11_empty_NoAlg.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu13.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu15.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu18.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu18_2g10_loose.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu18_2g10_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu18_2g10_loose.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu18_2g10_medium.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu18_medium.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu18_tight.WriteTo( tree );
@@ -2820,14 +2820,14 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu18_tight_e7_medium1.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu18i4_tight.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu20it_tight.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu24.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu24_g20vh_loose.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu24_g20vh_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu24_g20vh_loose.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu24_g20vh_medium.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw.WriteTo( tree );
@@ -2885,8 +2885,8 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux.WriteTo( tree );
@@ -2894,11 +2894,11 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu4_empty_NoAlg.WriteTo( tree );
@@ -2908,9 +2908,9 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu6.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu60_slow_tight1.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu6_MSonly.WriteTo( tree );
-      trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.WriteTo( tree );
+// -- slimmed --       trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu8.WriteTo( tree );
       trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS.WriteTo( tree );
       trig_EF_trigmuonef_track_MuonType.WriteTo( tree );
@@ -2922,27 +2922,27 @@ namespace D3PDReader {
       trig_EF_trigmuonef_track_SA_eta.WriteTo( tree );
       trig_EF_trigmuonef_track_SA_phi.WriteTo( tree );
       trig_EF_trigmuonef_track_SA_hasSA.WriteTo( tree );
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
       trig_EF_el_EF_e12Tvh_loose1_mu8.WriteTo( tree );
       trig_EF_el_EF_e12Tvh_medium1_mu10.WriteTo( tree );
       trig_EF_el_EF_e12Tvh_medium1_mu6.WriteTo( tree );
-      trig_EF_el_EF_e18_loose1_g35_loose.WriteTo( tree );
-      trig_EF_el_EF_e18_loose1_g35_medium.WriteTo( tree );
-      trig_EF_el_EF_e18_medium1_g25_medium.WriteTo( tree );
-      trig_EF_el_EF_e18_medium1_g35_loose.WriteTo( tree );
-      trig_EF_el_EF_e18_medium1_g35_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g35_loose.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g35_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g25_medium.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g35_loose.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g35_medium.WriteTo( tree );
       trig_EF_el_EF_e22vh_medium1_IdScan.WriteTo( tree );
       trig_EF_el_EF_e22vh_medium1_SiTrk.WriteTo( tree );
       trig_EF_el_EF_e22vh_medium1_TRT.WriteTo( tree );
       trig_EF_el_EF_e45_etcut.WriteTo( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.WriteTo( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.WriteTo( tree );
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.WriteTo( tree );
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.WriteTo( tree );
       trig_EF_el_EF_e60_etcut.WriteTo( tree );
-    
+
       return;
    }
 
@@ -2993,7 +2993,7 @@ namespace D3PDReader {
       }
 
       if( trig_EF_el_EF_2e12Tvh_loose1.IsActive() ) trig_EF_el_EF_2e12Tvh_loose1();
-      if( trig_EF_el_EF_2e5_tight1_Jpsi.IsActive() ) trig_EF_el_EF_2e5_tight1_Jpsi();
+// -- slimmed --       if( trig_EF_el_EF_2e5_tight1_Jpsi.IsActive() ) trig_EF_el_EF_2e5_tight1_Jpsi();
       if( trig_EF_el_EF_2e7T_loose1_mu6.IsActive() ) trig_EF_el_EF_2e7T_loose1_mu6();
       if( trig_EF_el_EF_2e7T_medium1_mu6.IsActive() ) trig_EF_el_EF_2e7T_medium1_mu6();
       if( trig_EF_el_EF_e11_etcut.IsActive() ) trig_EF_el_EF_e11_etcut();
@@ -3003,18 +3003,18 @@ namespace D3PDReader {
       if( trig_EF_el_EF_e12Tvh_medium1_mu8.IsActive() ) trig_EF_el_EF_e12Tvh_medium1_mu8();
       if( trig_EF_el_EF_e13_etcutTrk_xs60.IsActive() ) trig_EF_el_EF_e13_etcutTrk_xs60();
       if( trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20.IsActive() ) trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20();
-      if( trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi();
+// -- slimmed --       if( trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi();
       if( trig_EF_el_EF_e15vh_medium1.IsActive() ) trig_EF_el_EF_e15vh_medium1();
       if( trig_EF_el_EF_e18_loose1.IsActive() ) trig_EF_el_EF_e18_loose1();
-      if( trig_EF_el_EF_e18_loose1_g25_medium.IsActive() ) trig_EF_el_EF_e18_loose1_g25_medium();
+// -- slimmed --       if( trig_EF_el_EF_e18_loose1_g25_medium.IsActive() ) trig_EF_el_EF_e18_loose1_g25_medium();
       if( trig_EF_el_EF_e18_medium1.IsActive() ) trig_EF_el_EF_e18_medium1();
-      if( trig_EF_el_EF_e18_medium1_g25_loose.IsActive() ) trig_EF_el_EF_e18_medium1_g25_loose();
+// -- slimmed --       if( trig_EF_el_EF_e18_medium1_g25_loose.IsActive() ) trig_EF_el_EF_e18_medium1_g25_loose();
       if( trig_EF_el_EF_e18vh_medium1.IsActive() ) trig_EF_el_EF_e18vh_medium1();
       if( trig_EF_el_EF_e18vh_medium1_2e7T_medium1.IsActive() ) trig_EF_el_EF_e18vh_medium1_2e7T_medium1();
       if( trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20.IsActive() ) trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20();
       if( trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20.IsActive() ) trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20();
-      if( trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.IsActive() ) trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi();
-      if( trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.IsActive() ) trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi();
+// -- slimmed -- // -- slimmed --       if( trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.IsActive() ) trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi();
+// -- slimmed -- // -- slimmed --       if( trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.IsActive() ) trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi();
       if( trig_EF_el_EF_e22vh_loose.IsActive() ) trig_EF_el_EF_e22vh_loose();
       if( trig_EF_el_EF_e22vh_loose0.IsActive() ) trig_EF_el_EF_e22vh_loose0();
       if( trig_EF_el_EF_e22vh_loose1.IsActive() ) trig_EF_el_EF_e22vh_loose1();
@@ -3043,18 +3043,18 @@ namespace D3PDReader {
       if( trig_EF_el_EF_e24vhi_medium1.IsActive() ) trig_EF_el_EF_e24vhi_medium1();
       if( trig_EF_el_EF_e45_medium1.IsActive() ) trig_EF_el_EF_e45_medium1();
       if( trig_EF_el_EF_e5_tight1.IsActive() ) trig_EF_el_EF_e5_tight1();
-      if( trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi();
-      if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi();
-      if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB();
-      if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC();
+// -- slimmed --       if( trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi();
+// -- slimmed --       if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi();
+// -- slimmed --       if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB();
+// -- slimmed --       if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC();
       if( trig_EF_el_EF_e5_tight1_e5_NoCut.IsActive() ) trig_EF_el_EF_e5_tight1_e5_NoCut();
-      if( trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi();
+// -- slimmed --       if( trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi();
       if( trig_EF_el_EF_e60_medium1.IsActive() ) trig_EF_el_EF_e60_medium1();
       if( trig_EF_el_EF_e7T_loose1.IsActive() ) trig_EF_el_EF_e7T_loose1();
       if( trig_EF_el_EF_e7T_loose1_2mu6.IsActive() ) trig_EF_el_EF_e7T_loose1_2mu6();
       if( trig_EF_el_EF_e7T_medium1.IsActive() ) trig_EF_el_EF_e7T_medium1();
       if( trig_EF_el_EF_e7T_medium1_2mu6.IsActive() ) trig_EF_el_EF_e7T_medium1_2mu6();
-      if( trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi();
+// -- slimmed --       if( trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.IsActive() ) trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi();
       if( trig_EF_el_EF_eb_physics.IsActive() ) trig_EF_el_EF_eb_physics();
       if( trig_EF_el_EF_eb_physics_empty.IsActive() ) trig_EF_el_EF_eb_physics_empty();
       if( trig_EF_el_EF_eb_physics_firstempty.IsActive() ) trig_EF_el_EF_eb_physics_firstempty();
@@ -3118,7 +3118,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
       if( trig_EF_trigmuonef_EF_2mu10.IsActive() ) trig_EF_trigmuonef_EF_2mu10();
-      if( trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.IsActive() ) trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.IsActive() ) trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose();
       if( trig_EF_trigmuonef_EF_2mu13.IsActive() ) trig_EF_trigmuonef_EF_2mu13();
       if( trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut.IsActive() ) trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut();
       if( trig_EF_trigmuonef_EF_2mu13_l2muonSA.IsActive() ) trig_EF_trigmuonef_EF_2mu13_l2muonSA();
@@ -3139,13 +3139,13 @@ namespace D3PDReader {
       if( trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1();
       if( trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA();
       if( trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS();
-      if( trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Jpsimumu();
-      if( trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel();
-      if( trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly();
-      if( trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut();
-      if( trig_EF_trigmuonef_EF_2mu4T_Upsimumu.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Upsimumu();
-      if( trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel();
-      if( trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Jpsimumu();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu4T_Upsimumu.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Upsimumu();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly();
       if( trig_EF_trigmuonef_EF_2mu4T_xe60.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_xe60();
       if( trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw.IsActive() ) trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw();
       if( trig_EF_trigmuonef_EF_2mu6.IsActive() ) trig_EF_trigmuonef_EF_2mu6();
@@ -3155,8 +3155,8 @@ namespace D3PDReader {
       if( trig_EF_trigmuonef_EF_2mu6_DiMu_DY20.IsActive() ) trig_EF_trigmuonef_EF_2mu6_DiMu_DY20();
       if( trig_EF_trigmuonef_EF_2mu6_DiMu_DY25.IsActive() ) trig_EF_trigmuonef_EF_2mu6_DiMu_DY25();
       if( trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS.IsActive() ) trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS();
-      if( trig_EF_trigmuonef_EF_2mu6_Jpsimumu.IsActive() ) trig_EF_trigmuonef_EF_2mu6_Jpsimumu();
-      if( trig_EF_trigmuonef_EF_2mu6_Upsimumu.IsActive() ) trig_EF_trigmuonef_EF_2mu6_Upsimumu();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu6_Jpsimumu.IsActive() ) trig_EF_trigmuonef_EF_2mu6_Jpsimumu();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_2mu6_Upsimumu.IsActive() ) trig_EF_trigmuonef_EF_2mu6_Upsimumu();
       if( trig_EF_trigmuonef_EF_2mu6i_DiMu_DY.IsActive() ) trig_EF_trigmuonef_EF_2mu6i_DiMu_DY();
       if( trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad.IsActive() ) trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad();
       if( trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS.IsActive() ) trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS();
@@ -3164,19 +3164,19 @@ namespace D3PDReader {
       if( trig_EF_trigmuonef_EF_2mu8_EFxe30.IsActive() ) trig_EF_trigmuonef_EF_2mu8_EFxe30();
       if( trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw.IsActive() ) trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw();
       if( trig_EF_trigmuonef_EF_mu10.IsActive() ) trig_EF_trigmuonef_EF_mu10();
-      if( trig_EF_trigmuonef_EF_mu10_Jpsimumu.IsActive() ) trig_EF_trigmuonef_EF_mu10_Jpsimumu();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu10_Jpsimumu.IsActive() ) trig_EF_trigmuonef_EF_mu10_Jpsimumu();
       if( trig_EF_trigmuonef_EF_mu10_MSonly.IsActive() ) trig_EF_trigmuonef_EF_mu10_MSonly();
-      if( trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.IsActive() ) trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS();
-      if( trig_EF_trigmuonef_EF_mu10i_g10_medium.IsActive() ) trig_EF_trigmuonef_EF_mu10i_g10_medium();
-      if( trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass();
-      if( trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.IsActive() ) trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium();
-      if( trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.IsActive() ) trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu10i_g10_medium.IsActive() ) trig_EF_trigmuonef_EF_mu10i_g10_medium();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.IsActive() ) trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass();
       if( trig_EF_trigmuonef_EF_mu11_empty_NoAlg.IsActive() ) trig_EF_trigmuonef_EF_mu11_empty_NoAlg();
       if( trig_EF_trigmuonef_EF_mu13.IsActive() ) trig_EF_trigmuonef_EF_mu13();
       if( trig_EF_trigmuonef_EF_mu15.IsActive() ) trig_EF_trigmuonef_EF_mu15();
       if( trig_EF_trigmuonef_EF_mu18.IsActive() ) trig_EF_trigmuonef_EF_mu18();
-      if( trig_EF_trigmuonef_EF_mu18_2g10_loose.IsActive() ) trig_EF_trigmuonef_EF_mu18_2g10_loose();
-      if( trig_EF_trigmuonef_EF_mu18_2g10_medium.IsActive() ) trig_EF_trigmuonef_EF_mu18_2g10_medium();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu18_2g10_loose.IsActive() ) trig_EF_trigmuonef_EF_mu18_2g10_loose();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu18_2g10_medium.IsActive() ) trig_EF_trigmuonef_EF_mu18_2g10_medium();
       if( trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight.IsActive() ) trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight();
       if( trig_EF_trigmuonef_EF_mu18_medium.IsActive() ) trig_EF_trigmuonef_EF_mu18_medium();
       if( trig_EF_trigmuonef_EF_mu18_tight.IsActive() ) trig_EF_trigmuonef_EF_mu18_tight();
@@ -3184,14 +3184,14 @@ namespace D3PDReader {
       if( trig_EF_trigmuonef_EF_mu18_tight_e7_medium1.IsActive() ) trig_EF_trigmuonef_EF_mu18_tight_e7_medium1();
       if( trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS.IsActive() ) trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS();
       if( trig_EF_trigmuonef_EF_mu18i4_tight.IsActive() ) trig_EF_trigmuonef_EF_mu18i4_tight();
-      if( trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass();
-      if( trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.IsActive() ) trig_EF_trigmuonef_EF_mu20i_tight_g5_medium();
-      if( trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.IsActive() ) trig_EF_trigmuonef_EF_mu20i_tight_g5_medium();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass();
       if( trig_EF_trigmuonef_EF_mu20it_tight.IsActive() ) trig_EF_trigmuonef_EF_mu20it_tight();
       if( trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight.IsActive() ) trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight();
       if( trig_EF_trigmuonef_EF_mu24.IsActive() ) trig_EF_trigmuonef_EF_mu24();
-      if( trig_EF_trigmuonef_EF_mu24_g20vh_loose.IsActive() ) trig_EF_trigmuonef_EF_mu24_g20vh_loose();
-      if( trig_EF_trigmuonef_EF_mu24_g20vh_medium.IsActive() ) trig_EF_trigmuonef_EF_mu24_g20vh_medium();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu24_g20vh_loose.IsActive() ) trig_EF_trigmuonef_EF_mu24_g20vh_loose();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu24_g20vh_medium.IsActive() ) trig_EF_trigmuonef_EF_mu24_g20vh_medium();
       if( trig_EF_trigmuonef_EF_mu24_j65_a4tchad.IsActive() ) trig_EF_trigmuonef_EF_mu24_j65_a4tchad();
       if( trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40.IsActive() ) trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40();
       if( trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw.IsActive() ) trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw();
@@ -3249,8 +3249,8 @@ namespace D3PDReader {
       if( trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose.IsActive() ) trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose();
       if( trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched.IsActive() ) trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched();
       if( trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched.IsActive() ) trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched();
-      if( trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.IsActive() ) trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium();
-      if( trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.IsActive() ) trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.IsActive() ) trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass();
       if( trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu();
       if( trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel();
       if( trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux();
@@ -3258,11 +3258,11 @@ namespace D3PDReader {
       if( trig_EF_trigmuonef_EF_mu4Tmu6_DiMu.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_DiMu();
       if( trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel();
       if( trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS();
-      if( trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu();
-      if( trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel();
-      if( trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut();
-      if( trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu();
-      if( trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.IsActive() ) trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel();
       if( trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic.IsActive() ) trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic();
       if( trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic.IsActive() ) trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic();
       if( trig_EF_trigmuonef_EF_mu4_empty_NoAlg.IsActive() ) trig_EF_trigmuonef_EF_mu4_empty_NoAlg();
@@ -3272,9 +3272,9 @@ namespace D3PDReader {
       if( trig_EF_trigmuonef_EF_mu6.IsActive() ) trig_EF_trigmuonef_EF_mu6();
       if( trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1.IsActive() ) trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1();
       if( trig_EF_trigmuonef_EF_mu60_slow_tight1.IsActive() ) trig_EF_trigmuonef_EF_mu60_slow_tight1();
-      if( trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.IsActive() ) trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.IsActive() ) trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight();
       if( trig_EF_trigmuonef_EF_mu6_MSonly.IsActive() ) trig_EF_trigmuonef_EF_mu6_MSonly();
-      if( trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.IsActive() ) trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose();
+// -- slimmed --       if( trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.IsActive() ) trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose();
       if( trig_EF_trigmuonef_EF_mu8.IsActive() ) trig_EF_trigmuonef_EF_mu8();
       if( trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS.IsActive() ) trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS();
       if( trig_EF_trigmuonef_track_MuonType.IsActive() ) trig_EF_trigmuonef_track_MuonType();
@@ -3286,27 +3286,27 @@ namespace D3PDReader {
       if( trig_EF_trigmuonef_track_SA_eta.IsActive() ) trig_EF_trigmuonef_track_SA_eta();
       if( trig_EF_trigmuonef_track_SA_phi.IsActive() ) trig_EF_trigmuonef_track_SA_phi();
       if( trig_EF_trigmuonef_track_SA_hasSA.IsActive() ) trig_EF_trigmuonef_track_SA_hasSA();
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
       if( trig_EF_el_EF_e12Tvh_loose1_mu8.IsActive() ) trig_EF_el_EF_e12Tvh_loose1_mu8();
       if( trig_EF_el_EF_e12Tvh_medium1_mu10.IsActive() ) trig_EF_el_EF_e12Tvh_medium1_mu10();
       if( trig_EF_el_EF_e12Tvh_medium1_mu6.IsActive() ) trig_EF_el_EF_e12Tvh_medium1_mu6();
-      if( trig_EF_el_EF_e18_loose1_g35_loose.IsActive() ) trig_EF_el_EF_e18_loose1_g35_loose();
-      if( trig_EF_el_EF_e18_loose1_g35_medium.IsActive() ) trig_EF_el_EF_e18_loose1_g35_medium();
-      if( trig_EF_el_EF_e18_medium1_g25_medium.IsActive() ) trig_EF_el_EF_e18_medium1_g25_medium();
-      if( trig_EF_el_EF_e18_medium1_g35_loose.IsActive() ) trig_EF_el_EF_e18_medium1_g35_loose();
-      if( trig_EF_el_EF_e18_medium1_g35_medium.IsActive() ) trig_EF_el_EF_e18_medium1_g35_medium();
+// -- slimmed --       if( trig_EF_el_EF_e18_loose1_g35_loose.IsActive() ) trig_EF_el_EF_e18_loose1_g35_loose();
+// -- slimmed --       if( trig_EF_el_EF_e18_loose1_g35_medium.IsActive() ) trig_EF_el_EF_e18_loose1_g35_medium();
+// -- slimmed --       if( trig_EF_el_EF_e18_medium1_g25_medium.IsActive() ) trig_EF_el_EF_e18_medium1_g25_medium();
+// -- slimmed --       if( trig_EF_el_EF_e18_medium1_g35_loose.IsActive() ) trig_EF_el_EF_e18_medium1_g35_loose();
+// -- slimmed --       if( trig_EF_el_EF_e18_medium1_g35_medium.IsActive() ) trig_EF_el_EF_e18_medium1_g35_medium();
       if( trig_EF_el_EF_e22vh_medium1_IdScan.IsActive() ) trig_EF_el_EF_e22vh_medium1_IdScan();
       if( trig_EF_el_EF_e22vh_medium1_SiTrk.IsActive() ) trig_EF_el_EF_e22vh_medium1_SiTrk();
       if( trig_EF_el_EF_e22vh_medium1_TRT.IsActive() ) trig_EF_el_EF_e22vh_medium1_TRT();
       if( trig_EF_el_EF_e45_etcut.IsActive() ) trig_EF_el_EF_e45_etcut();
-      if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan();
-      if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk();
-      if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT();
+// -- slimmed --       if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan();
+// -- slimmed --       if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk();
+// -- slimmed --       if( trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.IsActive() ) trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT();
       if( trig_EF_el_EF_e60_etcut.IsActive() ) trig_EF_el_EF_e60_etcut();
-    
+
       return;
    }
 
@@ -3329,7 +3329,7 @@ namespace D3PDReader {
       }
 
       trig_EF_el_EF_2e12Tvh_loose1()->clear();
-      trig_EF_el_EF_2e5_tight1_Jpsi()->clear();
+// -- slimmed --       trig_EF_el_EF_2e5_tight1_Jpsi()->clear();
       trig_EF_el_EF_2e7T_loose1_mu6()->clear();
       trig_EF_el_EF_2e7T_medium1_mu6()->clear();
       trig_EF_el_EF_e11_etcut()->clear();
@@ -3339,18 +3339,18 @@ namespace D3PDReader {
       trig_EF_el_EF_e12Tvh_medium1_mu8()->clear();
       trig_EF_el_EF_e13_etcutTrk_xs60()->clear();
       trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20()->clear();
-      trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi()->clear();
+// -- slimmed --       trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi()->clear();
       trig_EF_el_EF_e15vh_medium1()->clear();
       trig_EF_el_EF_e18_loose1()->clear();
-      trig_EF_el_EF_e18_loose1_g25_medium()->clear();
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g25_medium()->clear();
       trig_EF_el_EF_e18_medium1()->clear();
-      trig_EF_el_EF_e18_medium1_g25_loose()->clear();
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g25_loose()->clear();
       trig_EF_el_EF_e18vh_medium1()->clear();
       trig_EF_el_EF_e18vh_medium1_2e7T_medium1()->clear();
       trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20()->clear();
       trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20()->clear();
-      trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi()->clear();
-      trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi()->clear();
+// -- slimmed -- // -- slimmed --       trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi()->clear();
+// -- slimmed -- // -- slimmed --       trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi()->clear();
       trig_EF_el_EF_e22vh_loose()->clear();
       trig_EF_el_EF_e22vh_loose0()->clear();
       trig_EF_el_EF_e22vh_loose1()->clear();
@@ -3379,18 +3379,18 @@ namespace D3PDReader {
       trig_EF_el_EF_e24vhi_medium1()->clear();
       trig_EF_el_EF_e45_medium1()->clear();
       trig_EF_el_EF_e5_tight1()->clear();
-      trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi()->clear();
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi()->clear();
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB()->clear();
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC()->clear();
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi()->clear();
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi()->clear();
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB()->clear();
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC()->clear();
       trig_EF_el_EF_e5_tight1_e5_NoCut()->clear();
-      trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi()->clear();
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi()->clear();
       trig_EF_el_EF_e60_medium1()->clear();
       trig_EF_el_EF_e7T_loose1()->clear();
       trig_EF_el_EF_e7T_loose1_2mu6()->clear();
       trig_EF_el_EF_e7T_medium1()->clear();
       trig_EF_el_EF_e7T_medium1_2mu6()->clear();
-      trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi()->clear();
+// -- slimmed --       trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi()->clear();
       trig_EF_el_EF_eb_physics()->clear();
       trig_EF_el_EF_eb_physics_empty()->clear();
       trig_EF_el_EF_eb_physics_firstempty()->clear();
@@ -3453,7 +3453,7 @@ namespace D3PDReader {
     // = Data only
     // =============================================================================
       trig_EF_trigmuonef_EF_2mu10()->clear();
-      trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose()->clear();
       trig_EF_trigmuonef_EF_2mu13()->clear();
       trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut()->clear();
       trig_EF_trigmuonef_EF_2mu13_l2muonSA()->clear();
@@ -3474,13 +3474,13 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1()->clear();
       trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA()->clear();
       trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS()->clear();
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu()->clear();
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel()->clear();
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly()->clear();
-      trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut()->clear();
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu()->clear();
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel()->clear();
-      trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly()->clear();
       trig_EF_trigmuonef_EF_2mu4T_xe60()->clear();
       trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw()->clear();
       trig_EF_trigmuonef_EF_2mu6()->clear();
@@ -3490,8 +3490,8 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu6_DiMu_DY20()->clear();
       trig_EF_trigmuonef_EF_2mu6_DiMu_DY25()->clear();
       trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS()->clear();
-      trig_EF_trigmuonef_EF_2mu6_Jpsimumu()->clear();
-      trig_EF_trigmuonef_EF_2mu6_Upsimumu()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu6_Jpsimumu()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_2mu6_Upsimumu()->clear();
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY()->clear();
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_2j25_a4tchad()->clear();
       trig_EF_trigmuonef_EF_2mu6i_DiMu_DY_noVtx_noOS()->clear();
@@ -3499,19 +3499,19 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_2mu8_EFxe30()->clear();
       trig_EF_trigmuonef_EF_2mu8_EFxe30_tclcw()->clear();
       trig_EF_trigmuonef_EF_mu10()->clear();
-      trig_EF_trigmuonef_EF_mu10_Jpsimumu()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10_Jpsimumu()->clear();
       trig_EF_trigmuonef_EF_mu10_MSonly()->clear();
-      trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS()->clear();
-      trig_EF_trigmuonef_EF_mu10i_g10_medium()->clear();
-      trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass()->clear();
-      trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium()->clear();
-      trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_g10_medium()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass()->clear();
       trig_EF_trigmuonef_EF_mu11_empty_NoAlg()->clear();
       trig_EF_trigmuonef_EF_mu13()->clear();
       trig_EF_trigmuonef_EF_mu15()->clear();
       trig_EF_trigmuonef_EF_mu18()->clear();
-      trig_EF_trigmuonef_EF_mu18_2g10_loose()->clear();
-      trig_EF_trigmuonef_EF_mu18_2g10_medium()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu18_2g10_loose()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu18_2g10_medium()->clear();
       trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight()->clear();
       trig_EF_trigmuonef_EF_mu18_medium()->clear();
       trig_EF_trigmuonef_EF_mu18_tight()->clear();
@@ -3519,14 +3519,14 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu18_tight_e7_medium1()->clear();
       trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()->clear();
       trig_EF_trigmuonef_EF_mu18i4_tight()->clear();
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass()->clear();
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_medium()->clear();
-      trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_medium()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass()->clear();
       trig_EF_trigmuonef_EF_mu20it_tight()->clear();
       trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight()->clear();
       trig_EF_trigmuonef_EF_mu24()->clear();
-      trig_EF_trigmuonef_EF_mu24_g20vh_loose()->clear();
-      trig_EF_trigmuonef_EF_mu24_g20vh_medium()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu24_g20vh_loose()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu24_g20vh_medium()->clear();
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad()->clear();
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40()->clear();
       trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe40_tclcw()->clear();
@@ -3584,8 +3584,8 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose()->clear();
       trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched()->clear();
       trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched()->clear();
-      trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium()->clear();
-      trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass()->clear();
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu()->clear();
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel()->clear();
       trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux()->clear();
@@ -3593,11 +3593,11 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu()->clear();
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel()->clear();
       trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS()->clear();
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu()->clear();
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel()->clear();
-      trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut()->clear();
-      trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu()->clear();
-      trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel()->clear();
       trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic()->clear();
       trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic()->clear();
       trig_EF_trigmuonef_EF_mu4_empty_NoAlg()->clear();
@@ -3607,9 +3607,9 @@ namespace D3PDReader {
       trig_EF_trigmuonef_EF_mu6()->clear();
       trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1()->clear();
       trig_EF_trigmuonef_EF_mu60_slow_tight1()->clear();
-      trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight()->clear();
       trig_EF_trigmuonef_EF_mu6_MSonly()->clear();
-      trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose()->clear();
+// -- slimmed --       trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose()->clear();
       trig_EF_trigmuonef_EF_mu8()->clear();
       trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS()->clear();
       trig_EF_trigmuonef_track_MuonType()->clear();
@@ -3621,27 +3621,27 @@ namespace D3PDReader {
       trig_EF_trigmuonef_track_SA_eta()->clear();
       trig_EF_trigmuonef_track_SA_phi()->clear();
       trig_EF_trigmuonef_track_SA_hasSA()->clear();
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
       trig_EF_el_EF_e12Tvh_loose1_mu8()->clear();
       trig_EF_el_EF_e12Tvh_medium1_mu10()->clear();
       trig_EF_el_EF_e12Tvh_medium1_mu6()->clear();
-      trig_EF_el_EF_e18_loose1_g35_loose()->clear();
-      trig_EF_el_EF_e18_loose1_g35_medium()->clear();
-      trig_EF_el_EF_e18_medium1_g25_medium()->clear();
-      trig_EF_el_EF_e18_medium1_g35_loose()->clear();
-      trig_EF_el_EF_e18_medium1_g35_medium()->clear();
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g35_loose()->clear();
+// -- slimmed --       trig_EF_el_EF_e18_loose1_g35_medium()->clear();
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g25_medium()->clear();
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g35_loose()->clear();
+// -- slimmed --       trig_EF_el_EF_e18_medium1_g35_medium()->clear();
       trig_EF_el_EF_e22vh_medium1_IdScan()->clear();
       trig_EF_el_EF_e22vh_medium1_SiTrk()->clear();
       trig_EF_el_EF_e22vh_medium1_TRT()->clear();
       trig_EF_el_EF_e45_etcut()->clear();
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan()->clear();
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk()->clear();
-      trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT()->clear();
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan()->clear();
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk()->clear();
+// -- slimmed --       trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT()->clear();
       trig_EF_el_EF_e60_etcut()->clear();
-    
+
 
       return;
    }
@@ -3669,11 +3669,11 @@ namespace D3PDReader {
       } else {
          trig_EF_el_EF_2e12Tvh_loose1()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_2e5_tight1_Jpsi.IsAvailable() ) {
-         trig_EF_el_EF_2e5_tight1_Jpsi()->push_back( el.trig_EF_el_EF_2e5_tight1_Jpsi() );
-      } else {
-         trig_EF_el_EF_2e5_tight1_Jpsi()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_2e5_tight1_Jpsi.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_2e5_tight1_Jpsi()->push_back( el.trig_EF_el_EF_2e5_tight1_Jpsi() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_2e5_tight1_Jpsi()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_2e7T_loose1_mu6.IsAvailable() ) {
          trig_EF_el_EF_2e7T_loose1_mu6()->push_back( el.trig_EF_el_EF_2e7T_loose1_mu6() );
       } else {
@@ -3719,11 +3719,11 @@ namespace D3PDReader {
       } else {
          trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.IsAvailable() ) {
-         trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi() );
-      } else {
-         trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_e15vh_medium1.IsAvailable() ) {
          trig_EF_el_EF_e15vh_medium1()->push_back( el.trig_EF_el_EF_e15vh_medium1() );
       } else {
@@ -3734,21 +3734,21 @@ namespace D3PDReader {
       } else {
          trig_EF_el_EF_e18_loose1()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e18_loose1_g25_medium.IsAvailable() ) {
-         trig_EF_el_EF_e18_loose1_g25_medium()->push_back( el.trig_EF_el_EF_e18_loose1_g25_medium() );
-      } else {
-         trig_EF_el_EF_e18_loose1_g25_medium()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_e18_loose1_g25_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e18_loose1_g25_medium()->push_back( el.trig_EF_el_EF_e18_loose1_g25_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e18_loose1_g25_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_e18_medium1.IsAvailable() ) {
          trig_EF_el_EF_e18_medium1()->push_back( el.trig_EF_el_EF_e18_medium1() );
       } else {
          trig_EF_el_EF_e18_medium1()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e18_medium1_g25_loose.IsAvailable() ) {
-         trig_EF_el_EF_e18_medium1_g25_loose()->push_back( el.trig_EF_el_EF_e18_medium1_g25_loose() );
-      } else {
-         trig_EF_el_EF_e18_medium1_g25_loose()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_e18_medium1_g25_loose.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e18_medium1_g25_loose()->push_back( el.trig_EF_el_EF_e18_medium1_g25_loose() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e18_medium1_g25_loose()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_e18vh_medium1.IsAvailable() ) {
          trig_EF_el_EF_e18vh_medium1()->push_back( el.trig_EF_el_EF_e18vh_medium1() );
       } else {
@@ -3769,16 +3769,16 @@ namespace D3PDReader {
       } else {
          trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.IsAvailable() ) {
-         trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi()->push_back( el.trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi() );
-      } else {
-         trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.IsAvailable() ) {
-         trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi()->push_back( el.trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi() );
-      } else {
-         trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed -- // -- slimmed --       if( el.trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi.IsAvailable() ) {
+// -- slimmed -- // -- slimmed --          trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi()->push_back( el.trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi() );
+// -- slimmed --       } else {
+// -- slimmed -- // -- slimmed --          trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed -- // -- slimmed --       if( el.trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi.IsAvailable() ) {
+// -- slimmed -- // -- slimmed --          trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi()->push_back( el.trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi() );
+// -- slimmed --       } else {
+// -- slimmed -- // -- slimmed --          trig_EF_el_EF_e20vhT_tight1_g6T_etcut_Upsi()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_e22vh_loose.IsAvailable() ) {
          trig_EF_el_EF_e22vh_loose()->push_back( el.trig_EF_el_EF_e22vh_loose() );
       } else {
@@ -3919,36 +3919,36 @@ namespace D3PDReader {
       } else {
          trig_EF_el_EF_e5_tight1()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.IsAvailable() ) {
-         trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi() );
-      } else {
-         trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.IsAvailable() ) {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi() );
-      } else {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.IsAvailable() ) {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB() );
-      } else {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.IsAvailable() ) {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC() );
-      } else {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e14_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarB()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_L2StarC()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_e5_tight1_e5_NoCut.IsAvailable() ) {
          trig_EF_el_EF_e5_tight1_e5_NoCut()->push_back( el.trig_EF_el_EF_e5_tight1_e5_NoCut() );
       } else {
          trig_EF_el_EF_e5_tight1_e5_NoCut()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.IsAvailable() ) {
-         trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi() );
-      } else {
-         trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e9_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_e60_medium1.IsAvailable() ) {
          trig_EF_el_EF_e60_medium1()->push_back( el.trig_EF_el_EF_e60_medium1() );
       } else {
@@ -3974,11 +3974,11 @@ namespace D3PDReader {
       } else {
          trig_EF_el_EF_e7T_medium1_2mu6()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.IsAvailable() ) {
-         trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi() );
-      } else {
-         trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi()->push_back( el.trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_eb_physics.IsAvailable() ) {
          trig_EF_el_EF_eb_physics()->push_back( el.trig_EF_el_EF_eb_physics() );
       } else {
@@ -4273,11 +4273,11 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_2mu10()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose()->push_back( el.trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose()->push_back( el.trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_2mu13.IsAvailable() ) {
          trig_EF_trigmuonef_EF_2mu13()->push_back( el.trig_EF_trigmuonef_EF_2mu13() );
       } else {
@@ -4378,41 +4378,41 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu4T_Upsimumu()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu4T_Upsimumu()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Jpsimumu()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Jpsimumu()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Upsimumu()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Upsimumu()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_2mu4T_xe60.IsAvailable() ) {
          trig_EF_trigmuonef_EF_2mu4T_xe60()->push_back( el.trig_EF_trigmuonef_EF_2mu4T_xe60() );
       } else {
@@ -4458,16 +4458,16 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_2mu6_DiMu_noVtx_noOS()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_2mu6_Jpsimumu.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu6_Jpsimumu()->push_back( el.trig_EF_trigmuonef_EF_2mu6_Jpsimumu() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu6_Jpsimumu()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_2mu6_Upsimumu.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_2mu6_Upsimumu()->push_back( el.trig_EF_trigmuonef_EF_2mu6_Upsimumu() );
-      } else {
-         trig_EF_trigmuonef_EF_2mu6_Upsimumu()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu6_Jpsimumu.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu6_Jpsimumu()->push_back( el.trig_EF_trigmuonef_EF_2mu6_Jpsimumu() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu6_Jpsimumu()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_2mu6_Upsimumu.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu6_Upsimumu()->push_back( el.trig_EF_trigmuonef_EF_2mu6_Upsimumu() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_2mu6_Upsimumu()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_2mu6i_DiMu_DY.IsAvailable() ) {
          trig_EF_trigmuonef_EF_2mu6i_DiMu_DY()->push_back( el.trig_EF_trigmuonef_EF_2mu6i_DiMu_DY() );
       } else {
@@ -4503,41 +4503,41 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_mu10()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu10_Jpsimumu.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu10_Jpsimumu()->push_back( el.trig_EF_trigmuonef_EF_mu10_Jpsimumu() );
-      } else {
-         trig_EF_trigmuonef_EF_mu10_Jpsimumu()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu10_Jpsimumu.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10_Jpsimumu()->push_back( el.trig_EF_trigmuonef_EF_mu10_Jpsimumu() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10_Jpsimumu()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu10_MSonly.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu10_MSonly()->push_back( el.trig_EF_trigmuonef_EF_mu10_MSonly() );
       } else {
          trig_EF_trigmuonef_EF_mu10_MSonly()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS()->push_back( el.trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS() );
-      } else {
-         trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu10i_g10_medium.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu10i_g10_medium()->push_back( el.trig_EF_trigmuonef_EF_mu10i_g10_medium() );
-      } else {
-         trig_EF_trigmuonef_EF_mu10i_g10_medium()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass() );
-      } else {
-         trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium()->push_back( el.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium() );
-      } else {
-         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass() );
-      } else {
-         trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS()->push_back( el.trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu10i_g10_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10i_g10_medium()->push_back( el.trig_EF_trigmuonef_EF_mu10i_g10_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10i_g10_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10i_g10_medium_TauMass()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium()->push_back( el.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu11_empty_NoAlg.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu11_empty_NoAlg()->push_back( el.trig_EF_trigmuonef_EF_mu11_empty_NoAlg() );
       } else {
@@ -4558,16 +4558,16 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_mu18()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu18_2g10_loose.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu18_2g10_loose()->push_back( el.trig_EF_trigmuonef_EF_mu18_2g10_loose() );
-      } else {
-         trig_EF_trigmuonef_EF_mu18_2g10_loose()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu18_2g10_medium.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu18_2g10_medium()->push_back( el.trig_EF_trigmuonef_EF_mu18_2g10_medium() );
-      } else {
-         trig_EF_trigmuonef_EF_mu18_2g10_medium()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu18_2g10_loose.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu18_2g10_loose()->push_back( el.trig_EF_trigmuonef_EF_mu18_2g10_loose() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu18_2g10_loose()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu18_2g10_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu18_2g10_medium()->push_back( el.trig_EF_trigmuonef_EF_mu18_2g10_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu18_2g10_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight()->push_back( el.trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight() );
       } else {
@@ -4603,21 +4603,21 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_mu18i4_tight()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass() );
-      } else {
-         trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium()->push_back( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium() );
-      } else {
-         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass() );
-      } else {
-         trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu20i_tight_g5_loose_TauMass()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu20i_tight_g5_medium()->push_back( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu20i_tight_g5_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu20it_tight.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu20it_tight()->push_back( el.trig_EF_trigmuonef_EF_mu20it_tight() );
       } else {
@@ -4633,16 +4633,16 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_mu24()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu24_g20vh_loose.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu24_g20vh_loose()->push_back( el.trig_EF_trigmuonef_EF_mu24_g20vh_loose() );
-      } else {
-         trig_EF_trigmuonef_EF_mu24_g20vh_loose()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu24_g20vh_medium.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu24_g20vh_medium()->push_back( el.trig_EF_trigmuonef_EF_mu24_g20vh_medium() );
-      } else {
-         trig_EF_trigmuonef_EF_mu24_g20vh_medium()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu24_g20vh_loose.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu24_g20vh_loose()->push_back( el.trig_EF_trigmuonef_EF_mu24_g20vh_loose() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu24_g20vh_loose()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu24_g20vh_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu24_g20vh_medium()->push_back( el.trig_EF_trigmuonef_EF_mu24_g20vh_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu24_g20vh_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu24_j65_a4tchad.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu24_j65_a4tchad()->push_back( el.trig_EF_trigmuonef_EF_mu24_j65_a4tchad() );
       } else {
@@ -4928,16 +4928,16 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium()->push_back( el.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium() );
-      } else {
-         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass() );
-      } else {
-         trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium()->push_back( el.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass()->push_back( el.trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu() );
       } else {
@@ -4973,31 +4973,31 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu() );
-      } else {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel() );
-      } else {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut() );
-      } else {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu() );
-      } else {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel() );
-      } else {
-         trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel()->push_back( el.trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic()->push_back( el.trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic() );
       } else {
@@ -5043,21 +5043,21 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_EF_mu60_slow_tight1()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight()->push_back( el.trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight() );
-      } else {
-         trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight()->push_back( el.trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu6_MSonly.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu6_MSonly()->push_back( el.trig_EF_trigmuonef_EF_mu6_MSonly() );
       } else {
          trig_EF_trigmuonef_EF_mu6_MSonly()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.IsAvailable() ) {
-         trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose()->push_back( el.trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose() );
-      } else {
-         trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose.IsAvailable() ) {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose()->push_back( el.trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_trigmuonef_EF_mu8.IsAvailable() ) {
          trig_EF_trigmuonef_EF_mu8()->push_back( el.trig_EF_trigmuonef_EF_mu8() );
       } else {
@@ -5113,7 +5113,7 @@ namespace D3PDReader {
       } else {
          trig_EF_trigmuonef_track_SA_hasSA()->push_back( vector<int>() );
       }
-    
+
     // =============================================================================
     // = MC only
     // =============================================================================
@@ -5132,31 +5132,31 @@ namespace D3PDReader {
       } else {
          trig_EF_el_EF_e12Tvh_medium1_mu6()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e18_loose1_g35_loose.IsAvailable() ) {
-         trig_EF_el_EF_e18_loose1_g35_loose()->push_back( el.trig_EF_el_EF_e18_loose1_g35_loose() );
-      } else {
-         trig_EF_el_EF_e18_loose1_g35_loose()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e18_loose1_g35_medium.IsAvailable() ) {
-         trig_EF_el_EF_e18_loose1_g35_medium()->push_back( el.trig_EF_el_EF_e18_loose1_g35_medium() );
-      } else {
-         trig_EF_el_EF_e18_loose1_g35_medium()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e18_medium1_g25_medium.IsAvailable() ) {
-         trig_EF_el_EF_e18_medium1_g25_medium()->push_back( el.trig_EF_el_EF_e18_medium1_g25_medium() );
-      } else {
-         trig_EF_el_EF_e18_medium1_g25_medium()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e18_medium1_g35_loose.IsAvailable() ) {
-         trig_EF_el_EF_e18_medium1_g35_loose()->push_back( el.trig_EF_el_EF_e18_medium1_g35_loose() );
-      } else {
-         trig_EF_el_EF_e18_medium1_g35_loose()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e18_medium1_g35_medium.IsAvailable() ) {
-         trig_EF_el_EF_e18_medium1_g35_medium()->push_back( el.trig_EF_el_EF_e18_medium1_g35_medium() );
-      } else {
-         trig_EF_el_EF_e18_medium1_g35_medium()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_e18_loose1_g35_loose.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e18_loose1_g35_loose()->push_back( el.trig_EF_el_EF_e18_loose1_g35_loose() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e18_loose1_g35_loose()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e18_loose1_g35_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e18_loose1_g35_medium()->push_back( el.trig_EF_el_EF_e18_loose1_g35_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e18_loose1_g35_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e18_medium1_g25_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e18_medium1_g25_medium()->push_back( el.trig_EF_el_EF_e18_medium1_g25_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e18_medium1_g25_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e18_medium1_g35_loose.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e18_medium1_g35_loose()->push_back( el.trig_EF_el_EF_e18_medium1_g35_loose() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e18_medium1_g35_loose()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e18_medium1_g35_medium.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e18_medium1_g35_medium()->push_back( el.trig_EF_el_EF_e18_medium1_g35_medium() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e18_medium1_g35_medium()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_e22vh_medium1_IdScan.IsAvailable() ) {
          trig_EF_el_EF_e22vh_medium1_IdScan()->push_back( el.trig_EF_el_EF_e22vh_medium1_IdScan() );
       } else {
@@ -5177,27 +5177,27 @@ namespace D3PDReader {
       } else {
          trig_EF_el_EF_e45_etcut()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.IsAvailable() ) {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan() );
-      } else {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.IsAvailable() ) {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk() );
-      } else {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.IsAvailable() ) {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT() );
-      } else {
-         trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_IdScan()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_SiTrk()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT.IsAvailable() ) {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT()->push_back( el.trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT() );
+// -- slimmed --       } else {
+// -- slimmed --          trig_EF_el_EF_e5_tight1_e4_etcut_Jpsi_TRT()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.trig_EF_el_EF_e60_etcut.IsAvailable() ) {
          trig_EF_el_EF_e60_etcut()->push_back( el.trig_EF_el_EF_e60_etcut() );
       } else {
          trig_EF_el_EF_e60_etcut()->push_back( std::numeric_limits< int >::min() );
       }
-    
+
       return *this;
    }
 
