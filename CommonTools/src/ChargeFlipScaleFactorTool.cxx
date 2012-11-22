@@ -24,6 +24,7 @@ void CommonTools::ChargeFlipScaleFactorTool::clear()
 {
   m_is_cached = false;
   m_charge_flip_sf = -999;
+
 }
 
 // ----------------------------------------------------------------------------
@@ -90,7 +91,7 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
     const std::vector<Electron*>& el,
     const std::vector<Muon*>& mu,
     const Met* met,
-    const D3PDReader::TruthD3PDObject& /*mc*/,
+    const D3PDReader::TruthD3PDObject* mc,
     int syst)
 {
   if (!m_is_cached) {

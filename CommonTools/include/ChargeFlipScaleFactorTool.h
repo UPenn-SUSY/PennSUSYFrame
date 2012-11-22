@@ -32,8 +32,9 @@ namespace CommonTools
 		 , const std::vector<Electron*>& el
 		 , const std::vector<Muon*>& mu
 		 , const Met* met
-		 , const D3PDReader::TruthD3PDObject& mc
+		 , const D3PDReader::TruthD3PDObject* mc
 		 , int syst);
+
     void BeginCycle();
     void PrepTruth(const D3PDReader::TruthD3PDObject& mc);
 

@@ -143,7 +143,7 @@ void CommonTools::EventOutputTool::fillOutput( Event* event
 //  m_fake_weight_min =;
 //  m_fake_weight_max =;
 //
-//  m_charge_flip_weight = ;
+  m_charge_flip_weight = event->getChargeFlipWeight();
 //  m_charge_flip_weight_min =;
 //  m_charge_flip_weight_max =;
 }
