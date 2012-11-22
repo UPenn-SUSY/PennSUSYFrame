@@ -443,36 +443,36 @@ namespace D3PDReader {
         STVF_RefMuon_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_ety_ForwardReg", &master ),
         STVF_RefMuon_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_sumet_ForwardReg", &master ),
         STVF_RefMuon_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_phi_ForwardReg", &master ),
-        MuonBoy_etx( this, ::TString( prefix ) + "MuonBoy_etx", &master ),
-        MuonBoy_ety( this, ::TString( prefix ) + "MuonBoy_ety", &master ),
-        MuonBoy_sumet( this, ::TString( prefix ) + "MuonBoy_sumet", &master ),
-        MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "MuonBoy_etx_CentralReg", &master ),
-        MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "MuonBoy_ety_CentralReg", &master ),
-        MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "MuonBoy_sumet_CentralReg", &master ),
-        MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "MuonBoy_phi_CentralReg", &master ),
-        MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_etx_EndcapRegion", &master ),
-        MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_ety_EndcapRegion", &master ),
-        MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion", &master ),
-        MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_phi_EndcapRegion", &master ),
-        MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "MuonBoy_etx_ForwardReg", &master ),
-        MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "MuonBoy_ety_ForwardReg", &master ),
-        MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "MuonBoy_sumet_ForwardReg", &master ),
-        MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "MuonBoy_phi_ForwardReg", &master ),
-        STVF_MuonBoy_etx( this, ::TString( prefix ) + "STVF_MuonBoy_etx", &master ),
-        STVF_MuonBoy_ety( this, ::TString( prefix ) + "STVF_MuonBoy_ety", &master ),
-        STVF_MuonBoy_sumet( this, ::TString( prefix ) + "STVF_MuonBoy_sumet", &master ),
-        STVF_MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg", &master ),
-        STVF_MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg", &master ),
-        STVF_MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg", &master ),
-        STVF_MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg", &master ),
-        STVF_MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion", &master ),
-        STVF_MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion", &master ),
-        STVF_MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion", &master ),
-        STVF_MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion", &master ),
-        STVF_MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg", &master ),
-        STVF_MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg", &master ),
-        STVF_MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg", &master ),
-        STVF_MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg", &master ),
+// -- slimmed --         MuonBoy_etx( this, ::TString( prefix ) + "MuonBoy_etx", &master ),
+// -- slimmed --         MuonBoy_ety( this, ::TString( prefix ) + "MuonBoy_ety", &master ),
+// -- slimmed --         MuonBoy_sumet( this, ::TString( prefix ) + "MuonBoy_sumet", &master ),
+// -- slimmed --         MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "MuonBoy_etx_CentralReg", &master ),
+// -- slimmed --         MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "MuonBoy_ety_CentralReg", &master ),
+// -- slimmed --         MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "MuonBoy_sumet_CentralReg", &master ),
+// -- slimmed --         MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "MuonBoy_phi_CentralReg", &master ),
+// -- slimmed --         MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_etx_EndcapRegion", &master ),
+// -- slimmed --         MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_ety_EndcapRegion", &master ),
+// -- slimmed --         MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion", &master ),
+// -- slimmed --         MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_phi_EndcapRegion", &master ),
+// -- slimmed --         MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "MuonBoy_etx_ForwardReg", &master ),
+// -- slimmed --         MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "MuonBoy_ety_ForwardReg", &master ),
+// -- slimmed --         MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "MuonBoy_sumet_ForwardReg", &master ),
+// -- slimmed --         MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "MuonBoy_phi_ForwardReg", &master ),
+// -- slimmed --         STVF_MuonBoy_etx( this, ::TString( prefix ) + "STVF_MuonBoy_etx", &master ),
+// -- slimmed --         STVF_MuonBoy_ety( this, ::TString( prefix ) + "STVF_MuonBoy_ety", &master ),
+// -- slimmed --         STVF_MuonBoy_sumet( this, ::TString( prefix ) + "STVF_MuonBoy_sumet", &master ),
+// -- slimmed --         STVF_MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg", &master ),
+// -- slimmed --         STVF_MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg", &master ),
+// -- slimmed --         STVF_MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg", &master ),
+// -- slimmed --         STVF_MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg", &master ),
+// -- slimmed --         STVF_MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion", &master ),
+// -- slimmed --         STVF_MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion", &master ),
+// -- slimmed --         STVF_MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion", &master ),
+// -- slimmed --         STVF_MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion", &master ),
+// -- slimmed --         STVF_MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg", &master ),
+// -- slimmed --         STVF_MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg", &master ),
+// -- slimmed --         STVF_MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg", &master ),
+// -- slimmed --         STVF_MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg", &master ),
         STVF_CellOut_Track_etx( this, ::TString( prefix ) + "STVF_CellOut_Track_etx", &master ),
         STVF_CellOut_Track_ety( this, ::TString( prefix ) + "STVF_CellOut_Track_ety", &master ),
         STVF_CellOut_Track_sumet( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet", &master ),
@@ -943,36 +943,36 @@ is_data(is_data) {
       fHandles[ "STVF_RefMuon_ety_ForwardReg" ] = &STVF_RefMuon_ety_ForwardReg;
       fHandles[ "STVF_RefMuon_sumet_ForwardReg" ] = &STVF_RefMuon_sumet_ForwardReg;
       fHandles[ "STVF_RefMuon_phi_ForwardReg" ] = &STVF_RefMuon_phi_ForwardReg;
-      fHandles[ "MuonBoy_etx" ] = &MuonBoy_etx;
-      fHandles[ "MuonBoy_ety" ] = &MuonBoy_ety;
-      fHandles[ "MuonBoy_sumet" ] = &MuonBoy_sumet;
-      fHandles[ "MuonBoy_etx_CentralReg" ] = &MuonBoy_etx_CentralReg;
-      fHandles[ "MuonBoy_ety_CentralReg" ] = &MuonBoy_ety_CentralReg;
-      fHandles[ "MuonBoy_sumet_CentralReg" ] = &MuonBoy_sumet_CentralReg;
-      fHandles[ "MuonBoy_phi_CentralReg" ] = &MuonBoy_phi_CentralReg;
-      fHandles[ "MuonBoy_etx_EndcapRegion" ] = &MuonBoy_etx_EndcapRegion;
-      fHandles[ "MuonBoy_ety_EndcapRegion" ] = &MuonBoy_ety_EndcapRegion;
-      fHandles[ "MuonBoy_sumet_EndcapRegion" ] = &MuonBoy_sumet_EndcapRegion;
-      fHandles[ "MuonBoy_phi_EndcapRegion" ] = &MuonBoy_phi_EndcapRegion;
-      fHandles[ "MuonBoy_etx_ForwardReg" ] = &MuonBoy_etx_ForwardReg;
-      fHandles[ "MuonBoy_ety_ForwardReg" ] = &MuonBoy_ety_ForwardReg;
-      fHandles[ "MuonBoy_sumet_ForwardReg" ] = &MuonBoy_sumet_ForwardReg;
-      fHandles[ "MuonBoy_phi_ForwardReg" ] = &MuonBoy_phi_ForwardReg;
-      fHandles[ "STVF_MuonBoy_etx" ] = &STVF_MuonBoy_etx;
-      fHandles[ "STVF_MuonBoy_ety" ] = &STVF_MuonBoy_ety;
-      fHandles[ "STVF_MuonBoy_sumet" ] = &STVF_MuonBoy_sumet;
-      fHandles[ "STVF_MuonBoy_etx_CentralReg" ] = &STVF_MuonBoy_etx_CentralReg;
-      fHandles[ "STVF_MuonBoy_ety_CentralReg" ] = &STVF_MuonBoy_ety_CentralReg;
-      fHandles[ "STVF_MuonBoy_sumet_CentralReg" ] = &STVF_MuonBoy_sumet_CentralReg;
-      fHandles[ "STVF_MuonBoy_phi_CentralReg" ] = &STVF_MuonBoy_phi_CentralReg;
-      fHandles[ "STVF_MuonBoy_etx_EndcapRegion" ] = &STVF_MuonBoy_etx_EndcapRegion;
-      fHandles[ "STVF_MuonBoy_ety_EndcapRegion" ] = &STVF_MuonBoy_ety_EndcapRegion;
-      fHandles[ "STVF_MuonBoy_sumet_EndcapRegion" ] = &STVF_MuonBoy_sumet_EndcapRegion;
-      fHandles[ "STVF_MuonBoy_phi_EndcapRegion" ] = &STVF_MuonBoy_phi_EndcapRegion;
-      fHandles[ "STVF_MuonBoy_etx_ForwardReg" ] = &STVF_MuonBoy_etx_ForwardReg;
-      fHandles[ "STVF_MuonBoy_ety_ForwardReg" ] = &STVF_MuonBoy_ety_ForwardReg;
-      fHandles[ "STVF_MuonBoy_sumet_ForwardReg" ] = &STVF_MuonBoy_sumet_ForwardReg;
-      fHandles[ "STVF_MuonBoy_phi_ForwardReg" ] = &STVF_MuonBoy_phi_ForwardReg;
+// -- slimmed --       fHandles[ "MuonBoy_etx" ] = &MuonBoy_etx;
+// -- slimmed --       fHandles[ "MuonBoy_ety" ] = &MuonBoy_ety;
+// -- slimmed --       fHandles[ "MuonBoy_sumet" ] = &MuonBoy_sumet;
+// -- slimmed --       fHandles[ "MuonBoy_etx_CentralReg" ] = &MuonBoy_etx_CentralReg;
+// -- slimmed --       fHandles[ "MuonBoy_ety_CentralReg" ] = &MuonBoy_ety_CentralReg;
+// -- slimmed --       fHandles[ "MuonBoy_sumet_CentralReg" ] = &MuonBoy_sumet_CentralReg;
+// -- slimmed --       fHandles[ "MuonBoy_phi_CentralReg" ] = &MuonBoy_phi_CentralReg;
+// -- slimmed --       fHandles[ "MuonBoy_etx_EndcapRegion" ] = &MuonBoy_etx_EndcapRegion;
+// -- slimmed --       fHandles[ "MuonBoy_ety_EndcapRegion" ] = &MuonBoy_ety_EndcapRegion;
+// -- slimmed --       fHandles[ "MuonBoy_sumet_EndcapRegion" ] = &MuonBoy_sumet_EndcapRegion;
+// -- slimmed --       fHandles[ "MuonBoy_phi_EndcapRegion" ] = &MuonBoy_phi_EndcapRegion;
+// -- slimmed --       fHandles[ "MuonBoy_etx_ForwardReg" ] = &MuonBoy_etx_ForwardReg;
+// -- slimmed --       fHandles[ "MuonBoy_ety_ForwardReg" ] = &MuonBoy_ety_ForwardReg;
+// -- slimmed --       fHandles[ "MuonBoy_sumet_ForwardReg" ] = &MuonBoy_sumet_ForwardReg;
+// -- slimmed --       fHandles[ "MuonBoy_phi_ForwardReg" ] = &MuonBoy_phi_ForwardReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_etx" ] = &STVF_MuonBoy_etx;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_ety" ] = &STVF_MuonBoy_ety;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet" ] = &STVF_MuonBoy_sumet;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_CentralReg" ] = &STVF_MuonBoy_etx_CentralReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_CentralReg" ] = &STVF_MuonBoy_ety_CentralReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_CentralReg" ] = &STVF_MuonBoy_sumet_CentralReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_CentralReg" ] = &STVF_MuonBoy_phi_CentralReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_EndcapRegion" ] = &STVF_MuonBoy_etx_EndcapRegion;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_EndcapRegion" ] = &STVF_MuonBoy_ety_EndcapRegion;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_EndcapRegion" ] = &STVF_MuonBoy_sumet_EndcapRegion;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_EndcapRegion" ] = &STVF_MuonBoy_phi_EndcapRegion;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_ForwardReg" ] = &STVF_MuonBoy_etx_ForwardReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_ForwardReg" ] = &STVF_MuonBoy_ety_ForwardReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_ForwardReg" ] = &STVF_MuonBoy_sumet_ForwardReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_ForwardReg" ] = &STVF_MuonBoy_phi_ForwardReg;
       fHandles[ "STVF_CellOut_Track_etx" ] = &STVF_CellOut_Track_etx;
       fHandles[ "STVF_CellOut_Track_ety" ] = &STVF_CellOut_Track_ety;
       fHandles[ "STVF_CellOut_Track_sumet" ] = &STVF_CellOut_Track_sumet;
@@ -1449,36 +1449,36 @@ is_data(is_data) {
         STVF_RefMuon_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_ety_ForwardReg", 0 ),
         STVF_RefMuon_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_sumet_ForwardReg", 0 ),
         STVF_RefMuon_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_phi_ForwardReg", 0 ),
-        MuonBoy_etx( this, ::TString( prefix ) + "MuonBoy_etx", 0 ),
-        MuonBoy_ety( this, ::TString( prefix ) + "MuonBoy_ety", 0 ),
-        MuonBoy_sumet( this, ::TString( prefix ) + "MuonBoy_sumet", 0 ),
-        MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "MuonBoy_etx_CentralReg", 0 ),
-        MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "MuonBoy_ety_CentralReg", 0 ),
-        MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "MuonBoy_sumet_CentralReg", 0 ),
-        MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "MuonBoy_phi_CentralReg", 0 ),
-        MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_etx_EndcapRegion", 0 ),
-        MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_ety_EndcapRegion", 0 ),
-        MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion", 0 ),
-        MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_phi_EndcapRegion", 0 ),
-        MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "MuonBoy_etx_ForwardReg", 0 ),
-        MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "MuonBoy_ety_ForwardReg", 0 ),
-        MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "MuonBoy_sumet_ForwardReg", 0 ),
-        MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "MuonBoy_phi_ForwardReg", 0 ),
-        STVF_MuonBoy_etx( this, ::TString( prefix ) + "STVF_MuonBoy_etx", 0 ),
-        STVF_MuonBoy_ety( this, ::TString( prefix ) + "STVF_MuonBoy_ety", 0 ),
-        STVF_MuonBoy_sumet( this, ::TString( prefix ) + "STVF_MuonBoy_sumet", 0 ),
-        STVF_MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg", 0 ),
-        STVF_MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg", 0 ),
-        STVF_MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg", 0 ),
-        STVF_MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg", 0 ),
-        STVF_MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion", 0 ),
-        STVF_MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion", 0 ),
-        STVF_MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion", 0 ),
-        STVF_MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion", 0 ),
-        STVF_MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg", 0 ),
-        STVF_MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg", 0 ),
-        STVF_MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg", 0 ),
-        STVF_MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg", 0 ),
+// -- slimmed --         MuonBoy_etx( this, ::TString( prefix ) + "MuonBoy_etx", 0 ),
+// -- slimmed --         MuonBoy_ety( this, ::TString( prefix ) + "MuonBoy_ety", 0 ),
+// -- slimmed --         MuonBoy_sumet( this, ::TString( prefix ) + "MuonBoy_sumet", 0 ),
+// -- slimmed --         MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "MuonBoy_etx_CentralReg", 0 ),
+// -- slimmed --         MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "MuonBoy_ety_CentralReg", 0 ),
+// -- slimmed --         MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "MuonBoy_sumet_CentralReg", 0 ),
+// -- slimmed --         MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "MuonBoy_phi_CentralReg", 0 ),
+// -- slimmed --         MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_etx_EndcapRegion", 0 ),
+// -- slimmed --         MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_ety_EndcapRegion", 0 ),
+// -- slimmed --         MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion", 0 ),
+// -- slimmed --         MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_phi_EndcapRegion", 0 ),
+// -- slimmed --         MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "MuonBoy_etx_ForwardReg", 0 ),
+// -- slimmed --         MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "MuonBoy_ety_ForwardReg", 0 ),
+// -- slimmed --         MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "MuonBoy_sumet_ForwardReg", 0 ),
+// -- slimmed --         MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "MuonBoy_phi_ForwardReg", 0 ),
+// -- slimmed --         STVF_MuonBoy_etx( this, ::TString( prefix ) + "STVF_MuonBoy_etx", 0 ),
+// -- slimmed --         STVF_MuonBoy_ety( this, ::TString( prefix ) + "STVF_MuonBoy_ety", 0 ),
+// -- slimmed --         STVF_MuonBoy_sumet( this, ::TString( prefix ) + "STVF_MuonBoy_sumet", 0 ),
+// -- slimmed --         STVF_MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg", 0 ),
+// -- slimmed --         STVF_MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg", 0 ),
+// -- slimmed --         STVF_MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg", 0 ),
+// -- slimmed --         STVF_MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg", 0 ),
+// -- slimmed --         STVF_MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion", 0 ),
+// -- slimmed --         STVF_MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion", 0 ),
+// -- slimmed --         STVF_MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion", 0 ),
+// -- slimmed --         STVF_MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion", 0 ),
+// -- slimmed --         STVF_MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg", 0 ),
+// -- slimmed --         STVF_MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg", 0 ),
+// -- slimmed --         STVF_MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg", 0 ),
+// -- slimmed --         STVF_MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg", 0 ),
         STVF_CellOut_Track_etx( this, ::TString( prefix ) + "STVF_CellOut_Track_etx", 0 ),
         STVF_CellOut_Track_ety( this, ::TString( prefix ) + "STVF_CellOut_Track_ety", 0 ),
         STVF_CellOut_Track_sumet( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet", 0 ),
@@ -1949,36 +1949,36 @@ is_data(is_data) {
       fHandles[ "STVF_RefMuon_ety_ForwardReg" ] = &STVF_RefMuon_ety_ForwardReg;
       fHandles[ "STVF_RefMuon_sumet_ForwardReg" ] = &STVF_RefMuon_sumet_ForwardReg;
       fHandles[ "STVF_RefMuon_phi_ForwardReg" ] = &STVF_RefMuon_phi_ForwardReg;
-      fHandles[ "MuonBoy_etx" ] = &MuonBoy_etx;
-      fHandles[ "MuonBoy_ety" ] = &MuonBoy_ety;
-      fHandles[ "MuonBoy_sumet" ] = &MuonBoy_sumet;
-      fHandles[ "MuonBoy_etx_CentralReg" ] = &MuonBoy_etx_CentralReg;
-      fHandles[ "MuonBoy_ety_CentralReg" ] = &MuonBoy_ety_CentralReg;
-      fHandles[ "MuonBoy_sumet_CentralReg" ] = &MuonBoy_sumet_CentralReg;
-      fHandles[ "MuonBoy_phi_CentralReg" ] = &MuonBoy_phi_CentralReg;
-      fHandles[ "MuonBoy_etx_EndcapRegion" ] = &MuonBoy_etx_EndcapRegion;
-      fHandles[ "MuonBoy_ety_EndcapRegion" ] = &MuonBoy_ety_EndcapRegion;
-      fHandles[ "MuonBoy_sumet_EndcapRegion" ] = &MuonBoy_sumet_EndcapRegion;
-      fHandles[ "MuonBoy_phi_EndcapRegion" ] = &MuonBoy_phi_EndcapRegion;
-      fHandles[ "MuonBoy_etx_ForwardReg" ] = &MuonBoy_etx_ForwardReg;
-      fHandles[ "MuonBoy_ety_ForwardReg" ] = &MuonBoy_ety_ForwardReg;
-      fHandles[ "MuonBoy_sumet_ForwardReg" ] = &MuonBoy_sumet_ForwardReg;
-      fHandles[ "MuonBoy_phi_ForwardReg" ] = &MuonBoy_phi_ForwardReg;
-      fHandles[ "STVF_MuonBoy_etx" ] = &STVF_MuonBoy_etx;
-      fHandles[ "STVF_MuonBoy_ety" ] = &STVF_MuonBoy_ety;
-      fHandles[ "STVF_MuonBoy_sumet" ] = &STVF_MuonBoy_sumet;
-      fHandles[ "STVF_MuonBoy_etx_CentralReg" ] = &STVF_MuonBoy_etx_CentralReg;
-      fHandles[ "STVF_MuonBoy_ety_CentralReg" ] = &STVF_MuonBoy_ety_CentralReg;
-      fHandles[ "STVF_MuonBoy_sumet_CentralReg" ] = &STVF_MuonBoy_sumet_CentralReg;
-      fHandles[ "STVF_MuonBoy_phi_CentralReg" ] = &STVF_MuonBoy_phi_CentralReg;
-      fHandles[ "STVF_MuonBoy_etx_EndcapRegion" ] = &STVF_MuonBoy_etx_EndcapRegion;
-      fHandles[ "STVF_MuonBoy_ety_EndcapRegion" ] = &STVF_MuonBoy_ety_EndcapRegion;
-      fHandles[ "STVF_MuonBoy_sumet_EndcapRegion" ] = &STVF_MuonBoy_sumet_EndcapRegion;
-      fHandles[ "STVF_MuonBoy_phi_EndcapRegion" ] = &STVF_MuonBoy_phi_EndcapRegion;
-      fHandles[ "STVF_MuonBoy_etx_ForwardReg" ] = &STVF_MuonBoy_etx_ForwardReg;
-      fHandles[ "STVF_MuonBoy_ety_ForwardReg" ] = &STVF_MuonBoy_ety_ForwardReg;
-      fHandles[ "STVF_MuonBoy_sumet_ForwardReg" ] = &STVF_MuonBoy_sumet_ForwardReg;
-      fHandles[ "STVF_MuonBoy_phi_ForwardReg" ] = &STVF_MuonBoy_phi_ForwardReg;
+// -- slimmed --       fHandles[ "MuonBoy_etx" ] = &MuonBoy_etx;
+// -- slimmed --       fHandles[ "MuonBoy_ety" ] = &MuonBoy_ety;
+// -- slimmed --       fHandles[ "MuonBoy_sumet" ] = &MuonBoy_sumet;
+// -- slimmed --       fHandles[ "MuonBoy_etx_CentralReg" ] = &MuonBoy_etx_CentralReg;
+// -- slimmed --       fHandles[ "MuonBoy_ety_CentralReg" ] = &MuonBoy_ety_CentralReg;
+// -- slimmed --       fHandles[ "MuonBoy_sumet_CentralReg" ] = &MuonBoy_sumet_CentralReg;
+// -- slimmed --       fHandles[ "MuonBoy_phi_CentralReg" ] = &MuonBoy_phi_CentralReg;
+// -- slimmed --       fHandles[ "MuonBoy_etx_EndcapRegion" ] = &MuonBoy_etx_EndcapRegion;
+// -- slimmed --       fHandles[ "MuonBoy_ety_EndcapRegion" ] = &MuonBoy_ety_EndcapRegion;
+// -- slimmed --       fHandles[ "MuonBoy_sumet_EndcapRegion" ] = &MuonBoy_sumet_EndcapRegion;
+// -- slimmed --       fHandles[ "MuonBoy_phi_EndcapRegion" ] = &MuonBoy_phi_EndcapRegion;
+// -- slimmed --       fHandles[ "MuonBoy_etx_ForwardReg" ] = &MuonBoy_etx_ForwardReg;
+// -- slimmed --       fHandles[ "MuonBoy_ety_ForwardReg" ] = &MuonBoy_ety_ForwardReg;
+// -- slimmed --       fHandles[ "MuonBoy_sumet_ForwardReg" ] = &MuonBoy_sumet_ForwardReg;
+// -- slimmed --       fHandles[ "MuonBoy_phi_ForwardReg" ] = &MuonBoy_phi_ForwardReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_etx" ] = &STVF_MuonBoy_etx;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_ety" ] = &STVF_MuonBoy_ety;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet" ] = &STVF_MuonBoy_sumet;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_CentralReg" ] = &STVF_MuonBoy_etx_CentralReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_CentralReg" ] = &STVF_MuonBoy_ety_CentralReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_CentralReg" ] = &STVF_MuonBoy_sumet_CentralReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_CentralReg" ] = &STVF_MuonBoy_phi_CentralReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_EndcapRegion" ] = &STVF_MuonBoy_etx_EndcapRegion;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_EndcapRegion" ] = &STVF_MuonBoy_ety_EndcapRegion;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_EndcapRegion" ] = &STVF_MuonBoy_sumet_EndcapRegion;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_EndcapRegion" ] = &STVF_MuonBoy_phi_EndcapRegion;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_ForwardReg" ] = &STVF_MuonBoy_etx_ForwardReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_ForwardReg" ] = &STVF_MuonBoy_ety_ForwardReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_ForwardReg" ] = &STVF_MuonBoy_sumet_ForwardReg;
+// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_ForwardReg" ] = &STVF_MuonBoy_phi_ForwardReg;
       fHandles[ "STVF_CellOut_Track_etx" ] = &STVF_CellOut_Track_etx;
       fHandles[ "STVF_CellOut_Track_ety" ] = &STVF_CellOut_Track_ety;
       fHandles[ "STVF_CellOut_Track_sumet" ] = &STVF_CellOut_Track_sumet;
@@ -2459,36 +2459,36 @@ is_data(is_data) {
       STVF_RefMuon_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefMuon_ety_ForwardReg" );
       STVF_RefMuon_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefMuon_sumet_ForwardReg" );
       STVF_RefMuon_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefMuon_phi_ForwardReg" );
-      MuonBoy_etx.SetName( ::TString( prefix ) + "MuonBoy_etx" );
-      MuonBoy_ety.SetName( ::TString( prefix ) + "MuonBoy_ety" );
-      MuonBoy_sumet.SetName( ::TString( prefix ) + "MuonBoy_sumet" );
-      MuonBoy_etx_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_etx_CentralReg" );
-      MuonBoy_ety_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_ety_CentralReg" );
-      MuonBoy_sumet_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_sumet_CentralReg" );
-      MuonBoy_phi_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_phi_CentralReg" );
-      MuonBoy_etx_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_etx_EndcapRegion" );
-      MuonBoy_ety_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_ety_EndcapRegion" );
-      MuonBoy_sumet_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion" );
-      MuonBoy_phi_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_phi_EndcapRegion" );
-      MuonBoy_etx_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_etx_ForwardReg" );
-      MuonBoy_ety_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_ety_ForwardReg" );
-      MuonBoy_sumet_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_sumet_ForwardReg" );
-      MuonBoy_phi_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_phi_ForwardReg" );
-      STVF_MuonBoy_etx.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx" );
-      STVF_MuonBoy_ety.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety" );
-      STVF_MuonBoy_sumet.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet" );
-      STVF_MuonBoy_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg" );
-      STVF_MuonBoy_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg" );
-      STVF_MuonBoy_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg" );
-      STVF_MuonBoy_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg" );
-      STVF_MuonBoy_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion" );
-      STVF_MuonBoy_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion" );
-      STVF_MuonBoy_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion" );
-      STVF_MuonBoy_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion" );
-      STVF_MuonBoy_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg" );
-      STVF_MuonBoy_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg" );
-      STVF_MuonBoy_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg" );
-      STVF_MuonBoy_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg" );
+// -- slimmed --       MuonBoy_etx.SetName( ::TString( prefix ) + "MuonBoy_etx" );
+// -- slimmed --       MuonBoy_ety.SetName( ::TString( prefix ) + "MuonBoy_ety" );
+// -- slimmed --       MuonBoy_sumet.SetName( ::TString( prefix ) + "MuonBoy_sumet" );
+// -- slimmed --       MuonBoy_etx_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_etx_CentralReg" );
+// -- slimmed --       MuonBoy_ety_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_ety_CentralReg" );
+// -- slimmed --       MuonBoy_sumet_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_sumet_CentralReg" );
+// -- slimmed --       MuonBoy_phi_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_phi_CentralReg" );
+// -- slimmed --       MuonBoy_etx_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_etx_EndcapRegion" );
+// -- slimmed --       MuonBoy_ety_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_ety_EndcapRegion" );
+// -- slimmed --       MuonBoy_sumet_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion" );
+// -- slimmed --       MuonBoy_phi_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_phi_EndcapRegion" );
+// -- slimmed --       MuonBoy_etx_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_etx_ForwardReg" );
+// -- slimmed --       MuonBoy_ety_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_ety_ForwardReg" );
+// -- slimmed --       MuonBoy_sumet_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_sumet_ForwardReg" );
+// -- slimmed --       MuonBoy_phi_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_phi_ForwardReg" );
+// -- slimmed --       STVF_MuonBoy_etx.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx" );
+// -- slimmed --       STVF_MuonBoy_ety.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety" );
+// -- slimmed --       STVF_MuonBoy_sumet.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet" );
+// -- slimmed --       STVF_MuonBoy_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg" );
+// -- slimmed --       STVF_MuonBoy_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg" );
+// -- slimmed --       STVF_MuonBoy_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg" );
+// -- slimmed --       STVF_MuonBoy_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg" );
+// -- slimmed --       STVF_MuonBoy_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion" );
+// -- slimmed --       STVF_MuonBoy_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion" );
+// -- slimmed --       STVF_MuonBoy_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion" );
+// -- slimmed --       STVF_MuonBoy_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion" );
+// -- slimmed --       STVF_MuonBoy_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg" );
+// -- slimmed --       STVF_MuonBoy_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg" );
+// -- slimmed --       STVF_MuonBoy_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg" );
+// -- slimmed --       STVF_MuonBoy_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg" );
       STVF_CellOut_Track_etx.SetName( ::TString( prefix ) + "STVF_CellOut_Track_etx" );
       STVF_CellOut_Track_ety.SetName( ::TString( prefix ) + "STVF_CellOut_Track_ety" );
       STVF_CellOut_Track_sumet.SetName( ::TString( prefix ) + "STVF_CellOut_Track_sumet" );
@@ -2972,36 +2972,36 @@ is_data(is_data) {
       STVF_RefMuon_ety_ForwardReg.ReadFrom( tree );
       STVF_RefMuon_sumet_ForwardReg.ReadFrom( tree );
       STVF_RefMuon_phi_ForwardReg.ReadFrom( tree );
-      MuonBoy_etx.ReadFrom( tree );
-      MuonBoy_ety.ReadFrom( tree );
-      MuonBoy_sumet.ReadFrom( tree );
-      MuonBoy_etx_CentralReg.ReadFrom( tree );
-      MuonBoy_ety_CentralReg.ReadFrom( tree );
-      MuonBoy_sumet_CentralReg.ReadFrom( tree );
-      MuonBoy_phi_CentralReg.ReadFrom( tree );
-      MuonBoy_etx_EndcapRegion.ReadFrom( tree );
-      MuonBoy_ety_EndcapRegion.ReadFrom( tree );
-      MuonBoy_sumet_EndcapRegion.ReadFrom( tree );
-      MuonBoy_phi_EndcapRegion.ReadFrom( tree );
-      MuonBoy_etx_ForwardReg.ReadFrom( tree );
-      MuonBoy_ety_ForwardReg.ReadFrom( tree );
-      MuonBoy_sumet_ForwardReg.ReadFrom( tree );
-      MuonBoy_phi_ForwardReg.ReadFrom( tree );
-      STVF_MuonBoy_etx.ReadFrom( tree );
-      STVF_MuonBoy_ety.ReadFrom( tree );
-      STVF_MuonBoy_sumet.ReadFrom( tree );
-      STVF_MuonBoy_etx_CentralReg.ReadFrom( tree );
-      STVF_MuonBoy_ety_CentralReg.ReadFrom( tree );
-      STVF_MuonBoy_sumet_CentralReg.ReadFrom( tree );
-      STVF_MuonBoy_phi_CentralReg.ReadFrom( tree );
-      STVF_MuonBoy_etx_EndcapRegion.ReadFrom( tree );
-      STVF_MuonBoy_ety_EndcapRegion.ReadFrom( tree );
-      STVF_MuonBoy_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_MuonBoy_phi_EndcapRegion.ReadFrom( tree );
-      STVF_MuonBoy_etx_ForwardReg.ReadFrom( tree );
-      STVF_MuonBoy_ety_ForwardReg.ReadFrom( tree );
-      STVF_MuonBoy_sumet_ForwardReg.ReadFrom( tree );
-      STVF_MuonBoy_phi_ForwardReg.ReadFrom( tree );
+// -- slimmed --       MuonBoy_etx.ReadFrom( tree );
+// -- slimmed --       MuonBoy_ety.ReadFrom( tree );
+// -- slimmed --       MuonBoy_sumet.ReadFrom( tree );
+// -- slimmed --       MuonBoy_etx_CentralReg.ReadFrom( tree );
+// -- slimmed --       MuonBoy_ety_CentralReg.ReadFrom( tree );
+// -- slimmed --       MuonBoy_sumet_CentralReg.ReadFrom( tree );
+// -- slimmed --       MuonBoy_phi_CentralReg.ReadFrom( tree );
+// -- slimmed --       MuonBoy_etx_EndcapRegion.ReadFrom( tree );
+// -- slimmed --       MuonBoy_ety_EndcapRegion.ReadFrom( tree );
+// -- slimmed --       MuonBoy_sumet_EndcapRegion.ReadFrom( tree );
+// -- slimmed --       MuonBoy_phi_EndcapRegion.ReadFrom( tree );
+// -- slimmed --       MuonBoy_etx_ForwardReg.ReadFrom( tree );
+// -- slimmed --       MuonBoy_ety_ForwardReg.ReadFrom( tree );
+// -- slimmed --       MuonBoy_sumet_ForwardReg.ReadFrom( tree );
+// -- slimmed --       MuonBoy_phi_ForwardReg.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_etx.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_ety.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_sumet.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_etx_CentralReg.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_ety_CentralReg.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_sumet_CentralReg.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_phi_CentralReg.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_etx_EndcapRegion.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_ety_EndcapRegion.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_sumet_EndcapRegion.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_phi_EndcapRegion.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_etx_ForwardReg.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_ety_ForwardReg.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_sumet_ForwardReg.ReadFrom( tree );
+// -- slimmed --       STVF_MuonBoy_phi_ForwardReg.ReadFrom( tree );
       STVF_CellOut_Track_etx.ReadFrom( tree );
       STVF_CellOut_Track_ety.ReadFrom( tree );
       STVF_CellOut_Track_sumet.ReadFrom( tree );
@@ -3480,36 +3480,36 @@ is_data(is_data) {
       STVF_RefMuon_ety_ForwardReg.WriteTo( tree );
       STVF_RefMuon_sumet_ForwardReg.WriteTo( tree );
       STVF_RefMuon_phi_ForwardReg.WriteTo( tree );
-      MuonBoy_etx.WriteTo( tree );
-      MuonBoy_ety.WriteTo( tree );
-      MuonBoy_sumet.WriteTo( tree );
-      MuonBoy_etx_CentralReg.WriteTo( tree );
-      MuonBoy_ety_CentralReg.WriteTo( tree );
-      MuonBoy_sumet_CentralReg.WriteTo( tree );
-      MuonBoy_phi_CentralReg.WriteTo( tree );
-      MuonBoy_etx_EndcapRegion.WriteTo( tree );
-      MuonBoy_ety_EndcapRegion.WriteTo( tree );
-      MuonBoy_sumet_EndcapRegion.WriteTo( tree );
-      MuonBoy_phi_EndcapRegion.WriteTo( tree );
-      MuonBoy_etx_ForwardReg.WriteTo( tree );
-      MuonBoy_ety_ForwardReg.WriteTo( tree );
-      MuonBoy_sumet_ForwardReg.WriteTo( tree );
-      MuonBoy_phi_ForwardReg.WriteTo( tree );
-      STVF_MuonBoy_etx.WriteTo( tree );
-      STVF_MuonBoy_ety.WriteTo( tree );
-      STVF_MuonBoy_sumet.WriteTo( tree );
-      STVF_MuonBoy_etx_CentralReg.WriteTo( tree );
-      STVF_MuonBoy_ety_CentralReg.WriteTo( tree );
-      STVF_MuonBoy_sumet_CentralReg.WriteTo( tree );
-      STVF_MuonBoy_phi_CentralReg.WriteTo( tree );
-      STVF_MuonBoy_etx_EndcapRegion.WriteTo( tree );
-      STVF_MuonBoy_ety_EndcapRegion.WriteTo( tree );
-      STVF_MuonBoy_sumet_EndcapRegion.WriteTo( tree );
-      STVF_MuonBoy_phi_EndcapRegion.WriteTo( tree );
-      STVF_MuonBoy_etx_ForwardReg.WriteTo( tree );
-      STVF_MuonBoy_ety_ForwardReg.WriteTo( tree );
-      STVF_MuonBoy_sumet_ForwardReg.WriteTo( tree );
-      STVF_MuonBoy_phi_ForwardReg.WriteTo( tree );
+// -- slimmed --       MuonBoy_etx.WriteTo( tree );
+// -- slimmed --       MuonBoy_ety.WriteTo( tree );
+// -- slimmed --       MuonBoy_sumet.WriteTo( tree );
+// -- slimmed --       MuonBoy_etx_CentralReg.WriteTo( tree );
+// -- slimmed --       MuonBoy_ety_CentralReg.WriteTo( tree );
+// -- slimmed --       MuonBoy_sumet_CentralReg.WriteTo( tree );
+// -- slimmed --       MuonBoy_phi_CentralReg.WriteTo( tree );
+// -- slimmed --       MuonBoy_etx_EndcapRegion.WriteTo( tree );
+// -- slimmed --       MuonBoy_ety_EndcapRegion.WriteTo( tree );
+// -- slimmed --       MuonBoy_sumet_EndcapRegion.WriteTo( tree );
+// -- slimmed --       MuonBoy_phi_EndcapRegion.WriteTo( tree );
+// -- slimmed --       MuonBoy_etx_ForwardReg.WriteTo( tree );
+// -- slimmed --       MuonBoy_ety_ForwardReg.WriteTo( tree );
+// -- slimmed --       MuonBoy_sumet_ForwardReg.WriteTo( tree );
+// -- slimmed --       MuonBoy_phi_ForwardReg.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_etx.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_ety.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_sumet.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_etx_CentralReg.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_ety_CentralReg.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_sumet_CentralReg.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_phi_CentralReg.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_etx_EndcapRegion.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_ety_EndcapRegion.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_sumet_EndcapRegion.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_phi_EndcapRegion.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_etx_ForwardReg.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_ety_ForwardReg.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_sumet_ForwardReg.WriteTo( tree );
+// -- slimmed --       STVF_MuonBoy_phi_ForwardReg.WriteTo( tree );
       STVF_CellOut_Track_etx.WriteTo( tree );
       STVF_CellOut_Track_ety.WriteTo( tree );
       STVF_CellOut_Track_sumet.WriteTo( tree );
@@ -4025,36 +4025,36 @@ is_data(is_data) {
       if( STVF_RefMuon_ety_ForwardReg.IsActive() ) STVF_RefMuon_ety_ForwardReg();
       if( STVF_RefMuon_sumet_ForwardReg.IsActive() ) STVF_RefMuon_sumet_ForwardReg();
       if( STVF_RefMuon_phi_ForwardReg.IsActive() ) STVF_RefMuon_phi_ForwardReg();
-      if( MuonBoy_etx.IsActive() ) MuonBoy_etx();
-      if( MuonBoy_ety.IsActive() ) MuonBoy_ety();
-      if( MuonBoy_sumet.IsActive() ) MuonBoy_sumet();
-      if( MuonBoy_etx_CentralReg.IsActive() ) MuonBoy_etx_CentralReg();
-      if( MuonBoy_ety_CentralReg.IsActive() ) MuonBoy_ety_CentralReg();
-      if( MuonBoy_sumet_CentralReg.IsActive() ) MuonBoy_sumet_CentralReg();
-      if( MuonBoy_phi_CentralReg.IsActive() ) MuonBoy_phi_CentralReg();
-      if( MuonBoy_etx_EndcapRegion.IsActive() ) MuonBoy_etx_EndcapRegion();
-      if( MuonBoy_ety_EndcapRegion.IsActive() ) MuonBoy_ety_EndcapRegion();
-      if( MuonBoy_sumet_EndcapRegion.IsActive() ) MuonBoy_sumet_EndcapRegion();
-      if( MuonBoy_phi_EndcapRegion.IsActive() ) MuonBoy_phi_EndcapRegion();
-      if( MuonBoy_etx_ForwardReg.IsActive() ) MuonBoy_etx_ForwardReg();
-      if( MuonBoy_ety_ForwardReg.IsActive() ) MuonBoy_ety_ForwardReg();
-      if( MuonBoy_sumet_ForwardReg.IsActive() ) MuonBoy_sumet_ForwardReg();
-      if( MuonBoy_phi_ForwardReg.IsActive() ) MuonBoy_phi_ForwardReg();
-      if( STVF_MuonBoy_etx.IsActive() ) STVF_MuonBoy_etx();
-      if( STVF_MuonBoy_ety.IsActive() ) STVF_MuonBoy_ety();
-      if( STVF_MuonBoy_sumet.IsActive() ) STVF_MuonBoy_sumet();
-      if( STVF_MuonBoy_etx_CentralReg.IsActive() ) STVF_MuonBoy_etx_CentralReg();
-      if( STVF_MuonBoy_ety_CentralReg.IsActive() ) STVF_MuonBoy_ety_CentralReg();
-      if( STVF_MuonBoy_sumet_CentralReg.IsActive() ) STVF_MuonBoy_sumet_CentralReg();
-      if( STVF_MuonBoy_phi_CentralReg.IsActive() ) STVF_MuonBoy_phi_CentralReg();
-      if( STVF_MuonBoy_etx_EndcapRegion.IsActive() ) STVF_MuonBoy_etx_EndcapRegion();
-      if( STVF_MuonBoy_ety_EndcapRegion.IsActive() ) STVF_MuonBoy_ety_EndcapRegion();
-      if( STVF_MuonBoy_sumet_EndcapRegion.IsActive() ) STVF_MuonBoy_sumet_EndcapRegion();
-      if( STVF_MuonBoy_phi_EndcapRegion.IsActive() ) STVF_MuonBoy_phi_EndcapRegion();
-      if( STVF_MuonBoy_etx_ForwardReg.IsActive() ) STVF_MuonBoy_etx_ForwardReg();
-      if( STVF_MuonBoy_ety_ForwardReg.IsActive() ) STVF_MuonBoy_ety_ForwardReg();
-      if( STVF_MuonBoy_sumet_ForwardReg.IsActive() ) STVF_MuonBoy_sumet_ForwardReg();
-      if( STVF_MuonBoy_phi_ForwardReg.IsActive() ) STVF_MuonBoy_phi_ForwardReg();
+// -- slimmed --       if( MuonBoy_etx.IsActive() ) MuonBoy_etx();
+// -- slimmed --       if( MuonBoy_ety.IsActive() ) MuonBoy_ety();
+// -- slimmed --       if( MuonBoy_sumet.IsActive() ) MuonBoy_sumet();
+// -- slimmed --       if( MuonBoy_etx_CentralReg.IsActive() ) MuonBoy_etx_CentralReg();
+// -- slimmed --       if( MuonBoy_ety_CentralReg.IsActive() ) MuonBoy_ety_CentralReg();
+// -- slimmed --       if( MuonBoy_sumet_CentralReg.IsActive() ) MuonBoy_sumet_CentralReg();
+// -- slimmed --       if( MuonBoy_phi_CentralReg.IsActive() ) MuonBoy_phi_CentralReg();
+// -- slimmed --       if( MuonBoy_etx_EndcapRegion.IsActive() ) MuonBoy_etx_EndcapRegion();
+// -- slimmed --       if( MuonBoy_ety_EndcapRegion.IsActive() ) MuonBoy_ety_EndcapRegion();
+// -- slimmed --       if( MuonBoy_sumet_EndcapRegion.IsActive() ) MuonBoy_sumet_EndcapRegion();
+// -- slimmed --       if( MuonBoy_phi_EndcapRegion.IsActive() ) MuonBoy_phi_EndcapRegion();
+// -- slimmed --       if( MuonBoy_etx_ForwardReg.IsActive() ) MuonBoy_etx_ForwardReg();
+// -- slimmed --       if( MuonBoy_ety_ForwardReg.IsActive() ) MuonBoy_ety_ForwardReg();
+// -- slimmed --       if( MuonBoy_sumet_ForwardReg.IsActive() ) MuonBoy_sumet_ForwardReg();
+// -- slimmed --       if( MuonBoy_phi_ForwardReg.IsActive() ) MuonBoy_phi_ForwardReg();
+// -- slimmed --       if( STVF_MuonBoy_etx.IsActive() ) STVF_MuonBoy_etx();
+// -- slimmed --       if( STVF_MuonBoy_ety.IsActive() ) STVF_MuonBoy_ety();
+// -- slimmed --       if( STVF_MuonBoy_sumet.IsActive() ) STVF_MuonBoy_sumet();
+// -- slimmed --       if( STVF_MuonBoy_etx_CentralReg.IsActive() ) STVF_MuonBoy_etx_CentralReg();
+// -- slimmed --       if( STVF_MuonBoy_ety_CentralReg.IsActive() ) STVF_MuonBoy_ety_CentralReg();
+// -- slimmed --       if( STVF_MuonBoy_sumet_CentralReg.IsActive() ) STVF_MuonBoy_sumet_CentralReg();
+// -- slimmed --       if( STVF_MuonBoy_phi_CentralReg.IsActive() ) STVF_MuonBoy_phi_CentralReg();
+// -- slimmed --       if( STVF_MuonBoy_etx_EndcapRegion.IsActive() ) STVF_MuonBoy_etx_EndcapRegion();
+// -- slimmed --       if( STVF_MuonBoy_ety_EndcapRegion.IsActive() ) STVF_MuonBoy_ety_EndcapRegion();
+// -- slimmed --       if( STVF_MuonBoy_sumet_EndcapRegion.IsActive() ) STVF_MuonBoy_sumet_EndcapRegion();
+// -- slimmed --       if( STVF_MuonBoy_phi_EndcapRegion.IsActive() ) STVF_MuonBoy_phi_EndcapRegion();
+// -- slimmed --       if( STVF_MuonBoy_etx_ForwardReg.IsActive() ) STVF_MuonBoy_etx_ForwardReg();
+// -- slimmed --       if( STVF_MuonBoy_ety_ForwardReg.IsActive() ) STVF_MuonBoy_ety_ForwardReg();
+// -- slimmed --       if( STVF_MuonBoy_sumet_ForwardReg.IsActive() ) STVF_MuonBoy_sumet_ForwardReg();
+// -- slimmed --       if( STVF_MuonBoy_phi_ForwardReg.IsActive() ) STVF_MuonBoy_phi_ForwardReg();
       if( STVF_CellOut_Track_etx.IsActive() ) STVF_CellOut_Track_etx();
       if( STVF_CellOut_Track_ety.IsActive() ) STVF_CellOut_Track_ety();
       if( STVF_CellOut_Track_sumet.IsActive() ) STVF_CellOut_Track_sumet();

@@ -63,9 +63,9 @@ namespace D3PDReader {
         isLowPtReconstructedMuon( parent.isLowPtReconstructedMuon, index, this ),
         isSegmentTaggedMuon( parent.isSegmentTaggedMuon, index, this ),
         isCaloMuonId( parent.isCaloMuonId, index, this ),
-        alsoFoundByLowPt( parent.alsoFoundByLowPt, index, this ),
-        alsoFoundByCaloMuonId( parent.alsoFoundByCaloMuonId, index, this ),
-        isSiliconAssociatedForwardMuon( parent.isSiliconAssociatedForwardMuon, index, this ),
+// -- slimmed --         alsoFoundByLowPt( parent.alsoFoundByLowPt, index, this ),
+// -- slimmed --         alsoFoundByCaloMuonId( parent.alsoFoundByCaloMuonId, index, this ),
+// -- slimmed --         isSiliconAssociatedForwardMuon( parent.isSiliconAssociatedForwardMuon, index, this ),
         loose( parent.loose, index, this ),
         medium( parent.medium, index, this ),
         tight( parent.tight, index, this ),
@@ -351,9 +351,9 @@ is_data(is_data) {
         isLowPtReconstructedMuon( parent.isLowPtReconstructedMuon ),
         isSegmentTaggedMuon( parent.isSegmentTaggedMuon ),
         isCaloMuonId( parent.isCaloMuonId ),
-        alsoFoundByLowPt( parent.alsoFoundByLowPt ),
-        alsoFoundByCaloMuonId( parent.alsoFoundByCaloMuonId ),
-        isSiliconAssociatedForwardMuon( parent.isSiliconAssociatedForwardMuon ),
+// -- slimmed --         alsoFoundByLowPt( parent.alsoFoundByLowPt ),
+// -- slimmed --         alsoFoundByCaloMuonId( parent.alsoFoundByCaloMuonId ),
+// -- slimmed --         isSiliconAssociatedForwardMuon( parent.isSiliconAssociatedForwardMuon ),
         loose( parent.loose ),
         medium( parent.medium ),
         tight( parent.tight ),
@@ -640,9 +640,9 @@ is_data(is_data) {
         isLowPtReconstructedMuon( this, ::TString( prefix ) + "isLowPtReconstructedMuon", &master ),
         isSegmentTaggedMuon( this, ::TString( prefix ) + "isSegmentTaggedMuon", &master ),
         isCaloMuonId( this, ::TString( prefix ) + "isCaloMuonId", &master ),
-        alsoFoundByLowPt( this, ::TString( prefix ) + "alsoFoundByLowPt", &master ),
-        alsoFoundByCaloMuonId( this, ::TString( prefix ) + "alsoFoundByCaloMuonId", &master ),
-        isSiliconAssociatedForwardMuon( this, ::TString( prefix ) + "isSiliconAssociatedForwardMuon", &master ),
+// -- slimmed --         alsoFoundByLowPt( this, ::TString( prefix ) + "alsoFoundByLowPt", &master ),
+// -- slimmed --         alsoFoundByCaloMuonId( this, ::TString( prefix ) + "alsoFoundByCaloMuonId", &master ),
+// -- slimmed --         isSiliconAssociatedForwardMuon( this, ::TString( prefix ) + "isSiliconAssociatedForwardMuon", &master ),
         loose( this, ::TString( prefix ) + "loose", &master ),
         medium( this, ::TString( prefix ) + "medium", &master ),
         tight( this, ::TString( prefix ) + "tight", &master ),
@@ -920,9 +920,9 @@ is_data(is_data) {
       fHandles[ "isLowPtReconstructedMuon" ] = &isLowPtReconstructedMuon;
       fHandles[ "isSegmentTaggedMuon" ] = &isSegmentTaggedMuon;
       fHandles[ "isCaloMuonId" ] = &isCaloMuonId;
-      fHandles[ "alsoFoundByLowPt" ] = &alsoFoundByLowPt;
-      fHandles[ "alsoFoundByCaloMuonId" ] = &alsoFoundByCaloMuonId;
-      fHandles[ "isSiliconAssociatedForwardMuon" ] = &isSiliconAssociatedForwardMuon;
+// -- slimmed --       fHandles[ "alsoFoundByLowPt" ] = &alsoFoundByLowPt;
+// -- slimmed --       fHandles[ "alsoFoundByCaloMuonId" ] = &alsoFoundByCaloMuonId;
+// -- slimmed --       fHandles[ "isSiliconAssociatedForwardMuon" ] = &isSiliconAssociatedForwardMuon;
       fHandles[ "loose" ] = &loose;
       fHandles[ "medium" ] = &medium;
       fHandles[ "tight" ] = &tight;
@@ -1206,9 +1206,9 @@ if (!is_data) {
         isLowPtReconstructedMuon( this, ::TString( prefix ) + "isLowPtReconstructedMuon", 0 ),
         isSegmentTaggedMuon( this, ::TString( prefix ) + "isSegmentTaggedMuon", 0 ),
         isCaloMuonId( this, ::TString( prefix ) + "isCaloMuonId", 0 ),
-        alsoFoundByLowPt( this, ::TString( prefix ) + "alsoFoundByLowPt", 0 ),
-        alsoFoundByCaloMuonId( this, ::TString( prefix ) + "alsoFoundByCaloMuonId", 0 ),
-        isSiliconAssociatedForwardMuon( this, ::TString( prefix ) + "isSiliconAssociatedForwardMuon", 0 ),
+// -- slimmed --         alsoFoundByLowPt( this, ::TString( prefix ) + "alsoFoundByLowPt", 0 ),
+// -- slimmed --         alsoFoundByCaloMuonId( this, ::TString( prefix ) + "alsoFoundByCaloMuonId", 0 ),
+// -- slimmed --         isSiliconAssociatedForwardMuon( this, ::TString( prefix ) + "isSiliconAssociatedForwardMuon", 0 ),
         loose( this, ::TString( prefix ) + "loose", 0 ),
         medium( this, ::TString( prefix ) + "medium", 0 ),
         tight( this, ::TString( prefix ) + "tight", 0 ),
@@ -1486,9 +1486,9 @@ is_data(is_data) {
       fHandles[ "isLowPtReconstructedMuon" ] = &isLowPtReconstructedMuon;
       fHandles[ "isSegmentTaggedMuon" ] = &isSegmentTaggedMuon;
       fHandles[ "isCaloMuonId" ] = &isCaloMuonId;
-      fHandles[ "alsoFoundByLowPt" ] = &alsoFoundByLowPt;
-      fHandles[ "alsoFoundByCaloMuonId" ] = &alsoFoundByCaloMuonId;
-      fHandles[ "isSiliconAssociatedForwardMuon" ] = &isSiliconAssociatedForwardMuon;
+// -- slimmed --       fHandles[ "alsoFoundByLowPt" ] = &alsoFoundByLowPt;
+// -- slimmed --       fHandles[ "alsoFoundByCaloMuonId" ] = &alsoFoundByCaloMuonId;
+// -- slimmed --       fHandles[ "isSiliconAssociatedForwardMuon" ] = &isSiliconAssociatedForwardMuon;
       fHandles[ "loose" ] = &loose;
       fHandles[ "medium" ] = &medium;
       fHandles[ "tight" ] = &tight;
@@ -1776,9 +1776,9 @@ if (!is_data) {
       isLowPtReconstructedMuon.SetName( ::TString( prefix ) + "isLowPtReconstructedMuon" );
       isSegmentTaggedMuon.SetName( ::TString( prefix ) + "isSegmentTaggedMuon" );
       isCaloMuonId.SetName( ::TString( prefix ) + "isCaloMuonId" );
-      alsoFoundByLowPt.SetName( ::TString( prefix ) + "alsoFoundByLowPt" );
-      alsoFoundByCaloMuonId.SetName( ::TString( prefix ) + "alsoFoundByCaloMuonId" );
-      isSiliconAssociatedForwardMuon.SetName( ::TString( prefix ) + "isSiliconAssociatedForwardMuon" );
+// -- slimmed --       alsoFoundByLowPt.SetName( ::TString( prefix ) + "alsoFoundByLowPt" );
+// -- slimmed --       alsoFoundByCaloMuonId.SetName( ::TString( prefix ) + "alsoFoundByCaloMuonId" );
+// -- slimmed --       isSiliconAssociatedForwardMuon.SetName( ::TString( prefix ) + "isSiliconAssociatedForwardMuon" );
       loose.SetName( ::TString( prefix ) + "loose" );
       medium.SetName( ::TString( prefix ) + "medium" );
       tight.SetName( ::TString( prefix ) + "tight" );
@@ -2069,9 +2069,9 @@ if (!is_data) {
       isLowPtReconstructedMuon.ReadFrom( tree );
       isSegmentTaggedMuon.ReadFrom( tree );
       isCaloMuonId.ReadFrom( tree );
-      alsoFoundByLowPt.ReadFrom( tree );
-      alsoFoundByCaloMuonId.ReadFrom( tree );
-      isSiliconAssociatedForwardMuon.ReadFrom( tree );
+// -- slimmed --       alsoFoundByLowPt.ReadFrom( tree );
+// -- slimmed --       alsoFoundByCaloMuonId.ReadFrom( tree );
+// -- slimmed --       isSiliconAssociatedForwardMuon.ReadFrom( tree );
       loose.ReadFrom( tree );
       medium.ReadFrom( tree );
       tight.ReadFrom( tree );
@@ -2357,9 +2357,9 @@ if (!is_data) {
       isLowPtReconstructedMuon.WriteTo( tree );
       isSegmentTaggedMuon.WriteTo( tree );
       isCaloMuonId.WriteTo( tree );
-      alsoFoundByLowPt.WriteTo( tree );
-      alsoFoundByCaloMuonId.WriteTo( tree );
-      isSiliconAssociatedForwardMuon.WriteTo( tree );
+// -- slimmed --       alsoFoundByLowPt.WriteTo( tree );
+// -- slimmed --       alsoFoundByCaloMuonId.WriteTo( tree );
+// -- slimmed --       isSiliconAssociatedForwardMuon.WriteTo( tree );
       loose.WriteTo( tree );
       medium.WriteTo( tree );
       tight.WriteTo( tree );
@@ -2682,9 +2682,9 @@ if (!is_data) {
       if( isLowPtReconstructedMuon.IsActive() ) isLowPtReconstructedMuon();
       if( isSegmentTaggedMuon.IsActive() ) isSegmentTaggedMuon();
       if( isCaloMuonId.IsActive() ) isCaloMuonId();
-      if( alsoFoundByLowPt.IsActive() ) alsoFoundByLowPt();
-      if( alsoFoundByCaloMuonId.IsActive() ) alsoFoundByCaloMuonId();
-      if( isSiliconAssociatedForwardMuon.IsActive() ) isSiliconAssociatedForwardMuon();
+// -- slimmed --       if( alsoFoundByLowPt.IsActive() ) alsoFoundByLowPt();
+// -- slimmed --       if( alsoFoundByCaloMuonId.IsActive() ) alsoFoundByCaloMuonId();
+// -- slimmed --       if( isSiliconAssociatedForwardMuon.IsActive() ) isSiliconAssociatedForwardMuon();
       if( loose.IsActive() ) loose();
       if( medium.IsActive() ) medium();
       if( tight.IsActive() ) tight();
@@ -2979,9 +2979,9 @@ if (!is_data) {
       isLowPtReconstructedMuon()->clear();
       isSegmentTaggedMuon()->clear();
       isCaloMuonId()->clear();
-      alsoFoundByLowPt()->clear();
-      alsoFoundByCaloMuonId()->clear();
-      isSiliconAssociatedForwardMuon()->clear();
+// -- slimmed --       alsoFoundByLowPt()->clear();
+// -- slimmed --       alsoFoundByCaloMuonId()->clear();
+// -- slimmed --       isSiliconAssociatedForwardMuon()->clear();
       loose()->clear();
       medium()->clear();
       tight()->clear();
@@ -3440,21 +3440,21 @@ if (!is_data) {
       } else {
          isCaloMuonId()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.alsoFoundByLowPt.IsAvailable() ) {
-         alsoFoundByLowPt()->push_back( el.alsoFoundByLowPt() );
-      } else {
-         alsoFoundByLowPt()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.alsoFoundByCaloMuonId.IsAvailable() ) {
-         alsoFoundByCaloMuonId()->push_back( el.alsoFoundByCaloMuonId() );
-      } else {
-         alsoFoundByCaloMuonId()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.isSiliconAssociatedForwardMuon.IsAvailable() ) {
-         isSiliconAssociatedForwardMuon()->push_back( el.isSiliconAssociatedForwardMuon() );
-      } else {
-         isSiliconAssociatedForwardMuon()->push_back( std::numeric_limits< int >::min() );
-      }
+// -- slimmed --       if( el.alsoFoundByLowPt.IsAvailable() ) {
+// -- slimmed --          alsoFoundByLowPt()->push_back( el.alsoFoundByLowPt() );
+// -- slimmed --       } else {
+// -- slimmed --          alsoFoundByLowPt()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.alsoFoundByCaloMuonId.IsAvailable() ) {
+// -- slimmed --          alsoFoundByCaloMuonId()->push_back( el.alsoFoundByCaloMuonId() );
+// -- slimmed --       } else {
+// -- slimmed --          alsoFoundByCaloMuonId()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.isSiliconAssociatedForwardMuon.IsAvailable() ) {
+// -- slimmed --          isSiliconAssociatedForwardMuon()->push_back( el.isSiliconAssociatedForwardMuon() );
+// -- slimmed --       } else {
+// -- slimmed --          isSiliconAssociatedForwardMuon()->push_back( std::numeric_limits< int >::min() );
+// -- slimmed --       }
       if( el.loose.IsAvailable() ) {
          loose()->push_back( el.loose() );
       } else {

@@ -90,11 +90,11 @@ namespace D3PDReader {
       /// Muon identified solely from calorimeter information (so no signal in MS).
       VarProxy< int > isCaloMuonId;
       /// Is this muon also reconstructed by the lowPt algorithm?
-      VarProxy< int > alsoFoundByLowPt;
+// -- slimmed --       VarProxy< int > alsoFoundByLowPt;
       /// Is this muon also reconstructed by a CaloMuon ID algorithm?
-      VarProxy< int > alsoFoundByCaloMuonId;
+// -- slimmed --       VarProxy< int > alsoFoundByCaloMuonId;
       /// Is this muon also with a clean forward standalone muon associated to a ID tracklet
-      VarProxy< int > isSiliconAssociatedForwardMuon;
+// -- slimmed --       VarProxy< int > isSiliconAssociatedForwardMuon;
       /// Passes loose quality cuts.
       VarProxy< int > loose;
       /// Passes medium quality cuts.
@@ -433,11 +433,11 @@ bool is_data; // ~bj
       /// Muon identified solely from calorimeter information (so no signal in MS).
       VarHandle< vector<int>* > isCaloMuonId;
       /// Is this muon also reconstructed by the lowPt algorithm?
-      VarHandle< vector<int>* > alsoFoundByLowPt;
+// -- slimmed --       VarHandle< vector<int>* > alsoFoundByLowPt;
       /// Is this muon also reconstructed by a CaloMuon ID algorithm?
-      VarHandle< vector<int>* > alsoFoundByCaloMuonId;
+// -- slimmed --       VarHandle< vector<int>* > alsoFoundByCaloMuonId;
       /// Is this muon also with a clean forward standalone muon associated to a ID tracklet
-      VarHandle< vector<int>* > isSiliconAssociatedForwardMuon;
+// -- slimmed --       VarHandle< vector<int>* > isSiliconAssociatedForwardMuon;
       /// Passes loose quality cuts.
       VarHandle< vector<int>* > loose;
       /// Passes medium quality cuts.
