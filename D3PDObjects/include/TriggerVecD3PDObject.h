@@ -60,10 +60,10 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e12Tvh_medium1_mu6_topo_medium;
       /// Did this object pass the chain EF_e12Tvh_medium1_mu8
       VarProxy< int > trig_EF_el_EF_e12Tvh_medium1_mu8;
-      /// Did this object pass the chain EF_e13_etcutTrk_xs60
-      VarProxy< int > trig_EF_el_EF_e13_etcutTrk_xs60;
-      /// Did this object pass the chain EF_e13_etcutTrk_xs60_dphi2j15xe20
-      VarProxy< int > trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20;
+// -- slimmed --       /// Did this object pass the chain EF_e13_etcutTrk_xs60
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e13_etcutTrk_xs60;
+// -- slimmed --       /// Did this object pass the chain EF_e13_etcutTrk_xs60_dphi2j15xe20
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20;
 // -- slimmed --       /// Did this object pass the chain EF_e14_tight1_e4_etcut_Jpsi
 // -- slimmed --       VarProxy< int > trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
       /// Did this object pass the chain EF_e15vh_medium1
@@ -82,8 +82,8 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e18vh_medium1_2e7T_medium1;
       /// Did this object pass the chain EF_e20_etcutTrk_xe30_dphi2j15xe20
       VarProxy< int > trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20;
-      /// Did this object pass the chain EF_e20_etcutTrk_xs60_dphi2j15xe20
-      VarProxy< int > trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20;
+// -- slimmed --       /// Did this object pass the chain EF_e20_etcutTrk_xs60_dphi2j15xe20
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20;
 // -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_e20vhT_medium1_g6T_etcut_Upsi
 // -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
 // -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_e20vhT_tight1_g6T_etcut_Upsi
@@ -96,8 +96,8 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e22vh_loose1;
       /// Did this object pass the chain EF_e22vh_medium1
       VarProxy< int > trig_EF_el_EF_e22vh_medium1;
-      /// Did this object pass the chain EF_e22vh_medium1_IDTrkNoCut
-      VarProxy< int > trig_EF_el_EF_e22vh_medium1_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_e22vh_medium1_IDTrkNoCut
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e22vh_medium1_IDTrkNoCut;
       /// Did this object pass the chain EF_e22vhi_medium1
       VarProxy< int > trig_EF_el_EF_e22vhi_medium1;
       /// Did this object pass the chain EF_e24vh_loose
@@ -118,8 +118,8 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e24vh_medium1_EFxe35_tclcw;
       /// Did this object pass the chain EF_e24vh_medium1_EFxe40
       VarProxy< int > trig_EF_el_EF_e24vh_medium1_EFxe40;
-      /// Did this object pass the chain EF_e24vh_medium1_IDTrkNoCut
-      VarProxy< int > trig_EF_el_EF_e24vh_medium1_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_e24vh_medium1_IDTrkNoCut
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_e24vh_medium1_IDTrkNoCut;
       /// Did this object pass the chain EF_e24vh_medium1_IdScan
       VarProxy< int > trig_EF_el_EF_e24vh_medium1_IdScan;
       /// Did this object pass the chain EF_e24vh_medium1_L2StarB
@@ -168,36 +168,36 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_el_EF_e7T_medium1_2mu6;
 // -- slimmed --       /// Did this object pass the chain EF_e9_tight1_e4_etcut_Jpsi
 // -- slimmed --       VarProxy< int > trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
-      /// Did this object pass the chain EF_eb_physics
-      VarProxy< int > trig_EF_el_EF_eb_physics;
-      /// Did this object pass the chain EF_eb_physics_empty
-      VarProxy< int > trig_EF_el_EF_eb_physics_empty;
-      /// Did this object pass the chain EF_eb_physics_firstempty
-      VarProxy< int > trig_EF_el_EF_eb_physics_firstempty;
-      /// Did this object pass the chain EF_eb_physics_noL1PS
-      VarProxy< int > trig_EF_el_EF_eb_physics_noL1PS;
-      /// Did this object pass the chain EF_eb_physics_unpaired_iso
-      VarProxy< int > trig_EF_el_EF_eb_physics_unpaired_iso;
-      /// Did this object pass the chain EF_eb_physics_unpaired_noniso
-      VarProxy< int > trig_EF_el_EF_eb_physics_unpaired_noniso;
-      /// Did this object pass the chain EF_eb_random
-      VarProxy< int > trig_EF_el_EF_eb_random;
-      /// Did this object pass the chain EF_eb_random_empty
-      VarProxy< int > trig_EF_el_EF_eb_random_empty;
-      /// Did this object pass the chain EF_eb_random_firstempty
-      VarProxy< int > trig_EF_el_EF_eb_random_firstempty;
-      /// Did this object pass the chain EF_eb_random_unpaired_iso
-      VarProxy< int > trig_EF_el_EF_eb_random_unpaired_iso;
-      VarProxy< float > trig_EF_emcl_pt;
-      VarProxy< float > trig_EF_emcl_eta;
-      VarProxy< float > trig_EF_emcl_phi;
-      VarProxy< float > trig_EF_emcl_E_em;
-      VarProxy< float > trig_EF_emcl_E_had;
-      VarProxy< float > trig_EF_emcl_slw_pt;
-      VarProxy< float > trig_EF_emcl_slw_eta;
-      VarProxy< float > trig_EF_emcl_slw_phi;
-      VarProxy< float > trig_EF_emcl_slw_E_em;
-      VarProxy< float > trig_EF_emcl_slw_E_had;
+// -- slimmed --       /// Did this object pass the chain EF_eb_physics
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_physics;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_physics_empty
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_physics_empty;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_physics_firstempty
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_physics_firstempty;
+// -- slimmed --       /// Did this object pass the chain EF_eb_physics_noL1PS
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_physics_noL1PS;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_physics_unpaired_iso
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_physics_unpaired_iso;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_physics_unpaired_noniso
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_physics_unpaired_noniso;
+// -- slimmed --       /// Did this object pass the chain EF_eb_random
+// -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_random;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_random_empty
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_random_empty;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_random_firstempty
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_random_firstempty;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_random_unpaired_iso
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_el_EF_eb_random_unpaired_iso;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_pt;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_eta;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_phi;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_E_em;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_E_had;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_slw_pt;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_slw_eta;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_slw_phi;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_slw_E_em;
+// -- slimmed --       VarProxy< float > trig_EF_emcl_slw_E_had;
       VarProxy< float > trig_EF_el_E;
       VarProxy< float > trig_EF_el_Et;
       VarProxy< float > trig_EF_el_pt;
@@ -245,66 +245,66 @@ namespace D3PDReader {
       // =============================================================================
       /// Did this object pass the chain EF_2mu10
       VarProxy< int > trig_EF_trigmuonef_EF_2mu10;
-// -- slimmed --       /// Did this object pass the chain EF_2mu10_MSonly_g10_loose
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu10_MSonly_g10_loose
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
       /// Did this object pass the chain EF_2mu13
       VarProxy< int > trig_EF_trigmuonef_EF_2mu13;
-      /// Did this object pass the chain EF_2mu13_Zmumu_IDTrkNoCut
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut;
-      /// Did this object pass the chain EF_2mu13_l2muonSA
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu13_l2muonSA;
+// -- slimmed --       /// Did this object pass the chain EF_2mu13_Zmumu_IDTrkNoCut
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_2mu13_l2muonSA
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu13_l2muonSA;
       /// Did this object pass the chain EF_2mu15
       VarProxy< int > trig_EF_trigmuonef_EF_2mu15;
-      /// Did this object pass the chain EF_2mu4T
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T;
-      /// Did this object pass the chain EF_2mu4T_2e5_tight1
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_2e5_tight1;
-      /// Did this object pass the chain EF_2mu4T_Bmumu
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumu;
-      /// Did this object pass the chain EF_2mu4T_Bmumu_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumu_Barrel;
-      /// Did this object pass the chain EF_2mu4T_Bmumu_BarrelOnly
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumu_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_Bmumux
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumux;
-      /// Did this object pass the chain EF_2mu4T_Bmumux_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumux_Barrel;
-      /// Did this object pass the chain EF_2mu4T_Bmumux_BarrelOnly
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumux_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_DiMu
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu;
-      /// Did this object pass the chain EF_2mu4T_DiMu_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_Barrel;
-      /// Did this object pass the chain EF_2mu4T_DiMu_BarrelOnly
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_DiMu_L2StarB
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_L2StarB;
-      /// Did this object pass the chain EF_2mu4T_DiMu_L2StarC
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_L2StarC;
-      /// Did this object pass the chain EF_2mu4T_DiMu_e5_tight1
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1;
-      /// Did this object pass the chain EF_2mu4T_DiMu_l2muonSA
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA;
-      /// Did this object pass the chain EF_2mu4T_DiMu_noVtx_noOS
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_Barrel
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_BarrelOnly
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_IDTrkNoCut
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_Barrel
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_BarrelOnly
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_xe60
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_xe60;
-      /// Did this object pass the chain EF_2mu4T_xe60_tclcw
-      VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_2e5_tight1
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_2e5_tight1;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumu_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumu_BarrelOnly
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumux
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumux;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumux_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumux_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumux_BarrelOnly
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Bmumux_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_BarrelOnly
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_L2StarB
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_L2StarB;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_L2StarC
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_L2StarC;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_e5_tight1
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_l2muonSA
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_noVtx_noOS
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_Barrel
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_BarrelOnly
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
+// -- slimmed -- // -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_IDTrkNoCut
+// -- slimmed -- // -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_Barrel
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_BarrelOnly
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_xe60
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_xe60;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_xe60_tclcw
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw;
       /// Did this object pass the chain EF_2mu6
       VarProxy< int > trig_EF_trigmuonef_EF_2mu6;
       /// Did this object pass the chain EF_2mu6_Bmumu
@@ -339,8 +339,8 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_mu10;
 // -- slimmed --       /// Did this object pass the chain EF_mu10_Jpsimumu
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10_Jpsimumu;
-      /// Did this object pass the chain EF_mu10_MSonly
-      VarProxy< int > trig_EF_trigmuonef_EF_mu10_MSonly;
+// -- slimmed --       /// Did this object pass the chain EF_mu10_MSonly
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10_MSonly;
 // -- slimmed --       /// Did this object pass the chain EF_mu10_Upsimumu_tight_FS
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
 // -- slimmed --       /// Did this object pass the chain EF_mu10i_g10_medium
@@ -351,8 +351,8 @@ namespace D3PDReader {
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
 // -- slimmed --       /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium_TauMass
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
-      /// Did this object pass the chain EF_mu11_empty_NoAlg
-      VarProxy< int > trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
+// -- slimmed --       /// Did this object pass the chain EF_mu11_empty_NoAlg
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
       /// Did this object pass the chain EF_mu13
       VarProxy< int > trig_EF_trigmuonef_EF_mu13;
       /// Did this object pass the chain EF_mu15
@@ -363,8 +363,8 @@ namespace D3PDReader {
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu18_2g10_loose;
 // -- slimmed --       /// Did this object pass the chain EF_mu18_2g10_medium
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu18_2g10_medium;
-      /// Did this object pass the chain EF_mu18_IDTrkNoCut_tight
-      VarProxy< int > trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu18_IDTrkNoCut_tight
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
       /// Did this object pass the chain EF_mu18_medium
       VarProxy< int > trig_EF_trigmuonef_EF_mu18_medium;
       /// Did this object pass the chain EF_mu18_tight
@@ -385,8 +385,8 @@ namespace D3PDReader {
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
       /// Did this object pass the chain EF_mu20it_tight
       VarProxy< int > trig_EF_trigmuonef_EF_mu20it_tight;
-      /// Did this object pass the chain EF_mu22_IDTrkNoCut_tight
-      VarProxy< int > trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu22_IDTrkNoCut_tight
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight;
       /// Did this object pass the chain EF_mu24
       VarProxy< int > trig_EF_trigmuonef_EF_mu24;
 // -- slimmed --       /// Did this object pass the chain EF_mu24_g20vh_loose
@@ -403,8 +403,8 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw;
       /// Did this object pass the chain EF_mu24_medium
       VarProxy< int > trig_EF_trigmuonef_EF_mu24_medium;
-      /// Did this object pass the chain EF_mu24_muCombTag_NoEF_tight
-      VarProxy< int > trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu24_muCombTag_NoEF_tight
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight;
       /// Did this object pass the chain EF_mu24_tight
       VarProxy< int > trig_EF_trigmuonef_EF_mu24_tight;
       /// Did this object pass the chain EF_mu24_tight_3j35_a4tchad
@@ -429,149 +429,149 @@ namespace D3PDReader {
       VarProxy< int > trig_EF_trigmuonef_EF_mu24i_tight_MG;
       /// Did this object pass the chain EF_mu24i_tight_MuonEF
       VarProxy< int > trig_EF_trigmuonef_EF_mu24i_tight_MuonEF;
-      /// Did this object pass the chain EF_mu24i_tight_l2muonSA
-      VarProxy< int > trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA;
+// -- slimmed --       /// Did this object pass the chain EF_mu24i_tight_l2muonSA
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA;
       /// Did this object pass the chain EF_mu36_tight
       VarProxy< int > trig_EF_trigmuonef_EF_mu36_tight;
-      /// Did this object pass the chain EF_mu40_MSonly_barrel_tight
-      VarProxy< int > trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight;
-      /// Did this object pass the chain EF_mu40_muCombTag_NoEF
-      VarProxy< int > trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF;
-      /// Did this object pass the chain EF_mu40_slow_outOfTime_tight
-      VarProxy< int > trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight;
-      /// Did this object pass the chain EF_mu40_slow_tight
-      VarProxy< int > trig_EF_trigmuonef_EF_mu40_slow_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu40_MSonly_barrel_tight
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu40_muCombTag_NoEF
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF;
+// -- slimmed --       /// Did this object pass the chain EF_mu40_slow_outOfTime_tight
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu40_slow_tight
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu40_slow_tight;
       /// Did this object pass the chain EF_mu40_tight
       VarProxy< int > trig_EF_trigmuonef_EF_mu40_tight;
-      /// Did this object pass the chain EF_mu4T
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T;
-      /// Did this object pass the chain EF_mu4T_cosmic
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_cosmic;
-      /// Did this object pass the chain EF_mu4T_j110_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j110_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j110_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j110_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j145_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j145_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j145_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j145_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j15_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j15_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j15_a4tchad_matchedZ
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j15_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j180_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j180_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j180_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j180_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j220_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j220_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j220_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j220_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j25_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j25_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j25_a4tchad_matchedZ
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j25_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j280_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j280_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j280_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j280_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j35_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j35_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j35_a4tchad_matchedZ
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j35_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j45_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j45_a4tchad_L2FS_matchedZ
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_L2FS_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j45_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j45_a4tchad_matchedZ
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j55_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j55_a4tchad_L2FS_matchedZ
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_L2FS_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j55_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j55_a4tchad_matchedZ
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j65_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j65_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j65_a4tchad_xe60_tclcw_loose
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe60_tclcw_loose;
-      /// Did this object pass the chain EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose;
-      /// Did this object pass the chain EF_mu4T_j80_a4tchad_L2FS_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j80_a4tchad_matched
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium_TauMass
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
-      /// Did this object pass the chain EF_mu4Tmu6_Bmumu
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu;
-      /// Did this object pass the chain EF_mu4Tmu6_Bmumu_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel;
-      /// Did this object pass the chain EF_mu4Tmu6_Bmumux
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux;
-      /// Did this object pass the chain EF_mu4Tmu6_Bmumux_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux_Barrel;
-      /// Did this object pass the chain EF_mu4Tmu6_DiMu
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu;
-      /// Did this object pass the chain EF_mu4Tmu6_DiMu_Barrel
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel;
-      /// Did this object pass the chain EF_mu4Tmu6_DiMu_noVtx_noOS
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_Barrel
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu_Barrel
-// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
-      /// Did this object pass the chain EF_mu4_L1MU11_MSonly_cosmic
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_cosmic
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_cosmic;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j110_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j110_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j110_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j110_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j145_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j145_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j145_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j145_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j15_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j15_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j15_a4tchad_matchedZ
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j15_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j180_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j180_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j180_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j180_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j220_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j220_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j220_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j220_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j25_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j25_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j25_a4tchad_matchedZ
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j25_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j280_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j280_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j280_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j280_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j35_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j35_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j35_a4tchad_matchedZ
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j35_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j45_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j45_a4tchad_L2FS_matchedZ
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_L2FS_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j45_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j45_a4tchad_matchedZ
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j55_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j55_a4tchad_L2FS_matchedZ
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_L2FS_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j55_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j55_a4tchad_matchedZ
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j65_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j65_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j65_a4tchad_xe60_tclcw_loose
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe60_tclcw_loose;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j80_a4tchad_L2FS_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j80_a4tchad_matched
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium_TauMass
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Bmumu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Bmumu_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Bmumux
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Bmumux_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_DiMu
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_DiMu_Barrel
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_DiMu_noVtx_noOS
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_Barrel
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
+// -- slimmed -- // -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
+// -- slimmed -- // -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu_Barrel
+// -- slimmed -- // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4_L1MU11_MSonly_cosmic
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic;
       /// Did this object pass the chain EF_mu4_L1MU11_cosmic
       VarProxy< int > trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic;
-      /// Did this object pass the chain EF_mu4_empty_NoAlg
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4_empty_NoAlg;
-      /// Did this object pass the chain EF_mu4_firstempty_NoAlg
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4_firstempty_NoAlg;
-      /// Did this object pass the chain EF_mu4_unpaired_iso_NoAlg
-      VarProxy< int > trig_EF_trigmuonef_EF_mu4_unpaired_iso_NoAlg;
-      /// Did this object pass the chain EF_mu50_MSonly_barrel_tight
-      VarProxy< int > trig_EF_trigmuonef_EF_mu50_MSonly_barrel_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu4_empty_NoAlg
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4_empty_NoAlg;
+// -- slimmed --       /// Did this object pass the chain EF_mu4_firstempty_NoAlg
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4_firstempty_NoAlg;
+// -- slimmed --       /// Did this object pass the chain EF_mu4_unpaired_iso_NoAlg
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu4_unpaired_iso_NoAlg;
+// -- slimmed --       /// Did this object pass the chain EF_mu50_MSonly_barrel_tight
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu50_MSonly_barrel_tight;
       /// Did this object pass the chain EF_mu6
       VarProxy< int > trig_EF_trigmuonef_EF_mu6;
-      /// Did this object pass the chain EF_mu60_slow_outOfTime_tight1
-      VarProxy< int > trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1;
-      /// Did this object pass the chain EF_mu60_slow_tight1
-      VarProxy< int > trig_EF_trigmuonef_EF_mu60_slow_tight1;
+// -- slimmed --       /// Did this object pass the chain EF_mu60_slow_outOfTime_tight1
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1;
+// -- slimmed --       /// Did this object pass the chain EF_mu60_slow_tight1
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu60_slow_tight1;
 // -- slimmed --       /// Did this object pass the chain EF_mu6_Jpsimumu_tight
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
-      /// Did this object pass the chain EF_mu6_MSonly
-      VarProxy< int > trig_EF_trigmuonef_EF_mu6_MSonly;
+// -- slimmed --       /// Did this object pass the chain EF_mu6_MSonly
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu6_MSonly;
 // -- slimmed --       /// Did this object pass the chain EF_mu6_Trk_Jpsi_loose
 // -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
       /// Did this object pass the chain EF_mu8
       VarProxy< int > trig_EF_trigmuonef_EF_mu8;
-      /// Did this object pass the chain EF_mu8_4j45_a4tchad_L2FS
-      VarProxy< int > trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS;
-      VarProxy< vector<int> > trig_EF_trigmuonef_track_MuonType;
-      VarProxy< vector<float> > trig_EF_trigmuonef_track_MS_pt;
-      VarProxy< vector<float> > trig_EF_trigmuonef_track_MS_eta;
-      VarProxy< vector<float> > trig_EF_trigmuonef_track_MS_phi;
-      VarProxy< vector<int> > trig_EF_trigmuonef_track_MS_hasMS;
-      VarProxy< vector<float> > trig_EF_trigmuonef_track_SA_pt;
-      VarProxy< vector<float> > trig_EF_trigmuonef_track_SA_eta;
-      VarProxy< vector<float> > trig_EF_trigmuonef_track_SA_phi;
-      VarProxy< vector<int> > trig_EF_trigmuonef_track_SA_hasSA;
+// -- slimmed --       /// Did this object pass the chain EF_mu8_4j45_a4tchad_L2FS
+// -- slimmed --       VarProxy< int > trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS;
+// -- slimmed --       VarProxy< vector<int> > trig_EF_trigmuonef_track_MuonType;
+// -- slimmed --       VarProxy< vector<float> > trig_EF_trigmuonef_track_MS_pt;
+// -- slimmed --       VarProxy< vector<float> > trig_EF_trigmuonef_track_MS_eta;
+// -- slimmed --       VarProxy< vector<float> > trig_EF_trigmuonef_track_MS_phi;
+// -- slimmed --       VarProxy< vector<int> > trig_EF_trigmuonef_track_MS_hasMS;
+// -- slimmed --       VarProxy< vector<float> > trig_EF_trigmuonef_track_SA_pt;
+// -- slimmed --       VarProxy< vector<float> > trig_EF_trigmuonef_track_SA_eta;
+// -- slimmed --       VarProxy< vector<float> > trig_EF_trigmuonef_track_SA_phi;
+// -- slimmed --       VarProxy< vector<int> > trig_EF_trigmuonef_track_SA_hasSA;
       
       // =============================================================================
       // = MC only
@@ -674,10 +674,10 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e12Tvh_medium1_mu6_topo_medium;
       /// Did this object pass the chain EF_e12Tvh_medium1_mu8
       VarHandle< vector<int>* > trig_EF_el_EF_e12Tvh_medium1_mu8;
-      /// Did this object pass the chain EF_e13_etcutTrk_xs60
-      VarHandle< vector<int>* > trig_EF_el_EF_e13_etcutTrk_xs60;
-      /// Did this object pass the chain EF_e13_etcutTrk_xs60_dphi2j15xe20
-      VarHandle< vector<int>* > trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20;
+// -- slimmed --       /// Did this object pass the chain EF_e13_etcutTrk_xs60
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e13_etcutTrk_xs60;
+// -- slimmed --       /// Did this object pass the chain EF_e13_etcutTrk_xs60_dphi2j15xe20
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e13_etcutTrk_xs60_dphi2j15xe20;
 // -- slimmed --       /// Did this object pass the chain EF_e14_tight1_e4_etcut_Jpsi
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e14_tight1_e4_etcut_Jpsi;
       /// Did this object pass the chain EF_e15vh_medium1
@@ -696,8 +696,8 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e18vh_medium1_2e7T_medium1;
       /// Did this object pass the chain EF_e20_etcutTrk_xe30_dphi2j15xe20
       VarHandle< vector<int>* > trig_EF_el_EF_e20_etcutTrk_xe30_dphi2j15xe20;
-      /// Did this object pass the chain EF_e20_etcutTrk_xs60_dphi2j15xe20
-      VarHandle< vector<int>* > trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20;
+// -- slimmed --       /// Did this object pass the chain EF_e20_etcutTrk_xs60_dphi2j15xe20
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e20_etcutTrk_xs60_dphi2j15xe20;
 // -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_e20vhT_medium1_g6T_etcut_Upsi
 // -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e20vhT_medium1_g6T_etcut_Upsi;
 // -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_e20vhT_tight1_g6T_etcut_Upsi
@@ -710,8 +710,8 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e22vh_loose1;
       /// Did this object pass the chain EF_e22vh_medium1
       VarHandle< vector<int>* > trig_EF_el_EF_e22vh_medium1;
-      /// Did this object pass the chain EF_e22vh_medium1_IDTrkNoCut
-      VarHandle< vector<int>* > trig_EF_el_EF_e22vh_medium1_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_e22vh_medium1_IDTrkNoCut
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e22vh_medium1_IDTrkNoCut;
       /// Did this object pass the chain EF_e22vhi_medium1
       VarHandle< vector<int>* > trig_EF_el_EF_e22vhi_medium1;
       /// Did this object pass the chain EF_e24vh_loose
@@ -732,8 +732,8 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e24vh_medium1_EFxe35_tclcw;
       /// Did this object pass the chain EF_e24vh_medium1_EFxe40
       VarHandle< vector<int>* > trig_EF_el_EF_e24vh_medium1_EFxe40;
-      /// Did this object pass the chain EF_e24vh_medium1_IDTrkNoCut
-      VarHandle< vector<int>* > trig_EF_el_EF_e24vh_medium1_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_e24vh_medium1_IDTrkNoCut
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e24vh_medium1_IDTrkNoCut;
       /// Did this object pass the chain EF_e24vh_medium1_IdScan
       VarHandle< vector<int>* > trig_EF_el_EF_e24vh_medium1_IdScan;
       /// Did this object pass the chain EF_e24vh_medium1_L2StarB
@@ -782,36 +782,36 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_el_EF_e7T_medium1_2mu6;
 // -- slimmed --       /// Did this object pass the chain EF_e9_tight1_e4_etcut_Jpsi
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
-      /// Did this object pass the chain EF_eb_physics
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_physics;
-      /// Did this object pass the chain EF_eb_physics_empty
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_empty;
-      /// Did this object pass the chain EF_eb_physics_firstempty
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_firstempty;
-      /// Did this object pass the chain EF_eb_physics_noL1PS
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_noL1PS;
-      /// Did this object pass the chain EF_eb_physics_unpaired_iso
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_unpaired_iso;
-      /// Did this object pass the chain EF_eb_physics_unpaired_noniso
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_unpaired_noniso;
-      /// Did this object pass the chain EF_eb_random
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_random;
-      /// Did this object pass the chain EF_eb_random_empty
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_random_empty;
-      /// Did this object pass the chain EF_eb_random_firstempty
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_random_firstempty;
-      /// Did this object pass the chain EF_eb_random_unpaired_iso
-      VarHandle< vector<int>* > trig_EF_el_EF_eb_random_unpaired_iso;
-      VarHandle< vector<float>* > trig_EF_emcl_pt;
-      VarHandle< vector<float>* > trig_EF_emcl_eta;
-      VarHandle< vector<float>* > trig_EF_emcl_phi;
-      VarHandle< vector<float>* > trig_EF_emcl_E_em;
-      VarHandle< vector<float>* > trig_EF_emcl_E_had;
-      VarHandle< vector<float>* > trig_EF_emcl_slw_pt;
-      VarHandle< vector<float>* > trig_EF_emcl_slw_eta;
-      VarHandle< vector<float>* > trig_EF_emcl_slw_phi;
-      VarHandle< vector<float>* > trig_EF_emcl_slw_E_em;
-      VarHandle< vector<float>* > trig_EF_emcl_slw_E_had;
+// -- slimmed --       /// Did this object pass the chain EF_eb_physics
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_physics;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_physics_empty
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_empty;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_physics_firstempty
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_firstempty;
+// -- slimmed --       /// Did this object pass the chain EF_eb_physics_noL1PS
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_noL1PS;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_physics_unpaired_iso
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_unpaired_iso;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_physics_unpaired_noniso
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_physics_unpaired_noniso;
+// -- slimmed --       /// Did this object pass the chain EF_eb_random
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_random;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_random_empty
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_random_empty;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_random_firstempty
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_random_firstempty;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_eb_random_unpaired_iso
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_el_EF_eb_random_unpaired_iso;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_pt;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_eta;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_phi;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_E_em;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_E_had;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_slw_pt;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_slw_eta;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_slw_phi;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_slw_E_em;
+// -- slimmed --       VarHandle< vector<float>* > trig_EF_emcl_slw_E_had;
       VarHandle< vector<float>* > trig_EF_el_E;
       VarHandle< vector<float>* > trig_EF_el_Et;
       VarHandle< vector<float>* > trig_EF_el_pt;
@@ -859,66 +859,66 @@ namespace D3PDReader {
       // =============================================================================
       /// Did this object pass the chain EF_2mu10
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu10;
-// -- slimmed --       /// Did this object pass the chain EF_2mu10_MSonly_g10_loose
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu10_MSonly_g10_loose
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu10_MSonly_g10_loose;
       /// Did this object pass the chain EF_2mu13
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu13;
-      /// Did this object pass the chain EF_2mu13_Zmumu_IDTrkNoCut
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut;
-      /// Did this object pass the chain EF_2mu13_l2muonSA
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu13_l2muonSA;
+// -- slimmed --       /// Did this object pass the chain EF_2mu13_Zmumu_IDTrkNoCut
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu13_Zmumu_IDTrkNoCut;
+// -- slimmed --       /// Did this object pass the chain EF_2mu13_l2muonSA
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu13_l2muonSA;
       /// Did this object pass the chain EF_2mu15
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu15;
-      /// Did this object pass the chain EF_2mu4T
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T;
-      /// Did this object pass the chain EF_2mu4T_2e5_tight1
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_2e5_tight1;
-      /// Did this object pass the chain EF_2mu4T_Bmumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumu;
-      /// Did this object pass the chain EF_2mu4T_Bmumu_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumu_Barrel;
-      /// Did this object pass the chain EF_2mu4T_Bmumu_BarrelOnly
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumu_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_Bmumux
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumux;
-      /// Did this object pass the chain EF_2mu4T_Bmumux_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumux_Barrel;
-      /// Did this object pass the chain EF_2mu4T_Bmumux_BarrelOnly
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumux_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_DiMu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu;
-      /// Did this object pass the chain EF_2mu4T_DiMu_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_Barrel;
-      /// Did this object pass the chain EF_2mu4T_DiMu_BarrelOnly
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_DiMu_L2StarB
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_L2StarB;
-      /// Did this object pass the chain EF_2mu4T_DiMu_L2StarC
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_L2StarC;
-      /// Did this object pass the chain EF_2mu4T_DiMu_e5_tight1
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1;
-      /// Did this object pass the chain EF_2mu4T_DiMu_l2muonSA
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA;
-      /// Did this object pass the chain EF_2mu4T_DiMu_noVtx_noOS
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_Barrel
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_BarrelOnly
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_IDTrkNoCut
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_Barrel
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
-// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_BarrelOnly
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
-      /// Did this object pass the chain EF_2mu4T_xe60
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_xe60;
-      /// Did this object pass the chain EF_2mu4T_xe60_tclcw
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_2e5_tight1
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_2e5_tight1;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumu_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumu_BarrelOnly
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumux
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumux;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumux_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumux_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_Bmumux_BarrelOnly
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Bmumux_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_BarrelOnly
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_L2StarB
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_L2StarB;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_L2StarC
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_L2StarC;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_e5_tight1
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_e5_tight1;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_l2muonSA
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_l2muonSA;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_DiMu_noVtx_noOS
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_DiMu_noVtx_noOS;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_Barrel
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_Barrel;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_BarrelOnly
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_BarrelOnly;
+// -- slimmed -- // -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Jpsimumu_IDTrkNoCut
+// -- slimmed -- // -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Jpsimumu_IDTrkNoCut;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_Barrel
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_Barrel;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_2mu4T_Upsimumu_BarrelOnly
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_Upsimumu_BarrelOnly;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_xe60
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_xe60;
+// -- slimmed --       /// Did this object pass the chain EF_2mu4T_xe60_tclcw
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu4T_xe60_tclcw;
       /// Did this object pass the chain EF_2mu6
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_2mu6;
       /// Did this object pass the chain EF_2mu6_Bmumu
@@ -953,8 +953,8 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10;
 // -- slimmed --       /// Did this object pass the chain EF_mu10_Jpsimumu
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_Jpsimumu;
-      /// Did this object pass the chain EF_mu10_MSonly
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_MSonly;
+// -- slimmed --       /// Did this object pass the chain EF_mu10_MSonly
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_MSonly;
 // -- slimmed --       /// Did this object pass the chain EF_mu10_Upsimumu_tight_FS
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10_Upsimumu_tight_FS;
 // -- slimmed --       /// Did this object pass the chain EF_mu10i_g10_medium
@@ -965,8 +965,8 @@ namespace D3PDReader {
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
 // -- slimmed --       /// Did this object pass the chain EF_mu10i_loose_g12Tvh_medium_TauMass
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
-      /// Did this object pass the chain EF_mu11_empty_NoAlg
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
+// -- slimmed --       /// Did this object pass the chain EF_mu11_empty_NoAlg
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
       /// Did this object pass the chain EF_mu13
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu13;
       /// Did this object pass the chain EF_mu15
@@ -977,8 +977,8 @@ namespace D3PDReader {
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_2g10_loose;
 // -- slimmed --       /// Did this object pass the chain EF_mu18_2g10_medium
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_2g10_medium;
-      /// Did this object pass the chain EF_mu18_IDTrkNoCut_tight
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu18_IDTrkNoCut_tight
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
       /// Did this object pass the chain EF_mu18_medium
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu18_medium;
       /// Did this object pass the chain EF_mu18_tight
@@ -999,8 +999,8 @@ namespace D3PDReader {
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20i_tight_g5_medium_TauMass;
       /// Did this object pass the chain EF_mu20it_tight
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu20it_tight;
-      /// Did this object pass the chain EF_mu22_IDTrkNoCut_tight
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu22_IDTrkNoCut_tight
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu22_IDTrkNoCut_tight;
       /// Did this object pass the chain EF_mu24
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24;
 // -- slimmed --       /// Did this object pass the chain EF_mu24_g20vh_loose
@@ -1017,8 +1017,8 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw;
       /// Did this object pass the chain EF_mu24_medium
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_medium;
-      /// Did this object pass the chain EF_mu24_muCombTag_NoEF_tight
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu24_muCombTag_NoEF_tight
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight;
       /// Did this object pass the chain EF_mu24_tight
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24_tight;
       /// Did this object pass the chain EF_mu24_tight_3j35_a4tchad
@@ -1043,149 +1043,149 @@ namespace D3PDReader {
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24i_tight_MG;
       /// Did this object pass the chain EF_mu24i_tight_MuonEF
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24i_tight_MuonEF;
-      /// Did this object pass the chain EF_mu24i_tight_l2muonSA
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA;
+// -- slimmed --       /// Did this object pass the chain EF_mu24i_tight_l2muonSA
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA;
       /// Did this object pass the chain EF_mu36_tight
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu36_tight;
-      /// Did this object pass the chain EF_mu40_MSonly_barrel_tight
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight;
-      /// Did this object pass the chain EF_mu40_muCombTag_NoEF
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF;
-      /// Did this object pass the chain EF_mu40_slow_outOfTime_tight
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight;
-      /// Did this object pass the chain EF_mu40_slow_tight
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_slow_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu40_MSonly_barrel_tight
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu40_muCombTag_NoEF
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF;
+// -- slimmed --       /// Did this object pass the chain EF_mu40_slow_outOfTime_tight
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu40_slow_tight
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_slow_tight;
       /// Did this object pass the chain EF_mu40_tight
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu40_tight;
-      /// Did this object pass the chain EF_mu4T
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T;
-      /// Did this object pass the chain EF_mu4T_cosmic
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_cosmic;
-      /// Did this object pass the chain EF_mu4T_j110_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j110_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j110_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j110_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j145_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j145_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j145_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j145_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j15_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j15_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j15_a4tchad_matchedZ
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j15_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j180_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j180_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j180_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j180_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j220_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j220_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j220_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j220_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j25_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j25_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j25_a4tchad_matchedZ
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j25_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j280_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j280_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j280_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j280_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j35_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j35_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j35_a4tchad_matchedZ
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j35_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j45_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j45_a4tchad_L2FS_matchedZ
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_L2FS_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j45_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j45_a4tchad_matchedZ
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j55_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j55_a4tchad_L2FS_matchedZ
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_L2FS_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j55_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j55_a4tchad_matchedZ
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_matchedZ;
-      /// Did this object pass the chain EF_mu4T_j65_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j65_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_matched;
-      /// Did this object pass the chain EF_mu4T_j65_a4tchad_xe60_tclcw_loose
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe60_tclcw_loose;
-      /// Did this object pass the chain EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose;
-      /// Did this object pass the chain EF_mu4T_j80_a4tchad_L2FS_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched;
-      /// Did this object pass the chain EF_mu4T_j80_a4tchad_matched
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium_TauMass
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
-      /// Did this object pass the chain EF_mu4Tmu6_Bmumu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu;
-      /// Did this object pass the chain EF_mu4Tmu6_Bmumu_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel;
-      /// Did this object pass the chain EF_mu4Tmu6_Bmumux
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux;
-      /// Did this object pass the chain EF_mu4Tmu6_Bmumux_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux_Barrel;
-      /// Did this object pass the chain EF_mu4Tmu6_DiMu
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu;
-      /// Did this object pass the chain EF_mu4Tmu6_DiMu_Barrel
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel;
-      /// Did this object pass the chain EF_mu4Tmu6_DiMu_noVtx_noOS
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_Barrel
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
-// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu_Barrel
-// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
-      /// Did this object pass the chain EF_mu4_L1MU11_MSonly_cosmic
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_cosmic
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_cosmic;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j110_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j110_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j110_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j110_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j145_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j145_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j145_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j145_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j15_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j15_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j15_a4tchad_matchedZ
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j15_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j180_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j180_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j180_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j180_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j220_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j220_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j220_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j220_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j25_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j25_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j25_a4tchad_matchedZ
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j25_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j280_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j280_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j280_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j280_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j35_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j35_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j35_a4tchad_matchedZ
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j35_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j45_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j45_a4tchad_L2FS_matchedZ
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_L2FS_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j45_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j45_a4tchad_matchedZ
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j45_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j55_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j55_a4tchad_L2FS_matchedZ
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_L2FS_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j55_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j55_a4tchad_matchedZ
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j55_a4tchad_matchedZ;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j65_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j65_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j65_a4tchad_xe60_tclcw_loose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe60_tclcw_loose;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j65_a4tchad_xe70_tclcw_veryloose;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j80_a4tchad_L2FS_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_L2FS_matched;
+// -- slimmed --       /// Did this object pass the chain EF_mu4T_j80_a4tchad_matched
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4T_j80_a4tchad_matched;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Ti_g20Tvh_medium_TauMass
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Ti_g20Tvh_medium_TauMass;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Bmumu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Bmumu_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Bmumux
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Bmumux_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Bmumux_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_DiMu
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_DiMu_Barrel
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_DiMu_noVtx_noOS
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_DiMu_noVtx_noOS;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_Barrel
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_Barrel;
+// -- slimmed -- // -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Jpsimumu_IDTrkNoCut
+// -- slimmed -- // -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Jpsimumu_IDTrkNoCut;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu;
+// -- slimmed -- // -- slimmed --       /// Did this object pass the chain EF_mu4Tmu6_Upsimumu_Barrel
+// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4Tmu6_Upsimumu_Barrel;
+// -- slimmed --       /// Did this object pass the chain EF_mu4_L1MU11_MSonly_cosmic
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_L1MU11_MSonly_cosmic;
       /// Did this object pass the chain EF_mu4_L1MU11_cosmic
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_L1MU11_cosmic;
-      /// Did this object pass the chain EF_mu4_empty_NoAlg
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_empty_NoAlg;
-      /// Did this object pass the chain EF_mu4_firstempty_NoAlg
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_firstempty_NoAlg;
-      /// Did this object pass the chain EF_mu4_unpaired_iso_NoAlg
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_unpaired_iso_NoAlg;
-      /// Did this object pass the chain EF_mu50_MSonly_barrel_tight
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu50_MSonly_barrel_tight;
+// -- slimmed --       /// Did this object pass the chain EF_mu4_empty_NoAlg
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_empty_NoAlg;
+// -- slimmed --       /// Did this object pass the chain EF_mu4_firstempty_NoAlg
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_firstempty_NoAlg;
+// -- slimmed --       /// Did this object pass the chain EF_mu4_unpaired_iso_NoAlg
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu4_unpaired_iso_NoAlg;
+// -- slimmed --       /// Did this object pass the chain EF_mu50_MSonly_barrel_tight
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu50_MSonly_barrel_tight;
       /// Did this object pass the chain EF_mu6
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6;
-      /// Did this object pass the chain EF_mu60_slow_outOfTime_tight1
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1;
-      /// Did this object pass the chain EF_mu60_slow_tight1
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu60_slow_tight1;
+// -- slimmed --       /// Did this object pass the chain EF_mu60_slow_outOfTime_tight1
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu60_slow_outOfTime_tight1;
+// -- slimmed --       /// Did this object pass the chain EF_mu60_slow_tight1
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu60_slow_tight1;
 // -- slimmed --       /// Did this object pass the chain EF_mu6_Jpsimumu_tight
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_Jpsimumu_tight;
-      /// Did this object pass the chain EF_mu6_MSonly
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_MSonly;
+// -- slimmed --       /// Did this object pass the chain EF_mu6_MSonly
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_MSonly;
 // -- slimmed --       /// Did this object pass the chain EF_mu6_Trk_Jpsi_loose
 // -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
       /// Did this object pass the chain EF_mu8
       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu8;
-      /// Did this object pass the chain EF_mu8_4j45_a4tchad_L2FS
-      VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS;
-      VarHandle< vector<vector<int> >* > trig_EF_trigmuonef_track_MuonType;
-      VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_MS_pt;
-      VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_MS_eta;
-      VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_MS_phi;
-      VarHandle< vector<vector<int> >* > trig_EF_trigmuonef_track_MS_hasMS;
-      VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_SA_pt;
-      VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_SA_eta;
-      VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_SA_phi;
-      VarHandle< vector<vector<int> >* > trig_EF_trigmuonef_track_SA_hasSA;
+// -- slimmed --       /// Did this object pass the chain EF_mu8_4j45_a4tchad_L2FS
+// -- slimmed --       VarHandle< vector<int>* > trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS;
+// -- slimmed --       VarHandle< vector<vector<int> >* > trig_EF_trigmuonef_track_MuonType;
+// -- slimmed --       VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_MS_pt;
+// -- slimmed --       VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_MS_eta;
+// -- slimmed --       VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_MS_phi;
+// -- slimmed --       VarHandle< vector<vector<int> >* > trig_EF_trigmuonef_track_MS_hasMS;
+// -- slimmed --       VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_SA_pt;
+// -- slimmed --       VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_SA_eta;
+// -- slimmed --       VarHandle< vector<vector<float> >* > trig_EF_trigmuonef_track_SA_phi;
+// -- slimmed --       VarHandle< vector<vector<int> >* > trig_EF_trigmuonef_track_SA_hasSA;
       
       // =============================================================================
       // = MC only
