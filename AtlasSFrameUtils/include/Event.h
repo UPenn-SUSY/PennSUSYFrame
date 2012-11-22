@@ -30,7 +30,9 @@ public:
   double getCrossSectionWeight();
   double getKFactor();
   double getEffTimesXS();
+  double getChargeFlipWeight();
   int getMCChannelNum();
+
 
   void setMCEventWeight(double weight);
   void setPileUpWeight(double weight);
@@ -40,6 +42,7 @@ public:
   void setBTagWeight(double weight);
   void setKFactor(double weight);
   void setEffTimesXS(double weight);
+  void setChargeFlipWeight(double weight);
   void setMCChannelNum(int channel);
 
   void setMll(double);
@@ -69,6 +72,7 @@ private:
   double m_eff_times_cross_section;
   double m_k_factor;
   double m_mc_event_weight;
+  double m_charge_flip_weight;
   int    m_mc_channel_num;
 
   // useful event level variables

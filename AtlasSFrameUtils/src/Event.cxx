@@ -95,7 +95,11 @@ double Event::getEffTimesXS()
 {
   return m_eff_times_cross_section;
 }
-
+// ----------------------------------------------------------------------------
+double Event::getChargeFlipWeight()
+{
+  return m_charge_flip_weight;
+}
 // ----------------------------------------------------------------------------
 int Event::getMCChannelNum()
 {
@@ -149,7 +153,11 @@ void Event::setEffTimesXS(double weight)
 {
   m_eff_times_cross_section = weight;
 }
-
+// ----------------------------------------------------------------------------
+void Event::setChargeFlipWeight(double weight)
+{
+  m_charge_flip_weight = weight;
+}
 // ----------------------------------------------------------------------------
 void Event::setMCChannelNum(int channel)
 {
