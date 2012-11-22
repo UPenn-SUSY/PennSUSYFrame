@@ -96,10 +96,10 @@ namespace D3PDReader {
 // -- slimmed --       VarHandle< Bool_t > EF_2mu4T_DiMu_Barrel;
 // -- slimmed --       /// Did this event pass trigger EF_2mu4T_DiMu_BarrelOnly
 // -- slimmed --       VarHandle< Bool_t > EF_2mu4T_DiMu_BarrelOnly;
-// -- slimmed --       /// Did this event pass trigger EF_2mu4T_DiMu_L2StarB
-// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_DiMu_L2StarB;
-// -- slimmed --       /// Did this event pass trigger EF_2mu4T_DiMu_L2StarC
-// -- slimmed --       VarHandle< Bool_t > EF_2mu4T_DiMu_L2StarC;
+// -- slimmed -- // -- slimmed --       /// Did this event pass trigger EF_2mu4T_DiMu_L2StarB
+// -- slimmed -- // -- slimmed --       VarHandle< Bool_t > EF_2mu4T_DiMu_L2StarB;
+// -- slimmed -- // -- slimmed --       /// Did this event pass trigger EF_2mu4T_DiMu_L2StarC
+// -- slimmed -- // -- slimmed --       VarHandle< Bool_t > EF_2mu4T_DiMu_L2StarC;
 // -- slimmed --       /// Did this event pass trigger EF_2mu4T_DiMu_e5_tight1
 // -- slimmed --       VarHandle< Bool_t > EF_2mu4T_DiMu_e5_tight1;
 // -- slimmed -- // -- slimmed --       /// Did this event pass trigger EF_2mu4T_DiMu_l2muonSA
@@ -226,10 +226,10 @@ namespace D3PDReader {
 // -- slimmed --       VarHandle< Bool_t > EF_e24vh_medium1_IDTrkNoCut;
       /// Did this event pass trigger EF_e24vh_medium1_IdScan
       VarHandle< Bool_t > EF_e24vh_medium1_IdScan;
-      /// Did this event pass trigger EF_e24vh_medium1_L2StarB
-      VarHandle< Bool_t > EF_e24vh_medium1_L2StarB;
-      /// Did this event pass trigger EF_e24vh_medium1_L2StarC
-      VarHandle< Bool_t > EF_e24vh_medium1_L2StarC;
+// -- slimmed --       /// Did this event pass trigger EF_e24vh_medium1_L2StarB
+// -- slimmed --       VarHandle< Bool_t > EF_e24vh_medium1_L2StarB;
+// -- slimmed --       /// Did this event pass trigger EF_e24vh_medium1_L2StarC
+// -- slimmed --       VarHandle< Bool_t > EF_e24vh_medium1_L2StarC;
       /// Did this event pass trigger EF_e24vh_medium1_SiTrk
       VarHandle< Bool_t > EF_e24vh_medium1_SiTrk;
       /// Did this event pass trigger EF_e24vh_medium1_TRT
@@ -252,10 +252,10 @@ namespace D3PDReader {
 // -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e14_etcut_Jpsi;
 // -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi
 // -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi;
-// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_L2StarB
-// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
-// -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_L2StarC
-// -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
+// -- slimmed -- // -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_L2StarB
+// -- slimmed -- // -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
+// -- slimmed -- // -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e4_etcut_Jpsi_L2StarC
+// -- slimmed -- // -- slimmed --       VarHandle< Bool_t > EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
       /// Did this event pass trigger EF_e5_tight1_e5_NoCut
       VarHandle< Bool_t > EF_e5_tight1_e5_NoCut;
 // -- slimmed --       /// Did this event pass trigger EF_e5_tight1_e9_etcut_Jpsi
@@ -426,10 +426,10 @@ namespace D3PDReader {
       VarHandle< Bool_t > EF_mu24_tight_3j35_a4tchad;
       /// Did this event pass trigger EF_mu24_tight_EFxe40
       VarHandle< Bool_t > EF_mu24_tight_EFxe40;
-      /// Did this event pass trigger EF_mu24_tight_L2StarB
-      VarHandle< Bool_t > EF_mu24_tight_L2StarB;
-      /// Did this event pass trigger EF_mu24_tight_L2StarC
-      VarHandle< Bool_t > EF_mu24_tight_L2StarC;
+// -- slimmed --       /// Did this event pass trigger EF_mu24_tight_L2StarB
+// -- slimmed --       VarHandle< Bool_t > EF_mu24_tight_L2StarB;
+// -- slimmed --       /// Did this event pass trigger EF_mu24_tight_L2StarC
+// -- slimmed --       VarHandle< Bool_t > EF_mu24_tight_L2StarC;
       /// Did this event pass trigger EF_mu24_tight_MG
       VarHandle< Bool_t > EF_mu24_tight_MG;
       /// Did this event pass trigger EF_mu24_tight_MuonEF

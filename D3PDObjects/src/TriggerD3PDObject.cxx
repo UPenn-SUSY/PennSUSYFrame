@@ -47,8 +47,8 @@ namespace D3PDReader {
 // -- slimmed --         EF_2mu4T_DiMu( this, ::TString( prefix ) + "EF_2mu4T_DiMu", &master ),
 // -- slimmed --         EF_2mu4T_DiMu_Barrel( this, ::TString( prefix ) + "EF_2mu4T_DiMu_Barrel", &master ),
 // -- slimmed --         EF_2mu4T_DiMu_BarrelOnly( this, ::TString( prefix ) + "EF_2mu4T_DiMu_BarrelOnly", &master ),
-// -- slimmed --         EF_2mu4T_DiMu_L2StarB( this, ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarB", &master ),
-// -- slimmed --         EF_2mu4T_DiMu_L2StarC( this, ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarC", &master ),
+// -- slimmed -- // -- slimmed --         EF_2mu4T_DiMu_L2StarB( this, ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarB", &master ),
+// -- slimmed -- // -- slimmed --         EF_2mu4T_DiMu_L2StarC( this, ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarC", &master ),
 // -- slimmed --         EF_2mu4T_DiMu_e5_tight1( this, ::TString( prefix ) + "EF_2mu4T_DiMu_e5_tight1", &master ),
 // -- slimmed -- // -- slimmed --         EF_2mu4T_DiMu_l2muonSA( this, ::TString( prefix ) + "EF_2mu4T_DiMu_l2muonSA", &master ),
 // -- slimmed --         EF_2mu4T_DiMu_noVtx_noOS( this, ::TString( prefix ) + "EF_2mu4T_DiMu_noVtx_noOS", &master ),
@@ -112,8 +112,8 @@ namespace D3PDReader {
         EF_e24vh_medium1_EFxe40( this, ::TString( prefix ) + "EF_e24vh_medium1_EFxe40", &master ),
 // -- slimmed --         EF_e24vh_medium1_IDTrkNoCut( this, ::TString( prefix ) + "EF_e24vh_medium1_IDTrkNoCut", &master ),
         EF_e24vh_medium1_IdScan( this, ::TString( prefix ) + "EF_e24vh_medium1_IdScan", &master ),
-        EF_e24vh_medium1_L2StarB( this, ::TString( prefix ) + "EF_e24vh_medium1_L2StarB", &master ),
-        EF_e24vh_medium1_L2StarC( this, ::TString( prefix ) + "EF_e24vh_medium1_L2StarC", &master ),
+// -- slimmed --         EF_e24vh_medium1_L2StarB( this, ::TString( prefix ) + "EF_e24vh_medium1_L2StarB", &master ),
+// -- slimmed --         EF_e24vh_medium1_L2StarC( this, ::TString( prefix ) + "EF_e24vh_medium1_L2StarC", &master ),
         EF_e24vh_medium1_SiTrk( this, ::TString( prefix ) + "EF_e24vh_medium1_SiTrk", &master ),
         EF_e24vh_medium1_TRT( this, ::TString( prefix ) + "EF_e24vh_medium1_TRT", &master ),
         EF_e24vh_medium1_b35_mediumEF_j35_a4tchad( this, ::TString( prefix ) + "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &master ),
@@ -125,8 +125,8 @@ namespace D3PDReader {
         EF_e5_tight1( this, ::TString( prefix ) + "EF_e5_tight1", &master ),
 // -- slimmed --         EF_e5_tight1_e14_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight1_e14_etcut_Jpsi", &master ),
 // -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi", &master ),
-// -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi_L2StarB( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarB", &master ),
-// -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi_L2StarC( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarC", &master ),
+// -- slimmed -- // -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi_L2StarB( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarB", &master ),
+// -- slimmed -- // -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi_L2StarC( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarC", &master ),
         EF_e5_tight1_e5_NoCut( this, ::TString( prefix ) + "EF_e5_tight1_e5_NoCut", &master ),
 // -- slimmed --         EF_e5_tight1_e9_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight1_e9_etcut_Jpsi", &master ),
         EF_e60_medium1( this, ::TString( prefix ) + "EF_e60_medium1", &master ),
@@ -212,8 +212,8 @@ namespace D3PDReader {
         EF_mu24_tight( this, ::TString( prefix ) + "EF_mu24_tight", &master ),
         EF_mu24_tight_3j35_a4tchad( this, ::TString( prefix ) + "EF_mu24_tight_3j35_a4tchad", &master ),
         EF_mu24_tight_EFxe40( this, ::TString( prefix ) + "EF_mu24_tight_EFxe40", &master ),
-        EF_mu24_tight_L2StarB( this, ::TString( prefix ) + "EF_mu24_tight_L2StarB", &master ),
-        EF_mu24_tight_L2StarC( this, ::TString( prefix ) + "EF_mu24_tight_L2StarC", &master ),
+// -- slimmed --         EF_mu24_tight_L2StarB( this, ::TString( prefix ) + "EF_mu24_tight_L2StarB", &master ),
+// -- slimmed --         EF_mu24_tight_L2StarC( this, ::TString( prefix ) + "EF_mu24_tight_L2StarC", &master ),
         EF_mu24_tight_MG( this, ::TString( prefix ) + "EF_mu24_tight_MG", &master ),
         EF_mu24_tight_MuonEF( this, ::TString( prefix ) + "EF_mu24_tight_MuonEF", &master ),
         EF_mu24_tight_b35_mediumEF_j35_a4tchad( this, ::TString( prefix ) + "EF_mu24_tight_b35_mediumEF_j35_a4tchad", &master ),
@@ -366,8 +366,8 @@ namespace D3PDReader {
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu" ] = &EF_2mu4T_DiMu;
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_Barrel" ] = &EF_2mu4T_DiMu_Barrel;
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_BarrelOnly" ] = &EF_2mu4T_DiMu_BarrelOnly;
-// -- slimmed --       fHandles[ "EF_2mu4T_DiMu_L2StarB" ] = &EF_2mu4T_DiMu_L2StarB;
-// -- slimmed --       fHandles[ "EF_2mu4T_DiMu_L2StarC" ] = &EF_2mu4T_DiMu_L2StarC;
+// -- slimmed -- // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_L2StarB" ] = &EF_2mu4T_DiMu_L2StarB;
+// -- slimmed -- // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_L2StarC" ] = &EF_2mu4T_DiMu_L2StarC;
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_e5_tight1" ] = &EF_2mu4T_DiMu_e5_tight1;
 // -- slimmed -- // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_l2muonSA" ] = &EF_2mu4T_DiMu_l2muonSA;
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_noVtx_noOS" ] = &EF_2mu4T_DiMu_noVtx_noOS;
@@ -431,8 +431,8 @@ namespace D3PDReader {
       fHandles[ "EF_e24vh_medium1_EFxe40" ] = &EF_e24vh_medium1_EFxe40;
 // -- slimmed --       fHandles[ "EF_e24vh_medium1_IDTrkNoCut" ] = &EF_e24vh_medium1_IDTrkNoCut;
       fHandles[ "EF_e24vh_medium1_IdScan" ] = &EF_e24vh_medium1_IdScan;
-      fHandles[ "EF_e24vh_medium1_L2StarB" ] = &EF_e24vh_medium1_L2StarB;
-      fHandles[ "EF_e24vh_medium1_L2StarC" ] = &EF_e24vh_medium1_L2StarC;
+// -- slimmed --       fHandles[ "EF_e24vh_medium1_L2StarB" ] = &EF_e24vh_medium1_L2StarB;
+// -- slimmed --       fHandles[ "EF_e24vh_medium1_L2StarC" ] = &EF_e24vh_medium1_L2StarC;
       fHandles[ "EF_e24vh_medium1_SiTrk" ] = &EF_e24vh_medium1_SiTrk;
       fHandles[ "EF_e24vh_medium1_TRT" ] = &EF_e24vh_medium1_TRT;
       fHandles[ "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad" ] = &EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;
@@ -444,8 +444,8 @@ namespace D3PDReader {
       fHandles[ "EF_e5_tight1" ] = &EF_e5_tight1;
 // -- slimmed --       fHandles[ "EF_e5_tight1_e14_etcut_Jpsi" ] = &EF_e5_tight1_e14_etcut_Jpsi;
 // -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi" ] = &EF_e5_tight1_e4_etcut_Jpsi;
-// -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi_L2StarB" ] = &EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
-// -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi_L2StarC" ] = &EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
+// -- slimmed -- // -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi_L2StarB" ] = &EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
+// -- slimmed -- // -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi_L2StarC" ] = &EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
       fHandles[ "EF_e5_tight1_e5_NoCut" ] = &EF_e5_tight1_e5_NoCut;
 // -- slimmed --       fHandles[ "EF_e5_tight1_e9_etcut_Jpsi" ] = &EF_e5_tight1_e9_etcut_Jpsi;
       fHandles[ "EF_e60_medium1" ] = &EF_e60_medium1;
@@ -531,8 +531,8 @@ namespace D3PDReader {
       fHandles[ "EF_mu24_tight" ] = &EF_mu24_tight;
       fHandles[ "EF_mu24_tight_3j35_a4tchad" ] = &EF_mu24_tight_3j35_a4tchad;
       fHandles[ "EF_mu24_tight_EFxe40" ] = &EF_mu24_tight_EFxe40;
-      fHandles[ "EF_mu24_tight_L2StarB" ] = &EF_mu24_tight_L2StarB;
-      fHandles[ "EF_mu24_tight_L2StarC" ] = &EF_mu24_tight_L2StarC;
+// -- slimmed --       fHandles[ "EF_mu24_tight_L2StarB" ] = &EF_mu24_tight_L2StarB;
+// -- slimmed --       fHandles[ "EF_mu24_tight_L2StarC" ] = &EF_mu24_tight_L2StarC;
       fHandles[ "EF_mu24_tight_MG" ] = &EF_mu24_tight_MG;
       fHandles[ "EF_mu24_tight_MuonEF" ] = &EF_mu24_tight_MuonEF;
       fHandles[ "EF_mu24_tight_b35_mediumEF_j35_a4tchad" ] = &EF_mu24_tight_b35_mediumEF_j35_a4tchad;
@@ -692,8 +692,8 @@ namespace D3PDReader {
 // -- slimmed --         EF_2mu4T_DiMu( this, ::TString( prefix ) + "EF_2mu4T_DiMu", 0 ),
 // -- slimmed --         EF_2mu4T_DiMu_Barrel( this, ::TString( prefix ) + "EF_2mu4T_DiMu_Barrel", 0 ),
 // -- slimmed --         EF_2mu4T_DiMu_BarrelOnly( this, ::TString( prefix ) + "EF_2mu4T_DiMu_BarrelOnly", 0 ),
-// -- slimmed --         EF_2mu4T_DiMu_L2StarB( this, ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarB", 0 ),
-// -- slimmed --         EF_2mu4T_DiMu_L2StarC( this, ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarC", 0 ),
+// -- slimmed -- // -- slimmed --         EF_2mu4T_DiMu_L2StarB( this, ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarB", 0 ),
+// -- slimmed -- // -- slimmed --         EF_2mu4T_DiMu_L2StarC( this, ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarC", 0 ),
 // -- slimmed --         EF_2mu4T_DiMu_e5_tight1( this, ::TString( prefix ) + "EF_2mu4T_DiMu_e5_tight1", 0 ),
 // -- slimmed -- // -- slimmed --         EF_2mu4T_DiMu_l2muonSA( this, ::TString( prefix ) + "EF_2mu4T_DiMu_l2muonSA", 0 ),
 // -- slimmed --         EF_2mu4T_DiMu_noVtx_noOS( this, ::TString( prefix ) + "EF_2mu4T_DiMu_noVtx_noOS", 0 ),
@@ -757,8 +757,8 @@ namespace D3PDReader {
         EF_e24vh_medium1_EFxe40( this, ::TString( prefix ) + "EF_e24vh_medium1_EFxe40", 0 ),
 // -- slimmed --         EF_e24vh_medium1_IDTrkNoCut( this, ::TString( prefix ) + "EF_e24vh_medium1_IDTrkNoCut", 0 ),
         EF_e24vh_medium1_IdScan( this, ::TString( prefix ) + "EF_e24vh_medium1_IdScan", 0 ),
-        EF_e24vh_medium1_L2StarB( this, ::TString( prefix ) + "EF_e24vh_medium1_L2StarB", 0 ),
-        EF_e24vh_medium1_L2StarC( this, ::TString( prefix ) + "EF_e24vh_medium1_L2StarC", 0 ),
+// -- slimmed --         EF_e24vh_medium1_L2StarB( this, ::TString( prefix ) + "EF_e24vh_medium1_L2StarB", 0 ),
+// -- slimmed --         EF_e24vh_medium1_L2StarC( this, ::TString( prefix ) + "EF_e24vh_medium1_L2StarC", 0 ),
         EF_e24vh_medium1_SiTrk( this, ::TString( prefix ) + "EF_e24vh_medium1_SiTrk", 0 ),
         EF_e24vh_medium1_TRT( this, ::TString( prefix ) + "EF_e24vh_medium1_TRT", 0 ),
         EF_e24vh_medium1_b35_mediumEF_j35_a4tchad( this, ::TString( prefix ) + "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", 0 ),
@@ -770,8 +770,8 @@ namespace D3PDReader {
         EF_e5_tight1( this, ::TString( prefix ) + "EF_e5_tight1", 0 ),
 // -- slimmed --         EF_e5_tight1_e14_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight1_e14_etcut_Jpsi", 0 ),
 // -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi", 0 ),
-// -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi_L2StarB( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarB", 0 ),
-// -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi_L2StarC( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarC", 0 ),
+// -- slimmed -- // -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi_L2StarB( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarB", 0 ),
+// -- slimmed -- // -- slimmed --         EF_e5_tight1_e4_etcut_Jpsi_L2StarC( this, ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarC", 0 ),
         EF_e5_tight1_e5_NoCut( this, ::TString( prefix ) + "EF_e5_tight1_e5_NoCut", 0 ),
 // -- slimmed --         EF_e5_tight1_e9_etcut_Jpsi( this, ::TString( prefix ) + "EF_e5_tight1_e9_etcut_Jpsi", 0 ),
         EF_e60_medium1( this, ::TString( prefix ) + "EF_e60_medium1", 0 ),
@@ -857,8 +857,8 @@ namespace D3PDReader {
         EF_mu24_tight( this, ::TString( prefix ) + "EF_mu24_tight", 0 ),
         EF_mu24_tight_3j35_a4tchad( this, ::TString( prefix ) + "EF_mu24_tight_3j35_a4tchad", 0 ),
         EF_mu24_tight_EFxe40( this, ::TString( prefix ) + "EF_mu24_tight_EFxe40", 0 ),
-        EF_mu24_tight_L2StarB( this, ::TString( prefix ) + "EF_mu24_tight_L2StarB", 0 ),
-        EF_mu24_tight_L2StarC( this, ::TString( prefix ) + "EF_mu24_tight_L2StarC", 0 ),
+// -- slimmed --         EF_mu24_tight_L2StarB( this, ::TString( prefix ) + "EF_mu24_tight_L2StarB", 0 ),
+// -- slimmed --         EF_mu24_tight_L2StarC( this, ::TString( prefix ) + "EF_mu24_tight_L2StarC", 0 ),
         EF_mu24_tight_MG( this, ::TString( prefix ) + "EF_mu24_tight_MG", 0 ),
         EF_mu24_tight_MuonEF( this, ::TString( prefix ) + "EF_mu24_tight_MuonEF", 0 ),
         EF_mu24_tight_b35_mediumEF_j35_a4tchad( this, ::TString( prefix ) + "EF_mu24_tight_b35_mediumEF_j35_a4tchad", 0 ),
@@ -1012,8 +1012,8 @@ namespace D3PDReader {
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu" ] = &EF_2mu4T_DiMu;
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_Barrel" ] = &EF_2mu4T_DiMu_Barrel;
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_BarrelOnly" ] = &EF_2mu4T_DiMu_BarrelOnly;
-// -- slimmed --       fHandles[ "EF_2mu4T_DiMu_L2StarB" ] = &EF_2mu4T_DiMu_L2StarB;
-// -- slimmed --       fHandles[ "EF_2mu4T_DiMu_L2StarC" ] = &EF_2mu4T_DiMu_L2StarC;
+// -- slimmed -- // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_L2StarB" ] = &EF_2mu4T_DiMu_L2StarB;
+// -- slimmed -- // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_L2StarC" ] = &EF_2mu4T_DiMu_L2StarC;
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_e5_tight1" ] = &EF_2mu4T_DiMu_e5_tight1;
 // -- slimmed -- // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_l2muonSA" ] = &EF_2mu4T_DiMu_l2muonSA;
 // -- slimmed --       fHandles[ "EF_2mu4T_DiMu_noVtx_noOS" ] = &EF_2mu4T_DiMu_noVtx_noOS;
@@ -1077,8 +1077,8 @@ namespace D3PDReader {
       fHandles[ "EF_e24vh_medium1_EFxe40" ] = &EF_e24vh_medium1_EFxe40;
 // -- slimmed --       fHandles[ "EF_e24vh_medium1_IDTrkNoCut" ] = &EF_e24vh_medium1_IDTrkNoCut;
       fHandles[ "EF_e24vh_medium1_IdScan" ] = &EF_e24vh_medium1_IdScan;
-      fHandles[ "EF_e24vh_medium1_L2StarB" ] = &EF_e24vh_medium1_L2StarB;
-      fHandles[ "EF_e24vh_medium1_L2StarC" ] = &EF_e24vh_medium1_L2StarC;
+// -- slimmed --       fHandles[ "EF_e24vh_medium1_L2StarB" ] = &EF_e24vh_medium1_L2StarB;
+// -- slimmed --       fHandles[ "EF_e24vh_medium1_L2StarC" ] = &EF_e24vh_medium1_L2StarC;
       fHandles[ "EF_e24vh_medium1_SiTrk" ] = &EF_e24vh_medium1_SiTrk;
       fHandles[ "EF_e24vh_medium1_TRT" ] = &EF_e24vh_medium1_TRT;
       fHandles[ "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad" ] = &EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;
@@ -1090,8 +1090,8 @@ namespace D3PDReader {
       fHandles[ "EF_e5_tight1" ] = &EF_e5_tight1;
 // -- slimmed --       fHandles[ "EF_e5_tight1_e14_etcut_Jpsi" ] = &EF_e5_tight1_e14_etcut_Jpsi;
 // -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi" ] = &EF_e5_tight1_e4_etcut_Jpsi;
-// -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi_L2StarB" ] = &EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
-// -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi_L2StarC" ] = &EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
+// -- slimmed -- // -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi_L2StarB" ] = &EF_e5_tight1_e4_etcut_Jpsi_L2StarB;
+// -- slimmed -- // -- slimmed --       fHandles[ "EF_e5_tight1_e4_etcut_Jpsi_L2StarC" ] = &EF_e5_tight1_e4_etcut_Jpsi_L2StarC;
       fHandles[ "EF_e5_tight1_e5_NoCut" ] = &EF_e5_tight1_e5_NoCut;
 // -- slimmed --       fHandles[ "EF_e5_tight1_e9_etcut_Jpsi" ] = &EF_e5_tight1_e9_etcut_Jpsi;
       fHandles[ "EF_e60_medium1" ] = &EF_e60_medium1;
@@ -1177,8 +1177,8 @@ namespace D3PDReader {
       fHandles[ "EF_mu24_tight" ] = &EF_mu24_tight;
       fHandles[ "EF_mu24_tight_3j35_a4tchad" ] = &EF_mu24_tight_3j35_a4tchad;
       fHandles[ "EF_mu24_tight_EFxe40" ] = &EF_mu24_tight_EFxe40;
-      fHandles[ "EF_mu24_tight_L2StarB" ] = &EF_mu24_tight_L2StarB;
-      fHandles[ "EF_mu24_tight_L2StarC" ] = &EF_mu24_tight_L2StarC;
+// -- slimmed --       fHandles[ "EF_mu24_tight_L2StarB" ] = &EF_mu24_tight_L2StarB;
+// -- slimmed --       fHandles[ "EF_mu24_tight_L2StarC" ] = &EF_mu24_tight_L2StarC;
       fHandles[ "EF_mu24_tight_MG" ] = &EF_mu24_tight_MG;
       fHandles[ "EF_mu24_tight_MuonEF" ] = &EF_mu24_tight_MuonEF;
       fHandles[ "EF_mu24_tight_b35_mediumEF_j35_a4tchad" ] = &EF_mu24_tight_b35_mediumEF_j35_a4tchad;
@@ -1342,8 +1342,8 @@ namespace D3PDReader {
 // -- slimmed --       EF_2mu4T_DiMu.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu" );
 // -- slimmed --       EF_2mu4T_DiMu_Barrel.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_Barrel" );
 // -- slimmed --       EF_2mu4T_DiMu_BarrelOnly.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_BarrelOnly" );
-// -- slimmed --       EF_2mu4T_DiMu_L2StarB.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarB" );
-// -- slimmed --       EF_2mu4T_DiMu_L2StarC.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarC" );
+// -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_L2StarB.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarB" );
+// -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_L2StarC.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_L2StarC" );
 // -- slimmed --       EF_2mu4T_DiMu_e5_tight1.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_e5_tight1" );
 // -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_l2muonSA.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_l2muonSA" );
 // -- slimmed --       EF_2mu4T_DiMu_noVtx_noOS.SetName( ::TString( prefix ) + "EF_2mu4T_DiMu_noVtx_noOS" );
@@ -1407,8 +1407,8 @@ namespace D3PDReader {
       EF_e24vh_medium1_EFxe40.SetName( ::TString( prefix ) + "EF_e24vh_medium1_EFxe40" );
 // -- slimmed --       EF_e24vh_medium1_IDTrkNoCut.SetName( ::TString( prefix ) + "EF_e24vh_medium1_IDTrkNoCut" );
       EF_e24vh_medium1_IdScan.SetName( ::TString( prefix ) + "EF_e24vh_medium1_IdScan" );
-      EF_e24vh_medium1_L2StarB.SetName( ::TString( prefix ) + "EF_e24vh_medium1_L2StarB" );
-      EF_e24vh_medium1_L2StarC.SetName( ::TString( prefix ) + "EF_e24vh_medium1_L2StarC" );
+// -- slimmed --       EF_e24vh_medium1_L2StarB.SetName( ::TString( prefix ) + "EF_e24vh_medium1_L2StarB" );
+// -- slimmed --       EF_e24vh_medium1_L2StarC.SetName( ::TString( prefix ) + "EF_e24vh_medium1_L2StarC" );
       EF_e24vh_medium1_SiTrk.SetName( ::TString( prefix ) + "EF_e24vh_medium1_SiTrk" );
       EF_e24vh_medium1_TRT.SetName( ::TString( prefix ) + "EF_e24vh_medium1_TRT" );
       EF_e24vh_medium1_b35_mediumEF_j35_a4tchad.SetName( ::TString( prefix ) + "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad" );
@@ -1420,8 +1420,8 @@ namespace D3PDReader {
       EF_e5_tight1.SetName( ::TString( prefix ) + "EF_e5_tight1" );
 // -- slimmed --       EF_e5_tight1_e14_etcut_Jpsi.SetName( ::TString( prefix ) + "EF_e5_tight1_e14_etcut_Jpsi" );
 // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi.SetName( ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi" );
-// -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarB.SetName( ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarB" );
-// -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarC.SetName( ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarC" );
+// -- slimmed -- // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarB.SetName( ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarB" );
+// -- slimmed -- // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarC.SetName( ::TString( prefix ) + "EF_e5_tight1_e4_etcut_Jpsi_L2StarC" );
       EF_e5_tight1_e5_NoCut.SetName( ::TString( prefix ) + "EF_e5_tight1_e5_NoCut" );
 // -- slimmed --       EF_e5_tight1_e9_etcut_Jpsi.SetName( ::TString( prefix ) + "EF_e5_tight1_e9_etcut_Jpsi" );
       EF_e60_medium1.SetName( ::TString( prefix ) + "EF_e60_medium1" );
@@ -1507,8 +1507,8 @@ namespace D3PDReader {
       EF_mu24_tight.SetName( ::TString( prefix ) + "EF_mu24_tight" );
       EF_mu24_tight_3j35_a4tchad.SetName( ::TString( prefix ) + "EF_mu24_tight_3j35_a4tchad" );
       EF_mu24_tight_EFxe40.SetName( ::TString( prefix ) + "EF_mu24_tight_EFxe40" );
-      EF_mu24_tight_L2StarB.SetName( ::TString( prefix ) + "EF_mu24_tight_L2StarB" );
-      EF_mu24_tight_L2StarC.SetName( ::TString( prefix ) + "EF_mu24_tight_L2StarC" );
+// -- slimmed --       EF_mu24_tight_L2StarB.SetName( ::TString( prefix ) + "EF_mu24_tight_L2StarB" );
+// -- slimmed --       EF_mu24_tight_L2StarC.SetName( ::TString( prefix ) + "EF_mu24_tight_L2StarC" );
       EF_mu24_tight_MG.SetName( ::TString( prefix ) + "EF_mu24_tight_MG" );
       EF_mu24_tight_MuonEF.SetName( ::TString( prefix ) + "EF_mu24_tight_MuonEF" );
       EF_mu24_tight_b35_mediumEF_j35_a4tchad.SetName( ::TString( prefix ) + "EF_mu24_tight_b35_mediumEF_j35_a4tchad" );
@@ -1675,8 +1675,8 @@ namespace D3PDReader {
 // -- slimmed --       EF_2mu4T_DiMu.ReadFrom( tree );
 // -- slimmed --       EF_2mu4T_DiMu_Barrel.ReadFrom( tree );
 // -- slimmed --       EF_2mu4T_DiMu_BarrelOnly.ReadFrom( tree );
-// -- slimmed --       EF_2mu4T_DiMu_L2StarB.ReadFrom( tree );
-// -- slimmed --       EF_2mu4T_DiMu_L2StarC.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_L2StarB.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_L2StarC.ReadFrom( tree );
 // -- slimmed --       EF_2mu4T_DiMu_e5_tight1.ReadFrom( tree );
 // -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_l2muonSA.ReadFrom( tree );
 // -- slimmed --       EF_2mu4T_DiMu_noVtx_noOS.ReadFrom( tree );
@@ -1740,8 +1740,8 @@ namespace D3PDReader {
       EF_e24vh_medium1_EFxe40.ReadFrom( tree );
 // -- slimmed --       EF_e24vh_medium1_IDTrkNoCut.ReadFrom( tree );
       EF_e24vh_medium1_IdScan.ReadFrom( tree );
-      EF_e24vh_medium1_L2StarB.ReadFrom( tree );
-      EF_e24vh_medium1_L2StarC.ReadFrom( tree );
+// -- slimmed --       EF_e24vh_medium1_L2StarB.ReadFrom( tree );
+// -- slimmed --       EF_e24vh_medium1_L2StarC.ReadFrom( tree );
       EF_e24vh_medium1_SiTrk.ReadFrom( tree );
       EF_e24vh_medium1_TRT.ReadFrom( tree );
       EF_e24vh_medium1_b35_mediumEF_j35_a4tchad.ReadFrom( tree );
@@ -1753,8 +1753,8 @@ namespace D3PDReader {
       EF_e5_tight1.ReadFrom( tree );
 // -- slimmed --       EF_e5_tight1_e14_etcut_Jpsi.ReadFrom( tree );
 // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi.ReadFrom( tree );
-// -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarB.ReadFrom( tree );
-// -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarC.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarB.ReadFrom( tree );
+// -- slimmed -- // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarC.ReadFrom( tree );
       EF_e5_tight1_e5_NoCut.ReadFrom( tree );
 // -- slimmed --       EF_e5_tight1_e9_etcut_Jpsi.ReadFrom( tree );
       EF_e60_medium1.ReadFrom( tree );
@@ -1840,8 +1840,8 @@ namespace D3PDReader {
       EF_mu24_tight.ReadFrom( tree );
       EF_mu24_tight_3j35_a4tchad.ReadFrom( tree );
       EF_mu24_tight_EFxe40.ReadFrom( tree );
-      EF_mu24_tight_L2StarB.ReadFrom( tree );
-      EF_mu24_tight_L2StarC.ReadFrom( tree );
+// -- slimmed --       EF_mu24_tight_L2StarB.ReadFrom( tree );
+// -- slimmed --       EF_mu24_tight_L2StarC.ReadFrom( tree );
       EF_mu24_tight_MG.ReadFrom( tree );
       EF_mu24_tight_MuonEF.ReadFrom( tree );
       EF_mu24_tight_b35_mediumEF_j35_a4tchad.ReadFrom( tree );
@@ -2003,8 +2003,8 @@ namespace D3PDReader {
 // -- slimmed --       EF_2mu4T_DiMu.WriteTo( tree );
 // -- slimmed --       EF_2mu4T_DiMu_Barrel.WriteTo( tree );
 // -- slimmed --       EF_2mu4T_DiMu_BarrelOnly.WriteTo( tree );
-// -- slimmed --       EF_2mu4T_DiMu_L2StarB.WriteTo( tree );
-// -- slimmed --       EF_2mu4T_DiMu_L2StarC.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_L2StarB.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_L2StarC.WriteTo( tree );
 // -- slimmed --       EF_2mu4T_DiMu_e5_tight1.WriteTo( tree );
 // -- slimmed -- // -- slimmed --       EF_2mu4T_DiMu_l2muonSA.WriteTo( tree );
 // -- slimmed --       EF_2mu4T_DiMu_noVtx_noOS.WriteTo( tree );
@@ -2068,8 +2068,8 @@ namespace D3PDReader {
       EF_e24vh_medium1_EFxe40.WriteTo( tree );
 // -- slimmed --       EF_e24vh_medium1_IDTrkNoCut.WriteTo( tree );
       EF_e24vh_medium1_IdScan.WriteTo( tree );
-      EF_e24vh_medium1_L2StarB.WriteTo( tree );
-      EF_e24vh_medium1_L2StarC.WriteTo( tree );
+// -- slimmed --       EF_e24vh_medium1_L2StarB.WriteTo( tree );
+// -- slimmed --       EF_e24vh_medium1_L2StarC.WriteTo( tree );
       EF_e24vh_medium1_SiTrk.WriteTo( tree );
       EF_e24vh_medium1_TRT.WriteTo( tree );
       EF_e24vh_medium1_b35_mediumEF_j35_a4tchad.WriteTo( tree );
@@ -2081,8 +2081,8 @@ namespace D3PDReader {
       EF_e5_tight1.WriteTo( tree );
 // -- slimmed --       EF_e5_tight1_e14_etcut_Jpsi.WriteTo( tree );
 // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi.WriteTo( tree );
-// -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarB.WriteTo( tree );
-// -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarC.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarB.WriteTo( tree );
+// -- slimmed -- // -- slimmed --       EF_e5_tight1_e4_etcut_Jpsi_L2StarC.WriteTo( tree );
       EF_e5_tight1_e5_NoCut.WriteTo( tree );
 // -- slimmed --       EF_e5_tight1_e9_etcut_Jpsi.WriteTo( tree );
       EF_e60_medium1.WriteTo( tree );
@@ -2168,8 +2168,8 @@ namespace D3PDReader {
       EF_mu24_tight.WriteTo( tree );
       EF_mu24_tight_3j35_a4tchad.WriteTo( tree );
       EF_mu24_tight_EFxe40.WriteTo( tree );
-      EF_mu24_tight_L2StarB.WriteTo( tree );
-      EF_mu24_tight_L2StarC.WriteTo( tree );
+// -- slimmed --       EF_mu24_tight_L2StarB.WriteTo( tree );
+// -- slimmed --       EF_mu24_tight_L2StarC.WriteTo( tree );
       EF_mu24_tight_MG.WriteTo( tree );
       EF_mu24_tight_MuonEF.WriteTo( tree );
       EF_mu24_tight_b35_mediumEF_j35_a4tchad.WriteTo( tree );
@@ -2368,8 +2368,8 @@ namespace D3PDReader {
 // -- slimmed --       if( EF_2mu4T_DiMu.IsActive() ) EF_2mu4T_DiMu();
 // -- slimmed --       if( EF_2mu4T_DiMu_Barrel.IsActive() ) EF_2mu4T_DiMu_Barrel();
 // -- slimmed --       if( EF_2mu4T_DiMu_BarrelOnly.IsActive() ) EF_2mu4T_DiMu_BarrelOnly();
-// -- slimmed --       if( EF_2mu4T_DiMu_L2StarB.IsActive() ) EF_2mu4T_DiMu_L2StarB();
-// -- slimmed --       if( EF_2mu4T_DiMu_L2StarC.IsActive() ) EF_2mu4T_DiMu_L2StarC();
+// -- slimmed -- // -- slimmed --       if( EF_2mu4T_DiMu_L2StarB.IsActive() ) EF_2mu4T_DiMu_L2StarB();
+// -- slimmed -- // -- slimmed --       if( EF_2mu4T_DiMu_L2StarC.IsActive() ) EF_2mu4T_DiMu_L2StarC();
 // -- slimmed --       if( EF_2mu4T_DiMu_e5_tight1.IsActive() ) EF_2mu4T_DiMu_e5_tight1();
 // -- slimmed -- // -- slimmed --       if( EF_2mu4T_DiMu_l2muonSA.IsActive() ) EF_2mu4T_DiMu_l2muonSA();
 // -- slimmed --       if( EF_2mu4T_DiMu_noVtx_noOS.IsActive() ) EF_2mu4T_DiMu_noVtx_noOS();
@@ -2433,8 +2433,8 @@ namespace D3PDReader {
       if( EF_e24vh_medium1_EFxe40.IsActive() ) EF_e24vh_medium1_EFxe40();
 // -- slimmed --       if( EF_e24vh_medium1_IDTrkNoCut.IsActive() ) EF_e24vh_medium1_IDTrkNoCut();
       if( EF_e24vh_medium1_IdScan.IsActive() ) EF_e24vh_medium1_IdScan();
-      if( EF_e24vh_medium1_L2StarB.IsActive() ) EF_e24vh_medium1_L2StarB();
-      if( EF_e24vh_medium1_L2StarC.IsActive() ) EF_e24vh_medium1_L2StarC();
+// -- slimmed --       if( EF_e24vh_medium1_L2StarB.IsActive() ) EF_e24vh_medium1_L2StarB();
+// -- slimmed --       if( EF_e24vh_medium1_L2StarC.IsActive() ) EF_e24vh_medium1_L2StarC();
       if( EF_e24vh_medium1_SiTrk.IsActive() ) EF_e24vh_medium1_SiTrk();
       if( EF_e24vh_medium1_TRT.IsActive() ) EF_e24vh_medium1_TRT();
       if( EF_e24vh_medium1_b35_mediumEF_j35_a4tchad.IsActive() ) EF_e24vh_medium1_b35_mediumEF_j35_a4tchad();
@@ -2446,8 +2446,8 @@ namespace D3PDReader {
       if( EF_e5_tight1.IsActive() ) EF_e5_tight1();
 // -- slimmed --       if( EF_e5_tight1_e14_etcut_Jpsi.IsActive() ) EF_e5_tight1_e14_etcut_Jpsi();
 // -- slimmed --       if( EF_e5_tight1_e4_etcut_Jpsi.IsActive() ) EF_e5_tight1_e4_etcut_Jpsi();
-// -- slimmed --       if( EF_e5_tight1_e4_etcut_Jpsi_L2StarB.IsActive() ) EF_e5_tight1_e4_etcut_Jpsi_L2StarB();
-// -- slimmed --       if( EF_e5_tight1_e4_etcut_Jpsi_L2StarC.IsActive() ) EF_e5_tight1_e4_etcut_Jpsi_L2StarC();
+// -- slimmed -- // -- slimmed --       if( EF_e5_tight1_e4_etcut_Jpsi_L2StarB.IsActive() ) EF_e5_tight1_e4_etcut_Jpsi_L2StarB();
+// -- slimmed -- // -- slimmed --       if( EF_e5_tight1_e4_etcut_Jpsi_L2StarC.IsActive() ) EF_e5_tight1_e4_etcut_Jpsi_L2StarC();
       if( EF_e5_tight1_e5_NoCut.IsActive() ) EF_e5_tight1_e5_NoCut();
 // -- slimmed --       if( EF_e5_tight1_e9_etcut_Jpsi.IsActive() ) EF_e5_tight1_e9_etcut_Jpsi();
       if( EF_e60_medium1.IsActive() ) EF_e60_medium1();
@@ -2533,8 +2533,8 @@ namespace D3PDReader {
       if( EF_mu24_tight.IsActive() ) EF_mu24_tight();
       if( EF_mu24_tight_3j35_a4tchad.IsActive() ) EF_mu24_tight_3j35_a4tchad();
       if( EF_mu24_tight_EFxe40.IsActive() ) EF_mu24_tight_EFxe40();
-      if( EF_mu24_tight_L2StarB.IsActive() ) EF_mu24_tight_L2StarB();
-      if( EF_mu24_tight_L2StarC.IsActive() ) EF_mu24_tight_L2StarC();
+// -- slimmed --       if( EF_mu24_tight_L2StarB.IsActive() ) EF_mu24_tight_L2StarB();
+// -- slimmed --       if( EF_mu24_tight_L2StarC.IsActive() ) EF_mu24_tight_L2StarC();
       if( EF_mu24_tight_MG.IsActive() ) EF_mu24_tight_MG();
       if( EF_mu24_tight_MuonEF.IsActive() ) EF_mu24_tight_MuonEF();
       if( EF_mu24_tight_b35_mediumEF_j35_a4tchad.IsActive() ) EF_mu24_tight_b35_mediumEF_j35_a4tchad();
