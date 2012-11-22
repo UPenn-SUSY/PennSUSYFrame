@@ -64,13 +64,13 @@ namespace D3PDReader {
       VarProxy< float > ptcone20;
       VarProxy< float > ptcone30;
       VarProxy< float > ptcone40;
-      VarProxy< float > etconeNoEm10;
-      VarProxy< float > etconeNoEm20;
-      VarProxy< float > etconeNoEm30;
-      VarProxy< float > etconeNoEm40;
-      VarProxy< float > scatteringCurvatureSignificance;
-      VarProxy< float > scatteringNeighbourSignificance;
-      VarProxy< float > momentumBalanceSignificance;
+// -- slimmed --       VarProxy< float > etconeNoEm10;
+// -- slimmed --       VarProxy< float > etconeNoEm20;
+// -- slimmed --       VarProxy< float > etconeNoEm30;
+// -- slimmed --       VarProxy< float > etconeNoEm40;
+// -- slimmed --       VarProxy< float > scatteringCurvatureSignificance;
+// -- slimmed --       VarProxy< float > scatteringNeighbourSignificance;
+// -- slimmed --       VarProxy< float > momentumBalanceSignificance;
       VarProxy< float > energyLossPar;
       VarProxy< float > energyLossErr;
       VarProxy< float > etCore;
@@ -266,14 +266,14 @@ namespace D3PDReader {
       VarProxy< float > trackcov_phi_qoverp;
       VarProxy< float > trackcov_theta_qoverp;
       VarProxy< int > hastrack;
-      VarProxy< float > trackIPEstimate_d0_biasedpvunbiased;
-      VarProxy< float > trackIPEstimate_z0_biasedpvunbiased;
-      VarProxy< float > trackIPEstimate_sigd0_biasedpvunbiased;
-      VarProxy< float > trackIPEstimate_sigz0_biasedpvunbiased;
-      VarProxy< float > trackIPEstimate_d0_unbiasedpvunbiased;
-      VarProxy< float > trackIPEstimate_z0_unbiasedpvunbiased;
-      VarProxy< float > trackIPEstimate_sigd0_unbiasedpvunbiased;
-      VarProxy< float > trackIPEstimate_sigz0_unbiasedpvunbiased;
+// -- slimmed --       VarProxy< float > trackIPEstimate_d0_biasedpvunbiased;
+// -- slimmed --       VarProxy< float > trackIPEstimate_z0_biasedpvunbiased;
+// -- slimmed --       VarProxy< float > trackIPEstimate_sigd0_biasedpvunbiased;
+// -- slimmed --       VarProxy< float > trackIPEstimate_sigz0_biasedpvunbiased;
+// -- slimmed --       VarProxy< float > trackIPEstimate_d0_unbiasedpvunbiased;
+// -- slimmed --       VarProxy< float > trackIPEstimate_z0_unbiasedpvunbiased;
+// -- slimmed --       VarProxy< float > trackIPEstimate_sigd0_unbiasedpvunbiased;
+// -- slimmed --       VarProxy< float > trackIPEstimate_sigz0_unbiasedpvunbiased;
 // MC only
       /// MC particle type, from classifier tool
       VarProxy< int > type;
@@ -407,13 +407,13 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > ptcone20;
       VarHandle< vector<float>* > ptcone30;
       VarHandle< vector<float>* > ptcone40;
-      VarHandle< vector<float>* > etconeNoEm10;
-      VarHandle< vector<float>* > etconeNoEm20;
-      VarHandle< vector<float>* > etconeNoEm30;
-      VarHandle< vector<float>* > etconeNoEm40;
-      VarHandle< vector<float>* > scatteringCurvatureSignificance;
-      VarHandle< vector<float>* > scatteringNeighbourSignificance;
-      VarHandle< vector<float>* > momentumBalanceSignificance;
+// -- slimmed --       VarHandle< vector<float>* > etconeNoEm10;
+// -- slimmed --       VarHandle< vector<float>* > etconeNoEm20;
+// -- slimmed --       VarHandle< vector<float>* > etconeNoEm30;
+// -- slimmed --       VarHandle< vector<float>* > etconeNoEm40;
+// -- slimmed --       VarHandle< vector<float>* > scatteringCurvatureSignificance;
+// -- slimmed --       VarHandle< vector<float>* > scatteringNeighbourSignificance;
+// -- slimmed --       VarHandle< vector<float>* > momentumBalanceSignificance;
       VarHandle< vector<float>* > energyLossPar;
       VarHandle< vector<float>* > energyLossErr;
       VarHandle< vector<float>* > etCore;
@@ -609,14 +609,14 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > trackcov_phi_qoverp;
       VarHandle< vector<float>* > trackcov_theta_qoverp;
       VarHandle< vector<int>* > hastrack;
-      VarHandle< vector<float>* > trackIPEstimate_d0_biasedpvunbiased;
-      VarHandle< vector<float>* > trackIPEstimate_z0_biasedpvunbiased;
-      VarHandle< vector<float>* > trackIPEstimate_sigd0_biasedpvunbiased;
-      VarHandle< vector<float>* > trackIPEstimate_sigz0_biasedpvunbiased;
-      VarHandle< vector<float>* > trackIPEstimate_d0_unbiasedpvunbiased;
-      VarHandle< vector<float>* > trackIPEstimate_z0_unbiasedpvunbiased;
-      VarHandle< vector<float>* > trackIPEstimate_sigd0_unbiasedpvunbiased;
-      VarHandle< vector<float>* > trackIPEstimate_sigz0_unbiasedpvunbiased;
+// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_d0_biasedpvunbiased;
+// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_z0_biasedpvunbiased;
+// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_sigd0_biasedpvunbiased;
+// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_sigz0_biasedpvunbiased;
+// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_d0_unbiasedpvunbiased;
+// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_z0_unbiasedpvunbiased;
+// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_sigd0_unbiasedpvunbiased;
+// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_sigz0_unbiasedpvunbiased;
 // MC only
       /// MC particle type, from classifier tool
       VarHandle< vector<int>* > type;

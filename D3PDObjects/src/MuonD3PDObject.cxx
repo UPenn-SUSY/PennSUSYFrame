@@ -44,13 +44,13 @@ namespace D3PDReader {
         ptcone20( parent.ptcone20, index, this ),
         ptcone30( parent.ptcone30, index, this ),
         ptcone40( parent.ptcone40, index, this ),
-        etconeNoEm10( parent.etconeNoEm10, index, this ),
-        etconeNoEm20( parent.etconeNoEm20, index, this ),
-        etconeNoEm30( parent.etconeNoEm30, index, this ),
-        etconeNoEm40( parent.etconeNoEm40, index, this ),
-        scatteringCurvatureSignificance( parent.scatteringCurvatureSignificance, index, this ),
-        scatteringNeighbourSignificance( parent.scatteringNeighbourSignificance, index, this ),
-        momentumBalanceSignificance( parent.momentumBalanceSignificance, index, this ),
+// -- slimmed --         etconeNoEm10( parent.etconeNoEm10, index, this ),
+// -- slimmed --         etconeNoEm20( parent.etconeNoEm20, index, this ),
+// -- slimmed --         etconeNoEm30( parent.etconeNoEm30, index, this ),
+// -- slimmed --         etconeNoEm40( parent.etconeNoEm40, index, this ),
+// -- slimmed --         scatteringCurvatureSignificance( parent.scatteringCurvatureSignificance, index, this ),
+// -- slimmed --         scatteringNeighbourSignificance( parent.scatteringNeighbourSignificance, index, this ),
+// -- slimmed --         momentumBalanceSignificance( parent.momentumBalanceSignificance, index, this ),
         energyLossPar( parent.energyLossPar, index, this ),
         energyLossErr( parent.energyLossErr, index, this ),
         etCore( parent.etCore, index, this ),
@@ -234,14 +234,14 @@ namespace D3PDReader {
         trackcov_phi_qoverp( parent.trackcov_phi_qoverp, index, this ),
         trackcov_theta_qoverp( parent.trackcov_theta_qoverp, index, this ),
         hastrack( parent.hastrack, index, this ),
-        trackIPEstimate_d0_biasedpvunbiased( parent.trackIPEstimate_d0_biasedpvunbiased, index, this ),
-        trackIPEstimate_z0_biasedpvunbiased( parent.trackIPEstimate_z0_biasedpvunbiased, index, this ),
-        trackIPEstimate_sigd0_biasedpvunbiased( parent.trackIPEstimate_sigd0_biasedpvunbiased, index, this ),
-        trackIPEstimate_sigz0_biasedpvunbiased( parent.trackIPEstimate_sigz0_biasedpvunbiased, index, this ),
-        trackIPEstimate_d0_unbiasedpvunbiased( parent.trackIPEstimate_d0_unbiasedpvunbiased, index, this ),
-        trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased, index, this ),
-        trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased, index, this ),
-        trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased, index, this ),
+// -- slimmed --         trackIPEstimate_d0_biasedpvunbiased( parent.trackIPEstimate_d0_biasedpvunbiased, index, this ),
+// -- slimmed --         trackIPEstimate_z0_biasedpvunbiased( parent.trackIPEstimate_z0_biasedpvunbiased, index, this ),
+// -- slimmed --         trackIPEstimate_sigd0_biasedpvunbiased( parent.trackIPEstimate_sigd0_biasedpvunbiased, index, this ),
+// -- slimmed --         trackIPEstimate_sigz0_biasedpvunbiased( parent.trackIPEstimate_sigz0_biasedpvunbiased, index, this ),
+// -- slimmed --         trackIPEstimate_d0_unbiasedpvunbiased( parent.trackIPEstimate_d0_unbiasedpvunbiased, index, this ),
+// -- slimmed --         trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased, index, this ),
+// -- slimmed --         trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased, index, this ),
+// -- slimmed --         trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased, index, this ),
 // MC only
         type( parent.type, index, this ),
         origin( parent.origin, index, this ),
@@ -332,13 +332,13 @@ is_data(is_data) {
         ptcone20( parent.ptcone20 ),
         ptcone30( parent.ptcone30 ),
         ptcone40( parent.ptcone40 ),
-        etconeNoEm10( parent.etconeNoEm10 ),
-        etconeNoEm20( parent.etconeNoEm20 ),
-        etconeNoEm30( parent.etconeNoEm30 ),
-        etconeNoEm40( parent.etconeNoEm40 ),
-        scatteringCurvatureSignificance( parent.scatteringCurvatureSignificance ),
-        scatteringNeighbourSignificance( parent.scatteringNeighbourSignificance ),
-        momentumBalanceSignificance( parent.momentumBalanceSignificance ),
+// -- slimmed --         etconeNoEm10( parent.etconeNoEm10 ),
+// -- slimmed --         etconeNoEm20( parent.etconeNoEm20 ),
+// -- slimmed --         etconeNoEm30( parent.etconeNoEm30 ),
+// -- slimmed --         etconeNoEm40( parent.etconeNoEm40 ),
+// -- slimmed --         scatteringCurvatureSignificance( parent.scatteringCurvatureSignificance ),
+// -- slimmed --         scatteringNeighbourSignificance( parent.scatteringNeighbourSignificance ),
+// -- slimmed --         momentumBalanceSignificance( parent.momentumBalanceSignificance ),
         energyLossPar( parent.energyLossPar ),
         energyLossErr( parent.energyLossErr ),
         etCore( parent.etCore ),
@@ -522,14 +522,14 @@ is_data(is_data) {
         trackcov_phi_qoverp( parent.trackcov_phi_qoverp ),
         trackcov_theta_qoverp( parent.trackcov_theta_qoverp ),
         hastrack( parent.hastrack ),
-        trackIPEstimate_d0_biasedpvunbiased( parent.trackIPEstimate_d0_biasedpvunbiased ),
-        trackIPEstimate_z0_biasedpvunbiased( parent.trackIPEstimate_z0_biasedpvunbiased ),
-        trackIPEstimate_sigd0_biasedpvunbiased( parent.trackIPEstimate_sigd0_biasedpvunbiased ),
-        trackIPEstimate_sigz0_biasedpvunbiased( parent.trackIPEstimate_sigz0_biasedpvunbiased ),
-        trackIPEstimate_d0_unbiasedpvunbiased( parent.trackIPEstimate_d0_unbiasedpvunbiased ),
-        trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased ),
-        trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased ),
-        trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased ),
+// -- slimmed --         trackIPEstimate_d0_biasedpvunbiased( parent.trackIPEstimate_d0_biasedpvunbiased ),
+// -- slimmed --         trackIPEstimate_z0_biasedpvunbiased( parent.trackIPEstimate_z0_biasedpvunbiased ),
+// -- slimmed --         trackIPEstimate_sigd0_biasedpvunbiased( parent.trackIPEstimate_sigd0_biasedpvunbiased ),
+// -- slimmed --         trackIPEstimate_sigz0_biasedpvunbiased( parent.trackIPEstimate_sigz0_biasedpvunbiased ),
+// -- slimmed --         trackIPEstimate_d0_unbiasedpvunbiased( parent.trackIPEstimate_d0_unbiasedpvunbiased ),
+// -- slimmed --         trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased ),
+// -- slimmed --         trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased ),
+// -- slimmed --         trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased ),
 // MC only
         type( parent.type ),
         origin( parent.origin ),
@@ -621,13 +621,13 @@ is_data(is_data) {
         ptcone20( this, ::TString( prefix ) + "ptcone20", &master ),
         ptcone30( this, ::TString( prefix ) + "ptcone30", &master ),
         ptcone40( this, ::TString( prefix ) + "ptcone40", &master ),
-        etconeNoEm10( this, ::TString( prefix ) + "etconeNoEm10", &master ),
-        etconeNoEm20( this, ::TString( prefix ) + "etconeNoEm20", &master ),
-        etconeNoEm30( this, ::TString( prefix ) + "etconeNoEm30", &master ),
-        etconeNoEm40( this, ::TString( prefix ) + "etconeNoEm40", &master ),
-        scatteringCurvatureSignificance( this, ::TString( prefix ) + "scatteringCurvatureSignificance", &master ),
-        scatteringNeighbourSignificance( this, ::TString( prefix ) + "scatteringNeighbourSignificance", &master ),
-        momentumBalanceSignificance( this, ::TString( prefix ) + "momentumBalanceSignificance", &master ),
+// -- slimmed --         etconeNoEm10( this, ::TString( prefix ) + "etconeNoEm10", &master ),
+// -- slimmed --         etconeNoEm20( this, ::TString( prefix ) + "etconeNoEm20", &master ),
+// -- slimmed --         etconeNoEm30( this, ::TString( prefix ) + "etconeNoEm30", &master ),
+// -- slimmed --         etconeNoEm40( this, ::TString( prefix ) + "etconeNoEm40", &master ),
+// -- slimmed --         scatteringCurvatureSignificance( this, ::TString( prefix ) + "scatteringCurvatureSignificance", &master ),
+// -- slimmed --         scatteringNeighbourSignificance( this, ::TString( prefix ) + "scatteringNeighbourSignificance", &master ),
+// -- slimmed --         momentumBalanceSignificance( this, ::TString( prefix ) + "momentumBalanceSignificance", &master ),
         energyLossPar( this, ::TString( prefix ) + "energyLossPar", &master ),
         energyLossErr( this, ::TString( prefix ) + "energyLossErr", &master ),
         etCore( this, ::TString( prefix ) + "etCore", &master ),
@@ -811,14 +811,14 @@ is_data(is_data) {
         trackcov_phi_qoverp( this, ::TString( prefix ) + "trackcov_phi_qoverp", &master ),
         trackcov_theta_qoverp( this, ::TString( prefix ) + "trackcov_theta_qoverp", &master ),
         hastrack( this, ::TString( prefix ) + "hastrack", &master ),
-        trackIPEstimate_d0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased", &master ),
-        trackIPEstimate_z0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased", &master ),
-        trackIPEstimate_sigd0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased", &master ),
-        trackIPEstimate_sigz0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased", &master ),
-        trackIPEstimate_d0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased", &master ),
-        trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", &master ),
-        trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", &master ),
-        trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", &master ),
+// -- slimmed --         trackIPEstimate_d0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased", &master ),
+// -- slimmed --         trackIPEstimate_z0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased", &master ),
+// -- slimmed --         trackIPEstimate_sigd0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased", &master ),
+// -- slimmed --         trackIPEstimate_sigz0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased", &master ),
+// -- slimmed --         trackIPEstimate_d0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased", &master ),
+// -- slimmed --         trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", &master ),
+// -- slimmed --         trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", &master ),
+// -- slimmed --         trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", &master ),
 // MC only
         type( this, ::TString( prefix ) + "type", &master ),
         origin( this, ::TString( prefix ) + "origin", &master ),
@@ -901,13 +901,13 @@ is_data(is_data) {
       fHandles[ "ptcone20" ] = &ptcone20;
       fHandles[ "ptcone30" ] = &ptcone30;
       fHandles[ "ptcone40" ] = &ptcone40;
-      fHandles[ "etconeNoEm10" ] = &etconeNoEm10;
-      fHandles[ "etconeNoEm20" ] = &etconeNoEm20;
-      fHandles[ "etconeNoEm30" ] = &etconeNoEm30;
-      fHandles[ "etconeNoEm40" ] = &etconeNoEm40;
-      fHandles[ "scatteringCurvatureSignificance" ] = &scatteringCurvatureSignificance;
-      fHandles[ "scatteringNeighbourSignificance" ] = &scatteringNeighbourSignificance;
-      fHandles[ "momentumBalanceSignificance" ] = &momentumBalanceSignificance;
+// -- slimmed --       fHandles[ "etconeNoEm10" ] = &etconeNoEm10;
+// -- slimmed --       fHandles[ "etconeNoEm20" ] = &etconeNoEm20;
+// -- slimmed --       fHandles[ "etconeNoEm30" ] = &etconeNoEm30;
+// -- slimmed --       fHandles[ "etconeNoEm40" ] = &etconeNoEm40;
+// -- slimmed --       fHandles[ "scatteringCurvatureSignificance" ] = &scatteringCurvatureSignificance;
+// -- slimmed --       fHandles[ "scatteringNeighbourSignificance" ] = &scatteringNeighbourSignificance;
+// -- slimmed --       fHandles[ "momentumBalanceSignificance" ] = &momentumBalanceSignificance;
       fHandles[ "energyLossPar" ] = &energyLossPar;
       fHandles[ "energyLossErr" ] = &energyLossErr;
       fHandles[ "etCore" ] = &etCore;
@@ -1091,14 +1091,14 @@ is_data(is_data) {
       fHandles[ "trackcov_phi_qoverp" ] = &trackcov_phi_qoverp;
       fHandles[ "trackcov_theta_qoverp" ] = &trackcov_theta_qoverp;
       fHandles[ "hastrack" ] = &hastrack;
-      fHandles[ "trackIPEstimate_d0_biasedpvunbiased" ] = &trackIPEstimate_d0_biasedpvunbiased;
-      fHandles[ "trackIPEstimate_z0_biasedpvunbiased" ] = &trackIPEstimate_z0_biasedpvunbiased;
-      fHandles[ "trackIPEstimate_sigd0_biasedpvunbiased" ] = &trackIPEstimate_sigd0_biasedpvunbiased;
-      fHandles[ "trackIPEstimate_sigz0_biasedpvunbiased" ] = &trackIPEstimate_sigz0_biasedpvunbiased;
-      fHandles[ "trackIPEstimate_d0_unbiasedpvunbiased" ] = &trackIPEstimate_d0_unbiasedpvunbiased;
-      fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
-      fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
-      fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_d0_biasedpvunbiased" ] = &trackIPEstimate_d0_biasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_z0_biasedpvunbiased" ] = &trackIPEstimate_z0_biasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_sigd0_biasedpvunbiased" ] = &trackIPEstimate_sigd0_biasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_sigz0_biasedpvunbiased" ] = &trackIPEstimate_sigz0_biasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_d0_unbiasedpvunbiased" ] = &trackIPEstimate_d0_unbiasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
 if (!is_data) {
       fHandles[ "type" ] = &type;
       fHandles[ "origin" ] = &origin;
@@ -1187,13 +1187,13 @@ if (!is_data) {
         ptcone20( this, ::TString( prefix ) + "ptcone20", 0 ),
         ptcone30( this, ::TString( prefix ) + "ptcone30", 0 ),
         ptcone40( this, ::TString( prefix ) + "ptcone40", 0 ),
-        etconeNoEm10( this, ::TString( prefix ) + "etconeNoEm10", 0 ),
-        etconeNoEm20( this, ::TString( prefix ) + "etconeNoEm20", 0 ),
-        etconeNoEm30( this, ::TString( prefix ) + "etconeNoEm30", 0 ),
-        etconeNoEm40( this, ::TString( prefix ) + "etconeNoEm40", 0 ),
-        scatteringCurvatureSignificance( this, ::TString( prefix ) + "scatteringCurvatureSignificance", 0 ),
-        scatteringNeighbourSignificance( this, ::TString( prefix ) + "scatteringNeighbourSignificance", 0 ),
-        momentumBalanceSignificance( this, ::TString( prefix ) + "momentumBalanceSignificance", 0 ),
+// -- slimmed --         etconeNoEm10( this, ::TString( prefix ) + "etconeNoEm10", 0 ),
+// -- slimmed --         etconeNoEm20( this, ::TString( prefix ) + "etconeNoEm20", 0 ),
+// -- slimmed --         etconeNoEm30( this, ::TString( prefix ) + "etconeNoEm30", 0 ),
+// -- slimmed --         etconeNoEm40( this, ::TString( prefix ) + "etconeNoEm40", 0 ),
+// -- slimmed --         scatteringCurvatureSignificance( this, ::TString( prefix ) + "scatteringCurvatureSignificance", 0 ),
+// -- slimmed --         scatteringNeighbourSignificance( this, ::TString( prefix ) + "scatteringNeighbourSignificance", 0 ),
+// -- slimmed --         momentumBalanceSignificance( this, ::TString( prefix ) + "momentumBalanceSignificance", 0 ),
         energyLossPar( this, ::TString( prefix ) + "energyLossPar", 0 ),
         energyLossErr( this, ::TString( prefix ) + "energyLossErr", 0 ),
         etCore( this, ::TString( prefix ) + "etCore", 0 ),
@@ -1377,14 +1377,14 @@ if (!is_data) {
         trackcov_phi_qoverp( this, ::TString( prefix ) + "trackcov_phi_qoverp", 0 ),
         trackcov_theta_qoverp( this, ::TString( prefix ) + "trackcov_theta_qoverp", 0 ),
         hastrack( this, ::TString( prefix ) + "hastrack", 0 ),
-        trackIPEstimate_d0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased", 0 ),
-        trackIPEstimate_z0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased", 0 ),
-        trackIPEstimate_sigd0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased", 0 ),
-        trackIPEstimate_sigz0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased", 0 ),
-        trackIPEstimate_d0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased", 0 ),
-        trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", 0 ),
-        trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", 0 ),
-        trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", 0 ),
+// -- slimmed --         trackIPEstimate_d0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased", 0 ),
+// -- slimmed --         trackIPEstimate_z0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased", 0 ),
+// -- slimmed --         trackIPEstimate_sigd0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased", 0 ),
+// -- slimmed --         trackIPEstimate_sigz0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased", 0 ),
+// -- slimmed --         trackIPEstimate_d0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased", 0 ),
+// -- slimmed --         trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", 0 ),
+// -- slimmed --         trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", 0 ),
+// -- slimmed --         trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", 0 ),
 // MC only
         type( this, ::TString( prefix ) + "type", 0 ),
         origin( this, ::TString( prefix ) + "origin", 0 ),
@@ -1467,13 +1467,13 @@ is_data(is_data) {
       fHandles[ "ptcone20" ] = &ptcone20;
       fHandles[ "ptcone30" ] = &ptcone30;
       fHandles[ "ptcone40" ] = &ptcone40;
-      fHandles[ "etconeNoEm10" ] = &etconeNoEm10;
-      fHandles[ "etconeNoEm20" ] = &etconeNoEm20;
-      fHandles[ "etconeNoEm30" ] = &etconeNoEm30;
-      fHandles[ "etconeNoEm40" ] = &etconeNoEm40;
-      fHandles[ "scatteringCurvatureSignificance" ] = &scatteringCurvatureSignificance;
-      fHandles[ "scatteringNeighbourSignificance" ] = &scatteringNeighbourSignificance;
-      fHandles[ "momentumBalanceSignificance" ] = &momentumBalanceSignificance;
+// -- slimmed --       fHandles[ "etconeNoEm10" ] = &etconeNoEm10;
+// -- slimmed --       fHandles[ "etconeNoEm20" ] = &etconeNoEm20;
+// -- slimmed --       fHandles[ "etconeNoEm30" ] = &etconeNoEm30;
+// -- slimmed --       fHandles[ "etconeNoEm40" ] = &etconeNoEm40;
+// -- slimmed --       fHandles[ "scatteringCurvatureSignificance" ] = &scatteringCurvatureSignificance;
+// -- slimmed --       fHandles[ "scatteringNeighbourSignificance" ] = &scatteringNeighbourSignificance;
+// -- slimmed --       fHandles[ "momentumBalanceSignificance" ] = &momentumBalanceSignificance;
       fHandles[ "energyLossPar" ] = &energyLossPar;
       fHandles[ "energyLossErr" ] = &energyLossErr;
       fHandles[ "etCore" ] = &etCore;
@@ -1657,14 +1657,14 @@ is_data(is_data) {
       fHandles[ "trackcov_phi_qoverp" ] = &trackcov_phi_qoverp;
       fHandles[ "trackcov_theta_qoverp" ] = &trackcov_theta_qoverp;
       fHandles[ "hastrack" ] = &hastrack;
-      fHandles[ "trackIPEstimate_d0_biasedpvunbiased" ] = &trackIPEstimate_d0_biasedpvunbiased;
-      fHandles[ "trackIPEstimate_z0_biasedpvunbiased" ] = &trackIPEstimate_z0_biasedpvunbiased;
-      fHandles[ "trackIPEstimate_sigd0_biasedpvunbiased" ] = &trackIPEstimate_sigd0_biasedpvunbiased;
-      fHandles[ "trackIPEstimate_sigz0_biasedpvunbiased" ] = &trackIPEstimate_sigz0_biasedpvunbiased;
-      fHandles[ "trackIPEstimate_d0_unbiasedpvunbiased" ] = &trackIPEstimate_d0_unbiasedpvunbiased;
-      fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
-      fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
-      fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_d0_biasedpvunbiased" ] = &trackIPEstimate_d0_biasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_z0_biasedpvunbiased" ] = &trackIPEstimate_z0_biasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_sigd0_biasedpvunbiased" ] = &trackIPEstimate_sigd0_biasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_sigz0_biasedpvunbiased" ] = &trackIPEstimate_sigz0_biasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_d0_unbiasedpvunbiased" ] = &trackIPEstimate_d0_unbiasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
+// -- slimmed --       fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
 if (!is_data) {
       fHandles[ "type" ] = &type;
       fHandles[ "origin" ] = &origin;
@@ -1757,13 +1757,13 @@ if (!is_data) {
       ptcone20.SetName( ::TString( prefix ) + "ptcone20" );
       ptcone30.SetName( ::TString( prefix ) + "ptcone30" );
       ptcone40.SetName( ::TString( prefix ) + "ptcone40" );
-      etconeNoEm10.SetName( ::TString( prefix ) + "etconeNoEm10" );
-      etconeNoEm20.SetName( ::TString( prefix ) + "etconeNoEm20" );
-      etconeNoEm30.SetName( ::TString( prefix ) + "etconeNoEm30" );
-      etconeNoEm40.SetName( ::TString( prefix ) + "etconeNoEm40" );
-      scatteringCurvatureSignificance.SetName( ::TString( prefix ) + "scatteringCurvatureSignificance" );
-      scatteringNeighbourSignificance.SetName( ::TString( prefix ) + "scatteringNeighbourSignificance" );
-      momentumBalanceSignificance.SetName( ::TString( prefix ) + "momentumBalanceSignificance" );
+// -- slimmed --       etconeNoEm10.SetName( ::TString( prefix ) + "etconeNoEm10" );
+// -- slimmed --       etconeNoEm20.SetName( ::TString( prefix ) + "etconeNoEm20" );
+// -- slimmed --       etconeNoEm30.SetName( ::TString( prefix ) + "etconeNoEm30" );
+// -- slimmed --       etconeNoEm40.SetName( ::TString( prefix ) + "etconeNoEm40" );
+// -- slimmed --       scatteringCurvatureSignificance.SetName( ::TString( prefix ) + "scatteringCurvatureSignificance" );
+// -- slimmed --       scatteringNeighbourSignificance.SetName( ::TString( prefix ) + "scatteringNeighbourSignificance" );
+// -- slimmed --       momentumBalanceSignificance.SetName( ::TString( prefix ) + "momentumBalanceSignificance" );
       energyLossPar.SetName( ::TString( prefix ) + "energyLossPar" );
       energyLossErr.SetName( ::TString( prefix ) + "energyLossErr" );
       etCore.SetName( ::TString( prefix ) + "etCore" );
@@ -1947,14 +1947,14 @@ if (!is_data) {
       trackcov_phi_qoverp.SetName( ::TString( prefix ) + "trackcov_phi_qoverp" );
       trackcov_theta_qoverp.SetName( ::TString( prefix ) + "trackcov_theta_qoverp" );
       hastrack.SetName( ::TString( prefix ) + "hastrack" );
-      trackIPEstimate_d0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased" );
-      trackIPEstimate_z0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased" );
-      trackIPEstimate_sigd0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased" );
-      trackIPEstimate_sigz0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased" );
-      trackIPEstimate_d0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased" );
-      trackIPEstimate_z0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased" );
-      trackIPEstimate_sigd0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased" );
-      trackIPEstimate_sigz0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased" );
+// -- slimmed --       trackIPEstimate_d0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased" );
+// -- slimmed --       trackIPEstimate_z0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased" );
+// -- slimmed --       trackIPEstimate_sigd0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased" );
+// -- slimmed --       trackIPEstimate_sigz0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased" );
+// -- slimmed --       trackIPEstimate_d0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased" );
+// -- slimmed --       trackIPEstimate_z0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased" );
+// -- slimmed --       trackIPEstimate_sigd0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased" );
+// -- slimmed --       trackIPEstimate_sigz0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased" );
 if (!is_data) {
       type.SetName( ::TString( prefix ) + "type" );
       origin.SetName( ::TString( prefix ) + "origin" );
@@ -2050,13 +2050,13 @@ if (!is_data) {
       ptcone20.ReadFrom( tree );
       ptcone30.ReadFrom( tree );
       ptcone40.ReadFrom( tree );
-      etconeNoEm10.ReadFrom( tree );
-      etconeNoEm20.ReadFrom( tree );
-      etconeNoEm30.ReadFrom( tree );
-      etconeNoEm40.ReadFrom( tree );
-      scatteringCurvatureSignificance.ReadFrom( tree );
-      scatteringNeighbourSignificance.ReadFrom( tree );
-      momentumBalanceSignificance.ReadFrom( tree );
+// -- slimmed --       etconeNoEm10.ReadFrom( tree );
+// -- slimmed --       etconeNoEm20.ReadFrom( tree );
+// -- slimmed --       etconeNoEm30.ReadFrom( tree );
+// -- slimmed --       etconeNoEm40.ReadFrom( tree );
+// -- slimmed --       scatteringCurvatureSignificance.ReadFrom( tree );
+// -- slimmed --       scatteringNeighbourSignificance.ReadFrom( tree );
+// -- slimmed --       momentumBalanceSignificance.ReadFrom( tree );
       energyLossPar.ReadFrom( tree );
       energyLossErr.ReadFrom( tree );
       etCore.ReadFrom( tree );
@@ -2240,14 +2240,14 @@ if (!is_data) {
       trackcov_phi_qoverp.ReadFrom( tree );
       trackcov_theta_qoverp.ReadFrom( tree );
       hastrack.ReadFrom( tree );
-      trackIPEstimate_d0_biasedpvunbiased.ReadFrom( tree );
-      trackIPEstimate_z0_biasedpvunbiased.ReadFrom( tree );
-      trackIPEstimate_sigd0_biasedpvunbiased.ReadFrom( tree );
-      trackIPEstimate_sigz0_biasedpvunbiased.ReadFrom( tree );
-      trackIPEstimate_d0_unbiasedpvunbiased.ReadFrom( tree );
-      trackIPEstimate_z0_unbiasedpvunbiased.ReadFrom( tree );
-      trackIPEstimate_sigd0_unbiasedpvunbiased.ReadFrom( tree );
-      trackIPEstimate_sigz0_unbiasedpvunbiased.ReadFrom( tree );
+// -- slimmed --       trackIPEstimate_d0_biasedpvunbiased.ReadFrom( tree );
+// -- slimmed --       trackIPEstimate_z0_biasedpvunbiased.ReadFrom( tree );
+// -- slimmed --       trackIPEstimate_sigd0_biasedpvunbiased.ReadFrom( tree );
+// -- slimmed --       trackIPEstimate_sigz0_biasedpvunbiased.ReadFrom( tree );
+// -- slimmed --       trackIPEstimate_d0_unbiasedpvunbiased.ReadFrom( tree );
+// -- slimmed --       trackIPEstimate_z0_unbiasedpvunbiased.ReadFrom( tree );
+// -- slimmed --       trackIPEstimate_sigd0_unbiasedpvunbiased.ReadFrom( tree );
+// -- slimmed --       trackIPEstimate_sigz0_unbiasedpvunbiased.ReadFrom( tree );
 if (!is_data) {
       type.ReadFrom( tree );
       origin.ReadFrom( tree );
@@ -2338,13 +2338,13 @@ if (!is_data) {
       ptcone20.WriteTo( tree );
       ptcone30.WriteTo( tree );
       ptcone40.WriteTo( tree );
-      etconeNoEm10.WriteTo( tree );
-      etconeNoEm20.WriteTo( tree );
-      etconeNoEm30.WriteTo( tree );
-      etconeNoEm40.WriteTo( tree );
-      scatteringCurvatureSignificance.WriteTo( tree );
-      scatteringNeighbourSignificance.WriteTo( tree );
-      momentumBalanceSignificance.WriteTo( tree );
+// -- slimmed --       etconeNoEm10.WriteTo( tree );
+// -- slimmed --       etconeNoEm20.WriteTo( tree );
+// -- slimmed --       etconeNoEm30.WriteTo( tree );
+// -- slimmed --       etconeNoEm40.WriteTo( tree );
+// -- slimmed --       scatteringCurvatureSignificance.WriteTo( tree );
+// -- slimmed --       scatteringNeighbourSignificance.WriteTo( tree );
+// -- slimmed --       momentumBalanceSignificance.WriteTo( tree );
       energyLossPar.WriteTo( tree );
       energyLossErr.WriteTo( tree );
       etCore.WriteTo( tree );
@@ -2528,14 +2528,14 @@ if (!is_data) {
       trackcov_phi_qoverp.WriteTo( tree );
       trackcov_theta_qoverp.WriteTo( tree );
       hastrack.WriteTo( tree );
-      trackIPEstimate_d0_biasedpvunbiased.WriteTo( tree );
-      trackIPEstimate_z0_biasedpvunbiased.WriteTo( tree );
-      trackIPEstimate_sigd0_biasedpvunbiased.WriteTo( tree );
-      trackIPEstimate_sigz0_biasedpvunbiased.WriteTo( tree );
-      trackIPEstimate_d0_unbiasedpvunbiased.WriteTo( tree );
-      trackIPEstimate_z0_unbiasedpvunbiased.WriteTo( tree );
-      trackIPEstimate_sigd0_unbiasedpvunbiased.WriteTo( tree );
-      trackIPEstimate_sigz0_unbiasedpvunbiased.WriteTo( tree );
+// -- slimmed --       trackIPEstimate_d0_biasedpvunbiased.WriteTo( tree );
+// -- slimmed --       trackIPEstimate_z0_biasedpvunbiased.WriteTo( tree );
+// -- slimmed --       trackIPEstimate_sigd0_biasedpvunbiased.WriteTo( tree );
+// -- slimmed --       trackIPEstimate_sigz0_biasedpvunbiased.WriteTo( tree );
+// -- slimmed --       trackIPEstimate_d0_unbiasedpvunbiased.WriteTo( tree );
+// -- slimmed --       trackIPEstimate_z0_unbiasedpvunbiased.WriteTo( tree );
+// -- slimmed --       trackIPEstimate_sigd0_unbiasedpvunbiased.WriteTo( tree );
+// -- slimmed --       trackIPEstimate_sigz0_unbiasedpvunbiased.WriteTo( tree );
 if (!is_data) {
       type.WriteTo( tree );
       origin.WriteTo( tree );
@@ -2663,13 +2663,13 @@ if (!is_data) {
       if( ptcone20.IsActive() ) ptcone20();
       if( ptcone30.IsActive() ) ptcone30();
       if( ptcone40.IsActive() ) ptcone40();
-      if( etconeNoEm10.IsActive() ) etconeNoEm10();
-      if( etconeNoEm20.IsActive() ) etconeNoEm20();
-      if( etconeNoEm30.IsActive() ) etconeNoEm30();
-      if( etconeNoEm40.IsActive() ) etconeNoEm40();
-      if( scatteringCurvatureSignificance.IsActive() ) scatteringCurvatureSignificance();
-      if( scatteringNeighbourSignificance.IsActive() ) scatteringNeighbourSignificance();
-      if( momentumBalanceSignificance.IsActive() ) momentumBalanceSignificance();
+// -- slimmed --       if( etconeNoEm10.IsActive() ) etconeNoEm10();
+// -- slimmed --       if( etconeNoEm20.IsActive() ) etconeNoEm20();
+// -- slimmed --       if( etconeNoEm30.IsActive() ) etconeNoEm30();
+// -- slimmed --       if( etconeNoEm40.IsActive() ) etconeNoEm40();
+// -- slimmed --       if( scatteringCurvatureSignificance.IsActive() ) scatteringCurvatureSignificance();
+// -- slimmed --       if( scatteringNeighbourSignificance.IsActive() ) scatteringNeighbourSignificance();
+// -- slimmed --       if( momentumBalanceSignificance.IsActive() ) momentumBalanceSignificance();
       if( energyLossPar.IsActive() ) energyLossPar();
       if( energyLossErr.IsActive() ) energyLossErr();
       if( etCore.IsActive() ) etCore();
@@ -2853,14 +2853,14 @@ if (!is_data) {
       if( trackcov_phi_qoverp.IsActive() ) trackcov_phi_qoverp();
       if( trackcov_theta_qoverp.IsActive() ) trackcov_theta_qoverp();
       if( hastrack.IsActive() ) hastrack();
-      if( trackIPEstimate_d0_biasedpvunbiased.IsActive() ) trackIPEstimate_d0_biasedpvunbiased();
-      if( trackIPEstimate_z0_biasedpvunbiased.IsActive() ) trackIPEstimate_z0_biasedpvunbiased();
-      if( trackIPEstimate_sigd0_biasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_biasedpvunbiased();
-      if( trackIPEstimate_sigz0_biasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_biasedpvunbiased();
-      if( trackIPEstimate_d0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_d0_unbiasedpvunbiased();
-      if( trackIPEstimate_z0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_z0_unbiasedpvunbiased();
-      if( trackIPEstimate_sigd0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_unbiasedpvunbiased();
-      if( trackIPEstimate_sigz0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_unbiasedpvunbiased();
+// -- slimmed --       if( trackIPEstimate_d0_biasedpvunbiased.IsActive() ) trackIPEstimate_d0_biasedpvunbiased();
+// -- slimmed --       if( trackIPEstimate_z0_biasedpvunbiased.IsActive() ) trackIPEstimate_z0_biasedpvunbiased();
+// -- slimmed --       if( trackIPEstimate_sigd0_biasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_biasedpvunbiased();
+// -- slimmed --       if( trackIPEstimate_sigz0_biasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_biasedpvunbiased();
+// -- slimmed --       if( trackIPEstimate_d0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_d0_unbiasedpvunbiased();
+// -- slimmed --       if( trackIPEstimate_z0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_z0_unbiasedpvunbiased();
+// -- slimmed --       if( trackIPEstimate_sigd0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_unbiasedpvunbiased();
+// -- slimmed --       if( trackIPEstimate_sigz0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_unbiasedpvunbiased();
 if (!is_data) {
       if( type.IsActive() ) type();
       if( origin.IsActive() ) origin();
@@ -2960,13 +2960,13 @@ if (!is_data) {
       ptcone20()->clear();
       ptcone30()->clear();
       ptcone40()->clear();
-      etconeNoEm10()->clear();
-      etconeNoEm20()->clear();
-      etconeNoEm30()->clear();
-      etconeNoEm40()->clear();
-      scatteringCurvatureSignificance()->clear();
-      scatteringNeighbourSignificance()->clear();
-      momentumBalanceSignificance()->clear();
+// -- slimmed --       etconeNoEm10()->clear();
+// -- slimmed --       etconeNoEm20()->clear();
+// -- slimmed --       etconeNoEm30()->clear();
+// -- slimmed --       etconeNoEm40()->clear();
+// -- slimmed --       scatteringCurvatureSignificance()->clear();
+// -- slimmed --       scatteringNeighbourSignificance()->clear();
+// -- slimmed --       momentumBalanceSignificance()->clear();
       energyLossPar()->clear();
       energyLossErr()->clear();
       etCore()->clear();
@@ -3150,14 +3150,14 @@ if (!is_data) {
       trackcov_phi_qoverp()->clear();
       trackcov_theta_qoverp()->clear();
       hastrack()->clear();
-      trackIPEstimate_d0_biasedpvunbiased()->clear();
-      trackIPEstimate_z0_biasedpvunbiased()->clear();
-      trackIPEstimate_sigd0_biasedpvunbiased()->clear();
-      trackIPEstimate_sigz0_biasedpvunbiased()->clear();
-      trackIPEstimate_d0_unbiasedpvunbiased()->clear();
-      trackIPEstimate_z0_unbiasedpvunbiased()->clear();
-      trackIPEstimate_sigd0_unbiasedpvunbiased()->clear();
-      trackIPEstimate_sigz0_unbiasedpvunbiased()->clear();
+// -- slimmed --       trackIPEstimate_d0_biasedpvunbiased()->clear();
+// -- slimmed --       trackIPEstimate_z0_biasedpvunbiased()->clear();
+// -- slimmed --       trackIPEstimate_sigd0_biasedpvunbiased()->clear();
+// -- slimmed --       trackIPEstimate_sigz0_biasedpvunbiased()->clear();
+// -- slimmed --       trackIPEstimate_d0_unbiasedpvunbiased()->clear();
+// -- slimmed --       trackIPEstimate_z0_unbiasedpvunbiased()->clear();
+// -- slimmed --       trackIPEstimate_sigd0_unbiasedpvunbiased()->clear();
+// -- slimmed --       trackIPEstimate_sigz0_unbiasedpvunbiased()->clear();
 if (!is_data) {
       type()->clear();
       origin()->clear();
@@ -3345,41 +3345,41 @@ if (!is_data) {
       } else {
          ptcone40()->push_back( std::numeric_limits< float >::min() );
       }
-      if( el.etconeNoEm10.IsAvailable() ) {
-         etconeNoEm10()->push_back( el.etconeNoEm10() );
-      } else {
-         etconeNoEm10()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.etconeNoEm20.IsAvailable() ) {
-         etconeNoEm20()->push_back( el.etconeNoEm20() );
-      } else {
-         etconeNoEm20()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.etconeNoEm30.IsAvailable() ) {
-         etconeNoEm30()->push_back( el.etconeNoEm30() );
-      } else {
-         etconeNoEm30()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.etconeNoEm40.IsAvailable() ) {
-         etconeNoEm40()->push_back( el.etconeNoEm40() );
-      } else {
-         etconeNoEm40()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.scatteringCurvatureSignificance.IsAvailable() ) {
-         scatteringCurvatureSignificance()->push_back( el.scatteringCurvatureSignificance() );
-      } else {
-         scatteringCurvatureSignificance()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.scatteringNeighbourSignificance.IsAvailable() ) {
-         scatteringNeighbourSignificance()->push_back( el.scatteringNeighbourSignificance() );
-      } else {
-         scatteringNeighbourSignificance()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.momentumBalanceSignificance.IsAvailable() ) {
-         momentumBalanceSignificance()->push_back( el.momentumBalanceSignificance() );
-      } else {
-         momentumBalanceSignificance()->push_back( std::numeric_limits< float >::min() );
-      }
+// -- slimmed --       if( el.etconeNoEm10.IsAvailable() ) {
+// -- slimmed --          etconeNoEm10()->push_back( el.etconeNoEm10() );
+// -- slimmed --       } else {
+// -- slimmed --          etconeNoEm10()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.etconeNoEm20.IsAvailable() ) {
+// -- slimmed --          etconeNoEm20()->push_back( el.etconeNoEm20() );
+// -- slimmed --       } else {
+// -- slimmed --          etconeNoEm20()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.etconeNoEm30.IsAvailable() ) {
+// -- slimmed --          etconeNoEm30()->push_back( el.etconeNoEm30() );
+// -- slimmed --       } else {
+// -- slimmed --          etconeNoEm30()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.etconeNoEm40.IsAvailable() ) {
+// -- slimmed --          etconeNoEm40()->push_back( el.etconeNoEm40() );
+// -- slimmed --       } else {
+// -- slimmed --          etconeNoEm40()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.scatteringCurvatureSignificance.IsAvailable() ) {
+// -- slimmed --          scatteringCurvatureSignificance()->push_back( el.scatteringCurvatureSignificance() );
+// -- slimmed --       } else {
+// -- slimmed --          scatteringCurvatureSignificance()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.scatteringNeighbourSignificance.IsAvailable() ) {
+// -- slimmed --          scatteringNeighbourSignificance()->push_back( el.scatteringNeighbourSignificance() );
+// -- slimmed --       } else {
+// -- slimmed --          scatteringNeighbourSignificance()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.momentumBalanceSignificance.IsAvailable() ) {
+// -- slimmed --          momentumBalanceSignificance()->push_back( el.momentumBalanceSignificance() );
+// -- slimmed --       } else {
+// -- slimmed --          momentumBalanceSignificance()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
       if( el.energyLossPar.IsAvailable() ) {
          energyLossPar()->push_back( el.energyLossPar() );
       } else {
@@ -4295,46 +4295,46 @@ if (!is_data) {
       } else {
          hastrack()->push_back( std::numeric_limits< int >::min() );
       }
-      if( el.trackIPEstimate_d0_biasedpvunbiased.IsAvailable() ) {
-         trackIPEstimate_d0_biasedpvunbiased()->push_back( el.trackIPEstimate_d0_biasedpvunbiased() );
-      } else {
-         trackIPEstimate_d0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.trackIPEstimate_z0_biasedpvunbiased.IsAvailable() ) {
-         trackIPEstimate_z0_biasedpvunbiased()->push_back( el.trackIPEstimate_z0_biasedpvunbiased() );
-      } else {
-         trackIPEstimate_z0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.trackIPEstimate_sigd0_biasedpvunbiased.IsAvailable() ) {
-         trackIPEstimate_sigd0_biasedpvunbiased()->push_back( el.trackIPEstimate_sigd0_biasedpvunbiased() );
-      } else {
-         trackIPEstimate_sigd0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.trackIPEstimate_sigz0_biasedpvunbiased.IsAvailable() ) {
-         trackIPEstimate_sigz0_biasedpvunbiased()->push_back( el.trackIPEstimate_sigz0_biasedpvunbiased() );
-      } else {
-         trackIPEstimate_sigz0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.trackIPEstimate_d0_unbiasedpvunbiased.IsAvailable() ) {
-         trackIPEstimate_d0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_d0_unbiasedpvunbiased() );
-      } else {
-         trackIPEstimate_d0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.trackIPEstimate_z0_unbiasedpvunbiased.IsAvailable() ) {
-         trackIPEstimate_z0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_z0_unbiasedpvunbiased() );
-      } else {
-         trackIPEstimate_z0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.trackIPEstimate_sigd0_unbiasedpvunbiased.IsAvailable() ) {
-         trackIPEstimate_sigd0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_sigd0_unbiasedpvunbiased() );
-      } else {
-         trackIPEstimate_sigd0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.trackIPEstimate_sigz0_unbiasedpvunbiased.IsAvailable() ) {
-         trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_sigz0_unbiasedpvunbiased() );
-      } else {
-         trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-      }
+// -- slimmed --       if( el.trackIPEstimate_d0_biasedpvunbiased.IsAvailable() ) {
+// -- slimmed --          trackIPEstimate_d0_biasedpvunbiased()->push_back( el.trackIPEstimate_d0_biasedpvunbiased() );
+// -- slimmed --       } else {
+// -- slimmed --          trackIPEstimate_d0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trackIPEstimate_z0_biasedpvunbiased.IsAvailable() ) {
+// -- slimmed --          trackIPEstimate_z0_biasedpvunbiased()->push_back( el.trackIPEstimate_z0_biasedpvunbiased() );
+// -- slimmed --       } else {
+// -- slimmed --          trackIPEstimate_z0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trackIPEstimate_sigd0_biasedpvunbiased.IsAvailable() ) {
+// -- slimmed --          trackIPEstimate_sigd0_biasedpvunbiased()->push_back( el.trackIPEstimate_sigd0_biasedpvunbiased() );
+// -- slimmed --       } else {
+// -- slimmed --          trackIPEstimate_sigd0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trackIPEstimate_sigz0_biasedpvunbiased.IsAvailable() ) {
+// -- slimmed --          trackIPEstimate_sigz0_biasedpvunbiased()->push_back( el.trackIPEstimate_sigz0_biasedpvunbiased() );
+// -- slimmed --       } else {
+// -- slimmed --          trackIPEstimate_sigz0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trackIPEstimate_d0_unbiasedpvunbiased.IsAvailable() ) {
+// -- slimmed --          trackIPEstimate_d0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_d0_unbiasedpvunbiased() );
+// -- slimmed --       } else {
+// -- slimmed --          trackIPEstimate_d0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trackIPEstimate_z0_unbiasedpvunbiased.IsAvailable() ) {
+// -- slimmed --          trackIPEstimate_z0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_z0_unbiasedpvunbiased() );
+// -- slimmed --       } else {
+// -- slimmed --          trackIPEstimate_z0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trackIPEstimate_sigd0_unbiasedpvunbiased.IsAvailable() ) {
+// -- slimmed --          trackIPEstimate_sigd0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_sigd0_unbiasedpvunbiased() );
+// -- slimmed --       } else {
+// -- slimmed --          trackIPEstimate_sigd0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
+// -- slimmed --       if( el.trackIPEstimate_sigz0_unbiasedpvunbiased.IsAvailable() ) {
+// -- slimmed --          trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_sigz0_unbiasedpvunbiased() );
+// -- slimmed --       } else {
+// -- slimmed --          trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+// -- slimmed --       }
 if (!is_data) {
       if( el.type.IsAvailable() ) {
          type()->push_back( el.type() );
