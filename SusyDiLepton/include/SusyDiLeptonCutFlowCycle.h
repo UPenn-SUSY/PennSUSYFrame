@@ -1,4 +1,4 @@
-// Dear emacs, this is -*- c++ -*-
+/// Dear emacs, this is -*- c++ -*-
 #ifndef SusyDiLeptonCutFlowCycle_H
 #define SusyDiLeptonCutFlowCycle_H
 
@@ -33,6 +33,8 @@
 #include "CommonTools/include/PileUpScaleFactorTool.h"
 #include "CommonTools/include/EgammaScaleFactorTool.h"
 #include "CommonTools/include/MuonScaleFactorTool.h"
+#include "CommonTools/include/ChargeFlipScaleFactorTool.h"
+#include "CommonTools/include/TriggerReweightTool.h"
 
 #include "D3PDObjects/include/ElectronD3PDObject.h"
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
@@ -190,7 +192,8 @@ private:
   CommonTools::PileUpScaleFactorTool*       m_pileup_sf_tool;
   CommonTools::EgammaScaleFactorTool*       m_egamma_sf_tool;
   CommonTools::MuonScaleFactorTool*         m_muon_sf_tool;
-
+  CommonTools::ChargeFlipScaleFactorTool*   m_charge_flip_sf_tool;
+  CommonTools::TriggerReweightTool*         m_trigger_reweight_tool;
 
   CommonTools::EventOutputTool*      m_event_output_tool;
   CommonTools::ElectronOutputTool*   m_electron_output_tool;
