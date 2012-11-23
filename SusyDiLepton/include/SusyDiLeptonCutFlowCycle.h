@@ -57,6 +57,7 @@
 #include "SelectionTools/include/ObjectCleaningTool.h"
 #include "SelectionTools/include/SignalRegionTool.h"
 #include "SelectionTools/include/TriggerCutTool.h"
+#include "SelectionTools/include/HFORTool.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
@@ -185,6 +186,7 @@ private:
   SelectionTools::EventCleaningTool* m_event_cleaning_tool;
   SelectionTools::TriggerCutTool*    m_trigger_cut_tool;
   SelectionTools::SignalRegionTool*  m_signal_region_tool;
+  //SelectionTools::HFORTool*          m_hfor_tool;
 
   CommonTools::TruthMatchTool*              m_truth_match_tool;
   CommonTools::CrossSectionScaleFactorTool* m_cross_section_sf_tool;

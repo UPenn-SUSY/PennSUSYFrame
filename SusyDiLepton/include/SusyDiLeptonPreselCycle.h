@@ -50,6 +50,7 @@
 #include "SelectionTools/include/ObjectCleaningTool.h"
 #include "SelectionTools/include/SignalRegionTool.h"
 #include "SelectionTools/include/TriggerCutTool.h"
+#include "SelectionTools/include/HFORTool.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
 

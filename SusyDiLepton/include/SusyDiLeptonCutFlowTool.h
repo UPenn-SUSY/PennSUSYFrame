@@ -26,10 +26,12 @@
 #include "CommonTools/include/TruthMatchTool.h"
 // 
 #include "D3PDObjects/include/MuonTruthD3PDObject.h"
+#include "D3PDObjects/include/TruthD3PDObject.h"
 
 #include "SelectionTools/include/EventCleaningTool.h"
 #include "SelectionTools/include/GoodRunsListTool.h"
 #include "SelectionTools/include/TriggerCutTool.h"
+#include "SelectionTools/include/HFORTool.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
@@ -59,6 +61,7 @@ public:
                       , const Trigger*
                       , const TriggerVec*
                       , D3PDReader::MuonTruthD3PDObject*
+		      ,	D3PDReader::TruthD3PDObject*
                       );
 
   bool runAdvancedCutFlow( Event*
@@ -69,6 +72,7 @@ public:
                          , const Trigger*
                          , const TriggerVec*
                          , D3PDReader::MuonTruthD3PDObject*
+			 , D3PDReader::TruthD3PDObject*
                          );
 
   // This function computes event variables we only want for good events
@@ -111,6 +115,7 @@ private:
   SelectionTools::GoodRunsListTool*  m_grl_tool;
   SelectionTools::EventCleaningTool* m_event_cleaning_tool;
   SelectionTools::TriggerCutTool*    m_trigger_cut_tool;
+  SelectionTools::HFORTool*          m_hfor_tool;
 
   CommonTools::TruthMatchTool* m_truth_match_tool;
 
