@@ -15,8 +15,13 @@ import parse_yaml_config as parse
 
 # ------------------------------------------------------------------------------
 def main():
+    xml_file_name = 'test_file.xml'
     config_dict = parse.parseInputs()
-    writeConfigXml(config_dict, 'test_file.xml')
+    writeConfigXml(config_dict, xml_file_name)
+
+    print 'Config file generated: %s' % xml_file_name
+    print 'To run on this xml file, type:'
+    print '    sframe_main %s' % xml_file_name
 
 # ------------------------------------------------------------------------------
 def getJobLabel(inputs):
