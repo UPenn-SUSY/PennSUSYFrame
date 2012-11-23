@@ -14,7 +14,7 @@ output_tree_name: output
 is_egamma_stream: True
 
 
-UserConfigFile: ${SFRAME_DIR}/../scripts/run_scripts/user_config.cut_flow.mc.yml
+UserConfigFile: ${SFRAME_DIR}/../run/sample_configs/user_config.cut_flow.mc.yml
 InputFiles:
   - SusyDiLeptonPreselCycle.MC.ver_1.presel.105200.ttbar_small.2012_11_23.root
 # - ~/work/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1193_s1469_s1470_r3542_r3549_p1181_tid00950213_00/NTUP_SUSY.00950213._000715.root.1
