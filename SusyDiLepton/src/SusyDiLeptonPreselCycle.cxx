@@ -500,5 +500,19 @@ void SusyDiLeptonPreselCycle::getObjects()
 // -----------------------------------------------------------------------------
 void SusyDiLeptonPreselCycle::fillOutput()
 {
-  // TODO fill output
+  m_event->ReadAllActive();
+  m_met->ReadAllActive();
+  m_trigger->ReadAllActive();
+  m_trigger_vec->ReadAllActive();
+  m_vertex_d3pdobject->ReadAllActive();
+  m_electron_d3pdobject->ReadAllActive();
+  m_jet_d3pdobject->ReadAllActive();
+  m_muon_d3pdobject->ReadAllActive();
+
+  if (!is_data()) {
+    m_mcevt_d3pdobject->ReadAllActive();
+    m_muon_truth_d3pdobject->ReadAllActive();
+    m_truth_d3pdobject->ReadAllActive();
+    m_met_truth_d3pdobject->ReadAllActive();
+  }
 }
