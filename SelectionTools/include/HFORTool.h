@@ -2,6 +2,7 @@
 #ifndef SelectionTools_HFORTool_h
 #define SelectionTools_HFORTool_h
 
+#include <iostream>
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
 
