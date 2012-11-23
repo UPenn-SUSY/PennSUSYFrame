@@ -73,6 +73,7 @@ void SusyDiLeptonPreselCycle::declareTools()
   DECLARE_TOOL(SelectionTools::EventCleaningTool , "Event_Cleaning" );
   DECLARE_TOOL(SelectionTools::ObjectCleaningTool, "Object_Cleaning");
   DECLARE_TOOL(SelectionTools::TriggerCutTool    , "Trigger_Cut"    );
+  DECLARE_TOOL(SelectionTools::HFORTool          , "HFOR"           );
 
   DECLARE_TOOL(SelectionTools::SignalRegionTool, "Signal_Regions");
 
@@ -386,6 +387,7 @@ void SusyDiLeptonPreselCycle::ExecuteEventImp( const SInputData&, Double_t )
                                                        , m_trigger
                                                        , m_trigger_vec
                                                        , m_muon_truth_d3pdobject
+						       , m_truth_d3pdobject
                                                        );
   if (!pass_critical_cuts) {
     throw SError( SError::SkipEvent );
@@ -406,6 +408,7 @@ void SusyDiLeptonPreselCycle::ExecuteEventImp( const SInputData&, Double_t )
   //                                                    , m_trigger
   //                                                    , m_trigger_vec
   //                                                    , m_muon_truth_d3pdobject
+  //                                                    , m_truth_d3pdobject
   //                                                    );
   // if (!pass_critical_cuts) {
   //   throw SError( SError::SkipEvent );

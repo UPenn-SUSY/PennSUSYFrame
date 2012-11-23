@@ -13,7 +13,10 @@ SusyDiLeptonCutFlowTool::SusyDiLeptonCutFlowTool( SCycleBase* parent
                                                 : ToolBase(parent, name)
                                                 , m_grl_tool(NULL)
                                                 , m_trigger_cut_tool(NULL)
-                                                , m_truth_match_tool(NULL)
+						, m_hfor_tool(NULL)            
+						, m_truth_match_tool(NULL)
+						
+ 
 {
   // // = declare user defined properties =
   DeclareProperty("super_verbose_info", c_super_verbose_info = false);
@@ -96,6 +99,13 @@ void SusyDiLeptonCutFlowTool::getTools()
           , "Truth_Match"
           );
   m_truth_match_tool = truth_match_tool;
+
+  GET_TOOL( hfor_tool
+	  , SelectionTools::HFORTool
+	  , "HFOR"
+	  );
+
+  m_hfor_tool = hfor_tool;
 }
 
 // // -----------------------------------------------------------------------------
@@ -146,7 +156,8 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
     VertexContainer&   vertices,
     const Trigger*           /*trigger*/,
     const TriggerVec*        /*trigger_vec*/,
-    D3PDReader::MuonTruthD3PDObject* /*muon_truth_d3pdobject*/)
+    D3PDReader::MuonTruthD3PDObject* /*muon_truth_d3pdobject*/,
+    D3PDReader::TruthD3PDObject*     mc)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check GRL
@@ -281,6 +292,7 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   // Check HFOR
   // TODO do proper HFOR cut
   bool pass_hfor = true;
+  if(!is_data()) pass_hfor =  m_hfor_tool->passHFOR(mc);
   event->getEventDesc()->setPassHFOR(pass_hfor);
   if (c_crit_hfor && pass_hfor == false) {
     if (c_super_verbose_info) {
@@ -353,7 +365,8 @@ bool SusyDiLeptonCutFlowTool::runAdvancedCutFlow( Event* event,
     VertexContainer&   /*vertices*/,
     const Trigger*     trigger,
     const TriggerVec*  trigger_vec,
-    D3PDReader::MuonTruthD3PDObject* muon_truth_d3pdobject)
+    D3PDReader::MuonTruthD3PDObject* muon_truth_d3pdobject,
+    D3PDReader::TruthD3PDObject* /*mc*/)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check mll of di-lepton pair
