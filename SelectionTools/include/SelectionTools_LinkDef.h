@@ -20,5 +20,5 @@
 #pragma link C++ class SelectionTools::ObjectCleaningTool+;
 #pragma link C++ class SelectionTools::TriggerCutTool+;
 #pragma link C++ class SelectionTools::SignalRegionTool+;
-
+#pragma link C++ class SelectionTools::HFORTool+;
 #endif // __CINT__
