@@ -6,22 +6,22 @@ do_metadata:        False
 input_file_hists:   ''
 
 CutFlow:
-    Crit_2_lep:            False
-    Crit_bad_jet_veto:     False
-    Crit_bad_mu_veto:      False
-    Crit_cosmic_mu_veto:   False
-    Crit_ge_2_lep:         False
     Crit_grl:              False
-    Crit_hfor:             False
     Crit_incomplete_event: False
-    Crit_lar_error:        False
-    Crit_mll:              False
-    Crit_phase_space:      False
-    Crit_primary_vertex:   False
-    Crit_prompt_leptons:   False
-    Crit_signal_lep:       False
     Crit_tile_error:       False
     Crit_tile_hot_spot:    False
+    Crit_lar_error:        False
+    Crit_bad_jet_veto:     False
+    Crit_primary_vertex:   False
+    Crit_bad_mu_veto:      False
+    Crit_cosmic_mu_veto:   False
+    Crit_hfor:             False
+    Crit_ge_2_lep:         False
+    Crit_2_lep:            False
+    Crit_mll:              False
+    Crit_signal_lep:       False
+    Crit_prompt_leptons:   False
+    Crit_phase_space:      False
     Crit_trigger:          False
     Crit_trigger_match:    False
 
@@ -111,6 +111,14 @@ Jet_Selection:
     baseline_max_eta: 4.9
     baseline_min_pt:  20000
     baseline_max_pt:  -1
+    light_min_eta:    -1
+    light_max_eta:    2.5
+    light_min_mv1:    -1
+    light_max_mv1:    0.122
+    light_min_pt:     25000
+    light_max_pt:     -1
+    light_min_jvf:    0.2
+    light_max_jvf:    -1
     b_min_eta:        -1
     b_max_eta:        2.5
     b_min_pt:         20000
@@ -121,14 +129,6 @@ Jet_Selection:
     forward_max_pt:   -1
     forward_min_eta:  2.5
     forward_max_eta:  4.9
-    light_min_eta:    -1
-    light_max_eta:    2.5
-    light_min_pt:     25000
-    light_max_pt:     -1
-    light_min_jvf:    0.2
-    light_max_jvf:    -1
-    light_min_mv1:    -1
-    light_max_mv1:    0.122
 
 Muon_Selection:
     bad_min_qoverp_ratio:         0.2

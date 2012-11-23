@@ -47,10 +47,21 @@ def processConfigFile(global_config_file_name):
 # ------------------------------------------------------------------------------
 def processConfigurables(config):
     # get job name and Cycle name
-    config['JobName'] = config['CycleName'] = 'SusyDiLeptonCutFlowCycle'
+    if config['CycleName'] == '':
+        sys.exit('Please provide a CycleName in the config file')
+    config['JobName'] = config['CycleName']
+
+    config['label'] = getLabel(config)
 
     # construct postfix using SampleName
-    config['PostFix'] = config['SampleName']
+    # config['PostFix'] = config['SampleName']
+    config['PostFix'] = config['label']
+
+    config['Version'] = 'ver_%s' % config['Version']
+
+    # construct xml file name
+    config['XmlFileName']    = getXmlFileName(config)
+    config['OutputFileName'] = getOutputFileName(config)
 
     # configure egamma energy rescale and jet calibration tools with is_af2
     if config['UserConfig']['EgammaEnergyRescale']['is_af2'] == 'CONFIG':
@@ -71,3 +82,35 @@ def processConfigurables(config):
     config['UserConfig']['print_event_info']   = config['PrintEventInfo']
     config['UserConfig']['input_tree_name'] = config['input_tree_name']
     config['UserConfig']['output_tree_name'] = config['output_tree_name']
+
+# ------------------------------------------------------------------------------
+def getLabel(config_dict):
+    label = ''
+
+    # add cycle name to file name
+    if config_dict['CycleName'] == 'SusyDiLeptonCutFlowCycle':
+        label += 'cut_flow.'
+    elif config_dict['CycleName'] == 'SusyDiLeptonPreselCycle':
+        label += 'presel.'
+
+    # add sample name to file name
+    label += '%s.' % config_dict['SampleName']
+
+    # add date to file name
+    date = str(time.strftime("%Y_%m_%d"))
+    label += '%s' % date
+
+    return label
+
+# ------------------------------------------------------------------------------
+def getXmlFileName(config_dict):
+    file_name = 'jo.'
+    file_name += config_dict['label']
+    file_name += '.%s' % config_dict['Version']
+    file_name += '.xml'
+    return file_name
+
+# ------------------------------------------------------------------------------
+def getOutputFileName(config_dict):
+    f_name = '%(CycleName)s.%(Type)s.%(Version)s.%(label)s.root' % config_dict
+    return f_name

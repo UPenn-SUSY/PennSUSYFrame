@@ -15,13 +15,17 @@ import parse_yaml_config as parse
 
 # ------------------------------------------------------------------------------
 def main():
-    xml_file_name = 'test_file.xml'
     config_dict = parse.parseInputs()
+    xml_file_name = config_dict['XmlFileName']
+    out_file_name = config_dict['OutputFileName']
     writeConfigXml(config_dict, xml_file_name)
 
     print 'Config file generated: %s' % xml_file_name
     print 'To run on this xml file, type:'
     print '    sframe_main %s' % xml_file_name
+
+    print 'The output root file will be:'
+    print '    %s' % out_file_name
 
 # ------------------------------------------------------------------------------
 def getJobLabel(inputs):
@@ -139,10 +143,10 @@ def writeConfigXml(config_dict, out_file):
 
     # finish InputData block
     f.write("""      <!-- Specify the input/output trees -->
-      <InputTree Name="susy" />
-      <OutputTree Name="output" />
+      <InputTree Name="%(input_tree_name)s" />
+      <OutputTree Name="%(output_tree_name)s" />
     </InputData>
-""")
+""" % config_dict)
     f.write('\n')
 
     # user configurables
