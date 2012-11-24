@@ -69,7 +69,7 @@ for hash in ${ds_list[@]} ; do
   echo prun \
     --bexec=grid_build.sh \
     --exec="grid_run_presel.sh \
-            --${DATA_MC} \
+            --type ${DATA_MC} \
             --${STREAM} \
             --${SIM_TYPE} \
             --data-set %IN \

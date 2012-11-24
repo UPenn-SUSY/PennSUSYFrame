@@ -31,7 +31,8 @@ while [ "$1" != "" ]; do
                  ;;
     # other optons are invalid
     * )          echo 'invalid option'
-                 exit 1
+                 # exit 1
+                 return
 	esac
 	shift
 done
