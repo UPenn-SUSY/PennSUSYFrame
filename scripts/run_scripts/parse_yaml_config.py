@@ -46,6 +46,10 @@ def processConfigFile(global_config_file_name):
 
 # ------------------------------------------------------------------------------
 def processConfigurables(config):
+    # check if grid variable is defined
+    if not 'grid' in config:
+        config['grid'] = False
+
     # get job name and Cycle name
     if config['CycleName'] == '':
         sys.exit('Please provide a CycleName in the config file')
@@ -93,12 +97,13 @@ def getLabel(config_dict):
     elif config_dict['CycleName'] == 'SusyDiLeptonPreselCycle':
         label += 'presel.'
 
-    # add sample name to file name
-    label += '%s.' % config_dict['SampleName']
+    if not config_dict['grid']:
+        # add sample name to file name
+        label += '%s.' % config_dict['SampleName']
 
-    # add date to file name
-    date = str(time.strftime("%Y_%m_%d"))
-    label += '%s' % date
+        # add date to file name
+        date = str(time.strftime("%Y_%m_%d"))
+        label += '%s' % date
 
     return label
 
