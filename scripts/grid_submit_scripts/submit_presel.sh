@@ -32,8 +32,6 @@ fi
 # ===================
 # = validate inputs =
 # ===================
-# echo ${AFS_USER_NAME}
-# echo ${USER_NAME}
 if [[ "${USER_NAME}" == '' ]]; then
   echo "User name must be supplied!"
   echo "Either define \$AFS_USER_NAME as an envinonment variable, or use the --user-name flag" 
@@ -43,6 +41,9 @@ if [[ "${OUT_DS_VERSION}" == '' ]]; then
   echo "Please supply a version for the output data set for book keeping purposes"
   return
 fi
+
+TAR_BALL_NAME=presel_tar.${OUT_DS_VERSION}.tar.gz
+echo "Using tar ball with the name: ${TAR_BALL_NAME}"
 
 for hash in ${ds_list[@]} ; do
   echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
@@ -66,7 +67,7 @@ for hash in ${ds_list[@]} ; do
   echo "out_file: " ${out_file}
   echo "outDS: " ${out_ds}
   
-  echo prun \
+  prun \
     --bexec=grid_build.sh \
     --exec="grid_run_presel.sh \
             --type ${DATA_MC} \
@@ -80,8 +81,8 @@ for hash in ${ds_list[@]} ; do
     --nGBPerJob=MAX \
     --athenaTag=17.3.1.2 \
     --extFile=${EXT_FILES} \
+    --inTarBall=${TAR_BALL_NAME} \
     --outputs=${out_file} \
-    --excludedSite=ANALY_FREIBURG,ANALY_AGLT2,ANALY_IN2P3-CC-T2,ANALY_MPPMU,ANALY_JINR,ANALY_RAL_XROOTD,ANALY_MANC,ANALY_INFN-FRASCATI,ANALY_INFN-ROMA1,ANALY_UAM,ANALY_RAL \
-    --destSE="UPENN_LOCALGROUPDISK"
+    --excludedSite=ANALY_FREIBURG,ANALY_AGLT2,ANALY_IN2P3-CC-T2,ANALY_MPPMU,ANALY_JINR,ANALY_RAL_XROOTD,ANALY_MANC,ANALY_INFN-FRASCATI,ANALY_INFN-ROMA1,ANALY_UAM,ANALY_RAL
     
 done
