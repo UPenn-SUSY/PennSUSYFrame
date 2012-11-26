@@ -59,7 +59,7 @@ for hash in ${ds_list[@]} ; do
   if [[ "${DATA_MC}" == 'data' ]]; then
     out_file="SusyDiLeptonPreselCycle.data.ver_1.presel..root"
   elif [[ "${DATA_MC}" == 'mc' ]]; then
-    out_file="SusyDiLeptonPreselCycle.MC.ver_1.presel..root"
+    out_file="SusyDiLeptonPreselCycle.mc.ver_1.presel..root"
   fi
   
   out_ds="user.${USER_NAME}.${OUT_DS_PREFIX}.${KEY}.presel.${OUT_DS_VERSION}/"

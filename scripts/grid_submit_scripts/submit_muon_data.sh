@@ -13,6 +13,7 @@ EXT_FILES=''
 # = define list of input files =
 # ==============================
 ds_list=( "periodA:group.phys-susy.data12_8TeV.periodA.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro13_v01_p1181/"
+          "periodB:group.phys-susy.data12_8TeV.periodB.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro13_v01_p1181/"
           "periodB1:group.phys-susy.data12_8TeV.periodB1.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro13_v01_p1181/"
           "periodB2:group.phys-susy.data12_8TeV.periodB2.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro13_v01_p1181/"
           "periodB3:group.phys-susy.data12_8TeV.periodB3.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro13_v01_p1181/"
