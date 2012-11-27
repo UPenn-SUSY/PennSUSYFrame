@@ -29,7 +29,7 @@ class NtupleLooper
     virtual void processEvent();
 
   // ---------------------------------------------------------------------------
-  private:
+  protected:
     TTree* fChain;   //!pointer to the analyzed TTree or TChain
     Int_t  fCurrent; //!current Tree number in a TChain
 

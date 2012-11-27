@@ -5,148 +5,32 @@
 #include <TStyle.h>
 #include <TCanvas.h>
 
-CutFlowDump::CutFlowDump(TTree *tree) : fChain(0)
+// -----------------------------------------------------------------------------
+CutFlowDump::CutFlowDump(TTree *tree) : NtupleLooper(tree)
 {
-// if parameter tree is not specified (or zero), connect the file
-// used to generate this class and read the Tree.
-   if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("SusyDiLeptonCutFlowCycle.MC.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.root");
-      if (!f || !f->IsOpen()) {
-         f = new TFile("SusyDiLeptonCutFlowCycle.MC.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.root");
-      }
-      f->GetObject("output",tree);
-
-   }
-   Init(tree);
-
-   initCutFlowHists();
+  initCutFlowHists();
 }
 
+// -----------------------------------------------------------------------------
 CutFlowDump::~CutFlowDump()
 {
-   if (!fChain) return;
-   delete fChain->GetCurrentFile();
+  // do nothing
 }
 
-Int_t CutFlowDump::GetEntry(Long64_t entry)
+// -----------------------------------------------------------------------------
+void CutFlowDump::processEvent()
 {
-// Read contents of entry.
-   if (!fChain) return 0;
-   return fChain->GetEntry(entry);
-}
-Long64_t CutFlowDump::LoadTree(Long64_t entry)
-{
-// Set the environment to read one entry
-   if (!fChain) return -5;
-   Long64_t centry = fChain->LoadTree(entry);
-   if (centry < 0) return centry;
-   if (fChain->GetTreeNumber() != fCurrent) {
-      fCurrent = fChain->GetTreeNumber();
-      Notify();
-   }
-   return centry;
-}
-
-void CutFlowDump::Init(TTree *tree)
-{
-   // The Init() function is called when the selector needs to initialize
-   // a new tree or chain. Typically here the branch addresses and branch
-   // pointers of the tree will be set.
-   // It is normally not necessary to make changes to the generated
-   // code, but the routine can be extended by the user if needed.
-   // Init() will be called many times when running on PROOF
-   // (once per file to be processed).
-
-   // Set branch addresses and branch pointers
-   if (!tree) return;
-   fChain = tree;
-   fCurrent = -1;
-   fChain->SetMakeClass(1);
-
-   fChain->SetBranchAddress("run_number"     , &m_run_number  , &b_run_number);
-   fChain->SetBranchAddress("event_number"   , &m_event_number, &b_event_number);
-   fChain->SetBranchAddress("event_desc"     , &m_event_desc  , &b_event_desc);
-   fChain->SetBranchAddress("sr_helper"      , &m_sr_helper   , &b_sr_helper);
-
-   fChain->SetBranchAddress( "mc_event_weight"
-                           , &m_mc_weight
-                           , &b_mc_weight
-                           );
-   fChain->SetBranchAddress( "pile_up_weight"
-                           , &m_pile_up_weight
-                           , &b_pile_up_weight
-                           );
-   fChain->SetBranchAddress( "lepton_weight"
-                           , &m_lepton_weight
-                           , &b_lepton_weight
-                           );
-   fChain->SetBranchAddress( "trigger_weight"
-                           , &m_trigger_weight
-                           , &b_trigger_weight
-                           );
-   fChain->SetBranchAddress( "b_tag_weight"
-                           , &m_b_tag_weight
-                           , &b_b_tag_weight
-                           );
-   fChain->SetBranchAddress( "cross_section_weight"
-                           , &m_cross_section_weight
-                           , &b_cross_section_weight
-                           );
-
-   Notify();
-}
-
-Bool_t CutFlowDump::Notify()
-{
-   // The Notify() function is called when a new file is opened. This
-   // can be either for a new TTree in a TChain or when when a new TTree
-   // is started when using PROOF. It is normally not necessary to make changes
-   // to the generated code, but the routine can be extended by the
-   // user if needed. The return value is currently not used.
-
-   return kTRUE;
-}
-
-void CutFlowDump::Show(Long64_t entry)
-{
-// Print contents of entry.
-// If entry is not specified, print current entry
-   if (!fChain) return;
-   fChain->Show(entry);
-}
-
-Int_t CutFlowDump::Cut(Long64_t entry)
-{
-// This function may be called from Loop.
-// returns  1 if entry is accepted.
-// returns -1 otherwise.
-   return 1;
-}
-void CutFlowDump::Loop()
-{
-   if (fChain == 0) return;
-
-   Long64_t nentries = fChain->GetEntriesFast();
-
-   Long64_t nbytes = 0, nb = 0;
-   for (Long64_t jentry=0; jentry<nentries;jentry++) {
-      Long64_t ientry = LoadTree(jentry);
-      if (ientry < 0) break;
-      nb = fChain->GetEntry(jentry);   nbytes += nb;
-      // if (Cut(ientry) < 0) continue;
-
-      for ( WEIGHTS weight_it = WEIGHT_NONE
-          ; weight_it != WEIGHT_N
-          ; weight_it = static_cast<WEIGHTS>(weight_it + 1)
-          ) {
-        for ( PHASE_SPACE phase_it = PHASE_NONE
-            ; phase_it != PHASE_N
-            ; phase_it = static_cast<PHASE_SPACE>(phase_it + 1)
-            ) {
-          checkEvent(phase_it, weight_it);
-        }
-      }
-   }
+  for ( WEIGHTS weight_it = WEIGHT_NONE
+      ; weight_it != WEIGHT_N
+      ; weight_it = static_cast<WEIGHTS>(weight_it + 1)
+      ) {
+    for ( PHASE_SPACE phase_it = PHASE_NONE
+        ; phase_it != PHASE_N
+        ; phase_it = static_cast<PHASE_SPACE>(phase_it + 1)
+        ) {
+      checkEvent(phase_it, weight_it);
+    }
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -160,24 +44,6 @@ void CutFlowDump::initCutFlowHists()
       ) {
     m_cutflow.at(weight_it).resize(PHASE_N);
     std::string name = "cutflow_" + getWeightName(weight_it) + "_";
-    // std::string name = "cutflow_";
-    // switch (weight_it) {
-    //   case WEIGHT_NONE    : name = name + "none_";
-    //                         break;
-    //   case WEIGHT_MC_EVENT: name = name + "mc_event_";
-    //                         break;
-    //   case WEIGHT_PILE_UP : name = name + "pile_up_";
-    //                         break;
-    //   case WEIGHT_LEPTON  : name = name + "lepton_";
-    //                         break;
-    //   case WEIGHT_B_TAG   : name = name + "b_tag_";
-    //                         break;
-    //   case WEIGHT_TRIGGER: name = name + "trigger_";
-    //                        break;
-    //   case WEIGHT_ALL    : name = name + "all_";
-    //                        break;
-    //   default            : continue;
-    // }
 
     for ( PHASE_SPACE phase_it = PHASE_NONE
         ; phase_it != PHASE_N
@@ -270,7 +136,6 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   SusyAnalysisTools::SRHelper         sr_helper = m_sr_helper;
   unsigned int bin_num = 0;
 
-  // TODO do configurable weights
   double weight = 1.;
 
   // All events
@@ -278,7 +143,7 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
 
   // apply mc event weight
   if (weight_type != WEIGHT_NONE)
-    weight *= m_mc_weight;
+    weight *= m_mc_event_weight;
   fillHist(phase, weight_type, bin_num++, weight);
 
   // apply pile up weight
@@ -321,7 +186,6 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   // cosmic muons
   if (evt_desc.getPassCosmicMuons() == false) return;
   fillHist(phase, weight_type, bin_num++, weight);
-  // if (phase == PHASE_EE) std::cout << "event: " << m_event_number << "\n";
 
   // HFOR
   if (evt_desc.getPassHFOR() == false) return;
