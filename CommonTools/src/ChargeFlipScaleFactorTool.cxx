@@ -6,17 +6,18 @@ CommonTools::ChargeFlipScaleFactorTool::ChargeFlipScaleFactorTool(
     SCycleBase* parent, const char* name) : ToolBase(parent, name)
 {
   DeclareProperty("do_charge_flip_sf", c_do_charge_flip_sf = true);
-  DeclareProperty("path_to_charge_flip_map", c_path_to_flip_map = "ChargeFlip/data/chargeFlip.root");
+  DeclareProperty("path_to_charge_flip_map", c_path_to_flip_map = 
+		  "ChargeFlip/data/chargeFlip.root");
 
   m_charge_flip =0;
-  m_reco_truth_match=0;
+  //m_reco_truth_match=0;
 }
 
 // ----------------------------------------------------------------------------
 CommonTools::ChargeFlipScaleFactorTool::~ChargeFlipScaleFactorTool()
 {
   if(m_charge_flip)  delete m_charge_flip;
-  if(m_reco_truth_match) delete m_reco_truth_match;
+  // if(m_reco_truth_match) delete m_reco_truth_match;
 }
 
 // ----------------------------------------------------------------------------
@@ -24,7 +25,7 @@ void CommonTools::ChargeFlipScaleFactorTool::clear()
 {
   m_is_cached = false;
   m_charge_flip_sf = -999;
-
+  
 }
 
 // ----------------------------------------------------------------------------
@@ -43,47 +44,55 @@ void CommonTools::ChargeFlipScaleFactorTool::BeginCycle()
   m_charge_flip->setUnits(chargeFlip::MeV);
 }
 
-// ----------------------------------------------------------------------------
-void CommonTools::ChargeFlipScaleFactorTool::PrepTruth(const D3PDReader::TruthD3PDObject& mc)
+SIGN_CHANNEL CommonTools::ChargeFlipScaleFactorTool::getTruthSign(
+    FLAVOR_CHANNEL flavor_channel,
+    const std::vector<Electron*>& el,
+    const std::vector<Muon*>& mu,
+    const D3PDReader::TruthD3PDObject* mc,
+    const D3PDReader::MuonTruthD3PDObject* mu_truth,
+    TruthMatchTool* truth_match_tool)
 {
-  if(!m_truth_prepped)
-  {
+  //if(!m_truth_prepped) PrepTruth(mc);
 
-    float dR = 0.1;
-    //  bool IsSherpa = false;
-    int verbose_level = 0;
+  m_logger << DEBUG
+           << "ChargeFlipScaleFactorTool::getTruthSign()"
+           << SLogger::endmsg;
 
-    std::vector<int> barcode = stripConst(*(mc.mc_barcode()));
-    std::vector<int>* barcode_pointer = &barcode;
-    std::vector<int> status = stripConst(*(mc.mc_status()));
-    std::vector<int>* status_pointer = &status;
-    std::vector<int> pdgId = stripConst(*(mc.mc_pdgId()));
-    std::vector<int>* pdgId_pointer = &pdgId;
-    std::vector<vector<int> > parents = stripConstVector(*(mc.mc_parents()));
-    std::vector<vector<int> > children = stripConstVector(*(mc.mc_children()));
 
-    std::vector<float> pt = stripConst(*(mc.mc_pt()));
-    std::vector<float>* pt_pointer = &pt;
-    std::vector<float> eta = stripConst(*(mc.mc_eta()));
-    std::vector<float>* eta_pointer = &eta;
-    std::vector<float> phi = stripConst(*(mc.mc_phi()));
-    std::vector<float>* phi_pointer = &phi;
-    std::vector<float> m = stripConst(*(mc.mc_m()));
-    std::vector<float>* m_pointer = &m;
+  SIGN_CHANNEL truth_sign_channel = SIGN_NONE;
 
-    std::vector<vector<int> >* parent_pointer = &parents;
-    std::vector<vector<int> >* children_pointer = &children;
+  m_truth_match_tool = truth_match_tool;
 
-    m_reco_truth_match = new RecoTruthMatch(
-        dR, mc.mc_channel_number(), mc.mc_n(),
-        barcode_pointer,status_pointer,pdgId_pointer,
-        parent_pointer, children_pointer,
-        pt_pointer, eta_pointer, phi_pointer,
-        m_pointer, verbose_level);
+  float charge_0 = 0;
+  float charge_1 = 0;
 
-    m_truth_prepped = true;
-  }
+  switch (flavor_channel) 
+    {
+    case FLAVOR_EE: 
+      charge_0 = getTruthElectronSign(el.at(0), mc);
+      charge_1 = getTruthElectronSign(el.at(1), mc);
+      break;
+    case FLAVOR_MM: 
+      charge_0 = getTruthMuonSign(mu.at(0), mu_truth);
+      charge_1 = getTruthMuonSign(mu.at(1), mu_truth);
+      break;
+    case FLAVOR_EM: 
+      charge_0 = getTruthElectronSign(el.at(0), mc);
+      charge_1 = getTruthMuonSign(mu.at(0), mu_truth);
+      break;
+    default:       
+      charge_0 = 0;
+      charge_1 = 0;
+    }
+  if (charge_0*charge_1 == 0)       truth_sign_channel = SIGN_NONE;
+  else if (charge_0*charge_1 == 1)  truth_sign_channel = SIGN_SS;
+  else if (charge_0*charge_1 == -1) truth_sign_channel = SIGN_OS;
+  else                              truth_sign_channel = SIGN_NONE;
+      
+  return truth_sign_channel;
+  
 }
+
 
 // ---------------------------------------------------------------------------
 double CommonTools::ChargeFlipScaleFactorTool::getSF(
@@ -91,7 +100,6 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
     const std::vector<Electron*>& el,
     const std::vector<Muon*>& mu,
     const Met* met,
-    const D3PDReader::TruthD3PDObject* mc,
     int syst)
 {
   if (!m_is_cached) {
@@ -130,7 +138,13 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
       int pdg_1=11;
       int pdg_2=13;
 
-      m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, met_vector_ptr,syst);
+      m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1
+					      , tlv_1_ptr
+					      , pdg_2
+					      , tlv_2_ptr
+					      , met_vector_ptr
+					      ,syst);
+      
       double overlap_corr =  m_charge_flip->overlapFrac().first;
       m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
     }
@@ -143,7 +157,8 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
 }
 
 // -----------------------------------------------------------------------------
-std::vector<vector<int> > CommonTools::ChargeFlipScaleFactorTool::stripConstVector(const std::vector<vector<int> >& old_vector)
+std::vector<vector<int> > CommonTools::ChargeFlipScaleFactorTool::stripConstVector(
+     const std::vector<vector<int> >& old_vector)
 {
   size_t length = old_vector.size();
   std::vector<vector<int> > new_vector;
@@ -160,4 +175,35 @@ std::vector<vector<int> > CommonTools::ChargeFlipScaleFactorTool::stripConstVect
   std::vector< vector<int> >* pointer = &new_vector;
 
   return new_vector;
+}
+// -----------------------------------------------------------------------------
+float CommonTools::ChargeFlipScaleFactorTool::getTruthMuonSign(
+     const Muon* mu,
+     const D3PDReader::MuonTruthD3PDObject* mu_truth
+     )
+{
+  int barcode = m_truth_match_tool->matchBarcode(
+       mu->truth_barcode(),mu_truth->barcode());
+  
+  if(barcode < 0) return 0;
+  
+  return  mu_truth->charge()->at(barcode);
+  
+      
+}
+// -----------------------------------------------------------------------------
+float CommonTools::ChargeFlipScaleFactorTool::getTruthElectronSign(
+     const Electron* el,
+     const D3PDReader::TruthD3PDObject* mc
+     )
+{
+
+  TLorentzVector tlv = el->getTlv();
+
+  int index =  m_truth_match_tool->getIndex(tlv);
+
+  if(index < 0) return 0;
+  
+  return mc->mc_charge()->at(index);
+      
 }

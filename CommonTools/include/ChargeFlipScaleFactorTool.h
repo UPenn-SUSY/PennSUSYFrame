@@ -12,7 +12,10 @@
 #include "ChargeFlip/chargeFlip.h"
 #include "LeptonTruthTools/RecoTruthMatch.h"
 #include "D3PDObjects/include/TruthD3PDObject.h"
+#include "D3PDObjects/include/MuonTruthD3PDObject.h"
 
+#include "CommonTools/include/TruthMatchTool.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
 namespace CommonTools
@@ -32,11 +35,17 @@ namespace CommonTools
 		 , const std::vector<Electron*>& el
 		 , const std::vector<Muon*>& mu
 		 , const Met* met
-		 , const D3PDReader::TruthD3PDObject* mc
 		 , int syst);
 
+    SIGN_CHANNEL getTruthSign( FLAVOR_CHANNEL flavor_channel
+			     , const std::vector<Electron*>& el
+			     , const std::vector<Muon*>& mu
+			     , const D3PDReader::TruthD3PDObject* mc
+			     , const D3PDReader::MuonTruthD3PDObject* mu_truth
+			     , TruthMatchTool* truth_match_tool );
+
     void BeginCycle();
-    void PrepTruth(const D3PDReader::TruthD3PDObject& mc);
+    // void PrepTruth(const D3PDReader::TruthD3PDObject* mc);
 
   // ---------------------------------------------------------------------------
   private:
@@ -49,8 +58,11 @@ namespace CommonTools
     bool m_is_cached;
     bool m_truth_prepped;
 
+    float getTruthMuonSign(const Muon*, const D3PDReader::MuonTruthD3PDObject*);
+    float getTruthElectronSign(const Electron*, const D3PDReader::TruthD3PDObject*);
 
-    RecoTruthMatch* m_reco_truth_match;
+    //RecoTruthMatch* m_reco_truth_match;
+    TruthMatchTool* m_truth_match_tool;
 
     chargeFlip* m_charge_flip;
 

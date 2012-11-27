@@ -134,3 +134,12 @@ int CommonTools::TruthMatchTool::matchBarcode(
   // -1 means no match
   return -1;
 }
+
+// -----------------------------------------------------------------------------
+int CommonTools::TruthMatchTool::getIndex(TLorentzVector tlv)
+{
+
+  return  m_truth_match->MatchedTruthLepton(tlv);
+
+  //return -1;
+}
