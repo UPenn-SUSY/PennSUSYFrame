@@ -70,10 +70,10 @@ bool Selection::EventSelection::passEvent(
     const SusyAnalysisTools::SRHelper& sr_helper) const
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  return (  event_desc.pass(   m_pass_event_word      )
-         && event_desc.reverse(m_reverse_event_word   )
-         && sr_helper.pass(    m_pass_sr_word   )
-         && sr_helper.reverse( m_reverse_sr_word)
+  return (  event_desc.pass(   m_pass_event_word   )
+         && event_desc.reverse(m_reverse_event_word)
+         && sr_helper.pass(    m_pass_sr_word      )
+         && sr_helper.reverse( m_reverse_sr_word   )
       );
 }
 
