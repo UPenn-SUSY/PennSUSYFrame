@@ -35,7 +35,9 @@ namespace Selection
     SusyAnalysisTools::SRHelper* getReverseSRWord();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    bool passEvent(/*Event&, MET&, std::vector<Jet>&*/) const;
+    bool passEvent( const SusyAnalysisTools::EventDescription&
+                  , const SusyAnalysisTools::SRHelper&
+                  ) const;
 
     // bool passMllCut(Event& ) const;
     // bool passMetCut(MET& ) const;

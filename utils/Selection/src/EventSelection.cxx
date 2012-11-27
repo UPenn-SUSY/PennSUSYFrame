@@ -65,22 +65,16 @@ SusyAnalysisTools::SRHelper*
 }
 
 // ----------------------------------------------------------------------------
-bool Selection::EventSelection::passEvent( // Event& /*event*/
-                                         // , MET& /*met*/
-                                         // , std::vector<Jet>& /*jets*/
-                                         ) const
+bool Selection::EventSelection::passEvent(
+    const SusyAnalysisTools::EventDescription& event_desc,
+    const SusyAnalysisTools::SRHelper& sr_helper) const
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  return true;
-  // return (  event.desc().pass(m_pass_cut_word)
-  //        && event.desc().reverse(m_reverse_cut_word)
-  //        && event.srHelper().pass(m_pass_sr_cut_word)
-  //        && event.srHelper().reverse(m_reverse_sr_cut_word)
-  //        // && passMllCut(event)
-  //        // && passMetCut(met)
-  //        // && passMt2Cut(event)
-  //        // && passJetPtCut(jets)
-  //        );
+  return (  event_desc.pass(   m_pass_event_word      )
+         && event_desc.reverse(m_reverse_event_word   )
+         && sr_helper.pass(    m_pass_sr_word   )
+         && sr_helper.reverse( m_reverse_sr_word)
+      );
 }
 
 // // -----------------------------------------------------------------------------
