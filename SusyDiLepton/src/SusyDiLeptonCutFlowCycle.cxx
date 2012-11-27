@@ -446,8 +446,15 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw SError( SError::SkipEvent );
   }
 
+  m_cut_flow->setChargeFlipVariables( m_event
+				      , m_electrons
+				      , m_muons
+				      , m_muon_truth_d3pdobject
+				      , m_truth_d3pdobject
+				      );
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   checkSignalRegions();
+
   fillEventVariables();
   fillOutput();
 
@@ -520,7 +527,6 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
 						 m_electrons.getElectrons(EL_GOOD),
 						 m_muons.getMuons(MU_GOOD),
 						 m_met,
-						 m_truth_d3pdobject,
 						 0));   
   }
 }
@@ -629,3 +635,4 @@ void SusyDiLeptonCutFlowCycle::fillOutput()
   m_vertex_output_tool->fillOutput(
       m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
 }
+

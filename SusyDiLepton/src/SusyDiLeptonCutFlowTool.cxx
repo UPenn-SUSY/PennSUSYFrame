@@ -106,6 +106,13 @@ void SusyDiLeptonCutFlowTool::getTools()
 	  );
 
   m_hfor_tool = hfor_tool;
+
+  GET_TOOL( charge_flip_tool
+	  , CommonTools::ChargeFlipScaleFactorTool
+          , "ChargeFlipSF"
+          );
+
+  m_charge_flip_sf_tool = charge_flip_tool;
 }
 
 // // -----------------------------------------------------------------------------
@@ -567,4 +574,32 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                 , electrons.getElectrons(EL_GOOD)
                 , muons.getMuons(MU_GOOD))
                 );
+}
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event
+			      , ElectronContainer& electrons
+			      , MuonContainer& muons
+			      , D3PDReader::MuonTruthD3PDObject* muon_truth
+			      , D3PDReader::TruthD3PDObject* truth)
+{
+
+  m_logger << DEBUG
+           << "SusyDiLeptonCutFlowTool::setChargeFlipVariables()"
+           << SLogger::endmsg;
+
+  bool is_truth_ss=false;
+  
+  SIGN_CHANNEL truth_sign_channel = m_charge_flip_sf_tool->getTruthSign(
+					   event->getFlavorChannel(),
+					   electrons.getElectrons(EL_GOOD),
+					   muons.getMuons(MU_GOOD),
+					   truth,
+					   muon_truth,
+					   m_truth_match_tool);
+
+  event->getEventDesc()->setTruthSignChannel(truth_sign_channel);
+   
+  bool cf_candidate = event->getEventDesc()->getSignChannel() == SIGN_OS && event->getEventDesc()->getTruthSignChannel() == SIGN_OS;
+
+  event->getEventDesc()->setCFCandidate(cf_candidate);
 }
