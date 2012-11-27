@@ -5,48 +5,54 @@
 #include <TStyle.h>
 #include <TCanvas.h>
 
+// -----------------------------------------------------------------------------
 NtupleLooper::NtupleLooper(TTree *tree) : fChain(0)
 {
-// if parameter tree is not specified (or zero), connect the file
-// used to generate this class and read the Tree.
-   if (tree == 0) {
-     std::cout << "input tree is fucked\n";
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("SusyDiLeptonCutFlowCycle.MC.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.root");
-      if (!f || !f->IsOpen()) {
-         f = new TFile("SusyDiLeptonCutFlowCycle.MC.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.root");
-      }
-      f->GetObject("output",tree);
+  // if parameter tree is not specified (or zero), connect the file
+  // used to generate this class and read the Tree.
+  if (tree == 0) {
+    std::cout << "input tree is fucked\n";
+    TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("SusyDiLeptonCutFlowCycle.MC.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.root");
+    if (!f || !f->IsOpen()) {
+      f = new TFile("SusyDiLeptonCutFlowCycle.MC.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.root");
+    }
+    f->GetObject("output",tree);
 
-   }
+  }
 
-   Init(tree);
+  Init(tree);
 }
 
+// -----------------------------------------------------------------------------
 NtupleLooper::~NtupleLooper()
 {
-   if (!fChain) return;
-   delete fChain->GetCurrentFile();
+  if (!fChain) return;
+  delete fChain->GetCurrentFile();
 }
 
+// -----------------------------------------------------------------------------
 Int_t NtupleLooper::GetEntry(Long64_t entry)
 {
-// Read contents of entry.
-   if (!fChain) return 0;
-   return fChain->GetEntry(entry);
-}
-Long64_t NtupleLooper::LoadTree(Long64_t entry)
-{
-// Set the environment to read one entry
-   if (!fChain) return -5;
-   Long64_t centry = fChain->LoadTree(entry);
-   if (centry < 0) return centry;
-   if (fChain->GetTreeNumber() != fCurrent) {
-      fCurrent = fChain->GetTreeNumber();
-      Notify();
-   }
-   return centry;
+  // Read contents of entry.
+  if (!fChain) return 0;
+  return fChain->GetEntry(entry);
 }
 
+// -----------------------------------------------------------------------------
+Long64_t NtupleLooper::LoadTree(Long64_t entry)
+{
+  // Set the environment to read one entry
+  if (!fChain) return -5;
+  Long64_t centry = fChain->LoadTree(entry);
+  if (centry < 0) return centry;
+  if (fChain->GetTreeNumber() != fCurrent) {
+    fCurrent = fChain->GetTreeNumber();
+    Notify();
+  }
+  return centry;
+}
+
+// -----------------------------------------------------------------------------
 void NtupleLooper::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
@@ -530,6 +536,7 @@ void NtupleLooper::Init(TTree *tree)
    Notify();
 }
 
+// -----------------------------------------------------------------------------
 Bool_t NtupleLooper::Notify()
 {
    // The Notify() function is called when a new file is opened. This
@@ -541,21 +548,22 @@ Bool_t NtupleLooper::Notify()
    return kTRUE;
 }
 
+// -----------------------------------------------------------------------------
 void NtupleLooper::Loop()
 {
-   if (fChain == 0) return;
+  if (fChain == 0) return;
 
-   Long64_t nentries = fChain->GetEntriesFast();
+  Long64_t nentries = fChain->GetEntriesFast();
 
-   Long64_t nbytes = 0, nb = 0;
-   for (Long64_t jentry=0; jentry<nentries;jentry++) {
-      Long64_t ientry = LoadTree(jentry);
-      if (ientry < 0) break;
-      nb = fChain->GetEntry(jentry);
-      nbytes += nb;
+  Long64_t nbytes = 0, nb = 0;
+  for (Long64_t jentry=0; jentry<nentries;jentry++) {
+    Long64_t ientry = LoadTree(jentry);
+    if (ientry < 0) break;
+    nb = fChain->GetEntry(jentry);
+    nbytes += nb;
 
-      processEvent();
-   }
+    processEvent();
+  }
 }
 
 // -----------------------------------------------------------------------------

@@ -28,7 +28,8 @@ enum WEIGHTS { WEIGHT_NONE = 0
 std::string getWeightName(WEIGHTS);
 
 // =============================================================================
-class CutFlowDump : public NtupleLooper {
+class CutFlowDump : public NtupleLooper
+{
   // ---------------------------------------------------------------------------
   public :
     CutFlowDump(TTree *tree=0);
@@ -50,7 +51,7 @@ class CutFlowDump : public NtupleLooper {
     void printToScreen(WEIGHTS);
     void printToFile(std::string out_file_name);
 
-    // ---------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   protected:
     std::vector<std::vector<TH1D*> > m_cutflow;
 };

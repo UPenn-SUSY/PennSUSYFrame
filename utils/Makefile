@@ -2,7 +2,7 @@
 # = top level Makefile =
 # ======================
 # DIRS = CutFlowDump SusyAnalysisTools
-DIRS = CutFlowDump
+DIRS = NtupleLooper Selection CutFlowDump
 
 all::
 	@ for dir in $(DIRS); \
