@@ -24,6 +24,7 @@
 #include "CommonTools/include/MT2Tool.h"
 #include "CommonTools/include/TopTagTool.h"
 #include "CommonTools/include/TruthMatchTool.h"
+#include "CommonTools/include/ChargeFlipScaleFactorTool.h"
 // 
 #include "D3PDObjects/include/MuonTruthD3PDObject.h"
 #include "D3PDObjects/include/TruthD3PDObject.h"
@@ -84,6 +85,13 @@ public:
                                 , Met*
                                 );
 
+  void setChargeFlipVariables(Event*
+			      , ElectronContainer&
+			      , MuonContainer&
+			      , D3PDReader::MuonTruthD3PDObject*
+			      , D3PDReader::TruthD3PDObject*
+			      );
+
 // -----------------------------------------------------------------------------
 private:
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -118,7 +126,7 @@ private:
   SelectionTools::HFORTool*          m_hfor_tool;
 
   CommonTools::TruthMatchTool* m_truth_match_tool;
-
+  CommonTools::ChargeFlipScaleFactorTool* m_charge_flip_sf_tool;
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void getTools();
 
