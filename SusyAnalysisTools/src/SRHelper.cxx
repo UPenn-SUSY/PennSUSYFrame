@@ -232,7 +232,7 @@ bool SusyAnalysisTools::SRHelper::getPassSR4bMt2()
 }
 
 // -----------------------------------------------------------------------------
-bool pass(const SRHelper& test) const
+bool SusyAnalysisTools::SRHelper::pass(const SRHelper& test) const
 {
   ull_t this_word = toInt();
   ull_t test_word = test.toInt();
@@ -241,7 +241,7 @@ bool pass(const SRHelper& test) const
 }
 
 // -----------------------------------------------------------------------------
-bool reverse(const SRHelper&) const
+bool SusyAnalysisTools::SRHelper::reverse(const SRHelper& test) const
 {
   ull_t this_word = toInt();
   ull_t test_word = test.toInt();

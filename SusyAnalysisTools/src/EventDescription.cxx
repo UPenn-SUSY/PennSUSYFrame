@@ -618,7 +618,7 @@ bool SusyAnalysisTools::EventDescription::pass(
     return false;
 
   // if test has a sign channel set, ensure the sign channels match
-  SIGN_CHANNEL test_sign test.getSignChannel();
+  SIGN_CHANNEL test_sign = test.getSignChannel();
   if (test_sign != SIGN_NONE && test_sign != m_sign_channel)
     return false;
 
@@ -646,7 +646,7 @@ bool SusyAnalysisTools::EventDescription::reverse(
     return false;
 
   // if test has a sign channel set, ensure the sign channels do not match
-  SIGN_CHANNEL test_sign test.getSignChannel();
+  SIGN_CHANNEL test_sign = test.getSignChannel();
   if (test_sign != SIGN_NONE && test_sign == m_sign_channel)
     return false;
 
