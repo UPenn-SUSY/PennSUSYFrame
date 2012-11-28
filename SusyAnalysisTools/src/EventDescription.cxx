@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 SusyAnalysisTools::EventDescription::EventDescription()
 {
-  // do nothing
+  set(0);
 }
 
 // -----------------------------------------------------------------------------
@@ -110,6 +110,11 @@ void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
   m_pass_sr3  = getComponent(rhs, ADD_SR_3 , SIZE_BOOL);
   m_pass_sr4a = getComponent(rhs, ADD_SR_4a, SIZE_BOOL);
   m_pass_sr4b = getComponent(rhs, ADD_SR_4b, SIZE_BOOL);
+
+  m_pass_cr1 = getComponent(rhs, ADD_CR_1, SIZE_BOOL);
+  m_pass_cr2 = getComponent(rhs, ADD_CR_2, SIZE_BOOL);
+  m_pass_cr3 = getComponent(rhs, ADD_CR_3, SIZE_BOOL);
+  m_pass_cr4 = getComponent(rhs, ADD_CR_4, SIZE_BOOL);
 
   m_flavor_channel =
     static_cast<FLAVOR_CHANNEL>( getComponent( rhs
@@ -617,6 +622,10 @@ bool SusyAnalysisTools::EventDescription::pass(
   if (test_flavor != FLAVOR_NONE && test_flavor != m_flavor_channel)
     return false;
 
+  // // if test has a flavor channel set, ensure the flavors match
+  // if (test_phase != PHASE_NONE && test_phase != m_phase_space)
+  //   return false;
+
   // if test has a sign channel set, ensure the sign channels match
   SIGN_CHANNEL test_sign = test.getSignChannel();
   if (test_sign != SIGN_NONE && test_sign != m_sign_channel)
@@ -629,6 +638,7 @@ bool SusyAnalysisTools::EventDescription::pass(
   // channels to NONE
   SusyAnalysisTools::EventDescription temp = test;
   temp.setFlavorChannel(FLAVOR_NONE);
+  temp.setPhaseSpace(PHASE_NONE);
   temp.setSignChannel(SIGN_NONE);
   ull_t test_word = temp.toInt();
 
@@ -645,6 +655,11 @@ bool SusyAnalysisTools::EventDescription::reverse(
   if (test_flavor != FLAVOR_NONE && test_flavor == m_flavor_channel)
     return false;
 
+  // // if test has a flavor channel set, ensure the flavors match
+  // PHASE_SPACE test_phase = test.getPhaseSpace();
+  // if (test_phase != PHASE_NONE && test_phase == m_phase_space)
+  //   return false;
+
   // if test has a sign channel set, ensure the sign channels do not match
   SIGN_CHANNEL test_sign = test.getSignChannel();
   if (test_sign != SIGN_NONE && test_sign == m_sign_channel)
@@ -657,6 +672,7 @@ bool SusyAnalysisTools::EventDescription::reverse(
   // channels to NONE
   SusyAnalysisTools::EventDescription temp = test;
   temp.setFlavorChannel(FLAVOR_NONE);
+  temp.setPhaseSpace(PHASE_NONE);
   temp.setSignChannel(SIGN_NONE);
   ull_t test_word = temp.toInt();
 

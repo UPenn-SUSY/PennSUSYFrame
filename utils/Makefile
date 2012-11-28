@@ -1,8 +1,7 @@
 # ======================
 # = top level Makefile =
 # ======================
-# DIRS = CutFlowDump SusyAnalysisTools
-DIRS = NtupleLooper Selection CutFlowDump
+DIRS = NtupleLooper Selection HistMaker CutFlowDump
 
 all::
 	@ for dir in $(DIRS); \

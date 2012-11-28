@@ -12,7 +12,7 @@
 namespace Selection
 {
   // ============================================================================
-  class EventSelection : public SusyAnalysisTools::EventDescription
+  class EventSelection
   {
   // ----------------------------------------------------------------------------
   public:

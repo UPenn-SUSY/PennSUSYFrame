@@ -74,7 +74,7 @@ bool Selection::EventSelection::passEvent(
          && event_desc.reverse(m_reverse_event_word)
          && sr_helper.pass(    m_pass_sr_word      )
          && sr_helper.reverse( m_reverse_sr_word   )
-      );
+         );
 }
 
 // // -----------------------------------------------------------------------------
