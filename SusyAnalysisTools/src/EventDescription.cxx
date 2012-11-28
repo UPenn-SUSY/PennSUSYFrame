@@ -609,6 +609,62 @@ bool SusyAnalysisTools::EventDescription::getPassCR4() const
 }
 
 // -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::pass(
+    const EventDescription& test) const
+{
+  // if test has a flavor channel set, ensure the flavors match
+  FLAVOR_CHANNEL test_flavor = test.getFlavorChannel();
+  if (test_flavor != FLAVOR_NONE && test_flavor != m_flavor_channel)
+    return false;
+
+  // if test has a sign channel set, ensure the sign channels match
+  SIGN_CHANNEL test_sign test.getSignChannel();
+  if (test_sign != SIGN_NONE && test_sign != m_sign_channel)
+    return false;
+
+  // get the integer equivalent of this word
+  ull_t this_word = toInt();
+
+  // get the integer equivalent of the test word, setting the flavor and sign
+  // channels to NONE
+  SusyAnalysisTools::EventDescription temp = test;
+  temp.setFlavorChannel(FLAVOR_NONE);
+  temp.setSignChannel(SIGN_NONE);
+  ull_t test_word = temp.toInt();
+
+  // check the remaining bits match
+  return ((this_word & test_word) == test_word);
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::reverse(
+    const EventDescription& test) const
+{
+  // if test has a flavor channel set, ensure the flavors do not match
+  FLAVOR_CHANNEL test_flavor = test.getFlavorChannel();
+  if (test_flavor != FLAVOR_NONE && test_flavor == m_flavor_channel)
+    return false;
+
+  // if test has a sign channel set, ensure the sign channels do not match
+  SIGN_CHANNEL test_sign test.getSignChannel();
+  if (test_sign != SIGN_NONE && test_sign == m_sign_channel)
+    return false;
+
+  // get the integer equivalent of this word
+  ull_t this_word = toInt();
+
+  // get the integer equivalent of the test word, setting the flavor and sign
+  // channels to NONE
+  SusyAnalysisTools::EventDescription temp = test;
+  temp.setFlavorChannel(FLAVOR_NONE);
+  temp.setSignChannel(SIGN_NONE);
+  ull_t test_word = temp.toInt();
+
+  // check the remaining bits are reversed
+  return ((~this_word & test_word) == test_word);
+}
+
+// -----------------------------------------------------------------------------
 unsigned int SusyAnalysisTools::EventDescription::getComponent(
     const ull_t& rhs, unsigned int address, unsigned int size)
 {

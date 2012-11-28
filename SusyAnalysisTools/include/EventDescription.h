@@ -103,6 +103,9 @@ namespace SusyAnalysisTools
       bool getPassCR3() const;
       bool getPassCR4() const;
 
+      bool pass(   const EventDescription& test) const;
+      bool reverse(const EventDescription& test) const;
+
     // ------------------------------------------------------------------------
     private:
       static const unsigned int SIZE_BOOL    = 1;

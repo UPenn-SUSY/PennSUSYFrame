@@ -50,6 +50,9 @@ namespace SusyAnalysisTools
       bool getPassSR4aMt2();
       bool getPassSR4bMt2();
 
+      bool pass(   const SRHelper&) const;
+      bool reverse(const SRHelper&) const;
+
     // ------------------------------------------------------------------------
     private:
       static const unsigned int SIZE_BOOL = 1;

@@ -232,6 +232,24 @@ bool SusyAnalysisTools::SRHelper::getPassSR4bMt2()
 }
 
 // -----------------------------------------------------------------------------
+bool pass(const SRHelper& test) const
+{
+  ull_t this_word = toInt();
+  ull_t test_word = test.toInt();
+
+  return ((this_word & test_word) == test_word);
+}
+
+// -----------------------------------------------------------------------------
+bool reverse(const SRHelper&) const
+{
+  ull_t this_word = toInt();
+  ull_t test_word = test.toInt();
+
+  return ((~this_word & test_word) == test_word);
+}
+
+// -----------------------------------------------------------------------------
 unsigned int SusyAnalysisTools::SRHelper::getComponent(
     const ull_t& rhs, unsigned int address, unsigned int size)
 {
