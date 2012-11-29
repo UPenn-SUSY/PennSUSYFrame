@@ -14,5 +14,6 @@
 // #pragma link C++ class MySuperClass+;
 // #pragma link C++ class RunSusyCutFlow+;
 
+#pragma link C++ class+protected HistMaker+;
 
 #endif // __CINT__

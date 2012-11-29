@@ -13,7 +13,11 @@
 //
 // #pragma link C++ class MySuperClass+;
 
-#pragma link C++ class Selection::EventSelection+;
+#pragma link off all globals;
+#pragma link off all classes;
+#pragma link off all functions;
+
+#pragma link C++ class+protected Selection::EventSelection+;
 // #pragma link C++ class Selection::MuonSelection+;
 // #pragma link C++ class Selection::ElectronSelection+;
 

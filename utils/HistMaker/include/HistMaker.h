@@ -2,10 +2,12 @@
 #define HistMaker_h
 
 #include <iostream>
+#include <sstream>
 #include <map>
 #include <vector>
 
 #include <TROOT.h>
+#include <TCut.h>
 #include <TChain.h>
 #include <TFile.h>
 #include <TH1D.h>
@@ -30,6 +32,7 @@ class HistMaker : public NtupleLooper
     void addHist(/*something reasonable*/);
     void init();
 
+    virtual void Loop();
     virtual void processEvent();
 
     void writeToFile();
@@ -45,6 +48,8 @@ class HistMaker : public NtupleLooper
     std::map<std::string, TH1D*> m_hist_mll;
     std::map<std::string, TH1D*> m_hist_el_pt;
     std::map<std::string, TH1D*> m_hist_mu_pt;
+
+    unsigned int m_entry_num;
 };
 
 #endif

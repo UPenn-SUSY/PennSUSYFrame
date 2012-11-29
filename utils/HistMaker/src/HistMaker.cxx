@@ -6,6 +6,7 @@ HistMaker::HistMaker( TTree *tree
                     )
                     : NtupleLooper(tree)
                     , m_out_file(NULL)
+                    , m_entry_num(0)
 {
   m_out_file = new TFile(out_file_name.c_str(), "create");
 }
@@ -51,6 +52,16 @@ void HistMaker::init()
 }
 
 // -----------------------------------------------------------------------------
+void HistMaker::Loop()
+{
+  std::vector<std::string>::iterator key_it = m_keys.begin();
+  std::vector<std::string>::iterator key_term = m_keys.end();
+  for (; key_it != key_term; ++key_it) {
+    fillHists(*key_it);
+  }
+}
+
+// -----------------------------------------------------------------------------
 void HistMaker::processEvent()
 {
   std::vector<std::string>::iterator key_it = m_keys.begin();
@@ -82,11 +93,35 @@ void HistMaker::writeToFile()
 // -----------------------------------------------------------------------------
 void HistMaker::fillHists(std::string key)
 {
-  m_hist_mll[key]->Fill(m_mll/1000.);
+  // get the selection cuts for this event
+  ull_t pass_event = m_selection[key].getPassEventWord()->toInt();
+  ull_t pass_sr    = m_selection[key].getPassSRWord()->toInt();
 
-  if (m_el_pt->size() > 0)
-    m_hist_el_pt[key]->Fill(m_el_pt->at(0)/1000.);
+  std::stringstream ss_pass_event;
+  ss_pass_event << "((event_desc & " << pass_event 
+                << ") == " << pass_event << ") ";
+  TCut cut_pass_event = ss_pass_event.str().c_str();
 
-  if (m_mu_pt->size() > 0)
-    m_hist_mu_pt[key]->Fill(m_mu_pt->at(0)/1000.);
+  std::stringstream ss_pass_sr;
+  ss_pass_sr << "((sr_helper & " << pass_sr 
+             << ") == " << pass_sr << ") ";
+  TCut cut_pass_sr = ss_pass_sr.str().c_str();
+
+  TCut full_selection = cut_pass_event && cut_pass_sr;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::map<std::string, std::string> vars_to_plot;
+  vars_to_plot["mll"] = "mll/1000.";
+  vars_to_plot["el_pt"] = "el_pt[0]/1000.";
+  vars_to_plot["mu_pt"] = "mu_pt[0]/1000.";
+
+  std::map<std::string, std::string>::iterator var_it = vars_to_plot.begin();
+  std::map<std::string, std::string>::iterator var_term = vars_to_plot.end();
+  for (; var_it != var_term; ++var_it) {
+    std::string var_exp = ( var_it->second + " >> "
+                          + var_it->first + "__" + key
+                          );
+    std::cout << "var_exp: " << var_exp << "\n";
+    fChain->Draw(var_exp.c_str(), full_selection, "goff");
+  }
 }

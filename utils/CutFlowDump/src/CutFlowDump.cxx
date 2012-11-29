@@ -156,7 +156,7 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   fillHist(phase, weight_type, bin_num++, weight);
 
   // incomplete event
-  if (evt_desc.getPassIncompleteEVent() == false) return;
+  if (evt_desc.getPassIncompleteEvent() == false) return;
   fillHist(phase, weight_type, bin_num++, weight);
 
   // lar error
