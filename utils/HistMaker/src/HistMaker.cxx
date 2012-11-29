@@ -25,9 +25,9 @@ void HistMaker::addCut(std::string key, Selection::EventSelection selecton)
 }
 
 // -----------------------------------------------------------------------------
-void HistMaker::addHist()
+void HistMaker::addHist(const HistInfo& hist_info)
 {
-  // TODO add histogram factories
+  m_hist_info.push_back(hist_info);
 }
 
 // -----------------------------------------------------------------------------
@@ -36,6 +36,13 @@ void HistMaker::init()
   std::vector<std::string>::iterator key_it = m_keys.begin();
   std::vector<std::string>::iterator key_term = m_keys.end();
   for (; key_it != key_term; ++key_it) {
+    // std::vector<HistInfo>::iterator hist_it = m_hist_info.begin();
+    // std::vector<HistInfo>::iterator hist_term = m_hist_info.end();
+    // for (; hist_it != hist_term; ++hist_it) {
+    //   TH1D* tmp_hist = (*hist_it)->genHist(*key_it);
+    //   m_hist[*key_it].push_back(tmp_hist);
+    // }
+
     m_hist_mll[*key_it] = new TH1D( ("mll__" + *key_it).c_str()
                                   , "m_ll; m_ll [GeV] ; Entries"
                                   , 50, 0, 500
@@ -87,6 +94,13 @@ void HistMaker::writeToFile()
     m_hist_mll[*key_it]->Write();
     m_hist_el_pt[*key_it]->Write();
     m_hist_mu_pt[*key_it]->Write();
+
+
+    std::vector<TH1D*>::iterator hist_it = m_hist[*key_it].begin();
+    std::vector<TH1D*>::iterator hist_term = m_hist[*key_it].end();
+    for (; hist_it != hist_term; ++hist_it) {
+      (*hist_it)->Write();
+    }
   }
 }
 
@@ -124,4 +138,23 @@ void HistMaker::fillHists(std::string key)
     std::cout << "var_exp: " << var_exp << "\n";
     fChain->Draw(var_exp.c_str(), full_selection, "goff");
   }
+
+
+
+  std::cout << "=================================\n";
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::vector<HistInfo>::iterator hist_it = m_hist_info.begin();
+  std::vector<HistInfo>::iterator hist_term = m_hist_info.end();
+  for (; hist_it != hist_term; ++hist_it) {
+    TH1D * tmp_hist = hist_it->genHist(key);
+
+    std::string var_exp = ( hist_it->getVarExp() + " >> "
+                          + hist_it->getName() + "__" + key
+                          );
+    std::cout << "var_exp: " << var_exp << "\n";
+    fChain->Draw(var_exp.c_str(), full_selection, "goff");
+
+    m_hist[key].push_back(tmp_hist);
+  }
+  std::cout << "---------------------------------\n";
 }

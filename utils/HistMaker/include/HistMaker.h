@@ -12,6 +12,8 @@
 #include <TFile.h>
 #include <TH1D.h>
 
+#include "HistInfo.h"
+
 #include "NtupleLooper/include/NtupleLooper.h"
 
 #include "Selection/include/EventSelection.h"
@@ -29,7 +31,7 @@ class HistMaker : public NtupleLooper
     virtual ~HistMaker();
 
     void addCut(std::string key, Selection::EventSelection selecton);
-    void addHist(/*something reasonable*/);
+    void addHist(const HistInfo&);
     void init();
 
     virtual void Loop();
@@ -44,7 +46,10 @@ class HistMaker : public NtupleLooper
     std::vector<std::string> m_keys;
     std::map<std::string, Selection::EventSelection> m_selection;
 
+    std::vector<HistInfo> m_hist_info;
+
     TFile* m_out_file;
+    std::map<std::string, std::vector<TH1D*> > m_hist;
     std::map<std::string, TH1D*> m_hist_mll;
     std::map<std::string, TH1D*> m_hist_el_pt;
     std::map<std::string, TH1D*> m_hist_mu_pt;

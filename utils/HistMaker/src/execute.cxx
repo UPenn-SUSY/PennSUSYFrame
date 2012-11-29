@@ -82,6 +82,49 @@ int main(int argc, char** argv)
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   hm.init();
 
+    // HistInfo( std::string var_exp
+    //         , unsigned int x_num_bins
+    //         , float x_min
+    //         , float x_max
+    //         , std::string name = "hist_name"
+    //         , std::string title = "hist_title"
+    //         , std::string x_axis = "x_axis"
+    //         , std::string y_axis = "y_axis"
+    //         );
+
+  HistInfo h_mll( "mll/1000."
+                , 50
+                , 0.
+                , 500.
+                , "mll_bitches"
+                , "m_ll"
+                , "m_ll [GeV]"
+                , "Entries/10 GeV"
+                );
+  hm.addHist(h_mll);
+
+  HistInfo h_e_pt_lead( "el_pt[0]/1000."
+                      , 50
+                      , 0.
+                      , 500.
+                      , "el_pt_lead_bitches"
+                      , "p_{T}^{lead, e}"
+                      , "p_{T}^{lead, e} [GeV]"
+                      , "Entries/10 GeV"
+                      );
+  hm.addHist(h_e_pt_lead);
+
+  HistInfo h_m_pt_lead( "mu_pt[0]/1000."
+                      , 50
+                      , 0.
+                      , 500.
+                      , "mu_pt_lead_bitches"
+                      , "p_{T}^{lead, #mu}"
+                      , "p_{T}^{lead, #mu} [GeV]"
+                      , "Entries/10 GeV"
+                      );
+  hm.addHist(h_m_pt_lead);
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   hm.Loop();
   hm.writeToFile();
