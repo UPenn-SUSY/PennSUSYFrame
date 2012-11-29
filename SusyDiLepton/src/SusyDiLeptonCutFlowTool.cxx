@@ -13,12 +13,10 @@ SusyDiLeptonCutFlowTool::SusyDiLeptonCutFlowTool( SCycleBase* parent
                                                 : ToolBase(parent, name)
                                                 , m_grl_tool(NULL)
                                                 , m_trigger_cut_tool(NULL)
-						, m_hfor_tool(NULL)            
-						, m_truth_match_tool(NULL)
-						
- 
+                                                , m_hfor_tool(NULL)
+                                                , m_truth_match_tool(NULL)
 {
-  // // = declare user defined properties =
+  // = declare user defined properties =
   DeclareProperty("super_verbose_info", c_super_verbose_info = false);
 
   DeclareProperty("Crit_grl"              , c_crit_grl              = false);
@@ -52,7 +50,7 @@ SusyDiLeptonCutFlowTool::~SusyDiLeptonCutFlowTool()
 // {
 //   // do nothing
 // }
-// 
+//
 // // -----------------------------------------------------------------------------
 // void SusyDiLeptonCutFlowTool::EndCycleImp() throw( SError )
 // {
@@ -124,14 +122,14 @@ void SusyDiLeptonCutFlowTool::getTools()
 //            << SLogger::endmsg;
 //   // do nothing
 // }
-// 
+//
 // // -----------------------------------------------------------------------------
 // void SusyDiLeptonCutFlowTool::BeginMasterInputDataImp( const SInputData& )
 //     throw( SError )
 // {
 //   // do nothing
 // }
-// 
+//
 // // -----------------------------------------------------------------------------
 // void SusyDiLeptonCutFlowTool::EndMasterInputDataImp( const SInputData& /*id*/ )
 //     throw( SError )
@@ -139,10 +137,10 @@ void SusyDiLeptonCutFlowTool::getTools()
 //   m_logger << DEBUG
 //            << "EndMasterInputDataImp()"
 //            << SLogger::endmsg;
-// 
+//
 //   // do nothing
 // }
-// 
+//
 // // -----------------------------------------------------------------------------
 // void SusyDiLeptonCutFlowTool::BeginInputFileImp( const SInputData& )
 //     throw( SError )
@@ -150,7 +148,7 @@ void SusyDiLeptonCutFlowTool::getTools()
 //   m_logger << DEBUG
 //            << "SusyDiLeptonCutFlowTool::BeginInputFile()"
 //            << SLogger::endmsg;
-// 
+//
 //   // do nothing
 // }
 
@@ -588,7 +586,7 @@ void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event
            << SLogger::endmsg;
 
   bool is_truth_ss=false;
-  
+
   SIGN_CHANNEL truth_sign_channel = m_charge_flip_sf_tool->getTruthSign(
 					   event->getFlavorChannel(),
 					   electrons.getElectrons(EL_GOOD),
@@ -598,7 +596,7 @@ void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event
 					   m_truth_match_tool);
 
   event->getEventDesc()->setTruthSignChannel(truth_sign_channel);
-   
+
   bool cf_candidate = event->getEventDesc()->getSignChannel() == SIGN_OS && event->getEventDesc()->getTruthSignChannel() == SIGN_OS;
 
   event->getEventDesc()->setCFCandidate(cf_candidate);

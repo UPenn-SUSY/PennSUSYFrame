@@ -26,6 +26,7 @@ namespace SusyAnalysisTools
       EventDescription& operator=(const EventDescription&);
       EventDescription& operator=(const ull_t&);
 
+      void setIsData(bool);
       void setPassGrl(bool);
       void setPassIncompleteEvent(bool);
       void setPassLarError(bool);
@@ -66,8 +67,9 @@ namespace SusyAnalysisTools
       void setCR3(bool);
       void setCR4(bool);
 
+      bool getIsData() const;
       bool getPassGrl() const;
-      bool getPassIncompleteEVent() const;
+      bool getPassIncompleteEvent() const;
       bool getPassLarError() const;
       bool getPassTileError() const;
       bool getPassTileHotSpot() const;
@@ -108,35 +110,36 @@ namespace SusyAnalysisTools
       bool pass(   const EventDescription& test) const;
       bool reverse(const EventDescription& test) const;
 
-    // ------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     private:
       static const unsigned int SIZE_BOOL    = 1;
       static const unsigned int SIZE_FLAVOR  = 3;
       static const unsigned int SIZE_PHASE   = 4;
       static const unsigned int SIZE_SIGN    = 2;
 
-      static const unsigned int ADD_GRL                = 0;
-      static const unsigned int ADD_INCOMPLETE_EVENT   = 1;
-      static const unsigned int ADD_LAR_ERROR          = 2;
-      static const unsigned int ADD_TILE_ERROR         = 3;
-      static const unsigned int ADD_TILE_HOT_SPOT      = 4;
-      static const unsigned int ADD_BAD_JETS           = 5;
-      static const unsigned int ADD_PRIMARY_VERTEX     = 6;
-      static const unsigned int ADD_BAD_MUONS          = 7;
-      static const unsigned int ADD_COSMIC_MUONS       = 8;
-      static const unsigned int ADD_HFOR               = 9;
-      static const unsigned int ADD_GE_2_GOOD_LEPTON   = 10;
-      static const unsigned int ADD_2_GOOD_LEPTON      = 11;
-      static const unsigned int ADD_2_SIGNAL_LEPTON    = 12;
-      static const unsigned int ADD_MLL                = 13;
-      static const unsigned int ADD_FLAVOR_CHANNEL     = 14;
-      static const unsigned int ADD_PHASE_SPACE        = 17;
-      static const unsigned int ADD_TRIGGER_EE         = 21;
-      static const unsigned int ADD_TRIGGER_MM         = 22;
-      static const unsigned int ADD_TRIGGER_EM         = 23;
-      static const unsigned int ADD_TRIGGER_ME         = 24;
-      static const unsigned int ADD_TRIGGER_MATCH      = 25;
-      static const unsigned int ADD_SIGN_CHANNEL       = 26;
+      static const unsigned int ADD_IS_DATA            = 0;
+      static const unsigned int ADD_GRL                = 1;
+      static const unsigned int ADD_INCOMPLETE_EVENT   = 2;
+      static const unsigned int ADD_LAR_ERROR          = 3;
+      static const unsigned int ADD_TILE_ERROR         = 4;
+      static const unsigned int ADD_TILE_HOT_SPOT      = 5;
+      static const unsigned int ADD_BAD_JETS           = 6;
+      static const unsigned int ADD_PRIMARY_VERTEX     = 7;
+      static const unsigned int ADD_BAD_MUONS          = 8;
+      static const unsigned int ADD_COSMIC_MUONS       = 9;
+      static const unsigned int ADD_HFOR               = 10;
+      static const unsigned int ADD_GE_2_GOOD_LEPTON   = 11;
+      static const unsigned int ADD_2_GOOD_LEPTON      = 12;
+      static const unsigned int ADD_2_SIGNAL_LEPTON    = 13;
+      static const unsigned int ADD_MLL                = 14;
+      static const unsigned int ADD_FLAVOR_CHANNEL     = 15;
+      static const unsigned int ADD_PHASE_SPACE        = 18;
+      static const unsigned int ADD_TRIGGER_EE         = 22;
+      static const unsigned int ADD_TRIGGER_MM         = 23;
+      static const unsigned int ADD_TRIGGER_EM         = 24;
+      static const unsigned int ADD_TRIGGER_ME         = 25;
+      static const unsigned int ADD_TRIGGER_MATCH      = 26;
+      static const unsigned int ADD_SIGN_CHANNEL       = 27;
       static const unsigned int ADD_TRUTH_SIGN_CHANNEL = 30;
       static const unsigned int ADD_TRUTH_MATCHED      = 32;
       static const unsigned int ADD_TRUTH_PROMPT       = 33;
@@ -152,6 +155,7 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_CR_4               = 53;
 
 
+      bool            m_is_data;
       bool            m_pass_grl;
       bool            m_pass_incomplete_event;
       bool            m_pass_lar_error;

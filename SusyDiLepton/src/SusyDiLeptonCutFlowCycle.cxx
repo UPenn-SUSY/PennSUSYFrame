@@ -282,9 +282,9 @@ void SusyDiLeptonCutFlowCycle::getTools()
 
   //SF Tools
   GET_TOOL( cross_section_sf
-	        , CommonTools::CrossSectionScaleFactorTool
-	        , "CrossSectionSF"
-	        );
+          , CommonTools::CrossSectionScaleFactorTool
+          , "CrossSectionSF"
+          );
   m_cross_section_sf_tool = cross_section_sf;
 
 
@@ -419,12 +419,12 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
                                                        , m_trigger
                                                        , m_trigger_vec
                                                        , m_muon_truth_d3pdobject
-						       , m_truth_d3pdobject	 
+                                                       , m_truth_d3pdobject
                                                        );
   if (!pass_critical_cuts) {
     throw SError( SError::SkipEvent );
   }
-  
+
   m_cut_flow->computeGoodEventVariables( m_event
                                        , m_electrons
                                        , m_muons
@@ -440,18 +440,18 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
                                                      , m_trigger
                                                      , m_trigger_vec
                                                      , m_muon_truth_d3pdobject
-						     , m_truth_d3pdobject
+                 , m_truth_d3pdobject
                                                      );
   if (!pass_critical_cuts) {
     throw SError( SError::SkipEvent );
   }
 
   m_cut_flow->setChargeFlipVariables( m_event
-				      , m_electrons
-				      , m_muons
-				      , m_muon_truth_d3pdobject
-				      , m_truth_d3pdobject
-				      );
+              , m_electrons
+              , m_muons
+              , m_muon_truth_d3pdobject
+              , m_truth_d3pdobject
+              );
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   checkSignalRegions();
 
@@ -514,20 +514,20 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
     m_event->setTriggerWeight(m_trigger_reweight_tool->getTriggerWeight(
           m_event->getFlavorChannel(),
           m_electrons.getElectrons(EL_GOOD),
-	  m_muons.getMuons(MU_GOOD),
-	  m_vertices));
-    
-    
+    m_muons.getMuons(MU_GOOD),
+    m_vertices));
+
     // TODO fill m_cross_section_weight
     m_event->setCrossSectionWeight(1.);
     m_event->setKFactor(1.);
     m_event->setEffTimesXS(1.);
 
-    m_event->setChargeFlipWeight(m_charge_flip_sf_tool->getSF(m_event->getFlavorChannel(),
-						 m_electrons.getElectrons(EL_GOOD),
-						 m_muons.getMuons(MU_GOOD),
-						 m_met,
-						 0));   
+    m_event->setChargeFlipWeight( m_charge_flip_sf_tool->getSF(
+          m_event->getFlavorChannel(),
+          m_electrons.getElectrons(EL_GOOD),
+          m_muons.getMuons(MU_GOOD),
+          m_met,
+          0));
   }
 }
 
@@ -563,6 +563,9 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_pileup_sf_tool->clear();
   m_charge_flip_sf_tool->clear();
   m_trigger_reweight_tool->clear();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_event->getEventDesc()->setIsData(is_data());
 }
 
 // -----------------------------------------------------------------------------

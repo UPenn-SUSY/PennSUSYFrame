@@ -23,6 +23,7 @@ ull_t SusyAnalysisTools::EventDescription::toInt() const
 {
   ull_t event_desc = 0;
 
+  event_desc += getIntComp(m_is_data               , ADD_IS_DATA           );
   event_desc += getIntComp(m_pass_grl              , ADD_GRL               );
   event_desc += getIntComp(m_pass_incomplete_event , ADD_INCOMPLETE_EVENT  );
   event_desc += getIntComp(m_pass_lar_error        , ADD_LAR_ERROR         );
@@ -81,6 +82,7 @@ void SusyAnalysisTools::EventDescription::set(
 // -----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
 {
+  m_is_data                = getComponent(rhs, ADD_IS_DATA         , SIZE_BOOL);
   m_pass_grl               = getComponent(rhs, ADD_GRL             , SIZE_BOOL);
   m_pass_incomplete_event  = getComponent(rhs, ADD_INCOMPLETE_EVENT, SIZE_BOOL);
   m_pass_lar_error         = getComponent(rhs, ADD_LAR_ERROR       , SIZE_BOOL);
@@ -154,6 +156,12 @@ SusyAnalysisTools::EventDescription&
 {
   set(rhs);
   return *this;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setIsData(bool is_data)
+{
+  m_is_data = is_data;
 }
 
 // -----------------------------------------------------------------------------
@@ -403,13 +411,19 @@ void SusyAnalysisTools::EventDescription::setCR4(bool pass)
 }
 
 // -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getIsData() const
+{
+  return m_is_data;
+}
+
+// -----------------------------------------------------------------------------
 bool SusyAnalysisTools::EventDescription::getPassGrl() const
 {
   return m_pass_grl;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::EventDescription::getPassIncompleteEVent() const
+bool SusyAnalysisTools::EventDescription::getPassIncompleteEvent() const
 {
   return m_pass_incomplete_event;
 }
@@ -617,30 +631,9 @@ bool SusyAnalysisTools::EventDescription::getPassCR4() const
 bool SusyAnalysisTools::EventDescription::pass(
     const EventDescription& test) const
 {
-  // if test has a flavor channel set, ensure the flavors match
-  FLAVOR_CHANNEL test_flavor = test.getFlavorChannel();
-  if (test_flavor != FLAVOR_NONE && test_flavor != m_flavor_channel)
-    return false;
-
-  // // if test has a flavor channel set, ensure the flavors match
-  // if (test_phase != PHASE_NONE && test_phase != m_phase_space)
-  //   return false;
-
-  // if test has a sign channel set, ensure the sign channels match
-  SIGN_CHANNEL test_sign = test.getSignChannel();
-  if (test_sign != SIGN_NONE && test_sign != m_sign_channel)
-    return false;
-
-  // get the integer equivalent of this word
+  // get the integer equivalent of this and test words
   ull_t this_word = toInt();
-
-  // get the integer equivalent of the test word, setting the flavor and sign
-  // channels to NONE
-  SusyAnalysisTools::EventDescription temp = test;
-  temp.setFlavorChannel(FLAVOR_NONE);
-  temp.setPhaseSpace(PHASE_NONE);
-  temp.setSignChannel(SIGN_NONE);
-  ull_t test_word = temp.toInt();
+  ull_t test_word = test.toInt();
 
   // check the remaining bits match
   return ((this_word & test_word) == test_word);
@@ -650,31 +643,9 @@ bool SusyAnalysisTools::EventDescription::pass(
 bool SusyAnalysisTools::EventDescription::reverse(
     const EventDescription& test) const
 {
-  // if test has a flavor channel set, ensure the flavors do not match
-  FLAVOR_CHANNEL test_flavor = test.getFlavorChannel();
-  if (test_flavor != FLAVOR_NONE && test_flavor == m_flavor_channel)
-    return false;
-
-  // // if test has a flavor channel set, ensure the flavors match
-  // PHASE_SPACE test_phase = test.getPhaseSpace();
-  // if (test_phase != PHASE_NONE && test_phase == m_phase_space)
-  //   return false;
-
-  // if test has a sign channel set, ensure the sign channels do not match
-  SIGN_CHANNEL test_sign = test.getSignChannel();
-  if (test_sign != SIGN_NONE && test_sign == m_sign_channel)
-    return false;
-
-  // get the integer equivalent of this word
+  // get the integer equivalent of this and test words
   ull_t this_word = toInt();
-
-  // get the integer equivalent of the test word, setting the flavor and sign
-  // channels to NONE
-  SusyAnalysisTools::EventDescription temp = test;
-  temp.setFlavorChannel(FLAVOR_NONE);
-  temp.setPhaseSpace(PHASE_NONE);
-  temp.setSignChannel(SIGN_NONE);
-  ull_t test_word = temp.toInt();
+  ull_t test_word = test.toInt();
 
   // check the remaining bits are reversed
   return ((~this_word & test_word) == test_word);
