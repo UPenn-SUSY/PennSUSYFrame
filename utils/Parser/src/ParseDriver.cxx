@@ -126,8 +126,8 @@ void ParseDriver::parse()
       // get line from file, strip comments and leading/subleading whitespace
       std::getline(file, line);
       line = cleanUpLine(line);
-      std::cout << "=====================================\n";
-      std::cout << line << "\n";
+      // std::cout << "=====================================\n";
+      // std::cout << line << "\n";
 
       split_line = split(line);
       if (split_line.size() < 1) continue;
@@ -141,7 +141,7 @@ void ParseDriver::parse()
 // -----------------------------------------------------------------------------
 void ParseDriver::addLine(std::vector<std::string> split_line)
 {
-  std::cout << "-------------------------------------\n";
+  // std::cout << "-------------------------------------\n";
   size_t num_elements = split_line.size();
   for (size_t it = 0; it != num_elements; ++it) {
     std::cout << "\t" << split_line.at(it) << "\n";

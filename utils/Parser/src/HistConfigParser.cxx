@@ -57,6 +57,9 @@ void HistConfigParser::addLine(std::vector<std::string> split_line)
       m_x_axis = split_line.at(1);
     else if (key.find("y_axis") != std::string::npos)
       m_y_axis = split_line.at(1);
+    else
+      std::cout << "WARNING! The key \'" << key
+                << "\' is invalid. Please check your inputs\n";
   }
 }
 
