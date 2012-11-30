@@ -32,7 +32,6 @@ class HistMaker : public NtupleLooper
 
     void addCut(std::string key, Selection::EventSelection selecton);
     void addHist(const HistInfo&);
-    void init();
 
     virtual void Loop();
     virtual void processEvent();

@@ -80,18 +80,6 @@ int main(int argc, char** argv)
   hm.addCut("em_signal", em_sig_lep);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  hm.init();
-
-    // HistInfo( std::string var_exp
-    //         , unsigned int x_num_bins
-    //         , float x_min
-    //         , float x_max
-    //         , std::string name = "hist_name"
-    //         , std::string title = "hist_title"
-    //         , std::string x_axis = "x_axis"
-    //         , std::string y_axis = "y_axis"
-    //         );
-
   HistInfo h_mll( "mll/1000."
                 , 50
                 , 0.
