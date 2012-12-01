@@ -6,6 +6,8 @@
 
 int main(int argc, char** argv)
 {
+  std::cout << "Dumping Cut flow\n";
+
   TFile* f = new TFile(argv[1]);
   TTree* t = static_cast<TTree*>(f->Get("output"));
 

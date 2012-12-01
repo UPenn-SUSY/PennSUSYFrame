@@ -7,6 +7,12 @@ ParseDriver::ParseDriver(std::string file_name) : m_file_name(file_name)
 }
 
 // -----------------------------------------------------------------------------
+ParseDriver::~ParseDriver()
+{
+  // do nothing
+}
+
+// -----------------------------------------------------------------------------
 bool ParseDriver::stringToBool(std::string to_convert) {
   if (to_convert == "1" || to_convert == "true")
     return true;
@@ -114,10 +120,12 @@ std::vector<std::string> ParseDriver::split( std::string line
 void ParseDriver::parse()
 {
   std::cout << "parse()\n";
+  std::cout << "parsing file: " << m_file_name << "\n";
   std::fstream file;
   file.open(m_file_name.c_str());
 
   if (file.is_open()) {
+    std::cout << "file open\n";
     std::string line;
     std::vector<std::string> split_line;
 
@@ -126,8 +134,8 @@ void ParseDriver::parse()
       // get line from file, strip comments and leading/subleading whitespace
       std::getline(file, line);
       line = cleanUpLine(line);
-      // std::cout << "=====================================\n";
-      // std::cout << line << "\n";
+      std::cout << "=====================================\n";
+      std::cout << line << "\n";
 
       split_line = split(line);
       if (split_line.size() < 1) continue;

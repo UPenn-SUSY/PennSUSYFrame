@@ -7,6 +7,8 @@
 // -----------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
+  std::cout << "Basic ntuple looper\n";
+
   std::cout << "input file name: " << argv[1] << "\n";
 
   TFile* f = new TFile(argv[1]);

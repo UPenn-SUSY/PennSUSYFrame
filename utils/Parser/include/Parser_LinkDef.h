@@ -14,5 +14,9 @@
 // #pragma link C++ class MySuperClass+;
 // #pragma link C++ class RunSusyCutFlow+;
 
+#pragma link C++ class CutConfigParser+;
+#pragma link C++ class HistConfigParser+;
+#pragma link C++ class MasterConfigParser+;
+#pragma link C++ class ParseDriver+;
 
 #endif // __CINT__

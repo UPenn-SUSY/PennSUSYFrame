@@ -8,11 +8,21 @@ CutConfigParser::CutConfigParser(std::string file_name) :
 }
 
 // -----------------------------------------------------------------------------
+CutConfigParser::~CutConfigParser()
+{
+  // do nothing
+}
+
+// -----------------------------------------------------------------------------
 void CutConfigParser::clear()
 {
   m_in_block = false;
   m_name = "";
-  m_pass_event = 0;
+
+  m_pass_event    = 0;
+  m_reverse_event = 0;
+  m_pass_sr       = 0;
+  m_reverse_sr    = 0;
 }
 
 // -----------------------------------------------------------------------------
@@ -29,83 +39,81 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
     }
     else {
       std::cout << "Need to open a config block\n";
+      std::cout << "Cut config blocks start with a line of the form:\n";
+      std::cout << "cut: cut_name\n";
       throw("Need to open a config block");
     }
+    return;
   }
-  else {
-    if (key.find("end") != std::string::npos) {
-      std::cout << "Found end of block\n";
-      configEventSelection();
-      clear();
-    }
-    else if (key.find("pass_grl") != std::string::npos)
-      m_pass_event.setPassGrl(stringToBool(split_line.at(1)));
-    else if (key.find("pass_incomplete_event") != std::string::npos)
-      m_pass_event.setPassIncompleteEvent(stringToBool(split_line.at(1)));
-    else if (key.find("pass_lar_error") != std::string::npos)
-      m_pass_event.setPassLarError(stringToBool(split_line.at(1)));
-    else if (key.find("pass_tile_error") != std::string::npos)
-      m_pass_event.setPassTileError(stringToBool(split_line.at(1)));
-    else if (key.find("pass_tile_hot_spot") != std::string::npos)
-      m_pass_event.setPassTileHotSpot(stringToBool(split_line.at(1)));
-    else if (key.find("pass_bad_jets") != std::string::npos)
-      m_pass_event.setPassBadJets(stringToBool(split_line.at(1)));
-    else if (key.find("pass_primary_vertex") != std::string::npos)
-      m_pass_event.setPassPrimaryVertex(stringToBool(split_line.at(1)));
-    else if (key.find("pass_bad_muons") != std::string::npos)
-      m_pass_event.setPassBadMuons(stringToBool(split_line.at(1)));
-    else if (key.find("pass_cosmic_muons") != std::string::npos)
-      m_pass_event.setPassCosmicMuons(stringToBool(split_line.at(1)));
-    else if (key.find("pass_hfor") != std::string::npos)
-      m_pass_event.setPassHFOR(stringToBool(split_line.at(1)));
-    else if (key.find("pass_ge_2_good_leptons") != std::string::npos)
-      m_pass_event.setPassGE2GoodLeptons(stringToBool(split_line.at(1)));
-    else if (key.find("pass_2_good_leptons") != std::string::npos)
-      m_pass_event.setPass2GoodLeptons(stringToBool(split_line.at(1)));
-    else if (key.find("pass_mll") != std::string::npos)
-      m_pass_event.setPassMll(stringToBool(split_line.at(1)));
-    else if (key.find("pass_2_signal_leptons") != std::string::npos)
-      m_pass_event.setPass2SignalLeptons(stringToBool(split_line.at(1)));
-    else if (key.find("pass_trigger_match") != std::string::npos)
-      m_pass_event.setPassTriggerMatch(stringToBool(split_line.at(1)));
-    else if (key.find("pass_flavor") != std::string::npos)
-      m_pass_event.setFlavorChannel(stringToFlavor(split_line.at(1)));
-    else if (key.find("pass_ee_trigger") != std::string::npos)
-      m_pass_event.setEETrigger(stringToBool(split_line.at(1)));
-    else if (key.find("pass_mm_trigger") != std::string::npos)
-      m_pass_event.setMMTrigger(stringToBool(split_line.at(1)));
-    else if (key.find("pass_em_trigger") != std::string::npos)
-      m_pass_event.setEMTrigger(stringToBool(split_line.at(1)));
-    else if (key.find("pass_me_trigger") != std::string::npos)
-      m_pass_event.setMETrigger(stringToBool(split_line.at(1)));
-    else if (key.find("pass_sign") != std::string::npos)
-      m_pass_event.setSignChannel(stringToSign(split_line.at(1)));
-    else
-      std::cout << "WARNING! The key \'" << key
-                << "\' is invalid. Please check your inputs\n";
 
-    // else if (key.find("var") != std::string::npos)
-    //   m_var_exp = split_line.at(1);
-    // else if (key.find("x_bins") != std::string::npos)
-    //   m_x_bins = stringToInt(split_line.at(1));
-    // else if (key.find("x_min") != std::string::npos)
-    //   m_x_min = stringToFloat(split_line.at(1));
-    // else if (key.find("x_max") != std::string::npos)
-    //   m_x_max = stringToFloat(split_line.at(1));
-    // else if (key.find("title") != std::string::npos)
-    //   m_title = split_line.at(1);
-    // else if (key.find("x_axis") != std::string::npos)
-    //   m_x_axis = split_line.at(1);
-    // else if (key.find("y_axis") != std::string::npos)
-    //   m_y_axis = split_line.at(1);
+  if (key.find("end") != std::string::npos) {
+    std::cout << "Found end of block\n";
+    configEventSelection();
+    clear();
   }
+  else if (key.find("pass_grl") != std::string::npos)
+    m_pass_event.setPassGrl(stringToBool(split_line.at(1)));
+  else if (key.find("pass_incomplete_event") != std::string::npos)
+    m_pass_event.setPassIncompleteEvent(stringToBool(split_line.at(1)));
+  else if (key.find("pass_lar_error") != std::string::npos)
+    m_pass_event.setPassLarError(stringToBool(split_line.at(1)));
+  else if (key.find("pass_tile_error") != std::string::npos)
+    m_pass_event.setPassTileError(stringToBool(split_line.at(1)));
+  else if (key.find("pass_tile_hot_spot") != std::string::npos)
+    m_pass_event.setPassTileHotSpot(stringToBool(split_line.at(1)));
+  else if (key.find("pass_bad_jets") != std::string::npos)
+    m_pass_event.setPassBadJets(stringToBool(split_line.at(1)));
+  else if (key.find("pass_primary_vertex") != std::string::npos)
+    m_pass_event.setPassPrimaryVertex(stringToBool(split_line.at(1)));
+  else if (key.find("pass_bad_muons") != std::string::npos)
+    m_pass_event.setPassBadMuons(stringToBool(split_line.at(1)));
+  else if (key.find("pass_cosmic_muons") != std::string::npos)
+    m_pass_event.setPassCosmicMuons(stringToBool(split_line.at(1)));
+  else if (key.find("pass_hfor") != std::string::npos)
+    m_pass_event.setPassHFOR(stringToBool(split_line.at(1)));
+  else if (key.find("pass_ge_2_good_leptons") != std::string::npos)
+    m_pass_event.setPassGE2GoodLeptons(stringToBool(split_line.at(1)));
+  else if (key.find("pass_2_good_leptons") != std::string::npos)
+    m_pass_event.setPass2GoodLeptons(stringToBool(split_line.at(1)));
+  else if (key.find("pass_mll") != std::string::npos)
+    m_pass_event.setPassMll(stringToBool(split_line.at(1)));
+  else if (key.find("pass_2_signal_leptons") != std::string::npos)
+    m_pass_event.setPass2SignalLeptons(stringToBool(split_line.at(1)));
+  else if (key.find("pass_trigger_match") != std::string::npos)
+    m_pass_event.setPassTriggerMatch(stringToBool(split_line.at(1)));
+  else if (key.find("pass_flavor") != std::string::npos)
+    m_pass_event.setFlavorChannel(stringToFlavor(split_line.at(1)));
+  else if (key.find("pass_ee_trigger") != std::string::npos)
+    m_pass_event.setEETrigger(stringToBool(split_line.at(1)));
+  else if (key.find("pass_mm_trigger") != std::string::npos)
+    m_pass_event.setMMTrigger(stringToBool(split_line.at(1)));
+  else if (key.find("pass_em_trigger") != std::string::npos)
+    m_pass_event.setEMTrigger(stringToBool(split_line.at(1)));
+  else if (key.find("pass_me_trigger") != std::string::npos)
+    m_pass_event.setMETrigger(stringToBool(split_line.at(1)));
+  else if (key.find("pass_sign") != std::string::npos)
+    m_pass_event.setSignChannel(stringToSign(split_line.at(1)));
+  else
+    std::cout << "WARNING! The key \'" << key
+              << "\' is invalid. Please check your inputs\n";
 }
 
 // -----------------------------------------------------------------------------
 void CutConfigParser::configEventSelection()
 {
-  std::cout << "\tname   : "  << m_name    << "\n";
-  std::cout << "\tpass event: " << m_pass_event.toInt() << "\n";
+  std::cout << "\tname   : "       << m_name    << "\n";
+  std::cout << "\tpass event: "    << m_pass_event.toInt()    << "\n";
+  std::cout << "\treverse event: " << m_reverse_event.toInt() << "\n";
+  std::cout << "\tpass sr: "       << m_pass_sr.toInt()       << "\n";
+  std::cout << "\treverse sr: "    << m_reverse_sr.toInt()    << "\n";
+
+  Selection::EventSelection tmp_selection( m_pass_event
+                                         , m_reverse_event
+                                         , m_pass_sr
+                                         , m_reverse_sr
+                                         );
+  std::cout << "adding selection " << m_name << " to vector\n";
+  m_event_selection.push_back(tmp_selection);
 }
 
 // -----------------------------------------------------------------------------

@@ -8,6 +8,8 @@
 // -----------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
+  std::cout << "Making Histograms!\n";
+
   TFile* f = new TFile(argv[1]);
   TTree* t = static_cast<TTree*>(f->Get("output"));
 

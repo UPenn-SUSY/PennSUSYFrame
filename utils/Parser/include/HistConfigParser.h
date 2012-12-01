@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "ParseDriver.h"
+#include "HistMaker/include/HistInfo.h"
 
 // =============================================================================
 class HistConfigParser : public ParseDriver
@@ -15,6 +16,7 @@ class HistConfigParser : public ParseDriver
   // -----------------------------------------------------------------------------
   public:
     HistConfigParser(std::string);
+    virtual ~HistConfigParser();
 
   // -----------------------------------------------------------------------------
   private:
@@ -31,6 +33,8 @@ class HistConfigParser : public ParseDriver
     std::string  m_title;
     std::string  m_x_axis;
     std::string  m_y_axis;
+
+    std::vector<HistInfo> m_hist_info;
 };
 
 #endif

@@ -14,6 +14,7 @@ class ParseDriver
   // ---------------------------------------------------------------------------
   public:
     ParseDriver(std::string);
+    virtual ~ParseDriver();
 
     void parse();
 

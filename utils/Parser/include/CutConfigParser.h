@@ -9,6 +9,7 @@
 
 #include "ParseDriver.h"
 
+#include "Selection/include/EventSelection.h"
 #include "SusyAnalysisTools/include/EventDescription.h"
 
 // =============================================================================
@@ -17,6 +18,7 @@ class CutConfigParser : public ParseDriver
   // -----------------------------------------------------------------------------
   public:
     CutConfigParser(std::string);
+    virtual ~CutConfigParser();
 
   // -----------------------------------------------------------------------------
   private:
@@ -30,6 +32,11 @@ class CutConfigParser : public ParseDriver
     bool m_in_block;
     std::string m_name;
     SusyAnalysisTools::EventDescription m_pass_event;
+    SusyAnalysisTools::EventDescription m_reverse_event;
+    SusyAnalysisTools::SRHelper m_pass_sr;
+    SusyAnalysisTools::SRHelper m_reverse_sr;
+
+    std::vector<Selection::EventSelection> m_event_selection;
 };
 
 #endif
