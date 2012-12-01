@@ -49,9 +49,6 @@ class HistMaker : public NtupleLooper
 
     TFile* m_out_file;
     std::map<std::string, std::vector<TH1D*> > m_hist;
-    std::map<std::string, TH1D*> m_hist_mll;
-    std::map<std::string, TH1D*> m_hist_el_pt;
-    std::map<std::string, TH1D*> m_hist_mu_pt;
 
     unsigned int m_entry_num;
 };

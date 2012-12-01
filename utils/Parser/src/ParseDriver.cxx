@@ -20,20 +20,19 @@ bool ParseDriver::stringToBool(std::string to_convert) {
     return false;
 
   // if we get here, we have a malformed input string
-  std::cout << "ERROR! The string \'" << to_convert << "\' could not be converted.  Check your inputs\n";
+  std::cout << "ERROR! The string \'" << to_convert
+            << "\' could not be converted.  Check your inputs\n";
   return false;
 }
 
 // -----------------------------------------------------------------------------
 int ParseDriver::stringToInt(std::string to_convert) {
   return atoi(to_convert.c_str());
-  // return std::atoi(to_convert.c_str());
 }
 
 // -----------------------------------------------------------------------------
 float ParseDriver::stringToFloat(std::string to_convert) {
   return atof(to_convert.c_str());
-  // return std::atof(to_convert.c_str());
 }
 
 // -----------------------------------------------------------------------------
@@ -84,6 +83,17 @@ std::string ParseDriver::stripComments(std::string line)
 }
 
 // -----------------------------------------------------------------------------
+std::string ParseDriver::convertToRootLatex(std::string line)
+{
+  size_t found = line.find_first_of('\\');
+  while (found != std::string::npos) {
+    line[found] = '#';
+    found = line.find_first_of('\\');
+  }
+  return line;
+}
+
+// -----------------------------------------------------------------------------
 std::vector<std::string> ParseDriver::split( std::string line
                                            , char split_char
                                            )
@@ -119,13 +129,11 @@ std::vector<std::string> ParseDriver::split( std::string line
 // -----------------------------------------------------------------------------
 void ParseDriver::parse()
 {
-  std::cout << "parse()\n";
   std::cout << "parsing file: " << m_file_name << "\n";
   std::fstream file;
   file.open(m_file_name.c_str());
 
   if (file.is_open()) {
-    std::cout << "file open\n";
     std::string line;
     std::vector<std::string> split_line;
 
@@ -134,8 +142,8 @@ void ParseDriver::parse()
       // get line from file, strip comments and leading/subleading whitespace
       std::getline(file, line);
       line = cleanUpLine(line);
-      std::cout << "=====================================\n";
-      std::cout << line << "\n";
+      // std::cout << "=====================================\n";
+      // std::cout << line << "\n";
 
       split_line = split(line);
       if (split_line.size() < 1) continue;
@@ -149,7 +157,6 @@ void ParseDriver::parse()
 // -----------------------------------------------------------------------------
 void ParseDriver::addLine(std::vector<std::string> split_line)
 {
-  // std::cout << "-------------------------------------\n";
   size_t num_elements = split_line.size();
   for (size_t it = 0; it != num_elements; ++it) {
     std::cout << "\t" << split_line.at(it) << "\n";

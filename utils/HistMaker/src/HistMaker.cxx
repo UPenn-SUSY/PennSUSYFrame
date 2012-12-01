@@ -99,7 +99,6 @@ void HistMaker::fillHists(std::string key)
     std::string var_exp = ( hist_it->getVarExp() + " >> "
                           + hist_it->getName() + "__" + key
                           );
-    std::cout << "var_exp: " << var_exp << "\n";
     fChain->Draw(var_exp.c_str(), full_selection, "goff");
 
     m_hist[key].push_back(tmp_hist);

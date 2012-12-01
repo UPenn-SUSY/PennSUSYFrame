@@ -20,6 +20,8 @@ class CutConfigParser : public ParseDriver
     CutConfigParser(std::string);
     virtual ~CutConfigParser();
 
+    std::map<std::string, Selection::EventSelection> getSelectionMap();
+
   // -----------------------------------------------------------------------------
   private:
     void clear();
@@ -36,7 +38,7 @@ class CutConfigParser : public ParseDriver
     SusyAnalysisTools::SRHelper m_pass_sr;
     SusyAnalysisTools::SRHelper m_reverse_sr;
 
-    std::vector<Selection::EventSelection> m_event_selection;
+    std::map<std::string, Selection::EventSelection> m_event_selection;
 };
 
 #endif

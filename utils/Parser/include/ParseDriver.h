@@ -25,6 +25,7 @@ class ParseDriver
     static std::string stripLeadingWhiteSpace(std::string line);
     static std::string stripTrailingWhiteSpace(std::string line);
     static std::string stripComments(std::string line);
+    static std::string convertToRootLatex(std::string line);
     static std::vector<std::string> split( std::string line
                                          , char split_char = ':'
                                          );

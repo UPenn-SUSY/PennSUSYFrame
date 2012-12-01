@@ -14,6 +14,12 @@ MasterConfigParser::~MasterConfigParser()
 }
 
 // -----------------------------------------------------------------------------
+std::string MasterConfigParser::getOutFile()
+{
+  return m_out_file_name;
+}
+
+// -----------------------------------------------------------------------------
 std::string MasterConfigParser::getSelectionFile()
 {
   return m_cut_file_name;
@@ -23,6 +29,19 @@ std::string MasterConfigParser::getSelectionFile()
 std::string MasterConfigParser::getHistInfoFile()
 {
   return m_hist_file_name;
+}
+
+// -----------------------------------------------------------------------------
+TChain* MasterConfigParser::getInputChain()
+{
+  TChain* chain = new TChain("output");
+  size_t num_files = m_in_file_list.size();
+  for (size_t it = 0; it != num_files; ++it) {
+    // TFile* f = new TFile(m_in_file_list.at(it).c_str());
+    // chain->Add(f);
+    chain->Add(m_in_file_list.at(it).c_str());
+  }
+  return chain;
 }
 
 // -----------------------------------------------------------------------------
@@ -65,6 +84,8 @@ void MasterConfigParser::addLine(std::vector<std::string> split_line)
     m_cut_file_name = split_line.at(1);
   else if (key.find("hist_file") != std::string::npos)
     m_hist_file_name = split_line.at(1);
+  else if (key.find("out_file") != std::string::npos)
+    m_out_file_name = split_line.at(1);
   else if (key.find("in_files") != std::string::npos)
     m_in_file_block = true;
   else

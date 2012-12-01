@@ -14,6 +14,13 @@ CutConfigParser::~CutConfigParser()
 }
 
 // -----------------------------------------------------------------------------
+std::map<std::string, Selection::EventSelection>
+    CutConfigParser::getSelectionMap()
+{
+  return m_event_selection;
+}
+
+// -----------------------------------------------------------------------------
 void CutConfigParser::clear()
 {
   m_in_block = false;
@@ -30,7 +37,6 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
 {
   // get key
   std::string key = split_line.at(0);
-  // std::cout << "key: " << key << "\n";
 
   if (!m_in_block) {
     if (key.find("cut") != std::string::npos) {
@@ -47,7 +53,6 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
   }
 
   if (key.find("end") != std::string::npos) {
-    std::cout << "Found end of block\n";
     configEventSelection();
     clear();
   }
@@ -101,19 +106,13 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
 // -----------------------------------------------------------------------------
 void CutConfigParser::configEventSelection()
 {
-  std::cout << "\tname   : "       << m_name    << "\n";
-  std::cout << "\tpass event: "    << m_pass_event.toInt()    << "\n";
-  std::cout << "\treverse event: " << m_reverse_event.toInt() << "\n";
-  std::cout << "\tpass sr: "       << m_pass_sr.toInt()       << "\n";
-  std::cout << "\treverse sr: "    << m_reverse_sr.toInt()    << "\n";
-
   Selection::EventSelection tmp_selection( m_pass_event
                                          , m_reverse_event
                                          , m_pass_sr
                                          , m_reverse_sr
                                          );
   std::cout << "adding selection " << m_name << " to vector\n";
-  m_event_selection.push_back(tmp_selection);
+  m_event_selection[m_name] = tmp_selection;
 }
 
 // -----------------------------------------------------------------------------
