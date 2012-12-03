@@ -59,7 +59,7 @@ namespace CommonTools
     bool m_truth_prepped;
 
     float getTruthMuonSign(const Muon*, const D3PDReader::MuonTruthD3PDObject*);
-    float getTruthElectronSign(const Electron*, const D3PDReader::TruthD3PDObject*);
+    float getTruthElectronSign(Electron*, const D3PDReader::TruthD3PDObject*);
 
     //RecoTruthMatch* m_reco_truth_match;
     TruthMatchTool* m_truth_match_tool;
