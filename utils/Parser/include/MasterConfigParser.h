@@ -37,6 +37,14 @@ class MasterConfigParser : public ParseDriver
     std::string  m_out_file_name;
     std::vector<std::string> m_in_file_list;
 
+    bool m_global_do_mc_event_weight;
+    bool m_global_do_pile_up_weight;
+    bool m_global_do_lumi_weight;
+    bool m_global_do_trigger_weight;
+    bool m_global_do_lepton_weight;
+    bool m_global_do_b_tag_weight;
+    bool m_global_do_cf_weight;
+    bool m_global_do_fake_weight;
 };
 
 #endif

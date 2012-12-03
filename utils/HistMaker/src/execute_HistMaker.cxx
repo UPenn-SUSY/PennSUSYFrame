@@ -14,16 +14,17 @@ int main(int argc, char** argv)
 {
   std::cout << "Making Histograms!\n";
 
-  std::string config_file = "test.config";
+  if (argc < 1) {
+    std::cout << "Please enter an input config file\n";
+    return 0;
+  }
+
+  std::string config_file = argv[1];
   MasterConfigParser parser(config_file);
   parser.parse();
 
-  // TFile* f = new TFile(argv[1]);
-  // TTree* t = static_cast<TTree*>(f->Get("output"));
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string out_file_name = parser.getOutFile();
-  // HistMaker hm(t, out_file_name);
   TChain* chain = parser.getInputChain();
   HistMaker hm(chain, out_file_name);
 
@@ -55,6 +56,4 @@ int main(int argc, char** argv)
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   hm.Loop();
   hm.writeToFile();
-
-  // delete f;
 }

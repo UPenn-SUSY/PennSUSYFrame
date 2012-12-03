@@ -87,6 +87,5 @@ void HistConfigParser::configHistInfo()
                    , m_x_axis
                    , m_y_axis
                    );
-  std::cout << "adding hist " << m_name << " to vector\n";
   m_hist_info.push_back(tmp_hist);
 }

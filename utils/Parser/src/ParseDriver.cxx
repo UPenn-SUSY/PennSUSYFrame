@@ -129,7 +129,6 @@ std::vector<std::string> ParseDriver::split( std::string line
 // -----------------------------------------------------------------------------
 void ParseDriver::parse()
 {
-  std::cout << "parsing file: " << m_file_name << "\n";
   std::fstream file;
   file.open(m_file_name.c_str());
 

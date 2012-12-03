@@ -20,5 +20,6 @@
 #pragma link C++ class+protected Selection::EventSelection+;
 // #pragma link C++ class Selection::MuonSelection+;
 // #pragma link C++ class Selection::ElectronSelection+;
+#pragma link C++ class+protected Selection::WeightHandler+;
 
 #endif // __CINT__

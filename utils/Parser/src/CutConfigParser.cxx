@@ -111,7 +111,6 @@ void CutConfigParser::configEventSelection()
                                          , m_pass_sr
                                          , m_reverse_sr
                                          );
-  std::cout << "adding selection " << m_name << " to vector\n";
   m_event_selection[m_name] = tmp_selection;
 }
 
