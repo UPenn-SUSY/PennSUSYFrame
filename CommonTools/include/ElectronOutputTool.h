@@ -127,6 +127,8 @@ namespace CommonTools
     std::vector<float> m_el_raw_topoetcone30_corrected;
     std::vector<float> m_el_raw_topoetcone40_corrected;
 
+    std::vector<float> m_el_truth_charge;
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(ElectronOutputTool, 0);
   };

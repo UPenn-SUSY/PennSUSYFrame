@@ -12,7 +12,7 @@ CommonTools::JetOutputTool::JetOutputTool( SCycleBase* parent
 
 
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
-  DeclareProperty("jet_container_name", c_jet_output_collection = "signal");
+  DeclareProperty("jet_container_name", c_jet_output_collection = "baseline");
 
 }
 // ----------------------------------------------------------------------------

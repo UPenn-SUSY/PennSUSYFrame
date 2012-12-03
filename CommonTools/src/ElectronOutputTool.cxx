@@ -10,7 +10,7 @@ CommonTools::ElectronOutputTool::ElectronOutputTool( SCycleBase* parent
 {
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
   DeclareProperty( "electron_container_name"
-                 , c_electron_output_collection = "signal"
+                 , c_electron_output_collection = "baseline"
                  );
 }
 
@@ -114,6 +114,14 @@ void CommonTools::ElectronOutputTool::BeginInputData( const SInputData& )
     DeclareVariable(m_el_f1                  , "el_f1"                  );
     DeclareVariable(m_el_f3                  , "el_f3"                  );
   }
+
+  if (!is_data())
+  {
+  
+    DeclareVariable(m_el_truth_charge        , "el_truth_charge"        );
+  
+  }
+
 }
 
 // ----------------------------------------------------------------------------
@@ -198,6 +206,8 @@ void CommonTools::ElectronOutputTool::BeginExecuteEvent(
   m_el_f3.clear();
   m_el_desc.clear();
   m_el_cf_smeared_pt.clear();
+
+  m_el_truth_charge.clear();
 }
 
 // ----------------------------------------------------------------------------
@@ -299,6 +309,8 @@ void CommonTools::ElectronOutputTool::fillOutput( Event* /*event*/
     m_el_topoetcone20_corrected.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 20, num_good_vtx));
     m_el_topoetcone30_corrected.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 30, num_good_vtx));
     m_el_topoetcone40_corrected.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 40, num_good_vtx));
+
+    m_el_truth_charge.push_back(el_vec.at(el_it)->getTruthCharge());
 
     if (c_do_detailed_output) {
       m_el_raw_etcone20.push_back(el_vec.at(el_it)->Etcone20());

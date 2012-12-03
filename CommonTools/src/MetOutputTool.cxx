@@ -12,9 +12,9 @@ CommonTools::MetOutputTool::MetOutputTool( SCycleBase* parent
 
 
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
-  DeclareProperty("electron_container_name", c_electron_output_collection = "signal");
-  DeclareProperty("jet_container_name", c_jet_output_collection = "signal");
-  DeclareProperty("muon_container_name", c_muon_output_collection = "signal");
+//   DeclareProperty("electron_container_name", c_electron_output_collection = "signal");
+//   DeclareProperty("jet_container_name", c_jet_output_collection = "signal");
+//   DeclareProperty("muon_container_name", c_muon_output_collection = "signal");
 
 
 }
