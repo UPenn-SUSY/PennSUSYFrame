@@ -44,8 +44,12 @@ public:
   void prepTlv();
   void prepRawTlv();
 
+  void setTruthCharge(float);
+
+
   float getEta() const;
   float getPhi() const;
+  float getTruthCharge(); 
 
   float getD0Significance() const;
   float getZ0SinTheta() const;
@@ -75,6 +79,8 @@ private:
   bool m_tlv_prepped;
   bool m_raw_tlv_prepped;
 
+  float m_truth_charge;
+
   CommonTools::TLVTool* m_tlv_tool;
   CommonTools::IsoCorrectionTool* m_iso_corr_tool;
 
@@ -82,6 +88,8 @@ private:
   double etcone(int cone_size) const;
   double topoetcone(int cone_size) const;
   double topoetcone_corrected(int cone_size) const;
+
+  
 
   // electron description
   SusyAnalysisTools::ElectronDescription m_el_desc;

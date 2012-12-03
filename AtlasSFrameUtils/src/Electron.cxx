@@ -16,9 +16,10 @@ ClassImp(Electron)
                                                                          )
                  , m_tlv_prepped(false)
                  , m_raw_tlv_prepped(false)
+		 , m_truth_charge(0)
                  , m_tlv_tool(tlv_tool)
-                 , m_iso_corr_tool(iso_corr_tool)
-                 , m_el_desc(0)
+		 , m_iso_corr_tool(iso_corr_tool)
+		 , m_el_desc(0)
 {
   // do nothing
 }
@@ -242,7 +243,16 @@ void Electron::print(const VertexContainer& vertices) const
                 REL_TOPOETCONE_CORR, 30, num_good_vertices)
             << "\n";
 }
-
+// -----------------------------------------------------------------------------
+float Electron::getTruthCharge()
+{
+  return m_truth_charge;
+}
+// -----------------------------------------------------------------------------
+void Electron::setTruthCharge(float charge)
+{
+  m_truth_charge = charge;
+}
 // -----------------------------------------------------------------------------
 bool Electron::eq(const Electron& el1, const Electron& el2)
 {
@@ -302,3 +312,5 @@ bool Electron::operator>=(const Electron& rhs) const
 {
   return (getTlv().Pt() >= rhs.getTlv().Pt());
 }
+
+
