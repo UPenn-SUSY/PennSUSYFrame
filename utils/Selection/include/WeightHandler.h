@@ -15,7 +15,28 @@ namespace Selection
     WeightHandler();
     WeightHandler(const WeightHandler&);
 
+    WeightHandler& operator=(const WeightHandler&);
+
     std::string getWeightString();
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    void setGlobalDoMcEventWeight(bool);
+    void setGlobalDoPileUpWeight(bool);
+    void setGlobalDoLumiWeight(bool);
+    void setGlobalDoTriggerWeight(bool);
+    void setGlobalDoLeptonWeight(bool);
+    void setGlobalDoBTagWeight(bool);
+    void setGlobalDoCfWeight(bool);
+    void setGlobalDoFakeWeight(bool);
+
+    void setLocalDoMcEventWeight(bool);
+    void setLocalDoPileUpWeight(bool);
+    void setLocalDoLumiWeight(bool);
+    void setLocalDoTriggerWeight(bool);
+    void setLocalDoLeptonWeight(bool);
+    void setLocalDoBTagWeight(bool);
+    void setLocalDoCfWeight(bool);
+    void setLocalDoFakeWeight(bool);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool getDoMcEventWeight() const;

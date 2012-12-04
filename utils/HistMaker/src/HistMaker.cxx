@@ -18,10 +18,14 @@ HistMaker::~HistMaker()
 }
 
 // -----------------------------------------------------------------------------
-void HistMaker::addCut(std::string key, Selection::EventSelection selecton)
+void HistMaker::addCut( std::string key
+                      , Selection::EventSelection& selecton
+                      , Selection::WeightHandler& weight
+                      )
 {
   m_keys.push_back(key);
   m_selection[key] = selecton;
+  m_weight[key] = weight;
 }
 
 // -----------------------------------------------------------------------------
@@ -74,6 +78,10 @@ void HistMaker::writeToFile()
 // -----------------------------------------------------------------------------
 void HistMaker::fillHists(std::string key)
 {
+  // Get weights for this selection and event
+  TCut evt_weight = m_weight[key].getWeightString().c_str();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // get the selection cuts for this event
   ull_t pass_event = m_selection[key].getPassEventWord()->toInt();
   ull_t pass_sr    = m_selection[key].getPassSRWord()->toInt();
@@ -88,9 +96,10 @@ void HistMaker::fillHists(std::string key)
              << ") == " << pass_sr << ") ";
   TCut cut_pass_sr = ss_pass_sr.str().c_str();
 
-  TCut full_selection = cut_pass_event && cut_pass_sr;
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  TCut full_selection = evt_weight * (cut_pass_event && cut_pass_sr);
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::vector<HistInfo>::iterator hist_it = m_hist_info.begin();
   std::vector<HistInfo>::iterator hist_term = m_hist_info.end();
   for (; hist_it != hist_term; ++hist_it) {

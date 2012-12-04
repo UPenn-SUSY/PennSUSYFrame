@@ -13,6 +13,26 @@ ParseDriver::~ParseDriver()
 }
 
 // -----------------------------------------------------------------------------
+std::string ParseDriver::getValue(std::vector<std::string> to_convert) {
+  return to_convert.at(1);
+}
+
+// -----------------------------------------------------------------------------
+bool ParseDriver::valueToBool(std::vector<std::string> to_convert) {
+  return stringToBool(to_convert.at(1));
+}
+
+// -----------------------------------------------------------------------------
+int ParseDriver::valueToInt(std::vector<std::string> to_convert) {
+  return stringToInt(to_convert.at(1));
+}
+
+// -----------------------------------------------------------------------------
+float ParseDriver::valueToFloat(std::vector<std::string> to_convert) {
+  return stringToFloat(to_convert.at(1));
+}
+
+// -----------------------------------------------------------------------------
 bool ParseDriver::stringToBool(std::string to_convert) {
   if (to_convert == "1" || to_convert == "true")
     return true;

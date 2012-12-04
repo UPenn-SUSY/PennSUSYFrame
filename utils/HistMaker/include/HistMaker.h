@@ -17,6 +17,7 @@
 #include "NtupleLooper/include/NtupleLooper.h"
 
 #include "Selection/include/EventSelection.h"
+#include "Selection/include/WeightHandler.h"
 
 #include "SusyAnalysisTools/include/EventDescription.h"
 #include "SusyAnalysisTools/include/SRHelper.h"
@@ -30,7 +31,10 @@ class HistMaker : public NtupleLooper
     HistMaker(TTree *tree=0, std::string out_file_name = "hists.root");
     virtual ~HistMaker();
 
-    void addCut(std::string key, Selection::EventSelection selecton);
+    void addCut( std::string key
+               , Selection::EventSelection& selecton
+               , Selection::WeightHandler& weight
+               );
     void addHist(const HistInfo&);
 
     virtual void Loop();
@@ -44,6 +48,7 @@ class HistMaker : public NtupleLooper
 
     std::vector<std::string> m_keys;
     std::map<std::string, Selection::EventSelection> m_selection;
+    std::map<std::string, Selection::WeightHandler>  m_weight;
 
     std::vector<HistInfo> m_hist_info;
 

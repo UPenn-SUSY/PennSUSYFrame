@@ -55,21 +55,18 @@ void MasterConfigParser::config()
 }
 
 // -----------------------------------------------------------------------------
+Selection::WeightHandler MasterConfigParser::getGlobalWeightHandler()
+{
+  return m_global_weight_handler;
+}
+
+// -----------------------------------------------------------------------------
 void MasterConfigParser::clear()
 {
   m_in_file_block = false;
   m_cut_file_name = "";
   m_hist_file_name = "";
   m_in_file_list.clear();
-
-  m_global_do_mc_event_weight = false;
-  m_global_do_pile_up_weight  = false;
-  m_global_do_lumi_weight     = false;
-  m_global_do_trigger_weight  = false;
-  m_global_do_lepton_weight   = false;
-  m_global_do_b_tag_weight    = false;
-  m_global_do_cf_weight       = false;
-  m_global_do_fake_weight     = false;
 }
 
 // -----------------------------------------------------------------------------
@@ -88,29 +85,29 @@ void MasterConfigParser::addLine(std::vector<std::string> split_line)
   }
 
   if (key.find("cut_file") != std::string::npos)
-    m_cut_file_name = split_line.at(1);
+    m_cut_file_name = getValue(split_line);
   else if (key.find("hist_file") != std::string::npos)
-    m_hist_file_name = split_line.at(1);
+    m_hist_file_name = getValue(split_line);
   else if (key.find("out_file") != std::string::npos)
-    m_out_file_name = split_line.at(1);
+    m_out_file_name = getValue(split_line);
+  else if (key.find("mc_event_weight") != std::string::npos)
+    m_global_weight_handler.setGlobalDoMcEventWeight(valueToBool(split_line));
+  else if (key.find("pile_up_weight") != std::string::npos)
+    m_global_weight_handler.setGlobalDoPileUpWeight(valueToBool(split_line));
+  else if (key.find("lumi_weight") != std::string::npos)
+    m_global_weight_handler.setGlobalDoLumiWeight(valueToBool(split_line));
+  else if (key.find("trigger_weight") != std::string::npos)
+    m_global_weight_handler.setGlobalDoTriggerWeight(valueToBool(split_line));
+  else if (key.find("lepton_weight") != std::string::npos)
+    m_global_weight_handler.setGlobalDoLeptonWeight(valueToBool(split_line));
+  else if (key.find("b_tag_weight") != std::string::npos)
+    m_global_weight_handler.setGlobalDoBTagWeight(valueToBool(split_line));
+  else if (key.find("cf_weight") != std::string::npos)
+    m_global_weight_handler.setGlobalDoCfWeight(valueToBool(split_line));
+  else if (key.find("fake_weight") != std::string::npos)
+    m_global_weight_handler.setGlobalDoFakeWeight(valueToBool(split_line));
   else if (key.find("in_files") != std::string::npos)
     m_in_file_block = true;
-  else if (key.find("mc_event_weight") != std::string::npos)
-    m_global_do_mc_event_weight = stringToBool(split_line.at(1));
-  else if (key.find("pile_up_weight") != std::string::npos)
-    m_global_do_pile_up_weight = stringToBool(split_line.at(1));
-  else if (key.find("lumi_weight") != std::string::npos)
-    m_global_do_lumi_weight = stringToBool(split_line.at(1));
-  else if (key.find("trigger_weight") != std::string::npos)
-    m_global_do_trigger_weight = stringToBool(split_line.at(1));
-  else if (key.find("lepton_weight") != std::string::npos)
-    m_global_do_lepton_weight = stringToBool(split_line.at(1));
-  else if (key.find("b_tag_weight") != std::string::npos)
-    m_global_do_b_tag_weight = stringToBool(split_line.at(1));
-  else if (key.find("cf_weight") != std::string::npos)
-    m_global_do_cf_weight = stringToBool(split_line.at(1));
-  else if (key.find("fake_weight") != std::string::npos)
-    m_global_do_fake_weight = stringToBool(split_line.at(1));
   else
     std::cout << "WARNING! The key \'" << key
               << "\' is invalid. Please check your inputs\n";

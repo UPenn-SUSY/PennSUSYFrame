@@ -1,6 +1,7 @@
 # ======================
 # = top level Makefile =
 # ======================
+# DIRS = Selection NtupleLooper HistMaker Parser CutFlowDump
 DIRS = Selection Parser NtupleLooper HistMaker CutFlowDump
 
 all::

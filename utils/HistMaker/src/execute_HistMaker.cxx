@@ -30,16 +30,25 @@ int main(int argc, char** argv)
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string cut_config_file = parser.getSelectionFile();
-  CutConfigParser cut_parser(cut_config_file);
+  CutConfigParser cut_parser( cut_config_file
+                            , parser.getGlobalWeightHandler()
+                            );
   cut_parser.parse();
   std::map<std::string, Selection::EventSelection> evt_sel =
       cut_parser.getSelectionMap();
+  std::map<std::string, Selection::WeightHandler> weight_handles =
+      cut_parser.getWeightMap();
+
   std::map<std::string, Selection::EventSelection>::iterator sel_it =
       evt_sel.begin();
   std::map<std::string, Selection::EventSelection>::iterator sel_term =
       evt_sel.end();
   for (; sel_it != sel_term; ++sel_it) {
-    hm.addCut(sel_it->first, sel_it->second);
+    std::string key = sel_it->first;
+    hm.addCut( key
+             , evt_sel[key]
+             , weight_handles[key]
+             );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
