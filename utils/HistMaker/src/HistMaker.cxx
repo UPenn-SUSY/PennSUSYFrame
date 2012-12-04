@@ -96,8 +96,13 @@ void HistMaker::fillHists(std::string key)
              << ") == " << pass_sr << ") ";
   TCut cut_pass_sr = ss_pass_sr.str().c_str();
 
+  TCut additional_cuts = m_selection[key].getAdditionalCutString().c_str();
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  TCut full_selection = evt_weight * (cut_pass_event && cut_pass_sr);
+  TCut full_selection = evt_weight * (  cut_pass_event
+                                     && cut_pass_sr
+                                     && additional_cuts
+                                     );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::vector<HistInfo>::iterator hist_it = m_hist_info.begin();
@@ -108,6 +113,7 @@ void HistMaker::fillHists(std::string key)
     std::string var_exp = ( hist_it->getVarExp() + " >> "
                           + hist_it->getName() + "__" + key
                           );
+
     fChain->Draw(var_exp.c_str(), full_selection, "goff");
 
     m_hist[key].push_back(tmp_hist);

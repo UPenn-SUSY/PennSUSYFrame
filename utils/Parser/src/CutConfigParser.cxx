@@ -53,6 +53,9 @@ void CutConfigParser::clear()
   m_tmp_pass_sr       = 0;
   m_tmp_reverse_sr    = 0;
 
+  m_tmp_additional_cuts = "1";
+
+  // Reset weight handler to global weights
   m_tmp_weight_handler = m_global_weight_handler;
 }
 
@@ -76,6 +79,7 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
     return;
   }
 
+  // TODO this is ugly. clean up!
   if (key.find("end") != std::string::npos) {
     configEventSelection();
     clear();
@@ -138,6 +142,11 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
     m_tmp_weight_handler.setLocalDoCfWeight(valueToBool(split_line));
   else if (key.find("fake_weight") != std::string::npos)
     m_tmp_weight_handler.setLocalDoFakeWeight(valueToBool(split_line));
+  else if (key.find("additional_cut") != std::string::npos) {
+    m_tmp_additional_cuts += " && (";
+    m_tmp_additional_cuts += getValue(split_line);
+    m_tmp_additional_cuts += ")";
+  }
   else
     std::cout << "WARNING! The key \'" << key
               << "\' is invalid. Please check your inputs\n";
@@ -146,11 +155,16 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
 // -----------------------------------------------------------------------------
 void CutConfigParser::configEventSelection()
 {
+  // create Event selection object for this cut
   Selection::EventSelection tmp_selection( m_tmp_pass_event
                                          , m_tmp_reverse_event
                                          , m_tmp_pass_sr
                                          , m_tmp_reverse_sr
                                          );
+  // Add any additional cuts to this event selection object
+  tmp_selection.setAdditionalCutString(m_tmp_additional_cuts);
+
+  // Add selection and weight handler to dictionary
   m_event_selection[m_name] = tmp_selection;
   m_weight_handler[m_name]  = m_tmp_weight_handler;
 }

@@ -37,6 +37,7 @@ class MasterConfigParser : public ParseDriver
     std::string  m_cut_file_name;
     std::string  m_hist_file_name;
     std::string  m_out_file_name;
+    std::string  m_in_tree_name;
     std::vector<std::string> m_in_file_list;
 
     Selection::WeightHandler m_global_weight_handler;

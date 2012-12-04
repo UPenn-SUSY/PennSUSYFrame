@@ -34,7 +34,8 @@ std::string MasterConfigParser::getHistInfoFile()
 // -----------------------------------------------------------------------------
 TChain* MasterConfigParser::getInputChain()
 {
-  TChain* chain = new TChain("output");
+  // TChain* chain = new TChain("output");
+  TChain* chain = new TChain(m_in_tree_name.c_str());
   size_t num_files = m_in_file_list.size();
   for (size_t it = 0; it != num_files; ++it) {
     chain->Add(m_in_file_list.at(it).c_str());
@@ -66,6 +67,7 @@ void MasterConfigParser::clear()
   m_in_file_block = false;
   m_cut_file_name = "";
   m_hist_file_name = "";
+  m_in_tree_name = "output";
   m_in_file_list.clear();
 }
 
@@ -84,10 +86,13 @@ void MasterConfigParser::addLine(std::vector<std::string> split_line)
     return;
   }
 
+  // TODO this is ugly. clean up
   if (key.find("cut_file") != std::string::npos)
     m_cut_file_name = getValue(split_line);
   else if (key.find("hist_file") != std::string::npos)
     m_hist_file_name = getValue(split_line);
+  else if (key.find("in_tree") != std::string::npos)
+    m_in_tree_name = getValue(split_line);
   else if (key.find("out_file") != std::string::npos)
     m_out_file_name = getValue(split_line);
   else if (key.find("mc_event_weight") != std::string::npos)

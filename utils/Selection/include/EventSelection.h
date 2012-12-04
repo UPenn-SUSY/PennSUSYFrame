@@ -28,28 +28,27 @@ namespace Selection
                   );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    void setPassEventWord(   const SusyAnalysisTools::EventDescription&);
+    void setReverseEventWord(const SusyAnalysisTools::EventDescription&);
+
+    void setPassSRWord(   const SusyAnalysisTools::SRHelper&);
+    void setReverseSRWord(const SusyAnalysisTools::SRHelper&);
+
+    void setAdditionalCutString(std::string);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     SusyAnalysisTools::EventDescription* getPassEventWord();
     SusyAnalysisTools::EventDescription* getReverseEventWord();
 
     SusyAnalysisTools::SRHelper* getPassSRWord();
     SusyAnalysisTools::SRHelper* getReverseSRWord();
 
+    std::string getAdditionalCutString();
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool passEvent( const SusyAnalysisTools::EventDescription&
                   , const SusyAnalysisTools::SRHelper&
                   ) const;
-
-    // bool passMllCut(Event& ) const;
-    // bool passMetCut(MET& ) const;
-    // bool passMt2Cut(Event& ) const;
-    // bool passJetPtCut(std::vector<Jet>& ) const;
-
-    // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // void setMllCutValue(double min = -999, double max = -999);
-    // void setMetCutValue(double min = -999, double max = -999,
-    //     MET::MET_VAR = MET::REL_ET, MET::MET_COLLECTION = MET::PHYSICS);
-    // void setMt2CutValue(double min = -999, double max = -999);
-    // void setJetPtCutValue(double min = -999, double max = -999);
 
   // ---------------------------------------------------------------------------
   private:
@@ -60,22 +59,7 @@ namespace Selection
     SusyAnalysisTools::SRHelper m_pass_sr_word;
     SusyAnalysisTools::SRHelper m_reverse_sr_word;
 
-    // double m_mll_cut_min;
-    // double m_mll_cut_max;
-
-    // MET::MET_COLLECTION m_met_collection;
-    // MET::MET_VAR m_met_var;
-    // double m_met_cut_min;
-    // double m_met_cut_max;
-
-    // double m_met_rel_cut_min;
-    // double m_met_rel_cut_max;
-
-    // double m_mt2_cut_min;
-    // double m_mt2_cut_max;
-
-    // double m_jet_pt_cut_min;
-    // double m_jet_pt_cut_max;
+    std::string m_additional_cuts;
   };
 }
 

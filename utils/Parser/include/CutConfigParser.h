@@ -49,6 +49,8 @@ class CutConfigParser : public ParseDriver
     Selection::WeightHandler m_global_weight_handler;
     Selection::WeightHandler m_tmp_weight_handler;
 
+    std::string m_tmp_additional_cuts;
+
     std::map<std::string, Selection::EventSelection> m_event_selection;
     std::map<std::string, Selection::WeightHandler>  m_weight_handler;
 };
