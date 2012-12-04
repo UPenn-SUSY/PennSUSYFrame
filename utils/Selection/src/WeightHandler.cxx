@@ -10,6 +10,8 @@ Selection::WeightHandler::WeightHandler() : m_do_mc_event_weight(false)
                                           , m_do_b_tag_weight(false)
                                           , m_do_cf_weight(false)
                                           , m_do_fake_weight(false)
+                                          , m_num_mc_events(1)
+                                          , m_target_lumi(0)
 {
   // do nothing
 }
@@ -21,7 +23,7 @@ Selection::WeightHandler::WeightHandler(const Selection::WeightHandler& rhs)//:
 }
 
 // -----------------------------------------------------------------------------
-Selection::WeightHandler& 
+Selection::WeightHandler&
     Selection::WeightHandler::operator=(const Selection::WeightHandler& rhs)
 {
     m_do_mc_event_weight = rhs.getDoMcEventWeight();
@@ -32,6 +34,9 @@ Selection::WeightHandler&
     m_do_b_tag_weight    = rhs.getDoBTagWeight();
     m_do_cf_weight       = rhs.getDoCfWeight();
     m_do_fake_weight     = rhs.getDoFakeWeight();
+
+    m_num_mc_events = rhs.getNumMCEvents();
+    m_target_lumi   = rhs.getTargetLumi();
 
     return *this;
 }
@@ -49,8 +54,9 @@ std::string Selection::WeightHandler::getWeightString()
     weight_string << " * pile_up_weight";
   }
   if( m_do_lumi_weight ) {
-    // TODO include target lumi and num events
-    weight_string << " * (k_factor * eff_times_cross_section)";
+    weight_string << " * ( (k_factor * eff_times_cross_section"
+                  << " * " << m_target_lumi << ")"
+                  << " / " << m_num_mc_events << ")";
   }
   if( m_do_trigger_weight ) {
     weight_string << " * trigger_weight";
@@ -170,6 +176,18 @@ void Selection::WeightHandler::setLocalDoFakeWeight(bool do_weight)
 }
 
 // -----------------------------------------------------------------------------
+void Selection::WeightHandler::setNumMcEvents(int num_mc_evt)
+{
+  m_num_mc_events = num_mc_evt;
+}
+
+// -----------------------------------------------------------------------------
+void Selection::WeightHandler::setTargetLumi(int target_lumi)
+{
+  m_target_lumi = target_lumi;
+}
+
+// -----------------------------------------------------------------------------
 bool Selection::WeightHandler::getDoMcEventWeight() const
 {
   return m_do_mc_event_weight;
@@ -217,3 +235,14 @@ bool Selection::WeightHandler::getDoFakeWeight() const
   return m_do_fake_weight;
 }
 
+// -----------------------------------------------------------------------------
+int Selection::WeightHandler::getNumMCEvents() const
+{
+  return m_num_mc_events;
+}
+
+// -----------------------------------------------------------------------------
+int Selection::WeightHandler::getTargetLumi() const
+{
+  return m_target_lumi;
+}

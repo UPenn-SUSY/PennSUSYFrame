@@ -38,6 +38,9 @@ namespace Selection
     void setLocalDoCfWeight(bool);
     void setLocalDoFakeWeight(bool);
 
+    void setNumMcEvents(int);
+    void setTargetLumi(int);
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool getDoMcEventWeight() const;
     bool getDoPileUpWeight() const;
@@ -47,6 +50,9 @@ namespace Selection
     bool getDoBTagWeight() const;
     bool getDoCfWeight() const;
     bool getDoFakeWeight() const;
+
+    int getNumMCEvents() const;
+    int getTargetLumi() const;
 
   // ---------------------------------------------------------------------------
   private:
@@ -58,6 +64,9 @@ namespace Selection
     bool m_do_b_tag_weight;
     bool m_do_cf_weight;
     bool m_do_fake_weight;
+
+    int m_num_mc_events;
+    int m_target_lumi;
   };
 }
 

@@ -106,6 +106,10 @@ void MasterConfigParser::addLine(std::vector<std::string> split_line)
     m_global_weight_handler.setGlobalDoCfWeight(valueToBool(split_line));
   else if (key.find("fake_weight") != std::string::npos)
     m_global_weight_handler.setGlobalDoFakeWeight(valueToBool(split_line));
+  else if (key.find("num_mc") != std::string::npos)
+    m_global_weight_handler.setNumMcEvents(valueToInt(split_line));
+  else if (key.find("target_lumi") != std::string::npos)
+    m_global_weight_handler.setTargetLumi(valueToInt(split_line));
   else if (key.find("in_files") != std::string::npos)
     m_in_file_block = true;
   else
