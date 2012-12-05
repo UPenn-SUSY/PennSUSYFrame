@@ -31,3 +31,9 @@ class HistInfo(object):
         self.line_color = line_color
         self.fill_color = fill_color
         self.marker_style = marker_style
+
+    def setHistStyle(self, hist):
+        hist.SetLineColor(  self.line_color)
+        hist.SetFillColor(  self.fill_color)
+        hist.SetMarkerColor(self.fill_color)
+        hist.SetMarkerStyle(self.marker_style)
