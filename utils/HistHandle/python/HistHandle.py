@@ -144,7 +144,6 @@ class HistMerger(object):
         if not isinstance (hist_handle_dict, dict):
             sys.exit('hist_handle_dict is not of type dictionary')
         for key in hist_handle_dict:
-            print 'key: %s' % key
             self.addHistHandle(hist_handle_dict[key], key)
 
     # --------------------------------------------------------------------------
@@ -209,7 +208,11 @@ class HistMerger(object):
         self.hist_stack = ROOT.THStack('%s_stack' % self.unique_name
                                       , 'stack'
                                       )
+        key_list = []
         for key in self.hist_handles:
+            key_list.append(key)
+
+        for key in reversed(key_list):
             hh = self.hist_handles[key]
             self.hist_stack.Add(hh.hist)
 
@@ -426,10 +429,10 @@ if __name__ == '__main__':
                         )
 
 
-    c_handles = ROOT.TCanvas('c_handles', 'handles')
-    hh_mc1.hist.Draw()
-    hh_mc23.hist.Draw('SAME')
-    hh_data.hist.Draw('SAME')
+    # c_handles = ROOT.TCanvas('c_handles', 'handles')
+    # hh_mc1.hist.Draw()
+    # hh_mc23.hist.Draw('SAME')
+    # hh_data.hist.Draw('SAME')
 
     hm_data = HistMerger('ee_sig_lep', 'mll', {'data':hh_data}, hi_data)
     hm_mc  = HistMerger( 'ee_sig_lep', 'mll', { 'mc1':hh_mc1
@@ -441,50 +444,41 @@ if __name__ == '__main__':
     hm_data.genMergedHist()
     hm_mc.genMergedHist()
 
-    c_merger_sums = ROOT.TCanvas('c_merger_sums', 'merger_sums')
-    hm_mc.hist_sum.Draw()
-    hm_data.hist_sum.Draw('SAME')
+    # c_merger_sums = ROOT.TCanvas('c_merger_sums', 'merger_sums')
+    # hm_mc.hist_sum.Draw()
+    # hm_data.hist_sum.Draw('SAME')
 
-    c_merger_stack = ROOT.TCanvas('c_merger_stack', 'merger_stack')
-    hm_mc.hist_stack.Draw('HIST')
-    hm_mc.error_band.Draw('E2')
-    hm_data.hist_sum.Draw('SAME')
-
-    # leg = hp.gen_legend( [hm_data, hm_mc])
-    # leg.Draw()
+    # c_merger_stack = ROOT.TCanvas('c_merger_stack', 'merger_stack')
+    # hm_mc.hist_stack.Draw('HIST')
+    # hm_mc.error_band.Draw('E2')
+    # hm_data.hist_sum.Draw('SAME')
 
 
     hist_painter = hp.HistPainter( num   = hm_data
                                  , denom = hm_mc
                                  )
 
-    # leg = hist_painter.gen_legend()
-    # leg.Draw()
-
-    # pile_test_sum = hist_painter.pile( num_type   = ho.plain_hist
-    #                                  , denom_type = ho.plain_hist
-    #                                  )
-
-    # pile_test_pile = hist_painter.pile( num_type   = ho.plain_hist
-    #                                   , denom_type = ho.piled_hist
-    #                                   )
-
     canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
     canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
 
 
     print 'Linear'
-    pile_test_stack = hist_painter.pile( num_type   = ho.plain_hist
-                                       , denom_type = ho.stack_hist
-                                       , canvas_options=canv_default
-                                       )
+    pile_test_stack = hist_painter.pileAndRatio( num_type       = ho.plain_hist
+                                               , denom_type     = ho.stack_hist
+                                               , canvas_options = canv_default
+                                               , legend         = True
+                                               )
+    leg = hist_painter.genLegend()
+    leg.Draw()
     pile_test_stack.Print('~/Desktop/test_linear.png')
     pile_test_stack.Close()
 
     print 'Log'
-    pile_test_stack = hist_painter.pile( num_type   = ho.plain_hist
-                                       , denom_type = ho.stack_hist
-                                       , canvas_options=canv_log_y
-                                       )
+    pile_test_stack = hist_painter.pileAndRatio( num_type       = ho.plain_hist
+                                               , denom_type     = ho.stack_hist
+                                               , canvas_options = canv_log_y
+                                               , legend         = True
+                                               )
+    leg.Draw()
     pile_test_stack.Print('~/Desktop/test_log.png')
     pile_test_stack.Close()

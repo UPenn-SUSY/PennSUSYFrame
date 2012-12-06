@@ -41,9 +41,20 @@ class HistPainter(object):
         if self.name == None:
             self.name = num.hist_name
 
+        self.canvas = None
+        self.ratio_canvas = None
+
+    # ------------------------------------------------------------------------------
+    def __del__(self):
+        print 'deleting hist painter'
+        if not self.canvas is None:
+            self.canvas.Close()
+        if not self.ratio_canvas is None:
+            self.ratio_canvas.Close()
+
     # --------------------------------------------------------------------------
     # def gen_legend( self, hist_merger_list = [], name = 'leg', draw_opt = [] ):
-    def gen_legend( self, name = 'leg'):
+    def genLegend( self, name = 'leg'):
         """
         Generates a legend based on a list of HistMerger objects
         """
@@ -76,6 +87,7 @@ class HistPainter(object):
             , denom_type       = ho.plain_hist
             , normalize        = False
             , canvas_options   = canv_default
+            , legend           = False
             ):
         """
         docstring
@@ -131,33 +143,96 @@ class HistPainter(object):
             draw_opt_list.append('HIST')
 
 
-        pile = pileHists( hist_list
-                        , tag
-                        , draw_opt_list = draw_opt_list
-                        , canvas_options = canvas_options
-                        )
+        self.canvas = pileHists( hist_list
+                               , tag
+                               , draw_opt_list = draw_opt_list
+                               , canvas_options = canvas_options
+                               )
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        return pile
+        if legend:
+            self.legend = self.genLegend()
+            self.legend.Draw()
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        return self.canvas
 
     # --------------------------------------------------------------------------
-    def pile_and_ratio( num_type         = ho.plain_hist
-                      , denom_type       = ho.plain_hist
-                      , normalize        = False
-                      , ratio_axis_title = 'ratio'
-                      ):
+    def pileAndRatio( self
+                    , num_type         = ho.plain_hist
+                    , denom_type       = ho.plain_hist
+                    , normalize        = False
+                    , canvas_options   = canv_default
+                    , ratio_axis_title = 'ratio'
+                    , legend           = False
+                    ):
         """
         docstring
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        assert not num_type   == ho.pile_hists
-        assert not denom_type == ho.pile_hists
+        assert not num_type   == ho.piled_hist
+        assert not denom_type == ho.piled_hist
 
         if normalize:
             assert num_type   == ho.plain_hist
             assert denom_type == ho.plain_hist
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        self.pile( num_type
+                 , denom_type
+                 , normalize
+                 , canvas_options
+                 )
+
+        # make ratio histogram
+        self.ratio = self.num_merger.hist_sum.Clone('%s_ratio' % self.name)
+        self.ratio.Divide(self.denom_merger.hist_sum)
+        self.ratio.GetYaxis().SetTitle(ratio_axis_title)
+
+        tag = '%s_ratio_%s' % (self.name, getTag( num_type
+                                                , denom_type
+                                                , normalize
+                                                )
+                              )
+
+        ratio_canvas_options = canvas_options
+        ratio_canvas_options.log_y = False
+        ratio_canvas = pileHists( [self.ratio]
+                                , tag
+                                , ['PE']
+                                , canvas_options = ratio_canvas_options
+                                , y_min = 0.5
+                                , y_max = 1.5
+                                )
+        line = ROOT.TLine()
+        line.SetLineStyle(2)
+        a = self.ratio.GetXaxis()
+        line.DrawLine(a.GetXmin(), 1., a.GetXmax(), 1.)
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        shared_name = '%s_w_ratio' % self.canvas.GetName()
+        shared=metaroot.plot.plot_shared_axis( self.canvas
+                                             , ratio_canvas
+                                             , name=shared_name+"_with_ratio"
+                                             , canvas_options=canvas_options
+                                             , split=0.3
+                                             , axissep=0.04
+                                             , ndivs=[505,503]
+                                             )
+        self.ratio_stuff = { 'top_pad':shared['top_pad']
+                           , 'bottom_pad':shared['bottom_pad']
+                           }
+
+        self.canvas = shared['canvas']
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        if legend:
+            self.ratio_stuff['top_pad'].cd()
+            self.legend = self.genLegend()
+            self.legend.Draw()
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        return self.canvas
 
 # ------------------------------------------------------------------------------
 def flatten(l, level = 0):
@@ -197,6 +272,8 @@ def pileHists( hist_list
              , draw_opt_list = metaroot.default
              , title = None
              , canvas_options = metaroot.default
+             , y_min = metaroot.default
+             , y_max = metaroot.default
              ):
     """
     docstring
@@ -207,13 +284,14 @@ def pileHists( hist_list
     if draw_opt_list == metaroot.default:
         print 'setting the default draw options'
         draw_opt_list = ['P']*len(hist_list)
+
     # create canvas
     if canvas_options == metaroot.default:
         canvas_options = canv_default
     c = canvas_options.create(name)
 
-    y_min = setMin(hist_list, canvas_options.log_y)
-    y_max = setMax(hist_list, canvas_options.log_y)
+    setMin(hist_list, canvas_options.log_y, y_min)
+    setMax(hist_list, canvas_options.log_y, y_max)
 
     # actuall draw plots
     drawn_first = False
@@ -224,7 +302,6 @@ def pileHists( hist_list
                 draw_opt += 'A'
         else:
             draw_opt += 'SAME'
-        print 'draw option: %s' % draw_opt
         h.Draw(draw_opt)
         drawn_first = True
 
@@ -232,9 +309,10 @@ def pileHists( hist_list
 
 
 # ------------------------------------------------------------------------------
-def setMin(hist_list, log_y = False):
+def setMin(hist_list, log_y = False, y_min = metaroot.default):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    y_min = calcMin(hist_list, log_y)
+    if y_min == metaroot.default:
+        y_min = calcMin(hist_list, log_y)
 
     for h in hist_list:
         h.SetMinimum(y_min)
@@ -242,9 +320,10 @@ def setMin(hist_list, log_y = False):
     return y_min
 
 # ------------------------------------------------------------------------------
-def setMax(hist_list, log_y = False):
+def setMax(hist_list, log_y = False, y_max = metaroot.default):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    y_max = calcMax(hist_list, log_y)
+    if y_max == metaroot.default:
+        y_max = calcMax(hist_list, log_y)
 
     for h in hist_list:
         h.SetMaximum(y_max)
@@ -320,13 +399,12 @@ def getExtrema(hist_list, log_y = True):
             bin_content_up   = bin_content + h_tmp.GetBinError(b)
             bin_content_down = bin_content - h_tmp.GetBinError(b)
 
-            # if bin_content <= 0 and log_y: continue
-            # if bin_content <= 0 and log_y: continue
-
+            # check if this bin is a minimum
             if local_min is None or bin_content_down < local_min:
                 if bin_content_down > 0 or not log_y:
                     local_min = bin_content_down
 
+            # check if this bin is a maxiumum
             if local_max is None or bin_content > local_max:
                 if bin_content_up > 0 or not log_y:
                     local_max = bin_content_up
