@@ -15,6 +15,13 @@ plain_hist = object()
 piled_hist = object()
 stack_hist = object()
 
+# --------------------------------------------------------------------------
+def typeToString(hist_type):
+    if hist_type == plain_hist: return 'sum'
+    if hist_type == piled_hist: return 'pile'
+    if hist_type == stack_hist: return'stack'
+    return ''
+
 # ==============================================================================
 class HistInfo(object):
     """
@@ -37,3 +44,4 @@ class HistInfo(object):
         hist.SetFillColor(  self.fill_color)
         hist.SetMarkerColor(self.fill_color)
         hist.SetMarkerStyle(self.marker_style)
+

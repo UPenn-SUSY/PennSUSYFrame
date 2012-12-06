@@ -13,6 +13,7 @@ import rootlogon
 import metaroot
 
 import HistObjects as ho
+import HistPainter as hp
 
 # ==============================================================================
 class HistHandle(object):
@@ -65,7 +66,7 @@ class HistHandle(object):
         docstring
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        assert(type(input_file) == ROOT.TFile)
+        assert type(input_file) == ROOT.TFile
 
         # get hist from file
         print 'Getting hist: %s from directory: %s' % ( self.hist_name
@@ -242,14 +243,157 @@ class HistMerger(object):
                                            , array('f', ey)
                                            )
 
-        # self.error_band = metaroot.plot.plot_graph_errors('%s_error_band' % self.unique_name
-        #                                                  , x
-        #                                                  , y
-        #                                                  , ex
-        #                                                  , ey
-        #                                                  )
         self.error_band.SetFillStyle(fill_style)
         self.error_band.SetFillColor(fill_color)
+
+# ==============================================================================
+# = Helper functions for interpretting the HistHandle objects
+# ==============================================================================
+# # ----------------------------------------------------------------------------
+# def get_files(dict_list):
+#     """
+#     function to open root files listed in the dict_list
+#     """
+#     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+#     for d in dict_list:
+#         # Get plot options from xml
+#         d['plot_opt'] = metaroot.hist.PlotOptions( line_color   = int(d['line_color'])
+#                                                  , fill_color   = int(d['fill_color'])
+#                                                  , marker_color = int(d['fill_color'])
+#                                                  , marker_style = ROOT.kFullCircle
+#                                                  , line_width   = 2
+#                                                  )
+#
+#         # Get files names from xml, and open the root files
+#         for inp in d['inputs']:
+#             inp['file'] = ROOT.TFile(inp['file_name'])
+
+# ------------------------------------------------------------------------------
+def get_list_of_keys(d):
+    """
+    get a list of keys from a TDirectory
+    """
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    list_of_hists = [key.GetName() for key in d.GetListOfKeys()]
+    return list_of_hists
+
+# ------------------------------------------------------------------------------
+def get_list_of_dirs(d):
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if not isinstance(d, list): d = [d]
+
+    # get key list for each element of d
+    key_list_ref = None
+    for el in d:
+        # print 'Checking keys in %s samples' % el['name']
+        for inp in el['inputs']:
+            # print "Checking key list in file: %s" % inp['file_name']
+            key_list_test = set(get_list_of_keys(inp['file']))
+            if key_list_ref == None:
+                # print 'getting ref key list'
+                key_list_ref = key_list_test
+            # print 'key_list_test: %s' % key_list_test
+            # print 'key_list_ref: %s' % key_list_ref
+            assert key_list_test == key_list_ref
+            # print '\tKey list is OK'
+        # print '\tAll files in %s are OK' % el['name']
+
+    # print 'All input files have the same structure!'
+
+    # since all the key lists are the same, we can simply return the first key
+    # list
+    return key_list_ref
+
+# ------------------------------------------------------------------------------
+def get_list_of_hists(d):
+    """
+    get a list of histograms in a TDirectory d
+    TODO update this function when directory structure gets a little more complicated
+    """
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    return get_list_of_keys(d)
+
+# ------------------------------------------------------------------------------
+def check_structure(num_dicts, denom_dicts):
+    """
+    Check that the two input collections are compatable
+    """
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    print '----------------------------------------'
+    print 'check_structure()'
+    ROOT.gDirectory.ls()
+    # Get list of keys in a reference file
+    ref_dirs = get_list_of_dirs(num_dicts[0])
+
+    print '----------------------------------------'
+    print 'after getting list of dirs'
+    ROOT.gDirectory.ls()
+
+    # assert all files have the same key structure
+    for d in num_dicts:
+        assert get_list_of_dirs(d) == ref_dirs
+
+    print '----------------------------------------'
+    print 'after checking num dirs'
+    ROOT.gDirectory.ls()
+
+    for d in denom_dicts:
+        assert get_list_of_dirs(d) == ref_dirs
+
+    print '----------------------------------------'
+    print 'after checking denom dirs'
+    ROOT.gDirectory.ls()
+
+    # check all dirs agains ref_dir
+    ref_dirs = list(ref_dirs)
+    for d in ref_dirs:
+        ref_hists = get_list_of_hists(num_dicts[0]['inputs'][0]['file'].GetDirectory(d))
+        # print 'ref_hists: %s' % ref_hists
+
+        # assert all files have the same histograms in this directory
+        for nd in num_dicts:
+            for inp in nd['inputs']:
+                # assert get_list_of_hists(inp['file'].GetDirectory(d)) == ref_hists
+                test_hists = get_list_of_hists(inp['file'].GetDirectory(d))
+                assert test_hists == ref_hists
+                # test_hists.Delete()
+        for dd in denom_dicts:
+            for inp in dd['inputs']:
+                assert get_list_of_hists(inp['file'].GetDirectory(d)) == ref_hists
+
+    print '----------------------------------------'
+    print 'end of check_structure()'
+    ROOT.gDirectory.ls()
+
+
+# ------------------------------------------------------------------------------
+def get_histograms( input_dict
+                  , dir_name
+                  , hist_name
+                  , do_scale_to_lumi = False
+                  , target_lumi = 1.
+                  ):
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if not isinstance(input_dict, list):
+        input_dict = [input_dict]
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # print "Getting histograms for %s - %s" % (dir_name, hist_name)
+    hist_handle = []
+    for inp_dict in input_dict:
+        dict_name = inp_dict['name']
+        key = '%s__%s__%s' % (dir_name, hist_name, dict_name)
+        hist_handle.append( HistHandle( dir_name
+                                      , hist_name
+                                      , inp_dict
+                                      , do_scale_to_lumi
+                                      , target_lumi
+                                      )
+                          )
+    # print '\tdone getting histograms -- %s - %s' % (dir_name, hist_name)
+
+    return hist_handle
+
 
 # ==============================================================================
 if __name__ == '__main__':
@@ -288,9 +432,9 @@ if __name__ == '__main__':
     hh_data.hist.Draw('SAME')
 
     hm_data = HistMerger('ee_sig_lep', 'mll', {'data':hh_data}, hi_data)
-    hm_mc  = HistMerger('ee_sig_lep', 'mll', { 'mc1':hh_mc1
-                                             , 'mc23':hh_mc23
-                                             }
+    hm_mc  = HistMerger( 'ee_sig_lep', 'mll', { 'mc1':hh_mc1
+                                              , 'mc23':hh_mc23
+                                              }
                        , hi_mc
                        )
 
@@ -305,3 +449,42 @@ if __name__ == '__main__':
     hm_mc.hist_stack.Draw('HIST')
     hm_mc.error_band.Draw('E2')
     hm_data.hist_sum.Draw('SAME')
+
+    # leg = hp.gen_legend( [hm_data, hm_mc])
+    # leg.Draw()
+
+
+    hist_painter = hp.HistPainter( num   = hm_data
+                                 , denom = hm_mc
+                                 )
+
+    # leg = hist_painter.gen_legend()
+    # leg.Draw()
+
+    # pile_test_sum = hist_painter.pile( num_type   = ho.plain_hist
+    #                                  , denom_type = ho.plain_hist
+    #                                  )
+
+    # pile_test_pile = hist_painter.pile( num_type   = ho.plain_hist
+    #                                   , denom_type = ho.piled_hist
+    #                                   )
+
+    canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
+    canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
+
+
+    print 'Linear'
+    pile_test_stack = hist_painter.pile( num_type   = ho.plain_hist
+                                       , denom_type = ho.stack_hist
+                                       , canvas_options=canv_default
+                                       )
+    pile_test_stack.Print('~/Desktop/test_linear.png')
+    pile_test_stack.Close()
+
+    print 'Log'
+    pile_test_stack = hist_painter.pile( num_type   = ho.plain_hist
+                                       , denom_type = ho.stack_hist
+                                       , canvas_options=canv_log_y
+                                       )
+    pile_test_stack.Print('~/Desktop/test_log.png')
+    pile_test_stack.Close()
