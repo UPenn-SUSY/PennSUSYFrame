@@ -380,6 +380,8 @@ def calcMax(hist_list, log_y = True):
 
 # ------------------------------------------------------------------------------
 def getExtrema(hist_list, log_y = True):
+    print 'getExtrema()'
+    print hist_list
     if len(hist_list) == 0: return 0.
 
     # TODO come up with better algorithm
