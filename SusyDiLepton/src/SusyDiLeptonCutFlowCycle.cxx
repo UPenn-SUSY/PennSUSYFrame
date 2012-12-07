@@ -135,17 +135,19 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
   getTools();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // TODO make this configurable
-  // TODO move functionality into tool
-  std::string maindir = "";
-  char *tmparea=getenv("ROOTCOREDIR");
-  if (tmparea != NULL) {
-    maindir = tmparea;
-    maindir = maindir + "/";
-  }
-  std::string fake_file =
+  if (is_data()) {
+    // TODO make this configurable
+    // TODO move functionality into tool
+    std::string maindir = "";
+    char *tmparea=getenv("ROOTCOREDIR");
+    if (tmparea != NULL) {
+      maindir = tmparea;
+      maindir = maindir + "/";
+    }
+    std::string fake_file =
       maindir + "/../SusyMatrixMethod/data/fakeRate_trial9_Nov2.root";
-  m_matrix_method.configure(fake_file, SusyMatrixMethod::PT);
+    m_matrix_method.configure(fake_file, SusyMatrixMethod::PT);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -616,14 +618,16 @@ void SusyDiLeptonCutFlowCycle::fillFakeWeight()
     eta_1 = mu.at(0)->getTlv().Eta();
   }
 
-  // TODO fill for all regions
-  m_event->setFakeWeight( m_matrix_method.getTotalFake( is_tight_0, is_electron_0, pt_0, eta_0
-                                      , is_tight_1, is_electron_1, pt_1, eta_1
-                                      , SusyMatrixMethod::FR_SRNONE
-                                      , m_event->getMetRel()
-                                      , SusyMatrixMethod::SYS_NONE
-                                      )
-                        );
+  if (is_data()) {
+    // TODO fill for all regions
+    m_event->setFakeWeight( m_matrix_method.getTotalFake( is_tight_0, is_electron_0, pt_0, eta_0
+                                        , is_tight_1, is_electron_1, pt_1, eta_1
+                                        , SusyMatrixMethod::FR_SRNONE
+                                        , m_event->getMetRel()
+                                        , SusyMatrixMethod::SYS_NONE
+                                        )
+                          );
+  }
 }
 
 // -----------------------------------------------------------------------------
