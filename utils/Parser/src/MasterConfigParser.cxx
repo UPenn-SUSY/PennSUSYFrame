@@ -62,6 +62,12 @@ Selection::WeightHandler MasterConfigParser::getGlobalWeightHandler()
 }
 
 // -----------------------------------------------------------------------------
+int MasterConfigParser::getChannelNum()
+{
+  return m_channel_num;
+}
+
+// -----------------------------------------------------------------------------
 void MasterConfigParser::clear()
 {
   m_in_file_block = false;
