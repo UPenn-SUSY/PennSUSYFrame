@@ -1,49 +1,36 @@
 #ifndef LumiWeight_h
 #define LumiWeight_h
 
+#include <iostream>
 #include <TH1D.h>
 
 // =============================================================================
-/*
 class LumiWeight
 {
   // ---------------------------------------------------------------------------
   public:
-    LumiWeight();
-    LumiWeight( std::string var_exp
-            , unsigned int x_num_bins
-            , float x_min
-            , float x_max
-            , std::string name = "hist_name"
-            , std::string title = "hist_title"
-            , std::string x_axis = "x_axis"
-            , std::string y_axis = "y_axis"
-            );
-    LumiWeight(const LumiWeight&);
-
-    std::string getVarExp() const;
-    float getNumXBins() const;
-    unsigned int getXMin() const;
-    unsigned int getXMax() const;
-    std::string getName() const;
-    std::string getTitle() const;
-    std::string getXAxis() const;
-    std::string getYAxis() const;
-
-    TH1D* genHist(std::string key);
+    LumiWeight( std::string xsec_file
+              , std::string num_evt_file
+              , unsigned int sample_num
+              , unsigned int target_lumi
+              );
+    void readXSecFile();
+    void readNumEventFile();
+    double getLumiWeight();
 
   // ---------------------------------------------------------------------------
   private:
-    std::string m_var_exp;
-    unsigned int m_x_num_bins;
-    float m_x_min;
-    float m_x_max;
-    std::string m_name;
-    std::string m_title;
-    std::string m_x_axis;
-    std::string m_y_axis;
-    std::string m_z_axis;
+    bool m_prepped;
+    float m_lumi_weight;
+    unsigned int m_sample_num;
+    unsigned int m_target_lumi;
+    unsigned int m_num_evts;
+    float m_xsec;
+    float m_k_factor;
+    float m_eff;
+
+    std::string m_xsec_file;
+    std::string m_num_evts_file;
 };
-*/
 
 #endif
