@@ -4,6 +4,8 @@
 #include <iostream>
 #include <TH1D.h>
 
+#include "Parser/include/ParseDriver.h"
+
 // =============================================================================
 class LumiWeight
 {
@@ -22,9 +24,9 @@ class LumiWeight
   private:
     bool m_prepped;
     float m_lumi_weight;
-    unsigned int m_sample_num;
-    unsigned int m_target_lumi;
-    unsigned int m_num_evts;
+    int m_sample_num;
+    int m_target_lumi;
+    int m_num_evts;
     float m_xsec;
     float m_k_factor;
     float m_eff;

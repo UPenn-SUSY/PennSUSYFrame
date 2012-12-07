@@ -4,6 +4,8 @@
 // ============================================================================
 #include <sstream>
 
+#include "LumiWeight.h"
+
 // ============================================================================
 namespace Selection
 {
@@ -14,6 +16,7 @@ namespace Selection
   public:
     WeightHandler();
     WeightHandler(const WeightHandler&);
+    ~WeightHandler();
 
     WeightHandler& operator=(const WeightHandler&);
 
@@ -38,7 +41,8 @@ namespace Selection
     void setLocalDoCfWeight(bool);
     void setLocalDoFakeWeight(bool);
 
-    void setNumMcEvents(int);
+    //void setNumMcEvents(int);
+    void setMcChannel(int);
     void setTargetLumi(int);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -51,7 +55,8 @@ namespace Selection
     bool getDoCfWeight() const;
     bool getDoFakeWeight() const;
 
-    int getNumMCEvents() const;
+    //int getNumMCEvents() const;
+    int getMcChannel() const;
     int getTargetLumi() const;
 
   // ---------------------------------------------------------------------------
@@ -65,8 +70,10 @@ namespace Selection
     bool m_do_cf_weight;
     bool m_do_fake_weight;
 
-    int m_num_mc_events;
+    int m_mc_channel;
     int m_target_lumi;
+
+    LumiWeight* m_lumi_weihgt;
   };
 }
 

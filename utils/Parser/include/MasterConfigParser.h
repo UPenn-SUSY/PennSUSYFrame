@@ -28,6 +28,8 @@ class MasterConfigParser : public ParseDriver
     void config();
     Selection::WeightHandler getGlobalWeightHandler();
 
+    int getChannelNum();
+
   // -----------------------------------------------------------------------------
   private:
     void clear();
@@ -41,6 +43,9 @@ class MasterConfigParser : public ParseDriver
     std::vector<std::string> m_in_file_list;
 
     Selection::WeightHandler m_global_weight_handler;
+
+    int m_channel_num;
+    int m_target_lumi;
 };
 
 #endif

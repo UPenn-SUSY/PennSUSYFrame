@@ -69,6 +69,9 @@ void MasterConfigParser::clear()
   m_hist_file_name = "";
   m_in_tree_name = "output";
   m_in_file_list.clear();
+
+  m_channel_num = 0;
+  m_target_lumi = 1;
 }
 
 // -----------------------------------------------------------------------------
@@ -111,12 +114,14 @@ void MasterConfigParser::addLine(std::vector<std::string> split_line)
     m_global_weight_handler.setGlobalDoCfWeight(valueToBool(split_line));
   else if (key.find("fake_weight") != std::string::npos)
     m_global_weight_handler.setGlobalDoFakeWeight(valueToBool(split_line));
-  else if (key.find("num_mc") != std::string::npos)
-    m_global_weight_handler.setNumMcEvents(valueToInt(split_line));
+  else if (key.find("mc_channel") != std::string::npos)
+    m_global_weight_handler.setMcChannel(valueToInt(split_line));
   else if (key.find("target_lumi") != std::string::npos)
     m_global_weight_handler.setTargetLumi(valueToInt(split_line));
   else if (key.find("in_files") != std::string::npos)
     m_in_file_block = true;
+  else if (key.find("channel_num") != std::string::npos)
+    m_channel_num = valueToInt(split_line);
   else
     std::cout << "WARNING! The key \'" << key
               << "\' is invalid. Please check your inputs\n";

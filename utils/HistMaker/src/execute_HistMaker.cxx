@@ -20,6 +20,7 @@ int main(int argc, char** argv)
   }
 
   std::string config_file = argv[1];
+  std::cout << "config file: " << config_file << "\n";
   MasterConfigParser parser(config_file);
   parser.parse();
 

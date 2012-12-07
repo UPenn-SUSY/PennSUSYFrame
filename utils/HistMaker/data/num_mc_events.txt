@@ -29,15 +29,16 @@
 117362 : 293499 # AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau
 
 # ttbar
-117800 : 1799288 # Sherpa_CT10_TtbarLeptLept
-117801 : 599698  # Sherpa_CT10_TtbarLeptTaulept
-117802 : 55000   # Sherpa_CT10_TtbarTauleptTaulept
-117803 : 8500937 # Sherpa_CT10_TtbarLeptHad
-117804 : 1099994 # Sherpa_CT10_TtbarLeptTauhad
-117805 : 1797891 # Sherpa_CT10_TtbarTauleptHad
-117806 : 200000  # Sherpa_CT10_TtbarTauleptTauhad
-117808 : 3199884 # Sherpa_CT10_TtbarHadTauhad
-117809 : 179900  # Sherpa_CT10_TtbarTauhadTauhad
+117800 : 1799288  # Sherpa_CT10_TtbarLeptLept
+117801 : 599698   # Sherpa_CT10_TtbarLeptTaulept
+117802 : 55000    # Sherpa_CT10_TtbarTauleptTaulept
+117803 : 8500937  # Sherpa_CT10_TtbarLeptHad
+117804 : 1099994  # Sherpa_CT10_TtbarLeptTauhad
+117805 : 1797891  # Sherpa_CT10_TtbarTauleptHad
+117806 : 200000   # Sherpa_CT10_TtbarTauleptTauhad
+117808 : 3199884  # Sherpa_CT10_TtbarHadTauhad
+117809 : 179900   # Sherpa_CT10_TtbarTauhadTauhad
+105200 : 14993322 # McAtNloJimmy_CT10_ttbar_LeptonFilter
 
 # W+jet
 147774 : 38419009 # Sherpa_CT10_Wenu

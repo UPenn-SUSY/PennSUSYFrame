@@ -10,8 +10,9 @@ Selection::WeightHandler::WeightHandler() : m_do_mc_event_weight(false)
                                           , m_do_b_tag_weight(false)
                                           , m_do_cf_weight(false)
                                           , m_do_fake_weight(false)
-                                          , m_num_mc_events(1)
-                                          , m_target_lumi(0)
+                                          , m_mc_channel(0)
+                                          , m_target_lumi(1)
+                                          , m_lumi_weihgt(NULL)
 {
   // do nothing
 }
@@ -20,6 +21,16 @@ Selection::WeightHandler::WeightHandler() : m_do_mc_event_weight(false)
 Selection::WeightHandler::WeightHandler(const Selection::WeightHandler& rhs)//:
 {
   *this = rhs;
+}
+
+// -----------------------------------------------------------------------------
+Selection::WeightHandler::~WeightHandler()
+{
+  // std::cout << "destructor\n";
+  // if (m_lumi_weihgt != NULL) {
+  //   std::cout << "deleting lumi weight: " << m_lumi_weihgt << "\n";
+  //   delete m_lumi_weihgt;
+  // }
 }
 
 // -----------------------------------------------------------------------------
@@ -35,8 +46,9 @@ Selection::WeightHandler&
     m_do_cf_weight       = rhs.getDoCfWeight();
     m_do_fake_weight     = rhs.getDoFakeWeight();
 
-    m_num_mc_events = rhs.getNumMCEvents();
-    m_target_lumi   = rhs.getTargetLumi();
+    // m_num_mc_events = rhs.getNumMCEvents();
+    m_mc_channel  = rhs.getMcChannel();
+    m_target_lumi = rhs.getTargetLumi();
 
     return *this;
 }
@@ -54,9 +66,18 @@ std::string Selection::WeightHandler::getWeightString()
     weight_string << " * pile_up_weight";
   }
   if( m_do_lumi_weight ) {
-    weight_string << " * ( (k_factor * eff_times_cross_section"
-                  << " * " << m_target_lumi << ")"
-                  << " / " << m_num_mc_events << ")";
+    if (m_lumi_weihgt == NULL) {
+      // TODO make files configurable
+      m_lumi_weihgt = new LumiWeight( "data/cross_sections.txt"
+                                    , "data/num_mc_events.txt"
+                                    , m_mc_channel
+                                    , m_target_lumi
+                                    );
+    }
+    weight_string << " * ( " << m_lumi_weihgt->getLumiWeight() << ")";
+    // weight_string << " * ( (k_factor * eff_times_cross_section"
+    //               << " * " << m_target_lumi << ")"
+    //               << " / " << m_num_mc_events << ")";
   }
   if( m_do_trigger_weight ) {
     weight_string << " * trigger_weight";
@@ -175,10 +196,16 @@ void Selection::WeightHandler::setLocalDoFakeWeight(bool do_weight)
   m_do_fake_weight = (m_do_fake_weight && do_weight);
 }
 
+// // -----------------------------------------------------------------------------
+// void Selection::WeightHandler::setNumMcEvents(int num_mc_evt)
+// {
+//   m_num_mc_events = num_mc_evt;
+// }
+
 // -----------------------------------------------------------------------------
-void Selection::WeightHandler::setNumMcEvents(int num_mc_evt)
+void Selection::WeightHandler::setMcChannel(int mc_channel)
 {
-  m_num_mc_events = num_mc_evt;
+  m_mc_channel = mc_channel;
 }
 
 // -----------------------------------------------------------------------------
@@ -235,10 +262,16 @@ bool Selection::WeightHandler::getDoFakeWeight() const
   return m_do_fake_weight;
 }
 
+//// -----------------------------------------------------------------------------
+//int Selection::WeightHandler::getNumMCEvents() const
+//{
+//  return m_num_mc_events;
+//}
+
 // -----------------------------------------------------------------------------
-int Selection::WeightHandler::getNumMCEvents() const
+int Selection::WeightHandler::getMcChannel() const
 {
-  return m_num_mc_events;
+  return m_mc_channel;
 }
 
 // -----------------------------------------------------------------------------

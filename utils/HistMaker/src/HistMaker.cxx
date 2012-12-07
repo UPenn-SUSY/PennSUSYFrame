@@ -23,6 +23,8 @@ void HistMaker::addCut( std::string key
                       , Selection::WeightHandler& weight
                       )
 {
+  std::cout << "adding cut: " << key << "\n";
+
   m_keys.push_back(key);
   m_selection[key] = selecton;
   m_weight[key] = weight;
@@ -31,6 +33,8 @@ void HistMaker::addCut( std::string key
 // -----------------------------------------------------------------------------
 void HistMaker::addHist(const HistInfo& hist_info)
 {
+  std::cout << "adding hist: " << hist_info.getName() << "\n";
+
   m_hist_info.push_back(hist_info);
 }
 
