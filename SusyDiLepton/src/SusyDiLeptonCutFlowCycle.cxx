@@ -556,17 +556,17 @@ void SusyDiLeptonCutFlowCycle::fillFakeWeight()
   // model after fake ntuple maker class
   if (m_event->getFlavorChannel() == FLAVOR_NONE) return;
 
-  bool is_electron_0;
-  bool is_electron_1;
+  bool is_electron_0 = 0.;
+  bool is_electron_1 = 0.;
 
-  bool is_tight_0;
-  bool is_tight_1;
+  bool is_tight_0 = 0.;
+  bool is_tight_1 = 0.;
 
-  float pt_0;
-  float pt_1;
+  float pt_0 = 0.;
+  float pt_1 = 0.;
 
-  float eta_0;
-  float eta_1;
+  float eta_0 = 0.;
+  float eta_1 = 0.;
 
 
   if (m_event->getFlavorChannel() == FLAVOR_EE) {
@@ -651,13 +651,15 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_vertices.clear();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  m_truth_match_tool->prep(m_truth_d3pdobject);
+  if (!is_data()) {
+    m_truth_match_tool->prep(m_truth_d3pdobject);
 
-  m_cross_section_sf_tool->clear();
-  m_b_tag_sf_tool->clear();
-  m_pileup_sf_tool->clear();
+    m_cross_section_sf_tool->clear();
+    m_b_tag_sf_tool->clear();
+    m_pileup_sf_tool->clear();
+    m_trigger_reweight_tool->clear();
+  }
   m_charge_flip_sf_tool->clear();
-  m_trigger_reweight_tool->clear();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_event->getEventDesc()->setIsData(is_data());

@@ -6,12 +6,6 @@ STREAM=egamma
 ds_list=( "W_plus_jet.147774.Sherpa_CT10_Wenu"
           "W_plus_jet.147775.Sherpa_CT10_Wmunu"
           "W_plus_jet.147776.Sherpa_CT10_Wtaunu"
-          "Z_plus_jet.128975.Sherpa_CT10_ZeeHeavyJets"
-          "Z_plus_jet.128976.Sherpa_CT10_ZmumuHeavyJets"
-          "Z_plus_jet.128977.Sherpa_CT10_ZtautauHeavyJets"
-          "Z_plus_jet.146820.Sherpa_CT10_ZeeLightJets"
-          "Z_plus_jet.146821.Sherpa_CT10_ZmumuLightJets"
-          "Z_plus_jet.146822.Sherpa_CT10_ZtautauLightJets"
           "Z_plus_jet.147770.Sherpa_CT10_Zee"
           "Z_plus_jet.147771.Sherpa_CT10_Zmumu"
           "Z_plus_jet.147772.Sherpa_CT10_Ztautau"
@@ -118,14 +112,13 @@ ds_list=( "W_plus_jet.147774.Sherpa_CT10_Wenu"
           "single_top.117360.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e"
           "single_top.117361.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_mu"
           "single_top.117362.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau"
-          "single_top.157820.Sherpa_CT10_SingleTop_tLept_qqqq"
-          "single_top.157821.Sherpa_CT10_SingleTop_tTau_qqqq"
-          "single_top.157822.Sherpa_CT10_SingleTop_tbarLept_qqqq"
-          "single_top.157823.Sherpa_CT10_SingleTop_tbarTau_qqqq"
-          "single_top.157823.Sherpa_CT10_SingleTop_tbarTau_qqqq"
-          "single_top.157825.Sherpa_CT10_SingleTop_tLept_W_qqq"
-          "single_top.157827.Sherpa_CT10_SingleTop_tbarHad_W_qqq"
-          "single_top.157828.Sherpa_CT10_SingleTop_tbarLept_W_qqq"
+          # "single_top.157820.Sherpa_CT10_SingleTop_tLept_qqqq"
+          # "single_top.157821.Sherpa_CT10_SingleTop_tTau_qqqq"
+          # "single_top.157822.Sherpa_CT10_SingleTop_tbarLept_qqqq"
+          # "single_top.157823.Sherpa_CT10_SingleTop_tbarTau_qqqq"
+          # "single_top.157825.Sherpa_CT10_SingleTop_tLept_W_qqq"
+          # "single_top.157827.Sherpa_CT10_SingleTop_tbarHad_W_qqq"
+          # "single_top.157828.Sherpa_CT10_SingleTop_tbarLept_W_qqq"
           "ttbar.117800.Sherpa_CT10_TtbarLeptLept"
           "ttbar.117801.Sherpa_CT10_TtbarLeptTaulept"
           "ttbar.117802.Sherpa_CT10_TtbarTauleptTaulept"
@@ -142,4 +135,20 @@ do
   echo '---------------------------------------'
   echo $sample
   ./gen_job_configs.sh --${DATA_MC} --${STREAM} --sample-name $sample
+done
+
+
+ds_list=( "Z_plus_jet.128975.Sherpa_CT10_ZeeHeavyJets"
+          "Z_plus_jet.128976.Sherpa_CT10_ZmumuHeavyJets"
+          "Z_plus_jet.128977.Sherpa_CT10_ZtautauHeavyJets"
+          "Z_plus_jet.146820.Sherpa_CT10_ZeeLightJets"
+          "Z_plus_jet.146821.Sherpa_CT10_ZmumuLightJets"
+          "Z_plus_jet.146822.Sherpa_CT10_ZtautauLightJets"
+        )
+
+for sample in ${ds_list[@]}
+do 
+  echo '---------------------------------------'
+  echo $sample
+  ./gen_job_configs.sh --${DATA_MC} --${STREAM} --af2 --sample-name $sample
 done

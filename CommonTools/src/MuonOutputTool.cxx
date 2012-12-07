@@ -91,12 +91,9 @@ void CommonTools::MuonOutputTool::BeginExecuteEvent( const SInputData&, Double_t
   m_mu_ptcone20.clear();
   m_mu_ptcone30.clear();
   m_mu_ptcone40.clear();
-  m_mu_raw_etcone20.clear();
-  m_mu_raw_etcone30.clear();
-  m_mu_raw_etcone40.clear();
-  m_mu_raw_ptcone20.clear();
-  m_mu_raw_ptcone30.clear();
-  m_mu_raw_ptcone40.clear();
+
+  m_mu_desc.clear();
+
   m_mu_b_layer_hits.clear();
   m_mu_num_pix_hits.clear();
   m_mu_num_sct_hits.clear();
@@ -107,7 +104,13 @@ void CommonTools::MuonOutputTool::BeginExecuteEvent( const SInputData&, Double_t
   m_mu_num_trt_outliers.clear();
   m_mu_num_trt_ht_outliers.clear();
   m_mu_num_mdt_layers.clear();
-  m_mu_desc.clear();
+
+  m_mu_raw_etcone20.clear();
+  m_mu_raw_etcone30.clear();
+  m_mu_raw_etcone40.clear();
+  m_mu_raw_ptcone20.clear();
+  m_mu_raw_ptcone30.clear();
+  m_mu_raw_ptcone40.clear();
 }
 
 // ----------------------------------------------------------------------------

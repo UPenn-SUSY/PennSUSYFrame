@@ -29,19 +29,24 @@ void CommonTools::TruthMatchTool::prep(
   // clear old instance of m_truth_match object
   if (m_truth_match) delete m_truth_match;
 
-  m_truth_match = new RecoTruthMatch( 0.1,
-      truth_obj->mc_channel_number(),
-      truth_obj->mc_n(),
-      const_cast<std::vector<int>* >(truth_obj->mc_barcode()),
-      const_cast<std::vector<int>* >(truth_obj->mc_status()),
-      const_cast<std::vector<int>* >(truth_obj->mc_pdgId()),
-      const_cast<std::vector<std::vector<int> >* >(truth_obj->mc_parents()),
-      const_cast<std::vector<std::vector<int> >* >(truth_obj->mc_children()),
-      const_cast<std::vector<float>* >(truth_obj->mc_pt()),
-      const_cast<std::vector<float>* >(truth_obj->mc_eta()),
-      const_cast<std::vector<float>* >(truth_obj->mc_phi()),
-      const_cast<std::vector<float>* >(truth_obj->mc_m()),
-      0);
+  try {
+    m_truth_match = new RecoTruthMatch( 0.1,
+        truth_obj->mc_channel_number(),
+        truth_obj->mc_n(),
+        const_cast<std::vector<int>* >(truth_obj->mc_barcode()),
+        const_cast<std::vector<int>* >(truth_obj->mc_status()),
+        const_cast<std::vector<int>* >(truth_obj->mc_pdgId()),
+        const_cast<std::vector<std::vector<int> >* >(truth_obj->mc_parents()),
+        const_cast<std::vector<std::vector<int> >* >(truth_obj->mc_children()),
+        const_cast<std::vector<float>* >(truth_obj->mc_pt()),
+        const_cast<std::vector<float>* >(truth_obj->mc_eta()),
+        const_cast<std::vector<float>* >(truth_obj->mc_phi()),
+        const_cast<std::vector<float>* >(truth_obj->mc_m()),
+        0);
+  }
+  catch (...) {
+    throw SError( SError::SkipEvent );
+  }
 
   m_cached = false;
 }
