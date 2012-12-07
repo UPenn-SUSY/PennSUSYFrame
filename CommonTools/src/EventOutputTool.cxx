@@ -11,16 +11,16 @@ CommonTools::EventOutputTool::EventOutputTool( SCycleBase* parent
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do nothing
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::EventOutputTool::~EventOutputTool()
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do nothing
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::EventOutputTool::BeginInputData( const SInputData& )
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   DeclareVariable(m_lbn           , "lbn"         );
   DeclareVariable(m_run_number    , "run_number"  );
@@ -59,7 +59,7 @@ void CommonTools::EventOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_mt2 , "mt2"  );
 
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_t )
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -94,7 +94,7 @@ void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_
   m_mt2   = 0.;
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::EventOutputTool::fillOutput( Event* event
                                              , ElectronContainer& /*electrons*/
                                              , MuonContainer& /*muons*/
@@ -111,7 +111,7 @@ void CommonTools::EventOutputTool::fillOutput( Event* event
   m_run_number   = event->RunNumber();
   m_event_number = event->EventNumber();
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill event description as integer
   m_event_desc_int = event->getEventDesc()->toInt();
   m_sr_helper_int  = event->getSRHelper()->toInt();
@@ -139,7 +139,7 @@ void CommonTools::EventOutputTool::fillOutput( Event* event
   m_mt2  = event->getMt2();
 
 
-//  m_fake_weight = ;
+  m_fake_weight = event->getFakeWeight();
 //  m_fake_weight_min =;
 //  m_fake_weight_max =;
 //

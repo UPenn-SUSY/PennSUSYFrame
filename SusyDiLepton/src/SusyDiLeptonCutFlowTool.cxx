@@ -45,18 +45,6 @@ SusyDiLeptonCutFlowTool::~SusyDiLeptonCutFlowTool()
   // do nothing
 }
 
-// // -----------------------------------------------------------------------------
-// void SusyDiLeptonCutFlowTool::BeginCycleImp() throw( SError )
-// {
-//   // do nothing
-// }
-//
-// // -----------------------------------------------------------------------------
-// void SusyDiLeptonCutFlowTool::EndCycleImp() throw( SError )
-// {
-//   // do nothing
-// }
-
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowTool::BeginInputData( const SInputData& )
     throw( SError )
@@ -99,61 +87,21 @@ void SusyDiLeptonCutFlowTool::getTools()
   m_truth_match_tool = truth_match_tool;
 
   GET_TOOL( hfor_tool
-	  , SelectionTools::HFORTool
-	  , "HFOR"
-	  );
+    , SelectionTools::HFORTool
+    , "HFOR"
+    );
 
   m_hfor_tool = hfor_tool;
 
   GET_TOOL( charge_flip_tool
-	  , CommonTools::ChargeFlipScaleFactorTool
+    , CommonTools::ChargeFlipScaleFactorTool
           , "ChargeFlipSF"
           );
 
   m_charge_flip_sf_tool = charge_flip_tool;
 }
 
-// // -----------------------------------------------------------------------------
-// void SusyDiLeptonCutFlowTool::EndInputDataImp( const SInputData& )
-//     throw( SError )
-// {
-//   m_logger << DEBUG
-//            << "SusyDiLeptonCutFlowTool::EndInputData()"
-//            << SLogger::endmsg;
-//   // do nothing
-// }
-//
-// // -----------------------------------------------------------------------------
-// void SusyDiLeptonCutFlowTool::BeginMasterInputDataImp( const SInputData& )
-//     throw( SError )
-// {
-//   // do nothing
-// }
-//
-// // -----------------------------------------------------------------------------
-// void SusyDiLeptonCutFlowTool::EndMasterInputDataImp( const SInputData& /*id*/ )
-//     throw( SError )
-// {
-//   m_logger << DEBUG
-//            << "EndMasterInputDataImp()"
-//            << SLogger::endmsg;
-//
-//   // do nothing
-// }
-//
-// // -----------------------------------------------------------------------------
-// void SusyDiLeptonCutFlowTool::BeginInputFileImp( const SInputData& )
-//     throw( SError )
-// {
-//   m_logger << DEBUG
-//            << "SusyDiLeptonCutFlowTool::BeginInputFile()"
-//            << SLogger::endmsg;
-//
-//   // do nothing
-// }
-
 // -----------------------------------------------------------------------------
-// bool SusyDiLeptonCutFlowTool::runCutFlow( Event* event,
 bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
     ElectronContainer& electrons,
     MuonContainer&     muons,
@@ -295,7 +243,6 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check HFOR
-  // TODO do proper HFOR cut
   bool pass_hfor = true;
   if(!is_data()) pass_hfor =  m_hfor_tool->passHFOR(mc);
   event->getEventDesc()->setPassHFOR(pass_hfor);
@@ -575,10 +522,10 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
 }
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event
-			      , ElectronContainer& electrons
-			      , MuonContainer& muons
-			      , D3PDReader::MuonTruthD3PDObject* muon_truth
-			      , D3PDReader::TruthD3PDObject* truth)
+            , ElectronContainer& electrons
+            , MuonContainer& muons
+            , D3PDReader::MuonTruthD3PDObject* muon_truth
+            , D3PDReader::TruthD3PDObject* truth)
 {
 
   m_logger << DEBUG
@@ -588,16 +535,18 @@ void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event
   bool is_truth_ss=false;
 
   SIGN_CHANNEL truth_sign_channel = m_charge_flip_sf_tool->getTruthSign(
-					   event->getFlavorChannel(),
-					   electrons.getElectrons(EL_GOOD),
-					   muons.getMuons(MU_GOOD),
-					   truth,
-					   muon_truth,
-					   m_truth_match_tool);
+             event->getFlavorChannel(),
+             electrons.getElectrons(EL_GOOD),
+             muons.getMuons(MU_GOOD),
+             truth,
+             muon_truth,
+             m_truth_match_tool);
 
   event->getEventDesc()->setTruthSignChannel(truth_sign_channel);
 
-  bool cf_candidate = event->getEventDesc()->getSignChannel() == SIGN_OS && event->getEventDesc()->getTruthSignChannel() == SIGN_OS;
+  bool cf_candidate = (  event->getEventDesc()->getSignChannel()      == SIGN_OS
+                      && event->getEventDesc()->getTruthSignChannel() == SIGN_OS
+                      );
 
   event->getEventDesc()->setCFCandidate(cf_candidate);
 }

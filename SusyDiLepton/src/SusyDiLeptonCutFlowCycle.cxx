@@ -133,6 +133,19 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
 
   initD3PDReaders();
   getTools();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // TODO make this configurable
+  // TODO move functionality into tool
+  std::string maindir = "";
+  char *tmparea=getenv("ROOTCOREDIR");
+  if (tmparea != NULL) {
+    maindir = tmparea;
+    maindir = maindir + "/";
+  }
+  std::string fake_file =
+      maindir + "/../SusyMatrixMethod/data/fakeRate_trial9_Nov2.root";
+  m_matrix_method.configure(fake_file, SusyMatrixMethod::PT);
 }
 
 // -----------------------------------------------------------------------------
@@ -522,6 +535,8 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
     m_event->setKFactor(1.);
     m_event->setEffTimesXS(1.);
 
+    m_event->setFakeWeight( 1);
+
     m_event->setChargeFlipWeight( m_charge_flip_sf_tool->getSF(
           m_event->getFlavorChannel(),
           m_electrons.getElectrons(EL_GOOD),
@@ -529,6 +544,86 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
           m_met,
           0));
   }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  fillFakeWeight();
+}
+
+// -----------------------------------------------------------------------------
+void SusyDiLeptonCutFlowCycle::fillFakeWeight()
+{
+  // TODO fill fake weight for event
+  // model after fake ntuple maker class
+  if (m_event->getFlavorChannel() == FLAVOR_NONE) return;
+
+  bool is_electron_0;
+  bool is_electron_1;
+
+  bool is_tight_0;
+  bool is_tight_1;
+
+  float pt_0;
+  float pt_1;
+
+  float eta_0;
+  float eta_1;
+
+
+  if (m_event->getFlavorChannel() == FLAVOR_EE) {
+    std::vector<Electron*> el = m_electrons.getElectrons(EL_GOOD);
+
+    is_electron_0 = true;
+    is_electron_1 = true;
+
+    is_tight_0 = el.at(0)->getElectronDesc()->getPassSignal();
+    is_tight_1 = el.at(1)->getElectronDesc()->getPassSignal();
+
+    pt_0 = el.at(0)->getTlv().Pt();
+    pt_1 = el.at(1)->getTlv().Pt();
+
+    eta_0 = el.at(0)->getTlv().Eta();
+    eta_1 = el.at(1)->getTlv().Eta();
+  }
+  else if (m_event->getFlavorChannel() == FLAVOR_MM) {
+    std::vector<Muon*>     mu = m_muons.getMuons(MU_GOOD);
+
+    is_electron_0 = false;
+    is_electron_1 = false;
+
+    is_tight_0 = mu.at(0)->getMuonDesc()->getPassSignal();
+    is_tight_1 = mu.at(1)->getMuonDesc()->getPassSignal();
+
+    pt_0 = mu.at(0)->getTlv().Pt();
+    pt_1 = mu.at(1)->getTlv().Pt();
+
+    eta_0 = mu.at(0)->getTlv().Eta();
+    eta_1 = mu.at(1)->getTlv().Eta();
+  }
+  else if (m_event->getFlavorChannel() == FLAVOR_EM) {
+    std::vector<Electron*> el = m_electrons.getElectrons(EL_GOOD);
+    std::vector<Muon*>     mu = m_muons.getMuons(MU_GOOD);
+
+    is_electron_0 = true;
+    is_electron_1 = false;
+
+    is_tight_0 = el.at(0)->getElectronDesc()->getPassSignal();
+    is_tight_1 = mu.at(0)->getMuonDesc()->getPassSignal();
+
+    pt_0 = el.at(0)->getTlv().Pt();
+    pt_1 = mu.at(0)->getTlv().Pt();
+
+    eta_0 = el.at(0)->getTlv().Eta();
+    eta_1 = mu.at(0)->getTlv().Eta();
+  }
+
+  // TODO fill for all regions
+  m_event->setFakeWeight( m_matrix_method.getTotalFake( is_tight_0, is_electron_0, pt_0, eta_0
+                                      , is_tight_1, is_electron_1, pt_1, eta_1
+                                      , SusyMatrixMethod::FR_SRNONE
+                                      , m_event->getMetRel()
+                                      , SusyMatrixMethod::SYS_NONE
+                                      )
+                        );
 }
 
 // -----------------------------------------------------------------------------

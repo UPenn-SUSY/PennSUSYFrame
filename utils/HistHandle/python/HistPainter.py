@@ -44,7 +44,7 @@ class HistPainter(object):
         self.canvas = None
         self.ratio_canvas = None
 
-    # ------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def __del__(self):
         print 'deleting hist painter'
         if not self.canvas is None:
@@ -59,7 +59,7 @@ class HistPainter(object):
         Generates a legend based on a list of HistMerger objects
         """
         # TODO add variables for the placement of the legend
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # get list of histograms and labels from the HistMergers passed as inputs
         hist_list = []
         label_list = []
@@ -249,12 +249,12 @@ def flatten(l, level = 0):
 
     return flat_l
 
-# --------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def getTag( num_type   = ho.plain_hist
           , denom_type = ho.plain_hist
           , normalize  = False
           ):
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     tag = '_%s' % ho.typeToString(num_type)
 
     if not denom_type == None:

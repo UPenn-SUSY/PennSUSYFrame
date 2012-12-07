@@ -25,7 +25,7 @@
 #include "CommonTools/include/TopTagTool.h"
 #include "CommonTools/include/TruthMatchTool.h"
 #include "CommonTools/include/ChargeFlipScaleFactorTool.h"
-// 
+
 #include "D3PDObjects/include/MuonTruthD3PDObject.h"
 #include "D3PDObjects/include/TruthD3PDObject.h"
 
@@ -46,13 +46,7 @@ public:
   virtual ~SusyDiLeptonCutFlowTool();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // virtual void BeginCycleImp() throw(SError);
-  // virtual void EndCycleImp()   throw(SError);
   virtual void BeginInputData(      const SInputData&) throw(SError);
-  // virtual void EndInputDataImp(        const SInputData&) throw(SError);
-  // virtual void BeginMasterInputDataImp(const SInputData&) throw(SError);
-  // virtual void EndMasterInputDataImp(  const SInputData&) throw(SError);
-  // virtual void BeginInputFileImp(      const SInputData&) throw(SError);
 
   bool runBasicCutFlow( Event*
                       , ElectronContainer&
@@ -62,7 +56,7 @@ public:
                       , const Trigger*
                       , const TriggerVec*
                       , D3PDReader::MuonTruthD3PDObject*
-		      ,	D3PDReader::TruthD3PDObject*
+                      , D3PDReader::TruthD3PDObject*
                       );
 
   bool runAdvancedCutFlow( Event*
@@ -73,7 +67,7 @@ public:
                          , const Trigger*
                          , const TriggerVec*
                          , D3PDReader::MuonTruthD3PDObject*
-			 , D3PDReader::TruthD3PDObject*
+                         , D3PDReader::TruthD3PDObject*
                          );
 
   // This function computes event variables we only want for good events
@@ -86,11 +80,11 @@ public:
                                 );
 
   void setChargeFlipVariables(Event*
-			      , ElectronContainer&
-			      , MuonContainer&
-			      , D3PDReader::MuonTruthD3PDObject*
-			      , D3PDReader::TruthD3PDObject*
-			      );
+            , ElectronContainer&
+            , MuonContainer&
+            , D3PDReader::MuonTruthD3PDObject*
+            , D3PDReader::TruthD3PDObject*
+            );
 
 // -----------------------------------------------------------------------------
 private:

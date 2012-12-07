@@ -68,6 +68,8 @@
 #include "CommonTools/include/MetOutputTool.h"
 #include "CommonTools/include/VertexOutputTool.h"
 
+#include "SusyMatrixMethod/DiLeptonMatrixMethod.h"
+
 #include "SusyDiLeptonCutFlowTool.h"
 
 /**
@@ -203,6 +205,9 @@ private:
   CommonTools::JetOutputTool*        m_jet_output_tool;
   CommonTools::MetOutputTool*        m_met_output_tool;
   CommonTools::VertexOutputTool*     m_vertex_output_tool;
+
+  SusyMatrixMethod::DiLeptonMatrixMethod m_matrix_method;
+  
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();
 
@@ -222,6 +227,7 @@ private:
   double getLeptonEffWeight();
 
   void fillEventVariables();
+  void fillFakeWeight();
   //void setChargeFlipVariables();
   void fillOutput();
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
