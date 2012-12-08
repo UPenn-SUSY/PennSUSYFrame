@@ -163,7 +163,6 @@ class HistPainter(object):
                     , denom_type       = ho.plain_hist
                     , normalize        = False
                     , canvas_options   = canv_default
-                    , ratio_axis_title = 'ratio'
                     , legend           = False
                     ):
         """
@@ -184,6 +183,9 @@ class HistPainter(object):
                  , canvas_options
                  )
 
+        ratio_axis_title = '%s/%s' % ( self.num_merger.hist_info.name
+                                     , self.denom_merger.hist_info.name
+                                     )
         # make ratio histogram
         self.ratio = self.num_merger.hist_sum.Clone('%s_ratio' % self.name)
         self.ratio.Divide(self.denom_merger.hist_sum)

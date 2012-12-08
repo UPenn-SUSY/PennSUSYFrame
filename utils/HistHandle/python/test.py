@@ -18,10 +18,10 @@ import HistPainter as hp
 
 # ==============================================================================
 if __name__ == '__main__':
-    f_data = ROOT.TFile('/Users/bjackson/work/Susy.00-01-08/utils/HistMaker/data.root')
-    f_mc1 = ROOT.TFile('/Users/bjackson/work/Susy.00-01-08/utils/HistMaker/mc_1.root')
-    f_mc2 = ROOT.TFile('/Users/bjackson/work/Susy.00-01-08/utils/HistMaker/mc_2.root')
-    f_mc3 = ROOT.TFile('/Users/bjackson/work/Susy.00-01-08/utils/HistMaker/mc_3.root')
+    f_data = ROOT.TFile('/Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/data.root')
+    f_mc1 =  ROOT.TFile('/Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/mc_1.root')
+    f_mc2 =  ROOT.TFile('/Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/mc_2.root')
+    f_mc3 =  ROOT.TFile('/Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/mc_3.root')
 
     hi_data = ho.HistInfo('data', 1, 1, 20)
     hi_mc   = ho.HistInfo('mc1' , 2, 2, ROOT.kOpenCircle)
@@ -47,7 +47,9 @@ if __name__ == '__main__':
                            )
 
 
-    hm_data = hh.HistMerger('ee_sig_lep', 'mll', {'data':hh_data}, hi_data)
+    hm_data = hh.HistMerger( 'ee_sig_lep'
+                           , 'mll'
+                           , {'data':hh_data}, hi_data)
     hm_mc   = hh.HistMerger( 'ee_sig_lep', 'mll', { 'mc1':hh_mc1
                                                   , 'mc23':hh_mc23
                                                   }
@@ -71,6 +73,7 @@ if __name__ == '__main__':
                                                , denom_type     = ho.stack_hist
                                                , canvas_options = canv_default
                                                , legend         = True
+                                               , ratio_axis_title = 'Data/MC'
                                                )
     leg = hist_painter.genLegend()
     leg.Draw()
