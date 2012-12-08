@@ -41,8 +41,6 @@ class InputContainer(object):
         hist_handle_dict = {}
         for e in self.entries:
             hist_handle_dict[e.label] = e.genHistHandle(dir_name, hist_name)
-            print hist_handle_dict[e.label]
-            print hist_handle_dict[e.label].hist
         tmp =  hh.HistMerger( dir_name
                             , hist_name
                             , hist_handle_dict
@@ -116,7 +114,6 @@ def processConfigFile(config_file_name):
 if __name__ == '__main__':
     config = parseInputs()
 
-    print config
     hm_num   = config['Numerator'  ].genHistMerger( 'ee_sig_lep', 'mll')
     hm_denom = config['Denominator'].genHistMerger( 'ee_sig_lep', 'mll')
 
