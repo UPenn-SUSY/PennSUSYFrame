@@ -1,0 +1,21 @@
+Workflow:
+
+1) First run over all the D3PDs:
+TODO write documentation for this
+
+2) Generate Histogram files for each sample:
+    - Each MC sample should be kept separate in order to properly do lumi
+      weighting
+    - Move to HistMaker directory
+    - Run HistMaker program using a config file:
+      - ./HistMaker run/CreateHistograms/test_data.config
+
+3) Merge histograms into Data/MC comparison plots:
+    - Move to HistHandle/python directory
+    - Call parse_yaml_config.py on a yml config file:
+      - python parse_yaml_config.py ../../HistMaker/run/PlotHistograms/test_compare_config.yml 
+    - TODO make this a little less awkward in terms of jumping around between
+      directories
+
+4) Run Optimization:
+    - 
