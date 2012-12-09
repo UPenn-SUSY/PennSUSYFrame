@@ -11,21 +11,9 @@ import yaml
 import metaroot
 import ROOT
 
-# realpath() with make your script run, even if you symlink it :)
-cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
-print cmd_folder
-print sys.path
-if cmd_folder not in sys.path:
-    sys.path.insert(0, cmd_folder)
-
-# import __init__ as hh
 import HistHandle as hh
-# import HistObjects as ho
-# import HistPainter as hp
 
-# print hh
-# print hh.Handle
-# ------------------------------------------------------------------------------
+# ==============================================================================
 class InputContainer(object):
     # --------------------------------------------------------------------------
     def __init__( self
@@ -60,7 +48,7 @@ class InputContainer(object):
         tmp.genMergedHist()
         return tmp
 
-# ------------------------------------------------------------------------------
+# ==============================================================================
 class EntryContainer(object):
     # --------------------------------------------------------------------------
     def __init__( self
@@ -93,9 +81,13 @@ class EntryContainer(object):
 
 # ------------------------------------------------------------------------------
 def parseInputs():
+    # TODO do proper parsing so we aren't sensitive to order of inputs
     global_config_file = sys.argv[1]
     config_dict = processConfigFile(global_config_file)
-    return config_dict
+
+    outfile = sys.argv[2]
+
+    return {'config':config_dict, 'outfile':outfile}
 
 # ------------------------------------------------------------------------------
 def interpretEnvVariables(string):

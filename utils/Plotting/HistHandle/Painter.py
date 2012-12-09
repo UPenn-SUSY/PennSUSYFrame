@@ -13,8 +13,6 @@ import rootlogon
 import metaroot
 
 import HistHandle as hh
-# import HistObjects as ho
-# import HistHandle as hh
 
 # ==============================================================================
 canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
@@ -54,14 +52,14 @@ class HistPainter(object):
             self.ratio_canvas.Close()
 
     # --------------------------------------------------------------------------
-    # def gen_legend( self, hist_merger_list = [], name = 'leg', draw_opt = [] ):
     def genLegend( self, name = 'leg'):
         """
         Generates a legend based on a list of HistMerger objects
         """
         # TODO add variables for the placement of the legend
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # get list of histograms and labels from the HistMergers passed as inputs
+        # get list of histograms and labels from the HistMergers passed as
+        # inputs
         hist_list = []
         label_list = []
         for key in self.num_merger.hist_handles:
@@ -417,4 +415,6 @@ def getExtrema(hist_list, log_y = True):
         if not local_max is None:
             extrema.append(local_max)
 
+    if len(extrema) == 0:
+        extrema = [0.01, 0.1]
     return extrema
