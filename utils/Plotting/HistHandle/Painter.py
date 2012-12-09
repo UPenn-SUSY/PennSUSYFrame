@@ -45,7 +45,6 @@ class HistPainter(object):
 
     # --------------------------------------------------------------------------
     def __del__(self):
-        print 'deleting hist painter'
         if not self.canvas is None:
             self.canvas.Close()
         if not self.ratio_canvas is None:
@@ -234,21 +233,6 @@ class HistPainter(object):
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
-
-# ------------------------------------------------------------------------------
-def flatten(l, level = 0):
-    """
-    takes a list of lists, and flattens into a single list
-    """
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    flat_l = []
-    if isinstance(l, list):
-        for e in l:
-            flat_l += flatten(e)
-    else:
-        flat_l = [l]
-
-    return flat_l
 
 # ------------------------------------------------------------------------------
 def getTag( num_type   = hh.Objects.plain_hist

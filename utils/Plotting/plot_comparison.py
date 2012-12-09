@@ -31,6 +31,7 @@ def main():
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     inputs = hh.parse.parseInputs()
     config = inputs['config']
+    file_list = inputs['files']
     out_file_name = inputs['outfile']
 
     # TODO after debugging, switch back to 'create'
@@ -38,14 +39,15 @@ def main():
     out_file = ROOT.TFile(out_file_name, 'RECREATE')
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    dirs = ['ee_sig_lep', 'mm_sig_lep', 'em_sig_lep']
-    hists = ['mll', 'el_0_pt', 'el_1_pt', 'mu_0_pt', 'mu_1_pt']
+    dirs = hh.Helper.get_list_of_dirs(file_list)
+    # hists = ['mll', 'el_0_pt', 'el_1_pt', 'mu_0_pt', 'mu_1_pt']
+    hists = hh.Helper.get_list_of_hists(file_list[0].GetDirectory(dirs[0]))
+    print hists
     for d in dirs:
         out_file.cd()
         out_file.mkdir(d)
         out_file.cd(d)
         for h in hists:
-            print 'd: %s -- h: %s' % (d,h)
             if skipHist(d,h): continue
 
             hm_num   = config['Numerator'  ].genHistMerger(d, h)

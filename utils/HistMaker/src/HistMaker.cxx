@@ -62,6 +62,7 @@ void HistMaker::processEvent()
 // -----------------------------------------------------------------------------
 void HistMaker::writeToFile()
 {
+  // loop though cut directories
   std::vector<std::string>::iterator key_it = m_keys.begin();
   std::vector<std::string>::iterator key_term = m_keys.end();
   for (; key_it != key_term; ++key_it) {
@@ -71,10 +72,16 @@ void HistMaker::writeToFile()
 
     d->cd();
 
-    std::vector<TH1D*>::iterator hist_it = m_hist[*key_it].begin();
-    std::vector<TH1D*>::iterator hist_term = m_hist[*key_it].end();
-    for (; hist_it != hist_term; ++hist_it) {
-      (*hist_it)->Write();
+    // std::vector<TH1D*>::iterator hist_it = m_hist[*key_it].begin();
+    // std::vector<TH1D*>::iterator hist_term = m_hist[*key_it].end();
+    // for (; hist_it != hist_term; ++hist_it) {
+    //   (*hist_it)->Write();
+    // }
+    size_t num_hists = m_hist_info.size();
+    for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+      TH1* tmp_hist = m_hist.at(*key_it).at(hist_it);
+      std::string hist_name = m_hist_info.at(hist_it).getName();
+      tmp_hist->Write(hist_name.c_str());
     }
   }
 }
@@ -91,12 +98,12 @@ void HistMaker::fillHists(std::string key)
   ull_t pass_sr    = m_selection[key].getPassSRWord()->toInt();
 
   std::stringstream ss_pass_event;
-  ss_pass_event << "((event_desc & " << pass_event 
+  ss_pass_event << "((event_desc & " << pass_event
                 << ") == " << pass_event << ") ";
   TCut cut_pass_event = ss_pass_event.str().c_str();
 
   std::stringstream ss_pass_sr;
-  ss_pass_sr << "((sr_helper & " << pass_sr 
+  ss_pass_sr << "((sr_helper & " << pass_sr
              << ") == " << pass_sr << ") ";
   TCut cut_pass_sr = ss_pass_sr.str().c_str();
 

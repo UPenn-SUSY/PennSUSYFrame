@@ -33,7 +33,8 @@ class HistHandle(object):
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.directory = directory
         self.name = hist_name
-        self.hist_name = '%s__%s' % (hist_name, directory)
+        # self.hist_name = '%s__%s' % (hist_name, directory)
+        self.hist_name = hist_name
         self.hist_info = hist_info
 
         # create random string to be used as a unique tag

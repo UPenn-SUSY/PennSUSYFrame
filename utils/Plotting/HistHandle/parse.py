@@ -27,10 +27,20 @@ class InputContainer(object):
             self.entries.append(EntryContainer(e))
 
         self.hist_info = hh.Objects.HistInfo( self.name
-                                    , self.color
-                                    , self.color
-                                    , self.marker_style
-                                    )
+                                            , self.color
+                                            , self.color
+                                            , self.marker_style
+                                            )
+
+    # ------------------------------------------------------------------------------
+    def getInputFileList(self):
+        # input_file_list = {}
+        input_file_list = []
+        for e in self.entries:
+            input_file_list.append(e.file_list)
+            # input_file_list[e.label] = e.file_list
+        # return input_file_list
+        return hh.Helper.flatten(input_file_list)
 
     # --------------------------------------------------------------------------
     def genHistMerger( self
@@ -87,7 +97,10 @@ def parseInputs():
 
     outfile = sys.argv[2]
 
-    return {'config':config_dict, 'outfile':outfile}
+    return { 'config':config_dict['config']
+           , 'files':config_dict['files']
+           , 'outfile':outfile
+           }
 
 # ------------------------------------------------------------------------------
 def interpretEnvVariables(string):
@@ -108,10 +121,17 @@ def processConfigFile(config_file_name):
     config_dict = yaml.load(config_file)
 
     input_containers = {}
+    # input_files = {}
+    input_files = []
     for cd in config_dict:
-        input_containers[cd['class']] = InputContainer(cd)
+        key = cd['class']
+        input_containers[key] = InputContainer(cd)
 
-    return input_containers
+        # input_files[key] = input_containers[key].getInputFileList()
+        input_files.append(input_containers[key].getInputFileList())
+    input_files = hh.Helper.flatten(input_files)
+
+    return {'config':input_containers, 'files':input_files}
 
 # ==============================================================================
 if __name__ == '__main__':
