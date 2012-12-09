@@ -12,8 +12,9 @@ import ROOT
 import rootlogon
 import metaroot
 
-import HistObjects as ho
-import HistPainter as hp
+import HistHandle as hh
+# import HistObjects as ho
+# import HistPainter as hp
 
 # ==============================================================================
 class HistHandle(object):

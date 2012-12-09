@@ -14,4 +14,4 @@ ignore_zeros = object()
 left = object()
 right = object()
 
-import HistHandle, HistObjects, HistPainter, parse_yaml_config
+import Handle, Merger, Objects, Painter, parse, Helper

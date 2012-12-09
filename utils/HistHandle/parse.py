@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import inspect
 import os.path
 import optparse
 import time
@@ -10,10 +11,20 @@ import yaml
 import metaroot
 import ROOT
 
-import HistObjects as ho
-import HistHandle  as hh
-import HistPainter as hp
+# realpath() with make your script run, even if you symlink it :)
+cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
+print cmd_folder
+print sys.path
+if cmd_folder not in sys.path:
+    sys.path.insert(0, cmd_folder)
 
+# import __init__ as hh
+import HistHandle as hh
+# import HistObjects as ho
+# import HistPainter as hp
+
+# print hh
+# print hh.Handle
 # ------------------------------------------------------------------------------
 class InputContainer(object):
     # --------------------------------------------------------------------------
@@ -27,7 +38,7 @@ class InputContainer(object):
         for e in input_dict['entries']:
             self.entries.append(EntryContainer(e))
 
-        self.hist_info = ho.HistInfo( self.name
+        self.hist_info = hh.Objects.HistInfo( self.name
                                     , self.color
                                     , self.color
                                     , self.marker_style
@@ -41,11 +52,11 @@ class InputContainer(object):
         hist_handle_dict = {}
         for e in self.entries:
             hist_handle_dict[e.label] = e.genHistHandle(dir_name, hist_name)
-        tmp =  hh.HistMerger( dir_name
-                            , hist_name
-                            , hist_handle_dict
-                            , self.hist_info
-                            )
+        tmp =  hh.Merger.HistMerger( dir_name
+                                   , hist_name
+                                   , hist_handle_dict
+                                   , self.hist_info
+                                   )
         tmp.genMergedHist()
         return tmp
 
@@ -63,22 +74,22 @@ class EntryContainer(object):
         self.inputs =       entry_dict['inputs']
         self.file_list = [ ROOT.TFile(f) for f in self.inputs ]
 
-        self.hist_info = ho.HistInfo( self.label
-                                    , self.line_color
-                                    , self.fill_color
-                                    , self.marker_style
-                                    )
+        self.hist_info = hh.Objects.HistInfo( self.label
+                                            , self.line_color
+                                            , self.fill_color
+                                            , self.marker_style
+                                            )
 
     # --------------------------------------------------------------------------
     def genHistHandle( self
                      , dir_name
                      , hist_name
                      ):
-        return hh.HistHandle( dir_name
-                            , hist_name
-                            , self.hist_info
-                            , self.file_list
-                            )
+        return hh.Handle.HistHandle( dir_name
+                                   , hist_name
+                                   , self.hist_info
+                                   , self.file_list
+                                   )
 
 # ------------------------------------------------------------------------------
 def parseInputs():
@@ -125,11 +136,11 @@ if __name__ == '__main__':
     canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
 
     print 'Log'
-    pile_test_stack = hist_painter.pileAndRatio( num_type       = ho.plain_hist
-                                               , denom_type     = ho.stack_hist
-                                               , canvas_options = canv_log_y
-                                               , legend         = True
-                                               )
+    pile_test_stack = hist_painter.pileAndRatio(
+            num_type       = hh.Objects.plain_hist,
+            denom_type     = hh.Objects.stack_hist,
+            canvas_options = canv_log_y,
+            legend         = True)
     # pile_test_stack.Print('~/Desktop/test_log.png')
     pile_test_stack.Print('test_log.png')
     pile_test_stack.Close()

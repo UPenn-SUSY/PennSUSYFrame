@@ -12,8 +12,8 @@ TODO write documentation for this
 
 3) Merge histograms into Data/MC comparison plots:
     - Move to HistHandle directory
-    - Call parse_yaml_config.py on a yml config file:
-      - python parse_yaml_config.py ../HistMaker/run/PlotHistograms/test_compare_config.yml 
+    - Call parse.py on a yml config file:
+      - python parse.py ../HistMaker/run/PlotHistograms/test_compare_config.yml 
     - TODO make this a little less awkward in terms of jumping around between
       directories
 

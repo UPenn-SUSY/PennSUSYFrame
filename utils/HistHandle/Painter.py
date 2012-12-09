@@ -12,8 +12,9 @@ import ROOT
 import rootlogon
 import metaroot
 
-import HistObjects as ho
 import HistHandle as hh
+# import HistObjects as ho
+# import HistHandle as hh
 
 # ==============================================================================
 canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
@@ -83,8 +84,8 @@ class HistPainter(object):
 
     # --------------------------------------------------------------------------
     def pile( self
-            , num_type         = ho.plain_hist
-            , denom_type       = ho.plain_hist
+            , num_type         = hh.Objects.plain_hist
+            , denom_type       = hh.Objects.plain_hist
             , normalize        = False
             , canvas_options   = canv_default
             , legend           = False
@@ -94,8 +95,8 @@ class HistPainter(object):
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         if normalize:
-            assert num_type   == ho.plain_hist
-            assert denom_type == ho.plain_hist
+            assert num_type   == hh.Objects.plain_hist
+            assert denom_type == hh.Objects.plain_hist
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # create canvas
@@ -109,14 +110,14 @@ class HistPainter(object):
         draw_opt_list = []
         # get denominator hists
         if not self.denom_merger == None:
-            if denom_type == ho.piled_hist:
+            if denom_type == hh.Objects.piled_hist:
                 for hl in self.denom_merger.hist_list:
                     hist_list.append(hl)
                     draw_opt_list.append('P')
-            elif denom_type == ho.plain_hist:
+            elif denom_type == hh.Objects.plain_hist:
                 hist_list.append(self.denom_merger.hist_sum)
                 draw_opt_list.append('P')
-            elif denom_type == ho.stack_hist:
+            elif denom_type == hh.Objects.stack_hist:
                 # for stacked histograms, we want to add the sum also to get the
                 # min/max right
                 hist_list.append(self.denom_merger.hist_sum)
@@ -127,14 +128,14 @@ class HistPainter(object):
                 draw_opt_list.append('E2')
 
         # get numerator hists
-        if num_type == ho.piled_hist:
+        if num_type == hh.Objects.piled_hist:
             for hl in self.num_merger.hist_list:
                 hist_list.append(hl)
                 draw_opt_list.append('P')
-        elif num_type == ho.plain_hist:
+        elif num_type == hh.Objects.plain_hist:
             hist_list.append(self.num_merger.hist_sum)
             draw_opt_list.append('P')
-        elif num_type == ho.stack_hist:
+        elif num_type == hh.Objects.stack_hist:
             # for stacked histograms, we want to add the sum also to get the
             # min/max right
             hist_list.append(self.num_merger.hist_sum)
@@ -159,8 +160,8 @@ class HistPainter(object):
 
     # --------------------------------------------------------------------------
     def pileAndRatio( self
-                    , num_type         = ho.plain_hist
-                    , denom_type       = ho.plain_hist
+                    , num_type         = hh.Objects.plain_hist
+                    , denom_type       = hh.Objects.plain_hist
                     , normalize        = False
                     , canvas_options   = canv_default
                     , legend           = False
@@ -169,12 +170,12 @@ class HistPainter(object):
         docstring
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        assert not num_type   == ho.piled_hist
-        assert not denom_type == ho.piled_hist
+        assert not num_type   == hh.Objects.piled_hist
+        assert not denom_type == hh.Objects.piled_hist
 
         if normalize:
-            assert num_type   == ho.plain_hist
-            assert denom_type == ho.plain_hist
+            assert num_type   == hh.Objects.plain_hist
+            assert denom_type == hh.Objects.plain_hist
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.pile( num_type
@@ -252,15 +253,15 @@ def flatten(l, level = 0):
     return flat_l
 
 # ------------------------------------------------------------------------------
-def getTag( num_type   = ho.plain_hist
-          , denom_type = ho.plain_hist
+def getTag( num_type   = hh.Objects.plain_hist
+          , denom_type = hh.Objects.plain_hist
           , normalize  = False
           ):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    tag = '_%s' % ho.typeToString(num_type)
+    tag = '_%s' % hh.Objects.typeToString(num_type)
 
     if not denom_type == None:
-        tag += '_%s' % ho.typeToString(denom_type)
+        tag += '_%s' % hh.Objects.typeToString(denom_type)
 
     if normalize:
         tag += '_norm'
