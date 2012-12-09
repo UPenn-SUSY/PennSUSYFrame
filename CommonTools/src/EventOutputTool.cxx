@@ -44,10 +44,7 @@ void CommonTools::EventOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_charge_flip_weight_max , "charge_flip_weight_max" );
   DeclareVariable(m_charge_flip_weight_min , "charge_flip_weight_min" );
 
-
-  if (!is_data()){
-    DeclareVariable(m_mc_channel_number, "mc_channel_number");
-  }
+  DeclareVariable(m_mc_channel_number, "mc_channel_number");
 
   DeclareVariable(m_actual_int_per_crossing , "actual_int_per_crossing" );
   DeclareVariable(m_average_int_per_crossing, "average_int_per_crossing");

@@ -435,6 +435,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
                                                        , m_trigger_vec
                                                        , m_muon_truth_d3pdobject
                                                        , m_truth_d3pdobject
+                                                       , c_is_egamma_stream
                                                        );
   if (!pass_critical_cuts) {
     throw SError( SError::SkipEvent );
@@ -455,7 +456,8 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
                                                      , m_trigger
                                                      , m_trigger_vec
                                                      , m_muon_truth_d3pdobject
-                 , m_truth_d3pdobject
+                                                     , m_truth_d3pdobject
+                                                     , c_is_egamma_stream
                                                      );
   if (!pass_critical_cuts) {
     throw SError( SError::SkipEvent );

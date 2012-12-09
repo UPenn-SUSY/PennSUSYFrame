@@ -57,6 +57,7 @@ public:
                       , const TriggerVec*
                       , D3PDReader::MuonTruthD3PDObject*
                       , D3PDReader::TruthD3PDObject*
+                      , bool is_egamma_stream
                       );
 
   bool runAdvancedCutFlow( Event*
@@ -68,6 +69,7 @@ public:
                          , const TriggerVec*
                          , D3PDReader::MuonTruthD3PDObject*
                          , D3PDReader::TruthD3PDObject*
+                         , bool is_egamma_stream
                          );
 
   // This function computes event variables we only want for good events

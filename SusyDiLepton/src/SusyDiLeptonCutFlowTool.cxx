@@ -110,7 +110,8 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
     const Trigger*           /*trigger*/,
     const TriggerVec*        /*trigger_vec*/,
     D3PDReader::MuonTruthD3PDObject* /*muon_truth_d3pdobject*/,
-    D3PDReader::TruthD3PDObject*     mc)
+    D3PDReader::TruthD3PDObject*     mc,
+    bool is_egamma_stream)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check GRL
@@ -302,6 +303,12 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   }
   event->getEventDesc()->setFlavorChannel(flavor_channel);
 
+  if (is_data()) {
+    if (is_egamma_stream && flavor_channel == FLAVOR_MM)
+      return false;
+    if (!is_egamma_stream && flavor_channel == FLAVOR_EE)
+      return false;
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Reached the end of the cut flow. Return true to signify this event did
@@ -318,7 +325,8 @@ bool SusyDiLeptonCutFlowTool::runAdvancedCutFlow( Event* event,
     const Trigger*     trigger,
     const TriggerVec*  trigger_vec,
     D3PDReader::MuonTruthD3PDObject* muon_truth_d3pdobject,
-    D3PDReader::TruthD3PDObject* /*mc*/)
+    D3PDReader::TruthD3PDObject* /*mc*/,
+    bool is_egamma_stream)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check mll of di-lepton pair
@@ -393,6 +401,13 @@ bool SusyDiLeptonCutFlowTool::runAdvancedCutFlow( Event* event,
                 << std::endl;
     }
     return false;
+  }
+
+  if (is_data()) {
+    if (is_egamma_stream  && event->getPhaseSpace() == PHASE_MM) return false;
+    if (!is_egamma_stream && event->getPhaseSpace() == PHASE_EE) return false;
+    if (is_egamma_stream  && event->getPhaseSpace() == PHASE_ME) return false;
+    if (!is_egamma_stream && event->getPhaseSpace() == PHASE_EM) return false;
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
