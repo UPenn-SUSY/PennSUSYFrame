@@ -304,10 +304,8 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   event->getEventDesc()->setFlavorChannel(flavor_channel);
 
   if (is_data()) {
-    if (is_egamma_stream && flavor_channel == FLAVOR_MM)
-      return false;
-    if (!is_egamma_stream && flavor_channel == FLAVOR_EE)
-      return false;
+    if (is_egamma_stream  && flavor_channel == FLAVOR_MM) return false;
+    if (!is_egamma_stream && flavor_channel == FLAVOR_EE) return false;
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

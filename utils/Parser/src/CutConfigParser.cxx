@@ -126,6 +126,18 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
     m_tmp_pass_event.setMETrigger(valueToBool(split_line));
   else if (key.find("pass_sign") != std::string::npos)
     m_tmp_pass_event.setSignChannel(valueToSign(split_line));
+
+  else if (key.find("pass_sr1") != std::string::npos)
+    m_tmp_pass_event.setSR1(valueToBool(split_line));
+  else if (key.find("pass_sr2") != std::string::npos)
+    m_tmp_pass_event.setSR2(valueToBool(split_line));
+  else if (key.find("pass_sr3") != std::string::npos)
+    m_tmp_pass_event.setSR3(valueToBool(split_line));
+  else if (key.find("pass_sr4a") != std::string::npos)
+    m_tmp_pass_event.setSR4a(valueToBool(split_line));
+  else if (key.find("pass_sr4b") != std::string::npos)
+    m_tmp_pass_event.setSR4b(valueToBool(split_line));
+
   else if (key.find("mc_event_weight") != std::string::npos)
     m_tmp_weight_handler.setLocalDoMcEventWeight(valueToBool(split_line));
   else if (key.find("pile_up_weight") != std::string::npos)
