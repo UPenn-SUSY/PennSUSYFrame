@@ -16,6 +16,7 @@ import parse_yaml_config as parse
 # ------------------------------------------------------------------------------
 def main():
     config_dict = parse.parseInputs()
+
     xml_file_name = config_dict['XmlFileName']
     out_file_name = config_dict['OutputFileName']
     writeConfigXml(config_dict, xml_file_name)

@@ -86,6 +86,7 @@ def processConfigurables(config):
     config['UserConfig']['print_event_info']   = config['PrintEventInfo']
     config['UserConfig']['input_tree_name'] = config['input_tree_name']
     config['UserConfig']['output_tree_name'] = config['output_tree_name']
+    config['UserConfig']['is_egamma_stream'] = config['is_egamma_stream']
 
 # ------------------------------------------------------------------------------
 def getLabel(config_dict):

@@ -17,6 +17,7 @@ CommonTools::TruthMatchTool::TruthMatchTool( SCycleBase* parent
 CommonTools::TruthMatchTool::~TruthMatchTool()
 {
   if (m_truth_match) delete m_truth_match;
+  m_truth_match = NULL;
 }
 
 // -----------------------------------------------------------------------------
@@ -45,6 +46,10 @@ void CommonTools::TruthMatchTool::prep(
         0);
   }
   catch (...) {
+    std::cout << "Error while creating RecoTruthMatch object" << std::endl;
+    m_truth_match = NULL;
+    // if (m_truth_match != NULL)
+    //   delete m_truth_match;
     throw SError( SError::SkipEvent );
   }
 

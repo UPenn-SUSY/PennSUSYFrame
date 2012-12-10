@@ -415,6 +415,9 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
 void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
+  // if ( m_event->RunNumber() != 195847 || m_event->EventNumber() != 8478584) return;
+  // if ( m_event->RunNumber() == 195847 && m_event->EventNumber() == 8478584) return;
+
   m_logger << DEBUG
            << "SusyDiLeptonCutFlowCycle::ExecuteEvent()"
            << "\n\trun number = "   << m_event->RunNumber()
@@ -424,6 +427,8 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   // = Prep event by zeroing out old vent stuff
   prepEvent();
   getObjects();
+
+  // return;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool pass_critical_cuts = m_cut_flow->runBasicCutFlow( m_event
@@ -658,7 +663,13 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is_data()) {
-    m_truth_match_tool->prep(m_truth_d3pdobject);
+    try {
+      m_truth_match_tool->prep(m_truth_d3pdobject);
+    }
+    catch (...) {
+      std::cout << "Exception while prepping m_truth_match_tool" << std::endl;
+      throw SError(SError::SkipEvent);
+    }
 
     m_cross_section_sf_tool->clear();
     m_b_tag_sf_tool->clear();
