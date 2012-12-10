@@ -165,4 +165,3 @@ def flatten(l, level = 0):
         flat_l = [l]
 
     return flat_l
-

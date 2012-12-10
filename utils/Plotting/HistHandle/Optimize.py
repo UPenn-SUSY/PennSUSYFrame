@@ -7,6 +7,7 @@ import time
 import random
 import string
 import math
+import array
 
 import ROOT
 import rootlogon
@@ -89,7 +90,10 @@ class Optimize(object):
     
     # --------------------------------------------------------------------------
     def genAcceptanceCurve(self, h, integral):
-        scale = 1/(h.Integral() + h.GetBinContent(h.GetNbinsX()+1))
+        scale = h.Integral() + h.GetBinContent(h.GetNbinsX()+1)
+        if not scale == 0:
+            scale = 1/scale
+
         acc = integral.Clone('h_%s_acc' % h.GetName())
         acc.Scale(scale)
         return acc
@@ -121,6 +125,37 @@ class Optimize(object):
         for i in xrange(self.significance.GetNbinsX()+2):
             sig = self.getCutSignificance(i)
             self.significance.SetBinContent(i, sig)
+
+    # --------------------------------------------------------------------------
+    def getOptimalCut(self):
+        max_sig = 0
+        cut = None
+        for i in xrange(self.significance.GetXaxis().GetNbins()+2):
+            sig = self.significance.GetBinContent(i)
+            if sig > max_sig:
+                max_sig = sig
+                cut = self.significance.GetXaxis().GetBinCenter(i)
+        self.optimal_cut = {'cut':cut, 'sig':max_sig}
+        return self.optimal_cut
+
+    # --------------------------------------------------------------------------
+    def genCutRegion(self, h):
+        if self.optimal_cut['cut'] == None: return None
+        x1 = self.optimal_cut['cut']
+        x2 = h.GetXaxis().GetXmin()
+        if self.cut_direction == hh.right:
+            x2 = h.GetXaxis().GetXmax()
+
+        y_min = h.GetMinimum()
+        y_max = h.GetMaximum()
+
+        x = [x1, x1, x2, x2]
+        y = [y_min, y_max, y_max, y_min]
+
+        region = ROOT.TPolyLine( 4, array.array('d', x), array.array('d', y))
+        region.SetFillColor(ROOT.kGreen+2)
+        region.SetFillStyle(3199)
+        return region
 
     # --------------------------------------------------------------------------
     def __del__(self):

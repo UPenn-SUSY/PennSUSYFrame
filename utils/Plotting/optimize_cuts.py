@@ -19,8 +19,8 @@ def skipHist(dir_name, hist_name):
   if 'em' in dir_name:
     if 'el_1' in hist_name or 'mu_1' in hist_name:
       return True
-  if not dir_name == 'mm_sig_lep': return True
-  if not hist_name == 'met_rel': return True
+  # if not dir_name == 'mm_sig_lep': return True
+  # if not hist_name == 'met_rel': return True
   return False
 
 # ==============================================================================
@@ -44,7 +44,6 @@ def main():
     dirs = hh.Helper.get_list_of_dirs(file_list)
     # hists = ['mll', 'el_0_pt', 'el_1_pt', 'mu_0_pt', 'mu_1_pt']
     hists = hh.Helper.get_list_of_hists(file_list[0].GetDirectory(dirs[0]))
-    print hists
     for d in dirs:
         out_file.cd()
         out_file.mkdir(d)
@@ -57,42 +56,23 @@ def main():
 
             optimize = hh.Optimize.Optimize( sig = hm_sig
                                            , bkg = hm_bkg
-                                           , cut_direction = hh.right
+                                           #, cut_direction = hh.right
+                                           , cut_direction = hh.left
                                            )
+            print optimize.getOptimalCut()
 
-            canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
-            canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
-
-            c = canv_default.create('sig')
-
-            optimize.sig_hist.Draw()
-            c.Write('%s_sig' % h)
-            optimize.bkg_hist.Draw()
-            c.Write('%s_bkg' % h)
-
-            optimize.sig_acceptance.Draw()
-            c.Write('%s_sig_acceptance' % h)
-            optimize.bkg_acceptance.Draw()
-            c.Write('%s_bkg_acceptance' % h)
-
-            optimize.sig_integral.Draw()
-            c.Write('%s_sig_integral' % h)
-            optimize.bkg_integral.Draw()
-            c.Write('%s_bkg_integral' % h)
-
-            optimize.significance.Draw()
-            c.Write('%s_significance' % h)
-            c.Close()
-
-            # print 'Log'
-            # pile_test_stack = hist_painter.pileAndRatio(
-            #         num_type       = hh.Objects.plain_hist,
-            #         # denom_type     = hh.Objects.stack_hist,
-            #         canvas_options = canv_log_y,
-            #         legend         = True)
-
-            # pile_test_stack.Write(h)
-            # pile_test_stack.Close()
+            painter = hh.Painter.HistPainter( num = hm_sig
+                                            , denom = hm_bkg
+                                            , optimal_cut = optimize
+                                            )
+            print 'Log'
+            pile = painter.pile( num_type       = hh.Objects.plain_hist
+                               , denom_type     = hh.Objects.stack_hist
+                               , canvas_options = hh.canv_log_y
+                               , legend         = True
+                               )
+            pile.Write(h)
+            pile.Close()
 
     out_file.Close()
 

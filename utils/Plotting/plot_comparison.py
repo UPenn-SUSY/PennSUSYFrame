@@ -57,14 +57,11 @@ def main():
                                                  , denom = hm_denom
                                                  )
 
-            canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
-            canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
-
             print 'Log'
             pile_test_stack = hist_painter.pileAndRatio(
                     num_type       = hh.Objects.plain_hist,
                     denom_type     = hh.Objects.stack_hist,
-                    canvas_options = canv_log_y,
+                    canvas_options = hh.canv_log_y,
                     legend         = True)
 
             pile_test_stack.Write(h)

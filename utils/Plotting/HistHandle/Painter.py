@@ -28,13 +28,20 @@ class HistPainter(object):
                 , num
                 , denom = None
                 , name  = None
+                , optimal_cut = None
                 ):
         """
         construtor
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        assert isinstance(num, hh.Merger.HistMerger)
+        assert denom == None or isinstance(denom, hh.Merger.HistMerger)
+        assert optimal_cut == None or isinstance( optimal_cut
+                                                , hh.Optimize.Optimize
+                                                )
         self.num_merger   = num
         self.denom_merger = denom
+        self.optimal_cut  = optimal_cut
 
         self.name = name
         if self.name == None:
@@ -146,6 +153,12 @@ class HistPainter(object):
                                , draw_opt_list = draw_opt_list
                                , canvas_options = canvas_options
                                )
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        if not self.optimal_cut is None:
+            self.cut_region = self.optimal_cut.genCutRegion(hist_list[0])
+            if not self.cut_region is None:
+                self.cut_region.Draw('F')
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         if legend:
