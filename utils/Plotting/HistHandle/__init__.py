@@ -14,4 +14,4 @@ ignore_zeros = object()
 left = object()
 right = object()
 
-import Handle, Merger, Objects, Painter, parse, Helper
+import Handle, Merger, Objects, Painter, parse, Helper, Optimize

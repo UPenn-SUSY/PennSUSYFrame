@@ -138,6 +138,32 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
   else if (key.find("pass_sr4b") != std::string::npos)
     m_tmp_pass_event.setSR4b(valueToBool(split_line));
 
+  else if (key.find("pass_l_jet_veto") != std::string::npos)
+    m_tmp_pass_sr.setPassLJetVeto( valueToBool(split_line));
+
+  else if (key.find("pass_b_jet_veto") != std::string::npos)
+    m_tmp_pass_sr.setPassBJetVeto(valueToBool(split_line));
+  else if (key.find("pass_f_jet_veto") != std::string::npos)
+    m_tmp_pass_sr.setPassFJetVeto(valueToBool(split_line));
+  else if (key.find("pass_2_l_jet") != std::string::npos)
+    m_tmp_pass_sr.setPassSR32LJet(valueToBool(split_line));
+  else if (key.find("pass_z_veto") != std::string::npos)
+    m_tmp_pass_sr.setPassZVeto(valueToBool(split_line));
+  else if (key.find("pass_top_veto") != std::string::npos)
+    m_tmp_pass_sr.setPassTopVeto(valueToBool(split_line));
+  else if (key.find("pass_sr1_met") != std::string::npos)
+    m_tmp_pass_sr.setPassSR1MetRel(valueToBool(split_line));
+  else if (key.find("pass_sr2_met") != std::string::npos)
+    m_tmp_pass_sr.setPassSR2MetRel(valueToBool(split_line));
+  else if (key.find("pass_sr3_met") != std::string::npos)
+    m_tmp_pass_sr.setPassSR3MetRel(valueToBool(split_line));
+  else if (key.find("pass_sr4_met") != std::string::npos)
+    m_tmp_pass_sr.setPassSR4MetRel(valueToBool(split_line));
+  else if (key.find("pass_sr4a_mt2") != std::string::npos)
+    m_tmp_pass_sr.setPassSR4aMt2(valueToBool(split_line));
+  else if (key.find("pass_sr4b_mt2") != std::string::npos)
+    m_tmp_pass_sr.setPassSR4bMt2(valueToBool(split_line));
+
   else if (key.find("mc_event_weight") != std::string::npos)
     m_tmp_weight_handler.setLocalDoMcEventWeight(valueToBool(split_line));
   else if (key.find("pile_up_weight") != std::string::npos)
