@@ -41,38 +41,60 @@ def main():
     out_file = ROOT.TFile(out_file_name, 'RECREATE')
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    bkg_config = config['Background']
+    sig_configs = []
+    for key in config:
+        if 'Signal' in key:
+            sig_configs.append(config[key])
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     dirs = hh.Helper.get_list_of_dirs(file_list)
-    # hists = ['mll', 'el_0_pt', 'el_1_pt', 'mu_0_pt', 'mu_1_pt']
     hists = hh.Helper.get_list_of_hists(file_list[0].GetDirectory(dirs[0]))
+    
+    # loop through cut directories
     for d in dirs:
         out_file.cd()
         out_file.mkdir(d)
-        out_file.cd(d)
+        cut_dir = out_file.GetDirectory(d)
+
+        # loop through hists to be plotted
         for h in hists:
             if skipHist(d,h): continue
 
-            hm_sig = config['Signal'    ].genHistMerger(d, h)
-            hm_bkg = config['Background'].genHistMerger(d, h)
+            hm_bkg = bkg_config.genHistMerger(d, h)
 
-            optimize = hh.Optimize.Optimize( sig = hm_sig
-                                           , bkg = hm_bkg
-                                           #, cut_direction = hh.right
-                                           , cut_direction = hh.left
-                                           )
-            print optimize.getOptimalCut()
+            # loop thought signal grid points
+            for sig_point in sig_configs:
+                # create proper directory
+                sample_dir_name = '%s' % sig_point.name
+                sample_dir = cut_dir.GetDirectory(sample_dir_name)
+                if sample_dir == None:
+                    cut_dir.mkdir(sample_dir_name)
+                    sample_dir = cut_dir.GetDirectory(sample_dir_name)
+                sample_dir.cd()
 
-            painter = hh.Painter.HistPainter( num = hm_sig
-                                            , denom = hm_bkg
-                                            , optimal_cut = optimize
-                                            )
-            print 'Log'
-            pile = painter.pile( num_type       = hh.Objects.plain_hist
-                               , denom_type     = hh.Objects.stack_hist
-                               , canvas_options = hh.canv_log_y
-                               , legend         = True
-                               )
-            pile.Write(h)
-            pile.Close()
+                # get signal HistMerger object
+                hm_sig = sig_point.genHistMerger(d,h)
+
+                # do optimization
+                optimize = hh.Optimize.Optimize( sig = hm_sig
+                                               , bkg = hm_bkg
+                                               #, cut_direction = hh.right
+                                               , cut_direction = hh.left
+                                               )
+                # print optimize.getOptimalCut()
+
+                painter = hh.Painter.HistPainter( num = hm_sig
+                                                , denom = hm_bkg
+                                                , optimal_cut = optimize
+                                                )
+                print 'Log'
+                pile = painter.pile( num_type       = hh.Objects.plain_hist
+                                , denom_type     = hh.Objects.stack_hist
+                                , canvas_options = hh.canv_log_y
+                                , legend         = True
+                                )
+                pile.Write(h)
+                pile.Close()
 
     out_file.Close()
 

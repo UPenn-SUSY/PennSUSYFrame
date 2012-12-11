@@ -140,7 +140,6 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
 
   else if (key.find("pass_l_jet_veto") != std::string::npos)
     m_tmp_pass_sr.setPassLJetVeto( valueToBool(split_line));
-
   else if (key.find("pass_b_jet_veto") != std::string::npos)
     m_tmp_pass_sr.setPassBJetVeto(valueToBool(split_line));
   else if (key.find("pass_f_jet_veto") != std::string::npos)

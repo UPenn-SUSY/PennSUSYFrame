@@ -40,7 +40,6 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     dirs = hh.Helper.get_list_of_dirs(file_list)
-    # hists = ['mll', 'el_0_pt', 'el_1_pt', 'mu_0_pt', 'mu_1_pt']
     hists = hh.Helper.get_list_of_hists(file_list[0].GetDirectory(dirs[0]))
     print hists
     for d in dirs:

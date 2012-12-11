@@ -63,6 +63,9 @@ class Optimize(object):
 
         self.genSignificanceCurves()
 
+        self.optimal_cut = None
+        self.getOptimalCut()
+
     # --------------------------------------------------------------------------
     def genIntegralCurve(self, h):
         assert isinstance(h, ROOT.TH1)
@@ -128,22 +131,23 @@ class Optimize(object):
 
     # --------------------------------------------------------------------------
     def getOptimalCut(self):
-        max_sig = 0
-        cut = None
-        for i in xrange(self.significance.GetXaxis().GetNbins()+2):
-            sig = self.significance.GetBinContent(i)
-            if sig > max_sig:
-                max_sig = sig
-                cut = self.significance.GetXaxis().GetBinCenter(i)
-        self.optimal_cut = {'cut':cut, 'sig':max_sig}
+        if self.optimal_cut is not None:
+            max_sig = 0
+            cut = None
+            for i in xrange(self.significance.GetXaxis().GetNbins()+2):
+                sig = self.significance.GetBinContent(i)
+                if sig > max_sig:
+                    max_sig = sig
+                    cut = self.significance.GetXaxis().GetBinCenter(i)
+            self.optimal_cut = {'cut':cut, 'sig':max_sig}
         return self.optimal_cut
 
     # --------------------------------------------------------------------------
     def genCutRegion(self, h):
-        if self.optimal_cut['cut'] == None: return None
+        if self.optimal_cut == None: return None
         x1 = self.optimal_cut['cut']
         x2 = h.GetXaxis().GetXmin()
-        if self.cut_direction == hh.right:
+        if self.cut_direction == hh.left:
             x2 = h.GetXaxis().GetXmax()
 
         y_min = h.GetMinimum()
