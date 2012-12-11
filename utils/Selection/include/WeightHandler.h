@@ -73,7 +73,8 @@ namespace Selection
     int m_mc_channel;
     int m_target_lumi;
 
-    LumiWeight* m_lumi_weihgt;
+    LumiWeight* m_lumi_weight;
+    bool m_prepped;
   };
 }
 

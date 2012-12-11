@@ -14,6 +14,7 @@ LumiWeight::LumiWeight( std::string xsec_file
                       , m_xsec_file(xsec_file)
                       , m_num_evts_file(num_evt_file)
 {
+  std::cout << "LumiWeight()" << std::endl;
   readXSecFile();
   readNumEventFile();
 }
@@ -21,6 +22,8 @@ LumiWeight::LumiWeight( std::string xsec_file
 // -----------------------------------------------------------------------------
 void LumiWeight::readXSecFile()
 {
+  std::cout << "readXSecFile()" << std::endl;
+
   std::fstream file(m_xsec_file.c_str());
   bool ds_found = false;
 
@@ -39,11 +42,14 @@ void LumiWeight::readXSecFile()
 
       if (ParseDriver::stringToInt(split_line.at(0)) == m_sample_num) {
         ds_found = true;
+        std::cout << "Found this data set" << std::endl;
         m_xsec     = ParseDriver::stringToFloat(split_line.at(2));
         m_k_factor = ParseDriver::stringToFloat(split_line.at(3));
         m_eff      = ParseDriver::stringToFloat(split_line.at(4));
       }
     }
+    if (!ds_found)
+      std::cout << "CANNOT FIND THIS DATASET!" << std::endl;
 
     file.close();
   }
