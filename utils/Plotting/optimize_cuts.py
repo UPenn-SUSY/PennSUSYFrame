@@ -4,6 +4,10 @@ import ROOT
 import HistHandle as hh
 import metaroot
 
+# ------------------------------------------------------------------------------
+# fixed_cut_values
+fixed_met_rel = [0, 5, 10, 15, 20, 30, 40, 50]
+
 # -----------------------------------------------------------------------------
 def skipHist(dir_name, hist_name):
   """
@@ -83,7 +87,7 @@ def main():
             # loop thought signal grid points
             for sig_point in sig_configs:
                 # create proper directory
-                sample_dir_name = '%s' % sig_point.name
+                sample_dir_name = '%s-%d_%d' % (sig_point.name, hh.Helper.getCharginoMass(sig_point.name), hh.Helper.getNeutralinoMass(sig_point.name))
                 sample_dir = cut_dir.GetDirectory(sample_dir_name)
                 if sample_dir == None:
                     cut_dir.mkdir(sample_dir_name)
@@ -99,6 +103,9 @@ def main():
                     optimize = hh.Optimize.Optimize( sig = hm_sig
                                                    , bkg = hm_bkg
                                                    , cut_direction = cut_direction
+                                                   #, bkg_uncertainty = 0.20
+                                                   #, bkg_uncertainty = 0.30
+                                                   , bkg_uncertainty = 0.40
                                                    )
 
                     optimal_cut = optimize.getOptimalCut()
@@ -107,6 +114,12 @@ def main():
                         map_entries.append( { 'point_name':sample_dir_name
                                             , 'significance':optimal_cut['sig']
                                             , 'cut_value':optimal_cut['cut']
+                                            } )
+                    else:
+                        print 'adding just the point to map'
+                        map_entries.append( { 'point_name':sample_dir_name
+                                            , 'significance':-1
+                                            , 'cut_value':-1
                                             } )
 
                 # Draw to canvas and print to file
@@ -132,7 +145,17 @@ def main():
                     sig_plot['canvas'].Write('%s_zn' % h)
                     sig_plot['canvas'].Close()
 
-            print map_entries
+            if len(map_entries) > 0:
+                cut_dir.cd()
+                cut_dir.mkdir('maps/scan')
+                cut_dir.cd('maps/scan')
+                print 'writing maps to file'
+                maps = hh.Painter.draw2DMaps(map_entries)
+                maps['c_sig'].Write()
+                maps['c_cut'].Write()
+                maps['c_sig'].Close()
+                maps['c_cut'].Close()
+
     out_file.Close()
 
 # ==============================================================================

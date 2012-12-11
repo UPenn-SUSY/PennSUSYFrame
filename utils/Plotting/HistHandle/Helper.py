@@ -166,3 +166,100 @@ def flatten(l, level = 0):
         flat_l = [l]
 
     return flat_l
+
+# ------------------------------------------------------------------------------
+def getNeutralinoMass(sample_name):
+    chargino_masses = { 'simplifiedModel_wA_slep_noWcascade_5':  112.5
+                      , 'simplifiedModel_wA_slep_noWcascade_7':  130.0
+                      , 'simplifiedModel_wA_slep_noWcascade_8':  155.0
+                      , 'simplifiedModel_wA_slep_noWcascade_10': 150.0
+                      , 'simplifiedModel_wA_slep_noWcascade_11': 175.0
+                      , 'simplifiedModel_wA_slep_noWcascade_13': 175.0
+                      , 'simplifiedModel_wA_slep_noWcascade_14': 200.0
+                      , 'simplifiedModel_wA_slep_noWcascade_15': 250.0
+                      , 'simplifiedModel_wA_slep_noWcascade_17': 225.0
+                      , 'simplifiedModel_wA_slep_noWcascade_18': 250.0
+                      , 'simplifiedModel_wA_slep_noWcascade_19': 300.0
+                      , 'simplifiedModel_wA_slep_noWcascade_20': 350.0
+                      , 'simplifiedModel_wA_slep_noWcascade_22': 300.0
+                      , 'simplifiedModel_wA_slep_noWcascade_23': 325.0
+                      , 'simplifiedModel_wA_slep_noWcascade_24': 375.0
+                      , 'simplifiedModel_wA_slep_noWcascade_25': 425.0
+                      , 'simplifiedModel_wA_slep_noWcascade_26': 500.0
+                      , 'simplifiedModel_wA_slep_noWcascade_28': 425.0
+                      , 'simplifiedModel_wA_slep_noWcascade_29': 450.0
+                      , 'simplifiedModel_wA_slep_noWcascade_30': 500.0
+                      , 'simplifiedModel_wA_slep_noWcascade_32': 550.0
+                      , 'simplifiedModel_wA_slep_noWcascade_35': 625.0
+                      , 'simplifiedModel_wA_slep_noWcascade_38': 750.0
+                      , 'simplifiedModel_wA_slep_noWcascade_39': 117.5
+                      , 'simplifiedModel_wA_slep_noWcascade_40': 142.5
+                      , 'simplifiedModel_wA_slep_noWcascade_41': 192.5
+                      , 'simplifiedModel_wA_slep_noWcascade_42': 267.5
+                      , 'simplifiedModel_wA_slep_noWcascade_43': 392.5
+                      , 'simplifiedModel_wA_slep_noWcascade_44': 517.5
+                      , 'simplifiedModel_wA_slep_noWcascade_45': 550.0
+                      , 'simplifiedModel_wA_slep_noWcascade_46': 575.0
+                      , 'simplifiedModel_wA_slep_noWcascade_47': 625.0
+                      , 'simplifiedModel_wA_slep_noWcascade_48': 675.0
+                      , 'simplifiedModel_wA_slep_noWcascade_49': 750.0
+                      , 'simplifiedModel_wA_slep_noWcascade_50': 642.5
+                      , 'simplifiedModel_wA_slep_noWcascade_51': 675.0
+                      , 'simplifiedModel_wA_slep_noWcascade_52': 700.0
+                      , 'simplifiedModel_wA_slep_noWcascade_53': 750.0
+                      }
+    test = sample_name
+    if '-' in test: test = test[:test.find('-')]
+    print sample_name
+    print test
+    assert test in chargino_masses
+    return chargino_masses[test]
+
+# ------------------------------------------------------------------------------
+def getCharginoMass(sample_name):
+    neutralino_masses = { 'simplifiedModel_wA_slep_noWcascade_5':   12.5
+                        , 'simplifiedModel_wA_slep_noWcascade_7':   30.0
+                        , 'simplifiedModel_wA_slep_noWcascade_8':    5.0
+                        , 'simplifiedModel_wA_slep_noWcascade_10':  50.0
+                        , 'simplifiedModel_wA_slep_noWcascade_11':  25.0
+                        , 'simplifiedModel_wA_slep_noWcascade_13':  75.0
+                        , 'simplifiedModel_wA_slep_noWcascade_14':  50.0
+                        , 'simplifiedModel_wA_slep_noWcascade_15':   0.0
+                        , 'simplifiedModel_wA_slep_noWcascade_17': 125.0
+                        , 'simplifiedModel_wA_slep_noWcascade_18': 100.0
+                        , 'simplifiedModel_wA_slep_noWcascade_19':  50.0
+                        , 'simplifiedModel_wA_slep_noWcascade_20':   0.0
+                        , 'simplifiedModel_wA_slep_noWcascade_22': 200.0
+                        , 'simplifiedModel_wA_slep_noWcascade_23': 175.0
+                        , 'simplifiedModel_wA_slep_noWcascade_24': 125.0
+                        , 'simplifiedModel_wA_slep_noWcascade_25':  75.0
+                        , 'simplifiedModel_wA_slep_noWcascade_26':   0.0
+                        , 'simplifiedModel_wA_slep_noWcascade_28': 325.0
+                        , 'simplifiedModel_wA_slep_noWcascade_29': 300.0
+                        , 'simplifiedModel_wA_slep_noWcascade_30': 250.0
+                        , 'simplifiedModel_wA_slep_noWcascade_32': 200.0
+                        , 'simplifiedModel_wA_slep_noWcascade_35': 125.0
+                        , 'simplifiedModel_wA_slep_noWcascade_38':   0.0
+                        , 'simplifiedModel_wA_slep_noWcascade_39':  82.5
+                        , 'simplifiedModel_wA_slep_noWcascade_40': 107.5
+                        , 'simplifiedModel_wA_slep_noWcascade_41': 157.5
+                        , 'simplifiedModel_wA_slep_noWcascade_42': 232.5
+                        , 'simplifiedModel_wA_slep_noWcascade_43': 357.5
+                        , 'simplifiedModel_wA_slep_noWcascade_44': 482.5
+                        , 'simplifiedModel_wA_slep_noWcascade_45': 450.0
+                        , 'simplifiedModel_wA_slep_noWcascade_46': 425.0
+                        , 'simplifiedModel_wA_slep_noWcascade_47': 375.0
+                        , 'simplifiedModel_wA_slep_noWcascade_48': 325.0
+                        , 'simplifiedModel_wA_slep_noWcascade_49': 250.0
+                        , 'simplifiedModel_wA_slep_noWcascade_50': 607.5
+                        , 'simplifiedModel_wA_slep_noWcascade_51': 575.0
+                        , 'simplifiedModel_wA_slep_noWcascade_52': 550.0
+                        , 'simplifiedModel_wA_slep_noWcascade_53': 500.0
+                        }
+    test = sample_name
+    if '-' in test: test = test[:test.find('-')]
+    print sample_name
+    print test
+    assert test in neutralino_masses
+    return neutralino_masses[test]
+

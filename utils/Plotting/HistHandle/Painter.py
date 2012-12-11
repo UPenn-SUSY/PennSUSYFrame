@@ -7,6 +7,7 @@ import time
 import random
 import string
 import math
+import array
 
 import ROOT
 import rootlogon
@@ -415,3 +416,132 @@ def getExtrema(hist_list, log_y = True):
     if len(extrema) == 0:
         extrema = [0.01, 0.1]
     return extrema
+
+# ------------------------------------------------------------------------------
+def draw2DMaps(map_array, contour_levels = [1.64]):
+    # structure of elemets in map array are:
+    # {'point_name':str, 'significance':float, 'cut_value':float}
+    print map_array
+    x_grid_points     = []
+    y_grid_points     = []
+    x_points     = []
+    y_points     = []
+    significance = []
+    cut_values   = []
+
+    for ma in map_array:
+        x_grid_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
+        y_grid_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
+
+        if ma['significance'] is not None:
+            x_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
+            y_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
+            significance.append(ma['significance'])
+            cut_values.append(ma['cut_value'])
+
+    # set axis titles
+    x_axis = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
+    y_axis = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
+    sig_title = 'significance ; %s ; %s' % (x_axis, y_axis)
+    cut_title = 'cut value ; %s ; %s' % (x_axis, y_axis)
+
+    print 'h_sig_map'
+    print sig_title
+    print len(map_array)
+    print x_points
+    print array.array('d', x_points)
+    print y_points
+    print array.array('d', y_points)
+    print significance
+    print array.array('d', significance)
+
+    grid_points = ROOT.TGraph( len(map_array)
+                             , array.array('d', x_grid_points)
+                             , array.array('d', y_grid_points)
+                             )
+    grid_points.SetMarkerStyle(20)
+    sig_graph = ROOT.TGraph2D( 'h_sig_map'
+                             , sig_title
+                             , len(x_points)
+                             , array.array('d', x_points)
+                             , array.array('d', y_points)
+                             , array.array('d', significance)
+                             )
+
+    cut_graph = ROOT.TGraph2D( 'h_cut_map'
+                             , cut_title
+                             , len(x_points)
+                             , array.array('d', x_points)
+                             , array.array('d', y_points)
+                             , array.array('d', cut_values)
+                             )
+
+    sig_graph.SetMinimum(0)
+    cut_graph.SetMinimum(0)
+
+    # get contour lines frokm significance map
+    contour_lines = getContourLines( sig_graph
+                                   , contour_levels
+                                   , [2]*len(contour_levels)
+                                   )
+
+    c_sig = hh.canv_opt_2d.create('c_sig_map')
+    sig_graph.Draw('COLZ')
+    grid_points.Draw('PSAME')
+    for cl in contour_lines:
+        cl.Draw('SAME')
+
+    c_cut = hh.canv_opt_2d.create('c_cut_map')
+    cut_graph.Draw('COLZ')
+    grid_points.Draw('PSAME')
+    for cl in contour_lines:
+        cl.Draw('SAME')
+
+    return { 'h_sig':sig_graph
+           , 'h_cut':cut_graph
+           , 'c_sig':c_sig
+           , 'c_cut':c_cut
+           , 'contour':contour_lines
+           , 'grid':grid_points
+           }
+
+# -----------------------------------------------------------------------------
+def getContourLines( plot
+                   , contour_levels = [0.05]
+                   , contour_colors = [1]
+                   ):
+    """
+    docstring
+    """
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # check type of plot and get temp histogram
+    if isinstance(plot, ROOT.TH2):
+        h = plot.Clone('hist_temp')
+    elif isinstance(plot, ROOT.TGraph2D):
+        h = plot.GetHistogram()
+
+    # add contour levels to temp histogram
+    h.SetContour(len(contour_levels), array.array('d', contour_levels))
+
+    # draw temp histogram to canvas and update to get contours
+    c = ROOT.TCanvas('c_temp')
+    h.Draw('CONT Z LIST')
+    c.Update()
+
+    # list to store the contour graphs which are created and will be returned
+    list_of_contour_graphs = []
+    contours = ROOT.gROOT.GetListOfSpecials().FindObject('contours')
+    for i in xrange(contours.GetSize()):
+        this_contour = contours.At(i)
+        for j in xrange(this_contour.GetSize()):
+            curve = this_contour.At(j)
+            cv = curve.Clone('%s_cv_%d_%d' % (plot.GetName(),i,j))
+
+            cv.SetLineColor(contour_colors[i])
+            cv.SetLineWidth(3)
+
+            list_of_contour_graphs.append(cv)
+    c.Close()
+    return list_of_contour_graphs
+
+

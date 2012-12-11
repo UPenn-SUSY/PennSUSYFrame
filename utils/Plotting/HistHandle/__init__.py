@@ -18,5 +18,9 @@ right = object()
 
 canv_linear = metaroot.hist.CanvasOptions(width=800, height=600)
 canv_log_y  = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
+canv_opt_2d = metaroot.hist.CanvasOptions( width=800
+                                         , height=600
+                                         , right_margin=10
+                                         )
 
 import Handle, Merger, Objects, Painter, parse, Helper, Optimize

@@ -78,7 +78,10 @@ class Optimize(object):
         x_min -= bin_width/2.
         x_max -= bin_width/2.
         integral = ROOT.TH1F( 'h_%s_int' % h.GetName()
-                            , '%s -- integral' % h.GetName()
+                            , '%s -- integral;%s;%s' % ( h.GetName()
+                                                       , h.GetXaxis().GetTitle()
+                                                       , h.GetYaxis().GetTitle()
+                                                       )
                             , x_bin, x_min, x_max
                             )
         for i in xrange(x_bin):
