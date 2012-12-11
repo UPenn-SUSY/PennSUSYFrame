@@ -47,11 +47,24 @@ def main():
         if 'Signal' in key:
             sig_configs.append(config[key])
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    dirs = hh.Helper.get_list_of_dirs(file_list)
+    dirs  = hh.Helper.get_list_of_dirs(file_list)
     hists = hh.Helper.get_list_of_hists(file_list[0].GetDirectory(dirs[0]))
-    
+
     # loop through cut directories
     for d in dirs:
+        # select cut to optimize if any
+        cut_to_scan   = None
+        cut_direction = None
+        if not d.find('.') == -1:
+            cut_to_scan = d[ d.find('.')+1:d.rfind('.')]
+            cut_direction = d[ d.rfind('.')+1:]
+            if cut_direction == 'left':  cut_direction = hh.left
+            if cut_direction == 'right': cut_direction = hh.right
+            assert cut_direction == hh.left or cut_direction == hh.right
+            #tmp
+            if cut_to_scan[-3:] == '_et': cut_to_scan = cut_to_scan[:-3]
+
+        # made directory structure
         out_file.cd()
         out_file.mkdir(d)
         cut_dir = out_file.GetDirectory(d)
@@ -60,6 +73,11 @@ def main():
         for h in hists:
             if skipHist(d,h): continue
 
+            # structure of each element is:
+            # {'point_name':str, 'significance':float, 'cut_value':float}
+            map_entries = []
+
+            # get background HistMerger only once per hist/cut combination
             hm_bkg = bkg_config.genHistMerger(d, h)
 
             # loop thought signal grid points
@@ -75,27 +93,46 @@ def main():
                 # get signal HistMerger object
                 hm_sig = sig_point.genHistMerger(d,h)
 
-                # do optimization
-                optimize = hh.Optimize.Optimize( sig = hm_sig
-                                               , bkg = hm_bkg
-                                               #, cut_direction = hh.right
-                                               , cut_direction = hh.left
-                                               )
-                # print optimize.getOptimalCut()
+                # do optimization if specified
+                optimize = None
+                if cut_to_scan == h:
+                    optimize = hh.Optimize.Optimize( sig = hm_sig
+                                                   , bkg = hm_bkg
+                                                   , cut_direction = cut_direction
+                                                   )
 
+                    optimal_cut = optimize.getOptimalCut()
+                    if optimal_cut is not None:
+                        print 'adding cut to map'
+                        map_entries.append( { 'point_name':sample_dir_name
+                                            , 'significance':optimal_cut['sig']
+                                            , 'cut_value':optimal_cut['cut']
+                                            } )
+
+                # Draw to canvas and print to file
                 painter = hh.Painter.HistPainter( num = hm_sig
                                                 , denom = hm_bkg
                                                 , optimal_cut = optimize
                                                 )
-                print 'Log'
                 pile = painter.pile( num_type       = hh.Objects.plain_hist
-                                , denom_type     = hh.Objects.stack_hist
-                                , canvas_options = hh.canv_log_y
-                                , legend         = True
-                                )
+                                   , denom_type     = hh.Objects.stack_hist
+                                   , canvas_options = hh.canv_log_y
+                                   , legend         = True
+                                   )
                 pile.Write(h)
                 pile.Close()
 
+                # if cut specified, print details to file
+                if cut_to_scan == h:
+                    detail_dir_name = '%s_details' % h
+                    sample_dir.mkdir(detail_dir_name)
+                    sample_dir.cd(detail_dir_name)
+
+                    sig_plot = optimize.drawSignificanceCanvas()
+                    sig_plot['canvas'].Write('%s_zn' % h)
+                    sig_plot['canvas'].Close()
+
+            print map_entries
     out_file.Close()
 
 # ==============================================================================

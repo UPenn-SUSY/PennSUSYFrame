@@ -127,8 +127,8 @@ def processConfigFile(config_file_name):
         key = cd['class']
         input_containers[key] = InputContainer(cd)
 
-        # input_files[key] = input_containers[key].getInputFileList()
         input_files.append(input_containers[key].getInputFileList())
+
     input_files = hh.Helper.flatten(input_files)
 
     return {'config':input_containers, 'files':input_files}
@@ -147,7 +147,6 @@ if __name__ == '__main__':
     canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
     canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
 
-    print 'Log'
     pile_test_stack = hist_painter.pileAndRatio(
             num_type       = hh.Objects.plain_hist,
             denom_type     = hh.Objects.stack_hist,

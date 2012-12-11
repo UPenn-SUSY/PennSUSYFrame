@@ -51,6 +51,7 @@ def get_list_of_dirs(d):
     if not isinstance(d, list): d = [d]
 
     key_list_ref = None
+    print d
     for f in d:
         print 'Checking key list in file: %s' % f.GetName()
         key_list_test = set(get_list_of_keys(f))
@@ -58,6 +59,7 @@ def get_list_of_dirs(d):
             key_list_ref = key_list_test
         assert key_list_test == key_list_ref
     print '\nAll input files have the same directory structure!\n'
+    print key_list_ref
 
     return list(key_list_ref)
 
@@ -95,8 +97,7 @@ def check_structure(num_dicts, denom_dicts):
     ROOT.gDirectory.ls()
 
     for d in denom_dicts:
-        assert get_list_of_dirs(d) == ref_dirs
-
+        assert get_list_of_dirs(d) == ref_dirs 
     print '----------------------------------------'
     print 'after checking denom dirs'
     ROOT.gDirectory.ls()
