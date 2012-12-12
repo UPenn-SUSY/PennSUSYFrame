@@ -209,7 +209,7 @@ class HistPainter(object):
                                                 )
                               )
 
-        ratio_canvas_options = canvas_options
+        ratio_canvas_options = hh.canv_linear
         ratio_canvas_options.log_y = False
         ratio_canvas = pileHists( [self.ratio]
                                 , tag
