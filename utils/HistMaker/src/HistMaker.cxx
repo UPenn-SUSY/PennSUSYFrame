@@ -125,6 +125,8 @@ void HistMaker::fillHists(std::string key)
                           + hist_it->getName() + "__" + key
                           );
 
+    std::cout << "var_exp: " << var_exp << "\n";
+    std::cout << "full_selection: " << full_selection << "\n";
     fChain->Draw(var_exp.c_str(), full_selection, "goff");
 
     m_hist[key].push_back(tmp_hist);

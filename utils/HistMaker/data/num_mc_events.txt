@@ -46,12 +46,12 @@
 147776 : 6849482  # Sherpa_CT10_Wtaunu
 
 # Z+jet
-128975 : 1 # Sherpa_CT10_ZeeHeavyJets
-128976 : 1 # Sherpa_CT10_ZmumuHeavyJets
-128977 : 1 # Sherpa_CT10_ZtautauHeavyJets
-146820 : 1 # Sherpa_CT10_ZeeLightJets
-146821 : 1 # Sherpa_CT10_ZmumuLightJets
-146822 : 1 # Sherpa_CT10_ZtautauLightJets
+128975 : 4999998 # Sherpa_CT10_ZeeHeavyJets
+128976 : 4991997 # Sherpa_CT10_ZmumuHeavyJets
+128977 : 4997998 # Sherpa_CT10_ZtautauHeavyJets
+146820 : 2000000 # Sherpa_CT10_ZeeLightJets
+146821 : 1997999 # Sherpa_CT10_ZmumuLightJets
+146822 : 1999998 # Sherpa_CT10_ZtautauLightJets
 147770 : 9999162 # Sherpa_CT10_Zee
 147771 : 9998983 # Sherpa_CT10_Zmumu
 147772 : 4999989 # Sherpa_CT10_Ztautau
