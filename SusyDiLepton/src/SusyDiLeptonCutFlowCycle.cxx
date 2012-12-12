@@ -629,7 +629,8 @@ void SusyDiLeptonCutFlowCycle::fillFakeWeight()
     // TODO fill for all regions
     m_event->setFakeWeight( m_matrix_method.getTotalFake( is_tight_0, is_electron_0, pt_0, eta_0
                                         , is_tight_1, is_electron_1, pt_1, eta_1
-                                        , SusyMatrixMethod::FR_SRNONE
+                                        // , SusyMatrixMethod::FR_SRNONE
+                                        , SusyMatrixMethod::FR_VR1
                                         , m_event->getMetRel()
                                         , SusyMatrixMethod::SYS_NONE
                                         )

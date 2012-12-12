@@ -19,7 +19,7 @@ CutFlow:
     Crit_ge_2_lep:         True
     Crit_2_lep:            True
     Crit_mll:              False
-    Crit_signal_lep:       True
+    Crit_signal_lep:       False
     Crit_prompt_leptons:   False
     Crit_phase_space:      True
     Crit_trigger:          True
