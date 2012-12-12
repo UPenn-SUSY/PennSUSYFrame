@@ -124,6 +124,8 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
     m_tmp_pass_event.setEMTrigger(valueToBool(split_line));
   else if (key.find("pass_me_trigger") != std::string::npos)
     m_tmp_pass_event.setMETrigger(valueToBool(split_line));
+  else if (key.find("pass_prompt_leptons") != std::string::npos)
+    m_tmp_pass_event.setTruthPrompt(valueToBool(split_line));
   else if (key.find("pass_sign") != std::string::npos)
     m_tmp_pass_event.setSignChannel(valueToSign(split_line));
 
