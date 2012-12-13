@@ -39,6 +39,7 @@ def main():
     config = inputs['config']
     file_list = inputs['files']
     out_file_name = inputs['outfile']
+    optimize = inputs['optimize']
 
     # TODO after debugging, switch back to 'create'
     # out_file = ROOT.TFile(out_file_name, 'CREATE')
@@ -56,17 +57,12 @@ def main():
 
     # loop through cut directories
     for d in dirs:
-        # select cut to optimize if any
-        cut_to_scan   = None
-        cut_direction = None
-        if not d.find('.') == -1:
-            cut_to_scan = d[ d.find('.')+1:d.rfind('.')]
-            cut_direction = d[ d.rfind('.')+1:]
-            if cut_direction == 'left':  cut_direction = hh.left
-            if cut_direction == 'right': cut_direction = hh.right
-            assert cut_direction == hh.left or cut_direction == hh.right
-            #tmp
-            if cut_to_scan[-3:] == '_et': cut_to_scan = cut_to_scan[:-3]
+        print 'dir: %s' % d
+        do_optimize = (d in optimize)
+        if do_optimize:
+            print '\tdo optimize'
+            optimize_map = hh.Optimize.OptimizeMap(optimize[d])
+        else: continue
 
         # made directory structure
         out_file.cd()
@@ -77,17 +73,18 @@ def main():
         for h in hists:
             if skipHist(d,h): continue
 
-            # structure of each element is:
-            # {'point_name':str, 'significance':float, 'cut_value':float}
-            map_entries = []
-
             # get background HistMerger only once per hist/cut combination
             hm_bkg = bkg_config.genHistMerger(d, h)
 
             # loop thought signal grid points
             for sig_point in sig_configs:
                 # create proper directory
-                sample_dir_name = '%s-%d_%d' % (sig_point.name, hh.Helper.getCharginoMass(sig_point.name), hh.Helper.getNeutralinoMass(sig_point.name))
+                sample_dir_name = '%s-%d_%d' % ( sig_point.name
+                                               , hh.Helper.getCharginoMass(
+                                                   sig_point.name)
+                                               , hh.Helper.getNeutralinoMass(
+                                                   sig_point.name)
+                                               )
                 sample_dir = cut_dir.GetDirectory(sample_dir_name)
                 if sample_dir == None:
                     cut_dir.mkdir(sample_dir_name)
@@ -98,34 +95,36 @@ def main():
                 hm_sig = sig_point.genHistMerger(d,h)
 
                 # do optimization if specified
-                optimize = None
-                if cut_to_scan == h:
-                    optimize = hh.Optimize.Optimize( sig = hm_sig
-                                                   , bkg = hm_bkg
-                                                   , cut_direction = cut_direction
-                                                   #, bkg_uncertainty = 0.20
-                                                   #, bkg_uncertainty = 0.30
-                                                   , bkg_uncertainty = 0.40
-                                                   )
+                local_optimize = None
+                if do_optimize and optimize[d].to_optimize == h:
+                    local_optimize = hh.Optimize.Optimize(
+                            sig = hm_sig,
+                            bkg = hm_bkg,
+                            cut_direction = optimize[d].direction,
+                            bkg_uncertainty = 0.20)
+                            #bkg_uncertainty = 0.30)
+                            #bkg_uncertainty = 0.40)
 
-                    optimal_cut = optimize.getOptimalCut()
-                    if optimal_cut is not None:
-                        print 'adding cut to map'
-                        map_entries.append( { 'point_name':sample_dir_name
-                                            , 'significance':optimal_cut['sig']
-                                            , 'cut_value':optimal_cut['cut']
-                                            } )
-                    else:
-                        print 'adding just the point to map'
-                        map_entries.append( { 'point_name':sample_dir_name
-                                            , 'significance':-1
-                                            , 'cut_value':-1
-                                            } )
+                    optimize_map.addGridPoint(local_optimize, sample_dir_name)
+
+                    optimal_cut = local_optimize.getOptimalCut()
+#                     if optimal_cut is not none:
+#                         print 'adding cut to map'
+#                         map_entries.append( { 'point_name':sample_dir_name
+#                                             , 'significance':optimal_cut['sig']
+#                                             , 'cut_value':optimal_cut['cut']
+#                                             } )
+#                     else:
+#                         print 'adding just the point to map'
+#                         map_entries.append( { 'point_name':sample_dir_name
+#                                             , 'significance':-1
+#                                             , 'cut_value':-1
+#                                             } )
 
                 # Draw to canvas and print to file
                 painter = hh.Painter.HistPainter( num = hm_sig
                                                 , denom = hm_bkg
-                                                , optimal_cut = optimize
+                                                , optimal_cut = local_optimize
                                                 )
                 pile = painter.pile( num_type       = hh.Objects.plain_hist
                                    , denom_type     = hh.Objects.stack_hist
@@ -136,25 +135,36 @@ def main():
                 pile.Close()
 
                 # if cut specified, print details to file
-                if cut_to_scan == h:
+                # if cut_to_scan == h:
+                if do_optimize and optimize[d].to_optimize == h:
                     detail_dir_name = '%s_details' % h
                     sample_dir.mkdir(detail_dir_name)
                     sample_dir.cd(detail_dir_name)
 
-                    sig_plot = optimize.drawSignificanceCanvas()
+                    sig_plot = local_optimize.drawSignificanceCanvas()
                     sig_plot['canvas'].Write('%s_zn' % h)
                     sig_plot['canvas'].Close()
 
-            if len(map_entries) > 0:
-                cut_dir.cd()
-                cut_dir.mkdir('maps/scan')
-                cut_dir.cd('maps/scan')
-                print 'writing maps to file'
-                maps = hh.Painter.draw2DMaps(map_entries)
-                maps['c_sig'].Write()
-                maps['c_cut'].Write()
-                maps['c_sig'].Close()
-                maps['c_cut'].Close()
+        if do_optimize:
+            cut_dir.cd()
+            cut_dir.mkdir('maps')
+            maps_dir = cut_dir.GetDirectory('maps')
+            maps_dir.cd()
+
+            if optimize[d].scan:
+                print 'scanning'
+                optimize_map.printScan(maps_dir)
+
+            optimize_map.printAllFixedPoints(maps_dir)
+            # optimize_map.printFixedPoint(maps_dir, 50)
+
+            # cut_dir.cd('maps/scan')
+            # print 'writing maps to file'
+            # maps = hh.Painter.draw2DMaps(map_entries)
+            # maps['c_sig'].Write()
+            # maps['c_cut'].Write()
+            # maps['c_sig'].Close()
+            # maps['c_cut'].Close()
 
     out_file.Close()
 

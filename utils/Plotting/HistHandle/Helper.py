@@ -210,8 +210,6 @@ def getNeutralinoMass(sample_name):
                       }
     test = sample_name
     if '-' in test: test = test[:test.find('-')]
-    print sample_name
-    print test
     assert test in chargino_masses
     return chargino_masses[test]
 
@@ -258,8 +256,6 @@ def getCharginoMass(sample_name):
                         }
     test = sample_name
     if '-' in test: test = test[:test.find('-')]
-    print sample_name
-    print test
     assert test in neutralino_masses
     return neutralino_masses[test]
 

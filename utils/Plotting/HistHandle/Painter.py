@@ -157,6 +157,7 @@ class HistPainter(object):
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         if self.optimal_cut is not None:
+            print 'have optimal cut'
             self.cut_region = self.optimal_cut.genCutRegion(hist_list[0])
             if not self.cut_region is None:
                 self.cut_region.Draw('F')

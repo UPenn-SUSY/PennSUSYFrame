@@ -16,9 +16,7 @@ import HistHandle as hh
 # ==============================================================================
 class InputContainer(object):
     # --------------------------------------------------------------------------
-    def __init__( self
-                , input_dict
-                ):
+    def __init__(self, input_dict):
         self.name = input_dict['name']
         self.color = input_dict['color']
         self.marker_style = input_dict['marker_style']
@@ -89,6 +87,20 @@ class EntryContainer(object):
                                    , self.file_list
                                    )
 
+# ==============================================================================
+class OptimizeContainer(object):
+    # --------------------------------------------------------------------------
+    def __init__(self, input_dict):
+        self.cut_dir =      input_dict['cut_dir']
+        self.to_optimize =  input_dict['to_optimize']
+        self.direction =    input_dict['direction']
+        self.fixed_points = input_dict['fixed_points']
+        self.scan = bool(input_dict['scan'])
+
+        if   self.direction == 'right': self.direction = hh.right
+        elif self.direction == 'left':  self.direction = hh.left
+        else: assert False
+
 # ------------------------------------------------------------------------------
 def parseInputs():
     # TODO do proper parsing so we aren't sensitive to order of inputs
@@ -99,6 +111,7 @@ def parseInputs():
 
     return { 'config':config_dict['config']
            , 'files':config_dict['files']
+           , 'optimize':config_dict['optimize']
            , 'outfile':outfile
            }
 
@@ -124,7 +137,14 @@ def processConfigFile(config_file_name):
     input_containers = input_block['config']
     input_files      = input_block['files']
 
-    return {'config':input_containers, 'files':input_files}
+    optimize_block = None
+    if 'Optimize' in config_dict:
+        optimize_block = processOptimizeBlock(config_dict['Optimize'])
+
+    return { 'config':input_containers
+           , 'files':input_files
+           , 'optimize':optimize_block
+           }
 
 # ------------------------------------------------------------------------------
 def processInputBlock(input_dict):
@@ -139,3 +159,11 @@ def processInputBlock(input_dict):
     input_files = hh.Helper.flatten(input_files)
 
     return {'config':input_containers, 'files':input_files}
+
+# ------------------------------------------------------------------------------
+def processOptimizeBlock(input_dict):
+    optimizations = {}
+    for inp in input_dict:
+        optimizations[inp['cut_dir']] = OptimizeContainer(inp)
+
+    return optimizations

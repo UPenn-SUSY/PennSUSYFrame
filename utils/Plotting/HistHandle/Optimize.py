@@ -91,6 +91,9 @@ class Optimize(object):
                 y = h.Integral(1,i+1)
             elif self.cut_direction == hh.right:
                 y = h.Integral(i+1, x_bin+1)
+            else:
+                assert false
+
             integral.Fill(x,y)
             integral.SetBinError(i+1, 1e-6)
         return integral
@@ -149,6 +152,8 @@ class Optimize(object):
 
     # --------------------------------------------------------------------------
     def genCutRegion(self, h):
+        if self.optimal_cut == None:
+            self.optimal_cut = self.getOptimalCut()
         if self.optimal_cut == None: return None
 
         x1 = self.optimal_cut['cut']
@@ -170,17 +175,11 @@ class Optimize(object):
         region.SetFillStyle(3199)
         return region
 
-    # ------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def genMarker(self, h, x, y):
         x_range = abs(h.GetXaxis().GetXmax() - h.GetXaxis().GetXmin())
         y_range = abs(h.GetYaxis().GetXmax() - h.GetYaxis().GetXmin())
-        print 'x range: %s' % x_range
-        print 'y range: %s' % y_range
-        # if c.GetLogy() == 1:
-        #     y_range = abs( 10**frame.GetY2() - 10**frame.GetY1() )
 
-        # x_range = (h.GetXaxis().GetXmax() - h.GetXaxis().GetXmin())
-        # y_range = (h.GetXaxis().GetXmax() - h.GetXaxis().GetXmin())
         mark = ROOT.TEllipse(x, y, 0.015*x_range, 0.08*y_range)
         mark.SetFillColor(ROOT.kGreen+2)
         mark.SetFillStyle(3199)
@@ -197,7 +196,6 @@ class Optimize(object):
             x_position = self.optimal_cut['cut']
             cut_bin = self.significance.GetXaxis().FindBin(x_position)
             y_position = self.significance.GetBinContent(cut_bin)
-            # highlight_point = self.genMarker( sig_canvas
             highlight_point = self.genMarker( self.significance
                                             , x_position
                                             , y_position
@@ -209,3 +207,67 @@ class Optimize(object):
     # --------------------------------------------------------------------------
     def __del__(self):
         pass
+
+# ==============================================================================
+class OptimizeMap(object):
+    # --------------------------------------------------------------------------
+    def __init__(self, optimize_container):
+        assert isinstance(optimize_container, hh.parse.OptimizeContainer)
+        self.optimize_container = optimize_container
+
+        self.optimize_grid_points = {}
+
+    # --------------------------------------------------------------------------
+    def addGridPoint(self, grid_point_optimize, point_name):
+        assert isinstance(grid_point_optimize, Optimize)
+        self.optimize_grid_points[point_name] = grid_point_optimize
+
+    # ------------------------------------------------------------------------------
+    def printScan(self, maps_dir):
+        dir_name = 'scan_%s' % self.optimize_container.to_optimize
+        maps_dir.mkdir(dir_name)
+        maps_dir.cd(dir_name)
+
+        map_entries = []
+        for gp in self.optimize_grid_points:
+            optimal_cut = self.optimize_grid_points[gp].getOptimalCut()
+            sig = optimal_cut['sig'] if optimal_cut is not None else -1
+            cut = optimal_cut['cut'] if optimal_cut is not None else -1
+
+            map_entries.append( { 'point_name':gp
+                                , 'significance':sig
+                                , 'cut_value':cut
+                                } )
+        maps = hh.Painter.draw2DMaps(map_entries)
+        maps['c_sig'].Write()
+        maps['c_cut'].Write()
+        maps['c_sig'].Close()
+        maps['c_cut'].Close()
+
+    # ------------------------------------------------------------------------------
+    def printFixedPoint(self, maps_dir, cut_value):
+        dir_name = 'scan_%s_%s' % ( self.optimize_container.to_optimize
+                                  , cut_value
+                                  )
+        maps_dir.mkdir(dir_name)
+        maps_dir.cd(dir_name)
+
+        map_entries = []
+        for gp in self.optimize_grid_points:
+            cut_bin = self.optimize_grid_points[gp].significance.GetXaxis().FindBin(float(cut_value))
+            sig = self.optimize_grid_points[gp].significance.GetBinContent(cut_bin)
+
+            map_entries.append( { 'point_name':gp
+                                , 'significance':sig
+                                , 'cut_value':cut_value
+                                } )
+        maps = hh.Painter.draw2DMaps(map_entries)
+        maps['c_sig'].Write()
+        maps['c_cut'].Write()
+        maps['c_sig'].Close()
+        maps['c_cut'].Close()
+
+    # ------------------------------------------------------------------------------
+    def printAllFixedPoints(self, maps_dir):
+        for cut_value in self.optimize_container.fixed_points:
+            self.printFixedPoint(maps_dir, cut_value)
