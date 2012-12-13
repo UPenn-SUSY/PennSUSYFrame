@@ -216,11 +216,14 @@ class OptimizeMap(object):
         self.optimize_container = optimize_container
 
         self.optimize_grid_points = {}
+        self.sample_bkg_integral = None
 
     # --------------------------------------------------------------------------
     def addGridPoint(self, grid_point_optimize, point_name):
         assert isinstance(grid_point_optimize, Optimize)
         self.optimize_grid_points[point_name] = grid_point_optimize
+        if self.sample_bkg_integral is None:
+            self.sample_bkg_integral = grid_point_optimize.bkg_integral
 
     # ------------------------------------------------------------------------------
     def printScan(self, maps_dir):
@@ -237,6 +240,8 @@ class OptimizeMap(object):
             map_entries.append( { 'point_name':gp
                                 , 'significance':sig
                                 , 'cut_value':cut
+                                , 'num_sig':-1
+                                , 'num_bkg':-1
                                 } )
         maps = hh.Painter.draw2DMaps(map_entries)
         maps['c_sig'].Write()
@@ -246,9 +251,9 @@ class OptimizeMap(object):
 
     # ------------------------------------------------------------------------------
     def printFixedPoint(self, maps_dir, cut_value):
-        dir_name = 'scan_%s_%s' % ( self.optimize_container.to_optimize
-                                  , cut_value
-                                  )
+        dir_name = '%s_%s' % ( self.optimize_container.to_optimize
+                             , cut_value
+                             )
         maps_dir.mkdir(dir_name)
         maps_dir.cd(dir_name)
 
@@ -256,18 +261,31 @@ class OptimizeMap(object):
         for gp in self.optimize_grid_points:
             cut_bin = self.optimize_grid_points[gp].significance.GetXaxis().FindBin(float(cut_value))
             sig = self.optimize_grid_points[gp].significance.GetBinContent(cut_bin)
+            num_sig = self.optimize_grid_points[gp].sig_integral.GetBinContent(cut_bin)
+            num_bkg = self.optimize_grid_points[gp].bkg_integral.GetBinContent(cut_bin)
 
             map_entries.append( { 'point_name':gp
                                 , 'significance':sig
                                 , 'cut_value':cut_value
+                                , 'num_sig':num_sig
+                                , 'num_bkg':num_bkg
                                 } )
         maps = hh.Painter.draw2DMaps(map_entries)
         maps['c_sig'].Write()
         maps['c_cut'].Write()
+        maps['c_num_sig'].Write()
+        maps['c_num_bkg'].Write()
         maps['c_sig'].Close()
         maps['c_cut'].Close()
+        maps['c_num_sig'].Close()
+        maps['c_num_bkg'].Close()
 
     # ------------------------------------------------------------------------------
     def printAllFixedPoints(self, maps_dir):
+        maps_dir.cd()
+        c_num_bkg = hh.canv_log_y.create('c_num_bkg')
+        self.sample_bkg_integral.Draw()
+        c_num_bkg.Write()
+        c_num_bkg.Close()
         for cut_value in self.optimize_container.fixed_points:
             self.printFixedPoint(maps_dir, cut_value)

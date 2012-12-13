@@ -22,5 +22,10 @@ canv_opt_2d = metaroot.hist.CanvasOptions( width=800
                                          , height=600
                                          , right_margin=10
                                          )
+canv_opt_2d_log_y = metaroot.hist.CanvasOptions( width=800
+                                               , height=600
+                                               , right_margin=10
+                                               , log_z=True
+                                               )
 
 import Handle, Merger, Objects, Painter, parse, Helper, Optimize

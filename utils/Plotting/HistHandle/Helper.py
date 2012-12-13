@@ -22,7 +22,7 @@ import HistHandle
 #     """
 #     function to open root files listed in the dict_list
 #     """
-#     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+#     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #     for d in dict_list:
 #         # Get plot options from xml
 #         d['plot_opt'] = metaroot.hist.PlotOptions( line_color   = int(d['line_color'])
@@ -51,7 +51,6 @@ def get_list_of_dirs(d):
     if not isinstance(d, list): d = [d]
 
     key_list_ref = None
-    print d
     for f in d:
         print 'Checking key list in file: %s' % f.GetName()
         key_list_test = set(get_list_of_keys(f))
@@ -59,7 +58,6 @@ def get_list_of_dirs(d):
             key_list_ref = key_list_test
         assert key_list_test == key_list_ref
     print '\nAll input files have the same directory structure!\n'
-    print key_list_ref
 
     return list(key_list_ref)
 

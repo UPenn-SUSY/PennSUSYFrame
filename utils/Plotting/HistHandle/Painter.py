@@ -157,7 +157,7 @@ class HistPainter(object):
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         if self.optimal_cut is not None:
-            print 'have optimal cut'
+            print 'Found optimal cut'
             self.cut_region = self.optimal_cut.genCutRegion(hist_list[0])
             if not self.cut_region is None:
                 self.cut_region.Draw('F')
@@ -420,15 +420,15 @@ def getExtrema(hist_list, log_y = True):
 
 # ------------------------------------------------------------------------------
 def draw2DMaps(map_array, contour_levels = [1.64]):
-    # structure of elemets in map array are:
-    # {'point_name':str, 'significance':float, 'cut_value':float}
-    print map_array
-    x_grid_points     = []
-    y_grid_points     = []
-    x_points     = []
-    y_points     = []
-    significance = []
-    cut_values   = []
+    # structure of elemets in map array are: # {'point_name':str, 'significance':float, 'cut_value':float}
+    x_grid_points = []
+    y_grid_points = []
+    x_points      = []
+    y_points      = []
+    significance  = []
+    cut_values    = []
+    num_sig       = []
+    num_bkg       = []
 
     for ma in map_array:
         x_grid_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
@@ -439,22 +439,16 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
             y_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
             significance.append(ma['significance'])
             cut_values.append(ma['cut_value'])
+            num_sig.append(ma['num_sig'])
+            num_bkg.append(ma['num_bkg'])
 
     # set axis titles
     x_axis = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
     y_axis = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
     sig_title = 'significance ; %s ; %s' % (x_axis, y_axis)
     cut_title = 'cut value ; %s ; %s' % (x_axis, y_axis)
-
-    print 'h_sig_map'
-    print sig_title
-    print len(map_array)
-    print x_points
-    print array.array('d', x_points)
-    print y_points
-    print array.array('d', y_points)
-    print significance
-    print array.array('d', significance)
+    num_sig_title = 'Num signal events ; %s ; %s' % (x_axis, y_axis)
+    num_bkg_title = 'Num background events ; %s ; %s' % (x_axis, y_axis)
 
     grid_points = ROOT.TGraph( len(map_array)
                              , array.array('d', x_grid_points)
@@ -477,8 +471,26 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
                              , array.array('d', cut_values)
                              )
 
+    num_sig_graph = ROOT.TGraph2D( 'h_num_sig_map'
+                                 , num_sig_title
+                                 , len(x_points)
+                                 , array.array('d', x_points)
+                                 , array.array('d', y_points)
+                                 , array.array('d', num_sig)
+                                 )
+
+    num_bkg_graph = ROOT.TGraph2D( 'h_num_bkg_map'
+                                 , num_bkg_title
+                                 , len(x_points)
+                                 , array.array('d', x_points)
+                                 , array.array('d', y_points)
+                                 , array.array('d', num_bkg)
+                                 )
+
     sig_graph.SetMinimum(0)
     cut_graph.SetMinimum(0)
+    num_sig_graph.SetMinimum(0)
+    num_bkg_graph.SetMinimum(0)
 
     # get contour lines frokm significance map
     contour_lines = getContourLines( sig_graph
@@ -498,10 +510,26 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
     for cl in contour_lines:
         cl.Draw('SAME')
 
+    c_num_sig = hh.canv_opt_2d_log_y.create('c_num_sig_map')
+    num_sig_graph.Draw('COLZ')
+    grid_points.Draw('PSAME')
+    for cl in contour_lines:
+        cl.Draw('SAME')
+
+    c_num_bkg = hh.canv_opt_2d_log_y.create('c_num_bkg_map')
+    num_bkg_graph.Draw('COLZ')
+    grid_points.Draw('PSAME')
+    for cl in contour_lines:
+        cl.Draw('SAME')
+
     return { 'h_sig':sig_graph
            , 'h_cut':cut_graph
+           , 'h_num_sig':num_sig_graph
+           , 'h_num_bkg':num_bkg_graph
            , 'c_sig':c_sig
            , 'c_cut':c_cut
+           , 'c_num_sig':c_num_sig
+           , 'c_num_bkg':c_num_bkg
            , 'contour':contour_lines
            , 'grid':grid_points
            }

@@ -4,10 +4,6 @@ import ROOT
 import HistHandle as hh
 import metaroot
 
-# ------------------------------------------------------------------------------
-# fixed_cut_values
-fixed_met_rel = [0, 5, 10, 15, 20, 30, 40, 50]
-
 # -----------------------------------------------------------------------------
 def skipHist(dir_name, hist_name):
   """
@@ -57,7 +53,7 @@ def main():
 
     # loop through cut directories
     for d in dirs:
-        print 'dir: %s' % d
+        print 'Making optimization plots for dir: %s' % d
         do_optimize = (d in optimize)
         if do_optimize:
             print '\tdo optimize'
@@ -108,18 +104,6 @@ def main():
                     optimize_map.addGridPoint(local_optimize, sample_dir_name)
 
                     optimal_cut = local_optimize.getOptimalCut()
-#                     if optimal_cut is not none:
-#                         print 'adding cut to map'
-#                         map_entries.append( { 'point_name':sample_dir_name
-#                                             , 'significance':optimal_cut['sig']
-#                                             , 'cut_value':optimal_cut['cut']
-#                                             } )
-#                     else:
-#                         print 'adding just the point to map'
-#                         map_entries.append( { 'point_name':sample_dir_name
-#                                             , 'significance':-1
-#                                             , 'cut_value':-1
-#                                             } )
 
                 # Draw to canvas and print to file
                 painter = hh.Painter.HistPainter( num = hm_sig
@@ -134,8 +118,8 @@ def main():
                 pile.Write(h)
                 pile.Close()
 
-                # if cut specified, print details to file
-                # if cut_to_scan == h:
+                # if we are to optimize, and this cut is specified, print
+                # details to file
                 if do_optimize and optimize[d].to_optimize == h:
                     detail_dir_name = '%s_details' % h
                     sample_dir.mkdir(detail_dir_name)
@@ -145,27 +129,22 @@ def main():
                     sig_plot['canvas'].Write('%s_zn' % h)
                     sig_plot['canvas'].Close()
 
+        # If we are doing optimization, print maps to file
         if do_optimize:
             cut_dir.cd()
             cut_dir.mkdir('maps')
             maps_dir = cut_dir.GetDirectory('maps')
             maps_dir.cd()
 
+            # do scan of all possible cuts
             if optimize[d].scan:
-                print 'scanning'
+                print '\tScanning: %s' % optimize[d].to_optimize
                 optimize_map.printScan(maps_dir)
 
+            # check fixed cut values
             optimize_map.printAllFixedPoints(maps_dir)
-            # optimize_map.printFixedPoint(maps_dir, 50)
 
-            # cut_dir.cd('maps/scan')
-            # print 'writing maps to file'
-            # maps = hh.Painter.draw2DMaps(map_entries)
-            # maps['c_sig'].Write()
-            # maps['c_cut'].Write()
-            # maps['c_sig'].Close()
-            # maps['c_cut'].Close()
-
+    # Clean up out file
     out_file.Close()
 
 # ==============================================================================
