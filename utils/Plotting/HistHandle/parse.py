@@ -68,6 +68,13 @@ class EntryContainer(object):
         self.line_color =   entry_dict['line_color']
         self.marker_style = entry_dict['marker_style']
         self.inputs =       entry_dict['inputs']
+
+        self.lumi_modeled_in_file = 1.
+        self.target_lumi = 1.
+        if 'lumi_modeled_in_file' in entry_dict and 'target_lumi' in entry_dict:
+            self.lumi_modeled_in_file = entry_dict['lumi_modeled_in_file']
+            self.target_lumi = entry_dict['target_lumi']
+
         self.file_list = [ ROOT.TFile(f) for f in self.inputs ]
 
         self.hist_info = hh.Objects.HistInfo( self.label
@@ -85,6 +92,8 @@ class EntryContainer(object):
                                    , hist_name
                                    , self.hist_info
                                    , self.file_list
+                                   , self.lumi_modeled_in_file
+                                   , self.target_lumi
                                    )
 
 # ==============================================================================

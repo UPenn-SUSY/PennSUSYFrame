@@ -19,8 +19,6 @@ def skipHist(dir_name, hist_name):
   if 'em' in dir_name:
     if 'el_1' in hist_name or 'mu_1' in hist_name:
       return True
-  # if not dir_name == 'mm_sig_lep': return True
-  # if not hist_name == 'met_rel': return True
   return False
 
 # ==============================================================================

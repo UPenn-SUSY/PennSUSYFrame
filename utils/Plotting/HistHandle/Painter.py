@@ -431,12 +431,12 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
     num_bkg       = []
 
     for ma in map_array:
-        x_grid_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
-        y_grid_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
+        x_grid_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
+        y_grid_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
 
         if ma['significance'] is not None:
-            x_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
-            y_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
+            x_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
+            y_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
             significance.append(ma['significance'])
             cut_values.append(ma['cut_value'])
             num_sig.append(ma['num_sig'])

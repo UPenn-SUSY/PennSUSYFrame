@@ -237,17 +237,25 @@ class OptimizeMap(object):
             sig = optimal_cut['sig'] if optimal_cut is not None else -1
             cut = optimal_cut['cut'] if optimal_cut is not None else -1
 
+            cut_bin = self.optimize_grid_points[gp].significance.GetXaxis().FindBin(cut)
+            num_sig = self.optimize_grid_points[gp].sig_integral.GetBinContent(cut_bin)
+            num_bkg = self.optimize_grid_points[gp].bkg_integral.GetBinContent(cut_bin)
+
             map_entries.append( { 'point_name':gp
                                 , 'significance':sig
                                 , 'cut_value':cut
-                                , 'num_sig':-1
-                                , 'num_bkg':-1
+                                , 'num_sig':num_sig
+                                , 'num_bkg':num_bkg
                                 } )
         maps = hh.Painter.draw2DMaps(map_entries)
         maps['c_sig'].Write()
         maps['c_cut'].Write()
+        maps['c_num_sig'].Write()
+        maps['c_num_bkg'].Write()
         maps['c_sig'].Close()
         maps['c_cut'].Close()
+        maps['c_num_sig'].Close()
+        maps['c_num_bkg'].Close()
 
     # ------------------------------------------------------------------------------
     def printFixedPoint(self, maps_dir, cut_value):

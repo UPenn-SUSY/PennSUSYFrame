@@ -26,6 +26,8 @@ class HistHandle(object):
                 , hist_name
                 , hist_info
                 , input_files
+                , lumi_modeled_in_file = 1.
+                , target_lumi = 1.
                 ):
         """
         construtor
@@ -33,9 +35,12 @@ class HistHandle(object):
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.directory = directory
         self.name = hist_name
-        # self.hist_name = '%s__%s' % (hist_name, directory)
         self.hist_name = hist_name
         self.hist_info = hist_info
+
+        self.lumi_modeled_in_file = float(lumi_modeled_in_file)
+        self.target_lumi = float(target_lumi)
+        self.scaled_to_lumi = (lumi_modeled_in_file == target_lumi)
 
         # create random string to be used as a unique tag
         unique_tag = ''.join(random.choice(string.ascii_lowercase) \
@@ -106,3 +111,12 @@ class HistHandle(object):
         old_int = self.hist.Integral()
         sf = target/old_int
         self.hist.Scale(sf)
+
+    # --------------------------------------------------------------------------
+    def scaleToLumi(self):
+        if not self.scaled_to_lumi:
+            lumi_scale = self.target_lumi/self.lumi_modeled_in_file
+            print 'scaling to lumi: modeled: %s - target: %s - sf: %s' % \
+                    (self.lumi_modeled_in_file, self.target_lumi, lumi_scale)
+            self.scale(lumi_scale)
+            self.scaled_to_lumi = True

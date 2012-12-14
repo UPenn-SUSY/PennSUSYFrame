@@ -166,7 +166,7 @@ def flatten(l, level = 0):
     return flat_l
 
 # ------------------------------------------------------------------------------
-def getNeutralinoMass(sample_name):
+def getCharginoMass(sample_name):
     chargino_masses = { 'simplifiedModel_wA_slep_noWcascade_5':  112.5
                       , 'simplifiedModel_wA_slep_noWcascade_7':  130.0
                       , 'simplifiedModel_wA_slep_noWcascade_8':  155.0
@@ -212,7 +212,7 @@ def getNeutralinoMass(sample_name):
     return chargino_masses[test]
 
 # ------------------------------------------------------------------------------
-def getCharginoMass(sample_name):
+def getNeutralinoMass(sample_name):
     neutralino_masses = { 'simplifiedModel_wA_slep_noWcascade_5':   12.5
                         , 'simplifiedModel_wA_slep_noWcascade_7':   30.0
                         , 'simplifiedModel_wA_slep_noWcascade_8':    5.0

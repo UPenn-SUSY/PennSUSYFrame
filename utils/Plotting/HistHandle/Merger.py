@@ -48,6 +48,8 @@ class HistMerger(object):
         self.hist_stack = None
         self.error_band = None
 
+        # self.int_stack = None
+
         if not isinstance (hist_handle_dict, dict):
             sys.exit('hist_handle_dict is not of type dictionary')
         for key in hist_handle_dict:
@@ -66,6 +68,8 @@ class HistMerger(object):
         if not self.error_band == None:
             # TODO check this is the correct format
             self.error_band.Delete()
+        # if self.int_stack is not None:
+        #     self.int_stack.Delete()
 
     # --------------------------------------------------------------------------
     def addHistHandle(self, hist_handle, label):
@@ -74,6 +78,7 @@ class HistMerger(object):
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         assert isinstance(hist_handle, hh.Handle.HistHandle)
+        hist_handle.scaleToLumi()
         self.hist_handles[label] = hist_handle
 
     # --------------------------------------------------------------------------
