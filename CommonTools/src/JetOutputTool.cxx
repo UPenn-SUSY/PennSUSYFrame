@@ -38,6 +38,7 @@ void CommonTools::JetOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_jet_dr_signal_lep, "jet_dr_signal_lep");
   DeclareVariable(m_jet_jvf          , "jet_jvf"          );
   DeclareVariable(m_jet_desc         , "jet_desc"         );
+  DeclareVariable(m_jet_dphi_ll      , "jet_dphi_ll"      );
   DeclareVariable(m_jet_dphi_met     , "jet_dphi_met"     );
   DeclareVariable(m_jet_tlv          , "jet_tlv"          );
 
@@ -65,17 +66,18 @@ void CommonTools::JetOutputTool::BeginExecuteEvent(const SInputData&, Double_t)
   m_jet_dr_signal_lep.clear();
   m_jet_jvf.clear();
   m_jet_desc.clear();
+  m_jet_dphi_ll.clear();
   m_jet_dphi_met.clear();
   m_jet_tlv.clear();
 
 }
 
 // -----------------------------------------------------------------------------
-void CommonTools::JetOutputTool::fillOutput( Event* /*event*/
-                                           , ElectronContainer& /*electrons*/
-                                           , MuonContainer& /*muons*/
+void CommonTools::JetOutputTool::fillOutput( Event* event
+                                           , ElectronContainer& electrons
+                                           , MuonContainer& muons
                                            , JetContainer& jets
-                                           , Met* /*met*/
+                                           , Met* met
                                            , VertexContainer& /*vertices*/
                                            )
 {
@@ -160,7 +162,16 @@ void CommonTools::JetOutputTool::fillOutput( Event* /*event*/
     m_jet_jvf.push_back(jet_vec.at(jet_it)->jvtxf());
 
     m_jet_desc.push_back(jet_vec.at(jet_it)->getJetDesc()->toInt());
-    // m_jet_dphi_met.push_back(...);
+
+    m_jet_dphi_ll.push_back(
+        CommonTools::DeltaPhiTool::getDeltaPhi( event->getFlavorChannel()
+                                              , electrons.getElectrons(EL_GOOD)
+                                              , muons.getMuons(MU_GOOD)
+                                              , jet_vec.at(jet_it)
+                                              ) );
+    m_jet_dphi_met.push_back(
+        CommonTools::DeltaPhiTool::getDeltaPhi(jet_vec.at(jet_it), met));
+
     m_jet_tlv.push_back(jet_vec.at(jet_it)->getTlv());
 
     if (c_do_detailed_output)

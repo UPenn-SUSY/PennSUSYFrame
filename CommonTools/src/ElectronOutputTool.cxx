@@ -321,7 +321,8 @@ void CommonTools::ElectronOutputTool::fillOutput( Event* /*event*/
         el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 40, num_good_vtx));
 
     m_el_mt.push_back(CommonTools::MTTool::getMt(el_vec.at(el_it), met));
-    // m_el_dphi_met.push_back(...);
+    m_el_dphi_met.push_back(
+        CommonTools::DeltaPhiTool::getDeltaPhi(el_vec.at(el_it), met));
 
     m_el_truth_charge.push_back(el_vec.at(el_it)->getTruthCharge());
 

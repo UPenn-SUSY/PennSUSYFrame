@@ -10,6 +10,7 @@
 
 // Add the declarations of your cycles, and any other classes for which you
 // want to generate a dictionary, here. The usual format is:
+#pragma link C++ class CommonTools::DeltaPhiTool+;
 #pragma link C++ class CommonTools::EgammaEnergyRescaleTool+;
 #pragma link C++ class CommonTools::IsoCorrectionTool+;
 #pragma link C++ class CommonTools::JetCalibTool+;

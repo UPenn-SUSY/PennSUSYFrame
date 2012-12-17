@@ -196,7 +196,8 @@ void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
     m_mu_ptcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
 
     m_mu_mt.push_back(CommonTools::MTTool::getMt(mu_vec.at(mu_it), met));
-    //m_mu_dphi_met.push_back(...);
+    m_mu_dphi_met.push_back(
+        CommonTools::DeltaPhiTool::getDeltaPhi(mu_vec.at(mu_it), met));
 
     m_mu_desc.push_back(mu_vec.at(mu_it)->getMuonDesc()->toInt());
     m_mu_tlv.push_back(mu_vec.at(mu_it)->getTlv());

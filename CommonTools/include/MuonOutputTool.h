@@ -11,6 +11,7 @@
 #include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
+#include "CommonTools/include/DeltaPhiTool.h"
 #include "CommonTools/include/MTTool.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"

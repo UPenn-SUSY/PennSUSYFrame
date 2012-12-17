@@ -11,6 +11,8 @@
 #include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
+#include "CommonTools/include/DeltaPhiTool.h"
+
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // ============================================================================
@@ -61,6 +63,7 @@ namespace CommonTools
     std::vector<float> m_jet_jvf;
     std::vector<ull_t> m_jet_desc;
 
+    std::vector<float> m_jet_dphi_ll;
     std::vector<float> m_jet_dphi_met;
 
     std::vector<TLorentzVector> m_jet_tlv;
