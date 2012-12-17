@@ -23,30 +23,31 @@ CommonTools::ElectronOutputTool::~ElectronOutputTool()
 // ----------------------------------------------------------------------------
 void CommonTools::ElectronOutputTool::BeginInputData( const SInputData& )
 {
-  DeclareVariable(m_el_E                     , "el_E"                     );
-  // DeclareVariable(m_el_E_corr                , "el_E_corr"                );
-  DeclareVariable(m_el_Et                    , "el_Et"                    );
-  DeclareVariable(m_el_pt                    , "el_pt"                    );
-  // DeclareVariable(m_el_pt_corr               , "el_pt_corr"               );
-  DeclareVariable(m_el_eta                   , "el_eta"                   );
-  DeclareVariable(m_el_eta_cl                , "el_eta_cl"                );
-  DeclareVariable(m_el_eta_track             , "el_eta_track"             );
-  DeclareVariable(m_el_phi                   , "el_phi"                   );
-  DeclareVariable(m_el_phi_cl                , "el_phi_cl"                );
-  DeclareVariable(m_el_phi_track             , "el_phi_track"             );
-  DeclareVariable(m_el_d0                    , "el_d0"                    );
-  DeclareVariable(m_el_d0_physics            , "el_d0_physics"            );
-  DeclareVariable(m_el_d0_pv                 , "el_d0_pv"                 );
-  DeclareVariable(m_el_z0                    , "el_z0"                    );
-  DeclareVariable(m_el_z0_pv                 , "el_z0_pv"                 );
-  DeclareVariable(m_el_d0_pv_sig             , "el_d0_pv_sig"             );
-  DeclareVariable(m_el_z0_pv_sig             , "el_z0_pv_sig"             );
-  DeclareVariable(m_el_d0_sig                , "el_d0_sig"                );
-  DeclareVariable(m_el_z0_sin_theta          , "el_z0_sin_theta"          );
-  DeclareVariable(m_el_charge                , "el_charge"                );
-  DeclareVariable(m_el_cf_smeared_pt         , "el_cf_smeared_pt"         );
-  DeclareVariable(m_el_desc                  , "el_desc"                  );
-  // DeclareVariable(m_el_mt                    , "el_mt"                    );
+  DeclareVariable(m_el_E            , "el_E"            );
+  DeclareVariable(m_el_Et           , "el_Et"           );
+  DeclareVariable(m_el_pt           , "el_pt"           );
+  DeclareVariable(m_el_eta          , "el_eta"          );
+  DeclareVariable(m_el_eta_cl       , "el_eta_cl"       );
+  DeclareVariable(m_el_eta_track    , "el_eta_track"    );
+  DeclareVariable(m_el_phi          , "el_phi"          );
+  DeclareVariable(m_el_phi_cl       , "el_phi_cl"       );
+  DeclareVariable(m_el_phi_track    , "el_phi_track"    );
+  DeclareVariable(m_el_d0           , "el_d0"           );
+  DeclareVariable(m_el_d0_physics   , "el_d0_physics"   );
+  DeclareVariable(m_el_d0_pv        , "el_d0_pv"        );
+  DeclareVariable(m_el_z0           , "el_z0"           );
+  DeclareVariable(m_el_z0_pv        , "el_z0_pv"        );
+  DeclareVariable(m_el_d0_pv_sig    , "el_d0_pv_sig"    );
+  DeclareVariable(m_el_z0_pv_sig    , "el_z0_pv_sig"    );
+  DeclareVariable(m_el_d0_sig       , "el_d0_sig"       );
+  DeclareVariable(m_el_z0_sin_theta , "el_z0_sin_theta" );
+  DeclareVariable(m_el_charge       , "el_charge"       );
+  DeclareVariable(m_el_cf_smeared_pt, "el_cf_smeared_pt");
+  DeclareVariable(m_el_desc         , "el_desc"         );
+  DeclareVariable(m_el_mt           , "el_mt"           );
+  DeclareVariable(m_el_dphi_met     , "el_dphi_met"     );
+  DeclareVariable(m_el_truth_charge , "el_truth_charge" );
+  DeclareVariable(m_el_tlv          , "el_tlv"          );
 
   DeclareVariable(m_el_etcone20              , "el_etcone20"              );
   DeclareVariable(m_el_etcone30              , "el_etcone30"              );
@@ -115,10 +116,6 @@ void CommonTools::ElectronOutputTool::BeginInputData( const SInputData& )
     DeclareVariable(m_el_f1                  , "el_f1"                  );
     DeclareVariable(m_el_f3                  , "el_f3"                  );
   }
-
-  DeclareVariable(m_el_truth_charge        , "el_truth_charge"        );
-
-  DeclareVariable(m_el_tlv, "el_tlv");
 }
 
 // ----------------------------------------------------------------------------
@@ -203,7 +200,8 @@ void CommonTools::ElectronOutputTool::BeginExecuteEvent(
   m_el_f3.clear();
   m_el_cf_smeared_pt.clear();
   m_el_desc.clear();
-  // m_el_mt.clear();
+  m_el_mt.clear();
+  m_el_dphi_met.clear();
 
   m_el_truth_charge.clear();
 
@@ -215,7 +213,7 @@ void CommonTools::ElectronOutputTool::fillOutput( Event* /*event*/
                                                 , ElectronContainer& electrons
                                                 , MuonContainer& /*muons*/
                                                 , JetContainer& /*jets*/
-                                                , Met* /*met*/
+                                                , Met* met
                                                 , VertexContainer& vertices
                                                 )
 {
@@ -297,18 +295,33 @@ void CommonTools::ElectronOutputTool::fillOutput( Event* /*event*/
     // TODO:  cf smeared pt -- for now indentical to regular pt
     m_el_cf_smeared_pt.push_back(el_tlv.Pt());
 
-    m_el_etcone20.push_back(el_vec.at(el_it)->getIsoCorr(ETCONE, 20, num_good_vtx));
-    m_el_etcone30.push_back(el_vec.at(el_it)->getIsoCorr(ETCONE, 30, num_good_vtx));
-    m_el_etcone40.push_back(el_vec.at(el_it)->getIsoCorr(ETCONE, 40, num_good_vtx));
-    m_el_ptcone20.push_back(el_vec.at(el_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
-    m_el_ptcone30.push_back(el_vec.at(el_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
-    m_el_ptcone40.push_back(el_vec.at(el_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
-    m_el_topoetcone20.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE, 20, num_good_vtx));
-    m_el_topoetcone30.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE, 30, num_good_vtx));
-    m_el_topoetcone40.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE, 40, num_good_vtx));
-    m_el_topoetcone20_corrected.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 20, num_good_vtx));
-    m_el_topoetcone30_corrected.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 30, num_good_vtx));
-    m_el_topoetcone40_corrected.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 40, num_good_vtx));
+    m_el_etcone20.push_back(
+        el_vec.at(el_it)->getIsoCorr(ETCONE, 20, num_good_vtx));
+    m_el_etcone30.push_back(
+        el_vec.at(el_it)->getIsoCorr(ETCONE, 30, num_good_vtx));
+    m_el_etcone40.push_back(
+        el_vec.at(el_it)->getIsoCorr(ETCONE, 40, num_good_vtx));
+    m_el_ptcone20.push_back(
+        el_vec.at(el_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
+    m_el_ptcone30.push_back(
+        el_vec.at(el_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
+    m_el_ptcone40.push_back(
+        el_vec.at(el_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
+    m_el_topoetcone20.push_back(
+        el_vec.at(el_it)->getIsoCorr(TOPOETCONE, 20, num_good_vtx));
+    m_el_topoetcone30.push_back(
+        el_vec.at(el_it)->getIsoCorr(TOPOETCONE, 30, num_good_vtx));
+    m_el_topoetcone40.push_back(
+        el_vec.at(el_it)->getIsoCorr(TOPOETCONE, 40, num_good_vtx));
+    m_el_topoetcone20_corrected.push_back(
+        el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 20, num_good_vtx));
+    m_el_topoetcone30_corrected.push_back(
+        el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 30, num_good_vtx));
+    m_el_topoetcone40_corrected.push_back(
+        el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 40, num_good_vtx));
+
+    m_el_mt.push_back(CommonTools::MTTool::getMt(el_vec.at(el_it), met));
+    // m_el_dphi_met.push_back(...);
 
     m_el_truth_charge.push_back(el_vec.at(el_it)->getTruthCharge());
 
@@ -329,13 +342,17 @@ void CommonTools::ElectronOutputTool::fillOutput( Event* /*event*/
       m_el_raw_topoetcone20.push_back(el_vec.at(el_it)->topoEtcone20());
       m_el_raw_topoetcone30.push_back(el_vec.at(el_it)->topoEtcone30());
       m_el_raw_topoetcone40.push_back(el_vec.at(el_it)->topoEtcone40());
-      m_el_raw_topoetcone20_corrected.push_back(el_vec.at(el_it)->topoEtcone20_corrected());
-      m_el_raw_topoetcone30_corrected.push_back(el_vec.at(el_it)->topoEtcone30_corrected());
-      m_el_raw_topoetcone40_corrected.push_back(el_vec.at(el_it)->topoEtcone40_corrected());
+      m_el_raw_topoetcone20_corrected.push_back(
+          el_vec.at(el_it)->topoEtcone20_corrected());
+      m_el_raw_topoetcone30_corrected.push_back(
+          el_vec.at(el_it)->topoEtcone30_corrected());
+      m_el_raw_topoetcone40_corrected.push_back(
+          el_vec.at(el_it)->topoEtcone40_corrected());
 
       m_el_OQ.push_back(el_vec.at(el_it)->OQ());
       m_el_OQ_recalc.push_back(0);
-      m_el_trt_ht_outlier_ratio.push_back(el_vec.at(el_it)->TRTHighTOutliersRatio());
+      m_el_trt_ht_outlier_ratio.push_back(
+          el_vec.at(el_it)->TRTHighTOutliersRatio());
       m_el_author.push_back(el_vec.at(el_it)->author());
       m_el_conv_flag.push_back(el_vec.at(el_it)->convFlag());
       m_el_expect_b_layer.push_back(el_vec.at(el_it)->expectBLayerHit());

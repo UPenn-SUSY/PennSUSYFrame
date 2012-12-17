@@ -45,6 +45,9 @@ void CommonTools::MuonOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_mu_ptcone30    , "mu_ptcone30"    );
   DeclareVariable(m_mu_ptcone40    , "mu_ptcone40"    );
 
+  DeclareVariable(m_mu_mt, "mu_mt");
+  DeclareVariable(m_mu_dphi_met, "mu_dphi_met");
+
   DeclareVariable(m_mu_desc, "mu_desc");
 
   DeclareVariable(m_mu_tlv, "mu_tlv");
@@ -93,6 +96,8 @@ void CommonTools::MuonOutputTool::BeginExecuteEvent( const SInputData&, Double_t
   m_mu_ptcone30.clear();
   m_mu_ptcone40.clear();
 
+  m_mu_mt.clear();
+  m_mu_dphi_met.clear();
   m_mu_desc.clear();
   m_mu_tlv.clear();
 
@@ -120,7 +125,7 @@ void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
                                             , ElectronContainer& /*electrons*/
                                             , MuonContainer& muons
                                             , JetContainer& /*jets*/
-                                            , Met* /*met*/
+                                            , Met* met
                                             , VertexContainer& vertices
                                             )
 {
@@ -130,7 +135,7 @@ void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
 
   // Fill muon varaibles
 
-  std::vector<Muon*> mu_vec; 
+  std::vector<Muon*> mu_vec;
 
   if (  c_muon_output_collection == "signal"
      || c_muon_output_collection == "Signal"
@@ -163,7 +168,7 @@ void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
   size_t num_mu = mu_vec.size();
 
   int num_good_vtx = vertices.num(VERT_GOOD);
- 
+
   // before storing muons to ntuple, we want to check the pt-ordering
   // std::sort( cutflow.m_mu_signal.begin()
   //          , cutflow.m_mu_signal.end()
@@ -189,6 +194,9 @@ void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
     m_mu_ptcone20.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
     m_mu_ptcone30.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
     m_mu_ptcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
+
+    m_mu_mt.push_back(CommonTools::MTTool::getMt(mu_vec.at(mu_it), met));
+    //m_mu_dphi_met.push_back(...);
 
     m_mu_desc.push_back(mu_vec.at(mu_it)->getMuonDesc()->toInt());
     m_mu_tlv.push_back(mu_vec.at(mu_it)->getTlv());

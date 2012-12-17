@@ -85,7 +85,7 @@ private:
   double m_fake_weight;
   double m_charge_flip_weight;
 
-  int    m_mc_channel_num;
+  int m_mc_channel_num;
 
   // useful event level variables
   double m_mll;

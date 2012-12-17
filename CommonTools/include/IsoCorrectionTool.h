@@ -20,7 +20,6 @@ namespace CommonTools{
   {
   // ---------------------------------------------------------------------------
   public:
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     IsoCorrectionTool(SCycleBase* parent, const char* name = "CutTool");
     virtual ~IsoCorrectionTool();
 
@@ -29,7 +28,6 @@ namespace CommonTools{
 
   // ---------------------------------------------------------------------------
   private:
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     std::map<ISO_TYPE, std::map<int, double> > c_p1;
     std::map<ISO_TYPE, std::map<int, double> > c_p2;
 

@@ -11,6 +11,8 @@
 #include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
+#include "CommonTools/include/MTTool.h"
+
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
@@ -65,7 +67,8 @@ namespace CommonTools
     std::vector<float> m_mu_ptcone30;
     std::vector<float> m_mu_ptcone40;
 
-    // std::vector<float> m_mu_mt;
+    std::vector<float> m_mu_mt;
+    std::vector<float> m_mu_dphi_met;
 
     std::vector<ull_t> m_mu_desc;
 

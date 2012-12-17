@@ -11,6 +11,8 @@
 #include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
+#include "CommonTools/include/MTTool.h"
+
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
@@ -25,7 +27,6 @@ namespace CommonTools
   {
   // ---------------------------------------------------------------------------
   public:
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ElectronOutputTool(SCycleBase* parent, const char* name = "OutputTool");
     virtual ~ElectronOutputTool();
 
@@ -42,7 +43,6 @@ namespace CommonTools
 
   // ---------------------------------------------------------------------------
   private:
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool c_do_detailed_output;
     std::string c_electron_output_collection;
 
@@ -69,7 +69,8 @@ namespace CommonTools
     std::vector<float>  m_el_cf_smeared_pt;
     std::vector<ull_t>  m_el_desc;
 
-    // std::vector<float> m_el_mt;
+    std::vector<float> m_el_mt;
+    std::vector<float> m_el_dphi_met;
 
     std::vector<float> m_el_truth_charge;
 
