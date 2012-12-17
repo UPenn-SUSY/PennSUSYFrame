@@ -22,6 +22,7 @@
 #include "CommonTools/include/MllTool.h"
 #include "CommonTools/include/PtllTool.h"
 #include "CommonTools/include/PhillTool.h"
+#include "CommonTools/include/EtallTool.h"
 #include "CommonTools/include/MTTool.h"
 #include "CommonTools/include/MT2Tool.h"
 #include "CommonTools/include/TopTagTool.h"

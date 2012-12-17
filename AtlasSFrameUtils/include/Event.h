@@ -53,6 +53,7 @@ public:
   void setMt2(double);
   void setPtll(double);
   void setPhill(double);
+  void setEtall(double);
 
   double getMll();
   double getMetRel();
@@ -60,6 +61,7 @@ public:
   double getMt2();
   double getPtll();
   double getPhill();
+  double getEtall();
 
   FLAVOR_CHANNEL  getFlavorChannel();
   SIGN_CHANNEL    getSignChannel();
@@ -90,6 +92,7 @@ private:
   double m_mt2;
   double m_ptll;
   double m_phill;
+  double m_etall;
 
   bool m_mll_cached;
   bool m_met_rel_cached;
@@ -97,6 +100,7 @@ private:
   bool m_mt2_cached;
   bool m_ptll_cached;
   bool m_phill_cached;
+  bool m_etall_cached;
 
   // Event description
   SusyAnalysisTools::EventDescription m_event_desc;

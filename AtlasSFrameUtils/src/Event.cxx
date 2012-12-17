@@ -24,6 +24,7 @@ Event::Event( const ::Long64_t& master
             , m_mt2_cached(false)
             , m_ptll_cached(false)
             , m_phill_cached(false)
+            , m_etall_cached(false)
 {
   clear();
 }
@@ -53,6 +54,7 @@ void Event::clear()
   m_mt2     = 0.;
   m_ptll    = 0.;
   m_phill   = 0.;
+  m_etall   = 0.;
 
   m_mll_cached     = false;
   m_met_rel_cached = false;
@@ -60,6 +62,7 @@ void Event::clear()
   m_mt2_cached     = false;
   m_ptll_cached    = false;
   m_phill_cached   = false;
+  m_etall_cached   = false;
 }
 
 // -----------------------------------------------------------------------------
@@ -224,6 +227,13 @@ void Event::setPhill(double phill)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setEtall(double etall)
+{
+  m_etall = etall;
+  m_etall_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 void Event::setMetRel(double met_rel)
 {
   m_met_rel = met_rel;
@@ -276,6 +286,14 @@ double Event::getPhill()
   if (!m_phill_cached)
     std::cout << "WARNING! Asking for phi_ll, but not yet cached!\n";
   return m_phill;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getEtall()
+{
+  if (!m_etall_cached)
+    std::cout << "WARNING! Asking for eta_ll, but not yet cached!\n";
+  return m_etall;
 }
 
 // ----------------------------------------------------------------------------

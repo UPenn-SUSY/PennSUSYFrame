@@ -547,6 +547,13 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                  , electrons.getElectrons(EL_GOOD)
                  , muons.getMuons(MU_GOOD))
                  );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute etall
+  event->setEtall( CommonTools::EtallTool::getEtall(event->getFlavorChannel()
+                 , electrons.getElectrons(EL_GOOD)
+                 , muons.getMuons(MU_GOOD))
+                 );
 }
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event
