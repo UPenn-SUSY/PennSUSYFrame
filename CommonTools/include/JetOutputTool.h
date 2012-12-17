@@ -56,7 +56,7 @@ namespace CommonTools
     std::vector<float> m_jet_jvf;
     std::vector<ull_t> m_jet_desc;
 
-
+    std::vector<TLorentzVector> m_jet_tlv;
 
     // Detailed Variables to output only if configured to
 

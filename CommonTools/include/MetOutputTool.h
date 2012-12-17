@@ -56,6 +56,7 @@ namespace CommonTools
     float m_met_phi;
     float m_met_sumet;
 
+    TVector2 m_met_vec;
 
     // Detailed Variables to output only if configured to
 

@@ -28,11 +28,12 @@ CommonTools::MetOutputTool::~MetOutputTool()
 void CommonTools::MetOutputTool::BeginInputData( const SInputData& )
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  DeclareVariable(m_met_et    , "met_et"    );
-  DeclareVariable(m_met_rel_et, "met_rel_et");
-  DeclareVariable(m_met_rel_delta_phi   , "met_rel_delta_phi"   );
-  DeclareVariable(m_met_phi   , "met_phi"   );
-  DeclareVariable(m_met_sumet , "met_sumet" );
+  DeclareVariable(m_met_et           , "met_et"    );
+  DeclareVariable(m_met_rel_et       , "met_rel_et");
+  DeclareVariable(m_met_rel_delta_phi, "met_rel_delta_phi"   );
+  DeclareVariable(m_met_phi          , "met_phi"   );
+  DeclareVariable(m_met_sumet        , "met_sumet" );
+  DeclareVariable(m_met_vec          , "met_vec"   );
 
   //Detailed Variables
   if(c_do_detailed_output)
@@ -46,11 +47,12 @@ void CommonTools::MetOutputTool::BeginExecuteEvent( const SInputData&, Double_t 
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  m_met_et     = 0;
-  m_met_rel_et = 0;
-  m_met_phi    = 0;
+  m_met_et            = 0;
+  m_met_rel_et        = 0;
+  m_met_phi           = 0;
   m_met_rel_delta_phi = 0.;
-  m_met_sumet  = 0;
+  m_met_sumet         = 0;
+  m_met_vec.Set(0.,0.);
 
 }
 
@@ -74,6 +76,7 @@ void CommonTools::MetOutputTool::fillOutput( Event* event
   m_met_phi = met->getMetRefFinalPhi();
   //  m_met_rel_delta_phi = ;
   //m_met_sumet
+  m_met_vec = met->getMetRefFinalVec();
 
   if (c_do_detailed_output) {
     //do detailed otuput -- none for now

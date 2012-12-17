@@ -44,8 +44,9 @@ void CommonTools::ElectronOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_el_d0_sig                , "el_d0_sig"                );
   DeclareVariable(m_el_z0_sin_theta          , "el_z0_sin_theta"          );
   DeclareVariable(m_el_charge                , "el_charge"                );
-  DeclareVariable(m_el_desc                  , "el_desc"                  );
   DeclareVariable(m_el_cf_smeared_pt         , "el_cf_smeared_pt"         );
+  DeclareVariable(m_el_desc                  , "el_desc"                  );
+  // DeclareVariable(m_el_mt                    , "el_mt"                    );
 
   DeclareVariable(m_el_etcone20              , "el_etcone20"              );
   DeclareVariable(m_el_etcone30              , "el_etcone30"              );
@@ -115,13 +116,9 @@ void CommonTools::ElectronOutputTool::BeginInputData( const SInputData& )
     DeclareVariable(m_el_f3                  , "el_f3"                  );
   }
 
-  if (!is_data())
-  {
-  
-    DeclareVariable(m_el_truth_charge        , "el_truth_charge"        );
-  
-  }
+  DeclareVariable(m_el_truth_charge        , "el_truth_charge"        );
 
+  DeclareVariable(m_el_tlv, "el_tlv");
 }
 
 // ----------------------------------------------------------------------------
@@ -204,10 +201,13 @@ void CommonTools::ElectronOutputTool::BeginExecuteEvent(
   m_el_emaxs1.clear();
   m_el_f1.clear();
   m_el_f3.clear();
-  m_el_desc.clear();
   m_el_cf_smeared_pt.clear();
+  m_el_desc.clear();
+  // m_el_mt.clear();
 
   m_el_truth_charge.clear();
+
+  m_el_tlv.clear();
 }
 
 // ----------------------------------------------------------------------------
@@ -311,6 +311,8 @@ void CommonTools::ElectronOutputTool::fillOutput( Event* /*event*/
     m_el_topoetcone40_corrected.push_back(el_vec.at(el_it)->getIsoCorr(TOPOETCONE_CORR, 40, num_good_vtx));
 
     m_el_truth_charge.push_back(el_vec.at(el_it)->getTruthCharge());
+
+    m_el_tlv.push_back(el_vec.at(el_it)->getTlv());
 
     if (c_do_detailed_output) {
       m_el_raw_etcone20.push_back(el_vec.at(el_it)->Etcone20());

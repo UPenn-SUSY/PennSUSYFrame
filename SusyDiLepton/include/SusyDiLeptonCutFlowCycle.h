@@ -25,6 +25,7 @@
 #include "CommonTools/include/SignChannel.h"
 #include "CommonTools/include/MllTool.h"
 #include "CommonTools/include/PtllTool.h"
+#include "CommonTools/include/PhillTool.h"
 #include "CommonTools/include/MT2Tool.h"
 #include "CommonTools/include/TopTagTool.h"
 #include "CommonTools/include/TruthMatchTool.h"

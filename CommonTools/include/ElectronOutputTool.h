@@ -69,6 +69,12 @@ namespace CommonTools
     std::vector<float>  m_el_cf_smeared_pt;
     std::vector<ull_t>  m_el_desc;
 
+    // std::vector<float> m_el_mt;
+
+    std::vector<float> m_el_truth_charge;
+
+    std::vector<TLorentzVector> m_el_tlv;
+
     // Detailed Variables to output only if configured to
     std::vector<unsigned int> m_el_OQ;
     std::vector<unsigned int> m_el_OQ_recalc;
@@ -126,8 +132,6 @@ namespace CommonTools
     std::vector<float> m_el_raw_topoetcone20_corrected;
     std::vector<float> m_el_raw_topoetcone30_corrected;
     std::vector<float> m_el_raw_topoetcone40_corrected;
-
-    std::vector<float> m_el_truth_charge;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(ElectronOutputTool, 0);

@@ -51,9 +51,11 @@ void CommonTools::EventOutputTool::BeginInputData( const SInputData& )
 
   //DeclareVariable(m_pass_top_tag_veto, "pass_top_tag_veto");
 
-  DeclareVariable(m_mll , "mll"  );
-  DeclareVariable(m_ptll, "ptll" );
-  DeclareVariable(m_mt2 , "mt2"  );
+  DeclareVariable(m_mll  , "mll"  );
+  DeclareVariable(m_ptll , "ptll" );
+  DeclareVariable(m_phill, "phill");
+  DeclareVariable(m_mt   , "mt"   );
+  DeclareVariable(m_mt2  , "mt2"  );
 
 }
 // -----------------------------------------------------------------------------
@@ -88,6 +90,8 @@ void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_
 
   m_mll   = 0.;
   m_ptll  = 0.;
+  m_phill = 0.;
+  m_mt    = 0.;
   m_mt2   = 0.;
 }
 
@@ -131,9 +135,11 @@ void CommonTools::EventOutputTool::fillOutput( Event* event
   m_k_factor                = event->getKFactor();
   m_eff_times_cross_section = event->getEffTimesXS();
 
-  m_mll  = event->getMll();
-  m_ptll = event->getPtll();
-  m_mt2  = event->getMt2();
+  m_mll   = event->getMll();
+  m_ptll  = event->getPtll();
+  m_phill = event->getPhill();
+  m_mt    = event->getMt();
+  m_mt2   = event->getMt2();
 
 
   m_fake_weight = event->getFakeWeight();

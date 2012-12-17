@@ -77,6 +77,8 @@ namespace CommonTools
 
     float m_mll;
     float m_ptll;
+    float m_phill;
+    float m_mt;
     float m_mt2;
 
 

@@ -29,34 +29,29 @@ void CommonTools::MuonOutputTool::BeginInputData( const SInputData& )
 
  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  DeclareVariable(m_mu_pt                 , "mu_pt"                 );
-  DeclareVariable(m_mu_eta                , "mu_eta"                );
-  DeclareVariable(m_mu_phi                , "mu_phi"                );
-  DeclareVariable(m_mu_cov_d0             , "mu_cov_d0"             );
-  DeclareVariable(m_mu_d0                 , "mu_d0"                 );
-  DeclareVariable(m_mu_z0                 , "mu_z0"                 );
-  DeclareVariable(m_mu_d0_sig             , "mu_d0_sig"             );
-  DeclareVariable(m_mu_z0_sin_theta       , "mu_z0_sin_theta"       );
-  DeclareVariable(m_mu_charge             , "mu_charge"             );
-  DeclareVariable(m_mu_etcone20           , "mu_etcone20"           );
-  DeclareVariable(m_mu_etcone30           , "mu_etcone30"           );
-  DeclareVariable(m_mu_etcone40           , "mu_etcone40"           );
-  DeclareVariable(m_mu_ptcone20           , "mu_ptcone20"           );
-  DeclareVariable(m_mu_ptcone30           , "mu_ptcone30"           );
-  DeclareVariable(m_mu_ptcone40           , "mu_ptcone40"           );
+  DeclareVariable(m_mu_pt          , "mu_pt"          );
+  DeclareVariable(m_mu_eta         , "mu_eta"         );
+  DeclareVariable(m_mu_phi         , "mu_phi"         );
+  DeclareVariable(m_mu_cov_d0      , "mu_cov_d0"      );
+  DeclareVariable(m_mu_d0          , "mu_d0"          );
+  DeclareVariable(m_mu_z0          , "mu_z0"          );
+  DeclareVariable(m_mu_d0_sig      , "mu_d0_sig"      );
+  DeclareVariable(m_mu_z0_sin_theta, "mu_z0_sin_theta");
+  DeclareVariable(m_mu_charge      , "mu_charge"      );
+  DeclareVariable(m_mu_etcone20    , "mu_etcone20"    );
+  DeclareVariable(m_mu_etcone30    , "mu_etcone30"    );
+  DeclareVariable(m_mu_etcone40    , "mu_etcone40"    );
+  DeclareVariable(m_mu_ptcone20    , "mu_ptcone20"    );
+  DeclareVariable(m_mu_ptcone30    , "mu_ptcone30"    );
+  DeclareVariable(m_mu_ptcone40    , "mu_ptcone40"    );
 
-  DeclareVariable(m_mu_desc               , "mu_desc"               );
+  DeclareVariable(m_mu_desc, "mu_desc");
 
+  DeclareVariable(m_mu_tlv, "mu_tlv");
 
   //Detailed Variables
   if(c_do_detailed_output)
     {
-      DeclareVariable(m_mu_raw_etcone20       , "mu_raw_etcone20"       );
-      DeclareVariable(m_mu_raw_etcone30       , "mu_raw_etcone30"       );
-      DeclareVariable(m_mu_raw_etcone40       , "mu_raw_etcone40"       );
-      DeclareVariable(m_mu_raw_ptcone20       , "mu_raw_ptcone20"       );
-      DeclareVariable(m_mu_raw_ptcone30       , "mu_raw_ptcone30"       );
-      DeclareVariable(m_mu_raw_ptcone40       , "mu_raw_ptcone40"       );
       DeclareVariable(m_mu_b_layer_hits       , "mu_b_layer_hits"       );
       DeclareVariable(m_mu_num_pix_hits       , "mu_num_pix_hits"       );
       DeclareVariable(m_mu_num_sct_hits       , "mu_num_sct_hits"       );
@@ -67,6 +62,12 @@ void CommonTools::MuonOutputTool::BeginInputData( const SInputData& )
       DeclareVariable(m_mu_num_trt_outliers   , "mu_num_trt_outliers"   );
       DeclareVariable(m_mu_num_trt_ht_outliers, "mu_num_trt_ht_outliers");
       DeclareVariable(m_mu_num_mdt_layers     , "mu_num_mdt_layers"     );
+      DeclareVariable(m_mu_raw_etcone20       , "mu_raw_etcone20"       );
+      DeclareVariable(m_mu_raw_etcone30       , "mu_raw_etcone30"       );
+      DeclareVariable(m_mu_raw_etcone40       , "mu_raw_etcone40"       );
+      DeclareVariable(m_mu_raw_ptcone20       , "mu_raw_ptcone20"       );
+      DeclareVariable(m_mu_raw_ptcone30       , "mu_raw_ptcone30"       );
+      DeclareVariable(m_mu_raw_ptcone40       , "mu_raw_ptcone40"       );
     }
 
 }
@@ -93,6 +94,7 @@ void CommonTools::MuonOutputTool::BeginExecuteEvent( const SInputData&, Double_t
   m_mu_ptcone40.clear();
 
   m_mu_desc.clear();
+  m_mu_tlv.clear();
 
   m_mu_b_layer_hits.clear();
   m_mu_num_pix_hits.clear();
@@ -189,6 +191,7 @@ void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
     m_mu_ptcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
 
     m_mu_desc.push_back(mu_vec.at(mu_it)->getMuonDesc()->toInt());
+    m_mu_tlv.push_back(mu_vec.at(mu_it)->getTlv());
 
     if (c_do_detailed_output) {
       m_mu_raw_etcone20.push_back(mu_vec.at(mu_it)->etcone20());

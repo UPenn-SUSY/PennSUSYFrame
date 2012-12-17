@@ -20,6 +20,10 @@ Event::Event( const ::Long64_t& master
             , m_met_rel(0.)
             , m_mll_cached(false)
             , m_met_rel_cached(false)
+            , m_mt_cached(false)
+            , m_mt2_cached(false)
+            , m_ptll_cached(false)
+            , m_phill_cached(false)
 {
   clear();
 }
@@ -45,9 +49,17 @@ void Event::clear()
 
   m_mll     = 0.;
   m_met_rel = 0.;
+  m_mt      = 0.;
+  m_mt2     = 0.;
+  m_ptll    = 0.;
+  m_phill   = 0.;
 
   m_mll_cached     = false;
   m_met_rel_cached = false;
+  m_mt_cached      = false;
+  m_mt2_cached     = false;
+  m_ptll_cached    = false;
+  m_phill_cached   = false;
 }
 
 // -----------------------------------------------------------------------------
@@ -184,6 +196,13 @@ void Event::setMll(double mll)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setMt(double mt)
+{
+  m_mt = mt;
+  m_mt_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 void Event::setMt2(double mt2)
 {
   m_mt2 = mt2;
@@ -195,6 +214,13 @@ void Event::setPtll(double ptll)
 {
   m_ptll = ptll;
   m_ptll_cached = true;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setPhill(double phill)
+{
+  m_phill = phill;
+  m_phill_cached = true;
 }
 
 // -----------------------------------------------------------------------------
@@ -221,18 +247,35 @@ double Event::getMetRel()
 }
 
 // -----------------------------------------------------------------------------
+double Event::getMt()
+{
+  if (!m_mt_cached)
+    std::cout << "WARNING! Asking for mt, but not yet cached!\n";
+  return m_mt;
+}
+
+// -----------------------------------------------------------------------------
 double Event::getMt2()
 {
   if (!m_mt2_cached)
     std::cout << "WARNING! Asking for mt2, but not yet cached!\n";
   return m_mt2;
 }
+
 // -----------------------------------------------------------------------------
 double Event::getPtll()
 {
   if (!m_ptll_cached)
     std::cout << "WARNING! Asking for pt_ll, but not yet cached!\n";
   return m_ptll;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getPhill()
+{
+  if (!m_phill_cached)
+    std::cout << "WARNING! Asking for phi_ll, but not yet cached!\n";
+  return m_phill;
 }
 
 // ----------------------------------------------------------------------------

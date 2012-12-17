@@ -13,6 +13,7 @@
 #pragma link C++ class CommonTools::EgammaEnergyRescaleTool+;
 #pragma link C++ class CommonTools::IsoCorrectionTool+;
 #pragma link C++ class CommonTools::JetCalibTool+;
+#pragma link C++ class CommonTools::MTTool+;
 #pragma link C++ class CommonTools::MT2Tool+;
 #pragma link C++ class CommonTools::MuonMomentumSmearingTool+;
 #pragma link C++ class CommonTools::TLVTool+;

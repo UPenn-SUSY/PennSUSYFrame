@@ -519,6 +519,14 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                     );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute mt
+  event->setMt( CommonTools::MTTool::getMt( event->getFlavorChannel()
+              , met
+              , electrons.getElectrons(EL_GOOD)
+              , muons.getMuons(MU_GOOD))
+              );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute mt2
   event->setMt2( CommonTools::MT2Tool::getMt2( event->getFlavorChannel()
                , met
@@ -532,6 +540,13 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                 , electrons.getElectrons(EL_GOOD)
                 , muons.getMuons(MU_GOOD))
                 );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute phill
+  event->setPhill( CommonTools::PhillTool::getPhill(event->getFlavorChannel()
+                 , electrons.getElectrons(EL_GOOD)
+                 , muons.getMuons(MU_GOOD))
+                 );
 }
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event

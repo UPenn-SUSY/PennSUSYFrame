@@ -1,0 +1,14 @@
+// Dear emacs, this is -*- c++ -*-
+#ifndef CommonTools_MTTool_icc
+#define CommonTools_MTTool_icc
+
+#include <iostream>
+
+// #include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/Met.h"
+
+// =============================================================================
+namespace CommonTools {
+  // do nothing
+}
+#endif // CommonTools_MTTool_icc

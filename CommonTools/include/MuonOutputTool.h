@@ -65,7 +65,11 @@ namespace CommonTools
     std::vector<float> m_mu_ptcone30;
     std::vector<float> m_mu_ptcone40;
 
+    // std::vector<float> m_mu_mt;
+
     std::vector<ull_t> m_mu_desc;
+
+    std::vector<TLorentzVector> m_mu_tlv;
 
     // Detailed Variables to output only if configured to 
 
