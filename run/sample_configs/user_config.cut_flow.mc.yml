@@ -223,10 +223,28 @@ MuonSF:
   # sf_dir:     ""
   unit:       MeV
 
-
 EgammaSF:
   do_scaling: True
 
 ChargeFlipSF:
   do_charge_flip_sf: True
   path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
+
+ElectronOutput:
+  do_detailed_output:      0
+  electron_container_name: good
+
+MuonOutput:
+  do_detailed_output:  0
+  muon_container_name: good
+
+JetOutput:
+  do_detailed_output: 0
+  jet_container_name: good
+
+MetOutput:
+  do_detailed_output: 0
+
+VertexOutput:
+  do_detailed_output:    0
+  vertex_container_name: good

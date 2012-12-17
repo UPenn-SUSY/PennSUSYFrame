@@ -22,6 +22,7 @@ Event::Event( const ::Long64_t& master
             , m_met_rel_cached(false)
             , m_mt_cached(false)
             , m_mt2_cached(false)
+            , m_meff_cached(false)
             , m_ptll_cached(false)
             , m_phill_cached(false)
             , m_etall_cached(false)
@@ -52,6 +53,7 @@ void Event::clear()
   m_met_rel = 0.;
   m_mt      = 0.;
   m_mt2     = 0.;
+  m_meff    = 0.;
   m_ptll    = 0.;
   m_phill   = 0.;
   m_etall   = 0.;
@@ -60,6 +62,7 @@ void Event::clear()
   m_met_rel_cached = false;
   m_mt_cached      = false;
   m_mt2_cached     = false;
+  m_meff_cached    = false;
   m_ptll_cached    = false;
   m_phill_cached   = false;
   m_etall_cached   = false;
@@ -213,6 +216,13 @@ void Event::setMt2(double mt2)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setMeff(double meff)
+{
+  m_meff = meff;
+  m_meff_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 void Event::setPtll(double ptll)
 {
   m_ptll = ptll;
@@ -270,6 +280,14 @@ double Event::getMt2()
   if (!m_mt2_cached)
     std::cout << "WARNING! Asking for mt2, but not yet cached!\n";
   return m_mt2;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getMeff()
+{
+  if (!m_meff_cached)
+    std::cout << "WARNING! Asking for meff, but not yet cached!\n";
+  return m_meff;
 }
 
 // -----------------------------------------------------------------------------

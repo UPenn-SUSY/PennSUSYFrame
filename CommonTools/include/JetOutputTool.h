@@ -46,8 +46,13 @@ namespace CommonTools
     bool c_do_detailed_output;
     std::string c_jet_output_collection;
 
-
     //Variables to always output
+    unsigned int m_num_baseline_jets;
+    unsigned int m_num_good_jets;
+    unsigned int m_num_light_jets;
+    unsigned int m_num_b_jets;
+    unsigned int m_num_forward_jets;
+
     std::vector<float> m_jet_pt;
     std::vector<float> m_jet_eta;
     std::vector<float> m_jet_phi;

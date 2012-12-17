@@ -51,6 +51,7 @@ public:
   void setMetRel(double);
   void setMt(double);
   void setMt2(double);
+  void setMeff(double);
   void setPtll(double);
   void setPhill(double);
   void setEtall(double);
@@ -59,6 +60,7 @@ public:
   double getMetRel();
   double getMt();
   double getMt2();
+  double getMeff();
   double getPtll();
   double getPhill();
   double getEtall();
@@ -90,6 +92,7 @@ private:
   double m_met_rel;
   double m_mt;
   double m_mt2;
+  double m_meff;
   double m_ptll;
   double m_phill;
   double m_etall;
@@ -98,6 +101,7 @@ private:
   bool m_met_rel_cached;
   bool m_mt_cached;
   bool m_mt2_cached;
+  bool m_meff_cached;
   bool m_ptll_cached;
   bool m_phill_cached;
   bool m_etall_cached;

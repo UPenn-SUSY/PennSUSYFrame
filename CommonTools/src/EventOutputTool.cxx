@@ -57,6 +57,7 @@ void CommonTools::EventOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_etall, "etall");
   DeclareVariable(m_mt   , "mt"   );
   DeclareVariable(m_mt2  , "mt2"  );
+  DeclareVariable(m_meff , "meff"  );
 
 }
 // -----------------------------------------------------------------------------
@@ -95,6 +96,7 @@ void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_
   m_etall = 0.;
   m_mt    = 0.;
   m_mt2   = 0.;
+  m_meff  = 0.;
 }
 
 // -----------------------------------------------------------------------------
@@ -143,6 +145,7 @@ void CommonTools::EventOutputTool::fillOutput( Event* event
   m_etall = event->getEtall();
   m_mt    = event->getMt();
   m_mt2   = event->getMt2();
+  m_meff  = event->getMeff();
 
 
   m_fake_weight = event->getFakeWeight();

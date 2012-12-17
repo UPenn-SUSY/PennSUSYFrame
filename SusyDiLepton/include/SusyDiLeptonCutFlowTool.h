@@ -25,6 +25,7 @@
 #include "CommonTools/include/EtallTool.h"
 #include "CommonTools/include/MTTool.h"
 #include "CommonTools/include/MT2Tool.h"
+#include "CommonTools/include/MeffTool.h"
 #include "CommonTools/include/TopTagTool.h"
 #include "CommonTools/include/TruthMatchTool.h"
 #include "CommonTools/include/ChargeFlipScaleFactorTool.h"

@@ -25,7 +25,11 @@ CommonTools::JetOutputTool::~JetOutputTool()
 void CommonTools::JetOutputTool::BeginInputData( const SInputData& )
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+  DeclareVariable(m_num_baseline_jets, "num_baseline_jets");
+  DeclareVariable(m_num_good_jets    , "num_good_jets");
+  DeclareVariable(m_num_light_jets   , "num_light_jets");
+  DeclareVariable(m_num_b_jets       , "num_b_jets");
+  DeclareVariable(m_num_forward_jets , "num_forward_jets");
 
   DeclareVariable(m_jet_pt           , "jet_pt"           );
   DeclareVariable(m_jet_eta          , "jet_eta"          );
@@ -35,7 +39,6 @@ void CommonTools::JetOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_jet_jvf          , "jet_jvf"          );
   DeclareVariable(m_jet_desc         , "jet_desc"         );
   DeclareVariable(m_jet_tlv          , "jet_tlv"          );
-
 
   //Detailed Variables
   if(c_do_detailed_output)
@@ -48,6 +51,11 @@ void CommonTools::JetOutputTool::BeginInputData( const SInputData& )
 void CommonTools::JetOutputTool::BeginExecuteEvent(const SInputData&, Double_t)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_num_baseline_jets = 0;
+  m_num_good_jets     = 0;
+  m_num_light_jets    = 0;
+  m_num_b_jets        = 0;
+  m_num_forward_jets  = 0;
 
   m_jet_pt.clear();
   m_jet_eta.clear();
@@ -76,7 +84,6 @@ void CommonTools::JetOutputTool::fillOutput( Event* /*event*/
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill jet varaibles
-
   std::vector<Jet*> jet_vec;
 
   if (  c_jet_output_collection == "signal"
@@ -119,6 +126,11 @@ void CommonTools::JetOutputTool::fillOutput( Event* /*event*/
     throw SError(SError::StopExecution);
   }
 
+  m_num_baseline_jets = jets.getJets(JET_BASELINE).size();
+  m_num_good_jets     = jets.getJets(JET_GOOD).size();
+  m_num_light_jets    = jets.getJets(JET_LIGHT).size();
+  m_num_b_jets        = jets.getJets(JET_B).size();
+  m_num_forward_jets  = jets.getJets(JET_FORWARD).size();
 
   size_t num_jet = jet_vec.size();
 

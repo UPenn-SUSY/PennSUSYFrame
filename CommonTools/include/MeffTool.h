@@ -1,6 +1,6 @@
 // Dear emacs, this is -*- c++ -*-
-#ifndef CommonTools_MTTool_H
-#define CommonTools_MTTool_H
+#ifndef CommonTools_MeffTool_H
+#define CommonTools_MeffTool_H
 // =============================================================================
 
 #include "TLorentzVector.h"
@@ -10,37 +10,29 @@
 namespace CommonTools{
 
   // ===========================================================================
-  class MTTool
+  class MeffTool
   {
   // ---------------------------------------------------------------------------
   public:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    MTTool();
+    MeffTool();
 
-    static double getMt( FLAVOR_CHANNEL
-                       , const Met*
-                       , const std::vector<Electron*>&
-                       , const std::vector<Muon*>&
-                       );
-
-    static double getMt( const Electron*
-                       , const Met*
-                       );
-
-    static double getMt( const Muon*
-                       , const Met*
-                       );
+    static double getMeff( FLAVOR_CHANNEL
+                         , const std::vector<Electron*>&
+                         , const std::vector<Muon*>&
+                         , const std::vector<Jet*>&
+                         );
 
   // ---------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    static double calcMt(const TLorentzVector, const TVector2);
   };
+
 }
 
 // Include the implementation:
 #ifndef __CINT__
-#include "MTTool.icc"
+#include "MeffTool.icc"
 #endif // __CINT__
 
 

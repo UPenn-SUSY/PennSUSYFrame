@@ -2,13 +2,13 @@
 #include "AtlasSFrameUtils/include/CycleMacros.h"
 #include "include/MetOutputTool.h"
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::MetOutputTool::MetOutputTool( SCycleBase* parent
                                                          , const char* name
                                                          )
                                                          : ToolBase(parent, name)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
@@ -18,16 +18,16 @@ CommonTools::MetOutputTool::MetOutputTool( SCycleBase* parent
 
 
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 CommonTools::MetOutputTool::~MetOutputTool()
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do nothing
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::MetOutputTool::BeginInputData( const SInputData& )
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   DeclareVariable(m_met_et           , "met_et"    );
   DeclareVariable(m_met_rel_et       , "met_rel_et");
   DeclareVariable(m_met_rel_delta_phi, "met_rel_delta_phi"   );
@@ -42,7 +42,7 @@ void CommonTools::MetOutputTool::BeginInputData( const SInputData& )
     }
 
 }
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::MetOutputTool::BeginExecuteEvent( const SInputData&, Double_t )
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -56,7 +56,7 @@ void CommonTools::MetOutputTool::BeginExecuteEvent( const SInputData&, Double_t 
 
 }
 
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void CommonTools::MetOutputTool::fillOutput( Event* event
                                            , ElectronContainer& /*electrons*/
                                            , MuonContainer& /*muons*/

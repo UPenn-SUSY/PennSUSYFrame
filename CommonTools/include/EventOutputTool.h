@@ -81,6 +81,7 @@ namespace CommonTools
     float m_etall;
     float m_mt;
     float m_mt2;
+    float m_meff;
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

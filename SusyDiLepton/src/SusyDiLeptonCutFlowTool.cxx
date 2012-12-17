@@ -535,6 +535,14 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute meff
+  event->setMeff( CommonTools::MeffTool::getMeff( event->getFlavorChannel()
+                , electrons.getElectrons(EL_GOOD)
+                , muons.getMuons(MU_GOOD)
+                , jets.getJets(JET_GOOD))
+                );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute ptll
   event->setPtll( CommonTools::PtllTool::getPtll(event->getFlavorChannel()
                 , electrons.getElectrons(EL_GOOD)

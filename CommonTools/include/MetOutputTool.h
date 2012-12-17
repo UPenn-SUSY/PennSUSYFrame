@@ -13,19 +13,19 @@
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
-// ============================================================================
+// =============================================================================
 // Forward declare SusyDiLeptonCutFlowCycle
 class SusyDiLeptonCutFlowCycle;
 class SusyDiLeptonChargeFlipCycle;
-// ============================================================================
+// =============================================================================
 namespace CommonTools
 {
-// ============================================================================
+// =============================================================================
   class MetOutputTool : public ToolBase
   {
-  // ----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   public:
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     MetOutputTool(SCycleBase* parent, const char* name = "OutputTool");
     virtual ~MetOutputTool();
 
@@ -40,16 +40,12 @@ namespace CommonTools
                    , VertexContainer&
                    );
 
-  // ----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   private:
 
     bool c_do_detailed_output;
-//std::string c_electron_output_collection;
-//std::string c_muon_output_collection;
-//std::string c_jet_output_collection;
-//
-    //Variables to always output
 
+    //Variables to always output
     float m_met_et;
     float m_met_rel_et;
     float m_met_rel_delta_phi;
@@ -61,8 +57,7 @@ namespace CommonTools
     // Detailed Variables to output only if configured to
 
 
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(MetOutputTool, 0);
   };
 }
