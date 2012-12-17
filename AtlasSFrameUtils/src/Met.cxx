@@ -392,7 +392,7 @@ double Met::getMetRefFinalPhi() const
              << "\n\tphi: -999\n";
     return -999;
   }
-  return m_met_vec.Phi();
+  return TVector2::Phi_mpi_pi(m_met_vec.Phi());
 }
 
 // -----------------------------------------------------------------------------

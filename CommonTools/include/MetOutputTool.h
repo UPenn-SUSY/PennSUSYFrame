@@ -11,6 +11,8 @@
 #include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
+#include "CommonTools/include/DeltaPhiTool.h"
+
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
@@ -51,6 +53,8 @@ namespace CommonTools
     float m_met_rel_delta_phi;
     float m_met_phi;
     float m_met_sumet;
+
+    float m_dphi_met_ll;
 
     TVector2 m_met_vec;
 

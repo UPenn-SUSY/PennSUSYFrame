@@ -7,6 +7,8 @@
 #include "AtlasSFrameUtils/include/Jet.h"
 #include "AtlasSFrameUtils/include/Met.h"
 
+#include "CommonTools/include/PhillTool.h"
+
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // ============================================================================
@@ -33,6 +35,12 @@ namespace CommonTools{
                              , const std::vector<Electron*>&
                              , const std::vector<Muon*>&
                              , const Jet*
+                             );
+
+    static double getDeltaPhi( FLAVOR_CHANNEL
+                             , const std::vector<Electron*>&
+                             , const std::vector<Muon*>&
+                             , const Met*
                              );
 
   // --------------------------------------------------------------------------
