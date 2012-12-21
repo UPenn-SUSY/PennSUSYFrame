@@ -20,11 +20,13 @@ canv_linear = metaroot.hist.CanvasOptions(width=800, height=600)
 canv_log_y  = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
 canv_opt_2d = metaroot.hist.CanvasOptions( width=800
                                          , height=600
-                                         , right_margin=10
+                                         # , right_margin=10
+                                         , right_margin=30
                                          )
 canv_opt_2d_log_y = metaroot.hist.CanvasOptions( width=800
                                                , height=600
-                                               , right_margin=10
+                                               # , right_margin=10
+                                               , right_margin=30
                                                , log_z=True
                                                )
 

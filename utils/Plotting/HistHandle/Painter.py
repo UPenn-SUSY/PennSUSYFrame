@@ -419,7 +419,7 @@ def getExtrema(hist_list, log_y = True):
     return extrema
 
 # ------------------------------------------------------------------------------
-def draw2DMaps(map_array, contour_levels = [1.64]):
+def draw2DMaps(map_array, contour_levels = [1.64], lumi = None):
     # structure of elemets in map array are: # {'point_name':str, 'significance':float, 'cut_value':float}
     x_grid_points = []
     y_grid_points = []
@@ -456,7 +456,7 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
                              )
     grid_points.SetMarkerStyle(20)
     sig_graph = ROOT.TGraph2D( 'h_sig_map'
-                             , sig_title
+                             , '%s; Z_{n}' % sig_title
                              , len(x_points)
                              , array.array('d', x_points)
                              , array.array('d', y_points)
@@ -464,7 +464,7 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
                              )
 
     cut_graph = ROOT.TGraph2D( 'h_cut_map'
-                             , cut_title
+                             , '%s; Cut Values' % cut_title
                              , len(x_points)
                              , array.array('d', x_points)
                              , array.array('d', y_points)
@@ -472,7 +472,7 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
                              )
 
     num_sig_graph = ROOT.TGraph2D( 'h_num_sig_map'
-                                 , num_sig_title
+                                 , '%s; Expected Signal Events' % num_sig_title
                                  , len(x_points)
                                  , array.array('d', x_points)
                                  , array.array('d', y_points)
@@ -480,7 +480,7 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
                                  )
 
     num_bkg_graph = ROOT.TGraph2D( 'h_num_bkg_map'
-                                 , num_bkg_title
+                                 , '%s; Expected Background Events' % num_sig_title
                                  , len(x_points)
                                  , array.array('d', x_points)
                                  , array.array('d', y_points)
@@ -498,29 +498,44 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
                                    , [2]*len(contour_levels)
                                    )
 
+    l_lumi   = ROOT.TLatex(0.20, 0.75, '#int L dt = 21 fb^{-1}')
+    l_sample = ROOT.TLatex(0.20, 0.67, '#tilde{#chi}_{1}^{#pm}#tilde{#chi}_{1}^{0} production')
+    l_lumi.SetNDC()
+    l_sample.SetNDC()
+    l_lumi.SetTextSize(0.05)
+    l_sample.SetTextSize(0.05)
+
     c_sig = hh.canv_opt_2d.create('c_sig_map')
     sig_graph.Draw('COLZ')
     grid_points.Draw('PSAME')
     for cl in contour_lines:
         cl.Draw('SAME')
+    l_lumi.Draw()
+    l_sample.Draw()
 
     c_cut = hh.canv_opt_2d.create('c_cut_map')
     cut_graph.Draw('COLZ')
     grid_points.Draw('PSAME')
     for cl in contour_lines:
         cl.Draw('SAME')
+    l_lumi.Draw()
+    l_sample.Draw()
 
     c_num_sig = hh.canv_opt_2d_log_y.create('c_num_sig_map')
     num_sig_graph.Draw('COLZ')
     grid_points.Draw('PSAME')
     for cl in contour_lines:
         cl.Draw('SAME')
+    l_lumi.Draw()
+    l_sample.Draw()
 
     c_num_bkg = hh.canv_opt_2d_log_y.create('c_num_bkg_map')
     num_bkg_graph.Draw('COLZ')
     grid_points.Draw('PSAME')
     for cl in contour_lines:
         cl.Draw('SAME')
+    l_lumi.Draw()
+    l_sample.Draw()
 
     return { 'h_sig':sig_graph
            , 'h_cut':cut_graph
@@ -532,6 +547,8 @@ def draw2DMaps(map_array, contour_levels = [1.64]):
            , 'c_num_bkg':c_num_bkg
            , 'contour':contour_lines
            , 'grid':grid_points
+           , 'l_lumi':l_lumi
+           , 'l_sample':l_sample
            }
 
 # -----------------------------------------------------------------------------
