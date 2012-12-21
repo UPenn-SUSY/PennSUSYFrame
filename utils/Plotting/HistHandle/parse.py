@@ -101,9 +101,6 @@ class OptimizeContainer(object):
     # --------------------------------------------------------------------------
     def __init__(self, input_dict):
         self.cut_dir =      input_dict['cut_dir']
-        self.optimize_dir = self.cut_dir
-        if 'optimize_dir' in input_dict:
-            self.optimize_dir = input_dict['optimize_dir']
         self.to_optimize =  input_dict['to_optimize']
         self.direction =    input_dict['direction']
         self.fixed_points = input_dict['fixed_points']
