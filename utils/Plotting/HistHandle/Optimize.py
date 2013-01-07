@@ -225,8 +225,8 @@ class OptimizeMap(object):
         if self.sample_bkg_integral is None:
             self.sample_bkg_integral = grid_point_optimize.bkg_integral
 
-    # ------------------------------------------------------------------------------
-    def printScan(self, maps_dir):
+    # --------------------------------------------------------------------------
+    def printScan(self, maps_dir, target_lumi, prod_type = ''):
         dir_name = 'scan_%s' % self.optimize_container.to_optimize
         maps_dir.mkdir(dir_name)
         maps_dir.cd(dir_name)
@@ -239,26 +239,25 @@ class OptimizeMap(object):
 
             cut_bin = self.optimize_grid_points[gp].significance.GetXaxis().FindBin(cut)
             num_sig = self.optimize_grid_points[gp].sig_integral.GetBinContent(cut_bin)
-            num_bkg = self.optimize_grid_points[gp].bkg_integral.GetBinContent(cut_bin)
 
             map_entries.append( { 'point_name':gp
                                 , 'significance':sig
                                 , 'cut_value':cut
                                 , 'num_sig':num_sig
-                                , 'num_bkg':num_bkg
                                 } )
-        maps = hh.Painter.draw2DMaps(map_entries)
+        maps = hh.Painter.draw2DMaps( map_entries
+                                    , lumi = target_lumi
+                                    , prod_type = prod_type
+                                    )
         maps['c_sig'].Write()
         maps['c_cut'].Write()
         maps['c_num_sig'].Write()
-        maps['c_num_bkg'].Write()
         maps['c_sig'].Close()
         maps['c_cut'].Close()
         maps['c_num_sig'].Close()
-        maps['c_num_bkg'].Close()
 
-    # ------------------------------------------------------------------------------
-    def printFixedPoint(self, maps_dir, cut_value):
+    # --------------------------------------------------------------------------
+    def printFixedPoint(self, maps_dir, cut_value, target_lumi, prod_type = ''):
         dir_name = '%s_%s' % ( self.optimize_container.to_optimize
                              , cut_value
                              )
@@ -270,30 +269,35 @@ class OptimizeMap(object):
             cut_bin = self.optimize_grid_points[gp].significance.GetXaxis().FindBin(float(cut_value))
             sig = self.optimize_grid_points[gp].significance.GetBinContent(cut_bin)
             num_sig = self.optimize_grid_points[gp].sig_integral.GetBinContent(cut_bin)
-            num_bkg = self.optimize_grid_points[gp].bkg_integral.GetBinContent(cut_bin)
 
             map_entries.append( { 'point_name':gp
                                 , 'significance':sig
                                 , 'cut_value':cut_value
                                 , 'num_sig':num_sig
-                                , 'num_bkg':num_bkg
                                 } )
-        maps = hh.Painter.draw2DMaps(map_entries)
+        maps = hh.Painter.draw2DMaps( map_entries
+                                    , lumi = target_lumi
+                                    , prod_type = prod_type
+                                    )
         maps['c_sig'].Write()
         maps['c_cut'].Write()
         maps['c_num_sig'].Write()
-        maps['c_num_bkg'].Write()
         maps['c_sig'].Close()
         maps['c_cut'].Close()
         maps['c_num_sig'].Close()
-        maps['c_num_bkg'].Close()
 
     # ------------------------------------------------------------------------------
-    def printAllFixedPoints(self, maps_dir):
+    def printAllFixedPoints(self, maps_dir, target_lumi, prod_type = ''):
         maps_dir.cd()
         c_num_bkg = hh.canv_log_y.create('c_num_bkg')
         self.sample_bkg_integral.Draw()
+        hh.Painter.drawLabels()
         c_num_bkg.Write()
         c_num_bkg.Close()
+
         for cut_value in self.optimize_container.fixed_points:
-            self.printFixedPoint(maps_dir, cut_value)
+            self.printFixedPoint( maps_dir
+                                , cut_value
+                                , target_lumi=target_lumi
+                                , prod_type=prod_type
+                                )

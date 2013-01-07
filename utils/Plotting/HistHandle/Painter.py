@@ -13,11 +13,19 @@ import ROOT
 import rootlogon
 import metaroot
 
+import AtlasLabels
+
 import HistHandle as hh
 
 # ==============================================================================
 canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
 canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
+
+# ==============================================================================
+prod_labels = { 'modeA':'#tilde{#chi}_{1}^{#pm}#tilde{#chi}_{1}^{0} production'
+              , 'modeC':'#tilde{#chi}_{1}^{0}#tilde{#chi}_{1}^{0} production'
+              , 'pmssm':'pMSSM - TO UPDATE!!!'
+              }
 
 # ==============================================================================
 class HistPainter(object):
@@ -94,6 +102,8 @@ class HistPainter(object):
             , normalize        = False
             , canvas_options   = canv_default
             , legend           = False
+            , int_lumi         = 0
+            , prod_type        = ''
             ):
         """
         docstring
@@ -151,7 +161,7 @@ class HistPainter(object):
 
         self.canvas = pileHists( hist_list
                                , tag
-                               , draw_opt_list = draw_opt_list
+                               , draw_opt_list  = draw_opt_list
                                , canvas_options = canvas_options
                                )
 
@@ -166,6 +176,7 @@ class HistPainter(object):
         if legend:
             self.legend = self.genLegend()
             self.legend.Draw()
+        drawLabels(int_lumi = int_lumi, prod_type = prod_type)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
@@ -177,6 +188,8 @@ class HistPainter(object):
                     , normalize        = False
                     , canvas_options   = canv_default
                     , legend           = False
+                    , int_lumi         = 0
+                    , prod_type        = ''
                     ):
         """
         docstring
@@ -245,6 +258,7 @@ class HistPainter(object):
             self.ratio_stuff['top_pad'].cd()
             self.legend = self.genLegend()
             self.legend.Draw()
+        drawLabels(int_lumi = int_lumi, prod_type = prod_type)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
@@ -369,11 +383,13 @@ def calcMax(hist_list, log_y = True):
                         , ( math.log(y_max, 10)
                           + ( math.log(y_max, 10)
                             - math.log(y_min, 10)
-                            ) * 0.20
+                            # ) * 0.20
+                            ) * 0.70
                           )
                         )
     else:
-        y_max += (y_max - y_min)*0.20
+        # y_max += (y_max - y_min)*0.20
+        y_max += (y_max - y_min)*0.70
 
     # return value for max
     return y_max
@@ -419,7 +435,11 @@ def getExtrema(hist_list, log_y = True):
     return extrema
 
 # ------------------------------------------------------------------------------
-def draw2DMaps(map_array, contour_levels = [1.64], lumi = None):
+def draw2DMaps( map_array
+              , contour_levels = [1.64]
+              , lumi           = None
+              , prod_type      = ''
+              ):
     # structure of elemets in map array are: # {'point_name':str, 'significance':float, 'cut_value':float}
     x_grid_points = []
     y_grid_points = []
@@ -428,7 +448,6 @@ def draw2DMaps(map_array, contour_levels = [1.64], lumi = None):
     significance  = []
     cut_values    = []
     num_sig       = []
-    num_bkg       = []
 
     for ma in map_array:
         x_grid_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
@@ -440,15 +459,13 @@ def draw2DMaps(map_array, contour_levels = [1.64], lumi = None):
             significance.append(ma['significance'])
             cut_values.append(ma['cut_value'])
             num_sig.append(ma['num_sig'])
-            num_bkg.append(ma['num_bkg'])
 
     # set axis titles
-    x_axis = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
-    y_axis = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
-    sig_title = 'significance ; %s ; %s' % (x_axis, y_axis)
-    cut_title = 'cut value ; %s ; %s' % (x_axis, y_axis)
+    x_axis        = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
+    y_axis        = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
+    sig_title     = 'significance ; %s ; %s'      % (x_axis, y_axis)
+    cut_title     = 'cut value ; %s ; %s'         % (x_axis, y_axis)
     num_sig_title = 'Num signal events ; %s ; %s' % (x_axis, y_axis)
-    num_bkg_title = 'Num background events ; %s ; %s' % (x_axis, y_axis)
 
     grid_points = ROOT.TGraph( len(map_array)
                              , array.array('d', x_grid_points)
@@ -479,18 +496,9 @@ def draw2DMaps(map_array, contour_levels = [1.64], lumi = None):
                                  , array.array('d', num_sig)
                                  )
 
-    num_bkg_graph = ROOT.TGraph2D( 'h_num_bkg_map'
-                                 , '%s; Expected Background Events' % num_sig_title
-                                 , len(x_points)
-                                 , array.array('d', x_points)
-                                 , array.array('d', y_points)
-                                 , array.array('d', num_bkg)
-                                 )
-
     sig_graph.SetMinimum(0)
     cut_graph.SetMinimum(0)
     num_sig_graph.SetMinimum(0)
-    num_bkg_graph.SetMinimum(0)
 
     # get contour lines frokm significance map
     contour_lines = getContourLines( sig_graph
@@ -498,57 +506,35 @@ def draw2DMaps(map_array, contour_levels = [1.64], lumi = None):
                                    , [2]*len(contour_levels)
                                    )
 
-    l_lumi   = ROOT.TLatex(0.20, 0.75, '#int L dt = 21 fb^{-1}')
-    l_sample = ROOT.TLatex(0.20, 0.67, '#tilde{#chi}_{1}^{#pm}#tilde{#chi}_{1}^{0} production')
-    l_lumi.SetNDC()
-    l_sample.SetNDC()
-    l_lumi.SetTextSize(0.05)
-    l_sample.SetTextSize(0.05)
-
     c_sig = hh.canv_opt_2d.create('c_sig_map')
     sig_graph.Draw('COLZ')
     grid_points.Draw('PSAME')
     for cl in contour_lines:
         cl.Draw('SAME')
-    l_lumi.Draw()
-    l_sample.Draw()
+    drawLabels(int_lumi = lumi, prod_type = prod_type)
 
     c_cut = hh.canv_opt_2d.create('c_cut_map')
     cut_graph.Draw('COLZ')
     grid_points.Draw('PSAME')
     for cl in contour_lines:
         cl.Draw('SAME')
-    l_lumi.Draw()
-    l_sample.Draw()
+    drawLabels(int_lumi = lumi, prod_type = prod_type)
 
     c_num_sig = hh.canv_opt_2d_log_y.create('c_num_sig_map')
     num_sig_graph.Draw('COLZ')
     grid_points.Draw('PSAME')
     for cl in contour_lines:
         cl.Draw('SAME')
-    l_lumi.Draw()
-    l_sample.Draw()
-
-    c_num_bkg = hh.canv_opt_2d_log_y.create('c_num_bkg_map')
-    num_bkg_graph.Draw('COLZ')
-    grid_points.Draw('PSAME')
-    for cl in contour_lines:
-        cl.Draw('SAME')
-    l_lumi.Draw()
-    l_sample.Draw()
+    drawLabels(int_lumi = lumi, prod_type = prod_type)
 
     return { 'h_sig':sig_graph
            , 'h_cut':cut_graph
            , 'h_num_sig':num_sig_graph
-           , 'h_num_bkg':num_bkg_graph
            , 'c_sig':c_sig
            , 'c_cut':c_cut
            , 'c_num_sig':c_num_sig
-           , 'c_num_bkg':c_num_bkg
            , 'contour':contour_lines
            , 'grid':grid_points
-           , 'l_lumi':l_lumi
-           , 'l_sample':l_sample
            }
 
 # -----------------------------------------------------------------------------
@@ -590,4 +576,16 @@ def getContourLines( plot
     c.Close()
     return list_of_contour_graphs
 
-
+# ------------------------------------------------------------------------------
+def drawLabels( int_lumi = 0
+              , prod_type = ''
+              ):
+    """
+    docstring
+    """
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    AtlasLabels.ATLASLabel(0.20, 0.87, 1, 'Internal')
+    if int_lumi is not None and int_lumi > 0:
+        AtlasLabels.myText(0.20, 0.78, 1, '#intLdt = %s fb^{-1}' % int_lumi)
+    if prod_type in prod_labels:
+        AtlasLabels.myText(0.20, 0.70, 1, prod_labels[prod_type])

@@ -49,6 +49,12 @@ def main():
     dirs  = hh.Helper.get_list_of_dirs(file_list)
     hists = hh.Helper.get_list_of_hists(file_list[0].GetDirectory(dirs[0]))
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # TODO make these configurable
+    target_lumi = 21
+    prod_type = 'modeA'
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # loop through cut directories
     for d in dirs:
         print 'Making optimization plots for dir: %s' % d
@@ -137,10 +143,16 @@ def main():
             # do scan of all possible cuts
             if optimize[d].scan:
                 print '\tScanning: %s' % optimize[d].to_optimize
-                optimize_map.printScan(maps_dir)
+                optimize_map.printScan( maps_dir
+                                      , target_lumi = target_lumi
+                                      , prod_type   = prod_type
+                                      )
 
             # check fixed cut values
-            optimize_map.printAllFixedPoints(maps_dir)
+            optimize_map.printAllFixedPoints( maps_dir
+                                            , target_lumi = target_lumi
+                                            , prod_type   = prod_type
+                                            )
 
     # Clean up out file
     out_file.Close()
