@@ -165,12 +165,12 @@ class HistPainter(object):
                                , canvas_options = canvas_options
                                )
 
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        if self.optimal_cut is not None:
-            print 'Found optimal cut'
-            self.cut_region = self.optimal_cut.genCutRegion(hist_list[0])
-            if not self.cut_region is None:
-                self.cut_region.Draw('F')
+        # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # if self.optimal_cut is not None:
+        #     print 'Found optimal cut'
+        #     self.cut_region = self.optimal_cut.genCutRegion(hist_list[0])
+        #     if not self.cut_region is None:
+        #         self.cut_region.Draw('F')
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         if legend:

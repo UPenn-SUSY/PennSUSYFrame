@@ -118,9 +118,11 @@ def main():
                                    , denom_type     = hh.Objects.stack_hist
                                    , canvas_options = hh.canv_log_y
                                    , legend         = True
+                                   , int_lumi       = target_lumi
+                                   , prod_type      = prod_type
                                    )
                 pile.Write(h)
-                pile.Close()
+                # pile.Close()
 
                 # if we are to optimize, and this cut is specified, print
                 # details to file
@@ -130,8 +132,17 @@ def main():
                     sample_dir.cd(detail_dir_name)
 
                     sig_plot = local_optimize.drawSignificanceCanvas()
+                    hh.Painter.drawLabels( int_lumi = target_lumi
+                                         , prod_type = prod_type
+                                         )
                     sig_plot['canvas'].Write('%s_zn' % h)
                     sig_plot['canvas'].Close()
+
+                    cut_region = local_optimize.drawCutRegionCanvas(pile)
+                    cut_region['canvas'].Write('%s_w_cut_region' % h)
+                    cut_region['canvas'].Close()
+
+                pile.Close()
 
         # If we are doing optimization, print maps to file
         if do_optimize:

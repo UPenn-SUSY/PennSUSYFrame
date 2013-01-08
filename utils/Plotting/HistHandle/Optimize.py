@@ -204,6 +204,21 @@ class Optimize(object):
 
         return {'canvas':sig_canvas, 'mark':highlight_point}
 
+    # ------------------------------------------------------------------------------
+    def drawCutRegionCanvas(self, pile_canv):
+        cut_canvas = pile_canv.Clone('%s_w_cut_region' % pile_canv.GetName())
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        cut_region = None
+        if self.optimal_cut is not None:
+            pass
+            # TODO draw cut region -- need to get bounds of pad
+            # cut_region = self.genCutRegion(painter.hist_list[0])
+        if not cut_region is None:
+            cut_region.Draw('F')
+
+        return {'canvas':cut_canvas}
+
     # --------------------------------------------------------------------------
     def __del__(self):
         pass
@@ -289,9 +304,15 @@ class OptimizeMap(object):
     # ------------------------------------------------------------------------------
     def printAllFixedPoints(self, maps_dir, target_lumi, prod_type = ''):
         maps_dir.cd()
-        c_num_bkg = hh.canv_log_y.create('c_num_bkg')
-        self.sample_bkg_integral.Draw()
-        hh.Painter.drawLabels()
+
+        c_num_bkg = hh.Painter.pileHists( [self.sample_bkg_integral]
+                                        , 'num_bkg'
+                                        , canvas_options = hh.canv_log_y
+                                        )
+
+        hh.Painter.drawLabels( int_lumi = target_lumi
+                             , prod_type = prod_type
+                             )
         c_num_bkg.Write()
         c_num_bkg.Close()
 
