@@ -64,6 +64,8 @@ void SusyDiLeptonPreselCycle::declareTools()
   DECLARE_TOOL(CommonTools::TLVTool                    , "tlv"             );
   DECLARE_TOOL(CommonTools::TopTagTool                 , "Top_Tag"         );
   DECLARE_TOOL(CommonTools::TruthMatchTool             , "Truth_Match"     );
+  // TODO this is included to avoid seg-fault. Find way around including CF tool
+  DECLARE_TOOL(CommonTools::ChargeFlipScaleFactorTool  , "ChargeFlipSF");
 
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );

@@ -87,17 +87,16 @@ void SusyDiLeptonCutFlowTool::getTools()
   m_truth_match_tool = truth_match_tool;
 
   GET_TOOL( hfor_tool
-    , SelectionTools::HFORTool
-    , "HFOR"
-    );
+          , SelectionTools::HFORTool
+          , "HFOR"
+          );
 
   m_hfor_tool = hfor_tool;
 
   GET_TOOL( charge_flip_tool
-    , CommonTools::ChargeFlipScaleFactorTool
+          , CommonTools::ChargeFlipScaleFactorTool
           , "ChargeFlipSF"
           );
-
   m_charge_flip_sf_tool = charge_flip_tool;
 }
 
