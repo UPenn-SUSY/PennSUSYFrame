@@ -63,6 +63,7 @@ void NtupleLooper::Init(TTree *tree)
    // Init() will be called many times when running on PROOF
    // (once per file to be processed).
 
+  std::cout << "Init our input tree\n";
    m_lbn = 0;
    m_run_number = 0;
    m_event_number = 0;
@@ -161,7 +162,7 @@ void NtupleLooper::Init(TTree *tree)
    if (!tree) return;
    fChain = tree;
    fCurrent = -1;
-   fChain->SetMakeClass(1);
+   // fChain->SetMakeClass(1);
 
    int branch_num = 0;
    fChain->SetBranchAddress( "lbn"
@@ -554,6 +555,7 @@ void NtupleLooper::Loop()
   if (fChain == 0) return;
 
   Long64_t nentries = fChain->GetEntriesFast();
+  std::cout << "number evens: " << nentries << "\n";
 
   Long64_t nbytes = 0, nb = 0;
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
