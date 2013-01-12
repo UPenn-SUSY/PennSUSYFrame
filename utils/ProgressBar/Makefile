@@ -2,9 +2,11 @@ LIBRARY := ProgressBar
 OBJDIR  := $(PWD)/obj
 SRCDIR  := $(PWD)/src
 INCDIR  := $(PWD)/include
-EXECUTABLE := 
+# EXECUTABLE :=
+# BONUS_LIB_PATH :=
 
 INCLUDES += -I../
 INCLUDES += -I./
+INCLUDES += -I../../
 
 include $(PWD)/../Makefile.common

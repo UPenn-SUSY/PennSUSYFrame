@@ -108,6 +108,7 @@ class OptimizeContainer(object):
 
         if   self.direction == 'right': self.direction = hh.right
         elif self.direction == 'left':  self.direction = hh.left
+        elif self.direction == 'equal': self.direction = hh.equal
         else: assert False
 
 # ------------------------------------------------------------------------------

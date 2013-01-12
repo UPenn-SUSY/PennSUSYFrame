@@ -22,7 +22,7 @@ canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
 canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
 
 # ==============================================================================
-prod_labels = { 'modeA':'#tilde{#chi}_{1}^{#pm}#tilde{#chi}_{1}^{0} production'
+prod_labels = { 'modeA':'#tilde{#chi}_{1}^{#pm}#tilde{#chi}_{2}^{0} production'
               , 'modeC':'#tilde{#chi}_{1}^{0}#tilde{#chi}_{1}^{0} production'
               , 'pmssm':'pMSSM - TO UPDATE!!!'
               }
@@ -462,7 +462,7 @@ def draw2DMaps( map_array
 
     # set axis titles
     x_axis        = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
-    y_axis        = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
+    y_axis        = 'm_{#tilde{#chi}_{2}^{0}} [GeV]'
     sig_title     = 'significance ; %s ; %s'      % (x_axis, y_axis)
     cut_title     = 'cut value ; %s ; %s'         % (x_axis, y_axis)
     num_sig_title = 'Num signal events ; %s ; %s' % (x_axis, y_axis)

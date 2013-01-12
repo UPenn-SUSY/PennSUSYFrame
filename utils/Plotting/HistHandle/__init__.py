@@ -13,8 +13,9 @@ import metaroot
 default = object()
 ignore_zeros = object()
 
-left = object()
+left  = object()
 right = object()
+equal = object()
 
 canv_linear = metaroot.hist.CanvasOptions(width=800, height=600)
 canv_log_y  = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
