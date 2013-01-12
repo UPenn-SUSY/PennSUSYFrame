@@ -35,6 +35,7 @@ class HistConfigParser : public ParseDriver
     std::string  m_title;
     std::string  m_x_axis;
     std::string  m_y_axis;
+    std::string m_hist_cut;
 
     std::vector<HistInfo> m_hist_info;
 };

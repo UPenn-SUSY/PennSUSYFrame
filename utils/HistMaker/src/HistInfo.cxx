@@ -10,6 +10,7 @@ HistInfo::HistInfo()
                   , m_title("")
                   , m_x_axis("")
                   , m_y_axis("")
+                  , m_hist_cut("")
 {
   // do nothing
 }
@@ -23,6 +24,7 @@ HistInfo::HistInfo( std::string var_exp
                   , std::string title
                   , std::string x_axis
                   , std::string y_axis
+                  , std::string hist_cut
                   )
                   : m_var_exp(var_exp)
                   , m_x_num_bins(x_num_bins)
@@ -32,8 +34,18 @@ HistInfo::HistInfo( std::string var_exp
                   , m_title(title)
                   , m_x_axis(x_axis)
                   , m_y_axis(y_axis)
+                  , m_hist_cut(hist_cut)
 {
   // do nothing
+  std::cout << "m_var_exp    - " << m_var_exp    << "\n";
+  std::cout << "m_x_num_bins - " << m_x_num_bins << "\n";
+  std::cout << "m_x_min      - " << m_x_min      << "\n";
+  std::cout << "m_x_max      - " << m_x_max      << "\n";
+  std::cout << "m_name       - " << m_name       << "\n";
+  std::cout << "m_title      - " << m_title      << "\n";
+  std::cout << "m_x_axis     - " << m_x_axis     << "\n";
+  std::cout << "m_y_axis     - " << m_y_axis     << "\n";
+  std::cout << "m_hist_cut   - " << m_hist_cut   << "\n";
 }
 
 // -----------------------------------------------------------------------------
@@ -45,6 +57,7 @@ HistInfo::HistInfo(const HistInfo& rhs) : m_var_exp(rhs.getVarExp())
                                         , m_title(rhs.getTitle())
                                         , m_x_axis(rhs.getXAxis())
                                         , m_y_axis(rhs.getYAxis())
+                                        , m_hist_cut(rhs.getHistCut())
 {
   // do nothing
 }
@@ -57,19 +70,19 @@ std::string HistInfo::getVarExp() const
 }
 
 // -----------------------------------------------------------------------------
-float HistInfo::getNumXBins() const
+unsigned int HistInfo::getNumXBins() const
 {
   return m_x_num_bins;
 }
 
 // -----------------------------------------------------------------------------
-unsigned int HistInfo::getXMin() const
+float HistInfo::getXMin() const
 {
   return m_x_min;
 }
 
 // -----------------------------------------------------------------------------
-unsigned int HistInfo::getXMax() const
+float HistInfo::getXMax() const
 {
   return m_x_max;
 }
@@ -96,6 +109,12 @@ std::string HistInfo::getXAxis() const
 std::string HistInfo::getYAxis() const
 {
   return m_y_axis;
+}
+
+// -----------------------------------------------------------------------------
+std::string HistInfo::getHistCut() const
+{
+  return m_hist_cut;
 }
 
 // -----------------------------------------------------------------------------

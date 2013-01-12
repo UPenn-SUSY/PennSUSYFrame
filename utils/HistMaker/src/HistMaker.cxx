@@ -125,9 +125,14 @@ void HistMaker::fillHists(std::string key)
                           + hist_it->getName() + "__" + key
                           );
 
+    TCut hist_selection = full_selection;
+    if (hist_it->getHistCut() != "") {
+      hist_selection = hist_selection && ( TCut(hist_it->getHistCut().c_str()) );
+    }
     std::cout << "var_exp: " << var_exp << "\n";
     std::cout << "full_selection: " << full_selection << "\n";
-    fChain->Draw(var_exp.c_str(), full_selection, "goff");
+    std::cout << "hist_selection: " << hist_selection << "\n";
+    fChain->Draw(var_exp.c_str(), hist_selection, "goff");
 
     m_hist[key].push_back(tmp_hist);
   }

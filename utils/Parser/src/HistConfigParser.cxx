@@ -31,6 +31,7 @@ void HistConfigParser::clear()
   m_title    = "";
   m_x_axis   = "x axis";
   m_y_axis   = "y axis";
+  m_hist_cut = "";
 }
 
 // -----------------------------------------------------------------------------
@@ -70,6 +71,8 @@ void HistConfigParser::addLine(std::vector<std::string> split_line)
     m_x_axis = convertToRootLatex(split_line.at(1));
   else if (key.find("y_axis") != std::string::npos)
     m_y_axis = convertToRootLatex(split_line.at(1));
+  else if (key.find("hist_cut") != std::string::npos)
+    m_hist_cut = split_line.at(1);
   else
     std::cout << "WARNING! The key \'" << key
               << "\' is invalid. Please check your inputs\n";
@@ -86,6 +89,7 @@ void HistConfigParser::configHistInfo()
                    , m_title
                    , m_x_axis
                    , m_y_axis
+                   , m_hist_cut
                    );
   m_hist_info.push_back(tmp_hist);
 }
