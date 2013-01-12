@@ -1,10 +1,17 @@
-LIBRARY := ProgressBar
-OBJDIR  := $(PWD)/obj
-SRCDIR  := $(PWD)/src
-INCDIR  := $(PWD)/include
-EXECUTABLE := 
+# ======================
+# = top level Makefile =
+# ======================
+DIRS = Selection Parser NtupleLooper HistMaker CutFlowDump
 
-INCLUDES += -I../
-INCLUDES += -I./
+all::
+	@ for dir in $(DIRS); \
+	do (cd $$dir ; echo "" ; echo "Building $$dir" ; echo "" ; make shlib ); \
+	done
+	@ for dir in $(DIRS); \
+	do (cd $$dir ; echo "" ; echo "Building $$dir" ; echo "" ; make executable ); \
+	done
 
-include $(PWD)/../Makefile.common
+clean::
+	@ for dir in $(DIRS); \
+	do (cd $$dir ; make clean ); \
+	done
