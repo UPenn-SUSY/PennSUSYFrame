@@ -462,7 +462,7 @@ def draw2DMaps( map_array
 
     # set axis titles
     x_axis        = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
-    y_axis        = 'm_{#tilde{#chi}_{2}^{0}} [GeV]'
+    y_axis        = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
     sig_title     = 'significance ; %s ; %s'      % (x_axis, y_axis)
     cut_title     = 'cut value ; %s ; %s'         % (x_axis, y_axis)
     num_sig_title = 'Num signal events ; %s ; %s' % (x_axis, y_axis)

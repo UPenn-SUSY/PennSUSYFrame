@@ -1,0 +1,1067 @@
+Optimize:
+  - cut_dir:     ee_sr2__it0
+    to_optimize: mll
+    direction:   right
+    scan:        0
+    fixed_points:
+      - 0
+  - cut_dir:     ee_sr2__it1.met_rel
+    to_optimize: met_rel
+    direction:   right
+    scan:        1
+    fixed_points:
+      - 0
+      - 5
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+  - cut_dir:     ee_sr2__it2.no_l_jet_veto.met_rel
+    to_optimize: met_rel
+    direction:   right
+    scan:        1
+    fixed_points:
+      - 0
+      - 5
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+  - cut_dir: ee_sr2__it2.met_rel_50.z_veto_p10m10
+    to_optimize: mll
+    direction:   right
+    scan:        0
+    fixed_points:
+      - 0
+  - cut_dir: ee_sr2__it3.met_rel_50.z_veto_p10m15
+    to_optimize: mll
+    direction:   right
+    scan:        0
+    fixed_points:
+      - 0
+  - cut_dir: ee_sr2__it4.met_rel_50.z_veto_p10m20
+    to_optimize: mll
+    direction:   right
+    scan:        0
+    fixed_points:
+      - 0
+
+Inputs:
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_5
+    name: simplifiedModel_wA_slep_noWcascade_5
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_5
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144871.simplifiedModel_wA_slep_noWcascade_5.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_7
+    name: simplifiedModel_wA_slep_noWcascade_7
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_7
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144873.simplifiedModel_wA_slep_noWcascade_7.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_8
+    name: simplifiedModel_wA_slep_noWcascade_8
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_8
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144874.simplifiedModel_wA_slep_noWcascade_8.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_10
+    name: simplifiedModel_wA_slep_noWcascade_10
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_10
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144876.simplifiedModel_wA_slep_noWcascade_10.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_11
+    name: simplifiedModel_wA_slep_noWcascade_11
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_11
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+                  - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144877.simplifiedModel_wA_slep_noWcascade_11.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_13
+    name: simplifiedModel_wA_slep_noWcascade_13
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_13
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144879.simplifiedModel_wA_slep_noWcascade_13.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_14
+    name: simplifiedModel_wA_slep_noWcascade_14
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_14
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144880.simplifiedModel_wA_slep_noWcascade_14.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_15
+    name: simplifiedModel_wA_slep_noWcascade_15
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_15
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144881.simplifiedModel_wA_slep_noWcascade_15.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_17
+    name: simplifiedModel_wA_slep_noWcascade_17
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_17
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144883.simplifiedModel_wA_slep_noWcascade_17.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_18
+    name: simplifiedModel_wA_slep_noWcascade_18
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_18
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144884.simplifiedModel_wA_slep_noWcascade_18.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_19
+    name: simplifiedModel_wA_slep_noWcascade_19
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_19
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144885.simplifiedModel_wA_slep_noWcascade_19.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_20
+    name: simplifiedModel_wA_slep_noWcascade_20
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_20
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144886.simplifiedModel_wA_slep_noWcascade_20.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_22
+    name: simplifiedModel_wA_slep_noWcascade_22
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_22
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144888.simplifiedModel_wA_slep_noWcascade_22.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_23
+    name: simplifiedModel_wA_slep_noWcascade_23
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_23
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144889.simplifiedModel_wA_slep_noWcascade_23.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_24
+    name: simplifiedModel_wA_slep_noWcascade_24
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_24
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144890.simplifiedModel_wA_slep_noWcascade_24.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_25
+    name: simplifiedModel_wA_slep_noWcascade_25
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_25
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144891.simplifiedModel_wA_slep_noWcascade_25.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_26
+    name: simplifiedModel_wA_slep_noWcascade_26
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_26
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144892.simplifiedModel_wA_slep_noWcascade_26.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_28
+    name: simplifiedModel_wA_slep_noWcascade_28
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_28
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144894.simplifiedModel_wA_slep_noWcascade_28.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_29
+    name: simplifiedModel_wA_slep_noWcascade_29
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_29
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144895.simplifiedModel_wA_slep_noWcascade_29.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_30
+    name: simplifiedModel_wA_slep_noWcascade_30
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_30
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144896.simplifiedModel_wA_slep_noWcascade_30.root
+
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_5
+#   name: simplifiedModel_wC_slep_noWcascade_5
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_5
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144902.simplifiedModel_wC_slep_noWcascade_5.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_7
+#   name: simplifiedModel_wC_slep_noWcascade_7
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_7
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144904.simplifiedModel_wC_slep_noWcascade_7.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_8
+#   name: simplifiedModel_wC_slep_noWcascade_8
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_8
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144905.simplifiedModel_wC_slep_noWcascade_8.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_10
+#   name: simplifiedModel_wC_slep_noWcascade_10
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_10
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144907.simplifiedModel_wC_slep_noWcascade_10.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_11
+#   name: simplifiedModel_wC_slep_noWcascade_11
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_11
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144908.simplifiedModel_wC_slep_noWcascade_11.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_13
+#   name: simplifiedModel_wC_slep_noWcascade_13
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_13
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144910.simplifiedModel_wC_slep_noWcascade_13.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_14
+#   name: simplifiedModel_wC_slep_noWcascade_14
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_14
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144911.simplifiedModel_wC_slep_noWcascade_14.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_15
+#   name: simplifiedModel_wC_slep_noWcascade_15
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_15
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144912.simplifiedModel_wC_slep_noWcascade_15.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_17
+#   name: simplifiedModel_wC_slep_noWcascade_17
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_17
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144914.simplifiedModel_wC_slep_noWcascade_17.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_18
+#   name: simplifiedModel_wC_slep_noWcascade_18
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_18
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144915.simplifiedModel_wC_slep_noWcascade_18.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_19
+#   name: simplifiedModel_wC_slep_noWcascade_19
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_19
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144916.simplifiedModel_wC_slep_noWcascade_19.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_20
+#   name: simplifiedModel_wC_slep_noWcascade_20
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_20
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144917.simplifiedModel_wC_slep_noWcascade_20.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_22
+#   name: simplifiedModel_wC_slep_noWcascade_22
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_22
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144919.simplifiedModel_wC_slep_noWcascade_22.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_23
+#   name: simplifiedModel_wC_slep_noWcascade_23
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_23
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144920.simplifiedModel_wC_slep_noWcascade_23.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_24
+#   name: simplifiedModel_wC_slep_noWcascade_24
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_24
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144921.simplifiedModel_wC_slep_noWcascade_24.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_25
+#   name: simplifiedModel_wC_slep_noWcascade_25
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_25
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144922.simplifiedModel_wC_slep_noWcascade_25.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_26
+#   name: simplifiedModel_wC_slep_noWcascade_26
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_26
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144923.simplifiedModel_wC_slep_noWcascade_26.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_28
+#   name: simplifiedModel_wC_slep_noWcascade_28
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_28
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144925.simplifiedModel_wC_slep_noWcascade_28.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_29
+#   name: simplifiedModel_wC_slep_noWcascade_29
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_29
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144926.simplifiedModel_wC_slep_noWcascade_29.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_30
+#   name: simplifiedModel_wC_slep_noWcascade_30
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_30
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.144927.simplifiedModel_wC_slep_noWcascade_30.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_32
+    name: simplifiedModel_wA_slep_noWcascade_32
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_32
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157461.simplifiedModel_wA_slep_noWcascade_32.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_35
+    name: simplifiedModel_wA_slep_noWcascade_35
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_35
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157464.simplifiedModel_wA_slep_noWcascade_35.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_38
+    name: simplifiedModel_wA_slep_noWcascade_38
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_38
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157467.simplifiedModel_wA_slep_noWcascade_38.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_39
+    name: simplifiedModel_wA_slep_noWcascade_39
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_39
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157954.simplifiedModel_wA_slep_noWcascade_39.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_40
+    name: simplifiedModel_wA_slep_noWcascade_40
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_40
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157955.simplifiedModel_wA_slep_noWcascade_40.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_41
+    name: simplifiedModel_wA_slep_noWcascade_41
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_41
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157956.simplifiedModel_wA_slep_noWcascade_41.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_42
+    name: simplifiedModel_wA_slep_noWcascade_42
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_42
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157957.simplifiedModel_wA_slep_noWcascade_42.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_43
+    name: simplifiedModel_wA_slep_noWcascade_43
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_43
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157958.simplifiedModel_wA_slep_noWcascade_43.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_44
+    name: simplifiedModel_wA_slep_noWcascade_44
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_44
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157959.simplifiedModel_wA_slep_noWcascade_44.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_45
+    name: simplifiedModel_wA_slep_noWcascade_45
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_45
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157960.simplifiedModel_wA_slep_noWcascade_45.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_46
+    name: simplifiedModel_wA_slep_noWcascade_46
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_46
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157961.simplifiedModel_wA_slep_noWcascade_46.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_47
+    name: simplifiedModel_wA_slep_noWcascade_47
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_47
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157962.simplifiedModel_wA_slep_noWcascade_47.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_48
+    name: simplifiedModel_wA_slep_noWcascade_48
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_48
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157963.simplifiedModel_wA_slep_noWcascade_48.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_49
+    name: simplifiedModel_wA_slep_noWcascade_49
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_49
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157964.simplifiedModel_wA_slep_noWcascade_49.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_50
+    name: simplifiedModel_wA_slep_noWcascade_50
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_50
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157965.simplifiedModel_wA_slep_noWcascade_50.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_51
+    name: simplifiedModel_wA_slep_noWcascade_51
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_51
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157966.simplifiedModel_wA_slep_noWcascade_51.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_52
+    name: simplifiedModel_wA_slep_noWcascade_52
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_52
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157967.simplifiedModel_wA_slep_noWcascade_52.root
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_53
+    name: simplifiedModel_wA_slep_noWcascade_53
+    color: 1
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_53
+            fill_color: 1
+            line_color: 1
+            marker_style: 20
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157968.simplifiedModel_wA_slep_noWcascade_53.root
+
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_32
+#   name: simplifiedModel_wC_slep_noWcascade_32
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_32
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157969.simplifiedModel_wC_slep_noWcascade_32.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_33
+#   name: simplifiedModel_wC_slep_noWcascade_33
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_33
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157970.simplifiedModel_wC_slep_noWcascade_33.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_34
+#   name: simplifiedModel_wC_slep_noWcascade_34
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_34
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157971.simplifiedModel_wC_slep_noWcascade_34.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_35
+#   name: simplifiedModel_wC_slep_noWcascade_35
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_35
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157972.simplifiedModel_wC_slep_noWcascade_35.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_36
+#   name: simplifiedModel_wC_slep_noWcascade_36
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_36
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157973.simplifiedModel_wC_slep_noWcascade_36.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_37
+#   name: simplifiedModel_wC_slep_noWcascade_37
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_37
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157974.simplifiedModel_wC_slep_noWcascade_37.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_38
+#   name: simplifiedModel_wC_slep_noWcascade_38
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_38
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157975.simplifiedModel_wC_slep_noWcascade_38.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_39
+#   name: simplifiedModel_wC_slep_noWcascade_39
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_39
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157976.simplifiedModel_wC_slep_noWcascade_39.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_40
+#   name: simplifiedModel_wC_slep_noWcascade_40
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_40
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157977.simplifiedModel_wC_slep_noWcascade_40.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_41
+#   name: simplifiedModel_wC_slep_noWcascade_41
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_41
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157978.simplifiedModel_wC_slep_noWcascade_41.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_42
+#   name: simplifiedModel_wC_slep_noWcascade_42
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_42
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157979.simplifiedModel_wC_slep_noWcascade_42.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_43
+#   name: simplifiedModel_wC_slep_noWcascade_43
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_43
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157980.simplifiedModel_wC_slep_noWcascade_43.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_44
+#   name: simplifiedModel_wC_slep_noWcascade_44
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_44
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157981.simplifiedModel_wC_slep_noWcascade_44.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_45
+#   name: simplifiedModel_wC_slep_noWcascade_45
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_45
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157982.simplifiedModel_wC_slep_noWcascade_45.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_46
+#   name: simplifiedModel_wC_slep_noWcascade_46
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_46
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157983.simplifiedModel_wC_slep_noWcascade_46.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_47
+#   name: simplifiedModel_wC_slep_noWcascade_47
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_47
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157984.simplifiedModel_wC_slep_noWcascade_47.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_48
+#   name: simplifiedModel_wC_slep_noWcascade_48
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_48
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157985.simplifiedModel_wC_slep_noWcascade_48.root
+# 
+# - class: Signal_simplifiedModel_wC_slep_noWcascade_49
+#   name: simplifiedModel_wC_slep_noWcascade_49
+#   color: 1
+#   marker_style: 20
+#   entries:
+#          - label: wC_noWcascade_49
+#            fill_color: 1
+#            line_color: 1
+#            marker_style: 20
+#            inputs:
+#              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.signal.157986.simplifiedModel_wC_slep_noWcascade_49.root
+
+
+
+  - class: Background
+    name: Background
+    color: 2
+    marker_style: 21
+    entries:
+          # - label:        W+jet
+          #   fill_color:   598
+          #   line_color:   1
+          #   marker_style: 22
+          #   inputs:
+          #     - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.W_plus_jet.147774.Sherpa_CT10_Wenu.root
+          #     - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.W_plus_jet.147775.Sherpa_CT10_Wmunu.root
+          #     - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.W_plus_jet.147776.Sherpa_CT10_Wtaunu.root
+
+          - label:        Z/\gamma^{*}+jets
+            fill_color:   798
+            line_color:   1
+            marker_style: 22
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.Z_plus_jet.128975.Sherpa_CT10_ZeeHeavyJets.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.Z_plus_jet.128977.Sherpa_CT10_ZtautauHeavyJets.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.Z_plus_jet.146820.Sherpa_CT10_ZeeLightJets.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.Z_plus_jet.146822.Sherpa_CT10_ZtautauLightJets.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.Z_plus_jet.147770.Sherpa_CT10_Zee.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.Z_plus_jet.147772.Sherpa_CT10_Ztautau.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146830.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp0Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146831.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp1Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146832.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp2Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146833.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp3Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146834.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp4Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146835.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp5Incl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146850.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp0Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146851.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp1Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146852.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp2Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146853.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp3Excl_Mll10to60.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.drell_yan.146855.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp5Incl_Mll10to60.root
+
+          - label:        diboson
+            fill_color:   821
+            line_color:   1
+            marker_style: 22
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.diboson.126892.Sherpa_CT10_llnunu_WW.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.diboson.126893.Sherpa_CT10_lllnu_WZ.root
+              # - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.diboson.126894.Sherpa_CT10_llll_ZZ.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/mc.diboson.126895.Sherpa_CT10_llnunu_ZZ.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.diboson.126892.Sherpa_CT10_llnunu_WW.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.diboson.126893.Sherpa_CT10_lllnu_WZ.root
+              # - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.diboson.126894.Sherpa_CT10_llll_ZZ.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.diboson.126895.Sherpa_CT10_llnunu_ZZ.root
+
+          - label:        Single top
+            fill_color:   856
+            line_color:   1
+            marker_style: 22
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.single_top.117360.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.single_top.117362.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau.root
+
+          - label:        t\bar{t}
+            fill_color:   633
+            line_color:   1
+            marker_style: 22
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117800.Sherpa_CT10_TtbarLeptLept.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117801.Sherpa_CT10_TtbarLeptTaulept.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117802.Sherpa_CT10_TtbarTauleptTaulept.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117803.Sherpa_CT10_TtbarLeptHad.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117804.Sherpa_CT10_TtbarLeptTauhad.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117805.Sherpa_CT10_TtbarTauleptHad.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117806.Sherpa_CT10_TtbarTauleptTauhad.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117808.Sherpa_CT10_TtbarHadTauhad.root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/cf.ttbar.117809.Sherpa_CT10_TtbarTauhadTauhad.root
+
+          - label:        Fakes
+            fill_color:   0
+            line_color:   1
+            marker_style: 22
+            lumi_modeled_in_file: 13
+            target_lumi: 21
+            inputs:
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/fake.Egamma.periodA..root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/fake.Egamma.periodB..root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/fake.Egamma.periodC..root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/fake.Egamma.periodD..root
+              - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/ee.sr2/fake.Egamma.periodE..root
