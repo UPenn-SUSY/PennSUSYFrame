@@ -461,7 +461,8 @@ def draw2DMaps( map_array
             num_sig.append(ma['num_sig'])
 
     # set axis titles
-    x_axis        = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
+    # x_axis        = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
+    x_axis        = 'm_{#tilde{#chi}_{1}^{#pm},#tilde{#chi}_{2}^{0}} [GeV]'
     y_axis        = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
     sig_title     = 'significance ; %s ; %s'      % (x_axis, y_axis)
     cut_title     = 'cut value ; %s ; %s'         % (x_axis, y_axis)

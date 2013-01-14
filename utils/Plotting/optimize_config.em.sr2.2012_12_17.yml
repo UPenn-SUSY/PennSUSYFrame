@@ -1054,7 +1054,7 @@ Inputs:
               - /Users/bjackson/work/Susy.00-01-08/utils/HistMaker/susy_hists/optimize/2012_12_17/em.sr2/cf.ttbar.117809.Sherpa_CT10_TtbarTauhadTauhad.root
 
           - label:        Fakes
-            fill_color:   0
+            fill_color:   920
             line_color:   1
             marker_style: 22
             lumi_modeled_in_file: 13
