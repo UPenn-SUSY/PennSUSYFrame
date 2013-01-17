@@ -34,23 +34,25 @@ Optimize:
 
   - cut_dir:     mm_sr2__it3.met_rel_60.no_z_veto.no_l_jet_veto
     to_optimize: num_l_jets
-    direction:   left
+    direction:   equal
     scan:        1
     fixed_points:
       - 0
       - 1
       - 2
-      - 9
+      - inc
 
-  - cut_dir:     mm_sr2__it3a.met_rel_60.no_z_veto.1_l_jet
-    to_optimize: num_l_jets
-    direction:   left
-    scan:        0
-    fixed_points:
-      - 0
-      - 1
-      - 2
-      - 9
+  # - cut_dir:     mm_sr2__it3a.met_rel_60.no_z_veto.1_l_jet
+  #   to_optimize: num_l_jets
+  #   # direction:   left
+  #   direction:   equal
+  #   scan:        0
+  #   fixed_points:
+  #     # - 0
+  #     - 1
+  #     # - 2
+  #     # - 9
+  #     # - inc
 
   - cut_dir:     mm_sr2__it4.no_z_veto.no_l_jet_veto.met_rel
     to_optimize: met_rel
@@ -175,7 +177,7 @@ Optimize:
       - 0.8
       - 0.9
       - 1.0
-  - cut_dir:     mm_sr2__it6d.met_rel_60.no_z_veto.l_jets_1.dphi_met_jet
+  - cut_dir:     mm_sr3__it6d.met_rel_60.no_z_veto.l_jets_1.dphi_met_jet
     to_optimize: dphi_met_jet
     direction:   right
     scan:        1
@@ -248,6 +250,38 @@ Optimize:
       - 2.0
   - cut_dir:     mm_sr2__it7c.met_rel_60.no_z_veto.no_l_jet_veto.dphi_met_ll
     to_optimize: dphi_met_ll
+    direction:   right
+    scan:        1
+    fixed_points:
+      - 0
+      - 0.1
+      - 0.2
+      - 0.3
+      - 0.4
+      - 0.5
+      - 0.6
+      - 0.7
+      - 0.8
+      - 0.9
+      - 1.0
+  - cut_dir:      mm_sr2__it8.met_rel_60.no_z_veto.l_jets_1.mt_90
+    to_optimize: dphi_met_jet
+    direction:   right
+    scan:        1
+    fixed_points:
+      - 0
+      - 0.1
+      - 0.2
+      - 0.3
+      - 0.4
+      - 0.5
+      - 0.6
+      - 0.7
+      - 0.8
+      - 0.9
+      - 1.0
+  - cut_dir:      mm_sr2__it8a.met_rel_60.no_z_veto.l_jets_1.mt_60
+    to_optimize: dphi_met_jet
     direction:   right
     scan:        1
     fixed_points:

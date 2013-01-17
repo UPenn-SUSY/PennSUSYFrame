@@ -142,6 +142,10 @@ def main():
                     cut_region['canvas'].Write('%s_w_cut_region' % h)
                     cut_region['canvas'].Close()
 
+                    integral_plot = local_optimize.drawIntegralCavnas()
+                    integral_plot['canvas'].Write('%s_int' % h)
+                    integral_plot['canvas'].Close()
+
                 pile.Close()
 
         # If we are doing optimization, print maps to file

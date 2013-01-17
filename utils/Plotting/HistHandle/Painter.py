@@ -346,7 +346,9 @@ def setMax(hist_list, log_y = False, y_max = metaroot.default):
 
 # ------------------------------------------------------------------------------
 def calcMin(hist_list, log_y = True):
+    print 'calcMin()'
     if len(hist_list) == 0: return 0.
+    print hist_list
 
     # TODO come up with better algorithm
     extremes = getExtrema(hist_list, log_y)
@@ -405,10 +407,14 @@ def getExtrema(hist_list, log_y = True):
         local_max = None
 
         h_tmp = h
+        print '----------------------------------'
+        print type(h)
+        print type(h_tmp)
         if isinstance(h_tmp, ROOT.THStack): continue
         if isinstance(h_tmp, ROOT.TGraph):  continue
         if isinstance(h_tmp, ROOT.TGraphErrors): continue
 
+        print type(h_tmp)
         num_bins = h_tmp.GetXaxis().GetNbins()
         for b in xrange(num_bins):
             bin_content = h_tmp.GetBinContent(b)
@@ -498,6 +504,7 @@ def draw2DMaps( map_array
                                  )
 
     sig_graph.SetMinimum(0)
+    sig_graph.SetMaximum(6.)
     cut_graph.SetMinimum(0)
     num_sig_graph.SetMinimum(0)
 

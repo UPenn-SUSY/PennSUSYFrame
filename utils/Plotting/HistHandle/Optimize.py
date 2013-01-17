@@ -82,20 +82,32 @@ class Optimize(object):
                                                        , h.GetXaxis().GetTitle()
                                                        , h.GetYaxis().GetTitle()
                                                        )
-                            , x_bin, x_min, x_max
+                            # , x_bin, x_min, x_max
+                            , x_bin+1, x_min, x_max+bin_width
                             )
-        for i in xrange(x_bin):
+        # for i in xrange(x_bin):
+        for i in xrange(x_bin+1):
             x = h.GetXaxis().GetBinLowEdge(i+1)
             y = 0
-            if self.cut_direction == hh.left:
-                y = h.Integral(1,i+1)
-            elif self.cut_direction == hh.right:
-                y = h.Integral(i+1, x_bin+1)
+            if i < x_bin:
+                integral.GetXaxis().SetBinLabel(i+1, '%s' % x)
+
+                if self.cut_direction == hh.left:
+                    # y = h.Integral(1,i+1)
+                    y = h.Integral(0,i)
+                elif self.cut_direction == hh.right:
+                    y = h.Integral(i+1, x_bin+1)
+                elif self.cut_direction == hh.equal:
+                    y = h.Integral(i+1, i+1)
+                else:
+                    assert false
             else:
-                assert false
+                integral.GetXaxis().SetBinLabel(i+1, 'inc')
+                y = h.Integral()
 
             integral.Fill(x,y)
             integral.SetBinError(i+1, 1e-6)
+        # integral.GetXaxis().SetBinLabel(x_bin+1, 'inc')
         return integral
 
     # --------------------------------------------------------------------------
@@ -220,6 +232,16 @@ class Optimize(object):
         return {'canvas':cut_canvas}
 
     # --------------------------------------------------------------------------
+    def drawIntegralCavnas(self):
+        int_canvas = hh.Painter.pileHists( [ self.sig_integral
+                                           , self.bkg_integral
+                                           ]
+                                         , '%s_int' % self.name
+                                         )
+
+        return {'canvas':int_canvas}
+
+    # --------------------------------------------------------------------------
     def __del__(self):
         pass
 
@@ -235,9 +257,15 @@ class OptimizeMap(object):
 
     # --------------------------------------------------------------------------
     def addGridPoint(self, grid_point_optimize, point_name):
+        print '==================================='
+        print 'addGridPoint()'
+        print '\t%s' % grid_point_optimize
+        print '\t%s' % point_name
+
         assert isinstance(grid_point_optimize, Optimize)
         self.optimize_grid_points[point_name] = grid_point_optimize
         if self.sample_bkg_integral is None:
+            print '\tsetting bkg integral'
             self.sample_bkg_integral = grid_point_optimize.bkg_integral
 
     # --------------------------------------------------------------------------
@@ -276,18 +304,23 @@ class OptimizeMap(object):
         dir_name = '%s_%s' % ( self.optimize_container.to_optimize
                              , cut_value
                              )
+        if isinstance(cut_value, int): cut_value = float(cut_value)
+        print 'cut_value: %s' % cut_value
+        print '\t%s' % type(cut_value)
+
         maps_dir.mkdir(dir_name)
         maps_dir.cd(dir_name)
 
         map_entries = []
         for gp in self.optimize_grid_points:
-            cut_bin = self.optimize_grid_points[gp].significance.GetXaxis().FindBin(float(cut_value))
+            # cut_bin = self.optimize_grid_points[gp].significance.GetXaxis().FindBin(float(cut_value))
+            cut_bin = self.optimize_grid_points[gp].significance.GetXaxis().FindBin(cut_value)
             sig = self.optimize_grid_points[gp].significance.GetBinContent(cut_bin)
             num_sig = self.optimize_grid_points[gp].sig_integral.GetBinContent(cut_bin)
 
             map_entries.append( { 'point_name':gp
                                 , 'significance':sig
-                                , 'cut_value':cut_value
+                                , 'cut_value':cut_value if not isinstance(cut_value, str) else -999
                                 , 'num_sig':num_sig
                                 } )
         maps = hh.Painter.draw2DMaps( map_entries
@@ -305,6 +338,8 @@ class OptimizeMap(object):
     def printAllFixedPoints(self, maps_dir, target_lumi, prod_type = ''):
         maps_dir.cd()
 
+        print 'maps_dir: %s' % maps_dir
+        print 'fixed points: %s' % self.optimize_container.fixed_points
         c_num_bkg = hh.Painter.pileHists( [self.sample_bkg_integral]
                                         , 'num_bkg'
                                         , canvas_options = hh.canv_log_y
