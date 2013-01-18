@@ -33,7 +33,6 @@ void CommonTools::PileUpScaleFactorTool::clear()
 // -----------------------------------------------------------------------------
 void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // if data, do nothing
   if (!is_data()) {
 

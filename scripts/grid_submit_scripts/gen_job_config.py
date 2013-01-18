@@ -45,7 +45,7 @@ def writeYmlFile(parser):
         user_config_file = '${SFRAME_DIR}/../run/sample_configs/user_config.presel.data.yml'
     else:
         user_config_file = '${SFRAME_DIR}/../run/sample_configs/user_config.presel.mc.yml'
-    
+
     f.write('grid:             True\n')
     f.write('CycleName:        SusyDiLeptonPreselCycle\n')
     f.write('SampleName:       %s\n' % inputs.sample_name)
