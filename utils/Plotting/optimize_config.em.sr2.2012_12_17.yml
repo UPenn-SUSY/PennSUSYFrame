@@ -126,6 +126,50 @@ Optimize:
       - 0.8
       - 0.9
       - 1.0
+  - cut_dir:     mm_sr2__it9.met_rel_80.no_z_veto.l_jets_ge_1
+    to_optimize: mt
+    direction:   left
+    scan:        1
+    fixed_points:
+      - 0
+      - 5
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+      - 110
+      - 120
+  - cut_dir:     mm_sr2__it9a.met_rel_60.no_z_veto.l_jets_ge_1
+    to_optimize: mt
+    direction:   left
+    scan:        1
+    fixed_points:
+      - 0
+      - 5
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+      - 110
+      - 120
 
 Inputs:
   - class: Signal_simplifiedModel_wA_slep_noWcascade_5

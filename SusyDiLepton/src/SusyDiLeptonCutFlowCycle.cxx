@@ -334,6 +334,9 @@ void SusyDiLeptonCutFlowCycle::getTools()
   GET_TOOL(jet_out, CommonTools::JetOutputTool, "JetOutput");
   m_jet_output_tool = jet_out;
 
+  GET_TOOL(light_jet_out, CommonTools::JetOutputTool, "JetOutput_light");
+  m_light_jet_output_tool = light_jet_out;
+
   GET_TOOL(met_out, CommonTools::MetOutputTool, "MetOutput");
   m_met_output_tool = met_out;
 
@@ -747,6 +750,8 @@ void SusyDiLeptonCutFlowCycle::fillOutput()
   m_muon_output_tool->fillOutput(
       m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
   m_jet_output_tool->fillOutput(
+      m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
+  m_light_jet_output_tool->fillOutput(
       m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
   m_met_output_tool->fillOutput(
       m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);

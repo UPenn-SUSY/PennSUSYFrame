@@ -243,6 +243,10 @@ JetOutput:
   do_detailed_output: 0
   jet_container_name: good
 
+JetOutput:
+  do_detailed_output: 1
+  jet_container_name: light
+
 MetOutput:
   do_detailed_output: 0
 

@@ -4,13 +4,10 @@
 
 // -----------------------------------------------------------------------------
 CommonTools::JetOutputTool::JetOutputTool( SCycleBase* parent
-                                                         , const char* name
-                                                         )
-                                                         : ToolBase(parent, name)
+                                         , const char* name
+                                         )
+                                         : ToolBase(parent, name)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
   DeclareProperty("jet_container_name", c_jet_output_collection = "baseline");
 
@@ -180,4 +177,3 @@ void CommonTools::JetOutputTool::fillOutput( Event* event
     }
   }
 }
-

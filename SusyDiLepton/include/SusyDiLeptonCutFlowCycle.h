@@ -204,11 +204,12 @@ private:
   CommonTools::ElectronOutputTool*   m_electron_output_tool;
   CommonTools::MuonOutputTool*       m_muon_output_tool;
   CommonTools::JetOutputTool*        m_jet_output_tool;
+  CommonTools::JetOutputTool*        m_light_jet_output_tool;
   CommonTools::MetOutputTool*        m_met_output_tool;
   CommonTools::VertexOutputTool*     m_vertex_output_tool;
 
   SusyMatrixMethod::DiLeptonMatrixMethod m_matrix_method;
-  
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();
 
