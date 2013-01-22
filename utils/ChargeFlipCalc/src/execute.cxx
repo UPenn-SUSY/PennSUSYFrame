@@ -14,6 +14,7 @@ int main(int argc, char** argv)
 
   cfc.prepLikelihood();
   cfc.calcLikelihood();
+  cfc.calcTruth();
 
   cfc.printToFile("cf.root");
 

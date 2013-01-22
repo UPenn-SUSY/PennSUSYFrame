@@ -33,6 +33,7 @@ class ChargeFlipCalc : public NtupleLooper
     void prepLikelihood();
 
     void calcLikelihood();
+    void calcTruth();
 
     void printToFile(std::string out_file_name);
 
@@ -60,6 +61,9 @@ class ChargeFlipCalc : public NtupleLooper
 
     TH2F* m_h_n_events; 
     TH2F* m_h_n_ss;
+
+    TH1F* m_h_lklh_rate;
+    TH2F* m_h_truth_rate;
 
     static double lkh_events[5][5];
     static double lkh_ss[5][5];

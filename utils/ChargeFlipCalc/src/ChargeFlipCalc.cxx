@@ -24,6 +24,7 @@ ChargeFlipCalc::ChargeFlipCalc(TTree *tree) : NtupleLooper(tree)
 {
 
   initChargeFlipHists();
+  TH1:: SetDefaultSumw2();
 
 }
 
@@ -67,6 +68,9 @@ void ChargeFlipCalc::printToFile(std::string out_file_name)
    m_h_n_events->Write();
    m_h_n_ss->Write();
 
+   m_h_lklh_rate->Write();
+   m_h_truth_rate->Write();
+
    f->Write();
    f->Close();
    delete f;
@@ -98,7 +102,11 @@ void ChargeFlipCalc::initChargeFlipHists()
 
   m_h_n_events = new TH2F("h_n_events","h_n_events", num_eta_bins, eta_bins, num_eta_bins, eta_bins);
   m_h_n_ss = new TH2F("h_n_ss","h_n_ss", num_eta_bins, eta_bins, num_eta_bins, eta_bins);
+
+  m_h_lklh_rate = new TH1F("h_lklh_rate",";#eta;charge_mis rate", num_eta_bins,eta_bins);
   
+  m_h_truth_rate = new TH2F("h_truth_rate",";#eta;charge_mis rate",num_pt_bins,pt_bins,num_eta_bins,eta_bins);
+
   //  m_pt_shift = Book("h_pt_shift","h_pt_shift", 600, -1., 1.);
 
 }
@@ -108,7 +116,7 @@ void ChargeFlipCalc::fillTruthHists()
 {
 
   
-  
+  double weight = 1.0;
 
   std::vector<float>*  el_eta = m_el_eta;
   std::vector<float>*  el_pt  = m_el_pt;
@@ -132,17 +140,17 @@ void ChargeFlipCalc::fillTruthHists()
 	  float eta = fabs(el_eta->at(el_it));
 	  float pt = el_pt->at(el_it)/1000.;
 	  
-	  m_h_unflipped_eta_only->Fill(eta);
-	  m_h_unflipped_pt_only->Fill(pt);
-	  m_h_unflipped->Fill(pt,eta);
+	  m_h_unflipped_eta_only->Fill(eta,weight);
+	  m_h_unflipped_pt_only->Fill(pt,weight);
+	  m_h_unflipped->Fill(pt,eta,weight);
 	  
 	  if (el_truth_charge->at(el_it)*el_charge->at(el_it) < 0)
 	    {
 	      
 	      //std::cout<<"flipped"<<std::endl;
-	      m_h_flipped_eta_only->Fill(eta);
-	      m_h_flipped_pt_only->Fill(pt);
-	      m_h_flipped->Fill(pt,eta);	  
+	      m_h_flipped_eta_only->Fill(eta,weight);
+	      m_h_flipped_pt_only->Fill(pt,weight);
+	      m_h_flipped->Fill(pt,eta,weight);	  
 	    }
 	}
     }
@@ -157,13 +165,13 @@ void ChargeFlipCalc::fillLikelihoodHists()
   std::vector<float>*  el_eta = m_el_eta;
   //std::vector<float>*  el_pt  = m_el_pt;
 
-
+  double weight =1.0;
 
   float el_eta_lead = el_eta->at(0);
   float el_eta_sub_lead = el_eta->at(1);
   
-  m_h_n_events->Fill(el_eta_lead, el_eta_sub_lead);
-  if (evt_desc.getSignChannel()==SIGN_SS) m_h_n_ss->Fill(el_eta_lead, el_eta_sub_lead);
+  m_h_n_events->Fill(el_eta_lead, el_eta_sub_lead,weight);
+  if (evt_desc.getSignChannel()==SIGN_SS) m_h_n_ss->Fill(el_eta_lead, el_eta_sub_lead,weight);
   
 }
 // -----------------------------------------------------------------------------
@@ -310,5 +318,42 @@ void ChargeFlipCalc::calcLikelihood()
   gMinuit->DefineParameter(4, "eff_eta4", start, step , 0., 1.);
 
   gMinuit->Migrad();
+
+  double flip_rate[num_eta_bins], err[num_eta_bins];
+  
+  for(int i=0; i<num_eta_bins; i++)
+    {
+      gMinuit->GetParameter(i,flip_rate[i],err[i]);
+      m_h_lklh_rate->SetBinContent(i+1,flip_rate[i]);
+      m_h_lklh_rate->SetBinError(i+1,err[i]);
+    }
+}
+// -----------------------------------------------------------------------------
+void ChargeFlipCalc::calcTruth()
+{
+  const int num_eta_bins = 5;
+  const int num_pt_bins = 4;
+
+  for(int i=0; i<num_pt_bins;i++)
+    {
+      for(int j=0; j<num_eta_bins;j++)
+	{
+
+	  double rate  = 0;
+
+	  double n_total = m_h_unflipped->GetBinContent(i+1,j+1);
+	  if (n_total)
+	    {
+	      double n_flipped =  m_h_flipped->GetBinContent(i+1,j+1);
+
+	      rate = n_flipped/n_total;
+	      double error = sqrt(rate*(1-rate)/n_total);
+
+	      m_h_truth_rate->SetBinContent(i+1,j+1,rate);
+	      m_h_truth_rate->SetBinError(i+1,j+1,error);
+
+	    }
+	}
+    }
 
 }
