@@ -246,6 +246,7 @@ JetOutput:
 JetOutput_light:
   do_detailed_output: 1
   jet_container_name: light
+  jet_label:          light_jet_
 
 MetOutput:
   do_detailed_output: 0

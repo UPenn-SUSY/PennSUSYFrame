@@ -10,7 +10,7 @@ CommonTools::JetOutputTool::JetOutputTool( SCycleBase* parent
 {
   DeclareProperty("do_detailed_output", c_do_detailed_output= false);
   DeclareProperty("jet_container_name", c_jet_output_collection = "baseline");
-
+  DeclareProperty("jet_label",          c_output_label = "jet_");
 }
 // -----------------------------------------------------------------------------
 CommonTools::JetOutputTool::~JetOutputTool()
@@ -22,22 +22,22 @@ CommonTools::JetOutputTool::~JetOutputTool()
 void CommonTools::JetOutputTool::BeginInputData( const SInputData& )
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  DeclareVariable(m_num_baseline_jets, "num_baseline_jets");
-  DeclareVariable(m_num_good_jets    , "num_good_jets");
-  DeclareVariable(m_num_light_jets   , "num_light_jets");
-  DeclareVariable(m_num_b_jets       , "num_b_jets");
-  DeclareVariable(m_num_forward_jets , "num_forward_jets");
+  DeclareVariable(m_num_baseline_jets, (c_output_label + "num_baseline_jets" ).c_str());
+  DeclareVariable(m_num_good_jets    , (c_output_label + "num_good_jets"     ).c_str());
+  DeclareVariable(m_num_light_jets   , (c_output_label + "num_light_jets"    ).c_str());
+  DeclareVariable(m_num_b_jets       , (c_output_label + "num_b_jets"        ).c_str());
+  DeclareVariable(m_num_forward_jets , (c_output_label + "num_forward_jets"  ).c_str());
 
-  DeclareVariable(m_jet_pt           , "jet_pt"           );
-  DeclareVariable(m_jet_eta          , "jet_eta"          );
-  DeclareVariable(m_jet_phi          , "jet_phi"          );
-  DeclareVariable(m_jet_bjet_mv1     , "jet_bjet_mv1"     );
-  DeclareVariable(m_jet_dr_signal_lep, "jet_dr_signal_lep");
-  DeclareVariable(m_jet_jvf          , "jet_jvf"          );
-  DeclareVariable(m_jet_desc         , "jet_desc"         );
-  DeclareVariable(m_jet_dphi_ll      , "jet_dphi_ll"      );
-  DeclareVariable(m_jet_dphi_met     , "jet_dphi_met"     );
-  DeclareVariable(m_jet_tlv          , "jet_tlv"          );
+  DeclareVariable(m_jet_pt           , (c_output_label + "pt"           ).c_str());
+  DeclareVariable(m_jet_eta          , (c_output_label + "eta"          ).c_str());
+  DeclareVariable(m_jet_phi          , (c_output_label + "phi"          ).c_str());
+  DeclareVariable(m_jet_bjet_mv1     , (c_output_label + "bjet_mv1"     ).c_str());
+  DeclareVariable(m_jet_dr_signal_lep, (c_output_label + "dr_signal_lep").c_str());
+  DeclareVariable(m_jet_jvf          , (c_output_label + "jvf"          ).c_str());
+  DeclareVariable(m_jet_desc         , (c_output_label + "desc"         ).c_str());
+  DeclareVariable(m_jet_dphi_ll      , (c_output_label + "dphi_ll"      ).c_str());
+  DeclareVariable(m_jet_dphi_met     , (c_output_label + "dphi_met"     ).c_str());
+  DeclareVariable(m_jet_tlv          , (c_output_label + "tlv"          ).c_str());
 
   //Detailed Variables
   if(c_do_detailed_output)
