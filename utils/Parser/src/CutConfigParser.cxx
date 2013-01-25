@@ -128,6 +128,10 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
     m_tmp_pass_event.setTruthPrompt(valueToBool(split_line));
   else if (key.find("pass_sign") != std::string::npos)
     m_tmp_pass_event.setSignChannel(valueToSign(split_line));
+  else if (key.find("pass_truth_sign") != std::string::npos)
+    m_tmp_pass_event.setTruthSignChannel(valueToSign(split_line));
+  else if (key.find("pass_cf_cand") != std::string::npos)
+    m_tmp_pass_event.setCFCandidate(valueToBool(split_line));
 
   else if (key.find("pass_sr1") != std::string::npos)
     m_tmp_pass_event.setSR1(valueToBool(split_line));
