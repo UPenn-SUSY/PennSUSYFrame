@@ -27,7 +27,7 @@ def main():
     nominal_cut_file = open(nominal_cut_file_name, 'w')
     fake_cut_file    = open(fake_cut_file_name   , 'w')
     signal_cut_file  = open(signal_cut_file_name , 'w')
-    cf_cut_file      = open(signal_cut_file_name , 'w')
+    cf_cut_file      = open(cf_cut_file_name     , 'w')
 
     for line in template_file:
         if '#' in line: continue
@@ -43,12 +43,20 @@ def main():
             signal_cut_file.write( '    pass_2_signal_leptons:     1\n')
             cf_cut_file.write(     '    pass_2_signal_leptons:     1\n')
 
-            nominal_cut_file.write('    pass_prompt_leptons:    1\n')
-            fake_cut_file.write(   '    pass_prompt_leptons:    0\n')
-            signal_cut_file.write( '    pass_prompt_leptons:    0\n')
-            cf_cut_file.write(     '    pass_prompt_leptons:    1\n')
+            nominal_cut_file.write('    pass_prompt_leptons:       1\n')
+            fake_cut_file.write(   '    pass_prompt_leptons:       0\n')
+            signal_cut_file.write( '    pass_prompt_leptons:       0\n')
+            cf_cut_file.write(     '    pass_prompt_leptons:       1\n')
 
-            # pass_sign_channel:      ss
+            nominal_cut_file.write('    pass_sign_channel:         ss\n')
+            fake_cut_file.write(   '    pass_sign_channel:         ss\n')
+            signal_cut_file.write( '    pass_sign_channel:         ss\n')
+            cf_cut_file.write(     '    pass_sign_channel:         os\n')
+
+            nominal_cut_file.write('    pass_truth_sign_channel:   ss\n')
+            # fake_cut_file.write(   '    pass_truth_sign_channel:   ss\n')
+            signal_cut_file.write( '    pass_truth_sign_channel:   ss\n')
+            cf_cut_file.write(     '    pass_truth_sign_channel:   os\n')
 
             nominal_cut_file.write('\n')
             fake_cut_file.write(   '\n')
