@@ -95,6 +95,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::ElectronOutputTool , "ElectronOutput");
   DECLARE_TOOL(CommonTools::MuonOutputTool     , "MuonOutput");
   DECLARE_TOOL(CommonTools::JetOutputTool      , "JetOutput");
+  DECLARE_TOOL(CommonTools::JetOutputTool      , "JetOutput_light");
   DECLARE_TOOL(CommonTools::MetOutputTool      , "MetOutput");
   DECLARE_TOOL(CommonTools::VertexOutputTool   , "VertexOutput");
 }
