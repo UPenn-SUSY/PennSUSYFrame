@@ -67,6 +67,18 @@ Optimize:
       - 90
       - 100
 
+  - cut_dir:     mm_sr2__it4a.no_z_veto.l_jets_ge_1.met_rel
+    to_optimize: met_rel
+    direction:   right
+    scan:        1
+    fixed_points:
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
 
   - cut_dir:     mm_sr2__it5a.met_rel_60.no_z_veto.l_jets_0.mt
     to_optimize: mt
