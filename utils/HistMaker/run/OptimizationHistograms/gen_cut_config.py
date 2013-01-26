@@ -55,7 +55,7 @@ def main():
 
             nominal_cut_file.write('    pass_truth_sign_channel:   ss\n')
             # fake_cut_file.write(   '    pass_truth_sign_channel:   ss\n')
-            signal_cut_file.write( '    pass_truth_sign_channel:   ss\n')
+            # signal_cut_file.write( '    pass_truth_sign_channel:   ss\n')
             cf_cut_file.write(     '    pass_truth_sign_channel:   os\n')
 
             nominal_cut_file.write('\n')
