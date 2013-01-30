@@ -1,7 +1,7 @@
 # ======================
 # = top level Makefile =
 # ======================
-DIRS = Selection Parser NtupleLooper HistMaker CutFlowDump
+DIRS = Selection Parser NtupleLooper HistMaker PlotNtupleMaker CutFlowDump
 
 all::
 	@ for dir in $(DIRS); \
