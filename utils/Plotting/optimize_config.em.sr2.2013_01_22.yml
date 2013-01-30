@@ -53,6 +53,114 @@ Optimize:
       - 80
       - 90
       - 100
+  - cut_dir:     em_sr2__it4a.no_z_veto.no_l_jet_veto.met_rel_80
+    to_optimize: mt
+    direction:   left
+    scan:        1
+    fixed_points:
+      - 0
+      - 5
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+      - 110
+      - 120
+  - cut_dir:     em_sr2__it4b.no_z_veto.l_jet_1.met_rel_60
+    to_optimize: mt
+    direction:   left
+    scan:        1
+    fixed_points:
+      - 0
+      - 5
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+      - 110
+      - 120
+  - cut_dir:     em_sr2__it4c.no_z_veto.l_jet_ge_1.met_rel_50
+    to_optimize: mt
+    direction:   left
+    scan:        1
+    fixed_points:
+      - 0
+      - 5
+      - 10
+      - 15
+      - 20
+      - 25
+      - 30
+      - 35
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+      - 110
+      - 120
+  - cut_dir:     em_sr2__it5c.no_z_veto.l_jet_ge_1.mt_60
+    to_optimize: met_rel
+    direction:   right
+    scan:        1
+    fixed_points:
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+  - cut_dir:     em_sr2__it5c2.no_z_veto.l_jet_ge_1.mt_50
+    to_optimize: met_rel
+    direction:   right
+    scan:        1
+    fixed_points:
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+  - cut_dir:     em_sr2__it6c.no_z_veto.l_jet_ge_1.met_rel_70
+    to_optimize: met_rel
+    direction:   right
+    scan:        0
+    fixed_points:
+      - 0
+  - cut_dir:     em_sr2__it7a.no_z_veto.no_l_jet_veto.met_rel_50.mt_50
+    to_optimize: met_rel
+    direction:   right
+    scan:        0
+    fixed_points:
+      - 0
+  - cut_dir:     em_sr2__it7c.no_z_veto.l_jet_ge_1.met_rel_50.mt_50
+    to_optimize: met_rel
+    direction:   right
+    scan:        0
+    fixed_points:
+      - 0
   # - cut_dir:     em_sr2__it3.met_rel_80.no_z_veto.no_l_jet_veto
   #   to_optimize: num_l_jets
   #   direction:   equal

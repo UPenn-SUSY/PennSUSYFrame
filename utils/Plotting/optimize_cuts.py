@@ -30,10 +30,20 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     inputs = hh.parse.parseInputs()
-    config = inputs['config']
-    file_list = inputs['files']
+    config        = inputs['config']
+    file_list     = inputs['files']
     out_file_name = inputs['outfile']
-    optimize = inputs['optimize']
+    optimize      = inputs['optimize']
+
+    # print '--------------------------------------------------------------------'
+    # print '- config'
+    # print '--------------------------------------------------------------------'
+    # print config
+
+    # print '--------------------------------------------------------------------'
+    # print '- optimize'
+    # print '--------------------------------------------------------------------'
+    # print optimize
 
     # TODO after debugging, switch back to 'create'
     # out_file = ROOT.TFile(out_file_name, 'CREATE')
