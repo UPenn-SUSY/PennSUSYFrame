@@ -27,7 +27,8 @@ for l in f:
     print '-------------------------------------------------------------------'
     # Deconstruct the file path/name - these are the addresses of important
     # pieces of the sample path
-    end_path          = l.find('SusyDiLepton')
+    # end_path          = l.find('SusyDiLepton')
+    end_path          = l.rfind('/')
     end_prefix        = l.find('cut_flow.') + 9
     end_sample_type   = l.find('.', end_prefix)
     end_sample_number = l.find('.', end_sample_type+1)
