@@ -56,9 +56,9 @@ def main():
         print 'sample number : %s'    % data['sample_number']
         print 'sample label : %s'     % data['sample_label']
 
-        data['config_base_path'] = '%s/../utils/RunConfigs/OptimizeHistograms/2013_01_22/' % os.environ['SFRAME_DIR']
-        data['ptnt_base_path']   = '%s/../utils/pTNTs/OptimizeHistograms/2013_01_22/'      % os.environ['SFRAME_DIR']
-        data['hist_base_path']   = '%s/../utils/SusyHists/OptimizeHistograms/2013_01_22/'  % os.environ['SFRAME_DIR']
+        data['config_base_path'] = '%s/../utils/RunConfigs/OptimizationHistograms/2013_01_22/' % os.environ['SFRAME_DIR']
+        data['ptnt_base_path']   = '%s/../utils/pTNTs/OptimizationHistograms/2013_01_22/%s'      % (os.environ['SFRAME_DIR'], data['local_out_dir'])
+        data['hist_base_path']   = '%s/../utils/SusyHists/OptimizationHistograms/2013_01_22/%s'  % (os.environ['SFRAME_DIR'], data['local_out_dir'])
 
         print 'config base path : %s' % data['config_base_path']
         print 'ptnt base path : %s'   % data['ptnt_base_path']
@@ -98,8 +98,8 @@ def genNominalConfigFile(data):
 
     # Include the correct cut config file
     out.write('cut_config:  %s/cuts.%s.%s.config\n' % ( data['config_base_path']
-                                                      , 'signal' if data['sample_type'] == 'signal' else 'nominal'
                                                       , data['local_out_dir']
+                                                      , 'signal' if data['sample_type'] == 'signal' else 'nominal'
                                                       )
              )
 
@@ -165,9 +165,9 @@ def genFakeConfigFile(data):
     out = file(out_file_name, 'w')
 
     # Include the correct cut config file
-    out.write('cut_config:  %s/cuts.%s.fake.config\n' % ( data['config_base_path']
-                                                      , data['local_out_dir']
-                                                      )
+    out.write('cut_config:  %s/cuts.fake.%s.config\n' % ( data['config_base_path']
+                                                        , data['local_out_dir']
+                                                        )
              )
 
     # include correct histogram config file
@@ -229,8 +229,8 @@ def genCFConfigFile(data):
 
     # Include the correct cut config file
     out.write('cut_config:  %s/cuts.%s.cf.config\n' % ( data['config_base_path']
-                                                    , data['local_out_dir']
-                                                    )
+                                                      , data['local_out_dir']
+                                                      )
              )
 
     # include correct histogram config file

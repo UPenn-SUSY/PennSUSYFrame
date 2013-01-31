@@ -137,8 +137,7 @@ ds_list = [ "cf.diboson.126892.Sherpa_CT10_llnunu_WW.config"
 def main():
     k_batch = kBatchLocal(6)
     for ds in ds_list:
-        # cmd = './PlotNtupleMaker run/OptimizationHistograms/2013_01_22/ee.sr2/%s' % ds
-        cmd = './PlotNtupleMaker ../RunConfigs/OptimizationHistograms/2013_01_22/ee.sr2/%s' % ds
+        cmd = './HistMaker ../RunConfigs/OptimizationHistograms/2013_01_22/ee.sr2/%s' % ds
         k_batch.addJob(cmd, ds)
 
 # ==============================================================================

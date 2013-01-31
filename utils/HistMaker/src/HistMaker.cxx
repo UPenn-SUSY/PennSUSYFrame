@@ -8,13 +8,13 @@ HistMaker::HistMaker( TTree *tree
                     , m_out_file(NULL)
                     , m_entry_num(0)
 {
-  m_out_file = new TFile(out_file_name.c_str(), "create");
+  m_out_file = new TFile(out_file_name.c_str(), "UPDATE");
 }
 
 // -----------------------------------------------------------------------------
 HistMaker::~HistMaker()
 {
-  // do nothing
+  m_out_file->Close();
 }
 
 // -----------------------------------------------------------------------------

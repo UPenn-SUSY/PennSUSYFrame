@@ -25,7 +25,7 @@ int main(int argc, char** argv)
   parser.parse();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  std::string out_file_name = parser.getOutFile();
+  std::string out_file_name = parser.getPTNTFile();
   TChain* chain = parser.getInputChain();
   PlotNtupleMaker pnm(chain, out_file_name);
 

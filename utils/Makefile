@@ -3,12 +3,15 @@
 # ======================
 DIRS = Selection Parser NtupleLooper HistMaker PlotNtupleMaker CutFlowDump
 
-all::
+all::build link
+
+build::
 	@ for dir in $(DIRS); \
 	do (cd $$dir ; echo "" ; echo "Building $$dir" ; echo "" ; make shlib ); \
 	done
+link::
 	@ for dir in $(DIRS); \
-	do (cd $$dir ; echo "" ; echo "Building $$dir" ; echo "" ; make executable ); \
+	do (cd $$dir ; echo "" ; echo "Linking $$dir" ; echo "" ; make executable ); \
 	done
 
 clean::

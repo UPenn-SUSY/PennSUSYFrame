@@ -14,28 +14,47 @@ MasterConfigParser::~MasterConfigParser()
 }
 
 // -----------------------------------------------------------------------------
-std::string MasterConfigParser::getOutFile()
+std::string MasterConfigParser::getPTNTFile()
 {
-  return m_out_file_name;
+  return m_ptnt_file_name;
 }
 
 // -----------------------------------------------------------------------------
-std::string MasterConfigParser::getSelectionFile()
-{
-  return m_cut_file_name;
-}
-
-// -----------------------------------------------------------------------------
-std::string MasterConfigParser::getHistInfoFile()
+std::string MasterConfigParser::getHistFile()
 {
   return m_hist_file_name;
 }
 
 // -----------------------------------------------------------------------------
+std::string MasterConfigParser::getSelectionFile()
+{
+  return m_cut_config_file_name;
+}
+
+// -----------------------------------------------------------------------------
+std::string MasterConfigParser::getHistInfoFile()
+{
+  return m_hist_config_file_name;
+}
+
+// -----------------------------------------------------------------------------
 TChain* MasterConfigParser::getInputChain()
 {
+  return getInputChain(m_in_tree_name);
+  // // TChain* chain = new TChain("output");
+  // TChain* chain = new TChain(m_in_tree_name.c_str());
+  // size_t num_files = m_in_file_list.size();
+  // for (size_t it = 0; it != num_files; ++it) {
+  //   chain->Add(m_in_file_list.at(it).c_str());
+  // }
+  // return chain;
+}
+
+// -----------------------------------------------------------------------------
+TChain* MasterConfigParser::getInputChain(std::string tree_name)
+{
   // TChain* chain = new TChain("output");
-  TChain* chain = new TChain(m_in_tree_name.c_str());
+  TChain* chain = new TChain(tree_name.c_str());
   size_t num_files = m_in_file_list.size();
   for (size_t it = 0; it != num_files; ++it) {
     chain->Add(m_in_file_list.at(it).c_str());
@@ -44,10 +63,23 @@ TChain* MasterConfigParser::getInputChain()
 }
 
 // -----------------------------------------------------------------------------
+TChain* MasterConfigParser::getPTNTChain(std::string tree_name)
+{
+  // TChain* chain = new TChain("output");
+  TChain* chain = new TChain(tree_name.c_str());
+  chain->Add(m_ptnt_file_name.c_str());
+  // size_t num_files = m_in_file_list.size();
+  // for (size_t it = 0; it != num_files; ++it) {
+  //   chain->Add(m_in_file_list.at(it).c_str());
+  // }
+  return chain;
+}
+
+// -----------------------------------------------------------------------------
 void MasterConfigParser::config()
 {
-  std::cout << "\tcut_file : "  << m_cut_file_name    << "\n";
-  std::cout << "\thist_file: "  << m_hist_file_name << "\n";
+  std::cout << "\tcut_file : "  << m_cut_config_file_name  << "\n";
+  std::cout << "\thist_file: "  << m_hist_config_file_name << "\n";
 
   std::cout << "\tin files:\n";
   size_t term = m_in_file_list.size();
@@ -71,8 +103,12 @@ int MasterConfigParser::getChannelNum()
 void MasterConfigParser::clear()
 {
   m_in_file_block = false;
-  m_cut_file_name = "";
+  m_cut_config_file_name = "";
+  m_hist_config_file_name = "";
+
+  m_ptnt_file_name = "";
   m_hist_file_name = "";
+
   m_in_tree_name = "output";
   m_in_file_list.clear();
 
@@ -96,14 +132,16 @@ void MasterConfigParser::addLine(std::vector<std::string> split_line)
   }
 
   // TODO this is ugly. clean up
-  if (key.find("cut_file") != std::string::npos)
-    m_cut_file_name = getValue(split_line);
+  if (key.find("cut_config") != std::string::npos)
+    m_cut_config_file_name = getValue(split_line);
+  else if (key.find("hist_config") != std::string::npos)
+    m_hist_config_file_name = getValue(split_line);
+
+  else if (key.find("ptnt_file") != std::string::npos)
+    m_ptnt_file_name = getValue(split_line);
   else if (key.find("hist_file") != std::string::npos)
     m_hist_file_name = getValue(split_line);
-  else if (key.find("in_tree") != std::string::npos)
-    m_in_tree_name = getValue(split_line);
-  else if (key.find("out_file") != std::string::npos)
-    m_out_file_name = getValue(split_line);
+
   else if (key.find("mc_event_weight") != std::string::npos)
     m_global_weight_handler.setGlobalDoMcEventWeight(valueToBool(split_line));
   else if (key.find("pile_up_weight") != std::string::npos)
@@ -124,6 +162,10 @@ void MasterConfigParser::addLine(std::vector<std::string> split_line)
     m_global_weight_handler.setMcChannel(valueToInt(split_line));
   else if (key.find("target_lumi") != std::string::npos)
     m_global_weight_handler.setTargetLumi(valueToInt(split_line));
+
+  else if (key.find("in_tree") != std::string::npos)
+    m_in_tree_name = getValue(split_line);
+
   else if (key.find("in_files") != std::string::npos)
     m_in_file_block = true;
   else if (key.find("channel_num") != std::string::npos)
