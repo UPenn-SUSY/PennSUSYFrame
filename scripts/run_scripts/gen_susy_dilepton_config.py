@@ -103,6 +103,7 @@ def writeConfigXml(config_dict, out_file):
   <Library Name="libPileupReweighting" />
   <Library Name="libReweightUtils" />
   <Library Name="libCalibrationDataInterface" />
+  <Library Name="libTauCorrections" />
   <Library Name="libSUSYTools" />
   <Library Name="libSusyMatrixMethod" />
   <Library Name="libHistFitterTree" />
