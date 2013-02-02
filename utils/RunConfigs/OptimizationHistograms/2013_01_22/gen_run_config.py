@@ -165,7 +165,7 @@ def genFakeConfigFile(data):
     out = file(out_file_name, 'w')
 
     # Include the correct cut config file
-    out.write('cut_config:  %s/cuts.fake.%s.config\n' % ( data['config_base_path']
+    out.write('cut_config:  %s/cuts.%s.fake.config\n' % ( data['config_base_path']
                                                         , data['local_out_dir']
                                                         )
              )

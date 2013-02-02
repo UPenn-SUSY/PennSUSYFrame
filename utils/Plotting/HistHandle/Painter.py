@@ -364,6 +364,9 @@ def calcMin(hist_list, log_y = True):
                             ) * 0.20
                           )
                         )
+
+        # HACK - update to handle proper min when dealing with a stack plot
+        y_min = 2e-3
     else:
         y_min -= (y_max - y_min)*0.20
 

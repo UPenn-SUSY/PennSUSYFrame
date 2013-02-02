@@ -9,11 +9,11 @@ sys.path.append( '../ProcessManager' )
 from kBatchLocal import kBatchLocal
 
 # ------------------------------------------------------------------------------
-ds_list = [ "fake.Muon.periodA..config"
-          , "fake.Muon.periodB..config"
-          , "fake.Muon.periodC..config"
-          , "fake.Muon.periodD..config"
-          , "fake.Muon.periodE..config"
+ds_list = [ "fake.data.Muon.periodA..config"
+          , "fake.data.Muon.periodB..config"
+          , "fake.data.Muon.periodC..config"
+          , "fake.data.Muon.periodD..config"
+          , "fake.data.Muon.periodE..config"
           , "nominal.data.Muon.periodA..config"
           , "nominal.data.Muon.periodB..config"
           , "nominal.data.Muon.periodC..config"

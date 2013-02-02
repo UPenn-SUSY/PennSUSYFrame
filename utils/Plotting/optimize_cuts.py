@@ -64,120 +64,120 @@ def main():
     target_lumi = 21
     prod_type = 'modeA'
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # loop through cut directories
-    for d in dirs:
-        print 'Making optimization plots for dir: %s' % d
-        do_optimize = (d in optimize)
-        if do_optimize:
-            print '\tdo optimize'
-            optimize_map = hh.Optimize.OptimizeMap(optimize[d])
-        else: continue
+    # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # # loop through cut directories
+    # for d in dirs:
+    #     print 'Making optimization plots for dir: %s' % d
+    #     do_optimize = (d in optimize)
+    #     if do_optimize:
+    #         print '\tdo optimize'
+    #         optimize_map = hh.Optimize.OptimizeMap(optimize[d])
+    #     else: continue
 
-        # made directory structure
-        out_file.cd()
-        out_file.mkdir(d)
-        cut_dir = out_file.GetDirectory(d)
+    #     # made directory structure
+    #     out_file.cd()
+    #     out_file.mkdir(d)
+    #     cut_dir = out_file.GetDirectory(d)
 
-        # loop through hists to be plotted
-        for h in hists:
-            if skipHist(d,h): continue
+    #     # loop through hists to be plotted
+    #     for h in hists:
+    #         if skipHist(d,h): continue
 
-            # get background HistMerger only once per hist/cut combination
-            hm_bkg = bkg_config.genHistMerger(d, h)
+    #         # get background HistMerger only once per hist/cut combination
+    #         hm_bkg = bkg_config.genHistMerger(d, h)
 
-            # loop thought signal grid points
-            for sig_point in sig_configs:
-                # create proper directory
-                sample_dir_name = '%s-%d_%d' % ( sig_point.name
-                                               , hh.Helper.getCharginoMass(
-                                                   sig_point.name)
-                                               , hh.Helper.getNeutralinoMass(
-                                                   sig_point.name)
-                                               )
-                sample_dir = cut_dir.GetDirectory(sample_dir_name)
-                if sample_dir == None:
-                    cut_dir.mkdir(sample_dir_name)
-                    sample_dir = cut_dir.GetDirectory(sample_dir_name)
-                sample_dir.cd()
+    #         # loop thought signal grid points
+    #         for sig_point in sig_configs:
+    #             # create proper directory
+    #             sample_dir_name = '%s-%d_%d' % ( sig_point.name
+    #                                            , hh.Helper.getCharginoMass(
+    #                                                sig_point.name)
+    #                                            , hh.Helper.getNeutralinoMass(
+    #                                                sig_point.name)
+    #                                            )
+    #             sample_dir = cut_dir.GetDirectory(sample_dir_name)
+    #             if sample_dir == None:
+    #                 cut_dir.mkdir(sample_dir_name)
+    #                 sample_dir = cut_dir.GetDirectory(sample_dir_name)
+    #             sample_dir.cd()
 
-                # get signal HistMerger object
-                hm_sig = sig_point.genHistMerger(d,h)
+    #             # get signal HistMerger object
+    #             hm_sig = sig_point.genHistMerger(d,h)
 
-                # do optimization if specified
-                local_optimize = None
-                if do_optimize and optimize[d].to_optimize == h:
-                    local_optimize = hh.Optimize.Optimize(
-                            sig = hm_sig,
-                            bkg = hm_bkg,
-                            cut_direction = optimize[d].direction,
-                            bkg_uncertainty = 0.20)
-                            #bkg_uncertainty = 0.30)
-                            #bkg_uncertainty = 0.40)
+    #             # do optimization if specified
+    #             local_optimize = None
+    #             if do_optimize and optimize[d].to_optimize == h:
+    #                 local_optimize = hh.Optimize.Optimize(
+    #                         sig = hm_sig,
+    #                         bkg = hm_bkg,
+    #                         cut_direction = optimize[d].direction,
+    #                         bkg_uncertainty = 0.20)
+    #                         #bkg_uncertainty = 0.30)
+    #                         #bkg_uncertainty = 0.40)
 
-                    optimize_map.addGridPoint(local_optimize, sample_dir_name)
+    #                 optimize_map.addGridPoint(local_optimize, sample_dir_name)
 
-                    optimal_cut = local_optimize.getOptimalCut()
+    #                 optimal_cut = local_optimize.getOptimalCut()
 
-                # Draw to canvas and print to file
-                painter = hh.Painter.HistPainter( num = hm_sig
-                                                , denom = hm_bkg
-                                                , optimal_cut = local_optimize
-                                                )
-                pile = painter.pile( num_type       = hh.Objects.plain_hist
-                                   , denom_type     = hh.Objects.stack_hist
-                                   , canvas_options = hh.canv_log_y
-                                   , legend         = True
-                                   , int_lumi       = target_lumi
-                                   , prod_type      = prod_type
-                                   )
-                pile.Write(h)
-                # pile.Close()
+    #             # Draw to canvas and print to file
+    #             painter = hh.Painter.HistPainter( num = hm_sig
+    #                                             , denom = hm_bkg
+    #                                             , optimal_cut = local_optimize
+    #                                             )
+    #             pile = painter.pile( num_type       = hh.Objects.plain_hist
+    #                                , denom_type     = hh.Objects.stack_hist
+    #                                , canvas_options = hh.canv_log_y
+    #                                , legend         = True
+    #                                , int_lumi       = target_lumi
+    #                                , prod_type      = prod_type
+    #                                )
+    #             pile.Write(h)
+    #             # pile.Close()
 
-                # if we are to optimize, and this cut is specified, print
-                # details to file
-                if do_optimize and optimize[d].to_optimize == h:
-                    detail_dir_name = '%s_details' % h
-                    sample_dir.mkdir(detail_dir_name)
-                    sample_dir.cd(detail_dir_name)
+    #             # if we are to optimize, and this cut is specified, print
+    #             # details to file
+    #             if do_optimize and optimize[d].to_optimize == h:
+    #                 detail_dir_name = '%s_details' % h
+    #                 sample_dir.mkdir(detail_dir_name)
+    #                 sample_dir.cd(detail_dir_name)
 
-                    sig_plot = local_optimize.drawSignificanceCanvas()
-                    hh.Painter.drawLabels( int_lumi = target_lumi
-                                         , prod_type = prod_type
-                                         )
-                    sig_plot['canvas'].Write('%s_zn' % h)
-                    sig_plot['canvas'].Close()
+    #                 sig_plot = local_optimize.drawSignificanceCanvas()
+    #                 hh.Painter.drawLabels( int_lumi = target_lumi
+    #                                      , prod_type = prod_type
+    #                                      )
+    #                 sig_plot['canvas'].Write('%s_zn' % h)
+    #                 sig_plot['canvas'].Close()
 
-                    cut_region = local_optimize.drawCutRegionCanvas(pile)
-                    cut_region['canvas'].Write('%s_w_cut_region' % h)
-                    cut_region['canvas'].Close()
+    #                 cut_region = local_optimize.drawCutRegionCanvas(pile)
+    #                 cut_region['canvas'].Write('%s_w_cut_region' % h)
+    #                 cut_region['canvas'].Close()
 
-                    integral_plot = local_optimize.drawIntegralCavnas()
-                    integral_plot['canvas'].Write('%s_int' % h)
-                    integral_plot['canvas'].Close()
+    #                 integral_plot = local_optimize.drawIntegralCavnas()
+    #                 integral_plot['canvas'].Write('%s_int' % h)
+    #                 integral_plot['canvas'].Close()
 
-                pile.Close()
+    #             pile.Close()
 
-        # If we are doing optimization, print maps to file
-        if do_optimize:
-            cut_dir.cd()
-            cut_dir.mkdir('maps')
-            maps_dir = cut_dir.GetDirectory('maps')
-            maps_dir.cd()
+    #     # If we are doing optimization, print maps to file
+    #     if do_optimize:
+    #         cut_dir.cd()
+    #         cut_dir.mkdir('maps')
+    #         maps_dir = cut_dir.GetDirectory('maps')
+    #         maps_dir.cd()
 
-            # do scan of all possible cuts
-            if optimize[d].scan:
-                print '\tScanning: %s' % optimize[d].to_optimize
-                optimize_map.printScan( maps_dir
-                                      , target_lumi = target_lumi
-                                      , prod_type   = prod_type
-                                      )
+    #         # do scan of all possible cuts
+    #         if optimize[d].scan:
+    #             print '\tScanning: %s' % optimize[d].to_optimize
+    #             optimize_map.printScan( maps_dir
+    #                                   , target_lumi = target_lumi
+    #                                   , prod_type   = prod_type
+    #                                   )
 
-            # check fixed cut values
-            optimize_map.printAllFixedPoints( maps_dir
-                                            , target_lumi = target_lumi
-                                            , prod_type   = prod_type
-                                            )
+    #         # check fixed cut values
+    #         optimize_map.printAllFixedPoints( maps_dir
+    #                                         , target_lumi = target_lumi
+    #                                         , prod_type   = prod_type
+    #                                         )
 
     # Clean up out file
     out_file.Close()
