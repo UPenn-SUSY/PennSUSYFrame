@@ -56,6 +56,10 @@ def get_list_of_dirs(d):
         key_list_test = set(get_list_of_keys(f))
         if key_list_ref == None:
             key_list_ref = key_list_test
+        if not key_list_test == key_list_ref:
+            print 'Key list in %s does not match reference key list' % \
+                    f.GetName()
+            assert False
         assert key_list_test == key_list_ref
     print '\nAll input files have the same directory structure!\n'
 

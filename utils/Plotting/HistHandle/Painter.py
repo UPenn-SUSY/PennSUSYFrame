@@ -346,9 +346,9 @@ def setMax(hist_list, log_y = False, y_max = metaroot.default):
 
 # ------------------------------------------------------------------------------
 def calcMin(hist_list, log_y = True):
-    print 'calcMin()'
+    # print 'calcMin()'
     if len(hist_list) == 0: return 0.
-    print hist_list
+    # print hist_list
 
     # TODO come up with better algorithm
     extremes = getExtrema(hist_list, log_y)
@@ -366,7 +366,7 @@ def calcMin(hist_list, log_y = True):
                         )
 
         # HACK - update to handle proper min when dealing with a stack plot
-        y_min = 2e-3
+        y_min = min(2e-3, y_min)
     else:
         y_min -= (y_max - y_min)*0.20
 
@@ -389,7 +389,8 @@ def calcMax(hist_list, log_y = True):
                           + ( math.log(y_max, 10)
                             - math.log(y_min, 10)
                             # ) * 0.20
-                            ) * 0.70
+                            # ) * 0.70
+                            ) * 0.80
                           )
                         )
     else:
@@ -410,14 +411,14 @@ def getExtrema(hist_list, log_y = True):
         local_max = None
 
         h_tmp = h
-        print '----------------------------------'
-        print type(h)
-        print type(h_tmp)
+        # print '----------------------------------'
+        # print type(h)
+        # print type(h_tmp)
         if isinstance(h_tmp, ROOT.THStack): continue
         if isinstance(h_tmp, ROOT.TGraph):  continue
         if isinstance(h_tmp, ROOT.TGraphErrors): continue
 
-        print type(h_tmp)
+        # print type(h_tmp)
         num_bins = h_tmp.GetXaxis().GetNbins()
         for b in xrange(num_bins):
             bin_content = h_tmp.GetBinContent(b)

@@ -100,7 +100,7 @@ class EntryContainer(object):
 class OptimizeContainer(object):
     # --------------------------------------------------------------------------
     def __init__(self, input_dict):
-        self.cut_dir =      input_dict['cut_dir']
+        # self.cut_dir =      input_dict['cut_dir']
         self.to_optimize =  input_dict['to_optimize']
         self.direction =    input_dict['direction']
         self.fixed_points = input_dict['fixed_points']
@@ -174,6 +174,6 @@ def processInputBlock(input_dict):
 def processOptimizeBlock(input_dict):
     optimizations = {}
     for inp in input_dict:
-        optimizations[inp['cut_dir']] = OptimizeContainer(inp)
+        optimizations[inp['to_optimize']] = OptimizeContainer(inp)
 
     return optimizations
