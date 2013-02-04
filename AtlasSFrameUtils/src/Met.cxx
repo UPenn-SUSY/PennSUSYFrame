@@ -18,6 +18,7 @@ Met::Met( const ::Long64_t& master
 // ----------------------------------------------------------------------------
 void Met::init(std::string jet_algo)
 {
+ 
   // Set the jet algorithm option
   m_jet_algo = jet_algo;
 
@@ -28,12 +29,15 @@ void Met::init(std::string jet_algo)
                                  , true  // doRefGamma
                                  , false // doRefTau
                                  , true  // doRefJet
-                                 , true  // doSoftJets
+				 , false //true  // doSoftJets //going from 1-l macro?
                                  , false // doRefMuon
                                  , true  // doMuonTotal
                                  , false // doCellOut
                                  , true  // doCellOutEflow
                                  );
+
+
+    
   }
   else {
     m_met_utility.defineMissingET( true  // doRefEle
@@ -51,8 +55,10 @@ void Met::init(std::string jet_algo)
   m_met_utility.setIsMuid(false);
 
   bool is_2012 = true;
-  // bool is_stvf = false;
-  bool is_stvf = true;
+ 
+  //changing to SUSYMet::Default for now w/o Pile
+  bool is_stvf = false;
+  //bool is_stvf = true;
 
   // configure the met utility
   m_met_utility.configMissingET(is_2012, is_stvf);
@@ -62,6 +68,8 @@ void Met::init(std::string jet_algo)
 void Met::clear()
 {
   m_prepared = false;
+
+  m_met_utility.reset();
   // do other things to clear met tool
 }
 
@@ -74,6 +82,7 @@ void Met::prep( Event* event
 {
   if (!m_prepared) {
     m_met_utility.setAverageIntPerXing(event->averageIntPerXing());
+    m_met_utility.setJetPUcode(MissingETTags::DEFAULT); //NEW p1328 as per 1L
 
     addJets(jets);
     addElectrons(electrons);
@@ -278,16 +287,22 @@ void Met::addMet()
   // check the jet algorithm to determine the correct way to add MET terms
   if (m_jet_algo.find("LC") != std::string::npos) {
 
-    m_met_utility.setMETTerm( METUtil::SoftJets
-                            , STVF_SoftJets_etx()
-                            , STVF_SoftJets_ety()
-                            , STVF_SoftJets_sumet()
-                            );
-    m_met_utility.setMETTerm( METUtil::CellOutEflow
-                            , STVF_CellOutCorr_etx()
-                            , STVF_CellOutCorr_ety()
-                            , STVF_CellOutCorr_sumet()
-                            );
+//     m_met_utility.setMETTerm( METUtil::SoftJets
+//                             , STVF_SoftJets_etx()
+//                             , STVF_SoftJets_ety()
+//                             , STVF_SoftJets_sumet()
+//                             );
+//     m_met_utility.setMETTerm( METUtil::CellOutEflow
+//                             , STVF_CellOutCorr_etx()
+//                             , STVF_CellOutCorr_ety()
+//                             , STVF_CellOutCorr_sumet()
+//                             );
+    // // SUSYMet::Default 
+      m_met_utility.setMETTerm(METUtil::CellOutEflow
+    			  , CellOut_etx()
+    			  , CellOut_ety()
+    			  , CellOut_sumet());
+
   }
   else {
     m_met_utility.setMETTerm( METUtil::CellOut
@@ -297,11 +312,19 @@ void Met::addMet()
                             );
   }
 
+
+
+
   // add RefGamma term regardless of algorithm
+//   m_met_utility.setMETTerm( METUtil::RefGamma
+//                           , STVF_RefGamma_etx()
+//                           , STVF_RefGamma_ety()
+//                           , STVF_RefGamma_sumet()
+//                           );
   m_met_utility.setMETTerm( METUtil::RefGamma
-                          , STVF_RefGamma_etx()
-                          , STVF_RefGamma_ety()
-                          , STVF_RefGamma_sumet()
+                          , RefGamma_etx()
+                          , RefGamma_ety()
+                          , RefGamma_sumet()
                           );
 }
 
