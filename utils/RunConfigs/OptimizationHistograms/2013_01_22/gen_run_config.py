@@ -243,7 +243,12 @@ def genCFConfigFile(data):
     out.write('\n')
 
     # Configs common to all "CF" jobs
-    out.write('mc_event_weight: 1\n')
+    out.write('mc_event_weight: %s\n' % ('0' if ( data['sample_header'] == 'data'
+                                                or ('plus_jet' in data['sample_type'])
+                                                ) 
+                                        else '1'
+                                        )
+             )
     out.write('pile_up_weight:  1\n')
     out.write('trigger_weight:  1\n')
     out.write('lepton_weight:   1\n')
