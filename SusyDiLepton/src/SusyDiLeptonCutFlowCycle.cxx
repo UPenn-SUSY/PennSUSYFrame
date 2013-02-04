@@ -159,6 +159,7 @@ void SusyDiLeptonCutFlowCycle::initD3PDReaders()
   m_trigger_vec = new TriggerVec(m_entry_number, "");
   m_met = new Met(m_entry_number, c_met_prefix.c_str(), is_data());
 
+
   m_vertex_d3pdobject =
       new D3PDReader::VertexD3PDObject( m_entry_number
                                       , "vx_"
@@ -218,6 +219,9 @@ void SusyDiLeptonCutFlowCycle::getTools()
           , CommonTools::JetCalibTool
           , "JetCalibration"
           );
+  //Initizilize MEt
+  m_met->init(c_jet_prefix);
+
 
   // Initialize vertices
   m_vertices.init();

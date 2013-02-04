@@ -219,6 +219,9 @@ void SusyDiLeptonPreselCycle::getTools()
           , "JetCalibration"
           );
 
+  //Initialize Met
+  m_met->init(c_jet_prefix);
+
   // Initialize vertices
   m_vertices.init();
 
