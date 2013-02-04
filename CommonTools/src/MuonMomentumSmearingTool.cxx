@@ -52,11 +52,14 @@ void CommonTools::MuonMomentumSmearingTool::BeginInputData(const SInputData&)
   m_mcp_smear = new MuonSmear::SmearingClass( "Data12"
                                             , "staco"
                                             , "q_pT"
-                                            , "Rel17.2"
+                                            , "Rel17.2Repro"
                                             , m_muon_momentum_dir
                                             );
-  m_mcp_smear->UseScale(1);
-  m_mcp_smear->UseImprovedCombine();
+  
+  //These are now the default as of MuonMomentumCorrections--00-08-05
+  //so no need to explicitly set them (ie susytools doesn't)
+//   m_mcp_smear->UseScale(1);
+//   m_mcp_smear->UseImprovedCombine();
 }
 
 
@@ -84,15 +87,26 @@ double CommonTools::MuonMomentumSmearingTool::getSmearedPt(const Muon* mu)
       int seed = static_cast<int>(1.e+5*fabs(mu->phi()));
       if (!seed) ++seed;
       m_mcp_smear->SetSeed(seed);
-      m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu->eta());
+
+      //Looks like recommendations changed for 2012repro.
+      //m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu->eta(), mu->charge());
 
       if (c_smearing_function == "") {
         if (mu->isCombinedMuon())
-          my_pt = m_mcp_smear->pTCB();
+	  {
+	    m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu->eta(), mu->charge());
+	    my_pt = m_mcp_smear->pTCB();
+	  }
         else if (mu->isSegmentTaggedMuon())
-          my_pt = m_mcp_smear->pTID();
+	  {          
+	    m_mcp_smear->Event(pt_id, mu->eta(), "ID", mu->charge());
+	    my_pt = m_mcp_smear->pTID();
+	  }
         else
-          my_pt = m_mcp_smear->pTMS();
+	  {
+	    m_mcp_smear->Event(pt_ms, mu->eta(), "ID", mu->charge());          
+	    my_pt = m_mcp_smear->pTMS();
+	  }
       }
       else {
         double pTMS_smeared = 0.;
@@ -100,7 +114,7 @@ double CommonTools::MuonMomentumSmearingTool::getSmearedPt(const Muon* mu)
         double pTCB_smeared = 0.;
 
         // Valid values for "c_smearing_function":
-        //   {"MSLOW", "MSUP", "IDLOW", "IDUP"}
+        //   {"MSLOW", "MSUP", "IDLOW", "IDUP","SCALELOW", "SCALEUP"}
         m_mcp_smear->PTVar( pTMS_smeared
                           , pTID_smeared
                           , pTCB_smeared

@@ -214,7 +214,7 @@ float CommonTools::ChargeFlipScaleFactorTool::getTruthElectronSign(
   float charge = mc->mc_charge()->at(index);
   float reco_charge = el->charge();
 
-  if (charge*reco_charge < 0) std::cout<<"Flipped"<<charge<<" "<<reco_charge<<std::endl;
+  //if (charge*reco_charge < 0) std::cout<<"Flipped"<<charge<<" "<<reco_charge<<std::endl;
 
   el->setTruthCharge(charge);
 
