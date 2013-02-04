@@ -18,16 +18,19 @@ class InputContainer(object):
     # --------------------------------------------------------------------------
     def __init__(self, input_dict):
         self.name = input_dict['name']
-        self.color = input_dict['color']
+        # self.color = input_dict['color']
+        self.fill_color   = input_dict['fill_color']
+        self.line_color   = input_dict['line_color']
+
         self.marker_style = input_dict['marker_style']
         self.entries = []
         for e in input_dict['entries']:
             self.entries.append(EntryContainer(e))
 
         self.hist_info = hh.Objects.HistInfo( self.name
-                                            , self.color
-                                            , self.color
-                                            , self.marker_style
+                                            , fill_color = self.fill_color
+                                            , line_color = self.line_color
+                                            , marker_style = self.marker_style
                                             )
 
     # ------------------------------------------------------------------------------
@@ -45,6 +48,11 @@ class InputContainer(object):
                      , dir_name
                      , hist_name
                      ):
+        print 'Creating HistMerger object for:'
+        print '\tName:      %s' % self.name
+        print '\tDirectory: %s' % dir_name
+        print '\tHist:      %s' % hist_name
+
         hist_handle_dict = {}
         for e in self.entries:
             hist_handle_dict[e.label] = e.genHistHandle(dir_name, hist_name)
@@ -64,7 +72,6 @@ class EntryContainer(object):
                 ):
         self.label =        entry_dict['label']
         self.fill_color =   entry_dict['fill_color']
-        self.fill_color =   entry_dict['fill_color']
         self.line_color =   entry_dict['line_color']
         self.marker_style = entry_dict['marker_style']
         self.inputs =       entry_dict['inputs']
@@ -78,9 +85,9 @@ class EntryContainer(object):
         self.file_list = [ ROOT.TFile(f) for f in self.inputs ]
 
         self.hist_info = hh.Objects.HistInfo( self.label
-                                            , self.line_color
-                                            , self.fill_color
-                                            , self.marker_style
+                                            , fill_color = self.fill_color
+                                            , line_color = self.line_color
+                                            , marker_style = self.marker_style
                                             )
 
     # --------------------------------------------------------------------------

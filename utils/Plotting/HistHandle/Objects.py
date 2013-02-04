@@ -30,17 +30,17 @@ class HistInfo(object):
     # --------------------------------------------------------------------------
     def __init__( self
                 , name
-                , line_color = 1
                 , fill_color = 1
+                , line_color = 1
                 , marker_style = 20
                 ):
         self.name = name
-        self.line_color = line_color
         self.fill_color = fill_color
+        self.line_color = line_color
         self.marker_style = marker_style
 
     def setHistStyle(self, hist):
-        hist.SetLineColor(  self.line_color)
         hist.SetFillColor(  self.fill_color)
+        hist.SetLineColor(  self.line_color)
         hist.SetMarkerColor(self.fill_color)
         hist.SetMarkerStyle(self.marker_style)

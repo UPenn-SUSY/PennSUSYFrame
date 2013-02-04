@@ -111,6 +111,7 @@ class HistMerger(object):
 
             if self.hist_sum == None:
                 self.hist_sum = h.hist.Clone('%s_sum' % self.unique_name)
+                print "creating hist sum: %s" % self.hist_sum
                 self.hist_info.setHistStyle(self.hist_sum)
             else:
                 self.hist_sum.Add(h.hist)

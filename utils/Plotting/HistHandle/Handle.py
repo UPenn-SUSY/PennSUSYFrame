@@ -75,9 +75,9 @@ class HistHandle(object):
         assert type(input_file) == ROOT.TFile
 
         # get hist from file
-        print 'Getting hist: %s from directory: %s' % ( self.hist_name
-                                                      , self.directory
-                                                      )
+        # print 'Getting hist: %s from directory: %s' % ( self.hist_name
+        #                                               , self.directory
+        #                                               )
         d = input_file.GetDirectory(self.directory)
         h = d.Get(self.hist_name)
         h.Sumw2()

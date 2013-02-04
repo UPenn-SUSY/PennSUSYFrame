@@ -305,8 +305,8 @@ class OptimizeMap(object):
                              , cut_value
                              )
         if isinstance(cut_value, int): cut_value = float(cut_value)
-        print 'cut_value: %s' % cut_value
-        print '\t%s' % type(cut_value)
+        # print 'cut_value: %s' % cut_value
+        # print '\t%s' % type(cut_value)
 
         maps_dir.mkdir(dir_name)
         maps_dir.cd(dir_name)
@@ -338,8 +338,8 @@ class OptimizeMap(object):
     def printAllFixedPoints(self, maps_dir, target_lumi, prod_type = ''):
         maps_dir.cd()
 
-        print 'maps_dir: %s' % maps_dir
-        print 'fixed points: %s' % self.optimize_container.fixed_points
+        # print 'maps_dir: %s' % maps_dir
+        # print 'fixed points: %s' % self.optimize_container.fixed_points
         c_num_bkg = hh.Painter.pileHists( [self.sample_bkg_integral]
                                         , 'num_bkg'
                                         , canvas_options = hh.canv_log_y

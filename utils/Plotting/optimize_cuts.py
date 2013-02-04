@@ -67,6 +67,7 @@ def main():
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # loop through cut directories
     for d in dirs:
+        # if not 'it5' in d: continue
         print 'Making optimization plots for dir: %s' % d
     #     do_optimize = (d in optimize)
     #     if do_optimize:
@@ -132,6 +133,7 @@ def main():
                 painter = hh.Painter.HistPainter( num = hm_sig
                                                 , denom = hm_bkg
                                                 , optimal_cut = local_optimize
+                                                , num_draw_option = 'HIST'
                                                 )
                 pile = painter.pile( num_type       = hh.Objects.plain_hist
                                    , denom_type     = hh.Objects.stack_hist

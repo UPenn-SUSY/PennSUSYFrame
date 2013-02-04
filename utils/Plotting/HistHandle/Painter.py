@@ -18,8 +18,8 @@ import AtlasLabels
 import HistHandle as hh
 
 # ==============================================================================
-canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
-canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
+# canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
+# canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
 
 # ==============================================================================
 prod_labels = { 'modeA':'#tilde{#chi}_{1}^{#pm}#tilde{#chi}_{2}^{0} production'
@@ -38,6 +38,8 @@ class HistPainter(object):
                 , denom = None
                 , name  = None
                 , optimal_cut = None
+                , num_draw_option = 'P'
+                , denom_draw_option = 'P'
                 ):
         """
         construtor
@@ -58,6 +60,9 @@ class HistPainter(object):
 
         self.canvas = None
         self.ratio_canvas = None
+
+        self.num_draw_option   = num_draw_option
+        self.denom_draw_option = denom_draw_option
 
     # --------------------------------------------------------------------------
     def __del__(self):
@@ -100,7 +105,7 @@ class HistPainter(object):
             , num_type         = hh.Objects.plain_hist
             , denom_type       = hh.Objects.plain_hist
             , normalize        = False
-            , canvas_options   = canv_default
+            , canvas_options   = hh.canv_linear
             , legend           = False
             , int_lumi         = 0
             , prod_type        = ''
@@ -128,10 +133,12 @@ class HistPainter(object):
             if denom_type == hh.Objects.piled_hist:
                 for hl in self.denom_merger.hist_list:
                     hist_list.append(hl)
-                    draw_opt_list.append('P')
+                    # draw_opt_list.append('P')
+                    draw_opt_list.append(self.denom_draw_option)
             elif denom_type == hh.Objects.plain_hist:
                 hist_list.append(self.denom_merger.hist_sum)
-                draw_opt_list.append('P')
+                # draw_opt_list.append('P')
+                draw_opt_list.append(self.denom_draw_option)
             elif denom_type == hh.Objects.stack_hist:
                 # for stacked histograms, we want to add the sum also to get the
                 # min/max right
@@ -146,10 +153,12 @@ class HistPainter(object):
         if num_type == hh.Objects.piled_hist:
             for hl in self.num_merger.hist_list:
                 hist_list.append(hl)
-                draw_opt_list.append('P')
+                # draw_opt_list.append('P')
+                draw_opt_list.append(self.num_draw_option)
         elif num_type == hh.Objects.plain_hist:
             hist_list.append(self.num_merger.hist_sum)
-            draw_opt_list.append('P')
+            # draw_opt_list.append('P')
+            draw_opt_list.append(self.num_draw_option)
         elif num_type == hh.Objects.stack_hist:
             # for stacked histograms, we want to add the sum also to get the
             # min/max right
@@ -186,7 +195,7 @@ class HistPainter(object):
                     , num_type         = hh.Objects.plain_hist
                     , denom_type       = hh.Objects.plain_hist
                     , normalize        = False
-                    , canvas_options   = canv_default
+                    , canvas_options   = hh.canv_linear
                     , legend           = False
                     , int_lumi         = 0
                     , prod_type        = ''
@@ -301,13 +310,13 @@ def pileHists( hist_list
 
     # create canvas
     if canvas_options == metaroot.default:
-        canvas_options = canv_default
+        canvas_options = hh.canv_linear
     c = canvas_options.create(name)
 
     setMin(hist_list, canvas_options.log_y, y_min)
     setMax(hist_list, canvas_options.log_y, y_max)
 
-    # actuall draw plots
+    # actually draw plots
     drawn_first = False
     for i, h in enumerate(hist_list):
         draw_opt = draw_opt_list[i]
