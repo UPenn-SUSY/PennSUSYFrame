@@ -38,10 +38,12 @@ $ROOTCOREDIR/scripts/checkout.sh ../root_core_packages
 # comment out known std::cout statements to avoid massive log files
 files="GoodRunsLists/Root/DQHelperFunctions.cxx
 GoodRunsLists/Root/TGoodRunsList.cxx
-SUSYTools/Root/mt2_bisect.cxx"
+SUSYTools/Root/mt2_bisect.cxx
+LeptonTruthTools/Root/RecoTruthMatch.cxx"
 for f in $files
 do
-  cat $f | sed 's, std::cout, \/\/ std::cout,g' > $f.temp
+  # cat $f | sed 's, std::cout, \/\/ std::cout,g' > $f.temp
+  cat $f | sed 's,^\(\s\+\)\(.* std::cout.*\)$,\1\/\/ \2,g' > $f.temp
   mv $f.temp $f
 done
 

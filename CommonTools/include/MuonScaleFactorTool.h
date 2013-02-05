@@ -28,6 +28,7 @@ namespace CommonTools
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     double getSF(Muon*);
     double getSFUncertainty(Muon*);
+    double getSFSystematic(Muon*);
 
   // ----------------------------------------------------------------------------
   private:

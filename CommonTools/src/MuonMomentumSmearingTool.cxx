@@ -55,11 +55,11 @@ void CommonTools::MuonMomentumSmearingTool::BeginInputData(const SInputData&)
                                             , "Rel17.2Repro"
                                             , m_muon_momentum_dir
                                             );
-  
+
   //These are now the default as of MuonMomentumCorrections--00-08-05
   //so no need to explicitly set them (ie susytools doesn't)
-//   m_mcp_smear->UseScale(1);
-//   m_mcp_smear->UseImprovedCombine();
+  // m_mcp_smear->UseScale(1);
+  // m_mcp_smear->UseImprovedCombine();
 }
 
 
@@ -92,21 +92,18 @@ double CommonTools::MuonMomentumSmearingTool::getSmearedPt(const Muon* mu)
       //m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu->eta(), mu->charge());
 
       if (c_smearing_function == "") {
-        if (mu->isCombinedMuon())
-	  {
-	    m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu->eta(), mu->charge());
-	    my_pt = m_mcp_smear->pTCB();
-	  }
-        else if (mu->isSegmentTaggedMuon())
-	  {          
-	    m_mcp_smear->Event(pt_id, mu->eta(), "ID", mu->charge());
-	    my_pt = m_mcp_smear->pTID();
-	  }
-        else
-	  {
-	    m_mcp_smear->Event(pt_ms, mu->eta(), "ID", mu->charge());          
-	    my_pt = m_mcp_smear->pTMS();
-	  }
+        if (mu->isCombinedMuon()) {
+          m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu->eta(), mu->charge());
+          my_pt = m_mcp_smear->pTCB();
+        }
+        else if (mu->isSegmentTaggedMuon()) {
+          m_mcp_smear->Event(pt_id, mu->eta(), "ID", mu->charge());
+          my_pt = m_mcp_smear->pTID();
+        }
+        else {
+          m_mcp_smear->Event(pt_ms, mu->eta(), "MS", mu->charge());
+          my_pt = m_mcp_smear->pTMS();
+        }
       }
       else {
         double pTMS_smeared = 0.;

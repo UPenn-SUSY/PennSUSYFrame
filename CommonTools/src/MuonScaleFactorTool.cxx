@@ -110,3 +110,23 @@ double CommonTools::MuonScaleFactorTool::getSFUncertainty(Muon* mu)
 
   return sf_unc;
 }
+
+// -----------------------------------------------------------------------------
+double CommonTools::MuonScaleFactorTool::getSFSystematic(Muon* mu)
+{
+  float sf_syst = 0;
+
+  if (!is_data() && c_do_scaling) {
+    if (!m_muon_sf) {
+      m_logger << ERROR
+               << "No scale factor class initialized! Setting SF systematic to 0"
+               << SLogger::endmsg;
+      return 0;
+    }
+    TLorentzVector mu_tlv = mu->getTlv();
+
+    sf_syst = m_muon_sf->scaleFactorSystematicUncertainty(mu->charge(), mu_tlv);
+  }
+
+  return sf_syst;
+}
