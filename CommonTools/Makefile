@@ -18,9 +18,10 @@ INCLUDES += -I../RootCore/MuonMomentumCorrections/
 INCLUDES += -I../RootCore/egammaAnalysisUtils/
 INCLUDES += -I../RootCore/LeptonTruthTools/
 INCLUDES += -I../RootCore/ChargeFlip/
-// INCLUDES += -I../RootCore/egammaAnalysisUtils/
+# INCLUDES += -I../RootCore/egammaAnalysisUtils/
 INCLUDES += -I../RootCore/egammaEvent/
 INCLUDES += -I../RootCore/DGTriggerReweight/
-
+INCLUDES += -I../RootCore/ElectronEfficiencyCorrection
+INCLUDES += -I../RootCore/PATCore
 # Include the generic compilation rules
 include $(SFRAME_DIR)/Makefile.common

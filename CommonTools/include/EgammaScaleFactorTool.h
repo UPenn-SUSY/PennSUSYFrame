@@ -5,7 +5,11 @@
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Electron.h"
-#include "egammaAnalysisUtils/egammaSFclass.h"
+#include "AtlasSFrameUtils/include/Event.h"
+//#include "egammaAnalysisUtils/egammaSFclass.h"
+//#include "ElectronEfficiencyCorretion/TElectronEfficiencyCorrectionTool.h"
+#include "ElectronEfficiencyCorrection/TElectronEfficiencyCorrectionTool.h"
+#include "PATCore/TResult.h"
 
 // ============================================================================
 namespace CommonTools
@@ -28,23 +32,22 @@ namespace CommonTools
     // "HCP 2012 recommendations" G4 FullSim MC (rel=10)
     // "HCP 2012 recommendations" AFII MC (rel=11)
     double getSF( Electron*
-		  , int set = 7
-		  , int rel = 10
-		  , int mode = 0
-		  , int range = 0
-		  );
-    double getSFUncertainty( Electron*
-			     , int set = 7
-			     , int rel = 10
-			     , int mode = 0
-			     , int range = 0
-			     );
+		, Event* );
+    double getSFUncertainty( Electron*,
+			     Event* );
     // ----------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool c_do_scaling;
+    std::string c_egamma_sf_dir;
 
-    egammaSFclass m_eg_sf;
+    std::string m_reco_file_name;
+    std::string m_tight_file_name;
+    std::string m_trigger_file_name;
+
+    Root::TElectronEfficiencyCorrectionTool m_eg_reco_sf;
+    Root::TElectronEfficiencyCorrectionTool m_eg_tight_sf;
+    Root::TElectronEfficiencyCorrectionTool m_eg_trigger_sf;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(EgammaScaleFactorTool, 0);
