@@ -100,6 +100,8 @@ def writeConfigXml(config_dict, out_file):
   <Library Name="libMissingETUtility" />
   <Library Name="libMuonEfficiencyCorrections" />
   <Library Name="libMuonMomentumCorrections" />
+  <Library Name="libPATCore" />
+  <Library Name="libElectronEfficiencyCorrection" />
   <Library Name="libPileupReweighting" />
   <Library Name="libReweightUtils" />
   <Library Name="libCalibrationDataInterface" />
