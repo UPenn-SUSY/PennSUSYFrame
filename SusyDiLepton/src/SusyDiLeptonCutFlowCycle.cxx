@@ -515,7 +515,7 @@ double SusyDiLeptonCutFlowCycle::getLeptonEffWeight()
   std::vector<Electron*> el_vec = m_electrons.getElectrons(EL_GOOD);
   size_t el_term = el_vec.size();
   for (size_t el_it = 0; el_it != el_term; ++el_it) {
-    lepton_eff *= m_egamma_sf_tool->getSF(el_vec.at(el_it));
+    lepton_eff *= m_egamma_sf_tool->getSF(el_vec.at(el_it), m_event);
   }
 
   std::vector<Muon*> mu_vec = m_muons.getMuons(MU_GOOD);
