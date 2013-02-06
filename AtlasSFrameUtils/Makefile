@@ -21,6 +21,7 @@ INCLUDES += -I$(D3PDObjects_DIR)/include
 INCLUDES += -I{PWD}/include/
 #INCLUDES += -I../RootCore/JetResolution
 INCLUDES += -I../RootCore/ApplyJetCalibration/
+INCLUDES += -I../RootCore/JetUncertainties/
 INCLUDES += -I../RootCore/MissingETUtility/
 INCLUDES += -I../RootCore/MuonMomentumCorrections
 INCLUDES += -I../RootCore/egammaAnalysisUtils

@@ -218,11 +218,23 @@ namespace D3PDReader {
       VarProxy< float > secvtx_x;
       VarProxy< float > secvtx_y;
       VarProxy< float > secvtx_z;
+      VarProxy< float > secvtx_xx;
+      VarProxy< float > secvtx_yy;
+      VarProxy< float > secvtx_zz;
+      VarProxy< float > secvtx_xy;
+      VarProxy< float > secvtx_yz;
+      VarProxy< float > secvtx_zx;
       VarProxy< float > secvtx_chiSquared;
       VarProxy< float > secvtx_numberDoF;
       VarProxy< float > privtx_x;
       VarProxy< float > privtx_y;
       VarProxy< float > privtx_z;
+      VarProxy< float > privtx_xx;
+      VarProxy< float > privtx_yy;
+      VarProxy< float > privtx_zz;
+      VarProxy< float > privtx_xy;
+      VarProxy< float > privtx_yz;
+      VarProxy< float > privtx_zx;
       VarProxy< float > privtx_chiSquared;
       VarProxy< float > privtx_numberDoF;
       VarProxy< float > privtx_jvf;
@@ -444,14 +456,14 @@ namespace D3PDReader {
       VarProxy< int > trueTauAssocSmall_index;
       VarProxy< int > trueTauAssocSmall_matched;
 // end MC only
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpx;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpy;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wet;
+      VarProxy< vector<unsigned int> > MET_Egamma10LooseTau_statusWord;
       VarProxy< vector<float> > MET_wpx;
       VarProxy< vector<float> > MET_wpy;
       VarProxy< vector<float> > MET_wet;
       VarProxy< vector<unsigned int> > MET_statusWord;
-      VarProxy< vector<float> > MET_STVF_wpx;
-      VarProxy< vector<float> > MET_STVF_wpy;
-      VarProxy< vector<float> > MET_STVF_wet;
-      VarProxy< vector<unsigned int> > MET_STVF_statusWord;
 
 
 bool is_data; // ~bj 
@@ -680,11 +692,23 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > secvtx_x;
       VarHandle< vector<float>* > secvtx_y;
       VarHandle< vector<float>* > secvtx_z;
+      VarHandle< vector<float>* > secvtx_xx;
+      VarHandle< vector<float>* > secvtx_yy;
+      VarHandle< vector<float>* > secvtx_zz;
+      VarHandle< vector<float>* > secvtx_xy;
+      VarHandle< vector<float>* > secvtx_yz;
+      VarHandle< vector<float>* > secvtx_zx;
       VarHandle< vector<float>* > secvtx_chiSquared;
       VarHandle< vector<float>* > secvtx_numberDoF;
       VarHandle< vector<float>* > privtx_x;
       VarHandle< vector<float>* > privtx_y;
       VarHandle< vector<float>* > privtx_z;
+      VarHandle< vector<float>* > privtx_xx;
+      VarHandle< vector<float>* > privtx_yy;
+      VarHandle< vector<float>* > privtx_zz;
+      VarHandle< vector<float>* > privtx_xy;
+      VarHandle< vector<float>* > privtx_yz;
+      VarHandle< vector<float>* > privtx_zx;
       VarHandle< vector<float>* > privtx_chiSquared;
       VarHandle< vector<float>* > privtx_numberDoF;
       VarHandle< vector<float>* > privtx_jvf;
@@ -906,14 +930,14 @@ bool is_data; // ~bj
       VarHandle< vector<int>* > trueTauAssocSmall_index;
       VarHandle< vector<int>* > trueTauAssocSmall_matched;
 // end MC only
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpx;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpy;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10LooseTau_statusWord;
       VarHandle< vector<vector<float> >* > MET_wpx;
       VarHandle< vector<vector<float> >* > MET_wpy;
       VarHandle< vector<vector<float> >* > MET_wet;
       VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
-      VarHandle< vector<vector<float> >* > MET_STVF_wpx;
-      VarHandle< vector<vector<float> >* > MET_STVF_wpy;
-      VarHandle< vector<vector<float> >* > MET_STVF_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_STVF_statusWord;
 
    private:
       mutable std::vector< TauD3PDObjectElement > fProxies; ///< Internal list of proxy objects

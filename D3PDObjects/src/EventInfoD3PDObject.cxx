@@ -49,6 +49,10 @@ namespace D3PDReader {
         muonError( this, ::TString( prefix ) + "muonError", &master ),
         fwdError( this, ::TString( prefix ) + "fwdError", &master ),
         coreError( this, ::TString( prefix ) + "coreError", &master ),
+        Eventshape_rhoKt3EM( this, ::TString( prefix ) + "Eventshape_rhoKt3EM", &master ),
+        Eventshape_rhoKt4EM( this, ::TString( prefix ) + "Eventshape_rhoKt4EM", &master ),
+        Eventshape_rhoKt3LC( this, ::TString( prefix ) + "Eventshape_rhoKt3LC", &master ),
+        Eventshape_rhoKt4LC( this, ::TString( prefix ) + "Eventshape_rhoKt4LC", &master ),
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) , 
@@ -80,6 +84,10 @@ is_data(is_data) {
       fHandles[ "muonError" ] = &muonError;
       fHandles[ "fwdError" ] = &fwdError;
       fHandles[ "coreError" ] = &coreError;
+      fHandles[ "Eventshape_rhoKt3EM" ] = &Eventshape_rhoKt3EM;
+      fHandles[ "Eventshape_rhoKt4EM" ] = &Eventshape_rhoKt4EM;
+      fHandles[ "Eventshape_rhoKt3LC" ] = &Eventshape_rhoKt3LC;
+      fHandles[ "Eventshape_rhoKt4LC" ] = &Eventshape_rhoKt4LC;
    }
 
    /**
@@ -117,6 +125,10 @@ is_data(is_data) {
         muonError( this, ::TString( prefix ) + "muonError", 0 ),
         fwdError( this, ::TString( prefix ) + "fwdError", 0 ),
         coreError( this, ::TString( prefix ) + "coreError", 0 ),
+        Eventshape_rhoKt3EM( this, ::TString( prefix ) + "Eventshape_rhoKt3EM", 0 ),
+        Eventshape_rhoKt4EM( this, ::TString( prefix ) + "Eventshape_rhoKt4EM", 0 ),
+        Eventshape_rhoKt3LC( this, ::TString( prefix ) + "Eventshape_rhoKt3LC", 0 ),
+        Eventshape_rhoKt4LC( this, ::TString( prefix ) + "Eventshape_rhoKt4LC", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) , 
@@ -148,6 +160,10 @@ is_data(is_data) {
       fHandles[ "muonError" ] = &muonError;
       fHandles[ "fwdError" ] = &fwdError;
       fHandles[ "coreError" ] = &coreError;
+      fHandles[ "Eventshape_rhoKt3EM" ] = &Eventshape_rhoKt3EM;
+      fHandles[ "Eventshape_rhoKt4EM" ] = &Eventshape_rhoKt4EM;
+      fHandles[ "Eventshape_rhoKt3LC" ] = &Eventshape_rhoKt3LC;
+      fHandles[ "Eventshape_rhoKt4LC" ] = &Eventshape_rhoKt4LC;
    }
 
    /**
@@ -189,6 +205,10 @@ is_data(is_data) {
       muonError.SetName( ::TString( prefix ) + "muonError" );
       fwdError.SetName( ::TString( prefix ) + "fwdError" );
       coreError.SetName( ::TString( prefix ) + "coreError" );
+      Eventshape_rhoKt3EM.SetName( ::TString( prefix ) + "Eventshape_rhoKt3EM" );
+      Eventshape_rhoKt4EM.SetName( ::TString( prefix ) + "Eventshape_rhoKt4EM" );
+      Eventshape_rhoKt3LC.SetName( ::TString( prefix ) + "Eventshape_rhoKt3LC" );
+      Eventshape_rhoKt4LC.SetName( ::TString( prefix ) + "Eventshape_rhoKt4LC" );
       return;
    }
 
@@ -233,6 +253,10 @@ is_data(is_data) {
       muonError.ReadFrom( tree );
       fwdError.ReadFrom( tree );
       coreError.ReadFrom( tree );
+      Eventshape_rhoKt3EM.ReadFrom( tree );
+      Eventshape_rhoKt4EM.ReadFrom( tree );
+      Eventshape_rhoKt3LC.ReadFrom( tree );
+      Eventshape_rhoKt4LC.ReadFrom( tree );
 
       return;
    }
@@ -272,6 +296,10 @@ is_data(is_data) {
       muonError.WriteTo( tree );
       fwdError.WriteTo( tree );
       coreError.WriteTo( tree );
+      Eventshape_rhoKt3EM.WriteTo( tree );
+      Eventshape_rhoKt4EM.WriteTo( tree );
+      Eventshape_rhoKt3LC.WriteTo( tree );
+      Eventshape_rhoKt4LC.WriteTo( tree );
 
       return;
    }
@@ -348,6 +376,10 @@ is_data(is_data) {
       if( muonError.IsActive() ) muonError();
       if( fwdError.IsActive() ) fwdError();
       if( coreError.IsActive() ) coreError();
+      if( Eventshape_rhoKt3EM.IsActive() ) Eventshape_rhoKt3EM();
+      if( Eventshape_rhoKt4EM.IsActive() ) Eventshape_rhoKt4EM();
+      if( Eventshape_rhoKt3LC.IsActive() ) Eventshape_rhoKt3LC();
+      if( Eventshape_rhoKt4LC.IsActive() ) Eventshape_rhoKt4LC();
 
       return;
    }

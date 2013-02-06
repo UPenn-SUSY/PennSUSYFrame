@@ -64,13 +64,13 @@ namespace D3PDReader {
       VarProxy< float > ptcone20;
       VarProxy< float > ptcone30;
       VarProxy< float > ptcone40;
-// -- slimmed --       VarProxy< float > etconeNoEm10;
-// -- slimmed --       VarProxy< float > etconeNoEm20;
-// -- slimmed --       VarProxy< float > etconeNoEm30;
-// -- slimmed --       VarProxy< float > etconeNoEm40;
-// -- slimmed --       VarProxy< float > scatteringCurvatureSignificance;
-// -- slimmed --       VarProxy< float > scatteringNeighbourSignificance;
-// -- slimmed --       VarProxy< float > momentumBalanceSignificance;
+      VarProxy< float > etconeNoEm10;
+      VarProxy< float > etconeNoEm20;
+      VarProxy< float > etconeNoEm30;
+      VarProxy< float > etconeNoEm40;
+      VarProxy< float > scatteringCurvatureSignificance;
+      VarProxy< float > scatteringNeighbourSignificance;
+      VarProxy< float > momentumBalanceSignificance;
       VarProxy< float > energyLossPar;
       VarProxy< float > energyLossErr;
       VarProxy< float > etCore;
@@ -90,11 +90,11 @@ namespace D3PDReader {
       /// Muon identified solely from calorimeter information (so no signal in MS).
       VarProxy< int > isCaloMuonId;
       /// Is this muon also reconstructed by the lowPt algorithm?
-// -- slimmed --       VarProxy< int > alsoFoundByLowPt;
+      VarProxy< int > alsoFoundByLowPt;
       /// Is this muon also reconstructed by a CaloMuon ID algorithm?
-// -- slimmed --       VarProxy< int > alsoFoundByCaloMuonId;
+      VarProxy< int > alsoFoundByCaloMuonId;
       /// Is this muon also with a clean forward standalone muon associated to a ID tracklet
-// -- slimmed --       VarProxy< int > isSiliconAssociatedForwardMuon;
+      VarProxy< int > isSiliconAssociatedForwardMuon;
       /// Passes loose quality cuts.
       VarProxy< int > loose;
       /// Passes medium quality cuts.
@@ -200,20 +200,20 @@ namespace D3PDReader {
       VarProxy< int > nTRTDeadStraws;
       VarProxy< int > expectBLayerHit;
       VarProxy< int > nMDTHits;
-// -- slimmed --       VarProxy< int > nMDTHoles;
+      VarProxy< int > nMDTHoles;
       VarProxy< int > nCSCEtaHits;
-// -- slimmed --       VarProxy< int > nCSCEtaHoles;
+      VarProxy< int > nCSCEtaHoles;
       VarProxy< int > nCSCUnspoiledEtaHits;
       VarProxy< int > nCSCPhiHits;
-// -- slimmed --       VarProxy< int > nCSCPhiHoles;
+      VarProxy< int > nCSCPhiHoles;
       VarProxy< int > nRPCEtaHits;
-// -- slimmed --       VarProxy< int > nRPCEtaHoles;
+      VarProxy< int > nRPCEtaHoles;
       VarProxy< int > nRPCPhiHits;
-// -- slimmed --       VarProxy< int > nRPCPhiHoles;
+      VarProxy< int > nRPCPhiHoles;
       VarProxy< int > nTGCEtaHits;
-// -- slimmed --       VarProxy< int > nTGCEtaHoles;
+      VarProxy< int > nTGCEtaHoles;
       VarProxy< int > nTGCPhiHits;
-// -- slimmed --       VarProxy< int > nTGCPhiHoles;
+      VarProxy< int > nTGCPhiHoles;
       VarProxy< int > nprecisionLayers;
       VarProxy< int > nprecisionHoleLayers;
       VarProxy< int > nphiLayers;
@@ -229,22 +229,22 @@ namespace D3PDReader {
       VarProxy< int > nMDTEMHits;
       VarProxy< int > nMDTEOHits;
       VarProxy< int > nMDTEEHits;
-// -- slimmed --       VarProxy< int > nRPCLayer1EtaHits;
-// -- slimmed --       VarProxy< int > nRPCLayer2EtaHits;
-// -- slimmed --       VarProxy< int > nRPCLayer3EtaHits;
-// -- slimmed --       VarProxy< int > nRPCLayer1PhiHits;
-// -- slimmed --       VarProxy< int > nRPCLayer2PhiHits;
-// -- slimmed --       VarProxy< int > nRPCLayer3PhiHits;
-// -- slimmed --       VarProxy< int > nTGCLayer1EtaHits;
-// -- slimmed --       VarProxy< int > nTGCLayer2EtaHits;
-// -- slimmed --       VarProxy< int > nTGCLayer3EtaHits;
-// -- slimmed --       VarProxy< int > nTGCLayer4EtaHits;
-// -- slimmed --       VarProxy< int > nTGCLayer1PhiHits;
-// -- slimmed --       VarProxy< int > nTGCLayer2PhiHits;
-// -- slimmed --       VarProxy< int > nTGCLayer3PhiHits;
-// -- slimmed --       VarProxy< int > nTGCLayer4PhiHits;
-// -- slimmed --       VarProxy< int > barrelSectors;
-// -- slimmed --       VarProxy< int > endcapSectors;
+      VarProxy< int > nRPCLayer1EtaHits;
+      VarProxy< int > nRPCLayer2EtaHits;
+      VarProxy< int > nRPCLayer3EtaHits;
+      VarProxy< int > nRPCLayer1PhiHits;
+      VarProxy< int > nRPCLayer2PhiHits;
+      VarProxy< int > nRPCLayer3PhiHits;
+      VarProxy< int > nTGCLayer1EtaHits;
+      VarProxy< int > nTGCLayer2EtaHits;
+      VarProxy< int > nTGCLayer3EtaHits;
+      VarProxy< int > nTGCLayer4EtaHits;
+      VarProxy< int > nTGCLayer1PhiHits;
+      VarProxy< int > nTGCLayer2PhiHits;
+      VarProxy< int > nTGCLayer3PhiHits;
+      VarProxy< int > nTGCLayer4PhiHits;
+      VarProxy< int > barrelSectors;
+      VarProxy< int > endcapSectors;
       VarProxy< float > trackd0;
       VarProxy< float > trackz0;
       VarProxy< float > trackphi;
@@ -266,14 +266,14 @@ namespace D3PDReader {
       VarProxy< float > trackcov_phi_qoverp;
       VarProxy< float > trackcov_theta_qoverp;
       VarProxy< int > hastrack;
-// -- slimmed --       VarProxy< float > trackIPEstimate_d0_biasedpvunbiased;
-// -- slimmed --       VarProxy< float > trackIPEstimate_z0_biasedpvunbiased;
-// -- slimmed --       VarProxy< float > trackIPEstimate_sigd0_biasedpvunbiased;
-// -- slimmed --       VarProxy< float > trackIPEstimate_sigz0_biasedpvunbiased;
-// -- slimmed --       VarProxy< float > trackIPEstimate_d0_unbiasedpvunbiased;
-// -- slimmed --       VarProxy< float > trackIPEstimate_z0_unbiasedpvunbiased;
-// -- slimmed --       VarProxy< float > trackIPEstimate_sigd0_unbiasedpvunbiased;
-// -- slimmed --       VarProxy< float > trackIPEstimate_sigz0_unbiasedpvunbiased;
+      VarProxy< float > trackIPEstimate_d0_biasedpvunbiased;
+      VarProxy< float > trackIPEstimate_z0_biasedpvunbiased;
+      VarProxy< float > trackIPEstimate_sigd0_biasedpvunbiased;
+      VarProxy< float > trackIPEstimate_sigz0_biasedpvunbiased;
+      VarProxy< float > trackIPEstimate_d0_unbiasedpvunbiased;
+      VarProxy< float > trackIPEstimate_z0_unbiasedpvunbiased;
+      VarProxy< float > trackIPEstimate_sigd0_unbiasedpvunbiased;
+      VarProxy< float > trackIPEstimate_sigz0_unbiasedpvunbiased;
 // MC only
       /// MC particle type, from classifier tool
       VarProxy< int > type;
@@ -309,30 +309,22 @@ namespace D3PDReader {
       VarProxy< int > nucone20_trkelstyle;
       VarProxy< int > nucone30_trkelstyle;
       VarProxy< int > nucone40_trkelstyle;
-// -- slimmed --       VarProxy< vector<float> > MET_Simplified20_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_Simplified20_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_Simplified20_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_Simplified20_statusWord;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpx;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpy;
       VarProxy< vector<float> > MET_Egamma10NoTau_wet;
       VarProxy< vector<unsigned int> > MET_Egamma10NoTau_statusWord;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wpx;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wpy;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wet;
-      VarProxy< vector<unsigned int> > MET_Egamma10NoTau_STVF_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_LooseEgamma10NoTau_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_wet;
-// -- slimmed -- // -- slimmed --       VarProxy< vector<unsigned int> > MET_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_STVF_statusWord;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpx;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpy;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wet;
+      VarProxy< vector<unsigned int> > MET_LooseEgamma10NoTau_statusWord;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpx;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpy;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wet;
+      VarProxy< vector<unsigned int> > MET_Egamma10LooseTau_statusWord;
+      VarProxy< vector<float> > MET_wpx;
+      VarProxy< vector<float> > MET_wpy;
+      VarProxy< vector<float> > MET_wet;
+      VarProxy< vector<unsigned int> > MET_statusWord;
 
 
 bool is_data; // ~bj 
@@ -407,13 +399,13 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > ptcone20;
       VarHandle< vector<float>* > ptcone30;
       VarHandle< vector<float>* > ptcone40;
-// -- slimmed --       VarHandle< vector<float>* > etconeNoEm10;
-// -- slimmed --       VarHandle< vector<float>* > etconeNoEm20;
-// -- slimmed --       VarHandle< vector<float>* > etconeNoEm30;
-// -- slimmed --       VarHandle< vector<float>* > etconeNoEm40;
-// -- slimmed --       VarHandle< vector<float>* > scatteringCurvatureSignificance;
-// -- slimmed --       VarHandle< vector<float>* > scatteringNeighbourSignificance;
-// -- slimmed --       VarHandle< vector<float>* > momentumBalanceSignificance;
+      VarHandle< vector<float>* > etconeNoEm10;
+      VarHandle< vector<float>* > etconeNoEm20;
+      VarHandle< vector<float>* > etconeNoEm30;
+      VarHandle< vector<float>* > etconeNoEm40;
+      VarHandle< vector<float>* > scatteringCurvatureSignificance;
+      VarHandle< vector<float>* > scatteringNeighbourSignificance;
+      VarHandle< vector<float>* > momentumBalanceSignificance;
       VarHandle< vector<float>* > energyLossPar;
       VarHandle< vector<float>* > energyLossErr;
       VarHandle< vector<float>* > etCore;
@@ -433,11 +425,11 @@ bool is_data; // ~bj
       /// Muon identified solely from calorimeter information (so no signal in MS).
       VarHandle< vector<int>* > isCaloMuonId;
       /// Is this muon also reconstructed by the lowPt algorithm?
-// -- slimmed --       VarHandle< vector<int>* > alsoFoundByLowPt;
+      VarHandle< vector<int>* > alsoFoundByLowPt;
       /// Is this muon also reconstructed by a CaloMuon ID algorithm?
-// -- slimmed --       VarHandle< vector<int>* > alsoFoundByCaloMuonId;
+      VarHandle< vector<int>* > alsoFoundByCaloMuonId;
       /// Is this muon also with a clean forward standalone muon associated to a ID tracklet
-// -- slimmed --       VarHandle< vector<int>* > isSiliconAssociatedForwardMuon;
+      VarHandle< vector<int>* > isSiliconAssociatedForwardMuon;
       /// Passes loose quality cuts.
       VarHandle< vector<int>* > loose;
       /// Passes medium quality cuts.
@@ -543,20 +535,20 @@ bool is_data; // ~bj
       VarHandle< vector<int>* > nTRTDeadStraws;
       VarHandle< vector<int>* > expectBLayerHit;
       VarHandle< vector<int>* > nMDTHits;
-// -- slimmed --       VarHandle< vector<int>* > nMDTHoles;
+      VarHandle< vector<int>* > nMDTHoles;
       VarHandle< vector<int>* > nCSCEtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nCSCEtaHoles;
+      VarHandle< vector<int>* > nCSCEtaHoles;
       VarHandle< vector<int>* > nCSCUnspoiledEtaHits;
       VarHandle< vector<int>* > nCSCPhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nCSCPhiHoles;
+      VarHandle< vector<int>* > nCSCPhiHoles;
       VarHandle< vector<int>* > nRPCEtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nRPCEtaHoles;
+      VarHandle< vector<int>* > nRPCEtaHoles;
       VarHandle< vector<int>* > nRPCPhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nRPCPhiHoles;
+      VarHandle< vector<int>* > nRPCPhiHoles;
       VarHandle< vector<int>* > nTGCEtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCEtaHoles;
+      VarHandle< vector<int>* > nTGCEtaHoles;
       VarHandle< vector<int>* > nTGCPhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCPhiHoles;
+      VarHandle< vector<int>* > nTGCPhiHoles;
       VarHandle< vector<int>* > nprecisionLayers;
       VarHandle< vector<int>* > nprecisionHoleLayers;
       VarHandle< vector<int>* > nphiLayers;
@@ -572,22 +564,22 @@ bool is_data; // ~bj
       VarHandle< vector<int>* > nMDTEMHits;
       VarHandle< vector<int>* > nMDTEOHits;
       VarHandle< vector<int>* > nMDTEEHits;
-// -- slimmed --       VarHandle< vector<int>* > nRPCLayer1EtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nRPCLayer2EtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nRPCLayer3EtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nRPCLayer1PhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nRPCLayer2PhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nRPCLayer3PhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCLayer1EtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCLayer2EtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCLayer3EtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCLayer4EtaHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCLayer1PhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCLayer2PhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCLayer3PhiHits;
-// -- slimmed --       VarHandle< vector<int>* > nTGCLayer4PhiHits;
-// -- slimmed --       VarHandle< vector<int>* > barrelSectors;
-// -- slimmed --       VarHandle< vector<int>* > endcapSectors;
+      VarHandle< vector<int>* > nRPCLayer1EtaHits;
+      VarHandle< vector<int>* > nRPCLayer2EtaHits;
+      VarHandle< vector<int>* > nRPCLayer3EtaHits;
+      VarHandle< vector<int>* > nRPCLayer1PhiHits;
+      VarHandle< vector<int>* > nRPCLayer2PhiHits;
+      VarHandle< vector<int>* > nRPCLayer3PhiHits;
+      VarHandle< vector<int>* > nTGCLayer1EtaHits;
+      VarHandle< vector<int>* > nTGCLayer2EtaHits;
+      VarHandle< vector<int>* > nTGCLayer3EtaHits;
+      VarHandle< vector<int>* > nTGCLayer4EtaHits;
+      VarHandle< vector<int>* > nTGCLayer1PhiHits;
+      VarHandle< vector<int>* > nTGCLayer2PhiHits;
+      VarHandle< vector<int>* > nTGCLayer3PhiHits;
+      VarHandle< vector<int>* > nTGCLayer4PhiHits;
+      VarHandle< vector<int>* > barrelSectors;
+      VarHandle< vector<int>* > endcapSectors;
       VarHandle< vector<float>* > trackd0;
       VarHandle< vector<float>* > trackz0;
       VarHandle< vector<float>* > trackphi;
@@ -609,14 +601,14 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > trackcov_phi_qoverp;
       VarHandle< vector<float>* > trackcov_theta_qoverp;
       VarHandle< vector<int>* > hastrack;
-// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_d0_biasedpvunbiased;
-// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_z0_biasedpvunbiased;
-// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_sigd0_biasedpvunbiased;
-// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_sigz0_biasedpvunbiased;
-// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_d0_unbiasedpvunbiased;
-// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_z0_unbiasedpvunbiased;
-// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_sigd0_unbiasedpvunbiased;
-// -- slimmed --       VarHandle< vector<float>* > trackIPEstimate_sigz0_unbiasedpvunbiased;
+      VarHandle< vector<float>* > trackIPEstimate_d0_biasedpvunbiased;
+      VarHandle< vector<float>* > trackIPEstimate_z0_biasedpvunbiased;
+      VarHandle< vector<float>* > trackIPEstimate_sigd0_biasedpvunbiased;
+      VarHandle< vector<float>* > trackIPEstimate_sigz0_biasedpvunbiased;
+      VarHandle< vector<float>* > trackIPEstimate_d0_unbiasedpvunbiased;
+      VarHandle< vector<float>* > trackIPEstimate_z0_unbiasedpvunbiased;
+      VarHandle< vector<float>* > trackIPEstimate_sigd0_unbiasedpvunbiased;
+      VarHandle< vector<float>* > trackIPEstimate_sigz0_unbiasedpvunbiased;
 // MC only
       /// MC particle type, from classifier tool
       VarHandle< vector<int>* > type;
@@ -652,30 +644,22 @@ bool is_data; // ~bj
       VarHandle< vector<int>* > nucone20_trkelstyle;
       VarHandle< vector<int>* > nucone30_trkelstyle;
       VarHandle< vector<int>* > nucone40_trkelstyle;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_Simplified20_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_Simplified20_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_Simplified20_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_Simplified20_statusWord;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpx;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpy;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wet;
       VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_statusWord;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wpx;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wpy;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_STVF_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_LooseEgamma10NoTau_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wet;
-// -- slimmed -- // -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_STVF_statusWord;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpx;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpy;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_LooseEgamma10NoTau_statusWord;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpx;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpy;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10LooseTau_statusWord;
+      VarHandle< vector<vector<float> >* > MET_wpx;
+      VarHandle< vector<vector<float> >* > MET_wpy;
+      VarHandle< vector<vector<float> >* > MET_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
 
    private:
       mutable std::vector< MuonD3PDObjectElement > fProxies; ///< Internal list of proxy objects

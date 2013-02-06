@@ -13,6 +13,7 @@ INCLUDES += -I./
 INCLUDES += -I../RootCore/SUSYTools/
 INCLUDES += -I../RootCore/TriggerMatch/
 INCLUDES += -I../RootCore/ApplyJetCalibration/
+INCLUDES += -I../RootCore/JetUncertainties/
 INCLUDES += -I../RootCore/GoodRunsLists/
 INCLUDES += -I../RootCore/MissingETUtility/
 INCLUDES += -I../RootCore/MuonMomentumCorrections/

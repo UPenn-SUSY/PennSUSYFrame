@@ -10,6 +10,9 @@
 #include "TLorentzVector.h"
 #include "ParticleElement.h"
 
+#include "Event.h"
+// #include "AtlasSFrameUtils/include/Event.h"
+
 #include "CommonTools/include/TLVTool.h"
 
 #include "D3PDObjects/include/JetD3PDObject.h"
@@ -37,7 +40,7 @@ public:
   TLorentzVector getTlv() const;
   TLorentzVector getRawTlv() const;
 
-  void prepTlv( float mu
+  void prepTlv( const Event* event
               , int num_vertices_2_trk
               );
   void prepRawTlv();

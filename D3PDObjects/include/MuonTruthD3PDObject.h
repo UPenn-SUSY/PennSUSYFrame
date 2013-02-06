@@ -29,7 +29,7 @@ namespace D3PDReader {
     *  host = pc-penn-d-07
     *  OS   = Linux / 2.6.18-274.18.1.el5
     *  user = bjackson
-    *  time = Thu Jul  5 16:05:35 2012
+    *  time = Wed Feb  6 10:48:30 2013
     */
    class MuonTruthD3PDObjectElement : public TObject {
 
@@ -62,7 +62,7 @@ namespace D3PDReader {
     *  host = pc-penn-d-07
     *  OS   = Linux / 2.6.18-274.18.1.el5
     *  user = bjackson
-    *  time = Thu Jul  5 16:05:35 2012
+    *  time = Wed Feb  6 10:48:30 2013
     */
    class MuonTruthD3PDObject : public TObject {
 

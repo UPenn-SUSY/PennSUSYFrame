@@ -6,7 +6,9 @@
 #include "TRandom3.h"
 
 #include "ApplyJetCalibration/ApplyJetCalibration.h"
+#include "JetUncertainties/MultijetJESUncertaintyProvider.h"
 
+#include "AtlasSFrameUtils/include/Event.h"
 #include "AtlasSFrameUtils/include/Jet.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
 
@@ -29,14 +31,15 @@ namespace CommonTools
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     TLorentzVector getConfiguredJet( Jet* jet
-                                   , float mu
+                                   , const Event* event
                                    , int num_vertices_w_2_trks
                                    );
 
   // --------------------------------------------------------------------------
   private:
     bool c_is_af2;
-    JetCalibrationTool * m_jet_calibration;
+    JetCalibrationTool* m_jet_calibration;
+    MultijetJESUncertaintyProvider* m_jes_uncertainty;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(JetCalibTool, 0);

@@ -38,21 +38,6 @@ namespace D3PDReader {
         RefGamma_ety_ForwardReg( this, ::TString( prefix ) + "RefGamma_ety_ForwardReg", &master ),
         RefGamma_sumet_ForwardReg( this, ::TString( prefix ) + "RefGamma_sumet_ForwardReg", &master ),
         RefGamma_phi_ForwardReg( this, ::TString( prefix ) + "RefGamma_phi_ForwardReg", &master ),
-        STVF_RefGamma_etx( this, ::TString( prefix ) + "STVF_RefGamma_etx", &master ),
-        STVF_RefGamma_ety( this, ::TString( prefix ) + "STVF_RefGamma_ety", &master ),
-        STVF_RefGamma_sumet( this, ::TString( prefix ) + "STVF_RefGamma_sumet", &master ),
-        STVF_RefGamma_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefGamma_etx_CentralReg", &master ),
-        STVF_RefGamma_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefGamma_ety_CentralReg", &master ),
-        STVF_RefGamma_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefGamma_sumet_CentralReg", &master ),
-        STVF_RefGamma_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefGamma_phi_CentralReg", &master ),
-        STVF_RefGamma_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefGamma_etx_EndcapRegion", &master ),
-        STVF_RefGamma_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefGamma_ety_EndcapRegion", &master ),
-        STVF_RefGamma_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefGamma_sumet_EndcapRegion", &master ),
-        STVF_RefGamma_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefGamma_phi_EndcapRegion", &master ),
-        STVF_RefGamma_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefGamma_etx_ForwardReg", &master ),
-        STVF_RefGamma_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefGamma_ety_ForwardReg", &master ),
-        STVF_RefGamma_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefGamma_sumet_ForwardReg", &master ),
-        STVF_RefGamma_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefGamma_phi_ForwardReg", &master ),
         RefFinal_etx( this, ::TString( prefix ) + "RefFinal_etx", &master ),
         RefFinal_ety( this, ::TString( prefix ) + "RefFinal_ety", &master ),
         RefFinal_sumet( this, ::TString( prefix ) + "RefFinal_sumet", &master ),
@@ -68,21 +53,6 @@ namespace D3PDReader {
         RefFinal_ety_ForwardReg( this, ::TString( prefix ) + "RefFinal_ety_ForwardReg", &master ),
         RefFinal_sumet_ForwardReg( this, ::TString( prefix ) + "RefFinal_sumet_ForwardReg", &master ),
         RefFinal_phi_ForwardReg( this, ::TString( prefix ) + "RefFinal_phi_ForwardReg", &master ),
-        STVF_RefFinal_etx( this, ::TString( prefix ) + "STVF_RefFinal_etx", &master ),
-        STVF_RefFinal_ety( this, ::TString( prefix ) + "STVF_RefFinal_ety", &master ),
-        STVF_RefFinal_sumet( this, ::TString( prefix ) + "STVF_RefFinal_sumet", &master ),
-        STVF_RefFinal_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefFinal_etx_CentralReg", &master ),
-        STVF_RefFinal_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefFinal_ety_CentralReg", &master ),
-        STVF_RefFinal_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefFinal_sumet_CentralReg", &master ),
-        STVF_RefFinal_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefFinal_phi_CentralReg", &master ),
-        STVF_RefFinal_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefFinal_etx_EndcapRegion", &master ),
-        STVF_RefFinal_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefFinal_ety_EndcapRegion", &master ),
-        STVF_RefFinal_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefFinal_sumet_EndcapRegion", &master ),
-        STVF_RefFinal_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefFinal_phi_EndcapRegion", &master ),
-        STVF_RefFinal_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefFinal_etx_ForwardReg", &master ),
-        STVF_RefFinal_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefFinal_ety_ForwardReg", &master ),
-        STVF_RefFinal_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefFinal_sumet_ForwardReg", &master ),
-        STVF_RefFinal_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefFinal_phi_ForwardReg", &master ),
         RefJet_etx( this, ::TString( prefix ) + "RefJet_etx", &master ),
         RefJet_ety( this, ::TString( prefix ) + "RefJet_ety", &master ),
         RefJet_sumet( this, ::TString( prefix ) + "RefJet_sumet", &master ),
@@ -98,21 +68,6 @@ namespace D3PDReader {
         RefJet_ety_ForwardReg( this, ::TString( prefix ) + "RefJet_ety_ForwardReg", &master ),
         RefJet_sumet_ForwardReg( this, ::TString( prefix ) + "RefJet_sumet_ForwardReg", &master ),
         RefJet_phi_ForwardReg( this, ::TString( prefix ) + "RefJet_phi_ForwardReg", &master ),
-        STVF_RefJet_etx( this, ::TString( prefix ) + "STVF_RefJet_etx", &master ),
-        STVF_RefJet_ety( this, ::TString( prefix ) + "STVF_RefJet_ety", &master ),
-        STVF_RefJet_sumet( this, ::TString( prefix ) + "STVF_RefJet_sumet", &master ),
-        STVF_RefJet_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefJet_etx_CentralReg", &master ),
-        STVF_RefJet_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefJet_ety_CentralReg", &master ),
-        STVF_RefJet_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefJet_sumet_CentralReg", &master ),
-        STVF_RefJet_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefJet_phi_CentralReg", &master ),
-        STVF_RefJet_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefJet_etx_EndcapRegion", &master ),
-        STVF_RefJet_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefJet_ety_EndcapRegion", &master ),
-        STVF_RefJet_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefJet_sumet_EndcapRegion", &master ),
-        STVF_RefJet_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefJet_phi_EndcapRegion", &master ),
-        STVF_RefJet_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefJet_etx_ForwardReg", &master ),
-        STVF_RefJet_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefJet_ety_ForwardReg", &master ),
-        STVF_RefJet_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefJet_sumet_ForwardReg", &master ),
-        STVF_RefJet_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefJet_phi_ForwardReg", &master ),
         RefEle_etx( this, ::TString( prefix ) + "RefEle_etx", &master ),
         RefEle_ety( this, ::TString( prefix ) + "RefEle_ety", &master ),
         RefEle_sumet( this, ::TString( prefix ) + "RefEle_sumet", &master ),
@@ -128,21 +83,6 @@ namespace D3PDReader {
         RefEle_ety_ForwardReg( this, ::TString( prefix ) + "RefEle_ety_ForwardReg", &master ),
         RefEle_sumet_ForwardReg( this, ::TString( prefix ) + "RefEle_sumet_ForwardReg", &master ),
         RefEle_phi_ForwardReg( this, ::TString( prefix ) + "RefEle_phi_ForwardReg", &master ),
-        STVF_RefEle_etx( this, ::TString( prefix ) + "STVF_RefEle_etx", &master ),
-        STVF_RefEle_ety( this, ::TString( prefix ) + "STVF_RefEle_ety", &master ),
-        STVF_RefEle_sumet( this, ::TString( prefix ) + "STVF_RefEle_sumet", &master ),
-        STVF_RefEle_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefEle_etx_CentralReg", &master ),
-        STVF_RefEle_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefEle_ety_CentralReg", &master ),
-        STVF_RefEle_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefEle_sumet_CentralReg", &master ),
-        STVF_RefEle_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefEle_phi_CentralReg", &master ),
-        STVF_RefEle_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefEle_etx_EndcapRegion", &master ),
-        STVF_RefEle_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefEle_ety_EndcapRegion", &master ),
-        STVF_RefEle_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefEle_sumet_EndcapRegion", &master ),
-        STVF_RefEle_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefEle_phi_EndcapRegion", &master ),
-        STVF_RefEle_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefEle_etx_ForwardReg", &master ),
-        STVF_RefEle_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefEle_ety_ForwardReg", &master ),
-        STVF_RefEle_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefEle_sumet_ForwardReg", &master ),
-        STVF_RefEle_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefEle_phi_ForwardReg", &master ),
         Muon_Total_Staco_etx( this, ::TString( prefix ) + "Muon_Total_Staco_etx", &master ),
         Muon_Total_Staco_ety( this, ::TString( prefix ) + "Muon_Total_Staco_ety", &master ),
         Muon_Total_Staco_sumet( this, ::TString( prefix ) + "Muon_Total_Staco_sumet", &master ),
@@ -158,21 +98,6 @@ namespace D3PDReader {
         Muon_Total_Staco_ety_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Staco_ety_ForwardReg", &master ),
         Muon_Total_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Staco_sumet_ForwardReg", &master ),
         Muon_Total_Staco_phi_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Staco_phi_ForwardReg", &master ),
-        STVF_Muon_Total_Staco_etx( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_etx", &master ),
-        STVF_Muon_Total_Staco_ety( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_ety", &master ),
-        STVF_Muon_Total_Staco_sumet( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet", &master ),
-        STVF_Muon_Total_Staco_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_CentralReg", &master ),
-        STVF_Muon_Total_Staco_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_CentralReg", &master ),
-        STVF_Muon_Total_Staco_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_CentralReg", &master ),
-        STVF_Muon_Total_Staco_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_CentralReg", &master ),
-        STVF_Muon_Total_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_EndcapRegion", &master ),
-        STVF_Muon_Total_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_EndcapRegion", &master ),
-        STVF_Muon_Total_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_EndcapRegion", &master ),
-        STVF_Muon_Total_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_EndcapRegion", &master ),
-        STVF_Muon_Total_Staco_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_ForwardReg", &master ),
-        STVF_Muon_Total_Staco_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_ForwardReg", &master ),
-        STVF_Muon_Total_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_ForwardReg", &master ),
-        STVF_Muon_Total_Staco_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_ForwardReg", &master ),
         Muon_Isol_Staco_etx( this, ::TString( prefix ) + "Muon_Isol_Staco_etx", &master ),
         Muon_Isol_Staco_ety( this, ::TString( prefix ) + "Muon_Isol_Staco_ety", &master ),
         Muon_Isol_Staco_sumet( this, ::TString( prefix ) + "Muon_Isol_Staco_sumet", &master ),
@@ -188,21 +113,6 @@ namespace D3PDReader {
         Muon_Isol_Staco_ety_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Staco_ety_ForwardReg", &master ),
         Muon_Isol_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Staco_sumet_ForwardReg", &master ),
         Muon_Isol_Staco_phi_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Staco_phi_ForwardReg", &master ),
-        STVF_Muon_Isol_Staco_etx( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx", &master ),
-        STVF_Muon_Isol_Staco_ety( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety", &master ),
-        STVF_Muon_Isol_Staco_sumet( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet", &master ),
-        STVF_Muon_Isol_Staco_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_CentralReg", &master ),
-        STVF_Muon_Isol_Staco_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_CentralReg", &master ),
-        STVF_Muon_Isol_Staco_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_CentralReg", &master ),
-        STVF_Muon_Isol_Staco_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_CentralReg", &master ),
-        STVF_Muon_Isol_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_EndcapRegion", &master ),
-        STVF_Muon_Isol_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_EndcapRegion", &master ),
-        STVF_Muon_Isol_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_EndcapRegion", &master ),
-        STVF_Muon_Isol_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_EndcapRegion", &master ),
-        STVF_Muon_Isol_Staco_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_ForwardReg", &master ),
-        STVF_Muon_Isol_Staco_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_ForwardReg", &master ),
-        STVF_Muon_Isol_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_ForwardReg", &master ),
-        STVF_Muon_Isol_Staco_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_ForwardReg", &master ),
         Muon_NonIsol_Staco_etx( this, ::TString( prefix ) + "Muon_NonIsol_Staco_etx", &master ),
         Muon_NonIsol_Staco_ety( this, ::TString( prefix ) + "Muon_NonIsol_Staco_ety", &master ),
         Muon_NonIsol_Staco_sumet( this, ::TString( prefix ) + "Muon_NonIsol_Staco_sumet", &master ),
@@ -218,21 +128,6 @@ namespace D3PDReader {
         Muon_NonIsol_Staco_ety_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Staco_ety_ForwardReg", &master ),
         Muon_NonIsol_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Staco_sumet_ForwardReg", &master ),
         Muon_NonIsol_Staco_phi_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Staco_phi_ForwardReg", &master ),
-        STVF_Muon_NonIsol_Staco_etx( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx", &master ),
-        STVF_Muon_NonIsol_Staco_ety( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety", &master ),
-        STVF_Muon_NonIsol_Staco_sumet( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet", &master ),
-        STVF_Muon_NonIsol_Staco_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_CentralReg", &master ),
-        STVF_Muon_NonIsol_Staco_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_CentralReg", &master ),
-        STVF_Muon_NonIsol_Staco_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_CentralReg", &master ),
-        STVF_Muon_NonIsol_Staco_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_CentralReg", &master ),
-        STVF_Muon_NonIsol_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_EndcapRegion", &master ),
-        STVF_Muon_NonIsol_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_EndcapRegion", &master ),
-        STVF_Muon_NonIsol_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_EndcapRegion", &master ),
-        STVF_Muon_NonIsol_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_EndcapRegion", &master ),
-        STVF_Muon_NonIsol_Staco_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_ForwardReg", &master ),
-        STVF_Muon_NonIsol_Staco_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_ForwardReg", &master ),
-        STVF_Muon_NonIsol_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_ForwardReg", &master ),
-        STVF_Muon_NonIsol_Staco_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_ForwardReg", &master ),
         CellOut_etx( this, ::TString( prefix ) + "CellOut_etx", &master ),
         CellOut_ety( this, ::TString( prefix ) + "CellOut_ety", &master ),
         CellOut_sumet( this, ::TString( prefix ) + "CellOut_sumet", &master ),
@@ -248,21 +143,21 @@ namespace D3PDReader {
         CellOut_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_ety_ForwardReg", &master ),
         CellOut_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_sumet_ForwardReg", &master ),
         CellOut_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_phi_ForwardReg", &master ),
-        STVF_CellOut_etx( this, ::TString( prefix ) + "STVF_CellOut_etx", &master ),
-        STVF_CellOut_ety( this, ::TString( prefix ) + "STVF_CellOut_ety", &master ),
-        STVF_CellOut_sumet( this, ::TString( prefix ) + "STVF_CellOut_sumet", &master ),
-        STVF_CellOut_etx_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_etx_CentralReg", &master ),
-        STVF_CellOut_ety_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_ety_CentralReg", &master ),
-        STVF_CellOut_sumet_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_sumet_CentralReg", &master ),
-        STVF_CellOut_phi_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_phi_CentralReg", &master ),
-        STVF_CellOut_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_etx_EndcapRegion", &master ),
-        STVF_CellOut_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_ety_EndcapRegion", &master ),
-        STVF_CellOut_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_sumet_EndcapRegion", &master ),
-        STVF_CellOut_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_phi_EndcapRegion", &master ),
-        STVF_CellOut_etx_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_etx_ForwardReg", &master ),
-        STVF_CellOut_ety_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_ety_ForwardReg", &master ),
-        STVF_CellOut_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_sumet_ForwardReg", &master ),
-        STVF_CellOut_phi_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_phi_ForwardReg", &master ),
+        CellOut_Eflow_etx( this, ::TString( prefix ) + "CellOut_Eflow_etx", &master ),
+        CellOut_Eflow_ety( this, ::TString( prefix ) + "CellOut_Eflow_ety", &master ),
+        CellOut_Eflow_sumet( this, ::TString( prefix ) + "CellOut_Eflow_sumet", &master ),
+        CellOut_Eflow_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_etx_CentralReg", &master ),
+        CellOut_Eflow_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_ety_CentralReg", &master ),
+        CellOut_Eflow_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_sumet_CentralReg", &master ),
+        CellOut_Eflow_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_phi_CentralReg", &master ),
+        CellOut_Eflow_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_etx_EndcapRegion", &master ),
+        CellOut_Eflow_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_ety_EndcapRegion", &master ),
+        CellOut_Eflow_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_sumet_EndcapRegion", &master ),
+        CellOut_Eflow_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_phi_EndcapRegion", &master ),
+        CellOut_Eflow_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_etx_ForwardReg", &master ),
+        CellOut_Eflow_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_ety_ForwardReg", &master ),
+        CellOut_Eflow_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_sumet_ForwardReg", &master ),
+        CellOut_Eflow_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_phi_ForwardReg", &master ),
         Muon_Isol_Muid_etx( this, ::TString( prefix ) + "Muon_Isol_Muid_etx", &master ),
         Muon_Isol_Muid_ety( this, ::TString( prefix ) + "Muon_Isol_Muid_ety", &master ),
         Muon_Isol_Muid_sumet( this, ::TString( prefix ) + "Muon_Isol_Muid_sumet", &master ),
@@ -278,21 +173,6 @@ namespace D3PDReader {
         Muon_Isol_Muid_ety_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Muid_ety_ForwardReg", &master ),
         Muon_Isol_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Muid_sumet_ForwardReg", &master ),
         Muon_Isol_Muid_phi_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Muid_phi_ForwardReg", &master ),
-        STVF_Muon_Isol_Muid_etx( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx", &master ),
-        STVF_Muon_Isol_Muid_ety( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety", &master ),
-        STVF_Muon_Isol_Muid_sumet( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet", &master ),
-        STVF_Muon_Isol_Muid_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_CentralReg", &master ),
-        STVF_Muon_Isol_Muid_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_CentralReg", &master ),
-        STVF_Muon_Isol_Muid_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_CentralReg", &master ),
-        STVF_Muon_Isol_Muid_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_CentralReg", &master ),
-        STVF_Muon_Isol_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_EndcapRegion", &master ),
-        STVF_Muon_Isol_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_EndcapRegion", &master ),
-        STVF_Muon_Isol_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_EndcapRegion", &master ),
-        STVF_Muon_Isol_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_EndcapRegion", &master ),
-        STVF_Muon_Isol_Muid_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_ForwardReg", &master ),
-        STVF_Muon_Isol_Muid_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_ForwardReg", &master ),
-        STVF_Muon_Isol_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_ForwardReg", &master ),
-        STVF_Muon_Isol_Muid_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_ForwardReg", &master ),
         Muon_NonIsol_Muid_etx( this, ::TString( prefix ) + "Muon_NonIsol_Muid_etx", &master ),
         Muon_NonIsol_Muid_ety( this, ::TString( prefix ) + "Muon_NonIsol_Muid_ety", &master ),
         Muon_NonIsol_Muid_sumet( this, ::TString( prefix ) + "Muon_NonIsol_Muid_sumet", &master ),
@@ -308,21 +188,6 @@ namespace D3PDReader {
         Muon_NonIsol_Muid_ety_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Muid_ety_ForwardReg", &master ),
         Muon_NonIsol_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Muid_sumet_ForwardReg", &master ),
         Muon_NonIsol_Muid_phi_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Muid_phi_ForwardReg", &master ),
-        STVF_Muon_NonIsol_Muid_etx( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx", &master ),
-        STVF_Muon_NonIsol_Muid_ety( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety", &master ),
-        STVF_Muon_NonIsol_Muid_sumet( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet", &master ),
-        STVF_Muon_NonIsol_Muid_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_CentralReg", &master ),
-        STVF_Muon_NonIsol_Muid_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_CentralReg", &master ),
-        STVF_Muon_NonIsol_Muid_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_CentralReg", &master ),
-        STVF_Muon_NonIsol_Muid_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_CentralReg", &master ),
-        STVF_Muon_NonIsol_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_EndcapRegion", &master ),
-        STVF_Muon_NonIsol_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_EndcapRegion", &master ),
-        STVF_Muon_NonIsol_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_EndcapRegion", &master ),
-        STVF_Muon_NonIsol_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_EndcapRegion", &master ),
-        STVF_Muon_NonIsol_Muid_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_ForwardReg", &master ),
-        STVF_Muon_NonIsol_Muid_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_ForwardReg", &master ),
-        STVF_Muon_NonIsol_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_ForwardReg", &master ),
-        STVF_Muon_NonIsol_Muid_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_ForwardReg", &master ),
         Muon_Total_Muid_etx( this, ::TString( prefix ) + "Muon_Total_Muid_etx", &master ),
         Muon_Total_Muid_ety( this, ::TString( prefix ) + "Muon_Total_Muid_ety", &master ),
         Muon_Total_Muid_sumet( this, ::TString( prefix ) + "Muon_Total_Muid_sumet", &master ),
@@ -338,21 +203,6 @@ namespace D3PDReader {
         Muon_Total_Muid_ety_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Muid_ety_ForwardReg", &master ),
         Muon_Total_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Muid_sumet_ForwardReg", &master ),
         Muon_Total_Muid_phi_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Muid_phi_ForwardReg", &master ),
-        STVF_Muon_Total_Muid_etx( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_etx", &master ),
-        STVF_Muon_Total_Muid_ety( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_ety", &master ),
-        STVF_Muon_Total_Muid_sumet( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet", &master ),
-        STVF_Muon_Total_Muid_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_CentralReg", &master ),
-        STVF_Muon_Total_Muid_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_CentralReg", &master ),
-        STVF_Muon_Total_Muid_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_CentralReg", &master ),
-        STVF_Muon_Total_Muid_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_CentralReg", &master ),
-        STVF_Muon_Total_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_EndcapRegion", &master ),
-        STVF_Muon_Total_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_EndcapRegion", &master ),
-        STVF_Muon_Total_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_EndcapRegion", &master ),
-        STVF_Muon_Total_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_EndcapRegion", &master ),
-        STVF_Muon_Total_Muid_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_ForwardReg", &master ),
-        STVF_Muon_Total_Muid_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_ForwardReg", &master ),
-        STVF_Muon_Total_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_ForwardReg", &master ),
-        STVF_Muon_Total_Muid_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_ForwardReg", &master ),
         Track_etx( this, ::TString( prefix ) + "Track_etx", &master ),
         Track_ety( this, ::TString( prefix ) + "Track_ety", &master ),
         Track_sumet( this, ::TString( prefix ) + "Track_sumet", &master ),
@@ -368,21 +218,111 @@ namespace D3PDReader {
         Track_ety_ForwardReg( this, ::TString( prefix ) + "Track_ety_ForwardReg", &master ),
         Track_sumet_ForwardReg( this, ::TString( prefix ) + "Track_sumet_ForwardReg", &master ),
         Track_phi_ForwardReg( this, ::TString( prefix ) + "Track_phi_ForwardReg", &master ),
-        STVF_Track_etx( this, ::TString( prefix ) + "STVF_Track_etx", &master ),
-        STVF_Track_ety( this, ::TString( prefix ) + "STVF_Track_ety", &master ),
-        STVF_Track_sumet( this, ::TString( prefix ) + "STVF_Track_sumet", &master ),
-        STVF_Track_etx_CentralReg( this, ::TString( prefix ) + "STVF_Track_etx_CentralReg", &master ),
-        STVF_Track_ety_CentralReg( this, ::TString( prefix ) + "STVF_Track_ety_CentralReg", &master ),
-        STVF_Track_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Track_sumet_CentralReg", &master ),
-        STVF_Track_phi_CentralReg( this, ::TString( prefix ) + "STVF_Track_phi_CentralReg", &master ),
-        STVF_Track_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Track_etx_EndcapRegion", &master ),
-        STVF_Track_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Track_ety_EndcapRegion", &master ),
-        STVF_Track_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Track_sumet_EndcapRegion", &master ),
-        STVF_Track_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Track_phi_EndcapRegion", &master ),
-        STVF_Track_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Track_etx_ForwardReg", &master ),
-        STVF_Track_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Track_ety_ForwardReg", &master ),
-        STVF_Track_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Track_sumet_ForwardReg", &master ),
-        STVF_Track_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Track_phi_ForwardReg", &master ),
+        RefFinal_STVF_etx( this, ::TString( prefix ) + "RefFinal_STVF_etx", &master ),
+        RefFinal_STVF_ety( this, ::TString( prefix ) + "RefFinal_STVF_ety", &master ),
+        RefFinal_STVF_sumet( this, ::TString( prefix ) + "RefFinal_STVF_sumet", &master ),
+        RefFinal_STVF_etx_CentralReg( this, ::TString( prefix ) + "RefFinal_STVF_etx_CentralReg", &master ),
+        RefFinal_STVF_ety_CentralReg( this, ::TString( prefix ) + "RefFinal_STVF_ety_CentralReg", &master ),
+        RefFinal_STVF_sumet_CentralReg( this, ::TString( prefix ) + "RefFinal_STVF_sumet_CentralReg", &master ),
+        RefFinal_STVF_phi_CentralReg( this, ::TString( prefix ) + "RefFinal_STVF_phi_CentralReg", &master ),
+        RefFinal_STVF_etx_EndcapRegion( this, ::TString( prefix ) + "RefFinal_STVF_etx_EndcapRegion", &master ),
+        RefFinal_STVF_ety_EndcapRegion( this, ::TString( prefix ) + "RefFinal_STVF_ety_EndcapRegion", &master ),
+        RefFinal_STVF_sumet_EndcapRegion( this, ::TString( prefix ) + "RefFinal_STVF_sumet_EndcapRegion", &master ),
+        RefFinal_STVF_phi_EndcapRegion( this, ::TString( prefix ) + "RefFinal_STVF_phi_EndcapRegion", &master ),
+        RefFinal_STVF_etx_ForwardReg( this, ::TString( prefix ) + "RefFinal_STVF_etx_ForwardReg", &master ),
+        RefFinal_STVF_ety_ForwardReg( this, ::TString( prefix ) + "RefFinal_STVF_ety_ForwardReg", &master ),
+        RefFinal_STVF_sumet_ForwardReg( this, ::TString( prefix ) + "RefFinal_STVF_sumet_ForwardReg", &master ),
+        RefFinal_STVF_phi_ForwardReg( this, ::TString( prefix ) + "RefFinal_STVF_phi_ForwardReg", &master ),
+        CellOut_Eflow_STVF_etx( this, ::TString( prefix ) + "CellOut_Eflow_STVF_etx", &master ),
+        CellOut_Eflow_STVF_ety( this, ::TString( prefix ) + "CellOut_Eflow_STVF_ety", &master ),
+        CellOut_Eflow_STVF_sumet( this, ::TString( prefix ) + "CellOut_Eflow_STVF_sumet", &master ),
+        CellOut_Eflow_STVF_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_etx_CentralReg", &master ),
+        CellOut_Eflow_STVF_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_ety_CentralReg", &master ),
+        CellOut_Eflow_STVF_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_CentralReg", &master ),
+        CellOut_Eflow_STVF_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_phi_CentralReg", &master ),
+        CellOut_Eflow_STVF_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_STVF_etx_EndcapRegion", &master ),
+        CellOut_Eflow_STVF_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_STVF_ety_EndcapRegion", &master ),
+        CellOut_Eflow_STVF_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_EndcapRegion", &master ),
+        CellOut_Eflow_STVF_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_STVF_phi_EndcapRegion", &master ),
+        CellOut_Eflow_STVF_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_etx_ForwardReg", &master ),
+        CellOut_Eflow_STVF_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_ety_ForwardReg", &master ),
+        CellOut_Eflow_STVF_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_ForwardReg", &master ),
+        CellOut_Eflow_STVF_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_phi_ForwardReg", &master ),
+        CellOut_Eflow_JetArea_etx( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_etx", &master ),
+        CellOut_Eflow_JetArea_ety( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_ety", &master ),
+        CellOut_Eflow_JetArea_sumet( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet", &master ),
+        CellOut_Eflow_JetArea_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_CentralReg", &master ),
+        CellOut_Eflow_JetArea_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_CentralReg", &master ),
+        CellOut_Eflow_JetArea_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_CentralReg", &master ),
+        CellOut_Eflow_JetArea_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_CentralReg", &master ),
+        CellOut_Eflow_JetArea_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_EndcapRegion", &master ),
+        CellOut_Eflow_JetArea_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_EndcapRegion", &master ),
+        CellOut_Eflow_JetArea_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_EndcapRegion", &master ),
+        CellOut_Eflow_JetArea_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_EndcapRegion", &master ),
+        CellOut_Eflow_JetArea_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_ForwardReg", &master ),
+        CellOut_Eflow_JetArea_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_ForwardReg", &master ),
+        CellOut_Eflow_JetArea_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_ForwardReg", &master ),
+        CellOut_Eflow_JetArea_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_ForwardReg", &master ),
+        RefJet_JVF_etx( this, ::TString( prefix ) + "RefJet_JVF_etx", &master ),
+        RefJet_JVF_ety( this, ::TString( prefix ) + "RefJet_JVF_ety", &master ),
+        RefJet_JVF_sumet( this, ::TString( prefix ) + "RefJet_JVF_sumet", &master ),
+        RefJet_JVF_etx_CentralReg( this, ::TString( prefix ) + "RefJet_JVF_etx_CentralReg", &master ),
+        RefJet_JVF_ety_CentralReg( this, ::TString( prefix ) + "RefJet_JVF_ety_CentralReg", &master ),
+        RefJet_JVF_sumet_CentralReg( this, ::TString( prefix ) + "RefJet_JVF_sumet_CentralReg", &master ),
+        RefJet_JVF_phi_CentralReg( this, ::TString( prefix ) + "RefJet_JVF_phi_CentralReg", &master ),
+        RefJet_JVF_etx_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVF_etx_EndcapRegion", &master ),
+        RefJet_JVF_ety_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVF_ety_EndcapRegion", &master ),
+        RefJet_JVF_sumet_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVF_sumet_EndcapRegion", &master ),
+        RefJet_JVF_phi_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVF_phi_EndcapRegion", &master ),
+        RefJet_JVF_etx_ForwardReg( this, ::TString( prefix ) + "RefJet_JVF_etx_ForwardReg", &master ),
+        RefJet_JVF_ety_ForwardReg( this, ::TString( prefix ) + "RefJet_JVF_ety_ForwardReg", &master ),
+        RefJet_JVF_sumet_ForwardReg( this, ::TString( prefix ) + "RefJet_JVF_sumet_ForwardReg", &master ),
+        RefJet_JVF_phi_ForwardReg( this, ::TString( prefix ) + "RefJet_JVF_phi_ForwardReg", &master ),
+        RefJet_JVFCut_etx( this, ::TString( prefix ) + "RefJet_JVFCut_etx", &master ),
+        RefJet_JVFCut_ety( this, ::TString( prefix ) + "RefJet_JVFCut_ety", &master ),
+        RefJet_JVFCut_sumet( this, ::TString( prefix ) + "RefJet_JVFCut_sumet", &master ),
+        RefJet_JVFCut_etx_CentralReg( this, ::TString( prefix ) + "RefJet_JVFCut_etx_CentralReg", &master ),
+        RefJet_JVFCut_ety_CentralReg( this, ::TString( prefix ) + "RefJet_JVFCut_ety_CentralReg", &master ),
+        RefJet_JVFCut_sumet_CentralReg( this, ::TString( prefix ) + "RefJet_JVFCut_sumet_CentralReg", &master ),
+        RefJet_JVFCut_phi_CentralReg( this, ::TString( prefix ) + "RefJet_JVFCut_phi_CentralReg", &master ),
+        RefJet_JVFCut_etx_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVFCut_etx_EndcapRegion", &master ),
+        RefJet_JVFCut_ety_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVFCut_ety_EndcapRegion", &master ),
+        RefJet_JVFCut_sumet_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVFCut_sumet_EndcapRegion", &master ),
+        RefJet_JVFCut_phi_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVFCut_phi_EndcapRegion", &master ),
+        RefJet_JVFCut_etx_ForwardReg( this, ::TString( prefix ) + "RefJet_JVFCut_etx_ForwardReg", &master ),
+        RefJet_JVFCut_ety_ForwardReg( this, ::TString( prefix ) + "RefJet_JVFCut_ety_ForwardReg", &master ),
+        RefJet_JVFCut_sumet_ForwardReg( this, ::TString( prefix ) + "RefJet_JVFCut_sumet_ForwardReg", &master ),
+        RefJet_JVFCut_phi_ForwardReg( this, ::TString( prefix ) + "RefJet_JVFCut_phi_ForwardReg", &master ),
+        CellOut_Eflow_JetAreaJVF_etx( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx", &master ),
+        CellOut_Eflow_JetAreaJVF_ety( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety", &master ),
+        CellOut_Eflow_JetAreaJVF_sumet( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet", &master ),
+        CellOut_Eflow_JetAreaJVF_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_CentralReg", &master ),
+        CellOut_Eflow_JetAreaJVF_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_CentralReg", &master ),
+        CellOut_Eflow_JetAreaJVF_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_CentralReg", &master ),
+        CellOut_Eflow_JetAreaJVF_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_CentralReg", &master ),
+        CellOut_Eflow_JetAreaJVF_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_EndcapRegion", &master ),
+        CellOut_Eflow_JetAreaJVF_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_EndcapRegion", &master ),
+        CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion", &master ),
+        CellOut_Eflow_JetAreaJVF_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_EndcapRegion", &master ),
+        CellOut_Eflow_JetAreaJVF_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_ForwardReg", &master ),
+        CellOut_Eflow_JetAreaJVF_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_ForwardReg", &master ),
+        CellOut_Eflow_JetAreaJVF_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_ForwardReg", &master ),
+        CellOut_Eflow_JetAreaJVF_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_ForwardReg", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_etx( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_ety( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_sumet( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg", &master ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg", &master ),
         SoftJets_etx( this, ::TString( prefix ) + "SoftJets_etx", &master ),
         SoftJets_ety( this, ::TString( prefix ) + "SoftJets_ety", &master ),
         SoftJets_sumet( this, ::TString( prefix ) + "SoftJets_sumet", &master ),
@@ -398,21 +338,6 @@ namespace D3PDReader {
         SoftJets_ety_ForwardReg( this, ::TString( prefix ) + "SoftJets_ety_ForwardReg", &master ),
         SoftJets_sumet_ForwardReg( this, ::TString( prefix ) + "SoftJets_sumet_ForwardReg", &master ),
         SoftJets_phi_ForwardReg( this, ::TString( prefix ) + "SoftJets_phi_ForwardReg", &master ),
-        STVF_SoftJets_etx( this, ::TString( prefix ) + "STVF_SoftJets_etx", &master ),
-        STVF_SoftJets_ety( this, ::TString( prefix ) + "STVF_SoftJets_ety", &master ),
-        STVF_SoftJets_sumet( this, ::TString( prefix ) + "STVF_SoftJets_sumet", &master ),
-        STVF_SoftJets_etx_CentralReg( this, ::TString( prefix ) + "STVF_SoftJets_etx_CentralReg", &master ),
-        STVF_SoftJets_ety_CentralReg( this, ::TString( prefix ) + "STVF_SoftJets_ety_CentralReg", &master ),
-        STVF_SoftJets_sumet_CentralReg( this, ::TString( prefix ) + "STVF_SoftJets_sumet_CentralReg", &master ),
-        STVF_SoftJets_phi_CentralReg( this, ::TString( prefix ) + "STVF_SoftJets_phi_CentralReg", &master ),
-        STVF_SoftJets_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_SoftJets_etx_EndcapRegion", &master ),
-        STVF_SoftJets_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_SoftJets_ety_EndcapRegion", &master ),
-        STVF_SoftJets_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_SoftJets_sumet_EndcapRegion", &master ),
-        STVF_SoftJets_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_SoftJets_phi_EndcapRegion", &master ),
-        STVF_SoftJets_etx_ForwardReg( this, ::TString( prefix ) + "STVF_SoftJets_etx_ForwardReg", &master ),
-        STVF_SoftJets_ety_ForwardReg( this, ::TString( prefix ) + "STVF_SoftJets_ety_ForwardReg", &master ),
-        STVF_SoftJets_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_SoftJets_sumet_ForwardReg", &master ),
-        STVF_SoftJets_phi_ForwardReg( this, ::TString( prefix ) + "STVF_SoftJets_phi_ForwardReg", &master ),
         RefMuon_etx( this, ::TString( prefix ) + "RefMuon_etx", &master ),
         RefMuon_ety( this, ::TString( prefix ) + "RefMuon_ety", &master ),
         RefMuon_sumet( this, ::TString( prefix ) + "RefMuon_sumet", &master ),
@@ -428,96 +353,96 @@ namespace D3PDReader {
         RefMuon_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_ety_ForwardReg", &master ),
         RefMuon_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_sumet_ForwardReg", &master ),
         RefMuon_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_phi_ForwardReg", &master ),
-        STVF_RefMuon_etx( this, ::TString( prefix ) + "STVF_RefMuon_etx", &master ),
-        STVF_RefMuon_ety( this, ::TString( prefix ) + "STVF_RefMuon_ety", &master ),
-        STVF_RefMuon_sumet( this, ::TString( prefix ) + "STVF_RefMuon_sumet", &master ),
-        STVF_RefMuon_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefMuon_etx_CentralReg", &master ),
-        STVF_RefMuon_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefMuon_ety_CentralReg", &master ),
-        STVF_RefMuon_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefMuon_sumet_CentralReg", &master ),
-        STVF_RefMuon_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefMuon_phi_CentralReg", &master ),
-        STVF_RefMuon_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefMuon_etx_EndcapRegion", &master ),
-        STVF_RefMuon_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefMuon_ety_EndcapRegion", &master ),
-        STVF_RefMuon_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefMuon_sumet_EndcapRegion", &master ),
-        STVF_RefMuon_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefMuon_phi_EndcapRegion", &master ),
-        STVF_RefMuon_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_etx_ForwardReg", &master ),
-        STVF_RefMuon_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_ety_ForwardReg", &master ),
-        STVF_RefMuon_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_sumet_ForwardReg", &master ),
-        STVF_RefMuon_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_phi_ForwardReg", &master ),
-// -- slimmed --         MuonBoy_etx( this, ::TString( prefix ) + "MuonBoy_etx", &master ),
-// -- slimmed --         MuonBoy_ety( this, ::TString( prefix ) + "MuonBoy_ety", &master ),
-// -- slimmed --         MuonBoy_sumet( this, ::TString( prefix ) + "MuonBoy_sumet", &master ),
-// -- slimmed --         MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "MuonBoy_etx_CentralReg", &master ),
-// -- slimmed --         MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "MuonBoy_ety_CentralReg", &master ),
-// -- slimmed --         MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "MuonBoy_sumet_CentralReg", &master ),
-// -- slimmed --         MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "MuonBoy_phi_CentralReg", &master ),
-// -- slimmed --         MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_etx_EndcapRegion", &master ),
-// -- slimmed --         MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_ety_EndcapRegion", &master ),
-// -- slimmed --         MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion", &master ),
-// -- slimmed --         MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_phi_EndcapRegion", &master ),
-// -- slimmed --         MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "MuonBoy_etx_ForwardReg", &master ),
-// -- slimmed --         MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "MuonBoy_ety_ForwardReg", &master ),
-// -- slimmed --         MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "MuonBoy_sumet_ForwardReg", &master ),
-// -- slimmed --         MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "MuonBoy_phi_ForwardReg", &master ),
-// -- slimmed --         STVF_MuonBoy_etx( this, ::TString( prefix ) + "STVF_MuonBoy_etx", &master ),
-// -- slimmed --         STVF_MuonBoy_ety( this, ::TString( prefix ) + "STVF_MuonBoy_ety", &master ),
-// -- slimmed --         STVF_MuonBoy_sumet( this, ::TString( prefix ) + "STVF_MuonBoy_sumet", &master ),
-// -- slimmed --         STVF_MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg", &master ),
-// -- slimmed --         STVF_MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg", &master ),
-// -- slimmed --         STVF_MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg", &master ),
-// -- slimmed --         STVF_MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg", &master ),
-// -- slimmed --         STVF_MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion", &master ),
-// -- slimmed --         STVF_MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion", &master ),
-// -- slimmed --         STVF_MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion", &master ),
-// -- slimmed --         STVF_MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion", &master ),
-// -- slimmed --         STVF_MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg", &master ),
-// -- slimmed --         STVF_MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg", &master ),
-// -- slimmed --         STVF_MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg", &master ),
-// -- slimmed --         STVF_MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg", &master ),
-        STVF_CellOut_Track_etx( this, ::TString( prefix ) + "STVF_CellOut_Track_etx", &master ),
-        STVF_CellOut_Track_ety( this, ::TString( prefix ) + "STVF_CellOut_Track_ety", &master ),
-        STVF_CellOut_Track_sumet( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet", &master ),
-        STVF_CellOut_Track_etx_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_Track_etx_CentralReg", &master ),
-        STVF_CellOut_Track_ety_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_Track_ety_CentralReg", &master ),
-        STVF_CellOut_Track_sumet_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet_CentralReg", &master ),
-        STVF_CellOut_Track_phi_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_Track_phi_CentralReg", &master ),
-        STVF_CellOut_Track_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_Track_etx_EndcapRegion", &master ),
-        STVF_CellOut_Track_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_Track_ety_EndcapRegion", &master ),
-        STVF_CellOut_Track_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet_EndcapRegion", &master ),
-        STVF_CellOut_Track_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_Track_phi_EndcapRegion", &master ),
-        STVF_CellOut_Track_etx_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_Track_etx_ForwardReg", &master ),
-        STVF_CellOut_Track_ety_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_Track_ety_ForwardReg", &master ),
-        STVF_CellOut_Track_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet_ForwardReg", &master ),
-        STVF_CellOut_Track_phi_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_Track_phi_ForwardReg", &master ),
-        STVF_CellOut_TrackPV_etx( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_etx", &master ),
-        STVF_CellOut_TrackPV_ety( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_ety", &master ),
-        STVF_CellOut_TrackPV_sumet( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet", &master ),
-        STVF_CellOut_TrackPV_etx_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_CentralReg", &master ),
-        STVF_CellOut_TrackPV_ety_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_CentralReg", &master ),
-        STVF_CellOut_TrackPV_sumet_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_CentralReg", &master ),
-        STVF_CellOut_TrackPV_phi_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_CentralReg", &master ),
-        STVF_CellOut_TrackPV_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_EndcapRegion", &master ),
-        STVF_CellOut_TrackPV_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_EndcapRegion", &master ),
-        STVF_CellOut_TrackPV_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_EndcapRegion", &master ),
-        STVF_CellOut_TrackPV_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_EndcapRegion", &master ),
-        STVF_CellOut_TrackPV_etx_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_ForwardReg", &master ),
-        STVF_CellOut_TrackPV_ety_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_ForwardReg", &master ),
-        STVF_CellOut_TrackPV_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_ForwardReg", &master ),
-        STVF_CellOut_TrackPV_phi_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_ForwardReg", &master ),
-        STVF_CellOutCorr_etx( this, ::TString( prefix ) + "STVF_CellOutCorr_etx", &master ),
-        STVF_CellOutCorr_ety( this, ::TString( prefix ) + "STVF_CellOutCorr_ety", &master ),
-        STVF_CellOutCorr_sumet( this, ::TString( prefix ) + "STVF_CellOutCorr_sumet", &master ),
-        STVF_CellOutCorr_etx_CentralReg( this, ::TString( prefix ) + "STVF_CellOutCorr_etx_CentralReg", &master ),
-        STVF_CellOutCorr_ety_CentralReg( this, ::TString( prefix ) + "STVF_CellOutCorr_ety_CentralReg", &master ),
-        STVF_CellOutCorr_sumet_CentralReg( this, ::TString( prefix ) + "STVF_CellOutCorr_sumet_CentralReg", &master ),
-        STVF_CellOutCorr_phi_CentralReg( this, ::TString( prefix ) + "STVF_CellOutCorr_phi_CentralReg", &master ),
-        STVF_CellOutCorr_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOutCorr_etx_EndcapRegion", &master ),
-        STVF_CellOutCorr_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOutCorr_ety_EndcapRegion", &master ),
-        STVF_CellOutCorr_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOutCorr_sumet_EndcapRegion", &master ),
-        STVF_CellOutCorr_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOutCorr_phi_EndcapRegion", &master ),
-        STVF_CellOutCorr_etx_ForwardReg( this, ::TString( prefix ) + "STVF_CellOutCorr_etx_ForwardReg", &master ),
-        STVF_CellOutCorr_ety_ForwardReg( this, ::TString( prefix ) + "STVF_CellOutCorr_ety_ForwardReg", &master ),
-        STVF_CellOutCorr_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_CellOutCorr_sumet_ForwardReg", &master ),
-        STVF_CellOutCorr_phi_ForwardReg( this, ::TString( prefix ) + "STVF_CellOutCorr_phi_ForwardReg", &master ),
+        MuonBoy_etx( this, ::TString( prefix ) + "MuonBoy_etx", &master ),
+        MuonBoy_ety( this, ::TString( prefix ) + "MuonBoy_ety", &master ),
+        MuonBoy_sumet( this, ::TString( prefix ) + "MuonBoy_sumet", &master ),
+        MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "MuonBoy_etx_CentralReg", &master ),
+        MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "MuonBoy_ety_CentralReg", &master ),
+        MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "MuonBoy_sumet_CentralReg", &master ),
+        MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "MuonBoy_phi_CentralReg", &master ),
+        MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_etx_EndcapRegion", &master ),
+        MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_ety_EndcapRegion", &master ),
+        MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion", &master ),
+        MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_phi_EndcapRegion", &master ),
+        MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "MuonBoy_etx_ForwardReg", &master ),
+        MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "MuonBoy_ety_ForwardReg", &master ),
+        MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "MuonBoy_sumet_ForwardReg", &master ),
+        MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "MuonBoy_phi_ForwardReg", &master ),
+        RefMuon_Staco_etx( this, ::TString( prefix ) + "RefMuon_Staco_etx", &master ),
+        RefMuon_Staco_ety( this, ::TString( prefix ) + "RefMuon_Staco_ety", &master ),
+        RefMuon_Staco_sumet( this, ::TString( prefix ) + "RefMuon_Staco_sumet", &master ),
+        RefMuon_Staco_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Staco_etx_CentralReg", &master ),
+        RefMuon_Staco_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Staco_ety_CentralReg", &master ),
+        RefMuon_Staco_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Staco_sumet_CentralReg", &master ),
+        RefMuon_Staco_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Staco_phi_CentralReg", &master ),
+        RefMuon_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Staco_etx_EndcapRegion", &master ),
+        RefMuon_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Staco_ety_EndcapRegion", &master ),
+        RefMuon_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Staco_sumet_EndcapRegion", &master ),
+        RefMuon_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Staco_phi_EndcapRegion", &master ),
+        RefMuon_Staco_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Staco_etx_ForwardReg", &master ),
+        RefMuon_Staco_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Staco_ety_ForwardReg", &master ),
+        RefMuon_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Staco_sumet_ForwardReg", &master ),
+        RefMuon_Staco_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Staco_phi_ForwardReg", &master ),
+        RefMuon_Muid_etx( this, ::TString( prefix ) + "RefMuon_Muid_etx", &master ),
+        RefMuon_Muid_ety( this, ::TString( prefix ) + "RefMuon_Muid_ety", &master ),
+        RefMuon_Muid_sumet( this, ::TString( prefix ) + "RefMuon_Muid_sumet", &master ),
+        RefMuon_Muid_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Muid_etx_CentralReg", &master ),
+        RefMuon_Muid_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Muid_ety_CentralReg", &master ),
+        RefMuon_Muid_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Muid_sumet_CentralReg", &master ),
+        RefMuon_Muid_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Muid_phi_CentralReg", &master ),
+        RefMuon_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Muid_etx_EndcapRegion", &master ),
+        RefMuon_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Muid_ety_EndcapRegion", &master ),
+        RefMuon_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Muid_sumet_EndcapRegion", &master ),
+        RefMuon_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Muid_phi_EndcapRegion", &master ),
+        RefMuon_Muid_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Muid_etx_ForwardReg", &master ),
+        RefMuon_Muid_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Muid_ety_ForwardReg", &master ),
+        RefMuon_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Muid_sumet_ForwardReg", &master ),
+        RefMuon_Muid_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Muid_phi_ForwardReg", &master ),
+        RefMuon_Track_etx( this, ::TString( prefix ) + "RefMuon_Track_etx", &master ),
+        RefMuon_Track_ety( this, ::TString( prefix ) + "RefMuon_Track_ety", &master ),
+        RefMuon_Track_sumet( this, ::TString( prefix ) + "RefMuon_Track_sumet", &master ),
+        RefMuon_Track_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_etx_CentralReg", &master ),
+        RefMuon_Track_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_ety_CentralReg", &master ),
+        RefMuon_Track_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_sumet_CentralReg", &master ),
+        RefMuon_Track_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_phi_CentralReg", &master ),
+        RefMuon_Track_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_etx_EndcapRegion", &master ),
+        RefMuon_Track_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_ety_EndcapRegion", &master ),
+        RefMuon_Track_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_sumet_EndcapRegion", &master ),
+        RefMuon_Track_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_phi_EndcapRegion", &master ),
+        RefMuon_Track_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_etx_ForwardReg", &master ),
+        RefMuon_Track_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_ety_ForwardReg", &master ),
+        RefMuon_Track_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_sumet_ForwardReg", &master ),
+        RefMuon_Track_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_phi_ForwardReg", &master ),
+        RefMuon_Track_Staco_etx( this, ::TString( prefix ) + "RefMuon_Track_Staco_etx", &master ),
+        RefMuon_Track_Staco_ety( this, ::TString( prefix ) + "RefMuon_Track_Staco_ety", &master ),
+        RefMuon_Track_Staco_sumet( this, ::TString( prefix ) + "RefMuon_Track_Staco_sumet", &master ),
+        RefMuon_Track_Staco_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_etx_CentralReg", &master ),
+        RefMuon_Track_Staco_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_ety_CentralReg", &master ),
+        RefMuon_Track_Staco_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_sumet_CentralReg", &master ),
+        RefMuon_Track_Staco_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_phi_CentralReg", &master ),
+        RefMuon_Track_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Staco_etx_EndcapRegion", &master ),
+        RefMuon_Track_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Staco_ety_EndcapRegion", &master ),
+        RefMuon_Track_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Staco_sumet_EndcapRegion", &master ),
+        RefMuon_Track_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Staco_phi_EndcapRegion", &master ),
+        RefMuon_Track_Staco_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_etx_ForwardReg", &master ),
+        RefMuon_Track_Staco_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_ety_ForwardReg", &master ),
+        RefMuon_Track_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_sumet_ForwardReg", &master ),
+        RefMuon_Track_Staco_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_phi_ForwardReg", &master ),
+        RefMuon_Track_Muid_etx( this, ::TString( prefix ) + "RefMuon_Track_Muid_etx", &master ),
+        RefMuon_Track_Muid_ety( this, ::TString( prefix ) + "RefMuon_Track_Muid_ety", &master ),
+        RefMuon_Track_Muid_sumet( this, ::TString( prefix ) + "RefMuon_Track_Muid_sumet", &master ),
+        RefMuon_Track_Muid_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_etx_CentralReg", &master ),
+        RefMuon_Track_Muid_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_ety_CentralReg", &master ),
+        RefMuon_Track_Muid_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_sumet_CentralReg", &master ),
+        RefMuon_Track_Muid_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_phi_CentralReg", &master ),
+        RefMuon_Track_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Muid_etx_EndcapRegion", &master ),
+        RefMuon_Track_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Muid_ety_EndcapRegion", &master ),
+        RefMuon_Track_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Muid_sumet_EndcapRegion", &master ),
+        RefMuon_Track_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Muid_phi_EndcapRegion", &master ),
+        RefMuon_Track_Muid_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_etx_ForwardReg", &master ),
+        RefMuon_Track_Muid_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_ety_ForwardReg", &master ),
+        RefMuon_Track_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_sumet_ForwardReg", &master ),
+        RefMuon_Track_Muid_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_phi_ForwardReg", &master ),
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) , 
@@ -538,21 +463,6 @@ is_data(is_data) {
       fHandles[ "RefGamma_ety_ForwardReg" ] = &RefGamma_ety_ForwardReg;
       fHandles[ "RefGamma_sumet_ForwardReg" ] = &RefGamma_sumet_ForwardReg;
       fHandles[ "RefGamma_phi_ForwardReg" ] = &RefGamma_phi_ForwardReg;
-      fHandles[ "STVF_RefGamma_etx" ] = &STVF_RefGamma_etx;
-      fHandles[ "STVF_RefGamma_ety" ] = &STVF_RefGamma_ety;
-      fHandles[ "STVF_RefGamma_sumet" ] = &STVF_RefGamma_sumet;
-      fHandles[ "STVF_RefGamma_etx_CentralReg" ] = &STVF_RefGamma_etx_CentralReg;
-      fHandles[ "STVF_RefGamma_ety_CentralReg" ] = &STVF_RefGamma_ety_CentralReg;
-      fHandles[ "STVF_RefGamma_sumet_CentralReg" ] = &STVF_RefGamma_sumet_CentralReg;
-      fHandles[ "STVF_RefGamma_phi_CentralReg" ] = &STVF_RefGamma_phi_CentralReg;
-      fHandles[ "STVF_RefGamma_etx_EndcapRegion" ] = &STVF_RefGamma_etx_EndcapRegion;
-      fHandles[ "STVF_RefGamma_ety_EndcapRegion" ] = &STVF_RefGamma_ety_EndcapRegion;
-      fHandles[ "STVF_RefGamma_sumet_EndcapRegion" ] = &STVF_RefGamma_sumet_EndcapRegion;
-      fHandles[ "STVF_RefGamma_phi_EndcapRegion" ] = &STVF_RefGamma_phi_EndcapRegion;
-      fHandles[ "STVF_RefGamma_etx_ForwardReg" ] = &STVF_RefGamma_etx_ForwardReg;
-      fHandles[ "STVF_RefGamma_ety_ForwardReg" ] = &STVF_RefGamma_ety_ForwardReg;
-      fHandles[ "STVF_RefGamma_sumet_ForwardReg" ] = &STVF_RefGamma_sumet_ForwardReg;
-      fHandles[ "STVF_RefGamma_phi_ForwardReg" ] = &STVF_RefGamma_phi_ForwardReg;
       fHandles[ "RefFinal_etx" ] = &RefFinal_etx;
       fHandles[ "RefFinal_ety" ] = &RefFinal_ety;
       fHandles[ "RefFinal_sumet" ] = &RefFinal_sumet;
@@ -568,21 +478,6 @@ is_data(is_data) {
       fHandles[ "RefFinal_ety_ForwardReg" ] = &RefFinal_ety_ForwardReg;
       fHandles[ "RefFinal_sumet_ForwardReg" ] = &RefFinal_sumet_ForwardReg;
       fHandles[ "RefFinal_phi_ForwardReg" ] = &RefFinal_phi_ForwardReg;
-      fHandles[ "STVF_RefFinal_etx" ] = &STVF_RefFinal_etx;
-      fHandles[ "STVF_RefFinal_ety" ] = &STVF_RefFinal_ety;
-      fHandles[ "STVF_RefFinal_sumet" ] = &STVF_RefFinal_sumet;
-      fHandles[ "STVF_RefFinal_etx_CentralReg" ] = &STVF_RefFinal_etx_CentralReg;
-      fHandles[ "STVF_RefFinal_ety_CentralReg" ] = &STVF_RefFinal_ety_CentralReg;
-      fHandles[ "STVF_RefFinal_sumet_CentralReg" ] = &STVF_RefFinal_sumet_CentralReg;
-      fHandles[ "STVF_RefFinal_phi_CentralReg" ] = &STVF_RefFinal_phi_CentralReg;
-      fHandles[ "STVF_RefFinal_etx_EndcapRegion" ] = &STVF_RefFinal_etx_EndcapRegion;
-      fHandles[ "STVF_RefFinal_ety_EndcapRegion" ] = &STVF_RefFinal_ety_EndcapRegion;
-      fHandles[ "STVF_RefFinal_sumet_EndcapRegion" ] = &STVF_RefFinal_sumet_EndcapRegion;
-      fHandles[ "STVF_RefFinal_phi_EndcapRegion" ] = &STVF_RefFinal_phi_EndcapRegion;
-      fHandles[ "STVF_RefFinal_etx_ForwardReg" ] = &STVF_RefFinal_etx_ForwardReg;
-      fHandles[ "STVF_RefFinal_ety_ForwardReg" ] = &STVF_RefFinal_ety_ForwardReg;
-      fHandles[ "STVF_RefFinal_sumet_ForwardReg" ] = &STVF_RefFinal_sumet_ForwardReg;
-      fHandles[ "STVF_RefFinal_phi_ForwardReg" ] = &STVF_RefFinal_phi_ForwardReg;
       fHandles[ "RefJet_etx" ] = &RefJet_etx;
       fHandles[ "RefJet_ety" ] = &RefJet_ety;
       fHandles[ "RefJet_sumet" ] = &RefJet_sumet;
@@ -598,21 +493,6 @@ is_data(is_data) {
       fHandles[ "RefJet_ety_ForwardReg" ] = &RefJet_ety_ForwardReg;
       fHandles[ "RefJet_sumet_ForwardReg" ] = &RefJet_sumet_ForwardReg;
       fHandles[ "RefJet_phi_ForwardReg" ] = &RefJet_phi_ForwardReg;
-      fHandles[ "STVF_RefJet_etx" ] = &STVF_RefJet_etx;
-      fHandles[ "STVF_RefJet_ety" ] = &STVF_RefJet_ety;
-      fHandles[ "STVF_RefJet_sumet" ] = &STVF_RefJet_sumet;
-      fHandles[ "STVF_RefJet_etx_CentralReg" ] = &STVF_RefJet_etx_CentralReg;
-      fHandles[ "STVF_RefJet_ety_CentralReg" ] = &STVF_RefJet_ety_CentralReg;
-      fHandles[ "STVF_RefJet_sumet_CentralReg" ] = &STVF_RefJet_sumet_CentralReg;
-      fHandles[ "STVF_RefJet_phi_CentralReg" ] = &STVF_RefJet_phi_CentralReg;
-      fHandles[ "STVF_RefJet_etx_EndcapRegion" ] = &STVF_RefJet_etx_EndcapRegion;
-      fHandles[ "STVF_RefJet_ety_EndcapRegion" ] = &STVF_RefJet_ety_EndcapRegion;
-      fHandles[ "STVF_RefJet_sumet_EndcapRegion" ] = &STVF_RefJet_sumet_EndcapRegion;
-      fHandles[ "STVF_RefJet_phi_EndcapRegion" ] = &STVF_RefJet_phi_EndcapRegion;
-      fHandles[ "STVF_RefJet_etx_ForwardReg" ] = &STVF_RefJet_etx_ForwardReg;
-      fHandles[ "STVF_RefJet_ety_ForwardReg" ] = &STVF_RefJet_ety_ForwardReg;
-      fHandles[ "STVF_RefJet_sumet_ForwardReg" ] = &STVF_RefJet_sumet_ForwardReg;
-      fHandles[ "STVF_RefJet_phi_ForwardReg" ] = &STVF_RefJet_phi_ForwardReg;
       fHandles[ "RefEle_etx" ] = &RefEle_etx;
       fHandles[ "RefEle_ety" ] = &RefEle_ety;
       fHandles[ "RefEle_sumet" ] = &RefEle_sumet;
@@ -628,21 +508,6 @@ is_data(is_data) {
       fHandles[ "RefEle_ety_ForwardReg" ] = &RefEle_ety_ForwardReg;
       fHandles[ "RefEle_sumet_ForwardReg" ] = &RefEle_sumet_ForwardReg;
       fHandles[ "RefEle_phi_ForwardReg" ] = &RefEle_phi_ForwardReg;
-      fHandles[ "STVF_RefEle_etx" ] = &STVF_RefEle_etx;
-      fHandles[ "STVF_RefEle_ety" ] = &STVF_RefEle_ety;
-      fHandles[ "STVF_RefEle_sumet" ] = &STVF_RefEle_sumet;
-      fHandles[ "STVF_RefEle_etx_CentralReg" ] = &STVF_RefEle_etx_CentralReg;
-      fHandles[ "STVF_RefEle_ety_CentralReg" ] = &STVF_RefEle_ety_CentralReg;
-      fHandles[ "STVF_RefEle_sumet_CentralReg" ] = &STVF_RefEle_sumet_CentralReg;
-      fHandles[ "STVF_RefEle_phi_CentralReg" ] = &STVF_RefEle_phi_CentralReg;
-      fHandles[ "STVF_RefEle_etx_EndcapRegion" ] = &STVF_RefEle_etx_EndcapRegion;
-      fHandles[ "STVF_RefEle_ety_EndcapRegion" ] = &STVF_RefEle_ety_EndcapRegion;
-      fHandles[ "STVF_RefEle_sumet_EndcapRegion" ] = &STVF_RefEle_sumet_EndcapRegion;
-      fHandles[ "STVF_RefEle_phi_EndcapRegion" ] = &STVF_RefEle_phi_EndcapRegion;
-      fHandles[ "STVF_RefEle_etx_ForwardReg" ] = &STVF_RefEle_etx_ForwardReg;
-      fHandles[ "STVF_RefEle_ety_ForwardReg" ] = &STVF_RefEle_ety_ForwardReg;
-      fHandles[ "STVF_RefEle_sumet_ForwardReg" ] = &STVF_RefEle_sumet_ForwardReg;
-      fHandles[ "STVF_RefEle_phi_ForwardReg" ] = &STVF_RefEle_phi_ForwardReg;
       fHandles[ "Muon_Total_Staco_etx" ] = &Muon_Total_Staco_etx;
       fHandles[ "Muon_Total_Staco_ety" ] = &Muon_Total_Staco_ety;
       fHandles[ "Muon_Total_Staco_sumet" ] = &Muon_Total_Staco_sumet;
@@ -658,21 +523,6 @@ is_data(is_data) {
       fHandles[ "Muon_Total_Staco_ety_ForwardReg" ] = &Muon_Total_Staco_ety_ForwardReg;
       fHandles[ "Muon_Total_Staco_sumet_ForwardReg" ] = &Muon_Total_Staco_sumet_ForwardReg;
       fHandles[ "Muon_Total_Staco_phi_ForwardReg" ] = &Muon_Total_Staco_phi_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Staco_etx" ] = &STVF_Muon_Total_Staco_etx;
-      fHandles[ "STVF_Muon_Total_Staco_ety" ] = &STVF_Muon_Total_Staco_ety;
-      fHandles[ "STVF_Muon_Total_Staco_sumet" ] = &STVF_Muon_Total_Staco_sumet;
-      fHandles[ "STVF_Muon_Total_Staco_etx_CentralReg" ] = &STVF_Muon_Total_Staco_etx_CentralReg;
-      fHandles[ "STVF_Muon_Total_Staco_ety_CentralReg" ] = &STVF_Muon_Total_Staco_ety_CentralReg;
-      fHandles[ "STVF_Muon_Total_Staco_sumet_CentralReg" ] = &STVF_Muon_Total_Staco_sumet_CentralReg;
-      fHandles[ "STVF_Muon_Total_Staco_phi_CentralReg" ] = &STVF_Muon_Total_Staco_phi_CentralReg;
-      fHandles[ "STVF_Muon_Total_Staco_etx_EndcapRegion" ] = &STVF_Muon_Total_Staco_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Staco_ety_EndcapRegion" ] = &STVF_Muon_Total_Staco_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Staco_sumet_EndcapRegion" ] = &STVF_Muon_Total_Staco_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Staco_phi_EndcapRegion" ] = &STVF_Muon_Total_Staco_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Staco_etx_ForwardReg" ] = &STVF_Muon_Total_Staco_etx_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Staco_ety_ForwardReg" ] = &STVF_Muon_Total_Staco_ety_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Staco_sumet_ForwardReg" ] = &STVF_Muon_Total_Staco_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Staco_phi_ForwardReg" ] = &STVF_Muon_Total_Staco_phi_ForwardReg;
       fHandles[ "Muon_Isol_Staco_etx" ] = &Muon_Isol_Staco_etx;
       fHandles[ "Muon_Isol_Staco_ety" ] = &Muon_Isol_Staco_ety;
       fHandles[ "Muon_Isol_Staco_sumet" ] = &Muon_Isol_Staco_sumet;
@@ -688,21 +538,6 @@ is_data(is_data) {
       fHandles[ "Muon_Isol_Staco_ety_ForwardReg" ] = &Muon_Isol_Staco_ety_ForwardReg;
       fHandles[ "Muon_Isol_Staco_sumet_ForwardReg" ] = &Muon_Isol_Staco_sumet_ForwardReg;
       fHandles[ "Muon_Isol_Staco_phi_ForwardReg" ] = &Muon_Isol_Staco_phi_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Staco_etx" ] = &STVF_Muon_Isol_Staco_etx;
-      fHandles[ "STVF_Muon_Isol_Staco_ety" ] = &STVF_Muon_Isol_Staco_ety;
-      fHandles[ "STVF_Muon_Isol_Staco_sumet" ] = &STVF_Muon_Isol_Staco_sumet;
-      fHandles[ "STVF_Muon_Isol_Staco_etx_CentralReg" ] = &STVF_Muon_Isol_Staco_etx_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Staco_ety_CentralReg" ] = &STVF_Muon_Isol_Staco_ety_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Staco_sumet_CentralReg" ] = &STVF_Muon_Isol_Staco_sumet_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Staco_phi_CentralReg" ] = &STVF_Muon_Isol_Staco_phi_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Staco_etx_EndcapRegion" ] = &STVF_Muon_Isol_Staco_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Staco_ety_EndcapRegion" ] = &STVF_Muon_Isol_Staco_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Staco_sumet_EndcapRegion" ] = &STVF_Muon_Isol_Staco_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Staco_phi_EndcapRegion" ] = &STVF_Muon_Isol_Staco_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Staco_etx_ForwardReg" ] = &STVF_Muon_Isol_Staco_etx_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Staco_ety_ForwardReg" ] = &STVF_Muon_Isol_Staco_ety_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Staco_sumet_ForwardReg" ] = &STVF_Muon_Isol_Staco_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Staco_phi_ForwardReg" ] = &STVF_Muon_Isol_Staco_phi_ForwardReg;
       fHandles[ "Muon_NonIsol_Staco_etx" ] = &Muon_NonIsol_Staco_etx;
       fHandles[ "Muon_NonIsol_Staco_ety" ] = &Muon_NonIsol_Staco_ety;
       fHandles[ "Muon_NonIsol_Staco_sumet" ] = &Muon_NonIsol_Staco_sumet;
@@ -718,21 +553,6 @@ is_data(is_data) {
       fHandles[ "Muon_NonIsol_Staco_ety_ForwardReg" ] = &Muon_NonIsol_Staco_ety_ForwardReg;
       fHandles[ "Muon_NonIsol_Staco_sumet_ForwardReg" ] = &Muon_NonIsol_Staco_sumet_ForwardReg;
       fHandles[ "Muon_NonIsol_Staco_phi_ForwardReg" ] = &Muon_NonIsol_Staco_phi_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_etx" ] = &STVF_Muon_NonIsol_Staco_etx;
-      fHandles[ "STVF_Muon_NonIsol_Staco_ety" ] = &STVF_Muon_NonIsol_Staco_ety;
-      fHandles[ "STVF_Muon_NonIsol_Staco_sumet" ] = &STVF_Muon_NonIsol_Staco_sumet;
-      fHandles[ "STVF_Muon_NonIsol_Staco_etx_CentralReg" ] = &STVF_Muon_NonIsol_Staco_etx_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_ety_CentralReg" ] = &STVF_Muon_NonIsol_Staco_ety_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_sumet_CentralReg" ] = &STVF_Muon_NonIsol_Staco_sumet_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_phi_CentralReg" ] = &STVF_Muon_NonIsol_Staco_phi_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_etx_EndcapRegion" ] = &STVF_Muon_NonIsol_Staco_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Staco_ety_EndcapRegion" ] = &STVF_Muon_NonIsol_Staco_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Staco_sumet_EndcapRegion" ] = &STVF_Muon_NonIsol_Staco_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Staco_phi_EndcapRegion" ] = &STVF_Muon_NonIsol_Staco_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Staco_etx_ForwardReg" ] = &STVF_Muon_NonIsol_Staco_etx_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_ety_ForwardReg" ] = &STVF_Muon_NonIsol_Staco_ety_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_sumet_ForwardReg" ] = &STVF_Muon_NonIsol_Staco_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_phi_ForwardReg" ] = &STVF_Muon_NonIsol_Staco_phi_ForwardReg;
       fHandles[ "CellOut_etx" ] = &CellOut_etx;
       fHandles[ "CellOut_ety" ] = &CellOut_ety;
       fHandles[ "CellOut_sumet" ] = &CellOut_sumet;
@@ -748,21 +568,21 @@ is_data(is_data) {
       fHandles[ "CellOut_ety_ForwardReg" ] = &CellOut_ety_ForwardReg;
       fHandles[ "CellOut_sumet_ForwardReg" ] = &CellOut_sumet_ForwardReg;
       fHandles[ "CellOut_phi_ForwardReg" ] = &CellOut_phi_ForwardReg;
-      fHandles[ "STVF_CellOut_etx" ] = &STVF_CellOut_etx;
-      fHandles[ "STVF_CellOut_ety" ] = &STVF_CellOut_ety;
-      fHandles[ "STVF_CellOut_sumet" ] = &STVF_CellOut_sumet;
-      fHandles[ "STVF_CellOut_etx_CentralReg" ] = &STVF_CellOut_etx_CentralReg;
-      fHandles[ "STVF_CellOut_ety_CentralReg" ] = &STVF_CellOut_ety_CentralReg;
-      fHandles[ "STVF_CellOut_sumet_CentralReg" ] = &STVF_CellOut_sumet_CentralReg;
-      fHandles[ "STVF_CellOut_phi_CentralReg" ] = &STVF_CellOut_phi_CentralReg;
-      fHandles[ "STVF_CellOut_etx_EndcapRegion" ] = &STVF_CellOut_etx_EndcapRegion;
-      fHandles[ "STVF_CellOut_ety_EndcapRegion" ] = &STVF_CellOut_ety_EndcapRegion;
-      fHandles[ "STVF_CellOut_sumet_EndcapRegion" ] = &STVF_CellOut_sumet_EndcapRegion;
-      fHandles[ "STVF_CellOut_phi_EndcapRegion" ] = &STVF_CellOut_phi_EndcapRegion;
-      fHandles[ "STVF_CellOut_etx_ForwardReg" ] = &STVF_CellOut_etx_ForwardReg;
-      fHandles[ "STVF_CellOut_ety_ForwardReg" ] = &STVF_CellOut_ety_ForwardReg;
-      fHandles[ "STVF_CellOut_sumet_ForwardReg" ] = &STVF_CellOut_sumet_ForwardReg;
-      fHandles[ "STVF_CellOut_phi_ForwardReg" ] = &STVF_CellOut_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_etx" ] = &CellOut_Eflow_etx;
+      fHandles[ "CellOut_Eflow_ety" ] = &CellOut_Eflow_ety;
+      fHandles[ "CellOut_Eflow_sumet" ] = &CellOut_Eflow_sumet;
+      fHandles[ "CellOut_Eflow_etx_CentralReg" ] = &CellOut_Eflow_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_ety_CentralReg" ] = &CellOut_Eflow_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_sumet_CentralReg" ] = &CellOut_Eflow_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_phi_CentralReg" ] = &CellOut_Eflow_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_etx_EndcapRegion" ] = &CellOut_Eflow_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_ety_EndcapRegion" ] = &CellOut_Eflow_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_sumet_EndcapRegion" ] = &CellOut_Eflow_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_phi_EndcapRegion" ] = &CellOut_Eflow_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_etx_ForwardReg" ] = &CellOut_Eflow_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_ety_ForwardReg" ] = &CellOut_Eflow_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_sumet_ForwardReg" ] = &CellOut_Eflow_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_phi_ForwardReg" ] = &CellOut_Eflow_phi_ForwardReg;
       fHandles[ "Muon_Isol_Muid_etx" ] = &Muon_Isol_Muid_etx;
       fHandles[ "Muon_Isol_Muid_ety" ] = &Muon_Isol_Muid_ety;
       fHandles[ "Muon_Isol_Muid_sumet" ] = &Muon_Isol_Muid_sumet;
@@ -778,21 +598,6 @@ is_data(is_data) {
       fHandles[ "Muon_Isol_Muid_ety_ForwardReg" ] = &Muon_Isol_Muid_ety_ForwardReg;
       fHandles[ "Muon_Isol_Muid_sumet_ForwardReg" ] = &Muon_Isol_Muid_sumet_ForwardReg;
       fHandles[ "Muon_Isol_Muid_phi_ForwardReg" ] = &Muon_Isol_Muid_phi_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Muid_etx" ] = &STVF_Muon_Isol_Muid_etx;
-      fHandles[ "STVF_Muon_Isol_Muid_ety" ] = &STVF_Muon_Isol_Muid_ety;
-      fHandles[ "STVF_Muon_Isol_Muid_sumet" ] = &STVF_Muon_Isol_Muid_sumet;
-      fHandles[ "STVF_Muon_Isol_Muid_etx_CentralReg" ] = &STVF_Muon_Isol_Muid_etx_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Muid_ety_CentralReg" ] = &STVF_Muon_Isol_Muid_ety_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Muid_sumet_CentralReg" ] = &STVF_Muon_Isol_Muid_sumet_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Muid_phi_CentralReg" ] = &STVF_Muon_Isol_Muid_phi_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Muid_etx_EndcapRegion" ] = &STVF_Muon_Isol_Muid_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Muid_ety_EndcapRegion" ] = &STVF_Muon_Isol_Muid_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Muid_sumet_EndcapRegion" ] = &STVF_Muon_Isol_Muid_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Muid_phi_EndcapRegion" ] = &STVF_Muon_Isol_Muid_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Muid_etx_ForwardReg" ] = &STVF_Muon_Isol_Muid_etx_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Muid_ety_ForwardReg" ] = &STVF_Muon_Isol_Muid_ety_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Muid_sumet_ForwardReg" ] = &STVF_Muon_Isol_Muid_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Muid_phi_ForwardReg" ] = &STVF_Muon_Isol_Muid_phi_ForwardReg;
       fHandles[ "Muon_NonIsol_Muid_etx" ] = &Muon_NonIsol_Muid_etx;
       fHandles[ "Muon_NonIsol_Muid_ety" ] = &Muon_NonIsol_Muid_ety;
       fHandles[ "Muon_NonIsol_Muid_sumet" ] = &Muon_NonIsol_Muid_sumet;
@@ -808,21 +613,6 @@ is_data(is_data) {
       fHandles[ "Muon_NonIsol_Muid_ety_ForwardReg" ] = &Muon_NonIsol_Muid_ety_ForwardReg;
       fHandles[ "Muon_NonIsol_Muid_sumet_ForwardReg" ] = &Muon_NonIsol_Muid_sumet_ForwardReg;
       fHandles[ "Muon_NonIsol_Muid_phi_ForwardReg" ] = &Muon_NonIsol_Muid_phi_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_etx" ] = &STVF_Muon_NonIsol_Muid_etx;
-      fHandles[ "STVF_Muon_NonIsol_Muid_ety" ] = &STVF_Muon_NonIsol_Muid_ety;
-      fHandles[ "STVF_Muon_NonIsol_Muid_sumet" ] = &STVF_Muon_NonIsol_Muid_sumet;
-      fHandles[ "STVF_Muon_NonIsol_Muid_etx_CentralReg" ] = &STVF_Muon_NonIsol_Muid_etx_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_ety_CentralReg" ] = &STVF_Muon_NonIsol_Muid_ety_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_sumet_CentralReg" ] = &STVF_Muon_NonIsol_Muid_sumet_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_phi_CentralReg" ] = &STVF_Muon_NonIsol_Muid_phi_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_etx_EndcapRegion" ] = &STVF_Muon_NonIsol_Muid_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Muid_ety_EndcapRegion" ] = &STVF_Muon_NonIsol_Muid_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Muid_sumet_EndcapRegion" ] = &STVF_Muon_NonIsol_Muid_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Muid_phi_EndcapRegion" ] = &STVF_Muon_NonIsol_Muid_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Muid_etx_ForwardReg" ] = &STVF_Muon_NonIsol_Muid_etx_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_ety_ForwardReg" ] = &STVF_Muon_NonIsol_Muid_ety_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_sumet_ForwardReg" ] = &STVF_Muon_NonIsol_Muid_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_phi_ForwardReg" ] = &STVF_Muon_NonIsol_Muid_phi_ForwardReg;
       fHandles[ "Muon_Total_Muid_etx" ] = &Muon_Total_Muid_etx;
       fHandles[ "Muon_Total_Muid_ety" ] = &Muon_Total_Muid_ety;
       fHandles[ "Muon_Total_Muid_sumet" ] = &Muon_Total_Muid_sumet;
@@ -838,21 +628,6 @@ is_data(is_data) {
       fHandles[ "Muon_Total_Muid_ety_ForwardReg" ] = &Muon_Total_Muid_ety_ForwardReg;
       fHandles[ "Muon_Total_Muid_sumet_ForwardReg" ] = &Muon_Total_Muid_sumet_ForwardReg;
       fHandles[ "Muon_Total_Muid_phi_ForwardReg" ] = &Muon_Total_Muid_phi_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Muid_etx" ] = &STVF_Muon_Total_Muid_etx;
-      fHandles[ "STVF_Muon_Total_Muid_ety" ] = &STVF_Muon_Total_Muid_ety;
-      fHandles[ "STVF_Muon_Total_Muid_sumet" ] = &STVF_Muon_Total_Muid_sumet;
-      fHandles[ "STVF_Muon_Total_Muid_etx_CentralReg" ] = &STVF_Muon_Total_Muid_etx_CentralReg;
-      fHandles[ "STVF_Muon_Total_Muid_ety_CentralReg" ] = &STVF_Muon_Total_Muid_ety_CentralReg;
-      fHandles[ "STVF_Muon_Total_Muid_sumet_CentralReg" ] = &STVF_Muon_Total_Muid_sumet_CentralReg;
-      fHandles[ "STVF_Muon_Total_Muid_phi_CentralReg" ] = &STVF_Muon_Total_Muid_phi_CentralReg;
-      fHandles[ "STVF_Muon_Total_Muid_etx_EndcapRegion" ] = &STVF_Muon_Total_Muid_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Muid_ety_EndcapRegion" ] = &STVF_Muon_Total_Muid_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Muid_sumet_EndcapRegion" ] = &STVF_Muon_Total_Muid_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Muid_phi_EndcapRegion" ] = &STVF_Muon_Total_Muid_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Muid_etx_ForwardReg" ] = &STVF_Muon_Total_Muid_etx_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Muid_ety_ForwardReg" ] = &STVF_Muon_Total_Muid_ety_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Muid_sumet_ForwardReg" ] = &STVF_Muon_Total_Muid_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Muid_phi_ForwardReg" ] = &STVF_Muon_Total_Muid_phi_ForwardReg;
       fHandles[ "Track_etx" ] = &Track_etx;
       fHandles[ "Track_ety" ] = &Track_ety;
       fHandles[ "Track_sumet" ] = &Track_sumet;
@@ -868,21 +643,111 @@ is_data(is_data) {
       fHandles[ "Track_ety_ForwardReg" ] = &Track_ety_ForwardReg;
       fHandles[ "Track_sumet_ForwardReg" ] = &Track_sumet_ForwardReg;
       fHandles[ "Track_phi_ForwardReg" ] = &Track_phi_ForwardReg;
-      fHandles[ "STVF_Track_etx" ] = &STVF_Track_etx;
-      fHandles[ "STVF_Track_ety" ] = &STVF_Track_ety;
-      fHandles[ "STVF_Track_sumet" ] = &STVF_Track_sumet;
-      fHandles[ "STVF_Track_etx_CentralReg" ] = &STVF_Track_etx_CentralReg;
-      fHandles[ "STVF_Track_ety_CentralReg" ] = &STVF_Track_ety_CentralReg;
-      fHandles[ "STVF_Track_sumet_CentralReg" ] = &STVF_Track_sumet_CentralReg;
-      fHandles[ "STVF_Track_phi_CentralReg" ] = &STVF_Track_phi_CentralReg;
-      fHandles[ "STVF_Track_etx_EndcapRegion" ] = &STVF_Track_etx_EndcapRegion;
-      fHandles[ "STVF_Track_ety_EndcapRegion" ] = &STVF_Track_ety_EndcapRegion;
-      fHandles[ "STVF_Track_sumet_EndcapRegion" ] = &STVF_Track_sumet_EndcapRegion;
-      fHandles[ "STVF_Track_phi_EndcapRegion" ] = &STVF_Track_phi_EndcapRegion;
-      fHandles[ "STVF_Track_etx_ForwardReg" ] = &STVF_Track_etx_ForwardReg;
-      fHandles[ "STVF_Track_ety_ForwardReg" ] = &STVF_Track_ety_ForwardReg;
-      fHandles[ "STVF_Track_sumet_ForwardReg" ] = &STVF_Track_sumet_ForwardReg;
-      fHandles[ "STVF_Track_phi_ForwardReg" ] = &STVF_Track_phi_ForwardReg;
+      fHandles[ "RefFinal_STVF_etx" ] = &RefFinal_STVF_etx;
+      fHandles[ "RefFinal_STVF_ety" ] = &RefFinal_STVF_ety;
+      fHandles[ "RefFinal_STVF_sumet" ] = &RefFinal_STVF_sumet;
+      fHandles[ "RefFinal_STVF_etx_CentralReg" ] = &RefFinal_STVF_etx_CentralReg;
+      fHandles[ "RefFinal_STVF_ety_CentralReg" ] = &RefFinal_STVF_ety_CentralReg;
+      fHandles[ "RefFinal_STVF_sumet_CentralReg" ] = &RefFinal_STVF_sumet_CentralReg;
+      fHandles[ "RefFinal_STVF_phi_CentralReg" ] = &RefFinal_STVF_phi_CentralReg;
+      fHandles[ "RefFinal_STVF_etx_EndcapRegion" ] = &RefFinal_STVF_etx_EndcapRegion;
+      fHandles[ "RefFinal_STVF_ety_EndcapRegion" ] = &RefFinal_STVF_ety_EndcapRegion;
+      fHandles[ "RefFinal_STVF_sumet_EndcapRegion" ] = &RefFinal_STVF_sumet_EndcapRegion;
+      fHandles[ "RefFinal_STVF_phi_EndcapRegion" ] = &RefFinal_STVF_phi_EndcapRegion;
+      fHandles[ "RefFinal_STVF_etx_ForwardReg" ] = &RefFinal_STVF_etx_ForwardReg;
+      fHandles[ "RefFinal_STVF_ety_ForwardReg" ] = &RefFinal_STVF_ety_ForwardReg;
+      fHandles[ "RefFinal_STVF_sumet_ForwardReg" ] = &RefFinal_STVF_sumet_ForwardReg;
+      fHandles[ "RefFinal_STVF_phi_ForwardReg" ] = &RefFinal_STVF_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_STVF_etx" ] = &CellOut_Eflow_STVF_etx;
+      fHandles[ "CellOut_Eflow_STVF_ety" ] = &CellOut_Eflow_STVF_ety;
+      fHandles[ "CellOut_Eflow_STVF_sumet" ] = &CellOut_Eflow_STVF_sumet;
+      fHandles[ "CellOut_Eflow_STVF_etx_CentralReg" ] = &CellOut_Eflow_STVF_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_STVF_ety_CentralReg" ] = &CellOut_Eflow_STVF_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_STVF_sumet_CentralReg" ] = &CellOut_Eflow_STVF_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_STVF_phi_CentralReg" ] = &CellOut_Eflow_STVF_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_STVF_etx_EndcapRegion" ] = &CellOut_Eflow_STVF_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_STVF_ety_EndcapRegion" ] = &CellOut_Eflow_STVF_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_STVF_sumet_EndcapRegion" ] = &CellOut_Eflow_STVF_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_STVF_phi_EndcapRegion" ] = &CellOut_Eflow_STVF_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_STVF_etx_ForwardReg" ] = &CellOut_Eflow_STVF_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_STVF_ety_ForwardReg" ] = &CellOut_Eflow_STVF_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_STVF_sumet_ForwardReg" ] = &CellOut_Eflow_STVF_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_STVF_phi_ForwardReg" ] = &CellOut_Eflow_STVF_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetArea_etx" ] = &CellOut_Eflow_JetArea_etx;
+      fHandles[ "CellOut_Eflow_JetArea_ety" ] = &CellOut_Eflow_JetArea_ety;
+      fHandles[ "CellOut_Eflow_JetArea_sumet" ] = &CellOut_Eflow_JetArea_sumet;
+      fHandles[ "CellOut_Eflow_JetArea_etx_CentralReg" ] = &CellOut_Eflow_JetArea_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_JetArea_ety_CentralReg" ] = &CellOut_Eflow_JetArea_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_JetArea_sumet_CentralReg" ] = &CellOut_Eflow_JetArea_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_JetArea_phi_CentralReg" ] = &CellOut_Eflow_JetArea_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_JetArea_etx_EndcapRegion" ] = &CellOut_Eflow_JetArea_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetArea_ety_EndcapRegion" ] = &CellOut_Eflow_JetArea_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetArea_sumet_EndcapRegion" ] = &CellOut_Eflow_JetArea_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetArea_phi_EndcapRegion" ] = &CellOut_Eflow_JetArea_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetArea_etx_ForwardReg" ] = &CellOut_Eflow_JetArea_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetArea_ety_ForwardReg" ] = &CellOut_Eflow_JetArea_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetArea_sumet_ForwardReg" ] = &CellOut_Eflow_JetArea_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetArea_phi_ForwardReg" ] = &CellOut_Eflow_JetArea_phi_ForwardReg;
+      fHandles[ "RefJet_JVF_etx" ] = &RefJet_JVF_etx;
+      fHandles[ "RefJet_JVF_ety" ] = &RefJet_JVF_ety;
+      fHandles[ "RefJet_JVF_sumet" ] = &RefJet_JVF_sumet;
+      fHandles[ "RefJet_JVF_etx_CentralReg" ] = &RefJet_JVF_etx_CentralReg;
+      fHandles[ "RefJet_JVF_ety_CentralReg" ] = &RefJet_JVF_ety_CentralReg;
+      fHandles[ "RefJet_JVF_sumet_CentralReg" ] = &RefJet_JVF_sumet_CentralReg;
+      fHandles[ "RefJet_JVF_phi_CentralReg" ] = &RefJet_JVF_phi_CentralReg;
+      fHandles[ "RefJet_JVF_etx_EndcapRegion" ] = &RefJet_JVF_etx_EndcapRegion;
+      fHandles[ "RefJet_JVF_ety_EndcapRegion" ] = &RefJet_JVF_ety_EndcapRegion;
+      fHandles[ "RefJet_JVF_sumet_EndcapRegion" ] = &RefJet_JVF_sumet_EndcapRegion;
+      fHandles[ "RefJet_JVF_phi_EndcapRegion" ] = &RefJet_JVF_phi_EndcapRegion;
+      fHandles[ "RefJet_JVF_etx_ForwardReg" ] = &RefJet_JVF_etx_ForwardReg;
+      fHandles[ "RefJet_JVF_ety_ForwardReg" ] = &RefJet_JVF_ety_ForwardReg;
+      fHandles[ "RefJet_JVF_sumet_ForwardReg" ] = &RefJet_JVF_sumet_ForwardReg;
+      fHandles[ "RefJet_JVF_phi_ForwardReg" ] = &RefJet_JVF_phi_ForwardReg;
+      fHandles[ "RefJet_JVFCut_etx" ] = &RefJet_JVFCut_etx;
+      fHandles[ "RefJet_JVFCut_ety" ] = &RefJet_JVFCut_ety;
+      fHandles[ "RefJet_JVFCut_sumet" ] = &RefJet_JVFCut_sumet;
+      fHandles[ "RefJet_JVFCut_etx_CentralReg" ] = &RefJet_JVFCut_etx_CentralReg;
+      fHandles[ "RefJet_JVFCut_ety_CentralReg" ] = &RefJet_JVFCut_ety_CentralReg;
+      fHandles[ "RefJet_JVFCut_sumet_CentralReg" ] = &RefJet_JVFCut_sumet_CentralReg;
+      fHandles[ "RefJet_JVFCut_phi_CentralReg" ] = &RefJet_JVFCut_phi_CentralReg;
+      fHandles[ "RefJet_JVFCut_etx_EndcapRegion" ] = &RefJet_JVFCut_etx_EndcapRegion;
+      fHandles[ "RefJet_JVFCut_ety_EndcapRegion" ] = &RefJet_JVFCut_ety_EndcapRegion;
+      fHandles[ "RefJet_JVFCut_sumet_EndcapRegion" ] = &RefJet_JVFCut_sumet_EndcapRegion;
+      fHandles[ "RefJet_JVFCut_phi_EndcapRegion" ] = &RefJet_JVFCut_phi_EndcapRegion;
+      fHandles[ "RefJet_JVFCut_etx_ForwardReg" ] = &RefJet_JVFCut_etx_ForwardReg;
+      fHandles[ "RefJet_JVFCut_ety_ForwardReg" ] = &RefJet_JVFCut_ety_ForwardReg;
+      fHandles[ "RefJet_JVFCut_sumet_ForwardReg" ] = &RefJet_JVFCut_sumet_ForwardReg;
+      fHandles[ "RefJet_JVFCut_phi_ForwardReg" ] = &RefJet_JVFCut_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_etx" ] = &CellOut_Eflow_JetAreaJVF_etx;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_ety" ] = &CellOut_Eflow_JetAreaJVF_ety;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_sumet" ] = &CellOut_Eflow_JetAreaJVF_sumet;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_etx_CentralReg" ] = &CellOut_Eflow_JetAreaJVF_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_ety_CentralReg" ] = &CellOut_Eflow_JetAreaJVF_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_sumet_CentralReg" ] = &CellOut_Eflow_JetAreaJVF_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_phi_CentralReg" ] = &CellOut_Eflow_JetAreaJVF_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_etx_EndcapRegion" ] = &CellOut_Eflow_JetAreaJVF_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_ety_EndcapRegion" ] = &CellOut_Eflow_JetAreaJVF_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion" ] = &CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_phi_EndcapRegion" ] = &CellOut_Eflow_JetAreaJVF_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_etx_ForwardReg" ] = &CellOut_Eflow_JetAreaJVF_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_ety_ForwardReg" ] = &CellOut_Eflow_JetAreaJVF_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_sumet_ForwardReg" ] = &CellOut_Eflow_JetAreaJVF_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_phi_ForwardReg" ] = &CellOut_Eflow_JetAreaJVF_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_etx" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_etx;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_ety" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_ety;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_sumet" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_sumet;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg;
       fHandles[ "SoftJets_etx" ] = &SoftJets_etx;
       fHandles[ "SoftJets_ety" ] = &SoftJets_ety;
       fHandles[ "SoftJets_sumet" ] = &SoftJets_sumet;
@@ -898,21 +763,6 @@ is_data(is_data) {
       fHandles[ "SoftJets_ety_ForwardReg" ] = &SoftJets_ety_ForwardReg;
       fHandles[ "SoftJets_sumet_ForwardReg" ] = &SoftJets_sumet_ForwardReg;
       fHandles[ "SoftJets_phi_ForwardReg" ] = &SoftJets_phi_ForwardReg;
-      fHandles[ "STVF_SoftJets_etx" ] = &STVF_SoftJets_etx;
-      fHandles[ "STVF_SoftJets_ety" ] = &STVF_SoftJets_ety;
-      fHandles[ "STVF_SoftJets_sumet" ] = &STVF_SoftJets_sumet;
-      fHandles[ "STVF_SoftJets_etx_CentralReg" ] = &STVF_SoftJets_etx_CentralReg;
-      fHandles[ "STVF_SoftJets_ety_CentralReg" ] = &STVF_SoftJets_ety_CentralReg;
-      fHandles[ "STVF_SoftJets_sumet_CentralReg" ] = &STVF_SoftJets_sumet_CentralReg;
-      fHandles[ "STVF_SoftJets_phi_CentralReg" ] = &STVF_SoftJets_phi_CentralReg;
-      fHandles[ "STVF_SoftJets_etx_EndcapRegion" ] = &STVF_SoftJets_etx_EndcapRegion;
-      fHandles[ "STVF_SoftJets_ety_EndcapRegion" ] = &STVF_SoftJets_ety_EndcapRegion;
-      fHandles[ "STVF_SoftJets_sumet_EndcapRegion" ] = &STVF_SoftJets_sumet_EndcapRegion;
-      fHandles[ "STVF_SoftJets_phi_EndcapRegion" ] = &STVF_SoftJets_phi_EndcapRegion;
-      fHandles[ "STVF_SoftJets_etx_ForwardReg" ] = &STVF_SoftJets_etx_ForwardReg;
-      fHandles[ "STVF_SoftJets_ety_ForwardReg" ] = &STVF_SoftJets_ety_ForwardReg;
-      fHandles[ "STVF_SoftJets_sumet_ForwardReg" ] = &STVF_SoftJets_sumet_ForwardReg;
-      fHandles[ "STVF_SoftJets_phi_ForwardReg" ] = &STVF_SoftJets_phi_ForwardReg;
       fHandles[ "RefMuon_etx" ] = &RefMuon_etx;
       fHandles[ "RefMuon_ety" ] = &RefMuon_ety;
       fHandles[ "RefMuon_sumet" ] = &RefMuon_sumet;
@@ -928,96 +778,96 @@ is_data(is_data) {
       fHandles[ "RefMuon_ety_ForwardReg" ] = &RefMuon_ety_ForwardReg;
       fHandles[ "RefMuon_sumet_ForwardReg" ] = &RefMuon_sumet_ForwardReg;
       fHandles[ "RefMuon_phi_ForwardReg" ] = &RefMuon_phi_ForwardReg;
-      fHandles[ "STVF_RefMuon_etx" ] = &STVF_RefMuon_etx;
-      fHandles[ "STVF_RefMuon_ety" ] = &STVF_RefMuon_ety;
-      fHandles[ "STVF_RefMuon_sumet" ] = &STVF_RefMuon_sumet;
-      fHandles[ "STVF_RefMuon_etx_CentralReg" ] = &STVF_RefMuon_etx_CentralReg;
-      fHandles[ "STVF_RefMuon_ety_CentralReg" ] = &STVF_RefMuon_ety_CentralReg;
-      fHandles[ "STVF_RefMuon_sumet_CentralReg" ] = &STVF_RefMuon_sumet_CentralReg;
-      fHandles[ "STVF_RefMuon_phi_CentralReg" ] = &STVF_RefMuon_phi_CentralReg;
-      fHandles[ "STVF_RefMuon_etx_EndcapRegion" ] = &STVF_RefMuon_etx_EndcapRegion;
-      fHandles[ "STVF_RefMuon_ety_EndcapRegion" ] = &STVF_RefMuon_ety_EndcapRegion;
-      fHandles[ "STVF_RefMuon_sumet_EndcapRegion" ] = &STVF_RefMuon_sumet_EndcapRegion;
-      fHandles[ "STVF_RefMuon_phi_EndcapRegion" ] = &STVF_RefMuon_phi_EndcapRegion;
-      fHandles[ "STVF_RefMuon_etx_ForwardReg" ] = &STVF_RefMuon_etx_ForwardReg;
-      fHandles[ "STVF_RefMuon_ety_ForwardReg" ] = &STVF_RefMuon_ety_ForwardReg;
-      fHandles[ "STVF_RefMuon_sumet_ForwardReg" ] = &STVF_RefMuon_sumet_ForwardReg;
-      fHandles[ "STVF_RefMuon_phi_ForwardReg" ] = &STVF_RefMuon_phi_ForwardReg;
-// -- slimmed --       fHandles[ "MuonBoy_etx" ] = &MuonBoy_etx;
-// -- slimmed --       fHandles[ "MuonBoy_ety" ] = &MuonBoy_ety;
-// -- slimmed --       fHandles[ "MuonBoy_sumet" ] = &MuonBoy_sumet;
-// -- slimmed --       fHandles[ "MuonBoy_etx_CentralReg" ] = &MuonBoy_etx_CentralReg;
-// -- slimmed --       fHandles[ "MuonBoy_ety_CentralReg" ] = &MuonBoy_ety_CentralReg;
-// -- slimmed --       fHandles[ "MuonBoy_sumet_CentralReg" ] = &MuonBoy_sumet_CentralReg;
-// -- slimmed --       fHandles[ "MuonBoy_phi_CentralReg" ] = &MuonBoy_phi_CentralReg;
-// -- slimmed --       fHandles[ "MuonBoy_etx_EndcapRegion" ] = &MuonBoy_etx_EndcapRegion;
-// -- slimmed --       fHandles[ "MuonBoy_ety_EndcapRegion" ] = &MuonBoy_ety_EndcapRegion;
-// -- slimmed --       fHandles[ "MuonBoy_sumet_EndcapRegion" ] = &MuonBoy_sumet_EndcapRegion;
-// -- slimmed --       fHandles[ "MuonBoy_phi_EndcapRegion" ] = &MuonBoy_phi_EndcapRegion;
-// -- slimmed --       fHandles[ "MuonBoy_etx_ForwardReg" ] = &MuonBoy_etx_ForwardReg;
-// -- slimmed --       fHandles[ "MuonBoy_ety_ForwardReg" ] = &MuonBoy_ety_ForwardReg;
-// -- slimmed --       fHandles[ "MuonBoy_sumet_ForwardReg" ] = &MuonBoy_sumet_ForwardReg;
-// -- slimmed --       fHandles[ "MuonBoy_phi_ForwardReg" ] = &MuonBoy_phi_ForwardReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_etx" ] = &STVF_MuonBoy_etx;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_ety" ] = &STVF_MuonBoy_ety;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet" ] = &STVF_MuonBoy_sumet;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_CentralReg" ] = &STVF_MuonBoy_etx_CentralReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_CentralReg" ] = &STVF_MuonBoy_ety_CentralReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_CentralReg" ] = &STVF_MuonBoy_sumet_CentralReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_CentralReg" ] = &STVF_MuonBoy_phi_CentralReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_EndcapRegion" ] = &STVF_MuonBoy_etx_EndcapRegion;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_EndcapRegion" ] = &STVF_MuonBoy_ety_EndcapRegion;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_EndcapRegion" ] = &STVF_MuonBoy_sumet_EndcapRegion;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_EndcapRegion" ] = &STVF_MuonBoy_phi_EndcapRegion;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_ForwardReg" ] = &STVF_MuonBoy_etx_ForwardReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_ForwardReg" ] = &STVF_MuonBoy_ety_ForwardReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_ForwardReg" ] = &STVF_MuonBoy_sumet_ForwardReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_ForwardReg" ] = &STVF_MuonBoy_phi_ForwardReg;
-      fHandles[ "STVF_CellOut_Track_etx" ] = &STVF_CellOut_Track_etx;
-      fHandles[ "STVF_CellOut_Track_ety" ] = &STVF_CellOut_Track_ety;
-      fHandles[ "STVF_CellOut_Track_sumet" ] = &STVF_CellOut_Track_sumet;
-      fHandles[ "STVF_CellOut_Track_etx_CentralReg" ] = &STVF_CellOut_Track_etx_CentralReg;
-      fHandles[ "STVF_CellOut_Track_ety_CentralReg" ] = &STVF_CellOut_Track_ety_CentralReg;
-      fHandles[ "STVF_CellOut_Track_sumet_CentralReg" ] = &STVF_CellOut_Track_sumet_CentralReg;
-      fHandles[ "STVF_CellOut_Track_phi_CentralReg" ] = &STVF_CellOut_Track_phi_CentralReg;
-      fHandles[ "STVF_CellOut_Track_etx_EndcapRegion" ] = &STVF_CellOut_Track_etx_EndcapRegion;
-      fHandles[ "STVF_CellOut_Track_ety_EndcapRegion" ] = &STVF_CellOut_Track_ety_EndcapRegion;
-      fHandles[ "STVF_CellOut_Track_sumet_EndcapRegion" ] = &STVF_CellOut_Track_sumet_EndcapRegion;
-      fHandles[ "STVF_CellOut_Track_phi_EndcapRegion" ] = &STVF_CellOut_Track_phi_EndcapRegion;
-      fHandles[ "STVF_CellOut_Track_etx_ForwardReg" ] = &STVF_CellOut_Track_etx_ForwardReg;
-      fHandles[ "STVF_CellOut_Track_ety_ForwardReg" ] = &STVF_CellOut_Track_ety_ForwardReg;
-      fHandles[ "STVF_CellOut_Track_sumet_ForwardReg" ] = &STVF_CellOut_Track_sumet_ForwardReg;
-      fHandles[ "STVF_CellOut_Track_phi_ForwardReg" ] = &STVF_CellOut_Track_phi_ForwardReg;
-      fHandles[ "STVF_CellOut_TrackPV_etx" ] = &STVF_CellOut_TrackPV_etx;
-      fHandles[ "STVF_CellOut_TrackPV_ety" ] = &STVF_CellOut_TrackPV_ety;
-      fHandles[ "STVF_CellOut_TrackPV_sumet" ] = &STVF_CellOut_TrackPV_sumet;
-      fHandles[ "STVF_CellOut_TrackPV_etx_CentralReg" ] = &STVF_CellOut_TrackPV_etx_CentralReg;
-      fHandles[ "STVF_CellOut_TrackPV_ety_CentralReg" ] = &STVF_CellOut_TrackPV_ety_CentralReg;
-      fHandles[ "STVF_CellOut_TrackPV_sumet_CentralReg" ] = &STVF_CellOut_TrackPV_sumet_CentralReg;
-      fHandles[ "STVF_CellOut_TrackPV_phi_CentralReg" ] = &STVF_CellOut_TrackPV_phi_CentralReg;
-      fHandles[ "STVF_CellOut_TrackPV_etx_EndcapRegion" ] = &STVF_CellOut_TrackPV_etx_EndcapRegion;
-      fHandles[ "STVF_CellOut_TrackPV_ety_EndcapRegion" ] = &STVF_CellOut_TrackPV_ety_EndcapRegion;
-      fHandles[ "STVF_CellOut_TrackPV_sumet_EndcapRegion" ] = &STVF_CellOut_TrackPV_sumet_EndcapRegion;
-      fHandles[ "STVF_CellOut_TrackPV_phi_EndcapRegion" ] = &STVF_CellOut_TrackPV_phi_EndcapRegion;
-      fHandles[ "STVF_CellOut_TrackPV_etx_ForwardReg" ] = &STVF_CellOut_TrackPV_etx_ForwardReg;
-      fHandles[ "STVF_CellOut_TrackPV_ety_ForwardReg" ] = &STVF_CellOut_TrackPV_ety_ForwardReg;
-      fHandles[ "STVF_CellOut_TrackPV_sumet_ForwardReg" ] = &STVF_CellOut_TrackPV_sumet_ForwardReg;
-      fHandles[ "STVF_CellOut_TrackPV_phi_ForwardReg" ] = &STVF_CellOut_TrackPV_phi_ForwardReg;
-      fHandles[ "STVF_CellOutCorr_etx" ] = &STVF_CellOutCorr_etx;
-      fHandles[ "STVF_CellOutCorr_ety" ] = &STVF_CellOutCorr_ety;
-      fHandles[ "STVF_CellOutCorr_sumet" ] = &STVF_CellOutCorr_sumet;
-      fHandles[ "STVF_CellOutCorr_etx_CentralReg" ] = &STVF_CellOutCorr_etx_CentralReg;
-      fHandles[ "STVF_CellOutCorr_ety_CentralReg" ] = &STVF_CellOutCorr_ety_CentralReg;
-      fHandles[ "STVF_CellOutCorr_sumet_CentralReg" ] = &STVF_CellOutCorr_sumet_CentralReg;
-      fHandles[ "STVF_CellOutCorr_phi_CentralReg" ] = &STVF_CellOutCorr_phi_CentralReg;
-      fHandles[ "STVF_CellOutCorr_etx_EndcapRegion" ] = &STVF_CellOutCorr_etx_EndcapRegion;
-      fHandles[ "STVF_CellOutCorr_ety_EndcapRegion" ] = &STVF_CellOutCorr_ety_EndcapRegion;
-      fHandles[ "STVF_CellOutCorr_sumet_EndcapRegion" ] = &STVF_CellOutCorr_sumet_EndcapRegion;
-      fHandles[ "STVF_CellOutCorr_phi_EndcapRegion" ] = &STVF_CellOutCorr_phi_EndcapRegion;
-      fHandles[ "STVF_CellOutCorr_etx_ForwardReg" ] = &STVF_CellOutCorr_etx_ForwardReg;
-      fHandles[ "STVF_CellOutCorr_ety_ForwardReg" ] = &STVF_CellOutCorr_ety_ForwardReg;
-      fHandles[ "STVF_CellOutCorr_sumet_ForwardReg" ] = &STVF_CellOutCorr_sumet_ForwardReg;
-      fHandles[ "STVF_CellOutCorr_phi_ForwardReg" ] = &STVF_CellOutCorr_phi_ForwardReg;
+      fHandles[ "MuonBoy_etx" ] = &MuonBoy_etx;
+      fHandles[ "MuonBoy_ety" ] = &MuonBoy_ety;
+      fHandles[ "MuonBoy_sumet" ] = &MuonBoy_sumet;
+      fHandles[ "MuonBoy_etx_CentralReg" ] = &MuonBoy_etx_CentralReg;
+      fHandles[ "MuonBoy_ety_CentralReg" ] = &MuonBoy_ety_CentralReg;
+      fHandles[ "MuonBoy_sumet_CentralReg" ] = &MuonBoy_sumet_CentralReg;
+      fHandles[ "MuonBoy_phi_CentralReg" ] = &MuonBoy_phi_CentralReg;
+      fHandles[ "MuonBoy_etx_EndcapRegion" ] = &MuonBoy_etx_EndcapRegion;
+      fHandles[ "MuonBoy_ety_EndcapRegion" ] = &MuonBoy_ety_EndcapRegion;
+      fHandles[ "MuonBoy_sumet_EndcapRegion" ] = &MuonBoy_sumet_EndcapRegion;
+      fHandles[ "MuonBoy_phi_EndcapRegion" ] = &MuonBoy_phi_EndcapRegion;
+      fHandles[ "MuonBoy_etx_ForwardReg" ] = &MuonBoy_etx_ForwardReg;
+      fHandles[ "MuonBoy_ety_ForwardReg" ] = &MuonBoy_ety_ForwardReg;
+      fHandles[ "MuonBoy_sumet_ForwardReg" ] = &MuonBoy_sumet_ForwardReg;
+      fHandles[ "MuonBoy_phi_ForwardReg" ] = &MuonBoy_phi_ForwardReg;
+      fHandles[ "RefMuon_Staco_etx" ] = &RefMuon_Staco_etx;
+      fHandles[ "RefMuon_Staco_ety" ] = &RefMuon_Staco_ety;
+      fHandles[ "RefMuon_Staco_sumet" ] = &RefMuon_Staco_sumet;
+      fHandles[ "RefMuon_Staco_etx_CentralReg" ] = &RefMuon_Staco_etx_CentralReg;
+      fHandles[ "RefMuon_Staco_ety_CentralReg" ] = &RefMuon_Staco_ety_CentralReg;
+      fHandles[ "RefMuon_Staco_sumet_CentralReg" ] = &RefMuon_Staco_sumet_CentralReg;
+      fHandles[ "RefMuon_Staco_phi_CentralReg" ] = &RefMuon_Staco_phi_CentralReg;
+      fHandles[ "RefMuon_Staco_etx_EndcapRegion" ] = &RefMuon_Staco_etx_EndcapRegion;
+      fHandles[ "RefMuon_Staco_ety_EndcapRegion" ] = &RefMuon_Staco_ety_EndcapRegion;
+      fHandles[ "RefMuon_Staco_sumet_EndcapRegion" ] = &RefMuon_Staco_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Staco_phi_EndcapRegion" ] = &RefMuon_Staco_phi_EndcapRegion;
+      fHandles[ "RefMuon_Staco_etx_ForwardReg" ] = &RefMuon_Staco_etx_ForwardReg;
+      fHandles[ "RefMuon_Staco_ety_ForwardReg" ] = &RefMuon_Staco_ety_ForwardReg;
+      fHandles[ "RefMuon_Staco_sumet_ForwardReg" ] = &RefMuon_Staco_sumet_ForwardReg;
+      fHandles[ "RefMuon_Staco_phi_ForwardReg" ] = &RefMuon_Staco_phi_ForwardReg;
+      fHandles[ "RefMuon_Muid_etx" ] = &RefMuon_Muid_etx;
+      fHandles[ "RefMuon_Muid_ety" ] = &RefMuon_Muid_ety;
+      fHandles[ "RefMuon_Muid_sumet" ] = &RefMuon_Muid_sumet;
+      fHandles[ "RefMuon_Muid_etx_CentralReg" ] = &RefMuon_Muid_etx_CentralReg;
+      fHandles[ "RefMuon_Muid_ety_CentralReg" ] = &RefMuon_Muid_ety_CentralReg;
+      fHandles[ "RefMuon_Muid_sumet_CentralReg" ] = &RefMuon_Muid_sumet_CentralReg;
+      fHandles[ "RefMuon_Muid_phi_CentralReg" ] = &RefMuon_Muid_phi_CentralReg;
+      fHandles[ "RefMuon_Muid_etx_EndcapRegion" ] = &RefMuon_Muid_etx_EndcapRegion;
+      fHandles[ "RefMuon_Muid_ety_EndcapRegion" ] = &RefMuon_Muid_ety_EndcapRegion;
+      fHandles[ "RefMuon_Muid_sumet_EndcapRegion" ] = &RefMuon_Muid_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Muid_phi_EndcapRegion" ] = &RefMuon_Muid_phi_EndcapRegion;
+      fHandles[ "RefMuon_Muid_etx_ForwardReg" ] = &RefMuon_Muid_etx_ForwardReg;
+      fHandles[ "RefMuon_Muid_ety_ForwardReg" ] = &RefMuon_Muid_ety_ForwardReg;
+      fHandles[ "RefMuon_Muid_sumet_ForwardReg" ] = &RefMuon_Muid_sumet_ForwardReg;
+      fHandles[ "RefMuon_Muid_phi_ForwardReg" ] = &RefMuon_Muid_phi_ForwardReg;
+      fHandles[ "RefMuon_Track_etx" ] = &RefMuon_Track_etx;
+      fHandles[ "RefMuon_Track_ety" ] = &RefMuon_Track_ety;
+      fHandles[ "RefMuon_Track_sumet" ] = &RefMuon_Track_sumet;
+      fHandles[ "RefMuon_Track_etx_CentralReg" ] = &RefMuon_Track_etx_CentralReg;
+      fHandles[ "RefMuon_Track_ety_CentralReg" ] = &RefMuon_Track_ety_CentralReg;
+      fHandles[ "RefMuon_Track_sumet_CentralReg" ] = &RefMuon_Track_sumet_CentralReg;
+      fHandles[ "RefMuon_Track_phi_CentralReg" ] = &RefMuon_Track_phi_CentralReg;
+      fHandles[ "RefMuon_Track_etx_EndcapRegion" ] = &RefMuon_Track_etx_EndcapRegion;
+      fHandles[ "RefMuon_Track_ety_EndcapRegion" ] = &RefMuon_Track_ety_EndcapRegion;
+      fHandles[ "RefMuon_Track_sumet_EndcapRegion" ] = &RefMuon_Track_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Track_phi_EndcapRegion" ] = &RefMuon_Track_phi_EndcapRegion;
+      fHandles[ "RefMuon_Track_etx_ForwardReg" ] = &RefMuon_Track_etx_ForwardReg;
+      fHandles[ "RefMuon_Track_ety_ForwardReg" ] = &RefMuon_Track_ety_ForwardReg;
+      fHandles[ "RefMuon_Track_sumet_ForwardReg" ] = &RefMuon_Track_sumet_ForwardReg;
+      fHandles[ "RefMuon_Track_phi_ForwardReg" ] = &RefMuon_Track_phi_ForwardReg;
+      fHandles[ "RefMuon_Track_Staco_etx" ] = &RefMuon_Track_Staco_etx;
+      fHandles[ "RefMuon_Track_Staco_ety" ] = &RefMuon_Track_Staco_ety;
+      fHandles[ "RefMuon_Track_Staco_sumet" ] = &RefMuon_Track_Staco_sumet;
+      fHandles[ "RefMuon_Track_Staco_etx_CentralReg" ] = &RefMuon_Track_Staco_etx_CentralReg;
+      fHandles[ "RefMuon_Track_Staco_ety_CentralReg" ] = &RefMuon_Track_Staco_ety_CentralReg;
+      fHandles[ "RefMuon_Track_Staco_sumet_CentralReg" ] = &RefMuon_Track_Staco_sumet_CentralReg;
+      fHandles[ "RefMuon_Track_Staco_phi_CentralReg" ] = &RefMuon_Track_Staco_phi_CentralReg;
+      fHandles[ "RefMuon_Track_Staco_etx_EndcapRegion" ] = &RefMuon_Track_Staco_etx_EndcapRegion;
+      fHandles[ "RefMuon_Track_Staco_ety_EndcapRegion" ] = &RefMuon_Track_Staco_ety_EndcapRegion;
+      fHandles[ "RefMuon_Track_Staco_sumet_EndcapRegion" ] = &RefMuon_Track_Staco_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Track_Staco_phi_EndcapRegion" ] = &RefMuon_Track_Staco_phi_EndcapRegion;
+      fHandles[ "RefMuon_Track_Staco_etx_ForwardReg" ] = &RefMuon_Track_Staco_etx_ForwardReg;
+      fHandles[ "RefMuon_Track_Staco_ety_ForwardReg" ] = &RefMuon_Track_Staco_ety_ForwardReg;
+      fHandles[ "RefMuon_Track_Staco_sumet_ForwardReg" ] = &RefMuon_Track_Staco_sumet_ForwardReg;
+      fHandles[ "RefMuon_Track_Staco_phi_ForwardReg" ] = &RefMuon_Track_Staco_phi_ForwardReg;
+      fHandles[ "RefMuon_Track_Muid_etx" ] = &RefMuon_Track_Muid_etx;
+      fHandles[ "RefMuon_Track_Muid_ety" ] = &RefMuon_Track_Muid_ety;
+      fHandles[ "RefMuon_Track_Muid_sumet" ] = &RefMuon_Track_Muid_sumet;
+      fHandles[ "RefMuon_Track_Muid_etx_CentralReg" ] = &RefMuon_Track_Muid_etx_CentralReg;
+      fHandles[ "RefMuon_Track_Muid_ety_CentralReg" ] = &RefMuon_Track_Muid_ety_CentralReg;
+      fHandles[ "RefMuon_Track_Muid_sumet_CentralReg" ] = &RefMuon_Track_Muid_sumet_CentralReg;
+      fHandles[ "RefMuon_Track_Muid_phi_CentralReg" ] = &RefMuon_Track_Muid_phi_CentralReg;
+      fHandles[ "RefMuon_Track_Muid_etx_EndcapRegion" ] = &RefMuon_Track_Muid_etx_EndcapRegion;
+      fHandles[ "RefMuon_Track_Muid_ety_EndcapRegion" ] = &RefMuon_Track_Muid_ety_EndcapRegion;
+      fHandles[ "RefMuon_Track_Muid_sumet_EndcapRegion" ] = &RefMuon_Track_Muid_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Track_Muid_phi_EndcapRegion" ] = &RefMuon_Track_Muid_phi_EndcapRegion;
+      fHandles[ "RefMuon_Track_Muid_etx_ForwardReg" ] = &RefMuon_Track_Muid_etx_ForwardReg;
+      fHandles[ "RefMuon_Track_Muid_ety_ForwardReg" ] = &RefMuon_Track_Muid_ety_ForwardReg;
+      fHandles[ "RefMuon_Track_Muid_sumet_ForwardReg" ] = &RefMuon_Track_Muid_sumet_ForwardReg;
+      fHandles[ "RefMuon_Track_Muid_phi_ForwardReg" ] = &RefMuon_Track_Muid_phi_ForwardReg;
    }
 
    /**
@@ -1044,21 +894,6 @@ is_data(is_data) {
         RefGamma_ety_ForwardReg( this, ::TString( prefix ) + "RefGamma_ety_ForwardReg", 0 ),
         RefGamma_sumet_ForwardReg( this, ::TString( prefix ) + "RefGamma_sumet_ForwardReg", 0 ),
         RefGamma_phi_ForwardReg( this, ::TString( prefix ) + "RefGamma_phi_ForwardReg", 0 ),
-        STVF_RefGamma_etx( this, ::TString( prefix ) + "STVF_RefGamma_etx", 0 ),
-        STVF_RefGamma_ety( this, ::TString( prefix ) + "STVF_RefGamma_ety", 0 ),
-        STVF_RefGamma_sumet( this, ::TString( prefix ) + "STVF_RefGamma_sumet", 0 ),
-        STVF_RefGamma_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefGamma_etx_CentralReg", 0 ),
-        STVF_RefGamma_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefGamma_ety_CentralReg", 0 ),
-        STVF_RefGamma_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefGamma_sumet_CentralReg", 0 ),
-        STVF_RefGamma_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefGamma_phi_CentralReg", 0 ),
-        STVF_RefGamma_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefGamma_etx_EndcapRegion", 0 ),
-        STVF_RefGamma_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefGamma_ety_EndcapRegion", 0 ),
-        STVF_RefGamma_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefGamma_sumet_EndcapRegion", 0 ),
-        STVF_RefGamma_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefGamma_phi_EndcapRegion", 0 ),
-        STVF_RefGamma_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefGamma_etx_ForwardReg", 0 ),
-        STVF_RefGamma_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefGamma_ety_ForwardReg", 0 ),
-        STVF_RefGamma_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefGamma_sumet_ForwardReg", 0 ),
-        STVF_RefGamma_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefGamma_phi_ForwardReg", 0 ),
         RefFinal_etx( this, ::TString( prefix ) + "RefFinal_etx", 0 ),
         RefFinal_ety( this, ::TString( prefix ) + "RefFinal_ety", 0 ),
         RefFinal_sumet( this, ::TString( prefix ) + "RefFinal_sumet", 0 ),
@@ -1074,21 +909,6 @@ is_data(is_data) {
         RefFinal_ety_ForwardReg( this, ::TString( prefix ) + "RefFinal_ety_ForwardReg", 0 ),
         RefFinal_sumet_ForwardReg( this, ::TString( prefix ) + "RefFinal_sumet_ForwardReg", 0 ),
         RefFinal_phi_ForwardReg( this, ::TString( prefix ) + "RefFinal_phi_ForwardReg", 0 ),
-        STVF_RefFinal_etx( this, ::TString( prefix ) + "STVF_RefFinal_etx", 0 ),
-        STVF_RefFinal_ety( this, ::TString( prefix ) + "STVF_RefFinal_ety", 0 ),
-        STVF_RefFinal_sumet( this, ::TString( prefix ) + "STVF_RefFinal_sumet", 0 ),
-        STVF_RefFinal_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefFinal_etx_CentralReg", 0 ),
-        STVF_RefFinal_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefFinal_ety_CentralReg", 0 ),
-        STVF_RefFinal_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefFinal_sumet_CentralReg", 0 ),
-        STVF_RefFinal_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefFinal_phi_CentralReg", 0 ),
-        STVF_RefFinal_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefFinal_etx_EndcapRegion", 0 ),
-        STVF_RefFinal_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefFinal_ety_EndcapRegion", 0 ),
-        STVF_RefFinal_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefFinal_sumet_EndcapRegion", 0 ),
-        STVF_RefFinal_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefFinal_phi_EndcapRegion", 0 ),
-        STVF_RefFinal_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefFinal_etx_ForwardReg", 0 ),
-        STVF_RefFinal_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefFinal_ety_ForwardReg", 0 ),
-        STVF_RefFinal_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefFinal_sumet_ForwardReg", 0 ),
-        STVF_RefFinal_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefFinal_phi_ForwardReg", 0 ),
         RefJet_etx( this, ::TString( prefix ) + "RefJet_etx", 0 ),
         RefJet_ety( this, ::TString( prefix ) + "RefJet_ety", 0 ),
         RefJet_sumet( this, ::TString( prefix ) + "RefJet_sumet", 0 ),
@@ -1104,21 +924,6 @@ is_data(is_data) {
         RefJet_ety_ForwardReg( this, ::TString( prefix ) + "RefJet_ety_ForwardReg", 0 ),
         RefJet_sumet_ForwardReg( this, ::TString( prefix ) + "RefJet_sumet_ForwardReg", 0 ),
         RefJet_phi_ForwardReg( this, ::TString( prefix ) + "RefJet_phi_ForwardReg", 0 ),
-        STVF_RefJet_etx( this, ::TString( prefix ) + "STVF_RefJet_etx", 0 ),
-        STVF_RefJet_ety( this, ::TString( prefix ) + "STVF_RefJet_ety", 0 ),
-        STVF_RefJet_sumet( this, ::TString( prefix ) + "STVF_RefJet_sumet", 0 ),
-        STVF_RefJet_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefJet_etx_CentralReg", 0 ),
-        STVF_RefJet_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefJet_ety_CentralReg", 0 ),
-        STVF_RefJet_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefJet_sumet_CentralReg", 0 ),
-        STVF_RefJet_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefJet_phi_CentralReg", 0 ),
-        STVF_RefJet_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefJet_etx_EndcapRegion", 0 ),
-        STVF_RefJet_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefJet_ety_EndcapRegion", 0 ),
-        STVF_RefJet_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefJet_sumet_EndcapRegion", 0 ),
-        STVF_RefJet_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefJet_phi_EndcapRegion", 0 ),
-        STVF_RefJet_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefJet_etx_ForwardReg", 0 ),
-        STVF_RefJet_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefJet_ety_ForwardReg", 0 ),
-        STVF_RefJet_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefJet_sumet_ForwardReg", 0 ),
-        STVF_RefJet_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefJet_phi_ForwardReg", 0 ),
         RefEle_etx( this, ::TString( prefix ) + "RefEle_etx", 0 ),
         RefEle_ety( this, ::TString( prefix ) + "RefEle_ety", 0 ),
         RefEle_sumet( this, ::TString( prefix ) + "RefEle_sumet", 0 ),
@@ -1134,21 +939,6 @@ is_data(is_data) {
         RefEle_ety_ForwardReg( this, ::TString( prefix ) + "RefEle_ety_ForwardReg", 0 ),
         RefEle_sumet_ForwardReg( this, ::TString( prefix ) + "RefEle_sumet_ForwardReg", 0 ),
         RefEle_phi_ForwardReg( this, ::TString( prefix ) + "RefEle_phi_ForwardReg", 0 ),
-        STVF_RefEle_etx( this, ::TString( prefix ) + "STVF_RefEle_etx", 0 ),
-        STVF_RefEle_ety( this, ::TString( prefix ) + "STVF_RefEle_ety", 0 ),
-        STVF_RefEle_sumet( this, ::TString( prefix ) + "STVF_RefEle_sumet", 0 ),
-        STVF_RefEle_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefEle_etx_CentralReg", 0 ),
-        STVF_RefEle_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefEle_ety_CentralReg", 0 ),
-        STVF_RefEle_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefEle_sumet_CentralReg", 0 ),
-        STVF_RefEle_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefEle_phi_CentralReg", 0 ),
-        STVF_RefEle_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefEle_etx_EndcapRegion", 0 ),
-        STVF_RefEle_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefEle_ety_EndcapRegion", 0 ),
-        STVF_RefEle_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefEle_sumet_EndcapRegion", 0 ),
-        STVF_RefEle_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefEle_phi_EndcapRegion", 0 ),
-        STVF_RefEle_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefEle_etx_ForwardReg", 0 ),
-        STVF_RefEle_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefEle_ety_ForwardReg", 0 ),
-        STVF_RefEle_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefEle_sumet_ForwardReg", 0 ),
-        STVF_RefEle_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefEle_phi_ForwardReg", 0 ),
         Muon_Total_Staco_etx( this, ::TString( prefix ) + "Muon_Total_Staco_etx", 0 ),
         Muon_Total_Staco_ety( this, ::TString( prefix ) + "Muon_Total_Staco_ety", 0 ),
         Muon_Total_Staco_sumet( this, ::TString( prefix ) + "Muon_Total_Staco_sumet", 0 ),
@@ -1164,21 +954,6 @@ is_data(is_data) {
         Muon_Total_Staco_ety_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Staco_ety_ForwardReg", 0 ),
         Muon_Total_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Staco_sumet_ForwardReg", 0 ),
         Muon_Total_Staco_phi_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Staco_phi_ForwardReg", 0 ),
-        STVF_Muon_Total_Staco_etx( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_etx", 0 ),
-        STVF_Muon_Total_Staco_ety( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_ety", 0 ),
-        STVF_Muon_Total_Staco_sumet( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet", 0 ),
-        STVF_Muon_Total_Staco_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_CentralReg", 0 ),
-        STVF_Muon_Total_Staco_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_CentralReg", 0 ),
-        STVF_Muon_Total_Staco_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_CentralReg", 0 ),
-        STVF_Muon_Total_Staco_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_CentralReg", 0 ),
-        STVF_Muon_Total_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_EndcapRegion", 0 ),
-        STVF_Muon_Total_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_EndcapRegion", 0 ),
-        STVF_Muon_Total_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_EndcapRegion", 0 ),
-        STVF_Muon_Total_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_EndcapRegion", 0 ),
-        STVF_Muon_Total_Staco_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_ForwardReg", 0 ),
-        STVF_Muon_Total_Staco_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_ForwardReg", 0 ),
-        STVF_Muon_Total_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_ForwardReg", 0 ),
-        STVF_Muon_Total_Staco_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_ForwardReg", 0 ),
         Muon_Isol_Staco_etx( this, ::TString( prefix ) + "Muon_Isol_Staco_etx", 0 ),
         Muon_Isol_Staco_ety( this, ::TString( prefix ) + "Muon_Isol_Staco_ety", 0 ),
         Muon_Isol_Staco_sumet( this, ::TString( prefix ) + "Muon_Isol_Staco_sumet", 0 ),
@@ -1194,21 +969,6 @@ is_data(is_data) {
         Muon_Isol_Staco_ety_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Staco_ety_ForwardReg", 0 ),
         Muon_Isol_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Staco_sumet_ForwardReg", 0 ),
         Muon_Isol_Staco_phi_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Staco_phi_ForwardReg", 0 ),
-        STVF_Muon_Isol_Staco_etx( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx", 0 ),
-        STVF_Muon_Isol_Staco_ety( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety", 0 ),
-        STVF_Muon_Isol_Staco_sumet( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet", 0 ),
-        STVF_Muon_Isol_Staco_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_CentralReg", 0 ),
-        STVF_Muon_Isol_Staco_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_CentralReg", 0 ),
-        STVF_Muon_Isol_Staco_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_CentralReg", 0 ),
-        STVF_Muon_Isol_Staco_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_CentralReg", 0 ),
-        STVF_Muon_Isol_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_EndcapRegion", 0 ),
-        STVF_Muon_Isol_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_EndcapRegion", 0 ),
-        STVF_Muon_Isol_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_EndcapRegion", 0 ),
-        STVF_Muon_Isol_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_EndcapRegion", 0 ),
-        STVF_Muon_Isol_Staco_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_ForwardReg", 0 ),
-        STVF_Muon_Isol_Staco_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_ForwardReg", 0 ),
-        STVF_Muon_Isol_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_ForwardReg", 0 ),
-        STVF_Muon_Isol_Staco_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_ForwardReg", 0 ),
         Muon_NonIsol_Staco_etx( this, ::TString( prefix ) + "Muon_NonIsol_Staco_etx", 0 ),
         Muon_NonIsol_Staco_ety( this, ::TString( prefix ) + "Muon_NonIsol_Staco_ety", 0 ),
         Muon_NonIsol_Staco_sumet( this, ::TString( prefix ) + "Muon_NonIsol_Staco_sumet", 0 ),
@@ -1224,21 +984,6 @@ is_data(is_data) {
         Muon_NonIsol_Staco_ety_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Staco_ety_ForwardReg", 0 ),
         Muon_NonIsol_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Staco_sumet_ForwardReg", 0 ),
         Muon_NonIsol_Staco_phi_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Staco_phi_ForwardReg", 0 ),
-        STVF_Muon_NonIsol_Staco_etx( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx", 0 ),
-        STVF_Muon_NonIsol_Staco_ety( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety", 0 ),
-        STVF_Muon_NonIsol_Staco_sumet( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet", 0 ),
-        STVF_Muon_NonIsol_Staco_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_CentralReg", 0 ),
-        STVF_Muon_NonIsol_Staco_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_CentralReg", 0 ),
-        STVF_Muon_NonIsol_Staco_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_CentralReg", 0 ),
-        STVF_Muon_NonIsol_Staco_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_CentralReg", 0 ),
-        STVF_Muon_NonIsol_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_EndcapRegion", 0 ),
-        STVF_Muon_NonIsol_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_EndcapRegion", 0 ),
-        STVF_Muon_NonIsol_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_EndcapRegion", 0 ),
-        STVF_Muon_NonIsol_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_EndcapRegion", 0 ),
-        STVF_Muon_NonIsol_Staco_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_ForwardReg", 0 ),
-        STVF_Muon_NonIsol_Staco_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_ForwardReg", 0 ),
-        STVF_Muon_NonIsol_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_ForwardReg", 0 ),
-        STVF_Muon_NonIsol_Staco_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_ForwardReg", 0 ),
         CellOut_etx( this, ::TString( prefix ) + "CellOut_etx", 0 ),
         CellOut_ety( this, ::TString( prefix ) + "CellOut_ety", 0 ),
         CellOut_sumet( this, ::TString( prefix ) + "CellOut_sumet", 0 ),
@@ -1254,21 +999,21 @@ is_data(is_data) {
         CellOut_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_ety_ForwardReg", 0 ),
         CellOut_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_sumet_ForwardReg", 0 ),
         CellOut_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_phi_ForwardReg", 0 ),
-        STVF_CellOut_etx( this, ::TString( prefix ) + "STVF_CellOut_etx", 0 ),
-        STVF_CellOut_ety( this, ::TString( prefix ) + "STVF_CellOut_ety", 0 ),
-        STVF_CellOut_sumet( this, ::TString( prefix ) + "STVF_CellOut_sumet", 0 ),
-        STVF_CellOut_etx_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_etx_CentralReg", 0 ),
-        STVF_CellOut_ety_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_ety_CentralReg", 0 ),
-        STVF_CellOut_sumet_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_sumet_CentralReg", 0 ),
-        STVF_CellOut_phi_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_phi_CentralReg", 0 ),
-        STVF_CellOut_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_etx_EndcapRegion", 0 ),
-        STVF_CellOut_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_ety_EndcapRegion", 0 ),
-        STVF_CellOut_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_sumet_EndcapRegion", 0 ),
-        STVF_CellOut_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_phi_EndcapRegion", 0 ),
-        STVF_CellOut_etx_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_etx_ForwardReg", 0 ),
-        STVF_CellOut_ety_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_ety_ForwardReg", 0 ),
-        STVF_CellOut_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_sumet_ForwardReg", 0 ),
-        STVF_CellOut_phi_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_phi_ForwardReg", 0 ),
+        CellOut_Eflow_etx( this, ::TString( prefix ) + "CellOut_Eflow_etx", 0 ),
+        CellOut_Eflow_ety( this, ::TString( prefix ) + "CellOut_Eflow_ety", 0 ),
+        CellOut_Eflow_sumet( this, ::TString( prefix ) + "CellOut_Eflow_sumet", 0 ),
+        CellOut_Eflow_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_etx_CentralReg", 0 ),
+        CellOut_Eflow_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_ety_CentralReg", 0 ),
+        CellOut_Eflow_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_sumet_CentralReg", 0 ),
+        CellOut_Eflow_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_phi_CentralReg", 0 ),
+        CellOut_Eflow_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_etx_EndcapRegion", 0 ),
+        CellOut_Eflow_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_ety_EndcapRegion", 0 ),
+        CellOut_Eflow_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_sumet_EndcapRegion", 0 ),
+        CellOut_Eflow_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_phi_EndcapRegion", 0 ),
+        CellOut_Eflow_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_etx_ForwardReg", 0 ),
+        CellOut_Eflow_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_ety_ForwardReg", 0 ),
+        CellOut_Eflow_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_sumet_ForwardReg", 0 ),
+        CellOut_Eflow_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_phi_ForwardReg", 0 ),
         Muon_Isol_Muid_etx( this, ::TString( prefix ) + "Muon_Isol_Muid_etx", 0 ),
         Muon_Isol_Muid_ety( this, ::TString( prefix ) + "Muon_Isol_Muid_ety", 0 ),
         Muon_Isol_Muid_sumet( this, ::TString( prefix ) + "Muon_Isol_Muid_sumet", 0 ),
@@ -1284,21 +1029,6 @@ is_data(is_data) {
         Muon_Isol_Muid_ety_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Muid_ety_ForwardReg", 0 ),
         Muon_Isol_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Muid_sumet_ForwardReg", 0 ),
         Muon_Isol_Muid_phi_ForwardReg( this, ::TString( prefix ) + "Muon_Isol_Muid_phi_ForwardReg", 0 ),
-        STVF_Muon_Isol_Muid_etx( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx", 0 ),
-        STVF_Muon_Isol_Muid_ety( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety", 0 ),
-        STVF_Muon_Isol_Muid_sumet( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet", 0 ),
-        STVF_Muon_Isol_Muid_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_CentralReg", 0 ),
-        STVF_Muon_Isol_Muid_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_CentralReg", 0 ),
-        STVF_Muon_Isol_Muid_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_CentralReg", 0 ),
-        STVF_Muon_Isol_Muid_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_CentralReg", 0 ),
-        STVF_Muon_Isol_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_EndcapRegion", 0 ),
-        STVF_Muon_Isol_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_EndcapRegion", 0 ),
-        STVF_Muon_Isol_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_EndcapRegion", 0 ),
-        STVF_Muon_Isol_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_EndcapRegion", 0 ),
-        STVF_Muon_Isol_Muid_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_ForwardReg", 0 ),
-        STVF_Muon_Isol_Muid_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_ForwardReg", 0 ),
-        STVF_Muon_Isol_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_ForwardReg", 0 ),
-        STVF_Muon_Isol_Muid_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_ForwardReg", 0 ),
         Muon_NonIsol_Muid_etx( this, ::TString( prefix ) + "Muon_NonIsol_Muid_etx", 0 ),
         Muon_NonIsol_Muid_ety( this, ::TString( prefix ) + "Muon_NonIsol_Muid_ety", 0 ),
         Muon_NonIsol_Muid_sumet( this, ::TString( prefix ) + "Muon_NonIsol_Muid_sumet", 0 ),
@@ -1314,21 +1044,6 @@ is_data(is_data) {
         Muon_NonIsol_Muid_ety_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Muid_ety_ForwardReg", 0 ),
         Muon_NonIsol_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Muid_sumet_ForwardReg", 0 ),
         Muon_NonIsol_Muid_phi_ForwardReg( this, ::TString( prefix ) + "Muon_NonIsol_Muid_phi_ForwardReg", 0 ),
-        STVF_Muon_NonIsol_Muid_etx( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx", 0 ),
-        STVF_Muon_NonIsol_Muid_ety( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety", 0 ),
-        STVF_Muon_NonIsol_Muid_sumet( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet", 0 ),
-        STVF_Muon_NonIsol_Muid_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_CentralReg", 0 ),
-        STVF_Muon_NonIsol_Muid_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_CentralReg", 0 ),
-        STVF_Muon_NonIsol_Muid_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_CentralReg", 0 ),
-        STVF_Muon_NonIsol_Muid_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_CentralReg", 0 ),
-        STVF_Muon_NonIsol_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_EndcapRegion", 0 ),
-        STVF_Muon_NonIsol_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_EndcapRegion", 0 ),
-        STVF_Muon_NonIsol_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_EndcapRegion", 0 ),
-        STVF_Muon_NonIsol_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_EndcapRegion", 0 ),
-        STVF_Muon_NonIsol_Muid_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_ForwardReg", 0 ),
-        STVF_Muon_NonIsol_Muid_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_ForwardReg", 0 ),
-        STVF_Muon_NonIsol_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_ForwardReg", 0 ),
-        STVF_Muon_NonIsol_Muid_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_ForwardReg", 0 ),
         Muon_Total_Muid_etx( this, ::TString( prefix ) + "Muon_Total_Muid_etx", 0 ),
         Muon_Total_Muid_ety( this, ::TString( prefix ) + "Muon_Total_Muid_ety", 0 ),
         Muon_Total_Muid_sumet( this, ::TString( prefix ) + "Muon_Total_Muid_sumet", 0 ),
@@ -1344,21 +1059,6 @@ is_data(is_data) {
         Muon_Total_Muid_ety_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Muid_ety_ForwardReg", 0 ),
         Muon_Total_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Muid_sumet_ForwardReg", 0 ),
         Muon_Total_Muid_phi_ForwardReg( this, ::TString( prefix ) + "Muon_Total_Muid_phi_ForwardReg", 0 ),
-        STVF_Muon_Total_Muid_etx( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_etx", 0 ),
-        STVF_Muon_Total_Muid_ety( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_ety", 0 ),
-        STVF_Muon_Total_Muid_sumet( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet", 0 ),
-        STVF_Muon_Total_Muid_etx_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_CentralReg", 0 ),
-        STVF_Muon_Total_Muid_ety_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_CentralReg", 0 ),
-        STVF_Muon_Total_Muid_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_CentralReg", 0 ),
-        STVF_Muon_Total_Muid_phi_CentralReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_CentralReg", 0 ),
-        STVF_Muon_Total_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_EndcapRegion", 0 ),
-        STVF_Muon_Total_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_EndcapRegion", 0 ),
-        STVF_Muon_Total_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_EndcapRegion", 0 ),
-        STVF_Muon_Total_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_EndcapRegion", 0 ),
-        STVF_Muon_Total_Muid_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_ForwardReg", 0 ),
-        STVF_Muon_Total_Muid_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_ForwardReg", 0 ),
-        STVF_Muon_Total_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_ForwardReg", 0 ),
-        STVF_Muon_Total_Muid_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_ForwardReg", 0 ),
         Track_etx( this, ::TString( prefix ) + "Track_etx", 0 ),
         Track_ety( this, ::TString( prefix ) + "Track_ety", 0 ),
         Track_sumet( this, ::TString( prefix ) + "Track_sumet", 0 ),
@@ -1374,21 +1074,111 @@ is_data(is_data) {
         Track_ety_ForwardReg( this, ::TString( prefix ) + "Track_ety_ForwardReg", 0 ),
         Track_sumet_ForwardReg( this, ::TString( prefix ) + "Track_sumet_ForwardReg", 0 ),
         Track_phi_ForwardReg( this, ::TString( prefix ) + "Track_phi_ForwardReg", 0 ),
-        STVF_Track_etx( this, ::TString( prefix ) + "STVF_Track_etx", 0 ),
-        STVF_Track_ety( this, ::TString( prefix ) + "STVF_Track_ety", 0 ),
-        STVF_Track_sumet( this, ::TString( prefix ) + "STVF_Track_sumet", 0 ),
-        STVF_Track_etx_CentralReg( this, ::TString( prefix ) + "STVF_Track_etx_CentralReg", 0 ),
-        STVF_Track_ety_CentralReg( this, ::TString( prefix ) + "STVF_Track_ety_CentralReg", 0 ),
-        STVF_Track_sumet_CentralReg( this, ::TString( prefix ) + "STVF_Track_sumet_CentralReg", 0 ),
-        STVF_Track_phi_CentralReg( this, ::TString( prefix ) + "STVF_Track_phi_CentralReg", 0 ),
-        STVF_Track_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_Track_etx_EndcapRegion", 0 ),
-        STVF_Track_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_Track_ety_EndcapRegion", 0 ),
-        STVF_Track_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_Track_sumet_EndcapRegion", 0 ),
-        STVF_Track_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_Track_phi_EndcapRegion", 0 ),
-        STVF_Track_etx_ForwardReg( this, ::TString( prefix ) + "STVF_Track_etx_ForwardReg", 0 ),
-        STVF_Track_ety_ForwardReg( this, ::TString( prefix ) + "STVF_Track_ety_ForwardReg", 0 ),
-        STVF_Track_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_Track_sumet_ForwardReg", 0 ),
-        STVF_Track_phi_ForwardReg( this, ::TString( prefix ) + "STVF_Track_phi_ForwardReg", 0 ),
+        RefFinal_STVF_etx( this, ::TString( prefix ) + "RefFinal_STVF_etx", 0 ),
+        RefFinal_STVF_ety( this, ::TString( prefix ) + "RefFinal_STVF_ety", 0 ),
+        RefFinal_STVF_sumet( this, ::TString( prefix ) + "RefFinal_STVF_sumet", 0 ),
+        RefFinal_STVF_etx_CentralReg( this, ::TString( prefix ) + "RefFinal_STVF_etx_CentralReg", 0 ),
+        RefFinal_STVF_ety_CentralReg( this, ::TString( prefix ) + "RefFinal_STVF_ety_CentralReg", 0 ),
+        RefFinal_STVF_sumet_CentralReg( this, ::TString( prefix ) + "RefFinal_STVF_sumet_CentralReg", 0 ),
+        RefFinal_STVF_phi_CentralReg( this, ::TString( prefix ) + "RefFinal_STVF_phi_CentralReg", 0 ),
+        RefFinal_STVF_etx_EndcapRegion( this, ::TString( prefix ) + "RefFinal_STVF_etx_EndcapRegion", 0 ),
+        RefFinal_STVF_ety_EndcapRegion( this, ::TString( prefix ) + "RefFinal_STVF_ety_EndcapRegion", 0 ),
+        RefFinal_STVF_sumet_EndcapRegion( this, ::TString( prefix ) + "RefFinal_STVF_sumet_EndcapRegion", 0 ),
+        RefFinal_STVF_phi_EndcapRegion( this, ::TString( prefix ) + "RefFinal_STVF_phi_EndcapRegion", 0 ),
+        RefFinal_STVF_etx_ForwardReg( this, ::TString( prefix ) + "RefFinal_STVF_etx_ForwardReg", 0 ),
+        RefFinal_STVF_ety_ForwardReg( this, ::TString( prefix ) + "RefFinal_STVF_ety_ForwardReg", 0 ),
+        RefFinal_STVF_sumet_ForwardReg( this, ::TString( prefix ) + "RefFinal_STVF_sumet_ForwardReg", 0 ),
+        RefFinal_STVF_phi_ForwardReg( this, ::TString( prefix ) + "RefFinal_STVF_phi_ForwardReg", 0 ),
+        CellOut_Eflow_STVF_etx( this, ::TString( prefix ) + "CellOut_Eflow_STVF_etx", 0 ),
+        CellOut_Eflow_STVF_ety( this, ::TString( prefix ) + "CellOut_Eflow_STVF_ety", 0 ),
+        CellOut_Eflow_STVF_sumet( this, ::TString( prefix ) + "CellOut_Eflow_STVF_sumet", 0 ),
+        CellOut_Eflow_STVF_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_etx_CentralReg", 0 ),
+        CellOut_Eflow_STVF_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_ety_CentralReg", 0 ),
+        CellOut_Eflow_STVF_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_CentralReg", 0 ),
+        CellOut_Eflow_STVF_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_phi_CentralReg", 0 ),
+        CellOut_Eflow_STVF_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_STVF_etx_EndcapRegion", 0 ),
+        CellOut_Eflow_STVF_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_STVF_ety_EndcapRegion", 0 ),
+        CellOut_Eflow_STVF_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_EndcapRegion", 0 ),
+        CellOut_Eflow_STVF_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_STVF_phi_EndcapRegion", 0 ),
+        CellOut_Eflow_STVF_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_etx_ForwardReg", 0 ),
+        CellOut_Eflow_STVF_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_ety_ForwardReg", 0 ),
+        CellOut_Eflow_STVF_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_ForwardReg", 0 ),
+        CellOut_Eflow_STVF_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_STVF_phi_ForwardReg", 0 ),
+        CellOut_Eflow_JetArea_etx( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_etx", 0 ),
+        CellOut_Eflow_JetArea_ety( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_ety", 0 ),
+        CellOut_Eflow_JetArea_sumet( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet", 0 ),
+        CellOut_Eflow_JetArea_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_CentralReg", 0 ),
+        CellOut_Eflow_JetArea_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_CentralReg", 0 ),
+        CellOut_Eflow_JetArea_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_CentralReg", 0 ),
+        CellOut_Eflow_JetArea_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_CentralReg", 0 ),
+        CellOut_Eflow_JetArea_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_EndcapRegion", 0 ),
+        CellOut_Eflow_JetArea_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_EndcapRegion", 0 ),
+        CellOut_Eflow_JetArea_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_EndcapRegion", 0 ),
+        CellOut_Eflow_JetArea_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_EndcapRegion", 0 ),
+        CellOut_Eflow_JetArea_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_ForwardReg", 0 ),
+        CellOut_Eflow_JetArea_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_ForwardReg", 0 ),
+        CellOut_Eflow_JetArea_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_ForwardReg", 0 ),
+        CellOut_Eflow_JetArea_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_ForwardReg", 0 ),
+        RefJet_JVF_etx( this, ::TString( prefix ) + "RefJet_JVF_etx", 0 ),
+        RefJet_JVF_ety( this, ::TString( prefix ) + "RefJet_JVF_ety", 0 ),
+        RefJet_JVF_sumet( this, ::TString( prefix ) + "RefJet_JVF_sumet", 0 ),
+        RefJet_JVF_etx_CentralReg( this, ::TString( prefix ) + "RefJet_JVF_etx_CentralReg", 0 ),
+        RefJet_JVF_ety_CentralReg( this, ::TString( prefix ) + "RefJet_JVF_ety_CentralReg", 0 ),
+        RefJet_JVF_sumet_CentralReg( this, ::TString( prefix ) + "RefJet_JVF_sumet_CentralReg", 0 ),
+        RefJet_JVF_phi_CentralReg( this, ::TString( prefix ) + "RefJet_JVF_phi_CentralReg", 0 ),
+        RefJet_JVF_etx_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVF_etx_EndcapRegion", 0 ),
+        RefJet_JVF_ety_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVF_ety_EndcapRegion", 0 ),
+        RefJet_JVF_sumet_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVF_sumet_EndcapRegion", 0 ),
+        RefJet_JVF_phi_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVF_phi_EndcapRegion", 0 ),
+        RefJet_JVF_etx_ForwardReg( this, ::TString( prefix ) + "RefJet_JVF_etx_ForwardReg", 0 ),
+        RefJet_JVF_ety_ForwardReg( this, ::TString( prefix ) + "RefJet_JVF_ety_ForwardReg", 0 ),
+        RefJet_JVF_sumet_ForwardReg( this, ::TString( prefix ) + "RefJet_JVF_sumet_ForwardReg", 0 ),
+        RefJet_JVF_phi_ForwardReg( this, ::TString( prefix ) + "RefJet_JVF_phi_ForwardReg", 0 ),
+        RefJet_JVFCut_etx( this, ::TString( prefix ) + "RefJet_JVFCut_etx", 0 ),
+        RefJet_JVFCut_ety( this, ::TString( prefix ) + "RefJet_JVFCut_ety", 0 ),
+        RefJet_JVFCut_sumet( this, ::TString( prefix ) + "RefJet_JVFCut_sumet", 0 ),
+        RefJet_JVFCut_etx_CentralReg( this, ::TString( prefix ) + "RefJet_JVFCut_etx_CentralReg", 0 ),
+        RefJet_JVFCut_ety_CentralReg( this, ::TString( prefix ) + "RefJet_JVFCut_ety_CentralReg", 0 ),
+        RefJet_JVFCut_sumet_CentralReg( this, ::TString( prefix ) + "RefJet_JVFCut_sumet_CentralReg", 0 ),
+        RefJet_JVFCut_phi_CentralReg( this, ::TString( prefix ) + "RefJet_JVFCut_phi_CentralReg", 0 ),
+        RefJet_JVFCut_etx_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVFCut_etx_EndcapRegion", 0 ),
+        RefJet_JVFCut_ety_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVFCut_ety_EndcapRegion", 0 ),
+        RefJet_JVFCut_sumet_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVFCut_sumet_EndcapRegion", 0 ),
+        RefJet_JVFCut_phi_EndcapRegion( this, ::TString( prefix ) + "RefJet_JVFCut_phi_EndcapRegion", 0 ),
+        RefJet_JVFCut_etx_ForwardReg( this, ::TString( prefix ) + "RefJet_JVFCut_etx_ForwardReg", 0 ),
+        RefJet_JVFCut_ety_ForwardReg( this, ::TString( prefix ) + "RefJet_JVFCut_ety_ForwardReg", 0 ),
+        RefJet_JVFCut_sumet_ForwardReg( this, ::TString( prefix ) + "RefJet_JVFCut_sumet_ForwardReg", 0 ),
+        RefJet_JVFCut_phi_ForwardReg( this, ::TString( prefix ) + "RefJet_JVFCut_phi_ForwardReg", 0 ),
+        CellOut_Eflow_JetAreaJVF_etx( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx", 0 ),
+        CellOut_Eflow_JetAreaJVF_ety( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety", 0 ),
+        CellOut_Eflow_JetAreaJVF_sumet( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet", 0 ),
+        CellOut_Eflow_JetAreaJVF_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_CentralReg", 0 ),
+        CellOut_Eflow_JetAreaJVF_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_CentralReg", 0 ),
+        CellOut_Eflow_JetAreaJVF_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_CentralReg", 0 ),
+        CellOut_Eflow_JetAreaJVF_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_CentralReg", 0 ),
+        CellOut_Eflow_JetAreaJVF_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_EndcapRegion", 0 ),
+        CellOut_Eflow_JetAreaJVF_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_EndcapRegion", 0 ),
+        CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion", 0 ),
+        CellOut_Eflow_JetAreaJVF_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_EndcapRegion", 0 ),
+        CellOut_Eflow_JetAreaJVF_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_ForwardReg", 0 ),
+        CellOut_Eflow_JetAreaJVF_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_ForwardReg", 0 ),
+        CellOut_Eflow_JetAreaJVF_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_ForwardReg", 0 ),
+        CellOut_Eflow_JetAreaJVF_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_ForwardReg", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_etx( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_ety( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_sumet( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg", 0 ),
+        CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg( this, ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg", 0 ),
         SoftJets_etx( this, ::TString( prefix ) + "SoftJets_etx", 0 ),
         SoftJets_ety( this, ::TString( prefix ) + "SoftJets_ety", 0 ),
         SoftJets_sumet( this, ::TString( prefix ) + "SoftJets_sumet", 0 ),
@@ -1404,21 +1194,6 @@ is_data(is_data) {
         SoftJets_ety_ForwardReg( this, ::TString( prefix ) + "SoftJets_ety_ForwardReg", 0 ),
         SoftJets_sumet_ForwardReg( this, ::TString( prefix ) + "SoftJets_sumet_ForwardReg", 0 ),
         SoftJets_phi_ForwardReg( this, ::TString( prefix ) + "SoftJets_phi_ForwardReg", 0 ),
-        STVF_SoftJets_etx( this, ::TString( prefix ) + "STVF_SoftJets_etx", 0 ),
-        STVF_SoftJets_ety( this, ::TString( prefix ) + "STVF_SoftJets_ety", 0 ),
-        STVF_SoftJets_sumet( this, ::TString( prefix ) + "STVF_SoftJets_sumet", 0 ),
-        STVF_SoftJets_etx_CentralReg( this, ::TString( prefix ) + "STVF_SoftJets_etx_CentralReg", 0 ),
-        STVF_SoftJets_ety_CentralReg( this, ::TString( prefix ) + "STVF_SoftJets_ety_CentralReg", 0 ),
-        STVF_SoftJets_sumet_CentralReg( this, ::TString( prefix ) + "STVF_SoftJets_sumet_CentralReg", 0 ),
-        STVF_SoftJets_phi_CentralReg( this, ::TString( prefix ) + "STVF_SoftJets_phi_CentralReg", 0 ),
-        STVF_SoftJets_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_SoftJets_etx_EndcapRegion", 0 ),
-        STVF_SoftJets_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_SoftJets_ety_EndcapRegion", 0 ),
-        STVF_SoftJets_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_SoftJets_sumet_EndcapRegion", 0 ),
-        STVF_SoftJets_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_SoftJets_phi_EndcapRegion", 0 ),
-        STVF_SoftJets_etx_ForwardReg( this, ::TString( prefix ) + "STVF_SoftJets_etx_ForwardReg", 0 ),
-        STVF_SoftJets_ety_ForwardReg( this, ::TString( prefix ) + "STVF_SoftJets_ety_ForwardReg", 0 ),
-        STVF_SoftJets_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_SoftJets_sumet_ForwardReg", 0 ),
-        STVF_SoftJets_phi_ForwardReg( this, ::TString( prefix ) + "STVF_SoftJets_phi_ForwardReg", 0 ),
         RefMuon_etx( this, ::TString( prefix ) + "RefMuon_etx", 0 ),
         RefMuon_ety( this, ::TString( prefix ) + "RefMuon_ety", 0 ),
         RefMuon_sumet( this, ::TString( prefix ) + "RefMuon_sumet", 0 ),
@@ -1434,96 +1209,96 @@ is_data(is_data) {
         RefMuon_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_ety_ForwardReg", 0 ),
         RefMuon_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_sumet_ForwardReg", 0 ),
         RefMuon_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_phi_ForwardReg", 0 ),
-        STVF_RefMuon_etx( this, ::TString( prefix ) + "STVF_RefMuon_etx", 0 ),
-        STVF_RefMuon_ety( this, ::TString( prefix ) + "STVF_RefMuon_ety", 0 ),
-        STVF_RefMuon_sumet( this, ::TString( prefix ) + "STVF_RefMuon_sumet", 0 ),
-        STVF_RefMuon_etx_CentralReg( this, ::TString( prefix ) + "STVF_RefMuon_etx_CentralReg", 0 ),
-        STVF_RefMuon_ety_CentralReg( this, ::TString( prefix ) + "STVF_RefMuon_ety_CentralReg", 0 ),
-        STVF_RefMuon_sumet_CentralReg( this, ::TString( prefix ) + "STVF_RefMuon_sumet_CentralReg", 0 ),
-        STVF_RefMuon_phi_CentralReg( this, ::TString( prefix ) + "STVF_RefMuon_phi_CentralReg", 0 ),
-        STVF_RefMuon_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_RefMuon_etx_EndcapRegion", 0 ),
-        STVF_RefMuon_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_RefMuon_ety_EndcapRegion", 0 ),
-        STVF_RefMuon_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_RefMuon_sumet_EndcapRegion", 0 ),
-        STVF_RefMuon_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_RefMuon_phi_EndcapRegion", 0 ),
-        STVF_RefMuon_etx_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_etx_ForwardReg", 0 ),
-        STVF_RefMuon_ety_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_ety_ForwardReg", 0 ),
-        STVF_RefMuon_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_sumet_ForwardReg", 0 ),
-        STVF_RefMuon_phi_ForwardReg( this, ::TString( prefix ) + "STVF_RefMuon_phi_ForwardReg", 0 ),
-// -- slimmed --         MuonBoy_etx( this, ::TString( prefix ) + "MuonBoy_etx", 0 ),
-// -- slimmed --         MuonBoy_ety( this, ::TString( prefix ) + "MuonBoy_ety", 0 ),
-// -- slimmed --         MuonBoy_sumet( this, ::TString( prefix ) + "MuonBoy_sumet", 0 ),
-// -- slimmed --         MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "MuonBoy_etx_CentralReg", 0 ),
-// -- slimmed --         MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "MuonBoy_ety_CentralReg", 0 ),
-// -- slimmed --         MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "MuonBoy_sumet_CentralReg", 0 ),
-// -- slimmed --         MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "MuonBoy_phi_CentralReg", 0 ),
-// -- slimmed --         MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_etx_EndcapRegion", 0 ),
-// -- slimmed --         MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_ety_EndcapRegion", 0 ),
-// -- slimmed --         MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion", 0 ),
-// -- slimmed --         MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_phi_EndcapRegion", 0 ),
-// -- slimmed --         MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "MuonBoy_etx_ForwardReg", 0 ),
-// -- slimmed --         MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "MuonBoy_ety_ForwardReg", 0 ),
-// -- slimmed --         MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "MuonBoy_sumet_ForwardReg", 0 ),
-// -- slimmed --         MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "MuonBoy_phi_ForwardReg", 0 ),
-// -- slimmed --         STVF_MuonBoy_etx( this, ::TString( prefix ) + "STVF_MuonBoy_etx", 0 ),
-// -- slimmed --         STVF_MuonBoy_ety( this, ::TString( prefix ) + "STVF_MuonBoy_ety", 0 ),
-// -- slimmed --         STVF_MuonBoy_sumet( this, ::TString( prefix ) + "STVF_MuonBoy_sumet", 0 ),
-// -- slimmed --         STVF_MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg", 0 ),
-// -- slimmed --         STVF_MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg", 0 ),
-// -- slimmed --         STVF_MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg", 0 ),
-// -- slimmed --         STVF_MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg", 0 ),
-// -- slimmed --         STVF_MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion", 0 ),
-// -- slimmed --         STVF_MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion", 0 ),
-// -- slimmed --         STVF_MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion", 0 ),
-// -- slimmed --         STVF_MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion", 0 ),
-// -- slimmed --         STVF_MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg", 0 ),
-// -- slimmed --         STVF_MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg", 0 ),
-// -- slimmed --         STVF_MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg", 0 ),
-// -- slimmed --         STVF_MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg", 0 ),
-        STVF_CellOut_Track_etx( this, ::TString( prefix ) + "STVF_CellOut_Track_etx", 0 ),
-        STVF_CellOut_Track_ety( this, ::TString( prefix ) + "STVF_CellOut_Track_ety", 0 ),
-        STVF_CellOut_Track_sumet( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet", 0 ),
-        STVF_CellOut_Track_etx_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_Track_etx_CentralReg", 0 ),
-        STVF_CellOut_Track_ety_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_Track_ety_CentralReg", 0 ),
-        STVF_CellOut_Track_sumet_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet_CentralReg", 0 ),
-        STVF_CellOut_Track_phi_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_Track_phi_CentralReg", 0 ),
-        STVF_CellOut_Track_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_Track_etx_EndcapRegion", 0 ),
-        STVF_CellOut_Track_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_Track_ety_EndcapRegion", 0 ),
-        STVF_CellOut_Track_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet_EndcapRegion", 0 ),
-        STVF_CellOut_Track_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_Track_phi_EndcapRegion", 0 ),
-        STVF_CellOut_Track_etx_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_Track_etx_ForwardReg", 0 ),
-        STVF_CellOut_Track_ety_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_Track_ety_ForwardReg", 0 ),
-        STVF_CellOut_Track_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_Track_sumet_ForwardReg", 0 ),
-        STVF_CellOut_Track_phi_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_Track_phi_ForwardReg", 0 ),
-        STVF_CellOut_TrackPV_etx( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_etx", 0 ),
-        STVF_CellOut_TrackPV_ety( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_ety", 0 ),
-        STVF_CellOut_TrackPV_sumet( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet", 0 ),
-        STVF_CellOut_TrackPV_etx_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_CentralReg", 0 ),
-        STVF_CellOut_TrackPV_ety_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_CentralReg", 0 ),
-        STVF_CellOut_TrackPV_sumet_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_CentralReg", 0 ),
-        STVF_CellOut_TrackPV_phi_CentralReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_CentralReg", 0 ),
-        STVF_CellOut_TrackPV_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_EndcapRegion", 0 ),
-        STVF_CellOut_TrackPV_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_EndcapRegion", 0 ),
-        STVF_CellOut_TrackPV_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_EndcapRegion", 0 ),
-        STVF_CellOut_TrackPV_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_EndcapRegion", 0 ),
-        STVF_CellOut_TrackPV_etx_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_ForwardReg", 0 ),
-        STVF_CellOut_TrackPV_ety_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_ForwardReg", 0 ),
-        STVF_CellOut_TrackPV_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_ForwardReg", 0 ),
-        STVF_CellOut_TrackPV_phi_ForwardReg( this, ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_ForwardReg", 0 ),
-        STVF_CellOutCorr_etx( this, ::TString( prefix ) + "STVF_CellOutCorr_etx", 0 ),
-        STVF_CellOutCorr_ety( this, ::TString( prefix ) + "STVF_CellOutCorr_ety", 0 ),
-        STVF_CellOutCorr_sumet( this, ::TString( prefix ) + "STVF_CellOutCorr_sumet", 0 ),
-        STVF_CellOutCorr_etx_CentralReg( this, ::TString( prefix ) + "STVF_CellOutCorr_etx_CentralReg", 0 ),
-        STVF_CellOutCorr_ety_CentralReg( this, ::TString( prefix ) + "STVF_CellOutCorr_ety_CentralReg", 0 ),
-        STVF_CellOutCorr_sumet_CentralReg( this, ::TString( prefix ) + "STVF_CellOutCorr_sumet_CentralReg", 0 ),
-        STVF_CellOutCorr_phi_CentralReg( this, ::TString( prefix ) + "STVF_CellOutCorr_phi_CentralReg", 0 ),
-        STVF_CellOutCorr_etx_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOutCorr_etx_EndcapRegion", 0 ),
-        STVF_CellOutCorr_ety_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOutCorr_ety_EndcapRegion", 0 ),
-        STVF_CellOutCorr_sumet_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOutCorr_sumet_EndcapRegion", 0 ),
-        STVF_CellOutCorr_phi_EndcapRegion( this, ::TString( prefix ) + "STVF_CellOutCorr_phi_EndcapRegion", 0 ),
-        STVF_CellOutCorr_etx_ForwardReg( this, ::TString( prefix ) + "STVF_CellOutCorr_etx_ForwardReg", 0 ),
-        STVF_CellOutCorr_ety_ForwardReg( this, ::TString( prefix ) + "STVF_CellOutCorr_ety_ForwardReg", 0 ),
-        STVF_CellOutCorr_sumet_ForwardReg( this, ::TString( prefix ) + "STVF_CellOutCorr_sumet_ForwardReg", 0 ),
-        STVF_CellOutCorr_phi_ForwardReg( this, ::TString( prefix ) + "STVF_CellOutCorr_phi_ForwardReg", 0 ),
+        MuonBoy_etx( this, ::TString( prefix ) + "MuonBoy_etx", 0 ),
+        MuonBoy_ety( this, ::TString( prefix ) + "MuonBoy_ety", 0 ),
+        MuonBoy_sumet( this, ::TString( prefix ) + "MuonBoy_sumet", 0 ),
+        MuonBoy_etx_CentralReg( this, ::TString( prefix ) + "MuonBoy_etx_CentralReg", 0 ),
+        MuonBoy_ety_CentralReg( this, ::TString( prefix ) + "MuonBoy_ety_CentralReg", 0 ),
+        MuonBoy_sumet_CentralReg( this, ::TString( prefix ) + "MuonBoy_sumet_CentralReg", 0 ),
+        MuonBoy_phi_CentralReg( this, ::TString( prefix ) + "MuonBoy_phi_CentralReg", 0 ),
+        MuonBoy_etx_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_etx_EndcapRegion", 0 ),
+        MuonBoy_ety_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_ety_EndcapRegion", 0 ),
+        MuonBoy_sumet_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion", 0 ),
+        MuonBoy_phi_EndcapRegion( this, ::TString( prefix ) + "MuonBoy_phi_EndcapRegion", 0 ),
+        MuonBoy_etx_ForwardReg( this, ::TString( prefix ) + "MuonBoy_etx_ForwardReg", 0 ),
+        MuonBoy_ety_ForwardReg( this, ::TString( prefix ) + "MuonBoy_ety_ForwardReg", 0 ),
+        MuonBoy_sumet_ForwardReg( this, ::TString( prefix ) + "MuonBoy_sumet_ForwardReg", 0 ),
+        MuonBoy_phi_ForwardReg( this, ::TString( prefix ) + "MuonBoy_phi_ForwardReg", 0 ),
+        RefMuon_Staco_etx( this, ::TString( prefix ) + "RefMuon_Staco_etx", 0 ),
+        RefMuon_Staco_ety( this, ::TString( prefix ) + "RefMuon_Staco_ety", 0 ),
+        RefMuon_Staco_sumet( this, ::TString( prefix ) + "RefMuon_Staco_sumet", 0 ),
+        RefMuon_Staco_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Staco_etx_CentralReg", 0 ),
+        RefMuon_Staco_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Staco_ety_CentralReg", 0 ),
+        RefMuon_Staco_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Staco_sumet_CentralReg", 0 ),
+        RefMuon_Staco_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Staco_phi_CentralReg", 0 ),
+        RefMuon_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Staco_etx_EndcapRegion", 0 ),
+        RefMuon_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Staco_ety_EndcapRegion", 0 ),
+        RefMuon_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Staco_sumet_EndcapRegion", 0 ),
+        RefMuon_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Staco_phi_EndcapRegion", 0 ),
+        RefMuon_Staco_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Staco_etx_ForwardReg", 0 ),
+        RefMuon_Staco_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Staco_ety_ForwardReg", 0 ),
+        RefMuon_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Staco_sumet_ForwardReg", 0 ),
+        RefMuon_Staco_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Staco_phi_ForwardReg", 0 ),
+        RefMuon_Muid_etx( this, ::TString( prefix ) + "RefMuon_Muid_etx", 0 ),
+        RefMuon_Muid_ety( this, ::TString( prefix ) + "RefMuon_Muid_ety", 0 ),
+        RefMuon_Muid_sumet( this, ::TString( prefix ) + "RefMuon_Muid_sumet", 0 ),
+        RefMuon_Muid_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Muid_etx_CentralReg", 0 ),
+        RefMuon_Muid_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Muid_ety_CentralReg", 0 ),
+        RefMuon_Muid_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Muid_sumet_CentralReg", 0 ),
+        RefMuon_Muid_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Muid_phi_CentralReg", 0 ),
+        RefMuon_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Muid_etx_EndcapRegion", 0 ),
+        RefMuon_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Muid_ety_EndcapRegion", 0 ),
+        RefMuon_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Muid_sumet_EndcapRegion", 0 ),
+        RefMuon_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Muid_phi_EndcapRegion", 0 ),
+        RefMuon_Muid_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Muid_etx_ForwardReg", 0 ),
+        RefMuon_Muid_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Muid_ety_ForwardReg", 0 ),
+        RefMuon_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Muid_sumet_ForwardReg", 0 ),
+        RefMuon_Muid_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Muid_phi_ForwardReg", 0 ),
+        RefMuon_Track_etx( this, ::TString( prefix ) + "RefMuon_Track_etx", 0 ),
+        RefMuon_Track_ety( this, ::TString( prefix ) + "RefMuon_Track_ety", 0 ),
+        RefMuon_Track_sumet( this, ::TString( prefix ) + "RefMuon_Track_sumet", 0 ),
+        RefMuon_Track_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_etx_CentralReg", 0 ),
+        RefMuon_Track_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_ety_CentralReg", 0 ),
+        RefMuon_Track_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_sumet_CentralReg", 0 ),
+        RefMuon_Track_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_phi_CentralReg", 0 ),
+        RefMuon_Track_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_etx_EndcapRegion", 0 ),
+        RefMuon_Track_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_ety_EndcapRegion", 0 ),
+        RefMuon_Track_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_sumet_EndcapRegion", 0 ),
+        RefMuon_Track_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_phi_EndcapRegion", 0 ),
+        RefMuon_Track_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_etx_ForwardReg", 0 ),
+        RefMuon_Track_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_ety_ForwardReg", 0 ),
+        RefMuon_Track_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_sumet_ForwardReg", 0 ),
+        RefMuon_Track_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_phi_ForwardReg", 0 ),
+        RefMuon_Track_Staco_etx( this, ::TString( prefix ) + "RefMuon_Track_Staco_etx", 0 ),
+        RefMuon_Track_Staco_ety( this, ::TString( prefix ) + "RefMuon_Track_Staco_ety", 0 ),
+        RefMuon_Track_Staco_sumet( this, ::TString( prefix ) + "RefMuon_Track_Staco_sumet", 0 ),
+        RefMuon_Track_Staco_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_etx_CentralReg", 0 ),
+        RefMuon_Track_Staco_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_ety_CentralReg", 0 ),
+        RefMuon_Track_Staco_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_sumet_CentralReg", 0 ),
+        RefMuon_Track_Staco_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_phi_CentralReg", 0 ),
+        RefMuon_Track_Staco_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Staco_etx_EndcapRegion", 0 ),
+        RefMuon_Track_Staco_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Staco_ety_EndcapRegion", 0 ),
+        RefMuon_Track_Staco_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Staco_sumet_EndcapRegion", 0 ),
+        RefMuon_Track_Staco_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Staco_phi_EndcapRegion", 0 ),
+        RefMuon_Track_Staco_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_etx_ForwardReg", 0 ),
+        RefMuon_Track_Staco_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_ety_ForwardReg", 0 ),
+        RefMuon_Track_Staco_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_sumet_ForwardReg", 0 ),
+        RefMuon_Track_Staco_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Staco_phi_ForwardReg", 0 ),
+        RefMuon_Track_Muid_etx( this, ::TString( prefix ) + "RefMuon_Track_Muid_etx", 0 ),
+        RefMuon_Track_Muid_ety( this, ::TString( prefix ) + "RefMuon_Track_Muid_ety", 0 ),
+        RefMuon_Track_Muid_sumet( this, ::TString( prefix ) + "RefMuon_Track_Muid_sumet", 0 ),
+        RefMuon_Track_Muid_etx_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_etx_CentralReg", 0 ),
+        RefMuon_Track_Muid_ety_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_ety_CentralReg", 0 ),
+        RefMuon_Track_Muid_sumet_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_sumet_CentralReg", 0 ),
+        RefMuon_Track_Muid_phi_CentralReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_phi_CentralReg", 0 ),
+        RefMuon_Track_Muid_etx_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Muid_etx_EndcapRegion", 0 ),
+        RefMuon_Track_Muid_ety_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Muid_ety_EndcapRegion", 0 ),
+        RefMuon_Track_Muid_sumet_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Muid_sumet_EndcapRegion", 0 ),
+        RefMuon_Track_Muid_phi_EndcapRegion( this, ::TString( prefix ) + "RefMuon_Track_Muid_phi_EndcapRegion", 0 ),
+        RefMuon_Track_Muid_etx_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_etx_ForwardReg", 0 ),
+        RefMuon_Track_Muid_ety_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_ety_ForwardReg", 0 ),
+        RefMuon_Track_Muid_sumet_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_sumet_ForwardReg", 0 ),
+        RefMuon_Track_Muid_phi_ForwardReg( this, ::TString( prefix ) + "RefMuon_Track_Muid_phi_ForwardReg", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) , 
@@ -1544,21 +1319,6 @@ is_data(is_data) {
       fHandles[ "RefGamma_ety_ForwardReg" ] = &RefGamma_ety_ForwardReg;
       fHandles[ "RefGamma_sumet_ForwardReg" ] = &RefGamma_sumet_ForwardReg;
       fHandles[ "RefGamma_phi_ForwardReg" ] = &RefGamma_phi_ForwardReg;
-      fHandles[ "STVF_RefGamma_etx" ] = &STVF_RefGamma_etx;
-      fHandles[ "STVF_RefGamma_ety" ] = &STVF_RefGamma_ety;
-      fHandles[ "STVF_RefGamma_sumet" ] = &STVF_RefGamma_sumet;
-      fHandles[ "STVF_RefGamma_etx_CentralReg" ] = &STVF_RefGamma_etx_CentralReg;
-      fHandles[ "STVF_RefGamma_ety_CentralReg" ] = &STVF_RefGamma_ety_CentralReg;
-      fHandles[ "STVF_RefGamma_sumet_CentralReg" ] = &STVF_RefGamma_sumet_CentralReg;
-      fHandles[ "STVF_RefGamma_phi_CentralReg" ] = &STVF_RefGamma_phi_CentralReg;
-      fHandles[ "STVF_RefGamma_etx_EndcapRegion" ] = &STVF_RefGamma_etx_EndcapRegion;
-      fHandles[ "STVF_RefGamma_ety_EndcapRegion" ] = &STVF_RefGamma_ety_EndcapRegion;
-      fHandles[ "STVF_RefGamma_sumet_EndcapRegion" ] = &STVF_RefGamma_sumet_EndcapRegion;
-      fHandles[ "STVF_RefGamma_phi_EndcapRegion" ] = &STVF_RefGamma_phi_EndcapRegion;
-      fHandles[ "STVF_RefGamma_etx_ForwardReg" ] = &STVF_RefGamma_etx_ForwardReg;
-      fHandles[ "STVF_RefGamma_ety_ForwardReg" ] = &STVF_RefGamma_ety_ForwardReg;
-      fHandles[ "STVF_RefGamma_sumet_ForwardReg" ] = &STVF_RefGamma_sumet_ForwardReg;
-      fHandles[ "STVF_RefGamma_phi_ForwardReg" ] = &STVF_RefGamma_phi_ForwardReg;
       fHandles[ "RefFinal_etx" ] = &RefFinal_etx;
       fHandles[ "RefFinal_ety" ] = &RefFinal_ety;
       fHandles[ "RefFinal_sumet" ] = &RefFinal_sumet;
@@ -1574,21 +1334,6 @@ is_data(is_data) {
       fHandles[ "RefFinal_ety_ForwardReg" ] = &RefFinal_ety_ForwardReg;
       fHandles[ "RefFinal_sumet_ForwardReg" ] = &RefFinal_sumet_ForwardReg;
       fHandles[ "RefFinal_phi_ForwardReg" ] = &RefFinal_phi_ForwardReg;
-      fHandles[ "STVF_RefFinal_etx" ] = &STVF_RefFinal_etx;
-      fHandles[ "STVF_RefFinal_ety" ] = &STVF_RefFinal_ety;
-      fHandles[ "STVF_RefFinal_sumet" ] = &STVF_RefFinal_sumet;
-      fHandles[ "STVF_RefFinal_etx_CentralReg" ] = &STVF_RefFinal_etx_CentralReg;
-      fHandles[ "STVF_RefFinal_ety_CentralReg" ] = &STVF_RefFinal_ety_CentralReg;
-      fHandles[ "STVF_RefFinal_sumet_CentralReg" ] = &STVF_RefFinal_sumet_CentralReg;
-      fHandles[ "STVF_RefFinal_phi_CentralReg" ] = &STVF_RefFinal_phi_CentralReg;
-      fHandles[ "STVF_RefFinal_etx_EndcapRegion" ] = &STVF_RefFinal_etx_EndcapRegion;
-      fHandles[ "STVF_RefFinal_ety_EndcapRegion" ] = &STVF_RefFinal_ety_EndcapRegion;
-      fHandles[ "STVF_RefFinal_sumet_EndcapRegion" ] = &STVF_RefFinal_sumet_EndcapRegion;
-      fHandles[ "STVF_RefFinal_phi_EndcapRegion" ] = &STVF_RefFinal_phi_EndcapRegion;
-      fHandles[ "STVF_RefFinal_etx_ForwardReg" ] = &STVF_RefFinal_etx_ForwardReg;
-      fHandles[ "STVF_RefFinal_ety_ForwardReg" ] = &STVF_RefFinal_ety_ForwardReg;
-      fHandles[ "STVF_RefFinal_sumet_ForwardReg" ] = &STVF_RefFinal_sumet_ForwardReg;
-      fHandles[ "STVF_RefFinal_phi_ForwardReg" ] = &STVF_RefFinal_phi_ForwardReg;
       fHandles[ "RefJet_etx" ] = &RefJet_etx;
       fHandles[ "RefJet_ety" ] = &RefJet_ety;
       fHandles[ "RefJet_sumet" ] = &RefJet_sumet;
@@ -1604,21 +1349,6 @@ is_data(is_data) {
       fHandles[ "RefJet_ety_ForwardReg" ] = &RefJet_ety_ForwardReg;
       fHandles[ "RefJet_sumet_ForwardReg" ] = &RefJet_sumet_ForwardReg;
       fHandles[ "RefJet_phi_ForwardReg" ] = &RefJet_phi_ForwardReg;
-      fHandles[ "STVF_RefJet_etx" ] = &STVF_RefJet_etx;
-      fHandles[ "STVF_RefJet_ety" ] = &STVF_RefJet_ety;
-      fHandles[ "STVF_RefJet_sumet" ] = &STVF_RefJet_sumet;
-      fHandles[ "STVF_RefJet_etx_CentralReg" ] = &STVF_RefJet_etx_CentralReg;
-      fHandles[ "STVF_RefJet_ety_CentralReg" ] = &STVF_RefJet_ety_CentralReg;
-      fHandles[ "STVF_RefJet_sumet_CentralReg" ] = &STVF_RefJet_sumet_CentralReg;
-      fHandles[ "STVF_RefJet_phi_CentralReg" ] = &STVF_RefJet_phi_CentralReg;
-      fHandles[ "STVF_RefJet_etx_EndcapRegion" ] = &STVF_RefJet_etx_EndcapRegion;
-      fHandles[ "STVF_RefJet_ety_EndcapRegion" ] = &STVF_RefJet_ety_EndcapRegion;
-      fHandles[ "STVF_RefJet_sumet_EndcapRegion" ] = &STVF_RefJet_sumet_EndcapRegion;
-      fHandles[ "STVF_RefJet_phi_EndcapRegion" ] = &STVF_RefJet_phi_EndcapRegion;
-      fHandles[ "STVF_RefJet_etx_ForwardReg" ] = &STVF_RefJet_etx_ForwardReg;
-      fHandles[ "STVF_RefJet_ety_ForwardReg" ] = &STVF_RefJet_ety_ForwardReg;
-      fHandles[ "STVF_RefJet_sumet_ForwardReg" ] = &STVF_RefJet_sumet_ForwardReg;
-      fHandles[ "STVF_RefJet_phi_ForwardReg" ] = &STVF_RefJet_phi_ForwardReg;
       fHandles[ "RefEle_etx" ] = &RefEle_etx;
       fHandles[ "RefEle_ety" ] = &RefEle_ety;
       fHandles[ "RefEle_sumet" ] = &RefEle_sumet;
@@ -1634,21 +1364,6 @@ is_data(is_data) {
       fHandles[ "RefEle_ety_ForwardReg" ] = &RefEle_ety_ForwardReg;
       fHandles[ "RefEle_sumet_ForwardReg" ] = &RefEle_sumet_ForwardReg;
       fHandles[ "RefEle_phi_ForwardReg" ] = &RefEle_phi_ForwardReg;
-      fHandles[ "STVF_RefEle_etx" ] = &STVF_RefEle_etx;
-      fHandles[ "STVF_RefEle_ety" ] = &STVF_RefEle_ety;
-      fHandles[ "STVF_RefEle_sumet" ] = &STVF_RefEle_sumet;
-      fHandles[ "STVF_RefEle_etx_CentralReg" ] = &STVF_RefEle_etx_CentralReg;
-      fHandles[ "STVF_RefEle_ety_CentralReg" ] = &STVF_RefEle_ety_CentralReg;
-      fHandles[ "STVF_RefEle_sumet_CentralReg" ] = &STVF_RefEle_sumet_CentralReg;
-      fHandles[ "STVF_RefEle_phi_CentralReg" ] = &STVF_RefEle_phi_CentralReg;
-      fHandles[ "STVF_RefEle_etx_EndcapRegion" ] = &STVF_RefEle_etx_EndcapRegion;
-      fHandles[ "STVF_RefEle_ety_EndcapRegion" ] = &STVF_RefEle_ety_EndcapRegion;
-      fHandles[ "STVF_RefEle_sumet_EndcapRegion" ] = &STVF_RefEle_sumet_EndcapRegion;
-      fHandles[ "STVF_RefEle_phi_EndcapRegion" ] = &STVF_RefEle_phi_EndcapRegion;
-      fHandles[ "STVF_RefEle_etx_ForwardReg" ] = &STVF_RefEle_etx_ForwardReg;
-      fHandles[ "STVF_RefEle_ety_ForwardReg" ] = &STVF_RefEle_ety_ForwardReg;
-      fHandles[ "STVF_RefEle_sumet_ForwardReg" ] = &STVF_RefEle_sumet_ForwardReg;
-      fHandles[ "STVF_RefEle_phi_ForwardReg" ] = &STVF_RefEle_phi_ForwardReg;
       fHandles[ "Muon_Total_Staco_etx" ] = &Muon_Total_Staco_etx;
       fHandles[ "Muon_Total_Staco_ety" ] = &Muon_Total_Staco_ety;
       fHandles[ "Muon_Total_Staco_sumet" ] = &Muon_Total_Staco_sumet;
@@ -1664,21 +1379,6 @@ is_data(is_data) {
       fHandles[ "Muon_Total_Staco_ety_ForwardReg" ] = &Muon_Total_Staco_ety_ForwardReg;
       fHandles[ "Muon_Total_Staco_sumet_ForwardReg" ] = &Muon_Total_Staco_sumet_ForwardReg;
       fHandles[ "Muon_Total_Staco_phi_ForwardReg" ] = &Muon_Total_Staco_phi_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Staco_etx" ] = &STVF_Muon_Total_Staco_etx;
-      fHandles[ "STVF_Muon_Total_Staco_ety" ] = &STVF_Muon_Total_Staco_ety;
-      fHandles[ "STVF_Muon_Total_Staco_sumet" ] = &STVF_Muon_Total_Staco_sumet;
-      fHandles[ "STVF_Muon_Total_Staco_etx_CentralReg" ] = &STVF_Muon_Total_Staco_etx_CentralReg;
-      fHandles[ "STVF_Muon_Total_Staco_ety_CentralReg" ] = &STVF_Muon_Total_Staco_ety_CentralReg;
-      fHandles[ "STVF_Muon_Total_Staco_sumet_CentralReg" ] = &STVF_Muon_Total_Staco_sumet_CentralReg;
-      fHandles[ "STVF_Muon_Total_Staco_phi_CentralReg" ] = &STVF_Muon_Total_Staco_phi_CentralReg;
-      fHandles[ "STVF_Muon_Total_Staco_etx_EndcapRegion" ] = &STVF_Muon_Total_Staco_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Staco_ety_EndcapRegion" ] = &STVF_Muon_Total_Staco_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Staco_sumet_EndcapRegion" ] = &STVF_Muon_Total_Staco_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Staco_phi_EndcapRegion" ] = &STVF_Muon_Total_Staco_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Staco_etx_ForwardReg" ] = &STVF_Muon_Total_Staco_etx_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Staco_ety_ForwardReg" ] = &STVF_Muon_Total_Staco_ety_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Staco_sumet_ForwardReg" ] = &STVF_Muon_Total_Staco_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Staco_phi_ForwardReg" ] = &STVF_Muon_Total_Staco_phi_ForwardReg;
       fHandles[ "Muon_Isol_Staco_etx" ] = &Muon_Isol_Staco_etx;
       fHandles[ "Muon_Isol_Staco_ety" ] = &Muon_Isol_Staco_ety;
       fHandles[ "Muon_Isol_Staco_sumet" ] = &Muon_Isol_Staco_sumet;
@@ -1694,21 +1394,6 @@ is_data(is_data) {
       fHandles[ "Muon_Isol_Staco_ety_ForwardReg" ] = &Muon_Isol_Staco_ety_ForwardReg;
       fHandles[ "Muon_Isol_Staco_sumet_ForwardReg" ] = &Muon_Isol_Staco_sumet_ForwardReg;
       fHandles[ "Muon_Isol_Staco_phi_ForwardReg" ] = &Muon_Isol_Staco_phi_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Staco_etx" ] = &STVF_Muon_Isol_Staco_etx;
-      fHandles[ "STVF_Muon_Isol_Staco_ety" ] = &STVF_Muon_Isol_Staco_ety;
-      fHandles[ "STVF_Muon_Isol_Staco_sumet" ] = &STVF_Muon_Isol_Staco_sumet;
-      fHandles[ "STVF_Muon_Isol_Staco_etx_CentralReg" ] = &STVF_Muon_Isol_Staco_etx_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Staco_ety_CentralReg" ] = &STVF_Muon_Isol_Staco_ety_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Staco_sumet_CentralReg" ] = &STVF_Muon_Isol_Staco_sumet_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Staco_phi_CentralReg" ] = &STVF_Muon_Isol_Staco_phi_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Staco_etx_EndcapRegion" ] = &STVF_Muon_Isol_Staco_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Staco_ety_EndcapRegion" ] = &STVF_Muon_Isol_Staco_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Staco_sumet_EndcapRegion" ] = &STVF_Muon_Isol_Staco_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Staco_phi_EndcapRegion" ] = &STVF_Muon_Isol_Staco_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Staco_etx_ForwardReg" ] = &STVF_Muon_Isol_Staco_etx_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Staco_ety_ForwardReg" ] = &STVF_Muon_Isol_Staco_ety_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Staco_sumet_ForwardReg" ] = &STVF_Muon_Isol_Staco_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Staco_phi_ForwardReg" ] = &STVF_Muon_Isol_Staco_phi_ForwardReg;
       fHandles[ "Muon_NonIsol_Staco_etx" ] = &Muon_NonIsol_Staco_etx;
       fHandles[ "Muon_NonIsol_Staco_ety" ] = &Muon_NonIsol_Staco_ety;
       fHandles[ "Muon_NonIsol_Staco_sumet" ] = &Muon_NonIsol_Staco_sumet;
@@ -1724,21 +1409,6 @@ is_data(is_data) {
       fHandles[ "Muon_NonIsol_Staco_ety_ForwardReg" ] = &Muon_NonIsol_Staco_ety_ForwardReg;
       fHandles[ "Muon_NonIsol_Staco_sumet_ForwardReg" ] = &Muon_NonIsol_Staco_sumet_ForwardReg;
       fHandles[ "Muon_NonIsol_Staco_phi_ForwardReg" ] = &Muon_NonIsol_Staco_phi_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_etx" ] = &STVF_Muon_NonIsol_Staco_etx;
-      fHandles[ "STVF_Muon_NonIsol_Staco_ety" ] = &STVF_Muon_NonIsol_Staco_ety;
-      fHandles[ "STVF_Muon_NonIsol_Staco_sumet" ] = &STVF_Muon_NonIsol_Staco_sumet;
-      fHandles[ "STVF_Muon_NonIsol_Staco_etx_CentralReg" ] = &STVF_Muon_NonIsol_Staco_etx_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_ety_CentralReg" ] = &STVF_Muon_NonIsol_Staco_ety_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_sumet_CentralReg" ] = &STVF_Muon_NonIsol_Staco_sumet_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_phi_CentralReg" ] = &STVF_Muon_NonIsol_Staco_phi_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_etx_EndcapRegion" ] = &STVF_Muon_NonIsol_Staco_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Staco_ety_EndcapRegion" ] = &STVF_Muon_NonIsol_Staco_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Staco_sumet_EndcapRegion" ] = &STVF_Muon_NonIsol_Staco_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Staco_phi_EndcapRegion" ] = &STVF_Muon_NonIsol_Staco_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Staco_etx_ForwardReg" ] = &STVF_Muon_NonIsol_Staco_etx_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_ety_ForwardReg" ] = &STVF_Muon_NonIsol_Staco_ety_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_sumet_ForwardReg" ] = &STVF_Muon_NonIsol_Staco_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Staco_phi_ForwardReg" ] = &STVF_Muon_NonIsol_Staco_phi_ForwardReg;
       fHandles[ "CellOut_etx" ] = &CellOut_etx;
       fHandles[ "CellOut_ety" ] = &CellOut_ety;
       fHandles[ "CellOut_sumet" ] = &CellOut_sumet;
@@ -1754,21 +1424,21 @@ is_data(is_data) {
       fHandles[ "CellOut_ety_ForwardReg" ] = &CellOut_ety_ForwardReg;
       fHandles[ "CellOut_sumet_ForwardReg" ] = &CellOut_sumet_ForwardReg;
       fHandles[ "CellOut_phi_ForwardReg" ] = &CellOut_phi_ForwardReg;
-      fHandles[ "STVF_CellOut_etx" ] = &STVF_CellOut_etx;
-      fHandles[ "STVF_CellOut_ety" ] = &STVF_CellOut_ety;
-      fHandles[ "STVF_CellOut_sumet" ] = &STVF_CellOut_sumet;
-      fHandles[ "STVF_CellOut_etx_CentralReg" ] = &STVF_CellOut_etx_CentralReg;
-      fHandles[ "STVF_CellOut_ety_CentralReg" ] = &STVF_CellOut_ety_CentralReg;
-      fHandles[ "STVF_CellOut_sumet_CentralReg" ] = &STVF_CellOut_sumet_CentralReg;
-      fHandles[ "STVF_CellOut_phi_CentralReg" ] = &STVF_CellOut_phi_CentralReg;
-      fHandles[ "STVF_CellOut_etx_EndcapRegion" ] = &STVF_CellOut_etx_EndcapRegion;
-      fHandles[ "STVF_CellOut_ety_EndcapRegion" ] = &STVF_CellOut_ety_EndcapRegion;
-      fHandles[ "STVF_CellOut_sumet_EndcapRegion" ] = &STVF_CellOut_sumet_EndcapRegion;
-      fHandles[ "STVF_CellOut_phi_EndcapRegion" ] = &STVF_CellOut_phi_EndcapRegion;
-      fHandles[ "STVF_CellOut_etx_ForwardReg" ] = &STVF_CellOut_etx_ForwardReg;
-      fHandles[ "STVF_CellOut_ety_ForwardReg" ] = &STVF_CellOut_ety_ForwardReg;
-      fHandles[ "STVF_CellOut_sumet_ForwardReg" ] = &STVF_CellOut_sumet_ForwardReg;
-      fHandles[ "STVF_CellOut_phi_ForwardReg" ] = &STVF_CellOut_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_etx" ] = &CellOut_Eflow_etx;
+      fHandles[ "CellOut_Eflow_ety" ] = &CellOut_Eflow_ety;
+      fHandles[ "CellOut_Eflow_sumet" ] = &CellOut_Eflow_sumet;
+      fHandles[ "CellOut_Eflow_etx_CentralReg" ] = &CellOut_Eflow_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_ety_CentralReg" ] = &CellOut_Eflow_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_sumet_CentralReg" ] = &CellOut_Eflow_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_phi_CentralReg" ] = &CellOut_Eflow_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_etx_EndcapRegion" ] = &CellOut_Eflow_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_ety_EndcapRegion" ] = &CellOut_Eflow_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_sumet_EndcapRegion" ] = &CellOut_Eflow_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_phi_EndcapRegion" ] = &CellOut_Eflow_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_etx_ForwardReg" ] = &CellOut_Eflow_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_ety_ForwardReg" ] = &CellOut_Eflow_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_sumet_ForwardReg" ] = &CellOut_Eflow_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_phi_ForwardReg" ] = &CellOut_Eflow_phi_ForwardReg;
       fHandles[ "Muon_Isol_Muid_etx" ] = &Muon_Isol_Muid_etx;
       fHandles[ "Muon_Isol_Muid_ety" ] = &Muon_Isol_Muid_ety;
       fHandles[ "Muon_Isol_Muid_sumet" ] = &Muon_Isol_Muid_sumet;
@@ -1784,21 +1454,6 @@ is_data(is_data) {
       fHandles[ "Muon_Isol_Muid_ety_ForwardReg" ] = &Muon_Isol_Muid_ety_ForwardReg;
       fHandles[ "Muon_Isol_Muid_sumet_ForwardReg" ] = &Muon_Isol_Muid_sumet_ForwardReg;
       fHandles[ "Muon_Isol_Muid_phi_ForwardReg" ] = &Muon_Isol_Muid_phi_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Muid_etx" ] = &STVF_Muon_Isol_Muid_etx;
-      fHandles[ "STVF_Muon_Isol_Muid_ety" ] = &STVF_Muon_Isol_Muid_ety;
-      fHandles[ "STVF_Muon_Isol_Muid_sumet" ] = &STVF_Muon_Isol_Muid_sumet;
-      fHandles[ "STVF_Muon_Isol_Muid_etx_CentralReg" ] = &STVF_Muon_Isol_Muid_etx_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Muid_ety_CentralReg" ] = &STVF_Muon_Isol_Muid_ety_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Muid_sumet_CentralReg" ] = &STVF_Muon_Isol_Muid_sumet_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Muid_phi_CentralReg" ] = &STVF_Muon_Isol_Muid_phi_CentralReg;
-      fHandles[ "STVF_Muon_Isol_Muid_etx_EndcapRegion" ] = &STVF_Muon_Isol_Muid_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Muid_ety_EndcapRegion" ] = &STVF_Muon_Isol_Muid_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Muid_sumet_EndcapRegion" ] = &STVF_Muon_Isol_Muid_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Muid_phi_EndcapRegion" ] = &STVF_Muon_Isol_Muid_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_Isol_Muid_etx_ForwardReg" ] = &STVF_Muon_Isol_Muid_etx_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Muid_ety_ForwardReg" ] = &STVF_Muon_Isol_Muid_ety_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Muid_sumet_ForwardReg" ] = &STVF_Muon_Isol_Muid_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_Isol_Muid_phi_ForwardReg" ] = &STVF_Muon_Isol_Muid_phi_ForwardReg;
       fHandles[ "Muon_NonIsol_Muid_etx" ] = &Muon_NonIsol_Muid_etx;
       fHandles[ "Muon_NonIsol_Muid_ety" ] = &Muon_NonIsol_Muid_ety;
       fHandles[ "Muon_NonIsol_Muid_sumet" ] = &Muon_NonIsol_Muid_sumet;
@@ -1814,21 +1469,6 @@ is_data(is_data) {
       fHandles[ "Muon_NonIsol_Muid_ety_ForwardReg" ] = &Muon_NonIsol_Muid_ety_ForwardReg;
       fHandles[ "Muon_NonIsol_Muid_sumet_ForwardReg" ] = &Muon_NonIsol_Muid_sumet_ForwardReg;
       fHandles[ "Muon_NonIsol_Muid_phi_ForwardReg" ] = &Muon_NonIsol_Muid_phi_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_etx" ] = &STVF_Muon_NonIsol_Muid_etx;
-      fHandles[ "STVF_Muon_NonIsol_Muid_ety" ] = &STVF_Muon_NonIsol_Muid_ety;
-      fHandles[ "STVF_Muon_NonIsol_Muid_sumet" ] = &STVF_Muon_NonIsol_Muid_sumet;
-      fHandles[ "STVF_Muon_NonIsol_Muid_etx_CentralReg" ] = &STVF_Muon_NonIsol_Muid_etx_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_ety_CentralReg" ] = &STVF_Muon_NonIsol_Muid_ety_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_sumet_CentralReg" ] = &STVF_Muon_NonIsol_Muid_sumet_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_phi_CentralReg" ] = &STVF_Muon_NonIsol_Muid_phi_CentralReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_etx_EndcapRegion" ] = &STVF_Muon_NonIsol_Muid_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Muid_ety_EndcapRegion" ] = &STVF_Muon_NonIsol_Muid_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Muid_sumet_EndcapRegion" ] = &STVF_Muon_NonIsol_Muid_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Muid_phi_EndcapRegion" ] = &STVF_Muon_NonIsol_Muid_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_NonIsol_Muid_etx_ForwardReg" ] = &STVF_Muon_NonIsol_Muid_etx_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_ety_ForwardReg" ] = &STVF_Muon_NonIsol_Muid_ety_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_sumet_ForwardReg" ] = &STVF_Muon_NonIsol_Muid_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_NonIsol_Muid_phi_ForwardReg" ] = &STVF_Muon_NonIsol_Muid_phi_ForwardReg;
       fHandles[ "Muon_Total_Muid_etx" ] = &Muon_Total_Muid_etx;
       fHandles[ "Muon_Total_Muid_ety" ] = &Muon_Total_Muid_ety;
       fHandles[ "Muon_Total_Muid_sumet" ] = &Muon_Total_Muid_sumet;
@@ -1844,21 +1484,6 @@ is_data(is_data) {
       fHandles[ "Muon_Total_Muid_ety_ForwardReg" ] = &Muon_Total_Muid_ety_ForwardReg;
       fHandles[ "Muon_Total_Muid_sumet_ForwardReg" ] = &Muon_Total_Muid_sumet_ForwardReg;
       fHandles[ "Muon_Total_Muid_phi_ForwardReg" ] = &Muon_Total_Muid_phi_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Muid_etx" ] = &STVF_Muon_Total_Muid_etx;
-      fHandles[ "STVF_Muon_Total_Muid_ety" ] = &STVF_Muon_Total_Muid_ety;
-      fHandles[ "STVF_Muon_Total_Muid_sumet" ] = &STVF_Muon_Total_Muid_sumet;
-      fHandles[ "STVF_Muon_Total_Muid_etx_CentralReg" ] = &STVF_Muon_Total_Muid_etx_CentralReg;
-      fHandles[ "STVF_Muon_Total_Muid_ety_CentralReg" ] = &STVF_Muon_Total_Muid_ety_CentralReg;
-      fHandles[ "STVF_Muon_Total_Muid_sumet_CentralReg" ] = &STVF_Muon_Total_Muid_sumet_CentralReg;
-      fHandles[ "STVF_Muon_Total_Muid_phi_CentralReg" ] = &STVF_Muon_Total_Muid_phi_CentralReg;
-      fHandles[ "STVF_Muon_Total_Muid_etx_EndcapRegion" ] = &STVF_Muon_Total_Muid_etx_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Muid_ety_EndcapRegion" ] = &STVF_Muon_Total_Muid_ety_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Muid_sumet_EndcapRegion" ] = &STVF_Muon_Total_Muid_sumet_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Muid_phi_EndcapRegion" ] = &STVF_Muon_Total_Muid_phi_EndcapRegion;
-      fHandles[ "STVF_Muon_Total_Muid_etx_ForwardReg" ] = &STVF_Muon_Total_Muid_etx_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Muid_ety_ForwardReg" ] = &STVF_Muon_Total_Muid_ety_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Muid_sumet_ForwardReg" ] = &STVF_Muon_Total_Muid_sumet_ForwardReg;
-      fHandles[ "STVF_Muon_Total_Muid_phi_ForwardReg" ] = &STVF_Muon_Total_Muid_phi_ForwardReg;
       fHandles[ "Track_etx" ] = &Track_etx;
       fHandles[ "Track_ety" ] = &Track_ety;
       fHandles[ "Track_sumet" ] = &Track_sumet;
@@ -1874,21 +1499,111 @@ is_data(is_data) {
       fHandles[ "Track_ety_ForwardReg" ] = &Track_ety_ForwardReg;
       fHandles[ "Track_sumet_ForwardReg" ] = &Track_sumet_ForwardReg;
       fHandles[ "Track_phi_ForwardReg" ] = &Track_phi_ForwardReg;
-      fHandles[ "STVF_Track_etx" ] = &STVF_Track_etx;
-      fHandles[ "STVF_Track_ety" ] = &STVF_Track_ety;
-      fHandles[ "STVF_Track_sumet" ] = &STVF_Track_sumet;
-      fHandles[ "STVF_Track_etx_CentralReg" ] = &STVF_Track_etx_CentralReg;
-      fHandles[ "STVF_Track_ety_CentralReg" ] = &STVF_Track_ety_CentralReg;
-      fHandles[ "STVF_Track_sumet_CentralReg" ] = &STVF_Track_sumet_CentralReg;
-      fHandles[ "STVF_Track_phi_CentralReg" ] = &STVF_Track_phi_CentralReg;
-      fHandles[ "STVF_Track_etx_EndcapRegion" ] = &STVF_Track_etx_EndcapRegion;
-      fHandles[ "STVF_Track_ety_EndcapRegion" ] = &STVF_Track_ety_EndcapRegion;
-      fHandles[ "STVF_Track_sumet_EndcapRegion" ] = &STVF_Track_sumet_EndcapRegion;
-      fHandles[ "STVF_Track_phi_EndcapRegion" ] = &STVF_Track_phi_EndcapRegion;
-      fHandles[ "STVF_Track_etx_ForwardReg" ] = &STVF_Track_etx_ForwardReg;
-      fHandles[ "STVF_Track_ety_ForwardReg" ] = &STVF_Track_ety_ForwardReg;
-      fHandles[ "STVF_Track_sumet_ForwardReg" ] = &STVF_Track_sumet_ForwardReg;
-      fHandles[ "STVF_Track_phi_ForwardReg" ] = &STVF_Track_phi_ForwardReg;
+      fHandles[ "RefFinal_STVF_etx" ] = &RefFinal_STVF_etx;
+      fHandles[ "RefFinal_STVF_ety" ] = &RefFinal_STVF_ety;
+      fHandles[ "RefFinal_STVF_sumet" ] = &RefFinal_STVF_sumet;
+      fHandles[ "RefFinal_STVF_etx_CentralReg" ] = &RefFinal_STVF_etx_CentralReg;
+      fHandles[ "RefFinal_STVF_ety_CentralReg" ] = &RefFinal_STVF_ety_CentralReg;
+      fHandles[ "RefFinal_STVF_sumet_CentralReg" ] = &RefFinal_STVF_sumet_CentralReg;
+      fHandles[ "RefFinal_STVF_phi_CentralReg" ] = &RefFinal_STVF_phi_CentralReg;
+      fHandles[ "RefFinal_STVF_etx_EndcapRegion" ] = &RefFinal_STVF_etx_EndcapRegion;
+      fHandles[ "RefFinal_STVF_ety_EndcapRegion" ] = &RefFinal_STVF_ety_EndcapRegion;
+      fHandles[ "RefFinal_STVF_sumet_EndcapRegion" ] = &RefFinal_STVF_sumet_EndcapRegion;
+      fHandles[ "RefFinal_STVF_phi_EndcapRegion" ] = &RefFinal_STVF_phi_EndcapRegion;
+      fHandles[ "RefFinal_STVF_etx_ForwardReg" ] = &RefFinal_STVF_etx_ForwardReg;
+      fHandles[ "RefFinal_STVF_ety_ForwardReg" ] = &RefFinal_STVF_ety_ForwardReg;
+      fHandles[ "RefFinal_STVF_sumet_ForwardReg" ] = &RefFinal_STVF_sumet_ForwardReg;
+      fHandles[ "RefFinal_STVF_phi_ForwardReg" ] = &RefFinal_STVF_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_STVF_etx" ] = &CellOut_Eflow_STVF_etx;
+      fHandles[ "CellOut_Eflow_STVF_ety" ] = &CellOut_Eflow_STVF_ety;
+      fHandles[ "CellOut_Eflow_STVF_sumet" ] = &CellOut_Eflow_STVF_sumet;
+      fHandles[ "CellOut_Eflow_STVF_etx_CentralReg" ] = &CellOut_Eflow_STVF_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_STVF_ety_CentralReg" ] = &CellOut_Eflow_STVF_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_STVF_sumet_CentralReg" ] = &CellOut_Eflow_STVF_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_STVF_phi_CentralReg" ] = &CellOut_Eflow_STVF_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_STVF_etx_EndcapRegion" ] = &CellOut_Eflow_STVF_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_STVF_ety_EndcapRegion" ] = &CellOut_Eflow_STVF_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_STVF_sumet_EndcapRegion" ] = &CellOut_Eflow_STVF_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_STVF_phi_EndcapRegion" ] = &CellOut_Eflow_STVF_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_STVF_etx_ForwardReg" ] = &CellOut_Eflow_STVF_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_STVF_ety_ForwardReg" ] = &CellOut_Eflow_STVF_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_STVF_sumet_ForwardReg" ] = &CellOut_Eflow_STVF_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_STVF_phi_ForwardReg" ] = &CellOut_Eflow_STVF_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetArea_etx" ] = &CellOut_Eflow_JetArea_etx;
+      fHandles[ "CellOut_Eflow_JetArea_ety" ] = &CellOut_Eflow_JetArea_ety;
+      fHandles[ "CellOut_Eflow_JetArea_sumet" ] = &CellOut_Eflow_JetArea_sumet;
+      fHandles[ "CellOut_Eflow_JetArea_etx_CentralReg" ] = &CellOut_Eflow_JetArea_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_JetArea_ety_CentralReg" ] = &CellOut_Eflow_JetArea_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_JetArea_sumet_CentralReg" ] = &CellOut_Eflow_JetArea_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_JetArea_phi_CentralReg" ] = &CellOut_Eflow_JetArea_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_JetArea_etx_EndcapRegion" ] = &CellOut_Eflow_JetArea_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetArea_ety_EndcapRegion" ] = &CellOut_Eflow_JetArea_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetArea_sumet_EndcapRegion" ] = &CellOut_Eflow_JetArea_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetArea_phi_EndcapRegion" ] = &CellOut_Eflow_JetArea_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetArea_etx_ForwardReg" ] = &CellOut_Eflow_JetArea_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetArea_ety_ForwardReg" ] = &CellOut_Eflow_JetArea_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetArea_sumet_ForwardReg" ] = &CellOut_Eflow_JetArea_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetArea_phi_ForwardReg" ] = &CellOut_Eflow_JetArea_phi_ForwardReg;
+      fHandles[ "RefJet_JVF_etx" ] = &RefJet_JVF_etx;
+      fHandles[ "RefJet_JVF_ety" ] = &RefJet_JVF_ety;
+      fHandles[ "RefJet_JVF_sumet" ] = &RefJet_JVF_sumet;
+      fHandles[ "RefJet_JVF_etx_CentralReg" ] = &RefJet_JVF_etx_CentralReg;
+      fHandles[ "RefJet_JVF_ety_CentralReg" ] = &RefJet_JVF_ety_CentralReg;
+      fHandles[ "RefJet_JVF_sumet_CentralReg" ] = &RefJet_JVF_sumet_CentralReg;
+      fHandles[ "RefJet_JVF_phi_CentralReg" ] = &RefJet_JVF_phi_CentralReg;
+      fHandles[ "RefJet_JVF_etx_EndcapRegion" ] = &RefJet_JVF_etx_EndcapRegion;
+      fHandles[ "RefJet_JVF_ety_EndcapRegion" ] = &RefJet_JVF_ety_EndcapRegion;
+      fHandles[ "RefJet_JVF_sumet_EndcapRegion" ] = &RefJet_JVF_sumet_EndcapRegion;
+      fHandles[ "RefJet_JVF_phi_EndcapRegion" ] = &RefJet_JVF_phi_EndcapRegion;
+      fHandles[ "RefJet_JVF_etx_ForwardReg" ] = &RefJet_JVF_etx_ForwardReg;
+      fHandles[ "RefJet_JVF_ety_ForwardReg" ] = &RefJet_JVF_ety_ForwardReg;
+      fHandles[ "RefJet_JVF_sumet_ForwardReg" ] = &RefJet_JVF_sumet_ForwardReg;
+      fHandles[ "RefJet_JVF_phi_ForwardReg" ] = &RefJet_JVF_phi_ForwardReg;
+      fHandles[ "RefJet_JVFCut_etx" ] = &RefJet_JVFCut_etx;
+      fHandles[ "RefJet_JVFCut_ety" ] = &RefJet_JVFCut_ety;
+      fHandles[ "RefJet_JVFCut_sumet" ] = &RefJet_JVFCut_sumet;
+      fHandles[ "RefJet_JVFCut_etx_CentralReg" ] = &RefJet_JVFCut_etx_CentralReg;
+      fHandles[ "RefJet_JVFCut_ety_CentralReg" ] = &RefJet_JVFCut_ety_CentralReg;
+      fHandles[ "RefJet_JVFCut_sumet_CentralReg" ] = &RefJet_JVFCut_sumet_CentralReg;
+      fHandles[ "RefJet_JVFCut_phi_CentralReg" ] = &RefJet_JVFCut_phi_CentralReg;
+      fHandles[ "RefJet_JVFCut_etx_EndcapRegion" ] = &RefJet_JVFCut_etx_EndcapRegion;
+      fHandles[ "RefJet_JVFCut_ety_EndcapRegion" ] = &RefJet_JVFCut_ety_EndcapRegion;
+      fHandles[ "RefJet_JVFCut_sumet_EndcapRegion" ] = &RefJet_JVFCut_sumet_EndcapRegion;
+      fHandles[ "RefJet_JVFCut_phi_EndcapRegion" ] = &RefJet_JVFCut_phi_EndcapRegion;
+      fHandles[ "RefJet_JVFCut_etx_ForwardReg" ] = &RefJet_JVFCut_etx_ForwardReg;
+      fHandles[ "RefJet_JVFCut_ety_ForwardReg" ] = &RefJet_JVFCut_ety_ForwardReg;
+      fHandles[ "RefJet_JVFCut_sumet_ForwardReg" ] = &RefJet_JVFCut_sumet_ForwardReg;
+      fHandles[ "RefJet_JVFCut_phi_ForwardReg" ] = &RefJet_JVFCut_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_etx" ] = &CellOut_Eflow_JetAreaJVF_etx;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_ety" ] = &CellOut_Eflow_JetAreaJVF_ety;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_sumet" ] = &CellOut_Eflow_JetAreaJVF_sumet;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_etx_CentralReg" ] = &CellOut_Eflow_JetAreaJVF_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_ety_CentralReg" ] = &CellOut_Eflow_JetAreaJVF_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_sumet_CentralReg" ] = &CellOut_Eflow_JetAreaJVF_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_phi_CentralReg" ] = &CellOut_Eflow_JetAreaJVF_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_etx_EndcapRegion" ] = &CellOut_Eflow_JetAreaJVF_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_ety_EndcapRegion" ] = &CellOut_Eflow_JetAreaJVF_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion" ] = &CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_phi_EndcapRegion" ] = &CellOut_Eflow_JetAreaJVF_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_etx_ForwardReg" ] = &CellOut_Eflow_JetAreaJVF_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_ety_ForwardReg" ] = &CellOut_Eflow_JetAreaJVF_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_sumet_ForwardReg" ] = &CellOut_Eflow_JetAreaJVF_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaJVF_phi_ForwardReg" ] = &CellOut_Eflow_JetAreaJVF_phi_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_etx" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_etx;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_ety" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_ety;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_sumet" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_sumet;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg;
+      fHandles[ "CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg" ] = &CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg;
       fHandles[ "SoftJets_etx" ] = &SoftJets_etx;
       fHandles[ "SoftJets_ety" ] = &SoftJets_ety;
       fHandles[ "SoftJets_sumet" ] = &SoftJets_sumet;
@@ -1904,21 +1619,6 @@ is_data(is_data) {
       fHandles[ "SoftJets_ety_ForwardReg" ] = &SoftJets_ety_ForwardReg;
       fHandles[ "SoftJets_sumet_ForwardReg" ] = &SoftJets_sumet_ForwardReg;
       fHandles[ "SoftJets_phi_ForwardReg" ] = &SoftJets_phi_ForwardReg;
-      fHandles[ "STVF_SoftJets_etx" ] = &STVF_SoftJets_etx;
-      fHandles[ "STVF_SoftJets_ety" ] = &STVF_SoftJets_ety;
-      fHandles[ "STVF_SoftJets_sumet" ] = &STVF_SoftJets_sumet;
-      fHandles[ "STVF_SoftJets_etx_CentralReg" ] = &STVF_SoftJets_etx_CentralReg;
-      fHandles[ "STVF_SoftJets_ety_CentralReg" ] = &STVF_SoftJets_ety_CentralReg;
-      fHandles[ "STVF_SoftJets_sumet_CentralReg" ] = &STVF_SoftJets_sumet_CentralReg;
-      fHandles[ "STVF_SoftJets_phi_CentralReg" ] = &STVF_SoftJets_phi_CentralReg;
-      fHandles[ "STVF_SoftJets_etx_EndcapRegion" ] = &STVF_SoftJets_etx_EndcapRegion;
-      fHandles[ "STVF_SoftJets_ety_EndcapRegion" ] = &STVF_SoftJets_ety_EndcapRegion;
-      fHandles[ "STVF_SoftJets_sumet_EndcapRegion" ] = &STVF_SoftJets_sumet_EndcapRegion;
-      fHandles[ "STVF_SoftJets_phi_EndcapRegion" ] = &STVF_SoftJets_phi_EndcapRegion;
-      fHandles[ "STVF_SoftJets_etx_ForwardReg" ] = &STVF_SoftJets_etx_ForwardReg;
-      fHandles[ "STVF_SoftJets_ety_ForwardReg" ] = &STVF_SoftJets_ety_ForwardReg;
-      fHandles[ "STVF_SoftJets_sumet_ForwardReg" ] = &STVF_SoftJets_sumet_ForwardReg;
-      fHandles[ "STVF_SoftJets_phi_ForwardReg" ] = &STVF_SoftJets_phi_ForwardReg;
       fHandles[ "RefMuon_etx" ] = &RefMuon_etx;
       fHandles[ "RefMuon_ety" ] = &RefMuon_ety;
       fHandles[ "RefMuon_sumet" ] = &RefMuon_sumet;
@@ -1934,96 +1634,96 @@ is_data(is_data) {
       fHandles[ "RefMuon_ety_ForwardReg" ] = &RefMuon_ety_ForwardReg;
       fHandles[ "RefMuon_sumet_ForwardReg" ] = &RefMuon_sumet_ForwardReg;
       fHandles[ "RefMuon_phi_ForwardReg" ] = &RefMuon_phi_ForwardReg;
-      fHandles[ "STVF_RefMuon_etx" ] = &STVF_RefMuon_etx;
-      fHandles[ "STVF_RefMuon_ety" ] = &STVF_RefMuon_ety;
-      fHandles[ "STVF_RefMuon_sumet" ] = &STVF_RefMuon_sumet;
-      fHandles[ "STVF_RefMuon_etx_CentralReg" ] = &STVF_RefMuon_etx_CentralReg;
-      fHandles[ "STVF_RefMuon_ety_CentralReg" ] = &STVF_RefMuon_ety_CentralReg;
-      fHandles[ "STVF_RefMuon_sumet_CentralReg" ] = &STVF_RefMuon_sumet_CentralReg;
-      fHandles[ "STVF_RefMuon_phi_CentralReg" ] = &STVF_RefMuon_phi_CentralReg;
-      fHandles[ "STVF_RefMuon_etx_EndcapRegion" ] = &STVF_RefMuon_etx_EndcapRegion;
-      fHandles[ "STVF_RefMuon_ety_EndcapRegion" ] = &STVF_RefMuon_ety_EndcapRegion;
-      fHandles[ "STVF_RefMuon_sumet_EndcapRegion" ] = &STVF_RefMuon_sumet_EndcapRegion;
-      fHandles[ "STVF_RefMuon_phi_EndcapRegion" ] = &STVF_RefMuon_phi_EndcapRegion;
-      fHandles[ "STVF_RefMuon_etx_ForwardReg" ] = &STVF_RefMuon_etx_ForwardReg;
-      fHandles[ "STVF_RefMuon_ety_ForwardReg" ] = &STVF_RefMuon_ety_ForwardReg;
-      fHandles[ "STVF_RefMuon_sumet_ForwardReg" ] = &STVF_RefMuon_sumet_ForwardReg;
-      fHandles[ "STVF_RefMuon_phi_ForwardReg" ] = &STVF_RefMuon_phi_ForwardReg;
-// -- slimmed --       fHandles[ "MuonBoy_etx" ] = &MuonBoy_etx;
-// -- slimmed --       fHandles[ "MuonBoy_ety" ] = &MuonBoy_ety;
-// -- slimmed --       fHandles[ "MuonBoy_sumet" ] = &MuonBoy_sumet;
-// -- slimmed --       fHandles[ "MuonBoy_etx_CentralReg" ] = &MuonBoy_etx_CentralReg;
-// -- slimmed --       fHandles[ "MuonBoy_ety_CentralReg" ] = &MuonBoy_ety_CentralReg;
-// -- slimmed --       fHandles[ "MuonBoy_sumet_CentralReg" ] = &MuonBoy_sumet_CentralReg;
-// -- slimmed --       fHandles[ "MuonBoy_phi_CentralReg" ] = &MuonBoy_phi_CentralReg;
-// -- slimmed --       fHandles[ "MuonBoy_etx_EndcapRegion" ] = &MuonBoy_etx_EndcapRegion;
-// -- slimmed --       fHandles[ "MuonBoy_ety_EndcapRegion" ] = &MuonBoy_ety_EndcapRegion;
-// -- slimmed --       fHandles[ "MuonBoy_sumet_EndcapRegion" ] = &MuonBoy_sumet_EndcapRegion;
-// -- slimmed --       fHandles[ "MuonBoy_phi_EndcapRegion" ] = &MuonBoy_phi_EndcapRegion;
-// -- slimmed --       fHandles[ "MuonBoy_etx_ForwardReg" ] = &MuonBoy_etx_ForwardReg;
-// -- slimmed --       fHandles[ "MuonBoy_ety_ForwardReg" ] = &MuonBoy_ety_ForwardReg;
-// -- slimmed --       fHandles[ "MuonBoy_sumet_ForwardReg" ] = &MuonBoy_sumet_ForwardReg;
-// -- slimmed --       fHandles[ "MuonBoy_phi_ForwardReg" ] = &MuonBoy_phi_ForwardReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_etx" ] = &STVF_MuonBoy_etx;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_ety" ] = &STVF_MuonBoy_ety;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet" ] = &STVF_MuonBoy_sumet;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_CentralReg" ] = &STVF_MuonBoy_etx_CentralReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_CentralReg" ] = &STVF_MuonBoy_ety_CentralReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_CentralReg" ] = &STVF_MuonBoy_sumet_CentralReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_CentralReg" ] = &STVF_MuonBoy_phi_CentralReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_EndcapRegion" ] = &STVF_MuonBoy_etx_EndcapRegion;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_EndcapRegion" ] = &STVF_MuonBoy_ety_EndcapRegion;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_EndcapRegion" ] = &STVF_MuonBoy_sumet_EndcapRegion;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_EndcapRegion" ] = &STVF_MuonBoy_phi_EndcapRegion;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_etx_ForwardReg" ] = &STVF_MuonBoy_etx_ForwardReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_ety_ForwardReg" ] = &STVF_MuonBoy_ety_ForwardReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_sumet_ForwardReg" ] = &STVF_MuonBoy_sumet_ForwardReg;
-// -- slimmed --       fHandles[ "STVF_MuonBoy_phi_ForwardReg" ] = &STVF_MuonBoy_phi_ForwardReg;
-      fHandles[ "STVF_CellOut_Track_etx" ] = &STVF_CellOut_Track_etx;
-      fHandles[ "STVF_CellOut_Track_ety" ] = &STVF_CellOut_Track_ety;
-      fHandles[ "STVF_CellOut_Track_sumet" ] = &STVF_CellOut_Track_sumet;
-      fHandles[ "STVF_CellOut_Track_etx_CentralReg" ] = &STVF_CellOut_Track_etx_CentralReg;
-      fHandles[ "STVF_CellOut_Track_ety_CentralReg" ] = &STVF_CellOut_Track_ety_CentralReg;
-      fHandles[ "STVF_CellOut_Track_sumet_CentralReg" ] = &STVF_CellOut_Track_sumet_CentralReg;
-      fHandles[ "STVF_CellOut_Track_phi_CentralReg" ] = &STVF_CellOut_Track_phi_CentralReg;
-      fHandles[ "STVF_CellOut_Track_etx_EndcapRegion" ] = &STVF_CellOut_Track_etx_EndcapRegion;
-      fHandles[ "STVF_CellOut_Track_ety_EndcapRegion" ] = &STVF_CellOut_Track_ety_EndcapRegion;
-      fHandles[ "STVF_CellOut_Track_sumet_EndcapRegion" ] = &STVF_CellOut_Track_sumet_EndcapRegion;
-      fHandles[ "STVF_CellOut_Track_phi_EndcapRegion" ] = &STVF_CellOut_Track_phi_EndcapRegion;
-      fHandles[ "STVF_CellOut_Track_etx_ForwardReg" ] = &STVF_CellOut_Track_etx_ForwardReg;
-      fHandles[ "STVF_CellOut_Track_ety_ForwardReg" ] = &STVF_CellOut_Track_ety_ForwardReg;
-      fHandles[ "STVF_CellOut_Track_sumet_ForwardReg" ] = &STVF_CellOut_Track_sumet_ForwardReg;
-      fHandles[ "STVF_CellOut_Track_phi_ForwardReg" ] = &STVF_CellOut_Track_phi_ForwardReg;
-      fHandles[ "STVF_CellOut_TrackPV_etx" ] = &STVF_CellOut_TrackPV_etx;
-      fHandles[ "STVF_CellOut_TrackPV_ety" ] = &STVF_CellOut_TrackPV_ety;
-      fHandles[ "STVF_CellOut_TrackPV_sumet" ] = &STVF_CellOut_TrackPV_sumet;
-      fHandles[ "STVF_CellOut_TrackPV_etx_CentralReg" ] = &STVF_CellOut_TrackPV_etx_CentralReg;
-      fHandles[ "STVF_CellOut_TrackPV_ety_CentralReg" ] = &STVF_CellOut_TrackPV_ety_CentralReg;
-      fHandles[ "STVF_CellOut_TrackPV_sumet_CentralReg" ] = &STVF_CellOut_TrackPV_sumet_CentralReg;
-      fHandles[ "STVF_CellOut_TrackPV_phi_CentralReg" ] = &STVF_CellOut_TrackPV_phi_CentralReg;
-      fHandles[ "STVF_CellOut_TrackPV_etx_EndcapRegion" ] = &STVF_CellOut_TrackPV_etx_EndcapRegion;
-      fHandles[ "STVF_CellOut_TrackPV_ety_EndcapRegion" ] = &STVF_CellOut_TrackPV_ety_EndcapRegion;
-      fHandles[ "STVF_CellOut_TrackPV_sumet_EndcapRegion" ] = &STVF_CellOut_TrackPV_sumet_EndcapRegion;
-      fHandles[ "STVF_CellOut_TrackPV_phi_EndcapRegion" ] = &STVF_CellOut_TrackPV_phi_EndcapRegion;
-      fHandles[ "STVF_CellOut_TrackPV_etx_ForwardReg" ] = &STVF_CellOut_TrackPV_etx_ForwardReg;
-      fHandles[ "STVF_CellOut_TrackPV_ety_ForwardReg" ] = &STVF_CellOut_TrackPV_ety_ForwardReg;
-      fHandles[ "STVF_CellOut_TrackPV_sumet_ForwardReg" ] = &STVF_CellOut_TrackPV_sumet_ForwardReg;
-      fHandles[ "STVF_CellOut_TrackPV_phi_ForwardReg" ] = &STVF_CellOut_TrackPV_phi_ForwardReg;
-      fHandles[ "STVF_CellOutCorr_etx" ] = &STVF_CellOutCorr_etx;
-      fHandles[ "STVF_CellOutCorr_ety" ] = &STVF_CellOutCorr_ety;
-      fHandles[ "STVF_CellOutCorr_sumet" ] = &STVF_CellOutCorr_sumet;
-      fHandles[ "STVF_CellOutCorr_etx_CentralReg" ] = &STVF_CellOutCorr_etx_CentralReg;
-      fHandles[ "STVF_CellOutCorr_ety_CentralReg" ] = &STVF_CellOutCorr_ety_CentralReg;
-      fHandles[ "STVF_CellOutCorr_sumet_CentralReg" ] = &STVF_CellOutCorr_sumet_CentralReg;
-      fHandles[ "STVF_CellOutCorr_phi_CentralReg" ] = &STVF_CellOutCorr_phi_CentralReg;
-      fHandles[ "STVF_CellOutCorr_etx_EndcapRegion" ] = &STVF_CellOutCorr_etx_EndcapRegion;
-      fHandles[ "STVF_CellOutCorr_ety_EndcapRegion" ] = &STVF_CellOutCorr_ety_EndcapRegion;
-      fHandles[ "STVF_CellOutCorr_sumet_EndcapRegion" ] = &STVF_CellOutCorr_sumet_EndcapRegion;
-      fHandles[ "STVF_CellOutCorr_phi_EndcapRegion" ] = &STVF_CellOutCorr_phi_EndcapRegion;
-      fHandles[ "STVF_CellOutCorr_etx_ForwardReg" ] = &STVF_CellOutCorr_etx_ForwardReg;
-      fHandles[ "STVF_CellOutCorr_ety_ForwardReg" ] = &STVF_CellOutCorr_ety_ForwardReg;
-      fHandles[ "STVF_CellOutCorr_sumet_ForwardReg" ] = &STVF_CellOutCorr_sumet_ForwardReg;
-      fHandles[ "STVF_CellOutCorr_phi_ForwardReg" ] = &STVF_CellOutCorr_phi_ForwardReg;
+      fHandles[ "MuonBoy_etx" ] = &MuonBoy_etx;
+      fHandles[ "MuonBoy_ety" ] = &MuonBoy_ety;
+      fHandles[ "MuonBoy_sumet" ] = &MuonBoy_sumet;
+      fHandles[ "MuonBoy_etx_CentralReg" ] = &MuonBoy_etx_CentralReg;
+      fHandles[ "MuonBoy_ety_CentralReg" ] = &MuonBoy_ety_CentralReg;
+      fHandles[ "MuonBoy_sumet_CentralReg" ] = &MuonBoy_sumet_CentralReg;
+      fHandles[ "MuonBoy_phi_CentralReg" ] = &MuonBoy_phi_CentralReg;
+      fHandles[ "MuonBoy_etx_EndcapRegion" ] = &MuonBoy_etx_EndcapRegion;
+      fHandles[ "MuonBoy_ety_EndcapRegion" ] = &MuonBoy_ety_EndcapRegion;
+      fHandles[ "MuonBoy_sumet_EndcapRegion" ] = &MuonBoy_sumet_EndcapRegion;
+      fHandles[ "MuonBoy_phi_EndcapRegion" ] = &MuonBoy_phi_EndcapRegion;
+      fHandles[ "MuonBoy_etx_ForwardReg" ] = &MuonBoy_etx_ForwardReg;
+      fHandles[ "MuonBoy_ety_ForwardReg" ] = &MuonBoy_ety_ForwardReg;
+      fHandles[ "MuonBoy_sumet_ForwardReg" ] = &MuonBoy_sumet_ForwardReg;
+      fHandles[ "MuonBoy_phi_ForwardReg" ] = &MuonBoy_phi_ForwardReg;
+      fHandles[ "RefMuon_Staco_etx" ] = &RefMuon_Staco_etx;
+      fHandles[ "RefMuon_Staco_ety" ] = &RefMuon_Staco_ety;
+      fHandles[ "RefMuon_Staco_sumet" ] = &RefMuon_Staco_sumet;
+      fHandles[ "RefMuon_Staco_etx_CentralReg" ] = &RefMuon_Staco_etx_CentralReg;
+      fHandles[ "RefMuon_Staco_ety_CentralReg" ] = &RefMuon_Staco_ety_CentralReg;
+      fHandles[ "RefMuon_Staco_sumet_CentralReg" ] = &RefMuon_Staco_sumet_CentralReg;
+      fHandles[ "RefMuon_Staco_phi_CentralReg" ] = &RefMuon_Staco_phi_CentralReg;
+      fHandles[ "RefMuon_Staco_etx_EndcapRegion" ] = &RefMuon_Staco_etx_EndcapRegion;
+      fHandles[ "RefMuon_Staco_ety_EndcapRegion" ] = &RefMuon_Staco_ety_EndcapRegion;
+      fHandles[ "RefMuon_Staco_sumet_EndcapRegion" ] = &RefMuon_Staco_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Staco_phi_EndcapRegion" ] = &RefMuon_Staco_phi_EndcapRegion;
+      fHandles[ "RefMuon_Staco_etx_ForwardReg" ] = &RefMuon_Staco_etx_ForwardReg;
+      fHandles[ "RefMuon_Staco_ety_ForwardReg" ] = &RefMuon_Staco_ety_ForwardReg;
+      fHandles[ "RefMuon_Staco_sumet_ForwardReg" ] = &RefMuon_Staco_sumet_ForwardReg;
+      fHandles[ "RefMuon_Staco_phi_ForwardReg" ] = &RefMuon_Staco_phi_ForwardReg;
+      fHandles[ "RefMuon_Muid_etx" ] = &RefMuon_Muid_etx;
+      fHandles[ "RefMuon_Muid_ety" ] = &RefMuon_Muid_ety;
+      fHandles[ "RefMuon_Muid_sumet" ] = &RefMuon_Muid_sumet;
+      fHandles[ "RefMuon_Muid_etx_CentralReg" ] = &RefMuon_Muid_etx_CentralReg;
+      fHandles[ "RefMuon_Muid_ety_CentralReg" ] = &RefMuon_Muid_ety_CentralReg;
+      fHandles[ "RefMuon_Muid_sumet_CentralReg" ] = &RefMuon_Muid_sumet_CentralReg;
+      fHandles[ "RefMuon_Muid_phi_CentralReg" ] = &RefMuon_Muid_phi_CentralReg;
+      fHandles[ "RefMuon_Muid_etx_EndcapRegion" ] = &RefMuon_Muid_etx_EndcapRegion;
+      fHandles[ "RefMuon_Muid_ety_EndcapRegion" ] = &RefMuon_Muid_ety_EndcapRegion;
+      fHandles[ "RefMuon_Muid_sumet_EndcapRegion" ] = &RefMuon_Muid_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Muid_phi_EndcapRegion" ] = &RefMuon_Muid_phi_EndcapRegion;
+      fHandles[ "RefMuon_Muid_etx_ForwardReg" ] = &RefMuon_Muid_etx_ForwardReg;
+      fHandles[ "RefMuon_Muid_ety_ForwardReg" ] = &RefMuon_Muid_ety_ForwardReg;
+      fHandles[ "RefMuon_Muid_sumet_ForwardReg" ] = &RefMuon_Muid_sumet_ForwardReg;
+      fHandles[ "RefMuon_Muid_phi_ForwardReg" ] = &RefMuon_Muid_phi_ForwardReg;
+      fHandles[ "RefMuon_Track_etx" ] = &RefMuon_Track_etx;
+      fHandles[ "RefMuon_Track_ety" ] = &RefMuon_Track_ety;
+      fHandles[ "RefMuon_Track_sumet" ] = &RefMuon_Track_sumet;
+      fHandles[ "RefMuon_Track_etx_CentralReg" ] = &RefMuon_Track_etx_CentralReg;
+      fHandles[ "RefMuon_Track_ety_CentralReg" ] = &RefMuon_Track_ety_CentralReg;
+      fHandles[ "RefMuon_Track_sumet_CentralReg" ] = &RefMuon_Track_sumet_CentralReg;
+      fHandles[ "RefMuon_Track_phi_CentralReg" ] = &RefMuon_Track_phi_CentralReg;
+      fHandles[ "RefMuon_Track_etx_EndcapRegion" ] = &RefMuon_Track_etx_EndcapRegion;
+      fHandles[ "RefMuon_Track_ety_EndcapRegion" ] = &RefMuon_Track_ety_EndcapRegion;
+      fHandles[ "RefMuon_Track_sumet_EndcapRegion" ] = &RefMuon_Track_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Track_phi_EndcapRegion" ] = &RefMuon_Track_phi_EndcapRegion;
+      fHandles[ "RefMuon_Track_etx_ForwardReg" ] = &RefMuon_Track_etx_ForwardReg;
+      fHandles[ "RefMuon_Track_ety_ForwardReg" ] = &RefMuon_Track_ety_ForwardReg;
+      fHandles[ "RefMuon_Track_sumet_ForwardReg" ] = &RefMuon_Track_sumet_ForwardReg;
+      fHandles[ "RefMuon_Track_phi_ForwardReg" ] = &RefMuon_Track_phi_ForwardReg;
+      fHandles[ "RefMuon_Track_Staco_etx" ] = &RefMuon_Track_Staco_etx;
+      fHandles[ "RefMuon_Track_Staco_ety" ] = &RefMuon_Track_Staco_ety;
+      fHandles[ "RefMuon_Track_Staco_sumet" ] = &RefMuon_Track_Staco_sumet;
+      fHandles[ "RefMuon_Track_Staco_etx_CentralReg" ] = &RefMuon_Track_Staco_etx_CentralReg;
+      fHandles[ "RefMuon_Track_Staco_ety_CentralReg" ] = &RefMuon_Track_Staco_ety_CentralReg;
+      fHandles[ "RefMuon_Track_Staco_sumet_CentralReg" ] = &RefMuon_Track_Staco_sumet_CentralReg;
+      fHandles[ "RefMuon_Track_Staco_phi_CentralReg" ] = &RefMuon_Track_Staco_phi_CentralReg;
+      fHandles[ "RefMuon_Track_Staco_etx_EndcapRegion" ] = &RefMuon_Track_Staco_etx_EndcapRegion;
+      fHandles[ "RefMuon_Track_Staco_ety_EndcapRegion" ] = &RefMuon_Track_Staco_ety_EndcapRegion;
+      fHandles[ "RefMuon_Track_Staco_sumet_EndcapRegion" ] = &RefMuon_Track_Staco_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Track_Staco_phi_EndcapRegion" ] = &RefMuon_Track_Staco_phi_EndcapRegion;
+      fHandles[ "RefMuon_Track_Staco_etx_ForwardReg" ] = &RefMuon_Track_Staco_etx_ForwardReg;
+      fHandles[ "RefMuon_Track_Staco_ety_ForwardReg" ] = &RefMuon_Track_Staco_ety_ForwardReg;
+      fHandles[ "RefMuon_Track_Staco_sumet_ForwardReg" ] = &RefMuon_Track_Staco_sumet_ForwardReg;
+      fHandles[ "RefMuon_Track_Staco_phi_ForwardReg" ] = &RefMuon_Track_Staco_phi_ForwardReg;
+      fHandles[ "RefMuon_Track_Muid_etx" ] = &RefMuon_Track_Muid_etx;
+      fHandles[ "RefMuon_Track_Muid_ety" ] = &RefMuon_Track_Muid_ety;
+      fHandles[ "RefMuon_Track_Muid_sumet" ] = &RefMuon_Track_Muid_sumet;
+      fHandles[ "RefMuon_Track_Muid_etx_CentralReg" ] = &RefMuon_Track_Muid_etx_CentralReg;
+      fHandles[ "RefMuon_Track_Muid_ety_CentralReg" ] = &RefMuon_Track_Muid_ety_CentralReg;
+      fHandles[ "RefMuon_Track_Muid_sumet_CentralReg" ] = &RefMuon_Track_Muid_sumet_CentralReg;
+      fHandles[ "RefMuon_Track_Muid_phi_CentralReg" ] = &RefMuon_Track_Muid_phi_CentralReg;
+      fHandles[ "RefMuon_Track_Muid_etx_EndcapRegion" ] = &RefMuon_Track_Muid_etx_EndcapRegion;
+      fHandles[ "RefMuon_Track_Muid_ety_EndcapRegion" ] = &RefMuon_Track_Muid_ety_EndcapRegion;
+      fHandles[ "RefMuon_Track_Muid_sumet_EndcapRegion" ] = &RefMuon_Track_Muid_sumet_EndcapRegion;
+      fHandles[ "RefMuon_Track_Muid_phi_EndcapRegion" ] = &RefMuon_Track_Muid_phi_EndcapRegion;
+      fHandles[ "RefMuon_Track_Muid_etx_ForwardReg" ] = &RefMuon_Track_Muid_etx_ForwardReg;
+      fHandles[ "RefMuon_Track_Muid_ety_ForwardReg" ] = &RefMuon_Track_Muid_ety_ForwardReg;
+      fHandles[ "RefMuon_Track_Muid_sumet_ForwardReg" ] = &RefMuon_Track_Muid_sumet_ForwardReg;
+      fHandles[ "RefMuon_Track_Muid_phi_ForwardReg" ] = &RefMuon_Track_Muid_phi_ForwardReg;
    }
 
    /**
@@ -2054,21 +1754,6 @@ is_data(is_data) {
       RefGamma_ety_ForwardReg.SetName( ::TString( prefix ) + "RefGamma_ety_ForwardReg" );
       RefGamma_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefGamma_sumet_ForwardReg" );
       RefGamma_phi_ForwardReg.SetName( ::TString( prefix ) + "RefGamma_phi_ForwardReg" );
-      STVF_RefGamma_etx.SetName( ::TString( prefix ) + "STVF_RefGamma_etx" );
-      STVF_RefGamma_ety.SetName( ::TString( prefix ) + "STVF_RefGamma_ety" );
-      STVF_RefGamma_sumet.SetName( ::TString( prefix ) + "STVF_RefGamma_sumet" );
-      STVF_RefGamma_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_RefGamma_etx_CentralReg" );
-      STVF_RefGamma_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_RefGamma_ety_CentralReg" );
-      STVF_RefGamma_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_RefGamma_sumet_CentralReg" );
-      STVF_RefGamma_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_RefGamma_phi_CentralReg" );
-      STVF_RefGamma_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefGamma_etx_EndcapRegion" );
-      STVF_RefGamma_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefGamma_ety_EndcapRegion" );
-      STVF_RefGamma_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefGamma_sumet_EndcapRegion" );
-      STVF_RefGamma_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefGamma_phi_EndcapRegion" );
-      STVF_RefGamma_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefGamma_etx_ForwardReg" );
-      STVF_RefGamma_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefGamma_ety_ForwardReg" );
-      STVF_RefGamma_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefGamma_sumet_ForwardReg" );
-      STVF_RefGamma_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefGamma_phi_ForwardReg" );
       RefFinal_etx.SetName( ::TString( prefix ) + "RefFinal_etx" );
       RefFinal_ety.SetName( ::TString( prefix ) + "RefFinal_ety" );
       RefFinal_sumet.SetName( ::TString( prefix ) + "RefFinal_sumet" );
@@ -2084,21 +1769,6 @@ is_data(is_data) {
       RefFinal_ety_ForwardReg.SetName( ::TString( prefix ) + "RefFinal_ety_ForwardReg" );
       RefFinal_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefFinal_sumet_ForwardReg" );
       RefFinal_phi_ForwardReg.SetName( ::TString( prefix ) + "RefFinal_phi_ForwardReg" );
-      STVF_RefFinal_etx.SetName( ::TString( prefix ) + "STVF_RefFinal_etx" );
-      STVF_RefFinal_ety.SetName( ::TString( prefix ) + "STVF_RefFinal_ety" );
-      STVF_RefFinal_sumet.SetName( ::TString( prefix ) + "STVF_RefFinal_sumet" );
-      STVF_RefFinal_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_RefFinal_etx_CentralReg" );
-      STVF_RefFinal_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_RefFinal_ety_CentralReg" );
-      STVF_RefFinal_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_RefFinal_sumet_CentralReg" );
-      STVF_RefFinal_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_RefFinal_phi_CentralReg" );
-      STVF_RefFinal_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefFinal_etx_EndcapRegion" );
-      STVF_RefFinal_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefFinal_ety_EndcapRegion" );
-      STVF_RefFinal_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefFinal_sumet_EndcapRegion" );
-      STVF_RefFinal_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefFinal_phi_EndcapRegion" );
-      STVF_RefFinal_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefFinal_etx_ForwardReg" );
-      STVF_RefFinal_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefFinal_ety_ForwardReg" );
-      STVF_RefFinal_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefFinal_sumet_ForwardReg" );
-      STVF_RefFinal_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefFinal_phi_ForwardReg" );
       RefJet_etx.SetName( ::TString( prefix ) + "RefJet_etx" );
       RefJet_ety.SetName( ::TString( prefix ) + "RefJet_ety" );
       RefJet_sumet.SetName( ::TString( prefix ) + "RefJet_sumet" );
@@ -2114,21 +1784,6 @@ is_data(is_data) {
       RefJet_ety_ForwardReg.SetName( ::TString( prefix ) + "RefJet_ety_ForwardReg" );
       RefJet_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefJet_sumet_ForwardReg" );
       RefJet_phi_ForwardReg.SetName( ::TString( prefix ) + "RefJet_phi_ForwardReg" );
-      STVF_RefJet_etx.SetName( ::TString( prefix ) + "STVF_RefJet_etx" );
-      STVF_RefJet_ety.SetName( ::TString( prefix ) + "STVF_RefJet_ety" );
-      STVF_RefJet_sumet.SetName( ::TString( prefix ) + "STVF_RefJet_sumet" );
-      STVF_RefJet_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_RefJet_etx_CentralReg" );
-      STVF_RefJet_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_RefJet_ety_CentralReg" );
-      STVF_RefJet_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_RefJet_sumet_CentralReg" );
-      STVF_RefJet_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_RefJet_phi_CentralReg" );
-      STVF_RefJet_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefJet_etx_EndcapRegion" );
-      STVF_RefJet_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefJet_ety_EndcapRegion" );
-      STVF_RefJet_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefJet_sumet_EndcapRegion" );
-      STVF_RefJet_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefJet_phi_EndcapRegion" );
-      STVF_RefJet_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefJet_etx_ForwardReg" );
-      STVF_RefJet_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefJet_ety_ForwardReg" );
-      STVF_RefJet_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefJet_sumet_ForwardReg" );
-      STVF_RefJet_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefJet_phi_ForwardReg" );
       RefEle_etx.SetName( ::TString( prefix ) + "RefEle_etx" );
       RefEle_ety.SetName( ::TString( prefix ) + "RefEle_ety" );
       RefEle_sumet.SetName( ::TString( prefix ) + "RefEle_sumet" );
@@ -2144,21 +1799,6 @@ is_data(is_data) {
       RefEle_ety_ForwardReg.SetName( ::TString( prefix ) + "RefEle_ety_ForwardReg" );
       RefEle_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefEle_sumet_ForwardReg" );
       RefEle_phi_ForwardReg.SetName( ::TString( prefix ) + "RefEle_phi_ForwardReg" );
-      STVF_RefEle_etx.SetName( ::TString( prefix ) + "STVF_RefEle_etx" );
-      STVF_RefEle_ety.SetName( ::TString( prefix ) + "STVF_RefEle_ety" );
-      STVF_RefEle_sumet.SetName( ::TString( prefix ) + "STVF_RefEle_sumet" );
-      STVF_RefEle_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_RefEle_etx_CentralReg" );
-      STVF_RefEle_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_RefEle_ety_CentralReg" );
-      STVF_RefEle_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_RefEle_sumet_CentralReg" );
-      STVF_RefEle_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_RefEle_phi_CentralReg" );
-      STVF_RefEle_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefEle_etx_EndcapRegion" );
-      STVF_RefEle_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefEle_ety_EndcapRegion" );
-      STVF_RefEle_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefEle_sumet_EndcapRegion" );
-      STVF_RefEle_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefEle_phi_EndcapRegion" );
-      STVF_RefEle_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefEle_etx_ForwardReg" );
-      STVF_RefEle_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefEle_ety_ForwardReg" );
-      STVF_RefEle_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefEle_sumet_ForwardReg" );
-      STVF_RefEle_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefEle_phi_ForwardReg" );
       Muon_Total_Staco_etx.SetName( ::TString( prefix ) + "Muon_Total_Staco_etx" );
       Muon_Total_Staco_ety.SetName( ::TString( prefix ) + "Muon_Total_Staco_ety" );
       Muon_Total_Staco_sumet.SetName( ::TString( prefix ) + "Muon_Total_Staco_sumet" );
@@ -2174,21 +1814,6 @@ is_data(is_data) {
       Muon_Total_Staco_ety_ForwardReg.SetName( ::TString( prefix ) + "Muon_Total_Staco_ety_ForwardReg" );
       Muon_Total_Staco_sumet_ForwardReg.SetName( ::TString( prefix ) + "Muon_Total_Staco_sumet_ForwardReg" );
       Muon_Total_Staco_phi_ForwardReg.SetName( ::TString( prefix ) + "Muon_Total_Staco_phi_ForwardReg" );
-      STVF_Muon_Total_Staco_etx.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_etx" );
-      STVF_Muon_Total_Staco_ety.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_ety" );
-      STVF_Muon_Total_Staco_sumet.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet" );
-      STVF_Muon_Total_Staco_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_CentralReg" );
-      STVF_Muon_Total_Staco_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_CentralReg" );
-      STVF_Muon_Total_Staco_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_CentralReg" );
-      STVF_Muon_Total_Staco_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_CentralReg" );
-      STVF_Muon_Total_Staco_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_EndcapRegion" );
-      STVF_Muon_Total_Staco_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_EndcapRegion" );
-      STVF_Muon_Total_Staco_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_EndcapRegion" );
-      STVF_Muon_Total_Staco_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_EndcapRegion" );
-      STVF_Muon_Total_Staco_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_etx_ForwardReg" );
-      STVF_Muon_Total_Staco_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_ety_ForwardReg" );
-      STVF_Muon_Total_Staco_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_sumet_ForwardReg" );
-      STVF_Muon_Total_Staco_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Staco_phi_ForwardReg" );
       Muon_Isol_Staco_etx.SetName( ::TString( prefix ) + "Muon_Isol_Staco_etx" );
       Muon_Isol_Staco_ety.SetName( ::TString( prefix ) + "Muon_Isol_Staco_ety" );
       Muon_Isol_Staco_sumet.SetName( ::TString( prefix ) + "Muon_Isol_Staco_sumet" );
@@ -2204,21 +1829,6 @@ is_data(is_data) {
       Muon_Isol_Staco_ety_ForwardReg.SetName( ::TString( prefix ) + "Muon_Isol_Staco_ety_ForwardReg" );
       Muon_Isol_Staco_sumet_ForwardReg.SetName( ::TString( prefix ) + "Muon_Isol_Staco_sumet_ForwardReg" );
       Muon_Isol_Staco_phi_ForwardReg.SetName( ::TString( prefix ) + "Muon_Isol_Staco_phi_ForwardReg" );
-      STVF_Muon_Isol_Staco_etx.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx" );
-      STVF_Muon_Isol_Staco_ety.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety" );
-      STVF_Muon_Isol_Staco_sumet.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet" );
-      STVF_Muon_Isol_Staco_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_CentralReg" );
-      STVF_Muon_Isol_Staco_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_CentralReg" );
-      STVF_Muon_Isol_Staco_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_CentralReg" );
-      STVF_Muon_Isol_Staco_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_CentralReg" );
-      STVF_Muon_Isol_Staco_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_EndcapRegion" );
-      STVF_Muon_Isol_Staco_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_EndcapRegion" );
-      STVF_Muon_Isol_Staco_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_EndcapRegion" );
-      STVF_Muon_Isol_Staco_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_EndcapRegion" );
-      STVF_Muon_Isol_Staco_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_etx_ForwardReg" );
-      STVF_Muon_Isol_Staco_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_ety_ForwardReg" );
-      STVF_Muon_Isol_Staco_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_sumet_ForwardReg" );
-      STVF_Muon_Isol_Staco_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Staco_phi_ForwardReg" );
       Muon_NonIsol_Staco_etx.SetName( ::TString( prefix ) + "Muon_NonIsol_Staco_etx" );
       Muon_NonIsol_Staco_ety.SetName( ::TString( prefix ) + "Muon_NonIsol_Staco_ety" );
       Muon_NonIsol_Staco_sumet.SetName( ::TString( prefix ) + "Muon_NonIsol_Staco_sumet" );
@@ -2234,21 +1844,6 @@ is_data(is_data) {
       Muon_NonIsol_Staco_ety_ForwardReg.SetName( ::TString( prefix ) + "Muon_NonIsol_Staco_ety_ForwardReg" );
       Muon_NonIsol_Staco_sumet_ForwardReg.SetName( ::TString( prefix ) + "Muon_NonIsol_Staco_sumet_ForwardReg" );
       Muon_NonIsol_Staco_phi_ForwardReg.SetName( ::TString( prefix ) + "Muon_NonIsol_Staco_phi_ForwardReg" );
-      STVF_Muon_NonIsol_Staco_etx.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx" );
-      STVF_Muon_NonIsol_Staco_ety.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety" );
-      STVF_Muon_NonIsol_Staco_sumet.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet" );
-      STVF_Muon_NonIsol_Staco_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_CentralReg" );
-      STVF_Muon_NonIsol_Staco_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_CentralReg" );
-      STVF_Muon_NonIsol_Staco_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_CentralReg" );
-      STVF_Muon_NonIsol_Staco_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_CentralReg" );
-      STVF_Muon_NonIsol_Staco_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_EndcapRegion" );
-      STVF_Muon_NonIsol_Staco_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_EndcapRegion" );
-      STVF_Muon_NonIsol_Staco_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_EndcapRegion" );
-      STVF_Muon_NonIsol_Staco_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_EndcapRegion" );
-      STVF_Muon_NonIsol_Staco_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_etx_ForwardReg" );
-      STVF_Muon_NonIsol_Staco_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_ety_ForwardReg" );
-      STVF_Muon_NonIsol_Staco_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_sumet_ForwardReg" );
-      STVF_Muon_NonIsol_Staco_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Staco_phi_ForwardReg" );
       CellOut_etx.SetName( ::TString( prefix ) + "CellOut_etx" );
       CellOut_ety.SetName( ::TString( prefix ) + "CellOut_ety" );
       CellOut_sumet.SetName( ::TString( prefix ) + "CellOut_sumet" );
@@ -2264,21 +1859,21 @@ is_data(is_data) {
       CellOut_ety_ForwardReg.SetName( ::TString( prefix ) + "CellOut_ety_ForwardReg" );
       CellOut_sumet_ForwardReg.SetName( ::TString( prefix ) + "CellOut_sumet_ForwardReg" );
       CellOut_phi_ForwardReg.SetName( ::TString( prefix ) + "CellOut_phi_ForwardReg" );
-      STVF_CellOut_etx.SetName( ::TString( prefix ) + "STVF_CellOut_etx" );
-      STVF_CellOut_ety.SetName( ::TString( prefix ) + "STVF_CellOut_ety" );
-      STVF_CellOut_sumet.SetName( ::TString( prefix ) + "STVF_CellOut_sumet" );
-      STVF_CellOut_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_etx_CentralReg" );
-      STVF_CellOut_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_ety_CentralReg" );
-      STVF_CellOut_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_sumet_CentralReg" );
-      STVF_CellOut_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_phi_CentralReg" );
-      STVF_CellOut_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_etx_EndcapRegion" );
-      STVF_CellOut_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_ety_EndcapRegion" );
-      STVF_CellOut_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_sumet_EndcapRegion" );
-      STVF_CellOut_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_phi_EndcapRegion" );
-      STVF_CellOut_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_etx_ForwardReg" );
-      STVF_CellOut_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_ety_ForwardReg" );
-      STVF_CellOut_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_sumet_ForwardReg" );
-      STVF_CellOut_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_phi_ForwardReg" );
+      CellOut_Eflow_etx.SetName( ::TString( prefix ) + "CellOut_Eflow_etx" );
+      CellOut_Eflow_ety.SetName( ::TString( prefix ) + "CellOut_Eflow_ety" );
+      CellOut_Eflow_sumet.SetName( ::TString( prefix ) + "CellOut_Eflow_sumet" );
+      CellOut_Eflow_etx_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_etx_CentralReg" );
+      CellOut_Eflow_ety_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_ety_CentralReg" );
+      CellOut_Eflow_sumet_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_sumet_CentralReg" );
+      CellOut_Eflow_phi_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_phi_CentralReg" );
+      CellOut_Eflow_etx_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_etx_EndcapRegion" );
+      CellOut_Eflow_ety_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_ety_EndcapRegion" );
+      CellOut_Eflow_sumet_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_sumet_EndcapRegion" );
+      CellOut_Eflow_phi_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_phi_EndcapRegion" );
+      CellOut_Eflow_etx_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_etx_ForwardReg" );
+      CellOut_Eflow_ety_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_ety_ForwardReg" );
+      CellOut_Eflow_sumet_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_sumet_ForwardReg" );
+      CellOut_Eflow_phi_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_phi_ForwardReg" );
       Muon_Isol_Muid_etx.SetName( ::TString( prefix ) + "Muon_Isol_Muid_etx" );
       Muon_Isol_Muid_ety.SetName( ::TString( prefix ) + "Muon_Isol_Muid_ety" );
       Muon_Isol_Muid_sumet.SetName( ::TString( prefix ) + "Muon_Isol_Muid_sumet" );
@@ -2294,21 +1889,6 @@ is_data(is_data) {
       Muon_Isol_Muid_ety_ForwardReg.SetName( ::TString( prefix ) + "Muon_Isol_Muid_ety_ForwardReg" );
       Muon_Isol_Muid_sumet_ForwardReg.SetName( ::TString( prefix ) + "Muon_Isol_Muid_sumet_ForwardReg" );
       Muon_Isol_Muid_phi_ForwardReg.SetName( ::TString( prefix ) + "Muon_Isol_Muid_phi_ForwardReg" );
-      STVF_Muon_Isol_Muid_etx.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx" );
-      STVF_Muon_Isol_Muid_ety.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety" );
-      STVF_Muon_Isol_Muid_sumet.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet" );
-      STVF_Muon_Isol_Muid_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_CentralReg" );
-      STVF_Muon_Isol_Muid_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_CentralReg" );
-      STVF_Muon_Isol_Muid_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_CentralReg" );
-      STVF_Muon_Isol_Muid_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_CentralReg" );
-      STVF_Muon_Isol_Muid_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_EndcapRegion" );
-      STVF_Muon_Isol_Muid_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_EndcapRegion" );
-      STVF_Muon_Isol_Muid_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_EndcapRegion" );
-      STVF_Muon_Isol_Muid_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_EndcapRegion" );
-      STVF_Muon_Isol_Muid_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_etx_ForwardReg" );
-      STVF_Muon_Isol_Muid_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_ety_ForwardReg" );
-      STVF_Muon_Isol_Muid_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_sumet_ForwardReg" );
-      STVF_Muon_Isol_Muid_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Isol_Muid_phi_ForwardReg" );
       Muon_NonIsol_Muid_etx.SetName( ::TString( prefix ) + "Muon_NonIsol_Muid_etx" );
       Muon_NonIsol_Muid_ety.SetName( ::TString( prefix ) + "Muon_NonIsol_Muid_ety" );
       Muon_NonIsol_Muid_sumet.SetName( ::TString( prefix ) + "Muon_NonIsol_Muid_sumet" );
@@ -2324,21 +1904,6 @@ is_data(is_data) {
       Muon_NonIsol_Muid_ety_ForwardReg.SetName( ::TString( prefix ) + "Muon_NonIsol_Muid_ety_ForwardReg" );
       Muon_NonIsol_Muid_sumet_ForwardReg.SetName( ::TString( prefix ) + "Muon_NonIsol_Muid_sumet_ForwardReg" );
       Muon_NonIsol_Muid_phi_ForwardReg.SetName( ::TString( prefix ) + "Muon_NonIsol_Muid_phi_ForwardReg" );
-      STVF_Muon_NonIsol_Muid_etx.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx" );
-      STVF_Muon_NonIsol_Muid_ety.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety" );
-      STVF_Muon_NonIsol_Muid_sumet.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet" );
-      STVF_Muon_NonIsol_Muid_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_CentralReg" );
-      STVF_Muon_NonIsol_Muid_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_CentralReg" );
-      STVF_Muon_NonIsol_Muid_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_CentralReg" );
-      STVF_Muon_NonIsol_Muid_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_CentralReg" );
-      STVF_Muon_NonIsol_Muid_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_EndcapRegion" );
-      STVF_Muon_NonIsol_Muid_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_EndcapRegion" );
-      STVF_Muon_NonIsol_Muid_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_EndcapRegion" );
-      STVF_Muon_NonIsol_Muid_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_EndcapRegion" );
-      STVF_Muon_NonIsol_Muid_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_etx_ForwardReg" );
-      STVF_Muon_NonIsol_Muid_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_ety_ForwardReg" );
-      STVF_Muon_NonIsol_Muid_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_sumet_ForwardReg" );
-      STVF_Muon_NonIsol_Muid_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_NonIsol_Muid_phi_ForwardReg" );
       Muon_Total_Muid_etx.SetName( ::TString( prefix ) + "Muon_Total_Muid_etx" );
       Muon_Total_Muid_ety.SetName( ::TString( prefix ) + "Muon_Total_Muid_ety" );
       Muon_Total_Muid_sumet.SetName( ::TString( prefix ) + "Muon_Total_Muid_sumet" );
@@ -2354,21 +1919,6 @@ is_data(is_data) {
       Muon_Total_Muid_ety_ForwardReg.SetName( ::TString( prefix ) + "Muon_Total_Muid_ety_ForwardReg" );
       Muon_Total_Muid_sumet_ForwardReg.SetName( ::TString( prefix ) + "Muon_Total_Muid_sumet_ForwardReg" );
       Muon_Total_Muid_phi_ForwardReg.SetName( ::TString( prefix ) + "Muon_Total_Muid_phi_ForwardReg" );
-      STVF_Muon_Total_Muid_etx.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_etx" );
-      STVF_Muon_Total_Muid_ety.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_ety" );
-      STVF_Muon_Total_Muid_sumet.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet" );
-      STVF_Muon_Total_Muid_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_CentralReg" );
-      STVF_Muon_Total_Muid_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_CentralReg" );
-      STVF_Muon_Total_Muid_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_CentralReg" );
-      STVF_Muon_Total_Muid_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_CentralReg" );
-      STVF_Muon_Total_Muid_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_EndcapRegion" );
-      STVF_Muon_Total_Muid_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_EndcapRegion" );
-      STVF_Muon_Total_Muid_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_EndcapRegion" );
-      STVF_Muon_Total_Muid_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_EndcapRegion" );
-      STVF_Muon_Total_Muid_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_etx_ForwardReg" );
-      STVF_Muon_Total_Muid_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_ety_ForwardReg" );
-      STVF_Muon_Total_Muid_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_sumet_ForwardReg" );
-      STVF_Muon_Total_Muid_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_Muon_Total_Muid_phi_ForwardReg" );
       Track_etx.SetName( ::TString( prefix ) + "Track_etx" );
       Track_ety.SetName( ::TString( prefix ) + "Track_ety" );
       Track_sumet.SetName( ::TString( prefix ) + "Track_sumet" );
@@ -2384,21 +1934,111 @@ is_data(is_data) {
       Track_ety_ForwardReg.SetName( ::TString( prefix ) + "Track_ety_ForwardReg" );
       Track_sumet_ForwardReg.SetName( ::TString( prefix ) + "Track_sumet_ForwardReg" );
       Track_phi_ForwardReg.SetName( ::TString( prefix ) + "Track_phi_ForwardReg" );
-      STVF_Track_etx.SetName( ::TString( prefix ) + "STVF_Track_etx" );
-      STVF_Track_ety.SetName( ::TString( prefix ) + "STVF_Track_ety" );
-      STVF_Track_sumet.SetName( ::TString( prefix ) + "STVF_Track_sumet" );
-      STVF_Track_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_Track_etx_CentralReg" );
-      STVF_Track_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_Track_ety_CentralReg" );
-      STVF_Track_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_Track_sumet_CentralReg" );
-      STVF_Track_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_Track_phi_CentralReg" );
-      STVF_Track_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Track_etx_EndcapRegion" );
-      STVF_Track_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Track_ety_EndcapRegion" );
-      STVF_Track_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Track_sumet_EndcapRegion" );
-      STVF_Track_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_Track_phi_EndcapRegion" );
-      STVF_Track_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_Track_etx_ForwardReg" );
-      STVF_Track_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_Track_ety_ForwardReg" );
-      STVF_Track_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_Track_sumet_ForwardReg" );
-      STVF_Track_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_Track_phi_ForwardReg" );
+      RefFinal_STVF_etx.SetName( ::TString( prefix ) + "RefFinal_STVF_etx" );
+      RefFinal_STVF_ety.SetName( ::TString( prefix ) + "RefFinal_STVF_ety" );
+      RefFinal_STVF_sumet.SetName( ::TString( prefix ) + "RefFinal_STVF_sumet" );
+      RefFinal_STVF_etx_CentralReg.SetName( ::TString( prefix ) + "RefFinal_STVF_etx_CentralReg" );
+      RefFinal_STVF_ety_CentralReg.SetName( ::TString( prefix ) + "RefFinal_STVF_ety_CentralReg" );
+      RefFinal_STVF_sumet_CentralReg.SetName( ::TString( prefix ) + "RefFinal_STVF_sumet_CentralReg" );
+      RefFinal_STVF_phi_CentralReg.SetName( ::TString( prefix ) + "RefFinal_STVF_phi_CentralReg" );
+      RefFinal_STVF_etx_EndcapRegion.SetName( ::TString( prefix ) + "RefFinal_STVF_etx_EndcapRegion" );
+      RefFinal_STVF_ety_EndcapRegion.SetName( ::TString( prefix ) + "RefFinal_STVF_ety_EndcapRegion" );
+      RefFinal_STVF_sumet_EndcapRegion.SetName( ::TString( prefix ) + "RefFinal_STVF_sumet_EndcapRegion" );
+      RefFinal_STVF_phi_EndcapRegion.SetName( ::TString( prefix ) + "RefFinal_STVF_phi_EndcapRegion" );
+      RefFinal_STVF_etx_ForwardReg.SetName( ::TString( prefix ) + "RefFinal_STVF_etx_ForwardReg" );
+      RefFinal_STVF_ety_ForwardReg.SetName( ::TString( prefix ) + "RefFinal_STVF_ety_ForwardReg" );
+      RefFinal_STVF_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefFinal_STVF_sumet_ForwardReg" );
+      RefFinal_STVF_phi_ForwardReg.SetName( ::TString( prefix ) + "RefFinal_STVF_phi_ForwardReg" );
+      CellOut_Eflow_STVF_etx.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_etx" );
+      CellOut_Eflow_STVF_ety.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_ety" );
+      CellOut_Eflow_STVF_sumet.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_sumet" );
+      CellOut_Eflow_STVF_etx_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_etx_CentralReg" );
+      CellOut_Eflow_STVF_ety_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_ety_CentralReg" );
+      CellOut_Eflow_STVF_sumet_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_CentralReg" );
+      CellOut_Eflow_STVF_phi_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_phi_CentralReg" );
+      CellOut_Eflow_STVF_etx_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_etx_EndcapRegion" );
+      CellOut_Eflow_STVF_ety_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_ety_EndcapRegion" );
+      CellOut_Eflow_STVF_sumet_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_EndcapRegion" );
+      CellOut_Eflow_STVF_phi_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_phi_EndcapRegion" );
+      CellOut_Eflow_STVF_etx_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_etx_ForwardReg" );
+      CellOut_Eflow_STVF_ety_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_ety_ForwardReg" );
+      CellOut_Eflow_STVF_sumet_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_sumet_ForwardReg" );
+      CellOut_Eflow_STVF_phi_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_STVF_phi_ForwardReg" );
+      CellOut_Eflow_JetArea_etx.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_etx" );
+      CellOut_Eflow_JetArea_ety.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_ety" );
+      CellOut_Eflow_JetArea_sumet.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet" );
+      CellOut_Eflow_JetArea_etx_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_CentralReg" );
+      CellOut_Eflow_JetArea_ety_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_CentralReg" );
+      CellOut_Eflow_JetArea_sumet_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_CentralReg" );
+      CellOut_Eflow_JetArea_phi_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_CentralReg" );
+      CellOut_Eflow_JetArea_etx_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_EndcapRegion" );
+      CellOut_Eflow_JetArea_ety_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_EndcapRegion" );
+      CellOut_Eflow_JetArea_sumet_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_EndcapRegion" );
+      CellOut_Eflow_JetArea_phi_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_EndcapRegion" );
+      CellOut_Eflow_JetArea_etx_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_etx_ForwardReg" );
+      CellOut_Eflow_JetArea_ety_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_ety_ForwardReg" );
+      CellOut_Eflow_JetArea_sumet_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_sumet_ForwardReg" );
+      CellOut_Eflow_JetArea_phi_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetArea_phi_ForwardReg" );
+      RefJet_JVF_etx.SetName( ::TString( prefix ) + "RefJet_JVF_etx" );
+      RefJet_JVF_ety.SetName( ::TString( prefix ) + "RefJet_JVF_ety" );
+      RefJet_JVF_sumet.SetName( ::TString( prefix ) + "RefJet_JVF_sumet" );
+      RefJet_JVF_etx_CentralReg.SetName( ::TString( prefix ) + "RefJet_JVF_etx_CentralReg" );
+      RefJet_JVF_ety_CentralReg.SetName( ::TString( prefix ) + "RefJet_JVF_ety_CentralReg" );
+      RefJet_JVF_sumet_CentralReg.SetName( ::TString( prefix ) + "RefJet_JVF_sumet_CentralReg" );
+      RefJet_JVF_phi_CentralReg.SetName( ::TString( prefix ) + "RefJet_JVF_phi_CentralReg" );
+      RefJet_JVF_etx_EndcapRegion.SetName( ::TString( prefix ) + "RefJet_JVF_etx_EndcapRegion" );
+      RefJet_JVF_ety_EndcapRegion.SetName( ::TString( prefix ) + "RefJet_JVF_ety_EndcapRegion" );
+      RefJet_JVF_sumet_EndcapRegion.SetName( ::TString( prefix ) + "RefJet_JVF_sumet_EndcapRegion" );
+      RefJet_JVF_phi_EndcapRegion.SetName( ::TString( prefix ) + "RefJet_JVF_phi_EndcapRegion" );
+      RefJet_JVF_etx_ForwardReg.SetName( ::TString( prefix ) + "RefJet_JVF_etx_ForwardReg" );
+      RefJet_JVF_ety_ForwardReg.SetName( ::TString( prefix ) + "RefJet_JVF_ety_ForwardReg" );
+      RefJet_JVF_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefJet_JVF_sumet_ForwardReg" );
+      RefJet_JVF_phi_ForwardReg.SetName( ::TString( prefix ) + "RefJet_JVF_phi_ForwardReg" );
+      RefJet_JVFCut_etx.SetName( ::TString( prefix ) + "RefJet_JVFCut_etx" );
+      RefJet_JVFCut_ety.SetName( ::TString( prefix ) + "RefJet_JVFCut_ety" );
+      RefJet_JVFCut_sumet.SetName( ::TString( prefix ) + "RefJet_JVFCut_sumet" );
+      RefJet_JVFCut_etx_CentralReg.SetName( ::TString( prefix ) + "RefJet_JVFCut_etx_CentralReg" );
+      RefJet_JVFCut_ety_CentralReg.SetName( ::TString( prefix ) + "RefJet_JVFCut_ety_CentralReg" );
+      RefJet_JVFCut_sumet_CentralReg.SetName( ::TString( prefix ) + "RefJet_JVFCut_sumet_CentralReg" );
+      RefJet_JVFCut_phi_CentralReg.SetName( ::TString( prefix ) + "RefJet_JVFCut_phi_CentralReg" );
+      RefJet_JVFCut_etx_EndcapRegion.SetName( ::TString( prefix ) + "RefJet_JVFCut_etx_EndcapRegion" );
+      RefJet_JVFCut_ety_EndcapRegion.SetName( ::TString( prefix ) + "RefJet_JVFCut_ety_EndcapRegion" );
+      RefJet_JVFCut_sumet_EndcapRegion.SetName( ::TString( prefix ) + "RefJet_JVFCut_sumet_EndcapRegion" );
+      RefJet_JVFCut_phi_EndcapRegion.SetName( ::TString( prefix ) + "RefJet_JVFCut_phi_EndcapRegion" );
+      RefJet_JVFCut_etx_ForwardReg.SetName( ::TString( prefix ) + "RefJet_JVFCut_etx_ForwardReg" );
+      RefJet_JVFCut_ety_ForwardReg.SetName( ::TString( prefix ) + "RefJet_JVFCut_ety_ForwardReg" );
+      RefJet_JVFCut_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefJet_JVFCut_sumet_ForwardReg" );
+      RefJet_JVFCut_phi_ForwardReg.SetName( ::TString( prefix ) + "RefJet_JVFCut_phi_ForwardReg" );
+      CellOut_Eflow_JetAreaJVF_etx.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx" );
+      CellOut_Eflow_JetAreaJVF_ety.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety" );
+      CellOut_Eflow_JetAreaJVF_sumet.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet" );
+      CellOut_Eflow_JetAreaJVF_etx_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_CentralReg" );
+      CellOut_Eflow_JetAreaJVF_ety_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_CentralReg" );
+      CellOut_Eflow_JetAreaJVF_sumet_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_CentralReg" );
+      CellOut_Eflow_JetAreaJVF_phi_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_CentralReg" );
+      CellOut_Eflow_JetAreaJVF_etx_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_EndcapRegion" );
+      CellOut_Eflow_JetAreaJVF_ety_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_EndcapRegion" );
+      CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion" );
+      CellOut_Eflow_JetAreaJVF_phi_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_EndcapRegion" );
+      CellOut_Eflow_JetAreaJVF_etx_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_etx_ForwardReg" );
+      CellOut_Eflow_JetAreaJVF_ety_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_ety_ForwardReg" );
+      CellOut_Eflow_JetAreaJVF_sumet_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_sumet_ForwardReg" );
+      CellOut_Eflow_JetAreaJVF_phi_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaJVF_phi_ForwardReg" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg" );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg.SetName( ::TString( prefix ) + "CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg" );
       SoftJets_etx.SetName( ::TString( prefix ) + "SoftJets_etx" );
       SoftJets_ety.SetName( ::TString( prefix ) + "SoftJets_ety" );
       SoftJets_sumet.SetName( ::TString( prefix ) + "SoftJets_sumet" );
@@ -2414,21 +2054,6 @@ is_data(is_data) {
       SoftJets_ety_ForwardReg.SetName( ::TString( prefix ) + "SoftJets_ety_ForwardReg" );
       SoftJets_sumet_ForwardReg.SetName( ::TString( prefix ) + "SoftJets_sumet_ForwardReg" );
       SoftJets_phi_ForwardReg.SetName( ::TString( prefix ) + "SoftJets_phi_ForwardReg" );
-      STVF_SoftJets_etx.SetName( ::TString( prefix ) + "STVF_SoftJets_etx" );
-      STVF_SoftJets_ety.SetName( ::TString( prefix ) + "STVF_SoftJets_ety" );
-      STVF_SoftJets_sumet.SetName( ::TString( prefix ) + "STVF_SoftJets_sumet" );
-      STVF_SoftJets_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_SoftJets_etx_CentralReg" );
-      STVF_SoftJets_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_SoftJets_ety_CentralReg" );
-      STVF_SoftJets_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_SoftJets_sumet_CentralReg" );
-      STVF_SoftJets_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_SoftJets_phi_CentralReg" );
-      STVF_SoftJets_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_SoftJets_etx_EndcapRegion" );
-      STVF_SoftJets_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_SoftJets_ety_EndcapRegion" );
-      STVF_SoftJets_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_SoftJets_sumet_EndcapRegion" );
-      STVF_SoftJets_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_SoftJets_phi_EndcapRegion" );
-      STVF_SoftJets_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_SoftJets_etx_ForwardReg" );
-      STVF_SoftJets_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_SoftJets_ety_ForwardReg" );
-      STVF_SoftJets_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_SoftJets_sumet_ForwardReg" );
-      STVF_SoftJets_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_SoftJets_phi_ForwardReg" );
       RefMuon_etx.SetName( ::TString( prefix ) + "RefMuon_etx" );
       RefMuon_ety.SetName( ::TString( prefix ) + "RefMuon_ety" );
       RefMuon_sumet.SetName( ::TString( prefix ) + "RefMuon_sumet" );
@@ -2444,96 +2069,96 @@ is_data(is_data) {
       RefMuon_ety_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_ety_ForwardReg" );
       RefMuon_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_sumet_ForwardReg" );
       RefMuon_phi_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_phi_ForwardReg" );
-      STVF_RefMuon_etx.SetName( ::TString( prefix ) + "STVF_RefMuon_etx" );
-      STVF_RefMuon_ety.SetName( ::TString( prefix ) + "STVF_RefMuon_ety" );
-      STVF_RefMuon_sumet.SetName( ::TString( prefix ) + "STVF_RefMuon_sumet" );
-      STVF_RefMuon_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_RefMuon_etx_CentralReg" );
-      STVF_RefMuon_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_RefMuon_ety_CentralReg" );
-      STVF_RefMuon_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_RefMuon_sumet_CentralReg" );
-      STVF_RefMuon_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_RefMuon_phi_CentralReg" );
-      STVF_RefMuon_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefMuon_etx_EndcapRegion" );
-      STVF_RefMuon_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefMuon_ety_EndcapRegion" );
-      STVF_RefMuon_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefMuon_sumet_EndcapRegion" );
-      STVF_RefMuon_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_RefMuon_phi_EndcapRegion" );
-      STVF_RefMuon_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefMuon_etx_ForwardReg" );
-      STVF_RefMuon_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefMuon_ety_ForwardReg" );
-      STVF_RefMuon_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefMuon_sumet_ForwardReg" );
-      STVF_RefMuon_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_RefMuon_phi_ForwardReg" );
-// -- slimmed --       MuonBoy_etx.SetName( ::TString( prefix ) + "MuonBoy_etx" );
-// -- slimmed --       MuonBoy_ety.SetName( ::TString( prefix ) + "MuonBoy_ety" );
-// -- slimmed --       MuonBoy_sumet.SetName( ::TString( prefix ) + "MuonBoy_sumet" );
-// -- slimmed --       MuonBoy_etx_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_etx_CentralReg" );
-// -- slimmed --       MuonBoy_ety_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_ety_CentralReg" );
-// -- slimmed --       MuonBoy_sumet_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_sumet_CentralReg" );
-// -- slimmed --       MuonBoy_phi_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_phi_CentralReg" );
-// -- slimmed --       MuonBoy_etx_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_etx_EndcapRegion" );
-// -- slimmed --       MuonBoy_ety_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_ety_EndcapRegion" );
-// -- slimmed --       MuonBoy_sumet_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion" );
-// -- slimmed --       MuonBoy_phi_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_phi_EndcapRegion" );
-// -- slimmed --       MuonBoy_etx_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_etx_ForwardReg" );
-// -- slimmed --       MuonBoy_ety_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_ety_ForwardReg" );
-// -- slimmed --       MuonBoy_sumet_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_sumet_ForwardReg" );
-// -- slimmed --       MuonBoy_phi_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_phi_ForwardReg" );
-// -- slimmed --       STVF_MuonBoy_etx.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx" );
-// -- slimmed --       STVF_MuonBoy_ety.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety" );
-// -- slimmed --       STVF_MuonBoy_sumet.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet" );
-// -- slimmed --       STVF_MuonBoy_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_CentralReg" );
-// -- slimmed --       STVF_MuonBoy_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_CentralReg" );
-// -- slimmed --       STVF_MuonBoy_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_CentralReg" );
-// -- slimmed --       STVF_MuonBoy_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_CentralReg" );
-// -- slimmed --       STVF_MuonBoy_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_EndcapRegion" );
-// -- slimmed --       STVF_MuonBoy_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_EndcapRegion" );
-// -- slimmed --       STVF_MuonBoy_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_EndcapRegion" );
-// -- slimmed --       STVF_MuonBoy_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_EndcapRegion" );
-// -- slimmed --       STVF_MuonBoy_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_etx_ForwardReg" );
-// -- slimmed --       STVF_MuonBoy_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_ety_ForwardReg" );
-// -- slimmed --       STVF_MuonBoy_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_sumet_ForwardReg" );
-// -- slimmed --       STVF_MuonBoy_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_MuonBoy_phi_ForwardReg" );
-      STVF_CellOut_Track_etx.SetName( ::TString( prefix ) + "STVF_CellOut_Track_etx" );
-      STVF_CellOut_Track_ety.SetName( ::TString( prefix ) + "STVF_CellOut_Track_ety" );
-      STVF_CellOut_Track_sumet.SetName( ::TString( prefix ) + "STVF_CellOut_Track_sumet" );
-      STVF_CellOut_Track_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_Track_etx_CentralReg" );
-      STVF_CellOut_Track_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_Track_ety_CentralReg" );
-      STVF_CellOut_Track_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_Track_sumet_CentralReg" );
-      STVF_CellOut_Track_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_Track_phi_CentralReg" );
-      STVF_CellOut_Track_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_Track_etx_EndcapRegion" );
-      STVF_CellOut_Track_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_Track_ety_EndcapRegion" );
-      STVF_CellOut_Track_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_Track_sumet_EndcapRegion" );
-      STVF_CellOut_Track_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_Track_phi_EndcapRegion" );
-      STVF_CellOut_Track_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_Track_etx_ForwardReg" );
-      STVF_CellOut_Track_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_Track_ety_ForwardReg" );
-      STVF_CellOut_Track_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_Track_sumet_ForwardReg" );
-      STVF_CellOut_Track_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_Track_phi_ForwardReg" );
-      STVF_CellOut_TrackPV_etx.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_etx" );
-      STVF_CellOut_TrackPV_ety.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_ety" );
-      STVF_CellOut_TrackPV_sumet.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet" );
-      STVF_CellOut_TrackPV_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_CentralReg" );
-      STVF_CellOut_TrackPV_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_CentralReg" );
-      STVF_CellOut_TrackPV_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_CentralReg" );
-      STVF_CellOut_TrackPV_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_CentralReg" );
-      STVF_CellOut_TrackPV_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_EndcapRegion" );
-      STVF_CellOut_TrackPV_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_EndcapRegion" );
-      STVF_CellOut_TrackPV_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_EndcapRegion" );
-      STVF_CellOut_TrackPV_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_EndcapRegion" );
-      STVF_CellOut_TrackPV_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_etx_ForwardReg" );
-      STVF_CellOut_TrackPV_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_ety_ForwardReg" );
-      STVF_CellOut_TrackPV_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_sumet_ForwardReg" );
-      STVF_CellOut_TrackPV_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOut_TrackPV_phi_ForwardReg" );
-      STVF_CellOutCorr_etx.SetName( ::TString( prefix ) + "STVF_CellOutCorr_etx" );
-      STVF_CellOutCorr_ety.SetName( ::TString( prefix ) + "STVF_CellOutCorr_ety" );
-      STVF_CellOutCorr_sumet.SetName( ::TString( prefix ) + "STVF_CellOutCorr_sumet" );
-      STVF_CellOutCorr_etx_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOutCorr_etx_CentralReg" );
-      STVF_CellOutCorr_ety_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOutCorr_ety_CentralReg" );
-      STVF_CellOutCorr_sumet_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOutCorr_sumet_CentralReg" );
-      STVF_CellOutCorr_phi_CentralReg.SetName( ::TString( prefix ) + "STVF_CellOutCorr_phi_CentralReg" );
-      STVF_CellOutCorr_etx_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOutCorr_etx_EndcapRegion" );
-      STVF_CellOutCorr_ety_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOutCorr_ety_EndcapRegion" );
-      STVF_CellOutCorr_sumet_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOutCorr_sumet_EndcapRegion" );
-      STVF_CellOutCorr_phi_EndcapRegion.SetName( ::TString( prefix ) + "STVF_CellOutCorr_phi_EndcapRegion" );
-      STVF_CellOutCorr_etx_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOutCorr_etx_ForwardReg" );
-      STVF_CellOutCorr_ety_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOutCorr_ety_ForwardReg" );
-      STVF_CellOutCorr_sumet_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOutCorr_sumet_ForwardReg" );
-      STVF_CellOutCorr_phi_ForwardReg.SetName( ::TString( prefix ) + "STVF_CellOutCorr_phi_ForwardReg" );
+      MuonBoy_etx.SetName( ::TString( prefix ) + "MuonBoy_etx" );
+      MuonBoy_ety.SetName( ::TString( prefix ) + "MuonBoy_ety" );
+      MuonBoy_sumet.SetName( ::TString( prefix ) + "MuonBoy_sumet" );
+      MuonBoy_etx_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_etx_CentralReg" );
+      MuonBoy_ety_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_ety_CentralReg" );
+      MuonBoy_sumet_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_sumet_CentralReg" );
+      MuonBoy_phi_CentralReg.SetName( ::TString( prefix ) + "MuonBoy_phi_CentralReg" );
+      MuonBoy_etx_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_etx_EndcapRegion" );
+      MuonBoy_ety_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_ety_EndcapRegion" );
+      MuonBoy_sumet_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_sumet_EndcapRegion" );
+      MuonBoy_phi_EndcapRegion.SetName( ::TString( prefix ) + "MuonBoy_phi_EndcapRegion" );
+      MuonBoy_etx_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_etx_ForwardReg" );
+      MuonBoy_ety_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_ety_ForwardReg" );
+      MuonBoy_sumet_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_sumet_ForwardReg" );
+      MuonBoy_phi_ForwardReg.SetName( ::TString( prefix ) + "MuonBoy_phi_ForwardReg" );
+      RefMuon_Staco_etx.SetName( ::TString( prefix ) + "RefMuon_Staco_etx" );
+      RefMuon_Staco_ety.SetName( ::TString( prefix ) + "RefMuon_Staco_ety" );
+      RefMuon_Staco_sumet.SetName( ::TString( prefix ) + "RefMuon_Staco_sumet" );
+      RefMuon_Staco_etx_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Staco_etx_CentralReg" );
+      RefMuon_Staco_ety_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Staco_ety_CentralReg" );
+      RefMuon_Staco_sumet_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Staco_sumet_CentralReg" );
+      RefMuon_Staco_phi_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Staco_phi_CentralReg" );
+      RefMuon_Staco_etx_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Staco_etx_EndcapRegion" );
+      RefMuon_Staco_ety_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Staco_ety_EndcapRegion" );
+      RefMuon_Staco_sumet_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Staco_sumet_EndcapRegion" );
+      RefMuon_Staco_phi_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Staco_phi_EndcapRegion" );
+      RefMuon_Staco_etx_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Staco_etx_ForwardReg" );
+      RefMuon_Staco_ety_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Staco_ety_ForwardReg" );
+      RefMuon_Staco_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Staco_sumet_ForwardReg" );
+      RefMuon_Staco_phi_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Staco_phi_ForwardReg" );
+      RefMuon_Muid_etx.SetName( ::TString( prefix ) + "RefMuon_Muid_etx" );
+      RefMuon_Muid_ety.SetName( ::TString( prefix ) + "RefMuon_Muid_ety" );
+      RefMuon_Muid_sumet.SetName( ::TString( prefix ) + "RefMuon_Muid_sumet" );
+      RefMuon_Muid_etx_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Muid_etx_CentralReg" );
+      RefMuon_Muid_ety_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Muid_ety_CentralReg" );
+      RefMuon_Muid_sumet_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Muid_sumet_CentralReg" );
+      RefMuon_Muid_phi_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Muid_phi_CentralReg" );
+      RefMuon_Muid_etx_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Muid_etx_EndcapRegion" );
+      RefMuon_Muid_ety_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Muid_ety_EndcapRegion" );
+      RefMuon_Muid_sumet_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Muid_sumet_EndcapRegion" );
+      RefMuon_Muid_phi_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Muid_phi_EndcapRegion" );
+      RefMuon_Muid_etx_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Muid_etx_ForwardReg" );
+      RefMuon_Muid_ety_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Muid_ety_ForwardReg" );
+      RefMuon_Muid_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Muid_sumet_ForwardReg" );
+      RefMuon_Muid_phi_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Muid_phi_ForwardReg" );
+      RefMuon_Track_etx.SetName( ::TString( prefix ) + "RefMuon_Track_etx" );
+      RefMuon_Track_ety.SetName( ::TString( prefix ) + "RefMuon_Track_ety" );
+      RefMuon_Track_sumet.SetName( ::TString( prefix ) + "RefMuon_Track_sumet" );
+      RefMuon_Track_etx_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_etx_CentralReg" );
+      RefMuon_Track_ety_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_ety_CentralReg" );
+      RefMuon_Track_sumet_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_sumet_CentralReg" );
+      RefMuon_Track_phi_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_phi_CentralReg" );
+      RefMuon_Track_etx_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_etx_EndcapRegion" );
+      RefMuon_Track_ety_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_ety_EndcapRegion" );
+      RefMuon_Track_sumet_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_sumet_EndcapRegion" );
+      RefMuon_Track_phi_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_phi_EndcapRegion" );
+      RefMuon_Track_etx_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_etx_ForwardReg" );
+      RefMuon_Track_ety_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_ety_ForwardReg" );
+      RefMuon_Track_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_sumet_ForwardReg" );
+      RefMuon_Track_phi_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_phi_ForwardReg" );
+      RefMuon_Track_Staco_etx.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_etx" );
+      RefMuon_Track_Staco_ety.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_ety" );
+      RefMuon_Track_Staco_sumet.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_sumet" );
+      RefMuon_Track_Staco_etx_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_etx_CentralReg" );
+      RefMuon_Track_Staco_ety_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_ety_CentralReg" );
+      RefMuon_Track_Staco_sumet_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_sumet_CentralReg" );
+      RefMuon_Track_Staco_phi_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_phi_CentralReg" );
+      RefMuon_Track_Staco_etx_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_etx_EndcapRegion" );
+      RefMuon_Track_Staco_ety_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_ety_EndcapRegion" );
+      RefMuon_Track_Staco_sumet_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_sumet_EndcapRegion" );
+      RefMuon_Track_Staco_phi_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_phi_EndcapRegion" );
+      RefMuon_Track_Staco_etx_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_etx_ForwardReg" );
+      RefMuon_Track_Staco_ety_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_ety_ForwardReg" );
+      RefMuon_Track_Staco_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_sumet_ForwardReg" );
+      RefMuon_Track_Staco_phi_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_Staco_phi_ForwardReg" );
+      RefMuon_Track_Muid_etx.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_etx" );
+      RefMuon_Track_Muid_ety.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_ety" );
+      RefMuon_Track_Muid_sumet.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_sumet" );
+      RefMuon_Track_Muid_etx_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_etx_CentralReg" );
+      RefMuon_Track_Muid_ety_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_ety_CentralReg" );
+      RefMuon_Track_Muid_sumet_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_sumet_CentralReg" );
+      RefMuon_Track_Muid_phi_CentralReg.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_phi_CentralReg" );
+      RefMuon_Track_Muid_etx_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_etx_EndcapRegion" );
+      RefMuon_Track_Muid_ety_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_ety_EndcapRegion" );
+      RefMuon_Track_Muid_sumet_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_sumet_EndcapRegion" );
+      RefMuon_Track_Muid_phi_EndcapRegion.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_phi_EndcapRegion" );
+      RefMuon_Track_Muid_etx_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_etx_ForwardReg" );
+      RefMuon_Track_Muid_ety_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_ety_ForwardReg" );
+      RefMuon_Track_Muid_sumet_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_sumet_ForwardReg" );
+      RefMuon_Track_Muid_phi_ForwardReg.SetName( ::TString( prefix ) + "RefMuon_Track_Muid_phi_ForwardReg" );
       return;
    }
 
@@ -2567,21 +2192,6 @@ is_data(is_data) {
       RefGamma_ety_ForwardReg.ReadFrom( tree );
       RefGamma_sumet_ForwardReg.ReadFrom( tree );
       RefGamma_phi_ForwardReg.ReadFrom( tree );
-      STVF_RefGamma_etx.ReadFrom( tree );
-      STVF_RefGamma_ety.ReadFrom( tree );
-      STVF_RefGamma_sumet.ReadFrom( tree );
-      STVF_RefGamma_etx_CentralReg.ReadFrom( tree );
-      STVF_RefGamma_ety_CentralReg.ReadFrom( tree );
-      STVF_RefGamma_sumet_CentralReg.ReadFrom( tree );
-      STVF_RefGamma_phi_CentralReg.ReadFrom( tree );
-      STVF_RefGamma_etx_EndcapRegion.ReadFrom( tree );
-      STVF_RefGamma_ety_EndcapRegion.ReadFrom( tree );
-      STVF_RefGamma_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_RefGamma_phi_EndcapRegion.ReadFrom( tree );
-      STVF_RefGamma_etx_ForwardReg.ReadFrom( tree );
-      STVF_RefGamma_ety_ForwardReg.ReadFrom( tree );
-      STVF_RefGamma_sumet_ForwardReg.ReadFrom( tree );
-      STVF_RefGamma_phi_ForwardReg.ReadFrom( tree );
       RefFinal_etx.ReadFrom( tree );
       RefFinal_ety.ReadFrom( tree );
       RefFinal_sumet.ReadFrom( tree );
@@ -2597,21 +2207,6 @@ is_data(is_data) {
       RefFinal_ety_ForwardReg.ReadFrom( tree );
       RefFinal_sumet_ForwardReg.ReadFrom( tree );
       RefFinal_phi_ForwardReg.ReadFrom( tree );
-      STVF_RefFinal_etx.ReadFrom( tree );
-      STVF_RefFinal_ety.ReadFrom( tree );
-      STVF_RefFinal_sumet.ReadFrom( tree );
-      STVF_RefFinal_etx_CentralReg.ReadFrom( tree );
-      STVF_RefFinal_ety_CentralReg.ReadFrom( tree );
-      STVF_RefFinal_sumet_CentralReg.ReadFrom( tree );
-      STVF_RefFinal_phi_CentralReg.ReadFrom( tree );
-      STVF_RefFinal_etx_EndcapRegion.ReadFrom( tree );
-      STVF_RefFinal_ety_EndcapRegion.ReadFrom( tree );
-      STVF_RefFinal_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_RefFinal_phi_EndcapRegion.ReadFrom( tree );
-      STVF_RefFinal_etx_ForwardReg.ReadFrom( tree );
-      STVF_RefFinal_ety_ForwardReg.ReadFrom( tree );
-      STVF_RefFinal_sumet_ForwardReg.ReadFrom( tree );
-      STVF_RefFinal_phi_ForwardReg.ReadFrom( tree );
       RefJet_etx.ReadFrom( tree );
       RefJet_ety.ReadFrom( tree );
       RefJet_sumet.ReadFrom( tree );
@@ -2627,21 +2222,6 @@ is_data(is_data) {
       RefJet_ety_ForwardReg.ReadFrom( tree );
       RefJet_sumet_ForwardReg.ReadFrom( tree );
       RefJet_phi_ForwardReg.ReadFrom( tree );
-      STVF_RefJet_etx.ReadFrom( tree );
-      STVF_RefJet_ety.ReadFrom( tree );
-      STVF_RefJet_sumet.ReadFrom( tree );
-      STVF_RefJet_etx_CentralReg.ReadFrom( tree );
-      STVF_RefJet_ety_CentralReg.ReadFrom( tree );
-      STVF_RefJet_sumet_CentralReg.ReadFrom( tree );
-      STVF_RefJet_phi_CentralReg.ReadFrom( tree );
-      STVF_RefJet_etx_EndcapRegion.ReadFrom( tree );
-      STVF_RefJet_ety_EndcapRegion.ReadFrom( tree );
-      STVF_RefJet_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_RefJet_phi_EndcapRegion.ReadFrom( tree );
-      STVF_RefJet_etx_ForwardReg.ReadFrom( tree );
-      STVF_RefJet_ety_ForwardReg.ReadFrom( tree );
-      STVF_RefJet_sumet_ForwardReg.ReadFrom( tree );
-      STVF_RefJet_phi_ForwardReg.ReadFrom( tree );
       RefEle_etx.ReadFrom( tree );
       RefEle_ety.ReadFrom( tree );
       RefEle_sumet.ReadFrom( tree );
@@ -2657,21 +2237,6 @@ is_data(is_data) {
       RefEle_ety_ForwardReg.ReadFrom( tree );
       RefEle_sumet_ForwardReg.ReadFrom( tree );
       RefEle_phi_ForwardReg.ReadFrom( tree );
-      STVF_RefEle_etx.ReadFrom( tree );
-      STVF_RefEle_ety.ReadFrom( tree );
-      STVF_RefEle_sumet.ReadFrom( tree );
-      STVF_RefEle_etx_CentralReg.ReadFrom( tree );
-      STVF_RefEle_ety_CentralReg.ReadFrom( tree );
-      STVF_RefEle_sumet_CentralReg.ReadFrom( tree );
-      STVF_RefEle_phi_CentralReg.ReadFrom( tree );
-      STVF_RefEle_etx_EndcapRegion.ReadFrom( tree );
-      STVF_RefEle_ety_EndcapRegion.ReadFrom( tree );
-      STVF_RefEle_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_RefEle_phi_EndcapRegion.ReadFrom( tree );
-      STVF_RefEle_etx_ForwardReg.ReadFrom( tree );
-      STVF_RefEle_ety_ForwardReg.ReadFrom( tree );
-      STVF_RefEle_sumet_ForwardReg.ReadFrom( tree );
-      STVF_RefEle_phi_ForwardReg.ReadFrom( tree );
       Muon_Total_Staco_etx.ReadFrom( tree );
       Muon_Total_Staco_ety.ReadFrom( tree );
       Muon_Total_Staco_sumet.ReadFrom( tree );
@@ -2687,21 +2252,6 @@ is_data(is_data) {
       Muon_Total_Staco_ety_ForwardReg.ReadFrom( tree );
       Muon_Total_Staco_sumet_ForwardReg.ReadFrom( tree );
       Muon_Total_Staco_phi_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Total_Staco_etx.ReadFrom( tree );
-      STVF_Muon_Total_Staco_ety.ReadFrom( tree );
-      STVF_Muon_Total_Staco_sumet.ReadFrom( tree );
-      STVF_Muon_Total_Staco_etx_CentralReg.ReadFrom( tree );
-      STVF_Muon_Total_Staco_ety_CentralReg.ReadFrom( tree );
-      STVF_Muon_Total_Staco_sumet_CentralReg.ReadFrom( tree );
-      STVF_Muon_Total_Staco_phi_CentralReg.ReadFrom( tree );
-      STVF_Muon_Total_Staco_etx_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Total_Staco_ety_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Total_Staco_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Total_Staco_phi_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Total_Staco_etx_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Total_Staco_ety_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Total_Staco_sumet_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Total_Staco_phi_ForwardReg.ReadFrom( tree );
       Muon_Isol_Staco_etx.ReadFrom( tree );
       Muon_Isol_Staco_ety.ReadFrom( tree );
       Muon_Isol_Staco_sumet.ReadFrom( tree );
@@ -2717,21 +2267,6 @@ is_data(is_data) {
       Muon_Isol_Staco_ety_ForwardReg.ReadFrom( tree );
       Muon_Isol_Staco_sumet_ForwardReg.ReadFrom( tree );
       Muon_Isol_Staco_phi_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_etx.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_ety.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_sumet.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_etx_CentralReg.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_ety_CentralReg.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_sumet_CentralReg.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_phi_CentralReg.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_etx_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_ety_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_phi_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_etx_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_ety_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_sumet_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Isol_Staco_phi_ForwardReg.ReadFrom( tree );
       Muon_NonIsol_Staco_etx.ReadFrom( tree );
       Muon_NonIsol_Staco_ety.ReadFrom( tree );
       Muon_NonIsol_Staco_sumet.ReadFrom( tree );
@@ -2747,21 +2282,6 @@ is_data(is_data) {
       Muon_NonIsol_Staco_ety_ForwardReg.ReadFrom( tree );
       Muon_NonIsol_Staco_sumet_ForwardReg.ReadFrom( tree );
       Muon_NonIsol_Staco_phi_ForwardReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_etx.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_ety.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_sumet.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_etx_CentralReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_ety_CentralReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_sumet_CentralReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_phi_CentralReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_etx_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_ety_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_phi_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_etx_ForwardReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_ety_ForwardReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_sumet_ForwardReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Staco_phi_ForwardReg.ReadFrom( tree );
       CellOut_etx.ReadFrom( tree );
       CellOut_ety.ReadFrom( tree );
       CellOut_sumet.ReadFrom( tree );
@@ -2777,21 +2297,21 @@ is_data(is_data) {
       CellOut_ety_ForwardReg.ReadFrom( tree );
       CellOut_sumet_ForwardReg.ReadFrom( tree );
       CellOut_phi_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_etx.ReadFrom( tree );
-      STVF_CellOut_ety.ReadFrom( tree );
-      STVF_CellOut_sumet.ReadFrom( tree );
-      STVF_CellOut_etx_CentralReg.ReadFrom( tree );
-      STVF_CellOut_ety_CentralReg.ReadFrom( tree );
-      STVF_CellOut_sumet_CentralReg.ReadFrom( tree );
-      STVF_CellOut_phi_CentralReg.ReadFrom( tree );
-      STVF_CellOut_etx_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_ety_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_phi_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_etx_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_ety_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_sumet_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_phi_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_etx.ReadFrom( tree );
+      CellOut_Eflow_ety.ReadFrom( tree );
+      CellOut_Eflow_sumet.ReadFrom( tree );
+      CellOut_Eflow_etx_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_ety_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_sumet_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_phi_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_etx_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_ety_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_sumet_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_phi_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_etx_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_ety_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_sumet_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_phi_ForwardReg.ReadFrom( tree );
       Muon_Isol_Muid_etx.ReadFrom( tree );
       Muon_Isol_Muid_ety.ReadFrom( tree );
       Muon_Isol_Muid_sumet.ReadFrom( tree );
@@ -2807,21 +2327,6 @@ is_data(is_data) {
       Muon_Isol_Muid_ety_ForwardReg.ReadFrom( tree );
       Muon_Isol_Muid_sumet_ForwardReg.ReadFrom( tree );
       Muon_Isol_Muid_phi_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_etx.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_ety.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_sumet.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_etx_CentralReg.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_ety_CentralReg.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_sumet_CentralReg.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_phi_CentralReg.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_etx_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_ety_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_phi_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_etx_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_ety_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_sumet_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Isol_Muid_phi_ForwardReg.ReadFrom( tree );
       Muon_NonIsol_Muid_etx.ReadFrom( tree );
       Muon_NonIsol_Muid_ety.ReadFrom( tree );
       Muon_NonIsol_Muid_sumet.ReadFrom( tree );
@@ -2837,21 +2342,6 @@ is_data(is_data) {
       Muon_NonIsol_Muid_ety_ForwardReg.ReadFrom( tree );
       Muon_NonIsol_Muid_sumet_ForwardReg.ReadFrom( tree );
       Muon_NonIsol_Muid_phi_ForwardReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_etx.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_ety.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_sumet.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_etx_CentralReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_ety_CentralReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_sumet_CentralReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_phi_CentralReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_etx_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_ety_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_phi_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_etx_ForwardReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_ety_ForwardReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_sumet_ForwardReg.ReadFrom( tree );
-      STVF_Muon_NonIsol_Muid_phi_ForwardReg.ReadFrom( tree );
       Muon_Total_Muid_etx.ReadFrom( tree );
       Muon_Total_Muid_ety.ReadFrom( tree );
       Muon_Total_Muid_sumet.ReadFrom( tree );
@@ -2867,21 +2357,6 @@ is_data(is_data) {
       Muon_Total_Muid_ety_ForwardReg.ReadFrom( tree );
       Muon_Total_Muid_sumet_ForwardReg.ReadFrom( tree );
       Muon_Total_Muid_phi_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Total_Muid_etx.ReadFrom( tree );
-      STVF_Muon_Total_Muid_ety.ReadFrom( tree );
-      STVF_Muon_Total_Muid_sumet.ReadFrom( tree );
-      STVF_Muon_Total_Muid_etx_CentralReg.ReadFrom( tree );
-      STVF_Muon_Total_Muid_ety_CentralReg.ReadFrom( tree );
-      STVF_Muon_Total_Muid_sumet_CentralReg.ReadFrom( tree );
-      STVF_Muon_Total_Muid_phi_CentralReg.ReadFrom( tree );
-      STVF_Muon_Total_Muid_etx_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Total_Muid_ety_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Total_Muid_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Total_Muid_phi_EndcapRegion.ReadFrom( tree );
-      STVF_Muon_Total_Muid_etx_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Total_Muid_ety_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Total_Muid_sumet_ForwardReg.ReadFrom( tree );
-      STVF_Muon_Total_Muid_phi_ForwardReg.ReadFrom( tree );
       Track_etx.ReadFrom( tree );
       Track_ety.ReadFrom( tree );
       Track_sumet.ReadFrom( tree );
@@ -2897,21 +2372,111 @@ is_data(is_data) {
       Track_ety_ForwardReg.ReadFrom( tree );
       Track_sumet_ForwardReg.ReadFrom( tree );
       Track_phi_ForwardReg.ReadFrom( tree );
-      STVF_Track_etx.ReadFrom( tree );
-      STVF_Track_ety.ReadFrom( tree );
-      STVF_Track_sumet.ReadFrom( tree );
-      STVF_Track_etx_CentralReg.ReadFrom( tree );
-      STVF_Track_ety_CentralReg.ReadFrom( tree );
-      STVF_Track_sumet_CentralReg.ReadFrom( tree );
-      STVF_Track_phi_CentralReg.ReadFrom( tree );
-      STVF_Track_etx_EndcapRegion.ReadFrom( tree );
-      STVF_Track_ety_EndcapRegion.ReadFrom( tree );
-      STVF_Track_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_Track_phi_EndcapRegion.ReadFrom( tree );
-      STVF_Track_etx_ForwardReg.ReadFrom( tree );
-      STVF_Track_ety_ForwardReg.ReadFrom( tree );
-      STVF_Track_sumet_ForwardReg.ReadFrom( tree );
-      STVF_Track_phi_ForwardReg.ReadFrom( tree );
+      RefFinal_STVF_etx.ReadFrom( tree );
+      RefFinal_STVF_ety.ReadFrom( tree );
+      RefFinal_STVF_sumet.ReadFrom( tree );
+      RefFinal_STVF_etx_CentralReg.ReadFrom( tree );
+      RefFinal_STVF_ety_CentralReg.ReadFrom( tree );
+      RefFinal_STVF_sumet_CentralReg.ReadFrom( tree );
+      RefFinal_STVF_phi_CentralReg.ReadFrom( tree );
+      RefFinal_STVF_etx_EndcapRegion.ReadFrom( tree );
+      RefFinal_STVF_ety_EndcapRegion.ReadFrom( tree );
+      RefFinal_STVF_sumet_EndcapRegion.ReadFrom( tree );
+      RefFinal_STVF_phi_EndcapRegion.ReadFrom( tree );
+      RefFinal_STVF_etx_ForwardReg.ReadFrom( tree );
+      RefFinal_STVF_ety_ForwardReg.ReadFrom( tree );
+      RefFinal_STVF_sumet_ForwardReg.ReadFrom( tree );
+      RefFinal_STVF_phi_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_STVF_etx.ReadFrom( tree );
+      CellOut_Eflow_STVF_ety.ReadFrom( tree );
+      CellOut_Eflow_STVF_sumet.ReadFrom( tree );
+      CellOut_Eflow_STVF_etx_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_STVF_ety_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_STVF_sumet_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_STVF_phi_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_STVF_etx_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_STVF_ety_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_STVF_sumet_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_STVF_phi_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_STVF_etx_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_STVF_ety_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_STVF_sumet_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_STVF_phi_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetArea_etx.ReadFrom( tree );
+      CellOut_Eflow_JetArea_ety.ReadFrom( tree );
+      CellOut_Eflow_JetArea_sumet.ReadFrom( tree );
+      CellOut_Eflow_JetArea_etx_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetArea_ety_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetArea_sumet_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetArea_phi_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetArea_etx_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetArea_ety_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetArea_sumet_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetArea_phi_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetArea_etx_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetArea_ety_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetArea_sumet_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetArea_phi_ForwardReg.ReadFrom( tree );
+      RefJet_JVF_etx.ReadFrom( tree );
+      RefJet_JVF_ety.ReadFrom( tree );
+      RefJet_JVF_sumet.ReadFrom( tree );
+      RefJet_JVF_etx_CentralReg.ReadFrom( tree );
+      RefJet_JVF_ety_CentralReg.ReadFrom( tree );
+      RefJet_JVF_sumet_CentralReg.ReadFrom( tree );
+      RefJet_JVF_phi_CentralReg.ReadFrom( tree );
+      RefJet_JVF_etx_EndcapRegion.ReadFrom( tree );
+      RefJet_JVF_ety_EndcapRegion.ReadFrom( tree );
+      RefJet_JVF_sumet_EndcapRegion.ReadFrom( tree );
+      RefJet_JVF_phi_EndcapRegion.ReadFrom( tree );
+      RefJet_JVF_etx_ForwardReg.ReadFrom( tree );
+      RefJet_JVF_ety_ForwardReg.ReadFrom( tree );
+      RefJet_JVF_sumet_ForwardReg.ReadFrom( tree );
+      RefJet_JVF_phi_ForwardReg.ReadFrom( tree );
+      RefJet_JVFCut_etx.ReadFrom( tree );
+      RefJet_JVFCut_ety.ReadFrom( tree );
+      RefJet_JVFCut_sumet.ReadFrom( tree );
+      RefJet_JVFCut_etx_CentralReg.ReadFrom( tree );
+      RefJet_JVFCut_ety_CentralReg.ReadFrom( tree );
+      RefJet_JVFCut_sumet_CentralReg.ReadFrom( tree );
+      RefJet_JVFCut_phi_CentralReg.ReadFrom( tree );
+      RefJet_JVFCut_etx_EndcapRegion.ReadFrom( tree );
+      RefJet_JVFCut_ety_EndcapRegion.ReadFrom( tree );
+      RefJet_JVFCut_sumet_EndcapRegion.ReadFrom( tree );
+      RefJet_JVFCut_phi_EndcapRegion.ReadFrom( tree );
+      RefJet_JVFCut_etx_ForwardReg.ReadFrom( tree );
+      RefJet_JVFCut_ety_ForwardReg.ReadFrom( tree );
+      RefJet_JVFCut_sumet_ForwardReg.ReadFrom( tree );
+      RefJet_JVFCut_phi_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_etx.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_ety.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_sumet.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_etx_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_ety_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_sumet_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_phi_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_etx_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_ety_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_phi_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_etx_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_ety_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_sumet_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaJVF_phi_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg.ReadFrom( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg.ReadFrom( tree );
       SoftJets_etx.ReadFrom( tree );
       SoftJets_ety.ReadFrom( tree );
       SoftJets_sumet.ReadFrom( tree );
@@ -2927,21 +2492,6 @@ is_data(is_data) {
       SoftJets_ety_ForwardReg.ReadFrom( tree );
       SoftJets_sumet_ForwardReg.ReadFrom( tree );
       SoftJets_phi_ForwardReg.ReadFrom( tree );
-      STVF_SoftJets_etx.ReadFrom( tree );
-      STVF_SoftJets_ety.ReadFrom( tree );
-      STVF_SoftJets_sumet.ReadFrom( tree );
-      STVF_SoftJets_etx_CentralReg.ReadFrom( tree );
-      STVF_SoftJets_ety_CentralReg.ReadFrom( tree );
-      STVF_SoftJets_sumet_CentralReg.ReadFrom( tree );
-      STVF_SoftJets_phi_CentralReg.ReadFrom( tree );
-      STVF_SoftJets_etx_EndcapRegion.ReadFrom( tree );
-      STVF_SoftJets_ety_EndcapRegion.ReadFrom( tree );
-      STVF_SoftJets_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_SoftJets_phi_EndcapRegion.ReadFrom( tree );
-      STVF_SoftJets_etx_ForwardReg.ReadFrom( tree );
-      STVF_SoftJets_ety_ForwardReg.ReadFrom( tree );
-      STVF_SoftJets_sumet_ForwardReg.ReadFrom( tree );
-      STVF_SoftJets_phi_ForwardReg.ReadFrom( tree );
       RefMuon_etx.ReadFrom( tree );
       RefMuon_ety.ReadFrom( tree );
       RefMuon_sumet.ReadFrom( tree );
@@ -2957,96 +2507,96 @@ is_data(is_data) {
       RefMuon_ety_ForwardReg.ReadFrom( tree );
       RefMuon_sumet_ForwardReg.ReadFrom( tree );
       RefMuon_phi_ForwardReg.ReadFrom( tree );
-      STVF_RefMuon_etx.ReadFrom( tree );
-      STVF_RefMuon_ety.ReadFrom( tree );
-      STVF_RefMuon_sumet.ReadFrom( tree );
-      STVF_RefMuon_etx_CentralReg.ReadFrom( tree );
-      STVF_RefMuon_ety_CentralReg.ReadFrom( tree );
-      STVF_RefMuon_sumet_CentralReg.ReadFrom( tree );
-      STVF_RefMuon_phi_CentralReg.ReadFrom( tree );
-      STVF_RefMuon_etx_EndcapRegion.ReadFrom( tree );
-      STVF_RefMuon_ety_EndcapRegion.ReadFrom( tree );
-      STVF_RefMuon_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_RefMuon_phi_EndcapRegion.ReadFrom( tree );
-      STVF_RefMuon_etx_ForwardReg.ReadFrom( tree );
-      STVF_RefMuon_ety_ForwardReg.ReadFrom( tree );
-      STVF_RefMuon_sumet_ForwardReg.ReadFrom( tree );
-      STVF_RefMuon_phi_ForwardReg.ReadFrom( tree );
-// -- slimmed --       MuonBoy_etx.ReadFrom( tree );
-// -- slimmed --       MuonBoy_ety.ReadFrom( tree );
-// -- slimmed --       MuonBoy_sumet.ReadFrom( tree );
-// -- slimmed --       MuonBoy_etx_CentralReg.ReadFrom( tree );
-// -- slimmed --       MuonBoy_ety_CentralReg.ReadFrom( tree );
-// -- slimmed --       MuonBoy_sumet_CentralReg.ReadFrom( tree );
-// -- slimmed --       MuonBoy_phi_CentralReg.ReadFrom( tree );
-// -- slimmed --       MuonBoy_etx_EndcapRegion.ReadFrom( tree );
-// -- slimmed --       MuonBoy_ety_EndcapRegion.ReadFrom( tree );
-// -- slimmed --       MuonBoy_sumet_EndcapRegion.ReadFrom( tree );
-// -- slimmed --       MuonBoy_phi_EndcapRegion.ReadFrom( tree );
-// -- slimmed --       MuonBoy_etx_ForwardReg.ReadFrom( tree );
-// -- slimmed --       MuonBoy_ety_ForwardReg.ReadFrom( tree );
-// -- slimmed --       MuonBoy_sumet_ForwardReg.ReadFrom( tree );
-// -- slimmed --       MuonBoy_phi_ForwardReg.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_etx.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_ety.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_sumet.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_etx_CentralReg.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_ety_CentralReg.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_sumet_CentralReg.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_phi_CentralReg.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_etx_EndcapRegion.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_ety_EndcapRegion.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_sumet_EndcapRegion.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_phi_EndcapRegion.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_etx_ForwardReg.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_ety_ForwardReg.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_sumet_ForwardReg.ReadFrom( tree );
-// -- slimmed --       STVF_MuonBoy_phi_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_Track_etx.ReadFrom( tree );
-      STVF_CellOut_Track_ety.ReadFrom( tree );
-      STVF_CellOut_Track_sumet.ReadFrom( tree );
-      STVF_CellOut_Track_etx_CentralReg.ReadFrom( tree );
-      STVF_CellOut_Track_ety_CentralReg.ReadFrom( tree );
-      STVF_CellOut_Track_sumet_CentralReg.ReadFrom( tree );
-      STVF_CellOut_Track_phi_CentralReg.ReadFrom( tree );
-      STVF_CellOut_Track_etx_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_Track_ety_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_Track_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_Track_phi_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_Track_etx_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_Track_ety_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_Track_sumet_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_Track_phi_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_TrackPV_etx.ReadFrom( tree );
-      STVF_CellOut_TrackPV_ety.ReadFrom( tree );
-      STVF_CellOut_TrackPV_sumet.ReadFrom( tree );
-      STVF_CellOut_TrackPV_etx_CentralReg.ReadFrom( tree );
-      STVF_CellOut_TrackPV_ety_CentralReg.ReadFrom( tree );
-      STVF_CellOut_TrackPV_sumet_CentralReg.ReadFrom( tree );
-      STVF_CellOut_TrackPV_phi_CentralReg.ReadFrom( tree );
-      STVF_CellOut_TrackPV_etx_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_TrackPV_ety_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_TrackPV_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_TrackPV_phi_EndcapRegion.ReadFrom( tree );
-      STVF_CellOut_TrackPV_etx_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_TrackPV_ety_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_TrackPV_sumet_ForwardReg.ReadFrom( tree );
-      STVF_CellOut_TrackPV_phi_ForwardReg.ReadFrom( tree );
-      STVF_CellOutCorr_etx.ReadFrom( tree );
-      STVF_CellOutCorr_ety.ReadFrom( tree );
-      STVF_CellOutCorr_sumet.ReadFrom( tree );
-      STVF_CellOutCorr_etx_CentralReg.ReadFrom( tree );
-      STVF_CellOutCorr_ety_CentralReg.ReadFrom( tree );
-      STVF_CellOutCorr_sumet_CentralReg.ReadFrom( tree );
-      STVF_CellOutCorr_phi_CentralReg.ReadFrom( tree );
-      STVF_CellOutCorr_etx_EndcapRegion.ReadFrom( tree );
-      STVF_CellOutCorr_ety_EndcapRegion.ReadFrom( tree );
-      STVF_CellOutCorr_sumet_EndcapRegion.ReadFrom( tree );
-      STVF_CellOutCorr_phi_EndcapRegion.ReadFrom( tree );
-      STVF_CellOutCorr_etx_ForwardReg.ReadFrom( tree );
-      STVF_CellOutCorr_ety_ForwardReg.ReadFrom( tree );
-      STVF_CellOutCorr_sumet_ForwardReg.ReadFrom( tree );
-      STVF_CellOutCorr_phi_ForwardReg.ReadFrom( tree );
+      MuonBoy_etx.ReadFrom( tree );
+      MuonBoy_ety.ReadFrom( tree );
+      MuonBoy_sumet.ReadFrom( tree );
+      MuonBoy_etx_CentralReg.ReadFrom( tree );
+      MuonBoy_ety_CentralReg.ReadFrom( tree );
+      MuonBoy_sumet_CentralReg.ReadFrom( tree );
+      MuonBoy_phi_CentralReg.ReadFrom( tree );
+      MuonBoy_etx_EndcapRegion.ReadFrom( tree );
+      MuonBoy_ety_EndcapRegion.ReadFrom( tree );
+      MuonBoy_sumet_EndcapRegion.ReadFrom( tree );
+      MuonBoy_phi_EndcapRegion.ReadFrom( tree );
+      MuonBoy_etx_ForwardReg.ReadFrom( tree );
+      MuonBoy_ety_ForwardReg.ReadFrom( tree );
+      MuonBoy_sumet_ForwardReg.ReadFrom( tree );
+      MuonBoy_phi_ForwardReg.ReadFrom( tree );
+      RefMuon_Staco_etx.ReadFrom( tree );
+      RefMuon_Staco_ety.ReadFrom( tree );
+      RefMuon_Staco_sumet.ReadFrom( tree );
+      RefMuon_Staco_etx_CentralReg.ReadFrom( tree );
+      RefMuon_Staco_ety_CentralReg.ReadFrom( tree );
+      RefMuon_Staco_sumet_CentralReg.ReadFrom( tree );
+      RefMuon_Staco_phi_CentralReg.ReadFrom( tree );
+      RefMuon_Staco_etx_EndcapRegion.ReadFrom( tree );
+      RefMuon_Staco_ety_EndcapRegion.ReadFrom( tree );
+      RefMuon_Staco_sumet_EndcapRegion.ReadFrom( tree );
+      RefMuon_Staco_phi_EndcapRegion.ReadFrom( tree );
+      RefMuon_Staco_etx_ForwardReg.ReadFrom( tree );
+      RefMuon_Staco_ety_ForwardReg.ReadFrom( tree );
+      RefMuon_Staco_sumet_ForwardReg.ReadFrom( tree );
+      RefMuon_Staco_phi_ForwardReg.ReadFrom( tree );
+      RefMuon_Muid_etx.ReadFrom( tree );
+      RefMuon_Muid_ety.ReadFrom( tree );
+      RefMuon_Muid_sumet.ReadFrom( tree );
+      RefMuon_Muid_etx_CentralReg.ReadFrom( tree );
+      RefMuon_Muid_ety_CentralReg.ReadFrom( tree );
+      RefMuon_Muid_sumet_CentralReg.ReadFrom( tree );
+      RefMuon_Muid_phi_CentralReg.ReadFrom( tree );
+      RefMuon_Muid_etx_EndcapRegion.ReadFrom( tree );
+      RefMuon_Muid_ety_EndcapRegion.ReadFrom( tree );
+      RefMuon_Muid_sumet_EndcapRegion.ReadFrom( tree );
+      RefMuon_Muid_phi_EndcapRegion.ReadFrom( tree );
+      RefMuon_Muid_etx_ForwardReg.ReadFrom( tree );
+      RefMuon_Muid_ety_ForwardReg.ReadFrom( tree );
+      RefMuon_Muid_sumet_ForwardReg.ReadFrom( tree );
+      RefMuon_Muid_phi_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_etx.ReadFrom( tree );
+      RefMuon_Track_ety.ReadFrom( tree );
+      RefMuon_Track_sumet.ReadFrom( tree );
+      RefMuon_Track_etx_CentralReg.ReadFrom( tree );
+      RefMuon_Track_ety_CentralReg.ReadFrom( tree );
+      RefMuon_Track_sumet_CentralReg.ReadFrom( tree );
+      RefMuon_Track_phi_CentralReg.ReadFrom( tree );
+      RefMuon_Track_etx_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_ety_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_sumet_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_phi_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_etx_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_ety_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_sumet_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_phi_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_Staco_etx.ReadFrom( tree );
+      RefMuon_Track_Staco_ety.ReadFrom( tree );
+      RefMuon_Track_Staco_sumet.ReadFrom( tree );
+      RefMuon_Track_Staco_etx_CentralReg.ReadFrom( tree );
+      RefMuon_Track_Staco_ety_CentralReg.ReadFrom( tree );
+      RefMuon_Track_Staco_sumet_CentralReg.ReadFrom( tree );
+      RefMuon_Track_Staco_phi_CentralReg.ReadFrom( tree );
+      RefMuon_Track_Staco_etx_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_Staco_ety_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_Staco_sumet_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_Staco_phi_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_Staco_etx_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_Staco_ety_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_Staco_sumet_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_Staco_phi_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_Muid_etx.ReadFrom( tree );
+      RefMuon_Track_Muid_ety.ReadFrom( tree );
+      RefMuon_Track_Muid_sumet.ReadFrom( tree );
+      RefMuon_Track_Muid_etx_CentralReg.ReadFrom( tree );
+      RefMuon_Track_Muid_ety_CentralReg.ReadFrom( tree );
+      RefMuon_Track_Muid_sumet_CentralReg.ReadFrom( tree );
+      RefMuon_Track_Muid_phi_CentralReg.ReadFrom( tree );
+      RefMuon_Track_Muid_etx_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_Muid_ety_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_Muid_sumet_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_Muid_phi_EndcapRegion.ReadFrom( tree );
+      RefMuon_Track_Muid_etx_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_Muid_ety_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_Muid_sumet_ForwardReg.ReadFrom( tree );
+      RefMuon_Track_Muid_phi_ForwardReg.ReadFrom( tree );
 
       return;
    }
@@ -3075,21 +2625,6 @@ is_data(is_data) {
       RefGamma_ety_ForwardReg.WriteTo( tree );
       RefGamma_sumet_ForwardReg.WriteTo( tree );
       RefGamma_phi_ForwardReg.WriteTo( tree );
-      STVF_RefGamma_etx.WriteTo( tree );
-      STVF_RefGamma_ety.WriteTo( tree );
-      STVF_RefGamma_sumet.WriteTo( tree );
-      STVF_RefGamma_etx_CentralReg.WriteTo( tree );
-      STVF_RefGamma_ety_CentralReg.WriteTo( tree );
-      STVF_RefGamma_sumet_CentralReg.WriteTo( tree );
-      STVF_RefGamma_phi_CentralReg.WriteTo( tree );
-      STVF_RefGamma_etx_EndcapRegion.WriteTo( tree );
-      STVF_RefGamma_ety_EndcapRegion.WriteTo( tree );
-      STVF_RefGamma_sumet_EndcapRegion.WriteTo( tree );
-      STVF_RefGamma_phi_EndcapRegion.WriteTo( tree );
-      STVF_RefGamma_etx_ForwardReg.WriteTo( tree );
-      STVF_RefGamma_ety_ForwardReg.WriteTo( tree );
-      STVF_RefGamma_sumet_ForwardReg.WriteTo( tree );
-      STVF_RefGamma_phi_ForwardReg.WriteTo( tree );
       RefFinal_etx.WriteTo( tree );
       RefFinal_ety.WriteTo( tree );
       RefFinal_sumet.WriteTo( tree );
@@ -3105,21 +2640,6 @@ is_data(is_data) {
       RefFinal_ety_ForwardReg.WriteTo( tree );
       RefFinal_sumet_ForwardReg.WriteTo( tree );
       RefFinal_phi_ForwardReg.WriteTo( tree );
-      STVF_RefFinal_etx.WriteTo( tree );
-      STVF_RefFinal_ety.WriteTo( tree );
-      STVF_RefFinal_sumet.WriteTo( tree );
-      STVF_RefFinal_etx_CentralReg.WriteTo( tree );
-      STVF_RefFinal_ety_CentralReg.WriteTo( tree );
-      STVF_RefFinal_sumet_CentralReg.WriteTo( tree );
-      STVF_RefFinal_phi_CentralReg.WriteTo( tree );
-      STVF_RefFinal_etx_EndcapRegion.WriteTo( tree );
-      STVF_RefFinal_ety_EndcapRegion.WriteTo( tree );
-      STVF_RefFinal_sumet_EndcapRegion.WriteTo( tree );
-      STVF_RefFinal_phi_EndcapRegion.WriteTo( tree );
-      STVF_RefFinal_etx_ForwardReg.WriteTo( tree );
-      STVF_RefFinal_ety_ForwardReg.WriteTo( tree );
-      STVF_RefFinal_sumet_ForwardReg.WriteTo( tree );
-      STVF_RefFinal_phi_ForwardReg.WriteTo( tree );
       RefJet_etx.WriteTo( tree );
       RefJet_ety.WriteTo( tree );
       RefJet_sumet.WriteTo( tree );
@@ -3135,21 +2655,6 @@ is_data(is_data) {
       RefJet_ety_ForwardReg.WriteTo( tree );
       RefJet_sumet_ForwardReg.WriteTo( tree );
       RefJet_phi_ForwardReg.WriteTo( tree );
-      STVF_RefJet_etx.WriteTo( tree );
-      STVF_RefJet_ety.WriteTo( tree );
-      STVF_RefJet_sumet.WriteTo( tree );
-      STVF_RefJet_etx_CentralReg.WriteTo( tree );
-      STVF_RefJet_ety_CentralReg.WriteTo( tree );
-      STVF_RefJet_sumet_CentralReg.WriteTo( tree );
-      STVF_RefJet_phi_CentralReg.WriteTo( tree );
-      STVF_RefJet_etx_EndcapRegion.WriteTo( tree );
-      STVF_RefJet_ety_EndcapRegion.WriteTo( tree );
-      STVF_RefJet_sumet_EndcapRegion.WriteTo( tree );
-      STVF_RefJet_phi_EndcapRegion.WriteTo( tree );
-      STVF_RefJet_etx_ForwardReg.WriteTo( tree );
-      STVF_RefJet_ety_ForwardReg.WriteTo( tree );
-      STVF_RefJet_sumet_ForwardReg.WriteTo( tree );
-      STVF_RefJet_phi_ForwardReg.WriteTo( tree );
       RefEle_etx.WriteTo( tree );
       RefEle_ety.WriteTo( tree );
       RefEle_sumet.WriteTo( tree );
@@ -3165,21 +2670,6 @@ is_data(is_data) {
       RefEle_ety_ForwardReg.WriteTo( tree );
       RefEle_sumet_ForwardReg.WriteTo( tree );
       RefEle_phi_ForwardReg.WriteTo( tree );
-      STVF_RefEle_etx.WriteTo( tree );
-      STVF_RefEle_ety.WriteTo( tree );
-      STVF_RefEle_sumet.WriteTo( tree );
-      STVF_RefEle_etx_CentralReg.WriteTo( tree );
-      STVF_RefEle_ety_CentralReg.WriteTo( tree );
-      STVF_RefEle_sumet_CentralReg.WriteTo( tree );
-      STVF_RefEle_phi_CentralReg.WriteTo( tree );
-      STVF_RefEle_etx_EndcapRegion.WriteTo( tree );
-      STVF_RefEle_ety_EndcapRegion.WriteTo( tree );
-      STVF_RefEle_sumet_EndcapRegion.WriteTo( tree );
-      STVF_RefEle_phi_EndcapRegion.WriteTo( tree );
-      STVF_RefEle_etx_ForwardReg.WriteTo( tree );
-      STVF_RefEle_ety_ForwardReg.WriteTo( tree );
-      STVF_RefEle_sumet_ForwardReg.WriteTo( tree );
-      STVF_RefEle_phi_ForwardReg.WriteTo( tree );
       Muon_Total_Staco_etx.WriteTo( tree );
       Muon_Total_Staco_ety.WriteTo( tree );
       Muon_Total_Staco_sumet.WriteTo( tree );
@@ -3195,21 +2685,6 @@ is_data(is_data) {
       Muon_Total_Staco_ety_ForwardReg.WriteTo( tree );
       Muon_Total_Staco_sumet_ForwardReg.WriteTo( tree );
       Muon_Total_Staco_phi_ForwardReg.WriteTo( tree );
-      STVF_Muon_Total_Staco_etx.WriteTo( tree );
-      STVF_Muon_Total_Staco_ety.WriteTo( tree );
-      STVF_Muon_Total_Staco_sumet.WriteTo( tree );
-      STVF_Muon_Total_Staco_etx_CentralReg.WriteTo( tree );
-      STVF_Muon_Total_Staco_ety_CentralReg.WriteTo( tree );
-      STVF_Muon_Total_Staco_sumet_CentralReg.WriteTo( tree );
-      STVF_Muon_Total_Staco_phi_CentralReg.WriteTo( tree );
-      STVF_Muon_Total_Staco_etx_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Total_Staco_ety_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Total_Staco_sumet_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Total_Staco_phi_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Total_Staco_etx_ForwardReg.WriteTo( tree );
-      STVF_Muon_Total_Staco_ety_ForwardReg.WriteTo( tree );
-      STVF_Muon_Total_Staco_sumet_ForwardReg.WriteTo( tree );
-      STVF_Muon_Total_Staco_phi_ForwardReg.WriteTo( tree );
       Muon_Isol_Staco_etx.WriteTo( tree );
       Muon_Isol_Staco_ety.WriteTo( tree );
       Muon_Isol_Staco_sumet.WriteTo( tree );
@@ -3225,21 +2700,6 @@ is_data(is_data) {
       Muon_Isol_Staco_ety_ForwardReg.WriteTo( tree );
       Muon_Isol_Staco_sumet_ForwardReg.WriteTo( tree );
       Muon_Isol_Staco_phi_ForwardReg.WriteTo( tree );
-      STVF_Muon_Isol_Staco_etx.WriteTo( tree );
-      STVF_Muon_Isol_Staco_ety.WriteTo( tree );
-      STVF_Muon_Isol_Staco_sumet.WriteTo( tree );
-      STVF_Muon_Isol_Staco_etx_CentralReg.WriteTo( tree );
-      STVF_Muon_Isol_Staco_ety_CentralReg.WriteTo( tree );
-      STVF_Muon_Isol_Staco_sumet_CentralReg.WriteTo( tree );
-      STVF_Muon_Isol_Staco_phi_CentralReg.WriteTo( tree );
-      STVF_Muon_Isol_Staco_etx_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Isol_Staco_ety_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Isol_Staco_sumet_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Isol_Staco_phi_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Isol_Staco_etx_ForwardReg.WriteTo( tree );
-      STVF_Muon_Isol_Staco_ety_ForwardReg.WriteTo( tree );
-      STVF_Muon_Isol_Staco_sumet_ForwardReg.WriteTo( tree );
-      STVF_Muon_Isol_Staco_phi_ForwardReg.WriteTo( tree );
       Muon_NonIsol_Staco_etx.WriteTo( tree );
       Muon_NonIsol_Staco_ety.WriteTo( tree );
       Muon_NonIsol_Staco_sumet.WriteTo( tree );
@@ -3255,21 +2715,6 @@ is_data(is_data) {
       Muon_NonIsol_Staco_ety_ForwardReg.WriteTo( tree );
       Muon_NonIsol_Staco_sumet_ForwardReg.WriteTo( tree );
       Muon_NonIsol_Staco_phi_ForwardReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_etx.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_ety.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_sumet.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_etx_CentralReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_ety_CentralReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_sumet_CentralReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_phi_CentralReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_etx_EndcapRegion.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_ety_EndcapRegion.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_sumet_EndcapRegion.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_phi_EndcapRegion.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_etx_ForwardReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_ety_ForwardReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_sumet_ForwardReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Staco_phi_ForwardReg.WriteTo( tree );
       CellOut_etx.WriteTo( tree );
       CellOut_ety.WriteTo( tree );
       CellOut_sumet.WriteTo( tree );
@@ -3285,21 +2730,21 @@ is_data(is_data) {
       CellOut_ety_ForwardReg.WriteTo( tree );
       CellOut_sumet_ForwardReg.WriteTo( tree );
       CellOut_phi_ForwardReg.WriteTo( tree );
-      STVF_CellOut_etx.WriteTo( tree );
-      STVF_CellOut_ety.WriteTo( tree );
-      STVF_CellOut_sumet.WriteTo( tree );
-      STVF_CellOut_etx_CentralReg.WriteTo( tree );
-      STVF_CellOut_ety_CentralReg.WriteTo( tree );
-      STVF_CellOut_sumet_CentralReg.WriteTo( tree );
-      STVF_CellOut_phi_CentralReg.WriteTo( tree );
-      STVF_CellOut_etx_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_ety_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_sumet_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_phi_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_etx_ForwardReg.WriteTo( tree );
-      STVF_CellOut_ety_ForwardReg.WriteTo( tree );
-      STVF_CellOut_sumet_ForwardReg.WriteTo( tree );
-      STVF_CellOut_phi_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_etx.WriteTo( tree );
+      CellOut_Eflow_ety.WriteTo( tree );
+      CellOut_Eflow_sumet.WriteTo( tree );
+      CellOut_Eflow_etx_CentralReg.WriteTo( tree );
+      CellOut_Eflow_ety_CentralReg.WriteTo( tree );
+      CellOut_Eflow_sumet_CentralReg.WriteTo( tree );
+      CellOut_Eflow_phi_CentralReg.WriteTo( tree );
+      CellOut_Eflow_etx_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_ety_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_sumet_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_phi_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_etx_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_ety_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_sumet_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_phi_ForwardReg.WriteTo( tree );
       Muon_Isol_Muid_etx.WriteTo( tree );
       Muon_Isol_Muid_ety.WriteTo( tree );
       Muon_Isol_Muid_sumet.WriteTo( tree );
@@ -3315,21 +2760,6 @@ is_data(is_data) {
       Muon_Isol_Muid_ety_ForwardReg.WriteTo( tree );
       Muon_Isol_Muid_sumet_ForwardReg.WriteTo( tree );
       Muon_Isol_Muid_phi_ForwardReg.WriteTo( tree );
-      STVF_Muon_Isol_Muid_etx.WriteTo( tree );
-      STVF_Muon_Isol_Muid_ety.WriteTo( tree );
-      STVF_Muon_Isol_Muid_sumet.WriteTo( tree );
-      STVF_Muon_Isol_Muid_etx_CentralReg.WriteTo( tree );
-      STVF_Muon_Isol_Muid_ety_CentralReg.WriteTo( tree );
-      STVF_Muon_Isol_Muid_sumet_CentralReg.WriteTo( tree );
-      STVF_Muon_Isol_Muid_phi_CentralReg.WriteTo( tree );
-      STVF_Muon_Isol_Muid_etx_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Isol_Muid_ety_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Isol_Muid_sumet_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Isol_Muid_phi_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Isol_Muid_etx_ForwardReg.WriteTo( tree );
-      STVF_Muon_Isol_Muid_ety_ForwardReg.WriteTo( tree );
-      STVF_Muon_Isol_Muid_sumet_ForwardReg.WriteTo( tree );
-      STVF_Muon_Isol_Muid_phi_ForwardReg.WriteTo( tree );
       Muon_NonIsol_Muid_etx.WriteTo( tree );
       Muon_NonIsol_Muid_ety.WriteTo( tree );
       Muon_NonIsol_Muid_sumet.WriteTo( tree );
@@ -3345,21 +2775,6 @@ is_data(is_data) {
       Muon_NonIsol_Muid_ety_ForwardReg.WriteTo( tree );
       Muon_NonIsol_Muid_sumet_ForwardReg.WriteTo( tree );
       Muon_NonIsol_Muid_phi_ForwardReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_etx.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_ety.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_sumet.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_etx_CentralReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_ety_CentralReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_sumet_CentralReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_phi_CentralReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_etx_EndcapRegion.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_ety_EndcapRegion.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_sumet_EndcapRegion.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_phi_EndcapRegion.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_etx_ForwardReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_ety_ForwardReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_sumet_ForwardReg.WriteTo( tree );
-      STVF_Muon_NonIsol_Muid_phi_ForwardReg.WriteTo( tree );
       Muon_Total_Muid_etx.WriteTo( tree );
       Muon_Total_Muid_ety.WriteTo( tree );
       Muon_Total_Muid_sumet.WriteTo( tree );
@@ -3375,21 +2790,6 @@ is_data(is_data) {
       Muon_Total_Muid_ety_ForwardReg.WriteTo( tree );
       Muon_Total_Muid_sumet_ForwardReg.WriteTo( tree );
       Muon_Total_Muid_phi_ForwardReg.WriteTo( tree );
-      STVF_Muon_Total_Muid_etx.WriteTo( tree );
-      STVF_Muon_Total_Muid_ety.WriteTo( tree );
-      STVF_Muon_Total_Muid_sumet.WriteTo( tree );
-      STVF_Muon_Total_Muid_etx_CentralReg.WriteTo( tree );
-      STVF_Muon_Total_Muid_ety_CentralReg.WriteTo( tree );
-      STVF_Muon_Total_Muid_sumet_CentralReg.WriteTo( tree );
-      STVF_Muon_Total_Muid_phi_CentralReg.WriteTo( tree );
-      STVF_Muon_Total_Muid_etx_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Total_Muid_ety_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Total_Muid_sumet_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Total_Muid_phi_EndcapRegion.WriteTo( tree );
-      STVF_Muon_Total_Muid_etx_ForwardReg.WriteTo( tree );
-      STVF_Muon_Total_Muid_ety_ForwardReg.WriteTo( tree );
-      STVF_Muon_Total_Muid_sumet_ForwardReg.WriteTo( tree );
-      STVF_Muon_Total_Muid_phi_ForwardReg.WriteTo( tree );
       Track_etx.WriteTo( tree );
       Track_ety.WriteTo( tree );
       Track_sumet.WriteTo( tree );
@@ -3405,21 +2805,111 @@ is_data(is_data) {
       Track_ety_ForwardReg.WriteTo( tree );
       Track_sumet_ForwardReg.WriteTo( tree );
       Track_phi_ForwardReg.WriteTo( tree );
-      STVF_Track_etx.WriteTo( tree );
-      STVF_Track_ety.WriteTo( tree );
-      STVF_Track_sumet.WriteTo( tree );
-      STVF_Track_etx_CentralReg.WriteTo( tree );
-      STVF_Track_ety_CentralReg.WriteTo( tree );
-      STVF_Track_sumet_CentralReg.WriteTo( tree );
-      STVF_Track_phi_CentralReg.WriteTo( tree );
-      STVF_Track_etx_EndcapRegion.WriteTo( tree );
-      STVF_Track_ety_EndcapRegion.WriteTo( tree );
-      STVF_Track_sumet_EndcapRegion.WriteTo( tree );
-      STVF_Track_phi_EndcapRegion.WriteTo( tree );
-      STVF_Track_etx_ForwardReg.WriteTo( tree );
-      STVF_Track_ety_ForwardReg.WriteTo( tree );
-      STVF_Track_sumet_ForwardReg.WriteTo( tree );
-      STVF_Track_phi_ForwardReg.WriteTo( tree );
+      RefFinal_STVF_etx.WriteTo( tree );
+      RefFinal_STVF_ety.WriteTo( tree );
+      RefFinal_STVF_sumet.WriteTo( tree );
+      RefFinal_STVF_etx_CentralReg.WriteTo( tree );
+      RefFinal_STVF_ety_CentralReg.WriteTo( tree );
+      RefFinal_STVF_sumet_CentralReg.WriteTo( tree );
+      RefFinal_STVF_phi_CentralReg.WriteTo( tree );
+      RefFinal_STVF_etx_EndcapRegion.WriteTo( tree );
+      RefFinal_STVF_ety_EndcapRegion.WriteTo( tree );
+      RefFinal_STVF_sumet_EndcapRegion.WriteTo( tree );
+      RefFinal_STVF_phi_EndcapRegion.WriteTo( tree );
+      RefFinal_STVF_etx_ForwardReg.WriteTo( tree );
+      RefFinal_STVF_ety_ForwardReg.WriteTo( tree );
+      RefFinal_STVF_sumet_ForwardReg.WriteTo( tree );
+      RefFinal_STVF_phi_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_STVF_etx.WriteTo( tree );
+      CellOut_Eflow_STVF_ety.WriteTo( tree );
+      CellOut_Eflow_STVF_sumet.WriteTo( tree );
+      CellOut_Eflow_STVF_etx_CentralReg.WriteTo( tree );
+      CellOut_Eflow_STVF_ety_CentralReg.WriteTo( tree );
+      CellOut_Eflow_STVF_sumet_CentralReg.WriteTo( tree );
+      CellOut_Eflow_STVF_phi_CentralReg.WriteTo( tree );
+      CellOut_Eflow_STVF_etx_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_STVF_ety_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_STVF_sumet_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_STVF_phi_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_STVF_etx_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_STVF_ety_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_STVF_sumet_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_STVF_phi_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetArea_etx.WriteTo( tree );
+      CellOut_Eflow_JetArea_ety.WriteTo( tree );
+      CellOut_Eflow_JetArea_sumet.WriteTo( tree );
+      CellOut_Eflow_JetArea_etx_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetArea_ety_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetArea_sumet_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetArea_phi_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetArea_etx_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetArea_ety_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetArea_sumet_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetArea_phi_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetArea_etx_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetArea_ety_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetArea_sumet_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetArea_phi_ForwardReg.WriteTo( tree );
+      RefJet_JVF_etx.WriteTo( tree );
+      RefJet_JVF_ety.WriteTo( tree );
+      RefJet_JVF_sumet.WriteTo( tree );
+      RefJet_JVF_etx_CentralReg.WriteTo( tree );
+      RefJet_JVF_ety_CentralReg.WriteTo( tree );
+      RefJet_JVF_sumet_CentralReg.WriteTo( tree );
+      RefJet_JVF_phi_CentralReg.WriteTo( tree );
+      RefJet_JVF_etx_EndcapRegion.WriteTo( tree );
+      RefJet_JVF_ety_EndcapRegion.WriteTo( tree );
+      RefJet_JVF_sumet_EndcapRegion.WriteTo( tree );
+      RefJet_JVF_phi_EndcapRegion.WriteTo( tree );
+      RefJet_JVF_etx_ForwardReg.WriteTo( tree );
+      RefJet_JVF_ety_ForwardReg.WriteTo( tree );
+      RefJet_JVF_sumet_ForwardReg.WriteTo( tree );
+      RefJet_JVF_phi_ForwardReg.WriteTo( tree );
+      RefJet_JVFCut_etx.WriteTo( tree );
+      RefJet_JVFCut_ety.WriteTo( tree );
+      RefJet_JVFCut_sumet.WriteTo( tree );
+      RefJet_JVFCut_etx_CentralReg.WriteTo( tree );
+      RefJet_JVFCut_ety_CentralReg.WriteTo( tree );
+      RefJet_JVFCut_sumet_CentralReg.WriteTo( tree );
+      RefJet_JVFCut_phi_CentralReg.WriteTo( tree );
+      RefJet_JVFCut_etx_EndcapRegion.WriteTo( tree );
+      RefJet_JVFCut_ety_EndcapRegion.WriteTo( tree );
+      RefJet_JVFCut_sumet_EndcapRegion.WriteTo( tree );
+      RefJet_JVFCut_phi_EndcapRegion.WriteTo( tree );
+      RefJet_JVFCut_etx_ForwardReg.WriteTo( tree );
+      RefJet_JVFCut_ety_ForwardReg.WriteTo( tree );
+      RefJet_JVFCut_sumet_ForwardReg.WriteTo( tree );
+      RefJet_JVFCut_phi_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_etx.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_ety.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_sumet.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_etx_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_ety_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_sumet_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_phi_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_etx_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_ety_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_phi_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_etx_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_ety_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_sumet_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaJVF_phi_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg.WriteTo( tree );
+      CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg.WriteTo( tree );
       SoftJets_etx.WriteTo( tree );
       SoftJets_ety.WriteTo( tree );
       SoftJets_sumet.WriteTo( tree );
@@ -3435,21 +2925,6 @@ is_data(is_data) {
       SoftJets_ety_ForwardReg.WriteTo( tree );
       SoftJets_sumet_ForwardReg.WriteTo( tree );
       SoftJets_phi_ForwardReg.WriteTo( tree );
-      STVF_SoftJets_etx.WriteTo( tree );
-      STVF_SoftJets_ety.WriteTo( tree );
-      STVF_SoftJets_sumet.WriteTo( tree );
-      STVF_SoftJets_etx_CentralReg.WriteTo( tree );
-      STVF_SoftJets_ety_CentralReg.WriteTo( tree );
-      STVF_SoftJets_sumet_CentralReg.WriteTo( tree );
-      STVF_SoftJets_phi_CentralReg.WriteTo( tree );
-      STVF_SoftJets_etx_EndcapRegion.WriteTo( tree );
-      STVF_SoftJets_ety_EndcapRegion.WriteTo( tree );
-      STVF_SoftJets_sumet_EndcapRegion.WriteTo( tree );
-      STVF_SoftJets_phi_EndcapRegion.WriteTo( tree );
-      STVF_SoftJets_etx_ForwardReg.WriteTo( tree );
-      STVF_SoftJets_ety_ForwardReg.WriteTo( tree );
-      STVF_SoftJets_sumet_ForwardReg.WriteTo( tree );
-      STVF_SoftJets_phi_ForwardReg.WriteTo( tree );
       RefMuon_etx.WriteTo( tree );
       RefMuon_ety.WriteTo( tree );
       RefMuon_sumet.WriteTo( tree );
@@ -3465,96 +2940,96 @@ is_data(is_data) {
       RefMuon_ety_ForwardReg.WriteTo( tree );
       RefMuon_sumet_ForwardReg.WriteTo( tree );
       RefMuon_phi_ForwardReg.WriteTo( tree );
-      STVF_RefMuon_etx.WriteTo( tree );
-      STVF_RefMuon_ety.WriteTo( tree );
-      STVF_RefMuon_sumet.WriteTo( tree );
-      STVF_RefMuon_etx_CentralReg.WriteTo( tree );
-      STVF_RefMuon_ety_CentralReg.WriteTo( tree );
-      STVF_RefMuon_sumet_CentralReg.WriteTo( tree );
-      STVF_RefMuon_phi_CentralReg.WriteTo( tree );
-      STVF_RefMuon_etx_EndcapRegion.WriteTo( tree );
-      STVF_RefMuon_ety_EndcapRegion.WriteTo( tree );
-      STVF_RefMuon_sumet_EndcapRegion.WriteTo( tree );
-      STVF_RefMuon_phi_EndcapRegion.WriteTo( tree );
-      STVF_RefMuon_etx_ForwardReg.WriteTo( tree );
-      STVF_RefMuon_ety_ForwardReg.WriteTo( tree );
-      STVF_RefMuon_sumet_ForwardReg.WriteTo( tree );
-      STVF_RefMuon_phi_ForwardReg.WriteTo( tree );
-// -- slimmed --       MuonBoy_etx.WriteTo( tree );
-// -- slimmed --       MuonBoy_ety.WriteTo( tree );
-// -- slimmed --       MuonBoy_sumet.WriteTo( tree );
-// -- slimmed --       MuonBoy_etx_CentralReg.WriteTo( tree );
-// -- slimmed --       MuonBoy_ety_CentralReg.WriteTo( tree );
-// -- slimmed --       MuonBoy_sumet_CentralReg.WriteTo( tree );
-// -- slimmed --       MuonBoy_phi_CentralReg.WriteTo( tree );
-// -- slimmed --       MuonBoy_etx_EndcapRegion.WriteTo( tree );
-// -- slimmed --       MuonBoy_ety_EndcapRegion.WriteTo( tree );
-// -- slimmed --       MuonBoy_sumet_EndcapRegion.WriteTo( tree );
-// -- slimmed --       MuonBoy_phi_EndcapRegion.WriteTo( tree );
-// -- slimmed --       MuonBoy_etx_ForwardReg.WriteTo( tree );
-// -- slimmed --       MuonBoy_ety_ForwardReg.WriteTo( tree );
-// -- slimmed --       MuonBoy_sumet_ForwardReg.WriteTo( tree );
-// -- slimmed --       MuonBoy_phi_ForwardReg.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_etx.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_ety.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_sumet.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_etx_CentralReg.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_ety_CentralReg.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_sumet_CentralReg.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_phi_CentralReg.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_etx_EndcapRegion.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_ety_EndcapRegion.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_sumet_EndcapRegion.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_phi_EndcapRegion.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_etx_ForwardReg.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_ety_ForwardReg.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_sumet_ForwardReg.WriteTo( tree );
-// -- slimmed --       STVF_MuonBoy_phi_ForwardReg.WriteTo( tree );
-      STVF_CellOut_Track_etx.WriteTo( tree );
-      STVF_CellOut_Track_ety.WriteTo( tree );
-      STVF_CellOut_Track_sumet.WriteTo( tree );
-      STVF_CellOut_Track_etx_CentralReg.WriteTo( tree );
-      STVF_CellOut_Track_ety_CentralReg.WriteTo( tree );
-      STVF_CellOut_Track_sumet_CentralReg.WriteTo( tree );
-      STVF_CellOut_Track_phi_CentralReg.WriteTo( tree );
-      STVF_CellOut_Track_etx_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_Track_ety_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_Track_sumet_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_Track_phi_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_Track_etx_ForwardReg.WriteTo( tree );
-      STVF_CellOut_Track_ety_ForwardReg.WriteTo( tree );
-      STVF_CellOut_Track_sumet_ForwardReg.WriteTo( tree );
-      STVF_CellOut_Track_phi_ForwardReg.WriteTo( tree );
-      STVF_CellOut_TrackPV_etx.WriteTo( tree );
-      STVF_CellOut_TrackPV_ety.WriteTo( tree );
-      STVF_CellOut_TrackPV_sumet.WriteTo( tree );
-      STVF_CellOut_TrackPV_etx_CentralReg.WriteTo( tree );
-      STVF_CellOut_TrackPV_ety_CentralReg.WriteTo( tree );
-      STVF_CellOut_TrackPV_sumet_CentralReg.WriteTo( tree );
-      STVF_CellOut_TrackPV_phi_CentralReg.WriteTo( tree );
-      STVF_CellOut_TrackPV_etx_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_TrackPV_ety_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_TrackPV_sumet_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_TrackPV_phi_EndcapRegion.WriteTo( tree );
-      STVF_CellOut_TrackPV_etx_ForwardReg.WriteTo( tree );
-      STVF_CellOut_TrackPV_ety_ForwardReg.WriteTo( tree );
-      STVF_CellOut_TrackPV_sumet_ForwardReg.WriteTo( tree );
-      STVF_CellOut_TrackPV_phi_ForwardReg.WriteTo( tree );
-      STVF_CellOutCorr_etx.WriteTo( tree );
-      STVF_CellOutCorr_ety.WriteTo( tree );
-      STVF_CellOutCorr_sumet.WriteTo( tree );
-      STVF_CellOutCorr_etx_CentralReg.WriteTo( tree );
-      STVF_CellOutCorr_ety_CentralReg.WriteTo( tree );
-      STVF_CellOutCorr_sumet_CentralReg.WriteTo( tree );
-      STVF_CellOutCorr_phi_CentralReg.WriteTo( tree );
-      STVF_CellOutCorr_etx_EndcapRegion.WriteTo( tree );
-      STVF_CellOutCorr_ety_EndcapRegion.WriteTo( tree );
-      STVF_CellOutCorr_sumet_EndcapRegion.WriteTo( tree );
-      STVF_CellOutCorr_phi_EndcapRegion.WriteTo( tree );
-      STVF_CellOutCorr_etx_ForwardReg.WriteTo( tree );
-      STVF_CellOutCorr_ety_ForwardReg.WriteTo( tree );
-      STVF_CellOutCorr_sumet_ForwardReg.WriteTo( tree );
-      STVF_CellOutCorr_phi_ForwardReg.WriteTo( tree );
+      MuonBoy_etx.WriteTo( tree );
+      MuonBoy_ety.WriteTo( tree );
+      MuonBoy_sumet.WriteTo( tree );
+      MuonBoy_etx_CentralReg.WriteTo( tree );
+      MuonBoy_ety_CentralReg.WriteTo( tree );
+      MuonBoy_sumet_CentralReg.WriteTo( tree );
+      MuonBoy_phi_CentralReg.WriteTo( tree );
+      MuonBoy_etx_EndcapRegion.WriteTo( tree );
+      MuonBoy_ety_EndcapRegion.WriteTo( tree );
+      MuonBoy_sumet_EndcapRegion.WriteTo( tree );
+      MuonBoy_phi_EndcapRegion.WriteTo( tree );
+      MuonBoy_etx_ForwardReg.WriteTo( tree );
+      MuonBoy_ety_ForwardReg.WriteTo( tree );
+      MuonBoy_sumet_ForwardReg.WriteTo( tree );
+      MuonBoy_phi_ForwardReg.WriteTo( tree );
+      RefMuon_Staco_etx.WriteTo( tree );
+      RefMuon_Staco_ety.WriteTo( tree );
+      RefMuon_Staco_sumet.WriteTo( tree );
+      RefMuon_Staco_etx_CentralReg.WriteTo( tree );
+      RefMuon_Staco_ety_CentralReg.WriteTo( tree );
+      RefMuon_Staco_sumet_CentralReg.WriteTo( tree );
+      RefMuon_Staco_phi_CentralReg.WriteTo( tree );
+      RefMuon_Staco_etx_EndcapRegion.WriteTo( tree );
+      RefMuon_Staco_ety_EndcapRegion.WriteTo( tree );
+      RefMuon_Staco_sumet_EndcapRegion.WriteTo( tree );
+      RefMuon_Staco_phi_EndcapRegion.WriteTo( tree );
+      RefMuon_Staco_etx_ForwardReg.WriteTo( tree );
+      RefMuon_Staco_ety_ForwardReg.WriteTo( tree );
+      RefMuon_Staco_sumet_ForwardReg.WriteTo( tree );
+      RefMuon_Staco_phi_ForwardReg.WriteTo( tree );
+      RefMuon_Muid_etx.WriteTo( tree );
+      RefMuon_Muid_ety.WriteTo( tree );
+      RefMuon_Muid_sumet.WriteTo( tree );
+      RefMuon_Muid_etx_CentralReg.WriteTo( tree );
+      RefMuon_Muid_ety_CentralReg.WriteTo( tree );
+      RefMuon_Muid_sumet_CentralReg.WriteTo( tree );
+      RefMuon_Muid_phi_CentralReg.WriteTo( tree );
+      RefMuon_Muid_etx_EndcapRegion.WriteTo( tree );
+      RefMuon_Muid_ety_EndcapRegion.WriteTo( tree );
+      RefMuon_Muid_sumet_EndcapRegion.WriteTo( tree );
+      RefMuon_Muid_phi_EndcapRegion.WriteTo( tree );
+      RefMuon_Muid_etx_ForwardReg.WriteTo( tree );
+      RefMuon_Muid_ety_ForwardReg.WriteTo( tree );
+      RefMuon_Muid_sumet_ForwardReg.WriteTo( tree );
+      RefMuon_Muid_phi_ForwardReg.WriteTo( tree );
+      RefMuon_Track_etx.WriteTo( tree );
+      RefMuon_Track_ety.WriteTo( tree );
+      RefMuon_Track_sumet.WriteTo( tree );
+      RefMuon_Track_etx_CentralReg.WriteTo( tree );
+      RefMuon_Track_ety_CentralReg.WriteTo( tree );
+      RefMuon_Track_sumet_CentralReg.WriteTo( tree );
+      RefMuon_Track_phi_CentralReg.WriteTo( tree );
+      RefMuon_Track_etx_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_ety_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_sumet_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_phi_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_etx_ForwardReg.WriteTo( tree );
+      RefMuon_Track_ety_ForwardReg.WriteTo( tree );
+      RefMuon_Track_sumet_ForwardReg.WriteTo( tree );
+      RefMuon_Track_phi_ForwardReg.WriteTo( tree );
+      RefMuon_Track_Staco_etx.WriteTo( tree );
+      RefMuon_Track_Staco_ety.WriteTo( tree );
+      RefMuon_Track_Staco_sumet.WriteTo( tree );
+      RefMuon_Track_Staco_etx_CentralReg.WriteTo( tree );
+      RefMuon_Track_Staco_ety_CentralReg.WriteTo( tree );
+      RefMuon_Track_Staco_sumet_CentralReg.WriteTo( tree );
+      RefMuon_Track_Staco_phi_CentralReg.WriteTo( tree );
+      RefMuon_Track_Staco_etx_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_Staco_ety_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_Staco_sumet_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_Staco_phi_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_Staco_etx_ForwardReg.WriteTo( tree );
+      RefMuon_Track_Staco_ety_ForwardReg.WriteTo( tree );
+      RefMuon_Track_Staco_sumet_ForwardReg.WriteTo( tree );
+      RefMuon_Track_Staco_phi_ForwardReg.WriteTo( tree );
+      RefMuon_Track_Muid_etx.WriteTo( tree );
+      RefMuon_Track_Muid_ety.WriteTo( tree );
+      RefMuon_Track_Muid_sumet.WriteTo( tree );
+      RefMuon_Track_Muid_etx_CentralReg.WriteTo( tree );
+      RefMuon_Track_Muid_ety_CentralReg.WriteTo( tree );
+      RefMuon_Track_Muid_sumet_CentralReg.WriteTo( tree );
+      RefMuon_Track_Muid_phi_CentralReg.WriteTo( tree );
+      RefMuon_Track_Muid_etx_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_Muid_ety_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_Muid_sumet_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_Muid_phi_EndcapRegion.WriteTo( tree );
+      RefMuon_Track_Muid_etx_ForwardReg.WriteTo( tree );
+      RefMuon_Track_Muid_ety_ForwardReg.WriteTo( tree );
+      RefMuon_Track_Muid_sumet_ForwardReg.WriteTo( tree );
+      RefMuon_Track_Muid_phi_ForwardReg.WriteTo( tree );
 
       return;
    }
@@ -3620,21 +3095,6 @@ is_data(is_data) {
       if( RefGamma_ety_ForwardReg.IsActive() ) RefGamma_ety_ForwardReg();
       if( RefGamma_sumet_ForwardReg.IsActive() ) RefGamma_sumet_ForwardReg();
       if( RefGamma_phi_ForwardReg.IsActive() ) RefGamma_phi_ForwardReg();
-      if( STVF_RefGamma_etx.IsActive() ) STVF_RefGamma_etx();
-      if( STVF_RefGamma_ety.IsActive() ) STVF_RefGamma_ety();
-      if( STVF_RefGamma_sumet.IsActive() ) STVF_RefGamma_sumet();
-      if( STVF_RefGamma_etx_CentralReg.IsActive() ) STVF_RefGamma_etx_CentralReg();
-      if( STVF_RefGamma_ety_CentralReg.IsActive() ) STVF_RefGamma_ety_CentralReg();
-      if( STVF_RefGamma_sumet_CentralReg.IsActive() ) STVF_RefGamma_sumet_CentralReg();
-      if( STVF_RefGamma_phi_CentralReg.IsActive() ) STVF_RefGamma_phi_CentralReg();
-      if( STVF_RefGamma_etx_EndcapRegion.IsActive() ) STVF_RefGamma_etx_EndcapRegion();
-      if( STVF_RefGamma_ety_EndcapRegion.IsActive() ) STVF_RefGamma_ety_EndcapRegion();
-      if( STVF_RefGamma_sumet_EndcapRegion.IsActive() ) STVF_RefGamma_sumet_EndcapRegion();
-      if( STVF_RefGamma_phi_EndcapRegion.IsActive() ) STVF_RefGamma_phi_EndcapRegion();
-      if( STVF_RefGamma_etx_ForwardReg.IsActive() ) STVF_RefGamma_etx_ForwardReg();
-      if( STVF_RefGamma_ety_ForwardReg.IsActive() ) STVF_RefGamma_ety_ForwardReg();
-      if( STVF_RefGamma_sumet_ForwardReg.IsActive() ) STVF_RefGamma_sumet_ForwardReg();
-      if( STVF_RefGamma_phi_ForwardReg.IsActive() ) STVF_RefGamma_phi_ForwardReg();
       if( RefFinal_etx.IsActive() ) RefFinal_etx();
       if( RefFinal_ety.IsActive() ) RefFinal_ety();
       if( RefFinal_sumet.IsActive() ) RefFinal_sumet();
@@ -3650,21 +3110,6 @@ is_data(is_data) {
       if( RefFinal_ety_ForwardReg.IsActive() ) RefFinal_ety_ForwardReg();
       if( RefFinal_sumet_ForwardReg.IsActive() ) RefFinal_sumet_ForwardReg();
       if( RefFinal_phi_ForwardReg.IsActive() ) RefFinal_phi_ForwardReg();
-      if( STVF_RefFinal_etx.IsActive() ) STVF_RefFinal_etx();
-      if( STVF_RefFinal_ety.IsActive() ) STVF_RefFinal_ety();
-      if( STVF_RefFinal_sumet.IsActive() ) STVF_RefFinal_sumet();
-      if( STVF_RefFinal_etx_CentralReg.IsActive() ) STVF_RefFinal_etx_CentralReg();
-      if( STVF_RefFinal_ety_CentralReg.IsActive() ) STVF_RefFinal_ety_CentralReg();
-      if( STVF_RefFinal_sumet_CentralReg.IsActive() ) STVF_RefFinal_sumet_CentralReg();
-      if( STVF_RefFinal_phi_CentralReg.IsActive() ) STVF_RefFinal_phi_CentralReg();
-      if( STVF_RefFinal_etx_EndcapRegion.IsActive() ) STVF_RefFinal_etx_EndcapRegion();
-      if( STVF_RefFinal_ety_EndcapRegion.IsActive() ) STVF_RefFinal_ety_EndcapRegion();
-      if( STVF_RefFinal_sumet_EndcapRegion.IsActive() ) STVF_RefFinal_sumet_EndcapRegion();
-      if( STVF_RefFinal_phi_EndcapRegion.IsActive() ) STVF_RefFinal_phi_EndcapRegion();
-      if( STVF_RefFinal_etx_ForwardReg.IsActive() ) STVF_RefFinal_etx_ForwardReg();
-      if( STVF_RefFinal_ety_ForwardReg.IsActive() ) STVF_RefFinal_ety_ForwardReg();
-      if( STVF_RefFinal_sumet_ForwardReg.IsActive() ) STVF_RefFinal_sumet_ForwardReg();
-      if( STVF_RefFinal_phi_ForwardReg.IsActive() ) STVF_RefFinal_phi_ForwardReg();
       if( RefJet_etx.IsActive() ) RefJet_etx();
       if( RefJet_ety.IsActive() ) RefJet_ety();
       if( RefJet_sumet.IsActive() ) RefJet_sumet();
@@ -3680,21 +3125,6 @@ is_data(is_data) {
       if( RefJet_ety_ForwardReg.IsActive() ) RefJet_ety_ForwardReg();
       if( RefJet_sumet_ForwardReg.IsActive() ) RefJet_sumet_ForwardReg();
       if( RefJet_phi_ForwardReg.IsActive() ) RefJet_phi_ForwardReg();
-      if( STVF_RefJet_etx.IsActive() ) STVF_RefJet_etx();
-      if( STVF_RefJet_ety.IsActive() ) STVF_RefJet_ety();
-      if( STVF_RefJet_sumet.IsActive() ) STVF_RefJet_sumet();
-      if( STVF_RefJet_etx_CentralReg.IsActive() ) STVF_RefJet_etx_CentralReg();
-      if( STVF_RefJet_ety_CentralReg.IsActive() ) STVF_RefJet_ety_CentralReg();
-      if( STVF_RefJet_sumet_CentralReg.IsActive() ) STVF_RefJet_sumet_CentralReg();
-      if( STVF_RefJet_phi_CentralReg.IsActive() ) STVF_RefJet_phi_CentralReg();
-      if( STVF_RefJet_etx_EndcapRegion.IsActive() ) STVF_RefJet_etx_EndcapRegion();
-      if( STVF_RefJet_ety_EndcapRegion.IsActive() ) STVF_RefJet_ety_EndcapRegion();
-      if( STVF_RefJet_sumet_EndcapRegion.IsActive() ) STVF_RefJet_sumet_EndcapRegion();
-      if( STVF_RefJet_phi_EndcapRegion.IsActive() ) STVF_RefJet_phi_EndcapRegion();
-      if( STVF_RefJet_etx_ForwardReg.IsActive() ) STVF_RefJet_etx_ForwardReg();
-      if( STVF_RefJet_ety_ForwardReg.IsActive() ) STVF_RefJet_ety_ForwardReg();
-      if( STVF_RefJet_sumet_ForwardReg.IsActive() ) STVF_RefJet_sumet_ForwardReg();
-      if( STVF_RefJet_phi_ForwardReg.IsActive() ) STVF_RefJet_phi_ForwardReg();
       if( RefEle_etx.IsActive() ) RefEle_etx();
       if( RefEle_ety.IsActive() ) RefEle_ety();
       if( RefEle_sumet.IsActive() ) RefEle_sumet();
@@ -3710,21 +3140,6 @@ is_data(is_data) {
       if( RefEle_ety_ForwardReg.IsActive() ) RefEle_ety_ForwardReg();
       if( RefEle_sumet_ForwardReg.IsActive() ) RefEle_sumet_ForwardReg();
       if( RefEle_phi_ForwardReg.IsActive() ) RefEle_phi_ForwardReg();
-      if( STVF_RefEle_etx.IsActive() ) STVF_RefEle_etx();
-      if( STVF_RefEle_ety.IsActive() ) STVF_RefEle_ety();
-      if( STVF_RefEle_sumet.IsActive() ) STVF_RefEle_sumet();
-      if( STVF_RefEle_etx_CentralReg.IsActive() ) STVF_RefEle_etx_CentralReg();
-      if( STVF_RefEle_ety_CentralReg.IsActive() ) STVF_RefEle_ety_CentralReg();
-      if( STVF_RefEle_sumet_CentralReg.IsActive() ) STVF_RefEle_sumet_CentralReg();
-      if( STVF_RefEle_phi_CentralReg.IsActive() ) STVF_RefEle_phi_CentralReg();
-      if( STVF_RefEle_etx_EndcapRegion.IsActive() ) STVF_RefEle_etx_EndcapRegion();
-      if( STVF_RefEle_ety_EndcapRegion.IsActive() ) STVF_RefEle_ety_EndcapRegion();
-      if( STVF_RefEle_sumet_EndcapRegion.IsActive() ) STVF_RefEle_sumet_EndcapRegion();
-      if( STVF_RefEle_phi_EndcapRegion.IsActive() ) STVF_RefEle_phi_EndcapRegion();
-      if( STVF_RefEle_etx_ForwardReg.IsActive() ) STVF_RefEle_etx_ForwardReg();
-      if( STVF_RefEle_ety_ForwardReg.IsActive() ) STVF_RefEle_ety_ForwardReg();
-      if( STVF_RefEle_sumet_ForwardReg.IsActive() ) STVF_RefEle_sumet_ForwardReg();
-      if( STVF_RefEle_phi_ForwardReg.IsActive() ) STVF_RefEle_phi_ForwardReg();
       if( Muon_Total_Staco_etx.IsActive() ) Muon_Total_Staco_etx();
       if( Muon_Total_Staco_ety.IsActive() ) Muon_Total_Staco_ety();
       if( Muon_Total_Staco_sumet.IsActive() ) Muon_Total_Staco_sumet();
@@ -3740,21 +3155,6 @@ is_data(is_data) {
       if( Muon_Total_Staco_ety_ForwardReg.IsActive() ) Muon_Total_Staco_ety_ForwardReg();
       if( Muon_Total_Staco_sumet_ForwardReg.IsActive() ) Muon_Total_Staco_sumet_ForwardReg();
       if( Muon_Total_Staco_phi_ForwardReg.IsActive() ) Muon_Total_Staco_phi_ForwardReg();
-      if( STVF_Muon_Total_Staco_etx.IsActive() ) STVF_Muon_Total_Staco_etx();
-      if( STVF_Muon_Total_Staco_ety.IsActive() ) STVF_Muon_Total_Staco_ety();
-      if( STVF_Muon_Total_Staco_sumet.IsActive() ) STVF_Muon_Total_Staco_sumet();
-      if( STVF_Muon_Total_Staco_etx_CentralReg.IsActive() ) STVF_Muon_Total_Staco_etx_CentralReg();
-      if( STVF_Muon_Total_Staco_ety_CentralReg.IsActive() ) STVF_Muon_Total_Staco_ety_CentralReg();
-      if( STVF_Muon_Total_Staco_sumet_CentralReg.IsActive() ) STVF_Muon_Total_Staco_sumet_CentralReg();
-      if( STVF_Muon_Total_Staco_phi_CentralReg.IsActive() ) STVF_Muon_Total_Staco_phi_CentralReg();
-      if( STVF_Muon_Total_Staco_etx_EndcapRegion.IsActive() ) STVF_Muon_Total_Staco_etx_EndcapRegion();
-      if( STVF_Muon_Total_Staco_ety_EndcapRegion.IsActive() ) STVF_Muon_Total_Staco_ety_EndcapRegion();
-      if( STVF_Muon_Total_Staco_sumet_EndcapRegion.IsActive() ) STVF_Muon_Total_Staco_sumet_EndcapRegion();
-      if( STVF_Muon_Total_Staco_phi_EndcapRegion.IsActive() ) STVF_Muon_Total_Staco_phi_EndcapRegion();
-      if( STVF_Muon_Total_Staco_etx_ForwardReg.IsActive() ) STVF_Muon_Total_Staco_etx_ForwardReg();
-      if( STVF_Muon_Total_Staco_ety_ForwardReg.IsActive() ) STVF_Muon_Total_Staco_ety_ForwardReg();
-      if( STVF_Muon_Total_Staco_sumet_ForwardReg.IsActive() ) STVF_Muon_Total_Staco_sumet_ForwardReg();
-      if( STVF_Muon_Total_Staco_phi_ForwardReg.IsActive() ) STVF_Muon_Total_Staco_phi_ForwardReg();
       if( Muon_Isol_Staco_etx.IsActive() ) Muon_Isol_Staco_etx();
       if( Muon_Isol_Staco_ety.IsActive() ) Muon_Isol_Staco_ety();
       if( Muon_Isol_Staco_sumet.IsActive() ) Muon_Isol_Staco_sumet();
@@ -3770,21 +3170,6 @@ is_data(is_data) {
       if( Muon_Isol_Staco_ety_ForwardReg.IsActive() ) Muon_Isol_Staco_ety_ForwardReg();
       if( Muon_Isol_Staco_sumet_ForwardReg.IsActive() ) Muon_Isol_Staco_sumet_ForwardReg();
       if( Muon_Isol_Staco_phi_ForwardReg.IsActive() ) Muon_Isol_Staco_phi_ForwardReg();
-      if( STVF_Muon_Isol_Staco_etx.IsActive() ) STVF_Muon_Isol_Staco_etx();
-      if( STVF_Muon_Isol_Staco_ety.IsActive() ) STVF_Muon_Isol_Staco_ety();
-      if( STVF_Muon_Isol_Staco_sumet.IsActive() ) STVF_Muon_Isol_Staco_sumet();
-      if( STVF_Muon_Isol_Staco_etx_CentralReg.IsActive() ) STVF_Muon_Isol_Staco_etx_CentralReg();
-      if( STVF_Muon_Isol_Staco_ety_CentralReg.IsActive() ) STVF_Muon_Isol_Staco_ety_CentralReg();
-      if( STVF_Muon_Isol_Staco_sumet_CentralReg.IsActive() ) STVF_Muon_Isol_Staco_sumet_CentralReg();
-      if( STVF_Muon_Isol_Staco_phi_CentralReg.IsActive() ) STVF_Muon_Isol_Staco_phi_CentralReg();
-      if( STVF_Muon_Isol_Staco_etx_EndcapRegion.IsActive() ) STVF_Muon_Isol_Staco_etx_EndcapRegion();
-      if( STVF_Muon_Isol_Staco_ety_EndcapRegion.IsActive() ) STVF_Muon_Isol_Staco_ety_EndcapRegion();
-      if( STVF_Muon_Isol_Staco_sumet_EndcapRegion.IsActive() ) STVF_Muon_Isol_Staco_sumet_EndcapRegion();
-      if( STVF_Muon_Isol_Staco_phi_EndcapRegion.IsActive() ) STVF_Muon_Isol_Staco_phi_EndcapRegion();
-      if( STVF_Muon_Isol_Staco_etx_ForwardReg.IsActive() ) STVF_Muon_Isol_Staco_etx_ForwardReg();
-      if( STVF_Muon_Isol_Staco_ety_ForwardReg.IsActive() ) STVF_Muon_Isol_Staco_ety_ForwardReg();
-      if( STVF_Muon_Isol_Staco_sumet_ForwardReg.IsActive() ) STVF_Muon_Isol_Staco_sumet_ForwardReg();
-      if( STVF_Muon_Isol_Staco_phi_ForwardReg.IsActive() ) STVF_Muon_Isol_Staco_phi_ForwardReg();
       if( Muon_NonIsol_Staco_etx.IsActive() ) Muon_NonIsol_Staco_etx();
       if( Muon_NonIsol_Staco_ety.IsActive() ) Muon_NonIsol_Staco_ety();
       if( Muon_NonIsol_Staco_sumet.IsActive() ) Muon_NonIsol_Staco_sumet();
@@ -3800,21 +3185,6 @@ is_data(is_data) {
       if( Muon_NonIsol_Staco_ety_ForwardReg.IsActive() ) Muon_NonIsol_Staco_ety_ForwardReg();
       if( Muon_NonIsol_Staco_sumet_ForwardReg.IsActive() ) Muon_NonIsol_Staco_sumet_ForwardReg();
       if( Muon_NonIsol_Staco_phi_ForwardReg.IsActive() ) Muon_NonIsol_Staco_phi_ForwardReg();
-      if( STVF_Muon_NonIsol_Staco_etx.IsActive() ) STVF_Muon_NonIsol_Staco_etx();
-      if( STVF_Muon_NonIsol_Staco_ety.IsActive() ) STVF_Muon_NonIsol_Staco_ety();
-      if( STVF_Muon_NonIsol_Staco_sumet.IsActive() ) STVF_Muon_NonIsol_Staco_sumet();
-      if( STVF_Muon_NonIsol_Staco_etx_CentralReg.IsActive() ) STVF_Muon_NonIsol_Staco_etx_CentralReg();
-      if( STVF_Muon_NonIsol_Staco_ety_CentralReg.IsActive() ) STVF_Muon_NonIsol_Staco_ety_CentralReg();
-      if( STVF_Muon_NonIsol_Staco_sumet_CentralReg.IsActive() ) STVF_Muon_NonIsol_Staco_sumet_CentralReg();
-      if( STVF_Muon_NonIsol_Staco_phi_CentralReg.IsActive() ) STVF_Muon_NonIsol_Staco_phi_CentralReg();
-      if( STVF_Muon_NonIsol_Staco_etx_EndcapRegion.IsActive() ) STVF_Muon_NonIsol_Staco_etx_EndcapRegion();
-      if( STVF_Muon_NonIsol_Staco_ety_EndcapRegion.IsActive() ) STVF_Muon_NonIsol_Staco_ety_EndcapRegion();
-      if( STVF_Muon_NonIsol_Staco_sumet_EndcapRegion.IsActive() ) STVF_Muon_NonIsol_Staco_sumet_EndcapRegion();
-      if( STVF_Muon_NonIsol_Staco_phi_EndcapRegion.IsActive() ) STVF_Muon_NonIsol_Staco_phi_EndcapRegion();
-      if( STVF_Muon_NonIsol_Staco_etx_ForwardReg.IsActive() ) STVF_Muon_NonIsol_Staco_etx_ForwardReg();
-      if( STVF_Muon_NonIsol_Staco_ety_ForwardReg.IsActive() ) STVF_Muon_NonIsol_Staco_ety_ForwardReg();
-      if( STVF_Muon_NonIsol_Staco_sumet_ForwardReg.IsActive() ) STVF_Muon_NonIsol_Staco_sumet_ForwardReg();
-      if( STVF_Muon_NonIsol_Staco_phi_ForwardReg.IsActive() ) STVF_Muon_NonIsol_Staco_phi_ForwardReg();
       if( CellOut_etx.IsActive() ) CellOut_etx();
       if( CellOut_ety.IsActive() ) CellOut_ety();
       if( CellOut_sumet.IsActive() ) CellOut_sumet();
@@ -3830,21 +3200,21 @@ is_data(is_data) {
       if( CellOut_ety_ForwardReg.IsActive() ) CellOut_ety_ForwardReg();
       if( CellOut_sumet_ForwardReg.IsActive() ) CellOut_sumet_ForwardReg();
       if( CellOut_phi_ForwardReg.IsActive() ) CellOut_phi_ForwardReg();
-      if( STVF_CellOut_etx.IsActive() ) STVF_CellOut_etx();
-      if( STVF_CellOut_ety.IsActive() ) STVF_CellOut_ety();
-      if( STVF_CellOut_sumet.IsActive() ) STVF_CellOut_sumet();
-      if( STVF_CellOut_etx_CentralReg.IsActive() ) STVF_CellOut_etx_CentralReg();
-      if( STVF_CellOut_ety_CentralReg.IsActive() ) STVF_CellOut_ety_CentralReg();
-      if( STVF_CellOut_sumet_CentralReg.IsActive() ) STVF_CellOut_sumet_CentralReg();
-      if( STVF_CellOut_phi_CentralReg.IsActive() ) STVF_CellOut_phi_CentralReg();
-      if( STVF_CellOut_etx_EndcapRegion.IsActive() ) STVF_CellOut_etx_EndcapRegion();
-      if( STVF_CellOut_ety_EndcapRegion.IsActive() ) STVF_CellOut_ety_EndcapRegion();
-      if( STVF_CellOut_sumet_EndcapRegion.IsActive() ) STVF_CellOut_sumet_EndcapRegion();
-      if( STVF_CellOut_phi_EndcapRegion.IsActive() ) STVF_CellOut_phi_EndcapRegion();
-      if( STVF_CellOut_etx_ForwardReg.IsActive() ) STVF_CellOut_etx_ForwardReg();
-      if( STVF_CellOut_ety_ForwardReg.IsActive() ) STVF_CellOut_ety_ForwardReg();
-      if( STVF_CellOut_sumet_ForwardReg.IsActive() ) STVF_CellOut_sumet_ForwardReg();
-      if( STVF_CellOut_phi_ForwardReg.IsActive() ) STVF_CellOut_phi_ForwardReg();
+      if( CellOut_Eflow_etx.IsActive() ) CellOut_Eflow_etx();
+      if( CellOut_Eflow_ety.IsActive() ) CellOut_Eflow_ety();
+      if( CellOut_Eflow_sumet.IsActive() ) CellOut_Eflow_sumet();
+      if( CellOut_Eflow_etx_CentralReg.IsActive() ) CellOut_Eflow_etx_CentralReg();
+      if( CellOut_Eflow_ety_CentralReg.IsActive() ) CellOut_Eflow_ety_CentralReg();
+      if( CellOut_Eflow_sumet_CentralReg.IsActive() ) CellOut_Eflow_sumet_CentralReg();
+      if( CellOut_Eflow_phi_CentralReg.IsActive() ) CellOut_Eflow_phi_CentralReg();
+      if( CellOut_Eflow_etx_EndcapRegion.IsActive() ) CellOut_Eflow_etx_EndcapRegion();
+      if( CellOut_Eflow_ety_EndcapRegion.IsActive() ) CellOut_Eflow_ety_EndcapRegion();
+      if( CellOut_Eflow_sumet_EndcapRegion.IsActive() ) CellOut_Eflow_sumet_EndcapRegion();
+      if( CellOut_Eflow_phi_EndcapRegion.IsActive() ) CellOut_Eflow_phi_EndcapRegion();
+      if( CellOut_Eflow_etx_ForwardReg.IsActive() ) CellOut_Eflow_etx_ForwardReg();
+      if( CellOut_Eflow_ety_ForwardReg.IsActive() ) CellOut_Eflow_ety_ForwardReg();
+      if( CellOut_Eflow_sumet_ForwardReg.IsActive() ) CellOut_Eflow_sumet_ForwardReg();
+      if( CellOut_Eflow_phi_ForwardReg.IsActive() ) CellOut_Eflow_phi_ForwardReg();
       if( Muon_Isol_Muid_etx.IsActive() ) Muon_Isol_Muid_etx();
       if( Muon_Isol_Muid_ety.IsActive() ) Muon_Isol_Muid_ety();
       if( Muon_Isol_Muid_sumet.IsActive() ) Muon_Isol_Muid_sumet();
@@ -3860,21 +3230,6 @@ is_data(is_data) {
       if( Muon_Isol_Muid_ety_ForwardReg.IsActive() ) Muon_Isol_Muid_ety_ForwardReg();
       if( Muon_Isol_Muid_sumet_ForwardReg.IsActive() ) Muon_Isol_Muid_sumet_ForwardReg();
       if( Muon_Isol_Muid_phi_ForwardReg.IsActive() ) Muon_Isol_Muid_phi_ForwardReg();
-      if( STVF_Muon_Isol_Muid_etx.IsActive() ) STVF_Muon_Isol_Muid_etx();
-      if( STVF_Muon_Isol_Muid_ety.IsActive() ) STVF_Muon_Isol_Muid_ety();
-      if( STVF_Muon_Isol_Muid_sumet.IsActive() ) STVF_Muon_Isol_Muid_sumet();
-      if( STVF_Muon_Isol_Muid_etx_CentralReg.IsActive() ) STVF_Muon_Isol_Muid_etx_CentralReg();
-      if( STVF_Muon_Isol_Muid_ety_CentralReg.IsActive() ) STVF_Muon_Isol_Muid_ety_CentralReg();
-      if( STVF_Muon_Isol_Muid_sumet_CentralReg.IsActive() ) STVF_Muon_Isol_Muid_sumet_CentralReg();
-      if( STVF_Muon_Isol_Muid_phi_CentralReg.IsActive() ) STVF_Muon_Isol_Muid_phi_CentralReg();
-      if( STVF_Muon_Isol_Muid_etx_EndcapRegion.IsActive() ) STVF_Muon_Isol_Muid_etx_EndcapRegion();
-      if( STVF_Muon_Isol_Muid_ety_EndcapRegion.IsActive() ) STVF_Muon_Isol_Muid_ety_EndcapRegion();
-      if( STVF_Muon_Isol_Muid_sumet_EndcapRegion.IsActive() ) STVF_Muon_Isol_Muid_sumet_EndcapRegion();
-      if( STVF_Muon_Isol_Muid_phi_EndcapRegion.IsActive() ) STVF_Muon_Isol_Muid_phi_EndcapRegion();
-      if( STVF_Muon_Isol_Muid_etx_ForwardReg.IsActive() ) STVF_Muon_Isol_Muid_etx_ForwardReg();
-      if( STVF_Muon_Isol_Muid_ety_ForwardReg.IsActive() ) STVF_Muon_Isol_Muid_ety_ForwardReg();
-      if( STVF_Muon_Isol_Muid_sumet_ForwardReg.IsActive() ) STVF_Muon_Isol_Muid_sumet_ForwardReg();
-      if( STVF_Muon_Isol_Muid_phi_ForwardReg.IsActive() ) STVF_Muon_Isol_Muid_phi_ForwardReg();
       if( Muon_NonIsol_Muid_etx.IsActive() ) Muon_NonIsol_Muid_etx();
       if( Muon_NonIsol_Muid_ety.IsActive() ) Muon_NonIsol_Muid_ety();
       if( Muon_NonIsol_Muid_sumet.IsActive() ) Muon_NonIsol_Muid_sumet();
@@ -3890,21 +3245,6 @@ is_data(is_data) {
       if( Muon_NonIsol_Muid_ety_ForwardReg.IsActive() ) Muon_NonIsol_Muid_ety_ForwardReg();
       if( Muon_NonIsol_Muid_sumet_ForwardReg.IsActive() ) Muon_NonIsol_Muid_sumet_ForwardReg();
       if( Muon_NonIsol_Muid_phi_ForwardReg.IsActive() ) Muon_NonIsol_Muid_phi_ForwardReg();
-      if( STVF_Muon_NonIsol_Muid_etx.IsActive() ) STVF_Muon_NonIsol_Muid_etx();
-      if( STVF_Muon_NonIsol_Muid_ety.IsActive() ) STVF_Muon_NonIsol_Muid_ety();
-      if( STVF_Muon_NonIsol_Muid_sumet.IsActive() ) STVF_Muon_NonIsol_Muid_sumet();
-      if( STVF_Muon_NonIsol_Muid_etx_CentralReg.IsActive() ) STVF_Muon_NonIsol_Muid_etx_CentralReg();
-      if( STVF_Muon_NonIsol_Muid_ety_CentralReg.IsActive() ) STVF_Muon_NonIsol_Muid_ety_CentralReg();
-      if( STVF_Muon_NonIsol_Muid_sumet_CentralReg.IsActive() ) STVF_Muon_NonIsol_Muid_sumet_CentralReg();
-      if( STVF_Muon_NonIsol_Muid_phi_CentralReg.IsActive() ) STVF_Muon_NonIsol_Muid_phi_CentralReg();
-      if( STVF_Muon_NonIsol_Muid_etx_EndcapRegion.IsActive() ) STVF_Muon_NonIsol_Muid_etx_EndcapRegion();
-      if( STVF_Muon_NonIsol_Muid_ety_EndcapRegion.IsActive() ) STVF_Muon_NonIsol_Muid_ety_EndcapRegion();
-      if( STVF_Muon_NonIsol_Muid_sumet_EndcapRegion.IsActive() ) STVF_Muon_NonIsol_Muid_sumet_EndcapRegion();
-      if( STVF_Muon_NonIsol_Muid_phi_EndcapRegion.IsActive() ) STVF_Muon_NonIsol_Muid_phi_EndcapRegion();
-      if( STVF_Muon_NonIsol_Muid_etx_ForwardReg.IsActive() ) STVF_Muon_NonIsol_Muid_etx_ForwardReg();
-      if( STVF_Muon_NonIsol_Muid_ety_ForwardReg.IsActive() ) STVF_Muon_NonIsol_Muid_ety_ForwardReg();
-      if( STVF_Muon_NonIsol_Muid_sumet_ForwardReg.IsActive() ) STVF_Muon_NonIsol_Muid_sumet_ForwardReg();
-      if( STVF_Muon_NonIsol_Muid_phi_ForwardReg.IsActive() ) STVF_Muon_NonIsol_Muid_phi_ForwardReg();
       if( Muon_Total_Muid_etx.IsActive() ) Muon_Total_Muid_etx();
       if( Muon_Total_Muid_ety.IsActive() ) Muon_Total_Muid_ety();
       if( Muon_Total_Muid_sumet.IsActive() ) Muon_Total_Muid_sumet();
@@ -3920,21 +3260,6 @@ is_data(is_data) {
       if( Muon_Total_Muid_ety_ForwardReg.IsActive() ) Muon_Total_Muid_ety_ForwardReg();
       if( Muon_Total_Muid_sumet_ForwardReg.IsActive() ) Muon_Total_Muid_sumet_ForwardReg();
       if( Muon_Total_Muid_phi_ForwardReg.IsActive() ) Muon_Total_Muid_phi_ForwardReg();
-      if( STVF_Muon_Total_Muid_etx.IsActive() ) STVF_Muon_Total_Muid_etx();
-      if( STVF_Muon_Total_Muid_ety.IsActive() ) STVF_Muon_Total_Muid_ety();
-      if( STVF_Muon_Total_Muid_sumet.IsActive() ) STVF_Muon_Total_Muid_sumet();
-      if( STVF_Muon_Total_Muid_etx_CentralReg.IsActive() ) STVF_Muon_Total_Muid_etx_CentralReg();
-      if( STVF_Muon_Total_Muid_ety_CentralReg.IsActive() ) STVF_Muon_Total_Muid_ety_CentralReg();
-      if( STVF_Muon_Total_Muid_sumet_CentralReg.IsActive() ) STVF_Muon_Total_Muid_sumet_CentralReg();
-      if( STVF_Muon_Total_Muid_phi_CentralReg.IsActive() ) STVF_Muon_Total_Muid_phi_CentralReg();
-      if( STVF_Muon_Total_Muid_etx_EndcapRegion.IsActive() ) STVF_Muon_Total_Muid_etx_EndcapRegion();
-      if( STVF_Muon_Total_Muid_ety_EndcapRegion.IsActive() ) STVF_Muon_Total_Muid_ety_EndcapRegion();
-      if( STVF_Muon_Total_Muid_sumet_EndcapRegion.IsActive() ) STVF_Muon_Total_Muid_sumet_EndcapRegion();
-      if( STVF_Muon_Total_Muid_phi_EndcapRegion.IsActive() ) STVF_Muon_Total_Muid_phi_EndcapRegion();
-      if( STVF_Muon_Total_Muid_etx_ForwardReg.IsActive() ) STVF_Muon_Total_Muid_etx_ForwardReg();
-      if( STVF_Muon_Total_Muid_ety_ForwardReg.IsActive() ) STVF_Muon_Total_Muid_ety_ForwardReg();
-      if( STVF_Muon_Total_Muid_sumet_ForwardReg.IsActive() ) STVF_Muon_Total_Muid_sumet_ForwardReg();
-      if( STVF_Muon_Total_Muid_phi_ForwardReg.IsActive() ) STVF_Muon_Total_Muid_phi_ForwardReg();
       if( Track_etx.IsActive() ) Track_etx();
       if( Track_ety.IsActive() ) Track_ety();
       if( Track_sumet.IsActive() ) Track_sumet();
@@ -3950,21 +3275,111 @@ is_data(is_data) {
       if( Track_ety_ForwardReg.IsActive() ) Track_ety_ForwardReg();
       if( Track_sumet_ForwardReg.IsActive() ) Track_sumet_ForwardReg();
       if( Track_phi_ForwardReg.IsActive() ) Track_phi_ForwardReg();
-      if( STVF_Track_etx.IsActive() ) STVF_Track_etx();
-      if( STVF_Track_ety.IsActive() ) STVF_Track_ety();
-      if( STVF_Track_sumet.IsActive() ) STVF_Track_sumet();
-      if( STVF_Track_etx_CentralReg.IsActive() ) STVF_Track_etx_CentralReg();
-      if( STVF_Track_ety_CentralReg.IsActive() ) STVF_Track_ety_CentralReg();
-      if( STVF_Track_sumet_CentralReg.IsActive() ) STVF_Track_sumet_CentralReg();
-      if( STVF_Track_phi_CentralReg.IsActive() ) STVF_Track_phi_CentralReg();
-      if( STVF_Track_etx_EndcapRegion.IsActive() ) STVF_Track_etx_EndcapRegion();
-      if( STVF_Track_ety_EndcapRegion.IsActive() ) STVF_Track_ety_EndcapRegion();
-      if( STVF_Track_sumet_EndcapRegion.IsActive() ) STVF_Track_sumet_EndcapRegion();
-      if( STVF_Track_phi_EndcapRegion.IsActive() ) STVF_Track_phi_EndcapRegion();
-      if( STVF_Track_etx_ForwardReg.IsActive() ) STVF_Track_etx_ForwardReg();
-      if( STVF_Track_ety_ForwardReg.IsActive() ) STVF_Track_ety_ForwardReg();
-      if( STVF_Track_sumet_ForwardReg.IsActive() ) STVF_Track_sumet_ForwardReg();
-      if( STVF_Track_phi_ForwardReg.IsActive() ) STVF_Track_phi_ForwardReg();
+      if( RefFinal_STVF_etx.IsActive() ) RefFinal_STVF_etx();
+      if( RefFinal_STVF_ety.IsActive() ) RefFinal_STVF_ety();
+      if( RefFinal_STVF_sumet.IsActive() ) RefFinal_STVF_sumet();
+      if( RefFinal_STVF_etx_CentralReg.IsActive() ) RefFinal_STVF_etx_CentralReg();
+      if( RefFinal_STVF_ety_CentralReg.IsActive() ) RefFinal_STVF_ety_CentralReg();
+      if( RefFinal_STVF_sumet_CentralReg.IsActive() ) RefFinal_STVF_sumet_CentralReg();
+      if( RefFinal_STVF_phi_CentralReg.IsActive() ) RefFinal_STVF_phi_CentralReg();
+      if( RefFinal_STVF_etx_EndcapRegion.IsActive() ) RefFinal_STVF_etx_EndcapRegion();
+      if( RefFinal_STVF_ety_EndcapRegion.IsActive() ) RefFinal_STVF_ety_EndcapRegion();
+      if( RefFinal_STVF_sumet_EndcapRegion.IsActive() ) RefFinal_STVF_sumet_EndcapRegion();
+      if( RefFinal_STVF_phi_EndcapRegion.IsActive() ) RefFinal_STVF_phi_EndcapRegion();
+      if( RefFinal_STVF_etx_ForwardReg.IsActive() ) RefFinal_STVF_etx_ForwardReg();
+      if( RefFinal_STVF_ety_ForwardReg.IsActive() ) RefFinal_STVF_ety_ForwardReg();
+      if( RefFinal_STVF_sumet_ForwardReg.IsActive() ) RefFinal_STVF_sumet_ForwardReg();
+      if( RefFinal_STVF_phi_ForwardReg.IsActive() ) RefFinal_STVF_phi_ForwardReg();
+      if( CellOut_Eflow_STVF_etx.IsActive() ) CellOut_Eflow_STVF_etx();
+      if( CellOut_Eflow_STVF_ety.IsActive() ) CellOut_Eflow_STVF_ety();
+      if( CellOut_Eflow_STVF_sumet.IsActive() ) CellOut_Eflow_STVF_sumet();
+      if( CellOut_Eflow_STVF_etx_CentralReg.IsActive() ) CellOut_Eflow_STVF_etx_CentralReg();
+      if( CellOut_Eflow_STVF_ety_CentralReg.IsActive() ) CellOut_Eflow_STVF_ety_CentralReg();
+      if( CellOut_Eflow_STVF_sumet_CentralReg.IsActive() ) CellOut_Eflow_STVF_sumet_CentralReg();
+      if( CellOut_Eflow_STVF_phi_CentralReg.IsActive() ) CellOut_Eflow_STVF_phi_CentralReg();
+      if( CellOut_Eflow_STVF_etx_EndcapRegion.IsActive() ) CellOut_Eflow_STVF_etx_EndcapRegion();
+      if( CellOut_Eflow_STVF_ety_EndcapRegion.IsActive() ) CellOut_Eflow_STVF_ety_EndcapRegion();
+      if( CellOut_Eflow_STVF_sumet_EndcapRegion.IsActive() ) CellOut_Eflow_STVF_sumet_EndcapRegion();
+      if( CellOut_Eflow_STVF_phi_EndcapRegion.IsActive() ) CellOut_Eflow_STVF_phi_EndcapRegion();
+      if( CellOut_Eflow_STVF_etx_ForwardReg.IsActive() ) CellOut_Eflow_STVF_etx_ForwardReg();
+      if( CellOut_Eflow_STVF_ety_ForwardReg.IsActive() ) CellOut_Eflow_STVF_ety_ForwardReg();
+      if( CellOut_Eflow_STVF_sumet_ForwardReg.IsActive() ) CellOut_Eflow_STVF_sumet_ForwardReg();
+      if( CellOut_Eflow_STVF_phi_ForwardReg.IsActive() ) CellOut_Eflow_STVF_phi_ForwardReg();
+      if( CellOut_Eflow_JetArea_etx.IsActive() ) CellOut_Eflow_JetArea_etx();
+      if( CellOut_Eflow_JetArea_ety.IsActive() ) CellOut_Eflow_JetArea_ety();
+      if( CellOut_Eflow_JetArea_sumet.IsActive() ) CellOut_Eflow_JetArea_sumet();
+      if( CellOut_Eflow_JetArea_etx_CentralReg.IsActive() ) CellOut_Eflow_JetArea_etx_CentralReg();
+      if( CellOut_Eflow_JetArea_ety_CentralReg.IsActive() ) CellOut_Eflow_JetArea_ety_CentralReg();
+      if( CellOut_Eflow_JetArea_sumet_CentralReg.IsActive() ) CellOut_Eflow_JetArea_sumet_CentralReg();
+      if( CellOut_Eflow_JetArea_phi_CentralReg.IsActive() ) CellOut_Eflow_JetArea_phi_CentralReg();
+      if( CellOut_Eflow_JetArea_etx_EndcapRegion.IsActive() ) CellOut_Eflow_JetArea_etx_EndcapRegion();
+      if( CellOut_Eflow_JetArea_ety_EndcapRegion.IsActive() ) CellOut_Eflow_JetArea_ety_EndcapRegion();
+      if( CellOut_Eflow_JetArea_sumet_EndcapRegion.IsActive() ) CellOut_Eflow_JetArea_sumet_EndcapRegion();
+      if( CellOut_Eflow_JetArea_phi_EndcapRegion.IsActive() ) CellOut_Eflow_JetArea_phi_EndcapRegion();
+      if( CellOut_Eflow_JetArea_etx_ForwardReg.IsActive() ) CellOut_Eflow_JetArea_etx_ForwardReg();
+      if( CellOut_Eflow_JetArea_ety_ForwardReg.IsActive() ) CellOut_Eflow_JetArea_ety_ForwardReg();
+      if( CellOut_Eflow_JetArea_sumet_ForwardReg.IsActive() ) CellOut_Eflow_JetArea_sumet_ForwardReg();
+      if( CellOut_Eflow_JetArea_phi_ForwardReg.IsActive() ) CellOut_Eflow_JetArea_phi_ForwardReg();
+      if( RefJet_JVF_etx.IsActive() ) RefJet_JVF_etx();
+      if( RefJet_JVF_ety.IsActive() ) RefJet_JVF_ety();
+      if( RefJet_JVF_sumet.IsActive() ) RefJet_JVF_sumet();
+      if( RefJet_JVF_etx_CentralReg.IsActive() ) RefJet_JVF_etx_CentralReg();
+      if( RefJet_JVF_ety_CentralReg.IsActive() ) RefJet_JVF_ety_CentralReg();
+      if( RefJet_JVF_sumet_CentralReg.IsActive() ) RefJet_JVF_sumet_CentralReg();
+      if( RefJet_JVF_phi_CentralReg.IsActive() ) RefJet_JVF_phi_CentralReg();
+      if( RefJet_JVF_etx_EndcapRegion.IsActive() ) RefJet_JVF_etx_EndcapRegion();
+      if( RefJet_JVF_ety_EndcapRegion.IsActive() ) RefJet_JVF_ety_EndcapRegion();
+      if( RefJet_JVF_sumet_EndcapRegion.IsActive() ) RefJet_JVF_sumet_EndcapRegion();
+      if( RefJet_JVF_phi_EndcapRegion.IsActive() ) RefJet_JVF_phi_EndcapRegion();
+      if( RefJet_JVF_etx_ForwardReg.IsActive() ) RefJet_JVF_etx_ForwardReg();
+      if( RefJet_JVF_ety_ForwardReg.IsActive() ) RefJet_JVF_ety_ForwardReg();
+      if( RefJet_JVF_sumet_ForwardReg.IsActive() ) RefJet_JVF_sumet_ForwardReg();
+      if( RefJet_JVF_phi_ForwardReg.IsActive() ) RefJet_JVF_phi_ForwardReg();
+      if( RefJet_JVFCut_etx.IsActive() ) RefJet_JVFCut_etx();
+      if( RefJet_JVFCut_ety.IsActive() ) RefJet_JVFCut_ety();
+      if( RefJet_JVFCut_sumet.IsActive() ) RefJet_JVFCut_sumet();
+      if( RefJet_JVFCut_etx_CentralReg.IsActive() ) RefJet_JVFCut_etx_CentralReg();
+      if( RefJet_JVFCut_ety_CentralReg.IsActive() ) RefJet_JVFCut_ety_CentralReg();
+      if( RefJet_JVFCut_sumet_CentralReg.IsActive() ) RefJet_JVFCut_sumet_CentralReg();
+      if( RefJet_JVFCut_phi_CentralReg.IsActive() ) RefJet_JVFCut_phi_CentralReg();
+      if( RefJet_JVFCut_etx_EndcapRegion.IsActive() ) RefJet_JVFCut_etx_EndcapRegion();
+      if( RefJet_JVFCut_ety_EndcapRegion.IsActive() ) RefJet_JVFCut_ety_EndcapRegion();
+      if( RefJet_JVFCut_sumet_EndcapRegion.IsActive() ) RefJet_JVFCut_sumet_EndcapRegion();
+      if( RefJet_JVFCut_phi_EndcapRegion.IsActive() ) RefJet_JVFCut_phi_EndcapRegion();
+      if( RefJet_JVFCut_etx_ForwardReg.IsActive() ) RefJet_JVFCut_etx_ForwardReg();
+      if( RefJet_JVFCut_ety_ForwardReg.IsActive() ) RefJet_JVFCut_ety_ForwardReg();
+      if( RefJet_JVFCut_sumet_ForwardReg.IsActive() ) RefJet_JVFCut_sumet_ForwardReg();
+      if( RefJet_JVFCut_phi_ForwardReg.IsActive() ) RefJet_JVFCut_phi_ForwardReg();
+      if( CellOut_Eflow_JetAreaJVF_etx.IsActive() ) CellOut_Eflow_JetAreaJVF_etx();
+      if( CellOut_Eflow_JetAreaJVF_ety.IsActive() ) CellOut_Eflow_JetAreaJVF_ety();
+      if( CellOut_Eflow_JetAreaJVF_sumet.IsActive() ) CellOut_Eflow_JetAreaJVF_sumet();
+      if( CellOut_Eflow_JetAreaJVF_etx_CentralReg.IsActive() ) CellOut_Eflow_JetAreaJVF_etx_CentralReg();
+      if( CellOut_Eflow_JetAreaJVF_ety_CentralReg.IsActive() ) CellOut_Eflow_JetAreaJVF_ety_CentralReg();
+      if( CellOut_Eflow_JetAreaJVF_sumet_CentralReg.IsActive() ) CellOut_Eflow_JetAreaJVF_sumet_CentralReg();
+      if( CellOut_Eflow_JetAreaJVF_phi_CentralReg.IsActive() ) CellOut_Eflow_JetAreaJVF_phi_CentralReg();
+      if( CellOut_Eflow_JetAreaJVF_etx_EndcapRegion.IsActive() ) CellOut_Eflow_JetAreaJVF_etx_EndcapRegion();
+      if( CellOut_Eflow_JetAreaJVF_ety_EndcapRegion.IsActive() ) CellOut_Eflow_JetAreaJVF_ety_EndcapRegion();
+      if( CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion.IsActive() ) CellOut_Eflow_JetAreaJVF_sumet_EndcapRegion();
+      if( CellOut_Eflow_JetAreaJVF_phi_EndcapRegion.IsActive() ) CellOut_Eflow_JetAreaJVF_phi_EndcapRegion();
+      if( CellOut_Eflow_JetAreaJVF_etx_ForwardReg.IsActive() ) CellOut_Eflow_JetAreaJVF_etx_ForwardReg();
+      if( CellOut_Eflow_JetAreaJVF_ety_ForwardReg.IsActive() ) CellOut_Eflow_JetAreaJVF_ety_ForwardReg();
+      if( CellOut_Eflow_JetAreaJVF_sumet_ForwardReg.IsActive() ) CellOut_Eflow_JetAreaJVF_sumet_ForwardReg();
+      if( CellOut_Eflow_JetAreaJVF_phi_ForwardReg.IsActive() ) CellOut_Eflow_JetAreaJVF_phi_ForwardReg();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_etx.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_etx();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_ety.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_ety();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_sumet.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_sumet();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_etx_CentralReg();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_ety_CentralReg();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_sumet_CentralReg();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_phi_CentralReg();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_etx_EndcapRegion();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_ety_EndcapRegion();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_sumet_EndcapRegion();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_phi_EndcapRegion();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_etx_ForwardReg();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_ety_ForwardReg();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_sumet_ForwardReg();
+      if( CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg.IsActive() ) CellOut_Eflow_JetAreaRhoEta5JVF_phi_ForwardReg();
       if( SoftJets_etx.IsActive() ) SoftJets_etx();
       if( SoftJets_ety.IsActive() ) SoftJets_ety();
       if( SoftJets_sumet.IsActive() ) SoftJets_sumet();
@@ -3980,21 +3395,6 @@ is_data(is_data) {
       if( SoftJets_ety_ForwardReg.IsActive() ) SoftJets_ety_ForwardReg();
       if( SoftJets_sumet_ForwardReg.IsActive() ) SoftJets_sumet_ForwardReg();
       if( SoftJets_phi_ForwardReg.IsActive() ) SoftJets_phi_ForwardReg();
-      if( STVF_SoftJets_etx.IsActive() ) STVF_SoftJets_etx();
-      if( STVF_SoftJets_ety.IsActive() ) STVF_SoftJets_ety();
-      if( STVF_SoftJets_sumet.IsActive() ) STVF_SoftJets_sumet();
-      if( STVF_SoftJets_etx_CentralReg.IsActive() ) STVF_SoftJets_etx_CentralReg();
-      if( STVF_SoftJets_ety_CentralReg.IsActive() ) STVF_SoftJets_ety_CentralReg();
-      if( STVF_SoftJets_sumet_CentralReg.IsActive() ) STVF_SoftJets_sumet_CentralReg();
-      if( STVF_SoftJets_phi_CentralReg.IsActive() ) STVF_SoftJets_phi_CentralReg();
-      if( STVF_SoftJets_etx_EndcapRegion.IsActive() ) STVF_SoftJets_etx_EndcapRegion();
-      if( STVF_SoftJets_ety_EndcapRegion.IsActive() ) STVF_SoftJets_ety_EndcapRegion();
-      if( STVF_SoftJets_sumet_EndcapRegion.IsActive() ) STVF_SoftJets_sumet_EndcapRegion();
-      if( STVF_SoftJets_phi_EndcapRegion.IsActive() ) STVF_SoftJets_phi_EndcapRegion();
-      if( STVF_SoftJets_etx_ForwardReg.IsActive() ) STVF_SoftJets_etx_ForwardReg();
-      if( STVF_SoftJets_ety_ForwardReg.IsActive() ) STVF_SoftJets_ety_ForwardReg();
-      if( STVF_SoftJets_sumet_ForwardReg.IsActive() ) STVF_SoftJets_sumet_ForwardReg();
-      if( STVF_SoftJets_phi_ForwardReg.IsActive() ) STVF_SoftJets_phi_ForwardReg();
       if( RefMuon_etx.IsActive() ) RefMuon_etx();
       if( RefMuon_ety.IsActive() ) RefMuon_ety();
       if( RefMuon_sumet.IsActive() ) RefMuon_sumet();
@@ -4010,96 +3410,96 @@ is_data(is_data) {
       if( RefMuon_ety_ForwardReg.IsActive() ) RefMuon_ety_ForwardReg();
       if( RefMuon_sumet_ForwardReg.IsActive() ) RefMuon_sumet_ForwardReg();
       if( RefMuon_phi_ForwardReg.IsActive() ) RefMuon_phi_ForwardReg();
-      if( STVF_RefMuon_etx.IsActive() ) STVF_RefMuon_etx();
-      if( STVF_RefMuon_ety.IsActive() ) STVF_RefMuon_ety();
-      if( STVF_RefMuon_sumet.IsActive() ) STVF_RefMuon_sumet();
-      if( STVF_RefMuon_etx_CentralReg.IsActive() ) STVF_RefMuon_etx_CentralReg();
-      if( STVF_RefMuon_ety_CentralReg.IsActive() ) STVF_RefMuon_ety_CentralReg();
-      if( STVF_RefMuon_sumet_CentralReg.IsActive() ) STVF_RefMuon_sumet_CentralReg();
-      if( STVF_RefMuon_phi_CentralReg.IsActive() ) STVF_RefMuon_phi_CentralReg();
-      if( STVF_RefMuon_etx_EndcapRegion.IsActive() ) STVF_RefMuon_etx_EndcapRegion();
-      if( STVF_RefMuon_ety_EndcapRegion.IsActive() ) STVF_RefMuon_ety_EndcapRegion();
-      if( STVF_RefMuon_sumet_EndcapRegion.IsActive() ) STVF_RefMuon_sumet_EndcapRegion();
-      if( STVF_RefMuon_phi_EndcapRegion.IsActive() ) STVF_RefMuon_phi_EndcapRegion();
-      if( STVF_RefMuon_etx_ForwardReg.IsActive() ) STVF_RefMuon_etx_ForwardReg();
-      if( STVF_RefMuon_ety_ForwardReg.IsActive() ) STVF_RefMuon_ety_ForwardReg();
-      if( STVF_RefMuon_sumet_ForwardReg.IsActive() ) STVF_RefMuon_sumet_ForwardReg();
-      if( STVF_RefMuon_phi_ForwardReg.IsActive() ) STVF_RefMuon_phi_ForwardReg();
-// -- slimmed --       if( MuonBoy_etx.IsActive() ) MuonBoy_etx();
-// -- slimmed --       if( MuonBoy_ety.IsActive() ) MuonBoy_ety();
-// -- slimmed --       if( MuonBoy_sumet.IsActive() ) MuonBoy_sumet();
-// -- slimmed --       if( MuonBoy_etx_CentralReg.IsActive() ) MuonBoy_etx_CentralReg();
-// -- slimmed --       if( MuonBoy_ety_CentralReg.IsActive() ) MuonBoy_ety_CentralReg();
-// -- slimmed --       if( MuonBoy_sumet_CentralReg.IsActive() ) MuonBoy_sumet_CentralReg();
-// -- slimmed --       if( MuonBoy_phi_CentralReg.IsActive() ) MuonBoy_phi_CentralReg();
-// -- slimmed --       if( MuonBoy_etx_EndcapRegion.IsActive() ) MuonBoy_etx_EndcapRegion();
-// -- slimmed --       if( MuonBoy_ety_EndcapRegion.IsActive() ) MuonBoy_ety_EndcapRegion();
-// -- slimmed --       if( MuonBoy_sumet_EndcapRegion.IsActive() ) MuonBoy_sumet_EndcapRegion();
-// -- slimmed --       if( MuonBoy_phi_EndcapRegion.IsActive() ) MuonBoy_phi_EndcapRegion();
-// -- slimmed --       if( MuonBoy_etx_ForwardReg.IsActive() ) MuonBoy_etx_ForwardReg();
-// -- slimmed --       if( MuonBoy_ety_ForwardReg.IsActive() ) MuonBoy_ety_ForwardReg();
-// -- slimmed --       if( MuonBoy_sumet_ForwardReg.IsActive() ) MuonBoy_sumet_ForwardReg();
-// -- slimmed --       if( MuonBoy_phi_ForwardReg.IsActive() ) MuonBoy_phi_ForwardReg();
-// -- slimmed --       if( STVF_MuonBoy_etx.IsActive() ) STVF_MuonBoy_etx();
-// -- slimmed --       if( STVF_MuonBoy_ety.IsActive() ) STVF_MuonBoy_ety();
-// -- slimmed --       if( STVF_MuonBoy_sumet.IsActive() ) STVF_MuonBoy_sumet();
-// -- slimmed --       if( STVF_MuonBoy_etx_CentralReg.IsActive() ) STVF_MuonBoy_etx_CentralReg();
-// -- slimmed --       if( STVF_MuonBoy_ety_CentralReg.IsActive() ) STVF_MuonBoy_ety_CentralReg();
-// -- slimmed --       if( STVF_MuonBoy_sumet_CentralReg.IsActive() ) STVF_MuonBoy_sumet_CentralReg();
-// -- slimmed --       if( STVF_MuonBoy_phi_CentralReg.IsActive() ) STVF_MuonBoy_phi_CentralReg();
-// -- slimmed --       if( STVF_MuonBoy_etx_EndcapRegion.IsActive() ) STVF_MuonBoy_etx_EndcapRegion();
-// -- slimmed --       if( STVF_MuonBoy_ety_EndcapRegion.IsActive() ) STVF_MuonBoy_ety_EndcapRegion();
-// -- slimmed --       if( STVF_MuonBoy_sumet_EndcapRegion.IsActive() ) STVF_MuonBoy_sumet_EndcapRegion();
-// -- slimmed --       if( STVF_MuonBoy_phi_EndcapRegion.IsActive() ) STVF_MuonBoy_phi_EndcapRegion();
-// -- slimmed --       if( STVF_MuonBoy_etx_ForwardReg.IsActive() ) STVF_MuonBoy_etx_ForwardReg();
-// -- slimmed --       if( STVF_MuonBoy_ety_ForwardReg.IsActive() ) STVF_MuonBoy_ety_ForwardReg();
-// -- slimmed --       if( STVF_MuonBoy_sumet_ForwardReg.IsActive() ) STVF_MuonBoy_sumet_ForwardReg();
-// -- slimmed --       if( STVF_MuonBoy_phi_ForwardReg.IsActive() ) STVF_MuonBoy_phi_ForwardReg();
-      if( STVF_CellOut_Track_etx.IsActive() ) STVF_CellOut_Track_etx();
-      if( STVF_CellOut_Track_ety.IsActive() ) STVF_CellOut_Track_ety();
-      if( STVF_CellOut_Track_sumet.IsActive() ) STVF_CellOut_Track_sumet();
-      if( STVF_CellOut_Track_etx_CentralReg.IsActive() ) STVF_CellOut_Track_etx_CentralReg();
-      if( STVF_CellOut_Track_ety_CentralReg.IsActive() ) STVF_CellOut_Track_ety_CentralReg();
-      if( STVF_CellOut_Track_sumet_CentralReg.IsActive() ) STVF_CellOut_Track_sumet_CentralReg();
-      if( STVF_CellOut_Track_phi_CentralReg.IsActive() ) STVF_CellOut_Track_phi_CentralReg();
-      if( STVF_CellOut_Track_etx_EndcapRegion.IsActive() ) STVF_CellOut_Track_etx_EndcapRegion();
-      if( STVF_CellOut_Track_ety_EndcapRegion.IsActive() ) STVF_CellOut_Track_ety_EndcapRegion();
-      if( STVF_CellOut_Track_sumet_EndcapRegion.IsActive() ) STVF_CellOut_Track_sumet_EndcapRegion();
-      if( STVF_CellOut_Track_phi_EndcapRegion.IsActive() ) STVF_CellOut_Track_phi_EndcapRegion();
-      if( STVF_CellOut_Track_etx_ForwardReg.IsActive() ) STVF_CellOut_Track_etx_ForwardReg();
-      if( STVF_CellOut_Track_ety_ForwardReg.IsActive() ) STVF_CellOut_Track_ety_ForwardReg();
-      if( STVF_CellOut_Track_sumet_ForwardReg.IsActive() ) STVF_CellOut_Track_sumet_ForwardReg();
-      if( STVF_CellOut_Track_phi_ForwardReg.IsActive() ) STVF_CellOut_Track_phi_ForwardReg();
-      if( STVF_CellOut_TrackPV_etx.IsActive() ) STVF_CellOut_TrackPV_etx();
-      if( STVF_CellOut_TrackPV_ety.IsActive() ) STVF_CellOut_TrackPV_ety();
-      if( STVF_CellOut_TrackPV_sumet.IsActive() ) STVF_CellOut_TrackPV_sumet();
-      if( STVF_CellOut_TrackPV_etx_CentralReg.IsActive() ) STVF_CellOut_TrackPV_etx_CentralReg();
-      if( STVF_CellOut_TrackPV_ety_CentralReg.IsActive() ) STVF_CellOut_TrackPV_ety_CentralReg();
-      if( STVF_CellOut_TrackPV_sumet_CentralReg.IsActive() ) STVF_CellOut_TrackPV_sumet_CentralReg();
-      if( STVF_CellOut_TrackPV_phi_CentralReg.IsActive() ) STVF_CellOut_TrackPV_phi_CentralReg();
-      if( STVF_CellOut_TrackPV_etx_EndcapRegion.IsActive() ) STVF_CellOut_TrackPV_etx_EndcapRegion();
-      if( STVF_CellOut_TrackPV_ety_EndcapRegion.IsActive() ) STVF_CellOut_TrackPV_ety_EndcapRegion();
-      if( STVF_CellOut_TrackPV_sumet_EndcapRegion.IsActive() ) STVF_CellOut_TrackPV_sumet_EndcapRegion();
-      if( STVF_CellOut_TrackPV_phi_EndcapRegion.IsActive() ) STVF_CellOut_TrackPV_phi_EndcapRegion();
-      if( STVF_CellOut_TrackPV_etx_ForwardReg.IsActive() ) STVF_CellOut_TrackPV_etx_ForwardReg();
-      if( STVF_CellOut_TrackPV_ety_ForwardReg.IsActive() ) STVF_CellOut_TrackPV_ety_ForwardReg();
-      if( STVF_CellOut_TrackPV_sumet_ForwardReg.IsActive() ) STVF_CellOut_TrackPV_sumet_ForwardReg();
-      if( STVF_CellOut_TrackPV_phi_ForwardReg.IsActive() ) STVF_CellOut_TrackPV_phi_ForwardReg();
-      if( STVF_CellOutCorr_etx.IsActive() ) STVF_CellOutCorr_etx();
-      if( STVF_CellOutCorr_ety.IsActive() ) STVF_CellOutCorr_ety();
-      if( STVF_CellOutCorr_sumet.IsActive() ) STVF_CellOutCorr_sumet();
-      if( STVF_CellOutCorr_etx_CentralReg.IsActive() ) STVF_CellOutCorr_etx_CentralReg();
-      if( STVF_CellOutCorr_ety_CentralReg.IsActive() ) STVF_CellOutCorr_ety_CentralReg();
-      if( STVF_CellOutCorr_sumet_CentralReg.IsActive() ) STVF_CellOutCorr_sumet_CentralReg();
-      if( STVF_CellOutCorr_phi_CentralReg.IsActive() ) STVF_CellOutCorr_phi_CentralReg();
-      if( STVF_CellOutCorr_etx_EndcapRegion.IsActive() ) STVF_CellOutCorr_etx_EndcapRegion();
-      if( STVF_CellOutCorr_ety_EndcapRegion.IsActive() ) STVF_CellOutCorr_ety_EndcapRegion();
-      if( STVF_CellOutCorr_sumet_EndcapRegion.IsActive() ) STVF_CellOutCorr_sumet_EndcapRegion();
-      if( STVF_CellOutCorr_phi_EndcapRegion.IsActive() ) STVF_CellOutCorr_phi_EndcapRegion();
-      if( STVF_CellOutCorr_etx_ForwardReg.IsActive() ) STVF_CellOutCorr_etx_ForwardReg();
-      if( STVF_CellOutCorr_ety_ForwardReg.IsActive() ) STVF_CellOutCorr_ety_ForwardReg();
-      if( STVF_CellOutCorr_sumet_ForwardReg.IsActive() ) STVF_CellOutCorr_sumet_ForwardReg();
-      if( STVF_CellOutCorr_phi_ForwardReg.IsActive() ) STVF_CellOutCorr_phi_ForwardReg();
+      if( MuonBoy_etx.IsActive() ) MuonBoy_etx();
+      if( MuonBoy_ety.IsActive() ) MuonBoy_ety();
+      if( MuonBoy_sumet.IsActive() ) MuonBoy_sumet();
+      if( MuonBoy_etx_CentralReg.IsActive() ) MuonBoy_etx_CentralReg();
+      if( MuonBoy_ety_CentralReg.IsActive() ) MuonBoy_ety_CentralReg();
+      if( MuonBoy_sumet_CentralReg.IsActive() ) MuonBoy_sumet_CentralReg();
+      if( MuonBoy_phi_CentralReg.IsActive() ) MuonBoy_phi_CentralReg();
+      if( MuonBoy_etx_EndcapRegion.IsActive() ) MuonBoy_etx_EndcapRegion();
+      if( MuonBoy_ety_EndcapRegion.IsActive() ) MuonBoy_ety_EndcapRegion();
+      if( MuonBoy_sumet_EndcapRegion.IsActive() ) MuonBoy_sumet_EndcapRegion();
+      if( MuonBoy_phi_EndcapRegion.IsActive() ) MuonBoy_phi_EndcapRegion();
+      if( MuonBoy_etx_ForwardReg.IsActive() ) MuonBoy_etx_ForwardReg();
+      if( MuonBoy_ety_ForwardReg.IsActive() ) MuonBoy_ety_ForwardReg();
+      if( MuonBoy_sumet_ForwardReg.IsActive() ) MuonBoy_sumet_ForwardReg();
+      if( MuonBoy_phi_ForwardReg.IsActive() ) MuonBoy_phi_ForwardReg();
+      if( RefMuon_Staco_etx.IsActive() ) RefMuon_Staco_etx();
+      if( RefMuon_Staco_ety.IsActive() ) RefMuon_Staco_ety();
+      if( RefMuon_Staco_sumet.IsActive() ) RefMuon_Staco_sumet();
+      if( RefMuon_Staco_etx_CentralReg.IsActive() ) RefMuon_Staco_etx_CentralReg();
+      if( RefMuon_Staco_ety_CentralReg.IsActive() ) RefMuon_Staco_ety_CentralReg();
+      if( RefMuon_Staco_sumet_CentralReg.IsActive() ) RefMuon_Staco_sumet_CentralReg();
+      if( RefMuon_Staco_phi_CentralReg.IsActive() ) RefMuon_Staco_phi_CentralReg();
+      if( RefMuon_Staco_etx_EndcapRegion.IsActive() ) RefMuon_Staco_etx_EndcapRegion();
+      if( RefMuon_Staco_ety_EndcapRegion.IsActive() ) RefMuon_Staco_ety_EndcapRegion();
+      if( RefMuon_Staco_sumet_EndcapRegion.IsActive() ) RefMuon_Staco_sumet_EndcapRegion();
+      if( RefMuon_Staco_phi_EndcapRegion.IsActive() ) RefMuon_Staco_phi_EndcapRegion();
+      if( RefMuon_Staco_etx_ForwardReg.IsActive() ) RefMuon_Staco_etx_ForwardReg();
+      if( RefMuon_Staco_ety_ForwardReg.IsActive() ) RefMuon_Staco_ety_ForwardReg();
+      if( RefMuon_Staco_sumet_ForwardReg.IsActive() ) RefMuon_Staco_sumet_ForwardReg();
+      if( RefMuon_Staco_phi_ForwardReg.IsActive() ) RefMuon_Staco_phi_ForwardReg();
+      if( RefMuon_Muid_etx.IsActive() ) RefMuon_Muid_etx();
+      if( RefMuon_Muid_ety.IsActive() ) RefMuon_Muid_ety();
+      if( RefMuon_Muid_sumet.IsActive() ) RefMuon_Muid_sumet();
+      if( RefMuon_Muid_etx_CentralReg.IsActive() ) RefMuon_Muid_etx_CentralReg();
+      if( RefMuon_Muid_ety_CentralReg.IsActive() ) RefMuon_Muid_ety_CentralReg();
+      if( RefMuon_Muid_sumet_CentralReg.IsActive() ) RefMuon_Muid_sumet_CentralReg();
+      if( RefMuon_Muid_phi_CentralReg.IsActive() ) RefMuon_Muid_phi_CentralReg();
+      if( RefMuon_Muid_etx_EndcapRegion.IsActive() ) RefMuon_Muid_etx_EndcapRegion();
+      if( RefMuon_Muid_ety_EndcapRegion.IsActive() ) RefMuon_Muid_ety_EndcapRegion();
+      if( RefMuon_Muid_sumet_EndcapRegion.IsActive() ) RefMuon_Muid_sumet_EndcapRegion();
+      if( RefMuon_Muid_phi_EndcapRegion.IsActive() ) RefMuon_Muid_phi_EndcapRegion();
+      if( RefMuon_Muid_etx_ForwardReg.IsActive() ) RefMuon_Muid_etx_ForwardReg();
+      if( RefMuon_Muid_ety_ForwardReg.IsActive() ) RefMuon_Muid_ety_ForwardReg();
+      if( RefMuon_Muid_sumet_ForwardReg.IsActive() ) RefMuon_Muid_sumet_ForwardReg();
+      if( RefMuon_Muid_phi_ForwardReg.IsActive() ) RefMuon_Muid_phi_ForwardReg();
+      if( RefMuon_Track_etx.IsActive() ) RefMuon_Track_etx();
+      if( RefMuon_Track_ety.IsActive() ) RefMuon_Track_ety();
+      if( RefMuon_Track_sumet.IsActive() ) RefMuon_Track_sumet();
+      if( RefMuon_Track_etx_CentralReg.IsActive() ) RefMuon_Track_etx_CentralReg();
+      if( RefMuon_Track_ety_CentralReg.IsActive() ) RefMuon_Track_ety_CentralReg();
+      if( RefMuon_Track_sumet_CentralReg.IsActive() ) RefMuon_Track_sumet_CentralReg();
+      if( RefMuon_Track_phi_CentralReg.IsActive() ) RefMuon_Track_phi_CentralReg();
+      if( RefMuon_Track_etx_EndcapRegion.IsActive() ) RefMuon_Track_etx_EndcapRegion();
+      if( RefMuon_Track_ety_EndcapRegion.IsActive() ) RefMuon_Track_ety_EndcapRegion();
+      if( RefMuon_Track_sumet_EndcapRegion.IsActive() ) RefMuon_Track_sumet_EndcapRegion();
+      if( RefMuon_Track_phi_EndcapRegion.IsActive() ) RefMuon_Track_phi_EndcapRegion();
+      if( RefMuon_Track_etx_ForwardReg.IsActive() ) RefMuon_Track_etx_ForwardReg();
+      if( RefMuon_Track_ety_ForwardReg.IsActive() ) RefMuon_Track_ety_ForwardReg();
+      if( RefMuon_Track_sumet_ForwardReg.IsActive() ) RefMuon_Track_sumet_ForwardReg();
+      if( RefMuon_Track_phi_ForwardReg.IsActive() ) RefMuon_Track_phi_ForwardReg();
+      if( RefMuon_Track_Staco_etx.IsActive() ) RefMuon_Track_Staco_etx();
+      if( RefMuon_Track_Staco_ety.IsActive() ) RefMuon_Track_Staco_ety();
+      if( RefMuon_Track_Staco_sumet.IsActive() ) RefMuon_Track_Staco_sumet();
+      if( RefMuon_Track_Staco_etx_CentralReg.IsActive() ) RefMuon_Track_Staco_etx_CentralReg();
+      if( RefMuon_Track_Staco_ety_CentralReg.IsActive() ) RefMuon_Track_Staco_ety_CentralReg();
+      if( RefMuon_Track_Staco_sumet_CentralReg.IsActive() ) RefMuon_Track_Staco_sumet_CentralReg();
+      if( RefMuon_Track_Staco_phi_CentralReg.IsActive() ) RefMuon_Track_Staco_phi_CentralReg();
+      if( RefMuon_Track_Staco_etx_EndcapRegion.IsActive() ) RefMuon_Track_Staco_etx_EndcapRegion();
+      if( RefMuon_Track_Staco_ety_EndcapRegion.IsActive() ) RefMuon_Track_Staco_ety_EndcapRegion();
+      if( RefMuon_Track_Staco_sumet_EndcapRegion.IsActive() ) RefMuon_Track_Staco_sumet_EndcapRegion();
+      if( RefMuon_Track_Staco_phi_EndcapRegion.IsActive() ) RefMuon_Track_Staco_phi_EndcapRegion();
+      if( RefMuon_Track_Staco_etx_ForwardReg.IsActive() ) RefMuon_Track_Staco_etx_ForwardReg();
+      if( RefMuon_Track_Staco_ety_ForwardReg.IsActive() ) RefMuon_Track_Staco_ety_ForwardReg();
+      if( RefMuon_Track_Staco_sumet_ForwardReg.IsActive() ) RefMuon_Track_Staco_sumet_ForwardReg();
+      if( RefMuon_Track_Staco_phi_ForwardReg.IsActive() ) RefMuon_Track_Staco_phi_ForwardReg();
+      if( RefMuon_Track_Muid_etx.IsActive() ) RefMuon_Track_Muid_etx();
+      if( RefMuon_Track_Muid_ety.IsActive() ) RefMuon_Track_Muid_ety();
+      if( RefMuon_Track_Muid_sumet.IsActive() ) RefMuon_Track_Muid_sumet();
+      if( RefMuon_Track_Muid_etx_CentralReg.IsActive() ) RefMuon_Track_Muid_etx_CentralReg();
+      if( RefMuon_Track_Muid_ety_CentralReg.IsActive() ) RefMuon_Track_Muid_ety_CentralReg();
+      if( RefMuon_Track_Muid_sumet_CentralReg.IsActive() ) RefMuon_Track_Muid_sumet_CentralReg();
+      if( RefMuon_Track_Muid_phi_CentralReg.IsActive() ) RefMuon_Track_Muid_phi_CentralReg();
+      if( RefMuon_Track_Muid_etx_EndcapRegion.IsActive() ) RefMuon_Track_Muid_etx_EndcapRegion();
+      if( RefMuon_Track_Muid_ety_EndcapRegion.IsActive() ) RefMuon_Track_Muid_ety_EndcapRegion();
+      if( RefMuon_Track_Muid_sumet_EndcapRegion.IsActive() ) RefMuon_Track_Muid_sumet_EndcapRegion();
+      if( RefMuon_Track_Muid_phi_EndcapRegion.IsActive() ) RefMuon_Track_Muid_phi_EndcapRegion();
+      if( RefMuon_Track_Muid_etx_ForwardReg.IsActive() ) RefMuon_Track_Muid_etx_ForwardReg();
+      if( RefMuon_Track_Muid_ety_ForwardReg.IsActive() ) RefMuon_Track_Muid_ety_ForwardReg();
+      if( RefMuon_Track_Muid_sumet_ForwardReg.IsActive() ) RefMuon_Track_Muid_sumet_ForwardReg();
+      if( RefMuon_Track_Muid_phi_ForwardReg.IsActive() ) RefMuon_Track_Muid_phi_ForwardReg();
 
       return;
    }

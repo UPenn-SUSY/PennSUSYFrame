@@ -84,6 +84,14 @@ namespace D3PDReader {
       VarHandle< UInt_t > muonError;
       VarHandle< UInt_t > fwdError;
       VarHandle< UInt_t > coreError;
+      /// Event Et density
+      VarHandle< Float_t > Eventshape_rhoKt3EM;
+      /// Event Et density
+      VarHandle< Float_t > Eventshape_rhoKt4EM;
+      /// Event Et density
+      VarHandle< Float_t > Eventshape_rhoKt3LC;
+      /// Event Et density
+      VarHandle< Float_t > Eventshape_rhoKt4LC;
 
    private:
       std::map< ::TString, VarHandleBase* > fHandles; ///< Book-keeper of the VarHandle members

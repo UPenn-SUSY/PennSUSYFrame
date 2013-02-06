@@ -82,11 +82,11 @@ const TLorentzVector CommonTools::TLVTool::rawTlv(const Muon* mu)
 
 // ---------------------------------------------------------------------------
 const TLorentzVector CommonTools::TLVTool::tlv( Jet* jet
-                                              , float mu
+                                              , const Event* event
                                               , int num_vetices_w_2_trks
                                               )
 {
-  return m_jet_calib->getConfiguredJet(jet, mu, num_vetices_w_2_trks);
+  return m_jet_calib->getConfiguredJet(jet, event, num_vetices_w_2_trks);
 }
 
 // ---------------------------------------------------------------------------

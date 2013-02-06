@@ -53,7 +53,8 @@ namespace D3PDReader {
       VarProxy< int > nTracks;
       VarProxy< float > sumPt;
 
-bool is_data; // ~bj
+
+bool is_data; // ~bj 
 
       ClassDef( VertexD3PDObjectElement, 0 )
 
@@ -121,7 +122,7 @@ bool is_data; // ~bj
       const ::TString fPrefix; ///< Prefix to the branch names
 
 
-bool is_data; // ~bj
+bool is_data; // ~bj 
 
       ClassDef( VertexD3PDObject, 0 )
 

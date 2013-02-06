@@ -294,22 +294,18 @@ namespace D3PDReader {
       VarProxy< vector<float> > MET_Egamma10NoTau_wpy;
       VarProxy< vector<float> > MET_Egamma10NoTau_wet;
       VarProxy< vector<unsigned int> > MET_Egamma10NoTau_statusWord;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wpx;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wpy;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wet;
-      VarProxy< vector<unsigned int> > MET_Egamma10NoTau_STVF_statusWord;
       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpx;
       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpy;
       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wet;
       VarProxy< vector<unsigned int> > MET_LooseEgamma10NoTau_statusWord;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpx;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpy;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wet;
+      VarProxy< vector<unsigned int> > MET_Egamma10LooseTau_statusWord;
       VarProxy< vector<float> > MET_wpx;
       VarProxy< vector<float> > MET_wpy;
       VarProxy< vector<float> > MET_wet;
       VarProxy< vector<unsigned int> > MET_statusWord;
-      VarProxy< vector<float> > MET_STVF_wpx;
-      VarProxy< vector<float> > MET_STVF_wpy;
-      VarProxy< vector<float> > MET_STVF_wet;
-      VarProxy< vector<unsigned int> > MET_STVF_statusWord;
 
 
 bool is_data; // ~bj 
@@ -614,22 +610,18 @@ bool is_data; // ~bj
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpy;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wet;
       VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_statusWord;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wpx;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wpy;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_STVF_statusWord;
       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpx;
       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpy;
       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wet;
       VarHandle< vector<vector<unsigned int> >* > MET_LooseEgamma10NoTau_statusWord;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpx;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpy;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10LooseTau_statusWord;
       VarHandle< vector<vector<float> >* > MET_wpx;
       VarHandle< vector<vector<float> >* > MET_wpy;
       VarHandle< vector<vector<float> >* > MET_wet;
       VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
-      VarHandle< vector<vector<float> >* > MET_STVF_wpx;
-      VarHandle< vector<vector<float> >* > MET_STVF_wpy;
-      VarHandle< vector<vector<float> >* > MET_STVF_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_STVF_statusWord;
 
    private:
       mutable std::vector< PhotonD3PDObjectElement > fProxies; ///< Internal list of proxy objects

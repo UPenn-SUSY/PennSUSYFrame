@@ -23,8 +23,8 @@ namespace D3PDReader {
     */
    TruthD3PDObject::TruthD3PDObject( const ::Long64_t& master, const char* prefix )
       : TObject(),
-        // actualIntPerXing( this, ::TString( prefix ) + "actualIntPerXing", &master ),
-        // averageIntPerXing( this, ::TString( prefix ) + "averageIntPerXing", &master ),
+        actualIntPerXing( this, ::TString( prefix ) + "actualIntPerXing", &master ),
+        averageIntPerXing( this, ::TString( prefix ) + "averageIntPerXing", &master ),
         mc_channel_number( this, ::TString( prefix ) + "mc_channel_number", &master ),
         mc_event_number( this, ::TString( prefix ) + "mc_event_number", &master ),
         mc_event_weight( this, ::TString( prefix ) + "mc_event_weight", &master ),
@@ -35,10 +35,10 @@ namespace D3PDReader {
         mc_phi( this, ::TString( prefix ) + "mc_phi", &master ),
         mc_status( this, ::TString( prefix ) + "mc_status", &master ),
         mc_barcode( this, ::TString( prefix ) + "mc_barcode", &master ),
-        mc_parents( this, ::TString( prefix ) + "mc_parents", &master ),
-        mc_children( this, ::TString( prefix ) + "mc_children", &master ),
         mc_pdgId( this, ::TString( prefix ) + "mc_pdgId", &master ),
         mc_charge( this, ::TString( prefix ) + "mc_charge", &master ),
+        mc_parents( this, ::TString( prefix ) + "mc_parents", &master ),
+        mc_children( this, ::TString( prefix ) + "mc_children", &master ),
         mc_vx_x( this, ::TString( prefix ) + "mc_vx_x", &master ),
         mc_vx_y( this, ::TString( prefix ) + "mc_vx_y", &master ),
         mc_vx_z( this, ::TString( prefix ) + "mc_vx_z", &master ),
@@ -49,8 +49,8 @@ namespace D3PDReader {
         fFromInput( kTRUE ),
         fPrefix( prefix ) {
 
-      // fHandles[ "actualIntPerXing" ] = &actualIntPerXing;
-      // fHandles[ "averageIntPerXing" ] = &averageIntPerXing;
+      fHandles[ "actualIntPerXing" ] = &actualIntPerXing;
+      fHandles[ "averageIntPerXing" ] = &averageIntPerXing;
       fHandles[ "mc_channel_number" ] = &mc_channel_number;
       fHandles[ "mc_event_number" ] = &mc_event_number;
       fHandles[ "mc_event_weight" ] = &mc_event_weight;
@@ -61,10 +61,10 @@ namespace D3PDReader {
       fHandles[ "mc_phi" ] = &mc_phi;
       fHandles[ "mc_status" ] = &mc_status;
       fHandles[ "mc_barcode" ] = &mc_barcode;
-      fHandles[ "mc_parents" ] = &mc_parents;
-      fHandles[ "mc_children" ] = &mc_children;
       fHandles[ "mc_pdgId" ] = &mc_pdgId;
       fHandles[ "mc_charge" ] = &mc_charge;
+      fHandles[ "mc_parents" ] = &mc_parents;
+      fHandles[ "mc_children" ] = &mc_children;
       fHandles[ "mc_vx_x" ] = &mc_vx_x;
       fHandles[ "mc_vx_y" ] = &mc_vx_y;
       fHandles[ "mc_vx_z" ] = &mc_vx_z;
@@ -82,8 +82,8 @@ namespace D3PDReader {
     */
    TruthD3PDObject::TruthD3PDObject( const char* prefix )
       : TObject(),
-        // actualIntPerXing( this, ::TString( prefix ) + "actualIntPerXing", 0 ),
-        // averageIntPerXing( this, ::TString( prefix ) + "averageIntPerXing", 0 ),
+        actualIntPerXing( this, ::TString( prefix ) + "actualIntPerXing", 0 ),
+        averageIntPerXing( this, ::TString( prefix ) + "averageIntPerXing", 0 ),
         mc_channel_number( this, ::TString( prefix ) + "mc_channel_number", 0 ),
         mc_event_number( this, ::TString( prefix ) + "mc_event_number", 0 ),
         mc_event_weight( this, ::TString( prefix ) + "mc_event_weight", 0 ),
@@ -94,10 +94,10 @@ namespace D3PDReader {
         mc_phi( this, ::TString( prefix ) + "mc_phi", 0 ),
         mc_status( this, ::TString( prefix ) + "mc_status", 0 ),
         mc_barcode( this, ::TString( prefix ) + "mc_barcode", 0 ),
-        mc_parents( this, ::TString( prefix ) + "mc_parents", 0 ),
-        mc_children( this, ::TString( prefix ) + "mc_children", 0 ),
         mc_pdgId( this, ::TString( prefix ) + "mc_pdgId", 0 ),
         mc_charge( this, ::TString( prefix ) + "mc_charge", 0 ),
+        mc_parents( this, ::TString( prefix ) + "mc_parents", 0 ),
+        mc_children( this, ::TString( prefix ) + "mc_children", 0 ),
         mc_vx_x( this, ::TString( prefix ) + "mc_vx_x", 0 ),
         mc_vx_y( this, ::TString( prefix ) + "mc_vx_y", 0 ),
         mc_vx_z( this, ::TString( prefix ) + "mc_vx_z", 0 ),
@@ -108,8 +108,8 @@ namespace D3PDReader {
         fFromInput( kFALSE ),
         fPrefix( prefix ) {
 
-      // fHandles[ "actualIntPerXing" ] = &actualIntPerXing;
-      // fHandles[ "averageIntPerXing" ] = &averageIntPerXing;
+      fHandles[ "actualIntPerXing" ] = &actualIntPerXing;
+      fHandles[ "averageIntPerXing" ] = &averageIntPerXing;
       fHandles[ "mc_channel_number" ] = &mc_channel_number;
       fHandles[ "mc_event_number" ] = &mc_event_number;
       fHandles[ "mc_event_weight" ] = &mc_event_weight;
@@ -120,10 +120,10 @@ namespace D3PDReader {
       fHandles[ "mc_phi" ] = &mc_phi;
       fHandles[ "mc_status" ] = &mc_status;
       fHandles[ "mc_barcode" ] = &mc_barcode;
-      fHandles[ "mc_parents" ] = &mc_parents;
-      fHandles[ "mc_children" ] = &mc_children;
       fHandles[ "mc_pdgId" ] = &mc_pdgId;
       fHandles[ "mc_charge" ] = &mc_charge;
+      fHandles[ "mc_parents" ] = &mc_parents;
+      fHandles[ "mc_children" ] = &mc_children;
       fHandles[ "mc_vx_x" ] = &mc_vx_x;
       fHandles[ "mc_vx_y" ] = &mc_vx_y;
       fHandles[ "mc_vx_z" ] = &mc_vx_z;
@@ -145,8 +145,8 @@ namespace D3PDReader {
     */
    void TruthD3PDObject::SetPrefix( const char* prefix ) {
 
-      // actualIntPerXing.SetName( ::TString( prefix ) + "actualIntPerXing" );
-      // averageIntPerXing.SetName( ::TString( prefix ) + "averageIntPerXing" );
+      actualIntPerXing.SetName( ::TString( prefix ) + "actualIntPerXing" );
+      averageIntPerXing.SetName( ::TString( prefix ) + "averageIntPerXing" );
       mc_channel_number.SetName( ::TString( prefix ) + "mc_channel_number" );
       mc_event_number.SetName( ::TString( prefix ) + "mc_event_number" );
       mc_event_weight.SetName( ::TString( prefix ) + "mc_event_weight" );
@@ -157,10 +157,10 @@ namespace D3PDReader {
       mc_phi.SetName( ::TString( prefix ) + "mc_phi" );
       mc_status.SetName( ::TString( prefix ) + "mc_status" );
       mc_barcode.SetName( ::TString( prefix ) + "mc_barcode" );
-      mc_parents.SetName( ::TString( prefix ) + "mc_parents" );
-      mc_children.SetName( ::TString( prefix ) + "mc_children" );
       mc_pdgId.SetName( ::TString( prefix ) + "mc_pdgId" );
       mc_charge.SetName( ::TString( prefix ) + "mc_charge" );
+      mc_parents.SetName( ::TString( prefix ) + "mc_parents" );
+      mc_children.SetName( ::TString( prefix ) + "mc_children" );
       mc_vx_x.SetName( ::TString( prefix ) + "mc_vx_x" );
       mc_vx_y.SetName( ::TString( prefix ) + "mc_vx_y" );
       mc_vx_z.SetName( ::TString( prefix ) + "mc_vx_z" );
@@ -185,8 +185,8 @@ namespace D3PDReader {
          return;
       }
 
-      // actualIntPerXing.ReadFrom( tree );
-      // averageIntPerXing.ReadFrom( tree );
+      actualIntPerXing.ReadFrom( tree );
+      averageIntPerXing.ReadFrom( tree );
       mc_channel_number.ReadFrom( tree );
       mc_event_number.ReadFrom( tree );
       mc_event_weight.ReadFrom( tree );
@@ -197,10 +197,10 @@ namespace D3PDReader {
       mc_phi.ReadFrom( tree );
       mc_status.ReadFrom( tree );
       mc_barcode.ReadFrom( tree );
-      mc_parents.ReadFrom( tree );
-      mc_children.ReadFrom( tree );
       mc_pdgId.ReadFrom( tree );
       mc_charge.ReadFrom( tree );
+      mc_parents.ReadFrom( tree );
+      mc_children.ReadFrom( tree );
       mc_vx_x.ReadFrom( tree );
       mc_vx_y.ReadFrom( tree );
       mc_vx_z.ReadFrom( tree );
@@ -220,8 +220,8 @@ namespace D3PDReader {
     */
    void TruthD3PDObject::WriteTo( TTree* tree ) {
 
-      // actualIntPerXing.WriteTo( tree );
-      // averageIntPerXing.WriteTo( tree );
+      actualIntPerXing.WriteTo( tree );
+      averageIntPerXing.WriteTo( tree );
       mc_channel_number.WriteTo( tree );
       mc_event_number.WriteTo( tree );
       mc_event_weight.WriteTo( tree );
@@ -232,10 +232,10 @@ namespace D3PDReader {
       mc_phi.WriteTo( tree );
       mc_status.WriteTo( tree );
       mc_barcode.WriteTo( tree );
-      mc_parents.WriteTo( tree );
-      mc_children.WriteTo( tree );
       mc_pdgId.WriteTo( tree );
       mc_charge.WriteTo( tree );
+      mc_parents.WriteTo( tree );
+      mc_children.WriteTo( tree );
       mc_vx_x.WriteTo( tree );
       mc_vx_y.WriteTo( tree );
       mc_vx_z.WriteTo( tree );
@@ -292,8 +292,8 @@ namespace D3PDReader {
          }
       }
 
-      // if( actualIntPerXing.IsActive() ) actualIntPerXing();
-      // if( averageIntPerXing.IsActive() ) averageIntPerXing();
+      if( actualIntPerXing.IsActive() ) actualIntPerXing();
+      if( averageIntPerXing.IsActive() ) averageIntPerXing();
       if( mc_channel_number.IsActive() ) mc_channel_number();
       if( mc_event_number.IsActive() ) mc_event_number();
       if( mc_event_weight.IsActive() ) mc_event_weight();
@@ -304,10 +304,10 @@ namespace D3PDReader {
       if( mc_phi.IsActive() ) mc_phi();
       if( mc_status.IsActive() ) mc_status();
       if( mc_barcode.IsActive() ) mc_barcode();
-      if( mc_parents.IsActive() ) mc_parents();
-      if( mc_children.IsActive() ) mc_children();
       if( mc_pdgId.IsActive() ) mc_pdgId();
       if( mc_charge.IsActive() ) mc_charge();
+      if( mc_parents.IsActive() ) mc_parents();
+      if( mc_children.IsActive() ) mc_children();
       if( mc_vx_x.IsActive() ) mc_vx_x();
       if( mc_vx_y.IsActive() ) mc_vx_y();
       if( mc_vx_z.IsActive() ) mc_vx_z();

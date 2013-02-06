@@ -44,13 +44,13 @@ namespace D3PDReader {
         ptcone20( parent.ptcone20, index, this ),
         ptcone30( parent.ptcone30, index, this ),
         ptcone40( parent.ptcone40, index, this ),
-// -- slimmed --         etconeNoEm10( parent.etconeNoEm10, index, this ),
-// -- slimmed --         etconeNoEm20( parent.etconeNoEm20, index, this ),
-// -- slimmed --         etconeNoEm30( parent.etconeNoEm30, index, this ),
-// -- slimmed --         etconeNoEm40( parent.etconeNoEm40, index, this ),
-// -- slimmed --         scatteringCurvatureSignificance( parent.scatteringCurvatureSignificance, index, this ),
-// -- slimmed --         scatteringNeighbourSignificance( parent.scatteringNeighbourSignificance, index, this ),
-// -- slimmed --         momentumBalanceSignificance( parent.momentumBalanceSignificance, index, this ),
+        etconeNoEm10( parent.etconeNoEm10, index, this ),
+        etconeNoEm20( parent.etconeNoEm20, index, this ),
+        etconeNoEm30( parent.etconeNoEm30, index, this ),
+        etconeNoEm40( parent.etconeNoEm40, index, this ),
+        scatteringCurvatureSignificance( parent.scatteringCurvatureSignificance, index, this ),
+        scatteringNeighbourSignificance( parent.scatteringNeighbourSignificance, index, this ),
+        momentumBalanceSignificance( parent.momentumBalanceSignificance, index, this ),
         energyLossPar( parent.energyLossPar, index, this ),
         energyLossErr( parent.energyLossErr, index, this ),
         etCore( parent.etCore, index, this ),
@@ -63,9 +63,9 @@ namespace D3PDReader {
         isLowPtReconstructedMuon( parent.isLowPtReconstructedMuon, index, this ),
         isSegmentTaggedMuon( parent.isSegmentTaggedMuon, index, this ),
         isCaloMuonId( parent.isCaloMuonId, index, this ),
-// -- slimmed --         alsoFoundByLowPt( parent.alsoFoundByLowPt, index, this ),
-// -- slimmed --         alsoFoundByCaloMuonId( parent.alsoFoundByCaloMuonId, index, this ),
-// -- slimmed --         isSiliconAssociatedForwardMuon( parent.isSiliconAssociatedForwardMuon, index, this ),
+        alsoFoundByLowPt( parent.alsoFoundByLowPt, index, this ),
+        alsoFoundByCaloMuonId( parent.alsoFoundByCaloMuonId, index, this ),
+        isSiliconAssociatedForwardMuon( parent.isSiliconAssociatedForwardMuon, index, this ),
         loose( parent.loose, index, this ),
         medium( parent.medium, index, this ),
         tight( parent.tight, index, this ),
@@ -168,20 +168,20 @@ namespace D3PDReader {
         nTRTDeadStraws( parent.nTRTDeadStraws, index, this ),
         expectBLayerHit( parent.expectBLayerHit, index, this ),
         nMDTHits( parent.nMDTHits, index, this ),
-// -- slimmed --         nMDTHoles( parent.nMDTHoles, index, this ),
+        nMDTHoles( parent.nMDTHoles, index, this ),
         nCSCEtaHits( parent.nCSCEtaHits, index, this ),
-// -- slimmed --         nCSCEtaHoles( parent.nCSCEtaHoles, index, this ),
+        nCSCEtaHoles( parent.nCSCEtaHoles, index, this ),
         nCSCUnspoiledEtaHits( parent.nCSCUnspoiledEtaHits, index, this ),
         nCSCPhiHits( parent.nCSCPhiHits, index, this ),
-// -- slimmed --         nCSCPhiHoles( parent.nCSCPhiHoles, index, this ),
+        nCSCPhiHoles( parent.nCSCPhiHoles, index, this ),
         nRPCEtaHits( parent.nRPCEtaHits, index, this ),
-// -- slimmed --         nRPCEtaHoles( parent.nRPCEtaHoles, index, this ),
+        nRPCEtaHoles( parent.nRPCEtaHoles, index, this ),
         nRPCPhiHits( parent.nRPCPhiHits, index, this ),
-// -- slimmed --         nRPCPhiHoles( parent.nRPCPhiHoles, index, this ),
+        nRPCPhiHoles( parent.nRPCPhiHoles, index, this ),
         nTGCEtaHits( parent.nTGCEtaHits, index, this ),
-// -- slimmed --         nTGCEtaHoles( parent.nTGCEtaHoles, index, this ),
+        nTGCEtaHoles( parent.nTGCEtaHoles, index, this ),
         nTGCPhiHits( parent.nTGCPhiHits, index, this ),
-// -- slimmed --         nTGCPhiHoles( parent.nTGCPhiHoles, index, this ),
+        nTGCPhiHoles( parent.nTGCPhiHoles, index, this ),
         nprecisionLayers( parent.nprecisionLayers, index, this ),
         nprecisionHoleLayers( parent.nprecisionHoleLayers, index, this ),
         nphiLayers( parent.nphiLayers, index, this ),
@@ -197,22 +197,22 @@ namespace D3PDReader {
         nMDTEMHits( parent.nMDTEMHits, index, this ),
         nMDTEOHits( parent.nMDTEOHits, index, this ),
         nMDTEEHits( parent.nMDTEEHits, index, this ),
-// -- slimmed --         nRPCLayer1EtaHits( parent.nRPCLayer1EtaHits, index, this ),
-// -- slimmed --         nRPCLayer2EtaHits( parent.nRPCLayer2EtaHits, index, this ),
-// -- slimmed --         nRPCLayer3EtaHits( parent.nRPCLayer3EtaHits, index, this ),
-// -- slimmed --         nRPCLayer1PhiHits( parent.nRPCLayer1PhiHits, index, this ),
-// -- slimmed --         nRPCLayer2PhiHits( parent.nRPCLayer2PhiHits, index, this ),
-// -- slimmed --         nRPCLayer3PhiHits( parent.nRPCLayer3PhiHits, index, this ),
-// -- slimmed --         nTGCLayer1EtaHits( parent.nTGCLayer1EtaHits, index, this ),
-// -- slimmed --         nTGCLayer2EtaHits( parent.nTGCLayer2EtaHits, index, this ),
-// -- slimmed --         nTGCLayer3EtaHits( parent.nTGCLayer3EtaHits, index, this ),
-// -- slimmed --         nTGCLayer4EtaHits( parent.nTGCLayer4EtaHits, index, this ),
-// -- slimmed --         nTGCLayer1PhiHits( parent.nTGCLayer1PhiHits, index, this ),
-// -- slimmed --         nTGCLayer2PhiHits( parent.nTGCLayer2PhiHits, index, this ),
-// -- slimmed --         nTGCLayer3PhiHits( parent.nTGCLayer3PhiHits, index, this ),
-// -- slimmed --         nTGCLayer4PhiHits( parent.nTGCLayer4PhiHits, index, this ),
-// -- slimmed --         barrelSectors( parent.barrelSectors, index, this ),
-// -- slimmed --         endcapSectors( parent.endcapSectors, index, this ),
+        nRPCLayer1EtaHits( parent.nRPCLayer1EtaHits, index, this ),
+        nRPCLayer2EtaHits( parent.nRPCLayer2EtaHits, index, this ),
+        nRPCLayer3EtaHits( parent.nRPCLayer3EtaHits, index, this ),
+        nRPCLayer1PhiHits( parent.nRPCLayer1PhiHits, index, this ),
+        nRPCLayer2PhiHits( parent.nRPCLayer2PhiHits, index, this ),
+        nRPCLayer3PhiHits( parent.nRPCLayer3PhiHits, index, this ),
+        nTGCLayer1EtaHits( parent.nTGCLayer1EtaHits, index, this ),
+        nTGCLayer2EtaHits( parent.nTGCLayer2EtaHits, index, this ),
+        nTGCLayer3EtaHits( parent.nTGCLayer3EtaHits, index, this ),
+        nTGCLayer4EtaHits( parent.nTGCLayer4EtaHits, index, this ),
+        nTGCLayer1PhiHits( parent.nTGCLayer1PhiHits, index, this ),
+        nTGCLayer2PhiHits( parent.nTGCLayer2PhiHits, index, this ),
+        nTGCLayer3PhiHits( parent.nTGCLayer3PhiHits, index, this ),
+        nTGCLayer4PhiHits( parent.nTGCLayer4PhiHits, index, this ),
+        barrelSectors( parent.barrelSectors, index, this ),
+        endcapSectors( parent.endcapSectors, index, this ),
         trackd0( parent.trackd0, index, this ),
         trackz0( parent.trackz0, index, this ),
         trackphi( parent.trackphi, index, this ),
@@ -234,14 +234,14 @@ namespace D3PDReader {
         trackcov_phi_qoverp( parent.trackcov_phi_qoverp, index, this ),
         trackcov_theta_qoverp( parent.trackcov_theta_qoverp, index, this ),
         hastrack( parent.hastrack, index, this ),
-// -- slimmed --         trackIPEstimate_d0_biasedpvunbiased( parent.trackIPEstimate_d0_biasedpvunbiased, index, this ),
-// -- slimmed --         trackIPEstimate_z0_biasedpvunbiased( parent.trackIPEstimate_z0_biasedpvunbiased, index, this ),
-// -- slimmed --         trackIPEstimate_sigd0_biasedpvunbiased( parent.trackIPEstimate_sigd0_biasedpvunbiased, index, this ),
-// -- slimmed --         trackIPEstimate_sigz0_biasedpvunbiased( parent.trackIPEstimate_sigz0_biasedpvunbiased, index, this ),
-// -- slimmed --         trackIPEstimate_d0_unbiasedpvunbiased( parent.trackIPEstimate_d0_unbiasedpvunbiased, index, this ),
-// -- slimmed --         trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased, index, this ),
-// -- slimmed --         trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased, index, this ),
-// -- slimmed --         trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased, index, this ),
+        trackIPEstimate_d0_biasedpvunbiased( parent.trackIPEstimate_d0_biasedpvunbiased, index, this ),
+        trackIPEstimate_z0_biasedpvunbiased( parent.trackIPEstimate_z0_biasedpvunbiased, index, this ),
+        trackIPEstimate_sigd0_biasedpvunbiased( parent.trackIPEstimate_sigd0_biasedpvunbiased, index, this ),
+        trackIPEstimate_sigz0_biasedpvunbiased( parent.trackIPEstimate_sigz0_biasedpvunbiased, index, this ),
+        trackIPEstimate_d0_unbiasedpvunbiased( parent.trackIPEstimate_d0_unbiasedpvunbiased, index, this ),
+        trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased, index, this ),
+        trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased, index, this ),
+        trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased, index, this ),
 // MC only
         type( parent.type, index, this ),
         origin( parent.origin, index, this ),
@@ -272,30 +272,22 @@ namespace D3PDReader {
         nucone20_trkelstyle( parent.nucone20_trkelstyle, index, this ),
         nucone30_trkelstyle( parent.nucone30_trkelstyle, index, this ),
         nucone40_trkelstyle( parent.nucone40_trkelstyle, index, this ),
-// -- slimmed --         MET_Simplified20_wpx( parent.MET_Simplified20_wpx, index, this ),
-// -- slimmed --         MET_Simplified20_wpy( parent.MET_Simplified20_wpy, index, this ),
-// -- slimmed --         MET_Simplified20_wet( parent.MET_Simplified20_wet, index, this ),
-// -- slimmed --         MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord, index, this ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx, index, this ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy, index, this ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet, index, this ),
         MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord, index, this ),
-        MET_Egamma10NoTau_STVF_wpx( parent.MET_Egamma10NoTau_STVF_wpx, index, this ),
-        MET_Egamma10NoTau_STVF_wpy( parent.MET_Egamma10NoTau_STVF_wpy, index, this ),
-        MET_Egamma10NoTau_STVF_wet( parent.MET_Egamma10NoTau_STVF_wet, index, this ),
-        MET_Egamma10NoTau_STVF_statusWord( parent.MET_Egamma10NoTau_STVF_statusWord, index, this ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx, index, this ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy, index, this ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet, index, this ),
-// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord, index, this ),
-// -- slimmed --         MET_wpx( parent.MET_wpx, index, this ),
-// -- slimmed --         MET_wpy( parent.MET_wpy, index, this ),
-// -- slimmed --         MET_wet( parent.MET_wet, index, this ),
-// -- slimmed --         MET_statusWord( parent.MET_statusWord, index, this ),
-// -- slimmed --         MET_STVF_wpx( parent.MET_STVF_wpx, index, this ),
-// -- slimmed --         MET_STVF_wpy( parent.MET_STVF_wpy, index, this ),
-// -- slimmed --         MET_STVF_wet( parent.MET_STVF_wet, index, this ),
-// -- slimmed -- // -- slimmed --         MET_STVF_statusWord( parent.MET_STVF_statusWord, index, this ) , 
+        MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx, index, this ),
+        MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy, index, this ),
+        MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet, index, this ),
+        MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord, index, this ),
+        MET_Egamma10LooseTau_wpx( parent.MET_Egamma10LooseTau_wpx, index, this ),
+        MET_Egamma10LooseTau_wpy( parent.MET_Egamma10LooseTau_wpy, index, this ),
+        MET_Egamma10LooseTau_wet( parent.MET_Egamma10LooseTau_wet, index, this ),
+        MET_Egamma10LooseTau_statusWord( parent.MET_Egamma10LooseTau_statusWord, index, this ),
+        MET_wpx( parent.MET_wpx, index, this ),
+        MET_wpy( parent.MET_wpy, index, this ),
+        MET_wet( parent.MET_wet, index, this ),
+        MET_statusWord( parent.MET_statusWord, index, this ) , 
 is_data(is_data) {
 
    }
@@ -332,13 +324,13 @@ is_data(is_data) {
         ptcone20( parent.ptcone20 ),
         ptcone30( parent.ptcone30 ),
         ptcone40( parent.ptcone40 ),
-// -- slimmed --         etconeNoEm10( parent.etconeNoEm10 ),
-// -- slimmed --         etconeNoEm20( parent.etconeNoEm20 ),
-// -- slimmed --         etconeNoEm30( parent.etconeNoEm30 ),
-// -- slimmed --         etconeNoEm40( parent.etconeNoEm40 ),
-// -- slimmed --         scatteringCurvatureSignificance( parent.scatteringCurvatureSignificance ),
-// -- slimmed --         scatteringNeighbourSignificance( parent.scatteringNeighbourSignificance ),
-// -- slimmed --         momentumBalanceSignificance( parent.momentumBalanceSignificance ),
+        etconeNoEm10( parent.etconeNoEm10 ),
+        etconeNoEm20( parent.etconeNoEm20 ),
+        etconeNoEm30( parent.etconeNoEm30 ),
+        etconeNoEm40( parent.etconeNoEm40 ),
+        scatteringCurvatureSignificance( parent.scatteringCurvatureSignificance ),
+        scatteringNeighbourSignificance( parent.scatteringNeighbourSignificance ),
+        momentumBalanceSignificance( parent.momentumBalanceSignificance ),
         energyLossPar( parent.energyLossPar ),
         energyLossErr( parent.energyLossErr ),
         etCore( parent.etCore ),
@@ -351,9 +343,9 @@ is_data(is_data) {
         isLowPtReconstructedMuon( parent.isLowPtReconstructedMuon ),
         isSegmentTaggedMuon( parent.isSegmentTaggedMuon ),
         isCaloMuonId( parent.isCaloMuonId ),
-// -- slimmed --         alsoFoundByLowPt( parent.alsoFoundByLowPt ),
-// -- slimmed --         alsoFoundByCaloMuonId( parent.alsoFoundByCaloMuonId ),
-// -- slimmed --         isSiliconAssociatedForwardMuon( parent.isSiliconAssociatedForwardMuon ),
+        alsoFoundByLowPt( parent.alsoFoundByLowPt ),
+        alsoFoundByCaloMuonId( parent.alsoFoundByCaloMuonId ),
+        isSiliconAssociatedForwardMuon( parent.isSiliconAssociatedForwardMuon ),
         loose( parent.loose ),
         medium( parent.medium ),
         tight( parent.tight ),
@@ -456,20 +448,20 @@ is_data(is_data) {
         nTRTDeadStraws( parent.nTRTDeadStraws ),
         expectBLayerHit( parent.expectBLayerHit ),
         nMDTHits( parent.nMDTHits ),
-// -- slimmed --         nMDTHoles( parent.nMDTHoles ),
+        nMDTHoles( parent.nMDTHoles ),
         nCSCEtaHits( parent.nCSCEtaHits ),
-// -- slimmed --         nCSCEtaHoles( parent.nCSCEtaHoles ),
+        nCSCEtaHoles( parent.nCSCEtaHoles ),
         nCSCUnspoiledEtaHits( parent.nCSCUnspoiledEtaHits ),
         nCSCPhiHits( parent.nCSCPhiHits ),
-// -- slimmed --         nCSCPhiHoles( parent.nCSCPhiHoles ),
+        nCSCPhiHoles( parent.nCSCPhiHoles ),
         nRPCEtaHits( parent.nRPCEtaHits ),
-// -- slimmed --         nRPCEtaHoles( parent.nRPCEtaHoles ),
+        nRPCEtaHoles( parent.nRPCEtaHoles ),
         nRPCPhiHits( parent.nRPCPhiHits ),
-// -- slimmed --         nRPCPhiHoles( parent.nRPCPhiHoles ),
+        nRPCPhiHoles( parent.nRPCPhiHoles ),
         nTGCEtaHits( parent.nTGCEtaHits ),
-// -- slimmed --         nTGCEtaHoles( parent.nTGCEtaHoles ),
+        nTGCEtaHoles( parent.nTGCEtaHoles ),
         nTGCPhiHits( parent.nTGCPhiHits ),
-// -- slimmed --         nTGCPhiHoles( parent.nTGCPhiHoles ),
+        nTGCPhiHoles( parent.nTGCPhiHoles ),
         nprecisionLayers( parent.nprecisionLayers ),
         nprecisionHoleLayers( parent.nprecisionHoleLayers ),
         nphiLayers( parent.nphiLayers ),
@@ -485,22 +477,22 @@ is_data(is_data) {
         nMDTEMHits( parent.nMDTEMHits ),
         nMDTEOHits( parent.nMDTEOHits ),
         nMDTEEHits( parent.nMDTEEHits ),
-// -- slimmed --         nRPCLayer1EtaHits( parent.nRPCLayer1EtaHits ),
-// -- slimmed --         nRPCLayer2EtaHits( parent.nRPCLayer2EtaHits ),
-// -- slimmed --         nRPCLayer3EtaHits( parent.nRPCLayer3EtaHits ),
-// -- slimmed --         nRPCLayer1PhiHits( parent.nRPCLayer1PhiHits ),
-// -- slimmed --         nRPCLayer2PhiHits( parent.nRPCLayer2PhiHits ),
-// -- slimmed --         nRPCLayer3PhiHits( parent.nRPCLayer3PhiHits ),
-// -- slimmed --         nTGCLayer1EtaHits( parent.nTGCLayer1EtaHits ),
-// -- slimmed --         nTGCLayer2EtaHits( parent.nTGCLayer2EtaHits ),
-// -- slimmed --         nTGCLayer3EtaHits( parent.nTGCLayer3EtaHits ),
-// -- slimmed --         nTGCLayer4EtaHits( parent.nTGCLayer4EtaHits ),
-// -- slimmed --         nTGCLayer1PhiHits( parent.nTGCLayer1PhiHits ),
-// -- slimmed --         nTGCLayer2PhiHits( parent.nTGCLayer2PhiHits ),
-// -- slimmed --         nTGCLayer3PhiHits( parent.nTGCLayer3PhiHits ),
-// -- slimmed --         nTGCLayer4PhiHits( parent.nTGCLayer4PhiHits ),
-// -- slimmed --         barrelSectors( parent.barrelSectors ),
-// -- slimmed --         endcapSectors( parent.endcapSectors ),
+        nRPCLayer1EtaHits( parent.nRPCLayer1EtaHits ),
+        nRPCLayer2EtaHits( parent.nRPCLayer2EtaHits ),
+        nRPCLayer3EtaHits( parent.nRPCLayer3EtaHits ),
+        nRPCLayer1PhiHits( parent.nRPCLayer1PhiHits ),
+        nRPCLayer2PhiHits( parent.nRPCLayer2PhiHits ),
+        nRPCLayer3PhiHits( parent.nRPCLayer3PhiHits ),
+        nTGCLayer1EtaHits( parent.nTGCLayer1EtaHits ),
+        nTGCLayer2EtaHits( parent.nTGCLayer2EtaHits ),
+        nTGCLayer3EtaHits( parent.nTGCLayer3EtaHits ),
+        nTGCLayer4EtaHits( parent.nTGCLayer4EtaHits ),
+        nTGCLayer1PhiHits( parent.nTGCLayer1PhiHits ),
+        nTGCLayer2PhiHits( parent.nTGCLayer2PhiHits ),
+        nTGCLayer3PhiHits( parent.nTGCLayer3PhiHits ),
+        nTGCLayer4PhiHits( parent.nTGCLayer4PhiHits ),
+        barrelSectors( parent.barrelSectors ),
+        endcapSectors( parent.endcapSectors ),
         trackd0( parent.trackd0 ),
         trackz0( parent.trackz0 ),
         trackphi( parent.trackphi ),
@@ -522,14 +514,14 @@ is_data(is_data) {
         trackcov_phi_qoverp( parent.trackcov_phi_qoverp ),
         trackcov_theta_qoverp( parent.trackcov_theta_qoverp ),
         hastrack( parent.hastrack ),
-// -- slimmed --         trackIPEstimate_d0_biasedpvunbiased( parent.trackIPEstimate_d0_biasedpvunbiased ),
-// -- slimmed --         trackIPEstimate_z0_biasedpvunbiased( parent.trackIPEstimate_z0_biasedpvunbiased ),
-// -- slimmed --         trackIPEstimate_sigd0_biasedpvunbiased( parent.trackIPEstimate_sigd0_biasedpvunbiased ),
-// -- slimmed --         trackIPEstimate_sigz0_biasedpvunbiased( parent.trackIPEstimate_sigz0_biasedpvunbiased ),
-// -- slimmed --         trackIPEstimate_d0_unbiasedpvunbiased( parent.trackIPEstimate_d0_unbiasedpvunbiased ),
-// -- slimmed --         trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased ),
-// -- slimmed --         trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased ),
-// -- slimmed --         trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased ),
+        trackIPEstimate_d0_biasedpvunbiased( parent.trackIPEstimate_d0_biasedpvunbiased ),
+        trackIPEstimate_z0_biasedpvunbiased( parent.trackIPEstimate_z0_biasedpvunbiased ),
+        trackIPEstimate_sigd0_biasedpvunbiased( parent.trackIPEstimate_sigd0_biasedpvunbiased ),
+        trackIPEstimate_sigz0_biasedpvunbiased( parent.trackIPEstimate_sigz0_biasedpvunbiased ),
+        trackIPEstimate_d0_unbiasedpvunbiased( parent.trackIPEstimate_d0_unbiasedpvunbiased ),
+        trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased ),
+        trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased ),
+        trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased ),
 // MC only
         type( parent.type ),
         origin( parent.origin ),
@@ -560,30 +552,22 @@ is_data(is_data) {
         nucone20_trkelstyle( parent.nucone20_trkelstyle ),
         nucone30_trkelstyle( parent.nucone30_trkelstyle ),
         nucone40_trkelstyle( parent.nucone40_trkelstyle ),
-// -- slimmed --         MET_Simplified20_wpx( parent.MET_Simplified20_wpx ),
-// -- slimmed --         MET_Simplified20_wpy( parent.MET_Simplified20_wpy ),
-// -- slimmed --         MET_Simplified20_wet( parent.MET_Simplified20_wet ),
-// -- slimmed --         MET_Simplified20_statusWord( parent.MET_Simplified20_statusWord ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet ),
         MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord ),
-        MET_Egamma10NoTau_STVF_wpx( parent.MET_Egamma10NoTau_STVF_wpx ),
-        MET_Egamma10NoTau_STVF_wpy( parent.MET_Egamma10NoTau_STVF_wpy ),
-        MET_Egamma10NoTau_STVF_wet( parent.MET_Egamma10NoTau_STVF_wet ),
-        MET_Egamma10NoTau_STVF_statusWord( parent.MET_Egamma10NoTau_STVF_statusWord ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet ),
-// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord ),
-// -- slimmed --         MET_wpx( parent.MET_wpx ),
-// -- slimmed --         MET_wpy( parent.MET_wpy ),
-// -- slimmed --         MET_wet( parent.MET_wet ),
-// -- slimmed --         MET_statusWord( parent.MET_statusWord ),
-// -- slimmed --         MET_STVF_wpx( parent.MET_STVF_wpx ),
-// -- slimmed --         MET_STVF_wpy( parent.MET_STVF_wpy ),
-// -- slimmed --         MET_STVF_wet( parent.MET_STVF_wet ),
-// -- slimmed -- // -- slimmed --         MET_STVF_statusWord( parent.MET_STVF_statusWord ) , 
+        MET_LooseEgamma10NoTau_wpx( parent.MET_LooseEgamma10NoTau_wpx ),
+        MET_LooseEgamma10NoTau_wpy( parent.MET_LooseEgamma10NoTau_wpy ),
+        MET_LooseEgamma10NoTau_wet( parent.MET_LooseEgamma10NoTau_wet ),
+        MET_LooseEgamma10NoTau_statusWord( parent.MET_LooseEgamma10NoTau_statusWord ),
+        MET_Egamma10LooseTau_wpx( parent.MET_Egamma10LooseTau_wpx ),
+        MET_Egamma10LooseTau_wpy( parent.MET_Egamma10LooseTau_wpy ),
+        MET_Egamma10LooseTau_wet( parent.MET_Egamma10LooseTau_wet ),
+        MET_Egamma10LooseTau_statusWord( parent.MET_Egamma10LooseTau_statusWord ),
+        MET_wpx( parent.MET_wpx ),
+        MET_wpy( parent.MET_wpy ),
+        MET_wet( parent.MET_wet ),
+        MET_statusWord( parent.MET_statusWord ) , 
 is_data(is_data) {
 
    }
@@ -621,13 +605,13 @@ is_data(is_data) {
         ptcone20( this, ::TString( prefix ) + "ptcone20", &master ),
         ptcone30( this, ::TString( prefix ) + "ptcone30", &master ),
         ptcone40( this, ::TString( prefix ) + "ptcone40", &master ),
-// -- slimmed --         etconeNoEm10( this, ::TString( prefix ) + "etconeNoEm10", &master ),
-// -- slimmed --         etconeNoEm20( this, ::TString( prefix ) + "etconeNoEm20", &master ),
-// -- slimmed --         etconeNoEm30( this, ::TString( prefix ) + "etconeNoEm30", &master ),
-// -- slimmed --         etconeNoEm40( this, ::TString( prefix ) + "etconeNoEm40", &master ),
-// -- slimmed --         scatteringCurvatureSignificance( this, ::TString( prefix ) + "scatteringCurvatureSignificance", &master ),
-// -- slimmed --         scatteringNeighbourSignificance( this, ::TString( prefix ) + "scatteringNeighbourSignificance", &master ),
-// -- slimmed --         momentumBalanceSignificance( this, ::TString( prefix ) + "momentumBalanceSignificance", &master ),
+        etconeNoEm10( this, ::TString( prefix ) + "etconeNoEm10", &master ),
+        etconeNoEm20( this, ::TString( prefix ) + "etconeNoEm20", &master ),
+        etconeNoEm30( this, ::TString( prefix ) + "etconeNoEm30", &master ),
+        etconeNoEm40( this, ::TString( prefix ) + "etconeNoEm40", &master ),
+        scatteringCurvatureSignificance( this, ::TString( prefix ) + "scatteringCurvatureSignificance", &master ),
+        scatteringNeighbourSignificance( this, ::TString( prefix ) + "scatteringNeighbourSignificance", &master ),
+        momentumBalanceSignificance( this, ::TString( prefix ) + "momentumBalanceSignificance", &master ),
         energyLossPar( this, ::TString( prefix ) + "energyLossPar", &master ),
         energyLossErr( this, ::TString( prefix ) + "energyLossErr", &master ),
         etCore( this, ::TString( prefix ) + "etCore", &master ),
@@ -640,9 +624,9 @@ is_data(is_data) {
         isLowPtReconstructedMuon( this, ::TString( prefix ) + "isLowPtReconstructedMuon", &master ),
         isSegmentTaggedMuon( this, ::TString( prefix ) + "isSegmentTaggedMuon", &master ),
         isCaloMuonId( this, ::TString( prefix ) + "isCaloMuonId", &master ),
-// -- slimmed --         alsoFoundByLowPt( this, ::TString( prefix ) + "alsoFoundByLowPt", &master ),
-// -- slimmed --         alsoFoundByCaloMuonId( this, ::TString( prefix ) + "alsoFoundByCaloMuonId", &master ),
-// -- slimmed --         isSiliconAssociatedForwardMuon( this, ::TString( prefix ) + "isSiliconAssociatedForwardMuon", &master ),
+        alsoFoundByLowPt( this, ::TString( prefix ) + "alsoFoundByLowPt", &master ),
+        alsoFoundByCaloMuonId( this, ::TString( prefix ) + "alsoFoundByCaloMuonId", &master ),
+        isSiliconAssociatedForwardMuon( this, ::TString( prefix ) + "isSiliconAssociatedForwardMuon", &master ),
         loose( this, ::TString( prefix ) + "loose", &master ),
         medium( this, ::TString( prefix ) + "medium", &master ),
         tight( this, ::TString( prefix ) + "tight", &master ),
@@ -745,20 +729,20 @@ is_data(is_data) {
         nTRTDeadStraws( this, ::TString( prefix ) + "nTRTDeadStraws", &master ),
         expectBLayerHit( this, ::TString( prefix ) + "expectBLayerHit", &master ),
         nMDTHits( this, ::TString( prefix ) + "nMDTHits", &master ),
-// -- slimmed --         nMDTHoles( this, ::TString( prefix ) + "nMDTHoles", &master ),
+        nMDTHoles( this, ::TString( prefix ) + "nMDTHoles", &master ),
         nCSCEtaHits( this, ::TString( prefix ) + "nCSCEtaHits", &master ),
-// -- slimmed --         nCSCEtaHoles( this, ::TString( prefix ) + "nCSCEtaHoles", &master ),
+        nCSCEtaHoles( this, ::TString( prefix ) + "nCSCEtaHoles", &master ),
         nCSCUnspoiledEtaHits( this, ::TString( prefix ) + "nCSCUnspoiledEtaHits", &master ),
         nCSCPhiHits( this, ::TString( prefix ) + "nCSCPhiHits", &master ),
-// -- slimmed --         nCSCPhiHoles( this, ::TString( prefix ) + "nCSCPhiHoles", &master ),
+        nCSCPhiHoles( this, ::TString( prefix ) + "nCSCPhiHoles", &master ),
         nRPCEtaHits( this, ::TString( prefix ) + "nRPCEtaHits", &master ),
-// -- slimmed --         nRPCEtaHoles( this, ::TString( prefix ) + "nRPCEtaHoles", &master ),
+        nRPCEtaHoles( this, ::TString( prefix ) + "nRPCEtaHoles", &master ),
         nRPCPhiHits( this, ::TString( prefix ) + "nRPCPhiHits", &master ),
-// -- slimmed --         nRPCPhiHoles( this, ::TString( prefix ) + "nRPCPhiHoles", &master ),
+        nRPCPhiHoles( this, ::TString( prefix ) + "nRPCPhiHoles", &master ),
         nTGCEtaHits( this, ::TString( prefix ) + "nTGCEtaHits", &master ),
-// -- slimmed --         nTGCEtaHoles( this, ::TString( prefix ) + "nTGCEtaHoles", &master ),
+        nTGCEtaHoles( this, ::TString( prefix ) + "nTGCEtaHoles", &master ),
         nTGCPhiHits( this, ::TString( prefix ) + "nTGCPhiHits", &master ),
-// -- slimmed --         nTGCPhiHoles( this, ::TString( prefix ) + "nTGCPhiHoles", &master ),
+        nTGCPhiHoles( this, ::TString( prefix ) + "nTGCPhiHoles", &master ),
         nprecisionLayers( this, ::TString( prefix ) + "nprecisionLayers", &master ),
         nprecisionHoleLayers( this, ::TString( prefix ) + "nprecisionHoleLayers", &master ),
         nphiLayers( this, ::TString( prefix ) + "nphiLayers", &master ),
@@ -774,22 +758,22 @@ is_data(is_data) {
         nMDTEMHits( this, ::TString( prefix ) + "nMDTEMHits", &master ),
         nMDTEOHits( this, ::TString( prefix ) + "nMDTEOHits", &master ),
         nMDTEEHits( this, ::TString( prefix ) + "nMDTEEHits", &master ),
-// -- slimmed --         nRPCLayer1EtaHits( this, ::TString( prefix ) + "nRPCLayer1EtaHits", &master ),
-// -- slimmed --         nRPCLayer2EtaHits( this, ::TString( prefix ) + "nRPCLayer2EtaHits", &master ),
-// -- slimmed --         nRPCLayer3EtaHits( this, ::TString( prefix ) + "nRPCLayer3EtaHits", &master ),
-// -- slimmed --         nRPCLayer1PhiHits( this, ::TString( prefix ) + "nRPCLayer1PhiHits", &master ),
-// -- slimmed --         nRPCLayer2PhiHits( this, ::TString( prefix ) + "nRPCLayer2PhiHits", &master ),
-// -- slimmed --         nRPCLayer3PhiHits( this, ::TString( prefix ) + "nRPCLayer3PhiHits", &master ),
-// -- slimmed --         nTGCLayer1EtaHits( this, ::TString( prefix ) + "nTGCLayer1EtaHits", &master ),
-// -- slimmed --         nTGCLayer2EtaHits( this, ::TString( prefix ) + "nTGCLayer2EtaHits", &master ),
-// -- slimmed --         nTGCLayer3EtaHits( this, ::TString( prefix ) + "nTGCLayer3EtaHits", &master ),
-// -- slimmed --         nTGCLayer4EtaHits( this, ::TString( prefix ) + "nTGCLayer4EtaHits", &master ),
-// -- slimmed --         nTGCLayer1PhiHits( this, ::TString( prefix ) + "nTGCLayer1PhiHits", &master ),
-// -- slimmed --         nTGCLayer2PhiHits( this, ::TString( prefix ) + "nTGCLayer2PhiHits", &master ),
-// -- slimmed --         nTGCLayer3PhiHits( this, ::TString( prefix ) + "nTGCLayer3PhiHits", &master ),
-// -- slimmed --         nTGCLayer4PhiHits( this, ::TString( prefix ) + "nTGCLayer4PhiHits", &master ),
-// -- slimmed --         barrelSectors( this, ::TString( prefix ) + "barrelSectors", &master ),
-// -- slimmed --         endcapSectors( this, ::TString( prefix ) + "endcapSectors", &master ),
+        nRPCLayer1EtaHits( this, ::TString( prefix ) + "nRPCLayer1EtaHits", &master ),
+        nRPCLayer2EtaHits( this, ::TString( prefix ) + "nRPCLayer2EtaHits", &master ),
+        nRPCLayer3EtaHits( this, ::TString( prefix ) + "nRPCLayer3EtaHits", &master ),
+        nRPCLayer1PhiHits( this, ::TString( prefix ) + "nRPCLayer1PhiHits", &master ),
+        nRPCLayer2PhiHits( this, ::TString( prefix ) + "nRPCLayer2PhiHits", &master ),
+        nRPCLayer3PhiHits( this, ::TString( prefix ) + "nRPCLayer3PhiHits", &master ),
+        nTGCLayer1EtaHits( this, ::TString( prefix ) + "nTGCLayer1EtaHits", &master ),
+        nTGCLayer2EtaHits( this, ::TString( prefix ) + "nTGCLayer2EtaHits", &master ),
+        nTGCLayer3EtaHits( this, ::TString( prefix ) + "nTGCLayer3EtaHits", &master ),
+        nTGCLayer4EtaHits( this, ::TString( prefix ) + "nTGCLayer4EtaHits", &master ),
+        nTGCLayer1PhiHits( this, ::TString( prefix ) + "nTGCLayer1PhiHits", &master ),
+        nTGCLayer2PhiHits( this, ::TString( prefix ) + "nTGCLayer2PhiHits", &master ),
+        nTGCLayer3PhiHits( this, ::TString( prefix ) + "nTGCLayer3PhiHits", &master ),
+        nTGCLayer4PhiHits( this, ::TString( prefix ) + "nTGCLayer4PhiHits", &master ),
+        barrelSectors( this, ::TString( prefix ) + "barrelSectors", &master ),
+        endcapSectors( this, ::TString( prefix ) + "endcapSectors", &master ),
         trackd0( this, ::TString( prefix ) + "trackd0", &master ),
         trackz0( this, ::TString( prefix ) + "trackz0", &master ),
         trackphi( this, ::TString( prefix ) + "trackphi", &master ),
@@ -811,14 +795,14 @@ is_data(is_data) {
         trackcov_phi_qoverp( this, ::TString( prefix ) + "trackcov_phi_qoverp", &master ),
         trackcov_theta_qoverp( this, ::TString( prefix ) + "trackcov_theta_qoverp", &master ),
         hastrack( this, ::TString( prefix ) + "hastrack", &master ),
-// -- slimmed --         trackIPEstimate_d0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased", &master ),
-// -- slimmed --         trackIPEstimate_z0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased", &master ),
-// -- slimmed --         trackIPEstimate_sigd0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased", &master ),
-// -- slimmed --         trackIPEstimate_sigz0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased", &master ),
-// -- slimmed --         trackIPEstimate_d0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased", &master ),
-// -- slimmed --         trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", &master ),
-// -- slimmed --         trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", &master ),
-// -- slimmed --         trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", &master ),
+        trackIPEstimate_d0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased", &master ),
+        trackIPEstimate_z0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased", &master ),
+        trackIPEstimate_sigd0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased", &master ),
+        trackIPEstimate_sigz0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased", &master ),
+        trackIPEstimate_d0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased", &master ),
+        trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", &master ),
+        trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", &master ),
+        trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", &master ),
 // MC only
         type( this, ::TString( prefix ) + "type", &master ),
         origin( this, ::TString( prefix ) + "origin", &master ),
@@ -849,30 +833,22 @@ is_data(is_data) {
         nucone20_trkelstyle( this, ::TString( prefix ) + "nucone20_trkelstyle", &master ),
         nucone30_trkelstyle( this, ::TString( prefix ) + "nucone30_trkelstyle", &master ),
         nucone40_trkelstyle( this, ::TString( prefix ) + "nucone40_trkelstyle", &master ),
-// -- slimmed --         MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", &master ),
-// -- slimmed --         MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", &master ),
-// -- slimmed --         MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", &master ),
-// -- slimmed --         MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", &master ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", &master ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", &master ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", &master ),
         MET_Egamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_statusWord", &master ),
-        MET_Egamma10NoTau_STVF_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpx", &master ),
-        MET_Egamma10NoTau_STVF_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy", &master ),
-        MET_Egamma10NoTau_STVF_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet", &master ),
-        MET_Egamma10NoTau_STVF_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord", &master ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", &master ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", &master ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", &master ),
-// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", &master ),
-// -- slimmed --         MET_wpx( this, ::TString( prefix ) + "MET_wpx", &master ),
-// -- slimmed --         MET_wpy( this, ::TString( prefix ) + "MET_wpy", &master ),
-// -- slimmed --         MET_wet( this, ::TString( prefix ) + "MET_wet", &master ),
-// -- slimmed --         MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", &master ),
-// -- slimmed --         MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", &master ),
-// -- slimmed --         MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", &master ),
-// -- slimmed --         MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", &master ),
-// -- slimmed -- // -- slimmed --         MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", &master ),
+        MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", &master ),
+        MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", &master ),
+        MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", &master ),
+        MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", &master ),
+        MET_Egamma10LooseTau_wpx( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wpx", &master ),
+        MET_Egamma10LooseTau_wpy( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wpy", &master ),
+        MET_Egamma10LooseTau_wet( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wet", &master ),
+        MET_Egamma10LooseTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10LooseTau_statusWord", &master ),
+        MET_wpx( this, ::TString( prefix ) + "MET_wpx", &master ),
+        MET_wpy( this, ::TString( prefix ) + "MET_wpy", &master ),
+        MET_wet( this, ::TString( prefix ) + "MET_wet", &master ),
+        MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", &master ),
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) , 
@@ -901,13 +877,13 @@ is_data(is_data) {
       fHandles[ "ptcone20" ] = &ptcone20;
       fHandles[ "ptcone30" ] = &ptcone30;
       fHandles[ "ptcone40" ] = &ptcone40;
-// -- slimmed --       fHandles[ "etconeNoEm10" ] = &etconeNoEm10;
-// -- slimmed --       fHandles[ "etconeNoEm20" ] = &etconeNoEm20;
-// -- slimmed --       fHandles[ "etconeNoEm30" ] = &etconeNoEm30;
-// -- slimmed --       fHandles[ "etconeNoEm40" ] = &etconeNoEm40;
-// -- slimmed --       fHandles[ "scatteringCurvatureSignificance" ] = &scatteringCurvatureSignificance;
-// -- slimmed --       fHandles[ "scatteringNeighbourSignificance" ] = &scatteringNeighbourSignificance;
-// -- slimmed --       fHandles[ "momentumBalanceSignificance" ] = &momentumBalanceSignificance;
+      fHandles[ "etconeNoEm10" ] = &etconeNoEm10;
+      fHandles[ "etconeNoEm20" ] = &etconeNoEm20;
+      fHandles[ "etconeNoEm30" ] = &etconeNoEm30;
+      fHandles[ "etconeNoEm40" ] = &etconeNoEm40;
+      fHandles[ "scatteringCurvatureSignificance" ] = &scatteringCurvatureSignificance;
+      fHandles[ "scatteringNeighbourSignificance" ] = &scatteringNeighbourSignificance;
+      fHandles[ "momentumBalanceSignificance" ] = &momentumBalanceSignificance;
       fHandles[ "energyLossPar" ] = &energyLossPar;
       fHandles[ "energyLossErr" ] = &energyLossErr;
       fHandles[ "etCore" ] = &etCore;
@@ -920,9 +896,9 @@ is_data(is_data) {
       fHandles[ "isLowPtReconstructedMuon" ] = &isLowPtReconstructedMuon;
       fHandles[ "isSegmentTaggedMuon" ] = &isSegmentTaggedMuon;
       fHandles[ "isCaloMuonId" ] = &isCaloMuonId;
-// -- slimmed --       fHandles[ "alsoFoundByLowPt" ] = &alsoFoundByLowPt;
-// -- slimmed --       fHandles[ "alsoFoundByCaloMuonId" ] = &alsoFoundByCaloMuonId;
-// -- slimmed --       fHandles[ "isSiliconAssociatedForwardMuon" ] = &isSiliconAssociatedForwardMuon;
+      fHandles[ "alsoFoundByLowPt" ] = &alsoFoundByLowPt;
+      fHandles[ "alsoFoundByCaloMuonId" ] = &alsoFoundByCaloMuonId;
+      fHandles[ "isSiliconAssociatedForwardMuon" ] = &isSiliconAssociatedForwardMuon;
       fHandles[ "loose" ] = &loose;
       fHandles[ "medium" ] = &medium;
       fHandles[ "tight" ] = &tight;
@@ -1025,20 +1001,20 @@ is_data(is_data) {
       fHandles[ "nTRTDeadStraws" ] = &nTRTDeadStraws;
       fHandles[ "expectBLayerHit" ] = &expectBLayerHit;
       fHandles[ "nMDTHits" ] = &nMDTHits;
-// -- slimmed --       fHandles[ "nMDTHoles" ] = &nMDTHoles;
+      fHandles[ "nMDTHoles" ] = &nMDTHoles;
       fHandles[ "nCSCEtaHits" ] = &nCSCEtaHits;
-// -- slimmed --       fHandles[ "nCSCEtaHoles" ] = &nCSCEtaHoles;
+      fHandles[ "nCSCEtaHoles" ] = &nCSCEtaHoles;
       fHandles[ "nCSCUnspoiledEtaHits" ] = &nCSCUnspoiledEtaHits;
       fHandles[ "nCSCPhiHits" ] = &nCSCPhiHits;
-// -- slimmed --       fHandles[ "nCSCPhiHoles" ] = &nCSCPhiHoles;
+      fHandles[ "nCSCPhiHoles" ] = &nCSCPhiHoles;
       fHandles[ "nRPCEtaHits" ] = &nRPCEtaHits;
-// -- slimmed --       fHandles[ "nRPCEtaHoles" ] = &nRPCEtaHoles;
+      fHandles[ "nRPCEtaHoles" ] = &nRPCEtaHoles;
       fHandles[ "nRPCPhiHits" ] = &nRPCPhiHits;
-// -- slimmed --       fHandles[ "nRPCPhiHoles" ] = &nRPCPhiHoles;
+      fHandles[ "nRPCPhiHoles" ] = &nRPCPhiHoles;
       fHandles[ "nTGCEtaHits" ] = &nTGCEtaHits;
-// -- slimmed --       fHandles[ "nTGCEtaHoles" ] = &nTGCEtaHoles;
+      fHandles[ "nTGCEtaHoles" ] = &nTGCEtaHoles;
       fHandles[ "nTGCPhiHits" ] = &nTGCPhiHits;
-// -- slimmed --       fHandles[ "nTGCPhiHoles" ] = &nTGCPhiHoles;
+      fHandles[ "nTGCPhiHoles" ] = &nTGCPhiHoles;
       fHandles[ "nprecisionLayers" ] = &nprecisionLayers;
       fHandles[ "nprecisionHoleLayers" ] = &nprecisionHoleLayers;
       fHandles[ "nphiLayers" ] = &nphiLayers;
@@ -1054,22 +1030,22 @@ is_data(is_data) {
       fHandles[ "nMDTEMHits" ] = &nMDTEMHits;
       fHandles[ "nMDTEOHits" ] = &nMDTEOHits;
       fHandles[ "nMDTEEHits" ] = &nMDTEEHits;
-// -- slimmed --       fHandles[ "nRPCLayer1EtaHits" ] = &nRPCLayer1EtaHits;
-// -- slimmed --       fHandles[ "nRPCLayer2EtaHits" ] = &nRPCLayer2EtaHits;
-// -- slimmed --       fHandles[ "nRPCLayer3EtaHits" ] = &nRPCLayer3EtaHits;
-// -- slimmed --       fHandles[ "nRPCLayer1PhiHits" ] = &nRPCLayer1PhiHits;
-// -- slimmed --       fHandles[ "nRPCLayer2PhiHits" ] = &nRPCLayer2PhiHits;
-// -- slimmed --       fHandles[ "nRPCLayer3PhiHits" ] = &nRPCLayer3PhiHits;
-// -- slimmed --       fHandles[ "nTGCLayer1EtaHits" ] = &nTGCLayer1EtaHits;
-// -- slimmed --       fHandles[ "nTGCLayer2EtaHits" ] = &nTGCLayer2EtaHits;
-// -- slimmed --       fHandles[ "nTGCLayer3EtaHits" ] = &nTGCLayer3EtaHits;
-// -- slimmed --       fHandles[ "nTGCLayer4EtaHits" ] = &nTGCLayer4EtaHits;
-// -- slimmed --       fHandles[ "nTGCLayer1PhiHits" ] = &nTGCLayer1PhiHits;
-// -- slimmed --       fHandles[ "nTGCLayer2PhiHits" ] = &nTGCLayer2PhiHits;
-// -- slimmed --       fHandles[ "nTGCLayer3PhiHits" ] = &nTGCLayer3PhiHits;
-// -- slimmed --       fHandles[ "nTGCLayer4PhiHits" ] = &nTGCLayer4PhiHits;
-// -- slimmed --       fHandles[ "barrelSectors" ] = &barrelSectors;
-// -- slimmed --       fHandles[ "endcapSectors" ] = &endcapSectors;
+      fHandles[ "nRPCLayer1EtaHits" ] = &nRPCLayer1EtaHits;
+      fHandles[ "nRPCLayer2EtaHits" ] = &nRPCLayer2EtaHits;
+      fHandles[ "nRPCLayer3EtaHits" ] = &nRPCLayer3EtaHits;
+      fHandles[ "nRPCLayer1PhiHits" ] = &nRPCLayer1PhiHits;
+      fHandles[ "nRPCLayer2PhiHits" ] = &nRPCLayer2PhiHits;
+      fHandles[ "nRPCLayer3PhiHits" ] = &nRPCLayer3PhiHits;
+      fHandles[ "nTGCLayer1EtaHits" ] = &nTGCLayer1EtaHits;
+      fHandles[ "nTGCLayer2EtaHits" ] = &nTGCLayer2EtaHits;
+      fHandles[ "nTGCLayer3EtaHits" ] = &nTGCLayer3EtaHits;
+      fHandles[ "nTGCLayer4EtaHits" ] = &nTGCLayer4EtaHits;
+      fHandles[ "nTGCLayer1PhiHits" ] = &nTGCLayer1PhiHits;
+      fHandles[ "nTGCLayer2PhiHits" ] = &nTGCLayer2PhiHits;
+      fHandles[ "nTGCLayer3PhiHits" ] = &nTGCLayer3PhiHits;
+      fHandles[ "nTGCLayer4PhiHits" ] = &nTGCLayer4PhiHits;
+      fHandles[ "barrelSectors" ] = &barrelSectors;
+      fHandles[ "endcapSectors" ] = &endcapSectors;
       fHandles[ "trackd0" ] = &trackd0;
       fHandles[ "trackz0" ] = &trackz0;
       fHandles[ "trackphi" ] = &trackphi;
@@ -1091,14 +1067,14 @@ is_data(is_data) {
       fHandles[ "trackcov_phi_qoverp" ] = &trackcov_phi_qoverp;
       fHandles[ "trackcov_theta_qoverp" ] = &trackcov_theta_qoverp;
       fHandles[ "hastrack" ] = &hastrack;
-// -- slimmed --       fHandles[ "trackIPEstimate_d0_biasedpvunbiased" ] = &trackIPEstimate_d0_biasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_z0_biasedpvunbiased" ] = &trackIPEstimate_z0_biasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_sigd0_biasedpvunbiased" ] = &trackIPEstimate_sigd0_biasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_sigz0_biasedpvunbiased" ] = &trackIPEstimate_sigz0_biasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_d0_unbiasedpvunbiased" ] = &trackIPEstimate_d0_unbiasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
+      fHandles[ "trackIPEstimate_d0_biasedpvunbiased" ] = &trackIPEstimate_d0_biasedpvunbiased;
+      fHandles[ "trackIPEstimate_z0_biasedpvunbiased" ] = &trackIPEstimate_z0_biasedpvunbiased;
+      fHandles[ "trackIPEstimate_sigd0_biasedpvunbiased" ] = &trackIPEstimate_sigd0_biasedpvunbiased;
+      fHandles[ "trackIPEstimate_sigz0_biasedpvunbiased" ] = &trackIPEstimate_sigz0_biasedpvunbiased;
+      fHandles[ "trackIPEstimate_d0_unbiasedpvunbiased" ] = &trackIPEstimate_d0_unbiasedpvunbiased;
+      fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
+      fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
+      fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
 if (!is_data) {
       fHandles[ "type" ] = &type;
       fHandles[ "origin" ] = &origin;
@@ -1129,30 +1105,22 @@ if (!is_data) {
       fHandles[ "nucone20_trkelstyle" ] = &nucone20_trkelstyle;
       fHandles[ "nucone30_trkelstyle" ] = &nucone30_trkelstyle;
       fHandles[ "nucone40_trkelstyle" ] = &nucone40_trkelstyle;
-// -- slimmed --       fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
-// -- slimmed --       fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
-// -- slimmed --       fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
-// -- slimmed --       fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
       fHandles[ "MET_Egamma10NoTau_statusWord" ] = &MET_Egamma10NoTau_statusWord;
-      fHandles[ "MET_Egamma10NoTau_STVF_wpx" ] = &MET_Egamma10NoTau_STVF_wpx;
-      fHandles[ "MET_Egamma10NoTau_STVF_wpy" ] = &MET_Egamma10NoTau_STVF_wpy;
-      fHandles[ "MET_Egamma10NoTau_STVF_wet" ] = &MET_Egamma10NoTau_STVF_wet;
-      fHandles[ "MET_Egamma10NoTau_STVF_statusWord" ] = &MET_Egamma10NoTau_STVF_statusWord;
-// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
-// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
-// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
-// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
-// -- slimmed --       fHandles[ "MET_wpx" ] = &MET_wpx;
-// -- slimmed --       fHandles[ "MET_wpy" ] = &MET_wpy;
-// -- slimmed --       fHandles[ "MET_wet" ] = &MET_wet;
-// -- slimmed --       fHandles[ "MET_statusWord" ] = &MET_statusWord;
-// -- slimmed --       fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
-// -- slimmed --       fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
-// -- slimmed --       fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
-// -- slimmed -- // -- slimmed --       fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
+      fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
+      fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
+      fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
+      fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
+      fHandles[ "MET_Egamma10LooseTau_wpx" ] = &MET_Egamma10LooseTau_wpx;
+      fHandles[ "MET_Egamma10LooseTau_wpy" ] = &MET_Egamma10LooseTau_wpy;
+      fHandles[ "MET_Egamma10LooseTau_wet" ] = &MET_Egamma10LooseTau_wet;
+      fHandles[ "MET_Egamma10LooseTau_statusWord" ] = &MET_Egamma10LooseTau_statusWord;
+      fHandles[ "MET_wpx" ] = &MET_wpx;
+      fHandles[ "MET_wpy" ] = &MET_wpy;
+      fHandles[ "MET_wet" ] = &MET_wet;
+      fHandles[ "MET_statusWord" ] = &MET_statusWord;
    }
 
    /**
@@ -1187,13 +1155,13 @@ if (!is_data) {
         ptcone20( this, ::TString( prefix ) + "ptcone20", 0 ),
         ptcone30( this, ::TString( prefix ) + "ptcone30", 0 ),
         ptcone40( this, ::TString( prefix ) + "ptcone40", 0 ),
-// -- slimmed --         etconeNoEm10( this, ::TString( prefix ) + "etconeNoEm10", 0 ),
-// -- slimmed --         etconeNoEm20( this, ::TString( prefix ) + "etconeNoEm20", 0 ),
-// -- slimmed --         etconeNoEm30( this, ::TString( prefix ) + "etconeNoEm30", 0 ),
-// -- slimmed --         etconeNoEm40( this, ::TString( prefix ) + "etconeNoEm40", 0 ),
-// -- slimmed --         scatteringCurvatureSignificance( this, ::TString( prefix ) + "scatteringCurvatureSignificance", 0 ),
-// -- slimmed --         scatteringNeighbourSignificance( this, ::TString( prefix ) + "scatteringNeighbourSignificance", 0 ),
-// -- slimmed --         momentumBalanceSignificance( this, ::TString( prefix ) + "momentumBalanceSignificance", 0 ),
+        etconeNoEm10( this, ::TString( prefix ) + "etconeNoEm10", 0 ),
+        etconeNoEm20( this, ::TString( prefix ) + "etconeNoEm20", 0 ),
+        etconeNoEm30( this, ::TString( prefix ) + "etconeNoEm30", 0 ),
+        etconeNoEm40( this, ::TString( prefix ) + "etconeNoEm40", 0 ),
+        scatteringCurvatureSignificance( this, ::TString( prefix ) + "scatteringCurvatureSignificance", 0 ),
+        scatteringNeighbourSignificance( this, ::TString( prefix ) + "scatteringNeighbourSignificance", 0 ),
+        momentumBalanceSignificance( this, ::TString( prefix ) + "momentumBalanceSignificance", 0 ),
         energyLossPar( this, ::TString( prefix ) + "energyLossPar", 0 ),
         energyLossErr( this, ::TString( prefix ) + "energyLossErr", 0 ),
         etCore( this, ::TString( prefix ) + "etCore", 0 ),
@@ -1206,9 +1174,9 @@ if (!is_data) {
         isLowPtReconstructedMuon( this, ::TString( prefix ) + "isLowPtReconstructedMuon", 0 ),
         isSegmentTaggedMuon( this, ::TString( prefix ) + "isSegmentTaggedMuon", 0 ),
         isCaloMuonId( this, ::TString( prefix ) + "isCaloMuonId", 0 ),
-// -- slimmed --         alsoFoundByLowPt( this, ::TString( prefix ) + "alsoFoundByLowPt", 0 ),
-// -- slimmed --         alsoFoundByCaloMuonId( this, ::TString( prefix ) + "alsoFoundByCaloMuonId", 0 ),
-// -- slimmed --         isSiliconAssociatedForwardMuon( this, ::TString( prefix ) + "isSiliconAssociatedForwardMuon", 0 ),
+        alsoFoundByLowPt( this, ::TString( prefix ) + "alsoFoundByLowPt", 0 ),
+        alsoFoundByCaloMuonId( this, ::TString( prefix ) + "alsoFoundByCaloMuonId", 0 ),
+        isSiliconAssociatedForwardMuon( this, ::TString( prefix ) + "isSiliconAssociatedForwardMuon", 0 ),
         loose( this, ::TString( prefix ) + "loose", 0 ),
         medium( this, ::TString( prefix ) + "medium", 0 ),
         tight( this, ::TString( prefix ) + "tight", 0 ),
@@ -1311,20 +1279,20 @@ if (!is_data) {
         nTRTDeadStraws( this, ::TString( prefix ) + "nTRTDeadStraws", 0 ),
         expectBLayerHit( this, ::TString( prefix ) + "expectBLayerHit", 0 ),
         nMDTHits( this, ::TString( prefix ) + "nMDTHits", 0 ),
-// -- slimmed --         nMDTHoles( this, ::TString( prefix ) + "nMDTHoles", 0 ),
+        nMDTHoles( this, ::TString( prefix ) + "nMDTHoles", 0 ),
         nCSCEtaHits( this, ::TString( prefix ) + "nCSCEtaHits", 0 ),
-// -- slimmed --         nCSCEtaHoles( this, ::TString( prefix ) + "nCSCEtaHoles", 0 ),
+        nCSCEtaHoles( this, ::TString( prefix ) + "nCSCEtaHoles", 0 ),
         nCSCUnspoiledEtaHits( this, ::TString( prefix ) + "nCSCUnspoiledEtaHits", 0 ),
         nCSCPhiHits( this, ::TString( prefix ) + "nCSCPhiHits", 0 ),
-// -- slimmed --         nCSCPhiHoles( this, ::TString( prefix ) + "nCSCPhiHoles", 0 ),
+        nCSCPhiHoles( this, ::TString( prefix ) + "nCSCPhiHoles", 0 ),
         nRPCEtaHits( this, ::TString( prefix ) + "nRPCEtaHits", 0 ),
-// -- slimmed --         nRPCEtaHoles( this, ::TString( prefix ) + "nRPCEtaHoles", 0 ),
+        nRPCEtaHoles( this, ::TString( prefix ) + "nRPCEtaHoles", 0 ),
         nRPCPhiHits( this, ::TString( prefix ) + "nRPCPhiHits", 0 ),
-// -- slimmed --         nRPCPhiHoles( this, ::TString( prefix ) + "nRPCPhiHoles", 0 ),
+        nRPCPhiHoles( this, ::TString( prefix ) + "nRPCPhiHoles", 0 ),
         nTGCEtaHits( this, ::TString( prefix ) + "nTGCEtaHits", 0 ),
-// -- slimmed --         nTGCEtaHoles( this, ::TString( prefix ) + "nTGCEtaHoles", 0 ),
+        nTGCEtaHoles( this, ::TString( prefix ) + "nTGCEtaHoles", 0 ),
         nTGCPhiHits( this, ::TString( prefix ) + "nTGCPhiHits", 0 ),
-// -- slimmed --         nTGCPhiHoles( this, ::TString( prefix ) + "nTGCPhiHoles", 0 ),
+        nTGCPhiHoles( this, ::TString( prefix ) + "nTGCPhiHoles", 0 ),
         nprecisionLayers( this, ::TString( prefix ) + "nprecisionLayers", 0 ),
         nprecisionHoleLayers( this, ::TString( prefix ) + "nprecisionHoleLayers", 0 ),
         nphiLayers( this, ::TString( prefix ) + "nphiLayers", 0 ),
@@ -1340,22 +1308,22 @@ if (!is_data) {
         nMDTEMHits( this, ::TString( prefix ) + "nMDTEMHits", 0 ),
         nMDTEOHits( this, ::TString( prefix ) + "nMDTEOHits", 0 ),
         nMDTEEHits( this, ::TString( prefix ) + "nMDTEEHits", 0 ),
-// -- slimmed --         nRPCLayer1EtaHits( this, ::TString( prefix ) + "nRPCLayer1EtaHits", 0 ),
-// -- slimmed --         nRPCLayer2EtaHits( this, ::TString( prefix ) + "nRPCLayer2EtaHits", 0 ),
-// -- slimmed --         nRPCLayer3EtaHits( this, ::TString( prefix ) + "nRPCLayer3EtaHits", 0 ),
-// -- slimmed --         nRPCLayer1PhiHits( this, ::TString( prefix ) + "nRPCLayer1PhiHits", 0 ),
-// -- slimmed --         nRPCLayer2PhiHits( this, ::TString( prefix ) + "nRPCLayer2PhiHits", 0 ),
-// -- slimmed --         nRPCLayer3PhiHits( this, ::TString( prefix ) + "nRPCLayer3PhiHits", 0 ),
-// -- slimmed --         nTGCLayer1EtaHits( this, ::TString( prefix ) + "nTGCLayer1EtaHits", 0 ),
-// -- slimmed --         nTGCLayer2EtaHits( this, ::TString( prefix ) + "nTGCLayer2EtaHits", 0 ),
-// -- slimmed --         nTGCLayer3EtaHits( this, ::TString( prefix ) + "nTGCLayer3EtaHits", 0 ),
-// -- slimmed --         nTGCLayer4EtaHits( this, ::TString( prefix ) + "nTGCLayer4EtaHits", 0 ),
-// -- slimmed --         nTGCLayer1PhiHits( this, ::TString( prefix ) + "nTGCLayer1PhiHits", 0 ),
-// -- slimmed --         nTGCLayer2PhiHits( this, ::TString( prefix ) + "nTGCLayer2PhiHits", 0 ),
-// -- slimmed --         nTGCLayer3PhiHits( this, ::TString( prefix ) + "nTGCLayer3PhiHits", 0 ),
-// -- slimmed --         nTGCLayer4PhiHits( this, ::TString( prefix ) + "nTGCLayer4PhiHits", 0 ),
-// -- slimmed --         barrelSectors( this, ::TString( prefix ) + "barrelSectors", 0 ),
-// -- slimmed --         endcapSectors( this, ::TString( prefix ) + "endcapSectors", 0 ),
+        nRPCLayer1EtaHits( this, ::TString( prefix ) + "nRPCLayer1EtaHits", 0 ),
+        nRPCLayer2EtaHits( this, ::TString( prefix ) + "nRPCLayer2EtaHits", 0 ),
+        nRPCLayer3EtaHits( this, ::TString( prefix ) + "nRPCLayer3EtaHits", 0 ),
+        nRPCLayer1PhiHits( this, ::TString( prefix ) + "nRPCLayer1PhiHits", 0 ),
+        nRPCLayer2PhiHits( this, ::TString( prefix ) + "nRPCLayer2PhiHits", 0 ),
+        nRPCLayer3PhiHits( this, ::TString( prefix ) + "nRPCLayer3PhiHits", 0 ),
+        nTGCLayer1EtaHits( this, ::TString( prefix ) + "nTGCLayer1EtaHits", 0 ),
+        nTGCLayer2EtaHits( this, ::TString( prefix ) + "nTGCLayer2EtaHits", 0 ),
+        nTGCLayer3EtaHits( this, ::TString( prefix ) + "nTGCLayer3EtaHits", 0 ),
+        nTGCLayer4EtaHits( this, ::TString( prefix ) + "nTGCLayer4EtaHits", 0 ),
+        nTGCLayer1PhiHits( this, ::TString( prefix ) + "nTGCLayer1PhiHits", 0 ),
+        nTGCLayer2PhiHits( this, ::TString( prefix ) + "nTGCLayer2PhiHits", 0 ),
+        nTGCLayer3PhiHits( this, ::TString( prefix ) + "nTGCLayer3PhiHits", 0 ),
+        nTGCLayer4PhiHits( this, ::TString( prefix ) + "nTGCLayer4PhiHits", 0 ),
+        barrelSectors( this, ::TString( prefix ) + "barrelSectors", 0 ),
+        endcapSectors( this, ::TString( prefix ) + "endcapSectors", 0 ),
         trackd0( this, ::TString( prefix ) + "trackd0", 0 ),
         trackz0( this, ::TString( prefix ) + "trackz0", 0 ),
         trackphi( this, ::TString( prefix ) + "trackphi", 0 ),
@@ -1377,14 +1345,14 @@ if (!is_data) {
         trackcov_phi_qoverp( this, ::TString( prefix ) + "trackcov_phi_qoverp", 0 ),
         trackcov_theta_qoverp( this, ::TString( prefix ) + "trackcov_theta_qoverp", 0 ),
         hastrack( this, ::TString( prefix ) + "hastrack", 0 ),
-// -- slimmed --         trackIPEstimate_d0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased", 0 ),
-// -- slimmed --         trackIPEstimate_z0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased", 0 ),
-// -- slimmed --         trackIPEstimate_sigd0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased", 0 ),
-// -- slimmed --         trackIPEstimate_sigz0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased", 0 ),
-// -- slimmed --         trackIPEstimate_d0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased", 0 ),
-// -- slimmed --         trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", 0 ),
-// -- slimmed --         trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", 0 ),
-// -- slimmed --         trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", 0 ),
+        trackIPEstimate_d0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased", 0 ),
+        trackIPEstimate_z0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased", 0 ),
+        trackIPEstimate_sigd0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased", 0 ),
+        trackIPEstimate_sigz0_biasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased", 0 ),
+        trackIPEstimate_d0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased", 0 ),
+        trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", 0 ),
+        trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", 0 ),
+        trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", 0 ),
 // MC only
         type( this, ::TString( prefix ) + "type", 0 ),
         origin( this, ::TString( prefix ) + "origin", 0 ),
@@ -1415,30 +1383,22 @@ if (!is_data) {
         nucone20_trkelstyle( this, ::TString( prefix ) + "nucone20_trkelstyle", 0 ),
         nucone30_trkelstyle( this, ::TString( prefix ) + "nucone30_trkelstyle", 0 ),
         nucone40_trkelstyle( this, ::TString( prefix ) + "nucone40_trkelstyle", 0 ),
-// -- slimmed --         MET_Simplified20_wpx( this, ::TString( prefix ) + "MET_Simplified20_wpx", 0 ),
-// -- slimmed --         MET_Simplified20_wpy( this, ::TString( prefix ) + "MET_Simplified20_wpy", 0 ),
-// -- slimmed --         MET_Simplified20_wet( this, ::TString( prefix ) + "MET_Simplified20_wet", 0 ),
-// -- slimmed --         MET_Simplified20_statusWord( this, ::TString( prefix ) + "MET_Simplified20_statusWord", 0 ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", 0 ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", 0 ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", 0 ),
         MET_Egamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_statusWord", 0 ),
-        MET_Egamma10NoTau_STVF_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpx", 0 ),
-        MET_Egamma10NoTau_STVF_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy", 0 ),
-        MET_Egamma10NoTau_STVF_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet", 0 ),
-        MET_Egamma10NoTau_STVF_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord", 0 ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", 0 ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", 0 ),
-// -- slimmed --         MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", 0 ),
-// -- slimmed --         MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", 0 ),
-// -- slimmed --         MET_wpx( this, ::TString( prefix ) + "MET_wpx", 0 ),
-// -- slimmed --         MET_wpy( this, ::TString( prefix ) + "MET_wpy", 0 ),
-// -- slimmed --         MET_wet( this, ::TString( prefix ) + "MET_wet", 0 ),
-// -- slimmed --         MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", 0 ),
-// -- slimmed --         MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", 0 ),
-// -- slimmed --         MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", 0 ),
-// -- slimmed --         MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", 0 ),
-// -- slimmed -- // -- slimmed --         MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", 0 ),
+        MET_LooseEgamma10NoTau_wpx( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx", 0 ),
+        MET_LooseEgamma10NoTau_wpy( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy", 0 ),
+        MET_LooseEgamma10NoTau_wet( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet", 0 ),
+        MET_LooseEgamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord", 0 ),
+        MET_Egamma10LooseTau_wpx( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wpx", 0 ),
+        MET_Egamma10LooseTau_wpy( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wpy", 0 ),
+        MET_Egamma10LooseTau_wet( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wet", 0 ),
+        MET_Egamma10LooseTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10LooseTau_statusWord", 0 ),
+        MET_wpx( this, ::TString( prefix ) + "MET_wpx", 0 ),
+        MET_wpy( this, ::TString( prefix ) + "MET_wpy", 0 ),
+        MET_wet( this, ::TString( prefix ) + "MET_wet", 0 ),
+        MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) , 
@@ -1467,13 +1427,13 @@ is_data(is_data) {
       fHandles[ "ptcone20" ] = &ptcone20;
       fHandles[ "ptcone30" ] = &ptcone30;
       fHandles[ "ptcone40" ] = &ptcone40;
-// -- slimmed --       fHandles[ "etconeNoEm10" ] = &etconeNoEm10;
-// -- slimmed --       fHandles[ "etconeNoEm20" ] = &etconeNoEm20;
-// -- slimmed --       fHandles[ "etconeNoEm30" ] = &etconeNoEm30;
-// -- slimmed --       fHandles[ "etconeNoEm40" ] = &etconeNoEm40;
-// -- slimmed --       fHandles[ "scatteringCurvatureSignificance" ] = &scatteringCurvatureSignificance;
-// -- slimmed --       fHandles[ "scatteringNeighbourSignificance" ] = &scatteringNeighbourSignificance;
-// -- slimmed --       fHandles[ "momentumBalanceSignificance" ] = &momentumBalanceSignificance;
+      fHandles[ "etconeNoEm10" ] = &etconeNoEm10;
+      fHandles[ "etconeNoEm20" ] = &etconeNoEm20;
+      fHandles[ "etconeNoEm30" ] = &etconeNoEm30;
+      fHandles[ "etconeNoEm40" ] = &etconeNoEm40;
+      fHandles[ "scatteringCurvatureSignificance" ] = &scatteringCurvatureSignificance;
+      fHandles[ "scatteringNeighbourSignificance" ] = &scatteringNeighbourSignificance;
+      fHandles[ "momentumBalanceSignificance" ] = &momentumBalanceSignificance;
       fHandles[ "energyLossPar" ] = &energyLossPar;
       fHandles[ "energyLossErr" ] = &energyLossErr;
       fHandles[ "etCore" ] = &etCore;
@@ -1486,9 +1446,9 @@ is_data(is_data) {
       fHandles[ "isLowPtReconstructedMuon" ] = &isLowPtReconstructedMuon;
       fHandles[ "isSegmentTaggedMuon" ] = &isSegmentTaggedMuon;
       fHandles[ "isCaloMuonId" ] = &isCaloMuonId;
-// -- slimmed --       fHandles[ "alsoFoundByLowPt" ] = &alsoFoundByLowPt;
-// -- slimmed --       fHandles[ "alsoFoundByCaloMuonId" ] = &alsoFoundByCaloMuonId;
-// -- slimmed --       fHandles[ "isSiliconAssociatedForwardMuon" ] = &isSiliconAssociatedForwardMuon;
+      fHandles[ "alsoFoundByLowPt" ] = &alsoFoundByLowPt;
+      fHandles[ "alsoFoundByCaloMuonId" ] = &alsoFoundByCaloMuonId;
+      fHandles[ "isSiliconAssociatedForwardMuon" ] = &isSiliconAssociatedForwardMuon;
       fHandles[ "loose" ] = &loose;
       fHandles[ "medium" ] = &medium;
       fHandles[ "tight" ] = &tight;
@@ -1591,20 +1551,20 @@ is_data(is_data) {
       fHandles[ "nTRTDeadStraws" ] = &nTRTDeadStraws;
       fHandles[ "expectBLayerHit" ] = &expectBLayerHit;
       fHandles[ "nMDTHits" ] = &nMDTHits;
-// -- slimmed --       fHandles[ "nMDTHoles" ] = &nMDTHoles;
+      fHandles[ "nMDTHoles" ] = &nMDTHoles;
       fHandles[ "nCSCEtaHits" ] = &nCSCEtaHits;
-// -- slimmed --       fHandles[ "nCSCEtaHoles" ] = &nCSCEtaHoles;
+      fHandles[ "nCSCEtaHoles" ] = &nCSCEtaHoles;
       fHandles[ "nCSCUnspoiledEtaHits" ] = &nCSCUnspoiledEtaHits;
       fHandles[ "nCSCPhiHits" ] = &nCSCPhiHits;
-// -- slimmed --       fHandles[ "nCSCPhiHoles" ] = &nCSCPhiHoles;
+      fHandles[ "nCSCPhiHoles" ] = &nCSCPhiHoles;
       fHandles[ "nRPCEtaHits" ] = &nRPCEtaHits;
-// -- slimmed --       fHandles[ "nRPCEtaHoles" ] = &nRPCEtaHoles;
+      fHandles[ "nRPCEtaHoles" ] = &nRPCEtaHoles;
       fHandles[ "nRPCPhiHits" ] = &nRPCPhiHits;
-// -- slimmed --       fHandles[ "nRPCPhiHoles" ] = &nRPCPhiHoles;
+      fHandles[ "nRPCPhiHoles" ] = &nRPCPhiHoles;
       fHandles[ "nTGCEtaHits" ] = &nTGCEtaHits;
-// -- slimmed --       fHandles[ "nTGCEtaHoles" ] = &nTGCEtaHoles;
+      fHandles[ "nTGCEtaHoles" ] = &nTGCEtaHoles;
       fHandles[ "nTGCPhiHits" ] = &nTGCPhiHits;
-// -- slimmed --       fHandles[ "nTGCPhiHoles" ] = &nTGCPhiHoles;
+      fHandles[ "nTGCPhiHoles" ] = &nTGCPhiHoles;
       fHandles[ "nprecisionLayers" ] = &nprecisionLayers;
       fHandles[ "nprecisionHoleLayers" ] = &nprecisionHoleLayers;
       fHandles[ "nphiLayers" ] = &nphiLayers;
@@ -1620,22 +1580,22 @@ is_data(is_data) {
       fHandles[ "nMDTEMHits" ] = &nMDTEMHits;
       fHandles[ "nMDTEOHits" ] = &nMDTEOHits;
       fHandles[ "nMDTEEHits" ] = &nMDTEEHits;
-// -- slimmed --       fHandles[ "nRPCLayer1EtaHits" ] = &nRPCLayer1EtaHits;
-// -- slimmed --       fHandles[ "nRPCLayer2EtaHits" ] = &nRPCLayer2EtaHits;
-// -- slimmed --       fHandles[ "nRPCLayer3EtaHits" ] = &nRPCLayer3EtaHits;
-// -- slimmed --       fHandles[ "nRPCLayer1PhiHits" ] = &nRPCLayer1PhiHits;
-// -- slimmed --       fHandles[ "nRPCLayer2PhiHits" ] = &nRPCLayer2PhiHits;
-// -- slimmed --       fHandles[ "nRPCLayer3PhiHits" ] = &nRPCLayer3PhiHits;
-// -- slimmed --       fHandles[ "nTGCLayer1EtaHits" ] = &nTGCLayer1EtaHits;
-// -- slimmed --       fHandles[ "nTGCLayer2EtaHits" ] = &nTGCLayer2EtaHits;
-// -- slimmed --       fHandles[ "nTGCLayer3EtaHits" ] = &nTGCLayer3EtaHits;
-// -- slimmed --       fHandles[ "nTGCLayer4EtaHits" ] = &nTGCLayer4EtaHits;
-// -- slimmed --       fHandles[ "nTGCLayer1PhiHits" ] = &nTGCLayer1PhiHits;
-// -- slimmed --       fHandles[ "nTGCLayer2PhiHits" ] = &nTGCLayer2PhiHits;
-// -- slimmed --       fHandles[ "nTGCLayer3PhiHits" ] = &nTGCLayer3PhiHits;
-// -- slimmed --       fHandles[ "nTGCLayer4PhiHits" ] = &nTGCLayer4PhiHits;
-// -- slimmed --       fHandles[ "barrelSectors" ] = &barrelSectors;
-// -- slimmed --       fHandles[ "endcapSectors" ] = &endcapSectors;
+      fHandles[ "nRPCLayer1EtaHits" ] = &nRPCLayer1EtaHits;
+      fHandles[ "nRPCLayer2EtaHits" ] = &nRPCLayer2EtaHits;
+      fHandles[ "nRPCLayer3EtaHits" ] = &nRPCLayer3EtaHits;
+      fHandles[ "nRPCLayer1PhiHits" ] = &nRPCLayer1PhiHits;
+      fHandles[ "nRPCLayer2PhiHits" ] = &nRPCLayer2PhiHits;
+      fHandles[ "nRPCLayer3PhiHits" ] = &nRPCLayer3PhiHits;
+      fHandles[ "nTGCLayer1EtaHits" ] = &nTGCLayer1EtaHits;
+      fHandles[ "nTGCLayer2EtaHits" ] = &nTGCLayer2EtaHits;
+      fHandles[ "nTGCLayer3EtaHits" ] = &nTGCLayer3EtaHits;
+      fHandles[ "nTGCLayer4EtaHits" ] = &nTGCLayer4EtaHits;
+      fHandles[ "nTGCLayer1PhiHits" ] = &nTGCLayer1PhiHits;
+      fHandles[ "nTGCLayer2PhiHits" ] = &nTGCLayer2PhiHits;
+      fHandles[ "nTGCLayer3PhiHits" ] = &nTGCLayer3PhiHits;
+      fHandles[ "nTGCLayer4PhiHits" ] = &nTGCLayer4PhiHits;
+      fHandles[ "barrelSectors" ] = &barrelSectors;
+      fHandles[ "endcapSectors" ] = &endcapSectors;
       fHandles[ "trackd0" ] = &trackd0;
       fHandles[ "trackz0" ] = &trackz0;
       fHandles[ "trackphi" ] = &trackphi;
@@ -1657,14 +1617,14 @@ is_data(is_data) {
       fHandles[ "trackcov_phi_qoverp" ] = &trackcov_phi_qoverp;
       fHandles[ "trackcov_theta_qoverp" ] = &trackcov_theta_qoverp;
       fHandles[ "hastrack" ] = &hastrack;
-// -- slimmed --       fHandles[ "trackIPEstimate_d0_biasedpvunbiased" ] = &trackIPEstimate_d0_biasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_z0_biasedpvunbiased" ] = &trackIPEstimate_z0_biasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_sigd0_biasedpvunbiased" ] = &trackIPEstimate_sigd0_biasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_sigz0_biasedpvunbiased" ] = &trackIPEstimate_sigz0_biasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_d0_unbiasedpvunbiased" ] = &trackIPEstimate_d0_unbiasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
-// -- slimmed --       fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
+      fHandles[ "trackIPEstimate_d0_biasedpvunbiased" ] = &trackIPEstimate_d0_biasedpvunbiased;
+      fHandles[ "trackIPEstimate_z0_biasedpvunbiased" ] = &trackIPEstimate_z0_biasedpvunbiased;
+      fHandles[ "trackIPEstimate_sigd0_biasedpvunbiased" ] = &trackIPEstimate_sigd0_biasedpvunbiased;
+      fHandles[ "trackIPEstimate_sigz0_biasedpvunbiased" ] = &trackIPEstimate_sigz0_biasedpvunbiased;
+      fHandles[ "trackIPEstimate_d0_unbiasedpvunbiased" ] = &trackIPEstimate_d0_unbiasedpvunbiased;
+      fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
+      fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
+      fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
 if (!is_data) {
       fHandles[ "type" ] = &type;
       fHandles[ "origin" ] = &origin;
@@ -1695,30 +1655,22 @@ if (!is_data) {
       fHandles[ "nucone20_trkelstyle" ] = &nucone20_trkelstyle;
       fHandles[ "nucone30_trkelstyle" ] = &nucone30_trkelstyle;
       fHandles[ "nucone40_trkelstyle" ] = &nucone40_trkelstyle;
-// -- slimmed --       fHandles[ "MET_Simplified20_wpx" ] = &MET_Simplified20_wpx;
-// -- slimmed --       fHandles[ "MET_Simplified20_wpy" ] = &MET_Simplified20_wpy;
-// -- slimmed --       fHandles[ "MET_Simplified20_wet" ] = &MET_Simplified20_wet;
-// -- slimmed --       fHandles[ "MET_Simplified20_statusWord" ] = &MET_Simplified20_statusWord;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
       fHandles[ "MET_Egamma10NoTau_statusWord" ] = &MET_Egamma10NoTau_statusWord;
-      fHandles[ "MET_Egamma10NoTau_STVF_wpx" ] = &MET_Egamma10NoTau_STVF_wpx;
-      fHandles[ "MET_Egamma10NoTau_STVF_wpy" ] = &MET_Egamma10NoTau_STVF_wpy;
-      fHandles[ "MET_Egamma10NoTau_STVF_wet" ] = &MET_Egamma10NoTau_STVF_wet;
-      fHandles[ "MET_Egamma10NoTau_STVF_statusWord" ] = &MET_Egamma10NoTau_STVF_statusWord;
-// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
-// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
-// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
-// -- slimmed --       fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
-// -- slimmed --       fHandles[ "MET_wpx" ] = &MET_wpx;
-// -- slimmed --       fHandles[ "MET_wpy" ] = &MET_wpy;
-// -- slimmed --       fHandles[ "MET_wet" ] = &MET_wet;
-// -- slimmed --       fHandles[ "MET_statusWord" ] = &MET_statusWord;
-// -- slimmed --       fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
-// -- slimmed --       fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
-// -- slimmed --       fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
-// -- slimmed -- // -- slimmed --       fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
+      fHandles[ "MET_LooseEgamma10NoTau_wpx" ] = &MET_LooseEgamma10NoTau_wpx;
+      fHandles[ "MET_LooseEgamma10NoTau_wpy" ] = &MET_LooseEgamma10NoTau_wpy;
+      fHandles[ "MET_LooseEgamma10NoTau_wet" ] = &MET_LooseEgamma10NoTau_wet;
+      fHandles[ "MET_LooseEgamma10NoTau_statusWord" ] = &MET_LooseEgamma10NoTau_statusWord;
+      fHandles[ "MET_Egamma10LooseTau_wpx" ] = &MET_Egamma10LooseTau_wpx;
+      fHandles[ "MET_Egamma10LooseTau_wpy" ] = &MET_Egamma10LooseTau_wpy;
+      fHandles[ "MET_Egamma10LooseTau_wet" ] = &MET_Egamma10LooseTau_wet;
+      fHandles[ "MET_Egamma10LooseTau_statusWord" ] = &MET_Egamma10LooseTau_statusWord;
+      fHandles[ "MET_wpx" ] = &MET_wpx;
+      fHandles[ "MET_wpy" ] = &MET_wpy;
+      fHandles[ "MET_wet" ] = &MET_wet;
+      fHandles[ "MET_statusWord" ] = &MET_statusWord;
    }
 
    /**
@@ -1757,13 +1709,13 @@ if (!is_data) {
       ptcone20.SetName( ::TString( prefix ) + "ptcone20" );
       ptcone30.SetName( ::TString( prefix ) + "ptcone30" );
       ptcone40.SetName( ::TString( prefix ) + "ptcone40" );
-// -- slimmed --       etconeNoEm10.SetName( ::TString( prefix ) + "etconeNoEm10" );
-// -- slimmed --       etconeNoEm20.SetName( ::TString( prefix ) + "etconeNoEm20" );
-// -- slimmed --       etconeNoEm30.SetName( ::TString( prefix ) + "etconeNoEm30" );
-// -- slimmed --       etconeNoEm40.SetName( ::TString( prefix ) + "etconeNoEm40" );
-// -- slimmed --       scatteringCurvatureSignificance.SetName( ::TString( prefix ) + "scatteringCurvatureSignificance" );
-// -- slimmed --       scatteringNeighbourSignificance.SetName( ::TString( prefix ) + "scatteringNeighbourSignificance" );
-// -- slimmed --       momentumBalanceSignificance.SetName( ::TString( prefix ) + "momentumBalanceSignificance" );
+      etconeNoEm10.SetName( ::TString( prefix ) + "etconeNoEm10" );
+      etconeNoEm20.SetName( ::TString( prefix ) + "etconeNoEm20" );
+      etconeNoEm30.SetName( ::TString( prefix ) + "etconeNoEm30" );
+      etconeNoEm40.SetName( ::TString( prefix ) + "etconeNoEm40" );
+      scatteringCurvatureSignificance.SetName( ::TString( prefix ) + "scatteringCurvatureSignificance" );
+      scatteringNeighbourSignificance.SetName( ::TString( prefix ) + "scatteringNeighbourSignificance" );
+      momentumBalanceSignificance.SetName( ::TString( prefix ) + "momentumBalanceSignificance" );
       energyLossPar.SetName( ::TString( prefix ) + "energyLossPar" );
       energyLossErr.SetName( ::TString( prefix ) + "energyLossErr" );
       etCore.SetName( ::TString( prefix ) + "etCore" );
@@ -1776,9 +1728,9 @@ if (!is_data) {
       isLowPtReconstructedMuon.SetName( ::TString( prefix ) + "isLowPtReconstructedMuon" );
       isSegmentTaggedMuon.SetName( ::TString( prefix ) + "isSegmentTaggedMuon" );
       isCaloMuonId.SetName( ::TString( prefix ) + "isCaloMuonId" );
-// -- slimmed --       alsoFoundByLowPt.SetName( ::TString( prefix ) + "alsoFoundByLowPt" );
-// -- slimmed --       alsoFoundByCaloMuonId.SetName( ::TString( prefix ) + "alsoFoundByCaloMuonId" );
-// -- slimmed --       isSiliconAssociatedForwardMuon.SetName( ::TString( prefix ) + "isSiliconAssociatedForwardMuon" );
+      alsoFoundByLowPt.SetName( ::TString( prefix ) + "alsoFoundByLowPt" );
+      alsoFoundByCaloMuonId.SetName( ::TString( prefix ) + "alsoFoundByCaloMuonId" );
+      isSiliconAssociatedForwardMuon.SetName( ::TString( prefix ) + "isSiliconAssociatedForwardMuon" );
       loose.SetName( ::TString( prefix ) + "loose" );
       medium.SetName( ::TString( prefix ) + "medium" );
       tight.SetName( ::TString( prefix ) + "tight" );
@@ -1881,20 +1833,20 @@ if (!is_data) {
       nTRTDeadStraws.SetName( ::TString( prefix ) + "nTRTDeadStraws" );
       expectBLayerHit.SetName( ::TString( prefix ) + "expectBLayerHit" );
       nMDTHits.SetName( ::TString( prefix ) + "nMDTHits" );
-// -- slimmed --       nMDTHoles.SetName( ::TString( prefix ) + "nMDTHoles" );
+      nMDTHoles.SetName( ::TString( prefix ) + "nMDTHoles" );
       nCSCEtaHits.SetName( ::TString( prefix ) + "nCSCEtaHits" );
-// -- slimmed --       nCSCEtaHoles.SetName( ::TString( prefix ) + "nCSCEtaHoles" );
+      nCSCEtaHoles.SetName( ::TString( prefix ) + "nCSCEtaHoles" );
       nCSCUnspoiledEtaHits.SetName( ::TString( prefix ) + "nCSCUnspoiledEtaHits" );
       nCSCPhiHits.SetName( ::TString( prefix ) + "nCSCPhiHits" );
-// -- slimmed --       nCSCPhiHoles.SetName( ::TString( prefix ) + "nCSCPhiHoles" );
+      nCSCPhiHoles.SetName( ::TString( prefix ) + "nCSCPhiHoles" );
       nRPCEtaHits.SetName( ::TString( prefix ) + "nRPCEtaHits" );
-// -- slimmed --       nRPCEtaHoles.SetName( ::TString( prefix ) + "nRPCEtaHoles" );
+      nRPCEtaHoles.SetName( ::TString( prefix ) + "nRPCEtaHoles" );
       nRPCPhiHits.SetName( ::TString( prefix ) + "nRPCPhiHits" );
-// -- slimmed --       nRPCPhiHoles.SetName( ::TString( prefix ) + "nRPCPhiHoles" );
+      nRPCPhiHoles.SetName( ::TString( prefix ) + "nRPCPhiHoles" );
       nTGCEtaHits.SetName( ::TString( prefix ) + "nTGCEtaHits" );
-// -- slimmed --       nTGCEtaHoles.SetName( ::TString( prefix ) + "nTGCEtaHoles" );
+      nTGCEtaHoles.SetName( ::TString( prefix ) + "nTGCEtaHoles" );
       nTGCPhiHits.SetName( ::TString( prefix ) + "nTGCPhiHits" );
-// -- slimmed --       nTGCPhiHoles.SetName( ::TString( prefix ) + "nTGCPhiHoles" );
+      nTGCPhiHoles.SetName( ::TString( prefix ) + "nTGCPhiHoles" );
       nprecisionLayers.SetName( ::TString( prefix ) + "nprecisionLayers" );
       nprecisionHoleLayers.SetName( ::TString( prefix ) + "nprecisionHoleLayers" );
       nphiLayers.SetName( ::TString( prefix ) + "nphiLayers" );
@@ -1910,22 +1862,22 @@ if (!is_data) {
       nMDTEMHits.SetName( ::TString( prefix ) + "nMDTEMHits" );
       nMDTEOHits.SetName( ::TString( prefix ) + "nMDTEOHits" );
       nMDTEEHits.SetName( ::TString( prefix ) + "nMDTEEHits" );
-// -- slimmed --       nRPCLayer1EtaHits.SetName( ::TString( prefix ) + "nRPCLayer1EtaHits" );
-// -- slimmed --       nRPCLayer2EtaHits.SetName( ::TString( prefix ) + "nRPCLayer2EtaHits" );
-// -- slimmed --       nRPCLayer3EtaHits.SetName( ::TString( prefix ) + "nRPCLayer3EtaHits" );
-// -- slimmed --       nRPCLayer1PhiHits.SetName( ::TString( prefix ) + "nRPCLayer1PhiHits" );
-// -- slimmed --       nRPCLayer2PhiHits.SetName( ::TString( prefix ) + "nRPCLayer2PhiHits" );
-// -- slimmed --       nRPCLayer3PhiHits.SetName( ::TString( prefix ) + "nRPCLayer3PhiHits" );
-// -- slimmed --       nTGCLayer1EtaHits.SetName( ::TString( prefix ) + "nTGCLayer1EtaHits" );
-// -- slimmed --       nTGCLayer2EtaHits.SetName( ::TString( prefix ) + "nTGCLayer2EtaHits" );
-// -- slimmed --       nTGCLayer3EtaHits.SetName( ::TString( prefix ) + "nTGCLayer3EtaHits" );
-// -- slimmed --       nTGCLayer4EtaHits.SetName( ::TString( prefix ) + "nTGCLayer4EtaHits" );
-// -- slimmed --       nTGCLayer1PhiHits.SetName( ::TString( prefix ) + "nTGCLayer1PhiHits" );
-// -- slimmed --       nTGCLayer2PhiHits.SetName( ::TString( prefix ) + "nTGCLayer2PhiHits" );
-// -- slimmed --       nTGCLayer3PhiHits.SetName( ::TString( prefix ) + "nTGCLayer3PhiHits" );
-// -- slimmed --       nTGCLayer4PhiHits.SetName( ::TString( prefix ) + "nTGCLayer4PhiHits" );
-// -- slimmed --       barrelSectors.SetName( ::TString( prefix ) + "barrelSectors" );
-// -- slimmed --       endcapSectors.SetName( ::TString( prefix ) + "endcapSectors" );
+      nRPCLayer1EtaHits.SetName( ::TString( prefix ) + "nRPCLayer1EtaHits" );
+      nRPCLayer2EtaHits.SetName( ::TString( prefix ) + "nRPCLayer2EtaHits" );
+      nRPCLayer3EtaHits.SetName( ::TString( prefix ) + "nRPCLayer3EtaHits" );
+      nRPCLayer1PhiHits.SetName( ::TString( prefix ) + "nRPCLayer1PhiHits" );
+      nRPCLayer2PhiHits.SetName( ::TString( prefix ) + "nRPCLayer2PhiHits" );
+      nRPCLayer3PhiHits.SetName( ::TString( prefix ) + "nRPCLayer3PhiHits" );
+      nTGCLayer1EtaHits.SetName( ::TString( prefix ) + "nTGCLayer1EtaHits" );
+      nTGCLayer2EtaHits.SetName( ::TString( prefix ) + "nTGCLayer2EtaHits" );
+      nTGCLayer3EtaHits.SetName( ::TString( prefix ) + "nTGCLayer3EtaHits" );
+      nTGCLayer4EtaHits.SetName( ::TString( prefix ) + "nTGCLayer4EtaHits" );
+      nTGCLayer1PhiHits.SetName( ::TString( prefix ) + "nTGCLayer1PhiHits" );
+      nTGCLayer2PhiHits.SetName( ::TString( prefix ) + "nTGCLayer2PhiHits" );
+      nTGCLayer3PhiHits.SetName( ::TString( prefix ) + "nTGCLayer3PhiHits" );
+      nTGCLayer4PhiHits.SetName( ::TString( prefix ) + "nTGCLayer4PhiHits" );
+      barrelSectors.SetName( ::TString( prefix ) + "barrelSectors" );
+      endcapSectors.SetName( ::TString( prefix ) + "endcapSectors" );
       trackd0.SetName( ::TString( prefix ) + "trackd0" );
       trackz0.SetName( ::TString( prefix ) + "trackz0" );
       trackphi.SetName( ::TString( prefix ) + "trackphi" );
@@ -1947,14 +1899,14 @@ if (!is_data) {
       trackcov_phi_qoverp.SetName( ::TString( prefix ) + "trackcov_phi_qoverp" );
       trackcov_theta_qoverp.SetName( ::TString( prefix ) + "trackcov_theta_qoverp" );
       hastrack.SetName( ::TString( prefix ) + "hastrack" );
-// -- slimmed --       trackIPEstimate_d0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased" );
-// -- slimmed --       trackIPEstimate_z0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased" );
-// -- slimmed --       trackIPEstimate_sigd0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased" );
-// -- slimmed --       trackIPEstimate_sigz0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased" );
-// -- slimmed --       trackIPEstimate_d0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased" );
-// -- slimmed --       trackIPEstimate_z0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased" );
-// -- slimmed --       trackIPEstimate_sigd0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased" );
-// -- slimmed --       trackIPEstimate_sigz0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased" );
+      trackIPEstimate_d0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_d0_biasedpvunbiased" );
+      trackIPEstimate_z0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_biasedpvunbiased" );
+      trackIPEstimate_sigd0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_biasedpvunbiased" );
+      trackIPEstimate_sigz0_biasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_biasedpvunbiased" );
+      trackIPEstimate_d0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_d0_unbiasedpvunbiased" );
+      trackIPEstimate_z0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased" );
+      trackIPEstimate_sigd0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased" );
+      trackIPEstimate_sigz0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased" );
 if (!is_data) {
       type.SetName( ::TString( prefix ) + "type" );
       origin.SetName( ::TString( prefix ) + "origin" );
@@ -1985,30 +1937,22 @@ if (!is_data) {
       nucone20_trkelstyle.SetName( ::TString( prefix ) + "nucone20_trkelstyle" );
       nucone30_trkelstyle.SetName( ::TString( prefix ) + "nucone30_trkelstyle" );
       nucone40_trkelstyle.SetName( ::TString( prefix ) + "nucone40_trkelstyle" );
-// -- slimmed --       MET_Simplified20_wpx.SetName( ::TString( prefix ) + "MET_Simplified20_wpx" );
-// -- slimmed --       MET_Simplified20_wpy.SetName( ::TString( prefix ) + "MET_Simplified20_wpy" );
-// -- slimmed --       MET_Simplified20_wet.SetName( ::TString( prefix ) + "MET_Simplified20_wet" );
-// -- slimmed --       MET_Simplified20_statusWord.SetName( ::TString( prefix ) + "MET_Simplified20_statusWord" );
       MET_Egamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpx" );
       MET_Egamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpy" );
       MET_Egamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wet" );
       MET_Egamma10NoTau_statusWord.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_statusWord" );
-      MET_Egamma10NoTau_STVF_wpx.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpx" );
-      MET_Egamma10NoTau_STVF_wpy.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wpy" );
-      MET_Egamma10NoTau_STVF_wet.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_wet" );
-      MET_Egamma10NoTau_STVF_statusWord.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_STVF_statusWord" );
-// -- slimmed --       MET_LooseEgamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx" );
-// -- slimmed --       MET_LooseEgamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy" );
-// -- slimmed --       MET_LooseEgamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet" );
-// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord" );
-// -- slimmed --       MET_wpx.SetName( ::TString( prefix ) + "MET_wpx" );
-// -- slimmed --       MET_wpy.SetName( ::TString( prefix ) + "MET_wpy" );
-// -- slimmed --       MET_wet.SetName( ::TString( prefix ) + "MET_wet" );
-// -- slimmed --       MET_statusWord.SetName( ::TString( prefix ) + "MET_statusWord" );
-// -- slimmed --       MET_STVF_wpx.SetName( ::TString( prefix ) + "MET_STVF_wpx" );
-// -- slimmed --       MET_STVF_wpy.SetName( ::TString( prefix ) + "MET_STVF_wpy" );
-// -- slimmed --       MET_STVF_wet.SetName( ::TString( prefix ) + "MET_STVF_wet" );
-// -- slimmed -- // -- slimmed --       MET_STVF_statusWord.SetName( ::TString( prefix ) + "MET_STVF_statusWord" );
+      MET_LooseEgamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpx" );
+      MET_LooseEgamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wpy" );
+      MET_LooseEgamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_wet" );
+      MET_LooseEgamma10NoTau_statusWord.SetName( ::TString( prefix ) + "MET_LooseEgamma10NoTau_statusWord" );
+      MET_Egamma10LooseTau_wpx.SetName( ::TString( prefix ) + "MET_Egamma10LooseTau_wpx" );
+      MET_Egamma10LooseTau_wpy.SetName( ::TString( prefix ) + "MET_Egamma10LooseTau_wpy" );
+      MET_Egamma10LooseTau_wet.SetName( ::TString( prefix ) + "MET_Egamma10LooseTau_wet" );
+      MET_Egamma10LooseTau_statusWord.SetName( ::TString( prefix ) + "MET_Egamma10LooseTau_statusWord" );
+      MET_wpx.SetName( ::TString( prefix ) + "MET_wpx" );
+      MET_wpy.SetName( ::TString( prefix ) + "MET_wpy" );
+      MET_wet.SetName( ::TString( prefix ) + "MET_wet" );
+      MET_statusWord.SetName( ::TString( prefix ) + "MET_statusWord" );
       return;
    }
 
@@ -2050,13 +1994,13 @@ if (!is_data) {
       ptcone20.ReadFrom( tree );
       ptcone30.ReadFrom( tree );
       ptcone40.ReadFrom( tree );
-// -- slimmed --       etconeNoEm10.ReadFrom( tree );
-// -- slimmed --       etconeNoEm20.ReadFrom( tree );
-// -- slimmed --       etconeNoEm30.ReadFrom( tree );
-// -- slimmed --       etconeNoEm40.ReadFrom( tree );
-// -- slimmed --       scatteringCurvatureSignificance.ReadFrom( tree );
-// -- slimmed --       scatteringNeighbourSignificance.ReadFrom( tree );
-// -- slimmed --       momentumBalanceSignificance.ReadFrom( tree );
+      etconeNoEm10.ReadFrom( tree );
+      etconeNoEm20.ReadFrom( tree );
+      etconeNoEm30.ReadFrom( tree );
+      etconeNoEm40.ReadFrom( tree );
+      scatteringCurvatureSignificance.ReadFrom( tree );
+      scatteringNeighbourSignificance.ReadFrom( tree );
+      momentumBalanceSignificance.ReadFrom( tree );
       energyLossPar.ReadFrom( tree );
       energyLossErr.ReadFrom( tree );
       etCore.ReadFrom( tree );
@@ -2069,9 +2013,9 @@ if (!is_data) {
       isLowPtReconstructedMuon.ReadFrom( tree );
       isSegmentTaggedMuon.ReadFrom( tree );
       isCaloMuonId.ReadFrom( tree );
-// -- slimmed --       alsoFoundByLowPt.ReadFrom( tree );
-// -- slimmed --       alsoFoundByCaloMuonId.ReadFrom( tree );
-// -- slimmed --       isSiliconAssociatedForwardMuon.ReadFrom( tree );
+      alsoFoundByLowPt.ReadFrom( tree );
+      alsoFoundByCaloMuonId.ReadFrom( tree );
+      isSiliconAssociatedForwardMuon.ReadFrom( tree );
       loose.ReadFrom( tree );
       medium.ReadFrom( tree );
       tight.ReadFrom( tree );
@@ -2174,20 +2118,20 @@ if (!is_data) {
       nTRTDeadStraws.ReadFrom( tree );
       expectBLayerHit.ReadFrom( tree );
       nMDTHits.ReadFrom( tree );
-// -- slimmed --       nMDTHoles.ReadFrom( tree );
+      nMDTHoles.ReadFrom( tree );
       nCSCEtaHits.ReadFrom( tree );
-// -- slimmed --       nCSCEtaHoles.ReadFrom( tree );
+      nCSCEtaHoles.ReadFrom( tree );
       nCSCUnspoiledEtaHits.ReadFrom( tree );
       nCSCPhiHits.ReadFrom( tree );
-// -- slimmed --       nCSCPhiHoles.ReadFrom( tree );
+      nCSCPhiHoles.ReadFrom( tree );
       nRPCEtaHits.ReadFrom( tree );
-// -- slimmed --       nRPCEtaHoles.ReadFrom( tree );
+      nRPCEtaHoles.ReadFrom( tree );
       nRPCPhiHits.ReadFrom( tree );
-// -- slimmed --       nRPCPhiHoles.ReadFrom( tree );
+      nRPCPhiHoles.ReadFrom( tree );
       nTGCEtaHits.ReadFrom( tree );
-// -- slimmed --       nTGCEtaHoles.ReadFrom( tree );
+      nTGCEtaHoles.ReadFrom( tree );
       nTGCPhiHits.ReadFrom( tree );
-// -- slimmed --       nTGCPhiHoles.ReadFrom( tree );
+      nTGCPhiHoles.ReadFrom( tree );
       nprecisionLayers.ReadFrom( tree );
       nprecisionHoleLayers.ReadFrom( tree );
       nphiLayers.ReadFrom( tree );
@@ -2203,22 +2147,22 @@ if (!is_data) {
       nMDTEMHits.ReadFrom( tree );
       nMDTEOHits.ReadFrom( tree );
       nMDTEEHits.ReadFrom( tree );
-// -- slimmed --       nRPCLayer1EtaHits.ReadFrom( tree );
-// -- slimmed --       nRPCLayer2EtaHits.ReadFrom( tree );
-// -- slimmed --       nRPCLayer3EtaHits.ReadFrom( tree );
-// -- slimmed --       nRPCLayer1PhiHits.ReadFrom( tree );
-// -- slimmed --       nRPCLayer2PhiHits.ReadFrom( tree );
-// -- slimmed --       nRPCLayer3PhiHits.ReadFrom( tree );
-// -- slimmed --       nTGCLayer1EtaHits.ReadFrom( tree );
-// -- slimmed --       nTGCLayer2EtaHits.ReadFrom( tree );
-// -- slimmed --       nTGCLayer3EtaHits.ReadFrom( tree );
-// -- slimmed --       nTGCLayer4EtaHits.ReadFrom( tree );
-// -- slimmed --       nTGCLayer1PhiHits.ReadFrom( tree );
-// -- slimmed --       nTGCLayer2PhiHits.ReadFrom( tree );
-// -- slimmed --       nTGCLayer3PhiHits.ReadFrom( tree );
-// -- slimmed --       nTGCLayer4PhiHits.ReadFrom( tree );
-// -- slimmed --       barrelSectors.ReadFrom( tree );
-// -- slimmed --       endcapSectors.ReadFrom( tree );
+      nRPCLayer1EtaHits.ReadFrom( tree );
+      nRPCLayer2EtaHits.ReadFrom( tree );
+      nRPCLayer3EtaHits.ReadFrom( tree );
+      nRPCLayer1PhiHits.ReadFrom( tree );
+      nRPCLayer2PhiHits.ReadFrom( tree );
+      nRPCLayer3PhiHits.ReadFrom( tree );
+      nTGCLayer1EtaHits.ReadFrom( tree );
+      nTGCLayer2EtaHits.ReadFrom( tree );
+      nTGCLayer3EtaHits.ReadFrom( tree );
+      nTGCLayer4EtaHits.ReadFrom( tree );
+      nTGCLayer1PhiHits.ReadFrom( tree );
+      nTGCLayer2PhiHits.ReadFrom( tree );
+      nTGCLayer3PhiHits.ReadFrom( tree );
+      nTGCLayer4PhiHits.ReadFrom( tree );
+      barrelSectors.ReadFrom( tree );
+      endcapSectors.ReadFrom( tree );
       trackd0.ReadFrom( tree );
       trackz0.ReadFrom( tree );
       trackphi.ReadFrom( tree );
@@ -2240,14 +2184,14 @@ if (!is_data) {
       trackcov_phi_qoverp.ReadFrom( tree );
       trackcov_theta_qoverp.ReadFrom( tree );
       hastrack.ReadFrom( tree );
-// -- slimmed --       trackIPEstimate_d0_biasedpvunbiased.ReadFrom( tree );
-// -- slimmed --       trackIPEstimate_z0_biasedpvunbiased.ReadFrom( tree );
-// -- slimmed --       trackIPEstimate_sigd0_biasedpvunbiased.ReadFrom( tree );
-// -- slimmed --       trackIPEstimate_sigz0_biasedpvunbiased.ReadFrom( tree );
-// -- slimmed --       trackIPEstimate_d0_unbiasedpvunbiased.ReadFrom( tree );
-// -- slimmed --       trackIPEstimate_z0_unbiasedpvunbiased.ReadFrom( tree );
-// -- slimmed --       trackIPEstimate_sigd0_unbiasedpvunbiased.ReadFrom( tree );
-// -- slimmed --       trackIPEstimate_sigz0_unbiasedpvunbiased.ReadFrom( tree );
+      trackIPEstimate_d0_biasedpvunbiased.ReadFrom( tree );
+      trackIPEstimate_z0_biasedpvunbiased.ReadFrom( tree );
+      trackIPEstimate_sigd0_biasedpvunbiased.ReadFrom( tree );
+      trackIPEstimate_sigz0_biasedpvunbiased.ReadFrom( tree );
+      trackIPEstimate_d0_unbiasedpvunbiased.ReadFrom( tree );
+      trackIPEstimate_z0_unbiasedpvunbiased.ReadFrom( tree );
+      trackIPEstimate_sigd0_unbiasedpvunbiased.ReadFrom( tree );
+      trackIPEstimate_sigz0_unbiasedpvunbiased.ReadFrom( tree );
 if (!is_data) {
       type.ReadFrom( tree );
       origin.ReadFrom( tree );
@@ -2278,30 +2222,22 @@ if (!is_data) {
       nucone20_trkelstyle.ReadFrom( tree );
       nucone30_trkelstyle.ReadFrom( tree );
       nucone40_trkelstyle.ReadFrom( tree );
-// -- slimmed --       MET_Simplified20_wpx.ReadFrom( tree );
-// -- slimmed --       MET_Simplified20_wpy.ReadFrom( tree );
-// -- slimmed --       MET_Simplified20_wet.ReadFrom( tree );
-// -- slimmed --       MET_Simplified20_statusWord.ReadFrom( tree );
       MET_Egamma10NoTau_wpx.ReadFrom( tree );
       MET_Egamma10NoTau_wpy.ReadFrom( tree );
       MET_Egamma10NoTau_wet.ReadFrom( tree );
       MET_Egamma10NoTau_statusWord.ReadFrom( tree );
-      MET_Egamma10NoTau_STVF_wpx.ReadFrom( tree );
-      MET_Egamma10NoTau_STVF_wpy.ReadFrom( tree );
-      MET_Egamma10NoTau_STVF_wet.ReadFrom( tree );
-      MET_Egamma10NoTau_STVF_statusWord.ReadFrom( tree );
-// -- slimmed --       MET_LooseEgamma10NoTau_wpx.ReadFrom( tree );
-// -- slimmed --       MET_LooseEgamma10NoTau_wpy.ReadFrom( tree );
-// -- slimmed --       MET_LooseEgamma10NoTau_wet.ReadFrom( tree );
-// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.ReadFrom( tree );
-// -- slimmed --       MET_wpx.ReadFrom( tree );
-// -- slimmed --       MET_wpy.ReadFrom( tree );
-// -- slimmed --       MET_wet.ReadFrom( tree );
-// -- slimmed --       MET_statusWord.ReadFrom( tree );
-// -- slimmed --       MET_STVF_wpx.ReadFrom( tree );
-// -- slimmed --       MET_STVF_wpy.ReadFrom( tree );
-// -- slimmed --       MET_STVF_wet.ReadFrom( tree );
-// -- slimmed -- // -- slimmed --       MET_STVF_statusWord.ReadFrom( tree );
+      MET_LooseEgamma10NoTau_wpx.ReadFrom( tree );
+      MET_LooseEgamma10NoTau_wpy.ReadFrom( tree );
+      MET_LooseEgamma10NoTau_wet.ReadFrom( tree );
+      MET_LooseEgamma10NoTau_statusWord.ReadFrom( tree );
+      MET_Egamma10LooseTau_wpx.ReadFrom( tree );
+      MET_Egamma10LooseTau_wpy.ReadFrom( tree );
+      MET_Egamma10LooseTau_wet.ReadFrom( tree );
+      MET_Egamma10LooseTau_statusWord.ReadFrom( tree );
+      MET_wpx.ReadFrom( tree );
+      MET_wpy.ReadFrom( tree );
+      MET_wet.ReadFrom( tree );
+      MET_statusWord.ReadFrom( tree );
 
       return;
    }
@@ -2338,13 +2274,13 @@ if (!is_data) {
       ptcone20.WriteTo( tree );
       ptcone30.WriteTo( tree );
       ptcone40.WriteTo( tree );
-// -- slimmed --       etconeNoEm10.WriteTo( tree );
-// -- slimmed --       etconeNoEm20.WriteTo( tree );
-// -- slimmed --       etconeNoEm30.WriteTo( tree );
-// -- slimmed --       etconeNoEm40.WriteTo( tree );
-// -- slimmed --       scatteringCurvatureSignificance.WriteTo( tree );
-// -- slimmed --       scatteringNeighbourSignificance.WriteTo( tree );
-// -- slimmed --       momentumBalanceSignificance.WriteTo( tree );
+      etconeNoEm10.WriteTo( tree );
+      etconeNoEm20.WriteTo( tree );
+      etconeNoEm30.WriteTo( tree );
+      etconeNoEm40.WriteTo( tree );
+      scatteringCurvatureSignificance.WriteTo( tree );
+      scatteringNeighbourSignificance.WriteTo( tree );
+      momentumBalanceSignificance.WriteTo( tree );
       energyLossPar.WriteTo( tree );
       energyLossErr.WriteTo( tree );
       etCore.WriteTo( tree );
@@ -2357,9 +2293,9 @@ if (!is_data) {
       isLowPtReconstructedMuon.WriteTo( tree );
       isSegmentTaggedMuon.WriteTo( tree );
       isCaloMuonId.WriteTo( tree );
-// -- slimmed --       alsoFoundByLowPt.WriteTo( tree );
-// -- slimmed --       alsoFoundByCaloMuonId.WriteTo( tree );
-// -- slimmed --       isSiliconAssociatedForwardMuon.WriteTo( tree );
+      alsoFoundByLowPt.WriteTo( tree );
+      alsoFoundByCaloMuonId.WriteTo( tree );
+      isSiliconAssociatedForwardMuon.WriteTo( tree );
       loose.WriteTo( tree );
       medium.WriteTo( tree );
       tight.WriteTo( tree );
@@ -2462,20 +2398,20 @@ if (!is_data) {
       nTRTDeadStraws.WriteTo( tree );
       expectBLayerHit.WriteTo( tree );
       nMDTHits.WriteTo( tree );
-// -- slimmed --       nMDTHoles.WriteTo( tree );
+      nMDTHoles.WriteTo( tree );
       nCSCEtaHits.WriteTo( tree );
-// -- slimmed --       nCSCEtaHoles.WriteTo( tree );
+      nCSCEtaHoles.WriteTo( tree );
       nCSCUnspoiledEtaHits.WriteTo( tree );
       nCSCPhiHits.WriteTo( tree );
-// -- slimmed --       nCSCPhiHoles.WriteTo( tree );
+      nCSCPhiHoles.WriteTo( tree );
       nRPCEtaHits.WriteTo( tree );
-// -- slimmed --       nRPCEtaHoles.WriteTo( tree );
+      nRPCEtaHoles.WriteTo( tree );
       nRPCPhiHits.WriteTo( tree );
-// -- slimmed --       nRPCPhiHoles.WriteTo( tree );
+      nRPCPhiHoles.WriteTo( tree );
       nTGCEtaHits.WriteTo( tree );
-// -- slimmed --       nTGCEtaHoles.WriteTo( tree );
+      nTGCEtaHoles.WriteTo( tree );
       nTGCPhiHits.WriteTo( tree );
-// -- slimmed --       nTGCPhiHoles.WriteTo( tree );
+      nTGCPhiHoles.WriteTo( tree );
       nprecisionLayers.WriteTo( tree );
       nprecisionHoleLayers.WriteTo( tree );
       nphiLayers.WriteTo( tree );
@@ -2491,22 +2427,22 @@ if (!is_data) {
       nMDTEMHits.WriteTo( tree );
       nMDTEOHits.WriteTo( tree );
       nMDTEEHits.WriteTo( tree );
-// -- slimmed --       nRPCLayer1EtaHits.WriteTo( tree );
-// -- slimmed --       nRPCLayer2EtaHits.WriteTo( tree );
-// -- slimmed --       nRPCLayer3EtaHits.WriteTo( tree );
-// -- slimmed --       nRPCLayer1PhiHits.WriteTo( tree );
-// -- slimmed --       nRPCLayer2PhiHits.WriteTo( tree );
-// -- slimmed --       nRPCLayer3PhiHits.WriteTo( tree );
-// -- slimmed --       nTGCLayer1EtaHits.WriteTo( tree );
-// -- slimmed --       nTGCLayer2EtaHits.WriteTo( tree );
-// -- slimmed --       nTGCLayer3EtaHits.WriteTo( tree );
-// -- slimmed --       nTGCLayer4EtaHits.WriteTo( tree );
-// -- slimmed --       nTGCLayer1PhiHits.WriteTo( tree );
-// -- slimmed --       nTGCLayer2PhiHits.WriteTo( tree );
-// -- slimmed --       nTGCLayer3PhiHits.WriteTo( tree );
-// -- slimmed --       nTGCLayer4PhiHits.WriteTo( tree );
-// -- slimmed --       barrelSectors.WriteTo( tree );
-// -- slimmed --       endcapSectors.WriteTo( tree );
+      nRPCLayer1EtaHits.WriteTo( tree );
+      nRPCLayer2EtaHits.WriteTo( tree );
+      nRPCLayer3EtaHits.WriteTo( tree );
+      nRPCLayer1PhiHits.WriteTo( tree );
+      nRPCLayer2PhiHits.WriteTo( tree );
+      nRPCLayer3PhiHits.WriteTo( tree );
+      nTGCLayer1EtaHits.WriteTo( tree );
+      nTGCLayer2EtaHits.WriteTo( tree );
+      nTGCLayer3EtaHits.WriteTo( tree );
+      nTGCLayer4EtaHits.WriteTo( tree );
+      nTGCLayer1PhiHits.WriteTo( tree );
+      nTGCLayer2PhiHits.WriteTo( tree );
+      nTGCLayer3PhiHits.WriteTo( tree );
+      nTGCLayer4PhiHits.WriteTo( tree );
+      barrelSectors.WriteTo( tree );
+      endcapSectors.WriteTo( tree );
       trackd0.WriteTo( tree );
       trackz0.WriteTo( tree );
       trackphi.WriteTo( tree );
@@ -2528,14 +2464,14 @@ if (!is_data) {
       trackcov_phi_qoverp.WriteTo( tree );
       trackcov_theta_qoverp.WriteTo( tree );
       hastrack.WriteTo( tree );
-// -- slimmed --       trackIPEstimate_d0_biasedpvunbiased.WriteTo( tree );
-// -- slimmed --       trackIPEstimate_z0_biasedpvunbiased.WriteTo( tree );
-// -- slimmed --       trackIPEstimate_sigd0_biasedpvunbiased.WriteTo( tree );
-// -- slimmed --       trackIPEstimate_sigz0_biasedpvunbiased.WriteTo( tree );
-// -- slimmed --       trackIPEstimate_d0_unbiasedpvunbiased.WriteTo( tree );
-// -- slimmed --       trackIPEstimate_z0_unbiasedpvunbiased.WriteTo( tree );
-// -- slimmed --       trackIPEstimate_sigd0_unbiasedpvunbiased.WriteTo( tree );
-// -- slimmed --       trackIPEstimate_sigz0_unbiasedpvunbiased.WriteTo( tree );
+      trackIPEstimate_d0_biasedpvunbiased.WriteTo( tree );
+      trackIPEstimate_z0_biasedpvunbiased.WriteTo( tree );
+      trackIPEstimate_sigd0_biasedpvunbiased.WriteTo( tree );
+      trackIPEstimate_sigz0_biasedpvunbiased.WriteTo( tree );
+      trackIPEstimate_d0_unbiasedpvunbiased.WriteTo( tree );
+      trackIPEstimate_z0_unbiasedpvunbiased.WriteTo( tree );
+      trackIPEstimate_sigd0_unbiasedpvunbiased.WriteTo( tree );
+      trackIPEstimate_sigz0_unbiasedpvunbiased.WriteTo( tree );
 if (!is_data) {
       type.WriteTo( tree );
       origin.WriteTo( tree );
@@ -2566,30 +2502,22 @@ if (!is_data) {
       nucone20_trkelstyle.WriteTo( tree );
       nucone30_trkelstyle.WriteTo( tree );
       nucone40_trkelstyle.WriteTo( tree );
-// -- slimmed --       MET_Simplified20_wpx.WriteTo( tree );
-// -- slimmed --       MET_Simplified20_wpy.WriteTo( tree );
-// -- slimmed --       MET_Simplified20_wet.WriteTo( tree );
-// -- slimmed --       MET_Simplified20_statusWord.WriteTo( tree );
       MET_Egamma10NoTau_wpx.WriteTo( tree );
       MET_Egamma10NoTau_wpy.WriteTo( tree );
       MET_Egamma10NoTau_wet.WriteTo( tree );
       MET_Egamma10NoTau_statusWord.WriteTo( tree );
-      MET_Egamma10NoTau_STVF_wpx.WriteTo( tree );
-      MET_Egamma10NoTau_STVF_wpy.WriteTo( tree );
-      MET_Egamma10NoTau_STVF_wet.WriteTo( tree );
-      MET_Egamma10NoTau_STVF_statusWord.WriteTo( tree );
-// -- slimmed --       MET_LooseEgamma10NoTau_wpx.WriteTo( tree );
-// -- slimmed --       MET_LooseEgamma10NoTau_wpy.WriteTo( tree );
-// -- slimmed --       MET_LooseEgamma10NoTau_wet.WriteTo( tree );
-// -- slimmed --       MET_LooseEgamma10NoTau_statusWord.WriteTo( tree );
-// -- slimmed --       MET_wpx.WriteTo( tree );
-// -- slimmed --       MET_wpy.WriteTo( tree );
-// -- slimmed --       MET_wet.WriteTo( tree );
-// -- slimmed --       MET_statusWord.WriteTo( tree );
-// -- slimmed --       MET_STVF_wpx.WriteTo( tree );
-// -- slimmed --       MET_STVF_wpy.WriteTo( tree );
-// -- slimmed --       MET_STVF_wet.WriteTo( tree );
-// -- slimmed -- // -- slimmed --       MET_STVF_statusWord.WriteTo( tree );
+      MET_LooseEgamma10NoTau_wpx.WriteTo( tree );
+      MET_LooseEgamma10NoTau_wpy.WriteTo( tree );
+      MET_LooseEgamma10NoTau_wet.WriteTo( tree );
+      MET_LooseEgamma10NoTau_statusWord.WriteTo( tree );
+      MET_Egamma10LooseTau_wpx.WriteTo( tree );
+      MET_Egamma10LooseTau_wpy.WriteTo( tree );
+      MET_Egamma10LooseTau_wet.WriteTo( tree );
+      MET_Egamma10LooseTau_statusWord.WriteTo( tree );
+      MET_wpx.WriteTo( tree );
+      MET_wpy.WriteTo( tree );
+      MET_wet.WriteTo( tree );
+      MET_statusWord.WriteTo( tree );
 
       return;
    }
@@ -2663,13 +2591,13 @@ if (!is_data) {
       if( ptcone20.IsActive() ) ptcone20();
       if( ptcone30.IsActive() ) ptcone30();
       if( ptcone40.IsActive() ) ptcone40();
-// -- slimmed --       if( etconeNoEm10.IsActive() ) etconeNoEm10();
-// -- slimmed --       if( etconeNoEm20.IsActive() ) etconeNoEm20();
-// -- slimmed --       if( etconeNoEm30.IsActive() ) etconeNoEm30();
-// -- slimmed --       if( etconeNoEm40.IsActive() ) etconeNoEm40();
-// -- slimmed --       if( scatteringCurvatureSignificance.IsActive() ) scatteringCurvatureSignificance();
-// -- slimmed --       if( scatteringNeighbourSignificance.IsActive() ) scatteringNeighbourSignificance();
-// -- slimmed --       if( momentumBalanceSignificance.IsActive() ) momentumBalanceSignificance();
+      if( etconeNoEm10.IsActive() ) etconeNoEm10();
+      if( etconeNoEm20.IsActive() ) etconeNoEm20();
+      if( etconeNoEm30.IsActive() ) etconeNoEm30();
+      if( etconeNoEm40.IsActive() ) etconeNoEm40();
+      if( scatteringCurvatureSignificance.IsActive() ) scatteringCurvatureSignificance();
+      if( scatteringNeighbourSignificance.IsActive() ) scatteringNeighbourSignificance();
+      if( momentumBalanceSignificance.IsActive() ) momentumBalanceSignificance();
       if( energyLossPar.IsActive() ) energyLossPar();
       if( energyLossErr.IsActive() ) energyLossErr();
       if( etCore.IsActive() ) etCore();
@@ -2682,9 +2610,9 @@ if (!is_data) {
       if( isLowPtReconstructedMuon.IsActive() ) isLowPtReconstructedMuon();
       if( isSegmentTaggedMuon.IsActive() ) isSegmentTaggedMuon();
       if( isCaloMuonId.IsActive() ) isCaloMuonId();
-// -- slimmed --       if( alsoFoundByLowPt.IsActive() ) alsoFoundByLowPt();
-// -- slimmed --       if( alsoFoundByCaloMuonId.IsActive() ) alsoFoundByCaloMuonId();
-// -- slimmed --       if( isSiliconAssociatedForwardMuon.IsActive() ) isSiliconAssociatedForwardMuon();
+      if( alsoFoundByLowPt.IsActive() ) alsoFoundByLowPt();
+      if( alsoFoundByCaloMuonId.IsActive() ) alsoFoundByCaloMuonId();
+      if( isSiliconAssociatedForwardMuon.IsActive() ) isSiliconAssociatedForwardMuon();
       if( loose.IsActive() ) loose();
       if( medium.IsActive() ) medium();
       if( tight.IsActive() ) tight();
@@ -2787,20 +2715,20 @@ if (!is_data) {
       if( nTRTDeadStraws.IsActive() ) nTRTDeadStraws();
       if( expectBLayerHit.IsActive() ) expectBLayerHit();
       if( nMDTHits.IsActive() ) nMDTHits();
-// -- slimmed --       if( nMDTHoles.IsActive() ) nMDTHoles();
+      if( nMDTHoles.IsActive() ) nMDTHoles();
       if( nCSCEtaHits.IsActive() ) nCSCEtaHits();
-// -- slimmed --       if( nCSCEtaHoles.IsActive() ) nCSCEtaHoles();
+      if( nCSCEtaHoles.IsActive() ) nCSCEtaHoles();
       if( nCSCUnspoiledEtaHits.IsActive() ) nCSCUnspoiledEtaHits();
       if( nCSCPhiHits.IsActive() ) nCSCPhiHits();
-// -- slimmed --       if( nCSCPhiHoles.IsActive() ) nCSCPhiHoles();
+      if( nCSCPhiHoles.IsActive() ) nCSCPhiHoles();
       if( nRPCEtaHits.IsActive() ) nRPCEtaHits();
-// -- slimmed --       if( nRPCEtaHoles.IsActive() ) nRPCEtaHoles();
+      if( nRPCEtaHoles.IsActive() ) nRPCEtaHoles();
       if( nRPCPhiHits.IsActive() ) nRPCPhiHits();
-// -- slimmed --       if( nRPCPhiHoles.IsActive() ) nRPCPhiHoles();
+      if( nRPCPhiHoles.IsActive() ) nRPCPhiHoles();
       if( nTGCEtaHits.IsActive() ) nTGCEtaHits();
-// -- slimmed --       if( nTGCEtaHoles.IsActive() ) nTGCEtaHoles();
+      if( nTGCEtaHoles.IsActive() ) nTGCEtaHoles();
       if( nTGCPhiHits.IsActive() ) nTGCPhiHits();
-// -- slimmed --       if( nTGCPhiHoles.IsActive() ) nTGCPhiHoles();
+      if( nTGCPhiHoles.IsActive() ) nTGCPhiHoles();
       if( nprecisionLayers.IsActive() ) nprecisionLayers();
       if( nprecisionHoleLayers.IsActive() ) nprecisionHoleLayers();
       if( nphiLayers.IsActive() ) nphiLayers();
@@ -2816,22 +2744,22 @@ if (!is_data) {
       if( nMDTEMHits.IsActive() ) nMDTEMHits();
       if( nMDTEOHits.IsActive() ) nMDTEOHits();
       if( nMDTEEHits.IsActive() ) nMDTEEHits();
-// -- slimmed --       if( nRPCLayer1EtaHits.IsActive() ) nRPCLayer1EtaHits();
-// -- slimmed --       if( nRPCLayer2EtaHits.IsActive() ) nRPCLayer2EtaHits();
-// -- slimmed --       if( nRPCLayer3EtaHits.IsActive() ) nRPCLayer3EtaHits();
-// -- slimmed --       if( nRPCLayer1PhiHits.IsActive() ) nRPCLayer1PhiHits();
-// -- slimmed --       if( nRPCLayer2PhiHits.IsActive() ) nRPCLayer2PhiHits();
-// -- slimmed --       if( nRPCLayer3PhiHits.IsActive() ) nRPCLayer3PhiHits();
-// -- slimmed --       if( nTGCLayer1EtaHits.IsActive() ) nTGCLayer1EtaHits();
-// -- slimmed --       if( nTGCLayer2EtaHits.IsActive() ) nTGCLayer2EtaHits();
-// -- slimmed --       if( nTGCLayer3EtaHits.IsActive() ) nTGCLayer3EtaHits();
-// -- slimmed --       if( nTGCLayer4EtaHits.IsActive() ) nTGCLayer4EtaHits();
-// -- slimmed --       if( nTGCLayer1PhiHits.IsActive() ) nTGCLayer1PhiHits();
-// -- slimmed --       if( nTGCLayer2PhiHits.IsActive() ) nTGCLayer2PhiHits();
-// -- slimmed --       if( nTGCLayer3PhiHits.IsActive() ) nTGCLayer3PhiHits();
-// -- slimmed --       if( nTGCLayer4PhiHits.IsActive() ) nTGCLayer4PhiHits();
-// -- slimmed --       if( barrelSectors.IsActive() ) barrelSectors();
-// -- slimmed --       if( endcapSectors.IsActive() ) endcapSectors();
+      if( nRPCLayer1EtaHits.IsActive() ) nRPCLayer1EtaHits();
+      if( nRPCLayer2EtaHits.IsActive() ) nRPCLayer2EtaHits();
+      if( nRPCLayer3EtaHits.IsActive() ) nRPCLayer3EtaHits();
+      if( nRPCLayer1PhiHits.IsActive() ) nRPCLayer1PhiHits();
+      if( nRPCLayer2PhiHits.IsActive() ) nRPCLayer2PhiHits();
+      if( nRPCLayer3PhiHits.IsActive() ) nRPCLayer3PhiHits();
+      if( nTGCLayer1EtaHits.IsActive() ) nTGCLayer1EtaHits();
+      if( nTGCLayer2EtaHits.IsActive() ) nTGCLayer2EtaHits();
+      if( nTGCLayer3EtaHits.IsActive() ) nTGCLayer3EtaHits();
+      if( nTGCLayer4EtaHits.IsActive() ) nTGCLayer4EtaHits();
+      if( nTGCLayer1PhiHits.IsActive() ) nTGCLayer1PhiHits();
+      if( nTGCLayer2PhiHits.IsActive() ) nTGCLayer2PhiHits();
+      if( nTGCLayer3PhiHits.IsActive() ) nTGCLayer3PhiHits();
+      if( nTGCLayer4PhiHits.IsActive() ) nTGCLayer4PhiHits();
+      if( barrelSectors.IsActive() ) barrelSectors();
+      if( endcapSectors.IsActive() ) endcapSectors();
       if( trackd0.IsActive() ) trackd0();
       if( trackz0.IsActive() ) trackz0();
       if( trackphi.IsActive() ) trackphi();
@@ -2853,14 +2781,14 @@ if (!is_data) {
       if( trackcov_phi_qoverp.IsActive() ) trackcov_phi_qoverp();
       if( trackcov_theta_qoverp.IsActive() ) trackcov_theta_qoverp();
       if( hastrack.IsActive() ) hastrack();
-// -- slimmed --       if( trackIPEstimate_d0_biasedpvunbiased.IsActive() ) trackIPEstimate_d0_biasedpvunbiased();
-// -- slimmed --       if( trackIPEstimate_z0_biasedpvunbiased.IsActive() ) trackIPEstimate_z0_biasedpvunbiased();
-// -- slimmed --       if( trackIPEstimate_sigd0_biasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_biasedpvunbiased();
-// -- slimmed --       if( trackIPEstimate_sigz0_biasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_biasedpvunbiased();
-// -- slimmed --       if( trackIPEstimate_d0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_d0_unbiasedpvunbiased();
-// -- slimmed --       if( trackIPEstimate_z0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_z0_unbiasedpvunbiased();
-// -- slimmed --       if( trackIPEstimate_sigd0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_unbiasedpvunbiased();
-// -- slimmed --       if( trackIPEstimate_sigz0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_unbiasedpvunbiased();
+      if( trackIPEstimate_d0_biasedpvunbiased.IsActive() ) trackIPEstimate_d0_biasedpvunbiased();
+      if( trackIPEstimate_z0_biasedpvunbiased.IsActive() ) trackIPEstimate_z0_biasedpvunbiased();
+      if( trackIPEstimate_sigd0_biasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_biasedpvunbiased();
+      if( trackIPEstimate_sigz0_biasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_biasedpvunbiased();
+      if( trackIPEstimate_d0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_d0_unbiasedpvunbiased();
+      if( trackIPEstimate_z0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_z0_unbiasedpvunbiased();
+      if( trackIPEstimate_sigd0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_unbiasedpvunbiased();
+      if( trackIPEstimate_sigz0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_unbiasedpvunbiased();
 if (!is_data) {
       if( type.IsActive() ) type();
       if( origin.IsActive() ) origin();
@@ -2891,30 +2819,22 @@ if (!is_data) {
       if( nucone20_trkelstyle.IsActive() ) nucone20_trkelstyle();
       if( nucone30_trkelstyle.IsActive() ) nucone30_trkelstyle();
       if( nucone40_trkelstyle.IsActive() ) nucone40_trkelstyle();
-// -- slimmed --       if( MET_Simplified20_wpx.IsActive() ) MET_Simplified20_wpx();
-// -- slimmed --       if( MET_Simplified20_wpy.IsActive() ) MET_Simplified20_wpy();
-// -- slimmed --       if( MET_Simplified20_wet.IsActive() ) MET_Simplified20_wet();
-// -- slimmed --       if( MET_Simplified20_statusWord.IsActive() ) MET_Simplified20_statusWord();
       if( MET_Egamma10NoTau_wpx.IsActive() ) MET_Egamma10NoTau_wpx();
       if( MET_Egamma10NoTau_wpy.IsActive() ) MET_Egamma10NoTau_wpy();
       if( MET_Egamma10NoTau_wet.IsActive() ) MET_Egamma10NoTau_wet();
       if( MET_Egamma10NoTau_statusWord.IsActive() ) MET_Egamma10NoTau_statusWord();
-      if( MET_Egamma10NoTau_STVF_wpx.IsActive() ) MET_Egamma10NoTau_STVF_wpx();
-      if( MET_Egamma10NoTau_STVF_wpy.IsActive() ) MET_Egamma10NoTau_STVF_wpy();
-      if( MET_Egamma10NoTau_STVF_wet.IsActive() ) MET_Egamma10NoTau_STVF_wet();
-      if( MET_Egamma10NoTau_STVF_statusWord.IsActive() ) MET_Egamma10NoTau_STVF_statusWord();
-// -- slimmed --       if( MET_LooseEgamma10NoTau_wpx.IsActive() ) MET_LooseEgamma10NoTau_wpx();
-// -- slimmed --       if( MET_LooseEgamma10NoTau_wpy.IsActive() ) MET_LooseEgamma10NoTau_wpy();
-// -- slimmed --       if( MET_LooseEgamma10NoTau_wet.IsActive() ) MET_LooseEgamma10NoTau_wet();
-// -- slimmed --       if( MET_LooseEgamma10NoTau_statusWord.IsActive() ) MET_LooseEgamma10NoTau_statusWord();
-// -- slimmed --       if( MET_wpx.IsActive() ) MET_wpx();
-// -- slimmed --       if( MET_wpy.IsActive() ) MET_wpy();
-// -- slimmed --       if( MET_wet.IsActive() ) MET_wet();
-// -- slimmed --       if( MET_statusWord.IsActive() ) MET_statusWord();
-// -- slimmed --       if( MET_STVF_wpx.IsActive() ) MET_STVF_wpx();
-// -- slimmed --       if( MET_STVF_wpy.IsActive() ) MET_STVF_wpy();
-// -- slimmed --       if( MET_STVF_wet.IsActive() ) MET_STVF_wet();
-// -- slimmed -- // -- slimmed --       if( MET_STVF_statusWord.IsActive() ) MET_STVF_statusWord();
+      if( MET_LooseEgamma10NoTau_wpx.IsActive() ) MET_LooseEgamma10NoTau_wpx();
+      if( MET_LooseEgamma10NoTau_wpy.IsActive() ) MET_LooseEgamma10NoTau_wpy();
+      if( MET_LooseEgamma10NoTau_wet.IsActive() ) MET_LooseEgamma10NoTau_wet();
+      if( MET_LooseEgamma10NoTau_statusWord.IsActive() ) MET_LooseEgamma10NoTau_statusWord();
+      if( MET_Egamma10LooseTau_wpx.IsActive() ) MET_Egamma10LooseTau_wpx();
+      if( MET_Egamma10LooseTau_wpy.IsActive() ) MET_Egamma10LooseTau_wpy();
+      if( MET_Egamma10LooseTau_wet.IsActive() ) MET_Egamma10LooseTau_wet();
+      if( MET_Egamma10LooseTau_statusWord.IsActive() ) MET_Egamma10LooseTau_statusWord();
+      if( MET_wpx.IsActive() ) MET_wpx();
+      if( MET_wpy.IsActive() ) MET_wpy();
+      if( MET_wet.IsActive() ) MET_wet();
+      if( MET_statusWord.IsActive() ) MET_statusWord();
 
       return;
    }
@@ -2960,13 +2880,13 @@ if (!is_data) {
       ptcone20()->clear();
       ptcone30()->clear();
       ptcone40()->clear();
-// -- slimmed --       etconeNoEm10()->clear();
-// -- slimmed --       etconeNoEm20()->clear();
-// -- slimmed --       etconeNoEm30()->clear();
-// -- slimmed --       etconeNoEm40()->clear();
-// -- slimmed --       scatteringCurvatureSignificance()->clear();
-// -- slimmed --       scatteringNeighbourSignificance()->clear();
-// -- slimmed --       momentumBalanceSignificance()->clear();
+      etconeNoEm10()->clear();
+      etconeNoEm20()->clear();
+      etconeNoEm30()->clear();
+      etconeNoEm40()->clear();
+      scatteringCurvatureSignificance()->clear();
+      scatteringNeighbourSignificance()->clear();
+      momentumBalanceSignificance()->clear();
       energyLossPar()->clear();
       energyLossErr()->clear();
       etCore()->clear();
@@ -2979,9 +2899,9 @@ if (!is_data) {
       isLowPtReconstructedMuon()->clear();
       isSegmentTaggedMuon()->clear();
       isCaloMuonId()->clear();
-// -- slimmed --       alsoFoundByLowPt()->clear();
-// -- slimmed --       alsoFoundByCaloMuonId()->clear();
-// -- slimmed --       isSiliconAssociatedForwardMuon()->clear();
+      alsoFoundByLowPt()->clear();
+      alsoFoundByCaloMuonId()->clear();
+      isSiliconAssociatedForwardMuon()->clear();
       loose()->clear();
       medium()->clear();
       tight()->clear();
@@ -3084,20 +3004,20 @@ if (!is_data) {
       nTRTDeadStraws()->clear();
       expectBLayerHit()->clear();
       nMDTHits()->clear();
-// -- slimmed --       nMDTHoles()->clear();
+      nMDTHoles()->clear();
       nCSCEtaHits()->clear();
-// -- slimmed --       nCSCEtaHoles()->clear();
+      nCSCEtaHoles()->clear();
       nCSCUnspoiledEtaHits()->clear();
       nCSCPhiHits()->clear();
-// -- slimmed --       nCSCPhiHoles()->clear();
+      nCSCPhiHoles()->clear();
       nRPCEtaHits()->clear();
-// -- slimmed --       nRPCEtaHoles()->clear();
+      nRPCEtaHoles()->clear();
       nRPCPhiHits()->clear();
-// -- slimmed --       nRPCPhiHoles()->clear();
+      nRPCPhiHoles()->clear();
       nTGCEtaHits()->clear();
-// -- slimmed --       nTGCEtaHoles()->clear();
+      nTGCEtaHoles()->clear();
       nTGCPhiHits()->clear();
-// -- slimmed --       nTGCPhiHoles()->clear();
+      nTGCPhiHoles()->clear();
       nprecisionLayers()->clear();
       nprecisionHoleLayers()->clear();
       nphiLayers()->clear();
@@ -3113,22 +3033,22 @@ if (!is_data) {
       nMDTEMHits()->clear();
       nMDTEOHits()->clear();
       nMDTEEHits()->clear();
-// -- slimmed --       nRPCLayer1EtaHits()->clear();
-// -- slimmed --       nRPCLayer2EtaHits()->clear();
-// -- slimmed --       nRPCLayer3EtaHits()->clear();
-// -- slimmed --       nRPCLayer1PhiHits()->clear();
-// -- slimmed --       nRPCLayer2PhiHits()->clear();
-// -- slimmed --       nRPCLayer3PhiHits()->clear();
-// -- slimmed --       nTGCLayer1EtaHits()->clear();
-// -- slimmed --       nTGCLayer2EtaHits()->clear();
-// -- slimmed --       nTGCLayer3EtaHits()->clear();
-// -- slimmed --       nTGCLayer4EtaHits()->clear();
-// -- slimmed --       nTGCLayer1PhiHits()->clear();
-// -- slimmed --       nTGCLayer2PhiHits()->clear();
-// -- slimmed --       nTGCLayer3PhiHits()->clear();
-// -- slimmed --       nTGCLayer4PhiHits()->clear();
-// -- slimmed --       barrelSectors()->clear();
-// -- slimmed --       endcapSectors()->clear();
+      nRPCLayer1EtaHits()->clear();
+      nRPCLayer2EtaHits()->clear();
+      nRPCLayer3EtaHits()->clear();
+      nRPCLayer1PhiHits()->clear();
+      nRPCLayer2PhiHits()->clear();
+      nRPCLayer3PhiHits()->clear();
+      nTGCLayer1EtaHits()->clear();
+      nTGCLayer2EtaHits()->clear();
+      nTGCLayer3EtaHits()->clear();
+      nTGCLayer4EtaHits()->clear();
+      nTGCLayer1PhiHits()->clear();
+      nTGCLayer2PhiHits()->clear();
+      nTGCLayer3PhiHits()->clear();
+      nTGCLayer4PhiHits()->clear();
+      barrelSectors()->clear();
+      endcapSectors()->clear();
       trackd0()->clear();
       trackz0()->clear();
       trackphi()->clear();
@@ -3150,14 +3070,14 @@ if (!is_data) {
       trackcov_phi_qoverp()->clear();
       trackcov_theta_qoverp()->clear();
       hastrack()->clear();
-// -- slimmed --       trackIPEstimate_d0_biasedpvunbiased()->clear();
-// -- slimmed --       trackIPEstimate_z0_biasedpvunbiased()->clear();
-// -- slimmed --       trackIPEstimate_sigd0_biasedpvunbiased()->clear();
-// -- slimmed --       trackIPEstimate_sigz0_biasedpvunbiased()->clear();
-// -- slimmed --       trackIPEstimate_d0_unbiasedpvunbiased()->clear();
-// -- slimmed --       trackIPEstimate_z0_unbiasedpvunbiased()->clear();
-// -- slimmed --       trackIPEstimate_sigd0_unbiasedpvunbiased()->clear();
-// -- slimmed --       trackIPEstimate_sigz0_unbiasedpvunbiased()->clear();
+      trackIPEstimate_d0_biasedpvunbiased()->clear();
+      trackIPEstimate_z0_biasedpvunbiased()->clear();
+      trackIPEstimate_sigd0_biasedpvunbiased()->clear();
+      trackIPEstimate_sigz0_biasedpvunbiased()->clear();
+      trackIPEstimate_d0_unbiasedpvunbiased()->clear();
+      trackIPEstimate_z0_unbiasedpvunbiased()->clear();
+      trackIPEstimate_sigd0_unbiasedpvunbiased()->clear();
+      trackIPEstimate_sigz0_unbiasedpvunbiased()->clear();
 if (!is_data) {
       type()->clear();
       origin()->clear();
@@ -3188,30 +3108,22 @@ if (!is_data) {
       nucone20_trkelstyle()->clear();
       nucone30_trkelstyle()->clear();
       nucone40_trkelstyle()->clear();
-// -- slimmed --       MET_Simplified20_wpx()->clear();
-// -- slimmed --       MET_Simplified20_wpy()->clear();
-// -- slimmed --       MET_Simplified20_wet()->clear();
-// -- slimmed --       MET_Simplified20_statusWord()->clear();
       MET_Egamma10NoTau_wpx()->clear();
       MET_Egamma10NoTau_wpy()->clear();
       MET_Egamma10NoTau_wet()->clear();
       MET_Egamma10NoTau_statusWord()->clear();
-      MET_Egamma10NoTau_STVF_wpx()->clear();
-      MET_Egamma10NoTau_STVF_wpy()->clear();
-      MET_Egamma10NoTau_STVF_wet()->clear();
-      MET_Egamma10NoTau_STVF_statusWord()->clear();
-// -- slimmed --       MET_LooseEgamma10NoTau_wpx()->clear();
-// -- slimmed --       MET_LooseEgamma10NoTau_wpy()->clear();
-// -- slimmed --       MET_LooseEgamma10NoTau_wet()->clear();
-// -- slimmed --       MET_LooseEgamma10NoTau_statusWord()->clear();
-// -- slimmed --       MET_wpx()->clear();
-// -- slimmed --       MET_wpy()->clear();
-// -- slimmed --       MET_wet()->clear();
-// -- slimmed --       MET_statusWord()->clear();
-// -- slimmed --       MET_STVF_wpx()->clear();
-// -- slimmed --       MET_STVF_wpy()->clear();
-// -- slimmed --       MET_STVF_wet()->clear();
-// -- slimmed -- // -- slimmed --       MET_STVF_statusWord()->clear();
+      MET_LooseEgamma10NoTau_wpx()->clear();
+      MET_LooseEgamma10NoTau_wpy()->clear();
+      MET_LooseEgamma10NoTau_wet()->clear();
+      MET_LooseEgamma10NoTau_statusWord()->clear();
+      MET_Egamma10LooseTau_wpx()->clear();
+      MET_Egamma10LooseTau_wpy()->clear();
+      MET_Egamma10LooseTau_wet()->clear();
+      MET_Egamma10LooseTau_statusWord()->clear();
+      MET_wpx()->clear();
+      MET_wpy()->clear();
+      MET_wet()->clear();
+      MET_statusWord()->clear();
 
       return;
    }
@@ -3345,41 +3257,41 @@ if (!is_data) {
       } else {
          ptcone40()->push_back( std::numeric_limits< float >::min() );
       }
-// -- slimmed --       if( el.etconeNoEm10.IsAvailable() ) {
-// -- slimmed --          etconeNoEm10()->push_back( el.etconeNoEm10() );
-// -- slimmed --       } else {
-// -- slimmed --          etconeNoEm10()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.etconeNoEm20.IsAvailable() ) {
-// -- slimmed --          etconeNoEm20()->push_back( el.etconeNoEm20() );
-// -- slimmed --       } else {
-// -- slimmed --          etconeNoEm20()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.etconeNoEm30.IsAvailable() ) {
-// -- slimmed --          etconeNoEm30()->push_back( el.etconeNoEm30() );
-// -- slimmed --       } else {
-// -- slimmed --          etconeNoEm30()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.etconeNoEm40.IsAvailable() ) {
-// -- slimmed --          etconeNoEm40()->push_back( el.etconeNoEm40() );
-// -- slimmed --       } else {
-// -- slimmed --          etconeNoEm40()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.scatteringCurvatureSignificance.IsAvailable() ) {
-// -- slimmed --          scatteringCurvatureSignificance()->push_back( el.scatteringCurvatureSignificance() );
-// -- slimmed --       } else {
-// -- slimmed --          scatteringCurvatureSignificance()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.scatteringNeighbourSignificance.IsAvailable() ) {
-// -- slimmed --          scatteringNeighbourSignificance()->push_back( el.scatteringNeighbourSignificance() );
-// -- slimmed --       } else {
-// -- slimmed --          scatteringNeighbourSignificance()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.momentumBalanceSignificance.IsAvailable() ) {
-// -- slimmed --          momentumBalanceSignificance()->push_back( el.momentumBalanceSignificance() );
-// -- slimmed --       } else {
-// -- slimmed --          momentumBalanceSignificance()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
+      if( el.etconeNoEm10.IsAvailable() ) {
+         etconeNoEm10()->push_back( el.etconeNoEm10() );
+      } else {
+         etconeNoEm10()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.etconeNoEm20.IsAvailable() ) {
+         etconeNoEm20()->push_back( el.etconeNoEm20() );
+      } else {
+         etconeNoEm20()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.etconeNoEm30.IsAvailable() ) {
+         etconeNoEm30()->push_back( el.etconeNoEm30() );
+      } else {
+         etconeNoEm30()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.etconeNoEm40.IsAvailable() ) {
+         etconeNoEm40()->push_back( el.etconeNoEm40() );
+      } else {
+         etconeNoEm40()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.scatteringCurvatureSignificance.IsAvailable() ) {
+         scatteringCurvatureSignificance()->push_back( el.scatteringCurvatureSignificance() );
+      } else {
+         scatteringCurvatureSignificance()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.scatteringNeighbourSignificance.IsAvailable() ) {
+         scatteringNeighbourSignificance()->push_back( el.scatteringNeighbourSignificance() );
+      } else {
+         scatteringNeighbourSignificance()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.momentumBalanceSignificance.IsAvailable() ) {
+         momentumBalanceSignificance()->push_back( el.momentumBalanceSignificance() );
+      } else {
+         momentumBalanceSignificance()->push_back( std::numeric_limits< float >::min() );
+      }
       if( el.energyLossPar.IsAvailable() ) {
          energyLossPar()->push_back( el.energyLossPar() );
       } else {
@@ -3440,21 +3352,21 @@ if (!is_data) {
       } else {
          isCaloMuonId()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.alsoFoundByLowPt.IsAvailable() ) {
-// -- slimmed --          alsoFoundByLowPt()->push_back( el.alsoFoundByLowPt() );
-// -- slimmed --       } else {
-// -- slimmed --          alsoFoundByLowPt()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.alsoFoundByCaloMuonId.IsAvailable() ) {
-// -- slimmed --          alsoFoundByCaloMuonId()->push_back( el.alsoFoundByCaloMuonId() );
-// -- slimmed --       } else {
-// -- slimmed --          alsoFoundByCaloMuonId()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.isSiliconAssociatedForwardMuon.IsAvailable() ) {
-// -- slimmed --          isSiliconAssociatedForwardMuon()->push_back( el.isSiliconAssociatedForwardMuon() );
-// -- slimmed --       } else {
-// -- slimmed --          isSiliconAssociatedForwardMuon()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.alsoFoundByLowPt.IsAvailable() ) {
+         alsoFoundByLowPt()->push_back( el.alsoFoundByLowPt() );
+      } else {
+         alsoFoundByLowPt()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.alsoFoundByCaloMuonId.IsAvailable() ) {
+         alsoFoundByCaloMuonId()->push_back( el.alsoFoundByCaloMuonId() );
+      } else {
+         alsoFoundByCaloMuonId()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.isSiliconAssociatedForwardMuon.IsAvailable() ) {
+         isSiliconAssociatedForwardMuon()->push_back( el.isSiliconAssociatedForwardMuon() );
+      } else {
+         isSiliconAssociatedForwardMuon()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.loose.IsAvailable() ) {
          loose()->push_back( el.loose() );
       } else {
@@ -3965,21 +3877,21 @@ if (!is_data) {
       } else {
          nMDTHits()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.nMDTHoles.IsAvailable() ) {
-// -- slimmed --          nMDTHoles()->push_back( el.nMDTHoles() );
-// -- slimmed --       } else {
-// -- slimmed --          nMDTHoles()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.nMDTHoles.IsAvailable() ) {
+         nMDTHoles()->push_back( el.nMDTHoles() );
+      } else {
+         nMDTHoles()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.nCSCEtaHits.IsAvailable() ) {
          nCSCEtaHits()->push_back( el.nCSCEtaHits() );
       } else {
          nCSCEtaHits()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.nCSCEtaHoles.IsAvailable() ) {
-// -- slimmed --          nCSCEtaHoles()->push_back( el.nCSCEtaHoles() );
-// -- slimmed --       } else {
-// -- slimmed --          nCSCEtaHoles()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.nCSCEtaHoles.IsAvailable() ) {
+         nCSCEtaHoles()->push_back( el.nCSCEtaHoles() );
+      } else {
+         nCSCEtaHoles()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.nCSCUnspoiledEtaHits.IsAvailable() ) {
          nCSCUnspoiledEtaHits()->push_back( el.nCSCUnspoiledEtaHits() );
       } else {
@@ -3990,51 +3902,51 @@ if (!is_data) {
       } else {
          nCSCPhiHits()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.nCSCPhiHoles.IsAvailable() ) {
-// -- slimmed --          nCSCPhiHoles()->push_back( el.nCSCPhiHoles() );
-// -- slimmed --       } else {
-// -- slimmed --          nCSCPhiHoles()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.nCSCPhiHoles.IsAvailable() ) {
+         nCSCPhiHoles()->push_back( el.nCSCPhiHoles() );
+      } else {
+         nCSCPhiHoles()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.nRPCEtaHits.IsAvailable() ) {
          nRPCEtaHits()->push_back( el.nRPCEtaHits() );
       } else {
          nRPCEtaHits()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.nRPCEtaHoles.IsAvailable() ) {
-// -- slimmed --          nRPCEtaHoles()->push_back( el.nRPCEtaHoles() );
-// -- slimmed --       } else {
-// -- slimmed --          nRPCEtaHoles()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.nRPCEtaHoles.IsAvailable() ) {
+         nRPCEtaHoles()->push_back( el.nRPCEtaHoles() );
+      } else {
+         nRPCEtaHoles()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.nRPCPhiHits.IsAvailable() ) {
          nRPCPhiHits()->push_back( el.nRPCPhiHits() );
       } else {
          nRPCPhiHits()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.nRPCPhiHoles.IsAvailable() ) {
-// -- slimmed --          nRPCPhiHoles()->push_back( el.nRPCPhiHoles() );
-// -- slimmed --       } else {
-// -- slimmed --          nRPCPhiHoles()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.nRPCPhiHoles.IsAvailable() ) {
+         nRPCPhiHoles()->push_back( el.nRPCPhiHoles() );
+      } else {
+         nRPCPhiHoles()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.nTGCEtaHits.IsAvailable() ) {
          nTGCEtaHits()->push_back( el.nTGCEtaHits() );
       } else {
          nTGCEtaHits()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.nTGCEtaHoles.IsAvailable() ) {
-// -- slimmed --          nTGCEtaHoles()->push_back( el.nTGCEtaHoles() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCEtaHoles()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.nTGCEtaHoles.IsAvailable() ) {
+         nTGCEtaHoles()->push_back( el.nTGCEtaHoles() );
+      } else {
+         nTGCEtaHoles()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.nTGCPhiHits.IsAvailable() ) {
          nTGCPhiHits()->push_back( el.nTGCPhiHits() );
       } else {
          nTGCPhiHits()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.nTGCPhiHoles.IsAvailable() ) {
-// -- slimmed --          nTGCPhiHoles()->push_back( el.nTGCPhiHoles() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCPhiHoles()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.nTGCPhiHoles.IsAvailable() ) {
+         nTGCPhiHoles()->push_back( el.nTGCPhiHoles() );
+      } else {
+         nTGCPhiHoles()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.nprecisionLayers.IsAvailable() ) {
          nprecisionLayers()->push_back( el.nprecisionLayers() );
       } else {
@@ -4110,86 +4022,86 @@ if (!is_data) {
       } else {
          nMDTEEHits()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.nRPCLayer1EtaHits.IsAvailable() ) {
-// -- slimmed --          nRPCLayer1EtaHits()->push_back( el.nRPCLayer1EtaHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nRPCLayer1EtaHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nRPCLayer2EtaHits.IsAvailable() ) {
-// -- slimmed --          nRPCLayer2EtaHits()->push_back( el.nRPCLayer2EtaHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nRPCLayer2EtaHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nRPCLayer3EtaHits.IsAvailable() ) {
-// -- slimmed --          nRPCLayer3EtaHits()->push_back( el.nRPCLayer3EtaHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nRPCLayer3EtaHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nRPCLayer1PhiHits.IsAvailable() ) {
-// -- slimmed --          nRPCLayer1PhiHits()->push_back( el.nRPCLayer1PhiHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nRPCLayer1PhiHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nRPCLayer2PhiHits.IsAvailable() ) {
-// -- slimmed --          nRPCLayer2PhiHits()->push_back( el.nRPCLayer2PhiHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nRPCLayer2PhiHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nRPCLayer3PhiHits.IsAvailable() ) {
-// -- slimmed --          nRPCLayer3PhiHits()->push_back( el.nRPCLayer3PhiHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nRPCLayer3PhiHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nTGCLayer1EtaHits.IsAvailable() ) {
-// -- slimmed --          nTGCLayer1EtaHits()->push_back( el.nTGCLayer1EtaHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCLayer1EtaHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nTGCLayer2EtaHits.IsAvailable() ) {
-// -- slimmed --          nTGCLayer2EtaHits()->push_back( el.nTGCLayer2EtaHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCLayer2EtaHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nTGCLayer3EtaHits.IsAvailable() ) {
-// -- slimmed --          nTGCLayer3EtaHits()->push_back( el.nTGCLayer3EtaHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCLayer3EtaHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nTGCLayer4EtaHits.IsAvailable() ) {
-// -- slimmed --          nTGCLayer4EtaHits()->push_back( el.nTGCLayer4EtaHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCLayer4EtaHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nTGCLayer1PhiHits.IsAvailable() ) {
-// -- slimmed --          nTGCLayer1PhiHits()->push_back( el.nTGCLayer1PhiHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCLayer1PhiHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nTGCLayer2PhiHits.IsAvailable() ) {
-// -- slimmed --          nTGCLayer2PhiHits()->push_back( el.nTGCLayer2PhiHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCLayer2PhiHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nTGCLayer3PhiHits.IsAvailable() ) {
-// -- slimmed --          nTGCLayer3PhiHits()->push_back( el.nTGCLayer3PhiHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCLayer3PhiHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.nTGCLayer4PhiHits.IsAvailable() ) {
-// -- slimmed --          nTGCLayer4PhiHits()->push_back( el.nTGCLayer4PhiHits() );
-// -- slimmed --       } else {
-// -- slimmed --          nTGCLayer4PhiHits()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.barrelSectors.IsAvailable() ) {
-// -- slimmed --          barrelSectors()->push_back( el.barrelSectors() );
-// -- slimmed --       } else {
-// -- slimmed --          barrelSectors()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.endcapSectors.IsAvailable() ) {
-// -- slimmed --          endcapSectors()->push_back( el.endcapSectors() );
-// -- slimmed --       } else {
-// -- slimmed --          endcapSectors()->push_back( std::numeric_limits< int >::min() );
-// -- slimmed --       }
+      if( el.nRPCLayer1EtaHits.IsAvailable() ) {
+         nRPCLayer1EtaHits()->push_back( el.nRPCLayer1EtaHits() );
+      } else {
+         nRPCLayer1EtaHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nRPCLayer2EtaHits.IsAvailable() ) {
+         nRPCLayer2EtaHits()->push_back( el.nRPCLayer2EtaHits() );
+      } else {
+         nRPCLayer2EtaHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nRPCLayer3EtaHits.IsAvailable() ) {
+         nRPCLayer3EtaHits()->push_back( el.nRPCLayer3EtaHits() );
+      } else {
+         nRPCLayer3EtaHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nRPCLayer1PhiHits.IsAvailable() ) {
+         nRPCLayer1PhiHits()->push_back( el.nRPCLayer1PhiHits() );
+      } else {
+         nRPCLayer1PhiHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nRPCLayer2PhiHits.IsAvailable() ) {
+         nRPCLayer2PhiHits()->push_back( el.nRPCLayer2PhiHits() );
+      } else {
+         nRPCLayer2PhiHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nRPCLayer3PhiHits.IsAvailable() ) {
+         nRPCLayer3PhiHits()->push_back( el.nRPCLayer3PhiHits() );
+      } else {
+         nRPCLayer3PhiHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nTGCLayer1EtaHits.IsAvailable() ) {
+         nTGCLayer1EtaHits()->push_back( el.nTGCLayer1EtaHits() );
+      } else {
+         nTGCLayer1EtaHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nTGCLayer2EtaHits.IsAvailable() ) {
+         nTGCLayer2EtaHits()->push_back( el.nTGCLayer2EtaHits() );
+      } else {
+         nTGCLayer2EtaHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nTGCLayer3EtaHits.IsAvailable() ) {
+         nTGCLayer3EtaHits()->push_back( el.nTGCLayer3EtaHits() );
+      } else {
+         nTGCLayer3EtaHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nTGCLayer4EtaHits.IsAvailable() ) {
+         nTGCLayer4EtaHits()->push_back( el.nTGCLayer4EtaHits() );
+      } else {
+         nTGCLayer4EtaHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nTGCLayer1PhiHits.IsAvailable() ) {
+         nTGCLayer1PhiHits()->push_back( el.nTGCLayer1PhiHits() );
+      } else {
+         nTGCLayer1PhiHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nTGCLayer2PhiHits.IsAvailable() ) {
+         nTGCLayer2PhiHits()->push_back( el.nTGCLayer2PhiHits() );
+      } else {
+         nTGCLayer2PhiHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nTGCLayer3PhiHits.IsAvailable() ) {
+         nTGCLayer3PhiHits()->push_back( el.nTGCLayer3PhiHits() );
+      } else {
+         nTGCLayer3PhiHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nTGCLayer4PhiHits.IsAvailable() ) {
+         nTGCLayer4PhiHits()->push_back( el.nTGCLayer4PhiHits() );
+      } else {
+         nTGCLayer4PhiHits()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.barrelSectors.IsAvailable() ) {
+         barrelSectors()->push_back( el.barrelSectors() );
+      } else {
+         barrelSectors()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.endcapSectors.IsAvailable() ) {
+         endcapSectors()->push_back( el.endcapSectors() );
+      } else {
+         endcapSectors()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.trackd0.IsAvailable() ) {
          trackd0()->push_back( el.trackd0() );
       } else {
@@ -4295,46 +4207,46 @@ if (!is_data) {
       } else {
          hastrack()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.trackIPEstimate_d0_biasedpvunbiased.IsAvailable() ) {
-// -- slimmed --          trackIPEstimate_d0_biasedpvunbiased()->push_back( el.trackIPEstimate_d0_biasedpvunbiased() );
-// -- slimmed --       } else {
-// -- slimmed --          trackIPEstimate_d0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.trackIPEstimate_z0_biasedpvunbiased.IsAvailable() ) {
-// -- slimmed --          trackIPEstimate_z0_biasedpvunbiased()->push_back( el.trackIPEstimate_z0_biasedpvunbiased() );
-// -- slimmed --       } else {
-// -- slimmed --          trackIPEstimate_z0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.trackIPEstimate_sigd0_biasedpvunbiased.IsAvailable() ) {
-// -- slimmed --          trackIPEstimate_sigd0_biasedpvunbiased()->push_back( el.trackIPEstimate_sigd0_biasedpvunbiased() );
-// -- slimmed --       } else {
-// -- slimmed --          trackIPEstimate_sigd0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.trackIPEstimate_sigz0_biasedpvunbiased.IsAvailable() ) {
-// -- slimmed --          trackIPEstimate_sigz0_biasedpvunbiased()->push_back( el.trackIPEstimate_sigz0_biasedpvunbiased() );
-// -- slimmed --       } else {
-// -- slimmed --          trackIPEstimate_sigz0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.trackIPEstimate_d0_unbiasedpvunbiased.IsAvailable() ) {
-// -- slimmed --          trackIPEstimate_d0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_d0_unbiasedpvunbiased() );
-// -- slimmed --       } else {
-// -- slimmed --          trackIPEstimate_d0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.trackIPEstimate_z0_unbiasedpvunbiased.IsAvailable() ) {
-// -- slimmed --          trackIPEstimate_z0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_z0_unbiasedpvunbiased() );
-// -- slimmed --       } else {
-// -- slimmed --          trackIPEstimate_z0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.trackIPEstimate_sigd0_unbiasedpvunbiased.IsAvailable() ) {
-// -- slimmed --          trackIPEstimate_sigd0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_sigd0_unbiasedpvunbiased() );
-// -- slimmed --       } else {
-// -- slimmed --          trackIPEstimate_sigd0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
-// -- slimmed --       if( el.trackIPEstimate_sigz0_unbiasedpvunbiased.IsAvailable() ) {
-// -- slimmed --          trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_sigz0_unbiasedpvunbiased() );
-// -- slimmed --       } else {
-// -- slimmed --          trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
-// -- slimmed --       }
+      if( el.trackIPEstimate_d0_biasedpvunbiased.IsAvailable() ) {
+         trackIPEstimate_d0_biasedpvunbiased()->push_back( el.trackIPEstimate_d0_biasedpvunbiased() );
+      } else {
+         trackIPEstimate_d0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.trackIPEstimate_z0_biasedpvunbiased.IsAvailable() ) {
+         trackIPEstimate_z0_biasedpvunbiased()->push_back( el.trackIPEstimate_z0_biasedpvunbiased() );
+      } else {
+         trackIPEstimate_z0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.trackIPEstimate_sigd0_biasedpvunbiased.IsAvailable() ) {
+         trackIPEstimate_sigd0_biasedpvunbiased()->push_back( el.trackIPEstimate_sigd0_biasedpvunbiased() );
+      } else {
+         trackIPEstimate_sigd0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.trackIPEstimate_sigz0_biasedpvunbiased.IsAvailable() ) {
+         trackIPEstimate_sigz0_biasedpvunbiased()->push_back( el.trackIPEstimate_sigz0_biasedpvunbiased() );
+      } else {
+         trackIPEstimate_sigz0_biasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.trackIPEstimate_d0_unbiasedpvunbiased.IsAvailable() ) {
+         trackIPEstimate_d0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_d0_unbiasedpvunbiased() );
+      } else {
+         trackIPEstimate_d0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.trackIPEstimate_z0_unbiasedpvunbiased.IsAvailable() ) {
+         trackIPEstimate_z0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_z0_unbiasedpvunbiased() );
+      } else {
+         trackIPEstimate_z0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.trackIPEstimate_sigd0_unbiasedpvunbiased.IsAvailable() ) {
+         trackIPEstimate_sigd0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_sigd0_unbiasedpvunbiased() );
+      } else {
+         trackIPEstimate_sigd0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.trackIPEstimate_sigz0_unbiasedpvunbiased.IsAvailable() ) {
+         trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( el.trackIPEstimate_sigz0_unbiasedpvunbiased() );
+      } else {
+         trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
+      }
 if (!is_data) {
       if( el.type.IsAvailable() ) {
          type()->push_back( el.type() );
@@ -4477,26 +4389,6 @@ if (!is_data) {
       } else {
          nucone40_trkelstyle()->push_back( std::numeric_limits< int >::min() );
       }
-// -- slimmed --       if( el.MET_Simplified20_wpx.IsAvailable() ) {
-// -- slimmed --          MET_Simplified20_wpx()->push_back( el.MET_Simplified20_wpx() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_Simplified20_wpx()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_Simplified20_wpy.IsAvailable() ) {
-// -- slimmed --          MET_Simplified20_wpy()->push_back( el.MET_Simplified20_wpy() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_Simplified20_wpy()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_Simplified20_wet.IsAvailable() ) {
-// -- slimmed --          MET_Simplified20_wet()->push_back( el.MET_Simplified20_wet() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_Simplified20_wet()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_Simplified20_statusWord.IsAvailable() ) {
-// -- slimmed --          MET_Simplified20_statusWord()->push_back( el.MET_Simplified20_statusWord() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_Simplified20_statusWord()->push_back( vector<unsigned int>() );
-// -- slimmed --       }
       if( el.MET_Egamma10NoTau_wpx.IsAvailable() ) {
          MET_Egamma10NoTau_wpx()->push_back( el.MET_Egamma10NoTau_wpx() );
       } else {
@@ -4517,86 +4409,66 @@ if (!is_data) {
       } else {
          MET_Egamma10NoTau_statusWord()->push_back( vector<unsigned int>() );
       }
-      if( el.MET_Egamma10NoTau_STVF_wpx.IsAvailable() ) {
-         MET_Egamma10NoTau_STVF_wpx()->push_back( el.MET_Egamma10NoTau_STVF_wpx() );
+      if( el.MET_LooseEgamma10NoTau_wpx.IsAvailable() ) {
+         MET_LooseEgamma10NoTau_wpx()->push_back( el.MET_LooseEgamma10NoTau_wpx() );
       } else {
-         MET_Egamma10NoTau_STVF_wpx()->push_back( vector<float>() );
+         MET_LooseEgamma10NoTau_wpx()->push_back( vector<float>() );
       }
-      if( el.MET_Egamma10NoTau_STVF_wpy.IsAvailable() ) {
-         MET_Egamma10NoTau_STVF_wpy()->push_back( el.MET_Egamma10NoTau_STVF_wpy() );
+      if( el.MET_LooseEgamma10NoTau_wpy.IsAvailable() ) {
+         MET_LooseEgamma10NoTau_wpy()->push_back( el.MET_LooseEgamma10NoTau_wpy() );
       } else {
-         MET_Egamma10NoTau_STVF_wpy()->push_back( vector<float>() );
+         MET_LooseEgamma10NoTau_wpy()->push_back( vector<float>() );
       }
-      if( el.MET_Egamma10NoTau_STVF_wet.IsAvailable() ) {
-         MET_Egamma10NoTau_STVF_wet()->push_back( el.MET_Egamma10NoTau_STVF_wet() );
+      if( el.MET_LooseEgamma10NoTau_wet.IsAvailable() ) {
+         MET_LooseEgamma10NoTau_wet()->push_back( el.MET_LooseEgamma10NoTau_wet() );
       } else {
-         MET_Egamma10NoTau_STVF_wet()->push_back( vector<float>() );
+         MET_LooseEgamma10NoTau_wet()->push_back( vector<float>() );
       }
-      if( el.MET_Egamma10NoTau_STVF_statusWord.IsAvailable() ) {
-         MET_Egamma10NoTau_STVF_statusWord()->push_back( el.MET_Egamma10NoTau_STVF_statusWord() );
+      if( el.MET_LooseEgamma10NoTau_statusWord.IsAvailable() ) {
+         MET_LooseEgamma10NoTau_statusWord()->push_back( el.MET_LooseEgamma10NoTau_statusWord() );
       } else {
-         MET_Egamma10NoTau_STVF_statusWord()->push_back( vector<unsigned int>() );
+         MET_LooseEgamma10NoTau_statusWord()->push_back( vector<unsigned int>() );
       }
-// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wpx.IsAvailable() ) {
-// -- slimmed --          MET_LooseEgamma10NoTau_wpx()->push_back( el.MET_LooseEgamma10NoTau_wpx() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_LooseEgamma10NoTau_wpx()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wpy.IsAvailable() ) {
-// -- slimmed --          MET_LooseEgamma10NoTau_wpy()->push_back( el.MET_LooseEgamma10NoTau_wpy() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_LooseEgamma10NoTau_wpy()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_LooseEgamma10NoTau_wet.IsAvailable() ) {
-// -- slimmed --          MET_LooseEgamma10NoTau_wet()->push_back( el.MET_LooseEgamma10NoTau_wet() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_LooseEgamma10NoTau_wet()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_LooseEgamma10NoTau_statusWord.IsAvailable() ) {
-// -- slimmed --          MET_LooseEgamma10NoTau_statusWord()->push_back( el.MET_LooseEgamma10NoTau_statusWord() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_LooseEgamma10NoTau_statusWord()->push_back( vector<unsigned int>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_wpx.IsAvailable() ) {
-// -- slimmed --          MET_wpx()->push_back( el.MET_wpx() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_wpx()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_wpy.IsAvailable() ) {
-// -- slimmed --          MET_wpy()->push_back( el.MET_wpy() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_wpy()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_wet.IsAvailable() ) {
-// -- slimmed --          MET_wet()->push_back( el.MET_wet() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_wet()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_statusWord.IsAvailable() ) {
-// -- slimmed --          MET_statusWord()->push_back( el.MET_statusWord() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_statusWord()->push_back( vector<unsigned int>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_STVF_wpx.IsAvailable() ) {
-// -- slimmed --          MET_STVF_wpx()->push_back( el.MET_STVF_wpx() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_STVF_wpx()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_STVF_wpy.IsAvailable() ) {
-// -- slimmed --          MET_STVF_wpy()->push_back( el.MET_STVF_wpy() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_STVF_wpy()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed --       if( el.MET_STVF_wet.IsAvailable() ) {
-// -- slimmed --          MET_STVF_wet()->push_back( el.MET_STVF_wet() );
-// -- slimmed --       } else {
-// -- slimmed --          MET_STVF_wet()->push_back( vector<float>() );
-// -- slimmed --       }
-// -- slimmed -- // -- slimmed --       if( el.MET_STVF_statusWord.IsAvailable() ) {
-// -- slimmed -- // -- slimmed --          MET_STVF_statusWord()->push_back( el.MET_STVF_statusWord() );
-// -- slimmed --       } else {
-// -- slimmed -- // -- slimmed --          MET_STVF_statusWord()->push_back( vector<unsigned int>() );
-// -- slimmed --       }
+      if( el.MET_Egamma10LooseTau_wpx.IsAvailable() ) {
+         MET_Egamma10LooseTau_wpx()->push_back( el.MET_Egamma10LooseTau_wpx() );
+      } else {
+         MET_Egamma10LooseTau_wpx()->push_back( vector<float>() );
+      }
+      if( el.MET_Egamma10LooseTau_wpy.IsAvailable() ) {
+         MET_Egamma10LooseTau_wpy()->push_back( el.MET_Egamma10LooseTau_wpy() );
+      } else {
+         MET_Egamma10LooseTau_wpy()->push_back( vector<float>() );
+      }
+      if( el.MET_Egamma10LooseTau_wet.IsAvailable() ) {
+         MET_Egamma10LooseTau_wet()->push_back( el.MET_Egamma10LooseTau_wet() );
+      } else {
+         MET_Egamma10LooseTau_wet()->push_back( vector<float>() );
+      }
+      if( el.MET_Egamma10LooseTau_statusWord.IsAvailable() ) {
+         MET_Egamma10LooseTau_statusWord()->push_back( el.MET_Egamma10LooseTau_statusWord() );
+      } else {
+         MET_Egamma10LooseTau_statusWord()->push_back( vector<unsigned int>() );
+      }
+      if( el.MET_wpx.IsAvailable() ) {
+         MET_wpx()->push_back( el.MET_wpx() );
+      } else {
+         MET_wpx()->push_back( vector<float>() );
+      }
+      if( el.MET_wpy.IsAvailable() ) {
+         MET_wpy()->push_back( el.MET_wpy() );
+      } else {
+         MET_wpy()->push_back( vector<float>() );
+      }
+      if( el.MET_wet.IsAvailable() ) {
+         MET_wet()->push_back( el.MET_wet() );
+      } else {
+         MET_wet()->push_back( vector<float>() );
+      }
+      if( el.MET_statusWord.IsAvailable() ) {
+         MET_statusWord()->push_back( el.MET_statusWord() );
+      } else {
+         MET_statusWord()->push_back( vector<unsigned int>() );
+      }
       return *this;
    }
 

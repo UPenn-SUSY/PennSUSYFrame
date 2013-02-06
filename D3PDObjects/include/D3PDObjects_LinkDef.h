@@ -46,7 +46,7 @@
 #pragma link C++ class D3PDReader::TruthMETD3PDObject+;
 #pragma link C++ class D3PDReader::VertexD3PDObject+;
 #pragma link C++ class D3PDReader::VertexD3PDObjectElement+;
-#pragma link C++ class D3PDReader::FakeD3PDObject+;
+// #pragma link C++ class D3PDReader::FakeD3PDObject+;
 
 #pragma link C++ class std::vector<std::vector<int>>+;
 #pragma link C++ class std::vector<std::vector<unsigned int> >+;

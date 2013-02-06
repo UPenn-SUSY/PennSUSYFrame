@@ -6,6 +6,7 @@ CommonTools::JetCalibTool::JetCalibTool( SCycleBase* parent
                                        )
                                        : ToolBase(parent, name)
                                        , m_jet_calibration(NULL)
+                                       , m_jes_uncertainty(NULL)
 {
   DeclareProperty("is_af2", c_is_af2 = false);
 }
@@ -31,14 +32,17 @@ void CommonTools::JetCalibTool::BeginInputData(const SInputData&)
   }
 
   std::string jes_config_file;
+  std::string mc_type = "";
   if (c_is_af2){
-    std::cout << "setting up AF2\n";
+    std::cout << "setting up JES for AF2\n";
     jes_config_file = maindir +
-      "../ApplyJetCalibration/data/CalibrationConfigs/JES_August2012_AFII.config";
+      "../ApplyJetCalibration/data/CalibrationConfigs/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config";
+    mc_type = "AFII";
   } else {
-    std::cout << "setting up full sim\n";
+    std::cout << "setting up JES for full sim\n";
     jes_config_file = maindir +
-      "../ApplyJetCalibration/data/CalibrationConfigs/JES_March2012.config";
+      "../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config";
+    mc_type = "MC12a";
   }
 
   m_jet_calibration = new JetCalibrationTool( jet_algorithm
@@ -57,17 +61,30 @@ void CommonTools::JetCalibTool::EndInputData(const SInputData&)
 // -----------------------------------------------------------------------------
 TLorentzVector CommonTools::JetCalibTool::getConfiguredJet(
     Jet* jet,
-    float mu,
-    int num_vetices_w_2_trks)
+    const Event* event,
+    int num_vertices_w_2_trks)
 {
-  TLorentzVector tlv = m_jet_calibration->ApplyOffsetEtaJES(
+  TLorentzVector tlv = m_jet_calibration->ApplyJetAreaOffsetEtaJES(
       jet->constscale_E(),
       jet->constscale_eta(),
-      jet->EtaOrigin(),
-      jet->PhiOrigin(),
-      jet->MOrigin(),
-      mu,
-      num_vetices_w_2_trks);
+      jet->constscale_phi(),
+      jet->constscale_m(),
+      jet->ActiveAreaPx(),
+      jet->ActiveAreaPy(),
+      jet->ActiveAreaPz(),
+      jet->ActiveAreaE(),
+      event->Eventshape_rhoKt4LC(),
+      event->averageIntPerXing(),
+      num_vertices_w_2_trks);
+
+  // TLorentzVector tlv = m_jet_calibration->ApplyOffsetEtaJES(
+  //     jet->constscale_E(),
+  //     jet->constscale_eta(),
+  //     jet->EtaOrigin(),
+  //     jet->PhiOrigin(),
+  //     jet->MOrigin(),
+  //     mu,
+  //     num_vetices_w_2_trks);
 
   return tlv;
 }

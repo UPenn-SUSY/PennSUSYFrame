@@ -658,7 +658,7 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatching2012(
   // em region A
   if (phase == TRIG_EM_A) {
     bool pass_electron_match = matchElectronList(
-        electrons, trig_vec->trig_EF_trigmuonef_EF_mu8(),
+        electrons, trig_vec->trig_EF_el_EF_e12Tvh_medium1(),
         trig_vec, 1, 0.15, 0);
     bool pass_muon_match = matchMuonList(
         muons, trig_vec->trig_EF_trigmuonef_EF_mu8(),

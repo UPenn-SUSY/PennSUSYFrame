@@ -46,10 +46,10 @@ void JetContainer::prepJets( D3PDReader::JetD3PDObject* jet_d3pdobject
 
   size_t term = m_master_list.size();
   for (size_t jet_it = 0; jet_it != term; ++jet_it) {
-    float mu = event->averageIntPerXing();
+    // float mu = event->averageIntPerXing();
     int num_vertices_w_2_trks = vertices.num(VERT_GT_2);
 
-    m_master_list.at(jet_it).prepTlv(mu, num_vertices_w_2_trks);
+    m_master_list.at(jet_it).prepTlv(event, num_vertices_w_2_trks);
     m_master_list.at(jet_it).prepRawTlv();
 
     m_jet_selection->process(&m_master_list.at(jet_it));

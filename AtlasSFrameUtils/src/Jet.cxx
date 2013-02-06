@@ -40,12 +40,12 @@ TLorentzVector Jet::getRawTlv() const
 }
 
 // ----------------------------------------------------------------------------
-void Jet::prepTlv( float mu
+void Jet::prepTlv( const Event* event
                  , int num_vertices_2_trk
                  )
 {
   if (m_tlv_prepped == false) {
-    m_tlv = m_tlv_tool->tlv(this, mu, num_vertices_2_trk);
+    m_tlv = m_tlv_tool->tlv(this, event, num_vertices_2_trk);
     m_tlv_prepped = true;
   }
 }

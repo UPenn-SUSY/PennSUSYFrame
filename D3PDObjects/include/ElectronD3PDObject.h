@@ -69,23 +69,23 @@ namespace D3PDReader {
       /// Number of conversion vertices.
       VarProxy< int > nConv;
       /// Number of conversion vertices with exactly one track.
-// -- slimmed --       VarProxy< int > nSingleTrackConv;
+      VarProxy< int > nSingleTrackConv;
       /// Number of conversion vertices with exactly two tracks.
-// -- slimmed --       VarProxy< int > nDoubleTrackConv;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_time] 
-// -- slimmed --       VarProxy< float > maxEcell_time;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_energy] 
-// -- slimmed --       VarProxy< float > maxEcell_energy;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_onlId] 
-// -- slimmed --       VarProxy< unsigned int > maxEcell_onlId;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_gain] 
-// -- slimmed --       VarProxy< int > maxEcell_gain;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_x] 
-// -- slimmed --       VarProxy< float > maxEcell_x;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_y] 
-// -- slimmed --       VarProxy< float > maxEcell_y;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_z] 
-// -- slimmed --       VarProxy< float > maxEcell_z;
+      VarProxy< int > nDoubleTrackConv;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_time] 
+      VarProxy< float > maxEcell_time;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_energy] 
+      VarProxy< float > maxEcell_energy;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_onlId] 
+      VarProxy< unsigned int > maxEcell_onlId;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_gain] 
+      VarProxy< int > maxEcell_gain;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_x] 
+      VarProxy< float > maxEcell_x;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_y] 
+      VarProxy< float > maxEcell_y;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_z] 
+      VarProxy< float > maxEcell_z;
 // MC only
       /// MC particle type, from classifier tool.
       VarProxy< int > type;
@@ -109,22 +109,22 @@ namespace D3PDReader {
       VarProxy< int > truth_index;
       VarProxy< int > truth_matched;
 // end MC only
-// -- slimmed --       VarProxy< int > mediumWithoutTrack;
-// -- slimmed -- // -- slimmed --       VarProxy< int > mediumIsoWithoutTrack;
-// -- slimmed --       VarProxy< int > tightWithoutTrack;
-// -- slimmed -- // -- slimmed --       VarProxy< int > tightIsoWithoutTrack;
-// -- slimmed --       VarProxy< int > loose;
-// -- slimmed --       VarProxy< int > looseIso;
-// -- slimmed --       VarProxy< int > medium;
-// -- slimmed --       VarProxy< int > mediumIso;
-// -- slimmed --       VarProxy< int > tight;
-// -- slimmed --       VarProxy< int > tightIso;
+      VarProxy< int > mediumWithoutTrack;
+      VarProxy< int > mediumIsoWithoutTrack;
+      VarProxy< int > tightWithoutTrack;
+      VarProxy< int > tightIsoWithoutTrack;
+      VarProxy< int > loose;
+      VarProxy< int > looseIso;
+      VarProxy< int > medium;
+      VarProxy< int > mediumIso;
+      VarProxy< int > tight;
+      VarProxy< int > tightIso;
       VarProxy< int > loosePP;
-// -- slimmed --       VarProxy< int > loosePPIso;
+      VarProxy< int > loosePPIso;
       VarProxy< int > mediumPP;
-// -- slimmed --       VarProxy< int > mediumPPIso;
+      VarProxy< int > mediumPPIso;
       VarProxy< int > tightPP;
-// -- slimmed --       VarProxy< int > tightPPIso;
+      VarProxy< int > tightPPIso;
       VarProxy< int > goodOQ;
       /// [detail 9]
       VarProxy< float > Ethad;
@@ -370,30 +370,22 @@ namespace D3PDReader {
       VarProxy< int > nucone20_trk500MeV;
       VarProxy< int > nucone30_trk500MeV;
       VarProxy< int > nucone40_trk500MeV;
-// -- slimmed --       VarProxy< vector<float> > MET_Simplified20_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_Simplified20_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_Simplified20_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_Simplified20_statusWord;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpx;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpy;
       VarProxy< vector<float> > MET_Egamma10NoTau_wet;
       VarProxy< vector<unsigned int> > MET_Egamma10NoTau_statusWord;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wpx;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wpy;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wet;
-      VarProxy< vector<unsigned int> > MET_Egamma10NoTau_STVF_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_LooseEgamma10NoTau_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_STVF_statusWord;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpx;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpy;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wet;
+      VarProxy< vector<unsigned int> > MET_LooseEgamma10NoTau_statusWord;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpx;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpy;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wet;
+      VarProxy< vector<unsigned int> > MET_Egamma10LooseTau_statusWord;
+      VarProxy< vector<float> > MET_wpx;
+      VarProxy< vector<float> > MET_wpy;
+      VarProxy< vector<float> > MET_wet;
+      VarProxy< vector<unsigned int> > MET_statusWord;
 
 
 bool is_data; // ~bj 
@@ -473,23 +465,23 @@ bool is_data; // ~bj
       /// Number of conversion vertices.
       VarHandle< vector<int>* > nConv;
       /// Number of conversion vertices with exactly one track.
-// -- slimmed --       VarHandle< vector<int>* > nSingleTrackConv;
+      VarHandle< vector<int>* > nSingleTrackConv;
       /// Number of conversion vertices with exactly two tracks.
-// -- slimmed --       VarHandle< vector<int>* > nDoubleTrackConv;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_time] 
-// -- slimmed --       VarHandle< vector<float>* > maxEcell_time;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_energy] 
-// -- slimmed --       VarHandle< vector<float>* > maxEcell_energy;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_onlId] 
-// -- slimmed --       VarHandle< vector<unsigned int>* > maxEcell_onlId;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_gain] 
-// -- slimmed --       VarHandle< vector<int>* > maxEcell_gain;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_x] 
-// -- slimmed --       VarHandle< vector<float>* > maxEcell_x;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_y] 
-// -- slimmed --       VarHandle< vector<float>* > maxEcell_y;
-// -- slimmed --       /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_z] 
-// -- slimmed --       VarHandle< vector<float>* > maxEcell_z;
+      VarHandle< vector<int>* > nDoubleTrackConv;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_time] 
+      VarHandle< vector<float>* > maxEcell_time;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_energy] 
+      VarHandle< vector<float>* > maxEcell_energy;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_onlId] 
+      VarHandle< vector<unsigned int>* > maxEcell_onlId;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_gain] 
+      VarHandle< vector<int>* > maxEcell_gain;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_x] 
+      VarHandle< vector<float>* > maxEcell_x;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_y] 
+      VarHandle< vector<float>* > maxEcell_y;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_maxEcell_z] 
+      VarHandle< vector<float>* > maxEcell_z;
 // MC only
       /// MC particle type, from classifier tool.
       VarHandle< vector<int>* > type;
@@ -513,22 +505,22 @@ bool is_data; // ~bj
       VarHandle< vector<int>* > truth_index;
       VarHandle< vector<int>* > truth_matched;
 // end MC only
-// -- slimmed --       VarHandle< vector<int>* > mediumWithoutTrack;
-// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > mediumIsoWithoutTrack;
-// -- slimmed --       VarHandle< vector<int>* > tightWithoutTrack;
-// -- slimmed -- // -- slimmed --       VarHandle< vector<int>* > tightIsoWithoutTrack;
-// -- slimmed --       VarHandle< vector<int>* > loose;
-// -- slimmed --       VarHandle< vector<int>* > looseIso;
-// -- slimmed --       VarHandle< vector<int>* > medium;
-// -- slimmed --       VarHandle< vector<int>* > mediumIso;
-// -- slimmed --       VarHandle< vector<int>* > tight;
-// -- slimmed --       VarHandle< vector<int>* > tightIso;
+      VarHandle< vector<int>* > mediumWithoutTrack;
+      VarHandle< vector<int>* > mediumIsoWithoutTrack;
+      VarHandle< vector<int>* > tightWithoutTrack;
+      VarHandle< vector<int>* > tightIsoWithoutTrack;
+      VarHandle< vector<int>* > loose;
+      VarHandle< vector<int>* > looseIso;
+      VarHandle< vector<int>* > medium;
+      VarHandle< vector<int>* > mediumIso;
+      VarHandle< vector<int>* > tight;
+      VarHandle< vector<int>* > tightIso;
       VarHandle< vector<int>* > loosePP;
-// -- slimmed --       VarHandle< vector<int>* > loosePPIso;
+      VarHandle< vector<int>* > loosePPIso;
       VarHandle< vector<int>* > mediumPP;
-// -- slimmed --       VarHandle< vector<int>* > mediumPPIso;
+      VarHandle< vector<int>* > mediumPPIso;
       VarHandle< vector<int>* > tightPP;
-// -- slimmed --       VarHandle< vector<int>* > tightPPIso;
+      VarHandle< vector<int>* > tightPPIso;
       VarHandle< vector<int>* > goodOQ;
       /// [detail 9]
       VarHandle< vector<float>* > Ethad;
@@ -774,30 +766,22 @@ bool is_data; // ~bj
       VarHandle< vector<int>* > nucone20_trk500MeV;
       VarHandle< vector<int>* > nucone30_trk500MeV;
       VarHandle< vector<int>* > nucone40_trk500MeV;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_Simplified20_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_Simplified20_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_Simplified20_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_Simplified20_statusWord;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpx;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpy;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wet;
       VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_statusWord;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wpx;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wpy;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_STVF_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_LooseEgamma10NoTau_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_STVF_statusWord;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpx;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpy;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_LooseEgamma10NoTau_statusWord;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpx;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpy;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10LooseTau_statusWord;
+      VarHandle< vector<vector<float> >* > MET_wpx;
+      VarHandle< vector<vector<float> >* > MET_wpy;
+      VarHandle< vector<vector<float> >* > MET_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
 
    private:
       mutable std::vector< ElectronD3PDObjectElement > fProxies; ///< Internal list of proxy objects

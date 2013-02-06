@@ -11,6 +11,7 @@
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Event.h"
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/Jet.h"
 
@@ -49,7 +50,7 @@ namespace CommonTools{
     const TLorentzVector tlv(const Electron*);
     const TLorentzVector tlv(const Muon*);
     const TLorentzVector tlv( Jet*
-                            , float mu
+                            , const Event* event
                             , int num_vetices_w_2_trks
                             );
 

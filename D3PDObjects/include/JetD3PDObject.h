@@ -10,6 +10,8 @@
 #include <map>
 #include <vector>
 using std::vector;
+#include <string>
+using std::string;
 
 #include <TObject.h>
 #include <TString.h>
@@ -46,22 +48,18 @@ namespace D3PDReader {
       VarProxy< vector<float> > MET_Egamma10NoTau_wpy;
       VarProxy< vector<float> > MET_Egamma10NoTau_wet;
       VarProxy< vector<unsigned int> > MET_Egamma10NoTau_statusWord;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wpx;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wpy;
-      VarProxy< vector<float> > MET_Egamma10NoTau_STVF_wet;
-      VarProxy< vector<unsigned int> > MET_Egamma10NoTau_STVF_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_LooseEgamma10NoTau_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_LooseEgamma10NoTau_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_statusWord;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wpx;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wpy;
-// -- slimmed --       VarProxy< vector<float> > MET_STVF_wet;
-// -- slimmed --       VarProxy< vector<unsigned int> > MET_STVF_statusWord;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpx;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpy;
+      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wet;
+      VarProxy< vector<unsigned int> > MET_LooseEgamma10NoTau_statusWord;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpx;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wpy;
+      VarProxy< vector<float> > MET_Egamma10LooseTau_wet;
+      VarProxy< vector<unsigned int> > MET_Egamma10LooseTau_statusWord;
+      VarProxy< vector<float> > MET_wpx;
+      VarProxy< vector<float> > MET_wpy;
+      VarProxy< vector<float> > MET_wet;
+      VarProxy< vector<unsigned int> > MET_statusWord;
       VarProxy< float > E;
       VarProxy< float > pt;
       VarProxy< float > m;
@@ -70,12 +68,9 @@ namespace D3PDReader {
       VarProxy< float > EtaOrigin;
       VarProxy< float > PhiOrigin;
       VarProxy< float > MOrigin;
-      VarProxy< float > EtaOriginEM;
-      VarProxy< float > PhiOriginEM;
-      VarProxy< float > MOriginEM;
-// -- slimmed --       VarProxy< float > WIDTH;
-// -- slimmed --       VarProxy< float > n90;
-// -- slimmed --       VarProxy< float > Timing;
+      VarProxy< float > WIDTH;
+      VarProxy< float > n90;
+      VarProxy< float > Timing;
       VarProxy< float > LArQuality;
       VarProxy< float > nTrk;
       VarProxy< float > sumPtTrk;
@@ -83,83 +78,84 @@ namespace D3PDReader {
       VarProxy< float > HECQuality;
       VarProxy< float > NegativeE;
       VarProxy< float > AverageLArQF;
-      // ~~~
-// -- slimmed --       VarProxy< float > YFlip12;
-// -- slimmed --       VarProxy< float > YFlip23;
-// -- slimmed --       VarProxy< float > BCH_CORR_CELL;
-// -- slimmed --       VarProxy< float > BCH_CORR_DOTX;
-// -- slimmed --       VarProxy< float > BCH_CORR_JET;
-// -- slimmed --       VarProxy< float > BCH_CORR_JET_FORCELL;
+      VarProxy< float > BCH_CORR_CELL;
+      VarProxy< float > BCH_CORR_DOTX;
+      VarProxy< float > BCH_CORR_JET;
+      VarProxy< float > BCH_CORR_JET_FORCELL;
       VarProxy< float > ENG_BAD_CELLS;
       VarProxy< float > N_BAD_CELLS;
       VarProxy< float > N_BAD_CELLS_CORR;
       VarProxy< float > BAD_CELLS_CORR_E;
-// -- slimmed --       VarProxy< float > NumTowers;
-// -- slimmed --       VarProxy< float > ootFracCells5;
-// -- slimmed --       VarProxy< float > ootFracCells10;
-// -- slimmed --       VarProxy< float > ootFracClusters5;
-// -- slimmed --       VarProxy< float > ootFracClusters10;
-      // ~~~
+      VarProxy< float > NumTowers;
+      VarProxy< float > ootFracCells5;
+      VarProxy< float > ootFracCells10;
+      VarProxy< float > ootFracClusters5;
+      VarProxy< float > ootFracClusters10;
       VarProxy< int > SamplingMax;
       VarProxy< float > fracSamplingMax;
       VarProxy< float > hecf;
-// -- slimmed --       VarProxy< float > tgap3f;
-// -- slimmed --       VarProxy< int > isUgly;
-// -- slimmed --       VarProxy< int > isBadLooseMinus;
-// -- slimmed --       VarProxy< int > isBadLoose;
-// -- slimmed --       VarProxy< int > isBadMedium;
-// -- slimmed --       VarProxy< int > isBadTight;
+      VarProxy< float > tgap3f;
+      VarProxy< int > isUgly;
+      VarProxy< int > isBadLooseMinus;
+      VarProxy< int > isBadLoose;
+      VarProxy< int > isBadMedium;
+      VarProxy< int > isBadTight;
       VarProxy< float > emfrac;
       VarProxy< float > Offset;
       VarProxy< float > EMJES;
       VarProxy< float > EMJES_EtaCorr;
       VarProxy< float > EMJESnooffset;
-      VarProxy< float > GCWJES;
-      VarProxy< float > GCWJES_EtaCorr;
-      VarProxy< float > CB;
       VarProxy< float > LCJES;
+      VarProxy< float > LCJES_EtaCorr;
       VarProxy< float > emscale_E;
       VarProxy< float > emscale_pt;
       VarProxy< float > emscale_m;
       VarProxy< float > emscale_eta;
       VarProxy< float > emscale_phi;
+      VarProxy< float > ActiveArea;
+      VarProxy< float > ActiveAreaPx;
+      VarProxy< float > ActiveAreaPy;
+      VarProxy< float > ActiveAreaPz;
+      VarProxy< float > ActiveAreaE;
+      VarProxy< float > jvtxf;
+      VarProxy< vector<float> > jvtxfFull;
       VarProxy< float > jvtx_x;
       VarProxy< float > jvtx_y;
       VarProxy< float > jvtx_z;
-      VarProxy< float > jvtxf;
-      VarProxy< vector<float> > jvtxfFull;
+      VarProxy< float > TruthMFindex;
+      VarProxy< float > TruthMF;
       VarProxy< float > GSCFactorF;
       VarProxy< float > WidthFraction;
       VarProxy< float > e_PreSamplerB;
-// -- slimmed --       VarProxy< float > e_EMB1;
-// -- slimmed --       VarProxy< float > e_EMB2;
-// -- slimmed --       VarProxy< float > e_EMB3;
-// -- slimmed --       VarProxy< float > e_PreSamplerE;
-// -- slimmed --       VarProxy< float > e_EME1;
-// -- slimmed --       VarProxy< float > e_EME2;
-// -- slimmed --       VarProxy< float > e_EME3;
-// -- slimmed --       VarProxy< float > e_HEC0;
-// -- slimmed --       VarProxy< float > e_HEC1;
-// -- slimmed --       VarProxy< float > e_HEC2;
-// -- slimmed --       VarProxy< float > e_HEC3;
-// -- slimmed --       VarProxy< float > e_TileBar0;
-// -- slimmed --       VarProxy< float > e_TileBar1;
-// -- slimmed --       VarProxy< float > e_TileBar2;
-// -- slimmed --       VarProxy< float > e_TileGap1;
-// -- slimmed --       VarProxy< float > e_TileGap2;
-// -- slimmed --       VarProxy< float > e_TileGap3;
-// -- slimmed --       VarProxy< float > e_TileExt0;
-// -- slimmed --       VarProxy< float > e_TileExt1;
-// -- slimmed --       VarProxy< float > e_TileExt2;
-// -- slimmed --       VarProxy< float > e_FCAL0;
-// -- slimmed --       VarProxy< float > e_FCAL1;
-// -- slimmed --       VarProxy< float > e_FCAL2;
-// -- slimmed --       VarProxy< int > Nconst;
-// -- slimmed --       VarProxy< vector<float> > ptconst_default;
-// -- slimmed --       VarProxy< vector<float> > econst_default;
-// -- slimmed --       VarProxy< vector<float> > etaconst_default;
-// -- slimmed --       VarProxy< vector<float> > phiconst_default;
-// -- slimmed --       VarProxy< vector<float> > weightconst_default;
+      VarProxy< float > e_EMB1;
+      VarProxy< float > e_EMB2;
+      VarProxy< float > e_EMB3;
+      VarProxy< float > e_PreSamplerE;
+      VarProxy< float > e_EME1;
+      VarProxy< float > e_EME2;
+      VarProxy< float > e_EME3;
+      VarProxy< float > e_HEC0;
+      VarProxy< float > e_HEC1;
+      VarProxy< float > e_HEC2;
+      VarProxy< float > e_HEC3;
+      VarProxy< float > e_TileBar0;
+      VarProxy< float > e_TileBar1;
+      VarProxy< float > e_TileBar2;
+      VarProxy< float > e_TileGap1;
+      VarProxy< float > e_TileGap2;
+      VarProxy< float > e_TileGap3;
+      VarProxy< float > e_TileExt0;
+      VarProxy< float > e_TileExt1;
+      VarProxy< float > e_TileExt2;
+      VarProxy< float > e_FCAL0;
+      VarProxy< float > e_FCAL1;
+      VarProxy< float > e_FCAL2;
+      VarProxy< int > Nconst;
+      VarProxy< vector<float> > ptconst_default;
+      VarProxy< vector<float> > econst_default;
+      VarProxy< vector<float> > etaconst_default;
+      VarProxy< vector<float> > phiconst_default;
+      VarProxy< vector<float> > weightconst_default;
       VarProxy< float > constscale_E;
       VarProxy< float > constscale_pt;
       VarProxy< float > constscale_m;
@@ -178,6 +174,10 @@ namespace D3PDReader {
       VarProxy< float > flavor_weight_MV1;
       VarProxy< float > flavor_weight_MV2;
       VarProxy< float > flavor_weight_GbbNN;
+      VarProxy< float > flavor_weight_JetFitterCharm;
+      VarProxy< float > flavor_weight_MV3_bVSu;
+      VarProxy< float > flavor_weight_MV3_bVSc;
+      VarProxy< float > flavor_weight_MV3_cVSu;
 // MC only
       VarProxy< int > flavor_truth_label;
       VarProxy< float > flavor_truth_dRminToB;
@@ -189,130 +189,149 @@ namespace D3PDReader {
       VarProxy< float > flavor_truth_vx_z;
 // end MC only
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_ip2d_pu;
+      VarProxy< float > flavor_component_ip2d_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_ip2d_pb;
-// -- slimmed --       VarProxy< int > flavor_component_ip2d_isValid;
+      VarProxy< float > flavor_component_ip2d_pb;
+      VarProxy< int > flavor_component_ip2d_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_ip2d_ntrk;
+      VarProxy< int > flavor_component_ip2d_ntrk;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_ip3d_pu;
+      VarProxy< float > flavor_component_ip3d_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_ip3d_pb;
-// -- slimmed --       VarProxy< int > flavor_component_ip3d_isValid;
+      VarProxy< float > flavor_component_ip3d_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_ip3d_ntrk;
+      VarProxy< float > flavor_component_ip3d_pc;
+      VarProxy< int > flavor_component_ip3d_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_sv1_pu;
+      VarProxy< int > flavor_component_ip3d_ntrk;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_sv1_pb;
-// -- slimmed --       VarProxy< int > flavor_component_sv1_isValid;
+      VarProxy< float > flavor_component_sv1_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_sv2_pu;
+      VarProxy< float > flavor_component_sv1_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_sv2_pb;
-// -- slimmed --       VarProxy< int > flavor_component_sv2_isValid;
+      VarProxy< float > flavor_component_sv1_pc;
+      VarProxy< int > flavor_component_sv1_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfit_pu;
+      VarProxy< float > flavor_component_sv2_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfit_pb;
+      VarProxy< float > flavor_component_sv2_pb;
+      VarProxy< int > flavor_component_sv2_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfit_pc;
-// -- slimmed --       VarProxy< int > flavor_component_jfit_isValid;
+      VarProxy< float > flavor_component_jfit_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfitcomb_pu;
+      VarProxy< float > flavor_component_jfit_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfitcomb_pb;
+      VarProxy< float > flavor_component_jfit_pc;
+      VarProxy< int > flavor_component_jfit_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfitcomb_pc;
-// -- slimmed --       VarProxy< int > flavor_component_jfitcomb_isValid;
+      VarProxy< float > flavor_component_jfitcomb_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_jfit_nvtx;
+      VarProxy< float > flavor_component_jfitcomb_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_jfit_nvtx1t;
+      VarProxy< float > flavor_component_jfitcomb_pc;
+      VarProxy< int > flavor_component_jfitcomb_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_jfit_ntrkAtVx;
+      VarProxy< int > flavor_component_jfit_nvtx;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfit_efrc;
+      VarProxy< int > flavor_component_jfit_nvtx1t;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfit_mass;
+      VarProxy< int > flavor_component_jfit_ntrkAtVx;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfit_sig3d;
+      VarProxy< float > flavor_component_jfit_efrc;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfit_deltaPhi;
+      VarProxy< float > flavor_component_jfit_mass;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_jfit_deltaEta;
-// -- slimmed --       VarProxy< int > flavor_component_svp_isValid;
+      VarProxy< float > flavor_component_jfit_sig3d;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_svp_ntrkv;
+      VarProxy< float > flavor_component_jfit_deltaPhi;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_svp_ntrkj;
+      VarProxy< float > flavor_component_jfit_deltaEta;
+      /// Names of the properties in JetFitterGenericTagInfo
+      VarProxy< vector<string> > flavor_component_jfitc_doublePropName;
+      /// Values of the properties in JetFitterGenericTagInfo
+      VarProxy< vector<double> > flavor_component_jfitc_doublePropValue;
+      /// Names of the properties in JetFitterGenericTagInfo
+      VarProxy< vector<string> > flavor_component_jfitc_intPropName;
+      /// Values of the properties in JetFitterGenericTagInfo
+      VarProxy< vector<int> > flavor_component_jfitc_intPropValue;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_svp_n2t;
+      VarProxy< float > flavor_component_jfitc_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_svp_mass;
+      VarProxy< float > flavor_component_jfitc_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_svp_efrc;
-// -- slimmed --       VarProxy< float > flavor_component_svp_x;
-// -- slimmed --       VarProxy< float > flavor_component_svp_y;
-// -- slimmed --       VarProxy< float > flavor_component_svp_z;
-// -- slimmed --       VarProxy< float > flavor_component_svp_err_x;
-// -- slimmed --       VarProxy< float > flavor_component_svp_err_y;
-// -- slimmed --       VarProxy< float > flavor_component_svp_err_z;
-// -- slimmed --       VarProxy< float > flavor_component_svp_cov_xy;
-// -- slimmed --       VarProxy< float > flavor_component_svp_cov_xz;
-// -- slimmed --       VarProxy< float > flavor_component_svp_cov_yz;
+      VarProxy< float > flavor_component_jfitc_pc;
+      VarProxy< int > flavor_component_jfitc_isValid;
+      VarProxy< int > flavor_component_svp_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_svp_chi2;
+      VarProxy< int > flavor_component_svp_ntrkv;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_svp_ndof;
+      VarProxy< int > flavor_component_svp_ntrkj;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_svp_ntrk;
-// -- slimmed --       VarProxy< int > flavor_component_sv0p_isValid;
+      VarProxy< int > flavor_component_svp_n2t;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_sv0p_ntrkv;
+      VarProxy< float > flavor_component_svp_mass;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_sv0p_ntrkj;
+      VarProxy< float > flavor_component_svp_efrc;
+      VarProxy< float > flavor_component_svp_x;
+      VarProxy< float > flavor_component_svp_y;
+      VarProxy< float > flavor_component_svp_z;
+      VarProxy< float > flavor_component_svp_err_x;
+      VarProxy< float > flavor_component_svp_err_y;
+      VarProxy< float > flavor_component_svp_err_z;
+      VarProxy< float > flavor_component_svp_cov_xy;
+      VarProxy< float > flavor_component_svp_cov_xz;
+      VarProxy< float > flavor_component_svp_cov_yz;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_sv0p_n2t;
+      VarProxy< float > flavor_component_svp_chi2;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_mass;
+      VarProxy< int > flavor_component_svp_ndof;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_efrc;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_x;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_y;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_z;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_err_x;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_err_y;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_err_z;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_cov_xy;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_cov_xz;
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_cov_yz;
+      VarProxy< int > flavor_component_svp_ntrk;
+      VarProxy< int > flavor_component_sv0p_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< float > flavor_component_sv0p_chi2;
+      VarProxy< int > flavor_component_sv0p_ntrkv;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_sv0p_ndof;
+      VarProxy< int > flavor_component_sv0p_ntrkj;
       /// UNDOCUMENTED
-// -- slimmed --       VarProxy< int > flavor_component_sv0p_ntrk;
+      VarProxy< int > flavor_component_sv0p_n2t;
+      /// UNDOCUMENTED
+      VarProxy< float > flavor_component_sv0p_mass;
+      /// UNDOCUMENTED
+      VarProxy< float > flavor_component_sv0p_efrc;
+      VarProxy< float > flavor_component_sv0p_x;
+      VarProxy< float > flavor_component_sv0p_y;
+      VarProxy< float > flavor_component_sv0p_z;
+      VarProxy< float > flavor_component_sv0p_err_x;
+      VarProxy< float > flavor_component_sv0p_err_y;
+      VarProxy< float > flavor_component_sv0p_err_z;
+      VarProxy< float > flavor_component_sv0p_cov_xy;
+      VarProxy< float > flavor_component_sv0p_cov_xz;
+      VarProxy< float > flavor_component_sv0p_cov_yz;
+      /// UNDOCUMENTED
+      VarProxy< float > flavor_component_sv0p_chi2;
+      /// UNDOCUMENTED
+      VarProxy< int > flavor_component_sv0p_ndof;
+      /// UNDOCUMENTED
+      VarProxy< int > flavor_component_sv0p_ntrk;
       /// Number of ntuple rows.
-// -- slimmed --       VarProxy< int > flavor_assoctrk_n;
+      VarProxy< int > flavor_assoctrk_n;
       /// Index in trk
-// -- slimmed --       VarProxy< vector<int> > flavor_assoctrk_index;
-// -- slimmed --       VarProxy< float > el_dr;
-// -- slimmed --       VarProxy< int > el_matched;
-// -- slimmed --       VarProxy< float > mu_dr;
-// -- slimmed --       VarProxy< int > mu_matched;
+      VarProxy< vector<int> > flavor_assoctrk_index;
+      VarProxy< float > el_dr;
+      VarProxy< int > el_matched;
+      VarProxy< float > mu_dr;
+      VarProxy< int > mu_matched;
       /// DeltaR between the offline and trigger objects.
-// -- slimmed --       VarProxy< float > L1_dr;
-// -- slimmed --       VarProxy< int > L1_matched;
+      VarProxy< float > L1_dr;
+      VarProxy< int > L1_matched;
       /// DeltaR between the offline and trigger objects.
-// -- slimmed --       VarProxy< float > L2_dr;
-// -- slimmed --       VarProxy< int > L2_matched;
+      VarProxy< float > L2_dr;
+      VarProxy< int > L2_matched;
       /// DeltaR between the offline and trigger objects.
-// -- slimmed --       VarProxy< float > EF_dr;
-// -- slimmed --       VarProxy< int > EF_matched;
-// -- slimmed --       VarProxy< int > bbDecision;
-// -- slimmed --       VarProxy< float > SmearingFactor;
+      VarProxy< float > EF_dr;
+      VarProxy< int > EF_matched;
+      VarProxy< int > bbDecision;
+      VarProxy< float > SmearingFactor;
 
 
 bool is_data; // ~bj 
@@ -367,22 +386,18 @@ bool is_data; // ~bj
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpy;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wet;
       VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_statusWord;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wpx;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wpy;
-      VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_STVF_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_STVF_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_LooseEgamma10NoTau_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wpx;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wpy;
-// -- slimmed --       VarHandle< vector<vector<float> >* > MET_STVF_wet;
-// -- slimmed --       VarHandle< vector<vector<unsigned int> >* > MET_STVF_statusWord;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpx;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpy;
+      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_LooseEgamma10NoTau_statusWord;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpx;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpy;
+      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10LooseTau_statusWord;
+      VarHandle< vector<vector<float> >* > MET_wpx;
+      VarHandle< vector<vector<float> >* > MET_wpy;
+      VarHandle< vector<vector<float> >* > MET_wet;
+      VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
       /// Number of ntuple rows.
       VarHandle< Int_t > n;
       VarHandle< vector<float>* > E;
@@ -393,12 +408,9 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > EtaOrigin;
       VarHandle< vector<float>* > PhiOrigin;
       VarHandle< vector<float>* > MOrigin;
-      VarHandle< vector<float>* > EtaOriginEM;
-      VarHandle< vector<float>* > PhiOriginEM;
-      VarHandle< vector<float>* > MOriginEM;
-// -- slimmed --       VarHandle< vector<float>* > WIDTH;
-// -- slimmed --       VarHandle< vector<float>* > n90;
-// -- slimmed --       VarHandle< vector<float>* > Timing;
+      VarHandle< vector<float>* > WIDTH;
+      VarHandle< vector<float>* > n90;
+      VarHandle< vector<float>* > Timing;
       VarHandle< vector<float>* > LArQuality;
       VarHandle< vector<float>* > nTrk;
       VarHandle< vector<float>* > sumPtTrk;
@@ -406,81 +418,84 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > HECQuality;
       VarHandle< vector<float>* > NegativeE;
       VarHandle< vector<float>* > AverageLArQF;
-// -- slimmed --       VarHandle< vector<float>* > YFlip12;
-// -- slimmed --       VarHandle< vector<float>* > YFlip23;
-// -- slimmed --       VarHandle< vector<float>* > BCH_CORR_CELL;
-// -- slimmed --       VarHandle< vector<float>* > BCH_CORR_DOTX;
-// -- slimmed --       VarHandle< vector<float>* > BCH_CORR_JET;
-// -- slimmed --       VarHandle< vector<float>* > BCH_CORR_JET_FORCELL;
+      VarHandle< vector<float>* > BCH_CORR_CELL;
+      VarHandle< vector<float>* > BCH_CORR_DOTX;
+      VarHandle< vector<float>* > BCH_CORR_JET;
+      VarHandle< vector<float>* > BCH_CORR_JET_FORCELL;
       VarHandle< vector<float>* > ENG_BAD_CELLS;
       VarHandle< vector<float>* > N_BAD_CELLS;
       VarHandle< vector<float>* > N_BAD_CELLS_CORR;
       VarHandle< vector<float>* > BAD_CELLS_CORR_E;
-// -- slimmed --       VarHandle< vector<float>* > NumTowers;
-// -- slimmed --       VarHandle< vector<float>* > ootFracCells5;
-// -- slimmed --       VarHandle< vector<float>* > ootFracCells10;
-// -- slimmed --       VarHandle< vector<float>* > ootFracClusters5;
-// -- slimmed --       VarHandle< vector<float>* > ootFracClusters10;
+      VarHandle< vector<float>* > NumTowers;
+      VarHandle< vector<float>* > ootFracCells5;
+      VarHandle< vector<float>* > ootFracCells10;
+      VarHandle< vector<float>* > ootFracClusters5;
+      VarHandle< vector<float>* > ootFracClusters10;
       VarHandle< vector<int>* > SamplingMax;
       VarHandle< vector<float>* > fracSamplingMax;
       VarHandle< vector<float>* > hecf;
-// -- slimmed --       VarHandle< vector<float>* > tgap3f;
-// -- slimmed --       VarHandle< vector<int>* > isUgly;
-// -- slimmed --       VarHandle< vector<int>* > isBadLooseMinus;
-// -- slimmed --       VarHandle< vector<int>* > isBadLoose;
-// -- slimmed --       VarHandle< vector<int>* > isBadMedium;
-// -- slimmed --       VarHandle< vector<int>* > isBadTight;
+      VarHandle< vector<float>* > tgap3f;
+      VarHandle< vector<int>* > isUgly;
+      VarHandle< vector<int>* > isBadLooseMinus;
+      VarHandle< vector<int>* > isBadLoose;
+      VarHandle< vector<int>* > isBadMedium;
+      VarHandle< vector<int>* > isBadTight;
       VarHandle< vector<float>* > emfrac;
       VarHandle< vector<float>* > Offset;
       VarHandle< vector<float>* > EMJES;
       VarHandle< vector<float>* > EMJES_EtaCorr;
       VarHandle< vector<float>* > EMJESnooffset;
-      VarHandle< vector<float>* > GCWJES;
-      VarHandle< vector<float>* > GCWJES_EtaCorr;
-      VarHandle< vector<float>* > CB;
       VarHandle< vector<float>* > LCJES;
+      VarHandle< vector<float>* > LCJES_EtaCorr;
       VarHandle< vector<float>* > emscale_E;
       VarHandle< vector<float>* > emscale_pt;
       VarHandle< vector<float>* > emscale_m;
       VarHandle< vector<float>* > emscale_eta;
       VarHandle< vector<float>* > emscale_phi;
+      VarHandle< vector<float>* > ActiveArea;
+      VarHandle< vector<float>* > ActiveAreaPx;
+      VarHandle< vector<float>* > ActiveAreaPy;
+      VarHandle< vector<float>* > ActiveAreaPz;
+      VarHandle< vector<float>* > ActiveAreaE;
+      VarHandle< vector<float>* > jvtxf;
+      VarHandle< vector<vector<float> >* > jvtxfFull;
       VarHandle< vector<float>* > jvtx_x;
       VarHandle< vector<float>* > jvtx_y;
       VarHandle< vector<float>* > jvtx_z;
-      VarHandle< vector<float>* > jvtxf;
-      VarHandle< vector<vector<float> >* > jvtxfFull;
+      VarHandle< vector<float>* > TruthMFindex;
+      VarHandle< vector<float>* > TruthMF;
       VarHandle< vector<float>* > GSCFactorF;
       VarHandle< vector<float>* > WidthFraction;
       VarHandle< vector<float>* > e_PreSamplerB;
-// -- slimmed --       VarHandle< vector<float>* > e_EMB1;
-// -- slimmed --       VarHandle< vector<float>* > e_EMB2;
-// -- slimmed --       VarHandle< vector<float>* > e_EMB3;
-// -- slimmed --       VarHandle< vector<float>* > e_PreSamplerE;
-// -- slimmed --       VarHandle< vector<float>* > e_EME1;
-// -- slimmed --       VarHandle< vector<float>* > e_EME2;
-// -- slimmed --       VarHandle< vector<float>* > e_EME3;
-// -- slimmed --       VarHandle< vector<float>* > e_HEC0;
-// -- slimmed --       VarHandle< vector<float>* > e_HEC1;
-// -- slimmed --       VarHandle< vector<float>* > e_HEC2;
-// -- slimmed --       VarHandle< vector<float>* > e_HEC3;
-// -- slimmed --       VarHandle< vector<float>* > e_TileBar0;
-// -- slimmed --       VarHandle< vector<float>* > e_TileBar1;
-// -- slimmed --       VarHandle< vector<float>* > e_TileBar2;
-// -- slimmed --       VarHandle< vector<float>* > e_TileGap1;
-// -- slimmed --       VarHandle< vector<float>* > e_TileGap2;
-// -- slimmed --       VarHandle< vector<float>* > e_TileGap3;
-// -- slimmed --       VarHandle< vector<float>* > e_TileExt0;
-// -- slimmed --       VarHandle< vector<float>* > e_TileExt1;
-// -- slimmed --       VarHandle< vector<float>* > e_TileExt2;
-// -- slimmed --       VarHandle< vector<float>* > e_FCAL0;
-// -- slimmed --       VarHandle< vector<float>* > e_FCAL1;
-// -- slimmed --       VarHandle< vector<float>* > e_FCAL2;
-// -- slimmed --       VarHandle< vector<int>* > Nconst;
-// -- slimmed --       VarHandle< vector<vector<float> >* > ptconst_default;
-// -- slimmed --       VarHandle< vector<vector<float> >* > econst_default;
-// -- slimmed --       VarHandle< vector<vector<float> >* > etaconst_default;
-// -- slimmed --       VarHandle< vector<vector<float> >* > phiconst_default;
-// -- slimmed --       VarHandle< vector<vector<float> >* > weightconst_default;
+      VarHandle< vector<float>* > e_EMB1;
+      VarHandle< vector<float>* > e_EMB2;
+      VarHandle< vector<float>* > e_EMB3;
+      VarHandle< vector<float>* > e_PreSamplerE;
+      VarHandle< vector<float>* > e_EME1;
+      VarHandle< vector<float>* > e_EME2;
+      VarHandle< vector<float>* > e_EME3;
+      VarHandle< vector<float>* > e_HEC0;
+      VarHandle< vector<float>* > e_HEC1;
+      VarHandle< vector<float>* > e_HEC2;
+      VarHandle< vector<float>* > e_HEC3;
+      VarHandle< vector<float>* > e_TileBar0;
+      VarHandle< vector<float>* > e_TileBar1;
+      VarHandle< vector<float>* > e_TileBar2;
+      VarHandle< vector<float>* > e_TileGap1;
+      VarHandle< vector<float>* > e_TileGap2;
+      VarHandle< vector<float>* > e_TileGap3;
+      VarHandle< vector<float>* > e_TileExt0;
+      VarHandle< vector<float>* > e_TileExt1;
+      VarHandle< vector<float>* > e_TileExt2;
+      VarHandle< vector<float>* > e_FCAL0;
+      VarHandle< vector<float>* > e_FCAL1;
+      VarHandle< vector<float>* > e_FCAL2;
+      VarHandle< vector<int>* > Nconst;
+      VarHandle< vector<vector<float> >* > ptconst_default;
+      VarHandle< vector<vector<float> >* > econst_default;
+      VarHandle< vector<vector<float> >* > etaconst_default;
+      VarHandle< vector<vector<float> >* > phiconst_default;
+      VarHandle< vector<vector<float> >* > weightconst_default;
       VarHandle< vector<float>* > constscale_E;
       VarHandle< vector<float>* > constscale_pt;
       VarHandle< vector<float>* > constscale_m;
@@ -499,6 +514,10 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > flavor_weight_MV1;
       VarHandle< vector<float>* > flavor_weight_MV2;
       VarHandle< vector<float>* > flavor_weight_GbbNN;
+      VarHandle< vector<float>* > flavor_weight_JetFitterCharm;
+      VarHandle< vector<float>* > flavor_weight_MV3_bVSu;
+      VarHandle< vector<float>* > flavor_weight_MV3_bVSc;
+      VarHandle< vector<float>* > flavor_weight_MV3_cVSu;
 // MC only
       VarHandle< vector<int>* > flavor_truth_label;
       VarHandle< vector<float>* > flavor_truth_dRminToB;
@@ -510,130 +529,149 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > flavor_truth_vx_z;
 // end MC only
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_ip2d_pu;
+      VarHandle< vector<float>* > flavor_component_ip2d_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_ip2d_pb;
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_ip2d_isValid;
+      VarHandle< vector<float>* > flavor_component_ip2d_pb;
+      VarHandle< vector<int>* > flavor_component_ip2d_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_ip2d_ntrk;
+      VarHandle< vector<int>* > flavor_component_ip2d_ntrk;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_ip3d_pu;
+      VarHandle< vector<float>* > flavor_component_ip3d_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_ip3d_pb;
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_ip3d_isValid;
+      VarHandle< vector<float>* > flavor_component_ip3d_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_ip3d_ntrk;
+      VarHandle< vector<float>* > flavor_component_ip3d_pc;
+      VarHandle< vector<int>* > flavor_component_ip3d_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv1_pu;
+      VarHandle< vector<int>* > flavor_component_ip3d_ntrk;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv1_pb;
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_sv1_isValid;
+      VarHandle< vector<float>* > flavor_component_sv1_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv2_pu;
+      VarHandle< vector<float>* > flavor_component_sv1_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv2_pb;
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_sv2_isValid;
+      VarHandle< vector<float>* > flavor_component_sv1_pc;
+      VarHandle< vector<int>* > flavor_component_sv1_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfit_pu;
+      VarHandle< vector<float>* > flavor_component_sv2_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfit_pb;
+      VarHandle< vector<float>* > flavor_component_sv2_pb;
+      VarHandle< vector<int>* > flavor_component_sv2_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfit_pc;
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_jfit_isValid;
+      VarHandle< vector<float>* > flavor_component_jfit_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfitcomb_pu;
+      VarHandle< vector<float>* > flavor_component_jfit_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfitcomb_pb;
+      VarHandle< vector<float>* > flavor_component_jfit_pc;
+      VarHandle< vector<int>* > flavor_component_jfit_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfitcomb_pc;
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_jfitcomb_isValid;
+      VarHandle< vector<float>* > flavor_component_jfitcomb_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_jfit_nvtx;
+      VarHandle< vector<float>* > flavor_component_jfitcomb_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_jfit_nvtx1t;
+      VarHandle< vector<float>* > flavor_component_jfitcomb_pc;
+      VarHandle< vector<int>* > flavor_component_jfitcomb_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_jfit_ntrkAtVx;
+      VarHandle< vector<int>* > flavor_component_jfit_nvtx;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfit_efrc;
+      VarHandle< vector<int>* > flavor_component_jfit_nvtx1t;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfit_mass;
+      VarHandle< vector<int>* > flavor_component_jfit_ntrkAtVx;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfit_sig3d;
+      VarHandle< vector<float>* > flavor_component_jfit_efrc;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfit_deltaPhi;
+      VarHandle< vector<float>* > flavor_component_jfit_mass;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_jfit_deltaEta;
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_svp_isValid;
+      VarHandle< vector<float>* > flavor_component_jfit_sig3d;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_svp_ntrkv;
+      VarHandle< vector<float>* > flavor_component_jfit_deltaPhi;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_svp_ntrkj;
+      VarHandle< vector<float>* > flavor_component_jfit_deltaEta;
+      /// Names of the properties in JetFitterGenericTagInfo
+      VarHandle< vector<vector<string> >* > flavor_component_jfitc_doublePropName;
+      /// Values of the properties in JetFitterGenericTagInfo
+      VarHandle< vector<vector<double> >* > flavor_component_jfitc_doublePropValue;
+      /// Names of the properties in JetFitterGenericTagInfo
+      VarHandle< vector<vector<string> >* > flavor_component_jfitc_intPropName;
+      /// Values of the properties in JetFitterGenericTagInfo
+      VarHandle< vector<vector<int> >* > flavor_component_jfitc_intPropValue;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_svp_n2t;
+      VarHandle< vector<float>* > flavor_component_jfitc_pu;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_mass;
+      VarHandle< vector<float>* > flavor_component_jfitc_pb;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_efrc;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_x;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_y;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_z;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_err_x;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_err_y;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_err_z;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_cov_xy;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_cov_xz;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_cov_yz;
+      VarHandle< vector<float>* > flavor_component_jfitc_pc;
+      VarHandle< vector<int>* > flavor_component_jfitc_isValid;
+      VarHandle< vector<int>* > flavor_component_svp_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_svp_chi2;
+      VarHandle< vector<int>* > flavor_component_svp_ntrkv;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_svp_ndof;
+      VarHandle< vector<int>* > flavor_component_svp_ntrkj;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_svp_ntrk;
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_sv0p_isValid;
+      VarHandle< vector<int>* > flavor_component_svp_n2t;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_sv0p_ntrkv;
+      VarHandle< vector<float>* > flavor_component_svp_mass;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_sv0p_ntrkj;
+      VarHandle< vector<float>* > flavor_component_svp_efrc;
+      VarHandle< vector<float>* > flavor_component_svp_x;
+      VarHandle< vector<float>* > flavor_component_svp_y;
+      VarHandle< vector<float>* > flavor_component_svp_z;
+      VarHandle< vector<float>* > flavor_component_svp_err_x;
+      VarHandle< vector<float>* > flavor_component_svp_err_y;
+      VarHandle< vector<float>* > flavor_component_svp_err_z;
+      VarHandle< vector<float>* > flavor_component_svp_cov_xy;
+      VarHandle< vector<float>* > flavor_component_svp_cov_xz;
+      VarHandle< vector<float>* > flavor_component_svp_cov_yz;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_sv0p_n2t;
+      VarHandle< vector<float>* > flavor_component_svp_chi2;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_mass;
+      VarHandle< vector<int>* > flavor_component_svp_ndof;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_efrc;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_x;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_y;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_z;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_err_x;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_err_y;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_err_z;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_cov_xy;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_cov_xz;
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_cov_yz;
+      VarHandle< vector<int>* > flavor_component_svp_ntrk;
+      VarHandle< vector<int>* > flavor_component_sv0p_isValid;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<float>* > flavor_component_sv0p_chi2;
+      VarHandle< vector<int>* > flavor_component_sv0p_ntrkv;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_sv0p_ndof;
+      VarHandle< vector<int>* > flavor_component_sv0p_ntrkj;
       /// UNDOCUMENTED
-// -- slimmed --       VarHandle< vector<int>* > flavor_component_sv0p_ntrk;
+      VarHandle< vector<int>* > flavor_component_sv0p_n2t;
+      /// UNDOCUMENTED
+      VarHandle< vector<float>* > flavor_component_sv0p_mass;
+      /// UNDOCUMENTED
+      VarHandle< vector<float>* > flavor_component_sv0p_efrc;
+      VarHandle< vector<float>* > flavor_component_sv0p_x;
+      VarHandle< vector<float>* > flavor_component_sv0p_y;
+      VarHandle< vector<float>* > flavor_component_sv0p_z;
+      VarHandle< vector<float>* > flavor_component_sv0p_err_x;
+      VarHandle< vector<float>* > flavor_component_sv0p_err_y;
+      VarHandle< vector<float>* > flavor_component_sv0p_err_z;
+      VarHandle< vector<float>* > flavor_component_sv0p_cov_xy;
+      VarHandle< vector<float>* > flavor_component_sv0p_cov_xz;
+      VarHandle< vector<float>* > flavor_component_sv0p_cov_yz;
+      /// UNDOCUMENTED
+      VarHandle< vector<float>* > flavor_component_sv0p_chi2;
+      /// UNDOCUMENTED
+      VarHandle< vector<int>* > flavor_component_sv0p_ndof;
+      /// UNDOCUMENTED
+      VarHandle< vector<int>* > flavor_component_sv0p_ntrk;
       /// Number of ntuple rows.
-// -- slimmed --       VarHandle< vector<int>* > flavor_assoctrk_n;
+      VarHandle< vector<int>* > flavor_assoctrk_n;
       /// Index in trk
-// -- slimmed --       VarHandle< vector<vector<int> >* > flavor_assoctrk_index;
-// -- slimmed --       VarHandle< vector<float>* > el_dr;
-// -- slimmed --       VarHandle< vector<int>* > el_matched;
-// -- slimmed --       VarHandle< vector<float>* > mu_dr;
-// -- slimmed --       VarHandle< vector<int>* > mu_matched;
+      VarHandle< vector<vector<int> >* > flavor_assoctrk_index;
+      VarHandle< vector<float>* > el_dr;
+      VarHandle< vector<int>* > el_matched;
+      VarHandle< vector<float>* > mu_dr;
+      VarHandle< vector<int>* > mu_matched;
       /// DeltaR between the offline and trigger objects.
-// -- slimmed --       VarHandle< vector<float>* > L1_dr;
-// -- slimmed --       VarHandle< vector<int>* > L1_matched;
+      VarHandle< vector<float>* > L1_dr;
+      VarHandle< vector<int>* > L1_matched;
       /// DeltaR between the offline and trigger objects.
-// -- slimmed --       VarHandle< vector<float>* > L2_dr;
-// -- slimmed --       VarHandle< vector<int>* > L2_matched;
+      VarHandle< vector<float>* > L2_dr;
+      VarHandle< vector<int>* > L2_matched;
       /// DeltaR between the offline and trigger objects.
-// -- slimmed --       VarHandle< vector<float>* > EF_dr;
-// -- slimmed --       VarHandle< vector<int>* > EF_matched;
-// -- slimmed --       VarHandle< vector<int>* > bbDecision;
-// -- slimmed --       VarHandle< vector<float>* > SmearingFactor;
+      VarHandle< vector<float>* > EF_dr;
+      VarHandle< vector<int>* > EF_matched;
+      VarHandle< vector<int>* > bbDecision;
+      VarHandle< vector<float>* > SmearingFactor;
 
    private:
       mutable std::vector< JetD3PDObjectElement > fProxies; ///< Internal list of proxy objects

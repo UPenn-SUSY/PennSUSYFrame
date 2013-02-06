@@ -198,11 +198,23 @@ namespace D3PDReader {
         secvtx_x( parent.secvtx_x, index, this ),
         secvtx_y( parent.secvtx_y, index, this ),
         secvtx_z( parent.secvtx_z, index, this ),
+        secvtx_xx( parent.secvtx_xx, index, this ),
+        secvtx_yy( parent.secvtx_yy, index, this ),
+        secvtx_zz( parent.secvtx_zz, index, this ),
+        secvtx_xy( parent.secvtx_xy, index, this ),
+        secvtx_yz( parent.secvtx_yz, index, this ),
+        secvtx_zx( parent.secvtx_zx, index, this ),
         secvtx_chiSquared( parent.secvtx_chiSquared, index, this ),
         secvtx_numberDoF( parent.secvtx_numberDoF, index, this ),
         privtx_x( parent.privtx_x, index, this ),
         privtx_y( parent.privtx_y, index, this ),
         privtx_z( parent.privtx_z, index, this ),
+        privtx_xx( parent.privtx_xx, index, this ),
+        privtx_yy( parent.privtx_yy, index, this ),
+        privtx_zz( parent.privtx_zz, index, this ),
+        privtx_xy( parent.privtx_xy, index, this ),
+        privtx_yz( parent.privtx_yz, index, this ),
+        privtx_zx( parent.privtx_zx, index, this ),
         privtx_chiSquared( parent.privtx_chiSquared, index, this ),
         privtx_numberDoF( parent.privtx_numberDoF, index, this ),
         privtx_jvf( parent.privtx_jvf, index, this ),
@@ -413,14 +425,14 @@ namespace D3PDReader {
         trueTauAssocSmall_index( parent.trueTauAssocSmall_index, index, this ),
         trueTauAssocSmall_matched( parent.trueTauAssocSmall_matched, index, this ),
 // end MC only
+        MET_Egamma10LooseTau_wpx( parent.MET_Egamma10LooseTau_wpx, index, this ),
+        MET_Egamma10LooseTau_wpy( parent.MET_Egamma10LooseTau_wpy, index, this ),
+        MET_Egamma10LooseTau_wet( parent.MET_Egamma10LooseTau_wet, index, this ),
+        MET_Egamma10LooseTau_statusWord( parent.MET_Egamma10LooseTau_statusWord, index, this ),
         MET_wpx( parent.MET_wpx, index, this ),
         MET_wpy( parent.MET_wpy, index, this ),
         MET_wet( parent.MET_wet, index, this ),
-        MET_statusWord( parent.MET_statusWord, index, this ),
-        MET_STVF_wpx( parent.MET_STVF_wpx, index, this ),
-        MET_STVF_wpy( parent.MET_STVF_wpy, index, this ),
-        MET_STVF_wet( parent.MET_STVF_wet, index, this ),
-        MET_STVF_statusWord( parent.MET_STVF_statusWord, index, this ) , 
+        MET_statusWord( parent.MET_statusWord, index, this ) , 
 is_data(is_data) {
 
    }
@@ -611,11 +623,23 @@ is_data(is_data) {
         secvtx_x( parent.secvtx_x ),
         secvtx_y( parent.secvtx_y ),
         secvtx_z( parent.secvtx_z ),
+        secvtx_xx( parent.secvtx_xx ),
+        secvtx_yy( parent.secvtx_yy ),
+        secvtx_zz( parent.secvtx_zz ),
+        secvtx_xy( parent.secvtx_xy ),
+        secvtx_yz( parent.secvtx_yz ),
+        secvtx_zx( parent.secvtx_zx ),
         secvtx_chiSquared( parent.secvtx_chiSquared ),
         secvtx_numberDoF( parent.secvtx_numberDoF ),
         privtx_x( parent.privtx_x ),
         privtx_y( parent.privtx_y ),
         privtx_z( parent.privtx_z ),
+        privtx_xx( parent.privtx_xx ),
+        privtx_yy( parent.privtx_yy ),
+        privtx_zz( parent.privtx_zz ),
+        privtx_xy( parent.privtx_xy ),
+        privtx_yz( parent.privtx_yz ),
+        privtx_zx( parent.privtx_zx ),
         privtx_chiSquared( parent.privtx_chiSquared ),
         privtx_numberDoF( parent.privtx_numberDoF ),
         privtx_jvf( parent.privtx_jvf ),
@@ -826,14 +850,14 @@ is_data(is_data) {
         trueTauAssocSmall_index( parent.trueTauAssocSmall_index ),
         trueTauAssocSmall_matched( parent.trueTauAssocSmall_matched ),
 // end MC only
+        MET_Egamma10LooseTau_wpx( parent.MET_Egamma10LooseTau_wpx ),
+        MET_Egamma10LooseTau_wpy( parent.MET_Egamma10LooseTau_wpy ),
+        MET_Egamma10LooseTau_wet( parent.MET_Egamma10LooseTau_wet ),
+        MET_Egamma10LooseTau_statusWord( parent.MET_Egamma10LooseTau_statusWord ),
         MET_wpx( parent.MET_wpx ),
         MET_wpy( parent.MET_wpy ),
         MET_wet( parent.MET_wet ),
-        MET_statusWord( parent.MET_statusWord ),
-        MET_STVF_wpx( parent.MET_STVF_wpx ),
-        MET_STVF_wpy( parent.MET_STVF_wpy ),
-        MET_STVF_wet( parent.MET_STVF_wet ),
-        MET_STVF_statusWord( parent.MET_STVF_statusWord ) , 
+        MET_statusWord( parent.MET_statusWord ) , 
 is_data(is_data) {
 
    }
@@ -1025,11 +1049,23 @@ is_data(is_data) {
         secvtx_x( this, ::TString( prefix ) + "secvtx_x", &master ),
         secvtx_y( this, ::TString( prefix ) + "secvtx_y", &master ),
         secvtx_z( this, ::TString( prefix ) + "secvtx_z", &master ),
+        secvtx_xx( this, ::TString( prefix ) + "secvtx_xx", &master ),
+        secvtx_yy( this, ::TString( prefix ) + "secvtx_yy", &master ),
+        secvtx_zz( this, ::TString( prefix ) + "secvtx_zz", &master ),
+        secvtx_xy( this, ::TString( prefix ) + "secvtx_xy", &master ),
+        secvtx_yz( this, ::TString( prefix ) + "secvtx_yz", &master ),
+        secvtx_zx( this, ::TString( prefix ) + "secvtx_zx", &master ),
         secvtx_chiSquared( this, ::TString( prefix ) + "secvtx_chiSquared", &master ),
         secvtx_numberDoF( this, ::TString( prefix ) + "secvtx_numberDoF", &master ),
         privtx_x( this, ::TString( prefix ) + "privtx_x", &master ),
         privtx_y( this, ::TString( prefix ) + "privtx_y", &master ),
         privtx_z( this, ::TString( prefix ) + "privtx_z", &master ),
+        privtx_xx( this, ::TString( prefix ) + "privtx_xx", &master ),
+        privtx_yy( this, ::TString( prefix ) + "privtx_yy", &master ),
+        privtx_zz( this, ::TString( prefix ) + "privtx_zz", &master ),
+        privtx_xy( this, ::TString( prefix ) + "privtx_xy", &master ),
+        privtx_yz( this, ::TString( prefix ) + "privtx_yz", &master ),
+        privtx_zx( this, ::TString( prefix ) + "privtx_zx", &master ),
         privtx_chiSquared( this, ::TString( prefix ) + "privtx_chiSquared", &master ),
         privtx_numberDoF( this, ::TString( prefix ) + "privtx_numberDoF", &master ),
         privtx_jvf( this, ::TString( prefix ) + "privtx_jvf", &master ),
@@ -1240,14 +1276,14 @@ is_data(is_data) {
         trueTauAssocSmall_index( this, ::TString( prefix ) + "trueTauAssocSmall_index", &master ),
         trueTauAssocSmall_matched( this, ::TString( prefix ) + "trueTauAssocSmall_matched", &master ),
 // end MC only
+        MET_Egamma10LooseTau_wpx( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wpx", &master ),
+        MET_Egamma10LooseTau_wpy( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wpy", &master ),
+        MET_Egamma10LooseTau_wet( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wet", &master ),
+        MET_Egamma10LooseTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10LooseTau_statusWord", &master ),
         MET_wpx( this, ::TString( prefix ) + "MET_wpx", &master ),
         MET_wpy( this, ::TString( prefix ) + "MET_wpy", &master ),
         MET_wet( this, ::TString( prefix ) + "MET_wet", &master ),
         MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", &master ),
-        MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", &master ),
-        MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", &master ),
-        MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", &master ),
-        MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", &master ),
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) , 
@@ -1430,11 +1466,23 @@ is_data(is_data) {
       fHandles[ "secvtx_x" ] = &secvtx_x;
       fHandles[ "secvtx_y" ] = &secvtx_y;
       fHandles[ "secvtx_z" ] = &secvtx_z;
+      fHandles[ "secvtx_xx" ] = &secvtx_xx;
+      fHandles[ "secvtx_yy" ] = &secvtx_yy;
+      fHandles[ "secvtx_zz" ] = &secvtx_zz;
+      fHandles[ "secvtx_xy" ] = &secvtx_xy;
+      fHandles[ "secvtx_yz" ] = &secvtx_yz;
+      fHandles[ "secvtx_zx" ] = &secvtx_zx;
       fHandles[ "secvtx_chiSquared" ] = &secvtx_chiSquared;
       fHandles[ "secvtx_numberDoF" ] = &secvtx_numberDoF;
       fHandles[ "privtx_x" ] = &privtx_x;
       fHandles[ "privtx_y" ] = &privtx_y;
       fHandles[ "privtx_z" ] = &privtx_z;
+      fHandles[ "privtx_xx" ] = &privtx_xx;
+      fHandles[ "privtx_yy" ] = &privtx_yy;
+      fHandles[ "privtx_zz" ] = &privtx_zz;
+      fHandles[ "privtx_xy" ] = &privtx_xy;
+      fHandles[ "privtx_yz" ] = &privtx_yz;
+      fHandles[ "privtx_zx" ] = &privtx_zx;
       fHandles[ "privtx_chiSquared" ] = &privtx_chiSquared;
       fHandles[ "privtx_numberDoF" ] = &privtx_numberDoF;
       fHandles[ "privtx_jvf" ] = &privtx_jvf;
@@ -1645,14 +1693,14 @@ if (!is_data) {
       fHandles[ "trueTauAssocSmall_index" ] = &trueTauAssocSmall_index;
       fHandles[ "trueTauAssocSmall_matched" ] = &trueTauAssocSmall_matched;
 } // end !is_data
+      fHandles[ "MET_Egamma10LooseTau_wpx" ] = &MET_Egamma10LooseTau_wpx;
+      fHandles[ "MET_Egamma10LooseTau_wpy" ] = &MET_Egamma10LooseTau_wpy;
+      fHandles[ "MET_Egamma10LooseTau_wet" ] = &MET_Egamma10LooseTau_wet;
+      fHandles[ "MET_Egamma10LooseTau_statusWord" ] = &MET_Egamma10LooseTau_statusWord;
       fHandles[ "MET_wpx" ] = &MET_wpx;
       fHandles[ "MET_wpy" ] = &MET_wpy;
       fHandles[ "MET_wet" ] = &MET_wet;
       fHandles[ "MET_statusWord" ] = &MET_statusWord;
-      fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
-      fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
-      fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
-      fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
    }
 
    /**
@@ -1841,11 +1889,23 @@ if (!is_data) {
         secvtx_x( this, ::TString( prefix ) + "secvtx_x", 0 ),
         secvtx_y( this, ::TString( prefix ) + "secvtx_y", 0 ),
         secvtx_z( this, ::TString( prefix ) + "secvtx_z", 0 ),
+        secvtx_xx( this, ::TString( prefix ) + "secvtx_xx", 0 ),
+        secvtx_yy( this, ::TString( prefix ) + "secvtx_yy", 0 ),
+        secvtx_zz( this, ::TString( prefix ) + "secvtx_zz", 0 ),
+        secvtx_xy( this, ::TString( prefix ) + "secvtx_xy", 0 ),
+        secvtx_yz( this, ::TString( prefix ) + "secvtx_yz", 0 ),
+        secvtx_zx( this, ::TString( prefix ) + "secvtx_zx", 0 ),
         secvtx_chiSquared( this, ::TString( prefix ) + "secvtx_chiSquared", 0 ),
         secvtx_numberDoF( this, ::TString( prefix ) + "secvtx_numberDoF", 0 ),
         privtx_x( this, ::TString( prefix ) + "privtx_x", 0 ),
         privtx_y( this, ::TString( prefix ) + "privtx_y", 0 ),
         privtx_z( this, ::TString( prefix ) + "privtx_z", 0 ),
+        privtx_xx( this, ::TString( prefix ) + "privtx_xx", 0 ),
+        privtx_yy( this, ::TString( prefix ) + "privtx_yy", 0 ),
+        privtx_zz( this, ::TString( prefix ) + "privtx_zz", 0 ),
+        privtx_xy( this, ::TString( prefix ) + "privtx_xy", 0 ),
+        privtx_yz( this, ::TString( prefix ) + "privtx_yz", 0 ),
+        privtx_zx( this, ::TString( prefix ) + "privtx_zx", 0 ),
         privtx_chiSquared( this, ::TString( prefix ) + "privtx_chiSquared", 0 ),
         privtx_numberDoF( this, ::TString( prefix ) + "privtx_numberDoF", 0 ),
         privtx_jvf( this, ::TString( prefix ) + "privtx_jvf", 0 ),
@@ -2056,14 +2116,14 @@ if (!is_data) {
         trueTauAssocSmall_index( this, ::TString( prefix ) + "trueTauAssocSmall_index", 0 ),
         trueTauAssocSmall_matched( this, ::TString( prefix ) + "trueTauAssocSmall_matched", 0 ),
 // end MC only
+        MET_Egamma10LooseTau_wpx( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wpx", 0 ),
+        MET_Egamma10LooseTau_wpy( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wpy", 0 ),
+        MET_Egamma10LooseTau_wet( this, ::TString( prefix ) + "MET_Egamma10LooseTau_wet", 0 ),
+        MET_Egamma10LooseTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10LooseTau_statusWord", 0 ),
         MET_wpx( this, ::TString( prefix ) + "MET_wpx", 0 ),
         MET_wpy( this, ::TString( prefix ) + "MET_wpy", 0 ),
         MET_wet( this, ::TString( prefix ) + "MET_wet", 0 ),
         MET_statusWord( this, ::TString( prefix ) + "MET_statusWord", 0 ),
-        MET_STVF_wpx( this, ::TString( prefix ) + "MET_STVF_wpx", 0 ),
-        MET_STVF_wpy( this, ::TString( prefix ) + "MET_STVF_wpy", 0 ),
-        MET_STVF_wet( this, ::TString( prefix ) + "MET_STVF_wet", 0 ),
-        MET_STVF_statusWord( this, ::TString( prefix ) + "MET_STVF_statusWord", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) , 
@@ -2246,11 +2306,23 @@ is_data(is_data) {
       fHandles[ "secvtx_x" ] = &secvtx_x;
       fHandles[ "secvtx_y" ] = &secvtx_y;
       fHandles[ "secvtx_z" ] = &secvtx_z;
+      fHandles[ "secvtx_xx" ] = &secvtx_xx;
+      fHandles[ "secvtx_yy" ] = &secvtx_yy;
+      fHandles[ "secvtx_zz" ] = &secvtx_zz;
+      fHandles[ "secvtx_xy" ] = &secvtx_xy;
+      fHandles[ "secvtx_yz" ] = &secvtx_yz;
+      fHandles[ "secvtx_zx" ] = &secvtx_zx;
       fHandles[ "secvtx_chiSquared" ] = &secvtx_chiSquared;
       fHandles[ "secvtx_numberDoF" ] = &secvtx_numberDoF;
       fHandles[ "privtx_x" ] = &privtx_x;
       fHandles[ "privtx_y" ] = &privtx_y;
       fHandles[ "privtx_z" ] = &privtx_z;
+      fHandles[ "privtx_xx" ] = &privtx_xx;
+      fHandles[ "privtx_yy" ] = &privtx_yy;
+      fHandles[ "privtx_zz" ] = &privtx_zz;
+      fHandles[ "privtx_xy" ] = &privtx_xy;
+      fHandles[ "privtx_yz" ] = &privtx_yz;
+      fHandles[ "privtx_zx" ] = &privtx_zx;
       fHandles[ "privtx_chiSquared" ] = &privtx_chiSquared;
       fHandles[ "privtx_numberDoF" ] = &privtx_numberDoF;
       fHandles[ "privtx_jvf" ] = &privtx_jvf;
@@ -2461,14 +2533,14 @@ if (!is_data) {
       fHandles[ "trueTauAssocSmall_index" ] = &trueTauAssocSmall_index;
       fHandles[ "trueTauAssocSmall_matched" ] = &trueTauAssocSmall_matched;
 } // end !is_data
+      fHandles[ "MET_Egamma10LooseTau_wpx" ] = &MET_Egamma10LooseTau_wpx;
+      fHandles[ "MET_Egamma10LooseTau_wpy" ] = &MET_Egamma10LooseTau_wpy;
+      fHandles[ "MET_Egamma10LooseTau_wet" ] = &MET_Egamma10LooseTau_wet;
+      fHandles[ "MET_Egamma10LooseTau_statusWord" ] = &MET_Egamma10LooseTau_statusWord;
       fHandles[ "MET_wpx" ] = &MET_wpx;
       fHandles[ "MET_wpy" ] = &MET_wpy;
       fHandles[ "MET_wet" ] = &MET_wet;
       fHandles[ "MET_statusWord" ] = &MET_statusWord;
-      fHandles[ "MET_STVF_wpx" ] = &MET_STVF_wpx;
-      fHandles[ "MET_STVF_wpy" ] = &MET_STVF_wpy;
-      fHandles[ "MET_STVF_wet" ] = &MET_STVF_wet;
-      fHandles[ "MET_STVF_statusWord" ] = &MET_STVF_statusWord;
    }
 
    /**
@@ -2661,11 +2733,23 @@ if (!is_data) {
       secvtx_x.SetName( ::TString( prefix ) + "secvtx_x" );
       secvtx_y.SetName( ::TString( prefix ) + "secvtx_y" );
       secvtx_z.SetName( ::TString( prefix ) + "secvtx_z" );
+      secvtx_xx.SetName( ::TString( prefix ) + "secvtx_xx" );
+      secvtx_yy.SetName( ::TString( prefix ) + "secvtx_yy" );
+      secvtx_zz.SetName( ::TString( prefix ) + "secvtx_zz" );
+      secvtx_xy.SetName( ::TString( prefix ) + "secvtx_xy" );
+      secvtx_yz.SetName( ::TString( prefix ) + "secvtx_yz" );
+      secvtx_zx.SetName( ::TString( prefix ) + "secvtx_zx" );
       secvtx_chiSquared.SetName( ::TString( prefix ) + "secvtx_chiSquared" );
       secvtx_numberDoF.SetName( ::TString( prefix ) + "secvtx_numberDoF" );
       privtx_x.SetName( ::TString( prefix ) + "privtx_x" );
       privtx_y.SetName( ::TString( prefix ) + "privtx_y" );
       privtx_z.SetName( ::TString( prefix ) + "privtx_z" );
+      privtx_xx.SetName( ::TString( prefix ) + "privtx_xx" );
+      privtx_yy.SetName( ::TString( prefix ) + "privtx_yy" );
+      privtx_zz.SetName( ::TString( prefix ) + "privtx_zz" );
+      privtx_xy.SetName( ::TString( prefix ) + "privtx_xy" );
+      privtx_yz.SetName( ::TString( prefix ) + "privtx_yz" );
+      privtx_zx.SetName( ::TString( prefix ) + "privtx_zx" );
       privtx_chiSquared.SetName( ::TString( prefix ) + "privtx_chiSquared" );
       privtx_numberDoF.SetName( ::TString( prefix ) + "privtx_numberDoF" );
       privtx_jvf.SetName( ::TString( prefix ) + "privtx_jvf" );
@@ -2876,14 +2960,14 @@ if (!is_data) {
       trueTauAssocSmall_index.SetName( ::TString( prefix ) + "trueTauAssocSmall_index" );
       trueTauAssocSmall_matched.SetName( ::TString( prefix ) + "trueTauAssocSmall_matched" );
 } // end !is_data
+      MET_Egamma10LooseTau_wpx.SetName( ::TString( prefix ) + "MET_Egamma10LooseTau_wpx" );
+      MET_Egamma10LooseTau_wpy.SetName( ::TString( prefix ) + "MET_Egamma10LooseTau_wpy" );
+      MET_Egamma10LooseTau_wet.SetName( ::TString( prefix ) + "MET_Egamma10LooseTau_wet" );
+      MET_Egamma10LooseTau_statusWord.SetName( ::TString( prefix ) + "MET_Egamma10LooseTau_statusWord" );
       MET_wpx.SetName( ::TString( prefix ) + "MET_wpx" );
       MET_wpy.SetName( ::TString( prefix ) + "MET_wpy" );
       MET_wet.SetName( ::TString( prefix ) + "MET_wet" );
       MET_statusWord.SetName( ::TString( prefix ) + "MET_statusWord" );
-      MET_STVF_wpx.SetName( ::TString( prefix ) + "MET_STVF_wpx" );
-      MET_STVF_wpy.SetName( ::TString( prefix ) + "MET_STVF_wpy" );
-      MET_STVF_wet.SetName( ::TString( prefix ) + "MET_STVF_wet" );
-      MET_STVF_statusWord.SetName( ::TString( prefix ) + "MET_STVF_statusWord" );
       return;
    }
 
@@ -3079,11 +3163,23 @@ if (!is_data) {
       secvtx_x.ReadFrom( tree );
       secvtx_y.ReadFrom( tree );
       secvtx_z.ReadFrom( tree );
+      secvtx_xx.ReadFrom( tree );
+      secvtx_yy.ReadFrom( tree );
+      secvtx_zz.ReadFrom( tree );
+      secvtx_xy.ReadFrom( tree );
+      secvtx_yz.ReadFrom( tree );
+      secvtx_zx.ReadFrom( tree );
       secvtx_chiSquared.ReadFrom( tree );
       secvtx_numberDoF.ReadFrom( tree );
       privtx_x.ReadFrom( tree );
       privtx_y.ReadFrom( tree );
       privtx_z.ReadFrom( tree );
+      privtx_xx.ReadFrom( tree );
+      privtx_yy.ReadFrom( tree );
+      privtx_zz.ReadFrom( tree );
+      privtx_xy.ReadFrom( tree );
+      privtx_yz.ReadFrom( tree );
+      privtx_zx.ReadFrom( tree );
       privtx_chiSquared.ReadFrom( tree );
       privtx_numberDoF.ReadFrom( tree );
       privtx_jvf.ReadFrom( tree );
@@ -3294,14 +3390,14 @@ if (!is_data) {
       trueTauAssocSmall_index.ReadFrom( tree );
       trueTauAssocSmall_matched.ReadFrom( tree );
 } // end !is_data
+      MET_Egamma10LooseTau_wpx.ReadFrom( tree );
+      MET_Egamma10LooseTau_wpy.ReadFrom( tree );
+      MET_Egamma10LooseTau_wet.ReadFrom( tree );
+      MET_Egamma10LooseTau_statusWord.ReadFrom( tree );
       MET_wpx.ReadFrom( tree );
       MET_wpy.ReadFrom( tree );
       MET_wet.ReadFrom( tree );
       MET_statusWord.ReadFrom( tree );
-      MET_STVF_wpx.ReadFrom( tree );
-      MET_STVF_wpy.ReadFrom( tree );
-      MET_STVF_wet.ReadFrom( tree );
-      MET_STVF_statusWord.ReadFrom( tree );
 
       return;
    }
@@ -3492,11 +3588,23 @@ if (!is_data) {
       secvtx_x.WriteTo( tree );
       secvtx_y.WriteTo( tree );
       secvtx_z.WriteTo( tree );
+      secvtx_xx.WriteTo( tree );
+      secvtx_yy.WriteTo( tree );
+      secvtx_zz.WriteTo( tree );
+      secvtx_xy.WriteTo( tree );
+      secvtx_yz.WriteTo( tree );
+      secvtx_zx.WriteTo( tree );
       secvtx_chiSquared.WriteTo( tree );
       secvtx_numberDoF.WriteTo( tree );
       privtx_x.WriteTo( tree );
       privtx_y.WriteTo( tree );
       privtx_z.WriteTo( tree );
+      privtx_xx.WriteTo( tree );
+      privtx_yy.WriteTo( tree );
+      privtx_zz.WriteTo( tree );
+      privtx_xy.WriteTo( tree );
+      privtx_yz.WriteTo( tree );
+      privtx_zx.WriteTo( tree );
       privtx_chiSquared.WriteTo( tree );
       privtx_numberDoF.WriteTo( tree );
       privtx_jvf.WriteTo( tree );
@@ -3707,14 +3815,14 @@ if (!is_data) {
       trueTauAssocSmall_index.WriteTo( tree );
       trueTauAssocSmall_matched.WriteTo( tree );
 } // end !is_data
+      MET_Egamma10LooseTau_wpx.WriteTo( tree );
+      MET_Egamma10LooseTau_wpy.WriteTo( tree );
+      MET_Egamma10LooseTau_wet.WriteTo( tree );
+      MET_Egamma10LooseTau_statusWord.WriteTo( tree );
       MET_wpx.WriteTo( tree );
       MET_wpy.WriteTo( tree );
       MET_wet.WriteTo( tree );
       MET_statusWord.WriteTo( tree );
-      MET_STVF_wpx.WriteTo( tree );
-      MET_STVF_wpy.WriteTo( tree );
-      MET_STVF_wet.WriteTo( tree );
-      MET_STVF_statusWord.WriteTo( tree );
 
       return;
    }
@@ -3942,11 +4050,23 @@ if (!is_data) {
       if( secvtx_x.IsActive() ) secvtx_x();
       if( secvtx_y.IsActive() ) secvtx_y();
       if( secvtx_z.IsActive() ) secvtx_z();
+      if( secvtx_xx.IsActive() ) secvtx_xx();
+      if( secvtx_yy.IsActive() ) secvtx_yy();
+      if( secvtx_zz.IsActive() ) secvtx_zz();
+      if( secvtx_xy.IsActive() ) secvtx_xy();
+      if( secvtx_yz.IsActive() ) secvtx_yz();
+      if( secvtx_zx.IsActive() ) secvtx_zx();
       if( secvtx_chiSquared.IsActive() ) secvtx_chiSquared();
       if( secvtx_numberDoF.IsActive() ) secvtx_numberDoF();
       if( privtx_x.IsActive() ) privtx_x();
       if( privtx_y.IsActive() ) privtx_y();
       if( privtx_z.IsActive() ) privtx_z();
+      if( privtx_xx.IsActive() ) privtx_xx();
+      if( privtx_yy.IsActive() ) privtx_yy();
+      if( privtx_zz.IsActive() ) privtx_zz();
+      if( privtx_xy.IsActive() ) privtx_xy();
+      if( privtx_yz.IsActive() ) privtx_yz();
+      if( privtx_zx.IsActive() ) privtx_zx();
       if( privtx_chiSquared.IsActive() ) privtx_chiSquared();
       if( privtx_numberDoF.IsActive() ) privtx_numberDoF();
       if( privtx_jvf.IsActive() ) privtx_jvf();
@@ -4157,14 +4277,14 @@ if (!is_data) {
       if( trueTauAssocSmall_index.IsActive() ) trueTauAssocSmall_index();
       if( trueTauAssocSmall_matched.IsActive() ) trueTauAssocSmall_matched();
 } // end !is_data
+      if( MET_Egamma10LooseTau_wpx.IsActive() ) MET_Egamma10LooseTau_wpx();
+      if( MET_Egamma10LooseTau_wpy.IsActive() ) MET_Egamma10LooseTau_wpy();
+      if( MET_Egamma10LooseTau_wet.IsActive() ) MET_Egamma10LooseTau_wet();
+      if( MET_Egamma10LooseTau_statusWord.IsActive() ) MET_Egamma10LooseTau_statusWord();
       if( MET_wpx.IsActive() ) MET_wpx();
       if( MET_wpy.IsActive() ) MET_wpy();
       if( MET_wet.IsActive() ) MET_wet();
       if( MET_statusWord.IsActive() ) MET_statusWord();
-      if( MET_STVF_wpx.IsActive() ) MET_STVF_wpx();
-      if( MET_STVF_wpy.IsActive() ) MET_STVF_wpy();
-      if( MET_STVF_wet.IsActive() ) MET_STVF_wet();
-      if( MET_STVF_statusWord.IsActive() ) MET_STVF_statusWord();
 
       return;
    }
@@ -4364,11 +4484,23 @@ if (!is_data) {
       secvtx_x()->clear();
       secvtx_y()->clear();
       secvtx_z()->clear();
+      secvtx_xx()->clear();
+      secvtx_yy()->clear();
+      secvtx_zz()->clear();
+      secvtx_xy()->clear();
+      secvtx_yz()->clear();
+      secvtx_zx()->clear();
       secvtx_chiSquared()->clear();
       secvtx_numberDoF()->clear();
       privtx_x()->clear();
       privtx_y()->clear();
       privtx_z()->clear();
+      privtx_xx()->clear();
+      privtx_yy()->clear();
+      privtx_zz()->clear();
+      privtx_xy()->clear();
+      privtx_yz()->clear();
+      privtx_zx()->clear();
       privtx_chiSquared()->clear();
       privtx_numberDoF()->clear();
       privtx_jvf()->clear();
@@ -4579,14 +4711,14 @@ if (!is_data) {
       trueTauAssocSmall_index()->clear();
       trueTauAssocSmall_matched()->clear();
 } // end !is_data
+      MET_Egamma10LooseTau_wpx()->clear();
+      MET_Egamma10LooseTau_wpy()->clear();
+      MET_Egamma10LooseTau_wet()->clear();
+      MET_Egamma10LooseTau_statusWord()->clear();
       MET_wpx()->clear();
       MET_wpy()->clear();
       MET_wet()->clear();
       MET_statusWord()->clear();
-      MET_STVF_wpx()->clear();
-      MET_STVF_wpy()->clear();
-      MET_STVF_wet()->clear();
-      MET_STVF_statusWord()->clear();
 
       return;
    }
@@ -5490,6 +5622,36 @@ if (!is_data) {
       } else {
          secvtx_z()->push_back( std::numeric_limits< float >::min() );
       }
+      if( el.secvtx_xx.IsAvailable() ) {
+         secvtx_xx()->push_back( el.secvtx_xx() );
+      } else {
+         secvtx_xx()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.secvtx_yy.IsAvailable() ) {
+         secvtx_yy()->push_back( el.secvtx_yy() );
+      } else {
+         secvtx_yy()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.secvtx_zz.IsAvailable() ) {
+         secvtx_zz()->push_back( el.secvtx_zz() );
+      } else {
+         secvtx_zz()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.secvtx_xy.IsAvailable() ) {
+         secvtx_xy()->push_back( el.secvtx_xy() );
+      } else {
+         secvtx_xy()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.secvtx_yz.IsAvailable() ) {
+         secvtx_yz()->push_back( el.secvtx_yz() );
+      } else {
+         secvtx_yz()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.secvtx_zx.IsAvailable() ) {
+         secvtx_zx()->push_back( el.secvtx_zx() );
+      } else {
+         secvtx_zx()->push_back( std::numeric_limits< float >::min() );
+      }
       if( el.secvtx_chiSquared.IsAvailable() ) {
          secvtx_chiSquared()->push_back( el.secvtx_chiSquared() );
       } else {
@@ -5514,6 +5676,36 @@ if (!is_data) {
          privtx_z()->push_back( el.privtx_z() );
       } else {
          privtx_z()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.privtx_xx.IsAvailable() ) {
+         privtx_xx()->push_back( el.privtx_xx() );
+      } else {
+         privtx_xx()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.privtx_yy.IsAvailable() ) {
+         privtx_yy()->push_back( el.privtx_yy() );
+      } else {
+         privtx_yy()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.privtx_zz.IsAvailable() ) {
+         privtx_zz()->push_back( el.privtx_zz() );
+      } else {
+         privtx_zz()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.privtx_xy.IsAvailable() ) {
+         privtx_xy()->push_back( el.privtx_xy() );
+      } else {
+         privtx_xy()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.privtx_yz.IsAvailable() ) {
+         privtx_yz()->push_back( el.privtx_yz() );
+      } else {
+         privtx_yz()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.privtx_zx.IsAvailable() ) {
+         privtx_zx()->push_back( el.privtx_zx() );
+      } else {
+         privtx_zx()->push_back( std::numeric_limits< float >::min() );
       }
       if( el.privtx_chiSquared.IsAvailable() ) {
          privtx_chiSquared()->push_back( el.privtx_chiSquared() );
@@ -6557,6 +6749,26 @@ if (!is_data) {
          trueTauAssocSmall_matched()->push_back( std::numeric_limits< int >::min() );
       }
 } // end !is_data
+      if( el.MET_Egamma10LooseTau_wpx.IsAvailable() ) {
+         MET_Egamma10LooseTau_wpx()->push_back( el.MET_Egamma10LooseTau_wpx() );
+      } else {
+         MET_Egamma10LooseTau_wpx()->push_back( vector<float>() );
+      }
+      if( el.MET_Egamma10LooseTau_wpy.IsAvailable() ) {
+         MET_Egamma10LooseTau_wpy()->push_back( el.MET_Egamma10LooseTau_wpy() );
+      } else {
+         MET_Egamma10LooseTau_wpy()->push_back( vector<float>() );
+      }
+      if( el.MET_Egamma10LooseTau_wet.IsAvailable() ) {
+         MET_Egamma10LooseTau_wet()->push_back( el.MET_Egamma10LooseTau_wet() );
+      } else {
+         MET_Egamma10LooseTau_wet()->push_back( vector<float>() );
+      }
+      if( el.MET_Egamma10LooseTau_statusWord.IsAvailable() ) {
+         MET_Egamma10LooseTau_statusWord()->push_back( el.MET_Egamma10LooseTau_statusWord() );
+      } else {
+         MET_Egamma10LooseTau_statusWord()->push_back( vector<unsigned int>() );
+      }
       if( el.MET_wpx.IsAvailable() ) {
          MET_wpx()->push_back( el.MET_wpx() );
       } else {
@@ -6576,26 +6788,6 @@ if (!is_data) {
          MET_statusWord()->push_back( el.MET_statusWord() );
       } else {
          MET_statusWord()->push_back( vector<unsigned int>() );
-      }
-      if( el.MET_STVF_wpx.IsAvailable() ) {
-         MET_STVF_wpx()->push_back( el.MET_STVF_wpx() );
-      } else {
-         MET_STVF_wpx()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_wpy.IsAvailable() ) {
-         MET_STVF_wpy()->push_back( el.MET_STVF_wpy() );
-      } else {
-         MET_STVF_wpy()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_wet.IsAvailable() ) {
-         MET_STVF_wet()->push_back( el.MET_STVF_wet() );
-      } else {
-         MET_STVF_wet()->push_back( vector<float>() );
-      }
-      if( el.MET_STVF_statusWord.IsAvailable() ) {
-         MET_STVF_statusWord()->push_back( el.MET_STVF_statusWord() );
-      } else {
-         MET_STVF_statusWord()->push_back( vector<unsigned int>() );
       }
       return *this;
    }
