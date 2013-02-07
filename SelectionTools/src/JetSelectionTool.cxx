@@ -200,7 +200,7 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::JetSelectionTool::isCaloProblemJet(Jet* jet, Met* met)
+bool SelectionTools::JetSelectionTool::isCaloProblemJet(const Jet* jet, const Met* met)
 {
   if (jet->getTlv().Pt() <= 40e3) return false;
   if (jet->BCH_CORR_JET() <= 0.05) return false;
@@ -260,6 +260,32 @@ std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineBadJets(
   }
 
   return baseline_jets;
+}
+
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getCaloProblemJets(
+    const JetContainer& jet_container, const Met* met)
+{
+  const std::vector<Jet*> all_jets = jet_container.getJets(JET_BASELINE);
+  return getCaloProblemJets(all_jets, met);
+}
+
+// -----------------------------------------------------------------------------
+std::vector<Jet*> SelectionTools::JetSelectionTool::getCaloProblemJets(
+    const std::vector<Jet*>& baseline_jets, const Met* met)
+{
+  size_t term = baseline_jets.size();
+
+  std::vector<Jet*> calo_problem_jets;
+  calo_problem_jets.reserve(term);
+
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    if (isCaloProblemJet(baseline_jets.at(jet_it), met)) {
+      calo_problem_jets.push_back(baseline_jets.at(jet_it));
+    }
+  }
+
+  return calo_problem_jets;
 }
 
 // -----------------------------------------------------------------------------
