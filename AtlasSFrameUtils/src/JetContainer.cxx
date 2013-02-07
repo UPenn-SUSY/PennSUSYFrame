@@ -81,9 +81,21 @@ void JetContainer::setCollection( JET_COLLECTIONS jet_collection
 // -----------------------------------------------------------------------------
 void JetContainer::setCombinedCollections()
 {
+  std::vector<Jet*> baseline_good_jet = getJets(JET_BASELINE_GOOD);
+  std::vector<Jet*> baseline_bad_jet  = getJets(JET_BASELINE_BAD );
+
   std::vector<Jet*> l_jet = getJets(JET_LIGHT);
   std::vector<Jet*> b_jet = getJets(JET_B);
   std::vector<Jet*> f_jet = getJets(JET_FORWARD);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::vector<Jet*> all_baseline;
+  all_baseline.reserve(baseline_good_jet.size() + baseline_bad_jet.size());
+  all_baseline.insert(
+      all_baseline.end(), baseline_good_jet.begin(), baseline_good_jet.end());
+  all_baseline.insert(
+      all_baseline.end(), baseline_bad_jet.begin() , baseline_bad_jet.end() );
+  setCollection(JET_BASELINE, all_baseline);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::vector<Jet*> all_central;

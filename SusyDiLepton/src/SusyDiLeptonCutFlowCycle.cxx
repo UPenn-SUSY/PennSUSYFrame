@@ -534,6 +534,9 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
                                        , m_met
                                        );
 
+  m_jets.setCollection( JET_CALO_PROBLEM,
+      m_jet_selection->getCaloProblemJets(m_jets, m_met));
+
   pass_critical_cuts = m_cut_flow->runAdvancedCutFlow( m_event
                                                      , m_electrons
                                                      , m_muons
