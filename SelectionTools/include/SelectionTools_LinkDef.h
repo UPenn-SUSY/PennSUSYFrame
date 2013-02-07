@@ -14,6 +14,7 @@
 // #pragma link C++ class MySuperClass+;
 #pragma link C++ class SelectionTools::ElectronSelectionTool+;
 #pragma link C++ class SelectionTools::EventCleaningTool+;
+#pragma link C++ class SelectionTools::EventPicker+;
 #pragma link C++ class SelectionTools::GoodRunsListTool+;
 #pragma link C++ class SelectionTools::JetSelectionTool+;
 #pragma link C++ class SelectionTools::MuonSelectionTool+;
