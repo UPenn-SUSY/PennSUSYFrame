@@ -367,11 +367,6 @@ bool SusyDiLeptonCutFlowTool::runAdvancedCutFlow( Event* event,
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check for bad calo jet
-  // std::cout << "\n";
-  // std::cout << "num baseline good jets: " << jets.num(JET_BASELINE_GOOD) << "\n";
-  // std::cout << "num baseline bad jets: " << jets.num(JET_BASELINE_BAD) << "\n";
-  // std::cout << "num baseline jets: " << jets.num(JET_BASELINE) << "\n";
-  // std::cout << "num calo problem jets: " << jets.num(JET_CALO_PROBLEM) << "\n";
   bool pass_calo_problem_jets = (jets.num(JET_CALO_PROBLEM) == 0);
   event->getEventDesc()->setPassCaloProblemJets(pass_calo_problem_jets);
   if (c_crit_calo_problem_jets && pass_calo_problem_jets == false) {
