@@ -9,6 +9,8 @@
 // =============================================================================
 class Electron;
 class Muon;
+class Jet;
+class Met;
 class VertexContainer;
 class triggerReweight2Lep;
 
@@ -34,6 +36,8 @@ namespace CommonTools
     double getTriggerWeight( FLAVOR_CHANNEL flavor_channel
                            , const std::vector<Electron*>& el
                            , const std::vector<Muon*>& mu
+			   , const std::vector<Jet*>& jet
+			   , Met*
                            , VertexContainer&
                            );
 

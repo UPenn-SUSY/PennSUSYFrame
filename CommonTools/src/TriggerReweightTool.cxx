@@ -6,6 +6,8 @@
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Electron.h"
 #include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
@@ -45,7 +47,7 @@ void CommonTools::TriggerReweightTool::BeginCycle()
      << SLogger::endmsg;
 
   m_trigger_reweight = new triggerReweight2Lep();
-  m_trigger_reweight->initialize(c_reweight_directory,c_reweight_period);
+  m_trigger_reweight->initialize(c_reweight_directory,c_reweight_period,true,true);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -85,6 +87,8 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
     FLAVOR_CHANNEL flavor_channel,
     const std::vector<Electron*>& el,
     const std::vector<Muon*>& mu,
+    const std::vector<Jet*>& jet,
+    Met* met,
     VertexContainer& vertices)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -98,6 +102,8 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
       int systematic = 0; //take nominal value for now;
 
       int num_vert = vertices.num(VERT_GOOD);
+
+      int num_jets = jet.size();
 
       if (flavor_channel == FLAVOR_EE)
       {
@@ -136,7 +142,7 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         int mu_isComb_1 = mu.at(0)->isCombinedMuon();
         int mu_isComb_2 = mu.at(1)->isCombinedMuon();
 
-        m_trigger_weight = m_trigger_reweight->triggerReweightMM(mu_pt_1,mu_eta_1,mu_phi_1,mu_isComb_1,mu_pt_2,mu_eta_2,mu_phi_2, mu_isComb_2, systematic, num_vert);
+        m_trigger_weight = m_trigger_reweight->triggerReweightMM(mu_pt_1,mu_eta_1,mu_phi_1,mu_isComb_1,mu_pt_2,mu_eta_2,mu_phi_2, mu_isComb_2, systematic, num_vert,met->getMetRefFinalEt(),num_jets,false);
       }
       else if(flavor_channel == FLAVOR_EM)
       {
