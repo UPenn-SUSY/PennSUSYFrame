@@ -14,5 +14,6 @@
 // #pragma link C++ class MySuperClass+;
 // #pragma link C++ class RunSusyCutFlow+;
 
+#pragma link C++ class+protected EventNumberDump+;
 
 #endif // __CINT__

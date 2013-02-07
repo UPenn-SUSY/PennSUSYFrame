@@ -96,6 +96,8 @@ void CutConfigParser::addLine(std::vector<std::string> split_line)
     m_tmp_pass_event.setPassTileHotSpot(valueToBool(split_line));
   else if (key.find("pass_bad_jets") != std::string::npos)
     m_tmp_pass_event.setPassBadJets(valueToBool(split_line));
+  else if (key.find("pass_calo_problem_jets") != std::string::npos)
+    m_tmp_pass_event.setPassCaloProblemJets(valueToBool(split_line));
   else if (key.find("pass_primary_vertex") != std::string::npos)
     m_tmp_pass_event.setPassPrimaryVertex(valueToBool(split_line));
   else if (key.find("pass_bad_muons") != std::string::npos)

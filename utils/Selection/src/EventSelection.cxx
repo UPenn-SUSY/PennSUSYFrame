@@ -1,5 +1,8 @@
-#include "include/EventSelection.h"
-#include <iostream>
+#include "Selection/include/EventSelection.h"
+
+#include "SusyAnalysisTools/include/EventDescription.h"
+#include "SusyAnalysisTools/include/SRHelper.h"
+
 
 // -----------------------------------------------------------------------------
 Selection::EventSelection::EventSelection() : m_pass_event_word(0)
@@ -114,4 +117,3 @@ bool Selection::EventSelection::passEvent(
          && sr_helper.reverse( m_reverse_sr_word   )
          );
 }
-

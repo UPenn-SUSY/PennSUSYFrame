@@ -2,11 +2,10 @@
 #define Selection_EventSelection_h
 
 // ============================================================================
+#include <string>
+
 #include "SusyAnalysisTools/include/EventDescription.h"
 #include "SusyAnalysisTools/include/SRHelper.h"
-// #include "SusyAnalysisTools/include/Event.h"
-// #include "SusyAnalysisTools/include/MET.h"
-// #include "SusyAnalysisTools/include/Jet.h"
 
 // ============================================================================
 namespace Selection
