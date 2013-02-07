@@ -2,9 +2,14 @@
 #ifndef CommonTools_MTTool_H
 #define CommonTools_MTTool_H
 // =============================================================================
-
+#include <vector>
 #include "TLorentzVector.h"
-#include "AtlasSFrameUtils/include/Met.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class Electron;
+class Muon;
+class Met;
 
 // =============================================================================
 namespace CommonTools{

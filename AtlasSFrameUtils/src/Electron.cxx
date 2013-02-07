@@ -1,7 +1,23 @@
+#include "AtlasSFrameUtils/include/Electron.h"
+
 #include <cmath>
 
-#include "include/Electron.h"
+#include <iostream>
+#include <vector>
+#include "TLorentzVector.h"
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/ParticleElement.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "CommonTools/include/TLVTool.h"
+#include "CommonTools/include/IsoCorrectionTool.h"
+
+#include "D3PDObjects/include/ElectronD3PDObject.h"
+
+#include "SusyAnalysisTools/include/ElectronDescription.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 
 ClassImp(Electron)
 

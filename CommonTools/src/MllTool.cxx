@@ -1,4 +1,9 @@
-#include "include/MllTool.h"
+#include "CommonTools/include/MllTool.h"
+
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 //_____________________________________________________________________________
 CommonTools::MllTool::MllTool()

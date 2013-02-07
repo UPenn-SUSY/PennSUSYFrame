@@ -2,21 +2,20 @@
 #ifndef CommonTools_VertexOutputTool_h
 #define CommonTools_VertexOutputTool_h
 
+// =============================================================================
 #include "AtlasSFrameUtils/include/ToolBase.h"
 
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Met.h"
-#include "AtlasSFrameUtils/include/VertexContainer.h"
-
-#include "SusyAnalysisTools/include/SusyEnums.h"
-
 // =============================================================================
-// Forward declare SusyDiLeptonCutFlowCycle
+class Event;
+class ElectronContainer;
+class MuonContainer;
+class JetContainer;
+class Met;
+class VertexContainer;
+
 class SusyDiLeptonCutFlowCycle;
 class SusyDiLeptonChargeFlipCycle;
+
 // =============================================================================
 namespace CommonTools
 {
@@ -47,7 +46,6 @@ namespace CommonTools
     std::string c_vertex_output_collection;
 
     //Variables to always output
-
     unsigned int              m_vtx_n;
     std::vector<float>        m_vtx_x;
     std::vector<float>        m_vtx_y;

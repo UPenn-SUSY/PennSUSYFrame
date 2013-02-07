@@ -6,24 +6,43 @@ do_metadata:        False
 input_file_hists:   ''
 
 CutFlow:
-    Crit_grl:              True
-    Crit_incomplete_event: True
-    Crit_tile_error:       True
-    Crit_tile_hot_spot:    True
-    Crit_lar_error:        True
-    Crit_bad_jet_veto:     True
-    Crit_primary_vertex:   True
-    Crit_bad_mu_veto:      True
-    Crit_cosmic_mu_veto:   True
-    Crit_hfor:             True
-    Crit_ge_2_lep:         True
-    Crit_2_lep:            True
+    Crit_grl:              False
+    Crit_incomplete_event: False
+    Crit_tile_error:       False
+    Crit_tile_hot_spot:    False
+    Crit_lar_error:        False
+    Crit_bad_jet_veto:     False
+    Crit_primary_vertex:   False
+    Crit_bad_mu_veto:      False
+    Crit_cosmic_mu_veto:   False
+    Crit_hfor:             False
+    Crit_ge_2_lep:         False
+    Crit_2_lep:            False
     Crit_mll:              False
-    Crit_signal_lep:       True
+    Crit_signal_lep:       False
     Crit_prompt_leptons:   False
-    Crit_phase_space:      True
-    Crit_trigger:          True
-    Crit_trigger_match:    True
+    Crit_phase_space:      False
+    Crit_trigger:          False
+    Crit_trigger_match:    False
+
+    # Crit_grl:              True
+    # Crit_incomplete_event: True
+    # Crit_tile_error:       True
+    # Crit_tile_hot_spot:    True
+    # Crit_lar_error:        True
+    # Crit_bad_jet_veto:     True
+    # Crit_primary_vertex:   True
+    # Crit_bad_mu_veto:      True
+    # Crit_cosmic_mu_veto:   True
+    # Crit_hfor:             True
+    # Crit_ge_2_lep:         True
+    # Crit_2_lep:            True
+    # Crit_mll:              False
+    # Crit_signal_lep:       True
+    # Crit_prompt_leptons:   False
+    # Crit_phase_space:      True
+    # Crit_trigger:          True
+    # Crit_trigger_match:    True
 
 EgammaEnergyRescale:
     apply_systematics: 0
@@ -200,7 +219,8 @@ Signal_Regions:
 
 PileUpScaleFactor:
   do_pile_up:       True
-  data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200841-210308.root
+  # data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200841-210308.root
+  data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root
   mc_file:          ${ROOTCOREDIR}/../PileupReweighting/share/mc12a_defaults.prw.root
   data_hist_name:   LumiMetaData
   generate_mc_hist: False

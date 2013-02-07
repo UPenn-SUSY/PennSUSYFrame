@@ -2,15 +2,14 @@
 #ifndef SelectionTools_ElectronSelectionTool_h
 #define SelectionTools_ElectronSelectionTool_h
 
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
+// =============================================================================
+#include <vector>
 #include "AtlasSFrameUtils/include/ToolBase.h"
 
-#include "egammaAnalysisUtils/IsEMPlusPlusDefs.h"
-#include "egammaEvent/egammaPIDdefs.h"
-
 // ============================================================================
+class Electron;
 class ElectronContainer;
+class VertexContainer;
 
 // =============================================================================
 namespace SelectionTools

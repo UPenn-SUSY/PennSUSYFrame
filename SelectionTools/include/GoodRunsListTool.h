@@ -3,10 +3,10 @@
 #define SelectionTools_GoodRunsListTool_h
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Event.h"
-
 #include "GoodRunsLists/TGoodRunsList.h"
-#include "GoodRunsLists/TGoodRunsListReader.h"
+
+// =============================================================================
+class Event;
 
 // ============================================================================
 namespace SelectionTools

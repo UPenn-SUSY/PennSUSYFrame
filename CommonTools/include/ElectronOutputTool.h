@@ -2,24 +2,26 @@
 #ifndef CommonTools_ElectronOutputTool_h
 #define CommonTools_ElectronOutputTool_h
 
+#include <vector>
+
+#include "TLorentzVector.h"
+
 #include "AtlasSFrameUtils/include/ToolBase.h"
-
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Met.h"
-#include "AtlasSFrameUtils/include/VertexContainer.h"
-
-#include "CommonTools/include/DeltaPhiTool.h"
-#include "CommonTools/include/MTTool.h"
-
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
-// Forward declare SusyDiLeptonCutFlowCycle
 class SusyDiLeptonCutFlowCycle;
 class SusyDiLeptonChargeFlipCycle;
+
+class Event;
+class Electron;
+class Met;
+
+class ElectronContainer;
+class JetContainer;
+class MuonContainer;
+class VertexContainer;
+
 // =============================================================================
 namespace CommonTools
 {

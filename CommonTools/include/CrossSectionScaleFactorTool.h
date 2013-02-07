@@ -1,18 +1,26 @@
 #ifndef CommonTools_CrossSectionScaleFactorTool_h
 #define CommonTools_CrossSectionScaleFactorTool_h
 
+// =============================================================================
 #include <vector>
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "D3PDObjects/include/EventInfoD3PDObject.h"
-#include "D3PDObjects/include/TruthD3PDObject.h"
-#include "SUSYTools/SUSYCrossSection.h"
+
+// =============================================================================
+namespace D3PDReader
+{
+  class TruthD3PDObject;
+}
+namespace SUSY
+{
+  class CrossSectionDB;
+}
 
 // ============================================================================
 namespace CommonTools
 {
   // ============================================================================
-  class CrossSectionScaleFactorTool : public ToolBase 
+  class CrossSectionScaleFactorTool : public ToolBase
   {
   // ----------------------------------------------------------------------------
   public:
@@ -23,10 +31,10 @@ namespace CommonTools
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     void init();
     void clear();
-    
+
     void BeginInputData(const SInputData& id);
     void EndInputData(  const SInputData& id);
-    
+
     float getSF(                  const D3PDReader::TruthD3PDObject&);
     float getCrossSectionTimesEff(const D3PDReader::TruthD3PDObject&);
     float getCrossSection(        const D3PDReader::TruthD3PDObject&);
@@ -34,11 +42,11 @@ namespace CommonTools
     float getEfficiency(          const D3PDReader::TruthD3PDObject&);
     float getRelUncertainty(      const D3PDReader::TruthD3PDObject&);
     std::string getName(          const D3PDReader::TruthD3PDObject&);
-    
+
   // ----------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // user configurables 
+    // user configurables
     bool c_do_cross_section_sf;
     std::string c_cross_section_file;
 
@@ -50,7 +58,7 @@ namespace CommonTools
     float m_efficiency;
     float m_rel_uncertainty;
     std::string m_name;
-    
+
     bool m_cached_sf;
     bool m_cached_cs_x_eff;
     bool m_cached_cs;
@@ -62,12 +70,12 @@ namespace CommonTools
 
     double c_data_lumi;
     int c_mc_num_events;
-    
+
     SUSY::CrossSectionDB* m_cross_section_db;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(CrossSectionScaleFactorTool, 0);
   };
-} // CommonTools 
+} // CommonTools
 
 #endif // CommonTools_CrossSectionScaleFactorTool_h

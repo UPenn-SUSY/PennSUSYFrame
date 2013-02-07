@@ -1,15 +1,15 @@
 #ifndef CommonTools_MuonScaleFactorTool_h
 #define CommonTools_MuonScaleFactorTool_h
 
-#include <vector>
-
-#include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-// #include "MuonEfficiencyCorrections/AnalysisMuonEfficiencyScaleFactors.h"
-#include "MuonEfficiencyCorrections/AnalysisMuonConfigurableScaleFactors.h"
-#include "CommonTools/include/PileUpScaleFactorTool.h"
-
 // ============================================================================
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "CommonTools/include/PileUpScaleFactorTool.h"
+#include "MuonEfficiencyCorrections/AnalysisMuonConfigurableScaleFactors.h"
+
+// =============================================================================
+class Muon;
+
+// =============================================================================
 namespace CommonTools
 {
   // ============================================================================

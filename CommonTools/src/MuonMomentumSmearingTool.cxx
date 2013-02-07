@@ -1,4 +1,10 @@
-#include "include/MuonMomentumSmearingTool.h"
+#include "CommonTools/include/MuonMomentumSmearingTool.h"
+
+#include <vector>
+
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "MuonMomentumCorrections/SmearingClass.h"
 
 // -----------------------------------------------------------------------------
 CommonTools::MuonMomentumSmearingTool::MuonMomentumSmearingTool(

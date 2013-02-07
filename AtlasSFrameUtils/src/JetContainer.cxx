@@ -1,4 +1,18 @@
-#include "include/JetContainer.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+
+#include <iostream>
+#include <vector>
+
+#include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "CommonTools/include/TLVTool.h"
+
+#include "SelectionTools/include/JetSelectionTool.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // ----------------------------------------------------------------------------
 JetContainer::JetContainer()
@@ -46,7 +60,6 @@ void JetContainer::prepJets( D3PDReader::JetD3PDObject* jet_d3pdobject
 
   size_t term = m_master_list.size();
   for (size_t jet_it = 0; jet_it != term; ++jet_it) {
-    // float mu = event->averageIntPerXing();
     int num_vertices_w_2_trks = vertices.num(VERT_GT_2);
 
     m_master_list.at(jet_it).prepTlv(event, num_vertices_w_2_trks);

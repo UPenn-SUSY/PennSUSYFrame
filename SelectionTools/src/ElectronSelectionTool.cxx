@@ -1,5 +1,16 @@
+#include "SelectionTools/include/ElectronSelectionTool.h"
+
 #include <math.h>
-#include "include/ElectronSelectionTool.h"
+#include <vector>
+
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "egammaAnalysisUtils/IsEMPlusPlusDefs.h"
+#include "egammaEvent/egammaPIDdefs.h"
+
 
 // ----------------------------------------------------------------------------
 SelectionTools::ElectronSelectionTool::ElectronSelectionTool(

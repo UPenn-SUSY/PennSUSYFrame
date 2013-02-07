@@ -1,5 +1,11 @@
+#include "SelectionTools/include/JetSelectionTool.h"
+
+#include <vector>
 #include <math.h>
-#include "include/JetSelectionTool.h"
+
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
 
 // -----------------------------------------------------------------------------
 SelectionTools::JetSelectionTool::JetSelectionTool(
@@ -191,6 +197,17 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
   // do not flag this as a bad jet
   return false;
 }
+
+// // -----------------------------------------------------------------------------
+// bool SelectionTools::JetSelectionTool::isCaloProblemJet(Jet* jet, Met* met)
+// {
+//   if (jet->getTlv().Pt() <= 40e3) return false;
+//   if (jet->BCH_CORR_JET() <= 0.05) return false;
+//   float dphi_jet_met = fabs(CommonTools::DeltaPhiTool::getDeltaPhi(jet, met));
+//   if (dphi_jet_met >= 0.3) return false;
+// 
+//   return true;
+// }
 
 // -----------------------------------------------------------------------------
 std::vector<Jet*> SelectionTools::JetSelectionTool::getBaselineGoodJets(

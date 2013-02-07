@@ -1,5 +1,11 @@
+#include "SelectionTools/include/GoodRunsListTool.h"
+
 #include <math.h>
-#include "include/GoodRunsListTool.h"
+
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "GoodRunsLists/TGoodRunsList.h"
+#include "GoodRunsLists/TGoodRunsListReader.h"
 
 // ----------------------------------------------------------------------------
 SelectionTools::GoodRunsListTool::GoodRunsListTool( SCycleBase* parent

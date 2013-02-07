@@ -1,20 +1,25 @@
 // Dear emacs, this is -*- c++ -*-
 #ifndef CommonTools_TruthMatchTool_H
 #define CommonTools_TruthMatchTool_H
-// =============================================================================
 
+// =============================================================================
+#include <vector>
 #include "TLorentzVector.h"
 
+#include "AtlasSFrameUtils/include/CycleMacros.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-
-#include "D3PDObjects/include/TruthD3PDObject.h"
-#include "D3PDObjects/include/MuonTruthD3PDObject.h"
-
-#include "LeptonTruthTools/RecoTruthMatch.h"
-
 #include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class Electron;
+class Muon;
+class RecoTruthMatch;
+
+namespace D3PDReader
+{
+  class MuonTruthD3PDObject;
+  class TruthD3PDObject;
+}
 
 // =============================================================================
 namespace CommonTools {
@@ -38,7 +43,7 @@ namespace CommonTools {
     bool isRealMuon(const Muon*, const D3PDReader::MuonTruthD3PDObject*);
 
     int matchBarcode( int barcode_to_match
-		      , const vector<int>* list_of_barcodes
+		      , const std::vector<int>* list_of_barcodes
 		      );
     int getIndex(TLorentzVector tlv);
 

@@ -5,10 +5,9 @@
 #ifndef AtlasSFrameUtils_TriggerVec_h
 #define AtlasSFrameUtils_TriggerVec_h
 
-#include <iostream>
 #include "D3PDObjects/include/TriggerVecD3PDObject.h"
 
-// ============================================================================
+// =============================================================================
 class TriggerVec : public D3PDReader::TriggerVecD3PDObject
 {
 public:

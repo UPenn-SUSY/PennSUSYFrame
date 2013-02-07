@@ -1,7 +1,10 @@
-#include <cmath>
+#include "AtlasSFrameUtils/include/Trigger.h"
 
-#include "include/Trigger.h"
+#include <cmath>
+#include <iostream>
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "D3PDObjects/include/TriggerD3PDObject.h"
 
 ClassImp(Trigger)
 

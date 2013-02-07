@@ -1,21 +1,26 @@
 #ifndef AtlasSFrameUtils_JetContainer
 #define AtlasSFrameUtils_JetContainer
 
-#include <iostream>
+// =============================================================================
 #include <vector>
 
-#include "ParticleElementBuilder.h"
-#include "Event.h"
-#include "Jet.h"
-#include "VertexContainer.h"
-
-#include "CommonTools/include/TLVTool.h"
-
-#include "SelectionTools/include/JetSelectionTool.h"
-
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "D3PDObjects/include/JetD3PDObject.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
+class Event;
+class Jet;
+class VertexContainer;
+
+namespace CommonTools
+{
+  class TLVTool;
+}
+namespace D3PDReader
+{
+  class JetD3PDObject;
+}
 namespace SelectionTools
 {
   class JetSelectionTool;

@@ -1,4 +1,16 @@
-#include "include/EventCleaningTool.h"
+#include "SelectionTools/include/EventCleaningTool.h"
+
+#include <vector>
+
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "CommonTools/include/MllTool.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 
 // -----------------------------------------------------------------------------
 SelectionTools::EventCleaningTool::EventCleaningTool(

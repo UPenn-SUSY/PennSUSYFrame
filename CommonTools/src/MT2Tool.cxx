@@ -1,5 +1,14 @@
-#include "include/MT2Tool.h"
+#include "CommonTools/include/MT2Tool.h"
 
+#include <vector>
+#include "TLorentzVector.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "CommonTools/include/mt2_bisect.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// -----------------------------------------------------------------------------
 CommonTools::MT2Tool::MT2Tool()
 {
   // do nothing

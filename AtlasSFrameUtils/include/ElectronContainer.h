@@ -1,21 +1,26 @@
 #ifndef AtlasSFrameUtils_ElectronContainer
 #define AtlasSFrameUtils_ElectronContainer
 
-#include <iostream>
+// =============================================================================
 #include <vector>
 
-#include "ParticleElementBuilder.h"
-#include "Electron.h"
-#include "VertexContainer.h"
-
-#include "CommonTools/include/TLVTool.h"
-#include "CommonTools/include/IsoCorrectionTool.h"
-
-#include "SelectionTools/include/ElectronSelectionTool.h"
-
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "D3PDObjects/include/ElectronD3PDObject.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
+class Electron;
+class VertexContainer;
+
+namespace CommonTools
+{
+  class IsoCorrectionTool;
+  class TLVTool;
+}
+namespace D3PDReader
+{
+  class ElectronD3PDObject;
+}
 namespace SelectionTools
 {
   class ElectronSelectionTool;

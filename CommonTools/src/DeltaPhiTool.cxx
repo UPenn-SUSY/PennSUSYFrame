@@ -1,4 +1,13 @@
-#include "include/DeltaPhiTool.h"
+#include "CommonTools/include/DeltaPhiTool.h"
+
+#include <vector>
+
+#include "CommonTools/include/PhillTool.h"
+
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/Met.h"
 
 //_____________________________________________________________________________
 CommonTools::DeltaPhiTool::DeltaPhiTool()
@@ -14,25 +23,6 @@ double CommonTools::DeltaPhiTool::getDeltaPhi( FLAVOR_CHANNEL flavor_channel
                                              )
 {
   double ll_phi = PhillTool::getPhill(flavor_channel, el, mu);
-  // if (flavor_channel == FLAVOR_EE) {
-  //   ll_phi = ( el.at(0)->getTlv()
-  //            + el.at(1)->getTlv()
-  //            ).Phi();
-  // }
-  // else if (flavor_channel == FLAVOR_MM) {
-  //   ll_phi = ( mu.at(0)->getTlv()
-  //            + mu.at(1)->getTlv()
-  //            ).Phi();
-  // }
-  // else if (flavor_channel == FLAVOR_EM) {
-  //   ll_phi = ( el.at(0)->getTlv()
-  //            + mu.at(0)->getTlv()
-  //            ).Phi();
-  // }
-  // else {
-  //   return -999;
-  // }
-
   double dphi = jet->getTlv().Phi();
   dphi = fabs(TVector2::Phi_mpi_pi(dphi));
 
@@ -47,25 +37,6 @@ double CommonTools::DeltaPhiTool::getDeltaPhi( FLAVOR_CHANNEL flavor_channel
                                              )
 {
   double ll_phi = PhillTool::getPhill(flavor_channel, el, mu);
-  // if (flavor_channel == FLAVOR_EE) {
-  //   ll_phi = ( el.at(0)->getTlv()
-  //            + el.at(1)->getTlv()
-  //            ).Phi();
-  // }
-  // else if (flavor_channel == FLAVOR_MM) {
-  //   ll_phi = ( mu.at(0)->getTlv()
-  //            + mu.at(1)->getTlv()
-  //            ).Phi();
-  // }
-  // else if (flavor_channel == FLAVOR_EM) {
-  //   ll_phi = ( el.at(0)->getTlv()
-  //            + mu.at(0)->getTlv()
-  //            ).Phi();
-  // }
-  // else {
-  //   return -999;
-  // }
-
   double dphi = met->getMetRefFinalPhi();
   dphi = fabs(TVector2::Phi_mpi_pi(dphi));
 

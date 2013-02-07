@@ -1,6 +1,11 @@
-#include "include/PileUpScaleFactorTool.h"
-#include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "CommonTools/include/PileUpScaleFactorTool.h"
 
+#include <vector>
+
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "D3PDObjects/include/TruthD3PDObject.h"
+#include "PileupReweighting/TPileupReweighting.h"
 
 // -----------------------------------------------------------------------------
 CommonTools::PileUpScaleFactorTool::PileUpScaleFactorTool(
@@ -30,6 +35,7 @@ void CommonTools::PileUpScaleFactorTool::clear()
   m_is_cached = false;
   m_pileup_sf =  -999;
 }
+
 // -----------------------------------------------------------------------------
 void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
 {
@@ -62,17 +68,16 @@ void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
 
     if (is_good != 0) {
       m_logger << FATAL
-        << "Problem in Pileup initialization::isGood="
-        << is_good
-        << SLogger::endmsg;
+               << "Problem in Pileup initialization::isGood="
+               << is_good
+               << SLogger::endmsg;
     }
     else {
       AddConfigObject(m_pile_up_reweight);
     }
   }
-
-
 }
+
 // -----------------------------------------------------------------------------
 void CommonTools::PileUpScaleFactorTool::EndInputData(const SInputData&)
 {

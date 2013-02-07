@@ -1,4 +1,10 @@
-#include "include/SignChannel.h"
+#include "CommonTools/include/SignChannel.h"
+
+#include <vector>
+
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 //_____________________________________________________________________________
 CommonTools::SignChannel::SignChannel()

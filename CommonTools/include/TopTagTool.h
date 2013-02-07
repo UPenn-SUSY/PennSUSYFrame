@@ -2,16 +2,20 @@
 #ifndef CommonTools_TopTagTool_H
 #define CommonTools_TopTagTool_H
 
+// =============================================================================
+#include <vector>
 #include "TLorentzVector.h"
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Met.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
+// =============================================================================
+class Met;
+class Electron;
+class Muon;
+class Jet;
+
+// =============================================================================
 // //--- In the Loop Function:
 //
 // int nsolutions = -1;

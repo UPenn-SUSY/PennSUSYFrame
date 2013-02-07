@@ -5,7 +5,6 @@
 #ifndef AtlasSFrameUtils_Trigger_h
 #define AtlasSFrameUtils_Trigger_h
 
-#include <iostream>
 #include "D3PDObjects/include/TriggerD3PDObject.h"
 
 // ============================================================================

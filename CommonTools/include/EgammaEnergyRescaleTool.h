@@ -1,10 +1,9 @@
 #ifndef CommonTools_EgammaEnergyRescaleTool_h
 #define CommonTools_EgammaEnergyRescaleTool_h
 
+// =============================================================================
 #include <vector>
-
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Electron.h"
 #include "egammaAnalysisUtils/EnergyRescalerUpgrade.h"
 
 // ============================================================================

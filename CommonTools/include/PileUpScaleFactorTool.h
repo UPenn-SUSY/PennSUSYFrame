@@ -2,15 +2,20 @@
 #ifndef CommonTools_PileUpScaleFactorTool_H
 #define CommonTools_PileUpScaleFactorTool_H
 // ============================================================================
-
-
+#include <vector>
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Event.h"
-#include "D3PDObjects/include/TruthD3PDObject.h"
-#include "PileupReweighting/TPileupReweighting.h"
-
 
 // ============================================================================
+class Event;
+namespace D3PDReader
+{
+  class TruthD3PDObject;
+}
+namespace Root
+{
+  class TPileupReweighting;
+}
+
 namespace CommonTools{
 // ============================================================================
   class PileUpScaleFactorTool : public ToolBase
@@ -57,7 +62,6 @@ namespace CommonTools{
     bool m_is_cached;
 
     ClassDef(PileUpScaleFactorTool, 0);
-
   };
 
 }

@@ -6,6 +6,7 @@
 
 #include "Vertex.h"
 
+#include "D3PDObjects/include/VertexD3PDObject.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // ============================================================================

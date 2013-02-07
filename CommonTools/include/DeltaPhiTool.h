@@ -1,15 +1,16 @@
 // Dear emacs, this is -*- c++ -*-
 #ifndef CommonTools_DeltaPhiTool_H
 #define CommonTools_DeltaPhiTool_H
+
 // ============================================================================
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/Met.h"
-
-#include "CommonTools/include/PhillTool.h"
-
+#include <vector>
 #include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class Electron;
+class Muon;
+class Jet;
+class Met;
 
 // ============================================================================
 namespace CommonTools{
@@ -26,10 +27,6 @@ namespace CommonTools{
 
     template <class T>
       static double getDeltaPhi(const T*, const Met*);
-
-    // static double getDeltaPhi(const Electron*, const Met*);
-    // static double getDeltaPhi(const Muon*    , const Met*);
-    // static double getDeltaPhi(const Jet*     , const Met*);
 
     static double getDeltaPhi( FLAVOR_CHANNEL
                              , const std::vector<Electron*>&

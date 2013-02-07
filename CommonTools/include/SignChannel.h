@@ -1,11 +1,17 @@
 // Dear emacs, this is -*- c++ -*-
 #ifndef CommonTools_SignChannel_H
 #define CommonTools_SignChannel_H
+
 // ============================================================================
+#include <vector>
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 #include "AtlasSFrameUtils/include/Electron.h"
 #include "AtlasSFrameUtils/include/Muon.h"
 
-#include "SusyAnalysisTools/include/SusyEnums.h"
+// =============================================================================
+class Electron;
+class Muon;
 
 // ============================================================================
 namespace CommonTools{

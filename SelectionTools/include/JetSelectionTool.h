@@ -2,11 +2,13 @@
 #ifndef SelectionTools_JetSelectionTool_h
 #define SelectionTools_JetSelectionTool_h
 
+// =============================================================================
+#include <vector>
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
 
 // =============================================================================
+class Met;
+class Jet;
 class JetContainer;
 
 // =============================================================================
@@ -27,26 +29,22 @@ namespace SelectionTools
     bool isBJet(Jet*);
     bool isFJet(Jet*);
     bool isBadJet(Jet*);
+    // bool isCaloProblemJet(Jet*, Met*);
 
     std::vector<Jet*> getBaselineGoodJets(const JetContainer&);
-    std::vector<Jet*> getBaselineGoodJets(
-        const std::vector<Jet*>& all_jets);
+    std::vector<Jet*> getBaselineGoodJets(const std::vector<Jet*>& all_jets);
 
     std::vector<Jet*> getBaselineBadJets(const JetContainer&);
-    std::vector<Jet*> getBaselineBadJets(
-        const std::vector<Jet*>& all_jets);
+    std::vector<Jet*> getBaselineBadJets(const std::vector<Jet*>& all_jets);
 
     std::vector<Jet*> getLJets(const JetContainer&);
-    std::vector<Jet*> getLJets(
-        const std::vector<Jet*>& good_jets);
+    std::vector<Jet*> getLJets(const std::vector<Jet*>& good_jets);
 
     std::vector<Jet*> getBJets(const JetContainer&);
-    std::vector<Jet*> getBJets(
-        const std::vector<Jet*>& good_jets);
+    std::vector<Jet*> getBJets(const std::vector<Jet*>& good_jets);
 
     std::vector<Jet*> getFJets(const JetContainer&);
-    std::vector<Jet*> getFJets(
-        const std::vector<Jet*>& good_jets);
+    std::vector<Jet*> getFJets(const std::vector<Jet*>& good_jets);
 
   // ---------------------------------------------------------------------------
   private:

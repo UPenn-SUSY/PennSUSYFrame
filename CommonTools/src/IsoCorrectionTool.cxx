@@ -1,6 +1,11 @@
-#include "include/IsoCorrectionTool.h"
+#include "CommonTools/include/IsoCorrectionTool.h"
+
+#include <map>
 
 #include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 
 // -----------------------------------------------------------------------------
 CommonTools::IsoCorrectionTool::IsoCorrectionTool( SCycleBase* parent

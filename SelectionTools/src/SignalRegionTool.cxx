@@ -1,6 +1,16 @@
-#include "include/SignalRegionTool.h"
+#include "SelectionTools/include/SignalRegionTool.h"
 
 #include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "CommonTools/include/TopTagTool.h"
 
 // -----------------------------------------------------------------------------
 SelectionTools::SignalRegionTool::SignalRegionTool(

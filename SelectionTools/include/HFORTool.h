@@ -2,14 +2,15 @@
 #ifndef SelectionTools_HFORTool_h
 #define SelectionTools_HFORTool_h
 
-#include <iostream>
-
+// =============================================================================
 #include "AtlasSFrameUtils/include/ToolBase.h"
-
-#include "D3PDObjects/include/TruthD3PDObject.h"
-
 #include "SUSYTools/HforToolD3PD.h"
 
+// =============================================================================
+namespace D3PDReader
+{
+  class TruthD3PDObject;
+}
 
 // =============================================================================
 namespace SelectionTools
@@ -19,7 +20,6 @@ namespace SelectionTools
   {
     // ---------------------------------------------------------------------------
   public:
-    
     HFORTool( SCycleBase* parent
             , const char* name = "EventCleaning"
 	    );

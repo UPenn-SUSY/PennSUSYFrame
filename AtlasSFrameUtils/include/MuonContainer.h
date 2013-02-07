@@ -1,21 +1,22 @@
 #ifndef AtlasSFrameUtils_MuonContainer
 #define AtlasSFrameUtils_MuonContainer
 
-#include <iostream>
+// =============================================================================
 #include <vector>
 
-#include "ParticleElementBuilder.h"
-#include "Muon.h"
-#include "VertexContainer.h"
-
-#include "CommonTools/include/TLVTool.h"
-#include "CommonTools/include/IsoCorrectionTool.h"
-
-#include "SelectionTools/include/MuonSelectionTool.h"
-
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "D3PDObjects/include/MuonD3PDObject.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
+class Muon;
+class VertexContainer;
+
+namespace CommonTools
+{
+  class TLVTool;
+  class IsoCorrectionTool;
+}
 namespace SelectionTools
 {
   class MuonSelectionTool;

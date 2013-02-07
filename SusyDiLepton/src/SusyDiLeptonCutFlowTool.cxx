@@ -1,9 +1,48 @@
 // $Id: CycleCreators.py 173 2010-05-12 15:49:33Z krasznaa $
 
 // Local include(s):
-#include "include/SusyDiLeptonCutFlowTool.h"
-#include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "SusyDiLepton/include/SusyDiLeptonCutFlowTool.h"
 
+#include <map>
+
+#include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Trigger.h"
+#include "AtlasSFrameUtils/include/TriggerVec.h"
+#include "AtlasSFrameUtils/include/Vertex.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "CommonTools/include/ChargeFlipScaleFactorTool.h"
+#include "CommonTools/include/EtallTool.h"
+#include "CommonTools/include/MT2Tool.h"
+#include "CommonTools/include/MTTool.h"
+#include "CommonTools/include/MeffTool.h"
+#include "CommonTools/include/MllTool.h"
+#include "CommonTools/include/PhillTool.h"
+#include "CommonTools/include/PtllTool.h"
+#include "CommonTools/include/SignChannel.h"
+#include "CommonTools/include/TopTagTool.h"
+#include "CommonTools/include/TruthMatchTool.h"
+
+#include "D3PDObjects/include/MuonTruthD3PDObject.h"
+#include "D3PDObjects/include/TruthD3PDObject.h"
+
+#include "SelectionTools/include/EventCleaningTool.h"
+#include "SelectionTools/include/GoodRunsListTool.h"
+#include "SelectionTools/include/TriggerCutTool.h"
+#include "SelectionTools/include/HFORTool.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
 ClassImp( SusyDiLeptonCutFlowTool );
 
 // =============================================================================

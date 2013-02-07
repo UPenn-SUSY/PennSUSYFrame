@@ -2,8 +2,8 @@
 #ifndef CommonTools_DeltaPhiTool_icc
 #define CommonTools_DeltaPhiTool_icc
 
-#include <iostream>
-
+// =============================================================================
+#include <TLorentzVector.h>
 #include "AtlasSFrameUtils/include/Met.h"
 
 // =============================================================================

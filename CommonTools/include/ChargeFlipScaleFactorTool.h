@@ -1,21 +1,27 @@
 #ifndef CommonTools_ChargeFlipScaleFactorTool_h
 #define CommonTools_ChargeFlipScaleFactorTool_h
 
+// =============================================================================
 #include <vector>
-
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/Met.h"
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-
-#include "ChargeFlip/chargeFlip.h"
-#include "LeptonTruthTools/RecoTruthMatch.h"
-#include "D3PDObjects/include/TruthD3PDObject.h"
-#include "D3PDObjects/include/MuonTruthD3PDObject.h"
-
 #include "CommonTools/include/TruthMatchTool.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
+#include "ChargeFlip/chargeFlip.h"
+
+// =============================================================================
+class Electron;
+class Muon;
+class Met;
+
+namespace CommonTools
+{
+  class TruthMatchTool;
+}
+namespace D3PDReader
+{
+  class TruthD3PDObject;
+  class MuonTruthD3PDObject;
+}
 
 // =============================================================================
 namespace CommonTools
@@ -45,7 +51,6 @@ namespace CommonTools
 			     , TruthMatchTool* truth_match_tool );
 
     void BeginCycle();
-    // void PrepTruth(const D3PDReader::TruthD3PDObject* mc);
 
   // ---------------------------------------------------------------------------
   private:
@@ -61,12 +66,11 @@ namespace CommonTools
     float getTruthMuonSign(const Muon*, const D3PDReader::MuonTruthD3PDObject*);
     float getTruthElectronSign(Electron*, const D3PDReader::TruthD3PDObject*);
 
-    //RecoTruthMatch* m_reco_truth_match;
     TruthMatchTool* m_truth_match_tool;
 
     chargeFlip* m_charge_flip;
 
-    std::vector<vector<int> > stripConstVector(const std::vector<vector<int> >&);
+    std::vector<std::vector<int> > stripConstVector(const std::vector<std::vector<int> >&);
 
     template<class T>
     std::vector<T> stripConst(const std::vector<T>&);

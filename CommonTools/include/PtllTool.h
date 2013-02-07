@@ -1,11 +1,14 @@
 // Dear emacs, this is -*- c++ -*-
 #ifndef CommonTools_PtllTool_H
 #define CommonTools_PtllTool_H
-// ============================================================================
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Muon.h"
 
+// ============================================================================
+#include <vector>
 #include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class Electron;
+class Muon;
 
 // ============================================================================
 namespace CommonTools{
@@ -21,9 +24,9 @@ namespace CommonTools{
     PtllTool();
 
     static double getPtll( FLAVOR_CHANNEL
-                        , const std::vector<Electron*>&
-                        , const std::vector<Muon*>&
-                        );
+                         , const std::vector<Electron*>&
+                         , const std::vector<Muon*>&
+                         );
 
   // --------------------------------------------------------------------------
   private:

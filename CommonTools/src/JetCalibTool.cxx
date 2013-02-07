@@ -1,4 +1,15 @@
-#include "include/JetCalibTool.h"
+#include "CommonTools/include/JetCalibTool.h"
+
+#include "TLorentzVector.h"
+#include "TRandom3.h"
+
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+
+#include "ApplyJetCalibration/ApplyJetCalibration.h"
+#include "JetUncertainties/MultijetJESUncertaintyProvider.h"
+
 
 // -----------------------------------------------------------------------------
 CommonTools::JetCalibTool::JetCalibTool( SCycleBase* parent

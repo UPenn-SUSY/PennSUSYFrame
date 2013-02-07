@@ -1,10 +1,83 @@
 // $Id: CycleCreators.py 173 2010-05-12 15:49:33Z krasznaa $
 
 // Local include(s):
-#include "include/SusyDiLeptonCutFlowCycle.h"
-#include "AtlasSFrameUtils/include/CycleMacros.h"
-#include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
+// =============================================================================
+#include "SusyDiLepton/include/SusyDiLeptonCutFlowCycle.h"
 
+#include <map>
+
+#include "AtlasSFrameUtils/include/CycleBase.h"
+#include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
+#include "AtlasSFrameUtils/include/Trigger.h"
+#include "AtlasSFrameUtils/include/TriggerVec.h"
+#include "AtlasSFrameUtils/include/Vertex.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "CommonTools/include/BTagScaleFactorTool.h"
+#include "CommonTools/include/ChargeFlipScaleFactorTool.h"
+#include "CommonTools/include/CrossSectionScaleFactorTool.h"
+#include "CommonTools/include/EgammaEnergyRescaleTool.h"
+#include "CommonTools/include/EgammaScaleFactorTool.h"
+#include "CommonTools/include/ElectronOutputTool.h"
+#include "CommonTools/include/EventOutputTool.h"
+#include "CommonTools/include/IsoCorrectionTool.h"
+#include "CommonTools/include/JetCalibTool.h"
+#include "CommonTools/include/JetOutputTool.h"
+#include "CommonTools/include/MT2Tool.h"
+#include "CommonTools/include/MetOutputTool.h"
+#include "CommonTools/include/MllTool.h"
+#include "CommonTools/include/MuonMomentumSmearingTool.h"
+#include "CommonTools/include/MuonOutputTool.h"
+#include "CommonTools/include/MuonScaleFactorTool.h"
+#include "CommonTools/include/PhillTool.h"
+#include "CommonTools/include/PileUpScaleFactorTool.h"
+#include "CommonTools/include/PtllTool.h"
+#include "CommonTools/include/SignChannel.h"
+#include "CommonTools/include/TLVTool.h"
+#include "CommonTools/include/TopTagTool.h"
+#include "CommonTools/include/TriggerReweightTool.h"
+#include "CommonTools/include/TruthMatchTool.h"
+#include "CommonTools/include/VertexOutputTool.h"
+
+#include "D3PDObjects/include/ElectronD3PDObject.h"
+#include "D3PDObjects/include/EventInfoD3PDObject.h"
+#include "D3PDObjects/include/JetD3PDObject.h"
+#include "D3PDObjects/include/MCEvtD3PDObject.h"
+#include "D3PDObjects/include/METD3PDObject.h"
+#include "D3PDObjects/include/MuonD3PDObject.h"
+#include "D3PDObjects/include/MuonTruthD3PDObject.h"
+#include "D3PDObjects/include/TriggerD3PDObject.h"
+#include "D3PDObjects/include/TriggerVecD3PDObject.h"
+#include "D3PDObjects/include/TruthD3PDObject.h"
+#include "D3PDObjects/include/TruthMETD3PDObject.h"
+#include "D3PDObjects/include/VertexD3PDObject.h"
+
+#include "SelectionTools/include/ElectronSelectionTool.h"
+#include "SelectionTools/include/EventCleaningTool.h"
+#include "SelectionTools/include/GoodRunsListTool.h"
+#include "SelectionTools/include/JetSelectionTool.h"
+#include "SelectionTools/include/MuonSelectionTool.h"
+#include "SelectionTools/include/ObjectCleaningTool.h"
+#include "SelectionTools/include/SignalRegionTool.h"
+#include "SelectionTools/include/TriggerCutTool.h"
+#include "SelectionTools/include/HFORTool.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+#include "SusyDiLepton/include/SusyDiLeptonCutFlowTool.h"
+
+#include "SusyMatrixMethod/DiLeptonMatrixMethod.h"
+
+// =============================================================================
 ClassImp( SusyDiLeptonCutFlowCycle );
 
 // =============================================================================

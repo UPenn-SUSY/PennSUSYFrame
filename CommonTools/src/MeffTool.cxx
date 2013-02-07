@@ -1,5 +1,13 @@
-#include "include/MeffTool.h"
+#include "CommonTools/include/MeffTool.h"
 
+#include <vector>
+#include "TLorentzVector.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// -----------------------------------------------------------------------------
 CommonTools::MeffTool::MeffTool()
 {
   // do nothing

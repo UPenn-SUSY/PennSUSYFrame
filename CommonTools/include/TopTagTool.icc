@@ -2,8 +2,6 @@
 #ifndef CommonTools_TopTagTool_icc
 #define CommonTools_TopTagTool_icc
 
-#include <iostream>
-
 // =============================================================================
 namespace CommonTools {
 

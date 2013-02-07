@@ -1,12 +1,14 @@
 #ifndef CommonTools_BTagScaleFactorTool_h
 #define CommonTools_BTagScaleFactorTool_h
 
+// =============================================================================
+#include <string>
 #include <vector>
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Jet.h"
 
-#include "SUSYTools/BTagCalib.h"
+// =============================================================================
+class Jet;
 
 // =============================================================================
 namespace CommonTools

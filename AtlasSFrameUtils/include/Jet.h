@@ -5,27 +5,23 @@
 #ifndef AtlasSFrameUtils_Jet_h
 #define AtlasSFrameUtils_Jet_h
 
-#include <iostream>
-#include <vector>
+// =============================================================================
 #include "TLorentzVector.h"
-#include "ParticleElement.h"
 
-#include "Event.h"
-// #include "AtlasSFrameUtils/include/Event.h"
-
-#include "CommonTools/include/TLVTool.h"
-
+#include "AtlasSFrameUtils/include/ParticleElement.h"
 #include "D3PDObjects/include/JetD3PDObject.h"
-#include "D3PDObjects/include/EventInfoD3PDObject.h"
-#include "D3PDObjects/include/VertexD3PDObject.h"
-
-#include "SusyAnalysisTools/include/SusyEnums.h"
 #include "SusyAnalysisTools/include/JetDescription.h"
 
 // ============================================================================
+class Event;
+
 namespace CommonTools
 {
   class TLVTool;
+}
+namespace SusyAnalysisTools
+{
+  // class JetDescription;
 }
 
 // ============================================================================

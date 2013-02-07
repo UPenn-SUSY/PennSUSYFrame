@@ -1,4 +1,20 @@
-#include "include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+
+#include <iostream>
+#include <vector>
+
+#include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "D3PDObjects/include/ElectronD3PDObject.h"
+
+#include "CommonTools/include/TLVTool.h"
+#include "CommonTools/include/IsoCorrectionTool.h"
+
+#include "SelectionTools/include/ElectronSelectionTool.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // ----------------------------------------------------------------------------
 ElectronContainer::ElectronContainer()

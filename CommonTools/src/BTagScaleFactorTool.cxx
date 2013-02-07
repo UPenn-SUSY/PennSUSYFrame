@@ -1,11 +1,18 @@
+#include "CommonTools/include/BTagScaleFactorTool.h"
+
+#include <vector>
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
-#include "include/BTagScaleFactorTool.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "SUSYTools/BTagCalib.h"
+
 
 // ----------------------------------------------------------------------------
 CommonTools::BTagScaleFactorTool::BTagScaleFactorTool( SCycleBase* parent
-                                   , const char* name
-                                   )
-                                   : ToolBase(parent, name)
+                                                     , const char* name
+                                                     )
+                                                     : ToolBase(parent, name)
 {
   DeclareProperty("do_b_tag_sf", c_do_b_tag_sf = true);
   DeclareProperty( "calib_file"

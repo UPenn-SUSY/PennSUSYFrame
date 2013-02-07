@@ -1,8 +1,16 @@
-#include <cmath>
+#include "AtlasSFrameUtils/include/Event.h"
 
-#include "include/Event.h"
+#include <cmath>
+#include <iostream>
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
 
+#include "D3PDObjects/include/EventInfoD3PDObject.h"
+
+#include "SusyAnalysisTools/include/EventDescription.h"
+#include "SusyAnalysisTools/include/SRHelper.h"
+
+// =============================================================================
 ClassImp(Event)
 
 // -----------------------------------------------------------------------------

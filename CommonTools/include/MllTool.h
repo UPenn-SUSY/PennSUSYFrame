@@ -2,10 +2,12 @@
 #ifndef CommonTools_MllTool_H
 #define CommonTools_MllTool_H
 // ============================================================================
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-
+#include <vector>
 #include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class Electron;
+class Muon;
 
 // ============================================================================
 namespace CommonTools{

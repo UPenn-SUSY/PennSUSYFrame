@@ -4,10 +4,7 @@
 #define IsoCorrectionTool_H
 // =============================================================================
 #include <map>
-#include "TLorentzVector.h"
-
 #include "AtlasSFrameUtils/include/ToolBase.h"
-
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================

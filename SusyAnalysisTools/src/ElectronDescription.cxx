@@ -1,4 +1,4 @@
-#include "include/ElectronDescription.h"
+#include "SusyAnalysisTools/include/ElectronDescription.h"
 
 // -----------------------------------------------------------------------------
 SusyAnalysisTools::ElectronDescription::ElectronDescription()

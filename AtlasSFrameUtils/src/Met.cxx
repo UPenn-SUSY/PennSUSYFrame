@@ -1,8 +1,23 @@
-#include <cmath>
+#include "AtlasSFrameUtils/include/Met.h"
 
-#include "include/Met.h"
+#include <cmath>
+#include <iostream>
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
 
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+
+#include "D3PDObjects/include/METD3PDObject.h"
+
+#include "MissingETUtility/METUtility.h"
+
+// =============================================================================
 ClassImp(Met)
 
 // ----------------------------------------------------------------------------
@@ -18,7 +33,7 @@ Met::Met( const ::Long64_t& master
 // ----------------------------------------------------------------------------
 void Met::init(std::string jet_algo)
 {
- 
+
   // Set the jet algorithm option
   m_jet_algo = jet_algo;
 
@@ -37,7 +52,7 @@ void Met::init(std::string jet_algo)
                                  );
 
 
-    
+
   }
   else {
     m_met_utility.defineMissingET( true  // doRefEle
@@ -55,7 +70,7 @@ void Met::init(std::string jet_algo)
   m_met_utility.setIsMuid(false);
 
   bool is_2012 = true;
- 
+
   //changing to SUSYMet::Default for now w/o Pile
   bool is_stvf = false;
   //bool is_stvf = true;
@@ -98,7 +113,6 @@ void Met::prep( Event* event
 // ----------------------------------------------------------------------------
 void Met::addElectrons(ElectronContainer* electron_container)
 {
-  
   const std::vector<Electron*> el = electron_container->getElectrons(EL_ALL);
 
   // initialize container vectors for electron parameters
@@ -181,7 +195,7 @@ void Met::addElectrons(ElectronContainer* electron_container)
                                      , &el_wpy
                                      , &el_statusWord
                                      );
- 
+
 }
 
 // ----------------------------------------------------------------------------
@@ -214,42 +228,42 @@ void Met::addJets(JetContainer* jet_container)
   jet_wpx.reserve(n_jets);
   jet_wpy.reserve(n_jets);
   jet_statusWord.reserve(n_jets);
-  
+
   // Loop over jets and get their parameters and weights
   std::vector<Jet*>::const_iterator jet_it = jets.begin();
   std::vector<Jet*>::const_iterator jet_term = jets.end();
   for (; jet_it != jet_term; ++jet_it) {
     TLorentzVector jet_tlv     = (*jet_it)->getTlv();
     TLorentzVector jet_raw_tlv = (*jet_it)->getRawTlv();
-  
+
     jet_pt.push_back( jet_tlv.Pt());
     jet_eta.push_back(jet_tlv.Eta());
     jet_phi.push_back(jet_tlv.Phi());
     jet_E.push_back(  jet_tlv.E());
     jet_orig_pt.push_back( jet_raw_tlv.Pt());
-    
+
     // Don't store jet_wet etc straight away. Need to apply fix first
     // jet_wet.push_back(jet_it->MET_Egamma10NoTau_STVF_wet());
     // jet_wpx.push_back(jet_it->MET_Egamma10NoTau_STVF_wpx());
     // jet_wpy.push_back(jet_it->MET_Egamma10NoTau_STVF_wpy());
-    
-    
+
+
     //    jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_STVF_statusWord());
     jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_statusWord());
-    
+
     // temp vectors for fix
-   
+
     //std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_STVF_wet();
     //    std::vector<float> jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_STVF_wpx();
     //    std::vector<float> jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_STVF_wpy();
 
-    std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_wet(); 
+    std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_wet();
     std::vector<float> jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_wpx();
     std::vector<float> jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_wpy();
-    
+
     // temp fix for too large and too small jet weights
     unsigned int num_weights = jet_tmp_wet.size();
-    
+
     for (unsigned int j = 0; j < num_weights; ++j) {
       if (  jet_tmp_wpx[j] < 0.5 * jet_tmp_wet[j]
 	    || jet_tmp_wpx[j] > 2   * jet_tmp_wet[j]
@@ -261,13 +275,13 @@ void Met::addJets(JetContainer* jet_container)
 	    ) {
         jet_tmp_wpy[j] = jet_tmp_wet[j];
       }
-    }  
+    }
     jet_wet.push_back(jet_tmp_wet);
     jet_wpx.push_back(jet_tmp_wpx);
     jet_wpy.push_back(jet_tmp_wpy);
-    
+
   }
-  
+
   m_met_utility.setJetParameters( &jet_pt
                                 , &jet_eta
                                 , &jet_phi
@@ -297,7 +311,7 @@ void Met::addMet()
 //                             , STVF_CellOutCorr_ety()
 //                             , STVF_CellOutCorr_sumet()
 //                             );
-    // // SUSYMet::Default 
+    // // SUSYMet::Default
       m_met_utility.setMETTerm(METUtil::CellOutEflow
     			  , CellOut_etx()
     			  , CellOut_ety()

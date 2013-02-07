@@ -5,14 +5,14 @@
 #ifndef AtlasSFrameUtils_Event_h
 #define AtlasSFrameUtils_Event_h
 
-#include <iostream>
-
+// =============================================================================
 #include "D3PDObjects/include/EventInfoD3PDObject.h"
 
 #include "SusyAnalysisTools/include/EventDescription.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
 #include "SusyAnalysisTools/include/SRHelper.h"
 
-// ============================================================================
+// =============================================================================
 class Event : public D3PDReader::EventInfoD3PDObject
 {
 public:
@@ -111,7 +111,6 @@ private:
   SusyAnalysisTools::SRHelper         m_sr_helper;
 
   ClassDef(Event, 1);
-
 };
 
 #endif // AtlasSFrameUtils_Event_h

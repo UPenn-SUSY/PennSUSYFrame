@@ -1,4 +1,19 @@
-#include "include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+
+#include <iostream>
+#include <vector>
+
+#include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "CommonTools/include/TLVTool.h"
+#include "CommonTools/include/IsoCorrectionTool.h"
+
+#include "SelectionTools/include/MuonSelectionTool.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 
 // ----------------------------------------------------------------------------
 MuonContainer::MuonContainer()

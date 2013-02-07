@@ -1,14 +1,17 @@
 #ifndef CommonTools_MuonMomentumSmearingTool_h
 #define CommonTools_MuonMomentumSmearingTool_h
 
+// =============================================================================
 #include <vector>
-
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "MuonMomentumCorrections/SmearingClass.h"
 
 // ============================================================================
 class Muon;
+
+namespace MuonSmear
+{
+  class SmearingClass;
+}
 
 // ============================================================================
 namespace CommonTools

@@ -1,18 +1,16 @@
 #ifndef CommonTools_JetCalib_h
 #define CommonTools_JetCalib_h
 
-#include <vector>
+// =============================================================================
+#include "TLorentzVector.h"
 
-#include "TRandom3.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
 
 #include "ApplyJetCalibration/ApplyJetCalibration.h"
 #include "JetUncertainties/MultijetJESUncertaintyProvider.h"
 
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/ToolBase.h"
-
 // ============================================================================
+class Event;
 class Jet;
 
 // ============================================================================

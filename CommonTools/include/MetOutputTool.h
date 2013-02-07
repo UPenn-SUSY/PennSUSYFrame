@@ -2,23 +2,23 @@
 #ifndef CommonTools_MetOutputTool_h
 #define CommonTools_MetOutputTool_h
 
+// =============================================================================
+#include "TLorentzVector.h"
+
 #include "AtlasSFrameUtils/include/ToolBase.h"
-
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Met.h"
-#include "AtlasSFrameUtils/include/VertexContainer.h"
-
-#include "CommonTools/include/DeltaPhiTool.h"
-
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
-// Forward declare SusyDiLeptonCutFlowCycle
+class Event;
+class ElectronContainer;
+class MuonContainer;
+class JetContainer;
+class Met;
+class VertexContainer;
+
 class SusyDiLeptonCutFlowCycle;
 class SusyDiLeptonChargeFlipCycle;
+
 // =============================================================================
 namespace CommonTools
 {
@@ -53,13 +53,11 @@ namespace CommonTools
     float m_met_rel_delta_phi;
     float m_met_phi;
     float m_met_sumet;
-
     float m_dphi_met_ll;
 
     TVector2 m_met_vec;
 
     // Detailed Variables to output only if configured to
-
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(MetOutputTool, 0);

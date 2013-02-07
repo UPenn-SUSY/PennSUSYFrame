@@ -2,12 +2,14 @@
 #ifndef SelectionTools_MuonSelectionTool_h
 #define SelectionTools_MuonSelectionTool_h
 
+// =============================================================================
+#include <vector>
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
 
 // =============================================================================
+class Muon;
 class MuonContainer;
+class VertexContainer;
 
 // ============================================================================
 namespace SelectionTools

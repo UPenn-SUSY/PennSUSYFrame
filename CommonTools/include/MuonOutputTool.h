@@ -2,24 +2,23 @@
 #ifndef CommonTools_MuonOutputTool_h
 #define CommonTools_MuonOutputTool_h
 
+// =============================================================================
+#include <vector>
+#include "TLorentzVector.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
-
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Met.h"
-#include "AtlasSFrameUtils/include/VertexContainer.h"
-
-#include "CommonTools/include/DeltaPhiTool.h"
-#include "CommonTools/include/MTTool.h"
-
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
-// Forward declare SusyDiLeptonCutFlowCycle
+class Event;
+class ElectronContainer;
+class MuonContainer;
+class JetContainer;
+class Met;
+class VertexContainer;
+
 class SusyDiLeptonCutFlowCycle;
 class SusyDiLeptonChargeFlipCycle;
+
 // =============================================================================
 namespace CommonTools
 {
@@ -51,7 +50,6 @@ namespace CommonTools
     std::string c_muon_output_collection;
 
     //Variables to always output
-
     std::vector<float> m_mu_pt;
     std::vector<float> m_mu_eta;
     std::vector<float> m_mu_phi;
@@ -75,8 +73,7 @@ namespace CommonTools
 
     std::vector<TLorentzVector> m_mu_tlv;
 
-    // Detailed Variables to output only if configured to 
-
+    // Detailed Variables to output only if configured to
     std::vector<int> m_mu_b_layer_hits;
     std::vector<int> m_mu_num_pix_hits;
     std::vector<int> m_mu_num_sct_hits;

@@ -2,11 +2,13 @@
 #ifndef CommonTools_MT2Tool_H
 #define CommonTools_MT2Tool_H
 // =============================================================================
+#include <vector>
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
-#include "TLorentzVector.h"
-#include "AtlasSFrameUtils/include/Met.h"
-
-#include "mt2_bisect.h"
+// =============================================================================
+class Electron;
+class Muon;
+class Met;
 
 // =============================================================================
 namespace CommonTools{

@@ -1,8 +1,23 @@
+#include "AtlasSFrameUtils/include/Muon.h"
+
 #include <cmath>
+#include <iostream>
+#include <vector>
+#include "TLorentzVector.h"
 
-#include "include/Muon.h"
 #include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/ParticleElement.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
 
+#include "CommonTools/include/TLVTool.h"
+#include "CommonTools/include/IsoCorrectionTool.h"
+
+#include "D3PDObjects/include/MuonD3PDObject.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+#include "SusyAnalysisTools/include/MuonDescription.h"
+
+// =============================================================================
 ClassImp(Muon)
 
 // -----------------------------------------------------------------------------

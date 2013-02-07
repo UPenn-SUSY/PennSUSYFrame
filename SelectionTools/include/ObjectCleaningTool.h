@@ -2,13 +2,18 @@
 #ifndef SelectionTools_ObjectCleaningTool_h
 #define SelectionTools_ObjectCleaningTool_h
 
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
+// =============================================================================
+#include <vector>
 #include "AtlasSFrameUtils/include/ToolBase.h"
+
+// =============================================================================
+class TLorentzVector;
+class Electron;
+class Muon;
+class Jet;
+class ElectronContainer;
+class MuonContainer;
+class JetContainer;
 
 // ============================================================================
 namespace SelectionTools

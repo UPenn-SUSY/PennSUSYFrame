@@ -2,8 +2,6 @@
 #ifndef SusyDiLeptonCutFlowCycle_icc
 #define SusyDiLeptonCutFlowCycle_icc
 
-#include "AtlasSFrameUtils/include/CycleMacros.h"
-
 // ----------------------------------------------------------------------------
 
 #endif // SusyDiLeptonCutFlowCycle_icc

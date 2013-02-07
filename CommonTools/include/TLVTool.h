@@ -3,20 +3,11 @@
 #define CommonTools_TLVTool_H
 // ============================================================================
 #include "TLorentzVector.h"
-
-#include "EgammaEnergyRescaleTool.h"
-#include "MuonMomentumSmearingTool.h"
-#include "JetCalibTool.h"
-//#include "JetSmearingTool.h"
-
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/Jet.h"
 
 // ============================================================================
 // Forward declares
+class Event;
 class Electron;
 class Muon;
 class Jet;

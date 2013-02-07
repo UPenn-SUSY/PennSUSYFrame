@@ -1,10 +1,16 @@
 // Dear emacs, this is -*- c++ -*-
 #ifndef CommonTools_MeffTool_H
 #define CommonTools_MeffTool_H
-// =============================================================================
 
-#include "TLorentzVector.h"
-#include "AtlasSFrameUtils/include/Met.h"
+// =============================================================================
+#include <vector>
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class Electron;
+class Muon;
+class Jet;
 
 // =============================================================================
 namespace CommonTools{

@@ -1,4 +1,10 @@
-#include "include/MTTool.h"
+#include "CommonTools/include/MTTool.h"
+
+#include "TLorentzVector.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/Met.h"
 
 CommonTools::MTTool::MTTool()
 {

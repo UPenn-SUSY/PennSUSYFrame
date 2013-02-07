@@ -2,16 +2,18 @@
 #ifndef SelectionTools_EventCleaningTool_h
 #define SelectionTools_EventCleaningTool_h
 
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
-#include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Event.h"
+// =============================================================================
+#include <vector>
 
-#include "CommonTools/include/MllTool.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class Event;
+class Electron;
+class Muon;
+class Jet;
+class JetContainer;
 
 // =============================================================================
 namespace SelectionTools

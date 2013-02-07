@@ -2,43 +2,36 @@
 #ifndef SusyDiLeptonCutFlowTool_H
 #define SusyDiLeptonCutFlowTool_H
 
-#include <map>
-
+// =============================================================================
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Met.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
-#include "AtlasSFrameUtils/include/Trigger.h"
-#include "AtlasSFrameUtils/include/TriggerVec.h"
-#include "AtlasSFrameUtils/include/Vertex.h"
-#include "AtlasSFrameUtils/include/VertexContainer.h"
 
-#include "CommonTools/include/SignChannel.h"
-#include "CommonTools/include/MllTool.h"
-#include "CommonTools/include/PtllTool.h"
-#include "CommonTools/include/PhillTool.h"
-#include "CommonTools/include/EtallTool.h"
-#include "CommonTools/include/MTTool.h"
-#include "CommonTools/include/MT2Tool.h"
-#include "CommonTools/include/MeffTool.h"
-#include "CommonTools/include/TopTagTool.h"
-#include "CommonTools/include/TruthMatchTool.h"
-#include "CommonTools/include/ChargeFlipScaleFactorTool.h"
+// =============================================================================
+class Event;
+class ElectronContainer;
+class MuonContainer;
+class JetContainer;
+class Met;
+class VertexContainer;
+class Trigger;
+class TriggerVec;
 
-#include "D3PDObjects/include/MuonTruthD3PDObject.h"
-#include "D3PDObjects/include/TruthD3PDObject.h"
-
-#include "SelectionTools/include/EventCleaningTool.h"
-#include "SelectionTools/include/GoodRunsListTool.h"
-#include "SelectionTools/include/TriggerCutTool.h"
-#include "SelectionTools/include/HFORTool.h"
-
-#include "SusyAnalysisTools/include/SusyEnums.h"
+namespace CommonTools
+{
+  class TruthMatchTool;
+  class ChargeFlipScaleFactorTool;
+}
+namespace D3PDReader
+{
+  class MuonTruthD3PDObject;
+  class TruthD3PDObject;
+}
+namespace SelectionTools
+{
+  class GoodRunsListTool;
+  class EventCleaningTool;
+  class TriggerCutTool;
+  class HFORTool;
+}
 
 // =============================================================================
 class SusyDiLeptonCutFlowTool : public ToolBase

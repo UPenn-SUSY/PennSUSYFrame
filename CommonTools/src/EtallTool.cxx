@@ -1,4 +1,9 @@
-#include "include/EtallTool.h"
+#include "CommonTools/include/EtallTool.h"
+
+#include <vector>
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 //_____________________________________________________________________________
 CommonTools::EtallTool::EtallTool()

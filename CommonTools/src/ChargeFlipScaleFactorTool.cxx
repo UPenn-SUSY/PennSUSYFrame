@@ -1,23 +1,36 @@
+#include "CommonTools/include/ChargeFlipScaleFactorTool.h"
+
+#include <vector>
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
-#include "include/ChargeFlipScaleFactorTool.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "CommonTools/include/TruthMatchTool.h"
+#include "D3PDObjects/include/TruthD3PDObject.h"
+#include "D3PDObjects/include/MuonTruthD3PDObject.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+#include "ChargeFlip/chargeFlip.h"
+#include "LeptonTruthTools/RecoTruthMatch.h"
 
 // ----------------------------------------------------------------------------
 CommonTools::ChargeFlipScaleFactorTool::ChargeFlipScaleFactorTool(
     SCycleBase* parent, const char* name) : ToolBase(parent, name)
 {
   DeclareProperty("do_charge_flip_sf", c_do_charge_flip_sf = true);
-  DeclareProperty("path_to_charge_flip_map", c_path_to_flip_map = 
+  DeclareProperty("path_to_charge_flip_map", c_path_to_flip_map =
 		  "ChargeFlip/data/chargeFlip.root");
 
   m_charge_flip =0;
-  //m_reco_truth_match=0;
 }
 
 // ----------------------------------------------------------------------------
 CommonTools::ChargeFlipScaleFactorTool::~ChargeFlipScaleFactorTool()
 {
   if(m_charge_flip)  delete m_charge_flip;
-  // if(m_reco_truth_match) delete m_reco_truth_match;
 }
 
 // ----------------------------------------------------------------------------
@@ -25,7 +38,7 @@ void CommonTools::ChargeFlipScaleFactorTool::clear()
 {
   m_is_cached = false;
   m_charge_flip_sf = -999;
-  
+
 }
 
 // ----------------------------------------------------------------------------
@@ -43,58 +56,6 @@ void CommonTools::ChargeFlipScaleFactorTool::BeginCycle()
   m_charge_flip = new chargeFlip(c_path_to_flip_map);
   m_charge_flip->setUnits(chargeFlip::MeV);
 }
-
-SIGN_CHANNEL CommonTools::ChargeFlipScaleFactorTool::getTruthSign(
-    FLAVOR_CHANNEL flavor_channel,
-    const std::vector<Electron*>& el,
-    const std::vector<Muon*>& mu,
-    const D3PDReader::TruthD3PDObject* mc,
-    const D3PDReader::MuonTruthD3PDObject* mu_truth,
-    TruthMatchTool* truth_match_tool)
-{
-  //if(!m_truth_prepped) PrepTruth(mc);
-
-  m_logger << DEBUG
-           << "ChargeFlipScaleFactorTool::getTruthSign()"
-           << SLogger::endmsg;
-
-
-  SIGN_CHANNEL truth_sign_channel = SIGN_NONE;
-
-  if (is_data() || !c_do_charge_flip_sf) return truth_sign_channel;
-  
-  m_truth_match_tool = truth_match_tool;
-
-  float charge_0 = 0;
-  float charge_1 = 0;
-
-  switch (flavor_channel) 
-    {
-    case FLAVOR_EE: 
-      charge_0 = getTruthElectronSign(el.at(0), mc);
-      charge_1 = getTruthElectronSign(el.at(1), mc);
-      break;
-    case FLAVOR_MM: 
-      charge_0 = getTruthMuonSign(mu.at(0), mu_truth);
-      charge_1 = getTruthMuonSign(mu.at(1), mu_truth);
-      break;
-    case FLAVOR_EM: 
-      charge_0 = getTruthElectronSign(el.at(0), mc);
-      charge_1 = getTruthMuonSign(mu.at(0), mu_truth);
-      break;
-    default:       
-      charge_0 = 0;
-      charge_1 = 0;
-    }
-  if (charge_0*charge_1 == 0)       truth_sign_channel = SIGN_NONE;
-  else if (charge_0*charge_1 == 1)  truth_sign_channel = SIGN_SS;
-  else if (charge_0*charge_1 == -1) truth_sign_channel = SIGN_OS;
-  else                              truth_sign_channel = SIGN_NONE;
-      
-  return truth_sign_channel;
-  
-}
-
 
 // ---------------------------------------------------------------------------
 double CommonTools::ChargeFlipScaleFactorTool::getSF(
@@ -114,7 +75,7 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
 
 	TVector2 met_vector = met->getMetRefFinalVec();
 	TVector2* met_vector_ptr = &met_vector;
-	
+
 	if(flavor_channel == FLAVOR_MM)
 	  {
 	    m_charge_flip_sf = 0;
@@ -125,10 +86,10 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
 	    TLorentzVector tlv_2 = el.at(1)->getTlv();
 	    TLorentzVector* tlv_1_ptr = &tlv_1;
 	    TLorentzVector* tlv_2_ptr = &tlv_2;
-	    
+
 	    int pdg_1=11;
 	    int pdg_2=11;
-	    
+
 	    m_charge_flip_sf = m_charge_flip->OS2SS(
 						    pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, met_vector_ptr,syst);
 	    double overlap_corr =  m_charge_flip->overlapFrac().first;
@@ -140,27 +101,76 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
 	    TLorentzVector tlv_2 = mu.at(0)->getTlv();
 	    TLorentzVector* tlv_1_ptr = &tlv_1;
 	    TLorentzVector* tlv_2_ptr = &tlv_2;
-	    
+
 	    int pdg_1=11;
 	    int pdg_2=13;
-	    
+
 	    m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1
 						    , tlv_1_ptr
 						    , pdg_2
 						    , tlv_2_ptr
 						    , met_vector_ptr
 						    ,syst);
-	    
+
 	    double overlap_corr =  m_charge_flip->overlapFrac().first;
 	    m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
 	  }
-	
+
 
 	m_is_cached = true;
 	m_logger << VERBOSE << "b-tag sf: " << m_charge_flip_sf << SLogger::endmsg;
       }
   }
   return m_charge_flip_sf;
+}
+
+// -----------------------------------------------------------------------------
+SIGN_CHANNEL CommonTools::ChargeFlipScaleFactorTool::getTruthSign(
+    FLAVOR_CHANNEL flavor_channel,
+    const std::vector<Electron*>& el,
+    const std::vector<Muon*>& mu,
+    const D3PDReader::TruthD3PDObject* mc,
+    const D3PDReader::MuonTruthD3PDObject* mu_truth,
+    TruthMatchTool* truth_match_tool)
+{
+  m_logger << DEBUG
+           << "ChargeFlipScaleFactorTool::getTruthSign()"
+           << SLogger::endmsg;
+
+
+  SIGN_CHANNEL truth_sign_channel = SIGN_NONE;
+
+  if (is_data() || !c_do_charge_flip_sf) return truth_sign_channel;
+
+  m_truth_match_tool = truth_match_tool;
+
+  float charge_0 = 0;
+  float charge_1 = 0;
+
+  switch (flavor_channel)
+    {
+    case FLAVOR_EE:
+      charge_0 = getTruthElectronSign(el.at(0), mc);
+      charge_1 = getTruthElectronSign(el.at(1), mc);
+      break;
+    case FLAVOR_MM:
+      charge_0 = getTruthMuonSign(mu.at(0), mu_truth);
+      charge_1 = getTruthMuonSign(mu.at(1), mu_truth);
+      break;
+    case FLAVOR_EM:
+      charge_0 = getTruthElectronSign(el.at(0), mc);
+      charge_1 = getTruthMuonSign(mu.at(0), mu_truth);
+      break;
+    default:
+      charge_0 = 0;
+      charge_1 = 0;
+    }
+  if (charge_0*charge_1 == 0)       truth_sign_channel = SIGN_NONE;
+  else if (charge_0*charge_1 == 1)  truth_sign_channel = SIGN_SS;
+  else if (charge_0*charge_1 == -1) truth_sign_channel = SIGN_OS;
+  else                              truth_sign_channel = SIGN_NONE;
+
+  return truth_sign_channel;
 }
 
 // -----------------------------------------------------------------------------
@@ -183,6 +193,7 @@ std::vector<vector<int> > CommonTools::ChargeFlipScaleFactorTool::stripConstVect
 
   return new_vector;
 }
+
 // -----------------------------------------------------------------------------
 float CommonTools::ChargeFlipScaleFactorTool::getTruthMuonSign(
      const Muon* mu,
@@ -191,13 +202,12 @@ float CommonTools::ChargeFlipScaleFactorTool::getTruthMuonSign(
 {
   int barcode = m_truth_match_tool->matchBarcode(
        mu->truth_barcode(),mu_truth->barcode());
-  
+
   if(barcode < 0) return 0;
-  
+
   return  mu_truth->charge()->at(barcode);
-  
-      
 }
+
 // -----------------------------------------------------------------------------
 float CommonTools::ChargeFlipScaleFactorTool::getTruthElectronSign(
      Electron* el,
@@ -210,14 +220,11 @@ float CommonTools::ChargeFlipScaleFactorTool::getTruthElectronSign(
   int index =  m_truth_match_tool->getIndex(tlv);
 
   if(index < 0) return 0;
-  
+
   float charge = mc->mc_charge()->at(index);
   float reco_charge = el->charge();
-
-  //if (charge*reco_charge < 0) std::cout<<"Flipped"<<charge<<" "<<reco_charge<<std::endl;
 
   el->setTruthCharge(charge);
 
   return charge;
-      
 }

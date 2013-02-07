@@ -1,4 +1,10 @@
-#include "include/PtllTool.h"
+#include "CommonTools/include/PtllTool.h"
+
+#include <vector>
+
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 //_____________________________________________________________________________
 CommonTools::PtllTool::PtllTool()

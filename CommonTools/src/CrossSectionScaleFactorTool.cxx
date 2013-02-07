@@ -1,5 +1,11 @@
+#include "CommonTools/include/CrossSectionScaleFactorTool.h"
+
+#include <vector>
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
-#include "include/CrossSectionScaleFactorTool.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "D3PDObjects/include/TruthD3PDObject.h"
+#include "SUSYTools/SUSYCrossSection.h"
 
 // ----------------------------------------------------------------------------
 CommonTools::CrossSectionScaleFactorTool::CrossSectionScaleFactorTool( SCycleBase* parent
@@ -53,7 +59,7 @@ void CommonTools::CrossSectionScaleFactorTool::clear()
     m_efficiency = -999;
     m_rel_uncertainty = -999;
     m_name = "";
-    
+
     m_cached_sf= false;
     m_cached_cs_x_eff= false;
     m_cached_cs= false;
@@ -87,12 +93,12 @@ float CommonTools::CrossSectionScaleFactorTool::getSF(const D3PDReader::TruthD3P
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is_data() || !c_do_cross_section_sf) return 1;
 
-  if (!m_cached_sf) 
+  if (!m_cached_sf)
     {
 
       if (!m_cached_k_factor) m_k_factor = getKFactor(truth);
       if (!m_cached_cs_x_eff) m_cross_section_times_eff = getCrossSectionTimesEff(truth);
-      
+
       m_sf = m_k_factor*m_cross_section_times_eff*c_data_lumi/c_mc_num_events;
       m_cached_sf = true;
     }
@@ -106,7 +112,7 @@ float CommonTools::CrossSectionScaleFactorTool::getCrossSectionTimesEff(const D3
   // if (is_data() || !c_do_cross_section_sf) return 1;
   if (is_data()) return 1;
 
-  if(!m_cached_cs_x_eff) 
+  if(!m_cached_cs_x_eff)
     {
       m_cross_section_times_eff =  m_cross_section_db->xsectTimesEff(truth.mc_channel_number());
       m_cached_cs_x_eff = true;
@@ -121,7 +127,7 @@ float CommonTools::CrossSectionScaleFactorTool::getCrossSection(const D3PDReader
   // if (is_data() || !c_do_cross_section_sf) return 1;
   if (is_data()) return 1;
 
-  if(!m_cached_cs) 
+  if(!m_cached_cs)
     {
       m_cross_section = m_cross_section_db->rawxsect(truth.mc_channel_number());
       m_cached_cs = true;
@@ -142,7 +148,7 @@ float CommonTools::CrossSectionScaleFactorTool::getKFactor(const D3PDReader::Tru
       m_k_factor = m_cross_section_db->kfactor(truth.mc_channel_number());
       m_cached_k_factor = true;
     }
-  
+
   return m_k_factor;
 }
 // ----------------------------------------------------------------------------
@@ -153,7 +159,7 @@ float CommonTools::CrossSectionScaleFactorTool::getEfficiency(const D3PDReader::
   if (is_data()) return 1;
 
   if(!m_cached_efficiency)
-    {    
+    {
       m_efficiency = m_cross_section_db->efficiency(truth.mc_channel_number());
       m_cached_efficiency = true;
     }
@@ -173,7 +179,7 @@ float CommonTools::CrossSectionScaleFactorTool::getRelUncertainty(const D3PDRead
       m_rel_uncertainty = m_cross_section_db->rel_uncertainty(truth.mc_channel_number());
       m_cached_rel_uncertainty = true;
     }
-  return m_rel_uncertainty; 
+  return m_rel_uncertainty;
 }
 
 // ----------------------------------------------------------------------------

@@ -1,5 +1,12 @@
+#include "CommonTools/include/MuonScaleFactorTool.h"
+
+#include <vector>
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
-#include "include/MuonScaleFactorTool.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "CommonTools/include/PileUpScaleFactorTool.h"
+#include "MuonEfficiencyCorrections/AnalysisMuonConfigurableScaleFactors.h"
 
 // -----------------------------------------------------------------------------
 CommonTools::MuonScaleFactorTool::MuonScaleFactorTool( SCycleBase* parent
@@ -59,13 +66,12 @@ void CommonTools::MuonScaleFactorTool::BeginInputData(const SInputData&)
     if (m_muon_sf)
       delete m_muon_sf;
 
-    // m_muon_sf = new Analysis::AnalysisMuonEfficiencyScaleFactors( c_muon_type
-    //    c_muon_type, m_muon_sf_int_lum, c_unit, c_muon_sf_dir);
     m_muon_sf = new Analysis::AnalysisMuonConfigurableScaleFactors(
         c_muon_sf_dir, m_file_name, c_unit, m_configuration);
     m_muon_sf->Initialise();
   }
 }
+
 // -----------------------------------------------------------------------------
 void CommonTools::MuonScaleFactorTool::EndInputData(const SInputData&)
 {

@@ -2,19 +2,18 @@
 #ifndef SelectionTools_TriggerCutTool_h
 #define SelectionTools_TriggerCutTool_h
 
-#include "TLorentzVector.h"
-
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Muon.h"
+// =============================================================================
+#include <vector>
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Trigger.h"
-#include "AtlasSFrameUtils/include/TriggerVec.h"
-
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
-#include "TriggerMatch/TriggerMatch2Lep.h"
-// #include "DGTriggerReweight/triggerReweight2Lep.h"
+// =============================================================================
+class Event;
+class Electron;
+class Muon;
+class Jet;
+class Trigger;
+class TriggerVec;
 
 // =============================================================================
 namespace SelectionTools
@@ -29,10 +28,6 @@ namespace SelectionTools
 
     // // weights for simulation
 
-    // double EEweight(std::vector<Electron>&);
-    // double MMweight(std::vector<Muon>&);
-    // double EMweight(std::vector<Electron>&, std::vector<Muon>&);
-
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool passedAnySingleOrDiLeptonTrigger( const Event*
                                          , const Trigger*
@@ -46,14 +41,14 @@ namespace SelectionTools
                            , const std::vector<Muon*>&
                            );
     bool passedMMPhaseSpace( const std::vector<Electron*>&
-                             , const std::vector<Muon*>&
-                             );
+                           , const std::vector<Muon*>&
+                           );
     bool passedEMPhaseSpace( const std::vector<Electron*>&
-                            , const std::vector<Muon*>&
-                            );
+                           , const std::vector<Muon*>&
+                           );
     bool passedMEPhaseSpace( const std::vector<Electron*>&
-                            , const std::vector<Muon*>&
-                            );
+                           , const std::vector<Muon*>&
+                           );
 
     // Trigger channel - event level check for trigger
     bool passedEETriggerChannel( const Event*
@@ -76,20 +71,20 @@ namespace SelectionTools
                                 , const std::vector<Muon*>&
                                 );
     bool passedMMTriggerMatching( const Event*
-                                  , const TriggerVec*
-                                  , const std::vector<Electron*>&
-                                  , const std::vector<Muon*>&
-                                  );
+                                , const TriggerVec*
+                                , const std::vector<Electron*>&
+                                , const std::vector<Muon*>&
+                                );
     bool passedEMTriggerMatching( const Event*
-                                 , const TriggerVec*
-                                 , const std::vector<Electron*>&
-                                 , const std::vector<Muon*>&
-                                 );
+                                , const TriggerVec*
+                                , const std::vector<Electron*>&
+                                , const std::vector<Muon*>&
+                                );
     bool passedMETriggerMatching( const Event*
-                                 , const TriggerVec*
-                                 , const std::vector<Electron*>&
-                                 , const std::vector<Muon*>&
-                                 );
+                                , const TriggerVec*
+                                , const std::vector<Electron*>&
+                                , const std::vector<Muon*>&
+                                );
 
   // ---------------------------------------------------------------------------
   private:

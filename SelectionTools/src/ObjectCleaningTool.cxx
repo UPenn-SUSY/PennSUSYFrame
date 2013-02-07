@@ -1,5 +1,16 @@
-#include <math.h>
 #include "include/ObjectCleaningTool.h"
+
+#include <vector>
+#include <math.h>
+#include "TLorentzVector.h"
+
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
 
 // ----------------------------------------------------------------------------
 SelectionTools::ObjectCleaningTool::ObjectCleaningTool(

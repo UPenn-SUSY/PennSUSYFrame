@@ -2,8 +2,6 @@
 #ifndef SusyAnalysisTools_EventDescription_h
 #define SusyAnalysisTools_EventDescription_h
 
-#include <iostream>
-
 #include "SusyEnums.h"
 
 // ============================================================================

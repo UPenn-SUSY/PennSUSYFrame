@@ -2,17 +2,25 @@
 #ifndef SelectionTools_SignalRegionTool_h
 #define SelectionTools_SignalRegionTool_h
 
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
+// =============================================================================
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/Met.h"
 
-#include "CommonTools/include/TopTagTool.h"
+// =============================================================================
+class Event;
+class Met;
+class ElectronContainer;
+class MuonContainer;
+class JetContainer;
+
+namespace CommonTools
+{
+  class TopTagTool;
+}
+namespace SusyAnalysisTools
+{
+  class EventDescription;
+  class SRHelper;
+}
 
 // =============================================================================
 namespace SelectionTools

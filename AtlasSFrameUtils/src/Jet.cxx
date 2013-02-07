@@ -1,7 +1,23 @@
+#include "AtlasSFrameUtils/include/Jet.h"
+
 #include <cmath>
+#include <iostream>
+#include <vector>
+#include "TLorentzVector.h"
 
-#include "include/Jet.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/ParticleElement.h"
 
+#include "CommonTools/include/TLVTool.h"
+
+#include "D3PDObjects/include/EventInfoD3PDObject.h"
+#include "D3PDObjects/include/JetD3PDObject.h"
+#include "D3PDObjects/include/VertexD3PDObject.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+#include "SusyAnalysisTools/include/JetDescription.h"
+
+// =============================================================================
 ClassImp(Jet)
 
 // ----------------------------------------------------------------------------

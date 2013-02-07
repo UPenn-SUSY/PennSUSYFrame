@@ -5,18 +5,23 @@
 #ifndef AtlasSFrameUtils_Met_h
 #define AtlasSFrameUtils_Met_h
 
-#include <iostream>
+// =============================================================================
+#include <vector>
+
+#include "TLorentzVector.h"
+
 #include "D3PDObjects/include/METD3PDObject.h"
-
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
-#include "AtlasSFrameUtils/include/Event.h"
-#include "AtlasSFrameUtils/include/Jet.h"
-#include "AtlasSFrameUtils/include/JetContainer.h"
-#include "AtlasSFrameUtils/include/Muon.h"
-#include "AtlasSFrameUtils/include/MuonContainer.h"
-
 #include "MissingETUtility/METUtility.h"
+
+// =============================================================================
+class Electron;
+class Event;
+class Muon;
+class Jet;
+
+class ElectronContainer;
+class MuonContainer;
+class JetContainer;
 
 // =============================================================================
 class Met : public D3PDReader::METD3PDObject

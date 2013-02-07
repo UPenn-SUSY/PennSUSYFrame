@@ -2,8 +2,6 @@
 #ifndef AtlasSFrameUtils_Met_icc
 #define AtlasSFrameUtils_Met_icc
 
-#include <iostream>
-
 // =============================================================================
 template <class T>
   double Met::getMinPhi(const Met* met, const std::vector<T*>& t)

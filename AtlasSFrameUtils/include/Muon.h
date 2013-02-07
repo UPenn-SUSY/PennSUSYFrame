@@ -5,27 +5,19 @@
 #ifndef AtlasSFrameUtils_Muon_h
 #define AtlasSFrameUtils_Muon_h
 
-#include <iostream>
-#include <vector>
+// =============================================================================
 #include "TLorentzVector.h"
-#include "ParticleElement.h"
-
-#include "VertexContainer.h"
-
-#include "CommonTools/include/TLVTool.h"
-#include "CommonTools/include/IsoCorrectionTool.h"
-
+#include "AtlasSFrameUtils/include/ParticleElement.h"
 #include "D3PDObjects/include/MuonD3PDObject.h"
-
-#include "SusyAnalysisTools/include/SusyEnums.h"
 #include "SusyAnalysisTools/include/MuonDescription.h"
 
 // ============================================================================
+class VertexContainer;
 namespace CommonTools
 {
   class TLVTool;
+  class IsoCorrectionTool;
 }
-class VertexContainer;
 
 // ============================================================================
 class Muon : public ParticleElement<D3PDReader::MuonD3PDObjectElement>

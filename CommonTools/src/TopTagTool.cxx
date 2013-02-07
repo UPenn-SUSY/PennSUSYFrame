@@ -1,8 +1,15 @@
-#include "include/TopTagTool.h"
+#include "CommonTools/include/TopTagTool.h"
 
-// #include "AtlasSFrameUtils/include/CycleMacros.h"
+#include <vector>
+#include "TLorentzVector.h"
 
-using namespace std;
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // -----------------------------------------------------------------------------
 CommonTools::TopTagTool::TopTagTool( SCycleBase* parent
@@ -109,7 +116,6 @@ bool CommonTools::TopTagTool::toptag0j( TLorentzVector v1l
   double rr=sqrt(pxus*pxus+pyus*pyus)/(2.*wmass);
   double fact=rr+sqrt(1+rr*rr);
 
-  // cout << "mctll " << mctll << " cut value " << wmass*fact << std::endl;
   return mctll < wmass*fact ? true: false;
 }
 
@@ -192,14 +198,10 @@ bool CommonTools::TopTagTool::toptag2j( double ptjcut
     double mm2=(vjb[ij2]+v2l).M();
     double mmax2 = mm1>mm2 ? (mm1*mm1) : (mm2*mm2);
     double upl=mmax2/(tmass)+(tmass);
-    // cout << " i " << " mctjl " << mctjl << " mmax2 " << mmax2 <<
-    // " upl " << upl << endl;
     if(mctjl < upl*factj )  ngcou++;
   }
 
   bool imctjl = ngcou>0 ? true : false;
-  // cout << " ll " << imctjl << " ct " << imct << " jl " << imjl <<
-  // " ctlj " << imctjl << endl;
 
   return imct & imjl & imctjl;
 }

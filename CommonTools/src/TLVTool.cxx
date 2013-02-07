@@ -1,8 +1,17 @@
-#include "include/TLVTool.h"
+#include "CommonTools/include/TLVTool.h"
 
-#include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "TLorentzVector.h"
 
-//_____________________________________________________________________________
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Jet.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "CommonTools/include/EgammaEnergyRescaleTool.h"
+#include "CommonTools/include/JetCalibTool.h"
+#include "CommonTools/include/MuonMomentumSmearingTool.h"
+
+// -----------------------------------------------------------------------------
 CommonTools::TLVTool::TLVTool( SCycleBase* parent
                              , const char* name
                              )
@@ -12,7 +21,7 @@ CommonTools::TLVTool::TLVTool( SCycleBase* parent
   // do nothing
 }
 
-//_____________________________________________________________________________
+// -----------------------------------------------------------------------------
 CommonTools::TLVTool::~TLVTool()
 {
   // do nothing

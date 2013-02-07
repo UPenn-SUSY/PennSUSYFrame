@@ -1,127 +1,41 @@
 //TO DO remove the c_do_trigger_matching from the
 //phase space when 2012 is settled
 
-#include <math.h>
+// =============================================================================
+#include "SelectionTools/include/TriggerCutTool.h"
 
-#include "include/TriggerCutTool.h"
+#include <iostream>
+#include <math.h>
+#include <vector>
+
+#include "TLorentzVector.h"
+
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Trigger.h"
+#include "AtlasSFrameUtils/include/TriggerVec.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+#include "TriggerMatch/TriggerMatch2Lep.h"
+
+
 
 // -----------------------------------------------------------------------------
 SelectionTools::TriggerCutTool::TriggerCutTool(
     SCycleBase* parent, const char* name) : ToolBase(parent, name)
-                                          // , c_check_against_official(false)
-                                          // , m_triggerReweight(NULL)
 {
   DeclareProperty("do_trigger_matching"    , c_do_trigger_matching = false);
   DeclareProperty("check_official_matching", c_check_against_official = false);
-  // c_check_against_official = true;
-
-  // m_triggerReweight = new triggerReweight2Lep();
-
-  // std::string directory = "./RootCore/DGTriggerReweight/data";
-  // // this is the argument that needs to be modified for more data - change to
-  // // "HCP" for the fall 2012 dataset
-  // std::string periods = "A-B3";
-  // m_triggerReweight->setDbg(1);
-  // m_triggerReweight->initialize(directory, periods);
-  // m_triggerReweight->setDbg(0);
 }
 
 // -----------------------------------------------------------------------------
-SelectionTools::TriggerCutTool::~TriggerCutTool() {
-	// printf("test SelectionTools::TriggerCutTool::~TriggerCutTool()\n");
-
-  //	this->testSasa();
-
-	// if (m_triggerReweight) {
-	// 	delete m_triggerReweight;
-	// 	m_triggerReweight = 0;
-	// }
+SelectionTools::TriggerCutTool::~TriggerCutTool()
+{
+  // do nothing
 }
-
-/*
-void SelectionTools::TriggerCutTool::testSasa(){
-
-	static int count = 0;
-	if (count>0) return;
-	count++;
-
-	MTRand rand;
-
-	FILE *f = fopen("test_trigger.txt", "w");
-	int count_nan = 0;
-	for (int i=0; i<100000; i++) {
-
-		double pt1 = 10. + 20. * rand.rand();
-		double pt2 = 10. + 20. * rand.rand(); // electrons
-		//		double pt1 = pt2 - 1.;
-		//		while (pt1<pt2) { pt1 = 10. + 20. * rand.rand(); }
-		pt1 *= 1000.;
-		pt2 *= 1000.;
-		double eta1 = 2.4 * 2 * (rand.rand()-0.5);
-		double eta2 = 2.4 * 2 * (rand.rand()-0.5);
-		double phi1 = 3.1415 * 2. * (rand.rand()-0.5);
-		double phi2 = 3.1415 * 2. * (rand.rand()-0.5);
-
-		//		double more_info[100]; for (int j=0; j<100; j++) more_info[j] = 0.;
-		//		m_triggerReweight->testTriggerWeights(pt1, eta1, phi1, pt2, eta2, phi2, 1, 0, more_info);
-
-		double ee_official_weight(-999.), mumu_official_weight(-999.);
-		if (pt1>=pt2) {
-			ee_official_weight = m_triggerReweight->triggerReweightEE(pt1, eta1, pt2, eta2);
-			mumu_official_weight = m_triggerReweight->triggerReweightMM(pt1, eta1, phi1, 1, pt2, eta2, phi2, 1 );
-		}
-		double emu_official_weight  = m_triggerReweight->triggerReweightEMU(pt1, eta1, pt2, eta2, phi2, 1 );
-
-		if (i<20) printf("test ee asym %lf %lf %lf %lf %lf %lf %lf \n", pt1, eta1, pt2, eta2, ee_official_weight, mumu_official_weight, emu_official_weight );
-		fprintf(f, "%lf %lf %lf %lf %lf %lf %lf \n", pt1, eta1, pt2, eta2, ee_official_weight, mumu_official_weight, emu_official_weight );
-
-	}
-	fclose(f);
-
-	printf("test sasa m_triggerReweight\n");
-	return;
-}
-
-double SelectionTools::TriggerCutTool::EEweight(std::vector<Electron>& el){
-
-  if (el.size() < 2) return 0.;
-
-  // triggerReweightEE code orders electrons by pT in ant case
-    TLorentzVector tlv1 = el[0].getTlv();
-  TLorentzVector tlv2 = el[1].getTlv();
-
-  double weight = m_triggerReweight->triggerReweightEE(tlv1.Pt(), tlv1.Eta(), tlv2.Pt(), tlv2.Eta());
-
-  return weight;
-}
-
-double SelectionTools::TriggerCutTool::MMweight(std::vector<Muon>& mu){
-
-  if (mu.size() < 2) return 0.;
-
-  // triggerReweightMM code does not order muons by pT, have to do it by hand
-
-  int leading_pt_muon_index = ( mu[0].getTlv().Pt() >= mu[1].getTlv().Pt() ) ? 0 : 1 ;
-
-  TLorentzVector tlv1 = mu[leading_pt_muon_index].getTlv();
-  TLorentzVector tlv2 = mu[1-leading_pt_muon_index].getTlv();
-
-  double weight = m_triggerReweight->triggerReweightMM(tlv1.Pt(), tlv1.Eta(), tlv1.Phi(), mu[leading_pt_muon_index].isCombinedMuon(), tlv2.Pt(), tlv2.Eta(), tlv2.Phi(), mu[1-leading_pt_muon_index].isCombinedMuon());
-
-  return weight;
-}
-double SelectionTools::TriggerCutTool::EMweight(std::vector<Electron>& el, std::vector<Muon>& mu) {
-
-  if (el.size()==0 || mu.size()==0) return 0.;
-
-  TLorentzVector tlv1 = el[0].getTlv();
-  TLorentzVector tlv2 = mu[0].getTlv();
-
-  double weight = m_triggerReweight->triggerReweightEMU(tlv1.Pt(), tlv1.Eta(), tlv2.Pt(), tlv2.Eta(), tlv2.Phi(), mu[0].isCombinedMuon() ); ;
-
-  return weight;
-}
-*/
 
 // -----------------------------------------------------------------------------
 bool SelectionTools::TriggerCutTool::passedAnySingleOrDiLeptonTrigger(

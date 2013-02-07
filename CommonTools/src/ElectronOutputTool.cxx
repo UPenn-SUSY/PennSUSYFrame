@@ -1,6 +1,23 @@
+#include "CommonTools/include/ElectronOutputTool.h"
+
 #include <math.h>
+#include <vector>
+
+#include "TLorentzVector.h"
+
 #include "AtlasSFrameUtils/include/CycleMacros.h"
-#include "include/ElectronOutputTool.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "CommonTools/include/DeltaPhiTool.h"
+#include "CommonTools/include/MTTool.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // ----------------------------------------------------------------------------
 CommonTools::ElectronOutputTool::ElectronOutputTool( SCycleBase* parent

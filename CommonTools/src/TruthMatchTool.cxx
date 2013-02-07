@@ -1,6 +1,17 @@
-#include "include/TruthMatchTool.h"
+#include "CommonTools/include/TruthMatchTool.h"
+
+#include "TLorentzVector.h"
 
 #include "AtlasSFrameUtils/include/CycleMacros.h"
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+
+#include "D3PDObjects/include/TruthD3PDObject.h"
+#include "D3PDObjects/include/MuonTruthD3PDObject.h"
+
+#include "LeptonTruthTools/RecoTruthMatch.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // -----------------------------------------------------------------------------
 CommonTools::TruthMatchTool::TruthMatchTool( SCycleBase* parent

@@ -1,4 +1,13 @@
-#include "include/EgammaScaleFactorTool.h"
+#include "CommonTools/include/EgammaScaleFactorTool.h"
+
+#include <string>
+
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "ElectronEfficiencyCorrection/TElectronEfficiencyCorrectionTool.h"
+#include "PATCore/TResult.h"
+
 // -----------------------------------------------------------------------------
 CommonTools::EgammaScaleFactorTool::EgammaScaleFactorTool( SCycleBase* parent
                  , const char* name
@@ -8,7 +17,7 @@ CommonTools::EgammaScaleFactorTool::EgammaScaleFactorTool( SCycleBase* parent
   DeclareProperty("do_scaling", c_do_scaling = false);
   DeclareProperty("sf_dir"    , c_egamma_sf_dir ="" );
 
-  // get default path for egamma SF directory.  
+  // get default path for egamma SF directory.
   if (c_egamma_sf_dir == "") {
     std::string maindir = "";
     char *tmparea=getenv("ROOTCOREDIR");
@@ -19,10 +28,10 @@ CommonTools::EgammaScaleFactorTool::EgammaScaleFactorTool( SCycleBase* parent
     c_egamma_sf_dir = maindir + "../ElectronEfficiencyCorrection/data/";
   }
 
-  m_reco_file_name = 
+  m_reco_file_name =
     c_egamma_sf_dir + "efficiencySF.offline.RecoTrk.2012.8TeV.rel17p2.v02.root";
 
-  m_tight_file_name = 
+  m_tight_file_name =
     c_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v02.root";
 
 
@@ -68,15 +77,15 @@ double CommonTools::EgammaScaleFactorTool::getSF( Electron* el,
     float cl_et = el->getRawTlv().E()/cosh(el->cl_eta());
 
     float pt = el->getTlv().Pt();
-    
+
     //TODO HARDCODED TO FULL SIM FOR NOW
 
     //std::cout<<"run num: "<<event->RunNumber()<<std::endl;
 
     //std::cout<<"reco sf: "<<std::endl;
-    Root::TResult result_reco = m_eg_reco_sf.calculate(PATCore::ParticleDataType::Full 
-    							      , event->RunNumber() 
-    							      , el->cl_eta() 
+    Root::TResult result_reco = m_eg_reco_sf.calculate(PATCore::ParticleDataType::Full
+    							      , event->RunNumber()
+    							      , el->cl_eta()
     							      , pt);
     //std::cout<<"id sf: "<<std::endl;
     Root::TResult result_tight = m_eg_tight_sf.calculate(PATCore::ParticleDataType::Full
@@ -92,10 +101,10 @@ double CommonTools::EgammaScaleFactorTool::getSF( Electron* el,
 
     double result_trigger = 1.0;
 
-    sf = result_reco * result_tight * result_trigger; 
+    sf = result_reco * result_tight * result_trigger;
 
-    
-    
+
+
   }
   return sf;
 }
@@ -106,17 +115,17 @@ double CommonTools::EgammaScaleFactorTool::getSFUncertainty( Electron* el,
 {
   float sfUnc = 0.;
   if (!is_data() && c_do_scaling){
-    
+
 
     float cl_et = el->getRawTlv().E()/cosh(el->cl_eta());
- 
+
     float pt = el->getTlv().Pt();
-    
+
     //TODO HARDCODED TO FULL SIM FOR NOW
-    
-    Root::TResult result_reco = m_eg_reco_sf.calculate(PATCore::ParticleDataType::Full 
-    					   , event->RunNumber() 
-    					   , el->cl_eta() 
+
+    Root::TResult result_reco = m_eg_reco_sf.calculate(PATCore::ParticleDataType::Full
+    					   , event->RunNumber()
+    					   , el->cl_eta()
     					   , pt);
     Root::TResult result_tight = m_eg_tight_sf.calculate(PATCore::ParticleDataType::Full
     					     , event->RunNumber()
@@ -127,10 +136,10 @@ double CommonTools::EgammaScaleFactorTool::getSFUncertainty( Electron* el,
 // 						 , el->cl_eta()
 // 						 , pt);
 
-  
 
-    sfUnc = result_reco.getTotalUncertainty() * result_tight.getTotalUncertainty() 
-      /* * result_trigger.getTotalUncertainty()*/;    
+
+    sfUnc = result_reco.getTotalUncertainty() * result_tight.getTotalUncertainty()
+      /* * result_trigger.getTotalUncertainty()*/;
   }
   return sfUnc;
 }

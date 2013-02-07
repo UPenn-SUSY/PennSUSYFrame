@@ -5,25 +5,17 @@
 #ifndef AtlasSFrameUtils_Electron_h
 #define AtlasSFrameUtils_Electron_h
 
-#include <iostream>
-#include <vector>
+// =============================================================================
 #include "TLorentzVector.h"
-#include "ParticleElement.h"
 
-#include "VertexContainer.h"
-
-#include "CommonTools/include/TLVTool.h"
-#include "CommonTools/include/IsoCorrectionTool.h"
-
+#include "AtlasSFrameUtils/include/ParticleElement.h"
 #include "D3PDObjects/include/ElectronD3PDObject.h"
-
-#include "SusyAnalysisTools/include/SusyEnums.h"
 #include "SusyAnalysisTools/include/ElectronDescription.h"
 
 // ============================================================================
-// namespace SelectionTools
 namespace CommonTools
 {
+  class IsoCorrectionTool;
   class TLVTool;
 }
 class VertexContainer;
@@ -49,7 +41,7 @@ public:
 
   float getEta() const;
   float getPhi() const;
-  float getTruthCharge(); 
+  float getTruthCharge();
 
   float getD0Significance() const;
   float getZ0SinTheta() const;
@@ -88,8 +80,6 @@ private:
   double etcone(int cone_size) const;
   double topoetcone(int cone_size) const;
   double topoetcone_corrected(int cone_size) const;
-
-  
 
   // electron description
   SusyAnalysisTools::ElectronDescription m_el_desc;

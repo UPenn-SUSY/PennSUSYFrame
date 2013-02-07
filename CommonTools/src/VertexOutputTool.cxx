@@ -1,12 +1,23 @@
+#include "CommonTools/include/VertexOutputTool.h"
+
+#include <vector>
 #include <math.h>
-#include "AtlasSFrameUtils/include/CycleMacros.h"
-#include "include/VertexOutputTool.h"
+
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Event.h"
+#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/JetContainer.h"
+#include "AtlasSFrameUtils/include/Met.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
+
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // ----------------------------------------------------------------------------
 CommonTools::VertexOutputTool::VertexOutputTool( SCycleBase* parent
-                                                         , const char* name
-                                                         )
-                                                         : ToolBase(parent, name)
+                                               , const char* name
+                                               )
+                                               : ToolBase(parent, name)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -1,6 +1,12 @@
-#include "include/PhillTool.h"
+#include "CommonTools/include/PhillTool.h"
 
-//_____________________________________________________________________________
+#include <vector>
+
+#include "AtlasSFrameUtils/include/Electron.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
+// -----------------------------------------------------------------------------
 CommonTools::PhillTool::PhillTool()
 {
   // do nothing

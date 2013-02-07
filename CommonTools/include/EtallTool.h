@@ -1,11 +1,14 @@
 // Dear emacs, this is -*- c++ -*-
 #ifndef CommonTools_EtallTool_H
 #define CommonTools_EtallTool_H
-// =============================================================================
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Muon.h"
 
+// =============================================================================
+#include <vector>
 #include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class Electron;
+class Muon;
 
 // =============================================================================
 namespace CommonTools{

@@ -1,15 +1,15 @@
 #ifndef CommonTools_EgammaScaleFactorTool_h
 #define CommonTools_EgammaScaleFactorTool_h
 
-#include <vector>
+// =============================================================================
+#include <string>
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/Event.h"
-//#include "egammaAnalysisUtils/egammaSFclass.h"
-//#include "ElectronEfficiencyCorretion/TElectronEfficiencyCorrectionTool.h"
 #include "ElectronEfficiencyCorrection/TElectronEfficiencyCorrectionTool.h"
-#include "PATCore/TResult.h"
+
+// =============================================================================
+class Electron;
+class Event;
 
 // ============================================================================
 namespace CommonTools
@@ -31,10 +31,8 @@ namespace CommonTools
     // TODO tune rel based on FullSim vs FastSim
     // "HCP 2012 recommendations" G4 FullSim MC (rel=10)
     // "HCP 2012 recommendations" AFII MC (rel=11)
-    double getSF( Electron*
-		, Event* );
-    double getSFUncertainty( Electron*,
-			     Event* );
+    double getSF( Electron*, Event* );
+    double getSFUncertainty( Electron*, Event* );
     // ----------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

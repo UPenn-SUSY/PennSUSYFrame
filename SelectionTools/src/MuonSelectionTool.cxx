@@ -1,5 +1,12 @@
+#include "SelectionTools/include/MuonSelectionTool.h"
+
+#include <vector>
 #include <math.h>
-#include "include/MuonSelectionTool.h"
+
+#include "AtlasSFrameUtils/include/ToolBase.h"
+#include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/VertexContainer.h"
 
 // -----------------------------------------------------------------------------
 SelectionTools::MuonSelectionTool::MuonSelectionTool(
