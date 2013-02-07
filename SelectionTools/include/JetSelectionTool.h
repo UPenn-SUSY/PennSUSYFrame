@@ -29,7 +29,7 @@ namespace SelectionTools
     bool isBJet(Jet*);
     bool isFJet(Jet*);
     bool isBadJet(Jet*);
-    // bool isCaloProblemJet(Jet*, Met*);
+    bool isCaloProblemJet(Jet*, Met*);
 
     std::vector<Jet*> getBaselineGoodJets(const JetContainer&);
     std::vector<Jet*> getBaselineGoodJets(const std::vector<Jet*>& all_jets);

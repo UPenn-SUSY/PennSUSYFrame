@@ -58,24 +58,25 @@ SusyDiLeptonCutFlowTool::SusyDiLeptonCutFlowTool( SCycleBase* parent
   // = declare user defined properties =
   DeclareProperty("super_verbose_info", c_super_verbose_info = false);
 
-  DeclareProperty("Crit_grl"              , c_crit_grl              = false);
-  DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event = false);
-  DeclareProperty("Crit_lar_error"        , c_crit_lar_error        = false);
-  DeclareProperty("Crit_tile_error"       , c_crit_tile_error       = false);
-  DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot    = false);
-  DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto     = false);
-  DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex   = false);
-  DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto      = false);
-  DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto   = false);
-  DeclareProperty("Crit_hfor"             , c_crit_hfor             = false);
-  DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep         = false);
-  DeclareProperty("Crit_2_lep"            , c_crit_2_lep            = false);
-  DeclareProperty("Crit_mll"              , c_crit_mll              = false);
-  DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep       = false);
-  DeclareProperty("Crit_phase_space"      , c_crit_phase_space      = false);
-  DeclareProperty("Crit_trigger"          , c_crit_trigger          = false);
-  DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match    = false);
-  DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons   = false);
+  DeclareProperty("Crit_grl"              , c_crit_grl               = false);
+  DeclareProperty("Crit_incomplete_event" , c_crit_incomplete_event  = false);
+  DeclareProperty("Crit_lar_error"        , c_crit_lar_error         = false);
+  DeclareProperty("Crit_tile_error"       , c_crit_tile_error        = false);
+  DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot     = false);
+  DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto      = false);
+  DeclareProperty("Crit_bad_calo_jet_veto", c_crit_calo_problem_jets = false);
+  DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex    = false);
+  DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto       = false);
+  DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto    = false);
+  DeclareProperty("Crit_hfor"             , c_crit_hfor              = false);
+  DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep          = false);
+  DeclareProperty("Crit_2_lep"            , c_crit_2_lep             = false);
+  DeclareProperty("Crit_mll"              , c_crit_mll               = false);
+  DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep        = false);
+  DeclareProperty("Crit_phase_space"      , c_crit_phase_space       = false);
+  DeclareProperty("Crit_trigger"          , c_crit_trigger           = false);
+  DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match     = false);
+  DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons    = false);
 }
 
 // -----------------------------------------------------------------------------
@@ -231,6 +232,20 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   if (c_crit_bad_jet_veto && pass_jet_cleaning == false) {
     if (c_super_verbose_info) {
       std::cout << "Failed jet cleaning --"
+                << " Run: "   << event->RunNumber()
+                << " Event: " << event->EventNumber()
+                << std::endl;
+    }
+    return false;
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // Check for bad calo jet
+  bool pass_calo_problem_jets = (jets.num(JET_CALO_PROBLEM) == 0);
+  event->getEventDesc()->setPassCaloProblemJets(pass_calo_problem_jets);
+  if (c_crit_calo_problem_jets && pass_calo_problem_jets == false) {
+    if (c_super_verbose_info) {
+      std::cout << "Failed Calo Problem Jets --"
                 << " Run: "   << event->RunNumber()
                 << " Event: " << event->EventNumber()
                 << std::endl;

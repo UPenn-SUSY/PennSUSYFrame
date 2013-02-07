@@ -1,9 +1,21 @@
+#include "CutFlowDump/include/CutFlowDump.h"
+
 #include <iostream>
 #include <iomanip>
-#include "include/CutFlowDump.h"
 #include <TH2.h>
 #include <TStyle.h>
 #include <TCanvas.h>
+
+#include <TROOT.h>
+#include <TChain.h>
+#include <TFile.h>
+#include <TH1D.h>
+
+#include "NtupleLooper/include/NtupleLooper.h"
+
+#include "SusyAnalysisTools/include/EventDescription.h"
+#include "SusyAnalysisTools/include/SRHelper.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // -----------------------------------------------------------------------------
 CutFlowDump::CutFlowDump(TTree *tree) : NtupleLooper(tree)
@@ -74,6 +86,7 @@ void CutFlowDump::initCutFlowHists()
       axis->SetBinLabel(bin++, "Tile error"       );
       axis->SetBinLabel(bin++, "Tile hot spot"    );
       axis->SetBinLabel(bin++, "Jet cleaning"     );
+      axis->SetBinLabel(bin++, "Calo problem jet" );
       axis->SetBinLabel(bin++, "Primary vertex"   );
       axis->SetBinLabel(bin++, "Bad mu veto"      );
       axis->SetBinLabel(bin++, "Cosmic mu veto"   );
@@ -173,6 +186,10 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
 
   // bad jets
   if (evt_desc.getPassBadJets() == false) return;
+  fillHist(phase, weight_type, bin_num++, weight);
+
+  // calo problem jets
+  if (evt_desc.getPassCaloProblemJets() == false) return;
   fillHist(phase, weight_type, bin_num++, weight);
 
   // primary vertex

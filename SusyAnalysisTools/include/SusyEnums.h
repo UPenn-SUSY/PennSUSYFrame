@@ -47,6 +47,7 @@ enum JET_COLLECTIONS { JET_ALL = 0       // Green tree snake
                      , JET_BASELINE      // Baseline cuts
                      , JET_BASELINE_GOOD // Baseline cuts
                      , JET_BASELINE_BAD  // Baseline cuts
+                     , JET_CALO_PROBLEM  // Baseline cuts
                      , JET_BAD           // Baseline + overlap removal
                      , JET_GOOD          // Baseline + overlap removal
                      , JET_LIGHT         // Light central cuts

@@ -30,6 +30,7 @@ ull_t SusyAnalysisTools::EventDescription::toInt() const
   event_desc += getIntComp(m_pass_tile_error       , ADD_TILE_ERROR        );
   event_desc += getIntComp(m_pass_tile_hot_spot    , ADD_TILE_HOT_SPOT     );
   event_desc += getIntComp(m_pass_bad_jets         , ADD_BAD_JETS          );
+  event_desc += getIntComp(m_pass_calo_problem_jets, ADD_CALO_PROBLEM_JETS );
   event_desc += getIntComp(m_pass_primary_vertex   , ADD_PRIMARY_VERTEX    );
   event_desc += getIntComp(m_pass_bad_muons        , ADD_BAD_MUONS         );
   event_desc += getIntComp(m_pass_cosmic_muons     , ADD_COSMIC_MUONS      );
@@ -82,30 +83,31 @@ void SusyAnalysisTools::EventDescription::set(
 // -----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
 {
-  m_is_data                = getComponent(rhs, ADD_IS_DATA         , SIZE_BOOL);
-  m_pass_grl               = getComponent(rhs, ADD_GRL             , SIZE_BOOL);
-  m_pass_incomplete_event  = getComponent(rhs, ADD_INCOMPLETE_EVENT, SIZE_BOOL);
-  m_pass_lar_error         = getComponent(rhs, ADD_LAR_ERROR       , SIZE_BOOL);
-  m_pass_tile_error        = getComponent(rhs, ADD_TILE_ERROR      , SIZE_BOOL);
-  m_pass_tile_hot_spot     = getComponent(rhs, ADD_TILE_HOT_SPOT   , SIZE_BOOL);
-  m_pass_bad_jets          = getComponent(rhs, ADD_BAD_JETS        , SIZE_BOOL);
-  m_pass_primary_vertex    = getComponent(rhs, ADD_PRIMARY_VERTEX  , SIZE_BOOL);
-  m_pass_bad_muons         = getComponent(rhs, ADD_BAD_MUONS       , SIZE_BOOL);
-  m_pass_cosmic_muons      = getComponent(rhs, ADD_COSMIC_MUONS    , SIZE_BOOL);
-  m_pass_hfor              = getComponent(rhs, ADD_HFOR            , SIZE_BOOL);
-  m_pass_ge_2_good_leptons = getComponent(rhs, ADD_GE_2_GOOD_LEPTON, SIZE_BOOL);
-  m_pass_2_good_leptons    = getComponent(rhs, ADD_2_GOOD_LEPTON   , SIZE_BOOL);
-  m_pass_mll               = getComponent(rhs, ADD_MLL             , SIZE_BOOL);
-  m_pass_2_signal_leptons  = getComponent(rhs, ADD_2_SIGNAL_LEPTON , SIZE_BOOL);
-  m_pass_ee_trigger        = getComponent(rhs, ADD_TRIGGER_EE      , SIZE_BOOL);
-  m_pass_mm_trigger        = getComponent(rhs, ADD_TRIGGER_MM      , SIZE_BOOL);
-  m_pass_em_trigger        = getComponent(rhs, ADD_TRIGGER_EM      , SIZE_BOOL);
-  m_pass_me_trigger        = getComponent(rhs, ADD_TRIGGER_ME      , SIZE_BOOL);
-  m_pass_trigger_match     = getComponent(rhs, ADD_TRIGGER_MATCH   , SIZE_BOOL);
+  m_is_data                = getComponent(rhs, ADD_IS_DATA          , SIZE_BOOL);
+  m_pass_grl               = getComponent(rhs, ADD_GRL              , SIZE_BOOL);
+  m_pass_incomplete_event  = getComponent(rhs, ADD_INCOMPLETE_EVENT , SIZE_BOOL);
+  m_pass_lar_error         = getComponent(rhs, ADD_LAR_ERROR        , SIZE_BOOL);
+  m_pass_tile_error        = getComponent(rhs, ADD_TILE_ERROR       , SIZE_BOOL);
+  m_pass_tile_hot_spot     = getComponent(rhs, ADD_TILE_HOT_SPOT    , SIZE_BOOL);
+  m_pass_bad_jets          = getComponent(rhs, ADD_BAD_JETS         , SIZE_BOOL);
+  m_pass_calo_problem_jets = getComponent(rhs, ADD_CALO_PROBLEM_JETS, SIZE_BOOL);
+  m_pass_primary_vertex    = getComponent(rhs, ADD_PRIMARY_VERTEX   , SIZE_BOOL);
+  m_pass_bad_muons         = getComponent(rhs, ADD_BAD_MUONS        , SIZE_BOOL);
+  m_pass_cosmic_muons      = getComponent(rhs, ADD_COSMIC_MUONS     , SIZE_BOOL);
+  m_pass_hfor              = getComponent(rhs, ADD_HFOR             , SIZE_BOOL);
+  m_pass_ge_2_good_leptons = getComponent(rhs, ADD_GE_2_GOOD_LEPTON , SIZE_BOOL);
+  m_pass_2_good_leptons    = getComponent(rhs, ADD_2_GOOD_LEPTON    , SIZE_BOOL);
+  m_pass_mll               = getComponent(rhs, ADD_MLL              , SIZE_BOOL);
+  m_pass_2_signal_leptons  = getComponent(rhs, ADD_2_SIGNAL_LEPTON  , SIZE_BOOL);
+  m_pass_ee_trigger        = getComponent(rhs, ADD_TRIGGER_EE       , SIZE_BOOL);
+  m_pass_mm_trigger        = getComponent(rhs, ADD_TRIGGER_MM       , SIZE_BOOL);
+  m_pass_em_trigger        = getComponent(rhs, ADD_TRIGGER_EM       , SIZE_BOOL);
+  m_pass_me_trigger        = getComponent(rhs, ADD_TRIGGER_ME       , SIZE_BOOL);
+  m_pass_trigger_match     = getComponent(rhs, ADD_TRIGGER_MATCH    , SIZE_BOOL);
 
-  m_truth_matched          = getComponent(rhs, ADD_TRUTH_MATCHED   , SIZE_BOOL);
-  m_truth_prompt           = getComponent(rhs, ADD_TRUTH_PROMPT    , SIZE_BOOL);
-  m_cf_candidate           = getComponent(rhs, ADD_TRUTH_CF_CAND   , SIZE_BOOL);
+  m_truth_matched          = getComponent(rhs, ADD_TRUTH_MATCHED    , SIZE_BOOL);
+  m_truth_prompt           = getComponent(rhs, ADD_TRUTH_PROMPT     , SIZE_BOOL);
+  m_cf_candidate           = getComponent(rhs, ADD_TRUTH_CF_CAND    , SIZE_BOOL);
 
   m_pass_sr1  = getComponent(rhs, ADD_SR_1 , SIZE_BOOL);
   m_pass_sr2  = getComponent(rhs, ADD_SR_2 , SIZE_BOOL);
@@ -200,6 +202,13 @@ void SusyAnalysisTools::EventDescription::setPassTileHotSpot(
 void SusyAnalysisTools::EventDescription::setPassBadJets(bool pass_bad_jets)
 {
   m_pass_bad_jets = pass_bad_jets;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setPassCaloProblemJets(
+    bool pass_calo_problem_jets)
+{
+  m_pass_calo_problem_jets = pass_calo_problem_jets;
 }
 
 // -----------------------------------------------------------------------------
@@ -450,6 +459,12 @@ bool SusyAnalysisTools::EventDescription::getPassTileHotSpot() const
 bool SusyAnalysisTools::EventDescription::getPassBadJets() const
 {
   return m_pass_bad_jets;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassCaloProblemJets() const
+{
+  return m_pass_calo_problem_jets;
 }
 
 // -----------------------------------------------------------------------------

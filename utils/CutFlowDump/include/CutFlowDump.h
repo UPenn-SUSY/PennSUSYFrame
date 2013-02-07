@@ -1,21 +1,14 @@
 #ifndef CutFlowDump_h
 #define CutFlowDump_h
 
-#include <TROOT.h>
-#include <TChain.h>
-#include <TFile.h>
-#include <TH1D.h>
-
+// =============================================================================
 #include "NtupleLooper/include/NtupleLooper.h"
-
-#include "SusyAnalysisTools/include/EventDescription.h"
-#include "SusyAnalysisTools/include/SRHelper.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
-// Header file for the classes stored in the TTree if any.
+// =============================================================================
+class TTree;
 
-// Fixed size dimensions of array or collections stored in the TTree if any.
-
+// =============================================================================
 enum WEIGHTS { WEIGHT_NONE = 0
              , WEIGHT_MC_EVENT
              , WEIGHT_PILE_UP
