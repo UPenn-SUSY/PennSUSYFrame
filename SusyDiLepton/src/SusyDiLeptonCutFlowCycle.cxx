@@ -496,8 +496,14 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
 void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
-  // if ( m_event->RunNumber() != 195847 || m_event->EventNumber() != 8478584) return;
-  // if ( m_event->RunNumber() == 195847 && m_event->EventNumber() == 8478584) return;
+  // if (  true
+  // //    && m_event->EventNumber() != 1574090
+  // //    && m_event->EventNumber() != 261
+  //    && m_event->EventNumber() != 139617
+  //    && m_event->EventNumber() != 294908
+  // //    && m_event->EventNumber() != 413572
+  // //    && m_event->EventNumber() != 437115
+  //    ) return;
 
   m_logger << DEBUG
            << "SusyDiLeptonCutFlowCycle::ExecuteEvent()"
@@ -564,12 +570,23 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   fillEventVariables();
   fillOutput();
 
+  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // std::cout << "Run: " << m_event->RunNumber() << "\n";
+  // std::cout << "Event: " << m_event->EventNumber() << "\n";
   // m_vertices.print(VERT_ALL);
-  // m_electrons.print(EL_ALL, m_vertices);
-  // m_muons.print(MU_ALL, m_vertices);
-  // m_jets.print(JET_ALL);
-  // m_electrons.print(EL_BASELINE, m_vertices);
   // m_vertices.print(VERT_GOOD);
+
+  // m_electrons.print(EL_ALL, m_vertices);
+  // m_electrons.print(EL_BASELINE, m_vertices);
+  // m_electrons.print(EL_GOOD, m_vertices);
+
+  // m_muons.print(MU_ALL, m_vertices);
+  // m_muons.print(MU_BASELINE, m_vertices);
+  // m_muons.print(MU_GOOD, m_vertices);
+
+  // m_jets.print(JET_ALL);
+  // m_jets.print(JET_BASELINE_GOOD);
+  // m_jets.print(JET_GOOD);
 }
 
 // -----------------------------------------------------------------------------

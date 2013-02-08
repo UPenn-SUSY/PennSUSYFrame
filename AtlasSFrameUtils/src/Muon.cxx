@@ -193,6 +193,8 @@ void Muon::print(const VertexContainer& vertices) const
 
   size_t num_good_vertices = vertices.num(VERT_GOOD);
 
+  float trt_ol_ratio = 0;
+  if (nTRTHits()) trt_ol_ratio = nTRTOutliers()/nTRTHits();
   std::cout << "\traw pt: "  << raw_tlv.Pt()
             << "\traw eta: " << raw_tlv.Eta()
             << "\traw phi: " << raw_tlv.Phi()
@@ -210,7 +212,19 @@ void Muon::print(const VertexContainer& vertices) const
             << "\tz0: "      << z0_exPV()
             << "\n"
             << "\tfabs(sqrt(cov_qoverp)/qoverp): "
-              << fabs(sqrt(cov_qoverp_exPV())/qoverp_exPV())
+            << fabs(sqrt(cov_qoverp_exPV())/qoverp_exPV())
+            << "\n"
+            << "\t# b-layer hits: " << nBLHits()
+            << "\texpect b-layer: " << expectBLayerHit()
+            << "\n"
+            << "\t# pixel hits: " << nPixHits()
+            << "\t# SCT hits: " << nSCTHits()
+            << "\t# pixel holes: " << nPixHoles()
+            << "\t# SCT holes: " << nSCTHoles()
+            << "\n"
+            << "\t# TRT hits: " << nTRTHits()
+            << "\t# TRT outliers: " << nTRTOutliers()
+            << "\tTRT outlier ratio: " << trt_ol_ratio
             << "\n";
 }
 

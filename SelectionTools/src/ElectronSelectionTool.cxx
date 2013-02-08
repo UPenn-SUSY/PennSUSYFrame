@@ -68,7 +68,9 @@ void SelectionTools::ElectronSelectionTool::process(
   el_desc->setPassBaselinePt(pass_baseline_pt);
 
   // Check for baseline eta
-  double eta = fabs(el->getTlv().Eta());
+  // double eta = fabs(el->getTlv().Eta());
+  double eta = fabs(el->cl_eta());
+  // double eta = fabs(el->cl_etas2());
   bool pass_baseline_eta = passCut(eta, c_baseline_min_eta, c_baseline_max_eta);
   el_desc->setPassBaselineEta(pass_baseline_eta);
 
