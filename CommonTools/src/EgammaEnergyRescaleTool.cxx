@@ -53,11 +53,11 @@ double CommonTools::EgammaEnergyRescaleTool::getRescaledE(const Electron* p)
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!is_data()) {
-    // Electron energy scale uncertainty
-    el_E_corrected = m_eRescale.applyEnergyCorrection(
-        el_cl_eta, el_E_uncorrected,
-        egRescaler::EnergyRescalerUpgrade::Electron,
-        egRescaler::EnergyRescalerUpgrade::Nominal);
+    // // Electron energy scale uncertainty
+    // el_E_corrected = m_eRescale.applyEnergyCorrection(
+    //     el_cl_eta, el_E_uncorrected,
+    //     egRescaler::EnergyRescalerUpgrade::Electron,
+    //     egRescaler::EnergyRescalerUpgrade::Nominal);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Do energy smearing in MC
