@@ -25,7 +25,7 @@ CommonTools::EgammaEnergyRescaleTool::EgammaEnergyRescaleTool(
   }
   std::string energy_rescale_data =
       maindir + "/../egammaAnalysisUtils/share/EnergyRescalerData.root";
-  m_eRescale.Init(energy_rescale_data, "2012", "es2010");;
+  m_eRescale.Init(energy_rescale_data, "2012", "es2012");;
 }
 
 // -----------------------------------------------------------------------------
