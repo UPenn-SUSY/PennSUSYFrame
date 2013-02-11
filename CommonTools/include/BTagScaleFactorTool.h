@@ -21,7 +21,7 @@ namespace CommonTools
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     BTagScaleFactorTool(SCycleBase* parent, const char* name);
     ~BTagScaleFactorTool();
-
+    void BeginInputData( const SInputData& id );
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     void clear();
     double getSF(const std::vector<Jet*>&);

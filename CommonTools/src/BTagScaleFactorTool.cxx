@@ -19,7 +19,7 @@ CommonTools::BTagScaleFactorTool::BTagScaleFactorTool( SCycleBase* parent
                  , c_calibration_file = "SUSYTools/data/BTagCalibration.env"
                  );
   DeclareProperty( "calib_folder"
-                 , c_calibration_folder = "SUSYTools/data/"
+                 , c_calibration_folder = ""
                  );
 }
 
@@ -27,6 +27,21 @@ CommonTools::BTagScaleFactorTool::BTagScaleFactorTool( SCycleBase* parent
 CommonTools::BTagScaleFactorTool::~BTagScaleFactorTool()
 {
   // do nothing
+}
+// ----------------------------------------------------------------------------
+void CommonTools::BTagScaleFactorTool::BeginInputData(const SInputData&)
+{
+
+  //set dir for btag
+  if (c_calibration_folder == ""){
+    //get default path for btag -- we've put in SFrame/data for now
+    std::string maindir = "";
+    char *tmparea=getenv("SFRAME_DIR");
+    if (tmparea != NULL) {
+      maindir = tmparea;
+      maindir = maindir + "/data/";
+    }
+  }
 }
 // ----------------------------------------------------------------------------
 void CommonTools::BTagScaleFactorTool::clear()
