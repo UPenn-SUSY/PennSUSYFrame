@@ -69,6 +69,8 @@ namespace SelectionTools
     double c_light_min_jvf;
     double c_light_max_jvf;
 
+    double c_light_jvf_pt_threshold;
+
     double c_light_min_mv1;
     double c_light_max_mv1;
 
@@ -89,7 +91,7 @@ namespace SelectionTools
     double c_forward_min_eta;
     double c_forward_max_eta;
 
-    bool passCut(double test, double min, double max);
+    bool passCut(double test, double min, double max, bool inclusive_boundaries = true);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(JetSelectionTool, 0);

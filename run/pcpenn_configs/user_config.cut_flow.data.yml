@@ -112,23 +112,23 @@ Jet_Selection:
     baseline_min_pt:  20000
     baseline_max_pt:  -1
     light_min_eta:    -1
-    light_max_eta:    2.5
+    light_max_eta:    2.4
     light_min_mv1:    -1
     light_max_mv1:    0.122
-    light_min_pt:     25000
+    light_min_pt:     20000
     light_max_pt:     -1
-    light_min_jvf:    0.2
+    light_min_jvf:    0.0
     light_max_jvf:    -1
     b_min_eta:        -1
-    b_max_eta:        2.5
+    b_max_eta:        2.4
     b_min_pt:         20000
     b_max_pt:         -1
     b_max_mv1:        -1
     b_min_mv1:        0.122
     forward_min_pt:   30000
     forward_max_pt:   -1
-    forward_min_eta:  2.5
-    forward_max_eta:  4.9
+    forward_min_eta:  2.4
+    forward_max_eta:  4.5
 
 Muon_Selection:
     bad_min_qoverp_ratio:         0.2

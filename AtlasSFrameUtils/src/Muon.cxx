@@ -78,19 +78,19 @@ void Muon::prepRawTlv()
 // -----------------------------------------------------------------------------
 float Muon::getD0Significance() const
 {
-  float d0     = d0_exPV();
-  float cov_d0 = cov_d0_exPV();
+  float d0     = trackIPEstimate_d0_unbiasedpvunbiased();
+  float cov_d0 = trackIPEstimate_sigd0_unbiasedpvunbiased();
 
-  return d0/sqrt(cov_d0);
+  return fabs(d0)/cov_d0;
 }
 
 // -----------------------------------------------------------------------------
 float Muon::getZ0SinTheta() const
 {
-  float z0        = z0_exPV();
+  float z0        = trackIPEstimate_z0_unbiasedpvunbiased();
   float sin_theta = sin(getTlv().Theta());
 
-  return z0*sin_theta;
+  return fabs(z0*sin_theta);
 }
 
 // -----------------------------------------------------------------------------

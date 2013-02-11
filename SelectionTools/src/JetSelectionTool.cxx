@@ -18,14 +18,16 @@ SelectionTools::JetSelectionTool::JetSelectionTool(
   DeclareProperty("baseline_min_eta", c_baseline_min_eta = -1);
   DeclareProperty("baseline_max_eta", c_baseline_max_eta = 4.9);
 
-  DeclareProperty("light_min_pt", c_light_min_pt = 25e3);
+  DeclareProperty("light_min_pt", c_light_min_pt = 20e3);
   DeclareProperty("light_max_pt", c_light_max_pt = -1);
 
   DeclareProperty("light_min_eta", c_light_min_eta = -1);
-  DeclareProperty("light_max_eta", c_light_max_eta = 2.5);
+  DeclareProperty("light_max_eta", c_light_max_eta = 2.4);
 
   DeclareProperty("light_min_jvf", c_light_min_jvf = 0.2);
   DeclareProperty("light_max_jvf", c_light_max_jvf = -1);
+
+  DeclareProperty("light_jvf_pt_threshold", c_light_jvf_pt_threshold = 50e3);
 
   DeclareProperty("light_min_mv1", c_light_min_mv1 = -1);
   DeclareProperty("light_max_mv1", c_light_max_mv1 = 0.122);
@@ -34,7 +36,7 @@ SelectionTools::JetSelectionTool::JetSelectionTool(
   DeclareProperty("b_max_pt", c_b_max_pt = -1);
 
   DeclareProperty("b_min_eta", c_b_min_eta = -1);
-  DeclareProperty("b_max_eta", c_b_max_eta = 2.5);
+  DeclareProperty("b_max_eta", c_b_max_eta = 2.4);
 
   DeclareProperty("b_min_mv1", c_b_min_mv1 = 0.122);
   DeclareProperty("b_max_mv1", c_b_max_mv1 = -1);
@@ -42,8 +44,8 @@ SelectionTools::JetSelectionTool::JetSelectionTool(
   DeclareProperty("forward_min_pt", c_forward_min_pt = 30e3);
   DeclareProperty("forward_max_pt", c_forward_max_pt = -1);
 
-  DeclareProperty("forward_min_eta", c_forward_min_eta = 2.5);
-  DeclareProperty("forward_max_eta", c_forward_max_eta = 4.9);
+  DeclareProperty("forward_min_eta", c_forward_min_eta = 2.4);
+  DeclareProperty("forward_max_eta", c_forward_max_eta = 4.5);
 }
 
 // -----------------------------------------------------------------------------
@@ -58,7 +60,8 @@ void SelectionTools::JetSelectionTool::process(Jet* jet)
   SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
 
   double pt = jet->getTlv().Pt();
-  double eta = fabs(jet->getTlv().Eta());
+  // double eta = fabs(jet->getTlv().Eta());
+  double eta = fabs(jet->constscale_eta());
 
   // Check for baseline pt
   bool pass_baseline_pt = passCut(pt, c_baseline_min_pt, c_baseline_max_pt);
@@ -89,8 +92,10 @@ void SelectionTools::JetSelectionTool::process(Jet* jet)
   jet_desc->setPassFEta(pass_forward_eta);
 
   // Check for light jvf
-  double jvf = jet->jvtxf();
-  bool pass_jvf = passCut(jvf, c_light_min_jvf, c_light_max_jvf);
+  double jvf = fabs(jet->jvtxf());
+  bool pass_jvf = (  passCut(pt, c_light_jvf_pt_threshold, -1)
+                  || passCut(jvf, c_light_min_jvf, c_light_max_jvf, false)
+                  );
   jet_desc->setPassJvf(pass_jvf);
 
   // Check mv1 for b-tag
@@ -372,13 +377,22 @@ std::vector<Jet*> SelectionTools::JetSelectionTool::getFJets(
 bool SelectionTools::JetSelectionTool::passCut( double test
                                               , double min
                                               , double max
+                                              , bool inclusive_boundaries
                                               )
 {
   // if no test, return true
   if (min < 0 && max < 0) return true;
 
-  if (min >= 0 && test < min) return false;
-  if (max >= 0 && test > max) return false;
+  if (min >=0) {
+    if (inclusive_boundaries  && test < min ) return false;
+    if (!inclusive_boundaries && test <= min) return false;
+  }
+  if (max >= 0) {
+    if (inclusive_boundaries  && test > max ) return false;
+    if (!inclusive_boundaries && test >= max) return false;
+  }
+  // if (min >= 0 && test < min) return false;
+  // if (max >= 0 && test > max) return false;
 
   // passed test
   return true;

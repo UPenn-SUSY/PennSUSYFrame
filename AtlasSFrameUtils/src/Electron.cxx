@@ -97,8 +97,8 @@ float Electron::getPhi() const
 // -----------------------------------------------------------------------------
 float Electron::getD0Significance() const
 {
-  float d0     = trackd0pv();
-  float d0_sig = tracksigd0pv();
+  float d0     = trackIPEstimate_d0_unbiasedpvunbiased();
+  float d0_sig = trackIPEstimate_sigd0_unbiasedpvunbiased();
 
   return d0/d0_sig;
 }
@@ -106,7 +106,7 @@ float Electron::getD0Significance() const
 // -----------------------------------------------------------------------------
 float Electron::getZ0SinTheta() const
 {
-  float z0        = trackz0pv();
+  float z0        = trackIPEstimate_z0_unbiasedpvunbiased();
   float sin_theta = sin(getTlv().Theta());
 
   return z0*sin_theta;
