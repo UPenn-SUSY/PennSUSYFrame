@@ -16,7 +16,7 @@ CommonTools::BTagScaleFactorTool::BTagScaleFactorTool( SCycleBase* parent
 {
   DeclareProperty("do_b_tag_sf", c_do_b_tag_sf = true);
   DeclareProperty( "calib_file"
-                 , c_calibration_file = "SUSYTools/data/BTagCalibration_JVF.env"
+                 , c_calibration_file = "SUSYTools/data/BTagCalibration.env"
                  );
   DeclareProperty( "calib_folder"
                  , c_calibration_folder = "SUSYTools/data/"
@@ -58,16 +58,20 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
         pdgid_btag.push_back(jets.at(jet_it)->flavor_truth_label());
       }
 
+      //TODO Make sure operating point is correct for 1328 0.122 for 1181, 
+      //expect to be 3511 for 80% wp
+
+      bool use_jvf = false;
+
       std::pair<std::vector<float>, std::vector<float> > wgtbtag;
       wgtbtag = BTagCalib::BTagCalibrationFunction( pt_btag
                                                   , eta_btag
                                                   , val_btag
                                                   , pdgid_btag
                                                   , "MV1"
-                                                  // , "0_980"
-                                                  // , 0.980
-                                                  , "0_122"
-                                                  , 0.122
+                                                  , "0_3511"
+                                                  , 0.3511
+						  , use_jvf
                                                   , c_calibration_file
                                                   , c_calibration_folder
                                                   );
