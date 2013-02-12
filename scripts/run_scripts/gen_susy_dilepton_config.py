@@ -18,6 +18,7 @@ def main():
     config_dict = parse.parseInputs()
 
     xml_file_name = config_dict['XmlFileName']
+    out_dir_name  = config_dict['OutputDirectory']
     out_file_name = config_dict['OutputFileName']
     writeConfigXml(config_dict, xml_file_name)
 
@@ -26,7 +27,7 @@ def main():
     print '    sframe_main %s' % xml_file_name
 
     print 'The output root file will be:'
-    print '    %s' % out_file_name
+    print '    %s/%s' % (out_dir_name, out_file_name)
 
 # ------------------------------------------------------------------------------
 def getJobLabel(inputs):

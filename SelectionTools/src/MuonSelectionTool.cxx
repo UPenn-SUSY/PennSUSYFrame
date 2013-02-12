@@ -228,7 +228,7 @@ bool SelectionTools::MuonSelectionTool::isCosmic(Muon* mu)
     return true;
 
   // check for signal z0 sin(theta)
-  float z0 = fabs(mu->z0_exPV());
+  float z0 = fabs(mu->trackIPEstimate_z0_unbiasedpvunbiased());
   if (passCut(z0, c_cosmic_min_z0, c_cosmic_max_z0))
     return true;
 
