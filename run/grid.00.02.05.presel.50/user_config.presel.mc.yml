@@ -7,22 +7,22 @@ input_file_hists:   ''
 
 CutFlow:
     Crit_grl:              False
-    Crit_incomplete_event: False
-    Crit_tile_error:       False
-    Crit_tile_hot_spot:    False
-    Crit_lar_error:        False
-    Crit_bad_jet_veto:     False
-    Crit_primary_vertex:   False
-    Crit_bad_mu_veto:      False
-    Crit_cosmic_mu_veto:   False
+    Crit_incomplete_event: True
+    Crit_tile_error:       True
+    Crit_tile_hot_spot:    True
+    Crit_lar_error:        True
+    Crit_bad_jet_veto:     True
+    Crit_primary_vertex:   True
+    Crit_bad_mu_veto:      True
+    Crit_cosmic_mu_veto:   True
     Crit_hfor:             False
-    Crit_ge_2_lep:         False
+    Crit_ge_2_lep:         True
     Crit_2_lep:            False
     Crit_mll:              False
     Crit_signal_lep:       False
     Crit_prompt_leptons:   False
     Crit_phase_space:      False
-    Crit_trigger:          False
+    Crit_trigger:          True
     Crit_trigger_match:    False
 
 EgammaEnergyRescale:
@@ -95,7 +95,7 @@ Top_Tag:
 Electron_Selection:
     baseline_min_eta:        -1
     baseline_max_eta:        2.47
-    baseline_min_pt:         10000
+    baseline_min_pt:         8000
     baseline_max_pt:         -1
     signal_min_d0_sig:       -1
     signal_max_d0_sig:       5
@@ -109,7 +109,7 @@ Electron_Selection:
 Jet_Selection:
     baseline_min_eta: -1
     baseline_max_eta: 4.9
-    baseline_min_pt:  20000
+    baseline_min_pt:  18000
     baseline_max_pt:  -1
     light_min_eta:    -1
     light_max_eta:    2.4
@@ -133,7 +133,7 @@ Jet_Selection:
 Muon_Selection:
     bad_min_qoverp_ratio:         0.2
     bad_max_qoverp_ratio:         -1
-    baseline_min_pt:              10000
+    baseline_min_pt:              8000
     baseline_max_pt:              -1
     baseline_min_eta:             -1
     baseline_max_eta:             2.4
@@ -165,18 +165,18 @@ GRL:
     grl_xml: FIND_ME
 
 Event_Cleaning:
-    min_mll:    20000
+    min_mll:    10000
     max_mll:    -1
     total_lumi: 0
 
 Object_Cleaning:
-    ee_cone_size: 0.1
-    ej_cone_size: 0.2
-    em_cone_size: 0.1
-    je_cone_size: 0.4
-    jm_cone_size: 0.4
-    mm_cone_size: 0.05
-    min_mll:      12000
+    ee_cone_size: 0.
+    ej_cone_size: 0.
+    em_cone_size: 0.
+    je_cone_size: 0.
+    jm_cone_size: 0.
+    mm_cone_size: 0.
+    min_mll:      0.
 
 Trigger_Cut:
     check_official_matching: False
@@ -200,7 +200,6 @@ Signal_Regions:
 
 PileUpScaleFactor:
   do_pile_up:       True
-  # data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200841-210308.root
   data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root
   mc_file:          ${ROOTCOREDIR}/../PileupReweighting/share/mc12a_defaults.prw.root
   data_hist_name:   LumiMetaData
@@ -231,26 +230,6 @@ ChargeFlipSF:
   do_charge_flip_sf: True
   path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
 
-ElectronOutput:
-  do_detailed_output:      0
-  electron_container_name: good
-
-MuonOutput:
-  do_detailed_output:  0
-  muon_container_name: good
-
-JetOutput:
-  do_detailed_output: 0
-  jet_container_name: good
-
-JetOutput:
-  do_detailed_output: 1
-  jet_container_name: light
-  jet_label:          light_jet_
-
-MetOutput:
-  do_detailed_output: 0
-
-VertexOutput:
-  do_detailed_output:    0
-  vertex_container_name: good
+ChargeFlipSF:
+  do_charge_flip_sf: True
+  path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
