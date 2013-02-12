@@ -48,6 +48,8 @@ public:
   void setMCChannelNum(int channel);
 
   void setMll(double);
+  void setMetEt(double);
+  void setMetPhi(double);
   void setMetRel(double);
   void setMt(double);
   void setMt2(double);
@@ -57,6 +59,8 @@ public:
   void setEtall(double);
 
   double getMll();
+  double getMetEt();
+  double getMetPhi();
   double getMetRel();
   double getMt();
   double getMt2();
@@ -64,6 +68,8 @@ public:
   double getPtll();
   double getPhill();
   double getEtall();
+
+  void print();
 
   FLAVOR_CHANNEL  getFlavorChannel();
   SIGN_CHANNEL    getSignChannel();
@@ -89,6 +95,8 @@ private:
 
   // useful event level variables
   double m_mll;
+  double m_met_et;
+  double m_met_phi;
   double m_met_rel;
   double m_mt;
   double m_mt2;
@@ -98,6 +106,8 @@ private:
   double m_etall;
 
   bool m_mll_cached;
+  bool m_met_et_cached;
+  bool m_met_phi_cached;
   bool m_met_rel_cached;
   bool m_mt_cached;
   bool m_mt2_cached;

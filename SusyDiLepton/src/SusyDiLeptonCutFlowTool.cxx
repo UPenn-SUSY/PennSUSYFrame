@@ -564,6 +564,8 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute met and met-rel
   met->prep(event, &electrons, &muons, &jets);
+  event->setMetEt(met->getMetRefFinalEt());
+  event->setMetPhi(met->getMetRefFinalPhi());
   event->setMetRel(Met::getMetRel( met
                                  , electrons.getElectrons(EL_GOOD)
                                  , muons.getMuons(MU_GOOD)

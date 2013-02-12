@@ -474,3 +474,16 @@ double Met::getMetRel( const Met* met
 
   return met_rel;
 }
+
+// -----------------------------------------------------------------------------
+void Met::print( const std::vector<Electron*>& el
+               , const std::vector<Muon*>& mu
+               , const std::vector<Jet*>& jet
+               )
+{
+  std::cout << "MET:\n"
+            << "\tmet et: "  << getMetRefFinalEt()
+            << "\tmet phi: " << getMetRefFinalPhi()
+            << "\tmet-rel: " << getMetRel(this, el, mu, jet)
+            << "\n";
+}

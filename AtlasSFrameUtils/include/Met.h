@@ -45,6 +45,11 @@ public:
                          , const std::vector<Jet*>&
                          );
 
+  void print( const std::vector<Electron*>&
+            , const std::vector<Muon*>&
+            , const std::vector<Jet*>&
+            );
+
 private:
   bool m_prepared;
   std::string m_jet_algo;

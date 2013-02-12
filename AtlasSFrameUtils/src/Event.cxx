@@ -25,8 +25,12 @@ Event::Event( const ::Long64_t& master
             , m_cross_section_weight(1.)
             , m_b_tag_weight(1.)
             , m_mll(0.)
+            , m_met_et(0.)
+            , m_met_phi(0.)
             , m_met_rel(0.)
             , m_mll_cached(false)
+            , m_met_et_cached(false)
+            , m_met_phi_cached(false)
             , m_met_rel_cached(false)
             , m_mt_cached(false)
             , m_mt2_cached(false)
@@ -58,6 +62,8 @@ void Event::clear()
   m_mc_channel_num = 0;
 
   m_mll     = 0.;
+  m_met_et  = 0.;
+  m_met_phi = 0.;
   m_met_rel = 0.;
   m_mt      = 0.;
   m_mt2     = 0.;
@@ -67,6 +73,8 @@ void Event::clear()
   m_etall   = 0.;
 
   m_mll_cached     = false;
+  m_met_et_cached  = false;
+  m_met_phi_cached = false;
   m_met_rel_cached = false;
   m_mt_cached      = false;
   m_mt2_cached     = false;
@@ -252,6 +260,20 @@ void Event::setEtall(double etall)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setMetEt(double met_et)
+{
+  m_met_et = met_et;
+  m_met_et_cached = true;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setMetPhi(double met_phi)
+{
+  m_met_phi = met_phi;
+  m_met_phi_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 void Event::setMetRel(double met_rel)
 {
   m_met_rel = met_rel;
@@ -264,6 +286,22 @@ double Event::getMll()
   if (!m_mll_cached)
     std::cout << "WARNING! Asking for mll, but not yet cached!\n";
   return m_mll;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getMetEt()
+{
+  if (!m_met_et_cached)
+    std::cout << "WARNING! Asking for met_et, but not yet cached!\n";
+  return m_met_et;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getMetPhi()
+{
+  if (!m_met_phi_cached)
+    std::cout << "WARNING! Asking for met_phi, but not yet cached!\n";
+  return m_met_phi;
 }
 
 // -----------------------------------------------------------------------------
@@ -350,4 +388,23 @@ SIGN_CHANNEL Event::getSignChannel()
 PHASE_SPACE Event::getPhaseSpace()
 {
   return m_event_desc.getPhaseSpace();
+}
+
+// -----------------------------------------------------------------------------
+void Event::print()
+{
+  std::cout << "Event:\n"
+            << "\tmll: " << m_mll
+            << "\tptll: " << m_ptll
+            << "\tphill: " << m_phill
+            << "\tetall: " << m_etall
+            << "\n"
+            << "\tmet_et: "  << m_met_et
+            << "\tmet_phi: " << m_met_phi
+            << "\tmet_rel: " << m_met_rel
+            << "\n"
+            << "\tmt: " << m_mt
+            << "\tmt2: " << m_mt2
+            << "\tmeff: " << m_meff
+            << "\n";
 }
