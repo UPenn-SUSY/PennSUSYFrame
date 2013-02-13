@@ -13,12 +13,12 @@ EXT_FILES=''
 # = define list of input files =
 # ==============================
 # mc12 list
-ds_list=( "107650.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp0:group.phys-susy.mc12_8TeV.107650.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp0.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/"
-          "107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1:group.phys-susy.mc12_8TeV.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/"
-          "107652.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp2:group.phys-susy.mc12_8TeV.107652.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp2.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/"
-          "107653.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3:group.phys-susy.mc12_8TeV.107653.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/"
-          "107654.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4:group.phys-susy.mc12_8TeV.107654.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/"
-          "107655.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp5:group.phys-susy.mc12_8TeV.107655.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp5.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/"
+ds_list=( "107650.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp0:mc12_8TeV.107650.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp0.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328/"
+          "107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1:mc12_8TeV.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328/"
+          "107652.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp2:mc12_8TeV.107652.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp2.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328/"
+          "107653.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3:mc12_8TeV.107653.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328/"
+          "107654.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4:mc12_8TeV.107654.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328/"
+          "107655.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp5:mc12_8TeV.107655.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp5.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328/"
           ##"107660.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp0:group.phys-susy.mc12_8TeV.107660.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp0.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/
           ##"107661.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp1:group.phys-susy.mc12_8TeV.107661.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp1.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/
           ##"107662.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp2:group.phys-susy.mc12_8TeV.107662.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp2.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1328.0/
