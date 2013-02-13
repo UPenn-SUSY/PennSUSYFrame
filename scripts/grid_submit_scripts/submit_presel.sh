@@ -22,7 +22,7 @@ done
 # ========================
 # = add common ext files =
 # ========================
-COMMON_EXT_FILES="data/data12_8TeV.periodAllYear_DetStatus-v53-pro13-04_CoolRunQuery-00-04-08_All_Good_HCP.xml"
+COMMON_EXT_FILES="data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
 if [[ "${EXT_FILES}" == '' ]]; then
   EXT_FILES=${COMMON_EXT_FILES}
 else
@@ -79,7 +79,7 @@ for hash in ${ds_list[@]} ; do
     --inDS=${IN_DS} \
     --outDS=${out_ds} \
     --nGBPerJob=MAX \
-    --athenaTag=17.3.1.2 \
+    --athenaTag=17.3.5 \
     --extFile=${EXT_FILES} \
     --inTarBall=${TAR_BALL_NAME} \
     --outputs=${out_file} \

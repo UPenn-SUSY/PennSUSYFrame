@@ -52,7 +52,7 @@ prun \
   --useRootCore \
   --outDS=${OUT_DS} \
   --nGBPerJob=MAX \
-  --athenaTag=17.3.1.2 \
+  --athenaTag=17.3.5 \
   --extFile=${EXT_FILES} \
   --outTarBall=${TAR_BALL_NAME} \
   --noSubmit

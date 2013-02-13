@@ -42,9 +42,9 @@ def writeYmlFile(parser):
 
     user_config_file = ''
     if inputs.type == 'data':
-        user_config_file = '${SFRAME_DIR}/../run/sample_configs/user_config.presel.data.yml'
+        user_config_file = '${SFRAME_DIR}/../run/grid.00.02.05.presel.50/user_config.presel.data.yml'
     else:
-        user_config_file = '${SFRAME_DIR}/../run/sample_configs/user_config.presel.mc.yml'
+        user_config_file = '${SFRAME_DIR}/../run/grid.00.02.05.presel.50/user_config.presel.mc.yml'
 
     f.write('grid:             True\n')
     f.write('CycleName:        SusyDiLeptonPreselCycle\n')
@@ -79,21 +79,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-#type:             MC
-#OutputLevel:      INFO
-#OutputDirectory:  ./
-#NEventsMax:       -1
-#is_af2:           False
-#SuperVerboseInfo: False
-#PrintEventInfo:   False
-#Version:          1
-#CycleName:        SusyDiLeptonPreselCycle
-#SampleName:       105200.ttbar_small
-#
-#input_tree_name:  susy
-#output_tree_name: presel
-#is_egamma_stream: True
-#
-#UserConfigFile: ${SFRAME_DIR}/../run/sample_configs/user_config.presel.mc.yml
-#InputFiles:
-#  - ~/work/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1193_s1469_s1470_r3542_r3549_p1181_tid00950213_00/NTUP_SUSY.00950213._000715.root.1
