@@ -60,8 +60,8 @@ void SelectionTools::JetSelectionTool::process(Jet* jet)
   SusyAnalysisTools::JetDescription* jet_desc = jet->getJetDesc();
 
   double pt = jet->getTlv().Pt();
-  // double eta = fabs(jet->getTlv().Eta());
-  double eta = fabs(jet->constscale_eta());
+  double eta = fabs(jet->getTlv().Eta());
+  double eta_det = fabs(jet->constscale_eta());
 
   // Check for baseline pt
   bool pass_baseline_pt = passCut(pt, c_baseline_min_pt, c_baseline_max_pt);
@@ -84,11 +84,13 @@ void SelectionTools::JetSelectionTool::process(Jet* jet)
   jet_desc->setPassFPt(pass_f_pt);
 
   // Check for central eta
-  bool pass_central_eta = passCut(eta, c_light_min_eta, c_light_max_eta);
+  // bool pass_central_eta = passCut(eta, c_light_min_eta, c_light_max_eta);
+  bool pass_central_eta = passCut(eta_det, c_light_min_eta, c_light_max_eta);
   jet_desc->setPassCentralEta(pass_central_eta);
 
   // Check for forward eta
-  bool pass_forward_eta = passCut(eta, c_forward_min_eta, c_forward_max_eta);
+  //bool pass_forward_eta = passCut(eta, c_forward_min_eta, c_forward_max_eta);
+  bool pass_forward_eta = passCut(eta_det, c_forward_min_eta, c_forward_max_eta);
   jet_desc->setPassFEta(pass_forward_eta);
 
   // Check for light jvf

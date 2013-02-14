@@ -114,7 +114,8 @@ Jet_Selection:
     light_min_eta:    -1
     light_max_eta:    2.4
     light_min_mv1:    -1
-    light_max_mv1:    0.122
+    # light_max_mv1:    0.122
+    light_max_mv1:    0.3511
     light_min_pt:     20000
     light_max_pt:     -1
     light_min_jvf:    0.0
@@ -124,7 +125,8 @@ Jet_Selection:
     b_min_pt:         20000
     b_max_pt:         -1
     b_max_mv1:        -1
-    b_min_mv1:        0.122
+    # b_min_mv1:        0.122
+    b_min_mv1:        0.3511
     forward_min_pt:   30000
     forward_max_pt:   -1
     forward_min_eta:  2.4
