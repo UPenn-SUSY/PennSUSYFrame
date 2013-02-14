@@ -114,7 +114,6 @@ Jet_Selection:
     light_min_eta:    -1
     light_max_eta:    2.4
     light_min_mv1:    -1
-    # light_max_mv1:    0.122
     light_max_mv1:    0.3511
     light_min_pt:     20000
     light_max_pt:     -1
@@ -125,7 +124,6 @@ Jet_Selection:
     b_min_pt:         20000
     b_max_pt:         -1
     b_max_mv1:        -1
-    # b_min_mv1:        0.122
     b_min_mv1:        0.3511
     forward_min_pt:   30000
     forward_max_pt:   -1
@@ -202,7 +200,6 @@ Signal_Regions:
 
 PileUpScaleFactor:
   do_pile_up:       True
-  # data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200841-210308.root
   data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root
   mc_file:          ${ROOTCOREDIR}/../PileupReweighting/share/mc12a_defaults.prw.root
   data_hist_name:   LumiMetaData
