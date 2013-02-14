@@ -331,8 +331,8 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   bool pass_sr2 = (evt_desc.getSignChannel() == SIGN_SS);
 
   // SR2 jet veto
-  // TODO - this is a pass through now.  Handle properly depending on channel
-  // pass_sr2 = (pass_sr2 && pass_total_jet_veto);
+  // TODO - Handle SS jet requirement properly
+  pass_sr2 = (pass_sr2 && pass_total_jet_veto);
   if (pass_sr2)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
@@ -345,7 +345,8 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   bin_num++;
 
   // SR2 Z veto
-  pass_sr2 = (pass_sr2 && pass_z_veto);
+  // TODO - currently pass through. handle properly with channel
+  // pass_sr2 = (pass_sr2 && pass_z_veto);
   if (pass_sr2)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;

@@ -222,13 +222,14 @@ bool SelectionTools::MuonSelectionTool::isSignal(Muon* mu)
 bool SelectionTools::MuonSelectionTool::isCosmic(Muon* mu)
 {
   // check for signal d0 significance
-  float d0 = fabs(mu->trackIPEstimate_d0_unbiasedpvunbiased());
-  // float d0 = fabs(mu->d0_exPV());
+  // float d0 = fabs(mu->trackIPEstimate_d0_unbiasedpvunbiased());
+  float d0 = fabs(mu->d0_exPV());
   if (passCut(d0, c_cosmic_min_d0, c_cosmic_max_d0))
     return true;
 
   // check for signal z0 sin(theta)
-  float z0 = fabs(mu->trackIPEstimate_z0_unbiasedpvunbiased());
+  // float z0 = fabs(mu->trackIPEstimate_z0_unbiasedpvunbiased());
+  float z0 = fabs(mu->z0_exPV());
   if (passCut(z0, c_cosmic_min_z0, c_cosmic_max_z0))
     return true;
 

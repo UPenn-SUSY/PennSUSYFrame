@@ -90,7 +90,7 @@ Muon_IsoCorr:
 Top_Tag:
     m_eff_cut:  100000
     n_jet_scan: 3
-    pt_j_cut:   30000
+    pt_j_cut:   20000
 
 Electron_Selection:
     baseline_min_eta:        -1
@@ -223,7 +223,6 @@ MuonSF:
   muon_type:  STACO_CB_plus_ST
   # sf_dir:     ""
   unit:       MeV
-
 
 EgammaSF:
   do_scaling: True
