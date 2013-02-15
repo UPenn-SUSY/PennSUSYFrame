@@ -112,13 +112,15 @@ void CutFlowDump::initCutFlowHists()
       axis->SetBinLabel(bin++, "SR OSJVeto met-rel"     );
       axis->SetBinLabel(bin++, "BREAK"                  );
 
-      axis->SetBinLabel(bin++, "SR SSJets jet veto"    );
+      axis->SetBinLabel(bin++, "SR SSJets >= 1 L jet"  );
+      axis->SetBinLabel(bin++, "SR SSJets B jet veto"  );
+      axis->SetBinLabel(bin++, "SR SSJets F jet veto"  );
       axis->SetBinLabel(bin++, "SR SSJets b-tag weight");
       axis->SetBinLabel(bin++, "SR SSJets Z veto - skip");
       axis->SetBinLabel(bin++, "SR SSJets met-rel"     );
+      axis->SetBinLabel(bin++, "SR SSJets mt"          );
       axis->SetBinLabel(bin++, "BREAK"                 );
 
-      axis->SetBinLabel(bin++, "SR 2Jets SF"          );
       axis->SetBinLabel(bin++, "SR 2Jets 2-light jets");
       axis->SetBinLabel(bin++, "SR 2Jets Z veto"      );
       axis->SetBinLabel(bin++, "SR 2Jets b jet veto"  );
@@ -337,9 +339,20 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   weight = basic_weight;
   bool pass_sr_ssjets = (evt_desc.getSignChannel() == SIGN_SS);
 
-  // SRSSJets jet veto
-  // TODO - Handle SS jet requirement properly
-  pass_sr_ssjets = (pass_sr_ssjets && pass_total_jet_veto);
+  // SRSSJets >= 1 L jet
+  pass_sr_ssjets = (pass_sr_ssjets && !pass_l_jet_veto);
+  if (pass_sr_ssjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SRSSJets B jet veto
+  pass_sr_ssjets = (pass_sr_ssjets && pass_b_jet_veto);
+  if (pass_sr_ssjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SRSSJets F jet veto
+  pass_sr_ssjets = (pass_sr_ssjets && pass_f_jet_veto);
   if (pass_sr_ssjets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
@@ -353,7 +366,8 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
 
   // SRSSJets Z veto
   // TODO - currently pass through. handle properly with channel
-  // pass_sr_ssjets = (pass_sr_ssjets && pass_z_veto);
+  if (phase == PHASE_EE)
+    pass_sr_ssjets = (pass_sr_ssjets && pass_z_veto);
   if (pass_sr_ssjets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
@@ -364,21 +378,17 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
+  // SRSSJets mt
+  pass_sr_ssjets = (pass_sr_ssjets && sr_helper.getPassSRSSJetsMt());
+  if (pass_sr_ssjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // SR2Jets
   ++bin_num;
   weight = basic_weight;
   bool pass_sr_2jets = (evt_desc.getSignChannel() == SIGN_OS);
-
-  // SR2Jets same flavor
-  bool is_sf = (  evt_desc.getFlavorChannel() == FLAVOR_EE
-               || evt_desc.getFlavorChannel() == FLAVOR_MM
-               || true
-               );
-  pass_sr_2jets = (pass_sr_2jets && is_sf);
-  if (pass_sr_2jets)
-    fillHist(phase, weight_type, bin_num, weight);
-  ++bin_num;
 
   // SR2Jets 2 light jets
   pass_sr_2jets = (pass_sr_2jets && sr_helper.getPassSR2JetsNumLJet());
