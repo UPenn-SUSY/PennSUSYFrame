@@ -55,13 +55,13 @@ void ChargeFlipCalc::printToFile(std::string out_file_name)
    //m_cutflow.at(WEIGHT_NONE).at(PHASE_NONE)->Write();
 
    m_h_flipped->Write();
-   m_h_unflipped->Write();
+   m_h_total->Write();
 
    m_h_flipped_pt_only->Write();
-   m_h_unflipped_pt_only->Write();
+   m_h_total_pt_only->Write();
 
    m_h_flipped_eta_only->Write();
-   m_h_unflipped_eta_only->Write();
+   m_h_total_eta_only->Write();
 
    m_h_mll->Write();
 
@@ -87,13 +87,13 @@ void ChargeFlipCalc::initChargeFlipHists()
   
   
   m_h_flipped = new TH2F("h_flipped","h_flipped",num_pt_bins,pt_bins,num_eta_bins,eta_bins);
-  m_h_unflipped = new TH2F("h_unflipped","h_unflipped",num_pt_bins,pt_bins,num_eta_bins,eta_bins);
+  m_h_total = new TH2F("h_total","h_total",num_pt_bins,pt_bins,num_eta_bins,eta_bins);
    
   m_h_flipped_pt_only = new TH1F("h_flipped_pt_only", "h_flipped_pt_only", num_pt_bins, pt_bins);
-  m_h_unflipped_pt_only = new TH1F("h_unflipped_pt_only", "h_unflipped_pt_only", num_pt_bins, pt_bins);
+  m_h_total_pt_only = new TH1F("h_total_pt_only", "h_total_pt_only", num_pt_bins, pt_bins);
   
   m_h_flipped_eta_only = new TH1F("h_flipped_eta_only", "h_flipped_eta_only", num_eta_bins, eta_bins);
-  m_h_unflipped_eta_only = new TH1F("h_unflipped_eta_only", "h_unflipped_eta_only", num_eta_bins, eta_bins);
+  m_h_total_eta_only = new TH1F("h_total_eta_only", "h_total_eta_only", num_eta_bins, eta_bins);
   
   //m_true_ss = new TH2F("h_true_ss","h_true_ss",num_eta_bins,eta_bins,num_eta_bins,eta_bins); //plot eta of two electorns
   
@@ -140,9 +140,9 @@ void ChargeFlipCalc::fillTruthHists()
 	  float eta = fabs(el_eta->at(el_it));
 	  float pt = el_pt->at(el_it)/1000.;
 	  
-	  m_h_unflipped_eta_only->Fill(eta,weight);
-	  m_h_unflipped_pt_only->Fill(pt,weight);
-	  m_h_unflipped->Fill(pt,eta,weight);
+	  m_h_total_eta_only->Fill(eta,weight);
+	  m_h_total_pt_only->Fill(pt,weight);
+	  m_h_total->Fill(pt,eta,weight);
 	  
 	  if (el_truth_charge->at(el_it)*el_charge->at(el_it) < 0)
 	    {
@@ -341,7 +341,7 @@ void ChargeFlipCalc::calcTruth()
 
 	  double rate  = 0;
 
-	  double n_total = m_h_unflipped->GetBinContent(i+1,j+1);
+	  double n_total = m_h_total->GetBinContent(i+1,j+1);
 	  if (n_total)
 	    {
 	      double n_flipped =  m_h_flipped->GetBinContent(i+1,j+1);

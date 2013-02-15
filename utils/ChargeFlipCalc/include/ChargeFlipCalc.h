@@ -48,13 +48,13 @@ class ChargeFlipCalc : public NtupleLooper
     bool passLikelihoodSelection();
 
     TH2F* m_h_flipped;
-    TH2F* m_h_unflipped;
+    TH2F* m_h_total;
 	  
     TH1F* m_h_flipped_pt_only;
-    TH1F* m_h_unflipped_pt_only;
+    TH1F* m_h_total_pt_only;
 	  
     TH1F* m_h_flipped_eta_only;
-    TH1F* m_h_unflipped_eta_only;
+    TH1F* m_h_total_eta_only;
 
     TH1F* m_h_mll;
     TH1F* m_h_mll_ss;
