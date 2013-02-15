@@ -72,8 +72,26 @@ namespace SelectionTools
     double c_sr_osjveto_met_rel_min;
     double c_sr_osjveto_met_rel_max;
 
-    double c_sr_ssjets_met_rel_min;
-    double c_sr_ssjets_met_rel_max;
+    double c_sr_osjveto_mt2_min;
+    double c_sr_osjveto_mt2_max;
+
+    double c_sr_ssjets_ee_met_rel_min;
+    double c_sr_ssjets_ee_met_rel_max;
+
+    double c_sr_ssjets_mm_met_rel_min;
+    double c_sr_ssjets_mm_met_rel_max;
+
+    double c_sr_ssjets_em_met_rel_min;
+    double c_sr_ssjets_em_met_rel_max;
+
+    double c_sr_ssjets_ee_mt_min;
+    double c_sr_ssjets_ee_mt_max;
+
+    double c_sr_ssjets_mm_mt_min;
+    double c_sr_ssjets_mm_mt_max;
+
+    double c_sr_ssjets_em_mt_min;
+    double c_sr_ssjets_em_mt_max;
 
     double c_sr_2jets_met_rel_min;
     double c_sr_2jets_met_rel_max;
