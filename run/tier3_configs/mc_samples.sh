@@ -5,9 +5,9 @@ STREAM=egamma
 VERSION_FLAG=presel.51
 
 ds_list=( ##"Z_plus_jet.107650.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp0"
-          ##"Z_plus_jet.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1"
+          "Z_plus_jet.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1"
           ##"Z_plus_jet.107652.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp2"
-          ##"Z_plus_jet.107653.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3"
+          "Z_plus_jet.107653.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3"
           "Z_plus_jet.107654.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4"
           "Z_plus_jet.107655.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp5"
         )

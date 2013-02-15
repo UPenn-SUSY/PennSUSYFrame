@@ -1,0 +1,21 @@
+
+Type:             mc
+OutputLevel:      INFO
+OutputDirectory:  /home/elhines/Susy_presel_12Feb/
+NEventsMax:       -1
+is_af2:           False
+SuperVerboseInfo: False
+PrintEventInfo:   False
+Version:          presel.51
+CycleName:        SusyDiLeptonCutFlowCycle
+SampleName:       Z_plus_jet.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1
+
+input_tree_name:  presel
+output_tree_name: output
+is_egamma_stream: True
+
+
+UserConfigFile: /home/elhines/Susy_presel_12Feb/SFrame/../run/tier3_configs/user_config.cut_flow.mc.yml
+InputFiles:
+ - root://hn.at3f//srm/atlaslocalgroupdisk/user/bjackson/mc12_8TeV/user.bjackson.mc12_8TeV.Z_plus_jet.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1.presel.presel.51.130213153209
+ - root://hn.at3f//srm/atlaslocalgroupdisk/user/bjackson/mc12_8TeV/user.bjackson.mc12_8TeV.Z_plus_jet.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1.presel.presel.51.130213153209
