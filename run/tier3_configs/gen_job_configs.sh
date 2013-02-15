@@ -81,11 +81,11 @@ NUM_FILES=0
 echo "    xrd command:"
 echo "        xrd hn.at3f dirlist /srm/atlaslocalgroupdisk/${REL_PATH_ON_SRM} | sort | grep \"${VERSION_FLAG}\.\" | grep ${SAMPLE_NAME}"
 for ds_name in `xrd hn.at3f dirlist /srm/atlaslocalgroupdisk/${REL_PATH_ON_SRM}/ | sort | grep "${VERSION_FLAG}\." | grep ${SAMPLE_NAME}` ; do
-    echo ${ds_name}
+#    echo ${ds_name}
     if [[ "${ds_name}" =~ "/srm/.*" ]] ; then
 	for in_file in `xrd hn.at3f dirlist ${ds_name} | grep .root*` ; do 
 	    if [[ "${in_file}" =~ "/srm/.*" ]] ; then
-		echo "${in_file}"
+	#	echo "${in_file}"
 		echo "        Adding: root://hn.at3f/${in_file}"    
 		echo " - root://hn.at3f/${in_file}" >> $CONFIG_FILE
 		let NUM_FILES+=1
