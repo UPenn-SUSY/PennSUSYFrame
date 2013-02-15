@@ -29,26 +29,26 @@ namespace SusyAnalysisTools
       void setPassFJetVeto(bool);
       void setPassZVeto(bool);
       void setPassTopVeto(bool);
-      void setPassSR1MetRel(bool);
-      void setPassSR2MetRel(bool);
-      void setPassSR32LJet(bool);
-      void setPassSR3MetRel(bool);
-      void setPassSR4MetRel(bool);
-      void setPassSR4aMt2(bool);
-      void setPassSR4bMt2(bool);
+      void setPassSROSJVetoMetRel(bool);
+      void setPassSRSSJetsMetRel(bool);
+      void setPassSR2JetsNumLJet(bool);
+      void setPassSR2JetsMetRel(bool);
+      void setPassSRMT2MetRel(bool);
+      void setPassSRMT2aMt2(bool);
+      void setPassSRMT2bMt2(bool);
 
       bool getPassLJetVeto();
       bool getPassBJetVeto();
       bool getPassFJetVeto();
       bool getPassZVeto();
       bool getPassTopVeto();
-      bool getPassSR1MetRel();
-      bool getPassSR2MetRel();
-      bool getPassSR32LJet();
-      bool getPassSR3MetRel();
-      bool getPassSR4MetRel();
-      bool getPassSR4aMt2();
-      bool getPassSR4bMt2();
+      bool getPassSROSJVetoMetRel();
+      bool getPassSRSSJetsMetRel();
+      bool getPassSR2JetsNumLJet();
+      bool getPassSR2JetsMetRel();
+      bool getPassSRMT2MetRel();
+      bool getPassSRMT2aMt2();
+      bool getPassSRMT2bMt2();
 
       bool pass(   const SRHelper&) const;
       bool reverse(const SRHelper&) const;
@@ -63,14 +63,13 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_Z_VETO     = 3;
       static const unsigned int ADD_TOP_VETO   = 4;
 
-      static const unsigned int ADD_SR1_MET_REL = 10;
-      static const unsigned int ADD_SR2_MET_REL = 11;
-      static const unsigned int ADD_SR3_2_L_JET = 12;
-      static const unsigned int ADD_SR3_MET_REL = 13;
-      static const unsigned int ADD_SR4_MET_REL = 14;
-      static const unsigned int ADD_SR4a_MT2    = 15;
-      static const unsigned int ADD_SR4b_MT2    = 16;
-
+      static const unsigned int ADD_SR_OSJVETO_MET_REL = 10;
+      static const unsigned int ADD_SR_SSJETS_MET_REL  = 11;
+      static const unsigned int ADD_SR_2JETS_NUM_L_JET = 12;
+      static const unsigned int ADD_SR_2JETS_MET_REL   = 13;
+      static const unsigned int ADD_SR_MT2_MET_REL     = 14;
+      static const unsigned int ADD_SR_MT2a_MT2        = 15;
+      static const unsigned int ADD_SR_MT2b_MT2        = 16;
 
       bool m_pass_l_jet_veto;
       bool m_pass_b_jet_veto;
@@ -78,13 +77,13 @@ namespace SusyAnalysisTools
       bool m_pass_z_veto;
       bool m_pass_top_veto;
 
-      bool m_pass_sr1_met_rel;
-      bool m_pass_sr2_met_rel;
-      bool m_pass_sr3_2_l_jet;
-      bool m_pass_sr3_met_rel;
-      bool m_pass_sr4_met_rel;
-      bool m_pass_sr4a_mt2;
-      bool m_pass_sr4b_mt2;
+      bool m_pass_sr_osjveto_met_rel;
+      bool m_pass_sr_ssjets_met_rel;
+      bool m_pass_sr_2jets_num_l_jet;
+      bool m_pass_sr_2jets_met_rel;
+      bool m_pass_sr_mt2_met_rel;
+      bool m_pass_sr_mt2a_mt2;
+      bool m_pass_sr_mt2b_mt2;
 
       // TODO move implementation to icc file
       template <class T>

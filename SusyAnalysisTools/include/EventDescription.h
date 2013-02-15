@@ -55,16 +55,16 @@ namespace SusyAnalysisTools
       void setCFCandidate(bool);
       void setTruthSignChannel(SIGN_CHANNEL);
 
-      void setSR1(bool);
-      void setSR2(bool);
-      void setSR3(bool);
-      void setSR4a(bool);
-      void setSR4b(bool);
+      void setSROSJVeto(bool);
+      void setSRSSJets(bool);
+      void setSR2Jets(bool);
+      void setSRMT2a(bool);
+      void setSRMT2b(bool);
 
-      void setCR1(bool);
-      void setCR2(bool);
-      void setCR3(bool);
-      void setCR4(bool);
+      // void setCR1(bool);
+      // void setCR2(bool);
+      // void setCR3(bool);
+      // void setCR4(bool);
 
       bool getIsData() const;
       bool getPassGrl() const;
@@ -96,16 +96,16 @@ namespace SusyAnalysisTools
       bool getCFCandidate() const;
       SIGN_CHANNEL getTruthSignChannel() const;
 
-      bool getPassSR1() const;
-      bool getPassSR2() const;
-      bool getPassSR3() const;
-      bool getPassSR4a() const;
-      bool getPassSR4b() const;
+      bool getPassSROSJVeto() const;
+      bool getPassSRSSJets() const;
+      bool getPassSR2Jets() const;
+      bool getPassSRMT2a() const;
+      bool getPassSRMT2b() const;
 
-      bool getPassCR1() const;
-      bool getPassCR2() const;
-      bool getPassCR3() const;
-      bool getPassCR4() const;
+      // bool getPassCR1() const;
+      // bool getPassCR2() const;
+      // bool getPassCR3() const;
+      // bool getPassCR4() const;
 
       bool pass(   const EventDescription& test) const;
       bool reverse(const EventDescription& test) const;
@@ -145,15 +145,15 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_TRUTH_MATCHED      = 32;
       static const unsigned int ADD_TRUTH_PROMPT       = 33;
       static const unsigned int ADD_TRUTH_CF_CAND      = 34;
-      static const unsigned int ADD_SR_1               = 40;
-      static const unsigned int ADD_SR_2               = 41;
-      static const unsigned int ADD_SR_3               = 42;
-      static const unsigned int ADD_SR_4a              = 43;
-      static const unsigned int ADD_SR_4b              = 44;
-      static const unsigned int ADD_CR_1               = 50;
-      static const unsigned int ADD_CR_2               = 51;
-      static const unsigned int ADD_CR_3               = 52;
-      static const unsigned int ADD_CR_4               = 53;
+      static const unsigned int ADD_SR_OSJVETO         = 40;
+      static const unsigned int ADD_SR_SSJETS          = 41;
+      static const unsigned int ADD_SR_2JETS           = 42;
+      static const unsigned int ADD_SR_MT2a            = 43;
+      static const unsigned int ADD_SR_MT2b            = 44;
+      // static const unsigned int ADD_CR_1               = 50;
+      // static const unsigned int ADD_CR_2               = 51;
+      // static const unsigned int ADD_CR_3               = 52;
+      // static const unsigned int ADD_CR_4               = 53;
 
 
       bool            m_is_data;
@@ -186,16 +186,16 @@ namespace SusyAnalysisTools
       bool         m_truth_prompt;
       bool         m_cf_candidate;
 
-      bool m_pass_sr1; // OS jet veto
-      bool m_pass_sr2; // SS jet veto
-      bool m_pass_sr3; // 2 jet
-      bool m_pass_sr4a; // MT2a
-      bool m_pass_sr4b; // MT2b
+      bool m_pass_sr_osjveto;
+      bool m_pass_sr_ssjets;
+      bool m_pass_sr_2jets;
+      bool m_pass_sr_mt2a;
+      bool m_pass_sr_mt2b;
 
-      bool m_pass_cr1; // WW CR1
-      bool m_pass_cr2; // WW CR2
-      bool m_pass_cr3; // WW CR3
-      bool m_pass_cr4; // top CR
+      // bool m_pass_cr1;
+      // bool m_pass_cr2;
+      // bool m_pass_cr3;
+      // bool m_pass_cr4;
 
       // TODO move implementation to icc file
       template <class T>

@@ -44,15 +44,12 @@ void Met::init(std::string jet_algo)
                                  , true  // doRefGamma
                                  , false // doRefTau
                                  , true  // doRefJet
-				 , false //true  // doSoftJets //going from 1-l macro?
+                                 , false // doSoftJets
                                  , false // doRefMuon
                                  , true  // doMuonTotal
                                  , false // doCellOut
                                  , true  // doCellOutEflow
                                  );
-
-
-
   }
   else {
     m_met_utility.defineMissingET( true  // doRefEle
@@ -97,7 +94,7 @@ void Met::prep( Event* event
 {
   if (!m_prepared) {
     m_met_utility.setAverageIntPerXing(event->averageIntPerXing());
-    m_met_utility.setJetPUcode(MissingETTags::DEFAULT); //NEW p1328 as per 1L
+    m_met_utility.setJetPUcode(MissingETTags::DEFAULT);
 
     addJets(jets);
     addElectrons(electrons);
@@ -151,17 +148,16 @@ void Met::addElectrons(ElectronContainer* electron_container)
     // el_wpx.push_back((*el_it)->MET_Egamma10NoTau_STVF_wpx());
     // el_wpy.push_back((*el_it)->MET_Egamma10NoTau_STVF_wpy());
 
-    //    el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_STVF_statusWord());
+    // el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_STVF_statusWord());
+    el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_statusWord());
 
     // temp vectors for fix
-//    std::vector<float> el_tmp_wet = (*el_it)->MET_Egamma10NoTau_STVF_wet();
-//    std::vector<float> el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_STVF_wpx();
-//    std::vector<float> el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_STVF_wpy();
-
+    // std::vector<float> el_tmp_wet = (*el_it)->MET_Egamma10NoTau_STVF_wet();
+    // std::vector<float> el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_STVF_wpx();
+    // std::vector<float> el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_STVF_wpy();
     std::vector<float> el_tmp_wet = (*el_it)->MET_Egamma10NoTau_wet();
     std::vector<float> el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_wpx();
     std::vector<float> el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_wpy();
-    el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_statusWord());
 
     if (el_tmp_wet.size() == 0.) continue;
     // if (el_tmp_wet[0] == 0.) continue;
@@ -195,7 +191,6 @@ void Met::addElectrons(ElectronContainer* electron_container)
                                      , &el_wpy
                                      , &el_statusWord
                                      );
-
 }
 
 // ----------------------------------------------------------------------------
@@ -240,23 +235,20 @@ void Met::addJets(JetContainer* jet_container)
     jet_eta.push_back(jet_tlv.Eta());
     jet_phi.push_back(jet_tlv.Phi());
     jet_E.push_back(  jet_tlv.E());
-    jet_orig_pt.push_back( jet_raw_tlv.Pt());
+    jet_orig_pt.push_back(jet_raw_tlv.Pt());
 
     // Don't store jet_wet etc straight away. Need to apply fix first
     // jet_wet.push_back(jet_it->MET_Egamma10NoTau_STVF_wet());
     // jet_wpx.push_back(jet_it->MET_Egamma10NoTau_STVF_wpx());
     // jet_wpy.push_back(jet_it->MET_Egamma10NoTau_STVF_wpy());
 
-
-    //    jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_STVF_statusWord());
+    // jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_STVF_statusWord());
     jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_statusWord());
 
     // temp vectors for fix
-
-    //std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_STVF_wet();
-    //    std::vector<float> jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_STVF_wpx();
-    //    std::vector<float> jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_STVF_wpy();
-
+    // std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_STVF_wet();
+    // std::vector<float> jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_STVF_wpx();
+    // std::vector<float> jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_STVF_wpy();
     std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_wet();
     std::vector<float> jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_wpx();
     std::vector<float> jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_wpy();
@@ -266,20 +258,20 @@ void Met::addJets(JetContainer* jet_container)
 
     for (unsigned int j = 0; j < num_weights; ++j) {
       if (  jet_tmp_wpx[j] < 0.5 * jet_tmp_wet[j]
-	    || jet_tmp_wpx[j] > 2   * jet_tmp_wet[j]
-	    ) {
+         || jet_tmp_wpx[j] > 2   * jet_tmp_wet[j]
+         ) {
         jet_tmp_wpx[j] = jet_tmp_wet[j];
       }
       if (  jet_tmp_wpy[j] < 0.5 * jet_tmp_wet[j]
-	    || jet_tmp_wpy[j] > 2   * jet_tmp_wet[j]
-	    ) {
+         || jet_tmp_wpy[j] > 2   * jet_tmp_wet[j]
+         ) {
         jet_tmp_wpy[j] = jet_tmp_wet[j];
       }
     }
+
     jet_wet.push_back(jet_tmp_wet);
     jet_wpx.push_back(jet_tmp_wpx);
     jet_wpy.push_back(jet_tmp_wpy);
-
   }
 
   m_met_utility.setJetParameters( &jet_pt
@@ -300,41 +292,37 @@ void Met::addMet()
 {
   // check the jet algorithm to determine the correct way to add MET terms
   if (m_jet_algo.find("LC") != std::string::npos) {
-
-//     m_met_utility.setMETTerm( METUtil::SoftJets
-//                             , STVF_SoftJets_etx()
-//                             , STVF_SoftJets_ety()
-//                             , STVF_SoftJets_sumet()
-//                             );
-//     m_met_utility.setMETTerm( METUtil::CellOutEflow
-//                             , STVF_CellOutCorr_etx()
-//                             , STVF_CellOutCorr_ety()
-//                             , STVF_CellOutCorr_sumet()
-//                             );
-    // // SUSYMet::Default
-      m_met_utility.setMETTerm(METUtil::CellOutEflow
-    			  , CellOut_etx()
-    			  , CellOut_ety()
-    			  , CellOut_sumet());
-
+    // m_met_utility.setMETTerm( METUtil::SoftJets
+    //                         , STVF_SoftJets_etx()
+    //                         , STVF_SoftJets_ety()
+    //                         , STVF_SoftJets_sumet()
+    //                         );
+    // m_met_utility.setMETTerm( METUtil::CellOutEflow
+    //                         , STVF_CellOutCorr_etx()
+    //                         , STVF_CellOutCorr_ety()
+    //                         , STVF_CellOutCorr_sumet()
+    //                         );
+    // SUSYMet::Default
+    m_met_utility.setMETTerm( METUtil::CellOutEflow
+                            , CellOut_etx()
+                            , CellOut_ety()
+                            , CellOut_sumet()
+                            );
   }
   else {
-    m_met_utility.setMETTerm( METUtil::CellOut
+    m_met_utility.setMETTerm( METUtil::CellOutEflow
                             , CellOut_etx()
                             , CellOut_ety()
                             , CellOut_sumet()
                             );
   }
 
-
-
-
   // add RefGamma term regardless of algorithm
-//   m_met_utility.setMETTerm( METUtil::RefGamma
-//                           , STVF_RefGamma_etx()
-//                           , STVF_RefGamma_ety()
-//                           , STVF_RefGamma_sumet()
-//                           );
+  // m_met_utility.setMETTerm( METUtil::RefGamma
+  //                         , STVF_RefGamma_etx()
+  //                         , STVF_RefGamma_ety()
+  //                         , STVF_RefGamma_sumet()
+  //                         );
   m_met_utility.setMETTerm( METUtil::RefGamma
                           , RefGamma_etx()
                           , RefGamma_ety()
@@ -394,7 +382,6 @@ void Met::addMuons(MuonContainer* muon_container)
     mu_ms_theta.push_back((*mu_it)->ms_theta());
     mu_ms_phi.push_back((*mu_it)->ms_phi());
     mu_charge.push_back((*mu_it)->charge());
-
   }
 
   m_met_utility.setMuonParameters( &mu_pt

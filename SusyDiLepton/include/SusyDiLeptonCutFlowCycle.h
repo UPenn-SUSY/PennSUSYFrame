@@ -10,6 +10,7 @@
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
 #include "SusyMatrixMethod/DiLeptonMatrixMethod.h"
+// #include "SusyMatrixMethod/FakeEstNtupleMaker.h"
 
 // =============================================================================
 class Event;
@@ -202,6 +203,7 @@ private:
   CommonTools::VertexOutputTool*     m_vertex_output_tool;
 
   SusyMatrixMethod::DiLeptonMatrixMethod m_matrix_method;
+  // SusyMatrixMethod::FakeEstNtupleMaker   m_fake_ntuple_maker;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   void declareTools();

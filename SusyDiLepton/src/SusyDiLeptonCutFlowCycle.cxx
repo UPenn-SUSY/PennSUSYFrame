@@ -76,6 +76,7 @@
 #include "SusyDiLepton/include/SusyDiLeptonCutFlowTool.h"
 
 #include "SusyMatrixMethod/DiLeptonMatrixMethod.h"
+#include "SusyMatrixMethod/FakeEstNtupleMaker.h"
 
 // =============================================================================
 ClassImp( SusyDiLeptonCutFlowCycle );
@@ -219,8 +220,14 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
       maindir = maindir + "/";
     }
     std::string fake_file =
-      maindir + "/../SusyMatrixMethod/data/fakeRate_trial9_Nov2.root";
+      // maindir + "/../SusyMatrixMethod/data/fakeRate_trial9_Nov2.root";
+      maindir + "/../SusyMatrixMethod/data/pass0_Moriond_Feb14_2013.root";
     m_matrix_method.configure(fake_file, SusyMatrixMethod::PT);
+
+    // m_fake_ntuple_maker.configure( fake_file
+    //                              , SusyMatrixMethod::PT
+    //                              , "fake_ntuple.root"
+    //                              );
   }
 }
 
@@ -765,12 +772,61 @@ void SusyDiLeptonCutFlowCycle::fillFakeWeight()
     // TODO fill for all regions
     m_event->setFakeWeight( m_matrix_method.getTotalFake( is_tight_0, is_electron_0, pt_0, eta_0
                                         , is_tight_1, is_electron_1, pt_1, eta_1
-                                        // , SusyMatrixMethod::FR_SRNONE
-                                        , SusyMatrixMethod::FR_VR1
+                                        , SusyMatrixMethod::FR_VRSS
                                         , m_event->getMetRel()
                                         , SusyMatrixMethod::SYS_NONE
                                         )
                           );
+
+    /*
+    unsigned int n_el  = m_electrons.num(EL_GOOD);
+    unsigned int n_mu  = m_muons.num(MU_GOOD);
+    unsigned int n_jet = m_jets.num(JET_GOOD);
+
+    if (n_el+n_mu >= 2) {
+      SusyMatrixMethod::SIGN_CHANNEL sign_channel = SusyMatrixMethod::NO_SIGN;
+      if (m_event->getSignChannel() == SIGN_OS) sign_channel = SusyMatrixMethod::OS_CHANNEL;
+      if (m_event->getSignChannel() == SIGN_SS) sign_channel = SusyMatrixMethod::SS_CHANNEL;
+
+      m_fake_ntuple_maker.setEventProperties( m_event->RunNumber()
+                                            , m_event->EventNumber()
+                                            , sign_channel
+                                            , m_event->getMetEt()
+                                            , m_event->getMetPhi()
+                                            , m_event->getMetRel()
+                                            , m_event->getMll()
+                                            , m_event->getMt2()
+                                            , m_event->getPtll()
+                                            , m_event->getSRHelper()->getPassTopVeto()
+                                            );
+
+        std::vector<bool> lepton_is_electron;
+        std::vector<bool> lepton_is_tight;
+        std::vector<float> lepton_pt;
+        std::vector<float> lepton_eta;
+        std::vector<float> lepton_phi;
+        std::vector<float> lepton_energy;
+        std::vector<float> jet_pt;
+        std::vector<float> jet_energy;
+        std::vector<float> jet_eta;
+        std::vector<float> jet_phi;
+        std::vector<float> jet_b_tag_weight;
+        std::vector<float> jet_jvf;
+
+        lepton_is_electron.reserve(n_el+n_mu);
+        lepton_is_tight.reserve(n_el+n_mu);
+        lepton_pt.reserve(n_el+n_mu);
+        lepton_eta.reserve(n_el+n_mu);
+        lepton_phi.reserve(n_el+n_mu);
+        lepton_energy.reserve(n_el+n_mu);
+        jet_pt.reserve(n_jet);
+        jet_energy.reserve(n_jet);
+        jet_eta.reserve(n_jet);
+        jet_phi.reserve(n_jet);
+        jet_b_tag_weight.reserve(n_jet);
+        jet_jvf.reserve(n_jet);
+    }
+  */
   }
 }
 

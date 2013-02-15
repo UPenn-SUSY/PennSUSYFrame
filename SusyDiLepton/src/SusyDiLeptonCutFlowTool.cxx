@@ -571,7 +571,7 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                                  , muons.getMuons(MU_GOOD)
                                  , jets.getJets(JET_ALL_CENTRAL)
                                  )
-                    );
+                  );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute mt

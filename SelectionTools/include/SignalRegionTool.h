@@ -45,21 +45,21 @@ namespace SelectionTools
                              , JetContainer&
                              , Met*
                              );
-    bool passSR1( SusyAnalysisTools::EventDescription*
-                , SusyAnalysisTools::SRHelper*
-                );
-    bool passSR2( SusyAnalysisTools::EventDescription*
-                , SusyAnalysisTools::SRHelper*
-                );
-    bool passSR3( SusyAnalysisTools::EventDescription*
-                , SusyAnalysisTools::SRHelper*
-                );
-    bool passSR4a( SusyAnalysisTools::EventDescription*
-                 , SusyAnalysisTools::SRHelper*
-                 );
-    bool passSR4b( SusyAnalysisTools::EventDescription*
-                 , SusyAnalysisTools::SRHelper*
-                 );
+    bool passSROSJVeto( SusyAnalysisTools::EventDescription*
+                      , SusyAnalysisTools::SRHelper*
+                      );
+    bool passSRSSJets( SusyAnalysisTools::EventDescription*
+                     , SusyAnalysisTools::SRHelper*
+                     );
+    bool passSR2Jets( SusyAnalysisTools::EventDescription*
+                    , SusyAnalysisTools::SRHelper*
+                    );
+    bool passSRMT2a( SusyAnalysisTools::EventDescription*
+                   , SusyAnalysisTools::SRHelper*
+                   );
+    bool passSRMT2b( SusyAnalysisTools::EventDescription*
+                   , SusyAnalysisTools::SRHelper*
+                   );
 
   // ---------------------------------------------------------------------------
   private:
@@ -69,23 +69,23 @@ namespace SelectionTools
     double c_z_window_mll_min;
     double c_z_window_mll_max;
 
-    double c_sr1_met_rel_min;
-    double c_sr1_met_rel_max;
+    double c_sr_osjveto_met_rel_min;
+    double c_sr_osjveto_met_rel_max;
 
-    double c_sr2_met_rel_min;
-    double c_sr2_met_rel_max;
+    double c_sr_ssjets_met_rel_min;
+    double c_sr_ssjets_met_rel_max;
 
-    double c_sr3_met_rel_min;
-    double c_sr3_met_rel_max;
+    double c_sr_2jets_met_rel_min;
+    double c_sr_2jets_met_rel_max;
 
-    double c_sr4_met_rel_min;
-    double c_sr4_met_rel_max;
+    double c_sr_mt2_met_rel_min;
+    double c_sr_mt2_met_rel_max;
 
-    double c_sr4a_mt2_min;
-    double c_sr4a_mt2_max;
+    double c_sr_mt2a_mt2_min;
+    double c_sr_mt2a_mt2_max;
 
-    double c_sr4b_mt2_min;
-    double c_sr4b_mt2_max;
+    double c_sr_mt2b_mt2_min;
+    double c_sr_mt2b_mt2_max;
 
     bool passCut(double test, double min, double max);
 

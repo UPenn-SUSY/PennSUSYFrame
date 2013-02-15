@@ -72,7 +72,7 @@ void CutFlowDump::initCutFlowHists()
 
       m_cutflow.at(weight_it).at(phase_it) = new TH1D( name.c_str()
           , title.c_str()
-          , 50, -0.5, 49.5
+          , 80, -0.5, 79.5
           );
 
       TAxis* axis = m_cutflow.at(weight_it).at(phase_it)->GetXaxis();
@@ -104,32 +104,37 @@ void CutFlowDump::initCutFlowHists()
       axis->SetBinLabel(bin++, "Prompt leptons"   );
       axis->SetBinLabel(bin++, "Opposite sign"    );
       axis->SetBinLabel(bin++, "Same sign"        );
+      axis->SetBinLabel(bin++, "BREAK"            );
 
-      axis->SetBinLabel(bin++, "SR1 jet veto"    );
-      axis->SetBinLabel(bin++, "SR1 b-tag weight");
-      axis->SetBinLabel(bin++, "SR1 Z veto"      );
-      axis->SetBinLabel(bin++, "SR1 met-rel"     );
+      axis->SetBinLabel(bin++, "SR OSJVeto jet veto"    );
+      axis->SetBinLabel(bin++, "SR OSJVeto b-tag weight");
+      axis->SetBinLabel(bin++, "SR OSJVeto Z veto"      );
+      axis->SetBinLabel(bin++, "SR OSJVeto met-rel"     );
+      axis->SetBinLabel(bin++, "BREAK"                  );
 
-      axis->SetBinLabel(bin++, "SR2 jet veto"    );
-      axis->SetBinLabel(bin++, "SR2 b-tag weight");
-      axis->SetBinLabel(bin++, "SR2 Z veto - skip");
-      axis->SetBinLabel(bin++, "SR2 met-rel"     );
+      axis->SetBinLabel(bin++, "SR SSJets jet veto"    );
+      axis->SetBinLabel(bin++, "SR SSJets b-tag weight");
+      axis->SetBinLabel(bin++, "SR SSJets Z veto - skip");
+      axis->SetBinLabel(bin++, "SR SSJets met-rel"     );
+      axis->SetBinLabel(bin++, "BREAK"                 );
 
-      axis->SetBinLabel(bin++, "SR3 SF"          );
-      axis->SetBinLabel(bin++, "SR3 2-light jets");
-      axis->SetBinLabel(bin++, "SR3 Z veto"      );
-      axis->SetBinLabel(bin++, "SR3 b jet veto"  );
-      axis->SetBinLabel(bin++, "SR3 b-tag weight");
-      axis->SetBinLabel(bin++, "SR3 f jet feto"  );
-      axis->SetBinLabel(bin++, "SR3 top tag veto");
-      axis->SetBinLabel(bin++, "SR3 met-rel"     );
+      axis->SetBinLabel(bin++, "SR 2Jets SF"          );
+      axis->SetBinLabel(bin++, "SR 2Jets 2-light jets");
+      axis->SetBinLabel(bin++, "SR 2Jets Z veto"      );
+      axis->SetBinLabel(bin++, "SR 2Jets b jet veto"  );
+      axis->SetBinLabel(bin++, "SR 2Jets b-tag weight");
+      axis->SetBinLabel(bin++, "SR 2Jets f jet feto"  );
+      axis->SetBinLabel(bin++, "SR 2Jets top tag veto");
+      axis->SetBinLabel(bin++, "SR 2Jets met-rel"     );
+      axis->SetBinLabel(bin++, "BREAK"                );
 
-      axis->SetBinLabel(bin++, "SR4 jet veto"    );
-      axis->SetBinLabel(bin++, "SR4 b-tag weight");
-      axis->SetBinLabel(bin++, "SR4 Z veto"      );
-      axis->SetBinLabel(bin++, "SR4 met-rel"     );
-      axis->SetBinLabel(bin++, "SR4a mt2"        );
-      axis->SetBinLabel(bin++, "SR4b mt2"        );
+      axis->SetBinLabel(bin++, "SR MT2 jet veto"    );
+      axis->SetBinLabel(bin++, "SR MT2 b-tag weight");
+      axis->SetBinLabel(bin++, "SR MT2 Z veto"      );
+      axis->SetBinLabel(bin++, "SR MT2 met-rel"     );
+      axis->SetBinLabel(bin++, "SR MT2a mt2"        );
+      axis->SetBinLabel(bin++, "SR MT2b mt2"        );
+      axis->SetBinLabel(bin++, "BREAK"              );
     }
   }
 }
@@ -296,164 +301,168 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   double basic_weight = weight;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // SR1
+  // SROSJVeto
+  ++bin_num;
   weight = basic_weight;
-  bool pass_sr1 = (evt_desc.getSignChannel() == SIGN_OS);
+  bool pass_sr_osjveto = (evt_desc.getSignChannel() == SIGN_OS);
 
-  // SR1 jet veto
-  pass_sr1 = (pass_sr1 && pass_total_jet_veto);
-  if (pass_sr1)
+  // SROSJVeto jet veto
+  pass_sr_osjveto = (pass_sr_osjveto && pass_total_jet_veto);
+  if (pass_sr_osjveto)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR1 apply b-tag weight
+  // SROSJVeto apply b-tag weight
   if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_B_TAG)
     weight *= m_b_tag_weight;
-  if (pass_sr1)
+  if (pass_sr_osjveto)
     fillHist(phase, weight_type, bin_num, weight);
   bin_num++;
 
-  // SR1 Z veto
-  pass_sr1 = (pass_sr1 && pass_z_veto);
-  if (pass_sr1)
+  // SROSJVeto Z veto
+  pass_sr_osjveto = (pass_sr_osjveto && pass_z_veto);
+  if (pass_sr_osjveto)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR1 met-rel
-  pass_sr1 = (pass_sr1 && sr_helper.getPassSR1MetRel());
-  if (pass_sr1)
+  // SROSJVeto met-rel
+  pass_sr_osjveto = (pass_sr_osjveto && sr_helper.getPassSROSJVetoMetRel());
+  if (pass_sr_osjveto)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // SR2
+  // SRSSJets
+  ++bin_num;
   weight = basic_weight;
-  bool pass_sr2 = (evt_desc.getSignChannel() == SIGN_SS);
+  bool pass_sr_ssjets = (evt_desc.getSignChannel() == SIGN_SS);
 
-  // SR2 jet veto
+  // SRSSJets jet veto
   // TODO - Handle SS jet requirement properly
-  pass_sr2 = (pass_sr2 && pass_total_jet_veto);
-  if (pass_sr2)
+  pass_sr_ssjets = (pass_sr_ssjets && pass_total_jet_veto);
+  if (pass_sr_ssjets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR2 apply b-tag weight
+  // SRSSJets apply b-tag weight
   if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_B_TAG)
     weight *= m_b_tag_weight;
-  if (pass_sr2)
+  if (pass_sr_ssjets)
     fillHist(phase, weight_type, bin_num, weight);
   bin_num++;
 
-  // SR2 Z veto
+  // SRSSJets Z veto
   // TODO - currently pass through. handle properly with channel
-  // pass_sr2 = (pass_sr2 && pass_z_veto);
-  if (pass_sr2)
+  // pass_sr_ssjets = (pass_sr_ssjets && pass_z_veto);
+  if (pass_sr_ssjets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR2 met-rel
-  pass_sr2 = (pass_sr2 && sr_helper.getPassSR2MetRel());
-  if (pass_sr2)
+  // SRSSJets met-rel
+  pass_sr_ssjets = (pass_sr_ssjets && sr_helper.getPassSRSSJetsMetRel());
+  if (pass_sr_ssjets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // SR3
+  // SR2Jets
+  ++bin_num;
   weight = basic_weight;
-  bool pass_sr3 = (evt_desc.getSignChannel() == SIGN_OS);
+  bool pass_sr_2jets = (evt_desc.getSignChannel() == SIGN_OS);
 
-  // SR3 same flavor
+  // SR2Jets same flavor
   bool is_sf = (  evt_desc.getFlavorChannel() == FLAVOR_EE
                || evt_desc.getFlavorChannel() == FLAVOR_MM
                || true
                );
-  pass_sr3 = (pass_sr3 && is_sf);
-  if (pass_sr3)
+  pass_sr_2jets = (pass_sr_2jets && is_sf);
+  if (pass_sr_2jets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR3 2 light jets
-  pass_sr3 = (pass_sr3 && sr_helper.getPassSR32LJet());
-  if (pass_sr3)
+  // SR2Jets 2 light jets
+  pass_sr_2jets = (pass_sr_2jets && sr_helper.getPassSR2JetsNumLJet());
+  if (pass_sr_2jets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR3 Z veto
-  pass_sr3 = (pass_sr3 && pass_z_veto);
-  if (pass_sr3)
+  // SR2Jets Z veto
+  pass_sr_2jets = (pass_sr_2jets && pass_z_veto);
+  if (pass_sr_2jets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR3 b jet veto
-  pass_sr3 = (pass_sr3 && pass_b_jet_veto);
-  if (pass_sr3)
+  // SR2Jets b jet veto
+  pass_sr_2jets = (pass_sr_2jets && pass_b_jet_veto);
+  if (pass_sr_2jets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR3 apply b-tag weight
+  // SR2Jets apply b-tag weight
   if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_B_TAG)
     weight *= m_b_tag_weight;
-  if (pass_sr3)
+  if (pass_sr_2jets)
     fillHist(phase, weight_type, bin_num, weight);
   bin_num++;
 
-  // SR3 forward jet veto
-  pass_sr3 = (pass_sr3 && pass_f_jet_veto);
-  if (pass_sr3)
+  // SR2Jets forward jet veto
+  pass_sr_2jets = (pass_sr_2jets && pass_f_jet_veto);
+  if (pass_sr_2jets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR3 top tag veto
-  pass_sr3 = (pass_sr3 && sr_helper.getPassTopVeto());
-  if (pass_sr3)
+  // SR2Jets top tag veto
+  pass_sr_2jets = (pass_sr_2jets && sr_helper.getPassTopVeto());
+  if (pass_sr_2jets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR3 met-rel
-  pass_sr3 = (pass_sr3 && sr_helper.getPassSR3MetRel());
-  if (pass_sr3)
+  // SR2Jets met-rel
+  pass_sr_2jets = (pass_sr_2jets && sr_helper.getPassSR2JetsMetRel());
+  if (pass_sr_2jets)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // SR4
+  // SRMT2
+  ++bin_num;
   weight = basic_weight;
-  bool pass_sr4 = (evt_desc.getSignChannel() == SIGN_OS);
+  bool pass_sr_mt2 = (evt_desc.getSignChannel() == SIGN_OS);
 
-  // SR4 jet veto
-  pass_sr4 = (pass_sr4 && pass_total_jet_veto);
-  if (pass_sr4)
+  // SRMT2 jet veto
+  pass_sr_mt2 = (pass_sr_mt2 && pass_total_jet_veto);
+  if (pass_sr_mt2)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR4 apply b-tag weight
+  // SRMT2 apply b-tag weight
   if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_B_TAG)
     weight *= m_b_tag_weight;
-  if (pass_sr4)
+  if (pass_sr_mt2)
     fillHist(phase, weight_type, bin_num, weight);
   bin_num++;
 
-  // SR4 Z veto
-  pass_sr4 = (pass_sr4 && pass_z_veto);
-  if (pass_sr4)
+  // SRMT2 Z veto
+  pass_sr_mt2 = (pass_sr_mt2 && pass_z_veto);
+  if (pass_sr_mt2)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR4 met-rel
-  pass_sr4 = (pass_sr4 && sr_helper.getPassSR4MetRel());
-  if (pass_sr4)
+  // SRMT2 met-rel
+  pass_sr_mt2 = (pass_sr_mt2 && sr_helper.getPassSRMT2MetRel());
+  if (pass_sr_mt2)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR4a MT2 cut
-  pass_sr4 = (pass_sr4 && sr_helper.getPassSR4aMt2());
-  if (pass_sr4)
+  // SRMT2a MT2 cut
+  pass_sr_mt2 = (pass_sr_mt2 && sr_helper.getPassSRMT2aMt2());
+  if (pass_sr_mt2)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
-  // SR4b MT2 cut
-  pass_sr4 = (pass_sr4 && sr_helper.getPassSR4bMt2());
-  if (pass_sr4)
+  // SRMT2b MT2 cut
+  pass_sr_mt2 = (pass_sr_mt2 && sr_helper.getPassSRMT2bMt2());
+  if (pass_sr_mt2)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 }
@@ -482,9 +491,16 @@ void CutFlowDump::printToScreen()
 // -----------------------------------------------------------------------------
 void CutFlowDump::printToScreen(WEIGHTS weight_type)
 {
-  unsigned int line_width   = 80;
-  unsigned int label_field  = 20;
+  unsigned int line_width   = 100;
+  unsigned int label_field  = 30;
   unsigned int weight_field = (line_width - label_field - 4 - 4*3 )/4;
+  if (4+label_field+4*weight_field != line_width) {
+    label_field += (line_width - label_field - 4 - 4*3 )%4;
+  }
+  std::string break_label = "";
+  std::string break_weight = "";
+  for (unsigned int i = 0; i != label_field ; ++i) break_label  += "-";
+  for (unsigned int i = 0; i != weight_field; ++i) break_weight += "-";
 
   std::string single_line;
   for (unsigned int i = 0; i != line_width; ++i) single_line += '=';
@@ -513,17 +529,28 @@ void CutFlowDump::printToScreen(WEIGHTS weight_type)
 
   for (unsigned int bin_it = 0; bin_it != num_cuts; ++bin_it) {
     std::string cut_name = cutflow_ee->GetXaxis()->GetBinLabel(bin_it+1);
+
     double weight_ee = cutflow_ee->GetBinContent(bin_it + 1);
     double weight_mm = cutflow_mm->GetBinContent(bin_it + 1);
     double weight_em = cutflow_em->GetBinContent(bin_it + 1);
     double weight_me = cutflow_me->GetBinContent(bin_it + 1);
 
-    std::cout << "= "  << std::left  << std::setw(label_field)  << cut_name
-              << " = " << std::right << std::setw(weight_field) << weight_ee
-              << " = " << std::right << std::setw(weight_field) << weight_mm
-              << " = " << std::right << std::setw(weight_field) << weight_em
-              << " = " << std::right << std::setw(weight_field) << weight_me
-              << " =\n";
+    if (cut_name == "BREAK") {
+      std::cout << "= "  << std::left  << std::setw(label_field)  << break_label
+                << " = " << std::right << std::setw(weight_field) << break_weight
+                << " = " << std::right << std::setw(weight_field) << break_weight
+                << " = " << std::right << std::setw(weight_field) << break_weight
+                << " = " << std::right << std::setw(weight_field) << break_weight
+                << " =\n";
+    }
+    else {
+      std::cout << "= "  << std::left  << std::setw(label_field)  << cut_name
+                << " = " << std::right << std::setw(weight_field) << weight_ee
+                << " = " << std::right << std::setw(weight_field) << weight_mm
+                << " = " << std::right << std::setw(weight_field) << weight_em
+                << " = " << std::right << std::setw(weight_field) << weight_me
+                << " =\n";
+    }
   }
   std::cout << single_line;
   std::cout << "\n";
