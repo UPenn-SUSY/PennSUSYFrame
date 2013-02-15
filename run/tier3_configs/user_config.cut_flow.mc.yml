@@ -200,8 +200,8 @@ Signal_Regions:
 
 PileUpScaleFactor:
   do_pile_up:       True
-  data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root
-  mc_file:          ${ROOTCOREDIR}/../PileupReweighting/share/mc12a_defaults.prw.root
+  data_file:        /home/elhines/Susy_presel_12Feb/SFrame/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root
+  mc_file:          /home/elhines/Susy_presel_12Feb/RootCore/RootCore/../PileupReweighting/share/mc12a_defaults.prw.root
   data_hist_name:   LumiMetaData
   generate_mc_hist: False
   mc_hist_name:     MCPileupReweighting
@@ -209,13 +209,13 @@ PileUpScaleFactor:
 
 TriggerReweight:
   do_trigger_sf:           True
-  trigger_reweight_dir:    ${ROOTCOREDIR}/../DGTriggerReweight/data/
+  trigger_reweight_dir:    /home/elhines/Susy_presel_12Feb/RootCore/RootCore/../DGTriggerReweight/data/
   trigger_reweight_period: HCP
 
 BTagScaleFactor:
   do_b_tag_sf:  True
-  calib_file:   ${ROOTCOREDIR}/../SUSYTools/data/BTagCalibration.env
-  calib_folder: ${SFRAME_DIR}/../data/
+  calib_file:   /home/elhines/Susy_presel_12Feb/RootCore/RootCore/../SUSYTools/data/BTagCalibration.env
+  calib_folder: /home/elhines/Susy_presel_12Feb/SFrame/../data/
 
 MuonSF:
   do_scaling: True
@@ -228,7 +228,7 @@ EgammaSF:
 
 ChargeFlipSF:
   do_charge_flip_sf: True
-  path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
+  path_to_charge_flip_map: /home/elhines/Susy_presel_12Feb/RootCore/RootCore/../ChargeFlip/data/chargeFlip.root
 
 ElectronOutput:
   do_detailed_output:      0
