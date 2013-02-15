@@ -1,13 +1,11 @@
 from ROOT import *
 
-fileData = TFile("out_data.root")
-fileMC  = TFile("out_mc.root")
+##fileData = TFile("out_data.root")
+fileMC  = TFile("../zjets1.root")
 
-fileMCTruth = TFile("MC_truth.root")
-
-HistData = fileData.Get("h_charge_flip")
-HistMC = fileMC.Get("h_charge_flip")
-HistMCTruth = fileMCTruth.Get("h_rate_eta_only")
+#HistData = fileData.Get("h_charge_flip")
+HistMC = fileMC.Get("h_lklh_rate")
+HistMCTruth = fileMC.Get("h_truth_rate_eta_only")
 
 
 HistMC.SetMarkerStyle(22)
@@ -23,7 +21,7 @@ c1.cd()
 c1.SetLogy()
 HistData.GetYaxis().SetRangeUser(0.000001,0.055)
 #HistData.Draw()
-#HistMC.Draw("same")
+HistMC.Draw("same")
 HistMCTruth.Draw("E")
 
 l1 = TLegend(0.225,0.415,0.425,0.55)
@@ -32,7 +30,7 @@ l1.SetFillColor(0)
 l1.SetTextSize(0.038)
 l1.AddEntry(HistMC,"MC, likelihood","P")
 l1.AddEntry(HistMCTruth, "MC, truth", "P")
-l1.AddEntry(HistData,"Data","P")
+#l1.AddEntry(HistData,"Data","P")
 l1.Draw("same")
 
 ##Hist_ratio = HistData.Clone()
