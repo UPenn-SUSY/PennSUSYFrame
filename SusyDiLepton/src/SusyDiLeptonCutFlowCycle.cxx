@@ -504,32 +504,10 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
   // if (  true
-  //    && m_event->EventNumber() != 32
-  //    // && m_event->EventNumber() != 995
-  //    // && m_event->EventNumber() != 434246
-  //    // && m_event->EventNumber() != 434255
-  //    // && m_event->EventNumber() != 434887
-  //    // && m_event->EventNumber() != 17133
-  //    // && m_event->EventNumber() != 435108
-  //    // && m_event->EventNumber() != 413531
-  //    // && m_event->EventNumber() != 413595
-  //    // && m_event->EventNumber() != 15854
-  //    && m_event->EventNumber() != 9541
-  //    // && m_event->EventNumber() != 9550
-  //    && m_event->EventNumber() != 9696
-  //    // && m_event->EventNumber() != 420868
-  //    // && m_event->EventNumber() != 1169904
-  //    // && m_event->EventNumber() != 415037
-  //    // && m_event->EventNumber() != 653616
-  //    // && m_event->EventNumber() != 1671763
-  //    // && m_event->EventNumber() != 1528334
-  //    // && m_event->EventNumber() != 1528613
-  //    // && m_event->EventNumber() != 1528203
-  //    // && m_event->EventNumber() != 1941811
-  //    // && m_event->EventNumber() != 1941838
-  //    // && m_event->EventNumber() != 183664
-  //    // && m_event->EventNumber() != 539822
-  //    // && m_event->EventNumber() != 539841
+  //    && m_event->EventNumber() != 501
+  //    && m_event->EventNumber() != 434277
+  //    && m_event->EventNumber() != 124045
+  //    && m_event->EventNumber() != 139562
   //    ) return;
 
   m_logger << DEBUG

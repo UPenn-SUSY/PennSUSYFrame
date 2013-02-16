@@ -31,7 +31,6 @@ CommonTools::BTagScaleFactorTool::~BTagScaleFactorTool()
 // ----------------------------------------------------------------------------
 void CommonTools::BTagScaleFactorTool::BeginInputData(const SInputData&)
 {
-
   //set dir for btag
   if (c_calibration_folder == ""){
     //get default path for btag -- we've put in SFrame/data for now
@@ -39,7 +38,7 @@ void CommonTools::BTagScaleFactorTool::BeginInputData(const SInputData&)
     char *tmparea=getenv("SFRAME_DIR");
     if (tmparea != NULL) {
       maindir = tmparea;
-      maindir = maindir + "/data/";
+      maindir = maindir + "/../data/";
     }
   }
 }

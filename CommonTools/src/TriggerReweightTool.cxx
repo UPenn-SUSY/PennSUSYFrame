@@ -23,8 +23,9 @@ CommonTools::TriggerReweightTool::TriggerReweightTool( SCycleBase* parent
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   DeclareProperty("do_trigger_sf"           , c_do_trigger_sf       = true);
-  DeclareProperty("trigger_reweight_dir"    , c_reweight_directory  = "/exports/project/data_d07_3/ehines/SusyFrame/Susy2.0/RootCore/DGTriggerReweight/data/");
-  DeclareProperty("trigger_reweight_period" , c_reweight_period     ="HCP");
+  // DeclareProperty("trigger_reweight_dir"    , c_reweight_directory  = "/exports/project/data_d07_3/ehines/SusyFrame/Susy2.0/RootCore/DGTriggerReweight/data/");
+  DeclareProperty("trigger_reweight_dir"    , c_reweight_directory  = "");
+  DeclareProperty("trigger_reweight_period" , c_reweight_period     ="Moriond");
 
   m_trigger_weight =0;
 
@@ -47,25 +48,34 @@ void CommonTools::TriggerReweightTool::BeginCycle()
      << SLogger::endmsg;
 
   m_trigger_reweight = new triggerReweight2Lep();
-  m_trigger_reweight->initialize(c_reweight_directory,c_reweight_period,true,true);
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+  // m_trigger_reweight->initialize(c_reweight_directory,c_reweight_period,true,true);
 }
 
 // -----------------------------------------------------------------------------
 void CommonTools::TriggerReweightTool::BeginInputData(const SInputData&)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // if data, or no trigger sf, do nothing
-  //if (is_data() || !c_do_trigger_sf) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_logger << DEBUG
      << "TriggerReweight::BeginInputData()"
      << SLogger::endmsg;
 
+  //set dir for btag
+  if (c_reweight_directory == "") {
+    // get default path for reweight directory
+    // we've put in SFrame/../data for now
+    std::string maindir = "";
+    char *tmparea=getenv("ROOTCOREDIR");
+    if (tmparea != NULL) {
+      maindir = tmparea;
+      maindir = maindir + "/../DGTriggerReweight/data/";
+    }
+  }
 
+  m_trigger_reweight->initialize( c_reweight_directory
+                                , c_reweight_period
+                                , false
+                                , false
+                                );
 }
 
 // -----------------------------------------------------------------------------
@@ -100,14 +110,11 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
     else
     {
       int systematic = 0; //take nominal value for now;
-
       int num_vert = vertices.num(VERT_GOOD);
-
       int num_jets = jet.size();
 
       if (flavor_channel == FLAVOR_EE)
       {
-
         m_logger << DEBUG
           << "TriggerReweightTool::getTriggerWeight()"
           << "Flavor EE Channel "
@@ -119,7 +126,8 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         double el_eta_1 = fabs(el.at(0)->getTlv().Eta());
         double el_eta_2 = fabs(el.at(1)->getTlv().Eta());
 
-        m_trigger_weight = m_trigger_reweight->triggerReweightEE(el_pt_1,el_eta_1,el_pt_2,el_eta_2, systematic);
+        m_trigger_weight = m_trigger_reweight->triggerReweightEE(
+            el_pt_1, el_eta_1, el_pt_2, el_eta_2, systematic);
       }
       else if(flavor_channel == FLAVOR_MM)
       {
@@ -127,8 +135,6 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
           << "TriggerReweightTool::getTriggerWeight()"
           << "Flavor MuMu Channel "
           << SLogger::endmsg;
-
-
 
         double mu_pt_1 = mu.at(0)->getTlv().Pt();
         double mu_pt_2 = mu.at(1)->getTlv().Pt();
@@ -142,16 +148,17 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         int mu_isComb_1 = mu.at(0)->isCombinedMuon();
         int mu_isComb_2 = mu.at(1)->isCombinedMuon();
 
-        m_trigger_weight = m_trigger_reweight->triggerReweightMM(mu_pt_1,mu_eta_1,mu_phi_1,mu_isComb_1,mu_pt_2,mu_eta_2,mu_phi_2, mu_isComb_2, systematic, num_vert,met->getMetRefFinalEt(),num_jets,false);
+        m_trigger_weight = m_trigger_reweight->triggerReweightMM(
+            mu_pt_1, mu_eta_1, mu_phi_1, mu_isComb_1,
+            mu_pt_2, mu_eta_2, mu_phi_2, mu_isComb_2,
+            systematic, num_vert, met->getMetRefFinalEt(), num_jets, false);
       }
       else if(flavor_channel == FLAVOR_EM)
       {
-
         m_logger << DEBUG
           << "TriggerReweightTool::getTriggerWeight()"
           << "FlavorEmu Channel "
           << SLogger::endmsg;
-
 
         double el_pt = el.at(0)->getTlv().Pt();
         double mu_pt = mu.at(0)->getTlv().Pt();
@@ -162,8 +169,10 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         double mu_phi = mu.at(0)->getTlv().Phi();
         int mu_isComb = mu.at(0)->isCombinedMuon();
 
-        m_trigger_weight = m_trigger_reweight->triggerReweightEMU(el_pt, el_eta, mu_pt, mu_eta, mu_phi, mu_isComb, systematic, num_vert);
-
+        m_trigger_weight = m_trigger_reweight->triggerReweightEMU(
+            el_pt, el_eta,
+            mu_pt, mu_eta, mu_phi,
+            mu_isComb, systematic, num_vert);
       }
       else
       {

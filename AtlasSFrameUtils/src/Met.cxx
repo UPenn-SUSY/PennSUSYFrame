@@ -137,8 +137,10 @@ void Met::addElectrons(ElectronContainer* electron_container)
   std::vector<Electron*>::const_iterator el_it = el.begin();
   std::vector<Electron*>::const_iterator el_term = el.end();
   for (; el_it != el_term; ++el_it) {
-    TLorentzVector el_tlv = (*el_it)->getTlv();
+    // skip electrons with wet == 0
+    // if ((*el_it)->MET_Egamma10NoTau_wet().at(0) == 0) continue;
 
+    TLorentzVector el_tlv = (*el_it)->getTlv();
     el_pt.push_back( el_tlv.Pt() );
     el_eta.push_back(el_tlv.Eta());
     el_phi.push_back(el_tlv.Phi());
@@ -160,7 +162,6 @@ void Met::addElectrons(ElectronContainer* electron_container)
     std::vector<float> el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_wpy();
 
     if (el_tmp_wet.size() == 0.) continue;
-    // if (el_tmp_wet[0] == 0.) continue;
 
     // temp fix for too large and too small electron weights
     unsigned int num_weights = el_tmp_wet.size();
@@ -456,8 +457,9 @@ double Met::getMetRel( const Met* met
   if (dphi_jet < min_dphi) min_dphi = dphi_jet;
 
   double met_rel = met->getMetRefFinalEt();
-  if (min_dphi < 3.14159)
+  if (min_dphi < 3.14159/2) {
     met_rel *= sin(min_dphi);
+  }
 
   return met_rel;
 }
