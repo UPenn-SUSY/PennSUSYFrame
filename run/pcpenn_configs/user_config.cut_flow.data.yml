@@ -226,7 +226,7 @@ PileUpScaleFactor:
 TriggerReweight:
   do_trigger_sf:           True
   trigger_reweight_dir:    ${ROOTCOREDIR}/../DGTriggerReweight/data/
-  trigger_reweight_period: HCP
+  trigger_reweight_period: Moriond
 
 BTagScaleFactor:
   do_b_tag_sf:  True
