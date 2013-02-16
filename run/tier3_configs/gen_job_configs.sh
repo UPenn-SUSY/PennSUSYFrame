@@ -5,7 +5,8 @@ IS_AF2='False'
 IS_EGAMMA='True'
 SAMPLE_NAME=''
 VERSION='1'
-PRESEL_FLAG='1'
+IS_PRESEL='True'
+PRESEL_FLAG='.'
 while [ "$1" != "" ]; do
   case $1 in
     --data )        DATA_MC='data'
@@ -24,7 +25,12 @@ while [ "$1" != "" ]; do
     --version )     shift
                     VERSION=$1
                     ;;
+    --presel )      IS_PRESEL='True'
+                    ;;
+    --raw )         IS_PRESEL='False'
+                    ;;
     --presel-flag ) shift
+                    IS_PRESEL='True'
                     PRESEL_FLAG=$1
                     ;;
     * )             echo "$1 is an invalid flag"
@@ -64,7 +70,11 @@ echo "Version:          ${VERSION}" >> $CONFIG_FILE
 echo "CycleName:        SusyDiLeptonCutFlowCycle" >> $CONFIG_FILE
 echo "SampleName:       ${SAMPLE_NAME}" >> $CONFIG_FILE
 echo "" >> $CONFIG_FILE
-echo "input_tree_name:  presel" >> $CONFIG_FILE
+if [ "$IS_PRESEL" == "True" ]; then
+  echo "input_tree_name:  presel" >> $CONFIG_FILE
+else
+  echo "input_tree_name:  susy" >> $CONFIG_FILE
+fi
 echo "output_tree_name: output" >> $CONFIG_FILE
 echo "is_egamma_stream: ${IS_EGAMMA}" >> $CONFIG_FILE
 echo "" >> $CONFIG_FILE
@@ -73,10 +83,18 @@ echo "" >> $CONFIG_FILE
 if [[ ${DATA_MC} == "data" ]]
 then
   echo "UserConfigFile: ${SFRAME_DIR}/../run/tier3_configs/user_config.cut_flow.data.yml" >> $CONFIG_FILE
-  REL_PATH_ON_SRM=user/bjackson/data_12_8TeV/
+  if [[ "$IS_PRESEL" == "True" ]]; then
+    REL_PATH_ON_SRM=user/bjackson/data_12_8TeV/
+  else
+    REL_PATH_ON_SRM=data12_8TeV/NTUP_SUSY/e1434_s1499_s1504_r3658_r3549_p1328/
+  fi
 else
   echo "UserConfigFile: ${SFRAME_DIR}/../run/tier3_configs/user_config.cut_flow.mc.yml" >> $CONFIG_FILE
-  REL_PATH_ON_SRM=user/bjackson/mc12_8TeV/
+  if [[ "$IS_PRESEL" == "True" ]]; then
+    REL_PATH_ON_SRM=user/bjackson/mc12_8TeV/
+  else
+    REL_PATH_ON_SRM=mc12_8TeV/NTUP_SUSY/e1434_s1499_s1504_r3658_r3549_p1328/
+  fi
 fi
 
 echo "InputFiles:" >> $CONFIG_FILE
