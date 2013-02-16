@@ -5,6 +5,7 @@ IS_AF2='False'
 IS_EGAMMA='True'
 SAMPLE_NAME=''
 VERSION='1'
+PRESEL_FLAG='1'
 while [ "$1" != "" ]; do
   case $1 in
     --data )        DATA_MC='data'
@@ -22,6 +23,9 @@ while [ "$1" != "" ]; do
                     ;;
     --version )     shift
                     VERSION=$1
+                    ;;
+    --presel-flag ) shift
+                    PRESEL_FLAG=$1
                     ;;
     * )             echo "$1 is an invalid flag"
   esac
@@ -51,6 +55,7 @@ echo "" >> $CONFIG_FILE
 echo "Type:             ${DATA_MC}" >> $CONFIG_FILE
 echo "OutputLevel:      INFO" >> $CONFIG_FILE
 echo "OutputDirectory:  /home/elhines/Susy_presel_12Feb/" >> $CONFIG_FILE
+echo "OutputDirectory:  /disk/userdata00/atlas_data2/${USER}/SUSY/00.02.05/" >> $CONFIG_FILE
 echo "NEventsMax:       -1" >> $CONFIG_FILE
 echo "is_af2:           ${IS_AF2}" >> $CONFIG_FILE
 echo "SuperVerboseInfo: False" >> $CONFIG_FILE
@@ -78,27 +83,23 @@ echo "InputFiles:" >> $CONFIG_FILE
 
 NUM_FILES=0
 
+XRD_COMMAND="xrd hn.at3f dirlist /srm/atlaslocalgroupdisk/${REL_PATH_ON_SRM} | sed 's%^.* \([^ ]*$\)%\1%' | sort | uniq | grep \"${PRESEL_FLAG}\.\" | grep ${SAMPLE_NAME}"
+ds_list="   `xrd hn.at3f dirlist /srm/atlaslocalgroupdisk/${REL_PATH_ON_SRM} | sed 's%^.* \([^ ]*$\)%\1%' | sort | uniq | grep \"${PRESEL_FLAG}\.\" | grep ${SAMPLE_NAME}`"
 echo "    xrd command:"
-echo "        xrd hn.at3f dirlist /srm/atlaslocalgroupdisk/${REL_PATH_ON_SRM} | sort | grep \"${VERSION_FLAG}\.\" | grep ${SAMPLE_NAME}"
-for ds_name in `xrd hn.at3f dirlist /srm/atlaslocalgroupdisk/${REL_PATH_ON_SRM}/ | sort | grep "${VERSION_FLAG}\." | grep ${SAMPLE_NAME}` ; do
-#    echo ${ds_name}
-    if [[ "${ds_name}" =~ "/srm/.*" ]] ; then
-	for in_file in `xrd hn.at3f dirlist ${ds_name} | grep .root*` ; do 
-	    if [[ "${in_file}" =~ "/srm/.*" ]] ; then
-	#	echo "${in_file}"
-		echo "        Adding: root://hn.at3f/${in_file}"    
-		echo " - root://hn.at3f/${in_file}" >> $CONFIG_FILE
-		let NUM_FILES+=1
-	    fi
-	done
-    fi
+echo "        $XRD_COMMAND"
+echo "-------------------------------------------------------------------------"
+for ds_name in ${ds_list}
+do
+  # echo ${ds_name}
+  if [[ "${ds_name}" =~ "/srm/.*" ]] ; then
+    for in_file in `xrd hn.at3f dirlist ${ds_name} | grep .root*` ; do 
+      if [[ "${in_file}" =~ "/srm/.*" ]] ; then
+        echo "        Adding: root://hn.at3f/${in_file}"    
+        echo " - root://hn.at3f/${in_file}" >> $CONFIG_FILE
+        let NUM_FILES+=1
+      fi
+    done
+  fi
 done
 
-##for in_file in `ls ${BASE_IN_FILE_PATH}/*${SAMPLE_NAME}*/*root*`; do
-##  echo "  - ${in_file}" >> $CONFIG_FILE
-##  let NUM_FILES+=1
-##done
-### echo "  - SusyDiLeptonPreselCycle.MC.ver_1.presel.105200.ttbar_small.2012_11_27.root"
-
 echo "Found $NUM_FILES files"
-

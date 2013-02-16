@@ -1,12 +1,11 @@
-
 Type:             mc
 OutputLevel:      INFO
-OutputDirectory:  /home/elhines/Susy_presel_12Feb/
+OutputDirectory:  /disk/userdata00/atlas_data2/${USER}/SUSY/00.02.05/
 NEventsMax:       -1
 is_af2:           False
 SuperVerboseInfo: False
 PrintEventInfo:   False
-Version:          presel.51
+Version:          1
 CycleName:        SusyDiLeptonCutFlowCycle
 SampleName:       Z_plus_jet.107654.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4
 

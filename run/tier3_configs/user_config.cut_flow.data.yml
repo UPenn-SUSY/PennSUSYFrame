@@ -183,20 +183,36 @@ Trigger_Cut:
     do_trigger_matching:     True
 
 Signal_Regions:
-    sr1_min_met_rel:  100000
-    sr1_max_met_rel:  -1
-    sr2_min_met_rel:  100000
-    sr2_max_met_rel:  -1
-    sr3_min_met_rel:  50000
-    sr3_max_met_rel:  -1
-    sr4_min_met_rel:  40000
-    sr4_max_met_rel:  -1
-    sr4a_min_mt2:     90000
-    sr4a_max_mt2:     -1
-    sr4b_min_mt2:     100000
-    sr4b_max_mt2:     -1
-    z_window_mll_min: 81200
-    z_window_mll_max: 101200
+    sr_osjveto_min_met_rel:  100000
+    sr_osjveto_max_met_rel:  -1
+    sr_osjveto_min_mt2:      -1
+    sr_osjveto_max_mt2:      90000
+
+    sr_ssjets_ee_min_met_rel:   70000
+    sr_ssjets_ee_max_met_rel:   -1
+    sr_ssjets_mm_min_met_rel:   50000
+    sr_ssjets_mm_max_met_rel:   -1
+    sr_ssjets_em_min_met_rel:   50000
+    sr_ssjets_em_max_met_rel:   -1
+    sr_ssjets_ee_min_mt:        -1
+    sr_ssjets_ee_max_mt:        70000
+    sr_ssjets_mm_min_mt:        -1
+    sr_ssjets_mm_max_mt:        50000
+    sr_ssjets_em_min_mt:        -1
+    sr_ssjets_em_max_mt:        50000
+
+    sr_2jets_min_met_rel:    50000
+    sr_2jets_max_met_rel:    -1
+
+    sr_mt2_min_met_rel:      40000
+    sr_mt2_max_met_rel:      -1
+    sr_mt2a_min_mt2:         90000
+    sr_mt2a_max_mt2:         -1
+    sr_mt2b_min_mt2:         100000
+    sr_mt2b_max_mt2:         -1
+
+    z_window_mll_min:        81200
+    z_window_mll_max:        101200
 
 PileUpScaleFactor:
   do_pile_up:       True
@@ -210,7 +226,7 @@ PileUpScaleFactor:
 TriggerReweight:
   do_trigger_sf:           True
   trigger_reweight_dir:    ${ROOTCOREDIR}/../DGTriggerReweight/data/
-  trigger_reweight_period: HCP
+  trigger_reweight_period: Moriond
 
 BTagScaleFactor:
   do_b_tag_sf:  True
