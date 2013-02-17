@@ -364,8 +364,8 @@ void Met::addMuons(MuonContainer* muon_container)
   mu_ms_phi.reserve(n_mu);
   mu_charge.reserve(n_mu);
 
-  std::vector<float> unit_vec(1, 1.);
-  std::vector<unsigned int> def_vec(1, MissingETTags::DEFAULT);
+  std::vector<float> unit_vec(1., 1);
+  std::vector<unsigned int> def_vec(MissingETTags::DEFAULT, 1);
 
   std::vector<Muon*>::const_iterator mu_it = muons.begin();
   std::vector<Muon*>::const_iterator mu_term = muons.end();
