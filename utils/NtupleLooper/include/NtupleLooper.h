@@ -1,18 +1,15 @@
 #ifndef NtupleLooper_h
 #define NtupleLooper_h
 
+// =============================================================================
 #include <TROOT.h>
-#include <TChain.h>
-#include <TFile.h>
-#include <TH1D.h>
+#include <vector>
 
-#include "SusyAnalysisTools/include/EventDescription.h"
-#include "SusyAnalysisTools/include/SRHelper.h"
-#include "SusyAnalysisTools/include/SusyEnums.h"
+// =============================================================================
+class TTree;
+class TBranch;
+class ProgressBar;
 
-#ifndef NtupleLooper_h
-int my_var = 0;
-#endif
 // =============================================================================
 class NtupleLooper
 {
@@ -220,6 +217,9 @@ class NtupleLooper
     TBranch* b_vtx_z;
     TBranch* b_vtx_n_tracks;
     TBranch* b_vtx_sum_pt;
+
+  private:
+    // ProgressBar* m_progress_bar;
 };
 
 #endif

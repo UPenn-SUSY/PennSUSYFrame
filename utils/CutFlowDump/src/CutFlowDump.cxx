@@ -2,14 +2,15 @@
 
 #include <iostream>
 #include <iomanip>
-#include <TH2.h>
-#include <TStyle.h>
-#include <TCanvas.h>
+#include <vector>
 
-#include <TROOT.h>
+#include <TCanvas.h>
 #include <TChain.h>
 #include <TFile.h>
 #include <TH1D.h>
+#include <TH2.h>
+#include <TROOT.h>
+#include <TStyle.h>
 
 #include "NtupleLooper/include/NtupleLooper.h"
 
@@ -591,6 +592,7 @@ void CutFlowDump::printToScreen(WEIGHTS weight_type)
   unsigned int line_width   = 100;
   unsigned int label_field  = 30;
   unsigned int weight_field = (line_width - label_field - 4 - 4*3 )/4;
+  unsigned int precision    = weight_field-2;
   if (4+label_field+4*weight_field != line_width) {
     label_field += (line_width - label_field - 4 - 4*3 )%4;
   }
@@ -641,11 +643,16 @@ void CutFlowDump::printToScreen(WEIGHTS weight_type)
                 << " =\n";
     }
     else {
-      std::cout << "= "  << std::left  << std::setw(label_field)  << cut_name
-                << " = " << std::right << std::setw(weight_field) << weight_ee
-                << " = " << std::right << std::setw(weight_field) << weight_mm
-                << " = " << std::right << std::setw(weight_field) << weight_em
-                << " = " << std::right << std::setw(weight_field) << weight_me
+      std::cout << "= "  << std::left  << std::setw(label_field)
+                << std::setprecision(precision) << cut_name
+                << " = " << std::right << std::setw(weight_field)
+                << std::setprecision(precision) << weight_ee
+                << " = " << std::right << std::setw(weight_field)
+                << std::setprecision(precision) << weight_mm
+                << " = " << std::right << std::setw(weight_field)
+                << std::setprecision(precision) << weight_em
+                << " = " << std::right << std::setw(weight_field)
+                << std::setprecision(precision) << weight_me
                 << " =\n";
     }
   }

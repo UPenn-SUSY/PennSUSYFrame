@@ -1,12 +1,22 @@
+#include "NtupleLooper/include/NtupleLooper.h"
+
 #include <iostream>
 #include <iomanip>
-#include "include/NtupleLooper.h"
+#include <vector>
+
 #include <TH2.h>
 #include <TStyle.h>
 #include <TCanvas.h>
+#include <TROOT.h>
+#include <TChain.h>
+#include <TFile.h>
+#include <TH1D.h>
+
+#include "ProgressBar/include/ProgressBar.h"
 
 // -----------------------------------------------------------------------------
 NtupleLooper::NtupleLooper(TTree *tree) : fChain(0)
+                                        // , m_progress_bar(NULL)
 {
   // if parameter tree is not specified (or zero), connect the file
   // used to generate this class and read the Tree.
@@ -17,7 +27,6 @@ NtupleLooper::NtupleLooper(TTree *tree) : fChain(0)
       f = new TFile("SusyDiLeptonCutFlowCycle.MC.egamma.2012_10_15.1.ttbar_small_cutflow_challenge.root");
     }
     f->GetObject("output",tree);
-
   }
 
   Init(tree);
@@ -164,7 +173,7 @@ void NtupleLooper::Init(TTree *tree)
    fCurrent = -1;
    // fChain->SetMakeClass(1);
 
-   int branch_num = 0;
+   // int branch_num = 0;
    fChain->SetBranchAddress( "lbn"
                            , &m_lbn
                            , &b_lbn
@@ -555,10 +564,15 @@ void NtupleLooper::Loop()
   if (fChain == 0) return;
 
   Long64_t nentries = fChain->GetEntriesFast();
+  // nentries = 100000;
   std::cout << "number evens: " << nentries << "\n";
 
+  ProgressBar progress_bar(nentries, 100);
+
   Long64_t nbytes = 0, nb = 0;
-  for (Long64_t jentry=0; jentry<nentries;jentry++) {
+  for (Long64_t jentry = 0; jentry != nentries; ++jentry) {
+    progress_bar.checkProgress(jentry);
+
     Long64_t ientry = LoadTree(jentry);
     if (ientry < 0) break;
     nb = fChain->GetEntry(jentry);

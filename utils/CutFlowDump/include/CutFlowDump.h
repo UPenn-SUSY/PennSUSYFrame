@@ -2,8 +2,12 @@
 #define CutFlowDump_h
 
 // =============================================================================
+#include <vector>
 #include "NtupleLooper/include/NtupleLooper.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
+
+// =============================================================================
+class TH1D;
 
 // =============================================================================
 class TTree;

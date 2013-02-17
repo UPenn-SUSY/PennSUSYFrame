@@ -1,7 +1,7 @@
 # ======================
 # = top level Makefile =
 # ======================
-DIRS = Selection Parser NtupleLooper HistMaker PlotNtupleMaker CutFlowDump \
+DIRS = ProgressBar Selection Parser NtupleLooper HistMaker PlotNtupleMaker CutFlowDump \
 	   EventNumberDump
 
 all::build link
