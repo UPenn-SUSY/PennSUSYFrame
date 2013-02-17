@@ -132,9 +132,6 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   sr_helper->setPassSROSJVetoMetRel(
       passCut(met_rel, c_sr_osjveto_met_rel_min, c_sr_osjveto_met_rel_max));
 
-  sr_helper->setPassSROSJVetoMt2(
-      passCut(met_rel, c_sr_osjveto_mt2_min, c_sr_osjveto_mt2_max));
-
   if (event->getFlavorChannel() == FLAVOR_EE) {
     sr_helper->setPassSRSSJetsMetRel( passCut( met_rel
                                              , c_sr_ssjets_ee_met_rel_min
@@ -180,6 +177,10 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
 
   // Check mt2 cuts
   double mt2 = event->getMt2();
+
+  sr_helper->setPassSROSJVetoMt2(
+      passCut(mt2, c_sr_osjveto_mt2_min, c_sr_osjveto_mt2_max));
+
   sr_helper->setPassSRMT2aMt2(
       passCut(mt2, c_sr_mt2a_mt2_min, c_sr_mt2a_mt2_max));
 
