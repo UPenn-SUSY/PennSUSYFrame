@@ -23,7 +23,6 @@ CommonTools::TriggerReweightTool::TriggerReweightTool( SCycleBase* parent
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   DeclareProperty("do_trigger_sf"           , c_do_trigger_sf       = true);
-  // DeclareProperty("trigger_reweight_dir"    , c_reweight_directory  = "/exports/project/data_d07_3/ehines/SusyFrame/Susy2.0/RootCore/DGTriggerReweight/data/");
   DeclareProperty("trigger_reweight_dir"    , c_reweight_directory  = "");
   DeclareProperty("trigger_reweight_period" , c_reweight_period     ="Moriond");
 
@@ -48,7 +47,6 @@ void CommonTools::TriggerReweightTool::BeginCycle()
      << SLogger::endmsg;
 
   m_trigger_reweight = new triggerReweight2Lep();
-  // m_trigger_reweight->initialize(c_reweight_directory,c_reweight_period,true,true);
 }
 
 // -----------------------------------------------------------------------------
