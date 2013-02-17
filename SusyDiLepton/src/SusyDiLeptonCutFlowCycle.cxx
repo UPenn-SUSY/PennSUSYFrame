@@ -504,10 +504,10 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
   // if (  true
-  //    && m_event->EventNumber() != 501
-  //    && m_event->EventNumber() != 434277
-  //    && m_event->EventNumber() != 124045
-  //    && m_event->EventNumber() != 139562
+  //    && m_event->EventNumber() != 377
+  //    && m_event->EventNumber() != 1137943
+  //    && m_event->EventNumber() != 1671777
+  //    && m_event->EventNumber() != 1819419
   //    ) return;
 
   m_logger << DEBUG

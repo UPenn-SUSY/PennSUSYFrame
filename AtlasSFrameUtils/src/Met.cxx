@@ -138,7 +138,7 @@ void Met::addElectrons(ElectronContainer* electron_container)
   std::vector<Electron*>::const_iterator el_term = el.end();
   for (; el_it != el_term; ++el_it) {
     // skip electrons with wet == 0
-    // if ((*el_it)->MET_Egamma10NoTau_wet().at(0) == 0) continue;
+    if ((*el_it)->MET_Egamma10NoTau_wet().at(0) == 0) continue;
 
     TLorentzVector el_tlv = (*el_it)->getTlv();
     el_pt.push_back( el_tlv.Pt() );
@@ -161,7 +161,7 @@ void Met::addElectrons(ElectronContainer* electron_container)
     std::vector<float> el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_wpx();
     std::vector<float> el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_wpy();
 
-    if (el_tmp_wet.size() == 0.) continue;
+    // if (el_tmp_wet.size() == 0.) continue;
 
     // temp fix for too large and too small electron weights
     unsigned int num_weights = el_tmp_wet.size();
@@ -334,7 +334,8 @@ void Met::addMet()
 // ----------------------------------------------------------------------------
 void Met::addMuons(MuonContainer* muon_container)
 {
-  const std::vector<Muon*> muons = muon_container->getMuons(MU_GOOD);
+  // const std::vector<Muon*> muons = muon_container->getMuons(MU_GOOD);
+  const std::vector<Muon*> muons = muon_container->getMuons(MU_BASELINE);
 
   // initialize container vectors for muon parameters
   int n_mu = muons.size();
