@@ -1,7 +1,6 @@
 
 Type:             mc
 OutputLevel:      INFO
-OutputDirectory:  /home/elhines/Susy_presel_12Feb/
 OutputDirectory:  /disk/userdata00/atlas_data2/bjack/SUSY/00.02.05/
 NEventsMax:       -1
 is_af2:           False

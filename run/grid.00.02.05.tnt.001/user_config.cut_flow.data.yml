@@ -56,7 +56,7 @@ Electron_IsoCorr:
     topoetcone40_p2:           0
     topoetcone_corrected20_p1: 0
     topoetcone_corrected20_p2: 0
-    topoetcone_corrected30_p1: 17.94
+    topoetcone_corrected30_p1: 20.15
     topoetcone_corrected30_p2: 0
     topoetcone_corrected40_p1: 0
     topoetcone_corrected40_p2: 0
@@ -70,7 +70,7 @@ Muon_IsoCorr:
     etcone40_p2:               0
     ptcone20_p1:               0
     ptcone20_p2:               0
-    ptcone30_p1:               6.27
+    ptcone30_p1:               10.98
     ptcone30_p2:               0
     ptcone40_p1:               0
     ptcone40_p2:               0
@@ -258,7 +258,7 @@ JetOutput:
   do_detailed_output: 0
   jet_container_name: good
 
-JetOutput:
+JetOutput_light:
   do_detailed_output: 1
   jet_container_name: light
   jet_label:          light_jet_
