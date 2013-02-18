@@ -70,6 +70,7 @@ void ChargeFlipCalc::printToFile(std::string out_file_name)
 
    m_h_lklh_rate->Write();
    m_h_truth_rate->Write();
+   m_h_truth_rate_eta_only->Write();
 
    f->Write();
    f->Close();
@@ -104,7 +105,7 @@ void ChargeFlipCalc::initChargeFlipHists()
   m_h_n_ss = new TH2F("h_n_ss","h_n_ss", num_eta_bins, eta_bins, num_eta_bins, eta_bins);
 
   m_h_lklh_rate = new TH1F("h_lklh_rate",";#eta;charge_mis rate", num_eta_bins,eta_bins);
-  
+  m_h_truth_rate_eta_only = new TH1F("h_truth_rate_eta_only",";#eta;charge_mis rate", num_eta_bins,eta_bins);
   m_h_truth_rate = new TH2F("h_truth_rate",";#eta;charge_mis rate",num_pt_bins,pt_bins,num_eta_bins,eta_bins);
 
   //  m_pt_shift = Book("h_pt_shift","h_pt_shift", 600, -1., 1.);
@@ -334,13 +335,12 @@ void ChargeFlipCalc::calcTruth()
   const int num_eta_bins = 5;
   const int num_pt_bins = 4;
 
-  for(int i=0; i<num_pt_bins;i++)
+  for(int j=0; j<num_eta_bins;j++)
     {
-      for(int j=0; j<num_eta_bins;j++)
+      for(int i=0; i<num_pt_bins;i++)
 	{
-
 	  double rate  = 0;
-
+	  
 	  double n_total = m_h_total->GetBinContent(i+1,j+1);
 	  if (n_total)
 	    {
@@ -348,12 +348,26 @@ void ChargeFlipCalc::calcTruth()
 
 	      rate = n_flipped/n_total;
 	      double error = sqrt(rate*(1-rate)/n_total);
-
+	      
 	      m_h_truth_rate->SetBinContent(i+1,j+1,rate);
 	      m_h_truth_rate->SetBinError(i+1,j+1,error);
-
+	      
 	    }
 	}
+
+      double rate_eta = 0;
+      double n_total_eta = m_h_total_eta_only->GetBinContent(j+1);
+      if(n_total_eta)
+	{
+
+	  double n_flipped_eta = m_h_flipped_eta_only->GetBinContent(j+1);
+	  rate_eta = n_flipped_eta/n_total_eta;
+	  double error_eta = sqrt(rate_eta*(1-rate_eta)/n_total_eta);
+
+	  m_h_truth_rate_eta_only->SetBinContent(j+1,rate_eta);
+	  m_h_truth_rate_eta_only->SetBinError(j+1, error_eta);
+	}
+
     }
 
 }

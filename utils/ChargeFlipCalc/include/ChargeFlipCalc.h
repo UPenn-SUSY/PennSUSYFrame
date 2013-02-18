@@ -63,6 +63,7 @@ class ChargeFlipCalc : public NtupleLooper
     TH2F* m_h_n_ss;
 
     TH1F* m_h_lklh_rate;
+    TH1F* m_h_truth_rate_eta_only;
     TH2F* m_h_truth_rate;
 
     static double lkh_events[5][5];
