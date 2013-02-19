@@ -65,4 +65,4 @@ ds_list=( "107650.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp0:mc12_8TeV.107650.AlpgenJimmy_A
 
         )
 
-. ${PWD}/submit_presel.sh
+. ${PWD}/submit_cutflow.sh

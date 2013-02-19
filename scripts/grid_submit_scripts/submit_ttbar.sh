@@ -25,4 +25,4 @@ ds_list=( "105861.PowhegPythia_AUET2BCT10_ttbar_LeptonFilter:mc12_8TeV.105861.Po
 
 )
 
-. ${PWD}/submit_presel.sh
+. ${PWD}/submit_cutflow.sh

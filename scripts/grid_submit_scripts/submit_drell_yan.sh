@@ -34,4 +34,4 @@ ds_list=( "146830.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp0Excl_Mll10to60:mc12_8TeV.1
 
         )
 
-. ${PWD}/submit_presel.sh
+. ${PWD}/submit_cutflow.sh

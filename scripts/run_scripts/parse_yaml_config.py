@@ -95,6 +95,7 @@ def getLabel(config_dict):
     # add cycle name to file name
     if config_dict['CycleName'] == 'SusyDiLeptonCutFlowCycle':
         label += 'cut_flow.'
+        # label += 'tnt.'
     elif config_dict['CycleName'] == 'SusyDiLeptonPreselCycle':
         label += 'presel.'
 

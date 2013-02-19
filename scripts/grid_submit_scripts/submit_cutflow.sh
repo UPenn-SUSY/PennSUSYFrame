@@ -57,9 +57,9 @@ for hash in ${ds_list[@]} ; do
   
   out_file=''
   if [[ "${DATA_MC}" == 'data' ]]; then
-    out_file="SusyDiLeptonCutFlowCycle.data.ver_1.tnt..root"
+    out_file="SusyDiLeptonCutFlowCycle.data.ver_1.cut_flow..root"
   elif [[ "${DATA_MC}" == 'mc' ]]; then
-    out_file="SusyDiLeptonCutFlowCycle.mc.ver_1.tnt..root"
+    out_file="SusyDiLeptonCutFlowCycle.mc.ver_1.cut_flow..root"
   fi
   
   out_ds="user.${USER_NAME}.${OUT_DS_PREFIX}.${KEY}.tnt.${OUT_DS_VERSION}/"

@@ -67,6 +67,7 @@ ARG="${ARG} --${STREAM}"
 if [[ ${SIM_TYPE} == "atlfast" ]]; then
   ARG="${ARG} --af2"
 fi
+ARG=" ${ARG} --cutflow"
 ARG=" ${ARG} ${IN_FILE_LIST}"
 
 echo $ARG
@@ -79,12 +80,12 @@ echo "-------------------------------------------------------------------------"
 ls
 
 echo "-------------------------------------------------------------------------"
-echo "jo.cutflow..ver_1.xml"
+echo "jo.cut_flow..ver_1.xml"
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-cat jo.cutflow..ver_1.xml
+cat jo.cut_flow..ver_1.xml
 
 echo "-------------------------------------------------------------------------"
-EXE="sframe_main jo.cutflow..ver_1.xml"
+EXE="sframe_main jo.cut_flow..ver_1.xml"
 echo "EXE:"
 echo ${EXE}
 

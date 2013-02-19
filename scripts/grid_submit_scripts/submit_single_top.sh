@@ -26,4 +26,4 @@ ds_list=( "117360.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e:mc12_8TeV.117360.
 
 )
 
-. ${PWD}/submit_presel.sh
+. ${PWD}/submit_cutflow.sh

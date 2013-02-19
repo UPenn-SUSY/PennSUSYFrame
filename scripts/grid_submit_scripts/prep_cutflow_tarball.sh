@@ -22,7 +22,13 @@ done
 # ========================
 # = add common ext files =
 # ========================
+COMMON_EXT_FILES=""
 COMMON_EXT_FILES="data/data12_8TeV.periodAllYear_DetStatus-v53-pro13-04_CoolRunQuery-00-04-08_All_Good_HCP.xml"
+COMMON_EXT_FILES="${COMMON_EXT_FILES},data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root"
+COMMON_EXT_FILES="${COMMON_EXT_FILES},data/ilumicalc_histograms_EF_2e12Tvh_loose1_200841-210308.root"
+COMMON_EXT_FILES="${COMMON_EXT_FILES},data/2013-Winter-rel17.2.1.4_MC12.root"
+COMMON_EXT_FILES="${COMMON_EXT_FILES},data/D2012-HCP-noJVF-rel17_MC12a_D2012_HCP.root"
+
 if [[ "${EXT_FILES}" == '' ]]; then
   EXT_FILES=${COMMON_EXT_FILES}
 else

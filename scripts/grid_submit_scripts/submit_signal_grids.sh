@@ -92,4 +92,4 @@ ds_list=(
           "157986.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_49:mc12_8TeV.157986.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_49.merge.NTUP_SUSY.e1417_s1499_s1504_r3658_r3549_p1328/"
         )
 
-. ${PWD}/submit_presel.sh
+. ${PWD}/submit_cutflow.sh

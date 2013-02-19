@@ -35,5 +35,4 @@ ds_list=(
 
         )
 
-. ${PWD}/submit_presel.sh
-
+. ${PWD}/submit_cutflow.sh

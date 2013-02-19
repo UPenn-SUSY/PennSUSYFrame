@@ -24,4 +24,4 @@ ds_list=( "periodA:group.phys-susy.data12_8TeV.periodA.physics_Muons.PhysCont.NT
           "periodL:group.phys-susy.data12_8TeV.periodL.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1328_p1329/"
         )
 
-. ${PWD}/submit_presel.sh
+. ${PWD}/submit_cutflow.sh

@@ -24,4 +24,4 @@ ds_list=( "146820.Sherpa_CT10_ZeeLightJets:mc12_8TeV.146820.Sherpa_CT10_ZeeLight
           "147772.Sherpa_CT10_Ztautau:mc12_8TeV.147772.Sherpa_CT10_Ztautau.merge.NTUP_SUSY.e1434_s1499_s1504_r3658_r3549_p1181/"
         )
 
-. ${PWD}/submit_presel.sh
+. ${PWD}/submit_cutflow.sh
