@@ -18,7 +18,7 @@ def main():
     region = sys.argv[2]
     local_out_dir = '%s.%s' % (flavor_channel, region)
 
-    full_out_dir = 'susy_hists/optimize/2013_01_22/%s/' % local_out_dir
+    full_out_dir = 'susy_hists/optimize/tnt.003/%s/' % local_out_dir
     print 'local_out_dir: %s' % local_out_dir
     print 'full_out_dir: %s' % full_out_dir
 
@@ -56,9 +56,9 @@ def main():
         print 'sample number : %s'    % data['sample_number']
         print 'sample label : %s'     % data['sample_label']
 
-        data['config_base_path'] = '%s/../utils/RunConfigs/OptimizationHistograms/2013_01_22/' % os.environ['SFRAME_DIR']
-        data['ptnt_base_path']   = '%s/../utils/pTNTs/OptimizationHistograms/2013_01_22/%s'      % (os.environ['SFRAME_DIR'], data['local_out_dir'])
-        data['hist_base_path']   = '%s/../utils/SusyHists/OptimizationHistograms/2013_01_22/%s'  % (os.environ['SFRAME_DIR'], data['local_out_dir'])
+        data['config_base_path'] = '%s/../utils/RunConfigs/OptimizationHistograms/tnt.003/' % os.environ['SFRAME_DIR']
+        data['ptnt_base_path']   = '%s/../utils/pTNTs/OptimizationHistograms/tnt.003/%s'      % (os.environ['SFRAME_DIR'], data['local_out_dir'])
+        data['hist_base_path']   = '%s/../utils/SusyHists/OptimizationHistograms/tnt.003/%s'  % (os.environ['SFRAME_DIR'], data['local_out_dir'])
 
         print 'config base path : %s' % data['config_base_path']
         print 'ptnt base path : %s'   % data['ptnt_base_path']
