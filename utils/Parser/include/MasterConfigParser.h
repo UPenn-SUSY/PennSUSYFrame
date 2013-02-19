@@ -16,7 +16,7 @@
 // =============================================================================
 class MasterConfigParser : public ParseDriver
 {
-  // -----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   public:
     MasterConfigParser(std::string);
     virtual ~MasterConfigParser();
@@ -34,7 +34,7 @@ class MasterConfigParser : public ParseDriver
 
     int getChannelNum();
 
-  // -----------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   private:
     void clear();
     virtual void addLine(std::vector<std::string>);

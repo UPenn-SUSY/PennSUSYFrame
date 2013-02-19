@@ -12,7 +12,8 @@ int main(int argc, char** argv)
   std::cout << "input file name: " << argv[1] << "\n";
 
   TFile* f = new TFile(argv[1]);
-  TTree* t = static_cast<TTree*>(f->Get("output"));
+  // TTree* t = static_cast<TTree*>(f->Get("output"));
+  TTree* t = static_cast<TTree*>(f->Get("presel"));
 
   NtupleLooper ntl(t);
   ntl.Loop();
