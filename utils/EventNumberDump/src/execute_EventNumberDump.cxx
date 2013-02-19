@@ -1,9 +1,11 @@
 #include <iostream>
 #include <TFile.h>
 #include <TTree.h>
+#include <TChain.h>
 
-#include "include/EventNumberDump.h"
+#include "EventNumberDump/include/EventNumberDump.h"
 #include "Selection/include/EventSelection.h"
+#include "NtupleLooper/include/NtupleLooper.h"
 
 #include "Parser/include/MasterConfigParser.h"
 #include "Parser/include/CutConfigParser.h"
@@ -12,7 +14,7 @@
 // -----------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-  std::cout << "Making plot ntuple!\n";
+  std::cout << "Dumping event numbers!\n";
 
   if (argc < 2) {
     std::cout << "Please enter an input config file\n";
@@ -27,7 +29,7 @@ int main(int argc, char** argv)
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string out_file_name = parser.getPTNTFile();
   TChain* chain = parser.getInputChain();
-  EventNumberDump pnm(chain, out_file_name);
+  EventNumberDump end(chain, out_file_name);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string cut_config_file = parser.getSelectionFile();
@@ -45,12 +47,11 @@ int main(int argc, char** argv)
   for (; sel_it != sel_term; ++sel_it) {
     std::string key = sel_it->first;
     std::cout << "key: " << key << "\n";
-    pnm.addCut( key
+    end.addCut( key
               , evt_sel[key]
               );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  pnm.Loop();
-  // pnm.writeToFile();
+  end.Loop();
 }

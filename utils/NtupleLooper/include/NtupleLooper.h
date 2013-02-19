@@ -6,9 +6,10 @@
 #include <vector>
 
 // =============================================================================
-class TTree;
-class TBranch;
 class ProgressBar;
+class TBranch;
+class TChain;
+class TTree;
 
 // =============================================================================
 class NtupleLooper

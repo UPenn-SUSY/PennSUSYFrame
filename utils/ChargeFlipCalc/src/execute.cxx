@@ -1,13 +1,16 @@
 #include <iostream>
 #include <TFile.h>
 #include <TTree.h>
+#include <TChain.h>
 
-#include "include/ChargeFlipCalc.h"
+#include "ChargeFlipCalc/include/ChargeFlipCalc.h"
+#include "Parser/include/CommandParser.h"
 
+// -----------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
-  TFile* f = new TFile(argv[1]);
-  TTree* t = static_cast<TTree*>(f->Get("output"));
+  // TChain* t = CommandParser::readInputs(argc, argv, "output");
+  TChain* t = CommandParser::readInputs(argc, argv, "presel");
 
   ChargeFlipCalc cfc(t);
   cfc.Loop();
