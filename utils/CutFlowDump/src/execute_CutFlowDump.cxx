@@ -12,13 +12,14 @@ int main(int argc, char** argv)
   std::cout << "Dumping Cut flow\n";
 
   TFile* f(NULL);
-  // TChain* = new TChain("output");
-  TChain* t = new TChain("presel");
+  TChain* t = new TChain("output");
 
+  // If loading a single file
   if (std::string(argv[1]) == "--file") {
     std::string file_name = argv[2];
     t->AddFile(file_name.c_str());
   }
+  // If loading a full directory
   else if (std::string(argv[1]) == "--dir") {
     std::string dir_name = argv[2];
 
