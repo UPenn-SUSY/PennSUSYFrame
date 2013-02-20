@@ -1,6 +1,7 @@
 # diboson
 126892 : 2699994 # Sherpa_CT10_llnunu_WW
 126893 : 2699893 # Sherpa_CT10_lllnu_WZ
+126894 : 3799491 # Sherpa_CT10_llll_ZZ
 126895 : 899899  # Sherpa_CT10_llnunu_ZZ
 
 # drell yan
@@ -24,9 +25,13 @@
 146855 : 111920 # AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp5Incl_Mll10to60
 
 # single top
-117360 : 299899 # AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e
-117361 : 300000 # AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_mu
-117362 : 293499 # AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau
+108343 : 199997  # McAtNloJimmy_AUET2CT10_SingleTopSChanWenu
+108344 : 200000  # McAtNloJimmy_AUET2CT10_SingleTopSChanWmunu
+108345 : 199999  # McAtNloJimmy_AUET2CT10_SingleTopSChanWtaunu
+108346 : 1999194 # McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl
+117360 : 299899  # AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e
+117361 : 300000  # AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_mu
+117362 : 293499  # AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau
 
 # ttbar
 117800 : 1799288  # Sherpa_CT10_TtbarLeptLept
@@ -39,11 +44,34 @@
 117808 : 3199884  # Sherpa_CT10_TtbarHadTauhad
 117809 : 179900   # Sherpa_CT10_TtbarTauhadTauhad
 105200 : 14993322 # McAtNloJimmy_CT10_ttbar_LeptonFilter
+119353 : 399997 # MadGraphPythia_AUET2BCTEQ6L1_ttbarW
+119354 : 399896 # MadGraphPythia_AUET2BCTEQ6L1_ttbarWj
+119355 : 399996 # MadGraphPythia_AUET2BCTEQ6L1_ttbarZ
+119356 : 399895 # MadGraphPythia_AUET2BCTEQ6L1_ttbarZj
+119583 : 10000  # MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW
 
 # W+jet
 147774 : 38419009 # Sherpa_CT10_Wenu
 147775 : 39197213 # Sherpa_CT10_Wmunu
 147776 : 6849482  # Sherpa_CT10_Wtaunu
+107680 : 499899   # AlpgenJimmy_AUET2CTEQ6L1_WenuNp0
+107681 : 199900   # AlpgenJimmy_AUET2CTEQ6L1_WenuNp1
+107682 : 99900    # AlpgenJimmy_AUET2CTEQ6L1_WenuNp2
+107683 : 50000    # AlpgenJimmy_AUET2CTEQ6L1_WenuNp3
+107684 : 20000    # AlpgenJimmy_AUET2CTEQ6L1_WenuNp4
+107685 : 10000    # AlpgenJimmy_AUET2CTEQ6L1_WenuNp5
+107690 : 499800   # AlpgenJimmy_AUET2CTEQ6L1_WmunuNp0
+107691 : 200000   # AlpgenJimmy_AUET2CTEQ6L1_WmunuNp1
+107692 : 100000   # AlpgenJimmy_AUET2CTEQ6L1_WmunuNp2
+107693 : 50000    # AlpgenJimmy_AUET2CTEQ6L1_WmunuNp3
+107694 : 20000    # AlpgenJimmy_AUET2CTEQ6L1_WmunuNp4
+107695 : 10000    # AlpgenJimmy_AUET2CTEQ6L1_WmunuNp5
+107700 : 495999   # AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp0
+107701 : 199999   # AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp1
+107702 : 100000   # AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp2
+107703 : 49999    # AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp3
+107704 : 19900    # AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp4
+107705 : 10000    # AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp5
 
 # Z+jet
 128975 : 4999998 # Sherpa_CT10_ZeeHeavyJets
@@ -55,6 +83,48 @@
 147770 : 9999162 # Sherpa_CT10_Zee
 147771 : 9998983 # Sherpa_CT10_Zmumu
 147772 : 4999989 # Sherpa_CT10_Ztautau
+107650 : 498999  # AlpgenJimmy_AUET2CTEQ6L1_ZeeNp0
+107651 : 200000  # AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1
+107652 : 99500   # AlpgenJimmy_AUET2CTEQ6L1_ZeeNp2
+107653 : 50000   # AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3
+107654 : 20000   # AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4
+107655 : 10000   # AlpgenJimmy_AUET2CTEQ6L1_ZeeNp5
+107660 : 499900  # AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp0
+107661 : 200000  # AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp1
+107662 : 100000  # AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp2
+107663 : 50000   # AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp3
+107664 : 20000   # AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp4
+107665 : 10000   # AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp5
+107670 : 499999  # AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp0
+107671 : 199998 # AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp1
+107672 : 99999  # AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp2
+107673 : 50000  # AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp3
+107674 : 20000  # AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp4
+107675 : 10000  # AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp5
+109300 : 150000 # AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp0
+109301 : 80000  # AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp1
+109302 : 45000  # AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp2
+109303 : 4999   # AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp3
+109305 : 149900 # AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp0
+109306 : 80000  # AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp1
+109307 : 45000  # AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp2
+109308 : 5000   # AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp3
+109310 : 149900 # AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp0
+109311 : 79999  # AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp1
+109312 : 45000  # AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp2
+109313 : 5000   # AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp3
+117706 : 599999 # AlpgenJimmy_AUET2CTEQ6L1_ZtautauccNp0
+117707 : 264999 # AlpgenJimmy_AUET2CTEQ6L1_ZtautauccNp1
+117708 : 115000 # AlpgenJimmy_AUET2CTEQ6L1_ZtautauccNp2
+117709 : 39999  # AlpgenJimmy_AUET2CTEQ6L1_ZtautauccNp3
+126414 : 604899 # AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp1
+126415 : 259999 # AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp1
+126416 : 109999 # AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp2
+126417 : 40000  # AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp3
+126418 : 599397 # AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp0
+126419 : 265000 # AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp1
+126420 : 115000 # AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp2
+126421 : 39999  # AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp3
 
 # signal grids
 144871 : 40000 # simplifiedModel_wA_slep_noWcascade_5
