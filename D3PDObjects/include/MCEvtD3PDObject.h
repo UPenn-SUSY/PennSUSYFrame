@@ -8,8 +8,6 @@
 #define D3PDREADER_MCEvtD3PDObject_H
 
 #include <map>
-#include <vector>
-using std::vector;
 
 #include <TObject.h>
 #include <TString.h>
@@ -25,7 +23,7 @@ namespace D3PDReader {
     *  host = pc-penn-d-07
     *  OS   = Linux / 2.6.18-274.18.1.el5
     *  user = bjackson
-    *  time = Wed Feb  6 10:48:28 2013
+    *  time = Thu Feb 21 21:08:27 2013
     */
    class MCEvtD3PDObject : public TObject {
 
@@ -51,25 +49,6 @@ namespace D3PDReader {
       /// Read in all the variables that we need to write out as well
       void ReadAllActive();
 
-      /// Number of ntuple rows.
-      VarHandle< Int_t > n;
-      VarHandle< vector<int>* > signal_process_id;
-      VarHandle< vector<int>* > event_number;
-      VarHandle< vector<double>* > event_scale;
-      VarHandle< vector<double>* > alphaQCD;
-      VarHandle< vector<double>* > alphaQED;
-      VarHandle< vector<int>* > pdf_id1;
-      VarHandle< vector<int>* > pdf_id2;
-      VarHandle< vector<double>* > pdf_x1;
-      VarHandle< vector<double>* > pdf_x2;
-      VarHandle< vector<double>* > pdf_scale;
-      VarHandle< vector<double>* > pdf1;
-      VarHandle< vector<double>* > pdf2;
-      VarHandle< vector<vector<double> >* > weight;
-      /// Number of particles in the event
-      VarHandle< vector<int>* > nparticle;
-      /// 0 = signal MC Event; 1 = in-time pileup MC Event; 2 = out-of-time pileup MC Event in [-2BC, +2BC]; 3 = the out-of-time pileup MC Event in [-800ns, -2BC] and [+2BC, +800ns]; 4 = cavern background MC Event; 5 = dummy event used to separate types; -1 = not filled
-      VarHandle< vector<short>* > pileUpType;
 
    private:
       std::map< ::TString, VarHandleBase* > fHandles; ///< Book-keeper of the VarHandle members

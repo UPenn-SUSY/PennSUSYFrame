@@ -10,8 +10,6 @@
 #include <map>
 #include <vector>
 using std::vector;
-#include <string>
-using std::string;
 
 #include <TObject.h>
 #include <TString.h>
@@ -48,290 +46,37 @@ namespace D3PDReader {
       VarProxy< vector<float> > MET_Egamma10NoTau_wpy;
       VarProxy< vector<float> > MET_Egamma10NoTau_wet;
       VarProxy< vector<unsigned int> > MET_Egamma10NoTau_statusWord;
-      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpx;
-      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wpy;
-      VarProxy< vector<float> > MET_LooseEgamma10NoTau_wet;
-      VarProxy< vector<unsigned int> > MET_LooseEgamma10NoTau_statusWord;
-      VarProxy< vector<float> > MET_Egamma10LooseTau_wpx;
-      VarProxy< vector<float> > MET_Egamma10LooseTau_wpy;
-      VarProxy< vector<float> > MET_Egamma10LooseTau_wet;
-      VarProxy< vector<unsigned int> > MET_Egamma10LooseTau_statusWord;
-      VarProxy< vector<float> > MET_wpx;
-      VarProxy< vector<float> > MET_wpy;
-      VarProxy< vector<float> > MET_wet;
-      VarProxy< vector<unsigned int> > MET_statusWord;
       VarProxy< float > E;
       VarProxy< float > pt;
       VarProxy< float > m;
       VarProxy< float > eta;
       VarProxy< float > phi;
-      VarProxy< float > EtaOrigin;
-      VarProxy< float > PhiOrigin;
-      VarProxy< float > MOrigin;
-      VarProxy< float > WIDTH;
-      VarProxy< float > n90;
-      VarProxy< float > Timing;
       VarProxy< float > LArQuality;
-      VarProxy< float > nTrk;
       VarProxy< float > sumPtTrk;
-      VarProxy< float > OriginIndex;
       VarProxy< float > HECQuality;
       VarProxy< float > NegativeE;
       VarProxy< float > AverageLArQF;
-      VarProxy< float > BCH_CORR_CELL;
-      VarProxy< float > BCH_CORR_DOTX;
       VarProxy< float > BCH_CORR_JET;
-      VarProxy< float > BCH_CORR_JET_FORCELL;
-      VarProxy< float > ENG_BAD_CELLS;
-      VarProxy< float > N_BAD_CELLS;
-      VarProxy< float > N_BAD_CELLS_CORR;
-      VarProxy< float > BAD_CELLS_CORR_E;
-      VarProxy< float > NumTowers;
-      VarProxy< float > ootFracCells5;
-      VarProxy< float > ootFracCells10;
-      VarProxy< float > ootFracClusters5;
-      VarProxy< float > ootFracClusters10;
       VarProxy< int > SamplingMax;
       VarProxy< float > fracSamplingMax;
       VarProxy< float > hecf;
-      VarProxy< float > tgap3f;
-      VarProxy< int > isUgly;
-      VarProxy< int > isBadLooseMinus;
-      VarProxy< int > isBadLoose;
-      VarProxy< int > isBadMedium;
-      VarProxy< int > isBadTight;
       VarProxy< float > emfrac;
-      VarProxy< float > Offset;
-      VarProxy< float > EMJES;
-      VarProxy< float > EMJES_EtaCorr;
-      VarProxy< float > EMJESnooffset;
-      VarProxy< float > LCJES;
-      VarProxy< float > LCJES_EtaCorr;
-      VarProxy< float > emscale_E;
-      VarProxy< float > emscale_pt;
-      VarProxy< float > emscale_m;
       VarProxy< float > emscale_eta;
-      VarProxy< float > emscale_phi;
       VarProxy< float > ActiveArea;
       VarProxy< float > ActiveAreaPx;
       VarProxy< float > ActiveAreaPy;
       VarProxy< float > ActiveAreaPz;
       VarProxy< float > ActiveAreaE;
       VarProxy< float > jvtxf;
-      VarProxy< vector<float> > jvtxfFull;
-      VarProxy< float > jvtx_x;
-      VarProxy< float > jvtx_y;
-      VarProxy< float > jvtx_z;
-      VarProxy< float > TruthMFindex;
-      VarProxy< float > TruthMF;
-      VarProxy< float > GSCFactorF;
-      VarProxy< float > WidthFraction;
-      VarProxy< float > e_PreSamplerB;
-      VarProxy< float > e_EMB1;
-      VarProxy< float > e_EMB2;
-      VarProxy< float > e_EMB3;
-      VarProxy< float > e_PreSamplerE;
-      VarProxy< float > e_EME1;
-      VarProxy< float > e_EME2;
-      VarProxy< float > e_EME3;
-      VarProxy< float > e_HEC0;
-      VarProxy< float > e_HEC1;
-      VarProxy< float > e_HEC2;
-      VarProxy< float > e_HEC3;
-      VarProxy< float > e_TileBar0;
-      VarProxy< float > e_TileBar1;
-      VarProxy< float > e_TileBar2;
-      VarProxy< float > e_TileGap1;
-      VarProxy< float > e_TileGap2;
-      VarProxy< float > e_TileGap3;
-      VarProxy< float > e_TileExt0;
-      VarProxy< float > e_TileExt1;
-      VarProxy< float > e_TileExt2;
-      VarProxy< float > e_FCAL0;
-      VarProxy< float > e_FCAL1;
-      VarProxy< float > e_FCAL2;
-      VarProxy< int > Nconst;
-      VarProxy< vector<float> > ptconst_default;
-      VarProxy< vector<float> > econst_default;
-      VarProxy< vector<float> > etaconst_default;
-      VarProxy< vector<float> > phiconst_default;
-      VarProxy< vector<float> > weightconst_default;
       VarProxy< float > constscale_E;
       VarProxy< float > constscale_pt;
       VarProxy< float > constscale_m;
       VarProxy< float > constscale_eta;
       VarProxy< float > constscale_phi;
-      VarProxy< float > flavor_weight_Comb;
-      VarProxy< float > flavor_weight_IP2D;
-      VarProxy< float > flavor_weight_IP3D;
-      VarProxy< float > flavor_weight_SV0;
-      VarProxy< float > flavor_weight_SV1;
-      VarProxy< float > flavor_weight_SV2;
-      VarProxy< float > flavor_weight_SoftMuonTagChi2;
-      VarProxy< float > flavor_weight_SecondSoftMuonTagChi2;
-      VarProxy< float > flavor_weight_JetFitterTagNN;
-      VarProxy< float > flavor_weight_JetFitterCOMBNN;
       VarProxy< float > flavor_weight_MV1;
-      VarProxy< float > flavor_weight_MV2;
-      VarProxy< float > flavor_weight_GbbNN;
-      VarProxy< float > flavor_weight_JetFitterCharm;
-      VarProxy< float > flavor_weight_MV3_bVSu;
-      VarProxy< float > flavor_weight_MV3_bVSc;
-      VarProxy< float > flavor_weight_MV3_cVSu;
 // MC only
       VarProxy< int > flavor_truth_label;
-      VarProxy< float > flavor_truth_dRminToB;
-      VarProxy< float > flavor_truth_dRminToC;
-      VarProxy< float > flavor_truth_dRminToT;
-      VarProxy< int > flavor_truth_BHadronpdg;
-      VarProxy< float > flavor_truth_vx_x;
-      VarProxy< float > flavor_truth_vx_y;
-      VarProxy< float > flavor_truth_vx_z;
 // end MC only
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_ip2d_pu;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_ip2d_pb;
-      VarProxy< int > flavor_component_ip2d_isValid;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_ip2d_ntrk;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_ip3d_pu;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_ip3d_pb;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_ip3d_pc;
-      VarProxy< int > flavor_component_ip3d_isValid;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_ip3d_ntrk;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_sv1_pu;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_sv1_pb;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_sv1_pc;
-      VarProxy< int > flavor_component_sv1_isValid;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_sv2_pu;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_sv2_pb;
-      VarProxy< int > flavor_component_sv2_isValid;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfit_pu;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfit_pb;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfit_pc;
-      VarProxy< int > flavor_component_jfit_isValid;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfitcomb_pu;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfitcomb_pb;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfitcomb_pc;
-      VarProxy< int > flavor_component_jfitcomb_isValid;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_jfit_nvtx;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_jfit_nvtx1t;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_jfit_ntrkAtVx;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfit_efrc;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfit_mass;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfit_sig3d;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfit_deltaPhi;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfit_deltaEta;
-      /// Names of the properties in JetFitterGenericTagInfo
-      VarProxy< vector<string> > flavor_component_jfitc_doublePropName;
-      /// Values of the properties in JetFitterGenericTagInfo
-      VarProxy< vector<double> > flavor_component_jfitc_doublePropValue;
-      /// Names of the properties in JetFitterGenericTagInfo
-      VarProxy< vector<string> > flavor_component_jfitc_intPropName;
-      /// Values of the properties in JetFitterGenericTagInfo
-      VarProxy< vector<int> > flavor_component_jfitc_intPropValue;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfitc_pu;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfitc_pb;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_jfitc_pc;
-      VarProxy< int > flavor_component_jfitc_isValid;
-      VarProxy< int > flavor_component_svp_isValid;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_svp_ntrkv;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_svp_ntrkj;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_svp_n2t;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_svp_mass;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_svp_efrc;
-      VarProxy< float > flavor_component_svp_x;
-      VarProxy< float > flavor_component_svp_y;
-      VarProxy< float > flavor_component_svp_z;
-      VarProxy< float > flavor_component_svp_err_x;
-      VarProxy< float > flavor_component_svp_err_y;
-      VarProxy< float > flavor_component_svp_err_z;
-      VarProxy< float > flavor_component_svp_cov_xy;
-      VarProxy< float > flavor_component_svp_cov_xz;
-      VarProxy< float > flavor_component_svp_cov_yz;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_svp_chi2;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_svp_ndof;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_svp_ntrk;
-      VarProxy< int > flavor_component_sv0p_isValid;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_sv0p_ntrkv;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_sv0p_ntrkj;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_sv0p_n2t;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_sv0p_mass;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_sv0p_efrc;
-      VarProxy< float > flavor_component_sv0p_x;
-      VarProxy< float > flavor_component_sv0p_y;
-      VarProxy< float > flavor_component_sv0p_z;
-      VarProxy< float > flavor_component_sv0p_err_x;
-      VarProxy< float > flavor_component_sv0p_err_y;
-      VarProxy< float > flavor_component_sv0p_err_z;
-      VarProxy< float > flavor_component_sv0p_cov_xy;
-      VarProxy< float > flavor_component_sv0p_cov_xz;
-      VarProxy< float > flavor_component_sv0p_cov_yz;
-      /// UNDOCUMENTED
-      VarProxy< float > flavor_component_sv0p_chi2;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_sv0p_ndof;
-      /// UNDOCUMENTED
-      VarProxy< int > flavor_component_sv0p_ntrk;
-      /// Number of ntuple rows.
-      VarProxy< int > flavor_assoctrk_n;
-      /// Index in trk
-      VarProxy< vector<int> > flavor_assoctrk_index;
-      VarProxy< float > el_dr;
-      VarProxy< int > el_matched;
-      VarProxy< float > mu_dr;
-      VarProxy< int > mu_matched;
-      /// DeltaR between the offline and trigger objects.
-      VarProxy< float > L1_dr;
-      VarProxy< int > L1_matched;
-      /// DeltaR between the offline and trigger objects.
-      VarProxy< float > L2_dr;
-      VarProxy< int > L2_matched;
-      /// DeltaR between the offline and trigger objects.
-      VarProxy< float > EF_dr;
-      VarProxy< int > EF_matched;
-      VarProxy< int > bbDecision;
-      VarProxy< float > SmearingFactor;
 
 
 bool is_data; // ~bj 
@@ -386,18 +131,6 @@ bool is_data; // ~bj
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpy;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wet;
       VarHandle< vector<vector<unsigned int> >* > MET_Egamma10NoTau_statusWord;
-      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpx;
-      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wpy;
-      VarHandle< vector<vector<float> >* > MET_LooseEgamma10NoTau_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_LooseEgamma10NoTau_statusWord;
-      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpx;
-      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wpy;
-      VarHandle< vector<vector<float> >* > MET_Egamma10LooseTau_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_Egamma10LooseTau_statusWord;
-      VarHandle< vector<vector<float> >* > MET_wpx;
-      VarHandle< vector<vector<float> >* > MET_wpy;
-      VarHandle< vector<vector<float> >* > MET_wet;
-      VarHandle< vector<vector<unsigned int> >* > MET_statusWord;
       /// Number of ntuple rows.
       VarHandle< Int_t > n;
       VarHandle< vector<float>* > E;
@@ -405,273 +138,32 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > m;
       VarHandle< vector<float>* > eta;
       VarHandle< vector<float>* > phi;
-      VarHandle< vector<float>* > EtaOrigin;
-      VarHandle< vector<float>* > PhiOrigin;
-      VarHandle< vector<float>* > MOrigin;
-      VarHandle< vector<float>* > WIDTH;
-      VarHandle< vector<float>* > n90;
-      VarHandle< vector<float>* > Timing;
       VarHandle< vector<float>* > LArQuality;
-      VarHandle< vector<float>* > nTrk;
       VarHandle< vector<float>* > sumPtTrk;
-      VarHandle< vector<float>* > OriginIndex;
       VarHandle< vector<float>* > HECQuality;
       VarHandle< vector<float>* > NegativeE;
       VarHandle< vector<float>* > AverageLArQF;
-      VarHandle< vector<float>* > BCH_CORR_CELL;
-      VarHandle< vector<float>* > BCH_CORR_DOTX;
       VarHandle< vector<float>* > BCH_CORR_JET;
-      VarHandle< vector<float>* > BCH_CORR_JET_FORCELL;
-      VarHandle< vector<float>* > ENG_BAD_CELLS;
-      VarHandle< vector<float>* > N_BAD_CELLS;
-      VarHandle< vector<float>* > N_BAD_CELLS_CORR;
-      VarHandle< vector<float>* > BAD_CELLS_CORR_E;
-      VarHandle< vector<float>* > NumTowers;
-      VarHandle< vector<float>* > ootFracCells5;
-      VarHandle< vector<float>* > ootFracCells10;
-      VarHandle< vector<float>* > ootFracClusters5;
-      VarHandle< vector<float>* > ootFracClusters10;
       VarHandle< vector<int>* > SamplingMax;
       VarHandle< vector<float>* > fracSamplingMax;
       VarHandle< vector<float>* > hecf;
-      VarHandle< vector<float>* > tgap3f;
-      VarHandle< vector<int>* > isUgly;
-      VarHandle< vector<int>* > isBadLooseMinus;
-      VarHandle< vector<int>* > isBadLoose;
-      VarHandle< vector<int>* > isBadMedium;
-      VarHandle< vector<int>* > isBadTight;
       VarHandle< vector<float>* > emfrac;
-      VarHandle< vector<float>* > Offset;
-      VarHandle< vector<float>* > EMJES;
-      VarHandle< vector<float>* > EMJES_EtaCorr;
-      VarHandle< vector<float>* > EMJESnooffset;
-      VarHandle< vector<float>* > LCJES;
-      VarHandle< vector<float>* > LCJES_EtaCorr;
-      VarHandle< vector<float>* > emscale_E;
-      VarHandle< vector<float>* > emscale_pt;
-      VarHandle< vector<float>* > emscale_m;
       VarHandle< vector<float>* > emscale_eta;
-      VarHandle< vector<float>* > emscale_phi;
       VarHandle< vector<float>* > ActiveArea;
       VarHandle< vector<float>* > ActiveAreaPx;
       VarHandle< vector<float>* > ActiveAreaPy;
       VarHandle< vector<float>* > ActiveAreaPz;
       VarHandle< vector<float>* > ActiveAreaE;
       VarHandle< vector<float>* > jvtxf;
-      VarHandle< vector<vector<float> >* > jvtxfFull;
-      VarHandle< vector<float>* > jvtx_x;
-      VarHandle< vector<float>* > jvtx_y;
-      VarHandle< vector<float>* > jvtx_z;
-      VarHandle< vector<float>* > TruthMFindex;
-      VarHandle< vector<float>* > TruthMF;
-      VarHandle< vector<float>* > GSCFactorF;
-      VarHandle< vector<float>* > WidthFraction;
-      VarHandle< vector<float>* > e_PreSamplerB;
-      VarHandle< vector<float>* > e_EMB1;
-      VarHandle< vector<float>* > e_EMB2;
-      VarHandle< vector<float>* > e_EMB3;
-      VarHandle< vector<float>* > e_PreSamplerE;
-      VarHandle< vector<float>* > e_EME1;
-      VarHandle< vector<float>* > e_EME2;
-      VarHandle< vector<float>* > e_EME3;
-      VarHandle< vector<float>* > e_HEC0;
-      VarHandle< vector<float>* > e_HEC1;
-      VarHandle< vector<float>* > e_HEC2;
-      VarHandle< vector<float>* > e_HEC3;
-      VarHandle< vector<float>* > e_TileBar0;
-      VarHandle< vector<float>* > e_TileBar1;
-      VarHandle< vector<float>* > e_TileBar2;
-      VarHandle< vector<float>* > e_TileGap1;
-      VarHandle< vector<float>* > e_TileGap2;
-      VarHandle< vector<float>* > e_TileGap3;
-      VarHandle< vector<float>* > e_TileExt0;
-      VarHandle< vector<float>* > e_TileExt1;
-      VarHandle< vector<float>* > e_TileExt2;
-      VarHandle< vector<float>* > e_FCAL0;
-      VarHandle< vector<float>* > e_FCAL1;
-      VarHandle< vector<float>* > e_FCAL2;
-      VarHandle< vector<int>* > Nconst;
-      VarHandle< vector<vector<float> >* > ptconst_default;
-      VarHandle< vector<vector<float> >* > econst_default;
-      VarHandle< vector<vector<float> >* > etaconst_default;
-      VarHandle< vector<vector<float> >* > phiconst_default;
-      VarHandle< vector<vector<float> >* > weightconst_default;
       VarHandle< vector<float>* > constscale_E;
       VarHandle< vector<float>* > constscale_pt;
       VarHandle< vector<float>* > constscale_m;
       VarHandle< vector<float>* > constscale_eta;
       VarHandle< vector<float>* > constscale_phi;
-      VarHandle< vector<float>* > flavor_weight_Comb;
-      VarHandle< vector<float>* > flavor_weight_IP2D;
-      VarHandle< vector<float>* > flavor_weight_IP3D;
-      VarHandle< vector<float>* > flavor_weight_SV0;
-      VarHandle< vector<float>* > flavor_weight_SV1;
-      VarHandle< vector<float>* > flavor_weight_SV2;
-      VarHandle< vector<float>* > flavor_weight_SoftMuonTagChi2;
-      VarHandle< vector<float>* > flavor_weight_SecondSoftMuonTagChi2;
-      VarHandle< vector<float>* > flavor_weight_JetFitterTagNN;
-      VarHandle< vector<float>* > flavor_weight_JetFitterCOMBNN;
       VarHandle< vector<float>* > flavor_weight_MV1;
-      VarHandle< vector<float>* > flavor_weight_MV2;
-      VarHandle< vector<float>* > flavor_weight_GbbNN;
-      VarHandle< vector<float>* > flavor_weight_JetFitterCharm;
-      VarHandle< vector<float>* > flavor_weight_MV3_bVSu;
-      VarHandle< vector<float>* > flavor_weight_MV3_bVSc;
-      VarHandle< vector<float>* > flavor_weight_MV3_cVSu;
 // MC only
       VarHandle< vector<int>* > flavor_truth_label;
-      VarHandle< vector<float>* > flavor_truth_dRminToB;
-      VarHandle< vector<float>* > flavor_truth_dRminToC;
-      VarHandle< vector<float>* > flavor_truth_dRminToT;
-      VarHandle< vector<int>* > flavor_truth_BHadronpdg;
-      VarHandle< vector<float>* > flavor_truth_vx_x;
-      VarHandle< vector<float>* > flavor_truth_vx_y;
-      VarHandle< vector<float>* > flavor_truth_vx_z;
 // end MC only
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_ip2d_pu;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_ip2d_pb;
-      VarHandle< vector<int>* > flavor_component_ip2d_isValid;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_ip2d_ntrk;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_ip3d_pu;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_ip3d_pb;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_ip3d_pc;
-      VarHandle< vector<int>* > flavor_component_ip3d_isValid;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_ip3d_ntrk;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_sv1_pu;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_sv1_pb;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_sv1_pc;
-      VarHandle< vector<int>* > flavor_component_sv1_isValid;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_sv2_pu;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_sv2_pb;
-      VarHandle< vector<int>* > flavor_component_sv2_isValid;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfit_pu;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfit_pb;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfit_pc;
-      VarHandle< vector<int>* > flavor_component_jfit_isValid;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfitcomb_pu;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfitcomb_pb;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfitcomb_pc;
-      VarHandle< vector<int>* > flavor_component_jfitcomb_isValid;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_jfit_nvtx;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_jfit_nvtx1t;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_jfit_ntrkAtVx;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfit_efrc;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfit_mass;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfit_sig3d;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfit_deltaPhi;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfit_deltaEta;
-      /// Names of the properties in JetFitterGenericTagInfo
-      VarHandle< vector<vector<string> >* > flavor_component_jfitc_doublePropName;
-      /// Values of the properties in JetFitterGenericTagInfo
-      VarHandle< vector<vector<double> >* > flavor_component_jfitc_doublePropValue;
-      /// Names of the properties in JetFitterGenericTagInfo
-      VarHandle< vector<vector<string> >* > flavor_component_jfitc_intPropName;
-      /// Values of the properties in JetFitterGenericTagInfo
-      VarHandle< vector<vector<int> >* > flavor_component_jfitc_intPropValue;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfitc_pu;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfitc_pb;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_jfitc_pc;
-      VarHandle< vector<int>* > flavor_component_jfitc_isValid;
-      VarHandle< vector<int>* > flavor_component_svp_isValid;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_svp_ntrkv;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_svp_ntrkj;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_svp_n2t;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_svp_mass;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_svp_efrc;
-      VarHandle< vector<float>* > flavor_component_svp_x;
-      VarHandle< vector<float>* > flavor_component_svp_y;
-      VarHandle< vector<float>* > flavor_component_svp_z;
-      VarHandle< vector<float>* > flavor_component_svp_err_x;
-      VarHandle< vector<float>* > flavor_component_svp_err_y;
-      VarHandle< vector<float>* > flavor_component_svp_err_z;
-      VarHandle< vector<float>* > flavor_component_svp_cov_xy;
-      VarHandle< vector<float>* > flavor_component_svp_cov_xz;
-      VarHandle< vector<float>* > flavor_component_svp_cov_yz;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_svp_chi2;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_svp_ndof;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_svp_ntrk;
-      VarHandle< vector<int>* > flavor_component_sv0p_isValid;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_sv0p_ntrkv;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_sv0p_ntrkj;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_sv0p_n2t;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_sv0p_mass;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_sv0p_efrc;
-      VarHandle< vector<float>* > flavor_component_sv0p_x;
-      VarHandle< vector<float>* > flavor_component_sv0p_y;
-      VarHandle< vector<float>* > flavor_component_sv0p_z;
-      VarHandle< vector<float>* > flavor_component_sv0p_err_x;
-      VarHandle< vector<float>* > flavor_component_sv0p_err_y;
-      VarHandle< vector<float>* > flavor_component_sv0p_err_z;
-      VarHandle< vector<float>* > flavor_component_sv0p_cov_xy;
-      VarHandle< vector<float>* > flavor_component_sv0p_cov_xz;
-      VarHandle< vector<float>* > flavor_component_sv0p_cov_yz;
-      /// UNDOCUMENTED
-      VarHandle< vector<float>* > flavor_component_sv0p_chi2;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_sv0p_ndof;
-      /// UNDOCUMENTED
-      VarHandle< vector<int>* > flavor_component_sv0p_ntrk;
-      /// Number of ntuple rows.
-      VarHandle< vector<int>* > flavor_assoctrk_n;
-      /// Index in trk
-      VarHandle< vector<vector<int> >* > flavor_assoctrk_index;
-      VarHandle< vector<float>* > el_dr;
-      VarHandle< vector<int>* > el_matched;
-      VarHandle< vector<float>* > mu_dr;
-      VarHandle< vector<int>* > mu_matched;
-      /// DeltaR between the offline and trigger objects.
-      VarHandle< vector<float>* > L1_dr;
-      VarHandle< vector<int>* > L1_matched;
-      /// DeltaR between the offline and trigger objects.
-      VarHandle< vector<float>* > L2_dr;
-      VarHandle< vector<int>* > L2_matched;
-      /// DeltaR between the offline and trigger objects.
-      VarHandle< vector<float>* > EF_dr;
-      VarHandle< vector<int>* > EF_matched;
-      VarHandle< vector<int>* > bbDecision;
-      VarHandle< vector<float>* > SmearingFactor;
 
    private:
       mutable std::vector< JetD3PDObjectElement > fProxies; ///< Internal list of proxy objects
