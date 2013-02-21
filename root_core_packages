@@ -22,7 +22,7 @@ atlasperf/CombPerf/EGamma/PhotonID/FudgeMCTool/tags/FudgeMCTool-00-00-16
 atlasperf/CombPerf/EGamma/PhotonID/PhotonIDTool/tags/PhotonIDTool-00-01-06
 atlasoff/Trigger/TrigAnalysis/TrigMuonEfficiency/tags/TrigMuonEfficiency-00-02-30
 atlasphys/Physics/SUSY/Analyses/WeakProduction/DGTriggerReweight/tags/DGTriggerReweight-00-00-26
-atlasphys/Physics/SUSY/Analyses/WeakProduction/HistFitterTree/tags/HistFitterTree-00-00-04
+atlasphys/Physics/SUSY/Analyses/WeakProduction/HistFitterTree/tags/HistFitterTree-00-00-15
 atlasphys/Physics/SUSY/Analyses/WeakProduction/TriggerMatch/tags/TriggerMatch-00-00-10
 atlasphys/Physics/SUSY/Analyses/WeakProduction/LeptonTruthTools/tags/LeptonTruthTools-00-01-01
 atlasphys/Physics/SUSY/Analyses/WeakProduction/ChargeFlip/trunk

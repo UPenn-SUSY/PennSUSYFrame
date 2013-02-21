@@ -14,8 +14,8 @@ int main(int argc, char** argv)
 {
   std::cout << "Dumping Cut flow\n";
 
-  // TChain* t = CommandParser::readInputs(argc, argv, "output");
-  TChain* t = CommandParser::readInputs(argc, argv, "presel");
+  TChain* t = CommandParser::readInputs(argc, argv, "output");
+  // TChain* t = CommandParser::readInputs(argc, argv, "presel");
 
   // Create the CutFlowDump object, and loop over the TChain
   CutFlowDump cfd(t);

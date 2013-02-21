@@ -564,8 +564,7 @@ void NtupleLooper::Loop()
 {
   if (fChain == 0) return;
 
-  Long64_t nentries = fChain->GetEntriesFast();
-  // nentries = 100000;
+  Long64_t nentries = fChain->GetEntries();
   std::cout << "number evens: " << nentries << "\n";
 
   ProgressBar progress_bar(nentries, 100);
