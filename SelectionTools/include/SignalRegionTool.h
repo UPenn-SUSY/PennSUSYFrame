@@ -61,6 +61,19 @@ namespace SelectionTools
                    , SusyAnalysisTools::SRHelper*
                    );
 
+    bool passSRWWa( SusyAnalysisTools::EventDescription*
+                  , SusyAnalysisTools::SRHelper*
+                  );
+    bool passSRWWb( SusyAnalysisTools::EventDescription*
+                  , SusyAnalysisTools::SRHelper*
+                  );
+    bool passSRWWc( SusyAnalysisTools::EventDescription*
+                  , SusyAnalysisTools::SRHelper*
+                  );
+    bool passSRZJets( SusyAnalysisTools::EventDescription*
+                    , SusyAnalysisTools::SRHelper*
+                    );
+
   // ---------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -79,12 +79,12 @@ namespace SusyAnalysisTools
       bool getPassSRWWbMll();
       bool getPassSRWWcPtll();
       bool getPassSRWWcMt2();
-      bool getPassSrZjetsNumLJets();
-      bool getPassSrZjetsMetRel();
-      bool getPassSrZjetsLep1Pt();
-      bool getPassSrZjetsLep2Pt();
-      bool getPassSrZjetsMjj();
-      bool getPassSrZjetsMt2();
+      bool getPassSRZjetsNumLJets();
+      bool getPassSRZjetsMetRel();
+      bool getPassSRZjetsLep1Pt();
+      bool getPassSRZjetsLep2Pt();
+      bool getPassSRZjetsMjj();
+      bool getPassSRZjetsMt2();
 
       bool pass(   const SRHelper&) const;
       bool reverse(const SRHelper&) const;

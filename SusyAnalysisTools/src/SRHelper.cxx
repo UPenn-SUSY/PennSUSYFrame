@@ -458,37 +458,37 @@ bool SusyAnalysisTools::SRHelper::getPassSRWWcMt2()
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSrZjetsNumLJets()
+bool SusyAnalysisTools::SRHelper::getPassSRZjetsNumLJets()
 {
   return m_pass_sr_zjets_num_l_jets;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSrZjetsMetRel()
+bool SusyAnalysisTools::SRHelper::getPassSRZjetsMetRel()
 {
   return m_pass_sr_zjets_met_rel;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSrZjetsLep1Pt()
+bool SusyAnalysisTools::SRHelper::getPassSRZjetsLep1Pt()
 {
   return m_pass_sr_zjets_lep1_pt;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSrZjetsLep2Pt()
+bool SusyAnalysisTools::SRHelper::getPassSRZjetsLep2Pt()
 {
   return m_pass_sr_zjets_lep2_pt;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSrZjetsMjj()
+bool SusyAnalysisTools::SRHelper::getPassSRZjetsMjj()
 {
   return m_pass_sr_zjets_mjj;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSrZjetsMt2()
+bool SusyAnalysisTools::SRHelper::getPassSRZjetsMt2()
 {
   return m_pass_sr_zjets_mt2;
 }

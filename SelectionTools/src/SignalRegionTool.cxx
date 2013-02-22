@@ -193,6 +193,10 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   event_desc->setSR2Jets(  passSR2Jets(  event_desc, sr_helper));
   event_desc->setSRMT2a(   passSRMT2a(   event_desc, sr_helper));
   event_desc->setSRMT2b(   passSRMT2b(   event_desc, sr_helper));
+  event_desc->setSRWWa(    passSRWWa(    event_desc, sr_helper));
+  event_desc->setSRWWb(    passSRWWb(    event_desc, sr_helper));
+  event_desc->setSRWWc(    passSRWWc(    event_desc, sr_helper));
+  event_desc->setSRZjets(  passSRZJets(  event_desc, sr_helper));
 }
 
 // -----------------------------------------------------------------------------
@@ -324,6 +328,133 @@ bool SelectionTools::SignalRegionTool::passSRMT2b(
   return false;
 }
 
+// -----------------------------------------------------------------------------
+bool SelectionTools::SignalRegionTool::passSRWWa(
+    SusyAnalysisTools::EventDescription* event_desc,
+    SusyAnalysisTools::SRHelper* sr_helper)
+{
+  // require emu events
+  if (event_desc->getFlavorChannel() != FLAVOR_EM) return false;
+  // require OS leptons
+  if (event_desc->getSignChannel() != SIGN_OS) return false;
+
+  // full jet veto
+  if (sr_helper->getPassLJetVeto() == false) return false;
+  if (sr_helper->getPassBJetVeto() == false) return false;
+  if (sr_helper->getPassFJetVeto() == false) return false;
+
+  // check pT of leptons
+  if (sr_helper->getPassSRWWLep1Pt() == false) return false;
+  if (sr_helper->getPassSRWWLep2Pt() == false) return false;
+
+  // check if event passes met-rel cut
+  if (sr_helper->getPassSRWWaMetRel() == false) return false;
+
+  // check if event passes mll cut
+  if (sr_helper->getPassSRWWaMll() == false) return false;
+
+  // check if event passes ptll cut
+  if (sr_helper->getPassSRWWaPtll() == false) return false;
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::SignalRegionTool::passSRWWb(
+    SusyAnalysisTools::EventDescription* event_desc,
+    SusyAnalysisTools::SRHelper* sr_helper)
+{
+  // require emu events
+  if (event_desc->getFlavorChannel() != FLAVOR_EM) return false;
+  // require OS leptons
+  if (event_desc->getSignChannel() != SIGN_OS) return false;
+
+  // full jet veto
+  if (sr_helper->getPassLJetVeto() == false) return false;
+  if (sr_helper->getPassBJetVeto() == false) return false;
+  if (sr_helper->getPassFJetVeto() == false) return false;
+
+  // check pT of leptons
+  if (sr_helper->getPassSRWWLep1Pt() == false) return false;
+  if (sr_helper->getPassSRWWLep2Pt() == false) return false;
+
+  // check if event passes mt2 cut
+  if (sr_helper->getPassSRWWbMt2() == false) return false;
+
+  // check if event passes mll cut
+  if (sr_helper->getPassSRWWbMll() == false) return false;
+
+  // check if event passes ptll cut
+  if (sr_helper->getPassSRWWbPtll() == false) return false;
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::SignalRegionTool::passSRWWc(
+    SusyAnalysisTools::EventDescription* event_desc,
+    SusyAnalysisTools::SRHelper* sr_helper)
+{
+  // require emu events
+  if (event_desc->getFlavorChannel() != FLAVOR_EM) return false;
+  // require OS leptons
+  if (event_desc->getSignChannel() != SIGN_OS) return false;
+
+  // full jet veto
+  if (sr_helper->getPassLJetVeto() == false) return false;
+  if (sr_helper->getPassBJetVeto() == false) return false;
+  if (sr_helper->getPassFJetVeto() == false) return false;
+
+  // check pT of leptons
+  if (sr_helper->getPassSRWWLep1Pt() == false) return false;
+  if (sr_helper->getPassSRWWLep2Pt() == false) return false;
+
+  // check if event passes mt2 cut
+  if (sr_helper->getPassSRWWcMt2() == false) return false;
+
+  // check if event passes ptll cut
+  if (sr_helper->getPassSRWWcPtll() == false) return false;
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::SignalRegionTool::passSRZJets(
+    SusyAnalysisTools::EventDescription* event_desc,
+    SusyAnalysisTools::SRHelper* sr_helper)
+{
+  // require ee/mm events
+  if (event_desc->getFlavorChannel() == FLAVOR_EM) return false;
+  // require OS leptons
+  if (event_desc->getSignChannel() != SIGN_OS) return false;
+
+  // veto b/f jets
+  if (sr_helper->getPassBJetVeto() == false) return false;
+  if (sr_helper->getPassFJetVeto() == false) return false;
+
+  // require the correct number of light central jets
+  if (sr_helper->getPassSRZjetsNumLJets() == false) return false;
+
+  // check if event passes top veto
+  if (sr_helper->getPassTopVeto() == false) return false;
+
+  // check if event passes met-rel cut
+  if (sr_helper->getPassSRZjetsMetRel() == false) return false;
+
+  // check pT of leptons
+  if (sr_helper->getPassSRZjetsLep1Pt() == false) return false;
+  if (sr_helper->getPassSRZjetsLep2Pt() == false) return false;
+
+  // check if event passes Mjj cut
+  if (sr_helper->getPassSRZjetsMjj() == false) return false;
+
+  // check if event passes MT2 cut
+  if (sr_helper->getPassSRZjetsMt2() == false) return false;
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 bool SelectionTools::SignalRegionTool::passFullJetVeto(const JetContainer* jets)
 {
