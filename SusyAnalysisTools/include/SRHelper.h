@@ -48,12 +48,12 @@ namespace SusyAnalysisTools
       void setPassSRWWbMll(bool);
       void setPassSRWWcPtll(bool);
       void setPassSRWWcMt2(bool);
-      void setPassSrZjetsNumLJets(bool);
-      void setPassSrZjetsMetRel(bool);
-      void setPassSrZjetsLep1Pt(bool);
-      void setPassSrZjetsLep2Pt(bool);
-      void setPassSrZjetsMjj(bool);
-      void setPassSrZjetsMt2(bool);
+      void setPassSRZJetsNumLJets(bool);
+      void setPassSRZJetsMetRel(bool);
+      void setPassSRZJetsJet1Pt(bool);
+      void setPassSRZJetsJet2Pt(bool);
+      void setPassSRZJetsMjj(bool);
+      void setPassSRZJetsMt2(bool);
 
       bool getPassLJetVeto();
       bool getPassBJetVeto();
@@ -79,12 +79,12 @@ namespace SusyAnalysisTools
       bool getPassSRWWbMll();
       bool getPassSRWWcPtll();
       bool getPassSRWWcMt2();
-      bool getPassSRZjetsNumLJets();
-      bool getPassSRZjetsMetRel();
-      bool getPassSRZjetsLep1Pt();
-      bool getPassSRZjetsLep2Pt();
-      bool getPassSRZjetsMjj();
-      bool getPassSRZjetsMt2();
+      bool getPassSRZJetsNumLJets();
+      bool getPassSRZJetsMetRel();
+      bool getPassSRZJetsJet1Pt();
+      bool getPassSRZJetsJet2Pt();
+      bool getPassSRZJetsMjj();
+      bool getPassSRZJetsMt2();
 
       bool pass(   const SRHelper&) const;
       bool reverse(const SRHelper&) const;
@@ -155,8 +155,8 @@ namespace SusyAnalysisTools
 
       bool m_pass_sr_zjets_num_l_jets;
       bool m_pass_sr_zjets_met_rel;
-      bool m_pass_sr_zjets_lep1_pt;
-      bool m_pass_sr_zjets_lep2_pt;
+      bool m_pass_sr_zjets_jet1_pt;
+      bool m_pass_sr_zjets_jet2_pt;
       bool m_pass_sr_zjets_mjj;
       bool m_pass_sr_zjets_mt2;
 

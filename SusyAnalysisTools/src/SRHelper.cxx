@@ -52,8 +52,8 @@ ull_t SusyAnalysisTools::SRHelper::toInt() const
 
   event_desc += getIntComp(m_pass_sr_zjets_num_l_jets, ADD_SR_ZJETS_NUM_L_JETS);
   event_desc += getIntComp(m_pass_sr_zjets_met_rel   , ADD_SR_ZJETS_MET_REL   );
-  event_desc += getIntComp(m_pass_sr_zjets_lep1_pt   , ADD_SR_ZJETS_LEP1_PT   );
-  event_desc += getIntComp(m_pass_sr_zjets_lep2_pt   , ADD_SR_ZJETS_LEP2_PT   );
+  event_desc += getIntComp(m_pass_sr_zjets_jet1_pt   , ADD_SR_ZJETS_LEP1_PT   );
+  event_desc += getIntComp(m_pass_sr_zjets_jet2_pt   , ADD_SR_ZJETS_LEP2_PT   );
   event_desc += getIntComp(m_pass_sr_zjets_mjj       , ADD_SR_ZJETS_MJJ       );
   event_desc += getIntComp(m_pass_sr_zjets_mt2       , ADD_SR_ZJETS_MT2       );
 
@@ -110,8 +110,8 @@ void SusyAnalysisTools::SRHelper::set(const ull_t& rhs)
 
   m_pass_sr_zjets_num_l_jets = getComponent(rhs, ADD_SR_ZJETS_NUM_L_JETS, SIZE_BOOL);
   m_pass_sr_zjets_met_rel    = getComponent(rhs, ADD_SR_ZJETS_MET_REL   , SIZE_BOOL);
-  m_pass_sr_zjets_lep1_pt    = getComponent(rhs, ADD_SR_ZJETS_LEP1_PT   , SIZE_BOOL);
-  m_pass_sr_zjets_lep2_pt    = getComponent(rhs, ADD_SR_ZJETS_LEP2_PT   , SIZE_BOOL);
+  m_pass_sr_zjets_jet1_pt    = getComponent(rhs, ADD_SR_ZJETS_LEP1_PT   , SIZE_BOOL);
+  m_pass_sr_zjets_jet2_pt    = getComponent(rhs, ADD_SR_ZJETS_LEP2_PT   , SIZE_BOOL);
   m_pass_sr_zjets_mjj        = getComponent(rhs, ADD_SR_ZJETS_MJJ       , SIZE_BOOL);
   m_pass_sr_zjets_mt2        = getComponent(rhs, ADD_SR_ZJETS_MT2       , SIZE_BOOL);
 }
@@ -278,37 +278,37 @@ void SusyAnalysisTools::SRHelper::setPassSRWWcMt2(bool pass)
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::SRHelper::setPassSrZjetsNumLJets(bool pass)
+void SusyAnalysisTools::SRHelper::setPassSRZJetsNumLJets(bool pass)
 {
   m_pass_sr_zjets_num_l_jets = pass;
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::SRHelper::setPassSrZjetsMetRel(bool pass)
+void SusyAnalysisTools::SRHelper::setPassSRZJetsMetRel(bool pass)
 {
   m_pass_sr_zjets_met_rel = pass;
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::SRHelper::setPassSrZjetsLep1Pt(bool pass)
+void SusyAnalysisTools::SRHelper::setPassSRZJetsJet1Pt(bool pass)
 {
-  m_pass_sr_zjets_lep1_pt = pass;
+  m_pass_sr_zjets_jet1_pt = pass;
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::SRHelper::setPassSrZjetsLep2Pt(bool pass)
+void SusyAnalysisTools::SRHelper::setPassSRZJetsJet2Pt(bool pass)
 {
-  m_pass_sr_zjets_lep2_pt = pass;
+  m_pass_sr_zjets_jet2_pt = pass;
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::SRHelper::setPassSrZjetsMjj(bool pass)
+void SusyAnalysisTools::SRHelper::setPassSRZJetsMjj(bool pass)
 {
   m_pass_sr_zjets_mjj = pass;
 }
 
 // -----------------------------------------------------------------------------
-void SusyAnalysisTools::SRHelper::setPassSrZjetsMt2(bool pass)
+void SusyAnalysisTools::SRHelper::setPassSRZJetsMt2(bool pass)
 {
   m_pass_sr_zjets_mt2 = pass;
 }
@@ -458,37 +458,37 @@ bool SusyAnalysisTools::SRHelper::getPassSRWWcMt2()
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSRZjetsNumLJets()
+bool SusyAnalysisTools::SRHelper::getPassSRZJetsNumLJets()
 {
   return m_pass_sr_zjets_num_l_jets;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSRZjetsMetRel()
+bool SusyAnalysisTools::SRHelper::getPassSRZJetsMetRel()
 {
   return m_pass_sr_zjets_met_rel;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSRZjetsLep1Pt()
+bool SusyAnalysisTools::SRHelper::getPassSRZJetsJet1Pt()
 {
-  return m_pass_sr_zjets_lep1_pt;
+  return m_pass_sr_zjets_jet1_pt;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSRZjetsLep2Pt()
+bool SusyAnalysisTools::SRHelper::getPassSRZJetsJet2Pt()
 {
-  return m_pass_sr_zjets_lep2_pt;
+  return m_pass_sr_zjets_jet2_pt;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSRZjetsMjj()
+bool SusyAnalysisTools::SRHelper::getPassSRZJetsMjj()
 {
   return m_pass_sr_zjets_mjj;
 }
 
 // -----------------------------------------------------------------------------
-bool SusyAnalysisTools::SRHelper::getPassSRZjetsMt2()
+bool SusyAnalysisTools::SRHelper::getPassSRZJetsMt2()
 {
   return m_pass_sr_zjets_mt2;
 }

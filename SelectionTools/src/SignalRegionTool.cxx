@@ -20,12 +20,14 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
   DeclareProperty("z_window_mll_min", c_z_window_mll_min = 81200);
   DeclareProperty("z_window_mll_max", c_z_window_mll_max = 101200);
 
+  // SR osjveto cut values
   DeclareProperty("sr_osjveto_min_met_rel", c_sr_osjveto_met_rel_min = 100e3);
   DeclareProperty("sr_osjveto_max_met_rel", c_sr_osjveto_met_rel_max = -1);
 
   DeclareProperty("sr_osjveto_min_mt2", c_sr_osjveto_mt2_min = -1);
   DeclareProperty("sr_osjveto_max_mt2", c_sr_osjveto_mt2_max = 90e3);
 
+  // SR ssjets cut values
   DeclareProperty(
       "sr_ssjets_ee_min_met_rel", c_sr_ssjets_ee_met_rel_min = 70e3);
   DeclareProperty(
@@ -50,9 +52,11 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
   DeclareProperty("sr_ssjets_em_min_mt", c_sr_ssjets_em_mt_min = -1);
   DeclareProperty("sr_ssjets_em_max_mt", c_sr_ssjets_em_mt_max = 50e3);
 
+  // SR 2jets cut values
   DeclareProperty("sr_2jets_min_met_rel", c_sr_2jets_met_rel_min = 50e3);
   DeclareProperty("sr_2jets_max_met_rel", c_sr_2jets_met_rel_max = -1);
 
+  // SR mt2 cut values
   DeclareProperty("sr_mt2_min_met_rel", c_sr_mt2_met_rel_min = 40e3);
   DeclareProperty("sr_mt2_max_met_rel", c_sr_mt2_met_rel_max = -1);
 
@@ -61,6 +65,56 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
 
   DeclareProperty("sr_mt2b_min_mt2", c_sr_mt2b_mt2_min = 100e3);
   DeclareProperty("sr_mt2b_max_mt2", c_sr_mt2b_mt2_max = -1);
+
+  // SR ww cut values
+  DeclareProperty("sr_ww_min_lep1_pt", c_sr_ww_lep1_pt_min = 35e3);
+  DeclareProperty("sr_ww_max_lep1_pt", c_sr_ww_lep1_pt_max = -1);
+
+  DeclareProperty("sr_ww_min_lep2_pt", c_sr_ww_lep2_pt_min = 20e3);
+  DeclareProperty("sr_ww_max_lep2_pt", c_sr_ww_lep2_pt_max = -1);
+
+  DeclareProperty("sr_wwa_min_met_rel", c_sr_wwa_met_rel_min = 70e3);
+  DeclareProperty("sr_wwa_max_met_rel", c_sr_wwa_met_rel_max = -1);
+
+  DeclareProperty("sr_wwa_min_mll", c_sr_wwa_mll_min = -1);
+  DeclareProperty("sr_wwa_max_mll", c_sr_wwa_mll_max = 80e3);
+
+  DeclareProperty("sr_wwa_min_ptll", c_sr_wwa_ptll_min = -1);
+  DeclareProperty("sr_wwa_max_ptll", c_sr_wwa_ptll_max = -1);
+
+  DeclareProperty("sr_wwb_min_mt2", c_sr_wwb_mt2_min = 90e3);
+  DeclareProperty("sr_wwb_max_mt2", c_sr_wwb_mt2_max = -1);
+
+  DeclareProperty("sr_wwb_min_mll", c_sr_wwb_mll_min = -1);
+  DeclareProperty("sr_wwb_max_mll", c_sr_wwb_mll_max = 130e3);
+
+  DeclareProperty("sr_wwb_min_ptll", c_sr_wwb_ptll_min = -1);
+  DeclareProperty("sr_wwb_max_ptll", c_sr_wwb_ptll_max = 170e3);
+
+  DeclareProperty("sr_wwc_min_ptll", c_sr_wwc_ptll_min = -1);
+  DeclareProperty("sr_wwc_max_ptll", c_sr_wwc_ptll_max = 190e3);
+
+  DeclareProperty("sr_wwc_min_mt2", c_sr_wwc_mt2_min = 100e3);
+  DeclareProperty("sr_wwc_max_mt2", c_sr_wwc_mt2_max = -1);
+
+  // SR zjets cut values
+  DeclareProperty("sr_zjets_min_num_jets", c_sr_zjets_num_jets_min = 2);
+  DeclareProperty("sr_zjets_max_num_jets", c_sr_zjets_num_jets_max = -1);
+
+  DeclareProperty("sr_zjets_min_met_rel", c_sr_zjets_met_rel_min = 40e3);
+  DeclareProperty("sr_zjets_max_met_rel", c_sr_zjets_met_rel_max = -1);
+
+  DeclareProperty("sr_zjets_min_jet1_pt", c_sr_zjets_jet1_pt_min = 40e3);
+  DeclareProperty("sr_zjets_max_jet1_pt", c_sr_zjets_jet1_pt_max = -1);
+
+  DeclareProperty("sr_zjets_min_jet2_pt", c_sr_zjets_jet2_pt_min = 40e3);
+  DeclareProperty("sr_zjets_max_jet2_pt", c_sr_zjets_jet2_pt_max = -1);
+
+  DeclareProperty("sr_zjets_min_mjj", c_sr_zjets_mjj_min = 50e3);
+  DeclareProperty("sr_zjets_max_mjj", c_sr_zjets_mjj_max = 100e3);
+
+  DeclareProperty("sr_zjets_min_mt2", c_sr_zjets_mt2_min = 55e3);
+  DeclareProperty("sr_zjets_max_mt2", c_sr_zjets_mt2_max = -1);
 }
 
 // -----------------------------------------------------------------------------
@@ -160,6 +214,12 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   sr_helper->setPassSRMT2MetRel(
       passCut(met_rel, c_sr_mt2_met_rel_min, c_sr_mt2_met_rel_max));
 
+  sr_helper->setPassSRWWaMetRel(
+      passCut(met_rel, c_sr_wwa_met_rel_min, c_sr_wwa_met_rel_max));
+
+  sr_helper->setPassSRZJetsMetRel(
+      passCut(met_rel, c_sr_zjets_met_rel_min, c_sr_zjets_met_rel_max));
+
   // Check mt cuts
   double mt = event->getMt();
   if (event->getFlavorChannel() == FLAVOR_EE) {
@@ -186,6 +246,12 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
 
   sr_helper->setPassSRMT2bMt2(
       passCut(mt2, c_sr_mt2b_mt2_min, c_sr_mt2b_mt2_max));
+
+  sr_helper->setPassSRWWbMt2(
+      passCut(met_rel, c_sr_wwb_mt2_min, c_sr_wwb_mt2_max));
+
+  sr_helper->setPassSRWWcMt2(
+      passCut(met_rel, c_sr_wwc_mt2_min, c_sr_wwc_mt2_max));
 
   // Check for signal regions
   event_desc->setSROSJVeto(passSROSJVeto(event_desc, sr_helper));
@@ -425,31 +491,35 @@ bool SelectionTools::SignalRegionTool::passSRZJets(
 {
   // require ee/mm events
   if (event_desc->getFlavorChannel() == FLAVOR_EM) return false;
+
   // require OS leptons
   if (event_desc->getSignChannel() != SIGN_OS) return false;
+
+  // require event be in z-window
+  if (sr_helper->getPassZVeto() == true) return false;
 
   // veto b/f jets
   if (sr_helper->getPassBJetVeto() == false) return false;
   if (sr_helper->getPassFJetVeto() == false) return false;
 
   // require the correct number of light central jets
-  if (sr_helper->getPassSRZjetsNumLJets() == false) return false;
+  if (sr_helper->getPassSRZJetsNumLJets() == false) return false;
 
   // check if event passes top veto
   if (sr_helper->getPassTopVeto() == false) return false;
 
   // check if event passes met-rel cut
-  if (sr_helper->getPassSRZjetsMetRel() == false) return false;
+  if (sr_helper->getPassSRZJetsMetRel() == false) return false;
 
   // check pT of leptons
-  if (sr_helper->getPassSRZjetsLep1Pt() == false) return false;
-  if (sr_helper->getPassSRZjetsLep2Pt() == false) return false;
+  if (sr_helper->getPassSRZJetsJet1Pt() == false) return false;
+  if (sr_helper->getPassSRZJetsJet2Pt() == false) return false;
 
   // check if event passes Mjj cut
-  if (sr_helper->getPassSRZjetsMjj() == false) return false;
+  if (sr_helper->getPassSRZJetsMjj() == false) return false;
 
   // check if event passes MT2 cut
-  if (sr_helper->getPassSRZjetsMt2() == false) return false;
+  if (sr_helper->getPassSRZJetsMt2() == false) return false;
 
   return true;
 }
