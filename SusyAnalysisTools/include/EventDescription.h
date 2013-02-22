@@ -61,6 +61,11 @@ namespace SusyAnalysisTools
       void setSRMT2a(bool);
       void setSRMT2b(bool);
 
+      void setSRWWa(bool);
+      void setSRWWb(bool);
+      void setSRWWc(bool);
+      void setSRZjets(bool);
+
       // void setCR1(bool);
       // void setCR2(bool);
       // void setCR3(bool);
@@ -101,6 +106,11 @@ namespace SusyAnalysisTools
       bool getPassSR2Jets() const;
       bool getPassSRMT2a() const;
       bool getPassSRMT2b() const;
+
+      bool getPassSRWWa() const;
+      bool getPassSRWWb() const;
+      bool getPassSRWWc() const;
+      bool getPassSRZjets() const;
 
       // bool getPassCR1() const;
       // bool getPassCR2() const;
@@ -150,6 +160,10 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_SR_2JETS           = 42;
       static const unsigned int ADD_SR_MT2a            = 43;
       static const unsigned int ADD_SR_MT2b            = 44;
+      static const unsigned int ADD_SR_WWA             = 45;
+      static const unsigned int ADD_SR_WWB             = 46;
+      static const unsigned int ADD_SR_WWC             = 47;
+      static const unsigned int ADD_SR_ZJETS           = 48;
       // static const unsigned int ADD_CR_1               = 50;
       // static const unsigned int ADD_CR_2               = 51;
       // static const unsigned int ADD_CR_3               = 52;
@@ -191,6 +205,11 @@ namespace SusyAnalysisTools
       bool m_pass_sr_2jets;
       bool m_pass_sr_mt2a;
       bool m_pass_sr_mt2b;
+
+      bool m_pass_sr_wwa;
+      bool m_pass_sr_wwb;
+      bool m_pass_sr_wwc;
+      bool m_pass_sr_zjets;
 
       // bool m_pass_cr1;
       // bool m_pass_cr2;
