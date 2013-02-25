@@ -164,10 +164,21 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_SR_WWB             = 46;
       static const unsigned int ADD_SR_WWC             = 47;
       static const unsigned int ADD_SR_ZJETS           = 48;
-      // static const unsigned int ADD_CR_1               = 50;
-      // static const unsigned int ADD_CR_2               = 51;
-      // static const unsigned int ADD_CR_3               = 52;
-      // static const unsigned int ADD_CR_4               = 53;
+      static const unsigned int ADD_CR_ZXOSJVETO       = 50;
+      static const unsigned int ADD_CR_ZXMT2A          = 51;
+      static const unsigned int ADD_CR_ZXMT2B          = 52;
+      static const unsigned int ADD_CR_ZX2JETS         = 53;
+      static const unsigned int ADD_CR_ZXWW            = 54;
+      static const unsigned int ADD_CR_TOP             = 55;
+      static const unsigned int ADD_CR_TOPWWA          = 56;
+      static const unsigned int ADD_CR_TOPWWB          = 57;
+      static const unsigned int ADD_CR_TOPWWC          = 58;
+      static const unsigned int ADD_CR_WW1             = 59;
+      static const unsigned int ADD_CR_WW2             = 60;
+      static const unsigned int ADD_CR_WWA             = 61;
+      static const unsigned int ADD_CR_WWB             = 62;
+      static const unsigned int ADD_CR_WWC             = 63;
+      // static const unsigned int ADD_CR_BTAG            = 64;
 
 
       bool            m_is_data;
