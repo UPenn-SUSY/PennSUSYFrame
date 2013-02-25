@@ -259,8 +259,6 @@ PileUpScaleFactor:
 
 TriggerReweight:
   do_trigger_sf:           True
-  # trigger_reweight_dir:    ${ROOTCOREDIR}/../DGTriggerReweight/data/
-  # trigger_reweight_period: HCP
   trigger_reweight_dir:    ${ROOTCOREDIR}/../DGTriggerReweight/data/
   trigger_reweight_period: Moriond
 
@@ -294,7 +292,7 @@ JetOutput:
   do_detailed_output: 0
   jet_container_name: good
 
-JetOutput:
+JetOutput_light:
   do_detailed_output: 1
   jet_container_name: light
   jet_label:          light_jet_

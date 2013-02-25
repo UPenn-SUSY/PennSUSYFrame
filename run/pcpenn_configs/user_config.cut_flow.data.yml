@@ -6,24 +6,24 @@ do_metadata:        False
 input_file_hists:   ''
 
 CutFlow:
-    Crit_grl:              True
-    Crit_incomplete_event: True
-    Crit_tile_error:       True
-    Crit_tile_hot_spot:    True
-    Crit_lar_error:        True
-    Crit_bad_jet_veto:     True
-    Crit_primary_vertex:   True
-    Crit_bad_mu_veto:      True
-    Crit_cosmic_mu_veto:   True
-    Crit_hfor:             True
-    Crit_ge_2_lep:         True
-    Crit_2_lep:            True
+    Crit_grl:              False
+    Crit_incomplete_event: False
+    Crit_tile_error:       False
+    Crit_tile_hot_spot:    False
+    Crit_lar_error:        False
+    Crit_bad_jet_veto:     False
+    Crit_primary_vertex:   False
+    Crit_bad_mu_veto:      False
+    Crit_cosmic_mu_veto:   False
+    Crit_hfor:             False
+    Crit_ge_2_lep:         False
+    Crit_2_lep:            False
     Crit_mll:              False
     Crit_signal_lep:       False
     Crit_prompt_leptons:   False
-    Crit_phase_space:      True
-    Crit_trigger:          True
-    Crit_trigger_match:    True
+    Crit_phase_space:      False
+    Crit_trigger:          False
+    Crit_trigger_match:    False
 
 EgammaEnergyRescale:
     apply_systematics: 0
