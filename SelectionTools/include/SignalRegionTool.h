@@ -172,6 +172,66 @@ namespace SelectionTools
     double c_sr_zjets_mt2_min;
     double c_sr_zjets_mt2_max;
 
+    // CR zxosjveto cut values
+    double c_cr_zxjveto_met_rel_min;
+    double c_cr_zxjveto_met_rel_max;
+
+    // CR zxmt2 cut values
+    // Use cut values from SR mt2
+    double c_cr_zxmt2_met_rel_min;
+    double c_cr_zxmt2_met_rel_max;
+
+    // CR zx2jets cut values
+    double c_cr_zx2jets_met_rel_min;
+    double c_cr_zx2jets_met_rel_max;
+
+    double c_cr_zx2jets_mt2_min;
+    double c_cr_zx2jets_mt2_max;
+
+    // CR zxww cut values
+    double c_cr_zxww_met_rel_min;
+    double c_cr_zxww_met_rel_max;
+
+    double c_cr_zxww_mt2_min;
+    double c_cr_zxww_mt2_max;
+
+    // CR top cut values
+    double c_cr_top_met_rel_min;
+    double c_cr_top_met_rel_max;
+
+    // CR topww cut values
+    // Use cut values from SR WW
+    // double c_cr_topww__min;
+    // double c_cr_topww__max;
+
+    // CR ww1-2 cut values
+    double c_cr_ww12_met_rel_min;
+    double c_cr_ww12_met_rel_max;
+
+    double c_cr_ww12_mt2_min;
+    double c_cr_ww12_mt2_max;
+
+    double c_cr_ww2_mll_min;
+    double c_cr_ww2_mll_max;
+
+    // CR wwa-c cut values
+    // Use cut values from SR WW
+    double c_cr_wwabc_dphill_min;
+    double c_cr_wwabc_dphill_max;
+
+    // CR btag cut values
+    double c_cr_btag_drjettag_min;
+    double c_cr_btag_drjettag_max;
+
+    // // VR ss cut values
+    // double c_vr_ss__min;
+    // double c_vr_ss__max;
+
+    // // VR ssbtag cut values
+    // double c_vr_ssbtag__min;
+    // double c_vr_ssbtag__max;
+
+
     // helper function to check if a cut is passed
     bool passCut(double test, double min, double max);
 

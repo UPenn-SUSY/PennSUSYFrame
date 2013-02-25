@@ -54,6 +54,19 @@ namespace SusyAnalysisTools
       void setPassSRZJetsJet2Pt(bool);
       void setPassSRZJetsMjj(bool);
       void setPassSRZJetsMt2(bool);
+      void setPassCRZXJVetoMetRel(bool);
+      void setPassCRZXMt2MetRel(bool);
+      void setPassCRZX2JetsMetRel(bool);
+      void setPassCRZX2JetsMt2(bool);
+      void setPassCRZXWWMetRel(bool);
+      void setPassCRZXWWMt2(bool);
+      void setPassCRTopMetRel(bool);
+      void setPassCRWW12MetRel(bool);
+      void setPassCRWW12Mt2(bool);
+      void setPassCRWW2Mll(bool);
+      void setPassCRWWabcDPhill(bool);
+      void setPassCRBtagDRJetTag(bool);
+
 
       bool getPassLJetVeto();
       bool getPassBJetVeto();
@@ -85,6 +98,18 @@ namespace SusyAnalysisTools
       bool getPassSRZJetsJet2Pt();
       bool getPassSRZJetsMjj();
       bool getPassSRZJetsMt2();
+      bool getPassCRZXJVetoMetRel();
+      bool getPassCRZXMt2MetRel();
+      bool getPassCRZX2JetsMetRel();
+      bool getPassCRZX2JetsMt2();
+      bool getPassCRZXWWMetRel();
+      bool getPassCRZXWWMt2();
+      bool getPassCRTopMetRel();
+      bool getPassCRWW12MetRel();
+      bool getPassCRWW12Mt2();
+      bool getPassCRWW2Mll();
+      bool getPassCRWWabcDPhill();
+      bool getPassCRBtagDRJetTag();
 
       bool pass(   const SRHelper&) const;
       bool reverse(const SRHelper&) const;
@@ -126,6 +151,20 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_SR_ZJETS_MJJ        = 33;
       static const unsigned int ADD_SR_ZJETS_MT2        = 34;
 
+      static const unsigned int ADD_CR_ZXJVETO_MET_REL = 40;
+      static const unsigned int ADD_CR_ZXMT2_MET_REL   = 41;
+      static const unsigned int ADD_CR_ZX2JETS_MET_REL = 42;
+      static const unsigned int ADD_CR_ZX2JETS_MT2     = 43;
+      static const unsigned int ADD_CR_ZXWW_MET_REL    = 44;
+      static const unsigned int ADD_CR_ZXWW_MT2        = 45;
+      static const unsigned int ADD_CR_TOP_MET_REL     = 46;
+      static const unsigned int ADD_CR_WW12_MET_REL    = 47;
+      static const unsigned int ADD_CR_WW12_MT2        = 48;
+      static const unsigned int ADD_CR_WW2_MLL         = 49;
+      static const unsigned int ADD_CR_WWABC_DPHILL    = 50;
+      static const unsigned int ADD_CR_BTAG_DRJETTAG   = 51;
+
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       bool m_pass_l_jet_veto;
       bool m_pass_b_jet_veto;
       bool m_pass_f_jet_veto;
@@ -159,6 +198,27 @@ namespace SusyAnalysisTools
       bool m_pass_sr_zjets_jet2_pt;
       bool m_pass_sr_zjets_mjj;
       bool m_pass_sr_zjets_mt2;
+
+      bool m_pass_cr_zxjveto_met_rel;
+
+      bool m_pass_cr_zxmt2_met_rel;
+
+      bool m_pass_cr_zx2jets_met_rel;
+      bool m_pass_cr_zx2jets_mt2;
+
+      bool m_pass_cr_zxww_met_rel;
+      bool m_pass_cr_zxww_mt2;
+
+      bool m_pass_cr_top_met_rel;
+
+      bool m_pass_cr_ww12_met_rel;
+      bool m_pass_cr_ww12_mt2;
+      bool m_pass_cr_ww2_mll;
+
+      bool m_pass_cr_wwabc_dphill;
+
+      bool m_pass_cr_btag_drjettag;
+
 
       // TODO move implementation to icc file
       template <class T>

@@ -1,4 +1,4 @@
-#include "SelectionTools/include/SignalRegionTool.h"
+#include "SelectionTools/include/ControlRegionTool.h"
 
 #include "AtlasSFrameUtils/include/CycleMacros.h"
 #include "AtlasSFrameUtils/include/Electron.h"
@@ -12,8 +12,10 @@
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "CommonTools/include/TopTagTool.h"
 
+/*
+
 // -----------------------------------------------------------------------------
-SelectionTools::SignalRegionTool::SignalRegionTool(
+SelectionTools::ControlRegionTool::ControlRegionTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
                                          , m_top_tag_tool(NULL)
 {
@@ -115,60 +117,16 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
 
   DeclareProperty("sr_zjets_min_mt2", c_sr_zjets_mt2_min = 55e3);
   DeclareProperty("sr_zjets_max_mt2", c_sr_zjets_mt2_max = -1);
-
-  // CR zxosjveto cut values
-  DeclareProperty("cr_zxjveto_met_rel_min", c_cr_zxjveto_met_rel_min = 100e3);
-  DeclareProperty("cr_zxjveto_met_rel_max", c_cr_zxjveto_met_rel_max = -1);
-
-  // CR zxmt2 cut values
-  DeclareProperty("cr_zxmt2_met_rel_min", c_cr_zxmt2_met_rel_min = 40e3);
-  DeclareProperty("cr_zxmt2_met_rel_max", c_cr_zxmt2_met_rel_max = -1);
-
-  // CR zx2jets cut values
-  DeclareProperty("cr_zx2jets_met_rel_min", c_cr_zx2jets_met_rel_min = 50e3);
-  DeclareProperty("cr_zx2jets_met_rel_max", c_cr_zx2jets_met_rel_max = -1);
-
-  DeclareProperty("cr_zx2jets_mt2_min", c_cr_zx2jets_mt2_min = -1);
-  DeclareProperty("cr_zx2jets_mt2_max", c_cr_zx2jets_mt2_max = 55e3);
-
-  // CR zxww cut values
-  DeclareProperty("cr_zxww_met_rel_min", c_cr_zxww_met_rel_min = 70e3);
-  DeclareProperty("cr_zxww_met_rel_max", c_cr_zxww_met_rel_max = 100e3);
-
-  DeclareProperty("cr_zxww_mt2_min", c_cr_zxww_mt2_min = -1);
-  DeclareProperty("cr_zxww_mt2_max", c_cr_zxww_mt2_max = 90e3);
-
-  // CR top cut values
-  DeclareProperty("cr_top_met_rel_min", c_cr_top_met_rel_min = 40e3);
-  DeclareProperty("cr_top_met_rel_max", c_cr_top_met_rel_max = -1);
-
-  // CR ww1-2 cut values
-  DeclareProperty("cr_ww12_met_rel_min", c_cr_ww12_met_rel_min = 70e3);
-  DeclareProperty("cr_ww12_met_rel_max", c_cr_ww12_met_rel_max = 100e3);
-
-  DeclareProperty("cr_ww12_mt2_min", c_cr_ww12_mt2_min = -1);
-  DeclareProperty("cr_ww12_mt2_max", c_cr_ww12_mt2_max = 90e3);
-
-  DeclareProperty("cr_ww2_mll_min", c_cr_ww2_mll_min = 30e3);
-  DeclareProperty("cr_ww2_mll_max", c_cr_ww2_mll_max = -1);
-
-  // CR wwa-c cut values
-  DeclareProperty("cr_wwabc_dphill_min", c_cr_wwabc_dphill_min = -1);
-  DeclareProperty("cr_wwabc_dphill_max", c_cr_wwabc_dphill_max = 1.8);
-
-  // CR btag cut values
-  DeclareProperty("cr_btag_drjettag_min", c_cr_btag_drjettag_min = -1);
-  DeclareProperty("cr_btag_drjettag_max", c_cr_btag_drjettag_max = 1.0);
 }
 
 // -----------------------------------------------------------------------------
-SelectionTools::SignalRegionTool::~SignalRegionTool()
+SelectionTools::ControlRegionTool::~ControlRegionTool()
 {
   // do nothing
 }
 
 // -----------------------------------------------------------------------------
-void SelectionTools::SignalRegionTool::BeginInputData(const SInputData&)
+void SelectionTools::ControlRegionTool::BeginInputData(const SInputData&)
 {
   GET_TOOL( top_tag_tool
           , CommonTools::TopTagTool
@@ -178,13 +136,13 @@ void SelectionTools::SignalRegionTool::BeginInputData(const SInputData&)
 }
 
 // -----------------------------------------------------------------------------
-void SelectionTools::SignalRegionTool::EndInputData(const SInputData&)
+void SelectionTools::ControlRegionTool::EndInputData(const SInputData&)
 {
   // do nothing
 }
 
 // -----------------------------------------------------------------------------
-void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
+void SelectionTools::ControlRegionTool::processControlRegions( Event* event,
     ElectronContainer& electrons,
     MuonContainer& muons,
     JetContainer& jets,
@@ -205,6 +163,10 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   bool pass_f_jet_veto = (jets.num(JET_FORWARD) == 0);
   sr_helper->setPassFJetVeto(pass_f_jet_veto);
 
+  // check num light jets
+  bool pass_sr_2jets_num_jets = (jets.num(JET_LIGHT) >= 2);
+  sr_helper->setPassSR2JetsNumLJet(pass_sr_2jets_num_jets);
+
   // Check z veto
   double mll = event->getMll();
   bool in_z_window = passCut(mll, c_z_window_mll_min, c_z_window_mll_max);
@@ -219,23 +181,13 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
       jets.getJets(JET_ALL_SIGNAL) );
   sr_helper->setPassTopVeto(!is_top_tagged);
 
-  // get MET-rel value
+  // Check MET-rel cuts
   double met_rel = event->getMetRel();;
 
-  // get mT value
-  double mt = event->getMt();
-
-  // get mT2 value
-  double mt2 = event->getMt2();
-
-  // check SR osjveto cuts
+  // check Met-rel for each SR
   sr_helper->setPassSROSJVetoMetRel(
       passCut(met_rel, c_sr_osjveto_met_rel_min, c_sr_osjveto_met_rel_max));
 
-  sr_helper->setPassSROSJVetoMt2(
-      passCut(mt2, c_sr_osjveto_mt2_min, c_sr_osjveto_mt2_max));
-
-  // check SR ssjets cuts
   if (event->getFlavorChannel() == FLAVOR_EE) {
     sr_helper->setPassSRSSJetsMetRel( passCut( met_rel
                                              , c_sr_ssjets_ee_met_rel_min
@@ -258,6 +210,20 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
                                     );
   }
 
+  sr_helper->setPassSR2JetsMetRel(
+      passCut(met_rel, c_sr_2jets_met_rel_min, c_sr_2jets_met_rel_max));
+
+  sr_helper->setPassSRMT2MetRel(
+      passCut(met_rel, c_sr_mt2_met_rel_min, c_sr_mt2_met_rel_max));
+
+  sr_helper->setPassSRWWaMetRel(
+      passCut(met_rel, c_sr_wwa_met_rel_min, c_sr_wwa_met_rel_max));
+
+  sr_helper->setPassSRZJetsMetRel(
+      passCut(met_rel, c_sr_zjets_met_rel_min, c_sr_zjets_met_rel_max));
+
+  // Check mt cuts
+  double mt = event->getMt();
   if (event->getFlavorChannel() == FLAVOR_EE) {
     sr_helper->setPassSRSSJetsMt(
         passCut(mt, c_sr_ssjets_ee_mt_min, c_sr_ssjets_ee_mt_max));
@@ -271,16 +237,11 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
         passCut(mt, c_sr_ssjets_em_mt_min, c_sr_ssjets_em_mt_max));
   }
 
-  // check SR 2jets cuts
-  bool pass_sr_2jets_num_jets = (jets.num(JET_LIGHT) >= 2);
-  sr_helper->setPassSR2JetsNumLJet(pass_sr_2jets_num_jets);
+  // Check mt2 cuts
+  double mt2 = event->getMt2();
 
-  sr_helper->setPassSR2JetsMetRel(
-      passCut(met_rel, c_sr_2jets_met_rel_min, c_sr_2jets_met_rel_max));
-
-  // check SR mt2 cuts
-  sr_helper->setPassSRMT2MetRel(
-      passCut(met_rel, c_sr_mt2_met_rel_min, c_sr_mt2_met_rel_max));
+  sr_helper->setPassSROSJVetoMt2(
+      passCut(mt2, c_sr_osjveto_mt2_min, c_sr_osjveto_mt2_max));
 
   sr_helper->setPassSRMT2aMt2(
       passCut(mt2, c_sr_mt2a_mt2_min, c_sr_mt2a_mt2_max));
@@ -288,54 +249,11 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   sr_helper->setPassSRMT2bMt2(
       passCut(mt2, c_sr_mt2b_mt2_min, c_sr_mt2b_mt2_max));
 
-  // check SR ww cuts
-  sr_helper->setPassSRWWaMetRel(
-      passCut(met_rel, c_sr_wwa_met_rel_min, c_sr_wwa_met_rel_max));
-
   sr_helper->setPassSRWWbMt2(
       passCut(met_rel, c_sr_wwb_mt2_min, c_sr_wwb_mt2_max));
 
   sr_helper->setPassSRWWcMt2(
       passCut(met_rel, c_sr_wwc_mt2_min, c_sr_wwc_mt2_max));
-
-  // check SR zjets cuts
-  sr_helper->setPassSRZJetsMetRel(
-      passCut(met_rel, c_sr_zjets_met_rel_min, c_sr_zjets_met_rel_max));
-
-  // CR zxosjveto cut values
-  passCut(met_rel, c_cr_zxjveto_met_rel_min, c_cr_zxjveto_met_rel_max);
-
-  // CR zxmt2 cut values
-  passCut(mt2, c_cr_zxmt2_met_rel_min, c_cr_zxmt2_met_rel_max);
-
-  // CR zx2jets cut values
-  passCut(met_rel, c_cr_zx2jets_met_rel_min, c_cr_zx2jets_met_rel_max);
-
-  passCut(mt2, c_cr_zx2jets_mt2_min, c_cr_zx2jets_mt2_max);
-
-  // CR zxww cut values
-  passCut(met_rel, c_cr_zxww_met_rel_min, c_cr_zxww_met_rel_max);
-
-  passCut(mt2, c_cr_zxww_mt2_min, c_cr_zxww_mt2_max);
-
-  // CR top cut values
-  passCut(met_rel, c_cr_top_met_rel_min, c_cr_top_met_rel_max);
-
-  // CR topww cut values
-
-  // CR ww1-2 cut values
-  passCut(met_rel, c_cr_ww12_met_rel_min, c_cr_ww12_met_rel_max);
-
-  passCut(mt2, c_cr_ww12_mt2_min, c_cr_ww12_mt2_max);
-
-  passCut(mll, c_cr_ww2_mll_min, c_cr_ww2_mll_max);
-
-  // CR wwa-c cut values
-  // passCut(XXX, c_cr_wwabc_dphill_min, c_cr_wwabc_dphill_max);
-
-  // CR btag cut values
-  // passCut(XXX, c_cr_btag_drjettag_min, c_cr_btag_drjettag_max);
-
 
   // Check for signal regions
   event_desc->setSROSJVeto(passSROSJVeto(event_desc, sr_helper));
@@ -350,7 +268,7 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSROSJVeto(
+bool SelectionTools::ControlRegionTool::passSROSJVeto(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -372,7 +290,7 @@ bool SelectionTools::SignalRegionTool::passSROSJVeto(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSRSSJets(
+bool SelectionTools::ControlRegionTool::passSRSSJets(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -397,7 +315,7 @@ bool SelectionTools::SignalRegionTool::passSRSSJets(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSR2Jets(
+bool SelectionTools::ControlRegionTool::passSR2Jets(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -429,7 +347,7 @@ bool SelectionTools::SignalRegionTool::passSR2Jets(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSRMT2a(
+bool SelectionTools::ControlRegionTool::passSRMT2a(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -454,7 +372,7 @@ bool SelectionTools::SignalRegionTool::passSRMT2a(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSRMT2b(
+bool SelectionTools::ControlRegionTool::passSRMT2b(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -479,7 +397,7 @@ bool SelectionTools::SignalRegionTool::passSRMT2b(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSRWWa(
+bool SelectionTools::ControlRegionTool::passSRWWa(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -510,7 +428,7 @@ bool SelectionTools::SignalRegionTool::passSRWWa(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSRWWb(
+bool SelectionTools::ControlRegionTool::passSRWWb(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -541,7 +459,7 @@ bool SelectionTools::SignalRegionTool::passSRWWb(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSRWWc(
+bool SelectionTools::ControlRegionTool::passSRWWc(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -569,7 +487,7 @@ bool SelectionTools::SignalRegionTool::passSRWWc(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passSRZJets(
+bool SelectionTools::ControlRegionTool::passSRZJets(
     SusyAnalysisTools::EventDescription* event_desc,
     SusyAnalysisTools::SRHelper* sr_helper)
 {
@@ -610,14 +528,14 @@ bool SelectionTools::SignalRegionTool::passSRZJets(
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passFullJetVeto(const JetContainer* jets)
+bool SelectionTools::ControlRegionTool::passFullJetVeto(const JetContainer* jets)
 {
   size_t num_jets = jets->num(JET_ALL_SIGNAL);
   return (num_jets == 0);
 }
 
 // ----------------------------------------------------------------------------
-bool SelectionTools::SignalRegionTool::passCut( double test
+bool SelectionTools::ControlRegionTool::passCut( double test
                                               , double min
                                               , double max
                                               )
@@ -631,3 +549,4 @@ bool SelectionTools::SignalRegionTool::passCut( double test
   // passed test
   return true;
 }
+*/
