@@ -435,7 +435,7 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   ++bin_num;
   weight = basic_weight;
   bool pass_sr_ssjetscf = (  (  evt_desc.getSignChannel()      == SIGN_OS
-                             && evt_desc.getTruthSignChannel() == SIGN_OS
+                             // && evt_desc.getTruthSignChannel() == SIGN_OS
                              )
                           || (  evt_desc.getSignChannel()      == SIGN_SS
                              && evt_desc.getTruthSignChannel() == SIGN_SS
@@ -754,13 +754,12 @@ void CutFlowDump::fillHist( PHASE_SPACE phase
 // -----------------------------------------------------------------------------
 void CutFlowDump::printToScreen()
 {
-  printToScreen(WEIGHT_NONE);
-  // for ( WEIGHTS weight_it = WEIGHT_NONE
-  //     ; weight_it != WEIGHT_N
-  //     ; weight_it = static_cast<WEIGHTS>(weight_it + 1)
-  //     ) {
-  //   printToScreen(weight_it);
-  // }
+  for ( WEIGHTS weight_it = WEIGHT_NONE
+      ; weight_it != WEIGHT_N
+      ; weight_it = static_cast<WEIGHTS>(weight_it + 1)
+      ) {
+    printToScreen(weight_it);
+  }
 }
 
 // -----------------------------------------------------------------------------
