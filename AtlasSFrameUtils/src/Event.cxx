@@ -373,7 +373,7 @@ SusyAnalysisTools::SRHelper* Event::getSRHelper()
 }
 
 // ----------------------------------------------------------------------------
-FLAVOR_CHANNEL Event::getFlavorChannel()
+FLAVOR_CHANNEL Event::getFlavorChannel() const
 {
   return m_event_desc.getFlavorChannel();
 }

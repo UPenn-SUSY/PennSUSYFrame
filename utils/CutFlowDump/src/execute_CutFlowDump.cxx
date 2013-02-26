@@ -17,6 +17,13 @@ int main(int argc, char** argv)
   TChain* t = CommandParser::readInputs(argc, argv, "output");
   // TChain* t = CommandParser::readInputs(argc, argv, "presel");
 
+  // check for valid TChain object
+  if (t == NULL)
+    std::cout << "t is NULL\n";
+  else
+    std::cout << "t is defined\n";
+  if (t == NULL) return 0;
+
   // Create the CutFlowDump object, and loop over the TChain
   CutFlowDump cfd(t);
   cfd.Loop();
@@ -24,4 +31,6 @@ int main(int argc, char** argv)
   // Dump cut flow to screen and to file
   cfd.printToScreen();
   cfd.printToFile("cf.root");
+
+  return 0;
 }

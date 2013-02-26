@@ -20,6 +20,7 @@
 
 // -----------------------------------------------------------------------------
 CutFlowDump::CutFlowDump(TTree *tree) : NtupleLooper(tree)
+                                      , m_axis_initialized(false)
 {
   initCutFlowHists();
 }
@@ -73,7 +74,7 @@ void CutFlowDump::initCutFlowHists()
 
       m_cutflow.at(weight_it).at(phase_it) = new TH1D( name.c_str()
           , title.c_str()
-          , 80, -0.5, 79.5
+          , 110, -0.5, 109.5
           );
 
       TAxis* axis = m_cutflow.at(weight_it).at(phase_it)->GetXaxis();
@@ -138,7 +139,7 @@ void CutFlowDump::initCutFlowHists()
       axis->SetBinLabel(bin++, "SR 2Jets Z veto"      );
       axis->SetBinLabel(bin++, "SR 2Jets b jet veto"  );
       axis->SetBinLabel(bin++, "SR 2Jets b-tag weight");
-      axis->SetBinLabel(bin++, "SR 2Jets f jet feto"  );
+      axis->SetBinLabel(bin++, "SR 2Jets f jet veto"  );
       axis->SetBinLabel(bin++, "SR 2Jets top tag veto");
       axis->SetBinLabel(bin++, "SR 2Jets met-rel"     );
       axis->SetBinLabel(bin++, "BREAK"                );
@@ -150,6 +151,32 @@ void CutFlowDump::initCutFlowHists()
       axis->SetBinLabel(bin++, "SR MT2a mt2"        );
       axis->SetBinLabel(bin++, "SR MT2b mt2"        );
       axis->SetBinLabel(bin++, "BREAK"              );
+
+      axis->SetBinLabel(bin++, "SR ZJets >= 2 L jet");
+      axis->SetBinLabel(bin++, "SR ZJets Z window"  );
+      axis->SetBinLabel(bin++, "SR ZJets b jet veto"  );
+      axis->SetBinLabel(bin++, "SR ZJets b-tag weight");
+      axis->SetBinLabel(bin++, "SR ZJets f jet veto"  );
+      axis->SetBinLabel(bin++, "SR ZJets top tag veto");
+      axis->SetBinLabel(bin++, "SR ZJets mjj");
+      axis->SetBinLabel(bin++, "SR ZJets pt_j1");
+      axis->SetBinLabel(bin++, "SR ZJets pt_j2");
+      axis->SetBinLabel(bin++, "SR ZJets met-rel");
+      axis->SetBinLabel(bin++, "SR ZJets mt2");
+      axis->SetBinLabel(bin++, "BREAK");
+
+      axis->SetBinLabel(bin++, "SR WW jet veto");
+      axis->SetBinLabel(bin++, "SR WW pt_l1");
+      axis->SetBinLabel(bin++, "SR WW pt_l2");
+      axis->SetBinLabel(bin++, "SR WWa mll");
+      axis->SetBinLabel(bin++, "SR WWa ptll");
+      axis->SetBinLabel(bin++, "SR WWa met-rel");
+      axis->SetBinLabel(bin++, "SR WWb mll");
+      axis->SetBinLabel(bin++, "SR WWb ptll");
+      axis->SetBinLabel(bin++, "SR WWb mt2");
+      axis->SetBinLabel(bin++, "SR WWc ptll");
+      axis->SetBinLabel(bin++, "SR WWc mt2");
+      axis->SetBinLabel(bin++, "BREAK");
     }
   }
 }
@@ -563,6 +590,155 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   if (pass_sr_mt2)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // SR ZJets
+  ++bin_num;
+  weight = basic_weight;
+  bool pass_sr_zjets = (evt_desc.getSignChannel() == SIGN_OS);
+
+  // SR ZJets >= 2 l jets
+  pass_sr_zjets = (pass_sr_zjets && sr_helper.getPassSRZJetsNumLJets());
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR ZJets in Z window
+  pass_sr_zjets = (pass_sr_zjets && !pass_z_veto);
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR ZJets b jet veto
+  pass_sr_zjets = (pass_sr_zjets && pass_b_jet_veto);
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SRZJets apply b-tag weight
+  if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_B_TAG)
+    weight *= m_b_tag_weight;
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  bin_num++;
+
+  // SRZJets forward jet veto
+  pass_sr_zjets = (pass_sr_zjets && pass_f_jet_veto);
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SRZJets top tag veto
+  pass_sr_zjets = (pass_sr_zjets && sr_helper.getPassTopVeto());
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR ZJets mjj
+  pass_sr_zjets = (pass_sr_zjets && sr_helper.getPassSRZJetsMjj());
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR ZJets pt_j1
+  pass_sr_zjets = (pass_sr_zjets && sr_helper.getPassSRZJetsJet1Pt());
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR ZJets pt_j2
+  pass_sr_zjets = (pass_sr_zjets && sr_helper.getPassSRZJetsJet2Pt());
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SRZJets met-rel
+  pass_sr_zjets = (pass_sr_zjets && sr_helper.getPassSRZJetsMetRel());
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR ZJets mt2
+  pass_sr_zjets = (pass_sr_zjets && sr_helper.getPassSRZJetsMt2());
+  if (pass_sr_zjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // SR WW
+  ++bin_num;
+  weight = basic_weight;
+  bool pass_sr_ww = (evt_desc.getSignChannel() == SIGN_OS);
+
+  // SR WW jet veto
+  pass_sr_ww = (pass_sr_ww && pass_total_jet_veto);
+  if (pass_sr_ww)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WW pt_l1
+  pass_sr_ww = (pass_sr_ww && sr_helper.getPassSRWWLep1Pt());
+  if (pass_sr_ww)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WW pt_l2
+  pass_sr_ww = (pass_sr_ww && sr_helper.getPassSRWWLep2Pt());
+  if (pass_sr_ww)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WWa mll
+  bool pass_sr_wwa = pass_sr_ww;
+  pass_sr_wwa = (pass_sr_wwa && sr_helper.getPassSRWWaMll());
+  if (pass_sr_wwa)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WWa ptll
+  pass_sr_wwa = (pass_sr_wwa && sr_helper.getPassSRWWaPtll());
+  if (pass_sr_wwa)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WWa met-rel
+  pass_sr_wwa = (pass_sr_wwa && sr_helper.getPassSRWWaMetRel());
+  if (pass_sr_wwa)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WWb mll
+  bool pass_sr_wwb = pass_sr_ww;
+  pass_sr_wwb = (pass_sr_wwb && sr_helper.getPassSRWWbMll());
+  if (pass_sr_wwb)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WWb ptll
+  pass_sr_wwb = (pass_sr_wwb && sr_helper.getPassSRWWbPtll());
+  if (pass_sr_wwb)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WWb mt2
+  pass_sr_wwb = (pass_sr_wwb && sr_helper.getPassSRWWbMt2());
+  if (pass_sr_wwb)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WWc ptll
+  bool pass_sr_wwc = pass_sr_ww;
+  pass_sr_wwc = (pass_sr_wwc && sr_helper.getPassSRWWcPtll());
+  if (pass_sr_wwc)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WWc mt2
+  pass_sr_wwc = (pass_sr_wwc && sr_helper.getPassSRWWcMt2());
+  if (pass_sr_wwc)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
 }
 
 // -----------------------------------------------------------------------------
@@ -578,12 +754,13 @@ void CutFlowDump::fillHist( PHASE_SPACE phase
 // -----------------------------------------------------------------------------
 void CutFlowDump::printToScreen()
 {
-  for ( WEIGHTS weight_it = WEIGHT_NONE
-      ; weight_it != WEIGHT_N
-      ; weight_it = static_cast<WEIGHTS>(weight_it + 1)
-      ) {
-    printToScreen(weight_it);
-  }
+  printToScreen(WEIGHT_NONE);
+  // for ( WEIGHTS weight_it = WEIGHT_NONE
+  //     ; weight_it != WEIGHT_N
+  //     ; weight_it = static_cast<WEIGHTS>(weight_it + 1)
+  //     ) {
+  //   printToScreen(weight_it);
+  // }
 }
 
 // -----------------------------------------------------------------------------

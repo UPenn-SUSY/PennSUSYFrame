@@ -71,7 +71,7 @@ public:
 
   void print();
 
-  FLAVOR_CHANNEL  getFlavorChannel();
+  FLAVOR_CHANNEL  getFlavorChannel() const;
   SIGN_CHANNEL    getSignChannel();
   PHASE_SPACE     getPhaseSpace();
 

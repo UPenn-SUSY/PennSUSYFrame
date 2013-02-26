@@ -51,6 +51,10 @@ class CutFlowDump : public NtupleLooper
   // ---------------------------------------------------------------------------
   protected:
     std::vector<std::vector<TH1D*> > m_cutflow;
+
+  // ---------------------------------------------------------------------------
+  private:
+    bool m_axis_initialized;
 };
 
 #endif

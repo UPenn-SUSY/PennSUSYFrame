@@ -164,6 +164,7 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_SR_WWB             = 46;
       static const unsigned int ADD_SR_WWC             = 47;
       static const unsigned int ADD_SR_ZJETS           = 48;
+      static const unsigned int ADD_SR_SSJETS_CF       = 49;
       static const unsigned int ADD_CR_ZXOSJVETO       = 50;
       static const unsigned int ADD_CR_ZXMT2A          = 51;
       static const unsigned int ADD_CR_ZXMT2B          = 52;
@@ -221,6 +222,7 @@ namespace SusyAnalysisTools
       bool m_pass_sr_wwb;
       bool m_pass_sr_wwc;
       bool m_pass_sr_zjets;
+      bool m_pass_sr_ssjets_cf;
 
       // bool m_pass_cr1;
       // bool m_pass_cr2;

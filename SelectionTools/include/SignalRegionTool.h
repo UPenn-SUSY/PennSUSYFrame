@@ -235,6 +235,12 @@ namespace SelectionTools
     // helper function to check if a cut is passed
     bool passCut(double test, double min, double max);
 
+    // helper function to get leading/subleading lepton pt
+    std::pair<float, float> getLeadingLeptonPts( const Event*
+                                               , const ElectronContainer&
+                                               , const MuonContainer&
+                                               );
+
     CommonTools::TopTagTool* m_top_tag_tool;
 
     ClassDef(SignalRegionTool, 0);

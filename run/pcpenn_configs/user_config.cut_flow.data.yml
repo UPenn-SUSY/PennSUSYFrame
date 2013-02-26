@@ -219,7 +219,7 @@ Signal_Regions:
     sr_wwa_max_met_rel:      -1
     sr_wwa_min_mll:          -1
     sr_wwa_max_mll:          80000
-    sr_wwa_min_ptll:         -1
+    sr_wwa_min_ptll:         70000
     sr_wwa_max_ptll:         -1
     sr_wwb_min_mt2:          90000
     sr_wwb_max_mt2:          -1

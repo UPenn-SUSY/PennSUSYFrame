@@ -79,7 +79,7 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
   DeclareProperty("sr_wwa_min_mll", c_sr_wwa_mll_min = -1);
   DeclareProperty("sr_wwa_max_mll", c_sr_wwa_mll_max = 80e3);
 
-  DeclareProperty("sr_wwa_min_ptll", c_sr_wwa_ptll_min = -1);
+  DeclareProperty("sr_wwa_min_ptll", c_sr_wwa_ptll_min = 70e3);
   DeclareProperty("sr_wwa_max_ptll", c_sr_wwa_ptll_max = -1);
 
   DeclareProperty("sr_wwb_min_mt2", c_sr_wwb_mt2_min = 90e3);
@@ -220,7 +220,10 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   sr_helper->setPassTopVeto(!is_top_tagged);
 
   // get MET-rel value
-  double met_rel = event->getMetRel();;
+  double met_rel = event->getMetRel();
+
+  // get ptll value
+  double ptll = event->getPtll();
 
   // get mT value
   double mt = event->getMt();
@@ -289,18 +292,73 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
       passCut(mt2, c_sr_mt2b_mt2_min, c_sr_mt2b_mt2_max));
 
   // check SR ww cuts
+  std::pair<float, float> lep_pts = getLeadingLeptonPts(event, electrons, muons);
+
+  sr_helper->setPassSRWWLep1Pt(
+      passCut(lep_pts.first, c_sr_ww_lep1_pt_min, c_sr_ww_lep1_pt_max));
+
+  sr_helper->setPassSRWWLep2Pt(
+      passCut(lep_pts.second, c_sr_ww_lep2_pt_min, c_sr_ww_lep2_pt_max));
+
   sr_helper->setPassSRWWaMetRel(
       passCut(met_rel, c_sr_wwa_met_rel_min, c_sr_wwa_met_rel_max));
+
+  sr_helper->setPassSRWWaPtll(
+      passCut(ptll, c_sr_wwa_ptll_min, c_sr_wwa_ptll_max));
+
+  sr_helper->setPassSRWWaMll(
+      passCut(mll, c_sr_wwa_mll_min, c_sr_wwa_mll_max));
 
   sr_helper->setPassSRWWbMt2(
       passCut(met_rel, c_sr_wwb_mt2_min, c_sr_wwb_mt2_max));
 
+  sr_helper->setPassSRWWbPtll(
+      passCut(ptll, c_sr_wwb_ptll_min, c_sr_wwb_ptll_max));
+
+  sr_helper->setPassSRWWbMll(
+      passCut(mll, c_sr_wwb_mll_min, c_sr_wwb_mll_max));
+
+  sr_helper->setPassSRWWcPtll(
+      passCut(ptll, c_sr_wwc_ptll_min, c_sr_wwc_ptll_max));
+
   sr_helper->setPassSRWWcMt2(
       passCut(met_rel, c_sr_wwc_mt2_min, c_sr_wwc_mt2_max));
 
+
   // check SR zjets cuts
+  unsigned int num_l_jets = jets.num(JET_LIGHT);
+  float jet_1_pt = 0;
+  float jet_2_pt = 0;
+  float mjj = 0;
+  if (num_l_jets > 0) {
+    std::vector<Jet*> l_jets = jets.getJets(JET_LIGHT);
+    TLorentzVector j1_tlv = l_jets.at(0)->getTlv();
+    jet_1_pt = j1_tlv.Pt();
+
+    if (num_l_jets > 1) {
+      TLorentzVector j2_tlv = l_jets.at(1)->getTlv();
+      jet_2_pt = j2_tlv.Pt();
+      mjj = (j1_tlv + j2_tlv).Mag();
+    }
+  }
+
+  bool pass_sr_zjets_num_jets = (num_l_jets >= 2);
+  sr_helper->setPassSRZJetsNumLJets(pass_sr_zjets_num_jets);
+
   sr_helper->setPassSRZJetsMetRel(
       passCut(met_rel, c_sr_zjets_met_rel_min, c_sr_zjets_met_rel_max));
+
+  sr_helper->setPassSRZJetsJet1Pt(
+      passCut(jet_1_pt, c_sr_zjets_jet1_pt_min, c_sr_zjets_jet1_pt_max));
+
+  sr_helper->setPassSRZJetsJet2Pt(
+      passCut(jet_2_pt, c_sr_zjets_jet2_pt_min, c_sr_zjets_jet2_pt_max));
+
+  sr_helper->setPassSRZJetsMjj(
+      passCut(mjj, c_sr_zjets_mjj_min, c_sr_zjets_mjj_max));
+
+  sr_helper->setPassSRZJetsMt2(
+      passCut(mt2, c_sr_zjets_mt2_min, c_sr_zjets_mt2_max));
 
   // CR zxosjveto cut values
   passCut(met_rel, c_cr_zxjveto_met_rel_min, c_cr_zxjveto_met_rel_max);
@@ -630,4 +688,37 @@ bool SelectionTools::SignalRegionTool::passCut( double test
 
   // passed test
   return true;
+}
+
+// -----------------------------------------------------------------------------
+std::pair<float, float> SelectionTools::SignalRegionTool::getLeadingLeptonPts(
+    const Event* event, const ElectronContainer& electrons, const MuonContainer& muons)
+{
+  std::pair<float, float> lep_pts(0,0);
+
+  if (event->getFlavorChannel() == FLAVOR_EE) {
+    std::vector<Electron*> el_list = electrons.getElectrons(EL_GOOD);
+    lep_pts.first  = el_list.at(0)->getTlv().Pt();
+    lep_pts.second = el_list.at(1)->getTlv().Pt();
+  }
+  else if (event->getFlavorChannel() == FLAVOR_MM) {
+    std::vector<Muon*> mu_list = muons.getMuons(MU_GOOD);
+    lep_pts.first  = mu_list.at(0)->getTlv().Pt();
+    lep_pts.second = mu_list.at(1)->getTlv().Pt();
+  }
+  else if (event->getFlavorChannel() == FLAVOR_EM) {
+    std::vector<Electron*> el_list = electrons.getElectrons(EL_GOOD);
+    std::vector<Muon*>     mu_list = muons.getMuons(        MU_GOOD);
+    lep_pts.first  = el_list.at(0)->getTlv().Pt();
+    lep_pts.second = mu_list.at(0)->getTlv().Pt();
+  }
+
+  // ensure first >= second
+  if (lep_pts.first < lep_pts.second) {
+    float tmp = lep_pts.first;
+    lep_pts.first = lep_pts.second;
+    lep_pts.second = lep_pts.first;
+  }
+
+  return lep_pts;
 }
