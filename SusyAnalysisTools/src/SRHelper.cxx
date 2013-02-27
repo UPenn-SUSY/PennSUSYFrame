@@ -31,6 +31,7 @@ ull_t SusyAnalysisTools::SRHelper::toInt() const
 
   event_desc += getIntComp(m_pass_sr_osjveto_met_rel , ADD_SR_OSJVETO_MET_REL );
   event_desc += getIntComp(m_pass_sr_osjveto_mt2     , ADD_SR_OSJVETO_MT2     );
+  event_desc += getIntComp(m_pass_sr_ssjets_mll_veto , ADD_SR_SSJETS_MLL_VETO );
   event_desc += getIntComp(m_pass_sr_ssjets_met_rel  , ADD_SR_SSJETS_MET_REL  );
   event_desc += getIntComp(m_pass_sr_ssjets_mt       , ADD_SR_SSJETS_MT       );
   event_desc += getIntComp(m_pass_sr_2jets_num_l_jet , ADD_SR_2JETS_NUM_L_JET );
@@ -98,6 +99,8 @@ void SusyAnalysisTools::SRHelper::set(const ull_t& rhs)
       rhs, ADD_SR_OSJVETO_MET_REL, SIZE_BOOL);
   m_pass_sr_osjveto_mt2 = getComponent(
       rhs, ADD_SR_OSJVETO_MT2, SIZE_BOOL);
+  m_pass_sr_ssjets_mll_veto = getComponent(
+      rhs, ADD_SR_SSJETS_MLL_VETO, SIZE_BOOL);
   m_pass_sr_ssjets_met_rel = getComponent(
       rhs, ADD_SR_SSJETS_MET_REL, SIZE_BOOL);
   m_pass_sr_ssjets_mt = getComponent(
@@ -206,6 +209,12 @@ void SusyAnalysisTools::SRHelper::setPassSROSJVetoMetRel(bool pass)
 void SusyAnalysisTools::SRHelper::setPassSROSJVetoMt2(bool pass)
 {
   m_pass_sr_osjveto_mt2 = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::SRHelper::setPassSRSSJetsMllVeto(bool pass)
+{
+  m_pass_sr_ssjets_mll_veto = pass;
 }
 
 // -----------------------------------------------------------------------------
@@ -459,6 +468,12 @@ bool SusyAnalysisTools::SRHelper::getPassSROSJVetoMetRel()
 bool SusyAnalysisTools::SRHelper::getPassSROSJVetoMt2()
 {
   return m_pass_sr_osjveto_mt2;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::SRHelper::getPassSRSSJetsMllVeto()
+{
+  return m_pass_sr_ssjets_mll_veto;
 }
 
 // -----------------------------------------------------------------------------

@@ -29,6 +29,11 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
 
   // SR ssjets cut values
   DeclareProperty(
+      "sr_ssjets_ee_min_mll_veto", c_sr_ssjets_mll_veto_min = 90e3);
+  DeclareProperty(
+      "sr_ssjets_ee_max_mll_veto", c_sr_ssjets_mll_veto_max = 120e3);
+
+  DeclareProperty(
       "sr_ssjets_ee_min_met_rel", c_sr_ssjets_ee_met_rel_min = 70e3);
   DeclareProperty(
       "sr_ssjets_ee_max_met_rel", c_sr_ssjets_ee_met_rel_max = -1);
@@ -240,36 +245,36 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
 
   // check SR ssjets cuts
   if (event->getFlavorChannel() == FLAVOR_EE) {
+    sr_helper->setPassSRSSJetsMllVeto(true);
     sr_helper->setPassSRSSJetsMetRel( passCut( met_rel
                                              , c_sr_ssjets_ee_met_rel_min
                                              , c_sr_ssjets_ee_met_rel_max
                                              )
                                     );
+    sr_helper->setPassSRSSJetsMt(
+        passCut(mt, c_sr_ssjets_ee_mt_min, c_sr_ssjets_ee_mt_max));
   }
   else if (event->getFlavorChannel() == FLAVOR_MM) {
+    sr_helper->setPassSRSSJetsMllVeto( !passCut( mll
+                                               , c_sr_ssjets_mll_veto_min
+                                               , c_sr_ssjets_mll_veto_max
+                                               )
+                                    );
     sr_helper->setPassSRSSJetsMetRel( passCut( met_rel
                                              , c_sr_ssjets_mm_met_rel_min
                                              , c_sr_ssjets_mm_met_rel_max
                                              )
                                     );
+    sr_helper->setPassSRSSJetsMt(
+        passCut(mt, c_sr_ssjets_mm_mt_min, c_sr_ssjets_mm_mt_max));
   }
   else if (event->getFlavorChannel() == FLAVOR_EM) {
+    sr_helper->setPassSRSSJetsMllVeto(true);
     sr_helper->setPassSRSSJetsMetRel( passCut( met_rel
                                              , c_sr_ssjets_em_met_rel_min
                                              , c_sr_ssjets_em_met_rel_max
                                              )
                                     );
-  }
-
-  if (event->getFlavorChannel() == FLAVOR_EE) {
-    sr_helper->setPassSRSSJetsMt(
-        passCut(mt, c_sr_ssjets_ee_mt_min, c_sr_ssjets_ee_mt_max));
-  }
-  else if (event->getFlavorChannel() == FLAVOR_MM) {
-    sr_helper->setPassSRSSJetsMt(
-        passCut(mt, c_sr_ssjets_mm_mt_min, c_sr_ssjets_mm_mt_max));
-  }
-  else if (event->getFlavorChannel() == FLAVOR_EM) {
     sr_helper->setPassSRSSJetsMt(
         passCut(mt, c_sr_ssjets_em_mt_min, c_sr_ssjets_em_mt_max));
   }
@@ -436,6 +441,9 @@ bool SelectionTools::SignalRegionTool::passSRSSJets(
 {
   // require SS leptons
   if (event_desc->getSignChannel() != SIGN_SS) return false;
+
+  // check for mll  veto
+  if (sr_helper->getPassSRSSJetsMllVeto() == false) return false;
 
   // full jet veto
   if (sr_helper->getPassLJetVeto() == true ) return false;

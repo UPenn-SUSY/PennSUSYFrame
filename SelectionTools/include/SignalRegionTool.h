@@ -90,6 +90,9 @@ namespace SelectionTools
     double c_sr_osjveto_mt2_max;
 
     // SR ssjets cut values
+    double c_sr_ssjets_mll_veto_min;
+    double c_sr_ssjets_mll_veto_max;
+
     double c_sr_ssjets_ee_met_rel_min;
     double c_sr_ssjets_ee_met_rel_max;
 
