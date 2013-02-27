@@ -178,23 +178,68 @@ void CutFlowDump::initCutFlowHists()
       axis->SetBinLabel(bin++, "SR WWc mt2");
       axis->SetBinLabel(bin++, "BREAK");
 
-      axis->SetBinLabel(bin++, "CR ZX Z window");
-      axis->SetBinLabel(bin++, "CR ZXosjveto jet veto");
-      axis->SetBinLabel(bin++, "CR ZXosjveto met-rel");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
-      // axis->SetBinLabel(bin++, "CR ZX ");
+      axis->SetBinLabel(bin++, "VR SS >= 1 L jet"  );
+      axis->SetBinLabel(bin++, "VR SS B jet veto"  );
+      axis->SetBinLabel(bin++, "VR SS F jet veto"  );
+      axis->SetBinLabel(bin++, "VR SS b-tag weight");
+      axis->SetBinLabel(bin++, "VR SS Z veto (ee)" );
+      axis->SetBinLabel(bin++, "VR SS met-rel"     );
+      axis->SetBinLabel(bin++, "VR SS mt"          );
+      axis->SetBinLabel(bin++, "BREAK"                 );
 
-      // axis->SetBinLabel(bin++, "CR ");
+      axis->SetBinLabel(bin++, "VR SS CF cand"     );
+      axis->SetBinLabel(bin++, "VR SS CF weight"   );
+      axis->SetBinLabel(bin++, "VR SS >= 1 L jet"  );
+      axis->SetBinLabel(bin++, "VR SS B jet veto"  );
+      axis->SetBinLabel(bin++, "VR SS F jet veto"  );
+      axis->SetBinLabel(bin++, "VR SS b-tag weight");
+      axis->SetBinLabel(bin++, "VR SS Z veto (ee)" );
+      axis->SetBinLabel(bin++, "VR SS met-rel"     );
+      axis->SetBinLabel(bin++, "VR SS mt"          );
+      axis->SetBinLabel(bin++, "BREAK"             );
+
+      // axis->SetBinLabel(bin++, "CR ZX Z window");
+      // axis->SetBinLabel(bin++, "CR ZXosjveto jet veto");
+      // axis->SetBinLabel(bin++, "CR ZXosjveto met-rel");
+      // axis->SetBinLabel(bin++, "CR ZXmt2 jet veto");
+      // axis->SetBinLabel(bin++, "CR ZXmt2 met-rel");
+      // axis->SetBinLabel(bin++, "CR ZXmt2a mt2");
+      // axis->SetBinLabel(bin++, "CR ZXmt2b mt2");
+      // axis->SetBinLabel(bin++, "CR ZX2jets >- 2 L jets");
+      // axis->SetBinLabel(bin++, "CR ZX2jets b jet veto");
+      // axis->SetBinLabel(bin++, "CR ZX2jets b-tag weight");
+      // axis->SetBinLabel(bin++, "CR ZX2jets f jet veto");
+      // axis->SetBinLabel(bin++, "CR ZX2jets top tag veto");
+      // axis->SetBinLabel(bin++, "CR ZX2jets met-rel");
+      // axis->SetBinLabel(bin++, "CR ZX2jets mt2");
+      // axis->SetBinLabel(bin++, "CR ZXWW jet feto");
+      // axis->SetBinLabel(bin++, "CR ZXWW met-rel");
+      // axis->SetBinLabel(bin++, "CR ZXWW mt2");
+
+      // axis->SetBinLabel(bin++, "CR top z veto");
+      // axis->SetBinLabel(bin++, "CR top met-rel");
+      // axis->SetBinLabel(bin++, "CR top num central jets");
+      // axis->SetBinLabel(bin++, "CR top num b jets");
+
+      // axis->SetBinLabel(bin++, "CR topWW pt l1");
+      // axis->SetBinLabel(bin++, "CR topWW pt l2");
+      // axis->SetBinLabel(bin++, "CR topWW num b jets");
+      // axis->SetBinLabel(bin++, "CR topWWa ");
+      // axis->SetBinLabel(bin++, "CR topWWa ");
+      // axis->SetBinLabel(bin++, "CR topWWa ");
+      // axis->SetBinLabel(bin++, "CR topWWb ");
+      // axis->SetBinLabel(bin++, "CR topWWb ");
+      // axis->SetBinLabel(bin++, "CR topWWb ");
+      // axis->SetBinLabel(bin++, "CR topWWc ");
+      // axis->SetBinLabel(bin++, "CR topWWc ");
+      // axis->SetBinLabel(bin++, "CR topWWc ");
+
+      // axis->SetBinLabel(bin++, "CR WW12 ");
+
+      // axis->SetBinLabel(bin++, "CR WWabc ");
+
+      // axis->SetBinLabel(bin++, "CR btag");
+
     }
   }
 }
@@ -429,7 +474,6 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   bin_num++;
 
   // SRSSJets Z veto
-  // TODO - currently pass through. handle properly with channel
   if (phase == PHASE_EE)
     pass_sr_ssjets = (pass_sr_ssjets && pass_z_veto);
   if (pass_sr_ssjets)
@@ -498,7 +542,6 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   bin_num++;
 
   // SRSSJetsCF Z veto
-  // TODO - currently pass through. handle properly with channel
   if (phase == PHASE_EE)
     pass_sr_ssjetscf = (pass_sr_ssjetscf && pass_z_veto);
   if (pass_sr_ssjetscf)
@@ -757,6 +800,125 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // VRSS
+  ++bin_num;
+  weight = basic_weight;
+  bool pass_vr_ss = (evt_desc.getSignChannel() == SIGN_SS);
+
+  // VRSS >= 1 L jet
+  pass_vr_ss = (pass_vr_ss && !pass_l_jet_veto);
+  if (pass_vr_ss)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSS B jet veto
+  pass_vr_ss = (pass_vr_ss && pass_b_jet_veto);
+  if (pass_vr_ss)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSS F jet veto
+  pass_vr_ss = (pass_vr_ss && pass_f_jet_veto);
+  if (pass_vr_ss)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSS apply b-tag weight
+  if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_B_TAG)
+    weight *= m_b_tag_weight;
+  if (pass_vr_ss)
+    fillHist(phase, weight_type, bin_num, weight);
+  bin_num++;
+
+  // VRSS Z veto
+  if (phase == PHASE_EE)
+    pass_vr_ss = (pass_vr_ss && pass_z_veto);
+  if (pass_vr_ss)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSS met-rel
+  pass_vr_ss = (pass_vr_ss && sr_helper.getPassSRSSJetsMetRel());
+  if (pass_vr_ss)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSS mt
+  pass_vr_ss = (pass_vr_ss && sr_helper.getPassSRSSJetsMt() == false);
+  if (pass_vr_ss)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // VRSSCF
+  ++bin_num;
+  weight = basic_weight;
+  bool pass_vr_sscf = (  (  evt_desc.getSignChannel()      == SIGN_OS
+                         // && evt_desc.getTruthSignChannel() == SIGN_OS
+                         )
+                      || (  evt_desc.getSignChannel()      == SIGN_SS
+                         && evt_desc.getTruthSignChannel() == SIGN_SS
+                         )
+                      );
+
+  // srssjets cf cand
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // // VRSSCF apply cf weght
+  // if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_CF)
+  //   weight *= m_cf_weight;
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  bin_num++;
+
+  // srssjets >= 1 l jet
+  pass_vr_sscf = (pass_vr_sscf && !pass_l_jet_veto);
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSSCF B jet veto
+  pass_vr_sscf = (pass_vr_sscf && pass_b_jet_veto);
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSSCF F jet veto
+  pass_vr_sscf = (pass_vr_sscf && pass_f_jet_veto);
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSSCF apply b-tag weight
+  if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_B_TAG)
+    weight *= m_b_tag_weight;
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  bin_num++;
+
+  // VRSSCF Z veto
+  if (phase == PHASE_EE)
+    pass_vr_sscf = (pass_vr_sscf && pass_z_veto);
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSSCF met-rel
+  pass_vr_sscf = (pass_vr_sscf && sr_helper.getPassSRSSJetsMetRel());
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // VRSSCF mt
+  pass_vr_sscf = (pass_vr_sscf && sr_helper.getPassSRSSJetsMt() == false);
+  if (pass_vr_sscf)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  
 }
 
 // -----------------------------------------------------------------------------
