@@ -177,6 +177,24 @@ void CutFlowDump::initCutFlowHists()
       axis->SetBinLabel(bin++, "SR WWc ptll");
       axis->SetBinLabel(bin++, "SR WWc mt2");
       axis->SetBinLabel(bin++, "BREAK");
+
+      axis->SetBinLabel(bin++, "CR ZX Z window");
+      axis->SetBinLabel(bin++, "CR ZXosjveto jet veto");
+      axis->SetBinLabel(bin++, "CR ZXosjveto met-rel");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+      // axis->SetBinLabel(bin++, "CR ZX ");
+
+      // axis->SetBinLabel(bin++, "CR ");
     }
   }
 }

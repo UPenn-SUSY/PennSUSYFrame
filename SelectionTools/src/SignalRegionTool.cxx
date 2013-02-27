@@ -717,7 +717,7 @@ std::pair<float, float> SelectionTools::SignalRegionTool::getLeadingLeptonPts(
   if (lep_pts.first < lep_pts.second) {
     float tmp = lep_pts.first;
     lep_pts.first = lep_pts.second;
-    lep_pts.second = lep_pts.first;
+    lep_pts.second = tmp;
   }
 
   return lep_pts;
