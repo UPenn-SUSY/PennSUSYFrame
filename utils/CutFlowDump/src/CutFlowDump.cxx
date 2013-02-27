@@ -50,6 +50,7 @@ void CutFlowDump::processEvent()
 // -----------------------------------------------------------------------------
 void CutFlowDump::initCutFlowHists()
 {
+  initBinList();
   m_cutflow.resize(WEIGHT_N);
 
   for ( WEIGHTS weight_it = WEIGHT_NONE
@@ -72,174 +73,18 @@ void CutFlowDump::initCutFlowHists()
 
       std::string title = name;
 
+      size_t num_bins = m_bin_list.size();
+      std::cout << "setting histogram to: " <<  num_bins << ", " << -0.5 << ", " <<  num_bins - 0.5 << "\n";
       m_cutflow.at(weight_it).at(phase_it) = new TH1D( name.c_str()
           , title.c_str()
-          , 110, -0.5, 109.5
+          // , 110, -0.5, 109.5
+          , num_bins, -0.5, num_bins - 0.5
           );
 
       TAxis* axis = m_cutflow.at(weight_it).at(phase_it)->GetXaxis();
-      unsigned int bin = 1;
-      axis->SetBinLabel(bin++, "ALL"              );
-      axis->SetBinLabel(bin++, "MC event weight"  );
-      axis->SetBinLabel(bin++, "Pile up weight"   );
-      axis->SetBinLabel(bin++, "GRL"              );
-      axis->SetBinLabel(bin++, "Incomplete event" );
-      axis->SetBinLabel(bin++, "LAr error"        );
-      axis->SetBinLabel(bin++, "Tile error"       );
-      axis->SetBinLabel(bin++, "Tile hot spot"    );
-      axis->SetBinLabel(bin++, "Jet cleaning"     );
-      axis->SetBinLabel(bin++, "Calo problem jet" );
-      axis->SetBinLabel(bin++, "Primary vertex"   );
-      axis->SetBinLabel(bin++, "Bad mu veto"      );
-      axis->SetBinLabel(bin++, "Cosmic mu veto"   );
-      axis->SetBinLabel(bin++, "HFOR"             );
-      axis->SetBinLabel(bin++, ">= 2 good lep"    );
-      axis->SetBinLabel(bin++, "== 2 good lep="   );
-      axis->SetBinLabel(bin++, "mll"              );
-      axis->SetBinLabel(bin++, "== 2 signal lep"  );
-      axis->SetBinLabel(bin++, "Flavor"           );
-      axis->SetBinLabel(bin++, "Lepton SF"        );
-      axis->SetBinLabel(bin++, "Trigger weight"   );
-      axis->SetBinLabel(bin++, "Phase space"      );
-      axis->SetBinLabel(bin++, "Trigger"          );
-      axis->SetBinLabel(bin++, "Trigger matching" );
-      axis->SetBinLabel(bin++, "Prompt leptons"   );
-      axis->SetBinLabel(bin++, "Opposite sign"    );
-      axis->SetBinLabel(bin++, "Same sign"        );
-      axis->SetBinLabel(bin++, "BREAK"            );
-
-      axis->SetBinLabel(bin++, "SR OSJVeto jet veto"    );
-      axis->SetBinLabel(bin++, "SR OSJVeto b-tag weight");
-      axis->SetBinLabel(bin++, "SR OSJVeto Z veto"      );
-      axis->SetBinLabel(bin++, "SR OSJVeto met-rel"     );
-      axis->SetBinLabel(bin++, "SR OSJVeto mt2"         );
-      axis->SetBinLabel(bin++, "BREAK"                  );
-
-      axis->SetBinLabel(bin++, "SR SSJets >= 1 L jet"  );
-      axis->SetBinLabel(bin++, "SR SSJets B jet veto"  );
-      axis->SetBinLabel(bin++, "SR SSJets F jet veto"  );
-      axis->SetBinLabel(bin++, "SR SSJets b-tag weight");
-      axis->SetBinLabel(bin++, "SR SSJets Z veto (ee)" );
-      axis->SetBinLabel(bin++, "SR SSJets met-rel"     );
-      axis->SetBinLabel(bin++, "SR SSJets mt"          );
-      axis->SetBinLabel(bin++, "BREAK"                 );
-
-      axis->SetBinLabel(bin++, "SR SSJetsCF CF cand"     );
-      axis->SetBinLabel(bin++, "SR SSJetsCF CF weight"   );
-      axis->SetBinLabel(bin++, "SR SSJetsCF >= 1 L jet"  );
-      axis->SetBinLabel(bin++, "SR SSJetsCF B jet veto"  );
-      axis->SetBinLabel(bin++, "SR SSJetsCF F jet veto"  );
-      axis->SetBinLabel(bin++, "SR SSJetsCF b-tag weight");
-      axis->SetBinLabel(bin++, "SR SSJetsCF Z veto (ee)" );
-      axis->SetBinLabel(bin++, "SR SSJetsCF met-rel"     );
-      axis->SetBinLabel(bin++, "SR SSJetsCF mt"          );
-      axis->SetBinLabel(bin++, "BREAK"                   );
-
-      axis->SetBinLabel(bin++, "SR 2Jets 2-light jets");
-      axis->SetBinLabel(bin++, "SR 2Jets Z veto"      );
-      axis->SetBinLabel(bin++, "SR 2Jets b jet veto"  );
-      axis->SetBinLabel(bin++, "SR 2Jets b-tag weight");
-      axis->SetBinLabel(bin++, "SR 2Jets f jet veto"  );
-      axis->SetBinLabel(bin++, "SR 2Jets top tag veto");
-      axis->SetBinLabel(bin++, "SR 2Jets met-rel"     );
-      axis->SetBinLabel(bin++, "BREAK"                );
-
-      axis->SetBinLabel(bin++, "SR MT2 jet veto"    );
-      axis->SetBinLabel(bin++, "SR MT2 b-tag weight");
-      axis->SetBinLabel(bin++, "SR MT2 Z veto"      );
-      axis->SetBinLabel(bin++, "SR MT2 met-rel"     );
-      axis->SetBinLabel(bin++, "SR MT2a mt2"        );
-      axis->SetBinLabel(bin++, "SR MT2b mt2"        );
-      axis->SetBinLabel(bin++, "BREAK"              );
-
-      axis->SetBinLabel(bin++, "SR ZJets >= 2 L jet");
-      axis->SetBinLabel(bin++, "SR ZJets Z window"  );
-      axis->SetBinLabel(bin++, "SR ZJets b jet veto"  );
-      axis->SetBinLabel(bin++, "SR ZJets b-tag weight");
-      axis->SetBinLabel(bin++, "SR ZJets f jet veto"  );
-      axis->SetBinLabel(bin++, "SR ZJets top tag veto");
-      axis->SetBinLabel(bin++, "SR ZJets mjj");
-      axis->SetBinLabel(bin++, "SR ZJets pt_j1");
-      axis->SetBinLabel(bin++, "SR ZJets pt_j2");
-      axis->SetBinLabel(bin++, "SR ZJets met-rel");
-      axis->SetBinLabel(bin++, "SR ZJets mt2");
-      axis->SetBinLabel(bin++, "BREAK");
-
-      axis->SetBinLabel(bin++, "SR WW jet veto");
-      axis->SetBinLabel(bin++, "SR WW pt_l1");
-      axis->SetBinLabel(bin++, "SR WW pt_l2");
-      axis->SetBinLabel(bin++, "SR WWa mll");
-      axis->SetBinLabel(bin++, "SR WWa ptll");
-      axis->SetBinLabel(bin++, "SR WWa met-rel");
-      axis->SetBinLabel(bin++, "SR WWb mll");
-      axis->SetBinLabel(bin++, "SR WWb ptll");
-      axis->SetBinLabel(bin++, "SR WWb mt2");
-      axis->SetBinLabel(bin++, "SR WWc ptll");
-      axis->SetBinLabel(bin++, "SR WWc mt2");
-      axis->SetBinLabel(bin++, "BREAK");
-
-      axis->SetBinLabel(bin++, "VR SS >= 1 L jet"  );
-      axis->SetBinLabel(bin++, "VR SS B jet veto"  );
-      axis->SetBinLabel(bin++, "VR SS F jet veto"  );
-      axis->SetBinLabel(bin++, "VR SS b-tag weight");
-      axis->SetBinLabel(bin++, "VR SS Z veto (ee)" );
-      axis->SetBinLabel(bin++, "VR SS met-rel"     );
-      axis->SetBinLabel(bin++, "VR SS mt"          );
-      axis->SetBinLabel(bin++, "BREAK"                 );
-
-      axis->SetBinLabel(bin++, "VR SS CF cand"     );
-      axis->SetBinLabel(bin++, "VR SS CF weight"   );
-      axis->SetBinLabel(bin++, "VR SS >= 1 L jet"  );
-      axis->SetBinLabel(bin++, "VR SS B jet veto"  );
-      axis->SetBinLabel(bin++, "VR SS F jet veto"  );
-      axis->SetBinLabel(bin++, "VR SS b-tag weight");
-      axis->SetBinLabel(bin++, "VR SS Z veto (ee)" );
-      axis->SetBinLabel(bin++, "VR SS met-rel"     );
-      axis->SetBinLabel(bin++, "VR SS mt"          );
-      axis->SetBinLabel(bin++, "BREAK"             );
-
-      // axis->SetBinLabel(bin++, "CR ZX Z window");
-      // axis->SetBinLabel(bin++, "CR ZXosjveto jet veto");
-      // axis->SetBinLabel(bin++, "CR ZXosjveto met-rel");
-      // axis->SetBinLabel(bin++, "CR ZXmt2 jet veto");
-      // axis->SetBinLabel(bin++, "CR ZXmt2 met-rel");
-      // axis->SetBinLabel(bin++, "CR ZXmt2a mt2");
-      // axis->SetBinLabel(bin++, "CR ZXmt2b mt2");
-      // axis->SetBinLabel(bin++, "CR ZX2jets >- 2 L jets");
-      // axis->SetBinLabel(bin++, "CR ZX2jets b jet veto");
-      // axis->SetBinLabel(bin++, "CR ZX2jets b-tag weight");
-      // axis->SetBinLabel(bin++, "CR ZX2jets f jet veto");
-      // axis->SetBinLabel(bin++, "CR ZX2jets top tag veto");
-      // axis->SetBinLabel(bin++, "CR ZX2jets met-rel");
-      // axis->SetBinLabel(bin++, "CR ZX2jets mt2");
-      // axis->SetBinLabel(bin++, "CR ZXWW jet feto");
-      // axis->SetBinLabel(bin++, "CR ZXWW met-rel");
-      // axis->SetBinLabel(bin++, "CR ZXWW mt2");
-
-      // axis->SetBinLabel(bin++, "CR top z veto");
-      // axis->SetBinLabel(bin++, "CR top met-rel");
-      // axis->SetBinLabel(bin++, "CR top num central jets");
-      // axis->SetBinLabel(bin++, "CR top num b jets");
-
-      // axis->SetBinLabel(bin++, "CR topWW pt l1");
-      // axis->SetBinLabel(bin++, "CR topWW pt l2");
-      // axis->SetBinLabel(bin++, "CR topWW num b jets");
-      // axis->SetBinLabel(bin++, "CR topWWa ");
-      // axis->SetBinLabel(bin++, "CR topWWa ");
-      // axis->SetBinLabel(bin++, "CR topWWa ");
-      // axis->SetBinLabel(bin++, "CR topWWb ");
-      // axis->SetBinLabel(bin++, "CR topWWb ");
-      // axis->SetBinLabel(bin++, "CR topWWb ");
-      // axis->SetBinLabel(bin++, "CR topWWc ");
-      // axis->SetBinLabel(bin++, "CR topWWc ");
-      // axis->SetBinLabel(bin++, "CR topWWc ");
-
-      // axis->SetBinLabel(bin++, "CR WW12 ");
-
-      // axis->SetBinLabel(bin++, "CR WWabc ");
-
-      // axis->SetBinLabel(bin++, "CR btag");
-
+      for (size_t bin_it = 0; bin_it != num_bins; ++bin_it) {
+        axis->SetBinLabel(bin_it+1, m_bin_list.at(bin_it).c_str());
+      }
     }
   }
 }
@@ -447,6 +292,12 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   ++bin_num;
   weight = basic_weight;
   bool pass_sr_ssjets = (evt_desc.getSignChannel() == SIGN_SS);
+
+  // SRSSJets mll veto
+  pass_sr_ssjets = (pass_sr_ssjets && sr_helper.getPassSRSSJetsMllVeto());
+  if (pass_sr_ssjets)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
 
   // SRSSJets >= 1 L jet
   pass_sr_ssjets = (pass_sr_ssjets && !pass_l_jet_veto);
@@ -1058,4 +909,175 @@ std::string getWeightName(WEIGHTS weight_type)
   }
 
   return weight_name;
+}
+
+// -----------------------------------------------------------------------------
+void CutFlowDump::initBinList()
+{
+  m_bin_list.clear();
+
+  m_bin_list.push_back("ALL");
+  m_bin_list.push_back("MC event weight");
+  m_bin_list.push_back("Pile up weight");
+  m_bin_list.push_back("GRL");
+  m_bin_list.push_back("Incomplete event");
+  m_bin_list.push_back("LAr error");
+  m_bin_list.push_back("Tile error");
+  m_bin_list.push_back("Tile hot spot");
+  m_bin_list.push_back("Jet cleaning");
+  m_bin_list.push_back("Calo problem jet");
+  m_bin_list.push_back("Primary vertex");
+  m_bin_list.push_back("Bad mu veto");
+  m_bin_list.push_back("Cosmic mu veto");
+  m_bin_list.push_back("HFOR");
+  m_bin_list.push_back(">= 2 good lep");
+  m_bin_list.push_back("== 2 good lep=");
+  m_bin_list.push_back("mll");
+  m_bin_list.push_back("== 2 signal lep");
+  m_bin_list.push_back("Flavor");
+  m_bin_list.push_back("Lepton SF");
+  m_bin_list.push_back("Trigger weight");
+  m_bin_list.push_back("Phase space");
+  m_bin_list.push_back("Trigger");
+  m_bin_list.push_back("Trigger matching");
+  m_bin_list.push_back("Prompt leptons");
+  m_bin_list.push_back("Opposite sign");
+  m_bin_list.push_back("Same sign");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("SR OSJVeto jet veto");
+  m_bin_list.push_back("SR OSJVeto b-tag weight");
+  m_bin_list.push_back("SR OSJVeto Z veto");
+  m_bin_list.push_back("SR OSJVeto met-rel");
+  m_bin_list.push_back("SR OSJVeto mt2");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("SR SSJets mll veto");
+  m_bin_list.push_back("SR SSJets >= 1 L jet");
+  m_bin_list.push_back("SR SSJets B jet veto");
+  m_bin_list.push_back("SR SSJets F jet veto");
+  m_bin_list.push_back("SR SSJets b-tag weight");
+  m_bin_list.push_back("SR SSJets Z veto (ee)");
+  m_bin_list.push_back("SR SSJets met-rel");
+  m_bin_list.push_back("SR SSJets mt");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("SR SSJetsCF mll veto");
+  m_bin_list.push_back("SR SSJetsCF CF cand");
+  m_bin_list.push_back("SR SSJetsCF CF weight");
+  m_bin_list.push_back("SR SSJetsCF >= 1 L jet");
+  m_bin_list.push_back("SR SSJetsCF B jet veto");
+  m_bin_list.push_back("SR SSJetsCF F jet veto");
+  m_bin_list.push_back("SR SSJetsCF b-tag weight");
+  m_bin_list.push_back("SR SSJetsCF Z veto (ee)");
+  m_bin_list.push_back("SR SSJetsCF met-rel");
+  m_bin_list.push_back("SR SSJetsCF mt");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("SR 2Jets 2-light jets");
+  m_bin_list.push_back("SR 2Jets Z veto");
+  m_bin_list.push_back("SR 2Jets b jet veto");
+  m_bin_list.push_back("SR 2Jets b-tag weight");
+  m_bin_list.push_back("SR 2Jets f jet veto");
+  m_bin_list.push_back("SR 2Jets top tag veto");
+  m_bin_list.push_back("SR 2Jets met-rel");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("SR MT2 jet veto");
+  m_bin_list.push_back("SR MT2 b-tag weight");
+  m_bin_list.push_back("SR MT2 Z veto");
+  m_bin_list.push_back("SR MT2 met-rel");
+  m_bin_list.push_back("SR MT2a mt2");
+  m_bin_list.push_back("SR MT2b mt2");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("SR ZJets >= 2 L jet");
+  m_bin_list.push_back("SR ZJets Z window");
+  m_bin_list.push_back("SR ZJets b jet veto");
+  m_bin_list.push_back("SR ZJets b-tag weight");
+  m_bin_list.push_back("SR ZJets f jet veto");
+  m_bin_list.push_back("SR ZJets top tag veto");
+  m_bin_list.push_back("SR ZJets mjj");
+  m_bin_list.push_back("SR ZJets pt_j1");
+  m_bin_list.push_back("SR ZJets pt_j2");
+  m_bin_list.push_back("SR ZJets met-rel");
+  m_bin_list.push_back("SR ZJets mt2");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("SR WW jet veto");
+  m_bin_list.push_back("SR WW pt_l1");
+  m_bin_list.push_back("SR WW pt_l2");
+  m_bin_list.push_back("SR WWa mll");
+  m_bin_list.push_back("SR WWa ptll");
+  m_bin_list.push_back("SR WWa met-rel");
+  m_bin_list.push_back("SR WWb mll");
+  m_bin_list.push_back("SR WWb ptll");
+  m_bin_list.push_back("SR WWb mt2");
+  m_bin_list.push_back("SR WWc ptll");
+  m_bin_list.push_back("SR WWc mt2");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("VR SS mll veto");
+  m_bin_list.push_back("VR SS >= 1 L jet");
+  m_bin_list.push_back("VR SS B jet veto");
+  m_bin_list.push_back("VR SS F jet veto");
+  m_bin_list.push_back("VR SS b-tag weight");
+  m_bin_list.push_back("VR SS Z veto (ee)");
+  m_bin_list.push_back("VR SS met-rel");
+  m_bin_list.push_back("VR SS mt");
+  m_bin_list.push_back("BREAK");
+
+  m_bin_list.push_back("VR SS CF mll veto");
+  m_bin_list.push_back("VR SS CF cand");
+  m_bin_list.push_back("VR SS CF weight");
+  m_bin_list.push_back("VR SS CF >= 1 L jet");
+  m_bin_list.push_back("VR SS CF B jet veto");
+  m_bin_list.push_back("VR SS CF F jet veto");
+  m_bin_list.push_back("VR SS CF b-tag weight");
+  m_bin_list.push_back("VR SS CF Z veto (ee)");
+  m_bin_list.push_back("VR SS CF met-rel");
+  m_bin_list.push_back("VR SS CF mt");
+  m_bin_list.push_back("BREAK");
+
+  // m_bin_list.push_back("CR ZX Z window");
+  // m_bin_list.push_back("CR ZXosjveto jet veto");
+  // m_bin_list.push_back("CR ZXosjveto met-rel");
+  // m_bin_list.push_back("CR ZXmt2 jet veto");
+  // m_bin_list.push_back("CR ZXmt2 met-rel");
+  // m_bin_list.push_back("CR ZXmt2a mt2");
+  // m_bin_list.push_back("CR ZXmt2b mt2");
+  // m_bin_list.push_back("CR ZX2jets >- 2 L jets");
+  // m_bin_list.push_back("CR ZX2jets b jet veto");
+  // m_bin_list.push_back("CR ZX2jets b-tag weight");
+  // m_bin_list.push_back("CR ZX2jets f jet veto");
+  // m_bin_list.push_back("CR ZX2jets top tag veto");
+  // m_bin_list.push_back("CR ZX2jets met-rel");
+  // m_bin_list.push_back("CR ZX2jets mt2");
+  // m_bin_list.push_back("CR ZXWW jet feto");
+  // m_bin_list.push_back("CR ZXWW met-rel");
+  // m_bin_list.push_back("CR ZXWW mt2");
+
+  // m_bin_list.push_back("CR top z veto");
+  // m_bin_list.push_back("CR top met-rel");
+  // m_bin_list.push_back("CR top num central jets");
+  // m_bin_list.push_back("CR top num b jets");
+
+  // m_bin_list.push_back("CR topWW pt l1");
+  // m_bin_list.push_back("CR topWW pt l2");
+  // m_bin_list.push_back("CR topWW num b jets");
+  // m_bin_list.push_back("CR topWWa ");
+  // m_bin_list.push_back("CR topWWa ");
+  // m_bin_list.push_back("CR topWWa ");
+  // m_bin_list.push_back("CR topWWb ");
+  // m_bin_list.push_back("CR topWWb ");
+  // m_bin_list.push_back("CR topWWb ");
+  // m_bin_list.push_back("CR topWWc ");
+  // m_bin_list.push_back("CR topWWc ");
+  // m_bin_list.push_back("CR topWWc ");
+
+  // m_bin_list.push_back("CR WW12 ");
+
+  // m_bin_list.push_back("CR WWabc ");
+
+  // m_bin_list.push_back("CR btag");
 }

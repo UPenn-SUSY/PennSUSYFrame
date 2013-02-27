@@ -2,6 +2,7 @@
 #define CutFlowDump_h
 
 // =============================================================================
+#include <string>
 #include <vector>
 #include "NtupleLooper/include/NtupleLooper.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
@@ -55,6 +56,10 @@ class CutFlowDump : public NtupleLooper
   // ---------------------------------------------------------------------------
   private:
     bool m_axis_initialized;
+
+    std::vector<std::string> m_bin_list;
+
+    void initBinList();
 };
 
 #endif
