@@ -14,13 +14,13 @@
 
   //  TH1::AddDirectory(kFALSE); 
   
-  TFile* fZ = new TFile("./Zee_MC_map.root"); 
-  TFile* fT = new TFile("./ttbar_map.root"); 
+  TFile* fZ = new TFile("../mc_z_full_range.root"); 
+  TFile* fT = new TFile("../cf.root"); 
 
   fZ->cd(); 
 
-  TH2F* hZ = (TH2F*) fZ->Get("h_flipped"); 
-  TH2F* hT = (TH2F*) fT->Get("h_flipped"); 
+  TH2F* hZ = (TH2F*) fZ->Get("h_truth_rate"); 
+  TH2F* hT = (TH2F*) fT->Get("h_truth_rate"); 
 
   cout<<endl;
   cout<<"Global chi2: "<<endl;

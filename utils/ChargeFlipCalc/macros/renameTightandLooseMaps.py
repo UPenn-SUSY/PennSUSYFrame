@@ -1,6 +1,6 @@
 from ROOT import *
 
-file1 = TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy/plot_dev/charge_flip/macros/SherpaMap.root")
+file1 = TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy_presel_12Feb/utils/ChargeFlipCalc/macros/ZAlpgenMap.root")
 
 file2 = TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy/plot_dev/charge_flip/chargeFlip2012ExLoose.root")
 

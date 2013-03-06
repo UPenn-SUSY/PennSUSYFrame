@@ -11,6 +11,7 @@ int main(int argc, char** argv)
 {
   // TChain* t = CommandParser::readInputs(argc, argv, "output");
   TChain* t = CommandParser::readInputs(argc, argv, "presel");
+  //TTree* t = static_cast<TTree*>(f->Get("presel"));
 
   ChargeFlipCalc cfc(t);
   cfc.Loop();
@@ -21,5 +22,5 @@ int main(int argc, char** argv)
 
   cfc.printToFile("cf.root");
 
-  delete f;
+
 }

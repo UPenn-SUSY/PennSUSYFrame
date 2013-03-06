@@ -26,6 +26,10 @@ ChargeFlipCalc::ChargeFlipCalc(TTree *tree) : NtupleLooper(tree)
   initChargeFlipHists();
   TH1:: SetDefaultSumw2();
 
+  TFile* map_file = new TFile("ZAlpgenMap.root"); //data/mc map
+  //TFile* map_file = new TFile("TruthOnlyMap.root"); //mc only map
+  m_h_map = (TH2*)map_file->Get("h_flipped");
+
 }
 
 // -----------------------------------------------------------------------------
@@ -64,6 +68,7 @@ void ChargeFlipCalc::printToFile(std::string out_file_name)
    m_h_total_eta_only->Write();
 
    m_h_mll->Write();
+   m_h_mll_ss->Write();
 
    m_h_n_events->Write();
    m_h_n_ss->Write();
@@ -106,7 +111,7 @@ void ChargeFlipCalc::initChargeFlipHists()
 
   m_h_lklh_rate = new TH1F("h_lklh_rate",";#eta;charge_mis rate", num_eta_bins,eta_bins);
   m_h_truth_rate_eta_only = new TH1F("h_truth_rate_eta_only",";#eta;charge_mis rate", num_eta_bins,eta_bins);
-  m_h_truth_rate = new TH2F("h_truth_rate",";#eta;charge_mis rate",num_pt_bins,pt_bins,num_eta_bins,eta_bins);
+  m_h_truth_rate = new TH2F("h_truth_rate",";#p_{T};#eta;charge_mis rate",num_pt_bins,pt_bins,num_eta_bins,eta_bins);
 
   //  m_pt_shift = Book("h_pt_shift","h_pt_shift", 600, -1., 1.);
 
@@ -134,7 +139,7 @@ void ChargeFlipCalc::fillTruthHists()
       SusyAnalysisTools::ElectronDescription el_desc = m_el_desc->at(el_it);
 
       bool pass = true;
-      //      pass = pass && el_desc.getPassSignal();
+      pass = pass && el_desc.getPassSignal();
 
       if (pass)
 	{
@@ -164,15 +169,32 @@ void ChargeFlipCalc::fillLikelihoodHists()
 
   SusyAnalysisTools::EventDescription evt_desc  = m_event_desc;
   std::vector<float>*  el_eta = m_el_eta;
-  //std::vector<float>*  el_pt  = m_el_pt;
+  std::vector<float>*  el_pt  = m_el_pt;
 
   double weight =1.0;
+ 
 
   float el_eta_lead = el_eta->at(0);
   float el_eta_sub_lead = el_eta->at(1);
+
+  float el_pt_lead = el_pt->at(0)/1000.;
+  float el_pt_sub_lead = el_pt->at(1)/1000.;
+
+//  weight *= m_mc_event_weight;
+//  weight *= m_pile_up_weight;
+//  weight *= m_trigger_weight;
+//  weight *= m_lepton_weight;
+//
+//  weight *= GetChargeFlipWeightFromMap(el_pt_lead,el_eta_lead,el_pt_sub_lead,el_eta_sub_lead);
   
+  m_h_mll->Fill(m_mll/1000.,weight);  
   m_h_n_events->Fill(el_eta_lead, el_eta_sub_lead,weight);
-  if (evt_desc.getSignChannel()==SIGN_SS) m_h_n_ss->Fill(el_eta_lead, el_eta_sub_lead,weight);
+  if (evt_desc.getSignChannel()==SIGN_SS)
+    {
+      m_h_n_ss->Fill(el_eta_lead, el_eta_sub_lead,weight);
+
+      m_h_mll_ss->Fill(m_mll/1000.,weight);
+    }
   
 }
 // -----------------------------------------------------------------------------
@@ -202,6 +224,8 @@ bool ChargeFlipCalc::passLikelihoodSelection()
   pass = pass && evt_desc.getPassTriggerMatch();
   pass = pass && evt_desc.getTruthPrompt();
   pass = pass && evt_desc.getPass2SignalLeptons();
+
+  //  pass = pass && (m_mll > 81200 && m_mll<101200);
  
 
   return pass;
@@ -369,5 +393,22 @@ void ChargeFlipCalc::calcTruth()
 	}
 
     }
+
+}
+float ChargeFlipCalc::GetChargeFlipWeightFromMap(float pt1, float eta1,float pt2, float eta2)
+{
+
+
+
+
+  float eps1 = m_h_map->GetBinContent( m_h_map->GetXaxis()->FindBin(pt1), 
+                                     m_h_map->GetYaxis()->FindBin(fabs(eta1)) );
+  
+  float eps2 = m_h_map->GetBinContent( m_h_map->GetXaxis()->FindBin(pt2), 
+                                     m_h_map->GetYaxis()->FindBin(fabs(eta2)) );
+
+
+  double weight = (eps1+eps2)/((1-eps1)*(1-eps2));
+  return weight;
 
 }

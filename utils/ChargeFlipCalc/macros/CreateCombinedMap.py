@@ -1,9 +1,9 @@
 from ROOT import *
 
 
-fileMC = TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy2.0/utils/ChargeFlipCalc/cf.root")
+fileMC = TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy_presel_12Feb/utils/ChargeFlipCalc/mc_out.root")
 
-fileData= TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy2.0/utils/ChargeFlipCalc/data.root")
+fileData= TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy_presel_12Feb/utils/ChargeFlipCalc/data_out.root")
 
 
 # Get the estimate from Truth
@@ -88,12 +88,12 @@ c1 = TCanvas ("c1","c1",800,600)
 c1.cd()
 c1.SetLogx()
 combMap.GetYaxis().SetTitle("|#eta|")
-combMap.GetXaxis().SetTitle("p_T [GeV]")
+combMap.GetXaxis().SetTitle("p_{T} [GeV]")
 combMap.Draw("COL TEXT")
 
 
 
-out_file = TFile("SherpaMap.root","recreate")
+out_file = TFile("ZAlpgenMap.root","recreate")
 
 combMap.Write()
 out_file.Close()

@@ -46,6 +46,9 @@ class ChargeFlipCalc : public NtupleLooper
     bool passTruthSelection();
     void fillLikelihoodHists();
     bool passLikelihoodSelection();
+    float GetChargeFlipWeightFromMap(float, float,float, float);
+
+    TH2* m_h_map;
 
     TH2F* m_h_flipped;
     TH2F* m_h_total;
@@ -82,6 +85,8 @@ class ChargeFlipCalc : public NtupleLooper
 			       Double_t &f, 
 			       Double_t *par, 
 			       Int_t iflag);
+
+    
 
 };
 

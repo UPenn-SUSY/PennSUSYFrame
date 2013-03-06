@@ -18,13 +18,19 @@
   gStyle->SetPaintTextFormat("5.4f");
 
   /** The name of the file containing the map*/
-  TFile* fin = new TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy/plot_dev/charge_flip/macros/Zee_MC_map.root"); 
-  
+  //TFile* fin = new TFile("./ZAlpgenMap.root"); 
+  //  TFile* fin = new TFile("../mc_out.root"); 
+
+  TFile* fin = new TFile("../mc_ttbar_no_weights.root"); 
+
   /** The name of the histogram in the file */
-  string histname = "h_flipped"; 
+  //string histname = "h_flipped"; 
+  string histname = "h_truth_rate";
   
   /** Goes at the top of the plot */
-  string label = "#epsilon (|#eta|^{Z#rightarrow ee MC truth}, p_{T}^{Z#rightarrow ee MC truth})";
+  //string label = "#epsilon (|#eta|^{Z#rightarrow ee data}, p_{T}^{Z#rightarrow ee MC truth})";
+  //  string label = "#epsilon (|#eta|^{Z#rightarrow ee MC truth}, p_{T}^{Z#rightarrow ee MC truth})";
+ string label = "#epsilon (|#eta|^{TTbar MC truth}, p_{T}^{TTbar MC truth})";
 
   //-------------------------------------------------------------------------//
   //                      SHOULD NOT HAVE TO CHANGE BELOW HERE               //
