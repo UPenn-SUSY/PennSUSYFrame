@@ -23,6 +23,5 @@
 #pragma link C++ class SelectionTools::SignalRegionTool+;
 // #pragma link C++ class SelectionTools::ControlRegionTool+;
 #pragma link C++ class SelectionTools::HFORTool+;
-#pragma link C++ class SelectionTools::SherpaWWOverlapRemovalTool+;
 
 #endif // __CINT__

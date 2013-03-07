@@ -11,6 +11,7 @@ namespace D3PDReader
 {
   class TruthD3PDObject;
 }
+class Event;
 
 // =============================================================================
 namespace SelectionTools
@@ -27,6 +28,7 @@ namespace SelectionTools
     virtual ~HFORTool();
 
     bool passHFOR(const D3PDReader::TruthD3PDObject*);
+    bool passSherpaWWOveralpRemoval(const Event*, const D3PDReader::TruthD3PDObject* );
 
 
   // ---------------------------------------------------------------------------

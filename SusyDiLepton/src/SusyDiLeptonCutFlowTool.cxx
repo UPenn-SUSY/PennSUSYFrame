@@ -284,7 +284,7 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check HFOR
   bool pass_hfor = true;
-  if(!is_data()) pass_hfor =  m_hfor_tool->passHFOR(mc);
+  if(!is_data()) pass_hfor =  (m_hfor_tool->passHFOR(mc) && m_hfor_tool->passSherpaWWOveralpRemoval(event, mc));
   event->getEventDesc()->setPassHFOR(pass_hfor);
   if (c_crit_hfor && pass_hfor == false) {
     if (c_super_verbose_info) {

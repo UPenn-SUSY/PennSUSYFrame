@@ -70,6 +70,7 @@
 #include "SelectionTools/include/SignalRegionTool.h"
 #include "SelectionTools/include/TriggerCutTool.h"
 #include "SelectionTools/include/HFORTool.h"
+// #include "SelectionTools/include/SherpaWWOverlapRemovalTool.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
@@ -160,6 +161,8 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(SelectionTools::ObjectCleaningTool, "Object_Cleaning");
   DECLARE_TOOL(SelectionTools::TriggerCutTool    , "Trigger_Cut"    );
   DECLARE_TOOL(SelectionTools::HFORTool          , "HFOR"           );
+  // DECLARE_TOOL(SelectionTools::SherpaWWOverlapRemovalTool,
+  //     "SherpaWW_Overlap_Removal");
 
   DECLARE_TOOL(SelectionTools::SignalRegionTool, "Signal_Regions");
 
