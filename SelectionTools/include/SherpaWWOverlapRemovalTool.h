@@ -10,6 +10,7 @@ namespace D3PDReader
 {
   class TruthD3PDObject;
 }
+class Event;
 
 // =============================================================================
 namespace SelectionTools
@@ -25,7 +26,7 @@ namespace SelectionTools
 
     virtual ~SherpaWWOverlapRemovalTool();
 
-    bool passOveralpRemoval();
+    bool passOveralpRemoval(const Event*, const D3PDReader::TruthD3PDObject* );
 
 
   // ---------------------------------------------------------------------------
