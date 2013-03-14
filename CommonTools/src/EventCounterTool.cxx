@@ -11,10 +11,9 @@ CommonTools::EventCounterTool::EventCounterTool( SCycleBase* parent
                                                , const char* name
                                                )
                                                : ToolBase(parent, name)
-                                               , m_raw_events(0.)
-                                               , m_weighted_events(0.)
+                                               , m_event_weights(NULL)
 {
-  // do nothing
+  m_event_weights = new TH1D("event_weights", "event_weights", 1, 0.05, 0.5);
 }
 // -----------------------------------------------------------------------------
 CommonTools::EventCounterTool::~EventCounterTool()
@@ -24,7 +23,7 @@ CommonTools::EventCounterTool::~EventCounterTool()
 // -----------------------------------------------------------------------------
 void CommonTools::EventCounterTool::BeginInputData( const SInputData& )
 {
-  // do nothing
+  Book(*m_event_weights);
 }
 // -----------------------------------------------------------------------------
 void CommonTools::EventCounterTool::BeginExecuteEvent( const SInputData&, Double_t )
@@ -34,6 +33,5 @@ void CommonTools::EventCounterTool::BeginExecuteEvent( const SInputData&, Double
 
 void CommonTools::EventCounterTool::countEvent(const Event* event)
 {
-  ++m_raw_events;
-  m_weighted_events += event->getMCEventWeight();
+  m_event_weights->Fill(0., event->getMCEventWeight());
 }
