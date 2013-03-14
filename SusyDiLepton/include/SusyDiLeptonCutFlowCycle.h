@@ -10,7 +10,6 @@
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
 #include "SusyMatrixMethod/DiLeptonMatrixMethod.h"
-// #include "SusyMatrixMethod/FakeEstNtupleMaker.h"
 
 // =============================================================================
 class Event;
@@ -48,6 +47,8 @@ namespace SelectionTools
 
 namespace CommonTools
 {
+  class EventCounterTool;
+
   class TruthMatchTool;
   class CrossSectionScaleFactorTool;
   class BTagScaleFactorTool;
@@ -185,6 +186,7 @@ private:
   SelectionTools::SignalRegionTool*  m_signal_region_tool;
   //SelectionTools::HFORTool*          m_hfor_tool;
 
+  CommonTools::EventCounterTool*            m_event_counter_tool;
   CommonTools::TruthMatchTool*              m_truth_match_tool;
   CommonTools::CrossSectionScaleFactorTool* m_cross_section_sf_tool;
   CommonTools::BTagScaleFactorTool*         m_b_tag_sf_tool;

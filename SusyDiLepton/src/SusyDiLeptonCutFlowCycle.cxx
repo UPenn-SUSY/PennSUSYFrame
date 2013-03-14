@@ -29,6 +29,7 @@
 #include "CommonTools/include/EgammaScaleFactorTool.h"
 #include "CommonTools/include/ElectronOutputTool.h"
 #include "CommonTools/include/EventOutputTool.h"
+#include "CommonTools/include/EventCounterTool.h"
 #include "CommonTools/include/IsoCorrectionTool.h"
 #include "CommonTools/include/JetCalibTool.h"
 #include "CommonTools/include/JetOutputTool.h"
@@ -106,6 +107,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_event_cleaning_tool(NULL),
   m_trigger_cut_tool(NULL),
   m_signal_region_tool(NULL),
+  m_event_counter_tool(NULL),
   m_truth_match_tool(NULL),
   m_cross_section_sf_tool(NULL),
   m_b_tag_sf_tool(NULL),
@@ -135,6 +137,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
 {
   DECLARE_TOOL(SusyDiLeptonCutFlowTool, "CutFlow");
 
+  DECLARE_TOOL(CommonTools::EventCounterTool       , "EventCounter");
   DECLARE_TOOL(CommonTools::EgammaEnergyRescaleTool , "EgammaEnergyRescale" );
   DECLARE_TOOL(CommonTools::MuonMomentumSmearingTool, "MuonMomentumSmearing");
   DECLARE_TOOL(CommonTools::JetCalibTool            , "JetCalibration"      );
@@ -288,6 +291,13 @@ void SusyDiLeptonCutFlowCycle::getTools()
           , "CutFlow"
           );
   m_cut_flow = cut_flow_tool;
+
+  // Event counter tool
+  GET_TOOL( event_counter
+          , CommonTools::EventCounterTool
+          , "EventCounter"
+          );
+  m_event_counter_tool = event_counter;
 
   // Get helper tools required by containers
   GET_TOOL( egamma_energy_rescale
