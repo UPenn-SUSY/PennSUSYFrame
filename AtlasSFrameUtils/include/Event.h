@@ -22,17 +22,17 @@ public:
 
   void clear();
 
-  double getMCEventWeight();
-  double getPileUpWeight();
-  double getLeptonEffWeight();
-  double getTriggerWeight();
-  double getBTagWeight();
-  double getCrossSectionWeight();
-  double getKFactor();
-  double getEffTimesXS();
-  double getFakeWeight();
-  double getChargeFlipWeight();
-  int getMCChannelNum();
+  double getMCEventWeight() const;
+  double getPileUpWeight() const;
+  double getLeptonEffWeight() const;
+  double getTriggerWeight() const;
+  double getBTagWeight() const;
+  double getCrossSectionWeight() const;
+  double getKFactor() const;
+  double getEffTimesXS() const;
+  double getFakeWeight() const;
+  double getChargeFlipWeight() const;
+  int getMCChannelNum() const;
 
 
   void setMCEventWeight(double weight);
@@ -58,22 +58,22 @@ public:
   void setPhill(double);
   void setEtall(double);
 
-  double getMll();
-  double getMetEt();
-  double getMetPhi();
-  double getMetRel();
-  double getMt();
-  double getMt2();
-  double getMeff();
-  double getPtll();
-  double getPhill();
-  double getEtall();
+  double getMll() const;
+  double getMetEt() const;
+  double getMetPhi() const;
+  double getMetRel() const;
+  double getMt() const;
+  double getMt2() const;
+  double getMeff() const;
+  double getPtll() const;
+  double getPhill() const;
+  double getEtall() const;
 
   void print();
 
   FLAVOR_CHANNEL  getFlavorChannel() const;
-  SIGN_CHANNEL    getSignChannel();
-  PHASE_SPACE     getPhaseSpace();
+  SIGN_CHANNEL    getSignChannel() const;
+  PHASE_SPACE     getPhaseSpace() const;
 
   SusyAnalysisTools::EventDescription* getEventDesc();
   SusyAnalysisTools::SRHelper* getSRHelper();

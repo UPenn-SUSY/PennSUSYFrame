@@ -56,7 +56,7 @@ namespace CommonTools
     ull_t m_event_desc_int;
     ull_t m_sr_helper_int;
 
-    short  m_mc_event_weight;
+    double m_mc_event_weight;
     double m_pileup_weight;
     double m_trigger_weight;
     double m_lepton_weight;

@@ -85,64 +85,64 @@ void Event::clear()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getMCEventWeight()
+double Event::getMCEventWeight() const
 {
   return m_mc_event_weight;
 }
 
 // -----------------------------------------------------------------------------
-double Event::getPileUpWeight()
+double Event::getPileUpWeight() const
 {
   return m_pile_up_weight;
 }
 
 // -----------------------------------------------------------------------------
-double Event::getLeptonEffWeight()
+double Event::getLeptonEffWeight() const
 {
   return m_lepton_eff_weight;
 }
 
 // -----------------------------------------------------------------------------
-double Event::getTriggerWeight()
+double Event::getTriggerWeight() const
 {
   return m_trigger_weight;
 }
 
 // -----------------------------------------------------------------------------
-double Event::getCrossSectionWeight()
+double Event::getCrossSectionWeight() const
 {
   return m_cross_section_weight;
 }
 
 // -----------------------------------------------------------------------------
-double Event::getBTagWeight()
+double Event::getBTagWeight() const
 {
   return m_b_tag_weight;
 }
 
 // -----------------------------------------------------------------------------
-double Event::getKFactor()
+double Event::getKFactor() const
 {
   return m_k_factor;
 }
 
 // -----------------------------------------------------------------------------
-double Event::getEffTimesXS()
+double Event::getEffTimesXS() const
 {
   return m_eff_times_cross_section;
 }
 // -----------------------------------------------------------------------------
-double Event::getFakeWeight()
+double Event::getFakeWeight() const
 {
   return m_fake_weight;
 }
 // -----------------------------------------------------------------------------
-double Event::getChargeFlipWeight()
+double Event::getChargeFlipWeight() const
 {
   return m_charge_flip_weight;
 }
 // -----------------------------------------------------------------------------
-int Event::getMCChannelNum()
+int Event::getMCChannelNum() const
 {
   return m_mc_channel_num;
 }
@@ -281,7 +281,7 @@ void Event::setMetRel(double met_rel)
 }
 
 // -----------------------------------------------------------------------------
-double Event::getMll()
+double Event::getMll() const
 {
   if (!m_mll_cached)
     std::cout << "WARNING! Asking for mll, but not yet cached!\n";
@@ -289,7 +289,7 @@ double Event::getMll()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getMetEt()
+double Event::getMetEt() const
 {
   if (!m_met_et_cached)
     std::cout << "WARNING! Asking for met_et, but not yet cached!\n";
@@ -297,7 +297,7 @@ double Event::getMetEt()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getMetPhi()
+double Event::getMetPhi() const
 {
   if (!m_met_phi_cached)
     std::cout << "WARNING! Asking for met_phi, but not yet cached!\n";
@@ -305,7 +305,7 @@ double Event::getMetPhi()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getMetRel()
+double Event::getMetRel() const
 {
   if (!m_met_rel_cached)
     std::cout << "WARNING! Asking for met_rel, but not yet cached!\n";
@@ -313,7 +313,7 @@ double Event::getMetRel()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getMt()
+double Event::getMt() const
 {
   if (!m_mt_cached)
     std::cout << "WARNING! Asking for mt, but not yet cached!\n";
@@ -321,7 +321,7 @@ double Event::getMt()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getMt2()
+double Event::getMt2() const
 {
   if (!m_mt2_cached)
     std::cout << "WARNING! Asking for mt2, but not yet cached!\n";
@@ -329,7 +329,7 @@ double Event::getMt2()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getMeff()
+double Event::getMeff() const
 {
   if (!m_meff_cached)
     std::cout << "WARNING! Asking for meff, but not yet cached!\n";
@@ -337,7 +337,7 @@ double Event::getMeff()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getPtll()
+double Event::getPtll() const
 {
   if (!m_ptll_cached)
     std::cout << "WARNING! Asking for pt_ll, but not yet cached!\n";
@@ -345,7 +345,7 @@ double Event::getPtll()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getPhill()
+double Event::getPhill() const
 {
   if (!m_phill_cached)
     std::cout << "WARNING! Asking for phi_ll, but not yet cached!\n";
@@ -353,7 +353,7 @@ double Event::getPhill()
 }
 
 // -----------------------------------------------------------------------------
-double Event::getEtall()
+double Event::getEtall() const
 {
   if (!m_etall_cached)
     std::cout << "WARNING! Asking for eta_ll, but not yet cached!\n";
@@ -379,13 +379,13 @@ FLAVOR_CHANNEL Event::getFlavorChannel() const
 }
 
 // ----------------------------------------------------------------------------
-SIGN_CHANNEL Event::getSignChannel()
+SIGN_CHANNEL Event::getSignChannel() const
 {
   return m_event_desc.getSignChannel();
 }
 
 // ----------------------------------------------------------------------------
-PHASE_SPACE Event::getPhaseSpace()
+PHASE_SPACE Event::getPhaseSpace() const
 {
   return m_event_desc.getPhaseSpace();
 }
