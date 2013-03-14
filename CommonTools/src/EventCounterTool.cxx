@@ -32,8 +32,8 @@ void CommonTools::EventCounterTool::BeginExecuteEvent( const SInputData&, Double
   // do nothing
 }
 
-void CommonTools::EventCounterTool::countEvent(const Event& event)
+void CommonTools::EventCounterTool::countEvent(const Event* event)
 {
   ++m_raw_events;
-  m_weighted_events += event.getMCEventWeight();
+  m_weighted_events += event->getMCEventWeight();
 }

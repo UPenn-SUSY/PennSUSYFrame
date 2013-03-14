@@ -25,7 +25,7 @@ namespace CommonTools
     virtual void BeginInputData( const SInputData& );
     virtual void BeginExecuteEvent( const SInputData&, Double_t );
 
-    void countEvent(const Event&);
+    void countEvent(const Event*);
   // ---------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -536,6 +536,9 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   // return;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_event_counter_tool->countEvent(m_event);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool pass_critical_cuts = m_cut_flow->runBasicCutFlow( m_event
                                                        , m_electrons
                                                        , m_muons
