@@ -25,6 +25,7 @@ namespace CommonTools
 
     virtual void BeginInputData( const SInputData& );
     virtual void BeginExecuteEvent( const SInputData&, Double_t );
+    virtual void EndInputData( const SInputData& );
 
     void countEvent(const Event*);
   // ---------------------------------------------------------------------------

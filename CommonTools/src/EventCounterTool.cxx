@@ -24,7 +24,7 @@ CommonTools::EventCounterTool::~EventCounterTool()
 // -----------------------------------------------------------------------------
 void CommonTools::EventCounterTool::BeginInputData( const SInputData& )
 {
-  Book(*m_event_weights);
+  // Book(*m_event_weights);
 }
 // -----------------------------------------------------------------------------
 void CommonTools::EventCounterTool::BeginExecuteEvent( const SInputData&, Double_t )
@@ -32,8 +32,14 @@ void CommonTools::EventCounterTool::BeginExecuteEvent( const SInputData&, Double
   // do nothing
 }
 
+// -----------------------------------------------------------------------------
+void CommonTools::EventCounterTool::EndInputData( const SInputData& )
+{
+  Book(*m_event_weights);
+}
+
+// -----------------------------------------------------------------------------
 void CommonTools::EventCounterTool::countEvent(const Event* event)
 {
-  std::cout << "counting event with weight " << event->getMCEventWeight() << "\n";
   m_event_weights->Fill(0., event->getMCEventWeight());
 }
