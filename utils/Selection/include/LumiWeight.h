@@ -12,13 +12,21 @@ class LumiWeight
   // ---------------------------------------------------------------------------
   public:
     LumiWeight( std::string xsec_file
-              , std::string num_evt_file
+              // , std::string num_evt_file
               , unsigned int sample_num
               , unsigned int target_lumi
               );
+    // LumiWeight( std::string xsec_file
+    //           , std::string num_evt_file
+    //           , unsigned int sample_num
+    //           , unsigned int target_lumi
+    //           );
     void readXSecFile();
-    void readNumEventFile();
+    // void readNumEventFile();
     double getLumiWeight();
+
+    static double getNumEventsFromFiles(
+        const std::vector<std::string>& tnt_file_list);
 
   // ---------------------------------------------------------------------------
   private:
@@ -32,7 +40,7 @@ class LumiWeight
     float m_eff;
 
     std::string m_xsec_file;
-    std::string m_num_evts_file;
+    // std::string m_num_evts_file;
 };
 
 #endif

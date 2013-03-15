@@ -16,6 +16,16 @@ Selection::WeightHandler::WeightHandler() : m_do_mc_event_weight(false)
                                           , m_prepped(false)
 {
   // do nothing
+  if (m_prepped == false) {
+    // TODO make files configurable
+    m_lumi_weight = NULL;
+    m_lumi_weight = new LumiWeight( "data/cross_sections.txt"
+                                  //, "data/num_mc_events.txt"
+                                  , m_mc_channel
+                                  , m_target_lumi
+                                  );
+    m_prepped = true;
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -69,19 +79,16 @@ std::string Selection::WeightHandler::getWeightString()
   if( m_do_lumi_weight ) {
     // if (m_lumi_weight == NULL) {
     // if (m_prepped == false) {
-      // TODO make files configurable
-      m_lumi_weight = NULL;
-      m_lumi_weight = new LumiWeight( "data/cross_sections.txt"
-                                    , "data/num_mc_events.txt"
-                                    , m_mc_channel
-                                    , m_target_lumi
-                                    );
-      m_prepped = true;
+    //   // TODO make files configurable
+    //   m_lumi_weight = NULL;
+    //   m_lumi_weight = new LumiWeight( "data/cross_sections.txt"
+    //                                 //, "data/num_mc_events.txt"
+    //                                 , m_mc_channel
+    //                                 , m_target_lumi
+    //                                 );
+    //   m_prepped = true;
     // }
     weight_string << " * ( " << m_lumi_weight->getLumiWeight() << ")";
-    // weight_string << " * ( (k_factor * eff_times_cross_section"
-    //               << " * " << m_target_lumi << ")"
-    //               << " / " << m_num_mc_events << ")";
   }
   if( m_do_trigger_weight ) {
     weight_string << " * trigger_weight";

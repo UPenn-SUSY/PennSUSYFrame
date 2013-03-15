@@ -1,9 +1,11 @@
 #include "include/LumiWeight.h"
 
+#include "TFile.h"
+#include "TH1D.h"
 
 // -----------------------------------------------------------------------------
 LumiWeight::LumiWeight( std::string xsec_file
-                      , std::string num_evt_file
+                      // , std::string num_evt_file
                       , unsigned int sample_num
                       , unsigned int target_lumi
                       )
@@ -12,12 +14,28 @@ LumiWeight::LumiWeight( std::string xsec_file
                       , m_sample_num(sample_num)
                       , m_target_lumi(target_lumi)
                       , m_xsec_file(xsec_file)
-                      , m_num_evts_file(num_evt_file)
+                      // , m_num_evts_file(num_evt_file)
 {
   std::cout << "LumiWeight()" << std::endl;
   readXSecFile();
-  readNumEventFile();
 }
+
+// LumiWeight::LumiWeight( std::string xsec_file
+//                       , std::string num_evt_file
+//                       , unsigned int sample_num
+//                       , unsigned int target_lumi
+//                       )
+//                       : m_prepped(false)
+//                       , m_lumi_weight(1.0)
+//                       , m_sample_num(sample_num)
+//                       , m_target_lumi(target_lumi)
+//                       , m_xsec_file(xsec_file)
+//                       , m_num_evts_file(num_evt_file)
+// {
+//   std::cout << "LumiWeight()" << std::endl;
+//   readXSecFile();
+//   readNumEventFile();
+// }
 
 // -----------------------------------------------------------------------------
 void LumiWeight::readXSecFile()
@@ -65,44 +83,44 @@ void LumiWeight::readXSecFile()
   }
 }
 
-// -----------------------------------------------------------------------------
-void LumiWeight::readNumEventFile()
-{
-  std::fstream file(m_num_evts_file.c_str());
-  bool ds_found = false;
-
-  if (file.is_open()) {
-    std::string line;
-    std::vector<std::string> split_line;
-
-    // run through file parsing each line
-    while (file.good() && !ds_found) {
-      // get line from file, strip comments and leading/subleading whitespace
-      std::getline(file, line);
-      line = ParseDriver::cleanUpLine(line);
-
-      split_line = ParseDriver::split(line);
-      if (split_line.size() < 1) continue;
-
-      if (ParseDriver::stringToInt(split_line.at(0)) == m_sample_num) {
-        ds_found = true;
-        m_num_evts = ParseDriver::stringToInt(split_line.at(1));
-      }
-    }
-
-    file.close();
-  }
-  else {
-    std::cout << "num events file '" << m_num_evts_file << "' is not found\n";
-    throw;
-  }
-
-  if (!ds_found) {
-    std::cout << "Sample number " << m_sample_num
-              << " not found in num events file\n";
-    throw;
-  }
-}
+// // -----------------------------------------------------------------------------
+// void LumiWeight::readNumEventFile()
+// {
+//   std::fstream file(m_num_evts_file.c_str());
+//   bool ds_found = false;
+// 
+//   if (file.is_open()) {
+//     std::string line;
+//     std::vector<std::string> split_line;
+// 
+//     // run through file parsing each line
+//     while (file.good() && !ds_found) {
+//       // get line from file, strip comments and leading/subleading whitespace
+//       std::getline(file, line);
+//       line = ParseDriver::cleanUpLine(line);
+// 
+//       split_line = ParseDriver::split(line);
+//       if (split_line.size() < 1) continue;
+// 
+//       if (ParseDriver::stringToInt(split_line.at(0)) == m_sample_num) {
+//         ds_found = true;
+//         m_num_evts = ParseDriver::stringToInt(split_line.at(1));
+//       }
+//     }
+// 
+//     file.close();
+//   }
+//   else {
+//     std::cout << "num events file '" << m_num_evts_file << "' is not found\n";
+//     throw;
+//   }
+// 
+//   if (!ds_found) {
+//     std::cout << "Sample number " << m_sample_num
+//               << " not found in num events file\n";
+//     throw;
+//   }
+// }
 
 // -----------------------------------------------------------------------------
 double LumiWeight::getLumiWeight()
@@ -113,4 +131,21 @@ double LumiWeight::getLumiWeight()
   }
 
   return m_lumi_weight;
+}
+
+// -----------------------------------------------------------------------------
+static double getNumEventsFromFiles(const std::vector<std::string>& tnt_file_list)
+{
+  double num_weighted_events = 0.;
+
+  const size_t num_tnt_files = tnt_file_list.size();
+  for (size_t file_itr = 0; file_itr != num_tnt_files; ++file_itr) {
+    TFile* f = new TFile(tnt_file_list.at(file_itr).c_str());
+    TH1D* num_weights = dynamic_cast<TH1D*>(f->Get("event_weights"));
+
+    num_weighted_events += num_weights->Integral();
+    f->Close();
+  }
+
+  return num_weighted_events;
 }
