@@ -19,8 +19,9 @@
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // -----------------------------------------------------------------------------
-CutFlowDump::CutFlowDump(TTree *tree) : NtupleLooper(tree)
-                                      , m_axis_initialized(false)
+CutFlowDump::CutFlowDump( TTree *tree
+                        , double num_events) : NtupleLooper(tree, num_events)
+                                             , m_axis_initialized(false)
 {
   initCutFlowHists();
 }

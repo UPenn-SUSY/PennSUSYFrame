@@ -5,6 +5,7 @@
 
 #include "EventNumberDump/include/EventNumberDump.h"
 #include "Selection/include/EventSelection.h"
+#include "Selection/include/LumiWeight.h"
 #include "NtupleLooper/include/NtupleLooper.h"
 
 #include "Parser/include/MasterConfigParser.h"
@@ -26,10 +27,13 @@ int main(int argc, char** argv)
   MasterConfigParser parser(config_file);
   parser.parse();
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  double num_events = parser.getNumEvents();
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string out_file_name = parser.getPTNTFile();
   TChain* chain = parser.getInputChain();
-  EventNumberDump end(chain, out_file_name);
+  EventNumberDump end(chain, num_events, out_file_name);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string cut_config_file = parser.getSelectionFile();

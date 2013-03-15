@@ -1,4 +1,5 @@
 #include "include/MasterConfigParser.h"
+#include "Selection/include/LumiWeight.h"
 
 // -----------------------------------------------------------------------------
 MasterConfigParser::MasterConfigParser(std::string file_name) :
@@ -35,6 +36,34 @@ std::string MasterConfigParser::getSelectionFile()
 std::string MasterConfigParser::getHistInfoFile()
 {
   return m_hist_config_file_name;
+}
+
+// -----------------------------------------------------------------------------
+std::vector<std::string> MasterConfigParser::getInputFileList()
+{
+  return m_in_file_list;
+}
+
+// -----------------------------------------------------------------------------
+double MasterConfigParser::getNumEvents()
+{
+  return LumiWeight::getNumEventsFromFiles(m_in_file_list);
+}
+
+// -----------------------------------------------------------------------------
+double MasterConfigParser::getPTNTNumEvents()
+{
+  return LumiWeight::getNumEventsFromFiles(m_in_file_list);
+
+  // size_t num_files = m_in_file_list.size();
+  // double num_events = 0.;
+
+  // for (size_t file_itr = 0; file_itr != num_files; ++file_itr) {
+  //   TFile* f = new TFile(m_in_file_list.at(file_itr).c_str());
+  //   TVectorD* var = dynamic_cast<TVectorD*>(f->Get("num_events"));
+  //   num_events += (*var)[0];
+  // }
+  // return num_events;
 }
 
 // -----------------------------------------------------------------------------

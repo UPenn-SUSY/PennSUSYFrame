@@ -29,7 +29,8 @@ class HistMaker : public NtupleLooper
   // ---------------------------------------------------------------------------
   public :
     // HistMaker(TTree *tree=0, std::string out_file_name = "hists.root");
-    HistMaker( TTree *tree=0
+    HistMaker( TTree *tree
+             , double num_events
              , std::string out_file_name = "hists.root"
              );
     virtual ~HistMaker();

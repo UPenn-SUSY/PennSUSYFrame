@@ -7,8 +7,9 @@
 #include <map>
 #include <vector>
 
-#include <TChain.h>
-#include <TFile.h>
+#include "TChain.h"
+#include "TFile.h"
+#include "TVectorD.h"
 
 #include "ParseDriver.h"
 #include "Selection/include/WeightHandler.h"
@@ -24,11 +25,14 @@ class MasterConfigParser : public ParseDriver
     std::string getPTNTFile();
     std::string getHistFile();
 
-    std::string getSelectionFile();
-    std::string getHistInfoFile();
-    TChain*     getInputChain();
-    TChain*     getInputChain(std::string tree_name);
-    TChain*     getPTNTChain(std::string tree_name);
+    std::string              getSelectionFile();
+    std::string              getHistInfoFile();
+    std::vector<std::string> getInputFileList();
+    double                   getNumEvents();
+    double                   getPTNTNumEvents();
+    TChain*                  getInputChain();
+    TChain*                  getInputChain(std::string tree_name);
+    TChain*                  getPTNTChain(std::string tree_name);
     void config();
     Selection::WeightHandler getGlobalWeightHandler();
 

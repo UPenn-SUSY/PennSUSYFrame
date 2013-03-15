@@ -1,32 +1,25 @@
 #ifndef PlotNtupleMaker_h
 #define PlotNtupleMaker_h
 
-#include <iostream>
-#include <sstream>
+// =============================================================================
 #include <map>
+#include <string>
 #include <vector>
 
-#include <TROOT.h>
-#include <TCut.h>
-#include <TChain.h>
-#include <TFile.h>
-#include <TH1D.h>
-
 #include "NtupleLooper/include/NtupleLooper.h"
-
 #include "Selection/include/EventSelection.h"
-#include "Selection/include/WeightHandler.h"
 
-#include "SusyAnalysisTools/include/EventDescription.h"
-#include "SusyAnalysisTools/include/SRHelper.h"
-#include "SusyAnalysisTools/include/SusyEnums.h"
+// =============================================================================
+class TFile;
+class TTree;
 
 // =============================================================================
 class PlotNtupleMaker : public NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :
-    PlotNtupleMaker( TTree *tree=0
+    PlotNtupleMaker( TTree* tree
+                   , double events
                    , std::string out_file_name = "plot_ntuple.root"
                    );
     virtual ~PlotNtupleMaker();

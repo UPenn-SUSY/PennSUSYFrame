@@ -1,10 +1,32 @@
 #include "include/PlotNtupleMaker.h"
 
+#include <iostream>
+#include <sstream>
+#include <map>
+#include <vector>
+
+#include <TROOT.h>
+#include <TCut.h>
+#include <TChain.h>
+#include <TFile.h>
+#include <TH1D.h>
+// #include "TVectorD.h"
+
+#include "NtupleLooper/include/NtupleLooper.h"
+
+#include "Selection/include/EventSelection.h"
+#include "Selection/include/WeightHandler.h"
+
+#include "SusyAnalysisTools/include/EventDescription.h"
+#include "SusyAnalysisTools/include/SRHelper.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
+
 // -----------------------------------------------------------------------------
 PlotNtupleMaker::PlotNtupleMaker( TTree *tree
+                                , double events
                                 , std::string out_file_name
                                 )
-                                : NtupleLooper(tree)
+                                : NtupleLooper(tree, events)
                                 , m_out_file(NULL)
                                 , m_entry_num(0)
 {
@@ -36,6 +58,13 @@ void PlotNtupleMaker::Loop()
   for (; key_it != key_term; ++key_it) {
     filterTree(*key_it);
   }
+
+  m_out_file->cd();
+  TH1D num_events("num_events", "num_events", 1, -0.5, 0.5);
+  num_events.Fill(0., m_num_events);
+  // TVectorD num_events(1);
+  // num_events[0] = m_num_events;
+  num_events.Write("num_events");
 }
 
 // -----------------------------------------------------------------------------

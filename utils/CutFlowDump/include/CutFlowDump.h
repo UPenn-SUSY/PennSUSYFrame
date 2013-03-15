@@ -30,7 +30,7 @@ class CutFlowDump : public NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :
-    CutFlowDump(TTree *tree=0);
+    CutFlowDump(TTree *tree, double num_events);
     virtual ~CutFlowDump();
     // virtual void     Init(TTree *tree);
 

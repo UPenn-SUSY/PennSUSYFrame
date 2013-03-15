@@ -25,9 +25,10 @@
 
 // -----------------------------------------------------------------------------
 EventNumberDump::EventNumberDump( TTree *tree
+                                , double num_events
                                 , std::string out_file_name
                                 )
-                                : NtupleLooper(tree)
+                                : NtupleLooper(tree, num_events)
                                 , m_out_file(NULL)
                                 , m_entry_num(0)
 {

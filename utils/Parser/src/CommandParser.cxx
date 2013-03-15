@@ -7,69 +7,64 @@
 #include <TROOT.h>
 #include <TChain.h>
 
+#include "Selection/include/LumiWeight.h"
+
 // -----------------------------------------------------------------------------
 CommandParser::CommandParser()
 {
   // do nothing
 }
 
-// // -----------------------------------------------------------------------------
-TChain* CommandParser::readInputs( int argc
+// -----------------------------------------------------------------------------
+InputContainer CommandParser::readInputs( int argc
                                  , char** argv
                                  , const std::string& tree_name
                                  )
 {
+  InputContainer input_container;
+
   if (argc == 1) {
     help();
-    return NULL;
+    return input_container;
   }
 
-  // TChain* t = new TChain(tree_name.c_str());
-  TChain* t = NULL;
-
-  // If loading a single file
+  std::vector<std::string> file_names;
   if (std::string(argv[1]) == "--file") {
-    t = new TChain(tree_name.c_str());
-    std::string file_name = argv[2];
-    t->AddFile(file_name.c_str());
-
-    std::cout << "Adding file: " << file_name << "\n";
+    file_names.push_back(argv[2]);
   }
-  // If loading a full directory
   else if (std::string(argv[1]) == "--dir") {
-    t = new TChain(tree_name.c_str());
     std::string dir_name = argv[2];
 
     DIR *dir;
     struct dirent *ent;
-    // if ((dir = opendir ("c:\\src\\")) != NULL) {
-    if ((dir = opendir (dir_name.c_str())) != NULL) {
-      /* print all the files and directories within directory */
-      while ((ent = readdir (dir)) != NULL) {
-        std::string file_name = std::string(ent->d_name);
-
-        // Only add root files. Not log files etc
-        if (file_name.find(".root") == std::string::npos) continue;
-
-        // If this is a good file, add it to the TChain
-        std::string full_file_name = dir_name + "/" + file_name;
-        std::cout << "Adding file: " << file_name << '\n';
-
-        t->AddFile(full_file_name.c_str());
+    if ((dir = opendir(dir_name.c_str())) != NULL) {
+      while ((ent = readdir(dir)) != NULL) {
+        file_names.push_back(std::string(ent->d_name));
       }
-      closedir (dir);
+      closedir(dir);
     }
     else {
       std::cout << "Cannot open directory: " << dir_name << "\n";
-      // perror ("");
-      return NULL;
     }
   }
   else {
     help();
   }
 
-  return t;
+  if (file_names.size() > 0) {
+    input_container.num_events = LumiWeight::getNumEventsFromFiles(file_names);
+    // TChain* t = new TChain(tree_name.c_str());
+    // TChain* t = new TChain(tree_name.c_str());
+    input_container.chain = new TChain(tree_name.c_str());
+
+    size_t num_files = file_names.size();
+    for (size_t file_itr = 0; file_itr != num_files; ++file_itr) {
+      input_container.chain->AddFile(file_names.at(file_itr).c_str());
+      std::cout << "Adding file: " << file_names.at(file_itr) << "\n";
+    }
+  }
+
+  return input_container;
 }
 
 // -----------------------------------------------------------------------------

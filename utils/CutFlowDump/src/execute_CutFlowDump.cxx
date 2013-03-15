@@ -14,18 +14,15 @@ int main(int argc, char** argv)
 {
   std::cout << "Dumping Cut flow\n";
 
-  TChain* t = CommandParser::readInputs(argc, argv, "output");
-  // TChain* t = CommandParser::readInputs(argc, argv, "presel");
+  InputContainer inp_cont = CommandParser::readInputs(argc, argv, "output");
+  // InputContainer inp_cont = CommandParser::readInputs(argc, argv, "presel");
 
   // check for valid TChain object
-  if (t == NULL)
-    std::cout << "t is NULL\n";
-  else
-    std::cout << "t is defined\n";
-  if (t == NULL) return 0;
+  if (inp_cont.chain == NULL) return 0;
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Create the CutFlowDump object, and loop over the TChain
-  CutFlowDump cfd(t);
+  CutFlowDump cfd(inp_cont.chain, inp_cont.num_events);
   cfd.Loop();
 
   // Dump cut flow to screen and to file

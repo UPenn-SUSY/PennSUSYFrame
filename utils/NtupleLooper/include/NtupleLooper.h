@@ -16,7 +16,7 @@ class NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :
-    NtupleLooper(TTree *tree=0);
+    NtupleLooper(TTree *tree, double num_events);
     virtual ~NtupleLooper();
     virtual Int_t    GetEntry(Long64_t entry);
     virtual Long64_t LoadTree(Long64_t entry);
@@ -39,7 +39,7 @@ class NtupleLooper
     UInt_t                     m_event_number;
     ULong64_t                  m_event_desc;
     ULong64_t                  m_sr_helper;
-    Short_t                    m_mc_event_weight;
+    Double_t                   m_mc_event_weight;
     Double_t                   m_pile_up_weight;
     Double_t                   m_trigger_weight;
     Double_t                   m_lepton_weight;

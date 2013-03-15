@@ -49,6 +49,8 @@ void LumiWeight::readXSecFile()
     std::string line;
     std::vector<std::string> split_line;
 
+    std::cout << "Searching for sample number: " << m_sample_num << "\n";
+
     // run through file parsing each line
     while (file.good() && !ds_found) {
       // get line from file, strip comments and leading/subleading whitespace
@@ -56,14 +58,19 @@ void LumiWeight::readXSecFile()
       line = ParseDriver::cleanUpLine(line);
 
       split_line = ParseDriver::split(line, '\t');
-      if (split_line.size() < 1) continue;
+      // if (split_line.size() < 1) continue;
+      if (split_line.size() < 5) continue;
 
+      std::cout << "line: " << line << "\n";
+      std::cout << "\tsplit line length: " << split_line.size() << "\n";
       if (ParseDriver::stringToInt(split_line.at(0)) == m_sample_num) {
         ds_found = true;
         std::cout << "Found this data set" << std::endl;
         m_xsec     = ParseDriver::stringToFloat(split_line.at(2));
         m_k_factor = ParseDriver::stringToFloat(split_line.at(3));
         m_eff      = ParseDriver::stringToFloat(split_line.at(4));
+
+        std::cout << "xsec: " << m_xsec << " -- k: " << m_k_factor << " -- eff: " << m_eff << "\n";
       }
     }
     if (!ds_found)

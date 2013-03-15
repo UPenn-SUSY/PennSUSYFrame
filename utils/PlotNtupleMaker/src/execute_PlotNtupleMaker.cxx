@@ -4,6 +4,7 @@
 
 #include "include/PlotNtupleMaker.h"
 #include "Selection/include/EventSelection.h"
+#include "Selection/include/LumiWeight.h"
 
 #include "Parser/include/MasterConfigParser.h"
 #include "Parser/include/CutConfigParser.h"
@@ -24,10 +25,13 @@ int main(int argc, char** argv)
   MasterConfigParser parser(config_file);
   parser.parse();
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  double num_events = parser.getNumEvents();
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string out_file_name = parser.getPTNTFile();
   TChain* chain = parser.getInputChain();
-  PlotNtupleMaker pnm(chain, out_file_name);
+  PlotNtupleMaker pnm(chain, num_events, out_file_name);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string cut_config_file = parser.getSelectionFile();

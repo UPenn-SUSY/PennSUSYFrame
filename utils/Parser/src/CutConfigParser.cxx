@@ -10,9 +10,11 @@ CutConfigParser::CutConfigParser(std::string file_name) :
 // -----------------------------------------------------------------------------
 CutConfigParser::CutConfigParser( std::string file_name
                                 , const Selection::WeightHandler& global_weights
+                                // , double num_events
                                 )
                                 : ParseDriver(file_name)
                                 , m_global_weight_handler(global_weights)
+                                                                                                // , m_num_events(num_events)
 {
   clear();
 }

@@ -4,6 +4,7 @@
 
 #include "include/HistMaker.h"
 #include "Selection/include/EventSelection.h"
+#include "Selection/include/LumiWeight.h"
 
 #include "Parser/include/MasterConfigParser.h"
 #include "Parser/include/CutConfigParser.h"
@@ -35,6 +36,10 @@ int main(int argc, char** argv)
   std::cout << "config file: " << config_file << "\n";
   MasterConfigParser parser(config_file);
   parser.parse();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // double num_events = parser.getNumEvents();
+  double num_events = parser.getPTNTNumEvents();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Open/close output file to create it
@@ -83,7 +88,7 @@ int main(int argc, char** argv)
     std::cout << sel_it->first << "\n";
 
     TChain* chain = parser.getPTNTChain(sel_it->first);
-    HistMaker hm(chain, out_file_name);
+    HistMaker hm(chain, num_events, out_file_name);
 
     std::string key = sel_it->first;
     hm.addCut( key

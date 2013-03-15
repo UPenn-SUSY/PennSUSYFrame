@@ -16,9 +16,8 @@
 #include "ProgressBar/include/ProgressBar.h"
 
 // -----------------------------------------------------------------------------
-NtupleLooper::NtupleLooper(TTree *tree) : fChain(0)
-                                        , m_num_events(0.)
-                                        // , m_progress_bar(NULL)
+NtupleLooper::NtupleLooper(TTree *tree, double events) : fChain(0)
+                                                       , m_num_events(events)
 {
   // if parameter tree is not specified (or zero), connect the file
   // used to generate this class and read the Tree.
@@ -586,8 +585,8 @@ void NtupleLooper::Loop()
 // -----------------------------------------------------------------------------
 void NtupleLooper::processEvent()
 {
-  if (m_event_number % 10 == 0)
-    std::cout << "event: " << m_event_number
-              << " -- mll: " << m_mll << " MeV"
-              << "\n";
+  // if (m_event_number % 10 == 0)
+  //   std::cout << "event: " << m_event_number
+  //             << " -- mll: " << m_mll << " MeV"
+  //             << "\n";
 }

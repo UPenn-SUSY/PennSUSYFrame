@@ -20,7 +20,8 @@ class EventNumberDump : public NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :
-    EventNumberDump( TTree *tree=0
+    EventNumberDump( TTree *tree
+                   , double num_events
                    , std::string out_file_name = "plot_ntuple.root"
                    );
     virtual ~EventNumberDump();
