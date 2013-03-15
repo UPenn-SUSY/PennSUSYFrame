@@ -134,7 +134,8 @@ double LumiWeight::getLumiWeight()
 }
 
 // -----------------------------------------------------------------------------
-static double getNumEventsFromFiles(const std::vector<std::string>& tnt_file_list)
+double LumiWeight::getNumEventsFromFiles(
+    const std::vector<std::string>& tnt_file_list)
 {
   double num_weighted_events = 0.;
 

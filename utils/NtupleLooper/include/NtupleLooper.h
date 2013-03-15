@@ -31,6 +31,8 @@ class NtupleLooper
     TTree* fChain;   //!pointer to the analyzed TTree or TChain
     Int_t  fCurrent; //!current Tree number in a TChain
 
+    double m_num_events;
+
     // Declaration of leaf types
     UInt_t                     m_lbn;
     UInt_t                     m_run_number;

@@ -17,6 +17,7 @@
 
 // -----------------------------------------------------------------------------
 NtupleLooper::NtupleLooper(TTree *tree) : fChain(0)
+                                        , m_num_events(0.)
                                         // , m_progress_bar(NULL)
 {
   // if parameter tree is not specified (or zero), connect the file
