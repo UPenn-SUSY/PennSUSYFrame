@@ -14,7 +14,7 @@ CutConfigParser::CutConfigParser( std::string file_name
                                 )
                                 : ParseDriver(file_name)
                                 , m_global_weight_handler(global_weights)
-                                                                                                // , m_num_events(num_events)
+                                // , m_num_events(num_events)
 {
   clear();
 }
@@ -62,7 +62,7 @@ void CutConfigParser::clear()
 }
 
 // -----------------------------------------------------------------------------
-void CutConfigParser::addLine(std::vector<std::string> split_line)
+void CutConfigParser::addLine(const std::vector<std::string>& split_line)
 {
   // get key
   std::string key = split_line.at(0);

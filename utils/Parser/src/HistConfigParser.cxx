@@ -35,7 +35,7 @@ void HistConfigParser::clear()
 }
 
 // -----------------------------------------------------------------------------
-void HistConfigParser::addLine(std::vector<std::string> split_line)
+void HistConfigParser::addLine(const std::vector<std::string>& split_line)
 {
   // get key
   std::string key = split_line.at(0);

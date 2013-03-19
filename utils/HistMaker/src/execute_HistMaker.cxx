@@ -5,6 +5,7 @@
 #include "include/HistMaker.h"
 #include "Selection/include/EventSelection.h"
 #include "Selection/include/LumiWeight.h"
+#include "Selection/include/WeightHandler.h"
 
 #include "Parser/include/MasterConfigParser.h"
 #include "Parser/include/CutConfigParser.h"
@@ -38,7 +39,6 @@ int main(int argc, char** argv)
   parser.parse();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // double num_events = parser.getNumEvents();
   double num_events = parser.getPTNTNumEvents();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -70,8 +70,10 @@ int main(int argc, char** argv)
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string cut_config_file = parser.getSelectionFile();
+  Selection::WeightHandler global_weight_handle = parser.getGlobalWeightHandler();
   CutConfigParser cut_parser( cut_config_file
-                            , parser.getGlobalWeightHandler()
+                            // , parser.getGlobalWeightHandler()
+                            , global_weight_handle
                             );
   cut_parser.parse();
   std::map<std::string, Selection::EventSelection> evt_sel =
@@ -80,12 +82,13 @@ int main(int argc, char** argv)
       cut_parser.getWeightMap();
 
   // Loop over all selection criteria
+  std::cout << "Looping through selection criteria\n";
   std::map<std::string, Selection::EventSelection>::iterator sel_it =
       evt_sel.begin();
   std::map<std::string, Selection::EventSelection>::iterator sel_term =
       evt_sel.end();
   for (; sel_it != sel_term; ++sel_it) {
-    std::cout << sel_it->first << "\n";
+    std::cout << "Cut: " << sel_it->first << "\n";
 
     TChain* chain = parser.getPTNTChain(sel_it->first);
     HistMaker hm(chain, num_events, out_file_name);
@@ -96,7 +99,7 @@ int main(int argc, char** argv)
              , weight_handles[key]
              );
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     std::string hist_config_file = parser.getHistInfoFile();
     HistConfigParser hist_parser(hist_config_file);
     hist_parser.parse();

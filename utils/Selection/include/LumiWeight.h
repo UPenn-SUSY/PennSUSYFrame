@@ -12,17 +12,11 @@ class LumiWeight
   // ---------------------------------------------------------------------------
   public:
     LumiWeight( std::string xsec_file
-              // , std::string num_evt_file
               , unsigned int sample_num
               , unsigned int target_lumi
+              , double num_events
               );
-    // LumiWeight( std::string xsec_file
-    //           , std::string num_evt_file
-    //           , unsigned int sample_num
-    //           , unsigned int target_lumi
-    //           );
     void readXSecFile();
-    // void readNumEventFile();
     double getLumiWeight();
 
     static double getNumEventsFromFiles(

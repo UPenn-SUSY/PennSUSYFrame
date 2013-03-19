@@ -30,7 +30,7 @@ class CutConfigParser : public ParseDriver
   // -----------------------------------------------------------------------------
   private:
     void clear();
-    virtual void addLine(std::vector<std::string>);
+    virtual void addLine(const std::vector<std::string>&);
     void configEventSelection();
 
     FLAVOR_CHANNEL valueToFlavor(std::vector<std::string>);

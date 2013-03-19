@@ -56,10 +56,12 @@ void PlotNtupleMaker::Loop()
   std::vector<std::string>::iterator key_it = m_keys.begin();
   std::vector<std::string>::iterator key_term = m_keys.end();
   for (; key_it != key_term; ++key_it) {
+    std::cout << "filter tree - key: " << *key_it << "\n";
     filterTree(*key_it);
   }
 
   m_out_file->cd();
+  std::cout << "writing num_events\n";
   TH1D num_events("num_events", "num_events", 1, -0.5, 0.5);
   num_events.Fill(0., m_num_events);
   // TVectorD num_events(1);

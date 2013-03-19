@@ -23,7 +23,7 @@ class HistConfigParser : public ParseDriver
   // ---------------------------------------------------------------------------
   private:
     void clear();
-    virtual void addLine(std::vector<std::string>);
+    virtual void addLine(const std::vector<std::string>&);
     void configHistInfo();
 
     bool         m_in_block;

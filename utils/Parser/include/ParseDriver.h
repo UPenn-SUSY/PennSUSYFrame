@@ -39,7 +39,7 @@ class ParseDriver
   private:
     std::string m_file_name;
 
-    virtual void addLine(std::vector<std::string>);
+    virtual void addLine(const std::vector<std::string>&);
 };
 
 #endif

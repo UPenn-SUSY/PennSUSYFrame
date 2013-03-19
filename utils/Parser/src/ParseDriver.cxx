@@ -174,7 +174,7 @@ void ParseDriver::parse()
 }
 
 // -----------------------------------------------------------------------------
-void ParseDriver::addLine(std::vector<std::string> split_line)
+void ParseDriver::addLine(const std::vector<std::string>& split_line)
 {
   size_t num_elements = split_line.size();
   for (size_t it = 0; it != num_elements; ++it) {

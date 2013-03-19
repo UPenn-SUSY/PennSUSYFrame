@@ -119,6 +119,12 @@ void MasterConfigParser::config()
 // -----------------------------------------------------------------------------
 Selection::WeightHandler MasterConfigParser::getGlobalWeightHandler()
 {
+  std::cout << "Getting Global Weight Handler\n";
+  std::cout << "\tNum files: " << m_in_file_list.size() << "\n";
+  std::cout << "\tnum events: " << LumiWeight::getNumEventsFromFiles(m_in_file_list) << "\n";
+  m_global_weight_handler.setNumEvents(
+      LumiWeight::getNumEventsFromFiles(m_in_file_list));
+  std::cout << "returning global weight handler\n";
   return m_global_weight_handler;
 }
 
@@ -146,7 +152,7 @@ void MasterConfigParser::clear()
 }
 
 // -----------------------------------------------------------------------------
-void MasterConfigParser::addLine(std::vector<std::string> split_line)
+void MasterConfigParser::addLine(const std::vector<std::string>& split_line)
 {
   // get key
   std::string key = split_line.at(0);

@@ -8,11 +8,16 @@ LumiWeight::LumiWeight( std::string xsec_file
                       // , std::string num_evt_file
                       , unsigned int sample_num
                       , unsigned int target_lumi
+                      , double num_events
                       )
                       : m_prepped(false)
                       , m_lumi_weight(1.0)
                       , m_sample_num(sample_num)
                       , m_target_lumi(target_lumi)
+                      , m_num_evts(num_events)
+                      , m_xsec(0.)
+                      , m_k_factor(0.)
+                      , m_eff(0.)
                       , m_xsec_file(xsec_file)
                       // , m_num_evts_file(num_evt_file)
 {
@@ -61,8 +66,8 @@ void LumiWeight::readXSecFile()
       // if (split_line.size() < 1) continue;
       if (split_line.size() < 5) continue;
 
-      std::cout << "line: " << line << "\n";
-      std::cout << "\tsplit line length: " << split_line.size() << "\n";
+      // std::cout << "line: " << line << "\n";
+      // std::cout << "\tsplit line length: " << split_line.size() << "\n";
       if (ParseDriver::stringToInt(split_line.at(0)) == m_sample_num) {
         ds_found = true;
         std::cout << "Found this data set" << std::endl;
@@ -70,7 +75,13 @@ void LumiWeight::readXSecFile()
         m_k_factor = ParseDriver::stringToFloat(split_line.at(3));
         m_eff      = ParseDriver::stringToFloat(split_line.at(4));
 
-        std::cout << "xsec: " << m_xsec << " -- k: " << m_k_factor << " -- eff: " << m_eff << "\n";
+        double lumi_weight = m_k_factor*m_eff*m_xsec*m_target_lumi/m_num_evts;
+        std::cout << "\txsec: " << m_xsec
+                  << " -- k: " << m_k_factor
+                  << " -- eff: " << m_eff
+                  << "\n\ttarget_lumi: " << m_target_lumi
+                  << " -- num_events: " << m_num_evts
+                  << "\n\tlumi_weight: " << lumi_weight << "\n";
       }
     }
     if (!ds_found)

@@ -41,7 +41,7 @@ class MasterConfigParser : public ParseDriver
   // ---------------------------------------------------------------------------
   private:
     void clear();
-    virtual void addLine(std::vector<std::string>);
+    virtual void addLine(const std::vector<std::string>&);
 
     bool         m_in_file_block;
 
