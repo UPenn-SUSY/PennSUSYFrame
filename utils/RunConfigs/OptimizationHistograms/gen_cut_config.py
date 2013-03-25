@@ -1,4 +1,12 @@
 #!/usr/bin/env python
+# ==============================================================================
+"""
+Script to take template cut config, and generate cut config for each tpye of
+selection (nominal, cf, fake, signal)
+
+Usage:
+    python ../gen_cut_config.py cuts.ee.dev
+"""
 
 import sys
 import os.path
