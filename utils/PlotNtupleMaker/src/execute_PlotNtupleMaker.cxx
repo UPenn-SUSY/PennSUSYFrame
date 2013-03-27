@@ -15,13 +15,12 @@ int main(int argc, char** argv)
 {
   std::cout << "Making plot ntuple!\n";
 
-  if (argc < 1) {
+  if (argc < 2) {
     std::cout << "Please enter an input config file\n";
     return 0;
   }
 
   std::string config_file = argv[1];
-  std::cout << "config file: " << config_file << "\n";
   MasterConfigParser parser(config_file);
   parser.parse();
 
@@ -30,6 +29,8 @@ int main(int argc, char** argv)
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string out_file_name = parser.getPTNTFile();
+  std::cout << "The output pTNT file will be located here:\n\t"
+            << out_file_name << "\n";
   TChain* chain = parser.getInputChain();
   PlotNtupleMaker pnm(chain, num_events, out_file_name);
 
@@ -55,6 +56,7 @@ int main(int argc, char** argv)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::cout << "Preparing to loop!\n";
   pnm.Loop();
   // pnm.writeToFile();
 }

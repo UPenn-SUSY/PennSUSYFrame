@@ -159,10 +159,22 @@ void MasterConfigParser::addLine(const std::vector<std::string>& split_line)
 
   // in file list block
   if (m_in_file_block) {
-    if (key == "end")
+    if (key == "end") {
       m_in_file_block = false;
-    else
-      m_in_file_list.push_back(key);
+      std::cout << "file list:\n";
+      for (size_t it = 0; it != m_in_file_list.size(); ++it) {
+        std::cout << "  " << m_in_file_list.at(it) << "\n";
+      }
+    }
+    else {
+      std::string file_name = key;
+      size_t num_splits = split_line.size();
+      for (size_t it = 1; it != num_splits; ++it) {
+        file_name += ":";
+        file_name += split_line.at(it);
+      }
+      m_in_file_list.push_back(file_name);
+    }
     return;
   }
 
