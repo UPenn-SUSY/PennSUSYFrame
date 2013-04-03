@@ -53,6 +53,8 @@ ull_t SusyAnalysisTools::EventDescription::toInt() const
   event_desc += getIntComp(m_truth_prompt          , ADD_TRUTH_PROMPT      );
   event_desc += getIntComp(m_cf_candidate          , ADD_TRUTH_CF_CAND);
 
+  event_desc += getIntComp(m_pass_tile_trip, ADD_TILE_TRIP);
+
   event_desc += getIntComp(m_pass_sr_osjveto, ADD_SR_OSJVETO);
   event_desc += getIntComp(m_pass_sr_ssjets , ADD_SR_SSJETS );
   event_desc += getIntComp(m_pass_sr_2jets  , ADD_SR_2JETS  );
@@ -113,6 +115,8 @@ void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
   m_truth_matched          = getComponent(rhs, ADD_TRUTH_MATCHED    , SIZE_BOOL);
   m_truth_prompt           = getComponent(rhs, ADD_TRUTH_PROMPT     , SIZE_BOOL);
   m_cf_candidate           = getComponent(rhs, ADD_TRUTH_CF_CAND    , SIZE_BOOL);
+
+  m_pass_tile_trip = getComponent(rhs, ADD_TILE_TRIP, SIZE_BOOL);
 
   m_pass_sr_osjveto = getComponent(rhs, ADD_SR_OSJVETO, SIZE_BOOL);
   m_pass_sr_ssjets  = getComponent(rhs, ADD_SR_SSJETS , SIZE_BOOL);
@@ -369,6 +373,12 @@ void SusyAnalysisTools::EventDescription::setCFCandidate(bool cf_candidate)
 }
 
 // -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setPassTileTrip(bool pass_tile_trip)
+{
+  m_pass_tile_trip = pass_tile_trip;
+}
+
+// -----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::setTruthSignChannel(
     SIGN_CHANNEL truth_sign_channel)
 {
@@ -613,6 +623,12 @@ bool SusyAnalysisTools::EventDescription::getTruthPrompt() const
 bool SusyAnalysisTools::EventDescription::getCFCandidate() const
 {
   return m_cf_candidate;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassTileTrip() const
+{
+  return m_pass_tile_trip;
 }
 
 // -----------------------------------------------------------------------------

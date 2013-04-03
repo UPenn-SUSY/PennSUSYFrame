@@ -11,6 +11,8 @@
 #include "CommonTools/include/MllTool.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
+#include "TileTripReader/TTileTripReader.h"
+
 
 // -----------------------------------------------------------------------------
 SelectionTools::EventCleaningTool::EventCleaningTool(

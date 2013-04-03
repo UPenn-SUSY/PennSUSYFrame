@@ -63,6 +63,7 @@ SusyDiLeptonCutFlowTool::SusyDiLeptonCutFlowTool( SCycleBase* parent
   DeclareProperty("Crit_lar_error"        , c_crit_lar_error         = false);
   DeclareProperty("Crit_tile_error"       , c_crit_tile_error        = false);
   DeclareProperty("Crit_tile_hot_spot"    , c_crit_tile_hot_spot     = false);
+  DeclareProperty("Crit_tile_trip"        , c_crit_tile_trip         = false);
   DeclareProperty("Crit_bad_jet_veto"     , c_crit_bad_jet_veto      = false);
   DeclareProperty("Crit_bad_calo_jet_veto", c_crit_calo_problem_jets = false);
   DeclareProperty("Crit_primary_vertex"   , c_crit_primary_vertex    = false);
@@ -218,6 +219,21 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   if (c_crit_tile_hot_spot && pass_tile_hot_spot == false) {
     if (c_super_verbose_info) {
       std::cout << "Failed tile hot spot --"
+                << " Run: "   << event->RunNumber()
+                << " Event: " << event->EventNumber()
+                << std::endl;
+    }
+    return false;
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // CHeck for tile trip
+  // TODO implement this cut
+  bool pass_tile_trip = true;
+  event->getEventDesc()->setPassTileTrip(pass_tile_trip);
+  if (c_crit_tile_trip && pass_tile_trip == false) {
+    if (c_super_verbose_info) {
+      std::cout << "Failed tile trip --"
                 << " Run: "   << event->RunNumber()
                 << " Event: " << event->EventNumber()
                 << std::endl;

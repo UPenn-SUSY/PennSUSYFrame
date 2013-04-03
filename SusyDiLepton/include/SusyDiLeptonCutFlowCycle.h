@@ -124,6 +124,7 @@ private:
   bool c_crit_lar_error;
   bool c_crit_tile_error;
   bool c_crit_tile_hot_spot;
+  bool c_crit_tile_trip;
   bool c_crit_bad_jet_veto;
   bool c_crit_primary_vertex;
   bool c_crit_bad_mu_veto;

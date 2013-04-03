@@ -55,6 +55,8 @@ namespace SusyAnalysisTools
       void setCFCandidate(bool);
       void setTruthSignChannel(SIGN_CHANNEL);
 
+      void setPassTileTrip(bool);
+
       void setSROSJVeto(bool);
       void setSRSSJets(bool);
       void setSR2Jets(bool);
@@ -100,6 +102,8 @@ namespace SusyAnalysisTools
       bool getTruthPrompt() const;
       bool getCFCandidate() const;
       SIGN_CHANNEL getTruthSignChannel() const;
+
+      bool getPassTileTrip() const;
 
       bool getPassSROSJVeto() const;
       bool getPassSRSSJets() const;
@@ -155,6 +159,7 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_TRUTH_MATCHED      = 32;
       static const unsigned int ADD_TRUTH_PROMPT       = 33;
       static const unsigned int ADD_TRUTH_CF_CAND      = 34;
+      static const unsigned int ADD_TILE_TRIP          = 35;
       static const unsigned int ADD_SR_OSJVETO         = 40;
       static const unsigned int ADD_SR_SSJETS          = 41;
       static const unsigned int ADD_SR_2JETS           = 42;
@@ -211,6 +216,8 @@ namespace SusyAnalysisTools
       bool         m_truth_matched;
       bool         m_truth_prompt;
       bool         m_cf_candidate;
+
+      bool m_pass_tile_trip;
 
       bool m_pass_sr_osjveto;
       bool m_pass_sr_ssjets;
