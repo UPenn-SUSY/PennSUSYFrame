@@ -54,6 +54,9 @@ namespace D3PDReader {
       VarHandle< Float_t > RefJet_etx;
       VarHandle< Float_t > RefJet_ety;
       VarHandle< Float_t > RefJet_sumet;
+      VarHandle< Float_t > RefEle_etx;
+      VarHandle< Float_t > RefEle_ety;
+      VarHandle< Float_t > RefEle_sumet;
       VarHandle< Float_t > CellOut_etx;
       VarHandle< Float_t > CellOut_ety;
       VarHandle< Float_t > CellOut_sumet;

@@ -226,10 +226,10 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
     return false;
   }
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // CHeck for tile trip
   // TODO implement this cut
-  bool pass_tile_trip = true;
+  bool pass_tile_trip = m_event_cleaning_tool->passTileTrip(event);
   event->getEventDesc()->setPassTileTrip(pass_tile_trip);
   if (c_crit_tile_trip && pass_tile_trip == false) {
     if (c_super_verbose_info) {

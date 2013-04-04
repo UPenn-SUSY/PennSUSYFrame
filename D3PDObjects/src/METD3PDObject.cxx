@@ -29,6 +29,9 @@ namespace D3PDReader {
         RefJet_etx( this, ::TString( prefix ) + "RefJet_etx", &master ),
         RefJet_ety( this, ::TString( prefix ) + "RefJet_ety", &master ),
         RefJet_sumet( this, ::TString( prefix ) + "RefJet_sumet", &master ),
+        RefEle_etx( this, ::TString( prefix ) + "RefEle_etx", &master ),
+        RefEle_ety( this, ::TString( prefix ) + "RefEle_ety", &master ),
+        RefEle_sumet( this, ::TString( prefix ) + "RefEle_sumet", &master ),
         CellOut_etx( this, ::TString( prefix ) + "CellOut_etx", &master ),
         CellOut_ety( this, ::TString( prefix ) + "CellOut_ety", &master ),
         CellOut_sumet( this, ::TString( prefix ) + "CellOut_sumet", &master ),
@@ -52,6 +55,9 @@ is_data(is_data) {
       fHandles[ "RefJet_etx" ] = &RefJet_etx;
       fHandles[ "RefJet_ety" ] = &RefJet_ety;
       fHandles[ "RefJet_sumet" ] = &RefJet_sumet;
+      fHandles[ "RefEle_etx" ] = &RefEle_etx;
+      fHandles[ "RefEle_ety" ] = &RefEle_ety;
+      fHandles[ "RefEle_sumet" ] = &RefEle_sumet;
       fHandles[ "CellOut_etx" ] = &CellOut_etx;
       fHandles[ "CellOut_ety" ] = &CellOut_ety;
       fHandles[ "CellOut_sumet" ] = &CellOut_sumet;
@@ -81,6 +87,9 @@ is_data(is_data) {
         RefJet_etx( this, ::TString( prefix ) + "RefJet_etx", 0 ),
         RefJet_ety( this, ::TString( prefix ) + "RefJet_ety", 0 ),
         RefJet_sumet( this, ::TString( prefix ) + "RefJet_sumet", 0 ),
+        RefEle_etx( this, ::TString( prefix ) + "RefEle_etx", 0 ),
+        RefEle_ety( this, ::TString( prefix ) + "RefEle_ety", 0 ),
+        RefEle_sumet( this, ::TString( prefix ) + "RefEle_sumet", 0 ),
         CellOut_etx( this, ::TString( prefix ) + "CellOut_etx", 0 ),
         CellOut_ety( this, ::TString( prefix ) + "CellOut_ety", 0 ),
         CellOut_sumet( this, ::TString( prefix ) + "CellOut_sumet", 0 ),
@@ -104,6 +113,9 @@ is_data(is_data) {
       fHandles[ "RefJet_etx" ] = &RefJet_etx;
       fHandles[ "RefJet_ety" ] = &RefJet_ety;
       fHandles[ "RefJet_sumet" ] = &RefJet_sumet;
+      fHandles[ "RefEle_etx" ] = &RefEle_etx;
+      fHandles[ "RefEle_ety" ] = &RefEle_ety;
+      fHandles[ "RefEle_sumet" ] = &RefEle_sumet;
       fHandles[ "CellOut_etx" ] = &CellOut_etx;
       fHandles[ "CellOut_ety" ] = &CellOut_ety;
       fHandles[ "CellOut_sumet" ] = &CellOut_sumet;
@@ -137,6 +149,9 @@ is_data(is_data) {
       RefJet_etx.SetName( ::TString( prefix ) + "RefJet_etx" );
       RefJet_ety.SetName( ::TString( prefix ) + "RefJet_ety" );
       RefJet_sumet.SetName( ::TString( prefix ) + "RefJet_sumet" );
+      RefEle_etx.SetName( ::TString( prefix ) + "RefEle_etx" );
+      RefEle_ety.SetName( ::TString( prefix ) + "RefEle_ety" );
+      RefEle_sumet.SetName( ::TString( prefix ) + "RefEle_sumet" );
       CellOut_etx.SetName( ::TString( prefix ) + "CellOut_etx" );
       CellOut_ety.SetName( ::TString( prefix ) + "CellOut_ety" );
       CellOut_sumet.SetName( ::TString( prefix ) + "CellOut_sumet" );
@@ -173,6 +188,9 @@ is_data(is_data) {
       RefJet_etx.ReadFrom( tree );
       RefJet_ety.ReadFrom( tree );
       RefJet_sumet.ReadFrom( tree );
+      RefEle_etx.ReadFrom( tree );
+      RefEle_ety.ReadFrom( tree );
+      RefEle_sumet.ReadFrom( tree );
       CellOut_etx.ReadFrom( tree );
       CellOut_ety.ReadFrom( tree );
       CellOut_sumet.ReadFrom( tree );
@@ -204,6 +222,9 @@ is_data(is_data) {
       RefJet_etx.WriteTo( tree );
       RefJet_ety.WriteTo( tree );
       RefJet_sumet.WriteTo( tree );
+      RefEle_etx.WriteTo( tree );
+      RefEle_ety.WriteTo( tree );
+      RefEle_sumet.WriteTo( tree );
       CellOut_etx.WriteTo( tree );
       CellOut_ety.WriteTo( tree );
       CellOut_sumet.WriteTo( tree );
@@ -272,6 +293,9 @@ is_data(is_data) {
       if( RefJet_etx.IsActive() ) RefJet_etx();
       if( RefJet_ety.IsActive() ) RefJet_ety();
       if( RefJet_sumet.IsActive() ) RefJet_sumet();
+      if( RefEle_etx.IsActive() ) RefEle_etx();
+      if( RefEle_ety.IsActive() ) RefEle_ety();
+      if( RefEle_sumet.IsActive() ) RefEle_sumet();
       if( CellOut_etx.IsActive() ) CellOut_etx();
       if( CellOut_ety.IsActive() ) CellOut_ety();
       if( CellOut_sumet.IsActive() ) CellOut_sumet();

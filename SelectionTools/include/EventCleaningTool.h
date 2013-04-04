@@ -15,6 +15,11 @@ class Muon;
 class Jet;
 class JetContainer;
 
+namespace Root
+{
+  class TTileTripReader;
+}
+
 // =============================================================================
 namespace SelectionTools
 {
@@ -29,6 +34,8 @@ namespace SelectionTools
                      );
     virtual ~EventCleaningTool();
 
+    virtual void BeginInputData( const SInputData& id );
+
     bool passFCALCleaning(Event* , const JetContainer&);
     bool passFCALCleaning(Event* , const std::vector<Jet*>&);
 
@@ -40,6 +47,8 @@ namespace SelectionTools
 
     bool passTileHotSpot(Event*, const JetContainer&);
     bool passTileHotSpot(Event*, const std::vector<Jet*>&);
+
+    bool passTileTrip(const Event*);
 
     bool passMllCut(Event*);
     bool passMllCut( FLAVOR_CHANNEL
@@ -61,6 +70,9 @@ namespace SelectionTools
     double c_mll_max;
 
     bool passCut(double test, double min, double max);
+
+    Root::TTileTripReader* m_tile_trip_reader;
+    std::string c_tile_trip_file;
 
     ClassDef(EventCleaningTool, 0);
   };

@@ -17,11 +17,15 @@
 // -----------------------------------------------------------------------------
 SelectionTools::EventCleaningTool::EventCleaningTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
+                                         , m_tile_trip_reader(NULL)
 {
   DeclareProperty("total_lumi", c_total_lumi = 0);
 
   DeclareProperty("min_mll", c_mll_min = 20000.);
   DeclareProperty("max_mll", c_mll_max = -1);
+
+  DeclareProperty( "tile_trip_file"
+                 , c_tile_trip_file = "${ROOTCOREDIR}/../TileTripReader/data/CompleteTripList_2011-2012.root");
 }
 
 // -----------------------------------------------------------------------------
@@ -29,6 +33,19 @@ SelectionTools::EventCleaningTool::~EventCleaningTool()
 {
   // do nothing
 }
+
+// -----------------------------------------------------------------------------
+void SelectionTools::EventCleaningTool::BeginInputData(const SInputData&)
+{
+  if (m_tile_trip_reader != NULL) {
+    delete m_tile_trip_reader;
+    m_tile_trip_reader = NULL;
+  }
+
+  m_tile_trip_reader = new Root::TTileTripReader("myTripReader");
+  m_tile_trip_reader->setTripFile(c_tile_trip_file.c_str());
+}
+
 
 // -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passFCALCleaning(
@@ -140,6 +157,16 @@ bool SelectionTools::EventCleaningTool::passTileHotSpot(Event* event,
         }
     }
   return passed_cut;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::EventCleaningTool::passTileTrip(const Event* event)
+{
+  bool pass_tile_trip = m_tile_trip_reader->checkEvent( event->RunNumber()
+                                                      , event->lbn()
+                                                      , event->EventNumber()
+                                                      );
+  return (is_data() && pass_tile_trip);
 }
 
 // -----------------------------------------------------------------------------
