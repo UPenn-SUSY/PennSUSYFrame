@@ -36,11 +36,17 @@ void CommonTools::MetOutputTool::BeginInputData( const SInputData& )
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   DeclareVariable(m_met_et           , "met_et"    );
   DeclareVariable(m_met_rel_et       , "met_rel_et");
-  DeclareVariable(m_met_rel_delta_phi, "met_rel_delta_phi"   );
+  DeclareVariable(m_met_rel_delta_phi, "met_rel_delta_phi");
   DeclareVariable(m_met_phi          , "met_phi"   );
   DeclareVariable(m_met_sumet        , "met_sumet" );
   DeclareVariable(m_dphi_met_ll      , "dphi_met_ll");
   DeclareVariable(m_met_vec          , "met_vec"   );
+
+  DeclareVariable(m_met_refjet, "met_refjet");
+  DeclareVariable(m_met_refele, "met_refele");
+  DeclareVariable(m_jet_sum_pt  , "jet_sum_pt");
+  DeclareVariable(m_oljet     , "oljet");
+  DeclareVariable(m_olratio   , "olratio");
 
   //Detailed Variables
   if(c_do_detailed_output)
@@ -62,6 +68,11 @@ void CommonTools::MetOutputTool::BeginExecuteEvent( const SInputData&, Double_t 
   m_dphi_met_ll       = 0.;
   m_met_vec.Set(0.,0.);
 
+  m_met_refjet = 0.;
+  m_met_refele = 0.;
+  m_jet_sum_pt   = 0.;
+  m_oljet      = 0.;
+  m_olratio    = 0.;
 }
 
 // -----------------------------------------------------------------------------
@@ -92,9 +103,13 @@ void CommonTools::MetOutputTool::fillOutput( Event* event
                                               , met
                                               );
 
-
-                                                      
   m_met_vec = met->getMetRefFinalVec();
+
+  m_met_refjet = met->RefJet_sumet();
+  m_met_refele = met->RefEle_sumet();
+  m_jet_sum_pt = event->getJetSumPt();
+  m_oljet      = event->getOLJet();
+  m_olratio    = event->getOLRatio();
 
   if (c_do_detailed_output) {
     //do detailed otuput -- none for now

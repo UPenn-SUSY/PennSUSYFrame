@@ -28,6 +28,15 @@ Event::Event( const ::Long64_t& master
             , m_met_et(0.)
             , m_met_phi(0.)
             , m_met_rel(0.)
+            , m_mt(0.)
+            , m_mt2(0.)
+            , m_meff(0.)
+            , m_ptll(0.)
+            , m_phill(0.)
+            , m_etall(0.)
+            , m_jet_sum_pt(0.)
+            , m_oljet(0.)
+            , m_olratio(0.)
             , m_mll_cached(false)
             , m_met_et_cached(false)
             , m_met_phi_cached(false)
@@ -38,6 +47,9 @@ Event::Event( const ::Long64_t& master
             , m_ptll_cached(false)
             , m_phill_cached(false)
             , m_etall_cached(false)
+            , m_jet_sum_pt_cached(false)
+            , m_oljet_cached(false)
+            , m_olratio_cached(false)
 {
   clear();
 }
@@ -72,6 +84,10 @@ void Event::clear()
   m_phill   = 0.;
   m_etall   = 0.;
 
+  m_jet_sum_pt = 0.;
+  m_oljet      = 0.;
+  m_olratio    = 0.;
+
   m_mll_cached     = false;
   m_met_et_cached  = false;
   m_met_phi_cached = false;
@@ -82,6 +98,10 @@ void Event::clear()
   m_ptll_cached    = false;
   m_phill_cached   = false;
   m_etall_cached   = false;
+
+  m_jet_sum_pt_cached = false;
+  m_oljet_cached = false;
+  m_olratio_cached = false;
 }
 
 // -----------------------------------------------------------------------------
@@ -281,6 +301,27 @@ void Event::setMetRel(double met_rel)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setJetSumPt(double jet_sum_pt)
+{
+  m_jet_sum_pt = jet_sum_pt;
+  m_jet_sum_pt_cached = true;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setOLJet(double oljet)
+{
+  m_oljet = oljet;
+  m_oljet_cached = true;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setOLRatio(double olratio)
+{
+  m_olratio = olratio;
+  m_olratio_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 double Event::getMll() const
 {
   if (!m_mll_cached)
@@ -359,6 +400,31 @@ double Event::getEtall() const
     std::cout << "WARNING! Asking for eta_ll, but not yet cached!\n";
   return m_etall;
 }
+
+// -----------------------------------------------------------------------------
+double Event::getJetSumPt() const
+{
+  if (!m_jet_sum_pt_cached)
+    std::cout << "WARNING! Asking for jet_sum_pt, but not yet cached!\n";
+  return m_jet_sum_pt;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getOLJet() const
+{
+  if (!m_oljet_cached)
+    std::cout << "WARNING! Asking for oljet, but not yet cached!\n";
+  return m_oljet;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getOLRatio() const
+{
+  if (!m_olratio_cached)
+    std::cout << "WARNING! Asking for olratio, but not yet cached!\n";
+  return m_olratio;
+}
+
 
 // ----------------------------------------------------------------------------
 SusyAnalysisTools::EventDescription* Event::getEventDesc()

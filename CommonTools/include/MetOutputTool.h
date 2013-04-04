@@ -57,6 +57,12 @@ namespace CommonTools
 
     TVector2 m_met_vec;
 
+    float m_met_refjet;
+    float m_met_refele;
+    float m_jet_sum_pt;
+    float m_oljet;
+    float m_olratio;
+
     // Detailed Variables to output only if configured to
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

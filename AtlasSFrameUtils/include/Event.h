@@ -58,6 +58,10 @@ public:
   void setPhill(double);
   void setEtall(double);
 
+  void setJetSumPt(double);
+  void setOLJet(double);
+  void setOLRatio(double);
+
   double getMll() const;
   double getMetEt() const;
   double getMetPhi() const;
@@ -68,6 +72,10 @@ public:
   double getPtll() const;
   double getPhill() const;
   double getEtall() const;
+
+  double getJetSumPt() const;
+  double getOLJet() const;
+  double getOLRatio() const;
 
   void print();
 
@@ -105,6 +113,10 @@ private:
   double m_phill;
   double m_etall;
 
+  double m_jet_sum_pt;
+  double m_oljet;
+  double m_olratio;
+
   bool m_mll_cached;
   bool m_met_et_cached;
   bool m_met_phi_cached;
@@ -115,6 +127,10 @@ private:
   bool m_ptll_cached;
   bool m_phill_cached;
   bool m_etall_cached;
+
+  bool m_jet_sum_pt_cached;
+  bool m_oljet_cached;
+  bool m_olratio_cached;
 
   // Event description
   SusyAnalysisTools::EventDescription m_event_desc;

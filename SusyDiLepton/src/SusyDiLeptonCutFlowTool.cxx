@@ -31,6 +31,7 @@
 #include "CommonTools/include/SignChannel.h"
 #include "CommonTools/include/TopTagTool.h"
 #include "CommonTools/include/TruthMatchTool.h"
+#include "CommonTools/include/ElectronJetOverlapTool.h"
 
 #include "D3PDObjects/include/MuonTruthD3PDObject.h"
 #include "D3PDObjects/include/TruthD3PDObject.h"
@@ -635,7 +636,20 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                  , electrons.getElectrons(EL_GOOD)
                  , muons.getMuons(MU_GOOD))
                  );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute jet_sum_pt
+  event->setJetSumPt(CommonTools::ElectronJetOverlapTool::getSumPtJets(&jets) );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute oljet
+  event->setOLJet(CommonTools::ElectronJetOverlapTool::getOLJet(met, &jets));
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute olratio
+  event->setOLRatio(CommonTools::ElectronJetOverlapTool::getOLRatio(met, &jets));
 }
+
 // -----------------------------------------------------------------------------
 void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event
             , ElectronContainer& electrons
