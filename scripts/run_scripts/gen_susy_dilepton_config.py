@@ -95,6 +95,7 @@ def writeConfigXml(config_dict, out_file):
   <Library Name="libSFrameCintex" />
   <Library Name="libSFramePlugIns" />
 
+  <!-- RootCore libraries -->
   <Library Name="libGoodRunsLists" />
   <Library Name="libegammaAnalysisUtils" />
   <Library Name="libJetResolution" />
@@ -116,6 +117,9 @@ def writeConfigXml(config_dict, out_file):
   <Library Name="libDGTriggerReweight" />
   <Library Name="libTriggerMatch" />
   <Library Name="libApplyJetCalibration" />
+  <Library Name="libTileTripReader" />
+
+  <!-- Our code libraries -->
   <Library Name="libD3PDObjects" />
   <Library Name="libAtlasSFrameUtils" />
   <Library Name="libCommonTools" />

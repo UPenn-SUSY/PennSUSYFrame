@@ -29,6 +29,7 @@ INCLUDES += -I../RootCore/LeptonTruthTools/
 INCLUDES += -I../RootCore/DGTriggerReweight/
 INCLUDES += -I../RootCore/ElectronEfficiencyCorrection/
 INCLUDES += -I../RootCore/PATCore/
+INCLUDES += -I../RootCore/TileTripReader/
 
 # Include the generic compilation rules
 include $(SFRAME_DIR)/Makefile.common
