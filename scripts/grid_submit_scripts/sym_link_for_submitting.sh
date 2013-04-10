@@ -7,6 +7,7 @@ file_to_link=( \
   grid_run_presel.sh  \
   prep_cutflow_tarball.sh  \
   prep_presel_tarball.sh  \
+  submit_all_samples.sh  \
   submit_cutflow.sh  \
   submit_diboson.sh  \
   submit_drell_yan.sh  \
