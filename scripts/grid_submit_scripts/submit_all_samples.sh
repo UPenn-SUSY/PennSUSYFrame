@@ -23,6 +23,6 @@ else
     fi 
     echo "---------------------------------------------------------------------"
     echo "Submitting: $each"
-    source $each --user ${USER} --ver ${VERSION}
+    source $each --user-name ${USER} --ver ${VERSION}
   done
 fi
