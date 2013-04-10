@@ -140,6 +140,10 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   if (evt_desc.getPassTileHotSpot() == false) return;
   fillHist(phase, weight_type, bin_num++, weight);
 
+  // tile trip
+  if (evt_desc.getPassTileTrip() == false) return;
+  fillHist(phase, weight_type, bin_num++, weight);
+
   // bad jets
   if (evt_desc.getPassBadJets() == false) return;
   fillHist(phase, weight_type, bin_num++, weight);
@@ -925,6 +929,7 @@ void CutFlowDump::initBinList()
   m_bin_list.push_back("LAr error");
   m_bin_list.push_back("Tile error");
   m_bin_list.push_back("Tile hot spot");
+  m_bin_list.push_back("Tile trip");
   m_bin_list.push_back("Jet cleaning");
   m_bin_list.push_back("Calo problem jet");
   m_bin_list.push_back("Primary vertex");

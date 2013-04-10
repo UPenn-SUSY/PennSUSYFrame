@@ -5,7 +5,7 @@ Script to generate the config files used in running over our flat ntuple,
 and make histogam files
 
 Usage:
-    python gen_config.py <flavor_channel> <region>
+    python gen_config.py <flavor_channel> <region> [<tnt_version>]
 
 Note: This script requires there be a files named sample_list.txt in the pwd
 """
@@ -14,12 +14,26 @@ import sys
 import os
 
 def main():
-    f = file('sample_list.txt', 'r')
+    # check file named 'sample_list.txt' exists
+    sample_list_name = 'sample_list.txt'
+    if not os.path.isfile(sample_list_name):
+        print 'ERROR: There must exist a file %s in the pwd' % sample_list_name
+        return 0
+    f = file(sample_list_name, 'r')
+
+    if len(sys.argv) < 3:
+        print 'Please provide the flavor and region names'
+        print ' python gen_config.py <flavor_channel> <region> [<tnt_version>]'
     flavor_channel = sys.argv[1]
     region = sys.argv[2]
+    tnt_version = '008'
+    if len(sys.argv) >= 4:
+        tnt_version = sys.argv[3]
     local_out_dir = '%s.%s' % (flavor_channel, region)
 
-    full_out_dir = 'susy_hists/optimize/tnt.006/%s/' % local_out_dir
+    full_out_dir = 'susy_hists/optimize/tnt.%s/%s/' % ( tnt_version
+                                                      , local_out_dir
+                                                      )
     print 'local_out_dir: %s' % local_out_dir
     print 'full_out_dir: %s' % full_out_dir
 
@@ -57,9 +71,9 @@ def main():
         print 'sample number : %s'    % data['sample_number']
         print 'sample label : %s'     % data['sample_label']
 
-        data['config_base_path'] = '%s/../utils/RunConfigs/OptimizationHistograms/tnt.006/' % os.environ['SFRAME_DIR']
-        data['ptnt_base_path']   = '%s/../utils/pTNTs/OptimizationHistograms/tnt.006/%s'      % (os.environ['SFRAME_DIR'], data['local_out_dir'])
-        data['hist_base_path']   = '%s/../utils/SusyHists/OptimizationHistograms/tnt.006/%s'  % (os.environ['SFRAME_DIR'], data['local_out_dir'])
+        data['config_base_path'] = '%s/../utils/RunConfigs/OptimizationHistograms/tnt.%s/'  % (os.environ['SFRAME_DIR'], tnt_version)
+        data['ptnt_base_path']   = '%s/../utils/pTNTs/OptimizationHistograms/tnt.%s/%s'     % (os.environ['SFRAME_DIR'], tnt_version, data['local_out_dir'])
+        data['hist_base_path']   = '%s/../utils/SusyHists/OptimizationHistograms/tnt.%s/%s' % (os.environ['SFRAME_DIR'], tnt_version, data['local_out_dir'])
 
         print 'config base path : %s' % data['config_base_path']
         print 'ptnt base path : %s'   % data['ptnt_base_path']

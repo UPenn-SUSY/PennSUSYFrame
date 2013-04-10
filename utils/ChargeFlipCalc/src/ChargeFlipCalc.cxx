@@ -213,6 +213,7 @@ bool ChargeFlipCalc::passLikelihoodSelection()
   pass = pass && evt_desc.getPassLarError();
   pass = pass && evt_desc.getPassTileError();
   pass = pass && evt_desc.getPassTileHotSpot();
+  pass = pass && evt_desc.getPassTileTrip();
   pass = pass && evt_desc.getPassBadJets();
   pass = pass && evt_desc.getPassPrimaryVertex();
   pass = pass && evt_desc.getPassBadMuons();
@@ -249,6 +250,7 @@ bool ChargeFlipCalc::passTruthSelection()
   pass = pass && evt_desc.getPassLarError();
   pass = pass && evt_desc.getPassTileError();
   pass = pass && evt_desc.getPassTileHotSpot();
+  pass = pass && evt_desc.getPassTileTrip();
   pass = pass && evt_desc.getPassBadJets();
   pass = pass && evt_desc.getPassPrimaryVertex();
   pass = pass && evt_desc.getPassBadMuons();

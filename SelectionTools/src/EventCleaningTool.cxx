@@ -162,11 +162,13 @@ bool SelectionTools::EventCleaningTool::passTileHotSpot(Event* event,
 // -----------------------------------------------------------------------------
 bool SelectionTools::EventCleaningTool::passTileTrip(const Event* event)
 {
+  // check for tile trip. true: good event  false: bad event
   bool pass_tile_trip = m_tile_trip_reader->checkEvent( event->RunNumber()
                                                       , event->lbn()
                                                       , event->EventNumber()
                                                       );
-  return (is_data() && pass_tile_trip);
+  // If MC, always return true.  If data, check that the event passed tile trip
+  return (!is_data() || pass_tile_trip);
 }
 
 // -----------------------------------------------------------------------------
