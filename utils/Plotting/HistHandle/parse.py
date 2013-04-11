@@ -17,8 +17,8 @@ import HistHandle as hh
 class InputContainer(object):
     # --------------------------------------------------------------------------
     def __init__(self, input_dict):
+        print '\t\tinput_dict: %s' % input_dict
         self.name = input_dict['name']
-        # self.color = input_dict['color']
         self.fill_color   = input_dict['fill_color']
         self.line_color   = input_dict['line_color']
 
@@ -120,6 +120,12 @@ class OptimizeContainer(object):
 
 # ------------------------------------------------------------------------------
 def parseInputs():
+    if len(sys.argv) != 3:
+        print 'Incorrect number of inputs'
+        print 'usage:'
+        print '  %s <config_file_name> <out_file_name>' % sys.argv[0]
+        return None
+
     # TODO do proper parsing so we aren't sensitive to order of inputs
     global_config_file = sys.argv[1]
     config_dict = processConfigFile(global_config_file)
@@ -169,6 +175,8 @@ def processInputBlock(input_dict):
     input_files = []
     for inp in input_dict:
         key = inp['class']
+        print 'key: %s' % key
+        print '\tinp: %s' % inp
         input_containers[key] = InputContainer(inp)
 
         input_files.append(input_containers[key].getInputFileList())

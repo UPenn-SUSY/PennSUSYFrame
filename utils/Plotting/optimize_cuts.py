@@ -30,6 +30,8 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     inputs = hh.parse.parseInputs()
+    if inputs == None:
+        return 0
     config        = inputs['config']
     file_list     = inputs['files']
     out_file_name = inputs['outfile']
@@ -134,6 +136,7 @@ def main():
                                                 , denom = hm_bkg
                                                 , optimal_cut = local_optimize
                                                 , num_draw_option = 'HIST'
+                                                , denom_draw_option = 'HIST'
                                                 )
                 pile = painter.pile( num_type       = hh.Objects.plain_hist
                                    , denom_type     = hh.Objects.stack_hist

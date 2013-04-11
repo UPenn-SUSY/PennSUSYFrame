@@ -1,0 +1,49 @@
+Optimize:
+  - cut_dir:     mm_sr_ssjets__it1a.no_l_jet_veto
+    to_optimize: met_rel
+    direction:   right
+    scan:        1
+    fixed_points:
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+
+Inputs:
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_39
+    name: simplifiedModel_wA_slep_noWcascade_39
+    fill_color: 0
+    line_color: 38
+    marker_style: 20
+    entries:
+          - label: wA_noWcascade_39
+            fill_color: 0
+            line_color: 38
+            marker_style: 20
+            inputs:
+              - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root
+
+
+  - class: Background
+    name: Background
+    fill_color: 2
+    line_color: 2
+    marker_style: 21
+    entries:
+          - label:        BG_1
+            fill_color:   821
+            line_color:   1
+            marker_style: 22
+            inputs:
+              - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root
+              - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root
+          - label:        BG_2
+            fill_color:   920
+            line_color:   1
+            marker_style: 22
+            inputs:
+              - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root
+              - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root

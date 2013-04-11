@@ -30,6 +30,8 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     inputs = hh.parse.parseInputs()
+    if inputs == None:
+        return 0
     config = inputs['config']
     file_list = inputs['files']
     out_file_name = inputs['outfile']
@@ -51,9 +53,11 @@ def main():
 
             hm_num   = config['Numerator'  ].genHistMerger(d, h)
             hm_denom = config['Denominator'].genHistMerger(d, h)
+            hm_other = config['Other'].genHistMerger(d,h) if 'Other' in config else None
 
             hist_painter = hh.Painter.HistPainter( num   = hm_num
                                                  , denom = hm_denom
+                                                 , other = hm_other
                                                  )
 
             print 'Log'

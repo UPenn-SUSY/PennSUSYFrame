@@ -36,10 +36,12 @@ class HistPainter(object):
     def __init__( self
                 , num
                 , denom = None
+                , other = None
                 , name  = None
                 , optimal_cut = None
                 , num_draw_option = 'P'
                 , denom_draw_option = 'P'
+                , other_draw_option = 'HIST'
                 ):
         """
         construtor
@@ -47,11 +49,13 @@ class HistPainter(object):
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         assert isinstance(num, hh.Merger.HistMerger)
         assert denom == None or isinstance(denom, hh.Merger.HistMerger)
+        assert other == None or isinstance(other, hh.Merger.HistMerger)
         assert optimal_cut == None or isinstance( optimal_cut
                                                 , hh.Optimize.Optimize
                                                 )
         self.num_merger   = num
         self.denom_merger = denom
+        self.other_merger = other
         self.optimal_cut  = optimal_cut
 
         self.name = name
@@ -63,6 +67,7 @@ class HistPainter(object):
 
         self.num_draw_option   = num_draw_option
         self.denom_draw_option = denom_draw_option
+        self.other_draw_option = other_draw_option
 
     # --------------------------------------------------------------------------
     def __del__(self):
@@ -88,6 +93,9 @@ class HistPainter(object):
         for key in self.denom_merger.hist_handles:
             hist_list.append(self.denom_merger.hist_handles[key].hist)
             label_list.append(key)
+        for key in self.other_merger.hist_handles:
+            hist_list.append(self.other_merger.hist_handles[key].hist)
+            label_list.append(key)
 
         # get the draw options to be used for the legend
         draw_opt_list = ['HIST']*len(hist_list)
@@ -104,6 +112,7 @@ class HistPainter(object):
     def pile( self
             , num_type         = hh.Objects.plain_hist
             , denom_type       = hh.Objects.plain_hist
+            , other_type       = hh.Objects.piled_hist
             , normalize        = False
             , canvas_options   = hh.canv_linear
             , legend           = False
@@ -167,6 +176,24 @@ class HistPainter(object):
             hist_list.append(self.num_merger.hist_stack)
             draw_opt_list.append('HIST')
 
+        # get other hists
+        if other_type == hh.Objects.piled_hist:
+            for hl in self.other_merger.hist_list:
+                hist_list.append(hl)
+                # draw_opt_list.append('P')
+                draw_opt_list.append(self.other_draw_option)
+        elif other_type == hh.Objects.plain_hist:
+            hist_list.append(self.other_merger.hist_sum)
+            # draw_opt_list.append('P')
+            draw_opt_list.append(self.other_draw_option)
+        elif other_type == hh.Objects.stack_hist:
+            # for stacked histograms, we want to add the sum also to get the
+            # min/max right
+            hist_list.append(self.other_merger.hist_sum)
+            draw_opt_list.append('HIST')
+            hist_list.append(self.other_merger.hist_stack)
+            draw_opt_list.append('HIST')
+
 
         self.canvas = pileHists( hist_list
                                , tag
@@ -194,6 +221,7 @@ class HistPainter(object):
     def pileAndRatio( self
                     , num_type         = hh.Objects.plain_hist
                     , denom_type       = hh.Objects.plain_hist
+                    , other_type       = hh.Objects.piled_hist
                     , normalize        = False
                     , canvas_options   = hh.canv_linear
                     , legend           = False
@@ -214,6 +242,7 @@ class HistPainter(object):
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.pile( num_type
                  , denom_type
+                 , other_type
                  , normalize
                  , canvas_options
                  )

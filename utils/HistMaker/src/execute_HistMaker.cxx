@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 {
   std::cout << "Making Histograms!\n";
 
-  if (argc < 1) {
+  if (argc != 2) {
     std::cout << "Please enter an input config file\n";
     return 0;
   }
@@ -44,7 +44,7 @@ int main(int argc, char** argv)
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Open/close output file to create it
   std::string out_file_name = parser.getHistFile();
-  std::cout << "out file: " << out_file_name << "\n";
+  std::cout << "out file: \n\t" << out_file_name << "\n";
   std::cout << "file exists: " << fileExists(out_file_name) << "\n";
   if (fileExists(out_file_name)) {
     std::string proceed;
