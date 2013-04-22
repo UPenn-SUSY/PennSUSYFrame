@@ -51,12 +51,11 @@ SKIP_CPP_LIST := $(DICT_FILE)
 SKIP_H_LIST   := $(DICT_HEAD) $(DICT_LDEF)
 
 # Get list of headers and source files to build
-HLIST		= $(filter-out $(SKIP_H_LIST),$(wildcard $(INCDIR)/*h))
+HLIST   = $(filter-out $(SKIP_H_LIST),$(wildcard $(INCDIR)/*h))
 CPPLIST = $(filter-out $(SKIP_CPP_LIST),$(wildcard $(SRCDIR)/*.$(SrcSuf)))
 
 # generate list of object files to build
 OLIST = $(addprefix $(OBJDIR)/,$(patsubst %.$(SrcSuf),%.$(ObjSuf),$(notdir $(CPPLIST))))
-
 
 # default list of objects to be made
 default: shlib executable
@@ -66,48 +65,76 @@ shlib : $(SH_LIB_FILE)
 
 # Rule to combine objects into a unix shared library
 $(SH_LIB_FILE): $(OLIST) $(DICT_OBJ) | $(SH_LIB_PATH)
-	@echo "Making shared library: $(SH_LIB_FILE)"
+	@echo "------------------------------------------------------------"
+	@echo "- Making shared library: $(SH_LIB_FILE)"
+	@echo "------------------------------------------------------------"
 	@rm -f $(SH_LIB_FILE)
 ifneq (,$(findstring macosx,$(ARCH)))
 	@$(LD) $(LDFLAGS) -dynamiclib -single_module -undefined dynamic_lookup $(OLIST) $(DICT_OBJ) -o $(SH_LIB_FILE)
 else
 	@$(LD) $(LDFLAGS) $(SOFLAGS) $(OLIST) $(DICT_OBJ) -o $(SH_LIB_FILE)
 endif
+	@echo ""
 
 # rule to make SH_LIB_PATH directory
 $(SH_LIB_PATH): $(OLIST)
+	@echo "------------------------------------------------------------"
+	@echo "- Making SH_LIB_PATH directory"
+	@echo "------------------------------------------------------------"
 	@mkdir -p $(SH_LIB_PATH)
+	@echo ""
 
 # rule to generate dictionary objects
 $(DICT_OBJ): $(DICT_FILE) | $(OBJDIR)
-	@echo "Compiling $<"
+	@echo "------------------------------------------------------------"
+	@echo "- Compiling $<"
+	@echo "------------------------------------------------------------"
 	@$(CXX) $(CXXFLAGS) -c $(INCLUDES) -o $@ $<
+	@echo ""
 
 # rule to generate dictionary file
 $(DICT_FILE) : $(HLIST) $(DICT_LDEF)
-	@echo "Generating dictionary $@"
+	@echo "------------------------------------------------------------"
+	@echo "- Generating dictionary $@"
+	@echo "------------------------------------------------------------"
 	@$(shell root-config --exec-prefix)/bin/rootcint -f $(DICT_FILE) -c -p $(INCLUDES) $^
+	@echo ""
 
 # rule to compile all sources
 $(OBJDIR)/%.$(ObjSuf) : $(SRCDIR)/%.$(SrcSuf) | $(OBJDIR)
-	@echo "Compiling $<"
+	@echo "------------------------------------------------------------"
+	@echo "- Compiling $<"
+	@echo "------------------------------------------------------------"
 	@$(CXX) $(CXXFLAGS) -c $< -o $(OBJDIR)/$(notdir $@) $(INCLUDES)
+	@echo ""
 
 # rule to make OBJDIR directory
 $(OBJDIR):
+	@echo "------------------------------------------------------------"
+	@echo "- Making $@ directory"
+	@echo "------------------------------------------------------------"
 	@mkdir -p $(OBJDIR)
+	@echo ""
 
 # rule to generate executable
 executable: $(EXECUTABLE)
 
 # rule to generate the executable if there is one
 $(EXECUTABLE) :
-	@echo "building executable $@"
-	@$(CXX) -v $(SH_LIB_FILE) $(wildcard $(SH_LIB_PATH)/*.so) $(BONUS_LIB_PATH) $(ROOTLIBS) -lMinuit -o $@
+	@echo "------------------------------------------------------------"
+	@echo "- building executable $@"
+	@echo "------------------------------------------------------------"
+
+	@$(CXX) -v $(SH_LIB_FILE) $(LOCAL_LIBS_PATH) $(BONUS_LIB_PATH) $(ROOTLIBS) -lMinuit -o $@
+	@echo ""
 
 # rule to clean up environment
 clean:
+	@echo "------------------------------------------------------------"
+	@echo "- Cleaning up"
+	@echo "------------------------------------------------------------"
 	@rm -rf $(EXECUTABLE)
 	@rm -rf $(OBJDIR)
 	@rm -f $(DICT_FILE) $(DICT_HEAD)
 	@rm -f $(SH_LIB_FILE)
+	@echo ""

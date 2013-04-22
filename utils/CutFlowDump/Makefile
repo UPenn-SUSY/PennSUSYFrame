@@ -3,6 +3,12 @@ OBJDIR  := $(PWD)/obj
 SRCDIR  := $(PWD)/src
 INCDIR  := $(PWD)/include
 EXECUTABLE := $(PWD)/CutFlowDump
+
+LOCAL_LIBS_PATH = $(SH_LIB_PATH)/libNtupleLooper.so
+LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libParser.so
+LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libHistMaker.so
+LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libSelection.so
+LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libProgressBar.so
 BONUS_LIB_PATH := $(SFRAME_LIB_PATH)/libSusyAnalysisTools.so
 
 INCLUDES += -I../

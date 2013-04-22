@@ -2,7 +2,7 @@ LIBRARY := ProgressBar
 OBJDIR  := $(PWD)/obj
 SRCDIR  := $(PWD)/src
 INCDIR  := $(PWD)/include
-# EXECUTABLE :=
+EXECUTABLE := ${PWD}/TestProgressBar
 # BONUS_LIB_PATH :=
 
 INCLUDES += -I../
