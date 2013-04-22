@@ -8,17 +8,23 @@ class ProgressBar
 {
   // ---------------------------------------------------------------------------
   public:
-    ProgressBar(int numEvents, int barLength = 50);
+    ProgressBar(unsigned int numEvents, unsigned int barLength = 50);
 
-    void checkProgress(int event);
-    void printProgressBar(int event);
+    void checkProgress(unsigned int event);
+    void printProgressBar(unsigned int event);
 
   // ---------------------------------------------------------------------------
   private:
-    const int m_numEvents;
-    const int m_barLength;
-    const int m_increment;
-    int m_currentProgress;
+    const unsigned int m_numEvents;
+    const unsigned int m_barLength;
+    const unsigned int m_increment;
+    unsigned int m_currentProgress;
+
+    unsigned int m_startTime;
+
+    void clearLine();
+    std::string getRate(unsigned int event, float elapsed_time);
+    std::string getRemainingTime(unsigned int event, float elapsed_time);
 };
 
 #endif
