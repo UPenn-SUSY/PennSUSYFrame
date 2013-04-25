@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# ==============================================================================
 """
 Script to generate the config files used in running over our flat ntuple,
 and make histogam files

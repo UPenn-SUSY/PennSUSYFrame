@@ -1,6 +1,6 @@
 # imported config files
-cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009//cuts.mm.sr_ssjets.nominal.config
-hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009//hists.mm.sr_ssjets.config
+cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009/mm.sr_ssjets/cuts.mm.sr_ssjets.nominal.config
+hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009/mm.sr_ssjets/hists.mm.sr_ssjets.config
 
 # Global weight settings
 mc_event_weight: 1

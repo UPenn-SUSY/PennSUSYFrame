@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-# ==============================================================================
 """
 Script to take template cut config, and generate cut config for each tpye of
-selection (nominal, cf, fake, signal)
+selection (nominal, cf, fake, signal, data)
 
 Usage:
     python ../gen_cut_config.py cuts.ee.dev
@@ -25,17 +24,21 @@ def main():
     fake_cut_file_name    = '%s.fake.config'     % file_base
     signal_cut_file_name  = '%s.signal.config'   % file_base
     cf_cut_file_name      = '%s.cf.config'       % file_base
+    data_cut_file_name    = '%s.data.config'       % file_base
+
     print template_file_name
     print nominal_cut_file_name
     print fake_cut_file_name
     print signal_cut_file_name
     print cf_cut_file_name
+    print data_cut_file_name
 
     template_file    = open(template_file_name   , 'r')
     nominal_cut_file = open(nominal_cut_file_name, 'w')
     fake_cut_file    = open(fake_cut_file_name   , 'w')
     signal_cut_file  = open(signal_cut_file_name , 'w')
     cf_cut_file      = open(cf_cut_file_name     , 'w')
+    data_cut_file      = open(data_cut_file_name     , 'w')
 
     for line in template_file:
         if '#' in line: continue
@@ -45,71 +48,78 @@ def main():
             fake_cut_file.write(   '\n')
             signal_cut_file.write( '\n')
             cf_cut_file.write(     '\n')
+            data_cut_file.write(     '\n')
 
             nominal_cut_file.write('    pass_2_signal_leptons:     1\n')
             fake_cut_file.write(   '    pass_2_signal_leptons:     0\n')
             signal_cut_file.write( '    pass_2_signal_leptons:     1\n')
             cf_cut_file.write(     '    pass_2_signal_leptons:     1\n')
+            data_cut_file.write(   '    pass_2_signal_leptons:     1\n')
 
             nominal_cut_file.write('    pass_prompt_leptons:       1\n')
             fake_cut_file.write(   '    pass_prompt_leptons:       0\n')
             signal_cut_file.write( '    pass_prompt_leptons:       0\n')
             cf_cut_file.write(     '    pass_prompt_leptons:       1\n')
+            data_cut_file.write(   '    pass_prompt_leptons:       0\n')
 
-            nominal_cut_file.write('    pass_sign_channel:         ss\n')
-            fake_cut_file.write(   '    pass_sign_channel:         ss\n')
-            signal_cut_file.write( '    pass_sign_channel:         ss\n')
+            # nominal_cut_file.write('    pass_sign_channel:         ss\n')
+            # fake_cut_file.write(   '    pass_sign_channel:         ss\n')
+            # signal_cut_file.write( '    pass_sign_channel:         ss\n')
             cf_cut_file.write(     '    pass_sign_channel:         os\n')
+            # data_cut_file.write(   '    pass_sign_channel:         os\n')
 
-            nominal_cut_file.write('    pass_truth_sign_channel:   ss\n')
+            # nominal_cut_file.write('    pass_truth_sign_channel:   ss\n')
             cf_cut_file.write(     '    pass_truth_sign_channel:   os\n')
 
             nominal_cut_file.write('\n')
             fake_cut_file.write(   '\n')
             signal_cut_file.write( '\n')
             cf_cut_file.write    ( '\n')
+            data_cut_file.write(   '\n')
 
             nominal_cut_file.write('    trigger_weight:  1\n')
             fake_cut_file.write(   '    trigger_weight:  0\n')
             signal_cut_file.write( '    trigger_weight:  1\n')
             cf_cut_file.write(     '    trigger_weight:  1\n')
+            data_cut_file.write(   '    trigger_weight:  0\n')
 
             nominal_cut_file.write('    lepton_weight:   1\n')
             fake_cut_file.write(   '    lepton_weight:   0\n')
             signal_cut_file.write( '    lepton_weight:   1\n')
             cf_cut_file.write(     '    lepton_weight:   1\n')
+            data_cut_file.write(   '    lepton_weight:   0\n')
 
             nominal_cut_file.write('    b_tag_weight:    1\n')
             fake_cut_file.write(   '    b_tag_weight:    0\n')
             signal_cut_file.write( '    b_tag_weight:    1\n')
             cf_cut_file.write(     '    b_tag_weight:    1\n')
+            data_cut_file.write(   '    b_tag_weight:    0\n')
 
-            if 'mm' in file_base:
-                nominal_cut_file.write('    cf_weight:       0\n')
-                fake_cut_file.write(   '    cf_weight:       0\n')
-                signal_cut_file.write( '    cf_weight:       0\n')
-                cf_cut_file.write(     '    cf_weight:       0\n')
-            else:
-                nominal_cut_file.write('    cf_weight:       0\n')
-                fake_cut_file.write(   '    cf_weight:       0\n')
-                signal_cut_file.write( '    cf_weight:       0\n')
-                cf_cut_file.write(     '    cf_weight:       1\n')
+            nominal_cut_file.write('    cf_weight:       0\n')
+            fake_cut_file.write(   '    cf_weight:       0\n')
+            signal_cut_file.write( '    cf_weight:       0\n')
+            cf_cut_file.write(     '    cf_weight:       %s\n' % 0 if 'mm' in file_base else 1)
+            data_cut_file.write(   '    cf_weight:       0\n')
 
             nominal_cut_file.write('    fake_weight:     0\n')
             fake_cut_file.write(   '    fake_weight:     1\n')
             signal_cut_file.write( '    fake_weight:     0\n')
             cf_cut_file.write(     '    fake_weight:     0\n')
+            data_cut_file.write(   '    fake_weight:     0\n')
 
         nominal_cut_file.write(line)
         fake_cut_file.write(   line)
         signal_cut_file.write( line)
-        cf_cut_file.write(     line)
+        if not 'pass_sign_channel' in line:
+            cf_cut_file.write(     line)
+        data_cut_file.write(   line)
 
     template_file.close()
     nominal_cut_file.close()
     fake_cut_file.close()
     signal_cut_file.close()
     cf_cut_file.close()
+    data_cut_file.close()
 
 # ==============================================================================
 if __name__ == '__main__':

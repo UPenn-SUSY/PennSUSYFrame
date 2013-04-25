@@ -1,0 +1,385 @@
+# imported config files
+cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009/mm.sr_ssjets/cuts.mm.sr_ssjets.nominal.config
+hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009/mm.sr_ssjets/hists.mm.sr_ssjets.config
+
+# other settings
+target_lumi: 21000
+
+in_tree: output
+max_job_size: 10
+file_name_base: nominal
+ptnt_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/pTNTs/OptimizationHistograms/tnt.009/mm.sr_ssjets/
+hist_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.009/mm.sr_ssjets/
+
+in_file_base_path: /afs/cern.ch/user/b/bjackson/my_eos/tnt.009/
+in_files:
+  # W+jet - Aplgen
+  W_plus_jet.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0:
+    sample_number: 107680
+    grep_for: W_plus_jet.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0
+  W_plus_jet.107681.AlpgenJimmy_AUET2CTEQ6L1_WenuNp1:
+    sample_number: 107681
+    grep_for: W_plus_jet.107681.AlpgenJimmy_AUET2CTEQ6L1_WenuNp1
+  W_plus_jet.107682.AlpgenJimmy_AUET2CTEQ6L1_WenuNp2:
+    sample_number: 107682
+    grep_for: W_plus_jet.107682.AlpgenJimmy_AUET2CTEQ6L1_WenuNp2
+  W_plus_jet.107683.AlpgenJimmy_AUET2CTEQ6L1_WenuNp3:
+    sample_number: 107683
+    grep_for: W_plus_jet.107683.AlpgenJimmy_AUET2CTEQ6L1_WenuNp3
+  W_plus_jet.107684.AlpgenJimmy_AUET2CTEQ6L1_WenuNp4:
+    sample_number: 107684
+    grep_for: W_plus_jet.107684.AlpgenJimmy_AUET2CTEQ6L1_WenuNp4
+  W_plus_jet.107685.AlpgenJimmy_AUET2CTEQ6L1_WenuNp5:
+    sample_number: 107685
+    grep_for: W_plus_jet.107685.AlpgenJimmy_AUET2CTEQ6L1_WenuNp5
+  W_plus_jet.107690.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp0:
+    sample_number: 107690
+    grep_for: W_plus_jet.107690.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp0
+  W_plus_jet.107691.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp1:
+    sample_number: 107691
+    grep_for: W_plus_jet.107691.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp1
+  W_plus_jet.107692.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp2:
+    sample_number: 107692
+    grep_for: W_plus_jet.107692.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp2
+  W_plus_jet.107693.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp3:
+    sample_number: 107693
+    grep_for: W_plus_jet.107693.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp3
+  W_plus_jet.107694.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp4:
+    sample_number: 107694
+    grep_for: W_plus_jet.107694.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp4
+  W_plus_jet.107695.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp5:
+    sample_number: 107695
+    grep_for: W_plus_jet.107695.AlpgenJimmy_AUET2CTEQ6L1_WmunuNp5
+  W_plus_jet.107700.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp0:
+    sample_number: 107700
+    grep_for: W_plus_jet.107700.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp0
+  W_plus_jet.107701.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp1:
+    sample_number: 107701
+    grep_for: W_plus_jet.107701.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp1
+  W_plus_jet.107702.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp2:
+    sample_number: 107702
+    grep_for: W_plus_jet.107702.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp2
+  W_plus_jet.107703.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp3:
+    sample_number: 107703
+    grep_for: W_plus_jet.107703.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp3
+  W_plus_jet.107704.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp4:
+    sample_number: 107704
+    grep_for: W_plus_jet.107704.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp4
+  W_plus_jet.107705.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp5:
+    sample_number: 107705
+    grep_for: W_plus_jet.107705.AlpgenJimmy_AUET2CTEQ6L1_WtaunuNp5
+
+  # Z+jets - Alpgen
+  Z_plus_jet.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1:
+    sample_number: 107651
+    grep_for: Z_plus_jet.107651.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp1
+  Z_plus_jet.107652.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp2:
+    sample_number: 107652
+    grep_for: Z_plus_jet.107652.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp2
+  Z_plus_jet.107653.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3:
+    sample_number: 107653
+    grep_for: Z_plus_jet.107653.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp3
+  Z_plus_jet.107654.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4:
+    sample_number: 107654
+    grep_for: Z_plus_jet.107654.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp4
+  Z_plus_jet.107655.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp5:
+    sample_number: 107655
+    grep_for: Z_plus_jet.107655.AlpgenJimmy_AUET2CTEQ6L1_ZeeNp5
+  Z_plus_jet.107660.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp0:
+    sample_number: 107660
+    grep_for: Z_plus_jet.107660.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp0
+  Z_plus_jet.107661.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp1:
+    sample_number: 107661
+    grep_for: Z_plus_jet.107661.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp1
+  Z_plus_jet.107662.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp2:
+    sample_number: 107662
+    grep_for: Z_plus_jet.107662.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp2
+  Z_plus_jet.107663.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp3:
+    sample_number: 107663
+    grep_for: Z_plus_jet.107663.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp3
+  Z_plus_jet.107664.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp4:
+    sample_number: 107664
+    grep_for: Z_plus_jet.107664.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp4
+  Z_plus_jet.107665.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp5:
+    sample_number: 107665
+    grep_for: Z_plus_jet.107665.AlpgenJimmy_AUET2CTEQ6L1_ZmumuNp5
+  Z_plus_jet.107670.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp0:
+    sample_number: 107670
+    grep_for: Z_plus_jet.107670.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp0
+  Z_plus_jet.107671.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp1:
+    sample_number: 107671
+    grep_for: Z_plus_jet.107671.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp1
+  Z_plus_jet.107672.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp2:
+    sample_number: 107672
+    grep_for: Z_plus_jet.107672.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp2
+  Z_plus_jet.107673.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp3:
+    sample_number: 107673
+    grep_for: Z_plus_jet.107673.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp3
+  Z_plus_jet.107674.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp4:
+    sample_number: 107674
+    grep_for: Z_plus_jet.107674.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp4
+  Z_plus_jet.107675.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp5:
+    sample_number: 107675
+    grep_for: Z_plus_jet.107675.AlpgenJimmy_AUET2CTEQ6L1_ZtautauNp5
+  Z_plus_jet.109300.AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp0:
+    sample_number: 109300
+    grep_for: Z_plus_jet.109300.AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp0
+  Z_plus_jet.109301.AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp1:
+    sample_number: 109301
+    grep_for: Z_plus_jet.109301.AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp1
+  Z_plus_jet.109302.AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp2:
+    sample_number: 109302
+    grep_for: Z_plus_jet.109302.AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp2
+  Z_plus_jet.109303.AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp3:
+    sample_number: 109303
+    grep_for: Z_plus_jet.109303.AlpgenJimmy_AUET2CTEQ6L1_ZeebbNp3
+  Z_plus_jet.109305.AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp0:
+    sample_number: 109305
+    grep_for: Z_plus_jet.109305.AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp0
+  Z_plus_jet.109306.AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp1:
+    sample_number: 109306
+    grep_for: Z_plus_jet.109306.AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp1
+  Z_plus_jet.109307.AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp2:
+    sample_number: 109307
+    grep_for: Z_plus_jet.109307.AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp2
+  Z_plus_jet.109308.AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp3:
+    sample_number: 109308
+    grep_for: Z_plus_jet.109308.AlpgenJimmy_AUET2CTEQ6L1_ZmumubbNp3
+  Z_plus_jet.109310.AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp0:
+    sample_number: 109310
+    grep_for: Z_plus_jet.109310.AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp0
+  Z_plus_jet.109311.AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp1:
+    sample_number: 109311
+    grep_for: Z_plus_jet.109311.AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp1
+  Z_plus_jet.109312.AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp2:
+    sample_number: 109312
+    grep_for: Z_plus_jet.109312.AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp2
+  Z_plus_jet.109313.AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp3:
+    sample_number: 109313
+    grep_for: Z_plus_jet.109313.AlpgenJimmy_AUET2CTEQ6L1_ZtautaubbNp3
+  Z_plus_jet.117706.AlpgenJimmy_AUET2CTEQ6L1_ZtautauccNp0:
+    sample_number: 117706
+    grep_for: Z_plus_jet.117706.AlpgenJimmy_AUET2CTEQ6L1_ZtautauccNp0
+  Z_plus_jet.117709.AlpgenJimmy_AUET2CTEQ6L1_ZtautauccNp3:
+    sample_number: 117709
+    grep_for: Z_plus_jet.117709.AlpgenJimmy_AUET2CTEQ6L1_ZtautauccNp3
+  Z_plus_jet.126415.AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp1:
+    sample_number: 126415
+    grep_for: Z_plus_jet.126415.AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp1
+  Z_plus_jet.126416.AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp2:
+    sample_number: 126416
+    grep_for: Z_plus_jet.126416.AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp2
+  Z_plus_jet.126417.AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp3:
+    sample_number: 126417
+    grep_for: Z_plus_jet.126417.AlpgenJimmy_AUET2CTEQ6L1_ZeeccNp3
+  Z_plus_jet.126418.AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp0:
+    sample_number: 126418
+    grep_for: Z_plus_jet.126418.AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp0
+  Z_plus_jet.126419.AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp1:
+    sample_number: 126419
+    grep_for: Z_plus_jet.126419.AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp1
+  Z_plus_jet.126420.AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp2:
+    sample_number: 126420
+    grep_for: Z_plus_jet.126420.AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp2
+  Z_plus_jet.126421.AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp3:
+    sample_number: 126421
+    grep_for: Z_plus_jet.126421.AlpgenJimmy_AUET2CTEQ6L1_ZmumuccNp3
+
+  # Diboson - Sherpa
+  diboson.126892.Sherpa_CT10_llnunu_WW:
+    sample_number: 126892
+    grep_for: diboson.126892.Sherpa_CT10_llnunu_WW
+  diboson.126893.Sherpa_CT10_lllnu_WZ:
+    sample_number: 126893
+    grep_for: diboson.126893.Sherpa_CT10_lllnu_WZ
+  diboson.126894.Sherpa_CT10_llll_ZZ:
+    sample_number: 126894
+    grep_for: diboson.126894.Sherpa_CT10_llll_ZZ
+  diboson.126895.Sherpa_CT10_llnunu_ZZ:
+    sample_number: 126895
+    grep_for: diboson.126895.Sherpa_CT10_llnunu_ZZ
+
+  # Diboson - Powheg
+  diboson.126928.PowhegPythia8_AU2CT10_WpWm_ee:
+    sample_number: 126928
+    grep_for: diboson.126928.PowhegPythia8_AU2CT10_WpWm_ee
+  diboson.126929.PowhegPythia8_AU2CT10_WpWm_me:
+    sample_number: 126929
+    grep_for: diboson.126929.PowhegPythia8_AU2CT10_WpWm_me
+  diboson.126931.PowhegPythia8_AU2CT10_WpWm_em:
+    sample_number: 126931
+    grep_for: diboson.126931.PowhegPythia8_AU2CT10_WpWm_em
+  diboson.126932.PowhegPythia8_AU2CT10_WpWm_mm:
+    sample_number: 126932
+    grep_for: diboson.126932.PowhegPythia8_AU2CT10_WpWm_mm
+  diboson.126933.PowhegPythia8_AU2CT10_WpWm_tm:
+    sample_number: 126933
+    grep_for: diboson.126933.PowhegPythia8_AU2CT10_WpWm_tm
+  diboson.126934.PowhegPythia8_AU2CT10_WpWm_et:
+    sample_number: 126934
+    grep_for: diboson.126934.PowhegPythia8_AU2CT10_WpWm_et
+  diboson.126935.PowhegPythia8_AU2CT10_WpWm_mt:
+    sample_number: 126935
+    grep_for: diboson.126935.PowhegPythia8_AU2CT10_WpWm_mt
+  diboson.126936.PowhegPythia8_AU2CT10_WpWm_tt:
+    sample_number: 126936
+    grep_for: diboson.126936.PowhegPythia8_AU2CT10_WpWm_tt
+  diboson.126937.PowhegPythia8_AU2CT10_ZZ_4e_mll4_2pt5:
+    sample_number: 126937
+    grep_for: diboson.126937.PowhegPythia8_AU2CT10_ZZ_4e_mll4_2pt5
+  diboson.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5:
+    sample_number: 126938
+    grep_for: diboson.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5
+  diboson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5:
+    sample_number: 126939
+    grep_for: diboson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5
+  diboson.126940.PowhegPythia8_AU2CT10_ZZ_4mu_mll4_2pt5:
+    sample_number: 126940
+    grep_for: diboson.126940.PowhegPythia8_AU2CT10_ZZ_4mu_mll4_2pt5
+  diboson.126941.PowhegPythia8_AU2CT10_ZZ_2mu2tau_mll4_2pt5:
+    sample_number: 126941
+    grep_for: diboson.126941.PowhegPythia8_AU2CT10_ZZ_2mu2tau_mll4_2pt5
+  diboson.126942.PowhegPythia8_AU2CT10_ZZ_4tau_mll4_2pt5:
+    sample_number: 126942
+    grep_for: diboson.126942.PowhegPythia8_AU2CT10_ZZ_4tau_mll4_2pt5
+  diboson.126950.PowhegPythia8_AU2CT10_ZZllnunu_mm_mll4:
+    sample_number: 126950
+    grep_for: diboson.126950.PowhegPythia8_AU2CT10_ZZllnunu_mm_mll4
+  diboson.126951.PowhegPythia8_AU2CT10_ZZllnunu_tt_mll4:
+    sample_number: 126951
+    grep_for: diboson.126951.PowhegPythia8_AU2CT10_ZZllnunu_tt_mll4
+  diboson.129477.PowhegPythia8_AU2CT10_WZ_Wm11Z11_mll0p250d0_2LeptonFilter5:
+    sample_number: 129477
+    grep_for: diboson.129477.PowhegPythia8_AU2CT10_WZ_Wm11Z11_mll0p250d0_2LeptonFilter5
+  diboson.129478.PowhegPythia8_AU2CT10_WZ_Wm11Z13_mll0p4614d0_2LeptonFilter5:
+    sample_number: 129478
+    grep_for: diboson.129478.PowhegPythia8_AU2CT10_WZ_Wm11Z13_mll0p4614d0_2LeptonFilter5
+  diboson.129479.PowhegPythia8_AU2CT10_WZ_Wm11Z15_mll3p804d0_2LeptonFilter5:
+    sample_number: 129479
+    grep_for: diboson.129479.PowhegPythia8_AU2CT10_WZ_Wm11Z15_mll3p804d0_2LeptonFilter5
+  diboson.129480.PowhegPythia8_AU2CT10_WZ_Wm13Z11_mll0p250d0_2LeptonFilter5:
+    sample_number: 129480
+    grep_for: diboson.129480.PowhegPythia8_AU2CT10_WZ_Wm13Z11_mll0p250d0_2LeptonFilter5
+  diboson.129481.PowhegPythia8_AU2CT10_WZ_Wm13Z13_mll0p4614d0_2LeptonFilter5:
+    sample_number: 129481
+    grep_for: diboson.129481.PowhegPythia8_AU2CT10_WZ_Wm13Z13_mll0p4614d0_2LeptonFilter5
+  diboson.129482.PowhegPythia8_AU2CT10_WZ_Wm13Z15_mll3p804d0_2LeptonFilter5:
+    sample_number: 129482
+    grep_for: diboson.129482.PowhegPythia8_AU2CT10_WZ_Wm13Z15_mll3p804d0_2LeptonFilter5
+  diboson.129483.PowhegPythia8_AU2CT10_WZ_Wm15Z11_mll0p250d0_2LeptonFilter5:
+    sample_number: 129483
+    grep_for: diboson.129483.PowhegPythia8_AU2CT10_WZ_Wm15Z11_mll0p250d0_2LeptonFilter5
+  diboson.129484.PowhegPythia8_AU2CT10_WZ_Wm15Z13_mll0p4614d0_2LeptonFilter5:
+    sample_number: 129484
+    grep_for: diboson.129484.PowhegPythia8_AU2CT10_WZ_Wm15Z13_mll0p4614d0_2LeptonFilter5
+  diboson.129485.PowhegPythia8_AU2CT10_WZ_Wm15Z15_mll3p804d0_2LeptonFilter5:
+    sample_number: 129485
+    grep_for: diboson.129485.PowhegPythia8_AU2CT10_WZ_Wm15Z15_mll3p804d0_2LeptonFilter5
+  diboson.129487.PowhegPythia8_AU2CT10_WZ_W11Z13_mll0p4614d0_2LeptonFilter5:
+    sample_number: 129487
+    grep_for: diboson.129487.PowhegPythia8_AU2CT10_WZ_W11Z13_mll0p4614d0_2LeptonFilter5
+  diboson.129488.PowhegPythia8_AU2CT10_WZ_W11Z15_mll3p804d0_2LeptonFilter5:
+    sample_number: 129488
+    grep_for: diboson.129488.PowhegPythia8_AU2CT10_WZ_W11Z15_mll3p804d0_2LeptonFilter5
+  diboson.129489.PowhegPythia8_AU2CT10_WZ_W13Z11_mll0p250d0_2LeptonFilter5:
+    sample_number: 129489
+    grep_for: diboson.129489.PowhegPythia8_AU2CT10_WZ_W13Z11_mll0p250d0_2LeptonFilter5
+  diboson.129490.PowhegPythia8_AU2CT10_WZ_W13Z13_mll0p4614d0_2LeptonFilter5:
+    sample_number: 129490
+    grep_for: diboson.129490.PowhegPythia8_AU2CT10_WZ_W13Z13_mll0p4614d0_2LeptonFilter5
+  diboson.129491.PowhegPythia8_AU2CT10_WZ_W13Z15_mll3p804d0_2LeptonFilter5:
+    sample_number: 129491
+    grep_for: diboson.129491.PowhegPythia8_AU2CT10_WZ_W13Z15_mll3p804d0_2LeptonFilter5
+  diboson.129492.PowhegPythia8_AU2CT10_WZ_W15Z11_mll0p250d0_2LeptonFilter5:
+    sample_number: 129492
+    grep_for: diboson.129492.PowhegPythia8_AU2CT10_WZ_W15Z11_mll0p250d0_2LeptonFilter5
+  diboson.129493.PowhegPythia8_AU2CT10_WZ_W15Z13_mll0p4614d0_2LeptonFilter5:
+    sample_number: 129493
+    grep_for: diboson.129493.PowhegPythia8_AU2CT10_WZ_W15Z13_mll0p4614d0_2LeptonFilter5
+  diboson.129494.PowhegPythia8_AU2CT10_WZ_W15Z15_mll3p804d0_2LeptonFilter5:
+    sample_number: 129494
+    grep_for: diboson.129494.PowhegPythia8_AU2CT10_WZ_W15Z15_mll3p804d0_2LeptonFilter5
+  diboson.129501.PowhegPythia8_AU2CT10_DYee_20M60:
+    sample_number: 129501
+    grep_for: diboson.129501.PowhegPythia8_AU2CT10_DYee_20M60
+  diboson.129521.PowhegPythia8_AU2CT10_DYmumu_20M60:
+    sample_number: 129521
+    grep_for: diboson.129521.PowhegPythia8_AU2CT10_DYmumu_20M60
+
+  # Drell Yan - Alpgen
+  drell_yan.146830.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp0Excl_Mll10to60:
+    sample_number: 146830
+    grep_for: drell_yan.146830.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp0Excl_Mll10to60
+  drell_yan.146831.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp1Excl_Mll10to60:
+    sample_number: 146831
+    grep_for: drell_yan.146831.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp1Excl_Mll10to60
+  drell_yan.146832.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp2Excl_Mll10to60:
+    sample_number: 146832
+    grep_for: drell_yan.146832.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp2Excl_Mll10to60
+  drell_yan.146833.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp3Excl_Mll10to60:
+    sample_number: 146833
+    grep_for: drell_yan.146833.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp3Excl_Mll10to60
+  drell_yan.146834.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp4Excl_Mll10to60:
+    sample_number: 146834
+    grep_for: drell_yan.146834.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp4Excl_Mll10to60
+  drell_yan.146840.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZmumuNp0Excl_Mll10to60:
+    sample_number: 146840
+    grep_for: drell_yan.146840.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZmumuNp0Excl_Mll10to60
+  drell_yan.146842.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZmumuNp2Excl_Mll10to60:
+    sample_number: 146842
+    grep_for: drell_yan.146842.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZmumuNp2Excl_Mll10to60
+  drell_yan.146843.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZmumuNp3Excl_Mll10to60:
+    sample_number: 146843
+    grep_for: drell_yan.146843.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZmumuNp3Excl_Mll10to60
+  drell_yan.146844.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZmumuNp4Excl_Mll10to60:
+    sample_number: 146844
+    grep_for: drell_yan.146844.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZmumuNp4Excl_Mll10to60
+  drell_yan.146850.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp0Excl_Mll10to60:
+    sample_number: 146850
+    grep_for: drell_yan.146850.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp0Excl_Mll10to60
+  drell_yan.146852.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp2Excl_Mll10to60:
+    sample_number: 146852
+    grep_for: drell_yan.146852.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp2Excl_Mll10to60
+
+  # Single top - MC@NLO
+  single_top.108343.McAtNloJimmy_AUET2CT10_SingleTopSChanWenu:
+    sample_number: 108343
+    grep_for: single_top.108343.McAtNloJimmy_AUET2CT10_SingleTopSChanWenu
+  single_top.108344.McAtNloJimmy_AUET2CT10_SingleTopSChanWmunu:
+    sample_number: 108344
+    grep_for: single_top.108344.McAtNloJimmy_AUET2CT10_SingleTopSChanWmunu
+  single_top.108345.McAtNloJimmy_AUET2CT10_SingleTopSChanWtaunu:
+    sample_number: 108345
+    grep_for: single_top.108345.McAtNloJimmy_AUET2CT10_SingleTopSChanWtaunu
+  single_top.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl:
+    sample_number: 108346
+    grep_for: single_top.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl
+  single_top.117360.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e:
+    sample_number: 117360
+    grep_for: single_top.117360.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e
+  single_top.117361.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_mu:
+    sample_number: 117361
+    grep_for: single_top.117361.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_mu
+  single_top.117362.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau:
+    sample_number: 117362
+    grep_for: single_top.117362.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau
+
+  # ttbar - Powheg
+  ttbar.105861.PowhegPythia_AUET2BCT10_ttbar_LeptonFilter:
+    sample_number: 105861
+    grep_for: ttbar.105861.PowhegPythia_AUET2BCT10_ttbar_LeptonFilter
+  ttbar.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW:
+    sample_number: 119353
+    grep_for: ttbar.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW
+  ttbar.119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj:
+    sample_number: 119354
+    grep_for: ttbar.119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj
+  ttbar.119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ:
+    sample_number: 119355
+    grep_for: ttbar.119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ
+  ttbar.119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj:
+    sample_number: 119356
+    grep_for: ttbar.119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj
+  ttbar.119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW:
+    sample_number: 119583
+    grep_for: ttbar.119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW
