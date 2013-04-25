@@ -14,6 +14,18 @@ import ROOT
 import HistHandle as hh
 
 # ==============================================================================
+class Loader(yaml.Loader):
+    def __init__(self, stream):
+        self._root = os.path.split(stream.name)[0]
+        super(Loader, self).__init__(stream)
+    def include(self, node):
+        filename = os.path.join(self._root, self.construct_scalar(node))
+        with open(filename, 'r') as f:
+            return yaml.load(f, Loader)
+
+Loader.add_constructor('!include', Loader.include)
+
+# ==============================================================================
 class InputContainer(object):
     # --------------------------------------------------------------------------
     def __init__(self, input_dict):
@@ -120,6 +132,9 @@ class OptimizeContainer(object):
 
 # ------------------------------------------------------------------------------
 def parseInputs():
+    print '---------------------------------------'
+    print 'parseInputs()'
+    print '---------------------------------------'
     if len(sys.argv) != 3:
         print 'Incorrect number of inputs'
         print 'usage:'
@@ -152,9 +167,12 @@ def interpretEnvVariables(string):
 
 # ------------------------------------------------------------------------------
 def processConfigFile(config_file_name):
+    print '---------------------------------------'
+    print 'processConfigFile(%s)' % config_file_name
+    print '---------------------------------------'
     print 'config_file_name: %s ' % config_file_name
-    config_file = open(config_file_name)
-    config_dict = yaml.load(config_file)
+    config_file = open(config_file_name, 'r')
+    config_dict = yaml.load(config_file, Loader)
 
     input_block = processInputBlock(config_dict['Inputs'])
     input_containers = input_block['config']
@@ -171,6 +189,10 @@ def processConfigFile(config_file_name):
 
 # ------------------------------------------------------------------------------
 def processInputBlock(input_dict):
+    print '---------------------------------------'
+    print 'processInputBlock(...)'
+    print '    %s' % input_dict
+    print '---------------------------------------'
     input_containers = {}
     input_files = []
     for inp in input_dict:

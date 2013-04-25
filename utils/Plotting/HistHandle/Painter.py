@@ -93,9 +93,10 @@ class HistPainter(object):
         for key in self.denom_merger.hist_handles:
             hist_list.append(self.denom_merger.hist_handles[key].hist)
             label_list.append(key)
-        for key in self.other_merger.hist_handles:
-            hist_list.append(self.other_merger.hist_handles[key].hist)
-            label_list.append(key)
+        if self.other_merger is not None:
+            for key in self.other_merger.hist_handles:
+                hist_list.append(self.other_merger.hist_handles[key].hist)
+                label_list.append(key)
 
         # get the draw options to be used for the legend
         draw_opt_list = ['HIST']*len(hist_list)
@@ -177,7 +178,7 @@ class HistPainter(object):
             draw_opt_list.append('HIST')
 
         # get other hists
-        if other_type == hh.Objects.piled_hist:
+        if other_type == hh.Objects.piled_hist and self.other_merger is not None:
             for hl in self.other_merger.hist_list:
                 hist_list.append(hl)
                 # draw_opt_list.append('P')
