@@ -15,6 +15,7 @@ class LumiWeight
               , unsigned int sample_num
               , unsigned int target_lumi
               , double num_events
+              , double modeled_in_file = -999
               );
     void readXSecFile();
     double getLumiWeight();
@@ -28,7 +29,8 @@ class LumiWeight
     float m_lumi_weight;
     int m_sample_num;
     int m_target_lumi;
-    int m_num_evts;
+    double m_num_evts;
+    double m_modeled_in_file;
     float m_xsec;
     float m_k_factor;
     float m_eff;

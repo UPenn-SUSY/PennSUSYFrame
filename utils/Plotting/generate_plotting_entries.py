@@ -44,15 +44,23 @@ def getGenerator(file_name):
 
 # ------------------------------------------------------------------------------
 def getEntryType(file_name):
-    # TODO handle fakes
+    if 'data' in file_name:
+        # data - egamma
+        if 'Egamma.period' in file_name:
+            return "data_egamma"
 
-    # data - egamma
-    if 'Egamma.period' in file_name:
-        return "data_egamma"
+        # data - muon
+        if 'Muon.period' in file_name:
+            return 'data_muon'
 
-    # data - muon
-    if 'Muon.period' in file_name:
-        return 'data_muon'
+    if 'fake' in file_name:
+        # fakes - egamma
+        if 'Egamma.period' in file_name:
+            return "fake_egamma"
+
+        # data - muon
+        if 'Muon.period' in file_name:
+            return 'fake_muon'
 
     # W+jet
     if 'W_plus_jet' in file_name:

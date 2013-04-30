@@ -44,6 +44,7 @@ namespace Selection
     void setNumEvents(double);
     void setMcChannel(int);
     void setTargetLumi(int);
+    void setModeledInFile(double);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool getDoMcEventWeight() const;
@@ -58,6 +59,7 @@ namespace Selection
     double getNumEvents() const;
     int getMcChannel() const;
     int getTargetLumi() const;
+    double getModeledInFile() const;
 
   // ---------------------------------------------------------------------------
   private:
@@ -73,6 +75,7 @@ namespace Selection
     double m_num_events;
     int m_mc_channel;
     int m_target_lumi;
+    int m_modeled_in_file;
 
     LumiWeight* m_lumi_weight;
     bool m_lumi_weight_prepped;

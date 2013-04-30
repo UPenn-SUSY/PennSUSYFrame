@@ -5,8 +5,8 @@ Inputs:
     line_color: 1
     marker_style: 20
     entries:
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__Sherpa_CT10.yml
-# - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/data/data_muon.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__Sherpa_CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/data/data_muon.yml
 #
 
   - class: Denominator
@@ -16,27 +16,12 @@ Inputs:
     marker_style: 21
     entries:
           # Diboson
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__PowhegPythia8_AU2CT10.yml
-          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__Sherpa_CT10.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__PowhegPythia8_AU2CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__Sherpa_CT10.yml
 
-#           - label:        BG_1
-#             fill_color:   821
-#             line_color:   1
-#             marker_style: 22
-#             inputs:
-#               - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root
-#               - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root
-#           - label:        BG_2
-#             fill_color:   920
-#             line_color:   1
-#             marker_style: 22
-#             inputs:
-#               - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root
-#               - /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.008/mm.sr_ssjets/hist.nominal.diboson.126893.Sherpa_CT10_lllnu_WZ.__merge.root
-###       # Diboson
-###       - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__PowhegPythia8_AU2CT10.yml
-###       # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__Sherpa_CT10.yml
-### 
+          # Fake
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/fake_muon.yml
+
 ###       # # Single top
 ###       # # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/single_top__AcerMCPythia_AUET2BCTEQ6L1.yml
 ###       # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/single_top__McAtNloJimmy_AUET2CT10.yml

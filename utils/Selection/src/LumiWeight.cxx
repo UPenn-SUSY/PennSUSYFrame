@@ -9,6 +9,7 @@ LumiWeight::LumiWeight( std::string xsec_file
                       , unsigned int sample_num
                       , unsigned int target_lumi
                       , double num_events
+                      , double modeled_in_file
                       )
                       : m_prepped(false)
                       , m_lumi_weight(1.0)
@@ -20,8 +21,13 @@ LumiWeight::LumiWeight( std::string xsec_file
                       , m_eff(0.)
                       , m_xsec_file(xsec_file)
                       // , m_num_evts_file(num_evt_file)
+                      , m_modeled_in_file(modeled_in_file)
 {
   std::cout << "LumiWeight()" << std::endl;
+
+  if (m_modeled_in_file <= 0)
+    m_modeled_in_file = m_target_lumi;
+
   readXSecFile();
 }
 
@@ -76,11 +82,15 @@ void LumiWeight::readXSecFile()
         m_eff      = ParseDriver::stringToFloat(split_line.at(4));
 
         double lumi_weight = m_k_factor*m_eff*m_xsec*m_target_lumi/m_num_evts;
+
+        lumi_weight *= m_target_lumi/m_modeled_in_file;
+
         std::cout << "\txsec: " << m_xsec
                   << " -- k: " << m_k_factor
                   << " -- eff: " << m_eff
                   << "\n\ttarget_lumi: " << m_target_lumi
                   << " -- num_events: " << m_num_evts
+                  << " -- modeled_in_file: " << m_modeled_in_file
                   << "\n\tlumi_weight: " << lumi_weight << "\n";
       }
     }

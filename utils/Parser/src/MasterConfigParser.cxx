@@ -209,6 +209,8 @@ void MasterConfigParser::addLine(const std::vector<std::string>& split_line)
     m_global_weight_handler.setMcChannel(valueToInt(split_line));
   else if (key.find("target_lumi") != std::string::npos)
     m_global_weight_handler.setTargetLumi(valueToInt(split_line));
+  else if (key.find("modeled_in_file") != std::string::npos)
+    m_global_weight_handler.setModeledInFile(valueToFloat(split_line));
 
   else if (key.find("in_tree") != std::string::npos)
     m_in_tree_name = getValue(split_line);
