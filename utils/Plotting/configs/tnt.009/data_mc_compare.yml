@@ -16,8 +16,8 @@ Inputs:
     marker_style: 21
     entries:
           # Diboson
-          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__PowhegPythia8_AU2CT10.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__Sherpa_CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__PowhegPythia8_AU2CT10.yml
+            # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__Sherpa_CT10.yml
 
           # Fake
           - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/fake_muon.yml

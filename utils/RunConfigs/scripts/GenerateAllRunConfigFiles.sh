@@ -9,7 +9,8 @@ then
   rm config_list__${DATE_STR}.merge.master.txt
 fi
 
-for type in cf data fake nominal signal
+# for type in cf data fake nominal signal
+for type in data fake nominal signal
 do
   echo $type
   DATE_STR=$(date +%Y_%m_%d)
