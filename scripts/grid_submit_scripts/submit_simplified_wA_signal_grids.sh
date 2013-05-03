@@ -14,7 +14,7 @@ EXT_FILES=''
 # ==============================
 # mc12 list 
 ds_list=( 
-
+          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
           "144871.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_5:mc12_8TeV.144871.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_5.merge.NTUP_SUSY.e1417_s1499_s1504_r3658_r3549_p1328/"
           "144873.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_7:mc12_8TeV.144873.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_7.merge.NTUP_SUSY.e1417_s1499_s1504_r3658_r3549_p1328/"
           "144874.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_8:mc12_8TeV.144874.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_8.merge.NTUP_SUSY.e1417_s1499_s1504_r3658_r3549_p1328/"
@@ -80,6 +80,7 @@ ds_list=(
           "176555.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_78:mc12_8TeV.176555.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_78.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1328/"
           "176556.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_79:mc12_8TeV.176556.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_79.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1328/"
           "176557.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_80:mc12_8TeV.176557.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_80.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1328/"
+          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
           "164274.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_1:mc12_8TeV.164274.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_1.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1328/"
           "164275.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_2:mc12_8TeV.164275.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_2.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1328/"
           "164276.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_3:mc12_8TeV.164276.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_3.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1328/"
@@ -152,7 +153,6 @@ ds_list=(
           "174838.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_70:mc12_8TeV.174838.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_70.merge.NTUP_SUSY.e1615_s1499_s1504_r3658_r3549_p1328/"
           "174839.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_71:mc12_8TeV.174839.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_71.merge.NTUP_SUSY.e1615_s1499_s1504_r3658_r3549_p1328/"
           "174840.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_72:mc12_8TeV.174840.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_72.merge.NTUP_SUSY.e1615_s1499_s1504_r3658_r3549_p1328/"
-
         )
 
 . ${PWD}/submit_cutflow.sh

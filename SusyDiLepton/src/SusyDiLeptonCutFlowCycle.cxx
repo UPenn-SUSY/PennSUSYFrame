@@ -227,7 +227,8 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
     }
     std::string fake_file =
       // maindir + "/../SusyMatrixMethod/data/fakeRate_trial9_Nov2.root";
-      maindir + "/../SusyMatrixMethod/data/pass0_Moriond_Feb14_2013.root";
+      // maindir + "/../SusyMatrixMethod/data/pass0_Moriond_Feb14_2013.root";
+      maindir + "/../SusyMatrixMethod/data/pass6_Apr2_2013.root";
     m_matrix_method.configure(fake_file, SusyMatrixMethod::PT);
 
     // m_fake_ntuple_maker.configure( fake_file

@@ -35,13 +35,16 @@ Inputs:
 ###       # # Z+jets
 ###       # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/Z_plus_jet__AcerMCPythia_AUET2BCTEQ6L1.yml
 ### 
-# 
-#   - class: Other
-#     name: Signal
-#     fill_color: 1
-#     line_color: 1
-#     marker_style: 20
-#     entries:
+
+  - class: Other
+    name: Signal
+    fill_color: 1
+    line_color: 1
+    marker_style: 20
+    entries:
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_39.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_40.__Herwigpp_UEEE3_CTEQ6L1.yml
+#
 #           - label: signal_1
 #             fill_color: 0
 #             line_color: 46

@@ -14,6 +14,7 @@ EXT_FILES=''
 # ==============================
 # mc12 list 
 ds_list=( 
+          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
           "144902.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_5:mc12_8TeV.144902.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_5.merge.NTUP_SUSY.e1417_s1499_s1504_r3658_r3549_p1328/"
           "144904.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_7:mc12_8TeV.144904.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_7.merge.NTUP_SUSY.e1417_s1499_s1504_r3658_r3549_p1328/"
           "144905.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_8:mc12_8TeV.144905.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_8.merge.NTUP_SUSY.e1417_s1499_s1504_r3658_r3549_p1328/"
@@ -68,6 +69,7 @@ ds_list=(
           "176571.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcasc_63:mc12_8TeV.176571.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcasc_63.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1328/"
           "176572.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcasc_64:mc12_8TeV.176572.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcasc_64.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1328/"
           "176573.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcasc_65:mc12_8TeV.176573.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcasc_65.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1328/"
+          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
           "164374.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_noslep_lepW_1:mc12_8TeV.164374.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_noslep_lepW_1.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1328/"
           "164375.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_noslep_lepW_2:mc12_8TeV.164375.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_noslep_lepW_2.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1328/"
           "164376.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_noslep_lepW_3:mc12_8TeV.164376.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_noslep_lepW_3.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1328/"

@@ -35,9 +35,17 @@ class InputContainer(object):
         self.line_color   = input_dict['line_color']
 
         self.marker_style = input_dict['marker_style']
+
+        self.target  = 1. if 'target'  not in input_dict else input_dict['target']
+        self.modeled = 1. if 'modeled' not in input_dict else input_dict['modeled']
+
         self.entries = []
         for e in input_dict['entries']:
-            self.entries.append(EntryContainer(e))
+            self.entries.append( EntryContainer( e
+                                               , self.target
+                                               , self.modeled
+                                               )
+                               )
 
         self.hist_info = hh.Objects.HistInfo( self.name
                                             , fill_color = self.fill_color
@@ -45,7 +53,7 @@ class InputContainer(object):
                                             , marker_style = self.marker_style
                                             )
 
-    # ------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def getInputFileList(self):
         # input_file_list = {}
         input_file_list = []
@@ -81,6 +89,8 @@ class EntryContainer(object):
     # --------------------------------------------------------------------------
     def __init__( self
                 , entry_dict
+                , target_lumi = 1.
+                , modeled_lumi = 1.
                 ):
         self.label =        entry_dict['label']
         self.fill_color =   entry_dict['fill_color']
@@ -88,11 +98,13 @@ class EntryContainer(object):
         self.marker_style = entry_dict['marker_style']
         self.inputs =       entry_dict['inputs']
 
-        self.lumi_modeled_in_file = 1.
-        self.target_lumi = 1.
-        if 'lumi_modeled_in_file' in entry_dict and 'target_lumi' in entry_dict:
-            self.lumi_modeled_in_file = entry_dict['lumi_modeled_in_file']
-            self.target_lumi = entry_dict['target_lumi']
+        self.lumi_modeled_in_file = modeled_lumi
+        self.target_lumi = target_lumi
+        # self.lumi_modeled_in_file = 1.
+        # self.target_lumi = 1.
+        # if 'lumi_modeled_in_file' in entry_dict and 'target_lumi' in entry_dict:
+        #     self.lumi_modeled_in_file = entry_dict['lumi_modeled_in_file']
+        #     self.target_lumi = entry_dict['target_lumi']
 
         self.file_list = [ ROOT.TFile(f) for f in self.inputs ]
 
