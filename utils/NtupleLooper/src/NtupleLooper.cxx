@@ -132,6 +132,7 @@ void NtupleLooper::Init(TTree *tree)
    m_el_topoetcone20_corrected = 0;
    m_el_topoetcone30_corrected = 0;
    m_el_topoetcone40_corrected = 0;
+   m_el_truth_charge = 0;
    m_mu_pt = 0;
    m_mu_eta = 0;
    m_mu_phi = 0;
@@ -407,6 +408,10 @@ void NtupleLooper::Init(TTree *tree)
                            , &m_el_topoetcone40_corrected
                            , &b_el_topoetcone40_corrected
                            );
+   fChain->SetBranchAddress( "el_truth_charge"
+			   , &m_el_truth_charge
+ 		           , &b_el_truth_charge
+			   );   
    fChain->SetBranchAddress( "mu_pt"
                            , &m_mu_pt
                            , &b_mu_pt

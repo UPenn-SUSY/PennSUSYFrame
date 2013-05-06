@@ -92,6 +92,7 @@ class NtupleLooper
     std::vector<float>*        m_el_topoetcone20_corrected;
     std::vector<float>*        m_el_topoetcone30_corrected;
     std::vector<float>*        m_el_topoetcone40_corrected;
+    std::vector<float>*        m_el_truth_charge;
     std::vector<float>*        m_mu_pt;
     std::vector<float>*        m_mu_eta;
     std::vector<float>*        m_mu_phi;
@@ -186,6 +187,7 @@ class NtupleLooper
     TBranch* b_el_topoetcone20_corrected;
     TBranch* b_el_topoetcone30_corrected;
     TBranch* b_el_topoetcone40_corrected;
+    TBranch* b_el_truth_charge;
     TBranch* b_mu_pt;
     TBranch* b_mu_eta;
     TBranch* b_mu_phi;
