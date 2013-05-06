@@ -25,7 +25,7 @@ class ChargeFlipCalc : public NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :
-    ChargeFlipCalc(TTree *tree=0);
+    ChargeFlipCalc(TTree *tree, double num_events);
     virtual ~ChargeFlipCalc();
     // virtual void     Init(TTree *tree);
 
