@@ -20,7 +20,7 @@ double ChargeFlipCalc::lkh_ss[5][5] = {{0., 0., 0., 0., 0.},
 				   {0., 0., 0., 0., 0.} };
 
 // -----------------------------------------------------------------------------
-ChargeFlipCalc::ChargeFlipCalc(TTree *tree) : NtupleLooper(tree)
+ChargeFlipCalc::ChargeFlipCalc(TTree *tree, double num_events) : NtupleLooper(tree, num_events)
 {
 
   initChargeFlipHists();

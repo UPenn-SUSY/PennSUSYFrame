@@ -4,16 +4,25 @@
 #include <TChain.h>
 
 #include "ChargeFlipCalc/include/ChargeFlipCalc.h"
+#include "NtupleLooper/include/NtupleLooper.h"
 #include "Parser/include/CommandParser.h"
+
 
 // -----------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
   // TChain* t = CommandParser::readInputs(argc, argv, "output");
-  TChain* t = CommandParser::readInputs(argc, argv, "presel");
-  //TTree* t = static_cast<TTree*>(f->Get("presel"));
+  InputContainer inp_cont = CommandParser::readInputs(argc, argv, "output");
+  //  InputContainer inp_cont = CommandParser::readInputs(argc, argv, "presel");
 
-  ChargeFlipCalc cfc(t);
+  // check of valid tChain object
+
+  if (inp_cont.chain == NULL) return 0;
+  
+
+  double num_events = inp_cont.num_events;
+
+  ChargeFlipCalc cfc(inp_cont.chain, num_events);
   cfc.Loop();
 
   cfc.prepLikelihood();
