@@ -68,58 +68,54 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
   if (!m_is_cached) {
     m_charge_flip_sf = 1.;
 
-    if (is_data() || !c_do_charge_flip_sf) m_charge_flip_sf =1.;
+    if (is_data() || !c_do_charge_flip_sf)
+      m_charge_flip_sf = 1.;
 
-    else
-      {
+    else {
+      TVector2 met_vector = met->getMetRefFinalVec();
+      TVector2* met_vector_ptr = &met_vector;
 
-	TVector2 met_vector = met->getMetRefFinalVec();
-	TVector2* met_vector_ptr = &met_vector;
-
-	if(flavor_channel == FLAVOR_MM)
-	  {
-	    m_charge_flip_sf = 0;
-	  }
-	else if(flavor_channel == FLAVOR_EE)
-	  {
-	    TLorentzVector tlv_1 = el.at(0)->getTlv();
-	    TLorentzVector tlv_2 = el.at(1)->getTlv();
-	    TLorentzVector* tlv_1_ptr = &tlv_1;
-	    TLorentzVector* tlv_2_ptr = &tlv_2;
-
-	    int pdg_1=11;
-	    int pdg_2=11;
-
-	    m_charge_flip_sf = m_charge_flip->OS2SS(
-						    pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, met_vector_ptr,syst);
-	    double overlap_corr =  m_charge_flip->overlapFrac().first;
-	    m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
-	  }
-	else if(flavor_channel == FLAVOR_EM)
-	  {
-	    TLorentzVector tlv_1 = el.at(0)->getTlv();
-	    TLorentzVector tlv_2 = mu.at(0)->getTlv();
-	    TLorentzVector* tlv_1_ptr = &tlv_1;
-	    TLorentzVector* tlv_2_ptr = &tlv_2;
-
-	    int pdg_1=11;
-	    int pdg_2=13;
-
-	    m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1
-						    , tlv_1_ptr
-						    , pdg_2
-						    , tlv_2_ptr
-						    , met_vector_ptr
-						    ,syst);
-
-	    double overlap_corr =  m_charge_flip->overlapFrac().first;
-	    m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
-	  }
-
-
-	m_is_cached = true;
-	m_logger << VERBOSE << "b-tag sf: " << m_charge_flip_sf << SLogger::endmsg;
+      if(flavor_channel == FLAVOR_MM) {
+        m_charge_flip_sf = 0.;
       }
+      else if(flavor_channel == FLAVOR_EE) {
+        TLorentzVector tlv_1 = el.at(0)->getTlv();
+        TLorentzVector tlv_2 = el.at(1)->getTlv();
+        TLorentzVector* tlv_1_ptr = &tlv_1;
+        TLorentzVector* tlv_2_ptr = &tlv_2;
+
+        int pdg_1=11;
+        int pdg_2=11;
+
+        m_charge_flip_sf = m_charge_flip->OS2SS(
+            pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, met_vector_ptr,syst);
+        double overlap_corr =  m_charge_flip->overlapFrac().first;
+        m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
+      }
+      else if(flavor_channel == FLAVOR_EM) {
+        TLorentzVector tlv_1 = el.at(0)->getTlv();
+        TLorentzVector tlv_2 = mu.at(0)->getTlv();
+        TLorentzVector* tlv_1_ptr = &tlv_1;
+        TLorentzVector* tlv_2_ptr = &tlv_2;
+
+        int pdg_1=11;
+        int pdg_2=13;
+
+        m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1
+            , tlv_1_ptr
+            , pdg_2
+            , tlv_2_ptr
+            , met_vector_ptr
+            ,syst);
+
+        double overlap_corr =  m_charge_flip->overlapFrac().first;
+        m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
+      }
+
+
+      m_is_cached = true;
+      m_logger << VERBOSE << "b-tag sf: " << m_charge_flip_sf << SLogger::endmsg;
+    }
   }
   return m_charge_flip_sf;
 }

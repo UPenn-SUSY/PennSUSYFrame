@@ -143,11 +143,9 @@ class HistPainter(object):
             if denom_type == hh.Objects.piled_hist:
                 for hl in self.denom_merger.hist_list:
                     hist_list.append(hl)
-                    # draw_opt_list.append('P')
                     draw_opt_list.append(self.denom_draw_option)
             elif denom_type == hh.Objects.plain_hist:
                 hist_list.append(self.denom_merger.hist_sum)
-                # draw_opt_list.append('P')
                 draw_opt_list.append(self.denom_draw_option)
             elif denom_type == hh.Objects.stack_hist:
                 # for stacked histograms, we want to add the sum also to get the
@@ -343,6 +341,10 @@ def pileHists( hist_list
         canvas_options = hh.canv_linear
     c = canvas_options.create(name)
 
+    print 'about to set min/max:'
+    print 'hist list:'
+    for hl in hist_list:
+        print '      %s -- %s' % (hl, hl.GetName())
     setMin(hist_list, canvas_options.log_y, y_min)
     setMax(hist_list, canvas_options.log_y, y_max)
 
@@ -414,6 +416,9 @@ def calcMin(hist_list, log_y = True):
 
 # ------------------------------------------------------------------------------
 def calcMax(hist_list, log_y = True):
+    print '-----------------------------------------'
+    print 'calcMax(log_y = %s)' % log_y
+    print '- - - - - - - - - - - - - - - - - - - - -'
     if len(hist_list) == 0: return 0.
 
     # TODO come up with better algorithm
@@ -421,8 +426,13 @@ def calcMax(hist_list, log_y = True):
     y_min = min(extremes)
     y_max = max(extremes)
 
+    print 'extremes: %s' % extremes
+    print 'y_min: %s' % y_min
+    print 'y_max: %s' % y_max
+
     # add in a buffer on top and bottom
     if log_y and y_min > 0 and y_max > 0:
+        print 'set y_max for log'
         y_max = math.pow( 10
                         , ( math.log(y_max, 10)
                           + ( math.log(y_max, 10)
@@ -433,14 +443,18 @@ def calcMax(hist_list, log_y = True):
                           )
                         )
     else:
-        # y_max += (y_max - y_min)*0.20
-        y_max += (y_max - y_min)*0.70
+        print 'set y_max for linear'
+        y_max += (y_max - y_min)*0.20
+        # y_max += (y_max - y_min)*0.70
 
     # return value for max
+    print 'new y_max: %s' % y_max
+    print '========================================='
     return y_max
 
 # ------------------------------------------------------------------------------
 def getExtrema(hist_list, log_y = True):
+    """docstring"""
     if len(hist_list) == 0: return 0.
 
     # TODO come up with better algorithm
@@ -450,9 +464,9 @@ def getExtrema(hist_list, log_y = True):
         local_max = None
 
         h_tmp = h
-        # print '----------------------------------'
-        # print type(h)
-        # print type(h_tmp)
+        print '----------------------------------'
+        print type(h)
+        print type(h_tmp)
         if isinstance(h_tmp, ROOT.THStack): continue
         if isinstance(h_tmp, ROOT.TGraph):  continue
         if isinstance(h_tmp, ROOT.TGraphErrors): continue
@@ -466,12 +480,14 @@ def getExtrema(hist_list, log_y = True):
 
             # check if this bin is a minimum
             if local_min is None or bin_content_down < local_min:
-                if bin_content_down > 0 or not log_y:
+                # if bin_content_down > 0 or not log_y:
+                if bin_content_down > 0:
                     local_min = bin_content_down
 
             # check if this bin is a maxiumum
             if local_max is None or bin_content > local_max:
-                if bin_content_up > 0 or not log_y:
+                # if bin_content_up > 0 or not log_y:
+                if bin_content_up > 0:
                     local_max = bin_content_up
 
         if not local_min is None:
@@ -480,7 +496,7 @@ def getExtrema(hist_list, log_y = True):
             extrema.append(local_max)
 
     if len(extrema) == 0:
-        extrema = [0.01, 0.1]
+        extrema = [0.01, 0.1] if log_y else [0., 1.]
     return extrema
 
 # ------------------------------------------------------------------------------

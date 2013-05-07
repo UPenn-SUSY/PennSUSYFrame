@@ -24,6 +24,7 @@ CutFlow:
     Crit_phase_space:      True
     Crit_trigger:          True
     Crit_trigger_match:    False
+    Fake_File:             ${ROOTCOREDIR}/../SusyMatrixMethod/data/pass6_Apr2_2013.root
 
 EgammaEnergyRescale:
     apply_systematics: 0

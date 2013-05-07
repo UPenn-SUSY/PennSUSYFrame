@@ -67,7 +67,17 @@ def main():
                     canvas_options = hh.canv_log_y,
                     legend         = True)
 
-            pile_test_stack.Write(h)
+            pile_test_stack.Write('%s__log' % h)
+            pile_test_stack.Close()
+
+            print 'Linear'
+            pile_test_stack = hist_painter.pileAndRatio(
+                    num_type       = hh.Objects.plain_hist,
+                    denom_type     = hh.Objects.stack_hist,
+                    canvas_options = hh.canv_linear,
+                    legend         = True)
+
+            pile_test_stack.Write('%s__lin' % h)
             pile_test_stack.Close()
 
     out_file.Close()

@@ -118,6 +118,8 @@ private:
   std::string c_muon_truth_prefix;
   std::string c_jet_prefix;
 
+  std::string c_fake_file;
+
   // variables to flag cuts as "critical"
   bool c_crit_grl;
   bool c_crit_incomplete_event;

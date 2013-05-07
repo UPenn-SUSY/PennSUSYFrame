@@ -128,6 +128,8 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   DeclareProperty("MuonTruth_prefix", c_muon_truth_prefix="muonTruth_" );
   DeclareProperty("Jet_prefix"      , c_jet_prefix="jet_AntiKt4LCTopo_");
 
+  DeclareProperty("Fake_File", c_fake_file="");
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   declareTools();
 }
@@ -137,7 +139,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
 {
   DECLARE_TOOL(SusyDiLeptonCutFlowTool, "CutFlow");
 
-  DECLARE_TOOL(CommonTools::EventCounterTool       , "EventCounter");
+  DECLARE_TOOL(CommonTools::EventCounterTool        , "EventCounter");
   DECLARE_TOOL(CommonTools::EgammaEnergyRescaleTool , "EgammaEnergyRescale" );
   DECLARE_TOOL(CommonTools::MuonMomentumSmearingTool, "MuonMomentumSmearing");
   DECLARE_TOOL(CommonTools::JetCalibTool            , "JetCalibration"      );
@@ -217,24 +219,18 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is_data()) {
-    // TODO make this configurable
-    // TODO move functionality into tool
-    std::string maindir = "";
-    char *tmparea=getenv("ROOTCOREDIR");
-    if (tmparea != NULL) {
-      maindir = tmparea;
-      maindir = maindir + "/";
+    if (c_fake_file == "") {
+      // TODO move functionality into tool
+      std::string maindir = "";
+      char *tmparea=getenv("ROOTCOREDIR");
+      if (tmparea != NULL) {
+        maindir = tmparea;
+        maindir = maindir + "/";
+      }
+      c_fake_file =
+        maindir + "/../SusyMatrixMethod/data/pass6_Apr2_2013.root";
     }
-    std::string fake_file =
-      // maindir + "/../SusyMatrixMethod/data/fakeRate_trial9_Nov2.root";
-      // maindir + "/../SusyMatrixMethod/data/pass0_Moriond_Feb14_2013.root";
-      maindir + "/../SusyMatrixMethod/data/pass6_Apr2_2013.root";
-    m_matrix_method.configure(fake_file, SusyMatrixMethod::PT);
-
-    // m_fake_ntuple_maker.configure( fake_file
-    //                              , SusyMatrixMethod::PT
-    //                              , "fake_ntuple.root"
-    //                              );
+    m_matrix_method.configure(c_fake_file, SusyMatrixMethod::PT);
   }
 }
 
@@ -942,4 +938,3 @@ void SusyDiLeptonCutFlowCycle::fillOutput()
   m_vertex_output_tool->fillOutput(
       m_event, m_electrons, m_muons, m_jets, m_met, m_vertices);
 }
-
