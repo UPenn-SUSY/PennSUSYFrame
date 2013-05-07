@@ -135,7 +135,7 @@ def main():
                 nominal_cut_file.write('    cf_weight:       0\n')
                 fake_cut_file.write(   '    cf_weight:       0\n')
                 signal_cut_file.write( '    cf_weight:       0\n')
-                cf_cut_file.write(     '    cf_weight:       %s\n' % 0 if 'mm' in file_base else 1)
+                cf_cut_file.write(     '    cf_weight:       %s\n' % (0 if 'mm' in file_base else 2))
                 data_cut_file.write(   '    cf_weight:       0\n')
 
             if not SET_FAKE_WEIGHT:
