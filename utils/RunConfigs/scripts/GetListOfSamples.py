@@ -35,7 +35,10 @@ def getListOfSamples(master_directory, grep_for = ""):
         for file in glob.glob('%s/*root' % dir):
             # /afs/cern.ch/user/b/bjackson/my_eos
             # samples[sample_name].append(file)
-            samples[sample_name].append(file.replace('/afs/cern.ch/user/b/bjackson/my_eos', 'root://eosatlas//eos/atlas/user/b/bjackson/') )
+            samples[sample_name].append(file.replace(
+                # '/afs/cern.ch/user/b/bjackson/my_eos',
+                '%s/my_eos' % os.path.expandvars('${HOME}'),
+                'root://eosatlas//eos/atlas/user/b/bjackson/') )
     return samples
 
 # ------------------------------------------------------------------------------
