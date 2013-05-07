@@ -16,12 +16,13 @@ import subprocess
 
 # ------------------------------------------------------------------------------
 def getListOfSamples(master_directory, grep_for = ""):
-    print 'getting list from %s/%s' % (master_directory, grep_for)
+    print 'getting list from %s/*%s*' % (master_directory, grep_for)
     samples = {}
 
     # Get and loop through list of directories in master directory
     # list_of_dirs = glob.glob(master_directory)
     list_of_dirs = glob.glob('%s/*%s*' % (master_directory, grep_for))
+    # list_of_dirs = glob.glob('%s/*%s*' % (os.path.abspath(master_directory), grep_for))
     for i, dir in enumerate(list_of_dirs):
         # parse out sample name from the directory
         sample_name = getSampleName(dir)
@@ -39,6 +40,7 @@ def getListOfSamples(master_directory, grep_for = ""):
 
 # ------------------------------------------------------------------------------
 def getSamplesForJobs(master_directory, grep_for = "", max_files_per_job = 1):
+    master_directory = os.path.expandvars(master_directory)
     print '-------------------------------------------------------------------'
     print 'Getting samples for jobs:'
     print '\tMaster directory: %s' % master_directory
@@ -50,9 +52,9 @@ def getSamplesForJobs(master_directory, grep_for = "", max_files_per_job = 1):
     # print 'getSamplesForJobs -- sample_list: %s' % sample_list
     for sample_name in sample_list:
         # print '  getSamplesForJobs -- sample_name: %s' % sample_name
-        chunks( sample_list[sample_name]
-              , max_files_per_job
-              )
+        # chunks( sample_list[sample_name]
+        #       , max_files_per_job
+        #       )
         sample_list_for_jobs[sample_name] = chunks( sample_list[sample_name]
                                                   , max_files_per_job
                                                   )

@@ -86,7 +86,7 @@ def printRunConfigs(config_dict, run_tag = 'run'):
                     , config_dict['file_name_base']
                     , sub_sample_name
                     )
-            merge_hist_file_name = '%s/hist.%s.%s.__merge.root' % \
+            merge_hist_file_name = '' if not 'hist_out_file_path' in config_dict else '%s/hist.%s.%s.__merge.root' % \
                     ( config_dict['hist_out_file_path']
                     , config_dict['file_name_base']
                     , sub_sample_name
@@ -118,7 +118,7 @@ def printRunConfigs(config_dict, run_tag = 'run'):
                         , sub_sample_name
                         , i
                         )
-                hist_file_name = '%s/hist.%s.%s.__%d.root' % \
+                hist_file_name = '' if not 'hist_out_file_path' in config_dict else '%s/hist.%s.%s.__%d.root' % \
                         ( config_dict['hist_out_file_path']
                         , config_dict['file_name_base']
                         , sub_sample_name
