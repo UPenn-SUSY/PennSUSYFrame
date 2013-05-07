@@ -37,8 +37,8 @@ def getListOfSamples(master_directory, grep_for = ""):
             # samples[sample_name].append(file)
             samples[sample_name].append(file.replace(
                 # '/afs/cern.ch/user/b/bjackson/my_eos',
-                '%s/my_eos' % os.path.expandvars('${HOME}'),
-                'root://eosatlas//eos/atlas/user/b/bjackson/') )
+                '%s/eos_mount/' % os.path.expandvars('${HOME}'),
+                'root://eosatlas//eos/') )
     return samples
 
 # ------------------------------------------------------------------------------
