@@ -12,6 +12,7 @@ import time
 import argparse
 
 import glob
+import random
 
 # ------------------------------------------------------------------------------
 def getGenerator(file_name):
@@ -109,7 +110,7 @@ def getEntryFillColor(entry_name):
 
     # data - egamma + muon
     if 'data_egamma' in entry_name or 'data_muon' in entry_name:
-        return 0
+        return 1
 
     # W+jet
     if 'W_plus_jet' in entry_name:
@@ -138,6 +139,25 @@ def getEntryFillColor(entry_name):
     # uncategorized
     if 'uncategorized' in entry_name:
         return 0
+
+# ------------------------------------------------------------------------------
+def getEntryLineColor(entry_name):
+    if 'signal' in entry_name:
+        decent_colors = [4, 6, 7, 9, 38, 44, 46, 49]
+        color_it = int(1000*random.random())%len(decent_colors)
+        return decent_colors[color_it]
+
+    return 1
+
+# ------------------------------------------------------------------------------
+def getEntryLineWidth(entry_name):
+    return 2
+
+# ------------------------------------------------------------------------------
+def getEntryLineStyle(entry_name):
+    if 'signal' in entry_name:
+        return 2
+    return 1
 
 # ------------------------------------------------------------------------------
 def getEntryLabel(entry_name):
@@ -220,8 +240,10 @@ def writeEntryFile(entry_name, entry_collection):
 
     f.write('label:        %s\n' % getEntryLabel(entry_name) )
     f.write('fill_color:   %s\n' % getEntryFillColor(entry_name) )
-    f.write('line_color:   1\n' )
-    f.write('marker_style: 22\n' )
+    f.write('line_color:   %s\n' % getEntryLineColor(entry_name) )
+    f.write('line_width:   %s\n' % getEntryLineWidth(entry_name) )
+    f.write('line_style:   %s\n' % getEntryLineStyle(entry_name) )
+    f.write('marker_style: 20\n' )
     f.write('inputs:\n' )
 
     for ec in entry_collection:

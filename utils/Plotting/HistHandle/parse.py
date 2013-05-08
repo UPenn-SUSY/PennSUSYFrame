@@ -33,6 +33,8 @@ class InputContainer(object):
         self.name = input_dict['name']
         self.fill_color   = input_dict['fill_color']
         self.line_color   = input_dict['line_color']
+        self.line_width   = input_dict['line_width']
+        self.line_style   = input_dict['line_style']
 
         self.marker_style = input_dict['marker_style']
 
@@ -50,6 +52,8 @@ class InputContainer(object):
         self.hist_info = hh.Objects.HistInfo( self.name
                                             , fill_color = self.fill_color
                                             , line_color = self.line_color
+                                            , line_width = self.line_width
+                                            , line_style = self.line_style
                                             , marker_style = self.marker_style
                                             )
 
@@ -95,6 +99,8 @@ class EntryContainer(object):
         self.label =        entry_dict['label']
         self.fill_color =   entry_dict['fill_color']
         self.line_color =   entry_dict['line_color']
+        self.line_width =   entry_dict['line_width']
+        self.line_style =   entry_dict['line_style']
         self.marker_style = entry_dict['marker_style']
         self.inputs =       entry_dict['inputs']
 
@@ -111,6 +117,8 @@ class EntryContainer(object):
         self.hist_info = hh.Objects.HistInfo( self.label
                                             , fill_color = self.fill_color
                                             , line_color = self.line_color
+                                            , line_width = self.line_width
+                                            , line_style = self.line_style
                                             , marker_style = self.marker_style
                                             )
 

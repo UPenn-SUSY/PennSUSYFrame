@@ -261,3 +261,13 @@ def getNeutralinoMass(sample_name):
     assert test in neutralino_masses
     return neutralino_masses[test]
 
+# ------------------------------------------------------------------------------
+def genLegendLabel(key):
+    if 'simplifiedModel_wA' in key:
+        sample_name = key.split('.')[1]
+        return 'm(#chi_{2}^{0}/#chi_{1}^{#pm}, #chi_{1}^{0}) = %s, %s GeV' \
+                % ( getCharginoMass(sample_name)
+                  , getNeutralinoMass(sample_name)
+                  )
+
+    return key

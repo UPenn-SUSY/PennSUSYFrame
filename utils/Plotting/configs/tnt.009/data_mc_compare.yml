@@ -3,6 +3,8 @@ Inputs:
     name: Data
     fill_color: 1
     line_color: 1
+    line_width: 2
+    line_style: 1
     marker_style: 20
     entries:
           # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/background/diboson__Sherpa_CT10.yml
@@ -12,7 +14,9 @@ Inputs:
   - class: Denominator
     name: Background
     fill_color: 2
-    line_color: 2
+    line_color: 1
+    line_width: 2
+    line_style: 1
     marker_style: 21
     entries:
           # Diboson
@@ -40,6 +44,8 @@ Inputs:
     name: Signal
     fill_color: 1
     line_color: 1
+    line_width: 2
+    line_style: 2
     marker_style: 20
     entries:
           - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.009/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_39.__Herwigpp_UEEE3_CTEQ6L1.yml

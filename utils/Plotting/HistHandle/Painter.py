@@ -39,8 +39,8 @@ class HistPainter(object):
                 , other = None
                 , name  = None
                 , optimal_cut = None
-                , num_draw_option = 'P'
-                , denom_draw_option = 'P'
+                , num_draw_option = 'PE'
+                , denom_draw_option = 'PE'
                 , other_draw_option = 'HIST'
                 ):
         """
@@ -77,7 +77,7 @@ class HistPainter(object):
             self.ratio_canvas.Close()
 
     # --------------------------------------------------------------------------
-    def genLegend( self, name = 'leg'):
+    def genLegend( self, name = 'leg', full_canvas = False):
         """
         Generates a legend based on a list of HistMerger objects
         """
@@ -87,27 +87,41 @@ class HistPainter(object):
         # inputs
         hist_list = []
         label_list = []
+        draw_opt_list = []
+        # add numerator
         for key in self.num_merger.hist_handles:
             hist_list.append(self.num_merger.hist_handles[key].hist)
-            label_list.append(key)
+            label_list.append(hh.Helper.genLegendLabel(key))
+            print 'adding numerator option to legend: %s' % self.num_draw_option
+            draw_opt_list.append(self.num_draw_option)
+        # add denominator
         for key in self.denom_merger.hist_handles:
             hist_list.append(self.denom_merger.hist_handles[key].hist)
-            label_list.append(key)
+            label_list.append(hh.Helper.genLegendLabel(key))
+            draw_opt_list.append('HIST')
+        # if there are others to add, add them now
         if self.other_merger is not None:
             for key in self.other_merger.hist_handles:
                 hist_list.append(self.other_merger.hist_handles[key].hist)
-                label_list.append(key)
-
-        # get the draw options to be used for the legend
-        draw_opt_list = ['HIST']*len(hist_list)
+                label_list.append(hh.Helper.genLegendLabel(key))
+                draw_opt_list.append('HIST')
 
         # build legend and return
         leg = metaroot.hist.make_legend( hist_list
                                        , label_list
                                        , draw_opt_list
+                                       , width=0.40 if not full_canvas else 0.90
+                                       , y2 = 0.90
                                        )
 
         return leg
+
+    # ------------------------------------------------------------------------------
+    def genLegendCanvas(self):
+        leg_canvas = ROOT.TCanvas('legend')
+        leg = self.genLegend('leg_canvas', full_canvas=True)
+        leg.Draw()
+        return leg_canvas
 
     # --------------------------------------------------------------------------
     def pile( self
@@ -161,11 +175,9 @@ class HistPainter(object):
         if num_type == hh.Objects.piled_hist:
             for hl in self.num_merger.hist_list:
                 hist_list.append(hl)
-                # draw_opt_list.append('P')
                 draw_opt_list.append(self.num_draw_option)
         elif num_type == hh.Objects.plain_hist:
             hist_list.append(self.num_merger.hist_sum)
-            # draw_opt_list.append('P')
             draw_opt_list.append(self.num_draw_option)
         elif num_type == hh.Objects.stack_hist:
             # for stacked histograms, we want to add the sum also to get the
@@ -397,19 +409,22 @@ def calcMin(hist_list, log_y = True):
     y_max = max(extremes)
 
     # add in a buffer on top and bottom
-    if log_y and y_min > 0 and y_max > 0:
-        y_min = math.pow( 10
-                        , ( math.log(y_min, 10)
-                          - ( math.log(y_max, 10)
-                            - math.log(y_min, 10)
-                            ) * 0.20
-                          )
-                        )
+    # if log_y and y_min > 0 and y_max > 0:
+    if log_y:
+        if y_min > 0 and y_max > 0:
+            y_min = math.pow( 10
+                            , ( math.log(y_min, 10)
+                              - (math.log(y_max, 10) - math.log(y_min, 10))*0.20
+                              )
+                            )
+        else:
+            y_min = 2e-3
 
         # HACK - update to handle proper min when dealing with a stack plot
         y_min = min(2e-3, y_min)
     else:
         y_min -= (y_max - y_min)*0.20
+        y_min = max(y_min, 0.)
 
     # return value for min
     return y_min
@@ -431,21 +446,21 @@ def calcMax(hist_list, log_y = True):
     print 'y_max: %s' % y_max
 
     # add in a buffer on top and bottom
-    if log_y and y_min > 0 and y_max > 0:
+    # if log_y and y_min > 0 and y_max > 0:
+    if log_y:
         print 'set y_max for log'
-        y_max = math.pow( 10
-                        , ( math.log(y_max, 10)
-                          + ( math.log(y_max, 10)
-                            - math.log(y_min, 10)
-                            # ) * 0.20
-                            # ) * 0.70
-                            ) * 0.80
-                          )
-                        )
+        if y_min > 0 and y_max > 0:
+            y_max = math.pow( 10
+                            , ( math.log(y_max, 10)
+                              + (math.log(y_max, 10) - math.log(y_min, 10))*0.80
+                              )
+                            )
+        else:
+            y_max = 1
     else:
         print 'set y_max for linear'
         y_max += (y_max - y_min)*0.20
-        # y_max += (y_max - y_min)*0.70
+        y_max = max(y_max, 0.)
 
     # return value for max
     print 'new y_max: %s' % y_max
@@ -473,7 +488,7 @@ def getExtrema(hist_list, log_y = True):
 
         # print type(h_tmp)
         num_bins = h_tmp.GetXaxis().GetNbins()
-        for b in xrange(num_bins):
+        for b in xrange(1, num_bins+1):
             bin_content = h_tmp.GetBinContent(b)
             bin_content_up   = bin_content + h_tmp.GetBinError(b)
             bin_content_down = bin_content - h_tmp.GetBinError(b)

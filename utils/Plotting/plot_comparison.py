@@ -48,7 +48,9 @@ def main():
         out_file.cd()
         out_file.mkdir(d)
         out_file.cd(d)
-        for h in hists:
+
+        legend_canvas_drawn = False
+        for it, h in enumerate(hists):
             if skipHist(d,h): continue
 
             hm_num   = config['Numerator'  ].genHistMerger(d, h)
@@ -77,8 +79,18 @@ def main():
                     canvas_options = hh.canv_linear,
                     legend         = True)
 
+            print 'pile_test_stack: %s' % pile_test_stack
+            print 'legend: %s' % hist_painter.legend
+
             pile_test_stack.Write('%s__lin' % h)
             pile_test_stack.Close()
+
+            # draw legend canvas if not done yet
+            if not legend_canvas_drawn:
+                legend_canvas = hist_painter.genLegendCanvas()
+                legend_canvas.Write('__legend')
+                legend_canvas.Close()
+                legend_canvas_drawn = True
 
     out_file.Close()
 
