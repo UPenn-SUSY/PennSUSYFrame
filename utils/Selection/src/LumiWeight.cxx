@@ -171,7 +171,7 @@ double LumiWeight::getNumEventsFromFiles(
   for (size_t file_itr = 0; file_itr != num_tnt_files; ++file_itr) {
     TFile* f = TFile::Open(tnt_file_list.at(file_itr).c_str());
     TH1D* num_weights = dynamic_cast<TH1D*>(f->Get("event_weights"));
-
+    if(!num_weights) num_weights = dynamic_cast<TH1D*>(f->Get("num_events"));
     num_weighted_events += num_weights->Integral();
     f->Close();
   }
