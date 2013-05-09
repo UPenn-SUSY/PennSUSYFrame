@@ -16,12 +16,12 @@ LumiWeight::LumiWeight( std::string xsec_file
                       , m_sample_num(sample_num)
                       , m_target_lumi(target_lumi)
                       , m_num_evts(num_events)
+                      , m_modeled_in_file(modeled_in_file)
                       , m_xsec(0.)
                       , m_k_factor(0.)
                       , m_eff(0.)
                       , m_xsec_file(xsec_file)
                       // , m_num_evts_file(num_evt_file)
-                      , m_modeled_in_file(modeled_in_file)
 {
   std::cout << "LumiWeight()" << std::endl;
 
