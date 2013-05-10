@@ -42,6 +42,13 @@ class ChannelFractions : public NtupleLooper
 
   // ---------------------------------------------------------------------------
   private:
+    double getFraction(double);
+    void printLine( std::string channel
+                  , double num_entries
+                  , unsigned int label_field
+                  , unsigned int weight_field
+                  , unsigned int precision
+                  );
 };
 
 #endif
