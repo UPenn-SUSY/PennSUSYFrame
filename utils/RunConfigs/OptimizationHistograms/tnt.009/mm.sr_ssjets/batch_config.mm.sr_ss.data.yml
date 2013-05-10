@@ -11,7 +11,7 @@ file_name_base: data
 ptnt_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/pTNTs/OptimizationHistograms/tnt.009/mm.sr_ssjets/
 hist_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.009/mm.sr_ssjets/
 
-in_file_base_path: /afs/cern.ch/user/b/bjackson/my_eos/tnt.009/
+in_file_base_path: /afs/cern.ch/user/b/bjackson/eos_mount/atlas/user/b/bjackson/tnt.009/
 in_files:
   # Data - Muon stream
   Muon.periodA:
