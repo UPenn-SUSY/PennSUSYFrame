@@ -18,10 +18,11 @@ class ParseDriver
 
     void parse();
 
-    static std::string  getValue(std::vector<std::string>);
-    static bool         valueToBool(std::vector<std::string>);
-    static int          valueToInt(std::vector<std::string>);
-    static float        valueToFloat(std::vector<std::string>);
+    static std::string getValue(    const std::vector<std::string>&);
+    static std::string getVarExp(   const std::vector<std::string>&);
+    static bool        valueToBool( const std::vector<std::string>&);
+    static int         valueToInt(  const std::vector<std::string>&);
+    static float       valueToFloat(const std::vector<std::string>&);
 
     static bool  stringToBool(std::string);
     static int   stringToInt(std::string);

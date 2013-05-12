@@ -73,11 +73,6 @@ void HistMaker::writeToFile()
 
     d->cd();
 
-    // std::vector<TH1D*>::iterator hist_it = m_hist[*key_it].begin();
-    // std::vector<TH1D*>::iterator hist_term = m_hist[*key_it].end();
-    // for (; hist_it != hist_term; ++hist_it) {
-    //   (*hist_it)->Write();
-    // }
     size_t num_hists = m_hist_info.size();
     for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
       TH1* tmp_hist = m_hist.at(*key_it).at(hist_it);
@@ -120,7 +115,7 @@ void HistMaker::fillHists(std::string key)
   std::vector<HistInfo>::iterator hist_it = m_hist_info.begin();
   std::vector<HistInfo>::iterator hist_term = m_hist_info.end();
   for (; hist_it != hist_term; ++hist_it) {
-    TH1D * tmp_hist = hist_it->genHist(key);
+    TH1* tmp_hist = hist_it->genHist(key);
 
     std::string var_exp = ( hist_it->getVarExp() + " >> "
                           + hist_it->getName() + "__" + key

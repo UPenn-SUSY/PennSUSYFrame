@@ -13,27 +13,44 @@ ParseDriver::~ParseDriver()
 }
 
 // -----------------------------------------------------------------------------
-std::string ParseDriver::getValue(std::vector<std::string> to_convert) {
+std::string ParseDriver::getValue(const std::vector<std::string>& to_convert)
+{
   return to_convert.at(1);
 }
 
 // -----------------------------------------------------------------------------
-bool ParseDriver::valueToBool(std::vector<std::string> to_convert) {
+std::string ParseDriver::getVarExp(const std::vector<std::string>& to_convert)
+{
+  std::string var_exp;
+  size_t num_elements = to_convert.size();
+  for (size_t el_it = 1; el_it != num_elements; ++el_it) {
+    if (var_exp != "") var_exp += ":";
+    var_exp += to_convert.at(el_it);
+  }
+  return var_exp;
+}
+
+// -----------------------------------------------------------------------------
+bool ParseDriver::valueToBool(const std::vector<std::string>& to_convert)
+{
   return stringToBool(to_convert.at(1));
 }
 
 // -----------------------------------------------------------------------------
-int ParseDriver::valueToInt(std::vector<std::string> to_convert) {
+int ParseDriver::valueToInt(const std::vector<std::string>& to_convert)
+{
   return stringToInt(to_convert.at(1));
 }
 
 // -----------------------------------------------------------------------------
-float ParseDriver::valueToFloat(std::vector<std::string> to_convert) {
+float ParseDriver::valueToFloat(const std::vector<std::string>& to_convert)
+{
   return stringToFloat(to_convert.at(1));
 }
 
 // -----------------------------------------------------------------------------
-bool ParseDriver::stringToBool(std::string to_convert) {
+bool ParseDriver::stringToBool(std::string to_convert)
+{
   if (to_convert == "1" || to_convert == "true")
     return true;
   else if (to_convert == "0" || to_convert == "false")
@@ -46,12 +63,14 @@ bool ParseDriver::stringToBool(std::string to_convert) {
 }
 
 // -----------------------------------------------------------------------------
-int ParseDriver::stringToInt(std::string to_convert) {
+int ParseDriver::stringToInt(std::string to_convert)
+{
   return atoi(to_convert.c_str());
 }
 
 // -----------------------------------------------------------------------------
-float ParseDriver::stringToFloat(std::string to_convert) {
+float ParseDriver::stringToFloat(std::string to_convert)
+{
   return atof(to_convert.c_str());
 }
 

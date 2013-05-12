@@ -28,13 +28,18 @@ class HistConfigParser : public ParseDriver
 
     bool         m_in_block;
     std::string  m_name;
+    HIST_TYPE    m_type;
     std::string  m_var_exp;
     unsigned int m_x_bins;
     float        m_x_min;
     float        m_x_max;
+    unsigned int m_y_bins;
+    float        m_y_min;
+    float        m_y_max;
     std::string  m_title;
     std::string  m_x_axis;
     std::string  m_y_axis;
+    std::string  m_z_axis;
     std::string m_hist_cut;
 
     std::vector<HistInfo> m_hist_info;

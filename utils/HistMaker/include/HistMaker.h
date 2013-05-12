@@ -10,7 +10,9 @@
 #include <TCut.h>
 #include <TChain.h>
 #include <TFile.h>
+#include <TH1.h>
 #include <TH1D.h>
+#include <TH2D.h>
 
 #include "HistInfo.h"
 
@@ -57,7 +59,8 @@ class HistMaker : public NtupleLooper
     std::vector<HistInfo> m_hist_info;
 
     TFile* m_out_file;
-    std::map<std::string, std::vector<TH1D*> > m_hist;
+    std::map<std::string, std::vector<TH1*> > m_hist;
+    // std::map<std::string, std::vector<TH1D*> > m_hist;
 
     unsigned int m_entry_num;
 };
