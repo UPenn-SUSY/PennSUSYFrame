@@ -52,6 +52,7 @@ class HistHandle(object):
                                               )
 
         self.hist = None
+        self.hist_type = None
 
         if not isinstance(input_files, list):
             input_files = [input_files]
@@ -86,6 +87,10 @@ class HistHandle(object):
         if self.hist == None:
             self.hist = h.Clone(self.unique_name)
             self.hist_info.setHistStyle(self.hist)
+            if isinstance(self.hist, ROOT.TH1F) or isinstance(self.hist, ROOT.TH1D):
+                self.hist_type = hh.HIST_1D
+            if isinstance(self.hist, ROOT.TH2F) or isinstance(self.hist, ROOT.TH2D):
+                self.hist_type = hh.HIST_2D
         else:
             self.hist.Add(h)
 

@@ -53,44 +53,76 @@ def main():
         for it, h in enumerate(hists):
             if skipHist(d,h): continue
 
+            out_file.cd(d)
+
             hm_num   = config['Numerator'  ].genHistMerger(d, h)
             hm_denom = config['Denominator'].genHistMerger(d, h)
             hm_other = config['Other'].genHistMerger(d,h) if 'Other' in config else None
 
-            hist_painter = hh.Painter.HistPainter( num   = hm_num
-                                                 , denom = hm_denom
-                                                 , other = hm_other
-                                                 )
+            # if this is a 1D histogram, draw as stack with ratio
+            if hm_num.hist_type is hh.HIST_1D:
+                hist_painter = hh.Painter.HistPainter( num   = hm_num
+                                                     , denom = hm_denom
+                                                     , other = hm_other
+                                                     )
 
-            print 'Log'
-            pile_test_stack = hist_painter.pileAndRatio(
-                    num_type       = hh.Objects.plain_hist,
-                    denom_type     = hh.Objects.stack_hist,
-                    canvas_options = hh.canv_log_y,
-                    legend         = True)
+                print 'Log'
+                pile_test_stack = hist_painter.pileAndRatio(
+                        num_type       = hh.Objects.plain_hist,
+                        denom_type     = hh.Objects.stack_hist,
+                        canvas_options = hh.canv_log_y,
+                        legend         = True)
 
-            pile_test_stack.Write('%s__log' % h)
-            pile_test_stack.Close()
+                pile_test_stack.Write('%s__log' % h)
+                pile_test_stack.Close()
 
-            print 'Linear'
-            pile_test_stack = hist_painter.pileAndRatio(
-                    num_type       = hh.Objects.plain_hist,
-                    denom_type     = hh.Objects.stack_hist,
-                    canvas_options = hh.canv_linear,
-                    legend         = True)
+                print 'Linear'
+                pile_test_stack = hist_painter.pileAndRatio(
+                        num_type       = hh.Objects.plain_hist,
+                        denom_type     = hh.Objects.stack_hist,
+                        canvas_options = hh.canv_linear,
+                        legend         = True)
 
-            print 'pile_test_stack: %s' % pile_test_stack
-            print 'legend: %s' % hist_painter.legend
+                pile_test_stack.Write('%s__lin' % h)
+                pile_test_stack.Close()
 
-            pile_test_stack.Write('%s__lin' % h)
-            pile_test_stack.Close()
+                # draw legend canvas if not done yet
+                if not legend_canvas_drawn:
+                    legend_canvas = hist_painter.genLegendCanvas()
+                    legend_canvas.Write('__legend')
+                    legend_canvas.Close()
+                    legend_canvas_drawn = True
 
-            # draw legend canvas if not done yet
-            if not legend_canvas_drawn:
-                legend_canvas = hist_painter.genLegendCanvas()
-                legend_canvas.Write('__legend')
-                legend_canvas.Close()
-                legend_canvas_drawn = True
+            # If this is a 2D histogram, draw as colz plots in separate directory
+            if hm_num.hist_type  is hh.HIST_2D:
+                print 'making directory: %s/%s' % (d,h)
+                local_dir = out_file.Get(d)
+                local_dir.mkdir(h)
+                out_file.cd('%s/%s' % (d,h))
+
+                hist_painter = hh.Painter.HistPainter( num   = hm_num
+                                                     , denom = hm_denom
+                                                     , other = hm_other
+                                                     , num_draw_option   = 'COLZ'
+                                                     , denom_draw_option = 'COLZ'
+                                                     , other_draw_option = 'COLZ'
+                                                     )
+
+                canv_dict = hist_painter.plotOnSeparateCanvases()
+
+                for cd in canv_dict:
+                    canv_dict[cd].Write('h_%s' % cd)
+                    canv_dict[cd].Close()
+
+                # num_canv = hh.Painter.draw2DHist(hm_num.hist_sum, hm_num.hist_name)
+                # num_canv.Write('%s__num' % hm_num.hist_name)
+                # num_canv.Close()
+
+                # denom_canv = hh.Painter.draw2DHist(hm_denom.hist_sum, hm_denom.hist_name)
+                # denom_canv.Write('%s__denom' % hm_denom.hist_name)
+                # denom_canv.Close()
+
+
 
     out_file.Close()
 

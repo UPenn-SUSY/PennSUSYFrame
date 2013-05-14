@@ -17,6 +17,9 @@ left  = object()
 right = object()
 equal = object()
 
+HIST_1D = object()
+HIST_2D = object()
+
 canv_linear = metaroot.hist.CanvasOptions(width=600, height=600)
 canv_log_y  = metaroot.hist.CanvasOptions(width=600, height=600, log_y=True)
 canv_opt_2d = metaroot.hist.CanvasOptions( width=600

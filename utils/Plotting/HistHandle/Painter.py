@@ -39,7 +39,7 @@ class HistPainter(object):
                 , other = None
                 , name  = None
                 , optimal_cut = None
-                , num_draw_option = 'PE'
+                , num_draw_option   = 'PE'
                 , denom_draw_option = 'PE'
                 , other_draw_option = 'HIST'
                 ):
@@ -312,6 +312,43 @@ class HistPainter(object):
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
 
+    # --------------------------------------------------------------------------
+    def plotOnSeparateCanvases(self):
+        labels = []
+        hists  = []
+
+        labels.append('num_sum')
+        hists.append(self.num_merger.hist_sum)
+
+        labels.append('denom_sum')
+        hists.append(self.denom_merger.hist_sum)
+
+        for ohh in self.other_merger.hist_handles:
+            labels.append('%s_sum' % ohh)
+            hists.append(self.other_merger.hist_handles[ohh].hist)
+
+        setMin(hists, False)
+        setMax(hists, False)
+
+        canv_dict = {}
+        for l, h in zip(labels, hists):
+            canv_dict[l] = hh.canv_opt_2d.create(l)
+            h.Draw('COLZ')
+
+        # canv_dict['num_sum'] = hh.canv_opt_2d.create('num_sum')
+        # self.num_merger.hist_sum.Draw('COLZ')
+
+        # canv_dict['denom_sum'] = hh.canv_opt_2d.create('denom_sum')
+        # self.denom_merger.hist_sum.Draw('COLZ')
+
+        # for ohh in self.other_merger.hist_handles:
+        #     label = '%s_sum' % ohh
+        #     canv_dict[label] = hh.canv_opt_2d.create(label)
+        #     self.other_merger.hist_handles[ohh].hist.Draw('COLZ')
+
+        return canv_dict
+
+
 # ------------------------------------------------------------------------------
 def getTag( num_type   = hh.Objects.plain_hist
           , denom_type = hh.Objects.plain_hist
@@ -487,8 +524,17 @@ def getExtrema(hist_list, log_y = True):
         if isinstance(h_tmp, ROOT.TGraphErrors): continue
 
         # print type(h_tmp)
-        num_bins = h_tmp.GetXaxis().GetNbins()
-        for b in xrange(1, num_bins+1):
+        # num_bins = h_tmp.GetXaxis().GetNbins()
+        num_bins = h_tmp.GetXaxis().GetNbins() + 2
+        if isinstance(h_tmp, ROOT.TH2D) or isinstance(h_tmp, ROOT.TH2F):
+            num_bins *= (h_tmp.GetYaxis().GetNbins()+2)
+
+        print 'got number of bins:'
+        print '  x: %s' % h_tmp.GetXaxis().GetNbins()
+        print '  y: %s' % h_tmp.GetYaxis().GetNbins()
+        print '  tot: %s' % num_bins
+        # for b in xrange(1, num_bins+1):
+        for b in xrange(0, num_bins):
             bin_content = h_tmp.GetBinContent(b)
             bin_content_up   = bin_content + h_tmp.GetBinError(b)
             bin_content_down = bin_content - h_tmp.GetBinError(b)
@@ -671,3 +717,10 @@ def drawLabels( int_lumi = 0
         AtlasLabels.myText(0.20, 0.78, 1, '#intLdt = %s fb^{-1}' % int_lumi)
     if prod_type in prod_labels:
         AtlasLabels.myText(0.20, 0.70, 1, prod_labels[prod_type])
+
+
+# ------------------------------------------------------------------------------
+def draw2DHist(h, label):
+    c = hh.canv_opt_2d.create(label)
+    h.Draw('COLZ')
+    return c

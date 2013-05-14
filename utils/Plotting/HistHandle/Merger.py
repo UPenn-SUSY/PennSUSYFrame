@@ -41,6 +41,7 @@ class HistMerger(object):
                                           , unique_tag
                                           )
         self.hist_info = hist_info
+        self.hist_type = None
 
         self.hist_handles  = {}
         self.hist_list  = []
@@ -52,8 +53,10 @@ class HistMerger(object):
 
         if not isinstance (hist_handle_dict, dict):
             sys.exit('hist_handle_dict is not of type dictionary')
-        for key in hist_handle_dict:
+        for i, key in enumerate(hist_handle_dict):
             self.addHistHandle(hist_handle_dict[key], key)
+            if i == 0:
+                self.hist_type = hist_handle_dict[key].hist_type
 
     # --------------------------------------------------------------------------
     def __del__(self):
