@@ -1,13 +1,15 @@
 # imported config files
-cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009/mm.sr_ssjets/cuts.mm.sr_ssjets.fake.config
+cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009/mm.sr_ssjets/cuts.mm.sr_ssjets.data.config
 hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/OptimizationHistograms/tnt.009/mm.sr_ssjets/hists.mm.sr_ssjets.config
 
 # other settings
-target_lumi: 21000
+# target_lumi: 21000
+target_lumi: 13000
+lumi_weight: 0
 
 in_tree: output
-max_job_size: 10
-file_name_base: fake
+max_job_size: 50
+file_name_base: data
 ptnt_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/pTNTs/OptimizationHistograms/tnt.009/mm.sr_ssjets/
 hist_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.009/mm.sr_ssjets/
 
@@ -29,18 +31,18 @@ in_files:
   Muon.periodE:
     sample_number: Muon.periodE
     grep_for: Muon.periodE
-  Muon.periodG:
-    sample_number: Muon.periodG
-    grep_for: Muon.periodG
-  Muon.periodH:
-    sample_number: Muon.periodH
-    grep_for: Muon.periodH
-  Muon.periodI:
-    sample_number: Muon.periodI
-    grep_for: Muon.periodI
-  Muon.periodJ:
-    sample_number: Muon.periodJ
-    grep_for: Muon.periodJ
-  Muon.periodL:
-    sample_number: Muon.periodL
-    grep_for: Muon.periodL
+  # Muon.periodG:
+  #   sample_number: Muon.periodG
+  #   grep_for: Muon.periodG
+  # Muon.periodH:
+  #   sample_number: Muon.periodH
+  #   grep_for: Muon.periodH
+  # Muon.periodI:
+  #   sample_number: Muon.periodI
+  #   grep_for: Muon.periodI
+  # Muon.periodJ:
+  #   sample_number: Muon.periodJ
+  #   grep_for: Muon.periodJ
+  # Muon.periodL:
+  #   sample_number: Muon.periodL
+  #   grep_for: Muon.periodL
