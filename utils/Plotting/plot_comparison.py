@@ -49,7 +49,8 @@ def main():
         out_file.mkdir(d)
         out_file.cd(d)
 
-        legend_canvas_drawn = False
+        legend_canvas_drawn  = False
+        entries_canvas_drawn = False
         for it, h in enumerate(hists):
             if skipHist(d,h): continue
 
@@ -92,6 +93,12 @@ def main():
                     legend_canvas.Write('__legend')
                     legend_canvas.Close()
                     legend_canvas_drawn = True
+
+                if not entries_canvas_drawn:
+                    entries_canvas = hist_painter.genEntriesCanvas()
+                    entries_canvas['canv'].Write('__entries')
+                    entries_canvas['canv'].Close()
+                    entries_canvas_drawn = True
 
             # If this is a 2D histogram, draw as colz plots in separate directory
             if hm_num.hist_type  is hh.HIST_2D:

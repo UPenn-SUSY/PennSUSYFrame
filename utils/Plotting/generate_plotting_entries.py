@@ -151,12 +151,14 @@ def getEntryLineColor(entry_name):
 
 # ------------------------------------------------------------------------------
 def getEntryLineWidth(entry_name):
+    if 'signal' in entry_name:
+        return 4
     return 2
 
 # ------------------------------------------------------------------------------
 def getEntryLineStyle(entry_name):
     if 'signal' in entry_name:
-        return 2
+        return 5
     return 1
 
 # ------------------------------------------------------------------------------

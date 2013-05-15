@@ -117,11 +117,112 @@ class HistPainter(object):
         return leg
 
     # ------------------------------------------------------------------------------
+    def genEntriesHists(self):
+        """
+        Generate histogram with the number of entries per component
+        """
+        label_list  = []
+        num_entries = []
+        fill_colors = []
+        line_colors = []
+        line_widths = []
+        line_styles = []
+
+        # get entries for numerator
+        self.findHistEntries( self.num_merger
+                            , label_list
+                            , num_entries
+                            , fill_colors
+                            , line_colors
+                            , line_widths
+                            , line_styles
+                            );
+        # get entries for denominator
+        self.findHistEntries( self.denom_merger
+                            , label_list
+                            , num_entries
+                            , fill_colors
+                            , line_colors
+                            , line_widths
+                            , line_styles
+                            );
+        # get entries for other
+        if self.other_merger is not None:
+            self.findHistEntries( self.other_merger
+                                , label_list
+                                , num_entries
+                                , fill_colors
+                                , line_colors
+                                , line_widths
+                                , line_styles
+                                );
+
+        num_handles = len(label_list)
+        print 'Number of handles to add to entry histogram: %s' % num_handles
+
+        entry_hists = []
+        for it in xrange(num_handles):
+            tmp_hist = ROOT.TH1D( 'entry_hist'
+                                , 'num_entries'
+                                , num_handles + 2
+                                , -0.5
+                                , num_handles + 1.5
+                                )
+            tmp_hist.SetFillColor(fill_colors[it])
+            tmp_hist.SetLineColor(line_colors[it])
+            tmp_hist.SetLineWidth(line_widths[it])
+            tmp_hist.SetLineStyle(line_styles[it])
+
+            tmp_hist.Fill(it, num_entries[it])
+
+            for bin_it in xrange(num_handles):
+                print 'bin: %s' % bin_it
+                print '  label:   %s' % label_list[bin_it]
+                print '  entries: %s' % num_entries[bin_it]
+                tmp_hist.GetXaxis().SetBinLabel(bin_it+1, label_list[bin_it])
+
+            entry_hists.append(tmp_hist)
+
+        return entry_hists
+
+    # ------------------------------------------------------------------------------
+    # TODO move out of class definition
+    def findHistEntries( self
+                       , merger
+                       , label_list
+                       , num_entries
+                       , fill_colors
+                       , line_colors
+                       , line_widths
+                       , line_styles
+                       ):
+        for key in merger.hist_handles:
+            label_list.append(hh.Helper.genLegendLabel(key))
+            num_entries.append(merger.hist_handles[key].hist.Integral())
+            fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
+            line_colors.append(merger.hist_handles[key].hist_info.line_color)
+            line_widths.append(merger.hist_handles[key].hist_info.line_width)
+            line_styles.append(merger.hist_handles[key].hist_info.line_style)
+
+    # ------------------------------------------------------------------------------
     def genLegendCanvas(self):
         leg_canvas = ROOT.TCanvas('legend')
         leg = self.genLegend('leg_canvas', full_canvas=True)
         leg.Draw()
         return leg_canvas
+
+    # ------------------------------------------------------------------------------
+    def genEntriesCanvas(self):
+        entries_canvas = ROOT.TCanvas('entries')
+        entries_hists = self.genEntriesHists()
+        for i, eh in enumerate(entries_hists):
+            if i == 0:
+                eh.Draw('HIST')
+            else:
+                eh.Draw('HISTSAME')
+
+        # entries_hist.Draw('HIST')
+        return {'canv':entries_canvas, 'hists':entries_hists}
 
     # --------------------------------------------------------------------------
     def pile( self
