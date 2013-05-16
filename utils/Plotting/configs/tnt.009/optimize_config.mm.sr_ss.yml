@@ -1,9 +1,13 @@
 # ------------------------------------------------------------------------------
 Optimize:
-  - cut_dir:     mm_sr_ssjets__sample2.SR_SSJets_preMt
-    to_optimize: mt
+  # - cut_dir:     mm_sr_ss__sample7.SS_loose.metrel_40.mu_pt_15
+  # - cut_dir:     mm_sr_ss__sample8.SS_loose.metrel_40.num_light_jet_ge_1.mu_pt_15
+  # - cut_dir:     mm_sr_ss__sample9.SS_loose.metrel_40.num_light_jet_eq_1.mu_pt_15
+  # - cut_dir:     mm_sr_ss__sample10.SS_loose.metrel_40.num_light_jet_eq_0.mu_pt_15
+  - cut_dir:     mm_sr_ss__sample11.SS_loose.metrel_30.mu_pt_15
+    to_optimize: mt2
     direction:   left
-    scan:        0 
+    scan:        0
     fixed_points:
       - 0
       - 10
@@ -16,36 +20,75 @@ Optimize:
       - 80
       - 90
       - 100
-  - cut_dir:     mm_sr_ssjets__sample8.SR_SSJets
-    to_optimize: mll
+  - cut_dir:     mm_sr_ss__sample12.SS_loose.metrel_30.num_light_jet_ge_1.mu_pt_15
+    to_optimize: dphi_ll
     direction:   right
-    scan:        0 
+    scan:        0
     fixed_points:
-      - 0
-  - cut_dir:     mm_sr_ssjets__sample9.SR_SSJets.mu_pt_10
-    to_optimize: mll
-    direction:   right
-    scan:        0 
-    fixed_points:
-      - 0
-  - cut_dir:     mm_sr_ssjets__sample10.SR_SSJets.mu_pt_15
-    to_optimize: mll
-    direction:   right
-    scan:        0 
-    fixed_points:
-      - 0
-  - cut_dir:     mm_sr_ssjets__sample11.SR_SSJets.mu_pt_20
-    to_optimize: mll
-    direction:   right
-    scan:        0 
-    fixed_points:
-      - 0
-  - cut_dir:     mm_sr_ssjets__sample12.SR_SSJets.mu_pt_25
-    to_optimize: mll
-    direction:   right
-    scan:        0 
-    fixed_points:
-      - 0
+      - 0.0
+      - 0.1
+      - 0.2
+      - 0.3
+      - 0.4
+      - 0.5
+      - 0.6
+      - 0.7
+      - 0.8
+      - 0.9
+      - 1.0
+  # - cut_dir:     mm_sr_ss__sample13.SS_loose.metrel_30.num_light_jet_eq_1.mu_pt_15
+  # - cut_dir:     mm_sr_ss__sample14.SS_loose.metrel_30.num_light_jet_eq_0.mu_pt_15
+  # - cut_dir:     mm_sr_ss__sample15.SS_loose.metrel_20.mu_pt_15
+  # - cut_dir:     mm_sr_ss__sample16.SS_loose.metrel_20.num_light_jet_ge_1.mu_pt_15
+  # - cut_dir:     mm_sr_ss__sample17.SS_loose.metrel_20.num_light_jet_eq_1.mu_pt_15
+  # - cut_dir:     mm_sr_ss__sample18.SS_loose.metrel_20.num_light_jet_eq_0.mu_pt_15
+
+  # - cut_dir:     mm_sr_ssjets__sample2.SR_SSJets_preMt
+  #   to_optimize: mt
+  #   direction:   left
+  #   scan:        0 
+  #   fixed_points:
+  #     - 0
+  #     - 10
+  #     - 20
+  #     - 30
+  #     - 40
+  #     - 50
+  #     - 60
+  #     - 70
+  #     - 80
+  #     - 90
+  #     - 100
+  # - cut_dir:     mm_sr_ssjets__sample8.SR_SSJets
+  #   to_optimize: mll
+  #   direction:   right
+  #   scan:        0 
+  #   fixed_points:
+  #     - 0
+  # - cut_dir:     mm_sr_ssjets__sample9.SR_SSJets.mu_pt_10
+  #   to_optimize: mll
+  #   direction:   right
+  #   scan:        0 
+  #   fixed_points:
+  #     - 0
+  # - cut_dir:     mm_sr_ssjets__sample10.SR_SSJets.mu_pt_15
+  #   to_optimize: mll
+  #   direction:   right
+  #   scan:        0 
+  #   fixed_points:
+  #     - 0
+  # - cut_dir:     mm_sr_ssjets__sample11.SR_SSJets.mu_pt_20
+  #   to_optimize: mll
+  #   direction:   right
+  #   scan:        0 
+  #   fixed_points:
+  #     - 0
+  # - cut_dir:     mm_sr_ssjets__sample12.SR_SSJets.mu_pt_25
+  #   to_optimize: mll
+  #   direction:   right
+  #   scan:        0 
+  #   fixed_points:
+  #     - 0
 
 # ------------------------------------------------------------------------------
 Inputs:
