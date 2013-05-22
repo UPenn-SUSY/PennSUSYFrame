@@ -123,9 +123,9 @@ def main():
                             sig = hm_sig,
                             bkg = hm_bkg,
                             cut_direction = optimize[h].direction,
-                            bkg_uncertainty = 0.20)
-                            #bkg_uncertainty = 0.30)
-                            #bkg_uncertainty = 0.40)
+                            # bkg_uncertainty = 0.20)
+                            bkg_uncertainty = 0.30)
+                            # bkg_uncertainty = 0.40)
 
                     optimize_map[h].addGridPoint(local_optimize, sample_dir_name)
 
