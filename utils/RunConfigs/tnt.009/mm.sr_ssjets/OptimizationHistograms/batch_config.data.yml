@@ -1,5 +1,5 @@
 # imported config files
-cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.009/mm.sr_ssjets/cuts.optimize.mm.sr_ssjets.cf.config
+cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.009/mm.sr_ssjets/cuts.optimize.mm.sr_ssjets.data.config
 hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.009/mm.sr_ssjets/hists.optimize.mm.sr_ssjets.config
 
 # other settings

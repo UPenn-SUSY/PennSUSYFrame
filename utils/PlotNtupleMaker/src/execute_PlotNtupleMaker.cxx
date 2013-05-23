@@ -36,6 +36,7 @@ int main(int argc, char** argv)
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string cut_config_file = parser.getSelectionFile();
+  std::cout << "The cut configuration file is:\n\t" << cut_config_file << "\n";
   CutConfigParser cut_parser( cut_config_file
                             , parser.getGlobalWeightHandler()
                             );

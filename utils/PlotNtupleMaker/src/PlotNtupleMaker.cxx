@@ -124,6 +124,8 @@ void PlotNtupleMaker::filterTree(std::string key)
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Copy fChain into temp tree with selection applied
+  std::cout << "key: " << key <<"\n";
+  std::cout << "\tfull selection: " << full_selection << "\n";
   TTree* tmp_tree = fChain->CopyTree(full_selection);
 
   writeToFile(key, tmp_tree);
