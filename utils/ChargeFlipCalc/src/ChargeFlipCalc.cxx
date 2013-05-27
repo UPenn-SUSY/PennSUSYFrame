@@ -35,7 +35,27 @@ ChargeFlipCalc::ChargeFlipCalc(TTree *tree, double num_events) : NtupleLooper(tr
 // -----------------------------------------------------------------------------
 ChargeFlipCalc::~ChargeFlipCalc()
 {
-  // do nothing
+  
+  //clearHists();
+}
+
+void ChargeFlipCalc::clearHists()
+{
+
+  if(m_h_flipped)         delete m_h_flipped;
+  if(m_h_total)           delete m_h_total; 
+  if(m_h_flipped_pt_only) delete m_h_flipped_pt_only;
+  if(m_h_total_pt_only)   delete m_h_total_pt_only;
+  if(m_h_flipped_eta_only)delete m_h_flipped_eta_only;  
+  if(m_h_total_eta_only)  delete m_h_total_eta_only;
+  if(m_h_mll)             delete m_h_mll; 
+  if(m_h_mll_ss)          delete m_h_mll_ss; 
+  if(m_h_n_events)        delete m_h_n_events; 
+  if(m_h_n_ss)            delete m_h_n_ss; 
+  if(m_h_lklh_rate)       delete m_h_lklh_rate;
+  if(m_h_truth_rate_eta_only)  delete m_h_truth_rate_eta_only;
+  if(m_h_truth_rate)    delete m_h_truth_rate;
+
 }
 
 // -----------------------------------------------------------------------------
@@ -122,7 +142,9 @@ void ChargeFlipCalc::fillTruthHists()
 {
 
   
-  double weight = 1.0;
+  //double weight = 1.0;
+  double weight = m_mc_event_weight * m_pile_up_weight * m_trigger_weight *m_cross_section_weight;
+
 
   std::vector<float>*  el_eta = m_el_eta;
   std::vector<float>*  el_pt  = m_el_pt;
@@ -140,6 +162,9 @@ void ChargeFlipCalc::fillTruthHists()
 
       bool pass = true;
       pass = pass && el_desc.getPassSignal();
+
+      //For exclusive Loose
+      //pass = pass && !(el_desc.getPassSignal());
 
       if (pass)
 	{
@@ -171,8 +196,8 @@ void ChargeFlipCalc::fillLikelihoodHists()
   std::vector<float>*  el_eta = m_el_eta;
   std::vector<float>*  el_pt  = m_el_pt;
 
-  double weight =1.0;
- 
+  //double weight =1.0;
+  double weight = m_mc_event_weight * m_pile_up_weight * m_trigger_weight *m_cross_section_weight;
 
   float el_eta_lead = el_eta->at(0);
   float el_eta_sub_lead = el_eta->at(1);
@@ -225,8 +250,10 @@ bool ChargeFlipCalc::passLikelihoodSelection()
   pass = pass && evt_desc.getPassTriggerMatch();
   pass = pass && evt_desc.getTruthPrompt();
   pass = pass && evt_desc.getPass2SignalLeptons();
-
-  //  pass = pass && (m_mll > 81200 && m_mll<101200);
+  //for exclusive Loose
+  //pass = pass && !(evt_desc.getPass2SignalLeptons();
+  //Z window
+  pass = pass && (m_mll > 81200 && m_mll<101200);
  
 
   return pass;
@@ -414,3 +441,5 @@ float ChargeFlipCalc::GetChargeFlipWeightFromMap(float pt1, float eta1,float pt2
   return weight;
 
 }
+
+

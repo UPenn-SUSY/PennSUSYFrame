@@ -1,22 +1,21 @@
 from ROOT import *
 
-file1 = TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy_presel_12Feb/utils/ChargeFlipCalc/macros/ZAlpgenMap.root")
+file1 = TFile("./ZAlpgenMapFull2012_d0sig5.root")
+file2 = TFile("./ZAlpgenMapFull2012_d0sig3.root")
 
-file2 = TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy/plot_dev/charge_flip/chargeFlip2012ExLoose.root")
 
 hist1 = file1.Get("h_flipped")
 hist2 = file2.Get("h_flipped")
 
-hist1.SetName("datalikelihoodEtaTruthPt")
-hist1.SetTitle("datalikelihoodEtaTruthPt")
+hist1.SetName("datalikelihoodEtaTruthPt_d0sig5")
+hist1.SetTitle("datalikelihoodEtaTruthPt_d0sig5")
 hist1.GetXaxis().SetTitle("p_{T} [GeV]")
 hist1.GetYaxis().SetTitle("#eta")
    
-hist2.SetName("datalikelihoodEtaTruthPt_Exloose")
-hist2.SetTitle("datalikelihoodEtaTruthPt_Exloose")
+hist2.SetName("datalikelihoodEtaTruthPt_d0sig3")
+hist2.SetTitle("datalikelihoodEtaTruthPt_d0sig3")
 hist2.GetXaxis().SetTitle("p_{T} [GeV]")
 hist2.GetYaxis().SetTitle("#eta")
-
 
 outfile = TFile("out_out.root","recreate")
 hist1.Write()

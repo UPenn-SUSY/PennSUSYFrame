@@ -37,7 +37,9 @@ class ChargeFlipCalc : public NtupleLooper
 
     void printToFile(std::string out_file_name);
 
+    void clearHists();
 
+    TH1F* m_h_lklh_rate;
   // ---------------------------------------------------------------------------
   private:
 
@@ -65,7 +67,7 @@ class ChargeFlipCalc : public NtupleLooper
     TH2F* m_h_n_events; 
     TH2F* m_h_n_ss;
 
-    TH1F* m_h_lklh_rate;
+
     TH1F* m_h_truth_rate_eta_only;
     TH2F* m_h_truth_rate;
 

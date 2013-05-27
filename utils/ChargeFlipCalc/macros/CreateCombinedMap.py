@@ -1,9 +1,9 @@
 from ROOT import *
 
 
-fileMC = TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy_presel_12Feb/utils/ChargeFlipCalc/mc_out.root")
+fileMC = TFile("../MC/cf30.root")
 
-fileData= TFile("/exports/project/data_d07_3/ehines/SusyFrame/Susy_presel_12Feb/utils/ChargeFlipCalc/data_out.root")
+fileData= TFile("../Data/cf30.root")
 
 
 # Get the estimate from Truth
@@ -93,7 +93,7 @@ combMap.Draw("COL TEXT")
 
 
 
-out_file = TFile("ZAlpgenMap.root","recreate")
+out_file = TFile("ZAlpgenMapFull2012_d0sig3.root","recreate")
 
 combMap.Write()
 out_file.Close()

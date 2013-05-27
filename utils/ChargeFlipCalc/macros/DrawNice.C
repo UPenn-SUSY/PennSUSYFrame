@@ -21,16 +21,16 @@
   //TFile* fin = new TFile("./ZAlpgenMap.root"); 
   //  TFile* fin = new TFile("../mc_out.root"); 
 
-  TFile* fin = new TFile("../mc_ttbar_no_weights.root"); 
+  TFile* fin = new TFile("./ZAlpgenMapFull2012_d0sig3.root"); 
 
   /** The name of the histogram in the file */
-  //string histname = "h_flipped"; 
-  string histname = "h_truth_rate";
+  string histname = "h_flipped"; 
+  //string histname = "h_truth_rate";
   
   /** Goes at the top of the plot */
-  //string label = "#epsilon (|#eta|^{Z#rightarrow ee data}, p_{T}^{Z#rightarrow ee MC truth})";
+  string label = "#epsilon (|#eta|^{Z#rightarrow ee data}, p_{T}^{Z#rightarrow ee MC truth})";
   //  string label = "#epsilon (|#eta|^{Z#rightarrow ee MC truth}, p_{T}^{Z#rightarrow ee MC truth})";
- string label = "#epsilon (|#eta|^{TTbar MC truth}, p_{T}^{TTbar MC truth})";
+  //string label = "#epsilon (|#eta|^{TTbar MC truth}, p_{T}^{TTbar MC truth})";
 
   //-------------------------------------------------------------------------//
   //                      SHOULD NOT HAVE TO CHANGE BELOW HERE               //
