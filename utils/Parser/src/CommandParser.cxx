@@ -29,17 +29,16 @@ InputContainer CommandParser::readInputs( int argc
   }
 
   std::vector<std::string> file_names;
-  if (std::string(argv[1]) == "--file") {
-    file_names.push_back(argv[2]);
-  }
+  if (std::string(argv[1]) == "--file") file_names.push_back(argv[2]);
   else if (std::string(argv[1]) == "--dir") {
     std::string dir_name = argv[2];
-
     DIR *dir;
     struct dirent *ent;
     if ((dir = opendir(dir_name.c_str())) != NULL) {
+
       while ((ent = readdir(dir)) != NULL) {
-        file_names.push_back(std::string(ent->d_name));
+	if(std::string(ent->d_name) != "." && std::string(ent->d_name) != "..") file_names.push_back(dir_name + std::string(ent->d_name));
+	  
       }
       closedir(dir);
     }
