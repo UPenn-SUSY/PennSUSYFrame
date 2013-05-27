@@ -15,8 +15,8 @@ file_to_link=( \
   submit_muon_data.sh  \
   submit_pmssm_signal_grids.sh  \
   submit_presel.sh  \
-  submit_signal_grids.sh  \
-  submit_simplified_signal_grids.sh \
+  submit_simplified_wA_signal_grids.sh \
+  submit_simplified_wC_signal_grids.sh \
   submit_single_top.sh \
   submit_ttbar.sh \
   submit_W_plus_jet.sh \
