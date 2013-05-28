@@ -28,7 +28,7 @@ in_files:
     sample_number: 126895
     grep_for: diboson.126895.Sherpa_CT10_llnunu_ZZ
 
-  Diboson - Powheg
+  # Diboson - Powheg
   diboson.126928.PowhegPythia8_AU2CT10_WpWm_ee:
     sample_number: 126928
     grep_for: diboson.126928.PowhegPythia8_AU2CT10_WpWm_ee
