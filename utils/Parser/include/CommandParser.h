@@ -10,9 +10,18 @@ class TChain;
 // =============================================================================
 struct InputContainer
 {
-  InputContainer() {num_events = 0; chain = NULL;}
+  InputContainer()
+  {
+    num_events = 0;
+    chain = NULL;
+    force = false;
+    config_file = "";
+  }
+
   double num_events;
   TChain* chain;
+  bool force;
+  std::string config_file;
 };
 
 // =============================================================================
@@ -27,7 +36,7 @@ class CommandParser
     // static TChain* readInputs( int argc
     static InputContainer readInputs( int argc
                                     , char** argv
-                                    , const std::string& tree_name
+                                    , const std::string& tree_name = ""
                                     );
 };
 

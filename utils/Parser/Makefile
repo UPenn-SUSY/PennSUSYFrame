@@ -5,6 +5,7 @@ INCDIR  := $(PWD)/include
 EXECUTABLE := test_parse
 
 LOCAL_LIBS_PATH = $(SH_LIB_PATH)/libSelection.so
+LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libHelpers.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libHistMaker.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libNtupleLooper.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libProgressBar.so

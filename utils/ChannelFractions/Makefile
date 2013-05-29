@@ -5,6 +5,7 @@ INCDIR  := $(PWD)/include
 EXECUTABLE := $(PWD)/ChannelFractions
 
 LOCAL_LIBS_PATH = $(SH_LIB_PATH)/libNtupleLooper.so
+LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libHelpers.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libParser.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libHistMaker.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libSelection.so

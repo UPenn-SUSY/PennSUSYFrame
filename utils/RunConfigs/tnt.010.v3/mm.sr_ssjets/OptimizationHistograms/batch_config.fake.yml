@@ -1,6 +1,6 @@
 # imported config files
-cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.010.v3/mm.sr_ssjets/cuts/hists/hists.optimize.mm.sr_ssjets.fake.config
-hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.010.v3/mm.sr_ssjets/hists.optimize.mm.sr_ssjets.config
+cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.010.v3/mm.sr_ssjets/cuts/cuts.optimize.mm.sr_ssjets.fake.config
+hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.010.v3/mm.sr_ssjets/hists/hists.optimize.mm.sr_ssjets.config
 
 # other settings
 # target_lumi: 21000

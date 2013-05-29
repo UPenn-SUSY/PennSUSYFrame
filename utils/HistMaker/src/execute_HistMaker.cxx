@@ -2,39 +2,33 @@
 #include <TFile.h>
 #include <TTree.h>
 
-#include "include/HistMaker.h"
+#include "HistMaker/include/HistMaker.h"
+
+#include "Helpers/include/FileHelpers.h"
+
 #include "Selection/include/EventSelection.h"
 #include "Selection/include/LumiWeight.h"
 #include "Selection/include/WeightHandler.h"
 
+#include "Parser/include/CommandParser.h"
 #include "Parser/include/MasterConfigParser.h"
 #include "Parser/include/CutConfigParser.h"
 #include "Parser/include/HistConfigParser.h"
-
-#include <sys/stat.h>
-
-// -----------------------------------------------------------------------------
-bool fileExists(const std::string& file_name)
-{
-  struct stat buf;
-  if (stat(file_name.c_str(), &buf) != -1) {
-    return true;
-  }
-  return false;
-}
 
 // -----------------------------------------------------------------------------
 int main(int argc, char** argv)
 {
   std::cout << "Making Histograms!\n";
 
-  if (argc != 2) {
-    std::cout << "Please enter an input config file\n";
-    return 0;
-  }
+  // if (argc != 2) {
+  //   std::cout << "Please enter an input config file\n";
+  //   return 0;
+  // }
 
-  std::string config_file = argv[1];
-  std::cout << "config file: " << config_file << "\n";
+  InputContainer input_container = CommandParser::readInputs(argc, argv);
+  std::string config_file = input_container.config_file;
+  bool force_overwrite = input_container.force;
+
   MasterConfigParser parser(config_file);
   parser.parse();
 
@@ -44,35 +38,12 @@ int main(int argc, char** argv)
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Open/close output file to create it
   std::string out_file_name = parser.getHistFile();
-  std::cout << "out file: \n\t" << out_file_name << "\n";
-  std::cout << "file exists: " << fileExists(out_file_name) << "\n";
-  if (fileExists(out_file_name)) {
-    std::string proceed;
-    while (!(  proceed == "y"
-            || proceed == "Y"
-            || proceed == "n"
-            || proceed == "N"
-            )
-          ) {
-      std::cout << "Output file exists. Overwrite it? (y/n) ";
-      std::cin >> proceed;
-      if (proceed == "n" || proceed == "N") {
-        return 0;
-      }
-    }
-
-    TFile out_file(out_file_name.c_str(), "RECREATE");
-    out_file.Close();
-  }
-
-  // TChain* chain = parser.getInputChain();
-  // HistMaker hm(chain, out_file_name);
+  if (!checkFile(out_file_name, force_overwrite)) return 0;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string cut_config_file = parser.getSelectionFile();
   Selection::WeightHandler global_weight_handle = parser.getGlobalWeightHandler();
   CutConfigParser cut_parser( cut_config_file
-                            // , parser.getGlobalWeightHandler()
                             , global_weight_handle
                             );
   cut_parser.parse();
@@ -110,6 +81,7 @@ int main(int argc, char** argv)
       hm.addHist(*hist_it);
     }
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     hm.Loop();
     hm.writeToFile();
   }

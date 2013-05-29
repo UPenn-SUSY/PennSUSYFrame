@@ -2,10 +2,14 @@
 #include <TFile.h>
 #include <TTree.h>
 
-#include "include/PlotNtupleMaker.h"
+#include "PlotNtupleMaker/include/PlotNtupleMaker.h"
+
+#include "Helpers/include/FileHelpers.h"
+
 #include "Selection/include/EventSelection.h"
 #include "Selection/include/LumiWeight.h"
 
+#include "Parser/include/CommandParser.h"
 #include "Parser/include/MasterConfigParser.h"
 #include "Parser/include/CutConfigParser.h"
 #include "Parser/include/HistConfigParser.h"
@@ -15,12 +19,15 @@ int main(int argc, char** argv)
 {
   std::cout << "Making plot ntuple!\n";
 
-  if (argc < 2) {
-    std::cout << "Please enter an input config file\n";
-    return 0;
-  }
+  // if (argc < 2) {
+  //   std::cout << "Please enter an input config file\n";
+  //   return 0;
+  // }
 
-  std::string config_file = argv[1];
+  InputContainer input_container = CommandParser::readInputs(argc, argv);
+  std::string config_file = input_container.config_file;
+  bool force_overwrite = input_container.force;
+
   MasterConfigParser parser(config_file);
   parser.parse();
 
@@ -29,8 +36,11 @@ int main(int argc, char** argv)
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::string out_file_name = parser.getPTNTFile();
-  std::cout << "The output pTNT file will be located here:\n\t"
-            << out_file_name << "\n";
+  if (!checkFile(out_file_name, force_overwrite)) return 0;
+
+  // std::cout << "The output pTNT file will be located here:\n\t"
+  //           << out_file_name << "\n";
+  //
   TChain* chain = parser.getInputChain();
   PlotNtupleMaker pnm(chain, num_events, out_file_name);
 

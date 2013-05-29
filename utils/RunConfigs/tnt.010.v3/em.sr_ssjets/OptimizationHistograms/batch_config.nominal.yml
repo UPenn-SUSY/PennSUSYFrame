@@ -1,6 +1,6 @@
 # imported config files
-cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.009/em.sr_ssjets/cuts.optimize.em.sr_ssjets.nominal.config
-hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.009/em.sr_ssjets/hists.optimize.em.sr_ssjets.config
+cut_config:  /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.010.v3/em.sr_ssjets/cuts/cuts.optimize.em.sr_ssjets.nominal.config
+hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFrame/../utils/RunConfigs/tnt.010.v3/em.sr_ssjets/hists/hists.optimize.em.sr_ssjets.config
 
 # other settings
 # target_lumi: 21000
@@ -9,10 +9,10 @@ target_lumi: 13000
 in_tree: output
 max_job_size: 50
 file_name_base: nominal
-ptnt_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/pTNTs/OptimizationHistograms/tnt.009/em.sr_ssjets/
-hist_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.009/em.sr_ssjets/
+ptnt_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/pTNTs/OptimizationHistograms/tnt.010.v3/em.sr_ssjets/
+hist_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.010.v3/em.sr_ssjets/
 
-in_file_base_path: /afs/cern.ch/user/b/bjackson/eos_mount/atlas/user/b/bjackson/tnt.009/
+in_file_base_path: /afs/cern.ch/user/b/bjackson/eos_mount/atlas/user/b/bjackson/tnt.010.v3/
 in_files:
   # Diboson - Sherpa
   diboson.126892.Sherpa_CT10_llnunu_WW:
