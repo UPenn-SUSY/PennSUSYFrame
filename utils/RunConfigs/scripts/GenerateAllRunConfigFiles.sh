@@ -10,7 +10,7 @@ then
 fi
 
 # for type in cf data fake nominal signal
-for type in data fake nominal signal
+for type in data fake nominal signal cf
 do
   echo $type
   DATE_STR=$(date +%Y_%m_%d)
