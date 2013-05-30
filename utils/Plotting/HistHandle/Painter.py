@@ -13,7 +13,7 @@ import ROOT
 import rootlogon
 import metaroot
 
-import AtlasLabels
+# import AtlasLabels
 
 import HistHandle as hh
 
@@ -813,11 +813,11 @@ def drawLabels( int_lumi = 0
     docstring
     """
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    AtlasLabels.ATLASLabel(0.20, 0.87, 1, 'Internal')
+    hh.AtlasLabels.ATLASLabel(0.20, 0.87, 1, 'Internal')
     if int_lumi is not None and int_lumi > 0:
-        AtlasLabels.myText(0.20, 0.78, 1, '#intLdt = %s fb^{-1}' % int_lumi)
+        hh.AtlasLabels.myText(0.20, 0.78, 1, '#intLdt = %s fb^{-1}' % int_lumi)
     if prod_type in prod_labels:
-        AtlasLabels.myText(0.20, 0.70, 1, prod_labels[prod_type])
+        hh.AtlasLabels.myText(0.20, 0.70, 1, prod_labels[prod_type])
 
 
 # ------------------------------------------------------------------------------

@@ -5,8 +5,6 @@
 #------------------------------------------------------------------------------
 __author__ = 'Brett Jackson'
 __email__ = 'brett.david.jackson@cern.ch'
-__copyright__ = 'Copyright 2008-2012 Ryan D. Reece'
-__license__ = 'GPL http://www.gnu.org/licenses/gpl.html'
 
 import metaroot
 
@@ -36,4 +34,4 @@ canv_opt_2d_log_y = metaroot.hist.CanvasOptions( width=600
                                                , log_z=True
                                                )
 
-import Handle, Merger, Objects, Painter, parse, Helper, Optimize
+import Handle, Merger, Objects, Painter, parse, Helper, Optimize, AtlasLabels
