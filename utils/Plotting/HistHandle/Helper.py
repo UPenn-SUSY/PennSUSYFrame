@@ -172,9 +172,6 @@ def flatten(l, level = 0):
 # ------------------------------------------------------------------------------
 def getCharginoMass(sample_name):
     chargino_masses = {
-                        'simplifiedModel_wA_slep_noWcascade_5'  : 112.5,
-                        'simplifiedModel_wA_slep_noWcascade_7'  : 130.0,
-                        'simplifiedModel_wA_slep_noWcascade_8'  : 155.0,
                         'simplifiedModel_wA_slep_noWcascade_10' : 150.0,
                         'simplifiedModel_wA_slep_noWcascade_11' : 175.0,
                         'simplifiedModel_wA_slep_noWcascade_13' : 175.0,
@@ -206,11 +203,14 @@ def getCharginoMass(sample_name):
                         'simplifiedModel_wA_slep_noWcascade_47' : 625.0,
                         'simplifiedModel_wA_slep_noWcascade_48' : 675.0,
                         'simplifiedModel_wA_slep_noWcascade_49' : 750.0,
+                        'simplifiedModel_wA_slep_noWcascade_5'  : 112.5,
                         'simplifiedModel_wA_slep_noWcascade_50' : 642.5,
                         'simplifiedModel_wA_slep_noWcascade_51' : 675.0,
                         'simplifiedModel_wA_slep_noWcascade_52' : 700.0,
                         'simplifiedModel_wA_slep_noWcascade_53' : 750.0,
                         'simplifiedModel_wA_slep_noWcascade_53' : 750.0,
+                        'simplifiedModel_wA_slep_noWcascade_7'  : 130.0,
+                        'simplifiedModel_wA_slep_noWcascade_8'  : 155.0,
                         'simplifiedModel_wA_slep_noWcasc_54'    : 110.0,
                         'simplifiedModel_wA_slep_noWcasc_55'    : 135.0,
                         'simplifiedModel_wA_slep_noWcasc_56'    : 185.0,
@@ -238,84 +238,87 @@ def getCharginoMass(sample_name):
                         'simplifiedModel_wA_slep_noWcasc_78'    : 812.5,
                         'simplifiedModel_wA_slep_noWcasc_79'    : 875.0,
                         'simplifiedModel_wA_slep_noWcasc_80'    : 875.0,
+                        'simplifiedModel_wA_noslep_lepW_1'      : 100.0,
+                        'simplifiedModel_wA_noslep_lepW_2'      : 100.0,
+                        'simplifiedModel_wA_noslep_lepW_3'      : 150.0,
+                        'simplifiedModel_wA_noslep_lepW_4'      : 150.0,
+                        'simplifiedModel_wA_noslep_lepW_5'      : 150.0,
+                        'simplifiedModel_wA_noslep_lepW_6'      : 200.0,
+                        'simplifiedModel_wA_noslep_lepW_7'      : 200.0,
+                        'simplifiedModel_wA_noslep_lepW_8'      : 200.0,
+                        'simplifiedModel_wA_noslep_lepW_9'      : 200.0,
+                        'simplifiedModel_wA_noslep_lepW_10'     : 250.0,
+                        'simplifiedModel_wA_noslep_lepW_11'     : 250.0,
+                        'simplifiedModel_wA_noslep_lepW_12'     : 250.0,
+                        'simplifiedModel_wA_noslep_lepW_13'     : 250.0,
+                        'simplifiedModel_wA_noslep_lepW_14'     : 250.0,
+                        'simplifiedModel_wA_noslep_lepW_15'     : 300.0,
+                        'simplifiedModel_wA_noslep_lepW_16'     : 300.0,
+                        'simplifiedModel_wA_noslep_lepW_17'     : 300.0,
+                        'simplifiedModel_wA_noslep_lepW_18'     : 300.0,
+                        'simplifiedModel_wA_noslep_lepW_19'     : 300.0,
+                        'simplifiedModel_wA_noslep_lepW_20'     : 300.0,
+                        'simplifiedModel_wA_noslep_lepW_21'     : 350.0,
+                        'simplifiedModel_wA_noslep_lepW_22'     : 350.0,
+                        'simplifiedModel_wA_noslep_lepW_23'     : 350.0,
+                        'simplifiedModel_wA_noslep_lepW_24'     : 350.0,
+                        'simplifiedModel_wA_noslep_lepW_25'     : 350.0,
+                        'simplifiedModel_wA_noslep_lepW_26'     : 350.0,
+                        'simplifiedModel_wA_noslep_lepW_27'     : 350.0,
+                        'simplifiedModel_wA_noslep_lepW_28'     : 400.0,
+                        'simplifiedModel_wA_noslep_lepW_29'     : 400.0,
+                        'simplifiedModel_wA_noslep_lepW_30'     : 400.0,
+                        'simplifiedModel_wA_noslep_lepW_31'     : 400.0,
+                        'simplifiedModel_wA_noslep_lepW_32'     : 400.0,
+                        'simplifiedModel_wA_noslep_lepW_33'     : 400.0,
+                        'simplifiedModel_wA_noslep_lepW_34'     : 400.0,
+                        'simplifiedModel_wA_noslep_lepW_35'     : 400.0,
+                        'simplifiedModel_wA_noslep_lepW_36'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_37'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_38'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_39'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_40'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_41'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_42'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_43'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_44'     : 450.0,
+                        'simplifiedModel_wA_noslep_lepW_45'     : 500.0,
+                        'simplifiedModel_wA_noslep_lepW_46'     : 500.0,
+                        'simplifiedModel_wA_noslep_lepW_47'     : 500.0,
+                        'simplifiedModel_wA_noslep_lepW_48'     : 500.0,
+                        'simplifiedModel_wA_noslep_lepW_49'     : 500.0,
+                        'simplifiedModel_wA_noslep_lepW_50'     : 500.0,
+                        'simplifiedModel_wA_noslep_lepW_51'     : 125.0,
+                        'simplifiedModel_wA_noslep_lepW_52'     : 175.0,
+                        'simplifiedModel_wA_noslep_lepW_53'     : 100.0,
+                        'simplifiedModel_wA_noslep_lepW_54'     : 125.0,
+                        'simplifiedModel_wA_noslep_lepW_55'     : 150.0,
+                        'simplifiedModel_wA_noslep_lepW_56'     : 175.0,
+                        'simplifiedModel_wA_noslep_lepW_57'     : 200.0,
+                        'simplifiedModel_wA_noslep_lepW_58'     : 150.0,
+                        'simplifiedModel_wA_noslep_lepW_59'     : 112.5,
+                        'simplifiedModel_wA_noslep_lepW_60'     : 125.0,
+                        'simplifiedModel_wA_noslep_lepW_61'     : 137.5,
+                        'simplifiedModel_wA_noslep_lepW_62'     : 162.5,
+                        'simplifiedModel_wA_noslep_lepW_63'     : 175.0,
+                        'simplifiedModel_wA_noslep_lepW_64'     : 187.5,
+                        'simplifiedModel_wA_noslep_lepW_65'     : 150.0,
+                        'simplifiedModel_wA_noslep_lepW_66'     : 100.0,
+                        'simplifiedModel_wA_noslep_lepW_67'     : 125.0,
+                        'simplifiedModel_wA_noslep_lepW_68'     : 150.0,
+                        'simplifiedModel_wA_noslep_lepW_69'     : 175.0,
+                        'simplifiedModel_wA_noslep_lepW_70'     : 200.0,
+                        'simplifiedModel_wA_noslep_lepW_71'     : 125.0,
+                        'simplifiedModel_wA_noslep_lepW_72'     : 175.0,
                         '~TERM' : 0
-# 164274   simplifiedModel_wA_noslep_lepW_1
-# 164275   simplifiedModel_wA_noslep_lepW_2
-# 164276   simplifiedModel_wA_noslep_lepW_3
-# 164277   simplifiedModel_wA_noslep_lepW_4
-# 164278   simplifiedModel_wA_noslep_lepW_5
-# 164279   simplifiedModel_wA_noslep_lepW_6
-# 164280   simplifiedModel_wA_noslep_lepW_7
-# 164281   simplifiedModel_wA_noslep_lepW_8
-# 164282   simplifiedModel_wA_noslep_lepW_9
-# 164283   simplifiedModel_wA_noslep_lepW_10
-# 164284   simplifiedModel_wA_noslep_lepW_11
-# 164285   simplifiedModel_wA_noslep_lepW_12
-# 164286   simplifiedModel_wA_noslep_lepW_13
-# 164287   simplifiedModel_wA_noslep_lepW_14
-# 164288   simplifiedModel_wA_noslep_lepW_15
-# 164289   simplifiedModel_wA_noslep_lepW_16
-# 164290   simplifiedModel_wA_noslep_lepW_17
-# 164291   simplifiedModel_wA_noslep_lepW_18
-# 164292   simplifiedModel_wA_noslep_lepW_19
-# 164293   simplifiedModel_wA_noslep_lepW_20
-# 164294   simplifiedModel_wA_noslep_lepW_21
-# 164295   simplifiedModel_wA_noslep_lepW_22
-# 164296   simplifiedModel_wA_noslep_lepW_23
-# 164297   simplifiedModel_wA_noslep_lepW_24
-# 164298   simplifiedModel_wA_noslep_lepW_25
-# 164299   simplifiedModel_wA_noslep_lepW_26
-# 164300   simplifiedModel_wA_noslep_lepW_27
-# 164301   simplifiedModel_wA_noslep_lepW_28
-# 164302   simplifiedModel_wA_noslep_lepW_29
-# 164303   simplifiedModel_wA_noslep_lepW_30
-# 164304   simplifiedModel_wA_noslep_lepW_31
-# 164305   simplifiedModel_wA_noslep_lepW_32
-# 164306   simplifiedModel_wA_noslep_lepW_33
-# 164307   simplifiedModel_wA_noslep_lepW_34
-# 164308   simplifiedModel_wA_noslep_lepW_35
-# 164309   simplifiedModel_wA_noslep_lepW_36
-# 164310   simplifiedModel_wA_noslep_lepW_37
-# 164311   simplifiedModel_wA_noslep_lepW_38
-# 164312   simplifiedModel_wA_noslep_lepW_39
-# 164313   simplifiedModel_wA_noslep_lepW_40
-# 164314   simplifiedModel_wA_noslep_lepW_41
-# 164315   simplifiedModel_wA_noslep_lepW_42
-# 164316   simplifiedModel_wA_noslep_lepW_43
-# 164317   simplifiedModel_wA_noslep_lepW_44
-# 164318   simplifiedModel_wA_noslep_lepW_45
-# 164319   simplifiedModel_wA_noslep_lepW_46
-# 164320   simplifiedModel_wA_noslep_lepW_47
-# 164321   simplifiedModel_wA_noslep_lepW_48
-# 164322   simplifiedModel_wA_noslep_lepW_49
-# 164323   simplifiedModel_wA_noslep_lepW_50
-# 174663   simplifiedModel_wA_noslep_lepW_51
-# 174664   simplifiedModel_wA_noslep_lepW_52
-# 174665   simplifiedModel_wA_noslep_lepW_53
-# 174666   simplifiedModel_wA_noslep_lepW_54
-# 174667   simplifiedModel_wA_noslep_lepW_55
-# 174668   simplifiedModel_wA_noslep_lepW_56
-# 174669   simplifiedModel_wA_noslep_lepW_57
-# 174670   simplifiedModel_wA_noslep_lepW_58
-# 174671   simplifiedModel_wA_noslep_lepW_59
-# 174672   simplifiedModel_wA_noslep_lepW_60
-# 174673   simplifiedModel_wA_noslep_lepW_61
-# 174674   simplifiedModel_wA_noslep_lepW_62
-# 174675   simplifiedModel_wA_noslep_lepW_63
-# 174676   simplifiedModel_wA_noslep_lepW_64
-# 174677   simplifiedModel_wA_noslep_lepW_65
-# 174678   simplifiedModel_wA_noslep_lepW_66
-# 174835   simplifiedModel_wA_noslep_lepW_67
-# 174836   simplifiedModel_wA_noslep_lepW_68
-# 174837   simplifiedModel_wA_noslep_lepW_69
-# 174838   simplifiedModel_wA_noslep_lepW_70
-# 174839   simplifiedModel_wA_noslep_lepW_71
-# 174840   simplifiedModel_wA_noslep_lepW_72
                       }
+
     test = sample_name
     if '-' in test: test = test[:test.find('-')]
     assert test in chargino_masses
     return chargino_masses[test]
+
+
 
 # ------------------------------------------------------------------------------
 def getNeutralinoMass(sample_name):
@@ -385,80 +388,81 @@ def getNeutralinoMass(sample_name):
                           'simplifiedModel_wA_slep_noWcasc_78'    : 62.5,
                           'simplifiedModel_wA_slep_noWcasc_79'    : 125.0,
                           'simplifiedModel_wA_slep_noWcasc_80'    : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_1'      : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_2'      : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_3'      : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_4'      : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_5'      : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_6'      : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_7'      : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_8'      : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_9'      : 150.0,
+                          'simplifiedModel_wA_noslep_lepW_10'     : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_11'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_12'     : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_13'     : 150.0,
+                          'simplifiedModel_wA_noslep_lepW_14'     : 200.0,
+                          'simplifiedModel_wA_noslep_lepW_15'     : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_16'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_17'     : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_18'     : 150.0,
+                          'simplifiedModel_wA_noslep_lepW_19'     : 200.0,
+                          'simplifiedModel_wA_noslep_lepW_20'     : 250.0,
+                          'simplifiedModel_wA_noslep_lepW_21'     : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_22'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_23'     : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_24'     : 150.0,
+                          'simplifiedModel_wA_noslep_lepW_25'     : 200.0,
+                          'simplifiedModel_wA_noslep_lepW_26'     : 250.0,
+                          'simplifiedModel_wA_noslep_lepW_27'     : 300.0,
+                          'simplifiedModel_wA_noslep_lepW_28'     : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_29'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_30'     : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_31'     : 150.0,
+                          'simplifiedModel_wA_noslep_lepW_32'     : 200.0,
+                          'simplifiedModel_wA_noslep_lepW_33'     : 250.0,
+                          'simplifiedModel_wA_noslep_lepW_34'     : 300.0,
+                          'simplifiedModel_wA_noslep_lepW_35'     : 350.0,
+                          'simplifiedModel_wA_noslep_lepW_36'     : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_37'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_38'     : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_39'     : 150.0,
+                          'simplifiedModel_wA_noslep_lepW_40'     : 200.0,
+                          'simplifiedModel_wA_noslep_lepW_41'     : 250.0,
+                          'simplifiedModel_wA_noslep_lepW_42'     : 300.0,
+                          'simplifiedModel_wA_noslep_lepW_43'     : 350.0,
+                          'simplifiedModel_wA_noslep_lepW_44'     : 400.0,
+                          'simplifiedModel_wA_noslep_lepW_45'     : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_46'     : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_47'     : 200.0,
+                          'simplifiedModel_wA_noslep_lepW_48'     : 300.0,
+                          'simplifiedModel_wA_noslep_lepW_49'     : 400.0,
+                          'simplifiedModel_wA_noslep_lepW_50'     : 450.0,
+                          'simplifiedModel_wA_noslep_lepW_51'     : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_52'     : 0.0,
+                          'simplifiedModel_wA_noslep_lepW_53'     : 25.0,
+                          'simplifiedModel_wA_noslep_lepW_54'     : 25.0,
+                          'simplifiedModel_wA_noslep_lepW_55'     : 25.0,
+                          'simplifiedModel_wA_noslep_lepW_56'     : 25.0,
+                          'simplifiedModel_wA_noslep_lepW_57'     : 25.0,
+                          'simplifiedModel_wA_noslep_lepW_58'     : 37.5,
+                          'simplifiedModel_wA_noslep_lepW_59'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_60'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_61'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_62'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_63'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_64'     : 50.0,
+                          'simplifiedModel_wA_noslep_lepW_65'     : 62.5,
+                          'simplifiedModel_wA_noslep_lepW_66'     : 75.0,
+                          'simplifiedModel_wA_noslep_lepW_67'     : 75.0,
+                          'simplifiedModel_wA_noslep_lepW_68'     : 75.0,
+                          'simplifiedModel_wA_noslep_lepW_69'     : 75.0,
+                          'simplifiedModel_wA_noslep_lepW_70'     : 75.0,
+                          'simplifiedModel_wA_noslep_lepW_71'     : 100.0,
+                          'simplifiedModel_wA_noslep_lepW_72'     : 100.0,
                           '~TERM'                                 : 0
-# 164274   simplifiedModel_wA_noslep_lepW_1
-# 164275   simplifiedModel_wA_noslep_lepW_2
-# 164276   simplifiedModel_wA_noslep_lepW_3
-# 164277   simplifiedModel_wA_noslep_lepW_4
-# 164278   simplifiedModel_wA_noslep_lepW_5
-# 164279   simplifiedModel_wA_noslep_lepW_6
-# 164280   simplifiedModel_wA_noslep_lepW_7
-# 164281   simplifiedModel_wA_noslep_lepW_8
-# 164282   simplifiedModel_wA_noslep_lepW_9
-# 164283   simplifiedModel_wA_noslep_lepW_10
-# 164284   simplifiedModel_wA_noslep_lepW_11
-# 164285   simplifiedModel_wA_noslep_lepW_12
-# 164286   simplifiedModel_wA_noslep_lepW_13
-# 164287   simplifiedModel_wA_noslep_lepW_14
-# 164288   simplifiedModel_wA_noslep_lepW_15
-# 164289   simplifiedModel_wA_noslep_lepW_16
-# 164290   simplifiedModel_wA_noslep_lepW_17
-# 164291   simplifiedModel_wA_noslep_lepW_18
-# 164292   simplifiedModel_wA_noslep_lepW_19
-# 164293   simplifiedModel_wA_noslep_lepW_20
-# 164294   simplifiedModel_wA_noslep_lepW_21
-# 164295   simplifiedModel_wA_noslep_lepW_22
-# 164296   simplifiedModel_wA_noslep_lepW_23
-# 164297   simplifiedModel_wA_noslep_lepW_24
-# 164298   simplifiedModel_wA_noslep_lepW_25
-# 164299   simplifiedModel_wA_noslep_lepW_26
-# 164300   simplifiedModel_wA_noslep_lepW_27
-# 164301   simplifiedModel_wA_noslep_lepW_28
-# 164302   simplifiedModel_wA_noslep_lepW_29
-# 164303   simplifiedModel_wA_noslep_lepW_30
-# 164304   simplifiedModel_wA_noslep_lepW_31
-# 164305   simplifiedModel_wA_noslep_lepW_32
-# 164306   simplifiedModel_wA_noslep_lepW_33
-# 164307   simplifiedModel_wA_noslep_lepW_34
-# 164308   simplifiedModel_wA_noslep_lepW_35
-# 164309   simplifiedModel_wA_noslep_lepW_36
-# 164310   simplifiedModel_wA_noslep_lepW_37
-# 164311   simplifiedModel_wA_noslep_lepW_38
-# 164312   simplifiedModel_wA_noslep_lepW_39
-# 164313   simplifiedModel_wA_noslep_lepW_40
-# 164314   simplifiedModel_wA_noslep_lepW_41
-# 164315   simplifiedModel_wA_noslep_lepW_42
-# 164316   simplifiedModel_wA_noslep_lepW_43
-# 164317   simplifiedModel_wA_noslep_lepW_44
-# 164318   simplifiedModel_wA_noslep_lepW_45
-# 164319   simplifiedModel_wA_noslep_lepW_46
-# 164320   simplifiedModel_wA_noslep_lepW_47
-# 164321   simplifiedModel_wA_noslep_lepW_48
-# 164322   simplifiedModel_wA_noslep_lepW_49
-# 164323   simplifiedModel_wA_noslep_lepW_50
-# 174663   simplifiedModel_wA_noslep_lepW_51
-# 174664   simplifiedModel_wA_noslep_lepW_52
-# 174665   simplifiedModel_wA_noslep_lepW_53
-# 174666   simplifiedModel_wA_noslep_lepW_54
-# 174667   simplifiedModel_wA_noslep_lepW_55
-# 174668   simplifiedModel_wA_noslep_lepW_56
-# 174669   simplifiedModel_wA_noslep_lepW_57
-# 174670   simplifiedModel_wA_noslep_lepW_58
-# 174671   simplifiedModel_wA_noslep_lepW_59
-# 174672   simplifiedModel_wA_noslep_lepW_60
-# 174673   simplifiedModel_wA_noslep_lepW_61
-# 174674   simplifiedModel_wA_noslep_lepW_62
-# 174675   simplifiedModel_wA_noslep_lepW_63
-# 174676   simplifiedModel_wA_noslep_lepW_64
-# 174677   simplifiedModel_wA_noslep_lepW_65
-# 174678   simplifiedModel_wA_noslep_lepW_66
-# 174835   simplifiedModel_wA_noslep_lepW_67
-# 174836   simplifiedModel_wA_noslep_lepW_68
-# 174837   simplifiedModel_wA_noslep_lepW_69
-# 174838   simplifiedModel_wA_noslep_lepW_70
-# 174839   simplifiedModel_wA_noslep_lepW_71
-# 174840   simplifiedModel_wA_noslep_lepW_72
                         }
+
     test = sample_name
     if '-' in test: test = test[:test.find('-')]
     assert test in neutralino_masses

@@ -1,0 +1,54 @@
+Inputs:
+  - class: Numerator
+    name: Data
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 1
+    marker_style: 20
+    entries:
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/data/data_muon.yml
+
+
+  - class: Denominator
+    name: Background
+    fill_color: 2
+    line_color: 1
+    line_width: 2
+    line_style: 1
+    marker_style: 21
+    entries:
+          # Diboson
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/diboson__PowhegPythia8_AU2CT10.yml
+            # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/diboson__Sherpa_CT10.yml
+
+          # Fake
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/fake_muon.yml
+
+          # # Single top
+          # # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/single_top__AcerMCPythia_AUET2BCTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/single_top__McAtNloJimmy_AUET2CT10.yml
+          
+          # # TTbar
+          # # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/ttbar__MadGraphPythia_AUET2BCTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/ttbar__PowhegPythia_AUET2BCT10.yml
+          
+          # # W+jets
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/W_plus_jet__AcerMCPythia_AUET2BCTEQ6L1.yml
+          # # Z+jets
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/background/Z_plus_jet__AcerMCPythia_AUET2BCTEQ6L1.yml
+
+
+  - class: Other
+    name: Signal
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 2
+    marker_style: 20
+    entries:
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_55.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_56.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_57.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_40.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/Plotting/configs/tnt.010.v3/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_10.__Herwigpp_UEEE3_CTEQ6L1.yml

@@ -64,9 +64,6 @@ in_files:
   signal_simplified.144891.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_25:
     sample_number: 144891
     grep_for: signal_simplified.144891.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_25
-  signal_simplified.144891.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_25:
-    sample_number: 144891
-    grep_for: signal_simplified.144891.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_25
   signal_simplified.144892.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_26:
     sample_number: 144892
     grep_for: signal_simplified.144892.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_26
@@ -136,9 +133,6 @@ in_files:
   signal_simplified.176531.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_54:
     sample_number: 176531
     grep_for: signal_simplified.176531.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_54
-  signal_simplified.176531.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_54:
-    sample_number: 176531
-    grep_for: signal_simplified.176531.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_54
   signal_simplified.176532.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_55:
     sample_number: 176532
     grep_for: signal_simplified.176532.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_55
@@ -166,12 +160,6 @@ in_files:
   signal_simplified.176540.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_63:
     sample_number: 176540
     grep_for: signal_simplified.176540.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_63
-  signal_simplified.176541.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_64:
-    sample_number: 176541
-    grep_for: signal_simplified.176541.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_64
-  signal_simplified.176541.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_64:
-    sample_number: 176541
-    grep_for: signal_simplified.176541.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_64
   signal_simplified.176541.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_64:
     sample_number: 176541
     grep_for: signal_simplified.176541.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_64
