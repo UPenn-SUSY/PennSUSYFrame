@@ -6,7 +6,7 @@
 DATA_MC='mc'
 STREAM='egamma'
 SIM_TYPE='fullsim'
-OUT_DS_PREFIX='mc12_8TeV.diboson'
+OUT_DS_PREFIX='mc12_8TeV.WW__PowhegPythia8'
 EXT_FILES=''
 
 # ==============================
@@ -14,31 +14,6 @@ EXT_FILES=''
 # ==============================
 # mc12 list 
 ds_list=(
-          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-          "126892.Sherpa_CT10_llnunu_WW:mc12_8TeV.126892.Sherpa_CT10_llnunu_WW.merge.NTUP_SUSY.e1434_s1499_s1504_r3658_r3549_p1328/"
-          "126893.Sherpa_CT10_lllnu_WZ:mc12_8TeV.126893.Sherpa_CT10_lllnu_WZ.merge.NTUP_SUSY.e1434_s1499_s1504_r3658_r3549_p1328/"
-          "126894.Sherpa_CT10_llll_ZZ:mc12_8TeV.126894.Sherpa_CT10_llll_ZZ.merge.NTUP_SUSY.e1434_s1499_s1504_r3658_r3549_p1328/"
-          "126895.Sherpa_CT10_llnunu_ZZ:mc12_8TeV.126895.Sherpa_CT10_llnunu_ZZ.merge.NTUP_SUSY.e1434_s1499_s1504_r3658_r3549_p1328/"
-          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-          "126928.PowhegPythia8_AU2CT10_WpWm_ee:mc12_8TeV.126928.PowhegPythia8_AU2CT10_WpWm_ee.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126929.PowhegPythia8_AU2CT10_WpWm_me:mc12_8TeV.126929.PowhegPythia8_AU2CT10_WpWm_me.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126930.PowhegPythia8_AU2CT10_WpWm_te:mc12_8TeV.126930.PowhegPythia8_AU2CT10_WpWm_te.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126931.PowhegPythia8_AU2CT10_WpWm_em:mc12_8TeV.126931.PowhegPythia8_AU2CT10_WpWm_em.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126932.PowhegPythia8_AU2CT10_WpWm_mm:mc12_8TeV.126932.PowhegPythia8_AU2CT10_WpWm_mm.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126933.PowhegPythia8_AU2CT10_WpWm_tm:mc12_8TeV.126933.PowhegPythia8_AU2CT10_WpWm_tm.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126934.PowhegPythia8_AU2CT10_WpWm_et:mc12_8TeV.126934.PowhegPythia8_AU2CT10_WpWm_et.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126935.PowhegPythia8_AU2CT10_WpWm_mt:mc12_8TeV.126935.PowhegPythia8_AU2CT10_WpWm_mt.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126936.PowhegPythia8_AU2CT10_WpWm_tt:mc12_8TeV.126936.PowhegPythia8_AU2CT10_WpWm_tt.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-          "126937.PowhegPythia8_AU2CT10_ZZ_4e_mll4_2pt5:mc12_8TeV.126937.PowhegPythia8_AU2CT10_ZZ_4e_mll4_2pt5.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5:mc12_8TeV.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5:mc12_8TeV.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126940.PowhegPythia8_AU2CT10_ZZ_4mu_mll4_2pt5:mc12_8TeV.126940.PowhegPythia8_AU2CT10_ZZ_4mu_mll4_2pt5.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126941.PowhegPythia8_AU2CT10_ZZ_2mu2tau_mll4_2pt5:mc12_8TeV.126941.PowhegPythia8_AU2CT10_ZZ_2mu2tau_mll4_2pt5.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126942.PowhegPythia8_AU2CT10_ZZ_4tau_mll4_2pt5:mc12_8TeV.126942.PowhegPythia8_AU2CT10_ZZ_4tau_mll4_2pt5.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126949.PowhegPythia8_AU2CT10_ZZllnunu_ee_mll4:mc12_8TeV.126949.PowhegPythia8_AU2CT10_ZZllnunu_ee_mll4.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126950.PowhegPythia8_AU2CT10_ZZllnunu_mm_mll4:mc12_8TeV.126950.PowhegPythia8_AU2CT10_ZZllnunu_mm_mll4.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
-          "126951.PowhegPythia8_AU2CT10_ZZllnunu_tt_mll4:mc12_8TeV.126951.PowhegPythia8_AU2CT10_ZZllnunu_tt_mll4.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1328/"
           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
           "129477.PowhegPythia8_AU2CT10_WZ_Wm11Z11_mll0p250d0_2LeptonFilter5:mc12_8TeV.129477.PowhegPythia8_AU2CT10_WZ_Wm11Z11_mll0p250d0_2LeptonFilter5.merge.NTUP_SUSY.e1300_s1469_s1470_r3542_r3549_p1328/"
           "129478.PowhegPythia8_AU2CT10_WZ_Wm11Z13_mll0p4614d0_2LeptonFilter5:mc12_8TeV.129478.PowhegPythia8_AU2CT10_WZ_Wm11Z13_mll0p4614d0_2LeptonFilter5.merge.NTUP_SUSY.e1300_s1469_s1470_r3542_r3549_p1328/"
