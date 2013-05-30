@@ -9,6 +9,14 @@ file_to_link=( \
   prep_presel_tarball.sh  \
   submit_all_samples.sh  \
   submit_cutflow.sh  \
+
+submit_ttbar_MadGraphPythia.sh
+submit_ttbar_McAtNloJimmy.sh
+submit_ttbar_PowhegPythia.sh
+submit_single_top_AcerMCPythia.sh
+submit_single_top_McAtNloJimmy.sh
+
+
   submit_diboson.sh  \
   submit_drell_yan.sh  \
   submit_egamma_data.sh  \
@@ -17,8 +25,6 @@ file_to_link=( \
   submit_presel.sh  \
   submit_simplified_wA_signal_grids.sh \
   submit_simplified_wC_signal_grids.sh \
-  submit_single_top.sh \
-  submit_ttbar.sh \
   submit_W_plus_jet.sh \
   submit_Z_plus_jet_alpgen.sh \
   submit_Z_plus_jet.sh \
