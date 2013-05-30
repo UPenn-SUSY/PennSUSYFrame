@@ -6,7 +6,7 @@
 DATA_MC='mc'
 STREAM='egamma'
 SIM_TYPE='fullsim'
-OUT_DS_PREFIX='mc12_8TeV.ttbar'
+OUT_DS_PREFIX='mc12_8TeV.ttbar__McAtNloJimmy'
 EXT_FILES=''
 
 # ==============================

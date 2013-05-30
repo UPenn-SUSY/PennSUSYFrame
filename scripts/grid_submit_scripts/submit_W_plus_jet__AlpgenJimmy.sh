@@ -6,7 +6,7 @@
 DATA_MC='mc'
 STREAM='egamma'
 SIM_TYPE='fullsim'
-OUT_DS_PREFIX='mc12_8TeV.W_plus_jet'
+OUT_DS_PREFIX='mc12_8TeV.W_plus_jet__AlpgenJimmy'
 EXT_FILES=''
 
 # ==============================
