@@ -20,7 +20,7 @@ def getGenerator(file_name):
         return 'AcerMCPythia_AUET2BCTEQ6L1'
 
     if 'AlpgenJimmy_AUET2CTEQ6L1' in file_name or 'AlpgenJimmy_Auto_AUET2CTEQ6L1' in file_name:
-        return 'AcerMCPythia_AUET2BCTEQ6L1'
+        return 'AlpgenJimmy_AUET2CTEQ6L1'
 
     if 'MadGraphPythia_AUET2BCTEQ6L1' in file_name or 'MadgraphPythia_AUET2B_CTEQ6L1' in file_name:
         return 'MadGraphPythia_AUET2BCTEQ6L1'
