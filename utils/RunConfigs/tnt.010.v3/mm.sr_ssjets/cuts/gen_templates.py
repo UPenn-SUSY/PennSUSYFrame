@@ -112,87 +112,87 @@ if __name__ == '__main__':
     lepton_pt_list = [None, 10, 12.5, 15]
     jet_pt_list    = [None, 20, 25, 30]
     met_rel_list   = [None, 20, 30, 40, 50]
-    dphi_ll_list   = [None, 0.5, 0.6]
-    mt2_list       = [None, 20, 30, 40, 50, 60, 70]
+    dphi_ll_list   = [None, 0.5, 0.6, 0.7]
+    mt2_list       = [None, 15, 20, 30]
     ptll_list      = [None, 20, 40, 60]
 
     f = open(out_file, 'w')
     for lepton_pt in lepton_pt_list:
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # it 0, baseline
-        f.write( genCutConfig( region_name = 'mm_sr_ss'
-                             , it_num = 0
-                             , lepton_pt = lepton_pt
-                             , num_jets  = None
-                             , jet_pt    = None
-                             , met_rel   = None
-                             , dphi_ll   = None
-                             , mt2       = None
-                             , ptll      = None
-                             )
-               )
+        # # it 0, baseline
+        # f.write( genCutConfig( region_name = 'mm_sr_ss'
+        #                      , it_num = 0
+        #                      , lepton_pt = lepton_pt
+        #                      , num_jets  = None
+        #                      , jet_pt    = None
+        #                      , met_rel   = None
+        #                      , dphi_ll   = None
+        #                      , mt2       = None
+        #                      , ptll      = None
+        #                      )
+        #        )
 
         for jet_pt in jet_pt_list:
             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            # it 1, num jets
-            f.write( genCutConfig( region_name = 'mm_sr_ss'
-                                 , it_num = 1
-                                 , lepton_pt = lepton_pt
-                                 , num_jets  = 1
-                                 , jet_pt    = jet_pt
-                                 , met_rel   = None
-                                 , dphi_ll   = None
-                                 , mt2       = None
-                                 , ptll      = None
-                                 )
-                   )
+            # # it 1, num jets
+            # f.write( genCutConfig( region_name = 'mm_sr_ss'
+            #                      , it_num = 1
+            #                      , lepton_pt = lepton_pt
+            #                      , num_jets  = 1
+            #                      , jet_pt    = jet_pt
+            #                      , met_rel   = None
+            #                      , dphi_ll   = None
+            #                      , mt2       = None
+            #                      , ptll      = None
+            #                      )
+            #        )
 
 
             for met_rel in met_rel_list:
                 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                 # it 2, met_rel
-                f.write( genCutConfig( region_name = 'mm_sr_ss'
-                                     , it_num = 2
-                                     , lepton_pt = lepton_pt
-                                     , num_jets  = 1
-                                     , jet_pt    = jet_pt
-                                     , met_rel   = met_rel
-                                     , dphi_ll   = None
-                                     , mt2       = None
-                                     , ptll      = None
-                                     )
-                       )
+                # f.write( genCutConfig( region_name = 'mm_sr_ss'
+                #                      , it_num = 2
+                #                      , lepton_pt = lepton_pt
+                #                      , num_jets  = 1
+                #                      , jet_pt    = jet_pt
+                #                      , met_rel   = met_rel
+                #                      , dphi_ll   = None
+                #                      , mt2       = None
+                #                      , ptll      = None
+                #                      )
+                #        )
 
 
                 for dphi_ll in dphi_ll_list:
                     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                     # it 3, dphi_ll
-                    f.write( genCutConfig( region_name = 'mm_sr_ss'
-                                         , it_num = 3
-                                         , lepton_pt = lepton_pt
-                                         , num_jets  = 1
-                                         , jet_pt    = jet_pt
-                                         , met_rel   = met_rel
-                                         , dphi_ll   = dphi_ll
-                                         , mt2       = None
-                                         , ptll      = None
-                                         )
-                           )
+                    # f.write( genCutConfig( region_name = 'mm_sr_ss'
+                    #                      , it_num = 3
+                    #                      , lepton_pt = lepton_pt
+                    #                      , num_jets  = 1
+                    #                      , jet_pt    = jet_pt
+                    #                      , met_rel   = met_rel
+                    #                      , dphi_ll   = dphi_ll
+                    #                      , mt2       = None
+                    #                      , ptll      = None
+                    #                      )
+                    #        )
 
                     for mt2 in mt2_list:
                         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                         # it 4, mt2
-                        f.write( genCutConfig( region_name = 'mm_sr_ss'
-                                            , it_num = 4
-                                            , lepton_pt = lepton_pt
-                                            , num_jets  = 1
-                                            , jet_pt    = jet_pt
-                                            , met_rel   = met_rel
-                                            , dphi_ll   = dphi_ll
-                                            , mt2       = mt2
-                                            , ptll      = None
-                                            )
-                            )
+                        # f.write( genCutConfig( region_name = 'mm_sr_ss'
+                        #                     , it_num = 4
+                        #                     , lepton_pt = lepton_pt
+                        #                     , num_jets  = 1
+                        #                     , jet_pt    = jet_pt
+                        #                     , met_rel   = met_rel
+                        #                     , dphi_ll   = dphi_ll
+                        #                     , mt2       = mt2
+                        #                     , ptll      = None
+                        #                     )
+                        #     )
 
                         for ptll in ptll_list:
                             # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
