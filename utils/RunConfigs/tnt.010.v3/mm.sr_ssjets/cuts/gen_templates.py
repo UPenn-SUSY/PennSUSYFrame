@@ -109,8 +109,8 @@ if __name__ == '__main__':
     region = 'mm_sr_ss'
     out_file = '%s.cut_template.config' % region
 
-    lepton_pt_list = [None, 10, 12.5, 15]
-    jet_pt_list    = [None, 20, 25, 30]
+    lepton_pt_list = [10, 12.5, 15]
+    jet_pt_list    = [20, 25, 30]
     met_rel_list   = [None, 20, 30, 40, 50]
     dphi_ll_list   = [None, 0.5, 0.6, 0.7]
     mt2_list       = [None, 15, 20, 30]

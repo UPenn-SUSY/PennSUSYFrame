@@ -512,12 +512,6 @@ in_files:
   # signal_simplified.157972.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_35:
   #   sample_number: 157972
   #   grep_for: signal_simplified.157972.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_35
-  # signal_simplified.157972.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_35:
-  #   sample_number: 157972
-  #   grep_for: signal_simplified.157972.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_35
-  # signal_simplified.157972.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_35:
-  #   sample_number: 157972
-  #   grep_for: signal_simplified.157972.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_35
   # signal_simplified.157973.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_36:
   #   sample_number: 157973
   #   grep_for: signal_simplified.157973.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_36
@@ -536,9 +530,6 @@ in_files:
   # signal_simplified.157978.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_41:
   #   sample_number: 157978
   #   grep_for: signal_simplified.157978.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_41
-  # signal_simplified.157978.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_41:
-  #   sample_number: 157978
-  #   grep_for: signal_simplified.157978.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_41
   # signal_simplified.157979.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_42:
   #   sample_number: 157979
   #   grep_for: signal_simplified.157979.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_42
@@ -548,9 +539,6 @@ in_files:
   # signal_simplified.157981.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_44:
   #   sample_number: 157981
   #   grep_for: signal_simplified.157981.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_44
-  # signal_simplified.157982.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_45:
-  #   sample_number: 157982
-  #   grep_for: signal_simplified.157982.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_45
   # signal_simplified.157982.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_45:
   #   sample_number: 157982
   #   grep_for: signal_simplified.157982.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wC_slep_noWcascade_45
@@ -1769,8 +1757,3 @@ in_files:
   signal_pmssm.165740.Herwigpp_UEEE3_CTEQ6L1_DGemtR50_TB6_M1M2MU_250_500_500_2L:
     sample_number: 165740
     grep_for: signal_pmssm.165740.Herwigpp_UEEE3_CTEQ6L1_DGemtR50_TB6_M1M2MU_250_500_500_2L
-
-
-
-
-
