@@ -46,23 +46,47 @@ def get_list_of_keys(d):
     return list_of_hists
 
 # ------------------------------------------------------------------------------
+def isGoodDir(key):
+    if 'leppt' not in key: return False
+    if 'jetpt' not in key: return False
+    if 'ptll60' in key:    return False
+    return True
+
+# ------------------------------------------------------------------------------
+def removeBadDirs(key_list):
+    new_key_list = sorted([kl for kl in key_list if isGoodDir(kl)])
+    print 'Removed bad dirs -- old: %s  new: %s' % (len(key_list), len(new_key_list))
+    return new_key_list
+
+# ------------------------------------------------------------------------------
 def get_list_of_dirs(d):
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if not isinstance(d, list): d = [d]
 
     key_list_ref = None
     for f in d:
         print 'Checking key list in file: %s' % f.GetName()
         key_list_test = set(get_list_of_keys(f))
+        key_list_test = removeBadDirs(key_list_test)
+
         if key_list_ref == None:
             key_list_ref = key_list_test
         if not key_list_test == key_list_ref:
-            print 'Key list in %s does not match reference key list' % \
-                    f.GetName()
-            assert False
-        assert key_list_test == key_list_ref
-    print '\nAll input files have the same directory structure!\n'
+            print 'Key list in %s does not match reference' % f.GetName()
+            print '    Number differences: %d:' % len( list( set(key_list_ref)
+                                                           - set(key_list_test)
+                                                           )
+                                                     )
 
+            print_details = confirm('print details', False)
+            if print_details:
+                for ref, test in zip(key_list_ref, key_list_test):
+                    print 'ref: %s -- test: %s -- diff: %s' % (ref, test, (ref!=test))
+
+            try_anyway = confirm( 'To anyway?', False)
+            if not try_anyway:
+                assert False
+
+    print '\nAll input files have the same directory structure!\n'
     return list(key_list_ref)
 
 # ------------------------------------------------------------------------------
@@ -478,3 +502,25 @@ def genLegendLabel(key):
                   )
 
     return key
+
+# ------------------------------------------------------------------------------
+def confirm(prompt = None, resp = False):
+    if prompt is None:
+        prompt = 'Confirm'
+
+    if resp:
+        prompt = '%s [%s]|%s: ' % (prompt, 'y', 'n')
+    else:
+        prompt = '%s [%s]|%s: ' % (prompt, 'n', 'y')
+
+    while True:
+        ans = raw_input(prompt)
+        if not ans:
+            return resp
+        if ans not in ['y', 'Y', 'n', 'N']:
+            print 'please enter y or n'
+            continue
+        if ans == 'y' or ans == 'Y':
+            return True
+        if ans == 'n' or ans == 'N':
+            return False

@@ -43,8 +43,10 @@ def main():
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     dirs = hh.Helper.get_list_of_dirs(file_list)
     hists = hh.Helper.get_list_of_hists(file_list[0].GetDirectory(dirs[0]))
-    print hists
-    for d in dirs:
+    num_dirs = len(dirs)
+    # print hists
+    for d_it, d in enumerate(dirs):
+        print 'Printing histograms for cut dir: %s (%d of %d)' % (d, d_it, num_dirs)
         out_file.cd()
         out_file.mkdir(d)
         out_file.cd(d)
@@ -67,7 +69,7 @@ def main():
                                                      , other = hm_other
                                                      )
 
-                print 'Log'
+                # print 'Log'
                 pile_test_stack = hist_painter.pileAndRatio(
                         num_type       = hh.Objects.plain_hist,
                         denom_type     = hh.Objects.stack_hist,
@@ -77,7 +79,7 @@ def main():
                 pile_test_stack.Write('%s__log' % h)
                 pile_test_stack.Close()
 
-                print 'Linear'
+                # print 'Linear'
                 pile_test_stack = hist_painter.pileAndRatio(
                         num_type       = hh.Objects.plain_hist,
                         denom_type     = hh.Objects.stack_hist,

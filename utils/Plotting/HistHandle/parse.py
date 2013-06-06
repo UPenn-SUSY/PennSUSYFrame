@@ -29,7 +29,7 @@ Loader.add_constructor('!include', Loader.include)
 class InputContainer(object):
     # --------------------------------------------------------------------------
     def __init__(self, input_dict):
-        print '\t\tinput_dict: %s' % input_dict
+        # print '\t\tinput_dict: %s' % input_dict
         self.name = input_dict['name']
         self.fill_color   = input_dict['fill_color']
         self.line_color   = input_dict['line_color']
@@ -72,10 +72,10 @@ class InputContainer(object):
                      , dir_name
                      , hist_name
                      ):
-        print 'Creating HistMerger object for:'
-        print '\tName:      %s' % self.name
-        print '\tDirectory: %s' % dir_name
-        print '\tHist:      %s' % hist_name
+        # print 'Creating HistMerger object for:'
+        # print '\tName:      %s' % self.name
+        # print '\tDirectory: %s' % dir_name
+        # print '\tHist:      %s' % hist_name
 
         hist_handle_dict = {}
         for e in self.entries:
@@ -152,9 +152,9 @@ class OptimizeContainer(object):
 
 # ------------------------------------------------------------------------------
 def parseInputs():
-    print '---------------------------------------'
-    print 'parseInputs()'
-    print '---------------------------------------'
+    # print '---------------------------------------'
+    # print 'parseInputs()'
+    # print '---------------------------------------'
     if len(sys.argv) != 3:
         print 'Incorrect number of inputs'
         print 'usage:'
@@ -187,10 +187,10 @@ def interpretEnvVariables(string):
 
 # ------------------------------------------------------------------------------
 def processConfigFile(config_file_name):
-    print '---------------------------------------'
-    print 'processConfigFile(%s)' % config_file_name
-    print '---------------------------------------'
-    print 'config_file_name: %s ' % config_file_name
+    # print '---------------------------------------'
+    # print 'processConfigFile(%s)' % config_file_name
+    # print '---------------------------------------'
+    # print 'config_file_name: %s ' % config_file_name
     config_file = open(config_file_name, 'r')
     config_dict = yaml.load(config_file, Loader)
 
@@ -209,16 +209,16 @@ def processConfigFile(config_file_name):
 
 # ------------------------------------------------------------------------------
 def processInputBlock(input_dict):
-    print '---------------------------------------'
-    print 'processInputBlock(...)'
-    print '    %s' % input_dict
-    print '---------------------------------------'
+    # print '---------------------------------------'
+    # print 'processInputBlock(...)'
+    # print '    %s' % input_dict
+    # print '---------------------------------------'
     input_containers = {}
     input_files = []
     for inp in input_dict:
         key = inp['class']
-        print 'key: %s' % key
-        print '\tinp: %s' % inp
+        # print 'key: %s' % key
+        # print '\tinp: %s' % inp
         input_containers[key] = InputContainer(inp)
 
         input_files.append(input_containers[key].getInputFileList())

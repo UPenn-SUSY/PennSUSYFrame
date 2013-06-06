@@ -92,7 +92,7 @@ class HistPainter(object):
         for key in self.num_merger.hist_handles:
             hist_list.append(self.num_merger.hist_handles[key].hist)
             label_list.append(hh.Helper.genLegendLabel(key))
-            print 'adding numerator option to legend: %s' % self.num_draw_option
+            # print 'adding numerator option to legend: %s' % self.num_draw_option
             draw_opt_list.append(self.num_draw_option)
         # add denominator
         for key in self.denom_merger.hist_handles:
@@ -158,11 +158,11 @@ class HistPainter(object):
                                 );
 
         num_handles = len(label_list)
-        print 'Number of handles to add to entry histogram: %s' % num_handles
+        # print 'Number of handles to add to entry histogram: %s' % num_handles
 
         entry_hists = []
         for it in xrange(num_handles):
-            tmp_hist = ROOT.TH1D( 'entry_hist'
+            tmp_hist = ROOT.TH1D( 'entry_hist__%s' % (''.join(random.choice(string.ascii_lowercase) for x in xrange(5)))
                                 , 'num_entries'
                                 , num_handles + 2
                                 , -0.5
@@ -176,9 +176,9 @@ class HistPainter(object):
             tmp_hist.Fill(it, num_entries[it])
 
             for bin_it in xrange(num_handles):
-                print 'bin: %s' % bin_it
-                print '  label:   %s' % label_list[bin_it]
-                print '  entries: %s' % num_entries[bin_it]
+                # print 'bin: %s' % bin_it
+                # print '  label:   %s' % label_list[bin_it]
+                # print '  entries: %s' % num_entries[bin_it]
                 tmp_hist.GetXaxis().SetBinLabel(bin_it+1, label_list[bin_it])
 
             entry_hists.append(tmp_hist)
@@ -491,10 +491,10 @@ def pileHists( hist_list
         canvas_options = hh.canv_linear
     c = canvas_options.create(name)
 
-    print 'about to set min/max:'
-    print 'hist list:'
-    for hl in hist_list:
-        print '      %s -- %s' % (hl, hl.GetName())
+    # print 'about to set min/max:'
+    # print 'hist list:'
+    # for hl in hist_list:
+    #     print '      %s -- %s' % (hl, hl.GetName())
     setMin(hist_list, canvas_options.log_y, y_min)
     setMax(hist_list, canvas_options.log_y, y_max)
 
@@ -569,9 +569,9 @@ def calcMin(hist_list, log_y = True):
 
 # ------------------------------------------------------------------------------
 def calcMax(hist_list, log_y = True):
-    print '-----------------------------------------'
-    print 'calcMax(log_y = %s)' % log_y
-    print '- - - - - - - - - - - - - - - - - - - - -'
+    # print '-----------------------------------------'
+    # print 'calcMax(log_y = %s)' % log_y
+    # print '- - - - - - - - - - - - - - - - - - - - -'
     if len(hist_list) == 0: return 0.
 
     # TODO come up with better algorithm
@@ -579,14 +579,14 @@ def calcMax(hist_list, log_y = True):
     y_min = min(extremes)
     y_max = max(extremes)
 
-    print 'extremes: %s' % extremes
-    print 'y_min: %s' % y_min
-    print 'y_max: %s' % y_max
+    # print 'extremes: %s' % extremes
+    # print 'y_min: %s' % y_min
+    # print 'y_max: %s' % y_max
 
     # add in a buffer on top and bottom
     # if log_y and y_min > 0 and y_max > 0:
     if log_y:
-        print 'set y_max for log'
+        # print 'set y_max for log'
         if y_min > 0 and y_max > 0:
             y_max = math.pow( 10
                             , ( math.log(y_max, 10)
@@ -596,13 +596,13 @@ def calcMax(hist_list, log_y = True):
         else:
             y_max = 1
     else:
-        print 'set y_max for linear'
+        # print 'set y_max for linear'
         y_max += (y_max - y_min)*0.20
         y_max = max(y_max, 0.)
 
     # return value for max
-    print 'new y_max: %s' % y_max
-    print '========================================='
+    # print 'new y_max: %s' % y_max
+    # print '========================================='
     return y_max
 
 # ------------------------------------------------------------------------------
@@ -617,9 +617,9 @@ def getExtrema(hist_list, log_y = True):
         local_max = None
 
         h_tmp = h
-        print '----------------------------------'
-        print type(h)
-        print type(h_tmp)
+        # print '----------------------------------'
+        # print type(h)
+        # print type(h_tmp)
         if isinstance(h_tmp, ROOT.THStack): continue
         if isinstance(h_tmp, ROOT.TGraph):  continue
         if isinstance(h_tmp, ROOT.TGraphErrors): continue
@@ -630,11 +630,10 @@ def getExtrema(hist_list, log_y = True):
         if isinstance(h_tmp, ROOT.TH2D) or isinstance(h_tmp, ROOT.TH2F):
             num_bins *= (h_tmp.GetYaxis().GetNbins()+2)
 
-        print 'got number of bins:'
-        print '  x: %s' % h_tmp.GetXaxis().GetNbins()
-        print '  y: %s' % h_tmp.GetYaxis().GetNbins()
-        print '  tot: %s' % num_bins
-        # for b in xrange(1, num_bins+1):
+        # print 'got number of bins:'
+        # print '  x: %s' % h_tmp.GetXaxis().GetNbins()
+        # print '  y: %s' % h_tmp.GetYaxis().GetNbins()
+        # print '  tot: %s' % num_bins
         for b in xrange(0, num_bins):
             bin_content = h_tmp.GetBinContent(b)
             bin_content_up   = bin_content + h_tmp.GetBinError(b)
@@ -725,7 +724,7 @@ def draw2DMaps( map_array
                                  )
 
     sig_graph.SetMinimum(0)
-    sig_graph.SetMaximum(6.)
+    sig_graph.SetMaximum(2.)
     cut_graph.SetMinimum(0)
     num_sig_graph.SetMinimum(0)
 
