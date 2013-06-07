@@ -169,10 +169,12 @@ void SelectionTools::MuonSelectionTool::process(
 
   // Check for signal isolation
   int num_good_vertices = vertices.num(VERT_GOOD);
-  double ptcone30 = mu->getIsoCorr( PTCONE
-                                  , 30
-                                  , num_good_vertices
-                                  );
+  //double ptcone30 = mu->getIsoCorr( PTCONE
+  //                                , 30
+  //                                , num_good_vertices
+  //                                );
+  double ptcone30 = mu->ptcone30_trkelstyle();
+
   double ptcone_ratio = ptcone30/pt;
 
   bool pass_pt_iso = passCut( ptcone_ratio
