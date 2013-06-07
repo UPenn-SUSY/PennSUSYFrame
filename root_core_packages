@@ -5,7 +5,6 @@ atlasoff/PhysicsAnalysis/AnalysisCommon/ObjectSelectorCore/tags/ObjectSelectorCo
 atlasoff/PhysicsAnalysis/AnalysisCommon/PATCore/tags/PATCore-00-00-07
 atlasoff/PhysicsAnalysis/AnalysisCommon/PileupReweighting/tags/PileupReweighting-00-02-05
 atlasoff/PhysicsAnalysis/AnalysisCommon/ReweightUtils/tags/ReweightUtils-00-02-13
-atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-01-45
 atlasoff/PhysicsAnalysis/ElectronPhotonID/ElectronEfficiencyCorrection/tags/ElectronEfficiencyCorrection-00-00-09
 atlasoff/PhysicsAnalysis/JetMissingEtID/JetSelectorTools/tags/JetSelectorTools-00-00-16
 atlasoff/PhysicsAnalysis/JetTagging/JetTagPerformanceCalibration/CalibrationDataInterface/tags/CalibrationDataInterface-00-02-01
@@ -15,7 +14,7 @@ atlasoff/PhysicsAnalysis/TileID/TileTripReader/tags/TileTripReader-00-00-06
 atlasoff/Reconstruction/Jet/ApplyJetCalibration/tags/ApplyJetCalibration-00-03-03
 atlasoff/Reconstruction/Jet/JetAnalysisTools/ApplyJetResolutionSmearing/tags/ApplyJetResolutionSmearing-00-01-02
 atlasoff/Reconstruction/Jet/JetResolution/tags/JetResolution-02-00-01
-atlasoff/Reconstruction/Jet/JetUncertainties/tags/JetUncertainties-00-08-05
+atlasoff/Reconstruction/Jet/JetUncertainties/tags/JetUncertainties-00-08-06
 atlasoff/Reconstruction/MissingETUtility/tags/MissingETUtility-01-02-02
 atlasoff/Reconstruction/egamma/egammaAnalysis/egammaAnalysisUtils/tags/egammaAnalysisUtils-00-04-22
 atlasoff/Reconstruction/egamma/egammaEvent/tags/egammaEvent-03-06-20
