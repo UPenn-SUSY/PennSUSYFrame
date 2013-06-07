@@ -46,13 +46,11 @@ void Met::init()
   m_met_utility.setIsMuid(false);
 
   bool is_2012 = true;
-
-  //changing to SUSYMet::Default for now w/o Pile
   bool is_stvf = false;
-  //bool is_stvf = true;
 
   // configure the met utility
   m_met_utility.configMissingET(is_2012, is_stvf);
+  m_met_utility.setJetPUcode(MissingETTags::DEFAULT);
 }
 
 // ----------------------------------------------------------------------------
@@ -73,12 +71,12 @@ void Met::prep( Event* event
 {
   if (!m_prepared) {
     m_met_utility.setAverageIntPerXing(event->averageIntPerXing());
-    m_met_utility.setJetPUcode(MissingETTags::DEFAULT);
+    // m_met_utility.setJetPUcode(MissingETTags::DEFAULT);
 
+    addMet();
     addJets(jets);
     addElectrons(electrons);
     addMuons(muons);
-    addMet();
   }
   METUtility::METObject met_util = m_met_utility.getMissingET( METUtil::RefFinal );
   m_met_vec.Set(met_util.etx(), met_util.ety());
@@ -217,25 +215,20 @@ void Met::addJets(JetContainer* jet_container)
     jet_E.push_back(  jet_tlv.E());
     jet_orig_pt.push_back(jet_raw_tlv.Pt());
 
+    jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_statusWord());
+
     // Don't store jet_wet etc straight away. Need to apply fix first
     // jet_wet.push_back(jet_it->MET_Egamma10NoTau_STVF_wet());
     // jet_wpx.push_back(jet_it->MET_Egamma10NoTau_STVF_wpx());
     // jet_wpy.push_back(jet_it->MET_Egamma10NoTau_STVF_wpy());
 
-    // jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_STVF_statusWord());
-    jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_statusWord());
-
     // temp vectors for fix
-    // std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_STVF_wet();
-    // std::vector<float> jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_STVF_wpx();
-    // std::vector<float> jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_STVF_wpy();
     std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_wet();
     std::vector<float> jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_wpx();
     std::vector<float> jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_wpy();
 
     // temp fix for too large and too small jet weights
     unsigned int num_weights = jet_tmp_wet.size();
-
     for (unsigned int j = 0; j < num_weights; ++j) {
       if (  jet_tmp_wpx[j] < 0.5 * jet_tmp_wet[j]
          || jet_tmp_wpx[j] > 2   * jet_tmp_wet[j]
