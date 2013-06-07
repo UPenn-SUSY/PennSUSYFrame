@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
+#include "SUSYTools//BTagCalib.h" 
 
 // =============================================================================
 class Jet;
@@ -22,6 +23,7 @@ namespace CommonTools
     BTagScaleFactorTool(SCycleBase* parent, const char* name);
     ~BTagScaleFactorTool();
     void BeginInputData( const SInputData& id );
+    void BeginCycle();
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     void clear();
     double getSF(const std::vector<Jet*>&);
@@ -35,6 +37,8 @@ namespace CommonTools
 
     double m_b_tag_sf;
     bool m_is_cached;
+
+    BTagCalib *m_b_tag_calibration;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(BTagScaleFactorTool, 0);

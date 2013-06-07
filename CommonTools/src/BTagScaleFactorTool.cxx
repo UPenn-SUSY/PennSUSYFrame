@@ -11,7 +11,7 @@
 // ----------------------------------------------------------------------------
 CommonTools::BTagScaleFactorTool::BTagScaleFactorTool( SCycleBase* parent
                                                      , const char* name
-                                                     )
+                                                       )
                                                      : ToolBase(parent, name)
 {
   DeclareProperty("do_b_tag_sf", c_do_b_tag_sf = true);
@@ -21,12 +21,17 @@ CommonTools::BTagScaleFactorTool::BTagScaleFactorTool( SCycleBase* parent
   DeclareProperty( "calib_folder"
                  , c_calibration_folder = ""
                  );
+
+  m_b_tag_calibration = 0;
+
 }
 
 // ----------------------------------------------------------------------------
 CommonTools::BTagScaleFactorTool::~BTagScaleFactorTool()
 {
-  // do nothing
+  if(m_b_tag_calibration) delete m_b_tag_calibration;
+
+ // do nothing
 }
 // ----------------------------------------------------------------------------
 void CommonTools::BTagScaleFactorTool::BeginInputData(const SInputData&)
@@ -42,6 +47,26 @@ void CommonTools::BTagScaleFactorTool::BeginInputData(const SInputData&)
     }
   }
 }
+// ----------------------------------------------------------------------------
+void CommonTools::BTagScaleFactorTool::BeginCycle()
+{
+
+  m_logger << DEBUG
+    << "BTagScaleFactorTool::BeginCycle()"
+    << SLogger::endmsg;
+
+  m_logger<< DEBUG
+    <<"BTagScaleFactorTool Calibration Folder: "
+    <<c_calibration_folder
+    << SLogger::endmsg;
+
+  bool use_jvf = false;
+
+  m_b_tag_calibration = new BTagCalib("MV1",c_calibration_file,c_calibration_folder,"0_3511",use_jvf,0.3511,1);
+
+
+}
+
 // ----------------------------------------------------------------------------
 void CommonTools::BTagScaleFactorTool::clear()
 {
@@ -75,21 +100,26 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
       //TODO Make sure operating point is correct for 1328 0.122 for 1181, 
       //expect to be 3511 for 80% wp
 
-      bool use_jvf = false;
 
-      std::pair<std::vector<float>, std::vector<float> > wgtbtag;
-      wgtbtag = BTagCalib::BTagCalibrationFunction( pt_btag
-                                                  , eta_btag
-                                                  , val_btag
-                                                  , pdgid_btag
-                                                  , "MV1"
-                                                  , "0_3511"
-                                                  , 0.3511
-						  , use_jvf
-                                                  , c_calibration_file
-                                                  , c_calibration_folder
-                                                  );
-      m_b_tag_sf = wgtbtag.first.at(0);
+
+      std::pair<std::vector<float>, std::vector<float> > *wgtbtag;
+      //wgtbtag = BTagCalib::BTagCalibrationFunction( pt_btag
+      //                                            , eta_btag
+      //                                            , val_btag
+      //                                            , pdgid_btag
+      //                                            , "MV1"
+      //                                            , "0_3511"
+      //                                            , 0.3511
+      //  					  , use_jvf
+      //                                            , c_calibration_file
+      //                                            , c_calibration_folder
+      //                                            );
+      wgtbtag = m_b_tag_calibration->BTagCalibrationFunction( pt_btag
+                                                            , eta_btag
+                                                            , val_btag
+                                                            , pdgid_btag
+                                                            );
+      m_b_tag_sf = wgtbtag->first.at(0);
 
       m_is_cached = true;
       m_logger << VERBOSE << "b-tag sf: " << m_b_tag_sf << SLogger::endmsg;
