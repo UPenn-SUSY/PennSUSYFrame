@@ -1,0 +1,160 @@
+# ------------------------------------------------------------------------------
+Optimize:
+  - cut_dir:     ee_sr_ss.it0
+    to_optimize: dphi_ll
+    direction:   right
+    scan:        0
+    fixed_points:
+      - 0.0
+      - 0.1
+      - 0.2
+      - 0.3
+      - 0.4
+      - 0.5
+      - 0.6
+      - 0.7
+      - 0.8
+      - 0.9
+      - 1.0
+  - cut_dir:     ee_sr_ss.it1
+    to_optimize: mt2
+    direction:   left
+    scan:        0
+    fixed_points:
+      - 0
+      - 10
+      - 20
+      - 30
+      - 40
+      - 50
+      - 60
+      - 70
+      - 80
+      - 90
+      - 100
+  - cut_dir:     ee_sr_ss.it2
+    to_optimize: ptll
+    direction:   left
+    scan:        0
+    fixed_points:
+      - 0
+      - 20
+      - 40
+      - 60
+      - 80
+  - cut_dir:     ee_sr_ss.it3
+    to_optimize: met_rel
+    direction:   right 
+    scan:        0
+    fixed_points:
+      - 0
+      - 20
+      - 30
+      - 40
+      - 50
+      - 60
+
+# ------------------------------------------------------------------------------
+Inputs:
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_10
+    name: simplifiedModel_wA_slep_noWcascade_10
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 2
+    marker_style: 20
+    modeled: 13
+    target:  21
+    entries:
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_10.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_39
+    name: simplifiedModel_wA_slep_noWcascade_39
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 2
+    marker_style: 20
+    modeled: 13
+    target:  21
+    entries:
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_39.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  - class: Signal_simplifiedModel_wA_slep_noWcascade_40
+    name: simplifiedModel_wA_slep_noWcascade_40
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 2
+    marker_style: 20
+    modeled: 13
+    target:  21
+    entries:
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_40.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  - class: Signal_simplifiedModel_wA_slep_noWcasc_55
+    name: simplifiedModel_wA_slep_noWcasc_55
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 2
+    marker_style: 20
+    modeled: 13
+    target:  21
+    entries:
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_55.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  - class: Signal_simplifiedModel_wA_slep_noWcasc_56
+    name: simplifiedModel_wA_slep_noWcasc_56
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 2
+    marker_style: 20
+    modeled: 13
+    target:  21
+    entries:
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_56.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  - class: Signal_simplifiedModel_wA_slep_noWcasc_57
+    name: simplifiedModel_wA_slep_noWcasc_57
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 2
+    marker_style: 20
+    modeled: 13
+    target:  21
+    entries:
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_57.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+
+  - class: Background
+    name: Background
+    fill_color: 2
+    line_color: 2
+    line_width: 2
+    line_style: 1
+    marker_style: 21
+    modeled: 13
+    target:  21
+    entries:
+          # Diboson
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/background/diboson__PowhegPythia8_AU2CT10.yml
+            # - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/background/diboson__Sherpa_CT10.yml
+
+           # # Single top
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/background/single_top__AcerMCPythia_AUET2BCTEQ6L1.yml
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/background/single_top__McAtNloJimmy_AUET2CT10.yml
+ 
+          # # TTbar
+          # # - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/background/ttbar__MadGraphPythia_AUET2BCTEQ6L1.yml
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/background/ttbar__PowhegPythia_AUET2BCT10.yml
+       # # Z+jets
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/background/Z_plus_jet__AlpgenJimmy_AUET2CTEQ6L1.yml
+
+
+
+          # Fake
+          - !include /afs/cern.ch/user/e/ehines/workdir/Susy/utils/Plotting/configs/tnt.010.v3/entry_files/background/fake_egamma.yml
