@@ -37,6 +37,7 @@ namespace D3PDReader {
         ptcone20( parent.ptcone20, index, this ),
         ptcone30( parent.ptcone30, index, this ),
         ptcone40( parent.ptcone40, index, this ),
+        ptcone30_trkelstyle( parent.ptcone40, index, this ),
         isCombinedMuon( parent.isCombinedMuon, index, this ),
         isSegmentTaggedMuon( parent.isSegmentTaggedMuon, index, this ),
         loose( parent.loose, index, this ),
@@ -125,6 +126,7 @@ is_data(is_data) {
         ptcone20( parent.ptcone20 ),
         ptcone30( parent.ptcone30 ),
         ptcone40( parent.ptcone40 ),
+        ptcone30_trkelstyle( parent.ptcone30_trkelstyle ),
         isCombinedMuon( parent.isCombinedMuon ),
         isSegmentTaggedMuon( parent.isSegmentTaggedMuon ),
         loose( parent.loose ),
@@ -214,6 +216,7 @@ is_data(is_data) {
         ptcone20( this, ::TString( prefix ) + "ptcone20", &master ),
         ptcone30( this, ::TString( prefix ) + "ptcone30", &master ),
         ptcone40( this, ::TString( prefix ) + "ptcone40", &master ),
+        ptcone30_trkelstyle( this, ::TString( prefix ) + "ptcone40", &master ),
         isCombinedMuon( this, ::TString( prefix ) + "isCombinedMuon", &master ),
         isSegmentTaggedMuon( this, ::TString( prefix ) + "isSegmentTaggedMuon", &master ),
         loose( this, ::TString( prefix ) + "loose", &master ),
@@ -294,6 +297,7 @@ is_data(is_data) {
       fHandles[ "ptcone20" ] = &ptcone20;
       fHandles[ "ptcone30" ] = &ptcone30;
       fHandles[ "ptcone40" ] = &ptcone40;
+      fHandles[ "ptcone30_trkelstyle" ] = &ptcone30_trkelstyle;
       fHandles[ "isCombinedMuon" ] = &isCombinedMuon;
       fHandles[ "isSegmentTaggedMuon" ] = &isSegmentTaggedMuon;
       fHandles[ "loose" ] = &loose;
@@ -380,6 +384,7 @@ if (!is_data) {
         ptcone20( this, ::TString( prefix ) + "ptcone20", 0 ),
         ptcone30( this, ::TString( prefix ) + "ptcone30", 0 ),
         ptcone40( this, ::TString( prefix ) + "ptcone40", 0 ),
+        ptcone30_trkelstyle( this, ::TString( prefix ) + "ptcone40", 0 ),
         isCombinedMuon( this, ::TString( prefix ) + "isCombinedMuon", 0 ),
         isSegmentTaggedMuon( this, ::TString( prefix ) + "isSegmentTaggedMuon", 0 ),
         loose( this, ::TString( prefix ) + "loose", 0 ),
@@ -460,6 +465,7 @@ is_data(is_data) {
       fHandles[ "ptcone20" ] = &ptcone20;
       fHandles[ "ptcone30" ] = &ptcone30;
       fHandles[ "ptcone40" ] = &ptcone40;
+      fHandles[ "ptcone30_trkelstyle" ] = &ptcone30_trkelstyle;
       fHandles[ "isCombinedMuon" ] = &isCombinedMuon;
       fHandles[ "isSegmentTaggedMuon" ] = &isSegmentTaggedMuon;
       fHandles[ "loose" ] = &loose;
@@ -550,6 +556,7 @@ if (!is_data) {
       ptcone20.SetName( ::TString( prefix ) + "ptcone20" );
       ptcone30.SetName( ::TString( prefix ) + "ptcone30" );
       ptcone40.SetName( ::TString( prefix ) + "ptcone40" );
+      ptcone30_trkelstyle.SetName(  ::TString( prefix ) + "ptcone30_trkelstyle" );
       isCombinedMuon.SetName( ::TString( prefix ) + "isCombinedMuon" );
       isSegmentTaggedMuon.SetName( ::TString( prefix ) + "isSegmentTaggedMuon" );
       loose.SetName( ::TString( prefix ) + "loose" );
@@ -643,6 +650,7 @@ if (!is_data) {
       ptcone20.ReadFrom( tree );
       ptcone30.ReadFrom( tree );
       ptcone40.ReadFrom( tree );
+      ptcone30_trkelstyle.ReadFrom( tree );
       isCombinedMuon.ReadFrom( tree );
       isSegmentTaggedMuon.ReadFrom( tree );
       loose.ReadFrom( tree );
@@ -731,6 +739,7 @@ if (!is_data) {
       ptcone20.WriteTo( tree );
       ptcone30.WriteTo( tree );
       ptcone40.WriteTo( tree );
+      ptcone30_trkelstyle.WriteTo( tree );
       isCombinedMuon.WriteTo( tree );
       isSegmentTaggedMuon.WriteTo( tree );
       loose.WriteTo( tree );
@@ -856,6 +865,7 @@ if (!is_data) {
       if( ptcone20.IsActive() ) ptcone20();
       if( ptcone30.IsActive() ) ptcone30();
       if( ptcone40.IsActive() ) ptcone40();
+      if( ptcone30_trkelstyle.IsActive() ) ptcone30_trkelstyle();
       if( isCombinedMuon.IsActive() ) isCombinedMuon();
       if( isSegmentTaggedMuon.IsActive() ) isSegmentTaggedMuon();
       if( loose.IsActive() ) loose();
@@ -953,6 +963,7 @@ if (!is_data) {
       ptcone20()->clear();
       ptcone30()->clear();
       ptcone40()->clear();
+      ptcone30_trkelstyle()->clear();
       isCombinedMuon()->clear();
       isSegmentTaggedMuon()->clear();
       loose()->clear();
@@ -1110,6 +1121,12 @@ if (!is_data) {
       } else {
          ptcone40()->push_back( std::numeric_limits< float >::min() );
       }
+      if( el.ptcone30_trkelstyle.IsAvailable() ) {
+         ptcone30_trkelstyle()->push_back( el.ptcone30_trkelstyle() );
+      } else {
+         ptcone30_trkelstyle()->push_back( std::numeric_limits< float >::min() );
+      }
+
       if( el.isCombinedMuon.IsAvailable() ) {
          isCombinedMuon()->push_back( el.isCombinedMuon() );
       } else {

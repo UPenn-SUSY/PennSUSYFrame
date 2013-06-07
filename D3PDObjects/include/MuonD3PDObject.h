@@ -57,6 +57,7 @@ namespace D3PDReader {
       VarProxy< float > ptcone20;
       VarProxy< float > ptcone30;
       VarProxy< float > ptcone40;
+      VarProxy< float > ptcone30_trkelstyle;
       /// Muon identified by combining an ID and a MS track.
       VarProxy< int > isCombinedMuon;
       /// Muon identified by inner-detector seeded identification (segment tagging or ID+MS refit).
@@ -187,6 +188,7 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > ptcone20;
       VarHandle< vector<float>* > ptcone30;
       VarHandle< vector<float>* > ptcone40;
+      VarHandle< vector<float>* > ptcone30_trkelstyle;
       /// Muon identified by combining an ID and a MS track.
       VarHandle< vector<int>* > isCombinedMuon;
       /// Muon identified by inner-detector seeded identification (segment tagging or ID+MS refit).
