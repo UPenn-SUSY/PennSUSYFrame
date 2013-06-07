@@ -35,6 +35,9 @@ namespace D3PDReader {
         CellOut_etx( this, ::TString( prefix ) + "CellOut_etx", &master ),
         CellOut_ety( this, ::TString( prefix ) + "CellOut_ety", &master ),
         CellOut_sumet( this, ::TString( prefix ) + "CellOut_sumet", &master ),
+        CellOut_Eflow_etx( this, ::TString( prefix ) + "CellOut_Eflow_etx", &master ),
+        CellOut_Eflow_ety( this, ::TString( prefix ) + "CellOut_Eflow_ety", &master ),
+        CellOut_Eflow_sumet( this, ::TString( prefix ) + "CellOut_Eflow_sumet", &master ),
         Track_etx( this, ::TString( prefix ) + "Track_etx", &master ),
         Track_ety( this, ::TString( prefix ) + "Track_ety", &master ),
         Track_sumet( this, ::TString( prefix ) + "Track_sumet", &master ),
@@ -61,6 +64,9 @@ is_data(is_data) {
       fHandles[ "CellOut_etx" ] = &CellOut_etx;
       fHandles[ "CellOut_ety" ] = &CellOut_ety;
       fHandles[ "CellOut_sumet" ] = &CellOut_sumet;
+      fHandles[ "CellOut_Eflow_etx" ] = &CellOut_Eflow_etx;
+      fHandles[ "CellOut_Eflow_ety" ] = &CellOut_Eflow_ety;
+      fHandles[ "CellOut_Eflow_sumet" ] = &CellOut_Eflow_sumet;
       fHandles[ "Track_etx" ] = &Track_etx;
       fHandles[ "Track_ety" ] = &Track_ety;
       fHandles[ "Track_sumet" ] = &Track_sumet;
@@ -93,6 +99,9 @@ is_data(is_data) {
         CellOut_etx( this, ::TString( prefix ) + "CellOut_etx", 0 ),
         CellOut_ety( this, ::TString( prefix ) + "CellOut_ety", 0 ),
         CellOut_sumet( this, ::TString( prefix ) + "CellOut_sumet", 0 ),
+        CellOut_Eflow_etx( this, ::TString( prefix ) + "CellOut_Eflow_etx", 0 ),
+        CellOut_Eflow_ety( this, ::TString( prefix ) + "CellOut_Eflow_ety", 0 ),
+        CellOut_Eflow_sumet( this, ::TString( prefix ) + "CellOut_Eflow_sumet", 0 ),
         Track_etx( this, ::TString( prefix ) + "Track_etx", 0 ),
         Track_ety( this, ::TString( prefix ) + "Track_ety", 0 ),
         Track_sumet( this, ::TString( prefix ) + "Track_sumet", 0 ),
@@ -119,6 +128,9 @@ is_data(is_data) {
       fHandles[ "CellOut_etx" ] = &CellOut_etx;
       fHandles[ "CellOut_ety" ] = &CellOut_ety;
       fHandles[ "CellOut_sumet" ] = &CellOut_sumet;
+      fHandles[ "CellOut_Eflow_etx" ] = &CellOut_Eflow_etx;
+      fHandles[ "CellOut_Eflow_ety" ] = &CellOut_Eflow_ety;
+      fHandles[ "CellOut_Eflow_sumet" ] = &CellOut_Eflow_sumet;
       fHandles[ "Track_etx" ] = &Track_etx;
       fHandles[ "Track_ety" ] = &Track_ety;
       fHandles[ "Track_sumet" ] = &Track_sumet;
@@ -155,6 +167,9 @@ is_data(is_data) {
       CellOut_etx.SetName( ::TString( prefix ) + "CellOut_etx" );
       CellOut_ety.SetName( ::TString( prefix ) + "CellOut_ety" );
       CellOut_sumet.SetName( ::TString( prefix ) + "CellOut_sumet" );
+      CellOut_Eflow_etx.SetName( ::TString( prefix ) + "CellOut_Eflow_etx" );
+      CellOut_Eflow_ety.SetName( ::TString( prefix ) + "CellOut_Eflow_ety" );
+      CellOut_Eflow_sumet.SetName( ::TString( prefix ) + "CellOut_Eflow_sumet" );
       Track_etx.SetName( ::TString( prefix ) + "Track_etx" );
       Track_ety.SetName( ::TString( prefix ) + "Track_ety" );
       Track_sumet.SetName( ::TString( prefix ) + "Track_sumet" );
@@ -194,6 +209,9 @@ is_data(is_data) {
       CellOut_etx.ReadFrom( tree );
       CellOut_ety.ReadFrom( tree );
       CellOut_sumet.ReadFrom( tree );
+      CellOut_Eflow_etx.ReadFrom( tree );
+      CellOut_Eflow_ety.ReadFrom( tree );
+      CellOut_Eflow_sumet.ReadFrom( tree );
       Track_etx.ReadFrom( tree );
       Track_ety.ReadFrom( tree );
       Track_sumet.ReadFrom( tree );
@@ -228,6 +246,9 @@ is_data(is_data) {
       CellOut_etx.WriteTo( tree );
       CellOut_ety.WriteTo( tree );
       CellOut_sumet.WriteTo( tree );
+      CellOut_Eflow_etx.WriteTo( tree );
+      CellOut_Eflow_ety.WriteTo( tree );
+      CellOut_Eflow_sumet.WriteTo( tree );
       Track_etx.WriteTo( tree );
       Track_ety.WriteTo( tree );
       Track_sumet.WriteTo( tree );
@@ -299,6 +320,9 @@ is_data(is_data) {
       if( CellOut_etx.IsActive() ) CellOut_etx();
       if( CellOut_ety.IsActive() ) CellOut_ety();
       if( CellOut_sumet.IsActive() ) CellOut_sumet();
+      if( CellOut_Eflow_etx.IsActive() ) CellOut_Eflow_etx();
+      if( CellOut_Eflow_ety.IsActive() ) CellOut_Eflow_ety();
+      if( CellOut_Eflow_sumet.IsActive() ) CellOut_Eflow_sumet();
       if( Track_etx.IsActive() ) Track_etx();
       if( Track_ety.IsActive() ) Track_ety();
       if( Track_sumet.IsActive() ) Track_sumet();

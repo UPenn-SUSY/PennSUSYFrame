@@ -30,7 +30,7 @@ public:
   // main constructor
   Met(const ::Long64_t& master, const char* prefix = "", bool is_data = true );
 
-  void init(std::string jet_algo);
+  void init();
   void clear();
   void prep(Event*, ElectronContainer*, MuonContainer* , JetContainer*);
 

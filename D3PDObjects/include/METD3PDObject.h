@@ -60,6 +60,9 @@ namespace D3PDReader {
       VarHandle< Float_t > CellOut_etx;
       VarHandle< Float_t > CellOut_ety;
       VarHandle< Float_t > CellOut_sumet;
+      VarHandle< Float_t > CellOut_Eflow_etx;
+      VarHandle< Float_t > CellOut_Eflow_ety;
+      VarHandle< Float_t > CellOut_Eflow_sumet;
       VarHandle< Float_t > Track_etx;
       VarHandle< Float_t > Track_ety;
       VarHandle< Float_t > Track_sumet;

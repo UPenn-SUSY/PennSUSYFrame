@@ -31,39 +31,18 @@ Met::Met( const ::Long64_t& master
 }
 
 // ----------------------------------------------------------------------------
-void Met::init(std::string jet_algo)
+void Met::init()
 {
 
   // Set the jet algorithm option
-  m_jet_algo = jet_algo;
-
-  // This LC option is part of the new recommendation. I don't know what
-  // di-lep is using, so I am adding it but forcing it off for now.
-  if (m_jet_algo.find("LC") != std::string::npos) {
-    m_met_utility.defineMissingET( true  // doRefEle
-                                 , true  // doRefGamma
-                                 , false // doRefTau
-                                 , true  // doRefJet
-                                 , false // doSoftJets
-                                 , false // doRefMuon
-                                 , true  // doMuonTotal
-                                 , false // doCellOut
-                                 , true  // doCellOutEflow
-                                 );
-  }
-  else {
-    m_met_utility.defineMissingET( true  // doRefEle
-                                 , true  // doRefGamma
-                                 , false // doRefTau
-                                 , true  // doRefJet
-                                 , false // doSoftJets
-                                 , false // doRefMuon
-                                 , true  // doMuonTotal
-                                 , true  // doCellOut
-                                 , false // doCellOutEflow
-                                 );
-  }
-
+  m_met_utility.defineMissingET( true  // doRefEle
+                               , true  // doRefGamma
+                               , false // doRefTau
+                               , true  // doRefJet
+                               , false // doRefMuon
+                               , true  // doMuonTotal
+                               , true  // doSoftTerms
+                               );
   m_met_utility.setIsMuid(false);
 
   bool is_2012 = true;
@@ -101,7 +80,7 @@ void Met::prep( Event* event
     addMuons(muons);
     addMet();
   }
-  METObject met_util = m_met_utility.getMissingET( METUtil::RefFinal );
+  METUtility::METObject met_util = m_met_utility.getMissingET( METUtil::RefFinal );
   m_met_vec.Set(met_util.etx(), met_util.ety());
 
   m_prepared = true;
@@ -285,45 +264,19 @@ void Met::addJets(JetContainer* jet_container)
                                 , &jet_statusWord
                                 );
 
-  m_met_utility.setOriJetParameters(&jet_orig_pt);
+  // m_met_utility.setOriJetParameters(&jet_orig_pt);
 }
 
 // ----------------------------------------------------------------------------
 void Met::addMet()
 {
-  // check the jet algorithm to determine the correct way to add MET terms
-  if (m_jet_algo.find("LC") != std::string::npos) {
-    // m_met_utility.setMETTerm( METUtil::SoftJets
-    //                         , STVF_SoftJets_etx()
-    //                         , STVF_SoftJets_ety()
-    //                         , STVF_SoftJets_sumet()
-    //                         );
-    // m_met_utility.setMETTerm( METUtil::CellOutEflow
-    //                         , STVF_CellOutCorr_etx()
-    //                         , STVF_CellOutCorr_ety()
-    //                         , STVF_CellOutCorr_sumet()
-    //                         );
-    // SUSYMet::Default
-    m_met_utility.setMETTerm( METUtil::CellOutEflow
-                            , CellOut_etx()
-                            , CellOut_ety()
-                            , CellOut_sumet()
-                            );
-  }
-  else {
-    m_met_utility.setMETTerm( METUtil::CellOutEflow
-                            , CellOut_etx()
-                            , CellOut_ety()
-                            , CellOut_sumet()
-                            );
-  }
+  m_met_utility.setMETTerm( METUtil::SoftTerms
+                          , CellOut_Eflow_etx()
+                          , CellOut_Eflow_ety()
+                          , CellOut_Eflow_sumet()
+                          );
 
-  // add RefGamma term regardless of algorithm
-  // m_met_utility.setMETTerm( METUtil::RefGamma
-  //                         , STVF_RefGamma_etx()
-  //                         , STVF_RefGamma_ety()
-  //                         , STVF_RefGamma_sumet()
-  //                         );
+
   m_met_utility.setMETTerm( METUtil::RefGamma
                           , RefGamma_etx()
                           , RefGamma_ety()

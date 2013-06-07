@@ -310,7 +310,7 @@ void SusyDiLeptonCutFlowCycle::getTools()
           , "JetCalibration"
           );
   //Initizilize MEt
-  m_met->init(c_jet_prefix);
+  m_met->init();
 
 
   // Initialize vertices
