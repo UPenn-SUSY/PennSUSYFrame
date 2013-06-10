@@ -45,11 +45,11 @@ void Met::init()
                                );
   m_met_utility.setIsMuid(false);
 
-  bool is_2012 = true;
-  bool is_stvf = false;
+  bool m_is_2012 = true;
+  bool m_is_stvf = false;
 
   // configure the met utility
-  m_met_utility.configMissingET(is_2012, is_stvf);
+  m_met_utility.configMissingET(m_is_2012, m_is_stvf);
   m_met_utility.setJetPUcode(MissingETTags::DEFAULT);
 }
 
@@ -82,6 +82,45 @@ void Met::prep( Event* event
   m_met_vec.Set(met_util.etx(), met_util.ety());
 
   m_prepared = true;
+}
+
+// -----------------------------------------------------------------------------
+void Met::doWeightFix( std::vector<float>& wet
+                     , std::vector<float>& wpx
+                     , std::vector<float>& wpy
+                     )
+{
+    // temp fix for too large and too small electron weights
+    unsigned int num_weights = wet.size();
+    for (unsigned int cl = 0; cl < num_weights; ++cl) {
+      if (  wpx[cl] < 0.5 * wet[cl]
+         || wpx[cl] > 2   * wet[cl]
+         ) {
+        wpx[cl] = wet[cl];
+      }
+      if (  wpy[cl] < 0.5 * wet[cl]
+         || wpy[cl] > 2   * wet[cl]
+         ) {
+        wpy[cl] = wet[cl];
+      }
+    }
+}
+
+// ----------------------------------------------------------------------------
+void Met::addMet()
+{
+  m_met_utility.setMETTerm( METUtil::SoftTerms
+                          , CellOut_etx()
+                          , CellOut_ety()
+                          , CellOut_sumet()
+                          );
+
+
+  m_met_utility.setMETTerm( METUtil::RefGamma
+                          , RefGamma_etx()
+                          , RefGamma_ety()
+                          , RefGamma_sumet()
+                          );
 }
 
 // ----------------------------------------------------------------------------
@@ -122,38 +161,38 @@ void Met::addElectrons(ElectronContainer* electron_container)
     el_eta.push_back(el_tlv.Eta());
     el_phi.push_back(el_tlv.Phi());
 
-    // Don't store el_wet etc straight away. Need to apply fix first
-    // el_wet.push_back((*el_it)->MET_Egamma10NoTau_STVF_wet());
-    // el_wpx.push_back((*el_it)->MET_Egamma10NoTau_STVF_wpx());
-    // el_wpy.push_back((*el_it)->MET_Egamma10NoTau_STVF_wpy());
-
-    // el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_STVF_statusWord());
-    el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_statusWord());
-
-    // temp vectors for fix
-    // std::vector<float> el_tmp_wet = (*el_it)->MET_Egamma10NoTau_STVF_wet();
-    // std::vector<float> el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_STVF_wpx();
-    // std::vector<float> el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_STVF_wpy();
-    std::vector<float> el_tmp_wet = (*el_it)->MET_Egamma10NoTau_wet();
-    std::vector<float> el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_wpx();
-    std::vector<float> el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_wpy();
-
-    // if (el_tmp_wet.size() == 0.) continue;
-
-    // temp fix for too large and too small electron weights
-    unsigned int num_weights = el_tmp_wet.size();
-    for (unsigned int cl = 0; cl < num_weights; ++cl) {
-      if (  el_tmp_wpx[cl] < 0.5 * el_tmp_wet[cl]
-         || el_tmp_wpx[cl] > 2   * el_tmp_wet[cl]
-         ) {
-        el_tmp_wpx[cl] = el_tmp_wet[cl];
-      }
-      if (  el_tmp_wpy[cl] < 0.5 * el_tmp_wet[cl]
-         || el_tmp_wpy[cl] > 2   * el_tmp_wet[cl]
-         ) {
-        el_tmp_wpy[cl] = el_tmp_wet[cl];
-      }
+    std::vector<float> el_tmp_wet;
+    std::vector<float> el_tmp_wpx;
+    std::vector<float> el_tmp_wpy;
+    if (m_is_stvf) {
+      // el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_STVF_statusWord());
+      // el_tmp_wet = (*el_it)->MET_Egamma10NoTau_STVF_wet();
+      // el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_STVF_wpx();
+      // el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_STVF_wpy();
     }
+    else {
+      el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_statusWord());
+      el_tmp_wet = (*el_it)->MET_Egamma10NoTau_wet();
+      el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_wpx();
+      el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_wpy();
+    }
+
+    doWeightFix(el_tmp_wet, el_tmp_wpx, el_tmp_wpy);
+
+    // // temp fix for too large and too small electron weights
+    // unsigned int num_weights = el_tmp_wet.size();
+    // for (unsigned int cl = 0; cl < num_weights; ++cl) {
+    //   if (  el_tmp_wpx[cl] < 0.5 * el_tmp_wet[cl]
+    //      || el_tmp_wpx[cl] > 2   * el_tmp_wet[cl]
+    //      ) {
+    //     el_tmp_wpx[cl] = el_tmp_wet[cl];
+    //   }
+    //   if (  el_tmp_wpy[cl] < 0.5 * el_tmp_wet[cl]
+    //      || el_tmp_wpy[cl] > 2   * el_tmp_wet[cl]
+    //      ) {
+    //     el_tmp_wpy[cl] = el_tmp_wet[cl];
+    //   }
+    // }
 
     el_wet.push_back(el_tmp_wet);
     el_wpx.push_back(el_tmp_wpx);
@@ -213,34 +252,40 @@ void Met::addJets(JetContainer* jet_container)
     jet_eta.push_back(jet_tlv.Eta());
     jet_phi.push_back(jet_tlv.Phi());
     jet_E.push_back(  jet_tlv.E());
-    jet_orig_pt.push_back(jet_raw_tlv.Pt());
+    // jet_orig_pt.push_back(jet_raw_tlv.Pt());
 
-    jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_statusWord());
-
-    // Don't store jet_wet etc straight away. Need to apply fix first
-    // jet_wet.push_back(jet_it->MET_Egamma10NoTau_STVF_wet());
-    // jet_wpx.push_back(jet_it->MET_Egamma10NoTau_STVF_wpx());
-    // jet_wpy.push_back(jet_it->MET_Egamma10NoTau_STVF_wpy());
-
-    // temp vectors for fix
-    std::vector<float> jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_wet();
-    std::vector<float> jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_wpx();
-    std::vector<float> jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_wpy();
-
-    // temp fix for too large and too small jet weights
-    unsigned int num_weights = jet_tmp_wet.size();
-    for (unsigned int j = 0; j < num_weights; ++j) {
-      if (  jet_tmp_wpx[j] < 0.5 * jet_tmp_wet[j]
-         || jet_tmp_wpx[j] > 2   * jet_tmp_wet[j]
-         ) {
-        jet_tmp_wpx[j] = jet_tmp_wet[j];
-      }
-      if (  jet_tmp_wpy[j] < 0.5 * jet_tmp_wet[j]
-         || jet_tmp_wpy[j] > 2   * jet_tmp_wet[j]
-         ) {
-        jet_tmp_wpy[j] = jet_tmp_wet[j];
-      }
+    std::vector<float> jet_tmp_wet;
+    std::vector<float> jet_tmp_wpx;
+    std::vector<float> jet_tmp_wpy;
+    if (m_is_stvf) {
+      // jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_STVF_statusWord());
+      // jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_STVF_wet();
+      // jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_STVF_wpx();
+      // jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_STVF_wpy();
     }
+    else {
+      jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_statusWord());
+      jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_wet();
+      jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_wpx();
+      jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_wpy();
+    }
+
+    doWeightFix(jet_tmp_wet, jet_tmp_wpx, jet_tmp_wpy);
+
+    // // temp fix for too large and too small jet weights
+    // unsigned int num_weights = jet_tmp_wet.size();
+    // for (unsigned int j = 0; j < num_weights; ++j) {
+    //   if (  jet_tmp_wpx[j] < 0.5 * jet_tmp_wet[j]
+    //      || jet_tmp_wpx[j] > 2   * jet_tmp_wet[j]
+    //      ) {
+    //     jet_tmp_wpx[j] = jet_tmp_wet[j];
+    //   }
+    //   if (  jet_tmp_wpy[j] < 0.5 * jet_tmp_wet[j]
+    //      || jet_tmp_wpy[j] > 2   * jet_tmp_wet[j]
+    //      ) {
+    //     jet_tmp_wpy[j] = jet_tmp_wet[j];
+    //   }
+    // }
 
     jet_wet.push_back(jet_tmp_wet);
     jet_wpx.push_back(jet_tmp_wpx);
@@ -258,23 +303,6 @@ void Met::addJets(JetContainer* jet_container)
                                 );
 
   // m_met_utility.setOriJetParameters(&jet_orig_pt);
-}
-
-// ----------------------------------------------------------------------------
-void Met::addMet()
-{
-  m_met_utility.setMETTerm( METUtil::SoftTerms
-                          , CellOut_Eflow_etx()
-                          , CellOut_Eflow_ety()
-                          , CellOut_Eflow_sumet()
-                          );
-
-
-  m_met_utility.setMETTerm( METUtil::RefGamma
-                          , RefGamma_etx()
-                          , RefGamma_ety()
-                          , RefGamma_sumet()
-                          );
 }
 
 // ----------------------------------------------------------------------------

@@ -52,12 +52,17 @@ public:
 
 private:
   bool m_prepared;
-  std::string m_jet_algo;
+  bool m_is_2012;
+  bool m_is_stvf;
   METUtility m_met_utility;
 
+  void doWeightFix( std::vector<float>& wet
+                  , std::vector<float>& wpx
+                  , std::vector<float>& wpy
+                  );
+  void addMet();
   void addElectrons(ElectronContainer*);
   void addJets(JetContainer*);
-  void addMet();
   void addMuons(MuonContainer*);
 
   template <class T>
