@@ -10,6 +10,7 @@
 
 #include "TLorentzVector.h"
 
+#include "AtlasSFrameUtils/include/CycleMacros.h"
 #include "D3PDObjects/include/METD3PDObject.h"
 #include "MissingETUtility/METUtility.h"
 
@@ -32,7 +33,12 @@ public:
 
   void init();
   void clear();
-  void prep(Event*, ElectronContainer*, MuonContainer* , JetContainer*);
+  void prep( Event*
+           , ElectronContainer*
+           , MuonContainer*
+           , JetContainer*
+           , SYST which_syst = NOMINAL
+           );
 
 
   TVector2 getMetRefFinalVec() const;
@@ -64,6 +70,7 @@ private:
   void addElectrons(ElectronContainer*);
   void addJets(JetContainer*);
   void addMuons(MuonContainer*);
+  METUtility::METObject calcMet(SYST);
 
   template <class T>
     static double getMinPhi(const Met*, const std::vector<T*>&);

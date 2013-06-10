@@ -67,6 +67,7 @@ void Met::prep( Event* event
               , ElectronContainer* electrons
               , MuonContainer* muons
               , JetContainer* jets
+              , SYST which_syst
               )
 {
   if (!m_prepared) {
@@ -78,7 +79,24 @@ void Met::prep( Event* event
     addElectrons(electrons);
     addMuons(muons);
   }
-  METUtility::METObject met_util = m_met_utility.getMissingET( METUtil::RefFinal );
+  // METUtility::METObject met_util = m_met_utility.getMissingET( METUtil::RefFinal );
+  METUtility::METObject met_util;
+
+  // METUtility::METObject met_util;
+  // switch (which_syst) {
+  //   case MET_SCALE_ST_UP:
+  //     met_util.getMissingET( METUtil::RefFinal, METUtil::ScaleSoftTermsUp);
+  //     break;
+  //   case MET_SCALE_ST_DOWN:
+  //     met_util.getMissingET( METUtil::RefFinal, METUtil::ScaleSoftTermsDown);
+  //     break;
+  //   case MET_RES_ST:
+  //     met_util.getMissingET( METUtil::RefFinal, METUtil::ResoSoftTermsUp);
+  //     break;
+  //   case NOMINAL:
+  //   default:
+  //     met_util = m_met_utility.getMissingET( METUtil::RefFinal );
+  // }
   m_met_vec.Set(met_util.etx(), met_util.ety());
 
   m_prepared = true;
@@ -179,21 +197,6 @@ void Met::addElectrons(ElectronContainer* electron_container)
 
     doWeightFix(el_tmp_wet, el_tmp_wpx, el_tmp_wpy);
 
-    // // temp fix for too large and too small electron weights
-    // unsigned int num_weights = el_tmp_wet.size();
-    // for (unsigned int cl = 0; cl < num_weights; ++cl) {
-    //   if (  el_tmp_wpx[cl] < 0.5 * el_tmp_wet[cl]
-    //      || el_tmp_wpx[cl] > 2   * el_tmp_wet[cl]
-    //      ) {
-    //     el_tmp_wpx[cl] = el_tmp_wet[cl];
-    //   }
-    //   if (  el_tmp_wpy[cl] < 0.5 * el_tmp_wet[cl]
-    //      || el_tmp_wpy[cl] > 2   * el_tmp_wet[cl]
-    //      ) {
-    //     el_tmp_wpy[cl] = el_tmp_wet[cl];
-    //   }
-    // }
-
     el_wet.push_back(el_tmp_wet);
     el_wpx.push_back(el_tmp_wpx);
     el_wpy.push_back(el_tmp_wpy);
@@ -252,7 +255,6 @@ void Met::addJets(JetContainer* jet_container)
     jet_eta.push_back(jet_tlv.Eta());
     jet_phi.push_back(jet_tlv.Phi());
     jet_E.push_back(  jet_tlv.E());
-    // jet_orig_pt.push_back(jet_raw_tlv.Pt());
 
     std::vector<float> jet_tmp_wet;
     std::vector<float> jet_tmp_wpx;
@@ -272,21 +274,6 @@ void Met::addJets(JetContainer* jet_container)
 
     doWeightFix(jet_tmp_wet, jet_tmp_wpx, jet_tmp_wpy);
 
-    // // temp fix for too large and too small jet weights
-    // unsigned int num_weights = jet_tmp_wet.size();
-    // for (unsigned int j = 0; j < num_weights; ++j) {
-    //   if (  jet_tmp_wpx[j] < 0.5 * jet_tmp_wet[j]
-    //      || jet_tmp_wpx[j] > 2   * jet_tmp_wet[j]
-    //      ) {
-    //     jet_tmp_wpx[j] = jet_tmp_wet[j];
-    //   }
-    //   if (  jet_tmp_wpy[j] < 0.5 * jet_tmp_wet[j]
-    //      || jet_tmp_wpy[j] > 2   * jet_tmp_wet[j]
-    //      ) {
-    //     jet_tmp_wpy[j] = jet_tmp_wet[j];
-    //   }
-    // }
-
     jet_wet.push_back(jet_tmp_wet);
     jet_wpx.push_back(jet_tmp_wpx);
     jet_wpy.push_back(jet_tmp_wpy);
@@ -301,8 +288,6 @@ void Met::addJets(JetContainer* jet_container)
                                 , &jet_wpy
                                 , &jet_statusWord
                                 );
-
-  // m_met_utility.setOriJetParameters(&jet_orig_pt);
 }
 
 // ----------------------------------------------------------------------------
@@ -374,6 +359,34 @@ void Met::addMuons(MuonContainer* muon_container)
                                       , &mu_charge
                                       );
 }
+
+// -----------------------------------------------------------------------------
+METUtility::METObject Met::calcMet(SYST which_syst)
+{
+  METUtility::METObject met_util;
+  switch (which_syst) {
+    case MET_SCALE_ST_UP:
+      met_util = m_met_utility.getMissingET( METUtil::RefFinal
+                                           , METUtil::ScaleSoftTermsUp
+                                           );
+      break;
+    case MET_SCALE_ST_DOWN:
+      met_util = m_met_utility.getMissingET( METUtil::RefFinal
+                                           , METUtil::ScaleSoftTermsDown
+                                           );
+      break;
+    case MET_RES_ST:
+      met_util = m_met_utility.getMissingET( METUtil::RefFinal
+                                           , METUtil::ResoSoftTermsUp
+                                           );
+      break;
+    case NOMINAL:
+    default:
+      met_util = m_met_utility.getMissingET( METUtil::RefFinal );
+  }
+  return met_util;
+}
+
 // ----------------------------------------------------------------------------
 TVector2 Met::getMetRefFinalVec() const
 {
