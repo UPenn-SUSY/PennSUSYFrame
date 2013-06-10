@@ -211,7 +211,7 @@ bool SelectionTools::JetSelectionTool::isCaloProblemJet( const Jet* jet
                                                        , const Met* met
                                                        )
 {
-  if (jet->getTlv().Pt() <= 30e3) return false;
+  if (jet->getTlv().Pt() <= 40e3) return false;
   if (jet->BCH_CORR_JET() <= 0.05) return false;
   float dphi_jet_met = fabs(CommonTools::DeltaPhiTool::getDeltaPhi(jet, met));
   if (dphi_jet_met >= 0.3) return false;

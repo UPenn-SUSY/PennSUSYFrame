@@ -16,6 +16,8 @@ import parse_yaml_config as parse
 # ------------------------------------------------------------------------------
 def main():
     config_dict = parse.parseInputs()
+    if config_dict is None:
+        return
 
     xml_file_name = config_dict['XmlFileName']
     out_dir_name  = config_dict['OutputDirectory']

@@ -16,7 +16,7 @@ SelectionTools::MuonSelectionTool::MuonSelectionTool(
   DeclareProperty("baseline_max_pt", c_baseline_max_pt = -1);
 
   DeclareProperty("baseline_min_eta", c_baseline_min_eta = -1);
-  DeclareProperty("baseline_max_eta", c_baseline_max_eta = 2.4);
+  DeclareProperty("baseline_max_eta", c_baseline_max_eta = 2.5);
 
   DeclareProperty( "baseline_min_b_layer_hits"
                  , c_baseline_min_b_layer_hits = 1
@@ -44,6 +44,9 @@ SelectionTools::MuonSelectionTool::MuonSelectionTool(
                  , c_baseline_max_trt_ol_fraction = 0.9
                  );
 
+
+  DeclareProperty("signal_min_eta", c_signal_min_eta = -1);
+  DeclareProperty("signal_max_eta", c_signal_max_eta = 2.4);
 
   DeclareProperty("signal_min_d0_sig", c_signal_min_d0_sig = -1);
   DeclareProperty("signal_max_d0_sig", c_signal_max_d0_sig = 3.);

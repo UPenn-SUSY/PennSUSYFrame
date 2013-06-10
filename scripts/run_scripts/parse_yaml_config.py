@@ -10,6 +10,11 @@ import find_latest_grl as grl
 
 # ------------------------------------------------------------------------------
 def parseInputs():
+    if len(sys.argv) is not 2:
+        print '%d inputs provided' % len(sys.argv)
+        print 'please provide a config file'
+        return None
+
     global_config_file = sys.argv[1]
     print global_config_file
 

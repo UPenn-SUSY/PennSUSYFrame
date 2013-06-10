@@ -72,6 +72,9 @@ namespace SelectionTools
     double c_baseline_max_trt_ol_fraction;
 
     // signal cut values
+    double c_signal_min_eta;
+    double c_signal_max_eta;
+
     double c_signal_min_d0_sig;
     double c_signal_max_d0_sig;
 
