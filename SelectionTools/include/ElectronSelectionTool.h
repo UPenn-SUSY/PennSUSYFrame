@@ -27,6 +27,8 @@ namespace SelectionTools
     bool isBaseline(Electron*);
     bool isSignal(Electron*);
 
+    bool isInCrack(Electron*);
+
     std::vector<Electron*> getBaselineElectrons(const ElectronContainer&);
     std::vector<Electron*> getBaselineElectrons(
         const std::vector<Electron*>& all_electrons);

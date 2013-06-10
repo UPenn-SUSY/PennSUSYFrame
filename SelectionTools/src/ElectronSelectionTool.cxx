@@ -116,6 +116,12 @@ void SelectionTools::ElectronSelectionTool::process(
                             , c_signal_max_etcone_cut
                             );
   el_desc->setPassCaloIso(pass_etcone);
+
+
+  //Check for Crack Electrons
+
+  bool is_in_crack = isInCrack(el);
+  el_desc->setIsInCrack(is_in_crack);
 }
 
 // ----------------------------------------------------------------------------
@@ -206,6 +212,16 @@ std::vector<Electron*>
   }
 
   return signal_electrons;
+}
+// ----------------------------------------------------------------------------
+bool SelectionTools::ElectronSelectionTool::isInCrack(Electron *el)
+{
+
+  double crack_eta_min = 1.37;
+  double crack_eta_max = 1.52;
+
+  return passCut(fabs(el->cl_eta()), crack_eta_min, crack_eta_min);
+
 }
 
 // ----------------------------------------------------------------------------
