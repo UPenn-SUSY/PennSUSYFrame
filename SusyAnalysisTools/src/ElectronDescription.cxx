@@ -39,6 +39,7 @@ ull_t SusyAnalysisTools::ElectronDescription::toInt() const
   el_desc += getIntComp(m_pass_calo_iso         , ADD_CALO_ISO        );
   el_desc += getIntComp(m_pass_likelihood_medium, ADD_LIKELIHOOD_MED  );
   el_desc += getIntComp(m_pass_likelihood_tight , ADD_LIKELIHOOD_TIGHT);
+  el_desc += getIntComp(m_is_in_crack           , ADD_IS_IN_CRACK     );
 
   return el_desc;
 }
@@ -74,6 +75,7 @@ void SusyAnalysisTools::ElectronDescription::set(const ull_t& rhs)
   m_pass_calo_iso          = getComponent(rhs, ADD_CALO_ISO         ,SIZE_BOOL);
   m_pass_likelihood_medium = getComponent(rhs, ADD_LIKELIHOOD_MED   ,SIZE_BOOL);
   m_pass_likelihood_tight  = getComponent(rhs, ADD_LIKELIHOOD_TIGHT ,SIZE_BOOL);
+  m_is_in_crack            = getComponent(rhs, ADD_IS_IN_CRACK      ,SIZE_BOOL);
 }
 
 // -----------------------------------------------------------------------------
@@ -182,6 +184,11 @@ void SusyAnalysisTools::ElectronDescription::setPassLikelihoodTight(bool pass)
 {
   m_pass_likelihood_tight = pass;
 }
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::ElectronDescription::setIsInCrack(bool pass)
+{
+  m_is_in_crack = pass;
+}
 
 // -----------------------------------------------------------------------------
 bool SusyAnalysisTools::ElectronDescription::getPassBaseline() const
@@ -271,6 +278,11 @@ bool SusyAnalysisTools::ElectronDescription::getPassLikelihoodMedium() const
 bool SusyAnalysisTools::ElectronDescription::getPassLikelihoodTight() const
 {
   return m_pass_likelihood_tight;
+}
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::ElectronDescription::getIsInCrack() const
+{
+  return m_is_in_crack;
 }
 
 // -----------------------------------------------------------------------------
