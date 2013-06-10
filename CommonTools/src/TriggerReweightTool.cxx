@@ -69,9 +69,18 @@ void CommonTools::TriggerReweightTool::BeginInputData(const SInputData&)
     }
   }
 
-  m_trigger_reweight->initialize( c_reweight_directory
+//  m_trigger_reweight->initialize( c_reweight_directory
+//                                , c_reweight_period
+//                                , false
+//                                , false
+//                                );
+//
+//
+
+
+//new initialze method for tag 00-00-29 
+m_trigger_reweight->initialize( c_reweight_directory
                                 , c_reweight_period
-                                , false
                                 , false
                                 );
 }
