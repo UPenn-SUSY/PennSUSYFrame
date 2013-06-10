@@ -20,10 +20,6 @@ def skipHist(dir_name, hist_name):
   if 'em' in dir_name:
     if 'el_1' in hist_name or 'mu_1' in hist_name: return True
 
-  if 'it6' in dir_name: return True
-  if 'it7' in dir_name: return True
-  if 'it8' in dir_name: return True
-  if 'it9' in dir_name: return True
   return False
 
 # ------------------------------------------------------------------------------

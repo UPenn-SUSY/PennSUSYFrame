@@ -124,7 +124,7 @@ std::string Selection::WeightHandler::getWeightString()
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setGlobalDoMcEventWeight(bool do_weight)
 {
-  std::cout << "setGlobalDoMcEventWeight()\n";
+  // std::cout << "setGlobalDoMcEventWeight()\n";
   m_do_mc_event_weight = do_weight;
   // m_do_mc_event_weight = true;
 }
@@ -132,7 +132,7 @@ void Selection::WeightHandler::setGlobalDoMcEventWeight(bool do_weight)
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setGlobalDoPileUpWeight(bool do_weight)
 {
-  std::cout << "setGlobalDoPileUpWeight()\n";
+  // std::cout << "setGlobalDoPileUpWeight()\n";
   m_do_pile_up_weight = do_weight;
   // m_do_pile_up_weight = true;
 }
@@ -140,7 +140,7 @@ void Selection::WeightHandler::setGlobalDoPileUpWeight(bool do_weight)
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setGlobalDoLumiWeight(bool do_weight)
 {
-  std::cout << "setGlobalDoLumiWeight()\n";
+  // std::cout << "setGlobalDoLumiWeight()\n";
   m_do_lumi_weight = do_weight;
   // m_do_lumi_weight = true;
 }
@@ -148,7 +148,7 @@ void Selection::WeightHandler::setGlobalDoLumiWeight(bool do_weight)
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setGlobalDoTriggerWeight(bool do_weight)
 {
-  std::cout << "setGlobalDoTriggerWeight()\n";
+  // std::cout << "setGlobalDoTriggerWeight()\n";
   m_do_trigger_weight = do_weight;
   // m_do_trigger_weight = true;
 }
@@ -156,7 +156,7 @@ void Selection::WeightHandler::setGlobalDoTriggerWeight(bool do_weight)
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setGlobalDoLeptonWeight(bool do_weight)
 {
-  std::cout << "setGlobalDoLeptonWeight()\n";
+  // std::cout << "setGlobalDoLeptonWeight()\n";
   m_do_lepton_weight = do_weight;
   // m_do_lepton_weight = true;
 }
@@ -164,7 +164,7 @@ void Selection::WeightHandler::setGlobalDoLeptonWeight(bool do_weight)
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setGlobalDoBTagWeight(bool do_weight)
 {
-  std::cout << "setGlobalDoBTagWeight()\n";
+  // std::cout << "setGlobalDoBTagWeight()\n";
   m_do_b_tag_weight = do_weight;
   // m_do_b_tag_weight = true;
 }
@@ -172,7 +172,7 @@ void Selection::WeightHandler::setGlobalDoBTagWeight(bool do_weight)
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setGlobalDoCfWeight(bool do_weight)
 {
-  std::cout << "setGlobalDoCfWeight()\n";
+  // std::cout << "setGlobalDoCfWeight()\n";
   m_do_cf_weight = do_weight;
   // m_do_cf_weight = true;
 }
@@ -180,7 +180,7 @@ void Selection::WeightHandler::setGlobalDoCfWeight(bool do_weight)
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setGlobalDoFakeWeight(bool do_weight)
 {
-  std::cout << "setGlobalDoFakeWeight()\n";
+  // std::cout << "setGlobalDoFakeWeight()\n";
   m_do_fake_weight = do_weight;
   // m_do_fake_weight = true;
 }
@@ -188,73 +188,73 @@ void Selection::WeightHandler::setGlobalDoFakeWeight(bool do_weight)
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setLocalDoMcEventWeight(bool do_weight)
 {
-  std::cout << "setLocalDoMcEventWeight(" << do_weight << ")\n";
-  std::cout << "\tm_do_mc_event_weight: " << m_do_mc_event_weight << "\n";
+  // std::cout << "setLocalDoMcEventWeight(" << do_weight << ")\n";
+  // std::cout << "\tm_do_mc_event_weight: " << m_do_mc_event_weight << "\n";
   m_do_mc_event_weight = (m_do_mc_event_weight && do_weight);
-  std::cout << "\tm_do_mc_event_weight: " << m_do_mc_event_weight << "\n";
+  // std::cout << "\tm_do_mc_event_weight: " << m_do_mc_event_weight << "\n";
 }
 
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setLocalDoPileUpWeight(bool do_weight)
 {
-  std::cout << "setLocalDoPileUpWeight(" << do_weight << ")\n";
-  std::cout << "\tm_do_pile_up_weight: " << m_do_pile_up_weight << "\n";
+  // std::cout << "setLocalDoPileUpWeight(" << do_weight << ")\n";
+  // std::cout << "\tm_do_pile_up_weight: " << m_do_pile_up_weight << "\n";
   m_do_pile_up_weight = (m_do_pile_up_weight && do_weight);
-  std::cout << "\tm_do_pile_up_weight: " << m_do_pile_up_weight << "\n";
+  // std::cout << "\tm_do_pile_up_weight: " << m_do_pile_up_weight << "\n";
 }
 
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setLocalDoLumiWeight(bool do_weight)
 {
-  std::cout << "setLocalDoLumiWeight(" << do_weight << ")\n";
-  std::cout << "\tm_do_lumi_weight: " << m_do_lumi_weight << "\n";
+  // std::cout << "setLocalDoLumiWeight(" << do_weight << ")\n";
+  // std::cout << "\tm_do_lumi_weight: " << m_do_lumi_weight << "\n";
   m_do_lumi_weight = (m_do_lumi_weight && do_weight);
-  std::cout << "\tm_do_lumi_weight: " << m_do_lumi_weight << "\n";
+  // std::cout << "\tm_do_lumi_weight: " << m_do_lumi_weight << "\n";
 }
 
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setLocalDoTriggerWeight(bool do_weight)
 {
-  std::cout << "setLocalDoTriggerWeight(" << do_weight << ")\n";
-  std::cout << "\tm_do_trigger_weight: " << m_do_trigger_weight << "\n";
+  // std::cout << "setLocalDoTriggerWeight(" << do_weight << ")\n";
+  // std::cout << "\tm_do_trigger_weight: " << m_do_trigger_weight << "\n";
   m_do_trigger_weight = (m_do_trigger_weight && do_weight);
-  std::cout << "\tm_do_trigger_weight: " << m_do_trigger_weight << "\n";
+  // std::cout << "\tm_do_trigger_weight: " << m_do_trigger_weight << "\n";
 }
 
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setLocalDoLeptonWeight(bool do_weight)
 {
-  std::cout << "setLocalDoLeptonWeight(" << do_weight << ")\n";
-  std::cout << "\tm_do_lepton_weight: " << m_do_lepton_weight << "\n";
+  // std::cout << "setLocalDoLeptonWeight(" << do_weight << ")\n";
+  // std::cout << "\tm_do_lepton_weight: " << m_do_lepton_weight << "\n";
   m_do_lepton_weight = (m_do_lepton_weight && do_weight);
-  std::cout << "\tm_do_lepton_weight: " << m_do_lepton_weight << "\n";
+  // std::cout << "\tm_do_lepton_weight: " << m_do_lepton_weight << "\n";
 }
 
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setLocalDoBTagWeight(bool do_weight)
 {
-  std::cout << "setLocalDoBTagWeight(" << do_weight << ")\n";
-  std::cout << "\tm_do_b_tag_weight: " << m_do_b_tag_weight << "\n";
+  // std::cout << "setLocalDoBTagWeight(" << do_weight << ")\n";
+  // std::cout << "\tm_do_b_tag_weight: " << m_do_b_tag_weight << "\n";
   m_do_b_tag_weight = (m_do_b_tag_weight && do_weight);
-  std::cout << "\tm_do_b_tag_weight: " << m_do_b_tag_weight << "\n";
+  // std::cout << "\tm_do_b_tag_weight: " << m_do_b_tag_weight << "\n";
 }
 
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setLocalDoCfWeight(bool do_weight)
 {
-  std::cout << "setLocalDoCfWeight(" << do_weight << ")\n";
-  std::cout << "\tm_do_cf_weight: " << m_do_cf_weight << "\n";
+  // std::cout << "setLocalDoCfWeight(" << do_weight << ")\n";
+  // std::cout << "\tm_do_cf_weight: " << m_do_cf_weight << "\n";
   m_do_cf_weight = (m_do_cf_weight && do_weight);
-  std::cout << "\tm_do_cf_weight: " << m_do_cf_weight << "\n";
+  // std::cout << "\tm_do_cf_weight: " << m_do_cf_weight << "\n";
 }
 
 // -----------------------------------------------------------------------------
 void Selection::WeightHandler::setLocalDoFakeWeight(bool do_weight)
 {
-  std::cout << "setLocalDoFakeWeight(" << do_weight << ")\n";
-  std::cout << "\tm_do_fake_weight: " << m_do_fake_weight << "\n";
+  // std::cout << "setLocalDoFakeWeight(" << do_weight << ")\n";
+  // std::cout << "\tm_do_fake_weight: " << m_do_fake_weight << "\n";
   m_do_fake_weight = (m_do_fake_weight && do_weight);
-  std::cout << "\tm_do_fake_weight: " << m_do_fake_weight << "\n";
+  // std::cout << "\tm_do_fake_weight: " << m_do_fake_weight << "\n";
 }
 
 // // -----------------------------------------------------------------------------

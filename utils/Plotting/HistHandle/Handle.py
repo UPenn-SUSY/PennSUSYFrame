@@ -76,11 +76,13 @@ class HistHandle(object):
         assert type(input_file) == ROOT.TFile
 
         # get hist from file
-        # print 'Getting hist: %s from directory: %s' % ( self.hist_name
-        #                                               , self.directory
-        #                                               )
+        # print 'Getting hist: %s from directory: %s/%s' % ( self.hist_name
+        #                                                  , input_file.GetName()
+        #                                                  , self.directory
+        #                                                  )
         d = input_file.GetDirectory(self.directory)
         h = d.Get(self.hist_name)
+        # print '    num_entries: %s -- integral: %s' % (h.GetEntries(), h.Integral())
         h.Sumw2()
 
         # add hist to HistHandle internal histogram

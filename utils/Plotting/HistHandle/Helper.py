@@ -49,7 +49,19 @@ def get_list_of_keys(d):
 def isGoodDir(key):
     if 'leppt' not in key: return False
     if 'jetpt' not in key: return False
-    if 'ptll60' in key:    return False
+
+    if 'leppt10'   in key: return False
+    if 'leppt12.5'   in key: return False
+    if 'jetpt30'   in key: return False
+    if 'metrel20'  in key: return False
+    if 'metrel40'  in key: return False
+    if 'dphill0.6' in key: return False
+    if 'dphill0.7' in key: return False
+    if 'mt215'     in key: return False
+    if 'mt220'     in key: return False
+    if 'ptll40'    in key: return False
+    if 'ptll60'    in key: return False
+
     return True
 
 # ------------------------------------------------------------------------------
@@ -339,6 +351,7 @@ def getCharginoMass(sample_name):
 
     test = sample_name
     if '-' in test: test = test[:test.find('-')]
+    # print 'test sample name: %s' % test
     assert test in chargino_masses
     return chargino_masses[test]
 
