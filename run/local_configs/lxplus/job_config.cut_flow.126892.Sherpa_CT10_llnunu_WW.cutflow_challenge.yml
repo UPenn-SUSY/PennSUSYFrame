@@ -1,8 +1,7 @@
 
 Type:             mc
 OutputLevel:      INFO
-# OutputDirectory:  /exports/project/data_d07_3/${USER}/Susy_output/00.03.00/
-OutputDirectory:  /tmp/bjackson/
+OutputDirectory:  /tmp/${USER}/
 NEventsMax:       -1
 is_af2:           False
 SuperVerboseInfo: False
