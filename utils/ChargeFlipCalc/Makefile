@@ -10,6 +10,7 @@ LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libParser.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libHistMaker.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libSelection.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libProgressBar.so
+LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libHelpers.so
 
 INCLUDES += -I../
 INCLUDES += -I./
