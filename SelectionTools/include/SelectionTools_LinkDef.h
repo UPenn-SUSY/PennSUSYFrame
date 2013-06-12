@@ -19,6 +19,7 @@
 #pragma link C++ class SelectionTools::JetSelectionTool+;
 #pragma link C++ class SelectionTools::MuonSelectionTool+;
 #pragma link C++ class SelectionTools::ObjectCleaningTool+;
+#pragma link C++ class SelectionTools::TauSelectionTool+;
 #pragma link C++ class SelectionTools::TriggerCutTool+;
 #pragma link C++ class SelectionTools::SignalRegionTool+;
 // #pragma link C++ class SelectionTools::ControlRegionTool+;

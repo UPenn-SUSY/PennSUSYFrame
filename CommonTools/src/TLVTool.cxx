@@ -6,6 +6,7 @@
 #include "AtlasSFrameUtils/include/Event.h"
 #include "AtlasSFrameUtils/include/Jet.h"
 #include "AtlasSFrameUtils/include/Muon.h"
+#include "AtlasSFrameUtils/include/Tau.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "CommonTools/include/EgammaEnergyRescaleTool.h"
 #include "CommonTools/include/JetCalibTool.h"
@@ -86,6 +87,31 @@ const TLorentzVector CommonTools::TLVTool::rawTlv(const Muon* mu)
 
   TLorentzVector tlv;
   tlv.SetPtEtaPhiM(pt, eta, phi, 105.66);
+  return tlv;
+}
+
+// ---------------------------------------------------------------------------
+const TLorentzVector CommonTools::TLVTool::tlv(const Tau* tau)
+{
+  // double pt  = m_tau_smearing->getSmearedPt(tau);
+  double pt  = tau->pt();
+  double eta = tau->eta();
+  double phi = tau->phi();
+
+  TLorentzVector tlv;
+  tlv.SetPtEtaPhiM(pt, eta, phi, 1776.82);
+  return tlv;
+}
+
+// ---------------------------------------------------------------------------
+const TLorentzVector CommonTools::TLVTool::rawTlv(const Tau* tau)
+{
+  double pt  = tau->pt();
+  double eta = tau->eta();
+  double phi = tau->phi();
+
+  TLorentzVector tlv;
+  tlv.SetPtEtaPhiM(pt, eta, phi, 1776.82);
   return tlv;
 }
 

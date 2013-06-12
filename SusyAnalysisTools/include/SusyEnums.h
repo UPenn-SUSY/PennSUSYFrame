@@ -67,6 +67,12 @@ enum MUON_COLLECTIONS { MU_ALL = 0  // Green tree snake
                       , MU_N
                       };
 
+enum TAU_COLLECTIONS { TAU_ALL = 0
+                     , TAU_BASELINE
+                     , TAU_GOOD
+                     , TAU_N
+                     };
+
 enum VERTEX_COLLECTIONS { VERT_ALL = 0  // Green tree snake
                         , VERT_GOOD     // Vertices flagged as good
                         , VERT_GT_2     // Vertices with more than two tracks

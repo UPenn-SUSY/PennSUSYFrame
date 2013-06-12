@@ -57,7 +57,6 @@ namespace D3PDReader {
       VarProxy< float > ptcone20;
       VarProxy< float > ptcone30;
       VarProxy< float > ptcone40;
-      VarProxy< float > ptcone30_trkelstyle;
       /// Muon identified by combining an ID and a MS track.
       VarProxy< int > isCombinedMuon;
       /// Muon identified by inner-detector seeded identification (segment tagging or ID+MS refit).
@@ -117,6 +116,9 @@ namespace D3PDReader {
       VarProxy< int > truth_motherbarcode;
       VarProxy< int > truth_matched;
 // end MC only
+      VarProxy< float > ptcone20_trkelstyle;
+      VarProxy< float > ptcone30_trkelstyle;
+      VarProxy< float > ptcone40_trkelstyle;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpx;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpy;
       VarProxy< vector<float> > MET_Egamma10NoTau_wet;
@@ -188,7 +190,6 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > ptcone20;
       VarHandle< vector<float>* > ptcone30;
       VarHandle< vector<float>* > ptcone40;
-      VarHandle< vector<float>* > ptcone30_trkelstyle;
       /// Muon identified by combining an ID and a MS track.
       VarHandle< vector<int>* > isCombinedMuon;
       /// Muon identified by inner-detector seeded identification (segment tagging or ID+MS refit).
@@ -248,6 +249,9 @@ bool is_data; // ~bj
       VarHandle< vector<int>* > truth_motherbarcode;
       VarHandle< vector<int>* > truth_matched;
 // end MC only
+      VarHandle< vector<float>* > ptcone20_trkelstyle;
+      VarHandle< vector<float>* > ptcone30_trkelstyle;
+      VarHandle< vector<float>* > ptcone40_trkelstyle;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpx;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpy;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wet;

@@ -10,6 +10,7 @@
 class Event;
 class Electron;
 class Muon;
+class Tau;
 class Jet;
 
 namespace CommonTools{
@@ -40,6 +41,7 @@ namespace CommonTools{
 
     const TLorentzVector tlv(const Electron*);
     const TLorentzVector tlv(const Muon*);
+    const TLorentzVector tlv(const Tau*);
     const TLorentzVector tlv( Jet*
                             , const Event* event
                             , int num_vetices_w_2_trks
@@ -47,6 +49,7 @@ namespace CommonTools{
 
     const TLorentzVector rawTlv(const Electron*);
     const TLorentzVector rawTlv(const Muon*);
+    const TLorentzVector rawTlv(const Tau*);
     const TLorentzVector rawTlv(const Jet*);
 
   // --------------------------------------------------------------------------

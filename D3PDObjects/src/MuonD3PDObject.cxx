@@ -37,7 +37,6 @@ namespace D3PDReader {
         ptcone20( parent.ptcone20, index, this ),
         ptcone30( parent.ptcone30, index, this ),
         ptcone40( parent.ptcone40, index, this ),
-        ptcone30_trkelstyle( parent.ptcone40, index, this ),
         isCombinedMuon( parent.isCombinedMuon, index, this ),
         isSegmentTaggedMuon( parent.isSegmentTaggedMuon, index, this ),
         loose( parent.loose, index, this ),
@@ -93,6 +92,9 @@ namespace D3PDReader {
         truth_motherbarcode( parent.truth_motherbarcode, index, this ),
         truth_matched( parent.truth_matched, index, this ),
 // end MC only
+        ptcone20_trkelstyle( parent.ptcone20_trkelstyle, index, this ),
+        ptcone30_trkelstyle( parent.ptcone30_trkelstyle, index, this ),
+        ptcone40_trkelstyle( parent.ptcone40_trkelstyle, index, this ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx, index, this ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy, index, this ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet, index, this ),
@@ -126,7 +128,6 @@ is_data(is_data) {
         ptcone20( parent.ptcone20 ),
         ptcone30( parent.ptcone30 ),
         ptcone40( parent.ptcone40 ),
-        ptcone30_trkelstyle( parent.ptcone30_trkelstyle ),
         isCombinedMuon( parent.isCombinedMuon ),
         isSegmentTaggedMuon( parent.isSegmentTaggedMuon ),
         loose( parent.loose ),
@@ -182,6 +183,9 @@ is_data(is_data) {
         truth_motherbarcode( parent.truth_motherbarcode ),
         truth_matched( parent.truth_matched ),
 // end MC only
+        ptcone20_trkelstyle( parent.ptcone20_trkelstyle ),
+        ptcone30_trkelstyle( parent.ptcone30_trkelstyle ),
+        ptcone40_trkelstyle( parent.ptcone40_trkelstyle ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet ),
@@ -216,7 +220,6 @@ is_data(is_data) {
         ptcone20( this, ::TString( prefix ) + "ptcone20", &master ),
         ptcone30( this, ::TString( prefix ) + "ptcone30", &master ),
         ptcone40( this, ::TString( prefix ) + "ptcone40", &master ),
-        ptcone30_trkelstyle( this, ::TString( prefix ) + "ptcone40", &master ),
         isCombinedMuon( this, ::TString( prefix ) + "isCombinedMuon", &master ),
         isSegmentTaggedMuon( this, ::TString( prefix ) + "isSegmentTaggedMuon", &master ),
         loose( this, ::TString( prefix ) + "loose", &master ),
@@ -272,6 +275,9 @@ is_data(is_data) {
         truth_motherbarcode( this, ::TString( prefix ) + "truth_motherbarcode", &master ),
         truth_matched( this, ::TString( prefix ) + "truth_matched", &master ),
 // end MC only
+        ptcone20_trkelstyle( this, ::TString( prefix ) + "ptcone20_trkelstyle", &master ),
+        ptcone30_trkelstyle( this, ::TString( prefix ) + "ptcone30_trkelstyle", &master ),
+        ptcone40_trkelstyle( this, ::TString( prefix ) + "ptcone40_trkelstyle", &master ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", &master ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", &master ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", &master ),
@@ -297,7 +303,6 @@ is_data(is_data) {
       fHandles[ "ptcone20" ] = &ptcone20;
       fHandles[ "ptcone30" ] = &ptcone30;
       fHandles[ "ptcone40" ] = &ptcone40;
-      fHandles[ "ptcone30_trkelstyle" ] = &ptcone30_trkelstyle;
       fHandles[ "isCombinedMuon" ] = &isCombinedMuon;
       fHandles[ "isSegmentTaggedMuon" ] = &isSegmentTaggedMuon;
       fHandles[ "loose" ] = &loose;
@@ -353,6 +358,9 @@ if (!is_data) {
       fHandles[ "truth_motherbarcode" ] = &truth_motherbarcode;
       fHandles[ "truth_matched" ] = &truth_matched;
 } // end !is_data
+      fHandles[ "ptcone20_trkelstyle" ] = &ptcone20_trkelstyle;
+      fHandles[ "ptcone30_trkelstyle" ] = &ptcone30_trkelstyle;
+      fHandles[ "ptcone40_trkelstyle" ] = &ptcone40_trkelstyle;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
@@ -384,7 +392,6 @@ if (!is_data) {
         ptcone20( this, ::TString( prefix ) + "ptcone20", 0 ),
         ptcone30( this, ::TString( prefix ) + "ptcone30", 0 ),
         ptcone40( this, ::TString( prefix ) + "ptcone40", 0 ),
-        ptcone30_trkelstyle( this, ::TString( prefix ) + "ptcone40", 0 ),
         isCombinedMuon( this, ::TString( prefix ) + "isCombinedMuon", 0 ),
         isSegmentTaggedMuon( this, ::TString( prefix ) + "isSegmentTaggedMuon", 0 ),
         loose( this, ::TString( prefix ) + "loose", 0 ),
@@ -440,6 +447,9 @@ if (!is_data) {
         truth_motherbarcode( this, ::TString( prefix ) + "truth_motherbarcode", 0 ),
         truth_matched( this, ::TString( prefix ) + "truth_matched", 0 ),
 // end MC only
+        ptcone20_trkelstyle( this, ::TString( prefix ) + "ptcone20_trkelstyle", 0 ),
+        ptcone30_trkelstyle( this, ::TString( prefix ) + "ptcone30_trkelstyle", 0 ),
+        ptcone40_trkelstyle( this, ::TString( prefix ) + "ptcone40_trkelstyle", 0 ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", 0 ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", 0 ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", 0 ),
@@ -465,7 +475,6 @@ is_data(is_data) {
       fHandles[ "ptcone20" ] = &ptcone20;
       fHandles[ "ptcone30" ] = &ptcone30;
       fHandles[ "ptcone40" ] = &ptcone40;
-      fHandles[ "ptcone30_trkelstyle" ] = &ptcone30_trkelstyle;
       fHandles[ "isCombinedMuon" ] = &isCombinedMuon;
       fHandles[ "isSegmentTaggedMuon" ] = &isSegmentTaggedMuon;
       fHandles[ "loose" ] = &loose;
@@ -521,6 +530,9 @@ if (!is_data) {
       fHandles[ "truth_motherbarcode" ] = &truth_motherbarcode;
       fHandles[ "truth_matched" ] = &truth_matched;
 } // end !is_data
+      fHandles[ "ptcone20_trkelstyle" ] = &ptcone20_trkelstyle;
+      fHandles[ "ptcone30_trkelstyle" ] = &ptcone30_trkelstyle;
+      fHandles[ "ptcone40_trkelstyle" ] = &ptcone40_trkelstyle;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
@@ -556,7 +568,6 @@ if (!is_data) {
       ptcone20.SetName( ::TString( prefix ) + "ptcone20" );
       ptcone30.SetName( ::TString( prefix ) + "ptcone30" );
       ptcone40.SetName( ::TString( prefix ) + "ptcone40" );
-      ptcone30_trkelstyle.SetName(  ::TString( prefix ) + "ptcone30_trkelstyle" );
       isCombinedMuon.SetName( ::TString( prefix ) + "isCombinedMuon" );
       isSegmentTaggedMuon.SetName( ::TString( prefix ) + "isSegmentTaggedMuon" );
       loose.SetName( ::TString( prefix ) + "loose" );
@@ -612,6 +623,9 @@ if (!is_data) {
       truth_motherbarcode.SetName( ::TString( prefix ) + "truth_motherbarcode" );
       truth_matched.SetName( ::TString( prefix ) + "truth_matched" );
 } // end !is_data
+      ptcone20_trkelstyle.SetName( ::TString( prefix ) + "ptcone20_trkelstyle" );
+      ptcone30_trkelstyle.SetName( ::TString( prefix ) + "ptcone30_trkelstyle" );
+      ptcone40_trkelstyle.SetName( ::TString( prefix ) + "ptcone40_trkelstyle" );
       MET_Egamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpx" );
       MET_Egamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpy" );
       MET_Egamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wet" );
@@ -650,7 +664,6 @@ if (!is_data) {
       ptcone20.ReadFrom( tree );
       ptcone30.ReadFrom( tree );
       ptcone40.ReadFrom( tree );
-      ptcone30_trkelstyle.ReadFrom( tree );
       isCombinedMuon.ReadFrom( tree );
       isSegmentTaggedMuon.ReadFrom( tree );
       loose.ReadFrom( tree );
@@ -706,6 +719,9 @@ if (!is_data) {
       truth_motherbarcode.ReadFrom( tree );
       truth_matched.ReadFrom( tree );
 } // end !is_data
+      ptcone20_trkelstyle.ReadFrom( tree );
+      ptcone30_trkelstyle.ReadFrom( tree );
+      ptcone40_trkelstyle.ReadFrom( tree );
       MET_Egamma10NoTau_wpx.ReadFrom( tree );
       MET_Egamma10NoTau_wpy.ReadFrom( tree );
       MET_Egamma10NoTau_wet.ReadFrom( tree );
@@ -739,7 +755,6 @@ if (!is_data) {
       ptcone20.WriteTo( tree );
       ptcone30.WriteTo( tree );
       ptcone40.WriteTo( tree );
-      ptcone30_trkelstyle.WriteTo( tree );
       isCombinedMuon.WriteTo( tree );
       isSegmentTaggedMuon.WriteTo( tree );
       loose.WriteTo( tree );
@@ -795,6 +810,9 @@ if (!is_data) {
       truth_motherbarcode.WriteTo( tree );
       truth_matched.WriteTo( tree );
 } // end !is_data
+      ptcone20_trkelstyle.WriteTo( tree );
+      ptcone30_trkelstyle.WriteTo( tree );
+      ptcone40_trkelstyle.WriteTo( tree );
       MET_Egamma10NoTau_wpx.WriteTo( tree );
       MET_Egamma10NoTau_wpy.WriteTo( tree );
       MET_Egamma10NoTau_wet.WriteTo( tree );
@@ -865,7 +883,6 @@ if (!is_data) {
       if( ptcone20.IsActive() ) ptcone20();
       if( ptcone30.IsActive() ) ptcone30();
       if( ptcone40.IsActive() ) ptcone40();
-      if( ptcone30_trkelstyle.IsActive() ) ptcone30_trkelstyle();
       if( isCombinedMuon.IsActive() ) isCombinedMuon();
       if( isSegmentTaggedMuon.IsActive() ) isSegmentTaggedMuon();
       if( loose.IsActive() ) loose();
@@ -921,6 +938,9 @@ if (!is_data) {
       if( truth_motherbarcode.IsActive() ) truth_motherbarcode();
       if( truth_matched.IsActive() ) truth_matched();
 } // end !is_data
+      if( ptcone20_trkelstyle.IsActive() ) ptcone20_trkelstyle();
+      if( ptcone30_trkelstyle.IsActive() ) ptcone30_trkelstyle();
+      if( ptcone40_trkelstyle.IsActive() ) ptcone40_trkelstyle();
       if( MET_Egamma10NoTau_wpx.IsActive() ) MET_Egamma10NoTau_wpx();
       if( MET_Egamma10NoTau_wpy.IsActive() ) MET_Egamma10NoTau_wpy();
       if( MET_Egamma10NoTau_wet.IsActive() ) MET_Egamma10NoTau_wet();
@@ -963,7 +983,6 @@ if (!is_data) {
       ptcone20()->clear();
       ptcone30()->clear();
       ptcone40()->clear();
-      ptcone30_trkelstyle()->clear();
       isCombinedMuon()->clear();
       isSegmentTaggedMuon()->clear();
       loose()->clear();
@@ -1019,6 +1038,9 @@ if (!is_data) {
       truth_motherbarcode()->clear();
       truth_matched()->clear();
 } // end !is_data
+      ptcone20_trkelstyle()->clear();
+      ptcone30_trkelstyle()->clear();
+      ptcone40_trkelstyle()->clear();
       MET_Egamma10NoTau_wpx()->clear();
       MET_Egamma10NoTau_wpy()->clear();
       MET_Egamma10NoTau_wet()->clear();
@@ -1121,12 +1143,6 @@ if (!is_data) {
       } else {
          ptcone40()->push_back( std::numeric_limits< float >::min() );
       }
-      if( el.ptcone30_trkelstyle.IsAvailable() ) {
-         ptcone30_trkelstyle()->push_back( el.ptcone30_trkelstyle() );
-      } else {
-         ptcone30_trkelstyle()->push_back( std::numeric_limits< float >::min() );
-      }
-
       if( el.isCombinedMuon.IsAvailable() ) {
          isCombinedMuon()->push_back( el.isCombinedMuon() );
       } else {
@@ -1394,6 +1410,21 @@ if (!is_data) {
          truth_matched()->push_back( std::numeric_limits< int >::min() );
       }
 } // end !is_data
+      if( el.ptcone20_trkelstyle.IsAvailable() ) {
+         ptcone20_trkelstyle()->push_back( el.ptcone20_trkelstyle() );
+      } else {
+         ptcone20_trkelstyle()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.ptcone30_trkelstyle.IsAvailable() ) {
+         ptcone30_trkelstyle()->push_back( el.ptcone30_trkelstyle() );
+      } else {
+         ptcone30_trkelstyle()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.ptcone40_trkelstyle.IsAvailable() ) {
+         ptcone40_trkelstyle()->push_back( el.ptcone40_trkelstyle() );
+      } else {
+         ptcone40_trkelstyle()->push_back( std::numeric_limits< float >::min() );
+      }
       if( el.MET_Egamma10NoTau_wpx.IsAvailable() ) {
          MET_Egamma10NoTau_wpx()->push_back( el.MET_Egamma10NoTau_wpx() );
       } else {
