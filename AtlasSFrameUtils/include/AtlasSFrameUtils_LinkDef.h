@@ -14,7 +14,7 @@
 #pragma link C++ class Muon+;
 #pragma link C++ class Vertex+;
 // //#pragma link C++ class Photon+;
-// //#pragma link C++ class Tau+;
+#pragma link C++ class Tau+;
 #pragma link C++ class Trigger+;
 #pragma link C++ class TriggerVec+;
 
