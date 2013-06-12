@@ -37,6 +37,7 @@ namespace D3PDReader {
         NegativeE( parent.NegativeE, index, this ),
         AverageLArQF( parent.AverageLArQF, index, this ),
         BCH_CORR_JET( parent.BCH_CORR_JET, index, this ),
+        BCH_CORR_CELL( parent.BCH_CORR_CELL, index, this ),
         SamplingMax( parent.SamplingMax, index, this ),
         fracSamplingMax( parent.fracSamplingMax, index, this ),
         hecf( parent.hecf, index, this ),
@@ -53,6 +54,7 @@ namespace D3PDReader {
         constscale_m( parent.constscale_m, index, this ),
         constscale_eta( parent.constscale_eta, index, this ),
         constscale_phi( parent.constscale_phi, index, this ),
+        isBadLooseMinus( parent.isBadLooseMinus, index, this ),
 // MC only
         flavor_truth_label( parent.flavor_truth_label, index, this ),
 // end MC only
@@ -86,6 +88,7 @@ is_data(is_data) {
         NegativeE( parent.NegativeE ),
         AverageLArQF( parent.AverageLArQF ),
         BCH_CORR_JET( parent.BCH_CORR_JET ),
+        BCH_CORR_CELL( parent.BCH_CORR_CELL ),
         SamplingMax( parent.SamplingMax ),
         fracSamplingMax( parent.fracSamplingMax ),
         hecf( parent.hecf ),
@@ -102,6 +105,7 @@ is_data(is_data) {
         constscale_m( parent.constscale_m ),
         constscale_eta( parent.constscale_eta ),
         constscale_phi( parent.constscale_phi ),
+        isBadLooseMinus( parent.isBadLooseMinus ),
 // MC only
         flavor_truth_label( parent.flavor_truth_label ),
 // end MC only
@@ -136,6 +140,7 @@ is_data(is_data) {
         NegativeE( this, ::TString( prefix ) + "NegativeE", &master ),
         AverageLArQF( this, ::TString( prefix ) + "AverageLArQF", &master ),
         BCH_CORR_JET( this, ::TString( prefix ) + "BCH_CORR_JET", &master ),
+        BCH_CORR_CELL( this, ::TString( prefix ) + "BCH_CORR_CELL", &master ),        
         SamplingMax( this, ::TString( prefix ) + "SamplingMax", &master ),
         fracSamplingMax( this, ::TString( prefix ) + "fracSamplingMax", &master ),
         hecf( this, ::TString( prefix ) + "hecf", &master ),
@@ -152,6 +157,7 @@ is_data(is_data) {
         constscale_m( this, ::TString( prefix ) + "constscale_m", &master ),
         constscale_eta( this, ::TString( prefix ) + "constscale_eta", &master ),
         constscale_phi( this, ::TString( prefix ) + "constscale_phi", &master ),
+        isBadLooseMinus( this, ::TString( prefix ) + "isBadLooseMinus", &master ),
 // MC only
         flavor_truth_label( this, ::TString( prefix ) + "flavor_truth_label", &master ),
 // end MC only
@@ -177,6 +183,7 @@ is_data(is_data) {
       fHandles[ "NegativeE" ] = &NegativeE;
       fHandles[ "AverageLArQF" ] = &AverageLArQF;
       fHandles[ "BCH_CORR_JET" ] = &BCH_CORR_JET;
+      fHandles[ "BCH_CORR_CELL" ] = &BCH_CORR_CELL;
       fHandles[ "SamplingMax" ] = &SamplingMax;
       fHandles[ "fracSamplingMax" ] = &fracSamplingMax;
       fHandles[ "hecf" ] = &hecf;
@@ -193,6 +200,7 @@ is_data(is_data) {
       fHandles[ "constscale_m" ] = &constscale_m;
       fHandles[ "constscale_eta" ] = &constscale_eta;
       fHandles[ "constscale_phi" ] = &constscale_phi;
+      fHandles[ "isBadLooseMinus" ] = &isBadLooseMinus;
 if (!is_data) {
       fHandles[ "flavor_truth_label" ] = &flavor_truth_label;
 } // end !is_data
@@ -224,6 +232,7 @@ if (!is_data) {
         NegativeE( this, ::TString( prefix ) + "NegativeE", 0 ),
         AverageLArQF( this, ::TString( prefix ) + "AverageLArQF", 0 ),
         BCH_CORR_JET( this, ::TString( prefix ) + "BCH_CORR_JET", 0 ),
+        BCH_CORR_CELL( this, ::TString( prefix ) + "BCH_CORR_CELL", 0 ),
         SamplingMax( this, ::TString( prefix ) + "SamplingMax", 0 ),
         fracSamplingMax( this, ::TString( prefix ) + "fracSamplingMax", 0 ),
         hecf( this, ::TString( prefix ) + "hecf", 0 ),
@@ -240,6 +249,7 @@ if (!is_data) {
         constscale_m( this, ::TString( prefix ) + "constscale_m", 0 ),
         constscale_eta( this, ::TString( prefix ) + "constscale_eta", 0 ),
         constscale_phi( this, ::TString( prefix ) + "constscale_phi", 0 ),
+        isBadLooseMinus( this, ::TString( prefix ) + "isBadLooseMinus", 0),
 // MC only
         flavor_truth_label( this, ::TString( prefix ) + "flavor_truth_label", 0 ),
 // end MC only
@@ -265,6 +275,7 @@ is_data(is_data) {
       fHandles[ "NegativeE" ] = &NegativeE;
       fHandles[ "AverageLArQF" ] = &AverageLArQF;
       fHandles[ "BCH_CORR_JET" ] = &BCH_CORR_JET;
+      fHandles[ "BCH_CORR_CELL" ] = &BCH_CORR_CELL;
       fHandles[ "SamplingMax" ] = &SamplingMax;
       fHandles[ "fracSamplingMax" ] = &fracSamplingMax;
       fHandles[ "hecf" ] = &hecf;
@@ -281,6 +292,7 @@ is_data(is_data) {
       fHandles[ "constscale_m" ] = &constscale_m;
       fHandles[ "constscale_eta" ] = &constscale_eta;
       fHandles[ "constscale_phi" ] = &constscale_phi;
+      fHandles[ "isBadLooseMinus" ] = &isBadLooseMinus;
 if (!is_data) {
       fHandles[ "flavor_truth_label" ] = &flavor_truth_label;
 } // end !is_data
@@ -316,6 +328,7 @@ if (!is_data) {
       NegativeE.SetName( ::TString( prefix ) + "NegativeE" );
       AverageLArQF.SetName( ::TString( prefix ) + "AverageLArQF" );
       BCH_CORR_JET.SetName( ::TString( prefix ) + "BCH_CORR_JET" );
+      BCH_CORR_CELL.SetName( ::TString( prefix ) + "BCH_CORR_CELL" );
       SamplingMax.SetName( ::TString( prefix ) + "SamplingMax" );
       fracSamplingMax.SetName( ::TString( prefix ) + "fracSamplingMax" );
       hecf.SetName( ::TString( prefix ) + "hecf" );
@@ -332,6 +345,7 @@ if (!is_data) {
       constscale_m.SetName( ::TString( prefix ) + "constscale_m" );
       constscale_eta.SetName( ::TString( prefix ) + "constscale_eta" );
       constscale_phi.SetName( ::TString( prefix ) + "constscale_phi" );
+      isBadLooseMinus.SetName( ::TString( prefix ) + "isBadLooseMinus" );
 if (!is_data) {
       flavor_truth_label.SetName( ::TString( prefix ) + "flavor_truth_label" );
 } // end !is_data
@@ -370,6 +384,7 @@ if (!is_data) {
       NegativeE.ReadFrom( tree );
       AverageLArQF.ReadFrom( tree );
       BCH_CORR_JET.ReadFrom( tree );
+      BCH_CORR_CELL.ReadFrom( tree );      
       SamplingMax.ReadFrom( tree );
       fracSamplingMax.ReadFrom( tree );
       hecf.ReadFrom( tree );
@@ -386,6 +401,7 @@ if (!is_data) {
       constscale_m.ReadFrom( tree );
       constscale_eta.ReadFrom( tree );
       constscale_phi.ReadFrom( tree );
+      isBadLooseMinus.ReadFrom( tree );
 if (!is_data) {
       flavor_truth_label.ReadFrom( tree );
 } // end !is_data
@@ -419,6 +435,7 @@ if (!is_data) {
       NegativeE.WriteTo( tree );
       AverageLArQF.WriteTo( tree );
       BCH_CORR_JET.WriteTo( tree );
+      BCH_CORR_CELL.WriteTo( tree );
       SamplingMax.WriteTo( tree );
       fracSamplingMax.WriteTo( tree );
       hecf.WriteTo( tree );
@@ -435,6 +452,7 @@ if (!is_data) {
       constscale_m.WriteTo( tree );
       constscale_eta.WriteTo( tree );
       constscale_phi.WriteTo( tree );
+      isBadLooseMinus.WriteTo( tree );
 if (!is_data) {
       flavor_truth_label.WriteTo( tree );
 } // end !is_data
@@ -505,6 +523,7 @@ if (!is_data) {
       if( NegativeE.IsActive() ) NegativeE();
       if( AverageLArQF.IsActive() ) AverageLArQF();
       if( BCH_CORR_JET.IsActive() ) BCH_CORR_JET();
+      if( BCH_CORR_CELL.IsActive() ) BCH_CORR_CELL();
       if( SamplingMax.IsActive() ) SamplingMax();
       if( fracSamplingMax.IsActive() ) fracSamplingMax();
       if( hecf.IsActive() ) hecf();
@@ -521,6 +540,7 @@ if (!is_data) {
       if( constscale_m.IsActive() ) constscale_m();
       if( constscale_eta.IsActive() ) constscale_eta();
       if( constscale_phi.IsActive() ) constscale_phi();
+      if( isBadLooseMinus.IsActive() ) isBadLooseMinus();
 if (!is_data) {
       if( flavor_truth_label.IsActive() ) flavor_truth_label();
 } // end !is_data
@@ -563,6 +583,7 @@ if (!is_data) {
       NegativeE()->clear();
       AverageLArQF()->clear();
       BCH_CORR_JET()->clear();
+      BCH_CORR_CELL()->clear();
       SamplingMax()->clear();
       fracSamplingMax()->clear();
       hecf()->clear();
@@ -579,6 +600,7 @@ if (!is_data) {
       constscale_m()->clear();
       constscale_eta()->clear();
       constscale_phi()->clear();
+      isBadLooseMinus()->clear();
 if (!is_data) {
       flavor_truth_label()->clear();
 } // end !is_data
@@ -681,6 +703,12 @@ if (!is_data) {
       } else {
          BCH_CORR_JET()->push_back( std::numeric_limits< float >::min() );
       }
+      if( el.BCH_CORR_CELL.IsAvailable() ) {
+         BCH_CORR_CELL()->push_back( el.BCH_CORR_CELL() );
+      } else {
+         BCH_CORR_CELL()->push_back( std::numeric_limits< float >::min() );
+      }
+
       if( el.SamplingMax.IsAvailable() ) {
          SamplingMax()->push_back( el.SamplingMax() );
       } else {
@@ -760,6 +788,11 @@ if (!is_data) {
          constscale_phi()->push_back( el.constscale_phi() );
       } else {
          constscale_phi()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.isBadLooseMinus.IsAvailable() ) {
+         isBadLooseMinus()->push_back( el.isBadLooseMinus() );
+      } else {
+         isBadLooseMinus()->push_back( std::numeric_limits< int >::min() );
       }
 if (!is_data) {
       if( el.flavor_truth_label.IsAvailable() ) {

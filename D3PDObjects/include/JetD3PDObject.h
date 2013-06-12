@@ -57,6 +57,7 @@ namespace D3PDReader {
       VarProxy< float > NegativeE;
       VarProxy< float > AverageLArQF;
       VarProxy< float > BCH_CORR_JET;
+      VarProxy< float > BCH_CORR_CELL;
       VarProxy< int > SamplingMax;
       VarProxy< float > fracSamplingMax;
       VarProxy< float > hecf;
@@ -74,6 +75,7 @@ namespace D3PDReader {
       VarProxy< float > constscale_eta;
       VarProxy< float > constscale_phi;
       VarProxy< float > flavor_weight_MV1;
+      VarProxy< int > isBadLooseMinus;
 // MC only
       VarProxy< int > flavor_truth_label;
 // end MC only
@@ -144,6 +146,7 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > NegativeE;
       VarHandle< vector<float>* > AverageLArQF;
       VarHandle< vector<float>* > BCH_CORR_JET;
+      VarHandle< vector<float>* > BCH_CORR_CELL;     
       VarHandle< vector<int>* > SamplingMax;
       VarHandle< vector<float>* > fracSamplingMax;
       VarHandle< vector<float>* > hecf;
@@ -161,6 +164,7 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > constscale_eta;
       VarHandle< vector<float>* > constscale_phi;
       VarHandle< vector<float>* > flavor_weight_MV1;
+      VarHandle< vector<int>* > isBadLooseMinus;
 // MC only
       VarHandle< vector<int>* > flavor_truth_label;
 // end MC only
