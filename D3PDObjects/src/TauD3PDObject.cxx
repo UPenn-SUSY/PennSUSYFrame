@@ -21,7 +21,12 @@ namespace D3PDReader {
     * Since the constructor of such an object is quite complicated and
     * error prone, it is only visible to the parent class TauD3PDObject.
     */
-   TauD3PDObjectElement::TauD3PDObjectElement( size_t index, const TauD3PDObject& parent , bool is_data ) {
+   TauD3PDObjectElement::TauD3PDObjectElement( size_t index, const TauD3PDObject& parent , bool is_data )
+      : pt( parent.pt, index, this ),
+        m( parent.m, index, this ),
+        eta( parent.eta, index, this ),
+        phi( parent.phi, index, this ) , 
+is_data(is_data) {
 
    }
 
@@ -34,7 +39,11 @@ namespace D3PDReader {
     * @param parent The proxy object that should be copied
     */
    TauD3PDObjectElement::TauD3PDObjectElement( const TauD3PDObjectElement& parent , bool is_data )
-      : TObject( parent ) , 
+      : TObject( parent ),
+        pt( parent.pt ),
+        m( parent.m ),
+        eta( parent.eta ),
+        phi( parent.phi ) , 
 is_data(is_data) {
 
    }
@@ -49,11 +58,21 @@ is_data(is_data) {
     */
    TauD3PDObject::TauD3PDObject( const ::Long64_t& master, const char* prefix , bool is_data )
       : TObject(),
+        n( this, ::TString( prefix ) + "n", &master ),
+        pt( this, ::TString( prefix ) + "pt", &master ),
+        m( this, ::TString( prefix ) + "m", &master ),
+        eta( this, ::TString( prefix ) + "eta", &master ),
+        phi( this, ::TString( prefix ) + "phi", &master ),
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) , 
 is_data(is_data) {
 
+      fHandles[ "n" ] = &n;
+      fHandles[ "pt" ] = &pt;
+      fHandles[ "m" ] = &m;
+      fHandles[ "eta" ] = &eta;
+      fHandles[ "phi" ] = &phi;
    }
 
    /**
@@ -65,11 +84,21 @@ is_data(is_data) {
     */
    TauD3PDObject::TauD3PDObject( const char* prefix , bool is_data )
       : TObject(),
+        n( this, ::TString( prefix ) + "n", 0 ),
+        pt( this, ::TString( prefix ) + "pt", 0 ),
+        m( this, ::TString( prefix ) + "m", 0 ),
+        eta( this, ::TString( prefix ) + "eta", 0 ),
+        phi( this, ::TString( prefix ) + "phi", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) , 
 is_data(is_data) {
 
+      fHandles[ "n" ] = &n;
+      fHandles[ "pt" ] = &pt;
+      fHandles[ "m" ] = &m;
+      fHandles[ "eta" ] = &eta;
+      fHandles[ "phi" ] = &phi;
    }
 
    /**
@@ -85,6 +114,11 @@ is_data(is_data) {
     */
    void TauD3PDObject::SetPrefix( const char* prefix ) {
 
+      n.SetName( ::TString( prefix ) + "n" );
+      pt.SetName( ::TString( prefix ) + "pt" );
+      m.SetName( ::TString( prefix ) + "m" );
+      eta.SetName( ::TString( prefix ) + "eta" );
+      phi.SetName( ::TString( prefix ) + "phi" );
       return;
    }
 
@@ -103,6 +137,11 @@ is_data(is_data) {
          return;
       }
 
+      n.ReadFrom( tree );
+      pt.ReadFrom( tree );
+      m.ReadFrom( tree );
+      eta.ReadFrom( tree );
+      phi.ReadFrom( tree );
 
       return;
    }
@@ -116,6 +155,11 @@ is_data(is_data) {
     */
    void TauD3PDObject::WriteTo( TTree* tree ) {
 
+      n.WriteTo( tree );
+      pt.WriteTo( tree );
+      m.WriteTo( tree );
+      eta.WriteTo( tree );
+      phi.WriteTo( tree );
 
       return;
    }
@@ -166,6 +210,11 @@ is_data(is_data) {
          }
       }
 
+      if( n.IsActive() ) n();
+      if( pt.IsActive() ) pt();
+      if( m.IsActive() ) m();
+      if( eta.IsActive() ) eta();
+      if( phi.IsActive() ) phi();
 
       return;
    }
@@ -188,6 +237,11 @@ is_data(is_data) {
          return;
       }
 
+      n() = 0;
+      pt()->clear();
+      m()->clear();
+      eta()->clear();
+      phi()->clear();
 
       return;
    }
@@ -210,6 +264,27 @@ is_data(is_data) {
          return *this;
       }
 
+      ++( n() );
+      if( el.pt.IsAvailable() ) {
+         pt()->push_back( el.pt() );
+      } else {
+         pt()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.m.IsAvailable() ) {
+         m()->push_back( el.m() );
+      } else {
+         m()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.eta.IsAvailable() ) {
+         eta()->push_back( el.eta() );
+      } else {
+         eta()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.phi.IsAvailable() ) {
+         phi()->push_back( el.phi() );
+      } else {
+         phi()->push_back( std::numeric_limits< float >::min() );
+      }
       return *this;
    }
 

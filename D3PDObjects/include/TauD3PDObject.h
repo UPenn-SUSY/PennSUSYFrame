@@ -8,6 +8,8 @@
 #define D3PDREADER_TauD3PDObject_H
 
 #include <map>
+#include <vector>
+using std::vector;
 
 #include <TObject.h>
 #include <TString.h>
@@ -40,6 +42,10 @@ namespace D3PDReader {
       /// Copy constructor
       TauD3PDObjectElement( const TauD3PDObjectElement& parent, bool is_data = true );
 
+      VarProxy< float > pt;
+      VarProxy< float > m;
+      VarProxy< float > eta;
+      VarProxy< float > phi;
 
 
 bool is_data; // ~bj 
@@ -90,6 +96,12 @@ bool is_data; // ~bj
       /// Add one element to an output collection
       TauD3PDObject& operator+=( const TauD3PDObjectElement& el );
 
+      /// Number of ntuple rows.
+      VarHandle< Int_t > n;
+      VarHandle< vector<float>* > pt;
+      VarHandle< vector<float>* > m;
+      VarHandle< vector<float>* > eta;
+      VarHandle< vector<float>* > phi;
 
    private:
       mutable std::vector< TauD3PDObjectElement > fProxies; ///< Internal list of proxy objects
