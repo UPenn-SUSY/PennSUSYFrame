@@ -25,7 +25,21 @@ namespace D3PDReader {
       : pt( parent.pt, index, this ),
         m( parent.m, index, this ),
         eta( parent.eta, index, this ),
-        phi( parent.phi, index, this ) , 
+        phi( parent.phi, index, this ),
+        charge( parent.charge, index, this ),
+        BDTEleScore( parent.BDTEleScore, index, this ),
+        BDTJetScore( parent.BDTJetScore, index, this ),
+        muonVeto( parent.muonVeto, index, this ),
+        JetBDTSigLoose( parent.JetBDTSigLoose, index, this ),
+        JetBDTSigMedium( parent.JetBDTSigMedium, index, this ),
+        JetBDTSigTight( parent.JetBDTSigTight, index, this ),
+        EleBDTLoose( parent.EleBDTLoose, index, this ),
+        EleBDTMedium( parent.EleBDTMedium, index, this ),
+        EleBDTTight( parent.EleBDTTight, index, this ),
+        numTrack( parent.numTrack, index, this ),
+        leadTrkPt( parent.leadTrkPt, index, this ),
+        leadTrack_eta( parent.leadTrack_eta, index, this ),
+        leadTrack_phi( parent.leadTrack_phi, index, this ) , 
 is_data(is_data) {
 
    }
@@ -43,7 +57,21 @@ is_data(is_data) {
         pt( parent.pt ),
         m( parent.m ),
         eta( parent.eta ),
-        phi( parent.phi ) , 
+        phi( parent.phi ),
+        charge( parent.charge ),
+        BDTEleScore( parent.BDTEleScore ),
+        BDTJetScore( parent.BDTJetScore ),
+        muonVeto( parent.muonVeto ),
+        JetBDTSigLoose( parent.JetBDTSigLoose ),
+        JetBDTSigMedium( parent.JetBDTSigMedium ),
+        JetBDTSigTight( parent.JetBDTSigTight ),
+        EleBDTLoose( parent.EleBDTLoose ),
+        EleBDTMedium( parent.EleBDTMedium ),
+        EleBDTTight( parent.EleBDTTight ),
+        numTrack( parent.numTrack ),
+        leadTrkPt( parent.leadTrkPt ),
+        leadTrack_eta( parent.leadTrack_eta ),
+        leadTrack_phi( parent.leadTrack_phi ) , 
 is_data(is_data) {
 
    }
@@ -63,6 +91,20 @@ is_data(is_data) {
         m( this, ::TString( prefix ) + "m", &master ),
         eta( this, ::TString( prefix ) + "eta", &master ),
         phi( this, ::TString( prefix ) + "phi", &master ),
+        charge( this, ::TString( prefix ) + "charge", &master ),
+        BDTEleScore( this, ::TString( prefix ) + "BDTEleScore", &master ),
+        BDTJetScore( this, ::TString( prefix ) + "BDTJetScore", &master ),
+        muonVeto( this, ::TString( prefix ) + "muonVeto", &master ),
+        JetBDTSigLoose( this, ::TString( prefix ) + "JetBDTSigLoose", &master ),
+        JetBDTSigMedium( this, ::TString( prefix ) + "JetBDTSigMedium", &master ),
+        JetBDTSigTight( this, ::TString( prefix ) + "JetBDTSigTight", &master ),
+        EleBDTLoose( this, ::TString( prefix ) + "EleBDTLoose", &master ),
+        EleBDTMedium( this, ::TString( prefix ) + "EleBDTMedium", &master ),
+        EleBDTTight( this, ::TString( prefix ) + "EleBDTTight", &master ),
+        numTrack( this, ::TString( prefix ) + "numTrack", &master ),
+        leadTrkPt( this, ::TString( prefix ) + "leadTrkPt", &master ),
+        leadTrack_eta( this, ::TString( prefix ) + "leadTrack_eta", &master ),
+        leadTrack_phi( this, ::TString( prefix ) + "leadTrack_phi", &master ),
         fHandles(),
         fFromInput( kTRUE ),
         fPrefix( prefix ) , 
@@ -73,6 +115,20 @@ is_data(is_data) {
       fHandles[ "m" ] = &m;
       fHandles[ "eta" ] = &eta;
       fHandles[ "phi" ] = &phi;
+      fHandles[ "charge" ] = &charge;
+      fHandles[ "BDTEleScore" ] = &BDTEleScore;
+      fHandles[ "BDTJetScore" ] = &BDTJetScore;
+      fHandles[ "muonVeto" ] = &muonVeto;
+      fHandles[ "JetBDTSigLoose" ] = &JetBDTSigLoose;
+      fHandles[ "JetBDTSigMedium" ] = &JetBDTSigMedium;
+      fHandles[ "JetBDTSigTight" ] = &JetBDTSigTight;
+      fHandles[ "EleBDTLoose" ] = &EleBDTLoose;
+      fHandles[ "EleBDTMedium" ] = &EleBDTMedium;
+      fHandles[ "EleBDTTight" ] = &EleBDTTight;
+      fHandles[ "numTrack" ] = &numTrack;
+      fHandles[ "leadTrkPt" ] = &leadTrkPt;
+      fHandles[ "leadTrack_eta" ] = &leadTrack_eta;
+      fHandles[ "leadTrack_phi" ] = &leadTrack_phi;
    }
 
    /**
@@ -89,6 +145,20 @@ is_data(is_data) {
         m( this, ::TString( prefix ) + "m", 0 ),
         eta( this, ::TString( prefix ) + "eta", 0 ),
         phi( this, ::TString( prefix ) + "phi", 0 ),
+        charge( this, ::TString( prefix ) + "charge", 0 ),
+        BDTEleScore( this, ::TString( prefix ) + "BDTEleScore", 0 ),
+        BDTJetScore( this, ::TString( prefix ) + "BDTJetScore", 0 ),
+        muonVeto( this, ::TString( prefix ) + "muonVeto", 0 ),
+        JetBDTSigLoose( this, ::TString( prefix ) + "JetBDTSigLoose", 0 ),
+        JetBDTSigMedium( this, ::TString( prefix ) + "JetBDTSigMedium", 0 ),
+        JetBDTSigTight( this, ::TString( prefix ) + "JetBDTSigTight", 0 ),
+        EleBDTLoose( this, ::TString( prefix ) + "EleBDTLoose", 0 ),
+        EleBDTMedium( this, ::TString( prefix ) + "EleBDTMedium", 0 ),
+        EleBDTTight( this, ::TString( prefix ) + "EleBDTTight", 0 ),
+        numTrack( this, ::TString( prefix ) + "numTrack", 0 ),
+        leadTrkPt( this, ::TString( prefix ) + "leadTrkPt", 0 ),
+        leadTrack_eta( this, ::TString( prefix ) + "leadTrack_eta", 0 ),
+        leadTrack_phi( this, ::TString( prefix ) + "leadTrack_phi", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
         fPrefix( prefix ) , 
@@ -99,6 +169,20 @@ is_data(is_data) {
       fHandles[ "m" ] = &m;
       fHandles[ "eta" ] = &eta;
       fHandles[ "phi" ] = &phi;
+      fHandles[ "charge" ] = &charge;
+      fHandles[ "BDTEleScore" ] = &BDTEleScore;
+      fHandles[ "BDTJetScore" ] = &BDTJetScore;
+      fHandles[ "muonVeto" ] = &muonVeto;
+      fHandles[ "JetBDTSigLoose" ] = &JetBDTSigLoose;
+      fHandles[ "JetBDTSigMedium" ] = &JetBDTSigMedium;
+      fHandles[ "JetBDTSigTight" ] = &JetBDTSigTight;
+      fHandles[ "EleBDTLoose" ] = &EleBDTLoose;
+      fHandles[ "EleBDTMedium" ] = &EleBDTMedium;
+      fHandles[ "EleBDTTight" ] = &EleBDTTight;
+      fHandles[ "numTrack" ] = &numTrack;
+      fHandles[ "leadTrkPt" ] = &leadTrkPt;
+      fHandles[ "leadTrack_eta" ] = &leadTrack_eta;
+      fHandles[ "leadTrack_phi" ] = &leadTrack_phi;
    }
 
    /**
@@ -119,6 +203,20 @@ is_data(is_data) {
       m.SetName( ::TString( prefix ) + "m" );
       eta.SetName( ::TString( prefix ) + "eta" );
       phi.SetName( ::TString( prefix ) + "phi" );
+      charge.SetName( ::TString( prefix ) + "charge" );
+      BDTEleScore.SetName( ::TString( prefix ) + "BDTEleScore" );
+      BDTJetScore.SetName( ::TString( prefix ) + "BDTJetScore" );
+      muonVeto.SetName( ::TString( prefix ) + "muonVeto" );
+      JetBDTSigLoose.SetName( ::TString( prefix ) + "JetBDTSigLoose" );
+      JetBDTSigMedium.SetName( ::TString( prefix ) + "JetBDTSigMedium" );
+      JetBDTSigTight.SetName( ::TString( prefix ) + "JetBDTSigTight" );
+      EleBDTLoose.SetName( ::TString( prefix ) + "EleBDTLoose" );
+      EleBDTMedium.SetName( ::TString( prefix ) + "EleBDTMedium" );
+      EleBDTTight.SetName( ::TString( prefix ) + "EleBDTTight" );
+      numTrack.SetName( ::TString( prefix ) + "numTrack" );
+      leadTrkPt.SetName( ::TString( prefix ) + "leadTrkPt" );
+      leadTrack_eta.SetName( ::TString( prefix ) + "leadTrack_eta" );
+      leadTrack_phi.SetName( ::TString( prefix ) + "leadTrack_phi" );
       return;
    }
 
@@ -142,6 +240,20 @@ is_data(is_data) {
       m.ReadFrom( tree );
       eta.ReadFrom( tree );
       phi.ReadFrom( tree );
+      charge.ReadFrom( tree );
+      BDTEleScore.ReadFrom( tree );
+      BDTJetScore.ReadFrom( tree );
+      muonVeto.ReadFrom( tree );
+      JetBDTSigLoose.ReadFrom( tree );
+      JetBDTSigMedium.ReadFrom( tree );
+      JetBDTSigTight.ReadFrom( tree );
+      EleBDTLoose.ReadFrom( tree );
+      EleBDTMedium.ReadFrom( tree );
+      EleBDTTight.ReadFrom( tree );
+      numTrack.ReadFrom( tree );
+      leadTrkPt.ReadFrom( tree );
+      leadTrack_eta.ReadFrom( tree );
+      leadTrack_phi.ReadFrom( tree );
 
       return;
    }
@@ -160,6 +272,20 @@ is_data(is_data) {
       m.WriteTo( tree );
       eta.WriteTo( tree );
       phi.WriteTo( tree );
+      charge.WriteTo( tree );
+      BDTEleScore.WriteTo( tree );
+      BDTJetScore.WriteTo( tree );
+      muonVeto.WriteTo( tree );
+      JetBDTSigLoose.WriteTo( tree );
+      JetBDTSigMedium.WriteTo( tree );
+      JetBDTSigTight.WriteTo( tree );
+      EleBDTLoose.WriteTo( tree );
+      EleBDTMedium.WriteTo( tree );
+      EleBDTTight.WriteTo( tree );
+      numTrack.WriteTo( tree );
+      leadTrkPt.WriteTo( tree );
+      leadTrack_eta.WriteTo( tree );
+      leadTrack_phi.WriteTo( tree );
 
       return;
    }
@@ -215,6 +341,20 @@ is_data(is_data) {
       if( m.IsActive() ) m();
       if( eta.IsActive() ) eta();
       if( phi.IsActive() ) phi();
+      if( charge.IsActive() ) charge();
+      if( BDTEleScore.IsActive() ) BDTEleScore();
+      if( BDTJetScore.IsActive() ) BDTJetScore();
+      if( muonVeto.IsActive() ) muonVeto();
+      if( JetBDTSigLoose.IsActive() ) JetBDTSigLoose();
+      if( JetBDTSigMedium.IsActive() ) JetBDTSigMedium();
+      if( JetBDTSigTight.IsActive() ) JetBDTSigTight();
+      if( EleBDTLoose.IsActive() ) EleBDTLoose();
+      if( EleBDTMedium.IsActive() ) EleBDTMedium();
+      if( EleBDTTight.IsActive() ) EleBDTTight();
+      if( numTrack.IsActive() ) numTrack();
+      if( leadTrkPt.IsActive() ) leadTrkPt();
+      if( leadTrack_eta.IsActive() ) leadTrack_eta();
+      if( leadTrack_phi.IsActive() ) leadTrack_phi();
 
       return;
    }
@@ -242,6 +382,20 @@ is_data(is_data) {
       m()->clear();
       eta()->clear();
       phi()->clear();
+      charge()->clear();
+      BDTEleScore()->clear();
+      BDTJetScore()->clear();
+      muonVeto()->clear();
+      JetBDTSigLoose()->clear();
+      JetBDTSigMedium()->clear();
+      JetBDTSigTight()->clear();
+      EleBDTLoose()->clear();
+      EleBDTMedium()->clear();
+      EleBDTTight()->clear();
+      numTrack()->clear();
+      leadTrkPt()->clear();
+      leadTrack_eta()->clear();
+      leadTrack_phi()->clear();
 
       return;
    }
@@ -284,6 +438,76 @@ is_data(is_data) {
          phi()->push_back( el.phi() );
       } else {
          phi()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.charge.IsAvailable() ) {
+         charge()->push_back( el.charge() );
+      } else {
+         charge()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.BDTEleScore.IsAvailable() ) {
+         BDTEleScore()->push_back( el.BDTEleScore() );
+      } else {
+         BDTEleScore()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.BDTJetScore.IsAvailable() ) {
+         BDTJetScore()->push_back( el.BDTJetScore() );
+      } else {
+         BDTJetScore()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.muonVeto.IsAvailable() ) {
+         muonVeto()->push_back( el.muonVeto() );
+      } else {
+         muonVeto()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.JetBDTSigLoose.IsAvailable() ) {
+         JetBDTSigLoose()->push_back( el.JetBDTSigLoose() );
+      } else {
+         JetBDTSigLoose()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.JetBDTSigMedium.IsAvailable() ) {
+         JetBDTSigMedium()->push_back( el.JetBDTSigMedium() );
+      } else {
+         JetBDTSigMedium()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.JetBDTSigTight.IsAvailable() ) {
+         JetBDTSigTight()->push_back( el.JetBDTSigTight() );
+      } else {
+         JetBDTSigTight()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.EleBDTLoose.IsAvailable() ) {
+         EleBDTLoose()->push_back( el.EleBDTLoose() );
+      } else {
+         EleBDTLoose()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.EleBDTMedium.IsAvailable() ) {
+         EleBDTMedium()->push_back( el.EleBDTMedium() );
+      } else {
+         EleBDTMedium()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.EleBDTTight.IsAvailable() ) {
+         EleBDTTight()->push_back( el.EleBDTTight() );
+      } else {
+         EleBDTTight()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.numTrack.IsAvailable() ) {
+         numTrack()->push_back( el.numTrack() );
+      } else {
+         numTrack()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.leadTrkPt.IsAvailable() ) {
+         leadTrkPt()->push_back( el.leadTrkPt() );
+      } else {
+         leadTrkPt()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.leadTrack_eta.IsAvailable() ) {
+         leadTrack_eta()->push_back( el.leadTrack_eta() );
+      } else {
+         leadTrack_eta()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.leadTrack_phi.IsAvailable() ) {
+         leadTrack_phi()->push_back( el.leadTrack_phi() );
+      } else {
+         leadTrack_phi()->push_back( std::numeric_limits< float >::min() );
       }
       return *this;
    }

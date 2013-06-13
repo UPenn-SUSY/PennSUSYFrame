@@ -5,6 +5,7 @@
 // =============================================================================
 #include <vector>
 #include "AtlasSFrameUtils/include/ToolBase.h"
+#include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
 class Tau;
@@ -43,7 +44,13 @@ namespace SelectionTools
     double c_baseline_min_eta;
     double c_baseline_max_eta;
 
+    TAU_JET_BDT_LEVEL c_jet_bdt_level;
+    TAU_ELE_BDT_LEVEL c_ele_bdt_level;
+    TAU_MU_LEVEL c_muon_veto_level;
+
     // // signal cut values
+
+    bool getCorrectedEleBDTFlag(const Tau*, TAU_ELE_BDT_LEVEL, bool do_correction = false);
 
     bool passCut(double test, double min, double max);
 

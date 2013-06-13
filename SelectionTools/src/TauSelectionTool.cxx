@@ -36,11 +36,61 @@ void SelectionTools::TauSelectionTool::process(
 
   // Check for baseline pt
   bool pass_baseline_pt = passCut(pt, c_baseline_min_pt, c_baseline_max_pt);
-  // tau_desc->setPassBaselinePt(pass_baseline_pt);
+  tau_desc->setPassBaselinePt(pass_baseline_pt);
 
   // Check for baseline eta
   bool pass_baseline_eta = passCut(eta, c_baseline_min_eta, c_baseline_max_eta);
-  // tau_desc->setPassBaselineEta(pass_baseline_eta);
+  tau_desc->setPassBaselineEta(pass_baseline_eta);
+
+  // Check for baseline number of tracks
+  bool pass_baseline_num_tracks = ((tau->numTrack() == 1) || (tau->numTrack() == 3));
+  tau_desc->setPassBaselineNumTracks(pass_baseline_num_tracks);
+
+  // Check the charge of the tau
+  bool pass_baseline_charge = (fabs(tau->charge()) == 1);
+  tau_desc->setPassBaselineCharge(pass_baseline_charge);
+
+  // Check jet bdt level
+  bool pass_jet_bdt_level = (  (  c_jet_bdt_level == TAU_JET_BDT_LOOSE
+                               && tau->JetBDTSigLoose() == true
+                               )
+                            || (  c_jet_bdt_level == TAU_JET_BDT_MEDIUM
+                               && tau->JetBDTSigMedium() == true
+                               )
+                            || (  c_jet_bdt_level == TAU_JET_BDT_TIGHT
+                               && tau->JetBDTSigTight() == true
+                               )
+                            );
+  tau_desc->setPassBaselineJetBDTLevel(pass_jet_bdt_level);
+
+  // Check ele bdt level
+  bool pass_ele_bdt_level = (  (  c_ele_bdt_level == TAU_ELE_BDT_LOOSE
+                               && ( tau->EleBDTLoose() == true
+                                  || tau->numTrack() == 3
+                                  )
+                               )
+                            || (  c_ele_bdt_level == TAU_ELE_BDT_MEDIUM
+                               && ( tau->EleBDTMedium() == true
+                                  || tau->numTrack() == 3
+                                  )
+                               )
+                            || (  c_ele_bdt_level == TAU_ELE_BDT_TIGHT
+                               && ( tau->EleBDTTight() == true
+                                  || tau->numTrack() == 3
+                                  )
+                               )
+                            );
+  tau_desc->setPassBaselineEleBDTLevel(pass_ele_bdt_level);
+
+  // Check muon veto
+  bool pass_muon_veto = (  (  c_muon_veto_level == TAU_MU_LOOSE
+                           && tau->muonVeto() == false
+                           )
+                        || (  c_muon_veto_level == TAU_MU_TIGHT
+                           && tau->muonVeto() == false
+                           )
+                        );
+  tau_desc->setPassBaselineMuVeto(pass_ele_bdt_level);
 }
 
 // -----------------------------------------------------------------------------
@@ -126,10 +176,69 @@ std::vector<Tau*> SelectionTools::TauSelectionTool::getSignalTaus(
 }
 
 // -----------------------------------------------------------------------------
+bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag( const Tau* tau
+    , TAU_ELE_BDT_LEVEL tau_ele_bdt_level
+    , bool do_correction
+    )
+{
+  bool old_bdt_flag = (  (  c_ele_bdt_level == TAU_ELE_BDT_LOOSE
+                         && tau->EleBDTLoose()
+                         )
+                      || (  c_ele_bdt_level == TAU_ELE_BDT_MEDIUM
+                         && tau->EleBDTMedium()
+                         )
+                      || (  c_ele_bdt_level == TAU_ELE_BDT_TIGHT
+                         && tau->EleBDTTight()
+                         )
+                      );
+  if (!do_correction || tau->numTrack() != 1 || tau->pt() < 80e3 )
+    return old_bdt_flag;
+
+  double pt = tau->pt()/1e3;
+  double eta = tau->eta();
+  double cut_val = 0.;
+
+  if (tau_ele_bdt_level == TAU_ELE_BDT_LOOSE) {
+    if (pt <= 800 && eta <= 3.0) {
+    }
+    else if (pt <= 800 && eta > 3.0) {
+    }
+    else if (pt > 800 && eta <= 3.0) {
+    }
+    else {
+    }
+  }
+
+  else if (tau_ele_bdt_level == TAU_ELE_BDT_MEDIUM) {
+    if (pt <= 800 && eta <= 3.0) {
+    }
+    else if (pt <= 800 && eta > 3.0) {
+    }
+    else if (pt > 800 && eta <= 3.0) {
+    }
+    else {
+    }
+  }
+
+  else if (tau_ele_bdt_level == TAU_ELE_BDT_TIGHT) {
+    if (pt <= 800 && eta <= 3.0) {
+    }
+    else if (pt <= 800 && eta > 3.0) {
+    }
+    else if (pt > 800 && eta <= 3.0) {
+    }
+    else {
+    }
+  }
+
+  return (tau->BDTEleScore() > cut_val);
+}
+
+// -----------------------------------------------------------------------------
 bool SelectionTools::TauSelectionTool::passCut( double test
-                                               , double min
-                                               , double max
-                                               )
+                                              , double min
+                                              , double max
+                                              )
 {
   // if no test, return true
   if (min < 0 && max < 0) return true;

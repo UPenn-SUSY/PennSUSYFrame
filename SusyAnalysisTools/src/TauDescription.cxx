@@ -118,103 +118,55 @@ void SusyAnalysisTools::TauDescription::setPassBaseline(bool pass)
 // {
 //   m_pass_signal = pass;
 // }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassBad(bool pass)
-// {
-//   m_pass_bad = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassCosmic(bool pass)
-// {
-//   m_pass_cosmic = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassLoose(bool pass)
-// {
-//   m_pass_loose = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassSegTag(bool pass)
-// {
-//   m_pass_seg_tag = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassCombined(bool pass)
-// {
-//   m_pass_combined = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassBLayer(bool pass)
-// {
-//   m_pass_b_layer = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassPixel(bool pass)
-// {
-//   m_pass_pixel = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassSct(bool pass)
-// {
-//   m_pass_sct = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassTrt(bool pass)
-// {
-//   m_pass_trt = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassSiHoles(bool pass)
-// {
-//   m_pass_si_holes = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassBaselinePt(bool pass)
-// {
-//   m_pass_baseline_pt = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassBaselineEta(bool pass)
-// {
-//   m_pass_baseline_eta = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassD0Sig(bool pass)
-// {
-//   m_pass_d0_sig = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassZ0SinTheta(bool pass)
-// {
-//   m_pass_z0_sin_theta = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassPtIso(bool pass)
-// {
-//   m_pass_pt_iso = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassBaseline() const
-// {
-//   return m_pass_baseline;
-// }
-// 
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassBaselinePt(bool pass)
+{
+  m_pass_baseline_pt = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassBaselineEta(bool pass)
+{
+  m_pass_baseline_eta = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassBaselineNumTracks(bool pass)
+{
+  m_pass_baseline_num_tracks = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassBaselineCharge(bool pass)
+{
+  m_pass_baseline_charge = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassBaselineJetBDTLevel(bool pass)
+{
+  m_pass_baseline_jet_bdt_level = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassBaselineEleBDTLevel(bool pass)
+{
+  m_pass_baseline_elebdt_level = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassBaselineMuVeto(bool pass)
+{
+  m_pass_baseline_mu_veto = pass;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassBaseline() const
+{
+  return m_pass_baseline;
+}
+
 // // -----------------------------------------------------------------------------
 // bool SusyAnalysisTools::TauDescription::getPassGood() const
 // {
@@ -226,96 +178,48 @@ void SusyAnalysisTools::TauDescription::setPassBaseline(bool pass)
 // {
 //   return m_pass_signal;
 // }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassBad() const
-// {
-//   return m_pass_bad;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassCosmic() const
-// {
-//   return m_pass_cosmic;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassLoose() const
-// {
-//   return m_pass_loose;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassSegTag() const
-// {
-//   return m_pass_seg_tag;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassCombined() const
-// {
-//   return m_pass_combined;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassBLayer() const
-// {
-//   return m_pass_b_layer;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassPixel() const
-// {
-//   return m_pass_pixel;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassSct() const
-// {
-//   return m_pass_sct;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassTrt() const
-// {
-//   return m_pass_trt;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassSiHoles() const
-// {
-//   return m_pass_si_holes;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassBaselinePt() const
-// {
-//   return m_pass_baseline_pt;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassBaselineEta() const
-// {
-//   return m_pass_baseline_eta;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassD0Sig() const
-// {
-//   return m_pass_d0_sig;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassZ0SinTheta() const
-// {
-//   return m_pass_z0_sin_theta;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassPtIso() const
-// {
-//   return m_pass_pt_iso;
-// }
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassBaselinePt() const
+{
+  return m_pass_baseline_pt;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassBaselineEta() const
+{
+  return m_pass_baseline_eta;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassBaselineNumTracks() const
+{
+  return m_pass_baseline_num_tracks;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassBaselineCharge() const
+{
+  return m_pass_baseline_charge;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassBaselineJetBDTLevel() const
+{
+  return m_pass_baseline_jet_bdt_level;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassBaselineEleBDTLevel() const
+{
+  return m_pass_baseline_elebdt_level;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassBaselineMuVeto() const
+{
+  return m_pass_baseline_mu_veto;
+}
 
 // -----------------------------------------------------------------------------
 unsigned int SusyAnalysisTools::TauDescription::getComponent(

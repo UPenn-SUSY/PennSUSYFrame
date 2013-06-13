@@ -46,6 +46,20 @@ namespace D3PDReader {
       VarProxy< float > m;
       VarProxy< float > eta;
       VarProxy< float > phi;
+      VarProxy< float > charge;
+      VarProxy< float > BDTEleScore;
+      VarProxy< float > BDTJetScore;
+      VarProxy< int > muonVeto;
+      VarProxy< int > JetBDTSigLoose;
+      VarProxy< int > JetBDTSigMedium;
+      VarProxy< int > JetBDTSigTight;
+      VarProxy< int > EleBDTLoose;
+      VarProxy< int > EleBDTMedium;
+      VarProxy< int > EleBDTTight;
+      VarProxy< int > numTrack;
+      VarProxy< float > leadTrkPt;
+      VarProxy< float > leadTrack_eta;
+      VarProxy< float > leadTrack_phi;
 
 
 bool is_data; // ~bj 
@@ -102,6 +116,20 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > m;
       VarHandle< vector<float>* > eta;
       VarHandle< vector<float>* > phi;
+      VarHandle< vector<float>* > charge;
+      VarHandle< vector<float>* > BDTEleScore;
+      VarHandle< vector<float>* > BDTJetScore;
+      VarHandle< vector<int>* > muonVeto;
+      VarHandle< vector<int>* > JetBDTSigLoose;
+      VarHandle< vector<int>* > JetBDTSigMedium;
+      VarHandle< vector<int>* > JetBDTSigTight;
+      VarHandle< vector<int>* > EleBDTLoose;
+      VarHandle< vector<int>* > EleBDTMedium;
+      VarHandle< vector<int>* > EleBDTTight;
+      VarHandle< vector<int>* > numTrack;
+      VarHandle< vector<float>* > leadTrkPt;
+      VarHandle< vector<float>* > leadTrack_eta;
+      VarHandle< vector<float>* > leadTrack_phi;
 
    private:
       mutable std::vector< TauD3PDObjectElement > fProxies; ///< Internal list of proxy objects
