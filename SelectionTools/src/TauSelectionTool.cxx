@@ -17,6 +17,10 @@ SelectionTools::TauSelectionTool::TauSelectionTool(
 
   DeclareProperty("baseline_min_eta", c_baseline_min_eta = -1);
   DeclareProperty("baseline_max_eta", c_baseline_max_eta = 2.5);
+
+  // DeclareProperty("jet_bdt_level",   c_jet_bdt_level   = TAU_JET_BDT_MEDIUM);
+  // DeclareProperty("ele_bdt_level",   c_ele_bdt_level   = TAU_ELE_BDT_LEVEL );
+  // DeclareProperty("muon_veto_level", c_muon_veto_level = TAU_MU_TIGHT      );
 }
 
 // -----------------------------------------------------------------------------
