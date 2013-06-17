@@ -168,6 +168,10 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   if (evt_desc.getPassHFOR() == false) return;
   fillHist(phase, weight_type, bin_num++, weight);
 
+  // MC overlap
+  if (evt_desc.getPassMCOverlap() == false) return;
+  fillHist(phase, weight_type, bin_num++, weight);
+
   // >= 2 good leptons
   if (evt_desc.getPassGE2GoodLeptons() == false) return;
   fillHist(phase, weight_type, bin_num++, weight);
@@ -936,6 +940,7 @@ void CutFlowDump::initBinList()
   m_bin_list.push_back("Bad mu veto");
   m_bin_list.push_back("Cosmic mu veto");
   m_bin_list.push_back("HFOR");
+  m_bin_list.push_back("MC Overlap");
   m_bin_list.push_back(">= 2 good lep");
   m_bin_list.push_back("== 2 good lep=");
   m_bin_list.push_back("mll");
