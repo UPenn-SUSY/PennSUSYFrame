@@ -35,6 +35,7 @@ ull_t SusyAnalysisTools::EventDescription::toInt() const
   event_desc += getIntComp(m_pass_bad_muons        , ADD_BAD_MUONS         );
   event_desc += getIntComp(m_pass_cosmic_muons     , ADD_COSMIC_MUONS      );
   event_desc += getIntComp(m_pass_hfor             , ADD_HFOR              );
+  event_desc += getIntComp(m_pass_mc_overlap       , ADD_MC_OVERLAP        );
   event_desc += getIntComp(m_pass_ge_2_good_leptons, ADD_GE_2_GOOD_LEPTON  );
   event_desc += getIntComp(m_pass_2_good_leptons   , ADD_2_GOOD_LEPTON     );
   event_desc += getIntComp(m_pass_2_signal_leptons , ADD_2_SIGNAL_LEPTON   );
@@ -102,6 +103,7 @@ void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
   m_pass_bad_muons         = getComponent(rhs, ADD_BAD_MUONS        , SIZE_BOOL);
   m_pass_cosmic_muons      = getComponent(rhs, ADD_COSMIC_MUONS     , SIZE_BOOL);
   m_pass_hfor              = getComponent(rhs, ADD_HFOR             , SIZE_BOOL);
+  m_pass_mc_overlap        = getComponent(rhs, ADD_MC_OVERLAP       , SIZE_BOOL);
   m_pass_ge_2_good_leptons = getComponent(rhs, ADD_GE_2_GOOD_LEPTON , SIZE_BOOL);
   m_pass_2_good_leptons    = getComponent(rhs, ADD_2_GOOD_LEPTON    , SIZE_BOOL);
   m_pass_mll               = getComponent(rhs, ADD_MLL              , SIZE_BOOL);
@@ -250,7 +252,11 @@ void SusyAnalysisTools::EventDescription::setPassHFOR(bool pass_hfor)
 {
   m_pass_hfor = pass_hfor;
 }
-
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setPassMCOverlap(bool pass_mc_overlap)
+{
+  m_pass_mc_overlap = pass_mc_overlap;
+}
 // -----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::setPassGE2GoodLeptons(
     bool pass_ge_2_good_leptons)
@@ -533,6 +539,11 @@ bool SusyAnalysisTools::EventDescription::getPassCosmicMuons() const
 bool SusyAnalysisTools::EventDescription::getPassHFOR() const
 {
   return m_pass_hfor;
+}
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassMCOverlap() const
+{
+  return m_pass_mc_overlap;
 }
 
 // -----------------------------------------------------------------------------
