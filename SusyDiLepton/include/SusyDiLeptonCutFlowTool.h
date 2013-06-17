@@ -105,6 +105,7 @@ private:
   bool c_crit_bad_mu_veto;
   bool c_crit_cosmic_mu_veto;
   bool c_crit_hfor;
+  bool c_crit_mc_overlap;
   bool c_crit_ge_2_lep;
   bool c_crit_2_lep;
   bool c_crit_mll;

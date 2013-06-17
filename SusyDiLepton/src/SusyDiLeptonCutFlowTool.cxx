@@ -71,6 +71,7 @@ SusyDiLeptonCutFlowTool::SusyDiLeptonCutFlowTool( SCycleBase* parent
   DeclareProperty("Crit_bad_mu_veto"      , c_crit_bad_mu_veto       = false);
   DeclareProperty("Crit_cosmic_mu_veto"   , c_crit_cosmic_mu_veto    = false);
   DeclareProperty("Crit_hfor"             , c_crit_hfor              = false);
+  DeclareProperty("Crit_mc_overlap"       , c_crit_mc_overlap        = false);
   DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep          = false);
   DeclareProperty("Crit_2_lep"            , c_crit_2_lep             = false);
   DeclareProperty("Crit_mll"              , c_crit_mll               = false);
@@ -302,7 +303,6 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   // Check HFOR
   bool pass_hfor = true;
   if(!is_data()) pass_hfor =  (  m_hfor_tool->passHFOR(mc)
-                              && m_hfor_tool->passSherpaWWOveralpRemoval(event, mc)
                               );
   event->getEventDesc()->setPassHFOR(pass_hfor);
   if (c_crit_hfor && pass_hfor == false) {
@@ -315,6 +315,21 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
     return false;
   }
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // Check Sherpa WW Overlap 
+  bool pass_sherpa_ww = true;
+  if(!is_data()) pass_sherpa_ww =  (m_hfor_tool->passSherpaWWOveralpRemoval(event, mc)
+                                   );
+  event->getEventDesc()->setPassMCOverlap(pass_sherpa_ww);
+  if (c_crit_mc_overlap && pass_sherpa_ww == false) {
+    if (c_super_verbose_info) {
+      std::cout << "Failed MC Overlap Removal-- "
+                << " Run: "   << event->RunNumber()
+                << " Event: " << event->EventNumber()
+                << std::endl;
+    }
+    return false;
+  }
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check for At least two leptons
   size_t num_good_el = electrons.num(EL_GOOD);
