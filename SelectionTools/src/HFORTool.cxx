@@ -47,11 +47,12 @@ bool SelectionTools::HFORTool::passHFOR(const D3PDReader::TruthD3PDObject* mc)
 bool SelectionTools::HFORTool::passSherpaWWOveralpRemoval(const Event* event, const D3PDReader::TruthD3PDObject* mc)
 {
   if (!is_data()) {
-    unsigned int dsid = event->RunNumber();
+
+    unsigned int dsid = mc->mc_channel_number();
     if (  dsid == 126892
-       || dsid == 157817
-       || dsid == 157818
-       || dsid == 157819
+//       || dsid == 157817
+//       || dsid == 157818
+//       || dsid == 157819
        ) {
       Int_t num_truth_objects = mc->mc_n();
       for(Int_t obj_itr = 0; obj_itr != num_truth_objects; ++obj_itr) {
