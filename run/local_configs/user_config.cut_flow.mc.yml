@@ -163,6 +163,16 @@ Muon_Selection:
     signal_min_ptcone_cut:        -1
     signal_max_ptcone_cut:        0.12
 
+Tau_Selection:
+  baseline_min_pt:  10000
+  baseline_max_pt:  -1
+  baseline_min_eta: -1
+  baseline_max_eta: 2.5
+  ele_corr_file:    ${ROOTCOREDIR}/../SUSYTools/data/ParametrizedEleBDTSelection.root
+  jet_bdt_level:    0
+  ele_bdt_level:    0
+  muon_veto_level:  0
+
 GRL:
     do_grl:  True
     grl_xml: FIND_ME

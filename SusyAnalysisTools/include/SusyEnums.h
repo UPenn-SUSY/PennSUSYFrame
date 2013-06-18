@@ -89,17 +89,20 @@ enum ISO_TYPE { PTCONE = 0
               , REL_TOPOETCONE_CORR
               };
 
-enum TAU_JET_BDT_LEVEL { TAU_JET_BDT_LOOSE
+enum TAU_JET_BDT_LEVEL { TAU_JET_BDT_NONE = 0
+                       , TAU_JET_BDT_LOOSE
                        , TAU_JET_BDT_MEDIUM
                        , TAU_JET_BDT_TIGHT
                        };
 
-enum TAU_ELE_BDT_LEVEL { TAU_ELE_BDT_LOOSE
+enum TAU_ELE_BDT_LEVEL { TAU_ELE_BDT_NONE = 0
+                       , TAU_ELE_BDT_LOOSE
                        , TAU_ELE_BDT_MEDIUM
                        , TAU_ELE_BDT_TIGHT
                        };
 
-enum TAU_MU_LEVEL { TAU_MU_LOOSE
+enum TAU_MU_LEVEL { TAU_MU_NONE = 0
+                  , TAU_MU_LOOSE
                   , TAU_MU_TIGHT
                   };
 
