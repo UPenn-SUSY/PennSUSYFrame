@@ -8,7 +8,7 @@
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
 #include "CommonTools/include/TLVTool.h"
-#include "CommonTools/include/IsoCorrectionTool.h"
+// #include "CommonTools/include/IsoCorrectionTool.h"
 
 #include "SelectionTools/include/TauSelectionTool.h"
 
@@ -30,12 +30,12 @@ TauContainer::~TauContainer()
 // ----------------------------------------------------------------------------
 void TauContainer::init( SelectionTools::TauSelectionTool* tau_selection_tool
                         , CommonTools::TLVTool* tlv_tool
-                        , CommonTools::IsoCorrectionTool* iso_corr_tool
+                        // , CommonTools::IsoCorrectionTool* iso_corr_tool
                         )
 {
   m_tau_selection = tau_selection_tool;
   m_tlv_tool = tlv_tool;
-  m_iso_corr_tool = iso_corr_tool;
+  // m_iso_corr_tool = iso_corr_tool;
 }
 
 // ----------------------------------------------------------------------------
@@ -58,7 +58,7 @@ void TauContainer::prepTaus(
   ParticleElementBuilder::build( m_master_list
                                , *tau_d3pdobject
                                , m_tlv_tool
-                               , m_iso_corr_tool
+                               // , m_iso_corr_tool
                                );
 
   size_t term = m_master_list.size();

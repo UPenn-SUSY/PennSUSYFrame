@@ -17,6 +17,8 @@
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
 #include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
+#include "AtlasSFrameUtils/include/Tau.h"
+#include "AtlasSFrameUtils/include/TauContainer.h"
 #include "AtlasSFrameUtils/include/Trigger.h"
 #include "AtlasSFrameUtils/include/TriggerVec.h"
 #include "AtlasSFrameUtils/include/Vertex.h"
@@ -43,6 +45,7 @@
 #include "CommonTools/include/PileUpScaleFactorTool.h"
 #include "CommonTools/include/PtllTool.h"
 #include "CommonTools/include/SignChannel.h"
+// #include "CommonTools/include/TauOutputTool.h"
 #include "CommonTools/include/TLVTool.h"
 #include "CommonTools/include/TopTagTool.h"
 #include "CommonTools/include/TriggerReweightTool.h"
@@ -56,6 +59,7 @@
 #include "D3PDObjects/include/METD3PDObject.h"
 #include "D3PDObjects/include/MuonD3PDObject.h"
 #include "D3PDObjects/include/MuonTruthD3PDObject.h"
+#include "D3PDObjects/include/TauD3PDObject.h"
 #include "D3PDObjects/include/TriggerD3PDObject.h"
 #include "D3PDObjects/include/TriggerVecD3PDObject.h"
 #include "D3PDObjects/include/TruthD3PDObject.h"
@@ -69,6 +73,7 @@
 #include "SelectionTools/include/MuonSelectionTool.h"
 #include "SelectionTools/include/ObjectCleaningTool.h"
 #include "SelectionTools/include/SignalRegionTool.h"
+#include "SelectionTools/include/TauSelectionTool.h"
 #include "SelectionTools/include/TriggerCutTool.h"
 #include "SelectionTools/include/HFORTool.h"
 // #include "SelectionTools/include/SherpaWWOverlapRemovalTool.h"
@@ -160,6 +165,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
   DECLARE_TOOL(SelectionTools::MuonSelectionTool    , "Muon_Selection"    );
+  DECLARE_TOOL(SelectionTools::TauSelectionTool     , "Tau_Selection");
 
   DECLARE_TOOL(SelectionTools::GoodRunsListTool  , "GRL"            );
   DECLARE_TOOL(SelectionTools::EventCleaningTool , "Event_Cleaning" );
@@ -179,6 +185,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
   DECLARE_TOOL(CommonTools::JetOutputTool      , "JetOutput");
   DECLARE_TOOL(CommonTools::JetOutputTool      , "JetOutput_light");
   DECLARE_TOOL(CommonTools::MetOutputTool      , "MetOutput");
+  // DECLARE_TOOL(CommonTools::TauOutputTool      , "TauOutput");
   DECLARE_TOOL(CommonTools::VertexOutputTool   , "VertexOutput");
 }
 
@@ -263,6 +270,11 @@ void SusyDiLeptonCutFlowCycle::initD3PDReaders()
                                     , c_muon_prefix.c_str()
                                     , is_data()
                                     );
+  m_tau_d3pdobject =
+      new D3PDReader::TauD3PDObject( m_entry_number
+                                   , "tau_"
+                                   , is_data()
+                                   );
 
   // Some of these readers are only initialized for MC
   if (!is_data()) {
@@ -350,6 +362,14 @@ void SusyDiLeptonCutFlowCycle::getTools()
   m_muon_selection = muon_selection;
   m_muons.init(muon_selection, tlv_tool, mu_iso_corr_tool);
 
+  // Tau selection
+  GET_TOOL( tau_selection
+          , SelectionTools::TauSelectionTool
+          , "Tau_Selection"
+          );
+  m_tau_selection = tau_selection;
+  m_taus.init(tau_selection, tlv_tool);
+
   // Object cleaning for overlap removal, etc.
   GET_TOOL( object_cleaning
           , SelectionTools::ObjectCleaningTool
@@ -434,6 +454,9 @@ void SusyDiLeptonCutFlowCycle::getTools()
 
   GET_TOOL(met_out, CommonTools::MetOutputTool, "MetOutput");
   m_met_output_tool = met_out;
+
+  // GET_TOOL(tau_out, CommonTools::TauOutputTool, "TauOutput");
+  // m_tau_output_tool = tau_out;
 
   GET_TOOL(vertex_out, CommonTools::VertexOutputTool, "VertexOutput");
   m_vertex_output_tool = vertex_out;
@@ -887,6 +910,10 @@ void SusyDiLeptonCutFlowCycle::getObjects()
 
   m_jets.setCollection( JET_BASELINE_BAD,
       m_jet_selection->getBaselineBadJets(m_jets));
+
+  m_taus.setCollection( TAU_BASELINE,
+      m_tau_selection->getBaselineTaus(m_taus));
+  std::cout << "num taus -- all: " << m_taus.num(TAU_ALL) << " baseline: " << m_taus.num(TAU_BASELINE) << "\n";
 
   // Get bad/veto objects
   m_muons.setCollection( MU_BAD,

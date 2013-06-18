@@ -15,7 +15,7 @@ class VertexContainer;
 namespace CommonTools
 {
   class TLVTool;
-  class IsoCorrectionTool;
+  // class IsoCorrectionTool;
 }
 namespace SelectionTools
 {
@@ -31,7 +31,7 @@ class TauContainer
 
     void init( SelectionTools::TauSelectionTool*
              , CommonTools::TLVTool*
-             , CommonTools::IsoCorrectionTool*
+             // , CommonTools::IsoCorrectionTool*
              );
 
     void clear();
@@ -49,7 +49,7 @@ class TauContainer
 
     SelectionTools::TauSelectionTool* m_tau_selection;
     CommonTools::TLVTool* m_tlv_tool;
-    CommonTools::IsoCorrectionTool* m_iso_corr_tool;
+    // CommonTools::IsoCorrectionTool* m_iso_corr_tool;
 };
 
 #endif

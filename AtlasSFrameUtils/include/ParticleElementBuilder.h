@@ -32,7 +32,11 @@ void ParticleElementBuilder::build( std::vector<ParticleElementType>& vec
 {
     for(int i=0; i < obj.n(); i++)
     {
-        vec.push_back( ParticleElementType( obj[i], tlv_tool, i ) );
+        vec.push_back( ParticleElementType( obj[i]
+                                          , tlv_tool
+                                          , i
+                                          )
+                     );
     }
 }
 
@@ -46,7 +50,12 @@ void ParticleElementBuilder::build( std::vector<ParticleElementType>& vec
 {
     for(int i=0; i < obj.n(); i++)
     {
-        vec.push_back( ParticleElementType( obj[i], tlv_tool, iso_corr_tool, i ) );
+        vec.push_back( ParticleElementType( obj[i]
+                                          , tlv_tool
+                                          , iso_corr_tool
+                                          , i
+                                          )
+                     );
     }
 }
 

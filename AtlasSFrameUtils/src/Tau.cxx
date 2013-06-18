@@ -23,14 +23,14 @@ ClassImp(Tau)
 // -----------------------------------------------------------------------------
 Tau::Tau( const ParticleElement<D3PDReader::TauD3PDObjectElement>& p
           , CommonTools::TLVTool* tlv_tool
-          , CommonTools::IsoCorrectionTool* iso_corr_tool
+          // , CommonTools::IsoCorrectionTool* iso_corr_tool
           , int index
           )
           : ParticleElement<D3PDReader::TauD3PDObjectElement>(p,index,false)
           , m_tlv_prepped(false)
           , m_raw_tlv_prepped(false)
           , m_tlv_tool(tlv_tool)
-          , m_iso_corr_tool(iso_corr_tool)
+          // , m_iso_corr_tool(iso_corr_tool)
 {
   // do nothing
 }

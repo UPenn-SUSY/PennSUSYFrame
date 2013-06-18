@@ -27,7 +27,7 @@ class Tau : public ParticleElement<D3PDReader::TauD3PDObjectElement>
 public:
   Tau( const ParticleElement<D3PDReader::TauD3PDObjectElement>& p
      , CommonTools::TLVTool* tlv_tool
-     , CommonTools::IsoCorrectionTool* iso_corr_tool
+     // , CommonTools::IsoCorrectionTool* iso_corr_tool
      , int index = -1
      );
 
@@ -66,7 +66,7 @@ private:
   bool m_raw_tlv_prepped;
 
   CommonTools::TLVTool* m_tlv_tool;
-  CommonTools::IsoCorrectionTool* m_iso_corr_tool;
+  // CommonTools::IsoCorrectionTool* m_iso_corr_tool;
 
   double ptcone(int cone_size) const;
   double etcone(int cone_size) const;

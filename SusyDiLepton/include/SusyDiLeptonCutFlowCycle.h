@@ -7,6 +7,7 @@
 #include "AtlasSFrameUtils/include/ElectronContainer.h"
 #include "AtlasSFrameUtils/include/JetContainer.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/TauContainer.h"
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
 #include "SusyMatrixMethod/DiLeptonMatrixMethod.h"
@@ -25,6 +26,7 @@ namespace D3PDReader
   class METD3PDObject;
   class MuonD3PDObject;
   class MuonTruthD3PDObject;
+  class TauD3PDObject;
   class TruthD3PDObject;
   class TruthMETD3PDObject;
   class VertexD3PDObject;
@@ -41,6 +43,7 @@ namespace SelectionTools
   class ObjectCleaningTool;
   class GoodRunsListTool;
   class EventCleaningTool;
+  class TauSelectionTool;
   class TriggerCutTool;
   class SignalRegionTool;
 }
@@ -64,6 +67,7 @@ namespace CommonTools
   class JetOutputTool;
   class JetOutputTool;
   class MetOutputTool;
+  // class TauOutputTool;
   class VertexOutputTool;
 }
 
@@ -159,6 +163,7 @@ private:
   JetContainer      m_jets;
   Met*              m_met;
   MuonContainer     m_muons;
+  TauContainer      m_taus;
   Trigger*          m_trigger;
   TriggerVec*       m_trigger_vec;
   VertexContainer   m_vertices;
@@ -171,6 +176,7 @@ private:
   D3PDReader::METD3PDObject*        m_met_d3pdobject;
   D3PDReader::MuonD3PDObject*       m_muon_d3pdobject;
   D3PDReader::MuonTruthD3PDObject*  m_muon_truth_d3pdobject;
+  D3PDReader::TauD3PDObject*        m_tau_d3pdobject;
   D3PDReader::TruthD3PDObject*      m_truth_d3pdobject;
   D3PDReader::TruthMETD3PDObject*   m_met_truth_d3pdobject;
   D3PDReader::VertexD3PDObject*     m_vertex_d3pdobject;
@@ -181,6 +187,7 @@ private:
   SelectionTools::ElectronSelectionTool* m_electron_selection;
   SelectionTools::JetSelectionTool*      m_jet_selection;
   SelectionTools::MuonSelectionTool*     m_muon_selection;
+  SelectionTools::TauSelectionTool*      m_tau_selection;
   SelectionTools::ObjectCleaningTool*    m_object_cleaning;
 
   SelectionTools::GoodRunsListTool*  m_grl_tool;
@@ -205,6 +212,7 @@ private:
   CommonTools::JetOutputTool*        m_jet_output_tool;
   CommonTools::JetOutputTool*        m_light_jet_output_tool;
   CommonTools::MetOutputTool*        m_met_output_tool;
+  // CommonTools::TauOutputTool*        m_tau_output_tool;
   CommonTools::VertexOutputTool*     m_vertex_output_tool;
 
   SusyMatrixMethod::DiLeptonMatrixMethod m_matrix_method;
