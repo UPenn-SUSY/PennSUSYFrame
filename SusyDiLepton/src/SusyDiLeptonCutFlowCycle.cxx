@@ -100,6 +100,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_mcevt_d3pdobject(NULL),
   m_muon_d3pdobject(NULL),
   m_muon_truth_d3pdobject(NULL),
+  m_tau_d3pdobject(NULL),
   m_truth_d3pdobject(NULL),
   m_met_truth_d3pdobject(NULL),
   m_vertex_d3pdobject(NULL),
@@ -107,6 +108,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_electron_selection(NULL),
   m_jet_selection(NULL),
   m_muon_selection(NULL),
+  m_tau_selection(NULL),
   m_object_cleaning(NULL),
   m_grl_tool(NULL),
   m_event_cleaning_tool(NULL),
@@ -480,6 +482,7 @@ void SusyDiLeptonCutFlowCycle::EndInputDataImp( const SInputData& )
   delete m_jet_d3pdobject;
   delete m_muon_d3pdobject;
   delete m_muon_truth_d3pdobject;
+  delete m_tau_d3pdobject;
 
   if (!is_data()) {
     delete m_mcevt_d3pdobject;
@@ -523,6 +526,7 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
   m_electron_d3pdobject->ReadFrom(GetInputTree(c_input_tree_name.c_str()));
   m_jet_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
   m_muon_d3pdobject->ReadFrom(    GetInputTree(c_input_tree_name.c_str()));
+  m_tau_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
 
   if (!is_data()){
     m_mcevt_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
@@ -562,6 +566,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   bool pass_critical_cuts = m_cut_flow->runBasicCutFlow( m_event
                                                        , m_electrons
                                                        , m_muons
+                                                       // , m_taus
                                                        , m_jets
                                                        , m_vertices
                                                        , m_trigger
@@ -577,6 +582,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   m_cut_flow->computeGoodEventVariables( m_event
                                        , m_electrons
                                        , m_muons
+                                       // , m_taus
                                        , m_jets
                                        , m_met
                                        );
@@ -587,6 +593,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   pass_critical_cuts = m_cut_flow->runAdvancedCutFlow( m_event
                                                      , m_electrons
                                                      , m_muons
+                                                     // , m_taus
                                                      , m_jets
                                                      , m_vertices
                                                      , m_trigger
@@ -865,6 +872,7 @@ void SusyDiLeptonCutFlowCycle::prepEvent()
   m_electrons.clear();
   m_jets.clear();
   m_muons.clear();
+  m_taus.clear();
   m_met->clear();
   m_vertices.clear();
 
@@ -897,6 +905,7 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_electrons.prepElectrons(m_electron_d3pdobject, m_vertices);
   m_muons.prepMuons(m_muon_d3pdobject, m_vertices);
   m_jets.prepJets(m_jet_d3pdobject, m_event, m_vertices);
+  m_taus.prepTaus(m_tau_d3pdobject, m_vertices);
 
   // Get baseline objects
   m_electrons.setCollection( EL_BASELINE,
@@ -913,7 +922,12 @@ void SusyDiLeptonCutFlowCycle::getObjects()
 
   m_taus.setCollection( TAU_BASELINE,
       m_tau_selection->getBaselineTaus(m_taus));
-  std::cout << "num taus -- all: " << m_taus.num(TAU_ALL) << " baseline: " << m_taus.num(TAU_BASELINE) << "\n";
+  std::cout << "num taus --"
+            << " all: " << m_taus.num(TAU_ALL)
+            << " baseline: " << m_taus.num(TAU_BASELINE)
+            << " good: " << m_taus.num(TAU_GOOD)
+            << " signal: " << m_taus.num(TAU_SIGNAL)
+            << "\n";
 
   // Get bad/veto objects
   m_muons.setCollection( MU_BAD,
@@ -933,6 +947,9 @@ void SusyDiLeptonCutFlowCycle::getObjects()
 
   m_muons.setCollection( MU_SIGNAL,
       m_muon_selection->getSignalMuons(m_muons));
+
+  m_taus.setCollection( TAU_SIGNAL,
+      m_tau_selection->getSignalTaus(m_taus));
 
   m_jets.setCollection( JET_LIGHT,
       m_jet_selection->getLJets(m_jets));

@@ -70,6 +70,7 @@ enum MUON_COLLECTIONS { MU_ALL = 0  // Green tree snake
 enum TAU_COLLECTIONS { TAU_ALL = 0
                      , TAU_BASELINE
                      , TAU_GOOD
+                     , TAU_SIGNAL
                      , TAU_N
                      };
 
