@@ -27,8 +27,8 @@ ull_t SusyAnalysisTools::TauDescription::toInt() const
   tau_desc += getIntComp(m_pass_baseline, ADD_BASELINE);
 
   tau_desc += getIntComp(m_pass_baseline    , ADD_BASELINE    );
-  // tau_desc += getIntComp(m_pass_good        , ADD_GOOD        );
-  // tau_desc += getIntComp(m_pass_signal      , ADD_SIGNAL      );
+  tau_desc += getIntComp(m_pass_good        , ADD_GOOD        );
+  tau_desc += getIntComp(m_pass_signal      , ADD_SIGNAL      );
   // tau_desc += getIntComp(m_pass_bad         , ADD_BAD         );
   // tau_desc += getIntComp(m_pass_cosmic      , ADD_COSMIC      );
   // tau_desc += getIntComp(m_pass_loose       , ADD_LOOSE       );
@@ -65,8 +65,8 @@ void SusyAnalysisTools::TauDescription::set(
 void SusyAnalysisTools::TauDescription::set(const ull_t& rhs)
 {
   m_pass_baseline     = getComponent(rhs, ADD_BASELINE    , SIZE_BOOL);
-  // m_pass_good         = getComponent(rhs, ADD_GOOD        , SIZE_BOOL);
-  // m_pass_signal       = getComponent(rhs, ADD_SIGNAL      , SIZE_BOOL);
+  m_pass_good         = getComponent(rhs, ADD_GOOD        , SIZE_BOOL);
+  m_pass_signal       = getComponent(rhs, ADD_SIGNAL      , SIZE_BOOL);
   // m_pass_bad          = getComponent(rhs, ADD_BAD         , SIZE_BOOL);
   // m_pass_cosmic       = getComponent(rhs, ADD_COSMIC      , SIZE_BOOL);
   // m_pass_loose        = getComponent(rhs, ADD_LOOSE       , SIZE_BOOL);
@@ -107,17 +107,17 @@ void SusyAnalysisTools::TauDescription::setPassBaseline(bool pass)
   m_pass_baseline = pass;
 }
 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassGood(bool pass)
-// {
-//   m_pass_good = pass;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// void SusyAnalysisTools::TauDescription::setPassSignal(bool pass)
-// {
-//   m_pass_signal = pass;
-// }
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassGood(bool pass)
+{
+  m_pass_good = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassSignal(bool pass)
+{
+  m_pass_signal = pass;
+}
 
 // -----------------------------------------------------------------------------
 void SusyAnalysisTools::TauDescription::setPassBaselinePt(bool pass)
@@ -167,17 +167,17 @@ bool SusyAnalysisTools::TauDescription::getPassBaseline() const
   return m_pass_baseline;
 }
 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassGood() const
-// {
-//   return m_pass_good;
-// }
-// 
-// // -----------------------------------------------------------------------------
-// bool SusyAnalysisTools::TauDescription::getPassSignal() const
-// {
-//   return m_pass_signal;
-// }
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassGood() const
+{
+  return m_pass_good;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassSignal() const
+{
+  return m_pass_signal;
+}
 
 // -----------------------------------------------------------------------------
 bool SusyAnalysisTools::TauDescription::getPassBaselinePt() const

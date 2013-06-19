@@ -518,6 +518,25 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
            << SLogger::endmsg;
 
   // = get input trees from the d3pd objects =
+  TTree* input_tree = GetInputTree(c_input_tree_name.c_str());
+
+  m_event->ReadFrom(              input_tree);
+  m_trigger->ReadFrom(            input_tree);
+  m_trigger_vec->ReadFrom(        input_tree);
+  m_met->ReadFrom(                input_tree);
+  m_vertex_d3pdobject->ReadFrom(  input_tree);
+  m_electron_d3pdobject->ReadFrom(input_tree);
+  m_jet_d3pdobject->ReadFrom(     input_tree);
+  m_muon_d3pdobject->ReadFrom(    input_tree);
+  m_tau_d3pdobject->ReadFrom(     input_tree);
+
+  if (!is_data()){
+    m_mcevt_d3pdobject->ReadFrom(     input_tree);
+    m_muon_truth_d3pdobject->ReadFrom(input_tree);
+    m_truth_d3pdobject->ReadFrom(     input_tree);
+    m_met_truth_d3pdobject->ReadFrom( input_tree);
+  }
+  /*
   m_event->ReadFrom(              GetInputTree(c_input_tree_name.c_str()));
   m_trigger->ReadFrom(            GetInputTree(c_input_tree_name.c_str()));
   m_trigger_vec->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
@@ -534,6 +553,7 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
     m_truth_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
     m_met_truth_d3pdobject->ReadFrom( GetInputTree(c_input_tree_name.c_str()));
   }
+  */
 }
 
 // -----------------------------------------------------------------------------
@@ -922,12 +942,6 @@ void SusyDiLeptonCutFlowCycle::getObjects()
 
   m_taus.setCollection( TAU_BASELINE,
       m_tau_selection->getBaselineTaus(m_taus));
-  std::cout << "num taus --"
-            << " all: " << m_taus.num(TAU_ALL)
-            << " baseline: " << m_taus.num(TAU_BASELINE)
-            << " good: " << m_taus.num(TAU_GOOD)
-            << " signal: " << m_taus.num(TAU_SIGNAL)
-            << "\n";
 
   // Get bad/veto objects
   m_muons.setCollection( MU_BAD,
@@ -935,7 +949,7 @@ void SusyDiLeptonCutFlowCycle::getObjects()
 
   // do overlap removal to get good objects
   m_object_cleaning->SelectionTools::ObjectCleaningTool::fullObjectCleaning(
-      m_electrons, m_muons, m_jets);
+      m_electrons, m_muons, m_taus, m_jets);
 
   // get cosmic muons
   m_muons.setCollection( MU_COSMIC,
@@ -962,6 +976,13 @@ void SusyDiLeptonCutFlowCycle::getObjects()
 
   // Set "coimbined colelctions like JET_ALL_SIGNAL and JET_ALL_CENTRAL
   m_jets.setCombinedCollections();
+
+  std::cout << "num taus --"
+            << " all: " << m_taus.num(TAU_ALL)
+            << " baseline: " << m_taus.num(TAU_BASELINE)
+            << " good: " << m_taus.num(TAU_GOOD)
+            << " signal: " << m_taus.num(TAU_SIGNAL)
+            << "\n";
 }
 
 // -----------------------------------------------------------------------------

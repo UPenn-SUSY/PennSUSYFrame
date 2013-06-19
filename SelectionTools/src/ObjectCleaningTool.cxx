@@ -1,5 +1,6 @@
 #include "include/ObjectCleaningTool.h"
 
+#include <iostream>
 #include <vector>
 #include <math.h>
 #include "TLorentzVector.h"
@@ -10,6 +11,8 @@
 #include "AtlasSFrameUtils/include/JetContainer.h"
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/Tau.h"
+#include "AtlasSFrameUtils/include/TauContainer.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
 
 // ----------------------------------------------------------------------------
@@ -17,11 +20,13 @@ SelectionTools::ObjectCleaningTool::ObjectCleaningTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
 {
   // DeclareProperty("signal_max_etcone_cut", c_signal_max_etcone_cut = 0.18);
-  DeclareProperty("ee_cone_size", c_ee_cone_size = 0.10);
+  DeclareProperty("ee_cone_size", c_ee_cone_size = 0.05);
   DeclareProperty("ej_cone_size", c_ej_cone_size = 0.20);
+  DeclareProperty("et_cone_size", c_et_cone_size = 0.20);
+  DeclareProperty("mt_cone_size", c_mt_cone_size = 0.20);
   DeclareProperty("je_cone_size", c_je_cone_size = 0.40);
   DeclareProperty("jm_cone_size", c_jm_cone_size = 0.40);
-  DeclareProperty("em_cone_size", c_em_cone_size = 0.10);
+  DeclareProperty("em_cone_size", c_em_cone_size = 0.01);
   DeclareProperty("mm_cone_size", c_mm_cone_size = 0.05);
   DeclareProperty("min_mll"     , c_min_mll      = 12000);
 }
@@ -36,19 +41,23 @@ SelectionTools::ObjectCleaningTool::~ObjectCleaningTool()
 void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
     ElectronContainer& electrons,
     MuonContainer& muons,
+    TauContainer& taus,
     JetContainer& jets)
 {
   std::vector<Electron*> good_electrons;
   std::vector<Muon*>     good_muons;
+  std::vector<Tau*>      good_taus;
   std::vector<Jet*>      good_jets;
   std::vector<Jet*>      bad_jets;
 
   fullObjectCleaning( electrons.getElectrons(EL_BASELINE)
                     , muons.getMuons(MU_BASELINE)
+                    , taus.getTaus(TAU_BASELINE)
                     , jets.getJets(JET_BASELINE_GOOD)
                     , jets.getJets(JET_BASELINE_BAD)
                     , good_electrons
                     , good_muons
+                    , good_taus
                     , good_jets
                     , bad_jets
                     );
@@ -62,6 +71,10 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
     good_muons.at(mu_it)->getMuonDesc()->setPassGood(true);
   }
+  size_t tau_term = good_taus.size();
+  for (size_t tau_it = 0; tau_it != tau_term; ++tau_it) {
+    good_taus.at(tau_it)->getTauDesc()->setPassGood(true);
+  }
   size_t good_jet_term = good_jets.size();
   for (size_t jet_it = 0; jet_it != good_jet_term; ++jet_it) {
     good_jets.at(jet_it)->getJetDesc()->setPassGood(true);
@@ -74,6 +87,7 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   // set collection lists
   electrons.setCollection(EL_GOOD , good_electrons);
   muons.setCollection(    MU_GOOD , good_muons    );
+  taus.setCollection(     TAU_GOOD, good_taus     );
   jets.setCollection(     JET_GOOD, good_jets     );
   jets.setCollection(     JET_BAD , bad_jets      );
 }
@@ -82,10 +96,12 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
 void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
     const std::vector<Electron*>& input_electrons,
     const std::vector<Muon*>& input_muons,
+    const std::vector<Tau*>& input_taus,
     const std::vector<Jet*>& input_jets_good,
     const std::vector<Jet*>& input_jets_bad,
     std::vector<Electron*>& output_electrons,
     std::vector<Muon*>& output_muons,
+    std::vector<Tau*>& output_taus,
     std::vector<Jet*>& output_jets_good,
     std::vector<Jet*>& output_jets_bad)
 {
@@ -98,6 +114,20 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   std::vector<Jet*> jet_bad_temp_1;
   ejOverlapRemoval(el_temp_1, input_jets_good, jet_good_temp_1);
   ejOverlapRemoval(el_temp_1, input_jets_bad , jet_bad_temp_1 );
+
+  // do et overlap removal
+  std::vector<Tau*> tau_temp_1;
+  etOverlapRemoval(el_temp_1, input_taus, tau_temp_1);
+
+  // do mt overlap removal
+  std::vector<Tau*> tau_temp_2;
+  mtOverlapRemoval(input_muons, tau_temp_1, tau_temp_2);
+
+  // do tj overlap removal
+  std::vector<Jet*> jet_good_temp_2;
+  std::vector<Jet*> jet_bad_temp_2;
+  tjOverlapRemoval(tau_temp_2, jet_good_temp_1, jet_good_temp_2);
+  tjOverlapRemoval(tau_temp_2, jet_bad_temp_1 , jet_bad_temp_2 );
 
   // do je overlap removal
   std::vector<Electron*> el_temp_2;
@@ -126,9 +156,17 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   mllOverlapRemoval(el_temp_4, mu_temp_4, el_temp_5, mu_temp_5);
 
   output_electrons = el_temp_5;
-  output_jets_good = jet_good_temp_1;
-  output_jets_bad  = jet_bad_temp_1;
+  output_jets_good = jet_good_temp_2;
+  output_jets_bad  = jet_bad_temp_2;
   output_muons     = mu_temp_5;
+  output_taus      = tau_temp_2;
+
+  // std::cout << "-----------------------------\n"
+  //           << "taus before OLR: " << input_taus.size() << "\n"
+  //           << "taus after el OLR: " << tau_temp_1.size() << "\n"
+  //           << "taus after mu OLR: " << tau_temp_2.size() << "\n"
+  //           << "taus after all OLR: " << output_taus.size() << "\n"
+  //           << "\n";
 }
 
 // ----------------------------------------------------------------------------
@@ -185,6 +223,117 @@ void SelectionTools::ObjectCleaningTool::ejOverlapRemoval(
   size_t jet_term = input_jets.size();
   for (size_t el_it = 0; el_it != el_term; ++el_it) {
     TLorentzVector tlv1 = input_electrons.at(el_it)->getTlv();
+
+    for (size_t jet_it = 0; jet_it != jet_term; ++jet_it) {
+      TLorentzVector tlv2 = input_jets.at(jet_it)->getTlv();
+
+      // if overlap, flag for removal
+      if (overlap(tlv1, tlv2, c_ej_cone_size)) {
+        keep_object.at(jet_it) = false;
+      }
+    }
+  }
+
+  // add to output electrons flagged as "to keep"
+  for (size_t jet_it = 0; jet_it != jet_term; ++jet_it) {
+    if (keep_object.at(jet_it)) {
+      output_jets.push_back(input_jets.at(jet_it));
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+void SelectionTools::ObjectCleaningTool::etOverlapRemoval(
+    const std::vector<Electron*>& input_electrons,
+    const std::vector<Tau*>& input_taus,
+    std::vector<Tau*>& output_taus)
+{
+  // prep output tau vector
+  output_taus.clear();
+  output_taus.reserve(input_taus.size());
+
+  //vector to flag objects to keep
+  std::vector<bool> keep_object(input_taus.size(), true);
+
+  // Loop over all combinations of electron/taus, checking for overlap
+  size_t el_term = input_electrons.size();
+  size_t tau_term = input_taus.size();
+  for (size_t el_it = 0; el_it != el_term; ++el_it) {
+    TLorentzVector tlv1 = input_electrons.at(el_it)->getTlv();
+
+    for (size_t tau_it = 0; tau_it != tau_term; ++tau_it) {
+      TLorentzVector tlv2 = input_taus.at(tau_it)->getTlv();
+
+      // if overlap, flag for removal
+      if (overlap(tlv1, tlv2, c_et_cone_size)) {
+        keep_object.at(tau_it) = false;
+      }
+    }
+  }
+
+  // add to output taus flagged as "to keep"
+  for (size_t tau_it = 0; tau_it != tau_term; ++tau_it) {
+    if (keep_object.at(tau_it)) {
+      output_taus.push_back(input_taus.at(tau_it));
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+void SelectionTools::ObjectCleaningTool::mtOverlapRemoval(
+    const std::vector<Muon*>& input_muons,
+    const std::vector<Tau*>& input_taus,
+    std::vector<Tau*>& output_taus)
+{
+  // prep output tau vector
+  output_taus.clear();
+  output_taus.reserve(input_taus.size());
+
+  //vector to flag objects to keep
+  std::vector<bool> keep_object(input_taus.size(), true);
+
+  // Loop over all combinations of muon/taus, checking for overlap
+  size_t mu_term = input_muons.size();
+  size_t tau_term = input_taus.size();
+  for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
+    TLorentzVector tlv1 = input_muons.at(mu_it)->getTlv();
+
+    for (size_t tau_it = 0; tau_it != tau_term; ++tau_it) {
+      TLorentzVector tlv2 = input_taus.at(tau_it)->getTlv();
+
+      // if overlap, flag for removal
+      if (overlap(tlv1, tlv2, c_et_cone_size)) {
+        keep_object.at(tau_it) = false;
+      }
+    }
+  }
+
+  // add to output taus flagged as "to keep"
+  for (size_t tau_it = 0; tau_it != tau_term; ++tau_it) {
+    if (keep_object.at(tau_it)) {
+      output_taus.push_back(input_taus.at(tau_it));
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+void SelectionTools::ObjectCleaningTool::tjOverlapRemoval(
+    const std::vector<Tau*>& input_taus,
+    const std::vector<Jet*>& input_jets,
+    std::vector<Jet*>& output_jets)
+{
+  // prep output electron vector
+  output_jets.clear();
+  output_jets.reserve(input_jets.size());
+
+  // vector to flag objects to keep
+  std::vector<bool> keep_object(input_jets.size(), true);
+
+  // Loop over all combinations of jet/electron, checking for overlap
+  size_t tau_term = input_taus.size();
+  size_t jet_term = input_jets.size();
+  for (size_t tau_it = 0; tau_it != tau_term; ++tau_it) {
+    TLorentzVector tlv1 = input_taus.at(tau_it)->getTlv();
 
     for (size_t jet_it = 0; jet_it != jet_term; ++jet_it) {
       TLorentzVector tlv2 = input_jets.at(jet_it)->getTlv();

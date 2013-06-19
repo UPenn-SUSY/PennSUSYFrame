@@ -203,10 +203,14 @@ bool SelectionTools::TauSelectionTool::isBaseline(Tau* tau)
 {
   // Check if this tau passed all baseline cuts
   SusyAnalysisTools::TauDescription* tau_desc = tau->getTauDesc();
-  bool pass_baseline = true;
-  // bool pass_baseline = (  tau_desc->getPassBaselinePt()
-  //                      && tau_desc->getPassBaselineEta()
-  //                      );
+  bool pass_baseline = (  tau_desc->getPassBaselinePt()
+                       && tau_desc->getPassBaselineEta()
+                       && tau_desc->getPassBaselineNumTracks()
+                       && tau_desc->getPassBaselineCharge()
+                       && tau_desc->getPassBaselineJetBDTLevel()
+                       && tau_desc->getPassBaselineEleBDTLevel()
+                       && tau_desc->getPassBaselineMuVeto()
+                       );
   tau_desc->setPassBaseline(pass_baseline);
 
   return pass_baseline;

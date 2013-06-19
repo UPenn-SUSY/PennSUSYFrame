@@ -25,8 +25,8 @@ namespace SusyAnalysisTools
       TauDescription& operator=(const ull_t&);
 
       void setPassBaseline(bool);
-      // void setPassGood(bool);
-      // void setPassSignal(bool);
+      void setPassGood(bool);
+      void setPassSignal(bool);
       void setPassBaselinePt(bool);
       void setPassBaselineEta(bool);
       void setPassBaselineNumTracks(bool);
@@ -36,8 +36,8 @@ namespace SusyAnalysisTools
       void setPassBaselineMuVeto(bool);
 
       bool getPassBaseline() const;
-      // bool getPassGood() const;
-      // bool getPassSignal() const;
+      bool getPassGood() const;
+      bool getPassSignal() const;
       bool getPassBaselinePt() const;
       bool getPassBaselineEta() const;
       bool getPassBaselineNumTracks() const;
@@ -51,8 +51,8 @@ namespace SusyAnalysisTools
       static const unsigned int SIZE_BOOL = 1;
 
       static const unsigned int ADD_BASELINE               = 0;
-      // static const unsigned int ADD_GOOD                = 1;
-      // static const unsigned int ADD_SIGNAL              = 2;
+      static const unsigned int ADD_GOOD                = 1;
+      static const unsigned int ADD_SIGNAL              = 2;
       static const unsigned int ADD_BASELINE_PT            = 5;
       static const unsigned int ADD_BASELINE_ETA           = 6;
       static const unsigned int ADD_BASELINE_NUM_TRACKS    = 7;
@@ -62,8 +62,8 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_BASELINE_MU_VETO       = 11;
 
       bool m_pass_baseline;
-      // bool m_pass_good;
-      // bool m_pass_signal;
+      bool m_pass_good;
+      bool m_pass_signal;
       bool m_pass_baseline_pt;
       bool m_pass_baseline_eta;
       bool m_pass_baseline_num_tracks;

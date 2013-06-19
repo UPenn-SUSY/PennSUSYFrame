@@ -16,6 +16,8 @@
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
 #include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
+#include "AtlasSFrameUtils/include/Tau.h"
+#include "AtlasSFrameUtils/include/TauContainer.h"
 #include "AtlasSFrameUtils/include/Trigger.h"
 #include "AtlasSFrameUtils/include/TriggerVec.h"
 #include "AtlasSFrameUtils/include/Vertex.h"
@@ -41,6 +43,7 @@
 #include "D3PDObjects/include/METD3PDObject.h"
 #include "D3PDObjects/include/MuonD3PDObject.h"
 #include "D3PDObjects/include/MuonTruthD3PDObject.h"
+#include "D3PDObjects/include/TauD3PDObject.h"
 #include "D3PDObjects/include/TriggerD3PDObject.h"
 #include "D3PDObjects/include/TriggerVecD3PDObject.h"
 #include "D3PDObjects/include/TruthD3PDObject.h"
@@ -55,6 +58,7 @@
 #include "SelectionTools/include/MuonSelectionTool.h"
 #include "SelectionTools/include/ObjectCleaningTool.h"
 #include "SelectionTools/include/SignalRegionTool.h"
+#include "SelectionTools/include/TauSelectionTool.h"
 #include "SelectionTools/include/TriggerCutTool.h"
 
 #include "SusyAnalysisTools/include/SusyEnums.h"
@@ -75,6 +79,7 @@ SusyDiLeptonPreselCycle::SusyDiLeptonPreselCycle() :
   m_mcevt_d3pdobject(NULL),
   m_muon_d3pdobject(NULL),
   m_muon_truth_d3pdobject(NULL),
+  m_tau_d3pdobject(NULL),
   m_truth_d3pdobject(NULL),
   m_met_truth_d3pdobject(NULL),
   m_vertex_d3pdobject(NULL),
@@ -82,6 +87,7 @@ SusyDiLeptonPreselCycle::SusyDiLeptonPreselCycle() :
   m_electron_selection(NULL),
   m_jet_selection(NULL),
   m_muon_selection(NULL),
+  m_tau_selection(NULL),
   m_object_cleaning(NULL),
   m_grl_tool(NULL),
   m_event_cleaning_tool(NULL),
@@ -126,6 +132,7 @@ void SusyDiLeptonPreselCycle::declareTools()
   DECLARE_TOOL(SelectionTools::ElectronSelectionTool, "Electron_Selection");
   DECLARE_TOOL(SelectionTools::JetSelectionTool     , "Jet_Selection"     );
   DECLARE_TOOL(SelectionTools::MuonSelectionTool    , "Muon_Selection"    );
+  DECLARE_TOOL(SelectionTools::TauSelectionTool     , "Tau_Selection"     );
 
   DECLARE_TOOL(SelectionTools::GoodRunsListTool  , "GRL"            );
   DECLARE_TOOL(SelectionTools::EventCleaningTool , "Event_Cleaning" );
@@ -202,6 +209,11 @@ void SusyDiLeptonPreselCycle::initD3PDReaders()
                                     , c_muon_prefix.c_str()
                                     , is_data()
                                     );
+  m_tau_d3pdobject =
+      new D3PDReader::TauD3PDObject( m_entry_number
+                                   , "tau_"
+                                   , is_data()
+                                   );
 
   // Some of these readers are only initialized for MC
   if (!is_data()) {
@@ -315,6 +327,14 @@ void SusyDiLeptonPreselCycle::getTools()
   m_muon_selection = muon_selection;
   m_muons.init(muon_selection, tlv_tool, mu_iso_corr_tool);
 
+  // Tau selection
+  GET_TOOL( tau_selection
+          , SelectionTools::TauSelectionTool
+          , "Tau_Selection"
+          );
+  m_tau_selection = tau_selection;
+  m_taus.init(tau_selection, tlv_tool);
+
   // Object cleaning for overlap removal, etc.
   GET_TOOL( object_cleaning
           , SelectionTools::ObjectCleaningTool
@@ -373,6 +393,7 @@ void SusyDiLeptonPreselCycle::EndInputDataImp( const SInputData& )
   delete m_jet_d3pdobject;
   delete m_muon_d3pdobject;
   delete m_muon_truth_d3pdobject;
+  delete m_tau_d3pdobject;
 
   if (!is_data()) {
     delete m_mcevt_d3pdobject;
@@ -408,6 +429,25 @@ void SusyDiLeptonPreselCycle::BeginInputFileImp( const SInputData& )
            << SLogger::endmsg;
 
   // = get input trees from the d3pd objects =
+  TTree* input_tree = GetInputTree(c_input_tree_name.c_str());
+
+  m_event->ReadFrom(              input_tree);
+  m_trigger->ReadFrom(            input_tree);
+  m_trigger_vec->ReadFrom(        input_tree);
+  m_met->ReadFrom(                input_tree);
+  m_vertex_d3pdobject->ReadFrom(  input_tree);
+  m_electron_d3pdobject->ReadFrom(input_tree);
+  m_jet_d3pdobject->ReadFrom(     input_tree);
+  m_muon_d3pdobject->ReadFrom(    input_tree);
+  m_tau_d3pdobject->ReadFrom(     input_tree);
+
+  if (!is_data()){
+    m_mcevt_d3pdobject->ReadFrom(     input_tree);
+    m_muon_truth_d3pdobject->ReadFrom(input_tree);
+    m_truth_d3pdobject->ReadFrom(     input_tree);
+    m_met_truth_d3pdobject->ReadFrom( input_tree);
+  }
+  /*
   m_event->ReadFrom(              GetInputTree(c_input_tree_name.c_str()));
   m_trigger->ReadFrom(            GetInputTree(c_input_tree_name.c_str()));
   m_trigger_vec->ReadFrom(        GetInputTree(c_input_tree_name.c_str()));
@@ -416,6 +456,7 @@ void SusyDiLeptonPreselCycle::BeginInputFileImp( const SInputData& )
   m_electron_d3pdobject->ReadFrom(GetInputTree(c_input_tree_name.c_str()));
   m_jet_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
   m_muon_d3pdobject->ReadFrom(    GetInputTree(c_input_tree_name.c_str()));
+  m_tau_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_nmae.c_str()));
 
   if (!is_data()){
     m_mcevt_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
@@ -423,6 +464,7 @@ void SusyDiLeptonPreselCycle::BeginInputFileImp( const SInputData& )
     m_truth_d3pdobject->ReadFrom(     GetInputTree(c_input_tree_name.c_str()));
     m_met_truth_d3pdobject->ReadFrom( GetInputTree(c_input_tree_name.c_str()));
   }
+  */
 }
 
 // -----------------------------------------------------------------------------
@@ -443,6 +485,7 @@ void SusyDiLeptonPreselCycle::ExecuteEventImp( const SInputData&, Double_t )
   bool pass_critical_cuts = m_cut_flow->runBasicCutFlow( m_event
                                                        , m_electrons
                                                        , m_muons
+                                                       // , m_taus
                                                        , m_jets
                                                        , m_vertices
                                                        , m_trigger
@@ -458,6 +501,7 @@ void SusyDiLeptonPreselCycle::ExecuteEventImp( const SInputData&, Double_t )
   m_cut_flow->computeGoodEventVariables( m_event
                                        , m_electrons
                                        , m_muons
+                                       // , m_taus
                                        , m_jets
                                        , m_met
                                        );
@@ -501,6 +545,7 @@ void SusyDiLeptonPreselCycle::prepEvent()
   m_electrons.clear();
   m_jets.clear();
   m_muons.clear();
+  m_taus.clear();
   m_met->clear();
   m_vertices.clear();
 
@@ -516,6 +561,7 @@ void SusyDiLeptonPreselCycle::getObjects()
   m_electrons.prepElectrons(m_electron_d3pdobject, m_vertices);
   m_muons.prepMuons(m_muon_d3pdobject, m_vertices);
   m_jets.prepJets(m_jet_d3pdobject, m_event, m_vertices);
+  m_taus.prepTaus(m_tau_d3pdobject, m_vertices);
 
   // Get baseline objects
   m_electrons.setCollection( EL_BASELINE,
@@ -530,13 +576,16 @@ void SusyDiLeptonPreselCycle::getObjects()
   m_jets.setCollection( JET_BASELINE_BAD,
       m_jet_selection->getBaselineBadJets(m_jets));
 
+  m_taus.setCollection( TAU_BASELINE,
+      m_tau_selection->getBaselineTaus(m_taus));
+
   // Get bad/veto objects
   m_muons.setCollection( MU_BAD,
       m_muon_selection->getBadMuons(m_muons));
 
   // do overlap removal to get good objects
   m_object_cleaning->SelectionTools::ObjectCleaningTool::fullObjectCleaning(
-      m_electrons, m_muons, m_jets);
+      m_electrons, m_muons, m_taus, m_jets);
 
   // get cosmic muons
   m_muons.setCollection( MU_COSMIC,
@@ -548,6 +597,9 @@ void SusyDiLeptonPreselCycle::getObjects()
 
   m_muons.setCollection( MU_SIGNAL,
       m_muon_selection->getSignalMuons(m_muons));
+
+  m_taus.setCollection( TAU_SIGNAL,
+      m_tau_selection->getSignalTaus(m_taus));
 
   m_jets.setCollection( JET_LIGHT,
       m_jet_selection->getLJets(m_jets));

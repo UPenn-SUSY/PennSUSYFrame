@@ -11,9 +11,11 @@ class TLorentzVector;
 class Electron;
 class Muon;
 class Jet;
+class Tau;
 class ElectronContainer;
 class MuonContainer;
 class JetContainer;
+class TauContainer;
 
 // ============================================================================
 namespace SelectionTools
@@ -30,14 +32,17 @@ namespace SelectionTools
 
     void fullObjectCleaning( ElectronContainer& electrons
                            , MuonContainer&     muons
+                           , TauContainer&      taus
                            , JetContainer&      jets
                            );
     void fullObjectCleaning( const std::vector<Electron*>& input_electrons
                            , const std::vector<Muon*>&     input_muons
+                           , const std::vector<Tau*>&      input_taus
                            , const std::vector<Jet*>&      input_jets_good
                            , const std::vector<Jet*>&      input_jets_bad
                            , std::vector<Electron*>&       output_electrons
-                           , std::vector<Muon*>&           output_muon
+                           , std::vector<Muon*>&           output_muons
+                           , std::vector<Tau*>&            output_taus
                            , std::vector<Jet*>&            output_jets_good
                            , std::vector<Jet*>&            output_jets_bad
                            );
@@ -46,6 +51,18 @@ namespace SelectionTools
                          , std::vector<Electron*>& output_electrons
                          );
     void ejOverlapRemoval( const std::vector<Electron*>& input_electrons
+                         , const std::vector<Jet*>& input_jets
+                         , std::vector<Jet*>& output_jets
+                         );
+    void etOverlapRemoval( const std::vector<Electron*>& input_electrons
+                         , const std::vector<Tau*>& input_taus
+                         , std::vector<Tau*>& output_taus
+                         );
+    void mtOverlapRemoval( const std::vector<Muon*>& input_muons
+                         , const std::vector<Tau*>& input_taus
+                         , std::vector<Tau*>& output_taus
+                         );
+    void tjOverlapRemoval( const std::vector<Tau*>& input_taus
                          , const std::vector<Jet*>& input_jets
                          , std::vector<Jet*>& output_jets
                          );
@@ -82,6 +99,8 @@ namespace SelectionTools
     // = user configurables =
     double c_ee_cone_size;
     double c_ej_cone_size;
+    double c_et_cone_size;
+    double c_mt_cone_size;
     double c_je_cone_size;
     double c_jm_cone_size;
     double c_em_cone_size;
