@@ -14,17 +14,17 @@ import metaroot
 f = ROOT.TFile('../../Plotting/compare.mm_ss.extended.root')
 
 selections = [ 'mm_sr_ss.it5_leppt15_njet1_jetpt25'
-             , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel30'
-             , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel30_mt230'
-             , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel30_mt230_ptll20'
-             , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel30_ptll20'
+             # , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel30'
+             # , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel30_mt230'
+             # , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel30_mt230_ptll20'
+             # , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel30_ptll20'
              , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel50'
              , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel50_mt230'
              , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel50_mt230_ptll20'
-             , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel50_ptll20'
-             , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_mt230'
-             , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_mt230_ptll20'
-             , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_ptll20'
+             # , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_metrel50_ptll20'
+             # , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_mt230'
+             # , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_mt230_ptll20'
+             # , 'mm_sr_ss.it5_leppt15_njet1_jetpt25_ptll20'
              ]
 
 # ------------------------------------------------------------------------------
@@ -58,24 +58,43 @@ def printToScreen():
 
 # ------------------------------------------------------------------------------
 def getExpectedEvents():
-    labels = []
     contributions = {}
     for s in selections:
-        contributions[s] = []
+        contributions[s] = {'labels':[], 'numbers':[]}
 
         selection_dir = f.Get(s)
         canvas = selection_dir.Get('__entries')
-        if labels == []:
-            for i, lop in enumerate(canvas.GetListOfPrimitives()):
-                bin_label = lop.GetXaxis().GetBinLabel(i+1)
-                if '=' in bin_label:
-                    bin_label = bin_label.split('=')[1].lstrip()
-                labels.append(bin_label)
+        for i, lop in enumerate(canvas.GetListOfPrimitives()):
+            bin_label = lop.GetXaxis().GetBinLabel(i+1)
+            if '=' in bin_label:
+                bin_label = bin_label.split('=')[1].lstrip()
+            contributions[s]['labels'].append(bin_label)
 
         for i, lop in enumerate(canvas.GetListOfPrimitives()):
-            contributions[s].append(lop.GetBinContent(i+1))
+            contributions[s]['numbers'].append(lop.GetBinContent(i+1))
 
-    return {'labels':labels, 'contributions':contributions}
+        contributions[s]['labels'], contributions[s]['numbers'] = (list(t) for t in zip(*sorted(zip(contributions[s]['labels'], contributions[s]['numbers']))))
+
+    return contributions
+
+    # labels = []
+    # contributions = {}
+    # for s in selections:
+    #     contributions[s] = []
+
+    #     selection_dir = f.Get(s)
+    #     canvas = selection_dir.Get('__entries')
+    #     if labels == []:
+    #         for i, lop in enumerate(canvas.GetListOfPrimitives()):
+    #             bin_label = lop.GetXaxis().GetBinLabel(i+1)
+    #             if '=' in bin_label:
+    #                 bin_label = bin_label.split('=')[1].lstrip()
+    #             labels.append(bin_label)
+
+    #     for i, lop in enumerate(canvas.GetListOfPrimitives()):
+    #         contributions[s].append(lop.GetBinContent(i+1))
+
+    # return {'labels':labels, 'contributions':contributions}
 
 # ------------------------------------------------------------------------------
 def genFileHeader(out_file):
@@ -87,8 +106,8 @@ def genFileHeader(out_file):
 \\begin{document}
 
 \\definecolor{colorData}{rgb}{0.00,0.00,0.00} % black
-\\definecolor{colorDiboson}{rgb}{0.47,0.47,0.42} % light green
-\\definecolor{colorFake}{rgb}{0.55,0.90,0.67} % gray
+\\definecolor{colorDiboson}{rgb}{0.55,0.90,0.67} % light green
+\\definecolor{colorFake}{rgb}{0.47,0.47,0.42} % gray
 \\definecolor{color10}{rgb}{0.00,0.40,0.00} % Dark green
 \\definecolor{color39}{rgb}{1.00,0.00,0.80} % Magenta
 \\definecolor{color40}{rgb}{0.77,0.25,0.00} % Dark orange
@@ -104,13 +123,13 @@ def genFileFooter(out_file):
     out_file.write('\\end{document}\n')
 
 # ------------------------------------------------------------------------------
-def genFrameHeader(out_file):
-    out_file.write("""
-\\frame
-{
-  \\frametitle{Number expected events}
-
-""")
+def genFrameHeader(out_file, frame_title):
+    out_file.write('\n')
+    out_file.write('\\frame\n')
+    out_file.write('{\n')
+    out_file.write('  \\frametitle{%s}\n' % frame_title.replace('_', '\\_'))
+    out_file.write('\n')
+    out_file.write('\n')
 
 # ------------------------------------------------------------------------------
 def getLabelColor(label):
@@ -135,23 +154,21 @@ def getLabelColor(label):
     return 'black'
 
 # ------------------------------------------------------------------------------
-def genTableHeader(out_file, labels):
+def genTableHeader(out_file):
     out_file.write("""  \\begin{table}[tp]
     \\resizebox{\\textwidth}{!}{
-      \\begin{tabular}{lccccccc}
+      \\begin{tabular}{lcc}
         \\toprule
+        Component & Expected at $13~\mathrm{fb}^{-1}$ & Expected at $21~\mathrm{fb}^{-1}$
+        \\\\\\toprule
 """)
-    for l in labels:
-        print l + ' - ' + getLabelColor(l)
-        out_file.write('         & \\cellcolor{%s}\\textcolor{white}{%s}\n' % (getLabelColor(l), l))
-#         & \\cellcolor{color55}\\textcolor{white}{(135, 115)}
-#         & \\cellcolor{color56}\\textcolor{white}{(185, 165)}
-#         & \\cellcolor{color57}\\textcolor{white}{(260, 240)}
-#         & \\cellcolor{color39}\\textcolor{white}{(117.5, 82.5)}
-#         & \\cellcolor{color40}\\textcolor{white}{(142.5, 107.5)}
-#         & \\cellcolor{color10}\\textcolor{white}{(150, 50)}
-    out_file.write("""        \\\\\\toprule
-""")
+
+# ------------------------------------------------------------------------------
+def genTableBody(out_file, labels, contributions):
+    for l, c in zip(labels, contributions):
+        print '%s -- %s' % (l, c)
+        out_file.write('        \\cellcolor{%s}\\textcolor{white}{%s} & %f & %f\n' % (getLabelColor(l), l, c, (c*21/13)))
+        out_file.write('        \\\\\n')
 
 # ------------------------------------------------------------------------------
 def genMidRule(out_file):
@@ -166,33 +183,29 @@ def genTableFooter(out_file):
   \\end{table}
 """)
 
-# # ------------------------------------------------------------------------------
-# def genFrameFooter(out_file):
-#     out_file.write("""
-#   \\center{
-#     \\begin{tabular}{rcl}
-#       \\toprule
-#       $p_{\\mathrm{T}}^{\\ell}$ & $\\ge$ & $15 \\mathrm{GeV}$ \\\\
-#       $p_{\\mathrm{T}}^{\\mathrm{jet}}$    & $\\ge$ & $20 \\mathrm{GeV}$ \\\\
-#       $E_{T}^{\\mathrm{miss,rel}}$        & $\\ge$ & $20 \\mathrm{GeV}$ \\\\
-#       $\\delta\\phi(\\ell\\ell)/\\pi$         & $\\ge$ & $0.5$ \\\\
-#       $m_{\\mathrm{T2}}$                  & $\\le$ & $30 \\mathrm{GeV}$ \\\\
-#       $p_{\\mathrm{T}}^{\\ell\\ell}$        & $\\le$ & $20 \\mathrm{GeV}$ \\\\
-#       \\bottomrule
-#     \\end{tabular}
-#   }
-# }
-# """)
+# ------------------------------------------------------------------------------
+def genFrameFooter(out_file):
+    out_file.write('\n')
+    out_file.write('  }\n')
 
 # ------------------------------------------------------------------------------
-def genLatexFile(labels, contributions):
+# def genLatexFile(labels, contributions):
+def genLatexFile(contributions):
+    # print labels
+    # print contributions
     out_file = file('component_contributions.tex', 'w')
 
     genFileHeader(out_file)
-    genTableHeader(out_file, labels)
 
-    genTableFooter(out_file)
-    # genFrameFooter(out_file)
+    for c in contributions:
+        print c
+        genFrameHeader(out_file, c)
+        genTableHeader(out_file)
+        # genTableBody(out_file, labels, contributions[c])
+        genTableBody(out_file, contributions[c]['labels'], contributions[c]['numbers'])
+        genTableFooter(out_file)
+        genFrameFooter(out_file)
+
     genFileFooter(out_file)
 
     out_file.close()
@@ -202,4 +215,5 @@ def genLatexFile(labels, contributions):
 if __name__ == '__main__':
     printToScreen()
     expected_events = getExpectedEvents()
-    genLatexFile(expected_events['labels'], expected_events['contributions'])
+    genLatexFile(expected_events)
+    # genLatexFile(expected_events['labels'], expected_events['contributions'])
