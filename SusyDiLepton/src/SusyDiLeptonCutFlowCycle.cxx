@@ -561,10 +561,9 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
   // if (  true
-  //    && m_event->EventNumber() != 377
-  //    && m_event->EventNumber() != 1137943
-  //    && m_event->EventNumber() != 1671777
-  //    && m_event->EventNumber() != 1819419
+  //    && m_event->EventNumber() != 1202025
+  //    && m_event->EventNumber() != 2669310
+  //    && m_event->EventNumber() != 64243
   //    ) return;
 
   m_logger << DEBUG
@@ -572,6 +571,10 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
            << "\n\trun number = "   << m_event->RunNumber()
            << " -- event number = " << m_event->EventNumber()
            << SLogger::endmsg;
+
+  // std::cout << "----------------------------------------\n";
+  // std::cout << "run number: " << m_event->RunNumber()
+  //           << " -- event number: " << m_event->EventNumber() << "\n";
 
   // = Prep event by zeroing out old vent stuff
   prepEvent();
@@ -646,27 +649,34 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   // m_vertices.print(VERT_ALL);
   // m_vertices.print(VERT_GOOD);
 
-  // m_electrons.print(EL_ALL, m_vertices);
-  // m_electrons.print(EL_BASELINE, m_vertices);
-  // m_electrons.print(EL_GOOD, m_vertices);
-  // m_electrons.print(EL_SIGNAL, m_vertices);
+  // m_electrons.print(EL_ALL      , m_vertices);
+  // m_electrons.print(EL_BASELINE , m_vertices);
+  // m_electrons.print(EL_GOOD     , m_vertices);
+  // m_electrons.print(EL_SIGNAL   , m_vertices);
 
-  // m_muons.print(MU_ALL, m_vertices);
-  // m_muons.print(MU_BASELINE, m_vertices);
-  // m_muons.print(MU_GOOD, m_vertices);
-  // m_muons.print(MU_SIGNAL, m_vertices);
+  // m_muons.print(MU_ALL      , m_vertices);
+  // m_muons.print(MU_BASELINE , m_vertices);
+  // m_muons.print(MU_GOOD     , m_vertices);
+  // m_muons.print(MU_SIGNAL   , m_vertices);
 
-  // m_jets.print(JET_ALL);
+  // m_taus.print(TAU_ALL      , m_vertices);
+  // m_taus.print(TAU_BASELINE , m_vertices);
+  // m_taus.print(TAU_GOOD     , m_vertices);
+  // m_taus.print(TAU_SIGNAL   , m_vertices);
+
+  // m_jets.print(JET_ALL          );
   // m_jets.print(JET_BASELINE_GOOD);
-  // m_jets.print(JET_GOOD);
-  // m_jets.print(JET_LIGHT);
-  // m_jets.print(JET_B);
-  // m_jets.print(JET_FORWARD);
+  // m_jets.print(JET_GOOD         );
+  // m_jets.print(JET_BASELINE_BAD );
+  // m_jets.print(JET_BAD          );
+  // m_jets.print(JET_LIGHT        );
+  // m_jets.print(JET_B            );
+  // m_jets.print(JET_FORWARD      );
 
-  // // m_met->print( m_electrons.getElectrons(EL_GOOD)
-  // //             , m_muons.getMuons(MU_GOOD)
-  // //             , m_jets.getJets(JET_ALL_CENTRAL)
-  // //             );
+  // m_met->print( m_electrons.getElectrons(EL_GOOD)
+  //             , m_muons.getMuons(MU_GOOD)
+  //             , m_jets.getJets(JET_ALL_CENTRAL)
+  //             );
   // m_event->print();
 }
 
@@ -951,6 +961,14 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   m_object_cleaning->SelectionTools::ObjectCleaningTool::fullObjectCleaning(
       m_electrons, m_muons, m_taus, m_jets);
 
+  // std::cout << "type      -- all -- baseline -- good/bad\n"
+  //           << "Electron  -- " << m_electrons.num(EL_ALL) << " -- " << m_electrons.num(EL_BASELINE)  << " -- " << m_electrons.num(EL_GOOD) << "\n"
+  //           << "Muon      -- " << m_muons.num(MU_ALL)     << " -- " << m_muons.num(MU_BASELINE)      << " -- " << m_muons.num(MU_GOOD)     << "\n"
+  //           << "Tau       -- " << m_taus.num(TAU_ALL)     << " -- " << m_taus.num(TAU_BASELINE)      << " -- " << m_taus.num(TAU_GOOD)     << "\n"
+  //           << "good jets -- " << m_jets.num(JET_ALL)     << " -- " << m_jets.num(JET_BASELINE_GOOD) << " -- " << m_jets.num(JET_GOOD)     << "\n"
+  //           << "bad jets  -- " << m_jets.num(JET_ALL)     << " -- " << m_jets.num(JET_BASELINE_BAD)  << " -- " << m_jets.num(JET_BAD)      << "\n"
+  //           << "\n";
+
   // get cosmic muons
   m_muons.setCollection( MU_COSMIC,
       m_muon_selection->getCosmicMuons(m_muons));
@@ -977,12 +995,12 @@ void SusyDiLeptonCutFlowCycle::getObjects()
   // Set "coimbined colelctions like JET_ALL_SIGNAL and JET_ALL_CENTRAL
   m_jets.setCombinedCollections();
 
-  std::cout << "num taus --"
-            << " all: " << m_taus.num(TAU_ALL)
-            << " baseline: " << m_taus.num(TAU_BASELINE)
-            << " good: " << m_taus.num(TAU_GOOD)
-            << " signal: " << m_taus.num(TAU_SIGNAL)
-            << "\n";
+  // std::cout << "num taus --"
+  //           << " all: " << m_taus.num(TAU_ALL)
+  //           << " baseline: " << m_taus.num(TAU_BASELINE)
+  //           << " good: " << m_taus.num(TAU_GOOD)
+  //           << " signal: " << m_taus.num(TAU_SIGNAL)
+  //           << "\n";
 }
 
 // -----------------------------------------------------------------------------

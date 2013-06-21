@@ -214,8 +214,8 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 
 }
 bool SelectionTools::JetSelectionTool::isInSmartVeto( const Jet* jet
-                                                , const Met* met
-                                                )
+                                                    , const Met* met
+                                                    )
 {
   //using which eta?
   if (jet->phi()> -0.5 || jet->phi()< -0.9 || jet->eta() > 1.5 || jet->eta()< -0.1) return false;
@@ -224,7 +224,7 @@ bool SelectionTools::JetSelectionTool::isInSmartVeto( const Jet* jet
 
   double bch_jet = jet->BCH_CORR_JET();
   double bch_cell = jet->BCH_CORR_CELL();
-      
+
   double estimator=pt*(1-bch_cell)*(1/(1-bch_jet)-1);
   double estimator_parralel=estimator*cos(jet->phi() - met->getMetRefFinalPhi());
 
@@ -233,9 +233,9 @@ bool SelectionTools::JetSelectionTool::isInSmartVeto( const Jet* jet
 
   if(threshold>=0&& estimator_parralel>threshold ) return true;
   if(frac>=0 && estimator_parralel>met->getMetRefFinalEt()*frac) return true;
-  
+
   return false;
-}  
+}
 
 // -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isCaloProblemJet( const Jet* jet
@@ -248,7 +248,6 @@ bool SelectionTools::JetSelectionTool::isCaloProblemJet( const Jet* jet
   if (dphi_jet_met >= 0.3) return false;
 
   return true;
-
 }
 
 // -----------------------------------------------------------------------------

@@ -186,6 +186,15 @@ void Tau::print(const VertexContainer& vertices) const
             << "\tpt: "      << tlv.Pt()
             << "\teta: "     << tlv.Eta()
             << "\tphi: "     << tlv.Phi()
+            << "\n"
+            << "\tpass pt: "         << m_tau_desc.getPassBaselinePt()
+            << "\tpass eta: "        << m_tau_desc.getPassBaselineEta()
+            << "\tpass num tracks: " << m_tau_desc.getPassBaselineNumTracks()
+            << "\tpass charge: "     << m_tau_desc.getPassBaselineCharge()
+            << "\n"
+            << "\tpass jet bdt: "    << m_tau_desc.getPassBaselineJetBDTLevel()
+            << "\tpass ele bdt: "    << m_tau_desc.getPassBaselineEleBDTLevel()
+            << "\tpass mu veto: "    << m_tau_desc.getPassBaselineMuVeto()
             << "\n";
 }
 

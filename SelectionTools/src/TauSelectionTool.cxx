@@ -169,33 +169,19 @@ void SelectionTools::TauSelectionTool::process( Tau* tau
   tau_desc->setPassBaselineJetBDTLevel(pass_jet_bdt_level);
 
   // Check ele bdt level
-  bool pass_ele_bdt_level = (  (  m_ele_bdt_level == TAU_ELE_BDT_LOOSE
-                               && ( tau->EleBDTLoose() == true
-                                  || tau->numTrack() == 3
-                                  )
-                               )
-                            || (  m_ele_bdt_level == TAU_ELE_BDT_MEDIUM
-                               && ( tau->EleBDTMedium() == true
-                                  || tau->numTrack() == 3
-                                  )
-                               )
-                            || (  m_ele_bdt_level == TAU_ELE_BDT_TIGHT
-                               && ( tau->EleBDTTight() == true
-                                  || tau->numTrack() == 3
-                                  )
-                               )
+  bool pass_ele_bdt_level = (  getCorrectedEleBDTFlag(tau) == false
+                            || tau->numTrack() != 1
                             );
   tau_desc->setPassBaselineEleBDTLevel(pass_ele_bdt_level);
 
   // Check muon veto
-  bool pass_muon_veto = (  (  m_muon_veto_level == TAU_MU_LOOSE
-                           && tau->muonVeto() == false
-                           )
+  bool pass_muon_veto = (  (  m_muon_veto_level == TAU_MU_NONE )
+                        || (  m_muon_veto_level == TAU_MU_LOOSE )
                         || (  m_muon_veto_level == TAU_MU_TIGHT
                            && tau->muonVeto() == false
                            )
                         );
-  tau_desc->setPassBaselineMuVeto(pass_ele_bdt_level);
+  tau_desc->setPassBaselineMuVeto(pass_muon_veto);
 }
 
 // -----------------------------------------------------------------------------
@@ -300,8 +286,9 @@ bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag(const Tau* tau)
   if (  m_ele_bdt_level == TAU_ELE_BDT_NONE
      || tau->numTrack() != 1
      || tau->pt() < 80e3
-     )
+     ) {
     return old_bdt_flag;
+  }
 
   double pt = tau->pt()/1e3;
   double eta = tau->eta();
