@@ -47,6 +47,8 @@ def get_list_of_keys(d):
 
 # ------------------------------------------------------------------------------
 def isGoodDir(key):
+    return True
+
     if 'leppt' not in key: return False
     if 'jetpt' not in key: return False
 
