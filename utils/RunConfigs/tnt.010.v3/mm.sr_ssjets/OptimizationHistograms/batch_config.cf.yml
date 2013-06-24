@@ -7,7 +7,7 @@ hist_config: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/SFra
 target_lumi: 13000
 
 in_tree: output
-max_job_size: 50
+max_job_size: 10
 file_name_base: cf
 ptnt_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/pTNTs/OptimizationHistograms/tnt.010.v3/mm.sr_ssjets/
 hist_out_file_path: /afs/cern.ch/user/b/bjackson/work/private/Susy_lxplus.00.02.08/utils/hists/OptimizationHistograms/tnt.010.v3/mm.sr_ssjets/
