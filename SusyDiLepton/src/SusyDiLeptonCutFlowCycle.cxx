@@ -561,9 +561,27 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
   // if (  true
-  //    && m_event->EventNumber() != 1202025
-  //    && m_event->EventNumber() != 2669310
-  //    && m_event->EventNumber() != 64243
+  //    && m_event->EventNumber() != 1553662
+  //    && m_event->EventNumber() != 16950
+  //    && m_event->EventNumber() != 1725616
+  //    && m_event->EventNumber() != 1811444
+  //    && m_event->EventNumber() != 2355284
+  //    && m_event->EventNumber() != 2669318
+  //    && m_event->EventNumber() != 2675522
+  //    && m_event->EventNumber() != 30150
+  //    && m_event->EventNumber() != 30471
+  //    && m_event->EventNumber() != 32185
+  //    && m_event->EventNumber() != 35900
+  //    && m_event->EventNumber() != 496794
+  //    && m_event->EventNumber() != 514318
+  //    && m_event->EventNumber() != 550742
+  //    && m_event->EventNumber() != 589359
+  //    && m_event->EventNumber() != 599049
+  //    && m_event->EventNumber() != 627660
+  //    && m_event->EventNumber() != 644233
+  //    && m_event->EventNumber() != 920757
+  //    && m_event->EventNumber() != 9552
+  //    && m_event->EventNumber() != 231473
   //    ) return;
 
   m_logger << DEBUG

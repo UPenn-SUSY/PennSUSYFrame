@@ -316,7 +316,7 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Check Sherpa WW Overlap 
+  // Check Sherpa WW Overlap
   bool pass_sherpa_ww = true;
   if(!is_data()) pass_sherpa_ww =  (m_hfor_tool->passSherpaWWOveralpRemoval(event, mc)
                                    );
@@ -598,7 +598,7 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute met and met-rel
   met->prep(event, &electrons, &muons, &jets);
-  event->setMetEt(met->getMetRefFinalEt());
+  event->setMetEt( met->getMetRefFinalEt() );
   event->setMetPhi(met->getMetRefFinalPhi());
   event->setMetRel(Met::getMetRel( met
                                  , electrons.getElectrons(EL_GOOD)

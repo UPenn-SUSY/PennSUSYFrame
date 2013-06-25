@@ -242,10 +242,17 @@ bool SelectionTools::JetSelectionTool::isCaloProblemJet( const Jet* jet
                                                        , const Met* met
                                                        )
 {
+  // std::cout << "isCaloProblemJet()"
+  //           << "\n\tpt: " << jet->getTlv().Pt()
+  //           << "\n\tBCH_CORR_JET: " << jet->BCH_CORR_JET()
+  //           << "\n";
+
   if (jet->getTlv().Pt() <= 40e3) return false;
   if (jet->BCH_CORR_JET() <= 0.05) return false;
   float dphi_jet_met = fabs(CommonTools::DeltaPhiTool::getDeltaPhi(jet, met));
+  // std::cout << "\tdphi_jet_met: " << dphi_jet_met << "\n";
   if (dphi_jet_met >= 0.3) return false;
+  // std::cout << "\tFLAG AS CALO JET\n";
 
   return true;
 }

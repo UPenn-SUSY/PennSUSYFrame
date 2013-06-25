@@ -33,7 +33,6 @@ Met::Met( const ::Long64_t& master
 // ----------------------------------------------------------------------------
 void Met::init()
 {
-
   // Set the jet algorithm option
   m_met_utility.defineMissingET( true  // doRefEle
                                , true  // doRefGamma
@@ -49,7 +48,8 @@ void Met::init()
   bool m_is_stvf = false;
 
   // configure the met utility
-  m_met_utility.configMissingET(m_is_2012, m_is_stvf);
+  // m_met_utility.configMissingET(m_is_2012, m_is_stvf);
+  m_met_utility.configMissingET(true, false);
   m_met_utility.setJetPUcode(MissingETTags::DEFAULT);
 }
 
@@ -83,20 +83,26 @@ void Met::prep( Event* event
   METUtility::METObject met_util;
 
   // METUtility::METObject met_util;
-  // switch (which_syst) {
-  //   case MET_SCALE_ST_UP:
-  //     met_util.getMissingET( METUtil::RefFinal, METUtil::ScaleSoftTermsUp);
-  //     break;
-  //   case MET_SCALE_ST_DOWN:
-  //     met_util.getMissingET( METUtil::RefFinal, METUtil::ScaleSoftTermsDown);
-  //     break;
-  //   case MET_RES_ST:
-  //     met_util.getMissingET( METUtil::RefFinal, METUtil::ResoSoftTermsUp);
-  //     break;
-  //   case NOMINAL:
-  //   default:
-  //     met_util = m_met_utility.getMissingET( METUtil::RefFinal );
-  // }
+  switch (which_syst) {
+    case MET_SCALE_ST_UP:
+      met_util = m_met_utility.getMissingET( METUtil::RefFinal
+                                           , METUtil::ScaleSoftTermsUp
+                                           );
+      break;
+    case MET_SCALE_ST_DOWN:
+      met_util = m_met_utility.getMissingET( METUtil::RefFinal
+                                           , METUtil::ScaleSoftTermsDown
+                                           );
+      break;
+    case MET_RES_ST:
+      met_util = m_met_utility.getMissingET( METUtil::RefFinal
+                                           , METUtil::ResoSoftTermsUp
+                                           );
+      break;
+    case NOMINAL:
+    default:
+      met_util = m_met_utility.getMissingET( METUtil::RefFinal );
+  }
   m_met_vec.Set(met_util.etx(), met_util.ety());
 
   m_prepared = true;
@@ -127,6 +133,17 @@ void Met::doWeightFix( std::vector<float>& wet
 // ----------------------------------------------------------------------------
 void Met::addMet()
 {
+  // std::cout << "Adding SoftTerms:"
+  //           << "\n\tCellOut_etx: "    << CellOut_etx()
+  //           << "\n\tCellOut_ety: "    << CellOut_ety()
+  //           << "\n\tCellOut_sumet: " << CellOut_sumet()
+  //           << "\n";
+  // std::cout << "Adding RefGamma:"
+  //           << "\n\tRefGamma_etx: "    << RefGamma_etx()
+  //           << "\n\tRefGamma_ety: "    << RefGamma_ety()
+  //           << "\n\tRefGamma_sumet: " << RefGamma_sumet()
+  //           << "\n";
+
   m_met_utility.setMETTerm( METUtil::SoftTerms
                           , CellOut_etx()
                           , CellOut_ety()
@@ -182,18 +199,19 @@ void Met::addElectrons(ElectronContainer* electron_container)
     std::vector<float> el_tmp_wet;
     std::vector<float> el_tmp_wpx;
     std::vector<float> el_tmp_wpy;
-    if (m_is_stvf) {
-      // el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_STVF_statusWord());
-      // el_tmp_wet = (*el_it)->MET_Egamma10NoTau_STVF_wet();
-      // el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_STVF_wpx();
-      // el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_STVF_wpy();
-    }
-    else {
+    // if (m_is_stvf) {
+    //   std::cout << "trying to do STVF for electrons -- BAD BAD BAD\n";
+    //   // el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_STVF_statusWord());
+    //   // el_tmp_wet = (*el_it)->MET_Egamma10NoTau_STVF_wet();
+    //   // el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_STVF_wpx();
+    //   // el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_STVF_wpy();
+    // }
+    // else {
       el_statusWord.push_back((*el_it)->MET_Egamma10NoTau_statusWord());
       el_tmp_wet = (*el_it)->MET_Egamma10NoTau_wet();
       el_tmp_wpx = (*el_it)->MET_Egamma10NoTau_wpx();
       el_tmp_wpy = (*el_it)->MET_Egamma10NoTau_wpy();
-    }
+    // }
 
     doWeightFix(el_tmp_wet, el_tmp_wpx, el_tmp_wpy);
 
@@ -203,6 +221,23 @@ void Met::addElectrons(ElectronContainer* electron_container)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // size_t itr = 0;
+  // size_t term = el_pt.size();
+  // for (; itr != term; ++itr) {
+  //   std::cout << "Passing electron to Met:"
+  //             << "\n\tpt: " << el_pt.at(itr)
+  //             << "\n\teta: " << el_eta.at(itr)
+  //             << "\n\tphi: " << el_phi.at(itr)
+  //             << "\n\tweights: ";
+  //   for (size_t wet_it = 0; wet_it != el_wet.at(itr).size(); ++wet_it) {
+  //     std::cout << "\n\t\twet: "     << el_wet.at(itr).at(wet_it)
+  //               << "\twpx: "         << el_wpx.at(itr).at(wet_it)
+  //               << "\twpy: "         << el_wpy.at(itr).at(wet_it)
+  //               << "\tstatus_word: " << el_statusWord.at(itr).at(wet_it)
+  //               << "\n";
+  //   }
+  //   std::cout << "\n";
+  // }
   m_met_utility.setElectronParameters( &el_pt
                                      , &el_eta
                                      , &el_phi
@@ -252,25 +287,28 @@ void Met::addJets(JetContainer* jet_container)
     TLorentzVector jet_raw_tlv = (*jet_it)->getRawTlv();
 
     jet_pt.push_back( jet_tlv.Pt());
-    jet_eta.push_back(jet_tlv.Eta());
-    jet_phi.push_back(jet_tlv.Phi());
+    // jet_eta.push_back(jet_tlv.Eta());
+    // jet_phi.push_back(jet_tlv.Phi());
+    jet_eta.push_back(jet_raw_tlv.Eta());
+    jet_phi.push_back(jet_raw_tlv.Phi());
     jet_E.push_back(  jet_tlv.E());
 
     std::vector<float> jet_tmp_wet;
     std::vector<float> jet_tmp_wpx;
     std::vector<float> jet_tmp_wpy;
-    if (m_is_stvf) {
-      // jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_STVF_statusWord());
-      // jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_STVF_wet();
-      // jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_STVF_wpx();
-      // jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_STVF_wpy();
-    }
-    else {
+    // if (m_is_stvf) {
+    //   std::cout << "trying to do STVF for jets -- BAD BAD BAD\n";
+    //   // jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_STVF_statusWord());
+    //   // jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_STVF_wet();
+    //   // jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_STVF_wpx();
+    //   // jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_STVF_wpy();
+    // }
+    // else {
       jet_statusWord.push_back((*jet_it)->MET_Egamma10NoTau_statusWord());
       jet_tmp_wet = (*jet_it)->MET_Egamma10NoTau_wet();
       jet_tmp_wpx = (*jet_it)->MET_Egamma10NoTau_wpx();
       jet_tmp_wpy = (*jet_it)->MET_Egamma10NoTau_wpy();
-    }
+    // }
 
     doWeightFix(jet_tmp_wet, jet_tmp_wpx, jet_tmp_wpy);
 
@@ -279,6 +317,24 @@ void Met::addJets(JetContainer* jet_container)
     jet_wpy.push_back(jet_tmp_wpy);
   }
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // size_t itr = 0;
+  // size_t term = jet_pt.size();
+  // for (; itr != term; ++itr) {
+  //   std::cout << "Passing jet to Met:"
+  //             << "\n\tpt: " << jet_pt.at(itr)
+  //             << "\n\teta: " << jet_eta.at(itr)
+  //             << "\n\tphi: " << jet_phi.at(itr)
+  //             << "\n\tweights: ";
+  //   for (size_t wet_it = 0; wet_it != jet_wet.at(itr).size(); ++wet_it) {
+  //     std::cout << "\n\t\twet: "     << jet_wet.at(itr).at(wet_it)
+  //               << "\twpx: "         << jet_wpx.at(itr).at(wet_it)
+  //               << "\twpy: "         << jet_wpy.at(itr).at(wet_it)
+  //               << "\tstatus_word: " << jet_statusWord.at(itr).at(wet_it)
+  //               << "\n";
+  //   }
+  //   std::cout << "\n";
+  // }
   m_met_utility.setJetParameters( &jet_pt
                                 , &jet_eta
                                 , &jet_phi
@@ -462,5 +518,8 @@ void Met::print( const std::vector<Electron*>& el
             << "\tmet et: "  << getMetRefFinalEt()
             << "\tmet phi: " << getMetRefFinalPhi()
             << "\tmet-rel: " << getMetRel(this, el, mu, jet)
+            << "\n"
+            << "\tmet-x: "   << getMetRefFinalEt()*cos(getMetRefFinalPhi())
+            << "\tmet-y: "   << getMetRefFinalEt()*sin(getMetRefFinalPhi())
             << "\n";
 }
