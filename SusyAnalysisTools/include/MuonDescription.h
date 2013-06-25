@@ -39,6 +39,7 @@ namespace SusyAnalysisTools
       void setPassSiHoles(bool);
       void setPassBaselinePt(bool);
       void setPassBaselineEta(bool);
+      void setPassSignalEta(bool);
       void setPassD0Sig(bool);
       void setPassZ0SinTheta(bool);
       void setPassPtIso(bool);
@@ -58,6 +59,7 @@ namespace SusyAnalysisTools
       bool getPassSiHoles() const;
       bool getPassBaselinePt() const;
       bool getPassBaselineEta() const;
+      bool getPassSignalEta() const;
       bool getPassD0Sig() const;
       bool getPassZ0SinTheta() const;
       bool getPassPtIso() const;
@@ -81,9 +83,10 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_SI_HOLES     = 12;
       static const unsigned int ADD_BASELINE_PT  = 13;
       static const unsigned int ADD_BASELINE_ETA = 14;
-      static const unsigned int ADD_D0_SIG       = 15;
-      static const unsigned int ADD_Z0_SIN_THETA = 16;
-      static const unsigned int ADD_PT_ISO       = 17;
+      static const unsigned int ADD_SIGNAL_ETA   = 15;
+      static const unsigned int ADD_D0_SIG       = 16;
+      static const unsigned int ADD_Z0_SIN_THETA = 17;
+      static const unsigned int ADD_PT_ISO       = 18;
 
       bool m_pass_baseline;
       bool m_pass_good;
@@ -100,6 +103,7 @@ namespace SusyAnalysisTools
       bool m_pass_si_holes;
       bool m_pass_baseline_pt;
       bool m_pass_baseline_eta;
+      bool m_pass_signal_eta;
       bool m_pass_d0_sig;
       bool m_pass_z0_sin_theta;
       bool m_pass_pt_iso;

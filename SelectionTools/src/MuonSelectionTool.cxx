@@ -157,6 +157,10 @@ void SelectionTools::MuonSelectionTool::process(
   bool pass_baseline_eta = passCut(eta, c_baseline_min_eta, c_baseline_max_eta);
   mu_desc->setPassBaselineEta(pass_baseline_eta);
 
+  // Check for signal eta
+  bool pass_signal_eta = passCut(eta, c_signal_min_eta, c_signal_max_eta);
+  mu_desc->setPassSignalEta(pass_signal_eta);
+
   // check for signal d0 significance
   double d0_sig = fabs(mu->getD0Significance());
   bool pass_d0_sig = passCut(d0_sig, c_signal_min_d0_sig, c_signal_max_d0_sig);
@@ -171,7 +175,7 @@ void SelectionTools::MuonSelectionTool::process(
   mu_desc->setPassZ0SinTheta(pass_z0_sin_theta);
 
   // Check for signal isolation
-  int num_good_vertices = vertices.num(VERT_GOOD);
+  // int num_good_vertices = vertices.num(VERT_GOOD);
   //double ptcone30 = mu->getIsoCorr( PTCONE
   //                                , 30
   //                                , num_good_vertices
@@ -214,7 +218,8 @@ bool SelectionTools::MuonSelectionTool::isSignal(Muon* mu)
 {
   // Check if this muon passed all signal cuts
   SusyAnalysisTools::MuonDescription* mu_desc = mu->getMuonDesc();
-  bool pass_signal = (  mu_desc->getPassD0Sig()
+  bool pass_signal = (  mu_desc->getPassSignalEta()
+                     && mu_desc->getPassD0Sig()
                      && mu_desc->getPassZ0SinTheta()
                      && mu_desc->getPassPtIso()
                      );

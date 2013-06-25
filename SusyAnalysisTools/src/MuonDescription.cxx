@@ -192,6 +192,12 @@ void SusyAnalysisTools::MuonDescription::setPassBaselineEta(bool pass)
 }
 
 // -----------------------------------------------------------------------------
+void SusyAnalysisTools::MuonDescription::setPassSignalEta(bool pass)
+{
+  m_pass_signal_eta = pass;
+}
+
+// -----------------------------------------------------------------------------
 void SusyAnalysisTools::MuonDescription::setPassD0Sig(bool pass)
 {
   m_pass_d0_sig = pass;
@@ -297,6 +303,12 @@ bool SusyAnalysisTools::MuonDescription::getPassBaselinePt() const
 bool SusyAnalysisTools::MuonDescription::getPassBaselineEta() const
 {
   return m_pass_baseline_eta;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::MuonDescription::getPassSignalEta() const
+{
+  return m_pass_signal_eta;
 }
 
 // -----------------------------------------------------------------------------
