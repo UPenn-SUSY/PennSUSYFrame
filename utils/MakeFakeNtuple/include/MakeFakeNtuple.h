@@ -1,22 +1,26 @@
-#ifndef UpdateWeights_h
-#define UpdateWeights_h
+#ifndef MakeFakeNtuple_h
+#define MakeFakeNtuple_h
 
 // =============================================================================
 #include "NtupleLooper/include/NtupleLooper.h"
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
+#include "SusyMatrixMethod/FakeEstNtupleMaker.h"
+
 // =============================================================================
 class TTree;
 
 // =============================================================================
-class UpdateWeights : public NtupleLooper
+class MakeFakeNtuple : public NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :
-    UpdateWeights(TTree *tree, double num_events, std::string out_file_name);
-    virtual ~UpdateWeights();
+    MakeFakeNtuple(TTree *tree, double num_events, std::string out_file_name);
+    virtual ~MakeFakeNtuple();
 
     virtual void processEvent();
+
+    void write();
 
   // ---------------------------------------------------------------------------
   protected:
@@ -24,6 +28,8 @@ class UpdateWeights : public NtupleLooper
   // ---------------------------------------------------------------------------
   private:
     std::string m_out_file_name;
+
+    SusyMatrixMethod::FakeEstNtupleMaker m_fake_ntuple_maker;
 };
 
 #endif

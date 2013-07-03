@@ -13,6 +13,7 @@
 //
 // #pragma link C++ class MySuperClass+;
 // #pragma link C++ class RunSusyCutFlow+;
+#pragma link C++ class std::vector<std::vector<float>>+;
 
 
 #endif // __CINT__
