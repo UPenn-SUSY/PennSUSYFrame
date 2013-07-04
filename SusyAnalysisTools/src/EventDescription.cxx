@@ -55,6 +55,7 @@ ull_t SusyAnalysisTools::EventDescription::toInt() const
   event_desc += getIntComp(m_cf_candidate          , ADD_TRUTH_CF_CAND);
 
   event_desc += getIntComp(m_pass_tile_trip, ADD_TILE_TRIP);
+  event_desc += getIntComp(m_pass_tau_veto , ADD_TAU_VETO );
 
   event_desc += getIntComp(m_pass_sr_osjveto, ADD_SR_OSJVETO);
   event_desc += getIntComp(m_pass_sr_ssjets , ADD_SR_SSJETS );
@@ -119,6 +120,7 @@ void SusyAnalysisTools::EventDescription::set(const ull_t& rhs)
   m_cf_candidate           = getComponent(rhs, ADD_TRUTH_CF_CAND    , SIZE_BOOL);
 
   m_pass_tile_trip = getComponent(rhs, ADD_TILE_TRIP, SIZE_BOOL);
+  m_pass_tau_veto  = getComponent(rhs, ADD_TAU_VETO , SIZE_BOOL);
 
   m_pass_sr_osjveto = getComponent(rhs, ADD_SR_OSJVETO, SIZE_BOOL);
   m_pass_sr_ssjets  = getComponent(rhs, ADD_SR_SSJETS , SIZE_BOOL);
@@ -385,6 +387,12 @@ void SusyAnalysisTools::EventDescription::setPassTileTrip(bool pass_tile_trip)
 }
 
 // -----------------------------------------------------------------------------
+void SusyAnalysisTools::EventDescription::setPassTauVeto(bool pass_tau_veto)
+{
+  m_pass_tau_veto = pass_tau_veto;
+}
+
+// -----------------------------------------------------------------------------
 void SusyAnalysisTools::EventDescription::setTruthSignChannel(
     SIGN_CHANNEL truth_sign_channel)
 {
@@ -640,6 +648,12 @@ bool SusyAnalysisTools::EventDescription::getCFCandidate() const
 bool SusyAnalysisTools::EventDescription::getPassTileTrip() const
 {
   return m_pass_tile_trip;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::EventDescription::getPassTauVeto() const
+{
+  return m_pass_tau_veto;
 }
 
 // -----------------------------------------------------------------------------

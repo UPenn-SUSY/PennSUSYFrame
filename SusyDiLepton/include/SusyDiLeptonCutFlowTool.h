@@ -9,6 +9,7 @@
 class Event;
 class ElectronContainer;
 class MuonContainer;
+class TauContainer;
 class JetContainer;
 class Met;
 class VertexContainer;
@@ -48,6 +49,7 @@ public:
   bool runBasicCutFlow( Event*
                       , ElectronContainer&
                       , MuonContainer&
+                      , TauContainer&
                       , JetContainer&
                       , VertexContainer&
                       , const Trigger*
@@ -60,6 +62,7 @@ public:
   bool runAdvancedCutFlow( Event*
                          , ElectronContainer&
                          , MuonContainer&
+                         , TauContainer&
                          , JetContainer&
                          , VertexContainer&
                          , const Trigger*
@@ -74,6 +77,7 @@ public:
   void computeGoodEventVariables( Event*
                                 , ElectronContainer&
                                 , MuonContainer&
+                                , TauContainer&
                                 , JetContainer&
                                 , Met*
                                 );
@@ -108,6 +112,7 @@ private:
   bool c_crit_mc_overlap;
   bool c_crit_ge_2_lep;
   bool c_crit_2_lep;
+  bool c_crit_tau_veto;
   bool c_crit_mll;
   bool c_crit_signal_lep;
   bool c_crit_phase_space;

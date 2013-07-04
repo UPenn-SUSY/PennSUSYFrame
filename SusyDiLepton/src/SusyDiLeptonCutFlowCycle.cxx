@@ -561,27 +561,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
   // if (  true
-  //    && m_event->EventNumber() != 1553662
-  //    && m_event->EventNumber() != 16950
-  //    && m_event->EventNumber() != 1725616
-  //    && m_event->EventNumber() != 1811444
-  //    && m_event->EventNumber() != 2355284
-  //    && m_event->EventNumber() != 2669318
-  //    && m_event->EventNumber() != 2675522
-  //    && m_event->EventNumber() != 30150
-  //    && m_event->EventNumber() != 30471
-  //    && m_event->EventNumber() != 32185
-  //    && m_event->EventNumber() != 35900
-  //    && m_event->EventNumber() != 496794
-  //    && m_event->EventNumber() != 514318
-  //    && m_event->EventNumber() != 550742
-  //    && m_event->EventNumber() != 589359
-  //    && m_event->EventNumber() != 599049
-  //    && m_event->EventNumber() != 627660
-  //    && m_event->EventNumber() != 644233
-  //    && m_event->EventNumber() != 920757
-  //    && m_event->EventNumber() != 9552
-  //    && m_event->EventNumber() != 231473
+  //    && m_event->EventNumber() != 2669310
   //    ) return;
 
   m_logger << DEBUG
@@ -607,7 +587,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   bool pass_critical_cuts = m_cut_flow->runBasicCutFlow( m_event
                                                        , m_electrons
                                                        , m_muons
-                                                       // , m_taus
+                                                       , m_taus
                                                        , m_jets
                                                        , m_vertices
                                                        , m_trigger
@@ -623,7 +603,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   m_cut_flow->computeGoodEventVariables( m_event
                                        , m_electrons
                                        , m_muons
-                                       // , m_taus
+                                       , m_taus
                                        , m_jets
                                        , m_met
                                        );
@@ -634,7 +614,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   pass_critical_cuts = m_cut_flow->runAdvancedCutFlow( m_event
                                                      , m_electrons
                                                      , m_muons
-                                                     // , m_taus
+                                                     , m_taus
                                                      , m_jets
                                                      , m_vertices
                                                      , m_trigger

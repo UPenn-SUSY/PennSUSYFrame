@@ -485,7 +485,7 @@ void SusyDiLeptonPreselCycle::ExecuteEventImp( const SInputData&, Double_t )
   bool pass_critical_cuts = m_cut_flow->runBasicCutFlow( m_event
                                                        , m_electrons
                                                        , m_muons
-                                                       // , m_taus
+                                                       , m_taus
                                                        , m_jets
                                                        , m_vertices
                                                        , m_trigger
@@ -501,7 +501,7 @@ void SusyDiLeptonPreselCycle::ExecuteEventImp( const SInputData&, Double_t )
   m_cut_flow->computeGoodEventVariables( m_event
                                        , m_electrons
                                        , m_muons
-                                       // , m_taus
+                                       , m_taus
                                        , m_jets
                                        , m_met
                                        );

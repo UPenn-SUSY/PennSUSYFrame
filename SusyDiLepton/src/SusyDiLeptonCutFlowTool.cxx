@@ -14,6 +14,7 @@
 #include "AtlasSFrameUtils/include/Met.h"
 #include "AtlasSFrameUtils/include/Muon.h"
 #include "AtlasSFrameUtils/include/MuonContainer.h"
+#include "AtlasSFrameUtils/include/TauContainer.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Trigger.h"
 #include "AtlasSFrameUtils/include/TriggerVec.h"
@@ -74,6 +75,7 @@ SusyDiLeptonCutFlowTool::SusyDiLeptonCutFlowTool( SCycleBase* parent
   DeclareProperty("Crit_mc_overlap"       , c_crit_mc_overlap        = false);
   DeclareProperty("Crit_ge_2_lep"         , c_crit_ge_2_lep          = false);
   DeclareProperty("Crit_2_lep"            , c_crit_2_lep             = false);
+  DeclareProperty("Crit_tau_Veto"         , c_crit_tau_veto          = false);
   DeclareProperty("Crit_mll"              , c_crit_mll               = false);
   DeclareProperty("Crit_signal_lep"       , c_crit_signal_lep        = false);
   DeclareProperty("Crit_phase_space"      , c_crit_phase_space       = false);
@@ -147,6 +149,7 @@ void SusyDiLeptonCutFlowTool::getTools()
 bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
     ElectronContainer& electrons,
     MuonContainer&     muons,
+    TauContainer&      taus,
     JetContainer&      jets,
     VertexContainer&   vertices,
     const Trigger*           /*trigger*/,
@@ -362,6 +365,20 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
     return false;
   }
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // Check for tau veto
+  bool pass_tau_veto = (taus.num(TAU_SIGNAL) == 0);
+  event->getEventDesc()->setPassTauVeto(pass_tau_veto);
+  if (c_crit_tau_veto && pass_tau_veto == false) {
+    if (c_super_verbose_info) {
+      std::cout << "Failed == tau veto --"
+                << " Run: "   << event->RunNumber()
+                << " Event: " << event->EventNumber()
+                << std::endl;
+    }
+    return false;
+  }
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check flavor channel for this event
   FLAVOR_CHANNEL flavor_channel = FLAVOR_NONE;
@@ -391,6 +408,7 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
 bool SusyDiLeptonCutFlowTool::runAdvancedCutFlow( Event* event,
     ElectronContainer& electrons,
     MuonContainer&     muons,
+    TauContainer&      taus,
     JetContainer&      jets,
     VertexContainer&   /*vertices*/,
     const Trigger*     trigger,
@@ -584,6 +602,7 @@ bool SusyDiLeptonCutFlowTool::runAdvancedCutFlow( Event* event,
 void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
     ElectronContainer& electrons,
     MuonContainer& muons,
+    TauContainer& taus,
     JetContainer& jets,
     Met* met)
 {

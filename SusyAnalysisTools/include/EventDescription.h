@@ -57,6 +57,7 @@ namespace SusyAnalysisTools
       void setTruthSignChannel(SIGN_CHANNEL);
 
       void setPassTileTrip(bool);
+      void setPassTauVeto(bool);
 
       void setSROSJVeto(bool);
       void setSRSSJets(bool);
@@ -106,6 +107,7 @@ namespace SusyAnalysisTools
       SIGN_CHANNEL getTruthSignChannel() const;
 
       bool getPassTileTrip() const;
+      bool getPassTauVeto() const;
 
       bool getPassSROSJVeto() const;
       bool getPassSRSSJets() const;
@@ -163,6 +165,8 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_TRUTH_PROMPT       = 34;
       static const unsigned int ADD_TRUTH_CF_CAND      = 35;
       static const unsigned int ADD_TILE_TRIP          = 36;
+      static const unsigned int ADD_TAU_VETO           = 37;
+
       static const unsigned int ADD_SR_OSJVETO         = 41;
       static const unsigned int ADD_SR_SSJETS          = 42;
       static const unsigned int ADD_SR_2JETS           = 43;
@@ -202,7 +206,7 @@ namespace SusyAnalysisTools
       bool            m_pass_bad_muons;
       bool            m_pass_cosmic_muons;
       bool            m_pass_hfor;
-      bool            m_pass_mc_overlap; 
+      bool            m_pass_mc_overlap;
       bool            m_pass_ge_2_good_leptons;
       bool            m_pass_2_good_leptons;
       bool            m_pass_mll;
@@ -222,6 +226,7 @@ namespace SusyAnalysisTools
       bool         m_cf_candidate;
 
       bool m_pass_tile_trip;
+      bool m_pass_tau_veto;
 
       bool m_pass_sr_osjveto;
       bool m_pass_sr_ssjets;
