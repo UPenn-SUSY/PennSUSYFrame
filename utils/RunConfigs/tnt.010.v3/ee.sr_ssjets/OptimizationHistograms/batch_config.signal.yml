@@ -1,0 +1,36 @@
+# imported config files
+cut_config:  /afs/cern.ch/user/e/ehines/workdir/Susy/SFrame/../utils/RunConfigs/tnt.010.v3/ee.sr_ssjets/cuts/cuts.optimize.ee.sr_ssjets.signal.config
+hist_config: /afs/cern.ch/user/e/ehines/workdir/Susy/SFrame/../utils/RunConfigs/tnt.010.v3/ee.sr_ssjets/hists/hists.optimize.ee.sr_ssjets.config
+
+# other settings
+# target_lumi: 21000
+target_lumi: 13000
+
+in_tree: output
+max_job_size: 50
+file_name_base: signal
+ptnt_out_file_path: /afs/cern.ch/user/e/ehines/workdir/Susy/utils/pTNTs/OptimizationHistograms/tnt.010.v3/ee.sr_ssjets/
+hist_out_file_path: /afs/cern.ch/user/e/ehines/workdir/Susy/utils/hists/OptimizationHistograms/tnt.010.v3/ee.sr_ssjets/
+
+in_file_base_path: /afs/cern.ch/user/e/ehines/eos_mount/atlas/user/b/bjackson/tnt.010.v3/
+in_files:
+##  # Simplified model signal grids - mode A
+
+  signal_simplified.144876.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_10:
+    sample_number: 144876
+    grep_for: signal_simplified.144876.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_10
+  signal_simplified.157954.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_39:
+    sample_number: 157954
+    grep_for: signal_simplified.157954.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_39
+  signal_simplified.157955.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_40:
+    sample_number: 157955
+    grep_for: signal_simplified.157955.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_40
+  signal_simplified.176532.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_55:
+    sample_number: 176532
+    grep_for: signal_simplified.176532.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_55
+  signal_simplified.176533.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_56:
+    sample_number: 176533
+    grep_for: signal_simplified.176533.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_56
+  signal_simplified.176534.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_57:
+    sample_number: 176534
+    grep_for: signal_simplified.176534.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_57
