@@ -291,7 +291,8 @@ bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag(const Tau* tau)
   }
 
   double pt = tau->pt()/1e3;
-  double eta = tau->eta();
+  // double eta = tau->eta();
+  double eta = tau->leadTrack_eta();
   double cut_val = 0.;
 
   if (pt <= 800 && eta <= 3.0) {
