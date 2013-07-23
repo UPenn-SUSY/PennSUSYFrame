@@ -182,6 +182,7 @@ void Tau::print(const VertexContainer& vertices) const
   std::cout << "\traw pt: "  << raw_tlv.Pt()
             << "\traw eta: " << raw_tlv.Eta()
             << "\traw phi: " << raw_tlv.Phi()
+            << "\tlead track eta: " << leadTrack_eta()
             << "\n"
             << "\tpt: "      << tlv.Pt()
             << "\teta: "     << tlv.Eta()

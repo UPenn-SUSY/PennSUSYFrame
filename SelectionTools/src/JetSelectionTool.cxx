@@ -176,6 +176,7 @@ bool SelectionTools::JetSelectionTool::isFJet(Jet* jet)
 // -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 {
+  /*
   double emf  = jet->emfrac();
   double eta  = jet->emscale_eta();
   double chf  = jet->sumPtTrk()/jet->getTlv().Pt();
@@ -206,13 +207,14 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 
   // do not flag this as a bad jet
   return false;
+  */
 
 
 
 
-  //return jet->isBadLooseMinus();
-
+  return jet->isBadLooseMinus();
 }
+
 bool SelectionTools::JetSelectionTool::isInSmartVeto( const Jet* jet
                                                     , const Met* met
                                                     )

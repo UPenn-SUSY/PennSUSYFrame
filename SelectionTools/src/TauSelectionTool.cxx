@@ -92,19 +92,23 @@ void SelectionTools::TauSelectionTool::configure()
 
       switch (m_ele_bdt_level) {
         case TAU_ELE_BDT_LOOSE:
+          std::cout << "Setting tau ele BDT hist ot loose\n";
           m_tau_ele_corr = dynamic_cast<TH2*>(
               tau_ele_correction_file->Get("h2_BDTEleDecision_pteta_loose"));
           break;
         case TAU_ELE_BDT_MEDIUM:
+          std::cout << "Setting tau ele BDT hist to medium\n";
           m_tau_ele_corr = dynamic_cast<TH2*>(
               tau_ele_correction_file->Get("h2_BDTEleDecision_pteta_medium"));
           break;
         case TAU_ELE_BDT_TIGHT:
+          std::cout << "Setting tau ele BDT hist to tight\n";
           m_tau_ele_corr = dynamic_cast<TH2*>(
               tau_ele_correction_file->Get("h2_BDTEleDecision_pteta_tight"));
           break;
         case TAU_ELE_BDT_NONE:
         default:
+          std::cout << "Setting tau ele BDT hist to NULL\n";
           m_tau_ele_corr = NULL;
           break;
       }
@@ -308,7 +312,14 @@ bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag(const Tau* tau)
     cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(799, 2.9));
   }
 
-  return (tau->BDTEleScore() > cut_val);
+  // std::cout << "\ttau pT: " << pt << " GeV"
+  //           << "\ttau BDT ele score: " << tau->BDTEleScore()
+  //           << "\tcut value: " << cut_val
+  //           << "\ttau EleBDTFlag: " << (tau->BDTEleScore() > cut_val)
+  //           << "\n";
+
+  // return (tau->BDTEleScore() > cut_val);
+  return (tau->BDTEleScore() <= cut_val);
 }
 
 // -----------------------------------------------------------------------------
