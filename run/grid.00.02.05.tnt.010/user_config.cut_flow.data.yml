@@ -1,0 +1,306 @@
+Jet_prefix:         jet_AntiKt4LCTopo_
+Met_prefix:         MET_Egamma10NoTau_
+MuonTruth_prefix:   muonTruth_
+Muon_prefix:        mu_staco_
+do_metadata:        False
+input_file_hists:   ''
+
+CutFlow:
+    Crit_grl:              True
+    Crit_incomplete_event: True
+    Crit_tile_error:       True
+    Crit_tile_hot_spot:    True
+    Crit_lar_error:        True
+    Crit_bad_jet_veto:     True
+    Crit_primary_vertex:   True
+    Crit_bad_mu_veto:      True
+    Crit_cosmic_mu_veto:   True
+    Crit_hfor:             True
+    Crit_ge_2_lep:         True
+    Crit_2_lep:            False
+    Crit_mll:              False
+    Crit_signal_lep:       False
+    Crit_prompt_leptons:   False
+    Crit_phase_space:      True
+    Crit_trigger:          True
+    Crit_trigger_match:    False
+    Fake_File:             ${ROOTCOREDIR}/../SusyMatrixMethod/data/pass6_Apr2_2013.root
+
+EgammaEnergyRescale:
+    apply_systematics: 0
+    is_af2:            CONFIG
+
+MuonMomentumSmearing:
+    smearing_function: ''
+
+JetCalibration:
+    is_af2:  CONFIG
+
+Electron_IsoCorr:
+    etcone20_p1:               0
+    etcone20_p2:               0
+    etcone30_p1:               0
+    etcone30_p2:               0
+    etcone40_p1:               0
+    etcone40_p2:               0
+    ptcone20_p1:               0
+    ptcone20_p2:               0
+    ptcone30_p1:               0
+    ptcone30_p2:               0
+    ptcone40_p1:               0
+    ptcone40_p2:               0
+    topoetcone20_p1:           0
+    topoetcone20_p2:           0
+    topoetcone30_p1:           0
+    topoetcone30_p2:           0
+    topoetcone40_p1:           0
+    topoetcone40_p2:           0
+    topoetcone_corrected20_p1: 0
+    topoetcone_corrected20_p2: 0
+    topoetcone_corrected30_p1: 20.15
+    topoetcone_corrected30_p2: 0
+    topoetcone_corrected40_p1: 0
+    topoetcone_corrected40_p2: 0
+
+Muon_IsoCorr:
+    etcone20_p1:               0
+    etcone20_p2:               0
+    etcone30_p1:               0
+    etcone30_p2:               0
+    etcone40_p1:               0
+    etcone40_p2:               0
+    ptcone20_p1:               0
+    ptcone20_p2:               0
+    ptcone30_p1:               10.98
+    ptcone30_p2:               0
+    ptcone40_p1:               0
+    ptcone40_p2:               0
+    topoetcone20_p1:           0
+    topoetcone20_p2:           0
+    topoetcone30_p1:           0
+    topoetcone30_p2:           0
+    topoetcone40_p1:           0
+    topoetcone40_p2:           0
+    topoetcone_corrected20_p1: 0
+    topoetcone_corrected20_p2: 0
+    topoetcone_corrected30_p1: 0
+    topoetcone_corrected30_p2: 0
+    topoetcone_corrected40_p1: 0
+    topoetcone_corrected40_p2: 0
+
+Top_Tag:
+    m_eff_cut:  100000
+    n_jet_scan: 3
+    pt_j_cut:   20000
+
+Electron_Selection:
+    baseline_min_eta:        -1
+    baseline_max_eta:        2.47
+    baseline_min_pt:         10000
+    baseline_max_pt:         -1
+    signal_min_d0_sig:       -1
+    signal_max_d0_sig:       5
+    signal_min_etcone_cut:   -1
+    signal_max_etcone_cut:   0.18
+    signal_min_ptcone_cut:   -1
+    signal_max_ptcone_cut:   0.16
+    signal_min_z0_sin_theta: -1
+    signal_max_z0_sin_theta: 0.4
+
+Jet_Selection:
+    baseline_min_eta: -1
+    baseline_max_eta: 4.9
+    baseline_min_pt:  20000
+    baseline_max_pt:  -1
+    light_min_eta:    -1
+    light_max_eta:    2.4
+    light_min_mv1:    -1
+    light_max_mv1:    0.3511
+    light_min_pt:     20000
+    light_max_pt:     -1
+    light_min_jvf:    0.0
+    light_max_jvf:    -1
+    b_min_eta:        -1
+    b_max_eta:        2.4
+    b_min_pt:         20000
+    b_max_pt:         -1
+    b_max_mv1:        -1
+    b_min_mv1:        0.3511
+    forward_min_pt:   30000
+    forward_max_pt:   -1
+    forward_min_eta:  2.4
+    forward_max_eta:  4.5
+
+Muon_Selection:
+    bad_min_qoverp_ratio:         0.2
+    bad_max_qoverp_ratio:         -1
+    baseline_min_pt:              10000
+    baseline_max_pt:              -1
+    baseline_min_eta:             -1
+    baseline_max_eta:             2.4
+    baseline_min_b_layer_hits:    1
+    baseline_max_b_layer_hits:    -1
+    baseline_min_pixel_hits:      1
+    baseline_max_pixel_hits:      -1
+    baseline_min_sct_hits:        5
+    baseline_max_sct_hits:        -1
+    baseline_min_trt_hits:        6
+    baseline_max_trt_hits:        -1
+    baseline_min_trt_ol_fraction: -1
+    baseline_max_trt_ol_fraction: 0.9
+    baseline_min_si_holes:        -1
+    baseline_max_si_holes:        2
+    cosmic_min_d0:                0.2
+    cosmic_max_d0:                -1
+    cosmic_min_z0:                1
+    cosmic_max_z0:                -1
+    signal_min_d0_sig:            -1
+    signal_max_d0_sig:            3
+    signal_max_z0_sin_theta:      1
+    signal_min_z0_sin_theta:      -1
+    signal_min_ptcone_cut:        -1
+    signal_max_ptcone_cut:        0.12
+
+GRL:
+    do_grl:  True
+    grl_xml: FIND_ME
+
+Event_Cleaning:
+    min_mll:    20000
+    max_mll:    -1
+    total_lumi: 0
+
+Object_Cleaning:
+    ee_cone_size: 0.1
+    ej_cone_size: 0.2
+    em_cone_size: 0.1
+    je_cone_size: 0.4
+    jm_cone_size: 0.4
+    mm_cone_size: 0.05
+    min_mll:      12000
+
+Trigger_Cut:
+    check_official_matching: False
+    do_trigger_matching:     True
+
+Signal_Regions:
+    sr_osjveto_min_met_rel:  100000
+    sr_osjveto_max_met_rel:  -1
+    sr_osjveto_min_mt2:      -1
+    sr_osjveto_max_mt2:      90000
+
+    sr_ssjets_ee_min_met_rel:   70000
+    sr_ssjets_ee_max_met_rel:   -1
+    sr_ssjets_mm_min_met_rel:   50000
+    sr_ssjets_mm_max_met_rel:   -1
+    sr_ssjets_em_min_met_rel:   50000
+    sr_ssjets_em_max_met_rel:   -1
+    sr_ssjets_ee_min_mt:        -1
+    sr_ssjets_ee_max_mt:        70000
+    sr_ssjets_mm_min_mt:        -1
+    sr_ssjets_mm_max_mt:        50000
+    sr_ssjets_em_min_mt:        -1
+    sr_ssjets_em_max_mt:        50000
+
+    sr_2jets_min_met_rel:    50000
+    sr_2jets_max_met_rel:    -1
+
+    sr_mt2_min_met_rel:      40000
+    sr_mt2_max_met_rel:      -1
+    sr_mt2a_min_mt2:         90000
+    sr_mt2a_max_mt2:         -1
+    sr_mt2b_min_mt2:         100000
+    sr_mt2b_max_mt2:         -1
+
+    sr_ww_min_lep1_pt:       35000
+    sr_ww_max_lep1_pt:       -1
+    sr_ww_min_lep2_pt:       20000
+    sr_ww_max_lep2_pt:       -1
+    sr_wwa_min_met_rel:      70000
+    sr_wwa_max_met_rel:      -1
+    sr_wwa_min_mll:          -1
+    sr_wwa_max_mll:          80000
+    sr_wwa_min_ptll:         -1
+    sr_wwa_max_ptll:         -1
+    sr_wwb_min_mt2:          90000
+    sr_wwb_max_mt2:          -1
+    sr_wwb_min_mll:          -1
+    sr_wwb_max_mll:          130000
+    sr_wwb_min_ptll:         -1
+    sr_wwb_max_ptll:         170000
+    sr_wwc_min_ptll:         -1
+    sr_wwc_max_ptll:         190000
+    sr_wwc_min_mt2:          100000
+    sr_wwc_max_mt2:          -1
+
+    sr_zjets_min_num_jets:   2
+    sr_zjets_max_num_jets:   -1
+    sr_zjets_min_met_rel:    40000
+    sr_zjets_max_met_rel:    -1
+    sr_zjets_min_jet1_pt:    40000
+    sr_zjets_max_jet1_pt:    -1
+    sr_zjets_min_jet2_pt:    40000
+    sr_zjets_max_jet2_pt:    -1
+    sr_zjets_min_mjj:        50000
+    sr_zjets_max_mjj:        100000
+    sr_zjets_min_mt2:        55000
+    sr_zjets_max_mt2:        -1
+
+    z_window_mll_min:        81200
+    z_window_mll_max:        101200
+
+PileUpScaleFactor:
+  do_pile_up:       True
+  data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root
+  mc_file:          ${ROOTCOREDIR}/../PileupReweighting/share/mc12a_defaults.prw.root
+  data_hist_name:   LumiMetaData
+  generate_mc_hist: False
+  mc_hist_name:     MCPileupReweighting
+  pile_up_var:      averageIntPerXing
+
+TriggerReweight:
+  do_trigger_sf:           True
+  trigger_reweight_dir:    ${ROOTCOREDIR}/../DGTriggerReweight/data/
+  trigger_reweight_period: Moriond
+
+BTagScaleFactor:
+  do_b_tag_sf:  True
+  calib_file:   ${ROOTCOREDIR}/../SUSYTools/data/BTagCalibration.env
+  calib_folder: ${SFRAME_DIR}/../data/
+
+MuonSF:
+  do_scaling: True
+  muon_type:  STACO_CB_plus_ST
+  # sf_dir:     ""
+  unit:       MeV
+
+EgammaSF:
+  do_scaling: True
+
+ChargeFlipSF:
+  do_charge_flip_sf: True
+  path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
+
+ElectronOutput:
+  do_detailed_output:      0
+  electron_container_name: good
+
+MuonOutput:
+  do_detailed_output:  0
+  muon_container_name: good
+
+JetOutput:
+  do_detailed_output: 0
+  jet_container_name: good
+
+JetOutput_light:
+  do_detailed_output: 1
+  jet_container_name: light
+  jet_label:          light_jet_
+
+MetOutput:
+  do_detailed_output: 0
+
+VertexOutput:
+  do_detailed_output:    0
+  vertex_container_name: good
