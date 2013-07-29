@@ -176,12 +176,12 @@ bool SelectionTools::JetSelectionTool::isFJet(Jet* jet)
 // -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 {
-  /*
   double emf  = jet->emfrac();
   double eta  = jet->emscale_eta();
-  double chf  = jet->sumPtTrk()/jet->getTlv().Pt();
-  double fmax = jet->fracSamplingMax();
+  // double chf  = jet->sumPtTrk()/jet->getTlv().Pt();
+  // double fmax = jet->fracSamplingMax();
 
+  /*
   // non-collision background & cosmics
   if (emf  < 0.05 && fabs(eta) >= 2)               return true;
   if (fmax > 0.99 && fabs(eta) <  2)               return true;
