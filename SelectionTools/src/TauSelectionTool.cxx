@@ -294,6 +294,9 @@ bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag(const Tau* tau)
     return old_bdt_flag;
   }
 
+  return old_bdt_flag;
+
+
   double pt = tau->pt()/1e3;
   // double eta = tau->eta();
   double eta = tau->leadTrack_eta();

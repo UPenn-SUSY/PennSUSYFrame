@@ -8,6 +8,7 @@ import os.path
 import subprocess
 import optparse
 import time
+import math
 
 import copy
 
@@ -38,8 +39,9 @@ def main():
     out_dir_name  = template_config_dict['OutputDirectory']
 
     # Break up files into sub-jobs
-    max_files_per_job = 1
-    num_jobs = int(len(in_file_list)/max_files_per_job) + (0 if len(in_file_list)%max_files_per_job == 0 else 1)
+    num_files = len(in_file_list)
+    max_files_per_job = 10
+    num_jobs = int(math.ceil(float(num_files)/max_files_per_job))
 
     # List of config files for submitting later
     config_file_list = []
@@ -64,13 +66,19 @@ def main():
 
         offset = i*max_files_per_job
 
-        num_files_for_this = (max_files_per_job if i < (num_jobs-1) else (len(in_file_list)%max_files_per_job) + 1)
-        print 'adding %d files for this job' % num_files_for_this
+        # num_files_for_this = (max_files_per_job if i < (num_jobs-1) else num_files%max_files_per_job) + 1)
+        # print 'adding %d files for this job' % num_files_for_this
+        print 'adding files for this job'
 
-        for j in xrange(max_files_per_job if i < (num_jobs-1) else (len(in_file_list)%max_files_per_job) + 1):
+        # for j in xrange(max_files_per_job if i < (num_jobs-1) else (len(in_file_list)%max_files_per_job) + 1):
+        for j in xrange(max_files_per_job):
+            if offset + j >= num_files: break
             this_config_dict['InputFiles'].append(in_file_list[offset+j])
 
-        print '\tfiles for this job: %s' % this_config_dict['InputFiles']
+        # print '\tfiles for this job: %s' % this_config_dict['InputFiles']
+        print '\tfiles for this job:'
+        for in_file in this_config_dict['InputFiles']:
+            print '\t\t%s' % in_file
 
         writeConfigXml(this_config_dict, xml_file_name)
         config_file_list.append(xml_file_name)
@@ -269,8 +277,8 @@ def makeBsubScript(xml_file):
 
 # ------------------------------------------------------------------------------
 def submitBsubScript(bsub_script):
-    print 'submitting bsub script:'
-    print bsub_script
+    # print 'submitting bsub script:'
+    # print bsub_script
 
     # p = subprocess.Popen( [ 'echo'
     #                       , 'bsub'
