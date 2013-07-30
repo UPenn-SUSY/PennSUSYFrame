@@ -560,11 +560,19 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
 void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
-  // if (  true
-  //    && m_event->EventNumber() != 1022
-  //    && m_event->EventNumber() != 16338
-  //    && m_event->EventNumber() != 16950
-  //    ) return;
+  if (  true
+     && m_event->EventNumber() != 1310020
+     && m_event->EventNumber() != 1725616
+     && m_event->EventNumber() != 1912756
+     && m_event->EventNumber() != 211035
+     && m_event->EventNumber() != 2355284
+     && m_event->EventNumber() != 2578769
+     && m_event->EventNumber() != 32185
+     && m_event->EventNumber() != 423702
+     && m_event->EventNumber() != 758810
+     && m_event->EventNumber() != 835769
+     && m_event->EventNumber() != 920757
+     ) return;
 
   m_logger << DEBUG
            << "SusyDiLeptonCutFlowCycle::ExecuteEvent()"
@@ -572,9 +580,9 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
            << " -- event number = " << m_event->EventNumber()
            << SLogger::endmsg;
 
-  // std::cout << "----------------------------------------\n";
-  // std::cout << "run number: " << m_event->RunNumber()
-  //           << " -- event number: " << m_event->EventNumber() << "\n";
+  std::cout << "----------------------------------------\n";
+  std::cout << "run number: " << m_event->RunNumber()
+            << " -- event number: " << m_event->EventNumber() << "\n";
 
   // = Prep event by zeroing out old vent stuff
   prepEvent();
@@ -641,43 +649,43 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   fillEventVariables();
   fillOutput();
 
-  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // std::cout << "==============================================================\n";
-  // std::cout << "==============================================================\n";
-  // std::cout << "Run: " << m_event->RunNumber() << "\n";
-  // std::cout << "Event: " << m_event->EventNumber() << "\n";
-  // m_vertices.print(VERT_ALL);
-  // m_vertices.print(VERT_GOOD);
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::cout << "==============================================================\n";
+  std::cout << "==============================================================\n";
+  std::cout << "Run: " << m_event->RunNumber() << "\n";
+  std::cout << "Event: " << m_event->EventNumber() << "\n";
+  m_vertices.print(VERT_ALL);
+  m_vertices.print(VERT_GOOD);
 
-  // m_electrons.print(EL_ALL      , m_vertices);
-  // m_electrons.print(EL_BASELINE , m_vertices);
-  // m_electrons.print(EL_GOOD     , m_vertices);
-  // m_electrons.print(EL_SIGNAL   , m_vertices);
+  m_electrons.print(EL_ALL      , m_vertices);
+  m_electrons.print(EL_BASELINE , m_vertices);
+  m_electrons.print(EL_GOOD     , m_vertices);
+  m_electrons.print(EL_SIGNAL   , m_vertices);
 
-  // m_muons.print(MU_ALL      , m_vertices);
-  // m_muons.print(MU_BASELINE , m_vertices);
-  // m_muons.print(MU_GOOD     , m_vertices);
-  // m_muons.print(MU_SIGNAL   , m_vertices);
+  m_muons.print(MU_ALL      , m_vertices);
+  m_muons.print(MU_BASELINE , m_vertices);
+  m_muons.print(MU_GOOD     , m_vertices);
+  m_muons.print(MU_SIGNAL   , m_vertices);
 
-  // m_taus.print(TAU_ALL      , m_vertices);
-  // m_taus.print(TAU_BASELINE , m_vertices);
-  // m_taus.print(TAU_GOOD     , m_vertices);
-  // m_taus.print(TAU_SIGNAL   , m_vertices);
+  m_taus.print(TAU_ALL      , m_vertices);
+  m_taus.print(TAU_BASELINE , m_vertices);
+  m_taus.print(TAU_GOOD     , m_vertices);
+  m_taus.print(TAU_SIGNAL   , m_vertices);
 
-  // m_jets.print(JET_ALL          );
-  // m_jets.print(JET_BASELINE_GOOD);
-  // m_jets.print(JET_GOOD         );
-  // m_jets.print(JET_BASELINE_BAD );
-  // m_jets.print(JET_BAD          );
-  // m_jets.print(JET_LIGHT        );
-  // m_jets.print(JET_B            );
-  // m_jets.print(JET_FORWARD      );
+  m_jets.print(JET_ALL          );
+  m_jets.print(JET_BASELINE_GOOD);
+  m_jets.print(JET_GOOD         );
+  m_jets.print(JET_BASELINE_BAD );
+  m_jets.print(JET_BAD          );
+  m_jets.print(JET_LIGHT        );
+  m_jets.print(JET_B            );
+  m_jets.print(JET_FORWARD      );
 
-  // m_met->print( m_electrons.getElectrons(EL_GOOD)
-  //             , m_muons.getMuons(MU_GOOD)
-  //             , m_jets.getJets(JET_ALL_CENTRAL)
-  //             );
-  // m_event->print();
+  m_met->print( m_electrons.getElectrons(EL_GOOD)
+              , m_muons.getMuons(MU_GOOD)
+              , m_jets.getJets(JET_ALL_CENTRAL)
+              );
+  m_event->print();
 }
 
 // -----------------------------------------------------------------------------
