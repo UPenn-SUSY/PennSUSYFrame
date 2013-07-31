@@ -38,7 +38,7 @@ namespace D3PDReader {
         trig_EF_trigmuonef_track_CB_pt( parent.trig_EF_trigmuonef_track_CB_pt, index, this ),
         trig_EF_trigmuonef_track_CB_eta( parent.trig_EF_trigmuonef_track_CB_eta, index, this ),
         trig_EF_trigmuonef_track_CB_phi( parent.trig_EF_trigmuonef_track_CB_phi, index, this ),
-        trig_EF_trigmuonef_track_CB_hasCB( parent.trig_EF_trigmuonef_track_CB_hasCB, index, this ) , 
+        trig_EF_trigmuonef_track_CB_hasCB( parent.trig_EF_trigmuonef_track_CB_hasCB, index, this ), 
 is_data(is_data) {
 
    }
@@ -69,7 +69,7 @@ is_data(is_data) {
         trig_EF_trigmuonef_track_CB_pt( parent.trig_EF_trigmuonef_track_CB_pt ),
         trig_EF_trigmuonef_track_CB_eta( parent.trig_EF_trigmuonef_track_CB_eta ),
         trig_EF_trigmuonef_track_CB_phi( parent.trig_EF_trigmuonef_track_CB_phi ),
-        trig_EF_trigmuonef_track_CB_hasCB( parent.trig_EF_trigmuonef_track_CB_hasCB ) , 
+        trig_EF_trigmuonef_track_CB_hasCB( parent.trig_EF_trigmuonef_track_CB_hasCB ), 
 is_data(is_data) {
 
    }
@@ -103,7 +103,7 @@ is_data(is_data) {
         trig_EF_trigmuonef_track_CB_hasCB( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_CB_hasCB", &master ),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "trig_EF_el_EF_e12Tvh_loose1" ] = &trig_EF_el_EF_e12Tvh_loose1;
@@ -153,7 +153,7 @@ is_data(is_data) {
         trig_EF_trigmuonef_track_CB_hasCB( this, ::TString( prefix ) + "trig_EF_trigmuonef_track_CB_hasCB", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "trig_EF_el_EF_e12Tvh_loose1" ] = &trig_EF_el_EF_e12Tvh_loose1;

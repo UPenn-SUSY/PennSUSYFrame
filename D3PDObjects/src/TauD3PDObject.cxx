@@ -39,7 +39,7 @@ namespace D3PDReader {
         numTrack( parent.numTrack, index, this ),
         leadTrkPt( parent.leadTrkPt, index, this ),
         leadTrack_eta( parent.leadTrack_eta, index, this ),
-        leadTrack_phi( parent.leadTrack_phi, index, this ) , 
+        leadTrack_phi( parent.leadTrack_phi, index, this ), 
 is_data(is_data) {
 
    }
@@ -71,7 +71,7 @@ is_data(is_data) {
         numTrack( parent.numTrack ),
         leadTrkPt( parent.leadTrkPt ),
         leadTrack_eta( parent.leadTrack_eta ),
-        leadTrack_phi( parent.leadTrack_phi ) , 
+        leadTrack_phi( parent.leadTrack_phi ), 
 is_data(is_data) {
 
    }
@@ -107,7 +107,7 @@ is_data(is_data) {
         leadTrack_phi( this, ::TString( prefix ) + "leadTrack_phi", &master ),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "n" ] = &n;
@@ -161,7 +161,7 @@ is_data(is_data) {
         leadTrack_phi( this, ::TString( prefix ) + "leadTrack_phi", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "n" ] = &n;

@@ -116,8 +116,11 @@ namespace D3PDReader {
       VarProxy< int > truth_motherbarcode;
       VarProxy< int > truth_matched;
 // end MC only
+      /// Tracking isolation parameter for cone size 0.2
       VarProxy< float > ptcone20_trkelstyle;
+      /// Tracking isolation parameter for cone size 0.3
       VarProxy< float > ptcone30_trkelstyle;
+      /// Tracking isolation parameter for cone size 0.4
       VarProxy< float > ptcone40_trkelstyle;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpx;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpy;
@@ -249,8 +252,11 @@ bool is_data; // ~bj
       VarHandle< vector<int>* > truth_motherbarcode;
       VarHandle< vector<int>* > truth_matched;
 // end MC only
+      /// Tracking isolation parameter for cone size 0.2
       VarHandle< vector<float>* > ptcone20_trkelstyle;
+      /// Tracking isolation parameter for cone size 0.3
       VarHandle< vector<float>* > ptcone30_trkelstyle;
+      /// Tracking isolation parameter for cone size 0.4
       VarHandle< vector<float>* > ptcone40_trkelstyle;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpx;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpy;

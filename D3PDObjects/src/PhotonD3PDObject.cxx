@@ -51,7 +51,7 @@ is_data(is_data) {
       : TObject(),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
    }
@@ -67,7 +67,7 @@ is_data(is_data) {
       : TObject(),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
    }

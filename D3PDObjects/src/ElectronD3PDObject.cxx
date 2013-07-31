@@ -92,14 +92,14 @@ namespace D3PDReader {
         nucone20_zpv05( parent.nucone20_zpv05, index, this ),
         nucone30_zpv05( parent.nucone30_zpv05, index, this ),
         nucone40_zpv05( parent.nucone40_zpv05, index, this ),
-        etas0( parent.etas0, index, this ),
-        etas1( parent.etas1, index, this ),
-        etas2( parent.etas2, index, this ),
-        etas3( parent.etas3, index, this ),
         cl_E( parent.cl_E, index, this ),
         cl_pt( parent.cl_pt, index, this ),
         cl_eta( parent.cl_eta, index, this ),
         cl_phi( parent.cl_phi, index, this ),
+        etas0( parent.etas0, index, this ),
+        etas1( parent.etas1, index, this ),
+        etas2( parent.etas2, index, this ),
+        etas3( parent.etas3, index, this ),
         trackd0( parent.trackd0, index, this ),
         trackz0( parent.trackz0, index, this ),
         trackphi( parent.trackphi, index, this ),
@@ -134,18 +134,18 @@ namespace D3PDReader {
         trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased, index, this ),
         trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased, index, this ),
         trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased, index, this ),
+        nucone20_trk500MeV( parent.nucone20_trk500MeV, index, this ),
+        nucone30_trk500MeV( parent.nucone30_trk500MeV, index, this ),
+        nucone40_trk500MeV( parent.nucone40_trk500MeV, index, this ),
         Etcone40_ED_corrected( parent.Etcone40_ED_corrected, index, this ),
         Etcone40_corrected( parent.Etcone40_corrected, index, this ),
         topoEtcone20_corrected( parent.topoEtcone20_corrected, index, this ),
         topoEtcone30_corrected( parent.topoEtcone30_corrected, index, this ),
         topoEtcone40_corrected( parent.topoEtcone40_corrected, index, this ),
-        nucone20_trk500MeV( parent.nucone20_trk500MeV, index, this ),
-        nucone30_trk500MeV( parent.nucone30_trk500MeV, index, this ),
-        nucone40_trk500MeV( parent.nucone40_trk500MeV, index, this ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx, index, this ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy, index, this ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet, index, this ),
-        MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord, index, this ) , 
+        MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord, index, this ), 
 is_data(is_data) {
 
    }
@@ -230,14 +230,14 @@ is_data(is_data) {
         nucone20_zpv05( parent.nucone20_zpv05 ),
         nucone30_zpv05( parent.nucone30_zpv05 ),
         nucone40_zpv05( parent.nucone40_zpv05 ),
-        etas0( parent.etas0 ),
-        etas1( parent.etas1 ),
-        etas2( parent.etas2 ),
-        etas3( parent.etas3 ),
         cl_E( parent.cl_E ),
         cl_pt( parent.cl_pt ),
         cl_eta( parent.cl_eta ),
         cl_phi( parent.cl_phi ),
+        etas0( parent.etas0 ),
+        etas1( parent.etas1 ),
+        etas2( parent.etas2 ),
+        etas3( parent.etas3 ),
         trackd0( parent.trackd0 ),
         trackz0( parent.trackz0 ),
         trackphi( parent.trackphi ),
@@ -272,18 +272,18 @@ is_data(is_data) {
         trackIPEstimate_z0_unbiasedpvunbiased( parent.trackIPEstimate_z0_unbiasedpvunbiased ),
         trackIPEstimate_sigd0_unbiasedpvunbiased( parent.trackIPEstimate_sigd0_unbiasedpvunbiased ),
         trackIPEstimate_sigz0_unbiasedpvunbiased( parent.trackIPEstimate_sigz0_unbiasedpvunbiased ),
+        nucone20_trk500MeV( parent.nucone20_trk500MeV ),
+        nucone30_trk500MeV( parent.nucone30_trk500MeV ),
+        nucone40_trk500MeV( parent.nucone40_trk500MeV ),
         Etcone40_ED_corrected( parent.Etcone40_ED_corrected ),
         Etcone40_corrected( parent.Etcone40_corrected ),
         topoEtcone20_corrected( parent.topoEtcone20_corrected ),
         topoEtcone30_corrected( parent.topoEtcone30_corrected ),
         topoEtcone40_corrected( parent.topoEtcone40_corrected ),
-        nucone20_trk500MeV( parent.nucone20_trk500MeV ),
-        nucone30_trk500MeV( parent.nucone30_trk500MeV ),
-        nucone40_trk500MeV( parent.nucone40_trk500MeV ),
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet ),
-        MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord ) , 
+        MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord ), 
 is_data(is_data) {
 
    }
@@ -369,14 +369,14 @@ is_data(is_data) {
         nucone20_zpv05( this, ::TString( prefix ) + "nucone20_zpv05", &master ),
         nucone30_zpv05( this, ::TString( prefix ) + "nucone30_zpv05", &master ),
         nucone40_zpv05( this, ::TString( prefix ) + "nucone40_zpv05", &master ),
-        etas0( this, ::TString( prefix ) + "etas0", &master ),
-        etas1( this, ::TString( prefix ) + "etas1", &master ),
-        etas2( this, ::TString( prefix ) + "etas2", &master ),
-        etas3( this, ::TString( prefix ) + "etas3", &master ),
         cl_E( this, ::TString( prefix ) + "cl_E", &master ),
         cl_pt( this, ::TString( prefix ) + "cl_pt", &master ),
         cl_eta( this, ::TString( prefix ) + "cl_eta", &master ),
         cl_phi( this, ::TString( prefix ) + "cl_phi", &master ),
+        etas0( this, ::TString( prefix ) + "etas0", &master ),
+        etas1( this, ::TString( prefix ) + "etas1", &master ),
+        etas2( this, ::TString( prefix ) + "etas2", &master ),
+        etas3( this, ::TString( prefix ) + "etas3", &master ),
         trackd0( this, ::TString( prefix ) + "trackd0", &master ),
         trackz0( this, ::TString( prefix ) + "trackz0", &master ),
         trackphi( this, ::TString( prefix ) + "trackphi", &master ),
@@ -411,21 +411,21 @@ is_data(is_data) {
         trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", &master ),
         trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", &master ),
         trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", &master ),
+        nucone20_trk500MeV( this, ::TString( prefix ) + "nucone20_trk500MeV", &master ),
+        nucone30_trk500MeV( this, ::TString( prefix ) + "nucone30_trk500MeV", &master ),
+        nucone40_trk500MeV( this, ::TString( prefix ) + "nucone40_trk500MeV", &master ),
         Etcone40_ED_corrected( this, ::TString( prefix ) + "Etcone40_ED_corrected", &master ),
         Etcone40_corrected( this, ::TString( prefix ) + "Etcone40_corrected", &master ),
         topoEtcone20_corrected( this, ::TString( prefix ) + "topoEtcone20_corrected", &master ),
         topoEtcone30_corrected( this, ::TString( prefix ) + "topoEtcone30_corrected", &master ),
         topoEtcone40_corrected( this, ::TString( prefix ) + "topoEtcone40_corrected", &master ),
-        nucone20_trk500MeV( this, ::TString( prefix ) + "nucone20_trk500MeV", &master ),
-        nucone30_trk500MeV( this, ::TString( prefix ) + "nucone30_trk500MeV", &master ),
-        nucone40_trk500MeV( this, ::TString( prefix ) + "nucone40_trk500MeV", &master ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", &master ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", &master ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", &master ),
         MET_Egamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_statusWord", &master ),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "n" ] = &n;
@@ -499,14 +499,14 @@ if (!is_data) {
       fHandles[ "nucone20_zpv05" ] = &nucone20_zpv05;
       fHandles[ "nucone30_zpv05" ] = &nucone30_zpv05;
       fHandles[ "nucone40_zpv05" ] = &nucone40_zpv05;
-      fHandles[ "etas0" ] = &etas0;
-      fHandles[ "etas1" ] = &etas1;
-      fHandles[ "etas2" ] = &etas2;
-      fHandles[ "etas3" ] = &etas3;
       fHandles[ "cl_E" ] = &cl_E;
       fHandles[ "cl_pt" ] = &cl_pt;
       fHandles[ "cl_eta" ] = &cl_eta;
       fHandles[ "cl_phi" ] = &cl_phi;
+      fHandles[ "etas0" ] = &etas0;
+      fHandles[ "etas1" ] = &etas1;
+      fHandles[ "etas2" ] = &etas2;
+      fHandles[ "etas3" ] = &etas3;
       fHandles[ "trackd0" ] = &trackd0;
       fHandles[ "trackz0" ] = &trackz0;
       fHandles[ "trackphi" ] = &trackphi;
@@ -541,14 +541,14 @@ if (!is_data) {
       fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
       fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
       fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
+      fHandles[ "nucone20_trk500MeV" ] = &nucone20_trk500MeV;
+      fHandles[ "nucone30_trk500MeV" ] = &nucone30_trk500MeV;
+      fHandles[ "nucone40_trk500MeV" ] = &nucone40_trk500MeV;
       fHandles[ "Etcone40_ED_corrected" ] = &Etcone40_ED_corrected;
       fHandles[ "Etcone40_corrected" ] = &Etcone40_corrected;
       fHandles[ "topoEtcone20_corrected" ] = &topoEtcone20_corrected;
       fHandles[ "topoEtcone30_corrected" ] = &topoEtcone30_corrected;
       fHandles[ "topoEtcone40_corrected" ] = &topoEtcone40_corrected;
-      fHandles[ "nucone20_trk500MeV" ] = &nucone20_trk500MeV;
-      fHandles[ "nucone30_trk500MeV" ] = &nucone30_trk500MeV;
-      fHandles[ "nucone40_trk500MeV" ] = &nucone40_trk500MeV;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
@@ -635,14 +635,14 @@ if (!is_data) {
         nucone20_zpv05( this, ::TString( prefix ) + "nucone20_zpv05", 0 ),
         nucone30_zpv05( this, ::TString( prefix ) + "nucone30_zpv05", 0 ),
         nucone40_zpv05( this, ::TString( prefix ) + "nucone40_zpv05", 0 ),
-        etas0( this, ::TString( prefix ) + "etas0", 0 ),
-        etas1( this, ::TString( prefix ) + "etas1", 0 ),
-        etas2( this, ::TString( prefix ) + "etas2", 0 ),
-        etas3( this, ::TString( prefix ) + "etas3", 0 ),
         cl_E( this, ::TString( prefix ) + "cl_E", 0 ),
         cl_pt( this, ::TString( prefix ) + "cl_pt", 0 ),
         cl_eta( this, ::TString( prefix ) + "cl_eta", 0 ),
         cl_phi( this, ::TString( prefix ) + "cl_phi", 0 ),
+        etas0( this, ::TString( prefix ) + "etas0", 0 ),
+        etas1( this, ::TString( prefix ) + "etas1", 0 ),
+        etas2( this, ::TString( prefix ) + "etas2", 0 ),
+        etas3( this, ::TString( prefix ) + "etas3", 0 ),
         trackd0( this, ::TString( prefix ) + "trackd0", 0 ),
         trackz0( this, ::TString( prefix ) + "trackz0", 0 ),
         trackphi( this, ::TString( prefix ) + "trackphi", 0 ),
@@ -677,21 +677,21 @@ if (!is_data) {
         trackIPEstimate_z0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased", 0 ),
         trackIPEstimate_sigd0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased", 0 ),
         trackIPEstimate_sigz0_unbiasedpvunbiased( this, ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased", 0 ),
+        nucone20_trk500MeV( this, ::TString( prefix ) + "nucone20_trk500MeV", 0 ),
+        nucone30_trk500MeV( this, ::TString( prefix ) + "nucone30_trk500MeV", 0 ),
+        nucone40_trk500MeV( this, ::TString( prefix ) + "nucone40_trk500MeV", 0 ),
         Etcone40_ED_corrected( this, ::TString( prefix ) + "Etcone40_ED_corrected", 0 ),
         Etcone40_corrected( this, ::TString( prefix ) + "Etcone40_corrected", 0 ),
         topoEtcone20_corrected( this, ::TString( prefix ) + "topoEtcone20_corrected", 0 ),
         topoEtcone30_corrected( this, ::TString( prefix ) + "topoEtcone30_corrected", 0 ),
         topoEtcone40_corrected( this, ::TString( prefix ) + "topoEtcone40_corrected", 0 ),
-        nucone20_trk500MeV( this, ::TString( prefix ) + "nucone20_trk500MeV", 0 ),
-        nucone30_trk500MeV( this, ::TString( prefix ) + "nucone30_trk500MeV", 0 ),
-        nucone40_trk500MeV( this, ::TString( prefix ) + "nucone40_trk500MeV", 0 ),
         MET_Egamma10NoTau_wpx( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpx", 0 ),
         MET_Egamma10NoTau_wpy( this, ::TString( prefix ) + "MET_Egamma10NoTau_wpy", 0 ),
         MET_Egamma10NoTau_wet( this, ::TString( prefix ) + "MET_Egamma10NoTau_wet", 0 ),
         MET_Egamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_statusWord", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "n" ] = &n;
@@ -765,14 +765,14 @@ if (!is_data) {
       fHandles[ "nucone20_zpv05" ] = &nucone20_zpv05;
       fHandles[ "nucone30_zpv05" ] = &nucone30_zpv05;
       fHandles[ "nucone40_zpv05" ] = &nucone40_zpv05;
-      fHandles[ "etas0" ] = &etas0;
-      fHandles[ "etas1" ] = &etas1;
-      fHandles[ "etas2" ] = &etas2;
-      fHandles[ "etas3" ] = &etas3;
       fHandles[ "cl_E" ] = &cl_E;
       fHandles[ "cl_pt" ] = &cl_pt;
       fHandles[ "cl_eta" ] = &cl_eta;
       fHandles[ "cl_phi" ] = &cl_phi;
+      fHandles[ "etas0" ] = &etas0;
+      fHandles[ "etas1" ] = &etas1;
+      fHandles[ "etas2" ] = &etas2;
+      fHandles[ "etas3" ] = &etas3;
       fHandles[ "trackd0" ] = &trackd0;
       fHandles[ "trackz0" ] = &trackz0;
       fHandles[ "trackphi" ] = &trackphi;
@@ -807,14 +807,14 @@ if (!is_data) {
       fHandles[ "trackIPEstimate_z0_unbiasedpvunbiased" ] = &trackIPEstimate_z0_unbiasedpvunbiased;
       fHandles[ "trackIPEstimate_sigd0_unbiasedpvunbiased" ] = &trackIPEstimate_sigd0_unbiasedpvunbiased;
       fHandles[ "trackIPEstimate_sigz0_unbiasedpvunbiased" ] = &trackIPEstimate_sigz0_unbiasedpvunbiased;
+      fHandles[ "nucone20_trk500MeV" ] = &nucone20_trk500MeV;
+      fHandles[ "nucone30_trk500MeV" ] = &nucone30_trk500MeV;
+      fHandles[ "nucone40_trk500MeV" ] = &nucone40_trk500MeV;
       fHandles[ "Etcone40_ED_corrected" ] = &Etcone40_ED_corrected;
       fHandles[ "Etcone40_corrected" ] = &Etcone40_corrected;
       fHandles[ "topoEtcone20_corrected" ] = &topoEtcone20_corrected;
       fHandles[ "topoEtcone30_corrected" ] = &topoEtcone30_corrected;
       fHandles[ "topoEtcone40_corrected" ] = &topoEtcone40_corrected;
-      fHandles[ "nucone20_trk500MeV" ] = &nucone20_trk500MeV;
-      fHandles[ "nucone30_trk500MeV" ] = &nucone30_trk500MeV;
-      fHandles[ "nucone40_trk500MeV" ] = &nucone40_trk500MeV;
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
       fHandles[ "MET_Egamma10NoTau_wpy" ] = &MET_Egamma10NoTau_wpy;
       fHandles[ "MET_Egamma10NoTau_wet" ] = &MET_Egamma10NoTau_wet;
@@ -905,14 +905,14 @@ if (!is_data) {
       nucone20_zpv05.SetName( ::TString( prefix ) + "nucone20_zpv05" );
       nucone30_zpv05.SetName( ::TString( prefix ) + "nucone30_zpv05" );
       nucone40_zpv05.SetName( ::TString( prefix ) + "nucone40_zpv05" );
-      etas0.SetName( ::TString( prefix ) + "etas0" );
-      etas1.SetName( ::TString( prefix ) + "etas1" );
-      etas2.SetName( ::TString( prefix ) + "etas2" );
-      etas3.SetName( ::TString( prefix ) + "etas3" );
       cl_E.SetName( ::TString( prefix ) + "cl_E" );
       cl_pt.SetName( ::TString( prefix ) + "cl_pt" );
       cl_eta.SetName( ::TString( prefix ) + "cl_eta" );
       cl_phi.SetName( ::TString( prefix ) + "cl_phi" );
+      etas0.SetName( ::TString( prefix ) + "etas0" );
+      etas1.SetName( ::TString( prefix ) + "etas1" );
+      etas2.SetName( ::TString( prefix ) + "etas2" );
+      etas3.SetName( ::TString( prefix ) + "etas3" );
       trackd0.SetName( ::TString( prefix ) + "trackd0" );
       trackz0.SetName( ::TString( prefix ) + "trackz0" );
       trackphi.SetName( ::TString( prefix ) + "trackphi" );
@@ -947,14 +947,14 @@ if (!is_data) {
       trackIPEstimate_z0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_z0_unbiasedpvunbiased" );
       trackIPEstimate_sigd0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigd0_unbiasedpvunbiased" );
       trackIPEstimate_sigz0_unbiasedpvunbiased.SetName( ::TString( prefix ) + "trackIPEstimate_sigz0_unbiasedpvunbiased" );
+      nucone20_trk500MeV.SetName( ::TString( prefix ) + "nucone20_trk500MeV" );
+      nucone30_trk500MeV.SetName( ::TString( prefix ) + "nucone30_trk500MeV" );
+      nucone40_trk500MeV.SetName( ::TString( prefix ) + "nucone40_trk500MeV" );
       Etcone40_ED_corrected.SetName( ::TString( prefix ) + "Etcone40_ED_corrected" );
       Etcone40_corrected.SetName( ::TString( prefix ) + "Etcone40_corrected" );
       topoEtcone20_corrected.SetName( ::TString( prefix ) + "topoEtcone20_corrected" );
       topoEtcone30_corrected.SetName( ::TString( prefix ) + "topoEtcone30_corrected" );
       topoEtcone40_corrected.SetName( ::TString( prefix ) + "topoEtcone40_corrected" );
-      nucone20_trk500MeV.SetName( ::TString( prefix ) + "nucone20_trk500MeV" );
-      nucone30_trk500MeV.SetName( ::TString( prefix ) + "nucone30_trk500MeV" );
-      nucone40_trk500MeV.SetName( ::TString( prefix ) + "nucone40_trk500MeV" );
       MET_Egamma10NoTau_wpx.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpx" );
       MET_Egamma10NoTau_wpy.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wpy" );
       MET_Egamma10NoTau_wet.SetName( ::TString( prefix ) + "MET_Egamma10NoTau_wet" );
@@ -1048,14 +1048,14 @@ if (!is_data) {
       nucone20_zpv05.ReadFrom( tree );
       nucone30_zpv05.ReadFrom( tree );
       nucone40_zpv05.ReadFrom( tree );
-      etas0.ReadFrom( tree );
-      etas1.ReadFrom( tree );
-      etas2.ReadFrom( tree );
-      etas3.ReadFrom( tree );
       cl_E.ReadFrom( tree );
       cl_pt.ReadFrom( tree );
       cl_eta.ReadFrom( tree );
       cl_phi.ReadFrom( tree );
+      etas0.ReadFrom( tree );
+      etas1.ReadFrom( tree );
+      etas2.ReadFrom( tree );
+      etas3.ReadFrom( tree );
       trackd0.ReadFrom( tree );
       trackz0.ReadFrom( tree );
       trackphi.ReadFrom( tree );
@@ -1090,14 +1090,14 @@ if (!is_data) {
       trackIPEstimate_z0_unbiasedpvunbiased.ReadFrom( tree );
       trackIPEstimate_sigd0_unbiasedpvunbiased.ReadFrom( tree );
       trackIPEstimate_sigz0_unbiasedpvunbiased.ReadFrom( tree );
+      nucone20_trk500MeV.ReadFrom( tree );
+      nucone30_trk500MeV.ReadFrom( tree );
+      nucone40_trk500MeV.ReadFrom( tree );
       Etcone40_ED_corrected.ReadFrom( tree );
       Etcone40_corrected.ReadFrom( tree );
       topoEtcone20_corrected.ReadFrom( tree );
       topoEtcone30_corrected.ReadFrom( tree );
       topoEtcone40_corrected.ReadFrom( tree );
-      nucone20_trk500MeV.ReadFrom( tree );
-      nucone30_trk500MeV.ReadFrom( tree );
-      nucone40_trk500MeV.ReadFrom( tree );
       MET_Egamma10NoTau_wpx.ReadFrom( tree );
       MET_Egamma10NoTau_wpy.ReadFrom( tree );
       MET_Egamma10NoTau_wet.ReadFrom( tree );
@@ -1186,14 +1186,14 @@ if (!is_data) {
       nucone20_zpv05.WriteTo( tree );
       nucone30_zpv05.WriteTo( tree );
       nucone40_zpv05.WriteTo( tree );
-      etas0.WriteTo( tree );
-      etas1.WriteTo( tree );
-      etas2.WriteTo( tree );
-      etas3.WriteTo( tree );
       cl_E.WriteTo( tree );
       cl_pt.WriteTo( tree );
       cl_eta.WriteTo( tree );
       cl_phi.WriteTo( tree );
+      etas0.WriteTo( tree );
+      etas1.WriteTo( tree );
+      etas2.WriteTo( tree );
+      etas3.WriteTo( tree );
       trackd0.WriteTo( tree );
       trackz0.WriteTo( tree );
       trackphi.WriteTo( tree );
@@ -1228,14 +1228,14 @@ if (!is_data) {
       trackIPEstimate_z0_unbiasedpvunbiased.WriteTo( tree );
       trackIPEstimate_sigd0_unbiasedpvunbiased.WriteTo( tree );
       trackIPEstimate_sigz0_unbiasedpvunbiased.WriteTo( tree );
+      nucone20_trk500MeV.WriteTo( tree );
+      nucone30_trk500MeV.WriteTo( tree );
+      nucone40_trk500MeV.WriteTo( tree );
       Etcone40_ED_corrected.WriteTo( tree );
       Etcone40_corrected.WriteTo( tree );
       topoEtcone20_corrected.WriteTo( tree );
       topoEtcone30_corrected.WriteTo( tree );
       topoEtcone40_corrected.WriteTo( tree );
-      nucone20_trk500MeV.WriteTo( tree );
-      nucone30_trk500MeV.WriteTo( tree );
-      nucone40_trk500MeV.WriteTo( tree );
       MET_Egamma10NoTau_wpx.WriteTo( tree );
       MET_Egamma10NoTau_wpy.WriteTo( tree );
       MET_Egamma10NoTau_wet.WriteTo( tree );
@@ -1361,14 +1361,14 @@ if (!is_data) {
       if( nucone20_zpv05.IsActive() ) nucone20_zpv05();
       if( nucone30_zpv05.IsActive() ) nucone30_zpv05();
       if( nucone40_zpv05.IsActive() ) nucone40_zpv05();
-      if( etas0.IsActive() ) etas0();
-      if( etas1.IsActive() ) etas1();
-      if( etas2.IsActive() ) etas2();
-      if( etas3.IsActive() ) etas3();
       if( cl_E.IsActive() ) cl_E();
       if( cl_pt.IsActive() ) cl_pt();
       if( cl_eta.IsActive() ) cl_eta();
       if( cl_phi.IsActive() ) cl_phi();
+      if( etas0.IsActive() ) etas0();
+      if( etas1.IsActive() ) etas1();
+      if( etas2.IsActive() ) etas2();
+      if( etas3.IsActive() ) etas3();
       if( trackd0.IsActive() ) trackd0();
       if( trackz0.IsActive() ) trackz0();
       if( trackphi.IsActive() ) trackphi();
@@ -1403,14 +1403,14 @@ if (!is_data) {
       if( trackIPEstimate_z0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_z0_unbiasedpvunbiased();
       if( trackIPEstimate_sigd0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigd0_unbiasedpvunbiased();
       if( trackIPEstimate_sigz0_unbiasedpvunbiased.IsActive() ) trackIPEstimate_sigz0_unbiasedpvunbiased();
+      if( nucone20_trk500MeV.IsActive() ) nucone20_trk500MeV();
+      if( nucone30_trk500MeV.IsActive() ) nucone30_trk500MeV();
+      if( nucone40_trk500MeV.IsActive() ) nucone40_trk500MeV();
       if( Etcone40_ED_corrected.IsActive() ) Etcone40_ED_corrected();
       if( Etcone40_corrected.IsActive() ) Etcone40_corrected();
       if( topoEtcone20_corrected.IsActive() ) topoEtcone20_corrected();
       if( topoEtcone30_corrected.IsActive() ) topoEtcone30_corrected();
       if( topoEtcone40_corrected.IsActive() ) topoEtcone40_corrected();
-      if( nucone20_trk500MeV.IsActive() ) nucone20_trk500MeV();
-      if( nucone30_trk500MeV.IsActive() ) nucone30_trk500MeV();
-      if( nucone40_trk500MeV.IsActive() ) nucone40_trk500MeV();
       if( MET_Egamma10NoTau_wpx.IsActive() ) MET_Egamma10NoTau_wpx();
       if( MET_Egamma10NoTau_wpy.IsActive() ) MET_Egamma10NoTau_wpy();
       if( MET_Egamma10NoTau_wet.IsActive() ) MET_Egamma10NoTau_wet();
@@ -1508,14 +1508,14 @@ if (!is_data) {
       nucone20_zpv05()->clear();
       nucone30_zpv05()->clear();
       nucone40_zpv05()->clear();
-      etas0()->clear();
-      etas1()->clear();
-      etas2()->clear();
-      etas3()->clear();
       cl_E()->clear();
       cl_pt()->clear();
       cl_eta()->clear();
       cl_phi()->clear();
+      etas0()->clear();
+      etas1()->clear();
+      etas2()->clear();
+      etas3()->clear();
       trackd0()->clear();
       trackz0()->clear();
       trackphi()->clear();
@@ -1550,14 +1550,14 @@ if (!is_data) {
       trackIPEstimate_z0_unbiasedpvunbiased()->clear();
       trackIPEstimate_sigd0_unbiasedpvunbiased()->clear();
       trackIPEstimate_sigz0_unbiasedpvunbiased()->clear();
+      nucone20_trk500MeV()->clear();
+      nucone30_trk500MeV()->clear();
+      nucone40_trk500MeV()->clear();
       Etcone40_ED_corrected()->clear();
       Etcone40_corrected()->clear();
       topoEtcone20_corrected()->clear();
       topoEtcone30_corrected()->clear();
       topoEtcone40_corrected()->clear();
-      nucone20_trk500MeV()->clear();
-      nucone30_trk500MeV()->clear();
-      nucone40_trk500MeV()->clear();
       MET_Egamma10NoTau_wpx()->clear();
       MET_Egamma10NoTau_wpy()->clear();
       MET_Egamma10NoTau_wet()->clear();
@@ -1927,26 +1927,6 @@ if (!is_data) {
       } else {
          nucone40_zpv05()->push_back( std::numeric_limits< float >::min() );
       }
-      if( el.etas0.IsAvailable() ) {
-         etas0()->push_back( el.etas0() );
-      } else {
-         etas0()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.etas1.IsAvailable() ) {
-         etas1()->push_back( el.etas1() );
-      } else {
-         etas1()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.etas2.IsAvailable() ) {
-         etas2()->push_back( el.etas2() );
-      } else {
-         etas2()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.etas3.IsAvailable() ) {
-         etas3()->push_back( el.etas3() );
-      } else {
-         etas3()->push_back( std::numeric_limits< float >::min() );
-      }
       if( el.cl_E.IsAvailable() ) {
          cl_E()->push_back( el.cl_E() );
       } else {
@@ -1966,6 +1946,26 @@ if (!is_data) {
          cl_phi()->push_back( el.cl_phi() );
       } else {
          cl_phi()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.etas0.IsAvailable() ) {
+         etas0()->push_back( el.etas0() );
+      } else {
+         etas0()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.etas1.IsAvailable() ) {
+         etas1()->push_back( el.etas1() );
+      } else {
+         etas1()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.etas2.IsAvailable() ) {
+         etas2()->push_back( el.etas2() );
+      } else {
+         etas2()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.etas3.IsAvailable() ) {
+         etas3()->push_back( el.etas3() );
+      } else {
+         etas3()->push_back( std::numeric_limits< float >::min() );
       }
       if( el.trackd0.IsAvailable() ) {
          trackd0()->push_back( el.trackd0() );
@@ -2137,6 +2137,21 @@ if (!is_data) {
       } else {
          trackIPEstimate_sigz0_unbiasedpvunbiased()->push_back( std::numeric_limits< float >::min() );
       }
+      if( el.nucone20_trk500MeV.IsAvailable() ) {
+         nucone20_trk500MeV()->push_back( el.nucone20_trk500MeV() );
+      } else {
+         nucone20_trk500MeV()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nucone30_trk500MeV.IsAvailable() ) {
+         nucone30_trk500MeV()->push_back( el.nucone30_trk500MeV() );
+      } else {
+         nucone30_trk500MeV()->push_back( std::numeric_limits< int >::min() );
+      }
+      if( el.nucone40_trk500MeV.IsAvailable() ) {
+         nucone40_trk500MeV()->push_back( el.nucone40_trk500MeV() );
+      } else {
+         nucone40_trk500MeV()->push_back( std::numeric_limits< int >::min() );
+      }
       if( el.Etcone40_ED_corrected.IsAvailable() ) {
          Etcone40_ED_corrected()->push_back( el.Etcone40_ED_corrected() );
       } else {
@@ -2161,21 +2176,6 @@ if (!is_data) {
          topoEtcone40_corrected()->push_back( el.topoEtcone40_corrected() );
       } else {
          topoEtcone40_corrected()->push_back( std::numeric_limits< float >::min() );
-      }
-      if( el.nucone20_trk500MeV.IsAvailable() ) {
-         nucone20_trk500MeV()->push_back( el.nucone20_trk500MeV() );
-      } else {
-         nucone20_trk500MeV()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nucone30_trk500MeV.IsAvailable() ) {
-         nucone30_trk500MeV()->push_back( el.nucone30_trk500MeV() );
-      } else {
-         nucone30_trk500MeV()->push_back( std::numeric_limits< int >::min() );
-      }
-      if( el.nucone40_trk500MeV.IsAvailable() ) {
-         nucone40_trk500MeV()->push_back( el.nucone40_trk500MeV() );
-      } else {
-         nucone40_trk500MeV()->push_back( std::numeric_limits< int >::min() );
       }
       if( el.MET_Egamma10NoTau_wpx.IsAvailable() ) {
          MET_Egamma10NoTau_wpx()->push_back( el.MET_Egamma10NoTau_wpx() );

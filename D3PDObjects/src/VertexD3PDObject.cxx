@@ -31,7 +31,7 @@ namespace D3PDReader {
         E( parent.E, index, this ),
         m( parent.m, index, this ),
         nTracks( parent.nTracks, index, this ),
-        sumPt( parent.sumPt, index, this ) , 
+        sumPt( parent.sumPt, index, this ), 
 is_data(is_data) {
 
    }
@@ -55,7 +55,7 @@ is_data(is_data) {
         E( parent.E ),
         m( parent.m ),
         nTracks( parent.nTracks ),
-        sumPt( parent.sumPt ) , 
+        sumPt( parent.sumPt ), 
 is_data(is_data) {
 
    }
@@ -83,7 +83,7 @@ is_data(is_data) {
         sumPt( this, ::TString( prefix ) + "sumPt", &master ),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "n" ] = &n;
@@ -121,7 +121,7 @@ is_data(is_data) {
         sumPt( this, ::TString( prefix ) + "sumPt", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "n" ] = &n;

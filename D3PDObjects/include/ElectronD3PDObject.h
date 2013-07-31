@@ -150,14 +150,14 @@ namespace D3PDReader {
       VarProxy< float > nucone30_zpv05;
       /// [detail 333]
       VarProxy< float > nucone40_zpv05;
-      VarProxy< float > etas0;
-      VarProxy< float > etas1;
-      VarProxy< float > etas2;
-      VarProxy< float > etas3;
       VarProxy< float > cl_E;
       VarProxy< float > cl_pt;
       VarProxy< float > cl_eta;
       VarProxy< float > cl_phi;
+      VarProxy< float > etas0;
+      VarProxy< float > etas1;
+      VarProxy< float > etas2;
+      VarProxy< float > etas3;
       VarProxy< float > trackd0;
       VarProxy< float > trackz0;
       VarProxy< float > trackphi;
@@ -194,19 +194,22 @@ namespace D3PDReader {
       VarProxy< float > trackIPEstimate_z0_unbiasedpvunbiased;
       VarProxy< float > trackIPEstimate_sigd0_unbiasedpvunbiased;
       VarProxy< float > trackIPEstimate_sigz0_unbiasedpvunbiased;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_Etcone40_ED_corrected] 
-      VarProxy< float > Etcone40_ED_corrected;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_Etcone40_corrected] 
-      VarProxy< float > Etcone40_corrected;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone20_corrected] 
-      VarProxy< float > topoEtcone20_corrected;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone30_corrected] 
-      VarProxy< float > topoEtcone30_corrected;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone40_corrected] 
-      VarProxy< float > topoEtcone40_corrected;
+      /// Number of tracks in isolation cone for cone size 0.2
       VarProxy< int > nucone20_trk500MeV;
+      /// Number of tracks in isolation cone for cone size 0.3
       VarProxy< int > nucone30_trk500MeV;
+      /// Number of tracks in isolation cone for cone size 0.4
       VarProxy< int > nucone40_trk500MeV;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_Etcone40_ED_corrected]
+      VarProxy< float > Etcone40_ED_corrected;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_Etcone40_corrected]
+      VarProxy< float > Etcone40_corrected;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone20_corrected]
+      VarProxy< float > topoEtcone20_corrected;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone30_corrected]
+      VarProxy< float > topoEtcone30_corrected;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone40_corrected]
+      VarProxy< float > topoEtcone40_corrected;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpx;
       VarProxy< vector<float> > MET_Egamma10NoTau_wpy;
       VarProxy< vector<float> > MET_Egamma10NoTau_wet;
@@ -371,14 +374,14 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > nucone30_zpv05;
       /// [detail 333]
       VarHandle< vector<float>* > nucone40_zpv05;
-      VarHandle< vector<float>* > etas0;
-      VarHandle< vector<float>* > etas1;
-      VarHandle< vector<float>* > etas2;
-      VarHandle< vector<float>* > etas3;
       VarHandle< vector<float>* > cl_E;
       VarHandle< vector<float>* > cl_pt;
       VarHandle< vector<float>* > cl_eta;
       VarHandle< vector<float>* > cl_phi;
+      VarHandle< vector<float>* > etas0;
+      VarHandle< vector<float>* > etas1;
+      VarHandle< vector<float>* > etas2;
+      VarHandle< vector<float>* > etas3;
       VarHandle< vector<float>* > trackd0;
       VarHandle< vector<float>* > trackz0;
       VarHandle< vector<float>* > trackphi;
@@ -415,19 +418,22 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > trackIPEstimate_z0_unbiasedpvunbiased;
       VarHandle< vector<float>* > trackIPEstimate_sigd0_unbiasedpvunbiased;
       VarHandle< vector<float>* > trackIPEstimate_sigz0_unbiasedpvunbiased;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_Etcone40_ED_corrected] 
-      VarHandle< vector<float>* > Etcone40_ED_corrected;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_Etcone40_corrected] 
-      VarHandle< vector<float>* > Etcone40_corrected;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone20_corrected] 
-      VarHandle< vector<float>* > topoEtcone20_corrected;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone30_corrected] 
-      VarHandle< vector<float>* > topoEtcone30_corrected;
-      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone40_corrected] 
-      VarHandle< vector<float>* > topoEtcone40_corrected;
+      /// Number of tracks in isolation cone for cone size 0.2
       VarHandle< vector<int>* > nucone20_trk500MeV;
+      /// Number of tracks in isolation cone for cone size 0.3
       VarHandle< vector<int>* > nucone30_trk500MeV;
+      /// Number of tracks in isolation cone for cone size 0.4
       VarHandle< vector<int>* > nucone40_trk500MeV;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_Etcone40_ED_corrected]
+      VarHandle< vector<float>* > Etcone40_ED_corrected;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_Etcone40_corrected]
+      VarHandle< vector<float>* > Etcone40_corrected;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone20_corrected]
+      VarHandle< vector<float>* > topoEtcone20_corrected;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone30_corrected]
+      VarHandle< vector<float>* > topoEtcone30_corrected;
+      /// [UserData: egammaD3PDAnalysis::_ElectronAODCollection_topoEtcone40_corrected]
+      VarHandle< vector<float>* > topoEtcone40_corrected;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpx;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wpy;
       VarHandle< vector<vector<float> >* > MET_Egamma10NoTau_wet;

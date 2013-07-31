@@ -98,7 +98,7 @@ namespace D3PDReader {
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx, index, this ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy, index, this ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet, index, this ),
-        MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord, index, this ) , 
+        MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord, index, this ), 
 is_data(is_data) {
 
    }
@@ -189,7 +189,7 @@ is_data(is_data) {
         MET_Egamma10NoTau_wpx( parent.MET_Egamma10NoTau_wpx ),
         MET_Egamma10NoTau_wpy( parent.MET_Egamma10NoTau_wpy ),
         MET_Egamma10NoTau_wet( parent.MET_Egamma10NoTau_wet ),
-        MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord ) , 
+        MET_Egamma10NoTau_statusWord( parent.MET_Egamma10NoTau_statusWord ), 
 is_data(is_data) {
 
    }
@@ -284,7 +284,7 @@ is_data(is_data) {
         MET_Egamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_statusWord", &master ),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "n" ] = &n;
@@ -456,7 +456,7 @@ if (!is_data) {
         MET_Egamma10NoTau_statusWord( this, ::TString( prefix ) + "MET_Egamma10NoTau_statusWord", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "n" ] = &n;

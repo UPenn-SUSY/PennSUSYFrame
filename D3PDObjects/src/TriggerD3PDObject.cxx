@@ -31,7 +31,7 @@ namespace D3PDReader {
         EF_mu18_tight_mu8_EFFS( this, ::TString( prefix ) + "EF_mu18_tight_mu8_EFFS", &master ),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "EF_2e12Tvh_loose1" ] = &EF_2e12Tvh_loose1;
@@ -59,7 +59,7 @@ is_data(is_data) {
         EF_mu18_tight_mu8_EFFS( this, ::TString( prefix ) + "EF_mu18_tight_mu8_EFFS", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "EF_2e12Tvh_loose1" ] = &EF_2e12Tvh_loose1;

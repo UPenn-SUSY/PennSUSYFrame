@@ -52,15 +52,15 @@ namespace D3PDReader {
       VarProxy< float > eta;
       VarProxy< float > phi;
       VarProxy< float > LArQuality;
-      VarProxy< float > sumPtTrk;
       VarProxy< float > HECQuality;
       VarProxy< float > NegativeE;
       VarProxy< float > AverageLArQF;
-      VarProxy< float > BCH_CORR_JET;
       VarProxy< float > BCH_CORR_CELL;
+      VarProxy< float > BCH_CORR_JET;
       VarProxy< int > SamplingMax;
       VarProxy< float > fracSamplingMax;
       VarProxy< float > hecf;
+      VarProxy< int > isBadLooseMinus;
       VarProxy< float > emfrac;
       VarProxy< float > emscale_eta;
       VarProxy< float > ActiveArea;
@@ -75,10 +75,12 @@ namespace D3PDReader {
       VarProxy< float > constscale_eta;
       VarProxy< float > constscale_phi;
       VarProxy< float > flavor_weight_MV1;
-      VarProxy< int > isBadLooseMinus;
 // MC only
       VarProxy< int > flavor_truth_label;
 // end MC only
+      VarProxy< float > sumPtTrk_pv0_1GeV;
+      VarProxy< float > sumPtTrk_allpv_1GeV;
+      VarProxy< float > sumPtTrk_pv0_500MeV;
 
 
 bool is_data; // ~bj 
@@ -141,15 +143,15 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > eta;
       VarHandle< vector<float>* > phi;
       VarHandle< vector<float>* > LArQuality;
-      VarHandle< vector<float>* > sumPtTrk;
       VarHandle< vector<float>* > HECQuality;
       VarHandle< vector<float>* > NegativeE;
       VarHandle< vector<float>* > AverageLArQF;
+      VarHandle< vector<float>* > BCH_CORR_CELL;
       VarHandle< vector<float>* > BCH_CORR_JET;
-      VarHandle< vector<float>* > BCH_CORR_CELL;     
       VarHandle< vector<int>* > SamplingMax;
       VarHandle< vector<float>* > fracSamplingMax;
       VarHandle< vector<float>* > hecf;
+      VarHandle< vector<int>* > isBadLooseMinus;
       VarHandle< vector<float>* > emfrac;
       VarHandle< vector<float>* > emscale_eta;
       VarHandle< vector<float>* > ActiveArea;
@@ -164,10 +166,12 @@ bool is_data; // ~bj
       VarHandle< vector<float>* > constscale_eta;
       VarHandle< vector<float>* > constscale_phi;
       VarHandle< vector<float>* > flavor_weight_MV1;
-      VarHandle< vector<int>* > isBadLooseMinus;
 // MC only
       VarHandle< vector<int>* > flavor_truth_label;
 // end MC only
+      VarHandle< vector<float>* > sumPtTrk_pv0_1GeV;
+      VarHandle< vector<float>* > sumPtTrk_allpv_1GeV;
+      VarHandle< vector<float>* > sumPtTrk_pv0_500MeV;
 
    private:
       mutable std::vector< JetD3PDObjectElement > fProxies; ///< Internal list of proxy objects

@@ -55,7 +55,7 @@ namespace D3PDReader {
         Eventshape_rhoKt4LC( this, ::TString( prefix ) + "Eventshape_rhoKt4LC", &master ),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "RunNumber" ] = &RunNumber;
@@ -131,7 +131,7 @@ is_data(is_data) {
         Eventshape_rhoKt4LC( this, ::TString( prefix ) + "Eventshape_rhoKt4LC", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "RunNumber" ] = &RunNumber;

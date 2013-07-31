@@ -32,15 +32,15 @@ namespace D3PDReader {
         eta( parent.eta, index, this ),
         phi( parent.phi, index, this ),
         LArQuality( parent.LArQuality, index, this ),
-        sumPtTrk( parent.sumPtTrk, index, this ),
         HECQuality( parent.HECQuality, index, this ),
         NegativeE( parent.NegativeE, index, this ),
         AverageLArQF( parent.AverageLArQF, index, this ),
-        BCH_CORR_JET( parent.BCH_CORR_JET, index, this ),
         BCH_CORR_CELL( parent.BCH_CORR_CELL, index, this ),
+        BCH_CORR_JET( parent.BCH_CORR_JET, index, this ),
         SamplingMax( parent.SamplingMax, index, this ),
         fracSamplingMax( parent.fracSamplingMax, index, this ),
         hecf( parent.hecf, index, this ),
+        isBadLooseMinus( parent.isBadLooseMinus, index, this ),
         emfrac( parent.emfrac, index, this ),
         emscale_eta( parent.emscale_eta, index, this ),
         ActiveArea( parent.ActiveArea, index, this ),
@@ -54,11 +54,13 @@ namespace D3PDReader {
         constscale_m( parent.constscale_m, index, this ),
         constscale_eta( parent.constscale_eta, index, this ),
         constscale_phi( parent.constscale_phi, index, this ),
-        isBadLooseMinus( parent.isBadLooseMinus, index, this ),
+        flavor_weight_MV1( parent.flavor_weight_MV1, index, this ),
 // MC only
         flavor_truth_label( parent.flavor_truth_label, index, this ),
 // end MC only
-        flavor_weight_MV1( parent.flavor_weight_MV1, index, this ) , 
+        sumPtTrk_pv0_1GeV( parent.sumPtTrk_pv0_1GeV, index, this ),
+        sumPtTrk_allpv_1GeV( parent.sumPtTrk_allpv_1GeV, index, this ),
+        sumPtTrk_pv0_500MeV( parent.sumPtTrk_pv0_500MeV, index, this ), 
 is_data(is_data) {
 
    }
@@ -83,15 +85,15 @@ is_data(is_data) {
         eta( parent.eta ),
         phi( parent.phi ),
         LArQuality( parent.LArQuality ),
-        sumPtTrk( parent.sumPtTrk ),
         HECQuality( parent.HECQuality ),
         NegativeE( parent.NegativeE ),
         AverageLArQF( parent.AverageLArQF ),
-        BCH_CORR_JET( parent.BCH_CORR_JET ),
         BCH_CORR_CELL( parent.BCH_CORR_CELL ),
+        BCH_CORR_JET( parent.BCH_CORR_JET ),
         SamplingMax( parent.SamplingMax ),
         fracSamplingMax( parent.fracSamplingMax ),
         hecf( parent.hecf ),
+        isBadLooseMinus( parent.isBadLooseMinus ),
         emfrac( parent.emfrac ),
         emscale_eta( parent.emscale_eta ),
         ActiveArea( parent.ActiveArea ),
@@ -105,11 +107,13 @@ is_data(is_data) {
         constscale_m( parent.constscale_m ),
         constscale_eta( parent.constscale_eta ),
         constscale_phi( parent.constscale_phi ),
-        isBadLooseMinus( parent.isBadLooseMinus ),
+        flavor_weight_MV1( parent.flavor_weight_MV1 ),
 // MC only
         flavor_truth_label( parent.flavor_truth_label ),
 // end MC only
-        flavor_weight_MV1( parent.flavor_weight_MV1 ) , 
+        sumPtTrk_pv0_1GeV( parent.sumPtTrk_pv0_1GeV ),
+        sumPtTrk_allpv_1GeV( parent.sumPtTrk_allpv_1GeV ),
+        sumPtTrk_pv0_500MeV( parent.sumPtTrk_pv0_500MeV ), 
 is_data(is_data) {
 
    }
@@ -135,15 +139,15 @@ is_data(is_data) {
         eta( this, ::TString( prefix ) + "eta", &master ),
         phi( this, ::TString( prefix ) + "phi", &master ),
         LArQuality( this, ::TString( prefix ) + "LArQuality", &master ),
-        sumPtTrk( this, ::TString( prefix ) + "sumPtTrk", &master ),
         HECQuality( this, ::TString( prefix ) + "HECQuality", &master ),
         NegativeE( this, ::TString( prefix ) + "NegativeE", &master ),
         AverageLArQF( this, ::TString( prefix ) + "AverageLArQF", &master ),
+        BCH_CORR_CELL( this, ::TString( prefix ) + "BCH_CORR_CELL", &master ),
         BCH_CORR_JET( this, ::TString( prefix ) + "BCH_CORR_JET", &master ),
-        BCH_CORR_CELL( this, ::TString( prefix ) + "BCH_CORR_CELL", &master ),        
         SamplingMax( this, ::TString( prefix ) + "SamplingMax", &master ),
         fracSamplingMax( this, ::TString( prefix ) + "fracSamplingMax", &master ),
         hecf( this, ::TString( prefix ) + "hecf", &master ),
+        isBadLooseMinus( this, ::TString( prefix ) + "isBadLooseMinus", &master ),
         emfrac( this, ::TString( prefix ) + "emfrac", &master ),
         emscale_eta( this, ::TString( prefix ) + "emscale_eta", &master ),
         ActiveArea( this, ::TString( prefix ) + "ActiveArea", &master ),
@@ -157,14 +161,16 @@ is_data(is_data) {
         constscale_m( this, ::TString( prefix ) + "constscale_m", &master ),
         constscale_eta( this, ::TString( prefix ) + "constscale_eta", &master ),
         constscale_phi( this, ::TString( prefix ) + "constscale_phi", &master ),
-        isBadLooseMinus( this, ::TString( prefix ) + "isBadLooseMinus", &master ),
+        flavor_weight_MV1( this, ::TString( prefix ) + "flavor_weight_MV1", &master ),
 // MC only
         flavor_truth_label( this, ::TString( prefix ) + "flavor_truth_label", &master ),
 // end MC only
-        flavor_weight_MV1( this, ::TString( prefix ) + "flavor_weight_MV1", &master ),
+        sumPtTrk_pv0_1GeV( this, ::TString( prefix ) + "sumPtTrk_pv0_1GeV", &master ),
+        sumPtTrk_allpv_1GeV( this, ::TString( prefix ) + "sumPtTrk_allpv_1GeV", &master ),
+        sumPtTrk_pv0_500MeV( this, ::TString( prefix ) + "sumPtTrk_pv0_500MeV", &master ),
         fHandles(),
         fFromInput( kTRUE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
@@ -178,15 +184,15 @@ is_data(is_data) {
       fHandles[ "eta" ] = &eta;
       fHandles[ "phi" ] = &phi;
       fHandles[ "LArQuality" ] = &LArQuality;
-      fHandles[ "sumPtTrk" ] = &sumPtTrk;
       fHandles[ "HECQuality" ] = &HECQuality;
       fHandles[ "NegativeE" ] = &NegativeE;
       fHandles[ "AverageLArQF" ] = &AverageLArQF;
-      fHandles[ "BCH_CORR_JET" ] = &BCH_CORR_JET;
       fHandles[ "BCH_CORR_CELL" ] = &BCH_CORR_CELL;
+      fHandles[ "BCH_CORR_JET" ] = &BCH_CORR_JET;
       fHandles[ "SamplingMax" ] = &SamplingMax;
       fHandles[ "fracSamplingMax" ] = &fracSamplingMax;
       fHandles[ "hecf" ] = &hecf;
+      fHandles[ "isBadLooseMinus" ] = &isBadLooseMinus;
       fHandles[ "emfrac" ] = &emfrac;
       fHandles[ "emscale_eta" ] = &emscale_eta;
       fHandles[ "ActiveArea" ] = &ActiveArea;
@@ -200,11 +206,13 @@ is_data(is_data) {
       fHandles[ "constscale_m" ] = &constscale_m;
       fHandles[ "constscale_eta" ] = &constscale_eta;
       fHandles[ "constscale_phi" ] = &constscale_phi;
-      fHandles[ "isBadLooseMinus" ] = &isBadLooseMinus;
+      fHandles[ "flavor_weight_MV1" ] = &flavor_weight_MV1;
 if (!is_data) {
       fHandles[ "flavor_truth_label" ] = &flavor_truth_label;
 } // end !is_data
-      fHandles[ "flavor_weight_MV1" ] = &flavor_weight_MV1;
+      fHandles[ "sumPtTrk_pv0_1GeV" ] = &sumPtTrk_pv0_1GeV;
+      fHandles[ "sumPtTrk_allpv_1GeV" ] = &sumPtTrk_allpv_1GeV;
+      fHandles[ "sumPtTrk_pv0_500MeV" ] = &sumPtTrk_pv0_500MeV;
    }
 
    /**
@@ -227,15 +235,15 @@ if (!is_data) {
         eta( this, ::TString( prefix ) + "eta", 0 ),
         phi( this, ::TString( prefix ) + "phi", 0 ),
         LArQuality( this, ::TString( prefix ) + "LArQuality", 0 ),
-        sumPtTrk( this, ::TString( prefix ) + "sumPtTrk", 0 ),
         HECQuality( this, ::TString( prefix ) + "HECQuality", 0 ),
         NegativeE( this, ::TString( prefix ) + "NegativeE", 0 ),
         AverageLArQF( this, ::TString( prefix ) + "AverageLArQF", 0 ),
-        BCH_CORR_JET( this, ::TString( prefix ) + "BCH_CORR_JET", 0 ),
         BCH_CORR_CELL( this, ::TString( prefix ) + "BCH_CORR_CELL", 0 ),
+        BCH_CORR_JET( this, ::TString( prefix ) + "BCH_CORR_JET", 0 ),
         SamplingMax( this, ::TString( prefix ) + "SamplingMax", 0 ),
         fracSamplingMax( this, ::TString( prefix ) + "fracSamplingMax", 0 ),
         hecf( this, ::TString( prefix ) + "hecf", 0 ),
+        isBadLooseMinus( this, ::TString( prefix ) + "isBadLooseMinus", 0 ),
         emfrac( this, ::TString( prefix ) + "emfrac", 0 ),
         emscale_eta( this, ::TString( prefix ) + "emscale_eta", 0 ),
         ActiveArea( this, ::TString( prefix ) + "ActiveArea", 0 ),
@@ -249,14 +257,16 @@ if (!is_data) {
         constscale_m( this, ::TString( prefix ) + "constscale_m", 0 ),
         constscale_eta( this, ::TString( prefix ) + "constscale_eta", 0 ),
         constscale_phi( this, ::TString( prefix ) + "constscale_phi", 0 ),
-        isBadLooseMinus( this, ::TString( prefix ) + "isBadLooseMinus", 0),
+        flavor_weight_MV1( this, ::TString( prefix ) + "flavor_weight_MV1", 0 ),
 // MC only
         flavor_truth_label( this, ::TString( prefix ) + "flavor_truth_label", 0 ),
 // end MC only
-        flavor_weight_MV1( this, ::TString( prefix ) + "flavor_weight_MV1", 0 ),
+        sumPtTrk_pv0_1GeV( this, ::TString( prefix ) + "sumPtTrk_pv0_1GeV", 0 ),
+        sumPtTrk_allpv_1GeV( this, ::TString( prefix ) + "sumPtTrk_allpv_1GeV", 0 ),
+        sumPtTrk_pv0_500MeV( this, ::TString( prefix ) + "sumPtTrk_pv0_500MeV", 0 ),
         fHandles(),
         fFromInput( kFALSE ),
-        fPrefix( prefix ) , 
+        fPrefix( prefix ), 
 is_data(is_data) {
 
       fHandles[ "MET_Egamma10NoTau_wpx" ] = &MET_Egamma10NoTau_wpx;
@@ -270,15 +280,15 @@ is_data(is_data) {
       fHandles[ "eta" ] = &eta;
       fHandles[ "phi" ] = &phi;
       fHandles[ "LArQuality" ] = &LArQuality;
-      fHandles[ "sumPtTrk" ] = &sumPtTrk;
       fHandles[ "HECQuality" ] = &HECQuality;
       fHandles[ "NegativeE" ] = &NegativeE;
       fHandles[ "AverageLArQF" ] = &AverageLArQF;
-      fHandles[ "BCH_CORR_JET" ] = &BCH_CORR_JET;
       fHandles[ "BCH_CORR_CELL" ] = &BCH_CORR_CELL;
+      fHandles[ "BCH_CORR_JET" ] = &BCH_CORR_JET;
       fHandles[ "SamplingMax" ] = &SamplingMax;
       fHandles[ "fracSamplingMax" ] = &fracSamplingMax;
       fHandles[ "hecf" ] = &hecf;
+      fHandles[ "isBadLooseMinus" ] = &isBadLooseMinus;
       fHandles[ "emfrac" ] = &emfrac;
       fHandles[ "emscale_eta" ] = &emscale_eta;
       fHandles[ "ActiveArea" ] = &ActiveArea;
@@ -292,11 +302,13 @@ is_data(is_data) {
       fHandles[ "constscale_m" ] = &constscale_m;
       fHandles[ "constscale_eta" ] = &constscale_eta;
       fHandles[ "constscale_phi" ] = &constscale_phi;
-      fHandles[ "isBadLooseMinus" ] = &isBadLooseMinus;
+      fHandles[ "flavor_weight_MV1" ] = &flavor_weight_MV1;
 if (!is_data) {
       fHandles[ "flavor_truth_label" ] = &flavor_truth_label;
 } // end !is_data
-      fHandles[ "flavor_weight_MV1" ] = &flavor_weight_MV1;
+      fHandles[ "sumPtTrk_pv0_1GeV" ] = &sumPtTrk_pv0_1GeV;
+      fHandles[ "sumPtTrk_allpv_1GeV" ] = &sumPtTrk_allpv_1GeV;
+      fHandles[ "sumPtTrk_pv0_500MeV" ] = &sumPtTrk_pv0_500MeV;
    }
 
    /**
@@ -323,15 +335,15 @@ if (!is_data) {
       eta.SetName( ::TString( prefix ) + "eta" );
       phi.SetName( ::TString( prefix ) + "phi" );
       LArQuality.SetName( ::TString( prefix ) + "LArQuality" );
-      sumPtTrk.SetName( ::TString( prefix ) + "sumPtTrk" );
       HECQuality.SetName( ::TString( prefix ) + "HECQuality" );
       NegativeE.SetName( ::TString( prefix ) + "NegativeE" );
       AverageLArQF.SetName( ::TString( prefix ) + "AverageLArQF" );
-      BCH_CORR_JET.SetName( ::TString( prefix ) + "BCH_CORR_JET" );
       BCH_CORR_CELL.SetName( ::TString( prefix ) + "BCH_CORR_CELL" );
+      BCH_CORR_JET.SetName( ::TString( prefix ) + "BCH_CORR_JET" );
       SamplingMax.SetName( ::TString( prefix ) + "SamplingMax" );
       fracSamplingMax.SetName( ::TString( prefix ) + "fracSamplingMax" );
       hecf.SetName( ::TString( prefix ) + "hecf" );
+      isBadLooseMinus.SetName( ::TString( prefix ) + "isBadLooseMinus" );
       emfrac.SetName( ::TString( prefix ) + "emfrac" );
       emscale_eta.SetName( ::TString( prefix ) + "emscale_eta" );
       ActiveArea.SetName( ::TString( prefix ) + "ActiveArea" );
@@ -345,11 +357,13 @@ if (!is_data) {
       constscale_m.SetName( ::TString( prefix ) + "constscale_m" );
       constscale_eta.SetName( ::TString( prefix ) + "constscale_eta" );
       constscale_phi.SetName( ::TString( prefix ) + "constscale_phi" );
-      isBadLooseMinus.SetName( ::TString( prefix ) + "isBadLooseMinus" );
+      flavor_weight_MV1.SetName( ::TString( prefix ) + "flavor_weight_MV1" );
 if (!is_data) {
       flavor_truth_label.SetName( ::TString( prefix ) + "flavor_truth_label" );
 } // end !is_data
-      flavor_weight_MV1.SetName( ::TString( prefix ) + "flavor_weight_MV1" );
+      sumPtTrk_pv0_1GeV.SetName( ::TString( prefix ) + "sumPtTrk_pv0_1GeV" );
+      sumPtTrk_allpv_1GeV.SetName( ::TString( prefix ) + "sumPtTrk_allpv_1GeV" );
+      sumPtTrk_pv0_500MeV.SetName( ::TString( prefix ) + "sumPtTrk_pv0_500MeV" );
       return;
    }
 
@@ -379,15 +393,15 @@ if (!is_data) {
       eta.ReadFrom( tree );
       phi.ReadFrom( tree );
       LArQuality.ReadFrom( tree );
-      sumPtTrk.ReadFrom( tree );
       HECQuality.ReadFrom( tree );
       NegativeE.ReadFrom( tree );
       AverageLArQF.ReadFrom( tree );
+      BCH_CORR_CELL.ReadFrom( tree );
       BCH_CORR_JET.ReadFrom( tree );
-      BCH_CORR_CELL.ReadFrom( tree );      
       SamplingMax.ReadFrom( tree );
       fracSamplingMax.ReadFrom( tree );
       hecf.ReadFrom( tree );
+      isBadLooseMinus.ReadFrom( tree );
       emfrac.ReadFrom( tree );
       emscale_eta.ReadFrom( tree );
       ActiveArea.ReadFrom( tree );
@@ -401,11 +415,13 @@ if (!is_data) {
       constscale_m.ReadFrom( tree );
       constscale_eta.ReadFrom( tree );
       constscale_phi.ReadFrom( tree );
-      isBadLooseMinus.ReadFrom( tree );
+      flavor_weight_MV1.ReadFrom( tree );
 if (!is_data) {
       flavor_truth_label.ReadFrom( tree );
 } // end !is_data
-      flavor_weight_MV1.ReadFrom( tree );
+      sumPtTrk_pv0_1GeV.ReadFrom( tree );
+      sumPtTrk_allpv_1GeV.ReadFrom( tree );
+      sumPtTrk_pv0_500MeV.ReadFrom( tree );
 
       return;
    }
@@ -430,15 +446,15 @@ if (!is_data) {
       eta.WriteTo( tree );
       phi.WriteTo( tree );
       LArQuality.WriteTo( tree );
-      sumPtTrk.WriteTo( tree );
       HECQuality.WriteTo( tree );
       NegativeE.WriteTo( tree );
       AverageLArQF.WriteTo( tree );
-      BCH_CORR_JET.WriteTo( tree );
       BCH_CORR_CELL.WriteTo( tree );
+      BCH_CORR_JET.WriteTo( tree );
       SamplingMax.WriteTo( tree );
       fracSamplingMax.WriteTo( tree );
       hecf.WriteTo( tree );
+      isBadLooseMinus.WriteTo( tree );
       emfrac.WriteTo( tree );
       emscale_eta.WriteTo( tree );
       ActiveArea.WriteTo( tree );
@@ -452,11 +468,13 @@ if (!is_data) {
       constscale_m.WriteTo( tree );
       constscale_eta.WriteTo( tree );
       constscale_phi.WriteTo( tree );
-      isBadLooseMinus.WriteTo( tree );
+      flavor_weight_MV1.WriteTo( tree );
 if (!is_data) {
       flavor_truth_label.WriteTo( tree );
 } // end !is_data
-      flavor_weight_MV1.WriteTo( tree );
+      sumPtTrk_pv0_1GeV.WriteTo( tree );
+      sumPtTrk_allpv_1GeV.WriteTo( tree );
+      sumPtTrk_pv0_500MeV.WriteTo( tree );
 
       return;
    }
@@ -518,15 +536,15 @@ if (!is_data) {
       if( eta.IsActive() ) eta();
       if( phi.IsActive() ) phi();
       if( LArQuality.IsActive() ) LArQuality();
-      if( sumPtTrk.IsActive() ) sumPtTrk();
       if( HECQuality.IsActive() ) HECQuality();
       if( NegativeE.IsActive() ) NegativeE();
       if( AverageLArQF.IsActive() ) AverageLArQF();
-      if( BCH_CORR_JET.IsActive() ) BCH_CORR_JET();
       if( BCH_CORR_CELL.IsActive() ) BCH_CORR_CELL();
+      if( BCH_CORR_JET.IsActive() ) BCH_CORR_JET();
       if( SamplingMax.IsActive() ) SamplingMax();
       if( fracSamplingMax.IsActive() ) fracSamplingMax();
       if( hecf.IsActive() ) hecf();
+      if( isBadLooseMinus.IsActive() ) isBadLooseMinus();
       if( emfrac.IsActive() ) emfrac();
       if( emscale_eta.IsActive() ) emscale_eta();
       if( ActiveArea.IsActive() ) ActiveArea();
@@ -540,11 +558,13 @@ if (!is_data) {
       if( constscale_m.IsActive() ) constscale_m();
       if( constscale_eta.IsActive() ) constscale_eta();
       if( constscale_phi.IsActive() ) constscale_phi();
-      if( isBadLooseMinus.IsActive() ) isBadLooseMinus();
+      if( flavor_weight_MV1.IsActive() ) flavor_weight_MV1();
 if (!is_data) {
       if( flavor_truth_label.IsActive() ) flavor_truth_label();
 } // end !is_data
-      if( flavor_weight_MV1.IsActive() ) flavor_weight_MV1();
+      if( sumPtTrk_pv0_1GeV.IsActive() ) sumPtTrk_pv0_1GeV();
+      if( sumPtTrk_allpv_1GeV.IsActive() ) sumPtTrk_allpv_1GeV();
+      if( sumPtTrk_pv0_500MeV.IsActive() ) sumPtTrk_pv0_500MeV();
 
       return;
    }
@@ -578,15 +598,15 @@ if (!is_data) {
       eta()->clear();
       phi()->clear();
       LArQuality()->clear();
-      sumPtTrk()->clear();
       HECQuality()->clear();
       NegativeE()->clear();
       AverageLArQF()->clear();
-      BCH_CORR_JET()->clear();
       BCH_CORR_CELL()->clear();
+      BCH_CORR_JET()->clear();
       SamplingMax()->clear();
       fracSamplingMax()->clear();
       hecf()->clear();
+      isBadLooseMinus()->clear();
       emfrac()->clear();
       emscale_eta()->clear();
       ActiveArea()->clear();
@@ -600,11 +620,13 @@ if (!is_data) {
       constscale_m()->clear();
       constscale_eta()->clear();
       constscale_phi()->clear();
-      isBadLooseMinus()->clear();
+      flavor_weight_MV1()->clear();
 if (!is_data) {
       flavor_truth_label()->clear();
 } // end !is_data
-      flavor_weight_MV1()->clear();
+      sumPtTrk_pv0_1GeV()->clear();
+      sumPtTrk_allpv_1GeV()->clear();
+      sumPtTrk_pv0_500MeV()->clear();
 
       return;
    }
@@ -678,11 +700,6 @@ if (!is_data) {
       } else {
          LArQuality()->push_back( std::numeric_limits< float >::min() );
       }
-      if( el.sumPtTrk.IsAvailable() ) {
-         sumPtTrk()->push_back( el.sumPtTrk() );
-      } else {
-         sumPtTrk()->push_back( std::numeric_limits< float >::min() );
-      }
       if( el.HECQuality.IsAvailable() ) {
          HECQuality()->push_back( el.HECQuality() );
       } else {
@@ -698,17 +715,16 @@ if (!is_data) {
       } else {
          AverageLArQF()->push_back( std::numeric_limits< float >::min() );
       }
-      if( el.BCH_CORR_JET.IsAvailable() ) {
-         BCH_CORR_JET()->push_back( el.BCH_CORR_JET() );
-      } else {
-         BCH_CORR_JET()->push_back( std::numeric_limits< float >::min() );
-      }
       if( el.BCH_CORR_CELL.IsAvailable() ) {
          BCH_CORR_CELL()->push_back( el.BCH_CORR_CELL() );
       } else {
          BCH_CORR_CELL()->push_back( std::numeric_limits< float >::min() );
       }
-
+      if( el.BCH_CORR_JET.IsAvailable() ) {
+         BCH_CORR_JET()->push_back( el.BCH_CORR_JET() );
+      } else {
+         BCH_CORR_JET()->push_back( std::numeric_limits< float >::min() );
+      }
       if( el.SamplingMax.IsAvailable() ) {
          SamplingMax()->push_back( el.SamplingMax() );
       } else {
@@ -723,6 +739,11 @@ if (!is_data) {
          hecf()->push_back( el.hecf() );
       } else {
          hecf()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.isBadLooseMinus.IsAvailable() ) {
+         isBadLooseMinus()->push_back( el.isBadLooseMinus() );
+      } else {
+         isBadLooseMinus()->push_back( std::numeric_limits< int >::min() );
       }
       if( el.emfrac.IsAvailable() ) {
          emfrac()->push_back( el.emfrac() );
@@ -789,10 +810,10 @@ if (!is_data) {
       } else {
          constscale_phi()->push_back( std::numeric_limits< float >::min() );
       }
-      if( el.isBadLooseMinus.IsAvailable() ) {
-         isBadLooseMinus()->push_back( el.isBadLooseMinus() );
+      if( el.flavor_weight_MV1.IsAvailable() ) {
+         flavor_weight_MV1()->push_back( el.flavor_weight_MV1() );
       } else {
-         isBadLooseMinus()->push_back( std::numeric_limits< int >::min() );
+         flavor_weight_MV1()->push_back( std::numeric_limits< float >::min() );
       }
 if (!is_data) {
       if( el.flavor_truth_label.IsAvailable() ) {
@@ -801,10 +822,20 @@ if (!is_data) {
          flavor_truth_label()->push_back( std::numeric_limits< int >::min() );
       }
 } // end !is_data
-      if( el.flavor_weight_MV1.IsAvailable() ) {
-         flavor_weight_MV1()->push_back( el.flavor_weight_MV1() );
+      if( el.sumPtTrk_pv0_1GeV.IsAvailable() ) {
+         sumPtTrk_pv0_1GeV()->push_back( el.sumPtTrk_pv0_1GeV() );
       } else {
-         flavor_weight_MV1()->push_back( std::numeric_limits< float >::min() );
+         sumPtTrk_pv0_1GeV()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.sumPtTrk_allpv_1GeV.IsAvailable() ) {
+         sumPtTrk_allpv_1GeV()->push_back( el.sumPtTrk_allpv_1GeV() );
+      } else {
+         sumPtTrk_allpv_1GeV()->push_back( std::numeric_limits< float >::min() );
+      }
+      if( el.sumPtTrk_pv0_500MeV.IsAvailable() ) {
+         sumPtTrk_pv0_500MeV()->push_back( el.sumPtTrk_pv0_500MeV() );
+      } else {
+         sumPtTrk_pv0_500MeV()->push_back( std::numeric_limits< float >::min() );
       }
       return *this;
    }

@@ -176,10 +176,10 @@ bool SelectionTools::JetSelectionTool::isFJet(Jet* jet)
 // -----------------------------------------------------------------------------
 bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
 {
-  /*
   double emf  = jet->emfrac();
-  double eta  = jet->emscale_eta();
-  double chf  = jet->sumPtTrk()/jet->getTlv().Pt();
+  // double eta  = jet->emscale_eta();
+  double eta  = jet->constscale_eta();
+  double chf  = jet->sumPtTrk_pv0_500MeV()/jet->getTlv().Pt();
   double fmax = jet->fracSamplingMax();
 
   // non-collision background & cosmics
@@ -203,14 +203,11 @@ bool SelectionTools::JetSelectionTool::isBadJet(Jet* jet)
      )
     return true;
 
-
-
   // do not flag this as a bad jet
   return false;
-  */
 
 
-  return jet->isBadLooseMinus();
+  // return jet->isBadLooseMinus();
 }
 
 bool SelectionTools::JetSelectionTool::isInSmartVeto( const Jet* jet
