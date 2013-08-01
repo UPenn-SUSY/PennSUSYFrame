@@ -500,6 +500,19 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
+  // SR MT2 pt_l1
+  pass_sr_mt2 = (pass_sr_mt2 && sr_helper.getPassSRMT2Lep1Pt());
+  if (pass_sr_mt2)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR MT2 pt_l2
+  pass_sr_mt2 = (pass_sr_mt2 && sr_helper.getPassSRMT2Lep2Pt());
+  if (pass_sr_mt2)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+
   // SRMT2 Z veto
   if (phase == PHASE_EE || phase == PHASE_MM)
     pass_sr_mt2 = (pass_sr_mt2 && pass_z_veto);
@@ -610,6 +623,13 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
+  // SRWW apply b-tag weight
+  if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_B_TAG)
+    weight *= m_b_tag_weight;
+  if (pass_sr_ww)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
   // SR WW pt_l1
   pass_sr_ww = (pass_sr_ww && sr_helper.getPassSRWWLep1Pt());
   if (pass_sr_ww)
@@ -618,6 +638,13 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
 
   // SR WW pt_l2
   pass_sr_ww = (pass_sr_ww && sr_helper.getPassSRWWLep2Pt());
+  if (pass_sr_ww)
+    fillHist(phase, weight_type, bin_num, weight);
+  ++bin_num;
+
+  // SR WW Z veto
+  if (phase == PHASE_EE || phase == PHASE_MM)
+    pass_sr_ww = (pass_sr_ww && pass_z_veto);
   if (pass_sr_ww)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
@@ -1030,6 +1057,8 @@ void CutFlowDump::initBinList()
 
   m_bin_list.push_back("SR MT2 jet veto");
   m_bin_list.push_back("SR MT2 b-tag weight");
+  m_bin_list.push_back("SR MT2 pt_l1");
+  m_bin_list.push_back("SR MT2 pt_l2");
   m_bin_list.push_back("SR MT2 Z veto");
   m_bin_list.push_back("SR MT2 met-rel");
   m_bin_list.push_back("SR MT2a mt2");
@@ -1050,8 +1079,10 @@ void CutFlowDump::initBinList()
   m_bin_list.push_back("BREAK");
 
   m_bin_list.push_back("SR WW jet veto");
+  m_bin_list.push_back("SR WW b-tag weight");
   m_bin_list.push_back("SR WW pt_l1");
   m_bin_list.push_back("SR WW pt_l2");
+  m_bin_list.push_back("SR WW Z veto");
   m_bin_list.push_back("SR WWa mll");
   m_bin_list.push_back("SR WWa ptll");
   m_bin_list.push_back("SR WWa met-rel");
