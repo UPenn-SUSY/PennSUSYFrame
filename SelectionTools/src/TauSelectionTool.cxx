@@ -148,7 +148,12 @@ void SelectionTools::TauSelectionTool::process( Tau* tau
   tau_desc->setPassBaselinePt(pass_baseline_pt);
 
   // Check for baseline eta
-  bool pass_baseline_eta = passCut(eta, c_baseline_min_eta, c_baseline_max_eta);
+  bool pass_baseline_eta = (  passCut(eta, c_baseline_min_eta, c_baseline_max_eta)
+                           && passCut( tau->leadTrack_eta()
+                                     , c_baseline_min_eta
+                                     , c_baseline_max_eta
+                                     )
+                           );
   tau_desc->setPassBaselineEta(pass_baseline_eta);
 
   // Check for baseline number of tracks
@@ -287,14 +292,15 @@ bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag(const Tau* tau)
                          && tau->EleBDTTight()
                          )
                       );
+  return old_bdt_flag;
+
+  /*
   if (  m_ele_bdt_level == TAU_ELE_BDT_NONE
      || tau->numTrack() != 1
      || tau->pt() < 80e3
      ) {
     return old_bdt_flag;
   }
-
-  return old_bdt_flag;
 
 
   double pt = tau->pt()/1e3;
@@ -323,6 +329,7 @@ bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag(const Tau* tau)
 
   // return (tau->BDTEleScore() > cut_val);
   return (tau->BDTEleScore() <= cut_val);
+  */
 }
 
 // -----------------------------------------------------------------------------

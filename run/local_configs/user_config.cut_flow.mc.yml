@@ -226,7 +226,12 @@ Signal_Regions:
     sr_2jets_min_met_rel:    50000
     sr_2jets_max_met_rel:    -1
 
-    sr_mt2_min_met_rel:      40000
+    sr_mt2_min_lep1_pt:      35000
+    sr_mt2_max_lep1_pt:      -1
+    sr_mt2_min_lep2_pt:      20000
+    sr_mt2_max_lep2_pt:      -1
+    # sr_mt2_min_met_rel:      40000
+    sr_mt2_min_met_rel:      -1
     sr_mt2_max_met_rel:      -1
     sr_mt2a_min_mt2:         90000
     sr_mt2a_max_mt2:         -1

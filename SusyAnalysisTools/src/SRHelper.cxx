@@ -36,6 +36,8 @@ ull_t SusyAnalysisTools::SRHelper::toInt() const
   event_desc += getIntComp(m_pass_sr_ssjets_mt       , ADD_SR_SSJETS_MT       );
   event_desc += getIntComp(m_pass_sr_2jets_num_l_jet , ADD_SR_2JETS_NUM_L_JET );
   event_desc += getIntComp(m_pass_sr_2jets_met_rel   , ADD_SR_2JETS_MET_REL   );
+  event_desc += getIntComp(m_pass_sr_mt2_lep1_pt     , ADD_SR_MT2_LEP1_PT     );
+  event_desc += getIntComp(m_pass_sr_mt2_lep2_pt     , ADD_SR_MT2_LEP2_PT     );
   event_desc += getIntComp(m_pass_sr_mt2_met_rel     , ADD_SR_MT2_MET_REL     );
   event_desc += getIntComp(m_pass_sr_mt2a_mt2        , ADD_SR_MT2a_MT2        );
   event_desc += getIntComp(m_pass_sr_mt2b_mt2        , ADD_SR_MT2b_MT2        );
@@ -99,16 +101,21 @@ void SusyAnalysisTools::SRHelper::set(const ull_t& rhs)
       rhs, ADD_SR_OSJVETO_MET_REL, SIZE_BOOL);
   m_pass_sr_osjveto_mt2 = getComponent(
       rhs, ADD_SR_OSJVETO_MT2, SIZE_BOOL);
+
   m_pass_sr_ssjets_mll_veto = getComponent(
       rhs, ADD_SR_SSJETS_MLL_VETO, SIZE_BOOL);
   m_pass_sr_ssjets_met_rel = getComponent(
       rhs, ADD_SR_SSJETS_MET_REL, SIZE_BOOL);
   m_pass_sr_ssjets_mt = getComponent(
       rhs, ADD_SR_SSJETS_MT, SIZE_BOOL);
+
   m_pass_sr_2jets_num_l_jet = getComponent(
       rhs, ADD_SR_2JETS_NUM_L_JET, SIZE_BOOL);
   m_pass_sr_2jets_met_rel = getComponent(
       rhs, ADD_SR_2JETS_MET_REL, SIZE_BOOL);
+
+  m_pass_sr_mt2_lep1_pt = getComponent(rhs, ADD_SR_MT2_LEP1_PT, SIZE_BOOL);
+  m_pass_sr_mt2_lep2_pt = getComponent(rhs, ADD_SR_MT2_LEP2_PT, SIZE_BOOL);
   m_pass_sr_mt2_met_rel = getComponent(rhs, ADD_SR_MT2_MET_REL, SIZE_BOOL);
   m_pass_sr_mt2a_mt2    = getComponent(rhs, ADD_SR_MT2a_MT2   , SIZE_BOOL);
   m_pass_sr_mt2b_mt2    = getComponent(rhs, ADD_SR_MT2b_MT2   , SIZE_BOOL);
@@ -239,6 +246,18 @@ void SusyAnalysisTools::SRHelper::setPassSR2JetsNumLJet(bool pass)
 void SusyAnalysisTools::SRHelper::setPassSR2JetsMetRel(bool pass)
 {
   m_pass_sr_2jets_met_rel = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::SRHelper::setPassSRMT2Lep1Pt(bool pass)
+{
+  m_pass_sr_mt2_lep1_pt = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::SRHelper::setPassSRMT2Lep2Pt(bool pass)
+{
+  m_pass_sr_mt2_lep2_pt = pass;
 }
 
 // -----------------------------------------------------------------------------
@@ -498,6 +517,18 @@ bool SusyAnalysisTools::SRHelper::getPassSR2JetsNumLJet()
 bool SusyAnalysisTools::SRHelper::getPassSR2JetsMetRel()
 {
   return m_pass_sr_2jets_met_rel;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::SRHelper::getPassSRMT2Lep1Pt()
+{
+  return m_pass_sr_mt2_lep1_pt;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::SRHelper::getPassSRMT2Lep2Pt()
+{
+  return m_pass_sr_mt2_lep2_pt;
 }
 
 // -----------------------------------------------------------------------------

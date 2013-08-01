@@ -116,6 +116,12 @@ namespace SelectionTools
     double c_sr_2jets_met_rel_max;
 
     // SR mt2 cut values
+    double c_sr_mt2_lep1_pt_min;
+    double c_sr_mt2_lep1_pt_max;
+
+    double c_sr_mt2_lep2_pt_min;
+    double c_sr_mt2_lep2_pt_max;
+
     double c_sr_mt2_met_rel_min;
     double c_sr_mt2_met_rel_max;
 

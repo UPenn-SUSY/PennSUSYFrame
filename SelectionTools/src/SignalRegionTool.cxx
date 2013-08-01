@@ -62,6 +62,12 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
   DeclareProperty("sr_2jets_max_met_rel", c_sr_2jets_met_rel_max = -1);
 
   // SR mt2 cut values
+  DeclareProperty("sr_mt2_min_lep1_pt", c_sr_mt2_lep1_pt_min = 35e3);
+  DeclareProperty("sr_mt2_max_lep1_pt", c_sr_mt2_lep1_pt_max = -1);
+
+  DeclareProperty("sr_mt2_min_lep2_pt", c_sr_mt2_lep2_pt_min = 20e3);
+  DeclareProperty("sr_mt2_max_lep2_pt", c_sr_mt2_lep2_pt_max = -1);
+
   DeclareProperty("sr_mt2_min_met_rel", c_sr_mt2_met_rel_min = 40e3);
   DeclareProperty("sr_mt2_max_met_rel", c_sr_mt2_met_rel_max = -1);
 
@@ -198,6 +204,10 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   SusyAnalysisTools::EventDescription* event_desc = event->getEventDesc();
   SusyAnalysisTools::SRHelper*         sr_helper  = event->getSRHelper();
 
+  std::pair<float, float> lep_pts = getLeadingLeptonPts(event, electrons, muons);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
   // Check light jet veto
   bool pass_l_jet_veto = (jets.num(JET_LIGHT) == 0);
   sr_helper->setPassLJetVeto(pass_l_jet_veto);
@@ -287,6 +297,11 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
       passCut(met_rel, c_sr_2jets_met_rel_min, c_sr_2jets_met_rel_max));
 
   // check SR mt2 cuts
+  sr_helper->setPassSRMT2Lep1Pt(
+      passCut(lep_pts.first, c_sr_mt2_lep1_pt_min, c_sr_mt2_lep1_pt_max));
+  sr_helper->setPassSRMT2Lep2Pt(
+      passCut(lep_pts.second, c_sr_mt2_lep2_pt_min, c_sr_mt2_lep2_pt_max));
+
   sr_helper->setPassSRMT2MetRel(
       passCut(met_rel, c_sr_mt2_met_rel_min, c_sr_mt2_met_rel_max));
 
@@ -297,8 +312,6 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
       passCut(mt2, c_sr_mt2b_mt2_min, c_sr_mt2b_mt2_max));
 
   // check SR ww cuts
-  std::pair<float, float> lep_pts = getLeadingLeptonPts(event, electrons, muons);
-
   sr_helper->setPassSRWWLep1Pt(
       passCut(lep_pts.first, c_sr_ww_lep1_pt_min, c_sr_ww_lep1_pt_max));
 

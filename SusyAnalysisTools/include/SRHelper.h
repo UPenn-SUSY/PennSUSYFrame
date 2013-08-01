@@ -24,21 +24,29 @@ namespace SusyAnalysisTools
       SRHelper& operator=(const SRHelper&);
       SRHelper& operator=(const ull_t&);
 
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       void setPassLJetVeto(bool);
       void setPassBJetVeto(bool);
       void setPassFJetVeto(bool);
       void setPassZVeto(bool);
       void setPassTopVeto(bool);
+
       void setPassSROSJVetoMetRel(bool);
       void setPassSROSJVetoMt2(bool);
+
       void setPassSRSSJetsMllVeto(bool);
       void setPassSRSSJetsMetRel(bool);
       void setPassSRSSJetsMt(bool);
+
       void setPassSR2JetsNumLJet(bool);
       void setPassSR2JetsMetRel(bool);
+
+      void setPassSRMT2Lep1Pt(bool);
+      void setPassSRMT2Lep2Pt(bool);
       void setPassSRMT2MetRel(bool);
       void setPassSRMT2aMt2(bool);
       void setPassSRMT2bMt2(bool);
+
       void setPassSRWWLep1Pt(bool);
       void setPassSRWWLep2Pt(bool);
       void setPassSRWWaMetRel(bool);
@@ -49,12 +57,14 @@ namespace SusyAnalysisTools
       void setPassSRWWbMll(bool);
       void setPassSRWWcPtll(bool);
       void setPassSRWWcMt2(bool);
+
       void setPassSRZJetsNumLJets(bool);
       void setPassSRZJetsMetRel(bool);
       void setPassSRZJetsJet1Pt(bool);
       void setPassSRZJetsJet2Pt(bool);
       void setPassSRZJetsMjj(bool);
       void setPassSRZJetsMt2(bool);
+
       void setPassCRZXJVetoMetRel(bool);
       void setPassCRZXMt2MetRel(bool);
       void setPassCRZX2JetsMetRel(bool);
@@ -68,22 +78,29 @@ namespace SusyAnalysisTools
       void setPassCRWWabcDPhill(bool);
       void setPassCRBtagDRJetTag(bool);
 
-
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       bool getPassLJetVeto();
       bool getPassBJetVeto();
       bool getPassFJetVeto();
       bool getPassZVeto();
       bool getPassTopVeto();
+
       bool getPassSROSJVetoMetRel();
       bool getPassSROSJVetoMt2();
+
       bool getPassSRSSJetsMllVeto();
       bool getPassSRSSJetsMetRel();
       bool getPassSRSSJetsMt();
+
       bool getPassSR2JetsNumLJet();
       bool getPassSR2JetsMetRel();
+
+      bool getPassSRMT2Lep1Pt();
+      bool getPassSRMT2Lep2Pt();
       bool getPassSRMT2MetRel();
       bool getPassSRMT2aMt2();
       bool getPassSRMT2bMt2();
+
       bool getPassSRWWLep1Pt();
       bool getPassSRWWLep2Pt();
       bool getPassSRWWaMetRel();
@@ -94,12 +111,14 @@ namespace SusyAnalysisTools
       bool getPassSRWWbMll();
       bool getPassSRWWcPtll();
       bool getPassSRWWcMt2();
+
       bool getPassSRZJetsNumLJets();
       bool getPassSRZJetsMetRel();
       bool getPassSRZJetsJet1Pt();
       bool getPassSRZJetsJet2Pt();
       bool getPassSRZJetsMjj();
       bool getPassSRZJetsMt2();
+
       bool getPassCRZXJVetoMetRel();
       bool getPassCRZXMt2MetRel();
       bool getPassCRZX2JetsMetRel();
@@ -129,30 +148,37 @@ namespace SusyAnalysisTools
 
       static const unsigned int ADD_SR_OSJVETO_MET_REL  = 10;
       static const unsigned int ADD_SR_OSJVETO_MT2      = 11;
+
       static const unsigned int ADD_SR_SSJETS_MLL_VETO  = 12;
       static const unsigned int ADD_SR_SSJETS_MET_REL   = 13;
       static const unsigned int ADD_SR_SSJETS_MT        = 14;
+
       static const unsigned int ADD_SR_2JETS_NUM_L_JET  = 15;
       static const unsigned int ADD_SR_2JETS_MET_REL    = 16;
-      static const unsigned int ADD_SR_MT2_MET_REL      = 17;
-      static const unsigned int ADD_SR_MT2a_MT2         = 18;
-      static const unsigned int ADD_SR_MT2b_MT2         = 19;
-      static const unsigned int ADD_SR_WW_LEP1_PT       = 20;
-      static const unsigned int ADD_SR_WW_LEP2_PT       = 21;
-      static const unsigned int ADD_SR_WWA_MET_REL      = 22;
-      static const unsigned int ADD_SR_WWA_PTLL         = 23;
-      static const unsigned int ADD_SR_WWA_MLL          = 24;
-      static const unsigned int ADD_SR_WWB_MT2          = 25;
-      static const unsigned int ADD_SR_WWB_PTLL         = 26;
-      static const unsigned int ADD_SR_WWB_MLL          = 27;
-      static const unsigned int ADD_SR_WWC_PTLL         = 28;
-      static const unsigned int ADD_SR_WWC_MT2          = 29;
-      static const unsigned int ADD_SR_ZJETS_NUM_L_JETS = 30;
-      static const unsigned int ADD_SR_ZJETS_MET_REL    = 31;
-      static const unsigned int ADD_SR_ZJETS_LEP1_PT    = 32;
-      static const unsigned int ADD_SR_ZJETS_LEP2_PT    = 33;
-      static const unsigned int ADD_SR_ZJETS_MJJ        = 34;
-      static const unsigned int ADD_SR_ZJETS_MT2        = 35;
+
+      static const unsigned int ADD_SR_MT2_LEP1_PT      = 17;
+      static const unsigned int ADD_SR_MT2_LEP2_PT      = 18;
+      static const unsigned int ADD_SR_MT2_MET_REL      = 19;
+      static const unsigned int ADD_SR_MT2a_MT2         = 20;
+      static const unsigned int ADD_SR_MT2b_MT2         = 21;
+
+      static const unsigned int ADD_SR_WW_LEP1_PT       = 22;
+      static const unsigned int ADD_SR_WW_LEP2_PT       = 23;
+      static const unsigned int ADD_SR_WWA_MET_REL      = 24;
+      static const unsigned int ADD_SR_WWA_PTLL         = 25;
+      static const unsigned int ADD_SR_WWA_MLL          = 26;
+      static const unsigned int ADD_SR_WWB_MT2          = 27;
+      static const unsigned int ADD_SR_WWB_PTLL         = 28;
+      static const unsigned int ADD_SR_WWB_MLL          = 29;
+      static const unsigned int ADD_SR_WWC_PTLL         = 30;
+      static const unsigned int ADD_SR_WWC_MT2          = 31;
+
+      static const unsigned int ADD_SR_ZJETS_NUM_L_JETS = 32;
+      static const unsigned int ADD_SR_ZJETS_MET_REL    = 33;
+      static const unsigned int ADD_SR_ZJETS_LEP1_PT    = 34;
+      static const unsigned int ADD_SR_ZJETS_LEP2_PT    = 35;
+      static const unsigned int ADD_SR_ZJETS_MJJ        = 36;
+      static const unsigned int ADD_SR_ZJETS_MT2        = 37;
 
       static const unsigned int ADD_CR_ZXJVETO_MET_REL = 40;
       static const unsigned int ADD_CR_ZXMT2_MET_REL   = 41;
@@ -176,11 +202,16 @@ namespace SusyAnalysisTools
 
       bool m_pass_sr_osjveto_met_rel;
       bool m_pass_sr_osjveto_mt2;
+
       bool m_pass_sr_ssjets_mll_veto;
       bool m_pass_sr_ssjets_met_rel;
       bool m_pass_sr_ssjets_mt;
+
       bool m_pass_sr_2jets_num_l_jet;
       bool m_pass_sr_2jets_met_rel;
+
+      bool m_pass_sr_mt2_lep1_pt;
+      bool m_pass_sr_mt2_lep2_pt;
       bool m_pass_sr_mt2_met_rel;
       bool m_pass_sr_mt2a_mt2;
       bool m_pass_sr_mt2b_mt2;
