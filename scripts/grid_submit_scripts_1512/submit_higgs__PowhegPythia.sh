@@ -6,7 +6,7 @@
 DATA_MC='mc'
 STREAM='egamma'
 SIM_TYPE='fullsim'
-OUT_DS_PREFIX='mc12_8TeV.Higgs'
+OUT_DS_PREFIX='mc12_8TeV.Higgs__PowhegPythia'
 EXT_FILES=''
 
 # ==============================
