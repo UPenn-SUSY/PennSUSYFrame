@@ -12,9 +12,9 @@ echo "Checking out RootCore package"
 mkdir RootCore
 cd RootCore
 if [ "x$CERN_USER" = "x" ]; then
-  svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-01-61 RootCore
+  svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-01-95 RootCore
 else
-  svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-01-61 RootCore
+  svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-01-95 RootCore
 fi
 cd RootCore
 
