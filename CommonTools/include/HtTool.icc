@@ -1,0 +1,10 @@
+// Dear emacs, this is -*- c++ -*-
+#ifndef CommonTools_HtTool_icc
+#define CommonTools_HtTool_icc
+
+// =============================================================================
+namespace CommonTools {
+  // ---------------------------------------------------------------------------
+  // do nothing
+}
+#endif // CommonTools_HtTool_icc

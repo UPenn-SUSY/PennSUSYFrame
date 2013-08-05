@@ -1,6 +1,6 @@
 // Dear emacs, this is -*- c++ -*-
-#ifndef CommonTools_MeffTool_H
-#define CommonTools_MeffTool_H
+#ifndef CommonTools_HtTool_H
+#define CommonTools_HtTool_H
 
 // =============================================================================
 #include <vector>
@@ -16,24 +16,22 @@ class Jet;
 namespace CommonTools{
 
   // ===========================================================================
-  class MeffTool
+  class HtTool
   {
   // ---------------------------------------------------------------------------
   public:
-    MeffTool();
+    HtTool();
 
-    static double getMeff( FLAVOR_CHANNEL
-                         , const std::vector<Electron*>&
-                         , const std::vector<Muon*>&
-                         , const std::vector<Jet*>&
-                         );
-    static double getMeffJets( FLAVOR_CHANNEL
-                             , const std::vector<Jet*>&
-                             );
-    static double getMeffLeptons( FLAVOR_CHANNEL
-                                , const std::vector<Electron*>&
-                                , const std::vector<Muon*>&
-                                );
+    static double getHt( FLAVOR_CHANNEL
+                       , const std::vector<Electron*>&
+                       , const std::vector<Muon*>&
+                       , const std::vector<Jet*>&
+                       );
+    static double getHtJets(const std::vector<Jet*>&);
+    static double getHtLeptons( FLAVOR_CHANNEL
+                              , const std::vector<Electron*>&
+                              , const std::vector<Muon*>&
+                              );
 
   // ---------------------------------------------------------------------------
   private:
@@ -43,7 +41,7 @@ namespace CommonTools{
 
 // Include the implementation:
 #ifndef __CINT__
-#include "MeffTool.icc"
+#include "HtTool.icc"
 #endif // __CINT__
 
 

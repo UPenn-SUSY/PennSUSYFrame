@@ -19,6 +19,7 @@
 #pragma link C++ class CommonTools::ElectronJetOverlapTool+;
 #pragma link C++ class CommonTools::EtallTool+;
 #pragma link C++ class CommonTools::EventCounterTool+;
+#pragma link C++ class CommonTools::HtTool+;
 #pragma link C++ class CommonTools::IsoCorrectionTool+;
 #pragma link C++ class CommonTools::JetCalibTool+;
 #pragma link C++ class CommonTools::MT2Tool+;
