@@ -45,9 +45,7 @@ double CommonTools::MeffTool::getMeff( FLAVOR_CHANNEL flavor_channel
 }
 
 // -----------------------------------------------------------------------------
-double CommonTools::MeffTool::getMeffJets( FLAVOR_CHANNEL flavor_channel
-                                         , const std::vector<Jet*>& jets
-                                         )
+double CommonTools::MeffTool::getMeffJets(const std::vector<Jet*>& jets)
 {
   TLorentzVector full_reco;
 

@@ -47,6 +47,9 @@ public:
   void setChargeFlipWeight(double weight);
   void setMCChannelNum(int channel);
 
+  void setHt(double);
+  void setHtJets(double);
+  void setHtLeptons(double);
   void setMll(double);
   void setMetEt(double);
   void setMetPhi(double);
@@ -54,6 +57,8 @@ public:
   void setMt(double);
   void setMt2(double);
   void setMeff(double);
+  void setMeffJets(double);
+  void setMeffLeptons(double);
   void setPtll(double);
   void setPhill(double);
   void setEtall(double);
@@ -62,6 +67,9 @@ public:
   void setOLJet(double);
   void setOLRatio(double);
 
+  double getHt() const;
+  double getHtJets() const;
+  double getHtLeptons() const;
   double getMll() const;
   double getMetEt() const;
   double getMetPhi() const;
@@ -69,6 +77,8 @@ public:
   double getMt() const;
   double getMt2() const;
   double getMeff() const;
+  double getMeffJets() const;
+  double getMeffLeptons() const;
   double getPtll() const;
   double getPhill() const;
   double getEtall() const;
@@ -102,6 +112,9 @@ private:
   int m_mc_channel_num;
 
   // useful event level variables
+  double m_ht;
+  double m_ht_jets;
+  double m_ht_leptons;
   double m_mll;
   double m_met_et;
   double m_met_phi;
@@ -109,6 +122,8 @@ private:
   double m_mt;
   double m_mt2;
   double m_meff;
+  double m_meff_jets;
+  double m_meff_leptons;
   double m_ptll;
   double m_phill;
   double m_etall;
@@ -117,6 +132,9 @@ private:
   double m_oljet;
   double m_olratio;
 
+  bool m_ht_cached;
+  bool m_ht_jets_cached;
+  bool m_ht_leptons_cached;
   bool m_mll_cached;
   bool m_met_et_cached;
   bool m_met_phi_cached;
@@ -124,6 +142,8 @@ private:
   bool m_mt_cached;
   bool m_mt2_cached;
   bool m_meff_cached;
+  bool m_meff_jets_cached;
+  bool m_meff_leptons_cached;
   bool m_ptll_cached;
   bool m_phill_cached;
   bool m_etall_cached;

@@ -23,6 +23,7 @@
 
 #include "CommonTools/include/ChargeFlipScaleFactorTool.h"
 #include "CommonTools/include/EtallTool.h"
+#include "CommonTools/include/HtTool.h"
 #include "CommonTools/include/MT2Tool.h"
 #include "CommonTools/include/MTTool.h"
 #include "CommonTools/include/MeffTool.h"
@@ -648,6 +649,36 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                 , electrons.getElectrons(EL_GOOD)
                 , muons.getMuons(MU_GOOD)
                 , jets.getJets(JET_GOOD))
+                );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute meff_jets
+  event->setMeffJets(CommonTools::MeffTool::getMeffJets(jets.getJets(JET_GOOD)));
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute meff_leptons
+  event->setMeffLeptons( CommonTools::MeffTool::getMeffLeptons( event->getFlavorChannel()
+                , electrons.getElectrons(EL_GOOD)
+                , muons.getMuons(MU_GOOD))
+                );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute ht
+  event->setHt( CommonTools::HtTool::getHt( event->getFlavorChannel()
+                , electrons.getElectrons(EL_GOOD)
+                , muons.getMuons(MU_GOOD)
+                , jets.getJets(JET_GOOD))
+                );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute ht_jets
+  event->setHtJets(CommonTools::HtTool::getHtJets(jets.getJets(JET_GOOD)));
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute ht_leptons
+  event->setHtLeptons( CommonTools::HtTool::getHtLeptons( event->getFlavorChannel()
+                , electrons.getElectrons(EL_GOOD)
+                , muons.getMuons(MU_GOOD))
                 );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include <TH2.h>
+#include <TFile.h>
 
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "AtlasSFrameUtils/include/Tau.h"

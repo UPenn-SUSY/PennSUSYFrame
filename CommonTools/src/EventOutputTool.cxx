@@ -62,13 +62,18 @@ void CommonTools::EventOutputTool::BeginInputData( const SInputData& )
 
   //DeclareVariable(m_pass_top_tag_veto, "pass_top_tag_veto");
 
-  DeclareVariable(m_mll  , "mll"  );
-  DeclareVariable(m_ptll , "ptll" );
-  DeclareVariable(m_phill, "phill");
-  DeclareVariable(m_etall, "etall");
-  DeclareVariable(m_mt   , "mt"   );
-  DeclareVariable(m_mt2  , "mt2"  );
-  DeclareVariable(m_meff , "meff"  );
+  DeclareVariable(m_ht          , "ht"          );
+  DeclareVariable(m_ht_jets     , "ht_jets"     );
+  DeclareVariable(m_ht_leptons  , "ht_leptons"  );
+  DeclareVariable(m_mll         , "mll"         );
+  DeclareVariable(m_ptll        , "ptll"        );
+  DeclareVariable(m_phill       , "phill"       );
+  DeclareVariable(m_etall       , "etall"       );
+  DeclareVariable(m_mt          , "mt"          );
+  DeclareVariable(m_mt2         , "mt2"         );
+  DeclareVariable(m_meff        , "meff"        );
+  DeclareVariable(m_meff_jets   , "meff_jets"   );
+  DeclareVariable(m_meff_leptons, "meff_leptons");
 
 }
 // -----------------------------------------------------------------------------
@@ -101,13 +106,18 @@ void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_
   m_actual_int_per_crossing  = 0;
   m_average_int_per_crossing = 0;
 
-  m_mll   = 0.;
-  m_ptll  = 0.;
-  m_phill = 0.;
-  m_etall = 0.;
-  m_mt    = 0.;
-  m_mt2   = 0.;
-  m_meff  = 0.;
+  m_ht           = 0.;
+  m_ht_jets      = 0.;
+  m_ht_leptons   = 0.;
+  m_mll          = 0.;
+  m_ptll         = 0.;
+  m_phill        = 0.;
+  m_etall        = 0.;
+  m_mt           = 0.;
+  m_mt2          = 0.;
+  m_meff         = 0.;
+  m_meff_jets    = 0.;
+  m_meff_leptons = 0.;
 }
 
 // -----------------------------------------------------------------------------
@@ -150,13 +160,18 @@ void CommonTools::EventOutputTool::fillOutput( Event* event
   m_k_factor                = event->getKFactor();
   m_eff_times_cross_section = event->getEffTimesXS();
 
-  m_mll   = event->getMll();
-  m_ptll  = event->getPtll();
-  m_phill = event->getPhill();
-  m_etall = event->getEtall();
-  m_mt    = event->getMt();
-  m_mt2   = event->getMt2();
-  m_meff  = event->getMeff();
+  m_ht           = event->getHt();
+  m_ht_jets      = event->getHtJets();
+  m_ht_leptons   = event->getHtLeptons();
+  m_mll          = event->getMll();
+  m_ptll         = event->getPtll();
+  m_phill        = event->getPhill();
+  m_etall        = event->getEtall();
+  m_mt           = event->getMt();
+  m_mt2          = event->getMt2();
+  m_meff         = event->getMeff();
+  m_meff_jets    = event->getMeffJets();
+  m_meff_leptons = event->getMeffLeptons();
 
 
   m_fake_weight = event->getFakeWeight();

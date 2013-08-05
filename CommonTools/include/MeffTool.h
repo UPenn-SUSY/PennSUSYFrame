@@ -27,9 +27,7 @@ namespace CommonTools{
                          , const std::vector<Muon*>&
                          , const std::vector<Jet*>&
                          );
-    static double getMeffJets( FLAVOR_CHANNEL
-                             , const std::vector<Jet*>&
-                             );
+    static double getMeffJets(const std::vector<Jet*>&);
     static double getMeffLeptons( FLAVOR_CHANNEL
                                 , const std::vector<Electron*>&
                                 , const std::vector<Muon*>&

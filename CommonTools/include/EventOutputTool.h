@@ -75,6 +75,9 @@ namespace CommonTools
     float m_actual_int_per_crossing;
     float m_average_int_per_crossing;
 
+    float m_ht;
+    float m_ht_jets;
+    float m_ht_leptons;
     float m_mll;
     float m_ptll;
     float m_phill;
@@ -82,6 +85,8 @@ namespace CommonTools
     float m_mt;
     float m_mt2;
     float m_meff;
+    float m_meff_jets;
+    float m_meff_leptons;
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

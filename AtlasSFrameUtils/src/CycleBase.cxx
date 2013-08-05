@@ -15,6 +15,7 @@
 #include <TH2F.h>
 #include <TH1D.h>
 #include <TH2D.h>
+#include <TFile.h>
 
 ClassImp(CycleBase);
 

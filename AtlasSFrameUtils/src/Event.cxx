@@ -24,6 +24,9 @@ Event::Event( const ::Long64_t& master
             , m_trigger_weight(1.)
             , m_cross_section_weight(1.)
             , m_b_tag_weight(1.)
+            , m_ht(0.)
+            , m_ht_jets(0.)
+            , m_ht_leptons(0.)
             , m_mll(0.)
             , m_met_et(0.)
             , m_met_phi(0.)
@@ -31,12 +34,17 @@ Event::Event( const ::Long64_t& master
             , m_mt(0.)
             , m_mt2(0.)
             , m_meff(0.)
+            , m_meff_jets(0.)
+            , m_meff_leptons(0.)
             , m_ptll(0.)
             , m_phill(0.)
             , m_etall(0.)
             , m_jet_sum_pt(0.)
             , m_oljet(0.)
             , m_olratio(0.)
+            , m_ht_cached(false)
+            , m_ht_jets_cached(false)
+            , m_ht_leptons_cached(false)
             , m_mll_cached(false)
             , m_met_et_cached(false)
             , m_met_phi_cached(false)
@@ -44,6 +52,8 @@ Event::Event( const ::Long64_t& master
             , m_mt_cached(false)
             , m_mt2_cached(false)
             , m_meff_cached(false)
+            , m_meff_jets_cached(false)
+            , m_meff_leptons_cached(false)
             , m_ptll_cached(false)
             , m_phill_cached(false)
             , m_etall_cached(false)
@@ -73,31 +83,41 @@ void Event::clear()
 
   m_mc_channel_num = 0;
 
-  m_mll     = 0.;
-  m_met_et  = 0.;
-  m_met_phi = 0.;
-  m_met_rel = 0.;
-  m_mt      = 0.;
-  m_mt2     = 0.;
-  m_meff    = 0.;
-  m_ptll    = 0.;
-  m_phill   = 0.;
-  m_etall   = 0.;
+  m_ht           = 0.;
+  m_ht_jets      = 0.;
+  m_ht_leptons   = 0.;
+  m_mll          = 0.;
+  m_met_et       = 0.;
+  m_met_phi      = 0.;
+  m_met_rel      = 0.;
+  m_mt           = 0.;
+  m_mt2          = 0.;
+  m_meff         = 0.;
+  m_meff_jets    = 0.;
+  m_meff_leptons = 0.;
+  m_ptll         = 0.;
+  m_phill        = 0.;
+  m_etall        = 0.;
 
   m_jet_sum_pt = 0.;
   m_oljet      = 0.;
   m_olratio    = 0.;
 
-  m_mll_cached     = false;
-  m_met_et_cached  = false;
-  m_met_phi_cached = false;
-  m_met_rel_cached = false;
-  m_mt_cached      = false;
-  m_mt2_cached     = false;
-  m_meff_cached    = false;
-  m_ptll_cached    = false;
-  m_phill_cached   = false;
-  m_etall_cached   = false;
+  m_ht_cached           = false;
+  m_ht_jets_cached      = false;
+  m_ht_leptons_cached   = false;
+  m_mll_cached          = false;
+  m_met_et_cached       = false;
+  m_met_phi_cached      = false;
+  m_met_rel_cached      = false;
+  m_mt_cached           = false;
+  m_mt2_cached          = false;
+  m_meff_cached         = false;
+  m_meff_jets_cached    = false;
+  m_meff_leptons_cached = false;
+  m_ptll_cached         = false;
+  m_phill_cached        = false;
+  m_etall_cached        = false;
 
   m_jet_sum_pt_cached = false;
   m_oljet_cached = false;
@@ -231,6 +251,27 @@ void Event::setMCChannelNum(int channel)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setHt(double ht)
+{
+  m_ht = ht;
+  m_ht_cached = true;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setHtJets(double ht)
+{
+  m_ht_jets = ht;
+  m_ht_jets_cached = true;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setHtLeptons(double ht)
+{
+  m_ht_leptons = ht;
+  m_ht_leptons_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 void Event::setMll(double mll)
 {
   m_mll = mll;
@@ -256,6 +297,20 @@ void Event::setMeff(double meff)
 {
   m_meff = meff;
   m_meff_cached = true;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setMeffJets(double meff)
+{
+  m_meff_jets = meff;
+  m_meff_jets_cached = true;
+}
+
+// -----------------------------------------------------------------------------
+void Event::setMeffLeptons(double meff)
+{
+  m_meff_leptons = meff;
+  m_meff_leptons_cached = true;
 }
 
 // -----------------------------------------------------------------------------
@@ -322,6 +377,30 @@ void Event::setOLRatio(double olratio)
 }
 
 // -----------------------------------------------------------------------------
+double Event::getHt() const
+{
+  if (!m_ht_cached)
+    std::cout << "WARNING! Asking for ht, but not yet cached!\n";
+  return m_ht;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getHtJets() const
+{
+  if (!m_ht_jets_cached)
+    std::cout << "WARNING! Asking for ht_jets, but not yet cached!\n";
+  return m_ht_jets;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getHtLeptons() const
+{
+  if (!m_ht_leptons_cached)
+    std::cout << "WARNING! Asking for ht_leptons, but not yet cached!\n";
+  return m_ht_leptons;
+}
+
+// -----------------------------------------------------------------------------
 double Event::getMll() const
 {
   if (!m_mll_cached)
@@ -375,6 +454,22 @@ double Event::getMeff() const
   if (!m_meff_cached)
     std::cout << "WARNING! Asking for meff, but not yet cached!\n";
   return m_meff;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getMeffJets() const
+{
+  if (!m_meff_jets_cached)
+    std::cout << "WARNING! Asking for meff_jets, but not yet cached!\n";
+  return m_meff_jets;
+}
+
+// -----------------------------------------------------------------------------
+double Event::getMeffLeptons() const
+{
+  if (!m_meff_leptons_cached)
+    std::cout << "WARNING! Asking for meff_leptons, but not yet cached!\n";
+  return m_meff_leptons;
 }
 
 // -----------------------------------------------------------------------------
@@ -460,8 +555,8 @@ PHASE_SPACE Event::getPhaseSpace() const
 void Event::print()
 {
   std::cout << "Event:\n"
-            << "\tmll: " << m_mll
-            << "\tptll: " << m_ptll
+            << "\tmll: "   << m_mll
+            << "\tptll: "  << m_ptll
             << "\tphill: " << m_phill
             << "\tetall: " << m_etall
             << "\n"
@@ -469,8 +564,14 @@ void Event::print()
             << "\tmet_phi: " << m_met_phi
             << "\tmet_rel: " << m_met_rel
             << "\n"
-            << "\tmt: " << m_mt
-            << "\tmt2: " << m_mt2
-            << "\tmeff: " << m_meff
+            << "\tmt: "           << m_mt
+            << "\tmt2: "          << m_mt2
+            << "\tmeff: "         << m_meff
+            << "\tmeff_jets: "    << m_meff_jets
+            << "\tmeff_leptons: " << m_meff_leptons
+            << "\n"
+            << "\tht: "         << m_ht
+            << "\tht_jets: "    << m_ht_jets
+            << "\tht_leptons: " << m_ht_leptons
             << "\n";
 }
