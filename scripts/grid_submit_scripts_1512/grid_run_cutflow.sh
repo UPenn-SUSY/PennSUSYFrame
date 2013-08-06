@@ -57,6 +57,15 @@ source setup.sh
 cd .. 
 echo "-------------------------------------------------------------------------"
 
+echo "-------------------------------------------------------------------------"
+echo "attempting pyyaml setup"
+cd InstallTools/PyYAML-3.10/
+python setup.py install --user
+cd ../..
+echo "-------------------------------------------------------------------------"
+
+
+
 # generate config xml files
 echo "-------------------------------------------------------------------------"
 echo "Generating the config file:"
