@@ -16,6 +16,7 @@ file_to_link=( \
   grid_build.sh \
   grid_run_cutflow.sh \
   grid_run_presel.sh \
+  gen_job_config.py \
 
   # data submit scripts \
   submit_egamma_data.sh \
