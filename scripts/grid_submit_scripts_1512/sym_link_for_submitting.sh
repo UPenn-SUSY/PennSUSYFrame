@@ -8,9 +8,14 @@
 
 file_to_link=( \
   # helper scripts \
+  prep_cutflow_tarball.sh \
+  prep_presel_tarball.sh \
   submit_all_samples.sh \
   submit_cutflow.sh \
   submit_presel.sh \
+  grid_build.sh \
+  grid_run_cutflow.sh \
+  grid_run_presel.sh \
 
   # data submit scripts \
   submit_egamma_data.sh \
@@ -48,7 +53,4 @@ do
   echo $ftl
   ln -s ${PWD}/${ftl} ${SFRAME_DIR}/..
 done
-
-
-
 
