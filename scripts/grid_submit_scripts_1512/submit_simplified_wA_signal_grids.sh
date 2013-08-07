@@ -79,6 +79,12 @@ ds_list=(
           "176554.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_77:mc12_8TeV.176554.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_77.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1512/"
           "176555.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_78:mc12_8TeV.176555.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_78.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1512/"
           "176556.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_79:mc12_8TeV.176556.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_79.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1512/"
+          "179580.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_192_5_N1_157_5_2L:mc12_8TeV.179580.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_192_5_N1_157_5_2L.merge.NTUP_SUSY.e2118_s1499_s1504_r3658_r3549_p1512/"
+          "179583.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_260_0_N1_240_0_2L:mc12_8TeV.179583.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_260_0_N1_240_0_2L.merge.NTUP_SUSY.e2118_s1499_s1504_r3658_r3549_p1512/"
+          "179579.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_142_5_N1_107_5_2L:mc12_8TeV.179579.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_142_5_N1_107_5_2L.merge.NTUP_SUSY.e2118_s1499_s1504_r3658_r3549_p1512/"
+          "179582.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_185_0_N1_165_0_2L:mc12_8TeV.179582.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_185_0_N1_165_0_2L.merge.NTUP_SUSY.e2118_s1499_s1504_r3658_r3549_p1512/"
+          "179581.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_135_0_N1_115_0_2L:mc12_8TeV.179581.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_135_0_N1_115_0_2L.merge.NTUP_SUSY.e2118_s1499_s1504_r3658_r3549_p1512/"
+          "179578.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_117_5_N1_82_5_2L:mc12_8TeV.179578.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_117_5_N1_82_5_2L.merge.NTUP_SUSY.e2118_s1499_s1504_r3658_r3549_p1512/"
           "176557.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_80:mc12_8TeV.176557.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_80.merge.NTUP_SUSY.e1708_s1499_s1504_r3658_r3549_p1512/"
           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
           "164274.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_1:mc12_8TeV.164274.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_1.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1512/"
