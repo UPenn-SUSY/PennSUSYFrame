@@ -64,7 +64,13 @@ id/I:name/C:xsec/F:kfac/F:eff/F:relunc/F
 176554	modeA_simplified_176554	0.0006415511	1.0	1.0	1.0
 176555	modeA_simplified_176555	0.0006415511	1.0	1.0	1.0
 176556	modeA_simplified_176556	0.0003534209	1.0	1.0	1.0
-176557	modeA_simplified_176557	0.0003534209	1.0	1.0	1.0	
+176557	modeA_simplified_176557	0.0003534209	1.0	1.0	1.0
+179580	sM_wA_slep_C1N2_192_5_N1_157_5_2L		1.0	
+179583	sM_wA_slep_C1N2_260_0_N1_240_0_2L		1.0	
+179579	sM_wA_slep_C1N2_142_5_N1_107_5_2L		1.0	
+179582	sM_wA_slep_C1N2_185_0_N1_165_0_2L		1.0	
+179581	sM_wA_slep_C1N2_135_0_N1_115_0_2L		1.0	
+179578	sM_wA_slep_C1N2_117_5_N1_82_5_2L		1.0	
 
 # signal grid samples mode A w/o slepton
 164274	modeA_simplified_164274	0.375134	1.0	1.0	1.0

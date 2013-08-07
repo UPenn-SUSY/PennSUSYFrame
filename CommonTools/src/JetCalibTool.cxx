@@ -47,7 +47,7 @@ void CommonTools::JetCalibTool::BeginInputData(const SInputData&)
   if (c_is_af2){
     std::cout << "setting up JES for AF2\n";
     jes_config_file = maindir +
-      "../ApplyJetCalibration/data/CalibrationConfigs/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config";
+      "../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config";
     mc_type = "AFII";
   } else {
     std::cout << "setting up JES for full sim\n";
