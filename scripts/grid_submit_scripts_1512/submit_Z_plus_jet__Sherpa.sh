@@ -5,7 +5,7 @@
 # =========================
 DATA_MC='mc'
 STREAM='egamma'
-SIM_TYPE='atlfast'
+SIM_TYPE='fullsim'
 OUT_DS_PREFIX='mc12_8TeV.Z_plus_jet__Sherpa'
 EXT_FILES=''
 

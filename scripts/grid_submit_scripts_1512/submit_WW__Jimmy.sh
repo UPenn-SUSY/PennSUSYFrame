@@ -23,7 +23,7 @@ ds_list=(
     "169472.gg2wwJimmy_AUET2CT10_WpWmenumunu:mc12_8TeV.169472.gg2wwJimmy_AUET2CT10_WpWmenumunu.merge.NTUP_SUSY.e1723_s1581_s1586_r3658_r3549_p1512/"
     "169479.gg2wwJimmy_AUET2CT10_WpWmtaunumunu:mc12_8TeV.169479.gg2wwJimmy_AUET2CT10_WpWmtaunumunu.merge.NTUP_SUSY.e1723_s1581_s1586_r3658_r3549_p1512/"
     "169475.gg2wwJimmy_AUET2CT10_WpWmmunuenu:mc12_8TeV.169475.gg2wwJimmy_AUET2CT10_WpWmmunuenu.merge.NTUP_SUSY.e1723_s1581_s1586_r3658_r3549_p1512/"
-    "169471.gg2wwJimmy_AUET2CT10_WpWmenuenu:mc12_8TeV.169471.gg2wwJimmy_AUET2CT10_WpWmenuenu.merge.NTUP_SUSY.e1723_s1581_s1586_r3658_r3549_p1512"     
+    "169471.gg2wwJimmy_AUET2CT10_WpWmenuenu:mc12_8TeV.169471.gg2wwJimmy_AUET2CT10_WpWmenuenu.merge.NTUP_SUSY.e1723_s1581_s1586_r3658_r3549_p1512/"
         )
 
 . ${PWD}/submit_cutflow.sh

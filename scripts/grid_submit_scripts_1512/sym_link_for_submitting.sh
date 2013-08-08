@@ -38,7 +38,8 @@ file_to_link=( \
   submit_Z_plus_jet_alpgen.sh \
   submit_Z_plus_jet__Sherpa.sh \
   submit_ZX__AlpgenPythia.sh \
-  submit_ZX__Sherpa.sh \
+  submit_ZX__Sherpa_atlfast.sh \
+  submit_ZX__Sherpa_fullsim.sh \
   submit_ZZ__Jimmy.sh \
   submit_ZZ__PowhegPythia8.sh \
   submit_ZZ__Sherpa.sh \

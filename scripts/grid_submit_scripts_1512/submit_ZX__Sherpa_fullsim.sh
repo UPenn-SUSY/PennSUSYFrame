@@ -5,8 +5,8 @@
 # =========================
 DATA_MC='mc'
 STREAM='egamma'
-SIM_TYPE='atlfast'
-OUT_DS_PREFIX='mc12_8TeV.ZX__Sherpa'
+SIM_TYPE='fullsim'
+OUT_DS_PREFIX='mc12_8TeV.ZX__Sherpa_fullsim'
 EXT_FILES=''
 
 # ==============================
