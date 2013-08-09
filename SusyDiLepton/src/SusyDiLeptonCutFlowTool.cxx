@@ -251,15 +251,16 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   // Check jet cleaning
   bool pass_jet_cleaning = (jets.num(JET_BAD) == 0);
   event->getEventDesc()->setPassBadJets(pass_jet_cleaning);
-  if (c_crit_bad_jet_veto && pass_jet_cleaning == false) {
-    if (c_super_verbose_info) {
-      std::cout << "Failed jet cleaning --"
-                << " Run: "   << event->RunNumber()
-                << " Event: " << event->EventNumber()
-                << std::endl;
-    }
-    return false;
+  if (c_super_verbose_info) {
+    std::cout << "Failed jet cleaning --"
+              << " Run: "   << event->RunNumber()
+              << " Event: " << event->EventNumber()
+              << std::endl;
   }
+  if (c_crit_bad_jet_veto && pass_jet_cleaning == false) {return false;}
+
+  //  return false;
+  
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check primary vertex
@@ -320,12 +321,18 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Check Sherpa WW Overlap
+  // Check Sherpa WW Overlap && Zoverlap
   bool pass_sherpa_ww = true;
   if(!is_data()) pass_sherpa_ww =  (m_hfor_tool->passSherpaWWOveralpRemoval(event, mc)
                                    );
-  event->getEventDesc()->setPassMCOverlap(pass_sherpa_ww);
-  if (c_crit_mc_overlap && pass_sherpa_ww == false) {
+
+  bool pass_z_overlap = true;
+  if(!is_data()) pass_z_overlap = (m_hfor_tool->passZOverlapRemoval(mc, m_truth_match_tool));
+
+  bool pass_mc_overlap = pass_sherpa_ww && pass_z_overlap;
+
+  event->getEventDesc()->setPassMCOverlap(pass_mc_overlap);
+  if (c_crit_mc_overlap && pass_mc_overlap == false) {
     if (c_super_verbose_info) {
       std::cout << "Failed MC Overlap Removal-- "
                 << " Run: "   << event->RunNumber()
