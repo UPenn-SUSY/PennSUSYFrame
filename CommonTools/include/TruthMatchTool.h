@@ -47,6 +47,8 @@ namespace CommonTools {
 		      );
     int getIndex(TLorentzVector tlv);
 
+    std::vector<TLorentzVector> getHSLeptonsTLV();
+
   // ---------------------------------------------------------------------------
   private:
 

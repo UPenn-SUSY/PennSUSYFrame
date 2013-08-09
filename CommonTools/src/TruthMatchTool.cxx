@@ -164,3 +164,10 @@ int CommonTools::TruthMatchTool::getIndex(TLorentzVector tlv)
 
   //return -1;
 }
+
+// -----------------------------------------------------------------------------
+std::vector<TLorentzVector> CommonTools::TruthMatchTool::getHSLeptonsTLV()
+{
+
+  return m_truth_match->LepFromHS_TLV();
+}
