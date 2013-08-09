@@ -1,0 +1,64 @@
+  # Data - Egamma stream
+  Egamma.periodA
+    sample_number: Egamma.periodA
+    grep_for:      Egamma.periodA
+  Egamma.periodB
+    sample_number: Egamma.periodB
+    grep_for:      Egamma.periodB
+  Egamma.periodC
+    sample_number: Egamma.periodC
+    grep_for:      Egamma.periodC
+  Egamma.periodD
+    sample_number: Egamma.periodD
+    grep_for:      Egamma.periodD
+  Egamma.periodE
+    sample_number: Egamma.periodE
+    grep_for:      Egamma.periodE
+  Egamma.periodG
+    sample_number: Egamma.periodG
+    grep_for:      Egamma.periodG
+  Egamma.periodH
+    sample_number: Egamma.periodH
+    grep_for:      Egamma.periodH
+  Egamma.periodI
+    sample_number: Egamma.periodI
+    grep_for:      Egamma.periodI
+  Egamma.periodJ
+    sample_number: Egamma.periodJ
+    grep_for:      Egamma.periodJ
+  Egamma.periodL
+    sample_number: Egamma.periodL
+    grep_for:      Egamma.periodL
+
+  # Data - Muon stream
+  Muon.periodA
+    sample_number: Muon.periodA
+    grep_for:      Muon.periodA
+  Muon.periodB
+    sample_number: Muon.periodB
+    grep_for:      Muon.periodB
+  Muon.periodC
+    sample_number: Muon.periodC
+    grep_for:      Muon.periodC
+  Muon.periodD
+    sample_number: Muon.periodD
+    grep_for:      Muon.periodD
+  Muon.periodE
+    sample_number: Muon.periodE
+    grep_for:      Muon.periodE
+  Muon.periodG
+    sample_number: Muon.periodG
+    grep_for:      Muon.periodG
+  Muon.periodH
+    sample_number: Muon.periodH
+    grep_for:      Muon.periodH
+  Muon.periodI
+    sample_number: Muon.periodI
+    grep_for:      Muon.periodI
+  Muon.periodJ
+    sample_number: Muon.periodJ
+    grep_for:      Muon.periodJ
+  Muon.periodL
+    sample_number: Muon.periodL
+    grep_for:      Muon.periodL
+
