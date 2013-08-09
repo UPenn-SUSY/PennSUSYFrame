@@ -21,6 +21,7 @@ INCLUDES += -I../RootCore/egammaAnalysisUtils/
 INCLUDES += -I../RootCore/egammaEvent/
 INCLUDES += -I../RootCore/TileTripReader/
 INCLUDES += -I../RootCore/PATCore/
+INCLUDES += -I../RootCore/LeptonTruthTools/
 
 # Include the generic compilation rules
 include $(SFRAME_DIR)/Makefile.common
