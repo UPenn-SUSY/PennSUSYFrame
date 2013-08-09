@@ -5,13 +5,18 @@
 // =============================================================================
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "SUSYTools/HforToolD3PD.h"
-
+#include "CommonTools/include/TruthMatchTool.h"
 // =============================================================================
 namespace D3PDReader
 {
   class TruthD3PDObject;
 }
 class Event;
+
+namespace CommonTools
+{
+  class TruthMatchTool;
+}
 
 // =============================================================================
 namespace SelectionTools
@@ -29,7 +34,7 @@ namespace SelectionTools
 
     bool passHFOR(const D3PDReader::TruthD3PDObject*);
     bool passSherpaWWOveralpRemoval(const Event*, const D3PDReader::TruthD3PDObject* );
-
+    bool passZOverlapRemoval(const D3PDReader::TruthD3PDObject*, CommonTools::TruthMatchTool*);
 
   // ---------------------------------------------------------------------------
   private:
