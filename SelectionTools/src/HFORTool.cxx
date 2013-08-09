@@ -5,6 +5,9 @@
 #include "D3PDObjects/include/TruthD3PDObject.h"
 #include "SUSYTools/HforToolD3PD.h"
 
+
+#include "CommonTools/include/TruthMatchTool.h"
+
 // -----------------------------------------------------------------------------
 SelectionTools::HFORTool::HFORTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
@@ -12,6 +15,7 @@ SelectionTools::HFORTool::HFORTool(
   DeclareProperty("do_hfor", c_do_hfor = true);
 
   m_hforTool.setVerbosity(HforToolD3PD::ERROR);
+
 }
 
 // -----------------------------------------------------------------------------
@@ -64,6 +68,66 @@ bool SelectionTools::HFORTool::passSherpaWWOveralpRemoval(const Event* event, co
       }
     }
   }
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::HFORTool::passZOverlapRemoval(const D3PDReader::TruthD3PDObject* mc,
+                                                   CommonTools::TruthMatchTool* truth_match_tool)
+{
+
+  bool isSherpaZ = false;
+  bool isZbb     = false;
+  bool isZcc     = false;
+  bool isZ       = false;
+
+  unsigned int dsid = mc->mc_channel_number(); 
+
+  if (dsid >=147770 && dsid <=147772) isSherpaZ =true;
+  if (dsid >=110805 && dsid <=110816) isZcc = true;
+  if (dsid >=110817 && dsid <=110828) isZbb = true;
+  if (dsid >=117640 && dsid <=117675) isZ = true;
+
+  if(isZcc || isZbb || isZ)
+    {
+
+      int ZpdgID=23;
+
+      for (int i = 0; i<mc->mc_n(); ++i)
+        { // Still looks wrong...double check
+          ///if(!(mc->mc_pdgId()->at(i) == ZpdgID && mc->mc_m()->at(i) > 60000)) return false;
+
+
+          // I think it should be this:
+
+          if(mc->mc_pdgId()->at(i) == ZpdgID && mc->mc_m()->at(i) < 60000) return false;
+        }
+    }
+
+  if(isSherpaZ)
+    {
+      double m_Z = -999;
+      TLorentzVector lep1;
+      TLorentzVector lep2;
+
+      std::vector<TLorentzVector> truth_leptons;
+
+      truth_leptons = truth_match_tool->getHSLeptonsTLV();
+
+      if (truth_leptons.size() == 2)
+        {
+          lep1 = truth_leptons.at(0);
+
+
+          lep2 = truth_leptons.at(1);
+          m_Z = (lep1 + lep2).M();
+
+          if (m_Z > 60000 || m_Z < 40000) return false;
+
+        }
+    } 
+
 
   return true;
 }
