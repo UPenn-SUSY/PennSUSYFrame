@@ -15,6 +15,7 @@ import time
 # ------------------------------------------------------------------------------
 def main():
     if not len(sys.argv) == 2:
+        print 'num args: %s' % len(sys.argv)
         print 'Please provide base name for template file'
         return
 
