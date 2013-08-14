@@ -1,0 +1,79 @@
+Inputs:
+  - class: Numerator
+    name: Data
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 1
+    marker_style: 20
+    entries:
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/data/data_muon.yml
+
+
+  - class: Denominator
+    name: Background
+    fill_color: 2
+    line_color: 1
+    line_width: 2
+    line_style: 1
+    marker_style: 21
+    entries:
+          # Fake
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/fake_muon.yml
+
+          # Higgs
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/Higgs__PowhegPythia8_AU2CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/Higgs__Pythia.yml
+
+          # Top
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/single_top__McAtNloJimmy_AUET2CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ttbar__MadGraphPythia_AUET2BCTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ttbar__McAtNloJimmy.yml
+
+          # WW
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__MadGraphPythia_AUET2BCTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__PowhegPythia8_AU2CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__Sherpa_CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__gg2vvJimmy.yml
+
+          # WZ
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WZ__PowhegPythia8_AU2CT10.yml
+
+          # ZX
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZX__AlpgenPythia.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZX__Sherpa_CT10.yml
+
+          # ZZ
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__MadGraphPythia_AUET2BCTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__PowhegPythia8_AU2CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__Sherpa_CT10.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__uncategorized.yml
+
+
+
+  - class: Other
+    name: Signal
+    fill_color: 1
+    line_color: 1
+    line_width: 2
+    line_style: 2
+    marker_style: 20
+    entries:
+          # 135.0 - 115
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_55.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_135_0_N1_115_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # 185.0 - 165
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_56.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_185_0_N1_165_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # 260.0 - 240
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_57.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_260_0_N1_240_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # 117.5 - 82.5
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_39.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_117_5_N1_82_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # 142.5 - 107.5
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_40.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_142_5_N1_107_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # 150.0 - 50.0
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_10.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_192_5_N1_157_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml

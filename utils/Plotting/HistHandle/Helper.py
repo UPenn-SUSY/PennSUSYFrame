@@ -96,7 +96,7 @@ def get_list_of_dirs(d):
                 for ref, test in zip(key_list_ref, key_list_test):
                     print 'ref: %s -- test: %s -- diff: %s' % (ref, test, (ref!=test))
 
-            try_anyway = confirm( 'To anyway?', False)
+            try_anyway = confirm( 'Try anyway?', False)
             if not try_anyway:
                 assert False
 
@@ -348,6 +348,12 @@ def getCharginoMass(sample_name):
                         'simplifiedModel_wA_noslep_lepW_70'     : 200.0,
                         'simplifiedModel_wA_noslep_lepW_71'     : 125.0,
                         'simplifiedModel_wA_noslep_lepW_72'     : 175.0,
+                        'sM_wA_slep_C1N2_117_5_N1_82_5_2L'      : 117.5,
+                        'sM_wA_slep_C1N2_135_0_N1_115_0_2L'     : 135.0,
+                        'sM_wA_slep_C1N2_142_5_N1_107_5_2L'     : 142.5,
+                        'sM_wA_slep_C1N2_185_0_N1_165_0_2L'     : 185.0,
+                        'sM_wA_slep_C1N2_192_5_N1_157_5_2L'     : 192.5,
+                        'sM_wA_slep_C1N2_260_0_N1_240_0_2L'     : 260.0,
                         '~TERM' : 0
                       }
 
@@ -499,6 +505,12 @@ def getNeutralinoMass(sample_name):
                           'simplifiedModel_wA_noslep_lepW_70'     : 75.0,
                           'simplifiedModel_wA_noslep_lepW_71'     : 100.0,
                           'simplifiedModel_wA_noslep_lepW_72'     : 100.0,
+                          'sM_wA_slep_C1N2_117_5_N1_82_5_2L'      : 82.5,
+                          'sM_wA_slep_C1N2_135_0_N1_115_0_2L'     : 115.0,
+                          'sM_wA_slep_C1N2_142_5_N1_107_5_2L'     : 107.5,
+                          'sM_wA_slep_C1N2_185_0_N1_165_0_2L'     : 165.0,
+                          'sM_wA_slep_C1N2_192_5_N1_157_5_2L'     : 157.5,
+                          'sM_wA_slep_C1N2_260_0_N1_240_0_2L'     : 240.0,
                           '~TERM'                                 : 0
                         }
 

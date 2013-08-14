@@ -22,11 +22,17 @@ def getGenerator(file_name):
     if 'AlpgenJimmy_AUET2CTEQ6L1' in file_name or 'AlpgenJimmy_Auto_AUET2CTEQ6L1' in file_name:
         return 'AlpgenJimmy_AUET2CTEQ6L1'
 
+    if 'AlpgenPythia' in file_name or 'AlpgenPythia' in file_name:
+        return 'AlpgenPythia'
+
     if 'MadGraphPythia_AUET2BCTEQ6L1' in file_name or 'MadgraphPythia_AUET2B_CTEQ6L1' in file_name:
         return 'MadGraphPythia_AUET2BCTEQ6L1'
 
     if 'McAtNloJimmy_AUET2CT10' in file_name:
         return 'McAtNloJimmy_AUET2CT10'
+
+    if 'McAtNloJimmy' in file_name:
+        return 'McAtNloJimmy'
 
     if 'PowhegPythia8_AU2CT10' in file_name:
         return 'PowhegPythia8_AU2CT10'
@@ -39,6 +45,12 @@ def getGenerator(file_name):
 
     if 'Herwigpp_UEEE3_CTEQ6L1' in file_name:
         return 'Herwigpp_UEEE3_CTEQ6L1'
+
+    if 'gg2wwJimmy' in file_name:
+        return 'gg2vvJimmy'
+
+    if 'Pythia' in file_name:
+        return 'Pythia'
 
     else:
         return 'uncategorized'
@@ -63,6 +75,10 @@ def getEntryType(file_name):
         if 'Muon.period' in file_name:
             return 'fake_muon'
 
+    # Higgs
+    if 'Higgs' in file_name:
+        return 'Higgs__%s' % getGenerator(file_name)
+
     # W+jet
     if 'W_plus_jet' in file_name:
         return 'W_plus_jet__%s' % getGenerator(file_name)
@@ -72,9 +88,23 @@ def getEntryType(file_name):
         return 'Z_plus_jet__%s' % getGenerator(file_name)
         # return 'drell_yan__%s' % getGenerator(file_name)
 
+    # ZX
+    if 'ZX' in file_name:
+        return 'ZX__%s' % getGenerator(file_name)
+        # return 'drell_yan__%s' % getGenerator(file_name)
+
     # diboson
     if 'diboson' in file_name:
         return 'diboson__%s' % getGenerator(file_name)
+
+    if 'WW' in file_name:
+        return 'WW__%s' % getGenerator(file_name)
+
+    if 'WZ' in file_name:
+        return 'WZ__%s' % getGenerator(file_name)
+
+    if 'ZZ' in file_name:
+        return 'ZZ__%s' % getGenerator(file_name)
 
     # single top
     if 'single_top' in file_name:
