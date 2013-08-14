@@ -22,8 +22,8 @@ Inputs:
           - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/fake_muon.yml
 
           # Higgs
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/Higgs__PowhegPythia8_AU2CT10.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/Higgs__Pythia.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/Higgs__PowhegPythia8_AU2CT10.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/Higgs__Pythia.yml
 
           # Top
           - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/single_top__McAtNloJimmy_AUET2CT10.yml
