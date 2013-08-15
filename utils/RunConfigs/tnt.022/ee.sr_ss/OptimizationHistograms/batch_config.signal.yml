@@ -1,0 +1,232 @@
+# imported config files
+cut_config:  /afs/cern.ch/user/e/ehines/workdir/Susy_cutflow/SFrame/../utils/RunConfigs/tnt.022/ee.sr_ss/cuts/cuts.optimize.ee.sr_ss.signal.config
+hist_config: /afs/cern.ch/user/e/ehines/workdir/Susy_cutflow/SFrame/../utils/RunConfigs/tnt.022/ee.sr_ss/hists/hists.optimize.ee.sr_ss.config
+
+# other settings
+# target_lumi: 21000
+target_lumi: 13000
+
+in_tree: output
+max_job_size: 10
+file_name_base: signal
+ptnt_out_file_path: /afs/cern.ch/user/e/ehines/workdir/Susy_cutflow/utils/pTNTs/OptimizationHistograms/tnt.022/ee.sr_ss/
+hist_out_file_path: /afs/cern.ch/user/e/ehines/workdir/Susy_cutflow/utils/hists/OptimizationHistograms/tnt.022/ee.sr_ss/
+
+in_file_base_path: /afs/cern.ch/user/e/ehines/eos_mount/atlas/user/b/bjackson/tnt.022/
+in_files:
+  # signal_simplified wA with sleptons
+  signal_simplified.179578.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_117_5_N1_82_5_2L:
+    sample_number: 179578
+    grep_for:      signal_simplified.179578.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_117_5_N1_82_5_2L
+  signal_simplified.179579.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_142_5_N1_107_5_2L:
+    sample_number: 179579
+    grep_for:      signal_simplified.179579.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_142_5_N1_107_5_2L
+  signal_simplified.179580.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_192_5_N1_157_5_2L:
+    sample_number: 179580
+    grep_for:      signal_simplified.179580.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_192_5_N1_157_5_2L
+  signal_simplified.179581.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_135_0_N1_115_0_2L:
+    sample_number: 179581
+    grep_for:      signal_simplified.179581.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_135_0_N1_115_0_2L
+  signal_simplified.179582.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_185_0_N1_165_0_2L:
+    sample_number: 179582
+    grep_for:      signal_simplified.179582.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_185_0_N1_165_0_2L
+  signal_simplified.179583.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_260_0_N1_240_0_2L:
+    sample_number: 179583
+    grep_for:      signal_simplified.179583.Herwigpp_UEEE3_CTEQ6L1_sM_wA_slep_C1N2_260_0_N1_240_0_2L
+
+  signal_simplified.144871.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_5:
+    sample_number: 144871
+    grep_for:      signal_simplified.144871.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_5
+  signal_simplified.144873.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_7:
+    sample_number: 144873
+    grep_for:      signal_simplified.144873.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_7
+  signal_simplified.144874.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_8:
+    sample_number: 144874
+    grep_for:      signal_simplified.144874.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_8
+  signal_simplified.144876.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_10:
+    sample_number: 144876
+    grep_for:      signal_simplified.144876.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_10
+  signal_simplified.144877.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_11:
+    sample_number: 144877
+    grep_for:      signal_simplified.144877.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_11
+  signal_simplified.144879.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_13:
+    sample_number: 144879
+    grep_for:      signal_simplified.144879.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_13
+  signal_simplified.144880.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_14:
+    sample_number: 144880
+    grep_for:      signal_simplified.144880.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_14
+  signal_simplified.144881.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_15:
+    sample_number: 144881
+    grep_for:      signal_simplified.144881.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_15
+  signal_simplified.144883.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_17:
+    sample_number: 144883
+    grep_for:      signal_simplified.144883.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_17
+  signal_simplified.144884.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_18:
+    sample_number: 144884
+    grep_for:      signal_simplified.144884.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_18
+  signal_simplified.144885.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_19:
+    sample_number: 144885
+    grep_for:      signal_simplified.144885.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_19
+  signal_simplified.144886.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_20:
+    sample_number: 144886
+    grep_for:      signal_simplified.144886.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_20
+  signal_simplified.144888.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_22:
+    sample_number: 144888
+    grep_for:      signal_simplified.144888.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_22
+  signal_simplified.144889.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_23:
+    sample_number: 144889
+    grep_for:      signal_simplified.144889.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_23
+  signal_simplified.144890.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_24:
+    sample_number: 144890
+    grep_for:      signal_simplified.144890.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_24
+  signal_simplified.144891.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_25:
+    sample_number: 144891
+    grep_for:      signal_simplified.144891.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_25
+  signal_simplified.144892.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_26:
+    sample_number: 144892
+    grep_for:      signal_simplified.144892.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_26
+  signal_simplified.144894.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_28:
+    sample_number: 144894
+    grep_for:      signal_simplified.144894.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_28
+  signal_simplified.144895.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_29:
+    sample_number: 144895
+    grep_for:      signal_simplified.144895.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_29
+  signal_simplified.144896.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_30:
+    sample_number: 144896
+    grep_for:      signal_simplified.144896.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_30
+  signal_simplified.157461.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_32:
+    sample_number: 157461
+    grep_for:      signal_simplified.157461.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_32
+  signal_simplified.157464.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_35:
+    sample_number: 157464
+    grep_for:      signal_simplified.157464.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_35
+  signal_simplified.157467.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_38:
+    sample_number: 157467
+    grep_for:      signal_simplified.157467.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_38
+  signal_simplified.157954.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_39:
+    sample_number: 157954
+    grep_for:      signal_simplified.157954.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_39
+  signal_simplified.157955.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_40:
+    sample_number: 157955
+    grep_for:      signal_simplified.157955.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_40
+  signal_simplified.157956.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_41:
+    sample_number: 157956
+    grep_for:      signal_simplified.157956.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_41
+  signal_simplified.157957.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_42:
+    sample_number: 157957
+    grep_for:      signal_simplified.157957.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_42
+  signal_simplified.157958.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_43:
+    sample_number: 157958
+    grep_for:      signal_simplified.157958.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_43
+  signal_simplified.157959.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_44:
+    sample_number: 157959
+    grep_for:      signal_simplified.157959.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_44
+  signal_simplified.157960.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_45:
+    sample_number: 157960
+    grep_for:      signal_simplified.157960.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_45
+  signal_simplified.157961.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_46:
+    sample_number: 157961
+    grep_for:      signal_simplified.157961.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_46
+  signal_simplified.157962.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_47:
+    sample_number: 157962
+    grep_for:      signal_simplified.157962.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_47
+  signal_simplified.157963.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_48:
+    sample_number: 157963
+    grep_for:      signal_simplified.157963.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_48
+  signal_simplified.157964.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_49:
+    sample_number: 157964
+    grep_for:      signal_simplified.157964.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_49
+  signal_simplified.157965.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_50:
+    sample_number: 157965
+    grep_for:      signal_simplified.157965.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_50
+  signal_simplified.157966.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_51:
+    sample_number: 157966
+    grep_for:      signal_simplified.157966.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_51
+  signal_simplified.157967.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_52:
+    sample_number: 157967
+    grep_for:      signal_simplified.157967.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_52
+  signal_simplified.157968.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_53:
+    sample_number: 157968
+    grep_for:      signal_simplified.157968.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_53
+  signal_simplified.176531.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_54:
+    sample_number: 176531
+    grep_for:      signal_simplified.176531.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_54
+  signal_simplified.176532.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_55:
+    sample_number: 176532
+    grep_for:      signal_simplified.176532.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_55
+  signal_simplified.176533.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_56:
+    sample_number: 176533
+    grep_for:      signal_simplified.176533.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_56
+  signal_simplified.176534.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_57:
+    sample_number: 176534
+    grep_for:      signal_simplified.176534.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_57
+  signal_simplified.176535.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_58:
+    sample_number: 176535
+    grep_for:      signal_simplified.176535.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_58
+  signal_simplified.176536.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_59:
+    sample_number: 176536
+    grep_for:      signal_simplified.176536.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_59
+  signal_simplified.176537.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_60:
+    sample_number: 176537
+    grep_for:      signal_simplified.176537.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_60
+  signal_simplified.176538.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_61:
+    sample_number: 176538
+    grep_for:      signal_simplified.176538.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_61
+  signal_simplified.176539.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_62:
+    sample_number: 176539
+    grep_for:      signal_simplified.176539.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_62
+  signal_simplified.176540.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_63:
+    sample_number: 176540
+    grep_for:      signal_simplified.176540.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_63
+  signal_simplified.176541.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_64:
+    sample_number: 176541
+    grep_for:      signal_simplified.176541.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_64
+  signal_simplified.176542.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_65:
+    sample_number: 176542
+    grep_for:      signal_simplified.176542.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_65
+  signal_simplified.176543.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_66:
+    sample_number: 176543
+    grep_for:      signal_simplified.176543.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_66
+  signal_simplified.176544.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_67:
+    sample_number: 176544
+    grep_for:      signal_simplified.176544.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_67
+  signal_simplified.176545.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_68:
+    sample_number: 176545
+    grep_for:      signal_simplified.176545.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_68
+  signal_simplified.176546.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_69:
+    sample_number: 176546
+    grep_for:      signal_simplified.176546.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_69
+  signal_simplified.176547.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_70:
+    sample_number: 176547
+    grep_for:      signal_simplified.176547.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_70
+  signal_simplified.176548.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_71:
+    sample_number: 176548
+    grep_for:      signal_simplified.176548.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_71
+  signal_simplified.176549.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_72:
+    sample_number: 176549
+    grep_for:      signal_simplified.176549.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_72
+  signal_simplified.176550.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_73:
+    sample_number: 176550
+    grep_for:      signal_simplified.176550.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_73
+  signal_simplified.176551.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_74:
+    sample_number: 176551
+    grep_for:      signal_simplified.176551.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_74
+  signal_simplified.176552.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_75:
+    sample_number: 176552
+    grep_for:      signal_simplified.176552.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_75
+  signal_simplified.176553.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_76:
+    sample_number: 176553
+    grep_for:      signal_simplified.176553.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_76
+  signal_simplified.176554.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_77:
+    sample_number: 176554
+    grep_for:      signal_simplified.176554.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_77
+  signal_simplified.176555.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_78:
+    sample_number: 176555
+    grep_for:      signal_simplified.176555.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_78
+  signal_simplified.176556.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_79:
+    sample_number: 176556
+    grep_for:      signal_simplified.176556.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_79
+  signal_simplified.176557.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_80:
+    sample_number: 176557
+    grep_for:      signal_simplified.176557.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_80
+
