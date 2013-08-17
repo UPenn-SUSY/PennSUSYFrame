@@ -46,7 +46,7 @@ def getGenerator(file_name):
     if 'Herwigpp_UEEE3_CTEQ6L1' in file_name:
         return 'Herwigpp_UEEE3_CTEQ6L1'
 
-    if 'gg2wwJimmy' in file_name:
+    if 'gg2wwJimmy' in file_name or 'gg2ZZJimmy':
         return 'gg2vvJimmy'
 
     if 'Pythia' in file_name:
@@ -86,7 +86,6 @@ def getEntryType(file_name):
     # Z+jets + drell yan
     if 'Z_plus_jet' in file_name or 'drell_yan' in file_name:
         return 'Z_plus_jet__%s' % getGenerator(file_name)
-        # return 'drell_yan__%s' % getGenerator(file_name)
 
     # ZX
     if 'ZX' in file_name:
@@ -136,30 +135,41 @@ def getEntryType(file_name):
 def getEntryFillColor(entry_name):
     # Fakes
     if 'fake' in entry_name:
+        # kGray
         return 920
 
     # data - egamma + muon
     if 'data_egamma' in entry_name or 'data_muon' in entry_name:
+        # kBlack
         return 1
+
+    # Higgs
+    if 'Higgs' in entry_name:
+        # kYellow-9
+        return 391
 
     # W+jet
     if 'W_plus_jet' in entry_name:
         return 920
 
-    # Z-gamma*
-    if 'Z_plus_jet' in entry_name:
+    # ZX
+    if 'ZX' in entry_name:
+        # kOrange-2
         return 798
 
-    # diboson
-    if 'diboson' in entry_name:
+    # WW
+    if 'WW' in entry_name:
+        # kAzure+4
+        return 864
+
+    # ZV
+    if 'WZ' in entry_name or 'ZZ' in entry_name:
+        # kSpring+1
         return 821
 
-    # single top
-    if 'single_top' in entry_name:
-        return 856
-
-    # ttbar
-    if 'ttbar' in entry_name:
+    # top
+    if 'single_top' in entry_name or 'ttbar' in entry_name:
+        # kRed+1
         return 633
 
     # singnal grids

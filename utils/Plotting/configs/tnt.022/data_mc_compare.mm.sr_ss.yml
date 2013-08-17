@@ -26,15 +26,15 @@ Inputs:
           # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/Higgs__Pythia.yml
 
           # Top
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/single_top__McAtNloJimmy_AUET2CT10.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ttbar__MadGraphPythia_AUET2BCTEQ6L1.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ttbar__McAtNloJimmy.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/single_top__McAtNloJimmy_AUET2CT10.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ttbar__MadGraphPythia_AUET2BCTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ttbar__McAtNloJimmy.yml
 
           # WW
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__MadGraphPythia_AUET2BCTEQ6L1.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__PowhegPythia8_AU2CT10.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__Sherpa_CT10.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__gg2vvJimmy.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__MadGraphPythia_AUET2BCTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__PowhegPythia8_AU2CT10.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__Sherpa_CT10.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WW__gg2vvJimmy.yml
 
           # WZ
           - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WZ__PowhegPythia8_AU2CT10.yml
@@ -44,10 +44,10 @@ Inputs:
           - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZX__Sherpa_CT10.yml
 
           # ZZ
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__MadGraphPythia_AUET2BCTEQ6L1.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__PowhegPythia8_AU2CT10.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__Sherpa_CT10.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__uncategorized.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__MadGraphPythia_AUET2BCTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__PowhegPythia8_AU2CT10.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__Sherpa_CT10.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZZ__uncategorized.yml
 
 
 
