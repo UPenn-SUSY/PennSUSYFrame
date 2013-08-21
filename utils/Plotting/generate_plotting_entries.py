@@ -224,7 +224,7 @@ def getEntryLabel(entry_name):
         return 'WW'
 
     # ZV
-    if 'ZV' in entry_name:
+    if 'WZ' in entry_name or 'ZZ' in entry_name:
         return 'ZV'
 
     # top
