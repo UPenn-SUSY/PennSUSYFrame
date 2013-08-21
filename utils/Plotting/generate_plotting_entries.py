@@ -211,25 +211,25 @@ def getEntryLabel(entry_name):
     if 'data' in entry_name:
         return 'Data'
 
-    # W+jet
-    if 'W_plus_jet' in entry_name:
-        return 'W+jets'
+    # Higgs
+    if 'Higgs' in entry_name:
+        return 'Higgs'
 
-    # Z-gamma*
-    if 'Z_plus_jet' in entry_name:
-        return 'Z/\\gamma^{*}+jets'
+    # ZX
+    if 'ZX' in entry_name:
+        return 'Z+jets'
 
-    # diboson
-    if 'diboson' in entry_name:
-        return 'diboson'
+    # WW
+    if 'WW' in entry_name:
+        return 'WW'
 
-    # single top
-    if 'single_top' in entry_name:
-        return 'Single top'
+    # ZV
+    if 'ZV' in entry_name:
+        return 'ZV'
 
-    # ttbar
-    if 'ttbar' in entry_name:
-        return 't\\bar{t}'
+    # top
+    if 'single_top' in entry_name or 'ttbar' in entry_name:
+        return 't#bar{t} + Wt'
 
     # singnal grids
     if 'signal' in entry_name:

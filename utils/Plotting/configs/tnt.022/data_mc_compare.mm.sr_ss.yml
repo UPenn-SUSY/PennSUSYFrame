@@ -62,18 +62,18 @@ Inputs:
           # 135.0 - 115
           - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_55.__Herwigpp_UEEE3_CTEQ6L1.yml
           - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_135_0_N1_115_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
-          # 185.0 - 165
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_56.__Herwigpp_UEEE3_CTEQ6L1.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_185_0_N1_165_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
-          # 260.0 - 240
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_57.__Herwigpp_UEEE3_CTEQ6L1.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_260_0_N1_240_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
-          # 117.5 - 82.5
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_39.__Herwigpp_UEEE3_CTEQ6L1.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_117_5_N1_82_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
-          # 142.5 - 107.5
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_40.__Herwigpp_UEEE3_CTEQ6L1.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_142_5_N1_107_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
-          # 150.0 - 50.0
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_10.__Herwigpp_UEEE3_CTEQ6L1.yml
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_192_5_N1_157_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # # 185.0 - 165
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_56.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_185_0_N1_165_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # # 260.0 - 240
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_57.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_260_0_N1_240_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # # 117.5 - 82.5
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_39.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_117_5_N1_82_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # # 142.5 - 107.5
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_40.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_142_5_N1_107_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # # 150.0 - 50.0
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_10.__Herwigpp_UEEE3_CTEQ6L1.yml
+          # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_192_5_N1_157_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
