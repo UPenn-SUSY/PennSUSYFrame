@@ -521,7 +521,7 @@ def getNeutralinoMass(sample_name):
 
 # ------------------------------------------------------------------------------
 def genLegendLabel(key):
-    if 'simplifiedModel_wA' in key:
+    if 'simplifiedModel_wA' in key or 'sM_wA_slep_C1N2' in key:
         sample_name = key.split('.')[1]
         return 'm(#chi_{2}^{0}/#chi_{1}^{#pm}, #chi_{1}^{0}) = %s, %s GeV' \
                 % ( getCharginoMass(sample_name)

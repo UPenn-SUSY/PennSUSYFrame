@@ -53,9 +53,8 @@ Optimize:
 
 # ------------------------------------------------------------------------------
 Inputs:
-
-  - class: Signal_simplifiedModel_wA_slep_noWcasc_55
-    name: simplifiedModel_wA_slep_noWcasc_55
+  - class: Signal_sM_wA_slep_C1N2_135_0_N1_115_0_2L
+    name: sM_wA_slep_C1N2_135_0_N1_115_0_2L
     fill_color: 0
     line_color: 856
     line_width: 7
@@ -64,10 +63,10 @@ Inputs:
     modeled: 13
     target:  21
     entries:
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_55.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_135_0_N1_115_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
 
-  - class: Signal_simplifiedModel_wA_slep_noWcasc_56
-    name: simplifiedModel_wA_slep_noWcasc_56
+  - class: Signal_sM_wA_slep_C1N2_185_0_N1_165_0_2L
+    name: sM_wA_slep_C1N2_185_0_N1_165_0_2L
     fill_color: 0
     line_color: 425
     line_width: 7
@@ -76,10 +75,10 @@ Inputs:
     modeled: 13
     target:  21
     entries:
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_56.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_185_0_N1_165_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
 
-  - class: Signal_simplifiedModel_wA_slep_noWcasc_57
-    name: simplifiedModel_wA_slep_noWcasc_57
+  - class: Signal_sM_wA_slep_C1N2_260_0_N1_240_0_2L
+    name: sM_wA_slep_C1N2_260_0_N1_240_0_2L
     fill_color: 0
     line_color: 601
     line_width: 7
@@ -88,7 +87,31 @@ Inputs:
     modeled: 13
     target:  21
     entries:
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_57.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_260_0_N1_240_0_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  - class: Signal_sM_wA_slep_C1N2_117_5_N1_82_5_2L
+    name: sM_wA_slep_C1N2_117_5_N1_82_5_2L
+    fill_color: 0
+    line_color: 612
+    line_width: 7
+    line_style: 5
+    marker_style: 20
+    modeled: 13
+    target:  21
+    entries:
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_117_5_N1_82_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  - class: Signal_sM_wA_slep_C1N2_142_5_N1_107_5_2L
+    name: sM_wA_slep_C1N2_142_5_N1_107_5_2L
+    fill_color: 0
+    line_color: 802
+    line_width: 7
+    line_style: 5
+    marker_style: 20
+    modeled: 13
+    target:  21
+    entries:
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_142_5_N1_107_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
 
   - class: Signal_simplifiedModel_wA_slep_noWcascade_10
     name: simplifiedModel_wA_slep_noWcascade_10
@@ -100,31 +123,91 @@ Inputs:
     modeled: 13
     target:  21
     entries:
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_10.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_10.__Herwigpp_UEEE3_CTEQ6L1.yml
 
-  - class: Signal_simplifiedModel_wA_slep_noWcascade_39
-    name: simplifiedModel_wA_slep_noWcascade_39
+  - class: Signal_sM_wA_slep_C1N2_192_5_N1_157_5_2L
+    name: sM_wA_slep_C1N2_192_5_N1_157_5_2L
     fill_color: 0
-    line_color: 612
+    line_color: 632
     line_width: 7
     line_style: 5
     marker_style: 20
     modeled: 13
     target:  21
     entries:
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_39.__Herwigpp_UEEE3_CTEQ6L1.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.sM_wA_slep_C1N2_192_5_N1_157_5_2L.__Herwigpp_UEEE3_CTEQ6L1.yml
 
-  - class: Signal_simplifiedModel_wA_slep_noWcascade_40
-    name: simplifiedModel_wA_slep_noWcascade_40
-    fill_color: 0
-    line_color: 802
-    line_width: 7
-    line_style: 5
-    marker_style: 20
-    modeled: 13
-    target:  21
-    entries:
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_40.__Herwigpp_UEEE3_CTEQ6L1.yml
+  # # - class: Signal_simplifiedModel_wA_slep_noWcasc_55
+  # #   name: simplifiedModel_wA_slep_noWcasc_55
+  # #   fill_color: 0
+  # #   line_color: 856
+  # #   line_width: 7
+  # #   line_style: 5
+  # #   marker_style: 20
+  # #   modeled: 13
+  # #   target:  21
+  # #   entries:
+  # #         - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_55.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  # # - class: Signal_simplifiedModel_wA_slep_noWcasc_56
+  # #   name: simplifiedModel_wA_slep_noWcasc_56
+  # #   fill_color: 0
+  # #   line_color: 425
+  # #   line_width: 7
+  # #   line_style: 5
+  # #   marker_style: 20
+  # #   modeled: 13
+  # #   target:  21
+  # #   entries:
+  # #         - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_56.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  # # - class: Signal_simplifiedModel_wA_slep_noWcasc_57
+  # #   name: simplifiedModel_wA_slep_noWcasc_57
+  # #   fill_color: 0
+  # #   line_color: 601
+  # #   line_width: 7
+  # #   line_style: 5
+  # #   marker_style: 20
+  # #   modeled: 13
+  # #   target:  21
+  # #   entries:
+  # #         - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcasc_57.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  # # - class: Signal_simplifiedModel_wA_slep_noWcascade_10
+  # #   name: simplifiedModel_wA_slep_noWcascade_10
+  # #   fill_color: 0
+  # #   line_color: 420
+  # #   line_width: 7
+  # #   line_style: 5
+  # #   marker_style: 20
+  # #   modeled: 13
+  # #   target:  21
+  # #   entries:
+  # #         - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_10.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  # # - class: Signal_simplifiedModel_wA_slep_noWcascade_39
+  # #   name: simplifiedModel_wA_slep_noWcascade_39
+  # #   fill_color: 0
+  # #   line_color: 612
+  # #   line_width: 7
+  # #   line_style: 5
+  # #   marker_style: 20
+  # #   modeled: 13
+  # #   target:  21
+  # #   entries:
+  # #         - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_39.__Herwigpp_UEEE3_CTEQ6L1.yml
+
+  # # - class: Signal_simplifiedModel_wA_slep_noWcascade_40
+  # #   name: simplifiedModel_wA_slep_noWcascade_40
+  # #   fill_color: 0
+  # #   line_color: 802
+  # #   line_width: 7
+  # #   line_style: 5
+  # #   marker_style: 20
+  # #   modeled: 13
+  # #   target:  21
+  # #   entries:
+  # #         - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/signal/signal_simplified.simplifiedModel_wA_slep_noWcascade_40.__Herwigpp_UEEE3_CTEQ6L1.yml
 
   # - class: Signal_simplifiedModel_wA_slep_noWcascade_5
   #   name: simplifiedModel_wA_slep_noWcascade_5
@@ -557,9 +640,12 @@ Inputs:
     modeled: 13
     target:  21
     entries:
-          # Diboson
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/background/diboson__PowhegPythia8_AU2CT10.yml
-            # - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/background/diboson__Sherpa_CT10.yml
+          # WZ
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/WZ__PowhegPythia8_AU2CT10.yml
+
+          # ZX
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZX__AlpgenPythia.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/ZX__Sherpa_CT10.yml
 
           # Fake
-          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ssjets/background/fake_muon.yml
+          - !include /afs/cern.ch/user/b/bjackson/work/private/Susy.00.03.04/utils/Plotting/configs/tnt.022/entry_files.mm.sr_ss/background/fake_muon.yml
