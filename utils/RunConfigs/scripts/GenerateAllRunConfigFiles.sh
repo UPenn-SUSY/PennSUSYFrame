@@ -25,13 +25,21 @@ then
   rm config_list__${DATE_STR}.merge.master.txt
 fi
 
-# # for type in cf data fake nominal signal
+if [[ ${SFRAME_DIR} == '' ]]
+then
+  echo 'SFRAME_DIR Not Defined...Exiting'
+  exit
+fi
+
+# for type in cf data fake nominal signal
 # for type in data fake nominal signal cf
 for type in ${configs_to_gen}
 do
   echo $type
   DATE_STR=$(date +%Y_%m_%d)
   echo "DATE_STR: ${DATE_STR}"
+
+
 
   python ${SFRAME_DIR}/../utils/RunConfigs/scripts/GenerateRunConfigFiles.py  batch_config.${type}.yml
   mv config_list__${DATE_STR}.txt config_list__${DATE_STR}.${type}.txt
