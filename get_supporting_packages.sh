@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------
 # core SFrame package
 echo "Checking out SFrame package"
-svn co https://sframe.svn.sourceforge.net/svnroot/sframe/SFrame/tags/SFrame-03-06-11/ SFrame
+svn co https://svn.code.sf.net/p/sframe/code/SFrame/tags/SFrame-03-06-21/ SFrame
 mkdir SFrame/lib
 
 # ----------------------------------------------------------------------------
