@@ -14,6 +14,7 @@ def genCutConfig( region_name
                 , met_rel   = None
                 , dphi_ll   = None
                 , mt2       = None
+                , emma_mt   = None
                 , ptll      = None
                 ):
     cut_name = '%s.it%s' % (region_name, it_num)
@@ -29,6 +30,9 @@ def genCutConfig( region_name
         cut_name = '%s_dphill%s' % (cut_name, dphi_ll)
     if mt2 is not None:
         cut_name = '%s_mt2%s' % (cut_name, mt2)
+    if emma_mt is not None:
+        print 'adding emma_mt to cut name: %s' % emma_mt
+        cut_name = '%s_emma_mt%s' % (cut_name, emma_mt)
     if ptll is not None:
         cut_name = '%s_ptll%s' % (cut_name, ptll)
 
@@ -93,6 +97,11 @@ cut: %s
         entry += """
     additional_cut: mt2 < %se3
 """ % mt2
+    if emma_mt is not None:
+        print 'adding emma_mt to additional cuts: %s' % emma_mt
+        entry += """
+    additional_cut: sqrt(mll*mll+ptll*ptll) < %se3
+""" % emma_mt
     if ptll is not None:
         entry += """
     additional_cut: ptll < %se3
@@ -109,34 +118,48 @@ if __name__ == '__main__':
     region = 'mm_sr_ss'
     out_file = '%s.cut_template.config' % region
 
-    lepton_pt_list = [15]
+    # lepton_pt_list = [15]
+    lepton_pt_list = [10, 15]
     # jet_pt_list    = [None, 20, 25, 30]
-    jet_pt_list    = [None, 25]
+    # jet_pt_list    = [None, 25]
+    # jet_pt_list    = [None, 20, 25]
+    jet_pt_list    = [None, 20]
+    num_jets_list  = [0, 1, 2]
     # met_rel_list   = [None, 30, 40, 50]
-    met_rel_list   = [None, 50]
-    dphi_ll_list   = [None, 0.5]
-    # dphi_ll_list   = [None]
+    # met_rel_list   = [None, 50]
+    met_rel_list   = [20, 50]
+    # met_rel_list   = [None]
+    # dphi_ll_list   = [None, 0.5]
+    dphi_ll_list   = [None]
     # mt2_list       = [None, 20, 30]
     mt2_list       = [None, 30]
-    ptll_list      = [None, 20]
+    emma_mt_list   = [None, 30]
+    # ptll_list      = [None, 20]
+    ptll_list      = [None]
 
     f = open(out_file, 'w')
     for lepton_pt in lepton_pt_list:
-        for jet_pt in jet_pt_list:
-            for met_rel in met_rel_list:
-                for dphi_ll in dphi_ll_list:
-                    for mt2 in mt2_list:
-                        for ptll in ptll_list:
-                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            # it 5, ptll
-                            f.write( genCutConfig( region_name = 'mm_sr_ss'
-                                                , it_num = 5
-                                                , lepton_pt = lepton_pt
-                                                , num_jets  = 0 if jet_pt is None else 1
-                                                , jet_pt    = jet_pt
-                                                , met_rel   = met_rel
-                                                , dphi_ll   = dphi_ll
-                                                , mt2       = mt2
-                                                , ptll      = ptll
-                                                )
-                                )
+        for num_jets in num_jets_list:
+            for jet_pt in jet_pt_list:
+                if num_jets == 0 and jet_pt is not None: continue
+                if num_jets != 0 and jet_pt is None: continue
+                for met_rel in met_rel_list:
+                    for dphi_ll in dphi_ll_list:
+                        for mt2 in mt2_list:
+                            for emma_mt in emma_mt_list:
+                                for ptll in ptll_list:
+                                    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                    # it 5, ptll
+                                    f.write( genCutConfig( region_name = 'mm_sr_ss'
+                                                        , it_num = 5
+                                                        , lepton_pt = lepton_pt
+                                                        # , num_jets  = 0 if jet_pt is None else 1
+                                                        , num_jets  = num_jets
+                                                        , jet_pt    = jet_pt
+                                                        , met_rel   = met_rel
+                                                        , dphi_ll   = dphi_ll
+                                                        , mt2       = mt2
+                                                        , emma_mt   = emma_mt
+                                                        , ptll      = ptll
+                                                        )
+                                        )
