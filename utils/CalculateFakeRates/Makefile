@@ -1,8 +1,8 @@
-LIBRARY := ChannelFractions
+LIBRARY := CalculateFakeRates
 OBJDIR  := $(PWD)/obj
 SRCDIR  := $(PWD)/src
 INCDIR  := $(PWD)/include
-EXECUTABLE := $(PWD)/ChannelFractions
+EXECUTABLE := $(PWD)/CalculateFakeRates
 
 LOCAL_LIBS_PATH = $(SH_LIB_PATH)/libNtupleLooper.so
 LOCAL_LIBS_PATH += $(SH_LIB_PATH)/libHelpers.so

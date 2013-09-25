@@ -5,7 +5,7 @@
 
 #include <dirent.h>
 
-#include "ChannelFractions/include/ChannelFractions.h"
+#include "CalculateFakeRates/include/CalculateFakeRates.h"
 #include "Parser/include/CommandParser.h"
 
 // -----------------------------------------------------------------------------
@@ -19,13 +19,13 @@ int main(int argc, char** argv)
   if (inp_cont.chain == NULL) return 0;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // Create the ChannelFractions object, and loop over the TChain
-  ChannelFractions cf(inp_cont.chain, inp_cont.num_events);
+  // Create the CalculateFakeRates object, and loop over the TChain
+  CalculateFakeRates cf(inp_cont.chain, inp_cont.num_events);
   cf.Loop();
 
   // Dump cut flow to screen and to file
   cf.printToScreen();
-  cf.printToFile("cf.root");
+  cf.printToFile("rates.root");
 
   return 0;
 }

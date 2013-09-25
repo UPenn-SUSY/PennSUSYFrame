@@ -1,5 +1,5 @@
-#ifndef ChannelFractions_h
-#define ChannelFractions_h
+#ifndef CalculateFakeRates_h
+#define CalculateFakeRates_h
 
 // =============================================================================
 #include <string>
@@ -14,12 +14,12 @@ class TH1D;
 class TTree;
 
 // =============================================================================
-class ChannelFractions : public NtupleLooper
+class CalculateFakeRates : public NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :
-    ChannelFractions(TTree *tree, double num_events);
-    virtual ~ChannelFractions();
+    CalculateFakeRates(TTree *tree, double num_events);
+    virtual ~CalculateFakeRates();
 
     virtual void processEvent();
 
@@ -28,27 +28,24 @@ class ChannelFractions : public NtupleLooper
 
   // ---------------------------------------------------------------------------
   protected:
-    double m_num_total;
-    double m_num_eee;
-    double m_num_eem;
-    double m_num_emm;
-    double m_num_mmm;
-    double m_num_ee_os;
-    double m_num_em_os;
-    double m_num_mm_os;
-    double m_num_ee_ss;
-    double m_num_em_ss;
-    double m_num_mm_ss;
 
   // ---------------------------------------------------------------------------
   private:
-    double getFraction(double);
-    void printLine( std::string channel
-                  , double num_entries
-                  , unsigned int label_field
-                  , unsigned int weight_field
-                  , unsigned int precision
-                  );
+    TH1D* m_el_re;
+    TH1D* m_el_re_numer;
+    TH1D* m_el_re_denom;
+
+    TH1D* m_mu_re;
+    TH1D* m_mu_re_numer;
+    TH1D* m_mu_re_denom;
+
+    TH1D* m_el_fr;
+    TH1D* m_el_fr_numer;
+    TH1D* m_el_fr_denom;
+
+    TH1D* m_mu_fr;
+    TH1D* m_mu_fr_numer;
+    TH1D* m_mu_fr_denom;
 };
 
 #endif
