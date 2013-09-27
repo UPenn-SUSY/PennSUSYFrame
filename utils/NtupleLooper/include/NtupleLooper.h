@@ -5,6 +5,9 @@
 #include <TROOT.h>
 #include <vector>
 
+#include "SusyAnalysisTools/include/ElectronDescription.h"
+#include "SusyAnalysisTools/include/MuonDescription.h"
+
 // =============================================================================
 class ProgressBar;
 class TBranch;
@@ -25,6 +28,8 @@ class NtupleLooper
     virtual Bool_t   Notify();
 
     virtual void processEvent();
+    virtual bool isSignalElectron(const SusyAnalysisTools::ElectronDescription&);
+    virtual bool isSignalMuon(const SusyAnalysisTools::MuonDescription&);
 
   // ---------------------------------------------------------------------------
   protected:

@@ -123,9 +123,10 @@ void CalculateFakeRates::processEvent()
     SusyAnalysisTools::ElectronDescription el_desc(m_el_desc->at(el_it));
     bool is_truth_matched = el_desc.getPassPromptLepton();
     bool is_baseline      = el_desc.getPassGood();
-    bool is_signal        = el_desc.getPassSignal();
-    // float el_pt = 0.;
+    // bool is_signal        = el_desc.getPassSignal();
+    bool is_signal        = isSignalElectron(el_desc);
     float el_pt = m_el_pt->at(el_it)/1000.;
+
     if (el_pt >= 500.) el_pt = 499.;
 
     if (is_truth_matched) {
@@ -141,12 +142,6 @@ void CalculateFakeRates::processEvent()
         m_el_fr_denom->Fill(el_pt);
       }
       if (is_baseline && is_signal) {
-        // std::cout << "Found fake electron -- num el: " << num_el << " -- num mu: " << num_mu << "\n";
-        // std::cout << "\tpt:       " << m_el_pt->at(el_it)       << "\n";
-        // std::cout << "\tptcone30: " << m_el_ptcone30->at(el_it) << "\n";
-        // std::cout << "\tetcone30: " << m_el_etcone30->at(el_it) << "\n";
-        // std::cout << "\td0_sig:   " << m_el_d0_sig->at(el_it)   << "\n";
-        // std::cout << "\tz0:       " << m_el_z0->at(el_it)       << "\n";
         m_el_fr_numer->Fill(el_pt);
       }
     }
@@ -156,9 +151,10 @@ void CalculateFakeRates::processEvent()
     SusyAnalysisTools::MuonDescription mu_desc(m_mu_desc->at(mu_it));
     bool is_truth_matched = mu_desc.getPassPromptLepton();
     bool is_baseline      = mu_desc.getPassGood();
-    bool is_signal        = mu_desc.getPassSignal();
-    // float mu_pt = 0.;
+    // bool is_signal        = mu_desc.getPassSignal();
+    bool is_signal        = isSignalMuon(mu_desc);
     float mu_pt = m_mu_pt->at(mu_it)/1000.;
+
     if (mu_pt >= 500.) mu_pt = 499.;
 
     if (is_truth_matched) {

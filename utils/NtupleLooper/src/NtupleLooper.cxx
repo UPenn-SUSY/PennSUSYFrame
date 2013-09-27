@@ -13,6 +13,9 @@
 #include <TFile.h>
 #include <TH1D.h>
 
+#include "SusyAnalysisTools/include/ElectronDescription.h"
+#include "SusyAnalysisTools/include/MuonDescription.h"
+
 #include "ProgressBar/include/ProgressBar.h"
 
 // -----------------------------------------------------------------------------
@@ -594,4 +597,16 @@ void NtupleLooper::processEvent()
   //   std::cout << "event: " << m_event_number
   //             << " -- mll: " << m_mll << " MeV"
   //             << "\n";
+}
+
+// -----------------------------------------------------------------------------
+bool NtupleLooper::isSignalElectron(const SusyAnalysisTools::ElectronDescription& el_desc)
+{
+  return el_desc.getPassSignal();
+}
+
+// -----------------------------------------------------------------------------
+bool NtupleLooper::isSignalMuon(const SusyAnalysisTools::MuonDescription& mu_desc)
+{
+  return mu_desc.getPassSignal();
 }
