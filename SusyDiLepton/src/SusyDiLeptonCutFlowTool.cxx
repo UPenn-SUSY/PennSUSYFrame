@@ -155,8 +155,8 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
     VertexContainer&   vertices,
     const Trigger*           /*trigger*/,
     const TriggerVec*        /*trigger_vec*/,
-    D3PDReader::MuonTruthD3PDObject* /*muon_truth_d3pdobject*/,
-    D3PDReader::TruthD3PDObject*     mc,
+    D3PDReader::MuonTruthD3PDObject* muon_truth_d3pdobject,
+    D3PDReader::TruthD3PDObject*     mc_truth,
     bool is_egamma_stream)
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -259,9 +259,6 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   }
   if (c_crit_bad_jet_veto && pass_jet_cleaning == false) {return false;}
 
-  //  return false;
-  
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check primary vertex
   bool pass_good_vertex = vertices.firstGood(VERT_ALL);
@@ -307,7 +304,7 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check HFOR
   bool pass_hfor = true;
-  if(!is_data()) pass_hfor =  (  m_hfor_tool->passHFOR(mc)
+  if(!is_data()) pass_hfor =  (  m_hfor_tool->passHFOR(mc_truth)
                               );
   event->getEventDesc()->setPassHFOR(pass_hfor);
   if (c_crit_hfor && pass_hfor == false) {
@@ -323,11 +320,11 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check Sherpa WW Overlap && Zoverlap
   bool pass_sherpa_ww = true;
-  if(!is_data()) pass_sherpa_ww =  (m_hfor_tool->passSherpaWWOveralpRemoval(event, mc)
+  if(!is_data()) pass_sherpa_ww =  (m_hfor_tool->passSherpaWWOveralpRemoval(event, mc_truth)
                                    );
 
   bool pass_z_overlap = true;
-  if(!is_data()) pass_z_overlap = (m_hfor_tool->passZOverlapRemoval(mc, m_truth_match_tool));
+  if(!is_data()) pass_z_overlap = (m_hfor_tool->passZOverlapRemoval(mc_truth, m_truth_match_tool));
 
   bool pass_mc_overlap = pass_sherpa_ww && pass_z_overlap;
 
@@ -404,6 +401,12 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   if (is_data()) {
     if (is_egamma_stream  && flavor_channel == FLAVOR_MM) return false;
     if (!is_egamma_stream && flavor_channel == FLAVOR_EE) return false;
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // do truth matching for each lepton in MC
+  if (!is_data()) {
+    m_truth_match_tool->prep(mc_truth);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

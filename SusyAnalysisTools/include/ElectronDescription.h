@@ -40,6 +40,7 @@ namespace SusyAnalysisTools
       void setPassLikelihoodMedium(bool);
       void setPassLikelihoodTight(bool);
       void setIsInCrack(bool);
+      void setPassPromptLepton(bool);
 
       bool getPassBaseline() const;
       bool getPassGood() const;
@@ -57,6 +58,7 @@ namespace SusyAnalysisTools
       bool getPassLikelihoodMedium() const;
       bool getPassLikelihoodTight() const;
       bool getIsInCrack() const;
+      bool getPassPromptLepton() const;
 
     // -------------------------------------------------------------------------
     private:
@@ -78,6 +80,7 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_LIKELIHOOD_MED   = 13;
       static const unsigned int ADD_LIKELIHOOD_TIGHT = 14;
       static const unsigned int ADD_IS_IN_CRACK      = 15;
+      static const unsigned int ADD_PROMPT_LEP       = 16;
 
       bool m_pass_baseline;
       bool m_pass_good;
@@ -95,6 +98,7 @@ namespace SusyAnalysisTools
       bool m_pass_likelihood_medium;
       bool m_pass_likelihood_tight;
       bool m_is_in_crack;
+      bool m_pass_prompt_lepton;
 
       // TODO move implementation to icc file
       template <class T>

@@ -43,6 +43,7 @@ namespace SusyAnalysisTools
       void setPassD0Sig(bool);
       void setPassZ0SinTheta(bool);
       void setPassPtIso(bool);
+      void setPassPromptLepton(bool);
 
       bool getPassBaseline() const;
       bool getPassGood() const;
@@ -63,6 +64,7 @@ namespace SusyAnalysisTools
       bool getPassD0Sig() const;
       bool getPassZ0SinTheta() const;
       bool getPassPtIso() const;
+      bool getPassPromptLepton() const;
 
     // -------------------------------------------------------------------------
     private:
@@ -87,6 +89,7 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_D0_SIG       = 16;
       static const unsigned int ADD_Z0_SIN_THETA = 17;
       static const unsigned int ADD_PT_ISO       = 18;
+      static const unsigned int ADD_PROMPT_LEP   = 19;
 
       bool m_pass_baseline;
       bool m_pass_good;
@@ -107,6 +110,7 @@ namespace SusyAnalysisTools
       bool m_pass_d0_sig;
       bool m_pass_z0_sin_theta;
       bool m_pass_pt_iso;
+      bool m_pass_prompt_lepton;
 
       // TODO move implementation to icc file
       template <class T>

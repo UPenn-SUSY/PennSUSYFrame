@@ -40,6 +40,7 @@ ull_t SusyAnalysisTools::ElectronDescription::toInt() const
   el_desc += getIntComp(m_pass_likelihood_medium, ADD_LIKELIHOOD_MED  );
   el_desc += getIntComp(m_pass_likelihood_tight , ADD_LIKELIHOOD_TIGHT);
   el_desc += getIntComp(m_is_in_crack           , ADD_IS_IN_CRACK     );
+  el_desc += getIntComp(m_pass_prompt_lepton    , ADD_PROMPT_LEP      );
 
   return el_desc;
 }
@@ -76,6 +77,7 @@ void SusyAnalysisTools::ElectronDescription::set(const ull_t& rhs)
   m_pass_likelihood_medium = getComponent(rhs, ADD_LIKELIHOOD_MED   ,SIZE_BOOL);
   m_pass_likelihood_tight  = getComponent(rhs, ADD_LIKELIHOOD_TIGHT ,SIZE_BOOL);
   m_is_in_crack            = getComponent(rhs, ADD_IS_IN_CRACK      ,SIZE_BOOL);
+  m_pass_prompt_lepton     = getComponent(rhs, ADD_PROMPT_LEP       ,SIZE_BOOL);
 }
 
 // -----------------------------------------------------------------------------
@@ -191,6 +193,12 @@ void SusyAnalysisTools::ElectronDescription::setIsInCrack(bool pass)
 }
 
 // -----------------------------------------------------------------------------
+void SusyAnalysisTools::ElectronDescription::setPassPromptLepton(bool pass)
+{
+  m_pass_prompt_lepton = pass;
+}
+
+// -----------------------------------------------------------------------------
 bool SusyAnalysisTools::ElectronDescription::getPassBaseline() const
 {
   return m_pass_baseline;
@@ -283,6 +291,12 @@ bool SusyAnalysisTools::ElectronDescription::getPassLikelihoodTight() const
 bool SusyAnalysisTools::ElectronDescription::getIsInCrack() const
 {
   return m_is_in_crack;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::ElectronDescription::getPassPromptLepton() const
+{
+  return m_pass_prompt_lepton;
 }
 
 // -----------------------------------------------------------------------------

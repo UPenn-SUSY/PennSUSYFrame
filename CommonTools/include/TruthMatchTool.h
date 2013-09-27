@@ -39,8 +39,8 @@ namespace CommonTools {
                           , const std::vector<Muon*>&
                           , const D3PDReader::MuonTruthD3PDObject*
                           );
-    bool isRealElectron(const Electron*);
-    bool isRealMuon(const Muon*, const D3PDReader::MuonTruthD3PDObject*);
+    bool isRealElectron(Electron*);
+    bool isRealMuon(Muon*, const D3PDReader::MuonTruthD3PDObject*);
 
     int matchBarcode( int barcode_to_match
 		      , const std::vector<int>* list_of_barcodes

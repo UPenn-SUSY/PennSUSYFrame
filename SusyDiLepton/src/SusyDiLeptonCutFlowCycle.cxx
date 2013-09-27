@@ -239,7 +239,12 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
       c_fake_file =
         maindir + "/../SusyMatrixMethod/data/pass6_Apr2_2013.root";
     }
-    m_matrix_method.configure(c_fake_file, SusyMatrixMethod::PT);
+    m_matrix_method.configure(c_fake_file
+                             , SusyMatrixMethod::PT
+                             , SusyMatrixMethod::PT
+                             , SusyMatrixMethod::PT
+                             , SusyMatrixMethod::PT
+                             );
   }
 }
 
@@ -561,13 +566,27 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
   // if (  true
-  //    && m_event->EventNumber() != 1310020
-  //    && m_event->EventNumber() != 1725616
-  //    && m_event->EventNumber() != 1912756
-  //    && m_event->EventNumber() != 2355284
-  //    && m_event->EventNumber() != 32185
-  //    && m_event->EventNumber() != 423702
-  //    && m_event->EventNumber() != 920757
+  //    && m_event->EventNumber() != 4881329
+  //    && m_event->EventNumber() != 4881334
+  //    && m_event->EventNumber() != 4881336
+  //    && m_event->EventNumber() != 4881337
+  //    && m_event->EventNumber() != 4881341
+  //    && m_event->EventNumber() != 4881348
+  //    && m_event->EventNumber() != 4881350
+  //    && m_event->EventNumber() != 4881352
+  //    && m_event->EventNumber() != 4881357
+  //    && m_event->EventNumber() != 4881358
+  //    && m_event->EventNumber() != 4881359
+  //    && m_event->EventNumber() != 4881362
+  //    && m_event->EventNumber() != 4881364
+  //    && m_event->EventNumber() != 4881365
+  //    && m_event->EventNumber() != 4881373
+  //    && m_event->EventNumber() != 4881375
+  //    && m_event->EventNumber() != 4881383
+  //    && m_event->EventNumber() != 4881385
+  //    && m_event->EventNumber() != 4881389
+  //    && m_event->EventNumber() != 4881390
+  //    && m_event->EventNumber() != 488139
   //    ) return;
 
   m_logger << DEBUG
@@ -645,7 +664,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   fillEventVariables();
   fillOutput();
 
-  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // std::cout << "==============================================================\n";
   // std::cout << "==============================================================\n";
   // std::cout << "Run: " << m_event->RunNumber() << "\n";
@@ -827,7 +846,8 @@ void SusyDiLeptonCutFlowCycle::fillFakeWeight()
     // TODO fill for all regions
     m_event->setFakeWeight( m_matrix_method.getTotalFake( is_tight_0, is_electron_0, pt_0, eta_0
                                         , is_tight_1, is_electron_1, pt_1, eta_1
-                                        , SusyMatrixMethod::FR_SRSSjets
+                                        // , SusyMatrixMethod::FR_SRSSjets
+                                        , SusyMatrixMethod::FR_SRSSInc
                                         , m_event->getMetRel()
                                         , SusyMatrixMethod::SYS_NONE
                                         )

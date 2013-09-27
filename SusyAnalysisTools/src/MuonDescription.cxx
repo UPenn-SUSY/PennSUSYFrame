@@ -24,26 +24,25 @@ ull_t SusyAnalysisTools::MuonDescription::toInt() const
 {
   ull_t mu_desc = 0;
 
-  mu_desc += getIntComp(m_pass_baseline, ADD_BASELINE);
-
-  mu_desc += getIntComp(m_pass_baseline    , ADD_BASELINE    );
-  mu_desc += getIntComp(m_pass_good        , ADD_GOOD        );
-  mu_desc += getIntComp(m_pass_signal      , ADD_SIGNAL      );
-  mu_desc += getIntComp(m_pass_bad         , ADD_BAD         );
-  mu_desc += getIntComp(m_pass_cosmic      , ADD_COSMIC      );
-  mu_desc += getIntComp(m_pass_loose       , ADD_LOOSE       );
-  mu_desc += getIntComp(m_pass_seg_tag     , ADD_SEG_TAG     );
-  mu_desc += getIntComp(m_pass_combined    , ADD_COMBINED    );
-  mu_desc += getIntComp(m_pass_b_layer     , ADD_B_LAYER     );
-  mu_desc += getIntComp(m_pass_pixel       , ADD_PIXEL       );
-  mu_desc += getIntComp(m_pass_sct         , ADD_SCT         );
-  mu_desc += getIntComp(m_pass_trt         , ADD_TRT         );
-  mu_desc += getIntComp(m_pass_si_holes    , ADD_SI_HOLES    );
-  mu_desc += getIntComp(m_pass_baseline_pt , ADD_BASELINE_PT );
-  mu_desc += getIntComp(m_pass_baseline_eta, ADD_BASELINE_ETA);
-  mu_desc += getIntComp(m_pass_d0_sig      , ADD_D0_SIG      );
-  mu_desc += getIntComp(m_pass_z0_sin_theta, ADD_Z0_SIN_THETA);
-  mu_desc += getIntComp(m_pass_pt_iso      , ADD_PT_ISO      );
+  mu_desc += getIntComp(m_pass_baseline      , ADD_BASELINE    );
+  mu_desc += getIntComp(m_pass_good          , ADD_GOOD        );
+  mu_desc += getIntComp(m_pass_signal        , ADD_SIGNAL      );
+  mu_desc += getIntComp(m_pass_bad           , ADD_BAD         );
+  mu_desc += getIntComp(m_pass_cosmic        , ADD_COSMIC      );
+  mu_desc += getIntComp(m_pass_loose         , ADD_LOOSE       );
+  mu_desc += getIntComp(m_pass_seg_tag       , ADD_SEG_TAG     );
+  mu_desc += getIntComp(m_pass_combined      , ADD_COMBINED    );
+  mu_desc += getIntComp(m_pass_b_layer       , ADD_B_LAYER     );
+  mu_desc += getIntComp(m_pass_pixel         , ADD_PIXEL       );
+  mu_desc += getIntComp(m_pass_sct           , ADD_SCT         );
+  mu_desc += getIntComp(m_pass_trt           , ADD_TRT         );
+  mu_desc += getIntComp(m_pass_si_holes      , ADD_SI_HOLES    );
+  mu_desc += getIntComp(m_pass_baseline_pt   , ADD_BASELINE_PT );
+  mu_desc += getIntComp(m_pass_baseline_eta  , ADD_BASELINE_ETA);
+  mu_desc += getIntComp(m_pass_d0_sig        , ADD_D0_SIG      );
+  mu_desc += getIntComp(m_pass_z0_sin_theta  , ADD_Z0_SIN_THETA);
+  mu_desc += getIntComp(m_pass_pt_iso        , ADD_PT_ISO      );
+  mu_desc += getIntComp(m_pass_prompt_lepton , ADD_PROMPT_LEP  );
 
   return mu_desc;
 }
@@ -64,24 +63,25 @@ void SusyAnalysisTools::MuonDescription::set(
 // -----------------------------------------------------------------------------
 void SusyAnalysisTools::MuonDescription::set(const ull_t& rhs)
 {
-  m_pass_baseline     = getComponent(rhs, ADD_BASELINE    , SIZE_BOOL);
-  m_pass_good         = getComponent(rhs, ADD_GOOD        , SIZE_BOOL);
-  m_pass_signal       = getComponent(rhs, ADD_SIGNAL      , SIZE_BOOL);
-  m_pass_bad          = getComponent(rhs, ADD_BAD         , SIZE_BOOL);
-  m_pass_cosmic       = getComponent(rhs, ADD_COSMIC      , SIZE_BOOL);
-  m_pass_loose        = getComponent(rhs, ADD_LOOSE       , SIZE_BOOL);
-  m_pass_seg_tag      = getComponent(rhs, ADD_SEG_TAG     , SIZE_BOOL);
-  m_pass_combined     = getComponent(rhs, ADD_COMBINED    , SIZE_BOOL);
-  m_pass_b_layer      = getComponent(rhs, ADD_B_LAYER     , SIZE_BOOL);
-  m_pass_pixel        = getComponent(rhs, ADD_PIXEL       , SIZE_BOOL);
-  m_pass_sct          = getComponent(rhs, ADD_SCT         , SIZE_BOOL);
-  m_pass_trt          = getComponent(rhs, ADD_TRT         , SIZE_BOOL);
-  m_pass_si_holes     = getComponent(rhs, ADD_SI_HOLES    , SIZE_BOOL);
-  m_pass_baseline_pt  = getComponent(rhs, ADD_BASELINE_PT , SIZE_BOOL);
-  m_pass_baseline_eta = getComponent(rhs, ADD_BASELINE_ETA, SIZE_BOOL);
-  m_pass_d0_sig       = getComponent(rhs, ADD_D0_SIG      , SIZE_BOOL);
-  m_pass_z0_sin_theta = getComponent(rhs, ADD_Z0_SIN_THETA, SIZE_BOOL);
-  m_pass_pt_iso       = getComponent(rhs, ADD_PT_ISO      , SIZE_BOOL);
+  m_pass_baseline      = getComponent(rhs , ADD_BASELINE     , SIZE_BOOL);
+  m_pass_good          = getComponent(rhs , ADD_GOOD         , SIZE_BOOL);
+  m_pass_signal        = getComponent(rhs , ADD_SIGNAL       , SIZE_BOOL);
+  m_pass_bad           = getComponent(rhs , ADD_BAD          , SIZE_BOOL);
+  m_pass_cosmic        = getComponent(rhs , ADD_COSMIC       , SIZE_BOOL);
+  m_pass_loose         = getComponent(rhs , ADD_LOOSE        , SIZE_BOOL);
+  m_pass_seg_tag       = getComponent(rhs , ADD_SEG_TAG      , SIZE_BOOL);
+  m_pass_combined      = getComponent(rhs , ADD_COMBINED     , SIZE_BOOL);
+  m_pass_b_layer       = getComponent(rhs , ADD_B_LAYER      , SIZE_BOOL);
+  m_pass_pixel         = getComponent(rhs , ADD_PIXEL        , SIZE_BOOL);
+  m_pass_sct           = getComponent(rhs , ADD_SCT          , SIZE_BOOL);
+  m_pass_trt           = getComponent(rhs , ADD_TRT          , SIZE_BOOL);
+  m_pass_si_holes      = getComponent(rhs , ADD_SI_HOLES     , SIZE_BOOL);
+  m_pass_baseline_pt   = getComponent(rhs , ADD_BASELINE_PT  , SIZE_BOOL);
+  m_pass_baseline_eta  = getComponent(rhs , ADD_BASELINE_ETA , SIZE_BOOL);
+  m_pass_d0_sig        = getComponent(rhs , ADD_D0_SIG       , SIZE_BOOL);
+  m_pass_z0_sin_theta  = getComponent(rhs , ADD_Z0_SIN_THETA , SIZE_BOOL);
+  m_pass_pt_iso        = getComponent(rhs , ADD_PT_ISO       , SIZE_BOOL);
+  m_pass_prompt_lepton = getComponent(rhs , ADD_PROMPT_LEP   , SIZE_BOOL);
 }
 
 // -----------------------------------------------------------------------------
@@ -216,6 +216,12 @@ void SusyAnalysisTools::MuonDescription::setPassPtIso(bool pass)
 }
 
 // -----------------------------------------------------------------------------
+void SusyAnalysisTools::MuonDescription::setPassPromptLepton(bool pass)
+{
+  m_pass_prompt_lepton = pass;
+}
+
+// -----------------------------------------------------------------------------
 bool SusyAnalysisTools::MuonDescription::getPassBaseline() const
 {
   return m_pass_baseline;
@@ -327,6 +333,12 @@ bool SusyAnalysisTools::MuonDescription::getPassZ0SinTheta() const
 bool SusyAnalysisTools::MuonDescription::getPassPtIso() const
 {
   return m_pass_pt_iso;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::MuonDescription::getPassPromptLepton() const
+{
+  return m_pass_prompt_lepton;
 }
 
 // -----------------------------------------------------------------------------

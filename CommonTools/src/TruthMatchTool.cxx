@@ -77,23 +77,38 @@ bool CommonTools::TruthMatchTool::isRealLeptonEvent( FLAVOR_CHANNEL flavor,
   if (is_data()) return true;
 
   if (!m_cached) {
+    std::vector<bool> is_prompt;
+    size_t num_el = el.size();
+    for (size_t el_it = 0; el_it != num_el; ++el_it) {
+      is_prompt.push_back(isRealElectron(el.at(el_it)));
+    }
+    size_t num_mu = mu.size();
+    for (size_t mu_it = 0; mu_it != num_mu; ++mu_it) {
+      is_prompt.push_back(isRealMuon(mu.at(mu_it), mu_truth));
+    }
+
     bool is_prompt_1 = false;
     bool is_prompt_2 = false;
 
-    switch (flavor) {
-      case FLAVOR_EE: is_prompt_1 = isRealElectron(el.at(0));
-                      is_prompt_2 = isRealElectron(el.at(1));
-                      break;
-      case FLAVOR_MM: is_prompt_1 = isRealMuon(mu.at(0), mu_truth);
-                      is_prompt_2 = isRealMuon(mu.at(1), mu_truth);
-                      break;
-      case FLAVOR_EM: is_prompt_1 = isRealElectron(el.at(0));
-                      is_prompt_2 = isRealMuon(mu.at(0), mu_truth);
-                      break;
-      default:        is_prompt_1 = false;
-                      is_prompt_2 = false;
-                      break;
+    if (flavor != FLAVOR_NONE) {
+      is_prompt_1 = is_prompt.at(0);
+      is_prompt_2 = is_prompt.at(1);
     }
+
+    // switch (flavor) {
+    //   case FLAVOR_EE: is_prompt_1 = isRealElectron(el.at(0));
+    //                   is_prompt_2 = isRealElectron(el.at(1));
+    //                   break;
+    //   case FLAVOR_MM: is_prompt_1 = isRealMuon(mu.at(0), mu_truth);
+    //                   is_prompt_2 = isRealMuon(mu.at(1), mu_truth);
+    //                   break;
+    //   case FLAVOR_EM: is_prompt_1 = isRealElectron(el.at(0));
+    //                   is_prompt_2 = isRealMuon(mu.at(0), mu_truth);
+    //                   break;
+    //   default:        is_prompt_1 = false;
+    //                   is_prompt_2 = false;
+    //                   break;
+    // }
 
     m_is_real_lepton_event = (is_prompt_1 && is_prompt_2);
     m_cached = true;
@@ -102,7 +117,7 @@ bool CommonTools::TruthMatchTool::isRealLeptonEvent( FLAVOR_CHANNEL flavor,
 }
 
 // -----------------------------------------------------------------------------
-bool CommonTools::TruthMatchTool::isRealElectron(const Electron* el)
+bool CommonTools::TruthMatchTool::isRealElectron(Electron* el)
 {
   // for data: pass through
   if (is_data()) return true;
@@ -111,12 +126,14 @@ bool CommonTools::TruthMatchTool::isRealElectron(const Electron* el)
                                         , el->origin()
                                         , el->type()
                                         );
-  return (lep_type == RecoTruthMatch::PROMPT);
+  bool is_real_lep = (lep_type == RecoTruthMatch::PROMPT);
+  el->getElectronDesc()->setPassPromptLepton(is_real_lep);
+  return is_real_lep;
 }
 
 // -----------------------------------------------------------------------------
 bool CommonTools::TruthMatchTool::isRealMuon(
-    const Muon* mu, const D3PDReader::MuonTruthD3PDObject* mu_truth)
+    Muon* mu, const D3PDReader::MuonTruthD3PDObject* mu_truth)
 {
   // for data: pass through
   if (is_data()) return true;
@@ -136,7 +153,9 @@ bool CommonTools::TruthMatchTool::isRealMuon(
                                         , mu_origin
                                         , mu_type
                                         );
-  return (lep_type == RecoTruthMatch::PROMPT);
+  bool is_real_lep = (lep_type == RecoTruthMatch::PROMPT);
+  mu->getMuonDesc()->setPassPromptLepton(is_real_lep);
+  return is_real_lep;
 }
 
 // -----------------------------------------------------------------------------
