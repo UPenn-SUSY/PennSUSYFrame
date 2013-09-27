@@ -2,7 +2,8 @@
 # = top level Makefile =
 # ======================
 DIRS = Helpers ProgressBar Selection Parser NtupleLooper HistMaker \
-	   PlotNtupleMaker CutFlowDump EventNumberDump ChannelFractions
+	   PlotNtupleMaker CutFlowDump EventNumberDump ChannelFractions \
+	   CalculateFakeRates
 
 all::build link
 
