@@ -65,6 +65,9 @@ namespace CommonTools
     std::vector<float> m_mu_ptcone20;
     std::vector<float> m_mu_ptcone30;
     std::vector<float> m_mu_ptcone40;
+    std::vector<float> m_mu_ptcone20_trkelstyle;
+    std::vector<float> m_mu_ptcone30_trkelstyle;
+    std::vector<float> m_mu_ptcone40_trkelstyle;
 
     std::vector<float> m_mu_mt;
     std::vector<float> m_mu_dphi_met;

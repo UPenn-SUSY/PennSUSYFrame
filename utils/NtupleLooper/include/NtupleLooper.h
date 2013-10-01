@@ -28,8 +28,8 @@ class NtupleLooper
     virtual Bool_t   Notify();
 
     virtual void processEvent();
-    virtual bool isSignalElectron(const SusyAnalysisTools::ElectronDescription&);
-    virtual bool isSignalMuon(const SusyAnalysisTools::MuonDescription&);
+    virtual bool isSignalElectron(const size_t el_index, const SusyAnalysisTools::ElectronDescription&);
+    virtual bool isSignalMuon(const size_t mu_index, const SusyAnalysisTools::MuonDescription&);
 
   // ---------------------------------------------------------------------------
   protected:
@@ -113,6 +113,9 @@ class NtupleLooper
     std::vector<float>*        m_mu_ptcone20;
     std::vector<float>*        m_mu_ptcone30;
     std::vector<float>*        m_mu_ptcone40;
+    std::vector<float>*        m_mu_ptcone20_trkelstyle;
+    std::vector<float>*        m_mu_ptcone30_trkelstyle;
+    std::vector<float>*        m_mu_ptcone40_trkelstyle;
     std::vector<ULong64_t>*    m_mu_desc;
     std::vector<float>*        m_jet_pt;
     std::vector<float>*        m_jet_eta;
@@ -208,6 +211,9 @@ class NtupleLooper
     TBranch* b_mu_ptcone20;
     TBranch* b_mu_ptcone30;
     TBranch* b_mu_ptcone40;
+    TBranch* b_mu_ptcone20_trkelstyle;
+    TBranch* b_mu_ptcone30_trkelstyle;
+    TBranch* b_mu_ptcone40_trkelstyle;
     TBranch* b_mu_desc;
     TBranch* b_jet_pt;
     TBranch* b_jet_eta;

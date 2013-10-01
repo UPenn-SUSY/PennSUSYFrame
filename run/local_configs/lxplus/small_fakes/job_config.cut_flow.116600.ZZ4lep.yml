@@ -8,7 +8,7 @@ SuperVerboseInfo: False
 PrintEventInfo:   False
 Version:          1
 CycleName:        SusyDiLeptonCutFlowCycle
-SampleName:       105200.ttbar
+SampleName:       116600.ZZ4lep
 
 input_tree_name:  susy
 output_tree_name: output
@@ -17,73 +17,8 @@ is_egamma_stream: True
 UserConfigFile: ${SFRAME_DIR}/../run/local_configs/user_config.cut_flow.mc.small_fakes.yml
 
 InputFiles:
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267512_00/NTUP_SUSY.01267512._000022.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267512_00/NTUP_SUSY.01267512._000046.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267512_00/NTUP_SUSY.01267512._000051.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267512_00/NTUP_SUSY.01267512._000063.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000122.root.2
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000146.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000158.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000177.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000194.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000210.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000219.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000242.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267514_00/NTUP_SUSY.01267514._000362.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267514_00/NTUP_SUSY.01267514._000440.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267514_00/NTUP_SUSY.01267514._000499.root.3
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267514_00/NTUP_SUSY.01267514._000575.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000611.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000680.root.2
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000717.root.2
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000752.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000770.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000783.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000845.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267516_00/NTUP_SUSY.01267516._000916.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267516_00/NTUP_SUSY.01267516._001100.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001110.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001168.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001247.root.2
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001307.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001310.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001336.root.2
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267518_00/NTUP_SUSY.01267518._001367.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267518_00/NTUP_SUSY.01267518._001390.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267518_00/NTUP_SUSY.01267518._001467.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267518_00/NTUP_SUSY.01267518._001479.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306755_00/NTUP_SUSY.01306755._001702.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306755_00/NTUP_SUSY.01306755._001720.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306756_00/NTUP_SUSY.01306756._001766.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306756_00/NTUP_SUSY.01306756._001801.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306756_00/NTUP_SUSY.01306756._001802.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306756_00/NTUP_SUSY.01306756._001857.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306756_00/NTUP_SUSY.01306756._001888.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306756_00/NTUP_SUSY.01306756._001909.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306756_00/NTUP_SUSY.01306756._001933.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306757_00/NTUP_SUSY.01306757._002001.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306757_00/NTUP_SUSY.01306757._002055.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306757_00/NTUP_SUSY.01306757._002073.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306757_00/NTUP_SUSY.01306757._002080.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306757_00/NTUP_SUSY.01306757._002099.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306757_00/NTUP_SUSY.01306757._002127.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306757_00/NTUP_SUSY.01306757._002176.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306758_00/NTUP_SUSY.01306758._002261.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306758_00/NTUP_SUSY.01306758._002316.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306758_00/NTUP_SUSY.01306758._002352.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306758_00/NTUP_SUSY.01306758._002353.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306758_00/NTUP_SUSY.01306758._002498.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002523.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002601.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002632.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002636.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002645.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002695.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002707.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002725.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002726.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002750.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306760_00/NTUP_SUSY.01306760._002794.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306760_00/NTUP_SUSY.01306760._002795.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306760_00/NTUP_SUSY.01306760._002803.root.1
-  - /tmp/bjackson/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306760_00/NTUP_SUSY.01306760._002831.root.1
+  - /tmp/bjackson/mc12_8TeV.116600.gg2ZZJimmy_AUET2CT10_ZZ4lep.merge.NTUP_SUSY.e1525_s1499_s1504_r3658_r3549_p1512_tid01267663_00/NTUP_SUSY.01267663._000001.root.1
+  - /tmp/bjackson/mc12_8TeV.116600.gg2ZZJimmy_AUET2CT10_ZZ4lep.merge.NTUP_SUSY.e1525_s1499_s1504_r3658_r3549_p1512_tid01267663_00/NTUP_SUSY.01267663._000002.root.1
+  - /tmp/bjackson/mc12_8TeV.116600.gg2ZZJimmy_AUET2CT10_ZZ4lep.merge.NTUP_SUSY.e1525_s1499_s1504_r3658_r3549_p1512_tid01267663_00/NTUP_SUSY.01267663._000003.root.1
+  - /tmp/bjackson/mc12_8TeV.116600.gg2ZZJimmy_AUET2CT10_ZZ4lep.merge.NTUP_SUSY.e1525_s1499_s1504_r3658_r3549_p1512_tid01267663_00/NTUP_SUSY.01267663._000004.root.1
+

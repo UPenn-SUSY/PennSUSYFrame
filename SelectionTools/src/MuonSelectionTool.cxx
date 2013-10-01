@@ -188,6 +188,11 @@ void SelectionTools::MuonSelectionTool::process(
                             , c_signal_min_ptcone_cut
                             , c_signal_max_ptcone_cut
                             );
+  // std::cout << "checking pt iso for this muon:\n"
+  //           << "\tptcone30:     " << ptcone30 << "\n"
+  //           << "\tpt:           " << pt << "\n"
+  //           << "\tptcone_ratio: " << ptcone_ratio << "\n"
+  //           << "\tpass_pt_iso:  " << pass_pt_iso << "\n";
   mu_desc->setPassPtIso(pass_pt_iso);
 }
 
@@ -218,6 +223,10 @@ bool SelectionTools::MuonSelectionTool::isSignal(Muon* mu)
 {
   // Check if this muon passed all signal cuts
   SusyAnalysisTools::MuonDescription* mu_desc = mu->getMuonDesc();
+  // std::cout << "\t\tpass signal eta: "          <<  mu_desc->getPassSignalEta() << "\n"
+  //              "\t\tpass signal d0 sig: "       <<  mu_desc->getPassD0Sig() << "\n"
+  //              "\t\tpass signal z0 sin theta: " <<  mu_desc->getPassZ0SinTheta() << "\n"
+  //              "\t\tpass signal pt iso: "       <<  mu_desc->getPassPtIso() << "\n";
   bool pass_signal = (  mu_desc->getPassSignalEta()
                      && mu_desc->getPassD0Sig()
                      && mu_desc->getPassZ0SinTheta()
@@ -302,12 +311,14 @@ std::vector<Muon*> SelectionTools::MuonSelectionTool::getSignalMuons(
 std::vector<Muon*> SelectionTools::MuonSelectionTool::getSignalMuons(
     const std::vector<Muon*>& good_muons)
 {
+  // std::cout << "Finding signal muons\n";
   size_t term = good_muons.size();
 
   std::vector<Muon*> signal_muons;
   signal_muons.reserve(term);
 
   for (size_t mu_it = 0; mu_it != term; ++mu_it) {
+    // std::cout << "\tmuon it: " << mu_it << "\n";
     if (isSignal(good_muons.at(mu_it))) {
       signal_muons.push_back(good_muons.at(mu_it));
     }

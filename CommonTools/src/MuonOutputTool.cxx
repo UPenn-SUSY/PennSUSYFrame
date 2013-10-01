@@ -42,21 +42,24 @@ void CommonTools::MuonOutputTool::BeginInputData( const SInputData& )
 
  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  DeclareVariable(m_mu_pt          , "mu_pt"          );
-  DeclareVariable(m_mu_eta         , "mu_eta"         );
-  DeclareVariable(m_mu_phi         , "mu_phi"         );
-  DeclareVariable(m_mu_cov_d0      , "mu_cov_d0"      );
-  DeclareVariable(m_mu_d0          , "mu_d0"          );
-  DeclareVariable(m_mu_z0          , "mu_z0"          );
-  DeclareVariable(m_mu_d0_sig      , "mu_d0_sig"      );
-  DeclareVariable(m_mu_z0_sin_theta, "mu_z0_sin_theta");
-  DeclareVariable(m_mu_charge      , "mu_charge"      );
-  DeclareVariable(m_mu_etcone20    , "mu_etcone20"    );
-  DeclareVariable(m_mu_etcone30    , "mu_etcone30"    );
-  DeclareVariable(m_mu_etcone40    , "mu_etcone40"    );
-  DeclareVariable(m_mu_ptcone20    , "mu_ptcone20"    );
-  DeclareVariable(m_mu_ptcone30    , "mu_ptcone30"    );
-  DeclareVariable(m_mu_ptcone40    , "mu_ptcone40"    );
+  DeclareVariable(m_mu_pt                 , "mu_pt"                 );
+  DeclareVariable(m_mu_eta                , "mu_eta"                );
+  DeclareVariable(m_mu_phi                , "mu_phi"                );
+  DeclareVariable(m_mu_cov_d0             , "mu_cov_d0"             );
+  DeclareVariable(m_mu_d0                 , "mu_d0"                 );
+  DeclareVariable(m_mu_z0                 , "mu_z0"                 );
+  DeclareVariable(m_mu_d0_sig             , "mu_d0_sig"             );
+  DeclareVariable(m_mu_z0_sin_theta       , "mu_z0_sin_theta"       );
+  DeclareVariable(m_mu_charge             , "mu_charge"             );
+  DeclareVariable(m_mu_etcone20           , "mu_etcone20"           );
+  DeclareVariable(m_mu_etcone30           , "mu_etcone30"           );
+  DeclareVariable(m_mu_etcone40           , "mu_etcone40"           );
+  DeclareVariable(m_mu_ptcone20           , "mu_ptcone20"           );
+  DeclareVariable(m_mu_ptcone30           , "mu_ptcone30"           );
+  DeclareVariable(m_mu_ptcone40           , "mu_ptcone40"           );
+  DeclareVariable(m_mu_ptcone20_trkelstyle, "mu_ptcone20_trkelstyle");
+  DeclareVariable(m_mu_ptcone30_trkelstyle, "mu_ptcone30_trkelstyle");
+  DeclareVariable(m_mu_ptcone40_trkelstyle, "mu_ptcone40_trkelstyle");
 
   DeclareVariable(m_mu_mt, "mu_mt");
   DeclareVariable(m_mu_dphi_met, "mu_dphi_met");
@@ -108,6 +111,9 @@ void CommonTools::MuonOutputTool::BeginExecuteEvent( const SInputData&, Double_t
   m_mu_ptcone20.clear();
   m_mu_ptcone30.clear();
   m_mu_ptcone40.clear();
+  m_mu_ptcone20_trkelstyle.clear();
+  m_mu_ptcone30_trkelstyle.clear();
+  m_mu_ptcone40_trkelstyle.clear();
 
   m_mu_mt.clear();
   m_mu_dphi_met.clear();
@@ -207,6 +213,12 @@ void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
     m_mu_ptcone20.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
     m_mu_ptcone30.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
     m_mu_ptcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
+    // m_mu_ptcone20_trkelstyle.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
+    // m_mu_ptcone30_trkelstyle.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
+    // m_mu_ptcone40_trkelstyle.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
+    m_mu_ptcone20_trkelstyle.push_back(mu_vec.at(mu_it)->ptcone20_trkelstyle());
+    m_mu_ptcone30_trkelstyle.push_back(mu_vec.at(mu_it)->ptcone30_trkelstyle());
+    m_mu_ptcone40_trkelstyle.push_back(mu_vec.at(mu_it)->ptcone40_trkelstyle());
 
     m_mu_mt.push_back(CommonTools::MTTool::getMt(mu_vec.at(mu_it), met));
     m_mu_dphi_met.push_back(

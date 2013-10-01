@@ -124,7 +124,7 @@ void CalculateFakeRates::processEvent()
     bool is_truth_matched = el_desc.getPassPromptLepton();
     bool is_baseline      = el_desc.getPassGood();
     // bool is_signal        = el_desc.getPassSignal();
-    bool is_signal        = isSignalElectron(el_desc);
+    bool is_signal        = isSignalElectron(el_it, el_desc);
     float el_pt = m_el_pt->at(el_it)/1000.;
 
     if (el_pt >= 500.) el_pt = 499.;
@@ -152,7 +152,7 @@ void CalculateFakeRates::processEvent()
     bool is_truth_matched = mu_desc.getPassPromptLepton();
     bool is_baseline      = mu_desc.getPassGood();
     // bool is_signal        = mu_desc.getPassSignal();
-    bool is_signal        = isSignalMuon(mu_desc);
+    bool is_signal        = isSignalMuon(mu_it, mu_desc);
     float mu_pt = m_mu_pt->at(mu_it)/1000.;
 
     if (mu_pt >= 500.) mu_pt = 499.;

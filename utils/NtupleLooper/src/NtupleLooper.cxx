@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <vector>
 #include <dirent.h>
+#include <math.h>
 
 #include <TH2.h>
 #include <TStyle.h>
@@ -151,6 +152,9 @@ void NtupleLooper::Init(TTree *tree)
    m_mu_ptcone20 = 0;
    m_mu_ptcone30 = 0;
    m_mu_ptcone40 = 0;
+   m_mu_ptcone20_trkelstyle = 0;
+   m_mu_ptcone30_trkelstyle = 0;
+   m_mu_ptcone40_trkelstyle = 0;
    m_mu_desc = 0;
    m_jet_pt = 0;
    m_jet_eta = 0;
@@ -475,6 +479,18 @@ void NtupleLooper::Init(TTree *tree)
                            , &m_mu_ptcone40
                            , &b_mu_ptcone40
                            );
+   fChain->SetBranchAddress( "mu_ptcone20_trkelstyle"
+                           , &m_mu_ptcone20_trkelstyle
+                           , &b_mu_ptcone20_trkelstyle
+                           );
+   fChain->SetBranchAddress( "mu_ptcone30_trkelstyle"
+                           , &m_mu_ptcone30_trkelstyle
+                           , &b_mu_ptcone30_trkelstyle
+                           );
+   fChain->SetBranchAddress( "mu_ptcone40_trkelstyle"
+                           , &m_mu_ptcone40_trkelstyle
+                           , &b_mu_ptcone40_trkelstyle
+                           );
    fChain->SetBranchAddress( "mu_desc"
                            , &m_mu_desc
                            , &b_mu_desc
@@ -600,13 +616,103 @@ void NtupleLooper::processEvent()
 }
 
 // -----------------------------------------------------------------------------
-bool NtupleLooper::isSignalElectron(const SusyAnalysisTools::ElectronDescription& el_desc)
+bool NtupleLooper::isSignalElectron(const size_t el_index, const SusyAnalysisTools::ElectronDescription& el_desc)
 {
-  return el_desc.getPassSignal();
+  bool is_signal_electron_cutflow = el_desc.getPassSignal();
+  // bool is_signal_electron = true;
+  double pt = m_el_pt->at(el_index)/1.e3;
+  double eta = m_el_eta->at(el_index);
+  double d0_sig = m_el_d0_sig->at(el_index);
+  double z0_sin_theta = m_el_z0_sin_theta->at(el_index);
+  double et_iso = m_el_etcone30->at(el_index)/1.e3;
+  double pt_iso = m_el_ptcone30->at(el_index)/1.e3;
+
+  double et_iso_frac = et_iso/pt;
+  double pt_iso_frac = pt_iso/pt;
+
+  bool pass_tightpp      = el_desc.getPassTightPP();
+  bool pass_pt           = (pt > 10);
+  bool pass_eta          = (fabs(eta) < 2.47);
+  bool pass_d0_sig       = (fabs(d0_sig) < 5);
+  // bool pass_d0_sig    = (fabs(d0_sig) < 3);
+  bool pass_z0_sin_theta = (fabs(z0_sin_theta) < 0.4);
+  bool pass_et_iso       = (et_iso_frac < 0.18);
+  bool pass_pt_iso       = (pt_iso_frac < 0.16);
+
+  bool is_signal_electron = (  pass_tightpp
+                            && pass_pt
+                            && pass_eta
+                            && pass_d0_sig
+                            && pass_z0_sin_theta
+                            && pass_et_iso
+                            && pass_pt_iso
+                            );
+
+  if (is_signal_electron != is_signal_electron_cutflow) {
+    std::cout << "WARNING: recalculated is_signal_electron != is_signal_electron from CF\n";
+    std::cout << "\tevent #:                 " << m_event_number << "\n";
+    std::cout << "\telectron index:          " << el_index << "\n";
+    std::cout << "\t is_signal_electron_cutflow: " << is_signal_electron_cutflow << "\n";
+    std::cout << "\t is_signal_electron:         " << is_signal_electron << "\n";
+    std::cout << "\t ---                     CF - recalc\n";
+    std::cout << "\t pass_pt:                " << el_desc.getPassBaselinePt() << " - " << pass_pt << "\n";
+    std::cout << "\t pass_eta:               " << el_desc.getPassBaselineEta()  << " - " << pass_eta << "\n";
+    std::cout << "\t pass_d0_sig:            " << el_desc.getPassD0Sig()      << " - " << pass_d0_sig << "\n";
+    std::cout << "\t pass_z0_sin_theta:      " << el_desc.getPassZ0SinTheta() << " - " << pass_z0_sin_theta << "\n";
+    std::cout << "\t pass_pt_iso:            " << el_desc.getPassCaloIso()      << " - " << pass_et_iso << "\n";
+    std::cout << "\t pass_pt_iso:            " << el_desc.getPassPtIso()      << " - " << pass_pt_iso << "\n";
+    std::cout << "\t\tpt: "          << pt << "\n";
+    std::cout << "\t\tet_iso: "      << et_iso << "\n";
+    std::cout << "\t\tet_iso_frac: " << et_iso_frac << "\n";
+    std::cout << "\t\tpt_iso: "      << pt_iso << "\n";
+    std::cout << "\t\tpt_iso_frac: " << pt_iso_frac << "\n";
+  }
+
+  return is_signal_electron;
 }
 
 // -----------------------------------------------------------------------------
-bool NtupleLooper::isSignalMuon(const SusyAnalysisTools::MuonDescription& mu_desc)
+bool NtupleLooper::isSignalMuon(const size_t mu_index, const SusyAnalysisTools::MuonDescription& mu_desc)
 {
-  return mu_desc.getPassSignal();
+  bool is_signal_muon_cutflow = mu_desc.getPassSignal();
+  // bool is_signal_muon = true;
+  double pt = m_mu_pt->at(mu_index)/1.e3;
+  double eta = m_mu_eta->at(mu_index);
+  double d0_sig = m_mu_d0_sig->at(mu_index);
+  double z0_sin_theta = m_mu_z0_sin_theta->at(mu_index);
+  double pt_iso = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
+
+  double pt_iso_frac = pt_iso/pt;;
+
+  bool pass_pt           = (pt > 10);
+  bool pass_eta          = (fabs(eta) < 2.4);
+  bool pass_d0_sig       = (fabs(d0_sig) < 3);
+  bool pass_z0_sin_theta = (fabs(z0_sin_theta) < 1);
+  bool pass_pt_iso       = (pt_iso_frac < 0.12);
+
+  bool is_signal_muon = (  pass_pt
+                        && pass_eta
+                        && pass_d0_sig
+                        && pass_z0_sin_theta
+                        && pass_pt_iso
+                        );
+
+  if (is_signal_muon != is_signal_muon_cutflow) {
+    std::cout << "WARNING: recalculated is_signal_muon != is_signal_muon from CF\n";
+    std::cout << "\tevent #:                 " << m_event_number << "\n";
+    std::cout << "\tmuon index:              " << mu_index << "\n";
+    std::cout << "\t is_signal_muon_cutflow: " << is_signal_muon_cutflow << "\n";
+    std::cout << "\t is_signal_muon:         " << is_signal_muon << "\n";
+    std::cout << "\t ---                     CF - recalc\n";
+    std::cout << "\t pass_pt:                " << mu_desc.getPassBaselinePt() << " - " << pass_pt << "\n";
+    std::cout << "\t pass_eta:               " << mu_desc.getPassSignalEta() << " - " << pass_eta << "\n";
+    std::cout << "\t pass_d0_sig:            " << mu_desc.getPassD0Sig() << " - " << pass_d0_sig << "\n";
+    std::cout << "\t pass_z0_sin_theta:      " << mu_desc.getPassZ0SinTheta() << " - " << pass_z0_sin_theta << "\n";
+    std::cout << "\t pass_pt_iso:            " << mu_desc.getPassPtIso() << " - " << pass_pt_iso << "\n";
+    std::cout << "\t\tpt: "          << pt << "\n";
+    std::cout << "\t\tpt_iso: "      << pt_iso << "\n";
+    std::cout << "\t\tpt_iso_frac: " << pt_iso_frac << "\n";
+  }
+
+  return is_signal_muon;
 }
