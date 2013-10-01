@@ -65,6 +65,10 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
     const Met* met,
     int syst)
 {
+
+  //TODO Remove all references to MET as the RootCore CF package no longer uses
+  // it -- modifiy here and in teh calls from the cycle
+
   if (!m_is_cached) {
     m_charge_flip_sf = 1.;
 
@@ -88,7 +92,7 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
         int pdg_2=11;
 
         m_charge_flip_sf = m_charge_flip->OS2SS(
-            pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, met_vector_ptr,syst);
+            pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, syst);
         double overlap_corr =  m_charge_flip->overlapFrac().first;
         m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
       }
@@ -105,8 +109,7 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
             , tlv_1_ptr
             , pdg_2
             , tlv_2_ptr
-            , met_vector_ptr
-            ,syst);
+            , syst);
 
         double overlap_corr =  m_charge_flip->overlapFrac().first;
         m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
