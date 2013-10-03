@@ -5,6 +5,7 @@
 #include <vector>
 #include <dirent.h>
 #include <math.h>
+#include <algorithm>
 
 #include <TH2.h>
 #include <TStyle.h>
@@ -616,29 +617,60 @@ void NtupleLooper::processEvent()
 }
 
 // -----------------------------------------------------------------------------
-bool NtupleLooper::isSignalElectron(const size_t el_index, const SusyAnalysisTools::ElectronDescription& el_desc)
+bool NtupleLooper::isSignalElectron( const size_t el_index
+                                   , const SusyAnalysisTools::ElectronDescription& el_desc
+                                   , bool use_default_decision
+                                   , ISO_STYLE iso_type
+                                   )
 {
   bool is_signal_electron_cutflow = el_desc.getPassSignal();
-  // bool is_signal_electron = true;
+  if (use_default_decision) return is_signal_electron_cutflow;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   double pt = m_el_pt->at(el_index)/1.e3;
-  double eta = m_el_eta->at(el_index);
+  double eta = m_el_eta_cl->at(el_index);
   double d0_sig = m_el_d0_sig->at(el_index);
   double z0_sin_theta = m_el_z0_sin_theta->at(el_index);
-  double et_iso = m_el_etcone30->at(el_index)/1.e3;
-  double pt_iso = m_el_ptcone30->at(el_index)/1.e3;
 
-  double et_iso_frac = et_iso/pt;
-  double pt_iso_frac = pt_iso/pt;
+  double et_iso = -999;
+  double pt_iso = -999;
+  double et_iso_frac = -999;
+  double pt_iso_frac = -999;
 
+  if (iso_type == EWK_STYLE) {
+    et_iso = m_el_topoetcone30_corrected->at(el_index)/1.e3;
+    pt_iso = m_el_ptcone30->at(el_index)/1.e3;
+
+    et_iso_frac = et_iso/pt;
+    pt_iso_frac = pt_iso/pt;
+  }
+  else if (iso_type == STRONG_STYLE) {
+    et_iso = m_el_topoetcone20->at(el_index)/1.e3;
+    pt_iso = m_el_ptcone20->at(el_index)/1.e3;
+
+    et_iso_frac = et_iso/std::min(60., pt);
+    pt_iso_frac = pt_iso/std::min(60., pt);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool pass_tightpp      = el_desc.getPassTightPP();
   bool pass_pt           = (pt > 10);
   bool pass_eta          = (fabs(eta) < 2.47);
   bool pass_d0_sig       = (fabs(d0_sig) < 5);
-  // bool pass_d0_sig    = (fabs(d0_sig) < 3);
   bool pass_z0_sin_theta = (fabs(z0_sin_theta) < 0.4);
-  bool pass_et_iso       = (et_iso_frac < 0.18);
-  bool pass_pt_iso       = (pt_iso_frac < 0.16);
 
+  bool pass_et_iso = true;
+  bool pass_pt_iso = true;
+  if (iso_type == EWK_STYLE) {
+    pass_et_iso = (et_iso_frac < 0.18);
+    pass_pt_iso = (pt_iso_frac < 0.16);
+  }
+  else if (iso_type == STRONG_STYLE) {
+    pass_et_iso = (et_iso_frac < 0.06);
+    pass_pt_iso = (pt_iso_frac < 0.06);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool is_signal_electron = (  pass_tightpp
                             && pass_pt
                             && pass_eta
@@ -648,71 +680,104 @@ bool NtupleLooper::isSignalElectron(const size_t el_index, const SusyAnalysisToo
                             && pass_pt_iso
                             );
 
-  if (is_signal_electron != is_signal_electron_cutflow) {
-    std::cout << "WARNING: recalculated is_signal_electron != is_signal_electron from CF\n";
-    std::cout << "\tevent #:                 " << m_event_number << "\n";
-    std::cout << "\telectron index:          " << el_index << "\n";
-    std::cout << "\t is_signal_electron_cutflow: " << is_signal_electron_cutflow << "\n";
-    std::cout << "\t is_signal_electron:         " << is_signal_electron << "\n";
-    std::cout << "\t ---                     CF - recalc\n";
-    std::cout << "\t pass_pt:                " << el_desc.getPassBaselinePt() << " - " << pass_pt << "\n";
-    std::cout << "\t pass_eta:               " << el_desc.getPassBaselineEta()  << " - " << pass_eta << "\n";
-    std::cout << "\t pass_d0_sig:            " << el_desc.getPassD0Sig()      << " - " << pass_d0_sig << "\n";
-    std::cout << "\t pass_z0_sin_theta:      " << el_desc.getPassZ0SinTheta() << " - " << pass_z0_sin_theta << "\n";
-    std::cout << "\t pass_pt_iso:            " << el_desc.getPassCaloIso()      << " - " << pass_et_iso << "\n";
-    std::cout << "\t pass_pt_iso:            " << el_desc.getPassPtIso()      << " - " << pass_pt_iso << "\n";
-    std::cout << "\t\tpt: "          << pt << "\n";
-    std::cout << "\t\tet_iso: "      << et_iso << "\n";
-    std::cout << "\t\tet_iso_frac: " << et_iso_frac << "\n";
-    std::cout << "\t\tpt_iso: "      << pt_iso << "\n";
-    std::cout << "\t\tpt_iso_frac: " << pt_iso_frac << "\n";
-  }
+  // if (is_signal_electron != is_signal_electron_cutflow) {
+  //   std::cout << "\nWARNING: recalculated is_signal_electron != is_signal_electron from CF\n";
+  //   std::cout << "\tevent #:                 " << m_event_number << "\n";
+  //   std::cout << "\telectron index:          " << el_index << "\n";
+  //   std::cout << "\t is_signal_electron_cutflow: " << is_signal_electron_cutflow << "\n";
+  //   std::cout << "\t is_signal_electron:         " << is_signal_electron << "\n";
+  //   std::cout << "\t ---                     CF - recalc\n";
+  //   std::cout << "\t pass_pt:                " << el_desc.getPassBaselinePt() << " - " << pass_pt << "\n";
+  //   std::cout << "\t pass_eta:               " << el_desc.getPassBaselineEta()  << " - " << pass_eta << "\n";
+  //   std::cout << "\t pass_d0_sig:            " << el_desc.getPassD0Sig()      << " - " << pass_d0_sig << "\n";
+  //   std::cout << "\t pass_z0_sin_theta:      " << el_desc.getPassZ0SinTheta() << " - " << pass_z0_sin_theta << "\n";
+  //   std::cout << "\t pass_et_iso:            " << el_desc.getPassCaloIso()      << " - " << pass_et_iso << "\n";
+  //   std::cout << "\t pass_pt_iso:            " << el_desc.getPassPtIso()      << " - " << pass_pt_iso << "\n";
+  //   std::cout << "\t\teta: "         << eta << "\n";
+  //   std::cout << "\t\tpt: "          << pt << "\n";
+  //   std::cout << "\t\tet_iso: "      << et_iso << "\n";
+  //   std::cout << "\t\tet_iso_frac: " << et_iso_frac << "\n";
+  //   std::cout << "\t\tpt_iso: "      << pt_iso << "\n";
+  //   std::cout << "\t\tpt_iso_frac: " << pt_iso_frac << "\n";
+  // }
 
   return is_signal_electron;
 }
 
 // -----------------------------------------------------------------------------
-bool NtupleLooper::isSignalMuon(const size_t mu_index, const SusyAnalysisTools::MuonDescription& mu_desc)
+bool NtupleLooper::isSignalMuon( const size_t mu_index
+                               , const SusyAnalysisTools::MuonDescription& mu_desc
+                               , bool use_default_decision
+                               , ISO_STYLE iso_type
+                               )
 {
   bool is_signal_muon_cutflow = mu_desc.getPassSignal();
-  // bool is_signal_muon = true;
+  if (use_default_decision) return is_signal_muon_cutflow;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   double pt = m_mu_pt->at(mu_index)/1.e3;
   double eta = m_mu_eta->at(mu_index);
   double d0_sig = m_mu_d0_sig->at(mu_index);
   double z0_sin_theta = m_mu_z0_sin_theta->at(mu_index);
-  double pt_iso = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
 
-  double pt_iso_frac = pt_iso/pt;;
+  double pt_iso = -999;
+  double et_iso = -999;
+  double pt_iso_frac = -999;
+  double et_iso_frac = -999;
+  if (iso_type == EWK_STYLE) {
+    pt_iso = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
+    et_iso = m_mu_etcone30->at(mu_index)/1.e3;
+    pt_iso_frac = pt_iso/pt;
+    et_iso_frac = et_iso/pt;
+  }
+  else if (iso_type == STRONG_STYLE) {
+    pt_iso = m_mu_ptcone30->at(mu_index)/1.e3;
+    et_iso = m_mu_etcone30->at(mu_index)/1.e3;
+    pt_iso_frac = pt_iso/std::min(60.,pt);
+    et_iso_frac = et_iso/std::min(60.,pt);
+  }
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool pass_pt           = (pt > 10);
   bool pass_eta          = (fabs(eta) < 2.4);
   bool pass_d0_sig       = (fabs(d0_sig) < 3);
   bool pass_z0_sin_theta = (fabs(z0_sin_theta) < 1);
-  bool pass_pt_iso       = (pt_iso_frac < 0.12);
 
+  bool pass_pt_iso = true;
+  bool pass_et_iso = true;
+  if (iso_type == EWK_STYLE) {
+    pass_pt_iso = (pt_iso_frac < 0.12);
+  }
+  else if (iso_type == STRONG_STYLE) {
+    pass_pt_iso = (pt_iso_frac < 0.12);
+    pass_et_iso = (et_iso_frac < 0.12);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool is_signal_muon = (  pass_pt
                         && pass_eta
                         && pass_d0_sig
                         && pass_z0_sin_theta
                         && pass_pt_iso
+                        && pass_et_iso
                         );
 
-  if (is_signal_muon != is_signal_muon_cutflow) {
-    std::cout << "WARNING: recalculated is_signal_muon != is_signal_muon from CF\n";
-    std::cout << "\tevent #:                 " << m_event_number << "\n";
-    std::cout << "\tmuon index:              " << mu_index << "\n";
-    std::cout << "\t is_signal_muon_cutflow: " << is_signal_muon_cutflow << "\n";
-    std::cout << "\t is_signal_muon:         " << is_signal_muon << "\n";
-    std::cout << "\t ---                     CF - recalc\n";
-    std::cout << "\t pass_pt:                " << mu_desc.getPassBaselinePt() << " - " << pass_pt << "\n";
-    std::cout << "\t pass_eta:               " << mu_desc.getPassSignalEta() << " - " << pass_eta << "\n";
-    std::cout << "\t pass_d0_sig:            " << mu_desc.getPassD0Sig() << " - " << pass_d0_sig << "\n";
-    std::cout << "\t pass_z0_sin_theta:      " << mu_desc.getPassZ0SinTheta() << " - " << pass_z0_sin_theta << "\n";
-    std::cout << "\t pass_pt_iso:            " << mu_desc.getPassPtIso() << " - " << pass_pt_iso << "\n";
-    std::cout << "\t\tpt: "          << pt << "\n";
-    std::cout << "\t\tpt_iso: "      << pt_iso << "\n";
-    std::cout << "\t\tpt_iso_frac: " << pt_iso_frac << "\n";
-  }
+  // if (is_signal_muon != is_signal_muon_cutflow) {
+  //   std::cout << "WARNING: recalculated is_signal_muon != is_signal_muon from CF\n";
+  //   std::cout << "\tevent #:                 " << m_event_number << "\n";
+  //   std::cout << "\tmuon index:              " << mu_index << "\n";
+  //   std::cout << "\t is_signal_muon_cutflow: " << is_signal_muon_cutflow << "\n";
+  //   std::cout << "\t is_signal_muon:         " << is_signal_muon << "\n";
+  //   std::cout << "\t ---                     CF - recalc\n";
+  //   std::cout << "\t pass_pt:                " << mu_desc.getPassBaselinePt() << " - " << pass_pt << "\n";
+  //   std::cout << "\t pass_eta:               " << mu_desc.getPassSignalEta() << " - " << pass_eta << "\n";
+  //   std::cout << "\t pass_d0_sig:            " << mu_desc.getPassD0Sig() << " - " << pass_d0_sig << "\n";
+  //   std::cout << "\t pass_z0_sin_theta:      " << mu_desc.getPassZ0SinTheta() << " - " << pass_z0_sin_theta << "\n";
+  //   std::cout << "\t pass_pt_iso:            " << mu_desc.getPassPtIso() << " - " << pass_pt_iso << "\n";
+  //   std::cout << "\t\tpt: "          << pt << "\n";
+  //   std::cout << "\t\tpt_iso: "      << pt_iso << "\n";
+  //   std::cout << "\t\tpt_iso_frac: " << pt_iso_frac << "\n";
+  // }
 
   return is_signal_muon;
 }

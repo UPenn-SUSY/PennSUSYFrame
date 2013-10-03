@@ -31,20 +31,28 @@ class CalculateFakeRates : public NtupleLooper
 
   // ---------------------------------------------------------------------------
   private:
-    TH1D* m_el_re;
-    TH1D* m_el_re_numer;
+    TH1D* m_el_re_EWK;
+    TH1D* m_el_re_STRONG;
+    TH1D* m_el_re_numer_EWK;
+    TH1D* m_el_re_numer_STRONG;
     TH1D* m_el_re_denom;
 
-    TH1D* m_mu_re;
-    TH1D* m_mu_re_numer;
+    TH1D* m_mu_re_EWK;
+    TH1D* m_mu_re_STRONG;
+    TH1D* m_mu_re_numer_EWK;
+    TH1D* m_mu_re_numer_STRONG;
     TH1D* m_mu_re_denom;
 
-    TH1D* m_el_fr;
-    TH1D* m_el_fr_numer;
+    TH1D* m_el_fr_EWK;
+    TH1D* m_el_fr_STRONG;
+    TH1D* m_el_fr_numer_EWK;
+    TH1D* m_el_fr_numer_STRONG;
     TH1D* m_el_fr_denom;
 
-    TH1D* m_mu_fr;
-    TH1D* m_mu_fr_numer;
+    TH1D* m_mu_fr_EWK;
+    TH1D* m_mu_fr_STRONG;
+    TH1D* m_mu_fr_numer_EWK;
+    TH1D* m_mu_fr_numer_STRONG;
     TH1D* m_mu_fr_denom;
 };
 

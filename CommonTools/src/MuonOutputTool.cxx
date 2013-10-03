@@ -213,9 +213,6 @@ void CommonTools::MuonOutputTool::fillOutput( Event* /*event*/
     m_mu_ptcone20.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
     m_mu_ptcone30.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
     m_mu_ptcone40.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
-    // m_mu_ptcone20_trkelstyle.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 20, num_good_vtx));
-    // m_mu_ptcone30_trkelstyle.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 30, num_good_vtx));
-    // m_mu_ptcone40_trkelstyle.push_back(mu_vec.at(mu_it)->getIsoCorr(PTCONE, 40, num_good_vtx));
     m_mu_ptcone20_trkelstyle.push_back(mu_vec.at(mu_it)->ptcone20_trkelstyle());
     m_mu_ptcone30_trkelstyle.push_back(mu_vec.at(mu_it)->ptcone30_trkelstyle());
     m_mu_ptcone40_trkelstyle.push_back(mu_vec.at(mu_it)->ptcone40_trkelstyle());

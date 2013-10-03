@@ -15,6 +15,11 @@ class TChain;
 class TTree;
 
 // =============================================================================
+enum ISO_STYLE { EWK_STYLE
+               , STRONG_STYLE
+               };
+
+// =============================================================================
 class NtupleLooper
 {
   // ---------------------------------------------------------------------------
@@ -28,8 +33,16 @@ class NtupleLooper
     virtual Bool_t   Notify();
 
     virtual void processEvent();
-    virtual bool isSignalElectron(const size_t el_index, const SusyAnalysisTools::ElectronDescription&);
-    virtual bool isSignalMuon(const size_t mu_index, const SusyAnalysisTools::MuonDescription&);
+    virtual bool isSignalElectron( const size_t el_index
+                                 , const SusyAnalysisTools::ElectronDescription&
+                                 , bool use_default_decision = true
+                                 , ISO_STYLE iso_type = EWK_STYLE
+                                 );
+    virtual bool isSignalMuon( const size_t mu_index
+                             , const SusyAnalysisTools::MuonDescription&
+                             , bool use_default_decision = true
+                             , ISO_STYLE iso_type = EWK_STYLE
+                             );
 
   // ---------------------------------------------------------------------------
   protected:
