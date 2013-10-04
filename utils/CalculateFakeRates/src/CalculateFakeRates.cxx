@@ -284,27 +284,35 @@ void CalculateFakeRates::printToScreen()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_el_re_EWK = static_cast<TH1D*>(m_el_re_numer_EWK->Clone("el_re_EWK"));
+  m_el_re_EWK->Sumw2();
   m_el_re_EWK->Divide(m_el_re_denom);
 
   m_el_re_STRONG = static_cast<TH1D*>(m_el_re_numer_STRONG->Clone("el_re_STRONG"));
+  m_el_re_STRONG->Sumw2();
   m_el_re_STRONG->Divide(m_el_re_denom);
 
   m_mu_re_EWK = static_cast<TH1D*>(m_mu_re_numer_EWK->Clone("mu_re_EWK"));
+  m_mu_re_EWK->Sumw2();
   m_mu_re_EWK->Divide(m_mu_re_denom);
 
   m_mu_re_STRONG = static_cast<TH1D*>(m_mu_re_numer_STRONG->Clone("mu_re_STRONG"));
+  m_mu_re_STRONG->Sumw2();
   m_mu_re_STRONG->Divide(m_mu_re_denom);
 
   m_el_fr_EWK = static_cast<TH1D*>(m_el_fr_numer_EWK->Clone("el_fr_EWK"));
+  m_el_fr_EWK->Sumw2();
   m_el_fr_EWK->Divide(m_el_fr_denom);
 
   m_el_fr_STRONG = static_cast<TH1D*>(m_el_fr_numer_STRONG->Clone("el_fr_STRONG"));
+  m_el_fr_STRONG->Sumw2();
   m_el_fr_STRONG->Divide(m_el_fr_denom);
 
   m_mu_fr_EWK = static_cast<TH1D*>(m_mu_fr_numer_EWK->Clone("mu_fr_EWK"));
+  m_mu_fr_EWK->Sumw2();
   m_mu_fr_EWK->Divide(m_mu_fr_denom);
 
   m_mu_fr_STRONG = static_cast<TH1D*>(m_mu_fr_numer_STRONG->Clone("mu_fr_STRONG"));
+  m_mu_fr_STRONG->Sumw2();
   m_mu_fr_STRONG->Divide(m_mu_fr_denom);
 
   /*
