@@ -1,5 +1,6 @@
 #include "SelectionTools/include/EventPicker.h"
 
+#include <fstream>
 #include <math.h>
 
 #include "AtlasSFrameUtils/include/Event.h"
@@ -12,7 +13,7 @@ SelectionTools::EventPicker::EventPicker( SCycleBase* parent
                                                   : ToolBase(parent, name)
 {
   DeclareProperty("do_event_picker", c_do_event_picker = false);
-  DeclareProperty("event_list", c_event_list = "");
+  DeclareProperty("event_list", c_event_list_file = "");
 }
 
 // ----------------------------------------------------------------------------
@@ -29,7 +30,19 @@ void SelectionTools::EventPicker::BeginCycle()
            << SLogger::endmsg;
 
   if (!c_do_event_picker) return;
-  // TODO read run/event list and store them
+
+  m_logger << INFO << "Reading event list into EventPicker. Event list file: "
+           << c_event_list_file << "\n" << SLogger::endmsg;
+  std::ifstream in_file(c_event_list_file.c_str(), std::ifstream::in);
+
+  unsigned event_num = 0;
+  while (in_file >> event_num) {
+    m_good_events.push_back(event_num);
+  }
+  in_file.close();
+
+  m_logger << INFO << "number of good events to pick: "
+           << m_good_events.size() << "\n" << SLogger::endmsg;
 }
 
 // ----------------------------------------------------------------------------
@@ -43,12 +56,17 @@ void SelectionTools::EventPicker::BeginInputData(const SInputData&)
 }
 
 // ----------------------------------------------------------------------------
-bool SelectionTools::EventPicker::passed( const unsigned int run
+bool SelectionTools::EventPicker::passed( const unsigned int // run
                                         , const unsigned int event
                                         )
 {
   if (!c_do_event_picker) return true;
   // TODO check if event/run is in event picker list
+
+  size_t num_good_events = m_good_events.size();
+  for (size_t it = 0; it != num_good_events; ++it) {
+    if (event == m_good_events.at(it)) return true;
+  }
 
   return false;
 }

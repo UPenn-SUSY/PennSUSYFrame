@@ -3,7 +3,11 @@ Met_prefix:         MET_Egamma10NoTau_
 MuonTruth_prefix:   muonTruth_
 Muon_prefix:        mu_staco_
 do_metadata:        False
-input_file_hists:   ''
+input_file_hists:   ""
+
+Event_Picker:
+    do_event_picker: False
+    # event_list: disagree_list.bad_jets.dat
 
 CutFlow:
     # Crit_grl:              True

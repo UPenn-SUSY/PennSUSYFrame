@@ -30,7 +30,9 @@ namespace SelectionTools
   private:
     // = user configurables =
     bool c_do_event_picker;
-    std::string c_event_list;
+    std::string c_event_list_file;
+
+    std::vector<unsigned int> m_good_events;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ClassDef(EventPicker, 0);

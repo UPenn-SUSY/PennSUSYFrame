@@ -68,6 +68,7 @@
 
 #include "SelectionTools/include/ElectronSelectionTool.h"
 #include "SelectionTools/include/EventCleaningTool.h"
+#include "SelectionTools/include/EventPicker.h"
 #include "SelectionTools/include/GoodRunsListTool.h"
 #include "SelectionTools/include/JetSelectionTool.h"
 #include "SelectionTools/include/MuonSelectionTool.h"
@@ -112,6 +113,7 @@ SusyDiLeptonCutFlowCycle::SusyDiLeptonCutFlowCycle() :
   m_object_cleaning(NULL),
   m_grl_tool(NULL),
   m_event_cleaning_tool(NULL),
+  m_event_picker(NULL),
   m_trigger_cut_tool(NULL),
   m_signal_region_tool(NULL),
   m_event_counter_tool(NULL),
@@ -171,6 +173,7 @@ void SusyDiLeptonCutFlowCycle::declareTools()
 
   DECLARE_TOOL(SelectionTools::GoodRunsListTool  , "GRL"            );
   DECLARE_TOOL(SelectionTools::EventCleaningTool , "Event_Cleaning" );
+  DECLARE_TOOL(SelectionTools::EventPicker       , "Event_Picker"   );
   DECLARE_TOOL(SelectionTools::ObjectCleaningTool, "Object_Cleaning");
   DECLARE_TOOL(SelectionTools::TriggerCutTool    , "Trigger_Cut"    );
   DECLARE_TOOL(SelectionTools::HFORTool          , "HFOR"           );
@@ -398,6 +401,12 @@ void SusyDiLeptonCutFlowCycle::getTools()
           );
   m_event_cleaning_tool = event_cleaning;
 
+  GET_TOOL( event_picker
+          , SelectionTools::EventPicker
+          , "Event_Picker"
+          );
+  m_event_picker = event_picker;
+
   GET_TOOL( trigger_cut
           , SelectionTools::TriggerCutTool
           , "Trigger_Cut"
@@ -565,9 +574,29 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
 void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
+  if (!m_event_picker->passed(*m_event))
+      return;
+
   // if (  true
-  //    && m_event->EventNumber() != 20623
-  //    && m_event->EventNumber() != 13514
+  //    && m_event->EventNumber() != 10457
+  //    && m_event->EventNumber() != 13000
+  //    && m_event->EventNumber() != 13055
+  //    && m_event->EventNumber() != 13139
+  //    && m_event->EventNumber() != 19424
+  //    && m_event->EventNumber() != 20288
+  //    && m_event->EventNumber() != 20424
+  //    && m_event->EventNumber() != 2193
+  //    && m_event->EventNumber() != 24643
+  //    && m_event->EventNumber() != 25735
+  //    && m_event->EventNumber() != 26300
+  //    && m_event->EventNumber() != 32431
+  //    && m_event->EventNumber() != 33619
+  //    && m_event->EventNumber() != 33622
+  //    && m_event->EventNumber() != 35054
+  //    && m_event->EventNumber() != 35726
+  //    && m_event->EventNumber() != 5666
+  //    && m_event->EventNumber() != 582
+  //    && m_event->EventNumber() != 614
   //    ) return;
 
   m_logger << DEBUG
@@ -576,9 +605,11 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
            << " -- event number = " << m_event->EventNumber()
            << SLogger::endmsg;
 
-  // std::cout << "----------------------------------------\n";
-  // std::cout << "run number: " << m_event->RunNumber()
-  //           << " -- event number: " << m_event->EventNumber() << "\n";
+  if (c_print_event_info) {
+    std::cout << "----------------------------------------\n";
+    std::cout << "run number: " << m_event->RunNumber()
+              << " -- event number: " << m_event->EventNumber() << "\n";
+  }
 
   // = Prep event by zeroing out old vent stuff
   prepEvent();
@@ -646,42 +677,44 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
   fillOutput();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // std::cout << "==============================================================\n";
-  // std::cout << "==============================================================\n";
-  // std::cout << "Run: " << m_event->RunNumber() << "\n";
-  // std::cout << "Event: " << m_event->EventNumber() << "\n";
-  // m_vertices.print(VERT_ALL);
-  // m_vertices.print(VERT_GOOD);
+  if (c_print_event_info) {
+    std::cout << "==============================================================\n";
+    std::cout << "==============================================================\n";
+    std::cout << "Run: " << m_event->RunNumber() << "\n";
+    std::cout << "Event: " << m_event->EventNumber() << "\n";
+    m_vertices.print(VERT_ALL);
+    m_vertices.print(VERT_GOOD);
 
-  // m_electrons.print(EL_ALL      , m_vertices);
-  // m_electrons.print(EL_BASELINE , m_vertices);
-  // m_electrons.print(EL_GOOD     , m_vertices);
-  // m_electrons.print(EL_SIGNAL   , m_vertices);
+    m_electrons.print(EL_ALL      , m_vertices);
+    m_electrons.print(EL_BASELINE , m_vertices);
+    m_electrons.print(EL_GOOD     , m_vertices);
+    m_electrons.print(EL_SIGNAL   , m_vertices);
 
-  // m_muons.print(MU_ALL      , m_vertices);
-  // m_muons.print(MU_BASELINE , m_vertices);
-  // m_muons.print(MU_GOOD     , m_vertices);
-  // m_muons.print(MU_SIGNAL   , m_vertices);
+    m_muons.print(MU_ALL      , m_vertices);
+    m_muons.print(MU_BASELINE , m_vertices);
+    m_muons.print(MU_GOOD     , m_vertices);
+    m_muons.print(MU_SIGNAL   , m_vertices);
 
-  // m_taus.print(TAU_ALL      , m_vertices);
-  // m_taus.print(TAU_BASELINE , m_vertices);
-  // m_taus.print(TAU_GOOD     , m_vertices);
-  // m_taus.print(TAU_SIGNAL   , m_vertices);
+    m_taus.print(TAU_ALL      , m_vertices);
+    m_taus.print(TAU_BASELINE , m_vertices);
+    m_taus.print(TAU_GOOD     , m_vertices);
+    m_taus.print(TAU_SIGNAL   , m_vertices);
 
-  // m_jets.print(JET_ALL          );
-  // m_jets.print(JET_BASELINE_GOOD);
-  // m_jets.print(JET_GOOD         );
-  // m_jets.print(JET_BASELINE_BAD );
-  // m_jets.print(JET_BAD          );
-  // m_jets.print(JET_LIGHT        );
-  // m_jets.print(JET_B            );
-  // m_jets.print(JET_FORWARD      );
+    m_jets.print(JET_ALL          );
+    m_jets.print(JET_BASELINE_GOOD);
+    m_jets.print(JET_GOOD         );
+    m_jets.print(JET_BASELINE_BAD );
+    m_jets.print(JET_BAD          );
+    m_jets.print(JET_LIGHT        );
+    m_jets.print(JET_B            );
+    m_jets.print(JET_FORWARD      );
 
-  // m_met->print( m_electrons.getElectrons(EL_GOOD)
-  //             , m_muons.getMuons(MU_GOOD)
-  //             , m_jets.getJets(JET_ALL_CENTRAL)
-  //             );
-  // m_event->print();
+    m_met->print( m_electrons.getElectrons(EL_GOOD)
+                , m_muons.getMuons(MU_GOOD)
+                , m_jets.getJets(JET_ALL_CENTRAL)
+                );
+    m_event->print();
+  }
 }
 
 // -----------------------------------------------------------------------------

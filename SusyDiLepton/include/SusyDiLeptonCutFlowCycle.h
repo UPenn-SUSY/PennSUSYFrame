@@ -43,6 +43,7 @@ namespace SelectionTools
   class ObjectCleaningTool;
   class GoodRunsListTool;
   class EventCleaningTool;
+  class EventPicker;
   class TauSelectionTool;
   class TriggerCutTool;
   class SignalRegionTool;
@@ -124,26 +125,26 @@ private:
 
   std::string c_fake_file;
 
-  // variables to flag cuts as "critical"
-  bool c_crit_grl;
-  bool c_crit_incomplete_event;
-  bool c_crit_lar_error;
-  bool c_crit_tile_error;
-  bool c_crit_tile_hot_spot;
-  bool c_crit_tile_trip;
-  bool c_crit_bad_jet_veto;
-  bool c_crit_primary_vertex;
-  bool c_crit_bad_mu_veto;
-  bool c_crit_cosmic_mu_veto;
-  bool c_crit_hfor;
-  bool c_crit_ge_2_lep;
-  bool c_crit_2_lep;
-  bool c_crit_mll;
-  bool c_crit_signal_lep;
-  bool c_crit_phase_space;
-  bool c_crit_trigger;
-  bool c_crit_trigger_match;
-  bool c_crit_prompt_leptons;
+  // // variables to flag cuts as "critical"
+  // bool c_crit_grl;
+  // bool c_crit_incomplete_event;
+  // bool c_crit_lar_error;
+  // bool c_crit_tile_error;
+  // bool c_crit_tile_hot_spot;
+  // bool c_crit_tile_trip;
+  // bool c_crit_bad_jet_veto;
+  // bool c_crit_primary_vertex;
+  // bool c_crit_bad_mu_veto;
+  // bool c_crit_cosmic_mu_veto;
+  // bool c_crit_hfor;
+  // bool c_crit_ge_2_lep;
+  // bool c_crit_2_lep;
+  // bool c_crit_mll;
+  // bool c_crit_signal_lep;
+  // bool c_crit_phase_space;
+  // bool c_crit_trigger;
+  // bool c_crit_trigger_match;
+  // bool c_crit_prompt_leptons;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool m_is_ee;
@@ -192,6 +193,7 @@ private:
 
   SelectionTools::GoodRunsListTool*  m_grl_tool;
   SelectionTools::EventCleaningTool* m_event_cleaning_tool;
+  SelectionTools::EventPicker*       m_event_picker;
   SelectionTools::TriggerCutTool*    m_trigger_cut_tool;
   SelectionTools::SignalRegionTool*  m_signal_region_tool;
   //SelectionTools::HFORTool*          m_hfor_tool;
