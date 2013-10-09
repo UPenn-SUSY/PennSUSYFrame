@@ -14,12 +14,12 @@
 // -----------------------------------------------------------------------------
 SelectionTools::TauSelectionTool::TauSelectionTool(
     SCycleBase* parent, const char* name): ToolBase(parent, name)
-                                         , m_jet_bdt_level_configured(false)
-                                         , m_ele_bdt_level_configured(false)
-                                         , m_muon_veto_level_configured(false)
-                                         , m_jet_bdt_level(TAU_JET_BDT_NONE)
-                                         , m_ele_bdt_level(TAU_ELE_BDT_NONE)
-                                         , m_muon_veto_level(TAU_MU_NONE)
+                                         , m_baseline_jet_bdt_level(TAU_JET_BDT_NONE)
+                                         , m_baseline_ele_bdt_level(TAU_ELE_BDT_NONE)
+                                         , m_baseline_muon_veto_level(TAU_MU_NONE)
+                                         , m_signal_jet_bdt_level(TAU_JET_BDT_NONE)
+                                         , m_signal_ele_bdt_level(TAU_ELE_BDT_NONE)
+                                         , m_signal_muon_veto_level(TAU_MU_NONE)
                                          , m_tau_ele_corr(NULL)
 {
   DeclareProperty("baseline_min_pt", c_baseline_min_pt = 10e3);
@@ -28,10 +28,15 @@ SelectionTools::TauSelectionTool::TauSelectionTool(
   DeclareProperty("baseline_min_eta", c_baseline_min_eta = -1);
   DeclareProperty("baseline_max_eta", c_baseline_max_eta = 2.5);
 
+  DeclareProperty("baseline_jet_bdt_level",   c_baseline_jet_bdt_level_int   = 0);
+  DeclareProperty("baseline_ele_bdt_level",   c_baseline_ele_bdt_level_int   = 0);
+  DeclareProperty("baseline_muon_veto_level", c_baseline_muon_veto_level_int = 0);
+
+  DeclareProperty("signal_jet_bdt_level",   c_signal_jet_bdt_level_int   = 0);
+  DeclareProperty("signal_ele_bdt_level",   c_signal_ele_bdt_level_int   = 0);
+  DeclareProperty("signal_muon_veto_level", c_signal_muon_veto_level_int = 0);
+
   DeclareProperty("ele_corr_file",   c_tau_ele_corr_file   = "");
-  DeclareProperty("jet_bdt_level",   c_jet_bdt_level_int   = 0);
-  DeclareProperty("ele_bdt_level",   c_ele_bdt_level_int   = 0);
-  DeclareProperty("muon_veto_level", c_muon_veto_level_int = 0);
 }
 
 // -----------------------------------------------------------------------------
@@ -50,86 +55,16 @@ SelectionTools::TauSelectionTool::~TauSelectionTool()
 void SelectionTools::TauSelectionTool::configure()
 {
   // set jet bdt level
-  if (!m_jet_bdt_level_configured) {
-    switch (c_jet_bdt_level_int) {
-      case 1:  m_jet_bdt_level = TAU_JET_BDT_LOOSE;
-               break;
-      case 2:  m_jet_bdt_level = TAU_JET_BDT_MEDIUM;
-               break;
-      case 3:  m_jet_bdt_level = TAU_JET_BDT_TIGHT;
-               break;
-      case 0:
-      default: m_jet_bdt_level = TAU_JET_BDT_NONE;
-               break;
-    }
-    m_jet_bdt_level_configured = true;
-  }
+  setJetBDTLevel(m_baseline_jet_bdt_level, c_baseline_jet_bdt_level_int);
+  setJetBDTLevel(m_signal_jet_bdt_level  , c_signal_jet_bdt_level_int  );
 
   // set ele bdt level
-  if (!m_ele_bdt_level_configured) {
-    switch (c_ele_bdt_level_int) {
-      case 1:  m_ele_bdt_level = TAU_ELE_BDT_LOOSE;
-               break;
-      case 2:  m_ele_bdt_level = TAU_ELE_BDT_MEDIUM;
-               break;
-      case 3:  m_ele_bdt_level = TAU_ELE_BDT_TIGHT;
-               break;
-      case 0:
-      default: m_ele_bdt_level = TAU_ELE_BDT_NONE;
-               break;
-    }
-    if (m_ele_bdt_level != TAU_ELE_BDT_NONE) {
-      if (c_tau_ele_corr_file == "") {
-        std::string maindir = "";
-        char *tmparea=getenv("ROOTCOREDIR");
-        if (tmparea != NULL) {
-          maindir = tmparea;
-          maindir = maindir + "/";
-        }
-        c_tau_ele_corr_file =
-          maindir + "/../SUSYTools/data/ParametrizedEleBDTSelection.root";
-      }
-      TFile* tau_ele_correction_file = new TFile(c_tau_ele_corr_file.c_str());
-
-      switch (m_ele_bdt_level) {
-        case TAU_ELE_BDT_LOOSE:
-          std::cout << "Setting tau ele BDT hist ot loose\n";
-          m_tau_ele_corr = dynamic_cast<TH2*>(
-              tau_ele_correction_file->Get("h2_BDTEleDecision_pteta_loose"));
-          break;
-        case TAU_ELE_BDT_MEDIUM:
-          std::cout << "Setting tau ele BDT hist to medium\n";
-          m_tau_ele_corr = dynamic_cast<TH2*>(
-              tau_ele_correction_file->Get("h2_BDTEleDecision_pteta_medium"));
-          break;
-        case TAU_ELE_BDT_TIGHT:
-          std::cout << "Setting tau ele BDT hist to tight\n";
-          m_tau_ele_corr = dynamic_cast<TH2*>(
-              tau_ele_correction_file->Get("h2_BDTEleDecision_pteta_tight"));
-          break;
-        case TAU_ELE_BDT_NONE:
-        default:
-          std::cout << "Setting tau ele BDT hist to NULL\n";
-          m_tau_ele_corr = NULL;
-          break;
-      }
-      m_ele_bdt_level_configured = true;
-    }
-  }
+  setEleBDTLevel(m_baseline_ele_bdt_level, c_baseline_ele_bdt_level_int);
+  setEleBDTLevel(m_signal_ele_bdt_level  , c_signal_ele_bdt_level_int  );
 
   // set muon level
-  if (!m_muon_veto_level_configured) {
-    switch (c_muon_veto_level_int) {
-      case 1:  m_muon_veto_level = TAU_MU_LOOSE;
-               break;
-      case 2:  m_muon_veto_level = TAU_MU_TIGHT;
-               break;
-      case 0:
-      default: m_muon_veto_level = TAU_MU_NONE;
-               break;
-    }
-    m_muon_veto_level_configured = true;
-  }
+  setMuLevel(m_baseline_muon_veto_level, c_baseline_muon_veto_level_int);
+  setMuLevel(m_signal_muon_veto_level  , c_signal_muon_veto_level_int  );
 }
 
 // -----------------------------------------------------------------------------
@@ -166,32 +101,25 @@ void SelectionTools::TauSelectionTool::process( Tau* tau
   tau_desc->setPassBaselineCharge(pass_baseline_charge);
 
   // Check jet bdt level
-  bool pass_jet_bdt_level = (  (  m_jet_bdt_level == TAU_JET_BDT_LOOSE
-                               && tau->JetBDTSigLoose() == true
-                               )
-                            || (  m_jet_bdt_level == TAU_JET_BDT_MEDIUM
-                               && tau->JetBDTSigMedium() == true
-                               )
-                            || (  m_jet_bdt_level == TAU_JET_BDT_TIGHT
-                               && tau->JetBDTSigTight() == true
-                               )
-                            );
-  tau_desc->setPassBaselineJetBDTLevel(pass_jet_bdt_level);
+  bool pass_baseline_jet_bdt_level = checkJetBDTLevel(tau, m_baseline_jet_bdt_level);
+  bool pass_signal_jet_bdt_level   = checkJetBDTLevel(tau, m_signal_jet_bdt_level);
+
+  tau_desc->setPassBaselineJetBDTLevel(pass_baseline_jet_bdt_level);
+  tau_desc->setPassSignalJetBDTLevel(pass_signal_jet_bdt_level);
 
   // Check ele bdt level
-  bool pass_ele_bdt_level = (  getCorrectedEleBDTFlag(tau) == false
-                            || tau->numTrack() != 1
-                            );
-  tau_desc->setPassBaselineEleBDTLevel(pass_ele_bdt_level);
+  bool pass_baseline_ele_bdt_level = checkEleBDTLevel(tau, m_baseline_ele_bdt_level);
+  bool pass_signal_ele_bdt_level   = checkEleBDTLevel(tau, m_signal_ele_bdt_level);
+
+  tau_desc->setPassBaselineEleBDTLevel(pass_baseline_ele_bdt_level);
+  tau_desc->setPassSignalEleBDTLevel(pass_signal_ele_bdt_level);
 
   // Check muon veto
-  bool pass_muon_veto = (  (  m_muon_veto_level == TAU_MU_NONE )
-                        || (  m_muon_veto_level == TAU_MU_LOOSE )
-                        || (  m_muon_veto_level == TAU_MU_TIGHT
-                           && tau->muonVeto() == false
-                           )
-                        );
-  tau_desc->setPassBaselineMuVeto(pass_muon_veto);
+  bool pass_baseline_mu_veto = checkMuLevel(tau, m_baseline_muon_veto_level);
+  bool pass_signal_mu_veto   = checkMuLevel(tau, m_signal_muon_veto_level  );
+
+  tau_desc->setPassBaselineMuVeto(pass_baseline_mu_veto);
+  tau_desc->setPassSignalMuVeto(  pass_signal_mu_veto  );
 }
 
 // -----------------------------------------------------------------------------
@@ -217,12 +145,11 @@ bool SelectionTools::TauSelectionTool::isSignal(Tau* tau)
 {
   // Check if this tau passed all signal cuts
   SusyAnalysisTools::TauDescription* tau_desc = tau->getTauDesc();
-  bool pass_signal = true;
-  // bool pass_signal = (  tau_desc->getPassD0Sig()
-  //                    && tau_desc->getPassZ0SinTheta()
-  //                    && tau_desc->getPassPtIso()
-  //                    );
-  // tau_desc->setPassSignal(pass_signal);
+  bool pass_signal = (  tau_desc->getPassSignalJetBDTLevel()
+                     && tau_desc->getPassSignalEleBDTLevel()
+                     && tau_desc->getPassSignalMuVeto()
+                     );
+  tau_desc->setPassSignal(pass_signal);
 
   return pass_signal;
 }
@@ -281,57 +208,139 @@ std::vector<Tau*> SelectionTools::TauSelectionTool::getSignalTaus(
 }
 
 // -----------------------------------------------------------------------------
-bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag(const Tau* tau)
+void SelectionTools::TauSelectionTool::setJetBDTLevel(TAU_JET_BDT_LEVEL& level, int level_int)
 {
-  bool old_bdt_flag = (  (  m_ele_bdt_level == TAU_ELE_BDT_LOOSE
-                         && tau->EleBDTLoose()
-                         )
-                      || (  m_ele_bdt_level == TAU_ELE_BDT_MEDIUM
-                         && tau->EleBDTMedium()
-                         )
-                      || (  m_ele_bdt_level == TAU_ELE_BDT_TIGHT
-                         && tau->EleBDTTight()
-                         )
-                      );
-  return old_bdt_flag;
-
-  /*
-  if (  m_ele_bdt_level == TAU_ELE_BDT_NONE
-     || tau->numTrack() != 1
-     || tau->pt() < 80e3
-     ) {
-    return old_bdt_flag;
+  switch (level_int) {
+    case 1:  level = TAU_JET_BDT_LOOSE;
+              break;
+    case 2:  level = TAU_JET_BDT_MEDIUM;
+              break;
+    case 3:  level = TAU_JET_BDT_TIGHT;
+              break;
+    case 0:
+    default: level = TAU_JET_BDT_NONE;
+              break;
   }
-
-
-  double pt = tau->pt()/1e3;
-  // double eta = tau->eta();
-  double eta = tau->leadTrack_eta();
-  double cut_val = 0.;
-
-  if (pt <= 800 && eta <= 3.0) {
-    cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(pt, eta));
-  }
-  else if (pt <= 800 && eta > 3.0) {
-    cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(pt, 2.9));
-  }
-  else if (pt > 800 && eta <= 3.0) {
-    cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(799, eta));
-  }
-  else {
-    cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(799, 2.9));
-  }
-
-  // std::cout << "\ttau pT: " << pt << " GeV"
-  //           << "\ttau BDT ele score: " << tau->BDTEleScore()
-  //           << "\tcut value: " << cut_val
-  //           << "\ttau EleBDTFlag: " << (tau->BDTEleScore() > cut_val)
-  //           << "\n";
-
-  // return (tau->BDTEleScore() > cut_val);
-  return (tau->BDTEleScore() <= cut_val);
-  */
 }
+
+// -----------------------------------------------------------------------------
+void SelectionTools::TauSelectionTool::setEleBDTLevel(TAU_ELE_BDT_LEVEL& level, int level_int)
+{
+  switch (level_int) {
+    case 1:  level = TAU_ELE_BDT_LOOSE;
+             break;
+    case 2:  level = TAU_ELE_BDT_MEDIUM;
+             break;
+    case 3:  level = TAU_ELE_BDT_TIGHT;
+             break;
+    case 0:
+    default: level = TAU_ELE_BDT_NONE;
+             break;
+  }
+}
+
+// -----------------------------------------------------------------------------
+void SelectionTools::TauSelectionTool::setMuLevel(TAU_MU_LEVEL& level, int level_int)
+{
+  switch (level_int) {
+    case 1:  level = TAU_MU_LOOSE;
+             break;
+    case 2:  level = TAU_MU_TIGHT;
+             break;
+    case 0:
+    default: level = TAU_MU_NONE;
+             break;
+  }
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::TauSelectionTool::checkJetBDTLevel(const Tau* tau, TAU_JET_BDT_LEVEL level)
+{
+  if (level == TAU_JET_BDT_LOOSE)  return tau->JetBDTSigLoose();
+  if (level == TAU_JET_BDT_MEDIUM) return tau->JetBDTSigMedium();
+  if (level == TAU_JET_BDT_TIGHT)  return tau->JetBDTSigTight();
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::TauSelectionTool::checkEleBDTLevel(const Tau* tau, TAU_ELE_BDT_LEVEL level)
+{
+  if (tau->numTrack() != 1) return true;
+  if (level == TAU_ELE_BDT_LOOSE)  return (tau->EleBDTLoose()  == false);
+  if (level == TAU_ELE_BDT_MEDIUM) return (tau->EleBDTMedium() == false);
+  if (level == TAU_ELE_BDT_TIGHT)  return (tau->EleBDTTight()  == false);
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool SelectionTools::TauSelectionTool::checkMuLevel(const Tau* tau, TAU_MU_LEVEL level)
+{
+  if (level == TAU_MU_TIGHT) return (tau->muonVeto() == false);
+  return true;
+}
+
+// // -----------------------------------------------------------------------------
+// bool SelectionTools::TauSelectionTool::getCorrectedEleBDTFlag(const Tau* tau)
+// {
+//   bool old_bdt_flag = (  (  m_ele_bdt_level == TAU_ELE_BDT_LOOSE
+//                          && tau->EleBDTLoose()
+//                          )
+//                       || (  m_ele_bdt_level == TAU_ELE_BDT_MEDIUM
+//                          && tau->EleBDTMedium()
+//                          )
+//                       || (  m_ele_bdt_level == TAU_ELE_BDT_TIGHT
+//                          && tau->EleBDTTight()
+//                          )
+//                       );
+//   std::cout << "getCorrectedEleBDTFlag(): \n";
+//   std::cout << "\tpt: " << tau->getTlv().Pt() << "\n"
+//             << "\tele_bdt_level: " << m_ele_bdt_level << "\n"
+//             << "\tEleBDTLoose: "   << tau->EleBDTLoose()
+//             << "\tEleBDTMedium: "  << tau->EleBDTMedium()
+//             << "\tEleBDTTight: "   << tau->EleBDTTight()
+//             << "\told bdt flag: "  << old_bdt_flag
+//             << "\n";
+// 
+//   return old_bdt_flag;
+// 
+//   /*
+//   if (  m_ele_bdt_level == TAU_ELE_BDT_NONE
+//      || tau->numTrack() != 1
+//      || tau->pt() < 80e3
+//      ) {
+//     return old_bdt_flag;
+//   }
+// 
+// 
+//   double pt = tau->pt()/1e3;
+//   // double eta = tau->eta();
+//   double eta = tau->leadTrack_eta();
+//   double cut_val = 0.;
+// 
+//   if (pt <= 800 && eta <= 3.0) {
+//     cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(pt, eta));
+//   }
+//   else if (pt <= 800 && eta > 3.0) {
+//     cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(pt, 2.9));
+//   }
+//   else if (pt > 800 && eta <= 3.0) {
+//     cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(799, eta));
+//   }
+//   else {
+//     cut_val = m_tau_ele_corr->GetBinContent(m_tau_ele_corr->FindBin(799, 2.9));
+//   }
+// 
+//   // std::cout << "\ttau pT: " << pt << " GeV"
+//   //           << "\ttau BDT ele score: " << tau->BDTEleScore()
+//   //           << "\tcut value: " << cut_val
+//   //           << "\ttau EleBDTFlag: " << (tau->BDTEleScore() > cut_val)
+//   //           << "\n";
+// 
+//   // return (tau->BDTEleScore() > cut_val);
+//   return (tau->BDTEleScore() <= cut_val);
+//   */
+// }
 
 // -----------------------------------------------------------------------------
 bool SelectionTools::TauSelectionTool::passCut( double test

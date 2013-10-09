@@ -208,6 +208,8 @@ void Muon::print(const VertexContainer& vertices) const
             << "\tptcone30/pt: " << getIsoCorr(
                 REL_PTCONE, 30, num_good_vertices)
             << "\n"
+            << "\tcharge: " << charge()
+            << "\n"
             << "\td0: "      << d0_exPV()
             << "\tz0: "      << z0_exPV()
             << "\n"

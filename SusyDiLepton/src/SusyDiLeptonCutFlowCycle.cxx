@@ -694,6 +694,8 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     m_muons.print(MU_BASELINE , m_vertices);
     m_muons.print(MU_GOOD     , m_vertices);
     m_muons.print(MU_SIGNAL   , m_vertices);
+    m_muons.print(MU_BAD      , m_vertices);
+    m_muons.print(MU_COSMIC   , m_vertices);
 
     m_taus.print(TAU_ALL      , m_vertices);
     m_taus.print(TAU_BASELINE , m_vertices);

@@ -24,26 +24,19 @@ ull_t SusyAnalysisTools::TauDescription::toInt() const
 {
   ull_t tau_desc = 0;
 
-  tau_desc += getIntComp(m_pass_baseline, ADD_BASELINE);
-
-  tau_desc += getIntComp(m_pass_baseline    , ADD_BASELINE    );
-  tau_desc += getIntComp(m_pass_good        , ADD_GOOD        );
-  tau_desc += getIntComp(m_pass_signal      , ADD_SIGNAL      );
-  // tau_desc += getIntComp(m_pass_bad         , ADD_BAD         );
-  // tau_desc += getIntComp(m_pass_cosmic      , ADD_COSMIC      );
-  // tau_desc += getIntComp(m_pass_loose       , ADD_LOOSE       );
-  // tau_desc += getIntComp(m_pass_seg_tag     , ADD_SEG_TAG     );
-  // tau_desc += getIntComp(m_pass_combined    , ADD_COMBINED    );
-  // tau_desc += getIntComp(m_pass_b_layer     , ADD_B_LAYER     );
-  // tau_desc += getIntComp(m_pass_pixel       , ADD_PIXEL       );
-  // tau_desc += getIntComp(m_pass_sct         , ADD_SCT         );
-  // tau_desc += getIntComp(m_pass_trt         , ADD_TRT         );
-  // tau_desc += getIntComp(m_pass_si_holes    , ADD_SI_HOLES    );
-  // tau_desc += getIntComp(m_pass_baseline_pt , ADD_BASELINE_PT );
-  // tau_desc += getIntComp(m_pass_baseline_eta, ADD_BASELINE_ETA);
-  // tau_desc += getIntComp(m_pass_d0_sig      , ADD_D0_SIG      );
-  // tau_desc += getIntComp(m_pass_z0_sin_theta, ADD_Z0_SIN_THETA);
-  // tau_desc += getIntComp(m_pass_pt_iso      , ADD_PT_ISO      );
+  tau_desc += getIntComp(m_pass_baseline               , ADD_BASELINE               );
+  tau_desc += getIntComp(m_pass_good                   , ADD_GOOD                   );
+  tau_desc += getIntComp(m_pass_signal                 , ADD_SIGNAL                 );
+  tau_desc += getIntComp(m_pass_baseline_pt            , ADD_BASELINE_PT            );
+  tau_desc += getIntComp(m_pass_baseline_eta           , ADD_BASELINE_ETA           );
+  tau_desc += getIntComp(m_pass_baseline_num_tracks    , ADD_BASELINE_NUM_TRACKS    );
+  tau_desc += getIntComp(m_pass_baseline_charge        , ADD_BASELINE_CHARGE        );
+  tau_desc += getIntComp(m_pass_baseline_jet_bdt_level , ADD_BASELINE_JET_BDT_LEVEL );
+  tau_desc += getIntComp(m_pass_baseline_elebdt_level  , ADD_BASELINE_ELEBDT_LEVEL  );
+  tau_desc += getIntComp(m_pass_baseline_mu_veto       , ADD_BASELINE_MU_VETO       );
+  tau_desc += getIntComp(m_pass_signal_jet_bdt_level   , ADD_SIGNAL_JET_BDT_LEVEL   );
+  tau_desc += getIntComp(m_pass_signal_elebdt_level    , ADD_SIGNAL_ELEBDT_LEVEL    );
+  tau_desc += getIntComp(m_pass_signal_mu_veto         , ADD_SIGNAL_MU_VETO         );
 
   return tau_desc;
 }
@@ -67,21 +60,17 @@ void SusyAnalysisTools::TauDescription::set(const ull_t& rhs)
   m_pass_baseline     = getComponent(rhs, ADD_BASELINE    , SIZE_BOOL);
   m_pass_good         = getComponent(rhs, ADD_GOOD        , SIZE_BOOL);
   m_pass_signal       = getComponent(rhs, ADD_SIGNAL      , SIZE_BOOL);
-  // m_pass_bad          = getComponent(rhs, ADD_BAD         , SIZE_BOOL);
-  // m_pass_cosmic       = getComponent(rhs, ADD_COSMIC      , SIZE_BOOL);
-  // m_pass_loose        = getComponent(rhs, ADD_LOOSE       , SIZE_BOOL);
-  // m_pass_seg_tag      = getComponent(rhs, ADD_SEG_TAG     , SIZE_BOOL);
-  // m_pass_combined     = getComponent(rhs, ADD_COMBINED    , SIZE_BOOL);
-  // m_pass_b_layer      = getComponent(rhs, ADD_B_LAYER     , SIZE_BOOL);
-  // m_pass_pixel        = getComponent(rhs, ADD_PIXEL       , SIZE_BOOL);
-  // m_pass_sct          = getComponent(rhs, ADD_SCT         , SIZE_BOOL);
-  // m_pass_trt          = getComponent(rhs, ADD_TRT         , SIZE_BOOL);
-  // m_pass_si_holes     = getComponent(rhs, ADD_SI_HOLES    , SIZE_BOOL);
-  // m_pass_baseline_pt  = getComponent(rhs, ADD_BASELINE_PT , SIZE_BOOL);
-  // m_pass_baseline_eta = getComponent(rhs, ADD_BASELINE_ETA, SIZE_BOOL);
-  // m_pass_d0_sig       = getComponent(rhs, ADD_D0_SIG      , SIZE_BOOL);
-  // m_pass_z0_sin_theta = getComponent(rhs, ADD_Z0_SIN_THETA, SIZE_BOOL);
-  // m_pass_pt_iso       = getComponent(rhs, ADD_PT_ISO      , SIZE_BOOL);
+
+  m_pass_baseline_pt            = getComponent(rhs, ADD_BASELINE_PT           , SIZE_BOOL);
+  m_pass_baseline_eta           = getComponent(rhs, ADD_BASELINE_ETA          , SIZE_BOOL);
+  m_pass_baseline_num_tracks    = getComponent(rhs, ADD_BASELINE_NUM_TRACKS   , SIZE_BOOL);
+  m_pass_baseline_charge        = getComponent(rhs, ADD_BASELINE_CHARGE       , SIZE_BOOL);
+  m_pass_baseline_jet_bdt_level = getComponent(rhs, ADD_BASELINE_JET_BDT_LEVEL, SIZE_BOOL);
+  m_pass_baseline_elebdt_level  = getComponent(rhs, ADD_BASELINE_ELEBDT_LEVEL , SIZE_BOOL);
+  m_pass_baseline_mu_veto       = getComponent(rhs, ADD_BASELINE_MU_VETO      , SIZE_BOOL);
+  m_pass_signal_jet_bdt_level   = getComponent(rhs, ADD_SIGNAL_JET_BDT_LEVEL  , SIZE_BOOL);
+  m_pass_signal_elebdt_level    = getComponent(rhs, ADD_SIGNAL_ELEBDT_LEVEL   , SIZE_BOOL);
+  m_pass_signal_mu_veto         = getComponent(rhs, ADD_SIGNAL_MU_VETO        , SIZE_BOOL);
 }
 
 // -----------------------------------------------------------------------------
@@ -162,6 +151,24 @@ void SusyAnalysisTools::TauDescription::setPassBaselineMuVeto(bool pass)
 }
 
 // -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassSignalJetBDTLevel(bool pass)
+{
+  m_pass_signal_jet_bdt_level = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassSignalEleBDTLevel(bool pass)
+{
+  m_pass_signal_elebdt_level = pass;
+}
+
+// -----------------------------------------------------------------------------
+void SusyAnalysisTools::TauDescription::setPassSignalMuVeto(bool pass)
+{
+  m_pass_signal_mu_veto = pass;
+}
+
+// -----------------------------------------------------------------------------
 bool SusyAnalysisTools::TauDescription::getPassBaseline() const
 {
   return m_pass_baseline;
@@ -219,6 +226,24 @@ bool SusyAnalysisTools::TauDescription::getPassBaselineEleBDTLevel() const
 bool SusyAnalysisTools::TauDescription::getPassBaselineMuVeto() const
 {
   return m_pass_baseline_mu_veto;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassSignalJetBDTLevel() const
+{
+  return m_pass_signal_jet_bdt_level;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassSignalEleBDTLevel() const
+{
+  return m_pass_signal_elebdt_level;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::TauDescription::getPassSignalMuVeto() const
+{
+  return m_pass_signal_mu_veto;
 }
 
 // -----------------------------------------------------------------------------

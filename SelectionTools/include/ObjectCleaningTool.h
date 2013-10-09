@@ -101,6 +101,7 @@ namespace SelectionTools
     double c_ej_cone_size;
     double c_et_cone_size;
     double c_mt_cone_size;
+    double c_tj_cone_size;
     double c_je_cone_size;
     double c_jm_cone_size;
     double c_em_cone_size;

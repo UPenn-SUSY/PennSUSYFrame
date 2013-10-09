@@ -34,6 +34,9 @@ namespace SusyAnalysisTools
       void setPassBaselineJetBDTLevel(bool);
       void setPassBaselineEleBDTLevel(bool);
       void setPassBaselineMuVeto(bool);
+      void setPassSignalJetBDTLevel(bool);
+      void setPassSignalEleBDTLevel(bool);
+      void setPassSignalMuVeto(bool);
 
       bool getPassBaseline() const;
       bool getPassGood() const;
@@ -45,6 +48,9 @@ namespace SusyAnalysisTools
       bool getPassBaselineJetBDTLevel() const;
       bool getPassBaselineEleBDTLevel() const;
       bool getPassBaselineMuVeto() const;
+      bool getPassSignalJetBDTLevel() const;
+      bool getPassSignalEleBDTLevel() const;
+      bool getPassSignalMuVeto() const;
 
     // -------------------------------------------------------------------------
     private:
@@ -60,6 +66,9 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_BASELINE_JET_BDT_LEVEL = 9;
       static const unsigned int ADD_BASELINE_ELEBDT_LEVEL  = 10;
       static const unsigned int ADD_BASELINE_MU_VETO       = 11;
+      static const unsigned int ADD_SIGNAL_JET_BDT_LEVEL   = 12;
+      static const unsigned int ADD_SIGNAL_ELEBDT_LEVEL    = 13;
+      static const unsigned int ADD_SIGNAL_MU_VETO         = 14;
 
       bool m_pass_baseline;
       bool m_pass_good;
@@ -71,6 +80,9 @@ namespace SusyAnalysisTools
       bool m_pass_baseline_jet_bdt_level;
       bool m_pass_baseline_elebdt_level;
       bool m_pass_baseline_mu_veto;
+      bool m_pass_signal_jet_bdt_level;
+      bool m_pass_signal_elebdt_level;
+      bool m_pass_signal_mu_veto;
 
       // TODO move implementation to icc file
       template <class T>

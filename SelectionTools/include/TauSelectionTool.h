@@ -48,23 +48,35 @@ namespace SelectionTools
     double c_baseline_max_eta;
 
     std::string c_tau_ele_corr_file;
-    int c_jet_bdt_level_int;
-    int c_ele_bdt_level_int;
-    int c_muon_veto_level_int;
+    int c_baseline_jet_bdt_level_int;
+    int c_baseline_ele_bdt_level_int;
+    int c_baseline_muon_veto_level_int;
 
-    bool m_jet_bdt_level_configured;
-    bool m_ele_bdt_level_configured;
-    bool m_muon_veto_level_configured;
+    TAU_JET_BDT_LEVEL m_baseline_jet_bdt_level;
+    TAU_ELE_BDT_LEVEL m_baseline_ele_bdt_level;
+    TAU_MU_LEVEL      m_baseline_muon_veto_level;
 
-    TAU_JET_BDT_LEVEL m_jet_bdt_level;
-    TAU_ELE_BDT_LEVEL m_ele_bdt_level;
-    TAU_MU_LEVEL      m_muon_veto_level;
+    // signal cut values
+    int c_signal_jet_bdt_level_int;
+    int c_signal_ele_bdt_level_int;
+    int c_signal_muon_veto_level_int;
+
+    TAU_JET_BDT_LEVEL m_signal_jet_bdt_level;
+    TAU_ELE_BDT_LEVEL m_signal_ele_bdt_level;
+    TAU_MU_LEVEL      m_signal_muon_veto_level;
 
     TH2* m_tau_ele_corr;
 
-    // // signal cut values
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    void setJetBDTLevel(TAU_JET_BDT_LEVEL&, int);
+    void setEleBDTLevel(TAU_ELE_BDT_LEVEL&, int);
+    void setMuLevel(    TAU_MU_LEVEL&     , int);
 
-    bool getCorrectedEleBDTFlag(const Tau*);
+    bool checkJetBDTLevel(const Tau*, TAU_JET_BDT_LEVEL);
+    bool checkEleBDTLevel(const Tau*, TAU_ELE_BDT_LEVEL);
+    bool checkMuLevel(    const Tau*, TAU_MU_LEVEL     );
+
+    // bool getCorrectedEleBDTFlag(const Tau*);
 
     bool passCut(double test, double min, double max);
 

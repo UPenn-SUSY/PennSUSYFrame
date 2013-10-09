@@ -7,7 +7,11 @@ input_file_hists:   ""
 
 Event_Picker:
     do_event_picker: False
-    # event_list: disagree_list.bad_jets.dat
+    # do_event_picker: True
+    # event_list: event_list.cosmic_mu_diff.txt
+    # event_list: event_list.diff.prompt_lepton_ss.log
+    event_list: event_list.diff_me.2_leptons.dat
+    # event_list: event_list.diff_lea.2_leptons.dat
 
 CutFlow:
     # Crit_grl:              True
@@ -193,9 +197,12 @@ Tau_Selection:
   baseline_min_eta: -1
   baseline_max_eta: 2.47
   ele_corr_file:    ${ROOTCOREDIR}/../SUSYTools/data/ParametrizedEleBDTSelection.root
-  jet_bdt_level:    2
-  ele_bdt_level:    2
-  muon_veto_level:  2
+  baseline_jet_bdt_level:    2
+  baseline_ele_bdt_level:    1
+  baseline_muon_veto_level:  2
+  signal_jet_bdt_level:    2
+  signal_ele_bdt_level:    1
+  signal_muon_veto_level:  2
 
 GRL:
     do_grl:  True
@@ -208,13 +215,16 @@ Event_Cleaning:
     tile_trip_file: ${ROOTCOREDIR}/../TileTripReader/data/CompleteTripList_2011-2012.root
 
 Object_Cleaning:
-    ee_cone_size: 0.1
+    ee_cone_size: 0.05
     ej_cone_size: 0.2
-    em_cone_size: 0.1
+    et_cone_size: 0.2
+    mt_cone_size: 0.2
     je_cone_size: 0.4
     jm_cone_size: 0.4
+    em_cone_size: 0.01
     mm_cone_size: 0.05
     min_mll:      12000
+    tj_cone_size: 0.2
 
 Trigger_Cut:
     check_official_matching: False

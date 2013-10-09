@@ -98,6 +98,30 @@ void Jet::print() const
             << "\tjvf: " << jvtxf()
             << "\tmv1: " << flavor_weight_MV1()
             << "\n";
+
+  double emf  = emfrac();
+  double cs_eta = constscale_eta();
+  double chf  = sumPtTrk_pv0_500MeV()/tlv.Pt();
+  double fmax = fracSamplingMax();
+
+  std::cout << "\tnon-collision backgrounds & cosmics:\n\t"
+            << "\tconstscale_eta: " << cs_eta
+            << "\temf: " << emf
+            << "\tfmax: " << fmax
+            << "\tchf: "  << chf
+            << "\n"
+            << "\tHEC spikes:\n\t"
+            << "\tNegativeE: " << NegativeE()
+            << "\thecf: " << hecf()
+            << "\tHECQuality: " << HECQuality()
+            << "\tAverageLArQF/65535.: " << AverageLArQF()/65535.
+            << "\n"
+            << "\tEM coherent noise:\n\t"
+            << "\temf: " << emf
+            << "\tLArQuality: " << LArQuality()
+            << "\tconstscale_eta: " << cs_eta
+            << "\tAverageLArQF/65535.: " << AverageLArQF()/65535.
+            << "\n";
 }
 
 // ----------------------------------------------------------------------------

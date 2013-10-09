@@ -24,6 +24,7 @@ SelectionTools::ObjectCleaningTool::ObjectCleaningTool(
   DeclareProperty("ej_cone_size", c_ej_cone_size = 0.20);
   DeclareProperty("et_cone_size", c_et_cone_size = 0.20);
   DeclareProperty("mt_cone_size", c_mt_cone_size = 0.20);
+  DeclareProperty("tj_cone_size", c_tj_cone_size = 0.20);
   DeclareProperty("je_cone_size", c_je_cone_size = 0.40);
   DeclareProperty("jm_cone_size", c_jm_cone_size = 0.40);
   DeclareProperty("em_cone_size", c_em_cone_size = 0.01);
@@ -123,12 +124,6 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   std::vector<Tau*> tau_temp_2;
   mtOverlapRemoval(input_muons, tau_temp_1, tau_temp_2);
 
-  // do tj overlap removal
-  std::vector<Jet*> jet_good_temp_2;
-  std::vector<Jet*> jet_bad_temp_2;
-  tjOverlapRemoval(tau_temp_2, jet_good_temp_1, jet_good_temp_2);
-  tjOverlapRemoval(tau_temp_2, jet_bad_temp_1 , jet_bad_temp_2 );
-
   // do je overlap removal
   std::vector<Electron*> el_temp_2;
   std::vector<Electron*> el_temp_3;
@@ -154,6 +149,12 @@ void SelectionTools::ObjectCleaningTool::fullObjectCleaning(
   std::vector<Electron*> el_temp_5;
   std::vector<Muon*> mu_temp_5;
   mllOverlapRemoval(el_temp_4, mu_temp_4, el_temp_5, mu_temp_5);
+
+  // do tj overlap removal
+  std::vector<Jet*> jet_good_temp_2;
+  std::vector<Jet*> jet_bad_temp_2;
+  tjOverlapRemoval(tau_temp_2, jet_good_temp_1, jet_good_temp_2);
+  tjOverlapRemoval(tau_temp_2, jet_bad_temp_1 , jet_bad_temp_2 );
 
   output_electrons = el_temp_5;
   output_jets_good = jet_good_temp_2;
@@ -339,7 +340,7 @@ void SelectionTools::ObjectCleaningTool::tjOverlapRemoval(
       TLorentzVector tlv2 = input_jets.at(jet_it)->getTlv();
 
       // if overlap, flag for removal
-      if (overlap(tlv1, tlv2, c_ej_cone_size)) {
+      if (overlap(tlv1, tlv2, c_tj_cone_size)) {
         keep_object.at(jet_it) = false;
       }
     }
