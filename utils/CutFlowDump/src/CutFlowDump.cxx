@@ -216,10 +216,6 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   if (evt_desc.getPhaseSpace() != phase) return;
   fillHist(phase, weight_type, bin_num++, weight);
 
-  // signal tau veto
-  if (evt_desc.getPassTauVeto() == false) return;
-  fillHist(phase, weight_type, bin_num++, weight);
-
   // Trigger
   bool pass_trigger = false;
   if (phase == PHASE_EE && evt_desc.isEETrigger()) pass_trigger = true;
@@ -231,6 +227,10 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
 
   // Trigger matching
   if (evt_desc.getPassTriggerMatch() == false) return;
+  fillHist(phase, weight_type, bin_num++, weight);
+
+  // signal tau veto
+  if (evt_desc.getPassTauVeto() == false) return;
   fillHist(phase, weight_type, bin_num++, weight);
 
   // Flag prompt lepton events
@@ -1009,9 +1009,9 @@ void CutFlowDump::initBinList()
   m_bin_list.push_back("Lepton SF");
   m_bin_list.push_back("Trigger weight");
   m_bin_list.push_back("Phase space");
-  m_bin_list.push_back("Tau veto");
   m_bin_list.push_back("Trigger");
   m_bin_list.push_back("Trigger matching");
+  m_bin_list.push_back("Tau veto");
   m_bin_list.push_back("Prompt leptons");
   m_bin_list.push_back("Opposite sign");
   m_bin_list.push_back("Same sign");
