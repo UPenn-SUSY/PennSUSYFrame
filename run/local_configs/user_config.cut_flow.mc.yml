@@ -3,7 +3,11 @@ Met_prefix:         MET_Egamma10NoTau_
 MuonTruth_prefix:   muonTruth_
 Muon_prefix:        mu_staco_
 do_metadata:        False
-input_file_hists:   ''
+input_file_hists:   ""
+
+Event_Picker:
+    do_event_picker: False
+    event_list: event_list.diff.trigger.dat
 
 CutFlow:
     Crit_grl:              False
@@ -24,7 +28,7 @@ CutFlow:
     Crit_phase_space:      False
     Crit_trigger:          False
     Crit_trigger_match:    False
-    Fake_File:             ${ROOTCOREDIR}/../SusyMatrixMethod/data/pass6_Apr2_2013.root
+    Fake_File:             ${ROOTCOREDIR}/../SusyMatrixMethod/data/pass2_Summer2013.root
 
 EgammaEnergyRescale:
     apply_systematics: 0
@@ -164,22 +168,17 @@ Muon_Selection:
     signal_max_ptcone_cut:        0.12
 
 Tau_Selection:
-  # baseline_min_pt:  15000
-  # baseline_max_pt:  -1
-  # baseline_min_eta: -1
-  # baseline_max_eta: 2.47
-  # ele_corr_file:    ${ROOTCOREDIR}/../SUSYTools/data/ParametrizedEleBDTSelection.root
-  # jet_bdt_level:    1
-  # ele_bdt_level:    1
-  # muon_veto_level:  0
   baseline_min_pt:  20000
   baseline_max_pt:  -1
   baseline_min_eta: -1
   baseline_max_eta: 2.47
   ele_corr_file:    ${ROOTCOREDIR}/../SUSYTools/data/ParametrizedEleBDTSelection.root
-  jet_bdt_level:    2
-  ele_bdt_level:    2
-  muon_veto_level:  2
+  baseline_jet_bdt_level:    2
+  baseline_ele_bdt_level:    1
+  baseline_muon_veto_level:  2
+  signal_jet_bdt_level:    2
+  signal_ele_bdt_level:    1
+  signal_muon_veto_level:  2
 
 GRL:
     do_grl:  True
@@ -192,17 +191,21 @@ Event_Cleaning:
     tile_trip_file: ${ROOTCOREDIR}/../TileTripReader/data/CompleteTripList_2011-2012.root
 
 Object_Cleaning:
-    ee_cone_size: 0.1
+    ee_cone_size: 0.05
     ej_cone_size: 0.2
-    em_cone_size: 0.1
+    et_cone_size: 0.2
+    mt_cone_size: 0.2
     je_cone_size: 0.4
     jm_cone_size: 0.4
+    em_cone_size: 0.01
     mm_cone_size: 0.05
     min_mll:      12000
+    tj_cone_size: 0.2
 
 Trigger_Cut:
     check_official_matching: False
     do_trigger_matching:     True
+    do_mc_trigger:           False
 
 Signal_Regions:
     sr_osjveto_min_met_rel:  100000
@@ -305,7 +308,7 @@ EgammaSF:
 
 ChargeFlipSF:
   do_charge_flip_sf: True
-  path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
+  path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip_map.root
 
 ElectronOutput:
   do_detailed_output:      0
@@ -330,3 +333,4 @@ MetOutput:
 VertexOutput:
   do_detailed_output:    0
   vertex_container_name: good
+

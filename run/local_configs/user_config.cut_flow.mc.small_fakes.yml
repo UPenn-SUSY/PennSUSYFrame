@@ -7,25 +7,9 @@ input_file_hists:   ""
 
 Event_Picker:
     do_event_picker: False
-    # do_event_picker: True
-    # event_list: event_list.cosmic_mu_diff.txt
-    # event_list: event_list.diff.prompt_lepton_ss.log
-    # event_list: event_list.diff_me.2_leptons.dat
-    # event_list: event_list.diff_lea.2_leptons.dat
     event_list: event_list.diff.trigger.dat
 
 CutFlow:
-    # Crit_grl:              True
-    # Crit_incomplete_event: True
-    # Crit_tile_error:       True
-    # Crit_tile_hot_spot:    True
-    # Crit_lar_error:        True
-    # Crit_bad_jet_veto:     True
-    # Crit_primary_vertex:   True
-    # Crit_bad_mu_veto:      True
-    # Crit_cosmic_mu_veto:   True
-    # Crit_hfor:             True
-
     Crit_grl:              False
     Crit_incomplete_event: False
     Crit_tile_error:       False
@@ -36,7 +20,6 @@ CutFlow:
     Crit_bad_mu_veto:      False
     Crit_cosmic_mu_veto:   False
     Crit_hfor:             False
-
     Crit_ge_2_lep:         False
     Crit_2_lep:            False
     Crit_mll:              False
@@ -49,7 +32,7 @@ CutFlow:
 
 EgammaEnergyRescale:
     apply_systematics: 0
-    is_af2:            False
+    is_af2:            CONFIG
 
 MuonMomentumSmearing:
     smearing_function: ''
@@ -185,14 +168,6 @@ Muon_Selection:
     signal_max_ptcone_cut:        0.12
 
 Tau_Selection:
-  # baseline_min_pt:  15000
-  # baseline_max_pt:  -1
-  # baseline_min_eta: -1
-  # baseline_max_eta: 2.47
-  # ele_corr_file:    ${ROOTCOREDIR}/../SUSYTools/data/ParametrizedEleBDTSelection.root
-  # jet_bdt_level:    1
-  # ele_bdt_level:    1
-  # muon_veto_level:  0
   baseline_min_pt:  20000
   baseline_max_pt:  -1
   baseline_min_eta: -1
@@ -333,7 +308,6 @@ EgammaSF:
 
 ChargeFlipSF:
   do_charge_flip_sf: True
-  # path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
   path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip_map.root
 
 ElectronOutput:
