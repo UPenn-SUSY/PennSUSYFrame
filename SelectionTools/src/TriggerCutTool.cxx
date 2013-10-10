@@ -27,8 +27,9 @@
 SelectionTools::TriggerCutTool::TriggerCutTool(
     SCycleBase* parent, const char* name) : ToolBase(parent, name)
 {
-  DeclareProperty("do_trigger_matching"    , c_do_trigger_matching = false);
+  DeclareProperty("do_trigger_matching"    , c_do_trigger_matching    = false);
   DeclareProperty("check_official_matching", c_check_against_official = false);
+  DeclareProperty("do_mc_trigger"          , c_do_mc_trigger          = false);
 }
 
 // -----------------------------------------------------------------------------
@@ -355,7 +356,7 @@ bool SelectionTools::TriggerCutTool::passedEETrigger2012(
     const Event* /*event*/,
     const Trigger* trig)
 {
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
 
   bool pass_single_trigger = false;
   bool pass_double_trigger = (  trig->EF_2e12Tvh_loose1()
@@ -369,7 +370,7 @@ bool SelectionTools::TriggerCutTool::passedMMTrigger2012(
     const Event* /*event*/,
     const Trigger* trig)
 {
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
 
   // this->testSasa();
 
@@ -385,7 +386,7 @@ bool SelectionTools::TriggerCutTool::passedEMTrigger2012(
     const Event* /*event*/,
     const Trigger* trig)
 {
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
 
   bool pass_trigger = trig->EF_e12Tvh_medium1_mu8();
   return pass_trigger;
@@ -396,7 +397,7 @@ bool SelectionTools::TriggerCutTool::passedMETrigger2012(
     const Event* /*event*/,
     const Trigger* trig)
 {
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
 
   bool pass_trigger = trig->EF_mu18_tight_e7_medium1();
   return pass_trigger;
@@ -417,7 +418,7 @@ bool SelectionTools::TriggerCutTool::passedEETriggerMatching2012(
   // if (electrons.size() < 2) return false;
 
   // Only do trigger matching on data. always set true for MC
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
   bool pass_trigger_match = false;
 
   // ee region A
@@ -471,7 +472,7 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatching2012(
   // if (muons.size() < 2) return false;
 
   // Only do trigger matching on data. always set true for MC
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
   bool pass_trigger_match = false;
 
 
@@ -566,7 +567,7 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatching2012(
   // if (electrons.size() < 1 || muons.size() < 1) return false;
 
   // Only do trigger matching on data. always set true for MC
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
   bool pass_trigger_match = false;
 
   // em region A
@@ -597,7 +598,7 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatching2012(
   // if (electrons.size() < 1 || muons.size() < 1) return false;
 
   // Only do trigger matching on data. always set true for MC
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
   bool pass_trigger_match = false;
 
   // em region A
@@ -792,7 +793,7 @@ bool SelectionTools::TriggerCutTool::passedEETriggerMatch_anders(
     bool /*debug*/)
 {
   if (electrons.size()<2) return false;
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
 
   TLorentzVector l1 = electrons.at(0)->getTlv();
   TLorentzVector l2 = electrons.at(1)->getTlv();
@@ -838,7 +839,7 @@ bool SelectionTools::TriggerCutTool::passedMMTriggerMatch_anders(
     bool /*debug*/)
 {
   if (muons.size()<2) return false;
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
 
   TLorentzVector l1 = muons.at(0)->getTlv();
   TLorentzVector l2 = muons.at(1)->getTlv();
@@ -893,7 +894,7 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatch_anders(
     bool /*debug*/)
 {
   if (electrons.size()<1 || muons.size()<1) return false;
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
 
   TLorentzVector l1 = electrons.at(0)->getTlv();
   TLorentzVector l2 = muons.at(0)->getTlv();
@@ -945,7 +946,7 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatch_anders(
   // static int count(0); count++; if (count<10) { printf("test sasa passedMETriggerMatch calling the officieal code\n");  }
 
   if (electrons.size()<1 || muons.size()<1) return false;
-  if (!is_data()) return true;
+  if (!c_do_mc_trigger && !is_data()) return true;
 
   TLorentzVector l1 = electrons.at(0)->getTlv();
   TLorentzVector l2 = muons.at(0)->getTlv();

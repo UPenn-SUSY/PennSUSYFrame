@@ -207,11 +207,6 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
     weight *= m_lepton_weight;
   fillHist(phase, weight_type, bin_num++, weight);
 
-  // apply trigger weight
-  if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_TRIGGER)
-    weight *= m_trigger_weight;
-  fillHist(phase, weight_type, bin_num++, weight);
-
   // phase space selection
   if (evt_desc.getPhaseSpace() != phase) return;
   fillHist(phase, weight_type, bin_num++, weight);
@@ -227,6 +222,11 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
 
   // Trigger matching
   if (evt_desc.getPassTriggerMatch() == false) return;
+  fillHist(phase, weight_type, bin_num++, weight);
+
+  // apply trigger weight
+  if (weight_type == WEIGHT_ALL || weight_type == WEIGHT_TRIGGER)
+    weight *= m_trigger_weight;
   fillHist(phase, weight_type, bin_num++, weight);
 
   // signal tau veto
@@ -1007,10 +1007,10 @@ void CutFlowDump::initBinList()
   m_bin_list.push_back("== 2 signal lep");
   m_bin_list.push_back("Flavor");
   m_bin_list.push_back("Lepton SF");
-  m_bin_list.push_back("Trigger weight");
   m_bin_list.push_back("Phase space");
   m_bin_list.push_back("Trigger");
   m_bin_list.push_back("Trigger matching");
+  m_bin_list.push_back("Trigger weight");
   m_bin_list.push_back("Tau veto");
   m_bin_list.push_back("Prompt leptons");
   m_bin_list.push_back("Opposite sign");

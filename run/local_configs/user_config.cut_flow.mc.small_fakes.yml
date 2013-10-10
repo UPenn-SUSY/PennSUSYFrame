@@ -6,8 +6,8 @@ do_metadata:        False
 input_file_hists:   ""
 
 Event_Picker:
-    # do_event_picker: False
-    do_event_picker: True
+    do_event_picker: False
+    # do_event_picker: True
     # event_list: event_list.cosmic_mu_diff.txt
     # event_list: event_list.diff.prompt_lepton_ss.log
     # event_list: event_list.diff_me.2_leptons.dat
@@ -230,6 +230,7 @@ Object_Cleaning:
 Trigger_Cut:
     check_official_matching: False
     do_trigger_matching:     True
+    do_mc_trigger:           False
 
 Signal_Regions:
     sr_osjveto_min_met_rel:  100000

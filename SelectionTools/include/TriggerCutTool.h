@@ -90,6 +90,7 @@ namespace SelectionTools
   private:
     bool c_do_trigger_matching;
     bool c_check_against_official;
+    bool c_do_mc_trigger;
 
     // void testSasa();
     // triggerReweight2Lep *m_triggerReweight;
