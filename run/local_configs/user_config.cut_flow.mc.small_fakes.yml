@@ -6,12 +6,13 @@ do_metadata:        False
 input_file_hists:   ""
 
 Event_Picker:
-    do_event_picker: False
-    # do_event_picker: True
+    # do_event_picker: False
+    do_event_picker: True
     # event_list: event_list.cosmic_mu_diff.txt
     # event_list: event_list.diff.prompt_lepton_ss.log
-    event_list: event_list.diff_me.2_leptons.dat
+    # event_list: event_list.diff_me.2_leptons.dat
     # event_list: event_list.diff_lea.2_leptons.dat
+    event_list: event_list.diff.trigger.dat
 
 CutFlow:
     # Crit_grl:              True
