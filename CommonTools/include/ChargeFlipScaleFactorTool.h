@@ -33,7 +33,7 @@ namespace CommonTools
   public:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ChargeFlipScaleFactorTool(SCycleBase* parent, const char* name);
-    ~ChargeFlipScaleFactorTool();
+    virtual ~ChargeFlipScaleFactorTool();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     void clear();

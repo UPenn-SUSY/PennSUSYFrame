@@ -333,7 +333,8 @@ EgammaSF:
 
 ChargeFlipSF:
   do_charge_flip_sf: True
-  path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
+  # path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip.root
+  path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeFlip_map.root
 
 ElectronOutput:
   do_detailed_output:      0

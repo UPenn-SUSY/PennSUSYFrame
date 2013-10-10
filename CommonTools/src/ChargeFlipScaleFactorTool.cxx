@@ -91,8 +91,13 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
         int pdg_1=11;
         int pdg_2=11;
 
-        m_charge_flip_sf = m_charge_flip->OS2SS(
-            pdg_1, tlv_1_ptr, pdg_2, tlv_2_ptr, met_vector_ptr, syst);
+        m_charge_flip_sf = m_charge_flip->OS2SS( pdg_1
+                                               , tlv_1_ptr
+                                               , pdg_2
+                                               , tlv_2_ptr
+                                               // , met_vector_ptr
+                                               , syst
+                                               );
         double overlap_corr =  m_charge_flip->overlapFrac().first;
         m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
       }
@@ -105,12 +110,13 @@ double CommonTools::ChargeFlipScaleFactorTool::getSF(
         int pdg_1=11;
         int pdg_2=13;
 
-        m_charge_flip_sf = m_charge_flip->OS2SS(pdg_1
-            , tlv_1_ptr
-            , pdg_2
-            , tlv_2_ptr
-            , met_vector_ptr
-            , syst);
+        m_charge_flip_sf = m_charge_flip->OS2SS( pdg_1
+                                               , tlv_1_ptr
+                                               , pdg_2
+                                               , tlv_2_ptr
+                                               // , met_vector_ptr
+                                               , syst
+                                               );
 
         double overlap_corr =  m_charge_flip->overlapFrac().first;
         m_charge_flip_sf = m_charge_flip_sf*overlap_corr;
