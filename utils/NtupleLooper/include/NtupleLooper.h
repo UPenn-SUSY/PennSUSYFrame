@@ -19,6 +19,16 @@ enum ISO_STYLE { EWK_STYLE
                , STRONG_STYLE
                };
 
+enum ISO_TYPE { ETCONE
+              , TOPOETCONE
+              , PTCONE
+              };
+
+enum CONE_SIZE { CONE_20
+               , CONE_30
+               , CONE_40
+               };
+
 // =============================================================================
 class NtupleLooper
 {
@@ -43,6 +53,10 @@ class NtupleLooper
                              , bool use_default_decision = true
                              , ISO_STYLE iso_type = EWK_STYLE
                              );
+
+    unsigned int getNumGoodVertices(unsigned int min_num_trks);
+    double getElIsoCorr(unsigned int index, ISO_TYPE, CONE_SIZE);
+    double getMuIsoCorr(unsigned int index, ISO_TYPE, CONE_SIZE);
 
   // ---------------------------------------------------------------------------
   protected:

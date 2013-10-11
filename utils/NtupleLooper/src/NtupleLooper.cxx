@@ -781,3 +781,120 @@ bool NtupleLooper::isSignalMuon( const size_t mu_index
 
   return is_signal_muon;
 }
+
+// -----------------------------------------------------------------------------
+unsigned int getNumGoodVertices(unsigned int min_num_trks)
+{
+  unsigned int num_vertices = m_vtx_n;
+  unsigned int num_good_vertices = 0;
+
+  for (unsigned int vtx_it = 0; vtx_it != num_vertices; ++vtx_it) {
+    if (m_vtx_n_tracks->at(vtx_it) >= min_num_trks) ++num_good_vertices;
+  }
+
+  return num_good_vertices;
+}
+
+// -----------------------------------------------------------------------------
+double NtupleLooper::getElIsoCorr( unsigned int index
+                                 , ISO_TYPE iso_type
+                                 , CONE_SIZE cone_size
+                                 )
+{
+  double raw_iso = 9999;
+  double correction_slope = 0;
+  int num_good_vertices = getNumGoodVertices(5);
+
+  // get raw isolation and correction slope
+  if (iso_type == ETCONE) {
+    if (cone_size = CONE_20) {
+      raw_iso = m_el_etcone20->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_30) {
+      raw_iso = m_el_etcone30->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_40) {
+      raw_iso = m_el_etcone40->at(index);
+      correction_slope = 0.;
+    }
+  }
+  if (iso_type == TOPOETCONE) {
+    if (cone_size = CONE_20) {
+      raw_iso = m_el_topoetcone20->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_30) {
+      raw_iso = m_el_topoetcone30->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_40) {
+      raw_iso = m_el_topoetcone40->at(index);
+      correction_slope = 0.;
+    }
+  }
+  if (iso_type == PTCONE) {
+    if (cone_size = CONE_20) {
+      raw_iso = m_el_ptcone20->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_30) {
+      raw_iso = m_el_ptcone30->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_40) {
+      raw_iso = m_el_ptcone40->at(index);
+      correction_slope = 0.;
+    }
+  }
+
+  // apply correction
+  double iso_corr = raw_iso - correction_slope*num_good_vertices;
+  return iso_corr;
+}
+
+// -----------------------------------------------------------------------------
+double NtupleLooper::getMuIsoCorr( unsigned int index
+                                 , ISO_TYPE iso_type
+                                 , CONE_SIZE cone_size
+                                 )
+{
+  double raw_iso = 9999;
+  double correction_slope = 0;
+  int num_good_vertices = getNumGoodVertices(5);
+
+  // get raw isolation and correction slope
+  if (iso_type == ETCONE) {
+    if (cone_size = CONE_20) {
+      raw_iso = m_mu_etcone20->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_30) {
+      raw_iso = m_mu_etcone30->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_40) {
+      raw_iso = m_mu_etcone40->at(index);
+      correction_slope = 0.;
+    }
+  }
+  if (iso_type == PTCONE) {
+    if (cone_size = CONE_20) {
+      raw_iso = m_mu_ptcone20_trkelstyle->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_30) {
+      raw_iso = m_mu_ptcone30_trkelstyle->at(index);
+      correction_slope = 0.;
+    }
+    else if (cone_size = CONE_40) {
+      raw_iso = m_mu_ptcone40_trkelstyle->at(index);
+      correction_slope = 0.;
+    }
+  }
+
+  // apply correction
+  double iso_corr = raw_iso - correction_slope*num_good_vertices;
+  return iso_corr;
+}
