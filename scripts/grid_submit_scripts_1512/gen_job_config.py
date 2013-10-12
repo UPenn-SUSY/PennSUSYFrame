@@ -53,14 +53,14 @@ def writeYmlFile(parser):
     user_config_file = ''
     if inputs.type == 'data':
         if inputs.is_presel:
-            user_config_file = '${SFRAME_DIR}/../run/grid.00.02.05.presel.50/user_config.presel.data.yml'
+            user_config_file = '${SFRAME_DIR}/../run/grid.00.03.04.tnt.025/user_config.presel.data.yml'
         else:
-            user_config_file = '${SFRAME_DIR}/../run/grid.00.02.05.tnt.001/user_config.cut_flow.data.yml'
+            user_config_file = '${SFRAME_DIR}/../run/grid.00.03.04.tnt.025/user_config.cut_flow.data.yml'
     else:
         if inputs.is_presel:
-            user_config_file = '${SFRAME_DIR}/../run/grid.00.02.05.presel.50/user_config.presel.mc.yml'
+            user_config_file = '${SFRAME_DIR}/../run/grid.00.03.04.tnt.025/user_config.presel.mc.yml'
         else:
-            user_config_file = '${SFRAME_DIR}/../run/grid.00.02.05.tnt.001/user_config.cut_flow.mc.yml'
+            user_config_file = '${SFRAME_DIR}/../run/grid.00.03.04.tnt.025/user_config.cut_flow.mc.yml'
 
     f.write('grid:             True\n')
     f.write('CycleName:        SusyDiLeptonCutFlowCycle\n')

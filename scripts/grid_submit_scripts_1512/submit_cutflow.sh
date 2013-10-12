@@ -79,12 +79,14 @@ for hash in ${ds_list[@]} ; do
     --inDS=${IN_DS} \
     --outDS=${out_ds} \
     --nGBPerJob=MAX \
-    --rootVer=5.34/07 \
+    --rootVer=5.32.03 \
     --cmtConfig=x86_64-slc5-gcc43-opt \
     --extFile=${EXT_FILES} \
     --inTarBall=${TAR_BALL_NAME} \
     --outputs=${out_file} \
     --excludedSite=ANALY_FREIBURG,ANALY_AGLT2,ANALY_IN2P3-CC-T2,ANALY_MPPMU,ANALY_JINR,ANALY_RAL_XROOTD,ANALY_MANC,ANALY_INFN-FRASCATI,ANALY_INFN-ROMA1,ANALY_UAM,ANALY_RAL 
    
+    # --rootVer=5.34/07 \
+    # --athenaTag=17.3.5 \
     
 done
