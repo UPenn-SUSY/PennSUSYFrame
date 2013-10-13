@@ -1,0 +1,79 @@
+
+Type:             data
+OutputLevel:      INFO
+OutputDirectory:  ${PWD}/small_fake_test/
+NEventsMax:       -1
+is_af2:           False
+SuperVerboseInfo: False
+PrintEventInfo:   False
+Version:          1
+CycleName:        SusyDiLeptonCutFlowCycle
+SampleName:       PeriodA
+
+input_tree_name:  susy
+output_tree_name: output
+is_egamma_stream: False
+
+# PrintEventInfo:     True
+
+UserConfigFile: ${SFRAME_DIR}/../run/local_configs/user_config.cut_flow.data.yml
+
+InputFiles:
+  - /tmp/bjackson/data12_8TeV.00200804.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274523_00/NTUP_SUSYSKIM.01274523._000001.root.1
+  - /tmp/bjackson/data12_8TeV.00200842.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274533_00/NTUP_SUSYSKIM.01274533._000001.root.1
+  - /tmp/bjackson/data12_8TeV.00200863.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274521_00/NTUP_SUSYSKIM.01274521._000002.root.1
+  - /tmp/bjackson/data12_8TeV.00200863.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274521_00/NTUP_SUSYSKIM.01274521._000010.root.1
+  - /tmp/bjackson/data12_8TeV.00200913.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274524_00/NTUP_SUSYSKIM.01274524._000001.root.1
+  - /tmp/bjackson/data12_8TeV.00200913.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274524_00/NTUP_SUSYSKIM.01274524._000003.root.1
+  - /tmp/bjackson/data12_8TeV.00200913.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274524_00/NTUP_SUSYSKIM.01274524._000005.root.1
+  - /tmp/bjackson/data12_8TeV.00200913.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274524_00/NTUP_SUSYSKIM.01274524._000009.root.1
+  - /tmp/bjackson/data12_8TeV.00200926.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274531_00/NTUP_SUSYSKIM.01274531._000009.root.3
+  - /tmp/bjackson/data12_8TeV.00200965.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274522_00/NTUP_SUSYSKIM.01274522._000001.root.1
+  - /tmp/bjackson/data12_8TeV.00200967.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274537_00/NTUP_SUSYSKIM.01274537._000039.root.2
+  - /tmp/bjackson/data12_8TeV.00200967.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274537_00/NTUP_SUSYSKIM.01274537._000043.root.1
+  - /tmp/bjackson/data12_8TeV.00200982.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274528_00/NTUP_SUSYSKIM.01274528._000004.root.1
+  - /tmp/bjackson/data12_8TeV.00200987.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274526_00/NTUP_SUSYSKIM.01274526._000023.root.1
+  - /tmp/bjackson/data12_8TeV.00201006.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274532_00/NTUP_SUSYSKIM.01274532._000013.root.1
+  - /tmp/bjackson/data12_8TeV.00201006.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274532_00/NTUP_SUSYSKIM.01274532._000063.root.1
+  - /tmp/bjackson/data12_8TeV.00201006.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274532_00/NTUP_SUSYSKIM.01274532._000066.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000012.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000017.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000021.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000027.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000034.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000038.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000039.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000043.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274535_00/NTUP_SUSYSKIM.01274535._000044.root.1
+  - /tmp/bjackson/data12_8TeV.00201113.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274518_00/NTUP_SUSYSKIM.01274518._000031.root.1
+  - /tmp/bjackson/data12_8TeV.00201113.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274518_00/NTUP_SUSYSKIM.01274518._000061.root.1
+  - /tmp/bjackson/data12_8TeV.00201120.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274520_00/NTUP_SUSYSKIM.01274520._000018.root.3
+  - /tmp/bjackson/data12_8TeV.00201120.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274520_00/NTUP_SUSYSKIM.01274520._000024.root.1
+  - /tmp/bjackson/data12_8TeV.00201190.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274527_00/NTUP_SUSYSKIM.01274527._000015.root.9
+  - /tmp/bjackson/data12_8TeV.00201191.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274536_00/NTUP_SUSYSKIM.01274536._000019.root.1
+  - /tmp/bjackson/data12_8TeV.00201191.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274536_00/NTUP_SUSYSKIM.01274536._000037.root.1
+  - /tmp/bjackson/data12_8TeV.00201257.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274525_00/NTUP_SUSYSKIM.01274525._000038.root.2
+  - /tmp/bjackson/data12_8TeV.00201269.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274534_00/NTUP_SUSYSKIM.01274534._000008.root.1
+  - /tmp/bjackson/data12_8TeV.00201269.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274534_00/NTUP_SUSYSKIM.01274534._000012.root.1
+  - /tmp/bjackson/data12_8TeV.00201269.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274534_00/NTUP_SUSYSKIM.01274534._000016.root.1
+  - /tmp/bjackson/data12_8TeV.00201269.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274534_00/NTUP_SUSYSKIM.01274534._000029.root.1
+  - /tmp/bjackson/data12_8TeV.00201269.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274534_00/NTUP_SUSYSKIM.01274534._000037.root.1
+  - /tmp/bjackson/data12_8TeV.00201269.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274534_00/NTUP_SUSYSKIM.01274534._000050.root.1
+  - /tmp/bjackson/data12_8TeV.00201269.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274534_00/NTUP_SUSYSKIM.01274534._000054.root.1
+  - /tmp/bjackson/data12_8TeV.00201280.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274541_00/NTUP_SUSYSKIM.01274541._000002.root.1
+  - /tmp/bjackson/data12_8TeV.00201280.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274541_00/NTUP_SUSYSKIM.01274541._000011.root.3
+  - /tmp/bjackson/data12_8TeV.00201280.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274541_00/NTUP_SUSYSKIM.01274541._000012.root.3
+  - /tmp/bjackson/data12_8TeV.00201289.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274542_00/NTUP_SUSYSKIM.01274542._000052.root.2
+  - /tmp/bjackson/data12_8TeV.00201289.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274542_00/NTUP_SUSYSKIM.01274542._000066.root.1
+  - /tmp/bjackson/data12_8TeV.00201351.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274543_00/NTUP_SUSYSKIM.01274543._000001.root.1
+  - /tmp/bjackson/data12_8TeV.00201383.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274538_00/NTUP_SUSYSKIM.01274538._000001.root.1
+  - /tmp/bjackson/data12_8TeV.00201489.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274539_00/NTUP_SUSYSKIM.01274539._000016.root.6
+  - /tmp/bjackson/data12_8TeV.00201489.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274539_00/NTUP_SUSYSKIM.01274539._000021.root.6
+  - /tmp/bjackson/data12_8TeV.00201489.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274539_00/NTUP_SUSYSKIM.01274539._000030.root.6
+  - /tmp/bjackson/data12_8TeV.00201489.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274539_00/NTUP_SUSYSKIM.01274539._000034.root.9
+# - /tmp/bjackson/data12_8TeV.00201489.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274539_00/NTUP_SUSYSKIM.01274539._000036.root.6
+  - /tmp/bjackson/data12_8TeV.00201489.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274539_00/NTUP_SUSYSKIM.01274539._000044.root.9
+  - /tmp/bjackson/data12_8TeV.00201489.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274539_00/NTUP_SUSYSKIM.01274539._000047.root.9
+  - /tmp/bjackson/data12_8TeV.00201489.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274539_00/NTUP_SUSYSKIM.01274539._000057.root.9
+  - /tmp/bjackson/data12_8TeV.00201555.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274529_00/NTUP_SUSYSKIM.01274529._000014.root.1
+  - /tmp/bjackson/data12_8TeV.00201556.physics_Muons.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274519_00/NTUP_SUSYSKIM.01274519._000018.root.1

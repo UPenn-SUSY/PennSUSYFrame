@@ -240,7 +240,7 @@ void SusyDiLeptonCutFlowCycle::BeginInputDataImp( const SInputData& )
         maindir = maindir + "/";
       }
       c_fake_file =
-        maindir + "/../SusyMatrixMethod/data/pass6_Apr2_2013.root";
+        maindir + "/../SusyMatrixMethod/data/pass2_Summer2013.root";
     }
     m_matrix_method.configure(c_fake_file
                              , SusyMatrixMethod::PT
