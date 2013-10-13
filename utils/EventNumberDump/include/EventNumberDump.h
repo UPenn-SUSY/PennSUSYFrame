@@ -16,7 +16,7 @@ namespace Selection
 }
 
 // =============================================================================
-class EventNumberDump : public NtupleLooper
+class EventNumberDump : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

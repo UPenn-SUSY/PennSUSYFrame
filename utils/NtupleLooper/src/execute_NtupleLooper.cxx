@@ -22,7 +22,7 @@ int main(int argc, char** argv)
   TTree* t = static_cast<TTree*>(f->Get("output"));
   // TTree* t = static_cast<TTree*>(f->Get("presel"));
 
-  NtupleLooper ntl(t, num_events);
+  NtupleHelper::NtupleLooper ntl(t, num_events);
   ntl.Loop();
 
   delete f;

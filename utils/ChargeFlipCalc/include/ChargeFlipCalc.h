@@ -21,7 +21,7 @@
 
 
 // =============================================================================
-class ChargeFlipCalc : public NtupleLooper
+class ChargeFlipCalc : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

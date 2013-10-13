@@ -14,7 +14,7 @@
 // #pragma link C++ class MySuperClass+;
 // #pragma link C++ class RunSusyCutFlow+;
 
-#pragma link C++ class NtupleLooper+;
+#pragma link C++ class NtupleHelper::NtupleLooper+;
 #pragma link C++ class std::vector<unsigned long long>+;
 
 

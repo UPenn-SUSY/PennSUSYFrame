@@ -21,7 +21,7 @@
 #include "ProgressBar/include/ProgressBar.h"
 
 // -----------------------------------------------------------------------------
-NtupleLooper::NtupleLooper(TTree *tree, double events) : fChain(0)
+NtupleHelper::NtupleLooper::NtupleLooper(TTree *tree, double events) : fChain(0)
                                                        , m_num_events(events)
 {
   // if parameter tree is not specified (or zero), connect the file
@@ -39,14 +39,14 @@ NtupleLooper::NtupleLooper(TTree *tree, double events) : fChain(0)
 }
 
 // -----------------------------------------------------------------------------
-NtupleLooper::~NtupleLooper()
+NtupleHelper::NtupleLooper::~NtupleLooper()
 {
   if (!fChain) return;
   delete fChain->GetCurrentFile();
 }
 
 // -----------------------------------------------------------------------------
-Int_t NtupleLooper::GetEntry(Long64_t entry)
+Int_t NtupleHelper::NtupleLooper::GetEntry(Long64_t entry)
 {
   // Read contents of entry.
   if (!fChain) return 0;
@@ -54,7 +54,7 @@ Int_t NtupleLooper::GetEntry(Long64_t entry)
 }
 
 // -----------------------------------------------------------------------------
-Long64_t NtupleLooper::LoadTree(Long64_t entry)
+Long64_t NtupleHelper::NtupleLooper::LoadTree(Long64_t entry)
 {
   // Set the environment to read one entry
   if (!fChain) return -5;
@@ -68,7 +68,7 @@ Long64_t NtupleLooper::LoadTree(Long64_t entry)
 }
 
 // -----------------------------------------------------------------------------
-void NtupleLooper::Init(TTree *tree)
+void NtupleHelper::NtupleLooper::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -573,7 +573,7 @@ void NtupleLooper::Init(TTree *tree)
 }
 
 // -----------------------------------------------------------------------------
-Bool_t NtupleLooper::Notify()
+Bool_t NtupleHelper::NtupleLooper::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -585,7 +585,7 @@ Bool_t NtupleLooper::Notify()
 }
 
 // -----------------------------------------------------------------------------
-void NtupleLooper::Loop()
+void NtupleHelper::NtupleLooper::Loop()
 {
   if (fChain == 0) return;
 
@@ -608,7 +608,7 @@ void NtupleLooper::Loop()
 }
 
 // -----------------------------------------------------------------------------
-void NtupleLooper::processEvent()
+void NtupleHelper::NtupleLooper::processEvent()
 {
   // if (m_event_number % 10 == 0)
   //   std::cout << "event: " << m_event_number
@@ -617,10 +617,10 @@ void NtupleLooper::processEvent()
 }
 
 // -----------------------------------------------------------------------------
-bool NtupleLooper::isSignalElectron( const size_t el_index
+bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
                                    , const SusyAnalysisTools::ElectronDescription& el_desc
                                    , bool use_default_decision
-                                   , ISO_STYLE iso_type
+                                   , NtupleHelper::ISO_STYLE iso_type
                                    )
 {
   bool is_signal_electron_cutflow = el_desc.getPassSignal();
@@ -637,16 +637,47 @@ bool NtupleLooper::isSignalElectron( const size_t el_index
   double et_iso_frac = -999;
   double pt_iso_frac = -999;
 
-  if (iso_type == EWK_STYLE) {
-    et_iso = m_el_topoetcone30_corrected->at(el_index)/1.e3;
-    pt_iso = m_el_ptcone30->at(el_index)/1.e3;
+  if (iso_type == NtupleHelper::EWK_STYLE) {
+    et_iso = getElIsoCorr( el_index
+                         , NtupleHelper::TOPOETCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    pt_iso = getElIsoCorr( el_index
+                         , NtupleHelper::PTCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    // et_iso = m_el_topoetcone30_corrected->at(el_index)/1.e3;
+    // pt_iso = m_el_ptcone30->at(el_index)/1.e3;
 
     et_iso_frac = et_iso/pt;
     pt_iso_frac = pt_iso/pt;
   }
-  else if (iso_type == STRONG_STYLE) {
-    et_iso = m_el_topoetcone20->at(el_index)/1.e3;
-    pt_iso = m_el_ptcone20->at(el_index)/1.e3;
+  if (iso_type == NtupleHelper::EWK_HIGGS_STYLE) {
+    et_iso = getElIsoCorr( el_index
+                         , NtupleHelper::TOPOETCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    pt_iso = getElIsoCorr( el_index
+                         , NtupleHelper::PTCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    // et_iso = m_el_topoetcone30_corrected->at(el_index)/1.e3;
+    // pt_iso = m_el_ptcone30->at(el_index)/1.e3;
+
+    et_iso_frac = et_iso/pt;
+    pt_iso_frac = pt_iso/pt;
+  }
+  else if (iso_type == NtupleHelper::STRONG_STYLE) {
+    et_iso = getElIsoCorr( el_index
+                         , NtupleHelper::TOPOETCONE
+                         , NtupleHelper::CONE_20
+                         )/1.e3;
+    pt_iso = getElIsoCorr( el_index
+                         , NtupleHelper::PTCONE
+                         , NtupleHelper::CONE_20
+                         )/1.e3;
+    // et_iso = m_el_topoetcone20->at(el_index)/1.e3;
+    // pt_iso = m_el_ptcone20->at(el_index)/1.e3;
 
     et_iso_frac = et_iso/std::min(60., pt);
     pt_iso_frac = pt_iso/std::min(60., pt);
@@ -661,11 +692,16 @@ bool NtupleLooper::isSignalElectron( const size_t el_index
 
   bool pass_et_iso = true;
   bool pass_pt_iso = true;
-  if (iso_type == EWK_STYLE) {
+  if (iso_type == NtupleHelper::EWK_STYLE) {
     pass_et_iso = (et_iso_frac < 0.18);
     pass_pt_iso = (pt_iso_frac < 0.16);
   }
-  else if (iso_type == STRONG_STYLE) {
+  // TODO review these cut values
+  if (iso_type == NtupleHelper::EWK_HIGGS_STYLE) {
+    pass_et_iso = (et_iso_frac < 0.18);
+    pass_pt_iso = (pt_iso_frac < 0.16);
+  }
+  else if (iso_type == NtupleHelper::STRONG_STYLE) {
     pass_et_iso = (et_iso_frac < 0.06);
     pass_pt_iso = (pt_iso_frac < 0.06);
   }
@@ -705,10 +741,10 @@ bool NtupleLooper::isSignalElectron( const size_t el_index
 }
 
 // -----------------------------------------------------------------------------
-bool NtupleLooper::isSignalMuon( const size_t mu_index
+bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
                                , const SusyAnalysisTools::MuonDescription& mu_desc
                                , bool use_default_decision
-                               , ISO_STYLE iso_type
+                               , NtupleHelper::ISO_STYLE iso_type
                                )
 {
   bool is_signal_muon_cutflow = mu_desc.getPassSignal();
@@ -725,14 +761,40 @@ bool NtupleLooper::isSignalMuon( const size_t mu_index
   double pt_iso_frac = -999;
   double et_iso_frac = -999;
   if (iso_type == EWK_STYLE) {
-    pt_iso = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
-    et_iso = m_mu_etcone30->at(mu_index)/1.e3;
+    pt_iso = getMuIsoCorr( mu_index
+                         , NtupleHelper::PTCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    et_iso = 0.;
+    // pt_iso = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
+    pt_iso_frac = pt_iso/pt;
+    et_iso_frac = 0.;
+  }
+  if (iso_type == EWK_HIGGS_STYLE) {
+    pt_iso = getMuIsoCorr( mu_index
+                         , NtupleHelper::PTCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    et_iso = getMuIsoCorr( mu_index
+                         , NtupleHelper::ETCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    // pt_iso = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
+    // et_iso = m_mu_etcone30->at(mu_index)/1.e3;
     pt_iso_frac = pt_iso/pt;
     et_iso_frac = et_iso/pt;
   }
   else if (iso_type == STRONG_STYLE) {
-    pt_iso = m_mu_ptcone30->at(mu_index)/1.e3;
-    et_iso = m_mu_etcone30->at(mu_index)/1.e3;
+    pt_iso = getMuIsoCorr( mu_index
+                         , NtupleHelper::PTCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    et_iso = getMuIsoCorr( mu_index
+                         , NtupleHelper::ETCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    // pt_iso = m_mu_ptcone30->at(mu_index)/1.e3;
+    // et_iso = m_mu_etcone30->at(mu_index)/1.e3;
     pt_iso_frac = pt_iso/std::min(60.,pt);
     et_iso_frac = et_iso/std::min(60.,pt);
   }
@@ -748,6 +810,12 @@ bool NtupleLooper::isSignalMuon( const size_t mu_index
   if (iso_type == EWK_STYLE) {
     pass_pt_iso = (pt_iso_frac < 0.12);
   }
+  // TODO review these cuts
+  if (iso_type == EWK_HIGGS_STYLE) {
+    pass_pt_iso = (pt_iso_frac < 0.12);
+    pass_pt_iso = (et_iso_frac < 0.12);
+  }
+  // TODO review these cuts
   else if (iso_type == STRONG_STYLE) {
     pass_pt_iso = (pt_iso_frac < 0.12);
     pass_et_iso = (et_iso_frac < 0.12);
@@ -783,7 +851,7 @@ bool NtupleLooper::isSignalMuon( const size_t mu_index
 }
 
 // -----------------------------------------------------------------------------
-unsigned int getNumGoodVertices(unsigned int min_num_trks)
+unsigned int NtupleHelper::NtupleLooper::getNumGoodVertices(unsigned int min_num_trks)
 {
   unsigned int num_vertices = m_vtx_n;
   unsigned int num_good_vertices = 0;
@@ -796,10 +864,10 @@ unsigned int getNumGoodVertices(unsigned int min_num_trks)
 }
 
 // -----------------------------------------------------------------------------
-double NtupleLooper::getElIsoCorr( unsigned int index
-                                 , ISO_TYPE iso_type
-                                 , CONE_SIZE cone_size
-                                 )
+double NtupleHelper::NtupleLooper::getElIsoCorr( unsigned int index
+                                               , NtupleHelper::ISO_TYPE iso_type
+                                               , NtupleHelper::CONE_SIZE cone_size
+                                               )
 {
   double raw_iso = 9999;
   double correction_slope = 0;
@@ -807,43 +875,43 @@ double NtupleLooper::getElIsoCorr( unsigned int index
 
   // get raw isolation and correction slope
   if (iso_type == ETCONE) {
-    if (cone_size = CONE_20) {
+    if (cone_size == CONE_20) {
       raw_iso = m_el_etcone20->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_30) {
+    else if (cone_size == CONE_30) {
       raw_iso = m_el_etcone30->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_40) {
+    else if (cone_size == CONE_40) {
       raw_iso = m_el_etcone40->at(index);
       correction_slope = 0.;
     }
   }
   if (iso_type == TOPOETCONE) {
-    if (cone_size = CONE_20) {
+    if (cone_size == CONE_20) {
       raw_iso = m_el_topoetcone20->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_30) {
+    else if (cone_size == CONE_30) {
       raw_iso = m_el_topoetcone30->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_40) {
+    else if (cone_size == CONE_40) {
       raw_iso = m_el_topoetcone40->at(index);
       correction_slope = 0.;
     }
   }
   if (iso_type == PTCONE) {
-    if (cone_size = CONE_20) {
+    if (cone_size == CONE_20) {
       raw_iso = m_el_ptcone20->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_30) {
+    else if (cone_size == CONE_30) {
       raw_iso = m_el_ptcone30->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_40) {
+    else if (cone_size == CONE_40) {
       raw_iso = m_el_ptcone40->at(index);
       correction_slope = 0.;
     }
@@ -855,9 +923,9 @@ double NtupleLooper::getElIsoCorr( unsigned int index
 }
 
 // -----------------------------------------------------------------------------
-double NtupleLooper::getMuIsoCorr( unsigned int index
-                                 , ISO_TYPE iso_type
-                                 , CONE_SIZE cone_size
+double NtupleHelper::NtupleLooper::getMuIsoCorr( unsigned int index
+                                 , NtupleHelper::ISO_TYPE iso_type
+                                 , NtupleHelper::CONE_SIZE cone_size
                                  )
 {
   double raw_iso = 9999;
@@ -866,29 +934,29 @@ double NtupleLooper::getMuIsoCorr( unsigned int index
 
   // get raw isolation and correction slope
   if (iso_type == ETCONE) {
-    if (cone_size = CONE_20) {
+    if (cone_size == CONE_20) {
       raw_iso = m_mu_etcone20->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_30) {
+    else if (cone_size == CONE_30) {
       raw_iso = m_mu_etcone30->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_40) {
+    else if (cone_size == CONE_40) {
       raw_iso = m_mu_etcone40->at(index);
       correction_slope = 0.;
     }
   }
   if (iso_type == PTCONE) {
-    if (cone_size = CONE_20) {
+    if (cone_size == CONE_20) {
       raw_iso = m_mu_ptcone20_trkelstyle->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_30) {
+    else if (cone_size == CONE_30) {
       raw_iso = m_mu_ptcone30_trkelstyle->at(index);
       correction_slope = 0.;
     }
-    else if (cone_size = CONE_40) {
+    else if (cone_size == CONE_40) {
       raw_iso = m_mu_ptcone40_trkelstyle->at(index);
       correction_slope = 0.;
     }

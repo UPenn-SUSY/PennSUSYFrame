@@ -9,7 +9,7 @@
 class TTree;
 
 // =============================================================================
-class UpdateWeights : public NtupleLooper
+class UpdateWeights : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

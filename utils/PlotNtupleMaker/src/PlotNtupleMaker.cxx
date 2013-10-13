@@ -26,7 +26,7 @@ PlotNtupleMaker::PlotNtupleMaker( TTree *tree
                                 , double events
                                 , std::string out_file_name
                                 )
-                                : NtupleLooper(tree, events)
+                                : NtupleHelper::NtupleLooper(tree, events)
                                 , m_out_file(NULL)
                                 , m_entry_num(0)
 {

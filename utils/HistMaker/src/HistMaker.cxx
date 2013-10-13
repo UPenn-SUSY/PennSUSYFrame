@@ -5,7 +5,7 @@ HistMaker::HistMaker( TTree *tree
                     , double num_events
                     , std::string out_file_name
                     )
-                    : NtupleLooper(tree, num_events)
+                    : NtupleHelper::NtupleLooper(tree, num_events)
                     , m_out_file(NULL)
                     , m_entry_num(0)
 {

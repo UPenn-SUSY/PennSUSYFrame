@@ -26,7 +26,7 @@ enum WEIGHTS { WEIGHT_NONE = 0
 std::string getWeightName(WEIGHTS);
 
 // =============================================================================
-class CutFlowDump : public NtupleLooper
+class CutFlowDump : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

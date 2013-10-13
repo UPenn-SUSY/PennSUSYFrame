@@ -11,7 +11,7 @@
 class TTree;
 
 // =============================================================================
-class MakeFakeNtuple : public NtupleLooper
+class MakeFakeNtuple : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

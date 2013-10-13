@@ -20,7 +20,7 @@
 
 // -----------------------------------------------------------------------------
 ChannelFractions::ChannelFractions( TTree *tree
-                        , double num_events) : NtupleLooper(tree, num_events)
+                        , double num_events) : NtupleHelper::NtupleLooper(tree, num_events)
                                              , m_num_total(0.)
                                              , m_num_eee(0.)
                                              , m_num_eem(0.)

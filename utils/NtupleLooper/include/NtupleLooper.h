@@ -15,19 +15,22 @@ class TChain;
 class TTree;
 
 // =============================================================================
-enum ISO_STYLE { EWK_STYLE
-               , STRONG_STYLE
-               };
+namespace NtupleHelper
+{
+  enum ISO_STYLE { EWK_STYLE
+                 , EWK_HIGGS_STYLE
+                 , STRONG_STYLE
+                 };
 
-enum ISO_TYPE { ETCONE
-              , TOPOETCONE
-              , PTCONE
-              };
+  enum ISO_TYPE { ETCONE
+                , TOPOETCONE
+                , PTCONE
+                };
 
-enum CONE_SIZE { CONE_20
-               , CONE_30
-               , CONE_40
-               };
+  enum CONE_SIZE { CONE_20
+                 , CONE_30
+                 , CONE_40
+                 };
 
 // =============================================================================
 class NtupleLooper
@@ -46,17 +49,17 @@ class NtupleLooper
     virtual bool isSignalElectron( const size_t el_index
                                  , const SusyAnalysisTools::ElectronDescription&
                                  , bool use_default_decision = true
-                                 , ISO_STYLE iso_type = EWK_STYLE
+                                 , NtupleHelper::ISO_STYLE iso_type = EWK_STYLE
                                  );
     virtual bool isSignalMuon( const size_t mu_index
                              , const SusyAnalysisTools::MuonDescription&
                              , bool use_default_decision = true
-                             , ISO_STYLE iso_type = EWK_STYLE
+                             , NtupleHelper::ISO_STYLE iso_type = EWK_STYLE
                              );
 
     unsigned int getNumGoodVertices(unsigned int min_num_trks);
-    double getElIsoCorr(unsigned int index, ISO_TYPE, CONE_SIZE);
-    double getMuIsoCorr(unsigned int index, ISO_TYPE, CONE_SIZE);
+    double getElIsoCorr(unsigned int index, NtupleHelper::ISO_TYPE, NtupleHelper::CONE_SIZE);
+    double getMuIsoCorr(unsigned int index, NtupleHelper::ISO_TYPE, NtupleHelper::CONE_SIZE);
 
   // ---------------------------------------------------------------------------
   protected:
@@ -264,5 +267,7 @@ class NtupleLooper
   private:
     // ProgressBar* m_progress_bar;
 };
+
+}
 
 #endif

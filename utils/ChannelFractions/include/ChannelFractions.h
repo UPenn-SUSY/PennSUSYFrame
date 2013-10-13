@@ -14,7 +14,7 @@ class TH1D;
 class TTree;
 
 // =============================================================================
-class ChannelFractions : public NtupleLooper
+class ChannelFractions : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

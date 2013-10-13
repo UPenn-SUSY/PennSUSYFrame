@@ -16,7 +16,7 @@ namespace Selection
 }
 
 // =============================================================================
-class LeptonEfficiencies : public NtupleLooper
+class LeptonEfficiencies : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

@@ -23,7 +23,7 @@
 
 // -----------------------------------------------------------------------------
 CalculateFakeRates::CalculateFakeRates( TTree *tree
-                                      , double num_events) : NtupleLooper(tree, num_events)
+                                      , double num_events) : NtupleHelper::NtupleLooper(tree, num_events)
                                                            , m_el_re_EWK(NULL)
                                                            , m_el_re_STRONG(NULL)
                                                            , m_el_re_numer_EWK(NULL)
@@ -136,8 +136,8 @@ void CalculateFakeRates::processEvent()
     SusyAnalysisTools::ElectronDescription el_desc(m_el_desc->at(el_it));
     bool is_truth_matched = el_desc.getPassPromptLepton();
     bool is_baseline      = el_desc.getPassGood();
-    bool is_signal_EWK    = isSignalElectron(el_it, el_desc, false, EWK_STYLE);
-    bool is_signal_STRONG = isSignalElectron(el_it, el_desc, false, STRONG_STYLE);
+    bool is_signal_EWK    = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_STYLE);
+    bool is_signal_STRONG = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE);
     float el_pt           = m_el_pt->at(el_it)/1000.;
 
     if (el_pt >= 100.) el_pt = 99.;
@@ -170,8 +170,8 @@ void CalculateFakeRates::processEvent()
     SusyAnalysisTools::MuonDescription mu_desc(m_mu_desc->at(mu_it));
     bool is_truth_matched = mu_desc.getPassPromptLepton();
     bool is_baseline      = mu_desc.getPassGood();
-    bool is_signal_EWK    = isSignalMuon(mu_it, mu_desc, false, EWK_STYLE);
-    bool is_signal_STRONG = isSignalMuon(mu_it, mu_desc, false, STRONG_STYLE);
+    bool is_signal_EWK    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_STYLE);
+    bool is_signal_STRONG = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE);
     float mu_pt           = m_mu_pt->at(mu_it)/1000.;
 
     if (mu_pt >= 100.) mu_pt = 99.;
@@ -269,7 +269,7 @@ void CalculateFakeRates::printToScreen()
   unsigned int line_width   = 100;
   unsigned int label_field  = 30;
   unsigned int weight_field = (line_width - label_field - 4 - 2*3 )/2;
-  unsigned int precision    = weight_field-2;
+  // unsigned int precision    = weight_field-2;
   if (4+label_field+2*weight_field != line_width) {
     label_field += (line_width - label_field - 4 - 2*3 )%2;
   }

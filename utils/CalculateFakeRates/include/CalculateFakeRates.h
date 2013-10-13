@@ -14,7 +14,7 @@ class TH1D;
 class TTree;
 
 // =============================================================================
-class CalculateFakeRates : public NtupleLooper
+class CalculateFakeRates : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

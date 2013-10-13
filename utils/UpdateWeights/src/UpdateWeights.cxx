@@ -8,7 +8,7 @@
 UpdateWeights::UpdateWeights( TTree *tree
                             , double num_events
                             , std::string out_file_name
-                            ) : NtupleLooper(tree, num_events)
+                            ) : NtupleHelper::NtupleLooper(tree, num_events)
                               , m_out_file_name(out_file_name)
 {
   // do nothing

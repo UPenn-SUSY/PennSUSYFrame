@@ -20,7 +20,7 @@
 
 // -----------------------------------------------------------------------------
 CutFlowDump::CutFlowDump( TTree *tree
-                        , double num_events) : NtupleLooper(tree, num_events)
+                        , double num_events) : NtupleHelper::NtupleLooper(tree, num_events)
                                              , m_axis_initialized(false)
 {
   initCutFlowHists();

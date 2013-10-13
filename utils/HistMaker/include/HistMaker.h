@@ -26,7 +26,7 @@
 #include "SusyAnalysisTools/include/SusyEnums.h"
 
 // =============================================================================
-class HistMaker : public NtupleLooper
+class HistMaker : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :

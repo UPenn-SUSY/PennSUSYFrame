@@ -14,7 +14,7 @@ class TFile;
 class TTree;
 
 // =============================================================================
-class PlotNtupleMaker : public NtupleLooper
+class PlotNtupleMaker : public NtupleHelper::NtupleLooper
 {
   // ---------------------------------------------------------------------------
   public :
