@@ -311,15 +311,15 @@ ChargeFlipSF:
   path_to_charge_flip_map: ${ROOTCOREDIR}/../ChargeFlip/data/chargeflip_map.root
 
 ElectronOutput:
-  do_detailed_output:      0
+  do_detailed_output:      1
   electron_container_name: good
 
 MuonOutput:
-  do_detailed_output:  0
+  do_detailed_output:  1
   muon_container_name: good
 
 JetOutput:
-  do_detailed_output: 0
+  do_detailed_output: 1
   jet_container_name: good
 
 JetOutput_light:
@@ -328,9 +328,9 @@ JetOutput_light:
   jet_label:          light_jet_
 
 MetOutput:
-  do_detailed_output: 0
+  do_detailed_output: 1
 
 VertexOutput:
-  do_detailed_output:    0
+  do_detailed_output:    1
   vertex_container_name: good
 

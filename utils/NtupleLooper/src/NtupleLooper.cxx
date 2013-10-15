@@ -137,6 +137,9 @@ void NtupleHelper::NtupleLooper::Init(TTree *tree)
    m_el_topoetcone20_corrected = 0;
    m_el_topoetcone30_corrected = 0;
    m_el_topoetcone40_corrected = 0;
+   m_el_raw_topoetcone20_corrected = 0;
+   m_el_raw_topoetcone30_corrected = 0;
+   m_el_raw_topoetcone40_corrected = 0;
    m_el_truth_charge = 0;
    m_mu_pt = 0;
    m_mu_eta = 0;
@@ -150,6 +153,9 @@ void NtupleHelper::NtupleLooper::Init(TTree *tree)
    m_mu_etcone20 = 0;
    m_mu_etcone30 = 0;
    m_mu_etcone40 = 0;
+   m_mu_raw_etcone20 = 0;
+   m_mu_raw_etcone30 = 0;
+   m_mu_raw_etcone40 = 0;
    m_mu_ptcone20 = 0;
    m_mu_ptcone30 = 0;
    m_mu_ptcone40 = 0;
@@ -416,6 +422,18 @@ void NtupleHelper::NtupleLooper::Init(TTree *tree)
                            , &m_el_topoetcone40_corrected
                            , &b_el_topoetcone40_corrected
                            );
+   fChain->SetBranchAddress( "el_raw_topoetcone20_corrected"
+                           , &m_el_raw_topoetcone20_corrected
+                           , &b_el_raw_topoetcone20_corrected
+                           );
+   fChain->SetBranchAddress( "el_raw_topoetcone30_corrected"
+                           , &m_el_raw_topoetcone30_corrected
+                           , &b_el_raw_topoetcone30_corrected
+                           );
+   fChain->SetBranchAddress( "el_raw_topoetcone40_corrected"
+                           , &m_el_raw_topoetcone40_corrected
+                           , &b_el_raw_topoetcone40_corrected
+                           );
    fChain->SetBranchAddress( "el_truth_charge"
                            , &m_el_truth_charge
                            , &b_el_truth_charge
@@ -467,6 +485,18 @@ void NtupleHelper::NtupleLooper::Init(TTree *tree)
    fChain->SetBranchAddress( "mu_etcone40"
                            , &m_mu_etcone40
                            , &b_mu_etcone40
+                           );
+   fChain->SetBranchAddress( "mu_raw_etcone20"
+                           , &m_mu_raw_etcone20
+                           , &b_mu_raw_etcone20
+                           );
+   fChain->SetBranchAddress( "mu_raw_etcone30"
+                           , &m_mu_raw_etcone30
+                           , &b_mu_raw_etcone30
+                           );
+   fChain->SetBranchAddress( "mu_raw_etcone40"
+                           , &m_mu_raw_etcone40
+                           , &b_mu_raw_etcone40
                            );
    fChain->SetBranchAddress( "mu_ptcone20"
                            , &m_mu_ptcone20
@@ -646,8 +676,17 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
                          , NtupleHelper::PTCONE
                          , NtupleHelper::CONE_30
                          )/1.e3;
-    // et_iso = m_el_topoetcone30_corrected->at(el_index)/1.e3;
-    // pt_iso = m_el_ptcone30->at(el_index)/1.e3;
+    // double et_iso_d3pd = m_el_topoetcone30_corrected->at(el_index)/1.e3;
+    // double pt_iso_d3pd = m_el_ptcone30->at(el_index)/1.e3;
+
+    // if (int(1.e3*et_iso) != int(1.e3*et_iso_d3pd))
+    //   std::cout << "reco el etcone( " << et_iso
+    //             << " ) != d3pd etcone( " << et_iso_d3pd
+    //             << " )\n";
+    // if (int(1.e3*pt_iso) != int(1.e3*pt_iso_d3pd))
+    //   std::cout << "reco el ptcone( " << pt_iso
+    //             << " ) != d3pd ptcone( " << pt_iso_d3pd
+    //             << " )\n";
 
     et_iso_frac = et_iso/pt;
     pt_iso_frac = pt_iso/pt;
@@ -661,8 +700,6 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
                          , NtupleHelper::PTCONE
                          , NtupleHelper::CONE_30
                          )/1.e3;
-    // et_iso = m_el_topoetcone30_corrected->at(el_index)/1.e3;
-    // pt_iso = m_el_ptcone30->at(el_index)/1.e3;
 
     et_iso_frac = et_iso/pt;
     pt_iso_frac = pt_iso/pt;
@@ -676,8 +713,6 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
                          , NtupleHelper::PTCONE
                          , NtupleHelper::CONE_20
                          )/1.e3;
-    // et_iso = m_el_topoetcone20->at(el_index)/1.e3;
-    // pt_iso = m_el_ptcone20->at(el_index)/1.e3;
 
     et_iso_frac = et_iso/std::min(60., pt);
     pt_iso_frac = pt_iso/std::min(60., pt);
@@ -765,8 +800,16 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
                          , NtupleHelper::PTCONE
                          , NtupleHelper::CONE_30
                          )/1.e3;
-    et_iso = 0.;
-    // pt_iso = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
+    et_iso = getMuIsoCorr( mu_index
+                         , NtupleHelper::ETCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    // double pt_iso_d3pd = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
+    // double et_iso_d3pd = m_mu_etcone30->at(mu_index)/1.e3;
+
+    // if (int(1.e3*et_iso) != int(1.e3*et_iso_d3pd)) std::cout << "reco mu etcone( " << et_iso << " != d3pd etcone( " << et_iso_d3pd << "\n";
+    // if (int(1.e3*pt_iso) != int(1.e3*pt_iso_d3pd)) std::cout << "reco mu ptcone( " << pt_iso << " != d3pd ptcone( " << pt_iso_d3pd << "\n";
+
     pt_iso_frac = pt_iso/pt;
     et_iso_frac = 0.;
   }
@@ -779,8 +822,6 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
                          , NtupleHelper::ETCONE
                          , NtupleHelper::CONE_30
                          )/1.e3;
-    // pt_iso = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
-    // et_iso = m_mu_etcone30->at(mu_index)/1.e3;
     pt_iso_frac = pt_iso/pt;
     et_iso_frac = et_iso/pt;
   }
@@ -793,8 +834,6 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
                          , NtupleHelper::ETCONE
                          , NtupleHelper::CONE_30
                          )/1.e3;
-    // pt_iso = m_mu_ptcone30->at(mu_index)/1.e3;
-    // et_iso = m_mu_etcone30->at(mu_index)/1.e3;
     pt_iso_frac = pt_iso/std::min(60.,pt);
     et_iso_frac = et_iso/std::min(60.,pt);
   }
@@ -874,32 +913,18 @@ double NtupleHelper::NtupleLooper::getElIsoCorr( unsigned int index
   int num_good_vertices = getNumGoodVertices(5);
 
   // get raw isolation and correction slope
-  if (iso_type == ETCONE) {
-    if (cone_size == CONE_20) {
-      raw_iso = m_el_etcone20->at(index);
-      correction_slope = 0.;
-    }
-    else if (cone_size == CONE_30) {
-      raw_iso = m_el_etcone30->at(index);
-      correction_slope = 0.;
-    }
-    else if (cone_size == CONE_40) {
-      raw_iso = m_el_etcone40->at(index);
-      correction_slope = 0.;
-    }
-  }
   if (iso_type == TOPOETCONE) {
     if (cone_size == CONE_20) {
-      raw_iso = m_el_topoetcone20->at(index);
-      correction_slope = 0.;
+      raw_iso = m_el_raw_topoetcone20_corrected->at(index);
+      correction_slope = (4./9.)*17.94;
     }
     else if (cone_size == CONE_30) {
-      raw_iso = m_el_topoetcone30->at(index);
-      correction_slope = 0.;
+      raw_iso = m_el_raw_topoetcone30_corrected->at(index);
+      correction_slope = 17.94;
     }
     else if (cone_size == CONE_40) {
-      raw_iso = m_el_topoetcone40->at(index);
-      correction_slope = 0.;
+      raw_iso = m_el_raw_topoetcone40_corrected->at(index);
+      correction_slope = (16./9.)*17.94;
     }
   }
   if (iso_type == PTCONE) {
@@ -929,40 +954,47 @@ double NtupleHelper::NtupleLooper::getMuIsoCorr( unsigned int index
                                  )
 {
   double raw_iso = 9999;
-  double correction_slope = 0;
+  double correction_slope_p0 = 0.;
+  double correction_slope_p1 = 0.;
   int num_good_vertices = getNumGoodVertices(5);
 
   // get raw isolation and correction slope
   if (iso_type == ETCONE) {
     if (cone_size == CONE_20) {
-      raw_iso = m_mu_etcone20->at(index);
-      correction_slope = 0.;
+      raw_iso = m_mu_raw_etcone20->at(index);
+      correction_slope_p0 = (4./9.) * 69.2;
+      correction_slope_p0 = (4./9.) * 0.76;
     }
     else if (cone_size == CONE_30) {
-      raw_iso = m_mu_etcone30->at(index);
-      correction_slope = 0.;
+      raw_iso = m_mu_raw_etcone30->at(index);
+      correction_slope_p0 = 69.2;
+      correction_slope_p0 = 0.76;
     }
     else if (cone_size == CONE_40) {
-      raw_iso = m_mu_etcone40->at(index);
-      correction_slope = 0.;
+      raw_iso = m_mu_raw_etcone40->at(index);
+      correction_slope_p0 = (16./9.) * 69.2;
+      correction_slope_p0 = (16./9.) * 0.76;
     }
   }
   if (iso_type == PTCONE) {
     if (cone_size == CONE_20) {
       raw_iso = m_mu_ptcone20_trkelstyle->at(index);
-      correction_slope = 0.;
+      correction_slope_p0 = 0.;
     }
     else if (cone_size == CONE_30) {
       raw_iso = m_mu_ptcone30_trkelstyle->at(index);
-      correction_slope = 0.;
+      correction_slope_p0 = 0.;
     }
     else if (cone_size == CONE_40) {
       raw_iso = m_mu_ptcone40_trkelstyle->at(index);
-      correction_slope = 0.;
+      correction_slope_p0 = 0.;
     }
   }
 
   // apply correction
-  double iso_corr = raw_iso - correction_slope*num_good_vertices;
+  double iso_corr = ( raw_iso
+                    - correction_slope_p0*num_good_vertices
+                    - correction_slope_p1*num_good_vertices*num_good_vertices
+                    );
   return iso_corr;
 }

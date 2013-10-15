@@ -127,6 +127,9 @@ class NtupleLooper
     std::vector<float>*        m_el_topoetcone20_corrected;
     std::vector<float>*        m_el_topoetcone30_corrected;
     std::vector<float>*        m_el_topoetcone40_corrected;
+    std::vector<float>*        m_el_raw_topoetcone20_corrected;
+    std::vector<float>*        m_el_raw_topoetcone30_corrected;
+    std::vector<float>*        m_el_raw_topoetcone40_corrected;
     std::vector<float>*        m_el_truth_charge;
     std::vector<float>*        m_mu_pt;
     std::vector<float>*        m_mu_eta;
@@ -140,6 +143,9 @@ class NtupleLooper
     std::vector<float>*        m_mu_etcone20;
     std::vector<float>*        m_mu_etcone30;
     std::vector<float>*        m_mu_etcone40;
+    std::vector<float>*        m_mu_raw_etcone20;
+    std::vector<float>*        m_mu_raw_etcone30;
+    std::vector<float>*        m_mu_raw_etcone40;
     std::vector<float>*        m_mu_ptcone20;
     std::vector<float>*        m_mu_ptcone30;
     std::vector<float>*        m_mu_ptcone40;
@@ -225,6 +231,9 @@ class NtupleLooper
     TBranch* b_el_topoetcone20_corrected;
     TBranch* b_el_topoetcone30_corrected;
     TBranch* b_el_topoetcone40_corrected;
+    TBranch* b_el_raw_topoetcone20_corrected;
+    TBranch* b_el_raw_topoetcone30_corrected;
+    TBranch* b_el_raw_topoetcone40_corrected;
     TBranch* b_el_truth_charge;
     TBranch* b_mu_pt;
     TBranch* b_mu_eta;
@@ -238,6 +247,9 @@ class NtupleLooper
     TBranch* b_mu_etcone20;
     TBranch* b_mu_etcone30;
     TBranch* b_mu_etcone40;
+    TBranch* b_mu_raw_etcone20;
+    TBranch* b_mu_raw_etcone30;
+    TBranch* b_mu_raw_etcone40;
     TBranch* b_mu_ptcone20;
     TBranch* b_mu_ptcone30;
     TBranch* b_mu_ptcone40;
