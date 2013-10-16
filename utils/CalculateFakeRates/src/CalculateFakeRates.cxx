@@ -25,23 +25,31 @@
 CalculateFakeRates::CalculateFakeRates( TTree *tree
                                       , double num_events) : NtupleHelper::NtupleLooper(tree, num_events)
                                                            , m_el_re_EWK(NULL)
+                                                           , m_el_re_HIGGS(NULL)
                                                            , m_el_re_STRONG(NULL)
                                                            , m_el_re_numer_EWK(NULL)
+                                                           , m_el_re_numer_HIGGS(NULL)
                                                            , m_el_re_numer_STRONG(NULL)
                                                            , m_el_re_denom(NULL)
                                                            , m_mu_re_EWK(NULL)
+                                                           , m_mu_re_HIGGS(NULL)
                                                            , m_mu_re_STRONG(NULL)
                                                            , m_mu_re_numer_EWK(NULL)
+                                                           , m_mu_re_numer_HIGGS(NULL)
                                                            , m_mu_re_numer_STRONG(NULL)
                                                            , m_mu_re_denom(NULL)
                                                            , m_el_fr_EWK(NULL)
+                                                           , m_el_fr_HIGGS(NULL)
                                                            , m_el_fr_STRONG(NULL)
                                                            , m_el_fr_numer_EWK(NULL)
+                                                           , m_el_fr_numer_HIGGS(NULL)
                                                            , m_el_fr_numer_STRONG(NULL)
                                                            , m_el_fr_denom(NULL)
                                                            , m_mu_fr_EWK(NULL)
+                                                           , m_mu_fr_HIGGS(NULL)
                                                            , m_mu_fr_STRONG(NULL)
                                                            , m_mu_fr_numer_EWK(NULL)
+                                                           , m_mu_fr_numer_HIGGS(NULL)
                                                            , m_mu_fr_numer_STRONG(NULL)
                                                            , m_mu_fr_denom(NULL)
 {
@@ -49,18 +57,22 @@ CalculateFakeRates::CalculateFakeRates( TTree *tree
   double pt_bins[7] = {0., 15., 30., 45., 55., 75., 100.};
 
   m_el_re_numer_EWK    = new TH1D("el_re_numer_EWK"   , "electron re numerator (EWK)"   , 6, pt_bins);
+  m_el_re_numer_HIGGS  = new TH1D("el_re_numer_HIGGS" , "electron re numerator (HIGGS)" , 6, pt_bins);
   m_el_re_numer_STRONG = new TH1D("el_re_numer_STRONG", "electron re numerator (STRONG)", 6, pt_bins);
   m_el_re_denom        = new TH1D("el_re_denom"       , "electron re denominator"       , 6, pt_bins);
 
   m_mu_re_numer_EWK    = new TH1D("mu_re_numer_EWK"   , "muon re numerator (EWK)"   , 6, pt_bins);
+  m_mu_re_numer_HIGGS  = new TH1D("mu_re_numer_HIGGS" , "muon re numerator (HIGGS)" , 6, pt_bins);
   m_mu_re_numer_STRONG = new TH1D("mu_re_numer_STRONG", "muon re numerator (STRONG)", 6, pt_bins);
   m_mu_re_denom        = new TH1D("mu_re_denom"       , "muon re denominator"       , 6, pt_bins);
 
   m_el_fr_numer_EWK    = new TH1D("el_fr_numer_EWK"   , "electron fr numerator (EWK)"   , 6, pt_bins);
+  m_el_fr_numer_HIGGS  = new TH1D("el_fr_numer_HIGGS" , "electron fr numerator (HIGGS)" , 6, pt_bins);
   m_el_fr_numer_STRONG = new TH1D("el_fr_numer_STRONG", "electron fr numerator (STRONG)", 6, pt_bins);
   m_el_fr_denom        = new TH1D("el_fr_denom"       , "electron fr denominator"       , 6, pt_bins);
 
   m_mu_fr_numer_EWK    = new TH1D("mu_fr_numer_EWK"   , "muon fr numerator (EWK)"   , 6, pt_bins);
+  m_mu_fr_numer_HIGGS  = new TH1D("mu_fr_numer_HIGGS" , "muon fr numerator (HIGGS)" , 6, pt_bins);
   m_mu_fr_numer_STRONG = new TH1D("mu_fr_numer_STRONG", "muon fr numerator (STRONG)", 6, pt_bins);
   m_mu_fr_denom        = new TH1D("mu_fr_denom"       , "muon fr denominator"       , 6, pt_bins);
 }
@@ -137,6 +149,7 @@ void CalculateFakeRates::processEvent()
     bool is_truth_matched = el_desc.getPassPromptLepton();
     bool is_baseline      = el_desc.getPassGood();
     bool is_signal_EWK    = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_STYLE);
+    bool is_signal_HIGGS    = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_HIGGS_STYLE);
     bool is_signal_STRONG = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE);
     float el_pt           = m_el_pt->at(el_it)/1000.;
 
@@ -149,6 +162,9 @@ void CalculateFakeRates::processEvent()
       if (is_baseline && is_signal_EWK) {
         m_el_re_numer_EWK->Fill(el_pt);
       }
+      if (is_baseline && is_signal_HIGGS) {
+        m_el_re_numer_HIGGS->Fill(el_pt);
+      }
       if (is_baseline && is_signal_STRONG) {
         m_el_re_numer_STRONG->Fill(el_pt);
       }
@@ -159,6 +175,9 @@ void CalculateFakeRates::processEvent()
       }
       if (is_baseline && is_signal_EWK) {
         m_el_fr_numer_EWK->Fill(el_pt);
+      }
+      if (is_baseline && is_signal_HIGGS) {
+        m_el_fr_numer_HIGGS->Fill(el_pt);
       }
       if (is_baseline && is_signal_STRONG) {
         m_el_fr_numer_STRONG->Fill(el_pt);
@@ -171,9 +190,14 @@ void CalculateFakeRates::processEvent()
     bool is_truth_matched = mu_desc.getPassPromptLepton();
     bool is_baseline      = mu_desc.getPassGood();
     bool is_signal_EWK    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_STYLE);
+    bool is_signal_HIGGS  = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_HIGGS_STYLE);
     bool is_signal_STRONG = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE);
     float mu_pt           = m_mu_pt->at(mu_it)/1000.;
 
+
+    // if (is_signal_HIGGS != is_signal_STRONG) {
+    //   std::cout << "\nWARNING!!! HIGGS != STRONG\n\tpT: " << mu_pt << "\thiggs: " << is_signal_HIGGS << "\tstrong: " << is_signal_STRONG << "\n";
+    // }
     if (mu_pt >= 100.) mu_pt = 99.;
 
     if (is_truth_matched) {
@@ -182,6 +206,9 @@ void CalculateFakeRates::processEvent()
       }
       if (is_baseline && is_signal_EWK) {
         m_mu_re_numer_EWK->Fill(mu_pt);
+      }
+      if (is_baseline && is_signal_HIGGS) {
+        m_mu_re_numer_HIGGS->Fill(mu_pt);
       }
       if (is_baseline && is_signal_STRONG) {
         m_mu_re_numer_STRONG->Fill(mu_pt);
@@ -193,6 +220,9 @@ void CalculateFakeRates::processEvent()
       }
       if (is_baseline && is_signal_EWK) {
         m_mu_fr_numer_EWK->Fill(mu_pt);
+      }
+      if (is_baseline && is_signal_HIGGS) {
+        m_mu_fr_numer_HIGGS->Fill(mu_pt);
       }
       if (is_baseline && is_signal_STRONG) {
         m_mu_fr_numer_STRONG->Fill(mu_pt);
@@ -287,6 +317,10 @@ void CalculateFakeRates::printToScreen()
   m_el_re_EWK->Sumw2();
   m_el_re_EWK->Divide(m_el_re_denom);
 
+  m_el_re_HIGGS = static_cast<TH1D*>(m_el_re_numer_HIGGS->Clone("el_re_HIGGS"));
+  m_el_re_HIGGS->Sumw2();
+  m_el_re_HIGGS->Divide(m_el_re_denom);
+
   m_el_re_STRONG = static_cast<TH1D*>(m_el_re_numer_STRONG->Clone("el_re_STRONG"));
   m_el_re_STRONG->Sumw2();
   m_el_re_STRONG->Divide(m_el_re_denom);
@@ -294,6 +328,10 @@ void CalculateFakeRates::printToScreen()
   m_mu_re_EWK = static_cast<TH1D*>(m_mu_re_numer_EWK->Clone("mu_re_EWK"));
   m_mu_re_EWK->Sumw2();
   m_mu_re_EWK->Divide(m_mu_re_denom);
+
+  m_mu_re_HIGGS = static_cast<TH1D*>(m_mu_re_numer_HIGGS->Clone("mu_re_HIGGS"));
+  m_mu_re_HIGGS->Sumw2();
+  m_mu_re_HIGGS->Divide(m_mu_re_denom);
 
   m_mu_re_STRONG = static_cast<TH1D*>(m_mu_re_numer_STRONG->Clone("mu_re_STRONG"));
   m_mu_re_STRONG->Sumw2();
@@ -303,6 +341,10 @@ void CalculateFakeRates::printToScreen()
   m_el_fr_EWK->Sumw2();
   m_el_fr_EWK->Divide(m_el_fr_denom);
 
+  m_el_fr_HIGGS = static_cast<TH1D*>(m_el_fr_numer_HIGGS->Clone("el_fr_HIGGS"));
+  m_el_fr_HIGGS->Sumw2();
+  m_el_fr_HIGGS->Divide(m_el_fr_denom);
+
   m_el_fr_STRONG = static_cast<TH1D*>(m_el_fr_numer_STRONG->Clone("el_fr_STRONG"));
   m_el_fr_STRONG->Sumw2();
   m_el_fr_STRONG->Divide(m_el_fr_denom);
@@ -310,6 +352,10 @@ void CalculateFakeRates::printToScreen()
   m_mu_fr_EWK = static_cast<TH1D*>(m_mu_fr_numer_EWK->Clone("mu_fr_EWK"));
   m_mu_fr_EWK->Sumw2();
   m_mu_fr_EWK->Divide(m_mu_fr_denom);
+
+  m_mu_fr_HIGGS = static_cast<TH1D*>(m_mu_fr_numer_HIGGS->Clone("mu_fr_HIGGS"));
+  m_mu_fr_HIGGS->Sumw2();
+  m_mu_fr_HIGGS->Divide(m_mu_fr_denom);
 
   m_mu_fr_STRONG = static_cast<TH1D*>(m_mu_fr_numer_STRONG->Clone("mu_fr_STRONG"));
   m_mu_fr_STRONG->Sumw2();
@@ -393,26 +439,34 @@ void CalculateFakeRates::printToFile(std::string out_file_name)
   f.cd();
 
   m_el_re_EWK->Write();
+  m_el_re_HIGGS->Write();
   m_el_re_STRONG->Write();
   m_el_re_numer_EWK->Write();
+  m_el_re_numer_HIGGS->Write();
   m_el_re_numer_STRONG->Write();
   m_el_re_denom->Write();
 
   m_mu_re_EWK->Write();
+  m_mu_re_HIGGS->Write();
   m_mu_re_STRONG->Write();
   m_mu_re_numer_EWK->Write();
+  m_mu_re_numer_HIGGS->Write();
   m_mu_re_numer_STRONG->Write();
   m_mu_re_denom->Write();
 
   m_el_fr_EWK->Write();
+  m_el_fr_HIGGS->Write();
   m_el_fr_STRONG->Write();
   m_el_fr_numer_EWK->Write();
+  m_el_fr_numer_HIGGS->Write();
   m_el_fr_numer_STRONG->Write();
   m_el_fr_denom->Write();
 
   m_mu_fr_EWK->Write();
+  m_mu_fr_HIGGS->Write();
   m_mu_fr_STRONG->Write();
   m_mu_fr_numer_EWK->Write();
+  m_mu_fr_numer_HIGGS->Write();
   m_mu_fr_numer_STRONG->Write();
   m_mu_fr_denom->Write();
 }

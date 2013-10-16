@@ -651,6 +651,7 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
                                    , const SusyAnalysisTools::ElectronDescription& el_desc
                                    , bool use_default_decision
                                    , NtupleHelper::ISO_STYLE iso_type
+                                   , float /* d0_sig_cut */
                                    )
 {
   bool is_signal_electron_cutflow = el_desc.getPassSignal();
@@ -780,6 +781,7 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
                                , const SusyAnalysisTools::MuonDescription& mu_desc
                                , bool use_default_decision
                                , NtupleHelper::ISO_STYLE iso_type
+                               , float /* d0_sig_cut */
                                )
 {
   bool is_signal_muon_cutflow = mu_desc.getPassSignal();
@@ -852,12 +854,16 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
   // TODO review these cuts
   if (iso_type == EWK_HIGGS_STYLE) {
     pass_pt_iso = (pt_iso_frac < 0.12);
-    pass_pt_iso = (et_iso_frac < 0.12);
+    pass_et_iso = (et_iso_frac < 0.12);
+
+    // std::cout << "HIGGS  ISO (mu):\tpt: " << pt << "\tpt iso: " << pt_iso << "\tet iso: " << et_iso << "\tpt iso frac: " << pt_iso_frac << "\tpass pt iso frac: " << pass_pt_iso << "\tet iso frac: " << et_iso_frac << "\tpass et iso frac: " << pass_et_iso << "\tpass pt: " << pass_pt << "\tpass eta: " << pass_eta << "\tpass d0: " << pass_d0_sig << "\tpass z0: " << pass_z0_sin_theta << "\n";
   }
   // TODO review these cuts
   else if (iso_type == STRONG_STYLE) {
     pass_pt_iso = (pt_iso_frac < 0.12);
     pass_et_iso = (et_iso_frac < 0.12);
+
+    // std::cout << "STRONG  ISO (mu):\tpt: " << pt << "\tpt iso: " << pt_iso << "\tet iso: " << et_iso << "\tpt iso frac: " << pt_iso_frac << "\tpass pt iso frac: " << pass_pt_iso << "\tet iso frac: " << et_iso_frac << "\tpass et iso frac: " << pass_et_iso << "\tpass pt: " << pass_pt << "\tpass eta: " << pass_eta << "\tpass d0: " << pass_d0_sig << "\tpass z0: " << pass_z0_sin_theta << "\n";
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

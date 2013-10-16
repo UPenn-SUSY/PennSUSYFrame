@@ -20,6 +20,7 @@ namespace NtupleHelper
   enum ISO_STYLE { EWK_STYLE
                  , EWK_HIGGS_STYLE
                  , STRONG_STYLE
+                 , STRONG_STYLE_CONE_30
                  };
 
   enum ISO_TYPE { ETCONE
@@ -50,11 +51,13 @@ class NtupleLooper
                                  , const SusyAnalysisTools::ElectronDescription&
                                  , bool use_default_decision = true
                                  , NtupleHelper::ISO_STYLE iso_type = EWK_STYLE
+                                 , float d0_sig_cut = 5.
                                  );
     virtual bool isSignalMuon( const size_t mu_index
                              , const SusyAnalysisTools::MuonDescription&
                              , bool use_default_decision = true
                              , NtupleHelper::ISO_STYLE iso_type = EWK_STYLE
+                             , float d0_sig_cut = 3.
                              );
 
     unsigned int getNumGoodVertices(unsigned int min_num_trks);
