@@ -1,0 +1,39 @@
+
+Type:             mc
+OutputLevel:      INFO
+OutputDirectory:  ${PWD}/small_fake_test/
+NEventsMax:       -1
+is_af2:           False
+SuperVerboseInfo: False
+PrintEventInfo:   False
+Version:          1
+CycleName:        SusyDiLeptonCutFlowCycle
+SampleName:       117682.WenuNp2
+
+input_tree_name:  susy
+output_tree_name: output
+is_egamma_stream: True
+
+UserConfigFile: ${SFRAME_DIR}/../run/local_configs/user_config.cut_flow.mc.small_fakes.yml
+
+InputFiles:
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000015.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000018.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000033.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000036.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000037.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000049.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000068.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000071.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000101.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000126.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000196.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000227.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000256.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000258.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000267.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000283.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000290.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000294.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000303.root.1
+    - /tmp/bjackson/mc12_8TeV.117682.AlpgenPythia_P2011C_WenuNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267690_00/NTUP_SUSY.01267690._000347.root.1
