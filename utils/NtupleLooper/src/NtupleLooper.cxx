@@ -719,6 +719,20 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
     pt_iso_frac = pt_iso/std::min(60., pt);
   }
 
+  else if (iso_type == NtupleHelper::STRONG_STYLE_CONE_30) {
+    et_iso = getElIsoCorr( el_index
+                         , NtupleHelper::TOPOETCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+    pt_iso = getElIsoCorr( el_index
+                         , NtupleHelper::PTCONE
+                         , NtupleHelper::CONE_30
+                         )/1.e3;
+
+    et_iso_frac = et_iso/std::min(60., pt);
+    pt_iso_frac = pt_iso/std::min(60., pt);
+  }
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   bool pass_tightpp      = el_desc.getPassTightPP();
   bool pass_pt           = (pt > 10);
@@ -740,6 +754,10 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
   else if (iso_type == NtupleHelper::STRONG_STYLE) {
     pass_et_iso = (et_iso_frac < 0.06);
     pass_pt_iso = (pt_iso_frac < 0.06);
+  }
+  else if (iso_type == NtupleHelper::STRONG_STYLE_CONE_30) {
+    pass_et_iso = (et_iso_frac < 0.18);
+    pass_pt_iso = (pt_iso_frac < 0.16);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -827,7 +845,7 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
     pt_iso_frac = pt_iso/pt;
     et_iso_frac = et_iso/pt;
   }
-  else if (iso_type == STRONG_STYLE) {
+  else if (iso_type == STRONG_STYLE || iso_type == STRONG_STYLE_CONE_30) {
     pt_iso = getMuIsoCorr( mu_index
                          , NtupleHelper::PTCONE
                          , NtupleHelper::CONE_30
@@ -855,15 +873,11 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
   if (iso_type == EWK_HIGGS_STYLE) {
     pass_pt_iso = (pt_iso_frac < 0.12);
     pass_et_iso = (et_iso_frac < 0.12);
-
-    // std::cout << "HIGGS  ISO (mu):\tpt: " << pt << "\tpt iso: " << pt_iso << "\tet iso: " << et_iso << "\tpt iso frac: " << pt_iso_frac << "\tpass pt iso frac: " << pass_pt_iso << "\tet iso frac: " << et_iso_frac << "\tpass et iso frac: " << pass_et_iso << "\tpass pt: " << pass_pt << "\tpass eta: " << pass_eta << "\tpass d0: " << pass_d0_sig << "\tpass z0: " << pass_z0_sin_theta << "\n";
   }
   // TODO review these cuts
-  else if (iso_type == STRONG_STYLE) {
+  else if (iso_type == STRONG_STYLE || iso_type == STRONG_STYLE_CONE_30) {
     pass_pt_iso = (pt_iso_frac < 0.12);
     pass_et_iso = (et_iso_frac < 0.12);
-
-    // std::cout << "STRONG  ISO (mu):\tpt: " << pt << "\tpt iso: " << pt_iso << "\tet iso: " << et_iso << "\tpt iso frac: " << pt_iso_frac << "\tpass pt iso frac: " << pass_pt_iso << "\tet iso frac: " << et_iso_frac << "\tpass et iso frac: " << pass_et_iso << "\tpass pt: " << pass_pt << "\tpass eta: " << pass_eta << "\tpass d0: " << pass_d0_sig << "\tpass z0: " << pass_z0_sin_theta << "\n";
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -874,23 +888,6 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
                         && pass_pt_iso
                         && pass_et_iso
                         );
-
-  // if (is_signal_muon != is_signal_muon_cutflow) {
-  //   std::cout << "WARNING: recalculated is_signal_muon != is_signal_muon from CF\n";
-  //   std::cout << "\tevent #:                 " << m_event_number << "\n";
-  //   std::cout << "\tmuon index:              " << mu_index << "\n";
-  //   std::cout << "\t is_signal_muon_cutflow: " << is_signal_muon_cutflow << "\n";
-  //   std::cout << "\t is_signal_muon:         " << is_signal_muon << "\n";
-  //   std::cout << "\t ---                     CF - recalc\n";
-  //   std::cout << "\t pass_pt:                " << mu_desc.getPassBaselinePt() << " - " << pass_pt << "\n";
-  //   std::cout << "\t pass_eta:               " << mu_desc.getPassSignalEta() << " - " << pass_eta << "\n";
-  //   std::cout << "\t pass_d0_sig:            " << mu_desc.getPassD0Sig() << " - " << pass_d0_sig << "\n";
-  //   std::cout << "\t pass_z0_sin_theta:      " << mu_desc.getPassZ0SinTheta() << " - " << pass_z0_sin_theta << "\n";
-  //   std::cout << "\t pass_pt_iso:            " << mu_desc.getPassPtIso() << " - " << pass_pt_iso << "\n";
-  //   std::cout << "\t\tpt: "          << pt << "\n";
-  //   std::cout << "\t\tpt_iso: "      << pt_iso << "\n";
-  //   std::cout << "\t\tpt_iso_frac: " << pt_iso_frac << "\n";
-  // }
 
   return is_signal_muon;
 }
