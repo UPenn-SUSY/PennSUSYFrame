@@ -6,8 +6,9 @@ do_metadata:        False
 input_file_hists:   ""
 
 Event_Picker:
+# do_event_picker: True
     do_event_picker: False
-    event_list: event_list.diff.trigger.dat
+    event_list: event_list.trigger_match.lea.txt
 
 CutFlow:
     Crit_grl:              False
@@ -205,7 +206,8 @@ Object_Cleaning:
 Trigger_Cut:
     check_official_matching: False
     do_trigger_matching:     True
-    do_mc_trigger:           False
+# do_mc_trigger:           False
+    do_mc_trigger:           True
 
 Signal_Regions:
     sr_osjveto_min_met_rel:  100000

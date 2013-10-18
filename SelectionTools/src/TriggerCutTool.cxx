@@ -563,7 +563,9 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatching2012(
 {
   // immediately fail events failing phase space selection
   TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  if (phase != TRIG_EM_A) return false;
+  if (phase != TRIG_EM_A) {
+    return false;
+  }
   // if (electrons.size() < 1 || muons.size() < 1) return false;
 
   // Only do trigger matching on data. always set true for MC
@@ -594,15 +596,17 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatching2012(
 {
   // immediately fail events failing phase space selection
   TRIG_PHASE phase = getPhaseSpace(electrons, muons);
-  if (phase != TRIG_EM_B) return false;
+  if (phase != TRIG_EM_B) {
+    return false;
+  }
   // if (electrons.size() < 1 || muons.size() < 1) return false;
 
   // Only do trigger matching on data. always set true for MC
   if (!c_do_mc_trigger && !is_data()) return true;
   bool pass_trigger_match = false;
 
-  // em region A
-  if (phase == TRIG_EM_A) {
+  // em region B
+  if (phase == TRIG_EM_B) {
     bool pass_electron_match = matchElectronList(
         electrons, trig_vec->trig_EF_el_EF_e7T_medium1(),
         trig_vec, 1, 0.15, 0);
