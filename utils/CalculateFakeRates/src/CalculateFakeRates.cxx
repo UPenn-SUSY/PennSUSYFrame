@@ -160,10 +160,12 @@ void CalculateFakeRates::processEvent()
     SusyAnalysisTools::ElectronDescription el_desc(m_el_desc->at(el_it));
     bool is_truth_matched = el_desc.getPassPromptLepton();
     bool is_baseline      = el_desc.getPassGood();
-    bool is_signal_EWK    = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_STYLE);
-    bool is_signal_HIGGS    = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_HIGGS_STYLE);
-    bool is_signal_STRONG = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE);
+
+    bool is_signal_EWK       = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_STYLE);
+    bool is_signal_HIGGS     = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_HIGGS_STYLE);
+    bool is_signal_STRONG    = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE);
     bool is_signal_STRONG_30 = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE_CONE_30);
+
     float el_pt           = m_el_pt->at(el_it)/1000.;
 
     if (el_pt >= 100.) el_pt = 99.;

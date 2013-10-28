@@ -737,7 +737,8 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
   bool pass_tightpp      = el_desc.getPassTightPP();
   bool pass_pt           = (pt > 10);
   bool pass_eta          = (fabs(eta) < 2.47);
-  bool pass_d0_sig       = (fabs(d0_sig) < 5);
+  // bool pass_d0_sig       = (fabs(d0_sig) < 5);
+  bool pass_d0_sig       = (fabs(d0_sig) < 3);
   bool pass_z0_sin_theta = (fabs(z0_sin_theta) < 0.4);
 
   bool pass_et_iso = true;

@@ -282,7 +282,8 @@ Signal_Regions:
 
 PileUpScaleFactor:
   do_pile_up:       True
-  data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root
+  # data_file:        ${SFRAME_DIR}/../data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643.root
+  data_file:        ${ROOTCOREDIR}/../SUSYTools/data/susy_data12_avgintperbx.root
   mc_file:          ${ROOTCOREDIR}/../PileupReweighting/share/mc12a_defaults.prw.root
   data_hist_name:   LumiMetaData
   generate_mc_hist: False

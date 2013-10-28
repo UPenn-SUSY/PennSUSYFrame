@@ -59,6 +59,7 @@ void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
       m_pile_up_reweight->AddConfigFile(c_pile_up_mc_file);
 
       m_pile_up_reweight->SetDataScaleFactors(1/1.11);
+      // m_pile_up_reweight->SetDataScaleFactors(1/1.09);
       m_pile_up_reweight->AddLumiCalcFile(c_pile_up_data_file);
 
       // m_pile_up_reweight->SetUnrepresentedDataAction(2);
@@ -98,12 +99,22 @@ double CommonTools::PileUpScaleFactorTool::getPileupScaleFactor(
 
     if (!is_data() && (c_do_pile_up_sf || c_generate_mc_hist)) {
       float mu = 0.;
-      if (c_pile_up_var == "lbn")
+      if (c_pile_up_var == "lbn") {
         mu = event->lbn();
-      else if (c_pile_up_var == "averageIntPerXing")
-        mu = event->averageIntPerXing();
-      else if (c_pile_up_var == "actualIntPerXing")
+      }
+      else if (c_pile_up_var == "averageIntPerXing") {
+        // mu = event->averageIntPerXing();
+        mu = ( (  event->lbn() == 1
+               && int(event->averageIntPerXing()+0.5) == 1
+               )
+             ? 0.
+             : event->averageIntPerXing()
+             );
+      }
+      else if (c_pile_up_var == "actualIntPerXing") {
         mu = event->actualIntPerXing();
+      }
+
 
       m_pileup_sf = m_pile_up_reweight->GetCombinedWeight(
           event->RunNumber(),
