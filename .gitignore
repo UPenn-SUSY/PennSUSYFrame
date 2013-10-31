@@ -1,0 +1,9 @@
+*/obj/
+utils/*/obj/
+utils/lib
+*_Dict.cxx
+*_Dict.h
+RootCore
+SFrame
+cf.root
+*.pyc
