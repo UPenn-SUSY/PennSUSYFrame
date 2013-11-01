@@ -7,3 +7,5 @@ RootCore
 SFrame
 cf.root
 *.pyc
+jo.*.xml
+*.root

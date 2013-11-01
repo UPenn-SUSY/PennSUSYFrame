@@ -37,10 +37,11 @@ CommonTools::MuonScaleFactorTool::MuonScaleFactorTool( SCycleBase* parent
   if (c_muon_type == "") {
     c_muon_type = "STACO_CB_plus_ST";
   }
-  m_file_name = c_muon_type + "_2012_SF.txt";
+  m_file_name = c_muon_type + "_2012_SF.txt.gz";
 
   m_configuration =
-      Analysis::AnalysisMuonConfigurableScaleFactors::AverageOverRuns;
+      Analysis::AnalysisMuonConfigurableScaleFactors::AverageOverPeriods;
+      //Analysis::AnalysisMuonConfigurableScaleFactors::AverageOverRuns;
 }
 // -----------------------------------------------------------------------------
 CommonTools::MuonScaleFactorTool::~MuonScaleFactorTool()
@@ -68,6 +69,12 @@ void CommonTools::MuonScaleFactorTool::BeginInputData(const SInputData&)
 
     m_muon_sf = new Analysis::AnalysisMuonConfigurableScaleFactors(
         c_muon_sf_dir, m_file_name, c_unit, m_configuration);
+    std::cout << "Initalizing muon scale factor tool with the following: "
+              << "\n\tsf dir: " << c_muon_sf_dir
+              << "\n\tfile name: " << m_file_name
+              << "\n\tunit: " << c_unit
+              << "\n\tconfiguration: " << m_configuration
+              << "\n";
     m_muon_sf->Initialise();
   }
 }
