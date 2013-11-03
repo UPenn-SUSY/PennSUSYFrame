@@ -58,8 +58,8 @@ void CommonTools::PileUpScaleFactorTool::BeginInputData(const SInputData&)
 
       m_pile_up_reweight->AddConfigFile(c_pile_up_mc_file);
 
-      m_pile_up_reweight->SetDataScaleFactors(1/1.11);
-      // m_pile_up_reweight->SetDataScaleFactors(1/1.09);
+      // m_pile_up_reweight->SetDataScaleFactors(1/1.11);
+      m_pile_up_reweight->SetDataScaleFactors(1/1.09);
       m_pile_up_reweight->AddLumiCalcFile(c_pile_up_data_file);
 
       // m_pile_up_reweight->SetUnrepresentedDataAction(2);
