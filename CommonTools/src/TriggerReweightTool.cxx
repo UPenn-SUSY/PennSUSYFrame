@@ -21,7 +21,6 @@ CommonTools::TriggerReweightTool::TriggerReweightTool( SCycleBase* parent
                                                      )
                                                      : ToolBase(parent, name)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   DeclareProperty("do_trigger_sf"           , c_do_trigger_sf       = true);
   DeclareProperty("trigger_reweight_dir"    , c_reweight_directory  = "");
   DeclareProperty("trigger_reweight_period" , c_reweight_period     ="Moriond");
@@ -33,15 +32,12 @@ CommonTools::TriggerReweightTool::TriggerReweightTool( SCycleBase* parent
 // -----------------------------------------------------------------------------
 CommonTools::TriggerReweightTool::~TriggerReweightTool()
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
   if (m_trigger_reweight) delete m_trigger_reweight;
 }
 
 // -----------------------------------------------------------------------------
 void CommonTools::TriggerReweightTool::BeginCycle()
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_logger << DEBUG
      << "TriggerReweight::BeginCycle()"
      << SLogger::endmsg;
@@ -52,7 +48,6 @@ void CommonTools::TriggerReweightTool::BeginCycle()
 // -----------------------------------------------------------------------------
 void CommonTools::TriggerReweightTool::BeginInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_logger << DEBUG
      << "TriggerReweight::BeginInputData()"
      << SLogger::endmsg;
@@ -69,17 +64,8 @@ void CommonTools::TriggerReweightTool::BeginInputData(const SInputData&)
     }
   }
 
-//  m_trigger_reweight->initialize( c_reweight_directory
-//                                , c_reweight_period
-//                                , false
-//                                , false
-//                                );
-//
-//
-
-
-//new initialze method for tag 00-00-29 
-m_trigger_reweight->initialize( c_reweight_directory
+  //new initialze method for tag 00-00-29 
+  m_trigger_reweight->initialize( c_reweight_directory
                                 , c_reweight_period
                                 , false
                                 );
@@ -88,14 +74,12 @@ m_trigger_reweight->initialize( c_reweight_directory
 // -----------------------------------------------------------------------------
 void CommonTools::TriggerReweightTool::EndInputData(const SInputData&)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do nothing
 }
 
 // -----------------------------------------------------------------------------
 void CommonTools::TriggerReweightTool::clear()
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_is_cached = false;
 }
 
@@ -108,7 +92,6 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
     Met* met,
     VertexContainer& vertices)
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // no trigger weights for data
   if (!m_is_cached)
   {
@@ -192,11 +175,9 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
       }
 
     }
-
     m_is_cached = true;
   }
 
   return m_trigger_weight;
-
 }
 

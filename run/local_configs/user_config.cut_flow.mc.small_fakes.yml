@@ -6,9 +6,9 @@ do_metadata:        False
 input_file_hists:   ""
 
 Event_Picker:
-# do_event_picker: True
+    # do_event_picker: True
     do_event_picker: False
-    event_list: event_list.trigger_match.lea.txt
+    event_list: event_list.trigger_weight_disagree.txt
 
 CutFlow:
     Crit_grl:              False
