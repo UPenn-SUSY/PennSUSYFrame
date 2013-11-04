@@ -3,7 +3,7 @@
 # ======================
 DIRS = Helpers ProgressBar Selection Parser NtupleLooper HistMaker \
 	   PlotNtupleMaker CutFlowDump EventNumberDump ChannelFractions \
-	   CalculateFakeRates
+	   CalculateFakeRates OptimizeIsolation
 
 all::build link
 

@@ -144,46 +144,23 @@ def printToCanvas( ths = None
 
 # ------------------------------------------------------------------------------
 def plotRates(file_handles, out_file, rates_suffix = ''):
-    ths_mu_re, leg_mu_re, big_leg_mu_re = getHistStack(file_handles, 'mu_re%s' % rates_suffix, 'ths_mu_re%s' % rates_suffix, 'Muon RE'    , y_min = 0., y_max = 1.1)
-    ths_mu_fr, leg_mu_fr, big_leg_mu_fr = getHistStack(file_handles, 'mu_fr%s' % rates_suffix, 'ths_mu_fr%s' % rates_suffix, 'Muon FR'    , y_min = 0., y_max = 0.2)
-    ths_el_re, leg_el_re, big_leg_el_re = getHistStack(file_handles, 'el_re%s' % rates_suffix, 'ths_el_re%s' % rates_suffix, 'Electron RE', y_min = 0., y_max = 1.1)
-    ths_el_fr, leg_el_fr, big_leg_el_fr = getHistStack(file_handles, 'el_fr%s' % rates_suffix, 'ths_el_fr%s' % rates_suffix, 'Electron FR', y_min = 0., y_max = 0.2)
+    ths_mu_iso, leg_mu_iso, big_leg_mu_iso = getHistStack(file_handles, 'mu_iso%s' % rates_suffix, 'ths_mu_iso%s' % rates_suffix, 'Muon iso'    )
+    ths_el_iso, leg_el_iso, big_leg_el_iso = getHistStack(file_handles, 'el_iso%s' % rates_suffix, 'ths_el_iso%s' % rates_suffix, 'Electron iso')
 
-    ths_mu_re, leg_mu_re, big_leg_mu_re = getHistStack(file_handles, 'mu_re%s' % rates_suffix, 'ths_mu_re%s' % rates_suffix, 'Muon RE'    , y_min = 0., y_max = 1.1)
-    ths_mu_fr, leg_mu_fr, big_leg_mu_fr = getHistStack(file_handles, 'mu_fr%s' % rates_suffix, 'ths_mu_fr%s' % rates_suffix, 'Muon FR'    , y_min = 0., y_max = 0.2)
-    ths_el_re, leg_el_re, big_leg_el_re = getHistStack(file_handles, 'el_re%s' % rates_suffix, 'ths_el_re%s' % rates_suffix, 'Electron RE', y_min = 0., y_max = 1.1)
-    ths_el_fr, leg_el_fr, big_leg_el_fr = getHistStack(file_handles, 'el_fr%s' % rates_suffix, 'ths_el_fr%s' % rates_suffix, 'Electron FR', y_min = 0., y_max = 0.2)
+    c_mu_iso = printToCanvas( ths=ths_mu_iso, leg=leg_mu_iso, canvas_name='c_mu_iso%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='r')
+    c_el_iso = printToCanvas( ths=ths_el_iso, leg=leg_el_iso, canvas_name='c_el_iso%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='r')
 
-    # c_leg = printToCanvas( leg=big_leg, canvas_name='c_leg')
-    # c_mu_re = printToCanvas( ths=ths_mu_re, leg=leg, canvas_name='c_mu_re', x_title='p_{T} [GeV]', y_title='r')
-    # c_mu_fr = printToCanvas( ths=ths_mu_fr, leg=leg, canvas_name='c_mu_fr', x_title='p_{T} [GeV]', y_title='f')
-    # c_el_re = printToCanvas( ths=ths_el_re, leg=leg, canvas_name='c_el_re', x_title='p_{T} [GeV]', y_title='r')
-    # c_el_fr = printToCanvas( ths=ths_el_fr, leg=leg, canvas_name='c_el_fr', x_title='p_{T} [GeV]', y_title='f')
+    c_big_leg_mu_iso = printToCanvas( leg=big_leg_mu_iso, canvas_name='c_leg_mu_iso%s' % rates_suffix)
+    c_big_leg_el_iso = printToCanvas( leg=big_leg_el_iso, canvas_name='c_leg_el_iso%s' % rates_suffix)
 
-    c_mu_re = printToCanvas( ths=ths_mu_re, leg=leg_mu_re, canvas_name='c_mu_re%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1)
-    c_mu_fr = printToCanvas( ths=ths_mu_fr, leg=leg_mu_fr, canvas_name='c_mu_fr%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2)
-    c_el_re = printToCanvas( ths=ths_el_re, leg=leg_el_re, canvas_name='c_el_re%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1)
-    c_el_fr = printToCanvas( ths=ths_el_fr, leg=leg_el_fr, canvas_name='c_el_fr%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2)
-
-    c_big_leg_mu_re = printToCanvas( leg=big_leg_mu_re, canvas_name='c_leg_mu_re%s' % rates_suffix)
-    c_big_leg_mu_fr = printToCanvas( leg=big_leg_mu_fr, canvas_name='c_leg_mu_fr%s' % rates_suffix)
-    c_big_leg_el_re = printToCanvas( leg=big_leg_el_re, canvas_name='c_leg_el_re%s' % rates_suffix)
-    c_big_leg_el_fr = printToCanvas( leg=big_leg_el_fr, canvas_name='c_leg_el_fr%s' % rates_suffix)
-
-    c_mu_re_comp = []
-    c_mu_fr_comp = []
-    c_el_re_comp = []
-    c_el_fr_comp = []
+    c_mu_iso_comp = []
+    c_el_iso_comp = []
     for fh in file_handles:
-        temp_hist_mu_re = fh.getHist('mu_re%s' % rates_suffix)
-        temp_hist_mu_fr = fh.getHist('mu_fr%s' % rates_suffix)
-        temp_hist_el_re = fh.getHist('el_re%s' % rates_suffix)
-        temp_hist_el_fr = fh.getHist('el_fr%s' % rates_suffix)
+        temp_hist_mu_iso = fh.getHist('mu_iso%s' % rates_suffix)
+        temp_hist_el_iso = fh.getHist('el_iso%s' % rates_suffix)
 
-        c_mu_re_comp.append(printToCanvas( ths=temp_hist_mu_re, leg=None, canvas_name='c_mu_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
-        c_mu_fr_comp.append(printToCanvas( ths=temp_hist_mu_fr, leg=None, canvas_name='c_mu_fr_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2))
-        c_el_re_comp.append(printToCanvas( ths=temp_hist_el_re, leg=None, canvas_name='c_el_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
-        c_el_fr_comp.append(printToCanvas( ths=temp_hist_el_fr, leg=None, canvas_name='c_el_fr_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2))
+        c_mu_iso_comp.append(printToCanvas( ths=temp_hist_mu_re, leg=None, canvas_name='c_mu_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
+        c_el_iso_comp.append(printToCanvas( ths=temp_hist_el_re, leg=None, canvas_name='c_el_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
 
     out_file.cd()
     out_file.mkdir('mu_re')
@@ -340,10 +317,7 @@ if __name__ == '__main__':
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     out_file = ROOT.TFile('rates.canv.root', 'RECREATE')
 
-    plotRates(file_handles, out_file, '_EWK'   )
-    plotRates(file_handles, out_file, '_HIGGS' )
-    plotRates(file_handles, out_file, '_STRONG')
-    plotRates(file_handles, out_file, '_STRONG_30')
+    plotRates(file_handles, out_file, '_PTCONE30'   )
 
     out_file.Close()
 
