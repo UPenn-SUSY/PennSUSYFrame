@@ -131,6 +131,11 @@ void CalculateFakeRates::processEvent()
     bool is_signal_STRONG    = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE);
     bool is_signal_STRONG_30 = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE_CONE_30);
 
+    bool is_signal_EWK_PP       = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_STYLE_PP);
+    bool is_signal_HIGGS_PP     = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_HIGGS_STYLE_PP);
+    bool is_signal_STRONG_PP    = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE_PP);
+    bool is_signal_STRONG_30_PP = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE_CONE_30_PP);
+
     float el_pt           = m_el_pt->at(el_it)/1000.;
 
     if (el_pt >= 100.) el_pt = 99.;
@@ -151,6 +156,18 @@ void CalculateFakeRates::processEvent()
       if (is_baseline && is_signal_STRONG_30) {
         m_el_re_numer.at(FAKE_STRONG_30)->Fill(el_pt, event_weight);
       }
+      if (is_baseline && is_signal_EWK_PP) {
+        m_el_re_numer.at(FAKE_EWK_PP)->Fill(el_pt, event_weight);
+      }
+      if (is_baseline && is_signal_HIGGS_PP) {
+        m_el_re_numer.at(FAKE_HIGGS_PP)->Fill(el_pt, event_weight);
+      }
+      if (is_baseline && is_signal_STRONG_PP) {
+        m_el_re_numer.at(FAKE_STRONG_PP)->Fill(el_pt, event_weight);
+      }
+      if (is_baseline && is_signal_STRONG_30_PP) {
+        m_el_re_numer.at(FAKE_STRONG_30_PP)->Fill(el_pt, event_weight);
+      }
     }
     else {
       if (is_baseline) {
@@ -168,6 +185,18 @@ void CalculateFakeRates::processEvent()
       if (is_baseline && is_signal_STRONG_30) {
         m_el_fr_numer.at(FAKE_STRONG_30)->Fill(el_pt, event_weight);
       }
+      if (is_baseline && is_signal_EWK_PP) {
+        m_el_fr_numer.at(FAKE_EWK_PP)->Fill(el_pt, event_weight);
+      }
+      if (is_baseline && is_signal_HIGGS_PP) {
+        m_el_fr_numer.at(FAKE_HIGGS_PP)->Fill(el_pt, event_weight);
+      }
+      if (is_baseline && is_signal_STRONG_PP) {
+        m_el_fr_numer.at(FAKE_STRONG_PP)->Fill(el_pt, event_weight);
+      }
+      if (is_baseline && is_signal_STRONG_30_PP) {
+        m_el_fr_numer.at(FAKE_STRONG_30_PP)->Fill(el_pt, event_weight);
+      }
     }
   }
 
@@ -175,10 +204,17 @@ void CalculateFakeRates::processEvent()
     SusyAnalysisTools::MuonDescription mu_desc(m_mu_desc->at(mu_it));
     bool is_truth_matched = mu_desc.getPassPromptLepton();
     bool is_baseline      = mu_desc.getPassGood();
-    bool is_signal_EWK    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_STYLE);
-    bool is_signal_HIGGS  = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_HIGGS_STYLE);
-    bool is_signal_STRONG = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE);
+
+    bool is_signal_EWK       = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_STYLE);
+    bool is_signal_HIGGS     = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_HIGGS_STYLE);
+    bool is_signal_STRONG    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE);
     bool is_signal_STRONG_30 = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE_CONE_30);
+
+    bool is_signal_EWK_PP       = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_STYLE_PP);
+    bool is_signal_HIGGS_PP     = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_HIGGS_STYLE_PP);
+    bool is_signal_STRONG_PP    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE_PP);
+    bool is_signal_STRONG_30_PP = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE_CONE_30_PP);
+
     float mu_pt           = m_mu_pt->at(mu_it)/1000.;
 
 
@@ -200,6 +236,18 @@ void CalculateFakeRates::processEvent()
       if (is_baseline && is_signal_STRONG_30) {
         m_mu_re_numer.at(FAKE_STRONG_30)->Fill(mu_pt, event_weight);
       }
+      if (is_baseline && is_signal_EWK_PP) {
+        m_mu_re_numer.at(FAKE_EWK_PP)->Fill(mu_pt, event_weight);
+      }
+      if (is_baseline && is_signal_HIGGS_PP) {
+        m_mu_re_numer.at(FAKE_HIGGS_PP)->Fill(mu_pt, event_weight);
+      }
+      if (is_baseline && is_signal_STRONG_PP) {
+        m_mu_re_numer.at(FAKE_STRONG_PP)->Fill(mu_pt, event_weight);
+      }
+      if (is_baseline && is_signal_STRONG_30_PP) {
+        m_mu_re_numer.at(FAKE_STRONG_30_PP)->Fill(mu_pt, event_weight);
+      }
     }
     else {
       if (is_baseline) {
@@ -216,6 +264,18 @@ void CalculateFakeRates::processEvent()
       }
       if (is_baseline && is_signal_STRONG_30) {
         m_mu_fr_numer.at(FAKE_STRONG_30)->Fill(mu_pt, event_weight);
+      }
+      if (is_baseline && is_signal_EWK_PP) {
+        m_mu_fr_numer.at(FAKE_EWK_PP)->Fill(mu_pt, event_weight);
+      }
+      if (is_baseline && is_signal_HIGGS_PP) {
+        m_mu_fr_numer.at(FAKE_HIGGS_PP)->Fill(mu_pt, event_weight);
+      }
+      if (is_baseline && is_signal_STRONG_PP) {
+        m_mu_fr_numer.at(FAKE_STRONG_PP)->Fill(mu_pt, event_weight);
+      }
+      if (is_baseline && is_signal_STRONG_30_PP) {
+        m_mu_fr_numer.at(FAKE_STRONG_30_PP)->Fill(mu_pt, event_weight);
       }
     }
   }

@@ -29,12 +29,23 @@ class FileHandle(object):
         self.draw_mu_re = draw_mu_re
         self.draw_mu_fr = draw_mu_fr
 
-    def getHist(self, hist_name):
-        print 'getting hist: %s from file: %s' % (hist_name, self.file_name)
+    def getHist(self, hist_name, normalize):
         h = self.file.Get(hist_name)
+        if normalize:
+            h.Scale( 1/h.Integral() )
         h.SetLineColor(self.color)
         h.SetLineWidth(3)
         return h
+
+# ------------------------------------------------------------------------------
+def safeMakeDir(f, d):
+    f.cd()
+    for k in f.GetListOfKeys():
+        if d == k.GetName():
+            f.cd(d)
+            return
+    f.mkdir(d)
+    f.cd(d)
 
 # ------------------------------------------------------------------------------
 def formatHist(h, color, x_title = 'p_{T} [GeV]', y_title = 'rate'):
@@ -63,7 +74,6 @@ def makeLegend(hist_list, label_list):
     big_leg.SetFillColor(0)
 
     for h, l in zip(hist_list, label_list):
-        # this_label = '%s (%d entries)' % (l, h.GetEntries())
         this_label = '%s' % l
         leg.AddEntry(    h, this_label)
         big_leg.AddEntry(h, this_label)
@@ -86,40 +96,66 @@ def makeLegendFHL(file_handle_list, hist_name):
     big_leg = ROOT.TLegend(big_leg_x1, big_leg_y1, big_leg_x2, big_leg_y2)
 
     for fhl in file_handle_list:
-        h = fhl.getHist(hist_name)
+        h = fhl.getHist(hist_name, True)
         leg.AddEntry(    h, fhl.label)
         big_leg.AddEntry(h, fhl.label)
 
     return leg, big_leg
 
 # ------------------------------------------------------------------------------
-def getHistStack(file_handles, hist_name, stack_name, stack_title, y_min, y_max):
+def getHistStack(file_handles, hist_name, stack_name, stack_title):
     hist_list = []
     label_list = []
     ths = ROOT.THStack(stack_name, stack_title)
     for fh in file_handles:
-        if  'el_re' in hist_name and not fh.draw_el_re: continue
-        if  'el_fr' in hist_name and not fh.draw_el_fr: continue
-        if  'mu_re' in hist_name and not fh.draw_mu_re: continue
-        if  'mu_fr' in hist_name and not fh.draw_mu_fr: continue
+        h = fh.getHist(hist_name, True)
+        findTargetCut(h, 0.90)
+        findTargetCut(h, 0.95)
+        h.Rebin(10)
 
-        h = fh.getHist(hist_name)
-        h.GetYaxis().SetRangeUser(y_min, y_max)
         ths.Add(h)
         hist_list.append(h)
         label_list.append(fh.label)
 
     leg, big_leg = makeLegend(hist_list, label_list)
+
     return ths, leg, big_leg
+
+# ------------------------------------------------------------------------------
+def getCutValues(file_handles, hist_name, target_eff):
+    print 'getCutValues()'
+
+    cut_values = []
+    for fh in file_handles:
+        h = fh.getHist(hist_name, True)
+        chosen_cut = findTargetCut(h, target_eff)
+        cut_values.append({'label':fh.label, 'cut':chosen_cut, 'color':fh.color})
+    return cut_values
+
+# ------------------------------------------------------------------------------
+def findTargetCut(h, target_eff):
+    denom = h.Integral()
+    numer = 0
+    chosen_cut_bin = 0
+    for bin in xrange(1, h.GetNbinsX()):
+        numer += h.GetBinContent(bin)
+
+        if numer/denom > target_eff:
+            chosen_cut_bin = bin+1
+            break
+    chosen_cut = h.GetXaxis().GetBinLowEdge(chosen_cut_bin)
+    print '-- Found %s efficient cut for %s: %s (bin %s) - actual eff: %s' % (target_eff, h.GetName(), chosen_cut, chosen_cut_bin, numer/denom)
+    return chosen_cut
 
 # ------------------------------------------------------------------------------
 def printToCanvas( ths = None
                  , leg = None
                  , canvas_name = 'c'
+                 , labels = None
                  , x_title = 'x'
                  , y_title = 'y'
-                 , y_min = 0
-                 , y_max = 1.1
+                 , y_min = 1.e-6
+                 , y_max = 5.
                  ):
     c = ROOT.TCanvas(canvas_name)
     if ths is not None:
@@ -129,82 +165,90 @@ def printToCanvas( ths = None
                 ths.GetXaxis().SetTitle(x_title)
             if ths.GetYaxis():
                 ths.GetYaxis().SetTitle(y_title)
-                ths.GetYaxis().SetRangeUser(y_min, y_max)
+            ths.SetMinimum(y_min)
+            ths.SetMaximum(y_max)
             ths.Draw('NOSTACK')
         else:
             if ths.GetXaxis():
                 ths.GetXaxis().SetTitle(x_title)
             if ths.GetYaxis():
                 ths.GetYaxis().SetTitle(y_title)
-                ths.GetYaxis().SetRangeUser(y_min, y_max)
+            ths.SetMinimum(y_min)
+            ths.SetMaximum(y_max)
             ths.Draw()
     if leg is not None:
         leg.Draw()
+    if labels is not None:
+        for lol in labels:
+            lol.Draw()
     return c
 
 # ------------------------------------------------------------------------------
-def plotRates(file_handles, out_file, rates_suffix = ''):
-    ths_mu_iso, leg_mu_iso, big_leg_mu_iso = getHistStack(file_handles, 'mu_iso%s' % rates_suffix, 'ths_mu_iso%s' % rates_suffix, 'Muon iso'    )
-    ths_el_iso, leg_el_iso, big_leg_el_iso = getHistStack(file_handles, 'el_iso%s' % rates_suffix, 'ths_el_iso%s' % rates_suffix, 'Electron iso')
+def getCutValueLabels(chosen_cut_values):
+    x_start = 0.4
+    y_start = 0.9
+    label_list = []
+    for eff in chosen_cut_values:
+        for entry in chosen_cut_values[eff]:
+            print entry
+            text_for_label = 'eff %s (%s): %0.2f' % (eff, entry['label'], entry['cut'])
+            l = ROOT.TText()
+            l.SetNDC()
+            l.SetText(x_start, y_start, text_for_label)
+            l.SetTextColor(entry['color'])
+            y_start -= 0.05
+            label_list.append(l)
 
-    c_mu_iso = printToCanvas( ths=ths_mu_iso, leg=leg_mu_iso, canvas_name='c_mu_iso%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='r')
-    c_el_iso = printToCanvas( ths=ths_el_iso, leg=leg_el_iso, canvas_name='c_el_iso%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='r')
+            if 'signal' in entry['label']:
+                line = ROOT.TLine(entry['cut'], 1.e-6, entry['cut'], 5)
+                line.SetLineWidth(3)
+                line.SetLineColor(ROOT.kGreen+3)
+                label_list.append(line)
 
-    c_big_leg_mu_iso = printToCanvas( leg=big_leg_mu_iso, canvas_name='c_leg_mu_iso%s' % rates_suffix)
-    c_big_leg_el_iso = printToCanvas( leg=big_leg_el_iso, canvas_name='c_leg_el_iso%s' % rates_suffix)
+    return label_list
 
-    c_mu_iso_comp = []
-    c_el_iso_comp = []
-    for fh in file_handles:
-        temp_hist_mu_iso = fh.getHist('mu_iso%s' % rates_suffix)
-        temp_hist_el_iso = fh.getHist('el_iso%s' % rates_suffix)
+# ------------------------------------------------------------------------------
+def plotRates(file_handles, out_file, lep_flavor = 'el', rates_suffix = ''):
+    chosen_cut_values = { '0.90':getCutValues( file_handles
+                                             , '%s_iso%s' % (lep_flavor, rates_suffix)
+                                             , 0.90
+                                             )
+                        , '0.95':getCutValues( file_handles
+                                             , '%s_iso%s' % (lep_flavor, rates_suffix)
+                                             , 0.95
+                                             )
+                        }
+    cut_value_labels = getCutValueLabels(chosen_cut_values)
 
-        c_mu_iso_comp.append(printToCanvas( ths=temp_hist_mu_re, leg=None, canvas_name='c_mu_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
-        c_el_iso_comp.append(printToCanvas( ths=temp_hist_el_re, leg=None, canvas_name='c_el_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
+    ths_iso, leg_iso, big_leg_iso = getHistStack( file_handles
+                                                , '%s_iso%s' % (lep_flavor, rates_suffix)
+                                                , 'ths_%s_iso%s' % (lep_flavor, rates_suffix)
+                                                , '%s iso' % lep_flavor
+                                                )
 
-    out_file.cd()
-    out_file.mkdir('mu_re')
-    out_file.cd('mu_re')
-    c_mu_re.Write('mu_re%s' % rates_suffix)
-    c_big_leg_mu_re.Write('leg_mu_re%s' % rates_suffix)
-    for cmrc in c_mu_re_comp:
-        cmrc.Write()
-        cmrc.Close()
-    c_mu_re.Close()
-    c_big_leg_mu_re.Close()
+    c_iso = printToCanvas( ths=ths_iso
+                         , leg=leg_iso
+                         , canvas_name='c_%s_iso%s' % (lep_flavor, rates_suffix)
+                         , labels = cut_value_labels
+                         , x_title='isolation'
+                         , y_title='normailzed units'
+                         , y_min = 1.e-6
+                         , y_max = 5.
+                         )
 
-    out_file.cd()
-    out_file.mkdir('mu_fr')
-    out_file.cd('mu_fr')
-    c_mu_fr.Write('mu_fr%s' % rates_suffix)
-    c_big_leg_mu_fr.Write('leg_mu_fr%s' % rates_suffix)
-    for cmfc in c_mu_fr_comp:
-        cmfc.Write()
-        cmfc.Close()
-    c_mu_fr.Close()
-    c_big_leg_mu_fr.Close()
+    c_big_leg_iso = printToCanvas( leg=big_leg_iso
+                                 , canvas_name='c_leg_%s_iso%s' % (lep_flavor, rates_suffix)
+                                 )
 
-    out_file.cd()
-    out_file.mkdir('el_re')
-    out_file.cd('el_re')
-    c_el_re.Write('el_re%s' % rates_suffix)
-    c_big_leg_el_re.Write('leg_el_re%s' % rates_suffix)
-    for cerc in c_el_re_comp:
-        cerc.Write()
-        cerc.Close()
-    c_el_re.Close()
-    c_big_leg_el_re.Close()
+    # make directory for isolation
+    safeMakeDir(out_file, '%s_iso' % lep_flavor)
 
-    out_file.cd()
-    out_file.mkdir('el_fr')
-    out_file.cd('el_fr')
-    c_el_fr.Write('el_fr%s' % rates_suffix)
-    c_big_leg_el_fr.Write('leg_el_fr%s' % rates_suffix)
-    for cefc in c_el_fr_comp:
-        cefc.Write()
-        cefc.Close()
-    c_el_fr.Close()
-    c_big_leg_el_fr.Close()
+    # print isolation
+    c_iso.SetLogy()
+    c_iso.Write('%s_iso%s' % (lep_flavor, rates_suffix))
+    c_big_leg_iso.Write('leg_%s_iso%s' % (lep_flavor, rates_suffix))
+    c_iso.Close()
+    c_big_leg_iso.Close()
 
 # ==============================================================================
 if __name__ == '__main__':
@@ -215,64 +259,8 @@ if __name__ == '__main__':
     file_handles = []
     this_color = 1
 
-    # # add Zmumu samples
-    # this_color = ROOT.kGreen
-    # for it in xrange(6):
-    #     file_handles.append(FileHandle( 'rates.ZmumuNp%d.root' % it
-    #                                   , 'Z#rightarrow#mu#mu : Np%d' % it
-    #                                   , this_color
-    #                                   , draw_el_re=False
-    #                                   , draw_el_fr=True
-    #                                   , draw_mu_re=True
-    #                                   , draw_mu_fr=False
-    #                                   )
-    #                        )
-    #     this_color -=1
-
-    # # add Zee samples
-    # this_color = ROOT.kRed
-    # for it in xrange(6):
-    #     file_handles.append(FileHandle( 'rates.ZeeNp%d.root' % it
-    #                                   , 'Z#rightarrowee : Np%d' % it
-    #                                   , this_color
-    #                                   , draw_el_re=True
-    #                                   , draw_el_fr=False
-    #                                   , draw_mu_re=False
-    #                                   , draw_mu_fr=False
-    #                                   )
-    #                        )
-    #     this_color -=1
-
-    # # add Wmunu samples
-    # this_color = ROOT.kBlue
-    # for it in xrange(6):
-    #     file_handles.append(FileHandle( 'rates.WmunuNp%d.root' % it
-    #                                   , 'W#rightarrow#mu#nu : Np%d' % it
-    #                                   , this_color
-    #                                   , draw_el_re=False
-    #                                   , draw_el_fr=True
-    #                                   , draw_mu_re=True
-    #                                   , draw_mu_fr=True
-    #                                   )
-    #                        )
-    #     this_color -=1
-
-    # # add Wenu samples
-    # this_color = ROOT.kMagenta
-    # for it in xrange(6):
-    #     file_handles.append(FileHandle( 'rates.WenuNp%d.root' % it
-    #                                   , 'W#rightarrowe#nu : Np%d' % it
-    #                                   , this_color
-    #                                   , draw_el_re=True
-    #                                   , draw_el_fr=True
-    #                                   , draw_mu_re=False
-    #                                   , draw_mu_fr=True
-    #                                   )
-    #                        )
-    #     this_color -=1
-
     # add ttbar
-    this_color = ROOT.kCyan
+    this_color = ROOT.kBlue
     file_handles.append(FileHandle( 'rates.105200.ttbar.root'
                                   , 'ttbar'
                                   , this_color
@@ -283,19 +271,6 @@ if __name__ == '__main__':
                                   )
                        )
     this_color += 1
-
-    # # add ZZ to 4lep
-    # this_color = ROOT.kOrange
-    # fh.append(FileHandle( 'rates.ZZ4lep.root'
-    #                     , 'ZZ4lep'
-    #                     , this_color
-    #                     , draw_el_re=True
-    #                     , draw_el_fr=False
-    #                     , draw_mu_re=True
-    #                     , draw_mu_fr=False
-    #                     )
-    #          )
-    # this_color += 1
 
     # add signal
     # rates.127994.signal.root
@@ -317,7 +292,23 @@ if __name__ == '__main__':
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     out_file = ROOT.TFile('rates.canv.root', 'RECREATE')
 
-    plotRates(file_handles, out_file, '_PTCONE30'   )
+    plotRates(file_handles, out_file, 'el', '_PTCONE30'       )
+    plotRates(file_handles, out_file, 'el', '_ETCONE30'       )
+    plotRates(file_handles, out_file, 'el', '_PTCONE20'       )
+    plotRates(file_handles, out_file, 'el', '_ETCONE20'       )
+    plotRates(file_handles, out_file, 'el', '_PTCONE30_CAPPED')
+    plotRates(file_handles, out_file, 'el', '_ETCONE30_CAPPED')
+    plotRates(file_handles, out_file, 'el', '_PTCONE20_CAPPED')
+    plotRates(file_handles, out_file, 'el', '_ETCONE20_CAPPED')
+
+    plotRates(file_handles, out_file, 'mu', '_PTCONE30'       )
+    plotRates(file_handles, out_file, 'mu', '_ETCONE30'       )
+    plotRates(file_handles, out_file, 'mu', '_PTCONE20'       )
+    plotRates(file_handles, out_file, 'mu', '_ETCONE20'       )
+    plotRates(file_handles, out_file, 'mu', '_PTCONE30_CAPPED')
+    plotRates(file_handles, out_file, 'mu', '_ETCONE30_CAPPED')
+    plotRates(file_handles, out_file, 'mu', '_PTCONE20_CAPPED')
+    plotRates(file_handles, out_file, 'mu', '_ETCONE20_CAPPED')
 
     out_file.Close()
 

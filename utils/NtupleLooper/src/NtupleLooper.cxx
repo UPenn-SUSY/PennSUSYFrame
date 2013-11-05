@@ -668,31 +668,11 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
   double et_iso_frac = -999;
   double pt_iso_frac = -999;
 
-  if (iso_type == NtupleHelper::EWK_STYLE) {
-    et_iso = getElIsoCorr( el_index
-                         , NtupleHelper::TOPOETCONE
-                         , NtupleHelper::CONE_30
-                         )/1.e3;
-    pt_iso = getElIsoCorr( el_index
-                         , NtupleHelper::PTCONE
-                         , NtupleHelper::CONE_30
-                         )/1.e3;
-    // double et_iso_d3pd = m_el_topoetcone30_corrected->at(el_index)/1.e3;
-    // double pt_iso_d3pd = m_el_ptcone30->at(el_index)/1.e3;
-
-    // if (int(1.e3*et_iso) != int(1.e3*et_iso_d3pd))
-    //   std::cout << "reco el etcone( " << et_iso
-    //             << " ) != d3pd etcone( " << et_iso_d3pd
-    //             << " )\n";
-    // if (int(1.e3*pt_iso) != int(1.e3*pt_iso_d3pd))
-    //   std::cout << "reco el ptcone( " << pt_iso
-    //             << " ) != d3pd ptcone( " << pt_iso_d3pd
-    //             << " )\n";
-
-    et_iso_frac = et_iso/pt;
-    pt_iso_frac = pt_iso/pt;
-  }
-  if (iso_type == NtupleHelper::EWK_HIGGS_STYLE) {
+  if (  iso_type == NtupleHelper::EWK_STYLE
+     || iso_type == NtupleHelper::EWK_HIGGS_STYLE
+     || iso_type == NtupleHelper::EWK_STYLE_PP
+     || iso_type == NtupleHelper::EWK_HIGGS_STYLE_PP
+     ) {
     et_iso = getElIsoCorr( el_index
                          , NtupleHelper::TOPOETCONE
                          , NtupleHelper::CONE_30
@@ -705,7 +685,9 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
     et_iso_frac = et_iso/pt;
     pt_iso_frac = pt_iso/pt;
   }
-  else if (iso_type == NtupleHelper::STRONG_STYLE) {
+  else if (  iso_type == NtupleHelper::STRONG_STYLE
+          || iso_type == NtupleHelper::STRONG_STYLE_PP
+          ) {
     et_iso = getElIsoCorr( el_index
                          , NtupleHelper::TOPOETCONE
                          , NtupleHelper::CONE_20
@@ -719,7 +701,9 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
     pt_iso_frac = pt_iso/std::min(60., pt);
   }
 
-  else if (iso_type == NtupleHelper::STRONG_STYLE_CONE_30) {
+  else if (  iso_type == NtupleHelper::STRONG_STYLE_CONE_30
+          || iso_type == NtupleHelper::STRONG_STYLE_CONE_30_PP
+          ) {
     et_iso = getElIsoCorr( el_index
                          , NtupleHelper::TOPOETCONE
                          , NtupleHelper::CONE_30
@@ -743,12 +727,10 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
 
   bool pass_et_iso = true;
   bool pass_pt_iso = true;
-  if (iso_type == NtupleHelper::EWK_STYLE) {
-    pass_et_iso = (et_iso_frac < 0.18);
-    pass_pt_iso = (pt_iso_frac < 0.16);
-  }
-  // TODO review these cut values
-  if (iso_type == NtupleHelper::EWK_HIGGS_STYLE) {
+  if (  iso_type == NtupleHelper::EWK_STYLE
+     || iso_type == NtupleHelper::EWK_HIGGS_STYLE
+     || iso_type == NtupleHelper::STRONG_STYLE_CONE_30
+     ) {
     pass_et_iso = (et_iso_frac < 0.18);
     pass_pt_iso = (pt_iso_frac < 0.16);
   }
@@ -756,9 +738,16 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
     pass_et_iso = (et_iso_frac < 0.06);
     pass_pt_iso = (pt_iso_frac < 0.06);
   }
-  else if (iso_type == NtupleHelper::STRONG_STYLE_CONE_30) {
-    pass_et_iso = (et_iso_frac < 0.18);
-    pass_pt_iso = (pt_iso_frac < 0.16);
+  else if (  iso_type == NtupleHelper::EWK_STYLE_PP
+     || iso_type == NtupleHelper::EWK_HIGGS_STYLE_PP
+     || iso_type == NtupleHelper::STRONG_STYLE_CONE_30_PP
+     ) {
+    pass_et_iso = (et_iso_frac < 0.13);
+    pass_pt_iso = (pt_iso_frac < 0.39);
+  }
+  else if (iso_type == NtupleHelper::STRONG_STYLE_PP) {
+    pass_et_iso = (et_iso_frac < 0.07);
+    pass_pt_iso = (pt_iso_frac < 0.22);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -816,7 +805,9 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
   double et_iso = -999;
   double pt_iso_frac = -999;
   double et_iso_frac = -999;
-  if (iso_type == EWK_STYLE) {
+  if (  iso_type == EWK_STYLE
+     || iso_type == EWK_STYLE_PP
+     ) {
     pt_iso = getMuIsoCorr( mu_index
                          , NtupleHelper::PTCONE
                          , NtupleHelper::CONE_30
@@ -825,16 +816,13 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
                          , NtupleHelper::ETCONE
                          , NtupleHelper::CONE_30
                          )/1.e3;
-    // double pt_iso_d3pd = m_mu_ptcone30_trkelstyle->at(mu_index)/1.e3;
-    // double et_iso_d3pd = m_mu_etcone30->at(mu_index)/1.e3;
-
-    // if (int(1.e3*et_iso) != int(1.e3*et_iso_d3pd)) std::cout << "reco mu etcone( " << et_iso << " != d3pd etcone( " << et_iso_d3pd << "\n";
-    // if (int(1.e3*pt_iso) != int(1.e3*pt_iso_d3pd)) std::cout << "reco mu ptcone( " << pt_iso << " != d3pd ptcone( " << pt_iso_d3pd << "\n";
 
     pt_iso_frac = pt_iso/pt;
     et_iso_frac = 0.;
   }
-  if (iso_type == EWK_HIGGS_STYLE) {
+  else if (  iso_type == EWK_HIGGS_STYLE
+          || iso_type == EWK_HIGGS_STYLE_PP
+          ) {
     pt_iso = getMuIsoCorr( mu_index
                          , NtupleHelper::PTCONE
                          , NtupleHelper::CONE_30
@@ -846,7 +834,11 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
     pt_iso_frac = pt_iso/pt;
     et_iso_frac = et_iso/pt;
   }
-  else if (iso_type == STRONG_STYLE || iso_type == STRONG_STYLE_CONE_30) {
+  else if (  iso_type == STRONG_STYLE
+          || iso_type == STRONG_STYLE_CONE_30
+          || iso_type == STRONG_STYLE_PP
+          || iso_type == STRONG_STYLE_CONE_30_PP
+          ) {
     pt_iso = getMuIsoCorr( mu_index
                          , NtupleHelper::PTCONE
                          , NtupleHelper::CONE_30
@@ -870,15 +862,22 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
   if (iso_type == EWK_STYLE) {
     pass_pt_iso = (pt_iso_frac < 0.12);
   }
-  // TODO review these cuts
-  if (iso_type == EWK_HIGGS_STYLE) {
+  else if (  iso_type == EWK_HIGGS_STYLE
+          || iso_type == STRONG_STYLE
+          || iso_type == STRONG_STYLE_CONE_30
+          ) {
     pass_pt_iso = (pt_iso_frac < 0.12);
     pass_et_iso = (et_iso_frac < 0.12);
   }
-  // TODO review these cuts
-  else if (iso_type == STRONG_STYLE || iso_type == STRONG_STYLE_CONE_30) {
-    pass_pt_iso = (pt_iso_frac < 0.12);
-    pass_et_iso = (et_iso_frac < 0.12);
+  else if (iso_type == EWK_STYLE_PP) {
+    pass_pt_iso = (pt_iso_frac < 0.11);
+  }
+  else if (  iso_type == EWK_HIGGS_STYLE_PP
+          || iso_type == STRONG_STYLE_PP
+          || iso_type == STRONG_STYLE_CONE_30_PP
+          ) {
+    pass_pt_iso = (pt_iso_frac < 0.11);
+    pass_et_iso = (et_iso_frac < 0.19);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

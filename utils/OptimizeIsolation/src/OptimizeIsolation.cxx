@@ -24,21 +24,32 @@
 
 // -----------------------------------------------------------------------------
 OptimizeIsolation::OptimizeIsolation( TTree *tree
-                                    , double num_events) : NtupleHelper::NtupleLooper(tree, num_events)
+                                    , double num_events
+                                    ) : NtupleHelper::NtupleLooper(tree, num_events)
 {
   // double pt_bins[7] = {0., 10., 20., 35., 50., 75., 100.};
 
   for (unsigned int iso_style = 0; iso_style != ISO_N; ++iso_style) {
     std::string iso_style_string = ISO_STYLE_STRINGS[iso_style];
 
+    unsigned int x_bins = ( (ISO_STYLE_STRINGS[iso_style].find("ET") == std::string::npos)
+                          ? 400
+                          : 500
+                          );
+    float x_min         = ( (ISO_STYLE_STRINGS[iso_style].find("ET") == std::string::npos)
+                          ? 0.
+                          : -1.
+                          );
+    float x_max = 4;
+
     m_el_iso.push_back( new TH1D( ("el_iso_" + iso_style_string).c_str()
                                 , ("iso (" + iso_style_string + ")").c_str()
-                                , 25, -0.5, 2.
+                                , x_bins, x_min, x_max
                                 )
                       );
     m_mu_iso.push_back( new TH1D( ("mu_iso_" + iso_style_string).c_str()
                                 , ("iso (" + iso_style_string + ")").c_str()
-                                , 25, -0.5, 2.
+                                , x_bins, x_min, x_max
                                 )
                       );
   }

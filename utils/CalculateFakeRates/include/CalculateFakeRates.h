@@ -16,12 +16,20 @@ enum FAKE_STYLE { FAKE_EWK = 0
                 , FAKE_HIGGS
                 , FAKE_STRONG
                 , FAKE_STRONG_30
+                , FAKE_EWK_PP
+                , FAKE_HIGGS_PP
+                , FAKE_STRONG_PP
+                , FAKE_STRONG_30_PP
                 , FAKE_N
                 };
 static const std::string FAKE_STYLE_STRINGS[] = { "EWK"
                                                 , "HIGGS"
                                                 , "STRONG"
                                                 , "STRONG_30"
+                                                , "EWK_PP"
+                                                , "HIGGS_PP"
+                                                , "STRONG_PP"
+                                                , "STRONG_30_PP"
                                                 , "NONE"
                                                 };
 

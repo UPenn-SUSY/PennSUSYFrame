@@ -170,29 +170,29 @@ def plotRates(file_handles, out_file, rates_suffix = ''):
     c_big_leg_el_re = printToCanvas( leg=big_leg_el_re, canvas_name='c_leg_el_re%s' % rates_suffix)
     c_big_leg_el_fr = printToCanvas( leg=big_leg_el_fr, canvas_name='c_leg_el_fr%s' % rates_suffix)
 
-    c_mu_re_comp = []
-    c_mu_fr_comp = []
-    c_el_re_comp = []
-    c_el_fr_comp = []
-    for fh in file_handles:
-        temp_hist_mu_re = fh.getHist('mu_re%s' % rates_suffix)
-        temp_hist_mu_fr = fh.getHist('mu_fr%s' % rates_suffix)
-        temp_hist_el_re = fh.getHist('el_re%s' % rates_suffix)
-        temp_hist_el_fr = fh.getHist('el_fr%s' % rates_suffix)
+    # c_mu_re_comp = []
+    # c_mu_fr_comp = []
+    # c_el_re_comp = []
+    # c_el_fr_comp = []
+    # for fh in file_handles:
+    #     temp_hist_mu_re = fh.getHist('mu_re%s' % rates_suffix)
+    #     temp_hist_mu_fr = fh.getHist('mu_fr%s' % rates_suffix)
+    #     temp_hist_el_re = fh.getHist('el_re%s' % rates_suffix)
+    #     temp_hist_el_fr = fh.getHist('el_fr%s' % rates_suffix)
 
-        c_mu_re_comp.append(printToCanvas( ths=temp_hist_mu_re, leg=None, canvas_name='c_mu_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
-        c_mu_fr_comp.append(printToCanvas( ths=temp_hist_mu_fr, leg=None, canvas_name='c_mu_fr_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2))
-        c_el_re_comp.append(printToCanvas( ths=temp_hist_el_re, leg=None, canvas_name='c_el_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
-        c_el_fr_comp.append(printToCanvas( ths=temp_hist_el_fr, leg=None, canvas_name='c_el_fr_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2))
+    #     c_mu_re_comp.append(printToCanvas( ths=temp_hist_mu_re, leg=None, canvas_name='c_mu_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
+    #     c_mu_fr_comp.append(printToCanvas( ths=temp_hist_mu_fr, leg=None, canvas_name='c_mu_fr_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2))
+    #     c_el_re_comp.append(printToCanvas( ths=temp_hist_el_re, leg=None, canvas_name='c_el_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
+    #     c_el_fr_comp.append(printToCanvas( ths=temp_hist_el_fr, leg=None, canvas_name='c_el_fr_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2))
 
     out_file.cd()
     out_file.mkdir('mu_re')
     out_file.cd('mu_re')
     c_mu_re.Write('mu_re%s' % rates_suffix)
     c_big_leg_mu_re.Write('leg_mu_re%s' % rates_suffix)
-    for cmrc in c_mu_re_comp:
-        cmrc.Write()
-        cmrc.Close()
+    # for cmrc in c_mu_re_comp:
+    #     cmrc.Write()
+    #     cmrc.Close()
     c_mu_re.Close()
     c_big_leg_mu_re.Close()
 
@@ -201,9 +201,9 @@ def plotRates(file_handles, out_file, rates_suffix = ''):
     out_file.cd('mu_fr')
     c_mu_fr.Write('mu_fr%s' % rates_suffix)
     c_big_leg_mu_fr.Write('leg_mu_fr%s' % rates_suffix)
-    for cmfc in c_mu_fr_comp:
-        cmfc.Write()
-        cmfc.Close()
+    # for cmfc in c_mu_fr_comp:
+    #     cmfc.Write()
+    #     cmfc.Close()
     c_mu_fr.Close()
     c_big_leg_mu_fr.Close()
 
@@ -212,9 +212,9 @@ def plotRates(file_handles, out_file, rates_suffix = ''):
     out_file.cd('el_re')
     c_el_re.Write('el_re%s' % rates_suffix)
     c_big_leg_el_re.Write('leg_el_re%s' % rates_suffix)
-    for cerc in c_el_re_comp:
-        cerc.Write()
-        cerc.Close()
+    # for cerc in c_el_re_comp:
+    #     cerc.Write()
+    #     cerc.Close()
     c_el_re.Close()
     c_big_leg_el_re.Close()
 
@@ -223,9 +223,9 @@ def plotRates(file_handles, out_file, rates_suffix = ''):
     out_file.cd('el_fr')
     c_el_fr.Write('el_fr%s' % rates_suffix)
     c_big_leg_el_fr.Write('leg_el_fr%s' % rates_suffix)
-    for cefc in c_el_fr_comp:
-        cefc.Write()
-        cefc.Close()
+    # for cefc in c_el_fr_comp:
+    #     cefc.Write()
+    #     cefc.Close()
     c_el_fr.Close()
     c_big_leg_el_fr.Close()
 
@@ -295,7 +295,7 @@ if __name__ == '__main__':
     #     this_color -=1
 
     # add ttbar
-    this_color = ROOT.kCyan
+    this_color = ROOT.kBlue
     file_handles.append(FileHandle( 'rates.105200.ttbar.root'
                                   , 'ttbar'
                                   , this_color
@@ -329,9 +329,9 @@ if __name__ == '__main__':
                                   , 'signal 127994'
                                   , this_color
                                   , draw_el_re=True
-                                  , draw_el_fr=True
+                                  , draw_el_fr=False
                                   , draw_mu_re=True
-                                  , draw_mu_fr=True
+                                  , draw_mu_fr=False
                                   )
                        )
     this_color += 1
@@ -344,6 +344,10 @@ if __name__ == '__main__':
     plotRates(file_handles, out_file, '_HIGGS' )
     plotRates(file_handles, out_file, '_STRONG')
     plotRates(file_handles, out_file, '_STRONG_30')
+    plotRates(file_handles, out_file, '_EWK_PP'   )
+    plotRates(file_handles, out_file, '_HIGGS_PP' )
+    plotRates(file_handles, out_file, '_STRONG_PP')
+    plotRates(file_handles, out_file, '_STRONG_30_PP')
 
     out_file.Close()
 

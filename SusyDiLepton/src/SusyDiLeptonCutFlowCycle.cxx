@@ -767,10 +767,10 @@ void SusyDiLeptonCutFlowCycle::fillEventVariables()
     m_event->setTriggerWeight(m_trigger_reweight_tool->getTriggerWeight(
           m_event->getFlavorChannel(),
           m_electrons.getElectrons(EL_GOOD),
-	  m_muons.getMuons(MU_GOOD),
-	  m_jets.getJets(JET_ALL_SIGNAL),
-	  m_met,
-	  m_vertices));
+          m_muons.getMuons(MU_GOOD),
+          m_jets.getJets(JET_ALL_SIGNAL),
+          m_met,
+          m_vertices));
 
     // TODO fill m_cross_section_weight
     m_event->setCrossSectionWeight(1.);

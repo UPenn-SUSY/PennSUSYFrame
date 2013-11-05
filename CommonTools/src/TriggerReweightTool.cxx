@@ -64,11 +64,15 @@ void CommonTools::TriggerReweightTool::BeginInputData(const SInputData&)
     }
   }
 
+  // std::cout << "reweight directory: " << c_reweight_directory << "\n";
+  // std::cout << "reweight period: " << c_reweight_period << "\n";
   //new initialze method for tag 00-00-29 
+  m_trigger_reweight->setDbg(1);
   m_trigger_reweight->initialize( c_reweight_directory
                                 , c_reweight_period
                                 , false
                                 );
+  m_trigger_reweight->setDbg(0);
 }
 
 // -----------------------------------------------------------------------------
@@ -103,6 +107,13 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
       int num_vert = vertices.num(VERT_GOOD);
       int num_jets = jet.size();
 
+      // std::cout << "get trigger weight:"
+      //           << "\n\tflavor channel: " << flavor_channel
+      //           << "\n\tmet: " << met->getMetRefFinalEt()
+      //           << "\n\tnum vert: " << num_vert
+      //           << "\n\tnum jets: " << num_jets
+      //           << "\n";
+
       if (flavor_channel == FLAVOR_EE)
       {
         m_logger << DEBUG
@@ -113,11 +124,17 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         double el_pt_1 = el.at(0)->getTlv().Pt();
         double el_pt_2 = el.at(1)->getTlv().Pt();
 
-        double el_eta_1 = fabs(el.at(0)->getTlv().Eta());
-        double el_eta_2 = fabs(el.at(1)->getTlv().Eta());
+        double el_eta_1 = el.at(0)->getTlv().Eta();
+        double el_eta_2 = el.at(1)->getTlv().Eta();
+        // double el_eta_1 = fabs(el.at(0)->getTlv().Eta());
+        // double el_eta_2 = fabs(el.at(1)->getTlv().Eta());
+
+        // std::cout << "\tel 1 pt: " << el_pt_1 << "\tel 1 eta: " << el_eta_1 << "\n"
+        //           << "\tel 2 pt: " << el_pt_2 << "\tel 2 eta: " << el_eta_2 << "\n";
 
         m_trigger_weight = m_trigger_reweight->triggerReweightEE(
-            el_pt_1, el_eta_1, el_pt_2, el_eta_2, systematic);
+            el_pt_1, el_eta_1, el_pt_2, el_eta_2);
+            // el_pt_1, el_eta_1, el_pt_2, el_eta_2, systematic);
       }
       else if(flavor_channel == FLAVOR_MM)
       {
@@ -129,8 +146,10 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         double mu_pt_1 = mu.at(0)->getTlv().Pt();
         double mu_pt_2 = mu.at(1)->getTlv().Pt();
 
-        double mu_eta_1 = fabs(mu.at(0)->getTlv().Eta());
-        double mu_eta_2 = fabs(mu.at(1)->getTlv().Eta());
+        double mu_eta_1 = mu.at(0)->getTlv().Eta();
+        double mu_eta_2 = mu.at(1)->getTlv().Eta();
+        // double mu_eta_1 = fabs(mu.at(0)->getTlv().Eta());
+        // double mu_eta_2 = fabs(mu.at(1)->getTlv().Eta());
 
         double mu_phi_1 = mu.at(0)->getTlv().Phi();
         double mu_phi_2 = mu.at(1)->getTlv().Phi();
@@ -141,7 +160,9 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         m_trigger_weight = m_trigger_reweight->triggerReweightMM(
             mu_pt_1, mu_eta_1, mu_phi_1, mu_isComb_1,
             mu_pt_2, mu_eta_2, mu_phi_2, mu_isComb_2,
-            systematic, num_vert, met->getMetRefFinalEt(), num_jets, false);
+            0, num_vert, met->getMetRefFinalEt(), 0, false);
+            // systematic, num_vert, met->getMetRefFinalEt(), 0, false);
+            // systematic, num_vert, met->getMetRefFinalEt(), num_jets, false);
       }
       else if(flavor_channel == FLAVOR_EM)
       {
@@ -153,8 +174,10 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         double el_pt = el.at(0)->getTlv().Pt();
         double mu_pt = mu.at(0)->getTlv().Pt();
 
-        double el_eta = fabs(el.at(0)->getTlv().Eta());
-        double mu_eta = fabs(mu.at(0)->getTlv().Eta());
+        double el_eta = el.at(0)->getTlv().Eta();
+        double mu_eta = mu.at(0)->getTlv().Eta();
+        // double el_eta = fabs(el.at(0)->getTlv().Eta());
+        // double mu_eta = fabs(mu.at(0)->getTlv().Eta());
 
         double mu_phi = mu.at(0)->getTlv().Phi();
         int mu_isComb = mu.at(0)->isCombinedMuon();
@@ -162,7 +185,8 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
         m_trigger_weight = m_trigger_reweight->triggerReweightEMU(
             el_pt, el_eta,
             mu_pt, mu_eta, mu_phi,
-            mu_isComb, systematic, num_vert);
+            mu_isComb, 0, num_vert);
+            // mu_isComb, systematic, num_vert);
       }
       else
       {
@@ -178,6 +202,7 @@ double CommonTools::TriggerReweightTool::getTriggerWeight(
     m_is_cached = true;
   }
 
+  std::cout << "trigger weight: " << m_trigger_weight << "\n";
   return m_trigger_weight;
 }
 

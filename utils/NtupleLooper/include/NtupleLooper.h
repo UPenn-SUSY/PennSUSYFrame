@@ -21,6 +21,10 @@ namespace NtupleHelper
                  , EWK_HIGGS_STYLE
                  , STRONG_STYLE
                  , STRONG_STYLE_CONE_30
+                 , EWK_STYLE_PP
+                 , EWK_HIGGS_STYLE_PP
+                 , STRONG_STYLE_PP
+                 , STRONG_STYLE_CONE_30_PP
                  };
 
   enum ISO_TYPE { ETCONE
