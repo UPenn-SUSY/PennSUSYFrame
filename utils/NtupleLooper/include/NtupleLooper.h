@@ -17,25 +17,38 @@ class TTree;
 // =============================================================================
 namespace NtupleHelper
 {
-  enum ISO_STYLE { EWK_STYLE
-                 , EWK_HIGGS_STYLE
-                 , STRONG_STYLE
-                 , STRONG_STYLE_CONE_30
-                 , EWK_STYLE_PP
-                 , EWK_HIGGS_STYLE_PP
-                 , STRONG_STYLE_PP
-                 , STRONG_STYLE_CONE_30_PP
+  enum ISO_STYLE { ISO_STYLE_EWK
+                 , ISO_STYLE_EWK_HIGGS
+                 , ISO_STYLE_STRONG
+                 , ISO_STYLE_STRONG_CONE_30
+                 , ISO_STYLE_EWK_PP
+                 , ISO_STYLE_EWK_HIGGS_PP
+                 , ISO_STYLE_STRONG_PP
+                 , ISO_STYLE_STRONG_CONE_30_PP
+                 , ISO_N
                  };
 
-  enum ISO_TYPE { ETCONE
-                , TOPOETCONE
-                , PTCONE
+  enum ISO_TYPE { ISO_TYPE_ETCONE
+                , ISO_TYPE_TOPOETCONE
+                , ISO_TYPE_PTCONE
                 };
 
   enum CONE_SIZE { CONE_20
                  , CONE_30
                  , CONE_40
                  };
+
+// =============================================================================
+  static const std::string ISO_STYLE_STRINGS[] = { "EWK"
+                                                 , "HIGGS"
+                                                 , "STRONG"
+                                                 , "STRONG_30"
+                                                 , "EWK_PP"
+                                                 , "HIGGS_PP"
+                                                 , "STRONG_PP"
+                                                 , "STRONG_30_PP"
+                                                 , "NONE"
+                                                 };
 
 // =============================================================================
 class NtupleLooper
@@ -54,13 +67,13 @@ class NtupleLooper
     virtual bool isSignalElectron( const size_t el_index
                                  , const SusyAnalysisTools::ElectronDescription&
                                  , bool use_default_decision = true
-                                 , NtupleHelper::ISO_STYLE iso_type = EWK_STYLE
+                                 , NtupleHelper::ISO_STYLE iso_type = ISO_STYLE_EWK
                                  , float d0_sig_cut = 5.
                                  );
     virtual bool isSignalMuon( const size_t mu_index
                              , const SusyAnalysisTools::MuonDescription&
                              , bool use_default_decision = true
-                             , NtupleHelper::ISO_STYLE iso_type = EWK_STYLE
+                             , NtupleHelper::ISO_STYLE iso_type = ISO_STYLE_EWK
                              , float d0_sig_cut = 3.
                              );
 
