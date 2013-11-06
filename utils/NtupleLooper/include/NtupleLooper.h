@@ -25,7 +25,7 @@ namespace NtupleHelper
                  , ISO_STYLE_EWK_HIGGS_PP
                  , ISO_STYLE_STRONG_PP
                  , ISO_STYLE_STRONG_CONE_30_PP
-                 , ISO_N
+                 , ISO_STYLE_N
                  };
 
   enum ISO_TYPE { ISO_TYPE_ETCONE

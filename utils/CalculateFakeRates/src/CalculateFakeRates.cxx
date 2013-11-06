@@ -33,7 +33,7 @@ CalculateFakeRates::CalculateFakeRates( TTree *tree
 
   // for (unsigned int fake_style = 0; fake_style != FAKE_N; ++fake_style) {
   //   std::string fake_style_string = FAKE_STYLE_STRINGS[fake_style];
-  for (unsigned int fake_style = 0; fake_style != NtupleHelper::ISO_N; ++fake_style) {
+  for (unsigned int fake_style = 0; fake_style != NtupleHelper::ISO_STYLE_N; ++fake_style) {
     std::string fake_style_string = NtupleHelper::ISO_STYLE_STRINGS[fake_style];
     m_el_re_numer.push_back( new TH1D( ("el_re_numer_" + fake_style_string).c_str()
                                      , ("electron re numerator (" + fake_style_string + ")").c_str()
@@ -340,6 +340,10 @@ void CalculateFakeRates::processEvent()
     bool is_truth_matched = el_desc.getPassPromptLepton();
     bool is_baseline      = el_desc.getPassGood();
 
+    bool is_signal[NtupleHelper::ISO_STYLE_N];
+    for (unsigned int iso_style = 0; iso_style != NtupleHelper::ISO_STYLE_N; ++iso_style) {
+      is_signal[iso_style] = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE(iso_style));
+    }
     bool is_signal_EWK       = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK);
     bool is_signal_HIGGS     = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS);
     bool is_signal_STRONG    = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG);
@@ -517,7 +521,7 @@ void CalculateFakeRates::printToScreen()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // for (unsigned int fake_style = 0; fake_style != FAKE_N; ++fake_style) {
   //   std::string fake_style_string = FAKE_STYLE_STRINGS[fake_style];
-  for (unsigned int fake_style = 0; fake_style != NtupleHelper::ISO_N; ++fake_style) {
+  for (unsigned int fake_style = 0; fake_style != NtupleHelper::ISO_STYLE_N; ++fake_style) {
     std::string fake_style_string = NtupleHelper::ISO_STYLE_STRINGS[fake_style];
 
     TH1D * h_tmp_el_re = static_cast<TH1D*>(m_el_re_numer.at(fake_style)->Clone(("el_re_" + fake_style_string).c_str()));
@@ -548,7 +552,7 @@ void CalculateFakeRates::printToFile(std::string out_file_name)
   TFile f(out_file_name.c_str(), "RECREATE");
   f.cd();
 
-  for (unsigned int fake_style = 0; fake_style != NtupleHelper::ISO_N; ++fake_style) {
+  for (unsigned int fake_style = 0; fake_style != NtupleHelper::ISO_STYLE_N; ++fake_style) {
     m_el_re.at(fake_style)->Write();
     m_mu_re.at(fake_style)->Write();
     m_el_fr.at(fake_style)->Write();
