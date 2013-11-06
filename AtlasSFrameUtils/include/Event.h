@@ -47,6 +47,7 @@ public:
   void setChargeFlipWeight(double weight);
   void setMCChannelNum(int channel);
 
+  void setEmmaMt(double);
   void setHt(double);
   void setHtJets(double);
   void setHtLeptons(double);
@@ -67,6 +68,7 @@ public:
   void setOLJet(double);
   void setOLRatio(double);
 
+  double getEmmaMt() const;
   double getHt() const;
   double getHtJets() const;
   double getHtLeptons() const;
@@ -112,6 +114,7 @@ private:
   int m_mc_channel_num;
 
   // useful event level variables
+  double m_emma_mt;
   double m_ht;
   double m_ht_jets;
   double m_ht_leptons;
@@ -132,6 +135,7 @@ private:
   double m_oljet;
   double m_olratio;
 
+  bool m_emma_mt_cached;
   bool m_ht_cached;
   bool m_ht_jets_cached;
   bool m_ht_leptons_cached;

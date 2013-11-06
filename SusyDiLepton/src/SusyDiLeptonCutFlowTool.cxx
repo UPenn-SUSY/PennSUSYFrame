@@ -22,6 +22,7 @@
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
 #include "CommonTools/include/ChargeFlipScaleFactorTool.h"
+#include "CommonTools/include/EmmaMtTool.h"
 #include "CommonTools/include/EtallTool.h"
 #include "CommonTools/include/HtTool.h"
 #include "CommonTools/include/MT2Tool.h"
@@ -644,6 +645,13 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
               , electrons.getElectrons(EL_GOOD)
               , muons.getMuons(MU_GOOD))
               );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute emma_mt
+  event->setEmmaMt( CommonTools::EmmaMtTool::getEmmaMt( event->getFlavorChannel()
+                  , electrons.getElectrons(EL_GOOD)
+                  , muons.getMuons(MU_GOOD))
+                  );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute mt2

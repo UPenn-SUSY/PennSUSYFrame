@@ -32,7 +32,6 @@ class CutFlowDump : public NtupleHelper::NtupleLooper
   public :
     CutFlowDump(TTree *tree, double num_events);
     virtual ~CutFlowDump();
-    // virtual void     Init(TTree *tree);
 
     virtual void processEvent();
 

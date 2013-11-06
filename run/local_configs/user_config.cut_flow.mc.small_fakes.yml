@@ -210,72 +210,85 @@ Trigger_Cut:
     # do_mc_trigger:           True
 
 Signal_Regions:
-    sr_osjveto_min_met_rel:  100000
-    sr_osjveto_max_met_rel:  -1
-    sr_osjveto_min_mt2:      -1
-    sr_osjveto_max_mt2:      90000
+    sr_ss_ee_min_met_rel:   40000
+    sr_ss_ee_max_met_rel:   -1
+    sr_ss_mm_min_met_rel:   40000
+    sr_ss_mm_max_met_rel:   -1
+    sr_ss_em_min_met_rel:   40000
+    sr_ss_em_max_met_rel:   -1
+    sr_ss_ee_min_emma_mt:   -1
+    sr_ss_ee_max_emma_mt:   50000
+    sr_ss_mm_min_emma_mt:   -1
+    sr_ss_mm_max_emma_mt:   50000
+    sr_ss_em_min_emma_mt:   -1
+    sr_ss_em_max_emma_mt:   50000
 
-    sr_ssjets_ee_min_met_rel:   70000
-    sr_ssjets_ee_max_met_rel:   -1
-    sr_ssjets_mm_min_met_rel:   50000
-    sr_ssjets_mm_max_met_rel:   -1
-    sr_ssjets_em_min_met_rel:   50000
-    sr_ssjets_em_max_met_rel:   -1
-    sr_ssjets_ee_min_mt:        -1
-    sr_ssjets_ee_max_mt:        70000
-    sr_ssjets_mm_min_mt:        -1
-    sr_ssjets_mm_max_mt:        50000
-    sr_ssjets_em_min_mt:        -1
-    sr_ssjets_em_max_mt:        50000
+    # sr_osjveto_min_met_rel:  100000
+    # sr_osjveto_max_met_rel:  -1
+    # sr_osjveto_min_mt2:      -1
+    # sr_osjveto_max_mt2:      90000
 
-    sr_2jets_min_met_rel:    50000
-    sr_2jets_max_met_rel:    -1
+    # sr_ssjets_ee_min_met_rel:   70000
+    # sr_ssjets_ee_max_met_rel:   -1
+    # sr_ssjets_mm_min_met_rel:   50000
+    # sr_ssjets_mm_max_met_rel:   -1
+    # sr_ssjets_em_min_met_rel:   50000
+    # sr_ssjets_em_max_met_rel:   -1
+    # sr_ssjets_ee_min_mt:        -1
+    # sr_ssjets_ee_max_mt:        70000
+    # sr_ssjets_mm_min_mt:        -1
+    # sr_ssjets_mm_max_mt:        50000
+    # sr_ssjets_em_min_mt:        -1
+    # sr_ssjets_em_max_mt:        50000
 
-    sr_mt2_min_lep1_pt:      35000
-    sr_mt2_max_lep1_pt:      -1
-    sr_mt2_min_lep2_pt:      20000
-    sr_mt2_max_lep2_pt:      -1
-    # sr_mt2_min_met_rel:      40000
-    sr_mt2_min_met_rel:      -1
-    sr_mt2_max_met_rel:      -1
-    sr_mt2a_min_mt2:         90000
-    sr_mt2a_max_mt2:         -1
-    sr_mt2b_min_mt2:         110000
-    sr_mt2b_max_mt2:         -1
+    # sr_2jets_min_met_rel:    50000
+    # sr_2jets_max_met_rel:    -1
 
-    sr_ww_min_lep1_pt:       35000
-    sr_ww_max_lep1_pt:       -1
-    sr_ww_min_lep2_pt:       20000
-    sr_ww_max_lep2_pt:       -1
-    sr_wwa_min_met_rel:      70000
-    sr_wwa_max_met_rel:      -1
-    sr_wwa_min_mll:          -1
-    sr_wwa_max_mll:          120000
-    sr_wwa_min_ptll:         80000
-    sr_wwa_max_ptll:         -1
-    sr_wwb_min_mll:          -1
-    sr_wwb_max_mll:          170000
-    sr_wwb_min_mt2:          90000
-    sr_wwb_max_mt2:          -1
-    sr_wwb_min_ptll:         -1
-    sr_wwb_max_ptll:         170000
-    sr_wwc_min_ptll:         -1
-    sr_wwc_max_ptll:         190000
-    sr_wwc_min_mt2:          100000
-    sr_wwc_max_mt2:          -1
+    # sr_mt2_min_lep1_pt:      35000
+    # sr_mt2_max_lep1_pt:      -1
+    # sr_mt2_min_lep2_pt:      20000
+    # sr_mt2_max_lep2_pt:      -1
+    # # sr_mt2_min_met_rel:      40000
+    # sr_mt2_min_met_rel:      -1
+    # sr_mt2_max_met_rel:      -1
+    # sr_mt2a_min_mt2:         90000
+    # sr_mt2a_max_mt2:         -1
+    # sr_mt2b_min_mt2:         110000
+    # sr_mt2b_max_mt2:         -1
 
-    sr_zjets_min_num_jets:   2
-    sr_zjets_max_num_jets:   -1
-    sr_zjets_min_met_rel:    40000
-    sr_zjets_max_met_rel:    -1
-    sr_zjets_min_jet1_pt:    40000
-    sr_zjets_max_jet1_pt:    -1
-    sr_zjets_min_jet2_pt:    40000
-    sr_zjets_max_jet2_pt:    -1
-    sr_zjets_min_mjj:        50000
-    sr_zjets_max_mjj:        100000
-    sr_zjets_min_mt2:        55000
-    sr_zjets_max_mt2:        -1
+    # sr_ww_min_lep1_pt:       35000
+    # sr_ww_max_lep1_pt:       -1
+    # sr_ww_min_lep2_pt:       20000
+    # sr_ww_max_lep2_pt:       -1
+    # sr_wwa_min_met_rel:      70000
+    # sr_wwa_max_met_rel:      -1
+    # sr_wwa_min_mll:          -1
+    # sr_wwa_max_mll:          120000
+    # sr_wwa_min_ptll:         80000
+    # sr_wwa_max_ptll:         -1
+    # sr_wwb_min_mll:          -1
+    # sr_wwb_max_mll:          170000
+    # sr_wwb_min_mt2:          90000
+    # sr_wwb_max_mt2:          -1
+    # sr_wwb_min_ptll:         -1
+    # sr_wwb_max_ptll:         170000
+    # sr_wwc_min_ptll:         -1
+    # sr_wwc_max_ptll:         190000
+    # sr_wwc_min_mt2:          100000
+    # sr_wwc_max_mt2:          -1
+
+    # sr_zjets_min_num_jets:   2
+    # sr_zjets_max_num_jets:   -1
+    # sr_zjets_min_met_rel:    40000
+    # sr_zjets_max_met_rel:    -1
+    # sr_zjets_min_jet1_pt:    40000
+    # sr_zjets_max_jet1_pt:    -1
+    # sr_zjets_min_jet2_pt:    40000
+    # sr_zjets_max_jet2_pt:    -1
+    # sr_zjets_min_mjj:        50000
+    # sr_zjets_max_mjj:        100000
+    # sr_zjets_min_mt2:        55000
+    # sr_zjets_max_mt2:        -1
 
     z_window_mll_min:        81200
     z_window_mll_max:        101200

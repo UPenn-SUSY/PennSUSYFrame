@@ -17,6 +17,7 @@
 #pragma link C++ class CommonTools::EgammaEnergyRescaleTool+;
 #pragma link C++ class CommonTools::EgammaScaleFactorTool+;
 #pragma link C++ class CommonTools::ElectronJetOverlapTool+;
+#pragma link C++ class CommonTools::EmmaMtTool+;
 #pragma link C++ class CommonTools::EtallTool+;
 #pragma link C++ class CommonTools::EventCounterTool+;
 #pragma link C++ class CommonTools::HtTool+;

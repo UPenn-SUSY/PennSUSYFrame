@@ -24,6 +24,8 @@ namespace SusyAnalysisTools
       EventDescription& operator=(const EventDescription&);
       EventDescription& operator=(const ull_t&);
 
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      // Setter functions
       void setIsData(bool);
       void setPassGrl(bool);
       void setPassIncompleteEvent(bool);
@@ -59,22 +61,10 @@ namespace SusyAnalysisTools
       void setPassTileTrip(bool);
       void setPassTauVeto(bool);
 
-      void setSROSJVeto(bool);
-      void setSRSSJets(bool);
-      void setSR2Jets(bool);
-      void setSRMT2a(bool);
-      void setSRMT2b(bool);
+      void setSRSS(bool);
 
-      void setSRWWa(bool);
-      void setSRWWb(bool);
-      void setSRWWc(bool);
-      void setSRZjets(bool);
-
-      // void setCR1(bool);
-      // void setCR2(bool);
-      // void setCR3(bool);
-      // void setCR4(bool);
-
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      // Getter functions
       bool getIsData() const;
       bool getPassGrl() const;
       bool getPassIncompleteEvent() const;
@@ -109,21 +99,7 @@ namespace SusyAnalysisTools
       bool getPassTileTrip() const;
       bool getPassTauVeto() const;
 
-      bool getPassSROSJVeto() const;
-      bool getPassSRSSJets() const;
-      bool getPassSR2Jets() const;
-      bool getPassSRMT2a() const;
-      bool getPassSRMT2b() const;
-
-      bool getPassSRWWa() const;
-      bool getPassSRWWb() const;
-      bool getPassSRWWc() const;
-      bool getPassSRZjets() const;
-
-      // bool getPassCR1() const;
-      // bool getPassCR2() const;
-      // bool getPassCR3() const;
-      // bool getPassCR4() const;
+      bool getPassSRSS() const;
 
       bool pass(   const EventDescription& test) const;
       bool reverse(const EventDescription& test) const;
@@ -167,31 +143,7 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_TILE_TRIP          = 36;
       static const unsigned int ADD_TAU_VETO           = 37;
 
-      static const unsigned int ADD_SR_OSJVETO         = 41;
-      static const unsigned int ADD_SR_SSJETS          = 42;
-      static const unsigned int ADD_SR_2JETS           = 43;
-      static const unsigned int ADD_SR_MT2a            = 44;
-      static const unsigned int ADD_SR_MT2b            = 45;
-      static const unsigned int ADD_SR_WWA             = 46;
-      static const unsigned int ADD_SR_WWB             = 47;
-      static const unsigned int ADD_SR_WWC             = 48;
-      static const unsigned int ADD_SR_ZJETS           = 49;
-      static const unsigned int ADD_SR_SSJETS_CF       = 50;
-      static const unsigned int ADD_CR_ZXOSJVETO       = 51;
-      static const unsigned int ADD_CR_ZXMT2A          = 52;
-      static const unsigned int ADD_CR_ZXMT2B          = 53;
-      static const unsigned int ADD_CR_ZX2JETS         = 54;
-      static const unsigned int ADD_CR_ZXWW            = 55;
-      static const unsigned int ADD_CR_TOP             = 56;
-      static const unsigned int ADD_CR_TOPWWA          = 57;
-      static const unsigned int ADD_CR_TOPWWB          = 58;
-      static const unsigned int ADD_CR_TOPWWC          = 59;
-      static const unsigned int ADD_CR_WW1             = 60;
-      static const unsigned int ADD_CR_WW2             = 61;
-      static const unsigned int ADD_CR_WWA             = 62;
-      static const unsigned int ADD_CR_WWB             = 63;
-      static const unsigned int ADD_CR_WWC             = 64;
-      // static const unsigned int ADD_CR_BTAG            = 64;
+      static const unsigned int ADD_SR_SS              = 41;
 
 
       bool            m_is_data;
@@ -228,22 +180,7 @@ namespace SusyAnalysisTools
       bool m_pass_tile_trip;
       bool m_pass_tau_veto;
 
-      bool m_pass_sr_osjveto;
-      bool m_pass_sr_ssjets;
-      bool m_pass_sr_2jets;
-      bool m_pass_sr_mt2a;
-      bool m_pass_sr_mt2b;
-
-      bool m_pass_sr_wwa;
-      bool m_pass_sr_wwb;
-      bool m_pass_sr_wwc;
-      bool m_pass_sr_zjets;
-      bool m_pass_sr_ssjets_cf;
-
-      // bool m_pass_cr1;
-      // bool m_pass_cr2;
-      // bool m_pass_cr3;
-      // bool m_pass_cr4;
+      bool m_pass_sr_ss;
 
       // TODO move implementation to icc file
       template <class T>

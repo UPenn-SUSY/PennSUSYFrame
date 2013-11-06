@@ -24,6 +24,7 @@ Event::Event( const ::Long64_t& master
             , m_trigger_weight(1.)
             , m_cross_section_weight(1.)
             , m_b_tag_weight(1.)
+            , m_emma_mt(0.)
             , m_ht(0.)
             , m_ht_jets(0.)
             , m_ht_leptons(0.)
@@ -42,6 +43,7 @@ Event::Event( const ::Long64_t& master
             , m_jet_sum_pt(0.)
             , m_oljet(0.)
             , m_olratio(0.)
+            , m_emma_mt_cached(false)
             , m_ht_cached(false)
             , m_ht_jets_cached(false)
             , m_ht_leptons_cached(false)
@@ -83,6 +85,7 @@ void Event::clear()
 
   m_mc_channel_num = 0;
 
+  m_emma_mt      = 0.;
   m_ht           = 0.;
   m_ht_jets      = 0.;
   m_ht_leptons   = 0.;
@@ -103,6 +106,7 @@ void Event::clear()
   m_oljet      = 0.;
   m_olratio    = 0.;
 
+  m_emma_mt_cached      = false;
   m_ht_cached           = false;
   m_ht_jets_cached      = false;
   m_ht_leptons_cached   = false;
@@ -279,6 +283,13 @@ void Event::setMll(double mll)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setEmmaMt(double emma_mt)
+{
+  m_emma_mt = emma_mt;
+  m_emma_mt_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 void Event::setMt(double mt)
 {
   m_mt = mt;
@@ -433,6 +444,14 @@ double Event::getMetRel() const
 }
 
 // -----------------------------------------------------------------------------
+double Event::getEmmaMt() const
+{
+  if (!m_emma_mt_cached)
+    std::cout << "WARNING! Asking for emma_mt, but not yet cached!\n";
+  return m_emma_mt;
+}
+
+// -----------------------------------------------------------------------------
 double Event::getMt() const
 {
   if (!m_mt_cached)
@@ -564,6 +583,7 @@ void Event::print()
             << "\tmet_phi: " << m_met_phi
             << "\tmet_rel: " << m_met_rel
             << "\n"
+            << "\temma_mt: "      << m_emma_mt
             << "\tmt: "           << m_mt
             << "\tmt2: "          << m_mt2
             << "\tmeff: "         << m_meff

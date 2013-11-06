@@ -20,156 +20,27 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
   DeclareProperty("z_window_mll_min", c_z_window_mll_min = 81200);
   DeclareProperty("z_window_mll_max", c_z_window_mll_max = 101200);
 
-  // SR osjveto cut values
-  DeclareProperty("sr_osjveto_min_met_rel", c_sr_osjveto_met_rel_min = 100e3);
-  DeclareProperty("sr_osjveto_max_met_rel", c_sr_osjveto_met_rel_max = -1);
+  // SR SS cut values
+  DeclareProperty("sr_ss_ee_min_mll_veto", c_sr_ss_mll_veto_min = 90e3);
+  DeclareProperty("sr_ss_ee_max_mll_veto", c_sr_ss_mll_veto_max = 120e3);
 
-  DeclareProperty("sr_osjveto_min_mt2", c_sr_osjveto_mt2_min = -1);
-  DeclareProperty("sr_osjveto_max_mt2", c_sr_osjveto_mt2_max = 90e3);
+  DeclareProperty("sr_ss_ee_min_met_rel", c_sr_ss_ee_met_rel_min = 70e3);
+  DeclareProperty("sr_ss_ee_max_met_rel", c_sr_ss_ee_met_rel_max = -1);
 
-  // SR ssjets cut values
-  DeclareProperty(
-      "sr_ssjets_ee_min_mll_veto", c_sr_ssjets_mll_veto_min = 90e3);
-  DeclareProperty(
-      "sr_ssjets_ee_max_mll_veto", c_sr_ssjets_mll_veto_max = 120e3);
+  DeclareProperty("sr_ss_mm_min_met_rel", c_sr_ss_mm_met_rel_min = 50e3);
+  DeclareProperty("sr_ss_mm_max_met_rel", c_sr_ss_mm_met_rel_max = -1);
 
-  DeclareProperty(
-      "sr_ssjets_ee_min_met_rel", c_sr_ssjets_ee_met_rel_min = 70e3);
-  DeclareProperty(
-      "sr_ssjets_ee_max_met_rel", c_sr_ssjets_ee_met_rel_max = -1);
+  DeclareProperty("sr_ss_em_min_met_rel", c_sr_ss_em_met_rel_min = 50e3);
+  DeclareProperty("sr_ss_em_max_met_rel", c_sr_ss_em_met_rel_max = -1);
 
-  DeclareProperty(
-      "sr_ssjets_mm_min_met_rel", c_sr_ssjets_mm_met_rel_min = 50e3);
-  DeclareProperty(
-      "sr_ssjets_mm_max_met_rel", c_sr_ssjets_mm_met_rel_max = -1);
+  DeclareProperty("sr_ss_ee_min_emma_mt", c_sr_ss_ee_emma_mt_min = -1);
+  DeclareProperty("sr_ss_ee_max_emma_mt", c_sr_ss_ee_emma_mt_max = 70e3);
 
-  DeclareProperty(
-      "sr_ssjets_em_min_met_rel", c_sr_ssjets_em_met_rel_min = 50e3);
-  DeclareProperty(
-      "sr_ssjets_em_max_met_rel", c_sr_ssjets_em_met_rel_max = -1);
+  DeclareProperty("sr_ss_mm_min_emma_mt", c_sr_ss_mm_emma_mt_min = -1);
+  DeclareProperty("sr_ss_mm_max_emma_mt", c_sr_ss_mm_emma_mt_max = 50e3);
 
-  DeclareProperty("sr_ssjets_ee_min_mt", c_sr_ssjets_ee_mt_min = -1);
-  DeclareProperty("sr_ssjets_ee_max_mt", c_sr_ssjets_ee_mt_max = 70e3);
-
-  DeclareProperty("sr_ssjets_mm_min_mt", c_sr_ssjets_mm_mt_min = -1);
-  DeclareProperty("sr_ssjets_mm_max_mt", c_sr_ssjets_mm_mt_max = 50e3);
-
-  DeclareProperty("sr_ssjets_em_min_mt", c_sr_ssjets_em_mt_min = -1);
-  DeclareProperty("sr_ssjets_em_max_mt", c_sr_ssjets_em_mt_max = 50e3);
-
-  // SR 2jets cut values
-  DeclareProperty("sr_2jets_min_met_rel", c_sr_2jets_met_rel_min = 50e3);
-  DeclareProperty("sr_2jets_max_met_rel", c_sr_2jets_met_rel_max = -1);
-
-  // SR mt2 cut values
-  DeclareProperty("sr_mt2_min_lep1_pt", c_sr_mt2_lep1_pt_min = 35e3);
-  DeclareProperty("sr_mt2_max_lep1_pt", c_sr_mt2_lep1_pt_max = -1);
-
-  DeclareProperty("sr_mt2_min_lep2_pt", c_sr_mt2_lep2_pt_min = 20e3);
-  DeclareProperty("sr_mt2_max_lep2_pt", c_sr_mt2_lep2_pt_max = -1);
-
-  DeclareProperty("sr_mt2_min_met_rel", c_sr_mt2_met_rel_min = 40e3);
-  DeclareProperty("sr_mt2_max_met_rel", c_sr_mt2_met_rel_max = -1);
-
-  DeclareProperty("sr_mt2a_min_mt2", c_sr_mt2a_mt2_min = 90e3);
-  DeclareProperty("sr_mt2a_max_mt2", c_sr_mt2a_mt2_max = -1);
-
-  DeclareProperty("sr_mt2b_min_mt2", c_sr_mt2b_mt2_min = 100e3);
-  DeclareProperty("sr_mt2b_max_mt2", c_sr_mt2b_mt2_max = -1);
-
-  // SR ww cut values
-  DeclareProperty("sr_ww_min_lep1_pt", c_sr_ww_lep1_pt_min = 35e3);
-  DeclareProperty("sr_ww_max_lep1_pt", c_sr_ww_lep1_pt_max = -1);
-
-  DeclareProperty("sr_ww_min_lep2_pt", c_sr_ww_lep2_pt_min = 20e3);
-  DeclareProperty("sr_ww_max_lep2_pt", c_sr_ww_lep2_pt_max = -1);
-
-  DeclareProperty("sr_wwa_min_met_rel", c_sr_wwa_met_rel_min = 70e3);
-  DeclareProperty("sr_wwa_max_met_rel", c_sr_wwa_met_rel_max = -1);
-
-  DeclareProperty("sr_wwa_min_mll", c_sr_wwa_mll_min = -1);
-  DeclareProperty("sr_wwa_max_mll", c_sr_wwa_mll_max = 80e3);
-
-  DeclareProperty("sr_wwa_min_ptll", c_sr_wwa_ptll_min = 70e3);
-  DeclareProperty("sr_wwa_max_ptll", c_sr_wwa_ptll_max = -1);
-
-  DeclareProperty("sr_wwb_min_mt2", c_sr_wwb_mt2_min = 90e3);
-  DeclareProperty("sr_wwb_max_mt2", c_sr_wwb_mt2_max = -1);
-
-  DeclareProperty("sr_wwb_min_mll", c_sr_wwb_mll_min = -1);
-  DeclareProperty("sr_wwb_max_mll", c_sr_wwb_mll_max = 130e3);
-
-  DeclareProperty("sr_wwb_min_ptll", c_sr_wwb_ptll_min = -1);
-  DeclareProperty("sr_wwb_max_ptll", c_sr_wwb_ptll_max = 170e3);
-
-  DeclareProperty("sr_wwc_min_ptll", c_sr_wwc_ptll_min = -1);
-  DeclareProperty("sr_wwc_max_ptll", c_sr_wwc_ptll_max = 190e3);
-
-  DeclareProperty("sr_wwc_min_mt2", c_sr_wwc_mt2_min = 100e3);
-  DeclareProperty("sr_wwc_max_mt2", c_sr_wwc_mt2_max = -1);
-
-  // SR zjets cut values
-  DeclareProperty("sr_zjets_min_num_jets", c_sr_zjets_num_jets_min = 2);
-  DeclareProperty("sr_zjets_max_num_jets", c_sr_zjets_num_jets_max = -1);
-
-  DeclareProperty("sr_zjets_min_met_rel", c_sr_zjets_met_rel_min = 40e3);
-  DeclareProperty("sr_zjets_max_met_rel", c_sr_zjets_met_rel_max = -1);
-
-  DeclareProperty("sr_zjets_min_jet1_pt", c_sr_zjets_jet1_pt_min = 40e3);
-  DeclareProperty("sr_zjets_max_jet1_pt", c_sr_zjets_jet1_pt_max = -1);
-
-  DeclareProperty("sr_zjets_min_jet2_pt", c_sr_zjets_jet2_pt_min = 40e3);
-  DeclareProperty("sr_zjets_max_jet2_pt", c_sr_zjets_jet2_pt_max = -1);
-
-  DeclareProperty("sr_zjets_min_mjj", c_sr_zjets_mjj_min = 50e3);
-  DeclareProperty("sr_zjets_max_mjj", c_sr_zjets_mjj_max = 100e3);
-
-  DeclareProperty("sr_zjets_min_mt2", c_sr_zjets_mt2_min = 55e3);
-  DeclareProperty("sr_zjets_max_mt2", c_sr_zjets_mt2_max = -1);
-
-  // CR zxosjveto cut values
-  DeclareProperty("cr_zxjveto_met_rel_min", c_cr_zxjveto_met_rel_min = 100e3);
-  DeclareProperty("cr_zxjveto_met_rel_max", c_cr_zxjveto_met_rel_max = -1);
-
-  // CR zxmt2 cut values
-  DeclareProperty("cr_zxmt2_met_rel_min", c_cr_zxmt2_met_rel_min = 40e3);
-  DeclareProperty("cr_zxmt2_met_rel_max", c_cr_zxmt2_met_rel_max = -1);
-
-  // CR zx2jets cut values
-  DeclareProperty("cr_zx2jets_met_rel_min", c_cr_zx2jets_met_rel_min = 50e3);
-  DeclareProperty("cr_zx2jets_met_rel_max", c_cr_zx2jets_met_rel_max = -1);
-
-  DeclareProperty("cr_zx2jets_mt2_min", c_cr_zx2jets_mt2_min = -1);
-  DeclareProperty("cr_zx2jets_mt2_max", c_cr_zx2jets_mt2_max = 55e3);
-
-  // CR zxww cut values
-  DeclareProperty("cr_zxww_met_rel_min", c_cr_zxww_met_rel_min = 70e3);
-  DeclareProperty("cr_zxww_met_rel_max", c_cr_zxww_met_rel_max = 100e3);
-
-  DeclareProperty("cr_zxww_mt2_min", c_cr_zxww_mt2_min = -1);
-  DeclareProperty("cr_zxww_mt2_max", c_cr_zxww_mt2_max = 90e3);
-
-  // CR top cut values
-  DeclareProperty("cr_top_met_rel_min", c_cr_top_met_rel_min = 40e3);
-  DeclareProperty("cr_top_met_rel_max", c_cr_top_met_rel_max = -1);
-
-  // CR ww1-2 cut values
-  DeclareProperty("cr_ww12_met_rel_min", c_cr_ww12_met_rel_min = 70e3);
-  DeclareProperty("cr_ww12_met_rel_max", c_cr_ww12_met_rel_max = 100e3);
-
-  DeclareProperty("cr_ww12_mt2_min", c_cr_ww12_mt2_min = -1);
-  DeclareProperty("cr_ww12_mt2_max", c_cr_ww12_mt2_max = 90e3);
-
-  DeclareProperty("cr_ww2_mll_min", c_cr_ww2_mll_min = 30e3);
-  DeclareProperty("cr_ww2_mll_max", c_cr_ww2_mll_max = -1);
-
-  // CR wwa-c cut values
-  DeclareProperty("cr_wwabc_dphill_min", c_cr_wwabc_dphill_min = -1);
-  DeclareProperty("cr_wwabc_dphill_max", c_cr_wwabc_dphill_max = 1.8);
-
-  // CR btag cut values
-  DeclareProperty("cr_btag_drjettag_min", c_cr_btag_drjettag_min = -1);
-  DeclareProperty("cr_btag_drjettag_max", c_cr_btag_drjettag_max = 1.0);
+  DeclareProperty("sr_ss_em_min_emma_mt", c_sr_ss_em_emma_mt_min = -1);
+  DeclareProperty("sr_ss_em_max_emma_mt", c_sr_ss_em_emma_mt_max = 50e3);
 }
 
 // -----------------------------------------------------------------------------
@@ -240,191 +111,101 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   // get ptll value
   double ptll = event->getPtll();
 
+  // get emma mT value
+  double emma_mt = event->getEmmaMt();
+
   // get mT value
   double mt = event->getMt();
 
   // get mT2 value
   double mt2 = event->getMt2();
 
-  // check SR osjveto cuts
-  sr_helper->setPassSROSJVetoMetRel(
-      passCut(met_rel, c_sr_osjveto_met_rel_min, c_sr_osjveto_met_rel_max));
-
-  sr_helper->setPassSROSJVetoMt2(
-      passCut(mt2, c_sr_osjveto_mt2_min, c_sr_osjveto_mt2_max));
-
-  // check SR ssjets cuts
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // check SR SS cuts
   if (event->getFlavorChannel() == FLAVOR_EE) {
-    sr_helper->setPassSRSSJetsMllVeto(true);
-    sr_helper->setPassSRSSJetsMetRel( passCut( met_rel
-                                             , c_sr_ssjets_ee_met_rel_min
-                                             , c_sr_ssjets_ee_met_rel_max
-                                             )
-                                    );
-    sr_helper->setPassSRSSJetsMt(
-        passCut(mt, c_sr_ssjets_ee_mt_min, c_sr_ssjets_ee_mt_max));
+    sr_helper->setPassSRSSMllVeto(true);
+    sr_helper->setPassSRSSMetRel( passCut( met_rel
+                                         , c_sr_ss_ee_met_rel_min
+                                         , c_sr_ss_ee_met_rel_max
+                                         )
+                                );
+    sr_helper->setPassSRSSEmmaMt( passCut( emma_mt
+                                         , c_sr_ss_ee_emma_mt_min
+                                         , c_sr_ss_ee_emma_mt_max
+                                         )
+                                );
   }
   else if (event->getFlavorChannel() == FLAVOR_MM) {
-    sr_helper->setPassSRSSJetsMllVeto( !passCut( mll
-                                               , c_sr_ssjets_mll_veto_min
-                                               , c_sr_ssjets_mll_veto_max
-                                               )
-                                    );
-    sr_helper->setPassSRSSJetsMetRel( passCut( met_rel
-                                             , c_sr_ssjets_mm_met_rel_min
-                                             , c_sr_ssjets_mm_met_rel_max
-                                             )
-                                    );
-    sr_helper->setPassSRSSJetsMt(
-        passCut(mt, c_sr_ssjets_mm_mt_min, c_sr_ssjets_mm_mt_max));
+    sr_helper->setPassSRSSMllVeto( !passCut( mll
+                                            , c_sr_ss_mll_veto_min
+                                            , c_sr_ss_mll_veto_max
+                                            )
+                                 );
+    sr_helper->setPassSRSSMetRel( passCut( met_rel
+                                         , c_sr_ss_mm_met_rel_min
+                                         , c_sr_ss_mm_met_rel_max
+                                         )
+                                );
+    sr_helper->setPassSRSSEmmaMt( passCut( emma_mt
+                                         , c_sr_ss_mm_emma_mt_min
+                                         , c_sr_ss_mm_emma_mt_max
+                                         )
+                                );
   }
   else if (event->getFlavorChannel() == FLAVOR_EM) {
-    sr_helper->setPassSRSSJetsMllVeto(true);
-    sr_helper->setPassSRSSJetsMetRel( passCut( met_rel
-                                             , c_sr_ssjets_em_met_rel_min
-                                             , c_sr_ssjets_em_met_rel_max
-                                             )
-                                    );
-    sr_helper->setPassSRSSJetsMt(
-        passCut(mt, c_sr_ssjets_em_mt_min, c_sr_ssjets_em_mt_max));
+    sr_helper->setPassSRSSMllVeto(true);
+    sr_helper->setPassSRSSMetRel( passCut( met_rel
+                                         , c_sr_ss_em_met_rel_min
+                                         , c_sr_ss_em_met_rel_max
+                                         )
+                                );
+    sr_helper->setPassSRSSEmmaMt( passCut( emma_mt
+                                         , c_sr_ss_em_emma_mt_min
+                                         , c_sr_ss_em_emma_mt_max
+                                         )
+                                );
   }
-
-  // check SR 2jets cuts
-  bool pass_sr_2jets_num_jets = (jets.num(JET_LIGHT) >= 2);
-  sr_helper->setPassSR2JetsNumLJet(pass_sr_2jets_num_jets);
-
-  sr_helper->setPassSR2JetsMetRel(
-      passCut(met_rel, c_sr_2jets_met_rel_min, c_sr_2jets_met_rel_max));
-
-  // check SR mt2 cuts
-  sr_helper->setPassSRMT2Lep1Pt(
-      passCut(lep_pts.first, c_sr_mt2_lep1_pt_min, c_sr_mt2_lep1_pt_max));
-  sr_helper->setPassSRMT2Lep2Pt(
-      passCut(lep_pts.second, c_sr_mt2_lep2_pt_min, c_sr_mt2_lep2_pt_max));
-
-  sr_helper->setPassSRMT2MetRel(
-      passCut(met_rel, c_sr_mt2_met_rel_min, c_sr_mt2_met_rel_max));
-
-  sr_helper->setPassSRMT2aMt2(
-      passCut(mt2, c_sr_mt2a_mt2_min, c_sr_mt2a_mt2_max));
-
-  sr_helper->setPassSRMT2bMt2(
-      passCut(mt2, c_sr_mt2b_mt2_min, c_sr_mt2b_mt2_max));
-
-  // check SR ww cuts
-  sr_helper->setPassSRWWLep1Pt(
-      passCut(lep_pts.first, c_sr_ww_lep1_pt_min, c_sr_ww_lep1_pt_max));
-
-  sr_helper->setPassSRWWLep2Pt(
-      passCut(lep_pts.second, c_sr_ww_lep2_pt_min, c_sr_ww_lep2_pt_max));
-
-  sr_helper->setPassSRWWaMetRel(
-      passCut(met_rel, c_sr_wwa_met_rel_min, c_sr_wwa_met_rel_max));
-
-  sr_helper->setPassSRWWaPtll(
-      passCut(ptll, c_sr_wwa_ptll_min, c_sr_wwa_ptll_max));
-
-  sr_helper->setPassSRWWaMll(
-      passCut(mll, c_sr_wwa_mll_min, c_sr_wwa_mll_max));
-
-  sr_helper->setPassSRWWbMt2(
-      passCut(met_rel, c_sr_wwb_mt2_min, c_sr_wwb_mt2_max));
-
-  sr_helper->setPassSRWWbPtll(
-      passCut(ptll, c_sr_wwb_ptll_min, c_sr_wwb_ptll_max));
-
-  sr_helper->setPassSRWWbMll(
-      passCut(mll, c_sr_wwb_mll_min, c_sr_wwb_mll_max));
-
-  sr_helper->setPassSRWWcPtll(
-      passCut(ptll, c_sr_wwc_ptll_min, c_sr_wwc_ptll_max));
-
-  sr_helper->setPassSRWWcMt2(
-      passCut(met_rel, c_sr_wwc_mt2_min, c_sr_wwc_mt2_max));
-
-
-  // check SR zjets cuts
-  unsigned int num_l_jets = jets.num(JET_LIGHT);
-  float jet_1_pt = 0;
-  float jet_2_pt = 0;
-  float mjj = 0;
-  if (num_l_jets > 0) {
-    std::vector<Jet*> l_jets = jets.getJets(JET_LIGHT);
-    TLorentzVector j1_tlv = l_jets.at(0)->getTlv();
-    jet_1_pt = j1_tlv.Pt();
-
-    if (num_l_jets > 1) {
-      TLorentzVector j2_tlv = l_jets.at(1)->getTlv();
-      jet_2_pt = j2_tlv.Pt();
-      mjj = (j1_tlv + j2_tlv).Mag();
-    }
-  }
-
-  bool pass_sr_zjets_num_jets = (num_l_jets >= 2);
-  sr_helper->setPassSRZJetsNumLJets(pass_sr_zjets_num_jets);
-
-  sr_helper->setPassSRZJetsMetRel(
-      passCut(met_rel, c_sr_zjets_met_rel_min, c_sr_zjets_met_rel_max));
-
-  sr_helper->setPassSRZJetsJet1Pt(
-      passCut(jet_1_pt, c_sr_zjets_jet1_pt_min, c_sr_zjets_jet1_pt_max));
-
-  sr_helper->setPassSRZJetsJet2Pt(
-      passCut(jet_2_pt, c_sr_zjets_jet2_pt_min, c_sr_zjets_jet2_pt_max));
-
-  sr_helper->setPassSRZJetsMjj(
-      passCut(mjj, c_sr_zjets_mjj_min, c_sr_zjets_mjj_max));
-
-  sr_helper->setPassSRZJetsMt2(
-      passCut(mt2, c_sr_zjets_mt2_min, c_sr_zjets_mt2_max));
-
-  // CR zxosjveto cut values
-  passCut(met_rel, c_cr_zxjveto_met_rel_min, c_cr_zxjveto_met_rel_max);
-
-  // CR zxmt2 cut values
-  passCut(mt2, c_cr_zxmt2_met_rel_min, c_cr_zxmt2_met_rel_max);
-
-  // CR zx2jets cut values
-  passCut(met_rel, c_cr_zx2jets_met_rel_min, c_cr_zx2jets_met_rel_max);
-
-  passCut(mt2, c_cr_zx2jets_mt2_min, c_cr_zx2jets_mt2_max);
-
-  // CR zxww cut values
-  passCut(met_rel, c_cr_zxww_met_rel_min, c_cr_zxww_met_rel_max);
-
-  passCut(mt2, c_cr_zxww_mt2_min, c_cr_zxww_mt2_max);
-
-  // CR top cut values
-  passCut(met_rel, c_cr_top_met_rel_min, c_cr_top_met_rel_max);
-
-  // CR topww cut values
-
-  // CR ww1-2 cut values
-  passCut(met_rel, c_cr_ww12_met_rel_min, c_cr_ww12_met_rel_max);
-
-  passCut(mt2, c_cr_ww12_mt2_min, c_cr_ww12_mt2_max);
-
-  passCut(mll, c_cr_ww2_mll_min, c_cr_ww2_mll_max);
-
-  // CR wwa-c cut values
-  // passCut(XXX, c_cr_wwabc_dphill_min, c_cr_wwabc_dphill_max);
-
-  // CR btag cut values
-  // passCut(XXX, c_cr_btag_drjettag_min, c_cr_btag_drjettag_max);
-
 
   // Check for signal regions
-  event_desc->setSROSJVeto(passSROSJVeto(event_desc, sr_helper));
-  event_desc->setSRSSJets( passSRSSJets( event_desc, sr_helper));
-  event_desc->setSR2Jets(  passSR2Jets(  event_desc, sr_helper));
-  event_desc->setSRMT2a(   passSRMT2a(   event_desc, sr_helper));
-  event_desc->setSRMT2b(   passSRMT2b(   event_desc, sr_helper));
-  event_desc->setSRWWa(    passSRWWa(    event_desc, sr_helper));
-  event_desc->setSRWWb(    passSRWWb(    event_desc, sr_helper));
-  event_desc->setSRWWc(    passSRWWc(    event_desc, sr_helper));
-  event_desc->setSRZjets(  passSRZJets(  event_desc, sr_helper));
+  event_desc->setSRSS( passSRSS(event_desc, sr_helper));
 }
 
+// -----------------------------------------------------------------------------
+bool SelectionTools::SignalRegionTool::passSRSS(
+    SusyAnalysisTools::EventDescription* event_desc,
+    SusyAnalysisTools::SRHelper* sr_helper)
+{
+  // require SS leptons
+  if (event_desc->getSignChannel() != SIGN_SS) return false;
+
+  // check for mll  veto
+  if (sr_helper->getPassSRSSMllVeto() == false) return false;
+
+  // veto on b jets and f jets
+  if (sr_helper->getPassBJetVeto() == false) return false;
+  if (sr_helper->getPassFJetVeto() == false) return false;
+
+  // require we have L jets
+  if (sr_helper->getPassLJetVeto() == true ) return false;
+
+  // Z veto
+  if (  event_desc->getFlavorChannel() == FLAVOR_EE
+     && sr_helper->getPassZVeto() == false
+     ) {
+    return false;
+  }
+  // if (sr_helper->getPassZVeto() == false) return false;
+
+  // MET-rel cut
+  if (sr_helper->getPassSRSSMetRel() == false) return false;
+
+  // emma_mt cut
+  if (sr_helper->getPassSRSSEmmaMt() == false) return false;
+
+  return true;
+}
+
+/*
 // -----------------------------------------------------------------------------
 bool SelectionTools::SignalRegionTool::passSROSJVeto(
     SusyAnalysisTools::EventDescription* event_desc,
@@ -686,8 +467,8 @@ bool SelectionTools::SignalRegionTool::passSRZJets(
 
   return true;
 }
+*/
 
-// -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 bool SelectionTools::SignalRegionTool::passFullJetVeto(const JetContainer* jets)
 {
