@@ -62,7 +62,13 @@ void CommonTools::BTagScaleFactorTool::BeginCycle()
 
   bool use_jvf = false;
 
-  m_b_tag_calibration = new BTagCalib("MV1",c_calibration_file,c_calibration_folder,"0_3511",use_jvf,0.3511,1);
+  m_b_tag_calibration = new BTagCalib( "MV1"
+                                     , c_calibration_file
+                                     , c_calibration_folder
+                                     , "0_3511"
+                                     , use_jvf
+                                     , 0.3511
+                                     );
 }
 
 // ----------------------------------------------------------------------------
@@ -86,7 +92,6 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
       size_t jet_size = jets.size();
       for (size_t jet_it=0; jet_it != jet_size; ++jet_it) {
         TLorentzVector jet_tlv = jets.at(jet_it)->getTlv();
-
         if (jet_tlv.Pt() < 20000. || fabs(jet_tlv.Eta()) > 2.4) continue;
 
         pt_btag.push_back(jet_tlv.Pt());
@@ -94,9 +99,6 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
         val_btag.push_back(jets.at(jet_it)->flavor_weight_MV1());
         pdgid_btag.push_back(jets.at(jet_it)->flavor_truth_label());
       }
-
-      //TODO Make sure operating point is correct for 1328 0.122 for 1181, 
-      //expect to be 3511 for 80% wp
 
       std::pair<std::vector<float>, std::vector<float> > *wgtbtag;
       wgtbtag = m_b_tag_calibration->BTagCalibrationFunction( pt_btag
@@ -107,7 +109,6 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
       m_b_tag_sf = wgtbtag->first.at(0);
 
       m_is_cached = true;
-      m_logger << VERBOSE << "b-tag sf: " << m_b_tag_sf << SLogger::endmsg;
     }
   }
 
