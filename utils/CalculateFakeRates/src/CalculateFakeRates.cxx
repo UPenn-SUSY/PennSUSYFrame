@@ -9,6 +9,7 @@
 #include <TChain.h>
 #include <TFile.h>
 #include <TH1D.h>
+#include <TH2D.h>
 #include <TH2.h>
 #include <TROOT.h>
 #include <TStyle.h>
@@ -28,13 +29,17 @@ CalculateFakeRates::CalculateFakeRates( TTree *tree
                                                            , m_mu_re_denom(NULL)
                                                            , m_el_fr_denom(NULL)
                                                            , m_mu_fr_denom(NULL)
+                                                           , m_el_re_eta_bins_denom(NULL)
+                                                           , m_mu_re_eta_bins_denom(NULL)
+                                                           , m_el_fr_eta_bins_denom(NULL)
+                                                           , m_mu_fr_eta_bins_denom(NULL)
 {
   double pt_bins[7] = {0., 10., 20., 35., 50., 75., 100.};
+  double eta_bins[5] = {0.0, 0.6, 1.2, 1.8, 2.5};
 
-  // for (unsigned int fake_style = 0; fake_style != FAKE_N; ++fake_style) {
-  //   std::string fake_style_string = FAKE_STYLE_STRINGS[fake_style];
   for (unsigned int fake_style = 0; fake_style != NtupleHelper::ISO_STYLE_N; ++fake_style) {
     std::string fake_style_string = NtupleHelper::ISO_STYLE_STRINGS[fake_style];
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_el_re_numer.push_back( new TH1D( ("el_re_numer_" + fake_style_string).c_str()
                                      , ("electron re numerator (" + fake_style_string + ")").c_str()
                                      , 6, pt_bins
@@ -55,231 +60,84 @@ CalculateFakeRates::CalculateFakeRates( TTree *tree
                                      , 6, pt_bins
                                      )
                            );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_el_re_eta_bins_numer.push_back( new TH2D( ( "el_re_eta_bins_numer_"
+                                                + fake_style_string
+                                                ).c_str()
+                                              , ( "electron re numerator ("
+                                                + fake_style_string
+                                                + ")"
+                                                ).c_str()
+                                              , 6, pt_bins
+                                              , 4, eta_bins
+                                              )
+                                    );
+    m_mu_re_eta_bins_numer.push_back( new TH2D( ( "mu_re_eta_bins_numer_"
+                                                + fake_style_string
+                                                ).c_str()
+                                              , ( "muon re numerator ("
+                                                + fake_style_string + ")"
+                                                ).c_str()
+                                              , 6, pt_bins
+                                              , 4, eta_bins
+                                              )
+                                    );
+    m_el_fr_eta_bins_numer.push_back( new TH2D( ( "el_fr_eta_bins_numer_"
+                                                + fake_style_string
+                                                ).c_str()
+                                              , ( "electron fr numerator ("
+                                                + fake_style_string
+                                                + ")"
+                                                ).c_str()
+                                              , 6, pt_bins
+                                              , 4, eta_bins
+                                              )
+                                    );
+    m_mu_fr_eta_bins_numer.push_back( new TH2D( ( "mu_fr_eta_bins_numer_"
+                                                + fake_style_string
+                                                ).c_str()
+                                              , ( "muon fr numerator ("
+                                                + fake_style_string
+                                                + ")"
+                                                ).c_str()
+                                              , 6, pt_bins
+                                              , 4, eta_bins
+                                              )
+                                    );
   }
 
-  m_el_re_denom        = new TH1D("el_re_denom"       , "electron re denominator"       , 6, pt_bins);
-  m_mu_re_denom        = new TH1D("mu_re_denom"       , "muon re denominator"       , 6, pt_bins);
-  m_el_fr_denom        = new TH1D("el_fr_denom"       , "electron fr denominator"       , 6, pt_bins);
-  m_mu_fr_denom        = new TH1D("mu_fr_denom"       , "muon fr denominator"       , 6, pt_bins);
+  m_el_re_denom = new TH1D("el_re_denom", "electron re denominator", 6, pt_bins);
+  m_mu_re_denom = new TH1D("mu_re_denom", "muon re denominator"    , 6, pt_bins);
+  m_el_fr_denom = new TH1D("el_fr_denom", "electron fr denominator", 6, pt_bins);
+  m_mu_fr_denom = new TH1D("mu_fr_denom", "muon fr denominator"    , 6, pt_bins);
+
+  m_el_re_eta_bins_denom = new TH2D( "el_re_eta_bins_denom"
+                                   , "electron re denominator"
+                                   , 6, pt_bins
+                                   , 4, eta_bins
+                                   );
+  m_mu_re_eta_bins_denom = new TH2D( "mu_re_eta_bins_denom"
+                                   , "muon re denominator"
+                                   , 6, pt_bins
+                                   , 4, eta_bins
+                                   );
+  m_el_fr_eta_bins_denom = new TH2D( "el_fr_eta_bins_denom"
+                                   , "electron fr denominator"
+                                   , 6, pt_bins
+                                   , 4, eta_bins
+                                   );
+  m_mu_fr_eta_bins_denom = new TH2D( "mu_fr_eta_bins_denom"
+                                   , "muon fr denominator"
+                                   , 6, pt_bins
+                                   , 4, eta_bins
+                                   );
 }
 
 // -----------------------------------------------------------------------------
 CalculateFakeRates::~CalculateFakeRates()
 {
   // do nothing
-}
-
-// -----------------------------------------------------------------------------
-void CalculateFakeRates::processEvent_bak()
-{
-  SusyAnalysisTools::EventDescription evt_desc  = m_event_desc;
-  double weight = 1.;
-
-
-  // apply mc event weight
-  weight *= m_mc_event_weight;
-
-  // GRL
-  if (evt_desc.getPassGrl() == false) return;
-
-  // incomplete event
-  if (evt_desc.getPassIncompleteEvent() == false) return;
-
-  // lar error
-  if (evt_desc.getPassLarError() == false) return;
-
-  // tile error
-  if (evt_desc.getPassTileError() == false) return;
-
-  // tile hot spot
-  if (evt_desc.getPassTileHotSpot() == false) return;
-
-  // tile trip
-  if (evt_desc.getPassTileTrip() == false) return;
-
-  // bad jets
-  if (evt_desc.getPassBadJets() == false) return;
-
-  // calo problem jets
-  if (evt_desc.getPassCaloProblemJets() == false) return;
-
-  // primary vertex
-  if (evt_desc.getPassPrimaryVertex() == false) return;
-
-  // bad muons
-  if (evt_desc.getPassBadMuons() == false) return;
-
-  // cosmic muons
-  if (evt_desc.getPassCosmicMuons() == false) return;
-
-  // HFOR
-  if (evt_desc.getPassHFOR() == false) return;
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  double event_weight = m_pile_up_weight * m_lepton_weight;
-
-  size_t num_el = m_el_desc->size();
-  size_t num_mu = m_mu_desc->size();
-
-  for (size_t el_it = 0; el_it != num_el; ++el_it) {
-    SusyAnalysisTools::ElectronDescription el_desc(m_el_desc->at(el_it));
-    bool is_truth_matched = el_desc.getPassPromptLepton();
-    bool is_baseline      = el_desc.getPassGood();
-
-    bool is_signal_EWK       = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK);
-    bool is_signal_HIGGS     = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS);
-    bool is_signal_STRONG    = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG);
-    bool is_signal_STRONG_30 = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG_CONE_30);
-
-    bool is_signal_EWK_PP       = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK_PP);
-    bool is_signal_HIGGS_PP     = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS_PP);
-    bool is_signal_STRONG_PP    = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG_PP);
-    bool is_signal_STRONG_30_PP = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP);
-
-    float el_pt           = m_el_pt->at(el_it)/1000.;
-
-    if (el_pt >= 100.) el_pt = 99.;
-
-    if (is_truth_matched) {
-      if (is_baseline) {
-        m_el_re_denom->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_EWK)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_STRONG)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK_PP) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_EWK_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS_PP) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_PP) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30_PP) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP)->Fill(el_pt, event_weight);
-      }
-    }
-    else {
-      if (is_baseline) {
-        m_el_fr_denom->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_EWK)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK_PP) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS_PP) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_PP) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30_PP) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP)->Fill(el_pt, event_weight);
-      }
-    }
-  }
-
-  for (size_t mu_it = 0; mu_it != num_mu; ++mu_it) {
-    SusyAnalysisTools::MuonDescription mu_desc(m_mu_desc->at(mu_it));
-    bool is_truth_matched = mu_desc.getPassPromptLepton();
-    bool is_baseline      = mu_desc.getPassGood();
-
-    bool is_signal_EWK       = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_EWK);
-    bool is_signal_HIGGS     = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS);
-    bool is_signal_STRONG    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_STRONG);
-    bool is_signal_STRONG_30 = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_STRONG_CONE_30);
-
-    bool is_signal_EWK_PP       = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_EWK_PP);
-    bool is_signal_HIGGS_PP     = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS_PP);
-    bool is_signal_STRONG_PP    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_STRONG_PP);
-    bool is_signal_STRONG_30_PP = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP);
-
-    float mu_pt           = m_mu_pt->at(mu_it)/1000.;
-
-
-    if (mu_pt >= 100.) mu_pt = 99.;
-
-    if (is_truth_matched) {
-      if (is_baseline) {
-        m_mu_re_denom->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_EWK)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_STRONG)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK_PP) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_EWK_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS_PP) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_PP) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30_PP) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP)->Fill(mu_pt, event_weight);
-      }
-    }
-    else {
-      if (is_baseline) {
-        m_mu_fr_denom->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_EWK)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK_PP) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS_PP) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_PP) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30_PP) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP)->Fill(mu_pt, event_weight);
-      }
-    }
-  }
 }
 
 // -----------------------------------------------------------------------------
@@ -332,168 +190,138 @@ void CalculateFakeRates::processEvent()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   double event_weight = m_pile_up_weight * m_lepton_weight;
 
+  // loop over electrons in event
   size_t num_el = m_el_desc->size();
-  size_t num_mu = m_mu_desc->size();
-
   for (size_t el_it = 0; el_it != num_el; ++el_it) {
+    // from electron description, determine if the electron is truth matched
+    // prompt and if it is at least baseline
     SusyAnalysisTools::ElectronDescription el_desc(m_el_desc->at(el_it));
     bool is_truth_matched = el_desc.getPassPromptLepton();
     bool is_baseline      = el_desc.getPassGood();
 
+    // Check all out signal lepton definitions based on the different isolation
+    // styles
     bool is_signal[NtupleHelper::ISO_STYLE_N];
-    for (unsigned int iso_style = 0; iso_style != NtupleHelper::ISO_STYLE_N; ++iso_style) {
-      is_signal[iso_style] = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE(iso_style));
+    for ( unsigned int iso_style = 0
+        ; iso_style != NtupleHelper::ISO_STYLE_N
+        ; ++iso_style
+        ) {
+      is_signal[iso_style] = isSignalElectron( el_it
+                                             , el_desc
+                                             , false
+                                             , NtupleHelper::ISO_STYLE(iso_style)
+                                             );
     }
-    bool is_signal_EWK       = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK);
-    bool is_signal_HIGGS     = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS);
-    bool is_signal_STRONG    = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG);
-    bool is_signal_STRONG_30 = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG_CONE_30);
 
-    bool is_signal_EWK_PP       = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK_PP);
-    bool is_signal_HIGGS_PP     = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS_PP);
-    bool is_signal_STRONG_PP    = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG_PP);
-    bool is_signal_STRONG_30_PP = isSignalElectron(el_it, el_desc, false, NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP);
-
-    float el_pt           = m_el_pt->at(el_it)/1000.;
-
+    // get electron pT & eta (allow this to be no greater than 99)
+    float el_pt = m_el_pt->at(el_it)/1000.;
     if (el_pt >= 100.) el_pt = 99.;
+    float el_eta = fabs(m_el_eta->at(el_it));
 
+    // if truth matched, this goes into the real factor calculation
     if (is_truth_matched) {
       if (is_baseline) {
+        // all baseline electrons at this stage go into the denominator
         m_el_re_denom->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_EWK)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_STRONG)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK_PP) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_EWK_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS_PP) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_PP) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30_PP) {
-        m_el_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP)->Fill(el_pt, event_weight);
+        m_el_re_eta_bins_denom->Fill(el_pt, el_eta, event_weight);
+
+        // fill the correct numerator histograms based on which signal electron
+        // style are passsed
+        for ( unsigned int iso_style = 0
+            ; iso_style != NtupleHelper::ISO_STYLE_N
+            ; ++iso_style
+            ) {
+          if (is_signal[iso_style])
+            m_el_re_numer.at(iso_style)->Fill(el_pt, event_weight);
+            m_el_re_eta_bins_numer.at(iso_style)->Fill(el_pt, el_eta, event_weight);
+        }
       }
     }
+    // if not truth prompt, this goes into the fake factor calculation
     else {
       if (is_baseline) {
+        // all baseline electrons at this stage go into the denominator
         m_el_fr_denom->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_EWK)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK_PP) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS_PP) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_PP) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_PP)->Fill(el_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30_PP) {
-        m_el_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP)->Fill(el_pt, event_weight);
+        m_el_fr_eta_bins_denom->Fill(el_pt, el_eta, event_weight);
+
+        // fill the correct numerator histograms based on which signal electron
+        // style are passsed
+        for ( unsigned int iso_style = 0
+            ; iso_style != NtupleHelper::ISO_STYLE_N
+            ; ++iso_style
+            ) {
+          if (is_signal[iso_style])
+            m_el_fr_numer.at(iso_style)->Fill(el_pt, event_weight);
+            m_el_fr_eta_bins_numer.at(iso_style)->Fill(el_pt, el_eta, event_weight);
+        }
       }
     }
   }
 
+  // loop over all muons in event
+  size_t num_mu = m_mu_desc->size();
   for (size_t mu_it = 0; mu_it != num_mu; ++mu_it) {
+    // from muon description, determine if the muon is truth matched
+    // prompt and if it is at least baseline
     SusyAnalysisTools::MuonDescription mu_desc(m_mu_desc->at(mu_it));
     bool is_truth_matched = mu_desc.getPassPromptLepton();
     bool is_baseline      = mu_desc.getPassGood();
 
-    bool is_signal_EWK       = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_EWK);
-    bool is_signal_HIGGS     = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS);
-    bool is_signal_STRONG    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_STRONG);
-    bool is_signal_STRONG_30 = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_STRONG_CONE_30);
+    // Check all out signal lepton definitions based on the different isolation
+    // styles
+    bool is_signal[NtupleHelper::ISO_STYLE_N];
+    for ( unsigned int iso_style = 0
+        ; iso_style != NtupleHelper::ISO_STYLE_N
+        ; ++iso_style
+        ) {
+      is_signal[iso_style] = isSignalMuon( mu_it
+                                         , mu_desc
+                                         , false
+                                         , NtupleHelper::ISO_STYLE(iso_style)
+                                         );
+    }
 
-    bool is_signal_EWK_PP       = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_EWK_PP);
-    bool is_signal_HIGGS_PP     = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_EWK_HIGGS_PP);
-    bool is_signal_STRONG_PP    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_STRONG_PP);
-    bool is_signal_STRONG_30_PP = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP);
-
-    float mu_pt           = m_mu_pt->at(mu_it)/1000.;
-
-
+    // get muon pT (allow this to be no greater than 99)
+    float mu_pt = m_mu_pt->at(mu_it)/1000.;
     if (mu_pt >= 100.) mu_pt = 99.;
+    float mu_eta = fabs(m_mu_eta->at(mu_it));
 
+    // if truth matched, this goes into the real factor calculation
     if (is_truth_matched) {
       if (is_baseline) {
+        // all baseline muons at this stage go into the denominator
         m_mu_re_denom->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_EWK)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_STRONG)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK_PP) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_EWK_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS_PP) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_PP) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30_PP) {
-        m_mu_re_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP)->Fill(mu_pt, event_weight);
+        m_mu_re_eta_bins_denom->Fill(mu_pt, mu_eta, event_weight);
+
+        // fill the correct numerator histograms based on which signal muon
+        // style are passsed
+        for ( unsigned int iso_style = 0
+            ; iso_style != NtupleHelper::ISO_STYLE_N
+            ; ++iso_style
+            ) {
+          if (is_signal[iso_style])
+            m_mu_re_numer.at(iso_style)->Fill(mu_pt, event_weight);
+            m_mu_re_eta_bins_numer.at(iso_style)->Fill(mu_pt, mu_eta, event_weight);
+        }
       }
     }
+    // if not truth prompt, this goes into the fake factor calculation
     else {
       if (is_baseline) {
+        // all baseline muons at this stage go into the denominator
         m_mu_fr_denom->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_EWK)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_EWK_PP) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_HIGGS_PP) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_EWK_HIGGS_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_PP) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_PP)->Fill(mu_pt, event_weight);
-      }
-      if (is_baseline && is_signal_STRONG_30_PP) {
-        m_mu_fr_numer.at(NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP)->Fill(mu_pt, event_weight);
+        m_mu_fr_eta_bins_denom->Fill(mu_pt, mu_eta, event_weight);
+
+        // fill the correct numerator histograms based on which signal muon
+        // style are passsed
+        for ( unsigned int iso_style = 0
+            ; iso_style != NtupleHelper::ISO_STYLE_N
+            ; ++iso_style
+            ) {
+          if (is_signal[iso_style])
+            m_mu_fr_numer.at(iso_style)->Fill(mu_pt, event_weight);
+            m_mu_fr_eta_bins_numer.at(iso_style)->Fill(mu_pt, mu_eta, event_weight);
+        }
       }
     }
   }
@@ -524,25 +352,62 @@ void CalculateFakeRates::printToScreen()
   for (unsigned int fake_style = 0; fake_style != NtupleHelper::ISO_STYLE_N; ++fake_style) {
     std::string fake_style_string = NtupleHelper::ISO_STYLE_STRINGS[fake_style];
 
-    TH1D * h_tmp_el_re = static_cast<TH1D*>(m_el_re_numer.at(fake_style)->Clone(("el_re_" + fake_style_string).c_str()));
-    h_tmp_el_re->Sumw2();
-    h_tmp_el_re->Divide(m_el_re_denom);
-    m_el_re.push_back(h_tmp_el_re);
+    m_el_re.push_back( computeFactorHistogram( m_el_re_numer.at(fake_style)
+                                             , m_el_re_denom
+                                             , ("el_re_" + fake_style_string)
+                                             )
+                       
+                     );
 
-    TH1D * h_tmp_mu_re = static_cast<TH1D*>(m_mu_re_numer.at(fake_style)->Clone(("mu_re_" + fake_style_string).c_str()));
-    h_tmp_mu_re->Sumw2();
-    h_tmp_mu_re->Divide(m_mu_re_denom);
-    m_mu_re.push_back(h_tmp_mu_re);
+    m_mu_re.push_back( computeFactorHistogram( m_mu_re_numer.at(fake_style)
+                                             , m_mu_re_denom
+                                             , ("mu_re_" + fake_style_string)
+                                             )
+                       
+                     );
 
-    TH1D * h_tmp_el_fr = static_cast<TH1D*>(m_el_fr_numer.at(fake_style)->Clone(("el_fr_" + fake_style_string).c_str()));
-    h_tmp_el_fr->Sumw2();
-    h_tmp_el_fr->Divide(m_el_fr_denom);
-    m_el_fr.push_back(h_tmp_el_fr);
+    m_el_fr.push_back( computeFactorHistogram( m_el_fr_numer.at(fake_style)
+                                             , m_el_fr_denom
+                                             , ("el_fr_" + fake_style_string)
+                                             )
+                       
+                     );
 
-    TH1D * h_tmp_mu_fr = static_cast<TH1D*>(m_mu_fr_numer.at(fake_style)->Clone(("mu_fr_" + fake_style_string).c_str()));
-    h_tmp_mu_fr->Sumw2();
-    h_tmp_mu_fr->Divide(m_mu_fr_denom);
-    m_mu_fr.push_back(h_tmp_mu_fr);
+    m_mu_fr.push_back( computeFactorHistogram( m_mu_fr_numer.at(fake_style)
+                                             , m_mu_fr_denom
+                                             , ("mu_fr_" + fake_style_string)
+                                             )
+                       
+                     );
+
+    m_el_re_eta_bins.push_back( computeFactorHistogram( m_el_re_eta_bins_numer.at(fake_style)
+                                                      , m_el_re_eta_bins_denom
+                                                      , ("el_re_eta_bins_" + fake_style_string)
+                                                      )
+                                
+                              );
+
+    m_mu_re_eta_bins.push_back( computeFactorHistogram( m_mu_re_eta_bins_numer.at(fake_style)
+                                                      , m_mu_re_eta_bins_denom
+                                                      , ("mu_re_eta_bins_" + fake_style_string)
+                                                      )
+                                
+                              );
+
+    m_el_fr_eta_bins.push_back( computeFactorHistogram( m_el_fr_eta_bins_numer.at(fake_style)
+                                                      , m_el_fr_eta_bins_denom
+                                                      , ("el_fr_eta_bins_" + fake_style_string)
+                                                      )
+                                
+                              );
+
+    m_mu_fr_eta_bins.push_back( computeFactorHistogram( m_mu_fr_eta_bins_numer.at(fake_style)
+                                                      , m_mu_fr_eta_bins_denom
+                                                      , ("mu_fr_eta_bins_" + fake_style_string)
+                                                      )
+                                
+                              );
+
   }
 }
 
@@ -562,9 +427,24 @@ void CalculateFakeRates::printToFile(std::string out_file_name)
     m_mu_re_numer.at(fake_style)->Write();
     m_el_fr_numer.at(fake_style)->Write();
     m_mu_fr_numer.at(fake_style)->Write();
+
+    m_el_re_eta_bins.at(fake_style)->Write();
+    m_mu_re_eta_bins.at(fake_style)->Write();
+    m_el_fr_eta_bins.at(fake_style)->Write();
+    m_mu_fr_eta_bins.at(fake_style)->Write();
+
+    m_el_re_eta_bins_numer.at(fake_style)->Write();
+    m_mu_re_eta_bins_numer.at(fake_style)->Write();
+    m_el_fr_eta_bins_numer.at(fake_style)->Write();
+    m_mu_fr_eta_bins_numer.at(fake_style)->Write();
   }
   m_el_re_denom->Write();
   m_mu_re_denom->Write();
   m_el_fr_denom->Write();
   m_mu_fr_denom->Write();
+
+  m_el_re_eta_bins_denom->Write();
+  m_mu_re_eta_bins_denom->Write();
+  m_el_fr_eta_bins_denom->Write();
+  m_mu_fr_eta_bins_denom->Write();
 }
