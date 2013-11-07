@@ -30,11 +30,8 @@ class CalculateFakeRates : public NtupleHelper::NtupleLooper
 
   // ---------------------------------------------------------------------------
   private:
-    // TH1* computeFactorHistogram(TH1* numer, TH1* denom, std::string name);
     template <class T>
       T * computeFactorHistogram(T* numer, T* denom, std::string name);
-    // TH1D * computeFactorHistogram(TH1D* numer, TH1D* denom, std::string name);
-    // TH2D * computeFactorHistogram(TH2D* numer, TH2D* denom, std::string name);
 
     std::vector<TH1D*> m_el_re;
     std::vector<TH1D*> m_el_re_numer;
@@ -78,7 +75,7 @@ template <class T>
 {
     T * h_rate = static_cast<T*>(numer->Clone(name.c_str()));
     h_rate->Sumw2();
-    h_rate->Divide(m_el_re_denom);
+    h_rate->Divide(denom);
     return h_rate;
 }
 

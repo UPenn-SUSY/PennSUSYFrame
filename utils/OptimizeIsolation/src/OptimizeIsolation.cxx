@@ -4,12 +4,14 @@
 #include <sstream>
 #include <iomanip>
 #include <vector>
-#include <algorithm> 
+#include <algorithm>
+#include <math.h>
 
 #include <TCanvas.h>
 #include <TChain.h>
 #include <TFile.h>
 #include <TH1D.h>
+#include <TH2D.h>
 #include <TH2.h>
 #include <TROOT.h>
 #include <TStyle.h>
@@ -27,7 +29,8 @@ OptimizeIsolation::OptimizeIsolation( TTree *tree
                                     , double num_events
                                     ) : NtupleHelper::NtupleLooper(tree, num_events)
 {
-  // double pt_bins[7] = {0., 10., 20., 35., 50., 75., 100.};
+  double pt_bins[7] = {0., 10., 20., 35., 50., 75., 100.};
+  double eta_bins[5] = {0.0, 0.6, 1.2, 1.8, 2.5};
 
   for (unsigned int iso_style = 0; iso_style != ISO_N; ++iso_style) {
     std::string iso_style_string = ISO_STYLE_STRINGS[iso_style];
@@ -42,6 +45,7 @@ OptimizeIsolation::OptimizeIsolation( TTree *tree
                           );
     float x_max = 4;
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_el_iso.push_back( new TH1D( ("el_iso_" + iso_style_string).c_str()
                                 , ("iso (" + iso_style_string + ")").c_str()
                                 , x_bins, x_min, x_max
@@ -52,6 +56,34 @@ OptimizeIsolation::OptimizeIsolation( TTree *tree
                                 , x_bins, x_min, x_max
                                 )
                       );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_el_iso_pt_bins.push_back( new TH2D( ("el_iso_pt_bins_" + iso_style_string).c_str()
+                                        , ("iso (" + iso_style_string + ")").c_str()
+                                        , x_bins, x_min, x_max
+                                        , 6, pt_bins
+                                        )
+                              );
+    m_mu_iso_pt_bins.push_back( new TH2D( ("mu_iso_pt_bins_" + iso_style_string).c_str()
+                                        , ("iso (" + iso_style_string + ")").c_str()
+                                        , x_bins, x_min, x_max
+                                        , 6, pt_bins
+                                        )
+                              );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_el_iso_eta_bins.push_back( new TH2D( ("el_iso_eta_bins_" + iso_style_string).c_str()
+                                         , ("iso (" + iso_style_string + ")").c_str()
+                                         , x_bins, x_min, x_max
+                                         , 4, eta_bins
+                                         )
+                               );
+    m_mu_iso_eta_bins.push_back( new TH2D( ("mu_iso_eta_bins_" + iso_style_string).c_str()
+                                         , ("iso (" + iso_style_string + ")").c_str()
+                                         , x_bins, x_min, x_max
+                                         , 4, eta_bins
+                                         )
+                               );
   }
 }
 
@@ -66,7 +98,6 @@ void OptimizeIsolation::processEvent()
 {
   SusyAnalysisTools::EventDescription evt_desc  = m_event_desc;
   double weight = 1.;
-
 
   // apply mc event weight
   weight *= m_mc_event_weight;
@@ -116,15 +147,9 @@ void OptimizeIsolation::processEvent()
 
   for (size_t el_it = 0; el_it != num_el; ++el_it) {
     SusyAnalysisTools::ElectronDescription el_desc(m_el_desc->at(el_it));
-    // bool is_truth_matched = el_desc.getPassPromptLepton();
-    // bool is_baseline      = el_desc.getPassGood();
-    // bool is_signal_EWK       = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_STYLE);
-    // bool is_signal_HIGGS     = isSignalElectron(el_it, el_desc, false, NtupleHelper::EWK_HIGGS_STYLE);
-    // bool is_signal_STRONG    = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE);
-    // bool is_signal_STRONG_30 = isSignalElectron(el_it, el_desc, false, NtupleHelper::STRONG_STYLE_CONE_30);
 
     float el_pt = m_el_pt->at(el_it)/1000.;
-    float el_pt_capped = (el_pt < 60. ? el_pt : 60.); 
+    float el_pt_capped = (el_pt < 60. ? el_pt : 60.);
     float el_ptcone30 = m_el_ptcone30->at(el_it)/1000.;
     float el_etcone30 = m_el_etcone30->at(el_it)/1000.;
     float el_ptcone20 = m_el_ptcone20->at(el_it)/1000.;
@@ -138,19 +163,34 @@ void OptimizeIsolation::processEvent()
     m_el_iso.at(ISO_ETCONE30_CAPPED)->Fill(el_etcone30/el_pt_capped, event_weight);
     m_el_iso.at(ISO_PTCONE20_CAPPED)->Fill(el_ptcone20/el_pt_capped, event_weight);
     m_el_iso.at(ISO_ETCONE20_CAPPED)->Fill(el_etcone20/el_pt_capped, event_weight);
+
+    float pt_for_2d = el_pt;
+    float eta = fabs(m_el_eta->at(el_it));
+    if (pt_for_2d > 99.) pt_for_2d = 99.;
+    m_el_iso_pt_bins.at(ISO_PTCONE30)->Fill(       el_ptcone30/el_pt       , pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_ETCONE30)->Fill(       el_etcone30/el_pt       , pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_PTCONE20)->Fill(       el_ptcone20/el_pt       , pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_ETCONE20)->Fill(       el_etcone20/el_pt       , pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_PTCONE30_CAPPED)->Fill(el_ptcone30/el_pt_capped, pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_ETCONE30_CAPPED)->Fill(el_etcone30/el_pt_capped, pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_PTCONE20_CAPPED)->Fill(el_ptcone20/el_pt_capped, pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_ETCONE20_CAPPED)->Fill(el_etcone20/el_pt_capped, pt_for_2d, event_weight);
+
+    m_el_iso_eta_bins.at(ISO_PTCONE30)->Fill(       el_ptcone30/el_pt       , eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_ETCONE30)->Fill(       el_etcone30/el_pt       , eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_PTCONE20)->Fill(       el_ptcone20/el_pt       , eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_ETCONE20)->Fill(       el_etcone20/el_pt       , eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_PTCONE30_CAPPED)->Fill(el_ptcone30/el_pt_capped, eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_ETCONE30_CAPPED)->Fill(el_etcone30/el_pt_capped, eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_PTCONE20_CAPPED)->Fill(el_ptcone20/el_pt_capped, eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_ETCONE20_CAPPED)->Fill(el_etcone20/el_pt_capped, eta, event_weight);
   }
 
   for (size_t mu_it = 0; mu_it != num_mu; ++mu_it) {
     SusyAnalysisTools::MuonDescription mu_desc(m_mu_desc->at(mu_it));
-    // bool is_truth_matched = mu_desc.getPassPromptLepton();
-    // bool is_baseline      = mu_desc.getPassGood();
-    // bool is_signal_EWK    = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_STYLE);
-    // bool is_signal_HIGGS  = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::EWK_HIGGS_STYLE);
-    // bool is_signal_STRONG = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE);
-    // bool is_signal_STRONG_30 = isSignalMuon(mu_it, mu_desc, false, NtupleHelper::STRONG_STYLE_CONE_30);
 
     float mu_pt = m_mu_pt->at(mu_it)/1000.;
-    float mu_pt_capped = (mu_pt < 60. ? mu_pt : 60.); 
+    float mu_pt_capped = (mu_pt < 60. ? mu_pt : 60.);
     float mu_ptcone30 = m_mu_ptcone30->at(mu_it)/1000.;
     float mu_etcone30 = m_mu_etcone30->at(mu_it)/1000.;
     float mu_ptcone20 = m_mu_ptcone20->at(mu_it)/1000.;
@@ -166,6 +206,17 @@ void OptimizeIsolation::processEvent()
     m_mu_iso.at(ISO_ETCONE30_CAPPED)->Fill(mu_etcone30/mu_pt_capped, event_weight);
     m_mu_iso.at(ISO_PTCONE20_CAPPED)->Fill(mu_ptcone20/mu_pt_capped, event_weight);
     m_mu_iso.at(ISO_ETCONE20_CAPPED)->Fill(mu_etcone20/mu_pt_capped, event_weight);
+
+    float pt_for_2d = mu_pt;
+    if (pt_for_2d > 99.) pt_for_2d = 99.;
+    m_mu_iso_pt_bins.at(ISO_PTCONE30)->Fill(mu_ptcone30/mu_pt, pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_ETCONE30)->Fill(mu_etcone30/mu_pt, pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_PTCONE20)->Fill(mu_ptcone20/mu_pt, pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_ETCONE20)->Fill(mu_etcone20/mu_pt, pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_PTCONE30_CAPPED)->Fill(mu_ptcone30/mu_pt_capped, pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_ETCONE30_CAPPED)->Fill(mu_etcone30/mu_pt_capped, pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_PTCONE20_CAPPED)->Fill(mu_ptcone20/mu_pt_capped, pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_ETCONE20_CAPPED)->Fill(mu_etcone20/mu_pt_capped, pt_for_2d, event_weight);
   }
 }
 
@@ -198,5 +249,11 @@ void OptimizeIsolation::printToFile(std::string out_file_name)
   for (unsigned int iso_style = 0; iso_style != ISO_N; ++iso_style) {
     m_el_iso.at(iso_style)->Write();
     m_mu_iso.at(iso_style)->Write();
+
+    m_el_iso_pt_bins.at(iso_style)->Write();
+    m_mu_iso_pt_bins.at(iso_style)->Write();
+
+    m_el_iso_eta_bins.at(iso_style)->Write();
+    m_mu_iso_eta_bins.at(iso_style)->Write();
   }
 }

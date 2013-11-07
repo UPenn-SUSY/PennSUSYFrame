@@ -37,8 +37,19 @@ class FileHandle(object):
         return h
 
 # ------------------------------------------------------------------------------
+def safeMakeDir(f, d):
+    f.cd()
+    for k in f.GetListOfKeys():
+        if d == k.GetName():
+            f.cd(d)
+            return
+    f.mkdir(d)
+    f.cd(d)
+
+# ------------------------------------------------------------------------------
 def formatHist(h, color, x_title = 'p_{T} [GeV]', y_title = 'rate'):
     h.SetLineColor(color)
+    h.SetLineWidth(3)
     h.GetXaxis().SetTitle(x_title)
     h.GetYaxis().SetTitle(y_title)
 
@@ -93,7 +104,7 @@ def makeLegendFHL(file_handle_list, hist_name):
     return leg, big_leg
 
 # ------------------------------------------------------------------------------
-def getHistStack(file_handles, hist_name, stack_name, stack_title, y_min, y_max):
+def getHistStack(file_handles, hist_name, stack_name, stack_title):
     hist_list = []
     label_list = []
     ths = ROOT.THStack(stack_name, stack_title)
@@ -104,13 +115,58 @@ def getHistStack(file_handles, hist_name, stack_name, stack_title, y_min, y_max)
         if  'mu_fr' in hist_name and not fh.draw_mu_fr: continue
 
         h = fh.getHist(hist_name)
-        h.GetYaxis().SetRangeUser(y_min, y_max)
-        ths.Add(h)
-        hist_list.append(h)
-        label_list.append(fh.label)
+        if isinstance(h, ROOT.TH1D):
+            ths.Add(h)
+            hist_list.append(h)
+            label_list.append(fh.label)
 
     leg, big_leg = makeLegend(hist_list, label_list)
     return ths, leg, big_leg
+
+# ------------------------------------------------------------------------------
+def getHistStack2D(file_handles, hist_name, stack_name, stack_title):
+    hist_list_2d = []
+    label_list = []
+    ths_list = []
+    num_slices = 0
+    for fh in file_handles:
+        if  'el_re' in hist_name and not fh.draw_el_re: continue
+        if  'el_fr' in hist_name and not fh.draw_el_fr: continue
+        if  'mu_re' in hist_name and not fh.draw_mu_re: continue
+        if  'mu_fr' in hist_name and not fh.draw_mu_fr: continue
+
+        h_2d = fh.getHist(hist_name)
+        this_num_slices = h_2d.GetNbinsY()
+        if num_slices == 0:
+            print 'found 2d hist with %s slices' % this_num_slices
+            print 'setting number of slices'
+            num_slices = this_num_slices
+            print 'constructing ths_list'
+            ths_list = [ ROOT.THStack( '%s__slice_%d' % (stack_name, slice)
+                                     , '%s - slice %d' % (stack_title,slice)
+                                     )
+                         for slice in xrange(1, num_slices+1)
+                       ]
+            print ths_list
+        assert  this_num_slices == num_slices
+
+        for slice in xrange(num_slices):
+            print ths_list[slice]
+            h_tmp = h_2d.ProjectionX( '%s_%s__slice_%d' % ( h_2d.GetName()
+                                                          , fh.label
+                                                          , slice
+                                                          )
+                                    , slice+1,slice+1
+                                    )
+            h_tmp.SetLineWidth(3)
+            ths_list[slice].Add(h_tmp)
+            print 'num entries in this slice: %s' % h_tmp.GetEntries()
+
+        hist_list_2d.append(h_2d)
+        label_list.append(fh.label)
+
+    leg, big_leg = makeLegend(hist_list_2d, label_list)
+    return ths_list, leg, big_leg
 
 # ------------------------------------------------------------------------------
 def printToCanvas( ths = None
@@ -129,105 +185,175 @@ def printToCanvas( ths = None
                 ths.GetXaxis().SetTitle(x_title)
             if ths.GetYaxis():
                 ths.GetYaxis().SetTitle(y_title)
-                ths.GetYaxis().SetRangeUser(y_min, y_max)
+                ths.SetMinimum(y_min)
+                ths.SetMaximum(y_max)
             ths.Draw('NOSTACK')
         else:
             if ths.GetXaxis():
                 ths.GetXaxis().SetTitle(x_title)
             if ths.GetYaxis():
                 ths.GetYaxis().SetTitle(y_title)
-                ths.GetYaxis().SetRangeUser(y_min, y_max)
+                ths.SetMinimum(y_min)
+                ths.SetMaximum(y_max)
             ths.Draw()
     if leg is not None:
         leg.Draw()
     return c
 
 # ------------------------------------------------------------------------------
+def plotAndPrint( file_handles
+                , out_file
+                , short_name
+                , suffix
+                , title
+                , x_title
+                , y_title
+                , y_min
+                , y_max
+                ):
+    ths, leg, big_leg = getHistStack( file_handles
+                                    , '%s%s' % (short_name, suffix)
+                                    , 'ths_%s%s' % (short_name, suffix)
+                                    , title
+                                    )
+    c_rate = printToCanvas( ths=ths
+                          , leg=leg
+                          , canvas_name='c_%s%s' % (short_name, suffix)
+                          , x_title=x_title
+                          , y_title=y_title
+                          , y_min = y_min
+                          , y_max = y_max
+                          )
+    c_big_leg = printToCanvas( leg=big_leg
+                             , canvas_name='c_leg_%s%s' % (short_name, suffix)
+                             )
+    safeMakeDir(out_file, short_name)
+    c_rate.Write('%s%s' % (short_name, suffix))
+    c_big_leg.Write('leg_%s%s' % (short_name, suffix))
+    c_rate.Close()
+    c_big_leg.Close()
+
+# ------------------------------------------------------------------------------
+def plotAndPrint2D( file_handles
+                  , out_file
+                  , short_name
+                  , suffix
+                  , title
+                  , x_title
+                  , y_title
+                  , y_min
+                  , y_max
+                  ):
+    ths_list, leg, big_leg = getHistStack2D( file_handles
+                                           , '%s%s' % (short_name, suffix)
+                                           , 'ths_%s%s' % (short_name, suffix)
+                                           , title
+                                           )
+    for i, ths in enumerate(ths_list):
+        print '%s -- %s' % (i, ths)
+        c_rate = printToCanvas( ths=ths
+                              , leg=leg
+                              , canvas_name='c_%s%s__slice_%d' % (short_name, suffix, i)
+                              , x_title=x_title
+                              , y_title=y_title
+                              , y_min = y_min
+                              , y_max = y_max
+                              )
+        safeMakeDir(out_file, short_name)
+        c_rate.Write('%s%s_eta_bin_%d' % (short_name, suffix, i))
+        c_rate.Close()
+    c_big_leg = printToCanvas( leg=big_leg
+                             , canvas_name='c_leg_%s%s' % (short_name, suffix)
+                             )
+    c_big_leg.Write('leg_%s%s' % (short_name, suffix))
+    c_big_leg.Close()
+
+# ------------------------------------------------------------------------------
 def plotRates(file_handles, out_file, rates_suffix = ''):
-    ths_mu_re, leg_mu_re, big_leg_mu_re = getHistStack(file_handles, 'mu_re%s' % rates_suffix, 'ths_mu_re%s' % rates_suffix, 'Muon RE'    , y_min = 0., y_max = 1.1)
-    ths_mu_fr, leg_mu_fr, big_leg_mu_fr = getHistStack(file_handles, 'mu_fr%s' % rates_suffix, 'ths_mu_fr%s' % rates_suffix, 'Muon FR'    , y_min = 0., y_max = 0.2)
-    ths_el_re, leg_el_re, big_leg_el_re = getHistStack(file_handles, 'el_re%s' % rates_suffix, 'ths_el_re%s' % rates_suffix, 'Electron RE', y_min = 0., y_max = 1.1)
-    ths_el_fr, leg_el_fr, big_leg_el_fr = getHistStack(file_handles, 'el_fr%s' % rates_suffix, 'ths_el_fr%s' % rates_suffix, 'Electron FR', y_min = 0., y_max = 0.2)
+    print 'rate suffix: %s' % rates_suffix
 
-    ths_mu_re, leg_mu_re, big_leg_mu_re = getHistStack(file_handles, 'mu_re%s' % rates_suffix, 'ths_mu_re%s' % rates_suffix, 'Muon RE'    , y_min = 0., y_max = 1.1)
-    ths_mu_fr, leg_mu_fr, big_leg_mu_fr = getHistStack(file_handles, 'mu_fr%s' % rates_suffix, 'ths_mu_fr%s' % rates_suffix, 'Muon FR'    , y_min = 0., y_max = 0.2)
-    ths_el_re, leg_el_re, big_leg_el_re = getHistStack(file_handles, 'el_re%s' % rates_suffix, 'ths_el_re%s' % rates_suffix, 'Electron RE', y_min = 0., y_max = 1.1)
-    ths_el_fr, leg_el_fr, big_leg_el_fr = getHistStack(file_handles, 'el_fr%s' % rates_suffix, 'ths_el_fr%s' % rates_suffix, 'Electron FR', y_min = 0., y_max = 0.2)
+    plotAndPrint( file_handles = file_handles
+                , out_file = out_file
+                , short_name = 'mu_re'
+                , suffix = rates_suffix
+                , title = 'Muon RE'
+                , x_title = 'p_{T} [GeV]'
+                , y_title = 'r'
+                , y_min = 0.
+                , y_max = 1.1
+                )
+    plotAndPrint( file_handles = file_handles
+                , out_file = out_file
+                , short_name = 'mu_fr'
+                , suffix = rates_suffix
+                , title = 'Muon FR'
+                , x_title = 'p_{T} [GeV]'
+                , y_title = 'f'
+                , y_min = 0.
+                , y_max = 0.2
+                )
+    plotAndPrint( file_handles = file_handles
+                , out_file = out_file
+                , short_name = 'el_re'
+                , suffix = rates_suffix
+                , title = 'Electron RE'
+                , x_title = 'p_{T} [GeV]'
+                , y_title = 'r'
+                , y_min = 0.
+                , y_max = 1.1
+                )
+    plotAndPrint( file_handles = file_handles
+                , out_file = out_file
+                , short_name = 'el_fr'
+                , suffix = rates_suffix
+                , title = 'Electron FR'
+                , x_title = 'p_{T} [GeV]'
+                , y_title = 'f'
+                , y_min = 0.
+                , y_max = 0.2
+                )
 
-    # c_leg = printToCanvas( leg=big_leg, canvas_name='c_leg')
-    # c_mu_re = printToCanvas( ths=ths_mu_re, leg=leg, canvas_name='c_mu_re', x_title='p_{T} [GeV]', y_title='r')
-    # c_mu_fr = printToCanvas( ths=ths_mu_fr, leg=leg, canvas_name='c_mu_fr', x_title='p_{T} [GeV]', y_title='f')
-    # c_el_re = printToCanvas( ths=ths_el_re, leg=leg, canvas_name='c_el_re', x_title='p_{T} [GeV]', y_title='r')
-    # c_el_fr = printToCanvas( ths=ths_el_fr, leg=leg, canvas_name='c_el_fr', x_title='p_{T} [GeV]', y_title='f')
-
-    c_mu_re = printToCanvas( ths=ths_mu_re, leg=leg_mu_re, canvas_name='c_mu_re%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1)
-    c_mu_fr = printToCanvas( ths=ths_mu_fr, leg=leg_mu_fr, canvas_name='c_mu_fr%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2)
-    c_el_re = printToCanvas( ths=ths_el_re, leg=leg_el_re, canvas_name='c_el_re%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1)
-    c_el_fr = printToCanvas( ths=ths_el_fr, leg=leg_el_fr, canvas_name='c_el_fr%s' % rates_suffix, x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2)
-
-    c_big_leg_mu_re = printToCanvas( leg=big_leg_mu_re, canvas_name='c_leg_mu_re%s' % rates_suffix)
-    c_big_leg_mu_fr = printToCanvas( leg=big_leg_mu_fr, canvas_name='c_leg_mu_fr%s' % rates_suffix)
-    c_big_leg_el_re = printToCanvas( leg=big_leg_el_re, canvas_name='c_leg_el_re%s' % rates_suffix)
-    c_big_leg_el_fr = printToCanvas( leg=big_leg_el_fr, canvas_name='c_leg_el_fr%s' % rates_suffix)
-
-    # c_mu_re_comp = []
-    # c_mu_fr_comp = []
-    # c_el_re_comp = []
-    # c_el_fr_comp = []
-    # for fh in file_handles:
-    #     temp_hist_mu_re = fh.getHist('mu_re%s' % rates_suffix)
-    #     temp_hist_mu_fr = fh.getHist('mu_fr%s' % rates_suffix)
-    #     temp_hist_el_re = fh.getHist('el_re%s' % rates_suffix)
-    #     temp_hist_el_fr = fh.getHist('el_fr%s' % rates_suffix)
-
-    #     c_mu_re_comp.append(printToCanvas( ths=temp_hist_mu_re, leg=None, canvas_name='c_mu_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
-    #     c_mu_fr_comp.append(printToCanvas( ths=temp_hist_mu_fr, leg=None, canvas_name='c_mu_fr_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2))
-    #     c_el_re_comp.append(printToCanvas( ths=temp_hist_el_re, leg=None, canvas_name='c_el_re_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='r', y_min = 0., y_max = 1.1))
-    #     c_el_fr_comp.append(printToCanvas( ths=temp_hist_el_fr, leg=None, canvas_name='c_el_fr_comp_%s_%s' % (rates_suffix, fh.label), x_title='p_{T} [GeV]', y_title='f', y_min = 0., y_max = 0.2))
-
-    out_file.cd()
-    out_file.mkdir('mu_re')
-    out_file.cd('mu_re')
-    c_mu_re.Write('mu_re%s' % rates_suffix)
-    c_big_leg_mu_re.Write('leg_mu_re%s' % rates_suffix)
-    # for cmrc in c_mu_re_comp:
-    #     cmrc.Write()
-    #     cmrc.Close()
-    c_mu_re.Close()
-    c_big_leg_mu_re.Close()
-
-    out_file.cd()
-    out_file.mkdir('mu_fr')
-    out_file.cd('mu_fr')
-    c_mu_fr.Write('mu_fr%s' % rates_suffix)
-    c_big_leg_mu_fr.Write('leg_mu_fr%s' % rates_suffix)
-    # for cmfc in c_mu_fr_comp:
-    #     cmfc.Write()
-    #     cmfc.Close()
-    c_mu_fr.Close()
-    c_big_leg_mu_fr.Close()
-
-    out_file.cd()
-    out_file.mkdir('el_re')
-    out_file.cd('el_re')
-    c_el_re.Write('el_re%s' % rates_suffix)
-    c_big_leg_el_re.Write('leg_el_re%s' % rates_suffix)
-    # for cerc in c_el_re_comp:
-    #     cerc.Write()
-    #     cerc.Close()
-    c_el_re.Close()
-    c_big_leg_el_re.Close()
-
-    out_file.cd()
-    out_file.mkdir('el_fr')
-    out_file.cd('el_fr')
-    c_el_fr.Write('el_fr%s' % rates_suffix)
-    c_big_leg_el_fr.Write('leg_el_fr%s' % rates_suffix)
-    # for cefc in c_el_fr_comp:
-    #     cefc.Write()
-    #     cefc.Close()
-    c_el_fr.Close()
-    c_big_leg_el_fr.Close()
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    plotAndPrint2D( file_handles = file_handles
+                  , out_file = out_file
+                  , short_name = 'el_re_eta_bins'
+                  , suffix = rates_suffix
+                  , title = 'Electron RE - eta bins'
+                  , x_title = 'p_{T} [GeV]'
+                  , y_title = 'r'
+                  , y_min = 0.
+                  , y_max = 1.1
+                  )
+    plotAndPrint2D( file_handles = file_handles
+                  , out_file = out_file
+                  , short_name = 'el_fr_eta_bins'
+                  , suffix = rates_suffix
+                  , title = 'Electron FR - eta bins'
+                  , x_title = 'p_{T} [GeV]'
+                  , y_title = 'f'
+                  , y_min = 0.
+                  , y_max = 0.2
+                  )
+    plotAndPrint2D( file_handles = file_handles
+                  , out_file = out_file
+                  , short_name = 'mu_re_eta_bins'
+                  , suffix = rates_suffix
+                  , title = 'Muon RE - eta bins'
+                  , x_title = 'p_{T} [GeV]'
+                  , y_title = 'r'
+                  , y_min = 0.
+                  , y_max = 1.1
+                  )
+    plotAndPrint2D( file_handles = file_handles
+                  , out_file = out_file
+                  , short_name = 'mu_fr_eta_bins'
+                  , suffix = rates_suffix
+                  , title = 'Muon FR - eta bins'
+                  , x_title = 'p_{T} [GeV]'
+                  , y_title = 'f'
+                  , y_min = 0.
+                  , y_max = 0.2
+                  )
 
 # ==============================================================================
 if __name__ == '__main__':
@@ -309,15 +435,15 @@ if __name__ == '__main__':
 
     # # add ZZ to 4lep
     # this_color = ROOT.kOrange
-    # fh.append(FileHandle( 'rates.ZZ4lep.root'
-    #                     , 'ZZ4lep'
-    #                     , this_color
-    #                     , draw_el_re=True
-    #                     , draw_el_fr=False
-    #                     , draw_mu_re=True
-    #                     , draw_mu_fr=False
-    #                     )
-    #          )
+    # file_handles.append(FileHandle( 'rates.116600.ZZ4lep.root'
+    #                               , 'ZZ4lep'
+    #                               , this_color
+    #                               , draw_el_re=True
+    #                               , draw_el_fr=True
+    #                               , draw_mu_re=True
+    #                               , draw_mu_fr=True
+    #                               )
+    #                    )
     # this_color += 1
 
     # add signal
@@ -325,8 +451,8 @@ if __name__ == '__main__':
     # rates.127995.signal.root
     # rates.127996.signal.root
     this_color = ROOT.kRed
-    file_handles.append(FileHandle( 'rates.127994.signal.root'
-                                  , 'signal 127994'
+    file_handles.append(FileHandle( 'rates.127995.signal.root'
+                                  , 'signal 127995'
                                   , this_color
                                   , draw_el_re=True
                                   , draw_el_fr=False

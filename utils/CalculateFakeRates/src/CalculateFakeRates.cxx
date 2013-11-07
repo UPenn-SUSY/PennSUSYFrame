@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iomanip>
 #include <vector>
+#include <math.h>
 
 #include <TCanvas.h>
 #include <TChain.h>
@@ -199,6 +200,11 @@ void CalculateFakeRates::processEvent()
     bool is_truth_matched = el_desc.getPassPromptLepton();
     bool is_baseline      = el_desc.getPassGood();
 
+    // get electron pT & eta (allow this to be no greater than 99)
+    float el_pt = m_el_pt->at(el_it)/1000.;
+    if (el_pt >= 100.) el_pt = 99.;
+    float el_eta = fabs(m_el_eta->at(el_it));
+
     // Check all out signal lepton definitions based on the different isolation
     // styles
     bool is_signal[NtupleHelper::ISO_STYLE_N];
@@ -213,11 +219,6 @@ void CalculateFakeRates::processEvent()
                                              );
     }
 
-    // get electron pT & eta (allow this to be no greater than 99)
-    float el_pt = m_el_pt->at(el_it)/1000.;
-    if (el_pt >= 100.) el_pt = 99.;
-    float el_eta = fabs(m_el_eta->at(el_it));
-
     // if truth matched, this goes into the real factor calculation
     if (is_truth_matched) {
       if (is_baseline) {
@@ -231,9 +232,10 @@ void CalculateFakeRates::processEvent()
             ; iso_style != NtupleHelper::ISO_STYLE_N
             ; ++iso_style
             ) {
-          if (is_signal[iso_style])
+          if (is_signal[iso_style]) {
             m_el_re_numer.at(iso_style)->Fill(el_pt, event_weight);
             m_el_re_eta_bins_numer.at(iso_style)->Fill(el_pt, el_eta, event_weight);
+          }
         }
       }
     }
@@ -250,9 +252,10 @@ void CalculateFakeRates::processEvent()
             ; iso_style != NtupleHelper::ISO_STYLE_N
             ; ++iso_style
             ) {
-          if (is_signal[iso_style])
+          if (is_signal[iso_style]) {
             m_el_fr_numer.at(iso_style)->Fill(el_pt, event_weight);
             m_el_fr_eta_bins_numer.at(iso_style)->Fill(el_pt, el_eta, event_weight);
+          }
         }
       }
     }
@@ -266,6 +269,14 @@ void CalculateFakeRates::processEvent()
     SusyAnalysisTools::MuonDescription mu_desc(m_mu_desc->at(mu_it));
     bool is_truth_matched = mu_desc.getPassPromptLepton();
     bool is_baseline      = mu_desc.getPassGood();
+
+    // get muon pT (allow this to be no greater than 99)
+    float mu_pt = m_mu_pt->at(mu_it)/1000.;
+    if (mu_pt >= 100.) mu_pt = 99.;
+    float mu_eta = fabs(m_mu_eta->at(mu_it));
+
+    // additional eta cut for "fake candidate baseline" muons 
+    is_baseline = (is_baseline && mu_eta < 2.4);
 
     // Check all out signal lepton definitions based on the different isolation
     // styles
@@ -281,11 +292,6 @@ void CalculateFakeRates::processEvent()
                                          );
     }
 
-    // get muon pT (allow this to be no greater than 99)
-    float mu_pt = m_mu_pt->at(mu_it)/1000.;
-    if (mu_pt >= 100.) mu_pt = 99.;
-    float mu_eta = fabs(m_mu_eta->at(mu_it));
-
     // if truth matched, this goes into the real factor calculation
     if (is_truth_matched) {
       if (is_baseline) {
@@ -299,9 +305,10 @@ void CalculateFakeRates::processEvent()
             ; iso_style != NtupleHelper::ISO_STYLE_N
             ; ++iso_style
             ) {
-          if (is_signal[iso_style])
+          if (is_signal[iso_style]) {
             m_mu_re_numer.at(iso_style)->Fill(mu_pt, event_weight);
             m_mu_re_eta_bins_numer.at(iso_style)->Fill(mu_pt, mu_eta, event_weight);
+          }
         }
       }
     }
@@ -318,9 +325,10 @@ void CalculateFakeRates::processEvent()
             ; iso_style != NtupleHelper::ISO_STYLE_N
             ; ++iso_style
             ) {
-          if (is_signal[iso_style])
+          if (is_signal[iso_style]) {
             m_mu_fr_numer.at(iso_style)->Fill(mu_pt, event_weight);
             m_mu_fr_eta_bins_numer.at(iso_style)->Fill(mu_pt, mu_eta, event_weight);
+          }
         }
       }
     }
@@ -356,56 +364,48 @@ void CalculateFakeRates::printToScreen()
                                              , m_el_re_denom
                                              , ("el_re_" + fake_style_string)
                                              )
-                       
                      );
 
     m_mu_re.push_back( computeFactorHistogram( m_mu_re_numer.at(fake_style)
                                              , m_mu_re_denom
                                              , ("mu_re_" + fake_style_string)
                                              )
-                       
                      );
 
     m_el_fr.push_back( computeFactorHistogram( m_el_fr_numer.at(fake_style)
                                              , m_el_fr_denom
                                              , ("el_fr_" + fake_style_string)
                                              )
-                       
                      );
 
     m_mu_fr.push_back( computeFactorHistogram( m_mu_fr_numer.at(fake_style)
                                              , m_mu_fr_denom
                                              , ("mu_fr_" + fake_style_string)
                                              )
-                       
                      );
 
     m_el_re_eta_bins.push_back( computeFactorHistogram( m_el_re_eta_bins_numer.at(fake_style)
                                                       , m_el_re_eta_bins_denom
                                                       , ("el_re_eta_bins_" + fake_style_string)
                                                       )
-                                
                               );
 
     m_mu_re_eta_bins.push_back( computeFactorHistogram( m_mu_re_eta_bins_numer.at(fake_style)
                                                       , m_mu_re_eta_bins_denom
                                                       , ("mu_re_eta_bins_" + fake_style_string)
                                                       )
-                                
                               );
 
     m_el_fr_eta_bins.push_back( computeFactorHistogram( m_el_fr_eta_bins_numer.at(fake_style)
                                                       , m_el_fr_eta_bins_denom
                                                       , ("el_fr_eta_bins_" + fake_style_string)
                                                       )
-                                
                               );
 
     m_mu_fr_eta_bins.push_back( computeFactorHistogram( m_mu_fr_eta_bins_numer.at(fake_style)
                                                       , m_mu_fr_eta_bins_denom
                                                       , ("mu_fr_eta_bins_" + fake_style_string)
                                                       )
-                                
                               );
 
   }
