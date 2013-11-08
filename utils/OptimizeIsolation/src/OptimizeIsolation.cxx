@@ -157,10 +157,14 @@ void OptimizeIsolation::processEvent()
     double el_pt_capped = std::min(el_pt, 60.);
 
     // get isolation variables
-    double el_ptcone30 = m_el_ptcone30->at(el_it)/1000.;
-    double el_etcone30 = m_el_etcone30->at(el_it)/1000.;
-    double el_ptcone20 = m_el_ptcone20->at(el_it)/1000.;
-    double el_etcone20 = m_el_etcone20->at(el_it)/1000.;
+    double el_ptcone30 = getElIsoCorr(el_it, NtupleHelper::ISO_TYPE_PTCONE    , NtupleHelper::CONE_30)/1000.;
+    double el_etcone30 = getElIsoCorr(el_it, NtupleHelper::ISO_TYPE_TOPOETCONE, NtupleHelper::CONE_30)/1000.;
+    double el_ptcone20 = getElIsoCorr(el_it, NtupleHelper::ISO_TYPE_PTCONE    , NtupleHelper::CONE_20)/1000.;
+    double el_etcone20 = getElIsoCorr(el_it, NtupleHelper::ISO_TYPE_TOPOETCONE, NtupleHelper::CONE_20)/1000.;
+    // double el_ptcone30 = m_el_ptcone30->at(el_it)/1000.;
+    // double el_etcone30 = m_el_etcone30->at(el_it)/1000.;
+    // double el_ptcone20 = m_el_ptcone20->at(el_it)/1000.;
+    // double el_etcone20 = m_el_etcone20->at(el_it)/1000.;
 
 
     // fill basic isolation histograms
@@ -201,7 +205,7 @@ void OptimizeIsolation::processEvent()
     double mu_eta = fabs(m_mu_eta->at(mu_it));
     double mu_pt  = m_mu_pt->at(mu_it)/1000.;
 
-    // additional eta cut for "fake candidate baseline" muons 
+    // additional eta cut for "fake candidate baseline" muons
     if (mu_eta > 2.4) continue;
 
     // special versions of pT which are allowed to be no greater than some maximum value
@@ -209,10 +213,14 @@ void OptimizeIsolation::processEvent()
     double mu_pt_capped = std::min(mu_pt, 60.);
 
     // get isolation variables
-    double mu_ptcone30 = m_mu_ptcone30->at(mu_it)/1000.;
-    double mu_etcone30 = m_mu_etcone30->at(mu_it)/1000.;
-    double mu_ptcone20 = m_mu_ptcone20->at(mu_it)/1000.;
-    double mu_etcone20 = m_mu_etcone20->at(mu_it)/1000.;
+    double mu_ptcone30 = getMuIsoCorr(mu_it, NtupleHelper::ISO_TYPE_PTCONE, NtupleHelper::CONE_30)/1000.;
+    double mu_etcone30 = getMuIsoCorr(mu_it, NtupleHelper::ISO_TYPE_ETCONE, NtupleHelper::CONE_30)/1000.;
+    double mu_ptcone20 = getMuIsoCorr(mu_it, NtupleHelper::ISO_TYPE_PTCONE, NtupleHelper::CONE_20)/1000.;
+    double mu_etcone20 = getMuIsoCorr(mu_it, NtupleHelper::ISO_TYPE_ETCONE, NtupleHelper::CONE_20)/1000.;
+    // double mu_ptcone30 = m_mu_ptcone30->at(mu_it)/1000.;
+    // double mu_etcone30 = m_mu_etcone30->at(mu_it)/1000.;
+    // double mu_ptcone20 = m_mu_ptcone20->at(mu_it)/1000.;
+    // double mu_etcone20 = m_mu_etcone20->at(mu_it)/1000.;
 
     // fill basic isolation histograms
     m_mu_iso.at(ISO_PTCONE30       )->Fill(mu_ptcone30/mu_pt       , event_weight);

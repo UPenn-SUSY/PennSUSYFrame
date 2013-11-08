@@ -9,30 +9,87 @@ import ROOT
 import rootlogon
 import metaroot
 
+# ==============================================================================
+color_list = [ ROOT.kBlue
+             , ROOT.kGreen
+             , ROOT.kRed
+             , ROOT.kCyan
+             , ROOT.kMagenta
+             , ROOT.kOrange
+             , ROOT.kPink-4
+             ]
+
+# ------------------------------------------------------------------------------
+def normalizeHist(h):
+    if h.Integral() > 0: h.Scale( 1./h.Integral())
+
+# ------------------------------------------------------------------------------
+def truncateXaxis(h, new_x_min = None, new_x_max = None):
+    total_bins = h.GetNbinsX()
+    underflow = h.GetBinContent(0)
+    overflow  = h.GetBinContent(total_bins+1)
+
+    if new_x_min is None: new_x_min = h.GetXaxis().GetXmin()
+    if new_x_max is None: new_x_max = h.GetXaxis().GetXmax()
+    h.GetXaxis().SetRangeUser(new_x_min, new_x_max)
+    moveOverflowToLastBin(h, new_x_min, new_x_max)
+
+# ------------------------------------------------------------------------------
+def moveOverflowToLastBin(h, x_min, x_max):
+    total_bins = h.GetNbinsX()
+    total_entries = h.GetEntries()
+    x_bins = []
+    for i in xrange(total_bins):
+        x_bins.append(h.GetBinLowEdge(i+1))
+
+    # find total underflow
+    underflow = h.GetBinContent(0)
+    min_bin = 1
+    for i, x in enumerate(x_bins):
+        if x < x_min:
+            underflow += h.GetBinContent(i+1)
+        else:
+            min_bin = i+1
+            break
+
+    # move underflow to min_bin:
+    for uf_bin in xrange(min_bin):
+        h.SetBinContent(uf_bin, 0.)
+    h.Fill(x_bins[min_bin-1], underflow)
+
+    # find total overflow
+    overflow = h.GetBinContent(total_bins+1)
+    max_bin = 1
+    for i, x in enumerate(x_bins):
+        if x < x_max:
+            max_bin = i+1
+            continue
+        overflow += h.GetBinContent(i+1)
+
+    # move overflow to max_bin:
+    for of_bin in xrange(max_bin+1, total_bins+2):
+        h.SetBinContent(of_bin, 0.)
+    h.Fill(x_bins[max_bin-1], overflow)
+
+    h.SetEntries(total_entries)
+
 # ------------------------------------------------------------------------------
 class FileHandle(object):
     def __init__( self
                 , file_name
                 , label
                 , color
-                , draw_el_re=True
-                , draw_el_fr=True
-                , draw_mu_re=True
-                , draw_mu_fr=True
                 ):
         self.file_name = file_name
         self.file = ROOT.TFile.Open(file_name)
         self.label = label
         self.color = color
-        self.draw_el_re = draw_el_re
-        self.draw_el_fr = draw_el_fr
-        self.draw_mu_re = draw_mu_re
-        self.draw_mu_fr = draw_mu_fr
 
     def getHist(self, hist_name, normalize):
+        print 'getting hist: %s from file: %s' % (hist_name, self.file_name)
         h = self.file.Get(hist_name)
         if normalize:
-            h.Scale( 1/h.Integral() )
+            normalizeHist(h)
         h.SetLineColor(self.color)
         h.SetLineWidth(3)
         return h
@@ -50,6 +107,7 @@ def safeMakeDir(f, d):
 # ------------------------------------------------------------------------------
 def formatHist(h, color, x_title = 'p_{T} [GeV]', y_title = 'rate'):
     h.SetLineColor(color)
+    h.SetLineWidth(3)
     h.GetXaxis().SetTitle(x_title)
     h.GetYaxis().SetTitle(y_title)
 
@@ -103,7 +161,13 @@ def makeLegendFHL(file_handle_list, hist_name):
     return leg, big_leg
 
 # ------------------------------------------------------------------------------
-def getHistStack(file_handles, hist_name, stack_name, stack_title):
+def getHistStack( file_handles
+                , hist_name
+                , stack_name
+                , stack_title
+                , x_min = None
+                , x_max = None
+                ):
     hist_list = []
     label_list = []
     ths = ROOT.THStack(stack_name, stack_title)
@@ -111,7 +175,8 @@ def getHistStack(file_handles, hist_name, stack_name, stack_title):
         h = fh.getHist(hist_name, True)
         findTargetCut(h, 0.90)
         findTargetCut(h, 0.95)
-        h.Rebin(10)
+        h.Rebin(5)
+        truncateXaxis(h, x_min, x_max)
 
         ths.Add(h)
         hist_list.append(h)
@@ -120,6 +185,101 @@ def getHistStack(file_handles, hist_name, stack_name, stack_title):
     leg, big_leg = makeLegend(hist_list, label_list)
 
     return ths, leg, big_leg
+
+# ------------------------------------------------------------------------------
+def getHistStack2D( file_handles
+                  , hist_name
+                  , stack_name
+                  , stack_title
+                  , x_min
+                  , x_max
+                  ):
+    hist_list_2d = []
+    label_list = []
+    ths_list = []
+    num_slices = 0
+    for fh in file_handles:
+        h_2d = fh.getHist(hist_name, True)
+        this_num_slices = h_2d.GetNbinsY()
+        if num_slices == 0:
+            num_slices = this_num_slices
+            ths_list = [ ROOT.THStack( '%s__slice_%d' % (stack_name, slice)
+                                     , '%s - slice %d' % (stack_title,slice)
+                                     )
+                         for slice in xrange(1, num_slices+1)
+                       ]
+        assert  this_num_slices == num_slices
+
+        for slice in xrange(num_slices):
+            h_tmp = h_2d.ProjectionX( '%s_%s__slice_%d' % ( h_2d.GetName()
+                                                          , fh.label
+                                                          , slice
+                                                          )
+                                    , slice+1,slice+1
+                                    )
+            h_tmp.Rebin(5)
+            truncateXaxis(h_tmp, x_min, x_max)
+            normalizeHist(h_tmp)
+            h_tmp.SetLineWidth(3)
+
+            ths_list[slice].Add(h_tmp)
+
+        hist_list_2d.append(h_2d)
+        label_list.append(fh.label)
+
+    leg, big_leg = makeLegend(hist_list_2d, label_list)
+    return ths_list, leg, big_leg
+
+# ------------------------------------------------------------------------------
+def getHistStack2DSingleSample( file_handles
+                              , hist_name
+                              , stack_name
+                              , stack_title
+                              , x_min
+                              , x_max
+                              , slice_variable_name = None
+                              ):
+    ths_list = []
+    leg_list = []
+    big_leg_list = []
+    for fh in file_handles:
+        hist_list = []
+        label_list = []
+
+        h_2d = fh.getHist(hist_name, True)
+        this_num_slices = h_2d.GetNbinsY()
+        tmp_ths = ROOT.THStack( '%s__%s' % (stack_name, fh.label)
+                              , '%s - %s' % (stack_title, fh.label)
+                              )
+
+        for slice in xrange(this_num_slices):
+            h_tmp = h_2d.ProjectionX( '%s_%s__ss__slice_%d' % ( h_2d.GetName()
+                                                              , fh.label
+                                                              , slice
+                                                              )
+                                    , slice+1,slice+1
+                                    )
+            h_tmp.Rebin(5)
+            truncateXaxis(h_tmp, x_min, x_max)
+            normalizeHist(h_tmp)
+            h_tmp.SetLineWidth(3)
+            h_tmp.SetLineColor(color_list[slice])
+
+            tmp_ths.Add(h_tmp)
+            hist_list.append(h_tmp)
+            if slice_variable_name is None:
+                label_list.append('slice %d' % slice)
+            else:
+                low_edge = h_2d.GetYaxis().GetBinLowEdge(slice+1)
+                up_edge = h_2d.GetYaxis().GetBinUpEdge(slice+1)
+                label_list.append('%s < %s < %s' % (low_edge, slice_variable_name, up_edge))
+
+        tmp_leg, tmp_big_leg = makeLegend(hist_list, label_list)
+        ths_list.append(tmp_ths)
+        leg_list.append(tmp_leg)
+        big_leg_list.append(tmp_big_leg)
+
+    return ths_list, leg_list, big_leg_list
 
 # ------------------------------------------------------------------------------
 def getCutValues(file_handles, hist_name, target_eff):
@@ -154,8 +314,10 @@ def printToCanvas( ths = None
                  , labels = None
                  , x_title = 'x'
                  , y_title = 'y'
-                 , y_min = 1.e-6
-                 , y_max = 5.
+                 , x_min = None
+                 , x_max = None
+                 , y_min = None
+                 , y_max = None
                  ):
     c = ROOT.TCanvas(canvas_name)
     if ths is not None:
@@ -163,18 +325,22 @@ def printToCanvas( ths = None
             ths.Draw('NOSTACK')
             if ths.GetXaxis():
                 ths.GetXaxis().SetTitle(x_title)
+                if x_min is not None and x_max is not None:
+                    ths.GetXaxis().SetRangeUser(x_min, x_max)
             if ths.GetYaxis():
                 ths.GetYaxis().SetTitle(y_title)
-            ths.SetMinimum(y_min)
-            ths.SetMaximum(y_max)
+            if y_min is not None: ths.SetMinimum(y_min)
+            if y_max is not None: ths.SetMaximum(y_max)
             ths.Draw('NOSTACK')
         else:
             if ths.GetXaxis():
                 ths.GetXaxis().SetTitle(x_title)
+                if x_min is not None and x_max is not None:
+                    ths.GetXaxis().SetRangeUser(x_min, x_max)
             if ths.GetYaxis():
                 ths.GetYaxis().SetTitle(y_title)
-            ths.SetMinimum(y_min)
-            ths.SetMaximum(y_max)
+            if y_min is not None: ths.SetMinimum(y_min)
+            if y_max is not None: ths.SetMaximum(y_max)
             ths.Draw()
     if leg is not None:
         leg.Draw()
@@ -185,18 +351,18 @@ def printToCanvas( ths = None
 
 # ------------------------------------------------------------------------------
 def getCutValueLabels(chosen_cut_values):
-    x_start = 0.4
-    y_start = 0.9
+    x_start = 0.65
+    y_start = 0.8
     label_list = []
     for eff in chosen_cut_values:
         for entry in chosen_cut_values[eff]:
-            print entry
             text_for_label = 'eff %s (%s): %0.2f' % (eff, entry['label'], entry['cut'])
             l = ROOT.TText()
             l.SetNDC()
             l.SetText(x_start, y_start, text_for_label)
             l.SetTextColor(entry['color'])
-            y_start -= 0.05
+            l.SetTextSize(0.035)
+            y_start -= 0.035
             label_list.append(l)
 
             if 'signal' in entry['label']:
@@ -208,47 +374,183 @@ def getCutValueLabels(chosen_cut_values):
     return label_list
 
 # ------------------------------------------------------------------------------
-def plotRates(file_handles, out_file, lep_flavor = 'el', rates_suffix = ''):
+def plotAndPrint( file_handles
+                , out_file
+                , short_name
+                , iso_suffix
+                , x_min
+                , x_max
+                , y_min
+                , y_max
+                , x_title = 'isolation'
+                ):
+    # scan and pick chosen cut values for each histogram
     chosen_cut_values = { '0.90':getCutValues( file_handles
-                                             , '%s_iso%s' % (lep_flavor, rates_suffix)
+                                             , '%s%s' % (short_name, iso_suffix)
                                              , 0.90
                                              )
                         , '0.95':getCutValues( file_handles
-                                             , '%s_iso%s' % (lep_flavor, rates_suffix)
+                                             , '%s%s' % (short_name, iso_suffix)
                                              , 0.95
                                              )
                         }
     cut_value_labels = getCutValueLabels(chosen_cut_values)
 
-    ths_iso, leg_iso, big_leg_iso = getHistStack( file_handles
-                                                , '%s_iso%s' % (lep_flavor, rates_suffix)
-                                                , 'ths_%s_iso%s' % (lep_flavor, rates_suffix)
-                                                , '%s iso' % lep_flavor
-                                                )
+    # get stack and legend
+    ths, leg, big_leg = getHistStack( file_handles
+                                    , '%s%s' % (short_name, iso_suffix)
+                                    , 'ths_%s%s' % (short_name, iso_suffix)
+                                    , '%s' % short_name
+                                    , x_min
+                                    , x_max
+                                    )
 
-    c_iso = printToCanvas( ths=ths_iso
-                         , leg=leg_iso
-                         , canvas_name='c_%s_iso%s' % (lep_flavor, rates_suffix)
-                         , labels = cut_value_labels
-                         , x_title='isolation'
-                         , y_title='normailzed units'
-                         , y_min = 1.e-6
-                         , y_max = 5.
-                         )
-
-    c_big_leg_iso = printToCanvas( leg=big_leg_iso
-                                 , canvas_name='c_leg_%s_iso%s' % (lep_flavor, rates_suffix)
-                                 )
+    # print stack and legend to canvas
+    c = printToCanvas( ths=ths
+                     , leg=leg
+                     , canvas_name='c_%s%s' % (short_name, iso_suffix)
+                     , labels = cut_value_labels
+                     , x_title=x_title
+                     , y_title='normailzed units'
+                     , x_min = x_min
+                     , x_max = x_max
+                     , y_min = y_min
+                     , y_max = y_max
+                     )
+    c_big_leg = printToCanvas( leg=big_leg
+                             , canvas_name='c_leg_%s%s' % (short_name, iso_suffix)
+                             )
 
     # make directory for isolation
-    safeMakeDir(out_file, '%s_iso' % lep_flavor)
+    safeMakeDir(out_file, '%s' % short_name)
 
     # print isolation
-    c_iso.SetLogy()
-    c_iso.Write('%s_iso%s' % (lep_flavor, rates_suffix))
-    c_big_leg_iso.Write('leg_%s_iso%s' % (lep_flavor, rates_suffix))
-    c_iso.Close()
-    c_big_leg_iso.Close()
+    c.SetLogy()
+    c.Write('%s%s' % (short_name, iso_suffix))
+    c_big_leg.Write('leg_%s%s' % (short_name, iso_suffix))
+    c.Close()
+    c_big_leg.Close()
+
+# ------------------------------------------------------------------------------
+def plotAndPrint2D( file_handles
+                  , out_file
+                  , short_name
+                  , iso_suffix
+                  , x_min
+                  , x_max
+                  , y_min
+                  , y_max
+                  , slice_variable_name
+                  , x_title = 'isolation'
+                  ):
+    # get stack and legend
+    ths_list, leg, big_leg = getHistStack2D( file_handles
+                                           , '%s%s' % (short_name, iso_suffix)
+                                           , 'ths_%s%s' % (short_name, iso_suffix)
+                                           , '%s' % short_name
+                                           , x_min
+                                           , x_max
+                                           )
+
+    # get stacks for one sample ata time
+    ths_ss_list, leg_ss_list, big_leg_ss_list = getHistStack2DSingleSample( file_handles
+                                                                          , '%s%s' % (short_name, iso_suffix)
+                                                                          , 'ths_%s%s' % (short_name, iso_suffix)
+                                                                          , '%s' % short_name
+                                                                          , x_min
+                                                                          , x_max
+                                                                          , slice_variable_name
+                                                                          )
+
+    # print sliced stacks canvas
+    for i, ths in enumerate(ths_list):
+        c = printToCanvas( ths=ths
+                         , leg=leg
+                         , canvas_name='c_%s%s__slice_%d' % (short_name, iso_suffix, i)
+                         , x_title=x_title
+                         , y_title='normailzed units'
+                         , x_min = x_min
+                         , x_max = x_max
+                         , y_min = y_min
+                         , y_max = y_max
+                         )
+        # print isolation
+        c.SetLogy()
+        safeMakeDir(out_file, '%s' % short_name)
+        c.Write('%s%s__slice_%d' % (short_name, iso_suffix, i))
+        c.Close()
+
+    # print single sample sliced stacks canvas
+    for i, ths in enumerate(ths_ss_list):
+        label = file_handles[i].label
+        c = printToCanvas( ths=ths
+                         , leg=leg_ss_list[i]
+                         , canvas_name='c_%s%s__%s' % (short_name, iso_suffix, label)
+                         , x_title=x_title
+                         , y_title='normailzed units'
+                         , x_min = x_min
+                         , x_max = x_max
+                         , y_min = y_min
+                         , y_max = y_max
+                         )
+        c.SetLogy()
+        safeMakeDir(out_file, '%s' % short_name)
+        c.Write('%s%s__%s' % (short_name, iso_suffix, label))
+        c.Close()
+
+    # print big legend
+    c_big_leg = printToCanvas( leg=big_leg
+                             , canvas_name='c_leg_%s%s' % (short_name, iso_suffix)
+                             )
+    safeMakeDir(out_file, '%s' % short_name)
+    c_big_leg.Write('leg_%s%s' % (short_name, iso_suffix))
+    c_big_leg.Close()
+
+
+# ------------------------------------------------------------------------------
+def plotIso(file_handles
+           , out_file
+           , lep_flavor = 'el'
+           , iso_suffix = ''
+           , x_min = None
+           , x_max = None
+           , x_title = 'isolation'
+           ):
+    plotAndPrint( file_handles = file_handles
+                , out_file = out_file
+                , short_name = '%s_iso' % lep_flavor
+                , iso_suffix = iso_suffix
+                , x_min = x_min
+                , x_max = x_max
+                , y_min = 1.e-6
+                , y_max = 5.
+                , x_title = x_title
+                )
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    plotAndPrint2D( file_handles = file_handles
+                  , out_file = out_file
+                  , short_name = '%s_iso_pt_bins' % lep_flavor
+                  , iso_suffix = iso_suffix
+                  , x_min = x_min
+                  , x_max = x_max
+                  , y_min = 1.e-6
+                  , y_max = 5.
+                  , x_title = x_title
+                  , slice_variable_name = 'p_{T}'
+                  )
+
+    plotAndPrint2D( file_handles = file_handles
+                  , out_file = out_file
+                  , short_name = '%s_iso_eta_bins' % lep_flavor
+                  , iso_suffix = iso_suffix
+                  , x_min = x_min
+                  , x_max = x_max
+                  , y_min = 1.e-6
+                  , y_max = 5.
+                  , x_title = x_title
+                  , slice_variable_name = '#eta'
+                  )
 
 # ==============================================================================
 if __name__ == '__main__':
@@ -259,56 +561,49 @@ if __name__ == '__main__':
     file_handles = []
     this_color = 1
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # add ttbar
     this_color = ROOT.kBlue
-    file_handles.append(FileHandle( 'rates.105200.ttbar.root'
+    file_handles.append(FileHandle( 'iso.105200.ttbar.root'
                                   , 'ttbar'
                                   , this_color
-                                  , draw_el_re=True
-                                  , draw_el_fr=True
-                                  , draw_mu_re=True
-                                  , draw_mu_fr=True
                                   )
                        )
     this_color += 1
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # add signal
     # rates.127994.signal.root
     # rates.127995.signal.root
     # rates.127996.signal.root
     this_color = ROOT.kRed
-    file_handles.append(FileHandle( 'rates.127994.signal.root'
-                                  , 'signal 127994'
+    file_handles.append(FileHandle( 'iso.127995.signal.root'
+                                  , 'signal 127995'
                                   , this_color
-                                  , draw_el_re=True
-                                  , draw_el_fr=True
-                                  , draw_mu_re=True
-                                  , draw_mu_fr=True
                                   )
                        )
     this_color += 1
 
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    out_file = ROOT.TFile('rates.canv.root', 'RECREATE')
+    out_file = ROOT.TFile('iso.canv.root', 'RECREATE')
 
-    plotRates(file_handles, out_file, 'el', '_PTCONE30'       )
-    plotRates(file_handles, out_file, 'el', '_ETCONE30'       )
-    plotRates(file_handles, out_file, 'el', '_PTCONE20'       )
-    plotRates(file_handles, out_file, 'el', '_ETCONE20'       )
-    plotRates(file_handles, out_file, 'el', '_PTCONE30_CAPPED')
-    plotRates(file_handles, out_file, 'el', '_ETCONE30_CAPPED')
-    plotRates(file_handles, out_file, 'el', '_PTCONE20_CAPPED')
-    plotRates(file_handles, out_file, 'el', '_ETCONE20_CAPPED')
+    plotIso(file_handles, out_file, 'el', '_PTCONE30'       , 0.  , 1., x_title = 'ptcone30/p_{T}'        )
+    plotIso(file_handles, out_file, 'el', '_ETCONE30'       , -0.5, 1., x_title = 'etcone30/p_{T}'        )
+    plotIso(file_handles, out_file, 'el', '_PTCONE20'       , 0.  , 1., x_title = 'ptcone20/p_{T}'        )
+    plotIso(file_handles, out_file, 'el', '_ETCONE20'       , -0.5, 1., x_title = 'etcone20/p_{T}'        )
+    plotIso(file_handles, out_file, 'el', '_PTCONE30_CAPPED', 0.  , 1., x_title = 'ptcone30/min(p_{T},60)')
+    plotIso(file_handles, out_file, 'el', '_ETCONE30_CAPPED', -0.5, 1., x_title = 'etcone30/min(p_{T},60)')
+    plotIso(file_handles, out_file, 'el', '_PTCONE20_CAPPED', 0.  , 1., x_title = 'ptcone20/min(p_{T},60)')
+    plotIso(file_handles, out_file, 'el', '_ETCONE20_CAPPED', -0.5, 1., x_title = 'etcone20/min(p_{T},60)')
 
-    plotRates(file_handles, out_file, 'mu', '_PTCONE30'       )
-    plotRates(file_handles, out_file, 'mu', '_ETCONE30'       )
-    plotRates(file_handles, out_file, 'mu', '_PTCONE20'       )
-    plotRates(file_handles, out_file, 'mu', '_ETCONE20'       )
-    plotRates(file_handles, out_file, 'mu', '_PTCONE30_CAPPED')
-    plotRates(file_handles, out_file, 'mu', '_ETCONE30_CAPPED')
-    plotRates(file_handles, out_file, 'mu', '_PTCONE20_CAPPED')
-    plotRates(file_handles, out_file, 'mu', '_ETCONE20_CAPPED')
+    plotIso(file_handles, out_file, 'mu', '_PTCONE30'       , 0.  , 1., x_title = 'ptcone30/p_{T}'        )
+    plotIso(file_handles, out_file, 'mu', '_ETCONE30'       , -0.5, 1., x_title = 'etcone30/p_{T}'        )
+    plotIso(file_handles, out_file, 'mu', '_PTCONE20'       , 0.  , 1., x_title = 'ptcone20/p_{T}'        )
+    plotIso(file_handles, out_file, 'mu', '_ETCONE20'       , -0.5, 1., x_title = 'etcone20/p_{T}'        )
+    plotIso(file_handles, out_file, 'mu', '_PTCONE30_CAPPED', 0.  , 1., x_title = 'ptcone30/min(p_{T},60)')
+    plotIso(file_handles, out_file, 'mu', '_ETCONE30_CAPPED', -0.5, 1., x_title = 'etcone30/min(p_{T},60)')
+    plotIso(file_handles, out_file, 'mu', '_PTCONE20_CAPPED', 0.  , 1., x_title = 'ptcone20/min(p_{T},60)')
+    plotIso(file_handles, out_file, 'mu', '_ETCONE20_CAPPED', -0.5, 1., x_title = 'etcone20/min(p_{T},60)')
 
     out_file.Close()
-

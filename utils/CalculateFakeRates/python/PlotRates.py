@@ -74,7 +74,6 @@ def makeLegend(hist_list, label_list):
     big_leg.SetFillColor(0)
 
     for h, l in zip(hist_list, label_list):
-        # this_label = '%s (%d entries)' % (l, h.GetEntries())
         this_label = '%s' % l
         leg.AddEntry(    h, this_label)
         big_leg.AddEntry(h, this_label)
@@ -115,10 +114,9 @@ def getHistStack(file_handles, hist_name, stack_name, stack_title):
         if  'mu_fr' in hist_name and not fh.draw_mu_fr: continue
 
         h = fh.getHist(hist_name)
-        if isinstance(h, ROOT.TH1D):
-            ths.Add(h)
-            hist_list.append(h)
-            label_list.append(fh.label)
+        ths.Add(h)
+        hist_list.append(h)
+        label_list.append(fh.label)
 
     leg, big_leg = makeLegend(hist_list, label_list)
     return ths, leg, big_leg
@@ -260,7 +258,7 @@ def plotAndPrint2D( file_handles
                               , y_max = y_max
                               )
         safeMakeDir(out_file, short_name)
-        c_rate.Write('%s%s_eta_bin_%d' % (short_name, suffix, i))
+        c_rate.Write('%s%s_slice_%d' % (short_name, suffix, i))
         c_rate.Close()
     c_big_leg = printToCanvas( leg=big_leg
                              , canvas_name='c_leg_%s%s' % (short_name, suffix)
