@@ -25,9 +25,7 @@ int main(int argc, char** argv)
 
   // Dump cut flow to screen and to file
   cf.printToScreen();
-  // std::cout << "about to print to file\n";
-  cf.printToFile("rates.root");
-  // std::cout << "done printing to file\n";
+  cf.printToFile("iso.root");
 
   return 0;
 }

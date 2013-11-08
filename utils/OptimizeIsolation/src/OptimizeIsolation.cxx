@@ -148,75 +148,101 @@ void OptimizeIsolation::processEvent()
   for (size_t el_it = 0; el_it != num_el; ++el_it) {
     SusyAnalysisTools::ElectronDescription el_desc(m_el_desc->at(el_it));
 
-    float el_pt = m_el_pt->at(el_it)/1000.;
-    float el_pt_capped = (el_pt < 60. ? el_pt : 60.);
-    float el_ptcone30 = m_el_ptcone30->at(el_it)/1000.;
-    float el_etcone30 = m_el_etcone30->at(el_it)/1000.;
-    float el_ptcone20 = m_el_ptcone20->at(el_it)/1000.;
-    float el_etcone20 = m_el_etcone20->at(el_it)/1000.;
+    // get electron kinematic variables
+    double el_eta = fabs(m_el_eta->at(el_it));
+    double el_pt  = m_el_pt->at(el_it)/1000.;
 
-    m_el_iso.at(ISO_PTCONE30)->Fill(el_ptcone30/el_pt, event_weight);
-    m_el_iso.at(ISO_ETCONE30)->Fill(el_etcone30/el_pt, event_weight);
-    m_el_iso.at(ISO_PTCONE20)->Fill(el_ptcone20/el_pt, event_weight);
-    m_el_iso.at(ISO_ETCONE20)->Fill(el_etcone20/el_pt, event_weight);
+    // special versions of pT which are allowed to be no greater than some maximum value
+    double el_pt_for_2d = std::min(el_pt, 99.);
+    double el_pt_capped = std::min(el_pt, 60.);
+
+    // get isolation variables
+    double el_ptcone30 = m_el_ptcone30->at(el_it)/1000.;
+    double el_etcone30 = m_el_etcone30->at(el_it)/1000.;
+    double el_ptcone20 = m_el_ptcone20->at(el_it)/1000.;
+    double el_etcone20 = m_el_etcone20->at(el_it)/1000.;
+
+
+    // fill basic isolation histograms
+    m_el_iso.at(ISO_PTCONE30       )->Fill(el_ptcone30/el_pt       , event_weight);
+    m_el_iso.at(ISO_ETCONE30       )->Fill(el_etcone30/el_pt       , event_weight);
+    m_el_iso.at(ISO_PTCONE20       )->Fill(el_ptcone20/el_pt       , event_weight);
+    m_el_iso.at(ISO_ETCONE20       )->Fill(el_etcone20/el_pt       , event_weight);
     m_el_iso.at(ISO_PTCONE30_CAPPED)->Fill(el_ptcone30/el_pt_capped, event_weight);
     m_el_iso.at(ISO_ETCONE30_CAPPED)->Fill(el_etcone30/el_pt_capped, event_weight);
     m_el_iso.at(ISO_PTCONE20_CAPPED)->Fill(el_ptcone20/el_pt_capped, event_weight);
     m_el_iso.at(ISO_ETCONE20_CAPPED)->Fill(el_etcone20/el_pt_capped, event_weight);
 
-    float pt_for_2d = el_pt;
-    float eta = fabs(m_el_eta->at(el_it));
-    if (pt_for_2d > 99.) pt_for_2d = 99.;
-    m_el_iso_pt_bins.at(ISO_PTCONE30)->Fill(       el_ptcone30/el_pt       , pt_for_2d, event_weight);
-    m_el_iso_pt_bins.at(ISO_ETCONE30)->Fill(       el_etcone30/el_pt       , pt_for_2d, event_weight);
-    m_el_iso_pt_bins.at(ISO_PTCONE20)->Fill(       el_ptcone20/el_pt       , pt_for_2d, event_weight);
-    m_el_iso_pt_bins.at(ISO_ETCONE20)->Fill(       el_etcone20/el_pt       , pt_for_2d, event_weight);
-    m_el_iso_pt_bins.at(ISO_PTCONE30_CAPPED)->Fill(el_ptcone30/el_pt_capped, pt_for_2d, event_weight);
-    m_el_iso_pt_bins.at(ISO_ETCONE30_CAPPED)->Fill(el_etcone30/el_pt_capped, pt_for_2d, event_weight);
-    m_el_iso_pt_bins.at(ISO_PTCONE20_CAPPED)->Fill(el_ptcone20/el_pt_capped, pt_for_2d, event_weight);
-    m_el_iso_pt_bins.at(ISO_ETCONE20_CAPPED)->Fill(el_etcone20/el_pt_capped, pt_for_2d, event_weight);
+    // fill pt-binned isolation histograms
+    m_el_iso_pt_bins.at(ISO_PTCONE30       )->Fill(el_ptcone30/el_pt       , el_pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_ETCONE30       )->Fill(el_etcone30/el_pt       , el_pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_PTCONE20       )->Fill(el_ptcone20/el_pt       , el_pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_ETCONE20       )->Fill(el_etcone20/el_pt       , el_pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_PTCONE30_CAPPED)->Fill(el_ptcone30/el_pt_capped, el_pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_ETCONE30_CAPPED)->Fill(el_etcone30/el_pt_capped, el_pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_PTCONE20_CAPPED)->Fill(el_ptcone20/el_pt_capped, el_pt_for_2d, event_weight);
+    m_el_iso_pt_bins.at(ISO_ETCONE20_CAPPED)->Fill(el_etcone20/el_pt_capped, el_pt_for_2d, event_weight);
 
-    m_el_iso_eta_bins.at(ISO_PTCONE30)->Fill(       el_ptcone30/el_pt       , eta, event_weight);
-    m_el_iso_eta_bins.at(ISO_ETCONE30)->Fill(       el_etcone30/el_pt       , eta, event_weight);
-    m_el_iso_eta_bins.at(ISO_PTCONE20)->Fill(       el_ptcone20/el_pt       , eta, event_weight);
-    m_el_iso_eta_bins.at(ISO_ETCONE20)->Fill(       el_etcone20/el_pt       , eta, event_weight);
-    m_el_iso_eta_bins.at(ISO_PTCONE30_CAPPED)->Fill(el_ptcone30/el_pt_capped, eta, event_weight);
-    m_el_iso_eta_bins.at(ISO_ETCONE30_CAPPED)->Fill(el_etcone30/el_pt_capped, eta, event_weight);
-    m_el_iso_eta_bins.at(ISO_PTCONE20_CAPPED)->Fill(el_ptcone20/el_pt_capped, eta, event_weight);
-    m_el_iso_eta_bins.at(ISO_ETCONE20_CAPPED)->Fill(el_etcone20/el_pt_capped, eta, event_weight);
+    // fill eta-binned isolation histograms
+    m_el_iso_eta_bins.at(ISO_PTCONE30       )->Fill(el_ptcone30/el_pt       , el_eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_ETCONE30       )->Fill(el_etcone30/el_pt       , el_eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_PTCONE20       )->Fill(el_ptcone20/el_pt       , el_eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_ETCONE20       )->Fill(el_etcone20/el_pt       , el_eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_PTCONE30_CAPPED)->Fill(el_ptcone30/el_pt_capped, el_eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_ETCONE30_CAPPED)->Fill(el_etcone30/el_pt_capped, el_eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_PTCONE20_CAPPED)->Fill(el_ptcone20/el_pt_capped, el_eta, event_weight);
+    m_el_iso_eta_bins.at(ISO_ETCONE20_CAPPED)->Fill(el_etcone20/el_pt_capped, el_eta, event_weight);
   }
 
   for (size_t mu_it = 0; mu_it != num_mu; ++mu_it) {
     SusyAnalysisTools::MuonDescription mu_desc(m_mu_desc->at(mu_it));
 
-    float mu_pt = m_mu_pt->at(mu_it)/1000.;
-    float mu_pt_capped = (mu_pt < 60. ? mu_pt : 60.);
-    float mu_ptcone30 = m_mu_ptcone30->at(mu_it)/1000.;
-    float mu_etcone30 = m_mu_etcone30->at(mu_it)/1000.;
-    float mu_ptcone20 = m_mu_ptcone20->at(mu_it)/1000.;
-    float mu_etcone20 = m_mu_etcone20->at(mu_it)/1000.;
+    // get muon kinematic variables
+    double mu_eta = fabs(m_mu_eta->at(mu_it));
+    double mu_pt  = m_mu_pt->at(mu_it)/1000.;
 
-    m_mu_iso.at(ISO_PTCONE30)->Fill(mu_pt, event_weight);
+    // additional eta cut for "fake candidate baseline" muons 
+    if (mu_eta > 2.4) continue;
 
-    m_mu_iso.at(ISO_PTCONE30)->Fill(mu_ptcone30/mu_pt, event_weight);
-    m_mu_iso.at(ISO_ETCONE30)->Fill(mu_etcone30/mu_pt, event_weight);
-    m_mu_iso.at(ISO_PTCONE20)->Fill(mu_ptcone20/mu_pt, event_weight);
-    m_mu_iso.at(ISO_ETCONE20)->Fill(mu_etcone20/mu_pt, event_weight);
+    // special versions of pT which are allowed to be no greater than some maximum value
+    double mu_pt_for_2d = std::min(mu_pt, 99.);
+    double mu_pt_capped = std::min(mu_pt, 60.);
+
+    // get isolation variables
+    double mu_ptcone30 = m_mu_ptcone30->at(mu_it)/1000.;
+    double mu_etcone30 = m_mu_etcone30->at(mu_it)/1000.;
+    double mu_ptcone20 = m_mu_ptcone20->at(mu_it)/1000.;
+    double mu_etcone20 = m_mu_etcone20->at(mu_it)/1000.;
+
+    // fill basic isolation histograms
+    m_mu_iso.at(ISO_PTCONE30       )->Fill(mu_ptcone30/mu_pt       , event_weight);
+    m_mu_iso.at(ISO_ETCONE30       )->Fill(mu_etcone30/mu_pt       , event_weight);
+    m_mu_iso.at(ISO_PTCONE20       )->Fill(mu_ptcone20/mu_pt       , event_weight);
+    m_mu_iso.at(ISO_ETCONE20       )->Fill(mu_etcone20/mu_pt       , event_weight);
     m_mu_iso.at(ISO_PTCONE30_CAPPED)->Fill(mu_ptcone30/mu_pt_capped, event_weight);
     m_mu_iso.at(ISO_ETCONE30_CAPPED)->Fill(mu_etcone30/mu_pt_capped, event_weight);
     m_mu_iso.at(ISO_PTCONE20_CAPPED)->Fill(mu_ptcone20/mu_pt_capped, event_weight);
     m_mu_iso.at(ISO_ETCONE20_CAPPED)->Fill(mu_etcone20/mu_pt_capped, event_weight);
 
-    float pt_for_2d = mu_pt;
-    if (pt_for_2d > 99.) pt_for_2d = 99.;
-    m_mu_iso_pt_bins.at(ISO_PTCONE30)->Fill(mu_ptcone30/mu_pt, pt_for_2d, event_weight);
-    m_mu_iso_pt_bins.at(ISO_ETCONE30)->Fill(mu_etcone30/mu_pt, pt_for_2d, event_weight);
-    m_mu_iso_pt_bins.at(ISO_PTCONE20)->Fill(mu_ptcone20/mu_pt, pt_for_2d, event_weight);
-    m_mu_iso_pt_bins.at(ISO_ETCONE20)->Fill(mu_etcone20/mu_pt, pt_for_2d, event_weight);
-    m_mu_iso_pt_bins.at(ISO_PTCONE30_CAPPED)->Fill(mu_ptcone30/mu_pt_capped, pt_for_2d, event_weight);
-    m_mu_iso_pt_bins.at(ISO_ETCONE30_CAPPED)->Fill(mu_etcone30/mu_pt_capped, pt_for_2d, event_weight);
-    m_mu_iso_pt_bins.at(ISO_PTCONE20_CAPPED)->Fill(mu_ptcone20/mu_pt_capped, pt_for_2d, event_weight);
-    m_mu_iso_pt_bins.at(ISO_ETCONE20_CAPPED)->Fill(mu_etcone20/mu_pt_capped, pt_for_2d, event_weight);
+    // fill pt-binned isolation histograms
+    m_mu_iso_pt_bins.at(ISO_PTCONE30       )->Fill(mu_ptcone30/mu_pt       , mu_pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_ETCONE30       )->Fill(mu_etcone30/mu_pt       , mu_pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_PTCONE20       )->Fill(mu_ptcone20/mu_pt       , mu_pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_ETCONE20       )->Fill(mu_etcone20/mu_pt       , mu_pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_PTCONE30_CAPPED)->Fill(mu_ptcone30/mu_pt_capped, mu_pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_ETCONE30_CAPPED)->Fill(mu_etcone30/mu_pt_capped, mu_pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_PTCONE20_CAPPED)->Fill(mu_ptcone20/mu_pt_capped, mu_pt_for_2d, event_weight);
+    m_mu_iso_pt_bins.at(ISO_ETCONE20_CAPPED)->Fill(mu_etcone20/mu_pt_capped, mu_pt_for_2d, event_weight);
+
+    // fill eta-binned isolation histograms
+    m_mu_iso_eta_bins.at(ISO_PTCONE30       )->Fill(mu_ptcone30/mu_pt       , mu_eta, event_weight);
+    m_mu_iso_eta_bins.at(ISO_ETCONE30       )->Fill(mu_etcone30/mu_pt       , mu_eta, event_weight);
+    m_mu_iso_eta_bins.at(ISO_PTCONE20       )->Fill(mu_ptcone20/mu_pt       , mu_eta, event_weight);
+    m_mu_iso_eta_bins.at(ISO_ETCONE20       )->Fill(mu_etcone20/mu_pt       , mu_eta, event_weight);
+    m_mu_iso_eta_bins.at(ISO_PTCONE30_CAPPED)->Fill(mu_ptcone30/mu_pt_capped, mu_eta, event_weight);
+    m_mu_iso_eta_bins.at(ISO_ETCONE30_CAPPED)->Fill(mu_etcone30/mu_pt_capped, mu_eta, event_weight);
+    m_mu_iso_eta_bins.at(ISO_PTCONE20_CAPPED)->Fill(mu_ptcone20/mu_pt_capped, mu_eta, event_weight);
+    m_mu_iso_eta_bins.at(ISO_ETCONE20_CAPPED)->Fill(mu_etcone20/mu_pt_capped, mu_eta, event_weight);
   }
 }
 
