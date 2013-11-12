@@ -221,7 +221,6 @@ def getHistStack2D( file_handles
             truncateXaxis(h_tmp, x_min, x_max)
             normalizeHist(h_tmp)
             h_tmp.SetLineWidth(3)
-
             ths_list[slice].Add(h_tmp)
 
         hist_list_2d.append(h_2d)
@@ -377,7 +376,7 @@ def getCutValueLabels(chosen_cut_values):
 def plotAndPrint( file_handles
                 , out_file
                 , short_name
-                , iso_suffix
+                , suffix
                 , x_min
                 , x_max
                 , y_min
@@ -386,11 +385,11 @@ def plotAndPrint( file_handles
                 ):
     # scan and pick chosen cut values for each histogram
     chosen_cut_values = { '0.90':getCutValues( file_handles
-                                             , '%s%s' % (short_name, iso_suffix)
+                                             , '%s%s' % (short_name, suffix)
                                              , 0.90
                                              )
                         , '0.95':getCutValues( file_handles
-                                             , '%s%s' % (short_name, iso_suffix)
+                                             , '%s%s' % (short_name, suffix)
                                              , 0.95
                                              )
                         }
@@ -398,17 +397,16 @@ def plotAndPrint( file_handles
 
     # get stack and legend
     ths, leg, big_leg = getHistStack( file_handles
-                                    , '%s%s' % (short_name, iso_suffix)
-                                    , 'ths_%s%s' % (short_name, iso_suffix)
-                                    , '%s' % short_name
+                                    , '%s%s' % (short_name, suffix)
+                                    , 'ths_%s%s' % (short_name, suffix)
+                                    , short_name
                                     , x_min
                                     , x_max
                                     )
-
     # print stack and legend to canvas
     c = printToCanvas( ths=ths
                      , leg=leg
-                     , canvas_name='c_%s%s' % (short_name, iso_suffix)
+                     , canvas_name='c_%s%s' % (short_name, suffix)
                      , labels = cut_value_labels
                      , x_title=x_title
                      , y_title='normailzed units'
@@ -418,16 +416,16 @@ def plotAndPrint( file_handles
                      , y_max = y_max
                      )
     c_big_leg = printToCanvas( leg=big_leg
-                             , canvas_name='c_leg_%s%s' % (short_name, iso_suffix)
+                             , canvas_name='c_leg_%s%s' % (short_name, suffix)
                              )
 
     # make directory for isolation
-    safeMakeDir(out_file, '%s' % short_name)
+    safeMakeDir(out_file, short_name)
 
-    # print isolation
+    # print isolation to file
     c.SetLogy()
-    c.Write('%s%s' % (short_name, iso_suffix))
-    c_big_leg.Write('leg_%s%s' % (short_name, iso_suffix))
+    c.Write('%s%s' % (short_name, suffix))
+    c_big_leg.Write('leg_%s%s' % (short_name, suffix))
     c.Close()
     c_big_leg.Close()
 
@@ -435,7 +433,7 @@ def plotAndPrint( file_handles
 def plotAndPrint2D( file_handles
                   , out_file
                   , short_name
-                  , iso_suffix
+                  , suffix
                   , x_min
                   , x_max
                   , y_min
@@ -445,8 +443,8 @@ def plotAndPrint2D( file_handles
                   ):
     # get stack and legend
     ths_list, leg, big_leg = getHistStack2D( file_handles
-                                           , '%s%s' % (short_name, iso_suffix)
-                                           , 'ths_%s%s' % (short_name, iso_suffix)
+                                           , '%s%s' % (short_name, suffix)
+                                           , 'ths_%s%s' % (short_name, suffix)
                                            , '%s' % short_name
                                            , x_min
                                            , x_max
@@ -454,8 +452,8 @@ def plotAndPrint2D( file_handles
 
     # get stacks for one sample ata time
     ths_ss_list, leg_ss_list, big_leg_ss_list = getHistStack2DSingleSample( file_handles
-                                                                          , '%s%s' % (short_name, iso_suffix)
-                                                                          , 'ths_%s%s' % (short_name, iso_suffix)
+                                                                          , '%s%s' % (short_name, suffix)
+                                                                          , 'ths_%s%s' % (short_name, suffix)
                                                                           , '%s' % short_name
                                                                           , x_min
                                                                           , x_max
@@ -466,7 +464,7 @@ def plotAndPrint2D( file_handles
     for i, ths in enumerate(ths_list):
         c = printToCanvas( ths=ths
                          , leg=leg
-                         , canvas_name='c_%s%s__slice_%d' % (short_name, iso_suffix, i)
+                         , canvas_name='c_%s%s__slice_%d' % (short_name, suffix, i)
                          , x_title=x_title
                          , y_title='normailzed units'
                          , x_min = x_min
@@ -476,8 +474,8 @@ def plotAndPrint2D( file_handles
                          )
         # print isolation
         c.SetLogy()
-        safeMakeDir(out_file, '%s' % short_name)
-        c.Write('%s%s__slice_%d' % (short_name, iso_suffix, i))
+        safeMakeDir(out_file, short_name)
+        c.Write('%s%s__slice_%d' % (short_name, suffix, i))
         c.Close()
 
     # print single sample sliced stacks canvas
@@ -485,7 +483,7 @@ def plotAndPrint2D( file_handles
         label = file_handles[i].label
         c = printToCanvas( ths=ths
                          , leg=leg_ss_list[i]
-                         , canvas_name='c_%s%s__%s' % (short_name, iso_suffix, label)
+                         , canvas_name='c_%s%s__%s' % (short_name, suffix, label)
                          , x_title=x_title
                          , y_title='normailzed units'
                          , x_min = x_min
@@ -495,15 +493,15 @@ def plotAndPrint2D( file_handles
                          )
         c.SetLogy()
         safeMakeDir(out_file, '%s' % short_name)
-        c.Write('%s%s__%s' % (short_name, iso_suffix, label))
+        c.Write('%s%s__%s' % (short_name, suffix, label))
         c.Close()
 
     # print big legend
     c_big_leg = printToCanvas( leg=big_leg
-                             , canvas_name='c_leg_%s%s' % (short_name, iso_suffix)
+                             , canvas_name='c_leg_%s%s' % (short_name, suffix)
                              )
     safeMakeDir(out_file, '%s' % short_name)
-    c_big_leg.Write('leg_%s%s' % (short_name, iso_suffix))
+    c_big_leg.Write('leg_%s%s' % (short_name, suffix))
     c_big_leg.Close()
 
 
@@ -511,7 +509,7 @@ def plotAndPrint2D( file_handles
 def plotIso(file_handles
            , out_file
            , lep_flavor = 'el'
-           , iso_suffix = ''
+           , suffix = ''
            , x_min = None
            , x_max = None
            , x_title = 'isolation'
@@ -519,7 +517,7 @@ def plotIso(file_handles
     plotAndPrint( file_handles = file_handles
                 , out_file = out_file
                 , short_name = '%s_iso' % lep_flavor
-                , iso_suffix = iso_suffix
+                , suffix = suffix
                 , x_min = x_min
                 , x_max = x_max
                 , y_min = 1.e-6
@@ -531,7 +529,7 @@ def plotIso(file_handles
     plotAndPrint2D( file_handles = file_handles
                   , out_file = out_file
                   , short_name = '%s_iso_pt_bins' % lep_flavor
-                  , iso_suffix = iso_suffix
+                  , suffix = suffix
                   , x_min = x_min
                   , x_max = x_max
                   , y_min = 1.e-6
@@ -543,7 +541,7 @@ def plotIso(file_handles
     plotAndPrint2D( file_handles = file_handles
                   , out_file = out_file
                   , short_name = '%s_iso_eta_bins' % lep_flavor
-                  , iso_suffix = iso_suffix
+                  , suffix = suffix
                   , x_min = x_min
                   , x_max = x_max
                   , y_min = 1.e-6

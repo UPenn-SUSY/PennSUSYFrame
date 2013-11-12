@@ -23,7 +23,7 @@ namespace NtupleHelper
                  , ISO_STYLE_STRONG_CONE_30
                  , ISO_STYLE_EWK_PP
                  , ISO_STYLE_EWK_HIGGS_PP
-                 , ISO_STYLE_STRONG_PP
+                 , ISO_STYLE_STRONG_CONE_20_PP
                  , ISO_STYLE_STRONG_CONE_30_PP
                  , ISO_STYLE_N
                  };
@@ -45,7 +45,7 @@ namespace NtupleHelper
                                                  , "STRONG_30"
                                                  , "EWK_PP"
                                                  , "HIGGS_PP"
-                                                 , "STRONG_PP"
+                                                 , "STRONG_20_PP"
                                                  , "STRONG_30_PP"
                                                  , "NONE"
                                                  };

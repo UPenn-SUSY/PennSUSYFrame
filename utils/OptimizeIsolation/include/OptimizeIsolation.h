@@ -54,11 +54,29 @@ class OptimizeIsolation : public NtupleHelper::NtupleLooper
     std::vector<TH1D*> m_el_iso;
     std::vector<TH1D*> m_mu_iso;
 
+    std::vector<TH1D*> m_el_iso_prompt;
+    std::vector<TH1D*> m_mu_iso_prompt;
+
+    std::vector<TH1D*> m_el_iso_fake;
+    std::vector<TH1D*> m_mu_iso_fake;
+
     std::vector<TH2D*> m_el_iso_pt_bins;
     std::vector<TH2D*> m_mu_iso_pt_bins;
 
+    std::vector<TH2D*> m_el_iso_pt_bins_prompt;
+    std::vector<TH2D*> m_mu_iso_pt_bins_prompt;
+
+    std::vector<TH2D*> m_el_iso_pt_bins_fake;
+    std::vector<TH2D*> m_mu_iso_pt_bins_fake;
+
     std::vector<TH2D*> m_el_iso_eta_bins;
     std::vector<TH2D*> m_mu_iso_eta_bins;
+
+    std::vector<TH2D*> m_el_iso_eta_bins_prompt;
+    std::vector<TH2D*> m_mu_iso_eta_bins_prompt;
+
+    std::vector<TH2D*> m_el_iso_eta_bins_fake;
+    std::vector<TH2D*> m_mu_iso_eta_bins_fake;
 };
 
 #endif
