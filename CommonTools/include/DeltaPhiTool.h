@@ -31,6 +31,10 @@ namespace CommonTools{
     static double getDeltaPhi( FLAVOR_CHANNEL
                              , const std::vector<Electron*>&
                              , const std::vector<Muon*>&
+                             );
+    static double getDeltaPhi( FLAVOR_CHANNEL
+                             , const std::vector<Electron*>&
+                             , const std::vector<Muon*>&
                              , const Jet*
                              );
 

@@ -11,6 +11,7 @@
 #include "AtlasSFrameUtils/include/MuonContainer.h"
 #include "AtlasSFrameUtils/include/ToolBase.h"
 #include "CommonTools/include/TopTagTool.h"
+#include "CommonTools/include/DeltaPhiTool.h"
 
 // -----------------------------------------------------------------------------
 SelectionTools::SignalRegionTool::SignalRegionTool(
@@ -41,6 +42,12 @@ SelectionTools::SignalRegionTool::SignalRegionTool(
 
   DeclareProperty("sr_ss_em_min_emma_mt", c_sr_ss_em_emma_mt_min = -1);
   DeclareProperty("sr_ss_em_max_emma_mt", c_sr_ss_em_emma_mt_max = 50e3);
+
+  DeclareProperty("sr_ss_dphi_ll_min", c_sr_ss_dphi_ll_min = 1.3);
+  DeclareProperty("sr_ss_dphi_ll_max", c_sr_ss_dphi_ll_max = -1);
+
+  DeclareProperty("sr_ss_num_l_jets_min", c_sr_ss_num_l_jets_min = 1);
+  DeclareProperty("sr_ss_num_l_jets_max", c_sr_ss_num_l_jets_max = -1);
 }
 
 // -----------------------------------------------------------------------------
@@ -122,6 +129,7 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check SR SS cuts
+  // check metrel and emma mt
   if (event->getFlavorChannel() == FLAVOR_EE) {
     sr_helper->setPassSRSSMllVeto(true);
     sr_helper->setPassSRSSMetRel( passCut( met_rel
@@ -166,6 +174,25 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
                                 );
   }
 
+  // check dphi_ll
+  double dphi_ll = CommonTools::DeltaPhiTool::getDeltaPhi( event->getFlavorChannel()
+                                                         , electrons.getElectrons(EL_GOOD)
+                                                         , muons.getMuons(MU_GOOD)
+                                                         );
+  sr_helper->setPassSRSSDphill( passCut( dphi_ll
+                                       , c_sr_ss_dphi_ll_min
+                                       , c_sr_ss_dphi_ll_max
+                                       )
+                              );
+
+  // check number of l jets
+  int num_l_jets = jets.num(JET_LIGHT);
+  sr_helper->setPassSRSSNumLJets( passCut( num_l_jets
+                                         , c_sr_ss_num_l_jets_min
+                                         , c_sr_ss_num_l_jets_max
+                                         )
+                                );
+
   // Check for signal regions
   event_desc->setSRSS( passSRSS(event_desc, sr_helper));
 }
@@ -186,7 +213,7 @@ bool SelectionTools::SignalRegionTool::passSRSS(
   if (sr_helper->getPassFJetVeto() == false) return false;
 
   // require we have L jets
-  if (sr_helper->getPassLJetVeto() == true ) return false;
+  if (sr_helper->getPassSRSSNumLJets() == false) return false;
 
   // Z veto
   if (  event_desc->getFlavorChannel() == FLAVOR_EE
@@ -201,6 +228,9 @@ bool SelectionTools::SignalRegionTool::passSRSS(
 
   // emma_mt cut
   if (sr_helper->getPassSRSSEmmaMt() == false) return false;
+
+  // dphi cut
+  if (sr_helper->getPassSRSSDphill() == false) return false;
 
   return true;
 }

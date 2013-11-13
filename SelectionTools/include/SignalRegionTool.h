@@ -79,6 +79,12 @@ namespace SelectionTools
     double c_sr_ss_em_emma_mt_min;
     double c_sr_ss_em_emma_mt_max;
 
+    double c_sr_ss_dphi_ll_min;
+    double c_sr_ss_dphi_ll_max;
+
+    int c_sr_ss_num_l_jets_min;
+    int c_sr_ss_num_l_jets_max;
+
     // helper function to check if a cut is passed
     bool passCut(double test, double min, double max);
 

@@ -29,10 +29,11 @@ ull_t SusyAnalysisTools::SRHelper::toInt() const
   event_desc += getIntComp(m_pass_z_veto    , ADD_Z_VETO    );
   event_desc += getIntComp(m_pass_top_veto  , ADD_TOP_VETO  );
 
-  event_desc += getIntComp(m_pass_sr_ss_mll_veto, ADD_SR_SS_MLL_VETO);
-  event_desc += getIntComp(m_pass_sr_ss_emma_mt , ADD_SR_SS_EMMA_MT );
-  event_desc += getIntComp(m_pass_sr_ss_met_rel , ADD_SR_SS_MET_REL );
-  event_desc += getIntComp(m_pass_sr_ss_dphi_ll , ADD_SR_SS_DPHI_LL );
+  event_desc += getIntComp(m_pass_sr_ss_mll_veto  , ADD_SR_SS_MLL_VETO   );
+  event_desc += getIntComp(m_pass_sr_ss_emma_mt   , ADD_SR_SS_EMMA_MT    );
+  event_desc += getIntComp(m_pass_sr_ss_met_rel   , ADD_SR_SS_MET_REL    );
+  event_desc += getIntComp(m_pass_sr_ss_dphi_ll   , ADD_SR_SS_DPHI_LL    );
+  event_desc += getIntComp(m_pass_sr_ss_num_l_jets, ADD_SR_SS_NUM_L_JETS );
 
   return event_desc;
 }
@@ -58,10 +59,11 @@ void SusyAnalysisTools::SRHelper::set(const ull_t& rhs)
   m_pass_z_veto     = getComponent(rhs, ADD_Z_VETO    , SIZE_BOOL);
   m_pass_top_veto   = getComponent(rhs, ADD_TOP_VETO  , SIZE_BOOL);
 
-  m_pass_sr_ss_mll_veto = getComponent(rhs,  ADD_SR_SS_MLL_VETO, SIZE_BOOL);
-  m_pass_sr_ss_emma_mt  = getComponent(rhs,  ADD_SR_SS_EMMA_MT , SIZE_BOOL);
-  m_pass_sr_ss_met_rel  = getComponent(rhs,  ADD_SR_SS_MET_REL , SIZE_BOOL);
-  m_pass_sr_ss_dphi_ll  = getComponent(rhs,  ADD_SR_SS_DPHI_LL , SIZE_BOOL);
+  m_pass_sr_ss_mll_veto   = getComponent(rhs,  ADD_SR_SS_MLL_VETO  , SIZE_BOOL);
+  m_pass_sr_ss_emma_mt    = getComponent(rhs,  ADD_SR_SS_EMMA_MT   , SIZE_BOOL);
+  m_pass_sr_ss_met_rel    = getComponent(rhs,  ADD_SR_SS_MET_REL   , SIZE_BOOL);
+  m_pass_sr_ss_dphi_ll    = getComponent(rhs,  ADD_SR_SS_DPHI_LL   , SIZE_BOOL);
+  m_pass_sr_ss_num_l_jets = getComponent(rhs,  ADD_SR_SS_NUM_L_JETS, SIZE_BOOL);
 }
 
 // -----------------------------------------------------------------------------
@@ -136,6 +138,12 @@ void SusyAnalysisTools::SRHelper::setPassSRSSDphill(bool pass)
 }
 
 // -----------------------------------------------------------------------------
+void SusyAnalysisTools::SRHelper::setPassSRSSNumLJets(bool pass)
+{
+  m_pass_sr_ss_num_l_jets = pass;
+}
+
+// -----------------------------------------------------------------------------
 bool SusyAnalysisTools::SRHelper::getPassLJetVeto()
 {
   return m_pass_l_jet_veto;
@@ -187,6 +195,12 @@ bool SusyAnalysisTools::SRHelper::getPassSRSSMetRel()
 bool SusyAnalysisTools::SRHelper::getPassSRSSDphill()
 {
   return m_pass_sr_ss_dphi_ll;
+}
+
+// -----------------------------------------------------------------------------
+bool SusyAnalysisTools::SRHelper::getPassSRSSNumLJets()
+{
+  return m_pass_sr_ss_num_l_jets;
 }
 
 // -----------------------------------------------------------------------------

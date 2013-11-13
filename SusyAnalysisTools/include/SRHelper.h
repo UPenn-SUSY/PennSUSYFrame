@@ -36,6 +36,7 @@ namespace SusyAnalysisTools
       void setPassSRSSEmmaMt(bool);
       void setPassSRSSMetRel(bool);
       void setPassSRSSDphill(bool);
+      void setPassSRSSNumLJets(bool);
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       // getter methods
@@ -49,6 +50,7 @@ namespace SusyAnalysisTools
       bool getPassSRSSEmmaMt();
       bool getPassSRSSMetRel();
       bool getPassSRSSDphill();
+      bool getPassSRSSNumLJets();
 
       bool pass(   const SRHelper&) const;
       bool reverse(const SRHelper&) const;
@@ -64,10 +66,11 @@ namespace SusyAnalysisTools
       static const unsigned int ADD_Z_VETO     = 4;
       static const unsigned int ADD_TOP_VETO   = 5;
 
-      static const unsigned int ADD_SR_SS_MLL_VETO  = 10;
-      static const unsigned int ADD_SR_SS_EMMA_MT   = 11;
-      static const unsigned int ADD_SR_SS_MET_REL   = 12;
-      static const unsigned int ADD_SR_SS_DPHI_LL   = 13;
+      static const unsigned int ADD_SR_SS_MLL_VETO   = 10;
+      static const unsigned int ADD_SR_SS_EMMA_MT    = 11;
+      static const unsigned int ADD_SR_SS_MET_REL    = 12;
+      static const unsigned int ADD_SR_SS_DPHI_LL    = 13;
+      static const unsigned int ADD_SR_SS_NUM_L_JETS = 14;
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       bool m_pass_l_jet_veto;
@@ -80,6 +83,7 @@ namespace SusyAnalysisTools
       bool m_pass_sr_ss_emma_mt;
       bool m_pass_sr_ss_met_rel;
       bool m_pass_sr_ss_dphi_ll;
+      bool m_pass_sr_ss_num_l_jets;
 
       // TODO move implementation to icc file
       template <class T>
