@@ -611,10 +611,23 @@ void CycleBase::PublishHists()
 {
   //List of Histograms given to parent cycle
   TH1D* h_list = 0;
-  if(m_histoMap->size()) h_list = SCycleBase::Book( TH1D((std::string(GetName()) + "_hist_list").c_str(), "", 1, 0, 1) );
-  else return;
+  if(m_histoMap->size()) {
+    h_list = SCycleBase::Book( TH1D((std::string(GetName()) + "_hist_list").c_str()
+                                   , ""
+                                   , 1
+                                   , 0
+                                   , 1
+                                   )
+                             );
+  }
+  else {
+    return;
+  }
 
-  for(std::map<std::pair<std::string,std::string>,TH1*>::const_iterator itr = m_histoMap->begin(); itr != m_histoMap->end(); ++itr){
+  for ( std::map<std::pair<std::string,std::string>,TH1*>::const_iterator itr = m_histoMap->begin()
+      ; itr != m_histoMap->end()
+      ; ++itr
+      ) {
     const char* dir = 0;
     if((*itr).first.second.size()) dir = (*itr).first.second.c_str();
     SCycleBase::Book( *((*itr).second), dir );

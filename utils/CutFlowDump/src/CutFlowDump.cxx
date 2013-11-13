@@ -296,13 +296,14 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   // ++bin_num;
 
   // SR SS dphi_ll
-  pass_sr_ss = (pass_sr_ss && true);
+  pass_sr_ss = (pass_sr_ss && sr_helper.getPassSRSSDphill());
   if (pass_sr_ss)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
 
   // SR SS F jet veto
-  pass_sr_ss = (pass_sr_ss && pass_f_jet_veto);
+  // pass_sr_ss = (pass_sr_ss && pass_f_jet_veto);
+  pass_sr_ss = (pass_sr_ss && true);
   if (pass_sr_ss)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
@@ -321,7 +322,7 @@ void CutFlowDump::checkEvent(PHASE_SPACE phase, WEIGHTS weight_type)
   ++bin_num;
 
   // SR SS >= 1 L jet
-  pass_sr_ss = (pass_sr_ss && !pass_l_jet_veto);
+  pass_sr_ss = (pass_sr_ss && sr_helper.getPassSRSSNumLJets());
   if (pass_sr_ss)
     fillHist(phase, weight_type, bin_num, weight);
   ++bin_num;
