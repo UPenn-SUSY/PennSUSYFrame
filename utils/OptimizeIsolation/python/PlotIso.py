@@ -89,6 +89,7 @@ class FileHandle(object):
         print 'getting hist: %s from file: %s' % (hist_name, self.file_name)
         h = self.file.Get(hist_name)
         if normalize:
+            h.SetName('%s_norm' % h.GetName())
             normalizeHist(h)
         h.SetLineColor(self.color)
         h.SetLineWidth(3)
@@ -154,7 +155,7 @@ def makeLegendFHL(file_handle_list, hist_name):
     big_leg = ROOT.TLegend(big_leg_x1, big_leg_y1, big_leg_x2, big_leg_y2)
 
     for fhl in file_handle_list:
-        h = fhl.getHist(hist_name, True)
+        h = fhl.getHist(hist_name, False)
         leg.AddEntry(    h, fhl.label)
         big_leg.AddEntry(h, fhl.label)
 
@@ -167,12 +168,13 @@ def getHistStack( file_handles
                 , stack_title
                 , x_min = None
                 , x_max = None
+                , normalize = True
                 ):
     hist_list = []
     label_list = []
     ths = ROOT.THStack(stack_name, stack_title)
     for fh in file_handles:
-        h = fh.getHist(hist_name, True)
+        h = fh.getHist(hist_name, normalize)
         findTargetCut(h, 0.90)
         findTargetCut(h, 0.95)
         h.Rebin(5)
@@ -193,13 +195,14 @@ def getHistStack2D( file_handles
                   , stack_title
                   , x_min
                   , x_max
+                  , normalize = True
                   ):
     hist_list_2d = []
     label_list = []
     ths_list = []
     num_slices = 0
     for fh in file_handles:
-        h_2d = fh.getHist(hist_name, True)
+        h_2d = fh.getHist(hist_name, normalize)
         this_num_slices = h_2d.GetNbinsY()
         if num_slices == 0:
             num_slices = this_num_slices
@@ -219,7 +222,8 @@ def getHistStack2D( file_handles
                                     )
             h_tmp.Rebin(5)
             truncateXaxis(h_tmp, x_min, x_max)
-            normalizeHist(h_tmp)
+            if normalize:
+                normalizeHist(h_tmp)
             h_tmp.SetLineWidth(3)
             ths_list[slice].Add(h_tmp)
 
@@ -237,6 +241,7 @@ def getHistStack2DSingleSample( file_handles
                               , x_min
                               , x_max
                               , slice_variable_name = None
+                              , normalize = True
                               ):
     ths_list = []
     leg_list = []
@@ -245,7 +250,7 @@ def getHistStack2DSingleSample( file_handles
         hist_list = []
         label_list = []
 
-        h_2d = fh.getHist(hist_name, True)
+        h_2d = fh.getHist(hist_name, False)
         this_num_slices = h_2d.GetNbinsY()
         tmp_ths = ROOT.THStack( '%s__%s' % (stack_name, fh.label)
                               , '%s - %s' % (stack_title, fh.label)
@@ -260,7 +265,8 @@ def getHistStack2DSingleSample( file_handles
                                     )
             h_tmp.Rebin(5)
             truncateXaxis(h_tmp, x_min, x_max)
-            normalizeHist(h_tmp)
+            if normalize:
+                normalizeHist(h_tmp)
             h_tmp.SetLineWidth(3)
             h_tmp.SetLineColor(color_list[slice])
 
@@ -282,7 +288,6 @@ def getHistStack2DSingleSample( file_handles
 
 # ------------------------------------------------------------------------------
 def getCutValues(file_handles, hist_name, target_eff):
-    print 'getCutValues()'
 
     cut_values = []
     for fh in file_handles:
@@ -345,6 +350,11 @@ def printToCanvas( ths = None
         leg.Draw()
     if labels is not None:
         for lol in labels:
+            if isinstance(lol, ROOT.TLine):
+                new_y_min = ths.GetHistogram().GetMinimum()
+                new_y_max = ths.GetHistogram().GetMaximum()
+                lol.SetY1(new_y_min)
+                lol.SetY2(new_y_max)
             lol.Draw()
     return c
 
@@ -382,6 +392,7 @@ def plotAndPrint( file_handles
                 , y_min
                 , y_max
                 , x_title = 'isolation'
+                , normalize = True
                 ):
     # scan and pick chosen cut values for each histogram
     chosen_cut_values = { '0.90':getCutValues( file_handles
@@ -402,6 +413,7 @@ def plotAndPrint( file_handles
                                     , short_name
                                     , x_min
                                     , x_max
+                                    , normalize
                                     )
     # print stack and legend to canvas
     c = printToCanvas( ths=ths
@@ -409,7 +421,7 @@ def plotAndPrint( file_handles
                      , canvas_name='c_%s%s' % (short_name, suffix)
                      , labels = cut_value_labels
                      , x_title=x_title
-                     , y_title='normailzed units'
+                     , y_title='normalized units' if normalize else 'events'
                      , x_min = x_min
                      , x_max = x_max
                      , y_min = y_min
@@ -420,7 +432,7 @@ def plotAndPrint( file_handles
                              )
 
     # make directory for isolation
-    safeMakeDir(out_file, short_name)
+    safeMakeDir(out_file, '%s%s' % (short_name, '_norm' if normalize else '') )
 
     # print isolation to file
     c.SetLogy()
@@ -440,6 +452,7 @@ def plotAndPrint2D( file_handles
                   , y_max
                   , slice_variable_name
                   , x_title = 'isolation'
+                  , normalize = True
                   ):
     # get stack and legend
     ths_list, leg, big_leg = getHistStack2D( file_handles
@@ -448,6 +461,7 @@ def plotAndPrint2D( file_handles
                                            , '%s' % short_name
                                            , x_min
                                            , x_max
+                                           , normalize = normalize
                                            )
 
     # get stacks for one sample ata time
@@ -458,6 +472,7 @@ def plotAndPrint2D( file_handles
                                                                           , x_min
                                                                           , x_max
                                                                           , slice_variable_name
+                                                                          , normalize = normalize
                                                                           )
 
     # print sliced stacks canvas
@@ -466,7 +481,7 @@ def plotAndPrint2D( file_handles
                          , leg=leg
                          , canvas_name='c_%s%s__slice_%d' % (short_name, suffix, i)
                          , x_title=x_title
-                         , y_title='normailzed units'
+                         , y_title='normalized units' if normalize else 'events'
                          , x_min = x_min
                          , x_max = x_max
                          , y_min = y_min
@@ -474,7 +489,7 @@ def plotAndPrint2D( file_handles
                          )
         # print isolation
         c.SetLogy()
-        safeMakeDir(out_file, short_name)
+        safeMakeDir(out_file, '%s%s' % (short_name, '_norm' if normalize else '') )
         c.Write('%s%s__slice_%d' % (short_name, suffix, i))
         c.Close()
 
@@ -485,14 +500,14 @@ def plotAndPrint2D( file_handles
                          , leg=leg_ss_list[i]
                          , canvas_name='c_%s%s__%s' % (short_name, suffix, label)
                          , x_title=x_title
-                         , y_title='normailzed units'
+                         , y_title='normalized units' if normalize else 'events'
                          , x_min = x_min
                          , x_max = x_max
                          , y_min = y_min
                          , y_max = y_max
                          )
         c.SetLogy()
-        safeMakeDir(out_file, '%s' % short_name)
+        safeMakeDir(out_file, '%s%s' % (short_name, '_norm' if normalize else '') )
         c.Write('%s%s__%s' % (short_name, suffix, label))
         c.Close()
 
@@ -500,7 +515,7 @@ def plotAndPrint2D( file_handles
     c_big_leg = printToCanvas( leg=big_leg
                              , canvas_name='c_leg_%s%s' % (short_name, suffix)
                              )
-    safeMakeDir(out_file, '%s' % short_name)
+    safeMakeDir(out_file, '%s' % '%s%s' % (short_name, '_norm' if normalize else '') )
     c_big_leg.Write('leg_%s%s' % (short_name, suffix))
     c_big_leg.Close()
 
@@ -514,41 +529,49 @@ def plotIso(file_handles
            , x_max = None
            , x_title = 'isolation'
            ):
-    plotAndPrint( file_handles = file_handles
-                , out_file = out_file
-                , short_name = '%s_iso' % lep_flavor
-                , suffix = suffix
-                , x_min = x_min
-                , x_max = x_max
-                , y_min = 1.e-6
-                , y_max = 5.
-                , x_title = x_title
-                )
+    for normalize in [True, False]:
+        for sub_category in ['', '_prompt', '_fake']:
+            # normalize = False
+            y_min = 1.e-6 if normalize else None
+            y_max = 5. if normalize else None
+            plotAndPrint( file_handles = file_handles
+                        , out_file = out_file
+                        , short_name = '%s_iso%s' % (lep_flavor, sub_category)
+                        , suffix = suffix
+                        , x_min = x_min
+                        , x_max = x_max
+                        , y_min = y_min
+                        , y_max = y_max
+                        , x_title = x_title
+                        , normalize = normalize
+                        )
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    plotAndPrint2D( file_handles = file_handles
-                  , out_file = out_file
-                  , short_name = '%s_iso_pt_bins' % lep_flavor
-                  , suffix = suffix
-                  , x_min = x_min
-                  , x_max = x_max
-                  , y_min = 1.e-6
-                  , y_max = 5.
-                  , x_title = x_title
-                  , slice_variable_name = 'p_{T}'
-                  )
+            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            plotAndPrint2D( file_handles = file_handles
+                        , out_file = out_file
+                        , short_name = '%s_iso_pt_bins%s' % (lep_flavor, sub_category)
+                        , suffix = suffix
+                        , x_min = x_min
+                        , x_max = x_max
+                        , y_min = y_min
+                        , y_max = y_max
+                        , x_title = x_title
+                        , slice_variable_name = 'p_{T}'
+                        , normalize = normalize
+                        )
 
-    plotAndPrint2D( file_handles = file_handles
-                  , out_file = out_file
-                  , short_name = '%s_iso_eta_bins' % lep_flavor
-                  , suffix = suffix
-                  , x_min = x_min
-                  , x_max = x_max
-                  , y_min = 1.e-6
-                  , y_max = 5.
-                  , x_title = x_title
-                  , slice_variable_name = '#eta'
-                  )
+            plotAndPrint2D( file_handles = file_handles
+                        , out_file = out_file
+                        , short_name = '%s_iso_eta_bins%s' % (lep_flavor, sub_category)
+                        , suffix = suffix
+                        , x_min = x_min
+                        , x_max = x_max
+                        , y_min = y_min
+                        , y_max = y_max
+                        , x_title = x_title
+                        , slice_variable_name = '#eta'
+                        , normalize = normalize
+                        )
 
 # ==============================================================================
 if __name__ == '__main__':

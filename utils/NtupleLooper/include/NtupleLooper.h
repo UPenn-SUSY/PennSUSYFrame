@@ -21,10 +21,14 @@ namespace NtupleHelper
                  , ISO_STYLE_EWK_HIGGS
                  , ISO_STYLE_STRONG
                  , ISO_STYLE_STRONG_CONE_30
-                 , ISO_STYLE_EWK_PP
-                 , ISO_STYLE_EWK_HIGGS_PP
-                 , ISO_STYLE_STRONG_CONE_20_PP
-                 , ISO_STYLE_STRONG_CONE_30_PP
+                 , ISO_STYLE_EWK_95
+                 , ISO_STYLE_EWK_HIGGS_95
+                 , ISO_STYLE_STRONG_CONE_20_95
+                 , ISO_STYLE_STRONG_CONE_30_95
+                 , ISO_STYLE_EWK_90
+                 , ISO_STYLE_EWK_HIGGS_90
+                 , ISO_STYLE_STRONG_CONE_20_90
+                 , ISO_STYLE_STRONG_CONE_30_90
                  , ISO_STYLE_N
                  };
 
@@ -43,10 +47,14 @@ namespace NtupleHelper
                                                  , "HIGGS"
                                                  , "STRONG"
                                                  , "STRONG_30"
-                                                 , "EWK_PP"
-                                                 , "HIGGS_PP"
-                                                 , "STRONG_20_PP"
-                                                 , "STRONG_30_PP"
+                                                 , "EWK_95"
+                                                 , "HIGGS_95"
+                                                 , "STRONG_20_95"
+                                                 , "STRONG_30_95"
+                                                 , "EWK_90"
+                                                 , "HIGGS_90"
+                                                 , "STRONG_20_90"
+                                                 , "STRONG_30_90"
                                                  , "NONE"
                                                  };
 

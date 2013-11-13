@@ -410,7 +410,7 @@ def plotAndPrint2D( file_handles
                          , y_min = y_min
                          , y_max = y_max
                          )
-        safeMakeDir(out_file, '%s' % short_name)
+        safeMakeDir(out_file, short_name)
         c.Write('%s%s__%s' % (short_name, suffix, label))
         c.Close()
 
@@ -418,7 +418,7 @@ def plotAndPrint2D( file_handles
     c_big_leg = printToCanvas( leg=big_leg
                              , canvas_name='c_leg_%s%s' % (short_name, suffix)
                              )
-    safeMakeDir(out_file, '%s' % short_name)
+    safeMakeDir(out_file, short_name)
     c_big_leg.Write('leg_%s%s' % (short_name, suffix))
     c_big_leg.Close()
 
@@ -564,9 +564,15 @@ if __name__ == '__main__':
     plotRates(file_handles, out_file, '_HIGGS' )
     plotRates(file_handles, out_file, '_STRONG')
     plotRates(file_handles, out_file, '_STRONG_30')
-    plotRates(file_handles, out_file, '_EWK_PP'   )
-    plotRates(file_handles, out_file, '_HIGGS_PP' )
-    plotRates(file_handles, out_file, '_STRONG_20_PP')
-    plotRates(file_handles, out_file, '_STRONG_30_PP')
+
+    plotRates(file_handles, out_file, '_EWK_95'   )
+    plotRates(file_handles, out_file, '_HIGGS_95' )
+    plotRates(file_handles, out_file, '_STRONG_20_95')
+    plotRates(file_handles, out_file, '_STRONG_30_95')
+
+    plotRates(file_handles, out_file, '_EWK_90'   )
+    plotRates(file_handles, out_file, '_HIGGS_90' )
+    plotRates(file_handles, out_file, '_STRONG_20_90')
+    plotRates(file_handles, out_file, '_STRONG_30_90')
 
     out_file.Close()

@@ -670,8 +670,10 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
 
   if (  iso_type == NtupleHelper::ISO_STYLE_EWK
      || iso_type == NtupleHelper::ISO_STYLE_EWK_HIGGS
-     || iso_type == NtupleHelper::ISO_STYLE_EWK_PP
-     || iso_type == NtupleHelper::ISO_STYLE_EWK_HIGGS_PP
+     || iso_type == NtupleHelper::ISO_STYLE_EWK_95
+     || iso_type == NtupleHelper::ISO_STYLE_EWK_HIGGS_95
+     || iso_type == NtupleHelper::ISO_STYLE_EWK_90
+     || iso_type == NtupleHelper::ISO_STYLE_EWK_HIGGS_90
      ) {
     et_iso = getElIsoCorr( el_index
                          , NtupleHelper::ISO_TYPE_TOPOETCONE
@@ -686,7 +688,8 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
     pt_iso_frac = pt_iso/pt;
   }
   else if (  iso_type == NtupleHelper::ISO_STYLE_STRONG
-          || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_20_PP
+          || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_20_95
+          || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_20_90
           ) {
     et_iso = getElIsoCorr( el_index
                          , NtupleHelper::ISO_TYPE_TOPOETCONE
@@ -702,7 +705,8 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
   }
 
   else if (  iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_30
-          || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP
+          || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_30_95
+          || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_30_90
           ) {
     et_iso = getElIsoCorr( el_index
                          , NtupleHelper::ISO_TYPE_TOPOETCONE
@@ -738,16 +742,27 @@ bool NtupleHelper::NtupleLooper::isSignalElectron( const size_t el_index
     pass_pt_iso = (pt_iso_frac < 0.06);
     pass_et_iso = (et_iso_frac < 0.06);
   }
-  else if (  iso_type == NtupleHelper::ISO_STYLE_EWK_PP
-     || iso_type == NtupleHelper::ISO_STYLE_EWK_HIGGS_PP
-     || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_30_PP
-     ) {
+  else if (  iso_type == NtupleHelper::ISO_STYLE_EWK_95
+          || iso_type == NtupleHelper::ISO_STYLE_EWK_HIGGS_95
+          || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_30_95
+          ) {
     pass_pt_iso = (pt_iso_frac < 0.13);
     pass_et_iso = (et_iso_frac < 0.21);
   }
-  else if (iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_20_PP) {
+  else if (iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_20_95) {
     pass_pt_iso = (pt_iso_frac < 0.07);
     pass_et_iso = (et_iso_frac < 0.14);
+  }
+  else if (  iso_type == NtupleHelper::ISO_STYLE_EWK_90
+          || iso_type == NtupleHelper::ISO_STYLE_EWK_HIGGS_90
+          || iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_30_90
+          ) {
+    pass_pt_iso = (pt_iso_frac < 0.07);
+    pass_et_iso = (et_iso_frac < 0.13);
+  }
+  else if (iso_type == NtupleHelper::ISO_STYLE_STRONG_CONE_20_90) {
+    pass_pt_iso = (pt_iso_frac < 0.03);
+    pass_et_iso = (et_iso_frac < 0.09);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -785,7 +800,8 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
   double pt_iso_frac = -999;
   double et_iso_frac = -999;
   if (  iso_type == ISO_STYLE_EWK
-     || iso_type == ISO_STYLE_EWK_PP
+     || iso_type == ISO_STYLE_EWK_95
+     || iso_type == ISO_STYLE_EWK_90
      ) {
     pt_iso = getMuIsoCorr( mu_index
                          , NtupleHelper::ISO_TYPE_PTCONE
@@ -800,7 +816,8 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
     et_iso_frac = 0.;
   }
   else if (  iso_type == ISO_STYLE_EWK_HIGGS
-          || iso_type == ISO_STYLE_EWK_HIGGS_PP
+          || iso_type == ISO_STYLE_EWK_HIGGS_95
+          || iso_type == ISO_STYLE_EWK_HIGGS_90
           ) {
     pt_iso = getMuIsoCorr( mu_index
                          , NtupleHelper::ISO_TYPE_PTCONE
@@ -815,7 +832,8 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
   }
   else if (  iso_type == ISO_STYLE_STRONG
           || iso_type == ISO_STYLE_STRONG_CONE_30
-          || iso_type == ISO_STYLE_STRONG_CONE_30_PP
+          || iso_type == ISO_STYLE_STRONG_CONE_30_95
+          || iso_type == ISO_STYLE_STRONG_CONE_30_90
           ) {
     pt_iso = getMuIsoCorr( mu_index
                          , NtupleHelper::ISO_TYPE_PTCONE
@@ -828,7 +846,8 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
     pt_iso_frac = pt_iso/std::min(60.,pt);
     et_iso_frac = et_iso/std::min(60.,pt);
   }
-  else if (  iso_type == ISO_STYLE_STRONG_CONE_20_PP
+  else if (  iso_type == ISO_STYLE_STRONG_CONE_20_95
+          || iso_type == ISO_STYLE_STRONG_CONE_20_90
           ) {
     pt_iso = getMuIsoCorr( mu_index
                          , NtupleHelper::ISO_TYPE_PTCONE
@@ -860,19 +879,33 @@ bool NtupleHelper::NtupleLooper::isSignalMuon( const size_t mu_index
     pass_pt_iso = (pt_iso_frac < 0.12);
     pass_et_iso = (et_iso_frac < 0.12);
   }
-  else if (iso_type == ISO_STYLE_EWK_PP) {
+  else if (iso_type == ISO_STYLE_EWK_95) {
     pass_pt_iso = (pt_iso_frac < 0.11);
   }
-  else if (  iso_type == ISO_STYLE_EWK_HIGGS_PP
-          || iso_type == ISO_STYLE_STRONG_CONE_30_PP
+  else if (  iso_type == ISO_STYLE_EWK_HIGGS_95
+          || iso_type == ISO_STYLE_STRONG_CONE_30_95
           ) {
     pass_pt_iso = (pt_iso_frac < 0.11);
     pass_et_iso = (et_iso_frac < 0.19);
   }
-  else if (  iso_type == ISO_STYLE_STRONG_CONE_20_PP
+  else if (  iso_type == ISO_STYLE_STRONG_CONE_20_95
           ) {
     pass_pt_iso = (pt_iso_frac < 0.06);
     pass_et_iso = (et_iso_frac < 0.10);
+  }
+  else if (iso_type == ISO_STYLE_EWK_90) {
+    pass_pt_iso = (pt_iso_frac < 0.06);
+  }
+  else if (  iso_type == ISO_STYLE_EWK_HIGGS_90
+          || iso_type == ISO_STYLE_STRONG_CONE_30_90
+          ) {
+    pass_pt_iso = (pt_iso_frac < 0.06);
+    pass_et_iso = (et_iso_frac < 0.14);
+  }
+  else if (  iso_type == ISO_STYLE_STRONG_CONE_20_90
+          ) {
+    pass_pt_iso = (pt_iso_frac < 0.02);
+    pass_et_iso = (et_iso_frac < 0.07);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
