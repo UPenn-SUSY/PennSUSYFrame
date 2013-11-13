@@ -21,7 +21,7 @@ double CommonTools::DeltaPhiTool::getDeltaPhi( FLAVOR_CHANNEL flavor_channel
                                              , const std::vector<Muon*>& mu
                                              )
 {
-  double dphi = -999;
+  double dphi = 0.;
   if (flavor_channel == FLAVOR_EE) {
     dphi = el.at(0)->getTlv().Phi() - el.at(1)->getTlv().Phi();
   }

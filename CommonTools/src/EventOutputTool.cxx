@@ -69,6 +69,7 @@ void CommonTools::EventOutputTool::BeginInputData( const SInputData& )
   DeclareVariable(m_ptll        , "ptll"        );
   DeclareVariable(m_phill       , "phill"       );
   DeclareVariable(m_etall       , "etall"       );
+  DeclareVariable(m_dphill      , "dphill"      );
   DeclareVariable(m_mt          , "mt"          );
   DeclareVariable(m_mt2         , "mt2"         );
   DeclareVariable(m_meff        , "meff"        );
@@ -113,6 +114,7 @@ void CommonTools::EventOutputTool::BeginExecuteEvent( const SInputData&, Double_
   m_ptll         = 0.;
   m_phill        = 0.;
   m_etall        = 0.;
+  m_dphill       = 0.;
   m_mt           = 0.;
   m_mt2          = 0.;
   m_meff         = 0.;
@@ -167,6 +169,7 @@ void CommonTools::EventOutputTool::fillOutput( Event* event
   m_ptll         = event->getPtll();
   m_phill        = event->getPhill();
   m_etall        = event->getEtall();
+  m_dphill       = event->getDeltaPhill();
   m_mt           = event->getMt();
   m_mt2          = event->getMt2();
   m_meff         = event->getMeff();
