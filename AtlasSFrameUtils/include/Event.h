@@ -63,6 +63,7 @@ public:
   void setPtll(double);
   void setPhill(double);
   void setEtall(double);
+  void setDeltaPhill(double);
 
   void setJetSumPt(double);
   void setOLJet(double);
@@ -84,6 +85,7 @@ public:
   double getPtll() const;
   double getPhill() const;
   double getEtall() const;
+  double getDeltaPhill() const;
 
   double getJetSumPt() const;
   double getOLJet() const;
@@ -130,6 +132,7 @@ private:
   double m_ptll;
   double m_phill;
   double m_etall;
+  double m_dphill;
 
   double m_jet_sum_pt;
   double m_oljet;
@@ -151,6 +154,7 @@ private:
   bool m_ptll_cached;
   bool m_phill_cached;
   bool m_etall_cached;
+  bool m_dphill_cached;
 
   bool m_jet_sum_pt_cached;
   bool m_oljet_cached;

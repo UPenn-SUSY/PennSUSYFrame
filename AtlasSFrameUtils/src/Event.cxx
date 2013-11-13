@@ -40,6 +40,7 @@ Event::Event( const ::Long64_t& master
             , m_ptll(0.)
             , m_phill(0.)
             , m_etall(0.)
+            , m_dphill(0.)
             , m_jet_sum_pt(0.)
             , m_oljet(0.)
             , m_olratio(0.)
@@ -59,6 +60,7 @@ Event::Event( const ::Long64_t& master
             , m_ptll_cached(false)
             , m_phill_cached(false)
             , m_etall_cached(false)
+            , m_dphill_cached(false)
             , m_jet_sum_pt_cached(false)
             , m_oljet_cached(false)
             , m_olratio_cached(false)
@@ -101,6 +103,7 @@ void Event::clear()
   m_ptll         = 0.;
   m_phill        = 0.;
   m_etall        = 0.;
+  m_dphill        = 0.;
 
   m_jet_sum_pt = 0.;
   m_oljet      = 0.;
@@ -122,6 +125,7 @@ void Event::clear()
   m_ptll_cached         = false;
   m_phill_cached        = false;
   m_etall_cached        = false;
+  m_dphill_cached        = false;
 
   m_jet_sum_pt_cached = false;
   m_oljet_cached = false;
@@ -346,6 +350,13 @@ void Event::setEtall(double etall)
 }
 
 // -----------------------------------------------------------------------------
+void Event::setDeltaPhill(double dphill)
+{
+  m_dphill = dphill;
+  m_dphill_cached = true;
+}
+
+// -----------------------------------------------------------------------------
 void Event::setMetEt(double met_et)
 {
   m_met_et = met_et;
@@ -516,6 +527,14 @@ double Event::getEtall() const
 }
 
 // -----------------------------------------------------------------------------
+double Event::getDeltaPhill() const
+{
+  if (!m_dphill_cached)
+    std::cout << "WARNING! Asking for dphi_ll, but not yet cached!\n";
+  return m_dphill;
+}
+
+// -----------------------------------------------------------------------------
 double Event::getJetSumPt() const
 {
   if (!m_jet_sum_pt_cached)
@@ -574,10 +593,11 @@ PHASE_SPACE Event::getPhaseSpace() const
 void Event::print()
 {
   std::cout << "Event:\n"
-            << "\tmll: "   << m_mll
-            << "\tptll: "  << m_ptll
-            << "\tphill: " << m_phill
-            << "\tetall: " << m_etall
+            << "\tmll: "    << m_mll
+            << "\tptll: "   << m_ptll
+            << "\tphill: "  << m_phill
+            << "\tetall: "  << m_etall
+            << "\tdphill: " << m_dphill
             << "\n"
             << "\tmet_et: "  << m_met_et
             << "\tmet_phi: " << m_met_phi

@@ -22,6 +22,7 @@
 #include "AtlasSFrameUtils/include/VertexContainer.h"
 
 #include "CommonTools/include/ChargeFlipScaleFactorTool.h"
+#include "CommonTools/include/DeltaPhiTool.h"
 #include "CommonTools/include/EmmaMtTool.h"
 #include "CommonTools/include/EtallTool.h"
 #include "CommonTools/include/HtTool.h"
@@ -719,6 +720,13 @@ void SusyDiLeptonCutFlowTool::computeGoodEventVariables( Event* event,
                  , electrons.getElectrons(EL_GOOD)
                  , muons.getMuons(MU_GOOD))
                  );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // compute dphill
+  event->setDeltaPhill( CommonTools::DeltaPhiTool::getDeltaPhi(event->getFlavorChannel()
+                      , electrons.getElectrons(EL_GOOD)
+                      , muons.getMuons(MU_GOOD))
+                      );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute jet_sum_pt

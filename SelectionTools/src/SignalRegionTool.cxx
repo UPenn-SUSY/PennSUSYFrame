@@ -118,6 +118,9 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   // get ptll value
   double ptll = event->getPtll();
 
+  // get delta phi value
+  double dphi_ll = event->getDeltaPhill();
+
   // get emma mT value
   double emma_mt = event->getEmmaMt();
 
@@ -175,10 +178,10 @@ void SelectionTools::SignalRegionTool::processSignalRegions( Event* event,
   }
 
   // check dphi_ll
-  double dphi_ll = CommonTools::DeltaPhiTool::getDeltaPhi( event->getFlavorChannel()
-                                                         , electrons.getElectrons(EL_GOOD)
-                                                         , muons.getMuons(MU_GOOD)
-                                                         );
+  // double dphi_ll = CommonTools::DeltaPhiTool::getDeltaPhi( event->getFlavorChannel()
+  //                                                        , electrons.getElectrons(EL_GOOD)
+  //                                                        , muons.getMuons(MU_GOOD)
+  //                                                        );
   sr_helper->setPassSRSSDphill( passCut( dphi_ll
                                        , c_sr_ss_dphi_ll_min
                                        , c_sr_ss_dphi_ll_max
