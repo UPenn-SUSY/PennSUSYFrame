@@ -8,13 +8,11 @@ SuperVerboseInfo: False
 PrintEventInfo:   False
 Version:          1
 CycleName:        SusyDiLeptonCutFlowCycle
-SampleName:       small_data
+SampleName:       small_data.egamma
 
 input_tree_name:  susy
 output_tree_name: output
 is_egamma_stream: True
-
-# PrintEventInfo:     True
 
 UserConfigFile: ${SFRAME_DIR}/../run/local_configs/user_config.cut_flow.data.yml
 

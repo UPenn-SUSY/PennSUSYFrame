@@ -8,7 +8,7 @@ SuperVerboseInfo: False
 PrintEventInfo:   False
 Version:          1
 CycleName:        SusyDiLeptonCutFlowCycle
-SampleName:       small_data
+SampleName:       small_data.muon
 
 input_tree_name:  susy
 output_tree_name: output
