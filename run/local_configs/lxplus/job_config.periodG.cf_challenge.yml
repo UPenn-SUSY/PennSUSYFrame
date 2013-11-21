@@ -1,0 +1,28 @@
+
+Type:             data
+OutputLevel:      INFO
+OutputDirectory:  ${PWD}/small_fake_test/
+NEventsMax:       -1
+is_af2:           False
+SuperVerboseInfo: False
+PrintEventInfo:   False
+Version:          1
+CycleName:        SusyDiLeptonCutFlowCycle
+SampleName:       PeriodG.cf_challenge
+
+input_tree_name:  susy
+output_tree_name: output
+is_egamma_stream: False
+
+# PrintEventInfo:     True
+
+UserConfigFile: ${SFRAME_DIR}/../run/local_configs/user_config.cut_flow.data.yml
+
+InputFiles:
+  - root://eosatlas//eos/atlas/user/b/bjackson/data12/NTUP_SUSYSKIM.01274851._000071.root.1
+  - root://eosatlas//eos/atlas/user/b/bjackson/data12/NTUP_SUSYSKIM.01274852._000024.root.1
+  - root://eosatlas//eos/atlas/user/b/bjackson/data12/NTUP_SUSYSKIM.01274853._000009.root.1
+  - root://eosatlas//eos/atlas/user/b/bjackson/data12/NTUP_SUSYSKIM.01274856._000120.root.1
+  - root://eosatlas//eos/atlas/user/b/bjackson/data12/NTUP_SUSYSKIM.01274859._000101.root.1
+  - root://eosatlas//eos/atlas/user/b/bjackson/data12/NTUP_SUSYSKIM.01274860._000051.root.3
+  - root://eosatlas//eos/atlas/user/b/bjackson/data12/NTUP_SUSYSKIM.01274861._000003.root.1

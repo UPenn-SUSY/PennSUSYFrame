@@ -3,7 +3,7 @@ Type:             mc
 OutputLevel:      INFO
 OutputDirectory:  ${PWD}/small_fake_test/
 NEventsMax:       -1
-is_af2:           False
+is_af2:           True
 SuperVerboseInfo: False
 PrintEventInfo:   False
 Version:          1
