@@ -15,6 +15,7 @@ CommonTools::EgammaScaleFactorTool::EgammaScaleFactorTool( SCycleBase* parent
                  : ToolBase(parent, name)
 {
   DeclareProperty("do_scaling", c_do_scaling = false);
+  DeclareProperty("is_af2", c_is_af2 = false);
   DeclareProperty("sf_dir"    , c_egamma_sf_dir ="" );
 
   // get default path for egamma SF directory.
@@ -78,26 +79,19 @@ double CommonTools::EgammaScaleFactorTool::getSF( Electron* el,
 
     float pt = el->getTlv().Pt();
 
-    //TODO HARDCODED TO FULL SIM FOR NOW
+    PATCore::ParticleDataType::DataType data_type = ( c_is_af2
+                                                    ? PATCore::ParticleDataType::Fast
+                                                    : PATCore::ParticleDataType::Full
+                                                    );
 
-    //std::cout<<"run num: "<<event->RunNumber()<<std::endl;
-
-    //std::cout<<"reco sf: "<<std::endl;
-    Root::TResult result_reco = m_eg_reco_sf.calculate(PATCore::ParticleDataType::Full
+    Root::TResult result_reco = m_eg_reco_sf.calculate(data_type
     							      , event->RunNumber()
     							      , el->cl_eta()
     							      , pt);
-    //std::cout<<"id sf: "<<std::endl;
-    Root::TResult result_tight = m_eg_tight_sf.calculate(PATCore::ParticleDataType::Full
+    Root::TResult result_tight = m_eg_tight_sf.calculate(data_type
     							       , event->RunNumber()
     							       , el->cl_eta()
     							       , pt);
-
-//     std::cout<<"trigger sf: "<<std::endl;
-//     Root::TResult result_trigger = m_eg_trigger_sf.calculate(PATCore::ParticleDataType::Full
-// 								   , event->RunNumber()
-// 								   , el->cl_eta()
-// 								   , pt);
 
     double result_trigger = 1.0;
 
@@ -121,21 +115,20 @@ double CommonTools::EgammaScaleFactorTool::getSFUncertainty( Electron* el,
 
     float pt = el->getTlv().Pt();
 
-    //TODO HARDCODED TO FULL SIM FOR NOW
+    PATCore::ParticleDataType::DataType data_type = ( c_is_af2
+                                                    ? PATCore::ParticleDataType::Fast
+                                                    : PATCore::ParticleDataType::Full
+                                                    );
 
-    Root::TResult result_reco = m_eg_reco_sf.calculate(PATCore::ParticleDataType::Full
+
+    Root::TResult result_reco = m_eg_reco_sf.calculate(data_type
     					   , event->RunNumber()
     					   , el->cl_eta()
     					   , pt);
-    Root::TResult result_tight = m_eg_tight_sf.calculate(PATCore::ParticleDataType::Full
+    Root::TResult result_tight = m_eg_tight_sf.calculate(data_type
     					     , event->RunNumber()
     					     , el->cl_eta()
     					     , pt);
-//     Root::TResult result_trigger = m_eg_trigger_sf.calculate(PATCore::ParticleDataType::Full
-// 						 , event->RunNumber()
-// 						 , el->cl_eta()
-// 						 , pt);
-
 
 
     sfUnc = result_reco.getTotalUncertainty() * result_tight.getTotalUncertainty()

@@ -12,7 +12,7 @@ SampleName:       PeriodG.cf_challenge
 
 input_tree_name:  susy
 output_tree_name: output
-is_egamma_stream: False
+is_egamma_stream: True
 
 # PrintEventInfo:     True
 

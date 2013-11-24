@@ -119,6 +119,7 @@ private:
   bool c_crit_trigger;
   bool c_crit_trigger_match;
   bool c_crit_prompt_leptons;
+  bool c_crit_stream_overlap;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   SelectionTools::GoodRunsListTool*  m_grl_tool;

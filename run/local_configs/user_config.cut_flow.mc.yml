@@ -252,6 +252,7 @@ MuonSF:
 
 EgammaSF:
   do_scaling: True
+  is_af2:     CONFIG
 
 ChargeFlipSF:
   do_charge_flip_sf: True

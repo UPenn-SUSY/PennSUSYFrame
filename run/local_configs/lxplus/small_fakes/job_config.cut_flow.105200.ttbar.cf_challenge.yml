@@ -23,18 +23,3 @@ InputFiles:
   - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267513_00/NTUP_SUSY.01267513._000231.root.1
   - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267514_00/NTUP_SUSY.01267514._000504.root.1
 
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000643.root.2
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267515_00/NTUP_SUSY.01267515._000727.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001139.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001202.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001272.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267517_00/NTUP_SUSY.01267517._001278.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267518_00/NTUP_SUSY.01267518._001416.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01267518_00/NTUP_SUSY.01267518._001492.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306755_00/NTUP_SUSY.01306755._001537.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306755_00/NTUP_SUSY.01306755._001543.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306755_00/NTUP_SUSY.01306755._001695.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306756_00/NTUP_SUSY.01306756._001942.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306757_00/NTUP_SUSY.01306757._002185.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306759_00/NTUP_SUSY.01306759._002589.root.1
-  # - /afs/cern.ch/user/b/bjackson/work/private/mc12/mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_a159_a171_r3549_p1512_tid01306760_00/NTUP_SUSY.01306760._002786.root.1

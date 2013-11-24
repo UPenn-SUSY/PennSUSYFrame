@@ -192,8 +192,10 @@ void SelectionTools::ObjectCleaningTool::eeOverlapRemoval(
 
       // if overlap, flag for removal
       if (overlap(tlv1, tlv2, c_ee_cone_size)) {
-        keep_object.at(el_it_1) = false;
-        keep_object.at(el_it_2) = false;
+        if (tlv1.Pt() >= tlv2.Pt())
+          keep_object.at(el_it_2) = false;
+        else
+          keep_object.at(el_it_1) = false;
       }
     }
   }

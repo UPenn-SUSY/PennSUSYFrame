@@ -574,30 +574,9 @@ void SusyDiLeptonCutFlowCycle::BeginInputFileImp( const SInputData& )
 void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
     throw( SError )
 {
-  if (!m_event_picker->passed(*m_event))
-      return;
-
-  // if (  true
-  //    && m_event->EventNumber() != 10457
-  //    && m_event->EventNumber() != 13000
-  //    && m_event->EventNumber() != 13055
-  //    && m_event->EventNumber() != 13139
-  //    && m_event->EventNumber() != 19424
-  //    && m_event->EventNumber() != 20288
-  //    && m_event->EventNumber() != 20424
-  //    && m_event->EventNumber() != 2193
-  //    && m_event->EventNumber() != 24643
-  //    && m_event->EventNumber() != 25735
-  //    && m_event->EventNumber() != 26300
-  //    && m_event->EventNumber() != 32431
-  //    && m_event->EventNumber() != 33619
-  //    && m_event->EventNumber() != 33622
-  //    && m_event->EventNumber() != 35054
-  //    && m_event->EventNumber() != 35726
-  //    && m_event->EventNumber() != 5666
-  //    && m_event->EventNumber() != 582
-  //    && m_event->EventNumber() != 614
-  //    ) return;
+  if (!m_event_picker->passed(*m_event)) {
+    return;
+  }
 
   m_logger << DEBUG
            << "SusyDiLeptonCutFlowCycle::ExecuteEvent()"
@@ -634,6 +613,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
                                                        , c_is_egamma_stream
                                                        );
   if (!pass_critical_cuts) {
+    std::cout << "failed critical cuts in basic cut block! skipping event!\n";
     throw SError( SError::SkipEvent );
   }
 
@@ -661,6 +641,7 @@ void SusyDiLeptonCutFlowCycle::ExecuteEventImp( const SInputData&, Double_t )
                                                      , c_is_egamma_stream
                                                      );
   if (!pass_critical_cuts) {
+    std::cout << "failed critical cuts in advanced cut block! skipping event!\n";
     throw SError( SError::SkipEvent );
   }
 

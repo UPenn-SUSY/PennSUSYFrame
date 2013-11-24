@@ -7,7 +7,8 @@ input_file_hists:   ""
 
 Event_Picker:
     do_event_picker: False
-    event_list: event_list.diff.trigger.dat
+    # do_event_picker: True
+    event_list: event_list.diff.ge_2_lep.dat
 
 CutFlow:
     Crit_grl:              False
@@ -251,6 +252,7 @@ MuonSF:
 
 EgammaSF:
   do_scaling: True
+  is_af2:     CONFIG
 
 ChargeFlipSF:
   do_charge_flip_sf: True

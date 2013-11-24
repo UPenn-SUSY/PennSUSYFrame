@@ -85,6 +85,7 @@ SusyDiLeptonCutFlowTool::SusyDiLeptonCutFlowTool( SCycleBase* parent
   DeclareProperty("Crit_trigger"          , c_crit_trigger           = false);
   DeclareProperty("Crit_trigger_match"    , c_crit_trigger_match     = false);
   DeclareProperty("Crit_prompt_leptons"   , c_crit_prompt_leptons    = false);
+  DeclareProperty("Crit_stream_overlap"   , c_crit_stream_overlap    = false);
 }
 
 // -----------------------------------------------------------------------------
@@ -253,13 +254,15 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   // Check jet cleaning
   bool pass_jet_cleaning = (jets.num(JET_BAD) == 0);
   event->getEventDesc()->setPassBadJets(pass_jet_cleaning);
-  if (c_super_verbose_info) {
-    std::cout << "Failed jet cleaning --"
-              << " Run: "   << event->RunNumber()
-              << " Event: " << event->EventNumber()
-              << std::endl;
+  if (c_crit_bad_jet_veto && pass_jet_cleaning == false) {
+    if (c_super_verbose_info) {
+      std::cout << "Failed jet cleaning --"
+                << " Run: "   << event->RunNumber()
+                << " Event: " << event->EventNumber()
+                << std::endl;
+    }
+    return false;
   }
-  if (c_crit_bad_jet_veto && pass_jet_cleaning == false) {return false;}
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check primary vertex
@@ -321,14 +324,15 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check Sherpa WW Overlap && Zoverlap
-  bool pass_sherpa_ww = true;
-  if(!is_data()) pass_sherpa_ww =  (m_hfor_tool->passSherpaWWOveralpRemoval(event, mc_truth)
-                                   );
+  bool pass_sherpa_ww = (  is_data()
+                        || m_hfor_tool->passSherpaWWOveralpRemoval(event, mc_truth)
+                        );
 
-  bool pass_z_overlap = true;
-  if(!is_data()) pass_z_overlap = (m_hfor_tool->passZOverlapRemoval(mc_truth, m_truth_match_tool));
+  bool pass_z_overlap = (  is_data()
+                        || m_hfor_tool->passZOverlapRemoval(mc_truth, m_truth_match_tool)
+                        );
 
-  bool pass_mc_overlap = pass_sherpa_ww && pass_z_overlap;
+  bool pass_mc_overlap = (pass_sherpa_ww && pass_z_overlap);
 
   event->getEventDesc()->setPassMCOverlap(pass_mc_overlap);
   if (c_crit_mc_overlap && pass_mc_overlap == false) {
@@ -400,7 +404,7 @@ bool SusyDiLeptonCutFlowTool::runBasicCutFlow( Event* event,
   }
   event->getEventDesc()->setFlavorChannel(flavor_channel);
 
-  if (is_data()) {
+  if (is_data() && c_crit_stream_overlap) {
     if (is_egamma_stream  && flavor_channel == FLAVOR_MM) return false;
     if (!is_egamma_stream && flavor_channel == FLAVOR_EE) return false;
   }
@@ -519,7 +523,7 @@ bool SusyDiLeptonCutFlowTool::runAdvancedCutFlow( Event* event,
     return false;
   }
 
-  if (is_data()) {
+  if (is_data() && c_crit_stream_overlap) {
     if (is_egamma_stream  && event->getPhaseSpace() == PHASE_MM) return false;
     if (!is_egamma_stream && event->getPhaseSpace() == PHASE_EE) return false;
     if (is_egamma_stream  && event->getPhaseSpace() == PHASE_ME) return false;

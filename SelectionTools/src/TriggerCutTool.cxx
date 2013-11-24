@@ -43,8 +43,8 @@ bool SelectionTools::TriggerCutTool::passedAnySingleOrDiLeptonTrigger(
     const Event* event,
     const Trigger* trig)
 {
-  bool pass_trigger = (  passedEETriggerChannel(  event, trig)
-                      || passedMMTriggerChannel(event, trig)
+  bool pass_trigger = (  passedEETriggerChannel( event, trig)
+                      || passedMMTriggerChannel( event, trig)
                       || passedEMTriggerChannel( event, trig)
                       || passedMETriggerChannel( event, trig)
                       );
@@ -927,14 +927,21 @@ bool SelectionTools::TriggerCutTool::passedEMTriggerMatch_anders(
   std::vector<int> *trig_EF_trigmuonef_EF_mu8 =
       const_cast<std::vector<int>*>(trig_vec->trig_EF_trigmuonef_EF_mu8());
 
-  bool pass_emu_trigger = triggerMatchTool->getEmuTriggerMatch(
-      l1, l2, run,
-      electron_trigger_object_size,
-      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
-      muon_trigger_object_size,
-      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
-      trig_EF_trigmuonef_track_CB_hasCB,
-      trig_EF_el_EF_e12Tvh_medium1, trig_EF_trigmuonef_EF_mu8);
+  bool pass_emu_trigger = triggerMatchTool->getEmuTriggerMatch( l1
+                                                              , l2
+                                                              , run
+                                                              , electron_trigger_object_size
+                                                              , trig_EF_el_px
+                                                              , trig_EF_el_py
+                                                              , trig_EF_el_pz
+                                                              , trig_EF_el_E
+                                                              , muon_trigger_object_size
+                                                              , trig_EF_trigmuonef_track_CB_eta
+                                                              , trig_EF_trigmuonef_track_CB_phi
+                                                              , trig_EF_trigmuonef_track_CB_hasCB
+                                                              , trig_EF_el_EF_e12Tvh_medium1
+                                                              , trig_EF_trigmuonef_EF_mu8
+                                                              );
 
   delete triggerMatchTool;
   return pass_emu_trigger;
@@ -994,23 +1001,37 @@ bool SelectionTools::TriggerCutTool::passedMETriggerMatch_anders(
   std::vector<int> *trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS =
       const_cast<std::vector<int>*>(trig_vec->trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS());
 
-  bool pass_mue_trigger = triggerMatchTool->getMueTriggerMatch(
-      l1, l2, run,
-      electron_trigger_object_size,
-      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
-      muon_trigger_object_size,
-      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
-      trig_EF_trigmuonef_track_CB_hasCB,
-      trig_EF_el_EF_e7T_medium1, trig_EF_trigmuonef_EF_mu18_tight);
+  bool pass_mue_trigger = triggerMatchTool->getMueTriggerMatch( l1
+                                                              , l2
+                                                              , run
+                                                              , electron_trigger_object_size
+                                                              , trig_EF_el_px
+                                                              , trig_EF_el_py
+                                                              , trig_EF_el_pz
+                                                              , trig_EF_el_E
+                                                              , muon_trigger_object_size
+                                                              , trig_EF_trigmuonef_track_CB_eta
+                                                              , trig_EF_trigmuonef_track_CB_phi
+                                                              , trig_EF_trigmuonef_track_CB_hasCB
+                                                              , trig_EF_el_EF_e7T_medium1
+                                                              , trig_EF_trigmuonef_EF_mu18_tight
+                                                              );
 
-  bool pass_emu_trigger = triggerMatchTool->getEmuTriggerMatch(
-      l1, l2, run,
-      electron_trigger_object_size,
-      trig_EF_el_px, trig_EF_el_py, trig_EF_el_pz, trig_EF_el_E,
-      muon_trigger_object_size,
-      trig_EF_trigmuonef_track_CB_eta, trig_EF_trigmuonef_track_CB_phi,
-      trig_EF_trigmuonef_track_CB_hasCB,
-      trig_EF_el_EF_e12Tvh_medium1, trig_EF_trigmuonef_EF_mu8);
+  // bool pass_emu_trigger = triggerMatchTool->getEmuTriggerMatch( l1
+  //                                                             , l2
+  //                                                             , run
+  //                                                             , electron_trigger_object_size
+  //                                                             , trig_EF_el_px
+  //                                                             , trig_EF_el_py
+  //                                                             , trig_EF_el_pz
+  //                                                             , trig_EF_el_E
+  //                                                             , muon_trigger_object_size
+  //                                                             , trig_EF_trigmuonef_track_CB_eta
+  //                                                             , trig_EF_trigmuonef_track_CB_phi
+  //                                                             , trig_EF_trigmuonef_track_CB_hasCB
+  //                                                             , trig_EF_el_EF_e12Tvh_medium1
+  //                                                             , trig_EF_trigmuonef_EF_mu8
+  //                                                             );
 
   delete triggerMatchTool;
   return pass_mue_trigger;

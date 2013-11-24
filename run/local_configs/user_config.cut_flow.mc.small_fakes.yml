@@ -8,7 +8,7 @@ input_file_hists:   ""
 Event_Picker:
     # do_event_picker: True
     do_event_picker: False
-    event_list: event_list.trigger_weight_disagree.txt
+    event_list: event_list.ttbar.compare_weights.dat
 
 CutFlow:
     Crit_grl:              False
@@ -253,6 +253,7 @@ MuonSF:
 
 EgammaSF:
   do_scaling: True
+  is_af2:     CONFIG
 
 ChargeFlipSF:
   do_charge_flip_sf: True

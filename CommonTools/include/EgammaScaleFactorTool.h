@@ -36,6 +36,7 @@ namespace CommonTools
     // ----------------------------------------------------------------------------
   private:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    bool c_is_af2;
     bool c_do_scaling;
     std::string c_egamma_sf_dir;
 

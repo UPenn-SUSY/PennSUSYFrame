@@ -74,12 +74,13 @@ def processConfigurables(config):
 
     # configure egamma energy rescale and jet calibration tools with is_af2
     if config['UserConfig']['EgammaEnergyRescale']['is_af2'] == 'CONFIG':
-        config['UserConfig']['EgammaEnergyRescale']['is_af2'] = \
-            config['is_af2']
+        config['UserConfig']['EgammaEnergyRescale']['is_af2'] = config['is_af2']
 
     if config['UserConfig']['JetCalibration']['is_af2'] == 'CONFIG':
-        config['UserConfig']['JetCalibration']['is_af2'] = \
-            config['is_af2']
+        config['UserConfig']['JetCalibration']['is_af2'] = config['is_af2']
+
+    if config['UserConfig']['EgammaSF']['is_af2'] == 'CONFIG':
+        config['UserConfig']['EgammaSF']['is_af2'] = config['is_af2']
 
     # if requested, find GRL
     if config['UserConfig']['GRL']['do_grl'] \
