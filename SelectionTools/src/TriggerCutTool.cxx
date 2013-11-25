@@ -65,15 +65,17 @@ TRIG_PHASE SelectionTools::TriggerCutTool::getPhaseSpace(
     double pt_1 = electrons.at(1)->getTlv().Pt()/1000.;
 
     if (pt_1 > pt_0) {
-      double pt_tmp = pt_1;
+      double pt_tmp = pt_0;
       pt_0 = pt_1;
       pt_1 = pt_tmp;
     }
 
-    if (pt_0 > 14. && pt_1 > 14.)
+    if (pt_0 > 14. && pt_1 > 14.) {
       return TRIG_EE_A;
-    if (pt_0 > 25. && pt_1 > 10 && pt_1 < 14.)
+    }
+    if (pt_0 > 25. && pt_1 > 10 && pt_1 < 14.) {
       return TRIG_EE_B;
+    }
   }
   else if (num_el == 0 && num_mu == 2) {
     // mm channel
@@ -81,7 +83,7 @@ TRIG_PHASE SelectionTools::TriggerCutTool::getPhaseSpace(
     double pt_1 = muons.at(1)->getTlv().Pt()/1000.;
 
     if (pt_1 > pt_0) {
-      double pt_tmp = pt_1;
+      double pt_tmp = pt_0;
       pt_0 = pt_1;
       pt_1 = pt_tmp;
     }

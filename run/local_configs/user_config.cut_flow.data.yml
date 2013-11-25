@@ -8,7 +8,7 @@ input_file_hists:   ""
 Event_Picker:
     do_event_picker: False
     # do_event_picker: True
-    event_list: event_list.diff.ge_2_lep.dat
+    event_list: event_list.phase_space_diff.txt
 
 CutFlow:
     Crit_grl:              False

@@ -767,6 +767,11 @@ void SusyDiLeptonCutFlowTool::setChargeFlipVariables(Event* event
              muon_truth,
              m_truth_match_tool);
 
+  // HACK
+  if (is_data()) {
+    truth_sign_channel = event->getEventDesc()->getSignChannel();
+  }
+
   event->getEventDesc()->setTruthSignChannel(truth_sign_channel);
 
   bool cf_candidate = (  event->getEventDesc()->getSignChannel()      == SIGN_OS
