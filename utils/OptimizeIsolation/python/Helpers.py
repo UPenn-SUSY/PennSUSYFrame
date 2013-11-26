@@ -92,9 +92,10 @@ class FileHandle(object):
         return f.Get(hist_name)
 
     def getHist(self, hist_name, normalize):
-        # print 'getting hist: %s from file: %s' % (hist_name, self.file_name)
+        print 'getting hist: %s for label: %s' % (hist_name, self.label)
         h = None
-        for fl in self.file_list:
+        for i, fl in enumerate(self.file_list):
+            print 'getting hist: %s from file: %s' % (hist_name, self.file_name_list[i])
             tmp = fl.Get(hist_name)
             if h is None:
                 h = tmp

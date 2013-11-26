@@ -48,10 +48,10 @@ if __name__ == '__main__':
 
     # add Zee
     this_color=ROOT.kBlue
-    file_handle_zee = Helpers.FileHandle( [ {'file_name':'iso.117650.ZeeNp0.root', 'weight':718.89*1.18*1./149998}
-                                          , {'file_name':'iso.117651.ZeeNp1.root', 'weight':175.60*1.18*1./150000}
-                                          , {'file_name':'iso.117652.ZeeNp2.root', 'weight':58.846*1.18*1./144999}
-                                          , {'file_name':'iso.117653.ZeeNp3.root', 'weight':15.560*1.18*1./109999}
+    file_handle_zee = Helpers.FileHandle( [ {'file_name':'iso.117650.ZeeNp0.root', 'weight':718.89*1.18*1./99999}
+                                          , {'file_name':'iso.117651.ZeeNp1.root', 'weight':175.60*1.18*1./100000}
+                                          , {'file_name':'iso.117652.ZeeNp2.root', 'weight':58.846*1.18*1./99999}
+                                          , {'file_name':'iso.117653.ZeeNp3.root', 'weight':15.560*1.18*1./99999}
                                           , {'file_name':'iso.117654.ZeeNp4.root', 'weight':3.9322*1.18*1./30000 }
                                           , {'file_name':'iso.117655.ZeeNp5.root', 'weight':1.1994*1.18*1./10000 }
                                           ]
@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
     # add egamma data
     this_color = ROOT.kBlack
-    file_handles.append(Helpers.FileHandle( [{'file_name':'iso.small_data.egamma.root', 'weight':1.}]
+    file_handles.append(Helpers.FileHandle( [{'file_name':'iso.data_subset.egamma.root', 'weight':1.}]
                                           , 'egamma data'
                                           , this_color
                                           )
@@ -75,10 +75,10 @@ if __name__ == '__main__':
 
     # add Zmumu
     this_color=ROOT.kBlue
-    file_handle_zmm = Helpers.FileHandle( [ {'file_name':'iso.117660.ZmumuNp0.root', 'weight':718.91*1.18*1./150000}
-                                          , {'file_name':'iso.117661.ZmumuNp1.root', 'weight':175.81*1.18*1./150000}
-                                          , {'file_name':'iso.117662.ZmumuNp2.root', 'weight':58.805*1.18*1./144998}
-                                          , {'file_name':'iso.117663.ZmumuNp3.root', 'weight':15.589*1.18*1./110000}
+    file_handle_zmm = Helpers.FileHandle( [ {'file_name':'iso.117660.ZmumuNp0.root', 'weight':718.91*1.18*1./100000}
+                                          , {'file_name':'iso.117661.ZmumuNp1.root', 'weight':175.81*1.18*1./100000}
+                                          , {'file_name':'iso.117662.ZmumuNp2.root', 'weight':58.805*1.18*1./100000}
+                                          , {'file_name':'iso.117663.ZmumuNp3.root', 'weight':15.589*1.18*1./100000}
                                           , {'file_name':'iso.117664.ZmumuNp4.root', 'weight':3.9072*1.18*1./30000 }
                                           , {'file_name':'iso.117665.ZmumuNp5.root', 'weight':1.1933*1.18*1./10000 }
                                           ]
@@ -89,11 +89,11 @@ if __name__ == '__main__':
 
     # add muon data
     this_color = ROOT.kBlack
-    file_handles.append(Helpers.FileHandle( [{'file_name':'iso.small_data.muon.root', 'weight':1.}]
+    file_handles.append(Helpers.FileHandle( [{'file_name':'iso.data_subset.muon.root', 'weight':1.}]
                                           , 'muon data'
                                           , this_color
                                           )
                        )
 
-    makeIsoPlots(file_handles, 'iso.muon.canv.root', True, False)
+    makeIsoPlots(file_handles, 'iso.muon.canv.root', False, True)
 

@@ -221,6 +221,7 @@ void OptimizeIsolation::processEvent()
   // HFOR
   if (evt_desc.getPassHFOR() == false) return;
 
+  if ( m_mll < 81.e3 || m_mll > 101.e3) return;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   double event_weight = m_pile_up_weight * m_lepton_weight;
