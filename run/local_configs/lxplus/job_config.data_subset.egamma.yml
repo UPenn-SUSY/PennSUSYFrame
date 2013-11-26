@@ -1,0 +1,71 @@
+
+Type:             data
+OutputLevel:      INFO
+OutputDirectory:  ${PWD}/small_fake_test/
+NEventsMax:       -1
+is_af2:           False
+SuperVerboseInfo: False
+PrintEventInfo:   False
+Version:          1
+CycleName:        SusyDiLeptonCutFlowCycle
+SampleName:       data_subset.egamma
+
+input_tree_name:  susy
+output_tree_name: output
+is_egamma_stream: True
+
+# PrintEventInfo:     True
+
+UserConfigFile: ${SFRAME_DIR}/../run/local_configs/user_config.cut_flow.data.yml
+
+InputFiles:
+  - /tmp/bjackson/data12_8TeV.00200926.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274357_00/NTUP_SUSYSKIM.01274357._000014.root.1
+  - /tmp/bjackson/data12_8TeV.00200987.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274355_00/NTUP_SUSYSKIM.01274355._000044.root.1
+  - /tmp/bjackson/data12_8TeV.00201006.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274371_00/NTUP_SUSYSKIM.01274371._000027.root.1
+  - /tmp/bjackson/data12_8TeV.00201006.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274371_00/NTUP_SUSYSKIM.01274371._000046.root.1
+  - /tmp/bjackson/data12_8TeV.00201052.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274364_00/NTUP_SUSYSKIM.01274364._000019.root.1
+  - /tmp/bjackson/data12_8TeV.00201269.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274356_00/NTUP_SUSYSKIM.01274356._000024.root.1
+  - /tmp/bjackson/data12_8TeV.00201494.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274375_00/NTUP_SUSYSKIM.01274375._000002.root.1
+  - /tmp/bjackson/data12_8TeV.00201494.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274375_00/NTUP_SUSYSKIM.01274375._000006.root.1
+  - /tmp/bjackson/data12_8TeV.00201494.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274375_00/NTUP_SUSYSKIM.01274375._000010.root.1
+  - /tmp/bjackson/data12_8TeV.00201494.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274375_00/NTUP_SUSYSKIM.01274375._000019.root.1
+  - /tmp/bjackson/data12_8TeV.00202991.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274420_00/NTUP_SUSYSKIM.01274420._000004.root.1
+  - /tmp/bjackson/data12_8TeV.00202991.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274420_00/NTUP_SUSYSKIM.01274420._000016.root.1
+  - /tmp/bjackson/data12_8TeV.00203256.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274399_00/NTUP_SUSYSKIM.01274399._000003.root.1
+  - /tmp/bjackson/data12_8TeV.00203353.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274422_00/NTUP_SUSYSKIM.01274422._000019.root.1
+  - /tmp/bjackson/data12_8TeV.00203602.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274439_00/NTUP_SUSYSKIM.01274439._000031.root.4
+  - /tmp/bjackson/data12_8TeV.00203792.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274388_00/NTUP_SUSYSKIM.01274388._000007.root.1
+  - /tmp/bjackson/data12_8TeV.00204416.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274427_00/NTUP_SUSYSKIM.01274427._000043.root.1
+  - /tmp/bjackson/data12_8TeV.00204633.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274378_00/NTUP_SUSYSKIM.01274378._000023.root.1
+  - /tmp/bjackson/data12_8TeV.00204954.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274432_00/NTUP_SUSYSKIM.01274432._000045.root.1
+  - /tmp/bjackson/data12_8TeV.00205017.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274430_00/NTUP_SUSYSKIM.01274430._000015.root.1
+  - /tmp/bjackson/data12_8TeV.00206367.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274470_00/NTUP_SUSYSKIM.01274470._000001.root.1
+  - /tmp/bjackson/data12_8TeV.00206409.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274452_00/NTUP_SUSYSKIM.01274452._000041.root.9
+  - /tmp/bjackson/data12_8TeV.00206409.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274452_00/NTUP_SUSYSKIM.01274452._000045.root.9
+  - /tmp/bjackson/data12_8TeV.00206409.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274452_00/NTUP_SUSYSKIM.01274452._000066.root.9
+  - /tmp/bjackson/data12_8TeV.00206497.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274468_00/NTUP_SUSYSKIM.01274468._000002.root.1
+  - /tmp/bjackson/data12_8TeV.00206564.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274456_00/NTUP_SUSYSKIM.01274456._000038.root.1
+  - /tmp/bjackson/data12_8TeV.00206564.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274456_00/NTUP_SUSYSKIM.01274456._000045.root.1
+  - /tmp/bjackson/data12_8TeV.00207044.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274455_00/NTUP_SUSYSKIM.01274455._000010.root.2
+  - /tmp/bjackson/data12_8TeV.00207113.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274467_00/NTUP_SUSYSKIM.01274467._000001.root.1
+  - /tmp/bjackson/data12_8TeV.00207397.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274458_00/NTUP_SUSYSKIM.01274458._000055.root.1
+  - /tmp/bjackson/data12_8TeV.00207532.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274483_00/NTUP_SUSYSKIM.01274483._000034.root.2
+  - /tmp/bjackson/data12_8TeV.00207582.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274478_00/NTUP_SUSYSKIM.01274478._000002.root.3
+  - /tmp/bjackson/data12_8TeV.00207582.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274478_00/NTUP_SUSYSKIM.01274478._000018.root.1
+  - /tmp/bjackson/data12_8TeV.00207582.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274478_00/NTUP_SUSYSKIM.01274478._000034.root.2
+  - /tmp/bjackson/data12_8TeV.00207620.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274503_00/NTUP_SUSYSKIM.01274503._000116.root.1
+  - /tmp/bjackson/data12_8TeV.00207664.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274481_00/NTUP_SUSYSKIM.01274481._000063.root.2
+  - /tmp/bjackson/data12_8TeV.00207800.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274500_00/NTUP_SUSYSKIM.01274500._000002.root.1
+  - /tmp/bjackson/data12_8TeV.00207864.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274505_00/NTUP_SUSYSKIM.01274505._000002.root.1
+  - /tmp/bjackson/data12_8TeV.00207931.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274498_00/NTUP_SUSYSKIM.01274498._000005.root.6
+  - /tmp/bjackson/data12_8TeV.00208184.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01274476_00/NTUP_SUSYSKIM.01274476._000012.root.1
+  - /tmp/bjackson/data12_8TeV.00209109.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273755_00/NTUP_SUSYSKIM.01273755._000089.root.2
+  - /tmp/bjackson/data12_8TeV.00209161.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273753_00/NTUP_SUSYSKIM.01273753._000005.root.1
+  - /tmp/bjackson/data12_8TeV.00209254.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273744_00/NTUP_SUSYSKIM.01273744._000034.root.1
+  - /tmp/bjackson/data12_8TeV.00209269.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01272981_00/NTUP_SUSYSKIM.01272981._000007.root.11
+  - /tmp/bjackson/data12_8TeV.00209608.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273730_00/NTUP_SUSYSKIM.01273730._000024.root.1
+  - /tmp/bjackson/data12_8TeV.00209736.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273745_00/NTUP_SUSYSKIM.01273745._000042.root.1
+  - /tmp/bjackson/data12_8TeV.00209812.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273746_00/NTUP_SUSYSKIM.01273746._000041.root.1
+  - /tmp/bjackson/data12_8TeV.00209812.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273746_00/NTUP_SUSYSKIM.01273746._000046.root.1
+  - /tmp/bjackson/data12_8TeV.00209980.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273731_00/NTUP_SUSYSKIM.01273731._000044.root.1
+  - /tmp/bjackson/data12_8TeV.00209980.physics_Egamma.merge.NTUP_SUSYSKIM.r4065_p1278_p1542_tid01273731_00/NTUP_SUSYSKIM.01273731._000066.root.1
