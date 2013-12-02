@@ -100,13 +100,14 @@ double CommonTools::BTagScaleFactorTool::getSF(const std::vector<Jet*>& jets)
         pdgid_btag.push_back(jets.at(jet_it)->flavor_truth_label());
       }
 
-      std::pair<std::vector<float>, std::vector<float> > *wgtbtag;
+      std::pair<std::vector<float>, std::vector<float> > wgtbtag;
       wgtbtag = m_b_tag_calibration->BTagCalibrationFunction( pt_btag
                                                             , eta_btag
                                                             , val_btag
                                                             , pdgid_btag
                                                             );
-      m_b_tag_sf = wgtbtag->first.at(0);
+      // m_b_tag_sf = wgtbtag->first.at(0);
+      m_b_tag_sf = wgtbtag.first.at(0);
 
       m_is_cached = true;
     }

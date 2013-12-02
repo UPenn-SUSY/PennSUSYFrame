@@ -13,10 +13,10 @@ mkdir RootCore
 cd RootCore
 if [ "x$CERN_USER" = "x" ]; then
   # svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-13 SUSYTools
-  svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-06 SUSYTools
+  svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-14 SUSYTools
 else
   # svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-13 SUSYTools
-  svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-06 SUSYTools
+  svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-14 SUSYTools
 fi
 python SUSYTools/python/install.py
 
@@ -77,6 +77,12 @@ $ROOTCOREDIR/scripts/build.sh
 echo "Build finished! Moving RootCore.par to proper location"
 cd ${ROOTCOREDIR}/..
 mv RootCore.par ${SFRAME_LIB_PATH}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# check out MultiLep/data
+mkdir MultiLep
+cd MultiLep
+svn co svn+ssh://svn.cern.ch/reps/atlasphys/Physics/SUSY/Analyses/WeakProduction/MultiLep/tags/MultiLep-01-06-03/data
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 echo "Back to SFRAME_DIR"
