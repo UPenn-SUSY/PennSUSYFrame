@@ -94,12 +94,13 @@ void SelectionTools::MuonSelectionTool::process(
 
   // Check number b-layer hits
   int num_b_layer = mu->nBLHits();
-  bool pass_b_layer = (  (mu->expectBLayerHit() == false)
-                      || passCut( num_b_layer
-                                , c_baseline_min_b_layer_hits
-                                , c_baseline_max_b_layer_hits
-                                )
-                      );
+  bool pass_b_layer = true; // it looks like we are removing this cut now
+  // bool pass_b_layer = (  (mu->expectBLayerHit() == false)
+  //                     || passCut( num_b_layer
+  //                               , c_baseline_min_b_layer_hits
+  //                               , c_baseline_max_b_layer_hits
+  //                               )
+  //                     );
   mu_desc->setPassBLayer(pass_b_layer);
 
   // Check number pixel hits
@@ -145,7 +146,8 @@ void SelectionTools::MuonSelectionTool::process(
     pass_trt = (pass_n_trt && pass_trt_ol);
   }
   else {
-    pass_trt = (!pass_n_trt || pass_trt_ol);
+    // pass_trt = (!pass_n_trt || pass_trt_ol);
+    pass_trt = true; // it looks like we are removing this check as well
   }
   mu_desc->setPassTrt(pass_trt);
 

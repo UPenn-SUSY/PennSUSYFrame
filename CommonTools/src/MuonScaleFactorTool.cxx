@@ -37,7 +37,7 @@ CommonTools::MuonScaleFactorTool::MuonScaleFactorTool( SCycleBase* parent
   if (c_muon_type == "") {
     c_muon_type = "STACO_CB_plus_ST";
   }
-  m_file_name = c_muon_type + "_2012_SF.txt";
+  m_file_name = c_muon_type + "_2012_SF.txt.gz";
 
   m_configuration =
       Analysis::AnalysisMuonConfigurableScaleFactors::AverageOverPeriods;
