@@ -3,7 +3,7 @@
 # ======================
 # DIRS = SFrame AtlasSFrameUtils CommonTools D3PDObjects SelectionTools \
 # 	   SusyAnalysisTools SusyDiLepton
-DIRS = D3PDObjects
+DIRS = ProgressBar D3PDObjects PennSusyFrameCore
 
 all::
 	@ for dir in $(DIRS); \
