@@ -9,3 +9,4 @@ cf.root
 *.pyc
 jo.*.xml
 *.root
+lib/*

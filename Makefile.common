@@ -1,0 +1,141 @@
+#
+# Include the architecture definitions from the ROOT sources
+#
+#  Makefile.arch can be in two different locations depending on the system
+#  you're compiling on. The Fink installed version of ROOT has this file
+#  in a different location than the "normally installed" ROOT versions...
+#
+ARCH_LOC_1 := $(wildcard $(shell root-config --prefix)/test/Makefile.arch)
+ARCH_LOC_2 := $(wildcard $(shell root-config --prefix)/share/root/test/Makefile.arch)
+ARCH_LOC_3 := $(wildcard $(shell root-config --prefix)/share/doc/root/test/Makefile.arch)
+ARCH_LOC_4 := $(wildcard $(shell root-config --prefix)/etc/Makefile.arch)
+ifneq ($(strip $(ARCH_LOC_1)),)
+  $(info Using $(ARCH_LOC_1))
+  include $(ARCH_LOC_1)
+else
+  ifneq ($(strip $(ARCH_LOC_2)),)
+    $(info Using $(ARCH_LOC_2))
+    include $(ARCH_LOC_2)
+  else
+    ifneq ($(strip $(ARCH_LOC_3)),)
+      $(info Using $(ARCH_LOC_3))
+      include $(ARCH_LOC_3)
+    else
+      ifneq ($(strip $(ARCH_LOC_4)),)
+        $(info Using $(ARCH_LOC_4))
+        include $(ARCH_LOC_4)
+      else
+        $(error Could not find Makefile.arch!)
+      endif
+    endif
+  endif
+endif
+
+
+# CXX := g++
+ROOTCFLAGS := $(shell root-config --cflags)
+ROOTLIBS   := $(shell root-config --libs)
+CXXFLAGS += -Wall $(ROOTCFLAGS)
+INCLUDES += -I./
+
+DICT_HEAD   := $(SRCDIR)/$(LIBRARY)_Dict.h
+DICT_FILE   := $(SRCDIR)/$(LIBRARY)_Dict.$(SrcSuf)
+DICT_OBJ    := $(OBJDIR)/$(LIBRARY)_Dict.$(ObjSuf)
+DICT_LDEF   := $(INCDIR)/$(LIBRARY)_LinkDef.h
+SH_LIB_PATH := $(PWD)/../lib
+SH_LIB_FILE := $(SH_LIB_PATH)/lib$(LIBRARY).$(DllSuf)
+
+SFRAME_LIB_PATH := $(SFRAME_LIB_PATH)
+
+SKIP_CPP_LIST := $(DICT_FILE)
+SKIP_H_LIST   := $(DICT_HEAD) $(DICT_LDEF)
+
+# Get list of headers and source files to build
+HLIST   = $(filter-out $(SKIP_H_LIST),$(wildcard $(INCDIR)/*h))
+CPPLIST = $(filter-out $(SKIP_CPP_LIST),$(wildcard $(SRCDIR)/*.$(SrcSuf)))
+
+# generate list of object files to build
+OLIST = $(addprefix $(OBJDIR)/,$(patsubst %.$(SrcSuf),%.$(ObjSuf),$(notdir $(CPPLIST))))
+
+# default list of objects to be made
+default: shlib executable
+
+# rule to generate shared object files
+shlib : $(SH_LIB_FILE)
+
+# Rule to combine objects into a unix shared library
+$(SH_LIB_FILE): $(OLIST) $(DICT_OBJ) | $(SH_LIB_PATH)
+	@echo "------------------------------------------------------------"
+	@echo "- Making shared library: $(SH_LIB_FILE)"
+	@echo "------------------------------------------------------------"
+	@rm -f $(SH_LIB_FILE)
+ifneq (,$(findstring macosx,$(ARCH)))
+	@$(LD) $(LDFLAGS) -dynamiclib -single_module -undefined dynamic_lookup $(OLIST) $(DICT_OBJ) -o $(SH_LIB_FILE)
+else
+	@$(LD) $(LDFLAGS) $(SOFLAGS) $(OLIST) $(DICT_OBJ) -o $(SH_LIB_FILE)
+endif
+	@echo ""
+
+# rule to make SH_LIB_PATH directory
+$(SH_LIB_PATH): $(OLIST)
+	@echo "------------------------------------------------------------"
+	@echo "- Making SH_LIB_PATH directory"
+	@echo "------------------------------------------------------------"
+	@mkdir -p $(SH_LIB_PATH)
+	@echo ""
+
+# rule to generate dictionary objects
+$(DICT_OBJ): $(DICT_FILE) | $(OBJDIR)
+	@echo "------------------------------------------------------------"
+	@echo "- Compiling $<"
+	@echo "------------------------------------------------------------"
+	@$(CXX) $(CXXFLAGS) -c $(INCLUDES) -o $@ $<
+	@echo ""
+
+# rule to generate dictionary file
+$(DICT_FILE) : $(HLIST) $(DICT_LDEF)
+	@echo "------------------------------------------------------------"
+	@echo "- Generating dictionary $@"
+	@echo "------------------------------------------------------------"
+	@$(shell root-config --exec-prefix)/bin/rootcint -f $(DICT_FILE) -c -p $(INCLUDES) $^
+	@echo ""
+
+# rule to compile all sources
+$(OBJDIR)/%.$(ObjSuf) : $(SRCDIR)/%.$(SrcSuf) | $(OBJDIR)
+	@echo "------------------------------------------------------------"
+	@echo "- Compiling $<"
+	@echo "------------------------------------------------------------"
+	@$(CXX) $(CXXFLAGS) -c $< -o $(OBJDIR)/$(notdir $@) $(INCLUDES)
+	@echo ""
+
+# rule to make OBJDIR directory
+$(OBJDIR):
+	@echo "------------------------------------------------------------"
+	@echo "- Making $@ directory"
+	@echo "------------------------------------------------------------"
+	@mkdir -p $(OBJDIR)
+	@echo ""
+
+# rule to generate executable
+executable: $(EXECUTABLE)
+
+# rule to generate the executable if there is one
+$(EXECUTABLE) :
+	@echo "------------------------------------------------------------"
+	@echo "- building executable $@"
+	@echo "------------------------------------------------------------"
+
+	# @$(CXX) -v $(SH_LIB_FILE) $(LOCAL_LIBS_PATH) $(BONUS_LIB_PATH) $(ROOTLIBS) -lMinuit -o $@
+	@$(CXX) -v $(SH_LIB_FILE) $(LOCAL_LIBS_PATH) $(BONUS_LIB_PATH) $(ROOTLIBS) -lMinuit -lTreePlayer -o $@
+	@echo ""
+
+# rule to clean up environment
+clean:
+	@echo "------------------------------------------------------------"
+	@echo "- Cleaning up"
+	@echo "------------------------------------------------------------"
+	@rm -rf $(EXECUTABLE)
+	@rm -rf $(OBJDIR)
+	@rm -f $(DICT_FILE) $(DICT_HEAD)
+	@rm -f $(SH_LIB_FILE)
+	@echo ""
