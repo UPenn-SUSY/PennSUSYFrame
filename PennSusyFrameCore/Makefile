@@ -6,6 +6,9 @@ SRCDIR  = src
 INCDIR  = include
 EXECUTABLE := $(PWD)/PennSusyFrameCore
 
+LOCAL_LIBS_PATH =  $(SH_LIB_PATH)/libProgressBar.so
+# BONUS_LIB_PATH = 
+
 INCLUDES += -I../
 INCLUDES += -I./
 INCLUDES += -I../../

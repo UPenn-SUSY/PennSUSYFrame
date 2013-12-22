@@ -10,6 +10,11 @@
 // =============================================================================
 class TBranch;
 
+namespace PennSusyFrame
+{
+  class D3PDReader;
+}
+
 // =============================================================================
 namespace PennSusyFrame
 {
@@ -29,8 +34,10 @@ namespace PennSusyFrame
       virtual void processEvent();
 
     protected:
-      TTree          *fChain;   //!pointer to the analyzed TTree or TChain
-      Int_t           fCurrent; //!current Tree number in a TChain
+      // TTree          *fChain;   //!pointer to the analyzed TTree or TChain
+      // Int_t           fCurrent; //!current Tree number in a TChain
+
+      PennSusyFrame::D3PDReader* m_d3pd_reader;
 
     private:
   };

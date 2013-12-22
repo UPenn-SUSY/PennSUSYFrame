@@ -1,6 +1,8 @@
 #define D3PDReader_cxx
 #include "PennSusyFrameCore/include/D3PDReader.h"
 
+#include <iostream>
+
 // -----------------------------------------------------------------------------
 PennSusyFrame::D3PDReader::D3PDReader(TTree *tree) : fChain(0)
 {
@@ -39,6 +41,8 @@ Long64_t PennSusyFrame::D3PDReader::LoadTree(Long64_t entry)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::D3PDReader::Init(TTree *tree)
 {
+  std::cout << "D3PDReader::Init()\n";
+
   // The Init() function is called when the selector needs to initialize
   // a new tree or chain. Typically here the branch addresses and branch
   // pointers of the tree will be set.
@@ -11986,4 +11990,22 @@ void PennSusyFrame::D3PDReader::Show(Long64_t entry)
   // If entry is not specified, print current entry
   if (!fChain) return;
   fChain->Show(entry);
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::D3PDReader::checkStatus()
+{
+  std::cout << "checkStatus()\n";
+  if (fChain == 0) {
+    // std::cout << "Chain is empty - cannot loop over events :-(\n";
+    return false;
+  }
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+unsigned int PennSusyFrame::D3PDReader::getNumEvents()
+{
+  std::cout << "getNumEvents()\n";
+  return fChain->GetEntriesFast();
 }
