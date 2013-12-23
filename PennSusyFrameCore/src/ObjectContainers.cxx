@@ -1,46 +1,47 @@
-#include "AtlasSFrameUtils/include/ElectronContainer.h"
+#include "PennSusyFrameCore/include/ObjectContainers.h"
 
 #include <iostream>
 #include <vector>
 
-#include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
-#include "AtlasSFrameUtils/include/Electron.h"
-#include "AtlasSFrameUtils/include/VertexContainer.h"
+// #include "AtlasSFrameUtils/include/ParticleElementBuilder.h"
+// #include "AtlasSFrameUtils/include/Electron.h"
+// #include "AtlasSFrameUtils/include/VertexContainer.h"
 
-#include "D3PDObjects/include/ElectronD3PDObject.h"
+// #include "D3PDObjects/include/ElectronD3PDObject.h"
 
-#include "CommonTools/include/TLVTool.h"
-#include "CommonTools/include/IsoCorrectionTool.h"
+// #include "CommonTools/include/TLVTool.h"
+// #include "CommonTools/include/IsoCorrectionTool.h"
 
-#include "SelectionTools/include/ElectronSelectionTool.h"
+// #include "SelectionTools/include/ElectronSelectionTool.h"
 
-#include "SusyAnalysisTools/include/SusyEnums.h"
+#include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 
 // ----------------------------------------------------------------------------
-ElectronContainer::ElectronContainer()
+PennSusyFrame::ElectronContainer::ElectronContainer()
 {
   m_user_lists.resize(EL_N);
 }
 
 // ----------------------------------------------------------------------------
-ElectronContainer::~ElectronContainer()
+PennSusyFrame::ElectronContainer::~ElectronContainer()
 {
   // do nothing
 }
 
 // ----------------------------------------------------------------------------
-void ElectronContainer::init(
-    SelectionTools::ElectronSelectionTool* electron_selection_tool,
-    CommonTools::TLVTool* tlv_tool,
-    CommonTools::IsoCorrectionTool* iso_corr_tool)
+void PennSusyFrame::ElectronContainer::init(
+    // SelectionTools::ElectronSelectionTool* electron_selection_tool,
+    // CommonTools::TLVTool* tlv_tool,
+    // CommonTools::IsoCorrectionTool* iso_corr_tool
+    )
 {
-  m_electron_selection = electron_selection_tool;
-  m_tlv_tool = tlv_tool;
-  m_iso_corr_tool = iso_corr_tool;
+  // m_electron_selection = electron_selection_tool;
+  // m_tlv_tool = tlv_tool;
+  // m_iso_corr_tool = iso_corr_tool;
 }
 
 // ----------------------------------------------------------------------------
-void ElectronContainer::clear()
+void PennSusyFrame::ElectronContainer::clear()
 {
   for ( ELECTRON_COLLECTIONS el_it = EL_ALL
       ; el_it != EL_N
@@ -52,52 +53,51 @@ void ElectronContainer::clear()
 }
 
 // ----------------------------------------------------------------------------
-void ElectronContainer::prepElectrons(
-    D3PDReader::ElectronD3PDObject* electron_d3pdobject,
-    const VertexContainer& vertices)
+void PennSusyFrame::ElectronContainer::prepElectrons( PennSusyFrame::D3PDReader* reader
+                                                    // , const VertexContainer& vertices
+                                                    )
 {
-  ParticleElementBuilder::build( m_master_list
-                               , *electron_d3pdobject
-                               , m_tlv_tool
-                               , m_iso_corr_tool
-                               );
+  // ParticleElementBuilder::build( m_master_list
+  //                              , *electron_d3pdobject
+  //                              , m_tlv_tool
+  //                              , m_iso_corr_tool
+  //                              );
 
-  size_t term = m_master_list.size();
-  for (size_t el_it = 0; el_it != term; ++el_it) {
-    m_master_list.at(el_it).prepTlv();
-    m_master_list.at(el_it).prepRawTlv();
+  // size_t term = m_master_list.size();
+  // for (size_t el_it = 0; el_it != term; ++el_it) {
+  //   m_master_list.at(el_it).prepTlv();
+  //   m_master_list.at(el_it).prepRawTlv();
 
-    m_electron_selection->process(&m_master_list.at(el_it), vertices);
-    m_user_lists.at(EL_ALL).push_back(&m_master_list.at(el_it));
-  }
+  //   m_electron_selection->process(&m_master_list.at(el_it), vertices);
+  //   m_user_lists.at(EL_ALL).push_back(&m_master_list.at(el_it));
+  // }
 }
 
 // ----------------------------------------------------------------------------
-void ElectronContainer::setCollection( ELECTRON_COLLECTIONS el_collection
-                                     , std::vector<Electron*> electrons
-                                     )
+void PennSusyFrame::ElectronContainer::setCollection( ELECTRON_COLLECTIONS el_collection
+                                                    , std::vector<PennSusyFrame::Electron*> electrons
+                                                    )
 {
   m_user_lists.at(el_collection) = electrons;
 }
 
 // ----------------------------------------------------------------------------
-size_t ElectronContainer::num(ELECTRON_COLLECTIONS el_collection) const
+size_t PennSusyFrame::ElectronContainer::num(ELECTRON_COLLECTIONS el_collection) const
 
 {
   return m_user_lists.at(el_collection).size();
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<Electron*> ElectronContainer::getElectrons(
-    ELECTRON_COLLECTIONS el_collection) const
+const std::vector<PennSusyFrame::Electron*> PennSusyFrame::ElectronContainer::getElectrons(ELECTRON_COLLECTIONS el_collection) const
 {
   return m_user_lists.at(el_collection);
 }
 
 // ----------------------------------------------------------------------------
-void ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
-                             , const VertexContainer& vertices
-                             ) const
+void PennSusyFrame::ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
+                                            // , const VertexContainer& vertices
+                                            ) const
 {
   std::cout << "================= Printing electron collection: "
             << el_collection << " =================\n";
@@ -107,6 +107,6 @@ void ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
 
   for (size_t el_it = 0; el_it != term; ++el_it) {
     std::cout << "Electron: " << el_it << "\n";
-    m_user_lists.at(el_collection).at(el_it)->print(vertices);
+    m_user_lists.at(el_collection).at(el_it)->print();
   }
 }

@@ -34,27 +34,27 @@ namespace PennSusyFrame
       ElectronContainer();
       ~ElectronContainer();
 
-      void init( SelectionTools::ElectronSelectionTool*
-               , CommonTools::TLVTool*
-               , CommonTools::IsoCorrectionTool*
+      void init( // SelectionTools::ElectronSelectionTool*
+               // , CommonTools::TLVTool*
+               // , CommonTools::IsoCorrectionTool*
                );
 
       void clear();
-      void prepElectrons(PennSusyFrame::D3PDReader*, const VertexContainer&);
-      void setCollection(ELECTRON_COLLECTIONS, std::vector<Electron*>);
+      void prepElectrons(PennSusyFrame::D3PDReader* /*, const VertexContainer&*/);
+      void setCollection(ELECTRON_COLLECTIONS, std::vector<PennSusyFrame::Electron*>);
 
       size_t num(ELECTRON_COLLECTIONS) const;
-      const std::vector<Electron*> getElectrons(ELECTRON_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Electron*> getElectrons(ELECTRON_COLLECTIONS) const;
 
-      void print(ELECTRON_COLLECTIONS, const VertexContainer&) const;
+      void print(ELECTRON_COLLECTIONS /*, const VertexContainer&*/) const;
 
     private:
-      std::vector<Electron> m_master_list;
-      std::vector<std::vector<Electron*> > m_user_lists;
+      std::vector<PennSusyFrame::Electron> m_master_list;
+      std::vector<std::vector<PennSusyFrame::Electron*> > m_user_lists;
 
-      SelectionTools::ElectronSelectionTool* m_electron_selection;
-      CommonTools::TLVTool* m_tlv_tool;
-      CommonTools::IsoCorrectionTool* m_iso_corr_tool;
+      // SelectionTools::ElectronSelectionTool* m_electron_selection;
+      // CommonTools::TLVTool* m_tlv_tool;
+      // CommonTools::IsoCorrectionTool* m_iso_corr_tool;
   };
 }
 
