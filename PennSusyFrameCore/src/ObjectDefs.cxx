@@ -126,6 +126,7 @@ int PennSusyFrame::Electron::getElIndex() const
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Electron::print() const
 {
+  std::cout << "printing electron\n";
   Lepton::print();
 }
 

@@ -15,6 +15,7 @@
 // #include "SelectionTools/include/ElectronSelectionTool.h"
 
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
+#include "PennSusyFrameCore/include/D3PDReader.h"
 
 // ----------------------------------------------------------------------------
 PennSusyFrame::ElectronContainer::ElectronContainer()
@@ -57,6 +58,18 @@ void PennSusyFrame::ElectronContainer::prepElectrons( PennSusyFrame::D3PDReader*
                                                     // , const VertexContainer& vertices
                                                     )
 {
+  size_t num_el = reader->el_n;
+  m_master_list.reserve(num_el);
+  for (size_t el_it = 0; el_it != num_el; ++el_it) {
+    PennSusyFrame::Electron tmp(reader, el_it);
+    m_master_list.push_back(tmp);
+  }
+
+  m_user_lists.at(EL_ALL).reserve(num_el);
+  for (size_t el_it = 0; el_it != num_el; ++el_it) {
+    m_user_lists.at(EL_ALL).push_back(&m_master_list.at(el_it));
+  }
+
   // ParticleElementBuilder::build( m_master_list
   //                              , *electron_d3pdobject
   //                              , m_tlv_tool
@@ -102,11 +115,11 @@ void PennSusyFrame::ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
   std::cout << "================= Printing electron collection: "
             << el_collection << " =================\n";
 
-  size_t term = m_user_lists.at(el_collection).size();
+  // size_t term = m_user_lists.at(el_collection).size();
+  size_t term = num(el_collection);
   std::cout << "Number electrons: " << term << "\n";
 
   for (size_t el_it = 0; el_it != term; ++el_it) {
-    std::cout << "Electron: " << el_it << "\n";
     m_user_lists.at(el_collection).at(el_it)->print();
   }
 }

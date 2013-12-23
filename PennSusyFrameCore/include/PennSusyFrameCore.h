@@ -5,7 +5,7 @@
 #include <TChain.h>
 #include <TFile.h>
 
-// Header file for the classes stored in the TTree if any.
+#include "PennSusyFrameCore/include/ObjectContainers.h"
 
 // =============================================================================
 class TBranch;
@@ -38,6 +38,10 @@ namespace PennSusyFrame
       // Int_t           fCurrent; //!current Tree number in a TChain
 
       PennSusyFrame::D3PDReader* m_d3pd_reader;
+
+      PennSusyFrame::ElectronContainer m_electrons;
+      // PennSusyFrame::MuonContainer     m_muons;
+      // PennSusyFrame::JetContainer      m_jets;
 
     private:
   };

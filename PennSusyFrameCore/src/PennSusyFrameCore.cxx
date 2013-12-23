@@ -8,6 +8,7 @@
 #include <algorithm>
 
 #include "PennSusyFrameCore/include/D3PDReader.h"
+#include "PennSusyFrameCore/include/ObjectContainers.h"
 
 // #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 // #include "PennSusyFrameCore/include/ObjectDefs.h"
@@ -52,9 +53,10 @@ Long64_t PennSusyFrame::PennSusyFrameCore::LoadTree(Long64_t entry)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
 {
-  std::cout << "PennSusyFrameCore::Init()\n";
   // m_d3pd_reader->Init(tree);
   m_d3pd_reader = new PennSusyFrame::D3PDReader(tree);
+
+  m_electrons.init();
 
   Notify();
 }
@@ -74,7 +76,6 @@ Bool_t PennSusyFrame::PennSusyFrameCore::Notify()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::Loop()
 {
-  std::cout << "PennSusyFrameCore::Loop()\n";
   if (m_d3pd_reader->checkStatus() == false) {
     std::cout << "Chain is empty - cannot loop over events :-(\n";
     return;
@@ -112,20 +113,21 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 void PennSusyFrame::PennSusyFrameCore::clearObjects()
 {
   // TODO clear objects
+  m_electrons.clear();
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::constructObjects()
 {
   // TODO construct obejects
+  m_electrons.prepElectrons(m_d3pd_reader);
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
   // TODO make template processEvent
-  std::cout << "event number: " << m_d3pd_reader->EventNumber
-            << "  num el: " << m_d3pd_reader->el_n
-            << "  num mu: " << m_d3pd_reader->mu_staco_MET_n
-            << "\n";
+  // std::cout << "--------------------------------------------------------------------------------\n";
+  // std::cout << "event number: " << m_d3pd_reader->EventNumber << "\n";
+  // m_electrons.print(EL_ALL);
 }
