@@ -6002,7 +6002,7 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt6LCTopo_m;
     // std::vector<float>   *jet_AntiKt6LCTopo_eta;
     // std::vector<float>   *jet_AntiKt6LCTopo_phi;
-    // Int_t           jet_AntiKt4LCTopo_n;
+    Int_t           jet_AntiKt4LCTopo_n;
     // std::vector<float>   *jet_AntiKt4LCTopo_E;
     // std::vector<float>   *jet_AntiKt4LCTopo_pt;
     // std::vector<float>   *jet_AntiKt4LCTopo_m;
@@ -13754,7 +13754,7 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt6LCTopo_m;   //!
     // TBranch        *b_jet_AntiKt6LCTopo_eta;   //!
     // TBranch        *b_jet_AntiKt6LCTopo_phi;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_n;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_n;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_E;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_pt;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_m;   //!

@@ -57,6 +57,8 @@ void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
   m_d3pd_reader = new PennSusyFrame::D3PDReader(tree);
 
   m_electrons.init();
+  m_muons.init();
+  m_jets.init();
 
   Notify();
 }
@@ -120,7 +122,9 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
 void PennSusyFrame::PennSusyFrameCore::constructObjects()
 {
   // TODO construct obejects
-  m_electrons.prepElectrons(m_d3pd_reader);
+  m_electrons.prep(m_d3pd_reader);
+  m_muons.prep(m_d3pd_reader);
+  m_jets.prep(m_d3pd_reader);
 }
 
 // -----------------------------------------------------------------------------

@@ -7,24 +7,6 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 
-// =============================================================================
-// class Electron;
-// class VertexContainer;
-// 
-// namespace CommonTools
-// {
-//   class IsoCorrectionTool;
-//   class TLVTool;
-// }
-// namespace D3PDReader
-// {
-//   class ElectronD3PDObject;
-// }
-// namespace SelectionTools
-// {
-//   class ElectronSelectionTool;
-// }
-
 // ============================================================================
 namespace PennSusyFrame
 {
@@ -34,27 +16,64 @@ namespace PennSusyFrame
       ElectronContainer();
       ~ElectronContainer();
 
-      void init( // SelectionTools::ElectronSelectionTool*
-               // , CommonTools::TLVTool*
-               // , CommonTools::IsoCorrectionTool*
-               );
+      void init();
 
       void clear();
-      void prepElectrons(PennSusyFrame::D3PDReader* /*, const VertexContainer&*/);
+      void prep(PennSusyFrame::D3PDReader*);
       void setCollection(ELECTRON_COLLECTIONS, std::vector<PennSusyFrame::Electron*>);
 
       size_t num(ELECTRON_COLLECTIONS) const;
-      const std::vector<PennSusyFrame::Electron*> getElectrons(ELECTRON_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Electron*> getCollection(ELECTRON_COLLECTIONS) const;
 
-      void print(ELECTRON_COLLECTIONS /*, const VertexContainer&*/) const;
+      void print(ELECTRON_COLLECTIONS) const;
 
     private:
       std::vector<PennSusyFrame::Electron> m_master_list;
       std::vector<std::vector<PennSusyFrame::Electron*> > m_user_lists;
+  };
 
-      // SelectionTools::ElectronSelectionTool* m_electron_selection;
-      // CommonTools::TLVTool* m_tlv_tool;
-      // CommonTools::IsoCorrectionTool* m_iso_corr_tool;
+  class MuonContainer
+  {
+    public:
+      MuonContainer();
+      ~MuonContainer();
+
+      void init();
+
+      void clear();
+      void prep(PennSusyFrame::D3PDReader*);
+      void setCollection(MUON_COLLECTIONS, std::vector<PennSusyFrame::Muon*>);
+
+      size_t num(MUON_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Muon*> getCollection(MUON_COLLECTIONS) const;
+
+      void print(MUON_COLLECTIONS) const;
+
+    private:
+      std::vector<PennSusyFrame::Muon> m_master_list;
+      std::vector<std::vector<PennSusyFrame::Muon*> > m_user_lists;
+  };
+
+  class JetContainer
+  {
+    public:
+      JetContainer();
+      ~JetContainer();
+
+      void init();
+
+      void clear();
+      void prep(PennSusyFrame::D3PDReader*);
+      void setCollection(JET_COLLECTIONS, std::vector<PennSusyFrame::Jet*>);
+
+      size_t num(JET_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Jet*> getCollection(JET_COLLECTIONS) const;
+
+      void print(JET_COLLECTIONS) const;
+
+    private:
+      std::vector<PennSusyFrame::Jet> m_master_list;
+      std::vector<std::vector<PennSusyFrame::Jet*> > m_user_lists;
   };
 }
 
