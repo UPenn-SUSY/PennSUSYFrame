@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "TLorentzVector.h"
+
 // =============================================================================
 namespace PennSusyFrame
 {
@@ -21,8 +23,22 @@ namespace PennSusyFrame
 
       virtual void printGeneralInfo() const;
 
+      virtual void setParticleIndex(int);
+      virtual void setTlv(const TLorentzVector&);
+      virtual void setRawTlv(const TLorentzVector&);
+
+      virtual int getParticleIndex();
+      virtual TLorentzVector* getTlv();
+      virtual TLorentzVector* getRawTlv();
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
+      int m_particle_index;
+
+      bool m_tlv_set;
+      bool m_raw_tlv_set;
+      TLorentzVector m_tlv;
+      TLorentzVector m_raw_tlv;
   };
 
   // =============================================================================
@@ -58,15 +74,12 @@ namespace PennSusyFrame
               , bool verbose = false
               );
 
-      void setElIndex(int);
-
-      int getElIndex() const;
 
       virtual void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
-      int m_el_index;
+      void setElTlv(const PennSusyFrame::D3PDReader* reader);
   };
 
   // =============================================================================
@@ -80,15 +93,11 @@ namespace PennSusyFrame
           , bool verbose = false
           );
 
-      void setMuIndex(int);
-
-      int getMuIndex() const;
-
       virtual void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
-      int m_mu_index;
+      void setMuTlv(const PennSusyFrame::D3PDReader* reader);
   };
 
   // =============================================================================
@@ -102,15 +111,11 @@ namespace PennSusyFrame
          , bool verbose = false
          );
 
-      void setJetIndex(int);
-
-      int getJetIndex() const;
-
       virtual void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
-      int m_jet_index;
+      void setJetTlv(const PennSusyFrame::D3PDReader* reader);
   };
 
   // =============================================================================

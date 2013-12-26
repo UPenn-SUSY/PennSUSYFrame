@@ -1826,15 +1826,15 @@ namespace PennSusyFrame
     // Int_t           bb_jet_n;
     // std::vector<int>     *bb_jet_bbDecision;
     Int_t           el_n;
-    // std::vector<float>   *el_E;
+    std::vector<float>   *el_E;
     // std::vector<float>   *el_Et;
     // std::vector<float>   *el_pt;
     // std::vector<float>   *el_m;
     // std::vector<float>   *el_eta;
     // std::vector<float>   *el_phi;
-    // std::vector<float>   *el_px;
-    // std::vector<float>   *el_py;
-    // std::vector<float>   *el_pz;
+    std::vector<float>   *el_px;
+    std::vector<float>   *el_py;
+    std::vector<float>   *el_pz;
     std::vector<float>   *el_charge;
     // std::vector<int>     *el_author;
     // std::vector<unsigned int> *el_isEM;
@@ -2223,14 +2223,14 @@ namespace PennSusyFrame
     // std::vector<int>     *ph_jet_matched;
     // std::vector<int>     *ph_el_index;
     Int_t           mu_staco_n;
-    // std::vector<float>   *mu_staco_E;
+    std::vector<float>   *mu_staco_E;
     // std::vector<float>   *mu_staco_pt;
     // std::vector<float>   *mu_staco_m;
     // std::vector<float>   *mu_staco_eta;
     // std::vector<float>   *mu_staco_phi;
-    // std::vector<float>   *mu_staco_px;
-    // std::vector<float>   *mu_staco_py;
-    // std::vector<float>   *mu_staco_pz;
+    std::vector<float>   *mu_staco_px;
+    std::vector<float>   *mu_staco_py;
+    std::vector<float>   *mu_staco_pz;
     std::vector<float>   *mu_staco_charge;
     // std::vector<unsigned short> *mu_staco_allauthor;
     // std::vector<int>     *mu_staco_author;
@@ -6004,10 +6004,10 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt6LCTopo_phi;
     Int_t           jet_AntiKt4LCTopo_n;
     // std::vector<float>   *jet_AntiKt4LCTopo_E;
-    // std::vector<float>   *jet_AntiKt4LCTopo_pt;
-    // std::vector<float>   *jet_AntiKt4LCTopo_m;
-    // std::vector<float>   *jet_AntiKt4LCTopo_eta;
-    // std::vector<float>   *jet_AntiKt4LCTopo_phi;
+    std::vector<float>   *jet_AntiKt4LCTopo_pt;
+    std::vector<float>   *jet_AntiKt4LCTopo_m;
+    std::vector<float>   *jet_AntiKt4LCTopo_eta;
+    std::vector<float>   *jet_AntiKt4LCTopo_phi;
     // std::vector<float>   *jet_AntiKt4LCTopo_EtaOrigin;
     // std::vector<float>   *jet_AntiKt4LCTopo_PhiOrigin;
     // std::vector<float>   *jet_AntiKt4LCTopo_MOrigin;
@@ -9578,15 +9578,15 @@ namespace PennSusyFrame
     // TBranch        *b_bb_jet_n;   //!
     // TBranch        *b_bb_jet_bbDecision;   //!
     TBranch        *b_el_n;   //!
-    // TBranch        *b_el_E;   //!
+    TBranch        *b_el_E;   //!
     // TBranch        *b_el_Et;   //!
     // TBranch        *b_el_pt;   //!
     // TBranch        *b_el_m;   //!
     // TBranch        *b_el_eta;   //!
     // TBranch        *b_el_phi;   //!
-    // TBranch        *b_el_px;   //!
-    // TBranch        *b_el_py;   //!
-    // TBranch        *b_el_pz;   //!
+    TBranch        *b_el_px;   //!
+    TBranch        *b_el_py;   //!
+    TBranch        *b_el_pz;   //!
     TBranch        *b_el_charge;   //!
     // TBranch        *b_el_author;   //!
     // TBranch        *b_el_isEM;   //!
@@ -9975,14 +9975,14 @@ namespace PennSusyFrame
     // TBranch        *b_ph_jet_matched;   //!
     // TBranch        *b_ph_el_index;   //!
     TBranch        *b_mu_staco_n;   //!
-    // TBranch        *b_mu_staco_E;   //!
+    TBranch        *b_mu_staco_E;   //!
     // TBranch        *b_mu_staco_pt;   //!
     // TBranch        *b_mu_staco_m;   //!
     // TBranch        *b_mu_staco_eta;   //!
     // TBranch        *b_mu_staco_phi;   //!
-    // TBranch        *b_mu_staco_px;   //!
-    // TBranch        *b_mu_staco_py;   //!
-    // TBranch        *b_mu_staco_pz;   //!
+    TBranch        *b_mu_staco_px;   //!
+    TBranch        *b_mu_staco_py;   //!
+    TBranch        *b_mu_staco_pz;   //!
     TBranch        *b_mu_staco_charge;   //!
     // TBranch        *b_mu_staco_allauthor;   //!
     // TBranch        *b_mu_staco_author;   //!
@@ -13756,10 +13756,10 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt6LCTopo_phi;   //!
     TBranch        *b_jet_AntiKt4LCTopo_n;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_E;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_pt;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_m;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_eta;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_phi;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_pt;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_m;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_eta;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_phi;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_EtaOrigin;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_PhiOrigin;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_MOrigin;   //!
