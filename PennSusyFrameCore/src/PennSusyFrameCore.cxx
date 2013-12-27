@@ -131,7 +131,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
   // TODO make template processEvent
-  // std::cout << "--------------------------------------------------------------------------------\n";
-  // std::cout << "event number: " << m_d3pd_reader->EventNumber << "\n";
-  // m_electrons.print(EL_ALL);
+  std::cout << "--------------------------------------------------------------------------------\n";
+  std::cout << "event number: " << m_d3pd_reader->EventNumber << "\n";
+  m_electrons.print(EL_ALL);
 }

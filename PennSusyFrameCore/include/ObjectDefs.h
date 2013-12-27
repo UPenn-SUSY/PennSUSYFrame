@@ -27,9 +27,9 @@ namespace PennSusyFrame
       virtual void setTlv(const TLorentzVector&);
       virtual void setRawTlv(const TLorentzVector&);
 
-      virtual int getParticleIndex();
-      virtual TLorentzVector* getTlv();
-      virtual TLorentzVector* getRawTlv();
+      virtual int getParticleIndex() const;
+      virtual const TLorentzVector* getTlv() const;
+      virtual const TLorentzVector* getRawTlv() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:

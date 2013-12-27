@@ -1,6 +1,6 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/D3PDReader.h"
-// #include "PennSusyFrameCoreLooper/include/Calculators.h"
+// #include "PennSusyFrameCore/include/Calculators.h"
 
 #include <vector>
 #include <iostream>
@@ -21,6 +21,12 @@ PennSusyFrame::Particle::Particle() : m_tlv_set(false)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Particle::printGeneralInfo() const
 {
+  const TLorentzVector* raw_tlv = getRawTlv();
+  std::cout << "\traw pt: " << raw_tlv->Pt()
+            << "\traw eta: " << raw_tlv->Eta()
+            << "\traw phi: " << raw_tlv->Phi()
+            << "\traw E: " << raw_tlv->E()
+            << "\n";
   // std::cout << "\tmc index: " << m_mc_index
   //           << "\tpdg id: "  << m_pdgid
   //           // << "\tbarcode: "  << m_barcode
@@ -62,13 +68,13 @@ void PennSusyFrame::Particle::setRawTlv(const TLorentzVector& tlv)
 }
 
 // -----------------------------------------------------------------------------
-int PennSusyFrame::Particle::getParticleIndex()
+int PennSusyFrame::Particle::getParticleIndex() const
 {
   return m_particle_index;
 }
 
 // -----------------------------------------------------------------------------
-TLorentzVector* PennSusyFrame::Particle::getTlv()
+const TLorentzVector* PennSusyFrame::Particle::getTlv() const
 {
   if (!m_tlv_set) {
     std::cout << "WARNING!!! Trying to get TLV, but it is not set!\n";
@@ -79,7 +85,7 @@ TLorentzVector* PennSusyFrame::Particle::getTlv()
 }
 
 // -----------------------------------------------------------------------------
-TLorentzVector* PennSusyFrame::Particle::getRawTlv()
+const TLorentzVector* PennSusyFrame::Particle::getRawTlv() const
 {
   if (!m_raw_tlv_set) {
     std::cout << "WARNING!!! Trying to get raw TLV, but it is not set!\n";
