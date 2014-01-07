@@ -7,6 +7,7 @@ INCDIR  = include
 EXECUTABLE := $(PWD)/PennSusyFrameCore
 
 LOCAL_LIBS_PATH =  $(SH_LIB_PATH)/libProgressBar.so
+LOCAL_LIBS_PATH += $(ROOTCOREDIR)/lib/libegammaAnalysisUtils.so
 # BONUS_LIB_PATH = 
 
 INCLUDES += -I../
