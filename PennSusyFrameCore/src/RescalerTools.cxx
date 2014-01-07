@@ -12,6 +12,7 @@ PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_af2(false)
                                                             , m_is_data(false)
                                                             , m_systematics(0)
 {
+  std::cout << "ElectronRescalerTool::ElectronRescalerTool()\n";
   // directory with energy rescale data
   // get default path for muon SF directory.  This comes from SUSYTools
   std::string maindir = "";
@@ -24,6 +25,7 @@ PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_af2(false)
       maindir + "/../egammaAnalysisUtils/share/EnergyRescalerData.root";
   std::cout << "initializing ElectronRescalerTool -- energy_rescale_data: " << energy_rescale_data << "\n";
   m_e_rescale.Init(energy_rescale_data, "2012", "es2012");;
+  std::cout << "end ElectronRescalerTool::ElectronRescalerTool()\n";
 }
 
 // -----------------------------------------------------------------------------

@@ -6,6 +6,7 @@
 
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
+#include "PennSusyFrameCore/include/RescalerTools.h"
 
 // ============================================================================
 namespace PennSusyFrame
@@ -30,6 +31,8 @@ namespace PennSusyFrame
     private:
       std::vector<PennSusyFrame::Electron> m_master_list;
       std::vector<std::vector<PennSusyFrame::Electron*> > m_user_lists;
+
+      PennSusyFrame::ElectronRescalerTool m_el_rescaler;
   };
 
   class MuonContainer

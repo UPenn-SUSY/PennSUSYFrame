@@ -108,9 +108,9 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     // nb = fChain->GetEntry(jentry);
     // nbytes += nb;
 
-    // clearObjects();
-    // constructObjects();
-    // processEvent();
+    clearObjects();
+    constructObjects();
+    processEvent();
   }
 }
 
@@ -120,6 +120,8 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
   std::cout << "clearObjects()\n";
   // TODO clear objects
   m_electrons.clear();
+  m_muons.clear();
+  m_jets.clear();
 }
 
 // -----------------------------------------------------------------------------
