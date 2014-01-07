@@ -8,8 +8,8 @@
 // TODO set m_is_af2 correctly
 // TODO set m_is_data correctly
 // TODO set m_systematics correctly
-PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_af2(false)
-                                                            , m_is_data(false)
+PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_data(false)
+                                                            , m_is_af2(false)
                                                             , m_systematics(0)
 {
   std::cout << "ElectronRescalerTool::ElectronRescalerTool()\n";
@@ -24,8 +24,16 @@ PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_af2(false)
   std::string energy_rescale_data =
       maindir + "/../egammaAnalysisUtils/share/EnergyRescalerData.root";
   std::cout << "initializing ElectronRescalerTool -- energy_rescale_data: " << energy_rescale_data << "\n";
-  m_e_rescale.Init(energy_rescale_data, "2012", "es2012");;
+
+  // m_e_rescale = new egRescaler::EnergyRescalerUpgrade();
+  // m_e_rescale->Init(energy_rescale_data, "2012", "es2012");;
+  m_e_rescale = new egRescaler::EnergyRescalerUpgrade(energy_rescale_data, "2012", "es2012");
   std::cout << "end ElectronRescalerTool::ElectronRescalerTool()\n";
+}
+
+PennSusyFrame::ElectronRescalerTool::~ElectronRescalerTool()
+{
+  delete m_e_rescale;
 }
 
 // -----------------------------------------------------------------------------
@@ -45,37 +53,37 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledE( const PennSusyFrame::E
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!m_is_data) {
     // // Electron energy scale uncertainty
-    // el_E_corrected = m_e_rescale.applyEnergyCorrection( el_cl_eta
-    //                                                   , el_E_uncorrected
-    //                                                   , egRescaler::EnergyRescalerUpgrade::Electron
-    //                                                   , egRescaler::EnergyRescalerUpgrade::Nominal
-    //                                                   );
+    // el_E_corrected = m_e_rescale->applyEnergyCorrection( el_cl_eta
+    //                                                    , el_E_uncorrected
+    //                                                    , egRescaler::EnergyRescalerUpgrade::Electron
+    //                                                    , egRescaler::EnergyRescalerUpgrade::Nominal
+    //                                                    );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Do energy smearing in MC
     int seed = static_cast<int>(1.e+5*fabs(el_cl_phi));
     if (!seed) ++seed;
-    m_e_rescale.SetRandomSeed(seed);
+    m_e_rescale->SetRandomSeed(seed);
 
     // find smearing correction
-    double smearcorr = m_e_rescale.getSmearingCorrection( el_cl_eta
-                                                        , el_E_uncorrected
-                                                        , egRescaler::EnergyRescalerUpgrade::NOMINAL
-                                                        );
+    double smearcorr = m_e_rescale->getSmearingCorrection( el_cl_eta
+                                                         , el_E_uncorrected
+                                                         , egRescaler::EnergyRescalerUpgrade::NOMINAL
+                                                         );
     el_E_corrected *= smearcorr;
 
     // Apply Atlfast specific calibration corrections (Atlfast only)
     if (m_is_af2) {
-      el_E_corrected *= m_e_rescale.applyAFtoG4(el_cl_eta);
+      el_E_corrected *= m_e_rescale->applyAFtoG4(el_cl_eta);
     }
   }
   else {
     // Residual energy scale correction for data
-    el_E_corrected = m_e_rescale.applyEnergyCorrection( el_cl_eta
-                                                      , el_E_uncorrected
-                                                      , egRescaler::EnergyRescalerUpgrade::Electron
-                                                      , egRescaler::EnergyRescalerUpgrade::Nominal
-                                                      );
+    el_E_corrected = m_e_rescale->applyEnergyCorrection( el_cl_eta
+                                                       , el_E_uncorrected
+                                                       , egRescaler::EnergyRescalerUpgrade::Electron
+                                                       , egRescaler::EnergyRescalerUpgrade::Nominal
+                                                       );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

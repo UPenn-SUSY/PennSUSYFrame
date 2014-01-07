@@ -18,6 +18,7 @@ namespace PennSusyFrame
   {
     public:
       ElectronRescalerTool();
+      ~ElectronRescalerTool();
 
       double getRescaledE( const PennSusyFrame::Electron*);
       double getRescaledEt(const PennSusyFrame::Electron*);
@@ -32,7 +33,7 @@ namespace PennSusyFrame
       // - 2 (up)
       int m_systematics;
 
-      egRescaler::EnergyRescalerUpgrade m_e_rescale;
+      egRescaler::EnergyRescalerUpgrade* m_e_rescale;
   };
 
   // =============================================================================

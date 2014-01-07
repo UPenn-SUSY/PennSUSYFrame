@@ -108,9 +108,9 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     // nb = fChain->GetEntry(jentry);
     // nbytes += nb;
 
-    clearObjects();
-    constructObjects();
-    processEvent();
+    // clearObjects();
+    // constructObjects();
+    // processEvent();
   }
 }
 
