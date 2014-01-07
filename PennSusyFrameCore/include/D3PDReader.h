@@ -1966,10 +1966,10 @@ namespace PennSusyFrame
     // std::vector<float>   *el_etap;
     // std::vector<float>   *el_depth;
     // std::vector<int>     *el_refittedTrack_n;
-    // std::vector<float>   *el_cl_E;
+    std::vector<float>   *el_cl_E;
     // std::vector<float>   *el_cl_pt;
-    // std::vector<float>   *el_cl_eta;
-    // std::vector<float>   *el_cl_phi;
+    std::vector<float>   *el_cl_eta;
+    std::vector<float>   *el_cl_phi;
     // std::vector<float>   *el_cl_time;
     // std::vector<float>   *el_Es0;
     // std::vector<float>   *el_etas0;
@@ -9718,10 +9718,10 @@ namespace PennSusyFrame
     // TBranch        *b_el_etap;   //!
     // TBranch        *b_el_depth;   //!
     // TBranch        *b_el_refittedTrack_n;   //!
-    // TBranch        *b_el_cl_E;   //!
+    TBranch        *b_el_cl_E;   //!
     // TBranch        *b_el_cl_pt;   //!
-    // TBranch        *b_el_cl_eta;   //!
-    // TBranch        *b_el_cl_phi;   //!
+    TBranch        *b_el_cl_eta;   //!
+    TBranch        *b_el_cl_phi;   //!
     // TBranch        *b_el_cl_time;   //!
     // TBranch        *b_el_Es0;   //!
     // TBranch        *b_el_etas0;   //!

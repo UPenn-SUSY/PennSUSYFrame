@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "TLorentzVector.h"
+#include "PennSusyFrameCore/include/RescalerTools.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -30,6 +31,16 @@ namespace PennSusyFrame
       virtual int getParticleIndex() const;
       virtual const TLorentzVector* getTlv() const;
       virtual const TLorentzVector* getRawTlv() const;
+
+      virtual double getPt() const;
+      virtual double getEta() const;
+      virtual double getPhi() const;
+      virtual double getE() const;
+
+      virtual double getRawPt() const;
+      virtual double getRawEta() const;
+      virtual double getRawPhi() const;
+      virtual double getRawE() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
@@ -71,15 +82,29 @@ namespace PennSusyFrame
       Electron();
       Electron( const PennSusyFrame::D3PDReader*
               , int el_index
+              // , PennSusyFrame::ElectronRescalerTool&
               , bool verbose = false
               );
 
+
+      void setClE(double);
+      void setClEta(double);
+      void setClPhi(double);
+
+      double getClE() const;
+      double getClEta() const;
+      double getClPhi() const;
 
       virtual void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
+      // void setElTlv(const PennSusyFrame::D3PDReader* reader, PennSusyFrame::ElectronRescalerTool&);
       void setElTlv(const PennSusyFrame::D3PDReader* reader);
+
+      double m_cl_E;
+      double m_cl_eta;
+      double m_cl_phi;
   };
 
   // =============================================================================

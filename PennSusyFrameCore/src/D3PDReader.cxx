@@ -794,10 +794,10 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_etap = 0;
   // el_depth = 0;
   // el_refittedTrack_n = 0;
-  // el_cl_E = 0;
+  el_cl_E = 0;
   // el_cl_pt = 0;
-  // el_cl_eta = 0;
-  // el_cl_phi = 0;
+  el_cl_eta = 0;
+  el_cl_phi = 0;
   // el_cl_time = 0;
   // el_Es0 = 0;
   // el_etas0 = 0;
@@ -6172,10 +6172,10 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("el_etap", &el_etap, &b_el_etap);
   // // fChain->SetBranchAddress("el_depth", &el_depth, &b_el_depth);
   // // fChain->SetBranchAddress("el_refittedTrack_n", &el_refittedTrack_n, &b_el_refittedTrack_n);
-  // // fChain->SetBranchAddress("el_cl_E", &el_cl_E, &b_el_cl_E);
+  turnOnBranch(tree, "el_cl_E", &el_cl_E, &b_el_cl_E);
   // // fChain->SetBranchAddress("el_cl_pt", &el_cl_pt, &b_el_cl_pt);
-  // // fChain->SetBranchAddress("el_cl_eta", &el_cl_eta, &b_el_cl_eta);
-  // // fChain->SetBranchAddress("el_cl_phi", &el_cl_phi, &b_el_cl_phi);
+  turnOnBranch(tree, "el_cl_eta", &el_cl_eta, &b_el_cl_eta);
+  turnOnBranch(tree, "el_cl_phi", &el_cl_phi, &b_el_cl_phi);
   // // fChain->SetBranchAddress("el_cl_time", &el_cl_time, &b_el_cl_time);
   // // fChain->SetBranchAddress("el_Es0", &el_Es0, &b_el_Es0);
   // // fChain->SetBranchAddress("el_etas0", &el_etas0, &b_el_etas0);

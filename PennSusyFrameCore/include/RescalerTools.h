@@ -19,10 +19,11 @@ namespace PennSusyFrame
     public:
       ElectronRescalerTool();
 
-    double getRescaledE( const PennSusyFrame::Electron*);
-    double getRescaledEt(const PennSusyFrame::Electron*);
+      double getRescaledE( const PennSusyFrame::Electron*);
+      double getRescaledEt(const PennSusyFrame::Electron*);
 
     private:
+      bool m_is_data;
       bool m_is_af2;
 
       // Use configurable flag c_apply_systematics to set:

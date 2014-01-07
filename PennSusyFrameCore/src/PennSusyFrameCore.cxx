@@ -97,23 +97,27 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
     progress_bar.checkProgress(jentry);
 
+    std::cout << "Loading tree for entry " << jentry << "\n";
     Long64_t ientry = LoadTree(jentry);
     if (ientry < 0) break;
+    std::cout << "getting entry for entry " << jentry << "\n";
     m_d3pd_reader->GetEntry(jentry);
+    std::cout << "done getting entry " << jentry << "\n";
 
     // // nb = fChain->GetEntry(jentry);
     // nb = fChain->GetEntry(jentry);
     // nbytes += nb;
 
-    clearObjects();
-    constructObjects();
-    processEvent();
+    // clearObjects();
+    // constructObjects();
+    // processEvent();
   }
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::clearObjects()
 {
+  std::cout << "clearObjects()\n";
   // TODO clear objects
   m_electrons.clear();
 }
@@ -121,6 +125,7 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::constructObjects()
 {
+  std::cout << "constructObjects()\n";
   // TODO construct obejects
   m_electrons.prep(m_d3pd_reader);
   m_muons.prep(m_d3pd_reader);

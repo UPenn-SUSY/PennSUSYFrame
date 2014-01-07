@@ -5,7 +5,11 @@
 // =============================================================================
 // = ElectronRescalerTool
 // =============================================================================
+// TODO set m_is_af2 correctly
+// TODO set m_is_data correctly
+// TODO set m_systematics correctly
 PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_af2(false)
+                                                            , m_is_data(false)
                                                             , m_systematics(0)
 {
   // directory with energy rescale data
@@ -18,22 +22,78 @@ PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_af2(false)
   }
   std::string energy_rescale_data =
       maindir + "/../egammaAnalysisUtils/share/EnergyRescalerData.root";
+  std::cout << "initializing ElectronRescalerTool -- energy_rescale_data: " << energy_rescale_data << "\n";
   m_e_rescale.Init(energy_rescale_data, "2012", "es2012");;
 }
 
 // -----------------------------------------------------------------------------
-double getRescaledE( const PennSusyFrame::Electron* p)
+double PennSusyFrame::ElectronRescalerTool::getRescaledE( const PennSusyFrame::Electron* p)
 {
+  return 0.;
 
-  return p->getTlv()->Pt();
+  std::cout << "ElectronRescalerTool::getRescaledE()\n";
+
+  const float el_E_uncorrected = p->getClE();
+  float el_E_corrected = el_E_uncorrected;
+
+  float el_eta    = p->getEta();
+  float el_cl_eta = p->getClEta();
+  float el_cl_phi = p->getClPhi();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!m_is_data) {
+    // // Electron energy scale uncertainty
+    // el_E_corrected = m_e_rescale.applyEnergyCorrection( el_cl_eta
+    //                                                   , el_E_uncorrected
+    //                                                   , egRescaler::EnergyRescalerUpgrade::Electron
+    //                                                   , egRescaler::EnergyRescalerUpgrade::Nominal
+    //                                                   );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // Do energy smearing in MC
+    int seed = static_cast<int>(1.e+5*fabs(el_cl_phi));
+    if (!seed) ++seed;
+    m_e_rescale.SetRandomSeed(seed);
+
+    // find smearing correction
+    double smearcorr = m_e_rescale.getSmearingCorrection( el_cl_eta
+                                                        , el_E_uncorrected
+                                                        , egRescaler::EnergyRescalerUpgrade::NOMINAL
+                                                        );
+    el_E_corrected *= smearcorr;
+
+    // Apply Atlfast specific calibration corrections (Atlfast only)
+    if (m_is_af2) {
+      el_E_corrected *= m_e_rescale.applyAFtoG4(el_cl_eta);
+    }
+  }
+  else {
+    // Residual energy scale correction for data
+    el_E_corrected = m_e_rescale.applyEnergyCorrection( el_cl_eta
+                                                      , el_E_uncorrected
+                                                      , egRescaler::EnergyRescalerUpgrade::Electron
+                                                      , egRescaler::EnergyRescalerUpgrade::Nominal
+                                                      );
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // std::cout << "Original energy: " << el_E_uncorrected
+  //           << " corrected energy: "<< el_E_corrected
+  //           << SLogger::endmsg;
+
+  std::cout << "end ElectronRescalerTool::getRescaledE()\n";
+
+  return el_E_corrected;
 }
 
 // -----------------------------------------------------------------------------
-double getRescaledEt(const PennSusyFrame::Electron* p)
+double PennSusyFrame::ElectronRescalerTool::getRescaledEt(const PennSusyFrame::Electron* p)
 {
+  return 0.;
+
   float el_E_corrected = getRescaledE(p);
-  // float el_Et_corrected = el_E_corrected/cosh(p->getEta());
-  float el_Et_corrected = el_E_corrected/cosh(p->getTlv()->Eta());
+  float el_Et_corrected = el_E_corrected/cosh(p->getEta());
+  // float el_Et_corrected = el_E_corrected/cosh(p->getTlv()->Eta());
   return el_Et_corrected;
 }
 
