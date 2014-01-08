@@ -115,14 +115,38 @@ namespace PennSusyFrame
       Muon();
       Muon( const PennSusyFrame::D3PDReader*
           , int mu_index
+          , PennSusyFrame::MuonRescalerTool*
           , bool verbose = false
           );
+
+      void setIsCombined(int);
+      void setIsSegmentTagged(int);
+      void setIdQOverP(double);
+      void setIdTheta(double);
+      void setMEQOverP(double);
+      void setMETheta(double);
+
+      int getIsCombined() const;
+      int getIsSegmentTagged() const;
+      double getIdQOverP() const;
+      double getIdTheta() const;
+      double getMEQOverP() const;
+      double getMETheta() const;
 
       virtual void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
-      void setMuTlv(const PennSusyFrame::D3PDReader* reader);
+      void setMuTlv( const PennSusyFrame::D3PDReader* reader
+                   , PennSusyFrame::MuonRescalerTool* mu_rescaler
+                   );
+
+      int m_is_combined;
+      int m_is_segment_tagged;
+      double m_id_qoverp;
+      double m_id_theta;
+      double m_me_qoverp;
+      double m_me_theta;
   };
 
   // =============================================================================

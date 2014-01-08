@@ -55,6 +55,8 @@ namespace PennSusyFrame
     private:
       std::vector<PennSusyFrame::Muon> m_master_list;
       std::vector<std::vector<PennSusyFrame::Muon*> > m_user_lists;
+
+      PennSusyFrame::MuonRescalerTool* m_mu_rescaler;
   };
 
   class JetContainer

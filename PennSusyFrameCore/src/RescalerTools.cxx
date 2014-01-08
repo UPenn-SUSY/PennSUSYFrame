@@ -1,6 +1,10 @@
 #include "PennSusyFrameCore/include/RescalerTools.h"
 
+#include <string>
+
 #include "PennSusyFrameCore/include/ObjectDefs.h"
+#include "RootCore/egammaAnalysisUtils/egammaAnalysisUtils/EnergyRescalerUpgrade.h"
+#include "RootCore/MuonMomentumCorrections/MuonMomentumCorrections/SmearingClass.h"
 
 // =============================================================================
 // = ElectronRescalerTool
@@ -42,7 +46,6 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledE( const PennSusyFrame::E
   const double el_E_uncorrected = p->getClE();
   double el_E_corrected = el_E_uncorrected;
 
-  // double el_eta    = p->getRawEta();
   double el_cl_eta = p->getClEta();
   double el_cl_phi = p->getClPhi();
 
@@ -103,9 +106,110 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledEt(const PennSusyFrame::E
 // =============================================================================
 // = MuonRescalerTool
 // =============================================================================
-PennSusyFrame::MuonRescalerTool::MuonRescalerTool()
+// TODO set m_is_data correctly
+PennSusyFrame::MuonRescalerTool::MuonRescalerTool() : m_is_data(false)
+                                                    , m_smearing_function("")
 {
+  if (m_is_data) return;
 
+  // get default path for muon SF directory.  This comes from SUSYTools
+  std::string maindir = "";
+  char *tmparea=getenv("ROOTCOREDIR");
+  if (tmparea != NULL) {
+    maindir = tmparea;
+    maindir = maindir + "/";
+  }
+  // Default path
+  m_muon_momentum_dir = maindir + "/../MuonMomentumCorrections/share/";
+
+  std::cout << "Muon momentum smearing will be grabbed from: "
+            << m_muon_momentum_dir << "\n";
+
+  // create mcp smearing object
+  m_mcp_smear = new MuonSmear::SmearingClass( "Data12"
+                                            , "staco"
+                                            , "q_pT"
+                                            , "Rel17.2Repro"
+                                            , m_muon_momentum_dir
+                                            );
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::MuonRescalerTool::~MuonRescalerTool()
+{
+  if (m_mcp_smear)
+    delete m_mcp_smear;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* p)
+{
+  double my_pt = p->getRawPt();
+
+  // if not data, apply momentum smearing
+  if (!m_is_data) {
+    double mu_eta = p->getRawEta();
+    double mu_phi = p->getRawPhi();
+
+    if (m_mcp_smear) {
+      // combined muon pt
+      double pt_cb = my_pt;
+      // id only pt
+      double pt_id = ( (p->getIdQOverP() !=0) ? fabs(sin(p->getIdTheta())/p->getIdQOverP())
+                                              : 0
+                     );
+      // MS only pt
+      double pt_ms = ( (p->getMEQOverP() !=0) ? fabs(sin(p->getMETheta())/p->getMEQOverP())
+                                              : 0
+                     );
+
+      // set seed based on the muon phi measurement. If seed is exactly 0, increment
+      int seed = static_cast<int>(1.e+5*fabs(mu_phi));
+      if (!seed) ++seed;
+      m_mcp_smear->SetSeed(seed);
+
+      // smear muon based on smearing function
+      if (m_smearing_function == "") {
+        // if combined muon
+        if (p->getIsCombined()) {
+          m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu_eta, p->getCharge());
+          my_pt = m_mcp_smear->pTCB();
+        }
+        // else if segment tagged muon
+        else if (p->getIsSegmentTagged()) {
+          m_mcp_smear->Event(pt_id, mu_eta, "ID", p->getCharge());
+          my_pt = m_mcp_smear->pTID();
+        }
+        // else if ms only muon
+        else {
+          m_mcp_smear->Event(pt_ms, mu_eta, "MS", p->getCharge());
+          my_pt = m_mcp_smear->pTMS();
+        }
+      }
+      else {
+        double pTMS_smeared = 0.;
+        double pTID_smeared = 0.;
+        double pTCB_smeared = 0.;
+
+        // Valid values for "c_smearing_function":
+        //   {"MSLOW", "MSUP", "IDLOW", "IDUP","SCALELOW", "SCALEUP"}
+        m_mcp_smear->PTVar( pTMS_smeared
+                          , pTID_smeared
+                          , pTCB_smeared
+                          , m_smearing_function
+                          );
+
+        if (p->getIsCombined())
+          my_pt = pTCB_smeared;
+        else if (p->getIsSegmentTagged())
+          my_pt = pTID_smeared;
+        else
+          my_pt = pTMS_smeared;
+      }
+    }
+  }
+
+  return my_pt;
 }
 
 // =============================================================================

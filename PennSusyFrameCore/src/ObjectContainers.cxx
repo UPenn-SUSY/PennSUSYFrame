@@ -104,6 +104,7 @@ PennSusyFrame::MuonContainer::~MuonContainer()
 // ----------------------------------------------------------------------------
 void PennSusyFrame::MuonContainer::init()
 {
+  m_mu_rescaler = new PennSusyFrame::MuonRescalerTool();
 }
 
 // ----------------------------------------------------------------------------
@@ -125,7 +126,7 @@ void PennSusyFrame::MuonContainer::prep( PennSusyFrame::D3PDReader* reader
   size_t num_mu = reader->mu_staco_n;
   m_master_list.reserve(num_mu);
   for (size_t mu_it = 0; mu_it != num_mu; ++mu_it) {
-    PennSusyFrame::Muon tmp(reader, mu_it);
+    PennSusyFrame::Muon tmp(reader, mu_it, m_mu_rescaler);
     m_master_list.push_back(tmp);
   }
 

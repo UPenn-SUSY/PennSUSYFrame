@@ -111,6 +111,7 @@ double CommonTools::MuonMomentumSmearingTool::getSmearedPt(const Muon* mu)
           my_pt = m_mcp_smear->pTMS();
         }
       }
+      // apply systematic smearing
       else {
         double pTMS_smeared = 0.;
         double pTID_smeared = 0.;

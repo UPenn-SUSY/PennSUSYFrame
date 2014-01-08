@@ -2223,14 +2223,14 @@ namespace PennSusyFrame
     // std::vector<int>     *ph_jet_matched;
     // std::vector<int>     *ph_el_index;
     Int_t           mu_staco_n;
-    std::vector<float>   *mu_staco_E;
-    // std::vector<float>   *mu_staco_pt;
+    // std::vector<float>   *mu_staco_E;
+    std::vector<float>   *mu_staco_pt;
     // std::vector<float>   *mu_staco_m;
-    // std::vector<float>   *mu_staco_eta;
-    // std::vector<float>   *mu_staco_phi;
-    std::vector<float>   *mu_staco_px;
-    std::vector<float>   *mu_staco_py;
-    std::vector<float>   *mu_staco_pz;
+    std::vector<float>   *mu_staco_eta;
+    std::vector<float>   *mu_staco_phi;
+    // std::vector<float>   *mu_staco_px;
+    // std::vector<float>   *mu_staco_py;
+    // std::vector<float>   *mu_staco_pz;
     std::vector<float>   *mu_staco_charge;
     // std::vector<unsigned short> *mu_staco_allauthor;
     // std::vector<int>     *mu_staco_author;
@@ -2260,9 +2260,9 @@ namespace PennSusyFrame
     // std::vector<double>  *mu_staco_caloLRLikelihood;
     // std::vector<int>     *mu_staco_bestMatch;
     // std::vector<int>     *mu_staco_isStandAloneMuon;
-    // std::vector<int>     *mu_staco_isCombinedMuon;
+    std::vector<int>     *mu_staco_isCombinedMuon;
     // std::vector<int>     *mu_staco_isLowPtReconstructedMuon;
-    // std::vector<int>     *mu_staco_isSegmentTaggedMuon;
+    std::vector<int>     *mu_staco_isSegmentTaggedMuon;
     // std::vector<int>     *mu_staco_isCaloMuonId;
     // std::vector<int>     *mu_staco_alsoFoundByLowPt;
     // std::vector<int>     *mu_staco_alsoFoundByCaloMuonId;
@@ -2283,13 +2283,13 @@ namespace PennSusyFrame
     // std::vector<float>   *mu_staco_id_d0_exPV;
     // std::vector<float>   *mu_staco_id_z0_exPV;
     // std::vector<float>   *mu_staco_id_phi_exPV;
-    // std::vector<float>   *mu_staco_id_theta_exPV;
-    // std::vector<float>   *mu_staco_id_qoverp_exPV;
+    std::vector<float>   *mu_staco_id_theta_exPV;
+    std::vector<float>   *mu_staco_id_qoverp_exPV;
     // std::vector<float>   *mu_staco_me_d0_exPV;
     // std::vector<float>   *mu_staco_me_z0_exPV;
     // std::vector<float>   *mu_staco_me_phi_exPV;
-    // std::vector<float>   *mu_staco_me_theta_exPV;
-    // std::vector<float>   *mu_staco_me_qoverp_exPV;
+    std::vector<float>   *mu_staco_me_theta_exPV;
+    std::vector<float>   *mu_staco_me_qoverp_exPV;
     // std::vector<float>   *mu_staco_ie_d0_exPV;
     // std::vector<float>   *mu_staco_ie_z0_exPV;
     // std::vector<float>   *mu_staco_ie_phi_exPV;
@@ -9975,14 +9975,14 @@ namespace PennSusyFrame
     // TBranch        *b_ph_jet_matched;   //!
     // TBranch        *b_ph_el_index;   //!
     TBranch        *b_mu_staco_n;   //!
-    TBranch        *b_mu_staco_E;   //!
-    // TBranch        *b_mu_staco_pt;   //!
+    // TBranch        *b_mu_staco_E;   //!
+    TBranch        *b_mu_staco_pt;   //!
     // TBranch        *b_mu_staco_m;   //!
-    // TBranch        *b_mu_staco_eta;   //!
-    // TBranch        *b_mu_staco_phi;   //!
-    TBranch        *b_mu_staco_px;   //!
-    TBranch        *b_mu_staco_py;   //!
-    TBranch        *b_mu_staco_pz;   //!
+    TBranch        *b_mu_staco_eta;   //!
+    TBranch        *b_mu_staco_phi;   //!
+    // TBranch        *b_mu_staco_px;   //!
+    // TBranch        *b_mu_staco_py;   //!
+    // TBranch        *b_mu_staco_pz;   //!
     TBranch        *b_mu_staco_charge;   //!
     // TBranch        *b_mu_staco_allauthor;   //!
     // TBranch        *b_mu_staco_author;   //!
@@ -10012,9 +10012,9 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_caloLRLikelihood;   //!
     // TBranch        *b_mu_staco_bestMatch;   //!
     // TBranch        *b_mu_staco_isStandAloneMuon;   //!
-    // TBranch        *b_mu_staco_isCombinedMuon;   //!
+    TBranch        *b_mu_staco_isCombinedMuon;   //!
     // TBranch        *b_mu_staco_isLowPtReconstructedMuon;   //!
-    // TBranch        *b_mu_staco_isSegmentTaggedMuon;   //!
+    TBranch        *b_mu_staco_isSegmentTaggedMuon;   //!
     // TBranch        *b_mu_staco_isCaloMuonId;   //!
     // TBranch        *b_mu_staco_alsoFoundByLowPt;   //!
     // TBranch        *b_mu_staco_alsoFoundByCaloMuonId;   //!
@@ -10035,13 +10035,13 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_id_d0_exPV;   //!
     // TBranch        *b_mu_staco_id_z0_exPV;   //!
     // TBranch        *b_mu_staco_id_phi_exPV;   //!
-    // TBranch        *b_mu_staco_id_theta_exPV;   //!
-    // TBranch        *b_mu_staco_id_qoverp_exPV;   //!
+    TBranch        *b_mu_staco_id_theta_exPV;   //!
+    TBranch        *b_mu_staco_id_qoverp_exPV;   //!
     // TBranch        *b_mu_staco_me_d0_exPV;   //!
     // TBranch        *b_mu_staco_me_z0_exPV;   //!
     // TBranch        *b_mu_staco_me_phi_exPV;   //!
-    // TBranch        *b_mu_staco_me_theta_exPV;   //!
-    // TBranch        *b_mu_staco_me_qoverp_exPV;   //!
+    TBranch        *b_mu_staco_me_theta_exPV;   //!
+    TBranch        *b_mu_staco_me_qoverp_exPV;   //!
     // TBranch        *b_mu_staco_ie_d0_exPV;   //!
     // TBranch        *b_mu_staco_ie_z0_exPV;   //!
     // TBranch        *b_mu_staco_ie_phi_exPV;   //!

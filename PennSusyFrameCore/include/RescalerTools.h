@@ -1,13 +1,29 @@
 #ifndef PENNSUSYFRAME_RESCALERTOOLS_H
 #define PENNSUSYFRAME_RESCALERTOOLS_H
 
+#include <string>
+
 // =============================================================================
-#include "RootCore/egammaAnalysisUtils/egammaAnalysisUtils/EnergyRescalerUpgrade.h"
+namespace egRescaler
+{
+  class EnergyRescalerUpgrade;
+}
+
+namespace MuonSmear
+{
+  class SmearingClass;
+}
 
 // =============================================================================
 namespace PennSusyFrame
 {
   class Electron;
+  class Muon;
+}
+
+namespace MuonSmear
+{
+  class SmearingClass;
 }
 
 // =============================================================================
@@ -41,9 +57,17 @@ namespace PennSusyFrame
   {
     public:
       MuonRescalerTool();
+      ~MuonRescalerTool();
+
+      double getSmearedPt(const PennSusyFrame::Muon*);
 
     private:
+      bool m_is_data;
 
+      std::string m_muon_momentum_dir;
+      MuonSmear::SmearingClass* m_mcp_smear;
+
+      std::string m_smearing_function;
   };
 
   // =============================================================================

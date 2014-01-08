@@ -344,6 +344,7 @@ PennSusyFrame::Muon::Muon()
 // -----------------------------------------------------------------------------
 PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
                          , int mu_index
+                         , PennSusyFrame::MuonRescalerTool* mu_rescaler
                          , bool verbose
                          )
 {
@@ -355,7 +356,87 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setParticleIndex(mu_index);
 
   setCharge(reader->mu_staco_charge->at(mu_index));
-  setMuTlv(reader);
+
+  setIsCombined(reader->mu_staco_isCombinedMuon->at(mu_index));
+  setIsSegmentTagged(reader->mu_staco_isSegmentTaggedMuon->at(mu_index));
+  setIdQOverP(reader->mu_staco_id_qoverp_exPV->at(mu_index));
+  setIdTheta( reader->mu_staco_id_theta_exPV->at(mu_index));
+  setMEQOverP(reader->mu_staco_me_qoverp_exPV->at(mu_index));
+  setMETheta( reader->mu_staco_me_theta_exPV->at(mu_index));
+
+  setMuTlv(reader, mu_rescaler);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setIsCombined(int val)
+{
+  m_is_combined = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setIsSegmentTagged(int val)
+{
+  m_is_segment_tagged = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setIdQOverP(double val)
+{
+  m_id_qoverp = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setIdTheta(double val)
+{
+  m_id_theta = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setMEQOverP(double val)
+{
+  m_me_qoverp = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setMETheta(double val)
+{
+  m_me_theta = val;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Muon::getIsCombined() const
+{
+  return m_is_combined;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Muon::getIsSegmentTagged() const
+{
+  return m_is_segment_tagged;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getIdQOverP() const
+{
+  return m_id_qoverp;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getIdTheta() const
+{
+  return m_id_theta;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getMEQOverP() const
+{
+  return m_me_qoverp;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getMETheta() const
+{
+  return m_me_theta;
 }
 
 // -----------------------------------------------------------------------------
@@ -365,27 +446,30 @@ void PennSusyFrame::Muon::print() const
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setMuTlv(const PennSusyFrame::D3PDReader* reader)
+void PennSusyFrame::Muon::setMuTlv( const PennSusyFrame::D3PDReader* reader
+                                  , PennSusyFrame::MuonRescalerTool* mu_rescaler
+                                  )
 {
   TLorentzVector raw_tlv;
-  double raw_px = reader->mu_staco_px->at(m_particle_index);
-  double raw_py = reader->mu_staco_py->at(m_particle_index);
-  double raw_pz = reader->mu_staco_pz->at(m_particle_index);
-  double raw_e  = reader->mu_staco_E->at(m_particle_index);
-  raw_tlv.SetPxPyPzE( raw_px
-                    , raw_py
-                    , raw_pz
-                    , raw_e
-                    );
+  double raw_pt  = reader->mu_staco_pt->at(m_particle_index);
+  double raw_eta = reader->mu_staco_eta->at(m_particle_index);
+  double raw_phi = reader->mu_staco_phi->at(m_particle_index);
+  double raw_m   = 105.66;
+  raw_tlv.SetPtEtaPhiM( raw_pt
+                      , raw_eta
+                      , raw_phi
+                      , raw_m
+                      );
   setRawTlv(raw_tlv);
 
-  // TODO double check we don't apply correction to muons
+  // TODO apply muon smearing
   TLorentzVector tlv;
-  double corrected_px = raw_px;
-  double corrected_py = raw_py;
-  double corrected_pz = raw_pz;
-  double corrected_e  = raw_e;
-  tlv.SetPxPyPzE(corrected_px, corrected_py, corrected_pz, corrected_e);
+  double corrected_pt  = mu_rescaler->getSmearedPt(this);
+  double corrected_eta = raw_eta;
+  double corrected_phi = raw_phi;
+  double corrected_m   = raw_m;
+  tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
+  setTlv(tlv);
 }
 
 // =============================================================================

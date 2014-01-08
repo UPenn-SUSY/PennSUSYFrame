@@ -141,4 +141,5 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   std::cout << "--------------------------------------------------------------------------------\n";
   std::cout << "event number: " << m_d3pd_reader->EventNumber << "\n";
   m_electrons.print(EL_ALL);
+  m_muons.print(MU_ALL);
 }
