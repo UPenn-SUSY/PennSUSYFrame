@@ -39,16 +39,12 @@ PennSusyFrame::ElectronRescalerTool::~ElectronRescalerTool()
 // -----------------------------------------------------------------------------
 double PennSusyFrame::ElectronRescalerTool::getRescaledE( const PennSusyFrame::Electron* p)
 {
-  return 0.;
+  const double el_E_uncorrected = p->getClE();
+  double el_E_corrected = el_E_uncorrected;
 
-  std::cout << "ElectronRescalerTool::getRescaledE()\n";
-
-  const float el_E_uncorrected = p->getClE();
-  float el_E_corrected = el_E_uncorrected;
-
-  float el_eta    = p->getEta();
-  float el_cl_eta = p->getClEta();
-  float el_cl_phi = p->getClPhi();
+  // double el_eta    = p->getRawEta();
+  double el_cl_eta = p->getClEta();
+  double el_cl_phi = p->getClPhi();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!m_is_data) {
@@ -91,8 +87,6 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledE( const PennSusyFrame::E
   //           << " corrected energy: "<< el_E_corrected
   //           << SLogger::endmsg;
 
-  std::cout << "end ElectronRescalerTool::getRescaledE()\n";
-
   return el_E_corrected;
 }
 
@@ -101,9 +95,8 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledEt(const PennSusyFrame::E
 {
   return 0.;
 
-  float el_E_corrected = getRescaledE(p);
-  float el_Et_corrected = el_E_corrected/cosh(p->getEta());
-  // float el_Et_corrected = el_E_corrected/cosh(p->getTlv()->Eta());
+  double el_E_corrected = getRescaledE(p);
+  double el_Et_corrected = el_E_corrected/cosh(p->getRawEta());
   return el_Et_corrected;
 }
 

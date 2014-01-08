@@ -21,6 +21,7 @@ PennSusyFrame::ElectronContainer::~ElectronContainer()
 // ----------------------------------------------------------------------------
 void PennSusyFrame::ElectronContainer::init()
 {
+  m_el_rescaler = new PennSusyFrame::ElectronRescalerTool();
 }
 
 // ----------------------------------------------------------------------------
@@ -42,7 +43,7 @@ void PennSusyFrame::ElectronContainer::prep( PennSusyFrame::D3PDReader* reader
   size_t num_el = reader->el_n;
   m_master_list.reserve(num_el);
   for (size_t el_it = 0; el_it != num_el; ++el_it) {
-    PennSusyFrame::Electron tmp(reader, el_it);
+    PennSusyFrame::Electron tmp(reader, el_it, m_el_rescaler);
     m_master_list.push_back(tmp);
   }
 

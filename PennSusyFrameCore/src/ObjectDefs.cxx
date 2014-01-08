@@ -21,11 +21,16 @@ PennSusyFrame::Particle::Particle() : m_tlv_set(false)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Particle::printGeneralInfo() const
 {
-  const TLorentzVector* raw_tlv = getRawTlv();
-  std::cout << "\traw pt: " << raw_tlv->Pt()
-            << "\traw eta: " << raw_tlv->Eta()
-            << "\traw phi: " << raw_tlv->Phi()
-            << "\traw E: " << raw_tlv->E()
+  // const TLorentzVector* raw_tlv = getRawTlv();
+  std::cout << "\tpt: "  << m_tlv.Pt()
+            << "\teta: " << m_tlv.Eta()
+            << "\tphi: " << m_tlv.Phi()
+            << "\tE: "   << m_tlv.E()
+            << "\n"
+            << "\traw pt: "  << m_raw_tlv.Pt()
+            << "\traw eta: " << m_raw_tlv.Eta()
+            << "\traw phi: " << m_raw_tlv.Phi()
+            << "\traw E: "   << m_raw_tlv.E()
             << "\n";
   // std::cout << "\tmc index: " << m_mc_index
   //           << "\tpdg id: "  << m_pdgid
@@ -142,7 +147,7 @@ double PennSusyFrame::Particle::getE() const
 // -----------------------------------------------------------------------------
 double PennSusyFrame::Particle::getRawPt() const
 {
-  if (!m_tlv_set) {
+  if (!m_raw_tlv_set) {
     std::cout << "WARNING! Raw pT requested, but not set\n";
     return 0.;
   }
@@ -153,7 +158,7 @@ double PennSusyFrame::Particle::getRawPt() const
 // -----------------------------------------------------------------------------
 double PennSusyFrame::Particle::getRawEta() const
 {
-  if (!m_tlv_set) {
+  if (!m_raw_tlv_set) {
     std::cout << "WARNING! Raw eta requested, but not set\n";
     return 0.;
   }
@@ -164,7 +169,7 @@ double PennSusyFrame::Particle::getRawEta() const
 // -----------------------------------------------------------------------------
 double PennSusyFrame::Particle::getRawPhi() const
 {
-  if (!m_tlv_set) {
+  if (!m_raw_tlv_set) {
     std::cout << "WARNING! Raw phi requested, but not set\n";
     return 0.;
   }
@@ -175,7 +180,7 @@ double PennSusyFrame::Particle::getRawPhi() const
 // -----------------------------------------------------------------------------
 double PennSusyFrame::Particle::getRawE() const
 {
-  if (!m_tlv_set) {
+  if (!m_raw_tlv_set) {
     std::cout << "WARNING! Raw E requested, but not set\n";
     return 0.;
   }
@@ -241,7 +246,7 @@ PennSusyFrame::Electron::Electron()
 // -----------------------------------------------------------------------------
 PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
                                  , int el_index
-                                 // , PennSusyFrame::ElectronRescalerTool& el_rescaler
+                                 , PennSusyFrame::ElectronRescalerTool* el_rescaler
                                  , bool verbose
                                  )
 {
@@ -254,17 +259,13 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
 
   setCharge(reader->el_charge->at(el_index));
 
-  setClE(0);
-  setClEta(0);
-  setClPhi(0);
-
-  //~~ setClE(reader->el_cl_E->at(el_index));
-  //~~ setClEta(reader->el_cl_eta->at(el_index));
-  //~~ setClPhi(reader->el_cl_phi->at(el_index));
+  setClE(reader->el_cl_E->at(el_index));
+  setClEta(reader->el_cl_eta->at(el_index));
+  setClPhi(reader->el_cl_phi->at(el_index));
 
   // must set TLV last because it depends on above quantities
-  // setElTlv(reader, el_rescaler);
-  setElTlv(reader);
+  setElTlv(reader, el_rescaler);
+  // setElTlv(reader);
 }
 
 // -----------------------------------------------------------------------------
@@ -312,7 +313,7 @@ void PennSusyFrame::Electron::print() const
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Electron::setElTlv( const PennSusyFrame::D3PDReader* reader
-                                      // , PennSusyFrame::ElectronRescalerTool& el_rescaler
+                                      , PennSusyFrame::ElectronRescalerTool* el_rescaler
                                       )
 {
   TLorentzVector raw_tlv;
@@ -324,12 +325,11 @@ void PennSusyFrame::Electron::setElTlv( const PennSusyFrame::D3PDReader* reader
   setRawTlv(raw_tlv);
 
   TLorentzVector tlv;
-  double corrected_pt = 0.;
-  double corrected_eta = 0.;
-  double corrected_phi = 0.;
-  double corrected_e = 0.;
-  // double corrected_e = el_rescaler.getRescaledE(this);
-  tlv.SetPtEtaPhiE( corrected_pt, corrected_eta, corrected_phi, corrected_e);
+  double corrected_e  = el_rescaler->getRescaledE(this);
+  double corrected_eta = getRawEta();
+  double corrected_phi = getRawPhi();
+  double corrected_et = corrected_e/cosh(corrected_eta);
+  tlv.SetPtEtaPhiE( corrected_et, corrected_eta, corrected_phi, corrected_e);
   setTlv(tlv);
 }
 
@@ -368,12 +368,24 @@ void PennSusyFrame::Muon::print() const
 void PennSusyFrame::Muon::setMuTlv(const PennSusyFrame::D3PDReader* reader)
 {
   TLorentzVector raw_tlv;
-  raw_tlv.SetPxPyPzE( reader->mu_staco_px->at(m_particle_index)
-                    , reader->mu_staco_py->at(m_particle_index)
-                    , reader->mu_staco_pz->at(m_particle_index)
-                    , reader->mu_staco_E->at(m_particle_index)
+  double raw_px = reader->mu_staco_px->at(m_particle_index);
+  double raw_py = reader->mu_staco_py->at(m_particle_index);
+  double raw_pz = reader->mu_staco_pz->at(m_particle_index);
+  double raw_e  = reader->mu_staco_E->at(m_particle_index);
+  raw_tlv.SetPxPyPzE( raw_px
+                    , raw_py
+                    , raw_pz
+                    , raw_e
                     );
   setRawTlv(raw_tlv);
+
+  // TODO double check we don't apply correction to muons
+  TLorentzVector tlv;
+  double corrected_px = raw_px;
+  double corrected_py = raw_py;
+  double corrected_pz = raw_pz;
+  double corrected_e  = raw_e;
+  tlv.SetPxPyPzE(corrected_px, corrected_py, corrected_pz, corrected_e);
 }
 
 // =============================================================================

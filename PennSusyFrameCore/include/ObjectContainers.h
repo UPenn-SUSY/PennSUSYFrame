@@ -32,7 +32,7 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::Electron> m_master_list;
       std::vector<std::vector<PennSusyFrame::Electron*> > m_user_lists;
 
-      PennSusyFrame::ElectronRescalerTool m_el_rescaler;
+      PennSusyFrame::ElectronRescalerTool* m_el_rescaler;
   };
 
   class MuonContainer

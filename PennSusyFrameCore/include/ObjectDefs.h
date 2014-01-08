@@ -82,7 +82,7 @@ namespace PennSusyFrame
       Electron();
       Electron( const PennSusyFrame::D3PDReader*
               , int el_index
-              // , PennSusyFrame::ElectronRescalerTool&
+              , PennSusyFrame::ElectronRescalerTool*
               , bool verbose = false
               );
 
@@ -100,7 +100,7 @@ namespace PennSusyFrame
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
       // void setElTlv(const PennSusyFrame::D3PDReader* reader, PennSusyFrame::ElectronRescalerTool&);
-      void setElTlv(const PennSusyFrame::D3PDReader* reader);
+      void setElTlv(const PennSusyFrame::D3PDReader* reader, PennSusyFrame::ElectronRescalerTool*);
 
       double m_cl_E;
       double m_cl_eta;
