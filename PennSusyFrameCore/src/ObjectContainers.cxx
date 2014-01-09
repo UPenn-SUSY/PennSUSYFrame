@@ -181,14 +181,13 @@ PennSusyFrame::JetContainer::JetContainer()
 // ----------------------------------------------------------------------------
 PennSusyFrame::JetContainer::~JetContainer()
 {
-  // TODO remove if condition when m_jet_rescaler is defined
-  if (m_jet_rescaler)
-    delete m_jet_rescaler;
+  delete m_jet_rescaler;
 }
 
 // ----------------------------------------------------------------------------
 void PennSusyFrame::JetContainer::init()
 {
+  m_jet_rescaler = new PennSusyFrame::JetRescalerTool();
 }
 
 // ----------------------------------------------------------------------------
@@ -281,7 +280,7 @@ void PennSusyFrame::VertexContainer::clear()
 
 // ----------------------------------------------------------------------------
 void PennSusyFrame::VertexContainer::prep( PennSusyFrame::D3PDReader* reader
-                                      )
+                                         )
 {
   size_t num_vtx = reader->vx_n;
   m_master_list.reserve(num_vtx);

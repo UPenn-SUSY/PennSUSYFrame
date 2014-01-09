@@ -212,14 +212,17 @@ namespace PennSusyFrame
             );
 
       void setVertexIndex(int);
+      void setNumTracks(int);
 
       int getVertexIndex() const;
+      int getNumTracks() const;
 
       void print() const;
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
       int m_vertex_index;
+      int m_num_tracks;
   };
 
   // =============================================================================

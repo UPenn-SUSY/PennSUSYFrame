@@ -6225,7 +6225,7 @@ namespace PennSusyFrame
     // std::vector<float>   *vx_pz;
     // std::vector<float>   *vx_E;
     // std::vector<float>   *vx_m;
-    // std::vector<int>     *vx_nTracks;
+    std::vector<int>     *vx_nTracks;
     // std::vector<float>   *vx_sumPt;
     // Int_t           trk_n;
     // std::vector<float>   *trk_pt;
@@ -13977,7 +13977,7 @@ namespace PennSusyFrame
     // TBranch        *b_vx_pz;   //!
     // TBranch        *b_vx_E;   //!
     // TBranch        *b_vx_m;   //!
-    // TBranch        *b_vx_nTracks;   //!
+    TBranch        *b_vx_nTracks;   //!
     // TBranch        *b_vx_sumPt;   //!
     // TBranch        *b_trk_n;   //!
     // TBranch        *b_trk_pt;   //!

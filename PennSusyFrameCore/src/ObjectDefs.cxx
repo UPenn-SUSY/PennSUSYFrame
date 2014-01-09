@@ -604,6 +604,7 @@ PennSusyFrame::Vertex::Vertex( const PennSusyFrame::D3PDReader* reader
                              )
 {
   setVertexIndex(vertex_index);
+  setNumTracks(reader->vx_nTracks->at(m_vertex_index));
 }
 
 // -----------------------------------------------------------------------------
@@ -613,15 +614,29 @@ void PennSusyFrame::Vertex::setVertexIndex(int val)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Vertex::setNumTracks(int val)
+{
+  m_num_tracks = val;
+}
+
+// -----------------------------------------------------------------------------
 int PennSusyFrame::Vertex::getVertexIndex() const
 {
   return m_vertex_index;
 }
 
 // -----------------------------------------------------------------------------
+int PennSusyFrame::Vertex::getNumTracks() const
+{
+  return m_num_tracks;
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::Vertex::print() const
 {
   std::cout << "\tvertex number: "  << m_vertex_index
+            << "\n"
+            << "\tnum tracks: " << m_num_tracks
             << "\n";
   ;
 }

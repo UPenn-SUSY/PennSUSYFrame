@@ -2796,7 +2796,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // vx_pz = 0;
   // vx_E = 0;
   // vx_m = 0;
-  // vx_nTracks = 0;
+  vx_nTracks = 0;
   // vx_sumPt = 0;
   // trk_pt = 0;
   // trk_eta = 0;
@@ -10431,7 +10431,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("vx_pz", &vx_pz, &b_vx_pz);
   // // fChain->SetBranchAddress("vx_E", &vx_E, &b_vx_E);
   // // fChain->SetBranchAddress("vx_m", &vx_m, &b_vx_m);
-  // // fChain->SetBranchAddress("vx_nTracks", &vx_nTracks, &b_vx_nTracks);
+  turnOnBranch(tree, "vx_nTracks", &vx_nTracks, &b_vx_nTracks);
   // // fChain->SetBranchAddress("vx_sumPt", &vx_sumPt, &b_vx_sumPt);
   // // fChain->SetBranchAddress("trk_n", &trk_n, &b_trk_n);
   // // fChain->SetBranchAddress("trk_pt", &trk_pt, &b_trk_pt);
