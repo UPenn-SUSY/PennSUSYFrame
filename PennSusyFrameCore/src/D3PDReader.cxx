@@ -10422,7 +10422,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("Eventshape_rhoKt4EM", &Eventshape_rhoKt4EM, &b_Eventshape_rhoKt4EM);
   // // fChain->SetBranchAddress("Eventshape_rhoKt3LC", &Eventshape_rhoKt3LC, &b_Eventshape_rhoKt3LC);
   // // fChain->SetBranchAddress("Eventshape_rhoKt4LC", &Eventshape_rhoKt4LC, &b_Eventshape_rhoKt4LC);
-  // // fChain->SetBranchAddress("vx_n", &vx_n, &b_vx_n);
+  turnOnBranch(tree, "vx_n", &vx_n, &b_vx_n);
   // // fChain->SetBranchAddress("vx_x", &vx_x, &b_vx_x);
   // // fChain->SetBranchAddress("vx_y", &vx_y, &b_vx_y);
   // // fChain->SetBranchAddress("vx_z", &vx_z, &b_vx_z);

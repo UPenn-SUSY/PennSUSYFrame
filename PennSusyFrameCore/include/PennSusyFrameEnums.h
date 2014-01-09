@@ -74,10 +74,10 @@ enum TAU_COLLECTIONS { TAU_ALL = 0
                      , TAU_N
                      };
 
-enum VERTEX_COLLECTIONS { VERT_ALL = 0  // Green tree snake
-                        , VERT_GOOD     // Vertices flagged as good
-                        , VERT_GT_2     // Vertices with more than two tracks
-                        , VERT_N
+enum VERTEX_COLLECTIONS { VERTEX_ALL = 0  // Green tree snake
+                        , VERTEX_GOOD     // Vertices flagged as good
+                        , VERTEX_GT_2     // Vertices with more than two tracks
+                        , VERTEX_N
                         };
 
 // enum ISO_TYPE { PTCONE = 0

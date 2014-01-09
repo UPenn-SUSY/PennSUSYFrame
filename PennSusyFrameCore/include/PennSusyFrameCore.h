@@ -39,6 +39,7 @@ namespace PennSusyFrame
 
       PennSusyFrame::D3PDReader* m_d3pd_reader;
 
+      PennSusyFrame::Event             m_event;
       PennSusyFrame::ElectronContainer m_electrons;
       PennSusyFrame::MuonContainer     m_muons;
       PennSusyFrame::JetContainer      m_jets;

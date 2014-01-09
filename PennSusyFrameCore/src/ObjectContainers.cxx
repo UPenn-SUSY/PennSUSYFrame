@@ -181,7 +181,9 @@ PennSusyFrame::JetContainer::JetContainer()
 // ----------------------------------------------------------------------------
 PennSusyFrame::JetContainer::~JetContainer()
 {
-  // do nothing
+  // TODO remove if condition when m_jet_rescaler is defined
+  if (m_jet_rescaler)
+    delete m_jet_rescaler;
 }
 
 // ----------------------------------------------------------------------------
@@ -205,15 +207,15 @@ void PennSusyFrame::JetContainer::clear()
 void PennSusyFrame::JetContainer::prep( PennSusyFrame::D3PDReader* reader
                                       )
 {
-  size_t num_mu = reader->jet_AntiKt4LCTopo_n;
-  m_master_list.reserve(num_mu);
-  for (size_t jet_it = 0; jet_it != num_mu; ++jet_it) {
+  size_t num_jets = reader->jet_AntiKt4LCTopo_n;
+  m_master_list.reserve(num_jets);
+  for (size_t jet_it = 0; jet_it != num_jets; ++jet_it) {
     PennSusyFrame::Jet tmp(reader, jet_it, m_jet_rescaler);
     m_master_list.push_back(tmp);
   }
 
-  m_user_lists.at(JET_ALL).reserve(num_mu);
-  for (size_t jet_it = 0; jet_it != num_mu; ++jet_it) {
+  m_user_lists.at(JET_ALL).reserve(num_jets);
+  for (size_t jet_it = 0; jet_it != num_jets; ++jet_it) {
     m_user_lists.at(JET_ALL).push_back(&m_master_list.at(jet_it));
   }
 }
@@ -243,13 +245,89 @@ const std::vector<PennSusyFrame::Jet*> PennSusyFrame::JetContainer::getCollectio
 void PennSusyFrame::JetContainer::print( JET_COLLECTIONS jet_collection
                                        ) const
 {
-  std::cout << "================= Printing muon collection: "
+  std::cout << "================= Printing jet collection: "
             << jet_collection << " =================\n";
 
   size_t term = num(jet_collection);
-  std::cout << "Number muons: " << term << "\n";
+  std::cout << "Number jets: " << term << "\n";
 
   for (size_t jet_it = 0; jet_it != term; ++jet_it) {
     m_user_lists.at(jet_collection).at(jet_it)->print();
+  }
+}
+
+// ----------------------------------------------------------------------------
+PennSusyFrame::VertexContainer::VertexContainer()
+{
+  m_user_lists.resize(VERTEX_N);
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::VertexContainer::init()
+{
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::VertexContainer::clear()
+{
+  for ( VERTEX_COLLECTIONS vertex_it = VERTEX_ALL
+      ; vertex_it != VERTEX_N
+      ; vertex_it = VERTEX_COLLECTIONS(vertex_it+1)
+      ) {
+    m_user_lists.at(vertex_it).clear();
+  }
+  m_master_list.clear();
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::VertexContainer::prep( PennSusyFrame::D3PDReader* reader
+                                      )
+{
+  size_t num_vtx = reader->vx_n;
+  m_master_list.reserve(num_vtx);
+  for (size_t vertex_it = 0; vertex_it != num_vtx; ++vertex_it) {
+    PennSusyFrame::Vertex tmp(reader, vertex_it);
+    m_master_list.push_back(tmp);
+  }
+
+  m_user_lists.at(VERTEX_ALL).reserve(num_vtx);
+  for (size_t vertex_it = 0; vertex_it != num_vtx; ++vertex_it) {
+    m_user_lists.at(VERTEX_ALL).push_back(&m_master_list.at(vertex_it));
+  }
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::VertexContainer::setCollection( VERTEX_COLLECTIONS vertex_collection
+                                                  , std::vector<PennSusyFrame::Vertex*> muons
+                                                  )
+{
+  m_user_lists.at(vertex_collection) = muons;
+}
+
+// ----------------------------------------------------------------------------
+size_t PennSusyFrame::VertexContainer::num(VERTEX_COLLECTIONS vertex_collection) const
+
+{
+  return m_user_lists.at(vertex_collection).size();
+}
+
+// ----------------------------------------------------------------------------
+const std::vector<PennSusyFrame::Vertex*> PennSusyFrame::VertexContainer::getCollection(VERTEX_COLLECTIONS vertex_collection) const
+{
+  return m_user_lists.at(vertex_collection);
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::VertexContainer::print( VERTEX_COLLECTIONS vertex_collection
+                                       ) const
+{
+  std::cout << "================= Printing vertex collection: "
+            << vertex_collection << " =================\n";
+
+  size_t term = num(vertex_collection);
+  std::cout << "Number vertices: " << term << "\n";
+
+  for (size_t vertex_it = 0; vertex_it != term; ++vertex_it) {
+    m_user_lists.at(vertex_collection).at(vertex_it)->print();
   }
 }

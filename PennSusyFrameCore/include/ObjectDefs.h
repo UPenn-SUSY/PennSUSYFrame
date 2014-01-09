@@ -16,6 +16,36 @@ namespace PennSusyFrame
 namespace PennSusyFrame
 {
   // =============================================================================
+  class Event
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      Event();
+
+      void init();
+      void getEvent(const PennSusyFrame::D3PDReader*);
+
+      void setEventNumber(unsigned int);
+      void setRunNumber(unsigned int);
+      void setLumiBlock(unsigned int);
+
+      unsigned int getEventNumber() const;
+      unsigned int getRunNumber() const;
+      unsigned int getLumiBlock() const;
+
+      void print() const;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    protected:
+      bool m_is_data;
+
+      unsigned int m_event_number;
+      unsigned int m_run_number;
+      unsigned int m_lumi_block;
+
+  };
+
+  // =============================================================================
   class Particle
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -168,6 +198,28 @@ namespace PennSusyFrame
       void setJetTlv( const PennSusyFrame::D3PDReader* reader
                     , PennSusyFrame::JetRescalerTool*
                     );
+  };
+
+  // =============================================================================
+  class Vertex
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      Vertex();
+      Vertex( const PennSusyFrame::D3PDReader*
+            , int vertex_index
+            , bool verbose = false
+            );
+
+      void setVertexIndex(int);
+
+      int getVertexIndex() const;
+
+      void print() const;
+
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    protected:
+      int m_vertex_index;
   };
 
   // =============================================================================

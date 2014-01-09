@@ -258,6 +258,7 @@ PennSusyFrame::JetRescalerTool::~JetRescalerTool()
 }
 
 // -----------------------------------------------------------------------------
+// TODO get proper calibratd jet tlv
 TLorentzVector PennSusyFrame::JetRescalerTool::getCalibratedTlv(const PennSusyFrame::Jet* p)
 {
   return *(p->getRawTlv());

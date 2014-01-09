@@ -10,6 +10,74 @@
 static const double PI = 3.14159265359;
 
 // =============================================================================
+// = Event
+// =============================================================================
+// -----------------------------------------------------------------------------
+// TODO set m_is_data properly
+PennSusyFrame::Event::Event() : m_is_data(false)
+{
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Event::init()
+{
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
+{
+  setEventNumber(reader->EventNumber);
+  setRunNumber(reader->RunNumber);
+  setLumiBlock(reader->lbn);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Event::setEventNumber(unsigned int val)
+{
+  m_event_number = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Event::setRunNumber(unsigned int val)
+{
+  m_run_number = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Event::setLumiBlock(unsigned int val)
+{
+  m_lumi_block = val;
+}
+
+// -----------------------------------------------------------------------------
+unsigned int PennSusyFrame::Event::getEventNumber() const
+{
+  return m_event_number;
+}
+
+// -----------------------------------------------------------------------------
+unsigned int PennSusyFrame::Event::getRunNumber() const
+{
+  return m_run_number;
+}
+
+// -----------------------------------------------------------------------------
+unsigned int PennSusyFrame::Event::getLumiBlock() const
+{
+  return m_lumi_block;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Event::print() const
+{
+  std::cout << "================= Printing event info: =================\n";
+  std::cout << "run number: " << m_run_number
+            << "\tlumi block: " << m_lumi_block
+            << "\tevent number: " << m_event_number
+            << "\n";
+}
+
+// =============================================================================
 // = Particle
 // =============================================================================
 // -----------------------------------------------------------------------------
@@ -21,7 +89,6 @@ PennSusyFrame::Particle::Particle() : m_tlv_set(false)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Particle::printGeneralInfo() const
 {
-  // const TLorentzVector* raw_tlv = getRawTlv();
   std::cout << "\tpt: "  << m_tlv.Pt()
             << "\teta: " << m_tlv.Eta()
             << "\tphi: " << m_tlv.Phi()
@@ -307,7 +374,6 @@ double PennSusyFrame::Electron::getClPhi() const
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Electron::print() const
 {
-  std::cout << "printing electron\n";
   Lepton::print();
 }
 
@@ -523,6 +589,41 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
   // double corrected_m   = raw_m;
   // tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
   setTlv(tlv);
+}
+
+// =============================================================================
+// = Vertex
+// =============================================================================
+PennSusyFrame::Vertex::Vertex()
+{
+}
+
+PennSusyFrame::Vertex::Vertex( const PennSusyFrame::D3PDReader* reader
+                             , int vertex_index
+                             , bool /*verbose*/
+                             )
+{
+  setVertexIndex(vertex_index);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Vertex::setVertexIndex(int val)
+{
+  m_vertex_index = val;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Vertex::getVertexIndex() const
+{
+  return m_vertex_index;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Vertex::print() const
+{
+  std::cout << "\tvertex number: "  << m_vertex_index
+            << "\n";
+  ;
 }
 
 // =============================================================================

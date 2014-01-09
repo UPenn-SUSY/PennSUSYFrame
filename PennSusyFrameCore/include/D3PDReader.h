@@ -6216,7 +6216,7 @@ namespace PennSusyFrame
     // Float_t         Eventshape_rhoKt4EM;
     // Float_t         Eventshape_rhoKt3LC;
     // Float_t         Eventshape_rhoKt4LC;
-    // Int_t           vx_n;
+    Int_t           vx_n;
     // std::vector<float>   *vx_x;
     // std::vector<float>   *vx_y;
     // std::vector<float>   *vx_z;
@@ -13968,7 +13968,7 @@ namespace PennSusyFrame
     // TBranch        *b_Eventshape_rhoKt4EM;   //!
     // TBranch        *b_Eventshape_rhoKt3LC;   //!
     // TBranch        *b_Eventshape_rhoKt4LC;   //!
-    // TBranch        *b_vx_n;   //!
+    TBranch        *b_vx_n;   //!
     // TBranch        *b_vx_x;   //!
     // TBranch        *b_vx_y;   //!
     // TBranch        *b_vx_z;   //!

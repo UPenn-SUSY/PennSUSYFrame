@@ -56,6 +56,7 @@ void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
   // m_d3pd_reader->Init(tree);
   m_d3pd_reader = new PennSusyFrame::D3PDReader(tree);
 
+  m_event.init();
   m_electrons.init();
   m_muons.init();
   m_jets.init();
@@ -97,12 +98,9 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
     progress_bar.checkProgress(jentry);
 
-    std::cout << "Loading tree for entry " << jentry << "\n";
     Long64_t ientry = LoadTree(jentry);
     if (ientry < 0) break;
-    std::cout << "getting entry for entry " << jentry << "\n";
     m_d3pd_reader->GetEntry(jentry);
-    std::cout << "done getting entry " << jentry << "\n";
 
     // // nb = fChain->GetEntry(jentry);
     // nb = fChain->GetEntry(jentry);
@@ -127,8 +125,7 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::constructObjects()
 {
-  std::cout << "constructObjects()\n";
-  // TODO construct obejects
+  m_event.getEvent(m_d3pd_reader);
   m_electrons.prep(m_d3pd_reader);
   m_muons.prep(m_d3pd_reader);
   m_jets.prep(m_d3pd_reader);
@@ -138,8 +135,8 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
   // TODO make template processEvent
-  std::cout << "--------------------------------------------------------------------------------\n";
-  std::cout << "event number: " << m_d3pd_reader->EventNumber << "\n";
+  std::cout << "\n================================================================================\n";
+  m_event.print();
   m_electrons.print(EL_ALL);
   m_muons.print(MU_ALL);
   m_jets.print(JET_ALL);

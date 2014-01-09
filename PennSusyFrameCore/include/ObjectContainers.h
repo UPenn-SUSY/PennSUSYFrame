@@ -82,6 +82,27 @@ namespace PennSusyFrame
 
       PennSusyFrame::JetRescalerTool* m_jet_rescaler;
   };
+
+  class VertexContainer
+  {
+    public:
+      VertexContainer();
+
+      void init();
+
+      void clear();
+      void prep(PennSusyFrame::D3PDReader*);
+      void setCollection(VERTEX_COLLECTIONS, std::vector<PennSusyFrame::Vertex*>);
+
+      size_t num(VERTEX_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Vertex*> getCollection(VERTEX_COLLECTIONS) const;
+
+      void print(VERTEX_COLLECTIONS) const;
+
+    private:
+      std::vector<PennSusyFrame::Vertex> m_master_list;
+      std::vector<std::vector<PennSusyFrame::Vertex*> > m_user_lists;
+  };
 }
 
 #endif
