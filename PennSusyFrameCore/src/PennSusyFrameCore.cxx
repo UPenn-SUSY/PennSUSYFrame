@@ -63,6 +63,8 @@ void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
   m_taus.init();
   m_jets.init();
 
+  prepareSelection();
+
   Notify();
 }
 
@@ -76,6 +78,62 @@ Bool_t PennSusyFrame::PennSusyFrameCore::Notify()
   // user if needed. The return value is currently not used.
 
   return kTRUE;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::prepareSelection()
+{
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // vertex selectors
+  // TODO check good vertex definitions
+  m_vertex_selectors.resize(VERTEX_N);
+  m_vertex_selectors.at(VERTEX_GOOD).setNumTracksCut(5, -1);
+
+  m_vertex_selectors.at(VERTEX_GT_2).setNumTracksCut(2, -1);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // electron selectors
+  // TODO check baseline electron definitions
+  m_electron_selectors.resize(EL_N);
+  m_electron_selectors.at(EL_BASELINE).setPtCut(10.e3, -1);
+  m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.4);
+
+  // TODO check signal electron definitions
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // muons selectors
+  m_muon_selectors.resize(MU_N);
+  // TODO check baseline muon definitions
+  m_muon_selectors.at(MU_BASELINE).setPtCut(10.e3, -1);
+  m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.4);
+
+  // TODO check signal muon definitions
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // tau selectors
+  m_tau_selectors.resize(TAU_N);
+  // TODO check baseline tau definitions
+  m_tau_selectors.at(TAU_BASELINE).setPtCut(10.e3, -1);
+  m_tau_selectors.at(TAU_BASELINE).setEtaCut(-1, 2.4);
+
+  // TODO check signal tau definitions
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // jet selectors
+  m_jet_selectors.resize(JET_N);
+  // TODO check baseline jet definitions
+  m_jet_selectors.at(JET_BASELINE).setPtCut(20.e3, -1);
+  m_jet_selectors.at(JET_BASELINE).setEtaCut(-1, 4.9);
+
+  // TODO check baseline bad definitions
+
+  // TODO check baseline good definitions
+
+  // TODO check baseline light jet definitions
+
+  // TODO check baseline b jet definitions
+
+  // TODO check baseline forward jet definitions
 }
 
 // -----------------------------------------------------------------------------
@@ -128,11 +186,23 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
 void PennSusyFrame::PennSusyFrameCore::constructObjects()
 {
   m_event.getEvent(m_d3pd_reader);
+
   m_vertices.prep(m_d3pd_reader);
-  m_electrons.prep(m_d3pd_reader);
-  m_muons.prep(m_d3pd_reader);
-  m_taus.prep(m_d3pd_reader);
-  m_jets.prep(m_d3pd_reader, &m_event);
+  m_vertices.setCollection( VERTEX_GOOD
+                          , PennSusyFrame::selectObjects( m_vertex_selectors.at(VERTEX_GOOD)
+                                                        , m_vertices.getCollection(VERTEX_ALL)
+                                                        )
+                          );
+  m_vertices.setCollection( VERTEX_GT_2
+                          , PennSusyFrame::selectObjects( m_vertex_selectors.at(VERTEX_GT_2)
+                                                        , m_vertices.getCollection(VERTEX_ALL)
+                                                        )
+                          );
+
+  // m_electrons.prep(m_d3pd_reader);
+  // m_muons.prep(m_d3pd_reader);
+  // m_taus.prep(m_d3pd_reader);
+  // m_jets.prep(m_d3pd_reader, &m_event, &m_vertices);
 }
 
 // -----------------------------------------------------------------------------

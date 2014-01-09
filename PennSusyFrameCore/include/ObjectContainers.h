@@ -12,6 +12,30 @@
 namespace PennSusyFrame
 {
   // =============================================================================
+  // = VertexContainer
+  // =============================================================================
+  class VertexContainer
+  {
+    public:
+      VertexContainer();
+
+      void init();
+
+      void clear();
+      void prep(PennSusyFrame::D3PDReader*);
+      void setCollection(VERTEX_COLLECTIONS, std::vector<PennSusyFrame::Vertex*>);
+
+      size_t num(VERTEX_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Vertex*> getCollection(VERTEX_COLLECTIONS) const;
+
+      void print(VERTEX_COLLECTIONS) const;
+
+    private:
+      std::vector<PennSusyFrame::Vertex> m_master_list;
+      std::vector<std::vector<PennSusyFrame::Vertex*> > m_user_lists;
+  };
+
+  // =============================================================================
   // = ElectronContainer
   // =============================================================================
   class ElectronContainer
@@ -89,7 +113,7 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::Tau> m_master_list;
       std::vector<std::vector<PennSusyFrame::Tau*> > m_user_lists;
 
-      // PennSusyFrame::TauRescalerTool* m_tau_rescaler;
+      PennSusyFrame::TauRescalerTool* m_tau_rescaler;
   };
 
   // =============================================================================
@@ -104,7 +128,7 @@ namespace PennSusyFrame
       void init();
 
       void clear();
-      void prep(PennSusyFrame::D3PDReader*, PennSusyFrame::Event*);
+      void prep(PennSusyFrame::D3PDReader*, PennSusyFrame::Event*, PennSusyFrame::VertexContainer*);
       void setCollection(JET_COLLECTIONS, std::vector<PennSusyFrame::Jet*>);
 
       size_t num(JET_COLLECTIONS) const;
@@ -117,30 +141,6 @@ namespace PennSusyFrame
       std::vector<std::vector<PennSusyFrame::Jet*> > m_user_lists;
 
       PennSusyFrame::JetRescalerTool* m_jet_rescaler;
-  };
-
-  // =============================================================================
-  // = VertexContainer
-  // =============================================================================
-  class VertexContainer
-  {
-    public:
-      VertexContainer();
-
-      void init();
-
-      void clear();
-      void prep(PennSusyFrame::D3PDReader*);
-      void setCollection(VERTEX_COLLECTIONS, std::vector<PennSusyFrame::Vertex*>);
-
-      size_t num(VERTEX_COLLECTIONS) const;
-      const std::vector<PennSusyFrame::Vertex*> getCollection(VERTEX_COLLECTIONS) const;
-
-      void print(VERTEX_COLLECTIONS) const;
-
-    private:
-      std::vector<PennSusyFrame::Vertex> m_master_list;
-      std::vector<std::vector<PennSusyFrame::Vertex*> > m_user_lists;
   };
 }
 

@@ -606,7 +606,7 @@ PennSusyFrame::Tau::Tau()
 // -----------------------------------------------------------------------------
 PennSusyFrame::Tau::Tau( const PennSusyFrame::D3PDReader* reader
                        , int tau_index
-                       // , PennSusyFrame::TauRescalerTool* tau_rescaler
+                       , PennSusyFrame::TauRescalerTool* tau_rescaler
                        , bool verbose
                        )
 {
@@ -621,7 +621,7 @@ PennSusyFrame::Tau::Tau( const PennSusyFrame::D3PDReader* reader
 
   setCharge(reader->tau_charge->at(tau_index));
 
-  setTauTlv(reader);
+  setTauTlv(reader, tau_rescaler);
 }
 
 // -----------------------------------------------------------------------------
@@ -632,7 +632,7 @@ void PennSusyFrame::Tau::print() const
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Tau::setTauTlv( const PennSusyFrame::D3PDReader* reader
-                                  // , PennSusyFrame::TauRescalerTool* tau_rescaler
+                                  , PennSusyFrame::TauRescalerTool* /*tau_rescaler*/
                                   )
 {
   TLorentzVector raw_tlv;
@@ -647,6 +647,7 @@ void PennSusyFrame::Tau::setTauTlv( const PennSusyFrame::D3PDReader* reader
                       );
   setRawTlv(raw_tlv);
 
+  // TODO get rescaled tau
   TLorentzVector tlv;
   double corrected_pt  = raw_pt;
   double corrected_eta = raw_eta;
@@ -672,6 +673,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
                        , int jet_index
                        , PennSusyFrame::JetRescalerTool* jet_rescaler
                        , PennSusyFrame::Event* event
+                       , int num_vertices_ge_2_tracks
                        , bool verbose
                        )
 {
@@ -690,7 +692,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setActiveAreaPz( reader->jet_AntiKt4LCTopo_ActiveAreaPz->at(m_particle_index));
   setActiveAreaE(  reader->jet_AntiKt4LCTopo_ActiveAreaE->at(m_particle_index));
 
-  setJetTlv(reader, jet_rescaler, event);
+  setJetTlv(reader, jet_rescaler, event, num_vertices_ge_2_tracks);
 }
 
 // -----------------------------------------------------------------------------
@@ -799,6 +801,7 @@ void PennSusyFrame::Jet::print() const
 void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
                                   , PennSusyFrame::JetRescalerTool* jet_rescaler
                                   , PennSusyFrame::Event* event
+                                  , int num_vertices_w_2_trks
                                   )
 {
   TLorentzVector raw_tlv;
@@ -813,7 +816,10 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
                       );
   setRawTlv(raw_tlv);
 
-  TLorentzVector tlv = jet_rescaler->getCalibratedTlv(this, event);
+  TLorentzVector tlv = jet_rescaler->getCalibratedTlv( this
+                                                     , event
+                                                     , num_vertices_w_2_trks
+                                                     );
   setTlv(tlv);
 }
 

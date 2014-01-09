@@ -196,7 +196,7 @@ PennSusyFrame::TauContainer::~TauContainer()
 // ----------------------------------------------------------------------------
 void PennSusyFrame::TauContainer::init()
 {
-  // m_tau_rescaler = new PennSusyFrame::TauRescalerTool();
+  m_tau_rescaler = new PennSusyFrame::TauRescalerTool();
 }
 
 // ----------------------------------------------------------------------------
@@ -218,7 +218,7 @@ void PennSusyFrame::TauContainer::prep( PennSusyFrame::D3PDReader* reader
   size_t num_mu = reader->tau_n;
   m_master_list.reserve(num_mu);
   for (size_t tau_it = 0; tau_it != num_mu; ++tau_it) {
-    PennSusyFrame::Tau tmp(reader, tau_it);
+    PennSusyFrame::Tau tmp(reader, tau_it, m_tau_rescaler);
     m_master_list.push_back(tmp);
   }
 
@@ -300,12 +300,13 @@ void PennSusyFrame::JetContainer::clear()
 // ----------------------------------------------------------------------------
 void PennSusyFrame::JetContainer::prep( PennSusyFrame::D3PDReader* reader
                                       , PennSusyFrame::Event* event
+                                      , PennSusyFrame::VertexContainer* vertices
                                       )
 {
   size_t num_jets = reader->jet_AntiKt4LCTopo_n;
   m_master_list.reserve(num_jets);
   for (size_t jet_it = 0; jet_it != num_jets; ++jet_it) {
-    PennSusyFrame::Jet tmp(reader, jet_it, m_jet_rescaler, event);
+    PennSusyFrame::Jet tmp(reader, jet_it, m_jet_rescaler, event, vertices->num(VERTEX_GT_2));
     m_master_list.push_back(tmp);
   }
 

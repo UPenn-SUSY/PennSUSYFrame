@@ -6,6 +6,7 @@
 #include <TFile.h>
 
 #include "PennSusyFrameCore/include/ObjectContainers.h"
+#include "PennSusyFrameCore/include/ObjectSelectors.h"
 
 // =============================================================================
 class TBranch;
@@ -29,6 +30,8 @@ namespace PennSusyFrame
       virtual void     Loop();
       virtual Bool_t   Notify();
 
+      virtual void prepareSelection();
+
       virtual void clearObjects();
       virtual void constructObjects();
       virtual void processEvent();
@@ -40,12 +43,17 @@ namespace PennSusyFrame
       PennSusyFrame::D3PDReader* m_d3pd_reader;
 
       PennSusyFrame::Event             m_event;
-
       PennSusyFrame::VertexContainer   m_vertices;
       PennSusyFrame::ElectronContainer m_electrons;
       PennSusyFrame::MuonContainer     m_muons;
       PennSusyFrame::TauContainer      m_taus;
       PennSusyFrame::JetContainer      m_jets;
+
+      std::vector<PennSusyFrame::VertexSelector>   m_vertex_selectors;
+      std::vector<PennSusyFrame::ElectronSelector> m_electron_selectors;
+      std::vector<PennSusyFrame::MuonSelector>     m_muon_selectors;
+      std::vector<PennSusyFrame::TauSelector>      m_tau_selectors;
+      std::vector<PennSusyFrame::JetSelector>      m_jet_selectors;
 
     private:
   };

@@ -16,7 +16,15 @@ namespace PennSusyFrame
 namespace PennSusyFrame
 {
   // =============================================================================
-  class Event
+  class PhysicsObject
+  {
+    // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // public:
+    //   PhysicsObject();
+  };
+
+  // =============================================================================
+  class Event : public PhysicsObject
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
@@ -52,7 +60,7 @@ namespace PennSusyFrame
   };
 
   // =============================================================================
-  class Particle
+  class Particle : public PhysicsObject
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
@@ -196,7 +204,7 @@ namespace PennSusyFrame
       Tau();
       Tau( const PennSusyFrame::D3PDReader*
          , int tau_index
-         // , PennSusyFrame::TauRescalerTool*
+         , PennSusyFrame::TauRescalerTool*
          , bool verbose = false
          );
 
@@ -205,7 +213,7 @@ namespace PennSusyFrame
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
       void setTauTlv( const PennSusyFrame::D3PDReader* reader
-                    // , PennSusyFrame::TauRescalerTool* tau_rescaler
+                    , PennSusyFrame::TauRescalerTool* tau_rescaler
                     );
   };
 
@@ -219,6 +227,7 @@ namespace PennSusyFrame
          , int jet_index
          , PennSusyFrame::JetRescalerTool*
          , PennSusyFrame::Event*
+         , int num_vertices_ge_2_tracks
          , bool verbose = false
          );
 
@@ -247,6 +256,7 @@ namespace PennSusyFrame
       void setJetTlv( const PennSusyFrame::D3PDReader* reader
                     , PennSusyFrame::JetRescalerTool*
                     , PennSusyFrame::Event*
+                    , int num_vertices_ge_2_tracks
                     );
 
       double m_constscale_e;
@@ -260,7 +270,7 @@ namespace PennSusyFrame
   };
 
   // =============================================================================
-  class Vertex
+  class Vertex : public PhysicsObject
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
@@ -285,7 +295,7 @@ namespace PennSusyFrame
   };
 
   // =============================================================================
-  class Met
+  class Met : public PhysicsObject
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:

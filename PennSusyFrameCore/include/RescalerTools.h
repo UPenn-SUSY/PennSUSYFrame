@@ -85,10 +85,25 @@ namespace PennSusyFrame
 
       TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
                                      , const PennSusyFrame::Event*
+                                     , int num_vertices_ge_2_tracks
                                      );
 
     private:
       JetCalibrationTool* m_jet_calibration;
+
+      bool m_is_data;
+      bool m_is_af2;
+  };
+
+  // =============================================================================
+  // TODO finish writing TauRescalerTool
+  class TauRescalerTool
+  {
+    public:
+      TauRescalerTool();
+      ~TauRescalerTool();
+
+    private:
 
       bool m_is_data;
       bool m_is_af2;

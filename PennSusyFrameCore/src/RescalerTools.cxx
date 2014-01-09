@@ -258,10 +258,37 @@ PennSusyFrame::JetRescalerTool::~JetRescalerTool()
 }
 
 // -----------------------------------------------------------------------------
-// TODO get proper calibratd jet tlv
 TLorentzVector PennSusyFrame::JetRescalerTool::getCalibratedTlv( const PennSusyFrame::Jet* p
                                                                , const PennSusyFrame::Event* event
+                                                               , int num_vertices_ge_2_tracks
                                                                )
 {
-  return *(p->getRawTlv());
+  return m_jet_calibration->ApplyJetAreaOffsetEtaJES( p->getConstScaleE()
+                                                    , p->getConstScaleEta()
+                                                    , p->getConstScalePhi()
+                                                    , p->getConstScaleM()
+                                                    , p->getActiveAreaPx()
+                                                    , p->getActiveAreaPy()
+                                                    , p->getActiveAreaPz()
+                                                    , p->getActiveAreaE()
+                                                    , event->getEventShapeRhoKt4LC()
+                                                    , event->getAverageIntPerXing()
+                                                    , num_vertices_ge_2_tracks
+                                                    );
+}
+
+// =============================================================================
+// = TauRescalerTool
+// =============================================================================
+// TODO set m_is_data correctly
+// TODO set m_is_af2 correctly
+PennSusyFrame::TauRescalerTool::TauRescalerTool() : m_is_data(false)
+                                                  , m_is_af2(false)
+{
+  // TODO initialize TauRescalerTool
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::TauRescalerTool::~TauRescalerTool()
+{
 }
