@@ -516,12 +516,12 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
                       );
   setRawTlv(raw_tlv);
 
-  TLorentzVector tlv;
-  double corrected_pt  = raw_pt;
-  double corrected_eta = raw_eta;
-  double corrected_phi = raw_phi;
-  double corrected_m   = raw_m;
-  tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
+  TLorentzVector tlv = jet_rescaler->getCalibratedTlv(this);
+  // double corrected_pt  = raw_pt;
+  // double corrected_eta = raw_eta;
+  // double corrected_phi = raw_phi;
+  // double corrected_m   = raw_m;
+  // tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
   setTlv(tlv);
 }
 
