@@ -11,6 +11,9 @@
 // ============================================================================
 namespace PennSusyFrame
 {
+  // =============================================================================
+  // = ElectronContainer
+  // =============================================================================
   class ElectronContainer
   {
     public:
@@ -35,6 +38,9 @@ namespace PennSusyFrame
       PennSusyFrame::ElectronRescalerTool* m_el_rescaler;
   };
 
+  // =============================================================================
+  // = MuonContainer
+  // =============================================================================
   class MuonContainer
   {
     public:
@@ -59,6 +65,36 @@ namespace PennSusyFrame
       PennSusyFrame::MuonRescalerTool* m_mu_rescaler;
   };
 
+  // =============================================================================
+  // = TauContainer
+  // =============================================================================
+  class TauContainer
+  {
+    public:
+      TauContainer();
+      ~TauContainer();
+
+      void init();
+
+      void clear();
+      void prep(PennSusyFrame::D3PDReader*);
+      void setCollection(TAU_COLLECTIONS, std::vector<PennSusyFrame::Tau*>);
+
+      size_t num(TAU_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Tau*> getCollection(TAU_COLLECTIONS) const;
+
+      void print(TAU_COLLECTIONS) const;
+
+    private:
+      std::vector<PennSusyFrame::Tau> m_master_list;
+      std::vector<std::vector<PennSusyFrame::Tau*> > m_user_lists;
+
+      // PennSusyFrame::TauRescalerTool* m_tau_rescaler;
+  };
+
+  // =============================================================================
+  // = JerContainer
+  // =============================================================================
   class JetContainer
   {
     public:
@@ -68,7 +104,7 @@ namespace PennSusyFrame
       void init();
 
       void clear();
-      void prep(PennSusyFrame::D3PDReader*);
+      void prep(PennSusyFrame::D3PDReader*, PennSusyFrame::Event*);
       void setCollection(JET_COLLECTIONS, std::vector<PennSusyFrame::Jet*>);
 
       size_t num(JET_COLLECTIONS) const;
@@ -83,6 +119,9 @@ namespace PennSusyFrame
       PennSusyFrame::JetRescalerTool* m_jet_rescaler;
   };
 
+  // =============================================================================
+  // = VertexContainer
+  // =============================================================================
   class VertexContainer
   {
     public:

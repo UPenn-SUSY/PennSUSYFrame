@@ -57,8 +57,10 @@ void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
   m_d3pd_reader = new PennSusyFrame::D3PDReader(tree);
 
   m_event.init();
+  m_vertices.init();
   m_electrons.init();
   m_muons.init();
+  m_taus.init();
   m_jets.init();
 
   Notify();
@@ -115,10 +117,10 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::clearObjects()
 {
-  std::cout << "clearObjects()\n";
-  // TODO clear objects
+  m_vertices.clear();
   m_electrons.clear();
   m_muons.clear();
+  m_taus.clear();
   m_jets.clear();
 }
 
@@ -126,18 +128,22 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
 void PennSusyFrame::PennSusyFrameCore::constructObjects()
 {
   m_event.getEvent(m_d3pd_reader);
+  m_vertices.prep(m_d3pd_reader);
   m_electrons.prep(m_d3pd_reader);
   m_muons.prep(m_d3pd_reader);
-  m_jets.prep(m_d3pd_reader);
+  m_taus.prep(m_d3pd_reader);
+  m_jets.prep(m_d3pd_reader, &m_event);
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
-  // TODO make template processEvent
-  std::cout << "\n================================================================================\n";
-  m_event.print();
-  m_electrons.print(EL_ALL);
-  m_muons.print(MU_ALL);
-  m_jets.print(JET_ALL);
+  // // TODO make template processEvent
+  // std::cout << "\n================================================================================\n";
+  // m_event.print();
+  // m_vertices.print(VERTEX_ALL);
+  // m_electrons.print(EL_ALL);
+  // m_muons.print(MU_ALL);
+  // m_taus.print(TAU_ALL);
+  // m_jets.print(JET_ALL);
 }

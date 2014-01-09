@@ -18,9 +18,11 @@ namespace MuonSmear
 // =============================================================================
 namespace PennSusyFrame
 {
+  class Event;
   class Electron;
   class Muon;
   class Jet;
+  class Vertex;
 }
 
 namespace MuonSmear
@@ -81,7 +83,9 @@ namespace PennSusyFrame
       JetRescalerTool();
       ~JetRescalerTool();
 
-      TLorentzVector getCalibratedTlv(const PennSusyFrame::Jet*);
+      TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
+                                     , const PennSusyFrame::Event*
+                                     );
 
     private:
       JetCalibrationTool* m_jet_calibration;

@@ -6,6 +6,9 @@
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 #include "PennSusyFrameCore/include/D3PDReader.h"
 
+// =============================================================================
+// = ElectronContainer
+// =============================================================================
 // ----------------------------------------------------------------------------
 PennSusyFrame::ElectronContainer::ElectronContainer()
 {
@@ -89,6 +92,9 @@ void PennSusyFrame::ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
   }
 }
 
+// =============================================================================
+// = MuonContainer
+// =============================================================================
 // ----------------------------------------------------------------------------
 PennSusyFrame::MuonContainer::MuonContainer()
 {
@@ -172,6 +178,95 @@ void PennSusyFrame::MuonContainer::print( MUON_COLLECTIONS mu_collection
   }
 }
 
+// =============================================================================
+// = TauContainer
+// =============================================================================
+// ----------------------------------------------------------------------------
+PennSusyFrame::TauContainer::TauContainer()
+{
+  m_user_lists.resize(TAU_N);
+}
+
+// ----------------------------------------------------------------------------
+PennSusyFrame::TauContainer::~TauContainer()
+{
+  // do nothing
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::TauContainer::init()
+{
+  // m_tau_rescaler = new PennSusyFrame::TauRescalerTool();
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::TauContainer::clear()
+{
+  for ( TAU_COLLECTIONS tau_it = TAU_ALL
+      ; tau_it != TAU_N
+      ; tau_it = TAU_COLLECTIONS(tau_it+1)
+      ) {
+    m_user_lists.at(tau_it).clear();
+  }
+  m_master_list.clear();
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::TauContainer::prep( PennSusyFrame::D3PDReader* reader
+                                      )
+{
+  size_t num_mu = reader->tau_n;
+  m_master_list.reserve(num_mu);
+  for (size_t tau_it = 0; tau_it != num_mu; ++tau_it) {
+    PennSusyFrame::Tau tmp(reader, tau_it);
+    m_master_list.push_back(tmp);
+  }
+
+  m_user_lists.at(TAU_ALL).reserve(num_mu);
+  for (size_t tau_it = 0; tau_it != num_mu; ++tau_it) {
+    m_user_lists.at(TAU_ALL).push_back(&m_master_list.at(tau_it));
+  }
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::TauContainer::setCollection( TAU_COLLECTIONS tau_collection
+                                               , std::vector<PennSusyFrame::Tau*> taus
+                                               )
+{
+  m_user_lists.at(tau_collection) = taus;
+}
+
+// ----------------------------------------------------------------------------
+size_t PennSusyFrame::TauContainer::num(TAU_COLLECTIONS tau_collection) const
+
+{
+  return m_user_lists.at(tau_collection).size();
+}
+
+// ----------------------------------------------------------------------------
+const std::vector<PennSusyFrame::Tau*> PennSusyFrame::TauContainer::getCollection(TAU_COLLECTIONS tau_collection) const
+{
+  return m_user_lists.at(tau_collection);
+}
+
+// ----------------------------------------------------------------------------
+void PennSusyFrame::TauContainer::print( TAU_COLLECTIONS tau_collection
+                                        ) const
+{
+  std::cout << "================= Printing tau collection: "
+            << tau_collection << " =================\n";
+
+  size_t term = num(tau_collection);
+  std::cout << "Number taus: " << term << "\n";
+
+  for (size_t tau_it = 0; tau_it != term; ++tau_it) {
+    m_user_lists.at(tau_collection).at(tau_it)->print();
+  }
+}
+
+// =============================================================================
+// = JetContainer
+// =============================================================================
 // ----------------------------------------------------------------------------
 PennSusyFrame::JetContainer::JetContainer()
 {
@@ -204,12 +299,13 @@ void PennSusyFrame::JetContainer::clear()
 
 // ----------------------------------------------------------------------------
 void PennSusyFrame::JetContainer::prep( PennSusyFrame::D3PDReader* reader
+                                      , PennSusyFrame::Event* event
                                       )
 {
   size_t num_jets = reader->jet_AntiKt4LCTopo_n;
   m_master_list.reserve(num_jets);
   for (size_t jet_it = 0; jet_it != num_jets; ++jet_it) {
-    PennSusyFrame::Jet tmp(reader, jet_it, m_jet_rescaler);
+    PennSusyFrame::Jet tmp(reader, jet_it, m_jet_rescaler, event);
     m_master_list.push_back(tmp);
   }
 
@@ -221,10 +317,10 @@ void PennSusyFrame::JetContainer::prep( PennSusyFrame::D3PDReader* reader
 
 // ----------------------------------------------------------------------------
 void PennSusyFrame::JetContainer::setCollection( JET_COLLECTIONS jet_collection
-                                               , std::vector<PennSusyFrame::Jet*> muons
+                                               , std::vector<PennSusyFrame::Jet*> jets
                                                )
 {
-  m_user_lists.at(jet_collection) = muons;
+  m_user_lists.at(jet_collection) = jets;
 }
 
 // ----------------------------------------------------------------------------
@@ -255,6 +351,9 @@ void PennSusyFrame::JetContainer::print( JET_COLLECTIONS jet_collection
   }
 }
 
+// =============================================================================
+// = VertexContainer
+// =============================================================================
 // ----------------------------------------------------------------------------
 PennSusyFrame::VertexContainer::VertexContainer()
 {

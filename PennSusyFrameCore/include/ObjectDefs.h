@@ -28,10 +28,14 @@ namespace PennSusyFrame
       void setEventNumber(unsigned int);
       void setRunNumber(unsigned int);
       void setLumiBlock(unsigned int);
+      void setAverageIntPerXing(float);
+      void setEventShapeRhoKt4LC(float);
 
       unsigned int getEventNumber() const;
       unsigned int getRunNumber() const;
       unsigned int getLumiBlock() const;
+      float getAverageIntPerXing() const;
+      float getEventShapeRhoKt4LC() const;
 
       void print() const;
 
@@ -43,6 +47,8 @@ namespace PennSusyFrame
       unsigned int m_run_number;
       unsigned int m_lumi_block;
 
+      float m_average_int_per_xing;
+      float m_eventshape_rhoKt4LC;
   };
 
   // =============================================================================
@@ -89,17 +95,20 @@ namespace PennSusyFrame
     public:
       Lepton();
 
+      void setIsLightLepton(bool);
       void setIsElectron(bool);
       void setCharge(double);
 
       bool isElectron() const;
       bool isMuon() const;
+      bool isTau() const;
       double getCharge() const;
 
       virtual void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
+      bool m_is_light_lepton;
       bool m_is_electron;
       double m_charge;
   };
@@ -180,6 +189,27 @@ namespace PennSusyFrame
   };
 
   // =============================================================================
+  class Tau : public Lepton
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      Tau();
+      Tau( const PennSusyFrame::D3PDReader*
+         , int tau_index
+         // , PennSusyFrame::TauRescalerTool*
+         , bool verbose = false
+         );
+
+      virtual void print() const;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    protected:
+      void setTauTlv( const PennSusyFrame::D3PDReader* reader
+                    // , PennSusyFrame::TauRescalerTool* tau_rescaler
+                    );
+  };
+
+  // =============================================================================
   class Jet : public Particle
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -188,8 +218,27 @@ namespace PennSusyFrame
       Jet( const PennSusyFrame::D3PDReader*
          , int jet_index
          , PennSusyFrame::JetRescalerTool*
+         , PennSusyFrame::Event*
          , bool verbose = false
          );
+
+      void setConstScaleE(double);
+      void setConstScaleEta(double);
+      void setConstScalePhi(double);
+      void setConstScaleM(double);
+      void setActiveAreaPx(double);
+      void setActiveAreaPy(double);
+      void setActiveAreaPz(double);
+      void setActiveAreaE(double);
+
+      double getConstScaleE() const;
+      double getConstScaleEta() const;
+      double getConstScalePhi() const;
+      double getConstScaleM() const;
+      double getActiveAreaPx() const;
+      double getActiveAreaPy() const;
+      double getActiveAreaPz() const;
+      double getActiveAreaE() const;
 
       virtual void print() const;
 
@@ -197,7 +246,17 @@ namespace PennSusyFrame
     protected:
       void setJetTlv( const PennSusyFrame::D3PDReader* reader
                     , PennSusyFrame::JetRescalerTool*
+                    , PennSusyFrame::Event*
                     );
+
+      double m_constscale_e;
+      double m_constscale_eta;
+      double m_constscale_phi;
+      double m_constscale_m;
+      double m_active_area_px;
+      double m_active_area_py;
+      double m_active_area_pz;
+      double m_active_area_e;
   };
 
   // =============================================================================

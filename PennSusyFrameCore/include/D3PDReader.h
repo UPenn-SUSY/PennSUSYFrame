@@ -1765,7 +1765,7 @@ namespace PennSusyFrame
     // UInt_t          detmask0;
     // UInt_t          detmask1;
     // Float_t         actualIntPerXing;
-    // Float_t         averageIntPerXing;
+    Float_t         averageIntPerXing;
     // UInt_t          mc_channel_number;
     // UInt_t          mc_event_number;
     // Float_t         mc_event_weight;
@@ -2473,508 +2473,6 @@ namespace PennSusyFrame
     // std::vector<int>     *mu_staco_nucone20_trkelstyle;
     // std::vector<int>     *mu_staco_nucone30_trkelstyle;
     // std::vector<int>     *mu_staco_nucone40_trkelstyle;
-    // // Int_t           mu_muid_n;
-    // // std::vector<float>   *mu_muid_E;
-    // // std::vector<float>   *mu_muid_pt;
-    // // std::vector<float>   *mu_muid_m;
-    // // std::vector<float>   *mu_muid_eta;
-    // // std::vector<float>   *mu_muid_phi;
-    // // std::vector<float>   *mu_muid_px;
-    // // std::vector<float>   *mu_muid_py;
-    // // std::vector<float>   *mu_muid_pz;
-    // // std::vector<float>   *mu_muid_charge;
-    // // std::vector<unsigned short> *mu_muid_allauthor;
-    // // std::vector<int>     *mu_muid_author;
-    // // std::vector<float>   *mu_muid_matchchi2;
-    // // std::vector<int>     *mu_muid_matchndof;
-    // // std::vector<float>   *mu_muid_etcone20;
-    // // std::vector<float>   *mu_muid_etcone30;
-    // // std::vector<float>   *mu_muid_etcone40;
-    // // std::vector<float>   *mu_muid_nucone20;
-    // // std::vector<float>   *mu_muid_nucone30;
-    // // std::vector<float>   *mu_muid_nucone40;
-    // // std::vector<float>   *mu_muid_ptcone20;
-    // // std::vector<float>   *mu_muid_ptcone30;
-    // // std::vector<float>   *mu_muid_ptcone40;
-    // // std::vector<float>   *mu_muid_etconeNoEm10;
-    // // std::vector<float>   *mu_muid_etconeNoEm20;
-    // // std::vector<float>   *mu_muid_etconeNoEm30;
-    // // std::vector<float>   *mu_muid_etconeNoEm40;
-    // // std::vector<float>   *mu_muid_scatteringCurvatureSignificance;
-    // // std::vector<float>   *mu_muid_scatteringNeighbourSignificance;
-    // // std::vector<float>   *mu_muid_momentumBalanceSignificance;
-    // // std::vector<float>   *mu_muid_energyLossPar;
-    // // std::vector<float>   *mu_muid_energyLossErr;
-    // // std::vector<float>   *mu_muid_etCore;
-    // // std::vector<float>   *mu_muid_energyLossType;
-    // // std::vector<unsigned short> *mu_muid_caloMuonIdTag;
-    // // std::vector<double>  *mu_muid_caloLRLikelihood;
-    // // std::vector<int>     *mu_muid_bestMatch;
-    // // std::vector<int>     *mu_muid_isStandAloneMuon;
-    // // std::vector<int>     *mu_muid_isCombinedMuon;
-    // // std::vector<int>     *mu_muid_isLowPtReconstructedMuon;
-    // // std::vector<int>     *mu_muid_isSegmentTaggedMuon;
-    // // std::vector<int>     *mu_muid_isCaloMuonId;
-    // // std::vector<int>     *mu_muid_alsoFoundByLowPt;
-    // // std::vector<int>     *mu_muid_alsoFoundByCaloMuonId;
-    // // std::vector<int>     *mu_muid_isSiliconAssociatedForwardMuon;
-    // // std::vector<int>     *mu_muid_loose;
-    // // std::vector<int>     *mu_muid_medium;
-    // // std::vector<int>     *mu_muid_tight;
-    // // std::vector<float>   *mu_muid_d0_exPV;
-    // // std::vector<float>   *mu_muid_z0_exPV;
-    // // std::vector<float>   *mu_muid_phi_exPV;
-    // // std::vector<float>   *mu_muid_theta_exPV;
-    // // std::vector<float>   *mu_muid_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_cb_d0_exPV;
-    // // std::vector<float>   *mu_muid_cb_z0_exPV;
-    // // std::vector<float>   *mu_muid_cb_phi_exPV;
-    // // std::vector<float>   *mu_muid_cb_theta_exPV;
-    // // std::vector<float>   *mu_muid_cb_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_id_d0_exPV;
-    // // std::vector<float>   *mu_muid_id_z0_exPV;
-    // // std::vector<float>   *mu_muid_id_phi_exPV;
-    // // std::vector<float>   *mu_muid_id_theta_exPV;
-    // // std::vector<float>   *mu_muid_id_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_me_d0_exPV;
-    // // std::vector<float>   *mu_muid_me_z0_exPV;
-    // // std::vector<float>   *mu_muid_me_phi_exPV;
-    // // std::vector<float>   *mu_muid_me_theta_exPV;
-    // // std::vector<float>   *mu_muid_me_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_ie_d0_exPV;
-    // // std::vector<float>   *mu_muid_ie_z0_exPV;
-    // // std::vector<float>   *mu_muid_ie_phi_exPV;
-    // // std::vector<float>   *mu_muid_ie_theta_exPV;
-    // // std::vector<float>   *mu_muid_ie_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_cov_d0_exPV;
-    // // std::vector<float>   *mu_muid_cov_z0_exPV;
-    // // std::vector<float>   *mu_muid_cov_phi_exPV;
-    // // std::vector<float>   *mu_muid_cov_theta_exPV;
-    // // std::vector<float>   *mu_muid_cov_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_cov_d0_z0_exPV;
-    // // std::vector<float>   *mu_muid_cov_d0_phi_exPV;
-    // // std::vector<float>   *mu_muid_cov_d0_theta_exPV;
-    // // std::vector<float>   *mu_muid_cov_d0_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_cov_z0_phi_exPV;
-    // // std::vector<float>   *mu_muid_cov_z0_theta_exPV;
-    // // std::vector<float>   *mu_muid_cov_z0_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_cov_phi_theta_exPV;
-    // // std::vector<float>   *mu_muid_cov_phi_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_cov_theta_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_d0_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_z0_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_phi_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_theta_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_d0_z0_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_d0_phi_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_d0_theta_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_d0_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_z0_phi_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_z0_theta_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_z0_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_phi_theta_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_phi_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_id_cov_theta_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_me_cov_d0_exPV;
-    // // std::vector<float>   *mu_muid_me_cov_z0_exPV;
-    // // std::vector<float>   *mu_muid_me_cov_phi_exPV;
-    // // std::vector<float>   *mu_muid_me_cov_theta_exPV;
-    // // std::vector<float>   *mu_muid_me_cov_qoverp_exPV;
-    // // std::vector<float>   *mu_muid_ms_d0;
-    // // std::vector<float>   *mu_muid_ms_z0;
-    // // std::vector<float>   *mu_muid_ms_phi;
-    // // std::vector<float>   *mu_muid_ms_theta;
-    // // std::vector<float>   *mu_muid_ms_qoverp;
-    // // std::vector<float>   *mu_muid_id_d0;
-    // // std::vector<float>   *mu_muid_id_z0;
-    // // std::vector<float>   *mu_muid_id_phi;
-    // // std::vector<float>   *mu_muid_id_theta;
-    // // std::vector<float>   *mu_muid_id_qoverp;
-    // // std::vector<float>   *mu_muid_me_d0;
-    // // std::vector<float>   *mu_muid_me_z0;
-    // // std::vector<float>   *mu_muid_me_phi;
-    // // std::vector<float>   *mu_muid_me_theta;
-    // // std::vector<float>   *mu_muid_me_qoverp;
-    // // std::vector<float>   *mu_muid_ie_d0;
-    // // std::vector<float>   *mu_muid_ie_z0;
-    // // std::vector<float>   *mu_muid_ie_phi;
-    // // std::vector<float>   *mu_muid_ie_theta;
-    // // std::vector<float>   *mu_muid_ie_qoverp;
-    // // std::vector<int>     *mu_muid_nOutliersOnTrack;
-    // // std::vector<int>     *mu_muid_nBLHits;
-    // // std::vector<int>     *mu_muid_nPixHits;
-    // // std::vector<int>     *mu_muid_nSCTHits;
-    // // std::vector<int>     *mu_muid_nTRTHits;
-    // // std::vector<int>     *mu_muid_nTRTHighTHits;
-    // // std::vector<int>     *mu_muid_nBLSharedHits;
-    // // std::vector<int>     *mu_muid_nPixSharedHits;
-    // // std::vector<int>     *mu_muid_nPixHoles;
-    // // std::vector<int>     *mu_muid_nSCTSharedHits;
-    // // std::vector<int>     *mu_muid_nSCTHoles;
-    // // std::vector<int>     *mu_muid_nTRTOutliers;
-    // // std::vector<int>     *mu_muid_nTRTHighTOutliers;
-    // // std::vector<int>     *mu_muid_nGangedPixels;
-    // // std::vector<int>     *mu_muid_nPixelDeadSensors;
-    // // std::vector<int>     *mu_muid_nSCTDeadSensors;
-    // // std::vector<int>     *mu_muid_nTRTDeadStraws;
-    // // std::vector<int>     *mu_muid_expectBLayerHit;
-    // // std::vector<int>     *mu_muid_nMDTHits;
-    // // std::vector<int>     *mu_muid_nMDTHoles;
-    // // std::vector<int>     *mu_muid_nCSCEtaHits;
-    // // std::vector<int>     *mu_muid_nCSCEtaHoles;
-    // // std::vector<int>     *mu_muid_nCSCUnspoiledEtaHits;
-    // // std::vector<int>     *mu_muid_nCSCPhiHits;
-    // // std::vector<int>     *mu_muid_nCSCPhiHoles;
-    // // std::vector<int>     *mu_muid_nRPCEtaHits;
-    // // std::vector<int>     *mu_muid_nRPCEtaHoles;
-    // // std::vector<int>     *mu_muid_nRPCPhiHits;
-    // // std::vector<int>     *mu_muid_nRPCPhiHoles;
-    // // std::vector<int>     *mu_muid_nTGCEtaHits;
-    // // std::vector<int>     *mu_muid_nTGCEtaHoles;
-    // // std::vector<int>     *mu_muid_nTGCPhiHits;
-    // // std::vector<int>     *mu_muid_nTGCPhiHoles;
-    // // std::vector<int>     *mu_muid_nprecisionLayers;
-    // // std::vector<int>     *mu_muid_nprecisionHoleLayers;
-    // // std::vector<int>     *mu_muid_nphiLayers;
-    // // std::vector<int>     *mu_muid_ntrigEtaLayers;
-    // // std::vector<int>     *mu_muid_nphiHoleLayers;
-    // // std::vector<int>     *mu_muid_ntrigEtaHoleLayers;
-    // // std::vector<int>     *mu_muid_nMDTBIHits;
-    // // std::vector<int>     *mu_muid_nMDTBMHits;
-    // // std::vector<int>     *mu_muid_nMDTBOHits;
-    // // std::vector<int>     *mu_muid_nMDTBEEHits;
-    // // std::vector<int>     *mu_muid_nMDTBIS78Hits;
-    // // std::vector<int>     *mu_muid_nMDTEIHits;
-    // // std::vector<int>     *mu_muid_nMDTEMHits;
-    // // std::vector<int>     *mu_muid_nMDTEOHits;
-    // // std::vector<int>     *mu_muid_nMDTEEHits;
-    // // std::vector<int>     *mu_muid_nRPCLayer1EtaHits;
-    // // std::vector<int>     *mu_muid_nRPCLayer2EtaHits;
-    // // std::vector<int>     *mu_muid_nRPCLayer3EtaHits;
-    // // std::vector<int>     *mu_muid_nRPCLayer1PhiHits;
-    // // std::vector<int>     *mu_muid_nRPCLayer2PhiHits;
-    // // std::vector<int>     *mu_muid_nRPCLayer3PhiHits;
-    // // std::vector<int>     *mu_muid_nTGCLayer1EtaHits;
-    // // std::vector<int>     *mu_muid_nTGCLayer2EtaHits;
-    // // std::vector<int>     *mu_muid_nTGCLayer3EtaHits;
-    // // std::vector<int>     *mu_muid_nTGCLayer4EtaHits;
-    // // std::vector<int>     *mu_muid_nTGCLayer1PhiHits;
-    // // std::vector<int>     *mu_muid_nTGCLayer2PhiHits;
-    // // std::vector<int>     *mu_muid_nTGCLayer3PhiHits;
-    // // std::vector<int>     *mu_muid_nTGCLayer4PhiHits;
-    // // std::vector<int>     *mu_muid_barrelSectors;
-    // // std::vector<int>     *mu_muid_endcapSectors;
-    // // std::vector<float>   *mu_muid_trackd0;
-    // // std::vector<float>   *mu_muid_trackz0;
-    // // std::vector<float>   *mu_muid_trackphi;
-    // // std::vector<float>   *mu_muid_tracktheta;
-    // // std::vector<float>   *mu_muid_trackqoverp;
-    // // std::vector<float>   *mu_muid_trackcov_d0;
-    // // std::vector<float>   *mu_muid_trackcov_z0;
-    // // std::vector<float>   *mu_muid_trackcov_phi;
-    // // std::vector<float>   *mu_muid_trackcov_theta;
-    // // std::vector<float>   *mu_muid_trackcov_qoverp;
-    // // std::vector<float>   *mu_muid_trackcov_d0_z0;
-    // // std::vector<float>   *mu_muid_trackcov_d0_phi;
-    // // std::vector<float>   *mu_muid_trackcov_d0_theta;
-    // // std::vector<float>   *mu_muid_trackcov_d0_qoverp;
-    // // std::vector<float>   *mu_muid_trackcov_z0_phi;
-    // // std::vector<float>   *mu_muid_trackcov_z0_theta;
-    // // std::vector<float>   *mu_muid_trackcov_z0_qoverp;
-    // // std::vector<float>   *mu_muid_trackcov_phi_theta;
-    // // std::vector<float>   *mu_muid_trackcov_phi_qoverp;
-    // // std::vector<float>   *mu_muid_trackcov_theta_qoverp;
-    // // std::vector<int>     *mu_muid_hastrack;
-    // // std::vector<float>   *mu_muid_trackIPEstimate_d0_biasedpvunbiased;
-    // // std::vector<float>   *mu_muid_trackIPEstimate_z0_biasedpvunbiased;
-    // // std::vector<float>   *mu_muid_trackIPEstimate_sigd0_biasedpvunbiased;
-    // // std::vector<float>   *mu_muid_trackIPEstimate_sigz0_biasedpvunbiased;
-    // // std::vector<float>   *mu_muid_trackIPEstimate_d0_unbiasedpvunbiased;
-    // // std::vector<float>   *mu_muid_trackIPEstimate_z0_unbiasedpvunbiased;
-    // // std::vector<float>   *mu_muid_trackIPEstimate_sigd0_unbiasedpvunbiased;
-    // // std::vector<float>   *mu_muid_trackIPEstimate_sigz0_unbiasedpvunbiased;
-    // // std::vector<int>     *mu_muid_type;
-    // // std::vector<int>     *mu_muid_origin;
-    // // std::vector<float>   *mu_muid_truth_dr;
-    // // std::vector<float>   *mu_muid_truth_E;
-    // // std::vector<float>   *mu_muid_truth_pt;
-    // // std::vector<float>   *mu_muid_truth_eta;
-    // // std::vector<float>   *mu_muid_truth_phi;
-    // // std::vector<int>     *mu_muid_truth_type;
-    // // std::vector<int>     *mu_muid_truth_status;
-    // // std::vector<int>     *mu_muid_truth_barcode;
-    // // std::vector<int>     *mu_muid_truth_mothertype;
-    // // std::vector<int>     *mu_muid_truth_motherbarcode;
-    // // std::vector<int>     *mu_muid_truth_matched;
-    // // std::vector<float>   *mu_muid_mc_dr;
-    // // std::vector<int>     *mu_muid_mc_index;
-    // // std::vector<int>     *mu_muid_EFCB_index;
-    // // std::vector<int>     *mu_muid_EFMG_index;
-    // // std::vector<int>     *mu_muid_EFME_index;
-    // // std::vector<float>   *mu_muid_ptcone20_trk500MeV;
-    // // std::vector<float>   *mu_muid_ptcone30_trk500MeV;
-    // // std::vector<float>   *mu_muid_ptcone40_trk500MeV;
-    // // std::vector<int>     *mu_muid_nucone20_trk500MeV;
-    // // std::vector<int>     *mu_muid_nucone30_trk500MeV;
-    // // std::vector<int>     *mu_muid_nucone40_trk500MeV;
-    // // std::vector<float>   *mu_muid_ptcone20_trkelstyle;
-    // // std::vector<float>   *mu_muid_ptcone30_trkelstyle;
-    // // std::vector<float>   *mu_muid_ptcone40_trkelstyle;
-    // // std::vector<int>     *mu_muid_nucone20_trkelstyle;
-    // // std::vector<int>     *mu_muid_nucone30_trkelstyle;
-    // // std::vector<int>     *mu_muid_nucone40_trkelstyle;
-    // // Int_t           mu_n;
-    // // std::vector<float>   *mu_E;
-    // // std::vector<float>   *mu_pt;
-    // // std::vector<float>   *mu_m;
-    // // std::vector<float>   *mu_eta;
-    // // std::vector<float>   *mu_phi;
-    // // std::vector<float>   *mu_px;
-    // // std::vector<float>   *mu_py;
-    // // std::vector<float>   *mu_pz;
-    // // std::vector<float>   *mu_charge;
-    // // std::vector<unsigned short> *mu_allauthor;
-    // // std::vector<int>     *mu_author;
-    // // std::vector<float>   *mu_matchchi2;
-    // // std::vector<int>     *mu_matchndof;
-    // // std::vector<float>   *mu_etcone20;
-    // // std::vector<float>   *mu_etcone30;
-    // // std::vector<float>   *mu_etcone40;
-    // // std::vector<float>   *mu_nucone20;
-    // // std::vector<float>   *mu_nucone30;
-    // // std::vector<float>   *mu_nucone40;
-    // // std::vector<float>   *mu_ptcone20;
-    // // std::vector<float>   *mu_ptcone30;
-    // // std::vector<float>   *mu_ptcone40;
-    // // std::vector<float>   *mu_etconeNoEm10;
-    // // std::vector<float>   *mu_etconeNoEm20;
-    // // std::vector<float>   *mu_etconeNoEm30;
-    // // std::vector<float>   *mu_etconeNoEm40;
-    // // std::vector<float>   *mu_scatteringCurvatureSignificance;
-    // // std::vector<float>   *mu_scatteringNeighbourSignificance;
-    // // std::vector<float>   *mu_momentumBalanceSignificance;
-    // // std::vector<float>   *mu_energyLossPar;
-    // // std::vector<float>   *mu_energyLossErr;
-    // // std::vector<float>   *mu_etCore;
-    // // std::vector<float>   *mu_energyLossType;
-    // // std::vector<unsigned short> *mu_caloMuonIdTag;
-    // // std::vector<double>  *mu_caloLRLikelihood;
-    // // std::vector<int>     *mu_bestMatch;
-    // // std::vector<int>     *mu_isStandAloneMuon;
-    // // std::vector<int>     *mu_isCombinedMuon;
-    // // std::vector<int>     *mu_isLowPtReconstructedMuon;
-    // // std::vector<int>     *mu_isSegmentTaggedMuon;
-    // // std::vector<int>     *mu_isCaloMuonId;
-    // // std::vector<int>     *mu_alsoFoundByLowPt;
-    // // std::vector<int>     *mu_alsoFoundByCaloMuonId;
-    // // std::vector<int>     *mu_isSiliconAssociatedForwardMuon;
-    // // std::vector<int>     *mu_loose;
-    // // std::vector<int>     *mu_medium;
-    // // std::vector<int>     *mu_tight;
-    // // std::vector<float>   *mu_d0_exPV;
-    // // std::vector<float>   *mu_z0_exPV;
-    // // std::vector<float>   *mu_phi_exPV;
-    // // std::vector<float>   *mu_theta_exPV;
-    // // std::vector<float>   *mu_qoverp_exPV;
-    // // std::vector<float>   *mu_cb_d0_exPV;
-    // // std::vector<float>   *mu_cb_z0_exPV;
-    // // std::vector<float>   *mu_cb_phi_exPV;
-    // // std::vector<float>   *mu_cb_theta_exPV;
-    // // std::vector<float>   *mu_cb_qoverp_exPV;
-    // // std::vector<float>   *mu_id_d0_exPV;
-    // // std::vector<float>   *mu_id_z0_exPV;
-    // // std::vector<float>   *mu_id_phi_exPV;
-    // // std::vector<float>   *mu_id_theta_exPV;
-    // // std::vector<float>   *mu_id_qoverp_exPV;
-    // // std::vector<float>   *mu_me_d0_exPV;
-    // // std::vector<float>   *mu_me_z0_exPV;
-    // // std::vector<float>   *mu_me_phi_exPV;
-    // // std::vector<float>   *mu_me_theta_exPV;
-    // // std::vector<float>   *mu_me_qoverp_exPV;
-    // // std::vector<float>   *mu_ie_d0_exPV;
-    // // std::vector<float>   *mu_ie_z0_exPV;
-    // // std::vector<float>   *mu_ie_phi_exPV;
-    // // std::vector<float>   *mu_ie_theta_exPV;
-    // // std::vector<float>   *mu_ie_qoverp_exPV;
-    // // std::vector<float>   *mu_cov_d0_exPV;
-    // // std::vector<float>   *mu_cov_z0_exPV;
-    // // std::vector<float>   *mu_cov_phi_exPV;
-    // // std::vector<float>   *mu_cov_theta_exPV;
-    // // std::vector<float>   *mu_cov_qoverp_exPV;
-    // // std::vector<float>   *mu_cov_d0_z0_exPV;
-    // // std::vector<float>   *mu_cov_d0_phi_exPV;
-    // // std::vector<float>   *mu_cov_d0_theta_exPV;
-    // // std::vector<float>   *mu_cov_d0_qoverp_exPV;
-    // // std::vector<float>   *mu_cov_z0_phi_exPV;
-    // // std::vector<float>   *mu_cov_z0_theta_exPV;
-    // // std::vector<float>   *mu_cov_z0_qoverp_exPV;
-    // // std::vector<float>   *mu_cov_phi_theta_exPV;
-    // // std::vector<float>   *mu_cov_phi_qoverp_exPV;
-    // // std::vector<float>   *mu_cov_theta_qoverp_exPV;
-    // // std::vector<float>   *mu_id_cov_d0_exPV;
-    // // std::vector<float>   *mu_id_cov_z0_exPV;
-    // // std::vector<float>   *mu_id_cov_phi_exPV;
-    // // std::vector<float>   *mu_id_cov_theta_exPV;
-    // // std::vector<float>   *mu_id_cov_qoverp_exPV;
-    // // std::vector<float>   *mu_id_cov_d0_z0_exPV;
-    // // std::vector<float>   *mu_id_cov_d0_phi_exPV;
-    // // std::vector<float>   *mu_id_cov_d0_theta_exPV;
-    // // std::vector<float>   *mu_id_cov_d0_qoverp_exPV;
-    // // std::vector<float>   *mu_id_cov_z0_phi_exPV;
-    // // std::vector<float>   *mu_id_cov_z0_theta_exPV;
-    // // std::vector<float>   *mu_id_cov_z0_qoverp_exPV;
-    // // std::vector<float>   *mu_id_cov_phi_theta_exPV;
-    // // std::vector<float>   *mu_id_cov_phi_qoverp_exPV;
-    // // std::vector<float>   *mu_id_cov_theta_qoverp_exPV;
-    // // std::vector<float>   *mu_me_cov_d0_exPV;
-    // // std::vector<float>   *mu_me_cov_z0_exPV;
-    // // std::vector<float>   *mu_me_cov_phi_exPV;
-    // // std::vector<float>   *mu_me_cov_theta_exPV;
-    // // std::vector<float>   *mu_me_cov_qoverp_exPV;
-    // // std::vector<float>   *mu_ms_d0;
-    // // std::vector<float>   *mu_ms_z0;
-    // // std::vector<float>   *mu_ms_phi;
-    // // std::vector<float>   *mu_ms_theta;
-    // // std::vector<float>   *mu_ms_qoverp;
-    // // std::vector<float>   *mu_id_d0;
-    // // std::vector<float>   *mu_id_z0;
-    // // std::vector<float>   *mu_id_phi;
-    // // std::vector<float>   *mu_id_theta;
-    // // std::vector<float>   *mu_id_qoverp;
-    // // std::vector<float>   *mu_me_d0;
-    // // std::vector<float>   *mu_me_z0;
-    // // std::vector<float>   *mu_me_phi;
-    // // std::vector<float>   *mu_me_theta;
-    // // std::vector<float>   *mu_me_qoverp;
-    // // std::vector<float>   *mu_ie_d0;
-    // // std::vector<float>   *mu_ie_z0;
-    // // std::vector<float>   *mu_ie_phi;
-    // // std::vector<float>   *mu_ie_theta;
-    // // std::vector<float>   *mu_ie_qoverp;
-    // // std::vector<int>     *mu_nOutliersOnTrack;
-    // // std::vector<int>     *mu_nBLHits;
-    // // std::vector<int>     *mu_nPixHits;
-    // // std::vector<int>     *mu_nSCTHits;
-    // // std::vector<int>     *mu_nTRTHits;
-    // // std::vector<int>     *mu_nTRTHighTHits;
-    // // std::vector<int>     *mu_nBLSharedHits;
-    // // std::vector<int>     *mu_nPixSharedHits;
-    // // std::vector<int>     *mu_nPixHoles;
-    // // std::vector<int>     *mu_nSCTSharedHits;
-    // // std::vector<int>     *mu_nSCTHoles;
-    // // std::vector<int>     *mu_nTRTOutliers;
-    // // std::vector<int>     *mu_nTRTHighTOutliers;
-    // // std::vector<int>     *mu_nGangedPixels;
-    // // std::vector<int>     *mu_nPixelDeadSensors;
-    // // std::vector<int>     *mu_nSCTDeadSensors;
-    // // std::vector<int>     *mu_nTRTDeadStraws;
-    // // std::vector<int>     *mu_expectBLayerHit;
-    // // std::vector<int>     *mu_nMDTHits;
-    // // std::vector<int>     *mu_nMDTHoles;
-    // // std::vector<int>     *mu_nCSCEtaHits;
-    // // std::vector<int>     *mu_nCSCEtaHoles;
-    // // std::vector<int>     *mu_nCSCUnspoiledEtaHits;
-    // // std::vector<int>     *mu_nCSCPhiHits;
-    // // std::vector<int>     *mu_nCSCPhiHoles;
-    // // std::vector<int>     *mu_nRPCEtaHits;
-    // // std::vector<int>     *mu_nRPCEtaHoles;
-    // // std::vector<int>     *mu_nRPCPhiHits;
-    // // std::vector<int>     *mu_nRPCPhiHoles;
-    // // std::vector<int>     *mu_nTGCEtaHits;
-    // // std::vector<int>     *mu_nTGCEtaHoles;
-    // // std::vector<int>     *mu_nTGCPhiHits;
-    // // std::vector<int>     *mu_nTGCPhiHoles;
-    // // std::vector<int>     *mu_nprecisionLayers;
-    // // std::vector<int>     *mu_nprecisionHoleLayers;
-    // // std::vector<int>     *mu_nphiLayers;
-    // // std::vector<int>     *mu_ntrigEtaLayers;
-    // // std::vector<int>     *mu_nphiHoleLayers;
-    // // std::vector<int>     *mu_ntrigEtaHoleLayers;
-    // // std::vector<int>     *mu_nMDTBIHits;
-    // // std::vector<int>     *mu_nMDTBMHits;
-    // // std::vector<int>     *mu_nMDTBOHits;
-    // // std::vector<int>     *mu_nMDTBEEHits;
-    // // std::vector<int>     *mu_nMDTBIS78Hits;
-    // // std::vector<int>     *mu_nMDTEIHits;
-    // // std::vector<int>     *mu_nMDTEMHits;
-    // // std::vector<int>     *mu_nMDTEOHits;
-    // // std::vector<int>     *mu_nMDTEEHits;
-    // // std::vector<int>     *mu_nRPCLayer1EtaHits;
-    // // std::vector<int>     *mu_nRPCLayer2EtaHits;
-    // // std::vector<int>     *mu_nRPCLayer3EtaHits;
-    // // std::vector<int>     *mu_nRPCLayer1PhiHits;
-    // // std::vector<int>     *mu_nRPCLayer2PhiHits;
-    // // std::vector<int>     *mu_nRPCLayer3PhiHits;
-    // // std::vector<int>     *mu_nTGCLayer1EtaHits;
-    // // std::vector<int>     *mu_nTGCLayer2EtaHits;
-    // // std::vector<int>     *mu_nTGCLayer3EtaHits;
-    // // std::vector<int>     *mu_nTGCLayer4EtaHits;
-    // // std::vector<int>     *mu_nTGCLayer1PhiHits;
-    // // std::vector<int>     *mu_nTGCLayer2PhiHits;
-    // // std::vector<int>     *mu_nTGCLayer3PhiHits;
-    // // std::vector<int>     *mu_nTGCLayer4PhiHits;
-    // // std::vector<int>     *mu_barrelSectors;
-    // // std::vector<int>     *mu_endcapSectors;
-    // // std::vector<float>   *mu_trackd0;
-    // // std::vector<float>   *mu_trackz0;
-    // // std::vector<float>   *mu_trackphi;
-    // // std::vector<float>   *mu_tracktheta;
-    // // std::vector<float>   *mu_trackqoverp;
-    // // std::vector<float>   *mu_trackcov_d0;
-    // // std::vector<float>   *mu_trackcov_z0;
-    // // std::vector<float>   *mu_trackcov_phi;
-    // // std::vector<float>   *mu_trackcov_theta;
-    // // std::vector<float>   *mu_trackcov_qoverp;
-    // // std::vector<float>   *mu_trackcov_d0_z0;
-    // // std::vector<float>   *mu_trackcov_d0_phi;
-    // // std::vector<float>   *mu_trackcov_d0_theta;
-    // // std::vector<float>   *mu_trackcov_d0_qoverp;
-    // // std::vector<float>   *mu_trackcov_z0_phi;
-    // // std::vector<float>   *mu_trackcov_z0_theta;
-    // // std::vector<float>   *mu_trackcov_z0_qoverp;
-    // // std::vector<float>   *mu_trackcov_phi_theta;
-    // // std::vector<float>   *mu_trackcov_phi_qoverp;
-    // // std::vector<float>   *mu_trackcov_theta_qoverp;
-    // // std::vector<int>     *mu_hastrack;
-    // // std::vector<float>   *mu_trackIPEstimate_d0_biasedpvunbiased;
-    // // std::vector<float>   *mu_trackIPEstimate_z0_biasedpvunbiased;
-    // // std::vector<float>   *mu_trackIPEstimate_sigd0_biasedpvunbiased;
-    // // std::vector<float>   *mu_trackIPEstimate_sigz0_biasedpvunbiased;
-    // // std::vector<float>   *mu_trackIPEstimate_d0_unbiasedpvunbiased;
-    // // std::vector<float>   *mu_trackIPEstimate_z0_unbiasedpvunbiased;
-    // // std::vector<float>   *mu_trackIPEstimate_sigd0_unbiasedpvunbiased;
-    // // std::vector<float>   *mu_trackIPEstimate_sigz0_unbiasedpvunbiased;
-    // // std::vector<int>     *mu_type;
-    // // std::vector<int>     *mu_origin;
-    // // std::vector<float>   *mu_truth_dr;
-    // // std::vector<float>   *mu_truth_E;
-    // // std::vector<float>   *mu_truth_pt;
-    // // std::vector<float>   *mu_truth_eta;
-    // // std::vector<float>   *mu_truth_phi;
-    // // std::vector<int>     *mu_truth_type;
-    // // std::vector<int>     *mu_truth_status;
-    // // std::vector<int>     *mu_truth_barcode;
-    // // std::vector<int>     *mu_truth_mothertype;
-    // // std::vector<int>     *mu_truth_motherbarcode;
-    // // std::vector<int>     *mu_truth_matched;
-    // // std::vector<float>   *mu_mc_dr;
-    // // std::vector<int>     *mu_mc_index;
-    // // std::vector<int>     *mu_EFCB_index;
-    // // std::vector<int>     *mu_EFMG_index;
-    // // std::vector<int>     *mu_EFME_index;
-    // // std::vector<float>   *mu_ptcone20_trk500MeV;
-    // // std::vector<float>   *mu_ptcone30_trk500MeV;
-    // // std::vector<float>   *mu_ptcone40_trk500MeV;
-    // // std::vector<int>     *mu_nucone20_trk500MeV;
-    // // std::vector<int>     *mu_nucone30_trk500MeV;
-    // // std::vector<int>     *mu_nucone40_trk500MeV;
-    // // std::vector<float>   *mu_ptcone20_trkelstyle;
-    // // std::vector<float>   *mu_ptcone30_trkelstyle;
-    // // std::vector<float>   *mu_ptcone40_trkelstyle;
-    // // std::vector<int>     *mu_nucone20_trkelstyle;
-    // // std::vector<int>     *mu_nucone30_trkelstyle;
-    // // std::vector<int>     *mu_nucone40_trkelstyle;
     // Int_t           trueTau_n;
     // std::vector<float>   *trueTau_pt;
     // std::vector<float>   *trueTau_m;
@@ -2990,13 +2488,13 @@ namespace PennSusyFrame
     // std::vector<float>   *trueTau_tauAssocSmall_dr;
     // std::vector<int>     *trueTau_tauAssocSmall_index;
     // std::vector<int>     *trueTau_tauAssocSmall_matched;
-    // Int_t           tau_n;
+    Int_t           tau_n;
     // std::vector<float>   *tau_Et;
-    // std::vector<float>   *tau_pt;
-    // std::vector<float>   *tau_m;
-    // std::vector<float>   *tau_eta;
-    // std::vector<float>   *tau_phi;
-    // std::vector<float>   *tau_charge;
+    std::vector<float>   *tau_pt;
+    std::vector<float>   *tau_m;
+    std::vector<float>   *tau_eta;
+    std::vector<float>   *tau_phi;
+    std::vector<float>   *tau_charge;
     // std::vector<float>   *tau_BDTEleScore;
     // std::vector<float>   *tau_BDTJetScore;
     // std::vector<float>   *tau_likelihood;
@@ -5643,11 +5141,6 @@ namespace PennSusyFrame
     // std::vector<std::vector<float> > *mu_staco_MET_Egamma10NoTau_wpy;
     // std::vector<std::vector<float> > *mu_staco_MET_Egamma10NoTau_wet;
     // std::vector<std::vector<unsigned int> > *mu_staco_MET_Egamma10NoTau_statusWord;
-    // // Int_t           mu_muid_MET_Egamma10NoTau_n;
-    // // std::vector<std::vector<float> > *mu_muid_MET_Egamma10NoTau_wpx;
-    // // std::vector<std::vector<float> > *mu_muid_MET_Egamma10NoTau_wpy;
-    // // std::vector<std::vector<float> > *mu_muid_MET_Egamma10NoTau_wet;
-    // // std::vector<std::vector<unsigned int> > *mu_muid_MET_Egamma10NoTau_statusWord;
     // // Int_t           mu_MET_Egamma10NoTau_n;
     // // std::vector<std::vector<float> > *mu_MET_Egamma10NoTau_wpx;
     // // std::vector<std::vector<float> > *mu_MET_Egamma10NoTau_wpy;
@@ -5673,11 +5166,6 @@ namespace PennSusyFrame
     // //    std::vector<std::vector<float> > *mu_staco_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;
     // //    std::vector<std::vector<float> > *mu_staco_MET_LooseEgamma10NoTauLoosePhotonRef_wet;
     // //    std::vector<std::vector<unsigned int> > *mu_staco_MET_LooseEgamma10NoTauLoosePhotonRef_statusWord;
-    // //    // Int_t           mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_n;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_wpx;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_wet;
-    // //    // std::vector<std::vector<unsigned int> > *mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_statusWord;
     // //    // Int_t           mu_MET_LooseEgamma10NoTauLoosePhotonRef_n;
     // //    // std::vector<std::vector<float> > *mu_MET_LooseEgamma10NoTauLoosePhotonRef_wpx;
     // //    // std::vector<std::vector<float> > *mu_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;
@@ -5703,11 +5191,6 @@ namespace PennSusyFrame
     // //    std::vector<std::vector<float> > *mu_staco_MET_Egamma10NoTauLoosePhotonRef_wpy;
     // //    std::vector<std::vector<float> > *mu_staco_MET_Egamma10NoTauLoosePhotonRef_wet;
     // //    std::vector<std::vector<unsigned int> > *mu_staco_MET_Egamma10NoTauLoosePhotonRef_statusWord;
-    // //    // Int_t           mu_muid_MET_Egamma10NoTauLoosePhotonRef_n;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_Egamma10NoTauLoosePhotonRef_wpx;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_Egamma10NoTauLoosePhotonRef_wpy;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_Egamma10NoTauLoosePhotonRef_wet;
-    // //    // std::vector<std::vector<unsigned int> > *mu_muid_MET_Egamma10NoTauLoosePhotonRef_statusWord;
     // //    // Int_t           mu_MET_Egamma10NoTauLoosePhotonRef_n;
     // //    // std::vector<std::vector<float> > *mu_MET_Egamma10NoTauLoosePhotonRef_wpx;
     // //    // std::vector<std::vector<float> > *mu_MET_Egamma10NoTauLoosePhotonRef_wpy;
@@ -5733,11 +5216,6 @@ namespace PennSusyFrame
     // //    std::vector<std::vector<float> > *mu_staco_MET_Egamma10LooseTau_wpy;
     // //    std::vector<std::vector<float> > *mu_staco_MET_Egamma10LooseTau_wet;
     // //    std::vector<std::vector<unsigned int> > *mu_staco_MET_Egamma10LooseTau_statusWord;
-    // //    // Int_t           mu_muid_MET_Egamma10LooseTau_n;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_Egamma10LooseTau_wpx;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_Egamma10LooseTau_wpy;
-    // //    // std::vector<std::vector<float> > *mu_muid_MET_Egamma10LooseTau_wet;
-    // //    // std::vector<std::vector<unsigned int> > *mu_muid_MET_Egamma10LooseTau_statusWord;
     // //    // Int_t           mu_MET_Egamma10LooseTau_n;
     // //    // std::vector<std::vector<float> > *mu_MET_Egamma10LooseTau_wpx;
     // //    // std::vector<std::vector<float> > *mu_MET_Egamma10LooseTau_wpy;
@@ -5768,11 +5246,6 @@ namespace PennSusyFrame
     // std::vector<std::vector<float> > *mu_staco_MET_wpy;
     // std::vector<std::vector<float> > *mu_staco_MET_wet;
     // std::vector<std::vector<unsigned int> > *mu_staco_MET_statusWord;
-    // // Int_t           mu_muid_MET_n;
-    // // std::vector<std::vector<float> > *mu_muid_MET_wpx;
-    // // std::vector<std::vector<float> > *mu_muid_MET_wpy;
-    // // std::vector<std::vector<float> > *mu_muid_MET_wet;
-    // // std::vector<std::vector<unsigned int> > *mu_muid_MET_statusWord;
     // // Int_t           mu_MET_n;
     // // std::vector<std::vector<float> > *mu_MET_wpx;
     // // std::vector<std::vector<float> > *mu_MET_wpy;
@@ -5788,208 +5261,6 @@ namespace PennSusyFrame
     // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_MET_wpy;
     // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_MET_wet;
     // std::vector<std::vector<unsigned int> > *jet_AntiKt4LCTopo_MET_statusWord;
-    // Int_t           jet_AntiKt4TopoEM_n;
-    // std::vector<float>   *jet_AntiKt4TopoEM_E;
-    // std::vector<float>   *jet_AntiKt4TopoEM_pt;
-    // std::vector<float>   *jet_AntiKt4TopoEM_m;
-    // std::vector<float>   *jet_AntiKt4TopoEM_eta;
-    // std::vector<float>   *jet_AntiKt4TopoEM_phi;
-    // std::vector<float>   *jet_AntiKt4TopoEM_EtaOrigin;
-    // std::vector<float>   *jet_AntiKt4TopoEM_PhiOrigin;
-    // std::vector<float>   *jet_AntiKt4TopoEM_MOrigin;
-    // std::vector<float>   *jet_AntiKt4TopoEM_WIDTH;
-    // std::vector<float>   *jet_AntiKt4TopoEM_n90;
-    // std::vector<float>   *jet_AntiKt4TopoEM_Timing;
-    // std::vector<float>   *jet_AntiKt4TopoEM_LArQuality;
-    // std::vector<float>   *jet_AntiKt4TopoEM_OriginIndex;
-    // std::vector<float>   *jet_AntiKt4TopoEM_HECQuality;
-    // std::vector<float>   *jet_AntiKt4TopoEM_NegativeE;
-    // std::vector<float>   *jet_AntiKt4TopoEM_AverageLArQF;
-    // std::vector<float>   *jet_AntiKt4TopoEM_BCH_CORR_CELL;
-    // std::vector<float>   *jet_AntiKt4TopoEM_BCH_CORR_DOTX;
-    // std::vector<float>   *jet_AntiKt4TopoEM_BCH_CORR_JET;
-    // std::vector<float>   *jet_AntiKt4TopoEM_BCH_CORR_JET_FORCELL;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ENG_BAD_CELLS;
-    // std::vector<float>   *jet_AntiKt4TopoEM_N_BAD_CELLS;
-    // std::vector<float>   *jet_AntiKt4TopoEM_N_BAD_CELLS_CORR;
-    // std::vector<float>   *jet_AntiKt4TopoEM_BAD_CELLS_CORR_E;
-    // std::vector<float>   *jet_AntiKt4TopoEM_NumTowers;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ootFracCells5;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ootFracCells10;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ootFracClusters5;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ootFracClusters10;
-    // std::vector<int>     *jet_AntiKt4TopoEM_SamplingMax;
-    // std::vector<float>   *jet_AntiKt4TopoEM_fracSamplingMax;
-    // std::vector<float>   *jet_AntiKt4TopoEM_hecf;
-    // std::vector<float>   *jet_AntiKt4TopoEM_tgap3f;
-    // std::vector<int>     *jet_AntiKt4TopoEM_isUgly;
-    // std::vector<int>     *jet_AntiKt4TopoEM_isBadLooseMinus;
-    // std::vector<int>     *jet_AntiKt4TopoEM_isBadLoose;
-    // std::vector<int>     *jet_AntiKt4TopoEM_isBadMedium;
-    // std::vector<int>     *jet_AntiKt4TopoEM_isBadTight;
-    // std::vector<float>   *jet_AntiKt4TopoEM_emfrac;
-    // std::vector<float>   *jet_AntiKt4TopoEM_Offset;
-    // std::vector<float>   *jet_AntiKt4TopoEM_EMJES;
-    // std::vector<float>   *jet_AntiKt4TopoEM_EMJES_EtaCorr;
-    // std::vector<float>   *jet_AntiKt4TopoEM_EMJESnooffset;
-    // std::vector<float>   *jet_AntiKt4TopoEM_LCJES;
-    // std::vector<float>   *jet_AntiKt4TopoEM_LCJES_EtaCorr;
-    // std::vector<float>   *jet_AntiKt4TopoEM_emscale_E;
-    // std::vector<float>   *jet_AntiKt4TopoEM_emscale_pt;
-    // std::vector<float>   *jet_AntiKt4TopoEM_emscale_m;
-    // std::vector<float>   *jet_AntiKt4TopoEM_emscale_eta;
-    // std::vector<float>   *jet_AntiKt4TopoEM_emscale_phi;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ActiveArea;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ActiveAreaPx;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ActiveAreaPy;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ActiveAreaPz;
-    // std::vector<float>   *jet_AntiKt4TopoEM_ActiveAreaE;
-    // std::vector<float>   *jet_AntiKt4TopoEM_jvtxf;
-    // std::vector<std::vector<float> > *jet_AntiKt4TopoEM_jvtxfFull;
-    // std::vector<float>   *jet_AntiKt4TopoEM_jvtx_x;
-    // std::vector<float>   *jet_AntiKt4TopoEM_jvtx_y;
-    // std::vector<float>   *jet_AntiKt4TopoEM_jvtx_z;
-    // std::vector<float>   *jet_AntiKt4TopoEM_TruthMFindex;
-    // std::vector<float>   *jet_AntiKt4TopoEM_TruthMF;
-    // std::vector<float>   *jet_AntiKt4TopoEM_GSCFactorF;
-    // std::vector<float>   *jet_AntiKt4TopoEM_WidthFraction;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_PreSamplerB;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_EMB1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_EMB2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_EMB3;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_PreSamplerE;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_EME1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_EME2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_EME3;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_HEC0;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_HEC1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_HEC2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_HEC3;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileBar0;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileBar1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileBar2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileGap1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileGap2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileGap3;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileExt0;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileExt1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_TileExt2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_FCAL0;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_FCAL1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_e_FCAL2;
-    // std::vector<int>     *jet_AntiKt4TopoEM_Nconst;
-    // std::vector<std::vector<float> > *jet_AntiKt4TopoEM_ptconst_default;
-    // std::vector<std::vector<float> > *jet_AntiKt4TopoEM_econst_default;
-    // std::vector<std::vector<float> > *jet_AntiKt4TopoEM_etaconst_default;
-    // std::vector<std::vector<float> > *jet_AntiKt4TopoEM_phiconst_default;
-    // std::vector<std::vector<float> > *jet_AntiKt4TopoEM_weightconst_default;
-    // std::vector<float>   *jet_AntiKt4TopoEM_constscale_E;
-    // std::vector<float>   *jet_AntiKt4TopoEM_constscale_pt;
-    // std::vector<float>   *jet_AntiKt4TopoEM_constscale_m;
-    // std::vector<float>   *jet_AntiKt4TopoEM_constscale_eta;
-    // std::vector<float>   *jet_AntiKt4TopoEM_constscale_phi;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_Comb;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_GbbNN;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_IP2D;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_IP3D;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_JetFitterCOMBNN;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_JetFitterCharm;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_JetFitterTagNN;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_MV1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_MV2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_SV0;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_SV1;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_SV2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_SecondSoftMuonTagChi2;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_weight_SoftMuonTagChi2;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_truth_label;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_truth_dRminToB;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_truth_dRminToC;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_truth_dRminToT;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_truth_BHadronpdg;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_truth_vx_x;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_truth_vx_y;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_truth_vx_z;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_ip2d_pu;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_ip2d_pb;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_ip2d_isValid;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_ip2d_ntrk;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_ip3d_pu;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_ip3d_pb;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_ip3d_pc;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_ip3d_isValid;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_ip3d_ntrk;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv1_pu;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv1_pb;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv1_pc;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_sv1_isValid;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv2_pu;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv2_pb;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_sv2_isValid;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfit_pu;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfit_pb;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfit_pc;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_jfit_isValid;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfitcomb_pu;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfitcomb_pb;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfitcomb_pc;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_jfitcomb_isValid;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_jfit_nvtx;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_jfit_nvtx1t;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_jfit_ntrkAtVx;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfit_efrc;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfit_mass;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfit_sig3d;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfit_deltaPhi;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_jfit_deltaEta;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_svp_isValid;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_svp_ntrkv;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_svp_ntrkj;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_svp_n2t;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_mass;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_efrc;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_x;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_y;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_z;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_err_x;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_err_y;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_err_z;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_cov_xy;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_cov_xz;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_cov_yz;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_svp_chi2;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_svp_ndof;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_svp_ntrk;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_sv0p_isValid;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_sv0p_ntrkv;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_sv0p_ntrkj;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_sv0p_n2t;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_mass;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_efrc;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_x;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_y;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_z;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_err_x;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_err_y;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_err_z;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_cov_xy;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_cov_xz;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_cov_yz;
-    // std::vector<float>   *jet_AntiKt4TopoEM_flavor_component_sv0p_chi2;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_sv0p_ndof;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_component_sv0p_ntrk;
-    // std::vector<int>     *jet_AntiKt4TopoEM_flavor_assoctrk_n;
-    // std::vector<std::vector<int> > *jet_AntiKt4TopoEM_flavor_assoctrk_index;
-    // std::vector<int>     *jet_AntiKt4TopoEM_bbDecision;
-    // std::vector<float>   *jet_AntiKt4TopoEM_nTrk_pv0_1GeV;
-    // std::vector<float>   *jet_AntiKt4TopoEM_sumPtTrk_pv0_1GeV;
-    // std::vector<float>   *jet_AntiKt4TopoEM_nTrk_allpv_1GeV;
-    // std::vector<float>   *jet_AntiKt4TopoEM_sumPtTrk_allpv_1GeV;
-    // std::vector<float>   *jet_AntiKt4TopoEM_nTrk_pv0_500MeV;
-    // std::vector<float>   *jet_AntiKt4TopoEM_sumPtTrk_pv0_500MeV;
-    // std::vector<float>   *jet_AntiKt4TopoEM_trackWIDTH_pv0_1GeV;
-    // std::vector<float>   *jet_AntiKt4TopoEM_trackWIDTH_allpv_1GeV;
-    // std::vector<float>   *jet_AntiKt4TopoEM_SmearingFactor;
     // Int_t           jet_AntiKt6TopoEM_n;
     // std::vector<float>   *jet_AntiKt6TopoEM_E;
     // std::vector<float>   *jet_AntiKt6TopoEM_pt;
@@ -6054,10 +5325,10 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt4LCTopo_emscale_eta;
     // std::vector<float>   *jet_AntiKt4LCTopo_emscale_phi;
     // std::vector<float>   *jet_AntiKt4LCTopo_ActiveArea;
-    // std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPx;
-    // std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPy;
-    // std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPz;
-    // std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaE;
+    std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPx;
+    std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPy;
+    std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPz;
+    std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaE;
     // std::vector<float>   *jet_AntiKt4LCTopo_jvtxf;
     // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_jvtxfFull;
     // std::vector<float>   *jet_AntiKt4LCTopo_jvtx_x;
@@ -6097,11 +5368,11 @@ namespace PennSusyFrame
     // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_etaconst_default;
     // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_phiconst_default;
     // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_weightconst_default;
-    // std::vector<float>   *jet_AntiKt4LCTopo_constscale_E;
+    std::vector<float>   *jet_AntiKt4LCTopo_constscale_E;
     // std::vector<float>   *jet_AntiKt4LCTopo_constscale_pt;
-    // std::vector<float>   *jet_AntiKt4LCTopo_constscale_m;
-    // std::vector<float>   *jet_AntiKt4LCTopo_constscale_eta;
-    // std::vector<float>   *jet_AntiKt4LCTopo_constscale_phi;
+    std::vector<float>   *jet_AntiKt4LCTopo_constscale_m;
+    std::vector<float>   *jet_AntiKt4LCTopo_constscale_eta;
+    std::vector<float>   *jet_AntiKt4LCTopo_constscale_phi;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_Comb;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_GbbNN;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_IP2D;
@@ -6215,7 +5486,7 @@ namespace PennSusyFrame
     // Float_t         Eventshape_rhoKt3EM;
     // Float_t         Eventshape_rhoKt4EM;
     // Float_t         Eventshape_rhoKt3LC;
-    // Float_t         Eventshape_rhoKt4LC;
+    Float_t         Eventshape_rhoKt4LC;
     Int_t           vx_n;
     // std::vector<float>   *vx_x;
     // std::vector<float>   *vx_y;
@@ -9517,7 +8788,7 @@ namespace PennSusyFrame
     // TBranch        *b_detmask0;   //!
     // TBranch        *b_detmask1;   //!
     // TBranch        *b_actualIntPerXing;   //!
-    // TBranch        *b_averageIntPerXing;   //!
+    TBranch        *b_averageIntPerXing;   //!
     // TBranch        *b_mc_channel_number;   //!
     // TBranch        *b_mc_event_number;   //!
     // TBranch        *b_mc_event_weight;   //!
@@ -10225,508 +9496,6 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_nucone20_trkelstyle;   //!
     // TBranch        *b_mu_staco_nucone30_trkelstyle;   //!
     // TBranch        *b_mu_staco_nucone40_trkelstyle;   //!
-    // // TBranch        *b_mu_muid_n;   //!
-    // // TBranch        *b_mu_muid_E;   //!
-    // // TBranch        *b_mu_muid_pt;   //!
-    // // TBranch        *b_mu_muid_m;   //!
-    // // TBranch        *b_mu_muid_eta;   //!
-    // // TBranch        *b_mu_muid_phi;   //!
-    // // TBranch        *b_mu_muid_px;   //!
-    // // TBranch        *b_mu_muid_py;   //!
-    // // TBranch        *b_mu_muid_pz;   //!
-    // // TBranch        *b_mu_muid_charge;   //!
-    // // TBranch        *b_mu_muid_allauthor;   //!
-    // // TBranch        *b_mu_muid_author;   //!
-    // // TBranch        *b_mu_muid_matchchi2;   //!
-    // // TBranch        *b_mu_muid_matchndof;   //!
-    // // TBranch        *b_mu_muid_etcone20;   //!
-    // // TBranch        *b_mu_muid_etcone30;   //!
-    // // TBranch        *b_mu_muid_etcone40;   //!
-    // // TBranch        *b_mu_muid_nucone20;   //!
-    // // TBranch        *b_mu_muid_nucone30;   //!
-    // // TBranch        *b_mu_muid_nucone40;   //!
-    // // TBranch        *b_mu_muid_ptcone20;   //!
-    // // TBranch        *b_mu_muid_ptcone30;   //!
-    // // TBranch        *b_mu_muid_ptcone40;   //!
-    // // TBranch        *b_mu_muid_etconeNoEm10;   //!
-    // // TBranch        *b_mu_muid_etconeNoEm20;   //!
-    // // TBranch        *b_mu_muid_etconeNoEm30;   //!
-    // // TBranch        *b_mu_muid_etconeNoEm40;   //!
-    // // TBranch        *b_mu_muid_scatteringCurvatureSignificance;   //!
-    // // TBranch        *b_mu_muid_scatteringNeighbourSignificance;   //!
-    // // TBranch        *b_mu_muid_momentumBalanceSignificance;   //!
-    // // TBranch        *b_mu_muid_energyLossPar;   //!
-    // // TBranch        *b_mu_muid_energyLossErr;   //!
-    // // TBranch        *b_mu_muid_etCore;   //!
-    // // TBranch        *b_mu_muid_energyLossType;   //!
-    // // TBranch        *b_mu_muid_caloMuonIdTag;   //!
-    // // TBranch        *b_mu_muid_caloLRLikelihood;   //!
-    // // TBranch        *b_mu_muid_bestMatch;   //!
-    // // TBranch        *b_mu_muid_isStandAloneMuon;   //!
-    // // TBranch        *b_mu_muid_isCombinedMuon;   //!
-    // // TBranch        *b_mu_muid_isLowPtReconstructedMuon;   //!
-    // // TBranch        *b_mu_muid_isSegmentTaggedMuon;   //!
-    // // TBranch        *b_mu_muid_isCaloMuonId;   //!
-    // // TBranch        *b_mu_muid_alsoFoundByLowPt;   //!
-    // // TBranch        *b_mu_muid_alsoFoundByCaloMuonId;   //!
-    // // TBranch        *b_mu_muid_isSiliconAssociatedForwardMuon;   //!
-    // // TBranch        *b_mu_muid_loose;   //!
-    // // TBranch        *b_mu_muid_medium;   //!
-    // // TBranch        *b_mu_muid_tight;   //!
-    // // TBranch        *b_mu_muid_d0_exPV;   //!
-    // // TBranch        *b_mu_muid_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_cb_d0_exPV;   //!
-    // // TBranch        *b_mu_muid_cb_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_cb_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_cb_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_cb_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_id_d0_exPV;   //!
-    // // TBranch        *b_mu_muid_id_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_id_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_id_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_id_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_me_d0_exPV;   //!
-    // // TBranch        *b_mu_muid_me_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_me_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_me_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_me_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_ie_d0_exPV;   //!
-    // // TBranch        *b_mu_muid_ie_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_ie_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_ie_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_ie_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_d0_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_d0_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_d0_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_d0_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_d0_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_z0_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_z0_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_z0_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_phi_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_phi_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_cov_theta_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_d0_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_d0_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_d0_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_d0_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_d0_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_z0_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_z0_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_z0_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_phi_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_phi_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_id_cov_theta_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_me_cov_d0_exPV;   //!
-    // // TBranch        *b_mu_muid_me_cov_z0_exPV;   //!
-    // // TBranch        *b_mu_muid_me_cov_phi_exPV;   //!
-    // // TBranch        *b_mu_muid_me_cov_theta_exPV;   //!
-    // // TBranch        *b_mu_muid_me_cov_qoverp_exPV;   //!
-    // // TBranch        *b_mu_muid_ms_d0;   //!
-    // // TBranch        *b_mu_muid_ms_z0;   //!
-    // // TBranch        *b_mu_muid_ms_phi;   //!
-    // // TBranch        *b_mu_muid_ms_theta;   //!
-    // // TBranch        *b_mu_muid_ms_qoverp;   //!
-    // // TBranch        *b_mu_muid_id_d0;   //!
-    // // TBranch        *b_mu_muid_id_z0;   //!
-    // // TBranch        *b_mu_muid_id_phi;   //!
-    // // TBranch        *b_mu_muid_id_theta;   //!
-    // // TBranch        *b_mu_muid_id_qoverp;   //!
-    // // TBranch        *b_mu_muid_me_d0;   //!
-    // // TBranch        *b_mu_muid_me_z0;   //!
-    // // TBranch        *b_mu_muid_me_phi;   //!
-    // // TBranch        *b_mu_muid_me_theta;   //!
-    // // TBranch        *b_mu_muid_me_qoverp;   //!
-    // // TBranch        *b_mu_muid_ie_d0;   //!
-    // // TBranch        *b_mu_muid_ie_z0;   //!
-    // // TBranch        *b_mu_muid_ie_phi;   //!
-    // // TBranch        *b_mu_muid_ie_theta;   //!
-    // // TBranch        *b_mu_muid_ie_qoverp;   //!
-    // // TBranch        *b_mu_muid_nOutliersOnTrack;   //!
-    // // TBranch        *b_mu_muid_nBLHits;   //!
-    // // TBranch        *b_mu_muid_nPixHits;   //!
-    // // TBranch        *b_mu_muid_nSCTHits;   //!
-    // // TBranch        *b_mu_muid_nTRTHits;   //!
-    // // TBranch        *b_mu_muid_nTRTHighTHits;   //!
-    // // TBranch        *b_mu_muid_nBLSharedHits;   //!
-    // // TBranch        *b_mu_muid_nPixSharedHits;   //!
-    // // TBranch        *b_mu_muid_nPixHoles;   //!
-    // // TBranch        *b_mu_muid_nSCTSharedHits;   //!
-    // // TBranch        *b_mu_muid_nSCTHoles;   //!
-    // // TBranch        *b_mu_muid_nTRTOutliers;   //!
-    // // TBranch        *b_mu_muid_nTRTHighTOutliers;   //!
-    // // TBranch        *b_mu_muid_nGangedPixels;   //!
-    // // TBranch        *b_mu_muid_nPixelDeadSensors;   //!
-    // // TBranch        *b_mu_muid_nSCTDeadSensors;   //!
-    // // TBranch        *b_mu_muid_nTRTDeadStraws;   //!
-    // // TBranch        *b_mu_muid_expectBLayerHit;   //!
-    // // TBranch        *b_mu_muid_nMDTHits;   //!
-    // // TBranch        *b_mu_muid_nMDTHoles;   //!
-    // // TBranch        *b_mu_muid_nCSCEtaHits;   //!
-    // // TBranch        *b_mu_muid_nCSCEtaHoles;   //!
-    // // TBranch        *b_mu_muid_nCSCUnspoiledEtaHits;   //!
-    // // TBranch        *b_mu_muid_nCSCPhiHits;   //!
-    // // TBranch        *b_mu_muid_nCSCPhiHoles;   //!
-    // // TBranch        *b_mu_muid_nRPCEtaHits;   //!
-    // // TBranch        *b_mu_muid_nRPCEtaHoles;   //!
-    // // TBranch        *b_mu_muid_nRPCPhiHits;   //!
-    // // TBranch        *b_mu_muid_nRPCPhiHoles;   //!
-    // // TBranch        *b_mu_muid_nTGCEtaHits;   //!
-    // // TBranch        *b_mu_muid_nTGCEtaHoles;   //!
-    // // TBranch        *b_mu_muid_nTGCPhiHits;   //!
-    // // TBranch        *b_mu_muid_nTGCPhiHoles;   //!
-    // // TBranch        *b_mu_muid_nprecisionLayers;   //!
-    // // TBranch        *b_mu_muid_nprecisionHoleLayers;   //!
-    // // TBranch        *b_mu_muid_nphiLayers;   //!
-    // // TBranch        *b_mu_muid_ntrigEtaLayers;   //!
-    // // TBranch        *b_mu_muid_nphiHoleLayers;   //!
-    // // TBranch        *b_mu_muid_ntrigEtaHoleLayers;   //!
-    // // TBranch        *b_mu_muid_nMDTBIHits;   //!
-    // // TBranch        *b_mu_muid_nMDTBMHits;   //!
-    // // TBranch        *b_mu_muid_nMDTBOHits;   //!
-    // // TBranch        *b_mu_muid_nMDTBEEHits;   //!
-    // // TBranch        *b_mu_muid_nMDTBIS78Hits;   //!
-    // // TBranch        *b_mu_muid_nMDTEIHits;   //!
-    // // TBranch        *b_mu_muid_nMDTEMHits;   //!
-    // // TBranch        *b_mu_muid_nMDTEOHits;   //!
-    // // TBranch        *b_mu_muid_nMDTEEHits;   //!
-    // // TBranch        *b_mu_muid_nRPCLayer1EtaHits;   //!
-    // // TBranch        *b_mu_muid_nRPCLayer2EtaHits;   //!
-    // // TBranch        *b_mu_muid_nRPCLayer3EtaHits;   //!
-    // // TBranch        *b_mu_muid_nRPCLayer1PhiHits;   //!
-    // // TBranch        *b_mu_muid_nRPCLayer2PhiHits;   //!
-    // // TBranch        *b_mu_muid_nRPCLayer3PhiHits;   //!
-    // // TBranch        *b_mu_muid_nTGCLayer1EtaHits;   //!
-    // // TBranch        *b_mu_muid_nTGCLayer2EtaHits;   //!
-    // // TBranch        *b_mu_muid_nTGCLayer3EtaHits;   //!
-    // // TBranch        *b_mu_muid_nTGCLayer4EtaHits;   //!
-    // // TBranch        *b_mu_muid_nTGCLayer1PhiHits;   //!
-    // // TBranch        *b_mu_muid_nTGCLayer2PhiHits;   //!
-    // // TBranch        *b_mu_muid_nTGCLayer3PhiHits;   //!
-    // // TBranch        *b_mu_muid_nTGCLayer4PhiHits;   //!
-    // // TBranch        *b_mu_muid_barrelSectors;   //!
-    // // TBranch        *b_mu_muid_endcapSectors;   //!
-    // // TBranch        *b_mu_muid_trackd0;   //!
-    // // TBranch        *b_mu_muid_trackz0;   //!
-    // // TBranch        *b_mu_muid_trackphi;   //!
-    // // TBranch        *b_mu_muid_tracktheta;   //!
-    // // TBranch        *b_mu_muid_trackqoverp;   //!
-    // // TBranch        *b_mu_muid_trackcov_d0;   //!
-    // // TBranch        *b_mu_muid_trackcov_z0;   //!
-    // // TBranch        *b_mu_muid_trackcov_phi;   //!
-    // // TBranch        *b_mu_muid_trackcov_theta;   //!
-    // // TBranch        *b_mu_muid_trackcov_qoverp;   //!
-    // // TBranch        *b_mu_muid_trackcov_d0_z0;   //!
-    // // TBranch        *b_mu_muid_trackcov_d0_phi;   //!
-    // // TBranch        *b_mu_muid_trackcov_d0_theta;   //!
-    // // TBranch        *b_mu_muid_trackcov_d0_qoverp;   //!
-    // // TBranch        *b_mu_muid_trackcov_z0_phi;   //!
-    // // TBranch        *b_mu_muid_trackcov_z0_theta;   //!
-    // // TBranch        *b_mu_muid_trackcov_z0_qoverp;   //!
-    // // TBranch        *b_mu_muid_trackcov_phi_theta;   //!
-    // // TBranch        *b_mu_muid_trackcov_phi_qoverp;   //!
-    // // TBranch        *b_mu_muid_trackcov_theta_qoverp;   //!
-    // // TBranch        *b_mu_muid_hastrack;   //!
-    // // TBranch        *b_mu_muid_trackIPEstimate_d0_biasedpvunbiased;   //!
-    // // TBranch        *b_mu_muid_trackIPEstimate_z0_biasedpvunbiased;   //!
-    // // TBranch        *b_mu_muid_trackIPEstimate_sigd0_biasedpvunbiased;   //!
-    // // TBranch        *b_mu_muid_trackIPEstimate_sigz0_biasedpvunbiased;   //!
-    // // TBranch        *b_mu_muid_trackIPEstimate_d0_unbiasedpvunbiased;   //!
-    // // TBranch        *b_mu_muid_trackIPEstimate_z0_unbiasedpvunbiased;   //!
-    // // TBranch        *b_mu_muid_trackIPEstimate_sigd0_unbiasedpvunbiased;   //!
-    // // TBranch        *b_mu_muid_trackIPEstimate_sigz0_unbiasedpvunbiased;   //!
-    // // TBranch        *b_mu_muid_type;   //!
-    // // TBranch        *b_mu_muid_origin;   //!
-    // // TBranch        *b_mu_muid_truth_dr;   //!
-    // // TBranch        *b_mu_muid_truth_E;   //!
-    // // TBranch        *b_mu_muid_truth_pt;   //!
-    // // TBranch        *b_mu_muid_truth_eta;   //!
-    // // TBranch        *b_mu_muid_truth_phi;   //!
-    // // TBranch        *b_mu_muid_truth_type;   //!
-    // // TBranch        *b_mu_muid_truth_status;   //!
-    // // TBranch        *b_mu_muid_truth_barcode;   //!
-    // // TBranch        *b_mu_muid_truth_mothertype;   //!
-    // // TBranch        *b_mu_muid_truth_motherbarcode;   //!
-    // // TBranch        *b_mu_muid_truth_matched;   //!
-    // // TBranch        *b_mu_muid_mc_dr;   //!
-    // // TBranch        *b_mu_muid_mc_index;   //!
-    // // TBranch        *b_mu_muid_EFCB_index;   //!
-    // // TBranch        *b_mu_muid_EFMG_index;   //!
-    // // TBranch        *b_mu_muid_EFME_index;   //!
-    // // TBranch        *b_mu_muid_ptcone20_trk500MeV;   //!
-    // // TBranch        *b_mu_muid_ptcone30_trk500MeV;   //!
-    // // TBranch        *b_mu_muid_ptcone40_trk500MeV;   //!
-    // // TBranch        *b_mu_muid_nucone20_trk500MeV;   //!
-    // // TBranch        *b_mu_muid_nucone30_trk500MeV;   //!
-    // // TBranch        *b_mu_muid_nucone40_trk500MeV;   //!
-    // // TBranch        *b_mu_muid_ptcone20_trkelstyle;   //!
-    // // TBranch        *b_mu_muid_ptcone30_trkelstyle;   //!
-    // // TBranch        *b_mu_muid_ptcone40_trkelstyle;   //!
-    // // TBranch        *b_mu_muid_nucone20_trkelstyle;   //!
-    // // TBranch        *b_mu_muid_nucone30_trkelstyle;   //!
-    // // TBranch        *b_mu_muid_nucone40_trkelstyle;   //!
-    // // TBranch        *b_mu_n;   //!
-    // // TBranch        *b_mu_E;   //!
-    // // TBranch        *b_mu_pt;   //!
-    // // TBranch        *b_mu_m;   //!
-    // // TBranch        *b_mu_eta;   //!
-    // // TBranch        *b_mu_phi;   //!
-    // // TBranch        *b_mu_px;   //!
-    // // TBranch        *b_mu_py;   //!
-    // // TBranch        *b_mu_pz;   //!
-    // // TBranch        *b_mu_charge;   //!
-    // // TBranch        *b_mu_allauthor;   //!
-    // // TBranch        *b_mu_author;   //!
-    // // TBranch        *b_mu_matchchi2;   //!
-    // // TBranch        *b_mu_matchndof;   //!
-    // // TBranch        *b_mu_etcone20;   //!
-    // // TBranch        *b_mu_etcone30;   //!
-    // // TBranch        *b_mu_etcone40;   //!
-    // // TBranch        *b_mu_nucone20;   //!
-    // // TBranch        *b_mu_nucone30;   //!
-    // // TBranch        *b_mu_nucone40;   //!
-    // // TBranch        *b_mu_ptcone20;   //!
-    // // TBranch        *b_mu_ptcone30;   //!
-    // // TBranch        *b_mu_ptcone40;   //!
-    // // TBranch        *b_mu_etconeNoEm10;   //!
-    // // TBranch        *b_mu_etconeNoEm20;   //!
-    // // TBranch        *b_mu_etconeNoEm30;   //!
-    // // TBranch        *b_mu_etconeNoEm40;   //!
-    // // TBranch        *b_mu_scatteringCurvatureSignificance;   //!
-    // // TBranch        *b_mu_scatteringNeighbourSignificance;   //!
-    // // TBranch        *b_mu_momentumBalanceSignificance;   //!
-    // // TBranch        *b_mu_energyLossPar;   //!
-    // // TBranch        *b_mu_energyLossErr;   //!
-    // // TBranch        *b_mu_etCore;   //!
-    // // TBranch        *b_mu_energyLossType;   //!
-    // // TBranch        *b_mu_caloMuonIdTag;   //!
-    // // TBranch        *b_mu_caloLRLikelihood;   //!
-    // // TBranch        *b_mu_bestMatch;   //!
-    // // TBranch        *b_mu_isStandAloneMuon;   //!
-    // // TBranch        *b_mu_isCombinedMuon;   //!
-    // // TBranch        *b_mu_isLowPtReconstructedMuon;   //!
-    // // TBranch        *b_mu_isSegmentTaggedMuon;   //!
-    // // TBranch        *b_mu_isCaloMuonId;   //!
-    // // TBranch        *b_mu_alsoFoundByLowPt;   //!
-    // // TBranch        *b_mu_alsoFoundByCaloMuonId;   //!
-    // // TBranch        *b_mu_isSiliconAssociatedForwardMuon;   //!
-    // // TBranch        *b_mu_loose;   //!
-    // // TBranch        *b_mu_medium;   //!
-    // // TBranch        *b_mu_tight;   //!
-    // // TBranch        *b_mu_d0_exPV;   //!
-    // // TBranch        *b_mu_z0_exPV;   //!
-    // // TBranch        *b_mu_phi_exPV;   //!
-    // // TBranch        *b_mu_theta_exPV;   //!
-    // // TBranch        *b_mu_qoverp_exPV;   //!
-    // // TBranch        *b_mu_cb_d0_exPV;   //!
-    // // TBranch        *b_mu_cb_z0_exPV;   //!
-    // // TBranch        *b_mu_cb_phi_exPV;   //!
-    // // TBranch        *b_mu_cb_theta_exPV;   //!
-    // // TBranch        *b_mu_cb_qoverp_exPV;   //!
-    // // TBranch        *b_mu_id_d0_exPV;   //!
-    // // TBranch        *b_mu_id_z0_exPV;   //!
-    // // TBranch        *b_mu_id_phi_exPV;   //!
-    // // TBranch        *b_mu_id_theta_exPV;   //!
-    // // TBranch        *b_mu_id_qoverp_exPV;   //!
-    // // TBranch        *b_mu_me_d0_exPV;   //!
-    // // TBranch        *b_mu_me_z0_exPV;   //!
-    // // TBranch        *b_mu_me_phi_exPV;   //!
-    // // TBranch        *b_mu_me_theta_exPV;   //!
-    // // TBranch        *b_mu_me_qoverp_exPV;   //!
-    // // TBranch        *b_mu_ie_d0_exPV;   //!
-    // // TBranch        *b_mu_ie_z0_exPV;   //!
-    // // TBranch        *b_mu_ie_phi_exPV;   //!
-    // // TBranch        *b_mu_ie_theta_exPV;   //!
-    // // TBranch        *b_mu_ie_qoverp_exPV;   //!
-    // // TBranch        *b_mu_cov_d0_exPV;   //!
-    // // TBranch        *b_mu_cov_z0_exPV;   //!
-    // // TBranch        *b_mu_cov_phi_exPV;   //!
-    // // TBranch        *b_mu_cov_theta_exPV;   //!
-    // // TBranch        *b_mu_cov_qoverp_exPV;   //!
-    // // TBranch        *b_mu_cov_d0_z0_exPV;   //!
-    // // TBranch        *b_mu_cov_d0_phi_exPV;   //!
-    // // TBranch        *b_mu_cov_d0_theta_exPV;   //!
-    // // TBranch        *b_mu_cov_d0_qoverp_exPV;   //!
-    // // TBranch        *b_mu_cov_z0_phi_exPV;   //!
-    // // TBranch        *b_mu_cov_z0_theta_exPV;   //!
-    // // TBranch        *b_mu_cov_z0_qoverp_exPV;   //!
-    // // TBranch        *b_mu_cov_phi_theta_exPV;   //!
-    // // TBranch        *b_mu_cov_phi_qoverp_exPV;   //!
-    // // TBranch        *b_mu_cov_theta_qoverp_exPV;   //!
-    // // TBranch        *b_mu_id_cov_d0_exPV;   //!
-    // // TBranch        *b_mu_id_cov_z0_exPV;   //!
-    // // TBranch        *b_mu_id_cov_phi_exPV;   //!
-    // // TBranch        *b_mu_id_cov_theta_exPV;   //!
-    // // TBranch        *b_mu_id_cov_qoverp_exPV;   //!
-    // // TBranch        *b_mu_id_cov_d0_z0_exPV;   //!
-    // // TBranch        *b_mu_id_cov_d0_phi_exPV;   //!
-    // // TBranch        *b_mu_id_cov_d0_theta_exPV;   //!
-    // // TBranch        *b_mu_id_cov_d0_qoverp_exPV;   //!
-    // // TBranch        *b_mu_id_cov_z0_phi_exPV;   //!
-    // // TBranch        *b_mu_id_cov_z0_theta_exPV;   //!
-    // // TBranch        *b_mu_id_cov_z0_qoverp_exPV;   //!
-    // // TBranch        *b_mu_id_cov_phi_theta_exPV;   //!
-    // // TBranch        *b_mu_id_cov_phi_qoverp_exPV;   //!
-    // // TBranch        *b_mu_id_cov_theta_qoverp_exPV;   //!
-    // // TBranch        *b_mu_me_cov_d0_exPV;   //!
-    // // TBranch        *b_mu_me_cov_z0_exPV;   //!
-    // // TBranch        *b_mu_me_cov_phi_exPV;   //!
-    // // TBranch        *b_mu_me_cov_theta_exPV;   //!
-    // // TBranch        *b_mu_me_cov_qoverp_exPV;   //!
-    // // TBranch        *b_mu_ms_d0;   //!
-    // // TBranch        *b_mu_ms_z0;   //!
-    // // TBranch        *b_mu_ms_phi;   //!
-    // // TBranch        *b_mu_ms_theta;   //!
-    // // TBranch        *b_mu_ms_qoverp;   //!
-    // // TBranch        *b_mu_id_d0;   //!
-    // // TBranch        *b_mu_id_z0;   //!
-    // // TBranch        *b_mu_id_phi;   //!
-    // // TBranch        *b_mu_id_theta;   //!
-    // // TBranch        *b_mu_id_qoverp;   //!
-    // // TBranch        *b_mu_me_d0;   //!
-    // // TBranch        *b_mu_me_z0;   //!
-    // // TBranch        *b_mu_me_phi;   //!
-    // // TBranch        *b_mu_me_theta;   //!
-    // // TBranch        *b_mu_me_qoverp;   //!
-    // // TBranch        *b_mu_ie_d0;   //!
-    // // TBranch        *b_mu_ie_z0;   //!
-    // // TBranch        *b_mu_ie_phi;   //!
-    // // TBranch        *b_mu_ie_theta;   //!
-    // // TBranch        *b_mu_ie_qoverp;   //!
-    // // TBranch        *b_mu_nOutliersOnTrack;   //!
-    // // TBranch        *b_mu_nBLHits;   //!
-    // // TBranch        *b_mu_nPixHits;   //!
-    // // TBranch        *b_mu_nSCTHits;   //!
-    // // TBranch        *b_mu_nTRTHits;   //!
-    // // TBranch        *b_mu_nTRTHighTHits;   //!
-    // // TBranch        *b_mu_nBLSharedHits;   //!
-    // // TBranch        *b_mu_nPixSharedHits;   //!
-    // // TBranch        *b_mu_nPixHoles;   //!
-    // // TBranch        *b_mu_nSCTSharedHits;   //!
-    // // TBranch        *b_mu_nSCTHoles;   //!
-    // // TBranch        *b_mu_nTRTOutliers;   //!
-    // // TBranch        *b_mu_nTRTHighTOutliers;   //!
-    // // TBranch        *b_mu_nGangedPixels;   //!
-    // // TBranch        *b_mu_nPixelDeadSensors;   //!
-    // // TBranch        *b_mu_nSCTDeadSensors;   //!
-    // // TBranch        *b_mu_nTRTDeadStraws;   //!
-    // // TBranch        *b_mu_expectBLayerHit;   //!
-    // // TBranch        *b_mu_nMDTHits;   //!
-    // // TBranch        *b_mu_nMDTHoles;   //!
-    // // TBranch        *b_mu_nCSCEtaHits;   //!
-    // // TBranch        *b_mu_nCSCEtaHoles;   //!
-    // // TBranch        *b_mu_nCSCUnspoiledEtaHits;   //!
-    // // TBranch        *b_mu_nCSCPhiHits;   //!
-    // // TBranch        *b_mu_nCSCPhiHoles;   //!
-    // // TBranch        *b_mu_nRPCEtaHits;   //!
-    // // TBranch        *b_mu_nRPCEtaHoles;   //!
-    // // TBranch        *b_mu_nRPCPhiHits;   //!
-    // // TBranch        *b_mu_nRPCPhiHoles;   //!
-    // // TBranch        *b_mu_nTGCEtaHits;   //!
-    // // TBranch        *b_mu_nTGCEtaHoles;   //!
-    // // TBranch        *b_mu_nTGCPhiHits;   //!
-    // // TBranch        *b_mu_nTGCPhiHoles;   //!
-    // // TBranch        *b_mu_nprecisionLayers;   //!
-    // // TBranch        *b_mu_nprecisionHoleLayers;   //!
-    // // TBranch        *b_mu_nphiLayers;   //!
-    // // TBranch        *b_mu_ntrigEtaLayers;   //!
-    // // TBranch        *b_mu_nphiHoleLayers;   //!
-    // // TBranch        *b_mu_ntrigEtaHoleLayers;   //!
-    // // TBranch        *b_mu_nMDTBIHits;   //!
-    // // TBranch        *b_mu_nMDTBMHits;   //!
-    // // TBranch        *b_mu_nMDTBOHits;   //!
-    // // TBranch        *b_mu_nMDTBEEHits;   //!
-    // // TBranch        *b_mu_nMDTBIS78Hits;   //!
-    // // TBranch        *b_mu_nMDTEIHits;   //!
-    // // TBranch        *b_mu_nMDTEMHits;   //!
-    // // TBranch        *b_mu_nMDTEOHits;   //!
-    // // TBranch        *b_mu_nMDTEEHits;   //!
-    // // TBranch        *b_mu_nRPCLayer1EtaHits;   //!
-    // // TBranch        *b_mu_nRPCLayer2EtaHits;   //!
-    // // TBranch        *b_mu_nRPCLayer3EtaHits;   //!
-    // // TBranch        *b_mu_nRPCLayer1PhiHits;   //!
-    // // TBranch        *b_mu_nRPCLayer2PhiHits;   //!
-    // // TBranch        *b_mu_nRPCLayer3PhiHits;   //!
-    // // TBranch        *b_mu_nTGCLayer1EtaHits;   //!
-    // // TBranch        *b_mu_nTGCLayer2EtaHits;   //!
-    // // TBranch        *b_mu_nTGCLayer3EtaHits;   //!
-    // // TBranch        *b_mu_nTGCLayer4EtaHits;   //!
-    // // TBranch        *b_mu_nTGCLayer1PhiHits;   //!
-    // // TBranch        *b_mu_nTGCLayer2PhiHits;   //!
-    // // TBranch        *b_mu_nTGCLayer3PhiHits;   //!
-    // // TBranch        *b_mu_nTGCLayer4PhiHits;   //!
-    // // TBranch        *b_mu_barrelSectors;   //!
-    // // TBranch        *b_mu_endcapSectors;   //!
-    // // TBranch        *b_mu_trackd0;   //!
-    // // TBranch        *b_mu_trackz0;   //!
-    // // TBranch        *b_mu_trackphi;   //!
-    // // TBranch        *b_mu_tracktheta;   //!
-    // // TBranch        *b_mu_trackqoverp;   //!
-    // // TBranch        *b_mu_trackcov_d0;   //!
-    // // TBranch        *b_mu_trackcov_z0;   //!
-    // // TBranch        *b_mu_trackcov_phi;   //!
-    // // TBranch        *b_mu_trackcov_theta;   //!
-    // // TBranch        *b_mu_trackcov_qoverp;   //!
-    // // TBranch        *b_mu_trackcov_d0_z0;   //!
-    // // TBranch        *b_mu_trackcov_d0_phi;   //!
-    // // TBranch        *b_mu_trackcov_d0_theta;   //!
-    // // TBranch        *b_mu_trackcov_d0_qoverp;   //!
-    // // TBranch        *b_mu_trackcov_z0_phi;   //!
-    // // TBranch        *b_mu_trackcov_z0_theta;   //!
-    // // TBranch        *b_mu_trackcov_z0_qoverp;   //!
-    // // TBranch        *b_mu_trackcov_phi_theta;   //!
-    // // TBranch        *b_mu_trackcov_phi_qoverp;   //!
-    // // TBranch        *b_mu_trackcov_theta_qoverp;   //!
-    // // TBranch        *b_mu_hastrack;   //!
-    // // TBranch        *b_mu_trackIPEstimate_d0_biasedpvunbiased;   //!
-    // // TBranch        *b_mu_trackIPEstimate_z0_biasedpvunbiased;   //!
-    // // TBranch        *b_mu_trackIPEstimate_sigd0_biasedpvunbiased;   //!
-    // // TBranch        *b_mu_trackIPEstimate_sigz0_biasedpvunbiased;   //!
-    // // TBranch        *b_mu_trackIPEstimate_d0_unbiasedpvunbiased;   //!
-    // // TBranch        *b_mu_trackIPEstimate_z0_unbiasedpvunbiased;   //!
-    // // TBranch        *b_mu_trackIPEstimate_sigd0_unbiasedpvunbiased;   //!
-    // // TBranch        *b_mu_trackIPEstimate_sigz0_unbiasedpvunbiased;   //!
-    // // TBranch        *b_mu_type;   //!
-    // // TBranch        *b_mu_origin;   //!
-    // // TBranch        *b_mu_truth_dr;   //!
-    // // TBranch        *b_mu_truth_E;   //!
-    // // TBranch        *b_mu_truth_pt;   //!
-    // // TBranch        *b_mu_truth_eta;   //!
-    // // TBranch        *b_mu_truth_phi;   //!
-    // // TBranch        *b_mu_truth_type;   //!
-    // // TBranch        *b_mu_truth_status;   //!
-    // // TBranch        *b_mu_truth_barcode;   //!
-    // // TBranch        *b_mu_truth_mothertype;   //!
-    // // TBranch        *b_mu_truth_motherbarcode;   //!
-    // // TBranch        *b_mu_truth_matched;   //!
-    // // TBranch        *b_mu_mc_dr;   //!
-    // // TBranch        *b_mu_mc_index;   //!
-    // // TBranch        *b_mu_EFCB_index;   //!
-    // // TBranch        *b_mu_EFMG_index;   //!
-    // // TBranch        *b_mu_EFME_index;   //!
-    // // TBranch        *b_mu_ptcone20_trk500MeV;   //!
-    // // TBranch        *b_mu_ptcone30_trk500MeV;   //!
-    // // TBranch        *b_mu_ptcone40_trk500MeV;   //!
-    // // TBranch        *b_mu_nucone20_trk500MeV;   //!
-    // // TBranch        *b_mu_nucone30_trk500MeV;   //!
-    // // TBranch        *b_mu_nucone40_trk500MeV;   //!
-    // // TBranch        *b_mu_ptcone20_trkelstyle;   //!
-    // // TBranch        *b_mu_ptcone30_trkelstyle;   //!
-    // // TBranch        *b_mu_ptcone40_trkelstyle;   //!
-    // // TBranch        *b_mu_nucone20_trkelstyle;   //!
-    // // TBranch        *b_mu_nucone30_trkelstyle;   //!
-    // // TBranch        *b_mu_nucone40_trkelstyle;   //!
     // TBranch        *b_trueTau_n;   //!
     // TBranch        *b_trueTau_pt;   //!
     // TBranch        *b_trueTau_m;   //!
@@ -10742,13 +9511,13 @@ namespace PennSusyFrame
     // TBranch        *b_trueTau_tauAssocSmall_dr;   //!
     // TBranch        *b_trueTau_tauAssocSmall_index;   //!
     // TBranch        *b_trueTau_tauAssocSmall_matched;   //!
-    // TBranch        *b_tau_n;   //!
+    TBranch        *b_tau_n;   //!
     // TBranch        *b_tau_Et;   //!
-    // TBranch        *b_tau_pt;   //!
-    // TBranch        *b_tau_m;   //!
-    // TBranch        *b_tau_eta;   //!
-    // TBranch        *b_tau_phi;   //!
-    // TBranch        *b_tau_charge;   //!
+    TBranch        *b_tau_pt;   //!
+    TBranch        *b_tau_m;   //!
+    TBranch        *b_tau_eta;   //!
+    TBranch        *b_tau_phi;   //!
+    TBranch        *b_tau_charge;   //!
     // TBranch        *b_tau_BDTEleScore;   //!
     // TBranch        *b_tau_BDTJetScore;   //!
     // TBranch        *b_tau_likelihood;   //!
@@ -13395,16 +12164,6 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_MET_Egamma10NoTau_wpy;   //!
     // TBranch        *b_mu_staco_MET_Egamma10NoTau_wet;   //!
     // TBranch        *b_mu_staco_MET_Egamma10NoTau_statusWord;   //!
-    // // TBranch        *b_mu_muid_MET_Egamma10NoTau_n;   //!
-    // // TBranch        *b_mu_muid_MET_Egamma10NoTau_wpx;   //!
-    // // TBranch        *b_mu_muid_MET_Egamma10NoTau_wpy;   //!
-    // // TBranch        *b_mu_muid_MET_Egamma10NoTau_wet;   //!
-    // // TBranch        *b_mu_muid_MET_Egamma10NoTau_statusWord;   //!
-    // // TBranch        *b_mu_MET_Egamma10NoTau_n;   //!
-    // // TBranch        *b_mu_MET_Egamma10NoTau_wpx;   //!
-    // // TBranch        *b_mu_MET_Egamma10NoTau_wpy;   //!
-    // // TBranch        *b_mu_MET_Egamma10NoTau_wet;   //!
-    // // TBranch        *b_mu_MET_Egamma10NoTau_statusWord;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_n;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpy;   //!
@@ -13425,16 +12184,6 @@ namespace PennSusyFrame
     // //    TBranch        *b_mu_staco_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;   //!
     // //    TBranch        *b_mu_staco_MET_LooseEgamma10NoTauLoosePhotonRef_wet;   //!
     // //    TBranch        *b_mu_staco_MET_LooseEgamma10NoTauLoosePhotonRef_statusWord;   //!
-    // //    // TBranch        *b_mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_n;   //!
-    // //    // TBranch        *b_mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_wpx;   //!
-    // //    // TBranch        *b_mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;   //!
-    // //    // TBranch        *b_mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_wet;   //!
-    // //    // TBranch        *b_mu_muid_MET_LooseEgamma10NoTauLoosePhotonRef_statusWord;   //!
-    // //    // TBranch        *b_mu_MET_LooseEgamma10NoTauLoosePhotonRef_n;   //!
-    // //    // TBranch        *b_mu_MET_LooseEgamma10NoTauLoosePhotonRef_wpx;   //!
-    // //    // TBranch        *b_mu_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;   //!
-    // //    // TBranch        *b_mu_MET_LooseEgamma10NoTauLoosePhotonRef_wet;   //!
-    // //    // TBranch        *b_mu_MET_LooseEgamma10NoTauLoosePhotonRef_statusWord;   //!
     // //    TBranch        *b_jet_AntiKt4LCTopo_MET_LooseEgamma10NoTauLoosePhotonRef_n;   //!
     // //    TBranch        *b_jet_AntiKt4LCTopo_MET_LooseEgamma10NoTauLoosePhotonRef_wpx;   //!
     // //    TBranch        *b_jet_AntiKt4LCTopo_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;   //!
@@ -13455,16 +12204,6 @@ namespace PennSusyFrame
     // //    TBranch        *b_mu_staco_MET_Egamma10NoTauLoosePhotonRef_wpy;   //!
     // //    TBranch        *b_mu_staco_MET_Egamma10NoTauLoosePhotonRef_wet;   //!
     // //    TBranch        *b_mu_staco_MET_Egamma10NoTauLoosePhotonRef_statusWord;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10NoTauLoosePhotonRef_n;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10NoTauLoosePhotonRef_wpx;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10NoTauLoosePhotonRef_wpy;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10NoTauLoosePhotonRef_wet;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10NoTauLoosePhotonRef_statusWord;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10NoTauLoosePhotonRef_n;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10NoTauLoosePhotonRef_wpx;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10NoTauLoosePhotonRef_wpy;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10NoTauLoosePhotonRef_wet;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10NoTauLoosePhotonRef_statusWord;   //!
     // //    TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTauLoosePhotonRef_n;   //!
     // //    TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTauLoosePhotonRef_wpx;   //!
     // //    TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTauLoosePhotonRef_wpy;   //!
@@ -13485,16 +12224,6 @@ namespace PennSusyFrame
     // //    TBranch        *b_mu_staco_MET_Egamma10LooseTau_wpy;   //!
     // //    TBranch        *b_mu_staco_MET_Egamma10LooseTau_wet;   //!
     // //    TBranch        *b_mu_staco_MET_Egamma10LooseTau_statusWord;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10LooseTau_n;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10LooseTau_wpx;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10LooseTau_wpy;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10LooseTau_wet;   //!
-    // //    // TBranch        *b_mu_muid_MET_Egamma10LooseTau_statusWord;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10LooseTau_n;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10LooseTau_wpx;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10LooseTau_wpy;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10LooseTau_wet;   //!
-    // //    // TBranch        *b_mu_MET_Egamma10LooseTau_statusWord;   //!
     // //    TBranch        *b_tau_MET_Egamma10LooseTau_n;   //!
     // //    TBranch        *b_tau_MET_Egamma10LooseTau_wpx;   //!
     // //    TBranch        *b_tau_MET_Egamma10LooseTau_wpy;   //!
@@ -13520,16 +12249,6 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_MET_wpy;   //!
     // TBranch        *b_mu_staco_MET_wet;   //!
     // TBranch        *b_mu_staco_MET_statusWord;   //!
-    // // TBranch        *b_mu_muid_MET_n;   //!
-    // // TBranch        *b_mu_muid_MET_wpx;   //!
-    // // TBranch        *b_mu_muid_MET_wpy;   //!
-    // // TBranch        *b_mu_muid_MET_wet;   //!
-    // // TBranch        *b_mu_muid_MET_statusWord;   //!
-    // // TBranch        *b_mu_MET_n;   //!
-    // // TBranch        *b_mu_MET_wpx;   //!
-    // // TBranch        *b_mu_MET_wpy;   //!
-    // // TBranch        *b_mu_MET_wet;   //!
-    // // TBranch        *b_mu_MET_statusWord;   //!
     // TBranch        *b_tau_MET_n;   //!
     // TBranch        *b_tau_MET_wpx;   //!
     // TBranch        *b_tau_MET_wpy;   //!
@@ -13540,208 +12259,6 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_MET_wpy;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_MET_wet;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_MET_statusWord;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_n;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_E;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_pt;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_m;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_eta;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_phi;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_EtaOrigin;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_PhiOrigin;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_MOrigin;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_WIDTH;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_n90;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_Timing;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_LArQuality;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_OriginIndex;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_HECQuality;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_NegativeE;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_AverageLArQF;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_BCH_CORR_CELL;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_BCH_CORR_DOTX;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_BCH_CORR_JET;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_BCH_CORR_JET_FORCELL;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ENG_BAD_CELLS;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_N_BAD_CELLS;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_N_BAD_CELLS_CORR;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_BAD_CELLS_CORR_E;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_NumTowers;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ootFracCells5;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ootFracCells10;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ootFracClusters5;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ootFracClusters10;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_SamplingMax;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_fracSamplingMax;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_hecf;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_tgap3f;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_isUgly;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_isBadLooseMinus;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_isBadLoose;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_isBadMedium;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_isBadTight;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_emfrac;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_Offset;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_EMJES;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_EMJES_EtaCorr;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_EMJESnooffset;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_LCJES;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_LCJES_EtaCorr;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_emscale_E;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_emscale_pt;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_emscale_m;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_emscale_eta;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_emscale_phi;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ActiveArea;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ActiveAreaPx;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ActiveAreaPy;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ActiveAreaPz;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ActiveAreaE;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_jvtxf;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_jvtxfFull;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_jvtx_x;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_jvtx_y;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_jvtx_z;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_TruthMFindex;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_TruthMF;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_GSCFactorF;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_WidthFraction;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_PreSamplerB;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_EMB1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_EMB2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_EMB3;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_PreSamplerE;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_EME1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_EME2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_EME3;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_HEC0;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_HEC1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_HEC2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_HEC3;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileBar0;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileBar1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileBar2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileGap1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileGap2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileGap3;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileExt0;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileExt1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_TileExt2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_FCAL0;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_FCAL1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_e_FCAL2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_Nconst;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_ptconst_default;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_econst_default;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_etaconst_default;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_phiconst_default;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_weightconst_default;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_constscale_E;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_constscale_pt;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_constscale_m;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_constscale_eta;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_constscale_phi;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_Comb;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_GbbNN;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_IP2D;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_IP3D;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_JetFitterCOMBNN;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_JetFitterCharm;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_JetFitterTagNN;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_MV1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_MV2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_SV0;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_SV1;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_SV2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_SecondSoftMuonTagChi2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_weight_SoftMuonTagChi2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_truth_label;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_truth_dRminToB;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_truth_dRminToC;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_truth_dRminToT;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_truth_BHadronpdg;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_truth_vx_x;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_truth_vx_y;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_truth_vx_z;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip2d_pu;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip2d_pb;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip2d_isValid;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip2d_ntrk;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip3d_pu;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip3d_pb;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip3d_pc;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip3d_isValid;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_ip3d_ntrk;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv1_pu;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv1_pb;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv1_pc;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv1_isValid;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv2_pu;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv2_pb;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv2_isValid;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_pu;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_pb;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_pc;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_isValid;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfitcomb_pu;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfitcomb_pb;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfitcomb_pc;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfitcomb_isValid;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_nvtx;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_nvtx1t;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_ntrkAtVx;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_efrc;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_mass;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_sig3d;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_deltaPhi;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_jfit_deltaEta;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_isValid;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_ntrkv;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_ntrkj;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_n2t;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_mass;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_efrc;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_x;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_y;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_z;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_err_x;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_err_y;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_err_z;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_cov_xy;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_cov_xz;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_cov_yz;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_chi2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_ndof;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_svp_ntrk;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_isValid;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_ntrkv;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_ntrkj;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_n2t;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_mass;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_efrc;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_x;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_y;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_z;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_err_x;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_err_y;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_err_z;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_cov_xy;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_cov_xz;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_cov_yz;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_chi2;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_ndof;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_component_sv0p_ntrk;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_assoctrk_n;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_flavor_assoctrk_index;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_bbDecision;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_nTrk_pv0_1GeV;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_sumPtTrk_pv0_1GeV;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_nTrk_allpv_1GeV;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_sumPtTrk_allpv_1GeV;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_nTrk_pv0_500MeV;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_sumPtTrk_pv0_500MeV;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_trackWIDTH_pv0_1GeV;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_trackWIDTH_allpv_1GeV;   //!
-    // TBranch        *b_jet_AntiKt4TopoEM_SmearingFactor;   //!
     // TBranch        *b_jet_AntiKt6TopoEM_n;   //!
     // TBranch        *b_jet_AntiKt6TopoEM_E;   //!
     // TBranch        *b_jet_AntiKt6TopoEM_pt;   //!
@@ -13806,10 +12323,10 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_emscale_eta;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_emscale_phi;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_ActiveArea;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPx;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPy;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPz;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaE;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPx;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPy;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPz;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaE;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_jvtxf;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_jvtxfFull;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_jvtx_x;   //!
@@ -13849,11 +12366,11 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_etaconst_default;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_phiconst_default;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_weightconst_default;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_constscale_E;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_constscale_E;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_constscale_pt;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_constscale_m;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_constscale_eta;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_constscale_phi;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_constscale_m;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_constscale_eta;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_constscale_phi;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_Comb;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_GbbNN;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_IP2D;   //!
@@ -13967,7 +12484,7 @@ namespace PennSusyFrame
     // TBranch        *b_Eventshape_rhoKt3EM;   //!
     // TBranch        *b_Eventshape_rhoKt4EM;   //!
     // TBranch        *b_Eventshape_rhoKt3LC;   //!
-    // TBranch        *b_Eventshape_rhoKt4LC;   //!
+    TBranch        *b_Eventshape_rhoKt4LC;   //!
     TBranch        *b_vx_n;   //!
     // TBranch        *b_vx_x;   //!
     // TBranch        *b_vx_y;   //!

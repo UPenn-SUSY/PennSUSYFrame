@@ -29,6 +29,9 @@ void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
   setEventNumber(reader->EventNumber);
   setRunNumber(reader->RunNumber);
   setLumiBlock(reader->lbn);
+
+  setAverageIntPerXing(reader->averageIntPerXing);
+  setEventShapeRhoKt4LC(reader->Eventshape_rhoKt4LC);
 }
 
 // -----------------------------------------------------------------------------
@@ -50,6 +53,18 @@ void PennSusyFrame::Event::setLumiBlock(unsigned int val)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Event::setAverageIntPerXing(float val)
+{
+  m_average_int_per_xing = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Event::setEventShapeRhoKt4LC(float val)
+{
+  m_eventshape_rhoKt4LC = val;
+}
+
+// -----------------------------------------------------------------------------
 unsigned int PennSusyFrame::Event::getEventNumber() const
 {
   return m_event_number;
@@ -65,6 +80,18 @@ unsigned int PennSusyFrame::Event::getRunNumber() const
 unsigned int PennSusyFrame::Event::getLumiBlock() const
 {
   return m_lumi_block;
+}
+
+// -----------------------------------------------------------------------------
+float PennSusyFrame::Event::getAverageIntPerXing() const
+{
+  return m_average_int_per_xing;
+}
+
+// -----------------------------------------------------------------------------
+float PennSusyFrame::Event::getEventShapeRhoKt4LC() const
+{
+  return m_eventshape_rhoKt4LC;
 }
 
 // -----------------------------------------------------------------------------
@@ -263,6 +290,12 @@ PennSusyFrame::Lepton::Lepton()
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Lepton::setIsLightLepton(bool val)
+{
+  m_is_light_lepton = val;
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::Lepton::setIsElectron(bool val)
 {
   m_is_electron = val;
@@ -277,13 +310,19 @@ void PennSusyFrame::Lepton::setCharge(double val)
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::Lepton::isElectron() const
 {
-  return m_is_electron;
+  return (m_is_light_lepton && m_is_electron);
 }
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::Lepton::isMuon() const
 {
-  return !m_is_electron;
+  return (m_is_light_lepton && !m_is_electron);
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::Lepton::isTau() const
+{
+  return (!m_is_light_lepton);
 }
 
 // -----------------------------------------------------------------------------
@@ -308,6 +347,7 @@ void PennSusyFrame::Lepton::print() const
 PennSusyFrame::Electron::Electron()
 {
   setIsElectron(true);
+  setIsLightLepton(true);
 }
 
 // -----------------------------------------------------------------------------
@@ -322,6 +362,8 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   }
 
   setIsElectron(true);
+  setIsLightLepton(true);
+
   setParticleIndex(el_index);
 
   setCharge(reader->el_charge->at(el_index));
@@ -383,10 +425,14 @@ void PennSusyFrame::Electron::setElTlv( const PennSusyFrame::D3PDReader* reader
                                       )
 {
   TLorentzVector raw_tlv;
-  raw_tlv.SetPxPyPzE( reader->el_px->at(m_particle_index)
-                    , reader->el_py->at(m_particle_index)
-                    , reader->el_pz->at(m_particle_index)
-                    , reader->el_E->at(m_particle_index)
+  double raw_px = reader->el_px->at(m_particle_index);
+  double raw_py = reader->el_py->at(m_particle_index);
+  double raw_pz = reader->el_pz->at(m_particle_index);
+  double raw_e  = reader->el_E->at(m_particle_index);
+  raw_tlv.SetPxPyPzE( raw_px
+                    , raw_py
+                    , raw_pz
+                    , raw_e
                     );
   setRawTlv(raw_tlv);
 
@@ -395,7 +441,11 @@ void PennSusyFrame::Electron::setElTlv( const PennSusyFrame::D3PDReader* reader
   double corrected_eta = getRawEta();
   double corrected_phi = getRawPhi();
   double corrected_et = corrected_e/cosh(corrected_eta);
-  tlv.SetPtEtaPhiE( corrected_et, corrected_eta, corrected_phi, corrected_e);
+  tlv.SetPtEtaPhiE( corrected_et
+                  , corrected_eta
+                  , corrected_phi
+                  , corrected_e
+                  );
   setTlv(tlv);
 }
 
@@ -405,6 +455,7 @@ void PennSusyFrame::Electron::setElTlv( const PennSusyFrame::D3PDReader* reader
 PennSusyFrame::Muon::Muon()
 {
   setIsElectron(false);
+  setIsLightLepton(true);
 }
 
 // -----------------------------------------------------------------------------
@@ -419,6 +470,8 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   }
 
   setIsElectron(false);
+  setIsLightLepton(true);
+
   setParticleIndex(mu_index);
 
   setCharge(reader->mu_staco_charge->at(mu_index));
@@ -533,7 +586,77 @@ void PennSusyFrame::Muon::setMuTlv( const PennSusyFrame::D3PDReader* reader
   double corrected_eta = raw_eta;
   double corrected_phi = raw_phi;
   double corrected_m   = raw_m;
-  tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
+  tlv.SetPtEtaPhiM( corrected_pt
+                  , corrected_eta
+                  , corrected_phi
+                  , corrected_m
+                  );
+  setTlv(tlv);
+}
+
+// =============================================================================
+// = Tau
+// =============================================================================
+PennSusyFrame::Tau::Tau()
+{
+  setIsElectron(false);
+  setIsLightLepton(false);
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::Tau::Tau( const PennSusyFrame::D3PDReader* reader
+                       , int tau_index
+                       // , PennSusyFrame::TauRescalerTool* tau_rescaler
+                       , bool verbose
+                       )
+{
+  if (verbose) {
+    std::cout << "Initializing tau\n";
+  }
+
+  setIsElectron(false);
+  setIsLightLepton(false);
+
+  setParticleIndex(tau_index);
+
+  setCharge(reader->tau_charge->at(tau_index));
+
+  setTauTlv(reader);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Tau::print() const
+{
+  Lepton::print();
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Tau::setTauTlv( const PennSusyFrame::D3PDReader* reader
+                                  // , PennSusyFrame::TauRescalerTool* tau_rescaler
+                                  )
+{
+  TLorentzVector raw_tlv;
+  double raw_pt  = reader->tau_pt->at(m_particle_index);
+  double raw_eta = reader->tau_eta->at(m_particle_index);
+  double raw_phi = reader->tau_phi->at(m_particle_index);
+  double raw_m   = reader->tau_m->at(m_particle_index);;
+  raw_tlv.SetPtEtaPhiM( raw_pt
+                      , raw_eta
+                      , raw_phi
+                      , raw_m
+                      );
+  setRawTlv(raw_tlv);
+
+  TLorentzVector tlv;
+  double corrected_pt  = raw_pt;
+  double corrected_eta = raw_eta;
+  double corrected_phi = raw_phi;
+  double corrected_m   = raw_m;
+  tlv.SetPtEtaPhiM( corrected_pt
+                  , corrected_eta
+                  , corrected_phi
+                  , corrected_m
+                  );
   setTlv(tlv);
 }
 
@@ -548,6 +671,7 @@ PennSusyFrame::Jet::Jet()
 PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
                        , int jet_index
                        , PennSusyFrame::JetRescalerTool* jet_rescaler
+                       , PennSusyFrame::Event* event
                        , bool verbose
                        )
 {
@@ -556,7 +680,113 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   }
 
   setParticleIndex(jet_index);
-  setJetTlv(reader, jet_rescaler);
+
+  setConstScaleE(  reader->jet_AntiKt4LCTopo_constscale_E->at(m_particle_index));
+  setConstScaleEta(reader->jet_AntiKt4LCTopo_constscale_eta->at(m_particle_index));
+  setConstScalePhi(reader->jet_AntiKt4LCTopo_constscale_phi->at(m_particle_index));
+  setConstScaleM(  reader->jet_AntiKt4LCTopo_constscale_m->at(m_particle_index));
+  setActiveAreaPx( reader->jet_AntiKt4LCTopo_ActiveAreaPx->at(m_particle_index));
+  setActiveAreaPy( reader->jet_AntiKt4LCTopo_ActiveAreaPy->at(m_particle_index));
+  setActiveAreaPz( reader->jet_AntiKt4LCTopo_ActiveAreaPz->at(m_particle_index));
+  setActiveAreaE(  reader->jet_AntiKt4LCTopo_ActiveAreaE->at(m_particle_index));
+
+  setJetTlv(reader, jet_rescaler, event);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setConstScaleE(double val)
+{
+  m_constscale_e = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setConstScaleEta(double val)
+{
+  m_constscale_eta = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setConstScalePhi(double val)
+{
+  m_constscale_phi = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setConstScaleM(double val)
+{
+  m_constscale_m = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setActiveAreaPx(double val)
+{
+  m_active_area_px = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setActiveAreaPy(double val)
+{
+  m_active_area_py = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setActiveAreaPz(double val)
+{
+  m_active_area_pz = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setActiveAreaE(double val)
+{
+  m_active_area_e = val;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getConstScaleE() const
+{
+  return m_constscale_e;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getConstScaleEta() const
+{
+  return m_constscale_eta;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getConstScalePhi() const
+{
+  return m_constscale_phi;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getConstScaleM() const
+{
+  return m_constscale_m;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getActiveAreaPx() const
+{
+  return m_active_area_px;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getActiveAreaPy() const
+{
+  return m_active_area_py;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getActiveAreaPz() const
+{
+  return m_active_area_pz;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getActiveAreaE() const
+{
+  return m_active_area_e;
 }
 
 // -----------------------------------------------------------------------------
@@ -568,6 +798,7 @@ void PennSusyFrame::Jet::print() const
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
                                   , PennSusyFrame::JetRescalerTool* jet_rescaler
+                                  , PennSusyFrame::Event* event
                                   )
 {
   TLorentzVector raw_tlv;
@@ -582,12 +813,7 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
                       );
   setRawTlv(raw_tlv);
 
-  TLorentzVector tlv = jet_rescaler->getCalibratedTlv(this);
-  // double corrected_pt  = raw_pt;
-  // double corrected_eta = raw_eta;
-  // double corrected_phi = raw_phi;
-  // double corrected_m   = raw_m;
-  // tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
+  TLorentzVector tlv = jet_rescaler->getCalibratedTlv(this, event);
   setTlv(tlv);
 }
 
