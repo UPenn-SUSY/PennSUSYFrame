@@ -79,6 +79,8 @@ namespace PennSusyFrame
     private:
       std::vector<PennSusyFrame::Jet> m_master_list;
       std::vector<std::vector<PennSusyFrame::Jet*> > m_user_lists;
+
+      PennSusyFrame::JetRescalerTool* m_jet_rescaler;
   };
 }
 

@@ -208,7 +208,7 @@ void PennSusyFrame::JetContainer::prep( PennSusyFrame::D3PDReader* reader
   size_t num_mu = reader->jet_AntiKt4LCTopo_n;
   m_master_list.reserve(num_mu);
   for (size_t jet_it = 0; jet_it != num_mu; ++jet_it) {
-    PennSusyFrame::Jet tmp(reader, jet_it);
+    PennSusyFrame::Jet tmp(reader, jet_it, m_jet_rescaler);
     m_master_list.push_back(tmp);
   }
 

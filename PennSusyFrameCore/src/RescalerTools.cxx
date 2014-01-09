@@ -2,9 +2,12 @@
 
 #include <string>
 
+#include "TLorentzVector.h"
+
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "RootCore/egammaAnalysisUtils/egammaAnalysisUtils/EnergyRescalerUpgrade.h"
 #include "RootCore/MuonMomentumCorrections/MuonMomentumCorrections/SmearingClass.h"
+#include "RootCore/ApplyJetCalibration/ApplyJetCalibration/ApplyJetCalibration.h"
 
 // =============================================================================
 // = ElectronRescalerTool
@@ -215,7 +218,47 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
 // =============================================================================
 // = JetRescalerTool
 // =============================================================================
-PennSusyFrame::JetRescalerTool::JetRescalerTool()
+PennSusyFrame::JetRescalerTool::JetRescalerTool() : m_is_data(false)
+                                                  , m_is_af2(false)
 {
+  std::string jet_algorithm = "AntiKt4LCTopo";
 
+  std::string maindir = "";
+  char *tmparea=getenv("ROOTCOREDIR");
+  if (tmparea != NULL) {
+    maindir = tmparea;
+    maindir = maindir + "/";
+  }
+
+  std::string jes_config_file;
+  std::string mc_type = "";
+  if (m_is_af2) {
+    std::cout << "setting up JES for AF2\n";
+    jes_config_file = maindir +
+      "../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config";
+    mc_type = "AFII";
+  } else {
+    std::cout << "setting up JES for full sim\n";
+    jes_config_file = maindir +
+      "../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config";
+    mc_type = "MC12a";
+  }
+
+  m_jet_calibration = new JetCalibrationTool( jet_algorithm
+                                            , jes_config_file
+                                            , m_is_data
+                                            );
+  m_jet_calibration->UseGeV(false);
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::JetRescalerTool::~JetRescalerTool()
+{
+  delete m_jet_calibration;
+}
+
+// -----------------------------------------------------------------------------
+TLorentzVector PennSusyFrame::JetRescalerTool::getCalibratedTlv(const PennSusyFrame::Jet* p)
+{
+  return *(p->getRawTlv());
 }

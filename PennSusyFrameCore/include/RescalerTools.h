@@ -2,6 +2,7 @@
 #define PENNSUSYFRAME_RESCALERTOOLS_H
 
 #include <string>
+#include "TLorentzVector.h"
 
 // =============================================================================
 namespace egRescaler
@@ -19,12 +20,15 @@ namespace PennSusyFrame
 {
   class Electron;
   class Muon;
+  class Jet;
 }
 
 namespace MuonSmear
 {
   class SmearingClass;
 }
+
+class JetCalibrationTool;
 
 // =============================================================================
 namespace PennSusyFrame
@@ -75,9 +79,15 @@ namespace PennSusyFrame
   {
     public:
       JetRescalerTool();
+      ~JetRescalerTool();
+
+      TLorentzVector getCalibratedTlv(const PennSusyFrame::Jet*);
 
     private:
+      JetCalibrationTool* m_jet_calibration;
 
+      bool m_is_data;
+      bool m_is_af2;
   };
 
 }

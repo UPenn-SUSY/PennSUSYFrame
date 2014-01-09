@@ -157,6 +157,7 @@ namespace PennSusyFrame
       Jet();
       Jet( const PennSusyFrame::D3PDReader*
          , int jet_index
+         , PennSusyFrame::JetRescalerTool*
          , bool verbose = false
          );
 
@@ -164,7 +165,9 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
-      void setJetTlv(const PennSusyFrame::D3PDReader* reader);
+      void setJetTlv( const PennSusyFrame::D3PDReader* reader
+                    , PennSusyFrame::JetRescalerTool*
+                    );
   };
 
   // =============================================================================

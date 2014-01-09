@@ -462,7 +462,6 @@ void PennSusyFrame::Muon::setMuTlv( const PennSusyFrame::D3PDReader* reader
                       );
   setRawTlv(raw_tlv);
 
-  // TODO apply muon smearing
   TLorentzVector tlv;
   double corrected_pt  = mu_rescaler->getSmearedPt(this);
   double corrected_eta = raw_eta;
@@ -482,6 +481,7 @@ PennSusyFrame::Jet::Jet()
 // -----------------------------------------------------------------------------
 PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
                        , int jet_index
+                       , PennSusyFrame::JetRescalerTool* jet_rescaler
                        , bool verbose
                        )
 {
@@ -490,7 +490,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   }
 
   setParticleIndex(jet_index);
-  setJetTlv(reader);
+  setJetTlv(reader, jet_rescaler);
 }
 
 // -----------------------------------------------------------------------------
@@ -500,15 +500,29 @@ void PennSusyFrame::Jet::print() const
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setJetTlv(const PennSusyFrame::D3PDReader* reader)
+void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
+                                  , PennSusyFrame::JetRescalerTool* jet_rescaler
+                                  )
 {
   TLorentzVector raw_tlv;
-  raw_tlv.SetPtEtaPhiM( reader->jet_AntiKt4LCTopo_pt->at(m_particle_index)
-                      , reader->jet_AntiKt4LCTopo_eta->at(m_particle_index)
-                      , reader->jet_AntiKt4LCTopo_phi->at(m_particle_index)
-                      , reader->jet_AntiKt4LCTopo_m->at(m_particle_index)
+  double raw_pt  = reader->jet_AntiKt4LCTopo_pt->at(m_particle_index);
+  double raw_eta = reader->jet_AntiKt4LCTopo_eta->at(m_particle_index);
+  double raw_phi = reader->jet_AntiKt4LCTopo_phi->at(m_particle_index);
+  double raw_m   = reader->jet_AntiKt4LCTopo_m->at(m_particle_index);
+  raw_tlv.SetPtEtaPhiM( raw_pt
+                      , raw_eta
+                      , raw_phi
+                      , raw_m
                       );
   setRawTlv(raw_tlv);
+
+  TLorentzVector tlv;
+  double corrected_pt  = raw_pt;
+  double corrected_eta = raw_eta;
+  double corrected_phi = raw_phi;
+  double corrected_m   = raw_m;
+  tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
+  setTlv(tlv);
 }
 
 // =============================================================================
