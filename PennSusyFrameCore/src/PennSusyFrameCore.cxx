@@ -185,8 +185,12 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::constructObjects()
 {
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get basic event variables
   m_event.getEvent(m_d3pd_reader);
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // select good vertices
   m_vertices.prep(m_d3pd_reader);
   m_vertices.setCollection( VERTEX_GOOD
                           , PennSusyFrame::selectObjects( m_vertex_selectors.at(VERTEX_GOOD)
@@ -199,16 +203,98 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                         )
                           );
 
-  // m_electrons.prep(m_d3pd_reader);
-  // m_muons.prep(m_d3pd_reader);
-  // m_taus.prep(m_d3pd_reader);
-  // m_jets.prep(m_d3pd_reader, &m_event, &m_vertices);
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // select baseline electrons from all electrons
+  m_electrons.prep(m_d3pd_reader);
+  m_electrons.setCollection( EL_BASELINE
+                           , PennSusyFrame::selectObjects( m_electron_selectors.at(EL_BASELINE)
+                                                         , m_electrons.getCollection(EL_ALL)
+                                                         )
+                           );
+
+  // select baseline muons from all muons
+  m_muons.prep(m_d3pd_reader);
+  m_muons.setCollection( MU_BASELINE
+                       , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_BASELINE)
+                                                     , m_muons.getCollection(MU_ALL)
+                                                     )
+                       );
+
+  // select baseline taus from all taus
+  m_taus.prep(m_d3pd_reader);
+  m_taus.setCollection( TAU_BASELINE
+                      , PennSusyFrame::selectObjects( m_tau_selectors.at(TAU_BASELINE)
+                                                    , m_taus.getCollection(TAU_ALL)
+                                                    )
+                      );
+
+  // select baseline jets from all jets
+  m_jets.prep(m_d3pd_reader, &m_event, &m_vertices);
+  m_jets.setCollection( JET_BASELINE_GOOD
+                      , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_BASELINE_GOOD)
+                                                    , m_jets.getCollection(JET_ALL)
+                                                    )
+                      );
+  m_jets.setCollection( JET_BASELINE_BAD
+                      , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_BASELINE_BAD)
+                                                    , m_jets.getCollection(JET_ALL)
+                                                    )
+                      );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // do overlap removal
+  // TODO properly do overlap removal
+  m_electrons.setCollection(EL_GOOD , m_electrons.getCollection(EL_BASELINE));
+  m_muons.setCollection(MU_GOOD , m_muons.getCollection(MU_BASELINE));
+  m_taus.setCollection(TAU_GOOD , m_taus.getCollection(TAU_BASELINE));
+  m_jets.setCollection(JET_GOOD , m_jets.getCollection(JET_BASELINE_GOOD));
+  m_jets.setCollection(JET_BAD , m_jets.getCollection(JET_BASELINE_BAD));
+
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // select signal electrons from good electrons
+  m_electrons.setCollection( EL_SIGNAL
+                           , PennSusyFrame::selectObjects( m_electron_selectors.at(EL_SIGNAL)
+                                                         , m_electrons.getCollection(EL_GOOD)
+                                                         )
+                           );
+
+  // select signal muons from good muons
+  m_muons.setCollection( MU_SIGNAL
+                       , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_SIGNAL)
+                                                     , m_muons.getCollection(MU_GOOD)
+                                                     )
+                       );
+
+  // select signal taus from good taus
+  m_taus.setCollection( TAU_SIGNAL
+                      , PennSusyFrame::selectObjects( m_tau_selectors.at(TAU_SIGNAL)
+                                                    , m_taus.getCollection(TAU_GOOD)
+                                                    )
+                      );
+
+  // select signal jets from good jets
+  m_jets.setCollection( JET_LIGHT
+                      , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_LIGHT)
+                                                    , m_jets.getCollection(JET_GOOD)
+                                                    )
+                      );
+  m_jets.setCollection( JET_B
+                      , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_B)
+                                                    , m_jets.getCollection(JET_GOOD)
+                                                    )
+                      );
+  m_jets.setCollection( JET_FORWARD
+                      , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_FORWARD)
+                                                    , m_jets.getCollection(JET_GOOD)
+                                                    )
+                      );
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
-  // // TODO make template processEvent
+  // TODO make template processEvent
   // std::cout << "\n================================================================================\n";
   // m_event.print();
   // m_vertices.print(VERTEX_ALL);
