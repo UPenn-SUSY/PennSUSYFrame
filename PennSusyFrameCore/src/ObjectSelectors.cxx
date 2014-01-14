@@ -9,11 +9,25 @@
 // = SelectorBase
 // =============================================================================
 // -----------------------------------------------------------------------------
-PennSusyFrame::SelectorBase::SelectorBase()
+PennSusyFrame::SelectorBase::SelectorBase() : m_reversed(false)
 {
 }
 
-bool PennSusyFrame::SelectorBase::passSelection(const PennSusyFrame::PhysicsObject*)
+// -----------------------------------------------------------------------------
+void PennSusyFrame::SelectorBase::setReversedSelector(bool val)
+{
+  m_reversed = val;
+}
+
+bool PennSusyFrame::SelectorBase::passSelection(const PennSusyFrame::PhysicsObject* p)
+{
+  bool pass_all_cuts = passAllCuts(p);
+
+  if (m_reversed) return !pass_all_cuts;
+  return pass_all_cuts;
+}
+
+bool PennSusyFrame::SelectorBase::passAllCuts(const PennSusyFrame::PhysicsObject*)
 {
   std::cout << "calling default selector :-(\n";
   return false;
@@ -27,6 +41,14 @@ PennSusyFrame::ElectronSelector::ElectronSelector() : m_min_pt(-1)
                                                     , m_max_pt(-1)
                                                     , m_min_eta(-1)
                                                     , m_max_eta(-1)
+                                                    , m_min_d0_significance(-1)
+                                                    , m_max_d0_significance(-1)
+                                                    , m_min_z0_sin_theta(-1)
+                                                    , m_max_z0_sin_theta(-1)
+                                                    , m_min_ptcone(-1)
+                                                    , m_max_ptcone(-1)
+                                                    , m_min_etcone(-1)
+                                                    , m_max_etcone(-1)
 {
 }
 
@@ -45,10 +67,42 @@ void PennSusyFrame::ElectronSelector::setEtaCut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::ElectronSelector::passSelection(const PennSusyFrame::Electron* p)
+void PennSusyFrame::ElectronSelector::setD0SignificanceCut(double min, double max)
+{
+  m_min_d0_significance = min;
+  m_max_d0_significance = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ElectronSelector::setZ0SignThetaCut(double min, double max)
+{
+  m_min_z0_sin_theta = min;
+  m_max_z0_sin_theta = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ElectronSelector::setPtIsoCut(double min, double max)
+{
+  m_min_ptcone = min;
+  m_max_ptcone = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ElectronSelector::setEtIsoCut(double min, double max)
+{
+  m_min_etcone = min;
+  m_max_etcone = max;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::ElectronSelector::passAllCuts(const PennSusyFrame::Electron* p)
 {
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
   if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+  if (!passCut(p->getD0Significance(), m_min_d0_significance, m_max_d0_significance)) return false;
+  if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
+  if (!passCut(p->getPtIso(), m_min_ptcone, m_max_ptcone)) return false;
+  if (!passCut(p->getEtIso(), m_min_etcone, m_max_etcone)) return false;
 
   return true;
 }
@@ -61,6 +115,20 @@ PennSusyFrame::MuonSelector::MuonSelector() : m_min_pt(-1)
                                             , m_max_pt(-1)
                                             , m_min_eta(-1)
                                             , m_max_eta(-1)
+                                            , m_min_b_layer_hits(-1)
+                                            , m_max_b_layer_hits(-1)
+                                            , m_min_pixel_hits(-1)
+                                            , m_max_pixel_hits(-1)
+                                            , m_min_sct_hits(-1)
+                                            , m_max_sct_hits(-1)
+                                            , m_min_si_holes(-1)
+                                            , m_max_si_holes(-1)
+                                            , m_min_d0_significance(-1)
+                                            , m_max_d0_significance(-1)
+                                            , m_min_z0_sin_theta(-1)
+                                            , m_max_z0_sin_theta(-1)
+                                            , m_min_ptcone(-1)
+                                            , m_max_ptcone(-1)
 {
 }
 
@@ -79,10 +147,91 @@ void PennSusyFrame::MuonSelector::setEtaCut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::MuonSelector::passSelection(const PennSusyFrame::Muon* p)
+void PennSusyFrame::MuonSelector::setBLayerHitsCut(double min, double max)
+{
+  m_min_b_layer_hits = min;
+  m_max_b_layer_hits = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setPixelHitsCut(double min, double max)
+{
+  m_min_pixel_hits = min;
+  m_max_pixel_hits = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setSctHitsCut(double min, double max)
+{
+  m_min_sct_hits = min;
+  m_max_sct_hits = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setSiHolesCut(double min, double max)
+{
+  m_min_si_holes = min;
+  m_max_si_holes = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setD0SignificanceCut(double min, double max)
+{
+  m_min_d0_significance = min;
+  m_max_d0_significance = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setZ0SignThetaCut(double min, double max)
+{
+  m_min_z0_sin_theta = min;
+  m_max_z0_sin_theta = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setD0Cut(double min, double max)
+{
+  m_min_d0 = min;
+  m_max_d0 = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setZ0Cut(double min, double max)
+{
+  m_min_z0 = min;
+  m_max_z0 = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setPtIsoCut(double min, double max)
+{
+  m_min_ptcone = min;
+  m_max_ptcone = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setQOverPCut(double min, double max)
+{
+  m_min_q_over_p = min;
+  m_max_q_over_p = max;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
 {
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
   if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+  if (!passCut(p->getNumBLayerHits(), m_min_b_layer_hits, m_max_b_layer_hits)) return false;
+  if (!passCut(p->getNumPixelHits(), m_min_pixel_hits, m_max_pixel_hits)) return false;
+  if (!passCut(p->getNumSctHits(), m_min_sct_hits, m_max_sct_hits)) return false;
+  if (!passCut(p->getNumSiHoles(), m_min_si_holes, m_max_si_holes)) return false;
+  // TODO do trt cuts
+  if (!passCut(p->getD0Significance(), m_min_d0_significance, m_max_d0_significance)) return false;
+  if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
+  if (!passCut(p->getD0(), m_min_d0, m_max_d0)) return false;
+  if (!passCut(p->getZ0(), m_min_z0, m_max_z0)) return false;
+  if (!passCut(p->getQOverP(), m_min_q_over_p, m_max_q_over_p)) return false;
+  if (!passCut(p->getPtIso(), m_min_ptcone, m_max_ptcone)) return false;
 
   return true;
 }
@@ -113,7 +262,7 @@ void PennSusyFrame::TauSelector::setEtaCut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::TauSelector::passSelection(const PennSusyFrame::Tau* p)
+bool PennSusyFrame::TauSelector::passAllCuts(const PennSusyFrame::Tau* p)
 {
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
   if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
@@ -147,7 +296,7 @@ void PennSusyFrame::JetSelector::setEtaCut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::JetSelector::passSelection(const PennSusyFrame::Jet* p)
+bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
 {
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
   if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
@@ -172,7 +321,7 @@ void PennSusyFrame::VertexSelector::setNumTracksCut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::VertexSelector::passSelection(const PennSusyFrame::Vertex* p)
+bool PennSusyFrame::VertexSelector::passAllCuts(const PennSusyFrame::Vertex* p)
 {
   if ( !passCut( p->getNumTracks()
                , m_min_num_tracks

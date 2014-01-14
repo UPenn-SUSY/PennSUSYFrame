@@ -37,7 +37,7 @@ namespace PennSusyFrame
 
       size_t term = t.size();
       for (size_t it = 0; it != term; ++it) {
-        if (sel.passSelection(t.at(it))) {
+        if (sel.passAllCuts(t.at(it))) {
           selected_objects.push_back(t.at(it));
         }
       }
@@ -54,6 +54,9 @@ namespace PennSusyFrame
       SelectorBase();
 
       virtual bool passSelection(const PennSusyFrame::PhysicsObject*);
+      virtual bool passAllCuts(const PennSusyFrame::PhysicsObject*);
+
+      void setReversedSelector(bool = true);
 
     protected:
       // TODO move implementation of template to .icc file
@@ -65,6 +68,8 @@ namespace PennSusyFrame
         if (max >= 0 && val > max) return false;
         return true;
       }
+
+      bool m_reversed;
   };
   
   // =============================================================================
@@ -75,11 +80,16 @@ namespace PennSusyFrame
     public:
       ElectronSelector();
 
-      void setPtCut(double min = -1, double max = -1);
-      void setEtaCut(double min = -1, double max = -1);
+      void setPtCut(            double min = -1, double max = -1);
+      void setEtaCut(           double min = -1, double max = -1);
+      void setD0SignificanceCut(double min = -1, double max = -1);
+      void setZ0SignThetaCut(   double min = -1, double max = -1);
+      // TODO rename these functions
+      void setPtIsoCut(         double min = -1, double max = -1);
+      void setEtIsoCut(         double min = -1, double max = -1);
 
-      using SelectorBase::passSelection;
-      bool passSelection(const PennSusyFrame::Electron*);
+      using SelectorBase::passAllCuts;
+      bool passAllCuts(const PennSusyFrame::Electron*);
 
     private:
       double m_min_pt;
@@ -87,6 +97,19 @@ namespace PennSusyFrame
 
       double m_min_eta;
       double m_max_eta;
+
+      double m_min_d0_significance;
+      double m_max_d0_significance;
+
+      double m_min_z0_sin_theta;
+      double m_max_z0_sin_theta;
+
+      // TODO rename these variables
+      double m_min_ptcone;
+      double m_max_ptcone;
+
+      double m_min_etcone;
+      double m_max_etcone;
   };
 
   // =============================================================================
@@ -97,11 +120,22 @@ namespace PennSusyFrame
     public:
       MuonSelector();
 
-      void setPtCut(double min = -1, double max = -1);
-      void setEtaCut(double min = -1, double max = -1);
+      void setPtCut(            double min = -1, double max = -1);
+      void setEtaCut(           double min = -1, double max = -1);
+      void setBLayerHitsCut(    double min = -1, double max = -1);
+      void setPixelHitsCut(     double min = -1, double max = -1);
+      void setSctHitsCut(       double min = -1, double max = -1);
+      void setSiHolesCut(       double min = -1, double max = -1);
+      void setD0SignificanceCut(double min = -1, double max = -1);
+      void setZ0SignThetaCut(   double min = -1, double max = -1);
+      void setD0Cut(            double min = -1, double max = -1);
+      void setZ0Cut(            double min = -1, double max = -1);
+      void setQOverPCut(        double min = -1, double max = -1);
+      // TODO rename this function
+      void setPtIsoCut(         double min = -1, double max = -1);
 
-      using SelectorBase::passSelection;
-      bool passSelection(const PennSusyFrame::Muon*);
+      using SelectorBase::passAllCuts;
+      bool passAllCuts(const PennSusyFrame::Muon*);
 
     private:
       double m_min_pt;
@@ -109,6 +143,37 @@ namespace PennSusyFrame
 
       double m_min_eta;
       double m_max_eta;
+
+      int m_min_b_layer_hits;
+      int m_max_b_layer_hits;
+
+      int m_min_pixel_hits;
+      int m_max_pixel_hits;
+
+      int m_min_sct_hits;
+      int m_max_sct_hits;
+
+      int m_min_si_holes;
+      int m_max_si_holes;
+
+      double m_min_d0_significance;
+      double m_max_d0_significance;
+
+      double m_min_z0_sin_theta;
+      double m_max_z0_sin_theta;
+
+      double m_min_d0;
+      double m_max_d0;
+
+      double m_min_z0;
+      double m_max_z0;
+
+      double m_min_q_over_p;
+      double m_max_q_over_p;
+
+      // TODO rename these variables
+      double m_min_ptcone;
+      double m_max_ptcone;
   };
 
   // =============================================================================
@@ -122,8 +187,8 @@ namespace PennSusyFrame
       void setPtCut(double min = -1, double max = -1);
       void setEtaCut(double min = -1, double max = -1);
 
-      using SelectorBase::passSelection;
-      bool passSelection(const PennSusyFrame::Tau*);
+      using SelectorBase::passAllCuts;
+      bool passAllCuts(const PennSusyFrame::Tau*);
 
     private:
       double m_min_pt;
@@ -144,8 +209,8 @@ namespace PennSusyFrame
       void setPtCut(double min = -1, double max = -1);
       void setEtaCut(double min = -1, double max = -1);
 
-      using SelectorBase::passSelection;
-      bool passSelection(const PennSusyFrame::Jet*);
+      using SelectorBase::passAllCuts;
+      bool passAllCuts(const PennSusyFrame::Jet*);
 
     private:
       double m_min_pt;
@@ -165,8 +230,8 @@ namespace PennSusyFrame
 
       void setNumTracksCut(double min = -1, double max = -1);
 
-      using SelectorBase::passSelection;
-      bool passSelection(const PennSusyFrame::Vertex*);
+      using SelectorBase::passAllCuts;
+      bool passAllCuts(const PennSusyFrame::Vertex*);
 
     private:
       int m_min_num_tracks;

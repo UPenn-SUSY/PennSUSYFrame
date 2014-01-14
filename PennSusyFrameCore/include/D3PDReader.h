@@ -2041,9 +2041,9 @@ namespace PennSusyFrame
     // std::vector<float>   *el_trackIPEstimate_z0_biasedpvunbiased;
     // std::vector<float>   *el_trackIPEstimate_sigd0_biasedpvunbiased;
     // std::vector<float>   *el_trackIPEstimate_sigz0_biasedpvunbiased;
-    // std::vector<float>   *el_trackIPEstimate_d0_unbiasedpvunbiased;
-    // std::vector<float>   *el_trackIPEstimate_z0_unbiasedpvunbiased;
-    // std::vector<float>   *el_trackIPEstimate_sigd0_unbiasedpvunbiased;
+    std::vector<float>   *el_trackIPEstimate_d0_unbiasedpvunbiased;
+    std::vector<float>   *el_trackIPEstimate_z0_unbiasedpvunbiased;
+    std::vector<float>   *el_trackIPEstimate_sigd0_unbiasedpvunbiased;
     // std::vector<float>   *el_trackIPEstimate_sigz0_unbiasedpvunbiased;
     // std::vector<float>   *el_ptcone20_trk500MeV;
     // std::vector<float>   *el_ptcone30_trk500MeV;
@@ -9064,9 +9064,9 @@ namespace PennSusyFrame
     // TBranch        *b_el_trackIPEstimate_z0_biasedpvunbiased;   //!
     // TBranch        *b_el_trackIPEstimate_sigd0_biasedpvunbiased;   //!
     // TBranch        *b_el_trackIPEstimate_sigz0_biasedpvunbiased;   //!
-    // TBranch        *b_el_trackIPEstimate_d0_unbiasedpvunbiased;   //!
-    // TBranch        *b_el_trackIPEstimate_z0_unbiasedpvunbiased;   //!
-    // TBranch        *b_el_trackIPEstimate_sigd0_unbiasedpvunbiased;   //!
+    TBranch        *b_el_trackIPEstimate_d0_unbiasedpvunbiased;   //!
+    TBranch        *b_el_trackIPEstimate_z0_unbiasedpvunbiased;   //!
+    TBranch        *b_el_trackIPEstimate_sigd0_unbiasedpvunbiased;   //!
     // TBranch        *b_el_trackIPEstimate_sigz0_unbiasedpvunbiased;   //!
     // TBranch        *b_el_ptcone20_trk500MeV;   //!
     // TBranch        *b_el_ptcone30_trk500MeV;   //!

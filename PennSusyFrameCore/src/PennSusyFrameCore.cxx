@@ -99,6 +99,12 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.4);
 
   // TODO check signal electron definitions
+  m_electron_selectors.at(EL_SIGNAL).setPtCut(10.e3, -1);
+  m_electron_selectors.at(EL_SIGNAL).setEtaCut(-1, 2.4);
+  m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
+  m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
+  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.16);
+  m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.18);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // muons selectors
@@ -106,8 +112,25 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   // TODO check baseline muon definitions
   m_muon_selectors.at(MU_BASELINE).setPtCut(10.e3, -1);
   m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.4);
+  m_muon_selectors.at(MU_BASELINE).setBLayerHitsCut(1, -1);
+  m_muon_selectors.at(MU_BASELINE).setPixelHitsCut(1, -1);
+  m_muon_selectors.at(MU_BASELINE).setSctHitsCut(5, -1);
+  m_muon_selectors.at(MU_BASELINE).setSiHolesCut(-1, 2);
 
   // TODO check signal muon definitions
+  m_muon_selectors.at(MU_SIGNAL).setPtCut(10.e3, -1);
+  m_muon_selectors.at(MU_SIGNAL).setEtaCut(-1, 2.4);
+  m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3);
+  m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 0.4);
+  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.12);
+
+  // TODO check cosmic muon definitions
+  m_muon_selectors.at(MU_COSMIC).setD0Cut(-1, 0.2);
+  m_muon_selectors.at(MU_COSMIC).setZ0Cut(-1, 1.0);
+  // TODO implement reverseCuts functionality
+  m_muon_selectors.at(MU_COSMIC).setReversedSelector(true);;
+
+  // TODO check bad muon definitions
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // tau selectors

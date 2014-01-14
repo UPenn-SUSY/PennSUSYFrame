@@ -869,9 +869,9 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_trackIPEstimate_z0_biasedpvunbiased = 0;
   // el_trackIPEstimate_sigd0_biasedpvunbiased = 0;
   // el_trackIPEstimate_sigz0_biasedpvunbiased = 0;
-  // el_trackIPEstimate_d0_unbiasedpvunbiased = 0;
-  // el_trackIPEstimate_z0_unbiasedpvunbiased = 0;
-  // el_trackIPEstimate_sigd0_unbiasedpvunbiased = 0;
+  el_trackIPEstimate_d0_unbiasedpvunbiased = 0;
+  el_trackIPEstimate_z0_unbiasedpvunbiased = 0;
+  el_trackIPEstimate_sigd0_unbiasedpvunbiased = 0;
   // el_trackIPEstimate_sigz0_unbiasedpvunbiased = 0;
   // el_ptcone20_trk500MeV = 0;
   // el_ptcone30_trk500MeV = 0;
@@ -5506,10 +5506,10 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("el_trackIPEstimate_z0_biasedpvunbiased", &el_trackIPEstimate_z0_biasedpvunbiased, &b_el_trackIPEstimate_z0_biasedpvunbiased);
   // // fChain->SetBranchAddress("el_trackIPEstimate_sigd0_biasedpvunbiased", &el_trackIPEstimate_sigd0_biasedpvunbiased, &b_el_trackIPEstimate_sigd0_biasedpvunbiased);
   // // fChain->SetBranchAddress("el_trackIPEstimate_sigz0_biasedpvunbiased", &el_trackIPEstimate_sigz0_biasedpvunbiased, &b_el_trackIPEstimate_sigz0_biasedpvunbiased);
-  // // fChain->SetBranchAddress("el_trackIPEstimate_d0_unbiasedpvunbiased", &el_trackIPEstimate_d0_unbiasedpvunbiased, &b_el_trackIPEstimate_d0_unbiasedpvunbiased);
-  // // fChain->SetBranchAddress("el_trackIPEstimate_z0_unbiasedpvunbiased", &el_trackIPEstimate_z0_unbiasedpvunbiased, &b_el_trackIPEstimate_z0_unbiasedpvunbiased);
-  // // fChain->SetBranchAddress("el_trackIPEstimate_sigd0_unbiasedpvunbiased", &el_trackIPEstimate_sigd0_unbiasedpvunbiased, &b_el_trackIPEstimate_sigd0_unbiasedpvunbiased);
-  // // fChain->SetBranchAddress("el_trackIPEstimate_sigz0_unbiasedpvunbiased", &el_trackIPEstimate_sigz0_unbiasedpvunbiased, &b_el_trackIPEstimate_sigz0_unbiasedpvunbiased);
+  turnOnBranch(tree, "el_trackIPEstimate_d0_unbiasedpvunbiased", &el_trackIPEstimate_d0_unbiasedpvunbiased, &b_el_trackIPEstimate_d0_unbiasedpvunbiased);
+  turnOnBranch(tree, "el_trackIPEstimate_z0_unbiasedpvunbiased", &el_trackIPEstimate_z0_unbiasedpvunbiased, &b_el_trackIPEstimate_z0_unbiasedpvunbiased);
+  turnOnBranch(tree, "el_trackIPEstimate_sigd0_unbiasedpvunbiased", &el_trackIPEstimate_sigd0_unbiasedpvunbiased, &b_el_trackIPEstimate_sigd0_unbiasedpvunbiased);
+  // turnOnBranch(tree, "el_trackIPEstimate_sigz0_unbiasedpvunbiased", &el_trackIPEstimate_sigz0_unbiasedpvunbiased, &b_el_trackIPEstimate_sigz0_unbiasedpvunbiased);
   // // fChain->SetBranchAddress("el_ptcone20_trk500MeV", &el_ptcone20_trk500MeV, &b_el_ptcone20_trk500MeV);
   // // fChain->SetBranchAddress("el_ptcone30_trk500MeV", &el_ptcone30_trk500MeV, &b_el_ptcone30_trk500MeV);
   // // fChain->SetBranchAddress("el_ptcone40_trk500MeV", &el_ptcone40_trk500MeV, &b_el_ptcone40_trk500MeV);

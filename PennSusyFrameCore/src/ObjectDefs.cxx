@@ -372,9 +372,19 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setClEta(reader->el_cl_eta->at(el_index));
   setClPhi(reader->el_cl_phi->at(el_index));
 
+  // TODO set variable
+  setD0(reader->el_trackIPEstimate_d0_unbiasedpvunbiased->at(el_index));
+  setSigD0(reader->el_trackIPEstimate_sigd0_unbiasedpvunbiased->at(el_index));
+  // TODO set variable
+  setZ0(reader->el_trackIPEstimate_z0_unbiasedpvunbiased->at(el_index));
+  // setSinTheta(sin(m_tlv.Theta()));
+  // TODO set variable
+  setPtIso(0);
+  // TODO set variable
+  setEtIso(0);
+
   // must set TLV last because it depends on above quantities
   setElTlv(reader, el_rescaler);
-  // setElTlv(reader);
 }
 
 // -----------------------------------------------------------------------------
@@ -396,6 +406,36 @@ void PennSusyFrame::Electron::setClPhi(double val)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Electron::setD0(double val)
+{
+  m_d0 = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Electron::setSigD0(double val)
+{
+  m_sig_d0 = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Electron::setZ0(double val)
+{
+  m_z0 = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Electron::setPtIso(double val)
+{
+  m_pt_iso = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Electron::setEtIso(double val)
+{
+  m_et_iso = val;
+}
+
+// -----------------------------------------------------------------------------
 double PennSusyFrame::Electron::getClE() const
 {
   return m_cl_E;
@@ -411,6 +451,48 @@ double PennSusyFrame::Electron::getClEta() const
 double PennSusyFrame::Electron::getClPhi() const
 {
   return m_cl_phi;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Electron::getD0() const
+{
+  return m_d0;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Electron::getSigD0() const
+{
+  return m_sig_d0;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Electron::getD0Significance() const
+{
+  return m_d0/m_sig_d0;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Electron::getZ0() const
+{
+  return m_z0;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Electron::getZ0SinTheta() const
+{
+  return m_z0*sin(m_tlv.Theta());
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Electron::getPtIso() const
+{
+  return m_pt_iso;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Electron::getEtIso() const
+{
+  return m_et_iso;
 }
 
 // -----------------------------------------------------------------------------
@@ -523,6 +605,67 @@ void PennSusyFrame::Muon::setMETheta(double val)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setNumBLayerHits(int val)
+{
+  m_num_b_layer_hits = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setNumPixelHits(int val)
+{
+  m_num_pixel_hits = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setNumSctHits(int val)
+{
+  m_num_sct_hits = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setNumSiHoles(int val)
+{
+  m_num_si_holes = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setD0(double val)
+{
+  m_d0 = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setSigD0(double val)
+{
+  m_sig_d0 = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setZ0(double val)
+{
+  m_z0 = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setPtIso(double val)
+{
+  m_pt_iso = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setEtIso(double val)
+{
+  m_et_iso = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setQOverP(double val)
+{
+  m_q_over_p = val;
+}
+
+
+// -----------------------------------------------------------------------------
 int PennSusyFrame::Muon::getIsCombined() const
 {
   return m_is_combined;
@@ -557,6 +700,79 @@ double PennSusyFrame::Muon::getMETheta() const
 {
   return m_me_theta;
 }
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Muon::getNumBLayerHits() const
+{
+  return m_num_b_layer_hits;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Muon::getNumPixelHits() const
+{
+  return m_num_pixel_hits;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Muon::getNumSctHits() const
+{
+  return m_num_sct_hits;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Muon::getNumSiHoles() const
+{
+  return m_num_si_holes;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getD0() const
+{
+  return m_d0;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getSigD0() const
+{
+  return m_sig_d0;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getD0Significance() const
+{
+  return m_d0/m_sig_d0;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getZ0() const
+{
+  return m_z0;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getZ0SinTheta() const
+{
+  return m_z0*sin(m_tlv.Theta());
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getPtIso() const
+{
+  return m_pt_iso;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getEtIso() const
+{
+  return m_et_iso;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getQOverP() const
+{
+  return m_q_over_p;
+}
+
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Muon::print() const

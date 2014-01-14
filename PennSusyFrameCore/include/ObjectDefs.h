@@ -137,10 +137,26 @@ namespace PennSusyFrame
       void setClE(double);
       void setClEta(double);
       void setClPhi(double);
+      void setD0(double);
+      void setSigD0(double);
+      void setZ0(double);
+      // void setSinTheta(double);
+      // TODO rename these functions to give access to all iso variables - raw and corrected
+      void setPtIso(double);
+      void setEtIso(double);
+
 
       double getClE() const;
       double getClEta() const;
       double getClPhi() const;
+      double getD0() const;
+      double getSigD0() const;
+      double getD0Significance() const;
+      double getZ0() const;
+      double getZ0SinTheta() const;
+      // TODO rename these functions to give access to all iso variables - raw and corrected
+      double getPtIso() const;
+      double getEtIso() const;
 
       virtual void print() const;
 
@@ -152,6 +168,11 @@ namespace PennSusyFrame
       double m_cl_E;
       double m_cl_eta;
       double m_cl_phi;
+      double m_d0;
+      double m_sig_d0;
+      double m_z0;
+      double m_pt_iso;
+      double m_et_iso;
   };
 
   // =============================================================================
@@ -172,6 +193,16 @@ namespace PennSusyFrame
       void setIdTheta(double);
       void setMEQOverP(double);
       void setMETheta(double);
+      void setNumBLayerHits(int);
+      void setNumPixelHits(int);
+      void setNumSctHits(int);
+      void setNumSiHoles(int);
+      void setD0(double);
+      void setSigD0(double);
+      void setZ0(double);
+      void setPtIso(double);
+      void setEtIso(double);
+      void setQOverP(double);
 
       int getIsCombined() const;
       int getIsSegmentTagged() const;
@@ -179,6 +210,18 @@ namespace PennSusyFrame
       double getIdTheta() const;
       double getMEQOverP() const;
       double getMETheta() const;
+      int getNumBLayerHits() const;
+      int getNumPixelHits() const;
+      int getNumSctHits() const;
+      int getNumSiHoles() const;
+      double getD0() const;
+      double getSigD0() const;
+      double getD0Significance() const;
+      double getZ0() const;
+      double getZ0SinTheta() const;
+      double getPtIso() const;
+      double getEtIso() const;
+      double getQOverP() const;
 
       virtual void print() const;
 
@@ -194,6 +237,20 @@ namespace PennSusyFrame
       double m_id_theta;
       double m_me_qoverp;
       double m_me_theta;
+
+      int m_num_b_layer_hits;
+      int m_num_pixel_hits;
+      int m_num_sct_hits;
+      int m_num_si_holes;
+      // TODO store TRT info
+
+      double m_d0;
+      double m_sig_d0;
+      double m_z0;
+      double m_pt_iso;
+      double m_et_iso;
+
+      double m_q_over_p;
   };
 
   // =============================================================================
