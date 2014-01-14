@@ -55,6 +55,8 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::TauSelector>      m_tau_selectors;
       std::vector<PennSusyFrame::JetSelector>      m_jet_selectors;
 
+      PennSusyFrame::ObjectCleaning m_object_cleaning;
+
     private:
   };
 }

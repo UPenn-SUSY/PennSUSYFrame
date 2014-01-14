@@ -18,6 +18,12 @@ namespace PennSusyFrame
   class Tau;
   class Jet;
   class Vertex;
+
+  class ElectronContainer;
+  class MuonContainer;
+  class TauContainer;
+  class JetContainer;
+  class VertexContainer;
 }
 
 // ============================================================================
@@ -166,6 +172,288 @@ namespace PennSusyFrame
       int m_min_num_tracks;
       int m_max_num_tracks;
   };
+
+  // =============================================================================
+  // = Object cleaning
+  // =============================================================================
+  class ObjectCleaning
+  {
+    public:
+      ObjectCleaning();
+
+      void fullObjectCleaning( PennSusyFrame::ElectronContainer&
+                             , PennSusyFrame::MuonContainer&
+                             , PennSusyFrame::TauContainer&
+                             , PennSusyFrame::JetContainer&
+                             );
+
+      void fullObjectCleaning( const std::vector<PennSusyFrame::Electron*>&
+                             , const std::vector<PennSusyFrame::Muon*>&
+                             , const std::vector<PennSusyFrame::Tau*>&
+                             , const std::vector<PennSusyFrame::Jet*>&
+                             , const std::vector<PennSusyFrame::Jet*>&
+                             , std::vector<PennSusyFrame::Electron*>&
+                             , std::vector<PennSusyFrame::Muon*>&
+                             , std::vector<PennSusyFrame::Tau*>&
+                             , std::vector<PennSusyFrame::Jet*>&
+                             , std::vector<PennSusyFrame::Jet*>&
+                             );
+
+      void eeOverlapRemoval( const std::vector<PennSusyFrame::Electron*>&
+                           , std::vector<PennSusyFrame::Electron*>&
+                           );
+      void ejOverlapRemoval( const std::vector<PennSusyFrame::Electron*>&
+                           , const std::vector<PennSusyFrame::Jet*>&
+                           , std::vector<PennSusyFrame::Jet*>&
+                           );
+      void etOverlapRemoval( const std::vector<PennSusyFrame::Electron*>&
+                           , const std::vector<PennSusyFrame::Tau*>&
+                           , std::vector<PennSusyFrame::Tau*>&
+                           );
+      void mtOverlapRemoval( const std::vector<PennSusyFrame::Muon*>&
+                           , const std::vector<PennSusyFrame::Tau*>&
+                           , std::vector<PennSusyFrame::Tau*>&
+                           );
+      void tjOverlapRemoval( const std::vector<PennSusyFrame::Tau*>&
+                           , const std::vector<PennSusyFrame::Jet*>&
+                           , std::vector<PennSusyFrame::Jet*>&
+                           );
+      void jeOverlapRemoval( const std::vector<PennSusyFrame::Jet*>&
+                           , const std::vector<PennSusyFrame::Electron*>&
+                           , std::vector<PennSusyFrame::Electron*>&
+                           );
+      void jmOverlapRemoval( const std::vector<PennSusyFrame::Jet*>&
+                           , const std::vector<PennSusyFrame::Muon*>&
+                           , std::vector<PennSusyFrame::Muon*>&
+                           );
+      void emOverlapRemoval( const std::vector<PennSusyFrame::Electron*>&
+                           , const std::vector<PennSusyFrame::Muon*>&
+                           , std::vector<PennSusyFrame::Electron*>&
+                           , std::vector<PennSusyFrame::Muon*>&
+                           );
+      void mmOverlapRemoval( const std::vector<PennSusyFrame::Muon*>&
+                           , std::vector<PennSusyFrame::Muon*>&
+                           );
+
+      void sfosMllOverlapRemoval( const std::vector<PennSusyFrame::Electron*>&
+                                , const std::vector<PennSusyFrame::Muon*>&
+                                , std::vector<PennSusyFrame::Electron*>&
+                                , std::vector<PennSusyFrame::Muon*>&
+                                );
+
+      static bool overlap( const TLorentzVector*
+                         , const TLorentzVector*
+                         , double thresh
+                         );
+
+    private:
+      double m_ee_cone_size;
+      double m_ej_cone_size;
+      double m_et_cone_size;
+      double m_mt_cone_size;
+      double m_je_cone_size;
+      double m_jm_cone_size;
+      double m_em_cone_size;
+      double m_mm_cone_size;
+      double m_tj_cone_size;
+      double m_sfos_mll_min;
+
+
+      template <class T1, class T2>
+        void overlapRemoveSecondList( const std::vector<T1*>&
+                                    , const std::vector<T2*>&
+                                    , std::vector<T2*>&
+                                    , double
+                                    );
+      template <class T1>
+        void overlapRemoveLowPt( const std::vector<T1*>&
+                               , std::vector<T1*>&
+                               , double
+                               );
+      template <class T1, class T2>
+        void overlapRemoveBoth( const std::vector<T1*>&
+                              , const std::vector<T2*>&
+                              , std::vector<T1*>&
+                              , std::vector<T2*>&
+                              , double
+                              );
+      template <class T1>
+        void overlapRemoveBoth( const std::vector<T1*>&
+                              , std::vector<T1*>&
+                              , double
+                              );
+
+  };
+  
+}
+
+// TODO move these template implementations to icc file
+// -----------------------------------------------------------------------------
+template <class T1, class T2>
+  void PennSusyFrame::ObjectCleaning::overlapRemoveSecondList( const std::vector<T1*>& in_t1_list
+                                                             , const std::vector<T2*>& in_t2_list
+                                                             , std::vector<T2*>&       out_t2_list
+                                                             , double                  cone_size
+                                                             )
+{
+  // prep output electron vector
+  out_t2_list.clear();
+  out_t2_list.reserve(in_t1_list.size());
+
+  // vector to flag objects to keep
+  std::vector<bool> keep_object(in_t2_list.size(), true);
+
+  // Loop over all combinations of objects, checking for overlap
+  size_t t1_term = in_t1_list.size();
+  size_t t2_term = in_t2_list.size();
+  for (size_t it_1 = 0; it_1 != t1_term; ++it_1) {
+    const TLorentzVector* tlv1 = in_t1_list.at(it_1)->getTlv();
+
+    for (size_t it_2 = 0; it_2 != t2_term; ++it_2) {
+      const TLorentzVector* tlv2 = in_t2_list.at(it_2)->getTlv();
+
+      // if overlap, flag for removal
+      if (overlap(tlv1, tlv2, cone_size)) {
+        keep_object.at(it_2) = false;
+      }
+    }
+  }
+
+  // add to output t2 objects flagged as "to keep"
+  for (size_t it_2 = 0; it_2 != t2_term; ++it_2) {
+    if (keep_object.at(it_2)) {
+      out_t2_list.push_back(in_t2_list.at(it_2));
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+template <class T1>
+  void PennSusyFrame::ObjectCleaning::overlapRemoveLowPt( const std::vector<T1*>& in_t1_list
+                                                        , std::vector<T1*>&       out_t1_list
+                                                        , double                  cone_size
+                                                        )
+{
+  // prep output vector
+  out_t1_list.clear();
+  out_t1_list.reserve(in_t1_list.size());
+
+  // vector to flag objects to keep
+  std::vector<bool> keep_object(in_t1_list.size(), true);
+
+  // Loop over all combinations of objects, checking for overlap
+  size_t term = in_t1_list.size();
+  for (size_t it_1 = 0; it_1 != term; ++it_1) {
+    const TLorentzVector* tlv1 = in_t1_list.at(it_1)->getTlv();
+    double pt1 = tlv1->Pt();
+
+    for (size_t it_2 = 0; it_2 != it_1; ++it_2) {
+      const TLorentzVector* tlv2 = in_t1_list.at(it_2)->getTlv();
+
+      // if overlap, flag for removal
+      if (overlap(tlv1, tlv2, cone_size)) {
+        if (pt1 >= tlv2->Pt())
+          keep_object.at(it_2) = false;
+        else
+          keep_object.at(it_1) = false;
+      }
+    }
+  }
+
+  // add to output objects flagged as "to keep"
+  for (size_t it = 0; it != term; ++it) {
+    if (keep_object.at(it)) {
+      out_t1_list.push_back(in_t1_list.at(it));
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+template <class T1, class T2>
+  void PennSusyFrame::ObjectCleaning::overlapRemoveBoth( const std::vector<T1*>& in_t1_list
+                                                       , const std::vector<T2*>& in_t2_list
+                                                       , std::vector<T1*>&       out_t1_list
+                                                       , std::vector<T2*>&       out_t2_list
+                                                       , double                  cone_size
+                                                       )
+{
+  // prep output vectors
+  out_t1_list.clear();
+  out_t2_list.clear();
+
+  out_t1_list.reserve(in_t1_list.size());
+  out_t2_list.reserve(in_t2_list.size());
+
+  // vector to flag objects to keep
+  std::vector<bool> keep_t1(in_t1_list.size(), true);
+  std::vector<bool> keep_t2(in_t2_list.size(), true);
+
+  // Loop over all combinations of objects, checking for overlap
+  size_t t1_term = in_t1_list.size();
+  size_t t2_term = in_t2_list.size();
+  for (size_t it_1 = 0; it_1 != t1_term; ++it_1) {
+    const TLorentzVector* tlv1 = in_t1_list.at(it_1)->getTlv();
+
+    for (size_t it_2 = 0; it_2 != t2_term; ++it_2) {
+      const TLorentzVector* tlv2 = in_t2_list.at(it_2)->getTlv();
+
+      // if overlap, flag for removal
+      if (overlap(tlv1, tlv2, cone_size)) {
+        keep_t1.at(it_1) = false;
+        keep_t2.at(it_2) = false;
+      }
+    }
+  }
+
+  // add to output objects flagged as "to keep"
+  for (size_t it_1 = 0; it_1 != t1_term; ++it_1) {
+    if (keep_t1.at(it_1)) {
+      out_t1_list.push_back(in_t1_list.at(it_1));
+    }
+  }
+  for (size_t it_2 = 0; it_2 != t2_term; ++it_2) {
+    if (keep_t2.at(it_2)) {
+      out_t2_list.push_back(in_t2_list.at(it_2));
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+template <class T1>
+  void PennSusyFrame::ObjectCleaning::overlapRemoveBoth( const std::vector<T1*>& in_t1_list
+                                                       , std::vector<T1*>&       out_t1_list
+                                                       , double                  cone_size
+                                                       )
+{
+  // prep output vector
+  out_t1_list.clear();
+  out_t1_list.reserve(in_t1_list.size());
+
+  // vector to flag objects to keep
+  std::vector<bool> keep_object(in_t1_list.size(), true);
+
+  // Loop over all combinations of objects, checking for overlap
+  size_t term = in_t1_list.size();
+  for (size_t it_1 = 0; it_1 != term; ++it_1) {
+    const TLorentzVector* tlv1 = in_t1_list.at(it_1)->getTlv();
+
+    for (size_t it_2 = 0; it_2 != it_1; ++it_2) {
+      const TLorentzVector* tlv2 = in_t1_list.at(it_2)->getTlv();
+
+      // if overlap, flag for removal
+      if (overlap(tlv1, tlv2, cone_size)) {
+        keep_object.at(it_1) = false;
+        keep_object.at(it_2) = false;
+      }
+    }
+  }
+
+  // add to output flagged as "to keep"
+  for (size_t it = 0; it != term; ++it) {
+    if (keep_object.at(it)) {
+      out_t1_list.push_back(in_t1_list.at(it));
+    }
+  }
 }
 
 #endif

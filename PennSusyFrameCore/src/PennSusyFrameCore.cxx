@@ -243,12 +243,11 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do overlap removal
-  // TODO properly do overlap removal
-  m_electrons.setCollection(EL_GOOD , m_electrons.getCollection(EL_BASELINE));
-  m_muons.setCollection(MU_GOOD , m_muons.getCollection(MU_BASELINE));
-  m_taus.setCollection(TAU_GOOD , m_taus.getCollection(TAU_BASELINE));
-  m_jets.setCollection(JET_GOOD , m_jets.getCollection(JET_BASELINE_GOOD));
-  m_jets.setCollection(JET_BAD , m_jets.getCollection(JET_BASELINE_BAD));
+  m_object_cleaning.fullObjectCleaning( m_electrons
+                                      , m_muons
+                                      , m_taus
+                                      , m_jets
+                                      );
 
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
