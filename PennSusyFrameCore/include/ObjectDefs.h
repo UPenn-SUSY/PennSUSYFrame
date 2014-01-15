@@ -305,6 +305,7 @@ namespace PennSusyFrame
       void setActiveAreaE(double);
       void setJvf(double);
       void setMv1(double);
+      void setIsBad(bool);
 
       double getConstScaleE() const;
       double getConstScaleEta() const;
@@ -316,6 +317,7 @@ namespace PennSusyFrame
       double getActiveAreaE() const;
       double getJvf() const;
       double getMv1() const;
+      bool getIsBad() const;
 
       virtual void print() const;
 
@@ -327,6 +329,8 @@ namespace PennSusyFrame
                     , int num_vertices_ge_2_tracks
                     );
 
+      bool isBad(const PennSusyFrame::D3PDReader*);
+
       double m_constscale_e;
       double m_constscale_eta;
       double m_constscale_phi;
@@ -337,6 +341,8 @@ namespace PennSusyFrame
       double m_active_area_e;
       double m_jvf;
       double m_mv1;
+
+      bool m_is_bad;
   };
 
   // =============================================================================

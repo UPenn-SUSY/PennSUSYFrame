@@ -324,6 +324,7 @@ PennSusyFrame::JetSelector::JetSelector() : m_min_pt(-1)
                                           , m_max_jvf_pt_thresh(-1)
                                           , m_min_mv1(-1)
                                           , m_max_mv1(-1)
+                                          , m_is_bad_jet(-1)
 {
 }
 
@@ -363,6 +364,12 @@ void PennSusyFrame::JetSelector::setMV1Cut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::JetSelector::setIsBadJet(int val)
+{
+  m_is_bad_jet = val;
+}
+
+// -----------------------------------------------------------------------------
 bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
 {
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
@@ -371,6 +378,10 @@ bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
      && !passCut(p->getPt(), m_min_jvf_pt_thresh, m_max_jvf_pt_thresh)
      ) return false;
   if (!passCut(p->getMv1(), m_min_mv1, m_max_mv1)) return false;
+  if (m_is_bad_jet == 0 || m_is_bad_jet == 1) {
+    if (m_is_bad_jet == 0 && p->getIsBad() == true ) return false;
+    if (m_is_bad_jet == 1 && p->getIsBad() == false) return false;
+  }
 
   return true;
 }

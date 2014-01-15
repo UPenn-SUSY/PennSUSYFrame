@@ -5285,11 +5285,11 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt4LCTopo_WIDTH;
     // std::vector<float>   *jet_AntiKt4LCTopo_n90;
     // std::vector<float>   *jet_AntiKt4LCTopo_Timing;
-    // std::vector<float>   *jet_AntiKt4LCTopo_LArQuality;
+    std::vector<float>   *jet_AntiKt4LCTopo_LArQuality;
     // std::vector<float>   *jet_AntiKt4LCTopo_OriginIndex;
-    // std::vector<float>   *jet_AntiKt4LCTopo_HECQuality;
-    // std::vector<float>   *jet_AntiKt4LCTopo_NegativeE;
-    // std::vector<float>   *jet_AntiKt4LCTopo_AverageLArQF;
+    std::vector<float>   *jet_AntiKt4LCTopo_HECQuality;
+    std::vector<float>   *jet_AntiKt4LCTopo_NegativeE;
+    std::vector<float>   *jet_AntiKt4LCTopo_AverageLArQF;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_CELL;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_DOTX;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_JET;
@@ -5304,15 +5304,15 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt4LCTopo_ootFracClusters5;
     // std::vector<float>   *jet_AntiKt4LCTopo_ootFracClusters10;
     // std::vector<int>     *jet_AntiKt4LCTopo_SamplingMax;
-    // std::vector<float>   *jet_AntiKt4LCTopo_fracSamplingMax;
-    // std::vector<float>   *jet_AntiKt4LCTopo_hecf;
+    std::vector<float>   *jet_AntiKt4LCTopo_fracSamplingMax;
+    std::vector<float>   *jet_AntiKt4LCTopo_hecf;
     // std::vector<float>   *jet_AntiKt4LCTopo_tgap3f;
     // std::vector<int>     *jet_AntiKt4LCTopo_isUgly;
     // std::vector<int>     *jet_AntiKt4LCTopo_isBadLooseMinus;
     // std::vector<int>     *jet_AntiKt4LCTopo_isBadLoose;
     // std::vector<int>     *jet_AntiKt4LCTopo_isBadMedium;
     // std::vector<int>     *jet_AntiKt4LCTopo_isBadTight;
-    // std::vector<float>   *jet_AntiKt4LCTopo_emfrac;
+    std::vector<float>   *jet_AntiKt4LCTopo_emfrac;
     // std::vector<float>   *jet_AntiKt4LCTopo_Offset;
     // std::vector<float>   *jet_AntiKt4LCTopo_EMJES;
     // std::vector<float>   *jet_AntiKt4LCTopo_EMJES_EtaCorr;
@@ -5479,7 +5479,7 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt4LCTopo_nTrk_allpv_1GeV;
     // std::vector<float>   *jet_AntiKt4LCTopo_sumPtTrk_allpv_1GeV;
     // std::vector<float>   *jet_AntiKt4LCTopo_nTrk_pv0_500MeV;
-    // std::vector<float>   *jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV;
+    std::vector<float>   *jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV;
     // std::vector<float>   *jet_AntiKt4LCTopo_trackWIDTH_pv0_1GeV;
     // std::vector<float>   *jet_AntiKt4LCTopo_trackWIDTH_allpv_1GeV;
     // std::vector<float>   *jet_AntiKt4LCTopo_SmearingFactor;
@@ -12283,11 +12283,11 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_WIDTH;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_n90;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_Timing;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_LArQuality;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_LArQuality;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_OriginIndex;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_HECQuality;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_NegativeE;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_AverageLArQF;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_HECQuality;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_NegativeE;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_AverageLArQF;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_CELL;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_DOTX;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_JET;   //!
@@ -12302,15 +12302,15 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_ootFracClusters5;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_ootFracClusters10;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_SamplingMax;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_fracSamplingMax;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_hecf;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_fracSamplingMax;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_hecf;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_tgap3f;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_isUgly;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_isBadLooseMinus;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_isBadLoose;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_isBadMedium;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_isBadTight;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_emfrac;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_emfrac;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_Offset;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_EMJES;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_EMJES_EtaCorr;   //!
@@ -12477,7 +12477,7 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_nTrk_allpv_1GeV;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_sumPtTrk_allpv_1GeV;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_nTrk_pv0_500MeV;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_trackWIDTH_pv0_1GeV;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_trackWIDTH_allpv_1GeV;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_SmearingFactor;   //!

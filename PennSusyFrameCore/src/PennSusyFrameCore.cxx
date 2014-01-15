@@ -160,10 +160,10 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_jet_selectors.at(JET_BASELINE).setEtaCut(-1, 4.9);
 
   // JET_BASELINE_GOOD
-  // TODO check baseline bad definitions
+  m_jet_selectors.at(JET_BASELINE_GOOD).setIsBadJet(0);
 
   // JET_BASELINE_BAD
-  // TODO check baseline bad definitions
+  m_jet_selectors.at(JET_BASELINE_GOOD).setIsBadJet(1);
 
   // JET_CALO_PROBLEM
   // TODO check calo problem definitions

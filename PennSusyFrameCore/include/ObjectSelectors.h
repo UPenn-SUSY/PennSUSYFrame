@@ -228,6 +228,7 @@ namespace PennSusyFrame
       void setJvfCut(double min = -1, double max = -1);
       void setJvfPtThresh(double min = -1, double max = -1);
       void setMV1Cut(double min = -1, double max = -1);
+      void setIsBadJet(int val);
 
       using SelectorBase::passAllCuts;
       bool passAllCuts(const PennSusyFrame::Jet*);
@@ -247,6 +248,8 @@ namespace PennSusyFrame
 
       double m_min_mv1;
       double m_max_mv1;
+
+      int m_is_bad_jet;
   };
 
   // =============================================================================

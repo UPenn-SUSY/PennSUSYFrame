@@ -983,6 +983,8 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setMv1(          reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
 
   setJetTlv(reader, jet_rescaler, event, num_vertices_ge_2_tracks);
+
+  setIsBad(isBad(reader));
 }
 
 // -----------------------------------------------------------------------------
@@ -1046,6 +1048,12 @@ void PennSusyFrame::Jet::setMv1(double val)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setIsBad(bool val)
+{
+  m_is_bad = val;
+}
+
+// -----------------------------------------------------------------------------
 double PennSusyFrame::Jet::getConstScaleE() const
 {
   return m_constscale_e;
@@ -1106,6 +1114,12 @@ double PennSusyFrame::Jet::getMv1() const
 }
 
 // -----------------------------------------------------------------------------
+bool PennSusyFrame::Jet::getIsBad() const
+{
+  return m_is_bad;
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::Jet::print() const
 {
   printGeneralInfo();
@@ -1135,6 +1149,48 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
                                                      , num_vertices_w_2_trks
                                                      );
   setTlv(tlv);
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::Jet::isBad(const PennSusyFrame::D3PDReader* reader)
+{
+  double emf         = reader->jet_AntiKt4LCTopo_emfrac->at(m_particle_index);
+  double eta         = m_constscale_eta;
+  double sum_pt_trk  = reader->jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV->at(m_particle_index);
+  double pt          = getPt();
+  double chf         = (pt != 0 ? sum_pt_trk/pt : 0.);
+  double fmax        = reader->jet_AntiKt4LCTopo_fracSamplingMax->at(m_particle_index);
+  double hec_quality = reader->jet_AntiKt4LCTopo_HECQuality->at(m_particle_index);
+  double hecf        = reader->jet_AntiKt4LCTopo_hecf->at(m_particle_index);
+  double avg_lar_qf  = reader->jet_AntiKt4LCTopo_AverageLArQF->at(m_particle_index);
+  double lar_qf_frac = avg_lar_qf/65535.;
+  double negative_e  = reader->jet_AntiKt4LCTopo_NegativeE->at(m_particle_index);
+  double lar_quality = reader->jet_AntiKt4LCTopo_LArQuality->at(m_particle_index);
+
+
+  // non-collision background & cosmics
+  if (emf  < 0.05 && fabs(eta) >= 2)               return true;
+  if (fmax > 0.99 && fabs(eta) <  2)               return true;
+  if (emf  < 0.05 && fabs(eta) <  2 && chf < 0.05) return true;
+
+  // HEC spikes
+  if (fabs(negative_e) > 60000) return true;
+  if (  hecf > 0.5
+     && fabs(hec_quality) > 0.5
+     && lar_qf_frac >= 0.8
+     )
+    return true;
+
+  // EM coherent noise
+  if (  emf > 0.95
+     && fabs(lar_quality) > 0.8
+     && fabs(eta) < 2.8
+     && lar_qf_frac >= 0.8
+     )
+    return true;
+
+  // do not flag this as a bad jet
+  return false;
 }
 
 // =============================================================================
