@@ -61,11 +61,16 @@ namespace PennSusyFrame
     protected:
       // TODO move implementation of template to .icc file
       template <class T>
-        bool passCut(T val, T min, T max)
+        bool passCut(T val, T min, T max, bool inclusive_boundaries = true)
       {
         if (min < 0 && max < 0) return true;
         if (min >= 0 && val < min) return false;
         if (max >= 0 && val > max) return false;
+
+        if (!inclusive_boundaries) {
+          if (min >= 0 && val == min) return false;
+          if (max >= 0 && val == max) return false;
+        }
         return true;
       }
 
@@ -208,6 +213,9 @@ namespace PennSusyFrame
 
       void setPtCut(double min = -1, double max = -1);
       void setEtaCut(double min = -1, double max = -1);
+      void setJvfCut(double min = -1, double max = -1);
+      void setJvfPtThresh(double min = -1, double max = -1);
+      void setMV1Cut(double min = -1, double max = -1);
 
       using SelectorBase::passAllCuts;
       bool passAllCuts(const PennSusyFrame::Jet*);
@@ -218,6 +226,15 @@ namespace PennSusyFrame
 
       double m_min_eta;
       double m_max_eta;
+
+      double m_min_jvf;
+      double m_max_jvf;
+
+      double m_min_jvf_pt_thresh;
+      double m_max_jvf_pt_thresh;
+
+      double m_min_mv1;
+      double m_max_mv1;
   };
 
   // =============================================================================

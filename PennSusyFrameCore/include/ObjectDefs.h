@@ -140,7 +140,6 @@ namespace PennSusyFrame
       void setD0(double);
       void setSigD0(double);
       void setZ0(double);
-      // void setSinTheta(double);
       // TODO rename these functions to give access to all iso variables - raw and corrected
       void setPtIso(double);
       void setEtIso(double);
@@ -296,6 +295,8 @@ namespace PennSusyFrame
       void setActiveAreaPy(double);
       void setActiveAreaPz(double);
       void setActiveAreaE(double);
+      void setJvf(double);
+      void setMv1(double);
 
       double getConstScaleE() const;
       double getConstScaleEta() const;
@@ -305,6 +306,8 @@ namespace PennSusyFrame
       double getActiveAreaPy() const;
       double getActiveAreaPz() const;
       double getActiveAreaE() const;
+      double getJvf() const;
+      double getMv1() const;
 
       virtual void print() const;
 
@@ -324,6 +327,8 @@ namespace PennSusyFrame
       double m_active_area_py;
       double m_active_area_pz;
       double m_active_area_e;
+      double m_jvf;
+      double m_mv1;
   };
 
   // =============================================================================
@@ -339,9 +344,19 @@ namespace PennSusyFrame
 
       void setVertexIndex(int);
       void setNumTracks(int);
+      void setX(double);
+      void setY(double);
+      void setZ(double);
+      void setE(double);
+      void setM(double);
 
       int getVertexIndex() const;
       int getNumTracks() const;
+      double getX() const;
+      double getY() const;
+      double getZ() const;
+      double getE() const;
+      double getM() const;
 
       void print() const;
 
@@ -349,6 +364,11 @@ namespace PennSusyFrame
     protected:
       int m_vertex_index;
       int m_num_tracks;
+      double m_x;
+      double m_y;
+      double m_z;
+      double m_e;
+      double m_m;
   };
 
   // =============================================================================

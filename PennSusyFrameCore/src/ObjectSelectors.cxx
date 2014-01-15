@@ -279,6 +279,12 @@ PennSusyFrame::JetSelector::JetSelector() : m_min_pt(-1)
                                           , m_max_pt(-1)
                                           , m_min_eta(-1)
                                           , m_max_eta(-1)
+                                          , m_min_jvf(-1)
+                                          , m_max_jvf(-1)
+                                          , m_min_jvf_pt_thresh(-1)
+                                          , m_max_jvf_pt_thresh(-1)
+                                          , m_min_mv1(-1)
+                                          , m_max_mv1(-1)
 {
 }
 
@@ -297,10 +303,35 @@ void PennSusyFrame::JetSelector::setEtaCut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::JetSelector::setJvfCut(double min, double max)
+{
+  m_min_jvf = min;
+  m_max_jvf = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::JetSelector::setJvfPtThresh(double min, double max)
+{
+  m_min_jvf_pt_thresh = min;
+  m_max_jvf_pt_thresh = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::JetSelector::setMV1Cut(double min, double max)
+{
+  m_min_mv1 = min;
+  m_max_mv1 = max;
+}
+
+// -----------------------------------------------------------------------------
 bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
 {
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
-  if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+  if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
+  if (  !passCut(p->getJvf(), m_min_jvf, m_max_jvf)
+     && !passCut(p->getPt(), m_min_jvf_pt_thresh, m_max_jvf_pt_thresh)
+     ) return false;
+  if (!passCut(p->getMv1(), m_min_mv1, m_max_mv1)) return false;
 
   return true;
 }

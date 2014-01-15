@@ -85,20 +85,23 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // vertex selectors
-  // TODO check good vertex definitions
   m_vertex_selectors.resize(VERTEX_N);
+
+  // VERTEX_GOOD
   m_vertex_selectors.at(VERTEX_GOOD).setNumTracksCut(5, -1);
 
+  // VERTEX_GT_2
   m_vertex_selectors.at(VERTEX_GT_2).setNumTracksCut(2, -1);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // electron selectors
-  // TODO check baseline electron definitions
   m_electron_selectors.resize(EL_N);
+
+  // EL_BASELINE
   m_electron_selectors.at(EL_BASELINE).setPtCut(10.e3, -1);
   m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.4);
 
-  // TODO check signal electron definitions
+  // EL_SIGNAL
   m_electron_selectors.at(EL_SIGNAL).setPtCut(10.e3, -1);
   m_electron_selectors.at(EL_SIGNAL).setEtaCut(-1, 2.4);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
@@ -109,54 +112,74 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // muons selectors
   m_muon_selectors.resize(MU_N);
-  // TODO check baseline muon definitions
+
+  // MU_BASELINE
   m_muon_selectors.at(MU_BASELINE).setPtCut(10.e3, -1);
-  m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.4);
+  m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.5);
   m_muon_selectors.at(MU_BASELINE).setBLayerHitsCut(1, -1);
   m_muon_selectors.at(MU_BASELINE).setPixelHitsCut(1, -1);
   m_muon_selectors.at(MU_BASELINE).setSctHitsCut(5, -1);
   m_muon_selectors.at(MU_BASELINE).setSiHolesCut(-1, 2);
 
-  // TODO check signal muon definitions
-  m_muon_selectors.at(MU_SIGNAL).setPtCut(10.e3, -1);
+  // MU_SIGNAL
+  // m_muon_selectors.at(MU_SIGNAL).setPtCut(10.e3, -1);
   m_muon_selectors.at(MU_SIGNAL).setEtaCut(-1, 2.4);
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3);
-  m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 0.4);
+  m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.0);
   m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.12);
 
-  // TODO check cosmic muon definitions
+  // MU_BAD
+  // TODO check bad muon definitions
+
+  // MU_COSMIC
+  m_muon_selectors.at(MU_COSMIC).setReversedSelector(true);
   m_muon_selectors.at(MU_COSMIC).setD0Cut(-1, 0.2);
   m_muon_selectors.at(MU_COSMIC).setZ0Cut(-1, 1.0);
-  // TODO implement reverseCuts functionality
-  m_muon_selectors.at(MU_COSMIC).setReversedSelector(true);;
-
-  // TODO check bad muon definitions
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // tau selectors
   m_tau_selectors.resize(TAU_N);
+
+  // TAU_BASELINE
   // TODO check baseline tau definitions
   m_tau_selectors.at(TAU_BASELINE).setPtCut(10.e3, -1);
   m_tau_selectors.at(TAU_BASELINE).setEtaCut(-1, 2.4);
 
+  // TAU_SIGNAL
   // TODO check signal tau definitions
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // jet selectors
   m_jet_selectors.resize(JET_N);
-  // TODO check baseline jet definitions
+
+  // JET_BASELINE
   m_jet_selectors.at(JET_BASELINE).setPtCut(20.e3, -1);
   m_jet_selectors.at(JET_BASELINE).setEtaCut(-1, 4.9);
 
+  // JET_BASELINE_GOOD
   // TODO check baseline bad definitions
 
-  // TODO check baseline good definitions
+  // JET_BASELINE_BAD
+  // TODO check baseline bad definitions
 
-  // TODO check baseline light jet definitions
+  // JET_CALO_PROBLEM
+  // TODO check calo problem definitions
 
-  // TODO check baseline b jet definitions
+  // JET_LIGHT
+  m_jet_selectors.at(JET_LIGHT).setPtCut(20.e3, -1);
+  m_jet_selectors.at(JET_LIGHT).setEtaCut(-1, 2.4);
+  m_jet_selectors.at(JET_LIGHT).setJvfCut(0.0, -1);
+  m_jet_selectors.at(JET_LIGHT).setJvfPtThresh(50.e3, -1);
+  m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, 0.3511);
 
-  // TODO check baseline forward jet definitions
+  // JET_B
+  m_jet_selectors.at(JET_B).setPtCut(20.e3, -1);
+  m_jet_selectors.at(JET_B).setEtaCut(-1, 2.4);
+  m_jet_selectors.at(JET_B).setMV1Cut(0.3511, -1);
+
+  // JET_FORWARD
+  m_jet_selectors.at(JET_FORWARD).setPtCut(30.e3, -1);
+  m_jet_selectors.at(JET_FORWARD).setEtaCut(2.4, 4.5);
 }
 
 // -----------------------------------------------------------------------------

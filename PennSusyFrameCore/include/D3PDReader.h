@@ -5329,7 +5329,7 @@ namespace PennSusyFrame
     std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPy;
     std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPz;
     std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaE;
-    // std::vector<float>   *jet_AntiKt4LCTopo_jvtxf;
+    std::vector<float>   *jet_AntiKt4LCTopo_jvtxf;
     // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_jvtxfFull;
     // std::vector<float>   *jet_AntiKt4LCTopo_jvtx_x;
     // std::vector<float>   *jet_AntiKt4LCTopo_jvtx_y;
@@ -5380,7 +5380,7 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_JetFitterCOMBNN;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_JetFitterCharm;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_JetFitterTagNN;
-    // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_MV1;
+    std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_MV1;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_MV2;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_SV0;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_SV1;
@@ -5488,14 +5488,14 @@ namespace PennSusyFrame
     // Float_t         Eventshape_rhoKt3LC;
     Float_t         Eventshape_rhoKt4LC;
     Int_t           vx_n;
-    // std::vector<float>   *vx_x;
-    // std::vector<float>   *vx_y;
-    // std::vector<float>   *vx_z;
+    std::vector<float>   *vx_x;
+    std::vector<float>   *vx_y;
+    std::vector<float>   *vx_z;
     // std::vector<float>   *vx_px;
     // std::vector<float>   *vx_py;
     // std::vector<float>   *vx_pz;
-    // std::vector<float>   *vx_E;
-    // std::vector<float>   *vx_m;
+    std::vector<float>   *vx_E;
+    std::vector<float>   *vx_m;
     std::vector<int>     *vx_nTracks;
     // std::vector<float>   *vx_sumPt;
     // Int_t           trk_n;
@@ -12327,7 +12327,7 @@ namespace PennSusyFrame
     TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPy;   //!
     TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPz;   //!
     TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaE;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_jvtxf;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_jvtxf;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_jvtxfFull;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_jvtx_x;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_jvtx_y;   //!
@@ -12378,7 +12378,7 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_JetFitterCOMBNN;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_JetFitterCharm;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_JetFitterTagNN;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_MV1;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_MV1;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_MV2;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_SV0;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_SV1;   //!
@@ -12486,14 +12486,14 @@ namespace PennSusyFrame
     // TBranch        *b_Eventshape_rhoKt3LC;   //!
     TBranch        *b_Eventshape_rhoKt4LC;   //!
     TBranch        *b_vx_n;   //!
-    // TBranch        *b_vx_x;   //!
-    // TBranch        *b_vx_y;   //!
-    // TBranch        *b_vx_z;   //!
+    TBranch        *b_vx_x;   //!
+    TBranch        *b_vx_y;   //!
+    TBranch        *b_vx_z;   //!
     // TBranch        *b_vx_px;   //!
     // TBranch        *b_vx_py;   //!
     // TBranch        *b_vx_pz;   //!
-    // TBranch        *b_vx_E;   //!
-    // TBranch        *b_vx_m;   //!
+    TBranch        *b_vx_E;   //!
+    TBranch        *b_vx_m;   //!
     TBranch        *b_vx_nTracks;   //!
     // TBranch        *b_vx_sumPt;   //!
     // TBranch        *b_trk_n;   //!

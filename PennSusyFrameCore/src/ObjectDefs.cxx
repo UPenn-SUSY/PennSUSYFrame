@@ -372,12 +372,9 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setClEta(reader->el_cl_eta->at(el_index));
   setClPhi(reader->el_cl_phi->at(el_index));
 
-  // TODO set variable
   setD0(reader->el_trackIPEstimate_d0_unbiasedpvunbiased->at(el_index));
   setSigD0(reader->el_trackIPEstimate_sigd0_unbiasedpvunbiased->at(el_index));
-  // TODO set variable
   setZ0(reader->el_trackIPEstimate_z0_unbiasedpvunbiased->at(el_index));
-  // setSinTheta(sin(m_tlv.Theta()));
   // TODO set variable
   setPtIso(0);
   // TODO set variable
@@ -920,6 +917,8 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setActiveAreaPy( reader->jet_AntiKt4LCTopo_ActiveAreaPy->at(m_particle_index));
   setActiveAreaPz( reader->jet_AntiKt4LCTopo_ActiveAreaPz->at(m_particle_index));
   setActiveAreaE(  reader->jet_AntiKt4LCTopo_ActiveAreaE->at(m_particle_index));
+  setJvf(          reader->jet_AntiKt4LCTopo_jvtxf->at(m_particle_index));
+  setMv1(          reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
 
   setJetTlv(reader, jet_rescaler, event, num_vertices_ge_2_tracks);
 }
@@ -973,6 +972,18 @@ void PennSusyFrame::Jet::setActiveAreaE(double val)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setJvf(double val)
+{
+  m_jvf = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::setMv1(double val)
+{
+  m_mv1 = val;
+}
+
+// -----------------------------------------------------------------------------
 double PennSusyFrame::Jet::getConstScaleE() const
 {
   return m_constscale_e;
@@ -1021,6 +1032,18 @@ double PennSusyFrame::Jet::getActiveAreaE() const
 }
 
 // -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getJvf() const
+{
+  return m_jvf;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Jet::getMv1() const
+{
+  return m_mv1;
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::Jet::print() const
 {
   printGeneralInfo();
@@ -1066,6 +1089,11 @@ PennSusyFrame::Vertex::Vertex( const PennSusyFrame::D3PDReader* reader
 {
   setVertexIndex(vertex_index);
   setNumTracks(reader->vx_nTracks->at(m_vertex_index));
+  setX(reader->vx_x->at(m_vertex_index));
+  setY(reader->vx_y->at(m_vertex_index));
+  setZ(reader->vx_z->at(m_vertex_index));
+  setE(reader->vx_E->at(m_vertex_index));
+  setM(reader->vx_m->at(m_vertex_index));
 }
 
 // -----------------------------------------------------------------------------
@@ -1081,6 +1109,36 @@ void PennSusyFrame::Vertex::setNumTracks(int val)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Vertex::setX(double val)
+{
+  m_x = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Vertex::setY(double val)
+{
+  m_y = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Vertex::setZ(double val)
+{
+  m_z = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Vertex::setE(double val)
+{
+  m_e = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Vertex::setM(double val)
+{
+  m_m = val;
+}
+
+// -----------------------------------------------------------------------------
 int PennSusyFrame::Vertex::getVertexIndex() const
 {
   return m_vertex_index;
@@ -1093,11 +1151,47 @@ int PennSusyFrame::Vertex::getNumTracks() const
 }
 
 // -----------------------------------------------------------------------------
+double PennSusyFrame::Vertex::getX() const
+{
+  return m_x;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Vertex::getY() const
+{
+  return m_y;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Vertex::getZ() const
+{
+  return m_z;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Vertex::getE() const
+{
+  return m_e;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Vertex::getM() const
+{
+  return m_m;
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::Vertex::print() const
 {
   std::cout << "\tvertex number: "  << m_vertex_index
             << "\n"
+            << "\tx: " << m_x
+            << "\ty: " << m_y
+            << "\tz: " << m_z
             << "\tnum tracks: " << m_num_tracks
+            << "\n"
+            << "\tE: " << m_e
+            << "\tm: " << m_m
             << "\n";
   ;
 }
