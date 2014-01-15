@@ -2351,16 +2351,16 @@ namespace PennSusyFrame
     // std::vector<float>   *mu_staco_ie_theta;
     // std::vector<float>   *mu_staco_ie_qoverp;
     // std::vector<int>     *mu_staco_nOutliersOnTrack;
-    // std::vector<int>     *mu_staco_nBLHits;
-    // std::vector<int>     *mu_staco_nPixHits;
-    // std::vector<int>     *mu_staco_nSCTHits;
+    std::vector<int>     *mu_staco_nBLHits;
+    std::vector<int>     *mu_staco_nPixHits;
+    std::vector<int>     *mu_staco_nSCTHits;
     // std::vector<int>     *mu_staco_nTRTHits;
     // std::vector<int>     *mu_staco_nTRTHighTHits;
     // std::vector<int>     *mu_staco_nBLSharedHits;
     // std::vector<int>     *mu_staco_nPixSharedHits;
-    // std::vector<int>     *mu_staco_nPixHoles;
+    std::vector<int>     *mu_staco_nPixHoles;
     // std::vector<int>     *mu_staco_nSCTSharedHits;
-    // std::vector<int>     *mu_staco_nSCTHoles;
+    std::vector<int>     *mu_staco_nSCTHoles;
     // std::vector<int>     *mu_staco_nTRTOutliers;
     // std::vector<int>     *mu_staco_nTRTHighTOutliers;
     // std::vector<int>     *mu_staco_nGangedPixels;
@@ -2439,9 +2439,9 @@ namespace PennSusyFrame
     // std::vector<float>   *mu_staco_trackIPEstimate_z0_biasedpvunbiased;
     // std::vector<float>   *mu_staco_trackIPEstimate_sigd0_biasedpvunbiased;
     // std::vector<float>   *mu_staco_trackIPEstimate_sigz0_biasedpvunbiased;
-    // std::vector<float>   *mu_staco_trackIPEstimate_d0_unbiasedpvunbiased;
-    // std::vector<float>   *mu_staco_trackIPEstimate_z0_unbiasedpvunbiased;
-    // std::vector<float>   *mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased;
+    std::vector<float>   *mu_staco_trackIPEstimate_d0_unbiasedpvunbiased;
+    std::vector<float>   *mu_staco_trackIPEstimate_z0_unbiasedpvunbiased;
+    std::vector<float>   *mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased;
     // std::vector<float>   *mu_staco_trackIPEstimate_sigz0_unbiasedpvunbiased;
     // std::vector<int>     *mu_staco_type;
     // std::vector<int>     *mu_staco_origin;
@@ -9374,16 +9374,16 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_ie_theta;   //!
     // TBranch        *b_mu_staco_ie_qoverp;   //!
     // TBranch        *b_mu_staco_nOutliersOnTrack;   //!
-    // TBranch        *b_mu_staco_nBLHits;   //!
-    // TBranch        *b_mu_staco_nPixHits;   //!
-    // TBranch        *b_mu_staco_nSCTHits;   //!
+    TBranch        *b_mu_staco_nBLHits;   //!
+    TBranch        *b_mu_staco_nPixHits;   //!
+    TBranch        *b_mu_staco_nSCTHits;   //!
     // TBranch        *b_mu_staco_nTRTHits;   //!
     // TBranch        *b_mu_staco_nTRTHighTHits;   //!
     // TBranch        *b_mu_staco_nBLSharedHits;   //!
     // TBranch        *b_mu_staco_nPixSharedHits;   //!
-    // TBranch        *b_mu_staco_nPixHoles;   //!
+    TBranch        *b_mu_staco_nPixHoles;   //!
     // TBranch        *b_mu_staco_nSCTSharedHits;   //!
-    // TBranch        *b_mu_staco_nSCTHoles;   //!
+    TBranch        *b_mu_staco_nSCTHoles;   //!
     // TBranch        *b_mu_staco_nTRTOutliers;   //!
     // TBranch        *b_mu_staco_nTRTHighTOutliers;   //!
     // TBranch        *b_mu_staco_nGangedPixels;   //!
@@ -9462,9 +9462,9 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_trackIPEstimate_z0_biasedpvunbiased;   //!
     // TBranch        *b_mu_staco_trackIPEstimate_sigd0_biasedpvunbiased;   //!
     // TBranch        *b_mu_staco_trackIPEstimate_sigz0_biasedpvunbiased;   //!
-    // TBranch        *b_mu_staco_trackIPEstimate_d0_unbiasedpvunbiased;   //!
-    // TBranch        *b_mu_staco_trackIPEstimate_z0_unbiasedpvunbiased;   //!
-    // TBranch        *b_mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased;   //!
+    TBranch        *b_mu_staco_trackIPEstimate_d0_unbiasedpvunbiased;   //!
+    TBranch        *b_mu_staco_trackIPEstimate_z0_unbiasedpvunbiased;   //!
+    TBranch        *b_mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased;   //!
     // TBranch        *b_mu_staco_trackIPEstimate_sigz0_unbiasedpvunbiased;   //!
     // TBranch        *b_mu_staco_type;   //!
     // TBranch        *b_mu_staco_origin;   //!

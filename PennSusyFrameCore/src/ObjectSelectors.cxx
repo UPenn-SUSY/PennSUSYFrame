@@ -230,7 +230,8 @@ bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
   if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
   if (!passCut(p->getD0(), m_min_d0, m_max_d0)) return false;
   if (!passCut(p->getZ0(), m_min_z0, m_max_z0)) return false;
-  if (!passCut(p->getQOverP(), m_min_q_over_p, m_max_q_over_p)) return false;
+  // TODO do qoverp ratio cut
+  // if (!passCut(p->getQOverP(), m_min_q_over_p, m_max_q_over_p)) return false;
   if (!passCut(p->getPtIso(), m_min_ptcone, m_max_ptcone)) return false;
 
   return true;

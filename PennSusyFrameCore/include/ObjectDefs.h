@@ -202,7 +202,7 @@ namespace PennSusyFrame
       void setZ0(double);
       void setPtIso(double);
       void setEtIso(double);
-      void setQOverP(double);
+      // void setQOverP(double);
 
       int getIsCombined() const;
       int getIsSegmentTagged() const;
@@ -221,7 +221,7 @@ namespace PennSusyFrame
       double getZ0SinTheta() const;
       double getPtIso() const;
       double getEtIso() const;
-      double getQOverP() const;
+      // double getQOverP() const;
 
       virtual void print() const;
 

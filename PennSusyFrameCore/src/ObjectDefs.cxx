@@ -565,6 +565,19 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setMEQOverP(reader->mu_staco_me_qoverp_exPV->at(mu_index));
   setMETheta( reader->mu_staco_me_theta_exPV->at(mu_index));
 
+  setNumBLayerHits(reader->mu_staco_nBLHits->at(mu_index));
+  setNumPixelHits(reader->mu_staco_nPixHits->at(mu_index));
+  setNumSctHits(reader->mu_staco_nSCTHits->at(mu_index));
+  setNumSiHoles( reader->mu_staco_nPixHoles->at(mu_index)
+               + reader->mu_staco_nSCTHoles->at(mu_index)
+               );
+  setD0(   reader->mu_staco_trackIPEstimate_d0_unbiasedpvunbiased->at(mu_index));
+  setSigD0(reader->mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased->at(mu_index));
+  setZ0(   reader->mu_staco_trackIPEstimate_z0_unbiasedpvunbiased->at(mu_index));
+  // TODO fill isolations variables
+  setPtIso(0);
+  setEtIso(0);
+
   setMuTlv(reader, mu_rescaler);
 }
 
@@ -658,11 +671,11 @@ void PennSusyFrame::Muon::setEtIso(double val)
   m_et_iso = val;
 }
 
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setQOverP(double val)
-{
-  m_q_over_p = val;
-}
+// // -----------------------------------------------------------------------------
+// void PennSusyFrame::Muon::setQOverP(double val)
+// {
+//   m_q_over_p = val;
+// }
 
 
 // -----------------------------------------------------------------------------
@@ -767,11 +780,11 @@ double PennSusyFrame::Muon::getEtIso() const
   return m_et_iso;
 }
 
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getQOverP() const
-{
-  return m_q_over_p;
-}
+// // -----------------------------------------------------------------------------
+// double PennSusyFrame::Muon::getQOverP() const
+// {
+//   return m_q_over_p;
+// }
 
 
 // -----------------------------------------------------------------------------
