@@ -372,16 +372,26 @@ void PennSusyFrame::JetSelector::setIsBadJet(int val)
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
 {
+  // std::cout << "JetSelector::passAllCuts()\n";
+  // std::cout << "\tchecking pt\n";
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
+  // std::cout << "\tchecking eta\n";
   if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
+  // std::cout << "\tchecking jvf\n";
   if (  !passCut(p->getJvf(), m_min_jvf, m_max_jvf)
      && !passCut(p->getPt(), m_min_jvf_pt_thresh, m_max_jvf_pt_thresh)
      ) return false;
+  // std::cout << "\tchecking mv1\n";
   if (!passCut(p->getMv1(), m_min_mv1, m_max_mv1)) return false;
+  // std::cout << "\tchecking bad jet\n";
   if (m_is_bad_jet == 0 || m_is_bad_jet == 1) {
+    // std::cout << "\t\tactually checking bad jet\n";
+    // std::cout << "\t\tis_bad_jet == 0 && getIsBad == true\n";
     if (m_is_bad_jet == 0 && p->getIsBad() == true ) return false;
+    // std::cout << "\t\tis_bad_jet == 1 && getIsBad == false\n";
     if (m_is_bad_jet == 1 && p->getIsBad() == false) return false;
   }
+  // std::cout << "\tdone checking jet cuts\n";
 
   return true;
 }

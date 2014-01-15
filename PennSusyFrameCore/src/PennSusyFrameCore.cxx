@@ -163,7 +163,7 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_jet_selectors.at(JET_BASELINE_GOOD).setIsBadJet(0);
 
   // JET_BASELINE_BAD
-  m_jet_selectors.at(JET_BASELINE_GOOD).setIsBadJet(1);
+  m_jet_selectors.at(JET_BASELINE_BAD).setIsBadJet(1);
 
   // JET_CALO_PROBLEM
   // TODO check calo problem definitions
@@ -279,14 +279,19 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
   // select baseline jets from all jets
   m_jets.prep(m_d3pd_reader, &m_event, &m_vertices);
+  m_jets.setCollection( JET_BASELINE
+                      , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_BASELINE)
+                                                    , m_jets.getCollection(JET_ALL)
+                                                    )
+                      );
   m_jets.setCollection( JET_BASELINE_GOOD
                       , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_BASELINE_GOOD)
-                                                    , m_jets.getCollection(JET_ALL)
+                                                    , m_jets.getCollection(JET_BASELINE)
                                                     )
                       );
   m_jets.setCollection( JET_BASELINE_BAD
                       , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_BASELINE_BAD)
-                                                    , m_jets.getCollection(JET_ALL)
+                                                    , m_jets.getCollection(JET_BASELINE)
                                                     )
                       );
 
