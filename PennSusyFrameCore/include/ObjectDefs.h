@@ -192,16 +192,19 @@ namespace PennSusyFrame
       void setIdTheta(double);
       void setMEQOverP(double);
       void setMETheta(double);
+      void setTrackEta(double);
+      void setQOverPRatio(double);
       void setNumBLayerHits(int);
       void setNumPixelHits(int);
       void setNumSctHits(int);
       void setNumSiHoles(int);
+      void setNumTrtHits(int);
+      void setTrtOlFraction(double);
       void setD0(double);
       void setSigD0(double);
       void setZ0(double);
       void setPtIso(double);
       void setEtIso(double);
-      // void setQOverP(double);
 
       int getIsCombined() const;
       int getIsSegmentTagged() const;
@@ -209,10 +212,14 @@ namespace PennSusyFrame
       double getIdTheta() const;
       double getMEQOverP() const;
       double getMETheta() const;
+      double getTrackEta() const;
+      double getQOverPRatio() const;
       int getNumBLayerHits() const;
       int getNumPixelHits() const;
       int getNumSctHits() const;
       int getNumSiHoles() const;
+      int getNumTrtHits() const;
+      double getTrtOlFraction() const;
       double getD0() const;
       double getSigD0() const;
       double getD0Significance() const;
@@ -220,7 +227,6 @@ namespace PennSusyFrame
       double getZ0SinTheta() const;
       double getPtIso() const;
       double getEtIso() const;
-      // double getQOverP() const;
 
       virtual void print() const;
 
@@ -234,14 +240,17 @@ namespace PennSusyFrame
       int m_is_segment_tagged;
       double m_id_qoverp;
       double m_id_theta;
+      double m_track_eta;
       double m_me_qoverp;
       double m_me_theta;
+      double m_q_over_p_ratio;
 
       int m_num_b_layer_hits;
       int m_num_pixel_hits;
       int m_num_sct_hits;
       int m_num_si_holes;
-      // TODO store TRT info
+      int m_num_trt_hits;
+      double m_trt_ol_frac;
 
       double m_d0;
       double m_sig_d0;
@@ -249,7 +258,6 @@ namespace PennSusyFrame
       double m_pt_iso;
       double m_et_iso;
 
-      double m_q_over_p;
   };
 
   // =============================================================================

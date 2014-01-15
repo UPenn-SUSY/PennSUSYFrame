@@ -123,10 +123,22 @@ PennSusyFrame::MuonSelector::MuonSelector() : m_min_pt(-1)
                                             , m_max_sct_hits(-1)
                                             , m_min_si_holes(-1)
                                             , m_max_si_holes(-1)
+                                            , m_min_trt_eta(-1)
+                                            , m_max_trt_eta(-1)
+                                            , m_min_trt_hits(-1)
+                                            , m_max_trt_hits(-1)
+                                            , m_min_trt_ol_fraction(-1)
+                                            , m_max_trt_ol_fraction(-1)
                                             , m_min_d0_significance(-1)
                                             , m_max_d0_significance(-1)
                                             , m_min_z0_sin_theta(-1)
                                             , m_max_z0_sin_theta(-1)
+                                            , m_min_d0(-1)
+                                            , m_max_d0(-1)
+                                            , m_min_z0(-1)
+                                            , m_max_z0(-1)
+                                            , m_min_q_over_p_ratio(-1)
+                                            , m_max_q_over_p_ratio(-1)
                                             , m_min_ptcone(-1)
                                             , m_max_ptcone(-1)
 {
@@ -147,31 +159,52 @@ void PennSusyFrame::MuonSelector::setEtaCut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setBLayerHitsCut(double min, double max)
+void PennSusyFrame::MuonSelector::setBLayerHitsCut(int min, int max)
 {
   m_min_b_layer_hits = min;
   m_max_b_layer_hits = max;
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setPixelHitsCut(double min, double max)
+void PennSusyFrame::MuonSelector::setPixelHitsCut(int min, int max)
 {
   m_min_pixel_hits = min;
   m_max_pixel_hits = max;
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setSctHitsCut(double min, double max)
+void PennSusyFrame::MuonSelector::setSctHitsCut(int min, int max)
 {
   m_min_sct_hits = min;
   m_max_sct_hits = max;
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setSiHolesCut(double min, double max)
+void PennSusyFrame::MuonSelector::setSiHolesCut(int min, int max)
 {
   m_min_si_holes = min;
   m_max_si_holes = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setTrtEtaCut(double min, double max)
+{
+  m_min_trt_eta = min;
+  m_max_trt_eta = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setTrtHitsCut(int min, int max)
+{
+  m_min_trt_hits = min;
+  m_max_trt_hits = max;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setTrtOlFractionCut(double min, double max)
+{
+  m_min_trt_ol_fraction = min;
+  m_max_trt_ol_fraction = max;
 }
 
 // -----------------------------------------------------------------------------
@@ -203,17 +236,17 @@ void PennSusyFrame::MuonSelector::setZ0Cut(double min, double max)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::MuonSelector::setQOverPRatioCut(double min, double max)
+{
+  m_min_q_over_p_ratio = min;
+  m_max_q_over_p_ratio = max;
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::MuonSelector::setPtIsoCut(double min, double max)
 {
   m_min_ptcone = min;
   m_max_ptcone = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setQOverPCut(double min, double max)
-{
-  m_min_q_over_p = min;
-  m_max_q_over_p = max;
 }
 
 // -----------------------------------------------------------------------------
@@ -225,13 +258,19 @@ bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
   if (!passCut(p->getNumPixelHits(), m_min_pixel_hits, m_max_pixel_hits)) return false;
   if (!passCut(p->getNumSctHits(), m_min_sct_hits, m_max_sct_hits)) return false;
   if (!passCut(p->getNumSiHoles(), m_min_si_holes, m_max_si_holes)) return false;
-  // TODO do trt cuts
+  if (  passCut(p->getTrackEta(), m_min_trt_eta, m_max_trt_eta)
+     && (  !passCut(p->getNumTrtHits(), m_min_trt_hits, m_max_trt_hits)
+        || !passCut(p->getTrtOlFraction(), m_min_trt_ol_fraction, m_max_trt_ol_fraction)
+       )
+     )
+    return false;
+
+
   if (!passCut(p->getD0Significance(), m_min_d0_significance, m_max_d0_significance)) return false;
   if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
   if (!passCut(p->getD0(), m_min_d0, m_max_d0)) return false;
   if (!passCut(p->getZ0(), m_min_z0, m_max_z0)) return false;
-  // TODO do qoverp ratio cut
-  // if (!passCut(p->getQOverP(), m_min_q_over_p, m_max_q_over_p)) return false;
+  if (!passCut(p->getQOverPRatio(), m_min_q_over_p_ratio, m_max_q_over_p_ratio)) return false;
   if (!passCut(p->getPtIso(), m_min_ptcone, m_max_ptcone)) return false;
 
   return true;

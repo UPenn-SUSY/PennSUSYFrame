@@ -127,15 +127,18 @@ namespace PennSusyFrame
 
       void setPtCut(            double min = -1, double max = -1);
       void setEtaCut(           double min = -1, double max = -1);
-      void setBLayerHitsCut(    double min = -1, double max = -1);
-      void setPixelHitsCut(     double min = -1, double max = -1);
-      void setSctHitsCut(       double min = -1, double max = -1);
-      void setSiHolesCut(       double min = -1, double max = -1);
+      void setBLayerHitsCut(    int    min = -1, int    max = -1);
+      void setPixelHitsCut(     int    min = -1, int    max = -1);
+      void setSctHitsCut(       int    min = -1, int    max = -1);
+      void setSiHolesCut(       int    min = -1, int    max = -1);
+      void setTrtEtaCut(        double min = -1, double max = -1);
+      void setTrtHitsCut(       int    min = -1, int    max = -1);
+      void setTrtOlFractionCut( double min = -1, double max = -1);
       void setD0SignificanceCut(double min = -1, double max = -1);
       void setZ0SignThetaCut(   double min = -1, double max = -1);
       void setD0Cut(            double min = -1, double max = -1);
       void setZ0Cut(            double min = -1, double max = -1);
-      void setQOverPCut(        double min = -1, double max = -1);
+      void setQOverPRatioCut(        double min = -1, double max = -1);
       // TODO rename this function
       void setPtIsoCut(         double min = -1, double max = -1);
 
@@ -161,6 +164,15 @@ namespace PennSusyFrame
       int m_min_si_holes;
       int m_max_si_holes;
 
+      double m_min_trt_eta;
+      double m_max_trt_eta;
+
+      int m_min_trt_hits;
+      int m_max_trt_hits;
+
+      double m_min_trt_ol_fraction;
+      double m_max_trt_ol_fraction;
+
       double m_min_d0_significance;
       double m_max_d0_significance;
 
@@ -173,8 +185,8 @@ namespace PennSusyFrame
       double m_min_z0;
       double m_max_z0;
 
-      double m_min_q_over_p;
-      double m_max_q_over_p;
+      double m_min_q_over_p_ratio;
+      double m_max_q_over_p_ratio;
 
       // TODO rename these variables
       double m_min_ptcone;

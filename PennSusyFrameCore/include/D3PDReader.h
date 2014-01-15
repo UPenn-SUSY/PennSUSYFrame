@@ -2274,7 +2274,7 @@ namespace PennSusyFrame
     // std::vector<float>   *mu_staco_z0_exPV;
     // std::vector<float>   *mu_staco_phi_exPV;
     // std::vector<float>   *mu_staco_theta_exPV;
-    // std::vector<float>   *mu_staco_qoverp_exPV;
+    std::vector<float>   *mu_staco_qoverp_exPV;
     // std::vector<float>   *mu_staco_cb_d0_exPV;
     // std::vector<float>   *mu_staco_cb_z0_exPV;
     // std::vector<float>   *mu_staco_cb_phi_exPV;
@@ -2299,7 +2299,7 @@ namespace PennSusyFrame
     // std::vector<float>   *mu_staco_cov_z0_exPV;
     // std::vector<float>   *mu_staco_cov_phi_exPV;
     // std::vector<float>   *mu_staco_cov_theta_exPV;
-    // std::vector<float>   *mu_staco_cov_qoverp_exPV;
+    std::vector<float>   *mu_staco_cov_qoverp_exPV;
     // std::vector<float>   *mu_staco_cov_d0_z0_exPV;
     // std::vector<float>   *mu_staco_cov_d0_phi_exPV;
     // std::vector<float>   *mu_staco_cov_d0_theta_exPV;
@@ -2354,14 +2354,14 @@ namespace PennSusyFrame
     std::vector<int>     *mu_staco_nBLHits;
     std::vector<int>     *mu_staco_nPixHits;
     std::vector<int>     *mu_staco_nSCTHits;
-    // std::vector<int>     *mu_staco_nTRTHits;
+    std::vector<int>     *mu_staco_nTRTHits;
     // std::vector<int>     *mu_staco_nTRTHighTHits;
     // std::vector<int>     *mu_staco_nBLSharedHits;
     // std::vector<int>     *mu_staco_nPixSharedHits;
     std::vector<int>     *mu_staco_nPixHoles;
     // std::vector<int>     *mu_staco_nSCTSharedHits;
     std::vector<int>     *mu_staco_nSCTHoles;
-    // std::vector<int>     *mu_staco_nTRTOutliers;
+    std::vector<int>     *mu_staco_nTRTOutliers;
     // std::vector<int>     *mu_staco_nTRTHighTOutliers;
     // std::vector<int>     *mu_staco_nGangedPixels;
     // std::vector<int>     *mu_staco_nPixelDeadSensors;
@@ -9297,7 +9297,7 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_z0_exPV;   //!
     // TBranch        *b_mu_staco_phi_exPV;   //!
     // TBranch        *b_mu_staco_theta_exPV;   //!
-    // TBranch        *b_mu_staco_qoverp_exPV;   //!
+    TBranch        *b_mu_staco_qoverp_exPV;   //!
     // TBranch        *b_mu_staco_cb_d0_exPV;   //!
     // TBranch        *b_mu_staco_cb_z0_exPV;   //!
     // TBranch        *b_mu_staco_cb_phi_exPV;   //!
@@ -9322,7 +9322,7 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_cov_z0_exPV;   //!
     // TBranch        *b_mu_staco_cov_phi_exPV;   //!
     // TBranch        *b_mu_staco_cov_theta_exPV;   //!
-    // TBranch        *b_mu_staco_cov_qoverp_exPV;   //!
+    TBranch        *b_mu_staco_cov_qoverp_exPV;   //!
     // TBranch        *b_mu_staco_cov_d0_z0_exPV;   //!
     // TBranch        *b_mu_staco_cov_d0_phi_exPV;   //!
     // TBranch        *b_mu_staco_cov_d0_theta_exPV;   //!
@@ -9377,14 +9377,14 @@ namespace PennSusyFrame
     TBranch        *b_mu_staco_nBLHits;   //!
     TBranch        *b_mu_staco_nPixHits;   //!
     TBranch        *b_mu_staco_nSCTHits;   //!
-    // TBranch        *b_mu_staco_nTRTHits;   //!
+    TBranch        *b_mu_staco_nTRTHits;   //!
     // TBranch        *b_mu_staco_nTRTHighTHits;   //!
     // TBranch        *b_mu_staco_nBLSharedHits;   //!
     // TBranch        *b_mu_staco_nPixSharedHits;   //!
     TBranch        *b_mu_staco_nPixHoles;   //!
     // TBranch        *b_mu_staco_nSCTSharedHits;   //!
     TBranch        *b_mu_staco_nSCTHoles;   //!
-    // TBranch        *b_mu_staco_nTRTOutliers;   //!
+    TBranch        *b_mu_staco_nTRTOutliers;   //!
     // TBranch        *b_mu_staco_nTRTHighTOutliers;   //!
     // TBranch        *b_mu_staco_nGangedPixels;   //!
     // TBranch        *b_mu_staco_nPixelDeadSensors;   //!

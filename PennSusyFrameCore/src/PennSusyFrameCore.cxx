@@ -120,6 +120,9 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_muon_selectors.at(MU_BASELINE).setPixelHitsCut(1, -1);
   m_muon_selectors.at(MU_BASELINE).setSctHitsCut(5, -1);
   m_muon_selectors.at(MU_BASELINE).setSiHolesCut(-1, 2);
+  m_muon_selectors.at(MU_BASELINE).setTrtEtaCut(0.1, 1.9);
+  m_muon_selectors.at(MU_BASELINE).setTrtHitsCut(-1, 6);
+  m_muon_selectors.at(MU_BASELINE).setTrtOlFractionCut(-1, 0.9);
 
   // MU_SIGNAL
   // m_muon_selectors.at(MU_SIGNAL).setPtCut(10.e3, -1);

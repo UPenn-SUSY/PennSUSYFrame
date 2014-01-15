@@ -561,6 +561,11 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setIdTheta( reader->mu_staco_id_theta_exPV->at(mu_index));
   setMEQOverP(reader->mu_staco_me_qoverp_exPV->at(mu_index));
   setMETheta( reader->mu_staco_me_theta_exPV->at(mu_index));
+  setTrackEta(-log(tan(m_id_theta/2)));
+
+  setQOverPRatio( reader->mu_staco_cov_qoverp_exPV->at(mu_index)
+                / reader->mu_staco_qoverp_exPV->at(mu_index)
+                );
 
   setNumBLayerHits(reader->mu_staco_nBLHits->at(mu_index));
   setNumPixelHits(reader->mu_staco_nPixHits->at(mu_index));
@@ -568,9 +573,18 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setNumSiHoles( reader->mu_staco_nPixHoles->at(mu_index)
                + reader->mu_staco_nSCTHoles->at(mu_index)
                );
+
+  int trt_hits = reader->mu_staco_nTRTHits->at(mu_index);
+  int trt_ol   = reader->mu_staco_nTRTOutliers->at(mu_index);
+  setNumTrtHits(trt_hits + trt_ol);
+  setTrtOlFraction( m_num_trt_hits != 0 ? trt_ol/m_num_trt_hits
+                                        : 0.
+                  );
+
   setD0(   reader->mu_staco_trackIPEstimate_d0_unbiasedpvunbiased->at(mu_index));
   setSigD0(reader->mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased->at(mu_index));
   setZ0(   reader->mu_staco_trackIPEstimate_z0_unbiasedpvunbiased->at(mu_index));
+
   // TODO fill isolations variables
   setPtIso(0);
   setEtIso(0);
@@ -615,6 +629,18 @@ void PennSusyFrame::Muon::setMETheta(double val)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setTrackEta(double val)
+{
+  m_track_eta = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setQOverPRatio(double val)
+{
+  m_q_over_p_ratio = val;
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::Muon::setNumBLayerHits(int val)
 {
   m_num_b_layer_hits = val;
@@ -636,6 +662,18 @@ void PennSusyFrame::Muon::setNumSctHits(int val)
 void PennSusyFrame::Muon::setNumSiHoles(int val)
 {
   m_num_si_holes = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setNumTrtHits(int val)
+{
+  m_num_trt_hits = val;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::setTrtOlFraction(double val)
+{
+  m_trt_ol_frac = val;
 }
 
 // -----------------------------------------------------------------------------
@@ -712,6 +750,18 @@ double PennSusyFrame::Muon::getMETheta() const
 }
 
 // -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getTrackEta() const
+{
+  return m_track_eta;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getQOverPRatio() const
+{
+  return m_q_over_p_ratio;
+}
+
+// -----------------------------------------------------------------------------
 int PennSusyFrame::Muon::getNumBLayerHits() const
 {
   return m_num_b_layer_hits;
@@ -733,6 +783,18 @@ int PennSusyFrame::Muon::getNumSctHits() const
 int PennSusyFrame::Muon::getNumSiHoles() const
 {
   return m_num_si_holes;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Muon::getNumTrtHits() const
+{
+  return m_num_trt_hits;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Muon::getTrtOlFraction() const
+{
+  return m_trt_ol_frac;
 }
 
 // -----------------------------------------------------------------------------
