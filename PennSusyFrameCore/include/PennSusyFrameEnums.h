@@ -1,9 +1,10 @@
 #ifndef PennSusyFrame_PennSusyFrameEnums_h
 #define PennSusyFrame_PennSusyFrameEnums_h
 
-// TODO COMMENT!!!
+// define ull_t type == unsigned long long
 typedef unsigned long long ull_t;
 
+// enum to define flavor channels
 enum FLAVOR_CHANNEL { FLAVOR_NONE = 0 // no flavor
                     , FLAVOR_EE   = 1 // ee event
                     , FLAVOR_MM   = 2 // mm event
@@ -11,6 +12,7 @@ enum FLAVOR_CHANNEL { FLAVOR_NONE = 0 // no flavor
                     , FLAVOR_N
                     };
 
+// enum to defint phase space
 enum PHASE_SPACE { PHASE_NONE = 0 // No phase space
                  , PHASE_EE   = 1 // ee phase space
                  , PHASE_MM   = 2 // mm phase space
@@ -19,11 +21,13 @@ enum PHASE_SPACE { PHASE_NONE = 0 // No phase space
                  , PHASE_N
                  };
 
+// enum to define sign channel OS/SS
 enum SIGN_CHANNEL { SIGN_NONE = 0 // no sign channel
                   , SIGN_OS   = 1 // OS event
                   , SIGN_SS   = 2 // SS event
                   };
 
+// enum to define trigger pahse space -- specific to EWK analysis
 enum TRIG_PHASE { TRIG_NONE = 0 // No Trigger phase
                 , TRIG_EE_A     // EE region A
                 , TRIG_EE_B     // EE region B
@@ -36,6 +40,7 @@ enum TRIG_PHASE { TRIG_NONE = 0 // No Trigger phase
                 , TRIG_N
                 };
 
+// enum to define electron collections
 enum ELECTRON_COLLECTIONS { EL_ALL = 0  // Green tree snake
                           , EL_BASELINE // Baseline cuts
                           , EL_GOOD     // Baseline + overlap removal
@@ -43,6 +48,7 @@ enum ELECTRON_COLLECTIONS { EL_ALL = 0  // Green tree snake
                           , EL_N
                           };
 
+// enum to define jet collections
 enum JET_COLLECTIONS { JET_ALL = 0       // Green tree snake
                      , JET_BASELINE      // Baseline cuts
                      , JET_BASELINE_GOOD // Baseline cuts
@@ -58,6 +64,7 @@ enum JET_COLLECTIONS { JET_ALL = 0       // Green tree snake
                      , JET_N
                      };
 
+// enum to define muon collections
 enum MUON_COLLECTIONS { MU_ALL = 0  // Green tree snake
                       , MU_BASELINE // Baseline cuts
                       , MU_GOOD     // Baseline + overlap removal
@@ -67,6 +74,7 @@ enum MUON_COLLECTIONS { MU_ALL = 0  // Green tree snake
                       , MU_N
                       };
 
+// enum to define tau collections
 enum TAU_COLLECTIONS { TAU_ALL = 0
                      , TAU_BASELINE
                      , TAU_GOOD
@@ -74,6 +82,7 @@ enum TAU_COLLECTIONS { TAU_ALL = 0
                      , TAU_N
                      };
 
+// enum to define vertex collections
 enum VERTEX_COLLECTIONS { VERTEX_ALL = 0  // Green tree snake
                         , VERTEX_GOOD     // Vertices flagged as good
                         , VERTEX_GT_2     // Vertices with more than two tracks
@@ -90,24 +99,28 @@ enum VERTEX_COLLECTIONS { VERTEX_ALL = 0  // Green tree snake
 //               , REL_TOPOETCONE_CORR
 //               };
 
+// enum to define electron quality level
 enum ELECTRON_QUALITY_LEVEL { EL_QUALITY_NONE
                             , EL_QUALITY_MEDPP
                             , EL_QUALITY_TIGHTPP
                             , EL_QUALITY_N
                             };
 
+// enum to define tua jet bdt level
 enum TAU_JET_BDT_LEVEL { TAU_JET_BDT_NONE = 0
                        , TAU_JET_BDT_LOOSE
                        , TAU_JET_BDT_MEDIUM
                        , TAU_JET_BDT_TIGHT
                        };
 
+// enum to define tau electron bdt level
 enum TAU_ELE_BDT_LEVEL { TAU_ELE_BDT_NONE = 0
                        , TAU_ELE_BDT_LOOSE
                        , TAU_ELE_BDT_MEDIUM
                        , TAU_ELE_BDT_TIGHT
                        };
 
+// enum to define muon veto level
 enum TAU_MU_LEVEL { TAU_MU_NONE = 0
                   , TAU_MU_LOOSE
                   , TAU_MU_TIGHT
