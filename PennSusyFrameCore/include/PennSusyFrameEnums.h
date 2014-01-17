@@ -90,6 +90,12 @@ enum VERTEX_COLLECTIONS { VERTEX_ALL = 0  // Green tree snake
 //               , REL_TOPOETCONE_CORR
 //               };
 
+enum ELECTRON_QUALITY_LEVEL { EL_QUALITY_NONE
+                            , EL_QUALITY_MEDPP
+                            , EL_QUALITY_TIGHTPP
+                            , EL_QUALITY_N
+                            };
+
 enum TAU_JET_BDT_LEVEL { TAU_JET_BDT_NONE = 0
                        , TAU_JET_BDT_LOOSE
                        , TAU_JET_BDT_MEDIUM

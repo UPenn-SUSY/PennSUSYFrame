@@ -1,0 +1,21 @@
+// Dear emacs, this is -*- c++ -*-
+#ifndef PennSusyFrame_D3PDReader_icc
+#define PennSusyFrame_D3PDReader_icc
+
+// #include "PennSusyFrameCore/include/D3PDReader.h"
+
+namespace PennSusyFrame
+{
+  template <class T>
+    void D3PDReader::turnOnBranch( TTree* tree
+                                 , std::string str
+                                 , T var_add
+                                 , TBranch** branch_add
+                                 )
+    {
+      tree->SetBranchStatus(str.c_str(), 1);
+      fChain->SetBranchAddress(str.c_str(), var_add, branch_add);
+    }
+}
+
+#endif

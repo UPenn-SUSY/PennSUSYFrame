@@ -33,17 +33,19 @@ namespace PennSusyFrame
       void init();
       void getEvent(const PennSusyFrame::D3PDReader*);
 
-      void setEventNumber(unsigned int);
-      void setRunNumber(unsigned int);
-      void setLumiBlock(unsigned int);
-      void setAverageIntPerXing(float);
-      void setEventShapeRhoKt4LC(float);
+      // TODO move accessors to cxx file
+      void setEventNumber(unsigned int val) { m_event_number = val; }
+      void setRunNumber(unsigned int val)   { m_run_number = val; }
+      void setLumiBlock(unsigned int val)   { m_lumi_block = val; }
+      void setAverageIntPerXing(float val)  { m_average_int_per_xing = val; }
+      void setEventShapeRhoKt4LC(float val) { m_eventshape_rhoKt4LC = val; }
 
-      unsigned int getEventNumber() const;
-      unsigned int getRunNumber() const;
-      unsigned int getLumiBlock() const;
-      float getAverageIntPerXing() const;
-      float getEventShapeRhoKt4LC() const;
+      // TODO move accessors to cxx file
+      unsigned int getEventNumber() const { return m_event_number; }
+      unsigned int getRunNumber() const { return m_run_number; }
+      unsigned int getLumiBlock() const { return m_lumi_block; }
+      float getAverageIntPerXing() const { return m_average_int_per_xing; }
+      float getEventShapeRhoKt4LC() const { return m_eventshape_rhoKt4LC; }
 
       void print() const;
 
@@ -68,11 +70,15 @@ namespace PennSusyFrame
 
       virtual void printGeneralInfo() const;
 
-      virtual void setParticleIndex(int);
+      // TODO move accessors to cxx file
+      virtual void setParticleIndex(int val) { m_particle_index = val; }
+
       virtual void setTlv(const TLorentzVector&);
       virtual void setRawTlv(const TLorentzVector&);
 
-      virtual int getParticleIndex() const;
+      // TODO move accessors to cxx file
+      virtual int getParticleIndex() const { return m_particle_index; }
+
       virtual const TLorentzVector* getTlv() const;
       virtual const TLorentzVector* getRawTlv() const;
 
@@ -103,14 +109,16 @@ namespace PennSusyFrame
     public:
       Lepton();
 
-      void setIsLightLepton(bool);
-      void setIsElectron(bool);
-      void setCharge(double);
+      // TODO move accessors to cxx file
+      void setIsLightLepton(bool val) { m_is_light_lepton = val; }
+      void setIsElectron(bool val) { m_is_electron = val; }
+      void setCharge(double val) { m_charge = val; }
 
-      bool isElectron() const;
-      bool isMuon() const;
-      bool isTau() const;
-      double getCharge() const;
+      // TODO move accessors to cxx file
+      bool isElectron() const { return (m_is_light_lepton && m_is_electron); }
+      bool isMuon() const { return (m_is_light_lepton && !m_is_electron); }
+      bool isTau() const { return !m_is_light_lepton; }
+      double getCharge() const { return m_charge; }
 
       virtual void print() const;
 
@@ -133,37 +141,48 @@ namespace PennSusyFrame
               , bool verbose = false
               );
 
-
-      void setClE(double);
-      void setClEta(double);
-      void setClPhi(double);
-      void setD0(double);
-      void setSigD0(double);
-      void setZ0(double);
+      // TODO move accessors to cxx file
+      void setAuthor(int val) { m_author = val; }
+      void setMediumPP(bool val) { m_medium_pp = val; }
+      void setTightPP(bool val) { m_tight_pp = val; }
+      void setPassOtx(bool val) { m_pass_otx = val; }
+      void setClE(double val) { m_cl_E = val; }
+      void setClEta(double val) { m_cl_eta = val; }
+      void setClPhi(double val) { m_cl_phi = val; }
+      void setD0(double val) { m_d0 = val; }
+      void setSigD0(double val) { m_sig_d0 = val; }
+      void setZ0(double val) { m_z0 = val; }
       // TODO rename these functions to give access to all iso variables - raw and corrected
-      void setPtIso(double);
-      void setEtIso(double);
+      void setPtIso(double val) { m_pt_iso = val; }
+      void setEtIso(double val) { m_et_iso = val; }
 
-
-      double getClE() const;
-      double getClEta() const;
-      double getClPhi() const;
-      double getD0() const;
-      double getSigD0() const;
-      double getD0Significance() const;
-      double getZ0() const;
-      double getZ0SinTheta() const;
+      // TODO move accessors to cxx file
+      int getAuthor() const { return m_author; }
+      bool getMediumPP() const { return m_medium_pp; }
+      bool getTightPP() const { return m_tight_pp; }
+      bool getPassOTX() const { return m_pass_otx; }
+      double getClE() const { return m_cl_E; }
+      double getClEta() const { return m_cl_eta; }
+      double getClPhi() const { return m_cl_phi; }
+      double getD0() const { return m_d0; }
+      double getSigD0() const { return m_sig_d0; }
+      double getD0Significance() const { return m_d0/m_sig_d0; }
+      double getZ0() const { return m_z0; }
+      double getZ0SinTheta() const { return m_z0*sin(m_tlv.Theta()); }
       // TODO rename these functions to give access to all iso variables - raw and corrected
-      double getPtIso() const;
-      double getEtIso() const;
+      double getPtIso() const { return m_pt_iso; }
+      double getEtIso() const { return m_et_iso; }
 
       virtual void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
-      // void setElTlv(const PennSusyFrame::D3PDReader* reader, PennSusyFrame::ElectronRescalerTool&);
       void setElTlv(const PennSusyFrame::D3PDReader* reader, PennSusyFrame::ElectronRescalerTool*);
 
+      int m_author;
+      bool m_medium_pp;
+      bool m_tight_pp;
+      bool m_pass_otx;
       double m_cl_E;
       double m_cl_eta;
       double m_cl_phi;
@@ -186,47 +205,49 @@ namespace PennSusyFrame
           , bool verbose = false
           );
 
-      void setIsCombined(int);
-      void setIsSegmentTagged(int);
-      void setIdQOverP(double);
-      void setIdTheta(double);
-      void setMEQOverP(double);
-      void setMETheta(double);
-      void setTrackEta(double);
-      void setQOverPRatio(double);
-      void setNumBLayerHits(int);
-      void setNumPixelHits(int);
-      void setNumSctHits(int);
-      void setNumSiHoles(int);
-      void setNumTrtHits(int);
-      void setTrtOlFraction(double);
-      void setD0(double);
-      void setSigD0(double);
-      void setZ0(double);
-      void setPtIso(double);
-      void setEtIso(double);
+      // TODO move accessors to cxx file
+      void setIsCombined(int val) { m_is_combined = val; }
+      void setIsSegmentTagged(int val) { m_is_segment_tagged = val; }
+      void setIdQOverP(double val) { m_id_qoverp = val; }
+      void setIdTheta(double val) { m_id_theta = val; }
+      void setMEQOverP(double val) { m_me_qoverp = val; }
+      void setMETheta(double val) { m_me_theta = val; }
+      void setTrackEta(double val) { m_track_eta = val; }
+      void setQOverPRatio(double val) { m_q_over_p_ratio = val; }
+      void setNumBLayerHits(int val) { m_num_b_layer_hits = val; }
+      void setNumPixelHits(int val) { m_num_pixel_hits = val; }
+      void setNumSctHits(int val) { m_num_sct_hits = val; }
+      void setNumSiHoles(int val) { m_num_si_holes = val; }
+      void setNumTrtHits(int val) { m_num_trt_hits = val; }
+      void setTrtOlFraction(double val) { m_trt_ol_frac = val; }
+      void setD0(double val) { m_d0 = val; }
+      void setSigD0(double val) { m_sig_d0 = val; }
+      void setZ0(double val) { m_z0 = val; }
+      void setPtIso(double val) { m_pt_iso = val; }
+      void setEtIso(double val) { m_et_iso = val; }
 
-      int getIsCombined() const;
-      int getIsSegmentTagged() const;
-      double getIdQOverP() const;
-      double getIdTheta() const;
-      double getMEQOverP() const;
-      double getMETheta() const;
-      double getTrackEta() const;
-      double getQOverPRatio() const;
-      int getNumBLayerHits() const;
-      int getNumPixelHits() const;
-      int getNumSctHits() const;
-      int getNumSiHoles() const;
-      int getNumTrtHits() const;
-      double getTrtOlFraction() const;
-      double getD0() const;
-      double getSigD0() const;
-      double getD0Significance() const;
-      double getZ0() const;
-      double getZ0SinTheta() const;
-      double getPtIso() const;
-      double getEtIso() const;
+      // TODO move accessors to cxx file
+      int getIsCombined() const { return m_is_combined; }
+      int getIsSegmentTagged() const { return m_is_segment_tagged; }
+      double getIdQOverP() const { return m_id_qoverp; }
+      double getIdTheta() const { return m_id_theta; }
+      double getMEQOverP() const { return m_me_qoverp; }
+      double getMETheta() const { return m_me_theta; }
+      double getTrackEta() const { return m_track_eta; }
+      double getQOverPRatio() const { return m_q_over_p_ratio; }
+      int getNumBLayerHits() const { return m_num_b_layer_hits; }
+      int getNumPixelHits() const { return m_num_pixel_hits; }
+      int getNumSctHits() const { return m_num_sct_hits; }
+      int getNumSiHoles() const { return m_num_si_holes; }
+      int getNumTrtHits() const { return m_num_trt_hits; }
+      double getTrtOlFraction() const { return m_trt_ol_frac; }
+      double getD0() const { return m_d0; }
+      double getSigD0() const { return m_sig_d0; }
+      double getD0Significance() const { return m_d0/m_sig_d0; }
+      double getZ0() const { return m_z0; }
+      double getZ0SinTheta() const { return m_z0*sin(m_tlv.Theta()); }
+      double getPtIso() const { return m_pt_iso; }
+      double getEtIso() const { return m_et_iso; }
 
       virtual void print() const;
 
@@ -272,6 +293,26 @@ namespace PennSusyFrame
          , bool verbose = false
          );
 
+      // TODO move accessors to cxx file
+      void setNumTracks(int val) { m_num_tracks = val; }
+      void setJetBdtLoose(bool val) { m_jet_bdt_loose = val; }
+      void setJetBdtMedium(bool val) { m_jet_bdt_medium = val; }
+      void setJetBdtTight(bool val) { m_jet_bdt_tight = val; }
+      void setEleBdtLoose(bool val) { m_ele_bdt_loose = val; }
+      void setEleBdtMedium(bool val) { m_ele_bdt_medium = val; }
+      void setEleBdtTight(bool val) { m_ele_bdt_tight = val; }
+      void setMuVeto(bool val) { m_mu_veto = val; }
+
+      // TODO move accessors to cxx file
+      int getNumTracks() const { return m_num_tracks; }
+      bool getJetBdtLoose()  const { return m_jet_bdt_loose; }
+      bool getJetBdtMedium() const { return m_jet_bdt_medium; }
+      bool getJetBdtTight()  const { return m_jet_bdt_tight; }
+      bool getEleBdtLoose() const { return m_ele_bdt_loose; }
+      bool getEleBdtMedium() const { return m_ele_bdt_medium; }
+      bool getEleBdtTight() const { return m_ele_bdt_tight; }
+      bool getMuVeto() const { return m_mu_veto; }
+
       virtual void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -279,6 +320,16 @@ namespace PennSusyFrame
       void setTauTlv( const PennSusyFrame::D3PDReader* reader
                     , PennSusyFrame::TauRescalerTool* tau_rescaler
                     );
+
+      int m_num_tracks;
+      bool m_jet_bdt_loose;
+      bool m_jet_bdt_medium;
+      bool m_jet_bdt_tight;
+      bool m_ele_bdt_loose;
+      bool m_ele_bdt_medium;
+      bool m_ele_bdt_tight;
+      bool m_mu_veto;
+
   };
 
   // =============================================================================
@@ -295,29 +346,31 @@ namespace PennSusyFrame
          , bool verbose = false
          );
 
-      void setConstScaleE(double);
-      void setConstScaleEta(double);
-      void setConstScalePhi(double);
-      void setConstScaleM(double);
-      void setActiveAreaPx(double);
-      void setActiveAreaPy(double);
-      void setActiveAreaPz(double);
-      void setActiveAreaE(double);
-      void setJvf(double);
-      void setMv1(double);
-      void setIsBad(bool);
+      // TODO move accessors to cxx file
+      void setConstScaleE(double val) { m_constscale_e = val; }
+      void setConstScaleEta(double val) { m_constscale_eta = val; }
+      void setConstScalePhi(double val) { m_constscale_phi = val; }
+      void setConstScaleM(double val) { m_constscale_m = val; }
+      void setActiveAreaPx(double val) { m_active_area_px = val; }
+      void setActiveAreaPy(double val) { m_active_area_py = val; }
+      void setActiveAreaPz(double val) { m_active_area_pz = val; }
+      void setActiveAreaE(double val) { m_active_area_e = val; }
+      void setJvf(double val) { m_jvf = val; }
+      void setMv1(double val) { m_mv1 = val; }
+      void setIsBad(bool val) { m_is_bad = val; }
 
-      double getConstScaleE() const;
-      double getConstScaleEta() const;
-      double getConstScalePhi() const;
-      double getConstScaleM() const;
-      double getActiveAreaPx() const;
-      double getActiveAreaPy() const;
-      double getActiveAreaPz() const;
-      double getActiveAreaE() const;
-      double getJvf() const;
-      double getMv1() const;
-      bool getIsBad() const;
+      // TODO move accessors to cxx file
+      double getConstScaleE() const { return m_constscale_e; }
+      double getConstScaleEta() const { return m_constscale_eta; }
+      double getConstScalePhi() const { return m_constscale_phi; }
+      double getConstScaleM() const { return m_constscale_m; }
+      double getActiveAreaPx() const { return m_active_area_px; }
+      double getActiveAreaPy() const { return m_active_area_py; }
+      double getActiveAreaPz() const { return m_active_area_pz; }
+      double getActiveAreaE() const { return m_active_area_e; }
+      double getJvf() const { return m_jvf; }
+      double getMv1() const { return m_mv1; }
+      bool getIsBad() const { return m_is_bad; }
 
       virtual void print() const;
 
@@ -356,21 +409,23 @@ namespace PennSusyFrame
             , bool verbose = false
             );
 
-      void setVertexIndex(int);
-      void setNumTracks(int);
-      void setX(double);
-      void setY(double);
-      void setZ(double);
-      void setE(double);
-      void setM(double);
+      // TODO move accessors to cxx file
+      void setVertexIndex(int val) { m_vertex_index = val; }
+      void setNumTracks(int val) { m_num_tracks = val; }
+      void setX(double val) { m_x = val; }
+      void setY(double val) { m_y = val; }
+      void setZ(double val) { m_z = val; }
+      void setE(double val) { m_e = val; }
+      void setM(double val) { m_m = val; }
 
-      int getVertexIndex() const;
-      int getNumTracks() const;
-      double getX() const;
-      double getY() const;
-      double getZ() const;
-      double getE() const;
-      double getM() const;
+      // TODO move accessors to cxx file
+      int getVertexIndex() const { return m_vertex_index; }
+      int getNumTracks() const { return m_num_tracks; }
+      double getX() const { return m_x; }
+      double getY() const { return m_y; }
+      double getZ() const { return m_z; }
+      double getE() const { return m_e; }
+      double getM() const { return m_m; }
 
       void print() const;
 

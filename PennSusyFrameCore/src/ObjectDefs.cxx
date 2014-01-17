@@ -35,66 +35,6 @@ void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Event::setEventNumber(unsigned int val)
-{
-  m_event_number = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Event::setRunNumber(unsigned int val)
-{
-  m_run_number = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Event::setLumiBlock(unsigned int val)
-{
-  m_lumi_block = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Event::setAverageIntPerXing(float val)
-{
-  m_average_int_per_xing = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Event::setEventShapeRhoKt4LC(float val)
-{
-  m_eventshape_rhoKt4LC = val;
-}
-
-// -----------------------------------------------------------------------------
-unsigned int PennSusyFrame::Event::getEventNumber() const
-{
-  return m_event_number;
-}
-
-// -----------------------------------------------------------------------------
-unsigned int PennSusyFrame::Event::getRunNumber() const
-{
-  return m_run_number;
-}
-
-// -----------------------------------------------------------------------------
-unsigned int PennSusyFrame::Event::getLumiBlock() const
-{
-  return m_lumi_block;
-}
-
-// -----------------------------------------------------------------------------
-float PennSusyFrame::Event::getAverageIntPerXing() const
-{
-  return m_average_int_per_xing;
-}
-
-// -----------------------------------------------------------------------------
-float PennSusyFrame::Event::getEventShapeRhoKt4LC() const
-{
-  return m_eventshape_rhoKt4LC;
-}
-
-// -----------------------------------------------------------------------------
 void PennSusyFrame::Event::print() const
 {
   std::cout << "================= Printing event info: =================\n";
@@ -146,11 +86,11 @@ void PennSusyFrame::Particle::printGeneralInfo() const
   //           << "\n";
 }
 
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Particle::setParticleIndex(int val)
-{
-  m_particle_index = val;
-}
+// // -----------------------------------------------------------------------------
+// void PennSusyFrame::Particle::setParticleIndex(int val)
+// {
+//   m_particle_index = val;
+// }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Particle::setTlv(const TLorentzVector& tlv)
@@ -164,12 +104,6 @@ void PennSusyFrame::Particle::setRawTlv(const TLorentzVector& tlv)
 {
   m_raw_tlv = tlv;
   m_raw_tlv_set = true;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Particle::getParticleIndex() const
-{
-  return m_particle_index;
 }
 
 // -----------------------------------------------------------------------------
@@ -290,48 +224,6 @@ PennSusyFrame::Lepton::Lepton()
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Lepton::setIsLightLepton(bool val)
-{
-  m_is_light_lepton = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Lepton::setIsElectron(bool val)
-{
-  m_is_electron = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Lepton::setCharge(double val)
-{
-  m_charge = val;
-}
-
-// -----------------------------------------------------------------------------
-bool PennSusyFrame::Lepton::isElectron() const
-{
-  return (m_is_light_lepton && m_is_electron);
-}
-
-// -----------------------------------------------------------------------------
-bool PennSusyFrame::Lepton::isMuon() const
-{
-  return (m_is_light_lepton && !m_is_electron);
-}
-
-// -----------------------------------------------------------------------------
-bool PennSusyFrame::Lepton::isTau() const
-{
-  return (!m_is_light_lepton);
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Lepton::getCharge() const
-{
-  return m_charge;
-}
-
-// -----------------------------------------------------------------------------
 void PennSusyFrame::Lepton::print() const
 {
   std::cout << "lepton (" << (m_is_electron ? "electron" : "muon") << ")"
@@ -368,6 +260,8 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
 
   setCharge(reader->el_charge->at(el_index));
 
+  setAuthor(reader->el_author->at(el_index));
+
   setClE(reader->el_cl_E->at(el_index));
   setClEta(reader->el_cl_eta->at(el_index));
   setClPhi(reader->el_cl_phi->at(el_index));
@@ -382,114 +276,6 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
 
   // must set TLV last because it depends on above quantities
   setElTlv(reader, el_rescaler);
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Electron::setClE(double val)
-{
-  m_cl_E = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Electron::setClEta(double val)
-{
-  m_cl_eta = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Electron::setClPhi(double val)
-{
-  m_cl_phi = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Electron::setD0(double val)
-{
-  m_d0 = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Electron::setSigD0(double val)
-{
-  m_sig_d0 = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Electron::setZ0(double val)
-{
-  m_z0 = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Electron::setPtIso(double val)
-{
-  m_pt_iso = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Electron::setEtIso(double val)
-{
-  m_et_iso = val;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getClE() const
-{
-  return m_cl_E;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getClEta() const
-{
-  return m_cl_eta;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getClPhi() const
-{
-  return m_cl_phi;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getD0() const
-{
-  return m_d0;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getSigD0() const
-{
-  return m_sig_d0;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getD0Significance() const
-{
-  return m_d0/m_sig_d0;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getZ0() const
-{
-  return m_z0;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getZ0SinTheta() const
-{
-  return m_z0*sin(m_tlv.Theta());
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getPtIso() const
-{
-  return m_pt_iso;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Electron::getEtIso() const
-{
-  return m_et_iso;
 }
 
 // -----------------------------------------------------------------------------
@@ -593,260 +379,6 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setIsCombined(int val)
-{
-  m_is_combined = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setIsSegmentTagged(int val)
-{
-  m_is_segment_tagged = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setIdQOverP(double val)
-{
-  m_id_qoverp = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setIdTheta(double val)
-{
-  m_id_theta = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setMEQOverP(double val)
-{
-  m_me_qoverp = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setMETheta(double val)
-{
-  m_me_theta = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setTrackEta(double val)
-{
-  m_track_eta = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setQOverPRatio(double val)
-{
-  m_q_over_p_ratio = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setNumBLayerHits(int val)
-{
-  m_num_b_layer_hits = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setNumPixelHits(int val)
-{
-  m_num_pixel_hits = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setNumSctHits(int val)
-{
-  m_num_sct_hits = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setNumSiHoles(int val)
-{
-  m_num_si_holes = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setNumTrtHits(int val)
-{
-  m_num_trt_hits = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setTrtOlFraction(double val)
-{
-  m_trt_ol_frac = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setD0(double val)
-{
-  m_d0 = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setSigD0(double val)
-{
-  m_sig_d0 = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setZ0(double val)
-{
-  m_z0 = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setPtIso(double val)
-{
-  m_pt_iso = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::setEtIso(double val)
-{
-  m_et_iso = val;
-}
-
-// // -----------------------------------------------------------------------------
-// void PennSusyFrame::Muon::setQOverP(double val)
-// {
-//   m_q_over_p = val;
-// }
-
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Muon::getIsCombined() const
-{
-  return m_is_combined;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Muon::getIsSegmentTagged() const
-{
-  return m_is_segment_tagged;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getIdQOverP() const
-{
-  return m_id_qoverp;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getIdTheta() const
-{
-  return m_id_theta;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getMEQOverP() const
-{
-  return m_me_qoverp;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getMETheta() const
-{
-  return m_me_theta;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getTrackEta() const
-{
-  return m_track_eta;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getQOverPRatio() const
-{
-  return m_q_over_p_ratio;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Muon::getNumBLayerHits() const
-{
-  return m_num_b_layer_hits;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Muon::getNumPixelHits() const
-{
-  return m_num_pixel_hits;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Muon::getNumSctHits() const
-{
-  return m_num_sct_hits;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Muon::getNumSiHoles() const
-{
-  return m_num_si_holes;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Muon::getNumTrtHits() const
-{
-  return m_num_trt_hits;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getTrtOlFraction() const
-{
-  return m_trt_ol_frac;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getD0() const
-{
-  return m_d0;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getSigD0() const
-{
-  return m_sig_d0;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getD0Significance() const
-{
-  return m_d0/m_sig_d0;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getZ0() const
-{
-  return m_z0;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getZ0SinTheta() const
-{
-  return m_z0*sin(m_tlv.Theta());
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getPtIso() const
-{
-  return m_pt_iso;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Muon::getEtIso() const
-{
-  return m_et_iso;
-}
-
-// // -----------------------------------------------------------------------------
-// double PennSusyFrame::Muon::getQOverP() const
-// {
-//   return m_q_over_p;
-// }
-
-
-// -----------------------------------------------------------------------------
 void PennSusyFrame::Muon::print() const
 {
   Lepton::print();
@@ -908,6 +440,20 @@ PennSusyFrame::Tau::Tau( const PennSusyFrame::D3PDReader* reader
   setParticleIndex(tau_index);
 
   setCharge(reader->tau_charge->at(tau_index));
+
+  // std::cout << "about to get tau_numTrack->at(" << tau_index << ") -- vector size: " << reader->tau_numTrack->size() << "\n";
+  setNumTracks(reader->tau_numTrack->at(tau_index));
+  // std::cout << "\tgot variable from d3pd\n";
+
+  setJetBdtLoose( reader->tau_JetBDTSigLoose->at( tau_index));
+  setJetBdtMedium(reader->tau_JetBDTSigMedium->at(tau_index));
+  setJetBdtTight (reader->tau_JetBDTSigTight->at( tau_index));
+
+  setEleBdtLoose( reader->tau_EleBDTLoose->at( tau_index));
+  setEleBdtMedium(reader->tau_EleBDTMedium->at(tau_index));
+  setEleBdtTight( reader->tau_EleBDTTight->at( tau_index));
+
+  setMuVeto(reader->tau_muonVeto->at(tau_index));
 
   setTauTlv(reader, tau_rescaler);
 }
@@ -985,138 +531,6 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setJetTlv(reader, jet_rescaler, event, num_vertices_ge_2_tracks);
 
   setIsBad(isBad(reader));
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setConstScaleE(double val)
-{
-  m_constscale_e = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setConstScaleEta(double val)
-{
-  m_constscale_eta = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setConstScalePhi(double val)
-{
-  m_constscale_phi = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setConstScaleM(double val)
-{
-  m_constscale_m = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setActiveAreaPx(double val)
-{
-  m_active_area_px = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setActiveAreaPy(double val)
-{
-  m_active_area_py = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setActiveAreaPz(double val)
-{
-  m_active_area_pz = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setActiveAreaE(double val)
-{
-  m_active_area_e = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setJvf(double val)
-{
-  m_jvf = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setMv1(double val)
-{
-  m_mv1 = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::setIsBad(bool val)
-{
-  m_is_bad = val;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getConstScaleE() const
-{
-  return m_constscale_e;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getConstScaleEta() const
-{
-  return m_constscale_eta;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getConstScalePhi() const
-{
-  return m_constscale_phi;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getConstScaleM() const
-{
-  return m_constscale_m;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getActiveAreaPx() const
-{
-  return m_active_area_px;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getActiveAreaPy() const
-{
-  return m_active_area_py;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getActiveAreaPz() const
-{
-  return m_active_area_pz;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getActiveAreaE() const
-{
-  return m_active_area_e;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getJvf() const
-{
-  return m_jvf;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Jet::getMv1() const
-{
-  return m_mv1;
-}
-
-// -----------------------------------------------------------------------------
-bool PennSusyFrame::Jet::getIsBad() const
-{
-  return m_is_bad;
 }
 
 // -----------------------------------------------------------------------------
@@ -1212,90 +626,6 @@ PennSusyFrame::Vertex::Vertex( const PennSusyFrame::D3PDReader* reader
   setZ(reader->vx_z->at(m_vertex_index));
   setE(reader->vx_E->at(m_vertex_index));
   setM(reader->vx_m->at(m_vertex_index));
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Vertex::setVertexIndex(int val)
-{
-  m_vertex_index = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Vertex::setNumTracks(int val)
-{
-  m_num_tracks = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Vertex::setX(double val)
-{
-  m_x = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Vertex::setY(double val)
-{
-  m_y = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Vertex::setZ(double val)
-{
-  m_z = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Vertex::setE(double val)
-{
-  m_e = val;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::Vertex::setM(double val)
-{
-  m_m = val;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Vertex::getVertexIndex() const
-{
-  return m_vertex_index;
-}
-
-// -----------------------------------------------------------------------------
-int PennSusyFrame::Vertex::getNumTracks() const
-{
-  return m_num_tracks;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Vertex::getX() const
-{
-  return m_x;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Vertex::getY() const
-{
-  return m_y;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Vertex::getZ() const
-{
-  return m_z;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Vertex::getE() const
-{
-  return m_e;
-}
-
-// -----------------------------------------------------------------------------
-double PennSusyFrame::Vertex::getM() const
-{
-  return m_m;
 }
 
 // -----------------------------------------------------------------------------

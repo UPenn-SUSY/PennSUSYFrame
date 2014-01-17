@@ -1836,7 +1836,7 @@ namespace PennSusyFrame
     std::vector<float>   *el_py;
     std::vector<float>   *el_pz;
     std::vector<float>   *el_charge;
-    // std::vector<int>     *el_author;
+    std::vector<int>     *el_author;
     // std::vector<unsigned int> *el_isEM;
     // std::vector<unsigned int> *el_isEMLoose;
     // std::vector<unsigned int> *el_isEMMedium;
@@ -2502,20 +2502,20 @@ namespace PennSusyFrame
     // std::vector<int>     *tau_electronVetoLoose;
     // std::vector<int>     *tau_electronVetoMedium;
     // std::vector<int>     *tau_electronVetoTight;
-    // std::vector<int>     *tau_muonVeto;
+    std::vector<int>     *tau_muonVeto;
     // std::vector<int>     *tau_tauLlhLoose;
     // std::vector<int>     *tau_tauLlhMedium;
     // std::vector<int>     *tau_tauLlhTight;
-    // std::vector<int>     *tau_JetBDTSigLoose;
-    // std::vector<int>     *tau_JetBDTSigMedium;
-    // std::vector<int>     *tau_JetBDTSigTight;
-    // std::vector<int>     *tau_EleBDTLoose;
-    // std::vector<int>     *tau_EleBDTMedium;
-    // std::vector<int>     *tau_EleBDTTight;
+    std::vector<int>     *tau_JetBDTSigLoose;
+    std::vector<int>     *tau_JetBDTSigMedium;
+    std::vector<int>     *tau_JetBDTSigTight;
+    std::vector<int>     *tau_EleBDTLoose;
+    std::vector<int>     *tau_EleBDTMedium;
+    std::vector<int>     *tau_EleBDTTight;
     // std::vector<int>     *tau_author;
     // std::vector<int>     *tau_RoIWord;
     // std::vector<int>     *tau_nProng;
-    // std::vector<int>     *tau_numTrack;
+    std::vector<int>     *tau_numTrack;
     // std::vector<int>     *tau_seedCalo_numTrack;
     // std::vector<int>     *tau_seedCalo_nWideTrk;
     // std::vector<int>     *tau_nOtherTrk;
@@ -8859,7 +8859,7 @@ namespace PennSusyFrame
     TBranch        *b_el_py;   //!
     TBranch        *b_el_pz;   //!
     TBranch        *b_el_charge;   //!
-    // TBranch        *b_el_author;   //!
+    TBranch        *b_el_author;   //!
     // TBranch        *b_el_isEM;   //!
     // TBranch        *b_el_isEMLoose;   //!
     // TBranch        *b_el_isEMMedium;   //!
@@ -9525,20 +9525,20 @@ namespace PennSusyFrame
     // TBranch        *b_tau_electronVetoLoose;   //!
     // TBranch        *b_tau_electronVetoMedium;   //!
     // TBranch        *b_tau_electronVetoTight;   //!
-    // TBranch        *b_tau_muonVeto;   //!
+    TBranch        *b_tau_muonVeto;   //!
     // TBranch        *b_tau_tauLlhLoose;   //!
     // TBranch        *b_tau_tauLlhMedium;   //!
     // TBranch        *b_tau_tauLlhTight;   //!
-    // TBranch        *b_tau_JetBDTSigLoose;   //!
-    // TBranch        *b_tau_JetBDTSigMedium;   //!
-    // TBranch        *b_tau_JetBDTSigTight;   //!
-    // TBranch        *b_tau_EleBDTLoose;   //!
-    // TBranch        *b_tau_EleBDTMedium;   //!
-    // TBranch        *b_tau_EleBDTTight;   //!
+    TBranch        *b_tau_JetBDTSigLoose;   //!
+    TBranch        *b_tau_JetBDTSigMedium;   //!
+    TBranch        *b_tau_JetBDTSigTight;   //!
+    TBranch        *b_tau_EleBDTLoose;   //!
+    TBranch        *b_tau_EleBDTMedium;   //!
+    TBranch        *b_tau_EleBDTTight;   //!
     // TBranch        *b_tau_author;   //!
     // TBranch        *b_tau_RoIWord;   //!
     // TBranch        *b_tau_nProng;   //!
-    // TBranch        *b_tau_numTrack;   //!
+    TBranch        *b_tau_numTrack;   //!
     // TBranch        *b_tau_seedCalo_numTrack;   //!
     // TBranch        *b_tau_seedCalo_nWideTrk;   //!
     // TBranch        *b_tau_nOtherTrk;   //!
@@ -14045,15 +14045,20 @@ namespace PennSusyFrame
     virtual void     Show(Long64_t entry = -1);
 
     // TODO move this template to icc file
-    template <class T> void turnOnBranch(TTree* tree, std::string str, T var_add, TBranch** branch_add)
-    {
-      tree->SetBranchStatus(str.c_str(), 1);
-      fChain->SetBranchAddress(str.c_str(), var_add, branch_add);
-    }
+    template <class T> void turnOnBranch(TTree* tree, std::string str, T var_add, TBranch** branch_add);
+    // {
+    //   tree->SetBranchStatus(str.c_str(), 1);
+    //   fChain->SetBranchAddress(str.c_str(), var_add, branch_add);
+    // }
 
     bool checkStatus();
     unsigned int getNumEvents();
   };
 }
+
+// Include the implementation:
+#ifndef __CINT__
+#include "D3PDReader.icc"
+#endif // __CINT__
 
 #endif

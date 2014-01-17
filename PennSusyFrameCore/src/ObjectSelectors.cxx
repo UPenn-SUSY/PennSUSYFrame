@@ -53,55 +53,24 @@ PennSusyFrame::ElectronSelector::ElectronSelector() : m_min_pt(-1)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::ElectronSelector::setPtCut(double min, double max)
-{
-  m_min_pt = min;
-  m_max_pt = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::ElectronSelector::setEtaCut(double min, double max)
-{
-  m_min_eta = min;
-  m_max_eta = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::ElectronSelector::setD0SignificanceCut(double min, double max)
-{
-  m_min_d0_significance = min;
-  m_max_d0_significance = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::ElectronSelector::setZ0SignThetaCut(double min, double max)
-{
-  m_min_z0_sin_theta = min;
-  m_max_z0_sin_theta = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::ElectronSelector::setPtIsoCut(double min, double max)
-{
-  m_min_ptcone = min;
-  m_max_ptcone = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::ElectronSelector::setEtIsoCut(double min, double max)
-{
-  m_min_etcone = min;
-  m_max_etcone = max;
-}
-
-// -----------------------------------------------------------------------------
 bool PennSusyFrame::ElectronSelector::passAllCuts(const PennSusyFrame::Electron* p)
 {
+  // check electron pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
+
+  // check electron eta
   if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+
+  // check electron d0 significance
   if (!passCut(p->getD0Significance(), m_min_d0_significance, m_max_d0_significance)) return false;
+
+  // check electron z0*sin(theta)
   if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
+
+  // check electron pt isolation
   if (!passCut(p->getPtIso(), m_min_ptcone, m_max_ptcone)) return false;
+
+  // check electron et isolation
   if (!passCut(p->getEtIso(), m_min_etcone, m_max_etcone)) return false;
 
   return true;
@@ -145,119 +114,27 @@ PennSusyFrame::MuonSelector::MuonSelector() : m_min_pt(-1)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setPtCut(double min, double max)
-{
-  m_min_pt = min;
-  m_max_pt = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setEtaCut(double min, double max)
-{
-  m_min_eta = min;
-  m_max_eta = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setBLayerHitsCut(int min, int max)
-{
-  m_min_b_layer_hits = min;
-  m_max_b_layer_hits = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setPixelHitsCut(int min, int max)
-{
-  m_min_pixel_hits = min;
-  m_max_pixel_hits = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setSctHitsCut(int min, int max)
-{
-  m_min_sct_hits = min;
-  m_max_sct_hits = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setSiHolesCut(int min, int max)
-{
-  m_min_si_holes = min;
-  m_max_si_holes = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setTrtEtaCut(double min, double max)
-{
-  m_min_trt_eta = min;
-  m_max_trt_eta = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setTrtHitsCut(int min, int max)
-{
-  m_min_trt_hits = min;
-  m_max_trt_hits = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setTrtOlFractionCut(double min, double max)
-{
-  m_min_trt_ol_fraction = min;
-  m_max_trt_ol_fraction = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setD0SignificanceCut(double min, double max)
-{
-  m_min_d0_significance = min;
-  m_max_d0_significance = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setZ0SignThetaCut(double min, double max)
-{
-  m_min_z0_sin_theta = min;
-  m_max_z0_sin_theta = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setD0Cut(double min, double max)
-{
-  m_min_d0 = min;
-  m_max_d0 = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setZ0Cut(double min, double max)
-{
-  m_min_z0 = min;
-  m_max_z0 = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setQOverPRatioCut(double min, double max)
-{
-  m_min_q_over_p_ratio = min;
-  m_max_q_over_p_ratio = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::MuonSelector::setPtIsoCut(double min, double max)
-{
-  m_min_ptcone = min;
-  m_max_ptcone = max;
-}
-
-// -----------------------------------------------------------------------------
 bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
 {
+  // check muon pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
+
+  // check muon eta
   if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+
+  // check muon num b layer hits
   if (!passCut(p->getNumBLayerHits(), m_min_b_layer_hits, m_max_b_layer_hits)) return false;
+
+  // check muon num pixel hits
   if (!passCut(p->getNumPixelHits(), m_min_pixel_hits, m_max_pixel_hits)) return false;
+
+  // check muon num sct hits
   if (!passCut(p->getNumSctHits(), m_min_sct_hits, m_max_sct_hits)) return false;
+
+  // check muon si holes
   if (!passCut(p->getNumSiHoles(), m_min_si_holes, m_max_si_holes)) return false;
+
+  // check muon track eta
   if (  passCut(p->getTrackEta(), m_min_trt_eta, m_max_trt_eta)
      && (  !passCut(p->getNumTrtHits(), m_min_trt_hits, m_max_trt_hits)
         || !passCut(p->getTrtOlFraction(), m_min_trt_ol_fraction, m_max_trt_ol_fraction)
@@ -265,14 +142,28 @@ bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
      )
     return false;
 
-
+  // check muon d0 significance
   if (!passCut(p->getD0Significance(), m_min_d0_significance, m_max_d0_significance)) return false;
+
+  // check muon z0*sin(theta)
   if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
+
+  // check muon d0
   if (!passCut(p->getD0(), m_min_d0, m_max_d0)) return false;
+
+  // check muon z0
   if (!passCut(p->getZ0(), m_min_z0, m_max_z0)) return false;
+
+  // check muon q/p ratio
   if (!passCut(p->getQOverPRatio(), m_min_q_over_p_ratio, m_max_q_over_p_ratio)) return false;
+
+  // check muon pt isolation
   if (!passCut(p->getPtIso(), m_min_ptcone, m_max_ptcone)) return false;
 
+  // check muon et isolation
+  if (!passCut(p->getEtIso(), m_min_etcone, m_max_etcone)) return false;
+
+  // this muon passes all cuts
   return true;
 }
 
@@ -284,29 +175,37 @@ PennSusyFrame::TauSelector::TauSelector() : m_min_pt(-1)
                                           , m_max_pt(-1)
                                           , m_min_eta(-1)
                                           , m_max_eta(-1)
+                                          , m_jet_bdt_level(TAU_JET_BDT_NONE)
+                                          , m_ele_bdt_level(TAU_ELE_BDT_NONE)
+                                          , m_mu_level(TAU_MU_NONE)
 {
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::TauSelector::setPtCut(double min, double max)
-{
-  m_min_pt = min;
-  m_max_pt = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::TauSelector::setEtaCut(double min, double max)
-{
-  m_min_eta = min;
-  m_max_eta = max;
 }
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::TauSelector::passAllCuts(const PennSusyFrame::Tau* p)
 {
+  // check tau pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
+
+  // check tau eta
   if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
 
+  // check jet BDT level
+  if (m_jet_bdt_level == TAU_JET_BDT_LOOSE  && p->getJetBdtLoose()  == false)  return false;
+  if (m_jet_bdt_level == TAU_JET_BDT_MEDIUM && p->getJetBdtMedium() == false)  return false;
+  if (m_jet_bdt_level == TAU_JET_BDT_TIGHT  && p->getJetBdtTight()  == false)  return false;
+
+  // check ele BDT level
+  if (p->getNumTracks() == 1) {
+    if (  m_ele_bdt_level == TAU_ELE_BDT_LOOSE  && p->getEleBdtLoose()  == true) return false;
+    if (  m_ele_bdt_level == TAU_ELE_BDT_MEDIUM && p->getEleBdtMedium() == true) return false;
+    if (  m_ele_bdt_level == TAU_ELE_BDT_TIGHT  && p->getEleBdtTight()  == true) return false;
+  }
+
+  // check jet BDT level
+  if (m_mu_level == TAU_MU_TIGHT && p->getMuVeto() == true) return false;
+
+  // this tau passes all cuts
   return true;
 }
 
@@ -329,60 +228,27 @@ PennSusyFrame::JetSelector::JetSelector() : m_min_pt(-1)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::JetSelector::setPtCut(double min, double max)
-{
-  m_min_pt = min;
-  m_max_pt = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::JetSelector::setEtaCut(double min, double max)
-{
-  m_min_eta = min;
-  m_max_eta = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::JetSelector::setJvfCut(double min, double max)
-{
-  m_min_jvf = min;
-  m_max_jvf = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::JetSelector::setJvfPtThresh(double min, double max)
-{
-  m_min_jvf_pt_thresh = min;
-  m_max_jvf_pt_thresh = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::JetSelector::setMV1Cut(double min, double max)
-{
-  m_min_mv1 = min;
-  m_max_mv1 = max;
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::JetSelector::setIsBadJet(int val)
-{
-  m_is_bad_jet = val;
-}
-
-// -----------------------------------------------------------------------------
 bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
 {
+  // check jet pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
+
+  // check jet eta
   if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
+
+  // check jet jvf - only make jvf cut if the jet fails the jvf pt threshold
   if (  !passCut(p->getJvf(), m_min_jvf, m_max_jvf)
      && !passCut(p->getPt(), m_min_jvf_pt_thresh, m_max_jvf_pt_thresh)
      ) return false;
+
+  // check jet mv1 flavor weight
   if (!passCut(p->getMv1(), m_min_mv1, m_max_mv1)) return false;
   if (m_is_bad_jet == 0 || m_is_bad_jet == 1) {
     if (m_is_bad_jet == 0 && p->getIsBad() == true ) return false;
     if (m_is_bad_jet == 1 && p->getIsBad() == false) return false;
   }
 
+  // this jet passes all cuts
   return true;
 }
 
@@ -396,15 +262,9 @@ PennSusyFrame::VertexSelector::VertexSelector() : m_min_num_tracks(-1)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::VertexSelector::setNumTracksCut(double min, double max)
-{
-  m_min_num_tracks = min;
-  m_max_num_tracks = max;
-}
-
-// -----------------------------------------------------------------------------
 bool PennSusyFrame::VertexSelector::passAllCuts(const PennSusyFrame::Vertex* p)
 {
+  // check number of tracks for this vertex
   if ( !passCut( p->getNumTracks()
                , m_min_num_tracks
                , m_max_num_tracks

@@ -147,9 +147,15 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   // TODO check baseline tau definitions
   m_tau_selectors.at(TAU_BASELINE).setPtCut(10.e3, -1);
   m_tau_selectors.at(TAU_BASELINE).setEtaCut(-1, 2.4);
+  m_tau_selectors.at(TAU_BASELINE).setJetBdtLevel(TAU_JET_BDT_MEDIUM);
+  m_tau_selectors.at(TAU_BASELINE).setEleBdtLevel(TAU_ELE_BDT_LOOSE);
+  m_tau_selectors.at(TAU_BASELINE).setMuVetoLevel(TAU_MU_TIGHT);
 
   // TAU_SIGNAL
   // TODO check signal tau definitions
+  m_tau_selectors.at(TAU_SIGNAL).setJetBdtLevel(TAU_JET_BDT_MEDIUM);
+  m_tau_selectors.at(TAU_SIGNAL).setEleBdtLevel(TAU_ELE_BDT_LOOSE);
+  m_tau_selectors.at(TAU_SIGNAL).setMuVetoLevel(TAU_MU_TIGHT);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // jet selectors
@@ -238,23 +244,33 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   // get basic event variables
   m_event.getEvent(m_d3pd_reader);
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // select good vertices
+  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // // prep vertices
   m_vertices.prep(m_d3pd_reader);
+
+  // select good vertex cuts
   m_vertices.setCollection( VERTEX_GOOD
                           , PennSusyFrame::selectObjects( m_vertex_selectors.at(VERTEX_GOOD)
                                                         , m_vertices.getCollection(VERTEX_ALL)
                                                         )
                           );
+
+  // select >= 2 track vertex cuts
   m_vertices.setCollection( VERTEX_GT_2
                           , PennSusyFrame::selectObjects( m_vertex_selectors.at(VERTEX_GT_2)
                                                         , m_vertices.getCollection(VERTEX_ALL)
                                                         )
                           );
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // prep object containers
+  m_electrons.prep(m_d3pd_reader);
+  m_muons.prep(m_d3pd_reader);
+  m_taus.prep(m_d3pd_reader);
+  m_jets.prep(m_d3pd_reader, &m_event, &m_vertices);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // select baseline electrons from all electrons
-  m_electrons.prep(m_d3pd_reader);
+  // m_electrons.prep(m_d3pd_reader);
   m_electrons.setCollection( EL_BASELINE
                            , PennSusyFrame::selectObjects( m_electron_selectors.at(EL_BASELINE)
                                                          , m_electrons.getCollection(EL_ALL)
@@ -262,7 +278,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                            );
 
   // select baseline muons from all muons
-  m_muons.prep(m_d3pd_reader);
+  // m_muons.prep(m_d3pd_reader);
   m_muons.setCollection( MU_BASELINE
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_BASELINE)
                                                      , m_muons.getCollection(MU_ALL)
@@ -270,7 +286,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                        );
 
   // select baseline taus from all taus
-  m_taus.prep(m_d3pd_reader);
+  // m_taus.prep(m_d3pd_reader);
   m_taus.setCollection( TAU_BASELINE
                       , PennSusyFrame::selectObjects( m_tau_selectors.at(TAU_BASELINE)
                                                     , m_taus.getCollection(TAU_ALL)
@@ -278,7 +294,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                       );
 
   // select baseline jets from all jets
-  m_jets.prep(m_d3pd_reader, &m_event, &m_vertices);
+  // m_jets.prep(m_d3pd_reader, &m_event, &m_vertices);
   m_jets.setCollection( JET_BASELINE
                       , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_BASELINE)
                                                     , m_jets.getCollection(JET_ALL)
@@ -347,7 +363,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
-  // TODO make template processEvent
+  // TODO make placeholder processEvent
   // std::cout << "\n================================================================================\n";
   // m_event.print();
   // m_vertices.print(VERTEX_ALL);
