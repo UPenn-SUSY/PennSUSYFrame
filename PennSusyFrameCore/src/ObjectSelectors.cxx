@@ -356,11 +356,11 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( PennSusyFrame::ElectronC
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSusyFrame::Electron*>& input_electrons
-                                                      , const std::vector<PennSusyFrame::Muon*>& input_muons
-                                                      , const std::vector<PennSusyFrame::Tau*>& input_taus
-                                                      , const std::vector<PennSusyFrame::Jet*>& input_jets_good
-                                                      , const std::vector<PennSusyFrame::Jet*>& input_jets_bad
+void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSusyFrame::Electron*>* input_electrons
+                                                      , const std::vector<PennSusyFrame::Muon*>* input_muons
+                                                      , const std::vector<PennSusyFrame::Tau*>* input_taus
+                                                      , const std::vector<PennSusyFrame::Jet*>* input_jets_good
+                                                      , const std::vector<PennSusyFrame::Jet*>* input_jets_bad
                                                       , std::vector<PennSusyFrame::Electron*>& output_electrons
                                                       , std::vector<PennSusyFrame::Muon*>& output_muons
                                                       , std::vector<PennSusyFrame::Tau*>& output_taus
@@ -370,21 +370,21 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSu
 {
   // do ee overlap removal
   std::vector<PennSusyFrame::Electron*> el_temp_1;
-  eeOverlapRemoval(input_electrons, el_temp_1);
+  eeOverlapRemoval(*input_electrons, el_temp_1);
 
   // do ej overlap removal
   std::vector<PennSusyFrame::Jet*> jet_good_temp_1;
   std::vector<PennSusyFrame::Jet*> jet_bad_temp_1;
-  ejOverlapRemoval(el_temp_1, input_jets_good, jet_good_temp_1);
-  ejOverlapRemoval(el_temp_1, input_jets_bad , jet_bad_temp_1 );
+  ejOverlapRemoval(el_temp_1, *input_jets_good, jet_good_temp_1);
+  ejOverlapRemoval(el_temp_1, *input_jets_bad , jet_bad_temp_1 );
 
   // do et overlap removal
   std::vector<PennSusyFrame::Tau*> tau_temp_1;
-  etOverlapRemoval(el_temp_1, input_taus, tau_temp_1);
+  etOverlapRemoval(el_temp_1, *input_taus, tau_temp_1);
 
   // do mt overlap removal
   std::vector<PennSusyFrame::Tau*> tau_temp_2;
-  mtOverlapRemoval(input_muons, tau_temp_1, tau_temp_2);
+  mtOverlapRemoval(*input_muons, tau_temp_1, tau_temp_2);
 
   // do je overlap removal
   std::vector<PennSusyFrame::Electron*> el_temp_2;
@@ -395,8 +395,8 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSu
   // do jm overlap removal
   std::vector<PennSusyFrame::Muon*> mu_temp_1;
   std::vector<PennSusyFrame::Muon*> mu_temp_2;
-  jmOverlapRemoval(jet_good_temp_1, input_muons, mu_temp_1);
-  jmOverlapRemoval(jet_bad_temp_1 , mu_temp_1  , mu_temp_2);
+  jmOverlapRemoval(jet_good_temp_1, *input_muons, mu_temp_1);
+  jmOverlapRemoval(jet_bad_temp_1 , mu_temp_1   , mu_temp_2);
 
   // do em overlap removal
   std::vector<PennSusyFrame::Electron*> el_temp_4;

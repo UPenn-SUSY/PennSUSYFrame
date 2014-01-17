@@ -5,6 +5,7 @@
 
 #include "TLorentzVector.h"
 #include "PennSusyFrameCore/include/RescalerTools.h"
+#include "RootCore/MissingETUtility/MissingETUtility/METUtility.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -125,12 +126,12 @@ namespace PennSusyFrame
       void setIsLightLepton(bool val) { m_is_light_lepton = val; }
       void setIsElectron(bool val) { m_is_electron = val; }
       void setCharge(double val) { m_charge = val; }
-
       // TODO move accessors to cxx file
       bool isElectron() const { return (m_is_light_lepton && m_is_electron); }
       bool isMuon() const { return (m_is_light_lepton && !m_is_electron); }
       bool isTau() const { return !m_is_light_lepton; }
       double getCharge() const { return m_charge; }
+
 
       virtual void print() const;
 
@@ -139,6 +140,7 @@ namespace PennSusyFrame
       bool m_is_light_lepton;
       bool m_is_electron;
       double m_charge;
+
   };
 
   // =============================================================================
@@ -167,6 +169,10 @@ namespace PennSusyFrame
       // TODO rename these functions to give access to all iso variables - raw and corrected
       void setPtIso(double val) { m_pt_iso = val; }
       void setEtIso(double val) { m_et_iso = val; }
+      void setMetStatusWord(const std::vector<unsigned int>& val) { m_met_status_word = val; }
+      void setMetWet(const std::vector<float>& val) { m_met_wet = val; }
+      void setMetWpx(const std::vector<float>& val) { m_met_wpx = val; }
+      void setMetWpy(const std::vector<float>& val) { m_met_wpy = val; }
 
       // TODO move accessors to cxx file
       int getAuthor() const { return m_author; }
@@ -184,6 +190,10 @@ namespace PennSusyFrame
       // TODO rename these functions to give access to all iso variables - raw and corrected
       double getPtIso() const { return m_pt_iso; }
       double getEtIso() const { return m_et_iso; }
+      std::vector<unsigned int> getMetStatusWord() const { return m_met_status_word; }
+      std::vector<float>  getMetWet() const { return m_met_wet; }
+      std::vector<float>  getMetWpx() const { return m_met_wpx; }
+      std::vector<float>  getMetWpy() const { return m_met_wpy; }
 
       virtual void print() const;
 
@@ -203,6 +213,11 @@ namespace PennSusyFrame
       double m_z0;
       double m_pt_iso;
       double m_et_iso;
+
+      std::vector<unsigned int> m_met_status_word;
+      std::vector<float> m_met_wet;
+      std::vector<float> m_met_wpx;
+      std::vector<float> m_met_wpy;
   };
 
   // =============================================================================
@@ -238,6 +253,10 @@ namespace PennSusyFrame
       void setPtIso(double val) { m_pt_iso = val; }
       void setEtIso(double val) { m_et_iso = val; }
 
+      void setMsQOverP(double val) { m_ms_q_over_p = val; }
+      void setMsTheta(double val) { m_ms_theta = val; }
+      void setMsPhi(double val) { m_ms_phi = val; }
+
       // TODO move accessors to cxx file
       int getIsCombined() const { return m_is_combined; }
       int getIsSegmentTagged() const { return m_is_segment_tagged; }
@@ -260,6 +279,10 @@ namespace PennSusyFrame
       double getZ0SinTheta() const { return m_z0*sin(m_tlv.Theta()); }
       double getPtIso() const { return m_pt_iso; }
       double getEtIso() const { return m_et_iso; }
+
+      double getMsQOverP() const { return m_ms_q_over_p; }
+      double getMsTheta() const { return m_ms_theta; }
+      double getMsPhi() const { return m_ms_phi; }
 
       virtual void print() const;
 
@@ -290,6 +313,10 @@ namespace PennSusyFrame
       double m_z0;
       double m_pt_iso;
       double m_et_iso;
+
+      double m_ms_q_over_p;
+      double m_ms_theta;
+      double m_ms_phi;
 
   };
 
@@ -372,6 +399,10 @@ namespace PennSusyFrame
       void getBchCorr(double val) { m_bch_corr = val; }
       void getDphiMet(double val) { m_dphi_met = val; }
       void setIsBad(bool val) { m_is_bad = val; }
+      void setMetStatusWord(const std::vector<unsigned int>& val) { m_met_status_word = val; }
+      void setMetWet(const std::vector<float>& val) { m_met_wet = val; }
+      void setMetWpx(const std::vector<float>& val) { m_met_wpx = val; }
+      void setMetWpy(const std::vector<float>& val) { m_met_wpy = val; }
 
       // TODO move accessors to cxx file
       double getConstScaleE() const { return m_constscale_e; }
@@ -387,6 +418,10 @@ namespace PennSusyFrame
       double getBchCorr() const { return m_bch_corr; }
       double getDphiMet() const { return m_dphi_met; }
       bool getIsBad() const { return m_is_bad; }
+      std::vector<unsigned int> getMetStatusWord() const { return m_met_status_word; }
+      std::vector<float>  getMetWet() const { return m_met_wet; }
+      std::vector<float>  getMetWpx() const { return m_met_wpx; }
+      std::vector<float>  getMetWpy() const { return m_met_wpy; }
 
       virtual void print() const;
 
@@ -412,6 +447,11 @@ namespace PennSusyFrame
       double m_mv1;
       double m_bch_corr;
       double m_dphi_met;
+
+      std::vector<unsigned int> m_met_status_word;
+      std::vector<float>  m_met_wet;
+      std::vector<float>  m_met_wpx;
+      std::vector<float>  m_met_wpy;
 
       bool m_is_bad;
   };
@@ -464,10 +504,34 @@ namespace PennSusyFrame
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
       Met();
+
+      void init();
+
+      void prep( const PennSusyFrame::D3PDReader*
+               , const PennSusyFrame::Event&
+               , const std::vector<PennSusyFrame::Electron*>*
+               , const std::vector<PennSusyFrame::Muon*>*
+               , const std::vector<PennSusyFrame::Jet*>*
+               );
       void clear();
+
+      void print() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected:
+      void addMet(const PennSusyFrame::D3PDReader*);
+      void addElectrons(const std::vector<PennSusyFrame::Electron*>*);
+      void addMuons(const std::vector<PennSusyFrame::Muon*>*);
+      void addJets(const std::vector<PennSusyFrame::Jet*>*);
+      void doWeightFix( std::vector<float>&
+                      , std::vector<float>&
+                      , std::vector<float>&
+                      );
+
+      bool m_prepared;
+
+      METUtility m_met_utility;
+      TVector2 m_met_vec;
   };
 }
 

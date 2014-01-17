@@ -81,9 +81,9 @@ size_t PennSusyFrame::ElectronContainer::num(ELECTRON_COLLECTIONS el_collection)
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<PennSusyFrame::Electron*> PennSusyFrame::ElectronContainer::getCollection(ELECTRON_COLLECTIONS el_collection) const
+const std::vector<PennSusyFrame::Electron*>* PennSusyFrame::ElectronContainer::getCollection(ELECTRON_COLLECTIONS el_collection) const
 {
-  return m_user_lists.at(el_collection);
+  return &m_user_lists.at(el_collection);
 }
 
 // ----------------------------------------------------------------------------
@@ -176,9 +176,9 @@ size_t PennSusyFrame::MuonContainer::num(MUON_COLLECTIONS mu_collection) const
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<PennSusyFrame::Muon*> PennSusyFrame::MuonContainer::getCollection(MUON_COLLECTIONS mu_collection) const
+const std::vector<PennSusyFrame::Muon*>* PennSusyFrame::MuonContainer::getCollection(MUON_COLLECTIONS mu_collection) const
 {
-  return m_user_lists.at(mu_collection);
+  return &m_user_lists.at(mu_collection);
 }
 
 // ----------------------------------------------------------------------------
@@ -272,9 +272,9 @@ size_t PennSusyFrame::TauContainer::num(TAU_COLLECTIONS tau_collection) const
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<PennSusyFrame::Tau*> PennSusyFrame::TauContainer::getCollection(TAU_COLLECTIONS tau_collection) const
+const std::vector<PennSusyFrame::Tau*>* PennSusyFrame::TauContainer::getCollection(TAU_COLLECTIONS tau_collection) const
 {
-  return m_user_lists.at(tau_collection);
+  return &m_user_lists.at(tau_collection);
 }
 
 // ----------------------------------------------------------------------------
@@ -370,9 +370,9 @@ size_t PennSusyFrame::JetContainer::num(JET_COLLECTIONS jet_collection) const
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<PennSusyFrame::Jet*> PennSusyFrame::JetContainer::getCollection(JET_COLLECTIONS jet_collection) const
+const std::vector<PennSusyFrame::Jet*>* PennSusyFrame::JetContainer::getCollection(JET_COLLECTIONS jet_collection) const
 {
-  return m_user_lists.at(jet_collection);
+  return &m_user_lists.at(jet_collection);
 }
 
 // ----------------------------------------------------------------------------
@@ -447,9 +447,9 @@ size_t PennSusyFrame::VertexContainer::num(VERTEX_COLLECTIONS vertex_collection)
 }
 
 // ----------------------------------------------------------------------------
-const std::vector<PennSusyFrame::Vertex*> PennSusyFrame::VertexContainer::getCollection(VERTEX_COLLECTIONS vertex_collection) const
+const std::vector<PennSusyFrame::Vertex*>* PennSusyFrame::VertexContainer::getCollection(VERTEX_COLLECTIONS vertex_collection) const
 {
-  return m_user_lists.at(vertex_collection);
+  return &m_user_lists.at(vertex_collection);
 }
 
 // ----------------------------------------------------------------------------

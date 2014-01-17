@@ -26,7 +26,7 @@ namespace PennSusyFrame
       void setCollection(VERTEX_COLLECTIONS, std::vector<PennSusyFrame::Vertex*>);
 
       size_t num(VERTEX_COLLECTIONS) const;
-      const std::vector<PennSusyFrame::Vertex*> getCollection(VERTEX_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Vertex*>* getCollection(VERTEX_COLLECTIONS) const;
 
       void print(VERTEX_COLLECTIONS) const;
 
@@ -52,7 +52,7 @@ namespace PennSusyFrame
       void setCollection(ELECTRON_COLLECTIONS, std::vector<PennSusyFrame::Electron*>);
 
       size_t num(ELECTRON_COLLECTIONS) const;
-      const std::vector<PennSusyFrame::Electron*> getCollection(ELECTRON_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Electron*>* getCollection(ELECTRON_COLLECTIONS) const;
 
       void print(ELECTRON_COLLECTIONS) const;
 
@@ -80,7 +80,7 @@ namespace PennSusyFrame
       void setCollection(MUON_COLLECTIONS, std::vector<PennSusyFrame::Muon*>);
 
       size_t num(MUON_COLLECTIONS) const;
-      const std::vector<PennSusyFrame::Muon*> getCollection(MUON_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Muon*>* getCollection(MUON_COLLECTIONS) const;
 
       void print(MUON_COLLECTIONS) const;
 
@@ -108,7 +108,7 @@ namespace PennSusyFrame
       void setCollection(TAU_COLLECTIONS, std::vector<PennSusyFrame::Tau*>);
 
       size_t num(TAU_COLLECTIONS) const;
-      const std::vector<PennSusyFrame::Tau*> getCollection(TAU_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Tau*>* getCollection(TAU_COLLECTIONS) const;
 
       void print(TAU_COLLECTIONS) const;
 
@@ -136,7 +136,7 @@ namespace PennSusyFrame
       void setCollection(JET_COLLECTIONS, std::vector<PennSusyFrame::Jet*>);
 
       size_t num(JET_COLLECTIONS) const;
-      const std::vector<PennSusyFrame::Jet*> getCollection(JET_COLLECTIONS) const;
+      const std::vector<PennSusyFrame::Jet*>* getCollection(JET_COLLECTIONS) const;
 
       void print(JET_COLLECTIONS) const;
 

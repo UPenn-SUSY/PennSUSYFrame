@@ -233,6 +233,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::clearObjects()
 {
+  m_met.clear();
   m_vertices.clear();
   m_electrons.clear();
   m_muons.clear();
@@ -323,6 +324,14 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                       );
 
   // -----------------------------------------------------------------------------
+  m_met.prep( m_d3pd_reader
+            , m_event
+            , m_electrons.getCollection(EL_GOOD)
+            , m_muons.getCollection(MU_GOOD)
+            , m_jets.getCollection(JET_GOOD)
+            );
+
+  // -----------------------------------------------------------------------------
   m_event.updateWithMet(m_met);
   m_electrons.updateWithMet(m_met);
   m_muons.updateWithMet(m_met);
@@ -372,11 +381,42 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
   // TODO make placeholder processEvent
-  // std::cout << "\n================================================================================\n";
-  // m_event.print();
+  std::cout << "\n";
+  std::cout << "\n================================================================================\n";
+  m_event.print();
+  std::cout << "\n";
+  m_electrons.print(EL_ALL);
+  m_electrons.print(EL_BASELINE);
+  m_electrons.print(EL_GOOD);
+  m_electrons.print(EL_SIGNAL);
+
+  std::cout << "\n";
+  m_muons.print(MU_ALL);
+  m_muons.print(MU_BASELINE);
+  m_muons.print(MU_GOOD);
+  m_muons.print(MU_COSMIC);
+  m_muons.print(MU_BAD);
+  m_muons.print(MU_SIGNAL);
+
+  std::cout << "\n";
+  m_taus.print(TAU_ALL);
+  m_taus.print(TAU_BASELINE);
+  m_taus.print(TAU_GOOD);
+  m_taus.print(TAU_SIGNAL);
+
+  std::cout << "\n";
+  m_jets.print(JET_ALL);
+  m_jets.print(JET_BASELINE);
+  m_jets.print(JET_BASELINE_GOOD);
+  m_jets.print(JET_BASELINE_BAD);
+  m_jets.print(JET_GOOD);
+  m_jets.print(JET_BAD);
+  m_jets.print(JET_CALO_PROBLEM);
+  m_jets.print(JET_LIGHT);
+  m_jets.print(JET_B);
+  m_jets.print(JET_FORWARD);
+
+  std::cout << "\n";
+  m_met.print();
   // m_vertices.print(VERTEX_ALL);
-  // m_electrons.print(EL_ALL);
-  // m_muons.print(MU_ALL);
-  // m_taus.print(TAU_ALL);
-  // m_jets.print(JET_ALL);
 }

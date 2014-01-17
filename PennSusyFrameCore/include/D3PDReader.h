@@ -2332,9 +2332,9 @@ namespace PennSusyFrame
     // std::vector<float>   *mu_staco_me_cov_qoverp_exPV;
     // std::vector<float>   *mu_staco_ms_d0;
     // std::vector<float>   *mu_staco_ms_z0;
-    // std::vector<float>   *mu_staco_ms_phi;
-    // std::vector<float>   *mu_staco_ms_theta;
-    // std::vector<float>   *mu_staco_ms_qoverp;
+    std::vector<float>   *mu_staco_ms_phi;
+    std::vector<float>   *mu_staco_ms_theta;
+    std::vector<float>   *mu_staco_ms_qoverp;
     // std::vector<float>   *mu_staco_id_d0;
     // std::vector<float>   *mu_staco_id_z0;
     // std::vector<float>   *mu_staco_id_phi;
@@ -3023,9 +3023,9 @@ namespace PennSusyFrame
     // //    Float_t         MET_RefMuon_Muid_ety_ForwardReg;
     // //    Float_t         MET_RefMuon_Muid_sumet_ForwardReg;
     // //    Float_t         MET_RefMuon_Muid_phi_ForwardReg;
-    // //    Float_t         MET_RefGamma_etx;
-    // //    Float_t         MET_RefGamma_ety;
-    // //    Float_t         MET_RefGamma_sumet;
+     Float_t         MET_RefGamma_etx;
+     Float_t         MET_RefGamma_ety;
+     Float_t         MET_RefGamma_sumet;
     // //    Float_t         MET_RefGamma_etx_CentralReg;
     // //    Float_t         MET_RefGamma_ety_CentralReg;
     // //    Float_t         MET_RefGamma_sumet_CentralReg;
@@ -3053,9 +3053,9 @@ namespace PennSusyFrame
     // //    Float_t         MET_RefTau_ety_ForwardReg;
     // //    Float_t         MET_RefTau_sumet_ForwardReg;
     // //    Float_t         MET_RefTau_phi_ForwardReg;
-    // Float_t         MET_CellOut_etx;
-    // Float_t         MET_CellOut_ety;
-    // Float_t         MET_CellOut_sumet;
+    Float_t         MET_CellOut_etx;
+    Float_t         MET_CellOut_ety;
+    Float_t         MET_CellOut_sumet;
     // Float_t         MET_CellOut_etx_CentralReg;
     // Float_t         MET_CellOut_ety_CentralReg;
     // Float_t         MET_CellOut_sumet_CentralReg;
@@ -5127,10 +5127,10 @@ namespace PennSusyFrame
     // //    Float_t         MET_Egamma10LooseTau_RefTau_sumet_ForwardReg;
     // //    Float_t         MET_Egamma10LooseTau_RefTau_phi_ForwardReg;
     // Int_t           el_MET_Egamma10NoTau_n;
-    // std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wpx;
-    // std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wpy;
-    // std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wet;
-    // std::vector<std::vector<unsigned int> > *el_MET_Egamma10NoTau_statusWord;
+    std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wpx;
+    std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wpy;
+    std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wet;
+    std::vector<std::vector<unsigned int> > *el_MET_Egamma10NoTau_statusWord;
     // Int_t           ph_MET_Egamma10NoTau_n;
     // std::vector<std::vector<float> > *ph_MET_Egamma10NoTau_wpx;
     // std::vector<std::vector<float> > *ph_MET_Egamma10NoTau_wpy;
@@ -5147,10 +5147,10 @@ namespace PennSusyFrame
     // // std::vector<std::vector<float> > *mu_MET_Egamma10NoTau_wet;
     // // std::vector<std::vector<unsigned int> > *mu_MET_Egamma10NoTau_statusWord;
     // Int_t           jet_AntiKt4LCTopo_MET_Egamma10NoTau_n;
-    // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx;
-    // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpy;
-    // std::vector<std::vector<float> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet;
-    // std::vector<std::vector<unsigned int> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord;
+    std::vector<std::vector<float> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx;
+    std::vector<std::vector<float> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpy;
+    std::vector<std::vector<float> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet;
+    std::vector<std::vector<unsigned int> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord;
     // //    Int_t           el_MET_LooseEgamma10NoTauLoosePhotonRef_n;
     // //    std::vector<std::vector<float> > *el_MET_LooseEgamma10NoTauLoosePhotonRef_wpx;
     // //    std::vector<std::vector<float> > *el_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;
@@ -9355,9 +9355,9 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_me_cov_qoverp_exPV;   //!
     // TBranch        *b_mu_staco_ms_d0;   //!
     // TBranch        *b_mu_staco_ms_z0;   //!
-    // TBranch        *b_mu_staco_ms_phi;   //!
-    // TBranch        *b_mu_staco_ms_theta;   //!
-    // TBranch        *b_mu_staco_ms_qoverp;   //!
+    TBranch        *b_mu_staco_ms_phi;   //!
+    TBranch        *b_mu_staco_ms_theta;   //!
+    TBranch        *b_mu_staco_ms_qoverp;   //!
     // TBranch        *b_mu_staco_id_d0;   //!
     // TBranch        *b_mu_staco_id_z0;   //!
     // TBranch        *b_mu_staco_id_phi;   //!
@@ -10046,9 +10046,9 @@ namespace PennSusyFrame
     // //    TBranch        *b_MET_RefMuon_Muid_ety_ForwardReg;   //!
     // //    TBranch        *b_MET_RefMuon_Muid_sumet_ForwardReg;   //!
     // //    TBranch        *b_MET_RefMuon_Muid_phi_ForwardReg;   //!
-    // //    TBranch        *b_MET_RefGamma_etx;   //!
-    // //    TBranch        *b_MET_RefGamma_ety;   //!
-    // //    TBranch        *b_MET_RefGamma_sumet;   //!
+    TBranch        *b_MET_RefGamma_etx;   //!
+    TBranch        *b_MET_RefGamma_ety;   //!
+    TBranch        *b_MET_RefGamma_sumet;   //!
     // //    TBranch        *b_MET_RefGamma_etx_CentralReg;   //!
     // //    TBranch        *b_MET_RefGamma_ety_CentralReg;   //!
     // //    TBranch        *b_MET_RefGamma_sumet_CentralReg;   //!
@@ -10076,9 +10076,9 @@ namespace PennSusyFrame
     // //    TBranch        *b_MET_RefTau_ety_ForwardReg;   //!
     // //    TBranch        *b_MET_RefTau_sumet_ForwardReg;   //!
     // //    TBranch        *b_MET_RefTau_phi_ForwardReg;   //!
-    // TBranch        *b_MET_CellOut_etx;   //!
-    // TBranch        *b_MET_CellOut_ety;   //!
-    // TBranch        *b_MET_CellOut_sumet;   //!
+    TBranch        *b_MET_CellOut_etx;   //!
+    TBranch        *b_MET_CellOut_ety;   //!
+    TBranch        *b_MET_CellOut_sumet;   //!
     // TBranch        *b_MET_CellOut_etx_CentralReg;   //!
     // TBranch        *b_MET_CellOut_ety_CentralReg;   //!
     // TBranch        *b_MET_CellOut_sumet_CentralReg;   //!
@@ -12150,10 +12150,10 @@ namespace PennSusyFrame
     // //    TBranch        *b_MET_Egamma10LooseTau_RefTau_sumet_ForwardReg;   //!
     // //    TBranch        *b_MET_Egamma10LooseTau_RefTau_phi_ForwardReg;   //!
     // TBranch        *b_el_MET_Egamma10NoTau_n;   //!
-    // TBranch        *b_el_MET_Egamma10NoTau_wpx;   //!
-    // TBranch        *b_el_MET_Egamma10NoTau_wpy;   //!
-    // TBranch        *b_el_MET_Egamma10NoTau_wet;   //!
-    // TBranch        *b_el_MET_Egamma10NoTau_statusWord;   //!
+    TBranch        *b_el_MET_Egamma10NoTau_wpx;   //!
+    TBranch        *b_el_MET_Egamma10NoTau_wpy;   //!
+    TBranch        *b_el_MET_Egamma10NoTau_wet;   //!
+    TBranch        *b_el_MET_Egamma10NoTau_statusWord;   //!
     // TBranch        *b_ph_MET_Egamma10NoTau_n;   //!
     // TBranch        *b_ph_MET_Egamma10NoTau_wpx;   //!
     // TBranch        *b_ph_MET_Egamma10NoTau_wpy;   //!
@@ -12165,10 +12165,10 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_MET_Egamma10NoTau_wet;   //!
     // TBranch        *b_mu_staco_MET_Egamma10NoTau_statusWord;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_n;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpy;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpy;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord;   //!
     // //    TBranch        *b_el_MET_LooseEgamma10NoTauLoosePhotonRef_n;   //!
     // //    TBranch        *b_el_MET_LooseEgamma10NoTauLoosePhotonRef_wpx;   //!
     // //    TBranch        *b_el_MET_LooseEgamma10NoTauLoosePhotonRef_wpy;   //!

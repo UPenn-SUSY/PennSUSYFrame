@@ -9,14 +9,14 @@ namespace PennSusyFrame
 {
   // -----------------------------------------------------------------------------
   template <class selector, class T>
-    std::vector<T*> selectObjects(selector& sel, std::vector<T*> t)
+    std::vector<T*> selectObjects(selector& sel, const std::vector<T*>* t)
     {
       std::vector<T*> selected_objects;
 
-      size_t term = t.size();
+      size_t term = t->size();
       for (size_t it = 0; it != term; ++it) {
-        if (sel.passAllCuts(t.at(it))) {
-          selected_objects.push_back(t.at(it));
+        if (sel.passAllCuts(t->at(it))) {
+          selected_objects.push_back(t->at(it));
         }
       }
 

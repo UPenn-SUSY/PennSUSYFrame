@@ -30,7 +30,7 @@ namespace PennSusyFrame
 namespace PennSusyFrame
 {
   template <class selector, class T>
-    std::vector<T*> selectObjects(selector& sel, std::vector<T*> t);
+    const std::vector<T*> selectObjects(selector& sel, std::vector<T*>* t);
 
   // =============================================================================
   // = SelectorBase
@@ -287,11 +287,11 @@ namespace PennSusyFrame
                              , PennSusyFrame::JetContainer&
                              );
 
-      void fullObjectCleaning( const std::vector<PennSusyFrame::Electron*>&
-                             , const std::vector<PennSusyFrame::Muon*>&
-                             , const std::vector<PennSusyFrame::Tau*>&
-                             , const std::vector<PennSusyFrame::Jet*>&
-                             , const std::vector<PennSusyFrame::Jet*>&
+      void fullObjectCleaning( const std::vector<PennSusyFrame::Electron*>*
+                             , const std::vector<PennSusyFrame::Muon*>*
+                             , const std::vector<PennSusyFrame::Tau*>*
+                             , const std::vector<PennSusyFrame::Jet*>*
+                             , const std::vector<PennSusyFrame::Jet*>*
                              , std::vector<PennSusyFrame::Electron*>&
                              , std::vector<PennSusyFrame::Muon*>&
                              , std::vector<PennSusyFrame::Tau*>&
