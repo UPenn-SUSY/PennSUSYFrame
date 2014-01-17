@@ -61,6 +61,7 @@ namespace PennSusyFrame
       ElectronSelector();
 
       // TODO move accessors to cxx file
+      void setElectronQuality(ELECTRON_QUALITY_LEVEL val) { m_electron_quality = val; }
       void setPtCut(            double min = -1, double max = -1) { m_min_pt              = min; m_max_pt              = max; }
       void setEtaCut(           double min = -1, double max = -1) { m_min_eta             = min; m_max_eta             = max; }
       void setD0SignificanceCut(double min = -1, double max = -1) { m_min_d0_significance = min; m_max_d0_significance = max; }
@@ -73,6 +74,8 @@ namespace PennSusyFrame
       bool passAllCuts(const PennSusyFrame::Electron*);
 
     private:
+      ELECTRON_QUALITY_LEVEL m_electron_quality;
+
       double m_min_pt;
       double m_max_pt;
 
@@ -219,6 +222,8 @@ namespace PennSusyFrame
       void setJvfCut(     double min = -1, double max = -1) { m_min_jvf           = min; m_max_jvf           = max; }
       void setJvfPtThresh(double min = -1, double max = -1) { m_min_jvf_pt_thresh = min; m_max_jvf_pt_thresh = max; }
       void setMV1Cut(     double min = -1, double max = -1) { m_min_mv1           = min; m_max_mv1           = max; }
+      void setBchCorrCut( double min = -1, double max = -1) { m_min_bch_corr      = min; m_max_bch_corr      = max; }
+      void setDphiMet(    double min = -1, double max = -1) { m_min_dphi_met      = min; m_max_dphi_met      = max; }
       void setIsBadJet(int val) { m_is_bad_jet = val; }
 
       using SelectorBase::passAllCuts;
@@ -239,6 +244,12 @@ namespace PennSusyFrame
 
       double m_min_mv1;
       double m_max_mv1;
+
+      double m_min_bch_corr;
+      double m_max_bch_corr;
+
+      double m_min_dphi_met;
+      double m_max_dphi_met;
 
       int m_is_bad_jet;
   };

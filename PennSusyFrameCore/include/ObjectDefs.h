@@ -10,6 +10,16 @@
 namespace PennSusyFrame
 {
   class D3PDReader;
+
+  class PhysicsObject;
+  class Event;
+  class Particle;
+  class Lepton;
+  class Electron;
+  class Muon;
+  class Jet;
+  class Vertex;
+  class Met;
 }
 
 // =============================================================================
@@ -18,9 +28,11 @@ namespace PennSusyFrame
   // =============================================================================
   class PhysicsObject
   {
-    // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // public:
-    //   PhysicsObject();
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      // PhysicsObject();
+
+      virtual void updateWithMet(const PennSusyFrame::Met&);
   };
 
   // =============================================================================
@@ -357,6 +369,8 @@ namespace PennSusyFrame
       void setActiveAreaE(double val) { m_active_area_e = val; }
       void setJvf(double val) { m_jvf = val; }
       void setMv1(double val) { m_mv1 = val; }
+      void getBchCorr(double val) { m_bch_corr = val; }
+      void getDphiMet(double val) { m_dphi_met = val; }
       void setIsBad(bool val) { m_is_bad = val; }
 
       // TODO move accessors to cxx file
@@ -370,6 +384,8 @@ namespace PennSusyFrame
       double getActiveAreaE() const { return m_active_area_e; }
       double getJvf() const { return m_jvf; }
       double getMv1() const { return m_mv1; }
+      double getBchCorr() const { return m_bch_corr; }
+      double getDphiMet() const { return m_dphi_met; }
       bool getIsBad() const { return m_is_bad; }
 
       virtual void print() const;
@@ -394,6 +410,8 @@ namespace PennSusyFrame
       double m_active_area_e;
       double m_jvf;
       double m_mv1;
+      double m_bch_corr;
+      double m_dphi_met;
 
       bool m_is_bad;
   };

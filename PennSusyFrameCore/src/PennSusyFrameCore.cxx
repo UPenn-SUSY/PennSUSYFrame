@@ -98,10 +98,12 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_electron_selectors.resize(EL_N);
 
   // EL_BASELINE
+  m_electron_selectors.at(EL_BASELINE).setElectronQuality(EL_QUALITY_MEDPP);
   m_electron_selectors.at(EL_BASELINE).setPtCut(10.e3, -1);
   m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.4);
 
   // EL_SIGNAL
+  m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
   m_electron_selectors.at(EL_SIGNAL).setPtCut(10.e3, -1);
   m_electron_selectors.at(EL_SIGNAL).setEtaCut(-1, 2.4);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
@@ -132,7 +134,7 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.12);
 
   // MU_BAD
-  // TODO check bad muon definitions
+  m_muon_selectors.at(MU_BAD).setQOverPRatioCut(0.2, -1);
 
   // MU_COSMIC
   m_muon_selectors.at(MU_COSMIC).setReversedSelector(true);
@@ -144,15 +146,13 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_tau_selectors.resize(TAU_N);
 
   // TAU_BASELINE
-  // TODO check baseline tau definitions
-  m_tau_selectors.at(TAU_BASELINE).setPtCut(10.e3, -1);
-  m_tau_selectors.at(TAU_BASELINE).setEtaCut(-1, 2.4);
+  m_tau_selectors.at(TAU_BASELINE).setPtCut(20.e3, -1);
+  m_tau_selectors.at(TAU_BASELINE).setEtaCut(-1, 2.47);
   m_tau_selectors.at(TAU_BASELINE).setJetBdtLevel(TAU_JET_BDT_MEDIUM);
   m_tau_selectors.at(TAU_BASELINE).setEleBdtLevel(TAU_ELE_BDT_LOOSE);
   m_tau_selectors.at(TAU_BASELINE).setMuVetoLevel(TAU_MU_TIGHT);
 
   // TAU_SIGNAL
-  // TODO check signal tau definitions
   m_tau_selectors.at(TAU_SIGNAL).setJetBdtLevel(TAU_JET_BDT_MEDIUM);
   m_tau_selectors.at(TAU_SIGNAL).setEleBdtLevel(TAU_ELE_BDT_LOOSE);
   m_tau_selectors.at(TAU_SIGNAL).setMuVetoLevel(TAU_MU_TIGHT);
@@ -173,6 +173,9 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
 
   // JET_CALO_PROBLEM
   // TODO check calo problem definitions
+  m_jet_selectors.at(JET_CALO_PROBLEM).setPtCut(40.e3, -1);
+  m_jet_selectors.at(JET_CALO_PROBLEM).setBchCorrCut(0.05, -1);
+  m_jet_selectors.at(JET_CALO_PROBLEM).setDphiMet(-1, 0.3);
 
   // JET_LIGHT
   m_jet_selectors.at(JET_LIGHT).setPtCut(20.e3, -1);
@@ -319,6 +322,11 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                       , m_jets
                                       );
 
+  // -----------------------------------------------------------------------------
+  m_event.updateWithMet(m_met);
+  m_electrons.updateWithMet(m_met);
+  m_muons.updateWithMet(m_met);
+  m_jets.updateWithMet(m_met);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // select signal electrons from good electrons

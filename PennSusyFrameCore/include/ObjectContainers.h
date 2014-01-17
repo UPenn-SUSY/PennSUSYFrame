@@ -45,6 +45,7 @@ namespace PennSusyFrame
       ~ElectronContainer();
 
       void init();
+      void updateWithMet(const PennSusyFrame::Met&);
 
       void clear();
       void prep(PennSusyFrame::D3PDReader*);
@@ -72,6 +73,7 @@ namespace PennSusyFrame
       ~MuonContainer();
 
       void init();
+      void updateWithMet(const PennSusyFrame::Met&);
 
       void clear();
       void prep(PennSusyFrame::D3PDReader*);
@@ -99,6 +101,7 @@ namespace PennSusyFrame
       ~TauContainer();
 
       void init();
+      void updateWithMet(const PennSusyFrame::Met&);
 
       void clear();
       void prep(PennSusyFrame::D3PDReader*);
@@ -126,6 +129,7 @@ namespace PennSusyFrame
       ~JetContainer();
 
       void init();
+      void updateWithMet(const PennSusyFrame::Met&);
 
       void clear();
       void prep(PennSusyFrame::D3PDReader*, PennSusyFrame::Event*, PennSusyFrame::VertexContainer*);

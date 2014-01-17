@@ -27,6 +27,15 @@ void PennSusyFrame::ElectronContainer::init()
   m_el_rescaler = new PennSusyFrame::ElectronRescalerTool();
 }
 
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ElectronContainer::updateWithMet(const PennSusyFrame::Met& met)
+{
+  size_t term = num(EL_ALL);
+  for (size_t it = 0; it != term; ++it) {
+    m_user_lists.at(EL_ALL).at(it)->updateWithMet(met);
+  }
+}
+
 // ----------------------------------------------------------------------------
 void PennSusyFrame::ElectronContainer::clear()
 {
@@ -111,6 +120,15 @@ PennSusyFrame::MuonContainer::~MuonContainer()
 void PennSusyFrame::MuonContainer::init()
 {
   m_mu_rescaler = new PennSusyFrame::MuonRescalerTool();
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonContainer::updateWithMet(const PennSusyFrame::Met& met)
+{
+  size_t term = num(MU_ALL);
+  for (size_t it = 0; it != term; ++it) {
+    m_user_lists.at(MU_ALL).at(it)->updateWithMet(met);
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -199,6 +217,16 @@ void PennSusyFrame::TauContainer::init()
   m_tau_rescaler = new PennSusyFrame::TauRescalerTool();
 }
 
+// -----------------------------------------------------------------------------
+void PennSusyFrame::TauContainer::updateWithMet(const PennSusyFrame::Met& met)
+{
+  size_t term = num(TAU_ALL);
+  for (size_t it = 0; it != term; ++it) {
+    m_user_lists.at(TAU_ALL).at(it)->updateWithMet(met);
+  }
+}
+
+
 // ----------------------------------------------------------------------------
 void PennSusyFrame::TauContainer::clear()
 {
@@ -285,6 +313,16 @@ void PennSusyFrame::JetContainer::init()
   m_jet_rescaler = new PennSusyFrame::JetRescalerTool();
 }
 
+// -----------------------------------------------------------------------------
+void PennSusyFrame::JetContainer::updateWithMet(const PennSusyFrame::Met& met)
+{
+  size_t term = num(JET_ALL);
+  for (size_t it = 0; it != term; ++it) {
+    m_user_lists.at(JET_ALL).at(it)->updateWithMet(met);
+  }
+}
+
+
 // ----------------------------------------------------------------------------
 void PennSusyFrame::JetContainer::clear()
 {
@@ -362,9 +400,7 @@ PennSusyFrame::VertexContainer::VertexContainer()
 }
 
 // ----------------------------------------------------------------------------
-void PennSusyFrame::VertexContainer::init()
-{
-}
+void PennSusyFrame::VertexContainer::init() {}
 
 // ----------------------------------------------------------------------------
 void PennSusyFrame::VertexContainer::clear()

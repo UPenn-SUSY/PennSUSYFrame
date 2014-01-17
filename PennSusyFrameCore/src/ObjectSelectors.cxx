@@ -37,7 +37,8 @@ bool PennSusyFrame::SelectorBase::passAllCuts(const PennSusyFrame::PhysicsObject
 // = ElectronSelector
 // =============================================================================
 // ----------------------------------------------------------------------------
-PennSusyFrame::ElectronSelector::ElectronSelector() : m_min_pt(-1)
+PennSusyFrame::ElectronSelector::ElectronSelector() : m_electron_quality(EL_QUALITY_NONE)
+                                                    , m_min_pt(-1)
                                                     , m_max_pt(-1)
                                                     , m_min_eta(-1)
                                                     , m_max_eta(-1)
@@ -55,6 +56,18 @@ PennSusyFrame::ElectronSelector::ElectronSelector() : m_min_pt(-1)
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::ElectronSelector::passAllCuts(const PennSusyFrame::Electron* p)
 {
+  // check electron author
+  // TODO do we want this hard coded? do we ever want electrons with author != 1 || 3?
+  if (p->getAuthor() != 1 && p->getAuthor() != 3) return false;
+
+  // check electron OTX cut
+  // TODO do we want this hard coded? do we ever want electrons that fail the OTX cut?
+  if (!p->getPassOTX()) return false;
+
+  // check electron quality
+  if (m_electron_quality == EL_QUALITY_MEDPP   && !p->getMediumPP()) return false;
+  if (m_electron_quality == EL_QUALITY_TIGHTPP && !p->getTightPP() ) return false;
+
   // check electron pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
 
@@ -184,6 +197,12 @@ PennSusyFrame::TauSelector::TauSelector() : m_min_pt(-1)
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::TauSelector::passAllCuts(const PennSusyFrame::Tau* p)
 {
+  // check num tacks
+  if (p->getNumTracks() != 1 && p->getNumTracks() != 3) return false;
+
+  // check tau charge
+  if (fabs(p->getCharge())) return false;
+
   // check tau pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
 
@@ -247,6 +266,12 @@ bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
     if (m_is_bad_jet == 0 && p->getIsBad() == true ) return false;
     if (m_is_bad_jet == 1 && p->getIsBad() == false) return false;
   }
+
+  // check bch_corr
+  if (!passCut(p->getBchCorr(), m_min_bch_corr, m_max_bch_corr)) return false;
+
+  // check dphi(met,jet)
+  if (!passCut(p->getDphiMet(), m_min_dphi_met, m_max_dphi_met)) return false;
 
   // this jet passes all cuts
   return true;

@@ -669,7 +669,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_isEMLoose = 0;
   // el_isEMMedium = 0;
   // el_isEMTight = 0;
-  // el_OQ = 0;
+  el_OQ = 0;
   // el_convFlag = 0;
   // el_isConv = 0;
   // el_nConv = 0;
@@ -710,9 +710,9 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_tightIso = 0;
   // el_loosePP = 0;
   // el_loosePPIso = 0;
-  // el_mediumPP = 0;
+  el_mediumPP = 0;
   // el_mediumPPIso = 0;
-  // el_tightPP = 0;
+  el_tightPP = 0;
   // el_tightPPIso = 0;
   // el_goodOQ = 0;
   // el_Ethad = 0;
@@ -5306,7 +5306,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("el_isEMLoose", &el_isEMLoose, &b_el_isEMLoose);
   // // fChain->SetBranchAddress("el_isEMMedium", &el_isEMMedium, &b_el_isEMMedium);
   // // fChain->SetBranchAddress("el_isEMTight", &el_isEMTight, &b_el_isEMTight);
-  // // fChain->SetBranchAddress("el_OQ", &el_OQ, &b_el_OQ);
+  turnOnBranch(tree, "el_OQ", &el_OQ, &b_el_OQ);
   // // fChain->SetBranchAddress("el_convFlag", &el_convFlag, &b_el_convFlag);
   // // fChain->SetBranchAddress("el_isConv", &el_isConv, &b_el_isConv);
   // // fChain->SetBranchAddress("el_nConv", &el_nConv, &b_el_nConv);
@@ -5347,9 +5347,9 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("el_tightIso", &el_tightIso, &b_el_tightIso);
   // // fChain->SetBranchAddress("el_loosePP", &el_loosePP, &b_el_loosePP);
   // // fChain->SetBranchAddress("el_loosePPIso", &el_loosePPIso, &b_el_loosePPIso);
-  // // fChain->SetBranchAddress("el_mediumPP", &el_mediumPP, &b_el_mediumPP);
+  turnOnBranch(tree, "el_mediumPP", &el_mediumPP, &b_el_mediumPP);
   // // fChain->SetBranchAddress("el_mediumPPIso", &el_mediumPPIso, &b_el_mediumPPIso);
-  // // fChain->SetBranchAddress("el_tightPP", &el_tightPP, &b_el_tightPP);
+  turnOnBranch(tree, "el_tightPP", &el_tightPP, &b_el_tightPP);
   // // fChain->SetBranchAddress("el_tightPPIso", &el_tightPPIso, &b_el_tightPPIso);
   // // fChain->SetBranchAddress("el_goodOQ", &el_goodOQ, &b_el_goodOQ);
   // // fChain->SetBranchAddress("el_Ethad", &el_Ethad, &b_el_Ethad);

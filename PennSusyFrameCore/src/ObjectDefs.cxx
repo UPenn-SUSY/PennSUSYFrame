@@ -1,6 +1,7 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/D3PDReader.h"
 // #include "PennSusyFrameCore/include/Calculators.h"
+#include "RootCore/egammaEvent/egammaEvent/egammaPIDdefs.h"
 
 #include <vector>
 #include <iostream>
@@ -10,18 +11,19 @@
 static const double PI = 3.14159265359;
 
 // =============================================================================
+// = PhysicsObject
+// =============================================================================
+void PennSusyFrame::PhysicsObject::updateWithMet(const PennSusyFrame::Met&) {}
+
+// =============================================================================
 // = Event
 // =============================================================================
 // -----------------------------------------------------------------------------
 // TODO set m_is_data properly
-PennSusyFrame::Event::Event() : m_is_data(false)
-{
-}
+PennSusyFrame::Event::Event() : m_is_data(false) {}
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Event::init()
-{
-}
+void PennSusyFrame::Event::init() {}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
@@ -50,8 +52,7 @@ void PennSusyFrame::Event::print() const
 // -----------------------------------------------------------------------------
 PennSusyFrame::Particle::Particle() : m_tlv_set(false)
                                     , m_raw_tlv_set(false)
-{
-}
+{ }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Particle::printGeneralInfo() const
@@ -261,6 +262,13 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setCharge(reader->el_charge->at(el_index));
 
   setAuthor(reader->el_author->at(el_index));
+  setMediumPP(reader->el_mediumPP->at(el_index));
+  setTightPP(reader->el_tightPP->at(el_index));
+  bool pass_otx = ( !( (reader->el_OQ->at(el_index) & egammaPID::BADCLUSELECTRON)
+                     > 0
+                     )
+                  );
+  setPassOtx(pass_otx);
 
   setClE(reader->el_cl_E->at(el_index));
   setClEta(reader->el_cl_eta->at(el_index));
@@ -440,10 +448,7 @@ PennSusyFrame::Tau::Tau( const PennSusyFrame::D3PDReader* reader
   setParticleIndex(tau_index);
 
   setCharge(reader->tau_charge->at(tau_index));
-
-  // std::cout << "about to get tau_numTrack->at(" << tau_index << ") -- vector size: " << reader->tau_numTrack->size() << "\n";
   setNumTracks(reader->tau_numTrack->at(tau_index));
-  // std::cout << "\tgot variable from d3pd\n";
 
   setJetBdtLoose( reader->tau_JetBDTSigLoose->at( tau_index));
   setJetBdtMedium(reader->tau_JetBDTSigMedium->at(tau_index));

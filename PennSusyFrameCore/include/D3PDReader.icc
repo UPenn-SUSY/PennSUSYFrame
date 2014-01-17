@@ -2,8 +2,6 @@
 #ifndef PennSusyFrame_D3PDReader_icc
 #define PennSusyFrame_D3PDReader_icc
 
-// #include "PennSusyFrameCore/include/D3PDReader.h"
-
 namespace PennSusyFrame
 {
   template <class T>

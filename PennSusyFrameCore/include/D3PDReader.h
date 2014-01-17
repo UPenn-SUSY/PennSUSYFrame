@@ -1841,7 +1841,7 @@ namespace PennSusyFrame
     // std::vector<unsigned int> *el_isEMLoose;
     // std::vector<unsigned int> *el_isEMMedium;
     // std::vector<unsigned int> *el_isEMTight;
-    // std::vector<unsigned int> *el_OQ;
+    std::vector<unsigned int> *el_OQ;
     // std::vector<int>     *el_convFlag;
     // std::vector<int>     *el_isConv;
     // std::vector<int>     *el_nConv;
@@ -1882,9 +1882,9 @@ namespace PennSusyFrame
     // std::vector<int>     *el_tightIso;
     // std::vector<int>     *el_loosePP;
     // std::vector<int>     *el_loosePPIso;
-    // std::vector<int>     *el_mediumPP;
+    std::vector<int>     *el_mediumPP;
     // std::vector<int>     *el_mediumPPIso;
-    // std::vector<int>     *el_tightPP;
+    std::vector<int>     *el_tightPP;
     // std::vector<int>     *el_tightPPIso;
     // std::vector<int>     *el_goodOQ;
     // std::vector<float>   *el_Ethad;
@@ -8864,7 +8864,7 @@ namespace PennSusyFrame
     // TBranch        *b_el_isEMLoose;   //!
     // TBranch        *b_el_isEMMedium;   //!
     // TBranch        *b_el_isEMTight;   //!
-    // TBranch        *b_el_OQ;   //!
+    TBranch        *b_el_OQ;   //!
     // TBranch        *b_el_convFlag;   //!
     // TBranch        *b_el_isConv;   //!
     // TBranch        *b_el_nConv;   //!
@@ -8905,9 +8905,9 @@ namespace PennSusyFrame
     // TBranch        *b_el_tightIso;   //!
     // TBranch        *b_el_loosePP;   //!
     // TBranch        *b_el_loosePPIso;   //!
-    // TBranch        *b_el_mediumPP;   //!
+    TBranch        *b_el_mediumPP;   //!
     // TBranch        *b_el_mediumPPIso;   //!
-    // TBranch        *b_el_tightPP;   //!
+    TBranch        *b_el_tightPP;   //!
     // TBranch        *b_el_tightPPIso;   //!
     // TBranch        *b_el_goodOQ;   //!
     // TBranch        *b_el_Ethad;   //!
