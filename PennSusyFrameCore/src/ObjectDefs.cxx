@@ -554,6 +554,12 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Jet::updateWithMet(const PennSusyFrame::Met&)
+{
+  // TODO update jet object with met -- need to store dphi(jet,met)
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::Jet::print() const
 {
   printGeneralInfo();

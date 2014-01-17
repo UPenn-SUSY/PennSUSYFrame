@@ -385,6 +385,8 @@ namespace PennSusyFrame
          , bool verbose = false
          );
 
+      virtual void updateWithMet(const PennSusyFrame::Met&);
+
       // TODO move accessors to cxx file
       void setConstScaleE(double val) { m_constscale_e = val; }
       void setConstScaleEta(double val) { m_constscale_eta = val; }

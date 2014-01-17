@@ -123,6 +123,8 @@ PennSusyFrame::MuonSelector::MuonSelector() : m_min_pt(-1)
                                             , m_max_q_over_p_ratio(-1)
                                             , m_min_ptcone(-1)
                                             , m_max_ptcone(-1)
+                                            , m_min_etcone(-1)
+                                            , m_max_etcone(-1)
 {
 }
 
@@ -242,6 +244,10 @@ PennSusyFrame::JetSelector::JetSelector() : m_min_pt(-1)
                                           , m_max_jvf_pt_thresh(-1)
                                           , m_min_mv1(-1)
                                           , m_max_mv1(-1)
+                                          , m_min_bch_corr(-1)
+                                          , m_max_bch_corr(-1)
+                                          , m_min_dphi_met(-1)
+                                          , m_max_dphi_met(-1)
                                           , m_is_bad_jet(-1)
 {
 }
