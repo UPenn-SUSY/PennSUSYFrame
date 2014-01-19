@@ -398,8 +398,8 @@ namespace PennSusyFrame
       void setActiveAreaE(double val) { m_active_area_e = val; }
       void setJvf(double val) { m_jvf = val; }
       void setMv1(double val) { m_mv1 = val; }
-      void getBchCorr(double val) { m_bch_corr = val; }
-      void getDphiMet(double val) { m_dphi_met = val; }
+      void setBchCorr(double val) { m_bch_corr = val; }
+      void setDphiMet(double val) { m_dphi_met = val; }
       void setIsBad(bool val) { m_is_bad = val; }
       void setMetStatusWord(const std::vector<unsigned int>& val) { m_met_status_word = val; }
       void setMetWet(const std::vector<float>& val) { m_met_wet = val; }
@@ -515,6 +515,16 @@ namespace PennSusyFrame
                , const std::vector<PennSusyFrame::Muon*>*
                , const std::vector<PennSusyFrame::Jet*>*
                );
+      void constructMetRel( const std::vector<PennSusyFrame::Electron*>*
+                          , const std::vector<PennSusyFrame::Muon*>*
+                          , const std::vector<PennSusyFrame::Jet*>*
+                          );
+
+      double getMetEt() { return m_met_et; }
+      double getMetPhi() { return m_met_phi; }
+      double getMetRel() { return m_met_rel_et; }
+      double getDPhi(PennSusyFrame::Particle*) const;
+
       void clear();
 
       void print() const;
@@ -529,12 +539,36 @@ namespace PennSusyFrame
                       , std::vector<float>&
                       , std::vector<float>&
                       );
+      template <class T>
+        double findMinDphiInList(const std::vector<T*>&);
 
       bool m_prepared;
 
       METUtility m_met_utility;
       TVector2 m_met_vec;
+      double m_met_et;
+      double m_met_phi;
+      double m_met_rel_et;
   };
+
+  // TODO move to icc file
+  // -----------------------------------------------------------------------------
+  template <class T>
+    double PennSusyFrame::Met::findMinDphiInList(const std::vector<T*>& t_list)
+  {
+    double min_dphi = 999;
+    double this_dphi = 999;
+
+    size_t term = t_list.size();
+    for (size_t t_it = 0; t_it != term; ++t_it) {
+      this_dphi = getDPhi(t_list.at(t_it));
+      if (this_dphi < min_dphi)
+        min_dphi = this_dphi;
+    }
+
+    return min_dphi;
+  }
 }
+
 
 #endif

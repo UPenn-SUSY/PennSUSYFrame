@@ -1856,7 +1856,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   jet_AntiKt4LCTopo_AverageLArQF = 0;
   // jet_AntiKt4LCTopo_BCH_CORR_CELL = 0;
   // jet_AntiKt4LCTopo_BCH_CORR_DOTX = 0;
-  // jet_AntiKt4LCTopo_BCH_CORR_JET = 0;
+  jet_AntiKt4LCTopo_BCH_CORR_JET = 0;
   // jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL = 0;
   // jet_AntiKt4LCTopo_ENG_BAD_CELLS = 0;
   // jet_AntiKt4LCTopo_N_BAD_CELLS = 0;
@@ -8732,7 +8732,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "jet_AntiKt4LCTopo_AverageLArQF", &jet_AntiKt4LCTopo_AverageLArQF, &b_jet_AntiKt4LCTopo_AverageLArQF);
   // // fChain->SetBranchAddress("jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL, &b_jet_AntiKt4LCTopo_BCH_CORR_CELL);
   // // fChain->SetBranchAddress("jet_AntiKt4LCTopo_BCH_CORR_DOTX", &jet_AntiKt4LCTopo_BCH_CORR_DOTX, &b_jet_AntiKt4LCTopo_BCH_CORR_DOTX);
-  // // fChain->SetBranchAddress("jet_AntiKt4LCTopo_BCH_CORR_JET", &jet_AntiKt4LCTopo_BCH_CORR_JET, &b_jet_AntiKt4LCTopo_BCH_CORR_JET);
+  turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_JET", &jet_AntiKt4LCTopo_BCH_CORR_JET, &b_jet_AntiKt4LCTopo_BCH_CORR_JET);
   // // fChain->SetBranchAddress("jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL", &jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL, &b_jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL);
   // // fChain->SetBranchAddress("jet_AntiKt4LCTopo_ENG_BAD_CELLS", &jet_AntiKt4LCTopo_ENG_BAD_CELLS, &b_jet_AntiKt4LCTopo_ENG_BAD_CELLS);
   // // fChain->SetBranchAddress("jet_AntiKt4LCTopo_N_BAD_CELLS", &jet_AntiKt4LCTopo_N_BAD_CELLS, &b_jet_AntiKt4LCTopo_N_BAD_CELLS);

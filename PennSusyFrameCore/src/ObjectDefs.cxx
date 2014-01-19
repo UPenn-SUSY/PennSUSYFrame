@@ -8,6 +8,8 @@
 #include <iostream>
 #include <math.h>
 
+#include "TVector2.h"
+
 // =============================================================================
 static const double PI = 3.14159265359;
 
@@ -412,11 +414,7 @@ void PennSusyFrame::Muon::setMuTlv( const PennSusyFrame::D3PDReader* reader
   double raw_eta = reader->mu_staco_eta->at(m_particle_index);
   double raw_phi = reader->mu_staco_phi->at(m_particle_index);
   double raw_m   = 105.66;
-  raw_tlv.SetPtEtaPhiM( raw_pt
-                      , raw_eta
-                      , raw_phi
-                      , raw_m
-                      );
+  raw_tlv.SetPtEtaPhiM(raw_pt, raw_eta, raw_phi, raw_m);
   setRawTlv(raw_tlv);
 
   TLorentzVector tlv;
@@ -424,11 +422,7 @@ void PennSusyFrame::Muon::setMuTlv( const PennSusyFrame::D3PDReader* reader
   double corrected_eta = raw_eta;
   double corrected_phi = raw_phi;
   double corrected_m   = raw_m;
-  tlv.SetPtEtaPhiM( corrected_pt
-                  , corrected_eta
-                  , corrected_phi
-                  , corrected_m
-                  );
+  tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
   setTlv(tlv);
 }
 
@@ -489,11 +483,7 @@ void PennSusyFrame::Tau::setTauTlv( const PennSusyFrame::D3PDReader* reader
   double raw_eta = reader->tau_eta->at(m_particle_index);
   double raw_phi = reader->tau_phi->at(m_particle_index);
   double raw_m   = reader->tau_m->at(m_particle_index);;
-  raw_tlv.SetPtEtaPhiM( raw_pt
-                      , raw_eta
-                      , raw_phi
-                      , raw_m
-                      );
+  raw_tlv.SetPtEtaPhiM(raw_pt, raw_eta, raw_phi, raw_m);
   setRawTlv(raw_tlv);
 
   // TODO get rescaled tau
@@ -502,11 +492,7 @@ void PennSusyFrame::Tau::setTauTlv( const PennSusyFrame::D3PDReader* reader
   double corrected_eta = raw_eta;
   double corrected_phi = raw_phi;
   double corrected_m   = raw_m;
-  tlv.SetPtEtaPhiM( corrected_pt
-                  , corrected_eta
-                  , corrected_phi
-                  , corrected_m
-                  );
+  tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
   setTlv(tlv);
 }
 
@@ -542,6 +528,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setActiveAreaE(  reader->jet_AntiKt4LCTopo_ActiveAreaE->at(m_particle_index));
   setJvf(          reader->jet_AntiKt4LCTopo_jvtxf->at(m_particle_index));
   setMv1(          reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
+  setBchCorr(      reader->jet_AntiKt4LCTopo_BCH_CORR_JET->at(m_particle_index));
 
   setMetStatusWord(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord->at(m_particle_index));
   setMetWet(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet->at(m_particle_index));
@@ -554,9 +541,9 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Jet::updateWithMet(const PennSusyFrame::Met&)
+void PennSusyFrame::Jet::updateWithMet(const PennSusyFrame::Met& met)
 {
-  // TODO update jet object with met -- need to store dphi(jet,met)
+  setDphiMet(met.getDPhi(this));
 }
 
 // -----------------------------------------------------------------------------
@@ -577,11 +564,7 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
   double raw_eta = reader->jet_AntiKt4LCTopo_eta->at(m_particle_index);
   double raw_phi = reader->jet_AntiKt4LCTopo_phi->at(m_particle_index);
   double raw_m   = reader->jet_AntiKt4LCTopo_m->at(m_particle_index);
-  raw_tlv.SetPtEtaPhiM( raw_pt
-                      , raw_eta
-                      , raw_phi
-                      , raw_m
-                      );
+  raw_tlv.SetPtEtaPhiM(raw_pt, raw_eta, raw_phi, raw_m);
   setRawTlv(raw_tlv);
 
   TLorentzVector tlv = jet_rescaler->getCalibratedTlv( this
@@ -725,6 +708,34 @@ void PennSusyFrame::Met::prep( const PennSusyFrame::D3PDReader* reader
 
   // set met vector
   m_met_vec.Set(met_util.etx(), met_util.ety());
+  m_met_et = m_met_vec.Mod();
+  m_met_phi = m_met_vec.Phi();
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Met::constructMetRel( const std::vector<PennSusyFrame::Electron*>* el_list
+                                        , const std::vector<PennSusyFrame::Muon*>* mu_list
+                                        , const std::vector<PennSusyFrame::Jet*>* jet_list
+                                        )
+{
+  double min_dphi = 999;
+
+  min_dphi = std::min(min_dphi, findMinDphiInList(*el_list));
+  min_dphi = std::min(min_dphi, findMinDphiInList(*mu_list));
+  min_dphi = std::min(min_dphi, findMinDphiInList(*jet_list));
+
+  if (min_dphi < PI)
+    m_met_rel_et = m_met_et * cos(min_dphi);
+  else
+    m_met_rel_et = m_met_et;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::Met::getDPhi(PennSusyFrame::Particle* p) const
+{
+  double this_phi = m_met_vec.Phi();
+  double particle_phi = p->getPhi();
+  return TVector2::Phi_0_2pi(this_phi - particle_phi);
 }
 
 // -----------------------------------------------------------------------------

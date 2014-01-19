@@ -323,7 +323,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                       , m_jets
                                       );
 
-  // -----------------------------------------------------------------------------
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_met.prep( m_d3pd_reader
             , m_event
             , m_electrons.getCollection(EL_GOOD)
@@ -331,7 +331,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
             , m_jets.getCollection(JET_GOOD)
             );
 
-  // -----------------------------------------------------------------------------
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_event.updateWithMet(m_met);
   m_electrons.updateWithMet(m_met);
   m_muons.updateWithMet(m_met);
@@ -375,6 +375,13 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                     , m_jets.getCollection(JET_GOOD)
                                                     )
                       );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // construct met-rel
+  m_met.constructMetRel( m_electrons.getCollection(EL_GOOD)
+                       , m_muons.getCollection(MU_GOOD)
+                       , m_jets.getCollection(JET_GOOD)
+                       );
 }
 
 // -----------------------------------------------------------------------------

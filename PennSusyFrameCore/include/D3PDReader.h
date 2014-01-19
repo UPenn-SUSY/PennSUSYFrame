@@ -5292,7 +5292,7 @@ namespace PennSusyFrame
     std::vector<float>   *jet_AntiKt4LCTopo_AverageLArQF;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_CELL;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_DOTX;
-    // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_JET;
+    std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_JET;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL;
     // std::vector<float>   *jet_AntiKt4LCTopo_ENG_BAD_CELLS;
     // std::vector<float>   *jet_AntiKt4LCTopo_N_BAD_CELLS;
@@ -12290,7 +12290,7 @@ namespace PennSusyFrame
     TBranch        *b_jet_AntiKt4LCTopo_AverageLArQF;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_CELL;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_DOTX;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_JET;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_JET;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_ENG_BAD_CELLS;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_N_BAD_CELLS;   //!
