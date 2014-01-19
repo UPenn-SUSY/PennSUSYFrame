@@ -1,0 +1,34 @@
+// Dear emacs, this is -*- c++ -*-
+#ifndef PennSusyFrame_Calculators_icc
+#define PennSusyFrame_Calculators_icc
+
+#include "TLorentzVector.h"
+#include "PennSusyFrameCore/include/ObjectDefs.h"
+#include "RootCore/Mt2/Mt2/mt2_bisect.h"
+
+template <class T1, class T2>
+  double PennSusyFrame::calcMt2( const T1* t1
+                               , const T2* t2
+                               , const Met* met
+                               , double minv
+                               )
+{
+  const TLorentzVector* tlv_1 = t1->getTlv();
+  const TLorentzVector* tlv_2 = t2->getTlv();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  const TVector2* met_vec = met->getMetVec();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  double pa[3] = {tlv_1->M(), tlv_1->Px(), tlv_1->Py()};
+  double pb[3] = {tlv_2->M(), tlv_2->Px(), tlv_2->Py()};
+  double pmiss[3] = {0, met_vec->Px(), met_vec->Py()};
+
+  mt2_bisect::mt2 mt2_event;
+  mt2_event.set_momenta(pa,pb,pmiss);
+  mt2_event.set_mn(minv);
+
+  return mt2_event.get_mt2();
+}
+
+#endif

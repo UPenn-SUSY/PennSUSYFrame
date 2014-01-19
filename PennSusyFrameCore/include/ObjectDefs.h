@@ -520,9 +520,10 @@ namespace PennSusyFrame
                           , const std::vector<PennSusyFrame::Jet*>*
                           );
 
-      double getMetEt() { return m_met_et; }
-      double getMetPhi() { return m_met_phi; }
-      double getMetRel() { return m_met_rel_et; }
+      const TVector2* getMetVec() const { return &m_met_vec; }
+      double getMetEt() const { return m_met_et; }
+      double getMetPhi() const { return m_met_phi; }
+      double getMetRel() const { return m_met_rel_et; }
       double getDPhi(PennSusyFrame::Particle*) const;
 
       void clear();
@@ -550,25 +551,11 @@ namespace PennSusyFrame
       double m_met_phi;
       double m_met_rel_et;
   };
-
-  // TODO move to icc file
-  // -----------------------------------------------------------------------------
-  template <class T>
-    double PennSusyFrame::Met::findMinDphiInList(const std::vector<T*>& t_list)
-  {
-    double min_dphi = 999;
-    double this_dphi = 999;
-
-    size_t term = t_list.size();
-    for (size_t t_it = 0; t_it != term; ++t_it) {
-      this_dphi = getDPhi(t_list.at(t_it));
-      if (this_dphi < min_dphi)
-        min_dphi = this_dphi;
-    }
-
-    return min_dphi;
-  }
 }
 
+// Include the implementation:
+#ifndef __CINT__
+#include "ObjectDefs.icc"
+#endif // __CINT__
 
 #endif
