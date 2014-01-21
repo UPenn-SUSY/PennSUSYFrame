@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------
 # core SFrame package
 echo "Checking out SFrame package"
-svn co https://svn.code.sf.net/p/sframe/code/SFrame/tags/SFrame-03-06-21/ SFrame
+svn co https://svn.code.sf.net/p/sframe/code/SFrame/tags/SFrame-03-06-27/ SFrame
 mkdir SFrame/lib
 
 # ------------------------------------------------------------------------------
@@ -19,6 +19,18 @@ else
   svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-14 SUSYTools
 fi
 python SUSYTools/python/install.py
+
+# ------------------------------------------------------------------------------
+# get updated version of PATCore - fixes bug in Mac OS 10.9
+# TODO remove this section when SUSYTools updates PATCore
+echo "Removing default PATCore"
+rm -rf PATCore
+echo "Removing default GoodRunsLists"
+rm -rf GoodRunsLists
+echo "Installing updated version of PATCore"
+svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/AnalysisCommon/PATCore/tags/PATCore-00-00-16 PATCore
+echo "Installing updated version of GoodRunsLists"
+svn co svn+ssh://svn.cern.ch/reps/atlasoff/DataQuality/GoodRunsLists/tags/GoodRunsLists-00-01-09 GoodRunsLists
 
 # ------------------------------------------------------------------------------
 # Setup RootCore
