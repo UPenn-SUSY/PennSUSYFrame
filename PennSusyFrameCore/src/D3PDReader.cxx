@@ -741,7 +741,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_Etcone35 = 0;
   // el_Etcone40 = 0;
   // el_ptcone20 = 0;
-  // el_ptcone30 = 0;
+  el_ptcone30 = 0;
   // el_ptcone40 = 0;
   // el_nucone20 = 0;
   // el_nucone30 = 0;
@@ -883,7 +883,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_Etcone40_ED_corrected = 0;
   // el_Etcone40_corrected = 0;
   // el_topoEtcone20_corrected = 0;
-  // el_topoEtcone30_corrected = 0;
+  el_topoEtcone30_corrected = 0;
   // el_topoEtcone40_corrected = 0;
   // el_ED_median = 0;
   // el_ED_sigma = 0;
@@ -1063,7 +1063,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // mu_staco_matchchi2 = 0;
   // mu_staco_matchndof = 0;
   // mu_staco_etcone20 = 0;
-  // mu_staco_etcone30 = 0;
+  mu_staco_etcone30 = 0;
   // mu_staco_etcone40 = 0;
   // mu_staco_nucone20 = 0;
   // mu_staco_nucone30 = 0;
@@ -1294,7 +1294,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // mu_staco_nucone30_trk500MeV = 0;
   // mu_staco_nucone40_trk500MeV = 0;
   // mu_staco_ptcone20_trkelstyle = 0;
-  // mu_staco_ptcone30_trkelstyle = 0;
+  mu_staco_ptcone30_trkelstyle = 0;
   // mu_staco_ptcone40_trkelstyle = 0;
   // mu_staco_nucone20_trkelstyle = 0;
   // mu_staco_nucone30_trkelstyle = 0;
@@ -5378,7 +5378,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("el_Etcone35", &el_Etcone35, &b_el_Etcone35);
   // // fChain->SetBranchAddress("el_Etcone40", &el_Etcone40, &b_el_Etcone40);
   // // fChain->SetBranchAddress("el_ptcone20", &el_ptcone20, &b_el_ptcone20);
-  // // fChain->SetBranchAddress("el_ptcone30", &el_ptcone30, &b_el_ptcone30);
+  turnOnBranch(tree, "el_ptcone30", &el_ptcone30, &b_el_ptcone30);
   // // fChain->SetBranchAddress("el_ptcone40", &el_ptcone40, &b_el_ptcone40);
   // // fChain->SetBranchAddress("el_nucone20", &el_nucone20, &b_el_nucone20);
   // // fChain->SetBranchAddress("el_nucone30", &el_nucone30, &b_el_nucone30);
@@ -5520,7 +5520,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("el_Etcone40_ED_corrected", &el_Etcone40_ED_corrected, &b_el_Etcone40_ED_corrected);
   // // fChain->SetBranchAddress("el_Etcone40_corrected", &el_Etcone40_corrected, &b_el_Etcone40_corrected);
   // // fChain->SetBranchAddress("el_topoEtcone20_corrected", &el_topoEtcone20_corrected, &b_el_topoEtcone20_corrected);
-  // // fChain->SetBranchAddress("el_topoEtcone30_corrected", &el_topoEtcone30_corrected, &b_el_topoEtcone30_corrected);
+  turnOnBranch(tree, "el_topoEtcone30_corrected", &el_topoEtcone30_corrected, &b_el_topoEtcone30_corrected);
   // // fChain->SetBranchAddress("el_topoEtcone40_corrected", &el_topoEtcone40_corrected, &b_el_topoEtcone40_corrected);
   // // fChain->SetBranchAddress("el_ED_median", &el_ED_median, &b_el_ED_median);
   // // fChain->SetBranchAddress("el_ED_sigma", &el_ED_sigma, &b_el_ED_sigma);
@@ -5702,7 +5702,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("mu_staco_matchchi2", &mu_staco_matchchi2, &b_mu_staco_matchchi2);
   // // fChain->SetBranchAddress("mu_staco_matchndof", &mu_staco_matchndof, &b_mu_staco_matchndof);
   // // fChain->SetBranchAddress("mu_staco_etcone20", &mu_staco_etcone20, &b_mu_staco_etcone20);
-  // // fChain->SetBranchAddress("mu_staco_etcone30", &mu_staco_etcone30, &b_mu_staco_etcone30);
+  turnOnBranch(tree, "mu_staco_etcone30", &mu_staco_etcone30, &b_mu_staco_etcone30);
   // // fChain->SetBranchAddress("mu_staco_etcone40", &mu_staco_etcone40, &b_mu_staco_etcone40);
   // // fChain->SetBranchAddress("mu_staco_nucone20", &mu_staco_nucone20, &b_mu_staco_nucone20);
   // // fChain->SetBranchAddress("mu_staco_nucone30", &mu_staco_nucone30, &b_mu_staco_nucone30);
@@ -5933,7 +5933,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // // fChain->SetBranchAddress("mu_staco_nucone30_trk500MeV", &mu_staco_nucone30_trk500MeV, &b_mu_staco_nucone30_trk500MeV);
   // // fChain->SetBranchAddress("mu_staco_nucone40_trk500MeV", &mu_staco_nucone40_trk500MeV, &b_mu_staco_nucone40_trk500MeV);
   // // fChain->SetBranchAddress("mu_staco_ptcone20_trkelstyle", &mu_staco_ptcone20_trkelstyle, &b_mu_staco_ptcone20_trkelstyle);
-  // // fChain->SetBranchAddress("mu_staco_ptcone30_trkelstyle", &mu_staco_ptcone30_trkelstyle, &b_mu_staco_ptcone30_trkelstyle);
+  turnOnBranch(tree, "mu_staco_ptcone30_trkelstyle", &mu_staco_ptcone30_trkelstyle, &b_mu_staco_ptcone30_trkelstyle);
   // // fChain->SetBranchAddress("mu_staco_ptcone40_trkelstyle", &mu_staco_ptcone40_trkelstyle, &b_mu_staco_ptcone40_trkelstyle);
   // // fChain->SetBranchAddress("mu_staco_nucone20_trkelstyle", &mu_staco_nucone20_trkelstyle, &b_mu_staco_nucone20_trkelstyle);
   // // fChain->SetBranchAddress("mu_staco_nucone30_trkelstyle", &mu_staco_nucone30_trkelstyle, &b_mu_staco_nucone30_trkelstyle);

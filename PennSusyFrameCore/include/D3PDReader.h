@@ -1913,7 +1913,7 @@ namespace PennSusyFrame
     // std::vector<float>   *el_Etcone35;
     // std::vector<float>   *el_Etcone40;
     // std::vector<float>   *el_ptcone20;
-    // std::vector<float>   *el_ptcone30;
+    std::vector<float>   *el_ptcone30;
     // std::vector<float>   *el_ptcone40;
     // std::vector<float>   *el_nucone20;
     // std::vector<float>   *el_nucone30;
@@ -2055,7 +2055,7 @@ namespace PennSusyFrame
     // std::vector<float>   *el_Etcone40_ED_corrected;
     // std::vector<float>   *el_Etcone40_corrected;
     // std::vector<float>   *el_topoEtcone20_corrected;
-    // std::vector<float>   *el_topoEtcone30_corrected;
+    std::vector<float>   *el_topoEtcone30_corrected;
     // std::vector<float>   *el_topoEtcone40_corrected;
     // std::vector<float>   *el_ED_median;
     // std::vector<float>   *el_ED_sigma;
@@ -2237,7 +2237,7 @@ namespace PennSusyFrame
     // std::vector<float>   *mu_staco_matchchi2;
     // std::vector<int>     *mu_staco_matchndof;
     // std::vector<float>   *mu_staco_etcone20;
-    // std::vector<float>   *mu_staco_etcone30;
+    std::vector<float>   *mu_staco_etcone30;
     // std::vector<float>   *mu_staco_etcone40;
     // std::vector<float>   *mu_staco_nucone20;
     // std::vector<float>   *mu_staco_nucone30;
@@ -2468,7 +2468,7 @@ namespace PennSusyFrame
     // std::vector<int>     *mu_staco_nucone30_trk500MeV;
     // std::vector<int>     *mu_staco_nucone40_trk500MeV;
     // std::vector<float>   *mu_staco_ptcone20_trkelstyle;
-    // std::vector<float>   *mu_staco_ptcone30_trkelstyle;
+    std::vector<float>   *mu_staco_ptcone30_trkelstyle;
     // std::vector<float>   *mu_staco_ptcone40_trkelstyle;
     // std::vector<int>     *mu_staco_nucone20_trkelstyle;
     // std::vector<int>     *mu_staco_nucone30_trkelstyle;
@@ -8936,7 +8936,7 @@ namespace PennSusyFrame
     // TBranch        *b_el_Etcone35;   //!
     // TBranch        *b_el_Etcone40;   //!
     // TBranch        *b_el_ptcone20;   //!
-    // TBranch        *b_el_ptcone30;   //!
+    TBranch        *b_el_ptcone30;   //!
     // TBranch        *b_el_ptcone40;   //!
     // TBranch        *b_el_nucone20;   //!
     // TBranch        *b_el_nucone30;   //!
@@ -9078,7 +9078,7 @@ namespace PennSusyFrame
     // TBranch        *b_el_Etcone40_ED_corrected;   //!
     // TBranch        *b_el_Etcone40_corrected;   //!
     // TBranch        *b_el_topoEtcone20_corrected;   //!
-    // TBranch        *b_el_topoEtcone30_corrected;   //!
+    TBranch        *b_el_topoEtcone30_corrected;   //!
     // TBranch        *b_el_topoEtcone40_corrected;   //!
     // TBranch        *b_el_ED_median;   //!
     // TBranch        *b_el_ED_sigma;   //!
@@ -9260,7 +9260,7 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_matchchi2;   //!
     // TBranch        *b_mu_staco_matchndof;   //!
     // TBranch        *b_mu_staco_etcone20;   //!
-    // TBranch        *b_mu_staco_etcone30;   //!
+    TBranch        *b_mu_staco_etcone30;   //!
     // TBranch        *b_mu_staco_etcone40;   //!
     // TBranch        *b_mu_staco_nucone20;   //!
     // TBranch        *b_mu_staco_nucone30;   //!
@@ -9491,7 +9491,7 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_nucone30_trk500MeV;   //!
     // TBranch        *b_mu_staco_nucone40_trk500MeV;   //!
     // TBranch        *b_mu_staco_ptcone20_trkelstyle;   //!
-    // TBranch        *b_mu_staco_ptcone30_trkelstyle;   //!
+    TBranch        *b_mu_staco_ptcone30_trkelstyle;   //!
     // TBranch        *b_mu_staco_ptcone40_trkelstyle;   //!
     // TBranch        *b_mu_staco_nucone20_trkelstyle;   //!
     // TBranch        *b_mu_staco_nucone30_trkelstyle;   //!
