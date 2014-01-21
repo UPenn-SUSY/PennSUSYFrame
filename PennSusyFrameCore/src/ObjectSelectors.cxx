@@ -81,10 +81,10 @@ bool PennSusyFrame::ElectronSelector::passAllCuts(const PennSusyFrame::Electron*
   if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
 
   // check electron pt isolation
-  if (!passCut(p->getPtIso(), m_min_ptcone, m_max_ptcone)) return false;
+  if (!passCut(p->getPtIsoRatio(), m_min_ptcone, m_max_ptcone)) return false;
 
   // check electron et isolation
-  if (!passCut(p->getEtIso(), m_min_etcone, m_max_etcone)) return false;
+  if (!passCut(p->getEtIsoRatio(), m_min_etcone, m_max_etcone)) return false;
 
   return true;
 }
@@ -173,10 +173,10 @@ bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
   if (!passCut(p->getQOverPRatio(), m_min_q_over_p_ratio, m_max_q_over_p_ratio)) return false;
 
   // check muon pt isolation
-  if (!passCut(p->getPtIso(), m_min_ptcone, m_max_ptcone)) return false;
+  if (!passCut(p->getPtIsoRatio(), m_min_ptcone, m_max_ptcone)) return false;
 
   // check muon et isolation
-  if (!passCut(p->getEtIso(), m_min_etcone, m_max_etcone)) return false;
+  if (!passCut(p->getEtIsoRatio(), m_min_etcone, m_max_etcone)) return false;
 
   // this muon passes all cuts
   return true;

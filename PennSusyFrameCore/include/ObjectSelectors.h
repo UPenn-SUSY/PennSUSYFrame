@@ -66,7 +66,6 @@ namespace PennSusyFrame
       void setEtaCut(           double min = -1, double max = -1) { m_min_eta             = min; m_max_eta             = max; }
       void setD0SignificanceCut(double min = -1, double max = -1) { m_min_d0_significance = min; m_max_d0_significance = max; }
       void setZ0SignThetaCut(   double min = -1, double max = -1) { m_min_z0_sin_theta    = min; m_max_z0_sin_theta    = max; }
-      // TODO rename these functions
       void setPtIsoCut(         double min = -1, double max = -1) { m_min_ptcone = min; m_max_ptcone = max; }
       void setEtIsoCut(         double min = -1, double max = -1) { m_min_etcone = min; m_max_etcone = max; }
 
@@ -119,7 +118,6 @@ namespace PennSusyFrame
       void setD0Cut(            double min = -1, double max = -1) { m_min_d0              = min; m_max_d0              = max; }
       void setZ0Cut(            double min = -1, double max = -1) { m_min_z0              = min; m_max_z0              = max; }
       void setQOverPRatioCut(   double min = -1, double max = -1) { m_min_q_over_p_ratio  = min; m_max_q_over_p_ratio  = max; }
-      // TODO rename this function
       void setPtIsoCut(         double min = -1, double max = -1) { m_min_ptcone = min; m_max_ptcone = max; }
       void setEtIsoCut(         double min = -1, double max = -1) { m_min_etcone = min; m_max_etcone = max; }
 
