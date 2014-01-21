@@ -40,6 +40,14 @@ void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::Event::updateWithMet(const PennSusyFrame::Met& met)
+{
+  setMetEt(met.getMetEt());
+  setMetPhi(met.getMetPhi());
+  setMetRel(met.getMetRel());
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::Event::print() const
 {
   std::cout << "================= Printing event info: =================\n";
@@ -223,9 +231,10 @@ double PennSusyFrame::Particle::getRawE() const
 // =============================================================================
 // = Lepton
 // =============================================================================
-PennSusyFrame::Lepton::Lepton()
-{
-}
+PennSusyFrame::Lepton::Lepton() {}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Lepton::updateIsolation(const PennSusyFrame::Event*, int) {}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Lepton::print() const
@@ -292,6 +301,22 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
 
   // must set TLV last because it depends on above quantities
   setElTlv(reader, el_rescaler);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Electron::updateIsolation(const PennSusyFrame::Event* event, int num_vertices)
+{
+  // do not scale pt isolation
+  // float pt_slope = 0.;
+  // if (event->getIsData()) pt_slope = 0.;
+  // else           pt_slope = 0.;
+  // setPtIso(m_pt_iso - pt_slope*num_vertices);
+
+  // scale et isolation
+  float et_slope = 0.;
+  if (event->getIsData()) et_slope = 20.15;
+  else           et_slope = 17.94;
+  setEtIso(m_et_iso - et_slope*num_vertices);
 }
 
 // -----------------------------------------------------------------------------
@@ -396,6 +421,22 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setMsPhi(reader->mu_staco_ms_phi->at(mu_index));
 
   setMuTlv(reader, mu_rescaler);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Muon::updateIsolation(const PennSusyFrame::Event* /*event*/, int /*num_vertices*/)
+{
+  // do not scale pt isolation
+  // float pt_slope = 0.;
+  // if (event->getIsData()) pt_slope = 0.;
+  // else           pt_slope = 0.;
+  // setPtIso(m_pt_iso - pt_slope*num_vertices);
+
+  // do not scale et isolation
+  // float et_slope = 0.;
+  // if (event->getIsData()) et_slope = 0.;
+  // else           et_slope = 0.;
+  // setEtIso(m_et_iso - et_slope*num_vertices);
 }
 
 // -----------------------------------------------------------------------------

@@ -46,19 +46,31 @@ namespace PennSusyFrame
       void init();
       void getEvent(const PennSusyFrame::D3PDReader*);
 
+      virtual void updateWithMet(const PennSusyFrame::Met&);
+
       // TODO move accessors to cxx file
+      void setIsData(bool val) { m_is_data = val; }
       void setEventNumber(unsigned int val) { m_event_number = val; }
       void setRunNumber(unsigned int val)   { m_run_number = val; }
       void setLumiBlock(unsigned int val)   { m_lumi_block = val; }
       void setAverageIntPerXing(float val)  { m_average_int_per_xing = val; }
       void setEventShapeRhoKt4LC(float val) { m_eventshape_rhoKt4LC = val; }
+      void setMetEt(double val) { m_met_et = val; }
+      void setMetPhi(double val) { m_met_phi = val; }
+      void setMetRel(double val) { m_met_rel = val; }
+      void setMt2(double val) { m_mt2 = val; }
 
       // TODO move accessors to cxx file
+      bool getIsData() const { return m_is_data; }
       unsigned int getEventNumber() const { return m_event_number; }
       unsigned int getRunNumber() const { return m_run_number; }
       unsigned int getLumiBlock() const { return m_lumi_block; }
       float getAverageIntPerXing() const { return m_average_int_per_xing; }
       float getEventShapeRhoKt4LC() const { return m_eventshape_rhoKt4LC; }
+      double getMetEt() const { return m_met_et; }
+      double getMetPhi() const { return m_met_phi; }
+      double getMetRel() const { return m_met_rel; }
+      double getMt2() const { return m_mt2; }
 
       void print() const;
 
@@ -72,6 +84,13 @@ namespace PennSusyFrame
 
       float m_average_int_per_xing;
       float m_eventshape_rhoKt4LC;
+
+      double m_met_et;
+      double m_met_phi;
+      double m_met_rel;
+
+      // TODO set mt2 in event object
+      double m_mt2;
   };
 
   // =============================================================================
@@ -132,6 +151,7 @@ namespace PennSusyFrame
       bool isTau() const { return !m_is_light_lepton; }
       double getCharge() const { return m_charge; }
 
+      virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
       virtual void print() const;
 
@@ -194,6 +214,8 @@ namespace PennSusyFrame
       std::vector<float>  getMetWet() const { return m_met_wet; }
       std::vector<float>  getMetWpx() const { return m_met_wpx; }
       std::vector<float>  getMetWpy() const { return m_met_wpy; }
+
+      virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
       virtual void print() const;
 
@@ -283,6 +305,8 @@ namespace PennSusyFrame
       double getMsQOverP() const { return m_ms_q_over_p; }
       double getMsTheta() const { return m_ms_theta; }
       double getMsPhi() const { return m_ms_phi; }
+
+      virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
       virtual void print() const;
 

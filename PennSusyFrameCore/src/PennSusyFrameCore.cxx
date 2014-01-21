@@ -338,6 +338,11 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   m_jets.updateWithMet(m_met);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  int num_vtx_ge_2 = m_vertices.num(VERTEX_GT_2);
+  m_electrons.updateIsolation(&m_event, num_vtx_ge_2);
+  m_muons.updateIsolation(&m_event, num_vtx_ge_2);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // select signal electrons from good electrons
   m_electrons.setCollection( EL_SIGNAL
                            , PennSusyFrame::selectObjects( m_electron_selectors.at(EL_SIGNAL)

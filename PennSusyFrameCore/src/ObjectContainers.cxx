@@ -36,6 +36,15 @@ void PennSusyFrame::ElectronContainer::updateWithMet(const PennSusyFrame::Met& m
   }
 }
 
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ElectronContainer::updateIsolation(const PennSusyFrame::Event* event, int num_vtx)
+{
+  size_t term = m_master_list.size();
+  for (size_t it = 0; it != term; ++it) {
+    m_master_list.at(it).updateIsolation(event, num_vtx);
+  }
+}
+
 // ----------------------------------------------------------------------------
 void PennSusyFrame::ElectronContainer::clear()
 {
@@ -128,6 +137,15 @@ void PennSusyFrame::MuonContainer::updateWithMet(const PennSusyFrame::Met& met)
   size_t term = num(MU_ALL);
   for (size_t it = 0; it != term; ++it) {
     m_user_lists.at(MU_ALL).at(it)->updateWithMet(met);
+  }
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonContainer::updateIsolation(const PennSusyFrame::Event* event, int num_vtx)
+{
+  size_t term = m_master_list.size();
+  for (size_t it = 0; it != term; ++it) {
+    m_master_list.at(it).updateIsolation(event, num_vtx);
   }
 }
 

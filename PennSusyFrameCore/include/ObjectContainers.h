@@ -46,6 +46,7 @@ namespace PennSusyFrame
 
       void init();
       void updateWithMet(const PennSusyFrame::Met&);
+      void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
       void clear();
       void prep(PennSusyFrame::D3PDReader*);
@@ -74,6 +75,7 @@ namespace PennSusyFrame
 
       void init();
       void updateWithMet(const PennSusyFrame::Met&);
+      void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
       void clear();
       void prep(PennSusyFrame::D3PDReader*);
