@@ -145,11 +145,26 @@ namespace PennSusyFrame
       void setIsLightLepton(bool val) { m_is_light_lepton = val; }
       void setIsElectron(bool val) { m_is_electron = val; }
       void setCharge(double val) { m_charge = val; }
+
+      void setRawPtIso(double val) { m_raw_pt_iso = val; }
+      void setRawEtIso(double val) { m_raw_et_iso = val; }
+      void setPtIso(double val) { m_pt_iso = val; }
+      void setEtIso(double val) { m_et_iso = val; }
+
       // TODO move accessors to cxx file
       bool isElectron() const { return (m_is_light_lepton && m_is_electron); }
       bool isMuon() const { return (m_is_light_lepton && !m_is_electron); }
       bool isTau() const { return !m_is_light_lepton; }
       double getCharge() const { return m_charge; }
+
+      double getRawPtIso() const { return m_raw_pt_iso; }
+      double getRawEtIso() const { return m_raw_et_iso; }
+      double getPtIso() const { return m_pt_iso; }
+      double getEtIso() const { return m_et_iso; }
+      double getRawPtIsoRatio() const { return m_raw_pt_iso/getPt(); }
+      double getRawEtIsoRatio() const { return m_raw_et_iso/getPt(); }
+      double getPtIsoRatio() const { return m_pt_iso/getPt(); }
+      double getEtIsoRatio() const { return m_et_iso/getPt(); }
 
       virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -161,6 +176,10 @@ namespace PennSusyFrame
       bool m_is_electron;
       double m_charge;
 
+      double m_raw_pt_iso;
+      double m_raw_et_iso;
+      double m_pt_iso;
+      double m_et_iso;
   };
 
   // =============================================================================
@@ -186,11 +205,6 @@ namespace PennSusyFrame
       void setD0(double val) { m_d0 = val; }
       void setSigD0(double val) { m_sig_d0 = val; }
       void setZ0(double val) { m_z0 = val; }
-      // TODO rename these functions to give access to all iso variables - raw and corrected
-      void setRawPtIso(double val) { m_raw_pt_iso = val; }
-      void setRawEtIso(double val) { m_raw_et_iso = val; }
-      void setPtIso(double val) { m_pt_iso = val; }
-      void setEtIso(double val) { m_et_iso = val; }
       void setMetStatusWord(const std::vector<unsigned int>& val) { m_met_status_word = val; }
       void setMetWet(const std::vector<float>& val) { m_met_wet = val; }
       void setMetWpx(const std::vector<float>& val) { m_met_wpx = val; }
@@ -209,16 +223,6 @@ namespace PennSusyFrame
       double getD0Significance() const { return m_d0/m_sig_d0; }
       double getZ0() const { return m_z0; }
       double getZ0SinTheta() const { return m_z0*sin(m_tlv.Theta()); }
-      // TODO rename these functions to give access to all iso variables - raw and corrected
-      double getRawPtIso() const { return m_raw_pt_iso; }
-      double getRawEtIso() const { return m_raw_et_iso; }
-      double getPtIso() const { return m_pt_iso; }
-      double getEtIso() const { return m_et_iso; }
-      double getRawPtIsoRatio() const { return m_raw_pt_iso/getPt(); }
-      double getRawEtIsoRatio() const { return m_raw_et_iso/getPt(); }
-      double getPtIsoRatio() const { return m_pt_iso/getPt(); }
-      double getEtIsoRatio() const { return m_et_iso/getPt(); }
-
       std::vector<unsigned int> getMetStatusWord() const { return m_met_status_word; }
       std::vector<float>  getMetWet() const { return m_met_wet; }
       std::vector<float>  getMetWpx() const { return m_met_wpx; }
@@ -242,10 +246,6 @@ namespace PennSusyFrame
       double m_d0;
       double m_sig_d0;
       double m_z0;
-      double m_raw_pt_iso;
-      double m_raw_et_iso;
-      double m_pt_iso;
-      double m_et_iso;
 
       std::vector<unsigned int> m_met_status_word;
       std::vector<float> m_met_wet;
@@ -283,10 +283,6 @@ namespace PennSusyFrame
       void setD0(double val) { m_d0 = val; }
       void setSigD0(double val) { m_sig_d0 = val; }
       void setZ0(double val) { m_z0 = val; }
-      void setRawPtIso(double val) { m_raw_pt_iso = val; }
-      void setRawEtIso(double val) { m_raw_et_iso = val; }
-      void setPtIso(double val) { m_pt_iso = val; }
-      void setEtIso(double val) { m_et_iso = val; }
 
       void setMsQOverP(double val) { m_ms_q_over_p = val; }
       void setMsTheta(double val) { m_ms_theta = val; }
@@ -312,15 +308,6 @@ namespace PennSusyFrame
       double getD0Significance() const { return m_d0/m_sig_d0; }
       double getZ0() const { return m_z0; }
       double getZ0SinTheta() const { return m_z0*sin(m_tlv.Theta()); }
-
-      double getRawPtIso() const { return m_raw_pt_iso; }
-      double getRawEtIso() const { return m_raw_et_iso; }
-      double getPtIso() const { return m_pt_iso; }
-      double getEtIso() const { return m_et_iso; }
-      double getRawPtIsoRatio() const { return m_raw_pt_iso/getPt(); }
-      double getRawEtIsoRatio() const { return m_raw_et_iso/getPt(); }
-      double getPtIsoRatio() const { return m_pt_iso/getPt(); }
-      double getEtIsoRatio() const { return m_et_iso/getPt(); }
 
       double getMsQOverP() const { return m_ms_q_over_p; }
       double getMsTheta() const { return m_ms_theta; }

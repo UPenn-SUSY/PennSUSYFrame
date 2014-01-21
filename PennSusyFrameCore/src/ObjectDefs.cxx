@@ -68,15 +68,15 @@ PennSusyFrame::Particle::Particle() : m_tlv_set(false)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Particle::printGeneralInfo() const
 {
-  std::cout << "\tpt: "  << m_tlv.Pt()
-            << "\teta: " << m_tlv.Eta()
-            << "\tphi: " << m_tlv.Phi()
-            << "\tE: "   << m_tlv.E()
+  std::cout << "\t\tpt: "  << m_tlv.Pt()
+            << "\t\teta: " << m_tlv.Eta()
+            << "\t\tphi: " << m_tlv.Phi()
+            << "\t\tE: "   << m_tlv.E()
             << "\n"
-            << "\traw pt: "  << m_raw_tlv.Pt()
-            << "\traw eta: " << m_raw_tlv.Eta()
-            << "\traw phi: " << m_raw_tlv.Phi()
-            << "\traw E: "   << m_raw_tlv.E()
+            << "\t\traw pt: "  << m_raw_tlv.Pt()
+            << "\t\traw eta: " << m_raw_tlv.Eta()
+            << "\t\traw phi: " << m_raw_tlv.Phi()
+            << "\t\traw E: "   << m_raw_tlv.E()
             << "\n";
   // std::cout << "\tmc index: " << m_mc_index
   //           << "\tpdg id: "  << m_pdgid
@@ -239,8 +239,11 @@ void PennSusyFrame::Lepton::updateIsolation(const PennSusyFrame::Event*, int) {}
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Lepton::print() const
 {
-  std::cout << "lepton (" << (m_is_electron ? "electron" : "muon") << ")"
-            << "\tcharge: " << m_charge
+  std::cout << "\tlepton " << m_particle_index << "\t:: ";
+  if (m_is_electron)          std::cout << "electron";
+  else if (m_is_light_lepton) std::cout << "muon";
+  else                        std::cout << "tau";
+  std::cout << "\tcharge: " << m_charge
             << "\n";
   printGeneralInfo();
 }
@@ -326,11 +329,11 @@ void PennSusyFrame::Electron::updateIsolation( const PennSusyFrame::Event* event
 void PennSusyFrame::Electron::print() const
 {
   Lepton::print();
-  std::cout << "\traw pt iso: " << m_raw_pt_iso
-            << "\traw et iso: " << m_raw_et_iso
+  std::cout << "\t\traw pt iso: " << m_raw_pt_iso
+            << "\t\traw et iso: " << m_raw_et_iso
             << "\n"
-            << "\tpt iso: " << m_pt_iso
-            << "\tet iso: " << m_et_iso
+            << "\t\tpt iso: " << m_pt_iso
+            << "\t\tet iso: " << m_et_iso
             << "\n";
 }
 
@@ -455,11 +458,11 @@ void PennSusyFrame::Muon::updateIsolation( const PennSusyFrame::Event* event
 void PennSusyFrame::Muon::print() const
 {
   Lepton::print();
-  std::cout << "\traw pt iso: " << m_raw_pt_iso
-            << "\traw et iso: " << m_raw_et_iso
+  std::cout << "\t\traw pt iso: " << m_raw_pt_iso
+            << "\t\traw et iso: " << m_raw_et_iso
             << "\n"
-            << "\tpt iso: " << m_pt_iso
-            << "\tet iso: " << m_et_iso
+            << "\t\tpt iso: " << m_pt_iso
+            << "\t\tet iso: " << m_et_iso
             << "\n";
 }
 
@@ -608,6 +611,7 @@ void PennSusyFrame::Jet::updateWithMet(const PennSusyFrame::Met& met)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Jet::print() const
 {
+  std::cout << "\tjet " << m_particle_index << "\n";
   printGeneralInfo();
 }
 
@@ -701,13 +705,13 @@ void PennSusyFrame::Vertex::print() const
 {
   std::cout << "\tvertex number: "  << m_vertex_index
             << "\n"
-            << "\tx: " << m_x
-            << "\ty: " << m_y
-            << "\tz: " << m_z
-            << "\tnum tracks: " << m_num_tracks
+            << "\t\tx: " << m_x
+            << "\t\ty: " << m_y
+            << "\t\tz: " << m_z
+            << "\t\tnum tracks: " << m_num_tracks
             << "\n"
-            << "\tE: " << m_e
-            << "\tm: " << m_m
+            << "\t\tE: " << m_e
+            << "\t\tm: " << m_m
             << "\n";
   ;
 }
@@ -1043,9 +1047,8 @@ void PennSusyFrame::Met::doWeightFix( std::vector<float>& wet
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Met::print() const
 {
-  std::cout << "MET\n"
-            << "\n"
-            << "\tMET et: "  << m_met_vec.Mod()
+  std::cout << "================= Printing MET: =================\n";
+  std::cout << "\tMET et: "  << m_met_vec.Mod()
             << "\tMET phi: " << m_met_vec.Phi()
             << "\tMET ex: "  << m_met_vec.X()
             << "\tMET ey: "  << m_met_vec.Y()

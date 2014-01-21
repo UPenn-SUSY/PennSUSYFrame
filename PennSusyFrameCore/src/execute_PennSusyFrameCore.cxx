@@ -24,9 +24,9 @@ int main(int argc, char** argv)
   TTree* t = static_cast<TTree*>(f->Get("susy"));
 
   std::cout << "initialize PennSusyFrameCore object\n";
-  PennSusyFrame::PennSusyFrameCore tnl(t);
+  PennSusyFrame::PennSusyFrameCore psfc(t);
   std::cout << "about to look\n";
-  tnl.Loop();
+  psfc.Loop();
   std::cout << "Run completed!\n";
 
   delete f;
