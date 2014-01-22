@@ -284,6 +284,8 @@ namespace PennSusyFrame
       void setD0(double val) { m_d0 = val; }
       void setSigD0(double val) { m_sig_d0 = val; }
       void setZ0(double val) { m_z0 = val; }
+      void setD0exPV(double val) { m_d0_exPV = val; }
+      void setZ0exPV(double val) { m_z0_exPV = val; }
 
       void setMsQOverP(double val) { m_ms_q_over_p = val; }
       void setMsTheta(double val) { m_ms_theta = val; }
@@ -310,6 +312,8 @@ namespace PennSusyFrame
       double getD0Significance() const { return m_d0/m_sig_d0; }
       double getZ0() const { return m_z0; }
       double getZ0SinTheta() const { return m_z0*sin(m_tlv.Theta()); }
+      double getD0exPV() const { return m_d0_exPV; }
+      double getZ0exPV() const { return m_z0_exPV; }
 
       double getMsQOverP() const { return m_ms_q_over_p; }
       double getMsTheta() const { return m_ms_theta; }
@@ -345,10 +349,8 @@ namespace PennSusyFrame
       double m_d0;
       double m_sig_d0;
       double m_z0;
-      double m_raw_pt_iso;
-      double m_raw_et_iso;
-      double m_pt_iso;
-      double m_et_iso;
+      double m_d0_exPV;
+      double m_z0_exPV;
 
       double m_ms_q_over_p;
       double m_ms_theta;

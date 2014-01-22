@@ -104,8 +104,6 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
 
   // EL_SIGNAL
   m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
-  // m_electron_selectors.at(EL_SIGNAL).setPtCut(10.e3, -1);
-  // m_electron_selectors.at(EL_SIGNAL).setEtaCut(-1, 2.47);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 5);
   // m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
@@ -128,10 +126,9 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_muon_selectors.at(MU_BASELINE).setTrtOlFractionCut(-1, 0.9);
 
   // MU_SIGNAL
-  // m_muon_selectors.at(MU_SIGNAL).setPtCut(10.e3, -1);
   m_muon_selectors.at(MU_SIGNAL).setEtaCut(-1, 2.4);
-  m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3);
-  m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.0);
+  m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
+  m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
   m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.12);
 
   // MU_BAD
@@ -139,8 +136,8 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
 
   // MU_COSMIC
   m_muon_selectors.at(MU_COSMIC).setReversedSelector(true);
-  m_muon_selectors.at(MU_COSMIC).setD0Cut(-1, 0.2);
-  m_muon_selectors.at(MU_COSMIC).setZ0Cut(-1, 1.0);
+  m_muon_selectors.at(MU_COSMIC).setD0exPVCut(-1, 0.2);
+  m_muon_selectors.at(MU_COSMIC).setZ0exPVCut(-1, 1.0);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // tau selectors
@@ -180,19 +177,22 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
 
   // JET_LIGHT
   m_jet_selectors.at(JET_LIGHT).setPtCut(20.e3, -1);
-  m_jet_selectors.at(JET_LIGHT).setEtaCut(-1, 2.4);
+  // m_jet_selectors.at(JET_LIGHT).setEtaCut(-1, 2.4);
+  m_jet_selectors.at(JET_LIGHT).setConstScaleEtaCut(-1, 2.4);
   m_jet_selectors.at(JET_LIGHT).setJvfCut(0.0, -1);
   m_jet_selectors.at(JET_LIGHT).setJvfPtThresh(50.e3, -1);
   m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, 0.3511);
 
   // JET_B
   m_jet_selectors.at(JET_B).setPtCut(20.e3, -1);
-  m_jet_selectors.at(JET_B).setEtaCut(-1, 2.4);
+  // m_jet_selectors.at(JET_B).setEtaCut(-1, 2.4);
+  m_jet_selectors.at(JET_B).setConstScaleEtaCut(-1, 2.4);
   m_jet_selectors.at(JET_B).setMV1Cut(0.3511, -1);
 
   // JET_FORWARD
   m_jet_selectors.at(JET_FORWARD).setPtCut(30.e3, -1);
-  m_jet_selectors.at(JET_FORWARD).setEtaCut(2.4, 4.5);
+  // m_jet_selectors.at(JET_FORWARD).setEtaCut(2.4, 4.5);
+  m_jet_selectors.at(JET_FORWARD).setConstScaleEtaCut(2.4, 4.5);
 }
 
 // -----------------------------------------------------------------------------
@@ -278,7 +278,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // select baseline electrons from all electrons
-  // m_electrons.prep(m_d3pd_reader);
   m_electrons.setCollection( EL_BASELINE
                            , PennSusyFrame::selectObjects( m_electron_selectors.at(EL_BASELINE)
                                                          , m_electrons.getCollection(EL_ALL)
@@ -286,7 +285,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                            );
 
   // select baseline muons from all muons
-  // m_muons.prep(m_d3pd_reader);
   m_muons.setCollection( MU_BASELINE
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_BASELINE)
                                                      , m_muons.getCollection(MU_ALL)
@@ -294,7 +292,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                        );
 
   // select baseline taus from all taus
-  // m_taus.prep(m_d3pd_reader);
   m_taus.setCollection( TAU_BASELINE
                       , PennSusyFrame::selectObjects( m_tau_selectors.at(TAU_BASELINE)
                                                     , m_taus.getCollection(TAU_ALL)
@@ -302,7 +299,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                       );
 
   // select baseline jets from all jets
-  // m_jets.prep(m_d3pd_reader, &m_event, &m_vertices);
   m_jets.setCollection( JET_BASELINE
                       , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_BASELINE)
                                                     , m_jets.getCollection(JET_ALL)
@@ -357,6 +353,20 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   // select signal muons from good muons
   m_muons.setCollection( MU_SIGNAL
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_SIGNAL)
+                                                     , m_muons.getCollection(MU_GOOD)
+                                                     )
+                       );
+
+  // select bad muons from good muons
+  m_muons.setCollection( MU_BAD
+                       , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_BAD)
+                                                     , m_muons.getCollection(MU_GOOD)
+                                                     )
+                       );
+
+  // select cosmic muons from good muons
+  m_muons.setCollection( MU_COSMIC
+                       , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_COSMIC)
                                                      , m_muons.getCollection(MU_GOOD)
                                                      )
                        );

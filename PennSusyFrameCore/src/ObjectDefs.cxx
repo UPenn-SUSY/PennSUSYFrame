@@ -313,10 +313,11 @@ void PennSusyFrame::Electron::updateIsolation( const PennSusyFrame::Event* event
                                              )
 {
   // pt iso correction
-  float pt_slope = 0.;
-  if (event->getIsData()) pt_slope = 0.;
-  else                    pt_slope = 0.;
-  setPtIso(m_raw_pt_iso - pt_slope*num_vertices);
+  // float pt_slope = 0.;
+  // if (event->getIsData()) pt_slope = 0.;
+  // else                    pt_slope = 0.;
+  // setPtIso(m_raw_pt_iso - pt_slope*num_vertices);
+  setPtIso(m_raw_pt_iso);
 
   // et iso correction
   float et_slope = 0.;
@@ -426,14 +427,16 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
                                         : 0.
                   );
 
-  setD0(   reader->mu_staco_trackIPEstimate_d0_unbiasedpvunbiased->at(mu_index));
-  setSigD0(reader->mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased->at(mu_index));
-  setZ0(   reader->mu_staco_trackIPEstimate_z0_unbiasedpvunbiased->at(mu_index));
+  setD0(    reader->mu_staco_trackIPEstimate_d0_unbiasedpvunbiased->at(mu_index));
+  setSigD0( reader->mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased->at(mu_index));
+  setZ0(    reader->mu_staco_trackIPEstimate_z0_unbiasedpvunbiased->at(mu_index));
+  setD0exPV(reader->mu_staco_d0_exPV->at(mu_index));
+  setZ0exPV(reader->mu_staco_z0_exPV->at(mu_index));
 
   setRawPtIso(reader->mu_staco_ptcone30_trkelstyle->at(mu_index));
   setRawEtIso(reader->mu_staco_etcone30->at(mu_index));
-  setPtIso(0);
-  setEtIso(0);
+  setPtIso(0.);
+  setEtIso(0.);
 
   setMsQOverP(reader->mu_staco_ms_qoverp->at(mu_index));
   setMsTheta(reader->mu_staco_ms_theta->at(mu_index));
@@ -443,21 +446,23 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::updateIsolation( const PennSusyFrame::Event* event
-                                         , int num_vertices
+void PennSusyFrame::Muon::updateIsolation( const PennSusyFrame::Event* /*event*/
+                                         , int /*num_vertices*/
                                          )
 {
   // pt iso correction
-  float pt_slope = 0.;
-  if (event->getIsData()) pt_slope = 0.;
-  else                    pt_slope = 0.;
-  setPtIso(m_raw_pt_iso - pt_slope*num_vertices);
+  // float pt_slope = 0.;
+  // if (event->getIsData()) pt_slope = 0.;
+  // else                    pt_slope = 0.;
+  // setPtIso(m_raw_pt_iso - pt_slope*num_vertices);
+  setPtIso(m_raw_pt_iso);
 
   // et iso correction
-  float et_slope = 0.;
-  if (event->getIsData()) et_slope = 0.;
-  else                    et_slope = 0.;
-  setEtIso(m_raw_et_iso - et_slope*num_vertices);
+  // float et_slope = 0.;
+  // if (event->getIsData()) et_slope = 0.;
+  // else                    et_slope = 0.;
+  // setEtIso(m_raw_et_iso - et_slope*num_vertices);
+  setEtIso(m_raw_et_iso);
 }
 
 // -----------------------------------------------------------------------------

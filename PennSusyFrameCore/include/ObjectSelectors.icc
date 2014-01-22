@@ -11,11 +11,21 @@ namespace PennSusyFrame
   template <class selector, class T>
     std::vector<T*> selectObjects(selector& sel, const std::vector<T*>* t)
     {
+      return selectObjects(&sel, t);
+    }
+
+  // -----------------------------------------------------------------------------
+  template <class selector, class T>
+    std::vector<T*> selectObjects(selector* sel, const std::vector<T*>* t)
+    {
       std::vector<T*> selected_objects;
 
       size_t term = t->size();
       for (size_t it = 0; it != term; ++it) {
-        if (sel.passAllCuts(t->at(it))) {
+        bool pass_all_cuts = sel->passAllCuts(t->at(it));
+        if (  (!sel->isReversed() &&  pass_all_cuts)
+           || ( sel->isReversed() && !pass_all_cuts)
+           ) {
           selected_objects.push_back(t->at(it));
         }
       }

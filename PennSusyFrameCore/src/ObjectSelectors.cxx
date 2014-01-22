@@ -19,14 +19,7 @@ void PennSusyFrame::SelectorBase::setReversedSelector(bool val)
   m_reversed = val;
 }
 
-bool PennSusyFrame::SelectorBase::passSelection(const PennSusyFrame::PhysicsObject* p)
-{
-  bool pass_all_cuts = passAllCuts(p);
-
-  if (m_reversed) return !pass_all_cuts;
-  return pass_all_cuts;
-}
-
+// -----------------------------------------------------------------------------
 bool PennSusyFrame::SelectorBase::passAllCuts(const PennSusyFrame::PhysicsObject*)
 {
   std::cout << "calling default selector :-(\n";
@@ -115,10 +108,10 @@ PennSusyFrame::MuonSelector::MuonSelector() : m_min_pt(-1)
                                             , m_max_d0_significance(-1)
                                             , m_min_z0_sin_theta(-1)
                                             , m_max_z0_sin_theta(-1)
-                                            , m_min_d0(-1)
-                                            , m_max_d0(-1)
-                                            , m_min_z0(-1)
-                                            , m_max_z0(-1)
+                                            , m_min_d0_exPV(-1)
+                                            , m_max_d0_exPV(-1)
+                                            , m_min_z0_exPV(-1)
+                                            , m_max_z0_exPV(-1)
                                             , m_min_q_over_p_ratio(-1)
                                             , m_max_q_over_p_ratio(-1)
                                             , m_min_ptcone(-1)
@@ -131,54 +124,72 @@ PennSusyFrame::MuonSelector::MuonSelector() : m_min_pt(-1)
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
 {
+  // std::cout << "\nrunning muon selector on muon with pT: " << p->getPt() << "\n";
+
   // check muon pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
+  // std::cout << "\tpass pt cut -- " << p->getPt() << "\n";
 
   // check muon eta
   if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
+  // std::cout << "\tpass eta cut -- " << p->getEta() << "\n";
 
   // check muon num b layer hits
-  if (  p->getExpectBLayer()
-     && !passCut(p->getNumBLayerHits(), m_min_b_layer_hits, m_max_b_layer_hits)
-     ) return false;
+  // Apparently, we dropped this cut
+  // if (  p->getExpectBLayer()
+  //    && !passCut(p->getNumBLayerHits(), m_min_b_layer_hits, m_max_b_layer_hits)
+  //    )
+  //   return false;
+  // std::cout << "\tpass b layer cut -- " << p->getExpectBLayer() << " -- " << p->getNumBLayerHits() << "\n";
 
   // check muon num pixel hits
   if (!passCut(p->getNumPixelHits(), m_min_pixel_hits, m_max_pixel_hits)) return false;
+  // std::cout << "\tpass pixel hits cut -- " << p->getNumPixelHits() << "\n";
 
   // check muon num sct hits
   if (!passCut(p->getNumSctHits(), m_min_sct_hits, m_max_sct_hits)) return false;
+  // std::cout << "\tpass sct hits cut -- " << p->getNumSctHits() << "\n";
 
   // check muon si holes
   if (!passCut(p->getNumSiHoles(), m_min_si_holes, m_max_si_holes)) return false;
+  // std::cout << "\tpass si holes cut -- " << p->getNumSiHoles() << "\n";
 
-  // check muon track eta
+  // check trt hits and outlier fraction
   if (  passCut(fabs(p->getTrackEta()), m_min_trt_eta, m_max_trt_eta)
      && (  !passCut(p->getNumTrtHits(), m_min_trt_hits, m_max_trt_hits)
         || !passCut(p->getTrtOlFraction(), m_min_trt_ol_fraction, m_max_trt_ol_fraction)
        )
      )
     return false;
+  // std::cout << "\tpass trt cut -- " << p->getTrackEta() << " -- " << p->getNumTrtHits() << " -- " << p->getTrtOlFraction() << "\n";
 
   // check muon d0 significance
   if (!passCut(fabs(p->getD0Significance()), m_min_d0_significance, m_max_d0_significance)) return false;
+  // std::cout << "\tpass d0 sig cut -- " << p->getD0Significance() << "\n";
 
   // check muon z0*sin(theta)
   if (!passCut(fabs(p->getZ0SinTheta()), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
+  // std::cout << "\tpass z0*sin(theta) cut -- " << p->getZ0SinTheta() << "\n";
 
   // check muon d0
-  if (!passCut(fabs(p->getD0()), m_min_d0, m_max_d0)) return false;
+  if (!passCut(fabs(p->getD0exPV()), m_min_d0_exPV, m_max_d0_exPV)) return false;
+  // std::cout << "\tpass d0 cut -- " << p->getD0() << " -- d0 range: [ " << m_min_d0 << " , " << m_max_d0 << " ]\n";
 
   // check muon z0
-  if (!passCut(fabs(p->getZ0()), m_min_z0, m_max_z0)) return false;
+  if (!passCut(fabs(p->getZ0exPV()), m_min_z0_exPV, m_max_z0_exPV)) return false;
+  // std::cout << "\tpass z0 cut -- " << p->getZ0() << "\n";
 
   // check muon q/p ratio
   if (!passCut(p->getQOverPRatio(), m_min_q_over_p_ratio, m_max_q_over_p_ratio)) return false;
+  // std::cout << "\tpass q/p cut -- " << p->getQOverPRatio() << "\n";
 
   // check muon pt isolation
   if (!passCut(p->getPtIsoRatio(), m_min_ptcone, m_max_ptcone)) return false;
+  // std::cout << "\tpass pt iso cut -- " << p->getPtIso() << " -- " << p->getPtIsoRatio() << "\n";
 
   // check muon et isolation
   if (!passCut(p->getEtIsoRatio(), m_min_etcone, m_max_etcone)) return false;
+  // std::cout << "\tpass et iso cut -- " << p->getEtIso() << " -- " << p->getEtIsoRatio() << "\n";
 
   // this muon passes all cuts
   return true;
@@ -195,28 +206,34 @@ PennSusyFrame::TauSelector::TauSelector() : m_min_pt(-1)
                                           , m_jet_bdt_level(TAU_JET_BDT_NONE)
                                           , m_ele_bdt_level(TAU_ELE_BDT_NONE)
                                           , m_mu_level(TAU_MU_NONE)
-{
-}
+{}
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::TauSelector::passAllCuts(const PennSusyFrame::Tau* p)
 {
+  // std::cout << "\nrunning tau selector on tau with pt: " << p->getPt() << "\n";
+
   // check num tacks
   if (p->getNumTracks() != 1 && p->getNumTracks() != 3) return false;
+  // std::cout << "\tpass num tracks cut\n";
 
   // check tau charge
   if (fabs(p->getCharge()) != 1) return false;
+  // std::cout << "\tpass charge cut\n";
 
   // check tau pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
+  // std::cout << "\tpass pt cut\n";
 
   // check tau eta
   if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+  // std::cout << "\tpass eta cut\n";
 
   // check jet BDT level
   if (m_jet_bdt_level == TAU_JET_BDT_LOOSE  && p->getJetBdtLoose()  == false)  return false;
   if (m_jet_bdt_level == TAU_JET_BDT_MEDIUM && p->getJetBdtMedium() == false)  return false;
   if (m_jet_bdt_level == TAU_JET_BDT_TIGHT  && p->getJetBdtTight()  == false)  return false;
+  // std::cout << "\tpass jet bdt cut\n";
 
   // check ele BDT level
   if (p->getNumTracks() == 1) {
@@ -224,9 +241,11 @@ bool PennSusyFrame::TauSelector::passAllCuts(const PennSusyFrame::Tau* p)
     if (  m_ele_bdt_level == TAU_ELE_BDT_MEDIUM && p->getEleBdtMedium() == true) return false;
     if (  m_ele_bdt_level == TAU_ELE_BDT_TIGHT  && p->getEleBdtTight()  == true) return false;
   }
+  // std::cout << "\tpass ele bdt cut\n";
 
   // check mu BDT level
   if (m_mu_level == TAU_MU_TIGHT && p->getMuVeto() == true) return false;
+  // std::cout << "\tpass mu bdt cut\n";
 
   // this tau passes all cuts
   return true;
@@ -240,6 +259,8 @@ PennSusyFrame::JetSelector::JetSelector() : m_min_pt(-1)
                                           , m_max_pt(-1)
                                           , m_min_eta(-1)
                                           , m_max_eta(-1)
+                                          , m_min_constscale_eta(-1)
+                                          , m_max_constscale_eta(-1)
                                           , m_min_jvf(-1)
                                           , m_max_jvf(-1)
                                           , m_min_jvf_pt_thresh(-1)
@@ -262,6 +283,9 @@ bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
 
   // check jet eta
   if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
+
+  // check jet cosntscale eta
+  if (!passCut(fabs(p->getConstScaleEta()), m_min_constscale_eta, m_max_constscale_eta)) return false;
 
   // check jet jvf - only make jvf cut if the jet fails the jvf pt threshold
   // jet jvf is NOT an incsive cut

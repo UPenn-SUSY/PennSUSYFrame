@@ -31,6 +31,8 @@ namespace PennSusyFrame
 {
   template <class selector, class T>
     const std::vector<T*> selectObjects(selector& sel, std::vector<T*>* t);
+  template <class selector, class T>
+    const std::vector<T*> selectObjects(selector* sel, std::vector<T*>* t);
 
   // =============================================================================
   // = SelectorBase
@@ -40,10 +42,10 @@ namespace PennSusyFrame
     public:
       SelectorBase();
 
-      virtual bool passSelection(const PennSusyFrame::PhysicsObject*);
       virtual bool passAllCuts(const PennSusyFrame::PhysicsObject*);
 
       void setReversedSelector(bool = true);
+      bool isReversed() const { return m_reversed; }
 
     protected:
       template <class T>
@@ -115,8 +117,8 @@ namespace PennSusyFrame
       void setTrtOlFractionCut( double min = -1, double max = -1) { m_min_trt_ol_fraction = min; m_max_trt_ol_fraction = max; }
       void setD0SignificanceCut(double min = -1, double max = -1) { m_min_d0_significance = min; m_max_d0_significance = max; }
       void setZ0SignThetaCut(   double min = -1, double max = -1) { m_min_z0_sin_theta    = min; m_max_z0_sin_theta    = max; }
-      void setD0Cut(            double min = -1, double max = -1) { m_min_d0              = min; m_max_d0              = max; }
-      void setZ0Cut(            double min = -1, double max = -1) { m_min_z0              = min; m_max_z0              = max; }
+      void setD0exPVCut(        double min = -1, double max = -1) { m_min_d0_exPV         = min; m_max_d0_exPV         = max; }
+      void setZ0exPVCut(        double min = -1, double max = -1) { m_min_z0_exPV         = min; m_max_z0_exPV         = max; }
       void setQOverPRatioCut(   double min = -1, double max = -1) { m_min_q_over_p_ratio  = min; m_max_q_over_p_ratio  = max; }
       void setPtIsoCut(         double min = -1, double max = -1) { m_min_ptcone = min; m_max_ptcone = max; }
       void setEtIsoCut(         double min = -1, double max = -1) { m_min_etcone = min; m_max_etcone = max; }
@@ -158,11 +160,11 @@ namespace PennSusyFrame
       double m_min_z0_sin_theta;
       double m_max_z0_sin_theta;
 
-      double m_min_d0;
-      double m_max_d0;
+      double m_min_d0_exPV;
+      double m_max_d0_exPV;
 
-      double m_min_z0;
-      double m_max_z0;
+      double m_min_z0_exPV;
+      double m_max_z0_exPV;
 
       double m_min_q_over_p_ratio;
       double m_max_q_over_p_ratio;
@@ -215,13 +217,14 @@ namespace PennSusyFrame
       JetSelector();
 
       // TODO move accessors to cxx file
-      void setPtCut(      double min = -1, double max = -1) { m_min_pt            = min; m_max_pt            = max; }
-      void setEtaCut(     double min = -1, double max = -1) { m_min_eta           = min; m_max_eta           = max; }
-      void setJvfCut(     double min = -1, double max = -1) { m_min_jvf           = min; m_max_jvf           = max; }
-      void setJvfPtThresh(double min = -1, double max = -1) { m_min_jvf_pt_thresh = min; m_max_jvf_pt_thresh = max; }
-      void setMV1Cut(     double min = -1, double max = -1) { m_min_mv1           = min; m_max_mv1           = max; }
-      void setBchCorrCut( double min = -1, double max = -1) { m_min_bch_corr      = min; m_max_bch_corr      = max; }
-      void setDphiMet(    double min = -1, double max = -1) { m_min_dphi_met      = min; m_max_dphi_met      = max; }
+      void setPtCut(           double min = -1, double max = -1) { m_min_pt            = min; m_max_pt            = max; }
+      void setEtaCut(          double min = -1, double max = -1) { m_min_eta           = min; m_max_eta           = max; }
+      void setConstScaleEtaCut(double min = -1, double max = -1) { m_min_constscale_eta  = min; m_max_constscale_eta  = max; }
+      void setJvfCut(          double min = -1, double max = -1) { m_min_jvf           = min; m_max_jvf           = max; }
+      void setJvfPtThresh(     double min = -1, double max = -1) { m_min_jvf_pt_thresh = min; m_max_jvf_pt_thresh = max; }
+      void setMV1Cut(          double min = -1, double max = -1) { m_min_mv1           = min; m_max_mv1           = max; }
+      void setBchCorrCut(      double min = -1, double max = -1) { m_min_bch_corr      = min; m_max_bch_corr      = max; }
+      void setDphiMet(         double min = -1, double max = -1) { m_min_dphi_met      = min; m_max_dphi_met      = max; }
       void setIsBadJet(int val) { m_is_bad_jet = val; }
 
       using SelectorBase::passAllCuts;
@@ -233,6 +236,9 @@ namespace PennSusyFrame
 
       double m_min_eta;
       double m_max_eta;
+
+      double m_min_constscale_eta;
+      double m_max_constscale_eta;
 
       double m_min_jvf;
       double m_max_jvf;

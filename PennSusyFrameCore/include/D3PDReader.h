@@ -2270,8 +2270,8 @@ namespace PennSusyFrame
     // std::vector<int>     *mu_staco_loose;
     // std::vector<int>     *mu_staco_medium;
     // std::vector<int>     *mu_staco_tight;
-    // std::vector<float>   *mu_staco_d0_exPV;
-    // std::vector<float>   *mu_staco_z0_exPV;
+    std::vector<float>   *mu_staco_d0_exPV;
+    std::vector<float>   *mu_staco_z0_exPV;
     // std::vector<float>   *mu_staco_phi_exPV;
     // std::vector<float>   *mu_staco_theta_exPV;
     std::vector<float>   *mu_staco_qoverp_exPV;
@@ -9293,8 +9293,8 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_loose;   //!
     // TBranch        *b_mu_staco_medium;   //!
     // TBranch        *b_mu_staco_tight;   //!
-    // TBranch        *b_mu_staco_d0_exPV;   //!
-    // TBranch        *b_mu_staco_z0_exPV;   //!
+    TBranch        *b_mu_staco_d0_exPV;   //!
+    TBranch        *b_mu_staco_z0_exPV;   //!
     // TBranch        *b_mu_staco_phi_exPV;   //!
     // TBranch        *b_mu_staco_theta_exPV;   //!
     TBranch        *b_mu_staco_qoverp_exPV;   //!
