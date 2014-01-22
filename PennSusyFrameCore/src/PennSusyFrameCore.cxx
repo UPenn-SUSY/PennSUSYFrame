@@ -216,7 +216,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   // Long64_t nbytes = 0, nb = 0;
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
-    if (jentry > 1000) break;
+    // if (jentry > 1000) break;
 
     progress_bar.checkProgress(jentry);
 
