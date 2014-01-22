@@ -205,7 +205,7 @@ bool PennSusyFrame::TauSelector::passAllCuts(const PennSusyFrame::Tau* p)
   if (p->getNumTracks() != 1 && p->getNumTracks() != 3) return false;
 
   // check tau charge
-  if (fabs(p->getCharge())) return false;
+  if (fabs(p->getCharge()) != 1) return false;
 
   // check tau pt
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
@@ -225,7 +225,7 @@ bool PennSusyFrame::TauSelector::passAllCuts(const PennSusyFrame::Tau* p)
     if (  m_ele_bdt_level == TAU_ELE_BDT_TIGHT  && p->getEleBdtTight()  == true) return false;
   }
 
-  // check jet BDT level
+  // check mu BDT level
   if (m_mu_level == TAU_MU_TIGHT && p->getMuVeto() == true) return false;
 
   // this tau passes all cuts
