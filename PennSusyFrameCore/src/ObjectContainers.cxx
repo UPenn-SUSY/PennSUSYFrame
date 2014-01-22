@@ -100,14 +100,16 @@ void PennSusyFrame::ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
                                             ) const
 {
   std::cout << "================= Printing electron collection: "
-            << el_collection << " =================\n";
+            << el_collection
+            << " - " << ELECTRON_COLLECTIONS_STRINGS[el_collection]
+            << " =================\n";
 
   size_t term = num(el_collection);
   std::cout << "Number electrons: " << term << "\n";
 
-  for (size_t el_it = 0; el_it != term; ++el_it) {
-    m_user_lists.at(el_collection).at(el_it)->print();
-  }
+  // for (size_t el_it = 0; el_it != term; ++el_it) {
+  //   m_user_lists.at(el_collection).at(el_it)->print();
+  // }
 }
 
 // =============================================================================
@@ -204,14 +206,16 @@ void PennSusyFrame::MuonContainer::print( MUON_COLLECTIONS mu_collection
                                         ) const
 {
   std::cout << "================= Printing muon collection: "
-            << mu_collection << " =================\n";
+            << mu_collection
+            << " - " << MUON_COLLECTIONS_STRINGS[mu_collection]
+            << " =================\n";
 
   size_t term = num(mu_collection);
   std::cout << "Number muons: " << term << "\n";
 
-  for (size_t mu_it = 0; mu_it != term; ++mu_it) {
-    m_user_lists.at(mu_collection).at(mu_it)->print();
-  }
+  // for (size_t mu_it = 0; mu_it != term; ++mu_it) {
+  //   m_user_lists.at(mu_collection).at(mu_it)->print();
+  // }
 }
 
 // =============================================================================
@@ -300,14 +304,16 @@ void PennSusyFrame::TauContainer::print( TAU_COLLECTIONS tau_collection
                                         ) const
 {
   std::cout << "================= Printing tau collection: "
-            << tau_collection << " =================\n";
+            << tau_collection
+            << " - " << TAU_COLLECTIONS_STRINGS[tau_collection]
+            << " =================\n";
 
   size_t term = num(tau_collection);
   std::cout << "Number taus: " << term << "\n";
 
-  for (size_t tau_it = 0; tau_it != term; ++tau_it) {
-    m_user_lists.at(tau_collection).at(tau_it)->print();
-  }
+  // for (size_t tau_it = 0; tau_it != term; ++tau_it) {
+  //   m_user_lists.at(tau_collection).at(tau_it)->print();
+  // }
 }
 
 // =============================================================================
@@ -398,14 +404,16 @@ void PennSusyFrame::JetContainer::print( JET_COLLECTIONS jet_collection
                                        ) const
 {
   std::cout << "================= Printing jet collection: "
-            << jet_collection << " =================\n";
+            << jet_collection
+            << " - " << JET_COLLECTIONS_STRINGS[jet_collection]
+            << " =================\n";
 
   size_t term = num(jet_collection);
   std::cout << "Number jets: " << term << "\n";
 
-  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
-    m_user_lists.at(jet_collection).at(jet_it)->print();
-  }
+  // for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+  //   m_user_lists.at(jet_collection).at(jet_it)->print();
+  // }
 }
 
 // =============================================================================
@@ -475,12 +483,14 @@ void PennSusyFrame::VertexContainer::print( VERTEX_COLLECTIONS vertex_collection
                                        ) const
 {
   std::cout << "================= Printing vertex collection: "
-            << vertex_collection << " =================\n";
+            << vertex_collection
+            << " - " << VERTEX_COLLECTIONS_STRINGS[vertex_collection]
+            << " =================\n";
 
   size_t term = num(vertex_collection);
   std::cout << "Number vertices: " << term << "\n";
 
-  for (size_t vertex_it = 0; vertex_it != term; ++vertex_it) {
-    m_user_lists.at(vertex_collection).at(vertex_it)->print();
-  }
+  // for (size_t vertex_it = 0; vertex_it != term; ++vertex_it) {
+  //   m_user_lists.at(vertex_collection).at(vertex_it)->print();
+  // }
 }

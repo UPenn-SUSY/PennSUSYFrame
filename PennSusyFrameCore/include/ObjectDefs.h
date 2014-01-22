@@ -274,6 +274,7 @@ namespace PennSusyFrame
       void setMETheta(double val) { m_me_theta = val; }
       void setTrackEta(double val) { m_track_eta = val; }
       void setQOverPRatio(double val) { m_q_over_p_ratio = val; }
+      void setExpectBLayer(bool val) { m_expect_b_layer = val; }
       void setNumBLayerHits(int val) { m_num_b_layer_hits = val; }
       void setNumPixelHits(int val) { m_num_pixel_hits = val; }
       void setNumSctHits(int val) { m_num_sct_hits = val; }
@@ -297,6 +298,7 @@ namespace PennSusyFrame
       double getMETheta() const { return m_me_theta; }
       double getTrackEta() const { return m_track_eta; }
       double getQOverPRatio() const { return m_q_over_p_ratio; }
+      bool getExpectBLayer() const { return m_expect_b_layer; }
       int getNumBLayerHits() const { return m_num_b_layer_hits; }
       int getNumPixelHits() const { return m_num_pixel_hits; }
       int getNumSctHits() const { return m_num_sct_hits; }
@@ -332,6 +334,7 @@ namespace PennSusyFrame
       double m_me_theta;
       double m_q_over_p_ratio;
 
+      bool m_expect_b_layer;
       int m_num_b_layer_hits;
       int m_num_pixel_hits;
       int m_num_sct_hits;

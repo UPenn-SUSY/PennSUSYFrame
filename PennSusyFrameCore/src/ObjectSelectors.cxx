@@ -72,13 +72,13 @@ bool PennSusyFrame::ElectronSelector::passAllCuts(const PennSusyFrame::Electron*
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
 
   // check electron eta
-  if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+  if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
 
   // check electron d0 significance
-  if (!passCut(p->getD0Significance(), m_min_d0_significance, m_max_d0_significance)) return false;
+  if (!passCut(fabs(p->getD0Significance()), m_min_d0_significance, m_max_d0_significance)) return false;
 
   // check electron z0*sin(theta)
-  if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
+  if (!passCut(fabs(p->getZ0SinTheta()), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
 
   // check electron pt isolation
   if (!passCut(p->getPtIsoRatio(), m_min_ptcone, m_max_ptcone)) return false;
@@ -135,10 +135,12 @@ bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
   if (!passCut(p->getPt(), m_min_pt, m_max_pt)) return false;
 
   // check muon eta
-  if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+  if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
 
   // check muon num b layer hits
-  if (!passCut(p->getNumBLayerHits(), m_min_b_layer_hits, m_max_b_layer_hits)) return false;
+  if (  p->getExpectBLayer()
+     && !passCut(p->getNumBLayerHits(), m_min_b_layer_hits, m_max_b_layer_hits)
+     ) return false;
 
   // check muon num pixel hits
   if (!passCut(p->getNumPixelHits(), m_min_pixel_hits, m_max_pixel_hits)) return false;
@@ -150,7 +152,7 @@ bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
   if (!passCut(p->getNumSiHoles(), m_min_si_holes, m_max_si_holes)) return false;
 
   // check muon track eta
-  if (  passCut(p->getTrackEta(), m_min_trt_eta, m_max_trt_eta)
+  if (  passCut(fabs(p->getTrackEta()), m_min_trt_eta, m_max_trt_eta)
      && (  !passCut(p->getNumTrtHits(), m_min_trt_hits, m_max_trt_hits)
         || !passCut(p->getTrtOlFraction(), m_min_trt_ol_fraction, m_max_trt_ol_fraction)
        )
@@ -158,16 +160,16 @@ bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
     return false;
 
   // check muon d0 significance
-  if (!passCut(p->getD0Significance(), m_min_d0_significance, m_max_d0_significance)) return false;
+  if (!passCut(fabs(p->getD0Significance()), m_min_d0_significance, m_max_d0_significance)) return false;
 
   // check muon z0*sin(theta)
-  if (!passCut(p->getZ0SinTheta(), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
+  if (!passCut(fabs(p->getZ0SinTheta()), m_min_z0_sin_theta, m_max_z0_sin_theta)) return false;
 
   // check muon d0
-  if (!passCut(p->getD0(), m_min_d0, m_max_d0)) return false;
+  if (!passCut(fabs(p->getD0()), m_min_d0, m_max_d0)) return false;
 
   // check muon z0
-  if (!passCut(p->getZ0(), m_min_z0, m_max_z0)) return false;
+  if (!passCut(fabs(p->getZ0()), m_min_z0, m_max_z0)) return false;
 
   // check muon q/p ratio
   if (!passCut(p->getQOverPRatio(), m_min_q_over_p_ratio, m_max_q_over_p_ratio)) return false;
@@ -265,10 +267,13 @@ bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
   // jet jvf is NOT an incsive cut
   if (  !passCut(fabs(p->getJvf()), m_min_jvf, m_max_jvf, false)
      && !passCut(p->getPt(), m_min_jvf_pt_thresh, m_max_jvf_pt_thresh)
-     ) return false;
+     )
+    return false;
 
   // check jet mv1 flavor weight
   if (!passCut(p->getMv1(), m_min_mv1, m_max_mv1)) return false;
+
+  // check for bad jet
   if (m_is_bad_jet == 0 || m_is_bad_jet == 1) {
     if (m_is_bad_jet == 0 && p->getIsBad() == true ) return false;
     if (m_is_bad_jet == 1 && p->getIsBad() == false) return false;

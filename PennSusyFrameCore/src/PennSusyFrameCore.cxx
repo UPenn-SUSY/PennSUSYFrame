@@ -100,13 +100,14 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   // EL_BASELINE
   m_electron_selectors.at(EL_BASELINE).setElectronQuality(EL_QUALITY_MEDPP);
   m_electron_selectors.at(EL_BASELINE).setPtCut(10.e3, -1);
-  m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.4);
+  m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.47);
 
   // EL_SIGNAL
   m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
-  m_electron_selectors.at(EL_SIGNAL).setPtCut(10.e3, -1);
-  m_electron_selectors.at(EL_SIGNAL).setEtaCut(-1, 2.4);
-  m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
+  // m_electron_selectors.at(EL_SIGNAL).setPtCut(10.e3, -1);
+  // m_electron_selectors.at(EL_SIGNAL).setEtaCut(-1, 2.47);
+  m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 5);
+  // m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
   m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.16);
   m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.18);
@@ -123,7 +124,7 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_muon_selectors.at(MU_BASELINE).setSctHitsCut(5, -1);
   m_muon_selectors.at(MU_BASELINE).setSiHolesCut(-1, 2);
   m_muon_selectors.at(MU_BASELINE).setTrtEtaCut(0.1, 1.9);
-  m_muon_selectors.at(MU_BASELINE).setTrtHitsCut(-1, 6);
+  m_muon_selectors.at(MU_BASELINE).setTrtHitsCut(6, -1);
   m_muon_selectors.at(MU_BASELINE).setTrtOlFractionCut(-1, 0.9);
 
   // MU_SIGNAL
@@ -400,10 +401,10 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   std::cout << "\n================================================================================\n";
   m_event.print();
 
-  std::cout << "\n";
-  m_vertices.print(VERTEX_ALL);
-  m_vertices.print(VERTEX_GT_2);
-  m_vertices.print(VERTEX_GOOD);
+  // std::cout << "\n";
+  // m_vertices.print(VERTEX_ALL);
+  // m_vertices.print(VERTEX_GT_2);
+  // m_vertices.print(VERTEX_GOOD);
 
   std::cout << "\n";
   m_electrons.print(EL_ALL);
@@ -435,8 +436,8 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   m_jets.print(JET_B);
   m_jets.print(JET_FORWARD);
 
-  std::cout << "\n";
-  m_met.print();
+  // std::cout << "\n";
+  // m_met.print();
 
 
 

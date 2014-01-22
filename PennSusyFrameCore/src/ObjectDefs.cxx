@@ -52,7 +52,7 @@ void PennSusyFrame::Event::print() const
 {
   std::cout << "================= Printing event info: =================\n";
   std::cout << "run number: " << m_run_number
-            << "\tlumi block: " << m_lumi_block
+            // << "\tlumi block: " << m_lumi_block
             << "\tevent number: " << m_event_number
             << "\n";
 }
@@ -360,7 +360,7 @@ void PennSusyFrame::Electron::setElTlv( const PennSusyFrame::D3PDReader* reader
   setRawTlv(raw_tlv);
 
   double corrected_eta = raw_eta;
-  double corrected_phi = raw_eta;
+  double corrected_phi = raw_phi;
   double corrected_e  = el_rescaler->getRescaledE(this);
   double corrected_et = corrected_e/cosh(corrected_eta);
   TLorentzVector tlv;
@@ -411,6 +411,7 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
                 / reader->mu_staco_qoverp_exPV->at(mu_index)
                 );
 
+  setExpectBLayer( reader->mu_staco_expectBLayerHit->at(mu_index));
   setNumBLayerHits(reader->mu_staco_nBLHits->at(mu_index));
   setNumPixelHits( reader->mu_staco_nPixHits->at(mu_index));
   setNumSctHits(   reader->mu_staco_nSCTHits->at(mu_index));
@@ -463,11 +464,30 @@ void PennSusyFrame::Muon::updateIsolation( const PennSusyFrame::Event* event
 void PennSusyFrame::Muon::print() const
 {
   Lepton::print();
-  std::cout << "\t\traw pt iso: " << m_raw_pt_iso
-            << "\t\traw et iso: " << m_raw_et_iso
+  std::cout << "\t\tpt iso: "      << getPtIso()
+            << "\t\tpt iso frac: " << getPtIsoRatio()
+            << "\t\tet iso: "      << getEtIso()
+            << "\t\tet iso frac: " << getEtIsoRatio()
             << "\n"
-            << "\t\tpt iso: " << m_pt_iso
-            << "\t\tet iso: " << m_et_iso
+            << "\t\traw pt iso: "      << getRawPtIso()
+            << "\t\traw pt iso frac: " << getRawPtIsoRatio()
+            << "\t\traw et iso: "      << getRawEtIso()
+            << "\t\traw et iso frac: " << getRawEtIsoRatio()
+            << "\n"
+            << "\t\td0: " << getD0()
+            << "\t\td0 sig: " << getD0Significance()
+            << "\t\tz0: " << getZ0()
+            << "\t\tz0sin(theta): " << getZ0SinTheta()
+            << "\n"
+            << "\t\texpect b-layer: " << getExpectBLayer()
+            << "\t\t# b-layer hits: " << getNumBLayerHits()
+            << "\t\t# pixel hits: " << getNumPixelHits()
+            << "\t\t# sct hits: " << getNumSctHits()
+            << "\t\t# si holes: " << getNumSiHoles()
+            << "\n"
+            << "\t\ttrack eta: " << getTrackEta()
+            << "\t\t# TRT hits: " << getNumTrtHits()
+            << "\t\tTRT outlier frac: " << getTrtOlFraction()
             << "\n";
 }
 

@@ -2367,7 +2367,7 @@ namespace PennSusyFrame
     // std::vector<int>     *mu_staco_nPixelDeadSensors;
     // std::vector<int>     *mu_staco_nSCTDeadSensors;
     // std::vector<int>     *mu_staco_nTRTDeadStraws;
-    // std::vector<int>     *mu_staco_expectBLayerHit;
+    std::vector<int>     *mu_staco_expectBLayerHit;
     // std::vector<int>     *mu_staco_nMDTHits;
     // std::vector<int>     *mu_staco_nMDTHoles;
     // std::vector<int>     *mu_staco_nCSCEtaHits;
@@ -9390,7 +9390,7 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_nPixelDeadSensors;   //!
     // TBranch        *b_mu_staco_nSCTDeadSensors;   //!
     // TBranch        *b_mu_staco_nTRTDeadStraws;   //!
-    // TBranch        *b_mu_staco_expectBLayerHit;   //!
+    TBranch        *b_mu_staco_expectBLayerHit;   //!
     // TBranch        *b_mu_staco_nMDTHits;   //!
     // TBranch        *b_mu_staco_nMDTHoles;   //!
     // TBranch        *b_mu_staco_nCSCEtaHits;   //!
