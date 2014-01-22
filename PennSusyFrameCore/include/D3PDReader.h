@@ -1826,15 +1826,15 @@ namespace PennSusyFrame
     // Int_t           bb_jet_n;
     // std::vector<int>     *bb_jet_bbDecision;
     Int_t           el_n;
-    std::vector<float>   *el_E;
+    // std::vector<float>   *el_E;
     // std::vector<float>   *el_Et;
     // std::vector<float>   *el_pt;
     // std::vector<float>   *el_m;
     // std::vector<float>   *el_eta;
     // std::vector<float>   *el_phi;
-    std::vector<float>   *el_px;
-    std::vector<float>   *el_py;
-    std::vector<float>   *el_pz;
+    // std::vector<float>   *el_px;
+    // std::vector<float>   *el_py;
+    // std::vector<float>   *el_pz;
     std::vector<float>   *el_charge;
     std::vector<int>     *el_author;
     // std::vector<unsigned int> *el_isEM;
@@ -1967,7 +1967,7 @@ namespace PennSusyFrame
     // std::vector<float>   *el_depth;
     // std::vector<int>     *el_refittedTrack_n;
     std::vector<float>   *el_cl_E;
-    // std::vector<float>   *el_cl_pt;
+    std::vector<float>   *el_cl_pt;
     std::vector<float>   *el_cl_eta;
     std::vector<float>   *el_cl_phi;
     // std::vector<float>   *el_cl_time;
@@ -1992,11 +1992,11 @@ namespace PennSusyFrame
     // std::vector<float>   *el_centerlambda;
     // std::vector<float>   *el_trackd0;
     // std::vector<float>   *el_trackz0;
-    // std::vector<float>   *el_trackphi;
+    std::vector<float>   *el_trackphi;
     // std::vector<float>   *el_tracktheta;
     // std::vector<float>   *el_trackqoverp;
     // std::vector<float>   *el_trackpt;
-    // std::vector<float>   *el_tracketa;
+    std::vector<float>   *el_tracketa;
     // std::vector<int>     *el_nBLHits;
     // std::vector<int>     *el_nPixHits;
     // std::vector<int>     *el_nSCTHits;
@@ -2025,7 +2025,7 @@ namespace PennSusyFrame
     // std::vector<int>     *el_nSCTDoubleHoles;
     // std::vector<int>     *el_nSCTSpoiltHits;
     // std::vector<int>     *el_expectBLayerHit;
-    // std::vector<int>     *el_nSiHits;
+    std::vector<int>     *el_nSiHits;
     // std::vector<float>   *el_TRTHighTHitsRatio;
     // std::vector<float>   *el_TRTHighTOutliersRatio;
     // std::vector<float>   *el_pixeldEdx;
@@ -8849,15 +8849,15 @@ namespace PennSusyFrame
     // TBranch        *b_bb_jet_n;   //!
     // TBranch        *b_bb_jet_bbDecision;   //!
     TBranch        *b_el_n;   //!
-    TBranch        *b_el_E;   //!
+    // TBranch        *b_el_E;   //!
     // TBranch        *b_el_Et;   //!
     // TBranch        *b_el_pt;   //!
     // TBranch        *b_el_m;   //!
     // TBranch        *b_el_eta;   //!
     // TBranch        *b_el_phi;   //!
-    TBranch        *b_el_px;   //!
-    TBranch        *b_el_py;   //!
-    TBranch        *b_el_pz;   //!
+    // TBranch        *b_el_px;   //!
+    // TBranch        *b_el_py;   //!
+    // TBranch        *b_el_pz;   //!
     TBranch        *b_el_charge;   //!
     TBranch        *b_el_author;   //!
     // TBranch        *b_el_isEM;   //!
@@ -8990,7 +8990,7 @@ namespace PennSusyFrame
     // TBranch        *b_el_depth;   //!
     // TBranch        *b_el_refittedTrack_n;   //!
     TBranch        *b_el_cl_E;   //!
-    // TBranch        *b_el_cl_pt;   //!
+    TBranch        *b_el_cl_pt;   //!
     TBranch        *b_el_cl_eta;   //!
     TBranch        *b_el_cl_phi;   //!
     // TBranch        *b_el_cl_time;   //!
@@ -9015,11 +9015,11 @@ namespace PennSusyFrame
     // TBranch        *b_el_centerlambda;   //!
     // TBranch        *b_el_trackd0;   //!
     // TBranch        *b_el_trackz0;   //!
-    // TBranch        *b_el_trackphi;   //!
+    TBranch        *b_el_trackphi;   //!
     // TBranch        *b_el_tracktheta;   //!
     // TBranch        *b_el_trackqoverp;   //!
     // TBranch        *b_el_trackpt;   //!
-    // TBranch        *b_el_tracketa;   //!
+    TBranch        *b_el_tracketa;   //!
     // TBranch        *b_el_nBLHits;   //!
     // TBranch        *b_el_nPixHits;   //!
     // TBranch        *b_el_nSCTHits;   //!
@@ -9048,7 +9048,7 @@ namespace PennSusyFrame
     // TBranch        *b_el_nSCTDoubleHoles;   //!
     // TBranch        *b_el_nSCTSpoiltHits;   //!
     // TBranch        *b_el_expectBLayerHit;   //!
-    // TBranch        *b_el_nSiHits;   //!
+    TBranch        *b_el_nSiHits;   //!
     // TBranch        *b_el_TRTHighTHitsRatio;   //!
     // TBranch        *b_el_TRTHighTOutliersRatio;   //!
     // TBranch        *b_el_pixeldEdx;   //!

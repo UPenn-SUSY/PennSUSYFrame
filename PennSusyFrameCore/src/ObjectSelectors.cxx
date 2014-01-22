@@ -262,7 +262,8 @@ bool PennSusyFrame::JetSelector::passAllCuts(const PennSusyFrame::Jet* p)
   if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
 
   // check jet jvf - only make jvf cut if the jet fails the jvf pt threshold
-  if (  !passCut(p->getJvf(), m_min_jvf, m_max_jvf)
+  // jet jvf is NOT an incsive cut
+  if (  !passCut(fabs(p->getJvf()), m_min_jvf, m_max_jvf, false)
      && !passCut(p->getPt(), m_min_jvf_pt_thresh, m_max_jvf_pt_thresh)
      ) return false;
 

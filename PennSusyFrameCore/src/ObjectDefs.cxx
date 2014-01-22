@@ -342,23 +342,28 @@ void PennSusyFrame::Electron::setElTlv( const PennSusyFrame::D3PDReader* reader
                                       , PennSusyFrame::ElectronRescalerTool* el_rescaler
                                       )
 {
+  int num_si_hits = reader->el_nSiHits->at(m_particle_index);
+  double raw_pt  = reader->el_cl_pt->at(m_particle_index);
+  double raw_eta = ( num_si_hits < 4 ? reader->el_cl_eta->at(m_particle_index)
+                                     : reader->el_tracketa->at(m_particle_index)
+                   );
+  double raw_phi = ( num_si_hits < 4 ? reader->el_cl_phi->at(m_particle_index)
+                                     : reader->el_trackphi->at(m_particle_index)
+                   );
+  double raw_e   = reader->el_cl_E->at(m_particle_index);
   TLorentzVector raw_tlv;
-  double raw_px = reader->el_px->at(m_particle_index);
-  double raw_py = reader->el_py->at(m_particle_index);
-  double raw_pz = reader->el_pz->at(m_particle_index);
-  double raw_e  = reader->el_E->at(m_particle_index);
-  raw_tlv.SetPxPyPzE( raw_px
-                    , raw_py
-                    , raw_pz
-                    , raw_e
-                    );
+  raw_tlv.SetPtEtaPhiE( raw_pt
+                      , raw_eta
+                      , raw_phi
+                      , raw_e
+                      );
   setRawTlv(raw_tlv);
 
-  TLorentzVector tlv;
+  double corrected_eta = raw_eta;
+  double corrected_phi = raw_eta;
   double corrected_e  = el_rescaler->getRescaledE(this);
-  double corrected_eta = getRawEta();
-  double corrected_phi = getRawPhi();
   double corrected_et = corrected_e/cosh(corrected_eta);
+  TLorentzVector tlv;
   tlv.SetPtEtaPhiE( corrected_et
                   , corrected_eta
                   , corrected_phi
@@ -471,19 +476,19 @@ void PennSusyFrame::Muon::setMuTlv( const PennSusyFrame::D3PDReader* reader
                                   , PennSusyFrame::MuonRescalerTool* mu_rescaler
                                   )
 {
-  TLorentzVector raw_tlv;
   double raw_pt  = reader->mu_staco_pt->at(m_particle_index);
   double raw_eta = reader->mu_staco_eta->at(m_particle_index);
   double raw_phi = reader->mu_staco_phi->at(m_particle_index);
   double raw_m   = 105.66;
+  TLorentzVector raw_tlv;
   raw_tlv.SetPtEtaPhiM(raw_pt, raw_eta, raw_phi, raw_m);
   setRawTlv(raw_tlv);
 
-  TLorentzVector tlv;
   double corrected_pt  = mu_rescaler->getSmearedPt(this);
   double corrected_eta = raw_eta;
   double corrected_phi = raw_phi;
   double corrected_m   = raw_m;
+  TLorentzVector tlv;
   tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
   setTlv(tlv);
 }
@@ -540,20 +545,20 @@ void PennSusyFrame::Tau::setTauTlv( const PennSusyFrame::D3PDReader* reader
                                   , PennSusyFrame::TauRescalerTool* /*tau_rescaler*/
                                   )
 {
-  TLorentzVector raw_tlv;
   double raw_pt  = reader->tau_pt->at(m_particle_index);
   double raw_eta = reader->tau_eta->at(m_particle_index);
   double raw_phi = reader->tau_phi->at(m_particle_index);
   double raw_m   = reader->tau_m->at(m_particle_index);;
+  TLorentzVector raw_tlv;
   raw_tlv.SetPtEtaPhiM(raw_pt, raw_eta, raw_phi, raw_m);
   setRawTlv(raw_tlv);
 
   // TODO get rescaled tau
-  TLorentzVector tlv;
   double corrected_pt  = raw_pt;
   double corrected_eta = raw_eta;
   double corrected_phi = raw_phi;
   double corrected_m   = raw_m;
+  TLorentzVector tlv;
   tlv.SetPtEtaPhiM(corrected_pt, corrected_eta, corrected_phi, corrected_m);
   setTlv(tlv);
 }
@@ -622,11 +627,11 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
                                   , int num_vertices_w_2_trks
                                   )
 {
-  TLorentzVector raw_tlv;
   double raw_pt  = reader->jet_AntiKt4LCTopo_pt->at(m_particle_index);
   double raw_eta = reader->jet_AntiKt4LCTopo_eta->at(m_particle_index);
   double raw_phi = reader->jet_AntiKt4LCTopo_phi->at(m_particle_index);
   double raw_m   = reader->jet_AntiKt4LCTopo_m->at(m_particle_index);
+  TLorentzVector raw_tlv;
   raw_tlv.SetPtEtaPhiM(raw_pt, raw_eta, raw_phi, raw_m);
   setRawTlv(raw_tlv);
 
