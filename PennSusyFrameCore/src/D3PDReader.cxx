@@ -1191,7 +1191,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // mu_staco_nTRTHighTOutliers = 0;
   // mu_staco_nGangedPixels = 0;
   // mu_staco_nPixelDeadSensors = 0;
-  // mu_staco_nSCTDeadSensors = 0;
+  mu_staco_nSCTDeadSensors = 0;
   // mu_staco_nTRTDeadStraws = 0;
   mu_staco_expectBLayerHit = 0;
   // mu_staco_nMDTHits = 0;
@@ -5830,7 +5830,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "mu_staco_nTRTHighTOutliers", &mu_staco_nTRTHighTOutliers, &b_mu_staco_nTRTHighTOutliers);
   // turnOnBranch(tree, "mu_staco_nGangedPixels", &mu_staco_nGangedPixels, &b_mu_staco_nGangedPixels);
   // turnOnBranch(tree, "mu_staco_nPixelDeadSensors", &mu_staco_nPixelDeadSensors, &b_mu_staco_nPixelDeadSensors);
-  // turnOnBranch(tree, "mu_staco_nSCTDeadSensors", &mu_staco_nSCTDeadSensors, &b_mu_staco_nSCTDeadSensors);
+  turnOnBranch(tree, "mu_staco_nSCTDeadSensors", &mu_staco_nSCTDeadSensors, &b_mu_staco_nSCTDeadSensors);
   // turnOnBranch(tree, "mu_staco_nTRTDeadStraws", &mu_staco_nTRTDeadStraws, &b_mu_staco_nTRTDeadStraws);
   turnOnBranch(tree, "mu_staco_expectBLayerHit", &mu_staco_expectBLayerHit, &b_mu_staco_expectBLayerHit);
   // turnOnBranch(tree, "mu_staco_nMDTHits", &mu_staco_nMDTHits, &b_mu_staco_nMDTHits);

@@ -407,50 +407,56 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
   // TODO make placeholder processEvent
-  std::cout << "\n";
-  std::cout << "\n================================================================================\n";
-  m_event.print();
+  // m_event.print();
 
   // std::cout << "\n";
   // m_vertices.print(VERTEX_ALL);
   // m_vertices.print(VERTEX_GT_2);
   // m_vertices.print(VERTEX_GOOD);
 
-  std::cout << "\n";
-  m_electrons.print(EL_ALL);
-  m_electrons.print(EL_BASELINE);
-  m_electrons.print(EL_GOOD);
-  m_electrons.print(EL_SIGNAL);
+  // std::cout << "\n";
+  // m_electrons.print(EL_ALL);
+  // m_electrons.print(EL_BASELINE);
+  // m_electrons.print(EL_GOOD);
+  // m_electrons.print(EL_SIGNAL);
 
-  std::cout << "\n";
-  m_muons.print(MU_ALL);
-  m_muons.print(MU_BASELINE);
-  m_muons.print(MU_GOOD);
-  m_muons.print(MU_SIGNAL);
-  m_muons.print(MU_BAD);
-  m_muons.print(MU_COSMIC);
+  // std::cout << "\n";
+  // m_muons.print(MU_ALL);
+  // m_muons.print(MU_BASELINE);
+  // m_muons.print(MU_GOOD);
+  // m_muons.print(MU_SIGNAL);
+  // m_muons.print(MU_BAD);
+  // m_muons.print(MU_COSMIC);
 
-  std::cout << "\n";
-  m_taus.print(TAU_ALL);
-  m_taus.print(TAU_BASELINE);
-  m_taus.print(TAU_GOOD);
-  m_taus.print(TAU_SIGNAL);
+  // std::cout << "\n";
+  // m_taus.print(TAU_ALL);
+  // m_taus.print(TAU_BASELINE);
+  // m_taus.print(TAU_GOOD);
+  // m_taus.print(TAU_SIGNAL);
 
-  std::cout << "\n";
-  m_jets.print(JET_ALL);
-  m_jets.print(JET_BASELINE_GOOD);
-  m_jets.print(JET_GOOD);
-  m_jets.print(JET_BASELINE_BAD);
-  m_jets.print(JET_BAD);
-  m_jets.print(JET_LIGHT);
-  m_jets.print(JET_B);
-  m_jets.print(JET_FORWARD);
+  // std::cout << "\n";
+  // m_jets.print(JET_ALL);
+  // m_jets.print(JET_BASELINE_GOOD);
+  // m_jets.print(JET_GOOD);
+  // m_jets.print(JET_BASELINE_BAD);
+  // m_jets.print(JET_BAD);
+  // m_jets.print(JET_LIGHT);
+  // m_jets.print(JET_B);
+  // m_jets.print(JET_FORWARD);
 
   // std::cout << "\n";
   // m_met.print();
 
 
 
+
+  // below is a better order for outputting event info
+  // m_event.print();
+
+  // std::cout << "\n";
+  // m_vertices.print(VERTEX_ALL);
+  // m_vertices.print(VERTEX_GT_2);
+  // m_vertices.print(VERTEX_GOOD);
 
   // std::cout << "\n";
   // m_electrons.print(EL_ALL);

@@ -173,7 +173,7 @@ bool PennSusyFrame::MuonSelector::passAllCuts(const PennSusyFrame::Muon* p)
 
   // check muon d0
   if (!passCut(fabs(p->getD0exPV()), m_min_d0_exPV, m_max_d0_exPV)) return false;
-  // std::cout << "\tpass d0 cut -- " << p->getD0() << " -- d0 range: [ " << m_min_d0 << " , " << m_max_d0 << " ]\n";
+  // std::cout << "\tpass d0 cut -- " << p->getD0() << " -- d0 range: [ " << m_min_d0_exPV << " , " << m_max_d0_exPV << " ]\n";
 
   // check muon z0
   if (!passCut(fabs(p->getZ0exPV()), m_min_z0_exPV, m_max_z0_exPV)) return false;
@@ -226,7 +226,7 @@ bool PennSusyFrame::TauSelector::passAllCuts(const PennSusyFrame::Tau* p)
   // std::cout << "\tpass pt cut\n";
 
   // check tau eta
-  if (!passCut(p->getEta(), m_min_eta, m_max_eta)) return false;
+  if (!passCut(fabs(p->getEta()), m_min_eta, m_max_eta)) return false;
   // std::cout << "\tpass eta cut\n";
 
   // check jet BDT level

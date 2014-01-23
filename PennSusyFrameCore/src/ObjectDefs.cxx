@@ -415,7 +415,9 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setExpectBLayer( reader->mu_staco_expectBLayerHit->at(mu_index));
   setNumBLayerHits(reader->mu_staco_nBLHits->at(mu_index));
   setNumPixelHits( reader->mu_staco_nPixHits->at(mu_index));
-  setNumSctHits(   reader->mu_staco_nSCTHits->at(mu_index));
+  setNumSctHits( reader->mu_staco_nSCTHits->at(mu_index)
+               + reader->mu_staco_nSCTDeadSensors->at(mu_index)
+               );
   setNumSiHoles( reader->mu_staco_nPixHoles->at(mu_index)
                + reader->mu_staco_nSCTHoles->at(mu_index)
                );
