@@ -216,7 +216,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   // Long64_t nbytes = 0, nb = 0;
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
-    // if (jentry > 1000) break;
+    // if (jentry > 10) break;
 
     progress_bar.checkProgress(jentry);
 
@@ -326,9 +326,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_met.prep( m_d3pd_reader
             , m_event
-            , m_electrons.getCollection(EL_GOOD)
-            , m_muons.getCollection(MU_GOOD)
-            , m_jets.getCollection(JET_GOOD)
+            , m_electrons.getCollection(EL_ALL)
+            , m_muons.getCollection(MU_BASELINE)
+            , m_jets.getCollection(JET_ALL)
             );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -407,6 +407,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 void PennSusyFrame::PennSusyFrameCore::processEvent()
 {
   // TODO make placeholder processEvent
+
+  // This is useful for comparing with old framework
+  // std::cout << "\n";
   // m_event.print();
 
   // std::cout << "\n";
@@ -451,6 +454,7 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
 
 
   // below is a better order for outputting event info
+  // std::cout << "\n";
   // m_event.print();
 
   // std::cout << "\n";

@@ -71,12 +71,19 @@ void Met::prep( Event* event
               )
 {
   if (!m_prepared) {
+    std::cout << "\nPreparing Met for event " << event.getEventNumber() << "\n";
+
     m_met_utility.setAverageIntPerXing(event->averageIntPerXing());
     // m_met_utility.setJetPUcode(MissingETTags::DEFAULT);
+    std::cout << "\tAverageIntPerXing: " << event->averageIntPerXing() << "\n";
 
+    std::cout << "\tadding met terms\n";
     addMet();
+    std::cout << "\tadding jet terms\n";
     addJets(jets);
+    std::cout << "\tadding electron terms\n";
     addElectrons(electrons);
+    std::cout << "\tadding muon terms\n";
     addMuons(muons);
   }
   // METUtility::METObject met_util = m_met_utility.getMissingET( METUtil::RefFinal );
@@ -133,16 +140,17 @@ void Met::doWeightFix( std::vector<float>& wet
 // ----------------------------------------------------------------------------
 void Met::addMet()
 {
-  // std::cout << "Adding SoftTerms:"
-  //           << "\n\tCellOut_etx: "    << CellOut_etx()
-  //           << "\n\tCellOut_ety: "    << CellOut_ety()
-  //           << "\n\tCellOut_sumet: " << CellOut_sumet()
-  //           << "\n";
-  // std::cout << "Adding RefGamma:"
-  //           << "\n\tRefGamma_etx: "    << RefGamma_etx()
-  //           << "\n\tRefGamma_ety: "    << RefGamma_ety()
-  //           << "\n\tRefGamma_sumet: " << RefGamma_sumet()
-  //           << "\n";
+  std::cout << "\t\taddMet()\n";
+  std::cout << "\t\t\tSoftTerms:"
+            << "\n\t\t\t\tCellOut_etx: "   << CellOut_etx()
+            << "\n\t\t\t\tCellOut_ety: "   << CellOut_ety()
+            << "\n\t\t\t\tCellOut_sumet: " << CellOut_sumet()
+            << "\n";
+  std::cout << "\t\tRefGamma:"
+            << "\n\t\t\t\tRefGamma_etx: "   << RefGamma_etx()
+            << "\n\t\t\t\tRefGamma_ety: "   << RefGamma_ety()
+            << "\n\t\t\t\tRefGamma_sumet: " << RefGamma_sumet()
+            << "\n";
 
   m_met_utility.setMETTerm( METUtil::SoftTerms
                           , CellOut_etx()
@@ -161,6 +169,8 @@ void Met::addMet()
 // ----------------------------------------------------------------------------
 void Met::addElectrons(ElectronContainer* electron_container)
 {
+  std::cout << "\t\taddElectons()\n";
+
   const std::vector<Electron*> el = electron_container->getElectrons(EL_ALL);
 
   // initialize container vectors for electron parameters
@@ -184,13 +194,20 @@ void Met::addElectrons(ElectronContainer* electron_container)
   el_wpy.reserve(n_el);
   el_statusWord.reserve(n_el);
 
+  std::cout << "\t\t\tadding each electron\n";
   // Loop over electrons and get each of their parameters and weights
   std::vector<Electron*>::const_iterator el_it = el.begin();
   std::vector<Electron*>::const_iterator el_term = el.end();
   for (; el_it != el_term; ++el_it) {
     // skip electrons with wet == 0
     if ((*el_it)->MET_Egamma10NoTau_wet().at(0) == 0) continue;
+    std::cout << "\t\t\t\tadding electron\n";
 
+    std::cout << "\t\t\t"
+              << "\t\tel pt: "  << (*el_it)->getPt()
+              << "\t\tel eta: " << (*el_it)->getEta()
+              << "\t\tel phi: " << (*el_it)->getPhi()
+              << "\n";
     TLorentzVector el_tlv = (*el_it)->getTlv();
     el_pt.push_back( el_tlv.Pt() );
     el_eta.push_back(el_tlv.Eta());
@@ -214,6 +231,23 @@ void Met::addElectrons(ElectronContainer* electron_container)
     // }
 
     doWeightFix(el_tmp_wet, el_tmp_wpx, el_tmp_wpy);
+
+    // std::cout << "\t\t\t\t\telectron status word:\n";
+    // for (size_t sw_it = 0; sw_it != el_status_word.size(); ++sw_it) {
+    //   std::cout << "\t\t\t\t\t\t= " << el_status_word.at(sw_it) << "\n";
+    // }
+    std::cout << "\t\t\t\t\telectron wet:\n";
+    for (size_t wet_it = 0; wet_it != el_tmp_wet.size(); ++wet_it) {
+      std::cout << "\t\t\t\t\t\t= " << el_tmp_wet.at(wet_it) << "\n";
+    }
+    std::cout << "\t\t\t\t\telectron wpx:\n";
+    for (size_t wpx_it = 0; wpx_it != el_tmp_wpx.size(); ++wpx_it) {
+      std::cout << "\t\t\t\t\t\t= " << el_tmp_wpx.at(wpx_it) << "\n";
+    }
+    std::cout << "\t\t\t\t\telectron wpy:\n";
+    for (size_t wpy_it = 0; wpy_it != el_tmp_wpy.size(); ++wpy_it) {
+      std::cout << "\t\t\t\t\t\t= " << el_tmp_wpy.at(wpy_it) << "\n";
+    }
 
     el_wet.push_back(el_tmp_wet);
     el_wpx.push_back(el_tmp_wpx);
@@ -349,6 +383,8 @@ void Met::addJets(JetContainer* jet_container)
 // ----------------------------------------------------------------------------
 void Met::addMuons(MuonContainer* muon_container)
 {
+  std::cout << "\t\taddMuons()\n";
+
   // const std::vector<Muon*> muons = muon_container->getMuons(MU_GOOD);
   const std::vector<Muon*> muons = muon_container->getMuons(MU_BASELINE);
 
@@ -382,9 +418,11 @@ void Met::addMuons(MuonContainer* muon_container)
   std::vector<float> unit_vec(1., 1);
   std::vector<unsigned int> def_vec(MissingETTags::DEFAULT, 1);
 
+  std::cout << "\t\t\tadding each muon\n";
   std::vector<Muon*>::const_iterator mu_it = muons.begin();
   std::vector<Muon*>::const_iterator mu_term = muons.end();
   for (; mu_it != mu_term; ++mu_it) {
+    std::cout << "\t\t\t\tadding muon\n";
     TLorentzVector mu_tlv = (*mu_it)->getTlv();
 
     mu_pt.push_back( mu_tlv.Pt());
@@ -394,6 +432,16 @@ void Met::addMuons(MuonContainer* muon_container)
     mu_wpx.push_back(unit_vec);
     mu_wpy.push_back(unit_vec);
     mu_statusWord.push_back(def_vec);
+
+    std::cout << "\t\t\t"
+              << "\t\tmu pt: "  << (*mu_it)->getPt()
+              << "\t\tmu eta: " << (*mu_it)->getEta()
+              << "\t\tmu phi: " << (*mu_it)->getPhi()
+              << "\t\tmu ms qoverp: " << (*mu_it)->getMsQOverP()
+              << "\t\tmu ms theta: "  << (*mu_it)->getMsTheta()
+              << "\t\tmu ms phi: "    << (*mu_it)->getMsPhi()
+              << "\t\tmu charge: "    << (*mu_it)->getCharge()
+              << "\n";
 
     mu_ms_qoverp.push_back((*mu_it)->ms_qoverp());
     mu_ms_theta.push_back((*mu_it)->ms_theta());

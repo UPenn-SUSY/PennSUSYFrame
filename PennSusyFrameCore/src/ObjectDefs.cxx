@@ -786,25 +786,32 @@ void PennSusyFrame::Met::prep( const PennSusyFrame::D3PDReader* reader
 {
   if (!m_prepared) {
 
-    m_met_utility.setAverageIntPerXing(event.getAverageIntPerXing());
+    // std::cout << "\nPreparing Met for event " << event.getEventNumber() << "\n";
 
+    m_met_utility.setAverageIntPerXing(event.getAverageIntPerXing());
+    // std::cout << "\tAverageIntPerXing: " << event.getAverageIntPerXing() << "\n";
+
+    // std::cout << "\tadding met terms\n";
     addMet(reader);
+    // std::cout << "\tadding electron terms\n";
     addElectrons(el_list);
+    // std::cout << "\tadding muon terms\n";
     addMuons(mu_list);
+    // std::cout << "\tadding jet terms\n";
     addJets(jet_list);
 
     // mark the met as preparaed
     m_prepared = true;
+
+    // get met object from met utility
+    METUtility::METObject met_util;
+    met_util = m_met_utility.getMissingET( METUtil::RefFinal );
+
+    // set met vector
+    m_met_vec.Set(met_util.etx(), met_util.ety());
+    m_met_et = m_met_vec.Mod();
+    m_met_phi = m_met_vec.Phi();
   }
-
-  // get met object from met utility
-  METUtility::METObject met_util;
-  met_util = m_met_utility.getMissingET( METUtil::RefFinal );
-
-  // set met vector
-  m_met_vec.Set(met_util.etx(), met_util.ety());
-  m_met_et = m_met_vec.Mod();
-  m_met_phi = m_met_vec.Phi();
 }
 
 // -----------------------------------------------------------------------------
@@ -843,23 +850,37 @@ void PennSusyFrame::Met::clear()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Met::addMet(const PennSusyFrame::D3PDReader* reader)
 {
+  // std::cout << "\t\taddMet()\n";
+  // std::cout << "\t\t\tSoftTerms:"
+  //           << "\n\t\t\t\tCellOut_etx: "   << reader->MET_Egamma10NoTau_CellOut_etx
+  //           << "\n\t\t\t\tCellOut_ety: "   << reader->MET_Egamma10NoTau_CellOut_ety
+  //           << "\n\t\t\t\tCellOut_sumet: " << reader->MET_Egamma10NoTau_CellOut_sumet
+  //           << "\n";
+  // std::cout << "\t\t\tRefGamma:"
+  //           << "\n\t\t\t\tMET_RefGamma_etx: "   << reader->MET_Egamma10NoTau_RefGamma_etx
+  //           << "\n\t\t\t\tMET_RefGamma_ety: "   << reader->MET_Egamma10NoTau_RefGamma_ety
+  //           << "\n\t\t\t\tMET_RefGamma_sumet: " << reader->MET_Egamma10NoTau_RefGamma_sumet
+  //           << "\n";
+
   m_met_utility.setMETTerm( METUtil::SoftTerms
-                          , reader->MET_CellOut_etx
-                          , reader->MET_CellOut_ety
-                          , reader->MET_CellOut_sumet
+                          , reader->MET_Egamma10NoTau_CellOut_etx
+                          , reader->MET_Egamma10NoTau_CellOut_ety
+                          , reader->MET_Egamma10NoTau_CellOut_sumet
                           );
 
 
   m_met_utility.setMETTerm( METUtil::RefGamma
-                          , reader->MET_RefGamma_etx
-                          , reader->MET_RefGamma_ety
-                          , reader->MET_RefGamma_sumet
+                          , reader->MET_Egamma10NoTau_RefGamma_etx
+                          , reader->MET_Egamma10NoTau_RefGamma_ety
+                          , reader->MET_Egamma10NoTau_RefGamma_sumet
                           );
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Met::addElectrons(const std::vector<PennSusyFrame::Electron*>* el_list)
 {
+  // std::cout << "\t\taddElectons()\n";
+
   // initialize container vectors for electron parameters
   int n_el = el_list->size();
   std::vector<float> el_pt;
@@ -881,14 +902,21 @@ void PennSusyFrame::Met::addElectrons(const std::vector<PennSusyFrame::Electron*
   el_wpy.reserve(n_el);
   el_status_word.reserve(n_el);
 
+  // std::cout << "\t\t\tadding each electron\n";
   // Loop over electrons and get each of their parameters and weights
   std::vector<PennSusyFrame::Electron*>::const_iterator el_it = el_list->begin();
   std::vector<PennSusyFrame::Electron*>::const_iterator el_term = el_list->end();
   for (; el_it != el_term; ++el_it) {
     // skip electrons with wet == 0
     if ((*el_it)->getMetWet().at(0) == 0) continue;
+    // std::cout << "\t\t\t\tadding electron\n";
 
     // fill electron kinematic vectors
+    // std::cout << "\t\t\t"
+    //           << "\t\tel pt: "  << (*el_it)->getPt()
+    //           << "\t\tel eta: " << (*el_it)->getEta()
+    //           << "\t\tel phi: " << (*el_it)->getPhi()
+    //           << "\n";
     el_pt.push_back( (*el_it)->getPt() );
     el_eta.push_back((*el_it)->getEta());
     el_phi.push_back((*el_it)->getPhi());
@@ -906,6 +934,22 @@ void PennSusyFrame::Met::addElectrons(const std::vector<PennSusyFrame::Electron*
 
     doWeightFix(el_tmp_wet, el_tmp_wpx, el_tmp_wpy);
 
+    // std::cout << "\t\t\t\t\telectron status word:\n";
+    // for (size_t sw_it = 0; sw_it != el_status_word.size(); ++sw_it) {
+    //   std::cout << "\t\t\t\t\t\t= " << el_status_word.at(sw_it) << "\n";
+    // }
+    // std::cout << "\t\t\t\t\telectron wet:\n";
+    // for (size_t wet_it = 0; wet_it != el_tmp_wet.size(); ++wet_it) {
+    //   std::cout << "\t\t\t\t\t\t= " << el_tmp_wet.at(wet_it) << "\n";
+    // }
+    // std::cout << "\t\t\t\t\telectron wpx:\n";
+    // for (size_t wpx_it = 0; wpx_it != el_tmp_wpx.size(); ++wpx_it) {
+    //   std::cout << "\t\t\t\t\t\t= " << el_tmp_wpx.at(wpx_it) << "\n";
+    // }
+    // std::cout << "\t\t\t\t\telectron wpy:\n";
+    // for (size_t wpy_it = 0; wpy_it != el_tmp_wpy.size(); ++wpy_it) {
+    //   std::cout << "\t\t\t\t\t\t= " << el_tmp_wpy.at(wpy_it) << "\n";
+    // }
     // add corrected weights to weight vectors
     el_wet.push_back(el_tmp_wet);
     el_wpx.push_back(el_tmp_wpx);
@@ -925,6 +969,8 @@ void PennSusyFrame::Met::addElectrons(const std::vector<PennSusyFrame::Electron*
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Met::addMuons(const std::vector<PennSusyFrame::Muon*>* mu_list)
 {
+  // std::cout << "\t\taddMuons()\n";
+
   // initialize container vectors for muon parameters
   int n_mu = mu_list->size();
   std::vector<float> mu_pt;
@@ -955,9 +1001,12 @@ void PennSusyFrame::Met::addMuons(const std::vector<PennSusyFrame::Muon*>* mu_li
   std::vector<float> unit_vec(1., 1);
   std::vector<unsigned int> default_vec(MissingETTags::DEFAULT, 1);
 
+  // std::cout << "\t\t\tadding each muon\n";
   std::vector<Muon*>::const_iterator mu_it = mu_list->begin();
   std::vector<Muon*>::const_iterator mu_term = mu_list->end();
   for (; mu_it != mu_term; ++mu_it) {
+    // std::cout << "\t\t\t\tadding muon\n";
+
     mu_pt.push_back( (*mu_it)->getPt());
     mu_eta.push_back((*mu_it)->getEta());
     mu_phi.push_back((*mu_it)->getPhi());
@@ -965,6 +1014,16 @@ void PennSusyFrame::Met::addMuons(const std::vector<PennSusyFrame::Muon*>* mu_li
     mu_wpx.push_back(unit_vec);
     mu_wpy.push_back(unit_vec);
     mu_status_word.push_back(default_vec);
+
+    // std::cout << "\t\t\t"
+    //           << "\t\tmu pt: "        << (*mu_it)->getPt()
+    //           << "\t\tmu eta: "       << (*mu_it)->getEta()
+    //           << "\t\tmu phi: "       << (*mu_it)->getPhi()
+    //           << "\t\tmu ms qoverp: " << (*mu_it)->getMsQOverP()
+    //           << "\t\tmu ms theta: "  << (*mu_it)->getMsTheta()
+    //           << "\t\tmu ms phi: "    << (*mu_it)->getMsPhi()
+    //           << "\t\tmu charge: "    << (*mu_it)->getCharge()
+    //           << "\n";
 
     mu_ms_qoverp.push_back((*mu_it)->getMsQOverP());
     mu_ms_theta.push_back((*mu_it)->getMsTheta());

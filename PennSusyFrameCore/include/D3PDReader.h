@@ -3023,9 +3023,9 @@ namespace PennSusyFrame
     // //    Float_t         MET_RefMuon_Muid_ety_ForwardReg;
     // //    Float_t         MET_RefMuon_Muid_sumet_ForwardReg;
     // //    Float_t         MET_RefMuon_Muid_phi_ForwardReg;
-     Float_t         MET_RefGamma_etx;
-     Float_t         MET_RefGamma_ety;
-     Float_t         MET_RefGamma_sumet;
+    // Float_t         MET_RefGamma_etx;
+    // Float_t         MET_RefGamma_ety;
+    // Float_t         MET_RefGamma_sumet;
     // //    Float_t         MET_RefGamma_etx_CentralReg;
     // //    Float_t         MET_RefGamma_ety_CentralReg;
     // //    Float_t         MET_RefGamma_sumet_CentralReg;
@@ -3053,9 +3053,9 @@ namespace PennSusyFrame
     // //    Float_t         MET_RefTau_ety_ForwardReg;
     // //    Float_t         MET_RefTau_sumet_ForwardReg;
     // //    Float_t         MET_RefTau_phi_ForwardReg;
-    Float_t         MET_CellOut_etx;
-    Float_t         MET_CellOut_ety;
-    Float_t         MET_CellOut_sumet;
+    // Float_t         MET_CellOut_etx;
+    // Float_t         MET_CellOut_ety;
+    // Float_t         MET_CellOut_sumet;
     // Float_t         MET_CellOut_etx_CentralReg;
     // Float_t         MET_CellOut_ety_CentralReg;
     // Float_t         MET_CellOut_sumet_CentralReg;
@@ -3431,9 +3431,9 @@ namespace PennSusyFrame
     // Float_t         MET_Truth_IntFwd_sumet;
     // Float_t         MET_Truth_IntOutCover_sumet;
     // Float_t         MET_Truth_IntMuons_sumet;
-    // Float_t         MET_Egamma10NoTau_RefGamma_etx;
-    // Float_t         MET_Egamma10NoTau_RefGamma_ety;
-    // Float_t         MET_Egamma10NoTau_RefGamma_sumet;
+    Float_t         MET_Egamma10NoTau_RefGamma_etx;
+    Float_t         MET_Egamma10NoTau_RefGamma_ety;
+    Float_t         MET_Egamma10NoTau_RefGamma_sumet;
     // Float_t         MET_Egamma10NoTau_RefGamma_etx_CentralReg;
     // Float_t         MET_Egamma10NoTau_RefGamma_ety_CentralReg;
     // Float_t         MET_Egamma10NoTau_RefGamma_sumet_CentralReg;
@@ -3851,9 +3851,9 @@ namespace PennSusyFrame
     // //    Float_t         MET_Egamma10NoTauLoosePhotonRef_Muon_NonIsol_Staco_ety_ForwardReg;
     // //    Float_t         MET_Egamma10NoTauLoosePhotonRef_Muon_NonIsol_Staco_sumet_ForwardReg;
     // //    Float_t         MET_Egamma10NoTauLoosePhotonRef_Muon_NonIsol_Staco_phi_ForwardReg;
-    // Float_t         MET_Egamma10NoTau_CellOut_etx;
-    // Float_t         MET_Egamma10NoTau_CellOut_ety;
-    // Float_t         MET_Egamma10NoTau_CellOut_sumet;
+    Float_t         MET_Egamma10NoTau_CellOut_etx;
+    Float_t         MET_Egamma10NoTau_CellOut_ety;
+    Float_t         MET_Egamma10NoTau_CellOut_sumet;
     // Float_t         MET_Egamma10NoTau_CellOut_etx_CentralReg;
     // Float_t         MET_Egamma10NoTau_CellOut_ety_CentralReg;
     // Float_t         MET_Egamma10NoTau_CellOut_sumet_CentralReg;
@@ -10046,9 +10046,9 @@ namespace PennSusyFrame
     // //    TBranch        *b_MET_RefMuon_Muid_ety_ForwardReg;   //!
     // //    TBranch        *b_MET_RefMuon_Muid_sumet_ForwardReg;   //!
     // //    TBranch        *b_MET_RefMuon_Muid_phi_ForwardReg;   //!
-    TBranch        *b_MET_RefGamma_etx;   //!
-    TBranch        *b_MET_RefGamma_ety;   //!
-    TBranch        *b_MET_RefGamma_sumet;   //!
+    // TBranch        *b_MET_RefGamma_etx;   //!
+    // TBranch        *b_MET_RefGamma_ety;   //!
+    // TBranch        *b_MET_RefGamma_sumet;   //!
     // //    TBranch        *b_MET_RefGamma_etx_CentralReg;   //!
     // //    TBranch        *b_MET_RefGamma_ety_CentralReg;   //!
     // //    TBranch        *b_MET_RefGamma_sumet_CentralReg;   //!
@@ -10076,9 +10076,9 @@ namespace PennSusyFrame
     // //    TBranch        *b_MET_RefTau_ety_ForwardReg;   //!
     // //    TBranch        *b_MET_RefTau_sumet_ForwardReg;   //!
     // //    TBranch        *b_MET_RefTau_phi_ForwardReg;   //!
-    TBranch        *b_MET_CellOut_etx;   //!
-    TBranch        *b_MET_CellOut_ety;   //!
-    TBranch        *b_MET_CellOut_sumet;   //!
+    // TBranch        *b_MET_CellOut_etx;   //!
+    // TBranch        *b_MET_CellOut_ety;   //!
+    // TBranch        *b_MET_CellOut_sumet;   //!
     // TBranch        *b_MET_CellOut_etx_CentralReg;   //!
     // TBranch        *b_MET_CellOut_ety_CentralReg;   //!
     // TBranch        *b_MET_CellOut_sumet_CentralReg;   //!
@@ -10454,9 +10454,9 @@ namespace PennSusyFrame
     // TBranch        *b_MET_Truth_IntFwd_sumet;   //!
     // TBranch        *b_MET_Truth_IntOutCover_sumet;   //!
     // TBranch        *b_MET_Truth_IntMuons_sumet;   //!
-    // TBranch        *b_MET_Egamma10NoTau_RefGamma_etx;   //!
-    // TBranch        *b_MET_Egamma10NoTau_RefGamma_ety;   //!
-    // TBranch        *b_MET_Egamma10NoTau_RefGamma_sumet;   //!
+    TBranch        *b_MET_Egamma10NoTau_RefGamma_etx;   //!
+    TBranch        *b_MET_Egamma10NoTau_RefGamma_ety;   //!
+    TBranch        *b_MET_Egamma10NoTau_RefGamma_sumet;   //!
     // TBranch        *b_MET_Egamma10NoTau_RefGamma_etx_CentralReg;   //!
     // TBranch        *b_MET_Egamma10NoTau_RefGamma_ety_CentralReg;   //!
     // TBranch        *b_MET_Egamma10NoTau_RefGamma_sumet_CentralReg;   //!
@@ -10874,9 +10874,9 @@ namespace PennSusyFrame
     // //    TBranch        *b_MET_Egamma10NoTauLoosePhotonRef_Muon_NonIsol_Staco_ety_ForwardReg;   //!
     // //    TBranch        *b_MET_Egamma10NoTauLoosePhotonRef_Muon_NonIsol_Staco_sumet_ForwardReg;   //!
     // //    TBranch        *b_MET_Egamma10NoTauLoosePhotonRef_Muon_NonIsol_Staco_phi_ForwardReg;   //!
-    // TBranch        *b_MET_Egamma10NoTau_CellOut_etx;   //!
-    // TBranch        *b_MET_Egamma10NoTau_CellOut_ety;   //!
-    // TBranch        *b_MET_Egamma10NoTau_CellOut_sumet;   //!
+    TBranch        *b_MET_Egamma10NoTau_CellOut_etx;   //!
+    TBranch        *b_MET_Egamma10NoTau_CellOut_ety;   //!
+    TBranch        *b_MET_Egamma10NoTau_CellOut_sumet;   //!
     // TBranch        *b_MET_Egamma10NoTau_CellOut_etx_CentralReg;   //!
     // TBranch        *b_MET_Egamma10NoTau_CellOut_ety_CentralReg;   //!
     // TBranch        *b_MET_Egamma10NoTau_CellOut_sumet_CentralReg;   //!
