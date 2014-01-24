@@ -37,10 +37,14 @@ namespace PennSusyFrame
       virtual void clearObjects();
       virtual void constructObjects();
       virtual void processEvent();
+      virtual void finalizeEvent();
 
     protected:
       virtual FLAVOR_CHANNEL findFlavorChannel();
       virtual SIGN_CHANNEL   findSignCannel();
+
+      bool m_is_data;
+      double m_event_weight;
 
       PennSusyFrame::D3PDReader* m_d3pd_reader;
 

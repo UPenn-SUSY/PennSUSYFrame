@@ -18,7 +18,10 @@
 
 // -----------------------------------------------------------------------------
 // PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : fChain(0)
-PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_d3pd_reader(0)
+// TODO set m_is_data correctly
+PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_is_data(false)
+                                                                 , m_event_weight(1.)
+                                                                 , m_d3pd_reader(0)
 {
   // if parameter tree is not specified (or zero), connect the file
   // used to generate this class and read the Tree.
@@ -218,8 +221,6 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   // Long64_t nbytes = 0, nb = 0;
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
-    // if (jentry > 10) break;
-
     progress_bar.checkProgress(jentry);
 
     Long64_t ientry = LoadTree(jentry);
@@ -233,12 +234,15 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     clearObjects();
     constructObjects();
     processEvent();
+    finalizeEvent();
   }
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::clearObjects()
 {
+  m_event_weight = 1.;
+
   m_met.clear();
   m_vertices.clear();
   m_electrons.clear();
@@ -531,6 +535,13 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   // m_vertices.print(VERTEX_GT_2);
   // m_vertices.print(VERTEX_GOOD);
 }
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::finalizeEvent()
+{
+  // TODO write default finalizeEvent function
+}
+
 
 // -----------------------------------------------------------------------------
 FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel()
