@@ -102,6 +102,26 @@ namespace PennSusyFrame
   };
 
   // =============================================================================
+  class EventLevelQuantities : public PhysicsObject
+  {
+    public:
+      EventLevelQuantities();
+
+      void init();
+
+      // TODO move accessors to cxx file
+      void setMt2(double val) { m_mt2 = val; }
+
+      // TODO move accessors to cxx file
+      double getMt2() const { return m_mt2; }
+
+      void print() const;
+
+    protected:
+      double m_mt2;
+  };
+
+  // =============================================================================
   class Particle : public PhysicsObject
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

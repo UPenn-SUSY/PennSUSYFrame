@@ -71,6 +71,24 @@ void PennSusyFrame::Event::print() const
 }
 
 // =============================================================================
+// =============================================================================
+// = EventLevelQuantities
+// =============================================================================
+PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mt2(0.)
+{}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EventLevelQuantities::init() {}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EventLevelQuantities::print() const
+{
+  std::cout << "================= Printing event level quantities: =================\n";
+  std::cout << "\tmt2: " << m_mt2
+            << "\n";
+}
+
+// =============================================================================
 // = Particle
 // =============================================================================
 // -----------------------------------------------------------------------------
@@ -850,7 +868,7 @@ double PennSusyFrame::Met::getDPhi(PennSusyFrame::Particle* p) const
 {
   double this_phi = m_met_vec.Phi();
   double particle_phi = p->getPhi();
-  return TVector2::Phi_0_2pi(this_phi - particle_phi);
+  return fabs(TVector2::Phi_mpi_pi(this_phi - particle_phi));
 }
 
 // -----------------------------------------------------------------------------

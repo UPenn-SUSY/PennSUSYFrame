@@ -58,6 +58,7 @@ void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
   m_d3pd_reader = new PennSusyFrame::D3PDReader(tree);
 
   m_event.init();
+  m_event_quantities.init();
   m_vertices.init();
   m_electrons.init();
   m_muons.init();
@@ -217,7 +218,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   // Long64_t nbytes = 0, nb = 0;
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
-    if (jentry > 10) break;
+    // if (jentry > 10) break;
 
     progress_bar.checkProgress(jentry);
 
@@ -419,6 +420,14 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_event.setFlavorChannel(findFlavorChannel());
   m_event.setSignChannel(findSignCannel());
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_event_quantities.setMt2(PennSusyFrame::getMt2( m_event.getFlavorChannel()
+                                                 , &m_met
+                                                 , m_electrons.getCollection(EL_GOOD)
+                                                 , m_muons.getCollection(MU_GOOD)
+                                                 )
+                           );
 }
 
 // -----------------------------------------------------------------------------
@@ -427,8 +436,8 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   // TODO make placeholder processEvent
 
   // This is useful for comparing with old framework
-  std::cout << "\n";
-  m_event.print();
+  // std::cout << "\n";
+  // m_event.print();
 
   // std::cout << "\n";
   // m_vertices.print(VERTEX_ALL);
@@ -465,17 +474,11 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   // m_jets.print(JET_B);
   // m_jets.print(JET_FORWARD);
 
-  std::cout << "\n";
-  m_met.print();
+  // std::cout << "\n";
+  // m_met.print();
 
-  std::cout << "\n";
-  std::cout << "\tmt2: " << PennSusyFrame::getMt2( m_event.getFlavorChannel()
-                                                 , &m_met
-                                                 , m_electrons.getCollection(EL_GOOD)
-                                                 , m_muons.getCollection(MU_GOOD)
-                                                 )
-            << "\n";
-
+  // std::cout << "\n";
+  // m_event_quantities.print();
 
 
 

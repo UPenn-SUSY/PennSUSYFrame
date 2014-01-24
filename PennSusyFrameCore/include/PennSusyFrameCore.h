@@ -43,13 +43,14 @@ namespace PennSusyFrame
 
       PennSusyFrame::D3PDReader* m_d3pd_reader;
 
-      PennSusyFrame::Event             m_event;
-      PennSusyFrame::Met               m_met;
-      PennSusyFrame::VertexContainer   m_vertices;
-      PennSusyFrame::ElectronContainer m_electrons;
-      PennSusyFrame::MuonContainer     m_muons;
-      PennSusyFrame::TauContainer      m_taus;
-      PennSusyFrame::JetContainer      m_jets;
+      PennSusyFrame::Event                m_event;
+      PennSusyFrame::EventLevelQuantities m_event_quantities;
+      PennSusyFrame::Met                  m_met;
+      PennSusyFrame::VertexContainer      m_vertices;
+      PennSusyFrame::ElectronContainer    m_electrons;
+      PennSusyFrame::MuonContainer        m_muons;
+      PennSusyFrame::TauContainer         m_taus;
+      PennSusyFrame::JetContainer         m_jets;
 
       std::vector<PennSusyFrame::VertexSelector>   m_vertex_selectors;
       std::vector<PennSusyFrame::ElectronSelector> m_electron_selectors;
