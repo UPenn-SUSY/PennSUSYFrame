@@ -35,7 +35,7 @@ endif
 # CXX := g++
 ROOTCFLAGS := $(shell root-config --cflags)
 # ROOTLIBS   := $(shell root-config --libs)
-ROOTLIBS   := $(shell root-config --libs) -lTMVA -lMinuit -lTreePlayer
+ROOTLIBS   := $(shell root-config --libs) -lTMVA -lMinuit2 -lTreePlayer
 CXXFLAGS += -Wall $(ROOTCFLAGS)
 INCLUDES += -I./
 

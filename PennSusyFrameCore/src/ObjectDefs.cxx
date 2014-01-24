@@ -13,6 +13,7 @@
 
 // =============================================================================
 static const double PI = 3.14159265359;
+static const double PI_OVER_2 = PI/2.;
 
 // =============================================================================
 // = PhysicsObject
@@ -838,8 +839,8 @@ void PennSusyFrame::Met::constructMetRel( const std::vector<PennSusyFrame::Elect
   min_dphi = std::min(min_dphi, findMinDphiInList(*mu_list));
   min_dphi = std::min(min_dphi, findMinDphiInList(*jet_list));
 
-  if (min_dphi < PI)
-    m_met_rel_et = m_met_et * cos(min_dphi);
+  if (min_dphi < PI_OVER_2)
+    m_met_rel_et = m_met_et * sin(min_dphi);
   else
     m_met_rel_et = m_met_et;
 }

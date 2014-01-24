@@ -397,10 +397,23 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                       );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::vector<PennSusyFrame::Jet*> central_jets;
+  central_jets.reserve(m_jets.num(JET_LIGHT) + m_jets.num(JET_B));
+  central_jets.insert( central_jets.end()
+                     , m_jets.getCollection(JET_LIGHT)->begin()
+                     , m_jets.getCollection(JET_LIGHT)->end()
+                     );
+  central_jets.insert( central_jets.end()
+                     , m_jets.getCollection(JET_B)->begin()
+                     , m_jets.getCollection(JET_B)->end()
+                     );
+  m_jets.setCollection(JET_ALL_CENTRAL, central_jets);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // construct met-rel
   m_met.constructMetRel( m_electrons.getCollection(EL_GOOD)
                        , m_muons.getCollection(MU_GOOD)
-                       , m_jets.getCollection(JET_GOOD)
+                       , m_jets.getCollection(JET_ALL_CENTRAL)
                        );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -460,7 +473,8 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
                                                  , &m_met
                                                  , m_electrons.getCollection(EL_GOOD)
                                                  , m_muons.getCollection(MU_GOOD)
-                                                 );
+                                                 )
+            << "\n";
 
 
 
