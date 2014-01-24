@@ -21,7 +21,8 @@ namespace PennSusyFrame
 namespace PennSusyFrame
 {
   // ===========================================================================
-  class PennSusyFrameCore {
+  class PennSusyFrameCore
+  {
     public :
       PennSusyFrameCore(TTree *tree=0);
       virtual ~PennSusyFrameCore();
