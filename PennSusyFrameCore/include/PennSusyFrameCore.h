@@ -7,6 +7,7 @@
 
 #include "PennSusyFrameCore/include/ObjectContainers.h"
 #include "PennSusyFrameCore/include/ObjectSelectors.h"
+#include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 
 // =============================================================================
 class TBranch;
@@ -37,8 +38,8 @@ namespace PennSusyFrame
       virtual void processEvent();
 
     protected:
-      // TTree          *fChain;   //!pointer to the analyzed TTree or TChain
-      // Int_t           fCurrent; //!current Tree number in a TChain
+      virtual FLAVOR_CHANNEL findFlavorChannel();
+      virtual SIGN_CHANNEL   findSignCannel();
 
       PennSusyFrame::D3PDReader* m_d3pd_reader;
 

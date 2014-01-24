@@ -11,6 +11,7 @@ LOCAL_LIBS_PATH += $(ROOTCOREDIR)/lib/libegammaAnalysisUtils.so
 LOCAL_LIBS_PATH += $(ROOTCOREDIR)/lib/libMuonMomentumCorrections.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libApplyJetCalibration.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libMissingETUtility.so
+LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libMt2.so
 # BONUS_LIB_PATH = 
 
 INCLUDES += -I../

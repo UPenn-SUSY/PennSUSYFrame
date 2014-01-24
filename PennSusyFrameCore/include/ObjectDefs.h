@@ -6,6 +6,7 @@
 #include "TLorentzVector.h"
 #include "PennSusyFrameCore/include/RescalerTools.h"
 #include "RootCore/MissingETUtility/MissingETUtility/METUtility.h"
+#include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -55,10 +56,12 @@ namespace PennSusyFrame
       void setLumiBlock(unsigned int val)   { m_lumi_block = val; }
       void setAverageIntPerXing(float val)  { m_average_int_per_xing = val; }
       void setEventShapeRhoKt4LC(float val) { m_eventshape_rhoKt4LC = val; }
-      void setMetEt(double val) { m_met_et = val; }
-      void setMetPhi(double val) { m_met_phi = val; }
-      void setMetRel(double val) { m_met_rel = val; }
-      void setMt2(double val) { m_mt2 = val; }
+      void setFlavorChannel(FLAVOR_CHANNEL val) { m_flavor_channel = val; }
+      void setSignChannel(SIGN_CHANNEL val) { m_sign_channel = val; }
+      // void setMetEt(double val) { m_met_et = val; }
+      // void setMetPhi(double val) { m_met_phi = val; }
+      // void setMetRel(double val) { m_met_rel = val; }
+      // void setMt2(double val) { m_mt2 = val; }
 
       // TODO move accessors to cxx file
       bool getIsData() const { return m_is_data; }
@@ -67,10 +70,12 @@ namespace PennSusyFrame
       unsigned int getLumiBlock() const { return m_lumi_block; }
       float getAverageIntPerXing() const { return m_average_int_per_xing; }
       float getEventShapeRhoKt4LC() const { return m_eventshape_rhoKt4LC; }
-      double getMetEt() const { return m_met_et; }
-      double getMetPhi() const { return m_met_phi; }
-      double getMetRel() const { return m_met_rel; }
-      double getMt2() const { return m_mt2; }
+      FLAVOR_CHANNEL getFlavorChannel() const { return m_flavor_channel; }
+      SIGN_CHANNEL getSignChannel() const { return m_sign_channel; }
+      // double getMetEt() const { return m_met_et; }
+      // double getMetPhi() const { return m_met_phi; }
+      // double getMetRel() const { return m_met_rel; }
+      // double getMt2() const { return m_mt2; }
 
       void print() const;
 
@@ -85,12 +90,15 @@ namespace PennSusyFrame
       float m_average_int_per_xing;
       float m_eventshape_rhoKt4LC;
 
-      double m_met_et;
-      double m_met_phi;
-      double m_met_rel;
+      FLAVOR_CHANNEL m_flavor_channel;
+      SIGN_CHANNEL m_sign_channel;
+
+      // double m_met_et;
+      // double m_met_phi;
+      // double m_met_rel;
 
       // TODO set mt2 in event object
-      double m_mt2;
+      // double m_mt2;
   };
 
   // =============================================================================

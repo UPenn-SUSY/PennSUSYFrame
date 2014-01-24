@@ -9,6 +9,7 @@
 
 #include "PennSusyFrameCore/include/D3PDReader.h"
 #include "PennSusyFrameCore/include/ObjectContainers.h"
+#include "PennSusyFrameCore/include/Calculators.h"
 
 // #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 // #include "PennSusyFrameCore/include/ObjectDefs.h"
@@ -216,7 +217,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   // Long64_t nbytes = 0, nb = 0;
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
 
-    // if (jentry > 10) break;
+    if (jentry > 10) break;
 
     progress_bar.checkProgress(jentry);
 
@@ -401,6 +402,10 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                        , m_muons.getCollection(MU_GOOD)
                        , m_jets.getCollection(JET_GOOD)
                        );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_event.setFlavorChannel(findFlavorChannel());
+  m_event.setSignChannel(findSignCannel());
 }
 
 // -----------------------------------------------------------------------------
@@ -409,8 +414,8 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   // TODO make placeholder processEvent
 
   // This is useful for comparing with old framework
-  // std::cout << "\n";
-  // m_event.print();
+  std::cout << "\n";
+  m_event.print();
 
   // std::cout << "\n";
   // m_vertices.print(VERTEX_ALL);
@@ -447,8 +452,15 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   // m_jets.print(JET_B);
   // m_jets.print(JET_FORWARD);
 
-  // std::cout << "\n";
-  // m_met.print();
+  std::cout << "\n";
+  m_met.print();
+
+  std::cout << "\n";
+  std::cout << "\tmt2: " << PennSusyFrame::getMt2( m_event.getFlavorChannel()
+                                                 , &m_met
+                                                 , m_electrons.getCollection(EL_GOOD)
+                                                 , m_muons.getCollection(MU_GOOD)
+                                                 );
 
 
 
@@ -501,4 +513,46 @@ void PennSusyFrame::PennSusyFrameCore::processEvent()
   // m_vertices.print(VERTEX_ALL);
   // m_vertices.print(VERTEX_GT_2);
   // m_vertices.print(VERTEX_GOOD);
+}
+
+// -----------------------------------------------------------------------------
+FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel()
+{
+  size_t num_el = m_electrons.num(EL_GOOD);
+  size_t num_mu = m_muons.num(MU_GOOD);
+
+  if (num_el == 2 && num_mu == 0) return FLAVOR_EE;
+  if (num_el == 1 && num_mu == 1) return FLAVOR_EM;
+  if (num_el == 0 && num_mu == 2) return FLAVOR_MM;
+  return FLAVOR_NONE;
+}
+
+// -----------------------------------------------------------------------------
+SIGN_CHANNEL PennSusyFrame::PennSusyFrameCore::findSignCannel()
+{
+  // if no flavor channel, there is no sign channel -- return none
+  if (m_event.getFlavorChannel() == FLAVOR_NONE) return SIGN_NONE;
+
+  // find the sign channel - depends on which flavor channel we are in
+  int sign = 1;
+  if (m_event.getFlavorChannel() == FLAVOR_EE) {
+    sign *= m_electrons.getCollection(EL_GOOD)->at(0)->getCharge();
+    sign *= m_electrons.getCollection(EL_GOOD)->at(1)->getCharge();
+  }
+  else if (m_event.getFlavorChannel() == FLAVOR_EM) {
+    sign *= m_electrons.getCollection(EL_GOOD)->at(0)->getCharge();
+    sign *= m_muons.getCollection(MU_GOOD)->at(0)->getCharge();
+  }
+  else if (m_event.getFlavorChannel() == FLAVOR_MM) {
+    sign *= m_muons.getCollection(MU_GOOD)->at(0)->getCharge();
+    sign *= m_muons.getCollection(MU_GOOD)->at(1)->getCharge();
+  }
+
+  // return the correct sign channel
+  if (sign > 0) return SIGN_SS;
+  if (sign < 0) return SIGN_OS;
+  std::cout << "\nWARNING!!! Event " << m_event.getEventNumber()
+            << " has flavor channel " << FLAVOR_CHANNEL_STRINGS[m_event.getFlavorChannel()]
+            << " but does not fit in a sign channel! Something went wrong!\n";
+  return SIGN_NONE;
 }

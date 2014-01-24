@@ -1,5 +1,6 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/D3PDReader.h"
+#include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 // #include "PennSusyFrameCore/include/Calculators.h"
 #include "RootCore/egammaEvent/egammaEvent/egammaPIDdefs.h"
 #include "RootCore/MissingETUtility/MissingETUtility/METUtility.h"
@@ -23,7 +24,15 @@ void PennSusyFrame::PhysicsObject::updateWithMet(const PennSusyFrame::Met&) {}
 // =============================================================================
 // -----------------------------------------------------------------------------
 // TODO set m_is_data properly
-PennSusyFrame::Event::Event() : m_is_data(false) {}
+PennSusyFrame::Event::Event() : m_is_data(false)
+                              , m_event_number(0)
+                              , m_run_number(0)
+                              , m_lumi_block(0)
+                              , m_average_int_per_xing(0)
+                              , m_eventshape_rhoKt4LC(0)
+                              , m_flavor_channel(FLAVOR_NONE)
+                              , m_sign_channel(SIGN_NONE)
+{}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Event::init() {}
@@ -40,11 +49,11 @@ void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Event::updateWithMet(const PennSusyFrame::Met& met)
+void PennSusyFrame::Event::updateWithMet(const PennSusyFrame::Met& /*met*/)
 {
-  setMetEt(met.getMetEt());
-  setMetPhi(met.getMetPhi());
-  setMetRel(met.getMetRel());
+  // setMetEt(met.getMetEt());
+  // setMetPhi(met.getMetPhi());
+  // setMetRel(met.getMetRel());
 }
 
 // -----------------------------------------------------------------------------
@@ -54,6 +63,9 @@ void PennSusyFrame::Event::print() const
   std::cout << "run number: " << m_run_number
             // << "\tlumi block: " << m_lumi_block
             << "\tevent number: " << m_event_number
+            << "\n"
+            << "\tFlavor channel: " << FLAVOR_CHANNEL_STRINGS[m_flavor_channel]
+            << "\tSign channel: " << SIGN_CHANNEL_STRINGS[m_sign_channel]
             << "\n";
 }
 
@@ -1143,5 +1155,7 @@ void PennSusyFrame::Met::print() const
             << "\tMET phi: " << m_met_vec.Phi()
             << "\tMET ex: "  << m_met_vec.X()
             << "\tMET ey: "  << m_met_vec.Y()
+            << "\n"
+            << "\tMET rel: " << m_met_rel_et
             << "\n";
 }

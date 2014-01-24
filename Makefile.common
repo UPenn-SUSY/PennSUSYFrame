@@ -35,7 +35,7 @@ endif
 # CXX := g++
 ROOTCFLAGS := $(shell root-config --cflags)
 # ROOTLIBS   := $(shell root-config --libs)
-ROOTLIBS   := $(shell root-config --libs) -lTMVA
+ROOTLIBS   := $(shell root-config --libs) -lTMVA -lMinuit -lTreePlayer
 CXXFLAGS += -Wall $(ROOTCFLAGS)
 INCLUDES += -I./
 
@@ -127,7 +127,8 @@ $(EXECUTABLE) :
 	@echo "------------------------------------------------------------"
 
 	# @$(CXX) -v $(SH_LIB_FILE) $(LOCAL_LIBS_PATH) $(BONUS_LIB_PATH) $(ROOTLIBS) -lMinuit -o $@
-	@$(CXX) -v $(SH_LIB_FILE) $(LOCAL_LIBS_PATH) $(BONUS_LIB_PATH) $(ROOTLIBS) -lMinuit -lTreePlayer -o $@
+	# @$(CXX) -v $(SH_LIB_FILE) $(LOCAL_LIBS_PATH) $(BONUS_LIB_PATH) $(ROOTLIBS) -lMinuit -lTreePlayer -o $@
+	@$(CXX) -v $(SH_LIB_FILE) $(LOCAL_LIBS_PATH) $(BONUS_LIB_PATH) $(ROOTLIBS) -o $@
 	@echo ""
 
 # rule to clean up environment
