@@ -69,8 +69,8 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_tile_trip && !pass_tile_trip) return;
 
   // bad jet veto
-  // TODO implement bad jet veto
-  bool pass_bad_jet_veto = true;
+  // TODO validate bad jet veto
+  bool pass_bad_jet_veto = (m_jets.num(JET_BAD) == 0);
   pass_event = (pass_event && pass_bad_jet_veto);
   if (m_crit_cut_bad_jet_veto && !pass_bad_jet_veto) return;
 
