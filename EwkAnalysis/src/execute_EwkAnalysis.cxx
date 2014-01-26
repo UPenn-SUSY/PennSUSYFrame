@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 
   std::cout << "initialize EwkAnalysis object\n";
   PennSusyFrame::EwkAnalysis ewka(t);
-  std::cout << "about to look\n";
+  std::cout << "About to loop over events\n";
   ewka.Loop();
   std::cout << "Run completed!\n";
 

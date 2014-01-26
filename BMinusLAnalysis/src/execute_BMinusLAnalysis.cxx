@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 
   std::cout << "initialize BMinusLAnalysis object\n";
   PennSusyFrame::BMinusLAnalysis bmla(t);
-  std::cout << "about to look\n";
+  std::cout << "About to loop over events\n";
   bmla.Loop();
   std::cout << "Run completed!\n";
 
