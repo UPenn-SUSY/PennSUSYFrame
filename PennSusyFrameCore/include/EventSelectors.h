@@ -17,6 +17,7 @@ namespace PennSusyFrame
   // class Met;
   class Jet;
   class JetContainer;
+  class VertexContainer;
 }
 
 namespace Root
@@ -85,6 +86,9 @@ namespace PennSusyFrame
       std::string m_tile_trip_file;
       Root::TTileTripReader* m_tile_trip_reader;
   };
+
+  // =============================================================================
+  bool passPrimaryVertex(const PennSusyFrame::VertexContainer&);
 }
 
 // Include the implementation:

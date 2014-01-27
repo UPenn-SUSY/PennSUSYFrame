@@ -146,3 +146,29 @@ bool PennSusyFrame::TileTripTool::passTileTrip(const PennSusyFrame::Event& event
                                        , event.getEventNumber()
                                        );
 }
+
+// =============================================================================
+bool PennSusyFrame::passPrimaryVertex(const PennSusyFrame::VertexContainer& vertices)
+{
+  // This is a bit of a hack
+
+  // if there are no good vertices, we can stop here - fails the primary vertex cut
+  size_t num_good_vertices = vertices.num(VERTEX_GOOD);
+  if (num_good_vertices == 0) return false;
+
+  // find the first vertex, and get all the good vertices in the event
+  const PennSusyFrame::Vertex* first_vertex = vertices.getCollection(VERTEX_ALL)->at(0);
+  const std::vector<PennSusyFrame::Vertex*>* good_vertices = vertices.getCollection(VERTEX_GOOD);
+
+  // loop through all good vertices - if any of the good vertices match with the first vertex, the event passes the cut
+  // Can probably shorten this to just check the first vertex in the good vertex list, but leave this way for now for safety
+  for ( size_t good_vertex_it = 0
+      ; good_vertex_it != num_good_vertices
+      ; ++good_vertex_it
+      ) {
+    if (good_vertices->at(0) == first_vertex) return true;
+  }
+
+  // no first vertex was not good -- event fails cut
+  return false;
+}

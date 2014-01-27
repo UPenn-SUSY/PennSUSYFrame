@@ -87,7 +87,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_tile_hot_spot && !pass_tile_hot_spot) return;
 
   // tile trip cut
-  // TODO implement tile trip cut
+  // TODO validate tile trip cut
   bool pass_tile_trip = m_tile_trip_tool.passTileTrip(m_event);
   pass_event = (pass_event && pass_tile_trip);
   if (m_crit_cut_tile_trip && !pass_tile_trip) return;
@@ -105,8 +105,8 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_calo_problem_jet && !pass_calo_problem_jet) return;
 
   // primary vertex cut
-  // TODO implement primary vertex cut
-  bool pass_primary_vertex = true;
+  // TODO validate primary vertex cut
+  bool pass_primary_vertex = PennSusyFrame::passPrimaryVertex(m_vertices);
   pass_event = (pass_event && pass_primary_vertex);
   if (m_crit_cut_primary_vertex && !pass_primary_vertex) return;
 
