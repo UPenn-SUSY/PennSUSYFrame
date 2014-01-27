@@ -4,6 +4,7 @@
 
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsList.h"
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsListReader.h"
+#include "RootCore/TileTripReader/TileTripReader/TTileTripReader.h"
 
 #include <vector>
 
@@ -121,4 +122,27 @@ bool PennSusyFrame::TileHotSpotTool::inTileHotSpot(float eta, float phi)
   if (eta < -0.20 || eta > +0.10) return false;
   if (phi < +2.65 || phi > +2.75) return false;
   return true;
+}
+
+// =============================================================================
+PennSusyFrame::TileTripTool::TileTripTool() : m_tile_trip_reader(0)
+{
+  m_tile_trip_file = "${ROOTCOREDIR}/../TileTripReader/data/CompleteTripList_2011-2012.root"; 
+  m_tile_trip_reader = new Root::TTileTripReader("myTripReader");
+  m_tile_trip_reader->setTripFile(m_tile_trip_file.c_str());
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::TileTripTool::~TileTripTool()
+{
+  if (m_tile_trip_reader) delete m_tile_trip_reader;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::TileTripTool::passTileTrip(const PennSusyFrame::Event& event)
+{
+  return m_tile_trip_reader->checkEvent( event.getRunNumber()
+                                       , event.getLumiBlock()
+                                       , event.getEventNumber()
+                                       );
 }

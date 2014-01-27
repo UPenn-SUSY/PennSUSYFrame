@@ -19,6 +19,11 @@ namespace PennSusyFrame
   class JetContainer;
 }
 
+namespace Root
+{
+  class TTileTripReader;
+}
+
 // =============================================================================
 namespace PennSusyFrame
 {
@@ -65,6 +70,21 @@ namespace PennSusyFrame
       static bool inTileHotSpot(float, float);
   };
 
+  // =============================================================================
+  class TileTripTool
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      TileTripTool();
+      ~TileTripTool();
+
+      bool passTileTrip(const PennSusyFrame::Event&);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::string m_tile_trip_file;
+      Root::TTileTripReader* m_tile_trip_reader;
+  };
 }
 
 // Include the implementation:

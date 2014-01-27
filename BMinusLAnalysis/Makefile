@@ -21,6 +21,7 @@ INCLUDES += -I./
 INCLUDES += -I../../
 INCLUDES += -I${ROOTCOREDIR}/../
 INCLUDES += -I${ROOTCOREDIR}/../GoodRunsLists/
+INCLUDES += -I${ROOTCOREDIR}/../PATCore/
 
 # Include the generic compilation rules
 include $(PWD)/../Makefile.common
