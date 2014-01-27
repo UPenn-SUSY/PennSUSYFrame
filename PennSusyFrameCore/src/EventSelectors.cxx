@@ -1,5 +1,6 @@
 #include "PennSusyFrameCore/include/EventSelectors.h"
 #include "PennSusyFrameCore/include/ObjectDefs.h"
+#include "PennSusyFrameCore/include/ObjectContainers.h"
 
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsList.h"
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsListReader.h"
@@ -62,5 +63,62 @@ bool PennSusyFrame::passLarError(const PennSusyFrame::Event& event)
 bool PennSusyFrame::passTileError(const PennSusyFrame::Event& event)
 {
   if (event.getTileError() == 2) return false;
+  return true;
+}
+
+// =============================================================================
+bool PennSusyFrame::TileHotSpotTool::passTileHotSpot( const PennSusyFrame::Event& event
+                                                    , const PennSusyFrame::JetContainer& jets
+                                                    )
+{
+  return passTileHotSpot(event, jets.getCollection(JET_ALL));
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::TileHotSpotTool::passTileHotSpot( const PennSusyFrame::Event& event
+                                                    , const std::vector<PennSusyFrame::Jet*>* jets
+                                                    )
+{
+  if (!inTileHotSpotRun(event)) return true;
+
+  size_t n_jets = jets->size();
+
+  for (size_t jet_it = 0; jet_it != n_jets; ++jet_it) {
+    if (inTileHotSpot(jets->at(jet_it))) {
+      if (  jets->at(jet_it)->getFracSamplingMax() > 0.6
+         && jets->at(jet_it)->getSamplingMax() == 13
+         ) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::TileHotSpotTool::inTileHotSpotRun(const PennSusyFrame::Event& event)
+{
+  return inTileHotSpotRun(event.getRunNumber());
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::TileHotSpotTool::inTileHotSpotRun(int run_num)
+{
+  return (  run_num >= 202660
+         && run_num <= 203027
+         );
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::TileHotSpotTool::inTileHotSpot(const PennSusyFrame::Jet* jet)
+{
+  return inTileHotSpot(jet->getEta(), jet->getPhi());
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::TileHotSpotTool::inTileHotSpot(float eta, float phi)
+{
+  if (eta < -0.20 || eta > +0.10) return false;
+  if (phi < +2.65 || phi > +2.75) return false;
   return true;
 }

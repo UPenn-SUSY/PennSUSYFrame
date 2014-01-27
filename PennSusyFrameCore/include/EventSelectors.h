@@ -15,6 +15,8 @@ namespace PennSusyFrame
   // class Electron;
   // class Muon;
   // class Met;
+  class Jet;
+  class JetContainer;
 }
 
 // =============================================================================
@@ -47,6 +49,21 @@ namespace PennSusyFrame
 
   // -----------------------------------------------------------------------------
   bool passTileError(const PennSusyFrame::Event&);
+
+  // =============================================================================
+  class TileHotSpotTool
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      static bool passTileHotSpot(const PennSusyFrame::Event&, const PennSusyFrame::JetContainer&);
+      static bool passTileHotSpot(const PennSusyFrame::Event&, const std::vector<PennSusyFrame::Jet*>*);
+
+      static bool inTileHotSpotRun(const PennSusyFrame::Event&);
+      static bool inTileHotSpotRun(int);
+
+      static bool inTileHotSpot(const PennSusyFrame::Jet*);
+      static bool inTileHotSpot(float, float);
+  };
 
 }
 

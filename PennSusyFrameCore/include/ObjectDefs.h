@@ -477,6 +477,17 @@ namespace PennSusyFrame
       void setMv1(double val) { m_mv1 = val; }
       void setBchCorr(double val) { m_bch_corr = val; }
       void setDphiMet(double val) { m_dphi_met = val; }
+
+      void setEmf(            double val) { m_emf               = val; }
+      void setSumPtTrk(       double val) { m_sum_pt_trk        = val; }
+      void setSamplingMax(    double val) { m_sampling_max      = val; } 
+      void setFracSamplingMax(double val) { m_frac_sampling_max = val; } 
+      void setHecQuality(     double val) { m_hec_quality       = val; }
+      void setHecf(           double val) { m_hecf              = val; }
+      void setAvgLarQf(       double val) { m_avg_lar_qf        = val; }
+      void setNegativeE(      double val) { m_negative_e        = val; }
+      void setLarQuality(     double val) { m_lar_quality       = val; }
+
       void setIsBad(bool val) { m_is_bad = val; }
       void setMetStatusWord(const std::vector<unsigned int>& val) { m_met_status_word = val; }
       void setMetWet(const std::vector<float>& val) { m_met_wet = val; }
@@ -484,18 +495,29 @@ namespace PennSusyFrame
       void setMetWpy(const std::vector<float>& val) { m_met_wpy = val; }
 
       // TODO move accessors to cxx file
-      double getConstScaleE() const { return m_constscale_e; }
+      double getConstScaleE()   const { return m_constscale_e; }
       double getConstScaleEta() const { return m_constscale_eta; }
       double getConstScalePhi() const { return m_constscale_phi; }
-      double getConstScaleM() const { return m_constscale_m; }
-      double getActiveAreaPx() const { return m_active_area_px; }
-      double getActiveAreaPy() const { return m_active_area_py; }
-      double getActiveAreaPz() const { return m_active_area_pz; }
-      double getActiveAreaE() const { return m_active_area_e; }
-      double getJvf() const { return m_jvf; }
-      double getMv1() const { return m_mv1; }
-      double getBchCorr() const { return m_bch_corr; }
-      double getDphiMet() const { return m_dphi_met; }
+      double getConstScaleM()   const { return m_constscale_m; }
+      double getActiveAreaPx()  const { return m_active_area_px; }
+      double getActiveAreaPy()  const { return m_active_area_py; }
+      double getActiveAreaPz()  const { return m_active_area_pz; }
+      double getActiveAreaE()   const { return m_active_area_e; }
+      double getJvf()           const { return m_jvf; }
+      double getMv1()           const { return m_mv1; }
+      double getBchCorr()       const { return m_bch_corr; }
+      double getDphiMet()       const { return m_dphi_met; }
+
+      double getEmf()             const { return m_emf; }
+      double getSumPtTrk()        const { return m_sum_pt_trk; }
+      double getSamplingMax()     const { return m_sampling_max; }
+      double getFracSamplingMax() const { return m_frac_sampling_max; }
+      double getHecQuality()      const { return m_hec_quality; }
+      double getHecf()            const { return m_hecf; }
+      double getAvgLarQf()        const { return m_avg_lar_qf; }
+      double getNegativeE()       const { return m_negative_e; }
+      double getLarQuality()      const { return m_lar_quality; }
+
       bool getIsBad() const { return m_is_bad; }
       std::vector<unsigned int> getMetStatusWord() const { return m_met_status_word; }
       std::vector<float>  getMetWet() const { return m_met_wet; }
@@ -526,6 +548,16 @@ namespace PennSusyFrame
       double m_mv1;
       double m_bch_corr;
       double m_dphi_met;
+
+      double m_emf;
+      double m_sum_pt_trk;
+      double m_sampling_max;
+      double m_frac_sampling_max;
+      double m_hec_quality;
+      double m_hecf;
+      double m_avg_lar_qf;
+      double m_negative_e;
+      double m_lar_quality;
 
       std::vector<unsigned int> m_met_status_word;
       std::vector<float>  m_met_wet;

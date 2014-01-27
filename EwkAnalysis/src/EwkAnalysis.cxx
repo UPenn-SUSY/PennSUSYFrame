@@ -69,20 +69,20 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_incomplete_event && !pass_incomplete_event) return;
 
   // LAr error cut
-  // TODO implement LAr error cut
+  // TODO validate LAr error cut
   bool pass_lar_error = PennSusyFrame::passLarError(m_event);
   pass_event = (pass_event && pass_lar_error);
   if (m_crit_cut_lar_error && !pass_lar_error) return;
 
   // tile error cut
-  // TODO implement tile error cut
+  // TODO validate tile error cut
   bool pass_tile_error = PennSusyFrame::passTileError(m_event);
   pass_event = (pass_event && pass_tile_error);
   if (m_crit_cut_tile_error && !pass_tile_error) return;
 
   // tile hot spot cut
-  // TODO implement tile hot spot cut
-  bool pass_tile_hot_spot = true;
+  // TODO validate tile hot spot cut
+  bool pass_tile_hot_spot = PennSusyFrame::TileHotSpotTool::passTileHotSpot(m_event, m_jets);
   pass_event = (pass_event && pass_tile_hot_spot);
   if (m_crit_cut_tile_hot_spot && !pass_tile_hot_spot) return;
 

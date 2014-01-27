@@ -5303,7 +5303,7 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt4LCTopo_ootFracCells10;
     // std::vector<float>   *jet_AntiKt4LCTopo_ootFracClusters5;
     // std::vector<float>   *jet_AntiKt4LCTopo_ootFracClusters10;
-    // std::vector<int>     *jet_AntiKt4LCTopo_SamplingMax;
+    std::vector<int>     *jet_AntiKt4LCTopo_SamplingMax;
     std::vector<float>   *jet_AntiKt4LCTopo_fracSamplingMax;
     std::vector<float>   *jet_AntiKt4LCTopo_hecf;
     // std::vector<float>   *jet_AntiKt4LCTopo_tgap3f;
@@ -12301,7 +12301,7 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_ootFracCells10;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_ootFracClusters5;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_ootFracClusters10;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_SamplingMax;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_SamplingMax;   //!
     TBranch        *b_jet_AntiKt4LCTopo_fracSamplingMax;   //!
     TBranch        *b_jet_AntiKt4LCTopo_hecf;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_tgap3f;   //!

@@ -1867,7 +1867,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // jet_AntiKt4LCTopo_ootFracCells10 = 0;
   // jet_AntiKt4LCTopo_ootFracClusters5 = 0;
   // jet_AntiKt4LCTopo_ootFracClusters10 = 0;
-  // jet_AntiKt4LCTopo_SamplingMax = 0;
+  jet_AntiKt4LCTopo_SamplingMax = 0;
   jet_AntiKt4LCTopo_fracSamplingMax = 0;
   jet_AntiKt4LCTopo_hecf = 0;
   // jet_AntiKt4LCTopo_tgap3f = 0;
@@ -8743,7 +8743,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_ootFracCells10", &jet_AntiKt4LCTopo_ootFracCells10, &b_jet_AntiKt4LCTopo_ootFracCells10);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_ootFracClusters5", &jet_AntiKt4LCTopo_ootFracClusters5, &b_jet_AntiKt4LCTopo_ootFracClusters5);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_ootFracClusters10", &jet_AntiKt4LCTopo_ootFracClusters10, &b_jet_AntiKt4LCTopo_ootFracClusters10);
-  // turnOnBranch(tree, "jet_AntiKt4LCTopo_SamplingMax", &jet_AntiKt4LCTopo_SamplingMax, &b_jet_AntiKt4LCTopo_SamplingMax);
+  turnOnBranch(tree, "jet_AntiKt4LCTopo_SamplingMax", &jet_AntiKt4LCTopo_SamplingMax, &b_jet_AntiKt4LCTopo_SamplingMax);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_fracSamplingMax", &jet_AntiKt4LCTopo_fracSamplingMax, &b_jet_AntiKt4LCTopo_fracSamplingMax);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_hecf", &jet_AntiKt4LCTopo_hecf, &b_jet_AntiKt4LCTopo_hecf);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_tgap3f", &jet_AntiKt4LCTopo_tgap3f, &b_jet_AntiKt4LCTopo_tgap3f);
