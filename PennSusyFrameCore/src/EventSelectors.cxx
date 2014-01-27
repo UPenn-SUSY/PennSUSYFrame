@@ -5,6 +5,7 @@
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsList.h"
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsListReader.h"
 #include "RootCore/TileTripReader/TileTripReader/TTileTripReader.h"
+#include "RootCore/SUSYTools/SUSYTools/HforToolD3PD.h"
 
 #include <vector>
 
@@ -171,4 +172,20 @@ bool PennSusyFrame::passPrimaryVertex(const PennSusyFrame::VertexContainer& vert
 
   // no first vertex was not good -- event fails cut
   return false;
+}
+
+// =============================================================================
+PennSusyFrame::HFORTool::HFORTool()
+{
+  m_hfor_tool.setVerbosity(HforToolD3PD::ERROR);
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::HFORTool::passHFOR()
+{
+  // TODO get hfor_type from m_hfor_tool
+  int hfor_type = 0;
+
+  // fails HFOR cut if hfor_type == 4
+  return (hfor_type != 4);
 }

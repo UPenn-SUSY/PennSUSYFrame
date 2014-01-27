@@ -7,14 +7,12 @@
 
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsList.h"
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsListReader.h"
+#include "RootCore/SUSYTools/SUSYTools/HforToolD3PD.h"
 
 // =============================================================================
 namespace PennSusyFrame
 {
   class Event;
-  // class Electron;
-  // class Muon;
-  // class Met;
   class Jet;
   class JetContainer;
   class VertexContainer;
@@ -89,6 +87,20 @@ namespace PennSusyFrame
 
   // =============================================================================
   bool passPrimaryVertex(const PennSusyFrame::VertexContainer&);
+
+  // =============================================================================
+  class HFORTool
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      HFORTool();
+
+      bool passHFOR();
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      HforToolD3PD m_hfor_tool;
+  };
 }
 
 // Include the implementation:
