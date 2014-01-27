@@ -14,6 +14,7 @@ LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libMissingETUtility.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libMt2.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libGoodRunsLists.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libTileTripReader.so
+LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libSUSYTools.so
 # BONUS_LIB_PATH = 
 
 INCLUDES += -I../

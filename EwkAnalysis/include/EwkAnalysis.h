@@ -72,6 +72,7 @@ namespace PennSusyFrame
 
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
+      PennSusyFrame::HFORTool m_hfor_tool;
 
     private:
 

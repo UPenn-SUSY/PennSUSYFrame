@@ -123,14 +123,16 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_cosmic_mu_veto && !pass_cosmic_mu_veto) return;
 
   // HFOR cut
-  // TODO implement HFOR cut
-  bool pass_hfor = true;
+  // TODO validate HFOR cut
+  bool pass_hfor = m_hfor_tool.passHFOR();
   pass_event = (pass_event && pass_hfor);
   if (m_crit_cut_hfor && !pass_hfor) return;
 
   // mc overlap cut
-  // TODO implement mc overlap cut
-  bool pass_mc_overlap = true;
+  // TODO validate mc overlap cut
+  bool pass_mc_overlap = (  PennSusyFrame::passSherpaWWOverlapRemoval(m_event)
+                         && PennSusyFrame::passZOverlapRemoval()
+                         );
   pass_event = (pass_event && pass_mc_overlap);
   if (m_crit_cut_mc_overlap && !pass_mc_overlap) return;
 

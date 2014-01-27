@@ -189,3 +189,17 @@ bool PennSusyFrame::HFORTool::passHFOR()
   // fails HFOR cut if hfor_type == 4
   return (hfor_type != 4);
 }
+
+// =============================================================================
+bool PennSusyFrame::passSherpaWWOverlapRemoval(const PennSusyFrame::Event& /*truth object*/)
+{
+  // TODO implement sherpa WW overlap removal
+  return true;
+}
+
+// =============================================================================
+bool PennSusyFrame::passZOverlapRemoval(/*truth object*/)
+{
+  // TODO implement Z overlap removal
+  return true;
+}

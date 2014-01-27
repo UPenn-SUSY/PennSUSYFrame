@@ -101,6 +101,12 @@ namespace PennSusyFrame
     private:
       HforToolD3PD m_hfor_tool;
   };
+
+  // =============================================================================
+  bool passSherpaWWOverlapRemoval(const PennSusyFrame::Event& /*truth object*/);
+
+  // =============================================================================
+  bool passZOverlapRemoval(/*truth object*/);
 }
 
 // Include the implementation:
