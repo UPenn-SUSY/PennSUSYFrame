@@ -29,11 +29,6 @@ namespace PennSusyFrame
 // ============================================================================
 namespace PennSusyFrame
 {
-  template <class selector, class T>
-    const std::vector<T*> selectObjects(selector& sel, std::vector<T*>* t);
-  template <class selector, class T>
-    const std::vector<T*> selectObjects(selector* sel, std::vector<T*>* t);
-
   // =============================================================================
   // = SelectorBase
   // =============================================================================
@@ -48,9 +43,6 @@ namespace PennSusyFrame
       bool isReversed() const { return m_reversed; }
 
     protected:
-      template <class T>
-        bool passCut(T val, T min, T max, bool inclusive_boundaries = true);
-
       bool m_reversed;
   };
 
@@ -388,7 +380,7 @@ namespace PennSusyFrame
                               );
 
   };
-  
+
 }
 
 // Include the implementation:

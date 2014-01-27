@@ -10,6 +10,7 @@
 
 #include "PennSusyFrameCore/include/ObjectContainers.h"
 #include "PennSusyFrameCore/include/Calculators.h"
+#include "PennSusyFrameCore/include/SelectorHelpers.h"
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
@@ -36,6 +37,8 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
                                                      , m_crit_cut_trigger_match(false)
                                                      , m_crit_cut_prompt_leptons(false)
                                                      , m_crit_cut_stream_overlap(false)
+                                                     , m_sfos_mll_min(-1)
+                                                     , m_sfos_mll_max(-1)
 {
   std::string base_dir = getenv("ROOTCOREDIR");
   if (m_is_data) {
@@ -124,14 +127,14 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   // HFOR cut
   // TODO validate HFOR cut
-  bool pass_hfor = m_hfor_tool.passHFOR();
+  bool pass_hfor = m_hfor_tool.passHFOR(m_mc_truth);
   pass_event = (pass_event && pass_hfor);
   if (m_crit_cut_hfor && !pass_hfor) return;
 
   // mc overlap cut
   // TODO validate mc overlap cut
-  bool pass_mc_overlap = (  PennSusyFrame::passSherpaWWOverlapRemoval(m_event)
-                         && PennSusyFrame::passZOverlapRemoval()
+  bool pass_mc_overlap = (  PennSusyFrame::passSherpaWWOverlapRemoval(m_event, m_mc_truth)
+                         && PennSusyFrame::passZOverlapRemoval(m_mc_truth)
                          );
   pass_event = (pass_event && pass_mc_overlap);
   if (m_crit_cut_mc_overlap && !pass_mc_overlap) return;
@@ -158,8 +161,13 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_tau_veto && !pass_tau_veto) return;
 
   // mll SFOS cut
-  // TODO implement mll SFOS cut
-  bool pass_mll_sfos = true;
+  // TODO validate mll SFOS cut
+  bool pass_mll_sfos = (  m_event.getFlavorChannel() == FLAVOR_EM
+                       || PennSusyFrame::passCut( m_event_quantities.getMll()
+                                                , m_sfos_mll_min
+                                                , m_sfos_mll_max
+                                                )
+                       );
   pass_event = (pass_event && pass_mll_sfos);
   if (m_crit_cut_mll_sfos && !pass_mll_sfos) return;
 

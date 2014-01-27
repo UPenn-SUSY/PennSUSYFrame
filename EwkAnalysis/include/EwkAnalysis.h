@@ -45,6 +45,8 @@ namespace PennSusyFrame
       void setCritCutPromptLeptons(  bool val) { m_crit_cut_prompt_leptons = val;   }
       void setCritCutStreamOverlap(  bool val) { m_crit_cut_stream_overlap = val;   }
 
+      void setSFOSMllCut(double min, double max) { m_sfos_mll_min = min; m_sfos_mll_max = max; }
+
     protected:
       bool m_crit_cut_grl;
       bool m_crit_cut_incomplete_event;
@@ -73,6 +75,9 @@ namespace PennSusyFrame
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
+
+      double m_sfos_mll_min;
+      double m_sfos_mll_max;
 
     private:
 

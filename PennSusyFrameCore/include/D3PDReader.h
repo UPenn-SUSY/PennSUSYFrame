@@ -12,6 +12,8 @@ namespace PennSusyFrame
 {
   class D3PDReader {
   public :
+    bool m_is_data;
+
     TTree          *fChain;   //!pointer to the analyzed TTree or TChain
     Int_t           fCurrent; //!current Tree number in a TChain
 
@@ -14036,7 +14038,7 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4TrackZ_phi;   //!
     // TBranch        *b_bunch_configID;   //!
 
-    D3PDReader(TTree *tree=0);
+    D3PDReader(TTree* tree, bool is_data);
     virtual ~D3PDReader();
     virtual Int_t    GetEntry(Long64_t entry);
     virtual Long64_t LoadTree(Long64_t entry);

@@ -181,24 +181,38 @@ PennSusyFrame::HFORTool::HFORTool()
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::HFORTool::passHFOR()
+bool PennSusyFrame::HFORTool::passHFOR(const PennSusyFrame::MCTruth& mc_truth)
 {
   // TODO get hfor_type from m_hfor_tool
-  int hfor_type = 0;
+  int hfor_type = m_hfor_tool.getDecision( mc_truth.getChannelNumber()
+                                         , mc_truth.getN()
+                                         , mc_truth.getPt()
+                                         , mc_truth.getEta()
+                                         , mc_truth.getPhi()
+                                         , mc_truth.getM()
+                                         , mc_truth.getPdgId()
+                                         , mc_truth.getStatus()
+                                         , mc_truth.getVxBarcode()
+                                         , mc_truth.getParentIndex()
+                                         , mc_truth.getChildIndex()
+                                         , HforToolD3PD::DEFAULT
+                                         );
 
   // fails HFOR cut if hfor_type == 4
   return (hfor_type != 4);
 }
 
 // =============================================================================
-bool PennSusyFrame::passSherpaWWOverlapRemoval(const PennSusyFrame::Event& /*truth object*/)
+bool PennSusyFrame::passSherpaWWOverlapRemoval( const PennSusyFrame::Event&
+                                              , const PennSusyFrame::MCTruth&
+                                              )
 {
   // TODO implement sherpa WW overlap removal
   return true;
 }
 
 // =============================================================================
-bool PennSusyFrame::passZOverlapRemoval(/*truth object*/)
+bool PennSusyFrame::passZOverlapRemoval(const PennSusyFrame::MCTruth&)
 {
   // TODO implement Z overlap removal
   return true;

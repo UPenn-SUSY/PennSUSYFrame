@@ -4,6 +4,28 @@
 #include <vector>
 
 // -----------------------------------------------------------------------------
+// mll calculator
+double PennSusyFrame::getMll( FLAVOR_CHANNEL flavor_channel
+                            , const std::vector<PennSusyFrame::Electron*>* el
+                            , const std::vector<PennSusyFrame::Muon*>* mu
+                            )
+{
+  double mll = 0.;
+
+  if (flavor_channel == FLAVOR_EE) {
+    mll = calcMll(el->at(0), el->at(1));
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    mll = calcMll(mu->at(0), mu->at(1));
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    mll = calcMll(el->at(0), mu->at(0));
+  }
+
+  return mll;
+}
+
+// -----------------------------------------------------------------------------
 // mt2 calculator
 double PennSusyFrame::getMt2( FLAVOR_CHANNEL flavor_channel
                             , const PennSusyFrame::Met* met

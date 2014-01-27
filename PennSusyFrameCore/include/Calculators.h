@@ -16,6 +16,14 @@ namespace PennSusyFrame
 namespace PennSusyFrame
 {
   // -----------------------------------------------------------------------------
+  // mll calculator
+  double getMll( FLAVOR_CHANNEL
+               , const std::vector<PennSusyFrame::Electron*>*
+               , const std::vector<PennSusyFrame::Muon*>*
+               );
+  template <class T1, class T2>
+    double calcMll(const T1*, const T2*);
+
   // mt2 calculator
   double getMt2( FLAVOR_CHANNEL
                , const PennSusyFrame::Met*

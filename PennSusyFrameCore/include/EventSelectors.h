@@ -16,6 +16,7 @@ namespace PennSusyFrame
   class Jet;
   class JetContainer;
   class VertexContainer;
+  class MCTruth;
 }
 
 namespace Root
@@ -95,7 +96,7 @@ namespace PennSusyFrame
     public:
       HFORTool();
 
-      bool passHFOR();
+      bool passHFOR(const PennSusyFrame::MCTruth&);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -103,10 +104,10 @@ namespace PennSusyFrame
   };
 
   // =============================================================================
-  bool passSherpaWWOverlapRemoval(const PennSusyFrame::Event& /*truth object*/);
+  bool passSherpaWWOverlapRemoval(const PennSusyFrame::Event&, const PennSusyFrame::MCTruth&);
 
   // =============================================================================
-  bool passZOverlapRemoval(/*truth object*/);
+  bool passZOverlapRemoval(const PennSusyFrame::MCTruth&);
 }
 
 // Include the implementation:

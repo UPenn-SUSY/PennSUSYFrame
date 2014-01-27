@@ -6,6 +6,19 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "RootCore/Mt2/Mt2/mt2_bisect.h"
 
+// -----------------------------------------------------------------------------
+template <class T1, class T2>
+  double PennSusyFrame::calcMll( const T1* t1
+                               , const T2* t2
+                               )
+{
+  const TLorentzVector* tlv_1 = t1->getTlv();
+  const TLorentzVector* tlv_2 = t2->getTlv();
+
+  return ((*tlv_1)+(*tlv_2)).Mag();
+}
+
+// -----------------------------------------------------------------------------
 template <class T1, class T2>
   double PennSusyFrame::calcMt2( const T1* t1
                                , const T2* t2

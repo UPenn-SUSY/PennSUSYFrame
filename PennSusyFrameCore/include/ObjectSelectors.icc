@@ -8,47 +8,6 @@
 namespace PennSusyFrame
 {
   // -----------------------------------------------------------------------------
-  template <class selector, class T>
-    std::vector<T*> selectObjects(selector& sel, const std::vector<T*>* t)
-    {
-      return selectObjects(&sel, t);
-    }
-
-  // -----------------------------------------------------------------------------
-  template <class selector, class T>
-    std::vector<T*> selectObjects(selector* sel, const std::vector<T*>* t)
-    {
-      std::vector<T*> selected_objects;
-
-      size_t term = t->size();
-      for (size_t it = 0; it != term; ++it) {
-        bool pass_all_cuts = sel->passAllCuts(t->at(it));
-        if (  (!sel->isReversed() &&  pass_all_cuts)
-           || ( sel->isReversed() && !pass_all_cuts)
-           ) {
-          selected_objects.push_back(t->at(it));
-        }
-      }
-
-      return selected_objects;
-    }
-
-  // -----------------------------------------------------------------------------
-  template <class T>
-    bool SelectorBase::passCut(T val, T min, T max, bool inclusive_boundaries)
-    {
-      if (min < 0 && max < 0) return true;
-      if (min >= 0 && val < min) return false;
-      if (max >= 0 && val > max) return false;
-
-      if (!inclusive_boundaries) {
-        if (min >= 0 && val == min) return false;
-        if (max >= 0 && val == max) return false;
-      }
-      return true;
-    }
-
-  // -----------------------------------------------------------------------------
   template <class T1, class T2>
     void ObjectCleaning::overlapRemoveSecondList( const std::vector<T1*>& in_t1_list
                                                 , const std::vector<T2*>& in_t2_list

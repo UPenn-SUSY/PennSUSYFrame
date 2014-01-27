@@ -10,6 +10,7 @@
 #include "PennSusyFrameCore/include/D3PDReader.h"
 #include "PennSusyFrameCore/include/ObjectContainers.h"
 #include "PennSusyFrameCore/include/Calculators.h"
+#include "PennSusyFrameCore/include/SelectorHelpers.h"
 
 // #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 // #include "PennSusyFrameCore/include/ObjectDefs.h"
@@ -58,7 +59,7 @@ Long64_t PennSusyFrame::PennSusyFrameCore::LoadTree(Long64_t entry)
 void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
 {
   // m_d3pd_reader->Init(tree);
-  m_d3pd_reader = new PennSusyFrame::D3PDReader(tree);
+  m_d3pd_reader = new PennSusyFrame::D3PDReader(tree, m_is_data);
 
   m_event.init();
   m_event_quantities.init();
@@ -260,8 +261,8 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
   m_mc_truth.getEvent(m_d3pd_reader);
 
-  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // // prep vertices
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // prep vertices
   m_vertices.prep(m_d3pd_reader);
 
   // select good vertex cuts
@@ -428,6 +429,11 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   m_event.setSignChannel(findSignCannel());
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_event_quantities.setMll(PennSusyFrame::getMll( m_event.getFlavorChannel()
+                                                 , m_electrons.getCollection(EL_GOOD)
+                                                 , m_muons.getCollection(MU_GOOD)
+                                                 )
+                           );
   m_event_quantities.setMt2(PennSusyFrame::getMt2( m_event.getFlavorChannel()
                                                  , &m_met
                                                  , m_electrons.getCollection(EL_GOOD)

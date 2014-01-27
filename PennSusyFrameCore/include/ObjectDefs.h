@@ -121,14 +121,17 @@ namespace PennSusyFrame
       void init();
 
       // TODO move accessors to cxx file
+      void setMll(double val) { m_mll = val; }
       void setMt2(double val) { m_mt2 = val; }
 
       // TODO move accessors to cxx file
+      double getMll() const { return m_mll; }
       double getMt2() const { return m_mt2; }
 
       void print() const;
 
     protected:
+      double m_mll;
       double m_mt2;
   };
 
@@ -686,16 +689,16 @@ namespace PennSusyFrame
 
       // TODO move accessors to cxx file
       unsigned int getChannelNumber()  const { return m_mc_channel_number; }
-      unsigned int setN()              const { return m_mc_n; }
-      std::vector<float>* setPt()      const { return m_mc_pt; }
-      std::vector<float>* setEta()     const { return m_mc_eta; }
-      std::vector<float>* setPhi()     const { return m_mc_phi; }
-      std::vector<float>* setM()       const { return m_mc_m; }
-      std::vector<int>* setPdgId()     const { return m_mc_pdg_id; }
-      std::vector<int>* setStatus()    const { return m_mc_status; }
-      std::vector<int>* setVxBarcode() const { return m_mc_vx_barcode; }
-      std::vector<std::vector<int> >* setParentIndex() const { return m_mc_parent_index; }
-      std::vector<std::vector<int> >* setChildIndex()  const { return m_mc_child_index; }
+      unsigned int getN()              const { return m_mc_n; }
+      std::vector<float>* getPt()      const { return m_mc_pt; }
+      std::vector<float>* getEta()     const { return m_mc_eta; }
+      std::vector<float>* getPhi()     const { return m_mc_phi; }
+      std::vector<float>* getM()       const { return m_mc_m; }
+      std::vector<int>* getPdgId()     const { return m_mc_pdg_id; }
+      std::vector<int>* getStatus()    const { return m_mc_status; }
+      std::vector<int>* getVxBarcode() const { return m_mc_vx_barcode; }
+      std::vector<std::vector<int> >* getParentIndex() const { return m_mc_parent_index; }
+      std::vector<std::vector<int> >* getChildIndex()  const { return m_mc_child_index; }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:

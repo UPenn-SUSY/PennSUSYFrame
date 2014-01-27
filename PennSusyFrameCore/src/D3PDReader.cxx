@@ -4,7 +4,8 @@
 #include <iostream>
 
 // -----------------------------------------------------------------------------
-PennSusyFrame::D3PDReader::D3PDReader(TTree *tree) : fChain(0)
+PennSusyFrame::D3PDReader::D3PDReader(TTree *tree, bool is_data) : m_is_data(is_data)
+                                                                 , fChain(0)
 {
   Init(tree);
 }
@@ -3480,6 +3481,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   fCurrent = -1;
   fChain->SetMakeClass(1);
 
+  // TODO turn on/off branches based on m_is_data variable
   // turn on branches we want to use
   // turnOnBranch(tree, "EF_2b35_loose_3j35_a4tchad_4L1J10", &EF_2b35_loose_3j35_a4tchad_4L1J10, &b_EF_2b35_loose_3j35_a4tchad_4L1J10);
   // turnOnBranch(tree, "EF_2b35_loose_3j35_a4tchad_4L1J15", &EF_2b35_loose_3j35_a4tchad_4L1J15, &b_EF_2b35_loose_3j35_a4tchad_4L1J15);
