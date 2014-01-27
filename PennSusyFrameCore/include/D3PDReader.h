@@ -1766,7 +1766,7 @@ namespace PennSusyFrame
     // UInt_t          detmask1;
     // Float_t         actualIntPerXing;
     Float_t         averageIntPerXing;
-    // UInt_t          mc_channel_number;
+    UInt_t          mc_channel_number;
     // UInt_t          mc_event_number;
     // Float_t         mc_event_weight;
     // UInt_t          pixelFlags;
@@ -5636,23 +5636,23 @@ namespace PennSusyFrame
     // std::vector<std::vector<double> > *mcevt_weight;
     // std::vector<int>     *mcevt_nparticle;
     // std::vector<short>   *mcevt_pileUpType;
-    // Int_t           mc_n;
-    // std::vector<float>   *mc_pt;
-    // std::vector<float>   *mc_m;
-    // std::vector<float>   *mc_eta;
-    // std::vector<float>   *mc_phi;
-    // std::vector<int>     *mc_status;
+    Int_t           mc_n;
+    std::vector<float>   *mc_pt;
+    std::vector<float>   *mc_m;
+    std::vector<float>   *mc_eta;
+    std::vector<float>   *mc_phi;
+    std::vector<int>     *mc_status;
     // std::vector<int>     *mc_barcode;
-    // std::vector<int>     *mc_pdgId;
+    std::vector<int>     *mc_pdgId;
     // std::vector<float>   *mc_charge;
     // std::vector<std::vector<int> > *mc_parents;
     // std::vector<std::vector<int> > *mc_children;
     // std::vector<float>   *mc_vx_x;
     // std::vector<float>   *mc_vx_y;
     // std::vector<float>   *mc_vx_z;
-    // std::vector<int>     *mc_vx_barcode;
-    // std::vector<std::vector<int> > *mc_child_index;
-    // std::vector<std::vector<int> > *mc_parent_index;
+    std::vector<int>     *mc_vx_barcode;
+    std::vector<std::vector<int> > *mc_child_index;
+    std::vector<std::vector<int> > *mc_parent_index;
     // Int_t           mcVx_n;
     // std::vector<float>   *mcVx_x;
     // std::vector<float>   *mcVx_y;
@@ -8789,7 +8789,7 @@ namespace PennSusyFrame
     // TBranch        *b_detmask1;   //!
     // TBranch        *b_actualIntPerXing;   //!
     TBranch        *b_averageIntPerXing;   //!
-    // TBranch        *b_mc_channel_number;   //!
+    TBranch        *b_mc_channel_number;   //!
     // TBranch        *b_mc_event_number;   //!
     // TBranch        *b_mc_event_weight;   //!
     // TBranch        *b_pixelFlags;   //!
@@ -12634,23 +12634,23 @@ namespace PennSusyFrame
     // TBranch        *b_mcevt_weight;   //!
     // TBranch        *b_mcevt_nparticle;   //!
     // TBranch        *b_mcevt_pileUpType;   //!
-    // TBranch        *b_mc_n;   //!
-    // TBranch        *b_mc_pt;   //!
-    // TBranch        *b_mc_m;   //!
-    // TBranch        *b_mc_eta;   //!
-    // TBranch        *b_mc_phi;   //!
-    // TBranch        *b_mc_status;   //!
+    TBranch        *b_mc_n;   //!
+    TBranch        *b_mc_pt;   //!
+    TBranch        *b_mc_m;   //!
+    TBranch        *b_mc_eta;   //!
+    TBranch        *b_mc_phi;   //!
+    TBranch        *b_mc_status;   //!
     // TBranch        *b_mc_barcode;   //!
-    // TBranch        *b_mc_pdgId;   //!
+    TBranch        *b_mc_pdgId;   //!
     // TBranch        *b_mc_charge;   //!
     // TBranch        *b_mc_parents;   //!
     // TBranch        *b_mc_children;   //!
     // TBranch        *b_mc_vx_x;   //!
     // TBranch        *b_mc_vx_y;   //!
     // TBranch        *b_mc_vx_z;   //!
-    // TBranch        *b_mc_vx_barcode;   //!
-    // TBranch        *b_mc_child_index;   //!
-    // TBranch        *b_mc_parent_index;   //!
+    TBranch        *b_mc_vx_barcode;   //!
+    TBranch        *b_mc_child_index;   //!
+    TBranch        *b_mc_parent_index;   //!
     // TBranch        *b_mcVx_n;   //!
     // TBranch        *b_mcVx_x;   //!
     // TBranch        *b_mcVx_y;   //!

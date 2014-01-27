@@ -57,6 +57,8 @@ namespace PennSusyFrame
       PennSusyFrame::TauContainer         m_taus;
       PennSusyFrame::JetContainer         m_jets;
 
+      PennSusyFrame::MCTruth m_mc_truth;
+
       std::vector<PennSusyFrame::VertexSelector>   m_vertex_selectors;
       std::vector<PennSusyFrame::ElectronSelector> m_electron_selectors;
       std::vector<PennSusyFrame::MuonSelector>     m_muon_selectors;

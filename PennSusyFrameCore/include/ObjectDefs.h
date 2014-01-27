@@ -660,6 +660,57 @@ namespace PennSusyFrame
       double m_met_phi;
       double m_met_rel_et;
   };
+
+  // =============================================================================
+  class MCTruth : public PhysicsObject
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      MCTruth();
+
+      void clear();
+      void getEvent(const PennSusyFrame::D3PDReader*);
+
+      // TODO move accessors to cxx file
+      void setChannelNumber(unsigned int val)  { m_mc_channel_number = val; }
+      void setN(unsigned int val)              { m_mc_n              = val; }
+      void setPt(std::vector<float>* val)      { m_mc_pt             = val; }
+      void setEta(std::vector<float>* val)     { m_mc_eta            = val; }
+      void setPhi(std::vector<float>* val)     { m_mc_phi            = val; }
+      void setM(std::vector<float>* val)       { m_mc_m            = val; }
+      void setPdgId(std::vector<int>* val)     { m_mc_pdg_id         = val; }
+      void setStatus(std::vector<int>* val)    { m_mc_status         = val; }
+      void setVxBarcode(std::vector<int>* val) { m_mc_vx_barcode     = val; }
+      void setParentIndex(std::vector<std::vector<int> >* val) { m_mc_parent_index = val; }
+      void setChildIndex(std::vector<std::vector<int> >* val)  { m_mc_child_index  = val; }
+
+      // TODO move accessors to cxx file
+      unsigned int getChannelNumber()  const { return m_mc_channel_number; }
+      unsigned int setN()              const { return m_mc_n; }
+      std::vector<float>* setPt()      const { return m_mc_pt; }
+      std::vector<float>* setEta()     const { return m_mc_eta; }
+      std::vector<float>* setPhi()     const { return m_mc_phi; }
+      std::vector<float>* setM()       const { return m_mc_m; }
+      std::vector<int>* setPdgId()     const { return m_mc_pdg_id; }
+      std::vector<int>* setStatus()    const { return m_mc_status; }
+      std::vector<int>* setVxBarcode() const { return m_mc_vx_barcode; }
+      std::vector<std::vector<int> >* setParentIndex() const { return m_mc_parent_index; }
+      std::vector<std::vector<int> >* setChildIndex()  const { return m_mc_child_index; }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      unsigned int m_mc_channel_number;
+      unsigned int m_mc_n;
+      std::vector<float>* m_mc_pt;
+      std::vector<float>* m_mc_eta;
+      std::vector<float>* m_mc_phi;
+      std::vector<float>* m_mc_m;
+      std::vector<int>* m_mc_pdg_id;
+      std::vector<int>* m_mc_status;
+      std::vector<int>* m_mc_vx_barcode;
+      std::vector<std::vector<int> >* m_mc_parent_index;
+      std::vector<std::vector<int> >* m_mc_child_index;
+  };
 }
 
 // Include the implementation:

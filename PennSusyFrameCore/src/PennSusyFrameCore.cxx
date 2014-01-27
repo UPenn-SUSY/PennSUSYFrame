@@ -258,6 +258,8 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   // get basic event variables
   m_event.getEvent(m_d3pd_reader);
 
+  m_mc_truth.getEvent(m_d3pd_reader);
+
   // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // // prep vertices
   m_vertices.prep(m_d3pd_reader);
