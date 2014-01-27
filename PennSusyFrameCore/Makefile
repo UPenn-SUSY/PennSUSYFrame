@@ -13,6 +13,7 @@ LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libApplyJetCalibration.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libMissingETUtility.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libMt2.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libGoodRunsLists.so
+LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libTileTripReader.so
 # BONUS_LIB_PATH = 
 
 INCLUDES += -I../

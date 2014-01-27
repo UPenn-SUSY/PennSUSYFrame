@@ -677,7 +677,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
 
   setJetTlv(reader, jet_rescaler, event, num_vertices_ge_2_tracks);
 
-  setIsBad(isBad(reader));
+  setIsBad(isBad());
 }
 
 // -----------------------------------------------------------------------------
@@ -716,7 +716,7 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::Jet::isBad(const PennSusyFrame::D3PDReader* reader)
+bool PennSusyFrame::Jet::isBad()
 {
 
   double pt          = getPt();

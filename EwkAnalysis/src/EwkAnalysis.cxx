@@ -88,7 +88,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   // tile trip cut
   // TODO implement tile trip cut
-  bool pass_tile_trip = true;
+  bool pass_tile_trip = m_tile_trip_tool.passTileTrip(m_event);
   pass_event = (pass_event && pass_tile_trip);
   if (m_crit_cut_tile_trip && !pass_tile_trip) return;
 

@@ -71,6 +71,7 @@ namespace PennSusyFrame
       bool m_crit_cut_stream_overlap;
 
       PennSusyFrame::GrlTool m_grl;
+      PennSusyFrame::TileTripTool m_tile_trip_tool;
 
     private:
 

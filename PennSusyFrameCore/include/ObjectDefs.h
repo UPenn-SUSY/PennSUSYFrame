@@ -534,7 +534,7 @@ namespace PennSusyFrame
                     , int num_vertices_ge_2_tracks
                     );
 
-      bool isBad(const PennSusyFrame::D3PDReader*);
+      bool isBad();
 
       double m_constscale_e;
       double m_constscale_eta;
