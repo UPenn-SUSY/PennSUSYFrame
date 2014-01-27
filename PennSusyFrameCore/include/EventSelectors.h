@@ -38,6 +38,16 @@ namespace PennSusyFrame
       std::string m_grl_file_name;
       Root::TGoodRunsList m_grl;
   };
+
+  // -----------------------------------------------------------------------------
+  bool passIncompleteEvent(const PennSusyFrame::Event&);
+
+  // -----------------------------------------------------------------------------
+  bool passLarError(const PennSusyFrame::Event&);
+
+  // -----------------------------------------------------------------------------
+  bool passTileError(const PennSusyFrame::Event&);
+
 }
 
 // Include the implementation:

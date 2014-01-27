@@ -56,6 +56,9 @@ namespace PennSusyFrame
       void setLumiBlock(unsigned int val)   { m_lumi_block = val; }
       void setAverageIntPerXing(float val)  { m_average_int_per_xing = val; }
       void setEventShapeRhoKt4LC(float val) { m_eventshape_rhoKt4LC = val; }
+      void setCoreFlags(unsigned int val)   { m_core_flags = val; }
+      void setLarError(unsigned int val)    { m_lar_error = val; }
+      void setTileError(unsigned int val)   { m_tile_error = val; }
       void setFlavorChannel(FLAVOR_CHANNEL val) { m_flavor_channel = val; }
       void setSignChannel(SIGN_CHANNEL val) { m_sign_channel = val; }
       // void setMetEt(double val) { m_met_et = val; }
@@ -70,6 +73,10 @@ namespace PennSusyFrame
       unsigned int getLumiBlock() const { return m_lumi_block; }
       float getAverageIntPerXing() const { return m_average_int_per_xing; }
       float getEventShapeRhoKt4LC() const { return m_eventshape_rhoKt4LC; }
+      unsigned int getCoreFlags() const { return m_core_flags; }
+      unsigned int getLarError() const { return m_lar_error; }
+      unsigned int getTileError() const { return m_tile_error; }
+
       FLAVOR_CHANNEL getFlavorChannel() const { return m_flavor_channel; }
       SIGN_CHANNEL getSignChannel() const { return m_sign_channel; }
       // double getMetEt() const { return m_met_et; }
@@ -89,6 +96,10 @@ namespace PennSusyFrame
 
       float m_average_int_per_xing;
       float m_eventshape_rhoKt4LC;
+
+      unsigned int m_core_flags;
+      unsigned int m_lar_error;
+      unsigned int m_tile_error;
 
       FLAVOR_CHANNEL m_flavor_channel;
       SIGN_CHANNEL m_sign_channel;

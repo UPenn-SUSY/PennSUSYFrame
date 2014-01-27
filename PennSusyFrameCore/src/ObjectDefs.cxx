@@ -47,6 +47,10 @@ void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
 
   setAverageIntPerXing(reader->averageIntPerXing);
   setEventShapeRhoKt4LC(reader->Eventshape_rhoKt4LC);
+
+  setCoreFlags(reader->coreFlags);
+  setLarError(reader->larError);
+  setTileError(reader->tileError);
 }
 
 // -----------------------------------------------------------------------------

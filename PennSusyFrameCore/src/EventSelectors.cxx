@@ -43,3 +43,24 @@ bool PennSusyFrame::GrlTool::passEvent(unsigned int run, unsigned int lb)
   if(m_grl.HasRunLumiBlock(run, lb)) return true;
   return false;
 }
+
+// =============================================================================
+bool PennSusyFrame::passIncompleteEvent(const PennSusyFrame::Event& event)
+{
+  if ((event.getCoreFlags()&0x40000) != 0) return false;
+  return true;
+}
+
+// =============================================================================
+bool PennSusyFrame::passLarError(const PennSusyFrame::Event& event)
+{
+  if (event.getLarError() == 2) return false;
+  return true;
+}
+
+// =============================================================================
+bool PennSusyFrame::passTileError(const PennSusyFrame::Event& event)
+{
+  if (event.getTileError() == 2) return false;
+  return true;
+}

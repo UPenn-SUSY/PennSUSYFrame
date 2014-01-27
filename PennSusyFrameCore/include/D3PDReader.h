@@ -1776,12 +1776,12 @@ namespace PennSusyFrame
     // UInt_t          tileFlags;
     // UInt_t          muonFlags;
     // UInt_t          fwdFlags;
-    // UInt_t          coreFlags;
+    UInt_t          coreFlags;
     // UInt_t          pixelError;
     // UInt_t          sctError;
     // UInt_t          trtError;
-    // UInt_t          larError;
-    // UInt_t          tileError;
+    UInt_t          larError;
+    UInt_t          tileError;
     // UInt_t          muonError;
     // UInt_t          fwdError;
     // UInt_t          coreError;
@@ -8799,12 +8799,12 @@ namespace PennSusyFrame
     // TBranch        *b_tileFlags;   //!
     // TBranch        *b_muonFlags;   //!
     // TBranch        *b_fwdFlags;   //!
-    // TBranch        *b_coreFlags;   //!
+    TBranch        *b_coreFlags;   //!
     // TBranch        *b_pixelError;   //!
     // TBranch        *b_sctError;   //!
     // TBranch        *b_trtError;   //!
-    // TBranch        *b_larError;   //!
-    // TBranch        *b_tileError;   //!
+    TBranch        *b_larError;   //!
+    TBranch        *b_tileError;   //!
     // TBranch        *b_muonError;   //!
     // TBranch        *b_fwdError;   //!
     // TBranch        *b_coreError;   //!

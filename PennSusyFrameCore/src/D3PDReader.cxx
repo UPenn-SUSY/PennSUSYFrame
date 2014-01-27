@@ -5241,12 +5241,12 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "tileFlags", &tileFlags, &b_tileFlags);
   // turnOnBranch(tree, "muonFlags", &muonFlags, &b_muonFlags);
   // turnOnBranch(tree, "fwdFlags", &fwdFlags, &b_fwdFlags);
-  // turnOnBranch(tree, "coreFlags", &coreFlags, &b_coreFlags);
+  turnOnBranch(tree, "coreFlags", &coreFlags, &b_coreFlags);
   // turnOnBranch(tree, "pixelError", &pixelError, &b_pixelError);
   // turnOnBranch(tree, "sctError", &sctError, &b_sctError);
   // turnOnBranch(tree, "trtError", &trtError, &b_trtError);
-  // turnOnBranch(tree, "larError", &larError, &b_larError);
-  // turnOnBranch(tree, "tileError", &tileError, &b_tileError);
+  turnOnBranch(tree, "larError", &larError, &b_larError);
+  turnOnBranch(tree, "tileError", &tileError, &b_tileError);
   // turnOnBranch(tree, "muonError", &muonError, &b_muonError);
   // turnOnBranch(tree, "fwdError", &fwdError, &b_fwdError);
   // turnOnBranch(tree, "coreError", &coreError, &b_coreError);

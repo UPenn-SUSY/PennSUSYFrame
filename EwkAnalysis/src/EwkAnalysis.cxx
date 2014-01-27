@@ -13,6 +13,29 @@
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
+                                                     , m_crit_cut_grl(false)
+                                                     , m_crit_cut_incomplete_event(false)
+                                                     , m_crit_cut_lar_error(false)
+                                                     , m_crit_cut_tile_error(false)
+                                                     , m_crit_cut_tile_hot_spot(false)
+                                                     , m_crit_cut_tile_trip(false)
+                                                     , m_crit_cut_bad_jet_veto(false)
+                                                     , m_crit_cut_calo_problem_jet(false)
+                                                     , m_crit_cut_primary_vertex(false)
+                                                     , m_crit_cut_bad_mu_veto(false)
+                                                     , m_crit_cut_cosmic_mu_veto(false)
+                                                     , m_crit_cut_hfor(false)
+                                                     , m_crit_cut_mc_overlap(false)
+                                                     , m_crit_cut_ge_2_lep(false)
+                                                     , m_crit_cut_2_lep(false)
+                                                     , m_crit_cut_tau_veto(false)
+                                                     , m_crit_cut_mll_sfos(false)
+                                                     , m_crit_cut_signal_lep(false)
+                                                     , m_crit_cut_phase_space(false)
+                                                     , m_crit_cut_trigger(false)
+                                                     , m_crit_cut_trigger_match(false)
+                                                     , m_crit_cut_prompt_leptons(false)
+                                                     , m_crit_cut_stream_overlap(false)
 {
   std::string base_dir = getenv("ROOTCOREDIR");
   if (m_is_data) {
@@ -34,25 +57,26 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   m_event_weight = 1.;
 
   // GRL cut
+  // TODO validate grl cut
   bool pass_grl = m_grl.passEvent(m_event);
   pass_event = (pass_event && pass_grl);
   if (m_crit_cut_grl && !pass_grl) return;
 
   // incomplete event cut
-  // TODO implement incomplete event cut
-  bool pass_incomplete_event = true;
+  // TODO validate incomplete event cut
+  bool pass_incomplete_event = PennSusyFrame::passIncompleteEvent(m_event);
   pass_event = (pass_event && pass_incomplete_event);
   if (m_crit_cut_incomplete_event && !pass_incomplete_event) return;
 
   // LAr error cut
   // TODO implement LAr error cut
-  bool pass_lar_error = true;
+  bool pass_lar_error = PennSusyFrame::passLarError(m_event);
   pass_event = (pass_event && pass_lar_error);
   if (m_crit_cut_lar_error && !pass_lar_error) return;
 
   // tile error cut
   // TODO implement tile error cut
-  bool pass_tile_error = true;
+  bool pass_tile_error = PennSusyFrame::passTileError(m_event);
   pass_event = (pass_event && pass_tile_error);
   if (m_crit_cut_tile_error && !pass_tile_error) return;
 
