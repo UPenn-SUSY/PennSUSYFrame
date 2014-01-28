@@ -15,9 +15,10 @@ namespace PennSusyFrame
 namespace PennSusyFrame
 {
   // check trigger phase space
-  TRIG_PHASE getPhaseSpace( const std::vector<PennSusyFrame::Electron*>*
-                          , const std::vector<PennSusyFrame::Muon*>*
-                          );
+  TRIG_PHASE getTriggerPhase( const std::vector<PennSusyFrame::Electron*>*
+                            , const std::vector<PennSusyFrame::Muon*>*
+                            );
+  PHASE_SPACE getPhaseSpaceFromTriggerPhase(TRIG_PHASE);
 
   // check event level trigger decision
   bool passAnyTrigger( const PennSusyFrame::Event&

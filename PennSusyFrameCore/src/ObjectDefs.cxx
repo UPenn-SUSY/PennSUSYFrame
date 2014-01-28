@@ -33,6 +33,8 @@ PennSusyFrame::Event::Event() : m_is_data(false)
                               , m_eventshape_rhoKt4LC(0)
                               , m_flavor_channel(FLAVOR_NONE)
                               , m_sign_channel(SIGN_NONE)
+                              , m_phase_channel(PHASE_NONE)
+                              , m_trig_phase_channel(TRIG_NONE)
 {}
 
 // -----------------------------------------------------------------------------
@@ -51,6 +53,9 @@ void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
   setCoreFlags(reader->coreFlags);
   setLarError(reader->larError);
   setTileError(reader->tileError);
+
+  setPhaseSpace(PHASE_NONE);
+  setTriggerPhase(TRIG_NONE);
 }
 
 // -----------------------------------------------------------------------------

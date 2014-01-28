@@ -61,6 +61,8 @@ namespace PennSusyFrame
       void setTileError(unsigned int val)   { m_tile_error = val; }
       void setFlavorChannel(FLAVOR_CHANNEL val) { m_flavor_channel = val; }
       void setSignChannel(SIGN_CHANNEL val) { m_sign_channel = val; }
+      void setPhaseSpace(PHASE_SPACE val)   { m_phase_channel = val; }
+      void setTriggerPhase(TRIG_PHASE val)  { m_trig_phase_channel = val; }
       // void setMetEt(double val) { m_met_et = val; }
       // void setMetPhi(double val) { m_met_phi = val; }
       // void setMetRel(double val) { m_met_rel = val; }
@@ -79,6 +81,8 @@ namespace PennSusyFrame
 
       FLAVOR_CHANNEL getFlavorChannel() const { return m_flavor_channel; }
       SIGN_CHANNEL getSignChannel() const { return m_sign_channel; }
+      PHASE_SPACE getPhaseSpace() const { return m_phase_channel; }
+      TRIG_PHASE getTriggerPhase() const { return m_trig_phase_channel; }
       // double getMetEt() const { return m_met_et; }
       // double getMetPhi() const { return m_met_phi; }
       // double getMetRel() const { return m_met_rel; }
@@ -103,6 +107,8 @@ namespace PennSusyFrame
 
       FLAVOR_CHANNEL m_flavor_channel;
       SIGN_CHANNEL m_sign_channel;
+      PHASE_SPACE m_phase_channel;
+      TRIG_PHASE m_trig_phase_channel;
 
       // double m_met_et;
       // double m_met_phi;

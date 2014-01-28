@@ -11,6 +11,7 @@
 #include "PennSusyFrameCore/include/ObjectContainers.h"
 #include "PennSusyFrameCore/include/Calculators.h"
 #include "PennSusyFrameCore/include/SelectorHelpers.h"
+#include "EwkAnalysis/include/EwkTrigger.h"
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
@@ -59,6 +60,14 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   bool pass_event = true;
   m_event_weight = 1.;
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_event.setTriggerPhase( PennSusyFrame::getTriggerPhase( m_electrons.getCollection(EL_GOOD)
+                                                         , m_muons.getCollection(MU_GOOD)
+                                                         )
+                         );
+  m_event.setPhaseSpace(PennSusyFrame::getPhaseSpaceFromTriggerPhase(m_event.getTriggerPhase()));
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // GRL cut
   // TODO validate grl cut
   bool pass_grl = m_grl.passEvent(m_event);

@@ -4,9 +4,9 @@
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 
 // -----------------------------------------------------------------------------
-TRIG_PHASE PennSusyFrame::getPhaseSpace( const std::vector<PennSusyFrame::Electron*>* electrons
-                                       , const std::vector<PennSusyFrame::Muon*>* muons
-                                       )
+TRIG_PHASE PennSusyFrame::getTriggerPhase( const std::vector<PennSusyFrame::Electron*>* electrons
+                                         , const std::vector<PennSusyFrame::Muon*>* muons
+                                         )
 {
   size_t num_el = electrons->size();
   size_t num_mu = muons->size();
@@ -52,6 +52,29 @@ TRIG_PHASE PennSusyFrame::getPhaseSpace( const std::vector<PennSusyFrame::Electr
   }
 
   return TRIG_NONE;
+}
+
+// -----------------------------------------------------------------------------
+PHASE_SPACE PennSusyFrame::getPhaseSpaceFromTriggerPhase(TRIG_PHASE trig_phase)
+{
+    if (  trig_phase == TRIG_EE_A
+       || trig_phase == TRIG_EE_B
+       )
+      return PHASE_EE;
+
+    if (  trig_phase == TRIG_MM_A
+       || trig_phase == TRIG_MM_B
+       || trig_phase == TRIG_MM_C
+       || trig_phase == TRIG_MM_D
+       )
+      return PHASE_MM;
+
+    if (trig_phase == TRIG_EM_A)
+      return PHASE_EM;
+    if (trig_phase == TRIG_EM_B)
+      return PHASE_ME;
+
+    return PHASE_NONE;
 }
 
 // -----------------------------------------------------------------------------
