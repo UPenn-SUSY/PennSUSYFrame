@@ -198,7 +198,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   // trigger cut
   // TODO validate trigger cut
   bool pass_trigger = PennSusyFrame::passAnyTrigger( m_event
-                                                   // , m_trigger
+                                                   , m_trigger
                                                    );
   pass_event = (pass_event && pass_trigger);
   if (m_crit_cut_trigger && !pass_trigger) return;
@@ -206,7 +206,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   // trigger matching
   // TODO validate trigger matching
   bool pass_trigger_match = PennSusyFrame::passTriggerMatching( m_event
-                                                              // , m_trigger
+                                                              , m_trigger
                                                               , m_electrons.getCollection(EL_GOOD)
                                                               , m_muons.getCollection(MU_GOOD)
                                                               );

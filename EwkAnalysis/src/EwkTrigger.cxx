@@ -79,19 +79,19 @@ PHASE_SPACE PennSusyFrame::getPhaseSpaceFromTriggerPhase(TRIG_PHASE trig_phase)
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passAnyTrigger( const PennSusyFrame::Event& event
-                                  // , const PennSusyFrame::Trigger& trigger
+                                  , const PennSusyFrame::Trigger& trigger
                                   )
 {
-  return (  passEETriggerChannel(event/*, trigger*/)
-         || passMMTriggerChannel(event/*, trigger*/)
-         || passEMTriggerChannel(event/*, trigger*/)
-         || passMETriggerChannel(event/*, trigger*/)
+  return (  passEETriggerChannel(event, trigger)
+         || passMMTriggerChannel(event, trigger)
+         || passEMTriggerChannel(event, trigger)
+         || passMETriggerChannel(event, trigger)
          );
 }
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passEETriggerChannel( const PennSusyFrame::Event&
-                                        // , const PennSusyFrame::Trigger& trigger
+                                        , const PennSusyFrame::Trigger& trigger
                                         )
 {
   return true;
@@ -99,7 +99,7 @@ bool PennSusyFrame::passEETriggerChannel( const PennSusyFrame::Event&
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passMMTriggerChannel( const PennSusyFrame::Event&
-                                        // , const PennSusyFrame::Trigger& trigger
+                                        , const PennSusyFrame::Trigger& trigger
                                         )
 {
   return true;
@@ -107,7 +107,7 @@ bool PennSusyFrame::passMMTriggerChannel( const PennSusyFrame::Event&
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passEMTriggerChannel( const PennSusyFrame::Event&
-                                        // , const PennSusyFrame::Trigger& trigger
+                                        , const PennSusyFrame::Trigger& trigger
                                         )
 {
   return true;
@@ -115,7 +115,7 @@ bool PennSusyFrame::passEMTriggerChannel( const PennSusyFrame::Event&
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passMETriggerChannel( const PennSusyFrame::Event&
-                                        // , const PennSusyFrame::Trigger& trigger
+                                        , const PennSusyFrame::Trigger& trigger
                                         )
 {
   return true;
@@ -124,21 +124,21 @@ bool PennSusyFrame::passMETriggerChannel( const PennSusyFrame::Event&
 // -----------------------------------------------------------------------------
 // check trigger matching
 bool PennSusyFrame::passTriggerMatching( const PennSusyFrame::Event& event
-                                       // , const PennSusyFrame::Trigger& trigger
+                                       , const PennSusyFrame::Trigger& trigger
                                        , const std::vector<PennSusyFrame::Electron*>* electrons
                                        , const std::vector<PennSusyFrame::Muon*>* muons
                                        )
 {
-  if (event.getPhaseSpace() == PHASE_EE) return passEETriggerMatching(event, /*trigger,*/ electrons, muons);
-  if (event.getPhaseSpace() == PHASE_MM) return passMMTriggerMatching(event, /*trigger,*/ electrons, muons);
-  if (event.getPhaseSpace() == PHASE_EM) return passMETriggerMatching(event, /*trigger,*/ electrons, muons);
-  if (event.getPhaseSpace() == PHASE_ME) return passEMTriggerMatching(event, /*trigger,*/ electrons, muons);
+  if (event.getPhaseSpace() == PHASE_EE) return passEETriggerMatching(event, trigger, electrons, muons);
+  if (event.getPhaseSpace() == PHASE_MM) return passMMTriggerMatching(event, trigger, electrons, muons);
+  if (event.getPhaseSpace() == PHASE_EM) return passMETriggerMatching(event, trigger, electrons, muons);
+  if (event.getPhaseSpace() == PHASE_ME) return passEMTriggerMatching(event, trigger, electrons, muons);
   return false;
 }
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event&
-                                         // , const PennSusyFrame::Trigger& trigger
+                                         , const PennSusyFrame::Trigger& trigger
                                          , const std::vector<PennSusyFrame::Electron*>*
                                          , const std::vector<PennSusyFrame::Muon*>*
                                          )
@@ -148,7 +148,7 @@ bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event&
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passMMTriggerMatching( const PennSusyFrame::Event&
-                                         // , const PennSusyFrame::Trigger& trigger
+                                         , const PennSusyFrame::Trigger& trigger
                                          , const std::vector<PennSusyFrame::Electron*>*
                                          , const std::vector<PennSusyFrame::Muon*>*
                                          )
@@ -158,7 +158,7 @@ bool PennSusyFrame::passMMTriggerMatching( const PennSusyFrame::Event&
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passEMTriggerMatching( const PennSusyFrame::Event&
-                                         // , const PennSusyFrame::Trigger& trigger
+                                         , const PennSusyFrame::Trigger& trigger
                                          , const std::vector<PennSusyFrame::Electron*>*
                                          , const std::vector<PennSusyFrame::Muon*>*
                                          )
@@ -168,7 +168,7 @@ bool PennSusyFrame::passEMTriggerMatching( const PennSusyFrame::Event&
 
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::passMETriggerMatching( const PennSusyFrame::Event&
-                                         // , const PennSusyFrame::Trigger& trigger
+                                         , const PennSusyFrame::Trigger& trigger
                                          , const std::vector<PennSusyFrame::Electron*>*
                                          , const std::vector<PennSusyFrame::Muon*>*
                                          )

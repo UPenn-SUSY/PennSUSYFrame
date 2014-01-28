@@ -50,6 +50,7 @@ namespace PennSusyFrame
 
       PennSusyFrame::Event                m_event;
       PennSusyFrame::EventLevelQuantities m_event_quantities;
+      PennSusyFrame::Trigger              m_trigger;
       PennSusyFrame::Met                  m_met;
       PennSusyFrame::VertexContainer      m_vertices;
       PennSusyFrame::ElectronContainer    m_electrons;

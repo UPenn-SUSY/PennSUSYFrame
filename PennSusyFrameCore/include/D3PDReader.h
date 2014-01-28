@@ -47,7 +47,7 @@ namespace PennSusyFrame
     // Bool_t          EF_2b55_medium_j110_j55_a4tchad_ht500;
     // Bool_t          EF_2b55_medium_j165_j55_a4tchad_ht500;
     // Bool_t          EF_2b80_medium_j165_j80_a4tchad_ht500;
-    // Bool_t          EF_2e12Tvh_loose1;
+    Bool_t          EF_2e12Tvh_loose1;
     // Bool_t          EF_2e5_tight1_Jpsi;
     // Bool_t          EF_2e7T_loose1_mu6;
     // Bool_t          EF_2e7T_medium1_mu6;
@@ -81,7 +81,7 @@ namespace PennSusyFrame
     // Bool_t          EF_2mu10_MSonly_g10_loose;
     // Bool_t          EF_2mu10_MSonly_g10_loose_EMPTY;
     // Bool_t          EF_2mu10_MSonly_g10_loose_UNPAIRED_ISO;
-    // Bool_t          EF_2mu13;
+    Bool_t          EF_2mu13;
     // Bool_t          EF_2mu13_Zmumu_IDTrkNoCut;
     // Bool_t          EF_2mu13_l2muonSA;
     // Bool_t          EF_2mu15;
@@ -337,7 +337,7 @@ namespace PennSusyFrame
     // Bool_t          EF_e12Tvh_medium1_mu10;
     // Bool_t          EF_e12Tvh_medium1_mu6;
     // Bool_t          EF_e12Tvh_medium1_mu6_topo_medium;
-    // Bool_t          EF_e12Tvh_medium1_mu8;
+    Bool_t          EF_e12Tvh_medium1_mu8;
     // Bool_t          EF_e13_etcutTrk_xs60;
     // Bool_t          EF_e13_etcutTrk_xs60_dphi2j15xe20;
     // Bool_t          EF_e14_tight1_e4_etcut_Jpsi;
@@ -382,7 +382,7 @@ namespace PennSusyFrame
     // Bool_t          EF_e24vh_medium1_SiTrk;
     // Bool_t          EF_e24vh_medium1_TRT;
     // Bool_t          EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;
-    // Bool_t          EF_e24vh_medium1_e7_medium1;
+    Bool_t          EF_e24vh_medium1_e7_medium1;
     // Bool_t          EF_e24vh_tight1_e15_NoCut_Zee;
     // Bool_t          EF_e24vhi_loose1_mu8;
     // Bool_t          EF_e24vhi_medium1;
@@ -651,8 +651,8 @@ namespace PennSusyFrame
     // Bool_t          EF_mu18_medium;
     // Bool_t          EF_mu18_tight;
     // Bool_t          EF_mu18_tight_2mu4_EFFS;
-    // Bool_t          EF_mu18_tight_e7_medium1;
-    // Bool_t          EF_mu18_tight_mu8_EFFS;
+    Bool_t          EF_mu18_tight_e7_medium1;
+    Bool_t          EF_mu18_tight_mu8_EFFS;
     // Bool_t          EF_mu18i4_tight;
     // Bool_t          EF_mu18it_tight;
     // Bool_t          EF_mu20i_tight_g5_loose;
@@ -1259,7 +1259,7 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_tau_EF_tauNoCut;
     // std::vector<int>     *trig_EF_tau_EF_tauNoCut_L1TAU40;
     // std::vector<int>     *trig_EF_tau_EF_tauNoCut_cosmic;
-    // std::vector<int>     *trig_EF_el_EF_2e12Tvh_loose1;
+    // std::vector<int>     *trig_EF_el_EF_2e12Tvh_loose1
     // std::vector<int>     *trig_EF_el_EF_2e5_tight1_Jpsi;
     // std::vector<int>     *trig_EF_el_EF_2e7T_loose1_mu6;
     // std::vector<int>     *trig_EF_el_EF_2e7T_medium1_mu6;
@@ -7070,7 +7070,7 @@ namespace PennSusyFrame
     // TBranch        *b_EF_2b55_medium_j110_j55_a4tchad_ht500;   //!
     // TBranch        *b_EF_2b55_medium_j165_j55_a4tchad_ht500;   //!
     // TBranch        *b_EF_2b80_medium_j165_j80_a4tchad_ht500;   //!
-    // TBranch        *b_EF_2e12Tvh_loose1;   //!
+    TBranch        *b_EF_2e12Tvh_loose1;   //!
     // TBranch        *b_EF_2e5_tight1_Jpsi;   //!
     // TBranch        *b_EF_2e7T_loose1_mu6;   //!
     // TBranch        *b_EF_2e7T_medium1_mu6;   //!
@@ -7104,7 +7104,7 @@ namespace PennSusyFrame
     // TBranch        *b_EF_2mu10_MSonly_g10_loose;   //!
     // TBranch        *b_EF_2mu10_MSonly_g10_loose_EMPTY;   //!
     // TBranch        *b_EF_2mu10_MSonly_g10_loose_UNPAIRED_ISO;   //!
-    // TBranch        *b_EF_2mu13;   //!
+    TBranch        *b_EF_2mu13;   //!
     // TBranch        *b_EF_2mu13_Zmumu_IDTrkNoCut;   //!
     // TBranch        *b_EF_2mu13_l2muonSA;   //!
     // TBranch        *b_EF_2mu15;   //!
@@ -7360,7 +7360,7 @@ namespace PennSusyFrame
     // TBranch        *b_EF_e12Tvh_medium1_mu10;   //!
     // TBranch        *b_EF_e12Tvh_medium1_mu6;   //!
     // TBranch        *b_EF_e12Tvh_medium1_mu6_topo_medium;   //!
-    // TBranch        *b_EF_e12Tvh_medium1_mu8;   //!
+    TBranch        *b_EF_e12Tvh_medium1_mu8;   //!
     // TBranch        *b_EF_e13_etcutTrk_xs60;   //!
     // TBranch        *b_EF_e13_etcutTrk_xs60_dphi2j15xe20;   //!
     // TBranch        *b_EF_e14_tight1_e4_etcut_Jpsi;   //!
@@ -7405,7 +7405,7 @@ namespace PennSusyFrame
     // TBranch        *b_EF_e24vh_medium1_SiTrk;   //!
     // TBranch        *b_EF_e24vh_medium1_TRT;   //!
     // TBranch        *b_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;   //!
-    // TBranch        *b_EF_e24vh_medium1_e7_medium1;   //!
+    TBranch        *b_EF_e24vh_medium1_e7_medium1;   //!
     // TBranch        *b_EF_e24vh_tight1_e15_NoCut_Zee;   //!
     // TBranch        *b_EF_e24vhi_loose1_mu8;   //!
     // TBranch        *b_EF_e24vhi_medium1;   //!
@@ -7674,8 +7674,8 @@ namespace PennSusyFrame
     // TBranch        *b_EF_mu18_medium;   //!
     // TBranch        *b_EF_mu18_tight;   //!
     // TBranch        *b_EF_mu18_tight_2mu4_EFFS;   //!
-    // TBranch        *b_EF_mu18_tight_e7_medium1;   //!
-    // TBranch        *b_EF_mu18_tight_mu8_EFFS;   //!
+    TBranch        *b_EF_mu18_tight_e7_medium1;   //!
+    TBranch        *b_EF_mu18_tight_mu8_EFFS;   //!
     // TBranch        *b_EF_mu18i4_tight;   //!
     // TBranch        *b_EF_mu18it_tight;   //!
     // TBranch        *b_EF_mu20i_tight_g5_loose;   //!

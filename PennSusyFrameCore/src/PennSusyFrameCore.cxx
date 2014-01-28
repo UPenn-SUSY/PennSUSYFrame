@@ -63,6 +63,7 @@ void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
 
   m_event.init();
   m_event_quantities.init();
+  m_trigger.init();
   m_vertices.init();
   m_electrons.init();
   m_muons.init();
@@ -258,7 +259,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // get basic event variables
   m_event.getEvent(m_d3pd_reader);
-
+  m_trigger.getEvent(m_d3pd_reader);
   m_mc_truth.getEvent(m_d3pd_reader);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

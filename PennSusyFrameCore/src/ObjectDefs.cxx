@@ -80,7 +80,6 @@ void PennSusyFrame::Event::print() const
 }
 
 // =============================================================================
-// =============================================================================
 // = EventLevelQuantities
 // =============================================================================
 PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mt2(0.)
@@ -95,6 +94,26 @@ void PennSusyFrame::EventLevelQuantities::print() const
   std::cout << "================= Printing event level quantities: =================\n";
   std::cout << "\tmt2: " << m_mt2
             << "\n";
+}
+
+// =============================================================================
+// = Trigger
+// =============================================================================
+// -----------------------------------------------------------------------------
+PennSusyFrame::Trigger::Trigger() {}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Trigger::init() {}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
+{
+  setEF_2e12Tvh_loose1(          reader->EF_2e12Tvh_loose1);
+  setEF_e24vh_medium1_e7_medium1(reader->EF_e24vh_medium1_e7_medium1);
+  setEF_2mu13(                   reader->EF_2mu13);
+  setEF_mu18_tight_mu8_EFFS(     reader->EF_mu18_tight_mu8_EFFS);
+  setEF_e12Tvh_medium1_mu8(      reader->EF_e12Tvh_medium1_mu8);
+  setEF_mu18_tight_e7_medium1(   reader->EF_mu18_tight_e7_medium1);
 }
 
 // =============================================================================

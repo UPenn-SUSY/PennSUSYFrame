@@ -22,45 +22,45 @@ namespace PennSusyFrame
 
   // check event level trigger decision
   bool passAnyTrigger( const PennSusyFrame::Event&
-                     // , const PennSusyFrame::Trigger&
+                     , const PennSusyFrame::Trigger&
                      );
   bool passEETriggerChannel( const PennSusyFrame::Event&
-                           // , const PennSusyFrame::Trigger&
+                           , const PennSusyFrame::Trigger&
                            );
   bool passMMTriggerChannel( const PennSusyFrame::Event&
-                           // , const PennSusyFrame::Trigger&
+                           , const PennSusyFrame::Trigger&
                            );
   bool passEMTriggerChannel( const PennSusyFrame::Event&
-                           // , const PennSusyFrame::Trigger&
+                           , const PennSusyFrame::Trigger&
                            );
   bool passMETriggerChannel( const PennSusyFrame::Event&
-                           // , const PennSusyFrame::Trigger&
+                           , const PennSusyFrame::Trigger&
                            );
 
   // check trigger matching
   bool passTriggerMatching( const PennSusyFrame::Event&
-                          // , const PennSusyFrame::Trigger&
+                          , const PennSusyFrame::Trigger&
                           , const std::vector<PennSusyFrame::Electron*>*
                           , const std::vector<PennSusyFrame::Muon*>*
                           );
 
   bool passEETriggerMatching( const PennSusyFrame::Event&
-                            // , const PennSusyFrame::Trigger&
+                            , const PennSusyFrame::Trigger&
                             , const std::vector<PennSusyFrame::Electron*>*
                             , const std::vector<PennSusyFrame::Muon*>*
                             );
   bool passMMTriggerMatching( const PennSusyFrame::Event&
-                            // , const PennSusyFrame::Trigger&
+                            , const PennSusyFrame::Trigger&
                             , const std::vector<PennSusyFrame::Electron*>*
                             , const std::vector<PennSusyFrame::Muon*>*
                             );
   bool passEMTriggerMatching( const PennSusyFrame::Event&
-                            // , const PennSusyFrame::Trigger&
+                            , const PennSusyFrame::Trigger&
                             , const std::vector<PennSusyFrame::Electron*>*
                             , const std::vector<PennSusyFrame::Muon*>*
                             );
   bool passMETriggerMatching( const PennSusyFrame::Event&
-                            // , const PennSusyFrame::Trigger&
+                            , const PennSusyFrame::Trigger&
                             , const std::vector<PennSusyFrame::Electron*>*
                             , const std::vector<PennSusyFrame::Muon*>*
                             );

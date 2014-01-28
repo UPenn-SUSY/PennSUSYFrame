@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::matchElectronList( const std::vector<const PennSusyFrame::Electron*>* electrons
                                      , const std::vector<int>* trigger_chain
-                                     // , const PennSusyFrame::Trigger*
+                                     , const PennSusyFrame::Trigger* trigger
                                      , size_t num_to_match
                                      , double dr_cut
                                      , double pt_cut
@@ -62,7 +62,7 @@ bool PennSusyFrame::matchElectronList( const std::vector<const PennSusyFrame::El
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::matchElectron( const PennSusyFrame::Electron* el
                                  , const std::vector<int>* trigger_chain
-                                 // , const PennSusyFrame::Trigger*
+                                 , const PennSusyFrame::Trigger* trigger
                                  , double dr_cut
                                  , double pt_cut
                                  )
@@ -70,7 +70,7 @@ bool PennSusyFrame::matchElectron( const PennSusyFrame::Electron* el
   const std::vector<const PennSusyFrame::Electron*> el_vec(1,el);
   return matchElectronList( &el_vec
                           , trigger_chain
-                          // , trigger
+                          , trigger
                           , 1
                           , dr_cut
                           , pt_cut
@@ -80,7 +80,7 @@ bool PennSusyFrame::matchElectron( const PennSusyFrame::Electron* el
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::matchMuonList( const std::vector<const PennSusyFrame::Muon*>* muons
                                  , const std::vector<int>* trigger_chain
-                                 // , const PennSusyFrame::Trigger*
+                                 , const PennSusyFrame::Trigger* trigger
                                  , size_t num_to_match
                                  , double dr_cut
                                  , double pt_cut
@@ -135,7 +135,7 @@ bool PennSusyFrame::matchMuonList( const std::vector<const PennSusyFrame::Muon*>
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::matchMuon( const PennSusyFrame::Muon* mu
                              , const std::vector<int>* trigger_chain
-                             // , const PennSusyFrame::Trigger*
+                             , const PennSusyFrame::Trigger* trigger
                              , double dr_cut
                              , double pt_cut
                              )
@@ -143,7 +143,7 @@ bool PennSusyFrame::matchMuon( const PennSusyFrame::Muon* mu
   const std::vector<const PennSusyFrame::Muon*> mu_vec(1,mu);
   return matchMuonList( &mu_vec
                       , trigger_chain
-                      // , trigger
+                      , trigger
                       , 1
                       , dr_cut
                       , pt_cut
