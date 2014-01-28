@@ -310,6 +310,7 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setParticleIndex(el_index);
 
   setCharge(reader->el_charge->at(el_index));
+  // setTruthCharge(reader->);
 
   setAuthor(  reader->el_author->at(el_index));
   setMediumPP(reader->el_mediumPP->at(el_index));

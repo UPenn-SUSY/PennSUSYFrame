@@ -187,6 +187,7 @@ namespace PennSusyFrame
       void setIsLightLepton(bool val) { m_is_light_lepton = val; }
       void setIsElectron(bool val) { m_is_electron = val; }
       void setCharge(double val) { m_charge = val; }
+      void setTruthCharge(double val) { m_truth_charge = val; }
 
       void setRawPtIso(double val) { m_raw_pt_iso = val; }
       void setRawEtIso(double val) { m_raw_et_iso = val; }
@@ -217,6 +218,7 @@ namespace PennSusyFrame
       bool m_is_light_lepton;
       bool m_is_electron;
       double m_charge;
+      double m_truth_charge;
 
       double m_raw_pt_iso;
       double m_raw_et_iso;
