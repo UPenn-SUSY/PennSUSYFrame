@@ -24,40 +24,46 @@ namespace PennSusyFrame
   bool passAnyTrigger( const PennSusyFrame::Event&
                      // , const PennSusyFrame::Trigger&
                      );
-  bool passedEETriggerChannel( const PennSusyFrame::Event&
-                             // , const PennSusyFrame::Trigger&
-                             );
-  bool passedMMTriggerChannel( const PennSusyFrame::Event&
-                             // , const PennSusyFrame::Trigger&
-                             );
-  bool passedEMTriggerChannel( const PennSusyFrame::Event&
-                             // , const PennSusyFrame::Trigger&
-                             );
-  bool passedMETriggerChannel( const PennSusyFrame::Event&
-                             // , const PennSusyFrame::Trigger&
-                             );
+  bool passEETriggerChannel( const PennSusyFrame::Event&
+                           // , const PennSusyFrame::Trigger&
+                           );
+  bool passMMTriggerChannel( const PennSusyFrame::Event&
+                           // , const PennSusyFrame::Trigger&
+                           );
+  bool passEMTriggerChannel( const PennSusyFrame::Event&
+                           // , const PennSusyFrame::Trigger&
+                           );
+  bool passMETriggerChannel( const PennSusyFrame::Event&
+                           // , const PennSusyFrame::Trigger&
+                           );
 
   // check trigger matching
-  bool passedEETriggerMatching( const PennSusyFrame::Event&
-                              // , const PennSusyFrame::Trigger&
-                              , const std::vector<PennSusyFrame::Electron*>*
-                              , const std::vector<PennSusyFrame::Muon*>*
-                              );
-  bool passedMMTriggerMatching( const PennSusyFrame::Event&
-                              // , const PennSusyFrame::Trigger&
-                              , const std::vector<PennSusyFrame::Electron*>*
-                              , const std::vector<PennSusyFrame::Muon*>*
-                              );
-  bool passedEMTriggerMatching( const PennSusyFrame::Event&
-                              // , const PennSusyFrame::Trigger&
-                              , const std::vector<PennSusyFrame::Electron*>*
-                              , const std::vector<PennSusyFrame::Muon*>*
-                              );
-  bool passedMETriggerMatching( const PennSusyFrame::Event&
-                              // , const PennSusyFrame::Trigger&
-                              , const std::vector<PennSusyFrame::Electron*>*
-                              , const std::vector<PennSusyFrame::Muon*>*
-                              );
+  bool passTriggerMatching( const PennSusyFrame::Event&
+                          // , const PennSusyFrame::Trigger&
+                          , const std::vector<PennSusyFrame::Electron*>*
+                          , const std::vector<PennSusyFrame::Muon*>*
+                          );
+
+  bool passEETriggerMatching( const PennSusyFrame::Event&
+                            // , const PennSusyFrame::Trigger&
+                            , const std::vector<PennSusyFrame::Electron*>*
+                            , const std::vector<PennSusyFrame::Muon*>*
+                            );
+  bool passMMTriggerMatching( const PennSusyFrame::Event&
+                            // , const PennSusyFrame::Trigger&
+                            , const std::vector<PennSusyFrame::Electron*>*
+                            , const std::vector<PennSusyFrame::Muon*>*
+                            );
+  bool passEMTriggerMatching( const PennSusyFrame::Event&
+                            // , const PennSusyFrame::Trigger&
+                            , const std::vector<PennSusyFrame::Electron*>*
+                            , const std::vector<PennSusyFrame::Muon*>*
+                            );
+  bool passMETriggerMatching( const PennSusyFrame::Event&
+                            // , const PennSusyFrame::Trigger&
+                            , const std::vector<PennSusyFrame::Electron*>*
+                            , const std::vector<PennSusyFrame::Muon*>*
+                            );
 }
 
 #endif

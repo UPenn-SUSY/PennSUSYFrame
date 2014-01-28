@@ -190,20 +190,26 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_signal_lep && !pass_signal_lep) return;
 
   // phase space cut
-  // TODO implement phase space cut
-  bool pass_phase_space = true;
+  // TODO validate phase space cut
+  bool pass_phase_space = (m_event.getTriggerPhase() != TRIG_NONE);
   pass_event = (pass_event && pass_phase_space);
   if (m_crit_cut_phase_space && !pass_phase_space) return;
 
   // trigger cut
-  // TODO implement trigger cut
-  bool pass_trigger = true;
+  // TODO validate trigger cut
+  bool pass_trigger = PennSusyFrame::passAnyTrigger( m_event
+                                                   // , m_trigger
+                                                   );
   pass_event = (pass_event && pass_trigger);
   if (m_crit_cut_trigger && !pass_trigger) return;
 
   // trigger matching
-  // TODO implement trigger matching
-  bool pass_trigger_match = true;
+  // TODO validate trigger matching
+  bool pass_trigger_match = PennSusyFrame::passTriggerMatching( m_event
+                                                              // , m_trigger
+                                                              , m_electrons.getCollection(EL_GOOD)
+                                                              , m_muons.getCollection(MU_GOOD)
+                                                              );
   pass_event = (pass_event && pass_trigger_match);
   if (m_crit_cut_trigger_match && !pass_trigger_match) return;
 
