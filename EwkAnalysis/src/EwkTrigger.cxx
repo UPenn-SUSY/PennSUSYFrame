@@ -94,7 +94,11 @@ bool PennSusyFrame::passEETriggerChannel( const PennSusyFrame::Event&
                                         , const PennSusyFrame::Trigger& trigger
                                         )
 {
-  return true;
+  bool pass_single_trigger = false;
+  bool pass_double_trigger = (  trigger.getEF_2e12Tvh_loose1()
+                             || trigger.getEF_e24vh_medium1_e7_medium1()
+                             );
+  return (pass_single_trigger || pass_double_trigger);
 }
 
 // -----------------------------------------------------------------------------
@@ -102,7 +106,11 @@ bool PennSusyFrame::passMMTriggerChannel( const PennSusyFrame::Event&
                                         , const PennSusyFrame::Trigger& trigger
                                         )
 {
-  return true;
+  bool pass_single_trigger = false;
+  bool pass_double_trigger = (  trigger.getEF_2mu13()
+                             || trigger.getEF_mu18_tight_mu8_EFFS()
+                             );
+  return (pass_single_trigger || pass_double_trigger);
 }
 
 // -----------------------------------------------------------------------------
@@ -110,7 +118,8 @@ bool PennSusyFrame::passEMTriggerChannel( const PennSusyFrame::Event&
                                         , const PennSusyFrame::Trigger& trigger
                                         )
 {
-  return true;
+  bool pass_trigger = trigger.getEF_e12Tvh_medium1_mu8();
+  return pass_trigger;
 }
 
 // -----------------------------------------------------------------------------
@@ -118,7 +127,8 @@ bool PennSusyFrame::passMETriggerChannel( const PennSusyFrame::Event&
                                         , const PennSusyFrame::Trigger& trigger
                                         )
 {
-  return true;
+  bool pass_trigger = trigger.getEF_mu18_tight_e7_medium1();
+  return pass_trigger;
 }
 
 // -----------------------------------------------------------------------------
