@@ -15,6 +15,7 @@
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
+                                                     , m_out_tnt_file_name("EwkTnt.root")
                                                      , m_crit_cut_grl(false)
                                                      , m_crit_cut_incomplete_event(false)
                                                      , m_crit_cut_lar_error(false)
@@ -53,6 +54,12 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkAnalysis::~EwkAnalysis()
 {}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EwkAnalysis::beginRun()
+{
+  configureTnt(m_out_tnt_file_name, "TNT");
+}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::processEvent()
@@ -230,5 +237,11 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::finalizeEvent()
 {
+  fillTnt();
+}
 
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EwkAnalysis::finalizeRun()
+{
+  writeTnt();
 }

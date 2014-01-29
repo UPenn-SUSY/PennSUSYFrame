@@ -36,12 +36,21 @@ namespace PennSusyFrame
 
       virtual void clearObjects();
       virtual void constructObjects();
+
+      virtual void beginRun();
       virtual void processEvent();
       virtual void finalizeEvent();
+      virtual void finalizeRun();
 
     protected:
       virtual FLAVOR_CHANNEL findFlavorChannel();
       virtual SIGN_CHANNEL   findSignCannel();
+
+      virtual void configureTnt( std::string out_file_name
+                               , std::string out_tree_name
+                               );
+      virtual void fillTnt();
+      virtual void writeTnt();
 
       bool m_is_data;
       double m_event_weight;

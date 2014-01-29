@@ -17,6 +17,9 @@ namespace PennSusyFrame
     TTree          *fChain;   //!pointer to the analyzed TTree or TChain
     Int_t           fCurrent; //!current Tree number in a TChain
 
+    TFile* m_output_file;
+    TTree* m_output_tree;
+
     // Declaration of leaf types
     // Bool_t          EF_2b35_loose_3j35_a4tchad_4L1J10;
     // Bool_t          EF_2b35_loose_3j35_a4tchad_4L1J15;
@@ -14043,6 +14046,9 @@ namespace PennSusyFrame
     virtual Int_t    GetEntry(Long64_t entry);
     virtual Long64_t LoadTree(Long64_t entry);
     virtual void     Init(TTree *tree);
+    virtual void     ConfigureOutput(std::string out_file_name, std::string out_tree_name);
+    virtual void     FillEvent();
+    virtual void     FinalizeOutput();
     virtual Bool_t   Notify();
     virtual void     Show(Long64_t entry = -1);
 

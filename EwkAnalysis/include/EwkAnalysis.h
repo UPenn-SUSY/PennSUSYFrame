@@ -18,8 +18,12 @@ namespace PennSusyFrame
       EwkAnalysis(TTree *tree=0);
       virtual ~EwkAnalysis();
 
+      virtual void beginRun();
       virtual void processEvent();
       virtual void finalizeEvent();
+      virtual void finalizeRun();
+
+      void setOutTntFileName(std::string val) { m_out_tnt_file_name = val; }
 
       void setCritCutGrl(            bool val) { m_crit_cut_grl = val;              }
       void setCritCutIncompleteEvent(bool val) { m_crit_cut_incomplete_event = val; }
@@ -48,6 +52,8 @@ namespace PennSusyFrame
       void setSFOSMllCut(double min, double max) { m_sfos_mll_min = min; m_sfos_mll_max = max; }
 
     protected:
+      std::string m_out_tnt_file_name;
+
       bool m_crit_cut_grl;
       bool m_crit_cut_incomplete_event;
       bool m_crit_cut_lar_error;

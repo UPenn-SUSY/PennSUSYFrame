@@ -214,6 +214,8 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   //   return;
   // }
 
+  beginRun();
+
   // Long64_t nentries = fChain->GetEntriesFast();
   Long64_t nentries = m_d3pd_reader->getNumEvents();
   std::cout << "Processing " << nentries << " events\n";
@@ -238,6 +240,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     processEvent();
     finalizeEvent();
   }
+  finalizeRun();
 }
 
 // -----------------------------------------------------------------------------
@@ -444,113 +447,20 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::beginRun()
+{}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::processEvent()
-{
-  // TODO make placeholder processEvent
-
-  // This is useful for comparing with old framework
-  // std::cout << "\n";
-  // m_event.print();
-
-  // std::cout << "\n";
-  // m_vertices.print(VERTEX_ALL);
-  // m_vertices.print(VERTEX_GT_2);
-  // m_vertices.print(VERTEX_GOOD);
-
-  // std::cout << "\n";
-  // m_electrons.print(EL_ALL);
-  // m_electrons.print(EL_BASELINE);
-  // m_electrons.print(EL_GOOD);
-  // m_electrons.print(EL_SIGNAL);
-
-  // std::cout << "\n";
-  // m_muons.print(MU_ALL);
-  // m_muons.print(MU_BASELINE);
-  // m_muons.print(MU_GOOD);
-  // m_muons.print(MU_SIGNAL);
-  // m_muons.print(MU_BAD);
-  // m_muons.print(MU_COSMIC);
-
-  // std::cout << "\n";
-  // m_taus.print(TAU_ALL);
-  // m_taus.print(TAU_BASELINE);
-  // m_taus.print(TAU_GOOD);
-  // m_taus.print(TAU_SIGNAL);
-
-  // std::cout << "\n";
-  // m_jets.print(JET_ALL);
-  // m_jets.print(JET_BASELINE_GOOD);
-  // m_jets.print(JET_GOOD);
-  // m_jets.print(JET_BASELINE_BAD);
-  // m_jets.print(JET_BAD);
-  // m_jets.print(JET_LIGHT);
-  // m_jets.print(JET_B);
-  // m_jets.print(JET_FORWARD);
-
-  // std::cout << "\n";
-  // m_met.print();
-
-  // std::cout << "\n";
-  // m_event_quantities.print();
-
-
-
-  // below is a better order for outputting event info
-  // std::cout << "\n";
-  // m_event.print();
-
-  // std::cout << "\n";
-  // m_vertices.print(VERTEX_ALL);
-  // m_vertices.print(VERTEX_GT_2);
-  // m_vertices.print(VERTEX_GOOD);
-
-  // std::cout << "\n";
-  // m_electrons.print(EL_ALL);
-  // m_electrons.print(EL_BASELINE);
-  // m_electrons.print(EL_GOOD);
-  // m_electrons.print(EL_SIGNAL);
-
-  // std::cout << "\n";
-  // m_muons.print(MU_ALL);
-  // m_muons.print(MU_BASELINE);
-  // m_muons.print(MU_GOOD);
-  // m_muons.print(MU_COSMIC);
-  // m_muons.print(MU_BAD);
-  // m_muons.print(MU_SIGNAL);
-
-  // std::cout << "\n";
-  // m_taus.print(TAU_ALL);
-  // m_taus.print(TAU_BASELINE);
-  // m_taus.print(TAU_GOOD);
-  // m_taus.print(TAU_SIGNAL);
-
-  // std::cout << "\n";
-  // m_jets.print(JET_ALL);
-  // m_jets.print(JET_BASELINE);
-  // m_jets.print(JET_BASELINE_GOOD);
-  // m_jets.print(JET_BASELINE_BAD);
-  // m_jets.print(JET_GOOD);
-  // m_jets.print(JET_BAD);
-  // m_jets.print(JET_CALO_PROBLEM);
-  // m_jets.print(JET_LIGHT);
-  // m_jets.print(JET_B);
-  // m_jets.print(JET_FORWARD);
-
-  // std::cout << "\n";
-  // m_met.print();
-
-  // std::cout << "\n";
-  // m_vertices.print(VERTEX_ALL);
-  // m_vertices.print(VERTEX_GT_2);
-  // m_vertices.print(VERTEX_GOOD);
-}
+{ }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::finalizeEvent()
-{
-  // TODO write default finalizeEvent function
-}
+{ }
 
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::finalizeRun()
+{}
 
 // -----------------------------------------------------------------------------
 FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel()
@@ -592,4 +502,24 @@ SIGN_CHANNEL PennSusyFrame::PennSusyFrameCore::findSignCannel()
             << " has flavor channel " << FLAVOR_CHANNEL_STRINGS[m_event.getFlavorChannel()]
             << " but does not fit in a sign channel! Something went wrong!\n";
   return SIGN_NONE;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::configureTnt( std::string out_file_name
+                                                   , std::string in_file_name
+                                                   )
+{
+  m_d3pd_reader->ConfigureOutput(out_file_name, in_file_name);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::fillTnt()
+{
+  m_d3pd_reader->FillEvent();
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::writeTnt()
+{
+  m_d3pd_reader->FinalizeOutput();
 }

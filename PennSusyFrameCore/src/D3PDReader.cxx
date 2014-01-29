@@ -6,6 +6,8 @@
 // -----------------------------------------------------------------------------
 PennSusyFrame::D3PDReader::D3PDReader(TTree *tree, bool is_data) : m_is_data(is_data)
                                                                  , fChain(0)
+                                                                 , m_output_file(0)
+                                                                 , m_output_tree(0)
 {
   Init(tree);
 }
@@ -10481,6 +10483,33 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "bunch_configID", &bunch_configID, &b_bunch_configID);
 
   Notify();
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
+                                               , std::string out_tree_name
+                                               )
+{
+  m_output_file = new TFile(out_file_name.c_str(), "RECREATE");
+  m_output_tree = new TTree(out_tree_name.c_str(), out_tree_name.c_str());
+
+
+  m_output_tree->Branch( "RunNumber"  , &RunNumber  );
+  m_output_tree->Branch( "EventNumber", &EventNumber);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::D3PDReader::FillEvent()
+{
+  m_output_tree->Fill();
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::D3PDReader::FinalizeOutput()
+{
+  // m_output_tree->Close();
+  m_output_file->Write();
+  m_output_file->Close();
 }
 
 // -----------------------------------------------------------------------------
