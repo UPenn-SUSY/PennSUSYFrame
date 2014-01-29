@@ -100,7 +100,11 @@ void PennSusyFrame::EventLevelQuantities::print() const
 // = Trigger
 // =============================================================================
 // -----------------------------------------------------------------------------
-PennSusyFrame::Trigger::Trigger() {}
+PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_EF_e24vh_medium1(0)
+                                  , m_trig_EF_el_EF_e24vh_medium1_e7_medium1(0)
+                                  , m_trig_EF_el_EF_e12Tvh_loose1(0)
+
+{}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Trigger::init() {}
@@ -117,6 +121,7 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
 
   setTrig_EF_el_EF_e24vh_medium1(           reader->trig_EF_el_EF_e24vh_medium1);
   setTrig_EF_el_EF_e24vh_medium1_e7_medium1(reader->trig_EF_el_EF_e24vh_medium1_e7_medium1);
+  setTrig_EF_el_EF_e12Tvh_loose1(           reader->trig_EF_el_EF_e12Tvh_loose1);
 }
 
 // =============================================================================

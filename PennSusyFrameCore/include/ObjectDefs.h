@@ -161,7 +161,7 @@ namespace PennSusyFrame
 
       void setTrig_EF_el_EF_e24vh_medium1(std::vector<int>* val)            { m_trig_EF_el_EF_e24vh_medium1            = val; }
       void setTrig_EF_el_EF_e24vh_medium1_e7_medium1(std::vector<int>* val) { m_trig_EF_el_EF_e24vh_medium1_e7_medium1 = val; }
-      void getTrig_EF_el_EF_e12Tvh_loose1(std::vector<int>* val)            { m_trig_EF_el_EF_e12Tvh_loose1            = val; }
+      void setTrig_EF_el_EF_e12Tvh_loose1(std::vector<int>* val)            { m_trig_EF_el_EF_e12Tvh_loose1            = val; }
 
 
       // TODO move accessors to cxx file

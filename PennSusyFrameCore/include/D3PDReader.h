@@ -1264,9 +1264,9 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_el_EF_2e7T_loose1_mu6;
     // std::vector<int>     *trig_EF_el_EF_2e7T_medium1_mu6;
     // std::vector<int>     *trig_EF_el_EF_e11_etcut;
-    // std::vector<int>     *trig_EF_el_EF_e12Tvh_loose1;
+    std::vector<int>     *trig_EF_el_EF_e12Tvh_loose1;
     // std::vector<int>     *trig_EF_el_EF_e12Tvh_loose1_mu8;
-    // std::vector<int>     *trig_EF_el_EF_e12Tvh_medium1;
+    std::vector<int>     *trig_EF_el_EF_e12Tvh_medium1;
     // std::vector<int>     *trig_EF_el_EF_e12Tvh_medium1_mu10;
     // std::vector<int>     *trig_EF_el_EF_e12Tvh_medium1_mu6;
     // std::vector<int>     *trig_EF_el_EF_e12Tvh_medium1_mu6_topo_medium;
@@ -1335,7 +1335,7 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_el_EF_e60_medium1;
     // std::vector<int>     *trig_EF_el_EF_e7T_loose1;
     // std::vector<int>     *trig_EF_el_EF_e7T_loose1_2mu6;
-    // std::vector<int>     *trig_EF_el_EF_e7T_medium1;
+    std::vector<int>     *trig_EF_el_EF_e7T_medium1;
     // std::vector<int>     *trig_EF_el_EF_e7T_medium1_2mu6;
     // std::vector<int>     *trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;
     // std::vector<int>     *trig_EF_el_EF_eb_physics;
@@ -1452,7 +1452,7 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu11_empty_NoAlg;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu13;
+    std::vector<int>     *trig_EF_trigmuonef_EF_mu13;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu15;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18_2g10_loose;
@@ -1461,10 +1461,10 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18_g20vh_loose;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18_medium;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu18_tight;
+    std::vector<int>     *trig_EF_trigmuonef_EF_mu18_tight;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18_tight_2mu4_EFFS;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18_tight_e7_medium1;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
+    std::vector<int>     *trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18i4_tight;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu18it_tight;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu20i_tight_g5_loose;
@@ -1568,7 +1568,7 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu6_MSonly;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu6i;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu8;
+    std::vector<int>     *trig_EF_trigmuonef_EF_mu8;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS;
     // std::vector<int>     *trig_EF_trigmugirl_EF_2mu10;
     // std::vector<int>     *trig_EF_trigmugirl_EF_2mu10_MSonly_g10_loose;
@@ -6110,15 +6110,15 @@ namespace PennSusyFrame
     // std::vector<float>   *trig_EF_emcl_slw_centermag;
     // std::vector<float>   *trig_EF_emcl_slw_time;
     // Int_t           trig_EF_el_n;
-    // std::vector<float>   *trig_EF_el_E;
+    std::vector<float>   *trig_EF_el_E;
     // std::vector<float>   *trig_EF_el_Et;
     // std::vector<float>   *trig_EF_el_pt;
     // std::vector<float>   *trig_EF_el_m;
     // std::vector<float>   *trig_EF_el_eta;
     // std::vector<float>   *trig_EF_el_phi;
-    // std::vector<float>   *trig_EF_el_px;
-    // std::vector<float>   *trig_EF_el_py;
-    // std::vector<float>   *trig_EF_el_pz;
+    std::vector<float>   *trig_EF_el_px;
+    std::vector<float>   *trig_EF_el_py;
+    std::vector<float>   *trig_EF_el_pz;
     // std::vector<float>   *trig_EF_el_charge;
     // std::vector<int>     *trig_EF_el_author;
     // std::vector<unsigned int> *trig_EF_el_isEM;
@@ -6477,9 +6477,9 @@ namespace PennSusyFrame
     // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_SA_posY;
     // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_SA_posZ;
     // std::vector<std::vector<int> > *trig_EF_trigmuonef_track_SA_hasSA;
-    // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_pt;
-    // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_eta;
-    // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_phi;
+    std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_pt;
+    std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_eta;
+    std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_phi;
     // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_charge;
     // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_d0;
     // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_z0;
@@ -6489,7 +6489,7 @@ namespace PennSusyFrame
     // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_posY;
     // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_posZ;
     // std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_matchChi2;
-    // std::vector<std::vector<int> > *trig_EF_trigmuonef_track_CB_hasCB;
+    std::vector<std::vector<int> > *trig_EF_trigmuonef_track_CB_hasCB;
     // Int_t           trig_EF_trigmugirl_n;
     // std::vector<int>     *trig_EF_trigmugirl_track_n;
     // std::vector<std::vector<int> > *trig_EF_trigmugirl_track_MuonType;
@@ -8287,9 +8287,9 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_el_EF_2e7T_loose1_mu6;   //!
     // TBranch        *b_trig_EF_el_EF_2e7T_medium1_mu6;   //!
     // TBranch        *b_trig_EF_el_EF_e11_etcut;   //!
-    // TBranch        *b_trig_EF_el_EF_e12Tvh_loose1;   //!
+    TBranch        *b_trig_EF_el_EF_e12Tvh_loose1;   //!
     // TBranch        *b_trig_EF_el_EF_e12Tvh_loose1_mu8;   //!
-    // TBranch        *b_trig_EF_el_EF_e12Tvh_medium1;   //!
+    TBranch        *b_trig_EF_el_EF_e12Tvh_medium1;   //!
     // TBranch        *b_trig_EF_el_EF_e12Tvh_medium1_mu10;   //!
     // TBranch        *b_trig_EF_el_EF_e12Tvh_medium1_mu6;   //!
     // TBranch        *b_trig_EF_el_EF_e12Tvh_medium1_mu6_topo_medium;   //!
@@ -8358,7 +8358,7 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_el_EF_e60_medium1;   //!
     // TBranch        *b_trig_EF_el_EF_e7T_loose1;   //!
     // TBranch        *b_trig_EF_el_EF_e7T_loose1_2mu6;   //!
-    // TBranch        *b_trig_EF_el_EF_e7T_medium1;   //!
+    TBranch        *b_trig_EF_el_EF_e7T_medium1;   //!
     // TBranch        *b_trig_EF_el_EF_e7T_medium1_2mu6;   //!
     // TBranch        *b_trig_EF_el_EF_e9_tight1_e4_etcut_Jpsi;   //!
     // TBranch        *b_trig_EF_el_EF_eb_physics;   //!
@@ -8475,7 +8475,7 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu10i_loose_g12Tvh_medium_TauMass;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu11_empty_NoAlg;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu13;   //!
+    TBranch        *b_trig_EF_trigmuonef_EF_mu13;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu15;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18_2g10_loose;   //!
@@ -8484,10 +8484,10 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18_IDTrkNoCut_tight;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18_g20vh_loose;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18_medium;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu18_tight;   //!
+    TBranch        *b_trig_EF_trigmuonef_EF_mu18_tight;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18_tight_2mu4_EFFS;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18_tight_e7_medium1;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;   //!
+    TBranch        *b_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18i4_tight;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu18it_tight;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu20i_tight_g5_loose;   //!
@@ -8591,7 +8591,7 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_trigmuonef_EF_mu6_MSonly;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu6_Trk_Jpsi_loose;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu6i;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu8;   //!
+    TBranch        *b_trig_EF_trigmuonef_EF_mu8;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu8_4j45_a4tchad_L2FS;   //!
     // TBranch        *b_trig_EF_trigmugirl_EF_2mu10;   //!
     // TBranch        *b_trig_EF_trigmugirl_EF_2mu10_MSonly_g10_loose;   //!
@@ -13108,15 +13108,15 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_emcl_slw_centermag;   //!
     // TBranch        *b_trig_EF_emcl_slw_time;   //!
     // TBranch        *b_trig_EF_el_n;   //!
-    // TBranch        *b_trig_EF_el_E;   //!
+    TBranch        *b_trig_EF_el_E;   //!
     // TBranch        *b_trig_EF_el_Et;   //!
     // TBranch        *b_trig_EF_el_pt;   //!
     // TBranch        *b_trig_EF_el_m;   //!
     // TBranch        *b_trig_EF_el_eta;   //!
     // TBranch        *b_trig_EF_el_phi;   //!
-    // TBranch        *b_trig_EF_el_px;   //!
-    // TBranch        *b_trig_EF_el_py;   //!
-    // TBranch        *b_trig_EF_el_pz;   //!
+    TBranch        *b_trig_EF_el_px;   //!
+    TBranch        *b_trig_EF_el_py;   //!
+    TBranch        *b_trig_EF_el_pz;   //!
     // TBranch        *b_trig_EF_el_charge;   //!
     // TBranch        *b_trig_EF_el_author;   //!
     // TBranch        *b_trig_EF_el_isEM;   //!
@@ -13475,9 +13475,9 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_trigmuonef_track_SA_posY;   //!
     // TBranch        *b_trig_EF_trigmuonef_track_SA_posZ;   //!
     // TBranch        *b_trig_EF_trigmuonef_track_SA_hasSA;   //!
-    // TBranch        *b_trig_EF_trigmuonef_track_CB_pt;   //!
-    // TBranch        *b_trig_EF_trigmuonef_track_CB_eta;   //!
-    // TBranch        *b_trig_EF_trigmuonef_track_CB_phi;   //!
+    TBranch        *b_trig_EF_trigmuonef_track_CB_pt;   //!
+    TBranch        *b_trig_EF_trigmuonef_track_CB_eta;   //!
+    TBranch        *b_trig_EF_trigmuonef_track_CB_phi;   //!
     // TBranch        *b_trig_EF_trigmuonef_track_CB_charge;   //!
     // TBranch        *b_trig_EF_trigmuonef_track_CB_d0;   //!
     // TBranch        *b_trig_EF_trigmuonef_track_CB_z0;   //!
@@ -13487,7 +13487,7 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_trigmuonef_track_CB_posY;   //!
     // TBranch        *b_trig_EF_trigmuonef_track_CB_posZ;   //!
     // TBranch        *b_trig_EF_trigmuonef_track_CB_matchChi2;   //!
-    // TBranch        *b_trig_EF_trigmuonef_track_CB_hasCB;   //!
+    TBranch        *b_trig_EF_trigmuonef_track_CB_hasCB;   //!
     // TBranch        *b_trig_EF_trigmugirl_n;   //!
     // TBranch        *b_trig_EF_trigmugirl_track_n;   //!
     // TBranch        *b_trig_EF_trigmugirl_track_MuonType;   //!
