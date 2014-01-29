@@ -159,6 +159,11 @@ namespace PennSusyFrame
       void setEF_e12Tvh_medium1_mu8(bool val)       { m_EF_e12Tvh_medium1_mu8       = val; }
       void setEF_mu18_tight_e7_medium1(bool val)    { m_EF_mu18_tight_e7_medium1    = val; }
 
+      void setTrig_EF_el_EF_e24vh_medium1(std::vector<int>* val)            { m_trig_EF_el_EF_e24vh_medium1            = val; }
+      void setTrig_EF_el_EF_e24vh_medium1_e7_medium1(std::vector<int>* val) { m_trig_EF_el_EF_e24vh_medium1_e7_medium1 = val; }
+      void getTrig_EF_el_EF_e12Tvh_loose1(std::vector<int>* val)            { m_trig_EF_el_EF_e12Tvh_loose1            = val; }
+
+
       // TODO move accessors to cxx file
       bool getEF_2e12Tvh_loose1()           const { return m_EF_2e12Tvh_loose1; }
       bool getEF_e24vh_medium1_e7_medium1() const { return m_EF_e24vh_medium1_e7_medium1; }
@@ -166,6 +171,10 @@ namespace PennSusyFrame
       bool getEF_mu18_tight_mu8_EFFS()      const { return m_EF_mu18_tight_mu8_EFFS; }
       bool getEF_e12Tvh_medium1_mu8()       const { return m_EF_e12Tvh_medium1_mu8; }
       bool getEF_mu18_tight_e7_medium1()    const { return m_EF_mu18_tight_e7_medium1; }
+
+      std::vector<int>* getTrig_EF_el_EF_e24vh_medium1()            const { return m_trig_EF_el_EF_e24vh_medium1; }
+      std::vector<int>* getTrig_EF_el_EF_e24vh_medium1_e7_medium1() const { return m_trig_EF_el_EF_e24vh_medium1_e7_medium1; }
+      std::vector<int>* getTrig_EF_el_EF_e12Tvh_loose1()            const { return m_trig_EF_el_EF_e12Tvh_loose1; }
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -175,6 +184,10 @@ namespace PennSusyFrame
       bool m_EF_mu18_tight_mu8_EFFS;
       bool m_EF_e12Tvh_medium1_mu8;
       bool m_EF_mu18_tight_e7_medium1;
+
+      std::vector<int>* m_trig_EF_el_EF_e24vh_medium1;
+      std::vector<int>* m_trig_EF_el_EF_e24vh_medium1_e7_medium1;
+      std::vector<int>* m_trig_EF_el_EF_e12Tvh_loose1;
 
 
   // trig_EF_el_EF_e12Tvh_loose1

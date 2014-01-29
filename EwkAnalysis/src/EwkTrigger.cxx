@@ -147,13 +147,65 @@ bool PennSusyFrame::passTriggerMatching( const PennSusyFrame::Event& event
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event&
+bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event& event
                                          , const PennSusyFrame::Trigger& trigger
-                                         , const std::vector<PennSusyFrame::Electron*>*
+                                         , const std::vector<PennSusyFrame::Electron*>* electrons
                                          , const std::vector<PennSusyFrame::Muon*>*
                                          )
 {
-  return true;
+  // immediately fail events failing phase space selection
+  TRIG_PHASE phase = event.getTriggerPhase();
+  if (  phase != TRIG_EE_A && phase != TRIG_EE_B ) return false;
+
+  // Only do trigger matching on data. always set true for MC
+  // if (!c_do_mc_trigger && !is_data()) return true;
+  bool pass_trigger_match = false;
+
+  // ee region A
+  if (phase == TRIG_EE_A) {
+    pass_trigger_match = PennSusyFrame::matchElectronList( electrons
+                                                         , trigger.getTrig_EF_el_EF_e12Tvh_loose1()
+                                                         // , trig_vec
+                                                         , 2    // number matches
+                                                         , 0.15 // dr for match
+                                                         , 0    // min pt
+                                                         );
+  }
+  // ee region B
+  if (phase == TRIG_EE_B) {
+    // require the leading lepton matches with e24vh_medium1
+    bool pass_single_match = false;
+    if (electrons->at(0)->getPt() > electrons->at(1)->getPt()) {
+      pass_single_match = matchElectron( electrons->at(0)
+                                       , trigger.getTrig_EF_el_EF_e24vh_medium1()
+                                       // , trig_vec
+                                       , 0.15 // dr for match
+                                       , 0    // min pt
+                                       );
+    }
+    else {
+      pass_single_match = matchElectron( electrons->at(1)
+                                       , trigger.getTrig_EF_el_EF_e24vh_medium1()
+                                       // , trig_vec
+                                       , 0.15 // dr for match
+                                       , 0    // min pt
+                                       );
+    }
+
+    // require both leptons match with the e24vh_medium1_e7_medium1
+    bool pass_double_match = matchElectronList( electrons
+                                              , trigger.getTrig_EF_el_EF_e24vh_medium1_e7_medium1()
+                                              // , trig_vec
+                                              , 2    // number matches
+                                              , 0.15 // dr for match
+                                              , 0    // min pt
+                                              );
+
+    // check the && of the single and double matches above
+    pass_trigger_match = (pass_single_match && pass_double_match);
+  }
+
+  return pass_trigger_match;
 }
 
 // -----------------------------------------------------------------------------

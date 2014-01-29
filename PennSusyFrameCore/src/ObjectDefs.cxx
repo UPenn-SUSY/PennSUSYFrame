@@ -114,6 +114,9 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
   setEF_mu18_tight_mu8_EFFS(     reader->EF_mu18_tight_mu8_EFFS);
   setEF_e12Tvh_medium1_mu8(      reader->EF_e12Tvh_medium1_mu8);
   setEF_mu18_tight_e7_medium1(   reader->EF_mu18_tight_e7_medium1);
+
+  setTrig_EF_el_EF_e24vh_medium1(           reader->trig_EF_el_EF_e24vh_medium1);
+  setTrig_EF_el_EF_e24vh_medium1_e7_medium1(reader->trig_EF_el_EF_e24vh_medium1_e7_medium1);
 }
 
 // =============================================================================

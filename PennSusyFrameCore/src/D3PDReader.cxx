@@ -180,7 +180,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // trig_EF_el_EF_e24vh_loose = 0;
   // trig_EF_el_EF_e24vh_loose0 = 0;
   // trig_EF_el_EF_e24vh_loose1 = 0;
-  // trig_EF_el_EF_e24vh_medium1 = 0;
+  trig_EF_el_EF_e24vh_medium1 = 0;
   // trig_EF_el_EF_e24vh_medium1_EFxe30 = 0;
   // trig_EF_el_EF_e24vh_medium1_EFxe30_tcem = 0;
   // trig_EF_el_EF_e24vh_medium1_EFxe35_tcem = 0;
@@ -193,7 +193,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // trig_EF_el_EF_e24vh_medium1_SiTrk = 0;
   // trig_EF_el_EF_e24vh_medium1_TRT = 0;
   // trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad = 0;
-  // trig_EF_el_EF_e24vh_medium1_e7_medium1 = 0;
+  trig_EF_el_EF_e24vh_medium1_e7_medium1 = 0;
   // trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee = 0;
   // trig_EF_el_EF_e24vhi_loose1_mu8 = 0;
   // trig_EF_el_EF_e24vhi_medium1 = 0;
@@ -4767,7 +4767,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_loose", &trig_EF_el_EF_e24vh_loose, &b_trig_EF_el_EF_e24vh_loose);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_loose0", &trig_EF_el_EF_e24vh_loose0, &b_trig_EF_el_EF_e24vh_loose0);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_loose1", &trig_EF_el_EF_e24vh_loose1, &b_trig_EF_el_EF_e24vh_loose1);
-  // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1", &trig_EF_el_EF_e24vh_medium1, &b_trig_EF_el_EF_e24vh_medium1);
+  turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1", &trig_EF_el_EF_e24vh_medium1, &b_trig_EF_el_EF_e24vh_medium1);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_EFxe30", &trig_EF_el_EF_e24vh_medium1_EFxe30, &b_trig_EF_el_EF_e24vh_medium1_EFxe30);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_EFxe30_tcem", &trig_EF_el_EF_e24vh_medium1_EFxe30_tcem, &b_trig_EF_el_EF_e24vh_medium1_EFxe30_tcem);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_EFxe35_tcem", &trig_EF_el_EF_e24vh_medium1_EFxe35_tcem, &b_trig_EF_el_EF_e24vh_medium1_EFxe35_tcem);
@@ -4780,7 +4780,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_SiTrk", &trig_EF_el_EF_e24vh_medium1_SiTrk, &b_trig_EF_el_EF_e24vh_medium1_SiTrk);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_TRT", &trig_EF_el_EF_e24vh_medium1_TRT, &b_trig_EF_el_EF_e24vh_medium1_TRT);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad, &b_trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
-  // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_e7_medium1", &trig_EF_el_EF_e24vh_medium1_e7_medium1, &b_trig_EF_el_EF_e24vh_medium1_e7_medium1);
+  turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_e7_medium1", &trig_EF_el_EF_e24vh_medium1_e7_medium1, &b_trig_EF_el_EF_e24vh_medium1_e7_medium1);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee", &trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee, &b_trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vhi_loose1_mu8", &trig_EF_el_EF_e24vhi_loose1_mu8, &b_trig_EF_el_EF_e24vhi_loose1_mu8);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1, &b_trig_EF_el_EF_e24vhi_medium1);

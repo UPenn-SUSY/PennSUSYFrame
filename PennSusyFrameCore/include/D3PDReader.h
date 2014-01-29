@@ -1302,7 +1302,7 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_el_EF_e24vh_loose;
     // std::vector<int>     *trig_EF_el_EF_e24vh_loose0;
     // std::vector<int>     *trig_EF_el_EF_e24vh_loose1;
-    // std::vector<int>     *trig_EF_el_EF_e24vh_medium1;
+    std::vector<int>     *trig_EF_el_EF_e24vh_medium1;
     // std::vector<int>     *trig_EF_el_EF_e24vh_medium1_EFxe30;
     // std::vector<int>     *trig_EF_el_EF_e24vh_medium1_EFxe30_tcem;
     // std::vector<int>     *trig_EF_el_EF_e24vh_medium1_EFxe35_tcem;
@@ -1315,7 +1315,7 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_el_EF_e24vh_medium1_SiTrk;
     // std::vector<int>     *trig_EF_el_EF_e24vh_medium1_TRT;
     // std::vector<int>     *trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;
-    // std::vector<int>     *trig_EF_el_EF_e24vh_medium1_e7_medium1;
+    std::vector<int>     *trig_EF_el_EF_e24vh_medium1_e7_medium1;
     // std::vector<int>     *trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee;
     // std::vector<int>     *trig_EF_el_EF_e24vhi_loose1_mu8;
     // std::vector<int>     *trig_EF_el_EF_e24vhi_medium1;
@@ -8325,7 +8325,7 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_el_EF_e24vh_loose;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_loose0;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_loose1;   //!
-    // TBranch        *b_trig_EF_el_EF_e24vh_medium1;   //!
+    TBranch        *b_trig_EF_el_EF_e24vh_medium1;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_medium1_EFxe30;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_medium1_EFxe30_tcem;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_medium1_EFxe35_tcem;   //!
@@ -8338,7 +8338,7 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_el_EF_e24vh_medium1_SiTrk;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_medium1_TRT;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;   //!
-    // TBranch        *b_trig_EF_el_EF_e24vh_medium1_e7_medium1;   //!
+    TBranch        *b_trig_EF_el_EF_e24vh_medium1_e7_medium1;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee;   //!
     // TBranch        *b_trig_EF_el_EF_e24vhi_loose1_mu8;   //!
     // TBranch        *b_trig_EF_el_EF_e24vhi_medium1;   //!
