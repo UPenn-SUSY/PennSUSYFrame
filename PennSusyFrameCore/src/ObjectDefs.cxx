@@ -100,10 +100,23 @@ void PennSusyFrame::EventLevelQuantities::print() const
 // = Trigger
 // =============================================================================
 // -----------------------------------------------------------------------------
-PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_EF_e24vh_medium1(0)
-                                  , m_trig_EF_el_EF_e24vh_medium1_e7_medium1(0)
+PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_px(0)
+                                  , m_trig_EF_el_py(0)
+                                  , m_trig_EF_el_pz(0)
+                                  , m_trig_EF_trigmuonef_track_CB_eta(0)
+                                  , m_trig_EF_trigmuonef_track_CB_phi(0)
+                                  , m_trig_EF_trigmuonef_track_CB_pt(0)
+                                  , m_trig_EF_el_E(0)
                                   , m_trig_EF_el_EF_e12Tvh_loose1(0)
-
+                                  , m_trig_EF_el_EF_e12Tvh_medium1(0)
+                                  , m_trig_EF_el_EF_e24vh_medium1(0)
+                                  , m_trig_EF_el_EF_e24vh_medium1_e7_medium1(0)
+                                  , m_trig_EF_el_EF_e7T_medium1(0)
+                                  , m_trig_EF_trigmuonef_EF_mu13(0)
+                                  , m_trig_EF_trigmuonef_EF_mu18_tight(0)
+                                  , m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS(0)
+                                  , m_trig_EF_trigmuonef_EF_mu8(0)
+                                  , m_trig_EF_trigmuonef_track_CB_hasCB(0)
 {}
 
 // -----------------------------------------------------------------------------
