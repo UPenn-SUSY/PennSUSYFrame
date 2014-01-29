@@ -139,8 +139,8 @@ bool PennSusyFrame::passTriggerMatching( const PennSusyFrame::Event& event
                                        , const std::vector<PennSusyFrame::Muon*>* muons
                                        )
 {
-  if (event.getPhaseSpace() == PHASE_EE) return passEETriggerMatching(event, trigger, electrons, muons);
-  if (event.getPhaseSpace() == PHASE_MM) return passMMTriggerMatching(event, trigger, electrons, muons);
+  if (event.getPhaseSpace() == PHASE_EE) return passEETriggerMatching(event, trigger, electrons);
+  if (event.getPhaseSpace() == PHASE_MM) return passMMTriggerMatching(event, trigger, muons);
   if (event.getPhaseSpace() == PHASE_EM) return passMETriggerMatching(event, trigger, electrons, muons);
   if (event.getPhaseSpace() == PHASE_ME) return passEMTriggerMatching(event, trigger, electrons, muons);
   return false;
@@ -150,7 +150,6 @@ bool PennSusyFrame::passTriggerMatching( const PennSusyFrame::Event& event
 bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event& event
                                          , const PennSusyFrame::Trigger& trigger
                                          , const std::vector<PennSusyFrame::Electron*>* electrons
-                                         , const std::vector<PennSusyFrame::Muon*>*
                                          )
 {
   // immediately fail events failing phase space selection
@@ -158,19 +157,24 @@ bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event& event
   if (  phase != TRIG_EE_A && phase != TRIG_EE_B ) return false;
 
   // Only do trigger matching on data. always set true for MC
-  // if (!c_do_mc_trigger && !is_data()) return true;
   bool pass_trigger_match = false;
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // ee region A
   if (phase == TRIG_EE_A) {
     pass_trigger_match = PennSusyFrame::matchElectronList( electrons
                                                          , trigger.getTrig_EF_el_EF_e12Tvh_loose1()
-                                                         // , trig_vec
+                                                         , trigger.getTrig_EF_el_px()
+                                                         , trigger.getTrig_EF_el_py()
+                                                         , trigger.getTrig_EF_el_pz()
+                                                         , trigger.getTrig_EF_el_E()
                                                          , 2    // number matches
                                                          , 0.15 // dr for match
                                                          , 0    // min pt
                                                          );
   }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // ee region B
   if (phase == TRIG_EE_B) {
     // require the leading lepton matches with e24vh_medium1
@@ -178,7 +182,10 @@ bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event& event
     if (electrons->at(0)->getPt() > electrons->at(1)->getPt()) {
       pass_single_match = matchElectron( electrons->at(0)
                                        , trigger.getTrig_EF_el_EF_e24vh_medium1()
-                                       // , trig_vec
+                                       , trigger.getTrig_EF_el_px()
+                                       , trigger.getTrig_EF_el_py()
+                                       , trigger.getTrig_EF_el_pz()
+                                       , trigger.getTrig_EF_el_E()
                                        , 0.15 // dr for match
                                        , 0    // min pt
                                        );
@@ -186,7 +193,10 @@ bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event& event
     else {
       pass_single_match = matchElectron( electrons->at(1)
                                        , trigger.getTrig_EF_el_EF_e24vh_medium1()
-                                       // , trig_vec
+                                       , trigger.getTrig_EF_el_px()
+                                       , trigger.getTrig_EF_el_py()
+                                       , trigger.getTrig_EF_el_pz()
+                                       , trigger.getTrig_EF_el_E()
                                        , 0.15 // dr for match
                                        , 0    // min pt
                                        );
@@ -195,7 +205,10 @@ bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event& event
     // require both leptons match with the e24vh_medium1_e7_medium1
     bool pass_double_match = matchElectronList( electrons
                                               , trigger.getTrig_EF_el_EF_e24vh_medium1_e7_medium1()
-                                              // , trig_vec
+                                              , trigger.getTrig_EF_el_px()
+                                              , trigger.getTrig_EF_el_py()
+                                              , trigger.getTrig_EF_el_pz()
+                                              , trigger.getTrig_EF_el_E()
                                               , 2    // number matches
                                               , 0.15 // dr for match
                                               , 0    // min pt
@@ -209,31 +222,230 @@ bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Event& event
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::passMMTriggerMatching( const PennSusyFrame::Event&
+bool PennSusyFrame::passMMTriggerMatching( const PennSusyFrame::Event& event
                                          , const PennSusyFrame::Trigger& trigger
-                                         , const std::vector<PennSusyFrame::Electron*>*
-                                         , const std::vector<PennSusyFrame::Muon*>*
+                                         , const std::vector<PennSusyFrame::Muon*>* muons
                                          )
 {
-  return true;
+  // immediately fail events failing phase space selection
+  TRIG_PHASE phase = event.getTriggerPhase();
+  if (  phase != TRIG_MM_A
+     && phase != TRIG_MM_B
+     && phase != TRIG_MM_C
+     && phase != TRIG_MM_D
+     )
+    return false;
+
+  // Only do trigger matching on data. always set true for MC
+  bool pass_trigger_match = false;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // mm region A
+  if (phase == TRIG_MM_A) {
+      // require at least one muon matches with ef_mu18_tight
+      bool pass_single_match = matchMuonList( muons
+                                            , trigger.getTrig_EF_trigmuonef_EF_mu18_tight()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                            , 1
+                                            , 0.15
+                                            , 0
+                                            );
+
+      // require both muons match with ef_mu18_tight_mu8_effs
+      bool pass_double_match = matchMuonList( muons
+                                            , trigger.getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                            , 2
+                                            , 0.15
+                                            , 0
+                                            );
+
+      // check the && of the single and double match above
+      pass_trigger_match = (pass_single_match && pass_double_match);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (phase == TRIG_MM_B) {
+    // require leading muon matches with EF_mu18_tight
+    PennSusyFrame::Muon* leading = ( muons->at(0)->getPt() > muons->at(1)->getPt()
+                                   ? muons->at(0)
+                                   : muons->at(1)
+                                   );
+
+    bool pass_leading_match = matchMuon( leading
+                                       , trigger.getTrig_EF_trigmuonef_EF_mu18_tight()
+                                       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                       , 0.15
+                                       , 0
+                                       );
+
+    // require both muons match with EF_mu18_tight_mu8_EFFS
+    bool pass_double_match_1 = matchMuonList( muons
+                                            , trigger.getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                            , 2
+                                            , 0.15
+                                            , 0
+                                            );
+
+    // require both muons match with EF_mu18_tight_mu8_EFFS
+    bool pass_double_match_2 = matchMuonList( muons
+                                            , trigger.getTrig_EF_trigmuonef_EF_mu13()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                            , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                            , 2
+                                            , 0.15
+                                            , 0
+                                            );
+
+    // check (leading_match && double_match_1) || double_match_2
+    // to get the decision
+    pass_trigger_match = (  (pass_leading_match && pass_double_match_1)
+                         || pass_double_match_2
+                         );
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (phase == TRIG_MM_C) {
+    // require leading muon matches with EF_mu18_tight
+    PennSusyFrame::Muon* leading = ( muons->at(0)->getPt() > muons->at(1)->getPt()
+                                   ? muons->at(0)
+                                   : muons->at(1)
+                                   );
+
+    bool pass_single_match = matchMuon( leading
+                                      , trigger.getTrig_EF_trigmuonef_EF_mu18_tight()
+                                      , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                      , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                      , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                      , 0.15
+                                      , 0
+                                      );
+
+    // require both muons match with EF_mu18_tight_mu8_EFFS
+    bool pass_double_match = matchMuonList( muons
+                                          , trigger.getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()
+                                          , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                          , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                          , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                          , 2
+                                          , 0.15
+                                          , 0
+                                          );
+
+    // check the && of the single and double match above
+    pass_trigger_match = (pass_single_match && pass_double_match);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (phase == TRIG_MM_D) {
+    // require both muons match with EF_mu13
+    pass_trigger_match = matchMuonList( muons
+                                      , trigger.getTrig_EF_trigmuonef_EF_mu13()
+                                      , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                      , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                      , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                      , 2
+                                      , 0.15
+                                      , 0
+                                      );
+  }
+
+  return pass_trigger_match;
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::passEMTriggerMatching( const PennSusyFrame::Event&
+bool PennSusyFrame::passEMTriggerMatching( const PennSusyFrame::Event& event
                                          , const PennSusyFrame::Trigger& trigger
-                                         , const std::vector<PennSusyFrame::Electron*>*
-                                         , const std::vector<PennSusyFrame::Muon*>*
+                                         , const std::vector<PennSusyFrame::Electron*>* electrons
+                                         , const std::vector<PennSusyFrame::Muon*>* muons
                                          )
 {
-  return true;
+  // immediately fail events failing phase space selection
+  TRIG_PHASE phase = event.getTriggerPhase();
+  if (phase != TRIG_EM_A)
+    return false;
+
+  // Only do trigger matching on data. always set true for MC
+  bool pass_trigger_match = false;
+
+  // em region A
+  if (phase == TRIG_EM_A) {
+    bool pass_electron_match = matchElectronList( electrons
+                                                , trigger.getTrig_EF_el_EF_e12Tvh_medium1()
+                                                , trigger.getTrig_EF_el_px()
+                                                , trigger.getTrig_EF_el_py()
+                                                , trigger.getTrig_EF_el_pz()
+                                                , trigger.getTrig_EF_el_E()
+                                                , 1
+                                                , 0.15
+                                                , 0
+                                                );
+    bool pass_muon_match = matchMuonList( muons
+                                        , trigger.getTrig_EF_trigmuonef_EF_mu8()
+                                        , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                        , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                        , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                        , 1
+                                        , 0.15
+                                        , 0
+                                        );
+
+    pass_trigger_match = (pass_electron_match && pass_muon_match);
+  }
+
+  return pass_trigger_match;
 }
 
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::passMETriggerMatching( const PennSusyFrame::Event&
+bool PennSusyFrame::passMETriggerMatching( const PennSusyFrame::Event& event
                                          , const PennSusyFrame::Trigger& trigger
-                                         , const std::vector<PennSusyFrame::Electron*>*
-                                         , const std::vector<PennSusyFrame::Muon*>*
+                                         , const std::vector<PennSusyFrame::Electron*>* electrons
+                                         , const std::vector<PennSusyFrame::Muon*>* muons
                                          )
 {
-  return true;
+  // immediately fail events failing phase space selection
+  TRIG_PHASE phase = event.getTriggerPhase();
+  if (phase != TRIG_EM_B)
+    return false;
+
+  // Only do trigger matching on data. always set true for MC
+  bool pass_trigger_match = false;
+
+  // em region B
+  if (phase == TRIG_EM_B) {
+    bool pass_electron_match = matchElectronList( electrons
+                                                , trigger.getTrig_EF_el_EF_e7T_medium1()
+                                                , trigger.getTrig_EF_el_px()
+                                                , trigger.getTrig_EF_el_py()
+                                                , trigger.getTrig_EF_el_pz()
+                                                , trigger.getTrig_EF_el_E()
+                                                , 1
+                                                , 0.15
+                                                , 0
+                                                );
+    bool pass_muon_match = matchMuonList( muons
+                                        , trigger.getTrig_EF_trigmuonef_EF_mu18_tight()
+                                        , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+                                        , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+                                        , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+                                        , 1
+                                        , 0.15
+                                        , 0
+                                        );
+
+    pass_trigger_match = (pass_electron_match && pass_muon_match);
+  }
+
+
+  return pass_trigger_match;
 }

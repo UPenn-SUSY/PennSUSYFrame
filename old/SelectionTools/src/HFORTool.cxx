@@ -89,44 +89,42 @@ bool SelectionTools::HFORTool::passZOverlapRemoval(const D3PDReader::TruthD3PDOb
   if (dsid >=110817 && dsid <=110828) isZbb = true;
   if (dsid >=117640 && dsid <=117675) isZ = true;
 
-  if(isZcc || isZbb || isZ)
-    {
+  if(isZcc || isZbb || isZ) {
 
-      int ZpdgID=23;
+    int ZpdgID=23;
 
-      for (int i = 0; i<mc->mc_n(); ++i)
-        { // Still looks wrong...double check
-          ///if(!(mc->mc_pdgId()->at(i) == ZpdgID && mc->mc_m()->at(i) > 60000)) return false;
+    for (int i = 0; i<mc->mc_n(); ++i)
+    { // Still looks wrong...double check
+      ///if(!(mc->mc_pdgId()->at(i) == ZpdgID && mc->mc_m()->at(i) > 60000)) return false;
 
 
-          // I think it should be this:
+      // I think it should be this:
 
-          if(mc->mc_pdgId()->at(i) == ZpdgID && mc->mc_m()->at(i) < 60000) return false;
-        }
+      if(mc->mc_pdgId()->at(i) == ZpdgID && mc->mc_m()->at(i) < 60000) return false;
     }
+  }
 
-  if(isSherpaZ)
+  if(isSherpaZ) {
+    double m_Z = -999;
+    TLorentzVector lep1;
+    TLorentzVector lep2;
+
+    std::vector<TLorentzVector> truth_leptons;
+
+    truth_leptons = truth_match_tool->getHSLeptonsTLV();
+
+    if (truth_leptons.size() == 2)
     {
-      double m_Z = -999;
-      TLorentzVector lep1;
-      TLorentzVector lep2;
-
-      std::vector<TLorentzVector> truth_leptons;
-
-      truth_leptons = truth_match_tool->getHSLeptonsTLV();
-
-      if (truth_leptons.size() == 2)
-        {
-          lep1 = truth_leptons.at(0);
+      lep1 = truth_leptons.at(0);
 
 
-          lep2 = truth_leptons.at(1);
-          m_Z = (lep1 + lep2).M();
+      lep2 = truth_leptons.at(1);
+      m_Z = (lep1 + lep2).M();
 
-          if (m_Z > 60000 || m_Z < 40000) return false;
+      if (m_Z > 60000 || m_Z < 40000) return false;
 
-        }
-    } 
+    }
+  }
 
 
   return true;

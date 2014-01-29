@@ -47,11 +47,9 @@ namespace PennSusyFrame
   bool passEETriggerMatching( const PennSusyFrame::Event&
                             , const PennSusyFrame::Trigger&
                             , const std::vector<PennSusyFrame::Electron*>*
-                            , const std::vector<PennSusyFrame::Muon*>*
                             );
   bool passMMTriggerMatching( const PennSusyFrame::Event&
                             , const PennSusyFrame::Trigger&
-                            , const std::vector<PennSusyFrame::Electron*>*
                             , const std::vector<PennSusyFrame::Muon*>*
                             );
   bool passEMTriggerMatching( const PennSusyFrame::Event&

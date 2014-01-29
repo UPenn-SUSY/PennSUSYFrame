@@ -656,7 +656,7 @@ void PennSusyFrame::ObjectCleaning::sfosMllOverlapRemoval( const std::vector<Pen
       float charge_2 = input_electrons.at(el_it_2)->getCharge();
       if (charge_1 * charge_2 < 0) {
         const TLorentzVector* tlv2 = input_electrons.at(el_it_2)->getTlv();
-        if (((*tlv1)+(*tlv2)).Mag() < m_sfos_mll_min) {
+        if (((*tlv1)+(*tlv2)).M() < m_sfos_mll_min) {
           keep_el.at(el_it_1) = false;
           keep_el.at(el_it_2) = false;
         }
@@ -673,7 +673,7 @@ void PennSusyFrame::ObjectCleaning::sfosMllOverlapRemoval( const std::vector<Pen
       float charge_2 = input_muons.at(mu_it_2)->getCharge();
       if (charge_1 * charge_2 < 0) {
         const TLorentzVector* tlv2 = input_muons.at(mu_it_2)->getTlv();
-        if (((*tlv1)+(*tlv2)).Mag() < m_sfos_mll_min) {
+        if (((*tlv1)+(*tlv2)).M() < m_sfos_mll_min) {
           keep_mu.at(mu_it_1) = false;
           keep_mu.at(mu_it_2) = false;
         }

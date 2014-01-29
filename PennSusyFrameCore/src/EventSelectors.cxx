@@ -183,7 +183,7 @@ PennSusyFrame::HFORTool::HFORTool()
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::HFORTool::passHFOR(const PennSusyFrame::MCTruth& mc_truth)
 {
-  // TODO get hfor_type from m_hfor_tool
+  // get hfor_type from m_hfor_tool
   int hfor_type = m_hfor_tool.getDecision( mc_truth.getChannelNumber()
                                          , mc_truth.getN()
                                          , mc_truth.getPt()
@@ -204,16 +204,60 @@ bool PennSusyFrame::HFORTool::passHFOR(const PennSusyFrame::MCTruth& mc_truth)
 
 // =============================================================================
 bool PennSusyFrame::passSherpaWWOverlapRemoval( const PennSusyFrame::Event&
-                                              , const PennSusyFrame::MCTruth&
+                                              , const PennSusyFrame::MCTruth& mc_truth
                                               )
 {
-  // TODO implement sherpa WW overlap removal
+  unsigned int dsid = mc_truth.getChannelNumber();
+  if (dsid == 126892) {
+    int num_truth_objects = mc_truth.getN();
+    for (int obj_itr = 0; obj_itr != num_truth_objects; ++obj_itr) {
+      if (  abs(mc_truth.getPdgId()->at(obj_itr)) == 5
+         && mc_truth.getStatus()->at(obj_itr) == 3
+         ) {
+        return false;
+      }
+    }
+  }
+
   return true;
 }
 
 // =============================================================================
-bool PennSusyFrame::passZOverlapRemoval(const PennSusyFrame::MCTruth&)
+bool PennSusyFrame::passZOverlapRemoval(const PennSusyFrame::MCTruth& mc_truth)
 {
-  // TODO implement Z overlap removal
+  bool isSherpaZ = false;
+  bool isZbb     = false;
+  bool isZcc     = false;
+  bool isZ       = false;
+
+  unsigned int dsid = mc_truth.getChannelNumber();
+
+  if (dsid >=147770 && dsid <=147772) isSherpaZ = true;
+  if (dsid >=110805 && dsid <=110816) isZcc     = true;
+  if (dsid >=110817 && dsid <=110828) isZbb     = true;
+  if (dsid >=117640 && dsid <=117675) isZ       = true;
+
+  if(isZcc || isZbb || isZ) {
+    int ZpdgID=23;
+
+    int term = mc_truth.getN();
+    for (int i = 0; i < term; ++i) {
+      if (  mc_truth.getPdgId()->at(i) == ZpdgID
+         && mc_truth.getM()->at(i) < 60000
+         )
+        return false;
+    }
+  }
+
+  if(isSherpaZ) {
+    // TODO get tlv objects for truth leptons using truth matching tool
+    // std::vector<TLorentzVector> truth_leptons = truth_match_tool->getHSLeptonsTLV();
+
+    // if (truth_leptons.size() == 2) {
+    //   double m_Z = (truth_leptons.at(0) + truth_leptons.at(1)).M();
+    //   if (m_Z > 60000 || m_Z < 40000) return false;
+    // }
+  }
+
   return true;
 }

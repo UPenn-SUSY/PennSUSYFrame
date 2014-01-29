@@ -14046,12 +14046,7 @@ namespace PennSusyFrame
     virtual Bool_t   Notify();
     virtual void     Show(Long64_t entry = -1);
 
-    // TODO move this template to icc file
     template <class T> void turnOnBranch(TTree* tree, std::string str, T var_add, TBranch** branch_add);
-    // {
-    //   tree->SetBranchStatus(str.c_str(), 1);
-    //   fChain->SetBranchAddress(str.c_str(), var_add, branch_add);
-    // }
 
     bool checkStatus();
     unsigned int getNumEvents();
