@@ -41,7 +41,7 @@ bool PennSusyFrame::matchElectronList( const std::vector<PennSusyFrame::Electron
     // loop over offline obejct to look for matches
     for (size_t offline_it = 0; offline_it != offline_term; ++offline_it) {
       if (  off_tlv.at(offline_it)->Pt() > pt_cut
-         && off_tlv.at(offline_it)->DeltaR(on_tlv) < dr_cut
+         // && off_tlv.at(offline_it)->DeltaR(on_tlv) < dr_cut
          )
       {
         offline_match.insert(offline_it);
@@ -114,7 +114,7 @@ bool PennSusyFrame::matchMuonList( const std::vector<PennSusyFrame::Muon*>* muon
     // loop over offline obejct to look for matches
     for (size_t offline_it = 0; offline_it != offline_term; ++offline_it) {
       if (  off_tlv.at(offline_it)->Pt() > pt_cut
-         && off_tlv.at(offline_it)->DeltaR(on_tlv) < dr_cut
+         // && off_tlv.at(offline_it)->DeltaR(on_tlv) < dr_cut
          )
       {
         offline_match.insert(offline_it);
