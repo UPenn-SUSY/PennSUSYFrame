@@ -1,9 +1,8 @@
 # ======================
 # = top level Makefile =
 # ======================
-# DIRS = SFrame AtlasSFrameUtils CommonTools D3PDObjects SelectionTools \
-# 	   SusyAnalysisTools SusyDiLepton
-DIRS = ProgressBar TinyTlv PennSusyFrameCore EwkAnalysis BMinusLAnalysis
+DIRS = ProgressBar CutFlowTracker TinyTlv \
+	   PennSusyFrameCore EwkAnalysis BMinusLAnalysis
 
 all::
 	@ for dir in $(DIRS); \

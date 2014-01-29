@@ -10519,5 +10519,6 @@ bool PennSusyFrame::D3PDReader::checkStatus()
 unsigned int PennSusyFrame::D3PDReader::getNumEvents()
 {
   std::cout << "getNumEvents()\n";
-  return fChain->GetEntriesFast();
+  // return fChain->GetEntriesFast();
+  return fChain->GetEntries();
 }
