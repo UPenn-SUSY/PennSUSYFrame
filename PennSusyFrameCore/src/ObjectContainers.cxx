@@ -107,9 +107,9 @@ void PennSusyFrame::ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
   size_t term = num(el_collection);
   std::cout << "Number electrons: " << term << "\n";
 
-  // for (size_t el_it = 0; el_it != term; ++el_it) {
-  //   m_user_lists.at(el_collection).at(el_it)->print();
-  // }
+  for (size_t el_it = 0; el_it != term; ++el_it) {
+    m_user_lists.at(el_collection).at(el_it)->print();
+  }
 }
 
 // =============================================================================
@@ -213,9 +213,9 @@ void PennSusyFrame::MuonContainer::print( MUON_COLLECTIONS mu_collection
   size_t term = num(mu_collection);
   std::cout << "Number muons: " << term << "\n";
 
-  // for (size_t mu_it = 0; mu_it != term; ++mu_it) {
-  //   m_user_lists.at(mu_collection).at(mu_it)->print();
-  // }
+  for (size_t mu_it = 0; mu_it != term; ++mu_it) {
+    m_user_lists.at(mu_collection).at(mu_it)->print();
+  }
 }
 
 // =============================================================================
@@ -301,7 +301,7 @@ const std::vector<PennSusyFrame::Tau*>* PennSusyFrame::TauContainer::getCollecti
 
 // ----------------------------------------------------------------------------
 void PennSusyFrame::TauContainer::print( TAU_COLLECTIONS tau_collection
-                                        ) const
+                                       ) const
 {
   std::cout << "================= Printing tau collection: "
             << tau_collection
@@ -311,9 +311,9 @@ void PennSusyFrame::TauContainer::print( TAU_COLLECTIONS tau_collection
   size_t term = num(tau_collection);
   std::cout << "Number taus: " << term << "\n";
 
-  // for (size_t tau_it = 0; tau_it != term; ++tau_it) {
-  //   m_user_lists.at(tau_collection).at(tau_it)->print();
-  // }
+  for (size_t tau_it = 0; tau_it != term; ++tau_it) {
+    m_user_lists.at(tau_collection).at(tau_it)->print();
+  }
 }
 
 // =============================================================================
@@ -411,9 +411,9 @@ void PennSusyFrame::JetContainer::print( JET_COLLECTIONS jet_collection
   size_t term = num(jet_collection);
   std::cout << "Number jets: " << term << "\n";
 
-  // for (size_t jet_it = 0; jet_it != term; ++jet_it) {
-  //   m_user_lists.at(jet_collection).at(jet_it)->print();
-  // }
+  for (size_t jet_it = 0; jet_it != term; ++jet_it) {
+    m_user_lists.at(jet_collection).at(jet_it)->print();
+  }
 }
 
 // =============================================================================
@@ -480,7 +480,7 @@ const std::vector<PennSusyFrame::Vertex*>* PennSusyFrame::VertexContainer::getCo
 
 // ----------------------------------------------------------------------------
 void PennSusyFrame::VertexContainer::print( VERTEX_COLLECTIONS vertex_collection
-                                       ) const
+                                          ) const
 {
   std::cout << "================= Printing vertex collection: "
             << vertex_collection
@@ -490,7 +490,7 @@ void PennSusyFrame::VertexContainer::print( VERTEX_COLLECTIONS vertex_collection
   size_t term = num(vertex_collection);
   std::cout << "Number vertices: " << term << "\n";
 
-  // for (size_t vertex_it = 0; vertex_it != term; ++vertex_it) {
-  //   m_user_lists.at(vertex_collection).at(vertex_it)->print();
-  // }
+  for (size_t vertex_it = 0; vertex_it != term; ++vertex_it) {
+    m_user_lists.at(vertex_collection).at(vertex_it)->print();
+  }
 }

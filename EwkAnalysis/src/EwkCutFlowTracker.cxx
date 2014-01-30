@@ -3,6 +3,7 @@
 
 // =============================================================================
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include "TH1D.h"
 
@@ -20,10 +21,94 @@ void EwkCutFlowTracker::fillHist(int channel, int bin, float weight)
   m_cutflow.at(channel)->Fill(bin, weight);
 }
 
-// // -----------------------------------------------------------------------------
-// void EwkCutFlowTracker::printToScreen()
-// {
-// }
+// -----------------------------------------------------------------------------
+void EwkCutFlowTracker::printToScreen()
+{
+  // set line widths etc.
+  m_line_width   = 100;
+  m_label_field  = 30;
+  m_weight_field = (m_line_width - m_label_field - 5 - 5*3)/5;
+  m_precision    = m_weight_field - 2;
+  if (5+m_label_field+5*m_weight_field != m_line_width) {
+    m_label_field += (m_line_width - m_label_field - 5 - 5*3 )%5;
+  }
+  m_break_label = "";
+  m_break_weight = "";
+  for (unsigned int i = 0; i != m_label_field ; ++i) m_break_label  += "-";
+  for (unsigned int i = 0; i != m_weight_field; ++i) m_break_weight += "-";
+
+  m_single_line = "";
+  for (unsigned int i = 0; i != m_line_width; ++i) m_single_line += '=';
+  m_single_line = m_single_line + "\n";
+
+  // print header
+  // std::cout << m_single_line;
+  // std::cout << "= "
+  //           << std::left << std::setw(m_line_width - 3)
+  //           << getWeightName(m_weight_type)
+  //           << "=\n";
+  std::cout << "\n" << m_single_line;
+  std::cout << "= "  << std::left  << std::setw(m_label_field)  << "Cut"
+            << " = " << std::right << std::setw(m_weight_field) << "ALL"
+            << " = " << std::right << std::setw(m_weight_field) << "EE"
+            << " = " << std::right << std::setw(m_weight_field) << "MM"
+            << " = " << std::right << std::setw(m_weight_field) << "EM"
+            << " = " << std::right << std::setw(m_weight_field) << "ME"
+            << " =\n";
+  std::cout << m_single_line << "\n";
+
+  for (unsigned int cut_it = 0; cut_it != EWK_CUT_N; ++cut_it) {
+    printLine(cut_it);
+  }
+  std::cout << m_single_line;
+}
+
+// -----------------------------------------------------------------------------
+void EwkCutFlowTracker::printLine(int cut_it)
+{
+  std::string cut_name = EWK_CUT_STRINGS[cut_it];
+  // std::cout << "cut it: " << cut_it << " - cut name: " << cut_name << "\n";
+
+  double weight_none = m_cutflow.at(PHASE_NONE)->GetBinContent(cut_it+1);
+  double weight_ee   = m_cutflow.at(PHASE_EE  )->GetBinContent(cut_it+1);
+  double weight_mm   = m_cutflow.at(PHASE_MM  )->GetBinContent(cut_it+1);
+  double weight_em   = m_cutflow.at(PHASE_EM  )->GetBinContent(cut_it+1);
+  double weight_me   = m_cutflow.at(PHASE_ME  )->GetBinContent(cut_it+1);
+
+  if (cut_name == "BREAK") {
+    std::cout << "= "  << std::left  << std::setw(m_label_field)  << m_break_label
+              << " = " << std::right << std::setw(m_weight_field) << m_break_weight
+              << " = " << std::right << std::setw(m_weight_field) << m_break_weight
+              << " = " << std::right << std::setw(m_weight_field) << m_break_weight
+              << " = " << std::right << std::setw(m_weight_field) << m_break_weight
+              << " = " << std::right << std::setw(m_weight_field) << m_break_weight
+              // << " = " << std::right << std::setw(m_weight_field)
+              // << std::setprecision(precision) << weight_ee
+              // << " = " << std::right << std::setw(m_weight_field)
+              // << std::setprecision(precision) << weight_mm
+              // << " = " << std::right << std::setw(m_weight_field)
+              // << std::setprecision(precision) << weight_em
+              // << " = " << std::right << std::setw(m_weight_field)
+              // << std::setprecision(precision) << weight_me
+              << " =\n";
+  }
+  else {
+    std::cout << "= "  << std::left  << std::setw(m_label_field)
+              << std::setprecision(m_precision) << cut_name
+              << " = " << std::right << std::setw(m_weight_field)
+              << std::setprecision(m_precision) << weight_none
+              << " = " << std::right << std::setw(m_weight_field)
+              << std::setprecision(m_precision) << weight_ee
+              << " = " << std::right << std::setw(m_weight_field)
+              << std::setprecision(m_precision) << weight_mm
+              << " = " << std::right << std::setw(m_weight_field)
+              << std::setprecision(m_precision) << weight_em
+              << " = " << std::right << std::setw(m_weight_field)
+              << std::setprecision(m_precision) << weight_me
+              << " =\n";
+  }
+
+}
 
 // -----------------------------------------------------------------------------
 void EwkCutFlowTracker::initBinList()

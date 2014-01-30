@@ -18,7 +18,7 @@ double PennSusyFrame::getMll( FLAVOR_CHANNEL flavor_channel
   else if (flavor_channel == FLAVOR_MM) {
     mll = calcMll(mu->at(0), mu->at(1));
   }
-  else if (flavor_channel == FLAVOR_MM) {
+  else if (flavor_channel == FLAVOR_EM) {
     mll = calcMll(el->at(0), mu->at(0));
   }
 

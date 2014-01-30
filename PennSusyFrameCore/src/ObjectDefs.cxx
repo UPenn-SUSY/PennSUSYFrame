@@ -83,6 +83,7 @@ void PennSusyFrame::Event::print() const
 // = EventLevelQuantities
 // =============================================================================
 PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mt2(0.)
+                                                            , m_mll(0.)
 {}
 
 // -----------------------------------------------------------------------------
@@ -93,6 +94,7 @@ void PennSusyFrame::EventLevelQuantities::print() const
 {
   std::cout << "================= Printing event level quantities: =================\n";
   std::cout << "\tmt2: " << m_mt2
+            << "\tmll: " << m_mll
             << "\n";
 }
 
@@ -503,9 +505,9 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setMETheta( reader->mu_staco_me_theta_exPV->at(mu_index));
   setTrackEta(-log(tan(m_id_theta/2)));
 
-  setQOverPRatio( reader->mu_staco_cov_qoverp_exPV->at(mu_index)
-                / reader->mu_staco_qoverp_exPV->at(mu_index)
-                );
+  float cov_q_over_p = reader->mu_staco_cov_qoverp_exPV->at(mu_index);
+  float q_over_p     = reader->mu_staco_qoverp_exPV->at(mu_index);
+  setQOverPRatio(sqrt(cov_q_over_p) / fabs(q_over_p));
 
   setExpectBLayer( reader->mu_staco_expectBLayerHit->at(mu_index));
   setNumBLayerHits(reader->mu_staco_nBLHits->at(mu_index));

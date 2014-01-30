@@ -21,9 +21,11 @@ void CutFlowTracker::fillHist(int channel, int bin, float weight)
 
 // -----------------------------------------------------------------------------
 void CutFlowTracker::printToScreen()
-{
-  // TODO print to screen
-}
+{ }
+
+// -----------------------------------------------------------------------------
+void CutFlowTracker::printLine(int bin)
+{ }
 
 // -----------------------------------------------------------------------------
 void CutFlowTracker::initBinList()

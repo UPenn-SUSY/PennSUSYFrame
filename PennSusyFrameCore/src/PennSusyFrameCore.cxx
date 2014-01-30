@@ -177,7 +177,6 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_jet_selectors.at(JET_BASELINE_BAD).setIsBadJet(1);
 
   // JET_CALO_PROBLEM
-  // TODO check calo problem definitions
   m_jet_selectors.at(JET_CALO_PROBLEM).setPtCut(40.e3, -1);
   m_jet_selectors.at(JET_CALO_PROBLEM).setBchCorrCut(0.05, -1);
   m_jet_selectors.at(JET_CALO_PROBLEM).setDphiMet(-1, 0.3);
@@ -329,7 +328,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                     , m_jets.getCollection(JET_BASELINE)
                                                     )
                       );
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do overlap removal
   m_object_cleaning.fullObjectCleaning( m_electrons
@@ -357,6 +355,15 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   m_electrons.updateIsolation(&m_event, num_vtx_good);
   m_muons.updateIsolation(    &m_event, num_vtx_good);
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // select jets which suggest caol problem in the event
+  m_jets.setCollection( JET_CALO_PROBLEM
+                      , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_CALO_PROBLEM)
+                                                    , m_jets.getCollection(JET_BASELINE)
+                                                    )
+                      );
+
+  
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // select signal electrons from good electrons
   m_electrons.setCollection( EL_SIGNAL

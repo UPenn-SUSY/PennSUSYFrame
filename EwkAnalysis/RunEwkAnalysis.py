@@ -11,7 +11,8 @@ import metaroot
 
 # ==============================================================================
 ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
-ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
 ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
 ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
 

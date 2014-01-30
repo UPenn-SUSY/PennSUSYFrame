@@ -8,6 +8,7 @@
 
 // =============================================================================
 enum EWK_CUTS { EWK_CUT_ALL
+              , EWK_CUT_BREAK_0
               , EWK_CUT_GRL
               , EWK_CUT_INCOMPLETE_EVENT
               , EWK_CUT_LAR_ERROR
@@ -21,17 +22,22 @@ enum EWK_CUTS { EWK_CUT_ALL
               , EWK_CUT_COSMIC_MUON_VETO
               , EWK_CUT_HFOR
               , EWK_CUT_MC_OVERLAP
+              , EWK_CUT_BREAK_1
               , EWK_CUT_GE_2_BASELINE_LEPTONS
               , EWK_CUT_EQ_2_BASELINE_LEPTONS
-              , EWK_CUT_TAU_VETO
               , EWK_CUT_MLL_SFOS
               , EWK_CUT_EQ_2_SIGNAL_LEPTON
+              , EWK_CUT_BREAK_2
               , EWK_CUT_PHASE_SPACE
               , EWK_CUT_TRIGGER
               , EWK_CUT_TRIGGER_MATCHING
+              , EWK_CUT_BREAK_3
+              , EWK_CUT_TAU_VETO
               , EWK_CUT_N
               };
-const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_GRL"
+const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
+                                      , "BREAK"
+                                      , "EWK_CUT_GRL"
                                       , "EWK_CUT_INCOMPLETE_EVENT"
                                       , "EWK_CUT_LAR_ERROR"
                                       , "EWK_CUT_TILE_ERROR"
@@ -44,14 +50,17 @@ const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_GRL"
                                       , "EWK_CUT_COSMIC_MUON_VETO"
                                       , "EWK_CUT_HFOR"
                                       , "EWK_CUT_MC_OVERLAP"
+                                      , "BREAK"
                                       , "EWK_CUT_GE_2_BASELINE_LEPTONS"
                                       , "EWK_CUT_EQ_2_BASELINE_LEPTONS"
-                                      , "EWK_CUT_TAU_VETO"
                                       , "EWK_CUT_MLL_SFOS"
                                       , "EWK_CUT_EQ_2_SIGNAL_LEPTON"
+                                      , "BREAK"
                                       , "EWK_CUT_PHASE_SPACE"
                                       , "EWK_CUT_TRIGGER"
                                       , "EWK_CUT_TRIGGER_MATCHING"
+                                      , "BREAK"
+                                      , "EWK_CUT_TAU_VETO"
                                       };
 
 // =============================================================================
@@ -63,7 +72,8 @@ class EwkCutFlowTracker : public CutFlowTracker
 
     virtual void fillHist(int channel, int bin, float weight);
 
-    // virtual void printToScreen();
+    virtual void printToScreen();
+    virtual void printLine(int);
     // virtual void printToFile(std::string out_file_name);
 
   // ---------------------------------------------------------------------------
