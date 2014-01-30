@@ -1,16 +1,17 @@
-#ifndef CutFlowTracker_h
-#define CutFlowTracker_h
+#ifndef EwkCutFlowTracker_h
+#define EwkCutFlowTracker_h
 
 // =============================================================================
+#include "CutFlowTracker/include/CutFlowTracker.h"
 #include <vector>
 #include "TH1D.h"
 
 // =============================================================================
-class CutFlowTracker
+class EwkCutFlowTracker : public CutFlowTracker
 {
   // ---------------------------------------------------------------------------
   public:
-    CutFlowTracker();
+    EwkCutFlowTracker();
 
     virtual void fillHist(int channel, int bin, float weight);
 
@@ -21,11 +22,6 @@ class CutFlowTracker
   protected:
     virtual void initBinList();
     virtual void initCutFlowHists();
-    virtual void initCutFlowAxis(TH1*);
-    std::vector<TH1D*> m_cutflow;
-
-    // bool m_axis_initialized;
-    std::vector<std::string> m_bin_list;
 
   // -----------------------------------------------------------------------------
   private:

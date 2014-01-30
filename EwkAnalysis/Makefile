@@ -16,6 +16,7 @@ LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libGoodRunsLists.so
 LOCAL_LIBS_PATH +=  $(SH_LIB_PATH)/libPennSusyFrameCore.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libTileTripReader.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libSUSYTools.so
+LOCAL_LIBS_PATH += ${SH_LIB_PATH}/libCutFlowTracker.so
 # BONUS_LIB_PATH = 
 
 INCLUDES += -I../
