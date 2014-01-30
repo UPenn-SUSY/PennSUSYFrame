@@ -1,4 +1,5 @@
 #include "EwkAnalysis/include/EwkCutFlowTracker.h"
+#include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 
 // =============================================================================
 #include <iostream>
@@ -9,7 +10,7 @@
 // -----------------------------------------------------------------------------
 EwkCutFlowTracker::EwkCutFlowTracker()
 {
-  // do nothing
+  initCutFlowHists();
 }
 
 
@@ -19,47 +20,19 @@ void EwkCutFlowTracker::fillHist(int channel, int bin, float weight)
   m_cutflow.at(channel)->Fill(bin, weight);
 }
 
-// -----------------------------------------------------------------------------
-void EwkCutFlowTracker::printToScreen()
-{
-  // TODO print to screen
-}
+// // -----------------------------------------------------------------------------
+// void EwkCutFlowTracker::printToScreen()
+// {
+// }
 
 // -----------------------------------------------------------------------------
 void EwkCutFlowTracker::initBinList()
 {
   m_bin_list.clear();
 
-  m_bin_list.push_back("ALL");
-  // m_bin_list.push_back("BREAK");
-
-  m_bin_list.push_back("GRL");
-  m_bin_list.push_back("incomplete event");
-  m_bin_list.push_back("LAr error");
-  m_bin_list.push_back("tile error");
-  m_bin_list.push_back("tile hot spot");
-  m_bin_list.push_back("tile trip");
-  m_bin_list.push_back("bad jet veto");
-  m_bin_list.push_back("calo problem jet");
-  m_bin_list.push_back("primary vertex");
-  m_bin_list.push_back("bad muon");
-  m_bin_list.push_back("cosmic muon veto");
-  m_bin_list.push_back("HFOR");
-  m_bin_list.push_back("mc overlap");
-  // m_bin_list.push_back("BREAK");
-
-  m_bin_list.push_back(">= 2 baseline leptons");
-  m_bin_list.push_back("== 2 baseline leptons");
-  m_bin_list.push_back("tau veto");
-  m_bin_list.push_back("mll SFOS");
-  m_bin_list.push_back("== 2 signal lepton");
-  // m_bin_list.push_back("BREAK");
-
-  m_bin_list.push_back("phase space");
-  m_bin_list.push_back("trigger");
-  m_bin_list.push_back("trigger matching");
-  // m_bin_list.push_back("BREAK");
-
+  for (int cut_it = 0; cut_it != EWK_CUT_N; ++cut_it) {
+    m_bin_list.push_back(EWK_CUT_STRINGS[cut_it]);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -67,7 +40,7 @@ void EwkCutFlowTracker::initCutFlowHists()
 {
   initBinList();
 
-  m_cutflow.resize(1);
+  m_cutflow.resize(PHASE_N);
 
   std::string name = "cutflow";
 
@@ -75,5 +48,24 @@ void EwkCutFlowTracker::initCutFlowHists()
   std::cout << "setting cutflow histogram to: "
             << num_bins << ", " << -0.5 << " , " << num_bins - 0.5 << "\n";
 
-  initCutFlowAxis(m_cutflow.at(0));
+  std::string name_base = "cutflow_";
+  for (size_t channel_it = 0; channel_it != PHASE_N; ++channel_it) {
+    std::string this_name = name_base;
+    if (     channel_it == static_cast<size_t>(PHASE_NONE)) this_name += "none";
+    else if (channel_it == static_cast<size_t>(PHASE_EE  )) this_name += "ee";
+    else if (channel_it == static_cast<size_t>(PHASE_MM  )) this_name += "mm";
+    else if (channel_it == static_cast<size_t>(PHASE_EM  )) this_name += "em";
+    else if (channel_it == static_cast<size_t>(PHASE_ME  )) this_name += "me";
+    else continue;
+
+    std::cout << "channel it: " << channel_it << " this_name: " << this_name << "\n";
+
+    m_cutflow.at(channel_it) = new TH1D( this_name.c_str()
+                                       , this_name.c_str()
+                                       , EWK_CUT_N
+                                       , -0.5
+                                       , EWK_CUT_N - 0.5
+                                       );
+    initCutFlowAxis(m_cutflow.at(channel_it));
+  }
 }

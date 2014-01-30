@@ -12,6 +12,7 @@
 #include "PennSusyFrameCore/include/Calculators.h"
 #include "PennSusyFrameCore/include/SelectorHelpers.h"
 #include "EwkAnalysis/include/EwkTrigger.h"
+#include "EwkAnalysis/include/EwkCutFlowTracker.h"
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
@@ -66,6 +67,8 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 {
   bool pass_event = true;
   m_event_weight = 1.;
+
+  m_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_ALL, m_event_weight);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_event.setTriggerPhase( PennSusyFrame::getTriggerPhase( m_electrons.getCollection(EL_GOOD)

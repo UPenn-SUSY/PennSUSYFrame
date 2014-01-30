@@ -22,6 +22,7 @@ class CutFlowTracker
     virtual void initBinList();
     virtual void initCutFlowHists();
     virtual void initCutFlowAxis(TH1*);
+
     std::vector<TH1D*> m_cutflow;
 
     // bool m_axis_initialized;
