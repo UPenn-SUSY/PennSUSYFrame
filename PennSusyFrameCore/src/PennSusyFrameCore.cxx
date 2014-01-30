@@ -214,32 +214,34 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   //   return;
   // }
 
+  // run beginRun() function to prepare tools
   beginRun();
 
-  // Long64_t nentries = fChain->GetEntriesFast();
+  // find number of total events to looper over
   Long64_t nentries = m_d3pd_reader->getNumEvents();
   std::cout << "Processing " << nentries << " events\n";
 
+  // set up progress bar
   ProgressBar progress_bar(nentries, 100);
 
-  // Long64_t nbytes = 0, nb = 0;
+  // Actually loop over events
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
-
+    // check progress in the progress bar
     progress_bar.checkProgress(jentry);
 
+    // get entry from tree
     Long64_t ientry = LoadTree(jentry);
     if (ientry < 0) break;
     m_d3pd_reader->GetEntry(jentry);
 
-    // // nb = fChain->GetEntry(jentry);
-    // nb = fChain->GetEntry(jentry);
-    // nbytes += nb;
-
+    // process events, etc...
     clearObjects();
     constructObjects();
     processEvent();
     finalizeEvent();
   }
+
+  // call finalizeRun() to finish run - i.e. write to file, etc.
   finalizeRun();
 }
 
