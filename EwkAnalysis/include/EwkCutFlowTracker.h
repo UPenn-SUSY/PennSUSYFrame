@@ -33,6 +33,15 @@ enum EWK_CUTS { EWK_CUT_ALL
               , EWK_CUT_TRIGGER_MATCHING
               , EWK_CUT_BREAK_3
               , EWK_CUT_TAU_VETO
+              , EWK_CUT_SS
+              , EWK_CUT_PROMPT_LEP
+              , EWK_CUT_NO_CHARGE_FLIP
+              , EWK_CUT_BREAK_4
+              , EWK_CUT_EMMA_MT
+              , EWK_CUT_MET_REL
+              , EWK_CUT_DPHI_LL
+              , EWK_CUT_B_VETO
+              , EWK_CUT_NUM_JET
               , EWK_CUT_N
               };
 const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
@@ -61,6 +70,15 @@ const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
                                       , "EWK_CUT_TRIGGER_MATCHING"
                                       , "BREAK"
                                       , "EWK_CUT_TAU_VETO"
+                                      , "EWK_SS"
+                                      , "EWK_PROMPT_LEP"
+                                      , "EWK_NO_CHARGE_FLIP"
+                                      , "BREAK"
+                                      , "EWK_EMMA_MT"
+                                      , "EWK_MET_REL"
+                                      , "EWK_DPHI_LL"
+                                      , "EWK_B_VETO"
+                                      , "EWK_NUM_JET"
                                       };
 
 // =============================================================================
