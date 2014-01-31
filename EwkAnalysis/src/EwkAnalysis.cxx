@@ -399,6 +399,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_num_jet && !pass_num_jet) return;
   if (pass_event) {
     m_cutflow_tracker.fillHist(FLAVOR_NONE            , EWK_CUT_NUM_JET, m_event_weight);
+    m_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NUM_JET, m_event_weight);
   }
 
 }
