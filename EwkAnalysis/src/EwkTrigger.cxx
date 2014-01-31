@@ -1,4 +1,4 @@
-#include "/Users/bjackson/work/PennSusyFrame.00.03.13/EwkAnalysis/include/EwkTrigger.h"
+#include "EwkAnalysis/include/EwkTrigger.h"
 
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"

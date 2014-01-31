@@ -7,15 +7,8 @@ INCDIR  = include
 EXECUTABLE := $(PWD)/BMinusLAnalysis
 
 LOCAL_LIBS_PATH =  $(SH_LIB_PATH)/libProgressBar.so
-LOCAL_LIBS_PATH += $(ROOTCOREDIR)/lib/libegammaAnalysisUtils.so
-LOCAL_LIBS_PATH += $(ROOTCOREDIR)/lib/libMuonMomentumCorrections.so
-LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libApplyJetCalibration.so
-LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libMissingETUtility.so
-LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libMt2.so
-LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libGoodRunsLists.so
+include ${PWD}/../Makefile.RootCore
 LOCAL_LIBS_PATH +=  $(SH_LIB_PATH)/libPennSusyFrameCore.so
-LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libTileTripReader.so
-LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libSUSYTools.so
 # BONUS_LIB_PATH = 
 
 INCLUDES += -I../

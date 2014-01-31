@@ -36,7 +36,7 @@ endif
 ROOTCFLAGS := $(shell root-config --cflags)
 # ROOTLIBS   := $(shell root-config --libs)
 # TODO make these extra libs configurable by local makefiles rather than the common one
-ROOTLIBS   := $(shell root-config --libs) -lTMVA -lMinuit2 -lTreePlayer -lXMLParser
+ROOTLIBS   := $(shell root-config --libs) -lTMVA -lMinuit2 -lTreePlayer -lXMLParser -lRooStats
 CXXFLAGS += -Wall $(ROOTCFLAGS)
 INCLUDES += -I./
 

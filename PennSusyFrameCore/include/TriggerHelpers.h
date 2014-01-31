@@ -21,7 +21,7 @@ namespace PennSusyFrame
                         , const std::vector<float>* online_py
                         , const std::vector<float>* online_pz
                         , const std::vector<float>* online_E
-                        , size_t num_to_match
+                        , unsigned int num_to_match
                         , double dr_cut
                         , double pt_cut
                         );
@@ -39,7 +39,7 @@ namespace PennSusyFrame
                     , const std::vector<std::vector<float> >* online_pt
                     , const std::vector<std::vector<float> >* online_eta
                     , const std::vector<std::vector<float> >* online_phi
-                    , size_t num_to_match
+                    , unsigned int num_to_match
                     , double dr_cut
                     , double pt_cut
                     );
