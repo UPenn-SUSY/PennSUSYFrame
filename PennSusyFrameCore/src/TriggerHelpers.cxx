@@ -12,7 +12,7 @@ bool PennSusyFrame::matchElectronList( const std::vector<PennSusyFrame::Electron
                                      , const std::vector<float>* online_py
                                      , const std::vector<float>* online_pz
                                      , const std::vector<float>* online_E
-                                     , size_t num_to_match
+                                     , unsigned int num_to_match
                                      , double dr_cut
                                      , double pt_cut
                                      )
@@ -99,7 +99,7 @@ bool PennSusyFrame::matchMuonList( const std::vector<PennSusyFrame::Muon*>* muon
                                  , const std::vector<std::vector<float> >* online_eta
                                  , const std::vector<std::vector<float> >* online_phi
                                  // , const std::vector<std::vector<float> >* online_E
-                                 , size_t num_to_match
+                                 , unsigned int num_to_match
                                  , double dr_cut
                                  , double pt_cut
                                  )
