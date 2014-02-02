@@ -55,14 +55,14 @@ for module in $(cat ../root_core_packages) ; do
     module_short=$(echo $module | sed "s#/trunk##g" | sed "s#.*/##g")
   fi
   echo "module short: $module_short"
-  if [[ "$module" == "atlas.*" ]]; then
+  if [[ $module == atlas* ]]; then
     if [ "x$CERN_USER" = "x" ]; then
-      echo svn co svn+ssh://svn.cern.ch/reps/$module $module_short
+      svn co svn+ssh://svn.cern.ch/reps/$module $module_short
     else
-      echo svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/$module $module_short
+      svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/$module $module_short
     fi
   else
-    echo svn co $module $module_short
+    svn co $module $module_short
   fi
 done
 cd ${BASE_WORK_DIR}
@@ -87,13 +87,13 @@ $ROOTCOREDIR/scripts/find_packages.sh
 $ROOTCOREDIR/scripts/compile.sh
 $ROOTCOREDIR/scripts/build.sh
 
-echo "Build finished! Moving RootCore.par to proper location"
-cd ${ROOTCOREDIR}/..
-# mv RootCore.par ${SFRAME_LIB_PATH}
-if [[ ! -e ${BASE_WORK_DIR}/lib ]] ; then
-  mkdir ${BASE_WORK_DIR}/lib
-fi
-mv RootCore.par ${BASE_WORK_DIR}/lib
+# echo "Build finished! Moving RootCore.par to proper location"
+# cd ${ROOTCOREDIR}/..
+# # mv RootCore.par ${SFRAME_LIB_PATH}
+# if [[ ! -e ${BASE_WORK_DIR}/lib ]] ; then
+#   mkdir ${BASE_WORK_DIR}/lib
+# fi
+# mv RootCore.par ${BASE_WORK_DIR}/lib
 
 # ------------------------------------------------------------------------------
 # check out MultiLep/data

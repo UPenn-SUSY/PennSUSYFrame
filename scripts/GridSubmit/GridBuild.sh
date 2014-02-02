@@ -18,7 +18,7 @@ echo "========================================================================="
 
 # setup work dir
 echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
-echo "about to set up SFrame"
+echo "about to set up environment"
 source SetupEnvironment.sh
 
 #clean up/rebuild rest of packages 

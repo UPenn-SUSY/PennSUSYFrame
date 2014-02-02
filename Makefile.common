@@ -9,23 +9,34 @@ ARCH_LOC_1 := $(wildcard $(shell root-config --prefix)/test/Makefile.arch)
 ARCH_LOC_2 := $(wildcard $(shell root-config --prefix)/share/root/test/Makefile.arch)
 ARCH_LOC_3 := $(wildcard $(shell root-config --prefix)/share/doc/root/test/Makefile.arch)
 ARCH_LOC_4 := $(wildcard $(shell root-config --prefix)/etc/Makefile.arch)
+ARCH_LOC_5 := $(wildcard $(shell root-config --prefix)/etc/root/Makefile.arch)
+$(info ARCH_LOC_1: $(ARCH_LOC_1))
+$(info ARCH_LOC_2: $(ARCH_LOC_2))
+$(info ARCH_LOC_3: $(ARCH_LOC_3))
+$(info ARCH_LOC_4: $(ARCH_LOC_4))
+$(info ARCH_LOC_5: $(ARCH_LOC_5))
 ifneq ($(strip $(ARCH_LOC_1)),)
-  $(info Using $(ARCH_LOC_1))
+  $(info Using ARCH_LOC_1: $(ARCH_LOC_1))
   include $(ARCH_LOC_1)
 else
   ifneq ($(strip $(ARCH_LOC_2)),)
-    $(info Using $(ARCH_LOC_2))
+    $(info Using ARCH_LOC_2: $(ARCH_LOC_2))
     include $(ARCH_LOC_2)
   else
     ifneq ($(strip $(ARCH_LOC_3)),)
-      $(info Using $(ARCH_LOC_3))
+      $(info Using ARCH_LOC_3: $(ARCH_LOC_3))
       include $(ARCH_LOC_3)
     else
       ifneq ($(strip $(ARCH_LOC_4)),)
-        $(info Using $(ARCH_LOC_4))
+        $(info Using ARCH_LOC_4: $(ARCH_LOC_4))
         include $(ARCH_LOC_4)
       else
-        $(error Could not find Makefile.arch!)
+        ifneq ($(strip $(ARCH_LOC_5)),)
+          $(info Using $(ARCH_LOC_5))
+          include $(ARCH_LOC_5)
+        else
+          $(error Could not find Makefile.arch!)
+        endif
       endif
     endif
   endif
@@ -47,8 +58,6 @@ DICT_LDEF   := $(INCDIR)/$(LIBRARY)_LinkDef.h
 SH_LIB_PATH := $(PWD)/../lib
 SH_LIB_FILE := $(SH_LIB_PATH)/lib$(LIBRARY).$(DllSuf)
 
-SFRAME_LIB_PATH := $(SFRAME_LIB_PATH)
-
 SKIP_CPP_LIST := $(DICT_FILE)
 SKIP_H_LIST   := $(DICT_HEAD) $(DICT_LDEF)
 
@@ -60,7 +69,19 @@ CPPLIST = $(filter-out $(SKIP_CPP_LIST),$(wildcard $(SRCDIR)/*.$(SrcSuf)))
 OLIST = $(addprefix $(OBJDIR)/,$(patsubst %.$(SrcSuf),%.$(ObjSuf),$(notdir $(CPPLIST))))
 
 # default list of objects to be made
-default: shlib executable
+default: test shlib executable
+
+# check variable contents
+test:
+	@echo "------------------------------------------------------------"
+	@echo "- printing variable contents!"
+	@echo "------------------------------------------------------------"
+	@echo "HLIST: ${HLIST}"
+	@echo "CPPLIST: ${CPPLIST}"
+	@echo "OLIST: ${OLIST}"
+	@echo "------------------------------------------------------------"
+	@echo "------------------------------------------------------------"
+	@echo ""
 
 # rule to generate shared object files
 shlib : $(SH_LIB_FILE)
