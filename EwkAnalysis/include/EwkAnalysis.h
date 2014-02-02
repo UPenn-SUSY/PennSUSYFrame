@@ -51,6 +51,7 @@ namespace PennSusyFrame
       void setCritCutStreamOverlap(  bool val) { m_crit_cut_stream_overlap = val;   }
 
       void setSFOSMllCut(double min, double max) { m_sfos_mll_min = min; m_sfos_mll_max = max; }
+      void setNumLightJetsCut(double min, double max) { m_num_light_jets_min = min; m_num_light_jets_max = max; }
 
     protected:
       std::string m_out_tnt_file_name;
@@ -70,14 +71,21 @@ namespace PennSusyFrame
       bool m_crit_cut_mc_overlap;
       bool m_crit_cut_ge_2_lep;
       bool m_crit_cut_2_lep;
-      bool m_crit_cut_tau_veto;
       bool m_crit_cut_mll_sfos;
       bool m_crit_cut_signal_lep;
       bool m_crit_cut_phase_space;
       bool m_crit_cut_trigger;
       bool m_crit_cut_trigger_match;
+      bool m_crit_cut_tau_veto;
+      bool m_crit_cut_ss;
       bool m_crit_cut_prompt_leptons;
       bool m_crit_cut_stream_overlap;
+      bool m_crit_cut_no_charge_flip;
+      bool m_crit_cut_emma_mt;
+      bool m_crit_cut_met_rel;
+      bool m_crit_cut_dphi_ll;
+      bool m_crit_cut_b_veto;
+      bool m_crit_cut_num_jet;
 
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
@@ -87,6 +95,9 @@ namespace PennSusyFrame
 
       double m_sfos_mll_min;
       double m_sfos_mll_max;
+
+      int m_num_light_jets_min;
+      int m_num_light_jets_max;
 
     private:
 
