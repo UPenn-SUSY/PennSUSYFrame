@@ -363,7 +363,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                     )
                       );
 
-  
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // select signal electrons from good electrons
   m_electrons.setCollection( EL_SIGNAL
@@ -453,6 +453,10 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                  , m_muons.getCollection(MU_GOOD)
                                                  )
                            );
+
+  if (!m_is_data) {
+    m_event_quantities.setMcEventWeight(m_d3pd_reader->mc_event_weight);
+  }
 }
 
 // -----------------------------------------------------------------------------

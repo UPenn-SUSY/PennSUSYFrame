@@ -3843,7 +3843,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "averageIntPerXing", &averageIntPerXing, &b_averageIntPerXing);
   turnOnBranch(tree, "mc_channel_number", &mc_channel_number, &b_mc_channel_number);
   // turnOnBranch(tree, "mc_event_number", &mc_event_number, &b_mc_event_number);
-  // turnOnBranch(tree, "mc_event_weight", &mc_event_weight, &b_mc_event_weight);
+  turnOnBranch(tree, "mc_event_weight", &mc_event_weight, &b_mc_event_weight);
   // turnOnBranch(tree, "pixelFlags", &pixelFlags, &b_pixelFlags);
   // turnOnBranch(tree, "sctFlags", &sctFlags, &b_sctFlags);
   // turnOnBranch(tree, "trtFlags", &trtFlags, &b_trtFlags);
@@ -7799,7 +7799,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "averageIntPerXing", &averageIntPerXing);
   m_output_tree->Branch( "mc_channel_number", &mc_channel_number);
   // m_output_tree->Branch( "mc_event_number", &mc_event_number);
-  // m_output_tree->Branch( "mc_event_weight", &mc_event_weight);
+  m_output_tree->Branch( "mc_event_weight", &mc_event_weight);
   // m_output_tree->Branch( "pixelFlags", &pixelFlags);
   // m_output_tree->Branch( "sctFlags", &sctFlags);
   // m_output_tree->Branch( "trtFlags", &trtFlags);

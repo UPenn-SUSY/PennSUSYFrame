@@ -1310,7 +1310,7 @@ namespace PennSusyFrame
     Float_t         averageIntPerXing;
     UInt_t          mc_channel_number;
     // UInt_t          mc_event_number;
-    // Float_t         mc_event_weight;
+    Float_t         mc_event_weight;
     // UInt_t          pixelFlags;
     // UInt_t          sctFlags;
     // UInt_t          trtFlags;
@@ -5264,7 +5264,7 @@ namespace PennSusyFrame
     TBranch        *b_averageIntPerXing;   //!
     TBranch        *b_mc_channel_number;   //!
     // TBranch        *b_mc_event_number;   //!
-    // TBranch        *b_mc_event_weight;   //!
+    TBranch        *b_mc_event_weight;   //!
     // TBranch        *b_pixelFlags;   //!
     // TBranch        *b_sctFlags;   //!
     // TBranch        *b_trtFlags;   //!
