@@ -8,6 +8,7 @@
 #include "PennSusyFrameCore/include/ObjectContainers.h"
 #include "PennSusyFrameCore/include/ObjectSelectors.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
+#include "PennSusyFrameCore/include/ScaleFactorTools.h"
 
 // =============================================================================
 class TBranch;
@@ -76,6 +77,9 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::JetSelector>      m_jet_selectors;
 
       PennSusyFrame::ObjectCleaning m_object_cleaning;
+
+      PennSusyFrame::EgammaScaleFactorTool m_egamma_sf_tool;
+      PennSusyFrame::MuonScaleFactorTool   m_muon_sf_tool;
 
     private:
   };

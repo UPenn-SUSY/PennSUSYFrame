@@ -455,7 +455,27 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                            );
 
   if (!m_is_data) {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_event_quantities.setMcEventWeight(m_d3pd_reader->mc_event_weight);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    double lepton_sf = 1.;
+
+    // TODO validate electron SF
+    size_t el_term = m_electrons.num(EL_GOOD);
+    const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_GOOD);
+    for (size_t el_it = 0; el_it != el_term; ++el_it) {
+      lepton_sf *= m_egamma_sf_tool.getSF(m_event, el_list->at(el_it));
+    }
+
+    // TODO validate muon SF
+    size_t mu_term = m_muons.num(MU_GOOD);
+    const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_GOOD);
+    for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
+      lepton_sf *= m_muon_sf_tool.getSF(mu_list->at(mu_it));
+    }
+
+    m_event_quantities.setLeptonSF(lepton_sf);
   }
 }
 

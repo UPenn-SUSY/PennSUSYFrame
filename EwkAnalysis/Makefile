@@ -18,6 +18,7 @@ INCLUDES += -I../../
 INCLUDES += -I${ROOTCOREDIR}/../
 INCLUDES += -I${ROOTCOREDIR}/../GoodRunsLists/
 INCLUDES += -I${ROOTCOREDIR}/../PATCore/
+INCLUDES += -I${ROOTCOREDIR}/../MuonEfficiencyCorrections/
 
 # Include the generic compilation rules
 include $(PWD)/../Makefile.common
