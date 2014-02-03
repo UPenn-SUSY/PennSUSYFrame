@@ -407,7 +407,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::finalizeEvent()
 {
-  // fillTnt();
+  fillTnt();
 }
 
 // -----------------------------------------------------------------------------
@@ -415,5 +415,5 @@ void PennSusyFrame::EwkAnalysis::finalizeRun()
 {
   m_cutflow_tracker.printToScreen();
 
-  // writeTnt();
+  writeTnt();
 }
