@@ -87,6 +87,7 @@ class EwkCutFlowTracker : public CutFlowTracker
   // ---------------------------------------------------------------------------
   public:
     EwkCutFlowTracker();
+    virtual ~EwkCutFlowTracker();
 
     virtual void fillHist(int channel, int bin, float weight);
 

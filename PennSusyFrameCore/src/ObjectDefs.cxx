@@ -82,8 +82,8 @@ void PennSusyFrame::Event::print() const
 // =============================================================================
 // = EventLevelQuantities
 // =============================================================================
-PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mt2(0.)
-                                                            , m_mll(0.)
+PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
+                                                            , m_mt2(0.)
 {}
 
 // -----------------------------------------------------------------------------
