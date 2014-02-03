@@ -225,6 +225,8 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 
   // Actually loop over events
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
+    if (jentry == 100) break;
+
     // check progress in the progress bar
     progress_bar.checkProgress(jentry);
 

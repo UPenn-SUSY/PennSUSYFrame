@@ -14,19 +14,16 @@ PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)
   m_egamma_sf_dir = maindir + "../ElectronEfficiencyCorrection/data/";
 
   // initialize reco sf
-  m_reco_file_name = m_egamma_sf_dir + "efficiencySF.offline.RecoTrk.2012.8TeV.rel17p2.v02.root";
+  m_reco_file_name = m_egamma_sf_dir + "efficiencySF.offline.RecoTrk.2012.8TeV.rel17p2.v04.root";
+  std::cout << "Adding file to Egamma reco sf tool: " << m_reco_file_name << "\n";
   m_eg_reco_sf.addFileName(m_reco_file_name);
   m_eg_reco_sf.initialize();
 
   // initialize tight sf
-  m_tight_file_name = m_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v02.root";
+  m_tight_file_name = m_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v04.root";
+  std::cout << "Adding file to Egamma tight sf tool: " << m_tight_file_name << "\n";
   m_eg_tight_sf.addFileName(m_tight_file_name);
   m_eg_tight_sf.initialize();
-
-  // // initialize trigger sf
-  // m_trigger_file_name = m_egamma_sf_dir +"efficiencySF.e24vhi_medium1_e60_medium1.Tight.2012.8TeV.rel17p2.v02.root";
-  // m_eg_trigger_sf.addFileName(m_trigger_file_name);
-  // m_eg_trigger_sf.initialize();
 }
 
 // -----------------------------------------------------------------------------
@@ -54,10 +51,8 @@ double PennSusyFrame::EgammaScaleFactorTool::getSF( const PennSusyFrame::Event& 
   					                                          , pt
                                                       );
 
-
-  return ( result_reco.getTotalUncertainty()
-         * result_tight.getTotalUncertainty()
-         // * result_trigger.getTotalUncertainty()
+  return ( result_reco.getScaleFactor()
+         * result_tight.getScaleFactor()
          );
 }
 
