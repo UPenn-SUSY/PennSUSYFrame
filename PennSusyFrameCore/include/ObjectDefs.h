@@ -129,16 +129,28 @@ namespace PennSusyFrame
       // TODO move accessors to cxx file
       void setMll(double val) { m_mll = val; }
       void setMt2(double val) { m_mt2 = val; }
+      void setMcEventWeight(double val) { m_mc_event_weight = val; }
+      void setLeptonSF(double val) { m_lepton_sf = val; }
+      void setTriggerSF(double val) { m_trigger_sf = val; }
+      void setBTagSF(double val) { m_b_tag_sf = val; }
 
       // TODO move accessors to cxx file
-      double getMll() const { return m_mll; }
-      double getMt2() const { return m_mt2; }
+      double getMll()           const { return m_mll; }
+      double getMt2()           const { return m_mt2; }
+      double getMcEventWeight() const { return m_mc_event_weight; }
+      double getLeptonSF()      const { return m_lepton_sf; }
+      double getTriggerSF()     const { return m_trigger_sf; }
+      double getBTagSF()        const { return m_b_tag_sf; }
 
       void print() const;
 
     protected:
       double m_mll;
       double m_mt2;
+      double m_mc_event_weight;
+      double m_lepton_sf;
+      double m_trigger_sf;
+      double m_b_tag_sf;
   };
 
   // =============================================================================

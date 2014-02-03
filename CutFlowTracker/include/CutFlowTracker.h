@@ -11,6 +11,7 @@ class CutFlowTracker
   // ---------------------------------------------------------------------------
   public:
     CutFlowTracker();
+    virtual ~CutFlowTracker();
 
     virtual void fillHist(int channel, int bin, float weight);
 

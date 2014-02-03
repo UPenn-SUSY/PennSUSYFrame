@@ -14,6 +14,9 @@ EwkCutFlowTracker::EwkCutFlowTracker()
   initCutFlowHists();
 }
 
+// -----------------------------------------------------------------------------
+EwkCutFlowTracker::~EwkCutFlowTracker()
+{}
 
 // -----------------------------------------------------------------------------
 void EwkCutFlowTracker::fillHist(int channel, int bin, float weight)

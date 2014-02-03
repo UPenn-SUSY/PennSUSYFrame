@@ -82,8 +82,12 @@ void PennSusyFrame::Event::print() const
 // =============================================================================
 // = EventLevelQuantities
 // =============================================================================
-PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mt2(0.)
-                                                            , m_mll(0.)
+PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
+                                                            , m_mt2(0.)
+                                                            , m_mc_event_weight(1.)
+                                                            , m_lepton_sf(1.)
+                                                            , m_trigger_sf(1.)
+                                                            , m_b_tag_sf(1.)
 {}
 
 // -----------------------------------------------------------------------------
@@ -95,6 +99,11 @@ void PennSusyFrame::EventLevelQuantities::print() const
   std::cout << "================= Printing event level quantities: =================\n";
   std::cout << "\tmt2: " << m_mt2
             << "\tmll: " << m_mll
+            << "\n"
+            << "\tmc event weight: " << m_mc_event_weight
+            << "\tlepton sf: " << m_lepton_sf
+            << "\ttrigger sf: " << m_trigger_sf
+            << "\tb tag sf: " << m_b_tag_sf
             << "\n";
 }
 
