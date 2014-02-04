@@ -42,12 +42,14 @@ namespace PennSusyFrame
       ElectronRescalerTool();
       ~ElectronRescalerTool();
 
-      // TODO move accessor to cxx file
-      virtual void setIsData() { m_is_data = true; }
-      virtual void setIsMC()   { m_is_data = false; }
+      void init();
 
-      virtual void setFullSim() { m_is_af2 = false; }
-      virtual void setAf2()     { m_is_af2 = true; }
+      // TODO move accessor to cxx file
+      void setIsData() { m_is_data = true; }
+      void setIsMC()   { m_is_data = false; }
+
+      void setFullSim() { m_is_af2 = false; }
+      void setAf2()     { m_is_af2 = true; }
 
       double getRescaledE( const PennSusyFrame::Electron*);
       double getRescaledEt(const PennSusyFrame::Electron*);
@@ -72,9 +74,11 @@ namespace PennSusyFrame
       MuonRescalerTool();
       ~MuonRescalerTool();
 
+      void init();
+
       // TODO move accessor to cxx file
-      virtual void setIsData() { m_is_data = true; }
-      virtual void setIsMC()   { m_is_data = false; }
+      void setIsData() { m_is_data = true; }
+      void setIsMC()   { m_is_data = false; }
 
       double getSmearedPt(const PennSusyFrame::Muon*);
 
@@ -94,12 +98,14 @@ namespace PennSusyFrame
       JetRescalerTool();
       ~JetRescalerTool();
 
-      // TODO move accessor to cxx file
-      virtual void setIsData() { m_is_data = true; }
-      virtual void setIsMC()   { m_is_data = false; }
+      void init();
 
-      virtual void setFullSim() { m_is_af2 = false; }
-      virtual void setAf2()     { m_is_af2 = true; }
+      // TODO move accessor to cxx file
+      void setIsData() { m_is_data = true; }
+      void setIsMC()   { m_is_data = false; }
+
+      void setFullSim() { m_is_af2 = false; }
+      void setAf2()     { m_is_af2 = true; }
 
       TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
                                      , const PennSusyFrame::Event*
@@ -107,10 +113,10 @@ namespace PennSusyFrame
                                      );
 
     private:
-      JetCalibrationTool* m_jet_calibration;
-
       bool m_is_data;
       bool m_is_af2;
+
+      JetCalibrationTool* m_jet_calibration;
   };
 
   // =============================================================================
@@ -121,12 +127,14 @@ namespace PennSusyFrame
       TauRescalerTool();
       ~TauRescalerTool();
 
-      // TODO move accessor to cxx file
-      virtual void setIsData() { m_is_data = true; }
-      virtual void setIsMC()   { m_is_data = false; }
+      void init();
 
-      virtual void setFullSim() { m_is_af2 = false; }
-      virtual void setAf2()     { m_is_af2 = true; }
+      // TODO move accessor to cxx file
+      void setIsData() { m_is_data = true; }
+      void setIsMC()   { m_is_data = false; }
+
+      void setFullSim() { m_is_af2 = false; }
+      void setAf2()     { m_is_af2 = true; }
 
     private:
       bool m_is_data;

@@ -18,19 +18,26 @@
 PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_data(false)
                                                             , m_is_af2(false)
                                                             , m_systematics(0)
+                                                            , m_e_rescale(0)
+{ }
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::ElectronRescalerTool::~ElectronRescalerTool()
+{
+  if (m_e_rescale) delete m_e_rescale;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ElectronRescalerTool::init()
 {
   // directory with energy rescale data
   // get default path for egamma SF directory.  This comes from SUSYTools
   std::string root_core_dir = getenv("ROOTCOREDIR");
   std::string energy_rescale_data = root_core_dir + "/../egammaAnalysisUtils/share/EnergyRescalerData.root";
-  std::cout << "initializing ElectronRescalerTool -- energy_rescale_data: " << energy_rescale_data << "\n";
+  std::cout << "initializing ElectronRescalerTool -- energy_rescale_data: "
+            << energy_rescale_data << "\n";
 
   m_e_rescale = new egRescaler::EnergyRescalerUpgrade(energy_rescale_data, "2012", "es2012");
-}
-
-PennSusyFrame::ElectronRescalerTool::~ElectronRescalerTool()
-{
-  delete m_e_rescale;
 }
 
 // -----------------------------------------------------------------------------
@@ -90,19 +97,23 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledEt(const PennSusyFrame::E
 // TODO set m_is_data correctly
 PennSusyFrame::MuonRescalerTool::MuonRescalerTool() : m_is_data(false)
                                                     , m_smearing_function("")
+{ }
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::MuonRescalerTool::~MuonRescalerTool()
+{
+  if (m_mcp_smear)
+    delete m_mcp_smear;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MuonRescalerTool::init()
 {
   if (m_is_data) return;
 
   // get default path for muon SF directory.  This comes from SUSYTools
-  std::string maindir = "";
-  char *tmparea=getenv("ROOTCOREDIR");
-  if (tmparea != NULL) {
-    maindir = tmparea;
-    maindir = maindir + "/";
-  }
-  // Default path
-  m_muon_momentum_dir = maindir + "/../MuonMomentumCorrections/share/";
-
+  std::string root_core_dir = getenv("ROOTCOREDIR");
+  m_muon_momentum_dir = root_core_dir + "/../MuonMomentumCorrections/share/";
   std::cout << "Muon momentum smearing will be grabbed from: "
             << m_muon_momentum_dir << "\n";
 
@@ -113,13 +124,6 @@ PennSusyFrame::MuonRescalerTool::MuonRescalerTool() : m_is_data(false)
                                             , "Rel17.2Repro"
                                             , m_muon_momentum_dir
                                             );
-}
-
-// -----------------------------------------------------------------------------
-PennSusyFrame::MuonRescalerTool::~MuonRescalerTool()
-{
-  if (m_mcp_smear)
-    delete m_mcp_smear;
 }
 
 // -----------------------------------------------------------------------------
@@ -198,27 +202,35 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
 // =============================================================================
 PennSusyFrame::JetRescalerTool::JetRescalerTool() : m_is_data(false)
                                                   , m_is_af2(false)
+                                                  , m_jet_calibration(0)
+{ }
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::JetRescalerTool::~JetRescalerTool()
+{
+  if (m_jet_calibration)
+    delete m_jet_calibration;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::JetRescalerTool::init()
 {
   std::string jet_algorithm = "AntiKt4LCTopo";
-
-  std::string maindir = "";
-  char *tmparea=getenv("ROOTCOREDIR");
-  if (tmparea != NULL) {
-    maindir = tmparea;
-    maindir = maindir + "/";
-  }
+  std::string root_core_dir = getenv("ROOTCOREDIR");
 
   std::string jes_config_file;
   std::string mc_type = "";
   if (m_is_af2) {
     std::cout << "setting up JES for AF2\n";
-    jes_config_file = maindir +
-      "../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config";
+    jes_config_file = ( root_core_dir
+                      + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config"
+                      );
     mc_type = "AFII";
   } else {
     std::cout << "setting up JES for full sim\n";
-    jes_config_file = maindir +
-      "../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config";
+    jes_config_file = ( root_core_dir
+                      + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config"
+                      );
     mc_type = "MC12a";
   }
 
@@ -227,12 +239,6 @@ PennSusyFrame::JetRescalerTool::JetRescalerTool() : m_is_data(false)
                                             , m_is_data
                                             );
   m_jet_calibration->UseGeV(false);
-}
-
-// -----------------------------------------------------------------------------
-PennSusyFrame::JetRescalerTool::~JetRescalerTool()
-{
-  delete m_jet_calibration;
 }
 
 // -----------------------------------------------------------------------------
@@ -270,3 +276,7 @@ PennSusyFrame::TauRescalerTool::TauRescalerTool() : m_is_data(false)
 PennSusyFrame::TauRescalerTool::~TauRescalerTool()
 {
 }
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::TauRescalerTool::init()
+{}

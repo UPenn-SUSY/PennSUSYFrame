@@ -22,9 +22,17 @@ PennSusyFrame::ElectronContainer::~ElectronContainer()
 }
 
 // ----------------------------------------------------------------------------
-void PennSusyFrame::ElectronContainer::init()
+void PennSusyFrame::ElectronContainer::init(bool is_data, bool is_af2)
 {
   m_el_rescaler = new PennSusyFrame::ElectronRescalerTool();
+
+  if (is_data) m_el_rescaler->setIsData();
+  else         m_el_rescaler->setIsMC();
+
+  if (is_af2) m_el_rescaler->setAf2();
+  else        m_el_rescaler->setFullSim();
+
+  m_el_rescaler->init();
 }
 
 // -----------------------------------------------------------------------------
@@ -128,9 +136,14 @@ PennSusyFrame::MuonContainer::~MuonContainer()
 }
 
 // ----------------------------------------------------------------------------
-void PennSusyFrame::MuonContainer::init()
+void PennSusyFrame::MuonContainer::init(bool is_data)
 {
   m_mu_rescaler = new PennSusyFrame::MuonRescalerTool();
+
+  if (is_data) m_mu_rescaler->setIsData();
+  else         m_mu_rescaler->setIsMC();
+
+  m_mu_rescaler->init();
 }
 
 // -----------------------------------------------------------------------------
@@ -234,9 +247,17 @@ PennSusyFrame::TauContainer::~TauContainer()
 }
 
 // ----------------------------------------------------------------------------
-void PennSusyFrame::TauContainer::init()
+void PennSusyFrame::TauContainer::init(bool is_data, bool is_af2)
 {
   m_tau_rescaler = new PennSusyFrame::TauRescalerTool();
+
+  if (is_data) m_tau_rescaler->setIsData();
+  else         m_tau_rescaler->setIsMC();
+
+  if (is_af2) m_tau_rescaler->setAf2();
+  else        m_tau_rescaler->setFullSim();
+
+  m_tau_rescaler->init();
 }
 
 // -----------------------------------------------------------------------------
@@ -332,9 +353,17 @@ PennSusyFrame::JetContainer::~JetContainer()
 }
 
 // ----------------------------------------------------------------------------
-void PennSusyFrame::JetContainer::init()
+void PennSusyFrame::JetContainer::init(bool is_data, bool is_af2)
 {
   m_jet_rescaler = new PennSusyFrame::JetRescalerTool();
+
+  if (is_data) m_jet_rescaler->setIsData();
+  else         m_jet_rescaler->setIsMC();
+
+  if (is_af2) m_jet_rescaler->setAf2();
+  else        m_jet_rescaler->setFullSim();
+
+  m_jet_rescaler->init();
 }
 
 // -----------------------------------------------------------------------------

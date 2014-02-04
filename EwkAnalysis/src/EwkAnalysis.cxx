@@ -65,6 +65,8 @@ PennSusyFrame::EwkAnalysis::~EwkAnalysis()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::prepareTools()
 {
+  PennSusyFrameCore::prepareTools();
+
   std::string base_dir = getenv("BASE_WORK_DIR");
   if (m_is_data) {
     // TODO make this configurable

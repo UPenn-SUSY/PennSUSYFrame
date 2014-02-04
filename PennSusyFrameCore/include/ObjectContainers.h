@@ -44,7 +44,7 @@ namespace PennSusyFrame
       ElectronContainer();
       ~ElectronContainer();
 
-      void init();
+      void init(bool is_data, bool is_af2);
       void updateWithMet(const PennSusyFrame::Met&);
       void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -73,7 +73,7 @@ namespace PennSusyFrame
       MuonContainer();
       ~MuonContainer();
 
-      void init();
+      void init(bool is_data);
       void updateWithMet(const PennSusyFrame::Met&);
       void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -102,7 +102,7 @@ namespace PennSusyFrame
       TauContainer();
       ~TauContainer();
 
-      void init();
+      void init(bool is_data, bool is_af2);
       void updateWithMet(const PennSusyFrame::Met&);
 
       void clear();
@@ -130,7 +130,7 @@ namespace PennSusyFrame
       JetContainer();
       ~JetContainer();
 
-      void init();
+      void init(bool is_data, bool is_af2);
       void updateWithMet(const PennSusyFrame::Met&);
 
       void clear();
