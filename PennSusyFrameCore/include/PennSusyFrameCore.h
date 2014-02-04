@@ -81,6 +81,7 @@ namespace PennSusyFrame
       PennSusyFrame::PileUpScaleFactorTool m_pile_up_sf_tool;
       PennSusyFrame::EgammaScaleFactorTool m_egamma_sf_tool;
       PennSusyFrame::MuonScaleFactorTool   m_muon_sf_tool;
+      PennSusyFrame::BTagScaleFactorTool   m_b_tag_sf_tool;
 
     private:
   };

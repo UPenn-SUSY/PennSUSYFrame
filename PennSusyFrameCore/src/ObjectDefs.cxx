@@ -742,6 +742,8 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setNegativeE(      reader->jet_AntiKt4LCTopo_NegativeE->at(m_particle_index));
   setLarQuality(     reader->jet_AntiKt4LCTopo_LArQuality->at(m_particle_index));
 
+  setFlavorTruthLabel( reader->jet_AntiKt4LCTopo_flavor_truth_label->at(m_particle_index));
+
   setMetStatusWord(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord->at(m_particle_index));
   setMetWet(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet->at(m_particle_index));
   setMetWpx(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx->at(m_particle_index));

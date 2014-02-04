@@ -1722,7 +1722,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // jet_AntiKt4LCTopo_flavor_weight_SV2 = 0;
   // jet_AntiKt4LCTopo_flavor_weight_SecondSoftMuonTagChi2 = 0;
   // jet_AntiKt4LCTopo_flavor_weight_SoftMuonTagChi2 = 0;
-  // jet_AntiKt4LCTopo_flavor_truth_label = 0;
+  jet_AntiKt4LCTopo_flavor_truth_label = 0;
   // jet_AntiKt4LCTopo_flavor_truth_dRminToB = 0;
   // jet_AntiKt4LCTopo_flavor_truth_dRminToC = 0;
   // jet_AntiKt4LCTopo_flavor_truth_dRminToT = 0;
@@ -5615,7 +5615,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_weight_SV2", &jet_AntiKt4LCTopo_flavor_weight_SV2, &b_jet_AntiKt4LCTopo_flavor_weight_SV2);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_weight_SecondSoftMuonTagChi2", &jet_AntiKt4LCTopo_flavor_weight_SecondSoftMuonTagChi2, &b_jet_AntiKt4LCTopo_flavor_weight_SecondSoftMuonTagChi2);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_weight_SoftMuonTagChi2", &jet_AntiKt4LCTopo_flavor_weight_SoftMuonTagChi2, &b_jet_AntiKt4LCTopo_flavor_weight_SoftMuonTagChi2);
-  // turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label, &b_jet_AntiKt4LCTopo_flavor_truth_label);
+  turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label, &b_jet_AntiKt4LCTopo_flavor_truth_label);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_dRminToB", &jet_AntiKt4LCTopo_flavor_truth_dRminToB, &b_jet_AntiKt4LCTopo_flavor_truth_dRminToB);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_dRminToC", &jet_AntiKt4LCTopo_flavor_truth_dRminToC, &b_jet_AntiKt4LCTopo_flavor_truth_dRminToC);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_dRminToT", &jet_AntiKt4LCTopo_flavor_truth_dRminToT, &b_jet_AntiKt4LCTopo_flavor_truth_dRminToT);

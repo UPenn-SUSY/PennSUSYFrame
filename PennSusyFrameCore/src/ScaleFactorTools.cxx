@@ -1,6 +1,7 @@
 #include "PennSusyFrameCore/include/ScaleFactorTools.h"
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "RootCore/PileupReweighting/PileupReweighting/TPileupReweighting.h"
+#include "RootCore/SUSYTools/SUSYTools/BTagCalib.h"
 
 // =============================================================================
 // -----------------------------------------------------------------------------
@@ -11,8 +12,7 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   m_mc_hist_name   = "MCPileupReweighting";
 
   // set data and mc pile up files
-  char *tmparea=getenv("ROOTCOREDIR");
-  std::string maindir = tmparea;
+  std::string maindir = getenv("ROOTCOREDIR");
   m_pile_up_data_file = maindir + "/../MultiLep/data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643_grl_v61.root";
   m_pile_up_mc_file   = maindir + "/../PileupReweighting/share/mc12a_defaults.prw.root";
 
@@ -60,11 +60,8 @@ double PennSusyFrame::PileUpScaleFactorTool::getPileupScaleFactor( const PennSus
 PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)
 {
   // get directory for SF files
-  std::string maindir = "";
-  char *tmparea=getenv("ROOTCOREDIR");
-  maindir = tmparea;
-  maindir = maindir + "/";
-  m_egamma_sf_dir = maindir + "../ElectronEfficiencyCorrection/data/";
+  std::string maindir = getenv("ROOTCOREDIR");
+  m_egamma_sf_dir = maindir + "/../ElectronEfficiencyCorrection/data/";
 
   // initialize reco sf
   m_reco_file_name = m_egamma_sf_dir + "efficiencySF.offline.RecoTrk.2012.8TeV.rel17p2.v04.root";
@@ -114,13 +111,8 @@ double PennSusyFrame::EgammaScaleFactorTool::getSF( const PennSusyFrame::Event& 
 PennSusyFrame::MuonScaleFactorTool::MuonScaleFactorTool() : m_muon_sf(0)
 {
   // get default path for muon SF directory. This comes from SUSYTools
-  std::string maindir = "";
-  char *tmparea=getenv("ROOTCOREDIR");
-  if (tmparea != NULL) {
-    maindir = tmparea;
-    maindir = maindir + "/";
-  }
-  m_muon_sf_dir = maindir + "../MuonEfficiencyCorrections/share/";
+  std::string maindir = getenv("ROOTCOREDIR");
+  m_muon_sf_dir = maindir + "/../MuonEfficiencyCorrections/share/";
 
   std::cout << "Muon efficiency corrections will be grabbed from: "
             << m_muon_sf_dir << "\n";
@@ -151,4 +143,61 @@ PennSusyFrame::MuonScaleFactorTool::~MuonScaleFactorTool()
 double PennSusyFrame::MuonScaleFactorTool::getSF(const PennSusyFrame::Muon* mu)
 {
   return m_muon_sf->scaleFactor(mu->getCharge(), *mu->getTlv());
+}
+
+// =============================================================================
+// -----------------------------------------------------------------------------
+PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(0)
+{
+  std::string root_core_dir = getenv("ROOTCOREDIR");
+  std::string base_work_dir = getenv("BASE_WORK_DIR");
+  m_calibration_file   = base_work_dir + "/data/BTagCalibration.env";
+  m_calibration_folder = root_core_dir + "/../SUSYTools/data/";
+
+  m_b_tag_calibration = new BTagCalib( "MV1"
+                                     , m_calibration_file
+                                     , m_calibration_folder
+                                     , "0_3511"
+                                     , false  // use_jvf
+                                     , 0.3511
+                                     );
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::BTagScaleFactorTool::~BTagScaleFactorTool()
+{
+  if (m_b_tag_calibration) delete m_b_tag_calibration;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getSF(const std::vector<PennSusyFrame::Jet*>* jets)
+{
+  // vectors to hold jet info for valid jets
+  std::vector<float> pt_btag;
+  std::vector<float> eta_btag;
+  std::vector<float> val_btag;
+  std::vector<int>   pdgid_btag;
+
+  size_t jet_term = jets->size();
+  for (size_t jet_it = 0; jet_it != jet_term; ++jet_it) {
+    float jet_pt = jets->at(jet_it)->getPt();
+    float jet_eta = jets->at(jet_it)->getEta();
+
+    // remove jets out of range for b-tagging
+    if (jet_pt < 20.e3 || fabs(jet_eta) > 2.4) continue;
+
+    pt_btag.push_back(jet_pt);
+    eta_btag.push_back(jet_eta);
+    val_btag.push_back(jets->at(jet_it)->getMv1());
+    pdgid_btag.push_back(jets->at(jet_it)->getFlavorTruthLabel());
+  }
+
+  // calculate b tag weight
+  std::pair<std::vector<float>, std::vector<float> > b_tag_weight;
+  b_tag_weight = m_b_tag_calibration->BTagCalibrationFunction( pt_btag
+                                                             , eta_btag
+                                                             , val_btag
+                                                             , pdgid_btag
+                                                             );
+  return b_tag_weight.first.at(0);
 }

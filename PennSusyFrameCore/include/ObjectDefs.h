@@ -604,6 +604,8 @@ namespace PennSusyFrame
       void setNegativeE(      double val) { m_negative_e        = val; }
       void setLarQuality(     double val) { m_lar_quality       = val; }
 
+      void setFlavorTruthLabel(int val) { m_flavor_truth_label = val; }
+
       void setIsBad(bool val) { m_is_bad = val; }
       void setMetStatusWord(const std::vector<unsigned int>& val) { m_met_status_word = val; }
       void setMetWet(const std::vector<float>& val) { m_met_wet = val; }
@@ -633,6 +635,8 @@ namespace PennSusyFrame
       double getAvgLarQf()        const { return m_avg_lar_qf; }
       double getNegativeE()       const { return m_negative_e; }
       double getLarQuality()      const { return m_lar_quality; }
+
+      int getFlavorTruthLabel() const { return m_flavor_truth_label; }
 
       bool getIsBad() const { return m_is_bad; }
       std::vector<unsigned int> getMetStatusWord() const { return m_met_status_word; }
@@ -674,6 +678,8 @@ namespace PennSusyFrame
       double m_avg_lar_qf;
       double m_negative_e;
       double m_lar_quality;
+
+      int m_flavor_truth_label;
 
       std::vector<unsigned int> m_met_status_word;
       std::vector<float>  m_met_wet;

@@ -9,6 +9,7 @@ namespace PennSusyFrame{
   class Event;
   class Electron;
   class Muon;
+  class Jet;
   class MCTruth;
 }
 
@@ -16,6 +17,8 @@ namespace Root
 {
   class TPileupReweighting;
 }
+
+class BTagCalib;
 
 // =============================================================================
 namespace PennSusyFrame
@@ -90,6 +93,24 @@ namespace PennSusyFrame
       // std::vector<double> m_muon_sf_int_lum;
       Analysis::AnalysisMuonConfigurableScaleFactors::Configuration m_configuration;
       Analysis::AnalysisMuonConfigurableScaleFactors* m_muon_sf;
+  };
+
+  // =============================================================================
+  class BTagScaleFactorTool
+  {
+    // -----------------------------------------------------------------------------
+    public:
+      BTagScaleFactorTool();
+      ~BTagScaleFactorTool();
+
+      double getSF(const std::vector<PennSusyFrame::Jet*>*);
+
+    // -----------------------------------------------------------------------------
+    private:
+      std::string m_calibration_file;
+      std::string m_calibration_folder;
+
+      BTagCalib* m_b_tag_calibration;
   };
 }
 

@@ -3092,7 +3092,7 @@ namespace PennSusyFrame
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_SV2;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_SecondSoftMuonTagChi2;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_weight_SoftMuonTagChi2;
-    // std::vector<int>     *jet_AntiKt4LCTopo_flavor_truth_label;
+    std::vector<int>     *jet_AntiKt4LCTopo_flavor_truth_label;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_truth_dRminToB;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_truth_dRminToC;
     // std::vector<float>   *jet_AntiKt4LCTopo_flavor_truth_dRminToT;
@@ -7036,7 +7036,7 @@ namespace PennSusyFrame
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_SV2;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_SecondSoftMuonTagChi2;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_weight_SoftMuonTagChi2;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_flavor_truth_label;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_flavor_truth_label;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_truth_dRminToB;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_truth_dRminToC;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_flavor_truth_dRminToT;   //!

@@ -463,8 +463,8 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set pile up weight
-    // TODO set pile up weight
-    m_pile_up_sf_tool.getPileupScaleFactor(m_event, m_mc_truth);
+    // TODO validate pile up weight
+    m_event_quantities.setPileUpSF(m_pile_up_sf_tool.getPileupScaleFactor(m_event, m_mc_truth));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set lepton SF
@@ -489,6 +489,11 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
     // TODO set trigger weight
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // set b tag weight
+    // TODO validate b tag weight
+    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
   }
 }
 
