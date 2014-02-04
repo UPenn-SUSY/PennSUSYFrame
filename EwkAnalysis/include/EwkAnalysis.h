@@ -91,6 +91,7 @@ namespace PennSusyFrame
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
 
+      EwkCutFlowTracker m_raw_cutflow_tracker;
       EwkCutFlowTracker m_cutflow_tracker;
 
       double m_sfos_mll_min;

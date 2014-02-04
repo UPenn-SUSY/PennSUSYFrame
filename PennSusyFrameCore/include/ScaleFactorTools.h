@@ -9,17 +9,48 @@ namespace PennSusyFrame{
   class Event;
   class Electron;
   class Muon;
+  class MCTruth;
+}
+
+namespace Root
+{
+  class TPileupReweighting;
 }
 
 // =============================================================================
 namespace PennSusyFrame
 {
   // =============================================================================
+  class PileUpScaleFactorTool
+  {
+    // -----------------------------------------------------------------------------
+    public:
+      PileUpScaleFactorTool();
+      ~PileUpScaleFactorTool();
+
+      double getPileupScaleFactor( const PennSusyFrame::Event&
+                                 , const PennSusyFrame::MCTruth&
+                                 );
+    // -----------------------------------------------------------------------------
+    private:
+      std::string m_data_hist_name;
+      std::string m_mc_hist_name;
+      std::string m_pile_up_data_file;
+      std::string m_pile_up_mc_file;
+
+      Root::TPileupReweighting* m_pile_up_reweight;
+  };
+  
+  // =============================================================================
   class EgammaScaleFactorTool
   {
     // -----------------------------------------------------------------------------
     public:
       EgammaScaleFactorTool();
+
+      // TODO move accessors to cxx file
+      void setFullSim() { m_is_af2 = false; }
+      void setAf2()     { m_is_af2 = true; }
 
       double getSF( const PennSusyFrame::Event&
                   , const PennSusyFrame::Electron*

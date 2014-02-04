@@ -225,7 +225,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 
   // Actually loop over events
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
-    if (jentry == 100) break;
+    // if (jentry == 100) break;
 
     // check progress in the progress bar
     progress_bar.checkProgress(jentry);
@@ -458,9 +458,16 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
   if (!m_is_data) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // set mc event weight
     m_event_quantities.setMcEventWeight(m_d3pd_reader->mc_event_weight);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // set pile up weight
+    // TODO set pile up weight
+    m_pile_up_sf_tool.getPileupScaleFactor(m_event, m_mc_truth);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // set lepton SF
     double lepton_sf = 1.;
 
     // TODO validate electron SF
@@ -478,6 +485,10 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     }
 
     m_event_quantities.setLeptonSF(lepton_sf);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // set trigger weight
+    // TODO set trigger weight
   }
 }
 

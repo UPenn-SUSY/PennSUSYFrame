@@ -1,9 +1,62 @@
 #include "PennSusyFrameCore/include/ScaleFactorTools.h"
 #include "PennSusyFrameCore/include/ObjectDefs.h"
+#include "RootCore/PileupReweighting/PileupReweighting/TPileupReweighting.h"
 
 // =============================================================================
 // -----------------------------------------------------------------------------
-// TODO set m_is_af2 correctly
+PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweight(0)
+{
+  // set data and mc histogram names
+  m_data_hist_name = "LumiMetaData";
+  m_mc_hist_name   = "MCPileupReweighting";
+
+  // set data and mc pile up files
+  char *tmparea=getenv("ROOTCOREDIR");
+  std::string maindir = tmparea;
+  m_pile_up_data_file = maindir + "/../MultiLep/data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643_grl_v61.root";
+  m_pile_up_mc_file   = maindir + "/../PileupReweighting/share/mc12a_defaults.prw.root";
+
+  std::cout << "initializing PileUpScaleFactorTool\n"
+            << "\tMC file: "   << m_pile_up_mc_file   << "\n"
+            << "\tData file: " << m_pile_up_data_file << "\n";
+
+  // set up pile up reweight tool
+  m_pile_up_reweight = new Root::TPileupReweighting("TPileupReweighting");
+  m_pile_up_reweight->SetDefaultChannel(0);
+  m_pile_up_reweight->AddConfigFile(m_pile_up_mc_file);
+
+  m_pile_up_reweight->SetDataScaleFactors(1/1.09);
+  m_pile_up_reweight->AddLumiCalcFile(m_pile_up_data_file);
+
+  int is_good = m_pile_up_reweight->Initialize();
+  if (is_good != 0) {
+    std::cout << "FATAL: Problem in PileUp initialization::isGood = "
+              << is_good << "\n";
+  }
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::PileUpScaleFactorTool::~PileUpScaleFactorTool()
+{
+  if (m_pile_up_reweight)
+    delete m_pile_up_reweight;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::PileUpScaleFactorTool::getPileupScaleFactor( const PennSusyFrame::Event& event
+                                                                 , const PennSusyFrame::MCTruth& mc_truth
+                                                                 )
+{
+  float pile_up_sf = m_pile_up_reweight->GetCombinedWeight( event.getRunNumber()
+                                                          , mc_truth.getChannelNumber()
+                                                          , event.getAverageIntPerXing()
+                                                          );
+  if (pile_up_sf < 0.) pile_up_sf = 0.;
+  return pile_up_sf;
+}
+
+// =============================================================================
+// -----------------------------------------------------------------------------
 PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)
 {
   // get directory for SF files

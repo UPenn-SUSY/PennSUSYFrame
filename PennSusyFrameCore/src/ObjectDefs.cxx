@@ -85,8 +85,9 @@ void PennSusyFrame::Event::print() const
 PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
                                                             , m_mt2(0.)
                                                             , m_mc_event_weight(1.)
+                                                            , m_pile_up_sf(1.)
                                                             , m_lepton_sf(1.)
-                                                            , m_trigger_sf(1.)
+                                                            , m_trigger_weight(1.)
                                                             , m_b_tag_sf(1.)
 {}
 
@@ -102,7 +103,7 @@ void PennSusyFrame::EventLevelQuantities::print() const
             << "\n"
             << "\tmc event weight: " << m_mc_event_weight
             << "\tlepton sf: " << m_lepton_sf
-            << "\ttrigger sf: " << m_trigger_sf
+            << "\ttrigger sf: " << m_trigger_weight
             << "\tb tag sf: " << m_b_tag_sf
             << "\n";
 }

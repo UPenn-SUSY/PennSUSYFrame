@@ -78,6 +78,7 @@ namespace PennSusyFrame
 
       PennSusyFrame::ObjectCleaning m_object_cleaning;
 
+      PennSusyFrame::PileUpScaleFactorTool m_pile_up_sf_tool;
       PennSusyFrame::EgammaScaleFactorTool m_egamma_sf_tool;
       PennSusyFrame::MuonScaleFactorTool   m_muon_sf_tool;
 

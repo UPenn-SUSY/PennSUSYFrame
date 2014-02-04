@@ -59,14 +59,11 @@ namespace PennSusyFrame
       void setCoreFlags(unsigned int val)   { m_core_flags = val; }
       void setLarError(unsigned int val)    { m_lar_error = val; }
       void setTileError(unsigned int val)   { m_tile_error = val; }
+
       void setFlavorChannel(FLAVOR_CHANNEL val) { m_flavor_channel = val; }
       void setSignChannel(SIGN_CHANNEL val) { m_sign_channel = val; }
       void setPhaseSpace(PHASE_SPACE val)   { m_phase_channel = val; }
       void setTriggerPhase(TRIG_PHASE val)  { m_trig_phase_channel = val; }
-      // void setMetEt(double val) { m_met_et = val; }
-      // void setMetPhi(double val) { m_met_phi = val; }
-      // void setMetRel(double val) { m_met_rel = val; }
-      // void setMt2(double val) { m_mt2 = val; }
 
       // TODO move accessors to cxx file
       bool getIsData() const { return m_is_data; }
@@ -83,10 +80,6 @@ namespace PennSusyFrame
       SIGN_CHANNEL getSignChannel() const { return m_sign_channel; }
       PHASE_SPACE getPhaseSpace() const { return m_phase_channel; }
       TRIG_PHASE getTriggerPhase() const { return m_trig_phase_channel; }
-      // double getMetEt() const { return m_met_et; }
-      // double getMetPhi() const { return m_met_phi; }
-      // double getMetRel() const { return m_met_rel; }
-      // double getMt2() const { return m_mt2; }
 
       void print() const;
 
@@ -127,19 +120,21 @@ namespace PennSusyFrame
       void init();
 
       // TODO move accessors to cxx file
-      void setMll(double val) { m_mll = val; }
-      void setMt2(double val) { m_mt2 = val; }
+      void setMll(double val)           { m_mll = val; }
+      void setMt2(double val)           { m_mt2 = val; }
       void setMcEventWeight(double val) { m_mc_event_weight = val; }
-      void setLeptonSF(double val) { m_lepton_sf = val; }
-      void setTriggerSF(double val) { m_trigger_sf = val; }
-      void setBTagSF(double val) { m_b_tag_sf = val; }
+      void setPileUpSF(double val)      { m_pile_up_sf = val; }
+      void setLeptonSF(double val)      { m_lepton_sf = val; }
+      void setTriggerWeight(double val) { m_trigger_weight = val; }
+      void setBTagSF(double val)        { m_b_tag_sf = val; }
 
       // TODO move accessors to cxx file
       double getMll()           const { return m_mll; }
       double getMt2()           const { return m_mt2; }
       double getMcEventWeight() const { return m_mc_event_weight; }
+      double getPileUpSF()      const { return m_pile_up_sf; }
       double getLeptonSF()      const { return m_lepton_sf; }
-      double getTriggerSF()     const { return m_trigger_sf; }
+      double getTriggerWeight() const { return m_trigger_weight; }
       double getBTagSF()        const { return m_b_tag_sf; }
 
       void print() const;
@@ -148,8 +143,9 @@ namespace PennSusyFrame
       double m_mll;
       double m_mt2;
       double m_mc_event_weight;
+      double m_pile_up_sf;
       double m_lepton_sf;
-      double m_trigger_sf;
+      double m_trigger_weight;
       double m_b_tag_sf;
   };
 

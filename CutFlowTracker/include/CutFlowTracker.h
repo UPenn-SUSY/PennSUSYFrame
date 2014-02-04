@@ -13,7 +13,7 @@ class CutFlowTracker
     CutFlowTracker();
     virtual ~CutFlowTracker();
 
-    virtual void fillHist(int channel, int bin, float weight);
+    virtual void fillHist(int channel, int bin, float weight = 1.);
 
     virtual void printToScreen();
     virtual void printLine(int bin);
