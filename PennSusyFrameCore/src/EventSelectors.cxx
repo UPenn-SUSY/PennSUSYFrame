@@ -20,7 +20,8 @@ void PennSusyFrame::GrlTool::init(const std::string& grl_file_name, bool do_grl)
   if (!m_do_grl) return;
 
   m_grl_file_name = grl_file_name;
-  Root::TGoodRunsListReader grl_reader(m_grl_file_name.c_str());
+  Root::TGoodRunsListReader grl_reader;
+  grl_reader.AddXMLFile(m_grl_file_name);
 
   if (!grl_reader.Interpret()) {
     std::cout << "ERROR!!! Good Runs List could not be interpreted: "
