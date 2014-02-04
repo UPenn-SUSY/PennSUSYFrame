@@ -39,17 +39,10 @@ namespace PennSusyFrame
   class ElectronRescalerTool
   {
     public:
-      ElectronRescalerTool();
+      ElectronRescalerTool(bool is_data, bool is_af2);
       ~ElectronRescalerTool();
 
       void init();
-
-      // TODO move accessor to cxx file
-      void setIsData() { m_is_data = true; }
-      void setIsMC()   { m_is_data = false; }
-
-      void setFullSim() { m_is_af2 = false; }
-      void setAf2()     { m_is_af2 = true; }
 
       double getRescaledE( const PennSusyFrame::Electron*);
       double getRescaledEt(const PennSusyFrame::Electron*);
@@ -71,14 +64,10 @@ namespace PennSusyFrame
   class MuonRescalerTool
   {
     public:
-      MuonRescalerTool();
+      MuonRescalerTool(bool is_data);
       ~MuonRescalerTool();
 
       void init();
-
-      // TODO move accessor to cxx file
-      void setIsData() { m_is_data = true; }
-      void setIsMC()   { m_is_data = false; }
 
       double getSmearedPt(const PennSusyFrame::Muon*);
 
@@ -95,17 +84,10 @@ namespace PennSusyFrame
   class JetRescalerTool
   {
     public:
-      JetRescalerTool();
+      JetRescalerTool(bool is_data, bool is_af2);
       ~JetRescalerTool();
 
       void init();
-
-      // TODO move accessor to cxx file
-      void setIsData() { m_is_data = true; }
-      void setIsMC()   { m_is_data = false; }
-
-      void setFullSim() { m_is_af2 = false; }
-      void setAf2()     { m_is_af2 = true; }
 
       TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
                                      , const PennSusyFrame::Event*
@@ -124,23 +106,15 @@ namespace PennSusyFrame
   class TauRescalerTool
   {
     public:
-      TauRescalerTool();
+      TauRescalerTool(bool is_data, bool is_af2);
       ~TauRescalerTool();
 
       void init();
-
-      // TODO move accessor to cxx file
-      void setIsData() { m_is_data = true; }
-      void setIsMC()   { m_is_data = false; }
-
-      void setFullSim() { m_is_af2 = false; }
-      void setAf2()     { m_is_af2 = true; }
 
     private:
       bool m_is_data;
       bool m_is_af2;
   };
-
 }
 
 #endif

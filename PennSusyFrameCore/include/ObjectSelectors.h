@@ -81,7 +81,6 @@ namespace PennSusyFrame
       double m_min_z0_sin_theta;
       double m_max_z0_sin_theta;
 
-      // TODO rename these variables
       double m_min_ptcone;
       double m_max_ptcone;
 
@@ -161,11 +160,9 @@ namespace PennSusyFrame
       double m_min_q_over_p_ratio;
       double m_max_q_over_p_ratio;
 
-      // TODO rename these variables
       double m_min_ptcone;
       double m_max_ptcone;
 
-      // TODO rename these variables
       double m_min_etcone;
       double m_max_etcone;
   };

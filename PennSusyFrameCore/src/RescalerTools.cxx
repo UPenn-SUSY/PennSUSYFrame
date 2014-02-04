@@ -12,14 +12,14 @@
 // =============================================================================
 // = ElectronRescalerTool
 // =============================================================================
-// TODO set m_is_af2 correctly
-// TODO set m_is_data correctly
 // TODO set m_systematics correctly
-PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_data(false)
-                                                            , m_is_af2(false)
-                                                            , m_systematics(0)
-                                                            , m_e_rescale(0)
-{ }
+PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool(bool is_data, bool is_af2) : m_is_data(is_data)
+                                                                                     , m_is_af2(is_af2)
+                                                                                     , m_systematics(0)
+                                                                                     , m_e_rescale(0)
+{
+  init();
+}
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::ElectronRescalerTool::~ElectronRescalerTool()
@@ -94,10 +94,11 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledEt(const PennSusyFrame::E
 // =============================================================================
 // = MuonRescalerTool
 // =============================================================================
-// TODO set m_is_data correctly
-PennSusyFrame::MuonRescalerTool::MuonRescalerTool() : m_is_data(false)
-                                                    , m_smearing_function("")
-{ }
+PennSusyFrame::MuonRescalerTool::MuonRescalerTool(bool is_data) : m_is_data(is_data)
+                                                                , m_smearing_function("")
+{
+  init();
+}
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::MuonRescalerTool::~MuonRescalerTool()
@@ -200,10 +201,12 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
 // =============================================================================
 // = JetRescalerTool
 // =============================================================================
-PennSusyFrame::JetRescalerTool::JetRescalerTool() : m_is_data(false)
-                                                  , m_is_af2(false)
-                                                  , m_jet_calibration(0)
-{ }
+PennSusyFrame::JetRescalerTool::JetRescalerTool(bool is_data, bool is_af2) : m_is_data(is_data)
+                                                                           , m_is_af2(is_af2)
+                                                                           , m_jet_calibration(0)
+{
+  init();
+}
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::JetRescalerTool::~JetRescalerTool()
@@ -264,12 +267,10 @@ TLorentzVector PennSusyFrame::JetRescalerTool::getCalibratedTlv( const PennSusyF
 // =============================================================================
 // = TauRescalerTool
 // =============================================================================
-// TODO set m_is_data correctly
-// TODO set m_is_af2 correctly
-PennSusyFrame::TauRescalerTool::TauRescalerTool() : m_is_data(false)
-                                                  , m_is_af2(false)
+PennSusyFrame::TauRescalerTool::TauRescalerTool(bool is_data, bool is_af2) : m_is_data(is_data)
+                                                                           , m_is_af2(is_af2)
 {
-  // TODO initialize TauRescalerTool
+  init();
 }
 
 // -----------------------------------------------------------------------------
@@ -279,4 +280,6 @@ PennSusyFrame::TauRescalerTool::~TauRescalerTool()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::TauRescalerTool::init()
-{}
+{
+  // TODO initialize TauRescalerTool
+}
