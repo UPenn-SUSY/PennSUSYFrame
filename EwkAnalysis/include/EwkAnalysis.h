@@ -8,6 +8,7 @@
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 #include "PennSusyFrameCore/include/EventSelectors.h"
 #include "EwkAnalysis/include/EwkCutFlowTracker.h"
+#include "EwkAnalysis/include/EwkChargeFlipTool.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -92,6 +93,8 @@ namespace PennSusyFrame
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
+
+      PennSusyFrame::ChargeFlipTool m_charge_flip_tool;
 
       EwkCutFlowTracker m_raw_cutflow_tracker;
       EwkCutFlowTracker m_cutflow_tracker;
