@@ -33,10 +33,16 @@ namespace PennSusyFrame
       virtual void     Loop();
       virtual Bool_t   Notify();
 
-      virtual void prepareSelection();
+      virtual void prepareTools();
 
-      virtual void clearObjects();
-      virtual void constructObjects();
+      // TODO move accessor to cxx file
+      virtual void setIsData() { m_is_data = true; }
+      virtual void setIsMC()   { m_is_data = false; }
+
+      virtual void setFullSim() { m_is_af2 = false; }
+      virtual void setAf2() { m_is_af2 = true; }
+
+      virtual void prepareSelection();
 
       virtual void beginRun();
       virtual void processEvent();
@@ -47,6 +53,9 @@ namespace PennSusyFrame
       virtual FLAVOR_CHANNEL findFlavorChannel();
       virtual SIGN_CHANNEL   findSignCannel();
 
+      virtual void clearObjects();
+      virtual void constructObjects();
+
       virtual void configureTnt( std::string out_file_name
                                , std::string out_tree_name
                                );
@@ -54,6 +63,7 @@ namespace PennSusyFrame
       virtual void writeTnt();
 
       bool m_is_data;
+      bool m_is_af2;
       double m_event_weight;
 
       PennSusyFrame::D3PDReader* m_d3pd_reader;

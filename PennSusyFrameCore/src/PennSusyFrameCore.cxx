@@ -18,9 +18,8 @@
 #include "ProgressBar/include/ProgressBar.h"
 
 // -----------------------------------------------------------------------------
-// PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : fChain(0)
-// TODO set m_is_data correctly
-PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_is_data(false)
+PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_is_data(true)
+                                                                 , m_is_af2(false)
                                                                  , m_event_weight(1.)
                                                                  , m_d3pd_reader(0)
 {
@@ -85,6 +84,11 @@ Bool_t PennSusyFrame::PennSusyFrameCore::Notify()
   // user if needed. The return value is currently not used.
 
   return kTRUE;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::prepareTools()
+{
 }
 
 // -----------------------------------------------------------------------------
@@ -245,6 +249,22 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   // call finalizeRun() to finish run - i.e. write to file, etc.
   finalizeRun();
 }
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::beginRun()
+{}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::processEvent()
+{ }
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::finalizeEvent()
+{ }
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::PennSusyFrameCore::finalizeRun()
+{}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::clearObjects()
@@ -488,7 +508,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
-    // TODO set trigger weight
+    // TODO validate trigger weight
     m_event_quantities.setTriggerWeight(m_trigger_weight_tool.getWeight( m_event.getFlavorChannel()
                                                                        , m_electrons.getCollection(EL_GOOD)
                                                                        , m_muons.getCollection(MU_GOOD)
@@ -504,22 +524,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
   }
 }
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::PennSusyFrameCore::beginRun()
-{}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::PennSusyFrameCore::processEvent()
-{ }
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::PennSusyFrameCore::finalizeEvent()
-{ }
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::PennSusyFrameCore::finalizeRun()
-{}
 
 // -----------------------------------------------------------------------------
 FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel()

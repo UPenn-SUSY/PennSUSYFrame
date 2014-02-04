@@ -53,14 +53,6 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
                                                      , m_num_light_jets_max(-1)
 
 {
-  std::string base_dir = getenv("ROOTCOREDIR");
-  if (m_is_data) {
-    // TODO make this configurable
-    m_grl.init( base_dir
-              + "data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
-              );
-  }
-
   // set defaults
   setSFOSMllCut(20.e3, -1);
   setNumLightJetsCut(1, -1);
@@ -69,6 +61,18 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkAnalysis::~EwkAnalysis()
 {}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EwkAnalysis::prepareTools()
+{
+  std::string base_dir = getenv("BASE_WORK_DIR");
+  if (m_is_data) {
+    // TODO make this configurable
+    m_grl.init( base_dir
+              + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
+              );
+  }
+}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::beginRun()
@@ -94,7 +98,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // set pile up weight
-  // TODO implement pile up weight
+  // TODO validate pile up weight
   m_event_weight *= m_event_quantities.getPileUpSF();
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PILEUP_WEIGHT);
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PILEUP_WEIGHT, m_event_weight);

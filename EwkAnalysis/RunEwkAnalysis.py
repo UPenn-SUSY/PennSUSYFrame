@@ -29,6 +29,9 @@ for fl in file_list:
 
 # ==============================================================================
 ewa = ROOT.PennSusyFrame.EwkAnalysis(t)
+ewa.setIsMC()
+ewa.setFullSim()
+ewa.prepareTools()
 ewa.Loop()
 
 # ==============================================================================

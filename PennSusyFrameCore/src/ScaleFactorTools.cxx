@@ -15,7 +15,7 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   // set data and mc pile up files
   std::string maindir = getenv("ROOTCOREDIR");
   m_pile_up_data_file = maindir + "/../MultiLep/data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643_grl_v61.root";
-  m_pile_up_mc_file   = maindir + "/../PileupReweighting/share/mc12a_defaults.prw.root";
+  m_pile_up_mc_file   = maindir + "/../PileupReweighting/share/mc12ab_defaults.prw.root";
 
   std::cout << "initializing PileUpScaleFactorTool\n"
             << "\tMC file: "   << m_pile_up_mc_file   << "\n"
@@ -26,7 +26,7 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   m_pile_up_reweight->SetDefaultChannel(0);
   m_pile_up_reweight->AddConfigFile(m_pile_up_mc_file);
 
-  m_pile_up_reweight->SetDataScaleFactors(1/1.09);
+  m_pile_up_reweight->SetDataScaleFactors(1/1.11);
   m_pile_up_reweight->AddLumiCalcFile(m_pile_up_data_file);
 
   int is_good = m_pile_up_reweight->Initialize();
@@ -158,7 +158,7 @@ PennSusyFrame::TriggerWeightTool::TriggerWeightTool() : m_trigger_reweight(0)
   m_trigger_reweight->setDbg(1);
   m_trigger_reweight->initialize( m_reweight_directory
                                 , m_reweight_period
-                                , false
+                                , false // use reweight utils
                                 );
   m_trigger_reweight->setDbg(0);
 }

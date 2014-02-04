@@ -42,6 +42,13 @@ namespace PennSusyFrame
       ElectronRescalerTool();
       ~ElectronRescalerTool();
 
+      // TODO move accessor to cxx file
+      virtual void setIsData() { m_is_data = true; }
+      virtual void setIsMC()   { m_is_data = false; }
+
+      virtual void setFullSim() { m_is_af2 = false; }
+      virtual void setAf2()     { m_is_af2 = true; }
+
       double getRescaledE( const PennSusyFrame::Electron*);
       double getRescaledEt(const PennSusyFrame::Electron*);
 
@@ -65,6 +72,10 @@ namespace PennSusyFrame
       MuonRescalerTool();
       ~MuonRescalerTool();
 
+      // TODO move accessor to cxx file
+      virtual void setIsData() { m_is_data = true; }
+      virtual void setIsMC()   { m_is_data = false; }
+
       double getSmearedPt(const PennSusyFrame::Muon*);
 
     private:
@@ -82,6 +93,13 @@ namespace PennSusyFrame
     public:
       JetRescalerTool();
       ~JetRescalerTool();
+
+      // TODO move accessor to cxx file
+      virtual void setIsData() { m_is_data = true; }
+      virtual void setIsMC()   { m_is_data = false; }
+
+      virtual void setFullSim() { m_is_af2 = false; }
+      virtual void setAf2()     { m_is_af2 = true; }
 
       TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
                                      , const PennSusyFrame::Event*
@@ -103,8 +121,14 @@ namespace PennSusyFrame
       TauRescalerTool();
       ~TauRescalerTool();
 
-    private:
+      // TODO move accessor to cxx file
+      virtual void setIsData() { m_is_data = true; }
+      virtual void setIsMC()   { m_is_data = false; }
 
+      virtual void setFullSim() { m_is_af2 = false; }
+      virtual void setAf2()     { m_is_af2 = true; }
+
+    private:
       bool m_is_data;
       bool m_is_af2;
   };

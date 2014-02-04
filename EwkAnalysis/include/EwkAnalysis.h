@@ -19,6 +19,8 @@ namespace PennSusyFrame
       EwkAnalysis(TTree *tree=0);
       virtual ~EwkAnalysis();
 
+      virtual void prepareTools();
+
       virtual void beginRun();
       virtual void processEvent();
       virtual void finalizeEvent();

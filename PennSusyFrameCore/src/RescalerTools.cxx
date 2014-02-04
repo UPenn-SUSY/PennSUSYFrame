@@ -19,23 +19,13 @@ PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool() : m_is_data(false)
                                                             , m_is_af2(false)
                                                             , m_systematics(0)
 {
-  std::cout << "ElectronRescalerTool::ElectronRescalerTool()\n";
   // directory with energy rescale data
-  // get default path for muon SF directory.  This comes from SUSYTools
-  std::string maindir = "";
-  char *tmparea=getenv("ROOTCOREDIR");
-  if (tmparea != NULL) {
-    maindir = tmparea;
-    maindir = maindir + "/";
-  }
-  std::string energy_rescale_data =
-      maindir + "/../egammaAnalysisUtils/share/EnergyRescalerData.root";
+  // get default path for egamma SF directory.  This comes from SUSYTools
+  std::string root_core_dir = getenv("ROOTCOREDIR");
+  std::string energy_rescale_data = root_core_dir + "/../egammaAnalysisUtils/share/EnergyRescalerData.root";
   std::cout << "initializing ElectronRescalerTool -- energy_rescale_data: " << energy_rescale_data << "\n";
 
-  // m_e_rescale = new egRescaler::EnergyRescalerUpgrade();
-  // m_e_rescale->Init(energy_rescale_data, "2012", "es2012");;
   m_e_rescale = new egRescaler::EnergyRescalerUpgrade(energy_rescale_data, "2012", "es2012");
-  std::cout << "end ElectronRescalerTool::ElectronRescalerTool()\n";
 }
 
 PennSusyFrame::ElectronRescalerTool::~ElectronRescalerTool()
@@ -54,13 +44,6 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledE( const PennSusyFrame::E
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (!m_is_data) {
-    // // Electron energy scale uncertainty
-    // el_E_corrected = m_e_rescale->applyEnergyCorrection( el_cl_eta
-    //                                                    , el_E_uncorrected
-    //                                                    , egRescaler::EnergyRescalerUpgrade::Electron
-    //                                                    , egRescaler::EnergyRescalerUpgrade::Nominal
-    //                                                    );
-
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Do energy smearing in MC
     int seed = static_cast<int>(1.e+5*fabs(el_cl_phi));
@@ -87,11 +70,6 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledE( const PennSusyFrame::E
                                                        , egRescaler::EnergyRescalerUpgrade::Nominal
                                                        );
   }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // std::cout << "Original energy: " << el_E_uncorrected
-  //           << " corrected energy: "<< el_E_corrected
-  //           << SLogger::endmsg;
 
   return el_E_corrected;
 }

@@ -102,13 +102,6 @@ namespace PennSusyFrame
       SIGN_CHANNEL m_sign_channel;
       PHASE_SPACE m_phase_channel;
       TRIG_PHASE m_trig_phase_channel;
-
-      // double m_met_et;
-      // double m_met_phi;
-      // double m_met_rel;
-
-      // TODO set mt2 in event object
-      // double m_mt2;
   };
 
   // =============================================================================
