@@ -489,6 +489,14 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
     // TODO set trigger weight
+    m_event_quantities.setTriggerWeight(m_trigger_weight_tool.getWeight( m_event.getFlavorChannel()
+                                                                       , m_electrons.getCollection(EL_GOOD)
+                                                                       , m_muons.getCollection(MU_GOOD)
+                                                                       , m_jets.getCollection(JET_GOOD)
+                                                                       , m_met
+                                                                       , m_vertices.getCollection(VERTEX_GOOD)
+                                                                       )
+                                       );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight

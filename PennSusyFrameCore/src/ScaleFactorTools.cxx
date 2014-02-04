@@ -2,6 +2,7 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "RootCore/PileupReweighting/PileupReweighting/TPileupReweighting.h"
 #include "RootCore/SUSYTools/SUSYTools/BTagCalib.h"
+#include "RootCore/DGTriggerReweight/DGTriggerReweight/triggerReweight2Lep.h"
 
 // =============================================================================
 // -----------------------------------------------------------------------------
@@ -143,6 +144,94 @@ PennSusyFrame::MuonScaleFactorTool::~MuonScaleFactorTool()
 double PennSusyFrame::MuonScaleFactorTool::getSF(const PennSusyFrame::Muon* mu)
 {
   return m_muon_sf->scaleFactor(mu->getCharge(), *mu->getTlv());
+}
+
+// =============================================================================
+// -----------------------------------------------------------------------------
+PennSusyFrame::TriggerWeightTool::TriggerWeightTool() : m_trigger_reweight(0)
+{
+  std::string root_core_dir = getenv("ROOTCOREDIR");
+  m_reweight_directory = root_core_dir + "/../DGTriggerReweight/data/";
+  m_reweight_period = "Moriond";
+
+  m_trigger_reweight = new triggerReweight2Lep();
+  m_trigger_reweight->setDbg(1);
+  m_trigger_reweight->initialize( m_reweight_directory
+                                , m_reweight_period
+                                , false
+                                );
+  m_trigger_reweight->setDbg(0);
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::TriggerWeightTool::~TriggerWeightTool()
+{
+  if (m_trigger_reweight) delete m_trigger_reweight;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::TriggerWeightTool::getWeight( FLAVOR_CHANNEL flavor_channel
+                                                  , const std::vector<PennSusyFrame::Electron*>* el
+                                                  , const std::vector<PennSusyFrame::Muon*>* mu
+                                                  , const std::vector<PennSusyFrame::Jet*>* // jet
+                                                  , const PennSusyFrame::Met& met
+                                                  , const std::vector<PennSusyFrame::Vertex*>* vertices
+    )
+{
+  double trigger_weight = 1.;
+
+  size_t num_vert = vertices->size();
+  // size_t num_jets = jet->size();
+
+  if (flavor_channel == FLAVOR_EE) {
+    double el_pt_0 = el->at(0)->getPt();
+    double el_pt_1 = el->at(1)->getPt();
+
+    double el_eta_0 = el->at(0)->getEta();
+    double el_eta_1 = el->at(1)->getEta();
+
+    trigger_weight = m_trigger_reweight->triggerReweightEE( el_pt_0, el_eta_0
+                                                          , el_pt_1, el_eta_1
+                                                          );
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    double mu_pt_0 = mu->at(0)->getPt();
+    double mu_pt_1 = mu->at(1)->getPt();
+
+    double mu_eta_0 = mu->at(0)->getEta();
+    double mu_eta_1 = mu->at(1)->getEta();
+
+    double mu_phi_0 = mu->at(0)->getPhi();
+    double mu_phi_1 = mu->at(1)->getPhi();
+
+    int mu_is_comb_0 = mu->at(0)->getIsCombined();
+    int mu_is_comb_1 = mu->at(1)->getIsCombined();
+
+    trigger_weight = m_trigger_reweight->triggerReweightMM( mu_pt_0, mu_eta_0, mu_phi_0, mu_is_comb_0
+                                                          , mu_pt_1, mu_eta_1, mu_phi_1, mu_is_comb_1
+                                                          , num_vert
+                                                          , met.getMetEt()
+                                                          , 0
+                                                          , false
+                                                          );
+  }
+  else if (flavor_channel == FLAVOR_EM) {
+    double el_pt = el->at(0)->getPt();
+    double mu_pt = mu->at(0)->getPt();
+
+    double el_eta = el->at(0)->getEta();
+    double mu_eta = mu->at(0)->getEta();
+
+    double mu_phi = mu->at(0)->getPhi();
+    int mu_isComb = mu->at(0)->getIsCombined();
+
+    trigger_weight = m_trigger_reweight->triggerReweightEMU( el_pt, el_eta
+                                                           , mu_pt, mu_eta, mu_phi, mu_isComb
+                                                           , 0, num_vert
+                                                           );
+  }
+
+  return trigger_weight;
 }
 
 // =============================================================================

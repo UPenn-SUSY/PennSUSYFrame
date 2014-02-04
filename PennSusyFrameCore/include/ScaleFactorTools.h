@@ -4,6 +4,8 @@
 #include "RootCore/ElectronEfficiencyCorrection/ElectronEfficiencyCorrection/TElectronEfficiencyCorrectionTool.h"
 #include "RootCore/MuonEfficiencyCorrections/MuonEfficiencyCorrections/AnalysisMuonConfigurableScaleFactors.h"
 
+#include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
+
 // =============================================================================
 namespace PennSusyFrame{
   class Event;
@@ -11,6 +13,8 @@ namespace PennSusyFrame{
   class Muon;
   class Jet;
   class MCTruth;
+  class Vertex;
+  class Met;
 }
 
 namespace Root
@@ -19,6 +23,7 @@ namespace Root
 }
 
 class BTagCalib;
+class triggerReweight2Lep;
 
 // =============================================================================
 namespace PennSusyFrame
@@ -93,6 +98,30 @@ namespace PennSusyFrame
       // std::vector<double> m_muon_sf_int_lum;
       Analysis::AnalysisMuonConfigurableScaleFactors::Configuration m_configuration;
       Analysis::AnalysisMuonConfigurableScaleFactors* m_muon_sf;
+  };
+
+  // =============================================================================
+  class TriggerWeightTool
+  {
+    // -----------------------------------------------------------------------------
+    public:
+      TriggerWeightTool();
+      ~TriggerWeightTool();
+
+      double getWeight( FLAVOR_CHANNEL
+                      , const std::vector<PennSusyFrame::Electron*>*
+                      , const std::vector<PennSusyFrame::Muon*>*
+                      , const std::vector<PennSusyFrame::Jet*>*
+                      , const PennSusyFrame::Met&
+                      , const std::vector<PennSusyFrame::Vertex*>*
+                      );
+
+    // -----------------------------------------------------------------------------
+    private:
+      triggerReweight2Lep* m_trigger_reweight;
+
+      std::string m_reweight_directory;
+      std::string m_reweight_period;
   };
 
   // =============================================================================
