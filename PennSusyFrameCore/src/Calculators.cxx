@@ -29,6 +29,28 @@ double PennSusyFrame::getMll( FLAVOR_CHANNEL flavor_channel
 }
 
 // -----------------------------------------------------------------------------
+// ptll calculator
+double PennSusyFrame::getPtll( FLAVOR_CHANNEL flavor_channel
+                             , const std::vector<PennSusyFrame::Electron*>* el
+                             , const std::vector<PennSusyFrame::Muon*>* mu
+                             )
+{
+  double ptll = 0.;
+
+  if (flavor_channel == FLAVOR_EE) {
+    ptll = calcPtll(el->at(0), el->at(1));
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    ptll = calcPtll(mu->at(0), mu->at(1));
+  }
+  else if (flavor_channel == FLAVOR_EM) {
+    ptll = calcPtll(el->at(0), mu->at(0));
+  }
+
+  return ptll;
+}
+
+// -----------------------------------------------------------------------------
 // mt2 calculator
 double PennSusyFrame::getMt2( FLAVOR_CHANNEL flavor_channel
                             , const PennSusyFrame::Met* met
@@ -100,4 +122,19 @@ double PennSusyFrame::calcDphi(double phi_0, double phi_1) {
   double dphi = fabs(TVector2::Phi_mpi_pi(phi_0 - phi_1));
 
   return dphi;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::getEmmaMt( FLAVOR_CHANNEL flavor_channel
+                               , const std::vector<PennSusyFrame::Electron*>* el
+                               , const std::vector<PennSusyFrame::Muon*>* mu
+                               )
+{
+  if (flavor_channel == FLAVOR_NONE)
+    return 0.;
+
+  return ( std::sqrt( std::pow(getMll( flavor_channel, el, mu), 2)
+                    + std::pow(getPtll(flavor_channel, el, mu), 2)
+                    )
+         );
 }

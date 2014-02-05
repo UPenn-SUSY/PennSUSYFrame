@@ -472,21 +472,31 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   m_event.setSignChannel(findSignCannel());
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  m_event_quantities.setMll(PennSusyFrame::getMll( m_event.getFlavorChannel()
-                                                 , m_electrons.getCollection(EL_GOOD)
-                                                 , m_muons.getCollection(MU_GOOD)
-                                                 )
+  m_event_quantities.setMll( PennSusyFrame::getMll( m_event.getFlavorChannel()
+                                                  , m_electrons.getCollection(EL_GOOD)
+                                                  , m_muons.getCollection(MU_GOOD)
+                                                  )
                            );
 
-  m_event_quantities.setMt2(PennSusyFrame::getMt2( m_event.getFlavorChannel()
-                                                 , &m_met
-                                                 , m_electrons.getCollection(EL_GOOD)
-                                                 , m_muons.getCollection(MU_GOOD)
-                                                 )
+  m_event_quantities.setPtll( PennSusyFrame::getPtll( m_event.getFlavorChannel()
+                                                    , m_electrons.getCollection(EL_GOOD)
+                                                    , m_muons.getCollection(MU_GOOD)
+                                                    )
+                            );
+
+  m_event_quantities.setMt2 (PennSusyFrame::getMt2( m_event.getFlavorChannel()
+                                                  , &m_met
+                                                  , m_electrons.getCollection(EL_GOOD)
+                                                  , m_muons.getCollection(MU_GOOD)
+                                                  )
                            );
 
   // TODO set emma mt
-  // m_event_quantities.setEmmaMt();
+  m_event_quantities.setEmmaMt( PennSusyFrame::getEmmaMt( m_event.getFlavorChannel()
+                                                        , m_electrons.getCollection(EL_GOOD)
+                                                        , m_muons.getCollection(MU_GOOD)
+                                                        )
+                              );
 
   m_event_quantities.setDphill( PennSusyFrame::getDphill( m_event.getFlavorChannel()
                                                         , m_electrons.getCollection(EL_GOOD)

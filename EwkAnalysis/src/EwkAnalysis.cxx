@@ -61,7 +61,7 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
   // set defaults
   setSFOSMllCut(20.e3, -1);
   setEmmaMtCut(-1, 50.e3);
-  setMetRelCut(-1, 40.e3);
+  setMetRelCut(40.e3, -1);
   setDphillCut(1.3, -1);
   setNumLightJetsCut(1, -1);
 }

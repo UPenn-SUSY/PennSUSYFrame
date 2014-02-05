@@ -59,11 +59,7 @@ void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Event::updateWithMet(const PennSusyFrame::Met& /*met*/)
-{
-  // setMetEt(met.getMetEt());
-  // setMetPhi(met.getMetPhi());
-  // setMetRel(met.getMetRel());
-}
+{ }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Event::print() const
@@ -82,6 +78,7 @@ void PennSusyFrame::Event::print() const
 // = EventLevelQuantities
 // =============================================================================
 PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
+                                                            , m_ptll(0.)
                                                             , m_mt2(0.)
                                                             , m_emma_mt(0.)
                                                             , m_dphi_ll(0.)
@@ -99,8 +96,10 @@ void PennSusyFrame::EventLevelQuantities::init() {}
 void PennSusyFrame::EventLevelQuantities::print() const
 {
   std::cout << "================= Printing event level quantities: =================\n";
-  std::cout << "\tmt2: " << m_mt2
-            << "\tmll: " << m_mll
+  std::cout << "\tmll: " << m_mll
+            << "\tptll: " << m_ptll
+            << "\tmt2: " << m_mt2
+            << "\n"
             << "\temma mt: " << m_emma_mt
             << "\tdphi_ll: " << m_dphi_ll
             << "\n"

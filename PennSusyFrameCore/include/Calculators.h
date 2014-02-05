@@ -24,6 +24,16 @@ namespace PennSusyFrame
   template <class T1, class T2>
     double calcMll(const T1*, const T2*);
 
+  // -----------------------------------------------------------------------------
+  // ptll calculator
+  double getPtll( FLAVOR_CHANNEL
+                , const std::vector<PennSusyFrame::Electron*>*
+                , const std::vector<PennSusyFrame::Muon*>*
+                );
+  template <class T1, class T2>
+    double calcPtll(const T1*, const T2*);
+
+  // -----------------------------------------------------------------------------
   // mt2 calculator
   double getMt2( FLAVOR_CHANNEL
                , const PennSusyFrame::Met*
@@ -35,12 +45,20 @@ namespace PennSusyFrame
   template <class T1, class T2>
     double calcMt2(const T1*, const T2*, const Met*, double minv = 0);
 
+  // -----------------------------------------------------------------------------
   // dphi_ll calculator
   double getDphill( FLAVOR_CHANNEL
                   , const std::vector<PennSusyFrame::Electron*>*
                   , const std::vector<PennSusyFrame::Muon*>*
                   );
   double calcDphi(double phi_0, double phi_1);
+
+  // -----------------------------------------------------------------------------
+  // emma mt calculator
+  double getEmmaMt( FLAVOR_CHANNEL
+                  , const std::vector<PennSusyFrame::Electron*>*
+                  , const std::vector<PennSusyFrame::Muon*>*
+                  );
 }
 
 // Include the implementation:

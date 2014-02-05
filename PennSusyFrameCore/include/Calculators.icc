@@ -20,6 +20,18 @@ template <class T1, class T2>
 
 // -----------------------------------------------------------------------------
 template <class T1, class T2>
+  double PennSusyFrame::calcPtll( const T1* t1
+                                , const T2* t2
+                                )
+{
+  const TLorentzVector* tlv_1 = t1->getTlv();
+  const TLorentzVector* tlv_2 = t2->getTlv();
+
+  return ((*tlv_1)+(*tlv_2)).Pt();
+}
+
+// -----------------------------------------------------------------------------
+template <class T1, class T2>
   double PennSusyFrame::calcMt2( const T1* t1
                                , const T2* t2
                                , const Met* met
