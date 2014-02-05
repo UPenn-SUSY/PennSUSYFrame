@@ -9,6 +9,7 @@
 #include "PennSusyFrameCore/include/ObjectSelectors.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 #include "PennSusyFrameCore/include/ScaleFactorTools.h"
+#include "PennSusyFrameCore/include/TruthMatchTools.h"
 
 // =============================================================================
 class TBranch;
@@ -93,6 +94,8 @@ namespace PennSusyFrame
       PennSusyFrame::MuonScaleFactorTool   m_muon_sf_tool;
       PennSusyFrame::TriggerWeightTool     m_trigger_weight_tool;
       PennSusyFrame::BTagScaleFactorTool   m_b_tag_sf_tool;
+
+      PennSusyFrame::TruthMatchTool        m_truth_match_tool;
 
     private:
   };

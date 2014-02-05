@@ -42,21 +42,4 @@ namespace PennSusyFrame
   };
 }
 
-
-/*
-  template<class T>
-  std::vector<T> CommonTools::ChargeFlipScaleFactorTool::stripConst(
-      const std::vector<T>& old_vector)
-  {
-    size_t length = old_vector.size();
-    std::vector<T> new_vector;
-    new_vector.reserve(length);
-    for (unsigned int i = 0; i != length; ++i) {
-      new_vector.push_back(old_vector.at(i));
-    }
-
-    return new_vector;
-  }
-*/
-
 #endif

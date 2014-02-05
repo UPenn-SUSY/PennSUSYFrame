@@ -1,7 +1,6 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/D3PDReader.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
-// #include "PennSusyFrameCore/include/Calculators.h"
 #include "RootCore/egammaEvent/egammaEvent/egammaPIDdefs.h"
 #include "RootCore/MissingETUtility/MissingETUtility/METUtility.h"
 
@@ -1266,6 +1265,7 @@ PennSusyFrame::MCTruth::MCTruth() : m_mc_pt(0)
                                   , m_mc_m(0)
                                   , m_mc_pdg_id(0)
                                   , m_mc_status(0)
+                                  , m_mc_barcode(0)
                                   , m_mc_vx_barcode(0)
                                   , m_mc_parent_index(0)
                                   , m_mc_child_index(0)
@@ -1283,9 +1283,12 @@ void PennSusyFrame::MCTruth::clear()
   m_mc_m = 0;
   m_mc_pdg_id = 0;
   m_mc_status = 0;
+  m_mc_barcode = 0;
   m_mc_vx_barcode = 0;
   m_mc_parent_index = 0;
   m_mc_child_index = 0;
+  m_mc_parents = 0;
+  m_mc_children = 0;
 }
 
 // -----------------------------------------------------------------------------
@@ -1299,7 +1302,10 @@ void PennSusyFrame::MCTruth::getEvent(const PennSusyFrame::D3PDReader* reader)
   setM(            reader->mc_m);
   setPdgId(        reader->mc_pdgId);
   setStatus(       reader->mc_status);
+  setBarcode(      reader->mc_barcode);
   setVxBarcode(    reader->mc_vx_barcode);
   setParentIndex(  reader->mc_parent_index);
   setChildIndex(   reader->mc_child_index );
+  setParents(      reader->mc_parents);
+  setChildren(     reader->mc_children);
 }

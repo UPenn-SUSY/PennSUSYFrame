@@ -74,6 +74,8 @@ void PennSusyFrame::EwkAnalysis::prepareTools()
               + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
               );
   }
+
+  m_charge_flip_tool.init();
 }
 
 // -----------------------------------------------------------------------------
@@ -531,6 +533,15 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NUM_JET);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_NUM_JET, m_event_weight);
   }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get charge flip weight
+  // TODO move this to more sensible location
+  m_event_quantities.setCFWeight(m_charge_flip_tool.getSF( m_event.getFlavorChannel()
+                                                         , m_electrons.getCollection(EL_GOOD)
+                                                         , m_muons.getCollection(MU_GOOD)
+                                                         )
+                                );
 
 }
 

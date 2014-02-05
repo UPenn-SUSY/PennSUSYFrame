@@ -530,6 +530,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // set b tag weight
     // TODO validate b tag weight
     m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_truth_match_tool.prep(m_mc_truth);
   }
 }
 

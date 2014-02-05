@@ -120,6 +120,7 @@ namespace PennSusyFrame
       void setLeptonSF(double val)      { m_lepton_sf = val; }
       void setTriggerWeight(double val) { m_trigger_weight = val; }
       void setBTagSF(double val)        { m_b_tag_sf = val; }
+      void setCFWeight(double val)      { m_cf_weight = val; }
 
       // TODO move accessors to cxx file
       double getMll()           const { return m_mll; }
@@ -129,6 +130,7 @@ namespace PennSusyFrame
       double getLeptonSF()      const { return m_lepton_sf; }
       double getTriggerWeight() const { return m_trigger_weight; }
       double getBTagSF()        const { return m_b_tag_sf; }
+      double getCFWeight()      const { return m_cf_weight; }
 
       void print() const;
 
@@ -140,6 +142,8 @@ namespace PennSusyFrame
       double m_lepton_sf;
       double m_trigger_weight;
       double m_b_tag_sf;
+
+      double m_cf_weight;
   };
 
   // =============================================================================
@@ -792,12 +796,15 @@ namespace PennSusyFrame
       void setPt(std::vector<float>* val)      { m_mc_pt             = val; }
       void setEta(std::vector<float>* val)     { m_mc_eta            = val; }
       void setPhi(std::vector<float>* val)     { m_mc_phi            = val; }
-      void setM(std::vector<float>* val)       { m_mc_m            = val; }
+      void setM(std::vector<float>* val)       { m_mc_m              = val; }
       void setPdgId(std::vector<int>* val)     { m_mc_pdg_id         = val; }
       void setStatus(std::vector<int>* val)    { m_mc_status         = val; }
+      void setBarcode(std::vector<int>* val)   { m_mc_barcode        = val; }
       void setVxBarcode(std::vector<int>* val) { m_mc_vx_barcode     = val; }
       void setParentIndex(std::vector<std::vector<int> >* val) { m_mc_parent_index = val; }
       void setChildIndex(std::vector<std::vector<int> >* val)  { m_mc_child_index  = val; }
+      void setParents(std::vector<std::vector<int> >* val)     { m_mc_parents = val;  }
+      void setChildren(std::vector<std::vector<int> >* val)    { m_mc_children = val; }
 
       // TODO move accessors to cxx file
       unsigned int getChannelNumber()  const { return m_mc_channel_number; }
@@ -808,9 +815,13 @@ namespace PennSusyFrame
       std::vector<float>* getM()       const { return m_mc_m; }
       std::vector<int>* getPdgId()     const { return m_mc_pdg_id; }
       std::vector<int>* getStatus()    const { return m_mc_status; }
+      std::vector<int>* getBarcode()   const { return m_mc_barcode; }
       std::vector<int>* getVxBarcode() const { return m_mc_vx_barcode; }
       std::vector<std::vector<int> >* getParentIndex() const { return m_mc_parent_index; }
       std::vector<std::vector<int> >* getChildIndex()  const { return m_mc_child_index; }
+      std::vector<std::vector<int> >* getParents()  const { return m_mc_parents; }
+      std::vector<std::vector<int> >* getChildren() const { return m_mc_children; }
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -822,9 +833,12 @@ namespace PennSusyFrame
       std::vector<float>* m_mc_m;
       std::vector<int>* m_mc_pdg_id;
       std::vector<int>* m_mc_status;
+      std::vector<int>* m_mc_barcode;
       std::vector<int>* m_mc_vx_barcode;
       std::vector<std::vector<int> >* m_mc_parent_index;
       std::vector<std::vector<int> >* m_mc_child_index;
+      std::vector<std::vector<int> >* m_mc_parents;
+      std::vector<std::vector<int> >* m_mc_children;
   };
 }
 
