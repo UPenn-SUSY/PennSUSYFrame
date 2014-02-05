@@ -409,6 +409,9 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setMetWpx(reader->el_MET_Egamma10NoTau_wpx->at(el_index));
   setMetWpy(reader->el_MET_Egamma10NoTau_wpy->at(el_index));
 
+  setOrigin(reader->el_origin->at(el_index));
+  setType(reader->el_type->at(el_index));
+
   // must set TLV last because it depends on above quantities
   setElTlv(reader, el_rescaler);
 }
@@ -549,6 +552,8 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setMsQOverP(reader->mu_staco_ms_qoverp->at(mu_index));
   setMsTheta(reader->mu_staco_ms_theta->at(mu_index));
   setMsPhi(reader->mu_staco_ms_phi->at(mu_index));
+
+  setTruthBarcode(reader->mu_staco_truth_barcode->at(mu_index));
 
   setMuTlv(reader, mu_rescaler);
 }
@@ -1269,6 +1274,8 @@ PennSusyFrame::MCTruth::MCTruth() : m_mc_pt(0)
                                   , m_mc_vx_barcode(0)
                                   , m_mc_parent_index(0)
                                   , m_mc_child_index(0)
+                                  , m_mc_mu_origin(0)
+                                  , m_mc_mu_type(0)
 {
 }
 
@@ -1289,6 +1296,8 @@ void PennSusyFrame::MCTruth::clear()
   m_mc_child_index = 0;
   m_mc_parents = 0;
   m_mc_children = 0;
+  m_mc_mu_origin = 0;
+  m_mc_mu_type = 0;
 }
 
 // -----------------------------------------------------------------------------
@@ -1308,4 +1317,6 @@ void PennSusyFrame::MCTruth::getEvent(const PennSusyFrame::D3PDReader* reader)
   setChildIndex(   reader->mc_child_index );
   setParents(      reader->mc_parents);
   setChildren(     reader->mc_children);
+  setMuOrigin(     reader->muonTruth_origin);
+  setMuType(       reader->muonTruth_type);
 }

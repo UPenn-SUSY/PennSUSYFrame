@@ -361,6 +361,8 @@ namespace PennSusyFrame
       void setMetWet(const std::vector<float>& val) { m_met_wet = val; }
       void setMetWpx(const std::vector<float>& val) { m_met_wpx = val; }
       void setMetWpy(const std::vector<float>& val) { m_met_wpy = val; }
+      void setOrigin(int val) { m_origin = val; }
+      void setType(int val) { m_type = val; }
 
       // TODO move accessors to cxx file
       int getAuthor() const { return m_author; }
@@ -379,6 +381,8 @@ namespace PennSusyFrame
       std::vector<float>  getMetWet() const { return m_met_wet; }
       std::vector<float>  getMetWpx() const { return m_met_wpx; }
       std::vector<float>  getMetWpy() const { return m_met_wpy; }
+      int getOrigin() const { return m_origin; }
+      int getType() const { return m_type; }
 
       virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -403,6 +407,9 @@ namespace PennSusyFrame
       std::vector<float> m_met_wet;
       std::vector<float> m_met_wpx;
       std::vector<float> m_met_wpy;
+
+      int m_origin;
+      int m_type;
   };
 
   // =============================================================================
@@ -443,6 +450,8 @@ namespace PennSusyFrame
       void setMsTheta(double val) { m_ms_theta = val; }
       void setMsPhi(double val) { m_ms_phi = val; }
 
+      void setTruthBarcode(int val) { m_truth_barcode = val; }
+
       // TODO move accessors to cxx file
       int getIsCombined() const { return m_is_combined; }
       int getIsSegmentTagged() const { return m_is_segment_tagged; }
@@ -470,6 +479,8 @@ namespace PennSusyFrame
       double getMsQOverP() const { return m_ms_q_over_p; }
       double getMsTheta() const { return m_ms_theta; }
       double getMsPhi() const { return m_ms_phi; }
+
+      int getTruthBarcode() const { return m_truth_barcode; }
 
       virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -508,6 +519,7 @@ namespace PennSusyFrame
       double m_ms_theta;
       double m_ms_phi;
 
+      int m_truth_barcode;
   };
 
   // =============================================================================
@@ -805,6 +817,8 @@ namespace PennSusyFrame
       void setChildIndex(std::vector<std::vector<int> >* val)  { m_mc_child_index  = val; }
       void setParents(std::vector<std::vector<int> >* val)     { m_mc_parents = val;  }
       void setChildren(std::vector<std::vector<int> >* val)    { m_mc_children = val; }
+      void setMuOrigin(std::vector<int>* val) { m_mc_mu_origin = val; }
+      void setMuType(std::vector<int>* val)   { m_mc_mu_type = val; }
 
       // TODO move accessors to cxx file
       unsigned int getChannelNumber()  const { return m_mc_channel_number; }
@@ -821,6 +835,8 @@ namespace PennSusyFrame
       std::vector<std::vector<int> >* getChildIndex()  const { return m_mc_child_index; }
       std::vector<std::vector<int> >* getParents()  const { return m_mc_parents; }
       std::vector<std::vector<int> >* getChildren() const { return m_mc_children; }
+      std::vector<int>* getMuOrigin() const { return m_mc_mu_origin; }
+      std::vector<int>* getMuType() const { return m_mc_mu_type; }
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -839,6 +855,8 @@ namespace PennSusyFrame
       std::vector<std::vector<int> >* m_mc_child_index;
       std::vector<std::vector<int> >* m_mc_parents;
       std::vector<std::vector<int> >* m_mc_children;
+      std::vector<int>* m_mc_mu_origin;
+      std::vector<int>* m_mc_mu_type;
   };
 }
 

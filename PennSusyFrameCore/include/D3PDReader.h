@@ -1396,8 +1396,8 @@ namespace PennSusyFrame
     // std::vector<float>   *el_maxEcell_x;
     // std::vector<float>   *el_maxEcell_y;
     // std::vector<float>   *el_maxEcell_z;
-    // std::vector<int>     *el_type;
-    // std::vector<int>     *el_origin;
+    std::vector<int>     *el_type;
+    std::vector<int>     *el_origin;
     // std::vector<int>     *el_typebkg;
     // std::vector<int>     *el_originbkg;
     // std::vector<float>   *el_truth_E;
@@ -1994,7 +1994,7 @@ namespace PennSusyFrame
     // std::vector<float>   *mu_staco_truth_phi;
     // std::vector<int>     *mu_staco_truth_type;
     // std::vector<int>     *mu_staco_truth_status;
-    // std::vector<int>     *mu_staco_truth_barcode;
+    std::vector<int>     *mu_staco_truth_barcode;
     // std::vector<int>     *mu_staco_truth_mothertype;
     // std::vector<int>     *mu_staco_truth_motherbarcode;
     // std::vector<int>     *mu_staco_truth_matched;
@@ -3370,8 +3370,8 @@ namespace PennSusyFrame
     // std::vector<float>   *muonTruth_charge;
     // std::vector<int>     *muonTruth_PDGID;
     // std::vector<int>     *muonTruth_barcode;
-    // std::vector<int>     *muonTruth_type;
-    // std::vector<int>     *muonTruth_origin;
+    std::vector<int>     *muonTruth_type;
+    std::vector<int>     *muonTruth_origin;
     // Int_t           jet_AntiKt4TruthJets_n;
     // std::vector<float>   *jet_AntiKt4TruthJets_E;
     // std::vector<float>   *jet_AntiKt4TruthJets_pt;
@@ -5350,8 +5350,8 @@ namespace PennSusyFrame
     // TBranch        *b_el_maxEcell_x;   //!
     // TBranch        *b_el_maxEcell_y;   //!
     // TBranch        *b_el_maxEcell_z;   //!
-    // TBranch        *b_el_type;   //!
-    // TBranch        *b_el_origin;   //!
+    TBranch        *b_el_type;   //!
+    TBranch        *b_el_origin;   //!
     // TBranch        *b_el_typebkg;   //!
     // TBranch        *b_el_originbkg;   //!
     // TBranch        *b_el_truth_E;   //!
@@ -5948,7 +5948,7 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_truth_phi;   //!
     // TBranch        *b_mu_staco_truth_type;   //!
     // TBranch        *b_mu_staco_truth_status;   //!
-    // TBranch        *b_mu_staco_truth_barcode;   //!
+    TBranch        *b_mu_staco_truth_barcode;   //!
     // TBranch        *b_mu_staco_truth_mothertype;   //!
     // TBranch        *b_mu_staco_truth_motherbarcode;   //!
     // TBranch        *b_mu_staco_truth_matched;   //!

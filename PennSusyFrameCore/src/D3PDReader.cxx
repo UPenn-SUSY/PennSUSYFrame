@@ -505,8 +505,8 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_maxEcell_x = 0;
   // el_maxEcell_y = 0;
   // el_maxEcell_z = 0;
-  // el_type = 0;
-  // el_origin = 0;
+  el_type = 0;
+  el_origin = 0;
   // el_typebkg = 0;
   // el_originbkg = 0;
   // el_truth_E = 0;
@@ -1101,7 +1101,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // mu_staco_truth_phi = 0;
   // mu_staco_truth_type = 0;
   // mu_staco_truth_status = 0;
-  // mu_staco_truth_barcode = 0;
+  mu_staco_truth_barcode = 0;
   // mu_staco_truth_mothertype = 0;
   // mu_staco_truth_motherbarcode = 0;
   // mu_staco_truth_matched = 0;
@@ -3929,8 +3929,8 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_maxEcell_x", &el_maxEcell_x, &b_el_maxEcell_x);
   // turnOnBranch(tree, "el_maxEcell_y", &el_maxEcell_y, &b_el_maxEcell_y);
   // turnOnBranch(tree, "el_maxEcell_z", &el_maxEcell_z, &b_el_maxEcell_z);
-  // turnOnBranch(tree, "el_type", &el_type, &b_el_type);
-  // turnOnBranch(tree, "el_origin", &el_origin, &b_el_origin);
+  turnOnBranch(tree, "el_type", &el_type, &b_el_type);
+  turnOnBranch(tree, "el_origin", &el_origin, &b_el_origin);
   // turnOnBranch(tree, "el_typebkg", &el_typebkg, &b_el_typebkg);
   // turnOnBranch(tree, "el_originbkg", &el_originbkg, &b_el_originbkg);
   // turnOnBranch(tree, "el_truth_E", &el_truth_E, &b_el_truth_E);
@@ -4527,7 +4527,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "mu_staco_truth_phi", &mu_staco_truth_phi, &b_mu_staco_truth_phi);
   // turnOnBranch(tree, "mu_staco_truth_type", &mu_staco_truth_type, &b_mu_staco_truth_type);
   // turnOnBranch(tree, "mu_staco_truth_status", &mu_staco_truth_status, &b_mu_staco_truth_status);
-  // turnOnBranch(tree, "mu_staco_truth_barcode", &mu_staco_truth_barcode, &b_mu_staco_truth_barcode);
+  turnOnBranch(tree, "mu_staco_truth_barcode", &mu_staco_truth_barcode, &b_mu_staco_truth_barcode);
   // turnOnBranch(tree, "mu_staco_truth_mothertype", &mu_staco_truth_mothertype, &b_mu_staco_truth_mothertype);
   // turnOnBranch(tree, "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode, &b_mu_staco_truth_motherbarcode);
   // turnOnBranch(tree, "mu_staco_truth_matched", &mu_staco_truth_matched, &b_mu_staco_truth_matched);
@@ -7885,8 +7885,8 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_maxEcell_x", &el_maxEcell_x);
   // m_output_tree->Branch( "el_maxEcell_y", &el_maxEcell_y);
   // m_output_tree->Branch( "el_maxEcell_z", &el_maxEcell_z);
-  // m_output_tree->Branch( "el_type", &el_type);
-  // m_output_tree->Branch( "el_origin", &el_origin);
+  m_output_tree->Branch( "el_type", &el_type);
+  m_output_tree->Branch( "el_origin", &el_origin);
   // m_output_tree->Branch( "el_typebkg", &el_typebkg);
   // m_output_tree->Branch( "el_originbkg", &el_originbkg);
   // m_output_tree->Branch( "el_truth_E", &el_truth_E);
@@ -8483,7 +8483,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "mu_staco_truth_phi", &mu_staco_truth_phi);
   // m_output_tree->Branch( "mu_staco_truth_type", &mu_staco_truth_type);
   // m_output_tree->Branch( "mu_staco_truth_status", &mu_staco_truth_status);
-  // m_output_tree->Branch( "mu_staco_truth_barcode", &mu_staco_truth_barcode);
+  m_output_tree->Branch( "mu_staco_truth_barcode", &mu_staco_truth_barcode);
   // m_output_tree->Branch( "mu_staco_truth_mothertype", &mu_staco_truth_mothertype);
   // m_output_tree->Branch( "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode);
   // m_output_tree->Branch( "mu_staco_truth_matched", &mu_staco_truth_matched);
