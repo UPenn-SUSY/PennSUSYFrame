@@ -57,20 +57,8 @@ Long64_t PennSusyFrame::PennSusyFrameCore::LoadTree(Long64_t entry)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
 {
-  // m_d3pd_reader->Init(tree);
-  m_d3pd_reader = new PennSusyFrame::D3PDReader(tree, m_is_data);
-
-  // m_event.init();
-  // m_event_quantities.init();
-  // m_trigger.init();
-  // m_vertices.init();
-  // m_electrons.init();
-  // m_muons.init();
-  // m_taus.init();
-  // m_jets.init();
-
+  m_tree = tree;
   prepareSelection();
-
   Notify();
 }
 
@@ -89,6 +77,9 @@ Bool_t PennSusyFrame::PennSusyFrameCore::Notify()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::prepareTools()
 {
+  // m_d3pd_reader->Init(tree);
+  m_d3pd_reader = new PennSusyFrame::D3PDReader(m_tree, m_is_data);
+
   m_event.init();
   m_event_quantities.init();
   m_trigger.init();

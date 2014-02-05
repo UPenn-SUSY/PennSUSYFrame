@@ -35,10 +35,8 @@ namespace PennSusyFrame
     Float_t         MET_Egamma10NoTau_RefGamma_ety;
     Float_t         MET_Egamma10NoTau_RefGamma_sumet;
     Float_t         averageIntPerXing;
-    Float_t         mc_event_weight;
     Int_t           el_n;
     Int_t           jet_AntiKt4LCTopo_n;
-    Int_t           mc_n;
     Int_t           mu_staco_n;
     Int_t           tau_n;
     Int_t           vx_n;
@@ -47,7 +45,6 @@ namespace PennSusyFrame
     UInt_t          coreFlags;
     UInt_t          larError;
     UInt_t          lbn;
-    UInt_t          mc_channel_number;
     UInt_t          tileError;
     std::vector<float>   *el_charge;
     std::vector<float>   *el_cl_E;
@@ -84,11 +81,6 @@ namespace PennSusyFrame
     std::vector<float>   *jet_AntiKt4LCTopo_phi;
     std::vector<float>   *jet_AntiKt4LCTopo_pt;
     std::vector<float>   *jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV;
-    std::vector<float>   *mc_charge;
-    std::vector<float>   *mc_eta;
-    std::vector<float>   *mc_m;
-    std::vector<float>   *mc_phi;
-    std::vector<float>   *mc_pt;
     std::vector<float>   *mu_staco_charge;
     std::vector<float>   *mu_staco_cov_qoverp_exPV;
     std::vector<float>   *mu_staco_d0_exPV;
@@ -131,10 +123,6 @@ namespace PennSusyFrame
     std::vector<int>     *el_type;
     std::vector<int>     *jet_AntiKt4LCTopo_SamplingMax;
     std::vector<int>     *jet_AntiKt4LCTopo_flavor_truth_label;
-    std::vector<int>     *mc_barcode;
-    std::vector<int>     *mc_pdgId;
-    std::vector<int>     *mc_status;
-    std::vector<int>     *mc_vx_barcode;
     std::vector<int>     *mu_staco_expectBLayerHit;
     std::vector<int>     *mu_staco_isCombinedMuon;
     std::vector<int>     *mu_staco_isSegmentTaggedMuon;
@@ -176,14 +164,29 @@ namespace PennSusyFrame
     std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_eta;
     std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_phi;
     std::vector<std::vector<float> > *trig_EF_trigmuonef_track_CB_pt;
-    std::vector<std::vector<int> > *mc_child_index;
-    std::vector<std::vector<int> > *mc_children;
-    std::vector<std::vector<int> > *mc_parent_index;
-    std::vector<std::vector<int> > *mc_parents;
     std::vector<std::vector<int> > *trig_EF_trigmuonef_track_CB_hasCB;
     std::vector<std::vector<unsigned int> > *el_MET_Egamma10NoTau_statusWord;
     std::vector<std::vector<unsigned int> > *jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord;
     std::vector<unsigned int> *el_OQ;
+
+    // MC only variables
+    Float_t         mc_event_weight;
+    Int_t           mc_n;
+    UInt_t          mc_channel_number;
+    std::vector<float>   *mc_charge;
+    std::vector<float>   *mc_eta;
+    std::vector<float>   *mc_m;
+    std::vector<float>   *mc_phi;
+    std::vector<float>   *mc_pt;
+    std::vector<int>     *mc_barcode;
+    std::vector<int>     *mc_pdgId;
+    std::vector<int>     *mc_status;
+    std::vector<int>     *mc_vx_barcode;
+    std::vector<std::vector<int> > *mc_child_index;
+    std::vector<std::vector<int> > *mc_children;
+    std::vector<std::vector<int> > *mc_parent_index;
+    std::vector<std::vector<int> > *mc_parents;
+
     // Int_t           mu_MET_Egamma10NoTau_n;
     // Int_t           mu_MET_n;
     // std::vector<std::vector<float> > *mu_MET_Egamma10NoTau_wet;

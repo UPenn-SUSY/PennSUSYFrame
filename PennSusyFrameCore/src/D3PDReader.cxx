@@ -44,7 +44,7 @@ Long64_t PennSusyFrame::D3PDReader::LoadTree(Long64_t entry)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::D3PDReader::Init(TTree *tree)
 {
-  std::cout << "D3PDReader::Init()\n";
+  std::cout << "D3PDReader::Init() -- is_data: " << m_is_data << "\n";
 
   tree->SetBranchStatus("*",0);
 
@@ -56,7 +56,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // Init() will be called many times when running on PROOF
   // (once per file to be processed).
 
-  // Set object pointer
+  // initialize object pointer
   el_MET_Egamma10NoTau_statusWord = 0;
   el_MET_Egamma10NoTau_wet = 0;
   el_MET_Egamma10NoTau_wpx = 0;
@@ -109,19 +109,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   jet_AntiKt4LCTopo_phi = 0;
   jet_AntiKt4LCTopo_pt = 0;
   jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV = 0;
-  mc_barcode = 0;
-  mc_charge = 0;
-  mc_child_index = 0;
-  mc_children = 0;
-  mc_eta = 0;
-  mc_m = 0;
-  mc_parent_index = 0;
-  mc_parents = 0;
-  mc_pdgId = 0;
-  mc_phi = 0;
-  mc_pt = 0;
-  mc_status = 0;
-  mc_vx_barcode = 0;
   mu_staco_charge = 0;
   mu_staco_cov_qoverp_exPV = 0;
   mu_staco_d0_exPV = 0;
@@ -190,6 +177,22 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   vx_x = 0;
   vx_y = 0;
   vx_z = 0;
+
+  // MC only variables
+  mc_barcode = 0;
+  mc_charge = 0;
+  mc_child_index = 0;
+  mc_children = 0;
+  mc_eta = 0;
+  mc_m = 0;
+  mc_parent_index = 0;
+  mc_parents = 0;
+  mc_pdgId = 0;
+  mc_phi = 0;
+  mc_pt = 0;
+  mc_status = 0;
+  mc_vx_barcode = 0;
+
   // SkimDecision_DAODEGAMMA_accepted = 0;
   // SkimDecision_DAODEGAMMA_name = 0;
   // SkimDecision_DAODJETS_accepted = 0;
@@ -2552,7 +2555,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   fCurrent = -1;
   fChain->SetMakeClass(1);
 
-  // TODO turn on/off branches based on m_is_data variable
   // turn on branches we want to use
   turnOnBranch(tree, "EF_2e12Tvh_loose1", &EF_2e12Tvh_loose1, &b_EF_2e12Tvh_loose1);
   turnOnBranch(tree, "EF_2mu13", &EF_2mu13, &b_EF_2mu13);
@@ -2627,22 +2629,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV", &jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV, &b_jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV);
   turnOnBranch(tree, "larError", &larError, &b_larError);
   turnOnBranch(tree, "lbn", &lbn, &b_lbn);
-  turnOnBranch(tree, "mc_barcode", &mc_barcode, &b_mc_barcode);
-  turnOnBranch(tree, "mc_channel_number", &mc_channel_number, &b_mc_channel_number);
-  turnOnBranch(tree, "mc_charge", &mc_charge, &b_mc_charge);
-  turnOnBranch(tree, "mc_child_index", &mc_child_index, &b_mc_child_index);
-  turnOnBranch(tree, "mc_children", &mc_children, &b_mc_children);
-  turnOnBranch(tree, "mc_eta", &mc_eta, &b_mc_eta);
-  turnOnBranch(tree, "mc_event_weight", &mc_event_weight, &b_mc_event_weight);
-  turnOnBranch(tree, "mc_m", &mc_m, &b_mc_m);
-  turnOnBranch(tree, "mc_n", &mc_n, &b_mc_n);
-  turnOnBranch(tree, "mc_parent_index", &mc_parent_index, &b_mc_parent_index);
-  turnOnBranch(tree, "mc_parents", &mc_parents, &b_mc_parents);
-  turnOnBranch(tree, "mc_pdgId", &mc_pdgId, &b_mc_pdgId);
-  turnOnBranch(tree, "mc_phi", &mc_phi, &b_mc_phi);
-  turnOnBranch(tree, "mc_pt", &mc_pt, &b_mc_pt);
-  turnOnBranch(tree, "mc_status", &mc_status, &b_mc_status);
-  turnOnBranch(tree, "mc_vx_barcode", &mc_vx_barcode, &b_mc_vx_barcode);
   turnOnBranch(tree, "mu_staco_charge", &mu_staco_charge, &b_mu_staco_charge);
   turnOnBranch(tree, "mu_staco_cov_qoverp_exPV", &mu_staco_cov_qoverp_exPV, &b_mu_staco_cov_qoverp_exPV);
   turnOnBranch(tree, "mu_staco_d0_exPV", &mu_staco_d0_exPV, &b_mu_staco_d0_exPV);
@@ -2715,6 +2701,27 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "vx_x", &vx_x, &b_vx_x);
   turnOnBranch(tree, "vx_y", &vx_y, &b_vx_y);
   turnOnBranch(tree, "vx_z", &vx_z, &b_vx_z);
+
+  if (!m_is_data) {
+    std::cout << "turning on MC only branches\n";
+    turnOnBranch(tree, "mc_barcode", &mc_barcode, &b_mc_barcode);
+    turnOnBranch(tree, "mc_channel_number", &mc_channel_number, &b_mc_channel_number);
+    turnOnBranch(tree, "mc_charge", &mc_charge, &b_mc_charge);
+    turnOnBranch(tree, "mc_child_index", &mc_child_index, &b_mc_child_index);
+    turnOnBranch(tree, "mc_children", &mc_children, &b_mc_children);
+    turnOnBranch(tree, "mc_eta", &mc_eta, &b_mc_eta);
+    turnOnBranch(tree, "mc_event_weight", &mc_event_weight, &b_mc_event_weight);
+    turnOnBranch(tree, "mc_m", &mc_m, &b_mc_m);
+    turnOnBranch(tree, "mc_n", &mc_n, &b_mc_n);
+    turnOnBranch(tree, "mc_parent_index", &mc_parent_index, &b_mc_parent_index);
+    turnOnBranch(tree, "mc_parents", &mc_parents, &b_mc_parents);
+    turnOnBranch(tree, "mc_pdgId", &mc_pdgId, &b_mc_pdgId);
+    turnOnBranch(tree, "mc_phi", &mc_phi, &b_mc_phi);
+    turnOnBranch(tree, "mc_pt", &mc_pt, &b_mc_pt);
+    turnOnBranch(tree, "mc_status", &mc_status, &b_mc_status);
+    turnOnBranch(tree, "mc_vx_barcode", &mc_vx_barcode, &b_mc_vx_barcode);
+  }
+
   // turnOnBranch(tree, "EF_e24vhi_loose1_mu8", &EF_e24vhi_loose1_mu8, &b_EF_e24vhi_loose1_mu8);
   // turnOnBranch(tree, "EF_2b35_loose_3j35_a4tchad_4L1J10", &EF_2b35_loose_3j35_a4tchad_4L1J10, &b_EF_2b35_loose_3j35_a4tchad_4L1J10);
   // turnOnBranch(tree, "EF_2b35_loose_3j35_a4tchad_4L1J15", &EF_2b35_loose_3j35_a4tchad_4L1J15, &b_EF_2b35_loose_3j35_a4tchad_4L1J15);
@@ -6509,7 +6516,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_file = new TFile(out_file_name.c_str(), "RECREATE");
   m_output_tree = new TTree(out_tree_name.c_str(), out_tree_name.c_str());
 
-
+  // connect branches for output
   m_output_tree->Branch( "EF_2e12Tvh_loose1", &EF_2e12Tvh_loose1);
   m_output_tree->Branch( "EF_2mu13", &EF_2mu13);
   m_output_tree->Branch( "EF_e12Tvh_medium1_mu8", &EF_e12Tvh_medium1_mu8);
@@ -6582,22 +6589,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV", &jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV);
   m_output_tree->Branch( "larError", &larError);
   m_output_tree->Branch( "lbn", &lbn);
-  m_output_tree->Branch( "mc_barcode", &mc_barcode);
-  m_output_tree->Branch( "mc_channel_number", &mc_channel_number);
-  m_output_tree->Branch( "mc_charge", &mc_charge);
-  m_output_tree->Branch( "mc_child_index", &mc_child_index);
-  m_output_tree->Branch( "mc_children", &mc_children);
-  m_output_tree->Branch( "mc_eta", &mc_eta);
-  m_output_tree->Branch( "mc_event_weight", &mc_event_weight);
-  m_output_tree->Branch( "mc_m", &mc_m);
-  m_output_tree->Branch( "mc_n", &mc_n);
-  m_output_tree->Branch( "mc_parent_index", &mc_parent_index);
-  m_output_tree->Branch( "mc_parents", &mc_parents);
-  m_output_tree->Branch( "mc_pdgId", &mc_pdgId);
-  m_output_tree->Branch( "mc_phi", &mc_phi);
-  m_output_tree->Branch( "mc_pt", &mc_pt);
-  m_output_tree->Branch( "mc_status", &mc_status);
-  m_output_tree->Branch( "mc_vx_barcode", &mc_vx_barcode);
   m_output_tree->Branch( "mu_staco_charge", &mu_staco_charge);
   m_output_tree->Branch( "mu_staco_cov_qoverp_exPV", &mu_staco_cov_qoverp_exPV);
   m_output_tree->Branch( "mu_staco_d0_exPV", &mu_staco_d0_exPV);
@@ -6670,6 +6661,27 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "vx_x", &vx_x);
   m_output_tree->Branch( "vx_y", &vx_y);
   m_output_tree->Branch( "vx_z", &vx_z);
+
+  if (!m_is_data) {
+    std::cout << "connecting on MC only branches to output\n";
+    m_output_tree->Branch( "mc_barcode", &mc_barcode);
+    m_output_tree->Branch( "mc_channel_number", &mc_channel_number);
+    m_output_tree->Branch( "mc_charge", &mc_charge);
+    m_output_tree->Branch( "mc_child_index", &mc_child_index);
+    m_output_tree->Branch( "mc_children", &mc_children);
+    m_output_tree->Branch( "mc_eta", &mc_eta);
+    m_output_tree->Branch( "mc_event_weight", &mc_event_weight);
+    m_output_tree->Branch( "mc_m", &mc_m);
+    m_output_tree->Branch( "mc_n", &mc_n);
+    m_output_tree->Branch( "mc_parent_index", &mc_parent_index);
+    m_output_tree->Branch( "mc_parents", &mc_parents);
+    m_output_tree->Branch( "mc_pdgId", &mc_pdgId);
+    m_output_tree->Branch( "mc_phi", &mc_phi);
+    m_output_tree->Branch( "mc_pt", &mc_pt);
+    m_output_tree->Branch( "mc_status", &mc_status);
+    m_output_tree->Branch( "mc_vx_barcode", &mc_vx_barcode);
+  }
+
   // m_output_tree->Branch( "EF_e24vhi_loose1_mu8", &EF_e24vhi_loose1_mu8);
   // m_output_tree->Branch( "EF_2b35_loose_3j35_a4tchad_4L1J10", &EF_2b35_loose_3j35_a4tchad_4L1J10);
   // m_output_tree->Branch( "EF_2b35_loose_3j35_a4tchad_4L1J15", &EF_2b35_loose_3j35_a4tchad_4L1J15);
