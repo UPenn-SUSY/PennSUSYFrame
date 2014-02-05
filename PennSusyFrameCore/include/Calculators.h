@@ -34,6 +34,13 @@ namespace PennSusyFrame
 
   template <class T1, class T2>
     double calcMt2(const T1*, const T2*, const Met*, double minv = 0);
+
+  // dphi_ll calculator
+  double getDphill( FLAVOR_CHANNEL
+                  , const std::vector<PennSusyFrame::Electron*>*
+                  , const std::vector<PennSusyFrame::Muon*>*
+                  );
+  double calcDphi(double phi_0, double phi_1);
 }
 
 // Include the implementation:

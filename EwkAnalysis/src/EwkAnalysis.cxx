@@ -49,12 +49,20 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
                                                      , m_crit_cut_num_jet(false)
                                                      , m_sfos_mll_min(-1)
                                                      , m_sfos_mll_max(-1)
+                                                     , m_emma_mt_min(-1)
+                                                     , m_emma_mt_max(-1)
+                                                     , m_met_rel_min(-1)
+                                                     , m_met_rel_max(-1)
+                                                     , m_dphi_ll_min(-1)
+                                                     , m_dphi_ll_max(-1)
                                                      , m_num_light_jets_min(-1)
                                                      , m_num_light_jets_max(-1)
-
 {
   // set defaults
   setSFOSMllCut(20.e3, -1);
+  setEmmaMtCut(-1, 50.e3);
+  setMetRelCut(-1, 40.e3);
+  setDphillCut(1.3, -1);
   setNumLightJetsCut(1, -1);
 }
 
@@ -413,8 +421,8 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check for prompt leptons
-  // TODO implement check for prompt leptons
-  bool pass_prompt_leptons = true;
+  // TODO validate check for prompt leptons
+  bool pass_prompt_leptons = (m_is_data || m_event.getPromptLeptons());
   pass_event = (pass_event && pass_prompt_leptons);
   if (m_crit_cut_prompt_leptons && !pass_prompt_leptons) return;
   if (pass_event) {
@@ -434,9 +442,9 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // require no charge flip
-  // TODO implement no charge flip cut
+  // TODO validate no charge flip cut
   bool pass_no_charge_flip = (  m_is_data
-                             || true
+                             || m_event.getTruthSignChannel() == m_event.getSignChannel()
                              );
   pass_event = (pass_event && pass_no_charge_flip);
   if (m_crit_cut_no_charge_flip && !pass_no_charge_flip) return;
@@ -450,8 +458,12 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // emma mt cut
-  // TODO implement emma mt cut
-  bool pass_emma_mt = true;
+  // TODO validate emma mt cut
+  bool pass_emma_mt = ( PennSusyFrame::passCut( m_event_quantities.getEmmaMt()
+                                              , m_emma_mt_min
+                                              , m_emma_mt_max
+                                              )
+                      );
   pass_event = (pass_event && pass_emma_mt);
   if (m_crit_cut_emma_mt && !pass_emma_mt) return;
   if (pass_event) {
@@ -464,8 +476,12 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // met rel cut
-  // TODO implement met-rel cut
-  bool pass_met_rel = true;
+  // TODO validate met-rel cut
+  bool pass_met_rel = ( PennSusyFrame::passCut( m_met.getMetRel()
+                                              , m_met_rel_min
+                                              , m_met_rel_max
+                                              )
+                      );
   pass_event = (pass_event && pass_met_rel);
   if (m_crit_cut_met_rel && !pass_met_rel) return;
   if (pass_event) {
@@ -478,8 +494,12 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // dphi_ll cut
-  // TODO implement dphill cut
-  bool pass_dphi_ll = true;
+  // TODO validate dphill cut
+  bool pass_dphi_ll = ( PennSusyFrame::passCut( m_event_quantities.getDphill()
+                                              , m_dphi_ll_min
+                                              , m_dphi_ll_max
+                                              )
+                      );
   pass_event = (pass_event && pass_dphi_ll);
   if (m_crit_cut_dphi_ll && !pass_dphi_ll) return;
   if (pass_event) {

@@ -3349,7 +3349,7 @@ namespace PennSusyFrame
     std::vector<int>     *mc_status;
     std::vector<int>     *mc_barcode;
     std::vector<int>     *mc_pdgId;
-    // std::vector<float>   *mc_charge;
+    std::vector<float>   *mc_charge;
     std::vector<std::vector<int> > *mc_parents;
     std::vector<std::vector<int> > *mc_children;
     // std::vector<float>   *mc_vx_x;
@@ -7293,7 +7293,7 @@ namespace PennSusyFrame
     TBranch        *b_mc_status;   //!
     TBranch        *b_mc_barcode;   //!
     TBranch        *b_mc_pdgId;   //!
-    // TBranch        *b_mc_charge;   //!
+    TBranch        *b_mc_charge;   //!
     TBranch        *b_mc_parents;   //!
     TBranch        *b_mc_children;   //!
     // TBranch        *b_mc_vx_x;   //!

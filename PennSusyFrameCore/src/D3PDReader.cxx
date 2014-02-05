@@ -1970,7 +1970,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   mc_status = 0;
   mc_barcode = 0;
   mc_pdgId = 0;
-  // mc_charge = 0;
+  mc_charge = 0;
   mc_parents = 0;
   mc_children = 0;
   // mc_vx_x = 0;
@@ -5872,7 +5872,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "mc_status", &mc_status, &b_mc_status);
   turnOnBranch(tree, "mc_barcode", &mc_barcode, &b_mc_barcode);
   turnOnBranch(tree, "mc_pdgId", &mc_pdgId, &b_mc_pdgId);
-  // turnOnBranch(tree, "mc_charge", &mc_charge, &b_mc_charge);
+  turnOnBranch(tree, "mc_charge", &mc_charge, &b_mc_charge);
   turnOnBranch(tree, "mc_parents", &mc_parents, &b_mc_parents);
   turnOnBranch(tree, "mc_children", &mc_children, &b_mc_children);
   // turnOnBranch(tree, "mc_vx_x", &mc_vx_x, &b_mc_vx_x);
@@ -9828,7 +9828,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "mc_status", &mc_status);
   m_output_tree->Branch( "mc_barcode", &mc_barcode);
   m_output_tree->Branch( "mc_pdgId", &mc_pdgId);
-  // m_output_tree->Branch( "mc_charge", &mc_charge);
+  m_output_tree->Branch( "mc_charge", &mc_charge);
   m_output_tree->Branch( "mc_parents", &mc_parents);
   m_output_tree->Branch( "mc_children", &mc_children);
   // m_output_tree->Branch( "mc_vx_x", &mc_vx_x);

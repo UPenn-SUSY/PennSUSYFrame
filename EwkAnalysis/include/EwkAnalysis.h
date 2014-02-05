@@ -54,6 +54,9 @@ namespace PennSusyFrame
       void setCritCutStreamOverlap(  bool val) { m_crit_cut_stream_overlap = val;   }
 
       void setSFOSMllCut(double min, double max) { m_sfos_mll_min = min; m_sfos_mll_max = max; }
+      void setEmmaMtCut(double min, double max)  { m_emma_mt_min = min; m_emma_mt_max = max; }
+      void setMetRelCut(double min, double max)  { m_met_rel_min = min; m_met_rel_max = max; }
+      void setDphillCut(double min, double max)  { m_dphi_ll_min = min; m_dphi_ll_max = max; }
       void setNumLightJetsCut(double min, double max) { m_num_light_jets_min = min; m_num_light_jets_max = max; }
 
     protected:
@@ -101,6 +104,15 @@ namespace PennSusyFrame
 
       double m_sfos_mll_min;
       double m_sfos_mll_max;
+
+      double m_emma_mt_min;
+      double m_emma_mt_max;
+
+      double m_met_rel_min;
+      double m_met_rel_max;
+
+      double m_dphi_ll_min;
+      double m_dphi_ll_max;
 
       int m_num_light_jets_min;
       int m_num_light_jets_max;

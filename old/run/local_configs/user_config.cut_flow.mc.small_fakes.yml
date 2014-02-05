@@ -15,9 +15,9 @@ CutFlow:
     Crit_incomplete_event: False
     Crit_tile_error:       False
     Crit_tile_hot_spot:    False
-    Crit_lar_error:        False
-    Crit_bad_jet_veto:     False
-    Crit_primary_vertex:   False
+;
+;
+;
     Crit_bad_mu_veto:      False
     Crit_cosmic_mu_veto:   False
     Crit_hfor:             False

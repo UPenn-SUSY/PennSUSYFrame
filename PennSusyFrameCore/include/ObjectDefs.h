@@ -50,7 +50,7 @@ namespace PennSusyFrame
       virtual void updateWithMet(const PennSusyFrame::Met&);
 
       // TODO move accessors to cxx file
-      void setIsData(bool val) { m_is_data = val; }
+      void setIsData(bool val)              { m_is_data = val; }
       void setEventNumber(unsigned int val) { m_event_number = val; }
       void setRunNumber(unsigned int val)   { m_run_number = val; }
       void setLumiBlock(unsigned int val)   { m_lumi_block = val; }
@@ -61,25 +61,31 @@ namespace PennSusyFrame
       void setTileError(unsigned int val)   { m_tile_error = val; }
 
       void setFlavorChannel(FLAVOR_CHANNEL val) { m_flavor_channel = val; }
-      void setSignChannel(SIGN_CHANNEL val) { m_sign_channel = val; }
-      void setPhaseSpace(PHASE_SPACE val)   { m_phase_channel = val; }
-      void setTriggerPhase(TRIG_PHASE val)  { m_trig_phase_channel = val; }
+      void setSignChannel(SIGN_CHANNEL val)     { m_sign_channel = val; }
+      void setPhaseSpace(PHASE_SPACE val)       { m_phase_channel = val; }
+      void setTriggerPhase(TRIG_PHASE val)      { m_trig_phase_channel = val; }
+
+      void setPromptLeptons(bool val)            { m_prompt_leptons = val; }
+      void setTruthSignChannel(SIGN_CHANNEL val) { m_truth_sign_channel = val; }
 
       // TODO move accessors to cxx file
-      bool getIsData() const { return m_is_data; }
+      bool getIsData()              const { return m_is_data; }
       unsigned int getEventNumber() const { return m_event_number; }
-      unsigned int getRunNumber() const { return m_run_number; }
-      unsigned int getLumiBlock() const { return m_lumi_block; }
-      float getAverageIntPerXing() const { return m_average_int_per_xing; }
+      unsigned int getRunNumber()   const { return m_run_number; }
+      unsigned int getLumiBlock()   const { return m_lumi_block; }
+      float getAverageIntPerXing()  const { return m_average_int_per_xing; }
       float getEventShapeRhoKt4LC() const { return m_eventshape_rhoKt4LC; }
-      unsigned int getCoreFlags() const { return m_core_flags; }
-      unsigned int getLarError() const { return m_lar_error; }
-      unsigned int getTileError() const { return m_tile_error; }
+      unsigned int getCoreFlags()   const { return m_core_flags; }
+      unsigned int getLarError()    const { return m_lar_error; }
+      unsigned int getTileError()   const { return m_tile_error; }
 
       FLAVOR_CHANNEL getFlavorChannel() const { return m_flavor_channel; }
-      SIGN_CHANNEL getSignChannel() const { return m_sign_channel; }
-      PHASE_SPACE getPhaseSpace() const { return m_phase_channel; }
-      TRIG_PHASE getTriggerPhase() const { return m_trig_phase_channel; }
+      SIGN_CHANNEL getSignChannel()     const { return m_sign_channel; }
+      PHASE_SPACE getPhaseSpace()       const { return m_phase_channel; }
+      TRIG_PHASE getTriggerPhase()      const { return m_trig_phase_channel; }
+
+      bool getPromptLeptons()            const { return m_prompt_leptons; }
+      SIGN_CHANNEL getTruthSignChannel() const { return m_truth_sign_channel; }
 
       void print() const;
 
@@ -102,6 +108,9 @@ namespace PennSusyFrame
       SIGN_CHANNEL m_sign_channel;
       PHASE_SPACE m_phase_channel;
       TRIG_PHASE m_trig_phase_channel;
+
+      bool m_prompt_leptons;
+      SIGN_CHANNEL m_truth_sign_channel;
   };
 
   // =============================================================================
@@ -115,6 +124,8 @@ namespace PennSusyFrame
       // TODO move accessors to cxx file
       void setMll(double val)           { m_mll = val; }
       void setMt2(double val)           { m_mt2 = val; }
+      void setEmmaMt(double val)        { m_emma_mt = val; }
+      void setDphill(double val)        { m_dphi_ll = val; }
       void setMcEventWeight(double val) { m_mc_event_weight = val; }
       void setPileUpSF(double val)      { m_pile_up_sf = val; }
       void setLeptonSF(double val)      { m_lepton_sf = val; }
@@ -125,6 +136,8 @@ namespace PennSusyFrame
       // TODO move accessors to cxx file
       double getMll()           const { return m_mll; }
       double getMt2()           const { return m_mt2; }
+      double getEmmaMt()        const { return m_emma_mt; }
+      double getDphill()        const { return m_dphi_ll; }
       double getMcEventWeight() const { return m_mc_event_weight; }
       double getPileUpSF()      const { return m_pile_up_sf; }
       double getLeptonSF()      const { return m_lepton_sf; }
@@ -137,6 +150,8 @@ namespace PennSusyFrame
     protected:
       double m_mll;
       double m_mt2;
+      double m_emma_mt;
+      double m_dphi_ll;
       double m_mc_event_weight;
       double m_pile_up_sf;
       double m_lepton_sf;
@@ -819,6 +834,7 @@ namespace PennSusyFrame
       void setChildren(std::vector<std::vector<int> >* val)    { m_mc_children = val; }
       void setMuOrigin(std::vector<int>* val) { m_mc_mu_origin = val; }
       void setMuType(std::vector<int>* val)   { m_mc_mu_type = val; }
+      void setCharge(std::vector<float>* val) { m_mc_charge = val; }
 
       // TODO move accessors to cxx file
       unsigned int getChannelNumber()  const { return m_mc_channel_number; }
@@ -837,6 +853,7 @@ namespace PennSusyFrame
       std::vector<std::vector<int> >* getChildren() const { return m_mc_children; }
       std::vector<int>* getMuOrigin() const { return m_mc_mu_origin; }
       std::vector<int>* getMuType() const { return m_mc_mu_type; }
+      std::vector<float>* getCharge() const { return m_mc_charge; }
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -857,6 +874,7 @@ namespace PennSusyFrame
       std::vector<std::vector<int> >* m_mc_children;
       std::vector<int>* m_mc_mu_origin;
       std::vector<int>* m_mc_mu_type;
+      std::vector<float>* m_mc_charge;
   };
 }
 

@@ -477,12 +477,22 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                  , m_muons.getCollection(MU_GOOD)
                                                  )
                            );
+
   m_event_quantities.setMt2(PennSusyFrame::getMt2( m_event.getFlavorChannel()
                                                  , &m_met
                                                  , m_electrons.getCollection(EL_GOOD)
                                                  , m_muons.getCollection(MU_GOOD)
                                                  )
                            );
+
+  // TODO set emma mt
+  // m_event_quantities.setEmmaMt();
+
+  m_event_quantities.setDphill( PennSusyFrame::getDphill( m_event.getFlavorChannel()
+                                                        , m_electrons.getCollection(EL_GOOD)
+                                                        , m_muons.getCollection(MU_GOOD)
+                                                        )
+                              );
 
   if (!m_is_data) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -533,6 +543,24 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_truth_match_tool.prep(m_mc_truth);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // check for prompt leptons
+    m_event.setPromptLeptons( m_truth_match_tool.isRealLeptonEvent( m_event.getFlavorChannel()
+                                                                  , m_electrons.getCollection(EL_GOOD)
+                                                                  , m_muons.getCollection(MU_GOOD)
+                                                                  , m_mc_truth
+                                                                  )
+                             );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // get the truth sign channel of the two leptons
+    m_event.setTruthSignChannel( m_truth_match_tool.getTruthSign( m_event.getFlavorChannel()
+                                                                , m_electrons.getCollection(EL_GOOD)
+                                                                , m_muons.getCollection(MU_GOOD)
+                                                                , m_mc_truth
+                                                                )
+                               );
   }
 }
 

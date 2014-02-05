@@ -1,8 +1,8 @@
 #include "PennSusyFrameCore/include/TruthMatchTools.h"
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
-
 #include "RootCore/LeptonTruthTools/LeptonTruthTools/RecoTruthMatch.h"
+#include "TLorentzVector.h"
 
 // =============================================================================
 // -----------------------------------------------------------------------------
@@ -45,6 +45,12 @@ void PennSusyFrame::TruthMatchTool::prep(const PennSusyFrame::MCTruth& mc_truth)
                                     , mc_truth.getM()
                                     , 0
                                     );
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::TruthMatchTool::getIndex(const TLorentzVector* tlv)
+{
+  return m_truth_match->MatchedTruthLepton(*tlv);
 }
 
 // -----------------------------------------------------------------------------
@@ -111,6 +117,62 @@ bool PennSusyFrame::TruthMatchTool::isRealMuon( const PennSusyFrame::Muon* mu
                                         );
   bool is_real_lep = (lep_type == RecoTruthMatch::PROMPT);
   return is_real_lep;
+}
+
+// -----------------------------------------------------------------------------
+SIGN_CHANNEL PennSusyFrame::TruthMatchTool::getTruthSign( FLAVOR_CHANNEL flavor_channel
+                                                        , const std::vector<PennSusyFrame::Electron*>* el
+                                                        , const std::vector<PennSusyFrame::Muon*>* mu
+                                                        , const PennSusyFrame::MCTruth& mc_truth
+                                                        )
+{
+  if (flavor_channel == FLAVOR_NONE)
+    return SIGN_NONE;
+
+  float charge_0 = 0.;
+  float charge_1 = 0.;
+
+  if (flavor_channel == FLAVOR_EE) {
+    charge_0 = getTruthElectronSign(el->at(0), mc_truth);
+    charge_1 = getTruthElectronSign(el->at(1), mc_truth);
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    charge_0 = getTruthMuonSign(mu->at(0), mc_truth);
+    charge_1 = getTruthMuonSign(mu->at(1), mc_truth);
+  }
+  else if (flavor_channel == FLAVOR_EM) {
+    charge_0 = getTruthElectronSign(el->at(0), mc_truth);
+    charge_1 = getTruthMuonSign(    mu->at(0), mc_truth);
+  }
+
+  float charge_product = charge_0*charge_1;
+  if (charge_product > 0) return SIGN_SS;
+  if (charge_product < 0) return SIGN_OS;
+  return SIGN_NONE;
+}
+
+// -----------------------------------------------------------------------------
+float PennSusyFrame::TruthMatchTool::getTruthElectronSign( const PennSusyFrame::Electron* el
+                                                         , const PennSusyFrame::MCTruth& mc_truth
+                                                         )
+{
+  int index = getIndex(el->getTlv());
+  if (index < 0) return 0;
+
+  return mc_truth.getCharge()->at(index);
+}
+
+// -----------------------------------------------------------------------------
+float PennSusyFrame::TruthMatchTool::getTruthMuonSign( const PennSusyFrame::Muon* mu
+                                                     , const PennSusyFrame::MCTruth& mc_truth
+                                                     )
+{
+  int index = matchBarcode( mu->getTruthBarcode()
+                          , mc_truth.getBarcode()
+                          );
+  if (index < 0) return 0;
+
+  return mc_truth.getCharge()->at(index);
 }
 
 // -----------------------------------------------------------------------------

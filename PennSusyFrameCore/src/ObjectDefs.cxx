@@ -83,6 +83,8 @@ void PennSusyFrame::Event::print() const
 // =============================================================================
 PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
                                                             , m_mt2(0.)
+                                                            , m_emma_mt(0.)
+                                                            , m_dphi_ll(0.)
                                                             , m_mc_event_weight(1.)
                                                             , m_pile_up_sf(1.)
                                                             , m_lepton_sf(1.)
@@ -99,6 +101,8 @@ void PennSusyFrame::EventLevelQuantities::print() const
   std::cout << "================= Printing event level quantities: =================\n";
   std::cout << "\tmt2: " << m_mt2
             << "\tmll: " << m_mll
+            << "\temma mt: " << m_emma_mt
+            << "\tdphi_ll: " << m_dphi_ll
             << "\n"
             << "\tmc event weight: " << m_mc_event_weight
             << "\tlepton sf: " << m_lepton_sf
@@ -1276,6 +1280,7 @@ PennSusyFrame::MCTruth::MCTruth() : m_mc_pt(0)
                                   , m_mc_child_index(0)
                                   , m_mc_mu_origin(0)
                                   , m_mc_mu_type(0)
+                                  , m_mc_charge(0)
 {
 }
 
@@ -1298,6 +1303,7 @@ void PennSusyFrame::MCTruth::clear()
   m_mc_children = 0;
   m_mc_mu_origin = 0;
   m_mc_mu_type = 0;
+  m_mc_charge = 0;
 }
 
 // -----------------------------------------------------------------------------
@@ -1319,4 +1325,5 @@ void PennSusyFrame::MCTruth::getEvent(const PennSusyFrame::D3PDReader* reader)
   setChildren(     reader->mc_children);
   setMuOrigin(     reader->muonTruth_origin);
   setMuType(       reader->muonTruth_type);
+  setCharge(       reader->mc_charge);
 }
