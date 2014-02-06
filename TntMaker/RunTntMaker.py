@@ -23,7 +23,9 @@ def getFileListFromGridInput(grid_input_string):
 # ------------------------------------------------------------------------------
 def runTntMaker(file_list, is_data = False, is_full_sim = False):
     # ==============================================================================
+    print 'loading packages'
     ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
+    print 'loading libraries'
     ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
     ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
     ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
