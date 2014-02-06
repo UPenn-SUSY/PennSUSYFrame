@@ -66,6 +66,7 @@ namespace PennSusyFrame
       bool m_is_data;
       bool m_is_af2;
       double m_event_weight;
+      bool m_pass_event;
 
       TTree* m_tree;
       PennSusyFrame::D3PDReader* m_d3pd_reader;

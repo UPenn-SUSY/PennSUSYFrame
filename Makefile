@@ -2,7 +2,7 @@
 # = top level Makefile =
 # ======================
 DIRS = ProgressBar CutFlowTracker TinyTlv \
-	   PennSusyFrameCore EwkAnalysis BMinusLAnalysis
+	   PennSusyFrameCore EwkAnalysis BMinusLAnalysis TntMaker
 
 all::
 	@ for dir in $(DIRS); \

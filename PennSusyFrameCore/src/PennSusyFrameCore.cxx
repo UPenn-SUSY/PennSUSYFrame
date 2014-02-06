@@ -269,6 +269,7 @@ void PennSusyFrame::PennSusyFrameCore::finalizeRun()
 void PennSusyFrame::PennSusyFrameCore::clearObjects()
 {
   m_event_weight = 1.;
+  m_pass_event = true;
 
   m_met.clear();
   m_vertices.clear();
