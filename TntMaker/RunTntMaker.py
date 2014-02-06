@@ -5,12 +5,19 @@ import os.path
 import optparse
 import time
 
+import glob
+
 import ROOT
 
 # ------------------------------------------------------------------------------
-def getFileListFromDir(file_dir):
-    file_list = []
+def getFileListFromDir(file_path):
+    print 'getting files from dir: %s' % file_path
+    file_list = glob.glob('%s/*' % file_path)
+    return file_list
 
+# ------------------------------------------------------------------------------
+def getFileListFromGridInput(grid_input_string):
+    file_list = grid_input_string.split(',')
     return file_list
 
 # ------------------------------------------------------------------------------
