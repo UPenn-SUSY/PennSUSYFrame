@@ -70,7 +70,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   el_cl_pt = 0;
   el_mediumPP = 0;
   el_nSiHits = 0;
-  el_origin = 0;
   el_ptcone30 = 0;
   el_tightPP = 0;
   el_topoEtcone30_corrected = 0;
@@ -100,7 +99,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   jet_AntiKt4LCTopo_constscale_phi = 0;
   jet_AntiKt4LCTopo_emfrac = 0;
   jet_AntiKt4LCTopo_eta = 0;
-  jet_AntiKt4LCTopo_flavor_truth_label = 0;
   jet_AntiKt4LCTopo_flavor_weight_MV1 = 0;
   jet_AntiKt4LCTopo_fracSamplingMax = 0;
   jet_AntiKt4LCTopo_hecf = 0;
@@ -139,7 +137,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   mu_staco_trackIPEstimate_d0_unbiasedpvunbiased = 0;
   mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased = 0;
   mu_staco_trackIPEstimate_z0_unbiasedpvunbiased = 0;
-  mu_staco_truth_barcode = 0;
   mu_staco_z0_exPV = 0;
   tau_EleBDTLoose = 0;
   tau_EleBDTMedium = 0;
@@ -179,6 +176,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   vx_z = 0;
 
   // MC only variables
+  el_origin = 0;
   mc_barcode = 0;
   mc_charge = 0;
   mc_child_index = 0;
@@ -192,6 +190,8 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   mc_pt = 0;
   mc_status = 0;
   mc_vx_barcode = 0;
+  mu_staco_truth_barcode = 0;
+  jet_AntiKt4LCTopo_flavor_truth_label = 0;
 
   // SkimDecision_DAODEGAMMA_accepted = 0;
   // SkimDecision_DAODEGAMMA_name = 0;
@@ -2587,7 +2587,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "el_mediumPP", &el_mediumPP, &b_el_mediumPP);
   turnOnBranch(tree, "el_n", &el_n, &b_el_n);
   turnOnBranch(tree, "el_nSiHits", &el_nSiHits, &b_el_nSiHits);
-  turnOnBranch(tree, "el_origin", &el_origin, &b_el_origin);
   turnOnBranch(tree, "el_ptcone30", &el_ptcone30, &b_el_ptcone30);
   turnOnBranch(tree, "el_tightPP", &el_tightPP, &b_el_tightPP);
   turnOnBranch(tree, "el_topoEtcone30_corrected", &el_topoEtcone30_corrected, &b_el_topoEtcone30_corrected);
@@ -2617,7 +2616,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "jet_AntiKt4LCTopo_constscale_phi", &jet_AntiKt4LCTopo_constscale_phi, &b_jet_AntiKt4LCTopo_constscale_phi);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_emfrac", &jet_AntiKt4LCTopo_emfrac, &b_jet_AntiKt4LCTopo_emfrac);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_eta", &jet_AntiKt4LCTopo_eta, &b_jet_AntiKt4LCTopo_eta);
-  turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label, &b_jet_AntiKt4LCTopo_flavor_truth_label);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_weight_MV1", &jet_AntiKt4LCTopo_flavor_weight_MV1, &b_jet_AntiKt4LCTopo_flavor_weight_MV1);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_fracSamplingMax", &jet_AntiKt4LCTopo_fracSamplingMax, &b_jet_AntiKt4LCTopo_fracSamplingMax);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_hecf", &jet_AntiKt4LCTopo_hecf, &b_jet_AntiKt4LCTopo_hecf);
@@ -2660,7 +2658,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "mu_staco_trackIPEstimate_d0_unbiasedpvunbiased", &mu_staco_trackIPEstimate_d0_unbiasedpvunbiased, &b_mu_staco_trackIPEstimate_d0_unbiasedpvunbiased);
   turnOnBranch(tree, "mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased", &mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased, &b_mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased);
   turnOnBranch(tree, "mu_staco_trackIPEstimate_z0_unbiasedpvunbiased", &mu_staco_trackIPEstimate_z0_unbiasedpvunbiased, &b_mu_staco_trackIPEstimate_z0_unbiasedpvunbiased);
-  turnOnBranch(tree, "mu_staco_truth_barcode", &mu_staco_truth_barcode, &b_mu_staco_truth_barcode);
   turnOnBranch(tree, "mu_staco_z0_exPV", &mu_staco_z0_exPV, &b_mu_staco_z0_exPV);
   turnOnBranch(tree, "tau_EleBDTLoose", &tau_EleBDTLoose, &b_tau_EleBDTLoose);
   turnOnBranch(tree, "tau_EleBDTMedium", &tau_EleBDTMedium, &b_tau_EleBDTMedium);
@@ -2704,6 +2701,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
 
   if (!m_is_data) {
     std::cout << "turning on MC only branches\n";
+    turnOnBranch(tree, "el_origin", &el_origin, &b_el_origin);
     turnOnBranch(tree, "mc_barcode", &mc_barcode, &b_mc_barcode);
     turnOnBranch(tree, "mc_channel_number", &mc_channel_number, &b_mc_channel_number);
     turnOnBranch(tree, "mc_charge", &mc_charge, &b_mc_charge);
@@ -2720,6 +2718,8 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
     turnOnBranch(tree, "mc_pt", &mc_pt, &b_mc_pt);
     turnOnBranch(tree, "mc_status", &mc_status, &b_mc_status);
     turnOnBranch(tree, "mc_vx_barcode", &mc_vx_barcode, &b_mc_vx_barcode);
+    turnOnBranch(tree, "mu_staco_truth_barcode", &mu_staco_truth_barcode, &b_mu_staco_truth_barcode);
+    turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label, &b_jet_AntiKt4LCTopo_flavor_truth_label);
   }
 
   // turnOnBranch(tree, "EF_e24vhi_loose1_mu8", &EF_e24vhi_loose1_mu8, &b_EF_e24vhi_loose1_mu8);
@@ -6620,7 +6620,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "mu_staco_trackIPEstimate_d0_unbiasedpvunbiased", &mu_staco_trackIPEstimate_d0_unbiasedpvunbiased);
   m_output_tree->Branch( "mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased", &mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased);
   m_output_tree->Branch( "mu_staco_trackIPEstimate_z0_unbiasedpvunbiased", &mu_staco_trackIPEstimate_z0_unbiasedpvunbiased);
-  m_output_tree->Branch( "mu_staco_truth_barcode", &mu_staco_truth_barcode);
   m_output_tree->Branch( "mu_staco_z0_exPV", &mu_staco_z0_exPV);
   m_output_tree->Branch( "tau_EleBDTLoose", &tau_EleBDTLoose);
   m_output_tree->Branch( "tau_EleBDTMedium", &tau_EleBDTMedium);
@@ -6680,6 +6679,8 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
     m_output_tree->Branch( "mc_pt", &mc_pt);
     m_output_tree->Branch( "mc_status", &mc_status);
     m_output_tree->Branch( "mc_vx_barcode", &mc_vx_barcode);
+    m_output_tree->Branch( "mu_staco_truth_barcode", &mu_staco_truth_barcode);
+    m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label);
   }
 
   // m_output_tree->Branch( "EF_e24vhi_loose1_mu8", &EF_e24vhi_loose1_mu8);
@@ -8432,7 +8433,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_dRminToB", &jet_AntiKt4LCTopo_flavor_truth_dRminToB);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_dRminToC", &jet_AntiKt4LCTopo_flavor_truth_dRminToC);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_dRminToT", &jet_AntiKt4LCTopo_flavor_truth_dRminToT);
-  // m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_vx_x", &jet_AntiKt4LCTopo_flavor_truth_vx_x);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_vx_y", &jet_AntiKt4LCTopo_flavor_truth_vx_y);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_vx_z", &jet_AntiKt4LCTopo_flavor_truth_vx_z);

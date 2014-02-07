@@ -118,11 +118,9 @@ namespace PennSusyFrame
     std::vector<int>     *el_author;
     std::vector<int>     *el_mediumPP;
     std::vector<int>     *el_nSiHits;
-    std::vector<int>     *el_origin;
     std::vector<int>     *el_tightPP;
     std::vector<int>     *el_type;
     std::vector<int>     *jet_AntiKt4LCTopo_SamplingMax;
-    std::vector<int>     *jet_AntiKt4LCTopo_flavor_truth_label;
     std::vector<int>     *mu_staco_expectBLayerHit;
     std::vector<int>     *mu_staco_isCombinedMuon;
     std::vector<int>     *mu_staco_isSegmentTaggedMuon;
@@ -134,7 +132,6 @@ namespace PennSusyFrame
     std::vector<int>     *mu_staco_nSCTHoles;
     std::vector<int>     *mu_staco_nTRTHits;
     std::vector<int>     *mu_staco_nTRTOutliers;
-    std::vector<int>     *mu_staco_truth_barcode;
     std::vector<int>     *muonTruth_origin;
     std::vector<int>     *muonTruth_type;
     std::vector<int>     *tau_EleBDTLoose;
@@ -170,6 +167,7 @@ namespace PennSusyFrame
     std::vector<unsigned int> *el_OQ;
 
     // MC only variables
+    std::vector<int>     *el_origin;
     Float_t         mc_event_weight;
     Int_t           mc_n;
     UInt_t          mc_channel_number;
@@ -186,6 +184,8 @@ namespace PennSusyFrame
     std::vector<std::vector<int> > *mc_children;
     std::vector<std::vector<int> > *mc_parent_index;
     std::vector<std::vector<int> > *mc_parents;
+    std::vector<int>     *mu_staco_truth_barcode;
+    std::vector<int>     *jet_AntiKt4LCTopo_flavor_truth_label;
 
     // Int_t           mu_MET_Egamma10NoTau_n;
     // Int_t           mu_MET_n;
