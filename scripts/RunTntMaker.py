@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
 import sys
+import os
 import os.path
 import optparse
 import time
+
 
 import glob
 
@@ -23,13 +25,15 @@ def getFileListFromGridInput(grid_input_string):
 # ------------------------------------------------------------------------------
 def runTntMaker(file_list, is_data = False, is_full_sim = False):
     # ==============================================================================
+    root_core_dir = os.environ['ROOTCOREDIR']
+    base_work_dir = os.environ['BASE_WORK_DIR']
     print 'loading packages'
-    ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
+    ROOT.gROOT.ProcessLine(".x %s/scripts/load_packages.C" % root_core_dir)
     print 'loading libraries'
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libTntMaker.so')
+    ROOT.gSystem.Load('%s/lib/libProgressBar.so' % base_work_dir)
+    ROOT.gSystem.Load('%s/lib/libCutFlowTracker.so' % base_work_dir)
+    ROOT.gSystem.Load('%s/lib/libPennSusyFrameCore.so' % base_work_dir)
+    ROOT.gSystem.Load('%s/lib/libTntMaker.so' % base_work_dir)
 
     # ==============================================================================
     print "Adding files to TNT maker"
