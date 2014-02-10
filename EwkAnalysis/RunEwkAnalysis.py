@@ -33,8 +33,8 @@ def runEwkAnalysis(file_list, is_data, is_full_sim):
 
     # ==============================================================================
     print "Adding files to TNT maker"
-    # t = ROOT.TChain("susy")
-    t = ROOT.TChain("TNT")
+    t = ROOT.TChain("susy")
+    # t = ROOT.TChain("TNT")
     for fl in file_list:
         print 'Adding file: %s' % fl
         t.AddFile(fl)
