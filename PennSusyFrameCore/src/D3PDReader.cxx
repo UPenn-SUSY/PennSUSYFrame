@@ -1,6 +1,8 @@
 #define D3PDReader_cxx
 #include "PennSusyFrameCore/include/D3PDReader.h"
 
+#include "TVectorF.h"
+
 #include <iostream>
 
 // -----------------------------------------------------------------------------
@@ -10464,9 +10466,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "vx_py", &vx_py);
   // m_output_tree->Branch( "vx_pz", &vx_pz);
   // m_output_tree->Branch( "vx_sumPt", &vx_sumPt);
-
-
-
 }
 
 // -----------------------------------------------------------------------------
@@ -10478,7 +10477,12 @@ void PennSusyFrame::D3PDReader::FillEvent()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::D3PDReader::FinalizeOutput()
 {
-  // m_output_tree->Close();
+  m_output_tree->Write();
+
+  TVectorF num_events(1);
+  num_events[0] = getNumEvents();
+  num_events.Write("TotalNumEvents");
+
   m_output_file->Write();
   m_output_file->Close();
 }
@@ -10519,6 +10523,5 @@ bool PennSusyFrame::D3PDReader::checkStatus()
 unsigned int PennSusyFrame::D3PDReader::getNumEvents()
 {
   std::cout << "getNumEvents()\n";
-  // return fChain->GetEntriesFast();
   return fChain->GetEntries();
 }
