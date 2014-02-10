@@ -12,7 +12,7 @@
 // #pragma link C++ class PennSusyFrame::D3PDReader+;
 
 // #pragma link C++ class std::vector<std::vector<int>>+;
-// #pragma link C++ class std::vector<std::vector<unsigned int> >+;
+#pragma link C++ class std::vector<std::vector<unsigned int> >+;
 // #pragma link C++ class std::vector<std::vector<long> >+;
 // #pragma link C++ class std::vector<std::vector<unsigned long> >+;
 // #pragma link C++ class std::vector<std::vector<float> >+;
