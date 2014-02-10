@@ -17,8 +17,6 @@ import optparse
 import time
 
 import ROOT
-import rootlogon
-import metaroot
 
 # ==============================================================================
 ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
