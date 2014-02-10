@@ -17,7 +17,7 @@ ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
 ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
 
 # ==============================================================================
-file_list = [ "/Users/bjackson/work/data12/NTUP_SUSY.01267663._000001.root.1"
+file_list = [ "/Users/bjackson/work/data12/NTUP_SUSYSKIM.01274851._000071.root.1"
             ]
 
 t = ROOT.TChain('susy')

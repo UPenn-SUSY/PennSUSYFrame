@@ -23,7 +23,6 @@ void PennSusyFrame::PhysicsObject::updateWithMet(const PennSusyFrame::Met&) {}
 // = Event
 // =============================================================================
 // -----------------------------------------------------------------------------
-// TODO set m_is_data properly
 PennSusyFrame::Event::Event() : m_is_data(false)
                               , m_event_number(0)
                               , m_run_number(0)
@@ -40,7 +39,8 @@ PennSusyFrame::Event::Event() : m_is_data(false)
 void PennSusyFrame::Event::init() {}
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Event::getEvent(const PennSusyFrame::D3PDReader* reader)
+void PennSusyFrame::Event::getEvent( const PennSusyFrame::D3PDReader* reader
+                                   )
 {
   setEventNumber(reader->EventNumber);
   setRunNumber(reader->RunNumber);
@@ -137,7 +137,8 @@ PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_px(0)
 void PennSusyFrame::Trigger::init() {}
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
+void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader
+                                     )
 {
   setEF_2e12Tvh_loose1(          reader->EF_2e12Tvh_loose1);
   setEF_e24vh_medium1_e7_medium1(reader->EF_e24vh_medium1_e7_medium1);
@@ -370,6 +371,7 @@ PennSusyFrame::Electron::Electron()
 PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
                                  , int el_index
                                  , PennSusyFrame::ElectronRescalerTool* el_rescaler
+                                 , bool is_data
                                  , bool verbose
                                  )
 {
@@ -383,7 +385,6 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setParticleIndex(el_index);
 
   setCharge(reader->el_charge->at(el_index));
-  // setTruthCharge(reader->);
 
   setAuthor(  reader->el_author->at(el_index));
   setMediumPP(reader->el_mediumPP->at(el_index));
@@ -412,8 +413,10 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setMetWpx(reader->el_MET_Egamma10NoTau_wpx->at(el_index));
   setMetWpy(reader->el_MET_Egamma10NoTau_wpy->at(el_index));
 
-  setOrigin(reader->el_origin->at(el_index));
-  setType(reader->el_type->at(el_index));
+  if (!is_data) {
+    setOrigin(reader->el_origin->at(el_index));
+    setType(reader->el_type->at(el_index));
+  }
 
   // must set TLV last because it depends on above quantities
   setElTlv(reader, el_rescaler);
@@ -498,6 +501,7 @@ PennSusyFrame::Muon::Muon()
 PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
                          , int mu_index
                          , PennSusyFrame::MuonRescalerTool* mu_rescaler
+                         , bool is_data
                          , bool verbose
                          )
 {
@@ -556,7 +560,9 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
   setMsTheta(reader->mu_staco_ms_theta->at(mu_index));
   setMsPhi(reader->mu_staco_ms_phi->at(mu_index));
 
-  setTruthBarcode(reader->mu_staco_truth_barcode->at(mu_index));
+  if (!is_data) {
+    setTruthBarcode(reader->mu_staco_truth_barcode->at(mu_index));
+  }
 
   setMuTlv(reader, mu_rescaler);
 }
@@ -647,6 +653,7 @@ PennSusyFrame::Tau::Tau()
 PennSusyFrame::Tau::Tau( const PennSusyFrame::D3PDReader* reader
                        , int tau_index
                        , PennSusyFrame::TauRescalerTool* tau_rescaler
+                       , bool is_data
                        , bool verbose
                        )
 {
@@ -717,6 +724,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
                        , PennSusyFrame::JetRescalerTool* jet_rescaler
                        , PennSusyFrame::Event* event
                        , int num_vertices_ge_2_tracks
+                       , bool is_data
                        , bool verbose
                        )
 {
@@ -749,8 +757,6 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setNegativeE(      reader->jet_AntiKt4LCTopo_NegativeE->at(m_particle_index));
   setLarQuality(     reader->jet_AntiKt4LCTopo_LArQuality->at(m_particle_index));
 
-  setFlavorTruthLabel( reader->jet_AntiKt4LCTopo_flavor_truth_label->at(m_particle_index));
-
   setMetStatusWord(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord->at(m_particle_index));
   setMetWet(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet->at(m_particle_index));
   setMetWpx(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx->at(m_particle_index));
@@ -759,6 +765,10 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setJetTlv(reader, jet_rescaler, event, num_vertices_ge_2_tracks);
 
   setIsBad(isBad());
+
+  if (!is_data) {
+    setFlavorTruthLabel( reader->jet_AntiKt4LCTopo_flavor_truth_label->at(m_particle_index));
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -896,7 +906,7 @@ void PennSusyFrame::Met::init()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Met::prep( const PennSusyFrame::D3PDReader* reader
-                             , const Event& event 
+                             , const Event& event
                              , const std::vector<PennSusyFrame::Electron*>* el_list
                              , const std::vector<PennSusyFrame::Muon*>* mu_list
                              , const std::vector<PennSusyFrame::Jet*>* jet_list

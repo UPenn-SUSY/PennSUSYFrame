@@ -361,6 +361,7 @@ namespace PennSusyFrame
       Electron( const PennSusyFrame::D3PDReader*
               , int el_index
               , PennSusyFrame::ElectronRescalerTool*
+              , bool is_data
               , bool verbose = false
               );
 
@@ -439,6 +440,7 @@ namespace PennSusyFrame
       Muon( const PennSusyFrame::D3PDReader*
           , int mu_index
           , PennSusyFrame::MuonRescalerTool*
+          , bool is_data
           , bool verbose = false
           );
 
@@ -549,6 +551,7 @@ namespace PennSusyFrame
       Tau( const PennSusyFrame::D3PDReader*
          , int tau_index
          , PennSusyFrame::TauRescalerTool*
+         , bool is_data
          , bool verbose = false
          );
 
@@ -602,6 +605,7 @@ namespace PennSusyFrame
          , PennSusyFrame::JetRescalerTool*
          , PennSusyFrame::Event*
          , int num_vertices_ge_2_tracks
+         , bool is_data
          , bool verbose = false
          );
 

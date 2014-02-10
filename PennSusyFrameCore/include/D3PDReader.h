@@ -119,7 +119,6 @@ namespace PennSusyFrame
     std::vector<int>     *el_mediumPP;
     std::vector<int>     *el_nSiHits;
     std::vector<int>     *el_tightPP;
-    std::vector<int>     *el_type;
     std::vector<int>     *jet_AntiKt4LCTopo_SamplingMax;
     std::vector<int>     *mu_staco_expectBLayerHit;
     std::vector<int>     *mu_staco_isCombinedMuon;
@@ -132,8 +131,6 @@ namespace PennSusyFrame
     std::vector<int>     *mu_staco_nSCTHoles;
     std::vector<int>     *mu_staco_nTRTHits;
     std::vector<int>     *mu_staco_nTRTOutliers;
-    std::vector<int>     *muonTruth_origin;
-    std::vector<int>     *muonTruth_type;
     std::vector<int>     *tau_EleBDTLoose;
     std::vector<int>     *tau_EleBDTMedium;
     std::vector<int>     *tau_EleBDTTight;
@@ -167,6 +164,7 @@ namespace PennSusyFrame
     std::vector<unsigned int> *el_OQ;
 
     // MC only variables
+    std::vector<int>     *el_type;
     std::vector<int>     *el_origin;
     Float_t         mc_event_weight;
     Int_t           mc_n;
@@ -185,6 +183,8 @@ namespace PennSusyFrame
     std::vector<std::vector<int> > *mc_parent_index;
     std::vector<std::vector<int> > *mc_parents;
     std::vector<int>     *mu_staco_truth_barcode;
+    std::vector<int>     *muonTruth_origin;
+    std::vector<int>     *muonTruth_type;
     std::vector<int>     *jet_AntiKt4LCTopo_flavor_truth_label;
 
     // Int_t           mu_MET_Egamma10NoTau_n;
@@ -4100,6 +4100,8 @@ namespace PennSusyFrame
     TBranch        *b_mu_staco_trackIPEstimate_z0_unbiasedpvunbiased;   //!
     TBranch        *b_mu_staco_truth_barcode;   //!
     TBranch        *b_mu_staco_z0_exPV;   //!
+    TBranch        *b_muonTruth_origin;   //!
+    TBranch        *b_muonTruth_type;   //!
     TBranch        *b_tau_EleBDTLoose;   //!
     TBranch        *b_tau_EleBDTMedium;   //!
     TBranch        *b_tau_EleBDTTight;   //!
@@ -4139,6 +4141,7 @@ namespace PennSusyFrame
     TBranch        *b_vx_x;   //!
     TBranch        *b_vx_y;   //!
     TBranch        *b_vx_z;   //!
+
     // TBranch        *b_EF_2b35_loose_3j35_a4tchad_4L1J10;   //!
     // TBranch        *b_EF_2b35_loose_3j35_a4tchad_4L1J15;   //!
     // TBranch        *b_EF_2b35_loose_3j35_a4tchad_L2FS_4L1J10;   //!
@@ -6273,10 +6276,8 @@ namespace PennSusyFrame
     // TBranch        *b_muonTruth_eta;   //!
     // TBranch        *b_muonTruth_m;   //!
     // TBranch        *b_muonTruth_n;   //!
-    // TBranch        *b_muonTruth_origin;   //!
     // TBranch        *b_muonTruth_phi;   //!
     // TBranch        *b_muonTruth_pt;   //!
-    // TBranch        *b_muonTruth_type;   //!
     // TBranch        *b_ph_E033;   //!
     // TBranch        *b_ph_E1152;   //!
     // TBranch        *b_ph_E132;   //!

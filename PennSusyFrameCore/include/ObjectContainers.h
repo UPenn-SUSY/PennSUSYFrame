@@ -61,6 +61,7 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::Electron> m_master_list;
       std::vector<std::vector<PennSusyFrame::Electron*> > m_user_lists;
 
+      bool m_is_data;
       PennSusyFrame::ElectronRescalerTool* m_el_rescaler;
   };
 
@@ -90,6 +91,7 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::Muon> m_master_list;
       std::vector<std::vector<PennSusyFrame::Muon*> > m_user_lists;
 
+      bool m_is_data;
       PennSusyFrame::MuonRescalerTool* m_mu_rescaler;
   };
 
@@ -118,6 +120,7 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::Tau> m_master_list;
       std::vector<std::vector<PennSusyFrame::Tau*> > m_user_lists;
 
+      bool m_is_data;
       PennSusyFrame::TauRescalerTool* m_tau_rescaler;
   };
 
@@ -146,6 +149,7 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::Jet> m_master_list;
       std::vector<std::vector<PennSusyFrame::Jet*> > m_user_lists;
 
+      bool m_is_data;
       PennSusyFrame::JetRescalerTool* m_jet_rescaler;
   };
 }
