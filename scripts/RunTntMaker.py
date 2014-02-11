@@ -80,7 +80,13 @@ def main():
     is_full_sim = sys.argv[2]
     input_list = sys.argv[3]
 
+    print 'is_data: %s' % is_data
+    print 'is_full_sim: %s' % is_full_sim
+    print 'input_list: %s' % input_list
+
     file_list = getFileListFromGridInput(input_list)
+
+    print 'file_list: %s' % file_list
 
     runTntMaker( file_list
                , is_data = is_data
