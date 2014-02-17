@@ -15,6 +15,7 @@ namespace PennSusyFrame
   class Electron;
   class Muon;
   class Jet;
+  class Met;
 }
 
 // =============================================================================
@@ -33,6 +34,7 @@ namespace PennSusyFrame
                        , const std::vector<PennSusyFrame::Electron*>*
                        , const std::vector<PennSusyFrame::Muon*>*
                        , const std::vector<PennSusyFrame::Jet*>*
+                       , const PennSusyFrame::Met&
                        , float weight
                        );
       virtual void write(TFile*);
@@ -54,6 +56,7 @@ namespace PennSusyFrame
                        , const std::vector<PennSusyFrame::Electron*>*
                        , const std::vector<PennSusyFrame::Muon*>*
                        , const std::vector<PennSusyFrame::Jet*>*
+                       , const PennSusyFrame::Met&
                        , float weight
                        );
       virtual void write(TFile*);

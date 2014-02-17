@@ -8,6 +8,7 @@ EXECUTABLE := $(PWD)/BMinusLAnalysis
 
 LOCAL_LIBS_PATH =  $(SH_LIB_PATH)/libProgressBar.so
 include ${PWD}/../Makefile.RootCore
+LOCAL_LIBS_PATH +=  $(SH_LIB_PATH)/libHistogramHandlers.so
 LOCAL_LIBS_PATH +=  $(SH_LIB_PATH)/libPennSusyFrameCore.so
 # BONUS_LIB_PATH = 
 

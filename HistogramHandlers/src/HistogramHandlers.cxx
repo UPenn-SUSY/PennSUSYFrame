@@ -16,6 +16,7 @@ void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event&
                                           , const std::vector<PennSusyFrame::Electron*>*
                                           , const std::vector<PennSusyFrame::Muon*>*
                                           , const std::vector<PennSusyFrame::Jet*>*
+                                          , const PennSusyFrame::Met&
                                           , float
                                           )
 {
@@ -79,6 +80,7 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
                                                , const std::vector<PennSusyFrame::Electron*>* el_list
                                                , const std::vector<PennSusyFrame::Muon*>* mu_list
                                                , const std::vector<PennSusyFrame::Jet*>*
+                                               , const PennSusyFrame::Met&
                                                , float weight
                                                )
 {
