@@ -4,7 +4,7 @@ OBJDIR  = obj
 DEPDIR  = $(OBJDIR)/dep
 SRCDIR  = src
 INCDIR  = include
-EXECUTABLE := $(PWD)/PennSusyFrameCore
+# EXECUTABLE := $(PWD)/PennSusyFrameCore
 
 LOCAL_LIBS_PATH =  $(SH_LIB_PATH)/libProgressBar.so
 include ${PWD}/../Makefile.RootCore

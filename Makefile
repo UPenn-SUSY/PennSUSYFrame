@@ -1,7 +1,7 @@
 # ======================
 # = top level Makefile =
 # ======================
-DIRS = ProgressBar CutFlowTracker TinyTlv \
+DIRS = ProgressBar CutFlowTracker TinyTlv HistogramHandlers \
 	   PennSusyFrameCore EwkAnalysis BMinusLAnalysis TntMaker
 
 all::

@@ -1,0 +1,4 @@
+#ifndef PennSusyFrame_HistogramHandlers_h
+#define PennSusyFrame_HistogramHandlers_h
+
+#endif
