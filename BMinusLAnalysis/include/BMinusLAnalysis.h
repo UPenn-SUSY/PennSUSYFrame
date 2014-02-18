@@ -9,6 +9,7 @@
 #include "PennSusyFrameCore/include/EventSelectors.h"
 #include "HistogramHandlers/include/HistogramHandlers.h"
 #include "BMinusLAnalysis/include/BMinusLCutFlowTracker.h"
+#include "BMinusLAnalysis/include/BMinusLHistogramHandlers.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -21,6 +22,8 @@ namespace PennSusyFrame
       virtual ~BMinusLAnalysis();
 
       virtual void prepareTools();
+
+      virtual void prepareSelection();
 
       virtual void beginRun();
       virtual void processEvent();
@@ -74,6 +77,8 @@ namespace PennSusyFrame
 
       BMinusLCutFlowTracker m_raw_cutflow_tracker;
       BMinusLCutFlowTracker m_cutflow_tracker;
+
+      PennSusyFrame::BMinusLHists m_bminusl_histogram_handler;
 
     private:
   };

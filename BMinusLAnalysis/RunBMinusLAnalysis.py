@@ -49,6 +49,24 @@ def runBMinusLAnalysis(file_list, is_data, is_full_sim, tree_name = 'susy'):
 
     if is_full_sim:
         bmla.setFullSim()
+
+    bmla.setCritCutGrl(            1)
+    bmla.setCritCutIncompleteEvent(1)
+    bmla.setCritCutLarError(       1)
+    bmla.setCritCutTileError(      1)
+    bmla.setCritCutTileHotSpot(    1)
+    bmla.setCritCutTileTrip(       1)
+    bmla.setCritCutBadJetVeto(     1)
+    bmla.setCritCutCaloProblemJet( 1)
+    bmla.setCritCutPrimaryVertex(  1)
+    bmla.setCritCutBadMuonVeto(    1)
+    bmla.setCritCutCosmicMuonVeto( 1)
+    bmla.setCritCutHFOR(           1)
+    bmla.setCritCutMcOverlap(      1)
+    bmla.setCritCutGe2Lepton(      1)
+    bmla.setCritCut2Lepton(        1)
+    bmla.setCritCut2SignalLepton(  1)
+
     bmla.prepareTools()
     bmla.Loop()
 

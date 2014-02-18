@@ -34,9 +34,9 @@ void PennSusyFrame::HistogramHandler::write(TFile*)
 // =============================================================================
 PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
 {
-  const int   pt_bins = 150;
+  const int   pt_bins = 50;
   const float pt_min  = 0.;
-  const float pt_max  = 1500.;
+  const float pt_max  = 500.;
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -160,9 +160,9 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists()
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins - num_jet_min;
 
-  const int   pt_bins = 150;
+  const int   pt_bins = 50;
   const float pt_min  = 0.;
-  const float pt_max  = 1500.;
+  const float pt_max  = 500.;
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -268,9 +268,9 @@ void PennSusyFrame::JetKinematicsHists::write(TFile* f)
 // =============================================================================
 PennSusyFrame::MetHists::MetHists()
 {
-  const int   met_et_bins = 150;
+  const int   met_et_bins = 50;
   const float met_et_min  = 0.;
-  const float met_et_max  = 1500.;
+  const float met_et_max  = 500.;
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

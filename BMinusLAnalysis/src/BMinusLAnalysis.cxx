@@ -52,8 +52,48 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::BMinusLAnalysis::prepareSelection()
+{
+  PennSusyFrameCore::prepareSelection();
+
+  std::cout << "preparing selection\n";
+
+  // EL_BASELINE
+  m_electron_selectors.at(EL_BASELINE).setElectronQuality(EL_QUALITY_MEDPP);
+  m_electron_selectors.at(EL_BASELINE).setPtCut(20.e3, -1);
+  m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.47);
+
+  // EL_SIGNAL
+  m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
+  m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
+  m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
+  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.13);
+  m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.21);
+
+  // MU_BASELINE
+  m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
+  m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.5);
+  m_muon_selectors.at(MU_BASELINE).setBLayerHitsCut(1, -1);
+  m_muon_selectors.at(MU_BASELINE).setPixelHitsCut(1, -1);
+  m_muon_selectors.at(MU_BASELINE).setSctHitsCut(5, -1);
+  m_muon_selectors.at(MU_BASELINE).setSiHolesCut(-1, 2);
+  m_muon_selectors.at(MU_BASELINE).setTrtEtaCut(0.1, 1.9);
+  m_muon_selectors.at(MU_BASELINE).setTrtHitsCut(6, -1);
+  m_muon_selectors.at(MU_BASELINE).setTrtOlFractionCut(-1, 0.9);
+
+  // MU_SIGNAL
+  m_muon_selectors.at(MU_SIGNAL).setEtaCut(-1, 2.4);
+  m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
+  m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
+  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.11);
+  m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.19);
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::beginRun()
 {
+  prepareSelection();
+
   m_histogram_handlers.push_back( new PennSusyFrame::LeptonKinematicsHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::JetKinematicsHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::MetHists() );
@@ -286,16 +326,22 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_LEP_SF, m_event_weight);
   }
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // fill histograms
   size_t num_hists = m_histogram_handlers.size();
   for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
     m_histogram_handlers.at(hist_it)->Fill( m_event
                                           , m_electrons.getCollection(EL_GOOD)
                                           , m_muons.getCollection(MU_GOOD)
-                                          , m_jets.getCollection(JET_B)
+                                          , m_jets.getCollection(JET_GOOD)
                                           , m_met
                                           , m_event_weight
                                           );
   }
+  m_bminusl_histogram_handler.FillSpecial( m_event
+                                         , m_jets.getCollection(JET_B)
+                                         , m_event_weight
+                                         );
 }
 
 // -----------------------------------------------------------------------------
@@ -316,6 +362,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
     std::cout << "\twriting histogram handler " << hist_it << " to file\n";
     m_histogram_handlers.at(hist_it)->write(&out_hist_file);
   }
+  m_bminusl_histogram_handler.write(&out_hist_file);
   std::cout << "done writing histograms to file\n";
 
   // out_hist_file.Write();
