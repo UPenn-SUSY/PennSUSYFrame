@@ -8,6 +8,7 @@
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 #include "PennSusyFrameCore/include/EventSelectors.h"
 #include "HistogramHandlers/include/HistogramHandlers.h"
+#include "BMinusLAnalysis/include/BMinusLCutFlowTracker.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -19,12 +20,12 @@ namespace PennSusyFrame
       BMinusLAnalysis(TTree *tree=0);
       virtual ~BMinusLAnalysis();
 
-      // virtual void prepareTools();
+      virtual void prepareTools();
 
-      // virtual void beginRun();
+      virtual void beginRun();
       virtual void processEvent();
       virtual void finalizeEvent();
-      // virtual void finalizeRun();
+      virtual void finalizeRun();
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
@@ -71,8 +72,8 @@ namespace PennSusyFrame
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
 
-      // BMinusLCutFlowTracker m_raw_cutflow_tracker;
-      // BMinusLCutFlowTracker m_cutflow_tracker;
+      BMinusLCutFlowTracker m_raw_cutflow_tracker;
+      BMinusLCutFlowTracker m_cutflow_tracker;
 
     private:
   };

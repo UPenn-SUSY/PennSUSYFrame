@@ -10,6 +10,7 @@
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 #include "PennSusyFrameCore/include/ScaleFactorTools.h"
 #include "PennSusyFrameCore/include/TruthMatchTools.h"
+#include "HistogramHandlers/include/HistogramHandlers.h"
 
 // =============================================================================
 class TBranch;
@@ -98,6 +99,8 @@ namespace PennSusyFrame
       PennSusyFrame::BTagScaleFactorTool   m_b_tag_sf_tool;
 
       PennSusyFrame::TruthMatchTool        m_truth_match_tool;
+
+      std::vector<PennSusyFrame::HistogramHandler*> m_histogram_handlers;
 
     private:
   };

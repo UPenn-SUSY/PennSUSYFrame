@@ -21,7 +21,7 @@ def getFileListFromGridInput(grid_input_string):
     return file_list
 
 # ------------------------------------------------------------------------------
-def runBMinusLAnalysis(file_list, is_data, is_full_sim):
+def runBMinusLAnalysis(file_list, is_data, is_full_sim, tree_name = 'susy'):
     # ==============================================================================
     print 'loading packages'
     ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
@@ -34,7 +34,7 @@ def runBMinusLAnalysis(file_list, is_data, is_full_sim):
 
     # ==============================================================================
     print "Adding files to TNT maker"
-    t = ROOT.TChain("susy")
+    t = ROOT.TChain(tree_name)
     # t = ROOT.TChain("TNT")
     for fl in file_list:
         print 'Adding file: %s' % fl

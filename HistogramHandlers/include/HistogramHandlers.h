@@ -29,6 +29,7 @@ namespace PennSusyFrame
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
       HistogramHandler();
+      virtual ~HistogramHandler();
 
       virtual void Fill( const PennSusyFrame::Event&
                        , const std::vector<PennSusyFrame::Electron*>*
@@ -46,11 +47,12 @@ namespace PennSusyFrame
   // =============================================================================
   // = LeptonKinematicsHists
   // =============================================================================
-  class LeptonKinematicsHists
+  class LeptonKinematicsHists : public HistogramHandler
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
       LeptonKinematicsHists();
+      virtual ~LeptonKinematicsHists();
 
       virtual void Fill( const PennSusyFrame::Event&
                        , const std::vector<PennSusyFrame::Electron*>*
@@ -66,6 +68,59 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
+  };
+
+  // =============================================================================
+  // = JetKinematicsHists
+  // =============================================================================
+  class JetKinematicsHists : public HistogramHandler
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      JetKinematicsHists();
+      virtual ~JetKinematicsHists();
+
+      virtual void Fill( const PennSusyFrame::Event&
+                       , const std::vector<PennSusyFrame::Electron*>*
+                       , const std::vector<PennSusyFrame::Muon*>*
+                       , const std::vector<PennSusyFrame::Jet*>*
+                       , const PennSusyFrame::Met&
+                       , float weight
+                       );
+      virtual void write(TFile*);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::vector<TH1F*> m_h_num_jet;
+
+      std::vector<TH1F*> m_h_pt_all;
+      std::vector<TH1F*> m_h_pt_0;
+      std::vector<TH1F*> m_h_pt_1;
+  };
+
+  // =============================================================================
+  // = MetHists
+  // =============================================================================
+  class MetHists : public HistogramHandler
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      MetHists();
+      virtual ~MetHists();
+
+      virtual void Fill( const PennSusyFrame::Event&
+                       , const std::vector<PennSusyFrame::Electron*>*
+                       , const std::vector<PennSusyFrame::Muon*>*
+                       , const std::vector<PennSusyFrame::Jet*>*
+                       , const PennSusyFrame::Met&
+                       , float weight
+                       );
+      virtual void write(TFile*);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::vector<TH1F*> m_h_met_et;
+      std::vector<TH1F*> m_h_met_rel;
   };
 }
 
