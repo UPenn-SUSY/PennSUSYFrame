@@ -10,6 +10,7 @@
 
 #include "PennSusyFrameCore/include/ObjectContainers.h"
 #include "PennSusyFrameCore/include/Calculators.h"
+#include "PennSusyFrameCore/include/D3PDReader.h"
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
@@ -30,6 +31,7 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
                                                              , m_crit_cut_ge_2_lep(false)
                                                              , m_crit_cut_2_lep(false)
                                                              , m_crit_cut_signal_lep(false)
+                                                             , m_crit_cut_b_jets(false)
 {
 }
 
@@ -122,16 +124,7 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_PILEUP_WEIGHT, m_event_weight);
 
   // -----------------------------------------------------------------------------
-  // TODO get phase space in a proper way
-  // m_event.setTriggerPhase( PennSusyFrame::getTriggerPhase( m_electrons.getCollection(EL_GOOD)
-  //                                                        , m_muons.getCollection(MU_GOOD)
-  //                                                        )
-  //                        );
-  // m_event.setPhaseSpace(PennSusyFrame::getPhaseSpaceFromTriggerPhase(m_event.getTriggerPhase()));
-  if      (m_event.getFlavorChannel() == FLAVOR_EE) m_event.setPhaseSpace(PHASE_EE);
-  else if (m_event.getFlavorChannel() == FLAVOR_MM) m_event.setPhaseSpace(PHASE_MM);
-  // not currently distinguishing between EM and ME phase space channels
-  else if (m_event.getFlavorChannel() == FLAVOR_EM) m_event.setPhaseSpace(PHASE_EM);
+  m_event.setPhaseSpace(getPhaseSpace());
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // GRL cut
@@ -327,21 +320,66 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get number of b jets
+  int num_b_jets = m_jets.num(JET_B);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // check number of b jets >= 2
+  bool pass_ge_2_b_jet = (num_b_jets >= 2);
+  m_pass_event = (m_pass_event && pass_ge_2_b_jet);
+  if (m_crit_cut_b_jets && ! pass_ge_2_b_jet) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_GE_2_B_JET);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_GE_2_B_JET, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_GE_2_B_JET);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_GE_2_B_JET, m_event_weight);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // check number of b jets == 2
+  bool pass_eq_2_b_jet = (num_b_jets == 2);
+  m_pass_event = (m_pass_event && pass_eq_2_b_jet);
+  if (m_crit_cut_b_jets && ! pass_eq_2_b_jet) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_EQ_2_B_JET);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_EQ_2_B_JET, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_EQ_2_B_JET);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_EQ_2_B_JET, m_event_weight);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // b tag sf
+  // TODO validate b tag SF
+  m_event_weight *= m_event_quantities.getBTagSF();
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_B_TAG_SF);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_B_TAG_SF, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_B_TAG_SF);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_B_TAG_SF, m_event_weight);
+  }
+
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms
-  size_t num_hists = m_histogram_handlers.size();
-  for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-    m_histogram_handlers.at(hist_it)->Fill( m_event
-                                          , m_electrons.getCollection(EL_GOOD)
-                                          , m_muons.getCollection(MU_GOOD)
-                                          , m_jets.getCollection(JET_GOOD)
-                                          , m_met
+  if (m_pass_event) {
+    size_t num_hists = m_histogram_handlers.size();
+    for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+      m_histogram_handlers.at(hist_it)->Fill( m_event
+                                            , m_electrons.getCollection(EL_GOOD)
+                                            , m_muons.getCollection(MU_GOOD)
+                                            , m_jets.getCollection(JET_GOOD)
+                                            , m_met
+                                            , m_event_weight
+                                            );
+    }
+    m_bminusl_histogram_handler.FillSpecial( m_event
+                                          , m_jets.getCollection(JET_B)
                                           , m_event_weight
                                           );
   }
-  m_bminusl_histogram_handler.FillSpecial( m_event
-                                         , m_jets.getCollection(JET_B)
-                                         , m_event_weight
-                                         );
 }
 
 // -----------------------------------------------------------------------------
@@ -356,16 +394,19 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
   std::cout << "creating output histogram file\n";
   TFile out_hist_file(m_out_hist_file_name.c_str(), "RECREATE");
 
+  m_d3pd_reader->writeNumEvents();
+
+  TDirectory* hist_dir = out_hist_file.mkdir("hists");
+
   std::cout << "about to write histograms to file\n";
   size_t num_hists = m_histogram_handlers.size();
   for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
     std::cout << "\twriting histogram handler " << hist_it << " to file\n";
-    m_histogram_handlers.at(hist_it)->write(&out_hist_file);
+    m_histogram_handlers.at(hist_it)->write(hist_dir);
   }
-  m_bminusl_histogram_handler.write(&out_hist_file);
+  m_bminusl_histogram_handler.write(hist_dir);
   std::cout << "done writing histograms to file\n";
 
-  // out_hist_file.Write();
   out_hist_file.Close();
   std::cout << "file is closed!\n";
 
@@ -375,4 +416,22 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
   //   delete m_histogram_handlers.at(hist_it);
   // }
   // m_histogram_handlers.clear();
+
+  m_raw_cutflow_tracker.printToScreen();
+  m_cutflow_tracker.printToScreen();
+}
+
+// -----------------------------------------------------------------------------
+PHASE_SPACE PennSusyFrame::BMinusLAnalysis::getPhaseSpace()
+{
+  if (m_event.getFlavorChannel() == FLAVOR_EE) return PHASE_EE;
+  if (m_event.getFlavorChannel() == FLAVOR_MM) return PHASE_MM;
+  if (m_event.getFlavorChannel() == FLAVOR_EM) {
+    float pt_e = m_electrons.getCollection(EL_GOOD)->at(0)->getPt();
+    float pt_m = m_muons.getCollection(    MU_GOOD)->at(0)->getPt();
+    if (pt_e >= pt_m) return PHASE_EM;
+    return PHASE_ME;
+  }
+
+  return PHASE_NONE;
 }

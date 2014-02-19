@@ -30,6 +30,10 @@ enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   , BMINUSL_CUT_EQ_2_BASELINE_LEPTONS
                   , BMINUSL_CUT_EQ_2_SIGNAL_LEPTON
                   , BMINUSL_CUT_LEP_SF
+                  , BMINUSL_CUT_BREAK_3
+                  , BMINUSL_CUT_GE_2_B_JET
+                  , BMINUSL_CUT_EQ_2_B_JET
+                  , BMINUSL_CUT_B_TAG_SF
                   , BMINUSL_CUT_N
                   };
 const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
@@ -55,7 +59,10 @@ const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           , "BMINUSL_CUT_EQ_2_BASELINE_LEPTONS"
                                           , "BMINUSL_CUT_EQ_2_SIGNAL_LEPTON"
                                           , "BMINUSL_CUT_LEP_SF"
-                                          , "BMINUSL_NUM_JET"
+                                          , "BREAK"
+                                          , "BMINUSL_CUT_GE_2_B_JET"
+                                          , "BMINUSL_CUT_EQ_2_B_JET"
+                                          , "BMINUSL_CUT_B_TAG_SF"
                                           };
 
 // =============================================================================

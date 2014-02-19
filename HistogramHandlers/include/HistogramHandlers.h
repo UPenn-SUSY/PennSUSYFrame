@@ -7,6 +7,7 @@
 
 // =============================================================================
 class TFile;
+class TDirectory;
 class TH1F;
 
 namespace PennSusyFrame
@@ -38,7 +39,7 @@ namespace PennSusyFrame
                        , const PennSusyFrame::Met&
                        , float weight
                        );
-      virtual void write(TFile*);
+      virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -61,7 +62,7 @@ namespace PennSusyFrame
                        , const PennSusyFrame::Met&
                        , float weight
                        );
-      virtual void write(TFile*);
+      virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -87,7 +88,7 @@ namespace PennSusyFrame
                        , const PennSusyFrame::Met&
                        , float weight
                        );
-      virtual void write(TFile*);
+      virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -115,7 +116,7 @@ namespace PennSusyFrame
                        , const PennSusyFrame::Met&
                        , float weight
                        );
-      virtual void write(TFile*);
+      virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:

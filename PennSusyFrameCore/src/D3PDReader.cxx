@@ -10479,12 +10479,21 @@ void PennSusyFrame::D3PDReader::FinalizeOutput()
 {
   m_output_tree->Write();
 
-  TVectorF num_events(1);
-  num_events[0] = getNumEvents();
-  num_events.Write("TotalNumEvents");
+  writeNumEvents();
+  // TVectorF num_events(1);
+  // num_events[0] = getNumEvents();
+  // num_events.Write("TotalNumEvents");
 
   m_output_file->Write();
   m_output_file->Close();
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::D3PDReader::writeNumEvents()
+{
+  TVectorF num_events(1);
+  num_events[0] = getNumEvents();
+  num_events.Write("TotalNumEvents");
 }
 
 // -----------------------------------------------------------------------------

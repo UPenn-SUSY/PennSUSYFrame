@@ -3,6 +3,7 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 
 #include "TFile.h"
+#include "TDirectory.h"
 #include "TH1.h"
 
 // =============================================================================
@@ -26,7 +27,7 @@ void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event&
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::HistogramHandler::write(TFile*)
+void PennSusyFrame::HistogramHandler::write(TDirectory*)
 {
   // do nothing
 }
@@ -140,9 +141,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::LeptonKinematicsHists::write(TFile* f)
+void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
 {
-  f->cd();
+  d->cd();
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -251,9 +252,9 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::JetKinematicsHists::write(TFile* f)
+void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
 {
-  f->cd();
+  d->cd();
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -329,9 +330,9 @@ void PennSusyFrame::MetHists::Fill( const PennSusyFrame::Event& event
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::MetHists::write(TFile* f)
+void PennSusyFrame::MetHists::write(TDirectory* d)
 {
-  f->cd();
+  d->cd();
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

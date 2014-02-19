@@ -30,6 +30,8 @@ namespace PennSusyFrame
       virtual void finalizeEvent();
       virtual void finalizeRun();
 
+      PHASE_SPACE getPhaseSpace();
+
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
       void setCritCutGrl(            bool val) { m_crit_cut_grl = val;              }
@@ -48,6 +50,7 @@ namespace PennSusyFrame
       void setCritCutGe2Lepton(      bool val) { m_crit_cut_ge_2_lep = val;         }
       void setCritCut2Lepton(        bool val) { m_crit_cut_2_lep = val;            }
       void setCritCut2SignalLepton(  bool val) { m_crit_cut_signal_lep = val;       }
+      void setCritCut2BJets(         bool val) { m_crit_cut_b_jets = val;           }
 
     protected:
       std::string m_out_hist_file_name;
@@ -70,6 +73,7 @@ namespace PennSusyFrame
       bool m_crit_cut_ge_2_lep;
       bool m_crit_cut_2_lep;
       bool m_crit_cut_signal_lep;
+      bool m_crit_cut_b_jets;
 
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;

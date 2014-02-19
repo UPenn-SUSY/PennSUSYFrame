@@ -3,6 +3,7 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 
 #include "TFile.h"
+#include "TDirectory.h"
 #include "TH1.h"
 
 // =============================================================================
@@ -106,9 +107,9 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::BMinusLHists::write(TFile* f)
+void PennSusyFrame::BMinusLHists::write(TDirectory* d)
 {
-  f->cd();
+  d->cd();
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

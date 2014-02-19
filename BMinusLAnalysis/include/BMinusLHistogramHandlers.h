@@ -8,6 +8,7 @@
 
 // =============================================================================
 class TFile;
+class TDirectory;
 class TH1F;
 
 namespace PennSusyFrame
@@ -36,7 +37,7 @@ namespace PennSusyFrame
                               , const std::vector<PennSusyFrame::Jet*>* b_jets
                               , float weight
                               );
-      virtual void write(TFile*);
+      virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:

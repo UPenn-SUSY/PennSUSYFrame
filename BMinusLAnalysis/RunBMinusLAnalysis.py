@@ -66,6 +66,7 @@ def runBMinusLAnalysis(file_list, is_data, is_full_sim, tree_name = 'susy'):
     bmla.setCritCutGe2Lepton(      1)
     bmla.setCritCut2Lepton(        1)
     bmla.setCritCut2SignalLepton(  1)
+    bmla.setCritCutBadJetVeto(     1)
 
     bmla.prepareTools()
     bmla.Loop()

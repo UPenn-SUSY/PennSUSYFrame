@@ -28,8 +28,8 @@ void BMinusLCutFlowTracker::fillHist(int channel, int bin, float weight)
 void BMinusLCutFlowTracker::printToScreen()
 {
   // set line widths etc.
-  m_line_width   = 100;
-  m_label_field  = 30;
+  m_line_width   = 120;
+  m_label_field  = 40;
   m_weight_field = (m_line_width - m_label_field - 5 - 5*3)/5;
   m_precision    = m_weight_field - 2;
   if (5+m_label_field+5*m_weight_field != m_line_width) {

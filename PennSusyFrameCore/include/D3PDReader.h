@@ -7930,6 +7930,7 @@ namespace PennSusyFrame
     virtual void     ConfigureOutput(std::string out_file_name, std::string out_tree_name);
     virtual void     FillEvent();
     virtual void     FinalizeOutput();
+    virtual void     writeNumEvents();
     virtual Bool_t   Notify();
     virtual void     Show(Long64_t entry = -1);
 
