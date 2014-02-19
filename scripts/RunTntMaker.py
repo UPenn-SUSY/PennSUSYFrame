@@ -25,6 +25,13 @@ def getFileListFromGridInput(grid_input_string):
 # ------------------------------------------------------------------------------
 def runTntMaker(file_list, is_data = False, is_full_sim = False):
     # ==============================================================================
+    if is_data == '0': is_data = False
+    elif is_data == '1': is_data = True
+
+    if is_full_sim == '0': is_full_sim = False
+    elif is_full_sim == '1': is_full_sim = True
+
+    # ==============================================================================
     root_core_dir = os.environ['ROOTCOREDIR']
     base_work_dir = os.environ['BASE_WORK_DIR']
     print 'loading packages'
@@ -45,11 +52,14 @@ def runTntMaker(file_list, is_data = False, is_full_sim = False):
     # ==============================================================================
     tntm = ROOT.PennSusyFrame.TntMaker(t)
     if is_data:
+        print 'setting as data'
         tntm.setIsData()
     else:
+        print 'setting as mc'
         tntm.setIsMC()
 
     if is_full_sim:
+        print 'mc is full sim'
         tntm.setFullSim()
 
     tntm.setCritCutIncompleteEvent(1)
