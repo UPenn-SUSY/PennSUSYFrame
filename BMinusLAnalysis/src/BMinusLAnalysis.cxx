@@ -1,4 +1,5 @@
 #include "BMinusLAnalysis/include/BMinusLAnalysis.h"
+#include "BMinusLAnalysis/include/BMinusLUtils.h"
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 
 #include <iostream>
@@ -361,6 +362,26 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_B_TAG_SF, m_event_weight);
   }
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  PennSusyFrame::blPair bl_0;
+  PennSusyFrame::blPair bl_1;
+
+  bool pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
+                                                   , m_electrons.getCollection(EL_GOOD)
+                                                   , m_muons.getCollection(MU_GOOD)
+                                                   , m_jets.getCollection(JET_B)
+                                                   , bl_0
+                                                   , bl_1
+                                                   );
+  m_pass_event = (m_pass_event && pass_bl_pairing);
+  if (m_crit_cut_bl_pairing && !pass_bl_pairing) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_BL_PAIRING);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_BL_PAIRING, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING, m_event_weight);
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms
@@ -376,9 +397,11 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
                                             );
     }
     m_bminusl_histogram_handler.FillSpecial( m_event
-                                          , m_jets.getCollection(JET_B)
-                                          , m_event_weight
-                                          );
+                                           , m_jets.getCollection(JET_B)
+                                           , bl_0
+                                           , bl_1
+                                           , m_event_weight
+                                           );
   }
 }
 

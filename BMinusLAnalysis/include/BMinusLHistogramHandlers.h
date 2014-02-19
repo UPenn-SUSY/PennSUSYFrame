@@ -18,6 +18,8 @@ namespace PennSusyFrame
   class Muon;
   class Jet;
   class Met;
+
+  class blPair;
 }
 
 // =============================================================================
@@ -35,6 +37,8 @@ namespace PennSusyFrame
 
       virtual void FillSpecial( const PennSusyFrame::Event&
                               , const std::vector<PennSusyFrame::Jet*>* b_jets
+                              , const PennSusyFrame::blPair&
+                              , const PennSusyFrame::blPair&
                               , float weight
                               );
       virtual void write(TDirectory*);
@@ -46,6 +50,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_b_jet_pt_all;
       std::vector<TH1F*> m_h_b_jet_pt_0;
       std::vector<TH1F*> m_h_b_jet_pt_1;
+
+      std::vector<TH1F*> m_h_mbl_all;
+      std::vector<TH1F*> m_h_mbl_0;
+      std::vector<TH1F*> m_h_mbl_1;
   };
 }
 
