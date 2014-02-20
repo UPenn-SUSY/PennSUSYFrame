@@ -10,17 +10,21 @@ import math
 import array
 
 import ROOT
-# import rootlogon
+import rootlogon
+import metaroot
 
 # import AtlasLabels
 
 import HistHandle as hh
 
 # ==============================================================================
+# canv_default = metaroot.hist.CanvasOptions(width=800, height=600)
+# canv_log_y   = metaroot.hist.CanvasOptions(width=800, height=600, log_y=True)
+
+# ==============================================================================
 prod_labels = { 'modeA':'#tilde{#chi}_{1}^{#pm}#tilde{#chi}_{2}^{0} production'
               , 'modeC':'#tilde{#chi}_{1}^{0}#tilde{#chi}_{1}^{0} production'
               , 'pmssm':'pMSSM - TO UPDATE!!!'
-              , 'stst':'#tilde{t}#tilde{t}^{*} production'
               }
 
 # ==============================================================================
@@ -88,7 +92,7 @@ class HistPainter(object):
         for key in self.num_merger.hist_handles:
             hist_list.append(self.num_merger.hist_handles[key].hist)
             label_list.append(hh.Helper.genLegendLabel(key))
-            print 'adding numerator option to legend: %s' % self.num_draw_option
+            # print 'adding numerator option to legend: %s' % self.num_draw_option
             draw_opt_list.append(self.num_draw_option)
         # add denominator
         for key in self.denom_merger.hist_handles:
@@ -103,14 +107,12 @@ class HistPainter(object):
                 draw_opt_list.append('HIST')
 
         # build legend and return
-        # TODO get legend in new way
-        leg = None
-        # leg = metaroot.hist.make_legend( hist_list
-        #                                , label_list
-        #                                , draw_opt_list
-        #                                , width=0.40 if not full_canvas else 0.90
-        #                                , y2 = 0.90
-        #                                )
+        leg = metaroot.hist.make_legend( hist_list
+                                       , label_list
+                                       , draw_opt_list
+                                       , width=0.40 if not full_canvas else 0.90
+                                       , y2 = 0.90
+                                       )
 
         return leg
 
@@ -195,7 +197,7 @@ class HistPainter(object):
                        , line_styles
                        ):
         for key in merger.hist_handles:
-            # label_list.append(hh.Helper.genLegendLabel(key))
+            label_list.append(hh.Helper.genLegendLabel(key))
             num_entries.append(merger.hist_handles[key].hist.Integral())
             fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
             line_colors.append(merger.hist_handles[key].hist_info.line_color)
@@ -228,7 +230,7 @@ class HistPainter(object):
             , denom_type       = hh.Objects.plain_hist
             , other_type       = hh.Objects.piled_hist
             , normalize        = False
-            , canvas_options   = hh.Objects.canv_linear
+            , canvas_options   = hh.canv_linear
             , legend           = False
             , int_lumi         = 0
             , prod_type        = ''
@@ -318,11 +320,11 @@ class HistPainter(object):
         #     if not self.cut_region is None:
         #         self.cut_region.Draw('F')
 
-        # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # if legend:
-        #     self.legend = self.genLegend()
-        #     self.legend.Draw()
-        # drawLabels(int_lumi = int_lumi, prod_type = prod_type)
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        if legend:
+            self.legend = self.genLegend()
+            self.legend.Draw()
+        drawLabels(int_lumi = int_lumi, prod_type = prod_type)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
@@ -333,7 +335,7 @@ class HistPainter(object):
                     , denom_type       = hh.Objects.plain_hist
                     , other_type       = hh.Objects.piled_hist
                     , normalize        = False
-                    , canvas_options   = hh.Objects.canv_linear
+                    , canvas_options   = hh.canv_linear
                     , legend           = False
                     , int_lumi         = 0
                     , prod_type        = ''
@@ -371,7 +373,7 @@ class HistPainter(object):
                                                 )
                               )
 
-        ratio_canvas_options = hh.Objects.canv_linear
+        ratio_canvas_options = hh.canv_linear
         ratio_canvas_options.log_y = False
         ratio_canvas = pileHists( [self.ratio]
                                 , tag
@@ -387,33 +389,26 @@ class HistPainter(object):
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         shared_name = '%s_w_ratio' % self.canvas.GetName()
-        # TODO get canvas in new way
-        # shared = plotSharedAxis( self.canvas
-        #                        , ratio_canvas
-        #                        , name = '%s_with_ratio' % shared_name
-        #                        , canvas_options=canvas_options
-        #                        , 
-        self.canvas = None
-        # shared=metaroot.plot.plot_shared_axis( self.canvas
-        #                                      , ratio_canvas
-        #                                      , name=shared_name+"_with_ratio"
-        #                                      , canvas_options=canvas_options
-        #                                      , split=0.3
-        #                                      , axissep=0.04
-        #                                      , ndivs=[505,503]
-        #                                      )
-        # self.ratio_stuff = { 'top_pad':shared['top_pad']
-        #                    , 'bottom_pad':shared['bottom_pad']
-        #                    }
+        shared=metaroot.plot.plot_shared_axis( self.canvas
+                                             , ratio_canvas
+                                             , name=shared_name+"_with_ratio"
+                                             , canvas_options=canvas_options
+                                             , split=0.3
+                                             , axissep=0.04
+                                             , ndivs=[505,503]
+                                             )
+        self.ratio_stuff = { 'top_pad':shared['top_pad']
+                           , 'bottom_pad':shared['bottom_pad']
+                           }
 
-        # self.canvas = shared['canvas']
+        self.canvas = shared['canvas']
 
-        # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # if legend:
-        #     self.ratio_stuff['top_pad'].cd()
-        #     self.legend = self.genLegend()
-        #     self.legend.Draw()
-        # drawLabels(int_lumi = int_lumi, prod_type = prod_type)
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        if legend:
+            self.ratio_stuff['top_pad'].cd()
+            self.legend = self.genLegend()
+            self.legend.Draw()
+        drawLabels(int_lumi = int_lumi, prod_type = prod_type)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
@@ -438,7 +433,7 @@ class HistPainter(object):
 
         canv_dict = {}
         for l, h in zip(labels, hists):
-            canv_dict[l] = hh.Objects.canv_2d.create(l)
+            canv_dict[l] = hh.canv_opt_2d.create(l)
             h.Draw('COLZ')
 
         # canv_dict['num_sum'] = hh.canv_opt_2d.create('num_sum')
@@ -475,11 +470,11 @@ def getTag( num_type   = hh.Objects.plain_hist
 # ------------------------------------------------------------------------------
 def pileHists( hist_list
              , name
-             , draw_opt_list = hh.default
+             , draw_opt_list = metaroot.default
              , title = None
-             , canvas_options = hh.default
-             , y_min = hh.default
-             , y_max = hh.default
+             , canvas_options = metaroot.default
+             , y_min = metaroot.default
+             , y_max = metaroot.default
              ):
     """
     docstring
@@ -487,13 +482,13 @@ def pileHists( hist_list
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if not isinstance(hist_list, list):
         hist_list = [hist_list]
-    if draw_opt_list == hh.default:
+    if draw_opt_list == metaroot.default:
         print 'setting the default draw options'
         draw_opt_list = ['P']*len(hist_list)
 
     # create canvas
-    if canvas_options == hh.default:
-        canvas_options = hh.Objects.canv_linear
+    if canvas_options == metaroot.default:
+        canvas_options = hh.canv_linear
     c = canvas_options.create(name)
 
     # print 'about to set min/max:'
@@ -519,9 +514,9 @@ def pileHists( hist_list
 
 
 # ------------------------------------------------------------------------------
-def setMin(hist_list, log_y = False, y_min = hh.default):
+def setMin(hist_list, log_y = False, y_min = metaroot.default):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if y_min == hh.default:
+    if y_min == metaroot.default:
         y_min = calcMin(hist_list, log_y)
 
     for h in hist_list:
@@ -530,9 +525,9 @@ def setMin(hist_list, log_y = False, y_min = hh.default):
     return y_min
 
 # ------------------------------------------------------------------------------
-def setMax(hist_list, log_y = False, y_max = hh.default):
+def setMax(hist_list, log_y = False, y_max = metaroot.default):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if y_max == hh.default:
+    if y_max == metaroot.default:
         y_max = calcMax(hist_list, log_y)
 
     for h in hist_list:
@@ -665,149 +660,149 @@ def getExtrema(hist_list, log_y = True):
         extrema = [0.01, 0.1] if log_y else [0., 1.]
     return extrema
 
-# # ------------------------------------------------------------------------------
-# def draw2DMaps( map_array
-#               , contour_levels = [1.64]
-#               , lumi           = None
-#               , prod_type      = ''
-#               ):
-#     # structure of elemets in map array are: # {'point_name':str, 'significance':float, 'cut_value':float}
-#     x_grid_points = []
-#     y_grid_points = []
-#     x_points      = []
-#     y_points      = []
-#     significance  = []
-#     cut_values    = []
-#     num_sig       = []
-# 
-#     for ma in map_array:
-#         x_grid_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
-#         y_grid_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
-# 
-#         if ma['significance'] is not None:
-#             x_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
-#             y_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
-#             significance.append(ma['significance'])
-#             cut_values.append(ma['cut_value'])
-#             num_sig.append(ma['num_sig'])
-# 
-#     # set axis titles
-#     # x_axis        = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
-#     x_axis        = 'm_{#tilde{#chi}_{1}^{#pm},#tilde{#chi}_{2}^{0}} [GeV]'
-#     y_axis        = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
-#     sig_title     = 'significance ; %s ; %s'      % (x_axis, y_axis)
-#     cut_title     = 'cut value ; %s ; %s'         % (x_axis, y_axis)
-#     num_sig_title = 'Num signal events ; %s ; %s' % (x_axis, y_axis)
-# 
-#     grid_points = ROOT.TGraph( len(map_array)
-#                              , array.array('d', x_grid_points)
-#                              , array.array('d', y_grid_points)
-#                              )
-#     grid_points.SetMarkerStyle(20)
-#     sig_graph = ROOT.TGraph2D( 'h_sig_map'
-#                              , '%s; Z_{n}' % sig_title
-#                              , len(x_points)
-#                              , array.array('d', x_points)
-#                              , array.array('d', y_points)
-#                              , array.array('d', significance)
-#                              )
-# 
-#     cut_graph = ROOT.TGraph2D( 'h_cut_map'
-#                              , '%s; Cut Values' % cut_title
-#                              , len(x_points)
-#                              , array.array('d', x_points)
-#                              , array.array('d', y_points)
-#                              , array.array('d', cut_values)
-#                              )
-# 
-#     num_sig_graph = ROOT.TGraph2D( 'h_num_sig_map'
-#                                  , '%s; Expected Signal Events' % num_sig_title
-#                                  , len(x_points)
-#                                  , array.array('d', x_points)
-#                                  , array.array('d', y_points)
-#                                  , array.array('d', num_sig)
-#                                  )
-# 
-#     sig_graph.SetMinimum(0)
-#     sig_graph.SetMaximum(2.)
-#     cut_graph.SetMinimum(0)
-#     num_sig_graph.SetMinimum(0)
-# 
-#     # get contour lines frokm significance map
-#     contour_lines = getContourLines( sig_graph
-#                                    , contour_levels
-#                                    , [2]*len(contour_levels)
-#                                    )
-# 
-#     c_sig = hh.canv_opt_2d.create('c_sig_map')
-#     sig_graph.Draw('COLZ')
-#     grid_points.Draw('PSAME')
-#     for cl in contour_lines:
-#         cl.Draw('SAME')
-#     drawLabels(int_lumi = lumi, prod_type = prod_type)
-# 
-#     c_cut = hh.canv_opt_2d.create('c_cut_map')
-#     cut_graph.Draw('COLZ')
-#     grid_points.Draw('PSAME')
-#     for cl in contour_lines:
-#         cl.Draw('SAME')
-#     drawLabels(int_lumi = lumi, prod_type = prod_type)
-# 
-#     c_num_sig = hh.canv_opt_2d_log_y.create('c_num_sig_map')
-#     num_sig_graph.Draw('COLZ')
-#     grid_points.Draw('PSAME')
-#     for cl in contour_lines:
-#         cl.Draw('SAME')
-#     drawLabels(int_lumi = lumi, prod_type = prod_type)
-# 
-#     return { 'h_sig':sig_graph
-#            , 'h_cut':cut_graph
-#            , 'h_num_sig':num_sig_graph
-#            , 'c_sig':c_sig
-#            , 'c_cut':c_cut
-#            , 'c_num_sig':c_num_sig
-#            , 'contour':contour_lines
-#            , 'grid':grid_points
-#            }
-# 
-# # -----------------------------------------------------------------------------
-# def getContourLines( plot
-#                    , contour_levels = [0.05]
-#                    , contour_colors = [1]
-#                    ):
-#     """
-#     docstring
-#     """
-#     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#     # check type of plot and get temp histogram
-#     if isinstance(plot, ROOT.TH2):
-#         h = plot.Clone('hist_temp')
-#     elif isinstance(plot, ROOT.TGraph2D):
-#         h = plot.GetHistogram()
-# 
-#     # add contour levels to temp histogram
-#     h.SetContour(len(contour_levels), array.array('d', contour_levels))
-# 
-#     # draw temp histogram to canvas and update to get contours
-#     c = ROOT.TCanvas('c_temp')
-#     h.Draw('CONT Z LIST')
-#     c.Update()
-# 
-#     # list to store the contour graphs which are created and will be returned
-#     list_of_contour_graphs = []
-#     contours = ROOT.gROOT.GetListOfSpecials().FindObject('contours')
-#     for i in xrange(contours.GetSize()):
-#         this_contour = contours.At(i)
-#         for j in xrange(this_contour.GetSize()):
-#             curve = this_contour.At(j)
-#             cv = curve.Clone('%s_cv_%d_%d' % (plot.GetName(),i,j))
-# 
-#             cv.SetLineColor(contour_colors[i])
-#             cv.SetLineWidth(3)
-# 
-#             list_of_contour_graphs.append(cv)
-#     c.Close()
-#     return list_of_contour_graphs
+# ------------------------------------------------------------------------------
+def draw2DMaps( map_array
+              , contour_levels = [1.64]
+              , lumi           = None
+              , prod_type      = ''
+              ):
+    # structure of elemets in map array are: # {'point_name':str, 'significance':float, 'cut_value':float}
+    x_grid_points = []
+    y_grid_points = []
+    x_points      = []
+    y_points      = []
+    significance  = []
+    cut_values    = []
+    num_sig       = []
+
+    for ma in map_array:
+        x_grid_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
+        y_grid_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
+
+        if ma['significance'] is not None:
+            x_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
+            y_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
+            significance.append(ma['significance'])
+            cut_values.append(ma['cut_value'])
+            num_sig.append(ma['num_sig'])
+
+    # set axis titles
+    # x_axis        = 'm_{#tilde{#chi}_{1}^{#pm}} [GeV]'
+    x_axis        = 'm_{#tilde{#chi}_{1}^{#pm},#tilde{#chi}_{2}^{0}} [GeV]'
+    y_axis        = 'm_{#tilde{#chi}_{1}^{0}} [GeV]'
+    sig_title     = 'significance ; %s ; %s'      % (x_axis, y_axis)
+    cut_title     = 'cut value ; %s ; %s'         % (x_axis, y_axis)
+    num_sig_title = 'Num signal events ; %s ; %s' % (x_axis, y_axis)
+
+    grid_points = ROOT.TGraph( len(map_array)
+                             , array.array('d', x_grid_points)
+                             , array.array('d', y_grid_points)
+                             )
+    grid_points.SetMarkerStyle(20)
+    sig_graph = ROOT.TGraph2D( 'h_sig_map'
+                             , '%s; Z_{n}' % sig_title
+                             , len(x_points)
+                             , array.array('d', x_points)
+                             , array.array('d', y_points)
+                             , array.array('d', significance)
+                             )
+
+    cut_graph = ROOT.TGraph2D( 'h_cut_map'
+                             , '%s; Cut Values' % cut_title
+                             , len(x_points)
+                             , array.array('d', x_points)
+                             , array.array('d', y_points)
+                             , array.array('d', cut_values)
+                             )
+
+    num_sig_graph = ROOT.TGraph2D( 'h_num_sig_map'
+                                 , '%s; Expected Signal Events' % num_sig_title
+                                 , len(x_points)
+                                 , array.array('d', x_points)
+                                 , array.array('d', y_points)
+                                 , array.array('d', num_sig)
+                                 )
+
+    sig_graph.SetMinimum(0)
+    sig_graph.SetMaximum(2.)
+    cut_graph.SetMinimum(0)
+    num_sig_graph.SetMinimum(0)
+
+    # get contour lines frokm significance map
+    contour_lines = getContourLines( sig_graph
+                                   , contour_levels
+                                   , [2]*len(contour_levels)
+                                   )
+
+    c_sig = hh.canv_opt_2d.create('c_sig_map')
+    sig_graph.Draw('COLZ')
+    grid_points.Draw('PSAME')
+    for cl in contour_lines:
+        cl.Draw('SAME')
+    drawLabels(int_lumi = lumi, prod_type = prod_type)
+
+    c_cut = hh.canv_opt_2d.create('c_cut_map')
+    cut_graph.Draw('COLZ')
+    grid_points.Draw('PSAME')
+    for cl in contour_lines:
+        cl.Draw('SAME')
+    drawLabels(int_lumi = lumi, prod_type = prod_type)
+
+    c_num_sig = hh.canv_opt_2d_log_y.create('c_num_sig_map')
+    num_sig_graph.Draw('COLZ')
+    grid_points.Draw('PSAME')
+    for cl in contour_lines:
+        cl.Draw('SAME')
+    drawLabels(int_lumi = lumi, prod_type = prod_type)
+
+    return { 'h_sig':sig_graph
+           , 'h_cut':cut_graph
+           , 'h_num_sig':num_sig_graph
+           , 'c_sig':c_sig
+           , 'c_cut':c_cut
+           , 'c_num_sig':c_num_sig
+           , 'contour':contour_lines
+           , 'grid':grid_points
+           }
+
+# -----------------------------------------------------------------------------
+def getContourLines( plot
+                   , contour_levels = [0.05]
+                   , contour_colors = [1]
+                   ):
+    """
+    docstring
+    """
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # check type of plot and get temp histogram
+    if isinstance(plot, ROOT.TH2):
+        h = plot.Clone('hist_temp')
+    elif isinstance(plot, ROOT.TGraph2D):
+        h = plot.GetHistogram()
+
+    # add contour levels to temp histogram
+    h.SetContour(len(contour_levels), array.array('d', contour_levels))
+
+    # draw temp histogram to canvas and update to get contours
+    c = ROOT.TCanvas('c_temp')
+    h.Draw('CONT Z LIST')
+    c.Update()
+
+    # list to store the contour graphs which are created and will be returned
+    list_of_contour_graphs = []
+    contours = ROOT.gROOT.GetListOfSpecials().FindObject('contours')
+    for i in xrange(contours.GetSize()):
+        this_contour = contours.At(i)
+        for j in xrange(this_contour.GetSize()):
+            curve = this_contour.At(j)
+            cv = curve.Clone('%s_cv_%d_%d' % (plot.GetName(),i,j))
+
+            cv.SetLineColor(contour_colors[i])
+            cv.SetLineWidth(3)
+
+            list_of_contour_graphs.append(cv)
+    c.Close()
+    return list_of_contour_graphs
 
 # ------------------------------------------------------------------------------
 def drawLabels( int_lumi = 0

@@ -17,4 +17,4 @@ HIST_1D = object()
 HIST_2D = object()
 
 # import Handle, Merger, Objects, Painter, parse, Helper, Optimize, AtlasLabels
-import Handle, Merger, Objects, Painter, AtlasLabels
+import Handle, Merger, Objects, Painter, Helper, AtlasLabels

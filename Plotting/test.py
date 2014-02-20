@@ -85,8 +85,8 @@ if __name__ == '__main__':
     #                                            , legend         = True
     #                                            # , ratio_axis_title = 'Data/MC'
     #                                            )
-    # TODO get legend again
-    # leg = hist_painter.genLegend()
+    leg = hist_painter.genLegend()
+    # TODO draw legend again
     # leg.Draw()
     pile_test_stack.Print('test_linear.png')
     pile_test_stack.Write('test_linear')
