@@ -6,7 +6,7 @@ import optparse
 import time
 
 import ROOT
-import rootlogon
+# import rootlogon
 
 import HistHandle as hh
 
@@ -81,6 +81,7 @@ class CanvasInfo(object):
 
     # --------------------------------------------------------------------------
     def configure(self, c):
+        pass
         c.UseCurrentStyle()
         c.SetLogx(self.log_x)
         c.SetLogy(self.log_y)

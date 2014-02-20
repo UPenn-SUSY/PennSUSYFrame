@@ -10,7 +10,7 @@ import math
 import array
 
 import ROOT
-import rootlogon
+# import rootlogon
 
 # import AtlasLabels
 
@@ -84,23 +84,23 @@ class HistPainter(object):
         hist_list = []
         label_list = []
         draw_opt_list = []
-        # # add numerator
-        # for key in self.num_merger.hist_handles:
-        #     hist_list.append(self.num_merger.hist_handles[key].hist)
-        #     label_list.append(hh.Helper.genLegendLabel(key))
-        #     # print 'adding numerator option to legend: %s' % self.num_draw_option
-        #     draw_opt_list.append(self.num_draw_option)
-        # # add denominator
-        # for key in self.denom_merger.hist_handles:
-        #     hist_list.append(self.denom_merger.hist_handles[key].hist)
-        #     label_list.append(hh.Helper.genLegendLabel(key))
-        #     draw_opt_list.append('HIST')
-        # # if there are others to add, add them now
-        # if self.other_merger is not None:
-        #     for key in self.other_merger.hist_handles:
-        #         hist_list.append(self.other_merger.hist_handles[key].hist)
-        #         label_list.append(hh.Helper.genLegendLabel(key))
-        #         draw_opt_list.append('HIST')
+        # add numerator
+        for key in self.num_merger.hist_handles:
+            hist_list.append(self.num_merger.hist_handles[key].hist)
+            # label_list.append(hh.Helper.genLegendLabel(key))
+            # print 'adding numerator option to legend: %s' % self.num_draw_option
+            draw_opt_list.append(self.num_draw_option)
+        # add denominator
+        for key in self.denom_merger.hist_handles:
+            hist_list.append(self.denom_merger.hist_handles[key].hist)
+            # label_list.append(hh.Helper.genLegendLabel(key))
+            draw_opt_list.append('HIST')
+        # if there are others to add, add them now
+        if self.other_merger is not None:
+            for key in self.other_merger.hist_handles:
+                hist_list.append(self.other_merger.hist_handles[key].hist)
+                # label_list.append(hh.Helper.genLegendLabel(key))
+                draw_opt_list.append('HIST')
 
         # build legend and return
         # TODO get legend in new way
