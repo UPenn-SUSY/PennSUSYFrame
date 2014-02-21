@@ -50,13 +50,15 @@ class EntryContainer(object):
     def genHistHandle( self
                      , dir_name
                      , hist_name
+                     , lumi_modeled = 1.
+                     , lumi_target  = 1.
                      ):
         return hh.Handle.HistHandle( dir_name
                                    , hist_name
                                    , self.hist_info
                                    , self.file_list
-                                   # , self.lumi_modeled_in_file
-                                   # , self.target_lumi
+                                   , lumi_modeled
+                                   , lumi_target
                                    )
 
 # ==============================================================================
@@ -77,9 +79,9 @@ class InputContainer(object):
                 , line_width = 2
                 , line_style  = 1
                 , marker_style = 20
-                , target_lumi = 1.
-                , modeled_lumi = 1.
                 , entry_list = []
+                , lumi_modeled = 1.
+                , lumi_target  = 1.
                 ):
         self.name         = name
         self.fill_color   = fill_color
@@ -89,15 +91,15 @@ class InputContainer(object):
 
         self.marker_style = marker_style
 
-        self.target  = target_lumi
-        self.modeled = modeled_lumi
-
         self.entries = entry_list
         # self.entries = []
         # for el in entrty_list:
         #     self.entries.append( EntryContainer( el
         #                                        )
         #                        )
+
+        self.lumi_modeled = lumi_modeled
+        self.lumi_target  = lumi_target
 
         self.hist_info = hh.Objects.HistInfo( self.name
                                             , fill_color = self.fill_color
@@ -126,7 +128,11 @@ class InputContainer(object):
 
         hist_handle_dict = {}
         for e in self.entries:
-            hist_handle_dict[e.label] = e.genHistHandle(dir_name, hist_name)
+            hist_handle_dict[e.label] = e.genHistHandle( dir_name
+                                                       , hist_name
+                                                       , lumi_modeled = self.lumi_modeled
+                                                       , lumi_target  = self.lumi_target
+                                                       )
         tmp =  hh.Merger.HistMerger( dir_name
                                    , hist_name
                                    , hist_handle_dict

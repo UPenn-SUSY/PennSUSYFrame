@@ -10,9 +10,6 @@ import math
 import array
 
 import ROOT
-# import rootlogon
-
-# import AtlasLabels
 
 import HistHandle as hh
 
