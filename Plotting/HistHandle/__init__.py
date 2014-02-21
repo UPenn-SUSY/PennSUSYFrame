@@ -23,7 +23,7 @@ HIST_2D = object()
 # import modules
 #------------------------------------------------------------------------------
 # import Handle, Merger, Objects, Painter, parse, Helper, Optimize, AtlasLabels
-import Handle, Merger, Objects, Painter, Parse, Helper, AtlasLabels
+import Handle, Merger, Objects, Painter, Container, Helper, AtlasLabels
 
 #------------------------------------------------------------------------------
 # style stuff

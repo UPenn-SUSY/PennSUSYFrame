@@ -32,7 +32,7 @@ def plotComparisons( ic_numerator
     ROOT.gROOT.SetBatch()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    file_list = hh.Parse.getListOfFiles([ic_numerator, ic_denominator])
+    file_list = hh.Container.getListOfFiles([ic_numerator, ic_denominator])
 
     # TODO after debugging, switch back to 'create'
     # out_file = ROOT.TFile(out_file_name, 'CREATE')
@@ -143,30 +143,33 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # TODO parse these inputs in more reasonable way!
-    ec_dummy = hh.Parse.EntryContainer( label = 'dummy'
-                                      , fill_color = ROOT.kBlack
-                                      , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dummy_hist.root"
-                                                          ]
-                                      )
-    ec_ttbar = hh.Parse.EntryContainer( label = 'ttbar'
-                                      , fill_color = ROOT.kBlue
-                                      , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.105200.ttbar.hists.root"
-                                                          ]
-                                      )
-    ec_Zeebb = hh.Parse.EntryContainer( label = 'Zbb'
-                                      , fill_color = ROOT.kRed
-                                      , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dsid.ZeebbNp0.hist.root"
-                                                          , "${BASE_WORK_DIR}/BMinusL.dsid.ZeebbNp1.hist.root"
-                                                          , "${BASE_WORK_DIR}/BMinusL.dsid.ZmumubbNp0.hist.root"
-                                                          , "${BASE_WORK_DIR}/BMinusL.dsid.ZmumubbNp1.hist.root"
-                                                          ]
-                                      )
-    ic_numerator = hh.Parse.InputContainer( name = 'dummy'
-                                          , entry_list = [ec_dummy]
+    ec_dummy = hh.Container.EntryContainer( label = 'dummy'
+                                          , fill_color = ROOT.kBlack
+                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dummy_hist.root"
+                                                              ]
                                           )
-    ic_denominator = hh.Parse.InputContainer( name = 'Background'
-                                            , entry_list = [ec_ttbar, ec_Zeebb]
-                                            )
+    ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
+                                          , fill_color = ROOT.kBlue
+                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.105200.ttbar.hists.root"
+                                                              ]
+                                          )
+    # ec_Zeebb = hh.Container.EntryContainer( label = 'Zbb'
+    #                                       , fill_color = ROOT.kRed
+    #                                       , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dsid.ZeebbNp0.hist.root"
+    #                                                           , "${BASE_WORK_DIR}/BMinusL.dsid.ZeebbNp1.hist.root"
+    #                                                           , "${BASE_WORK_DIR}/BMinusL.dsid.ZmumubbNp0.hist.root"
+    #                                                           , "${BASE_WORK_DIR}/BMinusL.dsid.ZmumubbNp1.hist.root"
+    #                                                           ]
+    #                                       )
+    ic_numerator = hh.Container.InputContainer( name = 'dummy'
+                                              , entry_list = [ec_dummy]
+                                              , lumi_target = 0.
+                                              )
+    ic_denominator = hh.Container.InputContainer( name = 'Background'
+                                                # , entry_list = [ec_ttbar, ec_Zeebb]
+                                                , entry_list = [ec_ttbar]
+                                                , lumi_target = 21000
+                                                )
 
     out_file_name = 'compare_plots.test.root'
 

@@ -10,7 +10,6 @@ import string
 from array import array
 
 import ROOT
-# import rootlogon
 
 import HistHandle as hh
 
