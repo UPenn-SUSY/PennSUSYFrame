@@ -85,16 +85,18 @@ class HistPainter(object):
         label_list = []
         draw_opt_list = []
         # add numerator
-        for key in self.num_merger.hist_handles:
-            hist_list.append(self.num_merger.hist_handles[key].hist)
-            label_list.append(hh.Helper.genLegendLabel(key))
-            print 'adding numerator option to legend: %s' % self.num_draw_option
-            draw_opt_list.append(self.num_draw_option)
+        if self.num_merger is not None:
+            for key in self.num_merger.hist_handles:
+                hist_list.append(self.num_merger.hist_handles[key].hist)
+                label_list.append(hh.Helper.genLegendLabel(key))
+                print 'adding numerator option to legend: %s' % self.num_draw_option
+                draw_opt_list.append(self.num_draw_option)
         # add denominator
-        for key in self.denom_merger.hist_handles:
-            hist_list.append(self.denom_merger.hist_handles[key].hist)
-            label_list.append(hh.Helper.genLegendLabel(key))
-            draw_opt_list.append('HIST')
+        if self.denom_merger is not None:
+            for key in self.denom_merger.hist_handles:
+                hist_list.append(self.denom_merger.hist_handles[key].hist)
+                label_list.append(hh.Helper.genLegendLabel(key))
+                draw_opt_list.append('HIST')
         # if there are others to add, add them now
         if self.other_merger is not None:
             for key in self.other_merger.hist_handles:
@@ -355,63 +357,14 @@ class HistPainter(object):
                  , canvas_options
                  )
 
-        ratio_axis_title = '%s/%s' % ( self.num_merger.hist_info.name
-                                     , self.denom_merger.hist_info.name
-                                     )
-        # make ratio histogram
-        self.ratio = self.num_merger.hist_sum.Clone('%s_ratio' % self.name)
-        self.ratio.Divide(self.denom_merger.hist_sum)
-        self.ratio.GetYaxis().SetTitle(ratio_axis_title)
-
-        tag = '%s_ratio_%s' % (self.name, getTag( num_type
-                                                , denom_type
-                                                , normalize
-                                                )
-                              )
-
-        ratio_canvas_options = hh.Objects.canv_linear
-        ratio_canvas_options.log_y = False
-        ratio_canvas = pileHists( [self.ratio]
-                                , tag
-                                , ['PE']
-                                , canvas_options = ratio_canvas_options
-                                , y_min = 0.5
-                                , y_max = 1.5
-                                )
-        line = ROOT.TLine()
-        line.SetLineStyle(2)
-        a = self.ratio.GetXaxis()
-        line.DrawLine(a.GetXmin(), 1., a.GetXmax(), 1.)
+        # TODO get and draw ratio plot
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        shared_name = '%s_w_ratio' % self.canvas.GetName()
-        # TODO get canvas in new way
-        # shared = plotSharedAxis( self.canvas
-        #                        , ratio_canvas
-        #                        , name = '%s_with_ratio' % shared_name
-        #                        , canvas_options=canvas_options
-        #                        , 
-        self.canvas = None
-        # shared=metaroot.plot.plot_shared_axis( self.canvas
-        #                                      , ratio_canvas
-        #                                      , name=shared_name+"_with_ratio"
-        #                                      , canvas_options=canvas_options
-        #                                      , split=0.3
-        #                                      , axissep=0.04
-        #                                      , ndivs=[505,503]
-        #                                      )
-        # self.ratio_stuff = { 'top_pad':shared['top_pad']
-        #                    , 'bottom_pad':shared['bottom_pad']
-        #                    }
-
-        # self.canvas = shared['canvas']
-
-        # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # if legend:
-        #     self.ratio_stuff['top_pad'].cd()
-        #     self.legend = self.genLegend()
-        #     self.legend.Draw()
-        # drawLabels(int_lumi = int_lumi, prod_type = prod_type)
+        if legend:
+            # self.ratio_stuff['top_pad'].cd()
+            self.legend = self.genLegend()
+            self.legend.Draw()
+        drawLabels(int_lumi = int_lumi, prod_type = prod_type)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas

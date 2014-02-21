@@ -131,6 +131,7 @@ canv_linear = CanvasInfo( width  = 600
                         )
 canv_log_y = CanvasInfo( width  = 600
                        , height = 600
+                       , log_y = True
                        )
 canv_2d = CanvasInfo( width  = 600
                     , height = 600

@@ -22,6 +22,8 @@ def get_list_of_keys(d):
     """
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     list_of_hists = [key.GetName() for key in d.GetListOfKeys()]
+    if 'TotalNumEvents' in list_of_hists:
+        list_of_hists.remove('TotalNumEvents')
     return list_of_hists
 
 # ------------------------------------------------------------------------------
@@ -52,7 +54,7 @@ def removeBadDirs(key_list):
     return new_key_list
 
 # ------------------------------------------------------------------------------
-def get_list_of_dirs(d):
+def getListOfDirs(d):
     if not isinstance(d, list): d = [d]
 
     key_list_ref = None
@@ -83,7 +85,7 @@ def get_list_of_dirs(d):
     return list(key_list_ref)
 
 # ------------------------------------------------------------------------------
-def get_list_of_hists(d):
+def getListOfHists(d):
     """
     get a list of histograms in a TDirectory d
     TODO update this function when directory structure gets a little more complicated

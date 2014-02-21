@@ -19,6 +19,15 @@ equal = object()
 HIST_1D = object()
 HIST_2D = object()
 
+#------------------------------------------------------------------------------
+# import modules
+#------------------------------------------------------------------------------
+# import Handle, Merger, Objects, Painter, parse, Helper, Optimize, AtlasLabels
+import Handle, Merger, Objects, Painter, Parse, Helper, AtlasLabels
+
+#------------------------------------------------------------------------------
+# style stuff
+#------------------------------------------------------------------------------
 # whitening
 gStyle.SetStatColor(0)
 gStyle.SetCanvasColor(0)
@@ -111,7 +120,3 @@ set_palette('brett')
 ## force style
 from ROOT import gROOT
 gROOT.ForceStyle()
-
-
-# import Handle, Merger, Objects, Painter, parse, Helper, Optimize, AtlasLabels
-import Handle, Merger, Objects, Painter, Helper, AtlasLabels
