@@ -10,7 +10,7 @@ from array import array
 
 import ROOT
 
-import HistHandle
+import HistHandle as hh
 
 # ==============================================================================
 # = Helper functions for interpretting the HistHandle objects
@@ -160,12 +160,12 @@ def get_histograms( input_dict
     for inp_dict in input_dict:
         dict_name = inp_dict['name']
         key = '%s__%s__%s' % (dir_name, hist_name, dict_name)
-        hist_handle.append( HistHandle( dir_name
-                                      , hist_name
-                                      , inp_dict
-                                      , do_scale_to_lumi
-                                      , target_lumi
-                                      )
+        hist_handle.append( hh.Handle.HistHandle( dir_name
+                                                , hist_name
+                                                , inp_dict
+                                                , do_scale_to_lumi
+                                                , target_lumi
+                                                )
                           )
     # print '\tdone getting histograms -- %s - %s' % (dir_name, hist_name)
 
@@ -211,3 +211,91 @@ def confirm(prompt = None, resp = False):
             return True
         if ans == 'n' or ans == 'N':
             return False
+
+# ------------------------------------------------------------------------------
+class MetaLegend(ROOT.TLegend):
+    """
+    A better TLegend class that increases in height as you call AddEntry.
+    -- stolen from Ryan Reece
+    """
+#______________________________________________________________________________
+    def __init__(self, width=0.15, height=0.05,
+            x1=None, y1=None,
+            x2=None, y2=None,
+            border=0, fill_color=0, fill_style=0):
+#        assert (x1 == y1 == None) or (x2 == y2 == None)
+#        assert (x1 != None and y1 != None) or (x2 != None and y2 != None)
+
+        if x1 == x2 == None:
+            x2 = 0.93
+            x1 = x2 - width
+        elif x1 == None:
+            x1 = x2 - width
+        elif x2 == None:
+            x2 = x1 + width
+
+        if y1 == y2 == None:
+            y2 = 0.93
+            y1 = y2 - width
+        elif y1 == None:
+            y1 = y2 - width
+        elif y2 == None:
+            y2 = y1 + width
+
+        ROOT.TLegend.__init__(self, x1, y1, x2, y2)
+        self.SetBorderSize(border)
+        self.SetFillColor(fill_color)
+        self.SetFillStyle(fill_style)
+        self.width = width
+        self.height = height # per entry
+        self._nentries = 0
+        self._has_drawn = False
+#______________________________________________________________________________
+    def AddEntry(self, obj, label='', option='P'):
+        self._nentries += 1
+        self.resize()
+        ROOT.TLegend.AddEntry(self, obj, label, option)
+#______________________________________________________________________________
+    def Draw(self):
+        self.resize()
+        ROOT.TLegend.Draw(self)
+        self._has_drawn = True
+#______________________________________________________________________________
+    def resize(self):
+        if self._has_drawn:
+            y2 = self.GetY2NDC()
+            self.SetY1NDC(y2 - (self.height*self._nentries) - 0.01)
+        else:
+            y2 = self.GetY2()
+            self.SetY1(y2 - (self.height*self._nentries) - 0.01)
+
+# ------------------------------------------------------------------------------
+def makeLegend( hist_list
+              , label_list
+              , draw_options = hh.default
+              , width = 0.15
+              , height = 0.05
+              , x1 = None
+              , x2 = None
+              , y1 = None
+              , y2 = None
+              ):
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if draw_options is hh.default:
+        draw_options = ['P']*len(hist_list)
+    if not isinstance(draw_options, list):
+        draw_options = [draw_options]*len(hist_list)
+    assert len(hist_list) == len(label_list) == len(draw_options)
+    leg = MetaLegend(width=width, height=height, x1=x1, y1=y1, x2=x2, y2=y2)
+    for h, lab, opt in zip(hist_list, label_list, draw_options):
+        if not opt in ('P', 'F', 'L'):
+            ## assume opt is of the same format as draw_options used with Draw
+            if opt.count('P'):
+                if opt.count('E'):
+                    opt = 'PL'
+                else:
+                    opt = 'P'
+            else: # '', 'HIST', etc.
+                opt = 'F'
+        leg.AddEntry(h, label=lab, option=opt)
+    return leg

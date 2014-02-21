@@ -61,23 +61,32 @@ class CanvasInfo(object):
     def __init__( self
                 , width = 600
                 , height = 600
-                , left_margin = 0.15
-                , right_margin = 0.15
-                , top_margin = 0.15
-                , bottom_margin = 0.15
+                , left_margin   = 0.16
+                , right_margin  = 0.09
+                , top_margin    = 0.05
+                , bottom_margin = 0.16
                 , log_x = False
                 , log_y = False
                 , log_z = False
+                # , x_title_offset = 1.2
+                # , y_title_offset = 1.2
+                # , z_title_offset = 0.8
                 ):
         self.width = width
         self.height = height
+
         self.left_margin   = left_margin
         self.right_margin  = right_margin
         self.top_margin    = top_margin
         self.bottom_margin = bottom_margin
+
         self.log_x = log_x
         self.log_y = log_y
         self.log_z = log_z
+
+        # self.x_title_offset = x_title_offset
+        # self.y_title_offset = y_title_offset
+        # self.z_title_offset = z_title_offset
 
     # --------------------------------------------------------------------------
     def configure(self, c):
@@ -95,6 +104,14 @@ class CanvasInfo(object):
             c.SetTopMargin(self.top_margin)
         if not self.bottom_margin is hh.default:
             c.SetBottomMargin(self.bottom_margin)
+
+        # if not self.x_title_offset is hh.default:
+        #     c.SetTitleOffset(self.x_title_offset, 'x')
+        # if not self.y_title_offset is hh.default:
+        #     c.SetTitleOffset(self.x_title_offset, 'y')
+        # if not self.z_title_offset is hh.default:
+        #     c.SetTitleOffset(self.x_title_offset, 'z')
+
 
         c.SetBorderSize(0)
         c.SetBorderMode(0)

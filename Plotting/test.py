@@ -9,7 +9,6 @@ import string
 from array import array
 
 import ROOT
-# import rootlogon
 
 import HistHandle as hh
 ho = hh.Objects
@@ -87,7 +86,7 @@ if __name__ == '__main__':
     #                                            )
     leg = hist_painter.genLegend()
     # TODO draw legend again
-    # leg.Draw()
+    leg.Draw()
     pile_test_stack.Print('test_linear.png')
     pile_test_stack.Write('test_linear')
     pile_test_stack.Close()
@@ -105,7 +104,7 @@ if __name__ == '__main__':
     #                                            , legend         = True
     #                                            )
     # TODO draw legend again
-    # leg.Draw()
+    leg.Draw()
     pile_test_stack.Print('test_log.png')
     pile_test_stack.Write('test_log')
     pile_test_stack.Close()

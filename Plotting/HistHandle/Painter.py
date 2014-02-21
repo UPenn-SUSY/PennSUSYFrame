@@ -103,14 +103,12 @@ class HistPainter(object):
                 draw_opt_list.append('HIST')
 
         # build legend and return
-        # TODO get legend in new way
-        leg = None
-        # leg = metaroot.hist.make_legend( hist_list
-        #                                , label_list
-        #                                , draw_opt_list
-        #                                , width=0.40 if not full_canvas else 0.90
-        #                                , y2 = 0.90
-        #                                )
+        leg = hh.Helper.makeLegend( hist_list
+                                  , label_list
+                                  , draw_opt_list
+                                  , width=0.40 if not full_canvas else 0.90
+                                  , y2 = 0.90
+                                  )
 
         return leg
 
