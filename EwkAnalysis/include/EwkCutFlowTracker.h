@@ -11,6 +11,7 @@ enum EWK_CUTS { EWK_CUT_ALL
               , EWK_CUT_BREAK_0
               , EWK_CUT_MC_EVENT_WEIGHT
               , EWK_CUT_PILEUP_WEIGHT
+              , EWK_CUT_XSEC_WEIGHT
               , EWK_CUT_BREAK_1
               , EWK_CUT_GRL
               , EWK_CUT_INCOMPLETE_EVENT
@@ -54,6 +55,7 @@ const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
                                       , "BREAK"
                                       , "EWK_CUT_MC_EVENT_WEIGHT"
                                       , "EWK_CUT_PILEUP_WEIGHT"
+                                      , "EWK_CUT_XSEC_WEIGHT"
                                       , "BREAK"
                                       , "EWK_CUT_GRL"
                                       , "EWK_CUT_INCOMPLETE_EVENT"
