@@ -9,6 +9,10 @@ import glob
 
 import ROOT
 
+import os
+sys.path.append('%s/CrossSectionReader/' % os.environ['BASE_WORK_DIR'])
+import CrossSectionReader
+
 # ------------------------------------------------------------------------------
 def getFileListFromDir(file_path):
     print 'getting files from dir: %s' % file_path
@@ -21,7 +25,12 @@ def getFileListFromGridInput(grid_input_string):
     return file_list
 
 # ------------------------------------------------------------------------------
-def runBMinusLAnalysis(file_list, is_data, is_full_sim, tree_name = 'susy'):
+def runBMinusLAnalysis( file_list
+                      , is_data
+                      , is_full_sim
+                      , tree_name = 'susy'
+                      , dsid = 1
+                      ):
     # ==============================================================================
     print 'loading packages'
     ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
@@ -46,6 +55,13 @@ def runBMinusLAnalysis(file_list, is_data, is_full_sim, tree_name = 'susy'):
         bmla.setIsData()
     else:
         bmla.setIsMC()
+
+        xsec_dict = CrossSectionReader.getCrossSection(dsid)
+        if xsec_dict is None:
+            return
+        bmla.setCrossSection(xsec_dict['xsec'])
+        bmla.setKFactor(     xsec_dict['kfac'])
+        bmla.setFilterEff(   xsec_dict['eff'])
 
     if is_full_sim:
         bmla.setFullSim()

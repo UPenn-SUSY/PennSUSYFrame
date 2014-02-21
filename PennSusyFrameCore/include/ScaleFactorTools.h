@@ -48,7 +48,7 @@ namespace PennSusyFrame
 
       Root::TPileupReweighting* m_pile_up_reweight;
   };
-  
+
   // =============================================================================
   class EgammaScaleFactorTool
   {

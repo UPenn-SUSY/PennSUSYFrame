@@ -42,7 +42,11 @@ namespace PennSusyFrame
       virtual void setIsMC()   { m_is_data = false; }
 
       virtual void setFullSim() { m_is_af2 = false; }
-      virtual void setAf2() { m_is_af2 = true; }
+      virtual void setAf2() {     m_is_af2 = true; }
+
+      virtual void setCrossSection(float val) { m_x_sec = val; }
+      virtual void setKFactor(     float val) { m_k_factor = val; }
+      virtual void setFilterEff(   float val) { m_filter_eff = val; }
 
       virtual void prepareSelection();
 
@@ -68,6 +72,11 @@ namespace PennSusyFrame
       bool m_is_af2;
       double m_event_weight;
       bool m_pass_event;
+
+      float m_x_sec;
+      float m_k_factor;
+      float m_filter_eff;
+      float m_xsec_weight;
 
       TTree* m_tree;
       PennSusyFrame::D3PDReader* m_d3pd_reader;

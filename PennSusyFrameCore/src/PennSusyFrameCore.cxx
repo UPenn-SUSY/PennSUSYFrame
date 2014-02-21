@@ -21,6 +21,10 @@
 PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_is_data(true)
                                                                  , m_is_af2(false)
                                                                  , m_event_weight(1.)
+                                                                 , m_x_sec(1.)
+                                                                 , m_k_factor(1.)
+                                                                 , m_filter_eff(1.)
+                                                                 , m_xsec_weight(1.)
                                                                  , m_d3pd_reader(0)
 {
   // if parameter tree is not specified (or zero), connect the file
@@ -251,7 +255,12 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::beginRun()
-{}
+{
+  if (!m_is_data) {
+    m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_d3pd_reader->getNumEvents();
+    std::cout << "setting xsec weight to " << m_xsec_weight << "\n";
+  }
+}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::processEvent()

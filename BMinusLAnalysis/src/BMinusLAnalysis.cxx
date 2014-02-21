@@ -95,6 +95,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::beginRun()
 {
+  PennSusyFrameCore::beginRun();
+
   prepareSelection();
 
   m_histogram_handlers.push_back( new PennSusyFrame::LeptonKinematicsHists() );
@@ -123,6 +125,13 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   m_event_weight *= m_event_quantities.getPileUpSF();
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_PILEUP_WEIGHT);
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_PILEUP_WEIGHT, m_event_weight);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // set cross section weight
+  // TODO validate cross section weight
+  m_event_weight *= m_xsec_weight;
+  m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_XSEC_WEIGHT);
+  m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_XSEC_WEIGHT, m_event_weight);
 
   // -----------------------------------------------------------------------------
   m_event.setPhaseSpace(getPhaseSpace());

@@ -11,6 +11,7 @@ enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   , BMINUSL_CUT_BREAK_0
                   , BMINUSL_CUT_MC_EVENT_WEIGHT
                   , BMINUSL_CUT_PILEUP_WEIGHT
+                  , BMINUSL_CUT_XSEC_WEIGHT
                   , BMINUSL_CUT_BREAK_1
                   , BMINUSL_CUT_GRL
                   , BMINUSL_CUT_INCOMPLETE_EVENT
@@ -41,6 +42,7 @@ const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           , "BREAK"
                                           , "BMINUSL_CUT_MC_EVENT_WEIGHT"
                                           , "BMINUSL_CUT_PILEUP_WEIGHT"
+                                          , "BMINUSL_CUT_XSEC_WEIGHT"
                                           , "BREAK"
                                           , "BMINUSL_CUT_GRL"
                                           , "BMINUSL_CUT_INCOMPLETE_EVENT"
