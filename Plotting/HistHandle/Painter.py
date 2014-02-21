@@ -264,8 +264,9 @@ class HistPainter(object):
                 draw_opt_list.append('HIST')
                 hist_list.append(self.denom_merger.hist_stack)
                 draw_opt_list.append('HIST')
-                hist_list.append(self.denom_merger.error_band)
-                draw_opt_list.append('E2')
+                # TODO add error band back to histograms
+                # hist_list.append(self.denom_merger.error_band)
+                # draw_opt_list.append('E2')
 
         # get numerator hists
         if num_type == hh.Objects.piled_hist:
