@@ -6,6 +6,7 @@ import optparse
 import time
 
 import glob
+import subprocess
 
 import ROOT
 
@@ -20,6 +21,17 @@ def getFileListFromDir(file_path):
     return file_list
 
 # ------------------------------------------------------------------------------
+def getFileListFromFile(file_path):
+    file_list = []
+
+    f = file(file_path)
+    for l in f.readlines():
+        l = l.strip('\n')
+        file_list.append(l)
+
+    return file_list
+
+# ------------------------------------------------------------------------------
 def getFileListFromGridInput(grid_input_string):
     file_list = grid_input_string.split(',')
     return file_list
@@ -30,6 +42,7 @@ def runBMinusLAnalysis( file_list
                       , is_full_sim
                       , tree_name = 'susy'
                       , dsid = 1
+                      , out_file_special_name = None
                       ):
     # ==============================================================================
     print 'loading packages'
@@ -51,6 +64,8 @@ def runBMinusLAnalysis( file_list
 
     # ==============================================================================
     bmla = ROOT.PennSusyFrame.BMinusLAnalysis(t)
+
+    # set is data or MC
     if is_data:
         bmla.setIsData()
     else:
@@ -63,9 +78,18 @@ def runBMinusLAnalysis( file_list
         bmla.setKFactor(     xsec_dict['kfac'])
         bmla.setFilterEff(   xsec_dict['eff'])
 
+    # set is full sim/fast sim
     if is_full_sim:
         bmla.setFullSim()
 
+    # set out histogram file name
+    out_hist_file_name = 'BMinusL.'
+    if out_file_special_name is not None:
+        out_hist_file_name += '%s.' % out_file_special_name
+    out_hist_file_name += 'hists.root'
+    bmla.setOutHistFileName(out_hist_file_name)
+
+    # Set critical cuts
     bmla.setCritCutGrl(            1)
     bmla.setCritCutIncompleteEvent(1)
     bmla.setCritCutLarError(       1)
@@ -85,6 +109,7 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutBadJetVeto(     1)
     bmla.setCritCutBLPairing(      1)
 
+    # prepare tools and run analysis loop
     bmla.prepareTools()
     bmla.Loop()
 

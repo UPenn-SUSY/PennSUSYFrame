@@ -54,6 +54,14 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_all;
       std::vector<TH1F*> m_h_mbl_0;
       std::vector<TH1F*> m_h_mbl_1;
+
+      std::vector<TH1F*> m_h_ptbl_all;
+      std::vector<TH1F*> m_h_ptbl_0;
+      std::vector<TH1F*> m_h_ptbl_1;
+
+      // std::vector<TH1F*> m_h_mbl_anti_pairing_all;
+      // std::vector<TH1F*> m_h_mbl_anti_pairing_0;
+      // std::vector<TH1F*> m_h_mbl_anti_pairing_1;
   };
 }
 

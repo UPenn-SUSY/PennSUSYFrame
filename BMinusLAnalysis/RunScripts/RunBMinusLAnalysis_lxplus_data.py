@@ -13,4 +13,3 @@ if __name__ == '__main__':
                                          , is_data = True
                                          , is_full_sim = False
                                          )
-

@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 import RunBMinusLAnalysis
+import os
 
 # ==============================================================================
 if __name__ == '__main__':
     print 'getting file list'
-    file_list = RunBMinusLAnalysis.getFileListFromDir('/afs/cern.ch/user/b/bjackson/my_eos/mc12/mc12_8TeV.110827.AlpgenPythia_P2011C_ZtautaubbNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_*/')
-    # file_list = file_list[:10]
+    file_list = RunBMinusLAnalysis.getFileListFromFile('%s/EosFileLists/d3pd.105200.ttbar.txt' % os.environ['BASE_WORK_DIR'])
+    file_list = file_list[:1]
 
     print 'file list: %s' % file_list
 
@@ -14,8 +15,9 @@ if __name__ == '__main__':
     print 'About to run BMinusLAnalysis'
     RunBMinusLAnalysis.runBMinusLAnalysis( file_list = file_list
                                          , is_data = False
-                                         , is_full_sim = True
+                                         # , is_full_sim = True
+                                         , is_full_sim = False
                                          , tree_name = 'susy'
-                                         , dsid = 110827
+                                         , dsid = 105200
+                                         , out_file_special_name = '105200.ttbar'
                                          )
-

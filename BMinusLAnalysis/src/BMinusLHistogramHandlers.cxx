@@ -18,13 +18,13 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
   const float pt_min  = 0.;
   const float pt_max  = 500.;
 
-  const int   mbl_bins = 50;
+  const int   mbl_bins = 120;
   const float mbl_min  = 0.;
-  const float mbl_max  = 500.;
+  const float mbl_max  = 1200.;
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // initialize pt histograms
+    // initialize b jet multiplicity histogram
     m_h_num_b_jet.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                        + "__num_b_jet"
                                        ).c_str()
@@ -36,6 +36,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
                                      )
                            );
 
+    // initialize b jet pt histograms
     m_h_b_jet_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + "__b_jet_pt_all"
                                           ).c_str()
@@ -69,6 +70,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
                                       )
                             );
 
+    // initialize mbl histograms
     m_h_mbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__mbl_all"
                                      ).c_str()
@@ -101,6 +103,74 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
                                  , mbl_bins, mbl_min, mbl_max
                                  )
                        );
+
+    // initialize ptbl histograms
+    m_h_ptbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                      + "__ptbl_all"
+                                      ).c_str()
+                                    , ( "p_{T}^{bl} - "
+                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                      + " ; p_{T}^{bl} [GeV] ; Entries"
+                                      ).c_str()
+                                    , pt_bins, pt_min, pt_max
+                                    )
+                          );
+
+    m_h_ptbl_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__ptbl_0"
+                                    ).c_str()
+                                  , ( "p_{bl,0} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; p_{T}^{bl,0} [GeV] ; Entries"
+                                    ).c_str()
+                                  , pt_bins, pt_min, pt_max
+                                  )
+                        );
+
+    m_h_ptbl_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__ptbl_1"
+                                    ).c_str()
+                                  , ( "p_{T}^{bl,1} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; p_{T}^{bl,1} [GeV] ; Entries"
+                                    ).c_str()
+                                  , pt_bins, pt_min, pt_max
+                                  )
+                        );
+
+    // // initialize mbl anti-pairing histograms
+    // m_h_mbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                  + "__mbl_all"
+    //                                  ).c_str()
+    //                                , ( "m_{bl} - "
+    //                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                  + " ; m_{bl} [GeV] ; Entries"
+    //                                  ).c_str()
+    //                                , mbl_bins, mbl_min, mbl_max
+    //                                )
+    //                      );
+
+    // m_h_mbl_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                + "__mbl_0"
+    //                                ).c_str()
+    //                              , ( "m_{bl}^{0} - "
+    //                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                + " ; m_{bl}^{0} [GeV] ; Entries"
+    //                                ).c_str()
+    //                              , mbl_bins, mbl_min, mbl_max
+    //                              )
+    //                    );
+
+    // m_h_mbl_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                + "__mbl_1"
+    //                                ).c_str()
+    //                              , ( "m_{bl}^{1} - "
+    //                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                + " ; m_{bl}^{1} [GeV] ; Entries"
+    //                                ).c_str()
+    //                              , mbl_bins, mbl_min, mbl_max
+    //                              )
+    //                    );
   }
 }
 
@@ -145,6 +215,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_b_jet_pt_1.at(FLAVOR_NONE  )->Fill(pt_1, weight);
   }
 
+  // fill mbl plots
   float mbl_0 = bl_0.getMbl()/1.e3;
   float mbl_1 = bl_1.getMbl()/1.e3;
 
@@ -157,6 +228,20 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   m_h_mbl_all.at(fc)->Fill(mbl_1, weight);
   m_h_mbl_0.at(  fc)->Fill(mbl_0, weight);
   m_h_mbl_1.at(  fc)->Fill(mbl_1, weight);
+
+  // fill ptbl plots
+  float ptbl_0 = bl_0.getPtbl()/1.e3;
+  float ptbl_1 = bl_1.getPtbl()/1.e3;
+
+  m_h_ptbl_all.at(FLAVOR_NONE)->Fill(ptbl_0, weight);
+  m_h_ptbl_all.at(FLAVOR_NONE)->Fill(ptbl_1, weight);
+  m_h_ptbl_0.at(  FLAVOR_NONE)->Fill(ptbl_0, weight);
+  m_h_ptbl_1.at(  FLAVOR_NONE)->Fill(ptbl_1, weight);
+
+  m_h_ptbl_all.at(fc)->Fill(ptbl_0, weight);
+  m_h_ptbl_all.at(fc)->Fill(ptbl_1, weight);
+  m_h_ptbl_0.at(  fc)->Fill(ptbl_0, weight);
+  m_h_ptbl_1.at(  fc)->Fill(ptbl_1, weight);
 }
 
 // -----------------------------------------------------------------------------
@@ -176,5 +261,13 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_mbl_all.at(fc_it)->Write();
     m_h_mbl_0.at(fc_it)->Write();
     m_h_mbl_1.at(fc_it)->Write();
+
+    m_h_ptbl_all.at(fc_it)->Write();
+    m_h_ptbl_0.at(fc_it)->Write();
+    m_h_ptbl_1.at(fc_it)->Write();
+
+    // m_h_mbl_anti_pairing_all.at(fc_it)->Write();
+    // m_h_mbl_anti_pairing_0.at(fc_it)->Write();
+    // m_h_mbl_anti_pairing_1.at(fc_it)->Write();
   }
 }
