@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 
-import RunBMinusLAnalysis
+import RunEwkAnalysis
 import os
 
 # ==============================================================================
 if __name__ == '__main__':
     print 'getting file list'
-    file_list = RunBMinusLAnalysis.getFileListFromFile('%s/EosFileLists/d3pd.105200.ttbar.txt' % os.environ['BASE_WORK_DIR'])
-    # file_list = file_list[:1]
+    file_list = RunEwkAnalysis.getFileListFromFile('%s/EosFileLists/d3pd.105200.ttbar.txt' % os.environ['BASE_WORK_DIR'])
+    file_list = file_list[:1]
 
     print 'file list: %s' % file_list
 
     print ''
-    print 'About to run BMinusLAnalysis'
-    RunBMinusLAnalysis.runBMinusLAnalysis( file_list = file_list
+    print 'About to run EwkAnalysis'
+    RunEwkAnalysis.runEwkAnalysis( file_list = file_list
                                          , is_data = False
                                          # , is_full_sim = True
                                          , is_full_sim = False

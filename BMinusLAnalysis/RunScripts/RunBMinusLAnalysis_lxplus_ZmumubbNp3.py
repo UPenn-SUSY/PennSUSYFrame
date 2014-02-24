@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 import RunBMinusLAnalysis
+import os
 
 # ==============================================================================
 if __name__ == '__main__':
     print 'getting file list'
-    file_list = RunBMinusLAnalysis.getFileListFromFile("%s/EosFileLists/d3pd.110824.ZmumubbNp3.txt" % os.environ["BASE_WORK_DIR"]) 
+    file_list = RunBMinusLAnalysis.getFileListFromFile("%s/EosFileLists/d3pd.110824.ZmumubbNp3.txt" % os.environ["BASE_WORK_DIR"])
     # file_list = file_list[:10]
 
     print 'file list: %s' % file_list

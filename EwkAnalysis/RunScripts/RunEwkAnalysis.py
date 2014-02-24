@@ -20,6 +20,17 @@ def getFileListFromDir(file_path):
     return file_list
 
 # ------------------------------------------------------------------------------
+def getFileListFromFile(file_path):
+    file_list = []
+
+    f = file(file_path)
+    for l in f.readlines():
+        l = l.strip('\n')
+        file_list.append(l)
+
+    return file_list
+
+# ------------------------------------------------------------------------------
 def getFileListFromGridInput(grid_input_string):
     file_list = grid_input_string.split(',')
     return file_list
@@ -28,7 +39,9 @@ def getFileListFromGridInput(grid_input_string):
 def runEwkAnalysis( file_list
                   , is_data
                   , is_full_sim
+                  , tree_name = 'susy'
                   , dsid = 1
+                  , out_file_special_name = None
                   ):
     # ==============================================================================
     print 'loading packages'
@@ -42,7 +55,7 @@ def runEwkAnalysis( file_list
 
     # ==============================================================================
     print "Adding files to TNT maker"
-    t = ROOT.TChain("susy")
+    t = ROOT.TChain(tree_name)
     # t = ROOT.TChain("TNT")
     for fl in file_list:
         print 'Adding file: %s' % fl
@@ -50,6 +63,8 @@ def runEwkAnalysis( file_list
 
     # ==============================================================================
     ewa = ROOT.PennSusyFrame.EwkAnalysis(t)
+
+    # set is data or MC
     if is_data:
         ewa.setIsData()
     else:
@@ -62,8 +77,16 @@ def runEwkAnalysis( file_list
         bmla.setKFactor(     xsec_dict['kfac'])
         bmla.setFilterEff(   xsec_dict['eff'])
 
+    # set is full sim/fast sim
     if is_full_sim:
         ewa.setFullSim()
+
+    # set out histogram file name
+    out_hist_file_name = 'Ewk.'
+    if out_file_special_name is not None:
+        out_hist_file_name += '%s.' % out_file_special_name
+    out_hist_file_name += 'hists.root'
+    bmla.setOutHistFileName(out_hist_file_name)
 
     # ewa.setCritCutGrl(            1)
     # ewa.setCritCutIncompleteEvent(1)
@@ -84,6 +107,7 @@ def runEwkAnalysis( file_list
     # ewa.setCritCutBadJetVeto(     1)
     # ewa.setCritCutBLPairing(      1)
 
+    # prepare tools and run analysis loop
     ewa.prepareTools()
     ewa.Loop()
 
