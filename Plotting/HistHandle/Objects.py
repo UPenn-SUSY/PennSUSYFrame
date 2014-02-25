@@ -126,18 +126,18 @@ class CanvasInfo(object):
         return c
 
 # ==============================================================================
-canv_linear = CanvasInfo( width  = 600
+canv_linear = CanvasInfo( width  = 800
                         , height = 600
                         )
-canv_log_y = CanvasInfo( width  = 600
+canv_log_y = CanvasInfo( width  = 800
                        , height = 600
                        , log_y = True
                        )
-canv_2d = CanvasInfo( width  = 600
+canv_2d = CanvasInfo( width  = 800
                     , height = 600
                     , right_margin = 0.15
                     )
-canv_2d_log_z = CanvasInfo( width  = 600
+canv_2d_log_z = CanvasInfo( width  = 800
                           , height = 600
                           , right_margin = 0.15
                           , log_z = True

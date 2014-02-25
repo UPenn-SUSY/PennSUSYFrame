@@ -766,7 +766,7 @@ def drawLabels( int_lumi = 0
     docstring
     """
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    hh.AtlasLabels.ATLASLabel(0.20, 0.87, 1, 'Internal')
+    # hh.AtlasLabels.ATLASLabel(0.20, 0.87, 1, 'Internal')
     if int_lumi is not None and int_lumi > 0:
         hh.AtlasLabels.myText(0.20, 0.78, 1, '#intLdt = %s fb^{-1}' % int_lumi)
     if prod_type in prod_labels:

@@ -221,10 +221,17 @@ class MetaLegend(ROOT.TLegend):
     -- stolen from Ryan Reece
     """
 #______________________________________________________________________________
-    def __init__(self, width=0.15, height=0.05,
-            x1=None, y1=None,
-            x2=None, y2=None,
-            border=0, fill_color=0, fill_style=0):
+    def __init__( self
+                , width=0.10
+                , height=0.04
+                , x1=None
+                , y1=None
+                , x2=None
+                , y2=None
+                , border=0
+                , fill_color=0
+                , fill_style=0
+                ):
 #        assert (x1 == y1 == None) or (x2 == y2 == None)
 #        assert (x1 != None and y1 != None) or (x2 != None and y2 != None)
 
