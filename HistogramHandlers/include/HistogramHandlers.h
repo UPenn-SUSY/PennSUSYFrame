@@ -13,6 +13,7 @@ class TH1F;
 namespace PennSusyFrame
 {
   class Event;
+  class EventLevelQuantities;
   class Electron;
   class Muon;
   class Jet;
@@ -33,6 +34,7 @@ namespace PennSusyFrame
       virtual ~HistogramHandler();
 
       virtual void Fill( const PennSusyFrame::Event&
+                       , const PennSusyFrame::EventLevelQuantities&
                        , const std::vector<PennSusyFrame::Electron*>*
                        , const std::vector<PennSusyFrame::Muon*>*
                        , const std::vector<PennSusyFrame::Jet*>*
@@ -43,6 +45,32 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
+  };
+
+  // =============================================================================
+  // = EventLevelHists
+  // =============================================================================
+  class EventLevelHists : public HistogramHandler
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      EventLevelHists();
+      virtual ~EventLevelHists();
+
+      virtual void Fill( const PennSusyFrame::Event&
+                       , const PennSusyFrame::EventLevelQuantities&
+                       , const std::vector<PennSusyFrame::Electron*>*
+                       , const std::vector<PennSusyFrame::Muon*>*
+                       , const std::vector<PennSusyFrame::Jet*>*
+                       , const PennSusyFrame::Met&
+                       , float weight
+                       );
+      virtual void write(TDirectory*);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::vector<TH1F*> m_h_mll;
+      std::vector<TH1F*> m_h_mt2;
   };
 
   // =============================================================================
@@ -56,6 +84,7 @@ namespace PennSusyFrame
       virtual ~LeptonKinematicsHists();
 
       virtual void Fill( const PennSusyFrame::Event&
+                       , const PennSusyFrame::EventLevelQuantities&
                        , const std::vector<PennSusyFrame::Electron*>*
                        , const std::vector<PennSusyFrame::Muon*>*
                        , const std::vector<PennSusyFrame::Jet*>*
@@ -69,6 +98,14 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
+
+      std::vector<TH1F*> m_h_ptiso_all;
+      std::vector<TH1F*> m_h_ptiso_0;
+      std::vector<TH1F*> m_h_ptiso_1;
+
+      std::vector<TH1F*> m_h_etiso_all;
+      std::vector<TH1F*> m_h_etiso_0;
+      std::vector<TH1F*> m_h_etiso_1;
   };
 
   // =============================================================================
@@ -82,6 +119,7 @@ namespace PennSusyFrame
       virtual ~JetKinematicsHists();
 
       virtual void Fill( const PennSusyFrame::Event&
+                       , const PennSusyFrame::EventLevelQuantities&
                        , const std::vector<PennSusyFrame::Electron*>*
                        , const std::vector<PennSusyFrame::Muon*>*
                        , const std::vector<PennSusyFrame::Jet*>*
@@ -110,6 +148,7 @@ namespace PennSusyFrame
       virtual ~MetHists();
 
       virtual void Fill( const PennSusyFrame::Event&
+                       , const PennSusyFrame::EventLevelQuantities&
                        , const std::vector<PennSusyFrame::Electron*>*
                        , const std::vector<PennSusyFrame::Muon*>*
                        , const std::vector<PennSusyFrame::Jet*>*

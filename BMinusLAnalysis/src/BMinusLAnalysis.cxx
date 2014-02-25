@@ -398,6 +398,7 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
     size_t num_hists = m_histogram_handlers.size();
     for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
       m_histogram_handlers.at(hist_it)->Fill( m_event
+                                            , m_event_quantities
                                             , m_electrons.getCollection(EL_GOOD)
                                             , m_muons.getCollection(MU_GOOD)
                                             , m_jets.getCollection(JET_GOOD)
