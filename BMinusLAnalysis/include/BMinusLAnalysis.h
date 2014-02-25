@@ -52,6 +52,7 @@ namespace PennSusyFrame
       void setCritCut2SignalLepton(  bool val) { m_crit_cut_signal_lep = val;       }
       void setCritCut2BJets(         bool val) { m_crit_cut_b_jets = val;           }
       void setCritCutBLPairing(      bool val) { m_crit_cut_bl_pairing = val;       }
+      void setCritCutZVeto(          bool val) { m_crit_cut_z_veto = val;           }
 
     protected:
       std::string m_out_hist_file_name;
@@ -76,6 +77,7 @@ namespace PennSusyFrame
       bool m_crit_cut_signal_lep;
       bool m_crit_cut_b_jets;
       bool m_crit_cut_bl_pairing;
+      bool m_crit_cut_z_veto;
 
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;

@@ -33,6 +33,7 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
                                                              , m_crit_cut_2_lep(false)
                                                              , m_crit_cut_signal_lep(false)
                                                              , m_crit_cut_b_jets(false)
+                                                             , m_crit_cut_z_veto(false)
 {
 }
 
@@ -99,6 +100,7 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 
   prepareSelection();
 
+  m_histogram_handlers.push_back( new PennSusyFrame::EventLevelHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::LeptonKinematicsHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::JetKinematicsHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::MetHists() );
@@ -372,6 +374,7 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // do b-l pairing
   PennSusyFrame::blPair bl_0;
   PennSusyFrame::blPair bl_1;
 
@@ -390,6 +393,24 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING, m_event_weight);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // do z veto fo SFOS lepton pairs
+  bool pass_z_veto = true;
+  if (  m_event.getFlavorChannel() == FLAVOR_EE
+     || m_event.getFlavorChannel() == FLAVOR_MM
+     ) {
+    pass_z_veto = ( fabs(m_event_quantities.getMll() - 91.e3) > 10.e3 );
+  }
+  m_pass_event = (m_pass_event && pass_z_veto);
+  if (m_crit_cut_z_veto && !pass_z_veto) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_ZVETO);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_ZVETO, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_ZVETO);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_ZVETO, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

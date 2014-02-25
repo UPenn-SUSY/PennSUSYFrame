@@ -136,13 +136,15 @@ def plotComparisons( ic_numerator
 
 # ==============================================================================
 def main():
+    """
+    test main for plot_comparison
+    """
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # root stuff
     ROOT.TH1.SetDefaultSumw2()
     ROOT.gROOT.SetBatch()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # TODO parse these inputs in more reasonable way!
     ec_dummy = hh.Container.EntryContainer( label = 'dummy'
                                           , fill_color = ROOT.kBlack
                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dummy_hists.root"
