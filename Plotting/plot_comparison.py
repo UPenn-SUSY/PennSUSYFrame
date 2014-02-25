@@ -177,7 +177,6 @@ def main():
                                               )
     ic_denominator = hh.Container.InputContainer( name = 'Background'
                                                 , entry_list = [ec_ttbar, ec_Zbb]
-                                                # , entry_list = [ec_ttbar]
                                                 , lumi_target = 21000
                                                 )
 
