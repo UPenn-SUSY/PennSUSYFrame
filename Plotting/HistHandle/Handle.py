@@ -103,7 +103,7 @@ class HistHandle(object):
         scale this hist handle by sf
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        print 'Scaling %s: %f' % (self.unique_name, sf)
+        # print 'Scaling %s: %f' % (self.unique_name, sf)
         self.hist.Scale(sf)
 
     # --------------------------------------------------------------------------
@@ -112,7 +112,7 @@ class HistHandle(object):
         scale this hist handle such that the integral is equal to target
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        print 'Scaling %s to target: %f' % (self.unique_name, target)
+        # print 'Scaling %s to target: %f' % (self.unique_name, target)
         old_int = self.hist.Integral()
         sf = target/old_int
         self.hist.Scale(sf)
@@ -121,7 +121,6 @@ class HistHandle(object):
     def scaleToLumi(self):
         if not self.scaled_to_lumi:
             lumi_scale = self.target_lumi/self.lumi_modeled_in_file
-            print 'scaling to lumi: modeled: %s - target: %s - sf: %s' % \
-                    (self.lumi_modeled_in_file, self.target_lumi, lumi_scale)
+            # print 'scaling to lumi: modeled: %s - target: %s - sf: %s' % (self.lumi_modeled_in_file, self.target_lumi, lumi_scale)
             self.scale(lumi_scale)
             self.scaled_to_lumi = True

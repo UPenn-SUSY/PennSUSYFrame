@@ -1,0 +1,5 @@
+root://eosatlas//eos/atlas/user/b/bjackson/mc12/mc12_8TeV.110819.AlpgenPythia_P2011C_ZeebbNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267653_00/NTUP_SUSY.01267653._000001.root.2
+root://eosatlas//eos/atlas/user/b/bjackson/mc12/mc12_8TeV.110819.AlpgenPythia_P2011C_ZeebbNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267653_00/NTUP_SUSY.01267653._000002.root.1
+root://eosatlas//eos/atlas/user/b/bjackson/mc12/mc12_8TeV.110819.AlpgenPythia_P2011C_ZeebbNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267653_00/NTUP_SUSY.01267653._000003.root.2
+root://eosatlas//eos/atlas/user/b/bjackson/mc12/mc12_8TeV.110819.AlpgenPythia_P2011C_ZeebbNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267653_00/NTUP_SUSY.01267653._000004.root.1
+root://eosatlas//eos/atlas/user/b/bjackson/mc12/mc12_8TeV.110819.AlpgenPythia_P2011C_ZeebbNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512_tid01267653_00/NTUP_SUSY.01267653._000005.root.1

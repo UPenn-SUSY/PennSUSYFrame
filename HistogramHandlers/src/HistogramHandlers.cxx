@@ -16,6 +16,7 @@ PennSusyFrame::HistogramHandler::~HistogramHandler()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event&
+                                          , const PennSusyFrame::EventLevelQuantities&
                                           , const std::vector<PennSusyFrame::Electron*>*
                                           , const std::vector<PennSusyFrame::Muon*>*
                                           , const std::vector<PennSusyFrame::Jet*>*
@@ -33,11 +34,121 @@ void PennSusyFrame::HistogramHandler::write(TDirectory*)
 }
 
 // =============================================================================
+PennSusyFrame::EventLevelHists::EventLevelHists()
+{
+  const int   mll_bins = 50;
+  const float mll_min  = 0.;
+  const float mll_max  = 500.;
+
+  const int   mt2_bins = 50;
+  const float mt2_min  = 0.;
+  const float mt2_max  = 500.;
+
+  for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize mll histograms
+    m_h_mll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + "__mll"
+                                 ).c_str()
+                               , ( "m_{ll} - "
+                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + " ; m_{ll} [GeV] ; Entries"
+                                 ).c_str()
+                               , mll_bins, mll_min, mll_max
+                               )
+                     );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize mt2 histograms
+    m_h_mt2.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + "__mt2"
+                                 ).c_str()
+                               , ( "m_{T2}^{0} - "
+                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + " ; m_{T2} [GeV] ; Entries"
+                                 ).c_str()
+                               , mt2_bins, mt2_min, mt2_max
+                               )
+                     );
+  }
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::EventLevelHists::~EventLevelHists()
+{}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
+                                         , const PennSusyFrame::EventLevelQuantities& event_level_quantities
+                                         , const std::vector<PennSusyFrame::Electron*>*
+                                         , const std::vector<PennSusyFrame::Muon*>*
+                                         , const std::vector<PennSusyFrame::Jet*>*
+                                         , const PennSusyFrame::Met&
+                                         , float weight
+                                         )
+{
+  FLAVOR_CHANNEL fc = event.getFlavorChannel();
+
+  if (fc == FLAVOR_NONE) {
+    return;
+  }
+
+  float mll = event_level_quantities.getMll()/1.e3;
+  float mt2 = event_level_quantities.getMt2()/1.e3;
+
+  m_h_mll.at(fc)->Fill(mll, weight);
+  m_h_mt2.at(fc)->Fill(mt2, weight);
+
+  m_h_mll.at(FLAVOR_NONE)->Fill(mll, weight);
+  m_h_mt2.at(FLAVOR_NONE)->Fill(mt2, weight);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EventLevelHists::write(TDirectory* d)
+{
+  d->cd();
+
+  for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // write mll histograms
+    m_h_mll.at(fc_it)->Write();
+
+    // write mt2 histograms
+    m_h_mt2.at(fc_it)->Write();
+  }
+}
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// =============================================================================
 PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
 {
   const int   pt_bins = 50;
   const float pt_min  = 0.;
   const float pt_max  = 500.;
+
+  const int   ptiso_bins = 30;
+  const float ptiso_min  = 0.;
+  const float ptiso_max  = 3.;
+
+  const int   etiso_bins = 40;
+  const float etiso_min  = -1.;
+  const float etiso_max  = 3.;
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -75,6 +186,76 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
                                 )
                       );
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize pt iso histograms
+    m_h_ptiso_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__lep_ptiso_all"
+                                       ).c_str()
+                                     , ( "p_{T}^{cone30}/p_{T} - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; p_{T}^{cone30}/p_{T} ; Entries"
+                                       ).c_str()
+                                     , ptiso_bins, ptiso_min, ptiso_max
+                                     )
+                           );
+
+    m_h_ptiso_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_ptiso_0"
+                                     ).c_str()
+                                   , ( "p_{T}^{cone30,0}/p_{T} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; p_{T}^{cone30,0}/p_{T} ; Entries"
+                                     ).c_str()
+                                   , ptiso_bins, ptiso_min, ptiso_max
+                                   )
+                         );
+
+    m_h_ptiso_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_ptiso_1"
+                                     ).c_str()
+                                   , ( "p_{T}^{cone30,1}/p_{T} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; p_{T}^{cone30,1}/p_{T} ; Entries"
+                                     ).c_str()
+                                   , ptiso_bins, ptiso_min, ptiso_max
+                                   )
+                         );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize et iso histograms
+    m_h_etiso_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__lep_etiso_all"
+                                       ).c_str()
+                                     , ( "E_{T}^{cone30}/p_{T} - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; E_{T}^{cone30}/p_{T} ; Entries"
+                                       ).c_str()
+                                     , etiso_bins, etiso_min, etiso_max
+                                     )
+                           );
+
+    m_h_etiso_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_etiso_0"
+                                     ).c_str()
+                                   , ( "E_{T}^{cone30,0}/p_{T} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; E_{T}^{cone30,0}/p_{T} ; Entries"
+                                     ).c_str()
+                                   , etiso_bins, etiso_min, etiso_max
+                                   )
+                         );
+
+    m_h_etiso_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_etiso_1"
+                                     ).c_str()
+                                   , ( "E_{T}^{cone30,1}/p_{T} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; E_{T}^{cone30,1}/p_{T} ; Entries"
+                                     ).c_str()
+                                   , etiso_bins, etiso_min, etiso_max
+                                   )
+                         );
+
   }
 }
 
@@ -84,6 +265,7 @@ PennSusyFrame::LeptonKinematicsHists::~LeptonKinematicsHists()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& event
+                                               , const PennSusyFrame::EventLevelQuantities&
                                                , const std::vector<PennSusyFrame::Electron*>* el_list
                                                , const std::vector<PennSusyFrame::Muon*>* mu_list
                                                , const std::vector<PennSusyFrame::Jet*>*
@@ -100,44 +282,116 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   float pt_0 = 0.;
   float pt_1 = 0.;
 
+  float ptiso_0 = 0.;
+  float ptiso_1 = 0.;
+
+  float etiso_0 = 0.;
+  float etiso_1 = 0.;
+
   if (fc == FLAVOR_EE) {
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = el_list->at(1)->getPt()/1.e3;
 
+    ptiso_0 = el_list->at(0)->getPtIsoRatio();
+    ptiso_1 = el_list->at(1)->getPtIsoRatio();
+
+    etiso_0 = el_list->at(0)->getEtIsoRatio();
+    etiso_1 = el_list->at(1)->getEtIsoRatio();
+
     m_h_pt_all.at(FLAVOR_EE)->Fill(pt_0, weight);
     m_h_pt_all.at(FLAVOR_EE)->Fill(pt_1, weight);
-    m_h_pt_0.at(FLAVOR_EE  )->Fill(pt_0, weight);
-    m_h_pt_1.at(FLAVOR_EE  )->Fill(pt_1, weight);
+    m_h_pt_0.at(  FLAVOR_EE)->Fill(pt_0, weight);
+    m_h_pt_1.at(  FLAVOR_EE)->Fill(pt_1, weight);
+
+    m_h_ptiso_all.at(FLAVOR_EE)->Fill(ptiso_0, weight);
+    m_h_ptiso_all.at(FLAVOR_EE)->Fill(ptiso_1, weight);
+    m_h_ptiso_0.at(  FLAVOR_EE)->Fill(ptiso_0, weight);
+    m_h_ptiso_1.at(  FLAVOR_EE)->Fill(ptiso_1, weight);
+
+    m_h_etiso_all.at(FLAVOR_EE)->Fill(etiso_0, weight);
+    m_h_etiso_all.at(FLAVOR_EE)->Fill(etiso_1, weight);
+    m_h_etiso_0.at(  FLAVOR_EE)->Fill(etiso_0, weight);
+    m_h_etiso_1.at(  FLAVOR_EE)->Fill(etiso_1, weight);
   }
   else if (fc == FLAVOR_MM) {
     pt_0 = mu_list->at(0)->getPt()/1.e3;
     pt_1 = mu_list->at(1)->getPt()/1.e3;
 
+    ptiso_0 = mu_list->at(0)->getPtIsoRatio();
+    ptiso_1 = mu_list->at(1)->getPtIsoRatio();
+
+    etiso_0 = mu_list->at(0)->getEtIsoRatio();
+    etiso_1 = mu_list->at(1)->getEtIsoRatio();
+
     m_h_pt_all.at(FLAVOR_MM)->Fill(pt_0, weight);
     m_h_pt_all.at(FLAVOR_MM)->Fill(pt_1, weight);
-    m_h_pt_0.at(FLAVOR_MM  )->Fill(pt_0, weight);
-    m_h_pt_1.at(FLAVOR_MM  )->Fill(pt_1, weight);
+    m_h_pt_0.at(  FLAVOR_MM)->Fill(pt_0, weight);
+    m_h_pt_1.at(  FLAVOR_MM)->Fill(pt_1, weight);
+
+    m_h_ptiso_all.at(FLAVOR_MM)->Fill(ptiso_0, weight);
+    m_h_ptiso_all.at(FLAVOR_MM)->Fill(ptiso_1, weight);
+    m_h_ptiso_0.at(  FLAVOR_MM)->Fill(ptiso_0, weight);
+    m_h_ptiso_1.at(  FLAVOR_MM)->Fill(ptiso_1, weight);
+
+    m_h_etiso_all.at(FLAVOR_MM)->Fill(etiso_0, weight);
+    m_h_etiso_all.at(FLAVOR_MM)->Fill(etiso_1, weight);
+    m_h_etiso_0.at(  FLAVOR_MM)->Fill(etiso_0, weight);
+    m_h_etiso_1.at(  FLAVOR_MM)->Fill(etiso_1, weight);
   }
   else {
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = mu_list->at(0)->getPt()/1.e3;
 
-    m_h_pt_all.at(FLAVOR_MM)->Fill(pt_0, weight);
-    m_h_pt_all.at(FLAVOR_MM)->Fill(pt_1, weight);
-    m_h_pt_0.at(FLAVOR_MM  )->Fill(pt_0, weight);
-    m_h_pt_1.at(FLAVOR_MM  )->Fill(pt_1, weight);
+    ptiso_0 = el_list->at(0)->getPtIsoRatio();
+    ptiso_1 = mu_list->at(0)->getPtIsoRatio();
+
+    etiso_0 = el_list->at(0)->getEtIsoRatio();
+    etiso_1 = mu_list->at(0)->getEtIsoRatio();
+
+    m_h_pt_all.at(FLAVOR_EM)->Fill(pt_0, weight);
+    m_h_pt_all.at(FLAVOR_EM)->Fill(pt_1, weight);
+    m_h_pt_0.at(  FLAVOR_EM)->Fill(pt_0, weight);
+    m_h_pt_1.at(  FLAVOR_EM)->Fill(pt_1, weight);
+
+    m_h_ptiso_all.at(FLAVOR_EM)->Fill(ptiso_0, weight);
+    m_h_ptiso_all.at(FLAVOR_EM)->Fill(ptiso_1, weight);
+    m_h_ptiso_0.at(  FLAVOR_EM)->Fill(ptiso_0, weight);
+    m_h_ptiso_1.at(  FLAVOR_EM)->Fill(ptiso_1, weight);
+
+    m_h_etiso_all.at(FLAVOR_EM)->Fill(etiso_0, weight);
+    m_h_etiso_all.at(FLAVOR_EM)->Fill(etiso_1, weight);
+    m_h_etiso_0.at(  FLAVOR_EM)->Fill(etiso_0, weight);
+    m_h_etiso_1.at(  FLAVOR_EM)->Fill(etiso_1, weight);
   }
 
   if (pt_1 > pt_0) {
     float pt_tmp = pt_0;
     pt_0 = pt_1;
     pt_1 = pt_tmp;
+
+    float ptiso_tmp = ptiso_0;
+    ptiso_0 = ptiso_1;
+    ptiso_1 = ptiso_tmp;
+
+    float etiso_tmp = etiso_0;
+    etiso_0 = etiso_1;
+    etiso_1 = etiso_tmp;
   }
 
   m_h_pt_all.at(FLAVOR_NONE)->Fill(pt_0, weight);
   m_h_pt_all.at(FLAVOR_NONE)->Fill(pt_1, weight);
-  m_h_pt_0.at(FLAVOR_NONE  )->Fill(pt_0, weight);
-  m_h_pt_1.at(FLAVOR_NONE  )->Fill(pt_1, weight);
+  m_h_pt_0.at(  FLAVOR_NONE)->Fill(pt_0, weight);
+  m_h_pt_1.at(  FLAVOR_NONE)->Fill(pt_1, weight);
+
+  m_h_ptiso_all.at(FLAVOR_NONE)->Fill(ptiso_0, weight);
+  m_h_ptiso_all.at(FLAVOR_NONE)->Fill(ptiso_1, weight);
+  m_h_ptiso_0.at(  FLAVOR_NONE)->Fill(ptiso_0, weight);
+  m_h_ptiso_1.at(  FLAVOR_NONE)->Fill(ptiso_1, weight);
+
+  m_h_etiso_all.at(FLAVOR_NONE)->Fill(etiso_0, weight);
+  m_h_etiso_all.at(FLAVOR_NONE)->Fill(etiso_1, weight);
+  m_h_etiso_0.at(  FLAVOR_NONE)->Fill(etiso_0, weight);
+  m_h_etiso_1.at(  FLAVOR_NONE)->Fill(etiso_1, weight);
 }
 
 // -----------------------------------------------------------------------------
@@ -147,10 +401,21 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // initialize pt histograms
+
+    // write pt histograms
     m_h_pt_all.at(fc_it)->Write();
     m_h_pt_0.at(  fc_it)->Write();
     m_h_pt_1.at(  fc_it)->Write();
+
+    // write ptiso histograms
+    m_h_ptiso_all.at(fc_it)->Write();
+    m_h_ptiso_0.at(  fc_it)->Write();
+    m_h_ptiso_1.at(  fc_it)->Write();
+
+    // write etiso histograms
+    m_h_etiso_all.at(fc_it)->Write();
+    m_h_etiso_0.at(  fc_it)->Write();
+    m_h_etiso_1.at(  fc_it)->Write();
   }
 }
 
@@ -220,12 +485,13 @@ PennSusyFrame::JetKinematicsHists::~JetKinematicsHists()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
-                                               , const std::vector<PennSusyFrame::Electron*>*
-                                               , const std::vector<PennSusyFrame::Muon*>*
-                                               , const std::vector<PennSusyFrame::Jet*>* jet_list
-                                               , const PennSusyFrame::Met&
-                                               , float weight
-                                               )
+                                            , const PennSusyFrame::EventLevelQuantities&
+                                            , const std::vector<PennSusyFrame::Electron*>*
+                                            , const std::vector<PennSusyFrame::Muon*>*
+                                            , const std::vector<PennSusyFrame::Jet*>* jet_list
+                                            , const PennSusyFrame::Met&
+                                            , float weight
+                                            )
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
 
@@ -306,12 +572,13 @@ PennSusyFrame::MetHists::~MetHists()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::MetHists::Fill( const PennSusyFrame::Event& event
-                                               , const std::vector<PennSusyFrame::Electron*>*
-                                               , const std::vector<PennSusyFrame::Muon*>*
-                                               , const std::vector<PennSusyFrame::Jet*>*
-                                               , const PennSusyFrame::Met& met
-                                               , float weight
-                                               )
+                                  , const PennSusyFrame::EventLevelQuantities&
+                                  , const std::vector<PennSusyFrame::Electron*>*
+                                  , const std::vector<PennSusyFrame::Muon*>*
+                                  , const std::vector<PennSusyFrame::Jet*>*
+                                  , const PennSusyFrame::Met& met
+                                  , float weight
+                                  )
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
 

@@ -33,6 +33,7 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
                                                              , m_crit_cut_2_lep(false)
                                                              , m_crit_cut_signal_lep(false)
                                                              , m_crit_cut_b_jets(false)
+                                                             , m_crit_cut_z_veto(false)
 {
 }
 
@@ -99,6 +100,7 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 
   prepareSelection();
 
+  m_histogram_handlers.push_back( new PennSusyFrame::EventLevelHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::LeptonKinematicsHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::JetKinematicsHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::MetHists() );
@@ -372,6 +374,7 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // do b-l pairing
   PennSusyFrame::blPair bl_0;
   PennSusyFrame::blPair bl_1;
 
@@ -393,11 +396,30 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // do z veto fo SFOS lepton pairs
+  bool pass_z_veto = true;
+  if (  m_event.getFlavorChannel() == FLAVOR_EE
+     || m_event.getFlavorChannel() == FLAVOR_MM
+     ) {
+    pass_z_veto = ( fabs(m_event_quantities.getMll() - 91.e3) > 10.e3 );
+  }
+  m_pass_event = (m_pass_event && pass_z_veto);
+  if (m_crit_cut_z_veto && !pass_z_veto) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_ZVETO);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_ZVETO, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_ZVETO);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_ZVETO, m_event_weight);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms
   if (m_pass_event) {
     size_t num_hists = m_histogram_handlers.size();
     for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
       m_histogram_handlers.at(hist_it)->Fill( m_event
+                                            , m_event_quantities
                                             , m_electrons.getCollection(EL_GOOD)
                                             , m_muons.getCollection(MU_GOOD)
                                             , m_jets.getCollection(JET_GOOD)
