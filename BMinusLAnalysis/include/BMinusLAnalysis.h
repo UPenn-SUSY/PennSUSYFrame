@@ -14,6 +14,15 @@
 // =============================================================================
 namespace PennSusyFrame
 {
+  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BL_PAIRING
+                           , BMINUSL_HIST_ZVETO
+                           , BMINUSL_HIST_N
+                           };
+
+  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BL_PAIRING"
+                                                   , "BMINUSL_ZVETO"
+                                                   };
+
   // ===========================================================================
   class BMinusLAnalysis : public PennSusyFrame::PennSusyFrameCore
   {
@@ -86,7 +95,7 @@ namespace PennSusyFrame
       BMinusLCutFlowTracker m_raw_cutflow_tracker;
       BMinusLCutFlowTracker m_cutflow_tracker;
 
-      PennSusyFrame::BMinusLHists m_bminusl_histogram_handler;
+      std::vector<PennSusyFrame::BMinusLHists> m_bminusl_histogram_handler;
 
     private:
   };

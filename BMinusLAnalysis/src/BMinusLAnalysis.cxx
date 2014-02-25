@@ -1,5 +1,6 @@
 #include "BMinusLAnalysis/include/BMinusLAnalysis.h"
 #include "BMinusLAnalysis/include/BMinusLUtils.h"
+#include "BMinusLAnalysis/include/BMinusLHistogramHandlers.h"
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 
 #include <iostream>
@@ -104,6 +105,11 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
   m_histogram_handlers.push_back( new PennSusyFrame::LeptonKinematicsHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::JetKinematicsHists() );
   m_histogram_handlers.push_back( new PennSusyFrame::MetHists() );
+
+  for (unsigned int hist_level = 0; hist_level != BMINUSL_HIST_N; ++hist_level) {
+    PennSusyFrame::BMinusLHists hist_tmp(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]);
+    m_bminusl_histogram_handler.push_back(hist_tmp);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -393,6 +399,13 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING, m_event_weight);
+
+    m_bminusl_histogram_handler.at(PennSusyFrame::BMINUSL_HIST_BL_PAIRING).FillSpecial( m_event
+                                                                                      , m_jets.getCollection(JET_B)
+                                                                                      , bl_0
+                                                                                      , bl_1
+                                                                                      , m_event_weight
+                                                                                      );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -427,12 +440,12 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
                                             , m_event_weight
                                             );
     }
-    m_bminusl_histogram_handler.FillSpecial( m_event
-                                           , m_jets.getCollection(JET_B)
-                                           , bl_0
-                                           , bl_1
-                                           , m_event_weight
-                                           );
+    m_bminusl_histogram_handler.at(PennSusyFrame::BMINUSL_HIST_ZVETO).FillSpecial( m_event
+                                                                                 , m_jets.getCollection(JET_B)
+                                                                                 , bl_0
+                                                                                 , bl_1
+                                                                                 , m_event_weight
+                                                                                 );
   }
 }
 
@@ -458,18 +471,18 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
     std::cout << "\twriting histogram handler " << hist_it << " to file\n";
     m_histogram_handlers.at(hist_it)->write(hist_dir);
   }
-  m_bminusl_histogram_handler.write(hist_dir);
+  for ( unsigned int hist_level = 0
+      ; hist_level != BMINUSL_HIST_N
+      ; ++hist_level
+      ) {
+    TDirectory* hist_dir_cut_level = out_hist_file.mkdir(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level].c_str());
+
+    m_bminusl_histogram_handler.at(hist_level).write(hist_dir_cut_level);
+  }
   std::cout << "done writing histograms to file\n";
 
   out_hist_file.Close();
   std::cout << "file is closed!\n";
-
-  std::cout << "Deleting histogram handlers\n";
-  // for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-  //   std::cout << "\tdeleting histogram handler " << hist_it << " to file\n";
-  //   delete m_histogram_handlers.at(hist_it);
-  // }
-  // m_histogram_handlers.clear();
 
   m_raw_cutflow_tracker.printToScreen();
   m_cutflow_tracker.printToScreen();

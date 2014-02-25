@@ -7,7 +7,7 @@ import os
 if __name__ == '__main__':
     print 'getting file list'
     file_list = RunBMinusLAnalysis.getFileListFromFile('%s/EosFileLists/d3pd.105200.ttbar.txt' % os.environ['BASE_WORK_DIR'])
-    # file_list = file_list[:1]
+    file_list = file_list[:1]
 
     print 'file list: %s' % file_list
 

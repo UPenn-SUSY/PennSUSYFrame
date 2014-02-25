@@ -11,6 +11,12 @@
 // =============================================================================
 PennSusyFrame::BMinusLHists::BMinusLHists()
 {
+  BMinusLHists("");
+}
+
+// =============================================================================
+PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
+{
   const int   num_jet_bins = 4;
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins - num_jet_min;
@@ -19,7 +25,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
   const float pt_min  = 0.;
   const float pt_max  = 500.;
 
-  const int   mbl_bins = 120;
+  const int   mbl_bins = 60;
   const float mbl_min  = 0.;
   const float mbl_max  = 1200.;
 
@@ -28,6 +34,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
     // initialize b jet multiplicity histogram
     m_h_num_b_jet.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                        + "__num_b_jet"
+                                       + "__"
+                                       + name_tag
                                        ).c_str()
                                      , ( "B Jet multiplicity - "
                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -40,6 +48,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
     // initialize b jet pt histograms
     m_h_b_jet_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + "__b_jet_pt_all"
+                                       + "__"
+                                       + name_tag
                                           ).c_str()
                                         , ( "p_{T} - "
                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -51,6 +61,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
 
     m_h_b_jet_pt_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                         + "__b_jet_pt_0"
+                                       + "__"
+                                       + name_tag
                                         ).c_str()
                                       , ( "p_{T}^{0} - "
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -62,6 +74,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
 
     m_h_b_jet_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                         + "__b_jet_pt_1"
+                                       + "__"
+                                       + name_tag
                                         ).c_str()
                                       , ( "p_{T}^{1} - "
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -74,6 +88,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
     // initialize mbl histograms
     m_h_mbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__mbl_all"
+                                       + "__"
+                                       + name_tag
                                      ).c_str()
                                    , ( "m_{bl} - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -85,6 +101,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
 
     m_h_mbl_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                    + "__mbl_0"
+                                       + "__"
+                                       + name_tag
                                    ).c_str()
                                  , ( "m_{bl}^{0} - "
                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -96,6 +114,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
 
     m_h_mbl_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                    + "__mbl_1"
+                                       + "__"
+                                       + name_tag
                                    ).c_str()
                                  , ( "m_{bl}^{1} - "
                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -108,6 +128,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
     // initialize ptbl histograms
     m_h_ptbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                       + "__ptbl_all"
+                                       + "__"
+                                       + name_tag
                                       ).c_str()
                                     , ( "p_{T}^{bl} - "
                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -119,6 +141,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
 
     m_h_ptbl_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__ptbl_0"
+                                       + "__"
+                                       + name_tag
                                     ).c_str()
                                   , ( "p_{bl,0} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -130,6 +154,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
 
     m_h_ptbl_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__ptbl_1"
+                                       + "__"
+                                       + name_tag
                                     ).c_str()
                                   , ( "p_{T}^{bl,1} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -142,6 +168,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
     // initialize mbl anti-pairing histograms
     m_h_mbl_anti_pairing_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                   + "__mbl_anti_pairing_all"
+                                                  + "__"
+                                                  + name_tag
                                                   ).c_str()
                                                 , ( "m_{bl} - "
                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -153,6 +181,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
 
     m_h_mbl_anti_pairing_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                 + "__mbl_anti_pairing_0"
+                                                + "__"
+                                                + name_tag
                                                 ).c_str()
                                               , ( "m_{bl}^{0} - "
                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -164,6 +194,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
 
     m_h_mbl_anti_pairing_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                 + "__mbl_anti_pairing_1"
+                                                + "__"
+                                                + name_tag
                                                 ).c_str()
                                               , ( "m_{bl}^{1} - "
                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -290,8 +322,8 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_ptbl_0.at(fc_it)->Write();
     m_h_ptbl_1.at(fc_it)->Write();
 
-    // m_h_mbl_anti_pairing_all.at(fc_it)->Write();
-    // m_h_mbl_anti_pairing_0.at(fc_it)->Write();
-    // m_h_mbl_anti_pairing_1.at(fc_it)->Write();
+    m_h_mbl_anti_pairing_all.at(fc_it)->Write();
+    m_h_mbl_anti_pairing_0.at(fc_it)->Write();
+    m_h_mbl_anti_pairing_1.at(fc_it)->Write();
   }
 }
