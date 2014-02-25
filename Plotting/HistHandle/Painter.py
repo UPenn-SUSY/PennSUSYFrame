@@ -588,7 +588,7 @@ def getExtrema(hist_list, log_y = True):
         if isinstance(h_tmp, ROOT.TGraphErrors): continue
 
         # print type(h_tmp)
-        num_bins = h_tmp.GetXaxis().GetNbins()
+        # num_bins = h_tmp.GetXaxis().GetNbins()
         num_bins = h_tmp.GetXaxis().GetNbins() + 2
         if isinstance(h_tmp, ROOT.TH2D) or isinstance(h_tmp, ROOT.TH2F):
             num_bins *= (h_tmp.GetYaxis().GetNbins()+2)
@@ -649,7 +649,7 @@ def getExtrema(hist_list, log_y = True):
 #     for ma in map_array:
 #         x_grid_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
 #         y_grid_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
-# 
+#
 #         if ma['significance'] is not None:
 #             x_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
 #             y_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))
