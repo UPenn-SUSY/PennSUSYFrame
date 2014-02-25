@@ -86,7 +86,7 @@ class HistPainter(object):
             for key in self.num_merger.hist_handles:
                 hist_list.append(self.num_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
-                print 'adding numerator option to legend: %s' % self.num_draw_option
+                # print 'adding numerator option to legend: %s' % self.num_draw_option
                 draw_opt_list.append(self.num_draw_option)
         # add denominator
         if self.denom_merger is not None:
@@ -542,12 +542,21 @@ def calcMax(hist_list, log_y = True):
     if log_y:
         # print 'set y_max for log'
         if y_min > 0 and y_max > 0:
+            # print 'getting new y_max for m_min > 0 && y_max > 0'
             y_max = math.pow( 10
                             , ( math.log(y_max, 10)
-                              + (math.log(y_max, 10) - math.log(y_min, 10))*0.80
+                              + (math.log(y_max, 10) - math.log(y_min, 10))*0.50
+                              )
+                            )
+        elif y_max > 0:
+            # print 'getting new y_max for m_min < 0 && y_max > 0'
+            y_max = math.pow( 10
+                            , ( math.log(y_max, 10)
+                              + (math.log(y_max, 10))*0.50
                               )
                             )
         else:
+            # print 'y_max = 1 (default)'
             y_max = 1
     else:
         # print 'set y_max for linear'
@@ -579,7 +588,7 @@ def getExtrema(hist_list, log_y = True):
         if isinstance(h_tmp, ROOT.TGraphErrors): continue
 
         # print type(h_tmp)
-        # num_bins = h_tmp.GetXaxis().GetNbins()
+        num_bins = h_tmp.GetXaxis().GetNbins()
         num_bins = h_tmp.GetXaxis().GetNbins() + 2
         if isinstance(h_tmp, ROOT.TH2D) or isinstance(h_tmp, ROOT.TH2F):
             num_bins *= (h_tmp.GetYaxis().GetNbins()+2)
@@ -593,11 +602,17 @@ def getExtrema(hist_list, log_y = True):
             bin_content_up   = bin_content + h_tmp.GetBinError(b)
             bin_content_down = bin_content - h_tmp.GetBinError(b)
 
+            # print 'bin_content: %s' % bin_content
+            # print 'bin_content_up: %s' % bin_content_up
+            # print 'bin_content_down: %s' % bin_content_down
+
             # check if this bin is a minimum
             if local_min is None or bin_content_down < local_min:
                 # if bin_content_down > 0 or not log_y:
                 if bin_content_down > 0:
                     local_min = bin_content_down
+                else:
+                    local_min = 0
 
             # check if this bin is a maxiumum
             if local_max is None or bin_content > local_max:
@@ -605,6 +620,8 @@ def getExtrema(hist_list, log_y = True):
                 if bin_content_up > 0:
                     local_max = bin_content_up
 
+        # print 'local min: %s' % local_min
+        # print 'local max: %s' % local_max
         if not local_min is None:
             extrema.append(local_min)
         if not local_max is None:
@@ -628,7 +645,7 @@ def getExtrema(hist_list, log_y = True):
 #     significance  = []
 #     cut_values    = []
 #     num_sig       = []
-# 
+#
 #     for ma in map_array:
 #         x_grid_points.append(hh.Helper.getCharginoMass(  ma['point_name']))
 #         y_grid_points.append(hh.Helper.getNeutralinoMass(ma['point_name']))

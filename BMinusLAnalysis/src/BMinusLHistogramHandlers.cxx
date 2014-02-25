@@ -2,6 +2,7 @@
 #include "BMinusLAnalysis/include/BMinusLUtils.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 #include "PennSusyFrameCore/include/ObjectDefs.h"
+#include "PennSusyFrameCore/include/Calculators.h"
 
 #include "TFile.h"
 #include "TDirectory.h"
@@ -138,39 +139,39 @@ PennSusyFrame::BMinusLHists::BMinusLHists()
                                   )
                         );
 
-    // // initialize mbl anti-pairing histograms
-    // m_h_mbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    //                                  + "__mbl_all"
-    //                                  ).c_str()
-    //                                , ( "m_{bl} - "
-    //                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-    //                                  + " ; m_{bl} [GeV] ; Entries"
-    //                                  ).c_str()
-    //                                , mbl_bins, mbl_min, mbl_max
-    //                                )
-    //                      );
+    // initialize mbl anti-pairing histograms
+    m_h_mbl_anti_pairing_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__mbl_anti_pairing_all"
+                                                  ).c_str()
+                                                , ( "m_{bl} - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; m_{bl} [GeV] ; Entries"
+                                                  ).c_str()
+                                                , mbl_bins, mbl_min, mbl_max
+                                                )
+                                      );
 
-    // m_h_mbl_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    //                                + "__mbl_0"
-    //                                ).c_str()
-    //                              , ( "m_{bl}^{0} - "
-    //                                + FLAVOR_CHANNEL_STRINGS[fc_it]
-    //                                + " ; m_{bl}^{0} [GeV] ; Entries"
-    //                                ).c_str()
-    //                              , mbl_bins, mbl_min, mbl_max
-    //                              )
-    //                    );
+    m_h_mbl_anti_pairing_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__mbl_anti_pairing_0"
+                                                ).c_str()
+                                              , ( "m_{bl}^{0} - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; m_{bl}^{0} [GeV] ; Entries"
+                                                ).c_str()
+                                              , mbl_bins, mbl_min, mbl_max
+                                              )
+                                    );
 
-    // m_h_mbl_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    //                                + "__mbl_1"
-    //                                ).c_str()
-    //                              , ( "m_{bl}^{1} - "
-    //                                + FLAVOR_CHANNEL_STRINGS[fc_it]
-    //                                + " ; m_{bl}^{1} [GeV] ; Entries"
-    //                                ).c_str()
-    //                              , mbl_bins, mbl_min, mbl_max
-    //                              )
-    //                    );
+    m_h_mbl_anti_pairing_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__mbl_anti_pairing_1"
+                                                ).c_str()
+                                              , ( "m_{bl}^{1} - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; m_{bl}^{1} [GeV] ; Entries"
+                                                ).c_str()
+                                              , mbl_bins, mbl_min, mbl_max
+                                              )
+                                    );
   }
 }
 
@@ -242,6 +243,29 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   m_h_ptbl_all.at(fc)->Fill(ptbl_1, weight);
   m_h_ptbl_0.at(  fc)->Fill(ptbl_0, weight);
   m_h_ptbl_1.at(  fc)->Fill(ptbl_1, weight);
+
+  // fill mbl (anti-pairing) plots
+  // float mbl_anti_pair_0 = bl_0.getMbl()/1.e3;
+  // float mbl_anti_pair_1 = bl_1.getMbl()/1.e3;
+  float mbl_anti_pair_0 = PennSusyFrame::calcMll(bl_0.getLepton(), bl_1.getJet())/1.e3;
+  float mbl_anti_pair_1 = PennSusyFrame::calcMll(bl_1.getLepton(), bl_0.getJet())/1.e3;
+
+  if (mbl_anti_pair_1 > mbl_anti_pair_0) {
+    float tmp = mbl_anti_pair_0;
+    mbl_anti_pair_0 = mbl_anti_pair_1;
+    mbl_anti_pair_1 = tmp;
+  }
+
+  m_h_mbl_anti_pairing_all.at(FLAVOR_NONE)->Fill(mbl_anti_pair_0, weight);
+  m_h_mbl_anti_pairing_all.at(FLAVOR_NONE)->Fill(mbl_anti_pair_1, weight);
+  m_h_mbl_anti_pairing_0.at(  FLAVOR_NONE)->Fill(mbl_anti_pair_0, weight);
+  m_h_mbl_anti_pairing_1.at(  FLAVOR_NONE)->Fill(mbl_anti_pair_1, weight);
+
+  m_h_mbl_anti_pairing_all.at(fc)->Fill(mbl_anti_pair_0, weight);
+  m_h_mbl_anti_pairing_all.at(fc)->Fill(mbl_anti_pair_1, weight);
+  m_h_mbl_anti_pairing_0.at(  fc)->Fill(mbl_anti_pair_0, weight);
+  m_h_mbl_anti_pairing_1.at(  fc)->Fill(mbl_anti_pair_1, weight);
+
 }
 
 // -----------------------------------------------------------------------------
