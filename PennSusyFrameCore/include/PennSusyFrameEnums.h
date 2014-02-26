@@ -13,7 +13,7 @@ enum FLAVOR_CHANNEL { FLAVOR_NONE = 0 // no flavor
                     , FLAVOR_EM   = 4 // em event
                     , FLAVOR_N
                     };
-const std::string FLAVOR_CHANNEL_STRINGS[] = { "flavor_none"  // 0
+const std::string FLAVOR_CHANNEL_STRINGS[] = { "flavor_all"  // 0
                                              , "flavor_ee"    // 1
                                              , "flavor_mm"    // 2
                                              , "flavor_error" // 3

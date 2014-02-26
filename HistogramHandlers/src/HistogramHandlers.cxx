@@ -93,9 +93,7 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
 
-  if (fc == FLAVOR_NONE) {
-    return;
-  }
+  if (fc == FLAVOR_NONE) return;
 
   float mll = event_level_quantities.getMll()/1.e3;
   float mt2 = event_level_quantities.getMt2()/1.e3;
@@ -122,23 +120,6 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
   }
 }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // =============================================================================
 PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag)
 {
@@ -297,9 +278,7 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
 
-  if (fc == FLAVOR_NONE) {
-    return;
-  }
+  if (fc == FLAVOR_NONE) return;
 
   float pt_0 = 0.;
   float pt_1 = 0.;
@@ -525,9 +504,7 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
 
-  if (fc == FLAVOR_NONE) {
-    return;
-  }
+  if (fc == FLAVOR_NONE) return;
 
   size_t num_jet = jet_list->size();
 
@@ -541,10 +518,10 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
   m_h_pt_1.at(fc   )->Fill(pt_1, weight);
 
   m_h_num_jet.at(FLAVOR_NONE)->Fill(num_jet, weight);
-  m_h_pt_all.at(FLAVOR_NONE )->Fill(pt_0, weight);
-  m_h_pt_all.at(FLAVOR_NONE )->Fill(pt_1, weight);
-  m_h_pt_0.at(FLAVOR_NONE   )->Fill(pt_0, weight);
-  m_h_pt_1.at(FLAVOR_NONE   )->Fill(pt_1, weight);
+  m_h_pt_all.at( FLAVOR_NONE)->Fill(pt_0, weight);
+  m_h_pt_all.at( FLAVOR_NONE)->Fill(pt_1, weight);
+  m_h_pt_0.at(   FLAVOR_NONE)->Fill(pt_0, weight);
+  m_h_pt_1.at(   FLAVOR_NONE)->Fill(pt_1, weight);
 }
 
 // -----------------------------------------------------------------------------

@@ -72,11 +72,11 @@ void BMinusLCutFlowTracker::printLine(int cut_it)
   std::string cut_name = BMINUSL_CUT_STRINGS[cut_it];
   // std::cout << "cut it: " << cut_it << " - cut name: " << cut_name << "\n";
 
-  double weight_none = m_cutflow.at(PHASE_NONE)->GetBinContent(cut_it+1);
-  double weight_ee   = m_cutflow.at(PHASE_EE  )->GetBinContent(cut_it+1);
-  double weight_mm   = m_cutflow.at(PHASE_MM  )->GetBinContent(cut_it+1);
-  double weight_em   = m_cutflow.at(PHASE_EM  )->GetBinContent(cut_it+1);
-  double weight_me   = m_cutflow.at(PHASE_ME  )->GetBinContent(cut_it+1);
+  double weight_all = m_cutflow.at(PHASE_NONE)->GetBinContent(cut_it+1);
+  double weight_ee  = m_cutflow.at(PHASE_EE  )->GetBinContent(cut_it+1);
+  double weight_mm  = m_cutflow.at(PHASE_MM  )->GetBinContent(cut_it+1);
+  double weight_em  = m_cutflow.at(PHASE_EM  )->GetBinContent(cut_it+1);
+  double weight_me  = m_cutflow.at(PHASE_ME  )->GetBinContent(cut_it+1);
 
   if (cut_name == "BREAK") {
     std::cout << "= "  << std::left  << std::setw(m_label_field)  << m_break_label
@@ -99,7 +99,7 @@ void BMinusLCutFlowTracker::printLine(int cut_it)
     std::cout << "= "  << std::left  << std::setw(m_label_field)
               << std::setprecision(m_precision) << cut_name
               << " = " << std::right << std::setw(m_weight_field)
-              << std::setprecision(m_precision) << weight_none
+              << std::setprecision(m_precision) << weight_all
               << " = " << std::right << std::setw(m_weight_field)
               << std::setprecision(m_precision) << weight_ee
               << " = " << std::right << std::setw(m_weight_field)
@@ -139,7 +139,7 @@ void BMinusLCutFlowTracker::initCutFlowHists()
   std::string name_base = "cutflow_";
   for (size_t channel_it = 0; channel_it != PHASE_N; ++channel_it) {
     std::string this_name = name_base;
-    if (     channel_it == static_cast<size_t>(PHASE_NONE)) this_name += "none";
+    if (     channel_it == static_cast<size_t>(PHASE_NONE)) this_name += "all";
     else if (channel_it == static_cast<size_t>(PHASE_EE  )) this_name += "ee";
     else if (channel_it == static_cast<size_t>(PHASE_MM  )) this_name += "mm";
     else if (channel_it == static_cast<size_t>(PHASE_EM  )) this_name += "em";

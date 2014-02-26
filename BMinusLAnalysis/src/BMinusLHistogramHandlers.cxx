@@ -215,16 +215,14 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
 
-  if (fc == FLAVOR_NONE) {
-    return;
-  }
+  if (fc == FLAVOR_NONE) return;
 
   size_t num_jet = b_jet_list->size();
 
   float pt_0 = ( num_jet > 0 ? b_jet_list->at(0)->getPt()/1.e3 : 0.);
   float pt_1 = ( num_jet > 1 ? b_jet_list->at(1)->getPt()/1.e3 : 0.);
 
-  m_h_num_b_jet.at(fc         )->Fill(num_jet, weight);
+  m_h_num_b_jet.at(         fc)->Fill(num_jet, weight);
   m_h_num_b_jet.at(FLAVOR_NONE)->Fill(num_jet, weight);
 
   if (num_jet > 0) {
@@ -239,7 +237,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_b_jet_pt_1.at(  fc)->Fill(pt_1, weight);
 
     m_h_b_jet_pt_all.at(FLAVOR_NONE)->Fill(pt_1, weight);
-    m_h_b_jet_pt_1.at(FLAVOR_NONE  )->Fill(pt_1, weight);
+    m_h_b_jet_pt_1.at(  FLAVOR_NONE)->Fill(pt_1, weight);
   }
 
   // fill mbl plots
@@ -271,8 +269,6 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   m_h_ptbl_1.at(  fc)->Fill(ptbl_1, weight);
 
   // fill mbl (anti-pairing) plots
-  // float mbl_anti_pair_0 = bl_0.getMbl()/1.e3;
-  // float mbl_anti_pair_1 = bl_1.getMbl()/1.e3;
   float mbl_anti_pair_0 = PennSusyFrame::calcMll(bl_0.getLepton(), bl_1.getJet())/1.e3;
   float mbl_anti_pair_1 = PennSusyFrame::calcMll(bl_1.getLepton(), bl_0.getJet())/1.e3;
 
@@ -300,24 +296,24 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
   d->cd();
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // initialize pt histograms
-    m_h_num_b_jet.at(   fc_it)->Write();
+    if (FLAVOR_CHANNEL_STRINGS[fc_it] == "flavor_error") continue;
+
+    m_h_num_b_jet.at(fc_it)->Write();
 
     m_h_b_jet_pt_all.at(fc_it)->Write();
     m_h_b_jet_pt_0.at(  fc_it)->Write();
     m_h_b_jet_pt_1.at(  fc_it)->Write();
 
     m_h_mbl_all.at(fc_it)->Write();
-    m_h_mbl_0.at(fc_it)->Write();
-    m_h_mbl_1.at(fc_it)->Write();
+    m_h_mbl_0.at(  fc_it)->Write();
+    m_h_mbl_1.at(  fc_it)->Write();
 
     m_h_ptbl_all.at(fc_it)->Write();
-    m_h_ptbl_0.at(fc_it)->Write();
-    m_h_ptbl_1.at(fc_it)->Write();
+    m_h_ptbl_0.at(  fc_it)->Write();
+    m_h_ptbl_1.at(  fc_it)->Write();
 
     m_h_mbl_anti_pairing_all.at(fc_it)->Write();
-    m_h_mbl_anti_pairing_0.at(fc_it)->Write();
-    m_h_mbl_anti_pairing_1.at(fc_it)->Write();
+    m_h_mbl_anti_pairing_0.at(  fc_it)->Write();
+    m_h_mbl_anti_pairing_1.at(  fc_it)->Write();
   }
 }
