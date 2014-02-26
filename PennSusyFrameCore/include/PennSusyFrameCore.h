@@ -109,7 +109,7 @@ namespace PennSusyFrame
 
       PennSusyFrame::TruthMatchTool        m_truth_match_tool;
 
-      std::vector<PennSusyFrame::HistogramHandler*> m_histogram_handlers;
+      std::vector<std::vector<PennSusyFrame::HistogramHandler*> > m_histogram_handlers;
 
     private:
   };

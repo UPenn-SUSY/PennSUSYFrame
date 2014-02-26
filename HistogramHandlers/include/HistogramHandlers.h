@@ -30,7 +30,7 @@ namespace PennSusyFrame
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
-      HistogramHandler();
+      HistogramHandler(std::string name_tag = "");
       virtual ~HistogramHandler();
 
       virtual void Fill( const PennSusyFrame::Event&
@@ -54,7 +54,7 @@ namespace PennSusyFrame
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
-      EventLevelHists();
+      EventLevelHists(std::string name_tag = "");
       virtual ~EventLevelHists();
 
       virtual void Fill( const PennSusyFrame::Event&
@@ -80,7 +80,7 @@ namespace PennSusyFrame
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
-      LeptonKinematicsHists();
+      LeptonKinematicsHists(std::string name_tag = "");
       virtual ~LeptonKinematicsHists();
 
       virtual void Fill( const PennSusyFrame::Event&
@@ -115,7 +115,7 @@ namespace PennSusyFrame
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
-      JetKinematicsHists();
+      JetKinematicsHists(std::string name_tag = "");
       virtual ~JetKinematicsHists();
 
       virtual void Fill( const PennSusyFrame::Event&
@@ -144,7 +144,7 @@ namespace PennSusyFrame
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
-      MetHists();
+      MetHists(std::string name_tag = "");
       virtual ~MetHists();
 
       virtual void Fill( const PennSusyFrame::Event&

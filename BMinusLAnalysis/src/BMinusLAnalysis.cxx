@@ -101,14 +101,15 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 
   prepareSelection();
 
-  m_histogram_handlers.push_back( new PennSusyFrame::EventLevelHists() );
-  m_histogram_handlers.push_back( new PennSusyFrame::LeptonKinematicsHists() );
-  m_histogram_handlers.push_back( new PennSusyFrame::JetKinematicsHists() );
-  m_histogram_handlers.push_back( new PennSusyFrame::MetHists() );
+  m_histogram_handlers.resize(BMINUSL_HIST_N);
 
   for (unsigned int hist_level = 0; hist_level != BMINUSL_HIST_N; ++hist_level) {
-    PennSusyFrame::BMinusLHists hist_tmp(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]);
-    m_bminusl_histogram_handler.push_back(hist_tmp);
+    m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::EventLevelHists(      PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
+    m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::LeptonKinematicsHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
+    m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::JetKinematicsHists(   PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
+    m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::MetHists(             PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
+
+    m_bminusl_histogram_handler.push_back(new PennSusyFrame::BMinusLHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
   }
 }
 
@@ -400,12 +401,23 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING, m_event_weight);
 
-    m_bminusl_histogram_handler.at(PennSusyFrame::BMINUSL_HIST_BL_PAIRING).FillSpecial( m_event
-                                                                                      , m_jets.getCollection(JET_B)
-                                                                                      , bl_0
-                                                                                      , bl_1
-                                                                                      , m_event_weight
-                                                                                      );
+    size_t num_hists = m_histogram_handlers.size();
+    for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+      m_histogram_handlers.at(PennSusyFrame::BMINUSL_HIST_BL_PAIRING).at(hist_it)->Fill( m_event
+                                                                                       , m_event_quantities
+                                                                                       , m_electrons.getCollection(EL_GOOD)
+                                                                                       , m_muons.getCollection(MU_GOOD)
+                                                                                       , m_jets.getCollection(JET_GOOD)
+                                                                                       , m_met
+                                                                                       , m_event_weight
+                                                                                       );
+    }
+    m_bminusl_histogram_handler.at(PennSusyFrame::BMINUSL_HIST_BL_PAIRING)->FillSpecial( m_event
+                                                                                       , m_jets.getCollection(JET_B)
+                                                                                       , bl_0
+                                                                                       , bl_1
+                                                                                       , m_event_weight
+                                                                                       );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -431,21 +443,21 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     size_t num_hists = m_histogram_handlers.size();
     for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-      m_histogram_handlers.at(hist_it)->Fill( m_event
-                                            , m_event_quantities
-                                            , m_electrons.getCollection(EL_GOOD)
-                                            , m_muons.getCollection(MU_GOOD)
-                                            , m_jets.getCollection(JET_GOOD)
-                                            , m_met
-                                            , m_event_weight
-                                            );
+      m_histogram_handlers.at(PennSusyFrame::BMINUSL_HIST_ZVETO).at(hist_it)->Fill( m_event
+                                                                                  , m_event_quantities
+                                                                                  , m_electrons.getCollection(EL_GOOD)
+                                                                                  , m_muons.getCollection(MU_GOOD)
+                                                                                  , m_jets.getCollection(JET_GOOD)
+                                                                                  , m_met
+                                                                                  , m_event_weight
+                                                                                  );
     }
-    m_bminusl_histogram_handler.at(PennSusyFrame::BMINUSL_HIST_ZVETO).FillSpecial( m_event
-                                                                                 , m_jets.getCollection(JET_B)
-                                                                                 , bl_0
-                                                                                 , bl_1
-                                                                                 , m_event_weight
-                                                                                 );
+    m_bminusl_histogram_handler.at(PennSusyFrame::BMINUSL_HIST_ZVETO)->FillSpecial( m_event
+                                                                                  , m_jets.getCollection(JET_B)
+                                                                                  , bl_0
+                                                                                  , bl_1
+                                                                                  , m_event_weight
+                                                                                  );
   }
 }
 
@@ -463,21 +475,22 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
 
   m_d3pd_reader->writeNumEvents();
 
-  TDirectory* hist_dir = out_hist_file.mkdir("hists");
+  // TDirectory* hist_dir = out_hist_file.mkdir("hists");
 
   std::cout << "about to write histograms to file\n";
-  size_t num_hists = m_histogram_handlers.size();
-  for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-    std::cout << "\twriting histogram handler " << hist_it << " to file\n";
-    m_histogram_handlers.at(hist_it)->write(hist_dir);
-  }
   for ( unsigned int hist_level = 0
       ; hist_level != BMINUSL_HIST_N
       ; ++hist_level
       ) {
     TDirectory* hist_dir_cut_level = out_hist_file.mkdir(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level].c_str());
 
-    m_bminusl_histogram_handler.at(hist_level).write(hist_dir_cut_level);
+    size_t num_hists = m_histogram_handlers.size();
+    for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+      std::cout << "\twriting histogram handler " << hist_it << " to file\n";
+      m_histogram_handlers.at(hist_level).at(hist_it)->write(hist_dir_cut_level);
+    }
+
+    m_bminusl_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
   }
   std::cout << "done writing histograms to file\n";
 

@@ -7,7 +7,7 @@
 #include "TH1.h"
 
 // =============================================================================
-PennSusyFrame::HistogramHandler::HistogramHandler()
+PennSusyFrame::HistogramHandler::HistogramHandler(std::string)
 { }
 
 // -----------------------------------------------------------------------------
@@ -34,7 +34,7 @@ void PennSusyFrame::HistogramHandler::write(TDirectory*)
 }
 
 // =============================================================================
-PennSusyFrame::EventLevelHists::EventLevelHists()
+PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
 {
   const int   mll_bins = 50;
   const float mll_min  = 0.;
@@ -49,6 +49,8 @@ PennSusyFrame::EventLevelHists::EventLevelHists()
     // initialize mll histograms
     m_h_mll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                  + "__mll"
+                                 + "__"
+                                 + name_tag
                                  ).c_str()
                                , ( "m_{ll} - "
                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -62,6 +64,8 @@ PennSusyFrame::EventLevelHists::EventLevelHists()
     // initialize mt2 histograms
     m_h_mt2.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                  + "__mt2"
+                                 + "__"
+                                 + name_tag
                                  ).c_str()
                                , ( "m_{T2}^{0} - "
                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -136,7 +140,7 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
 //
 //
 // =============================================================================
-PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
+PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag)
 {
   const int   pt_bins = 50;
   const float pt_min  = 0.;
@@ -155,6 +159,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
     // initialize pt histograms
     m_h_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__lep_pt_all"
+                                    + "__"
+                                    + name_tag
                                     ).c_str()
                                   , ( "p_{T} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -166,6 +172,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
 
     m_h_pt_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                   + "__lep_pt_0"
+                                 + "__"
+                                 + name_tag
                                   ).c_str()
                                 , ( "p_{T}^{0} - "
                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -177,6 +185,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
 
     m_h_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                   + "__lep_pt_1"
+                                  + "__"
+                                  + name_tag
                                   ).c_str()
                                 , ( "p_{T}^{1} - "
                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -190,6 +200,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
     // initialize pt iso histograms
     m_h_ptiso_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                        + "__lep_ptiso_all"
+                                       + "__"
+                                       + name_tag
                                        ).c_str()
                                      , ( "p_{T}^{cone30}/p_{T} - "
                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -201,6 +213,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
 
     m_h_ptiso_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__lep_ptiso_0"
+                                     + "__"
+                                     + name_tag
                                      ).c_str()
                                    , ( "p_{T}^{cone30,0}/p_{T} - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -212,6 +226,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
 
     m_h_ptiso_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__lep_ptiso_1"
+                                     + "__"
+                                     + name_tag
                                      ).c_str()
                                    , ( "p_{T}^{cone30,1}/p_{T} - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -225,6 +241,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
     // initialize et iso histograms
     m_h_etiso_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                        + "__lep_etiso_all"
+                                       + "__"
+                                       + name_tag
                                        ).c_str()
                                      , ( "E_{T}^{cone30}/p_{T} - "
                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -236,6 +254,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
 
     m_h_etiso_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__lep_etiso_0"
+                                     + "__"
+                                     + name_tag
                                      ).c_str()
                                    , ( "E_{T}^{cone30,0}/p_{T} - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -247,6 +267,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists()
 
     m_h_etiso_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__lep_etiso_1"
+                                     + "__"
+                                     + name_tag
                                      ).c_str()
                                    , ( "E_{T}^{cone30,1}/p_{T} - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -420,7 +442,7 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
 }
 
 // =============================================================================
-PennSusyFrame::JetKinematicsHists::JetKinematicsHists()
+PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
 {
   const int   num_jet_bins = 4;
   const float num_jet_min  = -0.5;
@@ -435,6 +457,8 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists()
     // initialize pt histograms
     m_h_num_jet.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__num_jet"
+                                     + "__"
+                                     + name_tag
                                      ).c_str()
                                    , ( "Jet multiplicity - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -446,6 +470,8 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists()
 
     m_h_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__jet_pt_all"
+                                    + "__"
+                                    + name_tag
                                     ).c_str()
                                   , ( "p_{T} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -457,6 +483,8 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists()
 
     m_h_pt_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                   + "__jet_pt_0"
+                                  + "__"
+                                  + name_tag
                                   ).c_str()
                                 , ( "p_{T}^{0} - "
                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -468,6 +496,8 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists()
 
     m_h_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                   + "__jet_pt_1"
+                                  + "__"
+                                  + name_tag
                                   ).c_str()
                                 , ( "p_{T}^{1} - "
                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -533,7 +563,7 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
 }
 
 // =============================================================================
-PennSusyFrame::MetHists::MetHists()
+PennSusyFrame::MetHists::MetHists(std::string name_tag)
 {
   const int   met_et_bins = 50;
   const float met_et_min  = 0.;
@@ -544,6 +574,8 @@ PennSusyFrame::MetHists::MetHists()
     // initialize pt histograms
     m_h_met_et.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__met_et"
+                                    + "__"
+                                    + name_tag
                                     ).c_str()
                                   , ( "E_{T}^{miss} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -555,6 +587,8 @@ PennSusyFrame::MetHists::MetHists()
 
     m_h_met_rel.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__met_rel"
+                                     + "__"
+                                     + name_tag
                                      ).c_str()
                                    , ( "E_{T}^{miss,rel} - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]

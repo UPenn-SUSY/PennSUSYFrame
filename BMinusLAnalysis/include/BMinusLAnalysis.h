@@ -95,7 +95,7 @@ namespace PennSusyFrame
       BMinusLCutFlowTracker m_raw_cutflow_tracker;
       BMinusLCutFlowTracker m_cutflow_tracker;
 
-      std::vector<PennSusyFrame::BMinusLHists> m_bminusl_histogram_handler;
+      std::vector<PennSusyFrame::BMinusLHists*> m_bminusl_histogram_handler;
 
     private:
   };

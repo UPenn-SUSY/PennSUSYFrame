@@ -32,8 +32,7 @@ namespace PennSusyFrame
   {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
-      BMinusLHists();
-      BMinusLHists(std::string);
+      BMinusLHists(std::string name_tag = "");
       virtual ~BMinusLHists();
 
       virtual void FillSpecial( const PennSusyFrame::Event&

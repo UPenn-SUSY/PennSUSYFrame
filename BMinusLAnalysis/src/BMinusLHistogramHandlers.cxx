@@ -9,12 +9,6 @@
 #include "TH1.h"
 
 // =============================================================================
-PennSusyFrame::BMinusLHists::BMinusLHists()
-{
-  BMinusLHists("");
-}
-
-// =============================================================================
 PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 {
   const int   num_jet_bins = 4;
