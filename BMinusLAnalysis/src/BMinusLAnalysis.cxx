@@ -13,6 +13,7 @@
 #include "PennSusyFrameCore/include/ObjectContainers.h"
 #include "PennSusyFrameCore/include/Calculators.h"
 #include "PennSusyFrameCore/include/D3PDReader.h"
+#include "PennSusyFrameCore/include/SelectorHelpers.h"
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
@@ -35,6 +36,9 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
                                                              , m_crit_cut_signal_lep(false)
                                                              , m_crit_cut_b_jets(false)
                                                              , m_crit_cut_z_veto(false)
+                                                             , m_crit_cut_met(false)
+                                                             , m_met_min(-1)
+                                                             , m_met_max(-1)
 {
 }
 
@@ -65,7 +69,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
 
   // EL_BASELINE
   m_electron_selectors.at(EL_BASELINE).setElectronQuality(EL_QUALITY_MEDPP);
-  m_electron_selectors.at(EL_BASELINE).setPtCut(20.e3, -1);
+  // m_electron_selectors.at(EL_BASELINE).setPtCut(20.e3, -1);
+  m_electron_selectors.at(EL_BASELINE).setPtCut(40.e3, -1);
   m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.47);
 
   // EL_SIGNAL
@@ -76,7 +81,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.21);
 
   // MU_BASELINE
-  m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
+  // m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
+  m_muon_selectors.at(MU_BASELINE).setPtCut(40.e3, -1);
   m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.5);
   m_muon_selectors.at(MU_BASELINE).setBLayerHitsCut(1, -1);
   m_muon_selectors.at(MU_BASELINE).setPixelHitsCut(1, -1);
@@ -400,24 +406,16 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_BL_PAIRING, m_event_weight);
+  }
 
-    size_t num_hists = m_histogram_handlers.size();
-    for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-      m_histogram_handlers.at(PennSusyFrame::BMINUSL_HIST_BL_PAIRING).at(hist_it)->Fill( m_event
-                                                                                       , m_event_quantities
-                                                                                       , m_electrons.getCollection(EL_GOOD)
-                                                                                       , m_muons.getCollection(MU_GOOD)
-                                                                                       , m_jets.getCollection(JET_GOOD)
-                                                                                       , m_met
-                                                                                       , m_event_weight
-                                                                                       );
-    }
-    m_bminusl_histogram_handler.at(PennSusyFrame::BMINUSL_HIST_BL_PAIRING)->FillSpecial( m_event
-                                                                                       , m_jets.getCollection(JET_B)
-                                                                                       , bl_0
-                                                                                       , bl_1
-                                                                                       , m_event_weight
-                                                                                       );
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // fill histograms for BL_PAIRING hist level
+  if (m_pass_event) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING
+                   , bl_0
+                   , bl_1
+                   , m_event_weight
+                   );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -439,25 +437,40 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // fill histograms
+  // fill histograms for ZVETO hist level
   if (m_pass_event) {
-    size_t num_hists = m_histogram_handlers.size();
-    for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-      m_histogram_handlers.at(PennSusyFrame::BMINUSL_HIST_ZVETO).at(hist_it)->Fill( m_event
-                                                                                  , m_event_quantities
-                                                                                  , m_electrons.getCollection(EL_GOOD)
-                                                                                  , m_muons.getCollection(MU_GOOD)
-                                                                                  , m_jets.getCollection(JET_GOOD)
-                                                                                  , m_met
-                                                                                  , m_event_weight
-                                                                                  );
-    }
-    m_bminusl_histogram_handler.at(PennSusyFrame::BMINUSL_HIST_ZVETO)->FillSpecial( m_event
-                                                                                  , m_jets.getCollection(JET_B)
-                                                                                  , bl_0
-                                                                                  , bl_1
-                                                                                  , m_event_weight
-                                                                                  );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_ZVETO
+                   , bl_0
+                   , bl_1
+                   , m_event_weight
+                   );
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // Apply met cut
+  bool pass_met = ( PennSusyFrame::passCut( m_met.getMetEt()
+                                          , m_met_min
+                                          , m_met_max
+                                          )
+                  );
+  m_pass_event = (m_pass_event && pass_met);
+  if (m_crit_cut_met && !pass_met) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_MET);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_MET, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_MET);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_MET, m_event_weight);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // fill histograms for MET hist level
+  if (m_pass_event) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_MET
+                   , bl_0
+                   , bl_1
+                   , m_event_weight
+                   );
   }
 }
 
@@ -484,7 +497,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
       ) {
     TDirectory* hist_dir_cut_level = out_hist_file.mkdir(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level].c_str());
 
-    size_t num_hists = m_histogram_handlers.size();
+    size_t num_hists = m_histogram_handlers.at(hist_level).size();
     for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
       std::cout << "\twriting histogram handler " << hist_it << " to file\n";
       m_histogram_handlers.at(hist_level).at(hist_it)->write(hist_dir_cut_level);
@@ -514,4 +527,30 @@ PHASE_SPACE PennSusyFrame::BMinusLAnalysis::getPhaseSpace()
   }
 
   return PHASE_NONE;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIST_LEVELS hist_level
+                                                    , const PennSusyFrame::blPair& bl_0
+                                                    , const PennSusyFrame::blPair& bl_1
+                                                    , float weight
+                                                    )
+{
+  size_t num_hists = m_histogram_handlers.at(hist_level).size();
+  for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+    m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
+                                                         , m_event_quantities
+                                                         , m_electrons.getCollection(EL_GOOD)
+                                                         , m_muons.getCollection(MU_GOOD)
+                                                         , m_jets.getCollection(JET_GOOD)
+                                                         , m_met
+                                                         , weight
+                                                         );
+  }
+  m_bminusl_histogram_handler.at(hist_level)->FillSpecial( m_event
+                                                         , m_jets.getCollection(JET_B)
+                                                         , bl_0
+                                                         , bl_1
+                                                         , weight
+                                                         );
 }

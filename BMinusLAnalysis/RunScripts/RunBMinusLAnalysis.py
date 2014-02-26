@@ -109,6 +109,9 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutBadJetVeto(     1)
     bmla.setCritCutBLPairing(      1)
 
+    # Set cut values
+    bmla.setMetCut(-1, 50.e3)
+
     # prepare tools and run analysis loop
     bmla.prepareTools()
     bmla.Loop()

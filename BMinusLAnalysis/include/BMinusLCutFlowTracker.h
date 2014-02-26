@@ -38,6 +38,7 @@ enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   , BMINUSL_CUT_BL_PAIRING
                   , BMINUSL_CUT_BREAK_4
                   , BMINUSL_CUT_ZVETO
+                  , BMINUSL_CUT_MET
                   , BMINUSL_CUT_N
                   };
 const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
@@ -71,6 +72,7 @@ const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           , "BMINUSL_CUT_BL_PAIRING"
                                           , "BREAK"
                                           , "BMINUSL_CUT_ZVETO"
+                                          , "BMINUSL_CUT_MET"
                                           };
 
 // =============================================================================

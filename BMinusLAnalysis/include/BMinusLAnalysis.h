@@ -16,11 +16,13 @@ namespace PennSusyFrame
 {
   enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_ZVETO
+                           , BMINUSL_HIST_MET
                            , BMINUSL_HIST_N
                            };
 
   const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
+                                                   , "BMINUSL_MET"
                                                    };
 
   // ===========================================================================
@@ -62,8 +64,16 @@ namespace PennSusyFrame
       void setCritCut2BJets(         bool val) { m_crit_cut_b_jets = val;           }
       void setCritCutBLPairing(      bool val) { m_crit_cut_bl_pairing = val;       }
       void setCritCutZVeto(          bool val) { m_crit_cut_z_veto = val;           }
+      void setCritCutMet(            bool val) { m_crit_cut_met = val;              }
+
+      void setMetCut(float min, float max) { m_met_min = min ; m_met_max = max; }
 
     protected:
+      void fillHistHandles( BMINUSL_HIST_LEVELS
+                          , const PennSusyFrame::blPair&
+                          , const PennSusyFrame::blPair&
+                          , float weight
+                          );
       std::string m_out_hist_file_name;
 
       PennSusyFrame::LeptonKinematicsHists m_lep_hists;
@@ -87,6 +97,7 @@ namespace PennSusyFrame
       bool m_crit_cut_b_jets;
       bool m_crit_cut_bl_pairing;
       bool m_crit_cut_z_veto;
+      bool m_crit_cut_met;
 
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
@@ -96,6 +107,9 @@ namespace PennSusyFrame
       BMinusLCutFlowTracker m_cutflow_tracker;
 
       std::vector<PennSusyFrame::BMinusLHists*> m_bminusl_histogram_handler;
+
+      double m_met_min;
+      double m_met_max;
 
     private:
   };
