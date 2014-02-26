@@ -40,18 +40,18 @@ def plotComparisons( ic_numerator
 
     # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     dirs = hh.Helper.getListOfDirs(file_list)
-    hists = hh.Helper.getListOfHists(file_list[0].GetDirectory(dirs[0]))
     num_dirs = len(dirs)
-    # print hists
     for d_it, d in enumerate(dirs):
         print 'Printing histograms for cut dir: %s (%d of %d)' % (d, d_it, num_dirs)
         out_file.cd()
         out_file.mkdir(d)
         out_file.cd(d)
 
+        these_hists = hh.Helper.getListOfHists(file_list[0].GetDirectory(d))
+
         legend_canvas_drawn  = False
         entries_canvas_drawn = False
-        for it, h in enumerate(hists):
+        for it, h in enumerate(these_hists):
             if skipHist(d,h): continue
 
             out_file.cd(d)
