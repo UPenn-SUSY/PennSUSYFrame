@@ -116,6 +116,7 @@ class HistPainter(object):
         """
         Generate histogram with the number of entries per component
         """
+        print 'genEntriesHists()'
         label_list  = []
         num_entries = []
         fill_colors = []
@@ -124,6 +125,7 @@ class HistPainter(object):
         line_styles = []
 
         # get entries for numerator
+        print 'finding hist entries for numerator'
         self.findHistEntries( self.num_merger
                             , label_list
                             , num_entries
@@ -133,6 +135,7 @@ class HistPainter(object):
                             , line_styles
                             );
         # get entries for denominator
+        print 'finding hist entries for denominator'
         self.findHistEntries( self.denom_merger
                             , label_list
                             , num_entries
@@ -142,6 +145,7 @@ class HistPainter(object):
                             , line_styles
                             );
         # get entries for other
+        print 'finding hist entries for others'
         if self.other_merger is not None:
             self.findHistEntries( self.other_merger
                                 , label_list
@@ -153,10 +157,11 @@ class HistPainter(object):
                                 );
 
         num_handles = len(label_list)
-        # print 'Number of handles to add to entry histogram: %s' % num_handles
+        print 'Number of handles to add to entry histogram: %s' % num_handles
 
         entry_hists = []
         for it in xrange(num_handles):
+            print '\tit: %s' % it
             tmp_hist = ROOT.TH1D( 'entry_hist__%s' % (''.join(random.choice(string.ascii_lowercase) for x in xrange(5)))
                                 , 'num_entries'
                                 , num_handles + 2
@@ -171,9 +176,9 @@ class HistPainter(object):
             tmp_hist.Fill(it, num_entries[it])
 
             for bin_it in xrange(num_handles):
-                # print 'bin: %s' % bin_it
-                # print '  label:   %s' % label_list[bin_it]
-                # print '  entries: %s' % num_entries[bin_it]
+                print 'bin: %s' % bin_it
+                print '  label:   %s' % label_list[bin_it]
+                print '  entries: %s' % num_entries[bin_it]
                 tmp_hist.GetXaxis().SetBinLabel(bin_it+1, label_list[bin_it])
 
             entry_hists.append(tmp_hist)
@@ -192,7 +197,7 @@ class HistPainter(object):
                        , line_styles
                        ):
         for key in merger.hist_handles:
-            # label_list.append(hh.Helper.genLegendLabel(key))
+            label_list.append(hh.Helper.genLegendLabel(key))
             num_entries.append(merger.hist_handles[key].hist.Integral())
             fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
             line_colors.append(merger.hist_handles[key].hist_info.line_color)
@@ -210,13 +215,25 @@ class HistPainter(object):
     def genEntriesCanvas(self):
         entries_canvas = ROOT.TCanvas('entries')
         entries_hists = self.genEntriesHists()
-        for i, eh in enumerate(entries_hists):
-            if i == 0:
-                eh.Draw('HIST')
-            else:
-                eh.Draw('HISTSAME')
 
-        # entries_hist.Draw('HIST')
+        max_bin = 0
+
+        for i, eh in enumerate(entries_hists):
+            local_extreme = eh.Integral()
+            if local_extreme > max_bin:
+                max_bin = local_extreme
+
+
+        max_bin *= 1.2
+        for i, eh in enumerate(entries_hists):
+            eh.SetMaximum(max_bin)
+            if i == 0:
+                eh.Draw('HISTTEXT0')
+            else:
+                eh.Draw('HISTTEXT0SAME')
+
+        # entries_hists.Draw('HIST')
+        # entries_hists = self.genEntriesHists()
         return {'canv':entries_canvas, 'hists':entries_hists}
 
     # --------------------------------------------------------------------------

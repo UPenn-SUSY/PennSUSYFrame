@@ -36,6 +36,8 @@ void PennSusyFrame::HistogramHandler::write(TDirectory*)
 // =============================================================================
 PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
 {
+  TH1::SetDefaultSumw2(true);
+
   const int   mll_bins = 50;
   const float mll_min  = 0.;
   const float mll_max  = 500.;
@@ -123,6 +125,8 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
 // =============================================================================
 PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag)
 {
+  TH1::SetDefaultSumw2(true);
+
   const int   pt_bins = 50;
   const float pt_min  = 0.;
   const float pt_max  = 500.;
@@ -423,6 +427,8 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
 // =============================================================================
 PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
 {
+  TH1::SetDefaultSumw2(true);
+
   const int   num_jet_bins = 4;
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins - num_jet_min;
@@ -542,6 +548,8 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
 // =============================================================================
 PennSusyFrame::MetHists::MetHists(std::string name_tag)
 {
+  TH1::SetDefaultSumw2(true);
+
   const int   met_et_bins = 50;
   const float met_et_min  = 0.;
   const float met_et_max  = 500.;

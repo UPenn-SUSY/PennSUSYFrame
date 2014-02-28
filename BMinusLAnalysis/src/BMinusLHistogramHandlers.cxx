@@ -11,6 +11,8 @@
 // =============================================================================
 PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 {
+  TH1::SetDefaultSumw2(true);
+
   const int   num_jet_bins = 4;
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins - num_jet_min;
@@ -336,11 +338,14 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   m_h_mbl_anti_pairing_1.at(  fc)->Fill(mbl_anti_pair_1, weight);
 
   // check if b and l from each pair are from the same parent
+  // std::cout << "\n--------------------------------------------------------------------------------\n";
+  // std::cout << "checking same parent for 00\n";
   bool same_parent_pair_0 = PennSusyFrame::sameParent( event
                                                      , bl_0.getLepton()
                                                      , bl_0.getJet()
                                                      , mc_truth
                                                      );
+  // std::cout << "checking same parent for 11\n";
   bool same_parent_pair_1 = PennSusyFrame::sameParent( event
                                                 , bl_1.getLepton()
                                                 , bl_1.getJet()
@@ -352,11 +357,13 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   m_h_num_same_parent_pairing.at(FLAVOR_NONE)->Fill(num_same_parent_pairs, weight);
   m_h_num_same_parent_pairing.at(fc         )->Fill(num_same_parent_pairs, weight);
 
+  // std::cout << "checking same parent for 01\n";
   bool same_parent_anti_pair_0 = PennSusyFrame::sameParent( event
                                                           , bl_anti_pair_0.getLepton()
                                                           , bl_anti_pair_0.getJet()
                                                           , mc_truth
                                                           );
+  // std::cout << "checking same parent for 10\n";
   bool same_parent_anti_pair_1 = PennSusyFrame::sameParent( event
                                                           , bl_anti_pair_1.getLepton()
                                                           , bl_anti_pair_1.getJet()

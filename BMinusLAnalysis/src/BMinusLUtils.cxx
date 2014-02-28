@@ -263,11 +263,16 @@ int PennSusyFrame::getParentIndex( int barcode
     // std::cout << "\t\t\t\t\t\t\tmother index: " << mother_index << "\n";
     // std::cout << "\t\t\t\t\t\t\tmother pdgid: " << mother_pdgid << "\n";
     // std::cout << "\t\t\t\t\t\t\tmother barcode: " << mother_barcode << "\n";
+    // std::cout << "\t\t\t\t\t\t\t\tgetting next pdgid - index " << mother_index << " of " << pdgid_list->size() << "\n";
     mother_pdgid = pdgid_list->at(mother_index);
+    // std::cout << "\t\t\t\t\t\t\t\tgetting next barcode - index " << mother_index << " of " << mc_truth.getParents()->size() << "\n";
+    // std::cout << "\t\t\t\t\t\t\t\t\tthis parent list has " << mc_truth.getParents()->at(mother_index).size() << " entries\n";
+    if (mc_truth.getParents()->at(mother_index).size() == 0) break;
     mother_barcode = mc_truth.getParents()->at(mother_index).at(0);
+    // std::cout << "\t\t\t\t\t\t\t---\n";
   }
-  // std::cout << "\t\t\t\t\t\t\t===n";
-  
+  // std::cout << "\t\t\t\t\t\t\t===\n";
+
   if (  fabs(particle_pdgid) == 5
      && ( (  fabs(mother_pdgid) >= 500
           && fabs(mother_pdgid) < 600
