@@ -179,6 +179,8 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // MC only variables
   el_type = 0;
   el_origin = 0;
+  el_truth_barcode = 0;
+  el_truth_motherbarcode = 0;
   mc_barcode = 0;
   mc_charge = 0;
   mc_child_index = 0;
@@ -193,6 +195,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   mc_status = 0;
   mc_vx_barcode = 0;
   mu_staco_truth_barcode = 0;
+  mu_staco_truth_motherbarcode = 0;
   muonTruth_origin = 0;
   muonTruth_type = 0;
   jet_AntiKt4LCTopo_flavor_truth_label = 0;
@@ -427,12 +430,10 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_trackz0 = 0;
   // el_trackz0pv = 0;
   // el_truth_E = 0;
-  // el_truth_barcode = 0;
   // el_truth_eta = 0;
   // el_truth_hasHardBrem = 0;
   // el_truth_index = 0;
   // el_truth_matched = 0;
-  // el_truth_motherbarcode = 0;
   // el_truth_mothertype = 0;
   // el_truth_phi = 0;
   // el_truth_pt = 0;
@@ -951,7 +952,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // mu_staco_truth_dr = 0;
   // mu_staco_truth_eta = 0;
   // mu_staco_truth_matched = 0;
-  // mu_staco_truth_motherbarcode = 0;
   // mu_staco_truth_mothertype = 0;
   // mu_staco_truth_phi = 0;
   // mu_staco_truth_pt = 0;
@@ -2704,6 +2704,8 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
     std::cout << "turning on MC only branches\n";
     turnOnBranch(tree, "el_type", &el_type, &b_el_type);
     turnOnBranch(tree, "el_origin", &el_origin, &b_el_origin);
+    turnOnBranch(tree, "el_truth_barcode", &el_truth_barcode, &b_el_truth_barcode);
+    turnOnBranch(tree, "el_truth_motherbarcode", &el_truth_motherbarcode, &b_el_truth_motherbarcode);
     turnOnBranch(tree, "mc_barcode", &mc_barcode, &b_mc_barcode);
     turnOnBranch(tree, "mc_channel_number", &mc_channel_number, &b_mc_channel_number);
     turnOnBranch(tree, "mc_charge", &mc_charge, &b_mc_charge);
@@ -2721,6 +2723,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
     turnOnBranch(tree, "mc_status", &mc_status, &b_mc_status);
     turnOnBranch(tree, "mc_vx_barcode", &mc_vx_barcode, &b_mc_vx_barcode);
     turnOnBranch(tree, "mu_staco_truth_barcode", &mu_staco_truth_barcode, &b_mu_staco_truth_barcode);
+    turnOnBranch(tree, "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode, &b_mu_staco_truth_motherbarcode);
     turnOnBranch(tree, "muonTruth_origin", &muonTruth_origin, &b_muonTruth_origin);
     turnOnBranch(tree, "muonTruth_type", &muonTruth_type, &b_muonTruth_type);
     turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label, &b_jet_AntiKt4LCTopo_flavor_truth_label);
@@ -4304,12 +4307,10 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_trackz0", &el_trackz0, &b_el_trackz0);
   // turnOnBranch(tree, "el_trackz0pv", &el_trackz0pv, &b_el_trackz0pv);
   // turnOnBranch(tree, "el_truth_E", &el_truth_E, &b_el_truth_E);
-  // turnOnBranch(tree, "el_truth_barcode", &el_truth_barcode, &b_el_truth_barcode);
   // turnOnBranch(tree, "el_truth_eta", &el_truth_eta, &b_el_truth_eta);
   // turnOnBranch(tree, "el_truth_hasHardBrem", &el_truth_hasHardBrem, &b_el_truth_hasHardBrem);
   // turnOnBranch(tree, "el_truth_index", &el_truth_index, &b_el_truth_index);
   // turnOnBranch(tree, "el_truth_matched", &el_truth_matched, &b_el_truth_matched);
-  // turnOnBranch(tree, "el_truth_motherbarcode", &el_truth_motherbarcode, &b_el_truth_motherbarcode);
   // turnOnBranch(tree, "el_truth_mothertype", &el_truth_mothertype, &b_el_truth_mothertype);
   // turnOnBranch(tree, "el_truth_phi", &el_truth_phi, &b_el_truth_phi);
   // turnOnBranch(tree, "el_truth_pt", &el_truth_pt, &b_el_truth_pt);
@@ -4845,7 +4846,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "mu_staco_truth_dr", &mu_staco_truth_dr, &b_mu_staco_truth_dr);
   // turnOnBranch(tree, "mu_staco_truth_eta", &mu_staco_truth_eta, &b_mu_staco_truth_eta);
   // turnOnBranch(tree, "mu_staco_truth_matched", &mu_staco_truth_matched, &b_mu_staco_truth_matched);
-  // turnOnBranch(tree, "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode, &b_mu_staco_truth_motherbarcode);
   // turnOnBranch(tree, "mu_staco_truth_mothertype", &mu_staco_truth_mothertype, &b_mu_staco_truth_mothertype);
   // turnOnBranch(tree, "mu_staco_truth_phi", &mu_staco_truth_phi, &b_mu_staco_truth_phi);
   // turnOnBranch(tree, "mu_staco_truth_pt", &mu_staco_truth_pt, &b_mu_staco_truth_pt);
@@ -6664,7 +6664,10 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
 
   if (!m_is_data) {
     std::cout << "connecting on MC only branches to output\n";
+    m_output_tree->Branch( "el_origin", &el_origin);
     m_output_tree->Branch( "el_type", &el_type);
+    m_output_tree->Branch( "el_truth_barcode", &el_truth_barcode);
+    m_output_tree->Branch( "el_truth_motherbarcode", &el_truth_motherbarcode);
     m_output_tree->Branch( "mc_barcode", &mc_barcode);
     m_output_tree->Branch( "mc_channel_number", &mc_channel_number);
     m_output_tree->Branch( "mc_charge", &mc_charge);
@@ -6682,6 +6685,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
     m_output_tree->Branch( "mc_status", &mc_status);
     m_output_tree->Branch( "mc_vx_barcode", &mc_vx_barcode);
     m_output_tree->Branch( "mu_staco_truth_barcode", &mu_staco_truth_barcode);
+    m_output_tree->Branch( "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode);
     m_output_tree->Branch( "muonTruth_origin", &muonTruth_origin);
     m_output_tree->Branch( "muonTruth_type", &muonTruth_type);
     m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label);
@@ -8265,12 +8269,10 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_trackz0", &el_trackz0);
   // m_output_tree->Branch( "el_trackz0pv", &el_trackz0pv);
   // m_output_tree->Branch( "el_truth_E", &el_truth_E);
-  // m_output_tree->Branch( "el_truth_barcode", &el_truth_barcode);
   // m_output_tree->Branch( "el_truth_eta", &el_truth_eta);
   // m_output_tree->Branch( "el_truth_hasHardBrem", &el_truth_hasHardBrem);
   // m_output_tree->Branch( "el_truth_index", &el_truth_index);
   // m_output_tree->Branch( "el_truth_matched", &el_truth_matched);
-  // m_output_tree->Branch( "el_truth_motherbarcode", &el_truth_motherbarcode);
   // m_output_tree->Branch( "el_truth_mothertype", &el_truth_mothertype);
   // m_output_tree->Branch( "el_truth_phi", &el_truth_phi);
   // m_output_tree->Branch( "el_truth_pt", &el_truth_pt);
@@ -8806,7 +8808,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "mu_staco_truth_dr", &mu_staco_truth_dr);
   // m_output_tree->Branch( "mu_staco_truth_eta", &mu_staco_truth_eta);
   // m_output_tree->Branch( "mu_staco_truth_matched", &mu_staco_truth_matched);
-  // m_output_tree->Branch( "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode);
   // m_output_tree->Branch( "mu_staco_truth_mothertype", &mu_staco_truth_mothertype);
   // m_output_tree->Branch( "mu_staco_truth_phi", &mu_staco_truth_phi);
   // m_output_tree->Branch( "mu_staco_truth_pt", &mu_staco_truth_pt);

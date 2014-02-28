@@ -314,6 +314,8 @@ namespace PennSusyFrame
       void setIsElectron(bool val) { m_is_electron = val; }
       void setCharge(double val) { m_charge = val; }
       void setTruthCharge(double val) { m_truth_charge = val; }
+      void setTruthBarcode(int val) { m_truth_barcode = val; }
+      void setTruthParentBarcode(int val) { m_truth_parent_barcode = val; }
 
       void setRawPtIso(double val) { m_raw_pt_iso = val; }
       void setRawEtIso(double val) { m_raw_et_iso = val; }
@@ -325,6 +327,9 @@ namespace PennSusyFrame
       bool isMuon() const { return (m_is_light_lepton && !m_is_electron); }
       bool isTau() const { return !m_is_light_lepton; }
       double getCharge() const { return m_charge; }
+      double getTruthCharge() const { return m_truth_charge; }
+      int getTruthBarcode() const { return m_truth_barcode; }
+      int getTruthParentBarcode() const { return m_truth_parent_barcode; }
 
       double getRawPtIso() const { return m_raw_pt_iso; }
       double getRawEtIso() const { return m_raw_et_iso; }
@@ -345,6 +350,8 @@ namespace PennSusyFrame
       bool m_is_electron;
       double m_charge;
       double m_truth_charge;
+      int m_truth_barcode;
+      int m_truth_parent_barcode;
 
       double m_raw_pt_iso;
       double m_raw_et_iso;
@@ -470,7 +477,7 @@ namespace PennSusyFrame
       void setMsTheta(double val) { m_ms_theta = val; }
       void setMsPhi(double val) { m_ms_phi = val; }
 
-      void setTruthBarcode(int val) { m_truth_barcode = val; }
+      // void setTruthBarcode(int val) { m_truth_barcode = val; }
 
       // TODO move accessors to cxx file
       int getIsCombined() const { return m_is_combined; }
@@ -500,7 +507,7 @@ namespace PennSusyFrame
       double getMsTheta() const { return m_ms_theta; }
       double getMsPhi() const { return m_ms_phi; }
 
-      int getTruthBarcode() const { return m_truth_barcode; }
+      // int getTruthBarcode() const { return m_truth_barcode; }
 
       virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -539,7 +546,7 @@ namespace PennSusyFrame
       double m_ms_theta;
       double m_ms_phi;
 
-      int m_truth_barcode;
+      // int m_truth_barcode;
   };
 
   // =============================================================================

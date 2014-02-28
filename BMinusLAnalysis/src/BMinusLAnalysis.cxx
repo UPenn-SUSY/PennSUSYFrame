@@ -551,6 +551,7 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                          , m_jets.getCollection(JET_B)
                                                          , bl_0
                                                          , bl_1
+                                                         , m_mc_truth
                                                          , weight
                                                          );
 }

@@ -12,6 +12,7 @@ namespace PennSusyFrame
   class Lepton;
   class Electron;
   class Muon;
+  class MCTruth;
 }
 
 // =============================================================================
@@ -27,13 +28,15 @@ namespace PennSusyFrame
 
       void calculate();
 
-      void  setJet(PennSusyFrame::Jet*    jet) { m_jet = jet; }
-      void  setLep(PennSusyFrame::Lepton* lep) { m_lep = lep; }
+      void setJet(PennSusyFrame::Jet*    jet) { m_jet = jet; }
+      void setLep(PennSusyFrame::Lepton* lep) { m_lep = lep; }
+      void setSameParent(bool val) { m_same_parent = val; }
 
       PennSusyFrame::Jet*    getJet()    const { return m_jet; }
       PennSusyFrame::Lepton* getLepton() const { return m_lep; }
       float getMbl()  const { return m_mbl;  }
       float getPtbl() const { return m_ptbl; }
+      bool  getSameParent() const { return m_same_parent; }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -42,6 +45,8 @@ namespace PennSusyFrame
 
       float m_mbl;
       float m_ptbl;
+
+      bool m_same_parent;
   };
 
 
@@ -60,6 +65,36 @@ namespace PennSusyFrame
                   , PennSusyFrame::blPair& pair_0
                   , PennSusyFrame::blPair& pair_1
                   );
+
+  // ---------------------------------------------------------------------------
+  bool sameParent( const PennSusyFrame::Event&
+                 , const PennSusyFrame::Lepton*
+                 , const PennSusyFrame::Jet*
+                 , const PennSusyFrame::MCTruth&
+                 );
+
+  // ---------------------------------------------------------------------------
+  // match jet to b quark and return the mc index
+  int matchJetToBQuark( const PennSusyFrame::Jet*
+                      , const PennSusyFrame::MCTruth&
+                      );
+
+  // ---------------------------------------------------------------------------
+  // TODO move to truth match tools
+  int getParticleIndex( int barcode
+                      , const PennSusyFrame::MCTruth&
+                      );
+
+  // ---------------------------------------------------------------------------
+  // TODO move to truth match tools
+  int getParentIndex( int barcode
+                    , const PennSusyFrame::MCTruth&
+                    );
+
+  // ---------------------------------------------------------------------------
+  int getBarcodeFromIndex( int index
+                         , const PennSusyFrame::MCTruth&
+                         );
 }
 
 #endif

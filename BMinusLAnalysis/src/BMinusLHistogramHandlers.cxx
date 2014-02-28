@@ -198,6 +198,48 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                               , mbl_bins, mbl_min, mbl_max
                                               )
                                     );
+
+    // initialize same parent pairing
+    m_h_num_same_parent_pairing.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + "__num_same_parent_pairing"
+                                                     + "__"
+                                                     + name_tag
+                                                     ).c_str()
+                                                   , ( "same parent - "
+                                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + " ; same parent ; Entries"
+                                                     ).c_str()
+                                                   , 3, -0.5, 2.5
+                                                   )
+                                         );
+
+    // initialize mbl for same parent pairing histograms
+    m_h_mbl_same_parent_pairing.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + "__mbl_same_parent_pairing"
+                                                     + "__"
+                                                     + name_tag
+                                                     ).c_str()
+                                                   , ( "m_{bl} - "
+                                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + " ; m_{bl} [GeV] ; Entries"
+                                                     ).c_str()
+                                                   , mbl_bins, mbl_min, mbl_max
+                                                   )
+                                         );
+
+    // initialize mbl for different parent pairing histograms
+    m_h_mbl_diff_parent_pairing.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + "__mbl_diff_parent_pairing"
+                                                     + "__"
+                                                     + name_tag
+                                                     ).c_str()
+                                                   , ( "m_{bl} - "
+                                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + " ; m_{bl} [GeV] ; Entries"
+                                                     ).c_str()
+                                                   , mbl_bins, mbl_min, mbl_max
+                                                   )
+                                         );
   }
 }
 
@@ -210,6 +252,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
                                              , const std::vector<PennSusyFrame::Jet*>* b_jet_list
                                              , const PennSusyFrame::blPair& bl_0
                                              , const PennSusyFrame::blPair& bl_1
+                                             , const PennSusyFrame::MCTruth& mc_truth
                                              , float weight
                                              )
 {
@@ -268,15 +311,19 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   m_h_ptbl_0.at(  fc)->Fill(ptbl_0, weight);
   m_h_ptbl_1.at(  fc)->Fill(ptbl_1, weight);
 
-  // fill mbl (anti-pairing) plots
-  float mbl_anti_pair_0 = PennSusyFrame::calcMll(bl_0.getLepton(), bl_1.getJet())/1.e3;
-  float mbl_anti_pair_1 = PennSusyFrame::calcMll(bl_1.getLepton(), bl_0.getJet())/1.e3;
+  // get b-l pairs for the anti-pairing
+  PennSusyFrame::blPair bl_anti_pair_0(bl_0.getJet(), bl_1.getLepton());
+  PennSusyFrame::blPair bl_anti_pair_1(bl_1.getJet(), bl_0.getLepton());
 
-  if (mbl_anti_pair_1 > mbl_anti_pair_0) {
-    float tmp = mbl_anti_pair_0;
-    mbl_anti_pair_0 = mbl_anti_pair_1;
-    mbl_anti_pair_1 = tmp;
+  if (bl_anti_pair_1.getMbl() > bl_anti_pair_0.getMbl()) {
+    PennSusyFrame::blPair tmp = bl_anti_pair_0;
+    bl_anti_pair_0 = bl_anti_pair_1;
+    bl_anti_pair_1 = tmp;
   }
+
+  // fill mbl plots for anti-pairing
+  float mbl_anti_pair_0 = bl_anti_pair_0.getMbl()/1.e3;
+  float mbl_anti_pair_1 = bl_anti_pair_1.getMbl()/1.e3;
 
   m_h_mbl_anti_pairing_all.at(FLAVOR_NONE)->Fill(mbl_anti_pair_0, weight);
   m_h_mbl_anti_pairing_all.at(FLAVOR_NONE)->Fill(mbl_anti_pair_1, weight);
@@ -288,6 +335,72 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   m_h_mbl_anti_pairing_0.at(  fc)->Fill(mbl_anti_pair_0, weight);
   m_h_mbl_anti_pairing_1.at(  fc)->Fill(mbl_anti_pair_1, weight);
 
+  // check if b and l from each pair are from the same parent
+  bool same_parent_pair_0 = PennSusyFrame::sameParent( event
+                                                     , bl_0.getLepton()
+                                                     , bl_0.getJet()
+                                                     , mc_truth
+                                                     );
+  bool same_parent_pair_1 = PennSusyFrame::sameParent( event
+                                                , bl_1.getLepton()
+                                                , bl_1.getJet()
+                                                , mc_truth
+                                                );
+  int num_same_parent_pairs = 0;
+  if (same_parent_pair_0) ++num_same_parent_pairs;
+  if (same_parent_pair_1) ++num_same_parent_pairs;
+  m_h_num_same_parent_pairing.at(FLAVOR_NONE)->Fill(num_same_parent_pairs, weight);
+  m_h_num_same_parent_pairing.at(fc         )->Fill(num_same_parent_pairs, weight);
+
+  bool same_parent_anti_pair_0 = PennSusyFrame::sameParent( event
+                                                          , bl_anti_pair_0.getLepton()
+                                                          , bl_anti_pair_0.getJet()
+                                                          , mc_truth
+                                                          );
+  bool same_parent_anti_pair_1 = PennSusyFrame::sameParent( event
+                                                          , bl_anti_pair_1.getLepton()
+                                                          , bl_anti_pair_1.getJet()
+                                                          , mc_truth
+                                                          );
+
+  // look at possible pairs, compute mbl for objects coming from same pairs
+  if (same_parent_pair_0) {
+    m_h_mbl_same_parent_pairing.at(FLAVOR_NONE)->Fill(mbl_0);
+    m_h_mbl_same_parent_pairing.at(fc         )->Fill(mbl_0);
+  }
+  else {
+    m_h_mbl_diff_parent_pairing.at(FLAVOR_NONE)->Fill(mbl_0);
+    m_h_mbl_diff_parent_pairing.at(fc         )->Fill(mbl_0);
+  }
+
+  if (same_parent_pair_1) {
+    m_h_mbl_same_parent_pairing.at(FLAVOR_NONE)->Fill(mbl_1);
+    m_h_mbl_same_parent_pairing.at(fc         )->Fill(mbl_1);
+  }
+  else {
+    m_h_mbl_diff_parent_pairing.at(FLAVOR_NONE)->Fill(mbl_1);
+    m_h_mbl_diff_parent_pairing.at(fc         )->Fill(mbl_1);
+  }
+
+  // if (l_0 && b_1 from same parent) {
+  if (same_parent_anti_pair_0) {
+    m_h_mbl_same_parent_pairing.at(FLAVOR_NONE)->Fill(mbl_anti_pair_0);
+    m_h_mbl_same_parent_pairing.at(fc         )->Fill(mbl_anti_pair_0);
+  }
+  else {
+    m_h_mbl_diff_parent_pairing.at(FLAVOR_NONE)->Fill(mbl_anti_pair_0);
+    m_h_mbl_diff_parent_pairing.at(fc         )->Fill(mbl_anti_pair_0);
+  }
+
+  // if (l_1 && b_0 from same parent) {
+  if (same_parent_anti_pair_1) {
+    m_h_mbl_same_parent_pairing.at(FLAVOR_NONE)->Fill(mbl_anti_pair_1);
+    m_h_mbl_same_parent_pairing.at(fc         )->Fill(mbl_anti_pair_1);
+  }
+  else {
+    m_h_mbl_diff_parent_pairing.at(FLAVOR_NONE)->Fill(mbl_anti_pair_1);
+    m_h_mbl_diff_parent_pairing.at(fc         )->Fill(mbl_anti_pair_1);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -315,5 +428,10 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_mbl_anti_pairing_all.at(fc_it)->Write();
     m_h_mbl_anti_pairing_0.at(  fc_it)->Write();
     m_h_mbl_anti_pairing_1.at(  fc_it)->Write();
+
+    m_h_num_same_parent_pairing.at(fc_it)->Write();
+
+    m_h_mbl_same_parent_pairing.at(fc_it)->Write();
+    m_h_mbl_diff_parent_pairing.at(fc_it)->Write();
   }
 }

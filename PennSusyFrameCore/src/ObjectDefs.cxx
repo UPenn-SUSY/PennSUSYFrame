@@ -416,6 +416,8 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   if (!is_data) {
     setOrigin(reader->el_origin->at(el_index));
     setType(reader->el_type->at(el_index));
+    setTruthBarcode(reader->el_truth_barcode->at(el_index));
+    setTruthParentBarcode(reader->el_truth_motherbarcode->at(el_index));
   }
 
   // must set TLV last because it depends on above quantities
@@ -562,6 +564,7 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
 
   if (!is_data) {
     setTruthBarcode(reader->mu_staco_truth_barcode->at(mu_index));
+    setTruthParentBarcode(reader->mu_staco_truth_motherbarcode->at(mu_index));
   }
 
   setMuTlv(reader, mu_rescaler);

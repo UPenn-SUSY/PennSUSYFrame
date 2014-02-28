@@ -18,6 +18,7 @@ namespace PennSusyFrame
   class Muon;
   class Jet;
   class Met;
+  class MCTruth;
 
   class blPair;
 }
@@ -39,6 +40,7 @@ namespace PennSusyFrame
                               , const std::vector<PennSusyFrame::Jet*>* b_jets
                               , const PennSusyFrame::blPair&
                               , const PennSusyFrame::blPair&
+                              , const PennSusyFrame::MCTruth&
                               , float weight
                               );
       virtual void write(TDirectory*);
@@ -62,6 +64,12 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_anti_pairing_all;
       std::vector<TH1F*> m_h_mbl_anti_pairing_0;
       std::vector<TH1F*> m_h_mbl_anti_pairing_1;
+
+      // do the b and l from the pair come from the same parent?
+      std::vector<TH1F*> m_h_num_same_parent_pairing;
+
+      std::vector<TH1F*> m_h_mbl_same_parent_pairing;
+      std::vector<TH1F*> m_h_mbl_diff_parent_pairing;
   };
 }
 

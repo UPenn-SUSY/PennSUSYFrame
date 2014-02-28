@@ -55,6 +55,13 @@ namespace PennSusyFrame
                             , const PennSusyFrame::MCTruth&
                             );
 
+      int getParentBarcodeElectron( const PennSusyFrame::Electron*
+                                  , const PennSusyFrame::MCTruth&
+                                  );
+      int getParentBarcodeMuon( const PennSusyFrame::Muon*
+                              , const PennSusyFrame::MCTruth&
+                              );
+
     // -------------------------------------------------------------------------
     private:
       int matchBarcode( int barcode_to_match

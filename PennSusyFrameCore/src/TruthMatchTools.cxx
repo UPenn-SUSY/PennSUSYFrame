@@ -176,6 +176,27 @@ float PennSusyFrame::TruthMatchTool::getTruthMuonSign( const PennSusyFrame::Muon
 }
 
 // -----------------------------------------------------------------------------
+int PennSusyFrame::TruthMatchTool::getParentBarcodeElectron( const PennSusyFrame::Electron* el
+                                                           , const PennSusyFrame::MCTruth& mc_truth
+                                                           )
+{
+  return -1;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::TruthMatchTool::getParentBarcodeMuon( const PennSusyFrame::Muon* mu
+                                                       , const PennSusyFrame::MCTruth& mc_truth
+                                                       )
+{
+  int mu_index = matchBarcode( mu->getTruthBarcode()
+                             , mc_truth.getBarcode()
+                             );
+  int parent_index = mc_truth.getParentIndex()->at(mu_index).at(0);
+  int parent_barcode = mc_truth.getBarcode()->at(parent_index);
+  return parent_barcode;
+}
+
+// -----------------------------------------------------------------------------
 int PennSusyFrame::TruthMatchTool::matchBarcode( int barcode_to_match
                                                , const std::vector<int>* list_of_barcodes
                                                )

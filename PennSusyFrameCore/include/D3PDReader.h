@@ -166,6 +166,8 @@ namespace PennSusyFrame
     // MC only variables
     std::vector<int>     *el_type;
     std::vector<int>     *el_origin;
+    std::vector<int>     *el_truth_barcode;
+    std::vector<int>     *el_truth_motherbarcode;
     Float_t         mc_event_weight;
     Int_t           mc_n;
     UInt_t          mc_channel_number;
@@ -183,6 +185,7 @@ namespace PennSusyFrame
     std::vector<std::vector<int> > *mc_parent_index;
     std::vector<std::vector<int> > *mc_parents;
     std::vector<int>     *mu_staco_truth_barcode;
+    std::vector<int>     *mu_staco_truth_motherbarcode;
     std::vector<int>     *muonTruth_origin;
     std::vector<int>     *muonTruth_type;
     std::vector<int>     *jet_AntiKt4LCTopo_flavor_truth_label;
@@ -2970,11 +2973,9 @@ namespace PennSusyFrame
     // std::vector<int>     *el_tightIsoWithoutTrack;
     // std::vector<int>     *el_tightPPIso;
     // std::vector<int>     *el_tightWithoutTrack;
-    // std::vector<int>     *el_truth_barcode;
     // std::vector<int>     *el_truth_hasHardBrem;
     // std::vector<int>     *el_truth_index;
     // std::vector<int>     *el_truth_matched;
-    // std::vector<int>     *el_truth_motherbarcode;
     // std::vector<int>     *el_truth_mothertype;
     // std::vector<int>     *el_truth_status;
     // std::vector<int>     *el_truth_type;
@@ -3105,7 +3106,6 @@ namespace PennSusyFrame
     // std::vector<int>     *mu_staco_origin;
     // std::vector<int>     *mu_staco_tight;
     // std::vector<int>     *mu_staco_truth_matched;
-    // std::vector<int>     *mu_staco_truth_motherbarcode;
     // std::vector<int>     *mu_staco_truth_mothertype;
     // std::vector<int>     *mu_staco_truth_status;
     // std::vector<int>     *mu_staco_truth_type;
@@ -4012,6 +4012,8 @@ namespace PennSusyFrame
     TBranch        *b_el_origin;   //!
     TBranch        *b_el_ptcone30;   //!
     TBranch        *b_el_tightPP;   //!
+    TBranch        *b_el_truth_barcode;   //!
+    TBranch        *b_el_truth_motherbarcode;   //!
     TBranch        *b_el_topoEtcone30_corrected;   //!
     TBranch        *b_el_trackIPEstimate_d0_unbiasedpvunbiased;   //!
     TBranch        *b_el_trackIPEstimate_sigd0_unbiasedpvunbiased;   //!
@@ -4099,6 +4101,7 @@ namespace PennSusyFrame
     TBranch        *b_mu_staco_trackIPEstimate_sigd0_unbiasedpvunbiased;   //!
     TBranch        *b_mu_staco_trackIPEstimate_z0_unbiasedpvunbiased;   //!
     TBranch        *b_mu_staco_truth_barcode;   //!
+    TBranch        *b_mu_staco_truth_motherbarcode;   //!
     TBranch        *b_mu_staco_z0_exPV;   //!
     TBranch        *b_muonTruth_origin;   //!
     TBranch        *b_muonTruth_type;   //!
@@ -5720,12 +5723,10 @@ namespace PennSusyFrame
     // TBranch        *b_el_trackz0;   //!
     // TBranch        *b_el_trackz0pv;   //!
     // TBranch        *b_el_truth_E;   //!
-    // TBranch        *b_el_truth_barcode;   //!
     // TBranch        *b_el_truth_eta;   //!
     // TBranch        *b_el_truth_hasHardBrem;   //!
     // TBranch        *b_el_truth_index;   //!
     // TBranch        *b_el_truth_matched;   //!
-    // TBranch        *b_el_truth_motherbarcode;   //!
     // TBranch        *b_el_truth_mothertype;   //!
     // TBranch        *b_el_truth_phi;   //!
     // TBranch        *b_el_truth_pt;   //!
@@ -6261,7 +6262,6 @@ namespace PennSusyFrame
     // TBranch        *b_mu_staco_truth_dr;   //!
     // TBranch        *b_mu_staco_truth_eta;   //!
     // TBranch        *b_mu_staco_truth_matched;   //!
-    // TBranch        *b_mu_staco_truth_motherbarcode;   //!
     // TBranch        *b_mu_staco_truth_mothertype;   //!
     // TBranch        *b_mu_staco_truth_phi;   //!
     // TBranch        *b_mu_staco_truth_pt;   //!
