@@ -133,11 +133,10 @@ bool PennSusyFrame::sameParent( const PennSusyFrame::Event& event
 
   // std::cout << "checking for same parent:\n";
 
-  // int lep_parent_barcode = lep->getTruthParentBarcode();
   // std::cout << "\tgetting lepton parent\n";
   int lep_barcode = lep->getTruthBarcode();
   int lep_parent_index = getParentIndex(lep_barcode, mc_truth);
-  int lep_parent_barcode = mc_truth.getBarcode()->at(lep_parent_index);
+  int lep_parent_barcode = PennSusyFrame::getBarcodeFromIndex(lep_parent_index, mc_truth);
 
   // std::cout << "\tmatching b jet to b quark\n";
   int jet_b_quark_index = PennSusyFrame::matchJetToBQuark(jet, mc_truth);
@@ -198,13 +197,17 @@ int PennSusyFrame::matchJetToBQuark( const PennSusyFrame::Jet* jet
   int match_index = -1;
   float dr_min = 999;
 
-  std::vector<float>* mc_eta   =  mc_truth.getEta();
-  std::vector<float>* mc_phi   =  mc_truth.getPhi();
-  std::vector<int>*   mc_pdgid =  mc_truth.getPdgId();
+  std::vector<float>* mc_eta    =  mc_truth.getEta();
+  std::vector<float>* mc_phi    =  mc_truth.getPhi();
+  std::vector<int>*   mc_pdgid  =  mc_truth.getPdgId();
+  std::vector<int>*   mc_status =  mc_truth.getStatus();
 
   unsigned int mc_n = mc_truth.getN();
   for (unsigned int mc_it = 0; mc_it != mc_n; ++mc_it) {
+    // only pair to b quarks
     if (fabs(mc_pdgid->at(mc_it)) != 5) continue;
+    // only consider b quarks with status code 1-3
+    if (mc_status->at(mc_it) > 3) continue;
 
     float dphi = PennSusyFrame::calcDphi(jet_phi, mc_phi->at(mc_it));
     float deta = (jet_eta - mc_eta->at(mc_it));
@@ -226,10 +229,13 @@ int PennSusyFrame::getParticleIndex( int barcode
                                    )
 {
   std::vector<int>* barcode_list = mc_truth.getBarcode();
+  std::vector<int>* pdgid_list = mc_truth.getPdgId();
 
   unsigned int mc_n = mc_truth.getN();
   for (unsigned int mc_it = 0; mc_it != mc_n; ++mc_it) {
-    if (barcode_list->at(mc_it) == barcode) return mc_it;
+    if (  barcode_list->at(mc_it) == barcode
+       )
+      return mc_it;
   }
   return -1;
 }
@@ -242,7 +248,7 @@ int PennSusyFrame::getParentIndex( int barcode
   // std::cout << "\t\t\t\t\tgetParentIndex(" << barcode << " )\n";
 
   int particle_index = getParticleIndex(barcode, mc_truth);
-  if (particle_index == -1) return false;
+  if (particle_index < 0) return false;
 
   std::vector<int>* pdgid_list = mc_truth.getPdgId();
   int particle_pdgid = pdgid_list->at(particle_index);
@@ -259,6 +265,7 @@ int PennSusyFrame::getParentIndex( int barcode
 
   while (mother_pdgid == particle_pdgid && mother_index >= 0) {
     mother_index = getParticleIndex(mother_barcode, mc_truth);
+    if (mother_barcode < 0) break;
     // std::cout << "\t\t\t\t\t\t\t---\n";
     // std::cout << "\t\t\t\t\t\t\tmother index: " << mother_index << "\n";
     // std::cout << "\t\t\t\t\t\t\tmother pdgid: " << mother_pdgid << "\n";
@@ -273,22 +280,18 @@ int PennSusyFrame::getParentIndex( int barcode
   }
   // std::cout << "\t\t\t\t\t\t\t===\n";
 
-  if (  fabs(particle_pdgid) == 5
-     && ( (  fabs(mother_pdgid) >= 500
-          && fabs(mother_pdgid) < 600
-          )
-        || (  fabs(mother_pdgid) >= 5000
-           && fabs(mother_pdgid) < 6000
-           )
-        )
-     ) {
+  bool particle_is_b_quark_or_hadron = ( fabs(particle_pdgid) == 5 || PennSusyFrame::isBHadron(particle_pdgid) );
+  bool mother_is_b_quark_or_hadron   = ( fabs(mother_pdgid  ) == 5 || PennSusyFrame::isBHadron(mother_pdgid  ) );
+  if (particle_is_b_quark_or_hadron && mother_is_b_quark_or_hadron) {
     // std::cout << "\t\t\t\t\t\t\tmother index: " << mother_index << "\n";
     // std::cout << "\t\t\t\t\t\t\tmother pdgid: " << mother_pdgid << "\n";
     // std::cout << "\t\t\t\t\t\t\tmother barcode: " << mother_barcode << "\n";
-    // std::cout << "\t\t\t\t\t\t\tparent is a b hadron -- trying again\n";
+    // std::cout << "\t\t\t\t\t\t\tparent and particle are b quark and b hadron -- trying again\n";
     mother_index = getParentIndex(mother_barcode, mc_truth);
-    mother_pdgid = pdgid_list->at(mother_index);
-    mother_barcode = mc_truth.getParents()->at(mother_index).at(0);
+    if (mother_index >= 0) {
+      mother_pdgid = pdgid_list->at(mother_index);
+      mother_barcode = mc_truth.getParents()->at(mother_index).at(0);
+    }
   }
 
   // std::cout << "\t\t\t\t\t\t\t---\n";
@@ -298,6 +301,19 @@ int PennSusyFrame::getParentIndex( int barcode
   // std::cout << "\t\t\t\t\t\t\tmother barcode: " << mother_barcode << "\n";
 
   return mother_index;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::isBHadron(int pdgid)
+{
+  // look for b mesons
+  if (  fabs(pdgid) >= 500  && fabs(pdgid) < 600  ) return true;
+  // look for b baryons
+  if (  fabs(pdgid) >= 5000 && fabs(pdgid) < 6000 ) return true;
+  // look for excited b mesons
+  int pdgid_mod_1k = int(fabs(pdgid)) % 1000;
+  if (  pdgid_mod_1k >= 500  && pdgid_mod_1k < 600  ) return true;
+  return false;
 }
 
 // -----------------------------------------------------------------------------

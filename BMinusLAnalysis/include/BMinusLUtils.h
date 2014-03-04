@@ -92,6 +92,9 @@ namespace PennSusyFrame
                     );
 
   // ---------------------------------------------------------------------------
+  bool isBHadron(int pdgid);
+
+  // ---------------------------------------------------------------------------
   int getBarcodeFromIndex( int index
                          , const PennSusyFrame::MCTruth&
                          );

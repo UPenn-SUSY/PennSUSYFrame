@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include <math.h>
 
 #include "TVector2.h"
@@ -1338,4 +1339,31 @@ void PennSusyFrame::MCTruth::getEvent(const PennSusyFrame::D3PDReader* reader)
   setMuOrigin(     reader->muonTruth_origin);
   setMuType(       reader->muonTruth_type);
   setCharge(       reader->mc_charge);
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::MCTruth::writeFullTruthRecord(std::string out_file_name)
+{
+  std::ofstream fout;
+  fout.open(out_file_name.c_str());
+
+  fout << "index\tbarcode\tpdgid\tstatus\tnum_parents\tparent_index\n";
+  int mc_n = getN();
+  for (int mc_it = 0; mc_it != mc_n; ++mc_it) {
+    fout << mc_it << "\t"
+         << m_mc_barcode->at(mc_it) << "\t"
+         << m_mc_pdg_id->at(mc_it) << "\t"
+         << m_mc_status->at(mc_it) << "\t"
+         << m_mc_parent_index->at(mc_it).size() << "\t";
+    size_t num_parents = m_mc_parent_index->at(mc_it).size();
+    if (num_parents > 0) {
+      fout << m_mc_parent_index->at(mc_it).at(0);
+      for (size_t parent_it = 1; parent_it != num_parents; ++parent_it) {
+        fout << "\n\t\t\t\t" << m_mc_parent_index->at(mc_it).at(parent_it);
+      }
+    }
+    fout << "\n";
+  }
+
+  fout.close();
 }
