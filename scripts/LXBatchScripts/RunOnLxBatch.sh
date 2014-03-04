@@ -18,6 +18,7 @@ if [[ ! -d output/out_$THIS_DATE ]] ; then
 fi
 
 echo "#!/bin/sh" > jobs/job_${JOB_TITLE}.sh
+echo "source ~/.bash_env" >> jobs/job_${JOB_TITLE}.sh
 echo 'NODE_WORK_DIR=$PWD' >> jobs/job_${JOB_TITLE}.sh
 echo "cd ${BASE_WORK_DIR}" >> jobs/job_${JOB_TITLE}.sh
 echo 'source SetupEnvironment.sh' >> jobs/job_${JOB_TITLE}.sh
@@ -27,4 +28,4 @@ echo 'cp *root ${BASE_WORK_DIR}/output/out_'${THIS_DATE}'/' >> jobs/job_${JOB_TI
 
 chmod +x jobs/job_${JOB_TITLE}.sh
 
-bsub -q $QUEUE jobs/job_${JOB_TITLE}.sh
+bsub -q $QUEUE ${PWD}/jobs/job_${JOB_TITLE}.sh
