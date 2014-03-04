@@ -7,12 +7,25 @@
 
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 #include "PennSusyFrameCore/include/EventSelectors.h"
+#include "HistogramHandlers/include/HistogramHandlers.h"
+#include "EwkAnalysis/include/EwkHistogramHandlers.h"
 #include "EwkAnalysis/include/EwkCutFlowTracker.h"
 #include "EwkAnalysis/include/EwkChargeFlipTool.h"
 
 // =============================================================================
 namespace PennSusyFrame
 {
+
+  enum EWK_HIST_LEVELS { EWK_HIST_ZVETO
+			 , EWK_HIST_MET
+			 , EWK_HIST_N
+  };
+
+  const std::string EWK_HIST_LEVEL_STRINGS[] = {"EWK_ZVETO"
+						, "EWK_MET"
+  };
+
+
   // ===========================================================================
   class EwkAnalysis : public PennSusyFrame::PennSusyFrameCore
   {
@@ -21,6 +34,7 @@ namespace PennSusyFrame
       virtual ~EwkAnalysis();
 
       virtual void prepareTools();
+      virtual void prepareSelection();
 
       virtual void beginRun();
       virtual void processEvent();
@@ -59,8 +73,16 @@ namespace PennSusyFrame
       void setDphillCut(double min, double max)  { m_dphi_ll_min = min; m_dphi_ll_max = max; }
       void setNumLightJetsCut(double min, double max) { m_num_light_jets_min = min; m_num_light_jets_max = max; }
 
+      void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
+
     protected:
       std::string m_out_tnt_file_name;
+      std::string m_out_hist_file_name;
+
+
+      void fillHistHandles(EWK_HIST_LEVELS
+			   , float weight
+			   );
 
       bool m_crit_cut_grl;
       bool m_crit_cut_incomplete_event;
@@ -116,6 +138,8 @@ namespace PennSusyFrame
 
       int m_num_light_jets_min;
       int m_num_light_jets_max;
+
+      std::vector<PennSusyFrame::EwkHists*> m_ewk_histogram_handler;
 
     private:
 

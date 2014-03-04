@@ -1,4 +1,5 @@
 #include "EwkAnalysis/include/EwkAnalysis.h"
+#include "EwkAnalysis/include/EwkHistogramHandlers.h"
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 
 #include <iostream>
@@ -13,10 +14,11 @@
 #include "PennSusyFrameCore/include/SelectorHelpers.h"
 #include "EwkAnalysis/include/EwkTrigger.h"
 #include "EwkAnalysis/include/EwkCutFlowTracker.h"
+#include "PennSusyFrameCore/include/D3PDReader.h"
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
-                                                     , m_out_tnt_file_name("EwkTnt.root")
+                                                     , m_out_hist_file_name("EwkHist.root")
                                                      , m_crit_cut_grl(false)
                                                      , m_crit_cut_incomplete_event(false)
                                                      , m_crit_cut_lar_error(false)
@@ -85,10 +87,34 @@ void PennSusyFrame::EwkAnalysis::prepareTools()
 
   m_charge_flip_tool.init();
 }
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EwkAnalysis::prepareSelection()
+{
+  PennSusyFrameCore::prepareSelection();
 
+  std::cout << "preparing selection\n";
+
+
+}
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::beginRun()
 {
+
+  PennSusyFrameCore::beginRun();
+
+  prepareSelection();
+  m_histogram_handlers.resize(EWK_HIST_N);
+  
+  for (unsigned int hist_level = 0; hist_level != EWK_HIST_N; ++hist_level) {
+    m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::EventLevelHists(      PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]) );
+    m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::LeptonKinematicsHists(PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]) );
+    m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::JetKinematicsHists(   PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]) );
+    m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::MetHists(             PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]) );
+   
+    m_ewk_histogram_handler.push_back(new PennSusyFrame::EwkHists(PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]));
+ }
+
+
   // configureTnt(m_out_tnt_file_name, "TNT");
 }
 
@@ -432,6 +458,13 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP, m_event_weight);
   }
 
+ // fill histograms for ZVETO hist level
+  if (m_pass_event) {
+    fillHistHandles( PennSusyFrame::EWK_HIST_ZVETO
+		     , m_event_weight
+		     );
+  }
+
   // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // // check for stream overlap
   // // TODO implement check for stream overlap
@@ -589,8 +622,60 @@ void PennSusyFrame::EwkAnalysis::finalizeEvent()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::finalizeRun()
 {
+  std::cout<< "EwkAnalysis::finalizeRun()\n";
+  std::cout<< "creating output histogram file\n";
+  TFile out_hist_file(m_out_hist_file_name.c_str(), "RECREATE");
+
+  m_d3pd_reader->writeNumEvents();
+
+
+  std::cout << "about to write histograms to file\n";
+  for ( unsigned int hist_level = 0
+	  ; hist_level != EWK_HIST_N
+	  ; ++hist_level
+	) {
+    TDirectory* hist_dir_cut_level = out_hist_file.mkdir(PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level].c_str());
+    
+    size_t num_hists = m_histogram_handlers.at(hist_level).size();
+    for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+      std::cout << "\twriting histogram handler " << hist_it << " to file\n";
+      m_histogram_handlers.at(hist_level).at(hist_it)->write(hist_dir_cut_level);
+    }
+    
+    //m_ewk_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
+  }
+  std::cout << "done writing histograms to file\n";
+
+  out_hist_file.Close();
+  std::cout << "file is closed!\n";
+
+
   m_raw_cutflow_tracker.printToScreen();
   m_cutflow_tracker.printToScreen();
 
   // writeTnt();
+}
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EwkAnalysis::fillHistHandles( PennSusyFrame::EWK_HIST_LEVELS hist_level
+						  , float weight
+                                                  )
+{
+  size_t num_hists = m_histogram_handlers.at(hist_level).size();
+  for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+    m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
+                                                         , m_event_quantities
+                                                         , m_electrons.getCollection(EL_GOOD)
+                                                         , m_muons.getCollection(MU_GOOD)
+                                                         , m_jets.getCollection(JET_GOOD)
+                                                         , m_met
+                                                         , weight
+                                                         );
+  }
+// m_ewk_histogram_handler.at(hist_level)->FillSpecial( m_event
+//                                                        , m_jets.getCollection(JET_B)
+//                                                        , bl_0
+//                                                        , bl_1
+//                                                        , m_mc_truth
+//                                                        , weight
+//                                                        );
 }
