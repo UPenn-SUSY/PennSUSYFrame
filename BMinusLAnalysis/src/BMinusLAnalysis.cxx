@@ -125,8 +125,6 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::processEvent()
 {
-  if (m_event.getEventNumber() == 9189748) m_mc_truth.writeFullTruthRecord("truth_record.9189748.txt");
-
   m_event_weight = 1.;
 
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_ALL);
