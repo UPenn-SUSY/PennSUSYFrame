@@ -557,4 +557,9 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                          , m_mc_truth
                                                          , weight
                                                          );
+
+  // m_event.print();
+  // if (m_event.getEventNumber() == 863126) m_mc_truth.writeFullTruthRecord("truth_record.863126.txt");
+  // if (m_event.getEventNumber() == 863427) m_mc_truth.writeFullTruthRecord("truth_record.863427.txt");
+  // if (m_event.getEventNumber() == 324065) m_mc_truth.writeFullTruthRecord("truth_record.324065.txt");
 }
