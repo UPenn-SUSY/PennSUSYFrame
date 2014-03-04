@@ -9,6 +9,7 @@
 #pragma link C++ nestedclass;
 
 #pragma link C++ class PennSusyFrame::EwkAnalysis+;
+#pragma link C++ class PennSusyFrame::IsrAnalysis+;
 // #pragma link C++ class PennSusyFrame::D3PDReader+;
 
 // #pragma link C++ class std::vector<std::vector<int>>+;
