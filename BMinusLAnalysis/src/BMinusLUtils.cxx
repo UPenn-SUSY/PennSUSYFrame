@@ -149,6 +149,9 @@ bool PennSusyFrame::sameParent( const PennSusyFrame::Event& event
   int jet_parent_index = PennSusyFrame::getParentIndex( jet_b_quark_barcode, mc_truth);
   int jet_parent_barcode = PennSusyFrame::getBarcodeFromIndex(jet_parent_index, mc_truth);
 
+  // protect from negative indices
+  if (lep_parent_index < 0 || jet_parent_index < 0) return false;
+
   // if the two parents have the same barcode, they are the same!
   if (lep_parent_barcode == jet_parent_barcode) return true;
 
@@ -248,13 +251,20 @@ int PennSusyFrame::getParentIndex( int barcode
   // std::cout << "\t\t\t\t\tgetParentIndex(" << barcode << " )\n";
 
   int particle_index = getParticleIndex(barcode, mc_truth);
-  if (particle_index < 0) return false;
+  if (particle_index < 0) return -1;
 
   std::vector<int>* pdgid_list = mc_truth.getPdgId();
   int particle_pdgid = pdgid_list->at(particle_index);
 
   int mother_index   = particle_index;
   int mother_pdgid   = particle_pdgid;
+  // std::cout << "\t\t\t\t\t\t\tgetting mother barcode:\n";
+  // std::cout << "\t\t\t\t\t\t\t\tnum parents: " << mc_truth.getParents()->at(mother_index).size() << "\n";
+  // protect from particles which has no parents
+  if (mc_truth.getParents()->at(mother_index).size() == 0) {
+    // std::cout << "\t\t\t\t\t\t\t\tbailing!!!\n";
+    return -1;
+  }
   int mother_barcode = mc_truth.getParents()->at(mother_index).at(0);
 
   // std::cout << "\t\t\t\t\t\tparticle index: " << particle_index << "\n";
@@ -265,17 +275,21 @@ int PennSusyFrame::getParentIndex( int barcode
 
   while (mother_pdgid == particle_pdgid && mother_index >= 0) {
     mother_index = getParticleIndex(mother_barcode, mc_truth);
-    if (mother_barcode < 0) break;
+    if (mother_index < 0) break;
     // std::cout << "\t\t\t\t\t\t\t---\n";
     // std::cout << "\t\t\t\t\t\t\tmother index: " << mother_index << "\n";
     // std::cout << "\t\t\t\t\t\t\tmother pdgid: " << mother_pdgid << "\n";
     // std::cout << "\t\t\t\t\t\t\tmother barcode: " << mother_barcode << "\n";
     // std::cout << "\t\t\t\t\t\t\t\tgetting next pdgid - index " << mother_index << " of " << pdgid_list->size() << "\n";
+
     mother_pdgid = pdgid_list->at(mother_index);
+
     // std::cout << "\t\t\t\t\t\t\t\tgetting next barcode - index " << mother_index << " of " << mc_truth.getParents()->size() << "\n";
     // std::cout << "\t\t\t\t\t\t\t\t\tthis parent list has " << mc_truth.getParents()->at(mother_index).size() << " entries\n";
+
     if (mc_truth.getParents()->at(mother_index).size() == 0) break;
     mother_barcode = mc_truth.getParents()->at(mother_index).at(0);
+
     // std::cout << "\t\t\t\t\t\t\t---\n";
   }
   // std::cout << "\t\t\t\t\t\t\t===\n";

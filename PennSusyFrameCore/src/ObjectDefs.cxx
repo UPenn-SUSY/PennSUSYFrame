@@ -1359,7 +1359,7 @@ void PennSusyFrame::MCTruth::writeFullTruthRecord(std::string out_file_name)
     if (num_parents > 0) {
       fout << m_mc_parent_index->at(mc_it).at(0);
       for (size_t parent_it = 1; parent_it != num_parents; ++parent_it) {
-        fout << "\n\t\t\t\t" << m_mc_parent_index->at(mc_it).at(parent_it);
+        fout << "\n\t\t\t\t\t" << m_mc_parent_index->at(mc_it).at(parent_it);
       }
     }
     fout << "\n";
