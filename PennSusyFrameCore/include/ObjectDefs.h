@@ -870,6 +870,8 @@ namespace PennSusyFrame
       std::vector<float>* getCharge() const { return m_mc_charge; }
 
 
+      void writeFullTruthRecord(std::string out_file_name);
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       unsigned int m_mc_channel_number;

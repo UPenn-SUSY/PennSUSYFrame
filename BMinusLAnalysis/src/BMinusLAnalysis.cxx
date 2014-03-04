@@ -98,6 +98,9 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
   m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.11);
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.19);
+
+  // JET_B
+  m_jet_selectors.at(JET_B).setPtCut(40.e3, -1);
 }
 
 // -----------------------------------------------------------------------------

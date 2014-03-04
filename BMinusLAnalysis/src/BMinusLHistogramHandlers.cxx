@@ -44,8 +44,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
     // initialize b jet pt histograms
     m_h_b_jet_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + "__b_jet_pt_all"
-                                       + "__"
-                                       + name_tag
+                                          + "__"
+                                          + name_tag
                                           ).c_str()
                                         , ( "p_{T} - "
                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -57,8 +57,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_b_jet_pt_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                         + "__b_jet_pt_0"
-                                       + "__"
-                                       + name_tag
+                                        + "__"
+                                        + name_tag
                                         ).c_str()
                                       , ( "p_{T}^{0} - "
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -70,8 +70,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_b_jet_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                         + "__b_jet_pt_1"
-                                       + "__"
-                                       + name_tag
+                                        + "__"
+                                        + name_tag
                                         ).c_str()
                                       , ( "p_{T}^{1} - "
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -84,8 +84,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
     // initialize mbl histograms
     m_h_mbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__mbl_all"
-                                       + "__"
-                                       + name_tag
+                                     + "__"
+                                     + name_tag
                                      ).c_str()
                                    , ( "m_{bl} - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -97,8 +97,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_mbl_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                    + "__mbl_0"
-                                       + "__"
-                                       + name_tag
+                                   + "__"
+                                   + name_tag
                                    ).c_str()
                                  , ( "m_{bl}^{0} - "
                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -110,8 +110,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_mbl_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                    + "__mbl_1"
-                                       + "__"
-                                       + name_tag
+                                   + "__"
+                                   + name_tag
                                    ).c_str()
                                  , ( "m_{bl}^{1} - "
                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -124,8 +124,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
     // initialize ptbl histograms
     m_h_ptbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                       + "__ptbl_all"
-                                       + "__"
-                                       + name_tag
+                                      + "__"
+                                      + name_tag
                                       ).c_str()
                                     , ( "p_{T}^{bl} - "
                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -137,8 +137,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_ptbl_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__ptbl_0"
-                                       + "__"
-                                       + name_tag
+                                    + "__"
+                                    + name_tag
                                     ).c_str()
                                   , ( "p_{bl,0} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -150,8 +150,8 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_ptbl_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__ptbl_1"
-                                       + "__"
-                                       + name_tag
+                                    + "__"
+                                    + name_tag
                                     ).c_str()
                                   , ( "p_{T}^{bl,1} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -347,10 +347,10 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
                                                      );
   // std::cout << "checking same parent for 11\n";
   bool same_parent_pair_1 = PennSusyFrame::sameParent( event
-                                                , bl_1.getLepton()
-                                                , bl_1.getJet()
-                                                , mc_truth
-                                                );
+                                                     , bl_1.getLepton()
+                                                     , bl_1.getJet()
+                                                     , mc_truth
+                                                     );
   int num_same_parent_pairs = 0;
   if (same_parent_pair_0) ++num_same_parent_pairs;
   if (same_parent_pair_1) ++num_same_parent_pairs;
