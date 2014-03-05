@@ -31,7 +31,7 @@ void EwkCutFlowTracker::printToScreen()
   m_line_width   = 100;
   m_label_field  = 30;
   m_weight_field = (m_line_width - m_label_field - 5 - 5*3)/5;
-  m_precision    = m_weight_field - 2;
+  m_precision    = m_weight_field - 4;
   if (5+m_label_field+5*m_weight_field != m_line_width) {
     m_label_field += (m_line_width - m_label_field - 5 - 5*3 )%5;
   }
@@ -96,18 +96,13 @@ void EwkCutFlowTracker::printLine(int cut_it)
               << " =\n";
   }
   else {
-    std::cout << "= "  << std::left  << std::setw(m_label_field)
-              << std::setprecision(m_precision) << cut_name
-              << " = " << std::right << std::setw(m_weight_field)
-              << std::setprecision(m_precision) << weight_none
-              << " = " << std::right << std::setw(m_weight_field)
-              << std::setprecision(m_precision) << weight_ee
-              << " = " << std::right << std::setw(m_weight_field)
-              << std::setprecision(m_precision) << weight_mm
-              << " = " << std::right << std::setw(m_weight_field)
-              << std::setprecision(m_precision) << weight_em
-              << " = " << std::right << std::setw(m_weight_field)
-              << std::setprecision(m_precision) << weight_me
+    // std::cout << std::fixed;
+    std::cout << "= "  << std::left  << std::setw(m_label_field) << std::setprecision(m_precision) << cut_name
+              << " = " << std::right << std::setw(m_weight_field) << std::setprecision(m_precision) << weight_none
+              << " = " << std::right << std::setw(m_weight_field) << std::setprecision(m_precision) << weight_ee
+              << " = " << std::right << std::setw(m_weight_field) << std::setprecision(m_precision) << weight_mm
+              << " = " << std::right << std::setw(m_weight_field) << std::setprecision(m_precision) << weight_em
+              << " = " << std::right << std::setw(m_weight_field) << std::setprecision(m_precision) << weight_me
               << " =\n";
   }
 

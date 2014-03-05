@@ -57,7 +57,6 @@ def runBMinusLAnalysis( file_list
     # ==============================================================================
     print "Adding files to TNT maker"
     t = ROOT.TChain(tree_name)
-    # t = ROOT.TChain("TNT")
     for fl in file_list:
         print 'Adding file: %s' % fl
         t.AddFile(fl)
