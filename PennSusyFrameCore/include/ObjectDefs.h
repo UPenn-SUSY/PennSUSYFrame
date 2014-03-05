@@ -793,6 +793,7 @@ namespace PennSusyFrame
       double getMetEt() const { return m_met_et; }
       double getMetPhi() const { return m_met_phi; }
       double getMetRel() const { return m_met_rel_et; }
+      double getMinDPhiObj() const { return m_dphi_met_nearest_obj; }
       double getDPhi(PennSusyFrame::Particle*) const;
 
       void clear();
@@ -819,6 +820,7 @@ namespace PennSusyFrame
       double m_met_et;
       double m_met_phi;
       double m_met_rel_et;
+      double m_dphi_met_nearest_obj;
   };
 
   // =============================================================================

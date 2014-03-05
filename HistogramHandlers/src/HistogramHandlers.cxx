@@ -46,6 +46,7 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
   const float mt2_min  = 0.;
   const float mt2_max  = 500.;
 
+  // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mll histograms
@@ -100,11 +101,13 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
   float mll = event_level_quantities.getMll()/1.e3;
   float mt2 = event_level_quantities.getMt2()/1.e3;
 
-  m_h_mll.at(fc)->Fill(mll, weight);
-  m_h_mt2.at(fc)->Fill(mt2, weight);
+  // loop over all flavor channels
+  for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
-  m_h_mll.at(FLAVOR_NONE)->Fill(mll, weight);
-  m_h_mt2.at(FLAVOR_NONE)->Fill(mt2, weight);
+    m_h_mll.at(fc_it)->Fill(mll, weight);
+    m_h_mt2.at(fc_it)->Fill(mt2, weight);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -112,6 +115,7 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
 {
   d->cd();
 
+  // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // write mll histograms
@@ -139,6 +143,7 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
   const float etiso_min  = -1.;
   const float etiso_max  = 3.;
 
+  // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt histograms
@@ -293,6 +298,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   float etiso_0 = 0.;
   float etiso_1 = 0.;
 
+  // TODO fill these histograms in cleaner way!
+
   if (fc == FLAVOR_EE) {
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = el_list->at(1)->getPt()/1.e3;
@@ -404,6 +411,7 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
 {
   d->cd();
 
+  // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -437,6 +445,7 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
   const float pt_min  = 0.;
   const float pt_max  = 500.;
 
+  // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt histograms
@@ -517,17 +526,16 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
   float pt_0 = ( num_jet > 0 ? jet_list->at(0)->getPt()/1.e3 : 0.);
   float pt_1 = ( num_jet > 1 ? jet_list->at(1)->getPt()/1.e3 : 0.);
 
-  m_h_num_jet.at(fc)->Fill(num_jet, weight);
-  m_h_pt_all.at(fc )->Fill(pt_0, weight);
-  m_h_pt_all.at(fc )->Fill(pt_1, weight);
-  m_h_pt_0.at(fc   )->Fill(pt_0, weight);
-  m_h_pt_1.at(fc   )->Fill(pt_1, weight);
+  // loop over all flavor channels
+  for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
-  m_h_num_jet.at(FLAVOR_NONE)->Fill(num_jet, weight);
-  m_h_pt_all.at( FLAVOR_NONE)->Fill(pt_0, weight);
-  m_h_pt_all.at( FLAVOR_NONE)->Fill(pt_1, weight);
-  m_h_pt_0.at(   FLAVOR_NONE)->Fill(pt_0, weight);
-  m_h_pt_1.at(   FLAVOR_NONE)->Fill(pt_1, weight);
+    m_h_num_jet.at(fc_it)->Fill(num_jet, weight);
+    m_h_pt_all.at( fc_it)->Fill(pt_0, weight);
+    m_h_pt_all.at( fc_it)->Fill(pt_1, weight);
+    m_h_pt_0.at(   fc_it)->Fill(pt_0, weight);
+    m_h_pt_1.at(   fc_it)->Fill(pt_1, weight);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -535,6 +543,7 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
 {
   d->cd();
 
+  // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt histograms
@@ -554,6 +563,11 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
   const float met_et_min  = 0.;
   const float met_et_max  = 500.;
 
+  const int dphi_bins = 32;
+  const float dphi_min = 0.;
+  const float dphi_max = 3.2;
+
+  // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt histograms
@@ -582,6 +596,71 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                    , met_et_bins, met_et_min, met_et_max
                                    )
                          );
+
+    m_h_dphi_nearest_object.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__met_dphi_nearest_object"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "#delta#phi(E_{T}^{miss}, obj) - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; #delta#phi(E_{T}^{miss},nearest object) ; Entries"
+                                                 ).c_str()
+                                               , dphi_bins, dphi_min, dphi_max
+                                               )
+                                     );
+
+    m_h_dphi_jet_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__met_dphi_jet_0"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "#delta#phi(E_{T}^{miss}, nearest jet) - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; #delta#phi(E_{T}^{miss},nearest jet) ; Entries"
+                                        ).c_str()
+                                      , dphi_bins, dphi_min, dphi_max
+                                      )
+                            );
+
+    m_h_dphi_jet_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__met_dphi_jet_1"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "#delta#phi(E_{T}^{miss}, next-to-nearest jet) - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; #delta#phi(E_{T}^{miss},next-to-nearest jet) ; Entries"
+                                        ).c_str()
+                                      , dphi_bins, dphi_min, dphi_max
+                                      )
+                            );
+
+    m_h_dphi_lep_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__met_dphi_lep_0"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "#delta#phi(E_{T}^{miss}, nearest lepton) - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; #delta#phi(E_{T}^{miss},nearest lepton) ; Entries"
+                                        ).c_str()
+                                      , dphi_bins, dphi_min, dphi_max
+                                      )
+                            );
+
+    m_h_dphi_lep_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__met_dphi_lep_1"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "#delta#phi(E_{T}^{miss}, next-to-nearest lepton) - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; #delta#phi(E_{T}^{miss},next-to-nearest lepton) ; Entries"
+                                        ).c_str()
+                                      , dphi_bins, dphi_min, dphi_max
+                                      )
+                            );
   }
 }
 
@@ -592,9 +671,9 @@ PennSusyFrame::MetHists::~MetHists()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::MetHists::Fill( const PennSusyFrame::Event& event
                                   , const PennSusyFrame::EventLevelQuantities&
-                                  , const std::vector<PennSusyFrame::Electron*>*
-                                  , const std::vector<PennSusyFrame::Muon*>*
-                                  , const std::vector<PennSusyFrame::Jet*>*
+                                  , const std::vector<PennSusyFrame::Electron*>* el_list
+                                  , const std::vector<PennSusyFrame::Muon*>* mu_list
+                                  , const std::vector<PennSusyFrame::Jet*>* jet_list
                                   , const PennSusyFrame::Met& met
                                   , float weight
                                   )
@@ -608,11 +687,63 @@ void PennSusyFrame::MetHists::Fill( const PennSusyFrame::Event& event
   float met_et  = met.getMetEt() /1.e3;
   float met_rel = met.getMetRel()/1.e3;
 
-  m_h_met_et.at( fc)->Fill(met_et , weight);
-  m_h_met_rel.at(fc)->Fill(met_rel, weight);
+  float met_min_dphi_nearest_obj = met.getMinDPhiObj();
+  float met_min_dphi_jet_0 = 999;
+  float met_min_dphi_jet_1 = 999;
+  float met_min_dphi_lep_0 = 999;
+  float met_min_dphi_lep_1 = 999;
 
-  m_h_met_et.at( FLAVOR_NONE)->Fill(met_et , weight);
-  m_h_met_rel.at(FLAVOR_NONE)->Fill(met_rel, weight);
+  float this_dphi = 999;
+
+  // loop over jets looking for two closest jets to the met vector
+  size_t num_jet = jet_list->size();
+  for (size_t jet_it = 0; jet_it != num_jet; ++jet_it) {
+    this_dphi = met.getDPhi(jet_list->at(jet_it));
+    if (this_dphi < met_min_dphi_jet_1) {
+      met_min_dphi_jet_1 = this_dphi;
+      if (met_min_dphi_jet_1 < met_min_dphi_jet_0) {
+        std::swap(met_min_dphi_jet_0, met_min_dphi_jet_1);
+      }
+    }
+  }
+
+  // loop over electrons looking for two closest leptons to the met vector
+  size_t num_el = el_list->size();
+  for (size_t el_it = 0; el_it != num_el; ++el_it) {
+    this_dphi = met.getDPhi(el_list->at(el_it));
+    if (this_dphi < met_min_dphi_lep_1) {
+      met_min_dphi_lep_1 = this_dphi;
+      if (met_min_dphi_lep_1 < met_min_dphi_lep_0) {
+        std::swap(met_min_dphi_lep_0, met_min_dphi_lep_1);
+      }
+    }
+  }
+
+  // loop over muons looking for two closest leptons to the met vector
+  size_t num_mu = mu_list->size();
+  for (size_t mu_it = 0; mu_it != num_mu; ++mu_it) {
+    this_dphi = met.getDPhi(mu_list->at(mu_it));
+    if (this_dphi < met_min_dphi_lep_1) {
+      met_min_dphi_lep_1 = this_dphi;
+      if (met_min_dphi_lep_1 < met_min_dphi_lep_0) {
+        std::swap(met_min_dphi_lep_0, met_min_dphi_lep_1);
+      }
+    }
+  }
+
+  // loop over all flavor channels
+  for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
+
+    m_h_met_et.at( fc_it)->Fill(met_et , weight);
+    m_h_met_rel.at(fc_it)->Fill(met_rel, weight);
+
+    if (met_min_dphi_nearest_obj != 999) m_h_dphi_nearest_object.at(fc_it)->Fill(met_min_dphi_nearest_obj, weight);
+    if (met_min_dphi_jet_0       != 999) m_h_dphi_jet_0.at(         fc_it)->Fill(met_min_dphi_jet_0      , weight);
+    if (met_min_dphi_jet_1       != 999) m_h_dphi_jet_1.at(         fc_it)->Fill(met_min_dphi_jet_1      , weight);
+    if (met_min_dphi_lep_0       != 999) m_h_dphi_lep_0.at(         fc_it)->Fill(met_min_dphi_lep_0      , weight);
+    if (met_min_dphi_lep_1       != 999) m_h_dphi_lep_1.at(         fc_it)->Fill(met_min_dphi_lep_1      , weight);
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -620,11 +751,18 @@ void PennSusyFrame::MetHists::write(TDirectory* d)
 {
   d->cd();
 
+  // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt histograms
     m_h_met_et.at( fc_it)->Write();
     m_h_met_rel.at(fc_it)->Write();
+
+    m_h_dphi_nearest_object.at(fc_it)->Write();
+    m_h_dphi_jet_0.at(fc_it)->Write();
+    m_h_dphi_jet_1.at(fc_it)->Write();
+    m_h_dphi_lep_0.at(fc_it)->Write();
+    m_h_dphi_lep_1.at(fc_it)->Write();
   }
 
 }
