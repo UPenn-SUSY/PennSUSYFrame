@@ -958,6 +958,8 @@ void PennSusyFrame::Met::constructMetRel( const std::vector<PennSusyFrame::Elect
   min_dphi = std::min(min_dphi, findMinDphiInList(*mu_list));
   min_dphi = std::min(min_dphi, findMinDphiInList(*jet_list));
 
+  m_dphi_met_nearest_obj = min_dphi;
+
   if (min_dphi < PI_OVER_2)
     m_met_rel_et = m_met_et * sin(min_dphi);
   else
@@ -975,6 +977,11 @@ double PennSusyFrame::Met::getDPhi(PennSusyFrame::Particle* p) const
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Met::clear()
 {
+  m_met_et = 0;
+  m_met_phi = 0;
+  m_met_rel_et = 0;
+  m_dphi_met_nearest_obj = 999;
+
   m_met_utility.reset();
   m_prepared = false;
 }
