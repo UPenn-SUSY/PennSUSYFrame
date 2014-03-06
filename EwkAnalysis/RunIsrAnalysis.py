@@ -42,6 +42,7 @@ def runIsrAnalysis( file_list
                   , tree_name = 'susy'
                   , dsid = 1
                   , out_file_special_name = None
+                  , is_tnt = False
                   ):
     # ==============================================================================
     print 'loading packages'
@@ -54,12 +55,17 @@ def runIsrAnalysis( file_list
     ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
 
     # ==============================================================================
-    print "Adding files to TNT maker"
+    print "Adding files to TChain"
     t = ROOT.TChain(tree_name)
     # t = ROOT.TChain("TNT")
     for fl in file_list:
         print 'Adding file: %s' % fl
         t.AddFile(fl)
+
+        if is_tnt:
+            this_file = ROOT.TFile(fl)
+            total_num_events += int(this_file.Get('TotalNumEvents')[0])
+            this_file.Close()
 
     # ==============================================================================
     isra = ROOT.PennSusyFrame.IsrAnalysis(t)
@@ -76,6 +82,8 @@ def runIsrAnalysis( file_list
         isra.setCrossSection(xsec_dict['xsec'])
         isra.setKFactor(     xsec_dict['kfac'])
         isra.setFilterEff(   xsec_dict['eff'])
+
+        isra.setNumGeneratedEvents( total_num_events )
 
     # set is full sim/fast sim
     if is_full_sim:
@@ -104,8 +112,6 @@ def runIsrAnalysis( file_list
     # isra.setCritCutGe2Lepton(      1)
     # isra.setCritCut2Lepton(        1)
     # isra.setCritCut2SignalLepton(  1)
-    # isra.setCritCutBadJetVeto(     1)
-    # isra.setCritCutBLPairing(      1)
 
     # prepare tools and run analysis loop
     isra.prepareTools()
