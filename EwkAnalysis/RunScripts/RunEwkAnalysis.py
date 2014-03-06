@@ -42,6 +42,7 @@ def runEwkAnalysis( file_list
                   , tree_name = 'susy'
                   , dsid = 1
                   , out_file_special_name = None
+                  , is_tnt = False
                   ):
     # ==============================================================================
     print 'loading packages'
@@ -54,12 +55,17 @@ def runEwkAnalysis( file_list
     ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
 
     # ==============================================================================
-    print "Adding files to TNT maker"
+    print "Adding files to TChain"
     t = ROOT.TChain(tree_name)
-    # t = ROOT.TChain("TNT")
+    total_num_events = 0
     for fl in file_list:
         print 'Adding file: %s' % fl
         t.AddFile(fl)
+
+        if is_tnt:
+            this_file = ROOT.TFile(fl)
+            total_num_events += int(this_file.Get('TotalNumEvents')[0])
+            this_file.Close()
 
     # ==============================================================================
     ewa = ROOT.PennSusyFrame.EwkAnalysis(t)
@@ -73,9 +79,11 @@ def runEwkAnalysis( file_list
         xsec_dict = CrossSectionReader.getCrossSection(dsid)
         if xsec_dict is None:
             return
-        bmla.setCrossSection(xsec_dict['xsec'])
-        bmla.setKFactor(     xsec_dict['kfac'])
-        bmla.setFilterEff(   xsec_dict['eff'])
+        ewk.setCrossSection(xsec_dict['xsec'])
+        ewk.setKFactor(     xsec_dict['kfac'])
+        ewk.setFilterEff(   xsec_dict['eff'])
+
+        ewk.setNumGeneratedEvents( total_num_events )
 
     # set is full sim/fast sim
     if is_full_sim:
@@ -88,24 +96,23 @@ def runEwkAnalysis( file_list
     out_hist_file_name += 'hists.root'
     bmla.setOutHistFileName(out_hist_file_name)
 
-    # ewa.setCritCutGrl(            1)
-    # ewa.setCritCutIncompleteEvent(1)
-    # ewa.setCritCutLarError(       1)
-    # ewa.setCritCutTileError(      1)
-    # ewa.setCritCutTileHotSpot(    1)
-    # ewa.setCritCutTileTrip(       1)
-    # ewa.setCritCutBadJetVeto(     1)
-    # ewa.setCritCutCaloProblemJet( 1)
-    # ewa.setCritCutPrimaryVertex(  1)
-    # ewa.setCritCutBadMuonVeto(    1)
-    # ewa.setCritCutCosmicMuonVeto( 1)
-    # ewa.setCritCutHFOR(           1)
-    # ewa.setCritCutMcOverlap(      1)
-    # ewa.setCritCutGe2Lepton(      1)
-    # ewa.setCritCut2Lepton(        1)
-    # ewa.setCritCut2SignalLepton(  1)
-    # ewa.setCritCutBadJetVeto(     1)
-    # ewa.setCritCutBLPairing(      1)
+    # Set critical cuts
+    ewa.setCritCutGrl(            1)
+    ewa.setCritCutIncompleteEvent(1)
+    ewa.setCritCutLarError(       1)
+    ewa.setCritCutTileError(      1)
+    ewa.setCritCutTileHotSpot(    1)
+    ewa.setCritCutTileTrip(       1)
+    ewa.setCritCutBadJetVeto(     1)
+    ewa.setCritCutCaloProblemJet( 1)
+    ewa.setCritCutPrimaryVertex(  1)
+    ewa.setCritCutBadMuonVeto(    1)
+    ewa.setCritCutCosmicMuonVeto( 1)
+    ewa.setCritCutHFOR(           1)
+    ewa.setCritCutMcOverlap(      1)
+    ewa.setCritCutGe2Lepton(      1)
+    ewa.setCritCut2Lepton(        1)
+    ewa.setCritCut2SignalLepton(  1)
 
     # prepare tools and run analysis loop
     ewa.prepareTools()

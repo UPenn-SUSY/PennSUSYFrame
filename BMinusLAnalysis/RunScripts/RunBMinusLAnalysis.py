@@ -6,7 +6,6 @@ import optparse
 import time
 
 import glob
-import subprocess
 
 import ROOT
 
@@ -56,13 +55,13 @@ def runBMinusLAnalysis( file_list
     ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libBMinusLAnalysis.so')
 
     # ==============================================================================
-    print "Adding files to TNT maker"
+    print "Adding files to TChain"
     t = ROOT.TChain(tree_name)
     total_num_events = 0
     for fl in file_list:
         print 'Adding file: %s' % fl
         t.AddFile(fl)
-        
+
         if is_tnt:
             this_file = ROOT.TFile(fl)
             total_num_events += int(this_file.Get('TotalNumEvents')[0])
@@ -85,8 +84,6 @@ def runBMinusLAnalysis( file_list
         bmla.setFilterEff(   xsec_dict['eff'])
 
         bmla.setNumGeneratedEvents( total_num_events )
-        # bmla.setNumGeneratedEvents( 100 )
-        # bmla.setNumGeneratedEvents( 1000 )
 
     # set is full sim/fast sim
     if is_full_sim:
@@ -116,6 +113,7 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutGe2Lepton(      1)
     bmla.setCritCut2Lepton(        1)
     bmla.setCritCut2SignalLepton(  1)
+    bmla.setCritCut2BJets(         1)
     bmla.setCritCutBadJetVeto(     1)
     bmla.setCritCutBLPairing(      1)
 
