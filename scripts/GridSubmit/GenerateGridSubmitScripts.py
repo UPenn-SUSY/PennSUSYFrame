@@ -100,31 +100,31 @@ if __name__ == '__main__':
 
     # ------------------------------------------------------------------------------
     # data - egamma
-    ds_dict_list = [ { 'tag':'periodA', 'ds':'group.phys-susy.data12_8TeV.periodA.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodB', 'ds':'group.phys-susy.data12_8TeV.periodB.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodC', 'ds':'group.phys-susy.data12_8TeV.periodC.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodD', 'ds':'group.phys-susy.data12_8TeV.periodD.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodE', 'ds':'group.phys-susy.data12_8TeV.periodE.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodG', 'ds':'group.phys-susy.data12_8TeV.periodG.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodH', 'ds':'group.phys-susy.data12_8TeV.periodH.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodI', 'ds':'group.phys-susy.data12_8TeV.periodI.physics_Egamma.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodJ', 'ds':'group.phys-susy.data12_8TeV.periodJ.physics_Egamma.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodL', 'ds':'group.phys-susy.data12_8TeV.periodL.physics_Egamma.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+    ds_dict_list = [ { 'tag':'periodA_egamma', 'ds':'group.phys-susy.data12_8TeV.periodA.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodB_egamma', 'ds':'group.phys-susy.data12_8TeV.periodB.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodC_egamma', 'ds':'group.phys-susy.data12_8TeV.periodC.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodD_egamma', 'ds':'group.phys-susy.data12_8TeV.periodD.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodE_egamma', 'ds':'group.phys-susy.data12_8TeV.periodE.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodG_egamma', 'ds':'group.phys-susy.data12_8TeV.periodG.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodH_egamma', 'ds':'group.phys-susy.data12_8TeV.periodH.physics_Egamma.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodI_egamma', 'ds':'group.phys-susy.data12_8TeV.periodI.physics_Egamma.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodJ_egamma', 'ds':'group.phys-susy.data12_8TeV.periodJ.physics_Egamma.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodL_egamma', 'ds':'group.phys-susy.data12_8TeV.periodL.physics_Egamma.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/', 'is_data':1, 'is_full_mc':0 }
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
     # ------------------------------------------------------------------------------
     # data - muon
-    ds_dict_list = [ { 'tag':'periodA', 'ds':'group.phys-susy.data12_8TeV.periodA.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodB', 'ds':'group.phys-susy.data12_8TeV.periodB.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodC', 'ds':'group.phys-susy.data12_8TeV.periodC.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodD', 'ds':'group.phys-susy.data12_8TeV.periodD.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodE', 'ds':'group.phys-susy.data12_8TeV.periodE.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodG', 'ds':'group.phys-susy.data12_8TeV.periodG.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodH', 'ds':'group.phys-susy.data12_8TeV.periodH.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodI', 'ds':'group.phys-susy.data12_8TeV.periodI.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodJ', 'ds':'group.phys-susy.data12_8TeV.periodJ.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
-                   , { 'tag':'periodL', 'ds':'group.phys-susy.data12_8TeV.periodL.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+    ds_dict_list = [ { 'tag':'periodA_muon', 'ds':'group.phys-susy.data12_8TeV.periodA.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodB_muon', 'ds':'group.phys-susy.data12_8TeV.periodB.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodC_muon', 'ds':'group.phys-susy.data12_8TeV.periodC.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodD_muon', 'ds':'group.phys-susy.data12_8TeV.periodD.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodE_muon', 'ds':'group.phys-susy.data12_8TeV.periodE.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodG_muon', 'ds':'group.phys-susy.data12_8TeV.periodG.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodH_muon', 'ds':'group.phys-susy.data12_8TeV.periodH.physics_Muons.PhysCont.NTUP_SUSYSKIM.repro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodI_muon', 'ds':'group.phys-susy.data12_8TeV.periodI.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodJ_muon', 'ds':'group.phys-susy.data12_8TeV.periodJ.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
+                   , { 'tag':'periodL_muon', 'ds':'group.phys-susy.data12_8TeV.periodL.physics_Muons.PhysCont.NTUP_SUSYSKIM.t0pro14_v01_p1542/' , 'is_data':1, 'is_full_mc':0 }
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
