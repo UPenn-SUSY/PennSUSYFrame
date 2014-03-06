@@ -7929,8 +7929,8 @@ namespace PennSusyFrame
     virtual void     Init(TTree *tree);
     virtual void     ConfigureOutput(std::string out_file_name, std::string out_tree_name);
     virtual void     FillEvent();
-    virtual void     FinalizeOutput();
-    virtual void     writeNumEvents();
+    virtual void     FinalizeOutput(int num_generated_events = -1);
+    virtual void     writeNumEvents(int num_generated_events = -1);
     virtual Bool_t   Notify();
     virtual void     Show(Long64_t entry = -1);
 

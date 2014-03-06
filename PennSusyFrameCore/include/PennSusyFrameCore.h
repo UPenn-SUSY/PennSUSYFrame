@@ -48,6 +48,9 @@ namespace PennSusyFrame
       virtual void setKFactor(     float val) { m_k_factor = val; }
       virtual void setFilterEff(   float val) { m_filter_eff = val; }
 
+      virtual void setNumGeneratedEvents(int val) { m_num_generated_events = val; }
+
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       virtual void prepareSelection();
 
       virtual void beginRun();
@@ -77,6 +80,8 @@ namespace PennSusyFrame
       float m_k_factor;
       float m_filter_eff;
       float m_xsec_weight;
+
+      unsigned int m_num_generated_events;
 
       TTree* m_tree;
       PennSusyFrame::D3PDReader* m_d3pd_reader;

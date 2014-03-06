@@ -43,6 +43,7 @@ def runBMinusLAnalysis( file_list
                       , tree_name = 'susy'
                       , dsid = 1
                       , out_file_special_name = None
+                      , is_tnt = False
                       ):
     # ==============================================================================
     print 'loading packages'
@@ -57,9 +58,15 @@ def runBMinusLAnalysis( file_list
     # ==============================================================================
     print "Adding files to TNT maker"
     t = ROOT.TChain(tree_name)
+    total_num_events = 0
     for fl in file_list:
         print 'Adding file: %s' % fl
         t.AddFile(fl)
+        
+        if is_tnt:
+            this_file = ROOT.TFile(fl)
+            total_num_events += int(this_file.Get('TotalNumEvents')[0])
+            this_file.Close()
 
     # ==============================================================================
     bmla = ROOT.PennSusyFrame.BMinusLAnalysis(t)
@@ -76,6 +83,10 @@ def runBMinusLAnalysis( file_list
         bmla.setCrossSection(xsec_dict['xsec'])
         bmla.setKFactor(     xsec_dict['kfac'])
         bmla.setFilterEff(   xsec_dict['eff'])
+
+        bmla.setNumGeneratedEvents( total_num_events )
+        # bmla.setNumGeneratedEvents( 100 )
+        # bmla.setNumGeneratedEvents( 1000 )
 
     # set is full sim/fast sim
     if is_full_sim:

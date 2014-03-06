@@ -25,6 +25,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_is_data(tru
                                                                  , m_k_factor(1.)
                                                                  , m_filter_eff(1.)
                                                                  , m_xsec_weight(1.)
+                                                                 , m_num_generated_events(-1)
                                                                  , m_d3pd_reader(0)
 {
   // if parameter tree is not specified (or zero), connect the file
@@ -257,8 +258,21 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 void PennSusyFrame::PennSusyFrameCore::beginRun()
 {
   if (!m_is_data) {
-    m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_d3pd_reader->getNumEvents();
-    std::cout << "setting xsec weight to " << m_xsec_weight << "\n";
+    std::cout << "num generated events: " << m_num_generated_events << "\n";
+    if (m_num_generated_events <= 0) {
+      std::cout << "resetting num generated events: ";
+      m_num_generated_events = m_d3pd_reader->getNumEvents();
+      std::cout << m_num_generated_events << "\n";
+    }
+
+    // m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_d3pd_reader->getNumEvents();
+    m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_num_generated_events;
+    std::cout << "\n\tx sec: " << m_x_sec 
+              << "\n\tk factor: " << m_k_factor
+              << "\n\tfilter eff: " << m_filter_eff
+              << "\n\tnum_gen events: " << m_num_generated_events
+              << "\n\t\tx section weight: " << m_xsec_weight
+              << "\n";
   }
 }
 
@@ -636,5 +650,12 @@ void PennSusyFrame::PennSusyFrameCore::fillTnt()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::writeTnt()
 {
-  m_d3pd_reader->FinalizeOutput();
+  std::cout << "num generated events: " << m_num_generated_events << "\n";
+  if (m_num_generated_events <= 0) {
+    std::cout << "resetting num generated events: ";
+    m_num_generated_events = m_d3pd_reader->getNumEvents();
+    std::cout << m_num_generated_events << "\n";
+  }
+
+  m_d3pd_reader->FinalizeOutput(m_num_generated_events);
 }
