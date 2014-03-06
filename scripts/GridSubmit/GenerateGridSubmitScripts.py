@@ -90,10 +90,10 @@ def submitFromList( ds_dict_list, tnt_tag, starting_num):
 
 # ==============================================================================
 if __name__ == '__main__':
-    tnt_tag = 'tnt_100'
+    tnt_tag = 'tnt_102'
 
     # ------------------------------------------------------------------------------
-    # generateTarBallScript(tnt_tag = tnt_tag)
+    generateTarBallScript(tnt_tag = tnt_tag)
 
     # ------------------------------------------------------------------------------
     job_num = 0
