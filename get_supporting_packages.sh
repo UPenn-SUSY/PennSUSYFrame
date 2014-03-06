@@ -1,21 +1,17 @@
 #!/bin/bash
 
-# ----------------------------------------------------------------------------
-# core SFrame package
-echo "Checking out SFrame package"
-svn co https://svn.code.sf.net/p/sframe/code/SFrame/tags/SFrame-03-06-27/ SFrame
-mkdir SFrame/lib
+BASE_WORK_DIR=${PWD}
 
 # ------------------------------------------------------------------------------
 # SUSYTools
 echo "Checking out SUSYTools"
-mkdir RootCore
+if [[ ! -e RootCore ]] ; then
+  mkdir RootCore
+fi
 cd RootCore
 if [ "x$CERN_USER" = "x" ]; then
-  # svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-13 SUSYTools
   svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-14 SUSYTools
 else
-  # svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-13 SUSYTools
   svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-14 SUSYTools
 fi
 python SUSYTools/python/install.py
@@ -25,10 +21,12 @@ python SUSYTools/python/install.py
 # TODO remove this section when SUSYTools updates PATCore
 echo "Removing default PATCore"
 rm -rf PATCore
-echo "Removing default GoodRunsLists"
-rm -rf GoodRunsLists
 echo "Installing updated version of PATCore"
 svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/AnalysisCommon/PATCore/tags/PATCore-00-00-16 PATCore
+
+# TODO remove this section when SUSYTools updates GoodRunsLists
+echo "Removing default GoodRunsLists"
+rm -rf GoodRunsLists
 echo "Installing updated version of GoodRunsLists"
 svn co svn+ssh://svn.cern.ch/reps/atlasoff/DataQuality/GoodRunsLists/tags/GoodRunsLists-00-01-09 GoodRunsLists
 
@@ -44,29 +42,32 @@ $ROOTCOREDIR/scripts/compile.sh
 $ROOTCOREDIR/scripts/build.sh
 cd ..
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-source setup_sframe.sh
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# check out RootCore packages
-echo "Check out RootCore modules"
+# ------------------------------------------------------------------------------
+# check out additional RootCore packages
+echo "Check out additional RootCore modules"
 cd ${ROOTCOREDIR}/..
+# cd ${BASE_WORK_DIR}/RootCore
 for module in $(cat ../root_core_packages) ; do
+  echo '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
   echo "module: $module"
   module_short=$(echo $module | sed 's#-.*##g' | sed 's#.*/##g')
   if [[ $module_short == "trunk" ]] ; then
     module_short=$(echo $module | sed "s#/trunk##g" | sed "s#.*/##g")
   fi
   echo "module short: $module_short"
-  if [ "x$CERN_USER" = "x" ]; then
-    svn co svn+ssh://svn.cern.ch/reps/$module $module_short
+  if [[ $module == atlas* ]]; then
+    if [ "x$CERN_USER" = "x" ]; then
+      svn co svn+ssh://svn.cern.ch/reps/$module $module_short
+    else
+      svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/$module $module_short
+    fi
   else
-    svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/$module $module_short
+    svn co $module $module_short
   fi
 done
-cd ${SFRAME_DIR}/..
+cd ${BASE_WORK_DIR}
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ------------------------------------------------------------------------------
 # comment out known std::cout statements to avoid massive log files
 files="GoodRunsLists/Root/TGoodRunsList.cxx
        SUSYTools/Root/mt2_bisect.cxx
@@ -78,25 +79,51 @@ do
   mv $f.temp $f
 done
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ------------------------------------------------------------------------------
+# Remove std classes from LinkDef files -- this seems to break python bindings on lxplus :-(
+cd ${ROOTCOREDIR}/..
+ 
+for link_def_file  in */Root/LinkDef.h ; do
+  echo "--------------------------------------------------------"
+  echo $link_def_file
+  grep "std::pair" $link_def_file
+  grep "std::vector" $link_def_file
+  grep "std::map" $link_def_file
+
+  cat ${link_def_file}      | sed 's,\(.*#pragma.*pair.*\),//~~~ \1,g'   > ${link_def_file}.tmp1
+  cat ${link_def_file}.tmp1 | sed 's,\(.*#pragma.*vector.*\),//~~~ \1,g' > ${link_def_file}.tmp2
+  cat ${link_def_file}.tmp2 | sed 's,\(.*#pragma.*map.*\),//~~~ \1,g'    > ${link_def_file}.tmp3
+
+  mv ${link_def_file} ${link_def_file}.orig
+  cp ${link_def_file}.tmp3 ${link_def_file}
+done
+cd ${BASE_WORK_DIR}
+
+# ------------------------------------------------------------------------------
 # build RootCore packages
 cd ${ROOTCOREDIR}/..
 echo "Preparing to build RootCore packages"
 $ROOTCOREDIR/scripts/find_packages.sh
+$ROOTCOREDIR/scripts/clean.sh
 $ROOTCOREDIR/scripts/compile.sh
 $ROOTCOREDIR/scripts/build.sh
 
-echo "Build finished! Moving RootCore.par to proper location"
-cd ${ROOTCOREDIR}/..
-mv RootCore.par ${SFRAME_LIB_PATH}
+# echo "Build finished! Moving RootCore.par to proper location"
+# cd ${ROOTCOREDIR}/..
+# # mv RootCore.par ${SFRAME_LIB_PATH}
+# if [[ ! -e ${BASE_WORK_DIR}/lib ]] ; then
+#   mkdir ${BASE_WORK_DIR}/lib
+# fi
+# mv RootCore.par ${BASE_WORK_DIR}/lib
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ------------------------------------------------------------------------------
 # check out MultiLep/data
-mkdir MultiLep
+if [[ ! -e MultiLep ]] ; then
+  mkdir MultiLep
+fi
 cd MultiLep
 svn co svn+ssh://svn.cern.ch/reps/atlasphys/Physics/SUSY/Analyses/WeakProduction/MultiLep/tags/MultiLep-01-06-03/data
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-echo "Back to SFRAME_DIR"
-cd ${SFRAME_DIR}/..
-
+# ------------------------------------------------------------------------------
+echo "Back to base working directory"
+cd ${BASE_WORK_DIR}

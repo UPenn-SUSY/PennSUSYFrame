@@ -1,0 +1,25 @@
+// Dear emacs, this is -*- c++ -*-
+#ifndef PennSusyFrame_ObjectDefs_icc
+#define PennSusyFrame_ObjectDefs_icc
+
+namespace PennSusyFrame
+{
+  // -----------------------------------------------------------------------------
+  template <class T>
+    double PennSusyFrame::Met::findMinDphiInList(const std::vector<T*>& t_list)
+  {
+    double min_dphi = 999;
+    double this_dphi = 999;
+
+    size_t term = t_list.size();
+    for (size_t t_it = 0; t_it != term; ++t_it) {
+      this_dphi = getDPhi(t_list.at(t_it));
+      if (this_dphi < min_dphi)
+        min_dphi = this_dphi;
+    }
+
+    return min_dphi;
+  }
+}
+
+#endif
