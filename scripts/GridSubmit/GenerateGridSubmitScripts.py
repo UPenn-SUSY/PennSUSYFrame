@@ -54,12 +54,16 @@ def generateSubmitScript( in_ds
   --inDS=%(in_ds)s \
   --outDS="user.bjackson.%(out_ds_tag)s.%(tnt_tag)s/" \
   --inTarBall=submit_tar.%(tnt_tag)s.tar.gz \
-  --rootVer=5.34.07 \
-  --cmtConfig=x86_64-slc5-gcc43-opt \
+  --rootVer=5.34.17 \
+  --cmtConfig=x86_64-slc6-gcc47-opt \
   --outputs=Tnt.root \
   --excludedSite=ANALY_LRZ,ANALY_GOEGRID \
 
 """ % {'in_ds':in_ds, 'out_ds_tag':out_ds_tag, 'tnt_tag':tnt_tag, 'is_data':is_data, 'is_full_mc':is_full_mc}
+
+  # --rootVer=5.34.07 \
+  # --cmtConfig=x86_64-slc5-gcc43-opt \
+  # --cmtConfig=x86_64-slc6-gcc48-opt \
 
     # --nGBPerJob=MAX \
     # --nFilesPerJob=1 \
