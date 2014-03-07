@@ -10,7 +10,7 @@
 // = ElectronContainer
 // =============================================================================
 // ----------------------------------------------------------------------------
-PennSusyFrame::ElectronContainer::ElectronContainer()
+PennSusyFrame::ElectronContainer::ElectronContainer() : m_el_rescaler(0)
 {
   m_user_lists.resize(EL_N);
 }
@@ -18,7 +18,8 @@ PennSusyFrame::ElectronContainer::ElectronContainer()
 // ----------------------------------------------------------------------------
 PennSusyFrame::ElectronContainer::~ElectronContainer()
 {
-  // do nothing
+  if (m_el_rescaler)
+    delete m_el_rescaler;
 }
 
 // ----------------------------------------------------------------------------
@@ -117,14 +118,17 @@ void PennSusyFrame::ElectronContainer::print( ELECTRON_COLLECTIONS el_collection
 // = MuonContainer
 // =============================================================================
 // ----------------------------------------------------------------------------
-PennSusyFrame::MuonContainer::MuonContainer()
+PennSusyFrame::MuonContainer::MuonContainer() : m_mu_rescaler(0)
 {
   m_user_lists.resize(MU_N);
 }
 
 // ----------------------------------------------------------------------------
 PennSusyFrame::MuonContainer::~MuonContainer()
-{ }
+{
+  if (m_mu_rescaler)
+    delete m_mu_rescaler;
+}
 
 // ----------------------------------------------------------------------------
 void PennSusyFrame::MuonContainer::init(bool is_data)
@@ -222,7 +226,7 @@ void PennSusyFrame::MuonContainer::print( MUON_COLLECTIONS mu_collection
 // = TauContainer
 // =============================================================================
 // ----------------------------------------------------------------------------
-PennSusyFrame::TauContainer::TauContainer()
+PennSusyFrame::TauContainer::TauContainer() : m_tau_rescaler(0)
 {
   m_user_lists.resize(TAU_N);
 }
@@ -230,7 +234,8 @@ PennSusyFrame::TauContainer::TauContainer()
 // ----------------------------------------------------------------------------
 PennSusyFrame::TauContainer::~TauContainer()
 {
-  // do nothing
+  if (m_tau_rescaler)
+    delete m_tau_rescaler;
 }
 
 // ----------------------------------------------------------------------------
@@ -321,7 +326,7 @@ void PennSusyFrame::TauContainer::print( TAU_COLLECTIONS tau_collection
 // = JetContainer
 // =============================================================================
 // ----------------------------------------------------------------------------
-PennSusyFrame::JetContainer::JetContainer()
+PennSusyFrame::JetContainer::JetContainer() : m_jet_rescaler(0)
 {
   m_user_lists.resize(JET_N);
 }
@@ -329,7 +334,8 @@ PennSusyFrame::JetContainer::JetContainer()
 // ----------------------------------------------------------------------------
 PennSusyFrame::JetContainer::~JetContainer()
 {
-  delete m_jet_rescaler;
+  if (m_jet_rescaler)
+    delete m_jet_rescaler;
 }
 
 // ----------------------------------------------------------------------------

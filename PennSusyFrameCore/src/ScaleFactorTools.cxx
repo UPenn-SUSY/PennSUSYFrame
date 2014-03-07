@@ -140,7 +140,8 @@ PennSusyFrame::MuonScaleFactorTool::MuonScaleFactorTool() : m_muon_sf(0)
 // -----------------------------------------------------------------------------
 PennSusyFrame::MuonScaleFactorTool::~MuonScaleFactorTool()
 {
-  if (m_muon_sf) delete m_muon_sf;
+  if (m_muon_sf)
+    delete m_muon_sf;
 }
 
 // -----------------------------------------------------------------------------
@@ -169,7 +170,8 @@ PennSusyFrame::TriggerWeightTool::TriggerWeightTool() : m_trigger_reweight(0)
 // -----------------------------------------------------------------------------
 PennSusyFrame::TriggerWeightTool::~TriggerWeightTool()
 {
-  if (m_trigger_reweight) delete m_trigger_reweight;
+  if (m_trigger_reweight)
+    delete m_trigger_reweight;
 }
 
 // -----------------------------------------------------------------------------
@@ -258,7 +260,8 @@ PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(
 // -----------------------------------------------------------------------------
 PennSusyFrame::BTagScaleFactorTool::~BTagScaleFactorTool()
 {
-  if (m_b_tag_calibration) delete m_b_tag_calibration;
+  if (m_b_tag_calibration)
+    delete m_b_tag_calibration;
 }
 
 // -----------------------------------------------------------------------------

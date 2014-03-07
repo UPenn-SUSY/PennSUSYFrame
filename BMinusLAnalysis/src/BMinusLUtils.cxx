@@ -145,9 +145,13 @@ bool PennSusyFrame::sameParent( const PennSusyFrame::Event& event
   if (jet_b_quark_index < 0) return false;
 
   // std::cout << "\tgetting b jet parent\n";
+  // std::cout << "\tgetting b jet parent - get jet barcode - b quark index: " << jet_b_quark_index << "\n";
   int jet_b_quark_barcode = mc_truth.getBarcode()->at(jet_b_quark_index);
+  // std::cout << "\tgetting b jet parent - get parent index - barcode: " << jet_b_quark_barcode << "\n";
   int jet_parent_index = PennSusyFrame::getParentIndex( jet_b_quark_barcode, mc_truth);
+  // std::cout << "\tgetting b jet parent - get parent barcode - jet parent index: " << jet_parent_index << "\n";
   int jet_parent_barcode = PennSusyFrame::getBarcodeFromIndex(jet_parent_index, mc_truth);
+  // std::cout << "\tjet parent barcode: " << jet_parent_barcode << "\n";
 
   // protect from negative indices
   if (lep_parent_index < 0 || jet_parent_index < 0) return false;
@@ -157,8 +161,11 @@ bool PennSusyFrame::sameParent( const PennSusyFrame::Event& event
 
   // Special case to handle top -- lepton is not directly from top. There is an
   // intermediate W boson
+  // std::cout << "\tgetting parent pdgids\n";
   int lep_parent_pdgid = mc_truth.getPdgId()->at(lep_parent_index);
+  // std::cout << "\tlep parent pdgid: " << lep_parent_pdgid << "\n";
   int jet_parent_pdgid = mc_truth.getPdgId()->at(jet_parent_index);
+  // std::cout << "\tjet parent pdgid: " << jet_parent_pdgid << "\n";
 
   // std::cout << "\tlepton parent barcode: " << lep_parent_barcode << "\n";
   // std::cout << "\tlepton parent index: " << lep_parent_index << "\n";
@@ -302,9 +309,12 @@ int PennSusyFrame::getParentIndex( int barcode
     // std::cout << "\t\t\t\t\t\t\tmother barcode: " << mother_barcode << "\n";
     // std::cout << "\t\t\t\t\t\t\tparent and particle are b quark and b hadron -- trying again\n";
     mother_index = getParentIndex(mother_barcode, mc_truth);
-    if (mother_index >= 0) {
+    if (mother_index > 0) {
+      // std::cout << "finding final mother pdgid\n";
       mother_pdgid = pdgid_list->at(mother_index);
-      mother_barcode = mc_truth.getParents()->at(mother_index).at(0);
+      // std::cout << "finding final barcode\n";
+      if (mc_truth.getParents()->at(mother_index).size() > 0)
+        mother_barcode = mc_truth.getParents()->at(mother_index).at(0);
     }
   }
 

@@ -44,7 +44,15 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLAnalysis::~BMinusLAnalysis()
-{}
+{
+  size_t term_1 = m_bminusl_histogram_handler.size();
+  for (size_t it_1 = 0; it_1 != term_1; ++it_1) {
+    if ( m_bminusl_histogram_handler.at(it_1) ) {
+      delete m_bminusl_histogram_handler.at(it_1);
+      m_bminusl_histogram_handler.at(it_1) = 0;
+    }
+  }
+}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::prepareTools()
@@ -70,7 +78,7 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   // EL_BASELINE
   m_electron_selectors.at(EL_BASELINE).setElectronQuality(EL_QUALITY_MEDPP);
   // m_electron_selectors.at(EL_BASELINE).setPtCut(20.e3, -1);
-  m_electron_selectors.at(EL_BASELINE).setPtCut(40.e3, -1);
+  m_electron_selectors.at(EL_BASELINE).setPtCut(20.e3, -1);
   m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.47);
 
   // EL_SIGNAL
@@ -82,7 +90,7 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
 
   // MU_BASELINE
   // m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
-  m_muon_selectors.at(MU_BASELINE).setPtCut(40.e3, -1);
+  m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
   m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.5);
   m_muon_selectors.at(MU_BASELINE).setBLayerHitsCut(1, -1);
   m_muon_selectors.at(MU_BASELINE).setPixelHitsCut(1, -1);
@@ -100,7 +108,7 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.19);
 
   // JET_B
-  m_jet_selectors.at(JET_B).setPtCut(40.e3, -1);
+  m_jet_selectors.at(JET_B).setPtCut(20.e3, -1);
 }
 
 // -----------------------------------------------------------------------------
@@ -557,9 +565,4 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                          , m_mc_truth
                                                          , weight
                                                          );
-
-  // m_event.print();
-  // if (m_event.getEventNumber() == 863126) m_mc_truth.writeFullTruthRecord("truth_record.863126.txt");
-  // if (m_event.getEventNumber() == 863427) m_mc_truth.writeFullTruthRecord("truth_record.863427.txt");
-  // if (m_event.getEventNumber() == 324065) m_mc_truth.writeFullTruthRecord("truth_record.324065.txt");
 }
