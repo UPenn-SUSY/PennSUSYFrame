@@ -46,6 +46,7 @@ def runBMinusLAnalysis( file_list
                       ):
     # ==============================================================================
     print 'loading packages'
+    ROOT.gROOT.Reset()
     ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
     print 'loading libraries'
     ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
@@ -63,7 +64,11 @@ def runBMinusLAnalysis( file_list
         t.AddFile(fl)
 
         if is_tnt:
-            this_file = ROOT.TFile(fl)
+            print 'getting number events in file: %s' % fl
+            this_file = ROOT.TFile.Open(fl)
+            print this_file
+            this_file.ls()
+            print type((this_file.Get('TotalNumEvents')))
             total_num_events += int(this_file.Get('TotalNumEvents')[0])
             this_file.Close()
 
