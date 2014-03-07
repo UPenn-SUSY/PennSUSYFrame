@@ -39,7 +39,22 @@ PennSusyFrame::PennSusyFrameCore::~PennSusyFrameCore()
   // if (!fChain) return;
   // delete fChain->GetCurrentFile();
 
-  if (m_d3pd_reader) delete m_d3pd_reader;
+  if (m_d3pd_reader) {
+    delete m_d3pd_reader;
+    m_d3pd_reader = 0;
+  }
+
+  size_t term_1 = m_histogram_handlers.size();
+  for (size_t it_1 = 0; it_1 != term_1; ++it_1) {
+    size_t term_2 = m_histogram_handlers.at(it_1).size();
+    for (size_t it_2 = 0; it_2 != term_2; ++it_2) {
+      if (m_histogram_handlers.at(it_1).at(it_2)) {
+        delete m_histogram_handlers.at(it_1).at(it_2);
+        m_histogram_handlers.at(it_1).at(it_2) = 0;
+      }
+    }
+  }
+
 }
 
 // -----------------------------------------------------------------------------

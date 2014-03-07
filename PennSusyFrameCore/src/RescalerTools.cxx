@@ -24,7 +24,8 @@ PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool(bool is_data, bool is_
 // -----------------------------------------------------------------------------
 PennSusyFrame::ElectronRescalerTool::~ElectronRescalerTool()
 {
-  if (m_e_rescale) delete m_e_rescale;
+  if (m_e_rescale)
+    delete m_e_rescale;
 }
 
 // -----------------------------------------------------------------------------

@@ -44,7 +44,15 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLAnalysis::~BMinusLAnalysis()
-{}
+{
+  size_t term_1 = m_bminusl_histogram_handler.size();
+  for (size_t it_1 = 0; it_1 != term_1; ++it_1) {
+    if ( m_bminusl_histogram_handler.at(it_1) ) {
+      delete m_bminusl_histogram_handler.at(it_1);
+      m_bminusl_histogram_handler.at(it_1) = 0;
+    }
+  }
+}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::prepareTools()

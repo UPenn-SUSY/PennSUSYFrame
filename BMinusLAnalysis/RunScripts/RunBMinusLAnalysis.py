@@ -13,6 +13,17 @@ import os
 sys.path.append('%s/CrossSectionReader/' % os.environ['BASE_WORK_DIR'])
 import CrossSectionReader
 
+# ==============================================================================
+print 'loading packages'
+ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
+print 'loading libraries'
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libHistogramHandlers.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libBMinusLAnalysis.so')
+print 'done loading libraries'
+
 # ------------------------------------------------------------------------------
 def getFileListFromDir(file_path):
     print 'getting files from dir: %s' % file_path
@@ -44,16 +55,6 @@ def runBMinusLAnalysis( file_list
                       , out_file_special_name = None
                       , is_tnt = False
                       ):
-    # ==============================================================================
-    print 'loading packages'
-    ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
-    print 'loading libraries'
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libHistogramHandlers.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libBMinusLAnalysis.so')
-
     # ==============================================================================
     print "Adding files to TChain"
     t = ROOT.TChain(tree_name)
