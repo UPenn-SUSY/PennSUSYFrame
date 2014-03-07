@@ -39,6 +39,12 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
                                                              , m_crit_cut_met(false)
                                                              , m_met_min(-1)
                                                              , m_met_max(-1)
+                                                             , m_min_el_pt_baseline(20.e3)
+                                                             , m_max_el_pt_baseline(-1)
+                                                             , m_min_mu_pt_baseline(20.e3)
+                                                             , m_max_mu_pt_baseline(-1)
+                                                             , m_min_b_jet_pt_baseline(20.e3)
+                                                             , m_max_b_jet_pt_baseline(-1)
 {
 }
 
@@ -78,7 +84,7 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   // EL_BASELINE
   m_electron_selectors.at(EL_BASELINE).setElectronQuality(EL_QUALITY_MEDPP);
   // m_electron_selectors.at(EL_BASELINE).setPtCut(20.e3, -1);
-  m_electron_selectors.at(EL_BASELINE).setPtCut(20.e3, -1);
+  m_electron_selectors.at(EL_BASELINE).setPtCut(m_min_el_pt_baseline, m_max_el_pt_baseline);
   m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.47);
 
   // EL_SIGNAL
@@ -90,7 +96,7 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
 
   // MU_BASELINE
   // m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
-  m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
+  m_muon_selectors.at(MU_BASELINE).setPtCut(m_min_mu_pt_baseline, m_max_mu_pt_baseline);
   m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.5);
   m_muon_selectors.at(MU_BASELINE).setBLayerHitsCut(1, -1);
   m_muon_selectors.at(MU_BASELINE).setPixelHitsCut(1, -1);
@@ -108,7 +114,7 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.19);
 
   // JET_B
-  m_jet_selectors.at(JET_B).setPtCut(20.e3, -1);
+  m_jet_selectors.at(JET_B).setPtCut(m_min_b_jet_pt_baseline, m_max_b_jet_pt_baseline);
 }
 
 // -----------------------------------------------------------------------------

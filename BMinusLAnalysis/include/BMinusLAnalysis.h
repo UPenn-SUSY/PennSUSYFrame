@@ -66,7 +66,10 @@ namespace PennSusyFrame
       void setCritCutZVeto(          bool val) { m_crit_cut_z_veto = val;           }
       void setCritCutMet(            bool val) { m_crit_cut_met = val;              }
 
-      void setMetCut(float min, float max) { m_met_min = min ; m_met_max = max; }
+      void setMetCut(   float min, float max) { m_met_min               = min ; m_met_max               = max; }
+      void setElPtCut(  float min, float max) { m_min_el_pt_baseline    = min ; m_max_el_pt_baseline    = max; }
+      void setMuPtCut(  float min, float max) { m_min_mu_pt_baseline    = min ; m_max_mu_pt_baseline    = max; }
+      void setBJetPtCut(float min, float max) { m_min_b_jet_pt_baseline = min ; m_max_b_jet_pt_baseline = max; }
 
     protected:
       void fillHistHandles( BMINUSL_HIST_LEVELS
@@ -110,6 +113,15 @@ namespace PennSusyFrame
 
       double m_met_min;
       double m_met_max;
+
+      double m_min_el_pt_baseline;
+      double m_max_el_pt_baseline;
+
+      double m_min_mu_pt_baseline;
+      double m_max_mu_pt_baseline;
+
+      double m_min_b_jet_pt_baseline;
+      double m_max_b_jet_pt_baseline;
 
     private:
   };
