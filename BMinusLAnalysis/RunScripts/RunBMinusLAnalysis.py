@@ -65,7 +65,6 @@ def runBMinusLAnalysis( file_list
         if is_tnt:
             print 'getting number events in file: %s' % fl
             this_file = ROOT.TFile.Open(fl)
-            this_file.ls()
             total_num_events += int(this_file.Get('TotalNumEvents')[0])
             this_file.Close()
 
