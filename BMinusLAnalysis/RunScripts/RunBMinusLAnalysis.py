@@ -46,7 +46,6 @@ def runBMinusLAnalysis( file_list
                       ):
     # ==============================================================================
     print 'loading packages'
-    ROOT.gROOT.Reset()
     ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
     print 'loading libraries'
     ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
