@@ -54,6 +54,10 @@ def runBMinusLAnalysis( file_list
                       , dsid = 1
                       , out_file_special_name = None
                       , is_tnt = False
+                      # TODO make more maintainable
+                      , lep_pt_cut = 40.e3
+                      , jet_pt_cut = 40.e3
+                      , met_cut    = 50.e3
                       ):
     # ==============================================================================
     print "Adding files to TChain"
@@ -120,10 +124,10 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutBLPairing(      1)
 
     # Set cut values
-    bmla.setElPtCut(  40.e3, -1)
-    bmla.setMuPtCut(  40.e3, -1)
-    bmla.setBJetPtCut(40.e3, -1)
-    bmla.setMetCut(-1, 50.e3)
+    bmla.setElPtCut(  lep_pt_cut, -1)
+    bmla.setMuPtCut(  lep_pt_cut, -1)
+    bmla.setBJetPtCut(jet_pt_cut, -1)
+    bmla.setMetCut(-1, met_cut)
 
     # prepare tools and run analysis loop
     bmla.prepareTools()

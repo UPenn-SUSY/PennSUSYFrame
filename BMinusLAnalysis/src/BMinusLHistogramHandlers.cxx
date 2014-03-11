@@ -21,7 +21,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
   const float pt_min  = 0.;
   const float pt_max  = 500.;
 
-  const int   mbl_bins = 60;
+  const int   mbl_bins = 120;
   const float mbl_min  = 0.;
   const float mbl_max  = 1200.;
 
