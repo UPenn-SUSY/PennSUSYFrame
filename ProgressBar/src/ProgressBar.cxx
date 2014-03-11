@@ -9,15 +9,23 @@
 // -----------------------------------------------------------------------------
 ProgressBar::ProgressBar( unsigned int numEvents
                         , unsigned int barLength
+                        , bool fancy_draw
                         )
                         : m_numEvents(numEvents)
                         , m_barLength(barLength)
                         , m_increment((numEvents/barLength)+1)
                         , m_currentProgress(0)
-                        // , m_startTime(0)
+                        , m_process_label("")
+                        , m_fancy_draw(fancy_draw)
                         , m_startTime(clock())
 {
   // do nothing
+}
+
+// -----------------------------------------------------------------------------
+void ProgressBar::setProcessLabel(std::string val)
+{
+  m_process_label = val;
 }
 
 // -----------------------------------------------------------------------------
@@ -36,14 +44,15 @@ void ProgressBar::checkProgress(unsigned int event)
 void ProgressBar::printProgressBar(unsigned int event)
 {
   float elapsed_time = static_cast<float>(clock()-m_startTime)/CLOCKS_PER_SEC;
-  // float rate = event/elapsed_time;
-  // float remaining_time =  (m_numEvents-event)/elapsed_time;
   std::string rate           = getRate(         event, elapsed_time);
   std::string remaining_time = getRemainingTime(event, elapsed_time);
 
-  // clearLine();
   std::stringstream bar;
-  bar << "\r<";
+  if (m_fancy_draw)
+    bar << "\r";
+  if (m_process_label != "")
+    bar << m_process_label << " -- ";
+  bar << "<";
   for (unsigned int i = 0; i < m_barLength; ++i) {
     if (i <= m_currentProgress) bar << '=';
     else bar << ' ';
@@ -52,18 +61,18 @@ void ProgressBar::printProgressBar(unsigned int event)
       << event << " of " << m_numEvents
       << " ("
       << static_cast<unsigned int>(100*(static_cast<float>(event)/m_numEvents))
-      // << "%) [" << rate << " Hz - " << remaining_time << " s remaining]";
       << "%) [" << rate << " - " << remaining_time << " remaining]";
 
   // // Add whitespace to the end of the line to make sure previous text is gone
   // for (int it = 0; it != 30; ++it) {
   //   bar << " ";
   // }
-  // Add new line for last line
-  if (event == m_numEvents-1) bar << '\n';
+  // Add new line (only for last line in fancy draw mode)
+  if (!m_fancy_draw || event == m_numEvents-1) bar << '\n';
 
   // Print to screen
-  clearLine();
+  if (m_fancy_draw)
+    clearLine();
   std::cout << bar.str();
   std::cout.flush();
 }

@@ -1,6 +1,8 @@
 #ifndef PENNSUSYFRAME_H
 #define PENNSUSYFRAME_H
 
+#include <string>
+
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
@@ -50,6 +52,9 @@ namespace PennSusyFrame
 
       virtual void setNumGeneratedEvents(int val) { m_num_generated_events = val; }
 
+      virtual void setFancyProgressBar(bool val) { m_fancy_progress_bar = val; }
+      virtual void setProcessLabel(std::string val) { m_process_label = val; }
+
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       virtual void prepareSelection();
 
@@ -82,6 +87,9 @@ namespace PennSusyFrame
       float m_xsec_weight;
 
       unsigned int m_num_generated_events;
+
+      bool m_fancy_progress_bar;
+      std::string m_process_label;
 
       TTree* m_tree;
       PennSusyFrame::D3PDReader* m_d3pd_reader;

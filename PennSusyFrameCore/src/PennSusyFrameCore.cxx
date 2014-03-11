@@ -26,6 +26,8 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_is_data(tru
                                                                  , m_filter_eff(1.)
                                                                  , m_xsec_weight(1.)
                                                                  , m_num_generated_events(-1)
+                                                                 , m_fancy_progress_bar(true)
+                                                                 , m_process_label("")
                                                                  , m_d3pd_reader(0)
 {
   // if parameter tree is not specified (or zero), connect the file
@@ -244,7 +246,9 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   std::cout << "Processing " << nentries << " events\n";
 
   // set up progress bar
-  ProgressBar progress_bar(nentries, 100);
+  ProgressBar progress_bar(nentries, 100, m_fancy_progress_bar);
+  if (m_process_label != "")
+    progress_bar.setProcessLabel(m_process_label);
 
   // Actually loop over events
   for (Long64_t jentry=0; jentry<nentries;jentry++) {

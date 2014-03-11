@@ -54,10 +54,11 @@ def runBMinusLAnalysis( file_list
                       , dsid = 1
                       , out_file_special_name = None
                       , is_tnt = False
-                      # TODO make more maintainable
+                      # TODO make these cuts more maintainable
                       , lep_pt_cut = 40.e3
                       , jet_pt_cut = 40.e3
                       , met_cut    = 50.e3
+                      , fancy_progress_bar = True
                       ):
     # ==============================================================================
     print "Adding files to TChain"
@@ -75,6 +76,10 @@ def runBMinusLAnalysis( file_list
 
     # ==============================================================================
     bmla = ROOT.PennSusyFrame.BMinusLAnalysis(t)
+
+    if out_file_special_name is not None:
+        bmla.setProcessLabel(out_file_special_name)
+    bmla.setFancyProgressBar(False)
 
     # set is data or MC
     if is_data:

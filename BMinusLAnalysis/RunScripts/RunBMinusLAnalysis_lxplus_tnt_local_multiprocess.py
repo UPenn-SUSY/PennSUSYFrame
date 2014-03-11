@@ -33,6 +33,7 @@ def runBMinusLAnalysisFun(data_set_dict):
                                          , lep_pt_cut            = data_set_dict['lep_pt_cut']
                                          , jet_pt_cut            = data_set_dict['jet_pt_cut']
                                          , met_cut               = data_set_dict['met_cut']
+                                         , fancy_progress_bar    = False
                                          )
 
 # ------------------------------------------------------------------------------
