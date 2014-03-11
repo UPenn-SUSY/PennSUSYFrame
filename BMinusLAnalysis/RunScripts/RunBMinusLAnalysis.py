@@ -124,10 +124,10 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutBLPairing(      1)
 
     # Set cut values
-    bmla.setElPtCut(  lep_pt_cut, -1)
-    bmla.setMuPtCut(  lep_pt_cut, -1)
-    bmla.setBJetPtCut(jet_pt_cut, -1)
-    bmla.setMetCut(-1, met_cut)
+    bmla.setElPtCut(  lep_pt_cut, -1     )
+    bmla.setMuPtCut(  lep_pt_cut, -1     )
+    bmla.setBJetPtCut(jet_pt_cut, -1     )
+    bmla.setMetCut(   -1        , met_cut)
 
     # prepare tools and run analysis loop
     bmla.prepareTools()
