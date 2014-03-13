@@ -58,6 +58,7 @@ def runIsrAnalysis( file_list
     print "Adding files to TChain"
     t = ROOT.TChain(tree_name)
     # t = ROOT.TChain("TNT")
+    total_num_events = 0;
     for fl in file_list:
         print 'Adding file: %s' % fl
         t.AddFile(fl)
