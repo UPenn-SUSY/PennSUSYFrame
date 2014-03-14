@@ -16,6 +16,6 @@ if __name__ == '__main__':
                                          , is_full_sim = True
                                          , tree_name = 'TNT'
                                          , dsid = 105200
-                                         , out_file_special_name = 'ZZ4lep'
+                                         , out_file_special_name = 'ttbar'
                                          , is_tnt = True
                                          )
