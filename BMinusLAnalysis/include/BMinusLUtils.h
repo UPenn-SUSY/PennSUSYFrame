@@ -71,6 +71,7 @@ namespace PennSusyFrame
                  , const PennSusyFrame::Lepton*
                  , const PennSusyFrame::Jet*
                  , const PennSusyFrame::MCTruth&
+                 , bool verbose = false
                  );
 
   // ---------------------------------------------------------------------------
@@ -89,6 +90,7 @@ namespace PennSusyFrame
   // TODO move to truth match tools
   int getParentIndex( int barcode
                     , const PennSusyFrame::MCTruth&
+                    , bool verbose = false
                     );
 
   // ---------------------------------------------------------------------------
