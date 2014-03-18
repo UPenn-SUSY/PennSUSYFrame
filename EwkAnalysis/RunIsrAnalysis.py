@@ -13,6 +13,16 @@ import os
 sys.path.append('%s/CrossSectionReader/' % os.environ['BASE_WORK_DIR'])
 import CrossSectionReader
 
+# ==============================================================================
+print 'loading packages'
+ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
+print 'loading libraries'
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libHistogramHandlers.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
+
 # ------------------------------------------------------------------------------
 def getFileListFromDir(file_path):
     print 'getting files from dir: %s' % file_path
@@ -43,17 +53,8 @@ def runIsrAnalysis( file_list
                   , dsid = 1
                   , out_file_special_name = None
                   , is_tnt = False
+                  , fancy_progress_bar = True  
                   ):
-    # ==============================================================================
-    print 'loading packages'
-    ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
-    print 'loading libraries'
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libHistogramHandlers.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
-
     # ==============================================================================
     print "Adding files to TChain"
     t = ROOT.TChain(tree_name)
@@ -64,7 +65,8 @@ def runIsrAnalysis( file_list
         t.AddFile(fl)
 
         if is_tnt:
-            this_file = ROOT.TFile(fl)
+            this_file = ROOT.TFile.Open(fl)
+            this_file.ls()
             total_num_events += int(this_file.Get('TotalNumEvents')[0])
             this_file.Close()
 
