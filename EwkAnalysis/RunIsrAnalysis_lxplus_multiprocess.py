@@ -49,17 +49,17 @@ if __name__ == '__main__':
 
     data_set_dicts.append( makeDataSetDict(label_base='ZeeNp0'     , file_list_path = eos_base_path + 'mc12_8TeV.117650.AlpgenPythia_P2011C_ZeeNp0*/', is_data = False , is_full_sim = True , dsid = 117650 ) )
     data_set_dicts.append( makeDataSetDict(label_base='ZeeNp1'     , file_list_path = eos_base_path + 'mc12_8TeV.117651.AlpgenPythia_P2011C_ZeeNp1*/', is_data = False , is_full_sim = True , dsid = 117651 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZeeNp2'     , file_list_path = eos_base_path + 'mc12_8TeV.117652.AlpgenPythia_P2011C_ZeeNp2*/', is_data = False , is_full_sim = True , dsid = 117652 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZeeNp3'     , file_list_path = eos_base_path + 'mc12_8TeV.117653.AlpgenPythia_P2011C_ZeeNp3*/', is_data = False , is_full_sim = True , dsid = 117653 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZeeNp4'     , file_list_path = eos_base_path + 'mc12_8TeV.117654.AlpgenPythia_P2011C_ZeeNp4*/', is_data = False , is_full_sim = True , dsid = 117654 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZeeNp5'     , file_list_path = eos_base_path + 'mc12_8TeV.117655.AlpgenPythia_P2011C_ZeeNp5*/', is_data = False , is_full_sim = True , dsid = 117655 ) )
-    ##
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp0'     , file_list_path = eos_base_path + 'mc12_8TeV.117660.AlpgenPythia_P2011C_ZmumuNp0*/', is_data = False , is_full_sim = True , dsid = 117660 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp1'     , file_list_path = eos_base_path + 'mc12_8TeV.117661.AlpgenPythia_P2011C_ZmumuNp1*/', is_data = False , is_full_sim = True , dsid = 117661 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp2'     , file_list_path = eos_base_path + 'mc12_8TeV.117662.AlpgenPythia_P2011C_ZmumuNp2*/', is_data = False , is_full_sim = True , dsid = 117662 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp3'     , file_list_path = eos_base_path + 'mc12_8TeV.117663.AlpgenPythia_P2011C_ZmumuNp3*/', is_data = False , is_full_sim = True , dsid = 117663 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp4'     , file_list_path = eos_base_path + 'mc12_8TeV.117664.AlpgenPythia_P2011C_ZmumuNp4*/', is_data = False , is_full_sim = True , dsid = 117664 ) )
-    ##data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp5'     , file_list_path = eos_base_path + 'mc12_8TeV.117665.AlpgenPythia_P2011C_ZmumuNp5*/', is_data = False , is_full_sim = True , dsid = 117665 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZeeNp2'     , file_list_path = eos_base_path + 'mc12_8TeV.117652.AlpgenPythia_P2011C_ZeeNp2*/', is_data = False , is_full_sim = True , dsid = 117652 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZeeNp3'     , file_list_path = eos_base_path + 'mc12_8TeV.117653.AlpgenPythia_P2011C_ZeeNp3*/', is_data = False , is_full_sim = True , dsid = 117653 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZeeNp4'     , file_list_path = eos_base_path + 'mc12_8TeV.117654.AlpgenPythia_P2011C_ZeeNp4*/', is_data = False , is_full_sim = True , dsid = 117654 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZeeNp5'     , file_list_path = eos_base_path + 'mc12_8TeV.117655.AlpgenPythia_P2011C_ZeeNp5*/', is_data = False , is_full_sim = True , dsid = 117655 ) )
+   
+    data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp0'     , file_list_path = eos_base_path + 'mc12_8TeV.117660.AlpgenPythia_P2011C_ZmumuNp0*/', is_data = False , is_full_sim = True , dsid = 117660 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp1'     , file_list_path = eos_base_path + 'mc12_8TeV.117661.AlpgenPythia_P2011C_ZmumuNp1*/', is_data = False , is_full_sim = True , dsid = 117661 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp2'     , file_list_path = eos_base_path + 'mc12_8TeV.117662.AlpgenPythia_P2011C_ZmumuNp2*/', is_data = False , is_full_sim = True , dsid = 117662 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp3'     , file_list_path = eos_base_path + 'mc12_8TeV.117663.AlpgenPythia_P2011C_ZmumuNp3*/', is_data = False , is_full_sim = True , dsid = 117663 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp4'     , file_list_path = eos_base_path + 'mc12_8TeV.117664.AlpgenPythia_P2011C_ZmumuNp4*/', is_data = False , is_full_sim = True , dsid = 117664 ) )
+    data_set_dicts.append( makeDataSetDict(label_base='ZmumuNp5'     , file_list_path = eos_base_path + 'mc12_8TeV.117665.AlpgenPythia_P2011C_ZmumuNp5*/', is_data = False , is_full_sim = True , dsid = 117665 ) )
 
     p = Pool(num_processes)
     p.map(runIsrAnalysisFun, data_set_dicts)
