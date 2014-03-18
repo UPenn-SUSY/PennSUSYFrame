@@ -20,23 +20,23 @@ def main():
                                           )
     ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
                                           , fill_color = ROOT.kAzure+8
-                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.105200.ttbar.hists.root"
+                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.root"
                                                               ]
                                           )
     ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
                                         , fill_color = ROOT.kRed+1
-                                        , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.110817.ZeebbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110818.ZeebbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110819.ZeebbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110820.ZeebbNp3.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110821.ZmumubbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110822.ZmumubbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110823.ZmumubbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110824.ZmumubbNp3.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110825.ZtautaubbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110826.ZtautaubbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110827.ZtautaubbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.110828.ZtautaubbNp3.hists.root"
+                                        , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.110817.AlpgenPythia_P2011C_ZeebbNp0.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110818.AlpgenPythia_P2011C_ZeebbNp1.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110819.AlpgenPythia_P2011C_ZeebbNp2.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110820.AlpgenPythia_P2011C_ZeebbNp3.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110821.AlpgenPythia_P2011C_ZmumubbNp0.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110822.AlpgenPythia_P2011C_ZmumubbNp1.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110823.AlpgenPythia_P2011C_ZmumubbNp2.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110824.AlpgenPythia_P2011C_ZmumubbNp3.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110825.AlpgenPythia_P2011C_ZtautaubbNp0.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110826.AlpgenPythia_P2011C_ZtautaubbNp1.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110827.AlpgenPythia_P2011C_ZtautaubbNp2.hists.root"
+                                                            , "${BASE_WORK_DIR}/BMinusL.110828.AlpgenPythia_P2011C_ZtautaubbNp3.hists.root"
                                                             ]
                                         )
     ic_numerator = hh.Container.InputContainer( name = 'dummy'
