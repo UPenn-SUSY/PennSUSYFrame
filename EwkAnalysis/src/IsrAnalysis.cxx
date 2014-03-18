@@ -139,6 +139,13 @@ void PennSusyFrame::IsrAnalysis::processEvent()
   m_event_weight *= m_event_quantities.getPileUpSF();
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, ISR_CUT_PILEUP_WEIGHT);
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, ISR_CUT_PILEUP_WEIGHT, m_event_weight);
+ // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // set xsec weight
+  // TODO validate cross section weight
+
+  m_event_weight *= m_xsec_weight;
+  m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, ISR_CUT_XSEC_WEIGHT);
+  m_cutflow_tracker.fillHist( FLAVOR_NONE, ISR_CUT_XSEC_WEIGHT, m_event_weight);
 
   // -----------------------------------------------------------------------------
   m_event.setTriggerPhase( PennSusyFrame::getTriggerPhase( m_electrons.getCollection(EL_GOOD)
