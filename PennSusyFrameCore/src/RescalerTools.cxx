@@ -96,7 +96,9 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledEt(const PennSusyFrame::E
 // = MuonRescalerTool
 // =============================================================================
 PennSusyFrame::MuonRescalerTool::MuonRescalerTool(bool is_data) : m_is_data(is_data)
+								, m_mcp_smear(0) 
                                                                 , m_smearing_function("")
+								 
 {
   init();
 }
@@ -106,13 +108,13 @@ PennSusyFrame::MuonRescalerTool::~MuonRescalerTool()
 {
   if (m_mcp_smear)
     delete m_mcp_smear;
+    
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::MuonRescalerTool::init()
 {
   if (m_is_data) return;
-
   // get default path for muon SF directory.  This comes from SUSYTools
   std::string root_core_dir = getenv("ROOTCOREDIR");
   m_muon_momentum_dir = root_core_dir + "/../MuonMomentumCorrections/share/";
