@@ -4,6 +4,7 @@ import sys
 import os.path
 import optparse
 import time
+import math
 
 import glob
 
@@ -59,6 +60,8 @@ def runBMinusLAnalysis( file_list
                       , jet_pt_cut = 40.e3
                       , met_cut    = 50.e3
                       , fancy_progress_bar = True
+                      , job_num = 0
+                      , total_num_jobs = 1
                       ):
     # ==============================================================================
     print "Adding files to TChain"
@@ -73,6 +76,7 @@ def runBMinusLAnalysis( file_list
             this_file = ROOT.TFile.Open(fl)
             total_num_events += int(this_file.Get('TotalNumEvents')[0])
             this_file.Close()
+    total_raw_events = t.GetEntries()
 
     # ==============================================================================
     bmla = ROOT.PennSusyFrame.BMinusLAnalysis(t)
@@ -100,11 +104,26 @@ def runBMinusLAnalysis( file_list
     if is_full_sim:
         bmla.setFullSim()
 
+    # set start entry and max number events
+    if total_num_jobs > 1:
+        this_job_events = int(math.ceil( float(total_raw_events) / total_num_jobs ))
+        this_job_start = job_num*this_job_events
+
+        print 'total raw num events; %s' % total_raw_events
+        print 'setting max num events: %s' % this_job_events
+        print type(this_job_events)
+        bmla.setMaxNumEvents(this_job_events)
+        print 'setting start entry: %s' % this_job_start
+        bmla.setStartEntry(this_job_start)
+
     # set out histogram file name
     out_hist_file_name = 'BMinusL.'
     if out_file_special_name is not None:
         out_hist_file_name += '%s.' % out_file_special_name
-    out_hist_file_name += 'hists.root'
+    out_hist_file_name += 'hists'
+    if total_num_jobs > 1:
+        out_hist_file_name += '.%d_of_%d' % (job_num, total_num_jobs)
+    out_hist_file_name += '.root'
     bmla.setOutHistFileName(out_hist_file_name)
 
     # Set critical cuts

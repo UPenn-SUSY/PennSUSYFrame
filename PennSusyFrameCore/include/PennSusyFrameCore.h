@@ -46,6 +46,9 @@ namespace PennSusyFrame
       virtual void setFullSim() { m_is_af2 = false; }
       virtual void setAf2() {     m_is_af2 = true; }
 
+      virtual void setStartEntry(unsigned int val) { m_start_entry = val; }
+      virtual void setMaxNumEvents(int val)        { m_max_num_events = val; }
+
       virtual void setCrossSection(float val) { m_x_sec = val; }
       virtual void setKFactor(     float val) { m_k_factor = val; }
       virtual void setFilterEff(   float val) { m_filter_eff = val; }
@@ -76,6 +79,8 @@ namespace PennSusyFrame
       virtual void fillTnt();
       virtual void writeTnt();
 
+      unsigned int m_start_entry;
+      int m_max_num_events;
       bool m_is_data;
       bool m_is_af2;
       double m_event_weight;

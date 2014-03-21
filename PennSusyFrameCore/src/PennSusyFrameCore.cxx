@@ -18,7 +18,9 @@
 #include "ProgressBar/include/ProgressBar.h"
 
 // -----------------------------------------------------------------------------
-PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_is_data(true)
+PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry(0)
+                                                                 , m_max_num_events(-1)
+                                                                 , m_is_data(true)
                                                                  , m_is_af2(false)
                                                                  , m_event_weight(1.)
                                                                  , m_x_sec(1.)
@@ -242,7 +244,16 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   beginRun();
 
   // find number of total events to looper over
-  Long64_t nentries = m_d3pd_reader->getNumEvents();
+  Long64_t total_nentries = m_d3pd_reader->getNumEvents();
+  Long64_t nentries = total_nentries;
+  // if we set the max # events, require we don't go over this number
+  if (m_max_num_events > 0 && m_max_num_events < nentries) {
+    nentries = m_max_num_events;
+  }
+  // if start entry + nentries > total number event, limit nentries to number remaining after start entry events
+  if (m_start_entry + nentries > total_nentries) {
+    nentries = total_nentries - m_start_entry;
+  }
   std::cout << "Processing " << nentries << " events\n";
 
   // set up progress bar
@@ -251,16 +262,21 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     progress_bar.setProcessLabel(m_process_label);
 
   // Actually loop over events
-  for (Long64_t jentry=0; jentry<nentries;jentry++) {
+  for (Long64_t jentry=0; jentry != nentries; ++jentry) {
     // if (jentry == 1000) break;
 
+    Long64_t this_entry = m_start_entry + jentry;
+
     // check progress in the progress bar
-    progress_bar.checkProgress(jentry);
+    // progress_bar.checkProgress(jentry);
+    progress_bar.checkProgress(this_entry);
 
     // get entry from tree
-    Long64_t ientry = LoadTree(jentry);
+    // Long64_t ientry = LoadTree(jentry);
+    Long64_t ientry = LoadTree(this_entry);
     if (ientry < 0) break;
-    m_d3pd_reader->GetEntry(jentry);
+    //  m_d3pd_reader->GetEntry(jentry);
+    m_d3pd_reader->GetEntry(this_entry);
 
     // process events, etc...
     clearObjects();
