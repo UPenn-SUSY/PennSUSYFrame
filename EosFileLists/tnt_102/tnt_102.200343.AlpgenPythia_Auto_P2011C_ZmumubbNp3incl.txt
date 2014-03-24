@@ -1,0 +1,14 @@
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00001.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00002.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00003.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00004.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00005.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00006.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00007.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00008.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00009.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00010.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00011.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00012.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00013.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_102.140320235839/user.bjackson.035093._00014.Tnt.root

@@ -12,7 +12,6 @@ def main():
     ROOT.gROOT.SetBatch()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # TODO parse these inputs in more reasonable way!
     ec_dummy = hh.Container.EntryContainer( label = 'dummy'
                                           , fill_color = ROOT.kBlack
                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dummy_hists.root"
@@ -20,7 +19,16 @@ def main():
                                           )
     ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
                                           , fill_color = ROOT.kAzure+8
-                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.root"
+                                          , input_file_list = [ "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.0_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.1_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.2_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.3_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.4_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.5_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.6_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.7_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.8_of_10.root"
+                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.9_of_10.root"
                                                               ]
                                           )
     ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
