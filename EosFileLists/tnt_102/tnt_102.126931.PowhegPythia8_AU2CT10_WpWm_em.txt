@@ -1,6 +1,6 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233336/user.bjackson.034529._00001.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233336/user.bjackson.034529._00002.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233336/user.bjackson.034529._00003.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233354/user.bjackson.034529._00004.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233354/user.bjackson.034529._00005.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233354/user.bjackson.034529._00006.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233336/user.bjackson.034529._00001.Tnt.root        130000        67959
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233336/user.bjackson.034529._00002.Tnt.root        130000        67907
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233336/user.bjackson.034529._00003.Tnt.root        40000        20729
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233354/user.bjackson.034529._00004.Tnt.root        150000        79424
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233354/user.bjackson.034529._00005.Tnt.root        119999        62206
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126931.PowhegPythia8_AU2CT10_WpWm_em.tnt_102.140307233354/user.bjackson.034529._00006.Tnt.root        30000        15397

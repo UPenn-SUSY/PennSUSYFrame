@@ -1,1 +1,1 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.164281.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_8.tnt_102.140308010351/user.bjackson.034906._00001.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.164281.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_8.tnt_102.140308010351/user.bjackson.034906._00001.Tnt.root        20000        12253

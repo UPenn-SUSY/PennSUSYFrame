@@ -1,1 +1,1 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107685.AlpgenJimmy_AUET2CTEQ6L1_WenuNp5.tnt_102.140307232008/user.bjackson.034461._00001.Tnt.root
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107685.AlpgenJimmy_AUET2CTEQ6L1_WenuNp5.tnt_102.140307232008/user.bjackson.034461._00001.Tnt.root        70000        298
