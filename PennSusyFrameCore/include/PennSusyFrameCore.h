@@ -53,6 +53,7 @@ namespace PennSusyFrame
       virtual void setKFactor(     float val) { m_k_factor = val; }
       virtual void setFilterEff(   float val) { m_filter_eff = val; }
 
+      virtual void setTotalNumEntries(int val) { m_num_entries = val; }
       virtual void setNumGeneratedEvents(int val) { m_num_generated_events = val; }
 
       virtual void setFancyProgressBar(bool val) { m_fancy_progress_bar = val; }
@@ -91,7 +92,8 @@ namespace PennSusyFrame
       float m_filter_eff;
       float m_xsec_weight;
 
-      unsigned int m_num_generated_events;
+      int m_num_entries;
+      int m_num_generated_events;
 
       bool m_fancy_progress_bar;
       std::string m_process_label;

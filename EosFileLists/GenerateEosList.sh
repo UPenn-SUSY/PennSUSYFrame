@@ -48,6 +48,10 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
     continue
   fi
 
+  if [[ ! $eos_dir == *200333* ]] ; then
+    continue
+  fi
+
   # ds_tag=$(echo ${eos_dir} | sed "s#user\.bjackson\.\(.*\)\.tnt_.*#\1#g")
   # out_file_name="${EOS_LIST_PREFIX}.${ds_tag}.txt"
   ds_tag=$(getDSTag ${eos_dir})
@@ -66,8 +70,24 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
       continue
     fi
 
+    full_eos_path="root://eosatlas//${EOS_PATH}/${eos_dir}/${file_in_dir}"
+    # total_num_events=0
+    # total_num_entries=0
+    echo "Full eos path: $full_eos_path"
+    # total_num_events=$(  python ../GetNumberUnskimmedEvents.py ${full_eos_path} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" )
+    # total_num_entries=$( python ../GetNumberEntries.py         ${full_eos_path} | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" )
+    python ../GetNumberUnskimmedEvents.py ${full_eos_path}
+    python ../GetNumberEntries.py         ${full_eos_path}
+    total_num_events=$(  cat tmp_events.txt  )
+    total_num_entries=$( cat tmp_entries.txt )
+    rm tmp_events.txt
+    rm tmp_entries.txt
+
     # echo "    root://eosatlas//${EOS_PATH}/${eos_dir}/${file_in_dir}"
-    echo "root://eosatlas//${EOS_PATH}/${eos_dir}/${file_in_dir}" >> ${out_file_name}
+    # echo "root://eosatlas//${EOS_PATH}/${eos_dir}/${file_in_dir}" >> ${out_file_name}
+    # echo "root://eosatlas//${EOS_PATH}/${eos_dir}/${file_in_dir}        ${total_num_events}        ${total_num_entries}" >> ${out_file_name}
+    echo "${full_eos_path}        ${total_num_events}        ${total_num_entries}"
+    echo "${full_eos_path}        ${total_num_events}        ${total_num_entries}" >> ${out_file_name}
     total_num_files=$(( $total_num_files + 1 ))
   done
   total_num_eos_dirs=$(( $total_num_eos_dirs + 1 ))

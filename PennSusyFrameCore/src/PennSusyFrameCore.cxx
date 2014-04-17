@@ -27,6 +27,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_k_factor(1.)
                                                                  , m_filter_eff(1.)
                                                                  , m_xsec_weight(1.)
+                                                                 , m_num_entries(-1)
                                                                  , m_num_generated_events(-1)
                                                                  , m_fancy_progress_bar(true)
                                                                  , m_process_label("")
@@ -244,7 +245,11 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   beginRun();
 
   // find number of total events to looper over
-  Long64_t total_nentries = m_d3pd_reader->getNumEvents();
+  // TODO clean up this code!!!
+  Long64_t total_nentries = m_num_entries;
+  if (total_nentries <= 0) {
+    total_nentries = m_d3pd_reader->getNumEvents();
+  }
   Long64_t nentries = total_nentries;
   // if we set the max # events, require we don't go over this number
   if (m_max_num_events > 0 && m_max_num_events < nentries) {
@@ -302,7 +307,7 @@ void PennSusyFrame::PennSusyFrameCore::beginRun()
 
     // m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_d3pd_reader->getNumEvents();
     m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_num_generated_events;
-    std::cout << "\n\tx sec: " << m_x_sec 
+    std::cout << "\n\tx sec: " << m_x_sec
               << "\n\tk factor: " << m_k_factor
               << "\n\tfilter eff: " << m_filter_eff
               << "\n\tnum_gen events: " << m_num_generated_events
