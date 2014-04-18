@@ -63,9 +63,9 @@ def makeDataSetDict( label_base
                    ):
     # label = '%s.%s' % (dsid, label_base)
     label = '%s' % (label_base)
-    label += '__lep_pt_%s' % lep_pt_cut
-    label += '__jet_pt_%s' % jet_pt_cut
-    label += '__met_%s'    % met_cut
+    # label += '__lep_pt_%s' % lep_pt_cut
+    # label += '__jet_pt_%s' % jet_pt_cut
+    # label += '__met_%s'    % met_cut
 
     data_set_input = RunBMinusLAnalysis.readFileList('%s/%s' % (os.environ['BASE_WORK_DIR'], file_list_path))
     file_list = data_set_input['file_list']
@@ -169,6 +169,7 @@ if __name__ == '__main__':
                                   , 200349:{'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'    , 'num_jobs':1}
                                   , 200350:{'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'    , 'num_jobs':1}
                                   , 200351:{'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl', 'num_jobs':1}
+                                  , 108346:{'label':'108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl', 'num_jobs':10}
                                   }
             fast_sim_mc_samples = { 105200:{'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter', 'num_jobs':15}
                                   }

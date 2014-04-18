@@ -17,44 +17,44 @@ def main():
                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dummy_hists.root"
                                                               ]
                                           )
-    ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
-                                          , fill_color = ROOT.kAzure+8
-                                          , input_file_list = [ "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.0_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.1_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.2_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.3_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.4_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.5_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.6_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.7_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.8_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.9_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.10_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.11_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.12_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.13_of_15.root"
-                                                              , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.14_of_15.root"
-                                                              ]
-                                          )
     # ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
     #                                       , fill_color = ROOT.kAzure+8
-    #                                       , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.0_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.1_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.2_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.3_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.4_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.5_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.6_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.7_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.8_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.9_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.10_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.11_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.12_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.13_of_15.root"
-    #                                                           , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.14_of_15.root"
+    #                                       , input_file_list = [ "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.0_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.1_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.2_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.3_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.4_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.5_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.6_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.7_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.8_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.9_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.10_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.11_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.12_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.13_of_15.root"
+    #                                                           , "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.14_of_15.root"
     #                                                           ]
     #                                       )
+    ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
+                                          , fill_color = ROOT.kAzure+8
+                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.0_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.1_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.2_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.3_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.4_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.5_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.6_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.7_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.8_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.9_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.10_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.11_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.12_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.13_of_15.root"
+                                                              , "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.14_of_15.root"
+                                                              ]
+                                          )
     # ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
     #                                     , fill_color = ROOT.kRed+1
     #                                     , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.110817.AlpgenPythia_P2011C_ZeebbNp0.hists.root"
@@ -117,12 +117,27 @@ def main():
                                                             , "${BASE_WORK_DIR}/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root"
                                                             ]
                                         )
+    ec_single_top = hh.Container.EntryContainer( label = 'Single top'
+                                               , fill_color = ROOT.kGreen+2
+                                               , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.0_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.1_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.2_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.3_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.4_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.5_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.6_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.7_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.8_of_10.root"
+                                                                   , "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.9_of_10.root"
+                                                                   ]
+                                               )
+
     ic_numerator = hh.Container.InputContainer( name = 'dummy'
                                               , entry_list = [ec_dummy]
                                               , lumi_target = 0.
                                               )
     ic_denominator = hh.Container.InputContainer( name = 'Background'
-                                                , entry_list = [ec_ttbar, ec_Zbb]
+                                                , entry_list = [ec_ttbar, ec_Zbb, ec_single_top]
                                                 , lumi_target = 21000
                                                 )
 
