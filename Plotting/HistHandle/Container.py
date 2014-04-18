@@ -121,11 +121,12 @@ class InputContainer(object):
                      , dir_name
                      , hist_name
                      ):
-        # print 'Creating HistMerger object for:'
-        # print '\tName:      %s' % self.name
-        # print '\tDirectory: %s' % dir_name
-        # print '\tHist:      %s' % hist_name
+        print 'Creating HistMerger object for:'
+        print '\tName:      %s' % self.name
+        print '\tDirectory: %s' % dir_name
+        print '\tHist:      %s' % hist_name
 
+        print 'getting HistHandle objects'
         hist_handle_dict = {}
         for e in self.entries:
             hist_handle_dict[e.label] = e.genHistHandle( dir_name
@@ -133,11 +134,12 @@ class InputContainer(object):
                                                        , lumi_modeled = self.lumi_modeled
                                                        , lumi_target  = self.lumi_target
                                                        )
-        tmp =  hh.Merger.HistMerger( dir_name
-                                   , hist_name
-                                   , hist_handle_dict
-                                   , self.hist_info
-                                   )
+        # generate HistMerger object
+        tmp = hh.Merger.HistMerger( dir_name
+                                  , hist_name
+                                  , hist_handle_dict
+                                  , self.hist_info
+                                  )
         tmp.genMergedHist()
         return tmp
 
