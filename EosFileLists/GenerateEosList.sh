@@ -32,6 +32,10 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
   ds_tag=$(getDSTag ${eos_dir})
   out_file_name=$(getOutFileName ${ds_tag})
 
+  echo "eos_dir: $eos_dir"
+  echo "ds_tag: $ds_tag"
+  echo "out_file_name: $out_file_name"
+
   if [[ -f ${out_file_name} ]] ; then
     echo "ERROR: File exists -- ${out_file_name}"
     echo "exiting!"
@@ -40,20 +44,27 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
 done
 
 # ------------------------------------------------------------------------------
+echo '--------------------------------------------------------------------------------'
 total_num_eos_dirs=0
 total_num_files=0
 total_num_ds=0
 for eos_dir in $(eos ls ${EOS_PATH}); do
+  echo ''
+  echo '--------------------------------------------------------------------------------'
+  echo "eos_dir: $eos_dir"
   if [[ $eos_dir == *.txt ]] ; then
+    echo "    text file - skipping"
     continue
   fi
 
-  if [[ ! $eos_dir == *200333* ]] ; then
-    continue
-  fi
+  # if [[ ! $eos_dir == *200333* ]] ; then
+  #   echo "    bad dsid - skipping"
+  #   continue
+  # fi
 
   # ds_tag=$(echo ${eos_dir} | sed "s#user\.bjackson\.\(.*\)\.tnt_.*#\1#g")
   # out_file_name="${EOS_LIST_PREFIX}.${ds_tag}.txt"
+
   ds_tag=$(getDSTag ${eos_dir})
   out_file_name=$(getOutFileName ${ds_tag})
 
@@ -67,6 +78,7 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
 
   for file_in_dir in $(eos ls ${EOS_PATH}/${eos_dir}); do
     if [[ ${file_in_dir} == *log.tgz* ]] ; then
+      echo "    log file -- skipping"
       continue
     fi
 
