@@ -60,7 +60,6 @@ def getFileListFromFile(file_path):
     f = file(file_path)
     for l in f.readlines():
         l = l.strip('\n')
-        # file_list.append(l)
         splits = l.split()
         file_list.append( { 'file_name':splits[0]
                           , 'total_num_events':splits[1]
@@ -82,37 +81,6 @@ def getTChain(file_list, tree_name):
         print 'Adding file: %s' % fl
         t.AddFile(fl)
     return t
-
-# # ------------------------------------------------------------------------------
-# def getTotalNumEvents(file_list, is_tnt):
-#     if not is_tnt:
-#         return 0
-# 
-#     total_num_events = 0
-#     # for fl in file_list:
-#     #     print 'Getting number of events in file: %s' % fl
-#     #     this_file = ROOT.TFile.Open(fl)
-#     #     print 'type(file): %s' % type(this_file)
-#     #     print this_file.Get('TotalNumEvents')
-#     #     print int(this_file.Get('TotalNumEvents')[0])
-#     #     print '\tNumber events in %s: %s' % (fl, int(this_file.Get('TotalNumEvents')[0]))
-#     #     total_num_events += int(this_file.Get('TotalNumEvents')[0])
-#     #     print '\ttotal number of events: %s' % total_num_events
-#     #     this_file.Close()
-#     print total_num_events
-#     return total_num_events
-# 
-# # ------------------------------------------------------------------------------
-# def getTotalNumEntries(file_list, is_tnt):
-#     total_num_entries = 0
-#     # for fl in file_list:
-#     #     print 'Getting number of events in file: %s' % fl
-#     #     this_file = ROOT.TFile.Open(fl)
-#     #     this_tree = this_file.Get('TNT' if is_tnt else 'susy')
-#     #     total_num_entries += this_tree.GetEntries()
-#     #     this_file.Close()
-#     print total_num_entries
-#     return total_num_entries
 
 # ------------------------------------------------------------------------------
 def runBMinusLAnalysis( file_list

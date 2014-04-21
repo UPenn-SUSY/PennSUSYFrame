@@ -93,7 +93,6 @@ def makeDataSetDictList( label_base
                        , met_cut
                        , total_num_jobs = 1
                        ):
-    # total_num_events = 0
     total_num_entries = 0
 
     print 'getting raw events for %s' % label_base
@@ -102,15 +101,7 @@ def makeDataSetDictList( label_base
     total_num_events  = data_set_input['total_num_events']
     total_num_entries = data_set_input['total_entries']
 
-    # # file_list = RunBMinusLAnalysis.getFileListFromFile('%s/%s' % (os.environ['BASE_WORK_DIR'], file_list_path))
-    # total_num_events = RunBMinusLAnalysis.getTotalNumEvents(file_list, True)
     print 'total num events: %s' % total_num_events
-
-    # print 'getting num entries for %s' % label_base
-    # total_num_entries = RunBMinusLAnalysis.getTotalNumEntries(file_list, True)
-    # # file_list = RunBMinusLAnalysis.getFileListFromFile('%s/%s' % (os.environ['BASE_WORK_DIR'], file_list_path))
-    # # this_chain = RunBMinusLAnalysis.getTChain(file_list, 'TNT')
-    # # total_num_entries = this_chain.GetEntries()
     print 'total entries: %s' % total_num_entries
 
     data_set_dict_list = []
