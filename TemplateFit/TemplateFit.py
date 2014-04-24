@@ -64,17 +64,23 @@ def performFit( data_dh
               , label
               , fit_ranges = []
               ):
+    print 'performFit'
+
     # create clone of our roo_real_var
+    print 'cloning roo_real_var'
     clone_roo_real_var = roo_real_var.clone('fit_var_%s' % roo_real_var.GetName())
 
     # get normalization of data
+    print 'getting norm'
     norm = data_dh.sum(False)
 
     # number of fitted background events
     # set loose bounds on range
+    print 'creating n_bkkg_variable'
     n_bkg = ROOT.RooRealVar('n_bkg__fit_%s' % label , 'bkg', 0.75*norm, 0, 1.25*norm)
 
     # define arglists and pdf needed for fit
+    print 'creating arglist and pdf'
     fit_pdf_arglist = ROOT.RooArgList(bkg_template['pdf'])
     fit_value_arglist = ROOT.RooArgList(n_bkg)
     fit_pdf = ROOT.RooAddPdf( label, label, fit_pdf_arglist, fit_value_arglist)
@@ -83,7 +89,7 @@ def performFit( data_dh
     for i, fr in enumerate(fit_ranges):
         this_fit_range_string = 'fit_range__%s__%s' % (label, i)
         clone_roo_real_var.setRange( this_fit_range_string , fr['min'], fr['max'])
-        # fit_range_string = 'fit_range__%s' % label
+        # fit_range_string = this_fit_range_string
         if fit_range_string == '':
             fit_range_string = this_fit_range_string
         else:
@@ -96,6 +102,7 @@ def performFit( data_dh
     print 'fit_range_string: %s -- fit range: %s' % (fit_range_string, fit_range)
     coef_range = ROOT.RooCmdArg.none()
     print_level = ROOT.RooCmdArg.none()
+    print 'about to fit'
     fit_pdf.fitTo( data_dh
                  , ext
                  , sum_w2_error
@@ -103,6 +110,7 @@ def performFit( data_dh
                  , coef_range
                  , print_level
                  )
+    print 'done fitting'
 
     return { 'norm':norm
            , 'n_bkg':n_bkg
@@ -164,6 +172,8 @@ def fitAndDrawToCanvas( data_dh
                       , fit_ranges = []
                       # , log = False
                       ):
+    print 'fitAndDrawToCanvas()'
+
     fit_dict = performFit( data_dh
                          , bkg_template
                          , roo_real_var
