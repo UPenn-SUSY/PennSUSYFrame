@@ -290,14 +290,18 @@ def main():
     ROOT.gROOT.SetBatch()
 
     # get template histogram
-    bkg_template_dict = getTemplateFromFile( file_name = 'Templates/templates.root'
+    # bkg_template_dict = getTemplateFromFile( file_name = 'Templates/templates.root'
+    bkg_template_dict = getTemplateFromFile( file_name = 'Templates/templates__partia_sample_0_of_2.root'
                                            , template_name = 'template__flavor_all__mbl_all__BMINUSL_MET'
                                            , roo_real_var = mbl_real_var
                                            , label = 'bkg_template'
                                            )
 
     # get toy histogram
-    toy_data_dict = getTemplateFromFile( file_name = '../ToyBackgrounds/Toys.root'
+    # toy_data_dict = getTemplateFromFile( file_name = '../ToyBackgrounds/Toys.root'
+    # toy_data_dict = getTemplateFromFile( file_name = '../ToyBackgrounds/Toys_no_sig.root'
+    # toy_data_dict = getTemplateFromFile( file_name = '../ToyBackgrounds/Toys__partia_sample_1_of_2__no_sig.root'
+    toy_data_dict = getTemplateFromFile( file_name = '../ToyBackgrounds/Toys__partia_sample_1_of_2__w_sig.root'
                                        , template_name = 'toy__flavor_all__mbl_all__BMINUSL_MET'
                                        , roo_real_var = mbl_real_var
                                        , label = 'toy'
