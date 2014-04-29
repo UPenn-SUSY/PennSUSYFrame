@@ -46,6 +46,10 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
   const float mt2_min  = 0.;
   const float mt2_max  = 500.;
 
+  const int   ptll_bins = 50;
+  const float ptll_min  = 0.;
+  const float ptll_max  = 500.;
+
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -77,6 +81,23 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                                , mt2_bins, mt2_min, mt2_max
                                )
                      );
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize ptll histograms
+
+    m_h_ptll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + "__ptll"
+                                 + "__"
+                                 + name_tag
+                                 ).c_str()
+                               , ( "p_{T}^{ll} - "
+                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + " ; p_{T}^{ll} [GeV] ; Entries"
+                                 ).c_str()
+                               , ptll_bins, ptll_min, ptll_max
+                               )
+                     );
+   
+
   }
 }
 
@@ -101,12 +122,15 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
   float mll = event_level_quantities.getMll()/1.e3;
   float mt2 = event_level_quantities.getMt2()/1.e3;
 
+  float ptll = event_level_quantities.getPtll()/1.e3;
+
   // loop over all flavor channels
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
     m_h_mll.at(fc_it)->Fill(mll, weight);
     m_h_mt2.at(fc_it)->Fill(mt2, weight);
+    m_h_ptll.at(fc_it)->Fill(ptll, weight);
   }
 }
 
@@ -123,6 +147,9 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
 
     // write mt2 histograms
     m_h_mt2.at(fc_it)->Write();
+
+    //write ptll histograms
+    m_h_ptll.at(fc_it)->Write();
   }
 }
 

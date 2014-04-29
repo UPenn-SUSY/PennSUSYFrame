@@ -110,8 +110,8 @@ if __name__ == '__main__':
     data_set_dicts = []
 
     data_samples = {}
-    # full_sim_mc_samples = { 117650:{'label':'117650.AlpgenPythia_P2011C_ZeeNp0'       , 'num_jobs':10}
-    full_sim_mc_samples = { 117650:{'label':'117650.AlpgenPythia_P2011C_ZeeNp0'       , 'num_jobs':1}
+    full_sim_mc_samples = { 117655:{'label':'117655.AlpgenPythia_P2011C_ZeeNp5'       , 'num_jobs':1}
+    #full_sim_mc_samples = { 117650:{'label':'117650.AlpgenPythia_P2011C_ZeeNp0'       , 'num_jobs':1}
                           # , 117651:{'label':'117651.AlpgenPythia_P2011C_ZeeNp1'       , 'num_jobs':10}
                           # , 117652:{'label':'117652.AlpgenPythia_P2011C_ZeeNp2'       , 'num_jobs':5}
                           # , 117653:{'label':'117653.AlpgenPythia_P2011C_ZeeNp3'       , 'num_jobs':1}

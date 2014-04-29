@@ -71,6 +71,7 @@ namespace PennSusyFrame
     private:
       std::vector<TH1F*> m_h_mll;
       std::vector<TH1F*> m_h_mt2;
+      std::vector<TH1F*> m_h_ptll;
   };
 
   // =============================================================================

@@ -70,7 +70,16 @@ PennSusyFrame::IsrAnalysis::IsrAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::IsrAnalysis::~IsrAnalysis()
-{}
+{
+  size_t term_1 = m_isr_histogram_handler.size();
+  for (size_t it_1 = 0; it_1 != term_1; ++it_1) {
+    if ( m_isr_histogram_handler.at(it_1) ) {
+      delete m_isr_histogram_handler.at(it_1);
+      m_isr_histogram_handler.at(it_1) = 0;
+    }
+  }
+
+}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::IsrAnalysis::prepareTools()
@@ -656,19 +665,20 @@ void PennSusyFrame::IsrAnalysis::finalizeRun()
   for ( unsigned int hist_level = 0
 	  ; hist_level != ISR_HIST_N
 	  ; ++hist_level
-	) {
-    TDirectory* hist_dir_cut_level = out_hist_file.mkdir(PennSusyFrame::ISR_HIST_LEVEL_STRINGS[hist_level].c_str());
+	) 
+    {
+      TDirectory* hist_dir_cut_level = out_hist_file.mkdir(PennSusyFrame::ISR_HIST_LEVEL_STRINGS[hist_level].c_str());
+      
+      size_t num_hists = m_histogram_handlers.at(hist_level).size();
+      for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+	std::cout << "\twriting histogram handler " << hist_it << " to file\n";
+	m_histogram_handlers.at(hist_level).at(hist_it)->write(hist_dir_cut_level);
+      }
     
-    size_t num_hists = m_histogram_handlers.at(hist_level).size();
-    for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-      std::cout << "\twriting histogram handler " << hist_it << " to file\n";
-      m_histogram_handlers.at(hist_level).at(hist_it)->write(hist_dir_cut_level);
+      m_isr_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
     }
-    
-    //m_isr_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
-  }
   std::cout << "done writing histograms to file\n";
-
+  
   out_hist_file.Close();
   std::cout << "file is closed!\n";
 
@@ -687,18 +697,18 @@ void PennSusyFrame::IsrAnalysis::fillHistHandles( PennSusyFrame::ISR_HIST_LEVELS
   for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
     m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
                                                          , m_event_quantities
-                                                         , m_electrons.getCollection(EL_GOOD)
-                                                         , m_muons.getCollection(MU_GOOD)
+							   , m_electrons.getCollection(EL_GOOD)
+							   , m_muons.getCollection(MU_GOOD)
                                                          , m_jets.getCollection(JET_GOOD)
                                                          , m_met
                                                          , weight
                                                          );
   }
-// m_isr_histogram_handler.at(hist_level)->FillSpecial( m_event
-//                                                        , m_jets.getCollection(JET_B)
-//                                                        , bl_0
-//                                                        , bl_1
-//                                                        , m_mc_truth
-//                                                        , weight
-//                                                        );
+
+  m_isr_histogram_handler.at(hist_level)->FillSpecial( m_event
+						       , m_jets.getCollection(JET_GOOD)
+						       , weight
+						       );
+  
+
 }

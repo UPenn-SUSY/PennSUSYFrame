@@ -35,7 +35,11 @@ namespace PennSusyFrame
       EwkHists(std::string name_tag="");
       virtual ~EwkHists();
 
-      
+      virtual void FillSpecial( const PennSusyFrame::Event&
+                              , const std::vector<PennSusyFrame::Jet*>* jets
+                              , float weight
+                              );      
+
       virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -45,6 +49,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_b_jet_pt_all;
       std::vector<TH1F*> m_h_b_jet_pt_0;
       std::vector<TH1F*> m_h_b_jet_pt_1;
+
+      std::vector<TH1F*> m_h_jet_sum_pt;
 
       std::vector<TH1F*> m_h_mbl_all;
       std::vector<TH1F*> m_h_mbl_0;
