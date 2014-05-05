@@ -25,8 +25,7 @@ PennSusyFrame::EwkHists::EwkHists(std::string name_tag)
 //  const float mbl_max  = 500.;
 //
 
-  std::cout<<FLAVOR_N<<std::endl;
-  
+   
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt histograms
@@ -73,9 +72,6 @@ void PennSusyFrame::EwkHists::FillSpecial( const PennSusyFrame::Event& event
 
   unsigned int jet_size = jet_list->size();
 
-  //  std::cout<<std::endl;
-  //std::cout<<"New event, num jets= "<<jet_size<<std::endl;
-
   for (unsigned int jet = 0; jet != jet_size; ++jet)
     {
       const TLorentzVector *tmp_jet = jet_list->at(jet)->getTlv();
@@ -93,7 +89,6 @@ void PennSusyFrame::EwkHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_jet_sum_pt.at(fc_it)->Fill(jet_sum.Pt()/1000., weight);
 
   }
-  //std::cout<<"Done event"<<std::endl;
 }
 
 
@@ -101,21 +96,13 @@ void PennSusyFrame::EwkHists::FillSpecial( const PennSusyFrame::Event& event
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkHists::write(TDirectory* d)
 {
-
-  std::cout<<"In ewkhists write\n";
-
-  std::cout<<"size: "<< m_h_jet_sum_pt.size()<<"\n";
-  
   d->cd();
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) 
     {
 
-      std::cout<<"flavor channael: "<<fc_it<<std::endl;
-
       m_h_jet_sum_pt.at(fc_it)->Write();
     }
-  std::cout<<"done ewkhists\n";
-
+  
 
 }
