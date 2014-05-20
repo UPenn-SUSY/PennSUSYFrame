@@ -72,6 +72,7 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mll;
       std::vector<TH1F*> m_h_mt2;
       std::vector<TH1F*> m_h_ptll;
+      std::vector<TH1F*> m_h_ht;
   };
 
   // =============================================================================
@@ -162,6 +163,7 @@ namespace PennSusyFrame
     private:
       std::vector<TH1F*> m_h_met_et;
       std::vector<TH1F*> m_h_met_rel;
+      std::vector<TH1F*> m_h_met_sig;
 
       std::vector<TH1F*> m_h_dphi_nearest_object; // dphi between met and nearest object
       std::vector<TH1F*> m_h_dphi_jet_0; // dphi between met and nearest jet

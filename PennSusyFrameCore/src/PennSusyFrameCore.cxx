@@ -370,6 +370,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                         , m_vertices.getCollection(VERTEX_ALL)
                                                         )
                           );
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // prep object containers
   m_electrons.prep(m_d3pd_reader);
@@ -415,6 +416,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                     , m_jets.getCollection(JET_BASELINE)
                                                     )
                       );
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do overlap removal
   m_object_cleaning.fullObjectCleaning( m_electrons
@@ -423,9 +425,18 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                       , m_jets
                                       );
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // calculate Ht variable
+  m_event_quantities.setHt( PennSusyFrame::getHt( m_electrons.getCollection(EL_ALL)
+                                                , m_muons.getCollection(MU_ALL)
+                                                , m_jets.getCollection(JET_ALL)
+                                                )
+                          );
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_met.prep( m_d3pd_reader
             , m_event
+            , m_event_quantities
             , m_electrons.getCollection(EL_ALL)
             , m_muons.getCollection(MU_BASELINE)
             , m_jets.getCollection(JET_ALL)

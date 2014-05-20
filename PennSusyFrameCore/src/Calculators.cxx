@@ -138,3 +138,29 @@ double PennSusyFrame::getEmmaMt( FLAVOR_CHANNEL flavor_channel
                     )
          );
 }
+
+// ------------------------------------------------------------------------------
+double PennSusyFrame::getHt( const std::vector<PennSusyFrame::Electron*>* el_list
+                           , const std::vector<PennSusyFrame::Muon*>* mu_list
+                           , const std::vector<PennSusyFrame::Jet*>* jet_list
+                           )
+{
+  double ht = 0;
+
+  size_t num_el = el_list->size();
+  for (size_t el_it = 0; el_it != num_el; ++el_it) {
+    ht += el_list->at(el_it)->getPt();
+  }
+
+  size_t num_mu = mu_list->size();
+  for (size_t mu_it = 0; mu_it != num_mu; ++mu_it) {
+    ht += mu_list->at(mu_it)->getPt();
+  }
+
+  size_t num_jet = jet_list->size();
+  for (size_t jet_it = 0; jet_it != num_jet; ++jet_it) {
+    ht += jet_list->at(jet_it)->getPt();
+  }
+
+  return ht;
+}

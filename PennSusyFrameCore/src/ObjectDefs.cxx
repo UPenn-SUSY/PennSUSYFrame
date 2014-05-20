@@ -83,6 +83,7 @@ PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
                                                             , m_mt2(0.)
                                                             , m_emma_mt(0.)
                                                             , m_dphi_ll(0.)
+                                                            , m_ht(0.)
                                                             , m_mc_event_weight(1.)
                                                             , m_pile_up_sf(1.)
                                                             , m_lepton_sf(1.)
@@ -103,6 +104,7 @@ void PennSusyFrame::EventLevelQuantities::print() const
             << "\n"
             << "\temma mt: " << m_emma_mt
             << "\tdphi_ll: " << m_dphi_ll
+            << "\tht: " << m_ht
             << "\n"
             << "\tmc event weight: " << m_mc_event_weight
             << "\tlepton sf: " << m_lepton_sf
@@ -911,6 +913,7 @@ void PennSusyFrame::Met::init()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Met::prep( const PennSusyFrame::D3PDReader* reader
                              , const Event& event
+                             , const PennSusyFrame::EventLevelQuantities& event_quantities
                              , const std::vector<PennSusyFrame::Electron*>* el_list
                              , const std::vector<PennSusyFrame::Muon*>* mu_list
                              , const std::vector<PennSusyFrame::Jet*>* jet_list
@@ -943,6 +946,14 @@ void PennSusyFrame::Met::prep( const PennSusyFrame::D3PDReader* reader
     m_met_vec.Set(met_util.etx(), met_util.ety());
     m_met_et = m_met_vec.Mod();
     m_met_phi = m_met_vec.Phi();
+
+    double ht = event_quantities.getHt();
+    if (ht == 0.) {
+      m_met_sig = (m_met_et == 0.) ? 0. : 999999.;
+    }
+    else {
+      m_met_sig = m_met_et/sqrt(event_quantities.getHt());
+    }
   }
 }
 
@@ -980,6 +991,7 @@ void PennSusyFrame::Met::clear()
   m_met_et = 0;
   m_met_phi = 0;
   m_met_rel_et = 0;
+  m_met_sig = 0;
   m_dphi_met_nearest_obj = 999;
 
   m_met_utility.reset();
@@ -1284,6 +1296,7 @@ void PennSusyFrame::Met::print() const
             << "\tMET ey: "  << m_met_vec.Y()
             << "\n"
             << "\tMET rel: " << m_met_rel_et
+            << "\tMET sig: " << m_met_sig
             << "\n";
 }
 

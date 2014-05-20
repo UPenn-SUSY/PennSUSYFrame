@@ -50,6 +50,10 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
   const float ptll_min  = 0.;
   const float ptll_max  = 500.;
 
+  const int   ht_bins = 100;
+  const float ht_min  = 0;
+  const float ht_max  = 5000;
+
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -81,22 +85,37 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                                , mt2_bins, mt2_min, mt2_max
                                )
                      );
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize ptll histograms
-
     m_h_ptll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                 + "__ptll"
-                                 + "__"
-                                 + name_tag
-                                 ).c_str()
-                               , ( "p_{T}^{ll} - "
-                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                 + " ; p_{T}^{ll} [GeV] ; Entries"
-                                 ).c_str()
-                               , ptll_bins, ptll_min, ptll_max
-                               )
-                     );
-   
+                                  + "__ptll"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "p_{T}^{ll} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; p_{T}^{ll} [GeV] ; Entries"
+                                  ).c_str()
+                                , ptll_bins, ptll_min, ptll_max
+                                )
+                      );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize ht histograms
+    m_h_ht.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                + "__ht"
+                                + "__"
+                                + name_tag
+                                ).c_str()
+                              , ( "H_{T}^{ll} - "
+                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                + " ; H_{T} [GeV] ; Entries"
+                                ).c_str()
+                              , ht_bins, ht_min, ht_max
+                              )
+                    );
+
 
   }
 }
@@ -124,6 +143,8 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
 
   float ptll = event_level_quantities.getPtll()/1.e3;
 
+  float ht = event_level_quantities.getHt()/1.e3;
+
   // loop over all flavor channels
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
@@ -131,6 +152,7 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
     m_h_mll.at(fc_it)->Fill(mll, weight);
     m_h_mt2.at(fc_it)->Fill(mt2, weight);
     m_h_ptll.at(fc_it)->Fill(ptll, weight);
+    m_h_ht.at(fc_it)->Fill(ht, weight);
   }
 }
 
@@ -150,6 +172,9 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
 
     //write ptll histograms
     m_h_ptll.at(fc_it)->Write();
+
+    //write ht histograms
+    m_h_ht.at(fc_it)->Write();
   }
 }
 
@@ -594,6 +619,10 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
   const float dphi_min = 0.;
   const float dphi_max = 3.2;
 
+  const int   met_sig_bins = 60;
+  const float met_sig_min  = 0;
+  const float met_sig_max  = 300;
+
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -621,6 +650,19 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                      + " ; E_{T}^{miss,rel} [GeV] ; Entries"
                                      ).c_str()
                                    , met_et_bins, met_et_min, met_et_max
+                                   )
+                         );
+
+    m_h_met_sig.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__met_sig"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                     ).c_str()
+                                   , met_sig_bins, met_sig_min, met_sig_max
                                    )
                          );
 
@@ -713,6 +755,7 @@ void PennSusyFrame::MetHists::Fill( const PennSusyFrame::Event& event
 
   float met_et  = met.getMetEt() /1.e3;
   float met_rel = met.getMetRel()/1.e3;
+  float met_sig = met.getMetSig();
 
   float met_min_dphi_nearest_obj = met.getMinDPhiObj();
   float met_min_dphi_jet_0 = 999;
@@ -764,6 +807,7 @@ void PennSusyFrame::MetHists::Fill( const PennSusyFrame::Event& event
 
     m_h_met_et.at( fc_it)->Fill(met_et , weight);
     m_h_met_rel.at(fc_it)->Fill(met_rel, weight);
+    m_h_met_sig.at(fc_it)->Fill(met_sig, weight);
 
     if (met_min_dphi_nearest_obj != 999) m_h_dphi_nearest_object.at(fc_it)->Fill(met_min_dphi_nearest_obj, weight);
     if (met_min_dphi_jet_0       != 999) m_h_dphi_jet_0.at(         fc_it)->Fill(met_min_dphi_jet_0      , weight);
@@ -784,6 +828,7 @@ void PennSusyFrame::MetHists::write(TDirectory* d)
     // initialize pt histograms
     m_h_met_et.at( fc_it)->Write();
     m_h_met_rel.at(fc_it)->Write();
+    m_h_met_sig.at(fc_it)->Write();
 
     m_h_dphi_nearest_object.at(fc_it)->Write();
     m_h_dphi_jet_0.at(fc_it)->Write();
