@@ -17,18 +17,14 @@ def displayHelp():
 def getListOfTagsToHadd(dir):
     print "Getting list of tags in directory: %s" % dir
     list_of_files = glob.glob("%s/*_of_*.root" % dir)
-    print list_of_files
 
     list_of_tags = []
     for lof in list_of_files:
-        print lof
         this_tag = lof.lstrip('%s/' % dir)
         this_tag = re.sub('\.[0-9]*_of_[0-9]*\.root', '', this_tag)
-        print this_tag
 
         if not this_tag in list_of_tags:
             list_of_tags.append(this_tag)
-        print ''
     return list_of_tags
 
 # ------------------------------------------------------------------------------
@@ -52,11 +48,9 @@ def copyDir(source_file, target_file, dir_name):
 
     # loop over keys, and write all elements to target directory in target file
     for key in list_of_keys:
-        print key
         obj = source_dir.Get(key)
         target_dir.cd()
         obj.Write()
-        target_dir.ls()
 
 # ------------------------------------------------------------------------------
 def makeNewCleanFile(messy_file_name, new_file_name, total_num_events):
