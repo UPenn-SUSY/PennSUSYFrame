@@ -57,7 +57,7 @@ def generateSubmitScript( in_ds
   --rootVer=5.34.17 \
   --cmtConfig=x86_64-slc6-gcc47-opt \
   --outputs=Tnt.root \
-  --excludedSite=ANALY_LRZ,ANALY_GOEGRID \
+  --excludedSite=ANALY_LRZ,ANALY_GOEGRID,ANALY_RHUL_SL6 \
 
 """ % {'in_ds':in_ds, 'out_ds_tag':out_ds_tag, 'tnt_tag':tnt_tag, 'is_data':is_data, 'is_full_mc':is_full_mc}
 
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
     # ------------------------------------------------------------------------------
-    # bkg - top McAtNloJimmy
+    # bkg - top McAtNloJimmy single top
     ds_dict_list = [ { 'tag':'108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl', 'ds':'mc12_8TeV.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.merge.NTUP_SUSY.e1525_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
@@ -180,6 +180,12 @@ if __name__ == '__main__':
     # ------------------------------------------------------------------------------
     # bkg - ttbar__McAtNloJimmy.sh
     ds_dict_list = [ { 'tag':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter', 'ds':'mc12_8TeV.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1513_s1499_s1504_r3945_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                   ]
+    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
+
+    # ------------------------------------------------------------------------------
+    # bkg - ttbar__PowhegPythia.sh
+    ds_dict_list = [ { 'tag':'117050.PowhegPythia_P2011C_ttbar', 'ds':'mc12_8TeV.117050.PowhegPythia_P2011C_ttbar.merge.NTUP_SUSY.e1728_s1773_s1776_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
@@ -328,6 +334,23 @@ if __name__ == '__main__':
                    ,  { 'tag':'110826.AlpgenPythia_P2011C_ZtautaubbNp1', 'ds':'mc12_8TeV.110826.AlpgenPythia_P2011C_ZtautaubbNp1.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    ,  { 'tag':'110827.AlpgenPythia_P2011C_ZtautaubbNp2', 'ds':'mc12_8TeV.110827.AlpgenPythia_P2011C_ZtautaubbNp2.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    ,  { 'tag':'110828.AlpgenPythia_P2011C_ZtautaubbNp3', 'ds':'mc12_8TeV.110828.AlpgenPythia_P2011C_ZtautaubbNp3.merge.NTUP_SUSY.e1477_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                   ]
+    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
+
+    # ------------------------------------------------------------------------------
+    # bkg - AlpgenPythia_Auto Z+bb
+    ds_dict_list = [ { 'tag':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'ds':'mc12_8TeV.200332.AlpgenPythia_Auto_P2011C_ZeebbNp0.merge.NTUP_SUSY.e2384_s1581_s1586_r3658_r3549_p1512/'         , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'ds':'mc12_8TeV.200333.AlpgenPythia_Auto_P2011C_ZeebbNp1.merge.NTUP_SUSY.e2384_s1581_s1586_r3658_r3549_p1512/'         , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'ds':'mc12_8TeV.200334.AlpgenPythia_Auto_P2011C_ZeebbNp2.merge.NTUP_SUSY.e2384_s1581_s1586_r3658_r3549_p1512/'         , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'ds':'mc12_8TeV.200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl.merge.NTUP_SUSY.e2384_s1581_s1586_r3658_r3549_p1512/'     , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'ds':'mc12_8TeV.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.merge.NTUP_SUSY.e2385_s1581_s1586_r3658_r3549_p1512/'       , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'ds':'mc12_8TeV.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.merge.NTUP_SUSY.e2385_s1581_s1586_r3658_r3549_p1512/'       , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'ds':'mc12_8TeV.200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2.merge.NTUP_SUSY.e2385_s1581_s1586_r3658_r3549_p1512/'       , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'ds':'mc12_8TeV.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.merge.NTUP_SUSY.e2385_s1581_s1586_r3658_r3549_p1512/'   , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'ds':'mc12_8TeV.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.merge.NTUP_SUSY.e2386_s1581_s1586_r3658_r3549_p1512/'     , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'ds':'mc12_8TeV.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.merge.NTUP_SUSY.e2386_s1581_s1586_r3658_r3549_p1512/'     , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'ds':'mc12_8TeV.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.merge.NTUP_SUSY.e2386_s1581_s1586_r3658_r3549_p1512/'     , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'ds':'mc12_8TeV.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.merge.NTUP_SUSY.e2386_s1581_s1586_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
@@ -591,6 +614,21 @@ if __name__ == '__main__':
                    , { 'tag':'164321.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_48' , 'ds':'mc12_8TeV.164321.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_48.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    , { 'tag':'164322.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_49' , 'ds':'mc12_8TeV.164322.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_49.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    , { 'tag':'164323.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_50' , 'ds':'mc12_8TeV.164323.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_noslep_lepW_50.merge.NTUP_SUSY.e1461_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                   ]
+    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
+
+    # ------------------------------------------------------------------------------
+    # signal - simplified_wA_signal_grids.sh
+    ds_dict_list = [ { 'tag':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'ds':'mc12_8TeV.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.merge.e2808_a220_a205_r4540_p1512/' , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'ds':'mc12_8TeV.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'ds':'mc12_8TeV.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700'  , 'ds':'mc12_8TeV.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600'  , 'ds':'mc12_8TeV.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500'  , 'ds':'mc12_8TeV.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400'  , 'ds':'mc12_8TeV.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300'  , 'ds':'mc12_8TeV.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200'  , 'ds':'mc12_8TeV.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
+                   , { 'tag':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'ds':'mc12_8TeV.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.merge.e2808_a220_a205_r4540_p1512/'  , 'is_data':0 , 'is_full_mc':0 }
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 

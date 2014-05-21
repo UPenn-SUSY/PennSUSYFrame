@@ -127,7 +127,10 @@ namespace PennSusyFrame
       void setMt2(double val)           { m_mt2 = val; }
       void setEmmaMt(double val)        { m_emma_mt = val; }
       void setDphill(double val)        { m_dphi_ll = val; }
-      void setHt(double val)            { m_ht = val; }
+      void setHtAll(double val)         { m_ht_all = val; }
+      void setHtBaseline(double val)    { m_ht_baseline = val; }
+      void setHtGood(double val)        { m_ht_good = val; }
+      void setHtSignal(double val)      { m_ht_signal = val; }
       void setMcEventWeight(double val) { m_mc_event_weight = val; }
       void setPileUpSF(double val)      { m_pile_up_sf = val; }
       void setLeptonSF(double val)      { m_lepton_sf = val; }
@@ -141,7 +144,10 @@ namespace PennSusyFrame
       double getMt2()           const { return m_mt2; }
       double getEmmaMt()        const { return m_emma_mt; }
       double getDphill()        const { return m_dphi_ll; }
-      double getHt()            const { return m_ht; }
+      double getHtAll()         const { return m_ht_all; }
+      double getHtBaseline()    const { return m_ht_baseline; }
+      double getHtGood()        const { return m_ht_good; }
+      double getHtSignal()      const { return m_ht_signal; }
       double getMcEventWeight() const { return m_mc_event_weight; }
       double getPileUpSF()      const { return m_pile_up_sf; }
       double getLeptonSF()      const { return m_lepton_sf; }
@@ -157,7 +163,10 @@ namespace PennSusyFrame
       double m_mt2;
       double m_emma_mt;
       double m_dphi_ll;
-      double m_ht;
+      double m_ht_all;
+      double m_ht_baseline;
+      double m_ht_good;
+      double m_ht_signal;
       double m_mc_event_weight;
       double m_pile_up_sf;
       double m_lepton_sf;
@@ -783,22 +792,26 @@ namespace PennSusyFrame
 
       void prep( const PennSusyFrame::D3PDReader*
                , const PennSusyFrame::Event&
-               , const PennSusyFrame::EventLevelQuantities&
+               // , const PennSusyFrame::EventLevelQuantities&
                , const std::vector<PennSusyFrame::Electron*>*
                , const std::vector<PennSusyFrame::Muon*>*
                , const std::vector<PennSusyFrame::Jet*>*
                );
+      void constructMetSig( const PennSusyFrame::EventLevelQuantities&);
       void constructMetRel( const std::vector<PennSusyFrame::Electron*>*
                           , const std::vector<PennSusyFrame::Muon*>*
                           , const std::vector<PennSusyFrame::Jet*>*
                           );
 
       const TVector2* getMetVec() const { return &m_met_vec; }
-      double getMetEt() const { return m_met_et; }
-      double getMetPhi() const { return m_met_phi; }
-      double getMetRel() const { return m_met_rel_et; }
-      double getMetSig() const { return m_met_sig; }
-      double getMinDPhiObj() const { return m_dphi_met_nearest_obj; }
+      double getMetEt()           const { return m_met_et; }
+      double getMetPhi()          const { return m_met_phi; }
+      double getMetRel()          const { return m_met_rel_et; }
+      double getMetSigAll()       const { return m_met_sig_all; }
+      double getMetSigBaseline()  const { return m_met_sig_baseline; }
+      double getMetSigGood()      const { return m_met_sig_good; }
+      double getMetSigSignal()    const { return m_met_sig_signal; }
+      double getMinDPhiObj()      const { return m_dphi_met_nearest_obj; }
       double getDPhi(PennSusyFrame::Particle*) const;
 
       void clear();
@@ -815,6 +828,7 @@ namespace PennSusyFrame
                       , std::vector<float>&
                       , std::vector<float>&
                       );
+      double calculateMetSig(double met, double ht);
       template <class T>
         double findMinDphiInList(const std::vector<T*>&);
 
@@ -825,7 +839,10 @@ namespace PennSusyFrame
       double m_met_et;
       double m_met_phi;
       double m_met_rel_et;
-      double m_met_sig;
+      double m_met_sig_all;
+      double m_met_sig_baseline;
+      double m_met_sig_good;
+      double m_met_sig_signal;
       double m_dphi_met_nearest_obj;
   };
 

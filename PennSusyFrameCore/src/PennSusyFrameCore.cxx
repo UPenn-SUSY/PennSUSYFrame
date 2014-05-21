@@ -425,18 +425,10 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                       , m_jets
                                       );
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // calculate Ht variable
-  m_event_quantities.setHt( PennSusyFrame::getHt( m_electrons.getCollection(EL_ALL)
-                                                , m_muons.getCollection(MU_ALL)
-                                                , m_jets.getCollection(JET_ALL)
-                                                )
-                          );
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_met.prep( m_d3pd_reader
             , m_event
-            , m_event_quantities
+            // , m_event_quantities
             , m_electrons.getCollection(EL_ALL)
             , m_muons.getCollection(MU_BASELINE)
             , m_jets.getCollection(JET_ALL)
@@ -527,6 +519,46 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                      , m_jets.getCollection(JET_B)->end()
                      );
   m_jets.setCollection(JET_ALL_CENTRAL, central_jets);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  std::vector<PennSusyFrame::Jet*> signal_jets;
+  signal_jets.reserve(m_jets.num(JET_ALL_CENTRAL) + m_jets.num(JET_FORWARD));
+  signal_jets.insert( signal_jets.end()
+                    , m_jets.getCollection(JET_ALL_CENTRAL)->begin()
+                    , m_jets.getCollection(JET_ALL_CENTRAL)->end()
+                    );
+  signal_jets.insert( signal_jets.end()
+                    , m_jets.getCollection(JET_FORWARD)->begin()
+                    , m_jets.getCollection(JET_FORWARD)->end()
+                    );
+  m_jets.setCollection(JET_ALL_SIGNAL, signal_jets);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // calculate Ht variable
+  m_event_quantities.setHtAll( PennSusyFrame::getHt( m_electrons.getCollection(EL_ALL)
+                                                   , m_muons.getCollection(MU_ALL)
+                                                   , m_jets.getCollection(JET_ALL)
+                                                   )
+                             );
+  m_event_quantities.setHtBaseline( PennSusyFrame::getHt( m_electrons.getCollection(EL_BASELINE)
+                                                        , m_muons.getCollection(MU_BASELINE)
+                                                        , m_jets.getCollection(JET_BASELINE)
+                                                        )
+                                  );
+  m_event_quantities.setHtGood( PennSusyFrame::getHt( m_electrons.getCollection(EL_GOOD)
+                                                    , m_muons.getCollection(MU_GOOD)
+                                                    , m_jets.getCollection(JET_GOOD)
+                                                    )
+                              );
+  m_event_quantities.setHtSignal( PennSusyFrame::getHt( m_electrons.getCollection(EL_SIGNAL)
+                                                      , m_muons.getCollection(MU_SIGNAL)
+                                                      , m_jets.getCollection(JET_ALL_SIGNAL)
+                                                      )
+                                );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // construct met-sig
+  m_met.constructMetSig(m_event_quantities);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // construct met-rel
