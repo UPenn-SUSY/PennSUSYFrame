@@ -43,6 +43,8 @@ void ProgressBar::checkProgress(unsigned int event)
 // -----------------------------------------------------------------------------
 void ProgressBar::printProgressBar(unsigned int event)
 {
+  if (event > m_numEvents) event = event % m_numEvents;
+
   float elapsed_time = static_cast<float>(clock()-m_startTime)/CLOCKS_PER_SEC;
   std::string rate           = getRate(         event, elapsed_time);
   std::string remaining_time = getRemainingTime(event, elapsed_time);
