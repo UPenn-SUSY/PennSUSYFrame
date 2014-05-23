@@ -1025,11 +1025,11 @@
 161986	Sherpa_CT10_llnunu_ZZ_EW6_noHiggs	0.0012314	1.000000 	1.000000 	1.000000 
 161987	Sherpa_CT10_lllnu_WZ_EW6_noHiggs	0.012559	1.000000 	1.000000 	1.000000 
 161988	Sherpa_CT10_llll_ZZ_EW6_noHiggs	0.00073568	1.000000 	1.000000 	1.000000 
-
+#
 # EW6/EW4 with massive b,c
-
-
-
+#
+#
+#
 # SM DiBoson samples: NLO cross-sections source ATL-COM-PHYS-2010-695
 157951	Herwig_AUET2CTEQ6L1_WWtaunuqq	4.745100	1.680000	1.000000	0.05
 # Needs to be updated for correct mass cut, so far use MCFM (M > 60 GeV) / Herwig:
