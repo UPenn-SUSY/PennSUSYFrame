@@ -1262,3 +1262,16 @@
 167509    Pythia8_AU2CTEQ6L1_ZH125_Zllgam        0.000607222    1.00000        0.10133        1.00000
 167501  Pythia8_AU2CTEQ6L1_WH125_Zllgam        0.0001083492    1.00000        1.0000        1.00000
 167551    Pythia8_AU2CTEQ6L1_ttH125_Zllgam    0.000020251308    1.00000        1.00000        1.00000 
+#
+# Direct B-L stop pair production
+202632    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100     0.559757          1.0    1.0    1.0
+202633    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200     0.0185245         1.0    1.0    1.0
+202634    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300     0.00199608        1.0    1.0    1.0
+202635    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400     0.00035683        1.0    1.0    1.0
+202636    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500     0.0000855847      1.0    1.0    1.0
+202637    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600     0.0000248009      1.0    1.0    1.0
+202638    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700     0.0000081141      1.0    1.0    1.0
+202639    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800     0.00000289588     1.0    1.0    1.0
+202640    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900     0.00000109501     1.0    1.0    1.0
+202641    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000    0.000000435490    1.0    1.0    1.0
+
