@@ -5,9 +5,12 @@ import ROOT
 # ==============================================================================
 # RooRealVar variables used all over the place
 # make RooRealVar for mbl
-mbl_bins = 120
+# mbl_bins = 120
+# mbl_min = 0
+# mbl_max = 1200
+mbl_bins = 50
 mbl_min = 0
-mbl_max = 1200
+mbl_max = 500
 mbl_real_var = ROOT.RooRealVar( 'mbl'
                               , 'mbl'
                               , mbl_min
@@ -80,80 +83,14 @@ def getPdfFromFile(file_name, hist_name, roo_real_var, label):
 def getFunctionalForm( function_name
                      , roo_real_var
                      ):
-    return 1
+    p0 = ROOT.RooRealVar('p0', 'p0', 1)
+    p1 = ROOT.RooRealVar('p1', 'p1', 1)
+    p2 = ROOT.RooRealVar('p2', 'p2', 1)
+    p3 = ROOT.RooRealVar('p3', 'p3', 1)
 
-# # ------------------------------------------------------------------------------
-# def performFit( data_dh
-#               , bkg_template
-#               , roo_real_var
-#               , label
-#               , fit_ranges = []
-#               ):
-#     print 'performFit'
-# 
-#     # create clone of our roo_real_var
-#     print 'cloning roo_real_var'
-#     clone_roo_real_var = roo_real_var.clone('fit_var_%s' % roo_real_var.GetName())
-# 
-#     # get normalization of data
-#     print 'getting norm'
-#     norm = data_dh.sum(False)
-# 
-#     # number of fitted background events
-#     # set loose bounds on range
-#     print 'creating n_bkkg_variable'
-#     n_bkg = ROOT.RooRealVar('n_bkg__fit_%s' % label , 'bkg', 0.75*norm, 0, 1.25*norm)
-# 
-#     # define arglists and pdf needed for fit
-#     print 'creating arglist and pdf'
-#     fit_pdf_arglist = ROOT.RooArgList(bkg_template['pdf'])
-#     fit_value_arglist = ROOT.RooArgList(n_bkg)
-#     fit_pdf = ROOT.RooAddPdf( label, label, fit_pdf_arglist, fit_value_arglist)
-# 
-#     # set fit range (sideband)
-#     fit_range_string = ''
-#     for i, fr in enumerate(fit_ranges):
-#         this_fit_range_string = 'fit_range__%s__%s' % (label, i)
-#         clone_roo_real_var.setRange( this_fit_range_string , fr['min'], fr['max'])
-#         if fit_range_string == '':
-#             fit_range_string = this_fit_range_string
-#         else:
-#             fit_range_string = '%s,%s' % (fit_range_string, this_fit_range_string)
-# 
-#     # set search range
-#     # TODO make this more robust
-#     search_range_string = ''
-#     if len(fit_ranges) == 2:
-#         search_range_string = 'search_range__%s__%s' % (label, i)
-#         clone_roo_real_var.setRange(search_range_string, fit_ranges[0]['max'], fit_ranges[1]['min'])
-#         print 'setting range to : %s -- %s' % (fit_ranges[0]['max'], fit_ranges[1]['min'])
-# 
-#     # perform fit
-#     ext = ROOT.RooFit.Extended()
-#     sum_w2_error = ROOT.RooCmdArg.none()
-#     fit_range = ROOT.RooFit.Range(fit_range_string)
-#     print 'fit_range_string: %s -- fit range: %s' % (fit_range_string, fit_range)
-#     coef_range = ROOT.RooCmdArg.none()
-#     print_level = ROOT.RooCmdArg.none()
-#     print 'about to fit'
-#     fit_pdf.fitTo( data_dh
-#                  , ext
-#                  , sum_w2_error
-#                  , fit_range
-#                  , coef_range
-#                  , print_level
-#                  )
-#     print 'done fitting'
-# 
-#     return { 'norm':norm
-#            , 'n_bkg':n_bkg
-#            , 'pdf_arglist':fit_pdf_arglist
-#            , 'value_arglist':fit_value_arglist
-#            , 'pdf':fit_pdf
-#            , 'fit_range_string':fit_range_string
-#            , 'search_range_string':search_range_string
-#            , 'local_roo_real_var':clone_roo_real_var
-#            }
+    bkg_pdf = ROOT.RooGenericPdf('bkg_pdf', 'bkg_pdf', '@0*(1-@4)^@1 * @4^(@2+@3*log(@4))', ROOT.RooArgList(p0, p1, p2, p3, roo_real_var))
+
+    return {'pdf':bkg_pdf , 'parameters':[p0,p1,p2,p3]}
 
 # ------------------------------------------------------------------------------
 def drawToCanvas( roo_object_list
@@ -222,152 +159,6 @@ def getNumBinsInRegion( region_string, roo_real_var, template_hist):
     return ndof
 
 # ------------------------------------------------------------------------------
-def fitAndDrawToCanvas( data_dh
-                      , bkg_functional_form
-                      , roo_real_var
-                      , label
-                      , fit_ranges = []
-                      # , log = False
-                      ):
-    pass
-    # perform fit to data
-#     fit_dict = performFit( data_dh
-#                          , bkg_template
-#                          , roo_real_var
-#                          , label
-#                          , fit_ranges
-#                          )
-# 
-#     print 'fit and draw to canvas -- linear'
-#     print fit_dict['fit_range_string']
-#     draw_dict_lin = drawToCanvas( [data_dh, fit_dict['pdf'], fit_dict['pdf']]
-#                                 , roo_real_var
-#                                 , line_colors = [ROOT.kBlack, ROOT.kRed, ROOT.kGreen]
-#                                 , label = label
-#                                 , range_string_list = ['full_range', fit_dict['fit_range_string'], fit_dict['search_range_string']]
-#                                 , log = False
-#                                 )
-# 
-#     print 'fit and draw to canvas -- log'
-#     print fit_dict['fit_range_string']
-#     draw_dict_log = drawToCanvas( [data_dh, fit_dict['pdf'], fit_dict['pdf']]
-#                                 , roo_real_var
-#                                 , line_colors = [ROOT.kBlack, ROOT.kRed, ROOT.kGreen]
-#                                 , label = label
-#                                 , range_string_list = ['full_range', fit_dict['fit_range_string'], fit_dict['search_range_string']]
-#                                 , log = True
-#                                 )
-# 
-#     norm = fit_dict['n_bkg'].getVal()
-#     err = fit_dict['n_bkg'].getError()
-# 
-#     # get chi2 for sideband and search regions
-#     chi2_sideband = fit_dict['pdf'].createChi2( data_dh
-#                                               , ROOT.RooFit.DataError(ROOT.RooAbsData.Poisson)
-#                                               , ROOT.RooFit.Range(fit_dict['fit_range_string'])
-#                                               )
-#     chi2_search = fit_dict['pdf'].createChi2( data_dh
-#                                             , ROOT.RooFit.DataError(ROOT.RooAbsData.Poisson)
-#                                             , ROOT.RooFit.Range(fit_dict['search_range_string'])
-#                                             )
-# 
-#     # get ndfo for sideband and search regions
-#     ndof_sideband = getNumBinsInRegion( fit_dict['fit_range_string']
-#                                       , fit_dict['local_roo_real_var']
-#                                       , bkg_template['hist']
-#                                       )
-#     ndof_search = getNumBinsInRegion( fit_dict['search_range_string']
-#                                     , fit_dict['local_roo_real_var']
-#                                     , bkg_template['hist']
-#                                     )
-# 
-#     # calculate chi2/ndof for sideband and search regions
-#     chi2_over_ndof_sideband = chi2_sideband.getVal()/ndof_sideband
-#     chi2_over_ndof_search = chi2_search.getVal()/ndof_search
-# 
-#     # make labels for canvas
-#     search_region_string = ''
-#     if len(fit_ranges) == 0: search_region_string = 'N/A'
-#     # TODO make this more robust
-#     elif len(fit_ranges) == 2:
-#         search_region_string = '%d < m_{bl} < %d' % (fit_ranges[0]['max'], fit_ranges[1]['min'])
-# 
-#     label_info          = ROOT.TLatex(0.50, 0.85, 'Search region: %s' % (search_region_string))
-#     label_norm          = ROOT.TLatex(0.50, 0.80, 'Background: %0.1f #pm %0.1f' % (norm, err))
-#     label_chi2_sideband = ROOT.TLatex(0.50, 0.75, '#chi^{2}/ndof (sideband): %0.2f' % chi2_over_ndof_sideband)
-#     label_chi2_search   = ROOT.TLatex(0.50, 0.70, '#chi^{2}/ndof (search): %0.2f'   % chi2_over_ndof_search)
-# 
-#     label_info.SetTextSize(0.04)
-#     label_norm.SetTextSize(0.04)
-#     label_chi2_sideband.SetTextSize(0.04)
-#     label_chi2_search.SetTextSize(0.04)
-# 
-#     label_info.SetNDC()
-#     label_norm.SetNDC()
-#     label_chi2_sideband.SetNDC()
-#     label_chi2_search.SetNDC()
-# 
-#     draw_dict_lin['canv'].cd()
-#     label_info.Draw()
-#     label_norm.Draw()
-#     label_chi2_sideband.Draw()
-#     label_chi2_search.Draw()
-# 
-#     draw_dict_log['canv'].cd()
-#     label_info.Draw()
-#     label_norm.Draw()
-#     label_chi2_sideband.Draw()
-#     label_chi2_search.Draw()
-# 
-#     # save things to dictionary and return them so root doesn't lose them
-#     fit_dict['frame_lin'] = draw_dict_lin['frame']
-#     fit_dict['frame_log'] = draw_dict_log['frame']
-#     fit_dict['canv_lin'] = draw_dict_lin['canv']
-#     fit_dict['canv_log'] = draw_dict_log['canv']
-#     fit_dict['label_info'] = label_info
-#     fit_dict['label_norm'] = label_norm
-#     fit_dict['label_chi2_sideband'] = label_chi2_sideband
-#     fit_dict['label_chi2_search'] = label_chi2_search
-#     fit_dict['chi2_sideband'] = chi2_sideband.getVal()
-#     fit_dict['chi2_search'] = chi2_search.getVal()
-#     fit_dict['ndof_sideband'] = ndof_sideband
-#     fit_dict['ndof_search'] = ndof_search
-#     fit_dict['chi2_over_ndof_sideband'] = chi2_over_ndof_sideband
-#     fit_dict['chi2_over_ndof_search'] = chi2_over_ndof_search
-#     return fit_dict
-
-# # ------------------------------------------------------------------------------
-# def performSlidingWindowScan( data_dh
-#                             , bkg_template
-#                             , roo_real_var
-#                             , label
-#                             ):
-#     scanning_window_fit_dict = {}
-# 
-#     for window_center in xrange(100, 1100, 100):
-#         print '--------------------------------------------------------------------------------'
-#         print 'Performing fit for window centered on %s' % window_center
-#         print ' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'
-#         this_label = '%s__%s' % (label, window_center)
-#         window_width = window_center * 0.1
-#         window_min = window_center - window_width
-#         window_max = window_center + window_width
-# 
-#         print 'excluding window -- %s -- %s' % (window_min, window_max)
-# 
-#         this_fit_dict = fitAndDrawToCanvas( data_dh
-#                                           , bkg_template
-#                                           , roo_real_var
-#                                           , this_label
-#                                           , fit_ranges = [ {'min':mbl_min   , 'max':window_min}
-#                                                          , {'min':window_max, 'max':mbl_max}
-#                                                          ]
-#                                           )
-#         scanning_window_fit_dict[this_label] = this_fit_dict
-# 
-#     return scanning_window_fit_dict
-
-# ------------------------------------------------------------------------------
 def main():
     ROOT.gROOT.SetBatch()
 
@@ -378,74 +169,34 @@ def main():
                                   , label = 'toy'
                                   )
 
-    # get functional form
-    bkg_functional_form = getFunctionalForm( function_name = 'fun__flavor_all__mbl_all__BMINUSL_MET'
-                                           , roo_real_var = mbl_real_var
-                                           )
 
+    # --------------------------------------------------------------------------
+    model = ROOT.RooWorkspace('model', True)
 
-    # # draw background template to a canvas
-    # template_draw_dict = drawToCanvas( [bkg_template_dict['pdf']]
-    #                                  , mbl_real_var
-    #                                  , [ROOT.kBlack]
-    #                                  , 'mbl_templates'
-    #                                  , range_string_list = ['full_range']
-    #                                  , log = True
-    #                                  )
+    p0 = ROOT.RooRealVar('p0', 'p0', 10)
+    p1 = ROOT.RooRealVar('p1', 'p1', 1200)
+    p2 = ROOT.RooRealVar('p2', 'p2', 0.15)
+    p3 = ROOT.RooRealVar('p3', 'p3', -0.15)
 
-    # draw toy data to a canvas
-    toy_draw_dict = drawToCanvas( [toy_data_dict['dh']]
-                                , mbl_real_var
-                                , [ROOT.kBlack]
-                                , 'mbl_toy'
-                                , range_string_list = ['full_range']
-                                , log = True
-                                )
+    bkg_pdf = ROOT.RooGenericPdf('bkg_pdf', 'bkg_pdf', '@0*(1-@4)^@1 * @4^(@2+@3*log(@4))', ROOT.RooArgList(p0, p1, p2, p3, mbl_real_var))
+    getattr(model, 'import')(bkg_pdf)
 
-    # Make toy histogram into RooDataHist
-    mbl_toy_dh = toy_data_dict['dh']
+    # ROOT.model.bkg_pdf.fitTo(toy_data_dict['dh'])
+    # --------------------------------------------------------------------------
 
-    # do basic fit -- no sliding window
-    basic_fit_dict = fitAndDrawToCanvas( mbl_toy_dh
-                                       , bkg_functional_form
-                                       , None
-                                       , mbl_real_var
-                                       , 'basic_fit'
-                                       )
+    # draw background template to a canvas
+    mbl_frame = mbl_real_var.frame()
+    toy_data_dict['dh'].plotOn(mbl_frame)
+    # model.pdf('bkg_pdf').plotOn(mbl_frame)
 
-    # # do sliding fit window scan
-    # sliding_window_scan = performSlidingWindowScan( mbl_toy_dh
-    #                                               , bkg_template_dict
-    #                                               , mbl_real_var
-    #                                               , 'sliding_window'
-    #                                               )
+    c_basic_fit = ROOT.TCanvas('c_basic_fit')
+    mbl_frame.Draw()
 
-    # # Print a bunch of info to screen
-    # print 'basic fit -- n_bkg: %s' % basic_fit_dict['n_bkg'].getVal()
-    # for sws in sorted(sliding_window_scan.iterkeys()):
-    #     print sws
-    #     print sliding_window_scan[sws]['n_bkg'].GetName()
-    #     print 'fit window string: %s' % sliding_window_scan[sws]['fit_range_string']
-    #     print 'norm: %s' % sliding_window_scan[sws]['n_bkg'].getVal()
-    #     print 'error: %s' % sliding_window_scan[sws]['n_bkg'].getError()
-    #     print 'chi2_sideband: %s' % sliding_window_scan[sws]['chi2_sideband']
-    #     print 'ndof_sideband: %s' % sliding_window_scan[sws]['ndof_sideband']
-    #     print 'chi2_over_ndof (sideband): %s' % sliding_window_scan[sws]['chi2_over_ndof_sideband']
-    #     print 'chi2_search: %s' % sliding_window_scan[sws]['chi2_search']
-    #     print 'ndof_search: %s' % sliding_window_scan[sws]['ndof_search']
-    #     print 'chi2_over_ndof (search): %s' % sliding_window_scan[sws]['chi2_over_ndof_search']
-    #     print ''
+    out_file = ROOT.TFile('fit.root', 'RECREATE')
+    out_file.cd()
+    c_basic_fit.Write()
 
-    # # write canvas to file
-    # out_file = ROOT.TFile('fit.root', 'RECREATE')
-    # out_file.cd()
-    # template_draw_dict['canv'].Write()
-    # toy_draw_dict['canv'].Write()
-    # basic_fit_dict['canv_lin'].Write()
-    # basic_fit_dict['canv_log'].Write()
-    # for sws in sorted(sliding_window_scan.iterkeys()):
-    #     sliding_window_scan[sws]['canv_lin'].Write()
-    #     sliding_window_scan[sws]['canv_log'].Write()
+    out_file.Close()
 
 # ==============================================================================
 if __name__ == "__main__":
