@@ -10,9 +10,9 @@ import ROOT
 # mbl_max = 1200
 mbl_bins = 50
 mbl_min = 0
-mbl_max = 500
+mbl_max = 1200
 mbl_real_var = ROOT.RooRealVar( 'mbl'
-                              , 'mbl'
+                              , 'mbl [GeV]'
                               , mbl_min
                               , mbl_max
                               )
@@ -66,9 +66,9 @@ def getPdfFromFile(file_name, hist_name, roo_real_var, label):
 
     frame = mbl_real_var.frame()
     data_pdf.plotOn( frame
-                       , ROOT.RooFit.LineColor(ROOT.kBlack)
-                       , ROOT.RooFit.LineWidth(2)
-                       )
+                   , ROOT.RooFit.LineColor(ROOT.kBlack)
+                   , ROOT.RooFit.LineWidth(2)
+                   )
     c_data = ROOT.TCanvas('data_%s' % hist_name)
     frame.Draw()
 
@@ -171,30 +171,62 @@ def main():
 
 
     # --------------------------------------------------------------------------
+    # Crystal ball background function
+    cb_mean  = ROOT.RooRealVar('cb_mean' , 'cb_mean' , 175, 0, 1000)
+    cb_sigma = ROOT.RooRealVar('cb_sigma', 'cb_sigma', 10 , 0, 100)
+    cb_alpha = ROOT.RooRealVar('cb_alpha', 'cb_alpha', -1 , -100, 100)
+    cb_n     = ROOT.RooRealVar('cb_n'    , 'cb_n'    , 1  , -100, 100)
+    bkg_cb = ROOT.RooCBShape( 'bkg_cb'
+                            , 'bkg_cb'
+                            , mbl_real_var
+                            , cb_mean
+                            , cb_sigma
+                            , cb_alpha
+                            , cb_n
+                            )
+
+    # argus background function
+    argus_m0 = ROOT.RooRealVar('argus_m0', 'argus_m0', 4000, 400, 4000)
+    argus_c  = ROOT.RooRealVar('argus_c' , 'argus_c' , -10, -100, 100)
+    bkg_argus = ROOT.RooArgusBG( 'bkg_argus'
+                               , 'bkg_argus'
+                               , mbl_real_var
+                               , argus_m0
+                               , argus_c
+                               )
+
+    # combined background function
+    yield_cb    = ROOT.RooRealVar('yield_cb'   , 'yield_cb'   , 1)
+    yield_argus = ROOT.RooRealVar('yield_argus', 'yield_argus', 1)
+    bkg_pdf = ROOT.RooAddPdf( 'bkg_pdf'
+                            , 'bkg_pdf'
+                            , ROOT.RooArgList(bkg_cb)
+                            , ROOT.RooArgList(yield_cb)
+                            # , ROOT.RooArgList(bkg_cb, bkg_argus)
+                            # , ROOT.RooArgList(yield_cb, yield_argus)
+                            )
+
+    # Create workspace to contain full analysis
     model = ROOT.RooWorkspace('model', True)
-
-    p0 = ROOT.RooRealVar('p0', 'p0', 10)
-    p1 = ROOT.RooRealVar('p1', 'p1', 1200)
-    p2 = ROOT.RooRealVar('p2', 'p2', 0.15)
-    p3 = ROOT.RooRealVar('p3', 'p3', -0.15)
-
-    bkg_pdf = ROOT.RooGenericPdf('bkg_pdf', 'bkg_pdf', '@0*(1-@4)^@1 * @4^(@2+@3*log(@4))', ROOT.RooArgList(p0, p1, p2, p3, mbl_real_var))
     getattr(model, 'import')(bkg_pdf)
 
-    # ROOT.model.bkg_pdf.fitTo(toy_data_dict['dh'])
+    ROOT.model.bkg_pdf.fitTo(toy_data_dict['dh'])
     # --------------------------------------------------------------------------
 
     # draw background template to a canvas
     mbl_frame = mbl_real_var.frame()
     toy_data_dict['dh'].plotOn(mbl_frame)
-    # model.pdf('bkg_pdf').plotOn(mbl_frame)
+    model.pdf('bkg_pdf').plotOn(mbl_frame)
+    model.pdf('bkg_pdf').paramOn(mbl_frame)
 
     c_basic_fit = ROOT.TCanvas('c_basic_fit')
     mbl_frame.Draw()
 
     out_file = ROOT.TFile('fit.root', 'RECREATE')
     out_file.cd()
-    c_basic_fit.Write()
+    c_basic_fit.Write('c_basic_fit_lin')
+    c_basic_fit.SetLogy(True)
+    c_basic_fit.Write('c_basic_fit_log')
 
     out_file.Close()
 
