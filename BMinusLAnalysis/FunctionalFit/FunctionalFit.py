@@ -10,7 +10,7 @@ import ROOT
 # mbl_max = 1200
 mbl_bins = 50
 mbl_min = 0
-mbl_max = 1200
+mbl_max = 500
 mbl_real_var = ROOT.RooRealVar( 'mbl'
                               , 'mbl [GeV]'
                               , mbl_min
@@ -41,56 +41,84 @@ toy_data_file_name = '../ToyBackgrounds/Toys_no_sig.root'
 # toy_data_file_name = '../ToyBackgrounds/Toys__partia_sample_1_of_2__w_sig.root'
 
 # ------------------------------------------------------------------------------
-def getPdfFromFile(file_name, hist_name, roo_real_var, label):
+def getPdfFromFile( file_name
+                  , hist_name
+                  , roo_real_var
+                  , label
+                  , model
+                  ):
     # get data histogram
     f_data = ROOT.TFile.Open(file_name)
     h_data = f_data.Get(hist_name)
     print 'integral of %s: %s' % (label, h_data.Integral())
 
     # make RooDataHist of data hist
-    arg_list = ROOT.RooArgList(roo_real_var)
     data_dh = ROOT.RooDataHist( '%s_dh' % label
                               , h_data.GetTitle()
-                              , arg_list
+                              # , arg_list
+                              , ROOT.RooArgList(roo_real_var)
                               , h_data
                               , 1.0
                               )
 
     # make RooHistPdf of data histogram
-    arg_set = ROOT.RooArgSet(roo_real_var)
     data_pdf = ROOT.RooHistPdf( '%s_pdf' % label
                               , h_data.GetTitle()
-                              , arg_set
+                              # , arg_set
+                              , ROOT.RooArgSet(roo_real_var)
                               , data_dh
                               )
 
-    frame = mbl_real_var.frame()
-    data_pdf.plotOn( frame
-                   , ROOT.RooFit.LineColor(ROOT.kBlack)
-                   , ROOT.RooFit.LineWidth(2)
-                   )
-    c_data = ROOT.TCanvas('data_%s' % hist_name)
-    frame.Draw()
-
-    return { 'hist':h_data
-           , 'dh':data_dh
-           , 'pdf':data_pdf
-           , 'arg_list':arg_list
-           , 'arg_set':arg_set
-           }
+    getattr(model, 'import')(data_dh)
+    getattr(model, 'import')(data_pdf)
+    return getattr(ROOT.model, '%s_dh' % label)
 
 # ------------------------------------------------------------------------------
-def getFunctionalForm( function_name
+def getFunctionalForm( function_tag
                      , roo_real_var
+                     , model
                      ):
-    p0 = ROOT.RooRealVar('p0', 'p0', 1)
-    p1 = ROOT.RooRealVar('p1', 'p1', 1)
-    p2 = ROOT.RooRealVar('p2', 'p2', 1)
-    p3 = ROOT.RooRealVar('p3', 'p3', 1)
+    # --------------------------------------------------------------------------
+    # Crystal ball background function
+    cb_mean  = ROOT.RooRealVar('cb_mean__%s'  % function_tag, 'cb_mean__%s'  % function_tag, 175, 0, 1000)
+    cb_sigma = ROOT.RooRealVar('cb_sigma__%s' % function_tag, 'cb_sigma__%s' % function_tag, 10 , 0, 100)
+    cb_alpha = ROOT.RooRealVar('cb_alpha__%s' % function_tag, 'cb_alpha__%s' % function_tag, -1 , -100, 100)
+    cb_n     = ROOT.RooRealVar('cb_n__%s'     % function_tag, 'cb_n__%s'     % function_tag, 1  , -100, 100)
+    bkg_cb = ROOT.RooCBShape( 'bkg_cb__%s' % function_tag
+                            , 'bkg_cb__%s' % function_tag
+                            , roo_real_var
+                            , cb_mean
+                            , cb_sigma
+                            , cb_alpha
+                            , cb_n
+                            )
 
-    bkg_pdf = ROOT.RooGenericPdf('bkg_pdf', 'bkg_pdf', '@0*(1-@4)^@1 * @4^(@2+@3*log(@4))', ROOT.RooArgList(p0, p1, p2, p3, roo_real_var))
+    # argus background function
+    argus_m0 = ROOT.RooRealVar('argus_m0__%s' % function_tag, 'argus_m0__%s', 4000, 400, 4000)
+    argus_c  = ROOT.RooRealVar('argus_c__%s'  % function_tag, 'argus_c__%s' , -10, -100, 100)
+    bkg_argus = ROOT.RooArgusBG( 'bkg_argus__%s' % function_tag
+                               , 'bkg_argus__%s' % function_tag
+                               , roo_real_var
+                               , argus_m0
+                               , argus_c
+                               )
 
-    return {'pdf':bkg_pdf , 'parameters':[p0,p1,p2,p3]}
+    # combined background function
+    yield_cb    = ROOT.RooRealVar('yield_cb__%s'   % function_tag, 'yield_cb__%s'   % function_tag, 1)
+    yield_argus = ROOT.RooRealVar('yield_argus__%s'% function_tag, 'yield_argus__%s'% function_tag, 1)
+    bkg_pdf = ROOT.RooAddPdf( 'bkg_pdf__%s' % function_tag
+                            , 'bkg_pdf__%s' % function_tag
+                            , ROOT.RooArgList(bkg_cb)
+                            , ROOT.RooArgList(yield_cb)
+                            # , ROOT.RooArgList(bkg_cb, bkg_argus)
+                            # , ROOT.RooArgList(yield_cb, yield_argus)
+                            )
+
+    # Create workspace to contain full analysis
+    getattr(model, 'import')(bkg_pdf)
+
+    print 'returning pdf: bkg_pdf__%s' % function_tag
+    return model.pdf('bkg_pdf__%s' % function_tag)
 
 # ------------------------------------------------------------------------------
 def drawToCanvas( roo_object_list
@@ -100,8 +128,6 @@ def drawToCanvas( roo_object_list
                 , range_string_list
                 , log = False
                 ):
-    print range_string_list
-
     if not len(line_colors) == len(roo_object_list):
         line_colors = [ROOT.kBlack]*len(roo_object_list)
 
@@ -113,14 +139,12 @@ def drawToCanvas( roo_object_list
                       , ROOT.RooFit.LineColor(line_colors[i])
                       , ROOT.RooFit.LineWidth(3)
                       , ROOT.RooFit.DataError(ROOT.RooAbsData.SumW2)
-                      # this_range
                       )
         elif range_string_list[i] == '':
             this_range = ROOT.RooFit.Range('full_range')
             rol.plotOn( frame
                       , ROOT.RooFit.LineColor(line_colors[i])
                       , ROOT.RooFit.LineWidth(3)
-                      # this_range
                       )
         else:
             this_range = ROOT.RooFit.Range(range_string_list[i])
@@ -158,77 +182,54 @@ def getNumBinsInRegion( region_string, roo_real_var, template_hist):
     if ndof == 0: ndof = 1
     return ndof
 
+
 # ------------------------------------------------------------------------------
 def main():
     ROOT.gROOT.SetBatch()
 
-    # get toy histogram
-    toy_data_dict = getPdfFromFile( file_name = toy_data_file_name
-                                  , hist_name = 'toy__flavor_all__mbl_all__BMINUSL_MET'
-                                  , roo_real_var = mbl_real_var
-                                  , label = 'toy'
-                                  )
-
-
-    # --------------------------------------------------------------------------
-    # Crystal ball background function
-    cb_mean  = ROOT.RooRealVar('cb_mean' , 'cb_mean' , 175, 0, 1000)
-    cb_sigma = ROOT.RooRealVar('cb_sigma', 'cb_sigma', 10 , 0, 100)
-    cb_alpha = ROOT.RooRealVar('cb_alpha', 'cb_alpha', -1 , -100, 100)
-    cb_n     = ROOT.RooRealVar('cb_n'    , 'cb_n'    , 1  , -100, 100)
-    bkg_cb = ROOT.RooCBShape( 'bkg_cb'
-                            , 'bkg_cb'
-                            , mbl_real_var
-                            , cb_mean
-                            , cb_sigma
-                            , cb_alpha
-                            , cb_n
-                            )
-
-    # argus background function
-    argus_m0 = ROOT.RooRealVar('argus_m0', 'argus_m0', 4000, 400, 4000)
-    argus_c  = ROOT.RooRealVar('argus_c' , 'argus_c' , -10, -100, 100)
-    bkg_argus = ROOT.RooArgusBG( 'bkg_argus'
-                               , 'bkg_argus'
-                               , mbl_real_var
-                               , argus_m0
-                               , argus_c
-                               )
-
-    # combined background function
-    yield_cb    = ROOT.RooRealVar('yield_cb'   , 'yield_cb'   , 1)
-    yield_argus = ROOT.RooRealVar('yield_argus', 'yield_argus', 1)
-    bkg_pdf = ROOT.RooAddPdf( 'bkg_pdf'
-                            , 'bkg_pdf'
-                            , ROOT.RooArgList(bkg_cb)
-                            , ROOT.RooArgList(yield_cb)
-                            # , ROOT.RooArgList(bkg_cb, bkg_argus)
-                            # , ROOT.RooArgList(yield_cb, yield_argus)
-                            )
-
     # Create workspace to contain full analysis
     model = ROOT.RooWorkspace('model', True)
-    getattr(model, 'import')(bkg_pdf)
 
-    ROOT.model.bkg_pdf.fitTo(toy_data_dict['dh'])
+    # get toy histogram
+    toy_data_dh = getPdfFromFile( file_name = toy_data_file_name
+                                , hist_name = 'toy__flavor_all__mbl_all__BMINUSL_MET'
+                                , roo_real_var = mbl_real_var
+                                , label = 'toy'
+                                , model = model
+                                )
+    model.Print()
+    print toy_data_dh
+
     # --------------------------------------------------------------------------
+    bkg_pdf_basic = getFunctionalForm('basic', mbl_real_var, model)
+    bkg_pdf_basic.fitTo(toy_data_dh)
 
+    # --------------------------------------------------------------------------
     # draw background template to a canvas
-    mbl_frame = mbl_real_var.frame()
-    toy_data_dict['dh'].plotOn(mbl_frame)
-    model.pdf('bkg_pdf').plotOn(mbl_frame)
-    model.pdf('bkg_pdf').paramOn(mbl_frame)
+    plot_basic_lin = drawToCanvas( roo_object_list = [ toy_data_dh, bkg_pdf_basic ]
+                                 , roo_real_var = mbl_real_var
+                                 , line_colors = [ROOT.kBlack, ROOT.kBlue]
+                                 , label = 'basic'
+                                 , range_string_list = ['', '']
+                                 , log = False
+                                 )
+    plot_basic_log = drawToCanvas( roo_object_list = [ toy_data_dh, bkg_pdf_basic ]
+                                 , roo_real_var = mbl_real_var
+                                 , line_colors = [ROOT.kBlack, ROOT.kBlue]
+                                 , label = 'basic'
+                                 , range_string_list = ['', '']
+                                 , log = True
+                                 )
 
-    c_basic_fit = ROOT.TCanvas('c_basic_fit')
-    mbl_frame.Draw()
-
+    # --------------------------------------------------------------------------
     out_file = ROOT.TFile('fit.root', 'RECREATE')
     out_file.cd()
-    c_basic_fit.Write('c_basic_fit_lin')
-    c_basic_fit.SetLogy(True)
-    c_basic_fit.Write('c_basic_fit_log')
-
+    plot_basic_lin['canv'].Write('c_fit_basic__lin')
+    plot_basic_log['canv'].Write('c_fit_basic__log')
     out_file.Close()
+
+    # --------------------------------------------------------------------------
+    model.writeToFile('fit_workspace.root', True)
 
 # ==============================================================================
 if __name__ == "__main__":
