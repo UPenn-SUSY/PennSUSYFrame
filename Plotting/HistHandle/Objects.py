@@ -45,12 +45,15 @@ class HistInfo(object):
         self.marker_style = marker_style
 
     def setHistStyle(self, hist):
-        hist.SetFillColor(  self.fill_color)
+        if self.fill_color is None:
+            hist.SetFillStyle(0)
+        else:
+            hist.SetFillColor(  self.fill_color)
+            hist.SetMarkerColor(self.fill_color)
+            hist.SetMarkerStyle(self.marker_style)
         hist.SetLineColor(  self.line_color)
         hist.SetLineWidth(  self.line_width)
         hist.SetLineStyle(  self.line_style)
-        hist.SetMarkerColor(self.fill_color)
-        hist.SetMarkerStyle(self.marker_style)
 
 # ==============================================================================
 class CanvasInfo(object):

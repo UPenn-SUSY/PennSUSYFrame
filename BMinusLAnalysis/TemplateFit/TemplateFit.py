@@ -2,6 +2,11 @@
 
 import ROOT
 
+import sys
+import os
+sys.path.append('%s/BMinusLAnalysis/FitHelpers/' % os.environ['BASE_WORK_DIR'])
+import FitHelpers as fh
+
 # ==============================================================================
 # RooRealVar variables used all over the place
 # make RooRealVar for mbl
@@ -9,7 +14,7 @@ mbl_bins = 120
 mbl_min = 0
 mbl_max = 1200
 mbl_real_var = ROOT.RooRealVar( 'mbl'
-                              , 'mbl'
+                              , 'mbl [GeV]'
                               , mbl_min
                               , mbl_max
                               )
@@ -51,49 +56,11 @@ bkg_template_file_name = 'Templates/templates__partia_sample_0_of_2.root'
 toy_data_file_name = '../ToyBackgrounds/Toys__partia_sample_1_of_2__w_sig.root'
 
 # ------------------------------------------------------------------------------
-def getTemplateFromFile(file_name, template_name, roo_real_var, label):
-    # get template histogram
-    f_template = ROOT.TFile.Open(file_name)
-    h_template = f_template.Get(template_name)
-    print 'integral of %s: %s' % (label, h_template.Integral())
-
-    # make RooDataHist of template hist
-    arg_list = ROOT.RooArgList(roo_real_var)
-    template_dh = ROOT.RooDataHist( '%s_dh' % label
-                                  , h_template.GetTitle()
-                                  , arg_list
-                                  , h_template
-                                  , 1.0
-                                  )
-
-    # make RooHistPdf of template histogram
-    arg_set = ROOT.RooArgSet(roo_real_var)
-    template_pdf = ROOT.RooHistPdf( '%s_pdf' % label
-                                  , h_template.GetTitle()
-                                  , arg_set
-                                  , template_dh
-                                  )
-
-    frame = mbl_real_var.frame()
-    template_pdf.plotOn( frame
-                       , ROOT.RooFit.LineColor(ROOT.kBlack)
-                       , ROOT.RooFit.LineWidth(2)
-                       )
-    c_template = ROOT.TCanvas('template')
-    frame.Draw()
-
-    return { 'hist':h_template
-           , 'dh':template_dh
-           , 'pdf':template_pdf
-           , 'arg_list':arg_list
-           , 'arg_set':arg_set
-           }
-
-# ------------------------------------------------------------------------------
 def performFit( data_dh
               , bkg_template
               , roo_real_var
               , label
+              , model
               , fit_ranges = []
               ):
     print 'performFit'
@@ -101,6 +68,7 @@ def performFit( data_dh
     # create clone of our roo_real_var
     print 'cloning roo_real_var'
     clone_roo_real_var = roo_real_var.clone('fit_var_%s' % roo_real_var.GetName())
+    getattr(model, 'import')(clone_roo_real_var)
 
     # get normalization of data
     print 'getting norm'
@@ -110,12 +78,14 @@ def performFit( data_dh
     # set loose bounds on range
     print 'creating n_bkkg_variable'
     n_bkg = ROOT.RooRealVar('n_bkg__fit_%s' % label , 'bkg', 0.75*norm, 0, 1.25*norm)
+    getattr(model, 'import')(n_bkg)
 
     # define arglists and pdf needed for fit
     print 'creating arglist and pdf'
     fit_pdf_arglist = ROOT.RooArgList(bkg_template['pdf'])
     fit_value_arglist = ROOT.RooArgList(n_bkg)
     fit_pdf = ROOT.RooAddPdf( label, label, fit_pdf_arglist, fit_value_arglist)
+    getattr(model, 'import')(fit_pdf)
 
     # set fit range (sideband)
     fit_range_string = ''
@@ -163,106 +133,41 @@ def performFit( data_dh
            }
 
 # ------------------------------------------------------------------------------
-def drawToCanvas( roo_object_list
-                , roo_real_var
-                , line_colors
-                , label
-                , range_string_list
-                , log = False
-                ):
-    print range_string_list
-
-    if not len(line_colors) == len(roo_object_list):
-        line_colors = [ROOT.kBlack]*len(roo_object_list)
-
-    frame = roo_real_var.frame()
-
-    for i, rol in enumerate(roo_object_list):
-        if isinstance(rol, ROOT.RooDataHist):
-            rol.plotOn( frame
-                      , ROOT.RooFit.LineColor(line_colors[i])
-                      , ROOT.RooFit.LineWidth(3)
-                      , ROOT.RooFit.DataError(ROOT.RooAbsData.SumW2)
-                      # this_range
-                      )
-        elif range_string_list[i] == '':
-            this_range = ROOT.RooFit.Range('full_range')
-            rol.plotOn( frame
-                      , ROOT.RooFit.LineColor(line_colors[i])
-                      , ROOT.RooFit.LineWidth(3)
-                      # this_range
-                      )
-        else:
-            this_range = ROOT.RooFit.Range(range_string_list[i])
-            rol.plotOn( frame
-                      , ROOT.RooFit.LineColor(line_colors[i])
-                      , ROOT.RooFit.LineWidth(3)
-                      , this_range
-                      )
-
-    c = ROOT.TCanvas('c_%s_%s' % (label, 'log' if log else 'lin') )
-    if log: c.SetLogy()
-    frame.Draw()
-    return {'frame':frame, 'canv':c}
-
-# ------------------------------------------------------------------------------
-def getNumBinsInRegion( region_string, roo_real_var, template_hist):
-    print 'getting ndof for %s' % region_string
-
-    ndof = 0
-    if region_string == '':
-        ndof = roo_real_var.getBins()
-    else:
-        for rs in region_string.split(','):
-            if rs == '':
-                continue
-
-            this_min = roo_real_var.getMin(rs)
-            this_max = roo_real_var.getMax(rs)
-
-            min_bin = template_hist.GetXaxis().FindBin(this_min)
-            max_bin = template_hist.GetXaxis().FindBin(this_max)
-
-            ndof += (max_bin - min_bin)
-
-    if ndof == 0: ndof = 1
-    return ndof
-
-# ------------------------------------------------------------------------------
 def fitAndDrawToCanvas( data_dh
                       , bkg_template
                       , roo_real_var
                       , label
+                      , model
                       , fit_ranges = []
-                      # , log = False
                       ):
     # perform fit to data
     fit_dict = performFit( data_dh
                          , bkg_template
                          , roo_real_var
                          , label
+                         , model
                          , fit_ranges
                          )
 
     print 'fit and draw to canvas -- linear'
     print fit_dict['fit_range_string']
-    draw_dict_lin = drawToCanvas( [data_dh, fit_dict['pdf'], fit_dict['pdf']]
-                                , roo_real_var
-                                , line_colors = [ROOT.kBlack, ROOT.kRed, ROOT.kGreen]
-                                , label = label
-                                , range_string_list = ['full_range', fit_dict['fit_range_string'], fit_dict['search_range_string']]
-                                , log = False
-                                )
+    draw_dict_lin = fh.drawToCanvas( [data_dh, fit_dict['pdf'], fit_dict['pdf']]
+                                   , roo_real_var
+                                   , line_colors = [ROOT.kBlack, ROOT.kRed, ROOT.kGreen]
+                                   , label = label
+                                   , range_string_list = ['full_range', fit_dict['fit_range_string'], fit_dict['search_range_string']]
+                                   , log = False
+                                   )
 
     print 'fit and draw to canvas -- log'
     print fit_dict['fit_range_string']
-    draw_dict_log = drawToCanvas( [data_dh, fit_dict['pdf'], fit_dict['pdf']]
-                                , roo_real_var
-                                , line_colors = [ROOT.kBlack, ROOT.kRed, ROOT.kGreen]
-                                , label = label
-                                , range_string_list = ['full_range', fit_dict['fit_range_string'], fit_dict['search_range_string']]
-                                , log = True
-                                )
+    draw_dict_log = fh.drawToCanvas( [data_dh, fit_dict['pdf'], fit_dict['pdf']]
+                                   , roo_real_var
+                                   , line_colors = [ROOT.kBlack, ROOT.kRed, ROOT.kGreen]
+                                   , label = label
+                                   , range_string_list = ['full_range', fit_dict['fit_range_string'], fit_dict['search_range_string']]
+                                   , log = True
+                                   )
 
     norm = fit_dict['n_bkg'].getVal()
     err = fit_dict['n_bkg'].getError()
@@ -278,14 +183,14 @@ def fitAndDrawToCanvas( data_dh
                                             )
 
     # get ndfo for sideband and search regions
-    ndof_sideband = getNumBinsInRegion( fit_dict['fit_range_string']
-                                      , fit_dict['local_roo_real_var']
-                                      , bkg_template['hist']
-                                      )
-    ndof_search = getNumBinsInRegion( fit_dict['search_range_string']
-                                    , fit_dict['local_roo_real_var']
-                                    , bkg_template['hist']
-                                    )
+    ndof_sideband = fh.getNumBinsInRegion( fit_dict['fit_range_string']
+                                         , fit_dict['local_roo_real_var']
+                                         , bkg_template['hist']
+                                         )
+    ndof_search = fh.getNumBinsInRegion( fit_dict['search_range_string']
+                                       , fit_dict['local_roo_real_var']
+                                       , bkg_template['hist']
+                                       )
 
     # calculate chi2/ndof for sideband and search regions
     chi2_over_ndof_sideband = chi2_sideband.getVal()/ndof_sideband
@@ -347,6 +252,7 @@ def performSlidingWindowScan( data_dh
                             , bkg_template
                             , roo_real_var
                             , label
+                            , model
                             ):
     scanning_window_fit_dict = {}
 
@@ -365,6 +271,7 @@ def performSlidingWindowScan( data_dh
                                           , bkg_template
                                           , roo_real_var
                                           , this_label
+                                          , model
                                           , fit_ranges = [ {'min':mbl_min   , 'max':window_min}
                                                          , {'min':window_max, 'max':mbl_max}
                                                          ]
@@ -377,53 +284,57 @@ def performSlidingWindowScan( data_dh
 def main():
     ROOT.gROOT.SetBatch()
 
+    # Create workspace to contain full analysis
+    model = ROOT.RooWorkspace('model', True)
+
     # get template histogram
-    bkg_template_dict = getTemplateFromFile( file_name = bkg_template_file_name
-                                           , template_name = 'template__flavor_all__mbl_all__BMINUSL_MET'
-                                           , roo_real_var = mbl_real_var
-                                           , label = 'bkg_template'
-                                           )
+    bkg_template_dict = fh.getHistFromFile( file_name = bkg_template_file_name
+                                          , hist_name = 'template__flavor_all__mbl_all__BMINUSL_MET'
+                                          , roo_real_var = mbl_real_var
+                                          , label = 'bkg_template'
+                                          , model = model
+                                          )
 
     # get toy histogram
-    toy_data_dict = getTemplateFromFile( file_name = toy_data_file_name
-                                       , template_name = 'toy__flavor_all__mbl_all__BMINUSL_MET'
-                                       , roo_real_var = mbl_real_var
-                                       , label = 'toy'
-                                       )
+    toy_data_dh = fh.getHistFromFile( file_name = toy_data_file_name
+                                    , hist_name = 'toy__flavor_all__mbl_all__BMINUSL_MET'
+                                    , roo_real_var = mbl_real_var
+                                    , label = 'toy'
+                                    , model = model
+                                    )['dh']
 
     # draw background template to a canvas
-    template_draw_dict = drawToCanvas( [bkg_template_dict['pdf']]
-                                     , mbl_real_var
-                                     , [ROOT.kBlack]
-                                     , 'mbl_templates'
-                                     , range_string_list = ['full_range']
-                                     , log = True
-                                     )
+    template_draw_dict = fh.drawToCanvas( roo_object_list   = [bkg_template_dict['pdf']]
+                                        , roo_real_var      = mbl_real_var
+                                        , line_colors       = [ROOT.kBlack]
+                                        , label             = 'mbl_templates'
+                                        , range_string_list = ['full_range']
+                                        , log               = True
+                                        )
 
     # draw toy data to a canvas
-    toy_draw_dict = drawToCanvas( [toy_data_dict['dh']]
-                                , mbl_real_var
-                                , [ROOT.kBlack]
-                                , 'mbl_toy'
-                                , range_string_list = ['full_range']
-                                , log = True
-                                )
-
-    # Make toy histogram into RooDataHist
-    mbl_toy_dh = toy_data_dict['dh']
+    toy_draw_dict = fh.drawToCanvas( roo_object_list   = [toy_data_dh]
+                                   , roo_real_var      = mbl_real_var
+                                   , line_colors       = [ROOT.kBlack]
+                                   , label             = 'mbl_toy'
+                                   , range_string_list = ['full_range']
+                                   , log               = True
+                                   )
 
     # do basic fit -- no sliding window
-    basic_fit_dict = fitAndDrawToCanvas( mbl_toy_dh
+    basic_fit_dict = fitAndDrawToCanvas( toy_data_dh
                                        , bkg_template_dict
                                        , mbl_real_var
                                        , 'basic_fit'
+                                       , model
                                        )
 
     # do sliding fit window scan
-    sliding_window_scan = performSlidingWindowScan( mbl_toy_dh
+    sliding_window_scan = performSlidingWindowScan( toy_data_dh
                                                   , bkg_template_dict
                                                   , mbl_real_var
                                                   , 'sliding_window'
+                                                  , model
                                                   )
 
     # Print a bunch of info to screen
@@ -452,6 +363,10 @@ def main():
     for sws in sorted(sliding_window_scan.iterkeys()):
         sliding_window_scan[sws]['canv_lin'].Write()
         sliding_window_scan[sws]['canv_log'].Write()
+
+    # --------------------------------------------------------------------------
+    model.writeToFile('fit_workspace.root', True)
+
 
 # ==============================================================================
 if __name__ == "__main__":

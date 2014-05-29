@@ -168,7 +168,8 @@ class HistPainter(object):
                                 , -0.5
                                 , num_handles + 1.5
                                 )
-            tmp_hist.SetFillColor(fill_colors[it])
+            if fill_colors[it]:
+                tmp_hist.SetFillColor(fill_colors[it])
             tmp_hist.SetLineColor(line_colors[it])
             tmp_hist.SetLineWidth(line_widths[it])
             tmp_hist.SetLineStyle(line_styles[it])

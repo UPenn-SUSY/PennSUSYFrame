@@ -20,7 +20,7 @@ class EntryContainer(object):
     # --------------------------------------------------------------------------
     def __init__( self
                 , label
-                , fill_color = 1
+                , fill_color = None
                 , line_color = 1
                 , line_width = 2
                 , line_style = 1
@@ -74,7 +74,7 @@ class InputContainer(object):
     # --------------------------------------------------------------------------
     def __init__( self
                 , name
-                , fill_color = 1
+                , fill_color = None
                 , line_color = 1
                 , line_width = 2
                 , line_style  = 1

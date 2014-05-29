@@ -58,7 +58,8 @@ def plotComparisons( ic_numerator
 
             hm_num   = ic_numerator.genHistMerger(d,h)
             hm_denom = ic_denominator.genHistMerger(d,h)
-            hm_other = None
+            # hm_other = None
+            hm_other = None if ic_other is None else ic_other.genHistMerger(d,h)
 
             # if this is a 1D histogram, draw as stack with ratio
             if hm_num.hist_type is hh.HIST_1D:

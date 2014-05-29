@@ -3,12 +3,12 @@
 import ROOT
 
 # ------------------------------------------------------------------------------
-def getPdfFromFile( file_name
-                  , hist_name
-                  , roo_real_var
-                  , label
-                  , model
-                  ):
+def getHistFromFile( file_name
+                   , hist_name
+                   , roo_real_var
+                   , label
+                   , model
+                   ):
     # get data histogram
     f_data = ROOT.TFile.Open(file_name)
     h_data = f_data.Get(hist_name)
@@ -31,9 +31,14 @@ def getPdfFromFile( file_name
                               , data_dh
                               )
 
+    # add data hist and pdf to model
     getattr(model, 'import')(data_dh)
     getattr(model, 'import')(data_pdf)
-    return getattr(ROOT.model, '%s_dh' % label)
+
+    return { 'dh':model.data('%s_dh'  % label)
+           , 'pdf':model.pdf('%s_pdf' % label)
+           , 'hist':h_data
+           }
 
 # ------------------------------------------------------------------------------
 def drawToCanvas( roo_object_list

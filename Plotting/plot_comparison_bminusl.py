@@ -62,12 +62,82 @@ def main():
                                                             , "${BASE_WORK_DIR}/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root"
                                                             ]
                                         )
-
     ec_single_top = hh.Container.EntryContainer( label = 'Single top'
                                                , fill_color = ROOT.kGreen+2
                                                , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.root"
                                                                    ]
                                                )
+
+    ec_bl_100 = hh.Container.EntryContainer( label = 'B-L stop (100 GeV)'
+                                           , line_color = ROOT.kMagenta
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.hists.root"
+                                                               ]
+                                           )
+    ec_bl_200 = hh.Container.EntryContainer( label = 'B-L stop (200 GeV)'
+                                           , line_color = ROOT.kGreen+2
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.hists.root"
+                                                               ]
+                                           )
+    ec_bl_300 = hh.Container.EntryContainer( label = 'B-L stop (300 GeV)'
+                                           , line_color = ROOT.kGreen+2
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.hists.root"
+                                                               ]
+                                           )
+    ec_bl_400 = hh.Container.EntryContainer( label = 'B-L stop (400 GeV)'
+                                           , line_color = ROOT.kGreen+2
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.hists.root"
+                                                               ]
+                                           )
+    ec_bl_500 = hh.Container.EntryContainer( label = 'B-L stop (500 GeV)'
+                                           , line_color = ROOT.kBlue+2
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.hists.root"
+                                                               ]
+                                           )
+    ec_bl_600 = hh.Container.EntryContainer( label = 'B-L stop (600 GeV)'
+                                           , line_color = ROOT.kGreen+2
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.hists.root"
+                                                               ]
+                                           )
+    ec_bl_700 = hh.Container.EntryContainer( label = 'B-L stop (700 GeV)'
+                                           , line_color = ROOT.kGreen+2
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root"
+                                                               ]
+                                           )
+    ec_bl_800 = hh.Container.EntryContainer( label = 'B-L stop (800 GeV)'
+                                           , line_color = ROOT.kMagenta
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.hists.root"
+                                                               ]
+                                           )
+    ec_bl_900 = hh.Container.EntryContainer( label = 'B-L stop (900 GeV)'
+                                           , line_color = ROOT.kGreen+2
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.hists.root"
+                                                               ]
+                                           )
+    ec_bl_1000 = hh.Container.EntryContainer( label = 'B-L stop (1000 GeV)'
+                                           , line_color = ROOT.kViolet+5
+                                           , line_width = 4
+                                           # , line_style = 4
+                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.hists.root"
+                                                               ]
+                                           )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Collect EntryContainer into InputContainers
@@ -79,13 +149,17 @@ def main():
                                                 , entry_list = [ec_ttbar, ec_Zbb, ec_single_top]
                                                 , lumi_target = 21000
                                                 )
+    ic_signal = hh.Container.InputContainer( name = 'Signal'
+                                           , entry_list = [ec_bl_500, ec_bl_800, ec_bl_1000]
+                                           , lumi_target = 21000
+                                           )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Actually plot comparisons
     out_file_name = 'compare_plots.b_minus_l.root'
     pc.plotComparisons( ic_numerator   = ic_numerator
                       , ic_denominator = ic_denominator
-                      , ic_other       = None
+                      , ic_other       = ic_signal
                       , out_file_name  = out_file_name
                       )
 
