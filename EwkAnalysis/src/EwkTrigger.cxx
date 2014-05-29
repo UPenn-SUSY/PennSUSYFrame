@@ -139,10 +139,11 @@ bool PennSusyFrame::passTriggerMatching( const PennSusyFrame::Event& event
                                        , const std::vector<PennSusyFrame::Muon*>* muons
                                        )
 {
+
   if (event.getPhaseSpace() == PHASE_EE) return passEETriggerMatching(event, trigger, electrons);
   if (event.getPhaseSpace() == PHASE_MM) return passMMTriggerMatching(event, trigger, muons);
-  if (event.getPhaseSpace() == PHASE_EM) return passMETriggerMatching(event, trigger, electrons, muons);
-  if (event.getPhaseSpace() == PHASE_ME) return passEMTriggerMatching(event, trigger, electrons, muons);
+  if (event.getPhaseSpace() == PHASE_EM) return passEMTriggerMatching(event, trigger, electrons, muons);
+  if (event.getPhaseSpace() == PHASE_ME) return passMETriggerMatching(event, trigger, electrons, muons);
   return false;
 }
 
