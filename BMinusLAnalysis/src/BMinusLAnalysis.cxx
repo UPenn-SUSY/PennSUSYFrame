@@ -309,6 +309,16 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_MC_OVERLAP, m_event_weight);
   }
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // fill histograms for BL_PAIRING hist level
+  if (m_pass_event) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BASIC_CLEANING
+                   , 0
+                   , 0
+                   , m_event_weight
+                   );
+  }
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // get number of good leptons
   int num_good_leptons = m_electrons.num(EL_GOOD) + m_muons.num(MU_GOOD);
@@ -429,8 +439,8 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   // fill histograms for BL_PAIRING hist level
   if (m_pass_event) {
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING
-                   , bl_0
-                   , bl_1
+                   , &bl_0
+                   , &bl_1
                    , m_event_weight
                    );
   }
@@ -457,8 +467,8 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   // fill histograms for ZVETO hist level
   if (m_pass_event) {
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_ZVETO
-                   , bl_0
-                   , bl_1
+                   , &bl_0
+                   , &bl_1
                    , m_event_weight
                    );
   }
@@ -484,8 +494,8 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   // fill histograms for MET hist level
   if (m_pass_event) {
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_MET
-                   , bl_0
-                   , bl_1
+                   , &bl_0
+                   , &bl_1
                    , m_event_weight
                    );
   }
@@ -548,8 +558,8 @@ PHASE_SPACE PennSusyFrame::BMinusLAnalysis::getPhaseSpace()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIST_LEVELS hist_level
-                                                    , const PennSusyFrame::blPair& bl_0
-                                                    , const PennSusyFrame::blPair& bl_1
+                                                    , const PennSusyFrame::blPair* bl_0
+                                                    , const PennSusyFrame::blPair* bl_1
                                                     , float weight
                                                     )
 {
@@ -564,11 +574,13 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                          , weight
                                                          );
   }
-  m_bminusl_histogram_handler.at(hist_level)->FillSpecial( m_event
-                                                         , m_jets.getCollection(JET_B)
-                                                         , bl_0
-                                                         , bl_1
-                                                         , m_mc_truth
-                                                         , weight
-                                                         );
+  if (bl_0 && bl_1) {
+    m_bminusl_histogram_handler.at(hist_level)->FillSpecial( m_event
+                                                           , m_jets.getCollection(JET_B)
+                                                           , *bl_0
+                                                           , *bl_1
+                                                           , m_mc_truth
+                                                           , weight
+                                                           );
+  }
 }

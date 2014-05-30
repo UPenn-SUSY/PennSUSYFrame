@@ -13,17 +13,22 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   num_jet_bins = 4;
+  const int   num_jet_bins = 5;
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins - num_jet_min;
 
-  const int   pt_bins = 50;
+  const int   pt_bins = 100;
   const float pt_min  = 0.;
-  const float pt_max  = 500.;
+  const float pt_max  = 1000.;
 
-  const int   mbl_bins = 120;
+  const int   mbl_bins = 60;
   const float mbl_min  = 0.;
   const float mbl_max  = 1200.;
+  // TODO use these variable bin widths to set mbl histogram -- need to get weights in each bin correct first
+  const std::vector<float> mbl_bin_edges[mbl_bins] = generateLogBinning( mbl_min
+                                                                       , mbl_max
+                                                                       , mbl_bins
+                                                                       );
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

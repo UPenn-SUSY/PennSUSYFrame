@@ -14,13 +14,15 @@
 // =============================================================================
 namespace PennSusyFrame
 {
-  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BL_PAIRING
+  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
+                           , BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_ZVETO
                            , BMINUSL_HIST_MET
                            , BMINUSL_HIST_N
                            };
 
-  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BL_PAIRING"
+  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
+                                                   , "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_MET"
                                                    };
@@ -73,8 +75,10 @@ namespace PennSusyFrame
 
     protected:
       void fillHistHandles( BMINUSL_HIST_LEVELS
-                          , const PennSusyFrame::blPair&
-                          , const PennSusyFrame::blPair&
+                          // , const PennSusyFrame::blPair&
+                          // , const PennSusyFrame::blPair&
+                          , const PennSusyFrame::blPair*
+                          , const PennSusyFrame::blPair*
                           , float weight
                           );
       std::string m_out_hist_file_name;

@@ -24,7 +24,8 @@ def main():
     #                                                           ]
     #                                       )
     ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
-                                          , fill_color = ROOT.kAzure+8
+                                          # , fill_color = ROOT.kAzure+8
+                                          , fill_color = ROOT.kGreen+2
                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root"
                                                               ]
                                           )
@@ -63,7 +64,7 @@ def main():
                                                             ]
                                         )
     ec_single_top = hh.Container.EntryContainer( label = 'Single top'
-                                               , fill_color = ROOT.kGreen+2
+                                               , fill_color = ROOT.kGreen-1
                                                , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.root"
                                                                    ]
                                                )
@@ -132,7 +133,7 @@ def main():
                                                                ]
                                            )
     ec_bl_1000 = hh.Container.EntryContainer( label = 'B-L stop (1000 GeV)'
-                                           , line_color = ROOT.kViolet+5
+                                           , line_color = ROOT.kCyan+2
                                            , line_width = 4
                                            # , line_style = 4
                                            , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.hists.root"

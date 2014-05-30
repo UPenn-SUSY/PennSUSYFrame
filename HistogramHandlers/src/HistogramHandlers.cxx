@@ -15,6 +15,28 @@ PennSusyFrame::HistogramHandler::~HistogramHandler()
 { }
 
 // -----------------------------------------------------------------------------
+std::vector<float> PennSusyFrame::HistogramHandler::generateLogBinning( float min
+                                                                      , float max
+                                                                      , size_t n_bins
+                                                                      )
+{
+  std::vector<float> bin_edges;
+  bin_edges.reserve(n_bins+1);
+
+  float log_min = (min > 0 ? log10(min) : min);
+  float log_max = log10(max);
+  float log_spacing = (log_max-log_min)/n_bins;
+
+  for (size_t bin_it = 0; bin_it != n_bins; ++bin_it) {
+    float this_bin_low_edge = min + std::pow(10, bin_it*log_spacing);
+    bin_edges.push_back(this_bin_low_edge);
+  }
+  bin_edges.push_back(max);
+
+  return bin_edges;
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event&
                                           , const PennSusyFrame::EventLevelQuantities&
                                           , const std::vector<PennSusyFrame::Electron*>*
@@ -40,7 +62,7 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
 
   const int   mll_bins = 50;
   const float mll_min  = 0.;
-  const float mll_max  = 500.;
+  const float mll_max  = 1000.;
 
   const int   mt2_bins = 50;
   const float mt2_min  = 0.;
@@ -48,7 +70,7 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
 
   const int   ptll_bins = 50;
   const float ptll_min  = 0.;
-  const float ptll_max  = 500.;
+  const float ptll_max  = 1000.;
 
   const int   ht_bins = 100;
   const float ht_min  = 0;
@@ -231,9 +253,9 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   pt_bins = 50;
+  const int   pt_bins = 100;
   const float pt_min  = 0.;
-  const float pt_max  = 500.;
+  const float pt_max  = 1000.;
 
   const int   ptiso_bins = 30;
   const float ptiso_min  = 0.;
@@ -537,13 +559,13 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   num_jet_bins = 4;
+  const int   num_jet_bins = 10;
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins - num_jet_min;
 
-  const int   pt_bins = 50;
+  const int   pt_bins = 100;
   const float pt_min  = 0.;
-  const float pt_max  = 500.;
+  const float pt_max  = 1000.;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -659,17 +681,17 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   met_et_bins = 60;
+  const int   met_et_bins = 100;
   const float met_et_min  = 0.;
-  const float met_et_max  = 300.;
+  const float met_et_max  = 500.;
 
   const int dphi_bins = 32;
   const float dphi_min = 0.;
   const float dphi_max = 3.2;
 
-  const int   met_sig_bins = 60;
+  const int   met_sig_bins = 100;
   const float met_sig_min  = 0;
-  const float met_sig_max  = 300;
+  const float met_sig_max  = 500;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
