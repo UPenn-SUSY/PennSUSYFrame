@@ -121,6 +121,20 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                  )
                        );
 
+    m_h_mbl_diff.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                      + "__mbl_diff"
+                                      + "__"
+                                      + name_tag
+                                      ).c_str()
+                                    , ( "m_{bl}^{0} - m_{bl}^{1} - "
+                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                      + " ; m_{bl}^{0} - m_{bl}^{1} [GeV] ; Entries"
+                                      ).c_str()
+                                    , mbl_bins, mbl_min, mbl_max
+                                    )
+                          );
+
+
     // initialize ptbl histograms
     m_h_ptbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                       + "__ptbl_all"
@@ -140,7 +154,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                     + "__"
                                     + name_tag
                                     ).c_str()
-                                  , ( "p_{bl,0} - "
+                                  , ( "p_{T}^{bl,0} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + " ; p_{T}^{bl,0} [GeV] ; Entries"
                                     ).c_str()
@@ -160,6 +174,19 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                   , pt_bins, pt_min, pt_max
                                   )
                         );
+
+    m_h_ptbl_diff.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__ptbl_diff"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "p_{T}^{bl,0} - p_{T}^{bl,1} - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; p_{T}^{bl,0} - p_{T}^{bl,1} [GeV] ; Entries"
+                                       ).c_str()
+                                     , pt_bins, pt_min, pt_max
+                                     )
+                           );
 
     // initialize mbl anti-pairing histograms
     m_h_mbl_anti_pairing_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -200,6 +227,19 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                               , mbl_bins, mbl_min, mbl_max
                                               )
                                     );
+
+    m_h_mbl_anti_pairing_diff.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + "__mbl_anti_pairing_diff"
+                                                   + "__"
+                                                   + name_tag
+                                                   ).c_str()
+                                                 , ( "m_{bl}^{0} - m_{bl}^{1} - "
+                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + " ; m_{bl}^{0} - m_{bl}^{1} [GeV] ; Entries"
+                                                   ).c_str()
+                                                 , mbl_bins, mbl_min, mbl_max
+                                                 )
+                                       );
 
     // initialize same parent pairing
     m_h_num_same_parent_pairing.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -339,18 +379,23 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_mbl_all.at(fc_it)->Fill(mbl_1, weight);
     m_h_mbl_0.at(  fc_it)->Fill(mbl_0, weight);
     m_h_mbl_1.at(  fc_it)->Fill(mbl_1, weight);
+    m_h_mbl_diff.at(fc_it)->Fill(fabs(mbl_0 - mbl_1), weight);
 
     // fill ptbl histograms
     m_h_ptbl_all.at(fc_it)->Fill(ptbl_0, weight);
     m_h_ptbl_all.at(fc_it)->Fill(ptbl_1, weight);
     m_h_ptbl_0.at(  fc_it)->Fill(ptbl_0, weight);
     m_h_ptbl_1.at(  fc_it)->Fill(ptbl_1, weight);
+    m_h_ptbl_diff.at(fc_it)->Fill(fabs(ptbl_0 - ptbl_1), weight);
 
     // fill mbl for anti-pairs histograms
     m_h_mbl_anti_pairing_all.at(fc_it)->Fill(mbl_anti_pair_0, weight);
     m_h_mbl_anti_pairing_all.at(fc_it)->Fill(mbl_anti_pair_1, weight);
     m_h_mbl_anti_pairing_0.at(  fc_it)->Fill(mbl_anti_pair_0, weight);
     m_h_mbl_anti_pairing_1.at(  fc_it)->Fill(mbl_anti_pair_1, weight);
+    m_h_mbl_anti_pairing_diff.at(fc_it)->Fill( fabs(mbl_anti_pair_0 - mbl_anti_pair_1)
+                                             , weight
+                                             );
 
     // fill "number of same parent pairing" histograms
     m_h_num_same_parent_pairing.at(fc_it)->Fill(num_same_parent_pairs, weight);
@@ -404,14 +449,17 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_mbl_all.at(fc_it)->Write();
     m_h_mbl_0.at(  fc_it)->Write();
     m_h_mbl_1.at(  fc_it)->Write();
+    m_h_mbl_diff.at(fc_it)->Write();
 
     m_h_ptbl_all.at(fc_it)->Write();
     m_h_ptbl_0.at(  fc_it)->Write();
     m_h_ptbl_1.at(  fc_it)->Write();
+    m_h_ptbl_diff.at(fc_it)->Write();
 
     m_h_mbl_anti_pairing_all.at(fc_it)->Write();
     m_h_mbl_anti_pairing_0.at(  fc_it)->Write();
     m_h_mbl_anti_pairing_1.at(  fc_it)->Write();
+    m_h_mbl_anti_pairing_diff.at(fc_it)->Write();
 
     m_h_num_same_parent_pairing.at(fc_it)->Write();
 
