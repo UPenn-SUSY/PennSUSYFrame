@@ -53,6 +53,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_b_jet_pt_0;
       std::vector<TH1F*> m_h_b_jet_pt_1;
 
+      std::vector<TH1F*> m_h_dphi_bb;
+
       std::vector<TH1F*> m_h_mbl_all;
       std::vector<TH1F*> m_h_mbl_0;
       std::vector<TH1F*> m_h_mbl_1;

@@ -116,6 +116,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_etiso_all;
       std::vector<TH1F*> m_h_etiso_0;
       std::vector<TH1F*> m_h_etiso_1;
+
+      std::vector<TH1F*> m_h_dphi_ll;
   };
 
   // =============================================================================
@@ -145,6 +147,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
+
+      std::vector<TH1F*> m_h_dphi_jj;
   };
 
   // =============================================================================

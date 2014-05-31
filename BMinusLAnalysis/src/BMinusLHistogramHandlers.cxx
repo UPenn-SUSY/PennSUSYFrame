@@ -15,7 +15,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
   const int   num_jet_bins = 5;
   const float num_jet_min  = -0.5;
-  const float num_jet_max  = num_jet_bins - num_jet_min;
+  const float num_jet_max  = num_jet_bins + num_jet_min;
 
   const int   pt_bins = 100;
   const float pt_min  = 0.;
@@ -29,6 +29,10 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                                                        , mbl_max
                                                                        , mbl_bins
                                                                        );
+
+  const int dphi_bins = 32;
+  const float dphi_min = 0.;
+  const float dphi_max = 3.2;
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -85,6 +89,19 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                       , pt_bins, pt_min, pt_max
                                       )
                             );
+
+    m_h_dphi_bb.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__jet_dphi_bb"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#delta#phi(b,b) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #delta#phi(b,b) ; Entries"
+                                     ).c_str()
+                                   , dphi_bins, dphi_min, dphi_max
+                                   )
+                         );
 
     // initialize mbl histograms
     m_h_mbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -309,8 +326,12 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 
   size_t num_jet = b_jet_list->size();
 
-  float pt_0 = ( num_jet > 0 ? b_jet_list->at(0)->getPt()/1.e3 : 0.);
-  float pt_1 = ( num_jet > 1 ? b_jet_list->at(1)->getPt()/1.e3 : 0.);
+  float pt_b_0 = ( num_jet > 0 ? b_jet_list->at(0)->getPt()/1.e3 : 0.);
+  float pt_b_1 = ( num_jet > 1 ? b_jet_list->at(1)->getPt()/1.e3 : 0.);
+
+  float phi_b_0 = ( num_jet > 0 ? b_jet_list->at(0)->getPhi() : 0.);
+  float phi_b_1 = ( num_jet > 1 ? b_jet_list->at(1)->getPhi() : 0.);
+  float dphi_bb = ( num_jet > 1 ? PennSusyFrame::calcDphi(phi_b_0, phi_b_1) : 0);
 
   // fill mbl plots
   float mbl_0 = bl_0.getMbl()/1.e3;
@@ -369,14 +390,15 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 
     // fill leading jet pt histograms
     if (num_jet > 0) {
-      m_h_b_jet_pt_all.at(fc_it)->Fill(pt_0, weight);
-      m_h_b_jet_pt_0.at(  fc_it)->Fill(pt_0, weight);
+      m_h_b_jet_pt_all.at(fc_it)->Fill(pt_b_0, weight);
+      m_h_b_jet_pt_0.at(  fc_it)->Fill(pt_b_0, weight);
     }
 
-    // fill sub-leading jet pt histograms
+    // fill sub-leading jet pt and dphi_bb histograms
     if (num_jet > 1) {
-      m_h_b_jet_pt_all.at(fc_it)->Fill(pt_1, weight);
-      m_h_b_jet_pt_1.at(  fc_it)->Fill(pt_1, weight);
+      m_h_b_jet_pt_all.at(fc_it)->Fill(pt_b_1, weight);
+      m_h_b_jet_pt_1.at(  fc_it)->Fill(pt_b_1, weight);
+      m_h_dphi_bb.at(     fc_it)->Fill(dphi_bb, weight);
     }
 
     // fill mbl histograms
@@ -450,6 +472,8 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_b_jet_pt_all.at(fc_it)->Write();
     m_h_b_jet_pt_0.at(  fc_it)->Write();
     m_h_b_jet_pt_1.at(  fc_it)->Write();
+
+    m_h_dphi_bb.at(     fc_it)->Write();
 
     m_h_mbl_all.at(fc_it)->Write();
     m_h_mbl_0.at(  fc_it)->Write();
