@@ -23,15 +23,20 @@ namespace PennSusyFrame
 // =============================================================================
 namespace PennSusyFrame
 {
-  // =============================================================================
+  // ===========================================================================
   // = HistogramHandler - used as parent class for other histograms
-  // =============================================================================
+  // ===========================================================================
   class HistogramHandler
   {
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
       HistogramHandler(std::string name_tag = "");
       virtual ~HistogramHandler();
+
+      static std::vector<float> generateLogBinning( float min
+                                                  , float max
+                                                  , size_t n_bins
+                                                  );
 
       virtual void Fill( const PennSusyFrame::Event&
                        , const PennSusyFrame::EventLevelQuantities&
@@ -43,16 +48,16 @@ namespace PennSusyFrame
                        );
       virtual void write(TDirectory*);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
   };
 
-  // =============================================================================
+  // ===========================================================================
   // = EventLevelHists
-  // =============================================================================
+  // ===========================================================================
   class EventLevelHists : public HistogramHandler
   {
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public:
       EventLevelHists(std::string name_tag = "");
       virtual ~EventLevelHists();
@@ -67,7 +72,7 @@ namespace PennSusyFrame
                        );
       virtual void write(TDirectory*);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       std::vector<TH1F*> m_h_mll;
       std::vector<TH1F*> m_h_mt2;
@@ -111,6 +116,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_etiso_all;
       std::vector<TH1F*> m_h_etiso_0;
       std::vector<TH1F*> m_h_etiso_1;
+
+      std::vector<TH1F*> m_h_dr_ll;
+      std::vector<TH1F*> m_h_dphi_ll;
+      std::vector<TH1F*> m_h_deta_ll;
   };
 
   // =============================================================================
@@ -140,6 +149,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
+
+      std::vector<TH1F*> m_h_dr_jj;
+      std::vector<TH1F*> m_h_dphi_jj;
+      std::vector<TH1F*> m_h_deta_jj;
   };
 
   // =============================================================================

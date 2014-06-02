@@ -18,56 +18,6 @@ def main():
                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dummy_hists.root"
                                                               ]
                                           )
-    # ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
-    #                                       , fill_color = ROOT.kAzure+8
-    #                                       , input_file_list = [ "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.root"
-    #                                                           ]
-    #                                       )
-    ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
-                                          # , fill_color = ROOT.kAzure+8
-                                          , fill_color = ROOT.kGreen+2
-                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root"
-                                                              ]
-                                          )
-
-    # ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
-    #                                     , fill_color = ROOT.kRed+1
-    #                                     , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.110817.AlpgenPythia_P2011C_ZeebbNp0.hists.root"
-    #                                     , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.110817.AlpgenPythia_P2011C_ZeebbNp0.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110818.AlpgenPythia_P2011C_ZeebbNp1.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110819.AlpgenPythia_P2011C_ZeebbNp2.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110820.AlpgenPythia_P2011C_ZeebbNp3.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110821.AlpgenPythia_P2011C_ZmumubbNp0.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110822.AlpgenPythia_P2011C_ZmumubbNp1.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110823.AlpgenPythia_P2011C_ZmumubbNp2.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110824.AlpgenPythia_P2011C_ZmumubbNp3.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110825.AlpgenPythia_P2011C_ZtautaubbNp0.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110826.AlpgenPythia_P2011C_ZtautaubbNp1.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110827.AlpgenPythia_P2011C_ZtautaubbNp2.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110828.AlpgenPythia_P2011C_ZtautaubbNp3.hists.root"
-    #                                                         ]
-    #                                     )
-    ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
-                                        , fill_color = ROOT.kRed+1
-                                        , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.200332.AlpgenPythia_Auto_P2011C_ZeebbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200333.AlpgenPythia_Auto_P2011C_ZeebbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200334.AlpgenPythia_Auto_P2011C_ZeebbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root"
-                                                            ]
-                                        )
-    ec_single_top = hh.Container.EntryContainer( label = 'Single top'
-                                               , fill_color = ROOT.kGreen-1
-                                               , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.root"
-                                                                   ]
-                                               )
 
     ec_bl_100 = hh.Container.EntryContainer( label = 'B-L stop (100 GeV)'
                                            , line_color = ROOT.kMagenta
@@ -112,7 +62,7 @@ def main():
                                                                ]
                                            )
     ec_bl_700 = hh.Container.EntryContainer( label = 'B-L stop (700 GeV)'
-                                           , line_color = ROOT.kGreen+2
+                                           , line_color = ROOT.kRed+1
                                            , line_width = 4
                                            # , line_style = 4
                                            , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root"
@@ -126,7 +76,7 @@ def main():
                                                                ]
                                            )
     ec_bl_900 = hh.Container.EntryContainer( label = 'B-L stop (900 GeV)'
-                                           , line_color = ROOT.kGreen+2
+                                           , line_color = ROOT.kTeal+4
                                            , line_width = 4
                                            # , line_style = 4
                                            , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.hists.root"
@@ -147,17 +97,23 @@ def main():
                                               , lumi_target = 0.
                                               )
     ic_denominator = hh.Container.InputContainer( name = 'Background'
-                                                , entry_list = [ec_ttbar, ec_Zbb, ec_single_top]
-                                                , lumi_target = 21000
+                                                , entry_list = [ec_dummy]
+                                                , lumi_target = 0
                                                 )
     ic_signal = hh.Container.InputContainer( name = 'Signal'
-                                           , entry_list = [ec_bl_500, ec_bl_800, ec_bl_1000]
+                                           , entry_list = [ ec_bl_500
+                                                          , ec_bl_600
+                                                          , ec_bl_700
+                                                          , ec_bl_800
+                                                          , ec_bl_900
+                                                          , ec_bl_1000
+                                                          ]
                                            , lumi_target = 21000
                                            )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Actually plot comparisons
-    out_file_name = 'compare_plots.b_minus_l.root'
+    out_file_name = 'compare_plots.b_minus_l.signal.root'
     pc.plotComparisons( ic_numerator   = ic_numerator
                       , ic_denominator = ic_denominator
                       , ic_other       = ic_signal

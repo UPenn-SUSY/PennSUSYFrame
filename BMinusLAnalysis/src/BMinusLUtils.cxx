@@ -30,6 +30,24 @@ void PennSusyFrame::blPair::calculate()
 }
 
 // -----------------------------------------------------------------------------
+float PennSusyFrame::blPair::getDphi() const
+{
+  return PennSusyFrame::calcDphi(m_jet->getPhi(), m_lep->getPhi());
+}
+
+// -----------------------------------------------------------------------------
+float PennSusyFrame::blPair::getDeta() const
+{
+  return fabs( m_jet->getEta() - m_lep->getEta() );
+}
+
+// -----------------------------------------------------------------------------
+float PennSusyFrame::blPair::getDr() const
+{
+  return sqrt( pow(getDphi(), 2) + pow(getDeta(), 2) );
+}
+
+// -----------------------------------------------------------------------------
 bool PennSusyFrame::doBLPairing( const PennSusyFrame::Event& event
                                , const std::vector<PennSusyFrame::Electron*>* el_list
                                , const std::vector<PennSusyFrame::Muon*>*     mu_list
@@ -132,77 +150,19 @@ bool PennSusyFrame::sameParent( const PennSusyFrame::Event& event
 {
   if (event.getIsData()) return false;
 
-  if (verbose) {
-    std::cout << "\tgetting lepton parent\n";
-  }
-  int lep_barcode        = lep->getTruthBarcode();
-  int lep_parent_index   = getParentIndex(lep_barcode, mc_truth);
-  int lep_parent_barcode = PennSusyFrame::getBarcodeFromIndex(lep_parent_index, mc_truth);
-
-  if (verbose) {
-    std::cout << "\tlepton barcode: " << lep_barcode << "\n";
-    std::cout << "\tlepton parent index: " << lep_parent_index << "\n";
-    std::cout << "\tlepton parent barcode: " << lep_parent_barcode << "\n";
-  }
-
-  // protect from negative indices
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  int lep_parent_index = getLeptonParentIndex(lep, mc_truth);
   if (lep_parent_index < 0) return false;
-
-  // if the parent of the lepton is a tau, we should step back one level to see
-  // the parent of the tau
+  int lep_parent_barcode = PennSusyFrame::getBarcodeFromIndex(lep_parent_index, mc_truth);
   int lep_parent_pdgid = mc_truth.getPdgId()->at(lep_parent_index);
-  if (fabs(lep_parent_pdgid) == 15) {
-    if (verbose) {
-      std::cout << "\t\tlepton parent == tau"
-                << " -- checking one step back for lepton"
-                << "\n";
-    }
-    // find the parent of the tau
-    int tau_parent_index   = PennSusyFrame::getParentIndex(lep_parent_barcode, mc_truth);
-    int tau_parent_barcode = PennSusyFrame::getBarcodeFromIndex(tau_parent_index, mc_truth);
 
-    lep_parent_index = tau_parent_index;
-    lep_parent_barcode = tau_parent_barcode;
-    lep_parent_pdgid = mc_truth.getPdgId()->at(lep_parent_index);
-
-    if (verbose) {
-      std::cout << "\tlep parent pdgid: " << lep_parent_pdgid << "\n";
-    }
-
-    // protect from negative indices
-    if (lep_parent_index < 0) return false;
-  }
-
-  if (verbose) {
-    std::cout << "\tmatching b jet to b quark\n";
-  }
-  int jet_b_quark_index = PennSusyFrame::matchJetToBQuark(jet, mc_truth);
-
-  // protect from negative indices
-  if (jet_b_quark_index < 0) return false;
-
-  // if we fail to match the b jet to a b quark, we can give up now
-  if (jet_b_quark_index < 0) return false;
-
-  if (verbose) {
-    std::cout << "\tgetting b jet parent\n";
-    std::cout << "\tgetting b jet parent - get jet barcode - b quark index: "
-              << jet_b_quark_index
-              << "\n";
-  }
-  int jet_b_quark_barcode = mc_truth.getBarcode()->at(jet_b_quark_index);
-  int jet_parent_index = PennSusyFrame::getParentIndex( jet_b_quark_barcode, mc_truth);
-  int jet_parent_barcode = PennSusyFrame::getBarcodeFromIndex(jet_parent_index, mc_truth);
-  if (verbose) {
-    std::cout << "\tgetting b jet parent - get parent index - barcode: " << jet_b_quark_barcode << "\n";
-    std::cout << "\tgetting b jet parent - get parent barcode - jet parent index: " << jet_parent_index << "\n";
-    std::cout << "\tjet parent barcode: " << jet_parent_barcode << "\n";
-  }
-
-  // protect from negative indices
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  int jet_parent_index = getJetParentIndex( jet, mc_truth);
   if (jet_parent_index < 0) return false;
 
-  // if the two parents have the same barcode, they are the same!
+  int jet_parent_barcode = PennSusyFrame::getBarcodeFromIndex(jet_parent_index, mc_truth);
+
+  // // if the two parents have the same barcode, they are the same!
   if (lep_parent_barcode == jet_parent_barcode) return true;
 
   // Special case to handle top -- lepton is not directly from top. There is an
@@ -213,19 +173,18 @@ bool PennSusyFrame::sameParent( const PennSusyFrame::Event& event
   int jet_parent_pdgid = mc_truth.getPdgId()->at(jet_parent_index);
 
   if (verbose) {
-    std::cout << "\tjet parent pdgid: " << jet_parent_pdgid << "\n";
-
+    std::cout << "\tjet parent pdgid: "      << jet_parent_pdgid    << "\n";
     std::cout << "\n";
-    std::cout << "\tjet b quark index: " <<  jet_b_quark_index << "\n";
-    std::cout << "\tjet b quark barcode: " << jet_b_quark_barcode << "\n";
+    // std::cout << "\tjet b quark index: "     << jet_b_quark_index   << "\n";
+    // std::cout << "\tjet b quark barcode: "   << jet_b_quark_barcode << "\n";
     std::cout << "\n";
-    std::cout << "\tjet parent index: " << jet_parent_index << "\n";
-    std::cout << "\tjet parent barcode: " << jet_parent_barcode << "\n";
-    std::cout << "\tjet parent pdgid: " << jet_parent_pdgid << "\n";
+    std::cout << "\tjet parent index: "      << jet_parent_index    << "\n";
+    std::cout << "\tjet parent barcode: "    << jet_parent_barcode  << "\n";
+    std::cout << "\tjet parent pdgid: "      << jet_parent_pdgid    << "\n";
     std::cout << "\n";
-    std::cout << "\tlepton parent index: " << lep_parent_index << "\n";
-    std::cout << "\tlepton parent barcode: " << lep_parent_barcode << "\n";
-    std::cout << "\tlepton parent pdgid: " << lep_parent_pdgid << "\n";
+    std::cout << "\tlepton parent index: "   << lep_parent_index    << "\n";
+    std::cout << "\tlepton parent barcode: " << lep_parent_barcode  << "\n";
+    std::cout << "\tlepton parent pdgid: "   << lep_parent_pdgid    << "\n";
   }
 
   // if the parent of the lepton is a W, and the parent of the jet is a top,
@@ -260,8 +219,172 @@ bool PennSusyFrame::sameParent( const PennSusyFrame::Event& event
 }
 
 // -----------------------------------------------------------------------------
+int PennSusyFrame::getLeptonParentIndex( const PennSusyFrame::Lepton* lep
+                                       , const PennSusyFrame::MCTruth& mc_truth
+                                       )
+{
+  // if (verbose) {
+  // std::cout << "\tgetting lepton parent\n";
+  // }
+  int lep_barcode        = lep->getTruthBarcode();
+  int lep_parent_index   = getParentIndex(lep_barcode, mc_truth);
+  int lep_parent_barcode = PennSusyFrame::getBarcodeFromIndex(lep_parent_index, mc_truth);
+
+  // if (verbose) {
+  // std::cout << "\tlepton barcode: " << lep_barcode << "\n";
+  // std::cout << "\tlepton parent index: " << lep_parent_index << "\n";
+  // std::cout << "\tlepton parent barcode: " << lep_parent_barcode << "\n";
+  // if (lep_parent_index >= 0)
+  //   std::cout << "\tlepton parent pdgid: " << mc_truth.getPdgId()->at(lep_parent_index) << "\n";
+  // std::cout << "\n";
+  // }
+
+  // protect from negative indices
+  if (lep_parent_index < 0) return -1;
+
+  // if the parent of the lepton is a tau, we should step back one level to see
+  // the parent of the tau
+  int lep_parent_pdgid = mc_truth.getPdgId()->at(lep_parent_index);
+  if (fabs(lep_parent_pdgid) == 15) {
+    // if (verbose) {
+    // std::cout << "\t\tlepton parent == tau"
+    //           << " -- checking one step back for lepton"
+    //           << "\n";
+    // }
+    // find the parent of the tau
+    int tau_parent_index   = PennSusyFrame::getParentIndex(lep_parent_barcode, mc_truth);
+    int tau_parent_barcode = PennSusyFrame::getBarcodeFromIndex(tau_parent_index, mc_truth);
+
+    lep_parent_index   = tau_parent_index;
+    lep_parent_barcode = tau_parent_barcode;
+    lep_parent_pdgid   = mc_truth.getPdgId()->at(lep_parent_index);
+
+    // if (verbose) {
+    // std::cout << "\tlep parent pdgid: " << lep_parent_pdgid << "\n";
+    // }
+
+    // protect from negative indices
+    // if (lep_parent_index < 0) return -1;
+  }
+  return lep_parent_index;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::getLeptonParentPdgId( const PennSusyFrame::Lepton* lep
+                                       , const PennSusyFrame::MCTruth& mc_truth
+                                       )
+{
+  int index = getLeptonParentIndex(lep, mc_truth);
+  if (index < 0) return 0;
+  return mc_truth.getPdgId()->at(index);
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::getJetParentIndex( const PennSusyFrame::Jet* jet
+                                    , const PennSusyFrame::MCTruth& mc_truth
+                                    )
+{
+  float dummy_dr_min = 0;
+  return getJetParentIndex(jet, mc_truth, dummy_dr_min);
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::getJetParentIndex( const PennSusyFrame::Jet* jet
+                                    , const PennSusyFrame::MCTruth& mc_truth
+                                    , float& return_dr_min
+                                    )
+{
+  // if (verbose) {
+  //   std::cout << "\tmatching b jet to b quark\n";
+  // }
+  int jet_b_quark_index = PennSusyFrame::matchJetToBQuark(jet, mc_truth, return_dr_min);
+
+  // protect from negative indices
+  if (jet_b_quark_index < 0) return -1;
+
+  // if (verbose) {
+  //   std::cout << "\tgetting b jet parent\n";
+  //   std::cout << "\tgetting b jet parent - get jet barcode - b quark index: "
+  //             << jet_b_quark_index
+  //             << "\n";
+  // }
+  int jet_b_quark_barcode = mc_truth.getBarcode()->at(jet_b_quark_index);
+  int jet_parent_index = PennSusyFrame::getParentIndex( jet_b_quark_barcode, mc_truth);
+  // int jet_parent_barcode = PennSusyFrame::getBarcodeFromIndex(jet_parent_index, mc_truth);
+  // if (verbose) {
+  //   std::cout << "\tgetting b jet parent - get parent index - barcode: " << jet_b_quark_barcode << "\n";
+  //   std::cout << "\tgetting b jet parent - get parent barcode - jet parent index: " << jet_parent_index << "\n";
+  //   std::cout << "\tjet parent barcode: " << jet_parent_barcode << "\n";
+  // }
+
+  // protect from negative indices
+  if (jet_parent_index < 0) return -1;
+
+  return jet_parent_index;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::getJetParentPdgId( const PennSusyFrame::Jet* jet
+                                    , const PennSusyFrame::MCTruth& mc_truth
+                                    )
+{
+  float dummy_dr_min = 0;
+  return getJetParentPdgId(jet, mc_truth, dummy_dr_min);
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::getJetParentPdgId( const PennSusyFrame::Jet* jet
+                                    , const PennSusyFrame::MCTruth& mc_truth
+                                    , float& return_dr_min
+                                    )
+{
+  int index = getJetParentIndex(jet, mc_truth, return_dr_min);
+  if (index < 0) return -1;
+  return mc_truth.getPdgId()->at(index);
+}
+
+// ---------------------------------------------------------------------------
+int PennSusyFrame::connectTruthRecord( const PennSusyFrame::MCTruth& mc_truth
+                                     , int broken_index
+                                     )
+{
+  if (broken_index <= 0) return broken_index;
+
+  int broken_pdgid = mc_truth.getPdgId()->at(broken_index);
+  float broken_phi = mc_truth.getPhi()->at(broken_index);
+  float broken_eta = mc_truth.getEta()->at(broken_index);
+
+  int found_missing_link = -1;
+  for ( size_t mc_it = 0
+      ; mc_it != broken_index && found_missing_link < 0
+      ; ++mc_it
+      ) {
+    int this_pdgid = mc_truth.getPdgId()->at(mc_it);
+    if (this_pdgid != broken_pdgid) continue;
+    float this_phi = mc_truth.getPhi()->at(mc_it);
+    float this_eta = mc_truth.getEta()->at(mc_it);
+    if (  fabs(this_phi - broken_phi) < 0.05
+       && fabs(this_eta - broken_eta) < 0.05
+       ) {
+      found_missing_link = mc_it;
+    }
+  }
+  return found_missing_link;
+}
+
+// -----------------------------------------------------------------------------
 int PennSusyFrame::matchJetToBQuark( const PennSusyFrame::Jet* jet
                                    , const PennSusyFrame::MCTruth& mc_truth
+                                   )
+{
+  float dummy_dr_min = 0;
+  return matchJetToBQuark(jet, mc_truth, dummy_dr_min);
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::matchJetToBQuark( const PennSusyFrame::Jet* jet
+                                   , const PennSusyFrame::MCTruth& mc_truth
+                                   , float& return_dr_min
                                    )
 {
   float jet_phi = jet->getPhi();
@@ -270,7 +393,8 @@ int PennSusyFrame::matchJetToBQuark( const PennSusyFrame::Jet* jet
   int match_index = -1;
   //float dr_min = 999;
   // we want to ensure b jet is at least reasonably close to b quark
-  float dr_min = 0.30;
+  // float dr_min = 0.30;
+  float dr_min = 0.40;
 
   std::vector<float>* mc_eta    =  mc_truth.getEta();
   std::vector<float>* mc_phi    =  mc_truth.getPhi();
@@ -293,6 +417,9 @@ int PennSusyFrame::matchJetToBQuark( const PennSusyFrame::Jet* jet
       match_index = mc_it;
     }
   }
+
+  if (match_index != -1) return_dr_min = dr_min;
+  else                   return_dr_min = -1;
 
   return match_index;
 }
@@ -355,8 +482,18 @@ int PennSusyFrame::getParentIndex( int barcode
               << "\t\t\t\t\t\tmother barcode: " << mother_barcode << "\n";
   }
 
+  // place to store the next mother index while we validate it
+  int next_mother_index = mother_index;
   while (mother_pdgid == particle_pdgid && mother_index >= 0) {
-    mother_index = getParticleIndex(mother_barcode, mc_truth);
+    // get the next mother index
+    next_mother_index = getParticleIndex(mother_barcode, mc_truth);
+    // if we reach a mother index <=0, check for a broken truth record
+    if (next_mother_index <= 0) {
+      next_mother_index = connectTruthRecord(mc_truth, mother_index);
+    }
+    // move next mother index to mother_index
+    mother_index = next_mother_index;
+
     if (mother_index < 0) break;
     if (verbose) {
       std::cout << "\t\t\t\t\t\t\t---\n"

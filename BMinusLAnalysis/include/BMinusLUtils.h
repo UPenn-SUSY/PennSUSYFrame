@@ -30,13 +30,20 @@ namespace PennSusyFrame
 
       void setJet(PennSusyFrame::Jet*    jet) { m_jet = jet; }
       void setLep(PennSusyFrame::Lepton* lep) { m_lep = lep; }
-      void setSameParent(bool val) { m_same_parent = val; }
+      void setSameParent(bool val)  { m_same_parent = val; }
+      void setLepFromSusy(bool val) { m_lep_from_susy = val; }
+      void setJetFromSusy(bool val) { m_jet_from_susy = val; }
 
       PennSusyFrame::Jet*    getJet()    const { return m_jet; }
       PennSusyFrame::Lepton* getLepton() const { return m_lep; }
       float getMbl()  const { return m_mbl;  }
       float getPtbl() const { return m_ptbl; }
       bool  getSameParent() const { return m_same_parent; }
+      bool  getLepFromSusy() const { return m_lep_from_susy; }
+      bool  getJetFromSusy() const { return m_jet_from_susy; }
+      float getDphi() const;
+      float getDeta() const;
+      float getDr() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -47,6 +54,8 @@ namespace PennSusyFrame
       float m_ptbl;
 
       bool m_same_parent;
+      bool m_lep_from_susy;
+      bool m_jet_from_susy;
   };
 
 
@@ -74,10 +83,51 @@ namespace PennSusyFrame
                  , bool verbose = false
                  );
 
+  // -----------------------------------------------------------------------------
+  int getLeptonParentIndex( const PennSusyFrame::Lepton*
+                          , const PennSusyFrame::MCTruth&
+                          );
+
+  // -----------------------------------------------------------------------------
+  int getLeptonParentPdgId( const PennSusyFrame::Lepton*
+                          , const PennSusyFrame::MCTruth&
+                          );
+
+  // -----------------------------------------------------------------------------
+  int getJetParentIndex( const PennSusyFrame::Jet*
+                       , const PennSusyFrame::MCTruth&
+                       );
+
+  // -----------------------------------------------------------------------------
+  int getJetParentIndex( const PennSusyFrame::Jet*
+                       , const PennSusyFrame::MCTruth&
+                       , float& return_dr_min
+                       );
+
+  // -----------------------------------------------------------------------------
+  int getJetParentPdgId( const PennSusyFrame::Jet*
+                       , const PennSusyFrame::MCTruth&
+                       );
+
+  // -----------------------------------------------------------------------------
+  int getJetParentPdgId( const PennSusyFrame::Jet*
+                       , const PennSusyFrame::MCTruth&
+                       , float& return_dr_min
+                       );
+
+  // ---------------------------------------------------------------------------
+  int connectTruthRecord( const PennSusyFrame::MCTruth&
+                        , int broken_index
+                        );
+
   // ---------------------------------------------------------------------------
   // match jet to b quark and return the mc index
   int matchJetToBQuark( const PennSusyFrame::Jet*
                       , const PennSusyFrame::MCTruth&
+                      );
+  int matchJetToBQuark( const PennSusyFrame::Jet*
+                      , const PennSusyFrame::MCTruth&
+                      , float& return_dr_min
                       );
 
   // ---------------------------------------------------------------------------

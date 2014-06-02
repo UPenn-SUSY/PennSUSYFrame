@@ -135,6 +135,10 @@ if __name__ == '__main__':
     for lep_pt in [40.e3]:
         for jet_pt in [40.e3]:
             data_samples = {}
+            # full_sim_mc_samples = { # 110817:{'label':'110817.AlpgenPythia_P2011C_ZeebbNp0'    , 'num_jobs':1}
+            #                       }
+            # fast_sim_mc_samples = { 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
+            #                       }
             full_sim_mc_samples = { 117050:{'label':'117050.PowhegPythia_P2011C_ttbar'                 , 'num_jobs':15}
                                   , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':10}
                                   , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
