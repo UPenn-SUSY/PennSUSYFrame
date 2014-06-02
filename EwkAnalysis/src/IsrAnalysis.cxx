@@ -674,11 +674,11 @@ void PennSusyFrame::IsrAnalysis::finalizeRun()
 	std::cout << "\twriting histogram handler " << hist_it << " to file\n";
 	m_histogram_handlers.at(hist_level).at(hist_it)->write(hist_dir_cut_level);
       }
-    
+
       m_isr_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
     }
   std::cout << "done writing histograms to file\n";
-  
+
   out_hist_file.Close();
   std::cout << "file is closed!\n";
 

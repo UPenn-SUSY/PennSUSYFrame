@@ -117,14 +117,14 @@ if __name__ == '__main__':
     data_set_dicts = []
 
     data_samples = {'periodA_egamma':{'label':'periodA_egamma'        , 'num_jobs':10}
-        ##'periodB_egamma':{'label':'periodB_egamma'      , 'num_jobs':10} ##THIS ONE
+        ##'periodB_egamma':{'label':'periodB_egamma'      , 'num_jobs':10} 
                     #, 'periodC_egamma':{'label':'periodC_egamma'      , 'num_jobs':10}
-                    ##'periodD_egamma':{'label':'periodD_egamma'      , 'num_jobs':10} ##THIS ONE TOO
+        #'periodD_egamma':{'label':'periodD_egamma'      , 'num_jobs':10} 
         ##'periodE_egamma':{'label':'periodE_egamma'      , 'num_jobs':10}
                       
                    ## 'periodA_muon':{'label':'periodA_muon'          , 'num_jobs':10}
-                   ## 'periodB_muon':{'label':'periodB_muon'          , 'num_jobs':10}  THIS ONE
-                   ## 'periodC_muon':{'label':'periodC_muon'          , 'num_jobs':10} THIS ONE
+        ##'periodB_muon':{'label':'periodB_muon'          , 'num_jobs':10}  
+        ##'periodC_muon':{'label':'periodC_muon'          , 'num_jobs':10} 
                    ## 'periodD_muon':{'label':'periodD_muon'          , 'num_jobs':10}
                    ##  'periodE_muon':{'label':'periodE_muon'          , 'num_jobs':10}
                      }

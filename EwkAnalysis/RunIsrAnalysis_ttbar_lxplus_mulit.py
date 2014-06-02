@@ -119,20 +119,14 @@ if __name__ == '__main__':
     data_samples = {}
     
     #full_sim_mc_samples = { 117655:{'label':'117655.AlpgenPythia_P2011C_ZeeNp5'       , 'num_jobs':1}
-    full_sim_mc_samples = {160155:{'label':'160155.PowhegPythia8_AU2CT10_ggH125_ZZ4lep'          , 'num_jobs':1}
-        , 160205:{'label':'160205.PowhegPythia8_AU2CT10_VBFH125_ZZ4lep'         , 'num_jobs':1}
-        , 160255:{'label':'160255.Pythia8_AU2CTEQ6L1_WH125_ZZ4lep'              , 'num_jobs':1}
-        , 160305:{'label':'160305.Pythia8_AU2CTEQ6L1_ZH125_ZZ4lep'              , 'num_jobs':1}
-        , 160655:{'label':'160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'        , 'num_jobs':1}
-        , 160705:{'label':'160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'       , 'num_jobs':1}
-        , 160755:{'label':'160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'            , 'num_jobs':1}
-        , 160805:{'label':'160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu'            , 'num_jobs':1}
-        , 161005:{'label':'161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5'  , 'num_jobs':1}
-        , 161055:{'label':'161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5' , 'num_jobs':1}
-        , 161105:{'label':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'              , 'num_jobs':1}
-        , 161155:{'label':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'              , 'num_jobs':1}
-                           }
-
+    full_sim_mc_samples = {105200:{'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter', 'num_jobs':10}
+                           , 117050:{'label':'117050.PowhegPythia_P2011C_ttbar'   , 'num_jobs':10}
+                           , 119353:{'label':'119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW'   , 'num_jobs':1}
+                           , 119354:{'label':'119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj'   , 'num_jobs':1}
+                           , 119355:{'label':'119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ'   , 'num_jobs':1}
+                           , 119356:{'label':'119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj'   , 'num_jobs':1}
+                           , 119583:{'label':'119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW'   , 'num_jobs':1}
+}
     fast_sim_mc_samples = {}
 
 
@@ -177,6 +171,5 @@ if __name__ == '__main__':
     print data_set_dicts
 
     p = Pool(num_processes)
-    print 'BOB'
     p.map(runIsrAnalysisFun, data_set_dicts)
-    print 'Done'
+
