@@ -65,6 +65,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_b_jet_pt_0;
       std::vector<TH1F*> m_h_b_jet_pt_1;
 
+      std::vector<TH1F*> m_h_b_jet_dr_q_all;
+      std::vector<TH1F*> m_h_b_jet_dr_q_0;
+      std::vector<TH1F*> m_h_b_jet_dr_q_1;
+
       std::vector<TH1F*> m_h_dr_bb;
       std::vector<TH1F*> m_h_dphi_bb;
       std::vector<TH1F*> m_h_deta_bb;
@@ -87,6 +91,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_anti_pairing_ratio;
 
       // do the b and l from the pair come from the same parent?
+      std::vector<TH1F*> m_h_num_leptons_from_stop;
+      std::vector<TH1F*> m_h_num_jets_from_stop;
+      std::vector<TH1F*> m_h_num_jets_paired_to_quark;
+
       std::vector<TH1F*> m_h_num_same_parent_pairing;
       std::vector<TH1F*> m_h_same_parent_pairing_pair_0;
       std::vector<TH1F*> m_h_same_parent_pairing_pair_1;

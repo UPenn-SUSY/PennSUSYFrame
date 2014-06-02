@@ -34,6 +34,10 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
   const float dr_min = 0.;
   const float dr_max = 6.0;
 
+  const int  dr_jet_quark_bins = 50;
+  const float dr_jet_quark_min = 0.0;
+  const float dr_jet_quark_max = 0.5;
+
   const int dphi_bins = 32;
   const float dphi_min = 0.;
   const float dphi_max = 3.2;
@@ -213,14 +217,54 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                       )
                             );
 
+    // initialize b jet pt histograms
+    m_h_b_jet_dr_q_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__b_jet_dr_q_all"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "#DeltaR(b jet, b quark) - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; #DeltaR(b jet, b quark) ; Entries"
+                                          ).c_str()
+                                        , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
+                                        )
+                              );
+
+    m_h_b_jet_dr_q_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__b_jet_dr_q_0"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "#DeltaR(b jet, b quark) - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; #DeltaR(b jet, b quark) ; Entries"
+                                        ).c_str()
+                                      , dr_bins, dr_min, dr_max
+                                      )
+                            );
+
+    m_h_b_jet_dr_q_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__b_jet_dr_q_1"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "#DeltaR(b jet, b quark) - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; #DeltaR(b jet, b quark) ; Entries"
+                                        ).c_str()
+                                      , dr_bins, dr_min, dr_max
+                                      )
+                            );
+
     m_h_dr_bb.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                    + "__dr_bb"
                                    + "__"
                                    + name_tag
                                    ).c_str()
-                                 , ( "#deltaR(b,b) - "
+                                 , ( "#DeltaR(b,b) - "
                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #deltaR(b,b) ; Entries"
+                                   + " ; #DeltaR(b,b) ; Entries"
                                    ).c_str()
                                  , dr_bins, dr_min, dr_max
                                  )
@@ -231,9 +275,9 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      + "__"
                                      + name_tag
                                      ).c_str()
-                                   , ( "#delta#phi(b,b) - "
+                                   , ( "#Delta#phi(b,b) - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #delta#phi(b,b) ; Entries"
+                                     + " ; #Delta#phi(b,b) ; Entries"
                                      ).c_str()
                                    , dphi_bins, dphi_min, dphi_max
                                    )
@@ -244,9 +288,9 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      + "__"
                                      + name_tag
                                      ).c_str()
-                                   , ( "#delta#eta(b,b) - "
+                                   , ( "#Delta#eta(b,b) - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #delta#eta(b,b) ; Entries"
+                                     + " ; #Delta#eta(b,b) ; Entries"
                                      ).c_str()
                                    , deta_bins, deta_min, deta_max
                                    )
@@ -439,6 +483,43 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                         );
 
     // initialize same parent pairing
+    m_h_num_leptons_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + "__num_leptons_from_stop"
+                                                   + "__"
+                                                   + name_tag
+                                                   ).c_str()
+                                                 , ( "leptons from stop - "
+                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + " ; leptons from stop ; Entries"
+                                                   ).c_str()
+                                                 , 3, -0.5, 2.5
+                                                 )
+                                       );
+    m_h_num_jets_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__num_jets_from_stop"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "jets from stop - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; jets from stop ; Entries"
+                                                ).c_str()
+                                              , 3, -0.5, 2.5
+                                              )
+                                    );
+    m_h_num_jets_paired_to_quark.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                      + "__num_b_jets_paired_to_quark"
+                                                      + "__"
+                                                      + name_tag
+                                                      ).c_str()
+                                                    , ( "b jets paired to quarks - "
+                                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                      + " ; b jets paired to quarks ; Entries"
+                                                      ).c_str()
+                                                    , 3, -0.5, 2.5
+                                                    )
+                                          );
+
     m_h_num_same_parent_pairing.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                      + "__num_same_parent_pairing"
                                                      + "__"
@@ -768,8 +849,6 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   float dr_bl_anti_pair_0 = bl_anti_pair_0.getDr();
   float dr_bl_anti_pair_1 = bl_anti_pair_1.getDr();
 
-
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // are the pairs from the same parent?
   bool same_parent_pair_0 = PennSusyFrame::sameParent( event
@@ -818,6 +897,40 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // are the leptons from a stop?
+  int num_lep_from_stop = 0;
+  if (fabs(getLeptonParentPdgId(bl_0.getLepton(), mc_truth)) > 1.e6) ++num_lep_from_stop;
+  if (fabs(getLeptonParentPdgId(bl_1.getLepton(), mc_truth)) > 1.e6) ++num_lep_from_stop;
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // are the jets from a stop?
+  int num_jet_from_stop = 0;
+  float dr_jet_q_0 = -1;
+  float dr_jet_q_1 = -1;
+  int num_jet_paired_to_stop = 0;
+  if (fabs(getJetParentPdgId(bl_0.getJet(), mc_truth, dr_jet_q_0)) > 1.e6) ++num_jet_from_stop;
+  if (fabs(getJetParentPdgId(bl_1.getJet(), mc_truth, dr_jet_q_1)) > 1.e6) ++num_jet_from_stop;
+  if (dr_jet_q_0 >=0) ++num_jet_paired_to_stop;
+  if (dr_jet_q_1 >=0) ++num_jet_paired_to_stop;
+
+  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // std::cout << "lepton 0 parent: " << getLeptonParentPdgId(bl_0.getLepton(), mc_truth) << "\n";
+  // std::cout << "jet 0 parent: "    << getJetParentPdgId(bl_0.getJet(), mc_truth) << "  --  dr(j,b): " << dr_jet_q_0 << "\n";
+  // int jet_0_pdgid = getJetParentPdgId(bl_0.getJet(), mc_truth);
+  // if (fabs(jet_0_pdgid) < 5 || fabs(jet_0_pdgid) == 21) {
+  //   std::cout << "\tjet 0 parent index: " << getJetParentIndex(bl_0.getJet(), mc_truth) << "\n";
+  // }
+  // std::cout << "same parent 0: " << same_parent_pair_0 << "\n";
+  // std::cout << "lepton 1 parent: " << getLeptonParentPdgId(bl_1.getLepton(), mc_truth) << "\n";
+  // std::cout << "jet 1 parent: "    << getJetParentPdgId(bl_1.getJet(), mc_truth) << "  --  dr(j,b): " << dr_jet_q_1 << "\n";
+  // int jet_1_pdgid = getJetParentPdgId(bl_1.getJet(), mc_truth);
+  // if (fabs(jet_1_pdgid) < 5 || fabs(jet_1_pdgid) == 21) {
+  //   std::cout << "\tjet 1 parent index: " << getJetParentIndex(bl_1.getJet(), mc_truth) << "\n";
+  // }
+  // std::cout << "same parent 1: " << same_parent_pair_1 << "\n";
+  // std::cout << "num same parents: " << num_same_parent_pairs << "\n";
+  // std::cout << "\n";
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // loop over all flavor channels and fill histograms
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it == FLAVOR_ERROR_1) continue;
@@ -848,6 +961,10 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     if (num_jet > 0) {
       m_h_b_jet_pt_all.at(fc_it)->Fill(pt_b_0, weight);
       m_h_b_jet_pt_0.at(  fc_it)->Fill(pt_b_0, weight);
+      if (dr_jet_q_0 >= 0) {
+        m_h_b_jet_dr_q_all.at(fc_it)->Fill(dr_jet_q_0, weight);
+        m_h_b_jet_dr_q_0.at(  fc_it)->Fill(dr_jet_q_0, weight);
+      }
     }
 
     // fill sub-leading jet pt and dphi_bb histograms
@@ -857,6 +974,10 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
       m_h_dr_bb.at  (     fc_it)->Fill(dr_bb  , weight);
       m_h_dphi_bb.at(     fc_it)->Fill(dphi_bb, weight);
       m_h_deta_bb.at(     fc_it)->Fill(deta_bb, weight);
+      if (dr_jet_q_1 >= 0) {
+        m_h_b_jet_dr_q_all.at(fc_it)->Fill(dr_jet_q_1, weight);
+        m_h_b_jet_dr_q_1.at(  fc_it)->Fill(dr_jet_q_1, weight);
+      }
     }
 
     // fill mbl histograms
@@ -885,6 +1006,11 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_mbl_anti_pairing_ratio.at(fc_it)->Fill( mbl_anti_pair_1/mbl_anti_pair_0
                                               , weight
                                               );
+
+    //
+    m_h_num_leptons_from_stop.at(fc_it)->Fill(   num_lep_from_stop     , weight);
+    m_h_num_jets_from_stop.at(   fc_it)->Fill(   num_jet_from_stop     , weight);
+    m_h_num_jets_paired_to_quark.at(fc_it)->Fill(num_jet_paired_to_stop, weight);
 
     // fill "number of same parent pairing" histograms
     m_h_num_same_parent_pairing.at(fc_it)->Fill(num_same_parent_pairs, weight);
@@ -993,6 +1119,10 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_b_jet_pt_0.at(  fc_it)->Write();
     m_h_b_jet_pt_1.at(  fc_it)->Write();
 
+    m_h_b_jet_dr_q_all.at(fc_it)->Write();
+    m_h_b_jet_dr_q_0.at(  fc_it)->Write();
+    m_h_b_jet_dr_q_1.at(  fc_it)->Write();
+
     m_h_dr_bb.at(fc_it)->Write();
     m_h_dphi_bb.at(fc_it)->Write();
     m_h_deta_bb.at(fc_it)->Write();
@@ -1013,6 +1143,10 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_mbl_anti_pairing_1.at(  fc_it)->Write();
     m_h_mbl_anti_pairing_diff.at(fc_it)->Write();
     m_h_mbl_anti_pairing_ratio.at(fc_it)->Write();
+
+    m_h_num_leptons_from_stop.at(   fc_it)->Write();
+    m_h_num_jets_from_stop.at(      fc_it)->Write();
+    m_h_num_jets_paired_to_quark.at(fc_it)->Write();
 
     m_h_num_same_parent_pairing.at(fc_it)->Write();
     m_h_same_parent_pairing_pair_0.at(fc_it)->Write();
