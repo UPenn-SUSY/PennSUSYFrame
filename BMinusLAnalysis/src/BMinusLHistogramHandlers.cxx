@@ -25,14 +25,22 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
   const float mbl_min  = 0.;
   const float mbl_max  = 1200.;
   // TODO use these variable bin widths to set mbl histogram -- need to get weights in each bin correct first
-  const std::vector<float> mbl_bin_edges[mbl_bins] = generateLogBinning( mbl_min
-                                                                       , mbl_max
-                                                                       , mbl_bins
-                                                                       );
+  // const std::vector<float> mbl_bin_edges[mbl_bins] = generateLogBinning( mbl_min
+  //                                                                      , mbl_max
+  //                                                                      , mbl_bins
+  //                                                                      );
+
+  const int dr_bins = 50;
+  const float dr_min = 0.;
+  const float dr_max = 5.0;
 
   const int dphi_bins = 32;
   const float dphi_min = 0.;
   const float dphi_max = 3.2;
+
+  const int deta_bins = 50;
+  const float deta_min = 0.;
+  const float deta_max = 5.0;
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -49,6 +57,117 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      , num_jet_bins, num_jet_min, num_jet_max
                                      )
                            );
+
+    m_h_bl_dr_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__bl_dr_all"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "#deltaR(b,l) - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; #deltaR(b,l) ; Entries"
+                                       ).c_str()
+                                     , dr_bins, dr_min, dr_max
+                                     )
+                           );
+    m_h_bl_dr_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__bl_dr_0"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#deltaR(b,l) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #deltaR(b,l) ; Entries"
+                                     ).c_str()
+                                   , dr_bins, dr_min, dr_max
+                                   )
+                         );
+    m_h_bl_dr_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__bl_dr_1"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#deltaR(b,l) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #deltaR(b,l) ; Entries"
+                                     ).c_str()
+                                   , dr_bins, dr_min, dr_max
+                                   )
+                         );
+
+    m_h_bl_dphi_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__bl_dphi_all"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "#deltaR(b,l) - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; #deltaR(b,l) ; Entries"
+                                       ).c_str()
+                                     , dphi_bins, dphi_min, dphi_max
+                                     )
+                           );
+    m_h_bl_dphi_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__bl_dphi_0"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#deltaR(b,l) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #deltaR(b,l) ; Entries"
+                                     ).c_str()
+                                   , dphi_bins, dphi_min, dphi_max
+                                   )
+                         );
+    m_h_bl_dphi_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__bl_dphi_1"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#deltaR(b,l) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #deltaR(b,l) ; Entries"
+                                     ).c_str()
+                                   , dphi_bins, dphi_min, dphi_max
+                                   )
+                         );
+
+    m_h_bl_deta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__bl_deta_all"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "#deltaR(b,l) - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; #deltaR(b,l) ; Entries"
+                                       ).c_str()
+                                     , deta_bins, deta_min, deta_max
+                                     )
+                           );
+    m_h_bl_deta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__bl_deta_0"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#deltaR(b,l) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #deltaR(b,l) ; Entries"
+                                     ).c_str()
+                                   , deta_bins, deta_min, deta_max
+                                   )
+                         );
+    m_h_bl_deta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__bl_deta_1"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#deltaR(b,l) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #deltaR(b,l) ; Entries"
+                                     ).c_str()
+                                   , deta_bins, deta_min, deta_max
+                                   )
+                         );
 
     // initialize b jet pt histograms
     m_h_b_jet_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -277,6 +396,106 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                                    )
                                          );
 
+    m_h_same_parent_pairing_pair_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                        + "__same_parent_pairing_pair_0"
+                                                        + "__"
+                                                        + name_tag
+                                                        ).c_str()
+                                                      , ( "same parent - "
+                                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                        + " ; same parent ; Entries"
+                                                        ).c_str()
+                                                      , 2, -0.5, 1.5
+                                                      )
+                                            );
+    m_h_same_parent_pairing_pair_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                        + "__same_parent_pairing_pair_1"
+                                                        + "__"
+                                                        + name_tag
+                                                        ).c_str()
+                                                      , ( "same parent - "
+                                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                        + " ; same parent ; Entries"
+                                                        ).c_str()
+                                                      , 2, -0.5, 1.5
+                                                      )
+                                            );
+
+    m_h_same_parent_pairing_lep_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                       + "__same_parent_pairing_lep_0"
+                                                       + "__"
+                                                       + name_tag
+                                                       ).c_str()
+                                                     , ( "same parent - "
+                                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                       + " ; same parent ; Entries"
+                                                       ).c_str()
+                                                     , 2, -0.5, 1.5
+                                                     )
+                                           );
+    m_h_same_parent_pairing_lep_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                       + "__same_parent_pairing_lep_1"
+                                                       + "__"
+                                                       + name_tag
+                                                       ).c_str()
+                                                     , ( "same parent - "
+                                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                       + " ; same parent ; Entries"
+                                                       ).c_str()
+                                                     , 2, -0.5, 1.5
+                                                     )
+                                           );
+
+    m_h_same_parent_pairing_jet_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                       + "__same_parent_pairing_jet_0"
+                                                       + "__"
+                                                       + name_tag
+                                                       ).c_str()
+                                                     , ( "same parent - "
+                                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                       + " ; same parent ; Entries"
+                                                       ).c_str()
+                                                     , 2, -0.5, 1.5
+                                                     )
+                                           );
+    m_h_same_parent_pairing_jet_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                       + "__same_parent_pairing_jet_1"
+                                                       + "__"
+                                                       + name_tag
+                                                       ).c_str()
+                                                     , ( "same parent - "
+                                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                       + " ; same parent ; Entries"
+                                                       ).c_str()
+                                                     , 2, -0.5, 1.5
+                                                     )
+                                           );
+
+    // m_h_same_parent_pairing_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                                   + "__same_parent_pairing_stop"
+    //                                                   + "__"
+    //                                                   + name_tag
+    //                                                   ).c_str()
+    //                                                 , ( "same parent - "
+    //                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                                   + " ; same parent ; Entries"
+    //                                                   ).c_str()
+    //                                                 , 2, -0.5, 1.5
+    //                                                 )
+    //                                       );
+    // m_h_same_parent_pairing_astp.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                                   + "__same_parent_pairing_astp"
+    //                                                   + "__"
+    //                                                   + name_tag
+    //                                                   ).c_str()
+    //                                                 , ( "same parent - "
+    //                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+    //                                                   + " ; same parent ; Entries"
+    //                                                   ).c_str()
+    //                                                 , 2, -0.5, 1.5
+    //                                                 )
+    //                                       );
+
     // initialize mbl for same parent pairing histograms
     m_h_mbl_same_parent_pairing.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                      + "__mbl_same_parent_pairing"
@@ -341,6 +560,12 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   float ptbl_0 = bl_0.getPtbl()/1.e3;
   float ptbl_1 = bl_1.getPtbl()/1.e3;
 
+  // get lepton and pt from bl pairs
+  float pt_lep_bl_0 = bl_0.getLepton()->getPt()/1.e3;
+  float pt_lep_bl_1 = bl_1.getLepton()->getPt()/1.e3;
+  float pt_b_bl_0   = bl_0.getJet()->getPt()/1.e3;
+  float pt_b_bl_1   = bl_1.getJet()->getPt()/1.e3;
+
   // get b-l pairs for the anti-pairing
   PennSusyFrame::blPair bl_anti_pair_0(bl_0.getJet(), bl_1.getLepton());
   PennSusyFrame::blPair bl_anti_pair_1(bl_1.getJet(), bl_0.getLepton());
@@ -379,6 +604,28 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
                                                           , bl_anti_pair_1.getJet()
                                                           , mc_truth
                                                           );
+
+  bool same_parent_lep_0 = false;
+  bool same_parent_lep_1 = false;
+  if (pt_lep_bl_0 >= pt_lep_bl_1) {
+    same_parent_lep_0 = same_parent_pair_0;
+    same_parent_lep_1 = same_parent_pair_1;
+  }
+  else {
+    same_parent_lep_0 = same_parent_pair_1;
+    same_parent_lep_1 = same_parent_pair_0;
+  }
+
+  bool same_parent_jet_0 = false;
+  bool same_parent_jet_1 = false;
+  if (pt_b_bl_0 >= pt_b_bl_1) {
+    same_parent_jet_0 = same_parent_pair_0;
+    same_parent_jet_1 = same_parent_pair_1;
+  }
+  else {
+    same_parent_jet_0 = same_parent_pair_1;
+    same_parent_jet_1 = same_parent_pair_0;
+  }
 
   // loop over all flavor channels
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -426,6 +673,14 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 
     // fill "number of same parent pairing" histograms
     m_h_num_same_parent_pairing.at(fc_it)->Fill(num_same_parent_pairs, weight);
+    m_h_same_parent_pairing_pair_0.at(fc_it)->Fill(same_parent_pair_0, weight);
+    m_h_same_parent_pairing_pair_1.at(fc_it)->Fill(same_parent_pair_1, weight);
+    m_h_same_parent_pairing_lep_0.at(fc_it)->Fill(same_parent_lep_0  , weight);
+    m_h_same_parent_pairing_lep_1.at(fc_it)->Fill(same_parent_lep_1  , weight);
+    m_h_same_parent_pairing_jet_0.at(fc_it)->Fill(same_parent_jet_0  , weight);
+    m_h_same_parent_pairing_jet_1.at(fc_it)->Fill(same_parent_jet_1  , weight);
+    // m_h_same_parent_pairing_stop.at(fc_it)->Fill(same_parent_stop    , weight);
+    // m_h_same_parent_pairing_astp.at(fc_it)->Fill(same_parent_astp    , weight);
 
     // look at possible pairs, compute mbl for objects coming from same pairs
     if (same_parent_pair_0) {
@@ -469,6 +724,18 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
 
     m_h_num_b_jet.at(fc_it)->Write();
 
+    m_h_bl_dr_all.at(fc_it)->Write();
+    m_h_bl_dr_0.at(fc_it)->Write();
+    m_h_bl_dr_1.at(fc_it)->Write();
+
+    m_h_bl_dphi_all.at(fc_it)->Write();
+    m_h_bl_dphi_0.at(fc_it)->Write();
+    m_h_bl_dphi_1.at(fc_it)->Write();
+
+    m_h_bl_deta_all.at(fc_it)->Write();
+    m_h_bl_deta_0.at(fc_it)->Write();
+    m_h_bl_deta_1.at(fc_it)->Write();
+
     m_h_b_jet_pt_all.at(fc_it)->Write();
     m_h_b_jet_pt_0.at(  fc_it)->Write();
     m_h_b_jet_pt_1.at(  fc_it)->Write();
@@ -491,6 +758,14 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_mbl_anti_pairing_diff.at(fc_it)->Write();
 
     m_h_num_same_parent_pairing.at(fc_it)->Write();
+    m_h_same_parent_pairing_pair_0.at(fc_it)->Write();
+    m_h_same_parent_pairing_pair_1.at(fc_it)->Write();
+    m_h_same_parent_pairing_lep_0.at(fc_it)->Write();
+    m_h_same_parent_pairing_lep_1.at(fc_it)->Write();
+    m_h_same_parent_pairing_jet_0.at(fc_it)->Write();
+    m_h_same_parent_pairing_jet_1.at(fc_it)->Write();
+    // m_h_same_parent_pairing_stop.at(fc_it)->Write();
+    // m_h_same_parent_pairing_astp.at(fc_it)->Write();
 
     m_h_mbl_same_parent_pairing.at(fc_it)->Write();
     m_h_mbl_diff_parent_pairing.at(fc_it)->Write();

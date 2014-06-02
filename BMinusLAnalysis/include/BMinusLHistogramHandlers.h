@@ -49,6 +49,18 @@ namespace PennSusyFrame
     private:
       std::vector<TH1F*> m_h_num_b_jet;
 
+      std::vector<TH1F*> m_h_bl_dr_all;
+      std::vector<TH1F*> m_h_bl_dr_0;
+      std::vector<TH1F*> m_h_bl_dr_1;
+
+      std::vector<TH1F*> m_h_bl_dphi_all;
+      std::vector<TH1F*> m_h_bl_dphi_0;
+      std::vector<TH1F*> m_h_bl_dphi_1;
+
+      std::vector<TH1F*> m_h_bl_deta_all;
+      std::vector<TH1F*> m_h_bl_deta_0;
+      std::vector<TH1F*> m_h_bl_deta_1;
+
       std::vector<TH1F*> m_h_b_jet_pt_all;
       std::vector<TH1F*> m_h_b_jet_pt_0;
       std::vector<TH1F*> m_h_b_jet_pt_1;
@@ -72,6 +84,14 @@ namespace PennSusyFrame
 
       // do the b and l from the pair come from the same parent?
       std::vector<TH1F*> m_h_num_same_parent_pairing;
+      std::vector<TH1F*> m_h_same_parent_pairing_pair_0;
+      std::vector<TH1F*> m_h_same_parent_pairing_pair_1;
+      std::vector<TH1F*> m_h_same_parent_pairing_lep_0;
+      std::vector<TH1F*> m_h_same_parent_pairing_lep_1;
+      std::vector<TH1F*> m_h_same_parent_pairing_jet_0;
+      std::vector<TH1F*> m_h_same_parent_pairing_jet_1;
+      // std::vector<TH1F*> m_h_same_parent_pairing_stop;
+      // std::vector<TH1F*> m_h_same_parent_pairing_astp;
 
       std::vector<TH1F*> m_h_mbl_same_parent_pairing;
       std::vector<TH1F*> m_h_mbl_diff_parent_pairing;
