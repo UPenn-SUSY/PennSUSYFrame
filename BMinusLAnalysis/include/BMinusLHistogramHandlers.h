@@ -65,12 +65,15 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_b_jet_pt_0;
       std::vector<TH1F*> m_h_b_jet_pt_1;
 
+      std::vector<TH1F*> m_h_dr_bb;
       std::vector<TH1F*> m_h_dphi_bb;
+      std::vector<TH1F*> m_h_deta_bb;
 
       std::vector<TH1F*> m_h_mbl_all;
       std::vector<TH1F*> m_h_mbl_0;
       std::vector<TH1F*> m_h_mbl_1;
       std::vector<TH1F*> m_h_mbl_diff;
+      std::vector<TH1F*> m_h_mbl_ratio;
 
       std::vector<TH1F*> m_h_ptbl_all;
       std::vector<TH1F*> m_h_ptbl_0;
@@ -81,6 +84,7 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_anti_pairing_0;
       std::vector<TH1F*> m_h_mbl_anti_pairing_1;
       std::vector<TH1F*> m_h_mbl_anti_pairing_diff;
+      std::vector<TH1F*> m_h_mbl_anti_pairing_ratio;
 
       // do the b and l from the pair come from the same parent?
       std::vector<TH1F*> m_h_num_same_parent_pairing;
@@ -95,6 +99,19 @@ namespace PennSusyFrame
 
       std::vector<TH1F*> m_h_mbl_same_parent_pairing;
       std::vector<TH1F*> m_h_mbl_diff_parent_pairing;
+
+      std::vector<TH1F*> m_h_mbl_ratio_same_parent_pairing;
+      std::vector<TH1F*> m_h_mbl_ratio_diff_parent_pairing;
+
+      std::vector<TH1F*> m_h_bl_dr_same_parent_pairing;
+      std::vector<TH1F*> m_h_bl_dr_diff_parent_pairing;
+
+      std::vector<TH1F*> m_h_bl_dphi_same_parent_pairing;
+      std::vector<TH1F*> m_h_bl_dphi_diff_parent_pairing;
+
+      std::vector<TH1F*> m_h_bl_deta_same_parent_pairing;
+      std::vector<TH1F*> m_h_bl_deta_diff_parent_pairing;
+
   };
 }
 

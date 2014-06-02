@@ -37,6 +37,9 @@ namespace PennSusyFrame
       float getMbl()  const { return m_mbl;  }
       float getPtbl() const { return m_ptbl; }
       bool  getSameParent() const { return m_same_parent; }
+      float getDphi() const;
+      float getDeta() const;
+      float getDr() const;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:

@@ -266,9 +266,17 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
   const float etiso_min  = -1.;
   const float etiso_max  = 3.;
 
+  const int dr_bins = 60;
+  const float dr_min = 0.;
+  const float dr_max = 6.0;
+
   const int dphi_bins = 32;
   const float dphi_min = 0.;
   const float dphi_max = 3.2;
+
+  const int deta_bins = 50;
+  const float deta_min = 0.;
+  const float deta_max = 5.0;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -397,6 +405,19 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_h_dr_ll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "__lep_dr_ll"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#deltaR(l,l) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #deltaR(l,l) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+
     m_h_dphi_ll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__lep_dphi_ll"
                                      + "__"
@@ -407,6 +428,19 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                                      + " ; #delta#phi(l,l) ; Entries"
                                      ).c_str()
                                    , dphi_bins, dphi_min, dphi_max
+                                   )
+                         );
+
+    m_h_deta_ll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_deta_ll"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#delta#eta(l,l) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #delta#eta(l,l) ; Entries"
+                                     ).c_str()
+                                   , deta_bins, deta_min, deta_max
                                    )
                          );
 
@@ -445,6 +479,12 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   float phi_1 = 0.;
   float dphi  = 0.;
 
+  float eta_0 = 0.;
+  float eta_1 = 0.;
+  float deta  = 0.;
+
+  float dr  = 0.;
+
   // TODO fill these histograms in cleaner way!
 
   if (fc == FLAVOR_EE) {
@@ -460,6 +500,12 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     phi_0 = el_list->at(0)->getPhi();
     phi_1 = el_list->at(1)->getPhi();
     dphi = PennSusyFrame::calcDphi(phi_0, phi_1);
+
+    eta_0 = el_list->at(0)->getEta();
+    eta_1 = el_list->at(1)->getEta();
+    deta = fabs(eta_0 - eta_1);
+
+    dr = sqrt(dphi*dphi + deta*deta);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_EE)->Fill(pt_0, weight);
@@ -477,7 +523,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_etiso_0.at(  FLAVOR_EE)->Fill(etiso_0, weight);
     m_h_etiso_1.at(  FLAVOR_EE)->Fill(etiso_1, weight);
 
+    m_h_dr_ll.at(FLAVOR_EE)->Fill(dr, weight);
     m_h_dphi_ll.at(FLAVOR_EE)->Fill(dphi, weight);
+    m_h_deta_ll.at(FLAVOR_EE)->Fill(deta, weight);
   }
   else if (fc == FLAVOR_MM) {
     pt_0 = mu_list->at(0)->getPt()/1.e3;
@@ -492,6 +540,12 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     phi_0 = mu_list->at(0)->getPhi();
     phi_1 = mu_list->at(1)->getPhi();
     dphi = PennSusyFrame::calcDphi(phi_0, phi_1);
+
+    eta_0 = mu_list->at(0)->getEta();
+    eta_1 = mu_list->at(1)->getEta();
+    deta = fabs(eta_0 - eta_1);
+
+    dr = sqrt(dphi*dphi + deta*deta);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_MM)->Fill(pt_0, weight);
@@ -509,7 +563,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_etiso_0.at(  FLAVOR_MM)->Fill(etiso_0, weight);
     m_h_etiso_1.at(  FLAVOR_MM)->Fill(etiso_1, weight);
 
+    m_h_dr_ll.at(FLAVOR_MM)->Fill(dr, weight);
     m_h_dphi_ll.at(FLAVOR_MM)->Fill(dphi, weight);
+    m_h_deta_ll.at(FLAVOR_MM)->Fill(deta, weight);
   }
   else {
     pt_0 = el_list->at(0)->getPt()/1.e3;
@@ -524,6 +580,12 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     phi_0 = el_list->at(0)->getPhi();
     phi_1 = mu_list->at(0)->getPhi();
     dphi = PennSusyFrame::calcDphi(phi_0, phi_1);
+
+    eta_0 = el_list->at(0)->getEta();
+    eta_1 = mu_list->at(0)->getEta();
+    deta = fabs(eta_0 - eta_1);
+
+    dr = sqrt(dphi*dphi + deta*deta);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_EM)->Fill(pt_0, weight);
@@ -541,7 +603,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_etiso_0.at(  FLAVOR_EM)->Fill(etiso_0, weight);
     m_h_etiso_1.at(  FLAVOR_EM)->Fill(etiso_1, weight);
 
+    m_h_dr_ll.at(FLAVOR_MM)->Fill(dr, weight);
     m_h_dphi_ll.at(FLAVOR_MM)->Fill(dphi, weight);
+    m_h_deta_ll.at(FLAVOR_MM)->Fill(deta, weight);
   }
 
   if (pt_1 > pt_0) {
@@ -574,7 +638,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   m_h_etiso_0.at(  FLAVOR_NONE)->Fill(etiso_0, weight);
   m_h_etiso_1.at(  FLAVOR_NONE)->Fill(etiso_1, weight);
 
+  m_h_dr_ll.at(FLAVOR_NONE)->Fill(dr, weight);
   m_h_dphi_ll.at(FLAVOR_NONE)->Fill(dphi, weight);
+  m_h_deta_ll.at(FLAVOR_NONE)->Fill(deta, weight);
 }
 
 // -----------------------------------------------------------------------------
@@ -601,8 +667,10 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     m_h_etiso_0.at(  fc_it)->Write();
     m_h_etiso_1.at(  fc_it)->Write();
 
-    // write dphi_ll histograms
+    // write dr_ll/dphi_ll/deta_ll histograms
+    m_h_dr_ll.at(fc_it)->Write();
     m_h_dphi_ll.at(fc_it)->Write();
+    m_h_deta_ll.at(fc_it)->Write();
   }
 }
 
@@ -619,9 +687,17 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
   const float pt_min  = 0.;
   const float pt_max  = 1000.;
 
+  const int dr_bins = 60;
+  const float dr_min = 0.;
+  const float dr_max = 6.0;
+
   const int dphi_bins = 32;
   const float dphi_min = 0.;
   const float dphi_max = 3.2;
+
+  const int deta_bins = 50;
+  const float deta_min = 0.;
+  const float deta_max = 5.0;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -680,6 +756,18 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
                       );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_h_dr_jj.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__jet_dr_jj"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#delta#R(j,j) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #delta#R(j,j) ; Entries"
+                                     ).c_str()
+                                   , dr_bins, dr_min, dr_max
+                                   )
+                         );
     m_h_dphi_jj.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__jet_dphi_jj"
                                      + "__"
@@ -690,6 +778,18 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
                                      + " ; #delta#phi(j,j) ; Entries"
                                      ).c_str()
                                    , dphi_bins, dphi_min, dphi_max
+                                   )
+                         );
+    m_h_deta_jj.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__jet_deta_jj"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#delta#eta(j,j) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #delta#eta(j,j) ; Entries"
+                                     ).c_str()
+                                   , deta_bins, deta_min, deta_max
                                    )
                          );
   }
@@ -722,14 +822,24 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
   float phi_1 = 0.;
   float dphi = 0.;
 
+  float eta_0 = 0.;
+  float eta_1 = 0.;
+  float deta = 0.;
+
+  float dr = 0.;
+
   if (num_jet > 0) {
     pt_0 = jet_list->at(0)->getPt()/1.e3;
     phi_0 = jet_list->at(0)->getPhi();
+    eta_0 = jet_list->at(0)->getEta();
   }
   if (num_jet > 1) {
     pt_1 = jet_list->at(1)->getPt()/1.e3;
     phi_1 = jet_list->at(1)->getPhi();
+    eta_1 = jet_list->at(1)->getEta();
     dphi = PennSusyFrame::calcDphi(phi_0, phi_1);
+    deta = fabs(eta_0 - eta_1);
+    dr = sqrt(dphi*dphi + deta*deta);
   }
 
   // loop over all flavor channels
@@ -749,7 +859,9 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
     }
     if (num_jet > 1) {
       m_h_pt_1.at(fc_it)->Fill(pt_1, weight);
+      m_h_dr_jj.at(fc_it)->Fill(dr, weight);
       m_h_dphi_jj.at(fc_it)->Fill(dphi, weight);
+      m_h_deta_jj.at(fc_it)->Fill(deta, weight);
     }
   }
 }
@@ -767,7 +879,9 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
     m_h_pt_all.at( fc_it)->Write();
     m_h_pt_0.at(   fc_it)->Write();
     m_h_pt_1.at(   fc_it)->Write();
+    m_h_dr_jj.at(fc_it)->Write();
     m_h_dphi_jj.at(fc_it)->Write();
+    m_h_deta_jj.at(fc_it)->Write();
   }
 }
 

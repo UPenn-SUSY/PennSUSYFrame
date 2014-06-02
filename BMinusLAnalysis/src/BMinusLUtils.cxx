@@ -30,6 +30,24 @@ void PennSusyFrame::blPair::calculate()
 }
 
 // -----------------------------------------------------------------------------
+float PennSusyFrame::blPair::getDphi() const
+{
+  return PennSusyFrame::calcDphi(m_jet->getPhi(), m_lep->getPhi());
+}
+
+// -----------------------------------------------------------------------------
+float PennSusyFrame::blPair::getDeta() const
+{
+  return fabs( m_jet->getEta() - m_lep->getEta() );
+}
+
+// -----------------------------------------------------------------------------
+float PennSusyFrame::blPair::getDr() const
+{
+  return sqrt( pow(getDphi(), 2) + pow(getDeta(), 2) );
+}
+
+// -----------------------------------------------------------------------------
 bool PennSusyFrame::doBLPairing( const PennSusyFrame::Event& event
                                , const std::vector<PennSusyFrame::Electron*>* el_list
                                , const std::vector<PennSusyFrame::Muon*>*     mu_list
