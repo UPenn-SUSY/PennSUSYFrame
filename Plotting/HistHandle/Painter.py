@@ -105,7 +105,8 @@ class HistPainter(object):
         leg = hh.Helper.makeLegend( hist_list
                                   , label_list
                                   , draw_opt_list
-                                  , width=0.40 if not full_canvas else 0.90
+                                  , width = 0.35 if not full_canvas else 0.90
+                                  , height = 0.03
                                   , y2 = 0.90
                                   )
 
@@ -563,14 +564,14 @@ def calcMax(hist_list, log_y = True):
             # print 'getting new y_max for m_min > 0 && y_max > 0'
             y_max = math.pow( 10
                             , ( math.log(y_max, 10)
-                              + (math.log(y_max, 10) - math.log(y_min, 10))*0.50
+                              + (math.log(y_max, 10) - math.log(y_min, 10))*0.75
                               )
                             )
         elif y_max > 0:
             # print 'getting new y_max for m_min < 0 && y_max > 0'
             y_max = math.pow( 10
                             , ( math.log(y_max, 10)
-                              + (math.log(y_max, 10))*0.50
+                              + (math.log(y_max, 10))*0.75
                               )
                             )
         else:
@@ -578,7 +579,7 @@ def calcMax(hist_list, log_y = True):
             y_max = 1
     else:
         # print 'set y_max for linear'
-        y_max += (y_max - y_min)*0.20
+        y_max += (y_max - y_min)*0.30
         y_max = max(y_max, 0.)
 
     # return value for max
