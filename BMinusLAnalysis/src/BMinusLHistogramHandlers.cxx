@@ -104,7 +104,19 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                          );
 
     m_h_bl_dphi_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                       + "__bl_dphi_all"
+                                         + "__bl_dphi_all"
+                                         + "__"
+                                         + name_tag
+                                         ).c_str()
+                                       , ( "#deltaR(b,l) - "
+                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + " ; #deltaR(b,l) ; Entries"
+                                         ).c_str()
+                                       , dphi_bins, dphi_min, dphi_max
+                                       )
+                             );
+    m_h_bl_dphi_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__bl_dphi_0"
                                        + "__"
                                        + name_tag
                                        ).c_str()
@@ -115,33 +127,33 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      , dphi_bins, dphi_min, dphi_max
                                      )
                            );
-    m_h_bl_dphi_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + "__bl_dphi_0"
-                                     + "__"
-                                     + name_tag
-                                     ).c_str()
-                                   , ( "#deltaR(b,l) - "
-                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #deltaR(b,l) ; Entries"
-                                     ).c_str()
-                                   , dphi_bins, dphi_min, dphi_max
-                                   )
-                         );
     m_h_bl_dphi_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + "__bl_dphi_1"
-                                     + "__"
-                                     + name_tag
-                                     ).c_str()
-                                   , ( "#deltaR(b,l) - "
-                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #deltaR(b,l) ; Entries"
-                                     ).c_str()
-                                   , dphi_bins, dphi_min, dphi_max
-                                   )
-                         );
+                                       + "__bl_dphi_1"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "#deltaR(b,l) - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; #deltaR(b,l) ; Entries"
+                                       ).c_str()
+                                     , dphi_bins, dphi_min, dphi_max
+                                     )
+                           );
 
     m_h_bl_deta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                       + "__bl_deta_all"
+                                         + "__bl_deta_all"
+                                         + "__"
+                                         + name_tag
+                                         ).c_str()
+                                       , ( "#deltaR(b,l) - "
+                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + " ; #deltaR(b,l) ; Entries"
+                                         ).c_str()
+                                       , deta_bins, deta_min, deta_max
+                                       )
+                             );
+    m_h_bl_deta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__bl_deta_0"
                                        + "__"
                                        + name_tag
                                        ).c_str()
@@ -152,30 +164,18 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      , deta_bins, deta_min, deta_max
                                      )
                            );
-    m_h_bl_deta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + "__bl_deta_0"
-                                     + "__"
-                                     + name_tag
-                                     ).c_str()
-                                   , ( "#deltaR(b,l) - "
-                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #deltaR(b,l) ; Entries"
-                                     ).c_str()
-                                   , deta_bins, deta_min, deta_max
-                                   )
-                         );
     m_h_bl_deta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + "__bl_deta_1"
-                                     + "__"
-                                     + name_tag
-                                     ).c_str()
-                                   , ( "#deltaR(b,l) - "
-                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #deltaR(b,l) ; Entries"
-                                     ).c_str()
-                                   , deta_bins, deta_min, deta_max
-                                   )
-                         );
+                                       + "__bl_deta_1"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "#deltaR(b,l) - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; #deltaR(b,l) ; Entries"
+                                       ).c_str()
+                                     , deta_bins, deta_min, deta_max
+                                     )
+                           );
 
     // initialize b jet pt histograms
     m_h_b_jet_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -219,7 +219,20 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     // initialize b jet pt histograms
     m_h_b_jet_dr_q_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + "__b_jet_dr_q_all"
+                                            + "__b_jet_dr_q_all"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "#DeltaR(b jet, b quark) - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; #DeltaR(b jet, b quark) ; Entries"
+                                            ).c_str()
+                                          , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
+                                          )
+                                );
+
+    m_h_b_jet_dr_q_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__b_jet_dr_q_0"
                                           + "__"
                                           + name_tag
                                           ).c_str()
@@ -230,19 +243,6 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                         , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
                                         )
                               );
-
-    m_h_b_jet_dr_q_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + "__b_jet_dr_q_0"
-                                        + "__"
-                                        + name_tag
-                                        ).c_str()
-                                      , ( "#DeltaR(b jet, b quark) - "
-                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; #DeltaR(b jet, b quark) ; Entries"
-                                        ).c_str()
-                                      , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
-                                      )
-                            );
 
     m_h_b_jet_dr_q_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                         + "__b_jet_dr_q_1"
