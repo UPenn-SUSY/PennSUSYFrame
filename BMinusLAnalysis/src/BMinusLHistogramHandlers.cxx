@@ -240,7 +240,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
                                         + " ; #DeltaR(b jet, b quark) ; Entries"
                                         ).c_str()
-                                      , dr_bins, dr_min, dr_max
+                                      , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
                                       )
                             );
 
@@ -253,7 +253,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
                                         + " ; #DeltaR(b jet, b quark) ; Entries"
                                         ).c_str()
-                                      , dr_bins, dr_min, dr_max
+                                      , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
                                       )
                             );
 
