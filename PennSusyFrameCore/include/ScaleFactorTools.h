@@ -132,6 +132,8 @@ namespace PennSusyFrame
       BTagScaleFactorTool();
       ~BTagScaleFactorTool();
 
+      void init(float mv1_cut_value = 0.3511);
+
       double getSF(const std::vector<PennSusyFrame::Jet*>*);
 
     // -----------------------------------------------------------------------------

@@ -31,6 +31,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_num_generated_events(-1)
                                                                  , m_fancy_progress_bar(true)
                                                                  , m_process_label("")
+                                                                 , m_mv1_cut_value(0.3511)
                                                                  , m_d3pd_reader(0)
 {
   // if parameter tree is not specified (or zero), connect the file
@@ -113,6 +114,8 @@ void PennSusyFrame::PennSusyFrameCore::prepareTools()
   m_muons.init(m_is_data);
   m_taus.init(m_is_data, m_is_af2);
   m_jets.init(m_is_data, m_is_af2);
+
+  m_b_tag_sf_tool.init(m_mv1_cut_value);
 }
 
 // -----------------------------------------------------------------------------
@@ -215,13 +218,15 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_jet_selectors.at(JET_LIGHT).setConstScaleEtaCut(-1, 2.4);
   m_jet_selectors.at(JET_LIGHT).setJvfCut(0.0, -1);
   m_jet_selectors.at(JET_LIGHT).setJvfPtThresh(50.e3, -1);
-  m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, 0.3511);
+  // m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, 0.3511);
+  m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, m_mv1_cut_value);
 
   // JET_B
   m_jet_selectors.at(JET_B).setPtCut(20.e3, -1);
   // m_jet_selectors.at(JET_B).setEtaCut(-1, 2.4);
   m_jet_selectors.at(JET_B).setConstScaleEtaCut(-1, 2.4);
-  m_jet_selectors.at(JET_B).setMV1Cut(0.3511, -1);
+  // m_jet_selectors.at(JET_B).setMV1Cut(0.3511, -1);
+  m_jet_selectors.at(JET_B).setMV1Cut(m_mv1_cut_value, -1);
 
   // JET_FORWARD
   m_jet_selectors.at(JET_FORWARD).setPtCut(30.e3, -1);

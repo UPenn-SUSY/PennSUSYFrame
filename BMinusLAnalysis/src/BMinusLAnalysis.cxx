@@ -122,6 +122,7 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 {
   PennSusyFrameCore::beginRun();
 
+  // prepare selection
   prepareSelection();
 
   m_histogram_handlers.resize(BMINUSL_HIST_N);

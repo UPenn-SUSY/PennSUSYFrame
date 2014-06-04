@@ -59,6 +59,8 @@ namespace PennSusyFrame
       virtual void setFancyProgressBar(bool val) { m_fancy_progress_bar = val; }
       virtual void setProcessLabel(std::string val) { m_process_label = val; }
 
+      virtual void setMV1Cut(float val) { m_mv1_cut_value = val; }
+
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       virtual void prepareSelection();
 
@@ -97,6 +99,8 @@ namespace PennSusyFrame
 
       bool m_fancy_progress_bar;
       std::string m_process_label;
+
+      float m_mv1_cut_value;
 
       TTree* m_tree;
       PennSusyFrame::D3PDReader* m_d3pd_reader;

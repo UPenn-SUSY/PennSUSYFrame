@@ -240,20 +240,41 @@ double PennSusyFrame::TriggerWeightTool::getWeight( FLAVOR_CHANNEL flavor_channe
 }
 
 // =============================================================================
-// -----------------------------------------------------------------------------
 PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(0)
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
   std::string base_work_dir = getenv("BASE_WORK_DIR");
   m_calibration_file   = base_work_dir + "/data/BTagCalibration.env";
   m_calibration_folder = root_core_dir + "/../SUSYTools/data/";
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::BTagScaleFactorTool::init(float mv1_cut_value)
+{
+  if (m_b_tag_calibration != 0)  {
+    delete m_b_tag_calibration;
+    m_b_tag_calibration = 0;
+  }
+
+  std::string cut_string = "";
+  float cut_value = 0;
+  if      (fabs(mv1_cut_value - 0.0617) < 0.01) { cut_string = "0.0617"; cut_value  = 0.0617; }
+  else if (fabs(mv1_cut_value - 0.1340) < 0.01) { cut_string = "0.1340"; cut_value  = 0.1340; }
+  else if (fabs(mv1_cut_value - 0.3511) < 0.01) { cut_string = "0.3511"; cut_value  = 0.3511; }
+  else if (fabs(mv1_cut_value - 0.6073) < 0.01) { cut_string = "0.6073"; cut_value  = 0.6073; }
+  else if (fabs(mv1_cut_value - 0.7892) < 0.01) { cut_string = "0.7892"; cut_value  = 0.7892; }
+  else if (fabs(mv1_cut_value - 0.9370) < 0.01) { cut_string = "0.9370"; cut_value  = 0.9370; }
+  else if (fabs(mv1_cut_value - 0.9827) < 0.01) { cut_string = "0.9827"; cut_value  = 0.9827; }
+  else                                          { cut_string = "0.3511"; cut_value  = 0.3511; }
 
   m_b_tag_calibration = new BTagCalib( "MV1"
                                      , m_calibration_file
                                      , m_calibration_folder
-                                     , "0_3511"
+                                     // , "0_3511"
+                                     , cut_string
                                      , false  // use_jvf
-                                     , 0.3511
+                                     // , 0.3511
+                                     , cut_value
                                      );
 }
 
