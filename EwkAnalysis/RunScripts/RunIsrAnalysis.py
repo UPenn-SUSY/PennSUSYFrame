@@ -24,11 +24,11 @@ ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
 ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
 ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libHistogramHandlers.so')
 ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
-ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libBMinusLAnalysis.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
 print 'done loading libraries'
 
 # ------------------------------------------------------------------------------
-def runBMinusLAnalysisFun(data_set_dict):
+def runIsrAnalysisFun(data_set_dict):
     print '================================================================================'
     print 'label: %s'       % data_set_dict['label']
     print 'file_list: %s'   % data_set_dict['file_list']
@@ -42,37 +42,37 @@ def runBMinusLAnalysisFun(data_set_dict):
     print 'total num events: %s' % data_set_dict['total_num_events']
     print 'total num entries: %s' % data_set_dict['total_num_entries']
 
-    print 'About to run BMinusLAnalysis'
-    runBMinusLAnalysis( file_list             = data_set_dict['file_list']
-                      , is_data               = data_set_dict['is_data']
-                      , is_full_sim           = data_set_dict['is_full_sim']
-                      , tree_name             = 'TNT'
-                      , dsid                  = data_set_dict['dsid']
-                      , out_file_special_name = data_set_dict['label']
-                      , is_tnt                = True
-                      , fancy_progress_bar    = False
-                      , job_num               = data_set_dict['job_num']
-                      , total_num_jobs        = data_set_dict['total_num_jobs']
-                      , total_num_events      = data_set_dict['total_num_events']
-                      , total_num_entries     = data_set_dict['total_num_entries']
-                      , out_dir               = data_set_dict['out_dir']
-                      )
+    print 'About to run IsrAnalysis'
+    runIsrAnalysis( file_list             = data_set_dict['file_list']
+                  , is_data               = data_set_dict['is_data']
+                  , is_full_sim           = data_set_dict['is_full_sim']
+                  , tree_name             = 'TNT'
+                  , dsid                  = data_set_dict['dsid']
+                  , out_file_special_name = data_set_dict['label']
+                  , is_tnt                = True
+                  , fancy_progress_bar    = False
+                  , job_num               = data_set_dict['job_num']
+                  , total_num_jobs        = data_set_dict['total_num_jobs']
+                  , total_num_events      = data_set_dict['total_num_events']
+                  , total_num_entries     = data_set_dict['total_num_entries']
+                  , out_dir               = data_set_dict['out_dir']
+                  )
 
 # ------------------------------------------------------------------------------
-def runBMinusLAnalysis( file_list
-                      , is_data
-                      , is_full_sim
-                      , tree_name             = 'susy'
-                      , dsid                  = 1
-                      , out_file_special_name = None
-                      , is_tnt                = False
-                      , fancy_progress_bar    = True
-                      , job_num               = 0
-                      , total_num_jobs        = 1
-                      , total_num_events      = 0
-                      , total_num_entries     = 0
-                      , out_dir               = './'
-                      ):
+def runIsrAnalysis( file_list
+                  , is_data
+                  , is_full_sim
+                  , tree_name             = 'susy'
+                  , dsid                  = 1
+                  , out_file_special_name = None
+                  , is_tnt                = False
+                  , fancy_progress_bar    = True
+                  , job_num               = 0
+                  , total_num_jobs        = 1
+                  , total_num_events      = 0
+                  , total_num_entries     = 0
+                  , out_dir               = './'
+                  ):
     # ==============================================================================
     # If the num events are not set and we are running over TNTs, get the total NumEvents
     print 'total num events: %s' % total_num_events
@@ -85,33 +85,33 @@ def runBMinusLAnalysis( file_list
     t = RunHelpers.getTChain(file_list, tree_name)
 
     # ==============================================================================
-    print 'Creating BMinusLAnalysis object'
-    bmla = ROOT.PennSusyFrame.BMinusLAnalysis(t)
+    print 'Creating IsrAnalysis object'
+    isra = ROOT.PennSusyFrame.IsrAnalysis(t)
 
-    print 'configuring BMinusLAnalysis object'
+    print 'configuring IsrAnalysis object'
     if out_file_special_name is not None:
-        bmla.setProcessLabel(out_file_special_name)
-    bmla.setFancyProgressBar(False)
+        isra.setProcessLabel(out_file_special_name)
+    isra.setFancyProgressBar(False)
 
     # set is data or MC
     if is_data:
-        bmla.setIsData()
+        isra.setIsData()
     else:
-        bmla.setIsMC()
+        isra.setIsMC()
 
         xsec_dict = CrossSectionReader.getCrossSection(dsid)
         if xsec_dict is None:
             return
-        bmla.setCrossSection(xsec_dict['xsec'])
-        bmla.setKFactor(     xsec_dict['kfac'])
-        bmla.setFilterEff(   xsec_dict['eff'])
+        isra.setCrossSection(xsec_dict['xsec'])
+        isra.setKFactor(     xsec_dict['kfac'])
+        isra.setFilterEff(   xsec_dict['eff'])
 
-        bmla.setTotalNumEntries(    total_num_entries )
-        bmla.setNumGeneratedEvents( total_num_events  )
+        isra.setTotalNumEntries(    total_num_entries )
+        isra.setNumGeneratedEvents( total_num_events  )
 
     # set is full sim/fast sim
     if is_full_sim:
-        bmla.setFullSim()
+        isra.setFullSim()
 
     # set start entry and max number events
     if total_num_jobs > 1:
@@ -122,58 +122,45 @@ def runBMinusLAnalysis( file_list
         print 'total num entries; %s' % total_num_entries
         print 'setting max num events: %s' % this_job_events
         print type(this_job_events)
-        bmla.setMaxNumEvents(this_job_events)
+        isra.setMaxNumEvents(this_job_events)
         print 'setting start entry: %s' % this_job_start
-        bmla.setStartEntry(this_job_start)
+        isra.setStartEntry(this_job_start)
 
     # set out histogram file name
     print 'setting histogram names'
-    out_hist_file_name = '%s/BMinusL.' % out_dir
+    out_hist_file_name = '%s/Isr.' % out_dir
     if out_file_special_name is not None:
         out_hist_file_name += '%s.' % out_file_special_name
     out_hist_file_name += 'hists'
     if total_num_jobs > 1:
         out_hist_file_name += '.%d_of_%d' % (job_num, total_num_jobs)
     out_hist_file_name += '.root'
-    bmla.setOutHistFileName(out_hist_file_name)
+    isra.setOutHistFileName(out_hist_file_name)
 
     # Set critical cuts
     print 'setting critical cuts'
-    bmla.setCritCutGrl(            1)
-    bmla.setCritCutIncompleteEvent(1)
-    bmla.setCritCutLarError(       1)
-    bmla.setCritCutTileError(      1)
-    bmla.setCritCutTileHotSpot(    1)
-    bmla.setCritCutTileTrip(       1)
-    bmla.setCritCutBadJetVeto(     1)
-    bmla.setCritCutCaloProblemJet( 1)
-    bmla.setCritCutPrimaryVertex(  1)
-    bmla.setCritCutBadMuonVeto(    1)
-    bmla.setCritCutCosmicMuonVeto( 1)
-    bmla.setCritCutHFOR(           1)
-    bmla.setCritCutMcOverlap(      1)
-    bmla.setCritCutGe2Lepton(      1)
-    bmla.setCritCut2Lepton(        1)
-    bmla.setCritCut2SignalLepton(  1)
-    bmla.setCritCut2BJets(         1)
-    bmla.setCritCutBadJetVeto(     1)
-    bmla.setCritCutBLPairing(      1)
-
-    # Set cut values
-    print 'set cuts'
-    lep_pt_cut = 40.e3
-    jet_pt_cut = 40.e3
-    met_cut    = 50.e3
-    bmla.setElPtCut(  lep_pt_cut, -1     )
-    bmla.setMuPtCut(  lep_pt_cut, -1     )
-    bmla.setBJetPtCut(jet_pt_cut, -1     )
-    bmla.setMetCut(   -1        , met_cut)
+    # isra.setCritCutGrl(            1)
+    # isra.setCritCutIncompleteEvent(1)
+    # isra.setCritCutLarError(       1)
+    # isra.setCritCutTileError(      1)
+    # isra.setCritCutTileHotSpot(    1)
+    # isra.setCritCutTileTrip(       1)
+    # isra.setCritCutBadJetVeto(     1)
+    # isra.setCritCutCaloProblemJet( 1)
+    # isra.setCritCutPrimaryVertex(  1)
+    # isra.setCritCutBadMuonVeto(    1)
+    # isra.setCritCutCosmicMuonVeto( 1)
+    # isra.setCritCutHFOR(           1)
+    # isra.setCritCutMcOverlap(      1)
+    # isra.setCritCutGe2Lepton(      1)
+    # isra.setCritCut2Lepton(        1)
+    # isra.setCritCut2SignalLepton(  1)
 
     # prepare tools and run analysis loop
     print 'preparing tools'
-    bmla.prepareTools()
+    isra.prepareTools()
     print 'looping -- %s' % out_file_special_name
-    bmla.Loop()
+    isra.Loop()
     print 'done looping -- %s' % out_file_special_name
 
     # ==============================================================================

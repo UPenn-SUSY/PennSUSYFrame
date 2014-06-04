@@ -1,122 +1,167 @@
 #!/usr/bin/env python
 
 import sys
+import os
 import os.path
 import optparse
 import time
-
+import math
 import glob
 
 import ROOT
 
-import os
 sys.path.append('%s/CrossSectionReader/' % os.environ['BASE_WORK_DIR'])
 import CrossSectionReader
 
-# ------------------------------------------------------------------------------
-def getFileListFromDir(file_path):
-    print 'getting files from dir: %s' % file_path
-    file_list = glob.glob('%s/*' % file_path)
-    return file_list
+sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
+import RunHelpers
+
+# ==============================================================================
+print 'loading packages'
+ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
+print 'loading libraries'
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libHistogramHandlers.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
+ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
+print 'done loading libraries'
 
 # ------------------------------------------------------------------------------
-def getFileListFromFile(file_path):
-    file_list = []
+def runEwkAnalysisFun(data_set_dict):
+    print '================================================================================'
+    print 'label: %s'       % data_set_dict['label']
+    print 'file_list: %s'   % data_set_dict['file_list']
+    print 'is data: %s'     % data_set_dict['is_data']
+    print 'is full sim: %s' % data_set_dict['is_full_sim']
+    print 'dsid: %s'        % data_set_dict['dsid']
 
-    f = file(file_path)
-    for l in f.readlines():
-        l = l.strip('\n')
-        file_list.append(l)
+    print 'total number jobs: %s' % data_set_dict['total_num_jobs']
+    print 'this job number: %s' % data_set_dict['job_num']
 
-    return file_list
+    print 'total num events: %s' % data_set_dict['total_num_events']
+    print 'total num entries: %s' % data_set_dict['total_num_entries']
 
-# ------------------------------------------------------------------------------
-def getFileListFromGridInput(grid_input_string):
-    file_list = grid_input_string.split(',')
-    return file_list
+    print 'About to run EwkAnalysis'
+    runEwkAnalysis( file_list             = data_set_dict['file_list']
+                  , is_data               = data_set_dict['is_data']
+                  , is_full_sim           = data_set_dict['is_full_sim']
+                  , tree_name             = 'TNT'
+                  , dsid                  = data_set_dict['dsid']
+                  , out_file_special_name = data_set_dict['label']
+                  , is_tnt                = True
+                  , fancy_progress_bar    = False
+                  , job_num               = data_set_dict['job_num']
+                  , total_num_jobs        = data_set_dict['total_num_jobs']
+                  , total_num_events      = data_set_dict['total_num_events']
+                  , total_num_entries     = data_set_dict['total_num_entries']
+                  , out_dir               = data_set_dict['out_dir']
+                  )
 
 # ------------------------------------------------------------------------------
 def runEwkAnalysis( file_list
                   , is_data
                   , is_full_sim
-                  , tree_name = 'susy'
-                  , dsid = 1
+                  , tree_name             = 'susy'
+                  , dsid                  = 1
                   , out_file_special_name = None
-                  , is_tnt = False
+                  , is_tnt                = False
+                  , fancy_progress_bar    = True
+                  , job_num               = 0
+                  , total_num_jobs        = 1
+                  , total_num_events      = 0
+                  , total_num_entries     = 0
+                  , out_dir               = './'
                   ):
     # ==============================================================================
-    print 'loading packages'
-    ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
-    print 'loading libraries'
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libProgressBar.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libCutFlowTracker.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libHistogramHandlers.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libPennSusyFrameCore.so')
-    ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
+    # If the num events are not set and we are running over TNTs, get the total NumEvents
+    print 'total num events: %s' % total_num_events
+    if total_num_events == 0 and is_tnt:
+        print 'Getting total num unskimmed events'
+        print '  -- this is slow. you should do this once per data set - not for each stream!'
+        total_num_events = getTotalNumEvents(file_list, is_tnt)
 
-    # ==============================================================================
     print "Adding files to TChain"
-    t = ROOT.TChain(tree_name)
-    total_num_events = 0
-    for fl in file_list:
-        print 'Adding file: %s' % fl
-        t.AddFile(fl)
-
-        if is_tnt:
-            this_file = ROOT.TFile(fl)
-            total_num_events += int(this_file.Get('TotalNumEvents')[0])
-            this_file.Close()
+    t = RunHelpers.getTChain(file_list, tree_name)
 
     # ==============================================================================
-    ewa = ROOT.PennSusyFrame.EwkAnalysis(t)
+    print 'Creating EwkAnalysis object'
+    ewka = ROOT.PennSusyFrame.EwkAnalysis(t)
+
+    print 'configuring EwkAnalysis object'
+    if out_file_special_name is not None:
+        ewka.setProcessLabel(out_file_special_name)
+    ewka.setFancyProgressBar(False)
 
     # set is data or MC
     if is_data:
-        ewa.setIsData()
+        ewka.setIsData()
     else:
-        ewa.setIsMC()
+        ewka.setIsMC()
 
         xsec_dict = CrossSectionReader.getCrossSection(dsid)
         if xsec_dict is None:
             return
-        ewk.setCrossSection(xsec_dict['xsec'])
-        ewk.setKFactor(     xsec_dict['kfac'])
-        ewk.setFilterEff(   xsec_dict['eff'])
+        ewka.setCrossSection(xsec_dict['xsec'])
+        ewka.setKFactor(     xsec_dict['kfac'])
+        ewka.setFilterEff(   xsec_dict['eff'])
 
-        ewk.setNumGeneratedEvents( total_num_events )
+        ewka.setTotalNumEntries(    total_num_entries )
+        ewka.setNumGeneratedEvents( total_num_events  )
 
     # set is full sim/fast sim
     if is_full_sim:
-        ewa.setFullSim()
+        ewka.setFullSim()
+
+    # set start entry and max number events
+    if total_num_jobs > 1:
+        print 'total num jobs (%s) > 1' % total_num_jobs
+        this_job_events = int(math.ceil( float(total_num_entries) / total_num_jobs ))
+        this_job_start = job_num*this_job_events
+
+        print 'total num entries; %s' % total_num_entries
+        print 'setting max num events: %s' % this_job_events
+        print type(this_job_events)
+        ewka.setMaxNumEvents(this_job_events)
+        print 'setting start entry: %s' % this_job_start
+        ewka.setStartEntry(this_job_start)
 
     # set out histogram file name
-    out_hist_file_name = 'Ewk.'
+    print 'setting histogram names'
+    out_hist_file_name = '%s/Ewk.' % out_dir
     if out_file_special_name is not None:
         out_hist_file_name += '%s.' % out_file_special_name
-    out_hist_file_name += 'hists.root'
-    bmla.setOutHistFileName(out_hist_file_name)
+    out_hist_file_name += 'hists'
+    if total_num_jobs > 1:
+        out_hist_file_name += '.%d_of_%d' % (job_num, total_num_jobs)
+    out_hist_file_name += '.root'
+    ewka.setOutHistFileName(out_hist_file_name)
 
     # Set critical cuts
-    ewa.setCritCutGrl(            1)
-    ewa.setCritCutIncompleteEvent(1)
-    ewa.setCritCutLarError(       1)
-    ewa.setCritCutTileError(      1)
-    ewa.setCritCutTileHotSpot(    1)
-    ewa.setCritCutTileTrip(       1)
-    ewa.setCritCutBadJetVeto(     1)
-    ewa.setCritCutCaloProblemJet( 1)
-    ewa.setCritCutPrimaryVertex(  1)
-    ewa.setCritCutBadMuonVeto(    1)
-    ewa.setCritCutCosmicMuonVeto( 1)
-    ewa.setCritCutHFOR(           1)
-    ewa.setCritCutMcOverlap(      1)
-    ewa.setCritCutGe2Lepton(      1)
-    ewa.setCritCut2Lepton(        1)
-    ewa.setCritCut2SignalLepton(  1)
+    print 'setting critical cuts'
+    # ewka.setCritCutGrl(            1)
+    # ewka.setCritCutIncompleteEvent(1)
+    # ewka.setCritCutLarError(       1)
+    # ewka.setCritCutTileError(      1)
+    # ewka.setCritCutTileHotSpot(    1)
+    # ewka.setCritCutTileTrip(       1)
+    # ewka.setCritCutBadJetVeto(     1)
+    # ewka.setCritCutCaloProblemJet( 1)
+    # ewka.setCritCutPrimaryVertex(  1)
+    # ewka.setCritCutBadMuonVeto(    1)
+    # ewka.setCritCutCosmicMuonVeto( 1)
+    # ewka.setCritCutHFOR(           1)
+    # ewka.setCritCutMcOverlap(      1)
+    # ewka.setCritCutGe2Lepton(      1)
+    # ewka.setCritCut2Lepton(        1)
+    # ewka.setCritCut2SignalLepton(  1)
 
     # prepare tools and run analysis loop
-    ewa.prepareTools()
-    ewa.Loop()
+    print 'preparing tools'
+    ewka.prepareTools()
+    print 'looping -- %s' % out_file_special_name
+    ewka.Loop()
+    print 'done looping -- %s' % out_file_special_name
 
     # ==============================================================================
     print ''
