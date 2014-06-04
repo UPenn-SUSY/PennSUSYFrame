@@ -90,10 +90,14 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_anti_pairing_diff;
       std::vector<TH1F*> m_h_mbl_anti_pairing_ratio;
 
+      std::vector<TH1F*> m_h_mbbll;
+      std::vector<TH1F*> m_h_ptbbll;
+
       // do the b and l from the pair come from the same parent?
       std::vector<TH1F*> m_h_num_leptons_from_stop;
       std::vector<TH1F*> m_h_num_jets_from_stop;
       std::vector<TH1F*> m_h_num_jets_paired_to_quark;
+      std::vector<TH1F*> m_h_jet_from_stop_when_paired_to_quark;
 
       std::vector<TH1F*> m_h_num_same_parent_pairing;
       std::vector<TH1F*> m_h_same_parent_pairing_pair_0;

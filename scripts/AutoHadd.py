@@ -110,15 +110,7 @@ def haddFilesMatchingTag(dir, list_of_tags):
         makeNewCleanFile(messy_file_name, new_file_name, total_num_events)
 
 # ------------------------------------------------------------------------------
-def main():
-    # ensure input is provided
-    if len(sys.argv) == 1:
-        displayHelp()
-        return
-
-    # get directory path from user input
-    target_dir = sys.argv[1]
-
+def runAutoHaddOnDir(target_dir):
     # check that directory exists
     if not os.path.isdir(target_dir):
         print '%s is not a real directory' % target_dir
@@ -132,6 +124,18 @@ def main():
     # auto-hadd files in directory (matching tags in list_of_tags)
     if len(list_of_tags) > 0:
         haddFilesMatchingTag(target_dir, list_of_tags)
+
+# ------------------------------------------------------------------------------
+def main():
+    # ensure input is provided
+    if len(sys.argv) == 1:
+        displayHelp()
+        return
+
+    # get directory path from user input
+    target_dir = sys.argv[1]
+
+    runAutoHaddOnDir(target_dir)
 
 # ==============================================================================
 if __name__ == "__main__":

@@ -25,6 +25,8 @@ namespace PennSusyFrame
   template <class T1, class T2>
     double calcMll(const T1*, const T2*);
 
+  template <class T> double multiObjectMass(const std::vector<T*>&);
+
   // ---------------------------------------------------------------------------
   // ptll calculator
   double getPtll( FLAVOR_CHANNEL
@@ -33,6 +35,8 @@ namespace PennSusyFrame
                 );
   template <class T1, class T2>
     double calcPtll(const T1*, const T2*);
+
+  template <class T> double multiObjectPt(const std::vector<T*>&);
 
   // ---------------------------------------------------------------------------
   // mt2 calculator

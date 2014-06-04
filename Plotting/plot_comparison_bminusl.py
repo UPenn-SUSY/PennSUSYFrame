@@ -12,60 +12,63 @@ def main():
     ROOT.gROOT.SetBatch()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    hist_dir = '${BASE_WORK_DIR}/NextPlotDir.BMinusL'
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # construct EntryContainer objects
     ec_dummy = hh.Container.EntryContainer( label = 'dummy'
                                           , fill_color = ROOT.kBlack
-                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.dummy_hists.root"
+                                          , input_file_list = [ "%s/BMinusL.dummy_hists.root" % hist_dir
                                                               ]
                                           )
     # ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
     #                                       , fill_color = ROOT.kAzure+8
-    #                                       , input_file_list = [ "${BASE_WORK_DIR{/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.root"
+    #                                       , input_file_list = [ "%s/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.root" % hist_dir
     #                                                           ]
     #                                       )
     ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
                                           # , fill_color = ROOT.kAzure+8
                                           , fill_color = ROOT.kGreen+2
-                                          , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root"
+                                          , input_file_list = [ "%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root" % hist_dir
                                                               ]
                                           )
 
     # ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
     #                                     , fill_color = ROOT.kRed+1
-    #                                     , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.110817.AlpgenPythia_P2011C_ZeebbNp0.hists.root"
-    #                                     , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.110817.AlpgenPythia_P2011C_ZeebbNp0.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110818.AlpgenPythia_P2011C_ZeebbNp1.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110819.AlpgenPythia_P2011C_ZeebbNp2.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110820.AlpgenPythia_P2011C_ZeebbNp3.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110821.AlpgenPythia_P2011C_ZmumubbNp0.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110822.AlpgenPythia_P2011C_ZmumubbNp1.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110823.AlpgenPythia_P2011C_ZmumubbNp2.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110824.AlpgenPythia_P2011C_ZmumubbNp3.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110825.AlpgenPythia_P2011C_ZtautaubbNp0.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110826.AlpgenPythia_P2011C_ZtautaubbNp1.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110827.AlpgenPythia_P2011C_ZtautaubbNp2.hists.root"
-    #                                                         , "${BASE_WORK_DIR}/BMinusL.110828.AlpgenPythia_P2011C_ZtautaubbNp3.hists.root"
+    #                                     , input_file_list = [ "%s/BMinusL.110817.AlpgenPythia_P2011C_ZeebbNp0.hists.root" % hist_dir
+    #                                     , input_file_list = [ "%s/BMinusL.110817.AlpgenPythia_P2011C_ZeebbNp0.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110818.AlpgenPythia_P2011C_ZeebbNp1.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110819.AlpgenPythia_P2011C_ZeebbNp2.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110820.AlpgenPythia_P2011C_ZeebbNp3.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110821.AlpgenPythia_P2011C_ZmumubbNp0.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110822.AlpgenPythia_P2011C_ZmumubbNp1.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110823.AlpgenPythia_P2011C_ZmumubbNp2.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110824.AlpgenPythia_P2011C_ZmumubbNp3.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110825.AlpgenPythia_P2011C_ZtautaubbNp0.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110826.AlpgenPythia_P2011C_ZtautaubbNp1.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110827.AlpgenPythia_P2011C_ZtautaubbNp2.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.110828.AlpgenPythia_P2011C_ZtautaubbNp3.hists.root" % hist_dir
     #                                                         ]
     #                                     )
     ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
                                         , fill_color = ROOT.kRed+1
-                                        , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.200332.AlpgenPythia_Auto_P2011C_ZeebbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200333.AlpgenPythia_Auto_P2011C_ZeebbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200334.AlpgenPythia_Auto_P2011C_ZeebbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.hists.root"
-                                                            , "${BASE_WORK_DIR}/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root"
+                                        , input_file_list = [ "%s/BMinusL.200332.AlpgenPythia_Auto_P2011C_ZeebbNp0.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200333.AlpgenPythia_Auto_P2011C_ZeebbNp1.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200334.AlpgenPythia_Auto_P2011C_ZeebbNp2.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.hists.root" % hist_dir
+                                                            , "%s/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root" % hist_dir
                                                             ]
                                         )
     ec_single_top = hh.Container.EntryContainer( label = 'Single top'
                                                , fill_color = ROOT.kGreen-1
-                                               , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.root"
+                                               , input_file_list = [ "%s/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.root" % hist_dir
                                                                    ]
                                                )
 
@@ -73,70 +76,70 @@ def main():
                                            , line_color = ROOT.kMagenta
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_200 = hh.Container.EntryContainer( label = 'B-L stop (200 GeV)'
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_300 = hh.Container.EntryContainer( label = 'B-L stop (300 GeV)'
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_400 = hh.Container.EntryContainer( label = 'B-L stop (400 GeV)'
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_500 = hh.Container.EntryContainer( label = 'B-L stop (500 GeV)'
                                            , line_color = ROOT.kBlue+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_600 = hh.Container.EntryContainer( label = 'B-L stop (600 GeV)'
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_700 = hh.Container.EntryContainer( label = 'B-L stop (700 GeV)'
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_800 = hh.Container.EntryContainer( label = 'B-L stop (800 GeV)'
                                            , line_color = ROOT.kMagenta
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_900 = hh.Container.EntryContainer( label = 'B-L stop (900 GeV)'
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_1000 = hh.Container.EntryContainer( label = 'B-L stop (1000 GeV)'
                                            , line_color = ROOT.kCyan+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = [ "${BASE_WORK_DIR}/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.hists.root"
+                                           , input_file_list = [ "%s/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.hists.root" % hist_dir
                                                                ]
                                            )
 

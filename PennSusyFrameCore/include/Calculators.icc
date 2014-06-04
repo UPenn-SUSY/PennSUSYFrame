@@ -19,6 +19,19 @@ template <class T1, class T2>
 }
 
 // -----------------------------------------------------------------------------
+template <class T>
+  double PennSusyFrame::multiObjectMass(const std::vector<T*>& t)
+{
+  TLorentzVector tlv_sum;
+  size_t num_obj = t.size();
+  for (size_t it = 0; it != num_obj; ++it) {
+    tlv_sum += *(t.at(it));
+  }
+
+  return tlv_sum.Mag();
+}
+
+// -----------------------------------------------------------------------------
 template <class T1, class T2>
   double PennSusyFrame::calcPtll( const T1* t1
                                 , const T2* t2
@@ -28,6 +41,19 @@ template <class T1, class T2>
   const TLorentzVector* tlv_2 = t2->getTlv();
 
   return ((*tlv_1)+(*tlv_2)).Pt();
+}
+
+// -----------------------------------------------------------------------------
+template <class T>
+  double PennSusyFrame::multiObjectPt(const std::vector<T*>& t)
+{
+  TLorentzVector tlv_sum;
+  size_t num_obj = t.size();
+  for (size_t it = 0; it != num_obj; ++it) {
+    tlv_sum += *(t.at(it));
+  }
+
+  return tlv_sum.Pt();
 }
 
 // -----------------------------------------------------------------------------

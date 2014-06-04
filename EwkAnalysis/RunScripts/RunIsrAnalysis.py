@@ -28,7 +28,7 @@ ROOT.gSystem.Load('${BASE_WORK_DIR}/lib/libEwkAnalysis.so')
 print 'done loading libraries'
 
 # ------------------------------------------------------------------------------
-def runEwkAnalysisFun(data_set_dict):
+def runIsrAnalysisFun(data_set_dict):
     print '================================================================================'
     print 'label: %s'       % data_set_dict['label']
     print 'file_list: %s'   % data_set_dict['file_list']
@@ -42,8 +42,8 @@ def runEwkAnalysisFun(data_set_dict):
     print 'total num events: %s' % data_set_dict['total_num_events']
     print 'total num entries: %s' % data_set_dict['total_num_entries']
 
-    print 'About to run EwkAnalysis'
-    runEwkAnalysis( file_list             = data_set_dict['file_list']
+    print 'About to run IsrAnalysis'
+    runIsrAnalysis( file_list             = data_set_dict['file_list']
                   , is_data               = data_set_dict['is_data']
                   , is_full_sim           = data_set_dict['is_full_sim']
                   , tree_name             = 'TNT'
@@ -59,7 +59,7 @@ def runEwkAnalysisFun(data_set_dict):
                   )
 
 # ------------------------------------------------------------------------------
-def runEwkAnalysis( file_list
+def runIsrAnalysis( file_list
                   , is_data
                   , is_full_sim
                   , tree_name             = 'susy'
@@ -85,33 +85,33 @@ def runEwkAnalysis( file_list
     t = RunHelpers.getTChain(file_list, tree_name)
 
     # ==============================================================================
-    print 'Creating EwkAnalysis object'
-    ewka = ROOT.PennSusyFrame.EwkAnalysis(t)
+    print 'Creating IsrAnalysis object'
+    isra = ROOT.PennSusyFrame.IsrAnalysis(t)
 
-    print 'configuring EwkAnalysis object'
+    print 'configuring IsrAnalysis object'
     if out_file_special_name is not None:
-        ewka.setProcessLabel(out_file_special_name)
-    ewka.setFancyProgressBar(False)
+        isra.setProcessLabel(out_file_special_name)
+    isra.setFancyProgressBar(False)
 
     # set is data or MC
     if is_data:
-        ewka.setIsData()
+        isra.setIsData()
     else:
-        ewka.setIsMC()
+        isra.setIsMC()
 
         xsec_dict = CrossSectionReader.getCrossSection(dsid)
         if xsec_dict is None:
             return
-        ewka.setCrossSection(xsec_dict['xsec'])
-        ewka.setKFactor(     xsec_dict['kfac'])
-        ewka.setFilterEff(   xsec_dict['eff'])
+        isra.setCrossSection(xsec_dict['xsec'])
+        isra.setKFactor(     xsec_dict['kfac'])
+        isra.setFilterEff(   xsec_dict['eff'])
 
-        ewka.setTotalNumEntries(    total_num_entries )
-        ewka.setNumGeneratedEvents( total_num_events  )
+        isra.setTotalNumEntries(    total_num_entries )
+        isra.setNumGeneratedEvents( total_num_events  )
 
     # set is full sim/fast sim
     if is_full_sim:
-        ewka.setFullSim()
+        isra.setFullSim()
 
     # set start entry and max number events
     if total_num_jobs > 1:
@@ -122,45 +122,45 @@ def runEwkAnalysis( file_list
         print 'total num entries; %s' % total_num_entries
         print 'setting max num events: %s' % this_job_events
         print type(this_job_events)
-        ewka.setMaxNumEvents(this_job_events)
+        isra.setMaxNumEvents(this_job_events)
         print 'setting start entry: %s' % this_job_start
-        ewka.setStartEntry(this_job_start)
+        isra.setStartEntry(this_job_start)
 
     # set out histogram file name
     print 'setting histogram names'
-    out_hist_file_name = '%s/Ewk.' % out_dir
+    out_hist_file_name = '%s/Isr.' % out_dir
     if out_file_special_name is not None:
         out_hist_file_name += '%s.' % out_file_special_name
     out_hist_file_name += 'hists'
     if total_num_jobs > 1:
         out_hist_file_name += '.%d_of_%d' % (job_num, total_num_jobs)
     out_hist_file_name += '.root'
-    ewka.setOutHistFileName(out_hist_file_name)
+    isra.setOutHistFileName(out_hist_file_name)
 
     # Set critical cuts
     print 'setting critical cuts'
-    # ewka.setCritCutGrl(            1)
-    # ewka.setCritCutIncompleteEvent(1)
-    # ewka.setCritCutLarError(       1)
-    # ewka.setCritCutTileError(      1)
-    # ewka.setCritCutTileHotSpot(    1)
-    # ewka.setCritCutTileTrip(       1)
-    # ewka.setCritCutBadJetVeto(     1)
-    # ewka.setCritCutCaloProblemJet( 1)
-    # ewka.setCritCutPrimaryVertex(  1)
-    # ewka.setCritCutBadMuonVeto(    1)
-    # ewka.setCritCutCosmicMuonVeto( 1)
-    # ewka.setCritCutHFOR(           1)
-    # ewka.setCritCutMcOverlap(      1)
-    # ewka.setCritCutGe2Lepton(      1)
-    # ewka.setCritCut2Lepton(        1)
-    # ewka.setCritCut2SignalLepton(  1)
+    # isra.setCritCutGrl(            1)
+    # isra.setCritCutIncompleteEvent(1)
+    # isra.setCritCutLarError(       1)
+    # isra.setCritCutTileError(      1)
+    # isra.setCritCutTileHotSpot(    1)
+    # isra.setCritCutTileTrip(       1)
+    # isra.setCritCutBadJetVeto(     1)
+    # isra.setCritCutCaloProblemJet( 1)
+    # isra.setCritCutPrimaryVertex(  1)
+    # isra.setCritCutBadMuonVeto(    1)
+    # isra.setCritCutCosmicMuonVeto( 1)
+    # isra.setCritCutHFOR(           1)
+    # isra.setCritCutMcOverlap(      1)
+    # isra.setCritCutGe2Lepton(      1)
+    # isra.setCritCut2Lepton(        1)
+    # isra.setCritCut2SignalLepton(  1)
 
     # prepare tools and run analysis loop
     print 'preparing tools'
-    ewka.prepareTools()
+    isra.prepareTools()
     print 'looping -- %s' % out_file_special_name
-    ewka.Loop()
+    isra.Loop()
     print 'done looping -- %s' % out_file_special_name
 
     # ==============================================================================

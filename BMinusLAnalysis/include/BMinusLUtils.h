@@ -150,6 +150,16 @@ namespace PennSusyFrame
   int getBarcodeFromIndex( int index
                          , const PennSusyFrame::MCTruth&
                          );
+
+  // ---------------------------------------------------------------------------
+  float calcMbbll( const PennSusyFrame::blPair&
+                 , const PennSusyFrame::blPair&
+                 );
+
+  // ---------------------------------------------------------------------------
+  float calcPtbbll( const PennSusyFrame::blPair&
+                  , const PennSusyFrame::blPair&
+                  );
 }
 
 #endif
