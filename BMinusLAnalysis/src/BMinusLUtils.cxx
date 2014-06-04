@@ -603,3 +603,27 @@ int PennSusyFrame::getBarcodeFromIndex( int index
   if (index < 0) return -1;
   return mc_truth.getBarcode()->at(index);
 }
+
+// ---------------------------------------------------------------------------
+float PennSusyFrame::calcMbbll( const PennSusyFrame::blPair& bl_0
+                              , const PennSusyFrame::blPair& bl_1
+                              )
+{
+  return ( *(bl_0.getJet()->getTlv())
+         + *(bl_0.getLepton()->getTlv())
+         + *(bl_1.getJet()->getTlv())
+         + *(bl_1.getLepton()->getTlv())
+         ).Mag();
+}
+
+// ---------------------------------------------------------------------------
+float PennSusyFrame::calcPtbbll( const PennSusyFrame::blPair& bl_0
+                               , const PennSusyFrame::blPair& bl_1
+                               )
+{
+  return ( *(bl_0.getJet()->getTlv())
+         + *(bl_0.getLepton()->getTlv())
+         + *(bl_1.getJet()->getTlv())
+         + *(bl_1.getLepton()->getTlv())
+         ).Pt();
+}
