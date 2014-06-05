@@ -7,6 +7,7 @@
 #include "TFile.h"
 #include "TDirectory.h"
 #include "TH1.h"
+#include "TH2.h"
 
 // =============================================================================
 PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
@@ -20,6 +21,10 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
   const int   pt_bins = 100;
   const float pt_min  = 0.;
   const float pt_max  = 1000.;
+
+  const int   eta_bins = 50;
+  const float eta_min = -5.;
+  const float eta_max = 5.;
 
   const int   mbl_bins = 60;
   const float mbl_min  = 0.;
@@ -304,6 +309,48 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                    )
                          );
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize b jet eta histograms
+    m_h_b_jet_eta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__b_jet_eta_all"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "#eta - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; #eta ; Entries"
+                                    ).c_str()
+                                  , eta_bins, eta_min, eta_max
+                                  )
+                        );
+
+    m_h_b_jet_eta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__b_jet_eta_0"
+                                 + "__"
+                                 + name_tag
+                                  ).c_str()
+                                , ( "#eta^{0} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; #eta^{0} [GeV] ; Entries"
+                                  ).c_str()
+                                , eta_bins, eta_min, eta_max
+                                )
+                      );
+
+    m_h_b_jet_eta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__b_jet_eta_1"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "#eta^{1} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; #eta^{1} [GeV] ; Entries"
+                                  ).c_str()
+                                , eta_bins, eta_min, eta_max
+                                )
+                      );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mbl histograms
     m_h_mbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + "__mbl_all"
@@ -424,6 +471,47 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      )
                            );
 
+    // initialize pt_b1vl1 histograms
+    m_h_pt_b_jet1vl1.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					    + "__pt_b_jet1vl1"
+					    + "__"
+					    + name_tag
+					    ).c_str(),
+					  ("p_{T}_b_jet1vl1 - "
+					   + FLAVOR_CHANNEL_STRINGS[fc_it]
+					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
+					   ).c_str(),
+					  pt_bins, pt_min, pt_max,
+					  pt_bins, pt_min, pt_max
+					  )
+				);
+    m_h_fiducial_b_jet1vl1_pass.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+						       + "__fiducial_b_jet1vl1_pass"
+						       + "__"
+						       + name_tag
+						       ).c_str(),
+						     ("p_{T}_b_jet1vl1 - |#eta| < 2.4 - "
+						      + FLAVOR_CHANNEL_STRINGS[fc_it]
+						      + " ; p_{T}^{l} ; p_{T}^{b jet}"
+						      ).c_str(),
+						     pt_bins, pt_min, pt_max,
+						     pt_bins, pt_min, pt_max
+						     )
+					   );
+    m_h_fiducial_b_jet1vl1_fail.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+						       + "__fiducial_b_jet1vl1_fail"
+						       + "__"
+						       + name_tag
+						       ).c_str(),
+						     ("p_{T}_b_jet1vl1 - |#eta| >= 2.4 - "
+						      + FLAVOR_CHANNEL_STRINGS[fc_it]
+						      + " ; p_{T}^{l} ; p_{T}^{b jet}"
+						      ).c_str(),
+						     pt_bins, pt_min, pt_max,
+						     pt_bins, pt_min, pt_max
+						     )
+					   );
+					  
     // initialize mbl anti-pairing histograms
     m_h_mbl_anti_pairing_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                   + "__mbl_anti_pairing_all"
@@ -805,6 +893,19 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                                        , deta_bins, deta_min, deta_max
                                                        )
                                              );
+    // initialize event-level eta and fiducial cut histograms
+    m_h_eta_event_passfail.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "__eta_event_passfail"
+						  + "__"
+						  + name_tag
+						  ).c_str()
+						, ("|#eta|=2.4 cut - "
+						   + FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + " ; Fail (0), Pass (1) ; Entries"
+						   ).c_str()
+						, 2,0.,2.
+						)
+				      );
   }
 }
 
@@ -842,6 +943,18 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   float deta_bb = ( num_jet > 1 ? fabs(eta_b_0 - eta_b_1) : 0);
 
   float dr_bb = ( num_jet > 1 ? sqrt(dphi_bb*dphi_bb - deta_bb*deta_bb) : 0);
+
+  // lepton pt's
+  float pt_l_0 = bl_0.getLepton()->getPt()/1.e3;
+  float pt_l_1 = bl_1.getLepton()->getPt()/1.e3;
+  if (pt_l_1 > pt_l_0) {
+    float tmp = pt_l_0;
+    pt_l_0 = pt_l_1;
+    pt_l_1 = tmp;
+  }
+
+  float eta_l_0 = bl_0.getLepton()->getEta();
+  float eta_l_1 = bl_1.getLepton()->getEta();
 
   // compute mbl
   float mbl_0 = bl_0.getMbl()/1.e3;
@@ -1015,6 +1128,10 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     if (num_jet > 0) {
       m_h_b_jet_pt_all.at(fc_it)->Fill(pt_b_0, weight);
       m_h_b_jet_pt_0.at(  fc_it)->Fill(pt_b_0, weight);
+
+      m_h_b_jet_eta_all.at(fc_it)->Fill(eta_b_0, weight);
+      m_h_b_jet_eta_0.at(  fc_it)->Fill(eta_b_0, weight);
+
       if (dr_jet_q_0 >= 0) {
         m_h_b_jet_dr_q_all.at(fc_it)->Fill(dr_jet_q_0, weight);
         m_h_b_jet_dr_q_0.at(  fc_it)->Fill(dr_jet_q_0, weight);
@@ -1028,10 +1145,17 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
       m_h_dr_bb.at  (     fc_it)->Fill(dr_bb  , weight);
       m_h_dphi_bb.at(     fc_it)->Fill(dphi_bb, weight);
       m_h_deta_bb.at(     fc_it)->Fill(deta_bb, weight);
+
       if (dr_jet_q_1 >= 0) {
         m_h_b_jet_dr_q_all.at(fc_it)->Fill(dr_jet_q_1, weight);
         m_h_b_jet_dr_q_1.at(  fc_it)->Fill(dr_jet_q_1, weight);
       }
+
+      m_h_b_jet_eta_all.at(fc_it)->Fill(eta_b_1, weight);
+      m_h_b_jet_eta_1.at(  fc_it)->Fill(eta_b_1, weight);
+
+      m_h_pt_b_jet1vl1.at(fc_it)->Fill(pt_l_1, pt_b_1, weight);
+
     }
 
     // fill mbl histograms
@@ -1149,6 +1273,27 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     if (!same_parent_anti_pair_0 && !same_parent_anti_pair_1) {
       m_h_mbl_ratio_diff_parent_pairing.at(fc_it)->Fill(mbl_anti_pair_1/mbl_anti_pair_0, weight);
     }
+
+    // Fill event level eta and fiducial cut histograms
+    (pass(eta_b_0, eta_b_1, eta_l_0, eta_l_1) ? m_h_eta_event_passfail.at(fc_it)->Fill(1., weight) :
+     m_h_eta_event_passfail.at(fc_it)->Fill(0., weight));
+    (pass(eta_b_0, eta_b_1, eta_l_0, eta_l_1) ? m_h_fiducial_b_jet1vl1_pass.at(fc_it)->Fill(pt_l_1, pt_b_1, weight) :
+     m_h_fiducial_b_jet1vl1_fail.at(fc_it)->Fill(pt_l_1, pt_b_1, weight));
+    
+  }
+}
+
+// ----------------------------------------------------------------------------- 
+bool PennSusyFrame::BMinusLHists::pass(float eta_b_0, float eta_b_1, float eta_l_0, float eta_l_1)
+{
+  if (   abs(eta_b_0  ) < 2.4 
+      && abs(eta_b_1  ) < 2.4 
+      && abs(eta_l_0) < 2.4 
+      && abs(eta_l_1) < 2.4) {
+    return 1;
+  }
+  else {
+    return 0;
   }
 }
 
@@ -1187,6 +1332,10 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_dphi_bb.at(fc_it)->Write();
     m_h_deta_bb.at(fc_it)->Write();
 
+    m_h_b_jet_eta_all.at(fc_it)->Write();
+    m_h_b_jet_eta_0.at(  fc_it)->Write();
+    m_h_b_jet_eta_1.at(  fc_it)->Write();
+
     m_h_mbl_all.at(fc_it)->Write();
     m_h_mbl_0.at(  fc_it)->Write();
     m_h_mbl_1.at(  fc_it)->Write();
@@ -1197,6 +1346,10 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_ptbl_0.at(  fc_it)->Write();
     m_h_ptbl_1.at(  fc_it)->Write();
     m_h_ptbl_diff.at(fc_it)->Write();
+
+    m_h_pt_b_jet1vl1.at(fc_it)->Write();
+    m_h_fiducial_b_jet1vl1_pass.at(fc_it)->Write();
+    m_h_fiducial_b_jet1vl1_fail.at(fc_it)->Write();
 
     m_h_mbl_anti_pairing_all.at(fc_it)->Write();
     m_h_mbl_anti_pairing_0.at(  fc_it)->Write();
@@ -1236,5 +1389,7 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
 
     m_h_bl_deta_same_parent_pairing.at(fc_it)->Write();
     m_h_bl_deta_diff_parent_pairing.at(fc_it)->Write();
+
+    m_h_eta_event_passfail.at(fc_it)->Write();
   }
 }
