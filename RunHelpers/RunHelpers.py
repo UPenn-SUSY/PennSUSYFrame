@@ -4,11 +4,28 @@ import sys
 import os
 import glob
 import shutil
+import datetime
 
 import ROOT
 
 sys.path.append('%s/scripts/' % os.environ['BASE_WORK_DIR'])
 import AutoHadd
+
+# ------------------------------------------------------------------------------
+def getDateTimeLabel(include_date = True, include_time = True):
+    today_date = datetime.datetime.now()
+    datetime_label = ''
+    if include_date:
+        datetime_label += '__%04d_%02d_%02d'% ( today_date.year
+                                              , today_date.month
+                                              , today_date.day
+                                              )
+    if include_time:
+        datetime_label += '__%02d_%02d' % ( today_date.hour
+                                          , today_date.minute
+                                          )
+
+    return datetime_label
 
 # ------------------------------------------------------------------------------
 def getFileListFromDir(file_path):
