@@ -36,20 +36,19 @@ if __name__ == '__main__':
                    ## , 'periodE_muon':{'label':'periodE_muon'          , 'num_jobs':10}
                    }
 
-    full_sim_mc_samples = {## 117650:{'label':'117650.AlpgenPythia_P2011C_ZeeNp0'         , 'num_jobs':10}
-                           ## , 117651:{'label':'117651.AlpgenPythia_P2011C_ZeeNp1'       , 'num_jobs':10}
-                           ## , 117652:{'label':'117652.AlpgenPythia_P2011C_ZeeNp2'       , 'num_jobs':5}
-                           ## , 117653:{'label':'117653.AlpgenPythia_P2011C_ZeeNp3'       , 'num_jobs':1}
-                           ## , 117654:{'label':'117654.AlpgenPythia_P2011C_ZeeNp4'       , 'num_jobs':1}
-                           ## , 117655:{'label':'117655.AlpgenPythia_P2011C_ZeeNp5'       , 'num_jobs':1}
-                           ##
-                           ## , 117660:{'label':'117660.AlpgenPythia_P2011C_ZmumuNp0'     , 'num_jobs':10}
-                           ## , 117661:{'label':'117661.AlpgenPythia_P2011C_ZmumuNp1'     , 'num_jobs':10}
-                           ## , 117662:{'label':'117662.AlpgenPythia_P2011C_ZmumuNp2'     , 'num_jobs':5}
-                           ## , 117663:{'label':'117663.AlpgenPythia_P2011C_ZmumuNp3'     , 'num_jobs':1}
-                           ## , 117664:{'label':'117664.AlpgenPythia_P2011C_ZmumuNp4'     , 'num_jobs':1}
-                           ## , 117665:{'label':'117665.AlpgenPythia_P2011C_ZmumuNp5'     , 'num_jobs':1}
-                           117665:{'label':'117665.AlpgenPythia_P2011C_ZmumuNp5'     , 'num_jobs':1}
+    full_sim_mc_samples = { 117650:{'label':'117650.AlpgenPythia_P2011C_ZeeNp0'       , 'num_jobs':10}
+                          , 117651:{'label':'117651.AlpgenPythia_P2011C_ZeeNp1'       , 'num_jobs':10}
+                          , 117652:{'label':'117652.AlpgenPythia_P2011C_ZeeNp2'       , 'num_jobs':5}
+                          , 117653:{'label':'117653.AlpgenPythia_P2011C_ZeeNp3'       , 'num_jobs':1}
+                          , 117654:{'label':'117654.AlpgenPythia_P2011C_ZeeNp4'       , 'num_jobs':1}
+                          , 117655:{'label':'117655.AlpgenPythia_P2011C_ZeeNp5'       , 'num_jobs':1}
+
+                          , 117660:{'label':'117660.AlpgenPythia_P2011C_ZmumuNp0'     , 'num_jobs':10}
+                          , 117661:{'label':'117661.AlpgenPythia_P2011C_ZmumuNp1'     , 'num_jobs':10}
+                          , 117662:{'label':'117662.AlpgenPythia_P2011C_ZmumuNp2'     , 'num_jobs':5}
+                          , 117663:{'label':'117663.AlpgenPythia_P2011C_ZmumuNp3'     , 'num_jobs':1}
+                          , 117664:{'label':'117664.AlpgenPythia_P2011C_ZmumuNp4'     , 'num_jobs':1}
+                          , 117665:{'label':'117665.AlpgenPythia_P2011C_ZmumuNp5'     , 'num_jobs':1}
 
                            ## , 110805:{'label':'110805.AlpgenPythia_P2011C_ZeeccNp0'     , 'num_jobs':1}
                            ## , 110806:{'label':'110806.AlpgenPythia_P2011C_ZeeccNp1'     , 'num_jobs':1}
