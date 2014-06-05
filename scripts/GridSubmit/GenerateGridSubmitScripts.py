@@ -140,18 +140,19 @@ if __name__ == '__main__':
                    , { 'tag':'160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'       , 'ds':'mc12_8TeV.160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu.merge.NTUP_SUSY.e1447_s1499_s1504_r3658_r3549_p1512/'       , 'is_data':0 , 'is_full_mc':1 }
                    , { 'tag':'161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5'  , 'ds':'mc12_8TeV.161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5.merge.NTUP_SUSY.e1285_s1469_s1470_r3542_r3549_p1512/'  , 'is_data':0 , 'is_full_mc':1 }
                    , { 'tag':'161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5' , 'ds':'mc12_8TeV.161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5.merge.NTUP_SUSY.e1285_s1469_s1470_r3542_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
-                   , { 'tag':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'ds':'mc12_8TeV.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.merge.NTUP_SUSY.e1530_s1499_s1504_r3658_r3549_p1512/'        , 'is_data':0 , 'is_full_mc':1 }
+                   
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
     # ------------------------------------------------------------------------------
     # bkg - higgs pythia
-    ds_dict_list = [ { 'tag':'160255.Pythia8_AU2CTEQ6L1_WH125_ZZ4lep'   , 'ds':'mc12_8TeV.160255.Pythia8_AU2CTEQ6L1_WH125_ZZ4lep.merge.NTUP_SUSY.e1419_s1499_s1504_r3658_r3549_p1512/'   , 'is_data':0 , 'is_full_mc':1 }
-                   , { 'tag':'160305.Pythia8_AU2CTEQ6L1_ZH125_ZZ4lep'   , 'ds':'mc12_8TeV.160305.Pythia8_AU2CTEQ6L1_ZH125_ZZ4lep.merge.NTUP_SUSY.e1217_s1469_s1470_r3542_r3549_p1512/'   , 'is_data':0 , 'is_full_mc':1 }
-                   , { 'tag':'160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu' , 'ds':'mc12_8TeV.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.merge.NTUP_SUSY.e1217_s1469_s1470_r3542_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
-                   , { 'tag':'160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu' , 'ds':'mc12_8TeV.160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu.merge.NTUP_SUSY.e1217_s1469_s1470_r3542_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
-                   , { 'tag':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'   , 'ds':'mc12_8TeV.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.merge.NTUP_SUSY.e1285_s1469_s1470_r3542_r3549_p1512/'   , 'is_data':0 , 'is_full_mc':1 }
-                   , { 'tag':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'   , 'ds':'mc12_8TeV.161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep.merge.NTUP_SUSY.e1285_s1469_s1470_r3542_r3549_p1512/'   , 'is_data':0 , 'is_full_mc':1 }
+    ds_dict_list = [ { 'tag':'160255.Pythia8_AU2CTEQ6L1_WH125_ZZ4lep'       , 'ds':'mc12_8TeV.160255.Pythia8_AU2CTEQ6L1_WH125_ZZ4lep.merge.NTUP_SUSY.e1419_s1499_s1504_r3658_r3549_p1512/'       , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'160305.Pythia8_AU2CTEQ6L1_ZH125_ZZ4lep'       , 'ds':'mc12_8TeV.160305.Pythia8_AU2CTEQ6L1_ZH125_ZZ4lep.merge.NTUP_SUSY.e1217_s1469_s1470_r3542_r3549_p1512/'       , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'     , 'ds':'mc12_8TeV.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.merge.NTUP_SUSY.e1217_s1469_s1470_r3542_r3549_p1512/'     , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu'     , 'ds':'mc12_8TeV.160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu.merge.NTUP_SUSY.e1217_s1469_s1470_r3542_r3549_p1512/'     , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'       , 'ds':'mc12_8TeV.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.merge.NTUP_SUSY.e1285_s1469_s1470_r3542_r3549_p1512/'       , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'       , 'ds':'mc12_8TeV.161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep.merge.NTUP_SUSY.e1285_s1469_s1470_r3542_r3549_p1512/'       , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive' , 'ds':'mc12_8TeV.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.merge.NTUP_SUSY.e1530_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
@@ -163,8 +164,15 @@ if __name__ == '__main__':
 
     # ------------------------------------------------------------------------------
     # bkg - triboson
-    ds_dict_list = [ { 'tag':'167008.MadGraphPythia_AUET2BCTEQ6L1_ZZZStar_nunullll', 'ds':'mc12_8TeV.167008.MadGraphPythia_AUET2BCTEQ6L1_ZZZStar_nunullll.merge.NTUP_SUSY.e1466_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+    ds_dict_list = [ 'tag':'167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu', 'ds':'mc12_8TeV.167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu.merge.NTUP_SUSY.e1447_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1
+                   , { 'tag':'167008.MadGraphPythia_AUET2BCTEQ6L1_ZZZStar_nunullll', 'ds':'mc12_8TeV.167008.MadGraphPythia_AUET2BCTEQ6L1_ZZZStar_nunullll.merge.NTUP_SUSY.e1466_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    , { 'tag':'167007.MadGraphPythia_AUET2BCTEQ6L1_ZWWStar_lllnulnu', 'ds':'mc12_8TeV.167007.MadGraphPythia_AUET2BCTEQ6L1_ZWWStar_lllnulnu.merge.NTUP_SUSY.e1466_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                   , { 'tag':'147191.Sherpa_CT10_lnlnjj_WWjj_ls_EW6'               , 'ds':'mc12_8TeV.147191.Sherpa_CT10_lnlnjj_WWjj_ls_EW6.merge.NTUP_SUSY.e1613_s1499_s1504_r3658_r3549_p1512/'                , 'is_data':0 , 'is_full_mc':1 }
+                   #, {'tag':'Sherpa_CT10_lnln_WW_ls'                               , 'ds':'mc12_8TeV.147192.Sherpa_CT10_lnln_WW_ls.merge.NTUP_SUSY.e1613_s1499_s1504_r3658_r3549_p1512/', 'is_data':0 , 'is_full_mc':1 } #Maybe not?  it's not on the 2L OS list 
+                   , {'tag':'147193.Sherpa_CT10_lnlnjj_WWjj_EW6'                   , 'ds':'mc12_8TeV.147193.Sherpa_CT10_lnlnjj_WWjj_EW6.merge.NTUP_SUSY.e1613_s1499_s1504_r3658_r3549_p1512/'                   , 'is_data':0 , 'is_full_mc':1 }
+                   , {'tag':'147194.Sherpa_CT10_lllnjj_WZjj_EW6'                   , 'ds':'mc12_8TeV.147194.Sherpa_CT10_lllnjj_WZjj_EW6.merge.NTUP_SUSY.e1613_s1499_s1504_r3658_r3549_p1512/'                   , 'is_data':0 , 'is_full_mc':1 }
+                   , {'tag':'147195.Sherpa_CT10_llnnjj_ZZjj_EW6'                   , 'ds':'mc12_8TeV.147195.Sherpa_CT10_llnnjj_ZZjj_EW6.merge.NTUP_SUSY.e1613_s1499_s1504_r3658_r3549_p1512/'                   , 'is_data':0 , 'is_full_mc':1 }
+                   , {'tag':'147196.Sherpa_CT10_lllljj_ZZjj_EW6'                   , 'ds':'mc12_8TeV.147196.Sherpa_CT10_lllljj_ZZjj_EW6.merge.NTUP_SUSY.e1613_s1499_s1504_r3658_r3549_p1512/'                   , 'is_data':0 , 'is_full_mc':1 }
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
@@ -229,12 +237,12 @@ if __name__ == '__main__':
                    ]
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
-    # ------------------------------------------------------------------------------
-    # bkg - WW__MadGraphPythia.sh
-    ds_dict_list = [ { 'tag':'167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu', 'ds':'mc12_8TeV.167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu.merge.NTUP_SUSY.e1447_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
-            ]
-    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
-
+##    # ------------------------------------------------------------------------------
+##    # bkg - WW__MadGraphPythia.sh This is Triboson TO DELETE AFTER CONFIRMATION WITH BRETT
+##    ds_dict_list = [ { 'tag':'167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu', 'ds':'mc12_8TeV.167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu.merge.NTUP_SUSY.e1447_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+##            ]
+##    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
+##
     # ------------------------------------------------------------------------------
     # bkg - WW__PowhegPythia8.sh
     ds_dict_list = [ { 'tag':'126928.PowhegPythia8_AU2CT10_WpWm_ee', 'ds':'mc12_8TeV.126928.PowhegPythia8_AU2CT10_WpWm_ee.merge.NTUP_SUSY.e1280_s1469_s1470_r3542_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
