@@ -163,8 +163,26 @@ if __name__ == '__main__':
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
     # ------------------------------------------------------------------------------
+    # bkg - top AcerMC single top
+    ds_dict_list = [ { 'tag':'117360.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e' , 'ds':'mc12_8TeV.117360.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e.merge.NTUP_SUSY.e1346_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                     , { 'tag':'117361.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_mu' , 'ds':'mc12_8TeV.117361.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_mu.merge.NTUP_SUSY.e1346_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                     , { 'tag':'117362.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau' , 'ds':'mc12_8TeV.117362.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau.merge.NTUP_SUSY.e1346_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                     ]
+
+    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
+
+ # ------------------------------------------------------------------------------
+    # bkg - top MC@NLO single top
+    ds_dict_list = [ {'tag':'108343.McAtNloJimmy_AUET2CT10_SingleTopSChanWenu' , 'ds':'mc12_8TeV.108343.McAtNloJimmy_AUET2CT10_SingleTopSChanWenu.merge.NTUP_SUSY.e1525_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                     {'tag':'108344.McAtNloJimmy_AUET2CT10_SingleTopSChanWmunu' , 'ds':'mc12_8TeV.108344.McAtNloJimmy_AUET2CT10_SingleTopSChanWmunu.merge.NTUP_SUSY.e1525_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                     {'tag':'108345.McAtNloJimmy_AUET2CT10_SingleTopSChanWtaunu' , 'ds':'mc12_8TeV.108345.McAtNloJimmy_AUET2CT10_SingleTopSChanWtaunu.merge.NTUP_SUSY.e1525_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
+                     ]
+
+    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
+
+    # ------------------------------------------------------------------------------
     # bkg - triboson
-    ds_dict_list = [ 'tag':'167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu', 'ds':'mc12_8TeV.167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu.merge.NTUP_SUSY.e1447_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1
+    ds_dict_list = [ {'tag':'167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu', 'ds':'mc12_8TeV.167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu.merge.NTUP_SUSY.e1447_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1}
                    , { 'tag':'167008.MadGraphPythia_AUET2BCTEQ6L1_ZZZStar_nunullll', 'ds':'mc12_8TeV.167008.MadGraphPythia_AUET2BCTEQ6L1_ZZZStar_nunullll.merge.NTUP_SUSY.e1466_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    , { 'tag':'167007.MadGraphPythia_AUET2BCTEQ6L1_ZWWStar_lllnulnu', 'ds':'mc12_8TeV.167007.MadGraphPythia_AUET2BCTEQ6L1_ZWWStar_lllnulnu.merge.NTUP_SUSY.e1466_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    , { 'tag':'147191.Sherpa_CT10_lnlnjj_WWjj_ls_EW6'               , 'ds':'mc12_8TeV.147191.Sherpa_CT10_lnlnjj_WWjj_ls_EW6.merge.NTUP_SUSY.e1613_s1499_s1504_r3658_r3549_p1512/'                , 'is_data':0 , 'is_full_mc':1 }
