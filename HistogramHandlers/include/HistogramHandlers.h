@@ -97,6 +97,7 @@ namespace PennSusyFrame
                        , float weight
                        );
       virtual void write(TDirectory*);
+      virtual bool pass(float eta_0, float eta_1);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -104,6 +105,11 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
 
+      std::vector<TH1F*> m_h_eta_all;
+      std::vector<TH1F*> m_h_eta_0;
+      std::vector<TH1F*> m_h_eta_1;
+      std::vector<TH1F*> m_h_eta_event_passfail;
+      
       std::vector<TH1F*> m_h_ptiso_all;
       std::vector<TH1F*> m_h_ptiso_0;
       std::vector<TH1F*> m_h_ptiso_1;
@@ -111,6 +117,11 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_etiso_all;
       std::vector<TH1F*> m_h_etiso_0;
       std::vector<TH1F*> m_h_etiso_1;
+
+      std::vector<TH1F*> m_h_fiducial_single_pass;
+      std::vector<TH1F*> m_h_fiducial_single_fail;
+      std::vector<TH1F*> m_h_fiducial_event_pass;
+      std::vector<TH1F*> m_h_fiducial_event_fail;
   };
 
   // =============================================================================
@@ -132,6 +143,7 @@ namespace PennSusyFrame
                        , float weight
                        );
       virtual void write(TDirectory*);
+      virtual bool pass(float eta_0, float eta_1);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -140,6 +152,16 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
+
+      std::vector<TH1F*> m_h_eta_all;
+      std::vector<TH1F*> m_h_eta_0;
+      std::vector<TH1F*> m_h_eta_1;
+      std::vector<TH1F*> m_h_eta_event_passfail;
+
+      std::vector<TH1F*> m_h_fiducial_single_pass;
+      std::vector<TH1F*> m_h_fiducial_single_fail;
+      std::vector<TH1F*> m_h_fiducial_event_pass;
+      std::vector<TH1F*> m_h_fiducial_event_fail;
   };
 
   // =============================================================================

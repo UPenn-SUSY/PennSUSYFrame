@@ -132,10 +132,11 @@ if __name__ == '__main__':
     data_set_dicts = []
     # for lep_pt in [20.e3, 30.e3, 40.e3]:
     #     for jet_pt in [20.e3, 30.e3, 40.e3]:
-    for lep_pt in [40.e3]:
-        for jet_pt in [40.e3]:
+    for lep_pt in [10.e3]:
+        for jet_pt in [20.e3]:
             data_samples = {}
-            full_sim_mc_samples = { 117050:{'label':'117050.PowhegPythia_P2011C_ttbar'                 , 'num_jobs':15}
+            full_sim_mc_samples = {}
+            ''' 117050:{'label':'117050.PowhegPythia_P2011C_ttbar'                 , 'num_jobs':15}
                                   , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':10}
                                   , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
                                   , 200334:{'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':3}
@@ -162,8 +163,8 @@ if __name__ == '__main__':
                                   , 110827:{'label':'110827.AlpgenPythia_P2011C_ZtautaubbNp2', 'num_jobs':1}
                                   , 110828:{'label':'110828.AlpgenPythia_P2011C_ZtautaubbNp3', 'num_jobs':1}
                                   }
-            fast_sim_mc_samples = { 105200:{'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter', 'num_jobs':15}
-                                  , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100' , 'num_jobs':1}
+                                  '''
+            fast_sim_mc_samples = { 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100' , 'num_jobs':1}
                                   , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200' , 'num_jobs':1}
                                   , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300' , 'num_jobs':1}
                                   , 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400' , 'num_jobs':1}
@@ -195,7 +196,7 @@ if __name__ == '__main__':
 
             for dsid in fast_sim_mc_samples:
                 these_data_set_dicts = makeDataSetDictList( label_base=fast_sim_mc_samples[dsid]['label']
-                                                          , file_list_path = 'EosFileLists/tnt_102/tnt_102.%s.txt' % fast_sim_mc_samples[dsid]['label']
+                                                          , file_list_path = 'EosFileLists/local_leigh/tnt_102.%s.txt' % fast_sim_mc_samples[dsid]['label']
                                                           , is_data = False
                                                           , is_full_sim = False
                                                           , dsid = dsid
