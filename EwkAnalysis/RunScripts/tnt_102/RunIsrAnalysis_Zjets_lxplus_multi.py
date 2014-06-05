@@ -16,14 +16,7 @@ import RunHelpers
 # get number of parallel processes from command line inputs
 num_processes = int(sys.argv[1]) if len(sys.argv) > 1 else 1
 
-today_date = datetime.datetime.now()
-out_dir = 'hists/bminusl_hists_%04d_%02d_%02d__%02d_%02d' % ( today_date.year
-                                                            , today_date.month
-                                                            , today_date.day
-                                                            , today_date.hour
-                                                            , today_date.minute
-                                                            )
-print out_dir
+out_dir = 'hists/isr_hists%s' % RunHelpers.getDateTimeLabel(True, False)
 
 # ==============================================================================
 if __name__ == '__main__':
