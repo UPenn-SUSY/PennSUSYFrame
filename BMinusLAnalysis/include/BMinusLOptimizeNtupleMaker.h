@@ -50,28 +50,26 @@ namespace PennSusyFrame
 
       void setOutNtupleFileName(std::string val) { m_out_ntuple_file_name = val; }
 
-      // void setCritCutGrl(            bool val) { m_crit_cut_grl = val;              }
-      // void setCritCutIncompleteEvent(bool val) { m_crit_cut_incomplete_event = val; }
-      // void setCritCutLarError(       bool val) { m_crit_cut_lar_error = val;        }
-      // void setCritCutTileError(      bool val) { m_crit_cut_tile_error = val;       }
-      // void setCritCutTileHotSpot(    bool val) { m_crit_cut_tile_hot_spot = val;    }
-      // void setCritCutTileTrip(       bool val) { m_crit_cut_tile_trip = val;        }
-      // void setCritCutBadJetVeto(     bool val) { m_crit_cut_bad_jet_veto = val;     }
-      // void setCritCutCaloProblemJet( bool val) { m_crit_cut_calo_problem_jet = val; }
-      // void setCritCutPrimaryVertex(  bool val) { m_crit_cut_primary_vertex = val;   }
-      // void setCritCutBadMuonVeto(    bool val) { m_crit_cut_bad_mu_veto = val;      }
-      // void setCritCutCosmicMuonVeto( bool val) { m_crit_cut_cosmic_mu_veto = val;   }
-      // void setCritCutHFOR(           bool val) { m_crit_cut_hfor = val;             }
-      // void setCritCutMcOverlap(      bool val) { m_crit_cut_mc_overlap = val;       }
-      // void setCritCutGe2Lepton(      bool val) { m_crit_cut_ge_2_lep = val;         }
-      // void setCritCut2Lepton(        bool val) { m_crit_cut_2_lep = val;            }
-      // void setCritCut2SignalLepton(  bool val) { m_crit_cut_signal_lep = val;       }
-      // void setCritCut2BJets(         bool val) { m_crit_cut_b_jets = val;           }
-      // void setCritCutBLPairing(      bool val) { m_crit_cut_bl_pairing = val;       }
-      // void setCritCutZVeto(          bool val) { m_crit_cut_z_veto = val;           }
-      // void setCritCutMet(            bool val) { m_crit_cut_met = val;              }
+      void setCritCutGrl(            bool val) { m_crit_cut_grl = val;              }
+      void setCritCutIncompleteEvent(bool val) { m_crit_cut_incomplete_event = val; }
+      void setCritCutLarError(       bool val) { m_crit_cut_lar_error = val;        }
+      void setCritCutTileError(      bool val) { m_crit_cut_tile_error = val;       }
+      void setCritCutTileHotSpot(    bool val) { m_crit_cut_tile_hot_spot = val;    }
+      void setCritCutTileTrip(       bool val) { m_crit_cut_tile_trip = val;        }
+      void setCritCutBadJetVeto(     bool val) { m_crit_cut_bad_jet_veto = val;     }
+      void setCritCutCaloProblemJet( bool val) { m_crit_cut_calo_problem_jet = val; }
+      void setCritCutPrimaryVertex(  bool val) { m_crit_cut_primary_vertex = val;   }
+      void setCritCutBadMuonVeto(    bool val) { m_crit_cut_bad_mu_veto = val;      }
+      void setCritCutCosmicMuonVeto( bool val) { m_crit_cut_cosmic_mu_veto = val;   }
+      void setCritCutHFOR(           bool val) { m_crit_cut_hfor = val;             }
+      void setCritCutMcOverlap(      bool val) { m_crit_cut_mc_overlap = val;       }
+      void setCritCutGe2Lepton(      bool val) { m_crit_cut_ge_2_lep = val;         }
+      void setCritCut2Lepton(        bool val) { m_crit_cut_2_lep = val;            }
+      void setCritCut2SignalLepton(  bool val) { m_crit_cut_signal_lep = val;       }
+      void setCritCut2BJets(         bool val) { m_crit_cut_b_jets = val;           }
+      void setCritCutBLPairing(      bool val) { m_crit_cut_bl_pairing = val;       }
+      void setCritCutZVeto(          bool val) { m_crit_cut_z_veto = val;           }
 
-      // void setMetCut(   float min, float max) { m_met_min               = min ; m_met_max               = max; }
       void setElPtCut(  float min, float max) { m_min_el_pt_baseline    = min ; m_max_el_pt_baseline    = max; }
       void setMuPtCut(  float min, float max) { m_min_mu_pt_baseline    = min ; m_max_mu_pt_baseline    = max; }
       void setBJetPtCut(float min, float max) { m_min_b_jet_pt_baseline = min ; m_max_b_jet_pt_baseline = max; }
@@ -83,28 +81,25 @@ namespace PennSusyFrame
                      );
       std::string m_out_ntuple_file_name;
 
-      // PennSusyFrame::LeptonKinematicsHists m_lep_hists;
-
-      // bool m_crit_cut_grl;
-      // bool m_crit_cut_incomplete_event;
-      // bool m_crit_cut_lar_error;
-      // bool m_crit_cut_tile_error;
-      // bool m_crit_cut_tile_hot_spot;
-      // bool m_crit_cut_tile_trip;
-      // bool m_crit_cut_bad_jet_veto;
-      // bool m_crit_cut_calo_problem_jet;
-      // bool m_crit_cut_primary_vertex;
-      // bool m_crit_cut_bad_mu_veto;
-      // bool m_crit_cut_cosmic_mu_veto;
-      // bool m_crit_cut_hfor;
-      // bool m_crit_cut_mc_overlap;
-      // bool m_crit_cut_ge_2_lep;
-      // bool m_crit_cut_2_lep;
-      // bool m_crit_cut_signal_lep;
-      // bool m_crit_cut_b_jets;
-      // bool m_crit_cut_bl_pairing;
-      // bool m_crit_cut_z_veto;
-      // bool m_crit_cut_met;
+      bool m_crit_cut_grl;
+      bool m_crit_cut_incomplete_event;
+      bool m_crit_cut_lar_error;
+      bool m_crit_cut_tile_error;
+      bool m_crit_cut_tile_hot_spot;
+      bool m_crit_cut_tile_trip;
+      bool m_crit_cut_bad_jet_veto;
+      bool m_crit_cut_calo_problem_jet;
+      bool m_crit_cut_primary_vertex;
+      bool m_crit_cut_bad_mu_veto;
+      bool m_crit_cut_cosmic_mu_veto;
+      bool m_crit_cut_hfor;
+      bool m_crit_cut_mc_overlap;
+      bool m_crit_cut_ge_2_lep;
+      bool m_crit_cut_2_lep;
+      bool m_crit_cut_signal_lep;
+      bool m_crit_cut_b_jets;
+      bool m_crit_cut_bl_pairing;
+      bool m_crit_cut_z_veto;
 
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;

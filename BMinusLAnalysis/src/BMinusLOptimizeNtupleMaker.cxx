@@ -1,6 +1,5 @@
 #include "BMinusLAnalysis/include/BMinusLOptimizeNtupleMaker.h"
 #include "BMinusLAnalysis/include/BMinusLUtils.h"
-// #include "BMinusLOptimizeNtupleMaker/include/BMinusLHistogramHandlers.h"
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 
 #include <iostream>
@@ -18,25 +17,24 @@
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLOptimizeNtupleMaker::BMinusLOptimizeNtupleMaker(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
                                                                                    , m_out_ntuple_file_name("BMinusL.hists.root")
-                                                                                   // , m_crit_cut_grl(false)
-                                                                                   // , m_crit_cut_incomplete_event(false)
-                                                                                   // , m_crit_cut_lar_error(false)
-                                                                                   // , m_crit_cut_tile_error(false)
-                                                                                   // , m_crit_cut_tile_hot_spot(false)
-                                                                                   // , m_crit_cut_tile_trip(false)
-                                                                                   // , m_crit_cut_bad_jet_veto(false)
-                                                                                   // , m_crit_cut_calo_problem_jet(false)
-                                                                                   // , m_crit_cut_primary_vertex(false)
-                                                                                   // , m_crit_cut_bad_mu_veto(false)
-                                                                                   // , m_crit_cut_cosmic_mu_veto(false)
-                                                                                   // , m_crit_cut_hfor(false)
-                                                                                   // , m_crit_cut_mc_overlap(false)
-                                                                                   // , m_crit_cut_ge_2_lep(false)
-                                                                                   // , m_crit_cut_2_lep(false)
-                                                                                   // , m_crit_cut_signal_lep(false)
-                                                                                   // , m_crit_cut_b_jets(false)
-                                                                                   // , m_crit_cut_z_veto(false)
-                                                                                   // , m_crit_cut_met(false)
+                                                                                   , m_crit_cut_grl(false)
+                                                                                   , m_crit_cut_incomplete_event(false)
+                                                                                   , m_crit_cut_lar_error(false)
+                                                                                   , m_crit_cut_tile_error(false)
+                                                                                   , m_crit_cut_tile_hot_spot(false)
+                                                                                   , m_crit_cut_tile_trip(false)
+                                                                                   , m_crit_cut_bad_jet_veto(false)
+                                                                                   , m_crit_cut_calo_problem_jet(false)
+                                                                                   , m_crit_cut_primary_vertex(false)
+                                                                                   , m_crit_cut_bad_mu_veto(false)
+                                                                                   , m_crit_cut_cosmic_mu_veto(false)
+                                                                                   , m_crit_cut_hfor(false)
+                                                                                   , m_crit_cut_mc_overlap(false)
+                                                                                   , m_crit_cut_ge_2_lep(false)
+                                                                                   , m_crit_cut_2_lep(false)
+                                                                                   , m_crit_cut_signal_lep(false)
+                                                                                   , m_crit_cut_b_jets(false)
+                                                                                   , m_crit_cut_z_veto(false)
                                                                                    , m_min_el_pt_baseline(20.e3)
                                                                                    , m_max_el_pt_baseline(-1)
                                                                                    , m_min_mu_pt_baseline(20.e3)
@@ -444,6 +442,7 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeRun()
 }
 
 // -----------------------------------------------------------------------------
+// TODO move to PennSusyFrameCore
 PHASE_SPACE PennSusyFrame::BMinusLOptimizeNtupleMaker::getPhaseSpace()
 {
   if (m_event.getFlavorChannel() == FLAVOR_EE) return PHASE_EE;
