@@ -9,14 +9,7 @@
 #pragma link C++ nestedclass;
 
 #pragma link C++ class PennSusyFrame::BMinusLAnalysis+;
-// #pragma link C++ class PennSusyFrame::D3PDReader+;
-
-// #pragma link C++ class std::vector<std::vector<int>>+;
-// #pragma link C++ class std::vector<std::vector<unsigned int> >+;
-// #pragma link C++ class std::vector<std::vector<long> >+;
-// #pragma link C++ class std::vector<std::vector<unsigned long> >+;
-// #pragma link C++ class std::vector<std::vector<float> >+;
-// #pragma link C++ class std::vector<std::vector<double> >+;
-// #pragma link C++ class std::vector<std::vector<string> >+;
+#pragma link C++ class PennSusyFrame::BMinusLOptimizeNtupleMaker+;
 
 #endif // __CINT__
+

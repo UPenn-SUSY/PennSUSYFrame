@@ -27,6 +27,9 @@ namespace PennSusyFrame
                                                    , "BMINUSL_MET"
                                                    };
 
+  // ---------------------------------------------------------------------------
+  class blPair;
+
   // ===========================================================================
   class BMinusLAnalysis : public PennSusyFrame::PennSusyFrameCore
   {
