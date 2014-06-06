@@ -2,6 +2,9 @@
 #include "BMinusLAnalysis/include/BMinusLUtils.h"
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 
+#include "TFile.h"
+#include "TTree.h"
+
 #include <iostream>
 #include <iomanip>
 #include <vector>
@@ -16,7 +19,7 @@
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLOptimizeNtupleMaker::BMinusLOptimizeNtupleMaker(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
-                                                                                   , m_out_ntuple_file_name("BMinusL.hists.root")
+                                                                                   , m_out_ntuple_file_name("BMinusL.ntup.root")
                                                                                    , m_crit_cut_grl(false)
                                                                                    , m_crit_cut_incomplete_event(false)
                                                                                    , m_crit_cut_lar_error(false)
@@ -41,6 +44,8 @@ PennSusyFrame::BMinusLOptimizeNtupleMaker::BMinusLOptimizeNtupleMaker(TTree* tre
                                                                                    , m_max_mu_pt_baseline(-1)
                                                                                    , m_min_b_jet_pt_baseline(20.e3)
                                                                                    , m_max_b_jet_pt_baseline(-1)
+                                                                                   , m_output_file(0)
+                                                                                   , m_output_tree(0)
 {
 }
 
@@ -113,11 +118,15 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::beginRun()
 
   // prepare selection
   prepareSelection();
+
+  configureOutput(m_out_ntuple_file_name, "optimize");
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLOptimizeNtupleMaker::processEvent()
 {
+  clearVariables();
+
   m_event_weight = 1.;
 
   // m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_ALL);
@@ -425,20 +434,58 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeEvent()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeRun()
 {
-  std::cout << "BMinusLOptimizeNtupleMaker::finalizeRun()\n";
-  std::cout << "creating output ntuple file\n";
-  TFile out_hist_file(m_out_ntuple_file_name.c_str(), "RECREATE");
+  // m_d3pd_reader->writeNumEvents();
 
-  m_d3pd_reader->writeNumEvents();
-
-  // TDirectory* hist_dir = out_hist_file.mkdir("hists");
-
-
-  out_hist_file.Close();
-  std::cout << "file is closed!\n";
+  m_output_file->Write();
+  m_output_file->Close();
 
   // m_raw_cutflow_tracker.printToScreen();
   // m_cutflow_tracker.printToScreen();
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::BMinusLOptimizeNtupleMaker::clearVariables()
+{
+  m_weight = 1.;
+
+  m_mbl_0 = 0 ;
+  m_mbl_1 = 0 ;
+
+  m_ptbl_0 = 0 ;
+  m_ptbl_1 = 0 ;
+
+  m_mbbll  = 0 ;
+  m_ptbbll = 0 ;
+
+  m_mll = 0 ;
+
+  m_met_et  = 0 ;
+  m_met_rel = 0 ;
+
+  m_ht_all      = 0 ;
+  m_ht_baseline = 0 ;
+  m_ht_good     = 0 ;
+  m_ht_signal   = 0 ;
+
+  m_pt_l_0 = 0 ;
+  m_pt_l_1 = 0 ;
+  m_pt_b_0 = 0 ;
+  m_pt_b_1 = 0 ;
+
+  m_dphi_bl_0 = 0 ;
+  m_dphi_bl_1 = 0 ;
+  m_deta_bl_0 = 0 ;
+  m_deta_bl_1 = 0 ;
+  m_dr_bl_0 = 0 ;
+  m_dr_bl_1 = 0 ;
+
+  m_dphi_ll = 0 ;
+  m_deta_ll = 0 ;
+  m_dr_ll = 0 ;
+
+  m_dphi_bb = 0 ;
+  m_deta_bb = 0 ;
+  m_dr_bb = 0 ;
 }
 
 // -----------------------------------------------------------------------------
@@ -458,29 +505,118 @@ PHASE_SPACE PennSusyFrame::BMinusLOptimizeNtupleMaker::getPhaseSpace()
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out_file_name
+                                                               , std::string out_tree_name
+                                                               )
+{
+  m_output_file = new TFile(out_file_name.c_str(), "RECREATE");
+  m_output_tree = new TTree(out_tree_name.c_str(), out_tree_name.c_str());
+
+  // connect branches for output
+  m_output_tree->Branch( "weight" , &m_weight);
+                                        
+  m_output_tree->Branch( "mbl_0" , &m_mbl_0);
+  m_output_tree->Branch( "mbl_1" , &m_mbl_1);
+  m_output_tree->Branch( "mbbll" , &m_mbbll);
+                                        
+  m_output_tree->Branch( "ptbl_0" , &m_ptbl_0);
+  m_output_tree->Branch( "ptbl_1" , &m_ptbl_1);
+  m_output_tree->Branch( "ptbbll" , &m_ptbbll);
+                                        
+  m_output_tree->Branch( "mll"  , &m_mll);
+  m_output_tree->Branch( "ptll" , &m_ptll);
+                                        
+  m_output_tree->Branch( "met_et"  , &m_met_et);
+  m_output_tree->Branch( "met_rel" , &m_met_rel);
+                                        
+  m_output_tree->Branch( "ht_all"      , &m_ht_all);
+  m_output_tree->Branch( "ht_baseline" , &m_ht_baseline);
+  m_output_tree->Branch( "ht_good"     , &m_ht_good);
+  m_output_tree->Branch( "ht_signal"   , &m_ht_signal);
+                                        
+  m_output_tree->Branch( "pt_l_0" , &m_pt_l_0);
+  m_output_tree->Branch( "pt_l_1" , &m_pt_l_1);
+  m_output_tree->Branch( "pt_b_0" , &m_pt_b_0);
+  m_output_tree->Branch( "pt_b_1" , &m_pt_b_1);
+                                        
+  m_output_tree->Branch( "dphi_bl_0" , &m_dphi_bl_0);
+  m_output_tree->Branch( "dphi_bl_1" , &m_dphi_bl_1);
+  m_output_tree->Branch( "deta_bl_0" , &m_deta_bl_0);
+  m_output_tree->Branch( "deta_bl_1" , &m_deta_bl_1);
+  m_output_tree->Branch( "dr_bl_0"   , &m_dr_bl_0);
+  m_output_tree->Branch( "dr_bl_1"   , &m_dr_bl_1);
+                                        
+  m_output_tree->Branch( "dphi_ll" , &m_dphi_ll);
+  m_output_tree->Branch( "deta_ll" , &m_deta_ll);
+  m_output_tree->Branch( "dr_ll"   , &m_dr_ll);
+                                        
+  m_output_tree->Branch( "dphi_bb" , &m_dphi_bb);
+  m_output_tree->Branch( "deta_bb" , &m_deta_bb);
+  m_output_tree->Branch( "dr_bb"   , &m_dr_bb);
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame::blPair* bl_0
                                                           , const PennSusyFrame::blPair* bl_1
                                                           , float weight
                                                           )
 {
-  // size_t num_hists = m_histogram_handlers.at(hist_level).size();
-  // for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-  //   m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
-  //                                                        , m_event_quantities
-  //                                                        , m_electrons.getCollection(EL_GOOD)
-  //                                                        , m_muons.getCollection(MU_GOOD)
-  //                                                        , m_jets.getCollection(JET_GOOD)
-  //                                                        , m_met
-  //                                                        , weight
-  //                                                        );
-  // }
-  // if (bl_0 && bl_1) {
-  //   m_bminusl_histogram_handler.at(hist_level)->FillSpecial( m_event
-  //                                                          , m_jets.getCollection(JET_B)
-  //                                                          , *bl_0
-  //                                                          , *bl_1
-  //                                                          , m_mc_truth
-  //                                                          , weight
-  //                                                          );
-  // }
+  m_weight = weight;
+
+  m_mbl_0 = bl_0->getMbl()/1.e3;
+  m_mbl_1 = bl_1->getMbl()/1.e3;
+
+  m_ptbl_0 = bl_0->getPtbl()/1.e3;
+  m_ptbl_1 = bl_1->getPtbl()/1.e3;
+
+  m_mbbll  = PennSusyFrame::calcMbbll( *bl_0, *bl_1)/1.e3;
+  m_ptbbll = PennSusyFrame::calcPtbbll(*bl_0, *bl_1)/1.e3;
+
+  m_mll  = m_event_quantities.getMll()/1.e3;
+  m_ptll = m_event_quantities.getPtll()/1.e3;
+
+  m_met_et  = m_met.getMetEt() /1.e3;
+  m_met_rel = m_met.getMetRel()/1.e3;
+
+  m_ht_all      = m_event_quantities.getHtAll()/1.e3;
+  m_ht_baseline = m_event_quantities.getHtBaseline()/1.e3;
+  m_ht_good     = m_event_quantities.getHtGood()/1.e3;
+  m_ht_signal   = m_event_quantities.getHtSignal()/1.e3;
+
+  m_pt_l_0 = bl_0->getLepton()->getPt();
+  m_pt_l_1 = bl_1->getLepton()->getPt();
+  m_pt_b_0 = bl_0->getJet()->getPt();
+  m_pt_b_1 = bl_1->getJet()->getPt();
+
+  m_dphi_bl_0 = bl_0->getDphi();
+  m_dphi_bl_1 = bl_1->getDphi();
+
+  m_deta_bl_0 = bl_0->getDeta();
+  m_deta_bl_1 = bl_1->getDeta();
+
+  m_dr_bl_0 = bl_0->getDr();
+  m_dr_bl_1 = bl_1->getDr();
+
+  float phi_l_0   = bl_0->getLepton()->getPhi();
+  float phi_l_1   = bl_1->getLepton()->getPhi();
+
+  float eta_l_0   = bl_0->getLepton()->getEta();
+  float eta_l_1   = bl_1->getLepton()->getEta();
+
+  m_dphi_ll = PennSusyFrame::calcDphi(phi_l_0, phi_l_1);
+  m_deta_ll = fabs(eta_l_0 - eta_l_1);
+  m_dr_ll = sqrt(m_dphi_ll*m_dphi_ll + m_deta_ll*m_deta_ll);
+
+  float phi_b_0   = bl_0->getJet()->getPhi();
+  float phi_b_1   = bl_1->getJet()->getPhi();
+
+  float eta_b_0   = bl_0->getJet()->getEta();
+  float eta_b_1   = bl_1->getJet()->getEta();
+
+  m_dphi_bb = PennSusyFrame::calcDphi(phi_b_0, phi_b_1);
+  m_deta_bb = fabs(eta_b_0 - eta_b_1);
+  m_dr_bb   = sqrt(m_dphi_bb*m_dphi_bb + m_deta_bb*m_deta_bb);
+
+  // fill output tree
+  m_output_tree->Fill();
 }

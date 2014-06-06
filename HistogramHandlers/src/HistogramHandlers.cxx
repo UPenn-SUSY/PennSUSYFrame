@@ -628,8 +628,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_eta_0.at(  FLAVOR_EE)->Fill(eta_0, weight);
     m_h_eta_1.at(  FLAVOR_EE)->Fill(eta_1, weight);
     (pass(eta_0, eta_1) ? m_h_eta_event_passfail.at(FLAVOR_EE)->Fill(1., weight) :
-     m_h_eta_event_passfail.at(FLAVOR_EE)->Fill(0., weight));
-    
+                          m_h_eta_event_passfail.at(FLAVOR_EE)->Fill(0., weight));
+
     m_h_ptiso_all.at(FLAVOR_EE)->Fill(ptiso_0, weight);
     m_h_ptiso_all.at(FLAVOR_EE)->Fill(ptiso_1, weight);
     m_h_ptiso_0.at(  FLAVOR_EE)->Fill(ptiso_0, weight);
@@ -645,11 +645,11 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_deta_ll.at(FLAVOR_EE)->Fill(deta, weight);
 
     (abs(eta_0) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_EE)->Fill(pt_0, weight) :
-     m_h_fiducial_single_fail.at(FLAVOR_EE)->Fill(pt_0, weight));
+                        m_h_fiducial_single_fail.at(FLAVOR_EE)->Fill(pt_0, weight));
     (abs(eta_1) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_EE)->Fill(pt_1, weight) :
-     m_h_fiducial_single_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
+                        m_h_fiducial_single_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
     (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_EE)->Fill(pt_1, weight) :
-     m_h_fiducial_event_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
+                          m_h_fiducial_event_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
   }
 
   else if (fc == FLAVOR_MM) {
@@ -685,10 +685,10 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_eta_all.at(FLAVOR_MM)->Fill(eta_1, weight);
     m_h_eta_0.at(  FLAVOR_MM)->Fill(eta_0, weight);
     m_h_eta_1.at(  FLAVOR_MM)->Fill(eta_1, weight);
-    
+
     (pass(eta_0, eta_1) ? m_h_eta_event_passfail.at(FLAVOR_MM)->Fill(1., weight) :
-     m_h_eta_event_passfail.at(FLAVOR_MM)->Fill(0., weight));
-    
+                          m_h_eta_event_passfail.at(FLAVOR_MM)->Fill(0., weight));
+
     m_h_ptiso_all.at(FLAVOR_MM)->Fill(ptiso_0, weight);
     m_h_ptiso_all.at(FLAVOR_MM)->Fill(ptiso_1, weight);
     m_h_ptiso_0.at(  FLAVOR_MM)->Fill(ptiso_0, weight);

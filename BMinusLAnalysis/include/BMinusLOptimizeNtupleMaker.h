@@ -3,13 +3,16 @@
 
 #include <TROOT.h>
 #include <TChain.h>
-#include <TFile.h>
 
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 #include "PennSusyFrameCore/include/EventSelectors.h"
 // #include "HistogramHandlers/include/HistogramHandlers.h"
 // #include "BMinusLAnalysis/include/BMinusLCutFlowTracker.h"
 // #include "BMinusLAnalysis/include/BMinusLHistogramHandlers.h"
+
+// =============================================================================
+class TFile;
+class TTree;
 
 // =============================================================================
 namespace PennSusyFrame
@@ -46,6 +49,8 @@ namespace PennSusyFrame
       virtual void finalizeEvent();
       virtual void finalizeRun();
 
+      void clearVariables();
+
       PHASE_SPACE getPhaseSpace();
 
       void setOutNtupleFileName(std::string val) { m_out_ntuple_file_name = val; }
@@ -75,6 +80,9 @@ namespace PennSusyFrame
       void setBJetPtCut(float min, float max) { m_min_b_jet_pt_baseline = min ; m_max_b_jet_pt_baseline = max; }
 
     protected:
+      void configureOutput( std::string out_file_name
+                          , std::string out_tree_name
+                          );
       void fillNtuple( const PennSusyFrame::blPair*
                      , const PennSusyFrame::blPair*
                      , float weight
@@ -116,6 +124,52 @@ namespace PennSusyFrame
 
       double m_min_b_jet_pt_baseline;
       double m_max_b_jet_pt_baseline;
+
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      TFile* m_output_file;
+      TTree* m_output_tree;
+
+      // variables to store to optimize ntuple
+      float m_weight;
+
+      float m_mbl_0;
+      float m_mbl_1;
+      float m_mbbll;
+
+      float m_ptbl_0;
+      float m_ptbl_1;
+      float m_ptbbll;
+
+      float m_mll;
+      float m_ptll;
+
+      float m_met_et;
+      float m_met_rel;
+
+      float m_ht_all;
+      float m_ht_baseline;
+      float m_ht_good;
+      float m_ht_signal;
+
+      float m_pt_l_0;
+      float m_pt_l_1;
+      float m_pt_b_0;
+      float m_pt_b_1;
+
+      float m_dphi_bl_0;
+      float m_dphi_bl_1;
+      float m_deta_bl_0;
+      float m_deta_bl_1;
+      float m_dr_bl_0;
+      float m_dr_bl_1;
+
+      float m_dphi_ll;
+      float m_deta_ll;
+      float m_dr_ll;
+
+      float m_dphi_bb;
+      float m_deta_bb;
+      float m_dr_bb;
 
     private:
   };
