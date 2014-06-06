@@ -10,6 +10,7 @@
 class TFile;
 class TDirectory;
 class TH1F;
+class TH2F;
 
 namespace PennSusyFrame
 {
@@ -44,6 +45,7 @@ namespace PennSusyFrame
                               , float weight
                               );
       virtual void write(TDirectory*);
+      virtual bool pass(float eta_0, float eta_1, float eta_0_l, float eta_1_l);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -73,6 +75,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_dphi_bb;
       std::vector<TH1F*> m_h_deta_bb;
 
+      std::vector<TH1F*> m_h_b_jet_eta_all;
+      std::vector<TH1F*> m_h_b_jet_eta_0;
+      std::vector<TH1F*> m_h_b_jet_eta_1;
+
       std::vector<TH1F*> m_h_mbl_all;
       std::vector<TH1F*> m_h_mbl_0;
       std::vector<TH1F*> m_h_mbl_1;
@@ -84,6 +90,9 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_ptbl_1;
       std::vector<TH1F*> m_h_ptbl_diff;
 
+      std::vector<TH2F*> m_h_pt_b_jet1vl1;
+      std::vector<TH2F*> m_h_fiducial_b_jet1vl1_pass;
+      std::vector<TH2F*> m_h_fiducial_b_jet1vl1_fail;
       std::vector<TH1F*> m_h_mbl_anti_pairing_all;
       std::vector<TH1F*> m_h_mbl_anti_pairing_0;
       std::vector<TH1F*> m_h_mbl_anti_pairing_1;
@@ -124,6 +133,7 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_bl_deta_same_parent_pairing;
       std::vector<TH1F*> m_h_bl_deta_diff_parent_pairing;
 
+      std::vector<TH1F*> m_h_eta_event_passfail;
   };
 }
 

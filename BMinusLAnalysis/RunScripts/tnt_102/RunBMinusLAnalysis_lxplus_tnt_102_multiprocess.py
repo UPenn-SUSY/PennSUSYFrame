@@ -31,6 +31,7 @@ if __name__ == '__main__':
 
     print 'getting file list'
     data_set_dicts = []
+
     data_samples = {
                    }
     # full_sim_mc_samples = { # 110820:{'label':'110820.AlpgenPythia_P2011C_ZeebbNp3'    , 'num_jobs':1}

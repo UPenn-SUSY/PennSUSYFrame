@@ -177,8 +177,6 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                                      , ht_bins, ht_min, ht_max
                                      )
                            );
-
-
   }
 }
 
@@ -258,6 +256,10 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
   const float pt_min  = 0.;
   const float pt_max  = 1000.;
 
+  const int   eta_bins = 50;
+  const float eta_min = -5.;
+  const float eta_max = +5.;
+
   const int   ptiso_bins = 30;
   const float ptiso_min  = 0.;
   const float ptiso_max  = 3.;
@@ -321,6 +323,60 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                                 )
                       );
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize eta histograms
+    m_h_eta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__lep_eta_all"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "#eta - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; #eta ; Entries"
+                                    ).c_str()
+                                  , eta_bins, eta_min, eta_max
+                                  )
+                        );
+
+    m_h_eta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_eta_0"
+                                 + "__"
+                                 + name_tag
+                                  ).c_str()
+                                , ( "#eta^{0} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; #eta^{0} [GeV] ; Entries"
+                                  ).c_str()
+                                , eta_bins, eta_min, eta_max
+                                )
+                      );
+
+    m_h_eta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_eta_1"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "#eta^{1} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; #eta^{1} [GeV] ; Entries"
+                                  ).c_str()
+                                , eta_bins, eta_min, eta_max
+                                )
+                      );
+    m_h_eta_event_passfail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						     +   "__lep_eta_event_passfail"
+						     + "__"
+						     + name_tag
+						     ).c_str()
+						    ,("|#eta| < 2.4 cut - "
+						      + FLAVOR_CHANNEL_STRINGS[fc_it]
+						      + " ; Fail (0), Pass(1) ; Entries"
+						      ).c_str()
+						    , 2, 0.,2.
+						    )
+					  );
+
+    
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt iso histograms
     m_h_ptiso_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -445,6 +501,57 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                          );
 
 
+    // -------------------------------------------------------------------------
+    // initialize fiducial pass,fail histos
+    m_h_fiducial_single_pass.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + "__lep_fiducial_single_pass"
+						   + "__"
+						   + name_tag
+						   ).c_str()
+						  ,("p_{T}_lep_all - |#eta| < 2.4 - "
+						    + FLAVOR_CHANNEL_STRINGS[fc_it]
+						    + " ; p_{T} [GeV] ; Entries"
+						    ).c_str()
+						  ,pt_bins, pt_min, pt_max
+						  )
+					);
+    m_h_fiducial_single_fail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + "__lep_fiducial_single_fail"
+						   + "__"
+						   + name_tag
+						   ).c_str()
+						  ,("p_{T}_lep_all - |#eta| >= 2.4 - "
+						    + FLAVOR_CHANNEL_STRINGS[fc_it]
+						    + " ; p_{T} [GeV] ; Entries"
+						    ).c_str()
+						  ,pt_bins, pt_min, pt_max
+						  )
+					);
+
+    m_h_fiducial_event_pass.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "__lep_fiducial_event_pass"
+						  + "__"
+						  + name_tag
+						  ).c_str()
+						 ,("p_{T}_lep_1 - |#eta| < 2.4 - "
+						   + FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + " ; p_{T} [GeV] ; Entries"
+						   ).c_str()
+						 ,pt_bins, pt_min, pt_max
+						 )
+				       );
+    m_h_fiducial_event_fail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "__lep_fiducial_event_fail"
+						  + "__"
+						  + name_tag
+						  ).c_str()
+						 ,("p_{T}_lep_1 - |#eta| >= 2.4 - "
+						   + FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + " ; p_{T} [GeV] ; Entries"
+						   ).c_str()
+						 ,pt_bins, pt_min, pt_max
+						 )
+				       );
   }
 }
 
@@ -491,6 +598,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = el_list->at(1)->getPt()/1.e3;
 
+    eta_0 = el_list->at(0)->getEta();
+    eta_1 = el_list->at(1)->getEta();
+
     ptiso_0 = el_list->at(0)->getPtIsoRatio();
     ptiso_1 = el_list->at(1)->getPtIsoRatio();
 
@@ -513,6 +623,13 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_pt_0.at(  FLAVOR_EE)->Fill(pt_0, weight);
     m_h_pt_1.at(  FLAVOR_EE)->Fill(pt_1, weight);
 
+    m_h_eta_all.at(FLAVOR_EE)->Fill(eta_0, weight);
+    m_h_eta_all.at(FLAVOR_EE)->Fill(eta_1, weight);
+    m_h_eta_0.at(  FLAVOR_EE)->Fill(eta_0, weight);
+    m_h_eta_1.at(  FLAVOR_EE)->Fill(eta_1, weight);
+    (pass(eta_0, eta_1) ? m_h_eta_event_passfail.at(FLAVOR_EE)->Fill(1., weight) :
+     m_h_eta_event_passfail.at(FLAVOR_EE)->Fill(0., weight));
+    
     m_h_ptiso_all.at(FLAVOR_EE)->Fill(ptiso_0, weight);
     m_h_ptiso_all.at(FLAVOR_EE)->Fill(ptiso_1, weight);
     m_h_ptiso_0.at(  FLAVOR_EE)->Fill(ptiso_0, weight);
@@ -526,10 +643,21 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_dr_ll.at(FLAVOR_EE)->Fill(dr, weight);
     m_h_dphi_ll.at(FLAVOR_EE)->Fill(dphi, weight);
     m_h_deta_ll.at(FLAVOR_EE)->Fill(deta, weight);
+
+    (abs(eta_0) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_EE)->Fill(pt_0, weight) :
+     m_h_fiducial_single_fail.at(FLAVOR_EE)->Fill(pt_0, weight));
+    (abs(eta_1) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_EE)->Fill(pt_1, weight) :
+     m_h_fiducial_single_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
+    (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_EE)->Fill(pt_1, weight) :
+     m_h_fiducial_event_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
   }
+
   else if (fc == FLAVOR_MM) {
     pt_0 = mu_list->at(0)->getPt()/1.e3;
     pt_1 = mu_list->at(1)->getPt()/1.e3;
+
+    eta_0 = mu_list->at(0)->getEta();
+    eta_1 = mu_list->at(1)->getEta();
 
     ptiso_0 = mu_list->at(0)->getPtIsoRatio();
     ptiso_1 = mu_list->at(1)->getPtIsoRatio();
@@ -553,6 +681,14 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_pt_0.at(  FLAVOR_MM)->Fill(pt_0, weight);
     m_h_pt_1.at(  FLAVOR_MM)->Fill(pt_1, weight);
 
+    m_h_eta_all.at(FLAVOR_MM)->Fill(eta_0, weight);
+    m_h_eta_all.at(FLAVOR_MM)->Fill(eta_1, weight);
+    m_h_eta_0.at(  FLAVOR_MM)->Fill(eta_0, weight);
+    m_h_eta_1.at(  FLAVOR_MM)->Fill(eta_1, weight);
+    
+    (pass(eta_0, eta_1) ? m_h_eta_event_passfail.at(FLAVOR_MM)->Fill(1., weight) :
+     m_h_eta_event_passfail.at(FLAVOR_MM)->Fill(0., weight));
+    
     m_h_ptiso_all.at(FLAVOR_MM)->Fill(ptiso_0, weight);
     m_h_ptiso_all.at(FLAVOR_MM)->Fill(ptiso_1, weight);
     m_h_ptiso_0.at(  FLAVOR_MM)->Fill(ptiso_0, weight);
@@ -566,10 +702,21 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_dr_ll.at(FLAVOR_MM)->Fill(dr, weight);
     m_h_dphi_ll.at(FLAVOR_MM)->Fill(dphi, weight);
     m_h_deta_ll.at(FLAVOR_MM)->Fill(deta, weight);
+
+    (abs(eta_0) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_MM)->Fill(pt_0, weight) :
+                        m_h_fiducial_single_fail.at(FLAVOR_MM)->Fill(pt_0, weight));
+    (abs(eta_1) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_MM)->Fill(pt_1, weight) :
+                        m_h_fiducial_single_fail.at(FLAVOR_MM)->Fill(pt_1, weight));
+    (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_MM)->Fill(pt_1, weight) :
+                          m_h_fiducial_event_fail.at(FLAVOR_MM)->Fill(pt_1, weight));
+
   }
   else {
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = mu_list->at(0)->getPt()/1.e3;
+
+    eta_0 = el_list->at(0)->getEta();
+    eta_1 = mu_list->at(0)->getEta();
 
     ptiso_0 = el_list->at(0)->getPtIsoRatio();
     ptiso_1 = mu_list->at(0)->getPtIsoRatio();
@@ -593,6 +740,14 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_pt_0.at(  FLAVOR_EM)->Fill(pt_0, weight);
     m_h_pt_1.at(  FLAVOR_EM)->Fill(pt_1, weight);
 
+    m_h_eta_all.at(FLAVOR_EM)->Fill(eta_0, weight);
+    m_h_eta_all.at(FLAVOR_EM)->Fill(eta_1, weight);
+    m_h_eta_0.at(  FLAVOR_EM)->Fill(eta_0, weight);
+    m_h_eta_1.at(  FLAVOR_EM)->Fill(eta_1, weight);
+    
+    (pass(eta_0, eta_1) ? m_h_eta_event_passfail.at(FLAVOR_EM)->Fill(1., weight) :
+     m_h_eta_event_passfail.at(FLAVOR_EM)->Fill(0., weight));
+
     m_h_ptiso_all.at(FLAVOR_EM)->Fill(ptiso_0, weight);
     m_h_ptiso_all.at(FLAVOR_EM)->Fill(ptiso_1, weight);
     m_h_ptiso_0.at(  FLAVOR_EM)->Fill(ptiso_0, weight);
@@ -606,6 +761,14 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_dr_ll.at(FLAVOR_MM)->Fill(dr, weight);
     m_h_dphi_ll.at(FLAVOR_MM)->Fill(dphi, weight);
     m_h_deta_ll.at(FLAVOR_MM)->Fill(deta, weight);
+
+    (abs(eta_0) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_EM)->Fill(pt_0, weight) :
+                        m_h_fiducial_single_fail.at(FLAVOR_EM)->Fill(pt_0, weight));
+    (abs(eta_1) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_EM)->Fill(pt_1, weight) :
+                        m_h_fiducial_single_fail.at(FLAVOR_EM)->Fill(pt_1, weight));
+    (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_EM)->Fill(pt_1, weight) :
+                          m_h_fiducial_event_fail.at(FLAVOR_EM)->Fill(pt_1, weight));
+
   }
 
   if (pt_1 > pt_0) {
@@ -628,6 +791,14 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   m_h_pt_0.at(  FLAVOR_NONE)->Fill(pt_0, weight);
   m_h_pt_1.at(  FLAVOR_NONE)->Fill(pt_1, weight);
 
+  m_h_eta_all.at(FLAVOR_NONE)->Fill(eta_0, weight);
+  m_h_eta_all.at(FLAVOR_NONE)->Fill(eta_1, weight);
+  m_h_eta_0.at(  FLAVOR_NONE)->Fill(eta_0, weight);
+  m_h_eta_1.at(  FLAVOR_NONE)->Fill(eta_1, weight);
+
+  (pass(eta_0, eta_1) ? m_h_eta_event_passfail.at(FLAVOR_NONE)->Fill(1., weight) :
+   m_h_eta_event_passfail.at(FLAVOR_NONE)->Fill(0., weight));
+  
   m_h_ptiso_all.at(FLAVOR_NONE)->Fill(ptiso_0, weight);
   m_h_ptiso_all.at(FLAVOR_NONE)->Fill(ptiso_1, weight);
   m_h_ptiso_0.at(  FLAVOR_NONE)->Fill(ptiso_0, weight);
@@ -641,8 +812,26 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   m_h_dr_ll.at(FLAVOR_NONE)->Fill(dr, weight);
   m_h_dphi_ll.at(FLAVOR_NONE)->Fill(dphi, weight);
   m_h_deta_ll.at(FLAVOR_NONE)->Fill(deta, weight);
+
+  (abs(eta_0) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_NONE)->Fill(pt_0, weight) :
+                      m_h_fiducial_single_fail.at(FLAVOR_NONE)->Fill(pt_0, weight));
+  (abs(eta_1) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_NONE)->Fill(pt_1, weight) :
+                      m_h_fiducial_single_fail.at(FLAVOR_NONE)->Fill(pt_1, weight));
+  (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_NONE)->Fill(pt_1, weight) :
+                        m_h_fiducial_event_fail.at(FLAVOR_NONE)->Fill(pt_1, weight));
+
 }
 
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::LeptonKinematicsHists::pass(float eta_0, float eta_1)
+{
+  if (abs(eta_0) < 2.4 && abs(eta_1) < 2.4) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
 // -----------------------------------------------------------------------------
 void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
 {
@@ -657,6 +846,12 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     m_h_pt_0.at(  fc_it)->Write();
     m_h_pt_1.at(  fc_it)->Write();
 
+    // write eta histograms
+    m_h_eta_all.at(fc_it)->Write();
+    m_h_eta_0.at(  fc_it)->Write();
+    m_h_eta_1.at(  fc_it)->Write();
+    m_h_eta_event_passfail.at(fc_it)->Write();
+    
     // write ptiso histograms
     m_h_ptiso_all.at(fc_it)->Write();
     m_h_ptiso_0.at(  fc_it)->Write();
@@ -671,6 +866,12 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     m_h_dr_ll.at(fc_it)->Write();
     m_h_dphi_ll.at(fc_it)->Write();
     m_h_deta_ll.at(fc_it)->Write();
+
+    // write fiducial histograms
+    m_h_fiducial_single_pass.at(fc_it)->Write();
+    m_h_fiducial_single_fail.at(fc_it)->Write();
+    m_h_fiducial_event_pass.at(fc_it)->Write();
+    m_h_fiducial_event_fail.at(fc_it)->Write();
   }
 }
 
@@ -698,6 +899,10 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
   const int deta_bins = 50;
   const float deta_min = 0.;
   const float deta_max = 5.0;
+
+  const int   eta_bins = 50;
+  const float eta_min = -5.;
+  const float eta_max = -5.;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -792,6 +997,109 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
                                    , deta_bins, deta_min, deta_max
                                    )
                          );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize eta histograms
+    m_h_eta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__b_jet_eta_all"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "#eta - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; #eta ; Entries"
+                                    ).c_str()
+                                  , eta_bins, eta_min, eta_max
+                                  )
+                        );
+
+    m_h_eta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__b_jet_eta_0"
+                                 + "__"
+                                 + name_tag
+                                  ).c_str()
+                                , ( "#eta^{0} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; #eta^{0} [GeV] ; Entries"
+                                  ).c_str()
+                                , eta_bins, eta_min, eta_max
+                                )
+                      );
+
+    m_h_eta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__b_jet_eta_1"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "#eta^{1} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; #eta^{1} [GeV] ; Entries"
+                                  ).c_str()
+                                , eta_bins, eta_min, eta_max
+                                )
+                      );
+    m_h_eta_event_passfail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						     +   "__b_jet_eta_event_passfail"
+						     + "__"
+						     + name_tag
+						     ).c_str()
+						    ,("|#eta| < 2.4 cut - "
+						      + FLAVOR_CHANNEL_STRINGS[fc_it]
+						      + " ; Fail (0), Pass(1) ; Entries"
+						      ).c_str()
+						    , 2, 0.,2.
+						    )
+					  );
+    // -------------------------------------------------------------------------
+    // initialize fiducial pass,fail histos
+    m_h_fiducial_single_pass.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + "__b_jet_fiducial_single_pass"
+						   + "__"
+						   + name_tag
+						   ).c_str()
+						  ,("p_{T}_b_jet_all - |#eta| < 2.4 - "
+						    + FLAVOR_CHANNEL_STRINGS[fc_it]
+						    + " ; p_{T} [GeV] ; Entries"
+						    ).c_str()
+						  ,pt_bins, pt_min, pt_max
+						  )
+					);
+    m_h_fiducial_single_fail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + "__b_jet_fiducial_single_fail"
+						   + "__"
+						   + name_tag
+						   ).c_str()
+						  ,("p_{T}_b_jet_all - |#eta| >= 2.4 - "
+						    + FLAVOR_CHANNEL_STRINGS[fc_it]
+						    + " ; p_{T} [GeV] ; Entries"
+						    ).c_str()
+						  ,pt_bins, pt_min, pt_max
+						  )
+					);
+    m_h_fiducial_event_pass.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "__b_jet_fiducial_event_pass"
+						  + "__"
+						  + name_tag
+						  ).c_str()
+						 ,("p_{T}_lep_1 - |#eta| < 2.4 - "
+						   + FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + " ; p_{T} [GeV] ; Entries"
+						   ).c_str()
+						 ,pt_bins, pt_min, pt_max
+						 )
+				       );
+    m_h_fiducial_event_fail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "__b_jet_fiducial_event_fail"
+						  + "__"
+						  + name_tag
+						  ).c_str()
+						 ,("p_{T}_lep_1 - |#eta| >= 2.4 - "
+						   + FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + " ; p_{T} [GeV] ; Entries"
+						   ).c_str()
+						 ,pt_bins, pt_min, pt_max
+						 )
+				       );
   }
 }
 
@@ -842,11 +1150,15 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
     dr = sqrt(dphi*dphi + deta*deta);
   }
 
+  eta_0 = ( num_jet > 0 ? jet_list->at(0)->getEta() : 0.);
+  eta_1 = ( num_jet > 1 ? jet_list->at(1)->getEta() : 0.);
+
   // loop over all flavor channels
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
     m_h_num_jet.at(fc_it)->Fill(num_jet, weight);
+
     //
     for (size_t jet_it = 0; jet_it != num_jet; ++jet_it) {
       m_h_pt_all.at(fc_it)->Fill(jet_list->at(jet_it)->getPt()/1.e3, weight);
@@ -863,9 +1175,41 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
       m_h_dphi_jj.at(fc_it)->Fill(dphi, weight);
       m_h_deta_jj.at(fc_it)->Fill(deta, weight);
     }
+
+    m_h_pt_all.at( fc_it)->Fill(pt_0, weight);
+    m_h_pt_all.at( fc_it)->Fill(pt_1, weight);
+    m_h_pt_0.at(   fc_it)->Fill(pt_0, weight);
+    m_h_pt_1.at(   fc_it)->Fill(pt_1, weight);
+
+    m_h_eta_all.at(fc_it)->Fill(eta_0, weight);
+    m_h_eta_all.at(fc_it)->Fill(eta_1, weight);
+    m_h_eta_0.at(  fc_it)->Fill(eta_0, weight);
+    m_h_eta_1.at(  fc_it)->Fill(eta_1, weight);
+
+    (pass(eta_0, eta_1) ? (m_h_eta_event_passfail.at(fc_it)->Fill(1., weight)) : 
+     (m_h_eta_event_passfail.at(fc_it)->Fill(0., weight)));
+    
+    (abs(eta_0) < 2.4 ? (m_h_fiducial_single_pass.at(fc_it)->Fill(pt_0, weight)) :
+     (m_h_fiducial_single_fail.at(fc_it)->Fill(pt_0, weight)));
+
+    (abs(eta_1) < 2.4 ? (m_h_fiducial_single_pass.at(fc_it)->Fill(pt_1, weight)) :
+     (m_h_fiducial_single_fail.at(fc_it)->Fill(pt_1, weight)));
+
+    (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(fc_it)->Fill(pt_1, weight) :
+     m_h_fiducial_event_fail.at(fc_it)->Fill(pt_1, weight));
   }
 }
 
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::JetKinematicsHists::pass(float eta_0, float eta_1)
+{
+  if (abs(eta_0) < 2.4 && abs(eta_1) < 2.4) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
 // -----------------------------------------------------------------------------
 void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
 {
@@ -874,17 +1218,26 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // initialize pt histograms
+    // write pt histograms
     m_h_num_jet.at(fc_it)->Write();
     m_h_pt_all.at( fc_it)->Write();
     m_h_pt_0.at(   fc_it)->Write();
     m_h_pt_1.at(   fc_it)->Write();
+
     m_h_dr_jj.at(fc_it)->Write();
     m_h_dphi_jj.at(fc_it)->Write();
     m_h_deta_jj.at(fc_it)->Write();
+    
+    m_h_eta_all.at(fc_it)->Write();
+    m_h_eta_0.at(  fc_it)->Write();
+    m_h_eta_1.at(  fc_it)->Write();
+    m_h_eta_event_passfail.at(fc_it)->Write();
+    m_h_fiducial_single_pass.at(fc_it)->Write();
+    m_h_fiducial_single_fail.at(fc_it)->Write();
+    m_h_fiducial_event_pass.at(fc_it)->Write();
+    m_h_fiducial_event_fail.at(fc_it)->Write();
   }
 }
-
 // =============================================================================
 PennSusyFrame::MetHists::MetHists(std::string name_tag)
 {
