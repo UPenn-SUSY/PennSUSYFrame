@@ -1095,6 +1095,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   int num_lep_from_stop = 0;
   if (fabs(getLeptonParentPdgId(bl_0.getLepton(), mc_truth)) > 1.e6) ++num_lep_from_stop;
   if (fabs(getLeptonParentPdgId(bl_1.getLepton(), mc_truth)) > 1.e6) ++num_lep_from_stop;
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // are the jets from a stop?
   int num_jet_from_stop = 0;

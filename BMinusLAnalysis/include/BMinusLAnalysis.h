@@ -25,6 +25,7 @@ namespace PennSusyFrame
                                                    , "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_MET"
+                                                   , "BMINUSL_N"
                                                    };
 
   // ---------------------------------------------------------------------------
