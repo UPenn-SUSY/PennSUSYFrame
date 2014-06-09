@@ -153,11 +153,11 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutHFOR(           1)
     bmla.setCritCutMcOverlap(      1)
     bmla.setCritCutGe2Lepton(      1)
-    bmla.setCritCut2Lepton(        1)
-    bmla.setCritCut2SignalLepton(  1)
-    bmla.setCritCut2BJets(         1)
+    bmla.setCritCut2Lepton(        0)
+    bmla.setCritCut2SignalLepton(  0)
+    bmla.setCritCut2BJets(         0)
     bmla.setCritCutBadJetVeto(     1)
-    bmla.setCritCutBLPairing(      1)
+    bmla.setCritCutBLPairing(      0)
 
     # Set cut values
     print 'set cuts'
@@ -169,9 +169,9 @@ def runBMinusLAnalysis( file_list
     bmla.setBJetPtCut(jet_pt_cut, -1     )
     bmla.setMetCut(   -1        , met_cut)
     # 80% working point
-    # bmla.setMV1Cut(0.3511)
+    bmla.setMV1Cut(0.3511)
     # 70% working point
-    bmla.setMV1Cut(0.7892)
+    # bmla.setMV1Cut(0.7892)
 
     # prepare tools and run analysis loop
     print 'preparing tools'
