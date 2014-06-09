@@ -417,6 +417,21 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      )
                            );
 
+    m_h_mbl_2d.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__mbl_2d"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "m_{bl}^{1} vs m_{bl}^{0} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; m_{bl}^{0} [GeV] "
+                                    + " ; m_{bl}^{1} [GeV]"
+                                    ).c_str()
+                                  , mbl_bins, mbl_min, mbl_max
+                                  , mbl_bins, mbl_min, mbl_max
+                                  )
+                        );
+
 
     // initialize ptbl histograms
     m_h_ptbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -471,47 +486,62 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      )
                            );
 
+    m_h_ptbl_2d.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__ptbl_2d"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "p_{T}^{bl,1} vs. p_{T}^{bl,0} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; p_{T}^{bl,0} [GeV] "
+                                     + " ; p_{T}^{bl,1} [GeV] "
+                                     ).c_str()
+                                   , pt_bins, pt_min, pt_max
+                                   , pt_bins, pt_min, pt_max
+                                   )
+                         );
+
     // initialize pt_b1vl1 histograms
     m_h_pt_b_jet1vl1.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-					    + "__pt_b_jet1vl1"
-					    + "__"
-					    + name_tag
-					    ).c_str(),
-					  ("p_{T}_b_jet1vl1 - "
-					   + FLAVOR_CHANNEL_STRINGS[fc_it]
-					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
-					   ).c_str(),
-					  pt_bins, pt_min, pt_max,
-					  pt_bins, pt_min, pt_max
-					  )
-				);
+                                          + "__pt_b_jet1vl1"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ("p_{T}_b_jet1vl1 - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; p_{T}^{l} ; p_{T}^{b jet}"
+                                          ).c_str()
+                                        , pt_bins, pt_min, pt_max
+                                        , pt_bins, pt_min, pt_max
+                                        )
+                              );
     m_h_fiducial_b_jet1vl1_pass.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-						       + "__fiducial_b_jet1vl1_pass"
-						       + "__"
-						       + name_tag
-						       ).c_str(),
-						     ("p_{T}_b_jet1vl1 - |#eta| < 2.4 - "
-						      + FLAVOR_CHANNEL_STRINGS[fc_it]
-						      + " ; p_{T}^{l} ; p_{T}^{b jet}"
-						      ).c_str(),
-						     pt_bins, pt_min, pt_max,
-						     pt_bins, pt_min, pt_max
-						     )
-					   );
+                                                     + "__fiducial_b_jet1vl1_pass"
+                                                     + "__"
+                                                     + name_tag
+                                                     ).c_str()
+                                                   , ( "p_{T}_b_jet1vl1 - |#eta| < 2.4 - "
+                                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + " ; p_{T}^{l} ; p_{T}^{b jet}"
+                                                     ).c_str()
+                                                   , pt_bins, pt_min, pt_max
+                                                   , pt_bins, pt_min, pt_max
+                                                   )
+                                         );
     m_h_fiducial_b_jet1vl1_fail.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-						       + "__fiducial_b_jet1vl1_fail"
-						       + "__"
-						       + name_tag
-						       ).c_str(),
-						     ("p_{T}_b_jet1vl1 - |#eta| >= 2.4 - "
-						      + FLAVOR_CHANNEL_STRINGS[fc_it]
-						      + " ; p_{T}^{l} ; p_{T}^{b jet}"
-						      ).c_str(),
-						     pt_bins, pt_min, pt_max,
-						     pt_bins, pt_min, pt_max
-						     )
-					   );
-					  
+                                                     + "__fiducial_b_jet1vl1_fail"
+                                                     + "__"
+                                                     + name_tag
+                                                     ).c_str()
+                                                   , ( "p_{T}_b_jet1vl1 - |#eta| >= 2.4 - "
+                                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + " ; p_{T}^{l} ; p_{T}^{b jet}"
+                                                     ).c_str()
+                                                   , pt_bins, pt_min, pt_max
+                                                   , pt_bins, pt_min, pt_max
+                                                   )
+                                         );
+
     // initialize mbl anti-pairing histograms
     m_h_mbl_anti_pairing_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                   + "__mbl_anti_pairing_all"
@@ -893,19 +923,20 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                                        , deta_bins, deta_min, deta_max
                                                        )
                                              );
+
     // initialize event-level eta and fiducial cut histograms
     m_h_eta_event_passfail.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-						  + "__eta_event_passfail"
-						  + "__"
-						  + name_tag
-						  ).c_str()
-						, ("|#eta|=2.4 cut - "
-						   + FLAVOR_CHANNEL_STRINGS[fc_it]
-						   + " ; Fail (0), Pass (1) ; Entries"
-						   ).c_str()
-						, 2,0.,2.
-						)
-				      );
+                                                + "__eta_event_passfail"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "|#eta|=2.4 cut - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; Fail (0), Pass (1) ; Entries"
+                                                ).c_str()
+                                              , 2, 0., 2.
+                                              )
+                                    );
   }
 }
 
@@ -1165,6 +1196,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_mbl_1.at(  fc_it)->Fill(mbl_1, weight);
     m_h_mbl_diff.at(fc_it)->Fill(fabs(mbl_0 - mbl_1), weight);
     m_h_mbl_ratio.at(fc_it)->Fill(mbl_1/mbl_0, weight);
+    m_h_mbl_2d.at(fc_it)->Fill(mbl_0, mbl_1, weight);
 
     // fill ptbl histograms
     m_h_ptbl_all.at(fc_it)->Fill(ptbl_0, weight);
@@ -1172,6 +1204,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_ptbl_0.at(  fc_it)->Fill(ptbl_0, weight);
     m_h_ptbl_1.at(  fc_it)->Fill(ptbl_1, weight);
     m_h_ptbl_diff.at(fc_it)->Fill(fabs(ptbl_0 - ptbl_1), weight);
+    m_h_ptbl_2d.at(fc_it)->Fill(ptbl_0,  ptbl_1, weight);
 
     // fill mbl for anti-pairs histograms
     m_h_mbl_anti_pairing_all.at(fc_it)->Fill(mbl_anti_pair_0, weight);
@@ -1276,20 +1309,20 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 
     // Fill event level eta and fiducial cut histograms
     (pass(eta_b_0, eta_b_1, eta_l_0, eta_l_1) ? m_h_eta_event_passfail.at(fc_it)->Fill(1., weight) :
-     m_h_eta_event_passfail.at(fc_it)->Fill(0., weight));
+                                                m_h_eta_event_passfail.at(fc_it)->Fill(0., weight));
     (pass(eta_b_0, eta_b_1, eta_l_0, eta_l_1) ? m_h_fiducial_b_jet1vl1_pass.at(fc_it)->Fill(pt_l_1, pt_b_1, weight) :
-     m_h_fiducial_b_jet1vl1_fail.at(fc_it)->Fill(pt_l_1, pt_b_1, weight));
-    
+                                                m_h_fiducial_b_jet1vl1_fail.at(fc_it)->Fill(pt_l_1, pt_b_1, weight));
+
   }
 }
 
 // ----------------------------------------------------------------------------- 
 bool PennSusyFrame::BMinusLHists::pass(float eta_b_0, float eta_b_1, float eta_l_0, float eta_l_1)
 {
-  if (   abs(eta_b_0  ) < 2.4 
-      && abs(eta_b_1  ) < 2.4 
-      && abs(eta_l_0) < 2.4 
-      && abs(eta_l_1) < 2.4) {
+  if (  abs(eta_b_0) < 2.4
+     && abs(eta_b_1) < 2.4
+     && abs(eta_l_0) < 2.4
+     && abs(eta_l_1) < 2.4) {
     return 1;
   }
   else {
@@ -1341,11 +1374,13 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_mbl_1.at(  fc_it)->Write();
     m_h_mbl_diff.at(fc_it)->Write();
     m_h_mbl_ratio.at(fc_it)->Write();
+    m_h_mbl_2d.at(fc_it)->Write();
 
     m_h_ptbl_all.at(fc_it)->Write();
     m_h_ptbl_0.at(  fc_it)->Write();
     m_h_ptbl_1.at(  fc_it)->Write();
     m_h_ptbl_diff.at(fc_it)->Write();
+    m_h_ptbl_2d.at(fc_it)->Write();
 
     m_h_pt_b_jet1vl1.at(fc_it)->Write();
     m_h_fiducial_b_jet1vl1_pass.at(fc_it)->Write();

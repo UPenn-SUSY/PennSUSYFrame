@@ -84,11 +84,13 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_1;
       std::vector<TH1F*> m_h_mbl_diff;
       std::vector<TH1F*> m_h_mbl_ratio;
+      std::vector<TH2F*> m_h_mbl_2d;
 
       std::vector<TH1F*> m_h_ptbl_all;
       std::vector<TH1F*> m_h_ptbl_0;
       std::vector<TH1F*> m_h_ptbl_1;
       std::vector<TH1F*> m_h_ptbl_diff;
+      std::vector<TH2F*> m_h_ptbl_2d;
 
       std::vector<TH2F*> m_h_pt_b_jet1vl1;
       std::vector<TH2F*> m_h_fiducial_b_jet1vl1_pass;
