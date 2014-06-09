@@ -312,43 +312,43 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize b jet eta histograms
     m_h_b_jet_eta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                    + "__b_jet_eta_all"
-                                    + "__"
-                                    + name_tag
-                                    ).c_str()
-                                  , ( "#eta - "
-                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                    + " ; #eta ; Entries"
-                                    ).c_str()
-                                  , eta_bins, eta_min, eta_max
-                                  )
-                        );
+                                           + "__b_jet_eta_all"
+                                           + "__"
+                                           + name_tag
+                                           ).c_str()
+                                         , ( "#eta - "
+                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                           + " ; #eta ; Entries"
+                                           ).c_str()
+                                         , eta_bins, eta_min, eta_max
+                                         )
+                               );
 
     m_h_b_jet_eta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                  + "__b_jet_eta_0"
-                                 + "__"
-                                 + name_tag
-                                  ).c_str()
-                                , ( "#eta^{0} - "
-                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                  + " ; #eta^{0} [GeV] ; Entries"
-                                  ).c_str()
-                                , eta_bins, eta_min, eta_max
-                                )
-                      );
+                                         + "__b_jet_eta_0"
+                                        + "__"
+                                        + name_tag
+                                         ).c_str()
+                                       , ( "#eta^{0} - "
+                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + " ; #eta^{0} [GeV] ; Entries"
+                                         ).c_str()
+                                       , eta_bins, eta_min, eta_max
+                                       )
+                             );
 
     m_h_b_jet_eta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                  + "__b_jet_eta_1"
-                                  + "__"
-                                  + name_tag
-                                  ).c_str()
-                                , ( "#eta^{1} - "
-                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                  + " ; #eta^{1} [GeV] ; Entries"
-                                  ).c_str()
-                                , eta_bins, eta_min, eta_max
-                                )
-                      );
+                                         + "__b_jet_eta_1"
+                                         + "__"
+                                         + name_tag
+                                         ).c_str()
+                                       , ( "#eta^{1} - "
+                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + " ; #eta^{1} [GeV] ; Entries"
+                                         ).c_str()
+                                       , eta_bins, eta_min, eta_max
+                                       )
+                             );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mbl histograms
