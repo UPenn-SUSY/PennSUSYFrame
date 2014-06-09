@@ -1001,105 +1001,105 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize eta histograms
     m_h_eta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                    + "__b_jet_eta_all"
-                                    + "__"
-                                    + name_tag
-                                    ).c_str()
-                                  , ( "#eta - "
-                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                    + " ; #eta ; Entries"
-                                    ).c_str()
-                                  , eta_bins, eta_min, eta_max
-                                  )
-                        );
+                                     + "__jet_eta_all"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "#eta - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; #eta ; Entries"
+                                     ).c_str()
+                                   , eta_bins, eta_min, eta_max
+                                   )
+                         );
 
     m_h_eta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                  + "__b_jet_eta_0"
-                                 + "__"
-                                 + name_tag
-                                  ).c_str()
-                                , ( "#eta^{0} - "
-                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                  + " ; #eta^{0} [GeV] ; Entries"
-                                  ).c_str()
-                                , eta_bins, eta_min, eta_max
-                                )
-                      );
+                                   + "__jet_eta_0"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#eta^{0} - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #eta^{0} [GeV] ; Entries"
+                                   ).c_str()
+                                 , eta_bins, eta_min, eta_max
+                                 )
+                       );
 
     m_h_eta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                  + "__b_jet_eta_1"
-                                  + "__"
-                                  + name_tag
-                                  ).c_str()
-                                , ( "#eta^{1} - "
-                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                  + " ; #eta^{1} [GeV] ; Entries"
-                                  ).c_str()
-                                , eta_bins, eta_min, eta_max
-                                )
+                                   + "__jet_eta_1"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#eta^{1} - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #eta^{1} [GeV] ; Entries"
+                                   ).c_str()
+                                 , eta_bins, eta_min, eta_max
+                                 )
                       );
-    m_h_eta_event_passfail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						     +   "__b_jet_eta_event_passfail"
-						     + "__"
-						     + name_tag
-						     ).c_str()
-						    ,("|#eta| < 2.4 cut - "
-						      + FLAVOR_CHANNEL_STRINGS[fc_it]
-						      + " ; Fail (0), Pass(1) ; Entries"
-						      ).c_str()
-						    , 2, 0.,2.
-						    )
-					  );
+    m_h_eta_event_passfail.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                +   "__jet_eta_event_passfail"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "|#eta| < 2.4 cut - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; Fail (0), Pass(1) ; Entries"
+                                                ).c_str()
+                                              , 2, 0.,2.
+                                              )
+                                    );
     // -------------------------------------------------------------------------
     // initialize fiducial pass,fail histos
-    m_h_fiducial_single_pass.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						   + "__b_jet_fiducial_single_pass"
-						   + "__"
-						   + name_tag
-						   ).c_str()
-						  ,("p_{T}_b_jet_all - |#eta| < 2.4 - "
-						    + FLAVOR_CHANNEL_STRINGS[fc_it]
-						    + " ; p_{T} [GeV] ; Entries"
-						    ).c_str()
-						  ,pt_bins, pt_min, pt_max
-						  )
-					);
-    m_h_fiducial_single_fail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						   + "__b_jet_fiducial_single_fail"
-						   + "__"
-						   + name_tag
-						   ).c_str()
-						  ,("p_{T}_b_jet_all - |#eta| >= 2.4 - "
-						    + FLAVOR_CHANNEL_STRINGS[fc_it]
-						    + " ; p_{T} [GeV] ; Entries"
-						    ).c_str()
-						  ,pt_bins, pt_min, pt_max
-						  )
-					);
-    m_h_fiducial_event_pass.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						  + "__b_jet_fiducial_event_pass"
-						  + "__"
-						  + name_tag
-						  ).c_str()
-						 ,("p_{T}_lep_1 - |#eta| < 2.4 - "
-						   + FLAVOR_CHANNEL_STRINGS[fc_it]
-						   + " ; p_{T} [GeV] ; Entries"
-						   ).c_str()
-						 ,pt_bins, pt_min, pt_max
-						 )
-				       );
-    m_h_fiducial_event_fail.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						  + "__b_jet_fiducial_event_fail"
-						  + "__"
-						  + name_tag
-						  ).c_str()
-						 ,("p_{T}_lep_1 - |#eta| >= 2.4 - "
-						   + FLAVOR_CHANNEL_STRINGS[fc_it]
-						   + " ; p_{T} [GeV] ; Entries"
-						   ).c_str()
-						 ,pt_bins, pt_min, pt_max
-						 )
-				       );
+    m_h_fiducial_single_pass.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__jet_fiducial_single_pass"
+                                                  + "__"
+                                                  + name_tag
+                                                  ).c_str()
+                                                , ( "p_{T}_jet_all - |#eta| < 2.4 - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; p_{T} [GeV] ; Entries"
+                                                  ).c_str()
+                                                , pt_bins, pt_min, pt_max
+                                                )
+                                      );
+    m_h_fiducial_single_fail.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__jet_fiducial_single_fail"
+                                                  + "__"
+                                                  + name_tag
+                                                  ).c_str()
+                                                , ( "p_{T}_jet_all - |#eta| >= 2.4 - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; p_{T} [GeV] ; Entries"
+                                                  ).c_str()
+                                                , pt_bins, pt_min, pt_max
+                                                )
+                                      );
+    m_h_fiducial_event_pass.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__jet_fiducial_event_pass"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "p_{T}_lep_1 - |#eta| < 2.4 - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; p_{T} [GeV] ; Entries"
+                                                 ).c_str()
+                                               ,pt_bins, pt_min, pt_max
+                                               )
+                                     );
+    m_h_fiducial_event_fail.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__jet_fiducial_event_fail"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "p_{T}_lep_1 - |#eta| >= 2.4 - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; p_{T} [GeV] ; Entries"
+                                                 ).c_str()
+                                               , pt_bins, pt_min, pt_max
+                                               )
+                                     );
   }
 }
 
