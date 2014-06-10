@@ -1,4 +1,4 @@
-#!/usr/bin/env pysthon
+#!/usr/bin/env python
 # ------------------------------------------------------------------------------
 # - usage:
 # -      ./scripts/AutoHadd.py <path_to_dir_to_hadd>
@@ -24,7 +24,7 @@ def getListOfTagsToHadd(dir):
 
     list_of_tags = []
     for lof in list_of_files:
-        this_tag = lof.split['/'][-1]
+        this_tag = lof.split('/')[-1]
         this_tag = re.sub('\.[0-9]*_of_[0-9]*\.root', '', this_tag)
 
         if not this_tag in list_of_tags:
