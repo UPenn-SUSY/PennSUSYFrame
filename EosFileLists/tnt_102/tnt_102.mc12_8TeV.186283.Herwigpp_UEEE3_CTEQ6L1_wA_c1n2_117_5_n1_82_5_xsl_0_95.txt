@@ -1,0 +1,1 @@
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102_v3/user.bjackson.mc12_8TeV.186283.Herwigpp_UEEE3_CTEQ6L1_wA_c1n2_117_5_n1_82_5_xsl_0_95.tnt_102_v3.140606114017/user.bjackson.035195._00001.Tnt.root        100000        61651
