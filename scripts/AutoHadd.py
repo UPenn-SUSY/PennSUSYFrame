@@ -122,11 +122,14 @@ def mergeFilesWithDirs(dir, this_tag):
 # ------------------------------------------------------------------------------
 def haddFilesMatchingTag(dir, list_of_tags, flat_files = False):
     print 'auto hadding files in directory: %s' % dir
+    print flat_files
 
     for lot in list_of_tags:
         if not flat_files:
+            print 'merging files with dirs'
             mergeFilesWithDirs(dir, lot)
         else:
+            print 'merging flat files'
             mergeFlatFiles(dir, lot)
 
 # ------------------------------------------------------------------------------
@@ -156,6 +159,7 @@ def main():
     target_dir = sys.argv[1]
 
     flat_files = sys.argv[2] if len(sys.argv) > 2 else False
+    flat_files = False if flat_files == '0' else True
     print target_dir
     print flat_files
 

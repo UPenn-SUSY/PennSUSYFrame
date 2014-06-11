@@ -189,9 +189,9 @@ def addSamplesToList( sample_dict
         data_set_dicts.append(tdsd)
 
 # ------------------------------------------------------------------------------
-def mergeOutputFiles(out_dir):
+def mergeOutputFiles(out_dir, flat_files):
     abs_path = os.path.abspath(out_dir)
-    AutoHadd.runAutoHaddOnDir(abs_path)
+    AutoHadd.runAutoHaddOnDir(abs_path, flat_files)
 
     # make symbolic link for dummy hist file -- only if does not already exist
     dummy_file_name = '%s/BMinusL.dummy_hists.root' % abs_path
