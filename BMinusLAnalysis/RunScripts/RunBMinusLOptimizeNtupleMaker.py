@@ -153,16 +153,16 @@ def runBMinusLOptimizeNtupleMaker( file_list
     bmlonm.setCritCutHFOR(           1)
     bmlonm.setCritCutMcOverlap(      1)
     bmlonm.setCritCutGe2Lepton(      1)
-    bmlonm.setCritCut2Lepton(        1)
-    bmlonm.setCritCut2SignalLepton(  1)
-    bmlonm.setCritCut2BJets(         1)
+    bmlonm.setCritCut2Lepton(        0)
+    bmlonm.setCritCut2SignalLepton(  0)
+    bmlonm.setCritCut2BJets(         0)
     bmlonm.setCritCutBadJetVeto(     1)
-    bmlonm.setCritCutBLPairing(      1)
+    bmlonm.setCritCutBLPairing(      0)
 
     # Set cut values
     print 'set cuts'
-    lep_pt_cut = 10.e3
-    jet_pt_cut = 20.e3
+    lep_pt_cut = 40.e3
+    jet_pt_cut = 40.e3
     bmlonm.setElPtCut(  lep_pt_cut, -1     )
     bmlonm.setMuPtCut(  lep_pt_cut, -1     )
     bmlonm.setBJetPtCut(jet_pt_cut, -1     )

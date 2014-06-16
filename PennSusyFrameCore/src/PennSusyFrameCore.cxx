@@ -218,14 +218,12 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_jet_selectors.at(JET_LIGHT).setConstScaleEtaCut(-1, 2.4);
   m_jet_selectors.at(JET_LIGHT).setJvfCut(0.0, -1);
   m_jet_selectors.at(JET_LIGHT).setJvfPtThresh(50.e3, -1);
-  // m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, 0.3511);
   m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, m_mv1_cut_value);
 
   // JET_B
   m_jet_selectors.at(JET_B).setPtCut(20.e3, -1);
   // m_jet_selectors.at(JET_B).setEtaCut(-1, 2.4);
   m_jet_selectors.at(JET_B).setConstScaleEtaCut(-1, 2.4);
-  // m_jet_selectors.at(JET_B).setMV1Cut(0.3511, -1);
   m_jet_selectors.at(JET_B).setMV1Cut(m_mv1_cut_value, -1);
 
   // JET_FORWARD
@@ -596,7 +594,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                   )
                            );
 
-  // TODO set emma mt
   m_event_quantities.setEmmaMt( PennSusyFrame::getEmmaMt( m_event.getFlavorChannel()
                                                         , m_electrons.getCollection(EL_GOOD)
                                                         , m_muons.getCollection(MU_GOOD)
@@ -616,21 +613,18 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set pile up weight
-    // TODO validate pile up weight
     m_event_quantities.setPileUpSF(m_pile_up_sf_tool.getPileupScaleFactor(m_event, m_mc_truth));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set lepton SF
     double lepton_sf = 1.;
 
-    // TODO validate electron SF
     size_t el_term = m_electrons.num(EL_GOOD);
     const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_GOOD);
     for (size_t el_it = 0; el_it != el_term; ++el_it) {
       lepton_sf *= m_egamma_sf_tool.getSF(m_event, el_list->at(el_it));
     }
 
-    // TODO validate muon SF
     size_t mu_term = m_muons.num(MU_GOOD);
     const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_GOOD);
     for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
@@ -641,7 +635,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
-    // TODO validate trigger weight
     m_event_quantities.setTriggerWeight(m_trigger_weight_tool.getWeight( m_event.getFlavorChannel()
                                                                        , m_electrons.getCollection(EL_GOOD)
                                                                        , m_muons.getCollection(MU_GOOD)
@@ -653,7 +646,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    // TODO validate b tag weight
     m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -680,10 +672,18 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 }
 
 // -----------------------------------------------------------------------------
-FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel()
+FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel(bool exclusive_flavor_channel)
 {
   size_t num_el = m_electrons.num(EL_GOOD);
   size_t num_mu = m_muons.num(MU_GOOD);
+
+  if (num_el + num_mu < 2) return FLAVOR_NONE;
+
+  if (!exclusive_flavor_channel && num_el+num_mu > 2) {
+    // TODO if there are more than two leptons, and we set exclusive_flavor_channel == false, check flavor of leading two leptons
+    // num_el = 0;
+    // num_mu = 0;
+  }
 
   if (num_el == 2 && num_mu == 0) return FLAVOR_EE;
   if (num_el == 1 && num_mu == 1) return FLAVOR_EM;

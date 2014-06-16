@@ -82,11 +82,12 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::prepareSelection()
   m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.47);
 
   // EL_SIGNAL
-  m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
+  // m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
+  m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_MEDPP);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
-  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.13);
-  m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.21);
+  // m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.13);
+  // m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.21);
 
   // MU_BASELINE
   // m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
@@ -104,8 +105,8 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::prepareSelection()
   m_muon_selectors.at(MU_SIGNAL).setEtaCut(-1, 2.4);
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
-  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.11);
-  m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.19);
+  // m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.11);
+  // m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.19);
 
   // JET_B
   m_jet_selectors.at(JET_B).setPtCut(m_min_b_jet_pt_baseline, m_max_b_jet_pt_baseline);
@@ -514,42 +515,42 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
 
   // connect branches for output
   m_output_tree->Branch( "weight" , &m_weight);
-                                        
+
   m_output_tree->Branch( "mbl_0" , &m_mbl_0);
   m_output_tree->Branch( "mbl_1" , &m_mbl_1);
   m_output_tree->Branch( "mbbll" , &m_mbbll);
-                                        
+
   m_output_tree->Branch( "ptbl_0" , &m_ptbl_0);
   m_output_tree->Branch( "ptbl_1" , &m_ptbl_1);
   m_output_tree->Branch( "ptbbll" , &m_ptbbll);
-                                        
+
   m_output_tree->Branch( "mll"  , &m_mll);
   m_output_tree->Branch( "ptll" , &m_ptll);
-                                        
+
   m_output_tree->Branch( "met_et"  , &m_met_et);
   m_output_tree->Branch( "met_rel" , &m_met_rel);
-                                        
+
   m_output_tree->Branch( "ht_all"      , &m_ht_all);
   m_output_tree->Branch( "ht_baseline" , &m_ht_baseline);
   m_output_tree->Branch( "ht_good"     , &m_ht_good);
   m_output_tree->Branch( "ht_signal"   , &m_ht_signal);
-                                        
+
   m_output_tree->Branch( "pt_l_0" , &m_pt_l_0);
   m_output_tree->Branch( "pt_l_1" , &m_pt_l_1);
   m_output_tree->Branch( "pt_b_0" , &m_pt_b_0);
   m_output_tree->Branch( "pt_b_1" , &m_pt_b_1);
-                                        
+
   m_output_tree->Branch( "dphi_bl_0" , &m_dphi_bl_0);
   m_output_tree->Branch( "dphi_bl_1" , &m_dphi_bl_1);
   m_output_tree->Branch( "deta_bl_0" , &m_deta_bl_0);
   m_output_tree->Branch( "deta_bl_1" , &m_deta_bl_1);
   m_output_tree->Branch( "dr_bl_0"   , &m_dr_bl_0);
   m_output_tree->Branch( "dr_bl_1"   , &m_dr_bl_1);
-                                        
+
   m_output_tree->Branch( "dphi_ll" , &m_dphi_ll);
   m_output_tree->Branch( "deta_ll" , &m_deta_ll);
   m_output_tree->Branch( "dr_ll"   , &m_dr_ll);
-                                        
+
   m_output_tree->Branch( "dphi_bb" , &m_dphi_bb);
   m_output_tree->Branch( "deta_bb" , &m_deta_bb);
   m_output_tree->Branch( "dr_bb"   , &m_dr_bb);

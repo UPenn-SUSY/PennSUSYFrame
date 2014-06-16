@@ -78,12 +78,14 @@ const std::string TRIG_PHASE_STRINGS[] = { "trig_none"
 enum ELECTRON_COLLECTIONS { EL_ALL = 0  // Green tree snake
                           , EL_BASELINE // Baseline cuts
                           , EL_GOOD     // Baseline + overlap removal
+                          , EL_SELECTED // good but only electrons for this analysis
                           , EL_SIGNAL   // Signal cuts
                           , EL_N
                           };
 const std::string ELECTRON_COLLECTIONS_STRINGS[] = { "el_all"
                                                    , "el_baseline"
                                                    , "el_good"
+                                                   , "el_selected"
                                                    , "el_signal"
                                                    };
 
@@ -95,6 +97,7 @@ enum JET_COLLECTIONS { JET_ALL = 0       // Green tree snake
                      , JET_CALO_PROBLEM  // Baseline cuts
                      , JET_BAD           // Baseline + overlap removal
                      , JET_GOOD          // Baseline + overlap removal
+                     , JET_SELECTED      // good but only jets seelcted for this analysis
                      , JET_LIGHT         // Light central cuts
                      , JET_B             // B-jet cuts
                      , JET_FORWARD       // Forward cuts
@@ -109,6 +112,7 @@ const std::string JET_COLLECTIONS_STRINGS[] = { "jet_all"
                                               , "jet_calo_problem"
                                               , "jet_bad"
                                               , "jet_good"
+                                              , "jet_selected"
                                               , "jet_light"
                                               , "jet_b"
                                               , "jet_forward"
@@ -120,6 +124,7 @@ const std::string JET_COLLECTIONS_STRINGS[] = { "jet_all"
 enum MUON_COLLECTIONS { MU_ALL = 0  // Green tree snake
                       , MU_BASELINE // Baseline cuts
                       , MU_GOOD     // Baseline + overlap removal
+                      , MU_SELECTED // good but only muons selected for this analysis
                       , MU_SIGNAL   // Signal cuts
                       , MU_BAD      // Bad muons
                       , MU_COSMIC   // Cosmic muons
@@ -128,6 +133,7 @@ enum MUON_COLLECTIONS { MU_ALL = 0  // Green tree snake
 const std::string MUON_COLLECTIONS_STRINGS[] = { "mu_all"
                                                , "mu_baseline"
                                                , "mu_good"
+                                               , "mu_selected"
                                                , "mu_signal"
                                                , "mu_bad"
                                                , "mu_cosmic"

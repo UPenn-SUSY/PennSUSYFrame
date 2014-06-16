@@ -88,11 +88,14 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   m_electron_selectors.at(EL_BASELINE).setEtaCut(-1, 2.47);
 
   // EL_SIGNAL
-  m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
+  // m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
+  m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_MEDPP);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
-  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.13);
-  m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.21);
+  // m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.13);
+  // m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.21);
+  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, -1);
+  m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, -1);
 
   // MU_BASELINE
   // m_muon_selectors.at(MU_BASELINE).setPtCut(20.e3, -1);
@@ -110,8 +113,10 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   m_muon_selectors.at(MU_SIGNAL).setEtaCut(-1, 2.4);
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
-  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.11);
-  m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.19);
+  // m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.11);
+  // m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.19);
+  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, -1);
+  m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, -1);
 
   // JET_B
   m_jet_selectors.at(JET_B).setPtCut(m_min_b_jet_pt_baseline, m_max_b_jet_pt_baseline);
@@ -299,7 +304,6 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // mc overlap cut
-  // TODO validate mc overlap cut
   bool pass_mc_overlap = (  PennSusyFrame::passSherpaWWOverlapRemoval(m_event, m_mc_truth)
                          && PennSusyFrame::passZOverlapRemoval(m_mc_truth)
                          );
@@ -336,7 +340,8 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // == 2 baseline leptons cut
-  bool pass_2_lep = (num_good_leptons == 2);
+  // bool pass_2_lep = (num_good_leptons == 2);
+  bool pass_2_lep = (num_good_leptons >= 2);
   m_pass_event = (m_pass_event && pass_2_lep);
   if (m_crit_cut_2_lep && !pass_2_lep) return;
   if (m_pass_event) {
@@ -391,7 +396,8 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check number of b jets == 2
-  bool pass_eq_2_b_jet = (num_b_jets == 2);
+  // bool pass_eq_2_b_jet = (num_b_jets == 2);
+  bool pass_eq_2_b_jet = (num_b_jets >= 2);
   m_pass_event = (m_pass_event && pass_eq_2_b_jet);
   if (m_crit_cut_b_jets && ! pass_eq_2_b_jet) return;
   if (m_pass_event) {

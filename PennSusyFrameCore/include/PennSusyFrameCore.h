@@ -70,7 +70,12 @@ namespace PennSusyFrame
       virtual void finalizeRun();
 
     protected:
-      virtual FLAVOR_CHANNEL findFlavorChannel();
+      // find the flavor channel of this event
+      // -- if exclusive_flavor_channel == true, the function will require exactly
+      //    a di-lepton event
+      // -- if exclusive_flavor_channel == false, the function will consider the
+      //    two leading leptons
+      virtual FLAVOR_CHANNEL findFlavorChannel(bool exclusive_flavor_channel = true);
       virtual SIGN_CHANNEL   findSignCannel();
 
       virtual void clearObjects();
