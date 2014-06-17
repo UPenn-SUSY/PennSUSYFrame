@@ -43,7 +43,7 @@ namespace PennSusyFrame
       virtual void prepareSelection();
 
       virtual void beginRun();
-      void initializeEvent();
+      virtual void initializeEvent();
       virtual void processEvent();
       virtual void finalizeEvent();
       virtual void finalizeRun();
