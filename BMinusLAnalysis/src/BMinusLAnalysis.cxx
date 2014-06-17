@@ -143,6 +143,7 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
   m_histogram_handlers.resize(BMINUSL_HIST_N);
 
   for (unsigned int hist_level = 0; hist_level != BMINUSL_HIST_N; ++hist_level) {
+    std::cout << "creating histograms with hist level: " << hist_level << " -- " << PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level] << "\n";
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::EventLevelHists(      PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::LeptonKinematicsHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::JetKinematicsHists(   PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
@@ -427,7 +428,6 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check number of b jets == 2
   m_pass_eq_2_b_jet = (num_b_jets == 2);
-  // m_pass_eq_2_b_jet = (num_b_jets >= 2);
   m_pass_event = (m_pass_event && m_pass_eq_2_b_jet);
   if (m_crit_cut_b_jets && ! m_pass_eq_2_b_jet) return;
   if (m_pass_event) {
@@ -458,6 +458,7 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
                                                 , m_electrons.getCollection(EL_SELECTED)
                                                 , m_muons.getCollection(MU_SELECTED)
                                                 , m_jets.getCollection(JET_B)
+                                                // , m_jets.getCollection(JET_SELECTED)
                                                 , *m_bl_0
                                                 , *m_bl_1
                                                 );
@@ -560,7 +561,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_2_lep
      && m_pass_signal_lep
      && m_pass_ge_2_b_jet
-     && m_pass_eq_2_b_jet
+     // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
      // && m_pass_z_veto
      // && m_pass_met
@@ -591,7 +592,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_2_lep
      && m_pass_signal_lep
      && m_pass_ge_2_b_jet
-     && m_pass_eq_2_b_jet
+     // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
      && m_pass_z_veto
      // && m_pass_met
@@ -622,7 +623,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_2_lep
      && m_pass_signal_lep
      && m_pass_ge_2_b_jet
-     && m_pass_eq_2_b_jet
+     // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
      && m_pass_z_veto
      && m_pass_met
@@ -839,10 +840,24 @@ void PennSusyFrame::BMinusLAnalysis::getSelectedObjects()
   m_electrons.setCollection(EL_SELECTED , selected_el_list);
   m_muons.setCollection(    MU_SELECTED , selected_mu_list);
 
-  // simply copy the good jets and taus
+  // get two leading b jets
   std::vector<PennSusyFrame::Jet*> good_jet_list(*m_jets.getCollection(JET_GOOD));
   m_jets.setCollection(JET_SELECTED , good_jet_list);
+  //
+  // std::vector<PennSusyFrame::Jet*> selected_jets;
+  // const std::vector<PennSusyFrame::Jet*>* b_jets = m_jets.getCollection(JET_B);
+  // size_t num_b_jets = b_jets->size();
+  // std::cout << "num all jets while selecting jets for pairing: "      << m_jets.num(JET_ALL) << "\n";
+  // std::cout << "num baseline jets while selecting jets for pairing: " << m_jets.num(JET_BASELINE_GOOD) << "\n";
+  // std::cout << "num good jets while selecting jets for pairing: "     << m_jets.num(JET_GOOD) << "\n";
+  // std::cout << "num b jets while selecting jets for pairing: "        << num_b_jets << "\n";
+  // if (num_b_jets >= 2) {
+  //   selected_jets.push_back(b_jets->at(0));
+  //   selected_jets.push_back(b_jets->at(1));
+  // }
+  // m_jets.setCollection(JET_SELECTED , selected_jets);
 
+  // simply copy the good taus
   std::vector<PennSusyFrame::Tau*> good_tau_list(*m_taus.getCollection(TAU_GOOD));
   m_taus.setCollection(TAU_SELECTED , good_tau_list);
 }

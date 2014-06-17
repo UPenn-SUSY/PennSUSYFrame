@@ -163,8 +163,8 @@ def runBMinusLOptimizeNtupleMaker( file_list
     print 'set cuts'
     # lep_pt_cut = 40.e3
     # jet_pt_cut = 40.e3
-    lep_pt_cut = 10.e3
-    jet_pt_cut = 10.e3
+    lep_pt_cut = 40.e3
+    jet_pt_cut = 40.e3
     bmlonm.setElPtCut(  lep_pt_cut, -1     )
     bmlonm.setMuPtCut(  lep_pt_cut, -1     )
     bmlonm.setBJetPtCut(jet_pt_cut, -1     )

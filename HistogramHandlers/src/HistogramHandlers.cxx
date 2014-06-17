@@ -299,8 +299,8 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 
     m_h_pt_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                   + "__lep_pt_0"
-                                 + "__"
-                                 + name_tag
+                                  + "__"
+                                  + name_tag
                                   ).c_str()
                                 , ( "p_{T}^{0} - "
                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -376,7 +376,7 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 						    )
 					  );
 
-    
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt iso histograms
     m_h_ptiso_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -851,7 +851,7 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     m_h_eta_0.at(  fc_it)->Write();
     m_h_eta_1.at(  fc_it)->Write();
     m_h_eta_event_passfail.at(fc_it)->Write();
-    
+
     // write ptiso histograms
     m_h_ptiso_all.at(fc_it)->Write();
     m_h_ptiso_0.at(  fc_it)->Write();
