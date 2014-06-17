@@ -795,6 +795,8 @@ void PennSusyFrame::Jet::print() const
 {
   std::cout << "\tjet " << m_particle_index << "\n";
   printGeneralInfo();
+  std::cout << "\t\tMV1: " << m_mv1
+            << "\n";
 }
 
 // -----------------------------------------------------------------------------

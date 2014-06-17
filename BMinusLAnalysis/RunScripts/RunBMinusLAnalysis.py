@@ -168,6 +168,8 @@ def runBMinusLAnalysis( file_list
     bmla.setMuPtCut(  lep_pt_cut, -1     )
     bmla.setBJetPtCut(jet_pt_cut, -1     )
     bmla.setMetCut(   -1        , met_cut)
+    # 90% working point
+    # bmla.setMV1Cut(0.0617)
     # 80% working point
     bmla.setMV1Cut(0.3511)
     # 70% working point

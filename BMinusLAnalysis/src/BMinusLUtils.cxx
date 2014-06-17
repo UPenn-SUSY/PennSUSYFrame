@@ -105,6 +105,7 @@ bool PennSusyFrame::doBLPairing( const PennSusyFrame::Event& event
         lep_list.push_back(mu_list->at(next_mu));
         ++next_mu;
       }
+      ++num_leps_stored;
     }
     if (num_leps_stored < 2) return false;
   }
@@ -119,6 +120,8 @@ bool PennSusyFrame::doBLPairing( const std::vector<PennSusyFrame::Lepton*>* lep_
                                , PennSusyFrame::blPair& pair_1
                                )
 {
+  // if (lep_list->size() < 2 || jet_list->size() < 2)
+  //   std::cout << "\nBLPAIRING FAILS LEP OR JET LIST SIZE REQUIREMENT -- LEP LIST SIZE: " << lep_list->size() << " JET LIST SIZE: " << jet_list->size() << "\n";
   if (lep_list->size() < 2 || jet_list->size() < 2) return false;
 
   // first calculate the mbl values for the 00 11 pairings
@@ -134,7 +137,6 @@ bool PennSusyFrame::doBLPairing( const std::vector<PennSusyFrame::Lepton*>* lep_
   float mbl_ratio_01_01 = ( (mbl_01 > mbl_10) ? (mbl_01/mbl_10)
                                               : (mbl_10/mbl_01)
                           );
-
 
   if (mbl_ratio_00_11 <= mbl_ratio_01_01) {
     if (mbl_00 >= mbl_11) {

@@ -80,6 +80,7 @@ namespace PennSusyFrame
 
       virtual void clearObjects();
       virtual void constructObjects();
+      virtual void getSelectedObjects();
 
       virtual void configureTnt( std::string out_file_name
                                , std::string out_tree_name

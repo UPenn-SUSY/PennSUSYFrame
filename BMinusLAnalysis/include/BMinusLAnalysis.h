@@ -43,6 +43,7 @@ namespace PennSusyFrame
       virtual void prepareSelection();
 
       virtual void beginRun();
+      void initializeEvent();
       virtual void processEvent();
       virtual void finalizeEvent();
       virtual void finalizeRun();
@@ -78,6 +79,8 @@ namespace PennSusyFrame
       void setBJetPtCut(float min, float max) { m_min_b_jet_pt_baseline = min ; m_max_b_jet_pt_baseline = max; }
 
     protected:
+      virtual void getSelectedObjects();
+
       void fillHistHandles( BMINUSL_HIST_LEVELS
                           // , const PennSusyFrame::blPair&
                           // , const PennSusyFrame::blPair&
@@ -119,6 +122,31 @@ namespace PennSusyFrame
 
       std::vector<PennSusyFrame::BMinusLHists*> m_bminusl_histogram_handler;
 
+      PennSusyFrame::blPair* m_bl_0;
+      PennSusyFrame::blPair* m_bl_1;
+
+      bool m_pass_grl;
+      bool m_pass_incomplete_event;
+      bool m_pass_lar_error;
+      bool m_pass_tile_error;
+      bool m_pass_tile_hot_spot;
+      bool m_pass_tile_trip;
+      bool m_pass_bad_jet_veto;
+      bool m_pass_calo_problem_jet;
+      bool m_pass_primary_vertex;
+      bool m_pass_bad_mu_veto;
+      bool m_pass_cosmic_mu_veto;
+      bool m_pass_hfor;
+      bool m_pass_mc_overlap;
+      bool m_pass_ge_2_lep;
+      bool m_pass_2_lep;
+      bool m_pass_signal_lep;
+      bool m_pass_ge_2_b_jet;
+      bool m_pass_eq_2_b_jet;
+      bool m_pass_bl_pairing;
+      bool m_pass_z_veto;
+      bool m_pass_met;
+
       double m_met_min;
       double m_met_max;
 
@@ -130,6 +158,15 @@ namespace PennSusyFrame
 
       double m_min_b_jet_pt_baseline;
       double m_max_b_jet_pt_baseline;
+
+      unsigned int m_num_events_passing_basic_cleaning;
+      unsigned int m_num_events_passing_ge_2_lep;
+      unsigned int m_num_events_passing_2_lep;
+      unsigned int m_num_events_passing_signal_lep;
+      unsigned int m_num_events_passing_ge_2_b_jet;
+      unsigned int m_num_events_passing_eq_2_b_jet;
+      unsigned int m_num_events_passing_bl_pairing;
+      unsigned int m_num_events_passing_bl_pairing_but_not_lep_or_b;
 
     private:
   };

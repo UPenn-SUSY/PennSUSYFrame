@@ -143,6 +143,7 @@ const std::string MUON_COLLECTIONS_STRINGS[] = { "mu_all"
 enum TAU_COLLECTIONS { TAU_ALL = 0
                      , TAU_BASELINE
                      , TAU_GOOD
+                     , TAU_SELECTED
                      , TAU_SIGNAL
                      , TAU_N
                      };
