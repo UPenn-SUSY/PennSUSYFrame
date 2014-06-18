@@ -276,14 +276,11 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     Long64_t this_entry = m_start_entry + jentry;
 
     // check progress in the progress bar
-    // progress_bar.checkProgress(jentry);
     progress_bar.checkProgress(this_entry);
 
     // get entry from tree
-    // Long64_t ientry = LoadTree(jentry);
     Long64_t ientry = LoadTree(this_entry);
     if (ientry < 0) break;
-    //  m_d3pd_reader->GetEntry(jentry);
     m_d3pd_reader->GetEntry(this_entry);
 
     // process events, etc...

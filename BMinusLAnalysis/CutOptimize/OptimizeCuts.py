@@ -51,6 +51,8 @@ def main():
     # factory.AddVariable( "mbl_1"       , "mbl_1"       , 'GeV' , 'F' , 0 , 20.e3)
     # factory.AddVariable( "mbbll"       , "mbbll"       , 'GeV' , 'F')
 
+    factory.AddVariable( "mbl_asym := (mbl_0-mbl_1)/(mbl_0+mbl_1)" , "mbl_asym" , '' , 'F')
+
     # factory.AddVariable( "ptbl_0"      , "ptbl_0"      , 'GeV' , 'F')
     # factory.AddVariable( "ptbl_1"      , "ptbl_1"      , 'GeV' , 'F')
     # factory.AddVariable( "ptbbll"      , "ptbbll"      , 'GeV' , 'F')
@@ -106,8 +108,8 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # list of input files
-    # f_name_sig = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root'
-    f_name_sig = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root'
+    f_name_sig = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root'
+    # f_name_sig = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root'
     f_name_bkg = [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.ntup.root' ]
 
     in_file_sig = ROOT.TFile.Open(f_name_sig)

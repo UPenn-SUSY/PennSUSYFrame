@@ -68,7 +68,7 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeEvent()
      && m_pass_2_lep
      && m_pass_signal_lep
      && m_pass_ge_2_b_jet
-     && m_pass_eq_2_b_jet
+     // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
      && m_pass_z_veto
      ) {

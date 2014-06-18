@@ -79,11 +79,10 @@ namespace PennSusyFrame
       void setBJetPtCut(float min, float max) { m_min_b_jet_pt_baseline = min ; m_max_b_jet_pt_baseline = max; }
 
     protected:
+      virtual void constructObjects();
       virtual void getSelectedObjects();
 
       void fillHistHandles( BMINUSL_HIST_LEVELS
-                          // , const PennSusyFrame::blPair&
-                          // , const PennSusyFrame::blPair&
                           , const PennSusyFrame::blPair*
                           , const PennSusyFrame::blPair*
                           , float weight
