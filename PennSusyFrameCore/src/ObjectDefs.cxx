@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
+#include <iomanip>
 
 #include "TVector2.h"
 
@@ -101,23 +102,23 @@ void PennSusyFrame::EventLevelQuantities::init() {}
 void PennSusyFrame::EventLevelQuantities::print() const
 {
   std::cout << "================= Printing event level quantities: =================\n";
-  std::cout << "\tmll: " << m_mll
-            << "\tptll: " << m_ptll
-            << "\tmt2: " << m_mt2
+  std::cout <<std::setw(17)<<left<< "mll: " << std::setw(20)<<left<<m_mll
+            <<std::setw(17)<<left<< "ptll: " << std::setw(20)<<left<<m_ptll
+            <<std::setw(17)<<left<< "mt2: " << std::setw(20)<<left<<m_mt2
             << "\n"
-            << "\temma mt: " << m_emma_mt
-            << "\tdphi_ll: " << m_dphi_ll
+            <<std::setw(17)<<left<< "emma mt: " << std::setw(20)<<left<<m_emma_mt
+            <<std::setw(17)<<left<< "dphi_ll: " << std::setw(20)<<left<<m_dphi_ll
+            <<"\n"
+            <<std::setw(17)<<left<< "ht(all): " << std::setw(20)<<left<<m_ht_all
+            <<std::setw(17)<<left<< "ht(baseline): " << std::setw(20)<<left<<m_ht_baseline
+            <<std::setw(17)<<left<< "ht(good): " << std::setw(20)<<left<<m_ht_good
+            <<std::setw(17)<<left<< "ht(signal): " << std::setw(20)<<left<<m_ht_signal
             << "\n"
-            << "\tht(all): " << m_ht_all
-            << "\tht(baseline): " << m_ht_baseline
-            << "\tht(good): " << m_ht_good
-            << "\tht(signal): " << m_ht_signal
-            << "\n"
-            << "\tmc event weight: " << m_mc_event_weight
-            << "\tlepton sf: " << m_lepton_sf
-            << "\ttrigger sf: " << m_trigger_weight
-            << "\tb tag sf: " << m_b_tag_sf
-            << "\n";
+            <<std::setw(17)<<left<< "mc event weight: " << std::setw(20)<<left<<m_mc_event_weight
+            <<std::setw(17)<<left<< "lepton sf: " << std::setw(20)<<left<<m_lepton_sf
+            <<std::setw(17)<<left<< "trigger sf: " << std::setw(20)<<left<<m_trigger_weight
+            <<std::setw(17)<<left<< "b tag sf: " << std::setw(20)<<left<<m_b_tag_sf
+            <<"\n";
 }
 
 // =============================================================================
@@ -187,15 +188,15 @@ PennSusyFrame::Particle::Particle() : m_tlv_set(false)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Particle::printGeneralInfo() const
 {
-  std::cout << "\t\tpt: "  << m_tlv.Pt()
-            << "\t\teta: " << m_tlv.Eta()
-            << "\t\tphi: " << m_tlv.Phi()
-            << "\t\tE: "   << m_tlv.E()
-            << "\n"
-            << "\t\traw pt: "  << m_raw_tlv.Pt()
-            << "\t\traw eta: " << m_raw_tlv.Eta()
-            << "\t\traw phi: " << m_raw_tlv.Phi()
-            << "\t\traw E: "   << m_raw_tlv.E()
+  std::cout << std::setw(17)<<left<< "pt: "  <<std::setw(20)<<left<< m_tlv.Pt()
+            << std::setw(17)<<left<<"eta: " << std::setw(20)<<left<<m_tlv.Eta()
+            << std::setw(17)<<left<<"phi: " << std::setw(20)<<left<<m_tlv.Phi()
+            << std::setw(17)<<left<<"E: "   << std::setw(20)<<left<<m_tlv.E()
+            <<"\n"
+            << std::setw(17)<<left<<"raw pt: "  << std::setw(20)<<left<<m_raw_tlv.Pt()
+            << std::setw(17)<<left<<"raw eta: " << std::setw(20)<<left<<m_raw_tlv.Eta()
+            << std::setw(17)<<left<<"raw phi: " << std::setw(20)<<left<<m_raw_tlv.Phi()
+            << std::setw(17)<<left<<"raw E: "   << std::setw(20)<<left<<m_raw_tlv.E()
             << "\n";
   // std::cout << "\tmc index: " << m_mc_index
   //           << "\tpdg id: "  << m_pdgid
@@ -358,11 +359,11 @@ void PennSusyFrame::Lepton::updateIsolation(const PennSusyFrame::Event*, int) {}
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Lepton::print() const
 {
-  std::cout << "\tlepton " << m_particle_index << "\t:: ";
-  if (m_is_electron)          std::cout << "electron";
-  else if (m_is_light_lepton) std::cout << "muon";
-  else                        std::cout << "tau";
-  std::cout << "\tcharge: " << m_charge
+  std::cout <<std::setw(8)<<left<< "lepton " << m_particle_index << ":: ";
+  if (m_is_electron)          std::cout <<std::setw(20)<<left<< "electron";
+  else if (m_is_light_lepton) std::cout <<std::setw(20)<<left<< "muon";
+  else                        std::cout <<std::setw(20)<<left<< "tau";
+  std::cout <<std::setw(20)<<left<< "charge: " << m_charge
             << "\n";
   printGeneralInfo();
 }
@@ -457,12 +458,12 @@ void PennSusyFrame::Electron::updateIsolation( const PennSusyFrame::Event* event
 void PennSusyFrame::Electron::print() const
 {
   Lepton::print();
-  std::cout << "\t\traw pt iso: " << m_raw_pt_iso
-            << "\t\traw et iso: " << m_raw_et_iso
-            << "\n"
-            << "\t\tpt iso: " << m_pt_iso
-            << "\t\tet iso: " << m_et_iso
-            << "\n";
+  std::cout <<std::setw(17)<<left<< "raw pt iso: " << std::setw(20)<<left<<m_raw_pt_iso
+            <<std::setw(17)<<left<< "raw et iso: " <<  std::setw(20)<<left<<m_raw_et_iso
+            <<"\n"
+            <<std::setw(17)<<left<< "pt iso: " <<  std::setw(20)<<left<<m_pt_iso
+            <<std::setw(17)<<left<< "et iso: " <<  std::setw(20)<<left<<m_et_iso
+            <<"\n\n";
 }
 
 // -----------------------------------------------------------------------------
@@ -604,31 +605,32 @@ void PennSusyFrame::Muon::updateIsolation( const PennSusyFrame::Event* /*event*/
 void PennSusyFrame::Muon::print() const
 {
   Lepton::print();
-  std::cout << "\t\tpt iso: "      << getPtIso()
-            << "\t\tpt iso frac: " << getPtIsoRatio()
-            << "\t\tet iso: "      << getEtIso()
-            << "\t\tet iso frac: " << getEtIsoRatio()
+  std::cout <<std::setw(17)<<left<< "pt iso: "      <<std::setw(20)<<left<< getPtIso()
+            <<std::setw(17)<<left<< "pt iso frac: " <<std::setw(20)<<left<< getPtIsoRatio()
+            <<std::setw(17)<<left<< "et iso: "      <<std::setw(20)<<left<< getEtIso()
+            <<std::setw(17)<<left<< "et iso frac: " <<std::setw(20)<<left<< getEtIsoRatio()
+            <<"\n"
+            <<std::setw(17)<<left<< "raw pt iso: "      <<std::setw(20)<<left<< getRawPtIso()
+            <<std::setw(17)<<left<< "raw pt iso frac: " <<std::setw(20)<<left<< getRawPtIsoRatio()
+            <<std::setw(17)<<left<< "raw et iso: "      <<std::setw(20)<<left<< getRawEtIso()
+            <<std::setw(17)<<left<< "raw et iso frac: " <<std::setw(20)<<left<< getRawEtIsoRatio()
             << "\n"
-            << "\t\traw pt iso: "      << getRawPtIso()
-            << "\t\traw pt iso frac: " << getRawPtIsoRatio()
-            << "\t\traw et iso: "      << getRawEtIso()
-            << "\t\traw et iso frac: " << getRawEtIsoRatio()
+            <<std::setw(17)<<left<< "d0: " <<std::setw(20)<<left<< getD0()
+            <<std::setw(17)<<left<< "d0 sig: " <<std::setw(20)<<left<< getD0Significance()
+            <<std::setw(17)<<left<< "z0: " <<std::setw(20)<<left<< getZ0()
+            <<std::setw(17)<<left<< "z0sin(theta): " <<std::setw(20)<<left<< getZ0SinTheta()
             << "\n"
-            << "\t\td0: " << getD0()
-            << "\t\td0 sig: " << getD0Significance()
-            << "\t\tz0: " << getZ0()
-            << "\t\tz0sin(theta): " << getZ0SinTheta()
-            << "\n"
-            << "\t\texpect b-layer: " << getExpectBLayer()
-            << "\t\t# b-layer hits: " << getNumBLayerHits()
-            << "\t\t# pixel hits: " << getNumPixelHits()
-            << "\t\t# sct hits: " << getNumSctHits()
-            << "\t\t# si holes: " << getNumSiHoles()
-            << "\n"
-            << "\t\ttrack eta: " << getTrackEta()
-            << "\t\t# TRT hits: " << getNumTrtHits()
-            << "\t\tTRT outlier frac: " << getTrtOlFraction()
-            << "\n";
+            <<std::setw(17)<<left<< "expect b-layer: " << std::setw(20)<<left<<getExpectBLayer()
+            <<std::setw(17)<<left<< "# b-layer hits: " << std::setw(20)<<left<<getNumBLayerHits()
+            <<std::setw(17)<<left<< "# pixel hits: " << std::setw(20)<<left<<getNumPixelHits()
+            <<"\n"   
+            <<std::setw(17)<<left<< "# sct hits: " << std::setw(20)<<left<<getNumSctHits()
+            <<std::setw(17)<<left<< "# si holes: " << std::setw(20)<<left<<getNumSiHoles()
+            <<"\n"
+            <<std::setw(17)<<left<< "track eta: " << std::setw(20)<<left<<getTrackEta()
+            <<std::setw(17)<<left<< "# TRT hits: " << std::setw(20)<<left<<getNumTrtHits()
+            <<std::setw(17)<<left<< "TRT outlier frac: " << std::setw(20)<<left<<getTrtOlFraction()
+            <<"\n\n";
 }
 
 // -----------------------------------------------------------------------------
@@ -699,6 +701,7 @@ PennSusyFrame::Tau::Tau( const PennSusyFrame::D3PDReader* reader
 void PennSusyFrame::Tau::print() const
 {
   Lepton::print();
+  std::cout<<"\n";
 }
 
 // -----------------------------------------------------------------------------
@@ -795,6 +798,7 @@ void PennSusyFrame::Jet::print() const
 {
   std::cout << "\tjet " << m_particle_index << "\n";
   printGeneralInfo();
+  std::cout<<"\n";
 }
 
 // -----------------------------------------------------------------------------
@@ -876,15 +880,15 @@ PennSusyFrame::Vertex::Vertex( const PennSusyFrame::D3PDReader* reader
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Vertex::print() const
 {
-  std::cout << "\tvertex number: "  << m_vertex_index
+  std::cout << std::setw(17)<<left<<"vertex number: "  <<std::setw(20)<<left<< m_vertex_index
             << "\n"
-            << "\t\tx: " << m_x
-            << "\t\ty: " << m_y
-            << "\t\tz: " << m_z
-            << "\t\tnum tracks: " << m_num_tracks
+            << std::setw(17)<<left<<"x: " <<std::setw(20)<<left<< m_x
+            << std::setw(17)<<left<<"y: " <<std::setw(20)<<left<< m_y
+            << std::setw(17)<<left<<"z: " <<std::setw(20)<<left<< m_z
+            << std::setw(17)<<left<<"num tracks: " <<std::setw(20)<<left<< m_num_tracks
             << "\n"
-            << "\t\tE: " << m_e
-            << "\t\tm: " << m_m
+            << std::setw(17)<<left<<"E: " <<std::setw(20)<<left<< m_e
+            << std::setw(17)<<left<<"m: " <<std::setw(20)<<left<< m_m
             << "\n";
   ;
 }
@@ -1317,17 +1321,18 @@ double PennSusyFrame::Met::calculateMetSig( double met, double ht)
 void PennSusyFrame::Met::print() const
 {
   std::cout << "================= Printing MET: =================\n";
-  std::cout << "\tMET et: "  << m_met_vec.Mod()
-            << "\tMET phi: " << m_met_vec.Phi()
-            << "\tMET ex: "  << m_met_vec.X()
-            << "\tMET ey: "  << m_met_vec.Y()
-            << "\n"
-            << "\tMET rel: " << m_met_rel_et
-            << "\tMET sig (all): "      << m_met_sig_all
-            << "\tMET sig (baseline): " << m_met_sig_baseline
-            << "\tMET sig (good): "     << m_met_sig_good
-            << "\tMET sig (signal): "   << m_met_sig_signal
-            << "\n";
+  std::cout <<std::setw(17)<<left<< "MET et: "  <<setw(20)<<left<< m_met_vec.Mod()
+            <<std::setw(17)<<left<< "MET phi: " <<setw(20)<<left<< m_met_vec.Phi()
+            <<std::setw(17)<<left<< "MET ex: "  <<setw(20)<<left<< m_met_vec.X()
+            <<std::setw(17)<<left<< "MET ey: "  <<setw(20)<<left<< m_met_vec.Y()
+            <<"\n"
+            <<std::setw(17)<<left<< "MET rel: " <<setw(20)<<left<< m_met_rel_et
+            <<std::setw(17)<<left<< "MET sig (all): "      <<setw(20)<<left<< m_met_sig_all
+            <<std::setw(20)<<left<< "MET sig (baseline): " <<setw(17)<<left<< m_met_sig_baseline
+            <<std::setw(17)<<left<< "MET sig (good): "     <<setw(20)<<left<< m_met_sig_good
+            <<"\n"
+            <<std::setw(17)<<left<< "MET sig (signal): "   <<setw(20)<<left<< m_met_sig_signal
+            <<"\n\n";
 }
 
 // =============================================================================

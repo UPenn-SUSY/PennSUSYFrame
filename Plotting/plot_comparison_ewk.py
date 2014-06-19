@@ -79,6 +79,13 @@ def main():
                                                             ]
                                             )
 
+    ec_dy = hh.Container.EntryContainer( label = 'DY'
+                                         , fill_color = ROOT.kOrange+8
+                                         , input_file_list = [
+            
+            ]
+                                         )
+
     ec_diboson = hh.Container.EntryContainer( label = 'Diboson'
                                               , fill_color = ROOT.kBlue
                                               , input_file_list = [ HIST_DIR + "Isr.126892.Sherpa_CT10_llnunu_WW.hists.root"
@@ -88,14 +95,26 @@ def main():
 
     ec_ttbar = hh.Container.EntryContainer( label = 'Ttbar'
                                               , fill_color = ROOT.kGreen+2
-                                              , input_file_list = [ HIST_DIR + "Isr.117050.PowhegPythia_P2011C_ttbar.hists.root"
-                                                                    ,HIST_DIR + "Isr.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.hists.root"
+                                              , input_file_list = [ HIST_DIR + "Isr.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.root"
+                                                                    # single top
+                                                                    #117360
+                                                                    #117361
+                                                                    #117362
+                                                                    #108343
+                                                                    #108344
+                                                                    #108345
+                                                                    ]
+                                              )
+
+    ec_ttbarboson = hh.Container.EntryContainer( label = "Ttbar + Boson"
+                                                 , fill_color = ROOT.kBlue-6
+                                                 , input_file_list = [HIST_DIR + "Isr.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.hists.root"
                                                                     ,HIST_DIR + "Isr.119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj.hists.root"
                                                                     ,HIST_DIR + "Isr.119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ.hists.root"
                                                                     ,HIST_DIR + "Isr.119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj.hists.root"
                                                                     ,HIST_DIR + "Isr.119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW.hists.root"
-                                                                    ]
-                                              )
+                                                                      ]
+                                                 )
 
     ec_higgs = hh.Container.EntryContainer( label = 'Higgs'
                                             , fill_color = ROOT.kCyan
@@ -136,7 +155,7 @@ def main():
                                               #,lumi_target = 13000
                                                 )
     ic_denominator = hh.Container.InputContainer( name = 'Background'
-                                                , entry_list = [ec_zjets, ec_diboson, ec_ttbar, ec_higgs, ec_triboson]
+                                                , entry_list = [ec_zjets, ec_dy, ec_diboson, ec_ttbar, ec_higgs, ec_triboson, ec_ttbarboson]
                                                 , lumi_target = 13000
                                                 )
 
