@@ -471,13 +471,6 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 		     );
   }
 
-  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // // check for stream overlap
-  // // TODO implement check for stream overlap
-  // bool pass_stream_overlap = true;
-  // m_pass_event = (m_pass_event && pass_stream_overlap);
-  // if (m_crit_cut_stream_overlap && !pass_stream_overlap) return;
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // require no charge flip
   // TODO validate no charge flip cut
@@ -600,6 +593,17 @@ void PennSusyFrame::EwkAnalysis::processEvent()
                                                          , m_muons.getCollection(MU_GOOD)
                                                          )
                                 );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get fake weight
+
+  m_event_quantities.setFakeWeight(m_matrix_method_tool.getSF(m_event.getFlavorChannel()
+                                                         , m_electrons.getCollection(EL_GOOD)
+                                                         , m_muons.getCollection(MU_GOOD)
+							 , m_met
+							      )
+				   );
+				   
 
   //Print detailed Event Quantites 
 

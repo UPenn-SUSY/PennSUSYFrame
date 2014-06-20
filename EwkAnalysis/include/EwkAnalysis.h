@@ -11,6 +11,7 @@
 #include "EwkAnalysis/include/EwkHistogramHandlers.h"
 #include "EwkAnalysis/include/EwkCutFlowTracker.h"
 #include "EwkAnalysis/include/EwkChargeFlipTool.h"
+#include "EwkAnalysis/include/EwkMatrixMethodTool.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -125,6 +126,8 @@ namespace PennSusyFrame
       PennSusyFrame::HFORTool m_hfor_tool;
 
       PennSusyFrame::ChargeFlipTool m_charge_flip_tool;
+
+      PennSusyFrame::MatrixMethodTool m_matrix_method_tool;
 
       EwkCutFlowTracker m_raw_cutflow_tracker;
       EwkCutFlowTracker m_cutflow_tracker;

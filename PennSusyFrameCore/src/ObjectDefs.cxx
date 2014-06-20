@@ -93,6 +93,8 @@ PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
                                                             , m_lepton_sf(1.)
                                                             , m_trigger_weight(1.)
                                                             , m_b_tag_sf(1.)
+							    , m_cf_weight(0.)
+							    , m_fake_weight(0.)  
 {}
 
 // -----------------------------------------------------------------------------
