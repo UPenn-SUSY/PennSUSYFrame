@@ -320,6 +320,18 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     }
   }
 
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get fake weight
+
+  m_event_quantities.setFakeWeight(m_matrix_method_tool.getSF(m_event.getFlavorChannel()
+							      , m_electrons.getCollection(EL_GOOD)
+							      , m_muons.getCollection(MU_GOOD)
+							      , m_met
+							      )
+				   );
+
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // mll SFOS cut
   bool pass_mll_sfos = ( PennSusyFrame::passCut( m_event_quantities.getMll()
@@ -593,16 +605,6 @@ void PennSusyFrame::EwkAnalysis::processEvent()
                                                          , m_muons.getCollection(MU_GOOD)
                                                          )
                                 );
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get fake weight
-
-  m_event_quantities.setFakeWeight(m_matrix_method_tool.getSF(m_event.getFlavorChannel()
-                                                         , m_electrons.getCollection(EL_GOOD)
-                                                         , m_muons.getCollection(MU_GOOD)
-							 , m_met
-							      )
-				   );
 				   
 
   //Print detailed Event Quantites 
