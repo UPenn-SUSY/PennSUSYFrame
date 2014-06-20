@@ -119,6 +119,7 @@ if __name__ == '__main__':
     data_samples = {}
     
     #full_sim_mc_samples = { 117655:{'label':'117655.AlpgenPythia_P2011C_ZeeNp5'       , 'num_jobs':1}
+<<<<<<< HEAD
 
     full_sim_mc_samples = { 167006:{'label':'167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu'   , 'num_jobs':1}
                             , 167007:{'label':'167007.MadGraphPythia_AUET2BCTEQ6L1_ZWWStar_lllnulnu'  , 'num_jobs':1}
@@ -130,6 +131,7 @@ if __name__ == '__main__':
                                 #, 147196
         
 }
+
 
 
     fast_sim_mc_samples = {}

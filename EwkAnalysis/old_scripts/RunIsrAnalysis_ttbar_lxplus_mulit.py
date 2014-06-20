@@ -121,6 +121,15 @@ if __name__ == '__main__':
     #full_sim_mc_samples = { 117655:{'label':'117655.AlpgenPythia_P2011C_ZeeNp5'       , 'num_jobs':1}
     full_sim_mc_samples = {105200:{'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter', 'num_jobs':10}
                            , 117050:{'label':'117050.PowhegPythia_P2011C_ttbar'   , 'num_jobs':10}
+##single top
+                           , 108346:{'label':'108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl'    , 'num_jobs':1}
+                           , 117360:{'label':'117360.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_e'  , 'num_jobs':1}
+                           , 117361:{'label':'117361.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_mu' , 'num_jobs':1}
+                           , 117362:{'label':'117362.AcerMCPythia_AUET2BCTEQ6L1_singletop_tchan_tau', 'num_jobs':1}
+                           , 108343:{'label':'108343.McAtNloJimmy_AUET2CT10_SingleTopSChanWenu'     , 'num_jobs':1}
+                           , 108344:{'label':'108344.McAtNloJimmy_AUET2CT10_SingleTopSChanWmunu'    , 'num_jobs':1}
+                           , 108345:{'label':'108345.McAtNloJimmy_AUET2CT10_SingleTopSChanWtaunu'   , 'num_jobs':1}
+#ttbar + boson
                            , 119353:{'label':'119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW'   , 'num_jobs':1}
                            , 119354:{'label':'119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj'   , 'num_jobs':1}
                            , 119355:{'label':'119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ'   , 'num_jobs':1}
