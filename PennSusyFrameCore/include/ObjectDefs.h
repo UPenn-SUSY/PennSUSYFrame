@@ -282,17 +282,19 @@ namespace PennSusyFrame
 
       virtual void printGeneralInfo() const;
 
-      // TODO move accessors to cxx file
-      virtual void setParticleIndex(int val) { m_particle_index = val; }
+      virtual void setParticleIndex(int val);
 
       virtual void setTlv(const TLorentzVector&);
       virtual void setRawTlv(const TLorentzVector&);
 
-      // TODO move accessors to cxx file
-      virtual int getParticleIndex() const { return m_particle_index; }
+      void setIsSignal(bool val);
+
+      virtual int getParticleIndex() const;
 
       virtual const TLorentzVector* getTlv() const;
       virtual const TLorentzVector* getRawTlv() const;
+
+      bool getIsSignal() const;
 
       virtual double getPt() const;
       virtual double getEta() const;
@@ -312,6 +314,8 @@ namespace PennSusyFrame
       bool m_raw_tlv_set;
       TLorentzVector m_tlv;
       TLorentzVector m_raw_tlv;
+
+      bool m_is_signal;
   };
 
   // =============================================================================

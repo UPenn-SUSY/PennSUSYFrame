@@ -162,7 +162,11 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::initializeEvent()
 {
-  m_event_weight = 1.;
+  m_event_weight    = 1.;
+  m_mc_event_weight = 1.;
+  m_pile_up_sf      = 1.;
+  m_lepton_sf       = 1.;
+  m_btag_sf         = 1.;
 
   m_pass_grl              = false;
   m_pass_incomplete_event = false;
@@ -209,13 +213,15 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // set mc event weight
-  m_event_weight *= m_event_quantities.getMcEventWeight();
+  m_mc_event_weight = m_event_quantities.getMcEventWeight();
+  m_event_weight *= m_mc_event_weight;
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_MC_EVENT_WEIGHT);
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_MC_EVENT_WEIGHT, m_event_weight);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // set pile up weight
-  m_event_weight *= m_event_quantities.getPileUpSF();
+  m_pile_up_sf = m_event_quantities.getPileUpSF();
+  m_event_weight *= m_pile_up_sf;
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_PILEUP_WEIGHT);
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_PILEUP_WEIGHT, m_event_weight);
 
@@ -405,7 +411,8 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // lepton scale factor
-  m_event_weight *= m_event_quantities.getLeptonSF();
+  m_lepton_sf = m_event_quantities.getLeptonSF();
+  m_event_weight *= m_lepton_sf;
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_LEP_SF);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_LEP_SF, m_event_weight);
@@ -446,7 +453,8 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // b tag sf
-  m_event_weight *= m_event_quantities.getBTagSF();
+  m_btag_sf = m_event_quantities.getBTagSF();
+  m_event_weight *= m_btag_sf;
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_B_TAG_SF);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_B_TAG_SF, m_event_weight);
@@ -544,7 +552,12 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_BASIC_CLEANING
                    , m_bl_0
                    , m_bl_1
-                   , m_event_weight
+                   , ( m_mc_event_weight
+                     * m_pile_up_sf
+                     * m_xsec_weight
+                     // * m_lepton_sf
+                     // * m_btag_sf
+                     )
                    );
   }
 
@@ -656,46 +669,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_hfor
      && m_pass_mc_overlap
      ) {
-    // if (!m_pass_bl_pairing) {
-    //   size_t num_good_leptons     = m_electrons.num(EL_GOOD)     + m_muons.num(MU_GOOD);
-    //   size_t num_selected_leptons = m_electrons.num(EL_SELECTED) + m_muons.num(MU_SELECTED);
-    //   size_t num_signal_leptons   = m_electrons.num(EL_SIGNAL)   + m_muons.num(MU_SIGNAL);
-    //   size_t num_b_jets           = m_jets.num(JET_B);
-    //   size_t num_good_jets        = m_jets.num(JET_GOOD);
-    //   size_t num_selected_jets    = m_jets.num(JET_SELECTED);
-    //   size_t num_central_jets     = m_jets.num(JET_ALL_CENTRAL);
-    //   // std::cout << "\n\tEvent " << m_event.getEventNumber() << " passed basic cleaning, but not bl pairing"
-    //   //           << "\n\t\tpass_ge_2_lep  : " << m_pass_ge_2_lep   << " -- num good leptons: " << num_good_leptons
-    //   //           << "\n\t\tpass_2_lep     : " << m_pass_2_lep      << " -- num good leptons: " << num_good_leptons
-    //   //           << "\n\t\tpass_signal_lep: " << m_pass_signal_lep << " -- num signal leptons: " << num_signal_leptons
-    //   //           << "\n\t\tpass_ge_2_b_jet: " << m_pass_ge_2_b_jet << " -- num b jets: " << num_b_jets << " -- num good jets: " << num_good_jets << " -- num selected jets: " << num_selected_jets << " -- num central jets: " << num_central_jets
-    //   //           << "\n\t\tpass_eq_2_b_jet: " << m_pass_eq_2_b_jet << " -- num b jets: " << num_b_jets << " -- num good jets: " << num_good_jets << " -- num selected jets: " << num_selected_jets << " -- num central jets: " << num_central_jets
-    //   //           << "\n\t\tpass_bl_pairing: " << m_pass_bl_pairing
-    //   //           << "\n\n";
-    //   // // if (!m_pass_ge_2_b_jet) {
-    //   // //   std::cout << "\tsomething wrong with our jets:\n";
-    //   // //   m_jets.print(JET_ALL);
-    //   // //   m_jets.print(JET_BASELINE_GOOD);
-    //   // //   m_jets.print(JET_GOOD);
-    //   // //   m_jets.print(JET_SELECTED);
-    //   // //   m_jets.print(JET_LIGHT);
-    //   // //   m_jets.print(JET_B);
-
-    //   // //   m_electrons.print(EL_ALL);
-    //   // //   m_electrons.print(EL_BASELINE);
-    //   // //   m_electrons.print(EL_GOOD);
-    //   // //   m_electrons.print(EL_SELECTED);
-    //   // //   m_electrons.print(EL_SIGNAL);
-
-    //   // //   m_muons.print(MU_ALL);
-    //   // //   m_muons.print(MU_BASELINE);
-    //   // //   m_muons.print(MU_GOOD);
-    //   // //   m_muons.print(MU_SELECTED);
-    //   // //   m_muons.print(MU_SIGNAL);
-    //   // //   std::cout << "\n";
-    //   // // }
-    // }
-
     ++m_num_events_passing_basic_cleaning;
     if (m_pass_ge_2_lep  ) ++m_num_events_passing_ge_2_lep;
     if (m_pass_2_lep     ) ++m_num_events_passing_2_lep;

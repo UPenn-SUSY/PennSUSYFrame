@@ -520,6 +520,17 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                       );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  size_t num_signal_electrons = m_electrons.num(EL_SIGNAL);
+  for (size_t el_it = 0; el_it != num_signal_electrons; ++el_it) {
+    m_electrons.getCollection(EL_SIGNAL)->at(el_it)->setIsSignal(true);
+  }
+
+  size_t num_signal_muons = m_muons.num(MU_SIGNAL);
+  for (size_t mu_it = 0; mu_it != num_signal_muons; ++mu_it) {
+    m_muons.getCollection(MU_SIGNAL)->at(mu_it)->setIsSignal(true);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::vector<PennSusyFrame::Jet*> central_jets;
   central_jets.reserve(m_jets.num(JET_LIGHT) + m_jets.num(JET_B));
   central_jets.insert( central_jets.end()

@@ -124,6 +124,12 @@ namespace PennSusyFrame
       PennSusyFrame::blPair* m_bl_0;
       PennSusyFrame::blPair* m_bl_1;
 
+      double m_mc_event_weight;
+      double m_pile_up_sf;
+      // double m_xsec_weight;
+      double m_lepton_sf;
+      double m_btag_sf;
+
       bool m_pass_grl;
       bool m_pass_incomplete_event;
       bool m_pass_lar_error;
