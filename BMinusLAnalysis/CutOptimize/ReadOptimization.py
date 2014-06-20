@@ -13,7 +13,7 @@ from xml.dom import minidom
 
 # ------------------------------------------------------------------------------
 def calcSignificance(num_sig, num_bkg):
-    if num_sig+num_bkg == 0: return 0
+    if num_sig+num_bkg <= 0: return 0
     return num_sig / math.sqrt(num_sig+num_bkg)
 
 # ------------------------------------------------------------------------------
@@ -26,6 +26,10 @@ def getCutVal(cut_str):
 # ------------------------------------------------------------------------------
 def readAndDisplayCutOpt(xml_name, tot_sig, tot_bkg):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    print 'tot signal: ' , tot_sig
+    print 'tot background: ' , tot_bkg
+    print ''
+
     f = file(xml_name, 'r')
     xml_doc = minidom.parse(f)
     f.close()
@@ -38,9 +42,6 @@ def readAndDisplayCutOpt(xml_name, tot_sig, tot_bkg):
     best_bkg_eff = 0
 
     variable_elements = xml_doc.getElementsByTagName('Variables').item(0).getElementsByTagName('Variable')
-    print type(variable_elements)
-    # print variable_elements.getAttribute('NVar')
-    print ''
     for var_it in xrange(variable_elements.length):
         print 'var_%d: %s [%s]' % ( var_it
                                   , variable_elements.item(var_it).getAttribute('Expression')
@@ -65,7 +66,7 @@ def readAndDisplayCutOpt(xml_name, tot_sig, tot_bkg):
             best_sig_eff = this_effs
             best_bkg_eff = this_effb
             best_exp_sig = this_exp_sig
-            best_exp_bkg = this_exp_sig
+            best_exp_bkg = this_exp_bkg
 
 
     if best_it >= 0:

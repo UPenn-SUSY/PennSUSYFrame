@@ -4,6 +4,7 @@
 import sys
 import time
 import getopt
+import shutil
 
 import ROOT
 import ReadOptimization as ro
@@ -27,8 +28,8 @@ def getExpEntriesInTree(in_tree):
     return num_events
 
 # ------------------------------------------------------------------------------
-def main():
-    out_file_name = "TMVA_opt.root"
+def doOptimize(f_name_sig, f_name_bkg_list, tag):
+    out_file_name = "TMVA_opt.%s.root" % tag
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     output_file = ROOT.TFile( out_file_name, 'RECREATE')
@@ -107,11 +108,6 @@ def main():
     bkg_weight = 21000.
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # list of input files
-    f_name_sig = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root'
-    # f_name_sig = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root'
-    f_name_bkg = [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.ntup.root' ]
-
     in_file_sig = ROOT.TFile.Open(f_name_sig)
     in_tree_sig = in_file_sig.Get('optimize')
     factory.AddSignalTree(in_tree_sig, sig_weight)
@@ -124,14 +120,14 @@ def main():
 
     bkg_trees = []
     total_bkg = 0
-    for fnb in f_name_bkg:
+    for fnb in f_name_bkg_list:
         in_file_bkg = ROOT.TFile.Open(fnb)
         in_tree_bkg = in_file_bkg.Get('optimize')
         bkg_trees.append(in_tree_bkg)
         factory.AddBackgroundTree(in_tree_bkg, bkg_weight)
         total_bkg += bkg_weight*getExpEntriesInTree(in_tree_bkg)
 
-    print 'total signal events: ', total_sig
+    print 'total signal events: '    , total_sig
     print 'total background events: ', total_bkg
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -157,67 +153,13 @@ def main():
                       , ( "!H"
                         + ":!V"
                         # + ":FitMethod=MC"
+                        # + ":SampleSize=2000"
                         # + ":SampleSize=200000"
                         + ":FitMethod=GA"
                         + ":EffSel"
                         + ":VarProp=FSmart"
                         )
                       )
-    # # likelihood based classifier
-    # factory.BookMethod( ROOT.TMVA.Types.kLikelihood
-    #                   , 'Likelihood'
-    #                   , ( "H"
-    #                     + ":!V"
-    #                     + ":!TransformOutput"
-    #                     + ":PDFInterpol=Spline2"
-    #                     + ":NSmoothSig[0]=20"
-    #                     + ":NSmoothBkg[0]=20"
-    #                     + ":NSmoothBkg[1]=10"
-    #                     + ":NSmooth=1"
-    #                     + ":NAvEvtPerBin=50"
-    #                     )
-    #                   )
-    # # KNN classifier
-    # factory.BookMethod( ROOT.TMVA.Types.kKNN
-    #                   , "KNN"
-    #                   , ( "H"
-    #                     + ":nkNN=20"
-    #                     + ":ScaleFrac=0.8"
-    #                     + ":SigmaFact=1.0"
-    #                     + ":Kernel=Gaus"
-    #                     + ":UseKernel=F"
-    #                     + ":UseWeight=T"
-    #                     + ":!Trim"
-    #                     )
-    #                   )
-    # # Linear discriminant
-    # factory.BookMethod( ROOT.TMVA.Types.kLD
-    #                   , "LD"
-    #                   , ( "H"
-    #                     + ":!V"
-    #                     + ":VarTransform=None"
-    #                     + ":CreateMVAPdfs"
-    #                     + ":PDFInterpolMVAPdf=Spline2"
-    #                     + ":NbinsMVAPdf=50"
-    #                     + ":NsmoothMVAPdf=10"
-    #                     )
-    #                   )
-    # # BDT discriminant
-    # factory.BookMethod( ROOT.TMVA.Types.kBDT
-    #                   , "BDT"
-    #                   , ( "!H"
-    #                     + ":!V"
-    #                     + ":NTrees=850"
-    #                     + ":MinNodeSize=2.5%"
-    #                     + ":MaxDepth=3"
-    #                     + ":BoostType=AdaBoost"
-    #                     + ":AdaBoostBeta=0.5"
-    #                     + ":UseBaggedBoost"
-    #                     + ":BaggedSampleFraction=0.5"
-    #                     + ":SeparationType=GiniIndex"
-    #                     + ":nCuts=20"
-    #                     )
-    #                   )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     factory.TrainAllMethods()
@@ -226,17 +168,46 @@ def main():
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     output_file.Close()
 
-    # # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # # # open the GUI for the result macros
-    # # ROOT.gROOT.ProcessLine( "TMVAGui(\"%s\")" % out_file_name )
+    shutil.move('weights', 'weights_%s' % tag)
 
-    # # # keep the ROOT thread running
-    # # ROOT.gApplication.Run()
+    return {'total_sig':total_sig, 'total_bkg':total_bkg}
 
-    ro.readAndDisplayCutOpt( 'weights/TMVAClassification_Cuts.weights.xml'
-                           , total_sig
-                           , total_bkg
-                           )
+# ------------------------------------------------------------------------------
+def main():
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # list of input files
+    f_name_sig_list = [
+                        '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.ntup.root'
+                      , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root'
+                      ]
+    f_name_bkg_list = [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.ntup.root' ]
+
+    results = []
+    for i, fnsl in enumerate(f_name_sig_list):
+        # results.append(doOptimize( f_name_sig_list[0], f_name_bkg_list, i))
+        results.append(doOptimize( fnsl, f_name_bkg_list, i))
+
+    print '==============================================================================='
+    print '=================================== RESULTS ==================================='
+    print '==============================================================================='
+    print ''
+    for it, r in enumerate(results):
+        print '==============================================================================='
+        print 'printing cut opt for sig ' , it
+        print ''
+        ro.readAndDisplayCutOpt( 'weights_%s/TMVAClassification_Cuts.weights.xml' % it
+                               , r['total_sig']
+                               , r['total_bkg']
+                               )
+        print ''
 
 # ==============================================================================
 if __name__ == '__main__':

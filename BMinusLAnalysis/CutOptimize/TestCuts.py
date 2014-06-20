@@ -6,9 +6,31 @@ import ROOT
 
 # ------------------------------------------------------------------------------
 def passCuts(event):
-    if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 10 : return False
-    if event.ht_baseline < 1000: return False
-    if event.met_et/math.sqrt(event.ht_baseline) > 100 : return False
+    # # bogus
+    # if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 1 : return False
+    # if event.ht_baseline < 1000: return False
+    # if event.met_et/math.sqrt(event.ht_baseline) > 100 : return False
+
+    # # 800
+    # if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.2715 : return False
+    # if event.ht_baseline < 1800: return False
+    # if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
+
+    # # 900
+    # if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.6 : return False
+    # if event.ht_baseline < 1800: return False
+    # if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
+
+    # # 1000
+    # if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.5079 : return False
+    # if event.ht_baseline < 2100: return False
+    # if event.met_et/math.sqrt(event.ht_baseline) > 30 : return False
+
+    # 900-1000
+    if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.5 : return False
+    if event.ht_baseline < 2000: return False
+    if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
+
     return True
 
 # ------------------------------------------------------------------------------
@@ -42,6 +64,8 @@ def produceMblPlots(in_file_name, tag):
 
     print '# integral before cut: ' , h_mbl_no_cut.Integral()
     print '# integral after cut:  ' , h_mbl_w_cut.Integral()
+
+    print ''
 
     return { 'no_cuts':h_mbl_no_cut
            , 'cuts':h_mbl_w_cut
@@ -92,18 +116,23 @@ def drawCompareCanvas(background_hist_dict, signal_hist_dict, tag, out_file):
     background_hist_dict['no_cuts'].Draw()
     signal_hist_dict[    'no_cuts'].Draw('SAME')
 
+    b_int_no_cuts = background_hist_dict['no_cuts'].Integral()
+    s_int_no_cuts = signal_hist_dict[    'no_cuts'].Integral()
+
     text_no_cut_0 = ROOT.TText(0.60, 0.85, 'Only basic cleaning')
-    text_no_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %s'   % background_hist_dict['no_cuts'].Integral())
-    text_no_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %s'       % signal_hist_dict[    'no_cuts'].Integral())
-    # text_no_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %s' % signal_hist_dict[    'no_cuts'].Integral())
+    text_no_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %s'   % b_int_no_cuts )
+    text_no_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %s'       % s_int_no_cuts )
+    text_no_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %s' % ( s_int_no_cuts/ math.sqrt( s_int_no_cuts + b_int_no_cuts ) ) )
 
     text_no_cut_0.SetNDC()
     text_no_cut_1.SetNDC()
     text_no_cut_2.SetNDC()
+    text_no_cut_3.SetNDC()
 
     text_no_cut_0.Draw()
     text_no_cut_1.Draw()
     text_no_cut_2.Draw()
+    text_no_cut_3.Draw()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     c.cd(2)
@@ -117,17 +146,23 @@ def drawCompareCanvas(background_hist_dict, signal_hist_dict, tag, out_file):
     background_hist_dict['cuts'].Draw()
     signal_hist_dict[    'cuts'].Draw('SAME')
 
+    b_int_cuts = background_hist_dict['cuts'].Integral()
+    s_int_cuts = signal_hist_dict[    'cuts'].Integral()
+
     text_cut_0 = ROOT.TText(0.60, 0.85, 'Full selection')
-    text_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %s' % background_hist_dict['cuts'].Integral())
-    text_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %s'     % signal_hist_dict[    'cuts'].Integral())
+    text_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %s' % b_int_cuts)
+    text_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %s'     % s_int_cuts)
+    text_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %s' % ( s_int_cuts/ math.sqrt( s_int_cuts + b_int_cuts ) ) )
 
     text_cut_0.SetNDC()
     text_cut_1.SetNDC()
     text_cut_2.SetNDC()
+    text_cut_3.SetNDC()
 
     text_cut_0.Draw()
     text_cut_1.Draw()
     text_cut_2.Draw()
+    text_cut_3.Draw()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     c.Write()
