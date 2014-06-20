@@ -76,7 +76,7 @@ namespace PennSusyFrame
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
-      void setPrintEventDetails(bool val) {m_print_event_details = val;}
+      void setPrintEventDetails(bool val) { m_print_event_details = val; }
 
     protected:
       std::string m_out_tnt_file_name;
@@ -86,6 +86,8 @@ namespace PennSusyFrame
 
       void fillHistHandles( EWK_HIST_LEVELS
                           , float weight
+			  );
+
       void printEventDetails();
 
 
