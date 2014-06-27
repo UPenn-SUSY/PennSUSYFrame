@@ -50,6 +50,7 @@ def plotComparisons( ic_numerator
         these_hists = hh.Helper.getListOfHists(file_list[0].GetDirectory(d))
 
         legend_canvas_drawn  = False
+        raw_entries_canvas_drawn = False
         entries_canvas_drawn = False
         for it, h in enumerate(these_hists):
             if skipHist(d,h): continue
@@ -94,6 +95,12 @@ def plotComparisons( ic_numerator
                     legend_canvas.Write('__legend')
                     legend_canvas.Close()
                     legend_canvas_drawn = True
+
+                if not raw_entries_canvas_drawn:
+                    raw_entries_canvas = hist_painter.genRawEntriesCanvas()
+                    raw_entries_canvas['canv'].Write('__raw_entries')
+                    raw_entries_canvas['canv'].Close()
+                    raw_entries_canvas_drawn = True
 
                 if not entries_canvas_drawn:
                     entries_canvas = hist_painter.genEntriesCanvas()

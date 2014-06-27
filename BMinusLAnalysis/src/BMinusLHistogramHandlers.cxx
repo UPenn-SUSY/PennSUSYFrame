@@ -14,7 +14,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   num_jet_bins = 5;
+  const int   num_jet_bins = 6;
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins + num_jet_min;
 
@@ -55,11 +55,11 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
   const float mbl_ratio_min = 0.;
   const float mbl_ratio_max = 1.05;
 
-  const int   mbbll_bins = 150;
+  const int   mbbll_bins = 75;
   const float mbbll_min  = 0.;
   const float mbbll_max  = 3000.;
 
-  const int   ptbbll_bins = 100;
+  const int   ptbbll_bins = 50;
   const float ptbbll_min  = 0.;
   const float ptbbll_max  = 1000;
 
@@ -628,7 +628,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                     ).c_str()
                                   , ( "p_{T}^{bbll} - "
                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                    + " ; m_{T}^{bbll} ; Entries"
+                                    + " ; p_{T}^{bbll} ; Entries"
                                     ).c_str()
                                   , ptbbll_bins, ptbbll_min, ptbbll_max
                                   )

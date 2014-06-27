@@ -73,7 +73,8 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
   const float ptll_min  = 0.;
   const float ptll_max  = 1000.;
 
-  const int   ht_bins = 100;
+  // const int   ht_bins = 100;
+  const int   ht_bins = 50;
   const float ht_min  = 0;
   const float ht_max  = 5000;
 
@@ -1186,9 +1187,9 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
     m_h_eta_0.at(  fc_it)->Fill(eta_0, weight);
     m_h_eta_1.at(  fc_it)->Fill(eta_1, weight);
 
-    (pass(eta_0, eta_1) ? (m_h_eta_event_passfail.at(fc_it)->Fill(1., weight)) : 
+    (pass(eta_0, eta_1) ? (m_h_eta_event_passfail.at(fc_it)->Fill(1., weight)) :
      (m_h_eta_event_passfail.at(fc_it)->Fill(0., weight)));
-    
+
     (abs(eta_0) < 2.4 ? (m_h_fiducial_single_pass.at(fc_it)->Fill(pt_0, weight)) :
      (m_h_fiducial_single_fail.at(fc_it)->Fill(pt_0, weight)));
 
@@ -1227,7 +1228,7 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
     m_h_dr_jj.at(fc_it)->Write();
     m_h_dphi_jj.at(fc_it)->Write();
     m_h_deta_jj.at(fc_it)->Write();
-    
+
     m_h_eta_all.at(fc_it)->Write();
     m_h_eta_0.at(  fc_it)->Write();
     m_h_eta_1.at(  fc_it)->Write();
