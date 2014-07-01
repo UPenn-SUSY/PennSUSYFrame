@@ -500,6 +500,14 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
                    , m_event_weight
                    );
   }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    // fill histograms for GE_4_OBJECTS hist level
+  fillHistHandles( PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS
+		   , &bl_0
+		   , &bl_1
+		   , m_event_weight
+		   );
+
 }
 
 // -----------------------------------------------------------------------------

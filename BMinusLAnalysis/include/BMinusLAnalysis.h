@@ -18,13 +18,15 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_ZVETO
                            , BMINUSL_HIST_MET
-                           , BMINUSL_HIST_N
+			   , BMINUSL_HIST_GE_4_OBJECTS
+			     , BMINUSL_HIST_N
                            };
 
   const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
                                                    , "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_MET"
+						   , "BMINUSL_GE_4_OBJECTS"
                                                    };
 
   // ===========================================================================

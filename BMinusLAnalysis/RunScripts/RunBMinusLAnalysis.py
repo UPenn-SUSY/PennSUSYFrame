@@ -153,16 +153,16 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutHFOR(           1)
     bmla.setCritCutMcOverlap(      1)
     bmla.setCritCutGe2Lepton(      1)
-    bmla.setCritCut2Lepton(        1)
-    bmla.setCritCut2SignalLepton(  1)
-    bmla.setCritCut2BJets(         1)
+    bmla.setCritCut2Lepton(        0)
+    bmla.setCritCut2SignalLepton(  0)
+    bmla.setCritCut2BJets(         0)
     bmla.setCritCutBadJetVeto(     1)
     bmla.setCritCutBLPairing(      1)
 
     # Set cut values
     print 'set cuts'
-    lep_pt_cut = 40.e3
-    jet_pt_cut = 40.e3
+    lep_pt_cut = 10.e3
+    jet_pt_cut = 10.e3
     met_cut    = 50.e3
     bmla.setElPtCut(  lep_pt_cut, -1     )
     bmla.setMuPtCut(  lep_pt_cut, -1     )
