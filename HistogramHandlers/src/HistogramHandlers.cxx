@@ -1252,7 +1252,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
   const float dphi_min = 0.;
   const float dphi_max = 3.2;
 
-  const int   met_sig_bins = 100;
+  const int   met_sig_bins = 50;
   const float met_sig_min  = 0;
   const float met_sig_max  = 500;
 

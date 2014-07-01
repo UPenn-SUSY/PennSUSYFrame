@@ -63,6 +63,10 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
   const float ptbbll_min  = 0.;
   const float ptbbll_max  = 1000;
 
+  const int   ht_bins = 10;
+  const float ht_min  = 0;
+  const float ht_max  = 5000;
+
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize b jet multiplicity histogram
@@ -417,6 +421,19 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                      )
                            );
 
+    m_h_mbl_asym.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                      + "__mbl_asym"
+                                      + "__"
+                                      + name_tag
+                                      ).c_str()
+                                    , ( "(m_{bl}^{0} - m_{bl}^{1})/(m_{bl}^{0} + m_{bl}^{1}) - "
+                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                      + " ; (m_{bl}^{0} - m_{bl}^{1})/(m_{bl}^{0} + m_{bl}^{1}) ; Entries "
+                                      ).c_str()
+                                    , mbl_ratio_bins, mbl_ratio_min, mbl_ratio_max
+                                    )
+                          );
+
     m_h_mbl_2d.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__mbl_2d"
                                     + "__"
@@ -431,6 +448,52 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                   , mbl_bins, mbl_min, mbl_max
                                   )
                         );
+
+    // mbl vs ht plots
+    m_h_mbl_vs_ht_all.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                           + "__mbl_vs_ht_all"
+                                           + "__"
+                                           + name_tag
+                                           ).c_str()
+                                         , ( "m_{bl} - "
+                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                           + " ; h_{T} [GeV] "
+                                           + " ; m_{bl} [GeV]"
+                                           ).c_str()
+                                         , ht_bins, ht_min, ht_max
+                                         , mbl_bins, mbl_min, mbl_max
+                                         )
+                               );
+
+    m_h_mbl_vs_ht_0.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + "__mbl_vs_ht_0"
+                                         + "__"
+                                         + name_tag
+                                         ).c_str()
+                                       , ( "m_{bl}^{0} - "
+                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + " ; h_{T} [GeV]"
+                                         + " ; m_{bl}^{0} [GeV]"
+                                         ).c_str()
+                                       , ht_bins, ht_min, ht_max
+                                       , mbl_bins, mbl_min, mbl_max
+                                       )
+                             );
+
+    m_h_mbl_vs_ht_1.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + "__mbl_vs_ht_1"
+                                         + "__"
+                                         + name_tag
+                                         ).c_str()
+                                       , ( "m_{bl}^{1} - "
+                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + " ; h_{T} [GeV]"
+                                         + " ; m_{bl}^{1} [GeV]"
+                                         ).c_str()
+                                       , ht_bins, ht_min, ht_max
+                                       , mbl_bins, mbl_min, mbl_max
+                                       )
+                             );
 
 
     // initialize ptbl histograms
@@ -946,6 +1009,7 @@ PennSusyFrame::BMinusLHists::~BMinusLHists()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
+                                             , const PennSusyFrame::EventLevelQuantities& event_level_quantities
                                              , const std::vector<PennSusyFrame::Jet*>* b_jet_list
                                              , const PennSusyFrame::blPair& bl_0
                                              , const PennSusyFrame::blPair& bl_1
@@ -986,6 +1050,9 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 
   float eta_l_0 = bl_0.getLepton()->getEta();
   float eta_l_1 = bl_1.getLepton()->getEta();
+
+  // get ht
+  float ht_baseline = event_level_quantities.getHtBaseline()/1.e3;
 
   // compute mbl
   float mbl_0 = bl_0.getMbl()/1.e3;
@@ -1197,7 +1264,13 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_mbl_1.at(  fc_it)->Fill(mbl_1, weight);
     m_h_mbl_diff.at(fc_it)->Fill(fabs(mbl_0 - mbl_1), weight);
     m_h_mbl_ratio.at(fc_it)->Fill(mbl_1/mbl_0, weight);
+    m_h_mbl_asym.at(fc_it)->Fill((mbl_0-mbl_1)/(mbl_0+mbl_1), weight);
     m_h_mbl_2d.at(fc_it)->Fill(mbl_0, mbl_1, weight);
+
+    m_h_mbl_vs_ht_all.at(fc_it)->Fill(ht_baseline, mbl_0, weight);
+    m_h_mbl_vs_ht_all.at(fc_it)->Fill(ht_baseline, mbl_1, weight);
+    m_h_mbl_vs_ht_0.at(  fc_it)->Fill(ht_baseline, mbl_0, weight);
+    m_h_mbl_vs_ht_1.at(  fc_it)->Fill(ht_baseline, mbl_1, weight);
 
     // fill ptbl histograms
     m_h_ptbl_all.at(fc_it)->Fill(ptbl_0, weight);
@@ -1375,7 +1448,12 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_mbl_1.at(  fc_it)->Write();
     m_h_mbl_diff.at(fc_it)->Write();
     m_h_mbl_ratio.at(fc_it)->Write();
+    m_h_mbl_asym.at(fc_it)->Write();
     m_h_mbl_2d.at(fc_it)->Write();
+
+    m_h_mbl_vs_ht_all.at(fc_it)->Write();
+    m_h_mbl_vs_ht_0.at(  fc_it)->Write();
+    m_h_mbl_vs_ht_1.at(  fc_it)->Write();
 
     m_h_ptbl_all.at(fc_it)->Write();
     m_h_ptbl_0.at(  fc_it)->Write();

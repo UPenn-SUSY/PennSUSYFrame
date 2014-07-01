@@ -40,48 +40,48 @@ if __name__ == '__main__':
     # fast_sim_mc_samples = { 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
     #                       }
     full_sim_mc_samples = {
-                          #   117050:{'label':'117050.PowhegPythia_P2011C_ttbar'                 , 'num_jobs':15}
-                          # , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':10}
-                          # , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
-                          # , 200334:{'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':3}
-                          # , 200335:{'label':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'num_jobs':1}
-                          # , 200340:{'label':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'num_jobs':10}
-                          # , 200341:{'label':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'num_jobs':5}
-                          # , 200342:{'label':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'num_jobs':3}
-                          # , 200343:{'label':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'num_jobs':1}
-                          # , 200348:{'label':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'num_jobs':1}
-                          # , 200349:{'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'num_jobs':1}
-                          # , 200350:{'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':1}
-                          # , 200351:{'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':1}
-                          # , 108346:{'label':'108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl', 'num_jobs':10}
-                          # # , 110817:{'label':'110817.AlpgenPythia_P2011C_ZeebbNp0'    , 'num_jobs':1}
-                          # # , 110818:{'label':'110818.AlpgenPythia_P2011C_ZeebbNp1'    , 'num_jobs':1}
-                          # # , 110819:{'label':'110819.AlpgenPythia_P2011C_ZeebbNp2'    , 'num_jobs':1}
-                          # # , 110820:{'label':'110820.AlpgenPythia_P2011C_ZeebbNp3'    , 'num_jobs':1}
-                          # # , 110821:{'label':'110821.AlpgenPythia_P2011C_ZmumubbNp0'  , 'num_jobs':1}
-                          # # , 110822:{'label':'110822.AlpgenPythia_P2011C_ZmumubbNp1'  , 'num_jobs':1}
-                          # # , 110823:{'label':'110823.AlpgenPythia_P2011C_ZmumubbNp2'  , 'num_jobs':1}
-                          # # , 110824:{'label':'110824.AlpgenPythia_P2011C_ZmumubbNp3'  , 'num_jobs':1}
-                          # # , 110825:{'label':'110825.AlpgenPythia_P2011C_ZtautaubbNp0', 'num_jobs':1}
-                          # # , 110826:{'label':'110826.AlpgenPythia_P2011C_ZtautaubbNp1', 'num_jobs':1}
-                          # # , 110827:{'label':'110827.AlpgenPythia_P2011C_ZtautaubbNp2', 'num_jobs':1}
-                          # # , 110828:{'label':'110828.AlpgenPythia_P2011C_ZtautaubbNp3', 'num_jobs':1}
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar'                 , 'num_jobs':15}
+                          , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':10}
+                          , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
+                          , 200334:{'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':3}
+                          , 200335:{'label':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'num_jobs':1}
+                          , 200340:{'label':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'num_jobs':10}
+                          , 200341:{'label':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'num_jobs':5}
+                          , 200342:{'label':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'num_jobs':3}
+                          , 200343:{'label':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'num_jobs':1}
+                          , 200348:{'label':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'num_jobs':1}
+                          , 200349:{'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'num_jobs':1}
+                          , 200350:{'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':1}
+                          , 200351:{'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':1}
+                          , 108346:{'label':'108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl', 'num_jobs':10}
+                          # , 110817:{'label':'110817.AlpgenPythia_P2011C_ZeebbNp0'    , 'num_jobs':1}
+                          # , 110818:{'label':'110818.AlpgenPythia_P2011C_ZeebbNp1'    , 'num_jobs':1}
+                          # , 110819:{'label':'110819.AlpgenPythia_P2011C_ZeebbNp2'    , 'num_jobs':1}
+                          # , 110820:{'label':'110820.AlpgenPythia_P2011C_ZeebbNp3'    , 'num_jobs':1}
+                          # , 110821:{'label':'110821.AlpgenPythia_P2011C_ZmumubbNp0'  , 'num_jobs':1}
+                          # , 110822:{'label':'110822.AlpgenPythia_P2011C_ZmumubbNp1'  , 'num_jobs':1}
+                          # , 110823:{'label':'110823.AlpgenPythia_P2011C_ZmumubbNp2'  , 'num_jobs':1}
+                          # , 110824:{'label':'110824.AlpgenPythia_P2011C_ZmumubbNp3'  , 'num_jobs':1}
+                          # , 110825:{'label':'110825.AlpgenPythia_P2011C_ZtautaubbNp0', 'num_jobs':1}
+                          # , 110826:{'label':'110826.AlpgenPythia_P2011C_ZtautaubbNp1', 'num_jobs':1}
+                          # , 110827:{'label':'110827.AlpgenPythia_P2011C_ZtautaubbNp2', 'num_jobs':1}
+                          # , 110828:{'label':'110828.AlpgenPythia_P2011C_ZtautaubbNp3', 'num_jobs':1}
                           }
     fast_sim_mc_samples = { # 105200:{'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter', 'num_jobs':15}
-                          #   202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100' , 'num_jobs':1}
-                          # , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200' , 'num_jobs':1}
-                          # , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300' , 'num_jobs':1}
-                          # , 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400' , 'num_jobs':1}
-                          # , 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500' , 'num_jobs':1}
-                          # , 202637:{'label':'202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600' , 'num_jobs':1}
-                          # , 202638:{'label':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700' , 'num_jobs':1}
-                          # , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
-                          # , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900' , 'num_jobs':1}
-                          # , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
+                            202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100' , 'num_jobs':1}
+                          , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200' , 'num_jobs':1}
+                          , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300' , 'num_jobs':1}
+                          , 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400' , 'num_jobs':1}
+                          , 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500' , 'num_jobs':1}
+                          , 202637:{'label':'202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600' , 'num_jobs':1}
+                          , 202638:{'label':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700' , 'num_jobs':1}
+                          , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
+                          , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900' , 'num_jobs':1}
+                          , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
 
-                            202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
-                          # , 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500' , 'num_jobs':1}
-                          # , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
+                          #   202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
+                          # # , 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500' , 'num_jobs':1}
+                          # # , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

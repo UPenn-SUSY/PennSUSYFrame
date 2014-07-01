@@ -108,34 +108,34 @@ def plotComparisons( ic_numerator
                     entries_canvas['canv'].Close()
                     entries_canvas_drawn = True
 
-    #         # If this is a 2D histogram, draw as colz plots in separate directory
-    #         if hm_num.hist_type  is hh.HIST_2D:
-    #             print 'making directory: %s/%s' % (d,h)
-    #             local_dir = out_file.Get(d)
-    #             local_dir.mkdir(h)
-    #             out_file.cd('%s/%s' % (d,h))
+            # # If this is a 2D histogram, draw as colz plots in separate directory
+            # if hm_num.hist_type  is hh.HIST_2D:
+            #     print 'making directory: %s/%s' % (d,h)
+            #     local_dir = out_file.Get(d)
+            #     local_dir.mkdir(h)
+            #     out_file.cd('%s/%s' % (d,h))
 
-    #             hist_painter = hh.Painter.HistPainter( num   = hm_num
-    #                                                  , denom = hm_denom
-    #                                                  , other = hm_other
-    #                                                  , num_draw_option   = 'COLZ'
-    #                                                  , denom_draw_option = 'COLZ'
-    #                                                  , other_draw_option = 'COLZ'
-    #                                                  )
+            #     hist_painter = hh.Painter.HistPainter( num   = hm_num
+            #                                          , denom = hm_denom
+            #                                          , other = hm_other
+            #                                          , num_draw_option   = 'COLZ'
+            #                                          , denom_draw_option = 'COLZ'
+            #                                          , other_draw_option = 'COLZ'
+            #                                          )
 
-    #             canv_dict = hist_painter.plotOnSeparateCanvases()
+            #     canv_dict = hist_painter.plotOnSeparateCanvases()
 
-    #             for cd in canv_dict:
-    #                 canv_dict[cd].Write('h_%s' % cd)
-    #                 canv_dict[cd].Close()
+            #     for cd in canv_dict:
+            #         canv_dict[cd].Write('h_%s' % cd)
+            #         canv_dict[cd].Close()
 
-    #             # num_canv = hh.Painter.draw2DHist(hm_num.hist_sum, hm_num.hist_name)
-    #             # num_canv.Write('%s__num' % hm_num.hist_name)
-    #             # num_canv.Close()
+            #     # num_canv = hh.Painter.draw2DHist(hm_num.hist_sum, hm_num.hist_name)
+            #     # num_canv.Write('%s__num' % hm_num.hist_name)
+            #     # num_canv.Close()
 
-    #             # denom_canv = hh.Painter.draw2DHist(hm_denom.hist_sum, hm_denom.hist_name)
-    #             # denom_canv.Write('%s__denom' % hm_denom.hist_name)
-    #             # denom_canv.Close()
+            #     # denom_canv = hh.Painter.draw2DHist(hm_denom.hist_sum, hm_denom.hist_name)
+            #     # denom_canv.Write('%s__denom' % hm_denom.hist_name)
+            #     # denom_canv.Close()
 
 
 
