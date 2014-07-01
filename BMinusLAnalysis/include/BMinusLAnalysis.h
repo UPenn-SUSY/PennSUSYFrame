@@ -212,6 +212,7 @@ namespace PennSusyFrame
       BMinusLCutFlowTracker m_cutflow_tracker;
 
       std::vector<PennSusyFrame::BMinusLHists*> m_bminusl_histogram_handler;
+      std::vector<PennSusyFrame::BMinusLDetailedHists*> m_bminusl_detailed_histogram_handler;
 
       PennSusyFrame::blPair* m_bl_0;
       PennSusyFrame::blPair* m_bl_1;

@@ -155,7 +155,8 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::JetKinematicsHists(   PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::MetHists(             PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
 
-    m_bminusl_histogram_handler.push_back(new PennSusyFrame::BMinusLHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
+    m_bminusl_histogram_handler.push_back(         new PennSusyFrame::BMinusLHists(        PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
+    m_bminusl_detailed_histogram_handler.push_back(new PennSusyFrame::BMinusLDetailedHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
   }
 }
 
@@ -1111,6 +1112,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
     }
 
     m_bminusl_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
+    m_bminusl_detailed_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
   }
   // std::cout << "done writing histograms to file\n";
 
@@ -1650,12 +1652,20 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
 
   if (m_pass_bl_pairing) {
     m_bminusl_histogram_handler.at(hist_level)->FillSpecial( m_event
-                                                           , m_event_quantities
+                                                           // , m_event_quantities
                                                            , m_jets.getCollection(JET_B)
                                                            , *bl_0
                                                            , *bl_1
                                                            , m_mc_truth
                                                            , weight
                                                            );
+    m_bminusl_detailed_histogram_handler.at(hist_level)->FillSpecial( m_event
+                                                                    , m_event_quantities
+                                                                    , m_jets.getCollection(JET_B)
+                                                                    , *bl_0
+                                                                    , *bl_1
+                                                                    , m_mc_truth
+                                                                    , weight
+                                                                    );
   }
 }
