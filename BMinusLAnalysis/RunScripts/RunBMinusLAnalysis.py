@@ -47,9 +47,11 @@ def runBMinusLAnalysisFun(data_set_dict):
                       , is_data               = data_set_dict['is_data']
                       , is_full_sim           = data_set_dict['is_full_sim']
                       , tree_name             = 'TNT'
+                      # , tree_name             = 'susy'
                       , dsid                  = data_set_dict['dsid']
                       , out_file_special_name = data_set_dict['label']
                       , is_tnt                = True
+                      # , is_tnt                = False
                       , fancy_progress_bar    = False
                       , job_num               = data_set_dict['job_num']
                       , total_num_jobs        = data_set_dict['total_num_jobs']
