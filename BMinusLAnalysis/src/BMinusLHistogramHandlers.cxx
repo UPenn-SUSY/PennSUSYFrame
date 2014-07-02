@@ -1563,9 +1563,9 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
   // const float ptbbll_min  = 0.;
   // const float ptbbll_max  = 1000;
 
-  const int   ht_bins = 5;
+  const int   ht_bins = 8;
   const float ht_min  = 0;
-  const float ht_max  = 5000;
+  const float ht_max  = 4000;
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

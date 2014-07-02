@@ -21,8 +21,9 @@ def main():
                                           , input_file_list = [ "%s/BMinusL.dummy_hists.root" % hist_dir
                                                               ]
                                           )
-    # ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
-    #                                       , fill_color = ROOT.kAzure+8
+    # ec_ttbar = hh.Container.EntryContainer(  label = 'ttbar'
+    #                                       # , fill_color = ROOT.kAzure+8
+    #                                       , fill_color = ROOT.kGreen+2
     #                                       , input_file_list = [ "%s/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.root" % hist_dir
     #                                                           ]
     #                                       )

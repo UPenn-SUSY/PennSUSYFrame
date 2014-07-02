@@ -104,12 +104,12 @@ def getFrame(h_list, global_min, global_max, name):
 def getRatioPlots(numerator_list, denom):
     ratio_list = []
     denom_clone = denom.Clone('denom__clone')
-    denom_clone.Rebin()
+    # denom_clone.Rebin()
 
     for nl in numerator_list:
         this_ratio = nl.Clone('%s__ratio' % nl.GetName()) if not nl is None else None
         if this_ratio is None: continue
-        this_ratio.Rebin()
+        # this_ratio.Rebin()
         # this_ratio.Divide(denom)
         this_ratio.Divide(denom_clone)
         ratio_list.append(this_ratio)
@@ -239,16 +239,12 @@ def doSliceStack(h_2d, out_file, dir_name):
     c_ratio.Write()
 
 # ------------------------------------------------------------------------------
-def main():
-    in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root"
-    # in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root"
+def doSlices(in_file_name, out_file_name):
     in_file = ROOT.TFile.Open(in_file_name)
 
     print in_file.GetListOfKeys()
     list_of_dirs = [key.GetName() for key in in_file.GetListOfKeys()]
 
-
-    out_file_name = 'out.root'
     out_file = ROOT.TFile.Open(out_file_name, 'recreate')
 
     for dir_name in list_of_dirs:
@@ -260,6 +256,22 @@ def main():
         h_2d = d.Get('flavor_%s__mbl_vs_ht_all__%s' % (flavor_channel, dir_name))
 
         doSliceStack(h_2d, out_file, dir_name)
+
+    out_file.Close()
+    in_file.Close()
+
+# ------------------------------------------------------------------------------
+def main():
+    # in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root"
+    # in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root"
+
+    # doSlices( in_file_name, 'out.root')
+    doSlices(in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root" , out_file_name = 'out.ttbar.root')
+    # do_slices(in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root" , out_file_name = 'out.ttbar.root')
+    doSlices(in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.hists.root"  , out_file_name = "out.bminusl_800.root" )
+    doSlices(in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.hists.root"  , out_file_name = "out.bminusl_500.root" )
+    doSlices(in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.hists.root"  , out_file_name = "out.bminusl_100.root" )
+    doSlices(in_file_name = "${BASE_WORK_DIR}/NextPlotDir.BMinusL/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.hists.root" , out_file_name = "out.bminusl_1000.root")
 
 # ==============================================================================
 if __name__ == "__main__":

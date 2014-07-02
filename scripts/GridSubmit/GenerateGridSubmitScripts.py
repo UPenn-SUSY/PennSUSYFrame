@@ -191,6 +191,18 @@ if __name__ == '__main__':
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
     # ------------------------------------------------------------------------------
+    # bkg - ttbar__PowhegPythia fast sim.sh
+    ds_dict_list = [ { 'tag':'117050.PowhegPythia_P2011C_ttbar.af2', 'ds':'mc12_8TeV.117050.PowhegPythia_P2011C_ttbar.merge.AOD.e1727_a188_a171_r3549/' , 'is_data':0 , 'is_full_mc':0 }
+                   ]
+    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
+
+    # ------------------------------------------------------------------------------
+    # bkg - ttbar__McAtNloJimmy_CT10_ttbar_dilepton.sh
+    ds_dict_list = [ { 'tag':'110001.McAtNloJimmy_CT10_ttbar_dilepton', 'ds':'mc12_8TeV.110001.McAtNloJimmy_CT10_ttbar_dilepton.merge.NTUP_SUSY.e1576_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0, 'is_full_mc':1 }
+                   ]
+    job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
+
+    # ------------------------------------------------------------------------------
     # bkg - W_plus_jet__AlpgenJimmy.sh
     ds_dict_list = [ { 'tag':'107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0', 'ds':'mc12_8TeV.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
                    , { 'tag':'107681.AlpgenJimmy_AUET2CTEQ6L1_WenuNp1', 'ds':'mc12_8TeV.107681.AlpgenJimmy_AUET2CTEQ6L1_WenuNp1.merge.NTUP_SUSY.e1571_s1499_s1504_r3658_r3549_p1512/' , 'is_data':0 , 'is_full_mc':1 }
