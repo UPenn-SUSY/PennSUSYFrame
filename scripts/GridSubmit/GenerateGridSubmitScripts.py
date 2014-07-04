@@ -730,6 +730,3 @@ if __name__ == '__main__':
 
     job_num = submitFromList(ds_dict_list, tnt_tag, job_num)
 
-
-
-
