@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/mc12//tnt_local.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000/tnt_local.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.root        10000        9160
