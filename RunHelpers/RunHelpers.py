@@ -5,6 +5,8 @@ import os
 import glob
 import shutil
 import datetime
+from multiprocessing import Pool
+import subprocess
 
 import ROOT
 
@@ -189,6 +191,57 @@ def addSamplesToList( sample_dict
         data_set_dicts.append(tdsd)
 
 # ------------------------------------------------------------------------------
+def addAllSamplesToList( data_samples
+                       , full_sim_mc_samples
+                       , fast_sim_mc_samples
+                       , file_list_path_base
+                       , out_dir
+                       ):
+    data_set_dicts = []
+
+    # add data samples
+    for dsid in data_samples:
+        addSamplesToList( sample_dict    = data_samples[dsid]
+                        , data_set_dicts = data_set_dicts
+                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
+                                                         , data_samples[dsid]['label']
+                                                         )
+                        , is_data        = True
+                        , is_full_sim    = False
+                        , dsid           = dsid
+                        , out_dir        = out_dir
+                        )
+
+    # add full sim samples
+    for dsid in full_sim_mc_samples:
+        addSamplesToList( sample_dict    = full_sim_mc_samples[dsid]
+                        , data_set_dicts = data_set_dicts
+                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
+                                                         , full_sim_mc_samples[dsid]['label']
+                                                         )
+                        , is_data        = False
+                        , is_full_sim    = True
+                        , dsid           = dsid
+                        , out_dir        = out_dir
+                        )
+
+    # add fast sim samples
+    for dsid in fast_sim_mc_samples:
+        addSamplesToList( sample_dict    = fast_sim_mc_samples[dsid]
+                        , data_set_dicts = data_set_dicts
+                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
+                                                         , fast_sim_mc_samples[dsid]['label']
+                                                         )
+                        , is_data        = False
+                        , is_full_sim    = False
+                        , dsid           = dsid
+                        , out_dir        = out_dir
+                        )
+
+    # return the list of data set dictionaries
+    return data_set_dicts
+
+# ------------------------------------------------------------------------------
 def mergeOutputFiles(out_dir, flat_files):
     abs_path = os.path.abspath(out_dir)
     AutoHadd.runAutoHaddOnDir(abs_path, flat_files)
@@ -210,3 +263,103 @@ def moveToLinkedDir(out_dir, pointer_dir):
 
     safeRemoveDir(abs_path_pointer)
     os.symlink(abs_path_out, abs_path_pointer)
+
+# ------------------------------------------------------------------------------
+def runLocalMultiprocess( run_analysis_fun
+                        , data_set_dicts
+                        , num_processes
+                        , out_dir
+                        , flat_ntuples
+                        , sym_link_name
+                        ):
+    p = Pool(num_processes)
+    p.map(run_analysis_fun, data_set_dicts)
+
+    mergeOutputFiles(out_dir, flat_ntuples)
+    moveToLinkedDir(out_dir, sym_link_name)
+
+# ------------------------------------------------------------------------------
+def writeLxBatchScript( run_analysis_fun
+                      , run_analysis_fun_loc
+                      , run_analysis_fun_file
+                      , data_set_dict
+                      , job_dir
+                      ):
+    print 'writeLxBatchScript()'
+    print run_analysis_fun
+    print run_analysis_fun.__name__
+    job_file_name = '%s/lx_batch_job.%s.%d_of_%d.py' % ( job_dir
+                                                       , data_set_dict['label']
+                                                       , data_set_dict['job_num']
+                                                       , data_set_dict['total_num_jobs']
+                                                       )
+    job_file = file(job_file_name, 'w')
+    job_file.write('#!/usr/bin/env python\n')
+    job_file.write('\n')
+    job_file.write('import sys\n')
+    job_file.write('sys.path.append("%s")\n' % run_analysis_fun_loc)
+    job_file.write('import %s\n' % run_analysis_fun_file)
+    job_file.write('\n')
+
+    job_file.write('\n')
+    job_file.write( 'print "running %s on the dataset %s (%d of %d)"' % ( run_analysis_fun.__name__
+                                                                         , data_set_dict['label']
+                                                                         , data_set_dict['job_num']
+                                                                         , data_set_dict['total_num_jobs']
+                                                                         )
+                  )
+    job_file.write('\n')
+    job_file.write('%s.%s(%s)\n' % ( run_analysis_fun_file
+                                   , run_analysis_fun.__name__
+                                   , data_set_dict
+                                   )
+                  )
+    job_file.write('\n')
+
+    job_file.close()
+
+    subprocess.call(['chmod', '+x', job_file_name])
+
+    return job_file_name
+
+# ------------------------------------------------------------------------------
+def runLxBatchMultiProcess( run_analysis_fun
+                          , run_analysis_fun_loc
+                          , run_analysis_fun_file
+                          , data_set_dicts
+                          # , num_processes
+                          , out_dir
+                          , queue         = '1nh'
+                          , sym_link_name = ''
+                          ):
+    print 'runLxBatchMultiProcess()'
+    # print '  num processes' , num_processes
+    print '  out dir: ' , out_dir
+
+    # create directory for new run scripts
+    job_dir = 'LatestRunDir'
+    safeRemoveDir(job_dir)
+    safeMakeDir(job_dir)
+
+    # write script for each lxbatch job
+    for dsd in data_set_dicts:
+        print 'dsd: ' , dsd
+        this_job_file_name = writeLxBatchScript( run_analysis_fun
+                                               , run_analysis_fun_loc
+                                               , run_analysis_fun_file
+                                               , dsd
+                                               , job_dir
+                                               )
+        print ''
+
+        # submit this job to lxbatch!
+        subprocess.call( [ 'bsub'
+                         , '-q'
+                         , queue
+                         , '%s/this_job_file_name' % sys.environ['PWD']
+                         ]
+                       )
+
+    # make sym link to output dir
+    if not sym_link_name == '':
+        moveToLinkedDir(out_dir, sym_link_name)

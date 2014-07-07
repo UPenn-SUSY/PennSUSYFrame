@@ -6,7 +6,6 @@ import sys
 sys.path.append('%s/TntMaker/' % os.environ['BASE_WORK_DIR'])
 import RunTntMaker
 
-
 sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
 
