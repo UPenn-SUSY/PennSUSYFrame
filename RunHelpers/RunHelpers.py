@@ -288,52 +288,69 @@ def writeLxBatchScript( run_analysis_fun
     print 'writeLxBatchScript()'
     print run_analysis_fun
     print run_analysis_fun.__name__
-    job_file_name = '%s/lx_batch_job.%s.%d_of_%d.py' % ( job_dir
-                                                       , data_set_dict['label']
-                                                       , data_set_dict['job_num']
-                                                       , data_set_dict['total_num_jobs']
-                                                       )
-    job_file = file(job_file_name, 'w')
-    job_file.write('#!/usr/bin/env python\n')
-    job_file.write('\n')
-    job_file.write('import sys\n')
-    job_file.write('sys.path.append("%s")\n' % run_analysis_fun_loc)
-    job_file.write('import %s\n' % run_analysis_fun_file)
-    job_file.write('\n')
 
-    job_file.write('\n')
-    job_file.write( 'print "running %s on the dataset %s (%d of %d)"' % ( run_analysis_fun.__name__
-                                                                         , data_set_dict['label']
-                                                                         , data_set_dict['job_num']
-                                                                         , data_set_dict['total_num_jobs']
-                                                                         )
+    job_py_name = '%s/lx_batch_job.%s.%d_of_%d.py' % ( job_dir
+                                                     , data_set_dict['label']
+                                                     , data_set_dict['job_num']
+                                                     , data_set_dict['total_num_jobs']
+                                                     )
+    job_py_file = file(job_py_name, 'w')
+    job_py_file.write('#!/usr/bin/env python\n')
+    job_py_file.write('\n')
+    job_py_file.write('import subprocess\n')
+    job_py_file.write('import os\n')
+    job_py_file.write('\n')
+
+    # ugly stuff to set the environment correctly
+    job_py_file.write('os.chdir("/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6")\n')
+    job_py_file.write('setup_command = ["bash", "-c", "source SetupEnvironment.sh && env"]\n')
+    job_py_file.write('proc = subprocess.Popen(setup_command, stdout = subprocess.PIPE)\n')
+    job_py_file.write('for line in proc.stdout:\n')
+    job_py_file.write('    (key, _, value) = line.rstrip("\\n").partition("=")\n')
+    job_py_file.write('    os.environ[key] = value\n')
+    job_py_file.write('proc.communicate()\n')
+    # /ugly stuff
+
+    # import the py file with function
+    job_py_file.write('\n')
+    job_py_file.write('import sys\n')
+    job_py_file.write('sys.path.append("%s")\n' % run_analysis_fun_loc)
+    job_py_file.write('import %s\n' % run_analysis_fun_file)
+    job_py_file.write('\n')
+    job_py_file.write( 'print "running %s on the dataset %s (%d of %d)"' % ( run_analysis_fun.__name__
+                                                                           , data_set_dict['label']
+                                                                           , data_set_dict['job_num']
+                                                                           , data_set_dict['total_num_jobs']
+                                                                           )
+                     )
+    job_py_file.write('\n')
+
+    # call the run analysis function
+    job_py_file.write('%s.%s(%s)\n' % ( run_analysis_fun_file
+                                      , run_analysis_fun.__name__
+                                      , data_set_dict
+                                      )
                   )
-    job_file.write('\n')
-    job_file.write('%s.%s(%s)\n' % ( run_analysis_fun_file
-                                   , run_analysis_fun.__name__
-                                   , data_set_dict
-                                   )
-                  )
-    job_file.write('\n')
+    job_py_file.write('\n')
 
-    job_file.close()
+    # close file
+    job_py_file.close()
 
-    subprocess.call(['chmod', '+x', job_file_name])
+    # make script executable
+    subprocess.call(['chmod', '+x', job_py_name])
 
-    return job_file_name
+    return job_py_name
 
 # ------------------------------------------------------------------------------
 def runLxBatchMultiProcess( run_analysis_fun
                           , run_analysis_fun_loc
                           , run_analysis_fun_file
                           , data_set_dicts
-                          # , num_processes
                           , out_dir
                           , queue         = '1nh'
                           , sym_link_name = ''
                           ):
     print 'runLxBatchMultiProcess()'
-    # print '  num processes' , num_processes
     print '  out dir: ' , out_dir
 
     # create directory for new run scripts
@@ -356,7 +373,7 @@ def runLxBatchMultiProcess( run_analysis_fun
         subprocess.call( [ 'bsub'
                          , '-q'
                          , queue
-                         , '%s/this_job_file_name' % sys.environ['PWD']
+                         , '%s/%s' % (os.environ['PWD'], this_job_file_name)
                          ]
                        )
 

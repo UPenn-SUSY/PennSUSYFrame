@@ -14,7 +14,15 @@ import RunHelpers
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
-num_processes = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+user_input = sys.argv[1] if len(sys.argv) > 1 else 1
+num_processes = 1
+queue = '1nh'
+if "nm" in user_input or "nh" in user_input or "nd" in user_input:
+    queue = user_input
+    run_local = False
+else:
+    num_processes = int(user_input)
+    run_local = True
 
 today_date = datetime.datetime.now()
 out_dir = '%s/hists/bminusl_hists_%04d_%02d_%02d__%02d_%02d' % ( os.environ['PWD']
@@ -89,26 +97,24 @@ if __name__ == '__main__':
                                                    , out_dir = out_dir
                                                    )
 
-    # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLAnalysis.runBMinusLAnalysisFun
-    #                                , data_set_dicts   = data_set_dicts
-    #                                , num_processes    = num_processes
-    #                                , out_dir          = out_dir
-    #                                , flat_ntuples     = False
-    #                                , sym_link_name    = './NextPlotDir.BMinusL'
-    #                                )
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLAnalysis.runBMinusLAnalysisFun
-                                     , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
-                                     , run_analysis_fun_file = 'RunBMinusLAnalysis'
-                                     , data_set_dicts        = data_set_dicts
-                                     # , num_processes         = num_processes
-                                     , out_dir               = out_dir
-                                     , queue                 = '1nh'
-                                     , sym_link_name         = './NextPlotDir.BMinusL'
-                                     )
+    if run_local:
+        RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLAnalysis.runBMinusLAnalysisFun
+                                       , data_set_dicts   = data_set_dicts
+                                       , num_processes    = num_processes
+                                       , out_dir          = out_dir
+                                       , flat_ntuples     = False
+                                       , sym_link_name    = './NextPlotDir.BMinusL'
+                                       )
+    else:
+        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLAnalysis.runBMinusLAnalysisFun
+                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                        , run_analysis_fun_file = 'RunBMinusLAnalysis'
+                                        , data_set_dicts        = data_set_dicts
+                                        , out_dir               = out_dir
+                                        , queue                 = '1nh'
+                                        , sym_link_name         = './NextPlotDir.BMinusL'
+                                        )
 
 sys.path.append('%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR'])
 import RunBMinusLAnalysis
-
