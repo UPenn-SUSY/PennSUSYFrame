@@ -373,7 +373,8 @@ def runLxBatchMultiProcess( run_analysis_fun
         subprocess.call( [ 'bsub'
                          , '-q'
                          , queue
-                         , '%s/%s' % (os.environ['PWD'], this_job_file_name)
+                         # , '%s/%s' % (os.environ['PWD'], this_job_file_name)
+                         , 'source .bashrc ; cd %s; %s/%s' % (os.environ['PWD'] , os.environ['PWD'], this_job_file_name)
                          ]
                        )
 
