@@ -370,13 +370,13 @@ def runLxBatchMultiProcess( run_analysis_fun
         print ''
 
         # submit this job to lxbatch!
-        subprocess.call( [ 'bsub'
-                         , '-q'
-                         , queue
-                         # , '%s/%s' % (os.environ['PWD'], this_job_file_name)
-                         , 'source .bashrc ; cd %s; %s/%s' % (os.environ['PWD'] , os.environ['PWD'], this_job_file_name)
-                         ]
-                       )
+        batch_submit_command = [ '${BASE_WORK_DIR}/RunHelpers/SubmitPythonToBatch.sh'
+                               , '-q'
+                               , queue
+                               , '%s/%s' % (os.environ['PWD'], this_job_file_name)
+                               , os.environ['PWD']
+                               ]
+        subprocess.call(batch_submit_command)
 
     # make sym link to output dir
     if not sym_link_name == '':
