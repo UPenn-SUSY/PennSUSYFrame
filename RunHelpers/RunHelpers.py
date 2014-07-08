@@ -370,8 +370,8 @@ def runLxBatchMultiProcess( run_analysis_fun
         print ''
 
         # submit this job to lxbatch!
-        batch_submit_command = [ '${BASE_WORK_DIR}/RunHelpers/SubmitPythonToBatch.sh'
-                               , '-q'
+        # batch_submit_command = [ 'echo' , '${BASE_WORK_DIR}/RunHelpers/SubmitPythonToBatch.sh'
+        batch_submit_command = [ '%s/RunHelpers/SubmitPythonToBatch.sh' % os.environ['PWD']
                                , queue
                                , '%s/%s' % (os.environ['PWD'], this_job_file_name)
                                , os.environ['PWD']

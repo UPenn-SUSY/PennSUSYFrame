@@ -28,4 +28,4 @@ fi
 submit_command="${submit_command} ; ${script_path}"
 
 # submit to lxbatch queue
-echo bsub -q $batch_queue "${submit_command}"
+bsub -q $batch_queue "${submit_command}"
