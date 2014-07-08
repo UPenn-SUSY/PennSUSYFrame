@@ -18,8 +18,10 @@ import RunHelpers
 def finalizeOutput(job_script_dir, output_dir):
     # first, check the output is all there
     pass_check_output = CheckOutput.checkOutput(job_script_dir, output_dir)
+    print pass_check_output
 
     if not pass_check_output:
+        print 'did not pass output check, bailiing before merging the files'
         return False
 
     # next, merge the the files in output directory

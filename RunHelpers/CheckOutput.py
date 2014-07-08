@@ -79,13 +79,15 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
         print 'Missing output for the following samples:'
         for lomo in list_of_missing_output:
             print '  ' , lomo
-    else:
-        print 'All output is found!'
+        return False
+
+    print 'All output is found!'
+    return True
 
 # ------------------------------------------------------------------------------
 def checkOutput(job_script_dir, output_dir):
     list_of_samples_with_num_jobs = getListOfRunJobs(job_script_dir)
-    checkForOutput(output_dir, list_of_samples_with_num_jobs)
+    return checkForOutput(output_dir, list_of_samples_with_num_jobs)
 
 # ------------------------------------------------------------------------------
 def main():
