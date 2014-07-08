@@ -26,7 +26,7 @@ def getListOfRunJobs(job_script_dir):
         lojs = lojs.split('.py')[0]
 
         # find the job number
-        job_num_tag = re.search('([0-9]_of_[0-9])', lojs).group(1)
+        job_num_tag = re.search('([0-9]*_of_[0-9]*)', lojs).group(1)
         this_job_num = job_num_tag.split('_of_')[0]
         num_jobs     = job_num_tag.split('_of_')[1]
         lojs = lojs.split('.%s' % job_num_tag)[0]
@@ -57,22 +57,26 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
         # loop over each job for this sample
         for this_job in xrange(num_jobs):
             for cloof in cleaned_list_of_output_file:
+                found_match = False
                 # does the file name contain the sample name?
                 if sample_name in cloof:
                     # if yes, does it also have the correct job number?
-                    if num_jobs == 1 or '%d_of_%d' in cloof:
+                    if num_jobs == 1 or '%d_of_%d' % (this_job, num_jobs) in cloof:
                         # output is found :-)
-                        print 'Found output for %s -- job %d of %d' % ( sample_name
-                                                                      , this_job
-                                                                      , num_jobs
-                                                                      )
-                    else:
-                        # output not found :-(
-                        print 'Missing output for %s -- job %d of %d' % ( sample_name
-                                                                        , this_job
-                                                                        , num_jobs
-                                                                        )
-                        list_of_missing_output.append('%s.%d_of_%d' % sample_name)
+                        found_match = True
+                        break
+            if found_match:
+                print 'Found output for %s -- job %d of %d' % ( sample_name
+                                                                , this_job
+                                                                , num_jobs
+                                                                )
+            else:
+                # output not found :-(
+                print 'Missing output for %s -- job %d of %d' % ( sample_name
+                                                                , this_job
+                                                                , num_jobs
+                                                                )
+                list_of_missing_output.append('%s.%d_of_%d' % (sample_name, this_job, num_jobs) )
 
     print ''
     if len(list_of_missing_output) > 0:
