@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # ==============================================================================
 # = check output directory to ensure all files are there
+# = usage:
+# =   ./RunHelpers/CheckOutput.py <location of run scripts> <location of output>
+# = or (within a python script)
+# =   CheckOutput.checkOutput(job_script_dir, output_dir)
 # ==============================================================================
 
 import glob
@@ -79,12 +83,16 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
         print 'All output is found!'
 
 # ------------------------------------------------------------------------------
+def checkOutput(job_script_dir, output_dir):
+    list_of_samples_with_num_jobs = getListOfRunJobs(job_script_dir)
+    checkForOutput(output_dir, list_of_samples_with_num_jobs)
+
+# ------------------------------------------------------------------------------
 def main():
     job_script_dir = sys.argv[1]
     output_dir     = sys.argv[2]
 
-    list_of_samples_with_num_jobs = getListOfRunJobs(job_script_dir)
-    checkForOutput(output_dir, list_of_samples_with_num_jobs)
+    checkOutput(job_script_dir, output_dir)
 
 # ==============================================================================
 if __name__ == "__main__":
