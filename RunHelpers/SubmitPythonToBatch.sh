@@ -7,7 +7,7 @@
 # = set up the environment as if you were logging into an interactive session
 # =
 # = usage:
-# =   ./RunHelpers/SubmitPythonToBatch.sh <QUEUE NAME> <CALL FROM> <PATH TO PYTHON SCRIPT>
+# =   ./RunHelpers/SubmitPythonToBatch.sh <QUEUE NAME> <PATH TO PYTHON SCRIPT> <CALL FROM>
 # ==============================================================================
 
 batch_queue=$1
