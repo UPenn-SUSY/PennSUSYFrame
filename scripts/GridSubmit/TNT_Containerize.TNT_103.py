@@ -7,32 +7,34 @@ import subprocess
 # ------------------------------------------------------------------------------
 def containerize(output_container, input_container_list):
     print 'Registering the container ', output_container
-    subprocess.Popen( 'echo dq2-register-container %s' % output_container
-                    , shell=True
-                    , stdout=subprocess.PIPE
-                    , stderr=subprocess.STDOUT
-                    )
+    temp_register = subprocess.Popen( 'dq2-register-container %s' % output_container
+                                    , shell=True
+                                    , stdout=subprocess.PIPE
+                                    , stderr=subprocess.STDOUT
+                                    )
+    print temp_register.stdout.readlines()
 
     for icl in input_container_list:
         print 'adding datasets from input container (%s) to output container: %s' % (icl, output_container)
 
-        temp = subprocess.Popen( 'dq2-list-datasets-container %s' % icl
-                               , shell=True
-                               , stdout=subprocess.PIPE
-                               , stderr=subprocess.STDOUT
-                               )
-        for line in temp.stdout.readlines():
+        temp_get_list = subprocess.Popen( 'dq2-list-datasets-container %s' % icl
+                                        , shell=True
+                                        , stdout=subprocess.PIPE
+                                        , stderr=subprocess.STDOUT
+                                        )
+        for line in temp_get_list.stdout.readlines():
             print line
-            subprocess.Popen( 'dq2-register-datasets-container %s %s' % (output_container, line)
-                            , shell=True
-                            , stdout=subprocess.PIPE
-                            , stderr=subprocess.STDOUT
-                            )
+            temp_add_data_set = subprocess.Popen( 'dq2-register-datasets-container %s %s' % (output_container, line)
+                                                , shell=True
+                                                , stdout=subprocess.PIPE
+                                                , stderr=subprocess.STDOUT
+                                                )
+            print temp_add_data_set.stdout.readlines()
 
 # ------------------------------------------------------------------------------
 def main():
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.data_part_1.merge.tnt_103/'
+    output_container_name = 'user.bjackson.data_part_1.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.periodA_egamma.tnt_103/"
                            , "user.bjackson.periodA_muon.tnt_103/"
@@ -48,7 +50,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.data_part_2.tnt_103/'
+    output_container_name = 'user.bjackson.data_part_2.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.periodG_egamma.tnt_103/"
                            , "user.bjackson.periodG_muon.tnt_103/"
@@ -64,7 +66,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_top_part_1.merge.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_top_part_1.merge2.tnt_103/'
     input_container_list = [
                            # ttbar
                              "user.bjackson.117050.PowhegPythia_P2011C_ttbar.af2_v2.tnt_103/"
@@ -77,7 +79,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_top_part_2.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_top_part_2.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.105860.PowhegJimmy_AUET2CT10_ttbar_LeptonFilter.tnt_103/"
                            , "user.bjackson.105861.PowhegPythia_AUET2BCT10_ttbar_LeptonFilter.tnt_103/"
@@ -88,7 +90,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_ZX_part_1.merge.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_ZX_part_1.merge2.tnt_103/'
     input_container_list = [
                            # Z > ee
                              "user.bjackson.117650.AlpgenPythia_P2011C_ZeeNp0.tnt_103/"
@@ -115,7 +117,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_ZX_part_2.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_ZX_part_2.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.147770.Sherpa_CT10_Zee.tnt_103/"
                            , "user.bjackson.147771.Sherpa_CT10_Zmumu.tnt_103/"
@@ -124,7 +126,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_DY_part_1.merge.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_DY_part_1.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.146830.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp0Excl_Mll10to60.tnt_103/"
                            , "user.bjackson.146831.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZeeNp1Excl_Mll10to60.tnt_103/"
@@ -148,7 +150,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_DY_part_2.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_DY_part_2.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103/"
                            , "user.bjackson.173042.Sherpa_CT10_DYeeM15to40.tnt_103/"
@@ -160,7 +162,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_Z_heavy_flavor_part_1.merge.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_Z_heavy_flavor_part_1.merge2.tnt_103/'
     input_container_list = [
                            # Z > ee + heavy flavor
                              "user.bjackson.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.tnt_103/"
@@ -249,7 +251,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_Z_heavy_flavor_part_2.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_Z_heavy_flavor_part_2.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.200332.AlpgenPythia_Auto_P2011C_ZeebbNp0.tnt_103/"
                            , "user.bjackson.200333.AlpgenPythia_Auto_P2011C_ZeebbNp1.tnt_103/"
@@ -267,7 +269,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_diboson_part_1.merge.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_diboson_part_1.merge2.tnt_103/'
     input_container_list = [
                            # WZ
                              "user.bjackson.129477.PowhegPythia8_AU2CT10_WZ_Wm11Z11_mll0p250d0_2LeptonFilter5.tnt_103/"
@@ -346,7 +348,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.bkg_rare_part_1.merge.tnt_103/'
+    output_container_name = 'user.bjackson.bkg_rare_part_1.merge2.tnt_103/'
     input_container_list = [
                            # triboson
                              "user.bjackson.167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu.tnt_103/"
@@ -376,7 +378,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.signal_ewk_slep.tnt_103/'
+    output_container_name = 'user.bjackson.signal_ewk_slep.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.144871.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_5.tnt_103/"
                            , "user.bjackson.144873.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_7.tnt_103/"
@@ -453,7 +455,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.signal_ewk_noslep.tnt_103/'
+    output_container_name = 'user.bjackson.signal_ewk_noslep.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.127994.Herwigpp_UEEE3_CTEQ6L1_sM_wA_noslep_C1N2_100_0_N1_75_0_2L.tnt_103/"
                            , "user.bjackson.127995.Herwigpp_UEEE3_CTEQ6L1_sM_wA_noslep_C1N2_125_0_N1_100_0_2L.tnt_103/"
@@ -512,7 +514,7 @@ def main():
     containerize(output_container_name, input_container_list)
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.signal_ewk_95.tnt_103/'
+    output_container_name = 'user.bjackson.signal_ewk_95.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.186283.Herwigpp_UEEE3_CTEQ6L1_wA_c1n2_117_5_n1_82_5_xsl_0_95.tnt_103/"
                            , "user.bjackson.186284.Herwigpp_UEEE3_CTEQ6L1_wA_c1n2_135_0_n1_115_0_xsl_0_95.tnt_103/"
@@ -582,7 +584,7 @@ def main():
 
 
     # ------------------------------------------------------------------------------
-    output_container_name = 'user.bjackson.signal_stop.part_1.merge.tnt_103/'
+    output_container_name = 'user.bjackson.signal_stop.part_1.merge2.tnt_103/'
     input_container_list = [
                              "user.bjackson.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.tnt_103/"
                            , "user.bjackson.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.tnt_103/"
