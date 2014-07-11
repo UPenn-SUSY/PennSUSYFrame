@@ -17,13 +17,13 @@ namespace PennSusyFrame
 {
 
   enum EWK_HIST_LEVELS { EWK_HIST_ZVETO
-			 , EWK_HIST_MET
-			 , EWK_HIST_N
+                       , EWK_HIST_MET
+                       , EWK_HIST_N
   };
 
-  const std::string EWK_HIST_LEVEL_STRINGS[] = {"EWK_ZVETO"
-						, "EWK_MET"
-  };
+  const std::string EWK_HIST_LEVEL_STRINGS[] = { "EWK_ZVETO"
+                                               , "EWK_MET"
+                                               };
 
 
   // ===========================================================================
@@ -80,9 +80,9 @@ namespace PennSusyFrame
       std::string m_out_hist_file_name;
 
 
-      void fillHistHandles(EWK_HIST_LEVELS
-			   , float weight
-			   );
+      void fillHistHandles( EWK_HIST_LEVELS
+                          , float weight
+                          );
 
       bool m_crit_cut_grl;
       bool m_crit_cut_incomplete_event;

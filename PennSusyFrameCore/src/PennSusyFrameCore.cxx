@@ -218,14 +218,12 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_jet_selectors.at(JET_LIGHT).setConstScaleEtaCut(-1, 2.4);
   m_jet_selectors.at(JET_LIGHT).setJvfCut(0.0, -1);
   m_jet_selectors.at(JET_LIGHT).setJvfPtThresh(50.e3, -1);
-  // m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, 0.3511);
   m_jet_selectors.at(JET_LIGHT).setMV1Cut(-1, m_mv1_cut_value);
 
   // JET_B
   m_jet_selectors.at(JET_B).setPtCut(20.e3, -1);
   // m_jet_selectors.at(JET_B).setEtaCut(-1, 2.4);
   m_jet_selectors.at(JET_B).setConstScaleEtaCut(-1, 2.4);
-  // m_jet_selectors.at(JET_B).setMV1Cut(0.3511, -1);
   m_jet_selectors.at(JET_B).setMV1Cut(m_mv1_cut_value, -1);
 
   // JET_FORWARD
@@ -278,14 +276,11 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     Long64_t this_entry = m_start_entry + jentry;
 
     // check progress in the progress bar
-    // progress_bar.checkProgress(jentry);
     progress_bar.checkProgress(this_entry);
 
     // get entry from tree
-    // Long64_t ientry = LoadTree(jentry);
     Long64_t ientry = LoadTree(this_entry);
     if (ientry < 0) break;
-    //  m_d3pd_reader->GetEntry(jentry);
     m_d3pd_reader->GetEntry(this_entry);
 
     // process events, etc...
@@ -431,6 +426,10 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                       );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get objects which are selected for this analysis
+  getSelectedObjects();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_met.prep( m_d3pd_reader
             , m_event
             // , m_event_quantities
@@ -463,54 +462,73 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   // select signal electrons from good electrons
   m_electrons.setCollection( EL_SIGNAL
                            , PennSusyFrame::selectObjects( m_electron_selectors.at(EL_SIGNAL)
-                                                         , m_electrons.getCollection(EL_GOOD)
+                                                         // , m_electrons.getCollection(EL_GOOD)
+                                                         , m_electrons.getCollection(EL_SELECTED)
                                                          )
                            );
 
   // select signal muons from good muons
   m_muons.setCollection( MU_SIGNAL
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_SIGNAL)
-                                                     , m_muons.getCollection(MU_GOOD)
+                                                     // , m_muons.getCollection(MU_GOOD)
+                                                     , m_muons.getCollection(MU_SELECTED)
                                                      )
                        );
 
   // select bad muons from good muons
   m_muons.setCollection( MU_BAD
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_BAD)
-                                                     , m_muons.getCollection(MU_GOOD)
+                                                     // , m_muons.getCollection(MU_GOOD)
+                                                     , m_muons.getCollection(MU_SELECTED)
                                                      )
                        );
 
   // select cosmic muons from good muons
   m_muons.setCollection( MU_COSMIC
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_COSMIC)
-                                                     , m_muons.getCollection(MU_GOOD)
+                                                     // , m_muons.getCollection(MU_GOOD)
+                                                     , m_muons.getCollection(MU_SELECTED)
                                                      )
                        );
 
   // select signal taus from good taus
   m_taus.setCollection( TAU_SIGNAL
                       , PennSusyFrame::selectObjects( m_tau_selectors.at(TAU_SIGNAL)
-                                                    , m_taus.getCollection(TAU_GOOD)
+                                                    // , m_taus.getCollection(TAU_GOOD)
+                                                    , m_taus.getCollection(TAU_SELECTED)
                                                     )
                       );
 
   // select signal jets from good jets
   m_jets.setCollection( JET_LIGHT
                       , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_LIGHT)
-                                                    , m_jets.getCollection(JET_GOOD)
+                                                    // , m_jets.getCollection(JET_GOOD)
+                                                    , m_jets.getCollection(JET_SELECTED)
                                                     )
                       );
   m_jets.setCollection( JET_B
                       , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_B)
-                                                    , m_jets.getCollection(JET_GOOD)
+                                                    // , m_jets.getCollection(JET_GOOD)
+                                                    , m_jets.getCollection(JET_SELECTED)
                                                     )
                       );
   m_jets.setCollection( JET_FORWARD
                       , PennSusyFrame::selectObjects( m_jet_selectors.at(JET_FORWARD)
-                                                    , m_jets.getCollection(JET_GOOD)
+                                                    // , m_jets.getCollection(JET_GOOD)
+                                                    , m_jets.getCollection(JET_SELECTED)
                                                     )
                       );
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  size_t num_signal_electrons = m_electrons.num(EL_SIGNAL);
+  for (size_t el_it = 0; el_it != num_signal_electrons; ++el_it) {
+    m_electrons.getCollection(EL_SIGNAL)->at(el_it)->setIsSignal(true);
+  }
+
+  size_t num_signal_muons = m_muons.num(MU_SIGNAL);
+  for (size_t mu_it = 0; mu_it != num_signal_muons; ++mu_it) {
+    m_muons.getCollection(MU_SIGNAL)->at(mu_it)->setIsSignal(true);
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   std::vector<PennSusyFrame::Jet*> central_jets;
@@ -567,8 +585,10 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // construct met-rel
-  m_met.constructMetRel( m_electrons.getCollection(EL_GOOD)
-                       , m_muons.getCollection(MU_GOOD)
+  // m_met.constructMetRel( m_electrons.getCollection(EL_GOOD)
+  //                      , m_muons.getCollection(MU_GOOD)
+  m_met.constructMetRel( m_electrons.getCollection(EL_SELECTED)
+                       , m_muons.getCollection(MU_SELECTED)
                        , m_jets.getCollection(JET_ALL_CENTRAL)
                        );
 
@@ -578,34 +598,43 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_event_quantities.setMll( PennSusyFrame::getMll( m_event.getFlavorChannel()
-                                                  , m_electrons.getCollection(EL_GOOD)
-                                                  , m_muons.getCollection(MU_GOOD)
+                                                  // , m_electrons.getCollection(EL_GOOD)
+                                                  // , m_muons.getCollection(MU_GOOD)
+                                                  , m_electrons.getCollection(EL_SELECTED)
+                                                  , m_muons.getCollection(MU_SELECTED)
                                                   )
                            );
 
   m_event_quantities.setPtll( PennSusyFrame::getPtll( m_event.getFlavorChannel()
-                                                    , m_electrons.getCollection(EL_GOOD)
-                                                    , m_muons.getCollection(MU_GOOD)
+                                                    // , m_electrons.getCollection(EL_GOOD)
+                                                    // , m_muons.getCollection(MU_GOOD)
+                                                    , m_electrons.getCollection(EL_SELECTED)
+                                                    , m_muons.getCollection(MU_SELECTED)
                                                     )
                             );
 
   m_event_quantities.setMt2 (PennSusyFrame::getMt2( m_event.getFlavorChannel()
                                                   , &m_met
-                                                  , m_electrons.getCollection(EL_GOOD)
-                                                  , m_muons.getCollection(MU_GOOD)
+                                                  // , m_electrons.getCollection(EL_GOOD)
+                                                  // , m_muons.getCollection(MU_GOOD)
+                                                  , m_electrons.getCollection(EL_SELECTED)
+                                                  , m_muons.getCollection(MU_SELECTED)
                                                   )
                            );
 
-  // TODO set emma mt
   m_event_quantities.setEmmaMt( PennSusyFrame::getEmmaMt( m_event.getFlavorChannel()
-                                                        , m_electrons.getCollection(EL_GOOD)
-                                                        , m_muons.getCollection(MU_GOOD)
+                                                        // , m_electrons.getCollection(EL_GOOD)
+                                                        // , m_muons.getCollection(MU_GOOD)
+                                                        , m_electrons.getCollection(EL_SELECTED)
+                                                        , m_muons.getCollection(MU_SELECTED)
                                                         )
                               );
 
   m_event_quantities.setDphill( PennSusyFrame::getDphill( m_event.getFlavorChannel()
-                                                        , m_electrons.getCollection(EL_GOOD)
-                                                        , m_muons.getCollection(MU_GOOD)
+                                                        // , m_electrons.getCollection(EL_GOOD)
+                                                        // , m_muons.getCollection(MU_GOOD)
+                                                        , m_electrons.getCollection(EL_SELECTED)
+                                                        , m_muons.getCollection(MU_SELECTED)
                                                         )
                               );
 
@@ -616,23 +645,24 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set pile up weight
-    // TODO validate pile up weight
     m_event_quantities.setPileUpSF(m_pile_up_sf_tool.getPileupScaleFactor(m_event, m_mc_truth));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set lepton SF
     double lepton_sf = 1.;
 
-    // TODO validate electron SF
-    size_t el_term = m_electrons.num(EL_GOOD);
-    const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_GOOD);
+    // size_t el_term = m_electrons.num(EL_GOOD);
+    // const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_GOOD);
+    size_t el_term = m_electrons.num(EL_SELECTED);
+    const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_SELECTED);
     for (size_t el_it = 0; el_it != el_term; ++el_it) {
       lepton_sf *= m_egamma_sf_tool.getSF(m_event, el_list->at(el_it));
     }
 
-    // TODO validate muon SF
-    size_t mu_term = m_muons.num(MU_GOOD);
-    const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_GOOD);
+    // size_t mu_term = m_muons.num(MU_GOOD);
+    // const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_GOOD);
+    size_t mu_term = m_muons.num(MU_SELECTED);
+    const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_SELECTED);
     for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
       lepton_sf *= m_muon_sf_tool.getSF(mu_list->at(mu_it));
     }
@@ -641,11 +671,13 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
-    // TODO validate trigger weight
     m_event_quantities.setTriggerWeight(m_trigger_weight_tool.getWeight( m_event.getFlavorChannel()
-                                                                       , m_electrons.getCollection(EL_GOOD)
-                                                                       , m_muons.getCollection(MU_GOOD)
-                                                                       , m_jets.getCollection(JET_GOOD)
+                                                                       // , m_electrons.getCollection(EL_GOOD)
+                                                                       // , m_muons.getCollection(MU_GOOD)
+                                                                       // , m_jets.getCollection(JET_GOOD)
+                                                                       , m_electrons.getCollection(EL_SELECTED)
+                                                                       , m_muons.getCollection(MU_SELECTED)
+                                                                       , m_jets.getCollection(JET_SELECTED)
                                                                        , m_met
                                                                        , m_vertices.getCollection(VERTEX_GOOD)
                                                                        )
@@ -653,8 +685,8 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    // TODO validate b tag weight
-    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
+    // m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
+    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_SELECTED)));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_truth_match_tool.prep(m_mc_truth);
@@ -662,8 +694,10 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // check for prompt leptons
     m_event.setPromptLeptons( m_truth_match_tool.isRealLeptonEvent( m_event.getFlavorChannel()
-                                                                  , m_electrons.getCollection(EL_GOOD)
-                                                                  , m_muons.getCollection(MU_GOOD)
+                                                                  // , m_electrons.getCollection(EL_GOOD)
+                                                                  // , m_muons.getCollection(MU_GOOD)
+                                                                  , m_electrons.getCollection(EL_SELECTED)
+                                                                  , m_muons.getCollection(MU_SELECTED)
                                                                   , m_mc_truth
                                                                   )
                              );
@@ -671,8 +705,10 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // get the truth sign channel of the two leptons
     m_event.setTruthSignChannel( m_truth_match_tool.getTruthSign( m_event.getFlavorChannel()
-                                                                , m_electrons.getCollection(EL_GOOD)
-                                                                , m_muons.getCollection(MU_GOOD)
+                                                                // , m_electrons.getCollection(EL_GOOD)
+                                                                // , m_muons.getCollection(MU_GOOD)
+                                                                , m_electrons.getCollection(EL_SELECTED)
+                                                                , m_muons.getCollection(MU_SELECTED)
                                                                 , m_mc_truth
                                                                 )
                                );
@@ -680,10 +716,37 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 }
 
 // -----------------------------------------------------------------------------
-FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel()
+void PennSusyFrame::PennSusyFrameCore::getSelectedObjects()
 {
-  size_t num_el = m_electrons.num(EL_GOOD);
-  size_t num_mu = m_muons.num(MU_GOOD);
+  // default selected objects will simply copy the "good" objects lists
+  std::vector<PennSusyFrame::Electron*> good_el_list(*m_electrons.getCollection(EL_GOOD));
+  m_electrons.setCollection(EL_SELECTED , good_el_list);
+
+  std::vector<PennSusyFrame::Muon*> good_mu_list(*m_muons.getCollection(MU_GOOD));
+  m_muons.setCollection(MU_SELECTED , good_mu_list);
+
+  std::vector<PennSusyFrame::Jet*> good_jet_list(*m_jets.getCollection(JET_GOOD));
+  m_jets.setCollection(JET_SELECTED , good_jet_list);
+
+  std::vector<PennSusyFrame::Tau*> good_tau_list(*m_taus.getCollection(TAU_GOOD));
+  m_taus.setCollection(TAU_SELECTED , good_tau_list);
+}
+
+// -----------------------------------------------------------------------------
+FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel(bool exclusive_flavor_channel)
+{
+  // size_t num_el = m_electrons.num(EL_GOOD);
+  // size_t num_mu = m_muons.num(MU_GOOD);
+  size_t num_el = m_electrons.num(EL_SELECTED);
+  size_t num_mu = m_muons.num(MU_SELECTED);
+
+  if (num_el + num_mu < 2) return FLAVOR_NONE;
+
+  if (!exclusive_flavor_channel && num_el+num_mu > 2) {
+    // TODO if there are more than two leptons, and we set exclusive_flavor_channel == false, check flavor of leading two leptons
+    // num_el = 0;
+    // num_mu = 0;
+  }
 
   if (num_el == 2 && num_mu == 0) return FLAVOR_EE;
   if (num_el == 1 && num_mu == 1) return FLAVOR_EM;
@@ -700,16 +763,22 @@ SIGN_CHANNEL PennSusyFrame::PennSusyFrameCore::findSignCannel()
   // find the sign channel - depends on which flavor channel we are in
   int sign = 1;
   if (m_event.getFlavorChannel() == FLAVOR_EE) {
-    sign *= m_electrons.getCollection(EL_GOOD)->at(0)->getCharge();
-    sign *= m_electrons.getCollection(EL_GOOD)->at(1)->getCharge();
+    // sign *= m_electrons.getCollection(EL_GOOD)->at(0)->getCharge();
+    // sign *= m_electrons.getCollection(EL_GOOD)->at(1)->getCharge();
+    sign *= m_electrons.getCollection(EL_SELECTED)->at(0)->getCharge();
+    sign *= m_electrons.getCollection(EL_SELECTED)->at(1)->getCharge();
   }
   else if (m_event.getFlavorChannel() == FLAVOR_EM) {
-    sign *= m_electrons.getCollection(EL_GOOD)->at(0)->getCharge();
-    sign *= m_muons.getCollection(MU_GOOD)->at(0)->getCharge();
+    // sign *= m_electrons.getCollection(EL_GOOD)->at(0)->getCharge();
+    // sign *= m_muons.getCollection(MU_GOOD)->at(0)->getCharge();
+    sign *= m_electrons.getCollection(EL_SELECTED)->at(0)->getCharge();
+    sign *= m_muons.getCollection(MU_SELECTED)->at(0)->getCharge();
   }
   else if (m_event.getFlavorChannel() == FLAVOR_MM) {
-    sign *= m_muons.getCollection(MU_GOOD)->at(0)->getCharge();
-    sign *= m_muons.getCollection(MU_GOOD)->at(1)->getCharge();
+    // sign *= m_muons.getCollection(MU_GOOD)->at(0)->getCharge();
+    // sign *= m_muons.getCollection(MU_GOOD)->at(1)->getCharge();
+    sign *= m_muons.getCollection(MU_SELECTED)->at(0)->getCharge();
+    sign *= m_muons.getCollection(MU_SELECTED)->at(1)->getCharge();
   }
 
   // return the correct sign channel

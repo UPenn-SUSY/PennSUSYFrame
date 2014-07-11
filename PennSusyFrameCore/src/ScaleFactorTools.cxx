@@ -274,10 +274,8 @@ void PennSusyFrame::BTagScaleFactorTool::init(float mv1_cut_value)
   m_b_tag_calibration = new BTagCalib( "MV1"
                                      , m_calibration_file
                                      , m_calibration_folder
-                                     // , "0_3511"
                                      , cut_string
                                      , false  // use_jvf
-                                     // , 0.3511
                                      , cut_value
                                      );
 }

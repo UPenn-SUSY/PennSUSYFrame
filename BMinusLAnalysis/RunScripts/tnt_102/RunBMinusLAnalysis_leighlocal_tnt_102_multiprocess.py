@@ -94,5 +94,5 @@ if __name__ == '__main__':
     p.map(RunBMinusLAnalysis.runBMinusLAnalysisFun, data_set_dicts)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    RunHelpers.mergeOutputFiles(out_dir)
+    RunHelpers.mergeOutputFiles(out_dir, False)
     RunHelpers.moveToLinkedDir(out_dir, './NextPlotDir.BMinusL')

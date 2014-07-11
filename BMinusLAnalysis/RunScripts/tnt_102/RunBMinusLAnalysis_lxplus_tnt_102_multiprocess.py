@@ -39,7 +39,8 @@ if __name__ == '__main__':
     #                       }
     # fast_sim_mc_samples = { 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
     #                       }
-    full_sim_mc_samples = { 117050:{'label':'117050.PowhegPythia_P2011C_ttbar'                 , 'num_jobs':15}
+    full_sim_mc_samples = {
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar'                 , 'num_jobs':15}
                           , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':10}
                           , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
                           , 200334:{'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':3}
@@ -77,6 +78,10 @@ if __name__ == '__main__':
                           , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900' , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
+
+                          #   202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
+                          # # , 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500' , 'num_jobs':1}
+                          # # , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -120,5 +125,5 @@ if __name__ == '__main__':
     p.map(RunBMinusLAnalysis.runBMinusLAnalysisFun, data_set_dicts)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    RunHelpers.mergeOutputFiles(out_dir)
+    RunHelpers.mergeOutputFiles(out_dir, False)
     RunHelpers.moveToLinkedDir(out_dir, './NextPlotDir.BMinusL')

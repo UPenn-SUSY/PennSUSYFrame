@@ -182,6 +182,7 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader
 // -----------------------------------------------------------------------------
 PennSusyFrame::Particle::Particle() : m_tlv_set(false)
                                     , m_raw_tlv_set(false)
+                                    , m_is_signal(false)
 { }
 
 // -----------------------------------------------------------------------------
@@ -217,11 +218,11 @@ void PennSusyFrame::Particle::printGeneralInfo() const
   //           << "\n";
 }
 
-// // -----------------------------------------------------------------------------
-// void PennSusyFrame::Particle::setParticleIndex(int val)
-// {
-//   m_particle_index = val;
-// }
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Particle::setParticleIndex(int val)
+{
+  m_particle_index = val;
+}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Particle::setTlv(const TLorentzVector& tlv)
@@ -235,6 +236,18 @@ void PennSusyFrame::Particle::setRawTlv(const TLorentzVector& tlv)
 {
   m_raw_tlv = tlv;
   m_raw_tlv_set = true;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::Particle::setIsSignal(bool val)
+{
+  m_is_signal = val;
+}
+
+// -----------------------------------------------------------------------------
+int PennSusyFrame::Particle::getParticleIndex() const
+{
+  return m_particle_index;
 }
 
 // -----------------------------------------------------------------------------
@@ -257,6 +270,12 @@ const TLorentzVector* PennSusyFrame::Particle::getRawTlv() const
   }
 
   return &m_raw_tlv;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::Particle::getIsSignal() const
+{
+  return m_is_signal;
 }
 
 // -----------------------------------------------------------------------------
@@ -795,6 +814,8 @@ void PennSusyFrame::Jet::print() const
 {
   std::cout << "\tjet " << m_particle_index << "\n";
   printGeneralInfo();
+  std::cout << "\t\tMV1: " << m_mv1
+            << "\n";
 }
 
 // -----------------------------------------------------------------------------

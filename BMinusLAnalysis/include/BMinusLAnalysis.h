@@ -17,17 +17,112 @@ namespace PennSusyFrame
   enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
                            , BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_ZVETO
-                           , BMINUSL_HIST_MET
+                           // , BMINUSL_HIST_MET
 			   , BMINUSL_HIST_GE_4_OBJECTS
-			     , BMINUSL_HIST_N
+
+                           // , BMINUSL_HIST_OPT_900_MBL
+                           // , BMINUSL_HIST_OPT_900_HT
+                           // , BMINUSL_HIST_OPT_900_MET
+                           // , BMINUSL_HIST_OPT_900_MBL_HT
+                           // , BMINUSL_HIST_OPT_900_MBL_MET
+                           // , BMINUSL_HIST_OPT_900_HT_MET
+                           // , BMINUSL_HIST_OPT_900
+
+                           // , BMINUSL_HIST_OPT_1000_MBL
+                           // , BMINUSL_HIST_OPT_1000_HT
+                           // , BMINUSL_HIST_OPT_1000_MET
+                           // , BMINUSL_HIST_OPT_1000_MBL_HT
+                           // , BMINUSL_HIST_OPT_1000_MBL_MET
+                           // , BMINUSL_HIST_OPT_1000_HT_MET
+                           // , BMINUSL_HIST_OPT_1000
+
+                           // , BMINUSL_HIST_OPT_1000_MOD_MET
+                           // , BMINUSL_HIST_OPT_1000_MOD_MBL_MET
+                           // , BMINUSL_HIST_OPT_1000_MOD_HT_MET
+                           // , BMINUSL_HIST_OPT_1000_MOD
+
+                           , BMINUSL_HIST_OPT_900_1000_V1_MBL
+                           , BMINUSL_HIST_OPT_900_1000_V1_HT
+                           , BMINUSL_HIST_OPT_900_1000_V1_MET
+                           , BMINUSL_HIST_OPT_900_1000_V1_MBL_HT
+                           , BMINUSL_HIST_OPT_900_1000_V1_MBL_MET
+                           , BMINUSL_HIST_OPT_900_1000_V1_HT_MET
+                           , BMINUSL_HIST_OPT_900_1000_V1
+
+                           // , BMINUSL_HIST_OPT_900_1000_V2_MBL
+                           // , BMINUSL_HIST_OPT_900_1000_V2_HT
+                           // , BMINUSL_HIST_OPT_900_1000_V2_MET
+                           // , BMINUSL_HIST_OPT_900_1000_V2_MBL_HT
+                           // , BMINUSL_HIST_OPT_900_1000_V2_MBL_MET
+                           // , BMINUSL_HIST_OPT_900_1000_V2_HT_MET
+                           // , BMINUSL_HIST_OPT_900_1000_V2
+
+                           // , BMINUSL_HIST_OPT_900_1000_V3_MBL
+                           // , BMINUSL_HIST_OPT_900_1000_V3_HT
+                           // , BMINUSL_HIST_OPT_900_1000_V3_MET
+                           // , BMINUSL_HIST_OPT_900_1000_V3_MBL_HT
+                           // , BMINUSL_HIST_OPT_900_1000_V3_MBL_MET
+                           // , BMINUSL_HIST_OPT_900_1000_V3_HT_MET
+                           // , BMINUSL_HIST_OPT_900_1000_V3
+
+                           , BMINUSL_HIST_N
                            };
 
   const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
                                                    , "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
-                                                   , "BMINUSL_MET"
 						   , "BMINUSL_GE_4_OBJECTS"
+
+                                                   // , "BMINUSL_OPT_900_MBL"
+                                                   // , "BMINUSL_OPT_900_HT"
+                                                   // , "BMINUSL_OPT_900_MET"
+                                                   // , "BMINUSL_OPT_900_MBL_HT"
+                                                   // , "BMINUSL_OPT_900_MBL_MET"
+                                                   // , "BMINUSL_OPT_900_HT_MET"
+                                                   // , "BMINUSL_OPT_900"
+
+                                                   // , "BMINUSL_OPT_1000_MBL"
+                                                   // , "BMINUSL_OPT_1000_HT"
+                                                   // , "BMINUSL_OPT_1000_MET"
+                                                   // , "BMINUSL_OPT_1000_MBL_HT"
+                                                   // , "BMINUSL_OPT_1000_MBL_MET"
+                                                   // , "BMINUSL_OPT_1000_HT_MET"
+                                                   // , "BMINUSL_OPT_1000"
+
+                                                   // , "BMINUSL_OPT_1000_MOD_MET"
+                                                   // , "BMINUSL_OPT_1000_MOD_MBL_MET"
+                                                   // , "BMINUSL_OPT_1000_MOD_HT_MET"
+                                                   // , "BMINUSL_OPT_1000_MOD"
+
+                                                   , "BMINUSL_OPT_900_1000_V1_MBL"
+                                                   , "BMINUSL_OPT_900_1000_V1_HT"
+                                                   , "BMINUSL_OPT_900_1000_V1_MET"
+                                                   , "BMINUSL_OPT_900_1000_V1_MBL_HT"
+                                                   , "BMINUSL_OPT_900_1000_V1_MBL_MET"
+                                                   , "BMINUSL_OPT_900_1000_V1_HT_MET"
+                                                   , "BMINUSL_OPT_900_1000_V1"
+
+                                                   // , "BMINUSL_OPT_900_1000_V2_MBL"
+                                                   // , "BMINUSL_OPT_900_1000_V2_HT"
+                                                   // , "BMINUSL_OPT_900_1000_V2_MET"
+                                                   // , "BMINUSL_OPT_900_1000_V2_MBL_HT"
+                                                   // , "BMINUSL_OPT_900_1000_V2_MBL_MET"
+                                                   // , "BMINUSL_OPT_900_1000_V2_HT_MET"
+                                                   // , "BMINUSL_OPT_900_1000_V2"
+
+                                                   // , "BMINUSL_OPT_900_1000_V3_MBL"
+                                                   // , "BMINUSL_OPT_900_1000_V3_HT"
+                                                   // , "BMINUSL_OPT_900_1000_V3_MET"
+                                                   // , "BMINUSL_OPT_900_1000_V3_MBL_HT"
+                                                   // , "BMINUSL_OPT_900_1000_V3_MBL_MET"
+                                                   // , "BMINUSL_OPT_900_1000_V3_HT_MET"
+                                                   // , "BMINUSL_OPT_900_1000_V3"
+
+                                                   , "BMINUSL_N"
                                                    };
+
+  // ---------------------------------------------------------------------------
+  class blPair;
 
   // ===========================================================================
   class BMinusLAnalysis : public PennSusyFrame::PennSusyFrameCore
@@ -41,6 +136,7 @@ namespace PennSusyFrame
       virtual void prepareSelection();
 
       virtual void beginRun();
+      virtual void initializeEvent();
       virtual void processEvent();
       virtual void finalizeEvent();
       virtual void finalizeRun();
@@ -76,9 +172,10 @@ namespace PennSusyFrame
       void setBJetPtCut(float min, float max) { m_min_b_jet_pt_baseline = min ; m_max_b_jet_pt_baseline = max; }
 
     protected:
+      virtual void constructObjects();
+      virtual void getSelectedObjects();
+
       void fillHistHandles( BMINUSL_HIST_LEVELS
-                          // , const PennSusyFrame::blPair&
-                          // , const PennSusyFrame::blPair&
                           , const PennSusyFrame::blPair*
                           , const PennSusyFrame::blPair*
                           , float weight
@@ -116,6 +213,38 @@ namespace PennSusyFrame
       BMinusLCutFlowTracker m_cutflow_tracker;
 
       std::vector<PennSusyFrame::BMinusLHists*> m_bminusl_histogram_handler;
+      std::vector<PennSusyFrame::BMinusLDetailedHists*> m_bminusl_detailed_histogram_handler;
+
+      PennSusyFrame::blPair* m_bl_0;
+      PennSusyFrame::blPair* m_bl_1;
+
+      double m_mc_event_weight;
+      double m_pile_up_sf;
+      // double m_xsec_weight;
+      double m_lepton_sf;
+      double m_btag_sf;
+
+      bool m_pass_grl;
+      bool m_pass_incomplete_event;
+      bool m_pass_lar_error;
+      bool m_pass_tile_error;
+      bool m_pass_tile_hot_spot;
+      bool m_pass_tile_trip;
+      bool m_pass_bad_jet_veto;
+      bool m_pass_calo_problem_jet;
+      bool m_pass_primary_vertex;
+      bool m_pass_bad_mu_veto;
+      bool m_pass_cosmic_mu_veto;
+      bool m_pass_hfor;
+      bool m_pass_mc_overlap;
+      bool m_pass_ge_2_lep;
+      bool m_pass_2_lep;
+      bool m_pass_signal_lep;
+      bool m_pass_ge_2_b_jet;
+      bool m_pass_eq_2_b_jet;
+      bool m_pass_bl_pairing;
+      bool m_pass_z_veto;
+      bool m_pass_met;
 
       double m_met_min;
       double m_met_max;
@@ -128,6 +257,15 @@ namespace PennSusyFrame
 
       double m_min_b_jet_pt_baseline;
       double m_max_b_jet_pt_baseline;
+
+      unsigned int m_num_events_passing_basic_cleaning;
+      unsigned int m_num_events_passing_ge_2_lep;
+      unsigned int m_num_events_passing_2_lep;
+      unsigned int m_num_events_passing_signal_lep;
+      unsigned int m_num_events_passing_ge_2_b_jet;
+      unsigned int m_num_events_passing_eq_2_b_jet;
+      unsigned int m_num_events_passing_bl_pairing;
+      unsigned int m_num_events_passing_bl_pairing_but_not_lep_or_b;
 
     private:
   };

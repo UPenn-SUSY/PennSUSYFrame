@@ -57,7 +57,7 @@ bool PennSusyFrame::doBLPairing( const PennSusyFrame::Event& event
                                )
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
-  if (fc == FLAVOR_NONE) return false;
+  // if (fc == FLAVOR_NONE) return false;
 
   std::vector<PennSusyFrame::Lepton*> lep_list;
   lep_list.reserve(2);
@@ -72,6 +72,42 @@ bool PennSusyFrame::doBLPairing( const PennSusyFrame::Event& event
   else if (fc == FLAVOR_EM) {
     lep_list.push_back(el_list->at(0));
     lep_list.push_back(mu_list->at(0));
+  }
+  else if (fc == FLAVOR_NONE) {
+    size_t num_el = el_list->size();
+    size_t num_mu = mu_list->size();
+
+    if ((num_el + num_mu) < 2) return false;
+
+    size_t next_el = 0;
+    size_t next_mu = 0;
+    size_t num_leps_stored = 0;
+
+    float el_pt = -1;
+    float mu_pt = -1;
+    size_t num_it = 0;
+    while (  num_leps_stored < 2
+          && next_el < num_el
+          && next_mu < num_mu
+          && num_it < 10
+          ) {
+      // get the next electron and muon pt values
+      el_pt = ((next_el < num_el) ? el_list->at(next_el)->getPt() : -1);
+      mu_pt = ((next_mu < num_mu) ? mu_list->at(next_mu)->getPt() : -1);
+
+      if (el_pt >= mu_pt) {
+        // if next electron is harder than next muon, add that to lepton list
+        lep_list.push_back(el_list->at(next_el));
+        ++next_el;
+      }
+      else {
+        // if muon is harder than electron, add that to lepton list
+        lep_list.push_back(mu_list->at(next_mu));
+        ++next_mu;
+      }
+      ++num_leps_stored;
+    }
+    if (num_leps_stored < 2) return false;
   }
 
   return doBLPairing(&lep_list, b_jet_list, pair_0, pair_1);
@@ -99,7 +135,6 @@ bool PennSusyFrame::doBLPairing( const std::vector<PennSusyFrame::Lepton*>* lep_
   float mbl_ratio_01_01 = ( (mbl_01 > mbl_10) ? (mbl_01/mbl_10)
                                               : (mbl_10/mbl_01)
                           );
-
 
   if (mbl_ratio_00_11 <= mbl_ratio_01_01) {
     if (mbl_00 >= mbl_11) {

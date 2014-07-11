@@ -24,7 +24,7 @@ def getListOfTagsToHadd(dir):
 
     list_of_tags = []
     for lof in list_of_files:
-        this_tag = lof.lstrip('%s/' % dir)
+        this_tag = lof.split('/')[-1]
         this_tag = re.sub('\.[0-9]*_of_[0-9]*\.root', '', this_tag)
 
         if not this_tag in list_of_tags:
@@ -35,7 +35,9 @@ def getListOfTagsToHadd(dir):
 def getNumEventsFromFile(root_file):
     print 'getting num events from file: %s' % root_file
     f = ROOT.TFile(root_file)
-    tne = f.Get('TotalNumEvents')[0]
+    tne_obj = f.Get('TotalNumEvents')
+    tne = tne_obj[0] if tne_obj else 0.
+    # tne = f.Get('TotalNumEvents')[0]
     f.Close()
     return tne
 
@@ -86,31 +88,52 @@ def makeNewCleanFile(messy_file_name, new_file_name, total_num_events):
     messy_file.Close()
 
 # ------------------------------------------------------------------------------
-def haddFilesMatchingTag(dir, list_of_tags):
-    print 'auto hadding files in directory: %s' % dir
+def mergeFlatFiles(dir, this_tag):
+    new_file_name = '%s/%s.root' % (dir, this_tag)
 
-    for lot in list_of_tags:
-        print 'tag: %s' % lot
-        messy_file_name = '%s/%s.messy_version.root' % (dir, lot)
-        new_file_name = '%s/%s.root' % (dir, lot)
-
-        # Create messy version of file using hadd
-        command_list = ['hadd', messy_file_name]
-        this_file_list = glob.glob('%s/%s.*_of_*.root' % (dir, lot))
-        command_list.extend(this_file_list)
-        subprocess.call(command_list)
-
-        # get the total number of events from list of files
-        total_num_events = 0
-        for tfl in this_file_list:
-            total_num_events += getNumEventsFromFile(tfl)
-            print '  ', total_num_events
-
-        # make a new clean file with one TotalNumEvents entry
-        makeNewCleanFile(messy_file_name, new_file_name, total_num_events)
+    # Create messy version of file using hadd
+    command_list = ['hadd', new_file_name]
+    this_file_list = glob.glob('%s/%s.*_of_*.root' % (dir, this_tag))
+    command_list.extend(this_file_list)
+    subprocess.call(command_list)
 
 # ------------------------------------------------------------------------------
-def runAutoHaddOnDir(target_dir):
+def mergeFilesWithDirs(dir, this_tag):
+    print 'tag: %s' % this_tag
+    messy_file_name = '%s/%s.messy_version.root' % (dir, this_tag)
+    new_file_name = '%s/%s.root' % (dir, this_tag)
+
+    # Create messy version of file using hadd
+    command_list = ['hadd', messy_file_name]
+    this_file_list = glob.glob('%s/%s.*_of_*.root' % (dir, this_tag))
+    command_list.extend(this_file_list)
+    subprocess.call(command_list)
+
+    # get the total number of events from list of files
+    total_num_events = 0
+    for tfl in this_file_list:
+        total_num_events += getNumEventsFromFile(tfl)
+        print '  ', total_num_events
+
+    # make a new clean file with one TotalNumEvents entry
+    makeNewCleanFile(messy_file_name, new_file_name, total_num_events)
+
+
+# ------------------------------------------------------------------------------
+def haddFilesMatchingTag(dir, list_of_tags, flat_files = False):
+    print 'auto hadding files in directory: %s' % dir
+    print flat_files
+
+    for lot in list_of_tags:
+        if not flat_files:
+            print 'merging files with dirs'
+            mergeFilesWithDirs(dir, lot)
+        else:
+            print 'merging flat files'
+            mergeFlatFiles(dir, lot)
+
+# ------------------------------------------------------------------------------
+def runAutoHaddOnDir(target_dir, flat_files = False):
     # check that directory exists
     if not os.path.isdir(target_dir):
         print '%s is not a real directory' % target_dir
@@ -123,7 +146,7 @@ def runAutoHaddOnDir(target_dir):
 
     # auto-hadd files in directory (matching tags in list_of_tags)
     if len(list_of_tags) > 0:
-        haddFilesMatchingTag(target_dir, list_of_tags)
+        haddFilesMatchingTag(target_dir, list_of_tags, flat_files)
 
 # ------------------------------------------------------------------------------
 def main():
@@ -135,7 +158,12 @@ def main():
     # get directory path from user input
     target_dir = sys.argv[1]
 
-    runAutoHaddOnDir(target_dir)
+    flat_files = sys.argv[2] if len(sys.argv) > 2 else False
+    flat_files = False if flat_files == '0' else True
+    print target_dir
+    print flat_files
+
+    runAutoHaddOnDir(target_dir , flat_files)
 
 # ==============================================================================
 if __name__ == "__main__":
