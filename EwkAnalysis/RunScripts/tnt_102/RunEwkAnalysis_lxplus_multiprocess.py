@@ -14,9 +14,23 @@ import RunHelpers
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
-num_processes = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+user_input = sys.argv[1] if len(sys.argv) > 1 else 1
+num_processes = 1
+queue = '1nh'
+if "nm" in user_input or "nh" in user_input or "nd" in user_input:
+    queue = user_input
+    run_local = False
+else:
+    num_processes = int(user_input)
+    run_local = True
 
-out_dir = 'hists/ewk_hists%s' % RunHelpers.getDateTimeLabel(True, False)
+today_date = datetime.datetime.now()
+out_dir = '%s/hists/ewk_hists_%04d_%02d_%02d' % ( os.environ['PWD']
+                                                , today_date.year
+                                                , today_date.month
+                                                , today_date.day
+                                                )
+print out_dir
 
 # ==============================================================================
 if __name__ == '__main__':
