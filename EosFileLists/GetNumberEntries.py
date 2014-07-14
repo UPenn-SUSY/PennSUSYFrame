@@ -14,5 +14,5 @@ out_file=file('tmp_entries.txt', 'w')
 out_file.write('%d' % total_num_entries)
 out_file.close()
 
-print total_num_entries
+# print total_num_entries
 # return total_num_entries
