@@ -14,7 +14,8 @@
 // =============================================================================
 namespace PennSusyFrame
 {
-  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
+  enum BMINUSL_HIST_LEVELS { BMINUSL_BEFORE_SELECTION
+			   ,  BMINUSL_HIST_BASIC_CLEANING
                            , BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_ZVETO
                            // , BMINUSL_HIST_MET
@@ -68,7 +69,8 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_N
                            };
 
-  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
+  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BEFORE_SELECTION"
+						   ,  "BMINUSL_BASIC_CLEANING"
                                                    , "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
 						   , "BMINUSL_GE_4_OBJECTS"
