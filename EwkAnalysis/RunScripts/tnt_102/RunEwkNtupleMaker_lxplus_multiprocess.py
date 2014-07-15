@@ -17,9 +17,28 @@ import RunHelpers
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
-num_processes = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+user_input = sys.argv[1] if len(sys.argv) > 1 else 1
+num_processes = 1
+queue = '1nh'
+if "nm" in user_input or "nh" in user_input or "nd" in user_input:
+    queue = user_input
+    run_local = False
+else:
+    num_processes = int(user_input)
+    run_local = True
 
-out_dir = 'hists/my_hists%s' % RunHelpers.getDateTimeLabel(True, False)
+today_date = datetime.datetime.now()
+out_dir = '%s/hists/ewk_hists_%04d_%02d_%02d' % ( os.environ['PWD']
+                                                , today_date.year
+                                                , today_date.month
+                                                , today_date.day
+                                                )
+print out_dir
+
+# ------------------------------------------------------------------------------
+# get number of parallel processes from command line inputs
+#num_processes = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+#out_dir = 'hists/my_hists%s' % RunHelpers.getDateTimeLabel(True, False)
 
 # ==============================================================================
 if __name__ == '__main__':
@@ -33,7 +52,7 @@ if __name__ == '__main__':
                     #'periodD_egamma':{'label':'periodD_egamma'      , 'num_jobs':4} ##THIS ONE TOO
                    #, 'periodE_egamma':{'label':'periodE_egamma'      , 'num_jobs':4}
                     'periodA_muon':{'label':'periodA_muon'          , 'num_jobs':5}
-                   ,'periodB_muon':{'label':'periodB_muon'          , 'num_jobs':2}
+                   #,'periodB_muon':{'label':'periodB_muon'          , 'num_jobs':2}
                    #, 'periodC_muon':{'label':'periodC_muon'          , 'num_jobs':2}
                    #,'periodD_muon':{'label':'periodD_muon'          , 'num_jobs':5}
                    #,'periodE_muon':{'label':'periodE_muon'          , 'num_jobs':2}
@@ -204,46 +223,30 @@ if __name__ == '__main__':
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # add data samples
-    for dsid in data_samples:
-        RunHelpers.addSamplesToList( sample_dict    = data_samples[dsid]
-                                   , data_set_dicts = data_set_dicts
-                                   , file_list_path = 'EosFileLists/tnt_102/tnt_102.%s.txt' % data_samples[dsid]['label']
-                                   , is_data        = True
-                                   , is_full_sim    = False
-                                   , dsid           = dsid
-                                   , out_dir        = out_dir
-                                   )
-
-    # add full sim samples
-    for dsid in full_sim_mc_samples:
-        RunHelpers.addSamplesToList( sample_dict    = full_sim_mc_samples[dsid]
-                                   , data_set_dicts = data_set_dicts
-                                   , file_list_path = 'EosFileLists/tnt_102/tnt_102.%s.txt' % full_sim_mc_samples[dsid]['label']
-                                   , is_data        = False
-                                   , is_full_sim    = True
-                                   , dsid           = dsid
-                                   , out_dir        = out_dir
-                                   )
-
-    # add fast sim samples
-    for dsid in fast_sim_mc_samples:
-        RunHelpers.addSamplesToList( sample_dict    = fast_sim_mc_samples[dsid]
-                                   , data_set_dicts = data_set_dicts
-                                   , file_list_path = 'EosFileLists/tnt_102/tnt_102.%s.txt' % fast_sim_mc_samples[dsid]['label']
-                                   , is_data        = False
-                                   , is_full_sim    = False
-                                   , dsid           = dsid
-                                   , out_dir        = out_dir
-                                   )
-
-    print data_set_dicts
+    # add samples
+    data_set_dicts = RunHelpers.addAllSamplesToList( data_samples = data_samples
+                                                   , full_sim_mc_samples = full_sim_mc_samples
+                                                   , fast_sim_mc_samples = fast_sim_mc_samples
+                                                   , file_list_path_base = 'EosFileLists/tnt_102/tnt_102'
+                                                   , out_dir = out_dir
+                                                   )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    p = Pool(num_processes)
-    p.map(RunEwkNtupleMaker.runEwkNtupleFun, data_set_dicts)
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    #RunHelpers.mergeOutputFiles(out_dir)
-    RunHelpers.moveToLinkedDir(out_dir, './NextPlotDir.Ewk')
+    if run_local:
+        RunHelpers.runLocalMultiprocess( run_analysis_fun = RunEwkNtupleMaker.runEwkNtupleFun
+                                       , data_set_dicts   = data_set_dicts
+                                       , num_processes    = num_processes
+                                       , out_dir          = out_dir
+                                       , flat_ntuples     = False
+                                       , sym_link_name    = './NextPlotDir.Ewk'
+                                       )
+    else:
+        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunEwkNtupleMaker.runEwkNtupleFun
+                                         , run_analysis_fun_loc  = '%s/EwkAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                         , run_analysis_fun_file = 'RunEwkNtupleMaker'
+                                         , data_set_dicts        = data_set_dicts
+                                         , out_dir               = out_dir
+                                         , queue                 = '1nh'
+                                         , sym_link_name         = './NextPlotDir.Ewk'
+                                         )
 

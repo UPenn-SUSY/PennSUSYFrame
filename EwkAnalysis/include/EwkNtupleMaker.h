@@ -22,67 +22,17 @@ namespace PennSusyFrame
   // ===========================================================================
   class EwkNtupleMaker : public PennSusyFrame::PennSusyFrameCore
   {
-    public :
-      EwkNtupleMaker(TTree *tree=0);
-      virtual ~EwkNtupleMaker();
 
-      virtual void prepareTools();
-      virtual void prepareSelection();
-
-      virtual void beginRun();
-      virtual void processEvent();
-      virtual void finalizeEvent();
-      virtual void finalizeRun();
-	  void clearVariables();
-
-      void setOutNtupleFileName(std::string val) { m_out_ntuple_file_name = val; }
-
-      void setCritCutGrl(            bool val) { m_crit_cut_grl = val;              }
-      void setCritCutIncompleteEvent(bool val) { m_crit_cut_incomplete_event = val; }
-      void setCritCutLarError(       bool val) { m_crit_cut_lar_error = val;        }
-      void setCritCutTileError(      bool val) { m_crit_cut_tile_error = val;       }
-      void setCritCutTileHotSpot(    bool val) { m_crit_cut_tile_hot_spot = val;    }
-      void setCritCutTileTrip(       bool val) { m_crit_cut_tile_trip = val;        }
-      void setCritCutBadJetVeto(     bool val) { m_crit_cut_bad_jet_veto = val;     }
-      void setCritCutCaloProblemJet( bool val) { m_crit_cut_calo_problem_jet = val; }
-      void setCritCutPrimaryVertex(  bool val) { m_crit_cut_primary_vertex = val;   }
-      void setCritCutBadMuonVeto(    bool val) { m_crit_cut_bad_mu_veto = val;      }
-      void setCritCutCosmicMuonVeto( bool val) { m_crit_cut_cosmic_mu_veto = val;   }
-      void setCritCutHFOR(           bool val) { m_crit_cut_hfor = val;             }
-      void setCritCutMcOverlap(      bool val) { m_crit_cut_mc_overlap = val;       }
-      void setCritCutGe2Lepton(      bool val) { m_crit_cut_ge_2_lep = val;         }
-      void setCritCut2Lepton(        bool val) { m_crit_cut_2_lep = val;            }
-      void setCritCutTauVeto(        bool val) { m_crit_cut_tau_veto = val;         }
-      void setCritCutMllSfos(        bool val) { m_crit_cut_mll_sfos = val;         }
-      void setCritCut2SignalLepton(  bool val) { m_crit_cut_signal_lep = val;       }
-      void setCritCutPhaseSpace(     bool val) { m_crit_cut_phase_space = val;      }
-      void setCritCutTrigger(        bool val) { m_crit_cut_trigger = val;          }
-      void setCritCutTriggerMatch(   bool val) { m_crit_cut_trigger_match = val;    }
-      void setCritCutPromptLeptons(  bool val) { m_crit_cut_prompt_leptons = val;   }
-      void setCritCutStreamOverlap(  bool val) { m_crit_cut_stream_overlap = val;   }
-
-      void setSFOSMllCut(double min, double max) { m_sfos_mll_min = min; m_sfos_mll_max = max; }
-      void setEmmaMtCut(double min, double max)  { m_emma_mt_min = min; m_emma_mt_max = max; }
-      void setMetRelCut(double min, double max)  { m_met_rel_min = min; m_met_rel_max = max; }
-      void setDphillCut(double min, double max)  { m_dphi_ll_min = min; m_dphi_ll_max = max; }
-	  
-	  std::vector<float> getSelectionPt (std::vector<PennSusyFrame::Particle*>* obj);
-	  std::vector<float> getSelectionPhi(std::vector<PennSusyFrame::Particle*>* obj);
-	  std::vector<float> getSelectionEta(std::vector<PennSusyFrame::Particle*>* obj);
-	  void getSortLepPts(float i1, float i2, std::vector<float> pt,  std::vector<float> eta,  std::vector<float> phi);
-
-
-      void setOutNtupFileName(std::string val) { m_out_ntuple_file_name = val; }
 
     protected:
-	
-	    protected:
+
       void configureOutput( std::string out_file_name
                           , std::string out_tree_name
                           );
       void fillNtuple( float weight);
       std::string m_out_ntuple_file_name;
 
+	  bool doBaselineSkim;
       bool m_crit_cut_grl;
       bool m_crit_cut_incomplete_event;
       bool m_crit_cut_lar_error;
@@ -162,14 +112,17 @@ namespace PennSusyFrame
 	  std::vector<float> m_el_pt;
 	  std::vector<float> m_el_eta;
 	  std::vector<float> m_el_phi;
+	  std::vector<bool> m_el_signal;
 	  
 	  std::vector<float> m_mu_pt;
 	  std::vector<float> m_mu_eta;
 	  std::vector<float> m_mu_phi;
+	  std::vector<bool> m_mu_signal;
 	  
 	  std::vector<float> m_lep_pt;
 	  std::vector<float> m_lep_eta;
 	  std::vector<float> m_lep_phi;
+	  std::vector<bool> m_lep_signal;
 	  
 	  std::vector<float> m_jet_pt;
 	  std::vector<float> m_jet_eta;
@@ -185,9 +138,62 @@ namespace PennSusyFrame
 
       float m_ht_signal;
 
-
-
     private:
+	  
+	  public :
+      EwkNtupleMaker(TTree *tree=0);
+      virtual ~EwkNtupleMaker();
+	  
+      virtual void prepareTools();
+      virtual void prepareSelection();
+	  
+      virtual void beginRun();
+      virtual void processEvent();
+      virtual void finalizeEvent();
+      virtual void finalizeRun();
+	  void clearVariables();
+	  
+      void setOutNtupleFileName(std::string val) { m_out_ntuple_file_name = val; }
+	  
+      void setCritCutGrl(            bool val) { m_crit_cut_grl = val;              }
+      void setCritCutIncompleteEvent(bool val) { m_crit_cut_incomplete_event = val; }
+      void setCritCutLarError(       bool val) { m_crit_cut_lar_error = val;        }
+      void setCritCutTileError(      bool val) { m_crit_cut_tile_error = val;       }
+      void setCritCutTileHotSpot(    bool val) { m_crit_cut_tile_hot_spot = val;    }
+      void setCritCutTileTrip(       bool val) { m_crit_cut_tile_trip = val;        }
+      void setCritCutBadJetVeto(     bool val) { m_crit_cut_bad_jet_veto = val;     }
+      void setCritCutCaloProblemJet( bool val) { m_crit_cut_calo_problem_jet = val; }
+      void setCritCutPrimaryVertex(  bool val) { m_crit_cut_primary_vertex = val;   }
+      void setCritCutBadMuonVeto(    bool val) { m_crit_cut_bad_mu_veto = val;      }
+      void setCritCutCosmicMuonVeto( bool val) { m_crit_cut_cosmic_mu_veto = val;   }
+      void setCritCutHFOR(           bool val) { m_crit_cut_hfor = val;             }
+      void setCritCutMcOverlap(      bool val) { m_crit_cut_mc_overlap = val;       }
+      void setCritCutGe2Lepton(      bool val) { m_crit_cut_ge_2_lep = val;         }
+      void setCritCut2Lepton(        bool val) { m_crit_cut_2_lep = val;            }
+      void setCritCutTauVeto(        bool val) { m_crit_cut_tau_veto = val;         }
+      void setCritCutMllSfos(        bool val) { m_crit_cut_mll_sfos = val;         }
+      void setCritCut2SignalLepton(  bool val) { m_crit_cut_signal_lep = val;       }
+      void setCritCutPhaseSpace(     bool val) { m_crit_cut_phase_space = val;      }
+      void setCritCutTrigger(        bool val) { m_crit_cut_trigger = val;          }
+      void setCritCutTriggerMatch(   bool val) { m_crit_cut_trigger_match = val;    }
+      void setCritCutPromptLeptons(  bool val) { m_crit_cut_prompt_leptons = val;   }
+      void setCritCutStreamOverlap(  bool val) { m_crit_cut_stream_overlap = val;   }
+	  
+	  void setDoBaselineSkim(bool val){doBaselineSkim = val;}
+	  
+      void setSFOSMllCut(double min, double max) { m_sfos_mll_min = min; m_sfos_mll_max = max; }
+      void setEmmaMtCut(double min, double max)  { m_emma_mt_min = min; m_emma_mt_max = max; }
+      void setMetRelCut(double min, double max)  { m_met_rel_min = min; m_met_rel_max = max; }
+      void setDphillCut(double min, double max)  { m_dphi_ll_min = min; m_dphi_ll_max = max; }
+	  
+	  std::vector<float> getSelectionPt (std::vector<PennSusyFrame::Particle*>* obj);
+	  std::vector<float> getSelectionPhi(std::vector<PennSusyFrame::Particle*>* obj);
+	  std::vector<float> getSelectionEta(std::vector<PennSusyFrame::Particle*>* obj);
+	  std::vector<bool> getSelectionSignal(std::vector<PennSusyFrame::Particle*>* obj);
+	  void getSortLepPts(float i1, float i2, std::vector<float> pt,  std::vector<float> eta,  std::vector<float> phi, std::vector<bool> signal);
+	  
+	  
+      void setOutNtupFileName(std::string val) { m_out_ntuple_file_name = val; }
 
   };
 }

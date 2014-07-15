@@ -92,7 +92,7 @@ def runEwkNtupleMaker( file_list
     if out_file_special_name is not None:
         ewka.setProcessLabel(out_file_special_name)
     ewka.setFancyProgressBar(False)
-
+    ewka.setDoBaselineSkim(True)
     # set is data or MC
     if is_data:
         ewka.setIsData()
