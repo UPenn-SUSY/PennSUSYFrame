@@ -203,7 +203,13 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
-      // std::vector<TH1F*> m_h_num_b_jet;
+      std::vector<TH1F*> m_h_dr_ee; 
+      std::vector<TH1F*> m_h_dr_mm;
+      std::vector<TH1F*> m_h_dr_em;
+      std::vector<TH1F*> m_h_dr_ej; 
+      std::vector<TH1F*> m_h_dr_mj;   
+
+     // std::vector<TH1F*> m_h_num_b_jet;
 
       // std::vector<TH1F*> m_h_bl_dr_all;
       // std::vector<TH1F*> m_h_bl_dr_0;
