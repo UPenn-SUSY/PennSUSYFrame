@@ -1935,6 +1935,10 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
+  const int   dr_bins = 60;
+  const float dr_min = 0.;
+  const float dr_max = 6.;
+
   // const int   num_jet_bins = 6;
   // const float num_jet_min  = -0.5;
   // const float num_jet_max  = num_jet_bins + num_jet_min;
@@ -1990,6 +1994,70 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // initialize dr histograms
+    m_h_dr_ee.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_ee"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(e,e) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(e,e) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+    m_h_dr_mm.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_mm"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(m,m) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(m,m) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+    m_h_dr_em.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_em"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(e,m) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(e,m) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+    m_h_dr_ej.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_ej"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(e,j) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(e,j) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+    m_h_dr_mj.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_mj"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(m,j) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(m,j) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+
+
     // // initialize b jet multiplicity histogram
     // m_h_num_b_jet.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
     //                                    + "__num_b_jet"
@@ -3119,6 +3187,51 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it == FLAVOR_ERROR_1) continue;
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
+    
+    // d(R) plots
+    const PennSusyFrame::Particle* lep_0 = bl_0.getLepton();
+    const PennSusyFrame::Particle* lep_1 = bl_1.getLepton();
+    const PennSusyFrame::Particle* jet_0 = b_jet_list->at(0);
+    const PennSusyFrame::Particle* jet_1 = b_jet_list->at(1);
+    double  dr_ll, dr_lj00, dr_lj01, dr_lj10, dr_lj11;
+    dr_ll = PennSusyFrame::getDr(lep_0, lep_1);
+    dr_lj00 = PennSusyFrame::getDr(lep_0, jet_0);
+    dr_lj01 = PennSusyFrame::getDr(lep_0, jet_1);
+    dr_lj10 = PennSusyFrame::getDr(lep_1, jet_0);
+    dr_lj11 = PennSusyFrame::getDr(lep_1, jet_1);
+    
+    if (fc == FLAVOR_EE) {
+      m_h_dr_ee.at(fc_it)->Fill(dr_ll,   weight);
+      m_h_dr_ej.at(fc_it)->Fill(dr_lj00, weight);
+      m_h_dr_ej.at(fc_it)->Fill(dr_lj01, weight);
+      m_h_dr_ej.at(fc_it)->Fill(dr_lj10, weight);
+      m_h_dr_ej.at(fc_it)->Fill(dr_lj11, weight);
+    }
+    else if (fc == FLAVOR_MM) {
+      m_h_dr_mm.at(fc_it)->Fill(dr_ll,   weight);
+      m_h_dr_mj.at(fc_it)->Fill(dr_lj00, weight);
+      m_h_dr_mj.at(fc_it)->Fill(dr_lj01, weight);
+      m_h_dr_mj.at(fc_it)->Fill(dr_lj10, weight);
+      m_h_dr_mj.at(fc_it)->Fill(dr_lj11, weight);
+    }
+    else {
+      m_h_dr_em.at(fc_it)->Fill(dr_ll, weight);
+      if (bl_0.getLepton()->isElectron() ) { // ie, if lep_0 is electron
+	m_h_dr_ej.at(fc_it)->Fill(dr_lj00, weight);
+	m_h_dr_ej.at(fc_it)->Fill(dr_lj01, weight);
+	m_h_dr_mj.at(fc_it)->Fill(dr_lj10, weight);
+	m_h_dr_mj.at(fc_it)->Fill(dr_lj11, weight);
+      }
+      else {
+	m_h_dr_ej.at(fc_it)->Fill(dr_lj10, weight);
+	m_h_dr_ej.at(fc_it)->Fill(dr_lj11, weight);
+	m_h_dr_mj.at(fc_it)->Fill(dr_lj00, weight);
+	m_h_dr_mj.at(fc_it)->Fill(dr_lj01, weight);
+      }
+    }
+
+  // // ---------------------------------------------------------------------------
+
 
   //   // fill b jet multiplicity plots
   //   m_h_num_b_jet.at(fc_it)->Fill(num_jet, weight);
@@ -3417,6 +3530,12 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (FLAVOR_CHANNEL_STRINGS[fc_it] == "flavor_error") continue;
+
+    m_h_dr_ee.at(fc_it)->Write();
+    m_h_dr_mm.at(fc_it)->Write();
+    m_h_dr_em.at(fc_it)->Write();
+    m_h_dr_ej.at(fc_it)->Write();
+    m_h_dr_mj.at(fc_it)->Write();
 
     // m_h_num_b_jet.at(fc_it)->Write();
 
