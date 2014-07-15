@@ -40,6 +40,19 @@ PennSusyFrame::TntMaker::~TntMaker()
 void PennSusyFrame::TntMaker::prepareTools()
 {
   PennSusyFrameCore::prepareTools();
+
+  // Turn off all overlap removal
+  m_object_cleaning.setEEConeSize(0.0);
+  m_object_cleaning.setEJConeSize(0.0);
+  m_object_cleaning.setMJConeSize(0.0);
+  m_object_cleaning.setETConeSize(0.0);
+  m_object_cleaning.setMTConeSize(0.0);
+  m_object_cleaning.setJEConeSize(0.0);
+  m_object_cleaning.setJMConeSize(0.0);
+  m_object_cleaning.setEMConeSize(0.0);
+  m_object_cleaning.setMMConeSize(0.0);
+  m_object_cleaning.setTJConeSize(0.0);
+  m_object_cleaning.setSFOSMllMin(0.0);
 }
 
 // -----------------------------------------------------------------------------

@@ -82,6 +82,18 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
               + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
               );
   }
+
+  m_object_cleaning.setEEConeSize(0.05);
+  m_object_cleaning.setEJConeSize(0.20);
+  m_object_cleaning.setMJConeSize(0.00); // not done by default
+  m_object_cleaning.setETConeSize(0.00);
+  m_object_cleaning.setMTConeSize(0.00);
+  m_object_cleaning.setJEConeSize(0.40);
+  m_object_cleaning.setJMConeSize(0.40);
+  m_object_cleaning.setEMConeSize(0.01);
+  m_object_cleaning.setMMConeSize(0.05);
+  m_object_cleaning.setTJConeSize(0.00);
+  m_object_cleaning.setSFOSMllMin(12.e3);
 }
 
 // -----------------------------------------------------------------------------
@@ -250,6 +262,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_GRL);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_GRL, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_LEP_SF);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_LEP_SF, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -260,6 +275,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_INCOMPLETE_EVENT);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_INCOMPLETE_EVENT, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_INCOMPLETE_EVENT);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_INCOMPLETE_EVENT, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -270,6 +288,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_LAR_ERROR);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_LAR_ERROR, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_LAR_ERROR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_LAR_ERROR, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -280,6 +301,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_TILE_ERROR);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_TILE_ERROR, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_TILE_ERROR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_TILE_ERROR, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -290,6 +314,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_TILE_HOT_SPOT);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_TILE_HOT_SPOT, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_TILE_HOT_SPOT);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_TILE_HOT_SPOT, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -300,6 +327,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_TILE_TRIP);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_TILE_TRIP, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_TILE_TRIP);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_TILE_TRIP, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -310,6 +340,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_BAD_JET_VETO);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_BAD_JET_VETO, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_BAD_JET_VETO);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_BAD_JET_VETO, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -320,6 +353,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_CALO_PROBLEM_JET);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_CALO_PROBLEM_JET, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_CALO_PROBLEM_JET);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_CALO_PROBLEM_JET, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -330,6 +366,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_PRIMARY_VERTEX);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_PRIMARY_VERTEX, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_PRIMARY_VERTEX);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_PRIMARY_VERTEX, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -340,6 +379,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_BAD_MUON);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_BAD_MUON, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_BAD_MUON);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_BAD_MUON, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -350,6 +392,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_COSMIC_MUON_VETO);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_COSMIC_MUON_VETO, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_COSMIC_MUON_VETO);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_COSMIC_MUON_VETO, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -360,6 +405,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_HFOR);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_HFOR, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_HFOR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_HFOR, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -372,6 +420,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_MC_OVERLAP);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_MC_OVERLAP, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_MC_OVERLAP);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_MC_OVERLAP, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -386,6 +437,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_GE_2_BASELINE_LEPTONS);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_GE_2_BASELINE_LEPTONS, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_GE_2_BASELINE_LEPTONS);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_GE_2_BASELINE_LEPTONS, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -398,6 +452,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
     {
       m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_EQ_2_BASELINE_LEPTONS);
       m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_EQ_2_BASELINE_LEPTONS, m_event_weight);
+
+      m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_EQ_2_BASELINE_LEPTONS);
+      m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_EQ_2_BASELINE_LEPTONS, m_event_weight);
     }
   }
 
@@ -414,6 +471,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, BMINUSL_CUT_EQ_2_SIGNAL_LEPTON);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, BMINUSL_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), BMINUSL_CUT_EQ_2_SIGNAL_LEPTON);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), BMINUSL_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -714,26 +774,26 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     double ht = m_event_quantities.getHtBaseline() / 1.e3;
     double met_sig = m_met.getMetSigBaseline();
 
-    bool pass_sr_900_mbl     = (mbl_asym < 0.27 );
-    bool pass_sr_900_ht      = (ht       > 1854 );
-    bool pass_sr_900_met_sig = (met_sig  < 6.48*10*sqrt(10) );
+    // bool pass_sr_900_mbl     = (mbl_asym < 0.27 );
+    // bool pass_sr_900_ht      = (ht       > 1854 );
+    // bool pass_sr_900_met_sig = (met_sig  < 6.48*10*sqrt(10) );
 
-    bool pass_sr_1000_mbl         = (mbl_asym < 0.50  );
-    bool pass_sr_1000_ht          = (ht       > 2189  );
-    bool pass_sr_1000_met_sig     = (met_sig  < 29.83 );
-    bool pass_sr_1000_mod_met_sig = (met_sig  < 6.48*10*sqrt(10)  );
+    // bool pass_sr_1000_mbl         = (mbl_asym < 0.50  );
+    // bool pass_sr_1000_ht          = (ht       > 2189  );
+    // bool pass_sr_1000_met_sig     = (met_sig  < 29.83 );
+    // bool pass_sr_1000_mod_met_sig = (met_sig  < 6.48*10*sqrt(10)  );
 
     bool pass_sr_900_1000_v1_mbl     = (mbl_asym < 0.50 );
     bool pass_sr_900_1000_v1_ht      = (ht       > 2000 );
     bool pass_sr_900_1000_v1_met_sig = (met_sig  < 6.5*10*sqrt(10));
 
-    bool pass_sr_900_1000_v2_mbl     = (mbl_asym < 0.60);
-    bool pass_sr_900_1000_v2_ht      = (ht       > 2000);
-    bool pass_sr_900_1000_v2_met_sig = (met_sig  < 6.5*10*sqrt(10));
+    // bool pass_sr_900_1000_v2_mbl     = (mbl_asym < 0.60);
+    // bool pass_sr_900_1000_v2_ht      = (ht       > 2000);
+    // bool pass_sr_900_1000_v2_met_sig = (met_sig  < 6.5*10*sqrt(10));
 
-    bool pass_sr_900_1000_v3_mbl     = (mbl_asym < 0.50);
-    bool pass_sr_900_1000_v3_ht      = (ht       > 2000);
-    bool pass_sr_900_1000_v3_met_sig = (met_sig  < 6.5*10*sqrt(10));
+    // bool pass_sr_900_1000_v3_mbl     = (mbl_asym < 0.50);
+    // bool pass_sr_900_1000_v3_ht      = (ht       > 2000);
+    // bool pass_sr_900_1000_v3_met_sig = (met_sig  < 6.5*10*sqrt(10));
 
     // // fill various regions from 900 gev optimization
     // if (pass_sr_900_mbl) {

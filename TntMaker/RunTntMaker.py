@@ -9,27 +9,8 @@ import glob
 
 import ROOT
 
-# ------------------------------------------------------------------------------
-def getFileListFromDir(file_path):
-    print 'getting files from dir: %s' % file_path
-    file_list = glob.glob('%s/*' % file_path)
-    return file_list
-
-# ------------------------------------------------------------------------------
-def getFileListFromFile(file_path):
-    file_list = []
-
-    f = file(file_path)
-    for l in f.readlines():
-        l = l.strip('\n')
-        file_list.append(l)
-
-    return file_list
-
-# ------------------------------------------------------------------------------
-def getFileListFromGridInput(grid_input_string):
-    file_list = grid_input_string.split(',')
-    return file_list
+sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
+import RunHelpers
 
 # ------------------------------------------------------------------------------
 def runTntMaker(file_list, is_data = False, is_full_sim = False):
@@ -59,6 +40,7 @@ def runTntMaker(file_list, is_data = False, is_full_sim = False):
     if is_full_sim:
         tntm.setFullSim()
 
+    print 'setting critical cuts!'
     tntm.setCritCutIncompleteEvent(1)
     tntm.setCritCutLarError(       1)
     tntm.setCritCutTileError(      1)
@@ -74,7 +56,9 @@ def runTntMaker(file_list, is_data = False, is_full_sim = False):
     tntm.setCritCutGe2Lepton(      1)
     tntm.setCritCut2Lepton(        0)
 
+    print 'preparing tools!'
     tntm.prepareTools()
+    print 'looping'
     tntm.Loop()
 
     # ==============================================================================
