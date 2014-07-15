@@ -155,12 +155,18 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 {
   PennSusyFrameCore::beginRun();
 
+  m_histogram_handlers.resize(BMINUSL_HIST_N);
+
+  // initial delta(R) distributions, before any selections
+  m_histogram_handlers.at(0).push_back(new PennSusyFrame::DeltaRHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[0]) );
+
   // prepare selection
   prepareSelection();
 
-  m_histogram_handlers.resize(BMINUSL_HIST_N);
+  //  m_histogram_handlers.resize(BMINUSL_HIST_N);
 
   for (unsigned int hist_level = 0; hist_level != BMINUSL_HIST_N; ++hist_level) {
+    if (hist_level == 0) continue; // this is for pre-selection dR histos.
     std::cout << "creating histograms with hist level: " << hist_level << " -- " << PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level] << "\n";
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::EventLevelHists(      PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::LeptonKinematicsHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
@@ -652,6 +658,15 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , m_event_weight
                    );
   }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    // fill histograms for GE_4_OBJECTS hist level
+  fillHistHandles( PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS
+		   , m_bl_0
+		   , m_bl_1
+		   , m_event_weight
+		   );
+
+//}
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for ZVETO hist level
@@ -1725,6 +1740,7 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                                     , *bl_0
                                                                     , *bl_1
                                                                     , m_mc_truth
+								    , m_truth_match_tool
                                                                     , weight
                                                                     );
   }

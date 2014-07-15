@@ -161,8 +161,8 @@ def runBMinusLAnalysis( file_list
 
     # Set cut values
     print 'set cuts'
-    lep_pt_cut = 40.e3
-    jet_pt_cut = 40.e3
+    lep_pt_cut = 10.e3
+    jet_pt_cut = 10.e3
     bmla.setElPtCut(  lep_pt_cut, -1     )
     bmla.setMuPtCut(  lep_pt_cut, -1     )
     bmla.setBJetPtCut(jet_pt_cut, -1     )

@@ -5,7 +5,7 @@
 #include <vector>
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 #include "HistogramHandlers/include/HistogramHandlers.h"
-
+#include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 // =============================================================================
 class TFile;
 class TDirectory;
@@ -47,7 +47,8 @@ namespace PennSusyFrame
                               );
       virtual void write(TDirectory*);
       virtual bool pass(float eta_0, float eta_1, float eta_0_l, float eta_1_l);
-
+      virtual void calcEff2d(TH2F*, TH2F*, TH2F*, bool raw);
+      
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       std::vector<TH1F*> m_h_num_b_jet;
@@ -67,6 +68,30 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_b_jet_pt_all;
       std::vector<TH1F*> m_h_b_jet_pt_0;
       std::vector<TH1F*> m_h_b_jet_pt_1;
+
+      std::vector<TH1F*> m_h_b_jet_raw_pt_all;
+      std::vector<TH1F*> m_h_b_jet_raw_pt_0;
+      std::vector<TH1F*> m_h_b_jet_raw_pt_1;
+
+      std::vector<TH1F*> m_h_b_jet_from_stop_pt_all;
+      std::vector<TH1F*> m_h_b_jet_from_stop_pt_0;
+      std::vector<TH1F*> m_h_b_jet_from_stop_pt_1;
+
+      std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_all;
+      std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_0;
+      std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_1;
+
+      std::vector<TH2F*> m_h_b_jet_mult_pt_all;
+      std::vector<TH2F*> m_h_b_jet_mult_pt_0;
+      std::vector<TH2F*> m_h_b_jet_mult_pt_1;
+
+      std::vector<TH1F*> m_h_lep_from_stop_pt_all;
+      std::vector<TH1F*> m_h_lep_from_stop_pt_0;
+      std::vector<TH1F*> m_h_lep_from_stop_pt_1;
+
+      std::vector<TH1F*> m_h_lep_both_from_stop_pt_all;
+      std::vector<TH1F*> m_h_lep_both_from_stop_pt_0;
+      std::vector<TH1F*> m_h_lep_both_from_stop_pt_1;
 
       std::vector<TH1F*> m_h_b_jet_dr_q_all;
       std::vector<TH1F*> m_h_b_jet_dr_q_0;
@@ -98,7 +123,15 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_ptbl_diff;
       std::vector<TH2F*> m_h_ptbl_2d;
 
-      std::vector<TH2F*> m_h_pt_b_jet1vl1;
+      std::vector<TH2F*> m_h_b_jet1vl1_pt;
+      std::vector<TH2F*> m_h_b_jet1vl1_pt_eff;
+      std::vector<TH2F*> m_h_b_jet1vl1_pt_num;
+      std::vector<TH2F*> m_h_b_jet1vl1_raw_pt;
+      std::vector<TH2F*> m_h_b_jet1vl1_raw_pt_eff;
+      std::vector<TH2F*> m_h_b_jet1vl1_raw_pt_num;
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt;
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt_eff;
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt_num;
       std::vector<TH2F*> m_h_fiducial_b_jet1vl1_pass;
       std::vector<TH2F*> m_h_fiducial_b_jet1vl1_fail;
       std::vector<TH1F*> m_h_mbl_anti_pairing_all;
@@ -142,6 +175,7 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_bl_deta_diff_parent_pairing;
 
       std::vector<TH1F*> m_h_eta_event_passfail;
+
   };
   //
   //
@@ -161,6 +195,7 @@ namespace PennSusyFrame
                               , const PennSusyFrame::blPair&
                               , const PennSusyFrame::blPair&
                               , const PennSusyFrame::MCTruth&
+				, PennSusyFrame::TruthMatchTool&
                               , float weight
                               );
       virtual void write(TDirectory*);
@@ -252,6 +287,13 @@ namespace PennSusyFrame
       // std::vector<TH1F*> m_h_bl_deta_diff_parent_pairing;
 
       // std::vector<TH1F*> m_h_eta_event_passfail;
+      std::vector<TH2F*> m_h_lep_pt_resolution_all;
+      std::vector<TH2F*> m_h_lep_pt_resolution_0;
+      std::vector<TH2F*> m_h_lep_pt_resolution_1;
+      std::vector<TH2F*> m_h_lep_E_resolution_all;
+      std::vector<TH2F*> m_h_lep_E_resolution_0;
+      std::vector<TH2F*> m_h_lep_E_resolution_1;
+
   };
 }
 

@@ -53,6 +53,37 @@ namespace PennSusyFrame
   };
 
   // ===========================================================================
+  // = DeltaRHists
+  // ===========================================================================
+  class DeltaRHists : public HistogramHandler
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      DeltaRHists(std::string name_tag = "");
+      virtual ~DeltaRHists();
+
+      virtual void Fill( const PennSusyFrame::Event&
+                       , const PennSusyFrame::EventLevelQuantities&
+                       , const std::vector<PennSusyFrame::Electron*>*
+                       , const std::vector<PennSusyFrame::Muon*>*
+                       , const std::vector<PennSusyFrame::Jet*>*
+                       , const PennSusyFrame::Met&
+                       , float weight
+                       );
+      virtual void write(TDirectory*);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::vector<TH1F*> m_h_dr_ee;
+      std::vector<TH1F*> m_h_dr_mm;
+      std::vector<TH1F*> m_h_dr_em;
+      std::vector<TH1F*> m_h_dr_ej;
+      std::vector<TH1F*> m_h_dr_mj;
+
+  };
+
+
+  // ===========================================================================
   // = EventLevelHists
   // ===========================================================================
   class EventLevelHists : public HistogramHandler
@@ -74,6 +105,7 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
+      std::vector<TH1F*> m_h_flavor_channel;
       std::vector<TH1F*> m_h_mll;
       std::vector<TH1F*> m_h_mt2;
       std::vector<TH1F*> m_h_ptll;
@@ -109,6 +141,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
+
+      std::vector<TH1F*> m_h_raw_pt_all;
+      std::vector<TH1F*> m_h_raw_pt_0;
+      std::vector<TH1F*> m_h_raw_pt_1;
 
       std::vector<TH1F*> m_h_eta_all;
       std::vector<TH1F*> m_h_eta_0;
