@@ -83,27 +83,16 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
               );
   }
 
-//   m_object_cleaning.setEEConeSize(0.05);
-//   m_object_cleaning.setEJConeSize(0.20);
-//   m_object_cleaning.setMJConeSize(0.00); // not done by default
-//   m_object_cleaning.setETConeSize(0.00);
-//   m_object_cleaning.setMTConeSize(0.00);
-//   m_object_cleaning.setJEConeSize(0.40);
-//   m_object_cleaning.setJMConeSize(0.40);
-//   m_object_cleaning.setEMConeSize(0.01);
-//   m_object_cleaning.setMMConeSize(0.05);
-//   m_object_cleaning.setTJConeSize(0.00);
-//   m_object_cleaning.setSFOSMllMin(12.e3);
-  m_object_cleaning.setEEConeSize(0.); //05);
-  m_object_cleaning.setEJConeSize(0.); //20);
-  m_object_cleaning.setMJConeSize(0.); //00); // not done by default
-  m_object_cleaning.setETConeSize(0.); //00);
-  m_object_cleaning.setMTConeSize(0.); //00);
-  m_object_cleaning.setJEConeSize(0.); //40);
-  m_object_cleaning.setJMConeSize(0.); //40);
-  m_object_cleaning.setEMConeSize(0.); //01);
-  m_object_cleaning.setMMConeSize(0.); //05);
-  m_object_cleaning.setTJConeSize(0.); //00);
+  m_object_cleaning.setEEConeSize(0.05);
+  m_object_cleaning.setEJConeSize(0.20);
+  m_object_cleaning.setMJConeSize(0.20); // not done by default
+  m_object_cleaning.setETConeSize(0.00);
+  m_object_cleaning.setMTConeSize(0.00);
+  m_object_cleaning.setJEConeSize(0.40);
+  m_object_cleaning.setJMConeSize(0.40);
+  m_object_cleaning.setEMConeSize(0.01);
+  m_object_cleaning.setMMConeSize(0.05);
+  m_object_cleaning.setTJConeSize(0.00);
   m_object_cleaning.setSFOSMllMin(12.e3);
 }
 
