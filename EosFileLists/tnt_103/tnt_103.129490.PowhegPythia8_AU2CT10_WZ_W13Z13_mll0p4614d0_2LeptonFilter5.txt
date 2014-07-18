@@ -1,0 +1,2 @@
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.129490.PowhegPythia8_AU2CT10_WZ_W13Z13_mll0p4614d0_2LeptonFilter5.tnt_103.140704213043/user.bjackson.035694._00001.Tnt.root        140000        63084
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.129490.PowhegPythia8_AU2CT10_WZ_W13Z13_mll0p4614d0_2LeptonFilter5.tnt_103.140704213043/user.bjackson.035694._00002.Tnt.root        50000        22664

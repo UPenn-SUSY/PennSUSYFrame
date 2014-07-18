@@ -1,0 +1,3 @@
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_103_v2_z_bfilter/user.bjackson.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.tnt_103.140708185455/user.bjackson.036711._00001.Tnt.root        39900        34653
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_103_v2_z_bfilter/user.bjackson.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.tnt_103.140708185512/user.bjackson.036711._00002.Tnt.root        99999        86918
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_103_v2_z_bfilter/user.bjackson.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.tnt_103.140708185512/user.bjackson.036711._00003.Tnt.root        59199        51595

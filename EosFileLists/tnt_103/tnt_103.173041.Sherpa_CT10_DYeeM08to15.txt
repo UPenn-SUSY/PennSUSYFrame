@@ -1,0 +1,9 @@
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00001.Tnt.root        669999        73949
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00002.Tnt.root        590000        63327
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00003.Tnt.root        569999        61456
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00004.Tnt.root        510000        52763
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00005.Tnt.root        620000        67348
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00006.Tnt.root        579998        62361
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00007.Tnt.root        559999        60128
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00008.Tnt.root        539999        56540
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_103/user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_103.140704214528/user.bjackson.035760._00009.Tnt.root        360000        38029
