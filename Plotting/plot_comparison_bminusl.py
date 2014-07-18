@@ -27,10 +27,16 @@ def main():
     #                                       , input_file_list = [ "%s/BMinusL.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.hists.root" % hist_dir
     #                                                           ]
     #                                       )
+    # ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
+    #                                       # , fill_color = ROOT.kAzure+8
+    #                                       , fill_color = ROOT.kGreen+2
+    #                                       , input_file_list = [ # "%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root" % hist_dir
+    #                                                           ]
+    #                                       )
     ec_ttbar = hh.Container.EntryContainer( label = 'ttbar'
                                           # , fill_color = ROOT.kAzure+8
                                           , fill_color = ROOT.kGreen+2
-                                          , input_file_list = [ "%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.hists.root" % hist_dir
+                                          , input_file_list = [ "%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.hists.root" % hist_dir
                                                               ]
                                           )
 
@@ -51,25 +57,52 @@ def main():
     #                                                         , "%s/BMinusL.110828.AlpgenPythia_P2011C_ZtautaubbNp3.hists.root" % hist_dir
     #                                                         ]
     #                                     )
+    # ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
+    #                                     , fill_color = ROOT.kRed+1
+    #                                     , input_file_list = [ "%s/BMinusL.200332.AlpgenPythia_Auto_P2011C_ZeebbNp0.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200333.AlpgenPythia_Auto_P2011C_ZeebbNp1.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200334.AlpgenPythia_Auto_P2011C_ZeebbNp2.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.hists.root" % hist_dir
+    #                                                         , "%s/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root" % hist_dir
+    #                                                         ]
+    #                                     )
     ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
                                         , fill_color = ROOT.kRed+1
-                                        , input_file_list = [ "%s/BMinusL.200332.AlpgenPythia_Auto_P2011C_ZeebbNp0.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200333.AlpgenPythia_Auto_P2011C_ZeebbNp1.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200334.AlpgenPythia_Auto_P2011C_ZeebbNp2.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.hists.root" % hist_dir
-                                                            , "%s/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root" % hist_dir
+                                        , input_file_list = [ "%s/BMinusL.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.hists.root" % hist_dir
+                                                            , "%s/BMinusL.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.hists.root" % hist_dir
                                                             ]
                                         )
+    # ec_single_top = hh.Container.EntryContainer( label = 'Single top'
+    #                                            , fill_color = ROOT.kGreen-1
+    #                                            , input_file_list = [ "%s/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.root" % hist_dir
+    #                                                                ]
+    #                                            )
     ec_single_top = hh.Container.EntryContainer( label = 'Single top'
                                                , fill_color = ROOT.kGreen-1
-                                               , input_file_list = [ "%s/BMinusL.108346.McAtNloJimmy_AUET2CT10_SingleTopWtChanIncl.hists.root" % hist_dir
+                                               , input_file_list = [ "%s/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.hists.root" % hist_dir
                                                                    ]
                                                )
 
@@ -171,3 +204,18 @@ def main():
 # ==============================================================================
 if __name__ == '__main__':
     main()
+
+
+
+
+# BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.hists.root
+# BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.hists.root
+# BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.hists.root
+# BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.hists.root
+# BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.hists.root
+# BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.hists.root
+# BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root
+# BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.hists.root
+# BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.hists.root
+# BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.hists.root
+# BMinusL.dummy_hists.root

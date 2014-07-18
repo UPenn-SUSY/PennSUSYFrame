@@ -83,27 +83,25 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
               );
   }
 
-//   m_object_cleaning.setEEConeSize(0.05);
-//   m_object_cleaning.setEJConeSize(0.20);
-//   m_object_cleaning.setMJConeSize(0.00); // not done by default
-//   m_object_cleaning.setETConeSize(0.00);
-//   m_object_cleaning.setMTConeSize(0.00);
-//   m_object_cleaning.setJEConeSize(0.40);
-//   m_object_cleaning.setJMConeSize(0.40);
-//   m_object_cleaning.setEMConeSize(0.01);
-//   m_object_cleaning.setMMConeSize(0.05);
-//   m_object_cleaning.setTJConeSize(0.00);
-//   m_object_cleaning.setSFOSMllMin(12.e3);
-  m_object_cleaning.setEEConeSize(0.); //05);
-  m_object_cleaning.setEJConeSize(0.); //20);
-  m_object_cleaning.setMJConeSize(0.); //00); // not done by default
-  m_object_cleaning.setETConeSize(0.); //00);
-  m_object_cleaning.setMTConeSize(0.); //00);
-  m_object_cleaning.setJEConeSize(0.); //40);
-  m_object_cleaning.setJMConeSize(0.); //40);
-  m_object_cleaning.setEMConeSize(0.); //01);
-  m_object_cleaning.setMMConeSize(0.); //05);
-  m_object_cleaning.setTJConeSize(0.); //00);
+  // m_object_cleaning.setEEConeSize(0.05);
+  // m_object_cleaning.setEJConeSize(0.20);
+  // m_object_cleaning.setMJConeSize(0.20); // not done by default
+  // m_object_cleaning.setETConeSize(0.00);
+  // m_object_cleaning.setMTConeSize(0.00);
+  // m_object_cleaning.setJEConeSize(0.40); // m_object_cleaning.setJMConeSize(0.40);
+  // m_object_cleaning.setEMConeSize(0.01);
+  // m_object_cleaning.setMMConeSize(0.05);
+  // m_object_cleaning.setTJConeSize(0.00);
+  m_object_cleaning.setEEConeSize(0.0);
+  m_object_cleaning.setEJConeSize(0.0);
+  m_object_cleaning.setMJConeSize(0.0); // not done by default
+  m_object_cleaning.setETConeSize(0.0);
+  m_object_cleaning.setMTConeSize(0.0);
+  m_object_cleaning.setJEConeSize(0.0);
+  m_object_cleaning.setJMConeSize(0.0);
+  m_object_cleaning.setEMConeSize(0.0);
+  m_object_cleaning.setMMConeSize(0.0);
+  m_object_cleaning.setTJConeSize(0.0);
   m_object_cleaning.setSFOSMllMin(12.e3);
 }
 
@@ -170,9 +168,11 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
   prepareSelection();
 
   m_histogram_handlers.resize(BMINUSL_HIST_N);
+  m_bminusl_histogram_handler.reserve(BMINUSL_HIST_N);
+  m_bminusl_detailed_histogram_handler.reserve(BMINUSL_HIST_N);
 
   for (unsigned int hist_level = 0; hist_level != BMINUSL_HIST_N; ++hist_level) {
-    if (hist_level == 0) continue; // this is for pre-selection dR histos.
+    // if (hist_level == 0) continue; // this is for pre-selection dR histos.
     std::cout << "creating histograms with hist level: " << hist_level << " -- " << PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level] << "\n";
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::EventLevelHists(      PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::LeptonKinematicsHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );

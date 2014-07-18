@@ -1,0 +1,11 @@
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00001.Tnt.root.1        180000        118651
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00002.Tnt.root        170000        111756
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00003.Tnt.root        170000        111516
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00004.Tnt.root        169999        111930
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00005.Tnt.root        160000        105557
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00006.Tnt.root        159999        104992
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00007.Tnt.root        160000        105303
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00008.Tnt.root        159999        105079
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00009.Tnt.root        150000        98885
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00010.Tnt.root        160000        104987
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_103_v2.140712114945/user.bjackson.036847._00011.Tnt.root        159800        104934

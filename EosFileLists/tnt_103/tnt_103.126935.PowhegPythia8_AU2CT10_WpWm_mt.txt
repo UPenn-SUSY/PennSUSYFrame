@@ -1,0 +1,6 @@
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.126935.PowhegPythia8_AU2CT10_WpWm_mt.tnt_103.140704212318/user.bjackson.035634._00001.Tnt.root        140000        18127
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.126935.PowhegPythia8_AU2CT10_WpWm_mt.tnt_103.140704212318/user.bjackson.035634._00002.Tnt.root        129999        16599
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.126935.PowhegPythia8_AU2CT10_WpWm_mt.tnt_103.140704212318/user.bjackson.035634._00003.Tnt.root        30000        3913
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.126935.PowhegPythia8_AU2CT10_WpWm_mt.tnt_103.140704212333/user.bjackson.035634._00004.Tnt.root        140000        18003
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.126935.PowhegPythia8_AU2CT10_WpWm_mt.tnt_103.140704212333/user.bjackson.035634._00005.Tnt.root        130000        16472
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.126935.PowhegPythia8_AU2CT10_WpWm_mt.tnt_103.140704212333/user.bjackson.035634._00006.Tnt.root        29999        3684
