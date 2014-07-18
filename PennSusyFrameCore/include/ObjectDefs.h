@@ -137,6 +137,7 @@ namespace PennSusyFrame
       void setTriggerWeight(double val) { m_trigger_weight = val; }
       void setBTagSF(double val)        { m_b_tag_sf = val; }
       void setCFWeight(double val)      { m_cf_weight = val; }
+      void setFakeWeight(double val)    { m_fake_weight = val; }
 
       // TODO move accessors to cxx file
       double getMll()           const { return m_mll; }
@@ -154,6 +155,7 @@ namespace PennSusyFrame
       double getTriggerWeight() const { return m_trigger_weight; }
       double getBTagSF()        const { return m_b_tag_sf; }
       double getCFWeight()      const { return m_cf_weight; }
+      double getFakeWeight()    const { return m_fake_weight; }
 
       void print() const;
 
@@ -172,8 +174,8 @@ namespace PennSusyFrame
       double m_lepton_sf;
       double m_trigger_weight;
       double m_b_tag_sf;
-
       double m_cf_weight;
+      double m_fake_weight;
   };
 
   // =============================================================================

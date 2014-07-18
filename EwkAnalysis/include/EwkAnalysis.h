@@ -11,6 +11,7 @@
 #include "EwkAnalysis/include/EwkHistogramHandlers.h"
 #include "EwkAnalysis/include/EwkCutFlowTracker.h"
 #include "EwkAnalysis/include/EwkChargeFlipTool.h"
+#include "EwkAnalysis/include/EwkMatrixMethodTool.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -75,14 +76,20 @@ namespace PennSusyFrame
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
+      void setPrintEventDetails(bool val) { m_print_event_details = val; }
+
     protected:
       std::string m_out_tnt_file_name;
       std::string m_out_hist_file_name;
 
 
+
       void fillHistHandles( EWK_HIST_LEVELS
                           , float weight
-                          );
+			  );
+
+      void printEventDetails();
+
 
       bool m_crit_cut_grl;
       bool m_crit_cut_incomplete_event;
@@ -115,11 +122,15 @@ namespace PennSusyFrame
       bool m_crit_cut_b_veto;
       bool m_crit_cut_num_jet;
 
+      bool m_print_event_details;
+
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
 
       PennSusyFrame::ChargeFlipTool m_charge_flip_tool;
+
+      PennSusyFrame::MatrixMethodTool m_matrix_method_tool;
 
       EwkCutFlowTracker m_raw_cutflow_tracker;
       EwkCutFlowTracker m_cutflow_tracker;
