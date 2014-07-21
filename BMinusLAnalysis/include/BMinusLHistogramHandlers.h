@@ -77,21 +77,34 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_b_jet_from_stop_pt_0;
       std::vector<TH1F*> m_h_b_jet_from_stop_pt_1;
 
+      std::vector<TH1F*> m_h_b_jet_from_stop_raw_pt_all;
+
       std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_all;
       std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_0;
       std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_1;
+
+      std::vector<TH1F*> m_h_b_jet_both_from_stop_raw_pt_all;
+      std::vector<TH1F*> m_h_b_jet_both_from_stop_raw_pt_1;
 
       std::vector<TH2F*> m_h_b_jet_mult_pt_all;
       std::vector<TH2F*> m_h_b_jet_mult_pt_0;
       std::vector<TH2F*> m_h_b_jet_mult_pt_1;
 
+      std::vector<TH2F*> m_h_b_jet_mult_raw_pt_all;
+      std::vector<TH2F*> m_h_b_jet_mult_raw_pt_1;
+
       std::vector<TH1F*> m_h_lep_from_stop_pt_all;
       std::vector<TH1F*> m_h_lep_from_stop_pt_0;
       std::vector<TH1F*> m_h_lep_from_stop_pt_1;
 
+      std::vector<TH1F*> m_h_lep_from_stop_raw_pt_all;
+
       std::vector<TH1F*> m_h_lep_both_from_stop_pt_all;
       std::vector<TH1F*> m_h_lep_both_from_stop_pt_0;
       std::vector<TH1F*> m_h_lep_both_from_stop_pt_1;
+
+      std::vector<TH1F*> m_h_lep_both_from_stop_raw_pt_all;
+      std::vector<TH1F*> m_h_lep_both_from_stop_raw_pt_1;
 
       std::vector<TH1F*> m_h_b_jet_dr_q_all;
       std::vector<TH1F*> m_h_b_jet_dr_q_0;
@@ -132,6 +145,9 @@ namespace PennSusyFrame
       std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt;
       std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt_eff;
       std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt_num;
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_raw_pt;
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_raw_pt_eff;
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_raw_pt_num;
       std::vector<TH2F*> m_h_fiducial_b_jet1vl1_pass;
       std::vector<TH2F*> m_h_fiducial_b_jet1vl1_fail;
       std::vector<TH1F*> m_h_mbl_anti_pairing_all;

@@ -311,6 +311,19 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                       , pt_bins, pt_min, pt_max
                                       )
                             );
+    m_h_b_jet_from_stop_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+							  + "__b_jet_from_stop_raw_pt_all"
+							  + "__"
+							  + name_tag
+							  ).c_str()
+							, ( "p_{T} - "
+							    + FLAVOR_CHANNEL_STRINGS[fc_it]
+							    + " ; p_{T} [GeV] ; Entries"
+							    ).c_str()
+							, pt_bins, pt_min, pt_max
+							)
+					      );
+
     m_h_b_jet_both_from_stop_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + "__b_jet_both_from_stop_pt_all"
                                           + "__"
@@ -350,6 +363,30 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                       )
                             );
 
+    m_h_b_jet_both_from_stop_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__b_jet_both_from_stop_raw_pt_all"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "p_{T} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; p_{T} [GeV] ; Entries"
+                                          ).c_str()
+                                        , pt_bins, pt_min, pt_max
+                                        )
+                              );
+    m_h_b_jet_both_from_stop_raw_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__b_jet_both_from_stop_raw_pt_1"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "p_{T}^{1} - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; p_{T}^{1} [GeV] ; Entries"
+                                        ).c_str()
+                                      , pt_bins, pt_min, pt_max
+                                      )
+                            );
     m_h_b_jet_mult_pt_all.push_back( new TH2F ( (FLAVOR_CHANNEL_STRINGS[fc_it]
 						+ "__b_jet_mult_pt_all"
 						+ "__"
@@ -380,6 +417,32 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_b_jet_mult_pt_1.push_back( new TH2F ( (FLAVOR_CHANNEL_STRINGS[fc_it]
 						+ "__b_jet_mult_pt_1"
+						+ "__"
+						+ name_tag
+						).c_str()
+					       ,( " p_{T}^{1} - "
+						  + FLAVOR_CHANNEL_STRINGS[fc_it]
+						  +  " ; p_{T}^{1} [GeV] ; Entries"
+						  ).c_str()
+					       , pt_bins, pt_min, pt_max
+						, 4, 1, 5
+					       )
+				    );
+    m_h_b_jet_mult_raw_pt_all.push_back( new TH2F ( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						+ "__b_jet_mult_raw_pt_all"
+						+ "__"
+						+ name_tag
+						).c_str()
+					       ,( " p_{T}^{all} - "
+						  + FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "; p_{T}^{all} [GeV] ; Entries"
+						  ).c_str()
+					       , pt_bins, pt_min, pt_max
+						, 4, 1, 5
+					       )
+				    );
+    m_h_b_jet_mult_raw_pt_1.push_back( new TH2F ( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						+ "__b_jet_mult_raw_pt_1"
 						+ "__"
 						+ name_tag
 						).c_str()
@@ -433,6 +496,18 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                       , pt_bins, pt_min, pt_max
                                       )
                             );
+    m_h_lep_from_stop_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_from_stop_raw_pt_all"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "p_{T} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; p_{T} [GeV] ; Entries"
+                                          ).c_str()
+                                        , pt_bins, pt_min, pt_max
+                                        )
+                              );
     m_h_lep_both_from_stop_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + "__lep_both_from_stop_pt_all"
                                           + "__"
@@ -461,6 +536,30 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_lep_both_from_stop_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                         + "__lep_both_from_stop_pt_1"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "p_{T}^{1} - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; p_{T}^{1} [GeV] ; Entries"
+                                        ).c_str()
+                                      , pt_bins, pt_min, pt_max
+                                      )
+                            );
+    m_h_lep_both_from_stop_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_both_from_stop_raw_pt_all"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "p_{T} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; p_{T} [GeV] ; Entries"
+                                          ).c_str()
+                                        , pt_bins, pt_min, pt_max
+                                        )
+                              );
+    m_h_lep_both_from_stop_raw_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__lep_both_from_stop_raw_pt_1"
                                         + "__"
                                         + name_tag
                                         ).c_str()
@@ -775,7 +874,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                         );
 
     m_h_ptbl_diff.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                       + "__ptbl_diff"
+v                                       + "__ptbl_diff"
                                        + "__"
                                        + name_tag
                                        ).c_str()
@@ -913,6 +1012,46 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 
     m_h_b_jet1vl1_all_from_stop_pt_num.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
 					    + "__b_jet1vl1_all_from_stop_pt_num"
+					    + "__"
+					    + name_tag
+					    ).c_str(),
+					  ("p_{T}_b_jet1vl1 - "
+					   + FLAVOR_CHANNEL_STRINGS[fc_it]
+					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
+					   ).c_str(),
+					  pt_bins/10., pt_min, pt_max,
+					  pt_bins/10., pt_min, pt_max
+					  )
+				);
+    m_h_b_jet1vl1_all_from_stop_raw_pt.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					    + "__b_jet1vl1_all_from_stop_raw_pt"
+					    + "__"
+					    + name_tag
+					    ).c_str(),
+					  ("p_{T}_b_jet1vl1 - "
+					   + FLAVOR_CHANNEL_STRINGS[fc_it]
+					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
+					   ).c_str(),
+					  pt_bins/10., pt_min, pt_max,
+					  pt_bins/10., pt_min, pt_max
+					  )
+				);
+    m_h_b_jet1vl1_all_from_stop_raw_pt_eff.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					    + "__b_jet1vl1_all_from_stop_raw_pt_eff"
+					    + "__"
+					    + name_tag
+					    ).c_str(),
+					  ("p_{T}_b_jet1vl1 - "
+					   + FLAVOR_CHANNEL_STRINGS[fc_it]
+					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
+					   ).c_str(),
+					  pt_bins/10., pt_min, pt_max,
+					  pt_bins/10., pt_min, pt_max
+					  )
+				);
+
+    m_h_b_jet1vl1_all_from_stop_raw_pt_num.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					    + "__b_jet1vl1_all_from_stop_raw_pt_num"
 					    + "__"
 					    + name_tag
 					    ).c_str(),
@@ -1546,6 +1685,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
       if (jet_from_stop_0) {
 	m_h_b_jet_from_stop_pt_all.at(fc_it)->Fill(pt_b_0, weight);
 	m_h_b_jet_from_stop_pt_0.at(  fc_it)->Fill(pt_b_0, weight);
+	m_h_b_jet_from_stop_raw_pt_all.at(fc_it)->Fill(pt_b_0);
       }
 
       if (dr_jet_q_0 >= 0) {
@@ -1571,6 +1711,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
       if (jet_from_stop_1) {
 	m_h_b_jet_from_stop_pt_all.at(fc_it)->Fill(pt_b_1, weight);
 	m_h_b_jet_from_stop_pt_1.at(  fc_it)->Fill(pt_b_1, weight);
+	m_h_b_jet_from_stop_raw_pt_all.at(fc_it)->Fill(pt_b_1);
       }
 
       if (dr_jet_q_1 >= 0) {
@@ -1586,7 +1727,13 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 	m_h_b_jet_both_from_stop_pt_all.at(fc_it)->Fill(pt_b_1, weight);
 	m_h_b_jet_both_from_stop_pt_0.at(  fc_it)->Fill(pt_b_0, weight);
 	m_h_b_jet_both_from_stop_pt_1.at(  fc_it)->Fill(pt_b_1, weight);
-	if (num_lep_from_stop >=2) m_h_b_jet1vl1_all_from_stop_pt.at(fc_it)->Fill(pt_l_1, pt_b_1, weight);
+	m_h_b_jet_both_from_stop_raw_pt_all.at(fc_it)->Fill(pt_b_0);
+	m_h_b_jet_both_from_stop_raw_pt_all.at(fc_it)->Fill(pt_b_1);
+	m_h_b_jet_both_from_stop_raw_pt_1.at(  fc_it)->Fill(pt_b_1);
+	if (num_lep_from_stop >=2) {
+	  m_h_b_jet1vl1_all_from_stop_pt.at(fc_it)->Fill(pt_l_1, pt_b_1, weight);
+	  m_h_b_jet1vl1_all_from_stop_raw_pt.at(fc_it)->Fill(pt_l_1, pt_b_1);
+	}
       }
 
     }
@@ -1597,34 +1744,49 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 2, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 2, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 2, weight);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 2);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 2);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 2);
     }
     if (num_jet ==3) {
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_0, 3, weight);
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 3, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 3, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 3, weight);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 3);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 3);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 3);
     }
     if (num_jet ==4) {
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_0, 4, weight);
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 4, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 4, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 4, weight);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 4);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 4);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 4);
+
     }
 
     // fill lepton from stop pt histograms
     if (lepton_from_stop_0) {
       m_h_lep_from_stop_pt_all.at(fc_it)->Fill(pt_l_0, weight);
       m_h_lep_from_stop_pt_0.at(  fc_it)->Fill(pt_l_0, weight);
+      m_h_lep_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_0);
     }
     if (lepton_from_stop_1) {
       m_h_lep_from_stop_pt_all.at(fc_it)->Fill(pt_l_1, weight);
       m_h_lep_from_stop_pt_1.at(  fc_it)->Fill(pt_l_1, weight);
+      m_h_lep_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_1);
     }
     if (lepton_from_stop_0 && lepton_from_stop_1) {
       m_h_lep_both_from_stop_pt_all.at(fc_it)->Fill(pt_l_0, weight);
       m_h_lep_both_from_stop_pt_all.at(fc_it)->Fill(pt_l_1, weight);
       m_h_lep_both_from_stop_pt_0.at(  fc_it)->Fill(pt_l_0, weight);
       m_h_lep_both_from_stop_pt_1.at(  fc_it)->Fill(pt_l_1, weight);
+      m_h_lep_both_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_0);
+      m_h_lep_both_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_1);
+      m_h_lep_both_from_stop_raw_pt_1.at(  fc_it)->Fill(pt_l_1);
     }
 
     // fill mbl histograms
@@ -1802,21 +1964,34 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_b_jet_from_stop_pt_0.at(  fc_it)->Write();
     m_h_b_jet_from_stop_pt_1.at(  fc_it)->Write();
 
+    m_h_b_jet_from_stop_raw_pt_all.at(fc_it)->Write();
+
     m_h_b_jet_both_from_stop_pt_all.at(fc_it)->Write();
     m_h_b_jet_both_from_stop_pt_0.at(  fc_it)->Write();
     m_h_b_jet_both_from_stop_pt_1.at(  fc_it)->Write();
+
+    m_h_b_jet_both_from_stop_raw_pt_all.at(fc_it)->Write();
+    m_h_b_jet_both_from_stop_raw_pt_1.at(  fc_it)->Write();
 
     m_h_b_jet_mult_pt_all.at(fc_it)->Write();
     m_h_b_jet_mult_pt_0.at(  fc_it)->Write();
     m_h_b_jet_mult_pt_1.at(  fc_it)->Write();
 
+    m_h_b_jet_mult_raw_pt_all.at(fc_it)->Write();
+    m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Write();
+
     m_h_lep_from_stop_pt_all.at(fc_it)->Write();
     m_h_lep_from_stop_pt_0.at(  fc_it)->Write();
     m_h_lep_from_stop_pt_1.at(  fc_it)->Write();
 
+    m_h_lep_from_stop_raw_pt_all.at(fc_it)->Write();
+
     m_h_lep_both_from_stop_pt_all.at(fc_it)->Write();
     m_h_lep_both_from_stop_pt_0.at(  fc_it)->Write();
     m_h_lep_both_from_stop_pt_1.at(  fc_it)->Write();
+
+    m_h_lep_both_from_stop_raw_pt_all.at(fc_it)->Write();
+    m_h_lep_both_from_stop_raw_pt_1.at(  fc_it)->Write();
 
     m_h_b_jet_dr_q_all.at(fc_it)->Write();
     m_h_b_jet_dr_q_0.at(  fc_it)->Write();
@@ -1854,16 +2029,22 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_b_jet1vl1_pt_eff.at(fc_it)->Write();
     m_h_b_jet1vl1_pt_num.at(fc_it)->Write();
 
-    raw = 1;
-    m_h_b_jet1vl1_raw_pt.at(fc_it)->Write();
-    calcEff2d(m_h_b_jet1vl1_raw_pt.at(fc_it),m_h_b_jet1vl1_raw_pt_eff.at(fc_it),m_h_b_jet1vl1_raw_pt_num.at(fc_it), raw);
-    m_h_b_jet1vl1_raw_pt_num.at(fc_it)->Write();
-
-    raw = 0;
     m_h_b_jet1vl1_all_from_stop_pt.at(fc_it)->Write();
     calcEff2d(m_h_b_jet1vl1_all_from_stop_pt.at(fc_it),m_h_b_jet1vl1_all_from_stop_pt_eff.at(fc_it),m_h_b_jet1vl1_all_from_stop_pt_num.at(fc_it), raw);
     m_h_b_jet1vl1_all_from_stop_pt_eff.at(fc_it)->Write();
     m_h_b_jet1vl1_all_from_stop_pt_num.at(fc_it)->Write();
+
+    raw = 1;
+    m_h_b_jet1vl1_raw_pt.at(fc_it)->Write();
+    calcEff2d(m_h_b_jet1vl1_raw_pt.at(fc_it),m_h_b_jet1vl1_raw_pt_eff.at(fc_it),m_h_b_jet1vl1_raw_pt_num.at(fc_it), raw);
+    m_h_b_jet1vl1_raw_pt_eff.at(fc_it)->Write();
+    m_h_b_jet1vl1_raw_pt_num.at(fc_it)->Write();
+
+    m_h_b_jet1vl1_all_from_stop_raw_pt.at(fc_it)->Write();
+    calcEff2d(m_h_b_jet1vl1_all_from_stop_raw_pt.at(fc_it),m_h_b_jet1vl1_all_from_stop_raw_pt_eff.at(fc_it),m_h_b_jet1vl1_all_from_stop_raw_pt_num.at(fc_it), raw);
+    m_h_b_jet1vl1_all_from_stop_raw_pt_eff.at(fc_it)->Write();
+    m_h_b_jet1vl1_all_from_stop_raw_pt_num.at(fc_it)->Write();
+
 
     m_h_mbl_anti_pairing_all.at(fc_it)->Write();
     m_h_mbl_anti_pairing_0.at(  fc_it)->Write();
@@ -1918,13 +2099,13 @@ void PennSusyFrame::BMinusLHists::calcEff2d(TH2F* pt_2d, TH2F* pt_2d_eff, TH2F* 
       float cuty = pt_2d->GetYaxis()->GetBinLowEdge(iy+1);
       float numer = pt_2d->Integral(ix+1, pt_2d->GetNbinsX(), iy+1, pt_2d->GetNbinsY());
       float eff = numer/denom;
+      pt_2d_eff->Fill(cutx,cuty,eff);
       if (raw) {
 	pt_2d_num->Fill(cutx,cuty,numer);
       }
       else {
 	pt_2d_num->Fill(cutx,cuty,numer*21000);
       }
-      pt_2d_eff->Fill(cutx,cuty,eff);
     }
   }
 }
