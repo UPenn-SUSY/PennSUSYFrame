@@ -82,6 +82,8 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     m_h_flavor_channel.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                             + "__flavor_channel"
+                                            + "__"
+                                            + name_tag
                                             ).c_str()
                                           , ( "Flavor Channel - "
                                             + FLAVOR_CHANNEL_STRINGS[fc_it]

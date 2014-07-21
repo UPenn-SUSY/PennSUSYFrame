@@ -174,6 +174,7 @@
 ,,,1,,0.00,0.00,0.00,8.88,8.88,user.bjackson.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.tnt_103/,9314765996
 ,,,1,,0.00,0.00,0.00,9.42,9.42,user.bjackson.167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto.tnt_103/,9877130138
 ,,,1,,0.00,0.00,0.00,9.67,9.67,user.bjackson.117661.AlpgenPythia_P2011C_ZmumuNp1.tnt_103/,10144030571
+
 ,,1,,,0.00,0.00,0.21,0.00,0.21,user.bjackson.173045.Sherpa_CT10_DYtautauM08to15.tnt_103/,224239745
 ,,1,,,0.00,0.00,0.40,0.00,0.40,user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_103/,416915935
 ,,1,,,0.00,0.00,100.81,0.00,100.81,user.bjackson.173044.Sherpa_CT10_DYmumuM15to40.tnt_103/,105711607913
@@ -183,6 +184,7 @@
 ,,1,,,0.00,0.00,293.80,0.00,293.80,user.bjackson.147771.Sherpa_CT10_Zmumu.tnt_103/,308071080028
 ,,1,,,0.00,0.00,51.67,0.00,51.67,user.bjackson.173042.Sherpa_CT10_DYeeM15to40.tnt_103/,54176457970
 ,,1,,,0.00,0.00,6.12,0.00,6.12,user.bjackson.147772.Sherpa_CT10_Ztautau.tnt_103/,6414247415
+
 ,1,,,,0.00,0.07,0.00,0.00,0.07,user.bjackson.176531.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_54.tnt_103/,69317965
 ,1,,,,0.00,0.07,0.00,0.00,0.07,user.bjackson.176532.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_55.tnt_103/,75580013
 ,1,,,,0.00,0.07,0.00,0.00,0.07,user.bjackson.176533.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcasc_56.tnt_103/,74888558
@@ -348,6 +350,7 @@
 ,1,,,,0.00,70.95,0.00,0.00,70.95,user.bjackson.105200.McAtNloJimmy_CT10_ttbar_LeptonFilter.tnt_103/,74397484870
 ,1,,,,0.00,8.03,0.00,0.00,8.03,user.bjackson.110119.PowhegPythia_P2011C_st_schan_lep.tnt_103_v2/,8418668127
 ,1,,,,0.00,9.88,0.00,0.00,9.88,user.bjackson.periodE_muon.tnt_103/,10357600034
+
 1,,,,,0.19,0.00,0.00,0.00,0.19,user.bjackson.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.tnt_103/,200888852
 1,,,,,0.19,0.00,0.00,0.00,0.19,user.bjackson.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.tnt_103/,199876664
 1,,,,,0.25,0.00,0.00,0.00,0.25,user.bjackson.167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter.tnt_103/,266447647

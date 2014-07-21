@@ -1,0 +1,2 @@
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.110806.AlpgenPythia_P2011C_ZeeccNp1.tnt_103_v2.140712113828/user.bjackson.036793._00001.Tnt.root        160000        65075
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.110806.AlpgenPythia_P2011C_ZeeccNp1.tnt_103_v2.140712113828/user.bjackson.036793._00002.Tnt.root        100000        40080

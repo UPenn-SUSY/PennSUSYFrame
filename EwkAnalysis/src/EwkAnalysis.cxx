@@ -49,6 +49,7 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
                                                      , m_crit_cut_dphi_ll(false)
                                                      , m_crit_cut_b_veto(false)
                                                      , m_crit_cut_num_jet(false)
+						     , m_print_event_details(false)  
                                                      , m_sfos_mll_min(-1)
                                                      , m_sfos_mll_max(-1)
                                                      , m_emma_mt_min(-1)
@@ -56,9 +57,10 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
                                                      , m_met_rel_min(-1)
                                                      , m_met_rel_max(-1)
                                                      , m_dphi_ll_min(-1)
-                                                     , m_dphi_ll_max(-1)
+                                                     , m_dphi_ll_max(-1)						     
                                                      , m_num_light_jets_min(-1)
                                                      , m_num_light_jets_max(-1)
+						     
 {
   // set defaults
   setSFOSMllCut(20.e3, -1);
@@ -125,6 +127,10 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_ALL);
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_ALL, m_event_weight);
+
+  if(m_print_event_details){
+    printEventDetails();
+      }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // set mc event weight
@@ -314,6 +320,18 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     }
   }
 
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get fake weight
+
+  m_event_quantities.setFakeWeight(m_matrix_method_tool.getSF(m_event.getFlavorChannel()
+							      , m_electrons.getCollection(EL_GOOD)
+							      , m_muons.getCollection(MU_GOOD)
+							      , m_met
+							      )
+				   );
+
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // mll SFOS cut
   bool pass_mll_sfos = ( PennSusyFrame::passCut( m_event_quantities.getMll()
@@ -465,13 +483,6 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 		     );
   }
 
-  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // // check for stream overlap
-  // // TODO implement check for stream overlap
-  // bool pass_stream_overlap = true;
-  // m_pass_event = (m_pass_event && pass_stream_overlap);
-  // if (m_crit_cut_stream_overlap && !pass_stream_overlap) return;
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // require no charge flip
   // TODO validate no charge flip cut
@@ -594,6 +605,9 @@ void PennSusyFrame::EwkAnalysis::processEvent()
                                                          , m_muons.getCollection(MU_GOOD)
                                                          )
                                 );
+				   
+
+  //Print detailed Event Quantites 
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms
@@ -678,4 +692,32 @@ void PennSusyFrame::EwkAnalysis::fillHistHandles( PennSusyFrame::EWK_HIST_LEVELS
 //                                                        , m_mc_truth
 //                                                        , weight
 //                                                        );
+}
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EwkAnalysis::printEventDetails()
+{
+  m_event.print();
+  m_event_quantities.print();
+  m_vertices.print(VERTEX_ALL);
+  m_vertices.print(VERTEX_GT_2);
+
+
+  m_electrons.print(EL_ALL);
+  m_muons.print(MU_ALL);
+  m_jets.print(JET_ALL);
+  m_met.print();
+  m_taus.print(TAU_ALL);
+
+  m_electrons.print(EL_GOOD);
+  m_muons.print(MU_GOOD);
+  m_jets.print(JET_GOOD);
+  m_taus.print(TAU_GOOD);
+
+  m_electrons.print(EL_SIGNAL);
+  m_muons.print(MU_SIGNAL);
+  m_jets.print(JET_ALL_SIGNAL);
+  //  m_taus.print(TAU_SIGNAL);
+
+  std::cout<<"\n"<<std::endl;
+
 }
