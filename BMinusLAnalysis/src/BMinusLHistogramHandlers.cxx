@@ -486,73 +486,6 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                    )
                          );
 
-					  
-    // initialize mbl anti-pairing histograms
-    m_h_mbl_anti_pairing_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                  + "__mbl_anti_pairing_all"
-                                                  + "__"
-                                                  + name_tag
-                                                  ).c_str()
-                                                , ( "m_{bl} - "
-                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                  + " ; m_{bl} [GeV] ; Entries"
-                                                  ).c_str()
-                                                , mbl_bins, mbl_min, mbl_max
-                                                )
-                                      );
-
-    m_h_mbl_anti_pairing_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                + "__mbl_anti_pairing_0"
-                                                + "__"
-                                                + name_tag
-                                                ).c_str()
-                                              , ( "m_{bl}^{0} - "
-                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                + " ; m_{bl}^{0} [GeV] ; Entries"
-                                                ).c_str()
-                                              , mbl_bins, mbl_min, mbl_max
-                                              )
-                                    );
-
-    m_h_mbl_anti_pairing_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                + "__mbl_anti_pairing_1"
-                                                + "__"
-                                                + name_tag
-                                                ).c_str()
-                                              , ( "m_{bl}^{1} - "
-                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                + " ; m_{bl}^{1} [GeV] ; Entries"
-                                                ).c_str()
-                                              , mbl_bins, mbl_min, mbl_max
-                                              )
-                                    );
-
-    m_h_mbl_anti_pairing_diff.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                   + "__mbl_anti_pairing_diff"
-                                                   + "__"
-                                                   + name_tag
-                                                   ).c_str()
-                                                 , ( "m_{bl}^{0} - m_{bl}^{1} - "
-                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                   + " ; m_{bl}^{0} - m_{bl}^{1} [GeV] ; Entries"
-                                                   ).c_str()
-                                                 , mbl_bins, mbl_min, mbl_max
-                                                 )
-                                       );
-
-    m_h_mbl_anti_pairing_ratio.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                    + "__mbl_anti_pairing_ratio"
-                                                    + "__"
-                                                    + name_tag
-                                                    ).c_str()
-                                                  , ( "m_{bl}^{1}/m_{bl}^{0} - "
-                                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                    + " ; m_{bl}^{1}/m_{bl}^{0} ; Entries"
-                                                    ).c_str()
-                                                  , mbl_ratio_bins, mbl_ratio_min, mbl_ratio_max
-                                                  )
-                                        );
-
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     m_h_mbbll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -692,7 +625,6 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
       m_h_b_jet_eta_1.at(  fc_it)->Fill(eta_b_1, weight);
 
     }
-  }
 
     // fill mbl histograms
     m_h_mbl_all.at(fc_it)->Fill(mbl_0, weight);
@@ -787,44 +719,8 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_ptbl_diff.at(fc_it)->Write();
     m_h_ptbl_2d.at(fc_it)->Write();
 
-    m_h_mbl_anti_pairing_all.at(fc_it)->Write();
-    m_h_mbl_anti_pairing_0.at(  fc_it)->Write();
-    m_h_mbl_anti_pairing_1.at(  fc_it)->Write();
-    m_h_mbl_anti_pairing_diff.at(fc_it)->Write();
-    m_h_mbl_anti_pairing_ratio.at(fc_it)->Write();
-
     m_h_mbbll.at(fc_it)->Write();
     m_h_ptbbll.at(fc_it)->Write();
-
-    m_h_num_leptons_from_stop.at(   fc_it)->Write();
-    m_h_num_jets_from_stop.at(      fc_it)->Write();
-    m_h_num_jets_paired_to_quark.at(fc_it)->Write();
-    m_h_jet_from_stop_when_paired_to_quark.at(fc_it)->Write();
-
-    m_h_num_same_parent_pairing.at(fc_it)->Write();
-    m_h_same_parent_pairing_pair_0.at(fc_it)->Write();
-    m_h_same_parent_pairing_pair_1.at(fc_it)->Write();
-    m_h_same_parent_pairing_lep_0.at(fc_it)->Write();
-    m_h_same_parent_pairing_lep_1.at(fc_it)->Write();
-    m_h_same_parent_pairing_jet_0.at(fc_it)->Write();
-    m_h_same_parent_pairing_jet_1.at(fc_it)->Write();
-    // m_h_same_parent_pairing_stop.at(fc_it)->Write();
-    // m_h_same_parent_pairing_astp.at(fc_it)->Write();
-
-    m_h_mbl_same_parent_pairing.at(fc_it)->Write();
-    m_h_mbl_diff_parent_pairing.at(fc_it)->Write();
-
-    m_h_mbl_ratio_same_parent_pairing.at(fc_it)->Write();
-    m_h_mbl_ratio_diff_parent_pairing.at(fc_it)->Write();
-
-    m_h_bl_dr_same_parent_pairing.at(fc_it)->Write();
-    m_h_bl_dr_diff_parent_pairing.at(fc_it)->Write();
-
-    m_h_bl_dphi_same_parent_pairing.at(fc_it)->Write();
-    m_h_bl_dphi_diff_parent_pairing.at(fc_it)->Write();
-
-    m_h_bl_deta_same_parent_pairing.at(fc_it)->Write();
-    m_h_bl_deta_diff_parent_pairing.at(fc_it)->Write();
     
   }
 }
@@ -2173,27 +2069,27 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 2, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 2, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 2, weight);
-      m_h_b_jet_mult_pt_raw_all.at(fc_it)->Fill(pt_b_0, 2);
-      m_h_b_jet_mult_pt_raw_all.at(fc_it)->Fill(pt_b_1, 2);
-      m_h_b_jet_mult_pt_raw_1.at(  fc_it)->Fill(pt_b_1, 2);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 2);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 2);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 2);
     }
     if (num_jet ==3) {
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_0, 3, weight);
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 3, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 3, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 3, weight);
-      m_h_b_jet_mult_pt_raw_all.at(fc_it)->Fill(pt_b_0, 3);
-      m_h_b_jet_mult_pt_raw_all.at(fc_it)->Fill(pt_b_1, 3);
-      m_h_b_jet_mult_pt_raw_1.at(  fc_it)->Fill(pt_b_1, 3);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 3);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 3);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 3);
     }
     if (num_jet ==4) {
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_0, 4, weight);
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 4, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 4, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 4, weight);
-      m_h_b_jet_mult_pt_raw_all.at(fc_it)->Fill(pt_b_0, 4);
-      m_h_b_jet_mult_pt_raw_all.at(fc_it)->Fill(pt_b_1, 4);
-      m_h_b_jet_mult_pt_raw_1.at(  fc_it)->Fill(pt_b_1, 4);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 4);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 4);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 4);
     }
 
     // fill mbl histograms
