@@ -280,7 +280,7 @@ def main():
 
     # base_path = '${BASE_WORK_DIR}/hists/bminusl_opt_ntup_2014_06_18__19_33/'
     base_path = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/'
-    ttbar       = produceMblPlots('%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.ntup.root'                         % base_path, 'ttbar')
+    ttbar       = produceMblPlots('%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.ntup.root'                         % base_path, 'ttbar')
     # signal_100  = produceMblPlots('%s/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.ntup.root'  % base_path, 'signal_100' )
     # signal_200  = produceMblPlots('%s/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.ntup.root'  % base_path, 'signal_200' )
     # signal_300  = produceMblPlots('%s/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.ntup.root'  % base_path, 'signal_300' )
