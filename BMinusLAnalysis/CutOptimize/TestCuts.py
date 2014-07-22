@@ -2,51 +2,196 @@
 
 # ==============================================================================
 import math
+import sys
 import ROOT
+import array
+
+# ------------------------------------------------------------------------------
+cut_level = sys.argv[1] if len(sys.argv) > 1 else ''
+print 'cut level: "%s"' % cut_level
+
+# ------------------------------------------------------------------------------
+def recoverOverflow(h):
+    print 'recoverOverflow()'
+
+    # get the total number of bins and entries
+    total_bins = h.GetNbinsX()
+    total_entries = h.GetEntries()
+    print '\ttotal bins: %s' % total_bins
+    print '\ttotal entries: %s' % total_entries
+
+    # find the bin edges
+    x_bins = [h.GetBinLowEdge(i+1) for i in xrange(total_bins)]
+    print '\tx bins: %s' % x_bins
+
+    # get the number of entries from the overflow bin
+    overflow = h.GetBinContent(total_bins+1)
+    print '\toverflow: %s' % overflow
+
+    # move the overflow bin to the last bin in the plot
+    print '\tsetting overflow (bin %s) to 0' % (total_bins+1)
+    h.SetBinContent(total_bins+1, 0)
+    print '\tfilling last bin (%s, x=%s) with the overflow (%s)' % (total_bins-1, x_bins[total_bins-1], overflow)
+    h.Fill(x_bins[total_bins-1], overflow)
+
+
+    # fix the number of entries
+    h.SetEntries(total_entries)
+
+# ------------------------------------------------------------------------------
+def prepareForPlotting(h_dict, syst_frac_unc):
+    h_raw     = h_dict['raw']
+    h_weights = h_dict['weights']
+
+    recoverOverflow(h_raw    )
+    recoverOverflow(h_weights)
+
+    num_bins = h_weights.GetNbinsX()
+    for x_bin in xrange(1,num_bins+1):
+        x_val = h_weights.GetXaxis().GetBinLowEdge(x_bin)
+
+        num_raw    = h_raw.GetBinContent(    x_bin)
+        num_weight = h_weights.GetBinContent(x_bin)
+
+        stat_unc = num_weight/math.sqrt(num_raw) if num_raw > 0 else 0
+        syst_unc = syst_frac_unc*num_weight
+
+        total_unc = math.sqrt(stat_unc**2 + syst_unc**2)
+        h_weights.SetBinError(x_bin, total_unc)
+
+    uncert_graph =  ROOT.TGraphErrors(h_weights)
+    uncert_graph.SetFillColor(ROOT.kAzure)
+    uncert_graph.SetFillStyle(3001)
+    return uncert_graph
 
 # ------------------------------------------------------------------------------
 def passCuts(event, cut_type = ''):
+    mbl_asym = (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1)
+    ht = event.ht_signal
+    met_sig = event.met_et/math.sqrt(ht)
+
+    mbl_cut_600  = 0.5913
+    mbl_cut_700  = 0.6863
+    mbl_cut_800  = 0.5540
+    mbl_cut_900  = 0.6770
+    mbl_cut_1000 = 0.6567
+    mbl_cut_test = 0.3
+
+    ht_cut_600  = 433.1818
+    ht_cut_700  = 527.3617
+    ht_cut_800  = 589.8870
+    ht_cut_900  = 683.0847
+    ht_cut_1000 = 882.0773
+    ht_cut_test = 100
+
+    met_cut_600  = 20.5685
+    met_cut_700  = 33.1530
+    met_cut_800  = 44.1847
+    met_cut_900  = 65.3685
+    met_cut_1000 = 36.9973
+    met_cut_test = 10
+
+    if cut_type == '600':
+        # 600
+        if mbl_asym > mbl_cut_600 : return False
+        if ht       < ht_cut_600  : return False
+        if met_sig  > met_cut_600 : return False
+        return True
+    if cut_type == '600_mbl':
+        if mbl_asym > mbl_cut_600 : return False
+        return True
+    if cut_type == '600_ht':
+        if ht       < ht_cut_600  : return False
+        return True
+    if cut_type == '600_met':
+        if met_sig  > met_cut_600 : return False
+        return True
+
+    if cut_type == '700':
+        # 700
+        if mbl_asym > mbl_cut_700 : return False
+        if ht       < ht_cut_700  : return False
+        if met_sig  > met_cut_700 : return False
+        return True
+    if cut_type == '700_mbl':
+        if mbl_asym > mbl_cut_700 : return False
+        return True
+    if cut_type == '700_ht':
+        if ht       < ht_cut_700  : return False
+        return True
+    if cut_type == '700_met':
+        if met_sig  > met_cut_700 : return False
+        return True
+
     if cut_type == '800':
         # 800
-        if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.2715 : return False
-        if event.ht_baseline < 1800: return False
-        if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
-    elif cut_type == '900':
-        # 900
-        if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.6 : return False
-        if event.ht_baseline < 1800: return False
-        if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
-    elif cut_type == '1000':
-        # 1000
-        if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.5079 : return False
-        if event.ht_baseline < 2100: return False
-        if event.met_et/math.sqrt(event.ht_baseline) > 30 : return False
-    elif cut_type == '1000-900':
-        # 900-1000
-        if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.5 : return False
-        if event.ht_baseline < 2000: return False
-        if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
-    elif cut_type == '1000-900_mbl':
-        # 900-1000
-        if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.5 : return False
-        # if event.ht_baseline < 2000: return False
-        # if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
-    elif cut_type == '1000-900_ht':
-        # 900-1000
-        # if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.5 : return False
-        if event.ht_baseline < 2000: return False
-        # if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
-    elif cut_type == '1000-900_met':
-        # 900-1000
-        # if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 0.5 : return False
-        # if event.ht_baseline < 2000: return False
-        if event.met_et/math.sqrt(event.ht_baseline) > 6.5 : return False
-    else:
-        # bogus
-        if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 1 : return False
-        if event.ht_baseline < 1000: return False
-        if event.met_et/math.sqrt(event.ht_baseline) > 100 : return False
+        if mbl_asym > mbl_cut_800 : return False
+        if ht       < ht_cut_800  : return False
+        if met_sig  > met_cut_800 : return False
+        return True
+    if cut_type == '800_mbl':
+        if mbl_asym > mbl_cut_800 : return False
+        return True
+    if cut_type == '800_ht':
+        if ht       < ht_cut_800  : return False
+        return True
+    if cut_type == '800_met':
+        if met_sig  > met_cut_800 : return False
+        return True
 
+    if cut_type == '900':
+        # 900
+        if mbl_asym > mbl_cut_900 : return False
+        if ht       < ht_cut_900  : return False
+        if met_sig  > met_cut_900 : return False
+        return True
+    if cut_type == '900_mbl':
+        if mbl_asym > mbl_cut_900 : return False
+        return True
+    if cut_type == '900_ht':
+        if ht       < ht_cut_900  : return False
+        return True
+    if cut_type == '900_met':
+        if met_sig  > met_cut_900 : return False
+        return True
+
+    if cut_type == '1000':
+        # 1000
+        if mbl_asym > mbl_cut_1000 : return False
+        if ht       < ht_cut_1000  : return False
+        if met_sig  > met_cut_1000 : return False
+        return True
+    if cut_type == '1000_mbl':
+        if mbl_asym > mbl_cut_1000 : return False
+        return True
+    if cut_type == '1000_ht':
+        if ht       < ht_cut_1000  : return False
+        return True
+    if cut_type == '1000_met':
+        if met_sig  > met_cut_1000 : return False
+        return True
+
+    if cut_type == 'test':
+        # test
+        if mbl_asym > mbl_cut_test : return False
+        if ht       < ht_cut_test  : return False
+        if met_sig  > met_cut_test : return False
+        return True
+    if cut_type == 'test_mbl':
+        if mbl_asym > mbl_cut_test : return False
+        return True
+    if cut_type == 'test_ht':
+        if ht       < ht_cut_test  : return False
+        return True
+    if cut_type == 'test_met':
+        if met_sig  > met_cut_test : return False
+        return True
+
+    print 'bogus'
+    # bogus
+    if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 1 : return False
+    if event.ht_signal < 1000: return False
+    if event.met_et/math.sqrt(event.ht_signal) > 100 : return False
     return True
 
 # ------------------------------------------------------------------------------
@@ -56,50 +201,91 @@ def produceMblPlots(in_file_name, tag):
     f = ROOT.TFile.Open(in_file_name)
     t = f.Get("optimize")
 
+    mbl_bins = [0, 50, 100, 200, 300, 600, 1500]
     h_mbl_no_cut = ROOT.TH1D( 'mbl_no_cut__%s' % tag
-                            , 'mbl_no_cut__%s ; m_{bl} [GeV] ; Entries / 10 GeV' % tag
-                            , 150, 0, 1500
+                            , 'mbl_no_cut__%s ; m_{bl} [GeV] ; bl pairs' % tag
+                            , len(mbl_bins)-1, array.array('d', mbl_bins)
                             )
     h_ht_no_cut = ROOT.TH1D( 'ht_no_cut__%s' % tag
                            , 'ht_no_cut__%s ; h_{T} [GeV] ; Entries / 10 GeV' % tag
                            , 50, 0, 5000
+                           # , 50, 0, 50
                            )
     h_met_sig_no_cut = ROOT.TH1D( 'met_sig_no_cut__%s' % tag
                                 , 'met_sig_no_cut__%s ; E_{T}^{miss}/#sqrt{h_{T}} [GeV^{1/2}] ; Entries / 10 GeV' % tag
                                 , 50, 0, 50
                                 )
 
+    h_raw_mbl_no_cut = ROOT.TH1D( 'raw_mbl_no_cut__%s' % tag
+                                , 'raw_mbl_no_cut__%s ; m_{bl} [GeV] ; bl pairs' % tag
+                                , len(mbl_bins)-1, array.array('d', mbl_bins)
+                                )
+    h_raw_ht_no_cut = ROOT.TH1D( 'raw_ht_no_cut__%s' % tag
+                               , 'raw_ht_no_cut__%s ; h_{T} [GeV] ; Entries / 10 GeV' % tag
+                               , 50, 0, 5000
+                               # , 50, 0, 50
+                               )
+    h_raw_met_sig_no_cut = ROOT.TH1D( 'raw_met_sig_no_cut__%s' % tag
+                                    , 'raw_met_sig_no_cut__%s ; E_{T}^{miss}/#sqrt{h_{T}} [GeV^{1/2}] ; Entries / 10 GeV' % tag
+                                    , 50, 0, 50
+                                    )
+
     h_mbl_w_cut = ROOT.TH1D( 'mbl_w_cut__%s' % tag
-                           , 'mbl_w_cut__%s ; m_{bl} [GeV] ; Entries / 10 GeV' % tag
-                           , 150, 0, 1500
+                           , 'mbl_w_cut__%s ; m_{bl} [GeV] ; bl pairs' % tag
+                           , len(mbl_bins)-1, array.array('d', mbl_bins)
                            )
     h_ht_w_cut = ROOT.TH1D( 'ht_w_cut__%s' % tag
                           , 'ht_w_cut__%s ; h_{T} [GeV] ; Entries / 10 GeV^{1/2}' % tag
                           , 50, 0, 5000
+                          # , 50, 0, 50
                           )
     h_met_sig_w_cut = ROOT.TH1D( 'met_sig_w_cut__%s' % tag
                                , 'met_sig_w_cut__%s ; E_{T}^{miss}/#sqrt{h_{T}} [GeV^{1/2}] ; Entries / 10 GeV^{1/2}' % tag
                                , 50, 0, 50
                                )
 
+    h_raw_mbl_w_cut = ROOT.TH1D( 'raw_mbl_w_cut__%s' % tag
+                               , 'raw_mbl_w_cut__%s ; m_{bl} [GeV] ; bl pairs' % tag
+                               , len(mbl_bins)-1, array.array('d', mbl_bins)
+                               )
+    h_raw_ht_w_cut = ROOT.TH1D( 'raw_ht_w_cut__%s' % tag
+                              , 'raw_ht_w_cut__%s ; h_{T} [GeV] ; Entries / 10 GeV^{1/2}' % tag
+                              , 50, 0, 5000
+                              # , 50, 0, 50
+                              )
+    h_raw_met_sig_w_cut = ROOT.TH1D( 'raw_met_sig_w_cut__%s' % tag
+                                   , 'raw_met_sig_w_cut__%s ; E_{T}^{miss}/#sqrt{h_{T}} [GeV^{1/2}] ; Entries / 10 GeV^{1/2}' % tag
+                                   , 50, 0, 50
+                                   )
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    event_counter = 0
     for event in t:
+        event_counter+=1
+        # if event_counter == 1000: break
+
         weight = 21000*event.weight
         # weight = event.weight
-        h_mbl_no_cut.Fill(event.mbl_0, weight)
-        h_mbl_no_cut.Fill(event.mbl_1, weight)
+        h_raw_mbl_no_cut.Fill(    event.mbl_0                            )
+        h_raw_mbl_no_cut.Fill(    event.mbl_1                            )
+        h_raw_ht_no_cut.Fill(     event.ht_signal                        )
+        h_raw_met_sig_no_cut.Fill(event.met_et/math.sqrt(event.ht_signal))
 
-        h_ht_no_cut.Fill(     event.ht_baseline     , weight)
-        h_met_sig_no_cut.Fill(event.met_et/math.sqrt(event.ht_baseline), weight)
-        # h_met_sig_no_cut.Fill(event.met_sig_baseline, weight)
+        h_mbl_no_cut.Fill(    event.mbl_0                            , weight)
+        h_mbl_no_cut.Fill(    event.mbl_1                            , weight)
+        h_ht_no_cut.Fill(     event.ht_signal                        , weight)
+        h_met_sig_no_cut.Fill(event.met_et/math.sqrt(event.ht_signal), weight)
 
-        if (passCuts(event, '900-1000')):
-            h_mbl_w_cut.Fill(event.mbl_0, weight)
-            h_mbl_w_cut.Fill(event.mbl_1, weight)
+        if (passCuts(event, cut_level)):
+            h_raw_mbl_w_cut.Fill(    event.mbl_0                            )
+            h_raw_mbl_w_cut.Fill(    event.mbl_1                            )
+            h_raw_ht_w_cut.Fill(     event.ht_signal                        )
+            h_raw_met_sig_w_cut.Fill(event.met_et/math.sqrt(event.ht_signal))
 
-            h_ht_w_cut.Fill(     event.ht_baseline     , weight)
-            # h_met_sig_w_cut.Fill(event.met_sig_baseline, weight)
-            h_met_sig_w_cut.Fill(event.met_et/math.sqrt(event.ht_baseline), weight)
-
+            h_mbl_w_cut.Fill(    event.mbl_0                            , weight)
+            h_mbl_w_cut.Fill(    event.mbl_1                            , weight)
+            h_ht_w_cut.Fill(     event.ht_signal                        , weight)
+            h_met_sig_w_cut.Fill(event.met_et/math.sqrt(event.ht_signal), weight)
 
     print '# entries before cut: ' , h_mbl_no_cut.GetEntries()
     print '# entries after cut:  ' , h_mbl_w_cut.GetEntries()
@@ -109,27 +295,38 @@ def produceMblPlots(in_file_name, tag):
 
     print ''
 
-    return { 'mbl__no_cuts':h_mbl_no_cut
-           , 'ht__no_cuts':h_ht_no_cut
-           , 'met_sig__no_cuts':h_met_sig_no_cut
-           , 'mbl__w_cuts':h_mbl_w_cut
-           , 'ht__w_cuts':h_ht_w_cut
-           , 'met_sig__w_cuts':h_met_sig_w_cut
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    return { 'mbl__no_cuts':{    'weights':h_mbl_no_cut    , 'raw':h_raw_mbl_no_cut}
+           , 'ht__no_cuts':{     'weights':h_ht_no_cut     , 'raw':h_ht_no_cut     }
+           , 'met_sig__no_cuts':{'weights':h_met_sig_no_cut, 'raw':h_met_sig_no_cut}
+           , 'mbl__w_cuts':{     'weights':h_mbl_w_cut     , 'raw':h_mbl_w_cut     }
+           , 'ht__w_cuts':{      'weights':h_ht_w_cut      , 'raw':h_ht_w_cut      }
+           , 'met_sig__w_cuts':{ 'weights':h_met_sig_w_cut , 'raw':h_met_sig_w_cut }
            }
 
 # ------------------------------------------------------------------------------
 def setRange(hist_list):
+    global_min = 999
     global_max = 0
     for hl in hist_list:
+        local_min = hl.GetMinimum()
         local_max = hl.GetMaximum()
-        if local_max > global_max:
-            global_max = local_max
+        if local_min < global_min: global_min = local_min
+        if local_max > global_max: global_max = local_max
 
     # global_max *= 10
+    global_min /= 5
     global_max *= 5
 
+    # print 'global min: ' , global_min
+
     for hl in hist_list:
+        # hl.SetMinimum(global_min)
         hl.SetMaximum(global_max)
+
+    # frame = TH1I('frame', 'frame', 
+
+    # return frame
 
 # ------------------------------------------------------------------------------
 def drawCompareCanvas( background_hist_dict
@@ -141,24 +338,25 @@ def drawCompareCanvas( background_hist_dict
     out_file.cd()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    bkg_no_cuts = background_hist_dict['%s__no_cuts' % hist_name]
-    bkg_w_cuts  = background_hist_dict['%s__w_cuts'  % hist_name]
+    bkg_no_cuts = background_hist_dict['%s__no_cuts' % hist_name]['weights']
+    bkg_w_cuts  = background_hist_dict['%s__w_cuts'  % hist_name]['weights']
 
-    sig_no_cuts = signal_hist_dict['%s__no_cuts' % hist_name]
-    sig_w_cuts  = signal_hist_dict['%s__w_cuts'  % hist_name]
+    sig_no_cuts = signal_hist_dict['%s__no_cuts' % hist_name]['weights']
+    sig_w_cuts  = signal_hist_dict['%s__w_cuts'  % hist_name]['weights']
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    bkg_no_cuts.SetLineColor(ROOT.kBlack)
-    bkg_w_cuts.SetLineColor( ROOT.kBlack)
+    bkg_no_cuts_uncert = prepareForPlotting(background_hist_dict['%s__no_cuts' % hist_name], 0.30)
+    bkg_w_cuts_uncert  = prepareForPlotting(background_hist_dict['%s__w_cuts'  % hist_name], 0.30)
+
+    sig_no_cuts_uncert = prepareForPlotting(signal_hist_dict['%s__no_cuts' % hist_name], 0.0)
+    sig_w_cuts_uncert  = prepareForPlotting(signal_hist_dict['%s__w_cuts'  % hist_name], 0.0)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    bkg_no_cuts.SetLineColor(ROOT.kBlue)
+    bkg_w_cuts.SetLineColor( ROOT.kBlue)
 
     bkg_no_cuts.SetLineWidth(3)
     bkg_w_cuts.SetLineWidth( 3)
-
-    # background_hist_dict['%s__no_cuts' % hist_name].SetLineColor(ROOT.kBlack)
-    # background_hist_dict['%s__w_cuts'  % hist_name].SetLineColor(ROOT.kBlack)
-
-    # background_hist_dict['%s__no_cuts' % hist_name].SetLineWidth(3)
-    # background_hist_dict['%s__w_cuts'  % hist_name].SetLineWidth(3)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     sig_no_cuts.SetLineColor(ROOT.kRed)
@@ -166,12 +364,6 @@ def drawCompareCanvas( background_hist_dict
 
     sig_no_cuts.SetLineWidth(3)
     sig_w_cuts.SetLineWidth( 3)
-
-    # signal_hist_dict['%s__mbl_no_cuts' % hist_name].SetLineColor(ROOT.kRed)
-    # signal_hist_dict['%s__mbl_w_cuts'  % hist_name].SetLineColor(ROOT.kRed)
-
-    # signal_hist_dict['%s__mbl_no_cuts' % hist_name].SetLineWidth(3)
-    # signal_hist_dict['%s__mbl_cuts'    % hist_name].SetLineWidth(3)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     c = ROOT.TCanvas('compare__%s__%s' % (hist_name, tag))
@@ -186,16 +378,10 @@ def drawCompareCanvas( background_hist_dict
               ]
             )
 
-    bkg_no_cuts.Draw()
-    sig_no_cuts.Draw('SAME')
-
-    # setRange( [ background_hist_dict['no_cuts']
-    #           , signal_hist_dict[    'no_cuts']
-    #           ]
-    #         )
-
-    # background_hist_dict['no_cuts'].Draw()
-    # signal_hist_dict[    'no_cuts'].Draw('SAME')
+    bkg_no_cuts.Draw('hist')
+    sig_no_cuts.Draw('histSAME')
+    bkg_no_cuts_uncert.Draw('2')
+    # sig_no_cuts_uncert.Draw('a2SAME')
 
     b_entries_no_cuts = bkg_no_cuts.GetEntries()
     s_entries_no_cuts = sig_no_cuts.GetEntries()
@@ -203,15 +389,13 @@ def drawCompareCanvas( background_hist_dict
     b_int_no_cuts = bkg_no_cuts.Integral()
     s_int_no_cuts = sig_no_cuts.Integral()
 
-    # b_int_no_cuts = background_hist_dict['no_cuts'].Integral()
-    # s_int_no_cuts = signal_hist_dict[    'no_cuts'].Integral()
-
     text_no_cut_0 = ROOT.TText(0.60, 0.85, 'Only basic cleaning')
-    text_no_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %s (raw: %s)'   % (b_int_no_cuts, b_entries_no_cuts))
-    text_no_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %s (raw: %s)'       % (s_int_no_cuts, s_entries_no_cuts))
-    text_no_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %s' % ( s_int_no_cuts/ math.sqrt( s_int_no_cuts + b_int_no_cuts ) ) )
+    text_no_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %0.2f (raw: %d)'   % (b_int_no_cuts, b_entries_no_cuts))
+    text_no_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %0.2f (raw: %d)'       % (s_int_no_cuts, s_entries_no_cuts))
+    text_no_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %0.2f' % \
+            ( s_int_no_cuts/ math.sqrt( s_int_no_cuts + b_int_no_cuts ) ) if (s_int_no_cuts + b_int_no_cuts) > 0 else 0 )
 
-    text_no_cut_1.SetTextColor(ROOT.kBlack)
+    text_no_cut_1.SetTextColor(ROOT.kBlue)
     text_no_cut_2.SetTextColor(ROOT.kRed)
 
     text_no_cut_0.SetNDC()
@@ -233,8 +417,10 @@ def drawCompareCanvas( background_hist_dict
               ]
             )
 
-    bkg_w_cuts.Draw()
-    sig_w_cuts.Draw('SAME')
+    bkg_w_cuts.Draw('hist')
+    sig_w_cuts.Draw('histSAME')
+    bkg_w_cuts_uncert.Draw('2')
+    # sig_w_cuts_uncert.Draw('a2SAME')
 
     b_entries_cuts = bkg_w_cuts.GetEntries()
     s_entries_cuts = sig_w_cuts.GetEntries()
@@ -242,23 +428,13 @@ def drawCompareCanvas( background_hist_dict
     b_int_cuts = bkg_w_cuts.Integral()
     s_int_cuts = sig_w_cuts.Integral()
 
-    # setRange( [ background_hist_dict['cuts']
-    #           , signal_hist_dict[    'cuts']
-    #           ]
-    #         )
-
-    # background_hist_dict['cuts'].Draw()
-    # signal_hist_dict[    'cuts'].Draw('SAME')
-
-    # b_int_cuts = background_hist_dict['cuts'].Integral()
-    # s_int_cuts = signal_hist_dict[    'cuts'].Integral()
-
     text_cut_0 = ROOT.TText(0.60, 0.85, 'Full selection')
-    text_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %s (raw: %s)' % (b_int_cuts, b_entries_cuts))
-    text_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %s (raw: %s)'     % (s_int_cuts, s_entries_cuts))
-    text_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %s' % ( s_int_cuts/ math.sqrt( s_int_cuts + b_int_cuts ) ) )
+    text_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %0.2f (raw: %d)' % (b_int_cuts, b_entries_cuts))
+    text_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %0.2f (raw: %d)'     % (s_int_cuts, s_entries_cuts))
+    text_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %0.2f' % \
+            ( s_int_cuts/ math.sqrt( s_int_cuts + b_int_cuts ) ) if (s_int_cuts + b_int_cuts) > 0 else 0 )
 
-    text_cut_1.SetTextColor(ROOT.kBlack)
+    text_cut_1.SetTextColor(ROOT.kBlue)
     text_cut_2.SetTextColor(ROOT.kRed)
 
     text_cut_0.SetNDC()
@@ -278,53 +454,53 @@ def drawCompareCanvas( background_hist_dict
 def main():
     ROOT.gStyle.SetOptStat(0)
 
-    # base_path = '${BASE_WORK_DIR}/hists/bminusl_opt_ntup_2014_06_18__19_33/'
     base_path = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/'
-    ttbar       = produceMblPlots('%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.ntup.root'                         % base_path, 'ttbar')
-    # signal_100  = produceMblPlots('%s/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.ntup.root'  % base_path, 'signal_100' )
-    # signal_200  = produceMblPlots('%s/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.ntup.root'  % base_path, 'signal_200' )
-    # signal_300  = produceMblPlots('%s/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.ntup.root'  % base_path, 'signal_300' )
-    # signal_400  = produceMblPlots('%s/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.ntup.root'  % base_path, 'signal_400' )
-    # signal_500  = produceMblPlots('%s/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root'  % base_path, 'signal_500' )
-    # signal_600  = produceMblPlots('%s/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.ntup.root'  % base_path, 'signal_600' )
-    # signal_700  = produceMblPlots('%s/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.ntup.root'  % base_path, 'signal_700' )
-    # signal_800  = produceMblPlots('%s/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.ntup.root'  % base_path, 'signal_800' )
-    # signal_900  = produceMblPlots('%s/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.ntup.root'  % base_path, 'signal_900' )
+
+    ttbar       = produceMblPlots('%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.ntup.root'                  % base_path, 'ttbar')
+    signal_100  = produceMblPlots('%s/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.ntup.root'  % base_path, 'signal_100' )
+    signal_200  = produceMblPlots('%s/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.ntup.root'  % base_path, 'signal_200' )
+    signal_300  = produceMblPlots('%s/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.ntup.root'  % base_path, 'signal_300' )
+    signal_400  = produceMblPlots('%s/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.ntup.root'  % base_path, 'signal_400' )
+    signal_500  = produceMblPlots('%s/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root'  % base_path, 'signal_500' )
+    signal_600  = produceMblPlots('%s/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.ntup.root'  % base_path, 'signal_600' )
+    signal_700  = produceMblPlots('%s/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.ntup.root'  % base_path, 'signal_700' )
+    signal_800  = produceMblPlots('%s/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.ntup.root'  % base_path, 'signal_800' )
+    signal_900  = produceMblPlots('%s/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.ntup.root'  % base_path, 'signal_900' )
     signal_1000 = produceMblPlots('%s/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root' % base_path, 'signal_1000')
 
     out_file = ROOT.TFile.Open('out.root', 'recreate')
 
-    # drawCompareCanvas(ttbar, signal_100 , 'mbl', 'ttbar_T100' , out_file)
-    # drawCompareCanvas(ttbar, signal_200 , 'mbl', 'ttbar_T200' , out_file)
-    # drawCompareCanvas(ttbar, signal_300 , 'mbl', 'ttbar_T300' , out_file)
-    # drawCompareCanvas(ttbar, signal_400 , 'mbl', 'ttbar_T400' , out_file)
-    # drawCompareCanvas(ttbar, signal_500 , 'mbl', 'ttbar_T500' , out_file)
-    # drawCompareCanvas(ttbar, signal_600 , 'mbl', 'ttbar_T600' , out_file)
-    # drawCompareCanvas(ttbar, signal_700 , 'mbl', 'ttbar_T700' , out_file)
-    # drawCompareCanvas(ttbar, signal_800 , 'mbl', 'ttbar_T800' , out_file)
-    # drawCompareCanvas(ttbar, signal_900 , 'mbl', 'ttbar_T900' , out_file)
+    drawCompareCanvas(ttbar, signal_100 , 'mbl', 'ttbar_T100' , out_file)
+    drawCompareCanvas(ttbar, signal_200 , 'mbl', 'ttbar_T200' , out_file)
+    drawCompareCanvas(ttbar, signal_300 , 'mbl', 'ttbar_T300' , out_file)
+    drawCompareCanvas(ttbar, signal_400 , 'mbl', 'ttbar_T400' , out_file)
+    drawCompareCanvas(ttbar, signal_500 , 'mbl', 'ttbar_T500' , out_file)
+    drawCompareCanvas(ttbar, signal_600 , 'mbl', 'ttbar_T600' , out_file)
+    drawCompareCanvas(ttbar, signal_700 , 'mbl', 'ttbar_T700' , out_file)
+    drawCompareCanvas(ttbar, signal_800 , 'mbl', 'ttbar_T800' , out_file)
+    drawCompareCanvas(ttbar, signal_900 , 'mbl', 'ttbar_T900' , out_file)
     drawCompareCanvas(ttbar, signal_1000, 'mbl', 'ttbar_T1000', out_file)
 
-    # drawCompareCanvas(ttbar, signal_100 , 'ht', 'ttbar_T100' , out_file)
-    # drawCompareCanvas(ttbar, signal_200 , 'ht', 'ttbar_T200' , out_file)
-    # drawCompareCanvas(ttbar, signal_300 , 'ht', 'ttbar_T300' , out_file)
-    # drawCompareCanvas(ttbar, signal_400 , 'ht', 'ttbar_T400' , out_file)
-    # drawCompareCanvas(ttbar, signal_500 , 'ht', 'ttbar_T500' , out_file)
-    # drawCompareCanvas(ttbar, signal_600 , 'ht', 'ttbar_T600' , out_file)
-    # drawCompareCanvas(ttbar, signal_700 , 'ht', 'ttbar_T700' , out_file)
-    # drawCompareCanvas(ttbar, signal_800 , 'ht', 'ttbar_T800' , out_file)
-    # drawCompareCanvas(ttbar, signal_900 , 'ht', 'ttbar_T900' , out_file)
+    drawCompareCanvas(ttbar, signal_100 , 'ht', 'ttbar_T100' , out_file)
+    drawCompareCanvas(ttbar, signal_200 , 'ht', 'ttbar_T200' , out_file)
+    drawCompareCanvas(ttbar, signal_300 , 'ht', 'ttbar_T300' , out_file)
+    drawCompareCanvas(ttbar, signal_400 , 'ht', 'ttbar_T400' , out_file)
+    drawCompareCanvas(ttbar, signal_500 , 'ht', 'ttbar_T500' , out_file)
+    drawCompareCanvas(ttbar, signal_600 , 'ht', 'ttbar_T600' , out_file)
+    drawCompareCanvas(ttbar, signal_700 , 'ht', 'ttbar_T700' , out_file)
+    drawCompareCanvas(ttbar, signal_800 , 'ht', 'ttbar_T800' , out_file)
+    drawCompareCanvas(ttbar, signal_900 , 'ht', 'ttbar_T900' , out_file)
     drawCompareCanvas(ttbar, signal_1000, 'ht', 'ttbar_T1000', out_file)
 
-    # drawCompareCanvas(ttbar, signal_100 , 'met_sig', 'ttbar_T100' , out_file)
-    # drawCompareCanvas(ttbar, signal_200 , 'met_sig', 'ttbar_T200' , out_file)
-    # drawCompareCanvas(ttbar, signal_300 , 'met_sig', 'ttbar_T300' , out_file)
-    # drawCompareCanvas(ttbar, signal_400 , 'met_sig', 'ttbar_T400' , out_file)
-    # drawCompareCanvas(ttbar, signal_500 , 'met_sig', 'ttbar_T500' , out_file)
-    # drawCompareCanvas(ttbar, signal_600 , 'met_sig', 'ttbar_T600' , out_file)
-    # drawCompareCanvas(ttbar, signal_700 , 'met_sig', 'ttbar_T700' , out_file)
-    # drawCompareCanvas(ttbar, signal_800 , 'met_sig', 'ttbar_T800' , out_file)
-    # drawCompareCanvas(ttbar, signal_900 , 'met_sig', 'ttbar_T900' , out_file)
+    drawCompareCanvas(ttbar, signal_100 , 'met_sig', 'ttbar_T100' , out_file)
+    drawCompareCanvas(ttbar, signal_200 , 'met_sig', 'ttbar_T200' , out_file)
+    drawCompareCanvas(ttbar, signal_300 , 'met_sig', 'ttbar_T300' , out_file)
+    drawCompareCanvas(ttbar, signal_400 , 'met_sig', 'ttbar_T400' , out_file)
+    drawCompareCanvas(ttbar, signal_500 , 'met_sig', 'ttbar_T500' , out_file)
+    drawCompareCanvas(ttbar, signal_600 , 'met_sig', 'ttbar_T600' , out_file)
+    drawCompareCanvas(ttbar, signal_700 , 'met_sig', 'ttbar_T700' , out_file)
+    drawCompareCanvas(ttbar, signal_800 , 'met_sig', 'ttbar_T800' , out_file)
+    drawCompareCanvas(ttbar, signal_900 , 'met_sig', 'ttbar_T900' , out_file)
     drawCompareCanvas(ttbar, signal_1000, 'met_sig', 'ttbar_T1000', out_file)
 
     out_file.Close()
