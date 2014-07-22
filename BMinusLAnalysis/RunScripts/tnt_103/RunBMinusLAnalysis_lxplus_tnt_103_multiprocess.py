@@ -45,27 +45,28 @@ if __name__ == '__main__':
     full_sim_mc_samples = {
                           }
     fast_sim_mc_samples = {
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2'                  , 'num_jobs':50}
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'         , 'num_jobs':30}
-                          , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'               , 'num_jobs':30}
-                          , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'             , 'num_jobs':30}
-                          , 167755:{'label':'167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter'           , 'num_jobs':5}
-                          , 167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':20}
-                          , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':20}
-                          , 167803:{'label':'167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter'      , 'num_jobs':5}
-                          , 167809:{'label':'167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter'         , 'num_jobs':10}
-                          , 167812:{'label':'167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter'       , 'num_jobs':10}
-                          , 167815:{'label':'167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter'     , 'num_jobs':5}
-                          , 167821:{'label':'167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter'         , 'num_jobs':10}
-                          , 167824:{'label':'167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter'       , 'num_jobs':10}
-                          , 167827:{'label':'167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter'     , 'num_jobs':5}
-                          , 167833:{'label':'167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter'             , 'num_jobs':10}
-                          , 167836:{'label':'167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter'           , 'num_jobs':10}
-                          , 167839:{'label':'167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter'         , 'num_jobs':5}
-                          , 180543:{'label':'180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter'           , 'num_jobs':10}
-                          , 180546:{'label':'180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter'         , 'num_jobs':10}
-                          , 180549:{'label':'180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter'       , 'num_jobs':5}
-                          , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
+                          #   117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2'                  , 'num_jobs':50}
+                          # , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'         , 'num_jobs':30}
+                          # , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'               , 'num_jobs':30}
+                          # , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'             , 'num_jobs':30}
+                          # , 167755:{'label':'167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter'           , 'num_jobs':5}
+                          # , 167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':20}
+                          # , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':20}
+                          # , 167803:{'label':'167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter'      , 'num_jobs':5}
+                          # , 167809:{'label':'167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter'         , 'num_jobs':10}
+                          # , 167812:{'label':'167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter'       , 'num_jobs':10}
+                          # , 167815:{'label':'167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter'     , 'num_jobs':5}
+                          # , 167821:{'label':'167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter'         , 'num_jobs':10}
+                          # , 167824:{'label':'167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter'       , 'num_jobs':10}
+                          # , 167827:{'label':'167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter'     , 'num_jobs':5}
+                          # , 167833:{'label':'167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter'             , 'num_jobs':10}
+                          # , 167836:{'label':'167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter'           , 'num_jobs':10}
+                          # , 167839:{'label':'167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter'         , 'num_jobs':5}
+                          # , 180543:{'label':'180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter'           , 'num_jobs':10}
+                          # , 180546:{'label':'180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter'         , 'num_jobs':10}
+                          # , 180549:{'label':'180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter'       , 'num_jobs':5}
+#                          , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
+                           202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
                           , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200'  , 'num_jobs':1}
                           , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300'  , 'num_jobs':1}
                           , 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400'  , 'num_jobs':1}
@@ -82,7 +83,7 @@ if __name__ == '__main__':
     data_set_dicts = RunHelpers.addAllSamplesToList( data_samples = data_samples
                                                    , full_sim_mc_samples = full_sim_mc_samples
                                                    , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
+                                                   , file_list_path_base = 'EosFileLists/tnt_103/tnt_103_v2'
                                                    , out_dir = out_dir
                                                    )
 
