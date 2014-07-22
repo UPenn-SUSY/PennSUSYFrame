@@ -218,9 +218,6 @@ namespace PennSusyFrame
       std::vector<TH2F*> m_h_lep_pt_resolution_all; //~ ~
       std::vector<TH2F*> m_h_lep_pt_resolution_0; //~ ~
       std::vector<TH2F*> m_h_lep_pt_resolution_1; //~ ~
-      std::vector<TH2F*> m_h_lep_E_resolution_all; //~ ~
-      std::vector<TH2F*> m_h_lep_E_resolution_0; //~ ~
-      std::vector<TH2F*> m_h_lep_E_resolution_1; //~ ~
 
       // mbl for differnt pairing algorithms
       std::vector<TH1F*> m_h_mbl_same_parent_pairing; //~ ~
