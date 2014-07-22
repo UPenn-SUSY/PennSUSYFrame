@@ -1327,8 +1327,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 					   + FLAVOR_CHANNEL_STRINGS[fc_it]
 					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
 					   ).c_str(),
-					  pt_bins/10., pt_min, pt_max,
-					  pt_bins/10., pt_min, pt_max
+					  pt_bins, pt_min, pt_max,
+					  pt_bins, pt_min, pt_max
 					  )
 				);
 
@@ -1341,8 +1341,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 					   + FLAVOR_CHANNEL_STRINGS[fc_it]
 					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
 					   ).c_str(),
-					  pt_bins/10., pt_min, pt_max,
-					  pt_bins/10., pt_min, pt_max
+					  pt_bins, pt_min, pt_max,
+					  pt_bins, pt_min, pt_max
 					  )
 				);
 
@@ -1355,8 +1355,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 					   + FLAVOR_CHANNEL_STRINGS[fc_it]
 					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
 					   ).c_str(),
-					  pt_bins/10., pt_min, pt_max,
-					  pt_bins/10., pt_min, pt_max
+					  pt_bins, pt_min, pt_max,
+					  pt_bins, pt_min, pt_max
 					  )
 				);
 
