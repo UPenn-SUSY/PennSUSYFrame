@@ -11,6 +11,9 @@ cut_level = sys.argv[1] if len(sys.argv) > 1 else ''
 print 'cut level: "%s"' % cut_level
 
 # ------------------------------------------------------------------------------
+mbl_bins = [0, 50, 100, 200, 300, 450, 600, 1500]
+
+# ------------------------------------------------------------------------------
 def recoverOverflow(h):
     print 'recoverOverflow()'
 
@@ -201,7 +204,6 @@ def produceMblPlots(in_file_name, tag):
     f = ROOT.TFile.Open(in_file_name)
     t = f.Get("optimize")
 
-    mbl_bins = [0, 50, 100, 200, 300, 600, 1500]
     h_mbl_no_cut = ROOT.TH1D( 'mbl_no_cut__%s' % tag
                             , 'mbl_no_cut__%s ; m_{bl} [GeV] ; bl pairs' % tag
                             , len(mbl_bins)-1, array.array('d', mbl_bins)
@@ -308,25 +310,37 @@ def produceMblPlots(in_file_name, tag):
 def setRange(hist_list):
     global_min = 999
     global_max = 0
+    x_bins = hist_list[0].GetXaxis().GetNbins()
     for hl in hist_list:
-        local_min = hl.GetMinimum()
-        local_max = hl.GetMaximum()
+        local_min = 999
+        local_max = 0
+        for i in xrange(1, x_bins+1):
+            this_entry = hl.GetBinContent(i)
+            if this_entry < local_min and this_entry > 0: local_min = this_entry
+            if this_entry > local_max: local_max = this_entry
         if local_min < global_min: global_min = local_min
         if local_max > global_max: global_max = local_max
 
-    # global_max *= 10
-    global_min /= 5
-    global_max *= 5
+    x_min = hist_list[0].GetXaxis().GetXmin()
+    x_max = hist_list[0].GetXaxis().GetXmax()
 
-    # print 'global min: ' , global_min
+    y_min_for_plot = math.pow(10, ( math.log(global_min, 10) - (math.log(global_max, 10) - math.log(global_min, 10))*0.20))
+    y_max_for_plot = math.pow(10, ( math.log(global_min, 10) + (math.log(global_max, 10) - math.log(global_min, 10))*1.20))
 
-    for hl in hist_list:
-        # hl.SetMinimum(global_min)
-        hl.SetMaximum(global_max)
+    name = 'frame__%s' %  hist_list[0].GetName()
+    title = hist_list[0].GetTitle()
+    x_label = hist_list[0].GetXaxis().GetTitle()
+    y_label = hist_list[0].GetYaxis().GetTitle()
+    frame = ROOT.TH1I( name
+                     , '%s ; %s ; %s' % (title, x_label, y_label)
+                     , 1
+                     , x_min
+                     , x_max
+                     )
+    frame.GetYaxis().SetRangeUser(y_min_for_plot, y_max_for_plot)
+    # frame.SetMaximum(global_max)
 
-    # frame = TH1I('frame', 'frame', 
-
-    # return frame
+    return frame
 
 # ------------------------------------------------------------------------------
 def drawCompareCanvas( background_hist_dict
@@ -373,12 +387,13 @@ def drawCompareCanvas( background_hist_dict
     c.cd(1)
     ROOT.gPad.SetLogy()
 
-    setRange( [ bkg_no_cuts
-              , sig_no_cuts
-              ]
-            )
+    frame = setRange( [ bkg_no_cuts
+                      , sig_no_cuts
+                      ]
+                    )
 
-    bkg_no_cuts.Draw('hist')
+    frame.Draw()
+    bkg_no_cuts.Draw('histSAME')
     sig_no_cuts.Draw('histSAME')
     bkg_no_cuts_uncert.Draw('2')
     # sig_no_cuts_uncert.Draw('a2SAME')
@@ -417,10 +432,10 @@ def drawCompareCanvas( background_hist_dict
               ]
             )
 
-    bkg_w_cuts.Draw('hist')
+    frame.Draw()
+    bkg_w_cuts.Draw('histSAME')
     sig_w_cuts.Draw('histSAME')
     bkg_w_cuts_uncert.Draw('2')
-    # sig_w_cuts_uncert.Draw('a2SAME')
 
     b_entries_cuts = bkg_w_cuts.GetEntries()
     s_entries_cuts = sig_w_cuts.GetEntries()
