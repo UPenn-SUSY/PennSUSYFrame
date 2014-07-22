@@ -147,26 +147,34 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_b_jet_from_stop_pt_all; //~ ~
       std::vector<TH1F*> m_h_b_jet_from_stop_pt_0; //~ ~
       std::vector<TH1F*> m_h_b_jet_from_stop_pt_1; //~ ~
+      std::vector<TH1F*> m_h_b_jet_from_stop_raw_pt_all;
 
       // pT of b jets when both are coming from stops
       std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_all; //~ ~
       std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_0; //~ ~
       std::vector<TH1F*> m_h_b_jet_both_from_stop_pt_1; //~ ~
+      std::vector<TH1F*> m_h_b_jet_both_from_stop_raw_pt_all; //~ ~
+      std::vector<TH1F*> m_h_b_jet_both_from_stop_raw_pt_1; //~ ~
 
       // pT of leptons when coming from the stop
       std::vector<TH1F*> m_h_lep_from_stop_pt_all; //~ ~
       std::vector<TH1F*> m_h_lep_from_stop_pt_0; //~ ~
       std::vector<TH1F*> m_h_lep_from_stop_pt_1; //~ ~
+      std::vector<TH1F*> m_h_lep_from_stop_raw_pt_all; //~ ~
 
       // pT of leptons when both are coming from the stop
       std::vector<TH1F*> m_h_lep_both_from_stop_pt_all; //~ ~
       std::vector<TH1F*> m_h_lep_both_from_stop_pt_0; //~ ~
       std::vector<TH1F*> m_h_lep_both_from_stop_pt_1; //~ ~
+      std::vector<TH1F*> m_h_lep_both_from_stop_raw_pt_all; //~ ~
+      std::vector<TH1F*> m_h_lep_both_from_stop_raw_pt_1; //~ ~
 
       // jet multiplicity vs pT for b jets
       std::vector<TH2F*> m_h_b_jet_mult_pt_all; //~ ~
       std::vector<TH2F*> m_h_b_jet_mult_pt_0; //~ ~
       std::vector<TH2F*> m_h_b_jet_mult_pt_1; //~ ~
+      std::vector<TH2F*> m_h_b_jet_mult_raw_pt_all; //~ ~
+      std::vector<TH2F*> m_h_b_jet_mult_raw_pt_1; //~ ~
 
       // mbl vs hT
       std::vector<TH2F*> m_h_mbl_vs_ht_all; //~ ~
@@ -183,6 +191,9 @@ namespace PennSusyFrame
       std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt; //~ ~
       std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt_eff; //~ ~
       std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_pt_num; //~ ~
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_raw_pt; //~ ~
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_raw_pt_eff; //~ ~
+      std::vector<TH2F*> m_h_b_jet1vl1_all_from_stop_raw_pt_num; //~ ~
 
       // mbl for anti-paired bl pairs
       std::vector<TH1F*> m_h_mbl_anti_pairing_all; //~ ~
