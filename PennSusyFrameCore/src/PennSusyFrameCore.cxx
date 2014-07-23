@@ -20,7 +20,7 @@
 // -----------------------------------------------------------------------------
 PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry(0)
                                                                  , m_max_num_events(-1)
-                                                                 , m_is_data(true)
+                                                                 , m_is_data(false)
                                                                  , m_is_af2(false)
                                                                  , m_event_weight(1.)
                                                                  , m_x_sec(1.)
