@@ -431,6 +431,9 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setClEta(reader->el_cl_eta->at(el_index));
   setClPhi(reader->el_cl_phi->at(el_index));
 
+  setD3PDEta(reader->el_eta->at(el_index));
+  setD3PDPhi(reader->el_phi->at(el_index));
+
   setD0(   reader->el_trackIPEstimate_d0_unbiasedpvunbiased->at(el_index));
   setSigD0(reader->el_trackIPEstimate_sigd0_unbiasedpvunbiased->at(el_index));
   setZ0(   reader->el_trackIPEstimate_z0_unbiasedpvunbiased->at(el_index));
@@ -479,7 +482,10 @@ void PennSusyFrame::Electron::updateIsolation( const PennSusyFrame::Event* event
 void PennSusyFrame::Electron::print() const
 {
   Lepton::print();
-  std::cout <<std::setw(17)<<left<< "raw pt iso: " << std::setw(20)<<left<<m_raw_pt_iso
+  std::cout <<std::setw(17)<<left<< "cluster E: "  << std::setw(20)<<left<<m_cl_E
+	    <<std::setw(17)<<left<< "cluster eta: "<< std::setw(20)<<left<<m_cl_eta
+	    <<std::setw(17)<<left<< "cluster phi: "<< std::setw(20)<<left<<m_cl_phi
+            <<std::setw(17)<<left<< "raw pt iso: " << std::setw(20)<<left<<m_raw_pt_iso
             <<std::setw(17)<<left<< "raw et iso: " <<  std::setw(20)<<left<<m_raw_et_iso
             <<"\n"
             <<std::setw(17)<<left<< "pt iso: " <<  std::setw(20)<<left<<m_pt_iso
@@ -1117,8 +1123,8 @@ void PennSusyFrame::Met::addElectrons(const std::vector<PennSusyFrame::Electron*
     //           << "\t\tel phi: " << (*el_it)->getPhi()
     //           << "\n";
     el_pt.push_back( (*el_it)->getPt() );
-    el_eta.push_back((*el_it)->getEta());
-    el_phi.push_back((*el_it)->getPhi());
+    el_eta.push_back((*el_it)->getD3PDEta());
+    el_phi.push_back((*el_it)->getD3PDPhi());
 
     // get MET status word for this electron
     el_status_word.push_back((*el_it)->getMetStatusWord());
@@ -1324,11 +1330,13 @@ void PennSusyFrame::Met::doWeightFix( std::vector<float>& wet
       if (  wpx[cl] < 0.5 * wet[cl]
          || wpx[cl] > 2   * wet[cl]
          ) {
+	std::cout<<"In weight fix"<<std::endl;
         wpx[cl] = wet[cl];
       }
       if (  wpy[cl] < 0.5 * wet[cl]
          || wpy[cl] > 2   * wet[cl]
          ) {
+	std::cout<<"In weight fix"<<std::endl;
         wpy[cl] = wet[cl];
       }
     }
