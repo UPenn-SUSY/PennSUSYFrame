@@ -6,21 +6,12 @@ import os.path
 import optparse
 import time
 
-
 import glob
 
 import ROOT
 
-# ------------------------------------------------------------------------------
-def getFileListFromDir(file_path):
-    print 'getting files from dir: %s' % file_path
-    file_list = glob.glob('%s/*' % file_path)
-    return file_list
-
-# ------------------------------------------------------------------------------
-def getFileListFromGridInput(grid_input_string):
-    file_list = grid_input_string.split(',')
-    return file_list
+sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
+import RunHelpers
 
 # ------------------------------------------------------------------------------
 def runTntMaker(file_list, is_data = False, is_full_sim = False):
@@ -94,7 +85,7 @@ def main():
     print 'is_full_sim: %s' % is_full_sim
     print 'input_list: %s' % input_list
 
-    file_list = getFileListFromGridInput(input_list)
+    file_list = RunHelpers.getFileListFromGridInput(input_list)
 
     print 'file_list: %s' % file_list
 

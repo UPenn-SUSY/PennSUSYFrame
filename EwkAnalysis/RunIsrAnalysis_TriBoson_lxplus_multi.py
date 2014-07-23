@@ -117,20 +117,16 @@ if __name__ == '__main__':
     data_set_dicts = []
 
     data_samples = {}
-    
-    #full_sim_mc_samples = { 117655:{'label':'117655.AlpgenPythia_P2011C_ZeeNp5'       , 'num_jobs':1}
-<<<<<<< HEAD
 
     full_sim_mc_samples = { 167006:{'label':'167006.MadGraphPythia_AUET2BCTEQ6L1_WWWStar_lnulnulnu'   , 'num_jobs':1}
-                            , 167007:{'label':'167007.MadGraphPythia_AUET2BCTEQ6L1_ZWWStar_lllnulnu'  , 'num_jobs':1}
-                            , 167008:{'label':'167008.MadGraphPythia_AUET2BCTEQ6L1_ZZZStar_nunullll'  , 'num_jobs':1}
-                            #, 147191:
-                                #, 147193:
-                                #, 147194:
-                                #, 147195:
-                                #, 147196
-        
-}
+                          , 167007:{'label':'167007.MadGraphPythia_AUET2BCTEQ6L1_ZWWStar_lllnulnu'  , 'num_jobs':1}
+                          , 167008:{'label':'167008.MadGraphPythia_AUET2BCTEQ6L1_ZZZStar_nunullll'  , 'num_jobs':1}
+                          #, 147191:
+                          #, 147193:
+                          #, 147194:
+                          #, 147195:
+                          #, 147196
+                          }
 
 
 
@@ -138,7 +134,7 @@ if __name__ == '__main__':
 
 
     for dsid in data_samples:
-        
+
         these_data_set_dicts = makeDataSetDictList( label_base=data_samples[dsid]['label']
                                                     , file_list_path = 'EosFileLists/tnt_102/tnt_102.%s.txt' % data_samples[dsid]['label']
                                                     , is_data = True
@@ -148,7 +144,7 @@ if __name__ == '__main__':
                                                     )
         for tdsd in these_data_set_dicts:
             data_set_dicts.append(tdsd)
-                                                    
+
         # TODO add stuff for data samples!
 
     for dsid in full_sim_mc_samples:

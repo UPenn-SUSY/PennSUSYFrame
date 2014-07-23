@@ -188,6 +188,81 @@ class HistPainter(object):
         return entry_hists
 
     # ------------------------------------------------------------------------------
+    def genRawEntriesHists(self):
+        """
+        Generate histogram with the number of entries per component
+        """
+        print 'genRawEntriesHists()'
+        label_list  = []
+        num_entries = []
+        fill_colors = []
+        line_colors = []
+        line_widths = []
+        line_styles = []
+
+        # get raw entries for numerator
+        print 'finding hist raw entries for numerator'
+        self.findHistRawEntries( self.num_merger
+                               , label_list
+                               , num_entries
+                               , fill_colors
+                               , line_colors
+                               , line_widths
+                               , line_styles
+                               );
+        # get raw entries for denominator
+        print 'finding hist raw entries for denominator'
+        self.findHistRawEntries( self.denom_merger
+                               , label_list
+                               , num_entries
+                               , fill_colors
+                               , line_colors
+                               , line_widths
+                               , line_styles
+                               );
+        # get raw entries for other
+        print 'finding hist raw entries for others'
+        if self.other_merger is not None:
+            self.findHistRawEntries( self.other_merger
+                                   , label_list
+                                   , num_entries
+                                   , fill_colors
+                                   , line_colors
+                                   , line_widths
+                                   , line_styles
+                                   );
+
+        num_handles = len(label_list)
+        print 'Number of handles to add to entry histogram: %s' % num_handles
+
+        raw_entry_hists = []
+        for it in xrange(num_handles):
+            print '\tit: %s' % it
+            tmp_hist = ROOT.TH1D( 'entry_hist__%s' % (''.join(random.choice(string.ascii_lowercase) for x in xrange(5)))
+                                , 'num_raw_entries'
+                                , num_handles + 2
+                                , -0.5
+                                , num_handles + 1.5
+                                )
+            if fill_colors[it]:
+                tmp_hist.SetFillColor(fill_colors[it])
+            tmp_hist.SetLineColor(line_colors[it])
+            tmp_hist.SetLineWidth(line_widths[it])
+            tmp_hist.SetLineStyle(line_styles[it])
+
+            tmp_hist.Fill(it, num_entries[it])
+
+            for bin_it in xrange(num_handles):
+                print 'bin: %s' % bin_it
+                print '  label:   %s' % label_list[bin_it]
+                print '  raw entries: %s' % num_entries[bin_it]
+                tmp_hist.GetXaxis().SetBinLabel(bin_it+1, label_list[bin_it])
+
+            raw_entry_hists.append(tmp_hist)
+
+        return raw_entry_hists
+
+    # ------------------------------------------------------------------------------
     # TODO move out of class definition
     def findHistEntries( self
                        , merger
@@ -200,7 +275,34 @@ class HistPainter(object):
                        ):
         for key in merger.hist_handles:
             label_list.append(hh.Helper.genLegendLabel(key))
-            num_entries.append(merger.hist_handles[key].hist.Integral())
+            this_hist_to_integrate = merger.hist_handles[key].hist
+            if isinstance(this_hist_to_integrate, ROOT.TH1I) or isinstance(this_hist_to_integrate, ROOT.TH1F) or isinstance(this_hist_to_integrate, ROOT.TH1D):
+                this_num_bins = merger.hist_handles[key].hist.GetNbinsX()
+                num_entries.append( merger.hist_handles[key].hist.Integral( 0
+                                                                          , this_num_bins+1
+                                                                          )
+                                  )
+            else:
+                num_entries.append(merger.hist_handles[key].hist.Integral())
+            fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
+            line_colors.append(merger.hist_handles[key].hist_info.line_color)
+            line_widths.append(merger.hist_handles[key].hist_info.line_width)
+            line_styles.append(merger.hist_handles[key].hist_info.line_style)
+
+    # ------------------------------------------------------------------------------
+    # TODO move out of class definition
+    def findHistRawEntries( self
+                          , merger
+                          , label_list
+                          , num_entries
+                          , fill_colors
+                          , line_colors
+                          , line_widths
+                          , line_styles
+                          ):
+        for key in merger.hist_handles:
+            label_list.append(hh.Helper.genLegendLabel(key))
+            num_entries.append(merger.hist_handles[key].hist.GetEntries())
             fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
             line_colors.append(merger.hist_handles[key].hist_info.line_color)
             line_widths.append(merger.hist_handles[key].hist_info.line_width)
@@ -225,7 +327,6 @@ class HistPainter(object):
             if local_extreme > max_bin:
                 max_bin = local_extreme
 
-
         max_bin *= 1.2
         for i, eh in enumerate(entries_hists):
             eh.SetMaximum(max_bin)
@@ -237,6 +338,30 @@ class HistPainter(object):
         # entries_hists.Draw('HIST')
         # entries_hists = self.genEntriesHists()
         return {'canv':entries_canvas, 'hists':entries_hists}
+
+    # ------------------------------------------------------------------------------
+    def genRawEntriesCanvas(self):
+        raw_entries_canvas = ROOT.TCanvas('raw_entries')
+        raw_entries_hists = self.genRawEntriesHists()
+
+        max_bin = 0
+
+        for i, reh in enumerate(raw_entries_hists):
+            local_extreme = reh.Integral()
+            if local_extreme > max_bin:
+                max_bin = local_extreme
+
+        max_bin *= 1.2
+        for i, reh in enumerate(raw_entries_hists):
+            reh.SetMaximum(max_bin)
+            if i == 0:
+                reh.Draw('HISTTEXT0')
+            else:
+                reh.Draw('HISTTEXT0SAME')
+
+        # raw_entries_hists.Draw('HIST')
+        # raw_entries_hists = self.genEntriesHists()
+        return {'canv':raw_entries_canvas, 'hists':raw_entries_hists}
 
     # --------------------------------------------------------------------------
     def pile( self

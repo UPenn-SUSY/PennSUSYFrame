@@ -145,8 +145,8 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 5);
   // m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
-  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.16);
-  m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.18);
+  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.07);
+  m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, 0.13);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // muons selectors
@@ -167,7 +167,8 @@ void PennSusyFrame::PennSusyFrameCore::prepareSelection()
   m_muon_selectors.at(MU_SIGNAL).setEtaCut(-1, 2.4);
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
-  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.12);
+  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.06);
+  m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.14);
 
   // MU_BAD
   m_muon_selectors.at(MU_BAD).setQOverPRatioCut(0.2, -1);

@@ -387,6 +387,7 @@ PennSusyFrame::ObjectCleaning::ObjectCleaning()
   // TODO properly set cone sizes and mll threshold
   m_ee_cone_size = 0.05;
   m_ej_cone_size = 0.20;
+  m_mj_cone_size = 0.00; // not done by default
   m_et_cone_size = 0.20;
   m_mt_cone_size = 0.20;
   m_je_cone_size = 0.40;
@@ -457,6 +458,12 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSu
   ejOverlapRemoval(el_temp_1, *input_jets_good, jet_good_temp_1);
   ejOverlapRemoval(el_temp_1, *input_jets_bad , jet_bad_temp_1 );
 
+  // do mj overlap removal
+  std::vector<PennSusyFrame::Jet*> jet_good_temp_2;
+  std::vector<PennSusyFrame::Jet*> jet_bad_temp_2;
+  mjOverlapRemoval(*input_muons, jet_good_temp_1, jet_good_temp_2);
+  mjOverlapRemoval(*input_muons, jet_bad_temp_1 , jet_bad_temp_2 );
+
   // do et overlap removal
   std::vector<PennSusyFrame::Tau*> tau_temp_1;
   etOverlapRemoval(el_temp_1, *input_taus, tau_temp_1);
@@ -468,14 +475,14 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSu
   // do je overlap removal
   std::vector<PennSusyFrame::Electron*> el_temp_2;
   std::vector<PennSusyFrame::Electron*> el_temp_3;
-  jeOverlapRemoval(jet_good_temp_1, el_temp_1, el_temp_2);
-  jeOverlapRemoval(jet_bad_temp_1 , el_temp_2, el_temp_3);
+  jeOverlapRemoval(jet_good_temp_2, el_temp_1, el_temp_2);
+  jeOverlapRemoval(jet_bad_temp_2 , el_temp_2, el_temp_3);
 
   // do jm overlap removal
   std::vector<PennSusyFrame::Muon*> mu_temp_1;
   std::vector<PennSusyFrame::Muon*> mu_temp_2;
-  jmOverlapRemoval(jet_good_temp_1, *input_muons, mu_temp_1);
-  jmOverlapRemoval(jet_bad_temp_1 , mu_temp_1   , mu_temp_2);
+  jmOverlapRemoval(jet_good_temp_2, *input_muons, mu_temp_1);
+  jmOverlapRemoval(jet_bad_temp_2 , mu_temp_1   , mu_temp_2);
 
   // do em overlap removal
   std::vector<PennSusyFrame::Electron*> el_temp_4;
@@ -492,15 +499,15 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSu
   sfosMllOverlapRemoval(el_temp_4, mu_temp_4, el_temp_5, mu_temp_5);
 
   // do tj overlap removal
-  std::vector<PennSusyFrame::Jet*> jet_good_temp_2;
-  std::vector<PennSusyFrame::Jet*> jet_bad_temp_2;
-  tjOverlapRemoval(tau_temp_2, jet_good_temp_1, jet_good_temp_2);
-  tjOverlapRemoval(tau_temp_2, jet_bad_temp_1 , jet_bad_temp_2 );
+  std::vector<PennSusyFrame::Jet*> jet_good_temp_3;
+  std::vector<PennSusyFrame::Jet*> jet_bad_temp_3;
+  tjOverlapRemoval(tau_temp_2, jet_good_temp_2, jet_good_temp_3);
+  tjOverlapRemoval(tau_temp_2, jet_bad_temp_2 , jet_bad_temp_3 );
 
   // set output vectors to the final temp objects
   output_electrons = el_temp_5;
-  output_jets_good = jet_good_temp_2;
-  output_jets_bad  = jet_bad_temp_2;
+  output_jets_good = jet_good_temp_3;
+  output_jets_bad  = jet_bad_temp_3;
   output_muons     = mu_temp_5;
   output_taus      = tau_temp_2;
 
@@ -535,6 +542,19 @@ void PennSusyFrame::ObjectCleaning::ejOverlapRemoval( const std::vector<PennSusy
                          , input_jets
                          , output_jets
                          , m_ej_cone_size
+                         );
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ObjectCleaning::mjOverlapRemoval( const std::vector<PennSusyFrame::Muon*>& muons
+                                                    , const std::vector<PennSusyFrame::Jet*>&  input_jets
+                                                    , std::vector<PennSusyFrame::Jet*>&        output_jets
+                                                    )
+{
+  overlapRemoveSecondList( muons
+                         , input_jets
+                         , output_jets
+                         , m_mj_cone_size
                          );
 }
 

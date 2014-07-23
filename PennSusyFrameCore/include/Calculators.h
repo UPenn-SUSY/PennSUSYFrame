@@ -7,6 +7,7 @@
 // =============================================================================
 namespace PennSusyFrame
 {
+  class Particle;
   class Electron;
   class Muon;
   class Jet;
@@ -57,6 +58,13 @@ namespace PennSusyFrame
                   , const std::vector<PennSusyFrame::Muon*>*
                   );
   double calcDphi(double phi_0, double phi_1);
+
+  // ---------------------------------------------------------------------------
+  // dR calculator
+  double getDr(const PennSusyFrame::Particle* 
+	       ,const PennSusyFrame::Particle*
+	       );
+  double calcDr(double deta, double dphi);
 
   // ---------------------------------------------------------------------------
   // emma mt calculator

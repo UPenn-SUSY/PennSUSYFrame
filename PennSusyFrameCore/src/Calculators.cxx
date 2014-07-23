@@ -125,6 +125,27 @@ double PennSusyFrame::calcDphi(double phi_0, double phi_1) {
 }
 
 // -----------------------------------------------------------------------------
+double PennSusyFrame::getDr(  const PennSusyFrame::Particle* p1
+			    , const PennSusyFrame::Particle* p2
+			    )
+{ 
+  double eta_1 = p1->getEta();
+  double phi_1 = p1->getPhi();
+  double eta_2 = p2->getEta();
+  double phi_2 = p2->getPhi();
+
+  double deta = fabs(eta_1 - eta_2);
+  double dphi = calcDphi(phi_1, phi_2);
+  return PennSusyFrame::calcDr(deta, dphi);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::calcDr(double deta, double dphi) {
+  double dr = sqrt(dphi*dphi + deta*deta);
+  return dr;
+}
+
+// -----------------------------------------------------------------------------
 double PennSusyFrame::getEmmaMt( FLAVOR_CHANNEL flavor_channel
                                , const std::vector<PennSusyFrame::Electron*>* el
                                , const std::vector<PennSusyFrame::Muon*>* mu

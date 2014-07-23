@@ -71,14 +71,33 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
 
   const int   ptll_bins = 50;
   const float ptll_min  = 0.;
-  const float ptll_max  = 1000.;
+  const float ptll_max  = 2000.;
 
-  const int   ht_bins = 100;
+  // const int   ht_bins = 100;
+  const int   ht_bins = 50;
   const float ht_min  = 0;
   const float ht_max  = 5000;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    m_h_flavor_channel.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__flavor_channel"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "Flavor Channel - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "; Flavor Channel ; Entries"
+                                            ).c_str()
+                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                          )
+                                );
+    for (int flavor_it = 0; flavor_it != FLAVOR_N; ++flavor_it) {
+      m_h_flavor_channel.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
+                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                           );
+    }
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mll histograms
     m_h_mll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -212,6 +231,8 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
+    m_h_flavor_channel.at(fc_it)->Fill(fc);
+
     m_h_mll.at(fc_it)->Fill(mll, weight);
     m_h_mt2.at(fc_it)->Fill(mt2, weight);
     m_h_ptll.at(fc_it)->Fill(ptll, weight);
@@ -230,6 +251,8 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_h_flavor_channel.at(fc_it)->Write();
+
     // write mll histograms
     m_h_mll.at(fc_it)->Write();
 
@@ -252,9 +275,9 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   pt_bins = 100;
+  const int   pt_bins = 2000;
   const float pt_min  = 0.;
-  const float pt_max  = 1000.;
+  const float pt_max  = 2000.;
 
   const int   eta_bins = 50;
   const float eta_min = -5.;
@@ -312,6 +335,44 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 
     m_h_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                   + "__lep_pt_1"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "p_{T}^{1} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; p_{T}^{1} [GeV] ; Entries"
+                                  ).c_str()
+                                , pt_bins, pt_min, pt_max
+                                )
+                      );
+    m_h_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__lep_raw_pt_all"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "p_{T} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; p_{T} [GeV] ; Entries"
+                                    ).c_str()
+                                  , pt_bins, pt_min, pt_max
+                                  )
+                        );
+
+    m_h_raw_pt_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_raw_pt_0"
+                                 + "__"
+                                 + name_tag
+                                  ).c_str()
+                                , ( "p_{T}^{0} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; p_{T}^{0} [GeV] ; Entries"
+                                  ).c_str()
+                                , pt_bins, pt_min, pt_max
+                                )
+                      );
+
+    m_h_raw_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_raw_pt_1"
                                   + "__"
                                   + name_tag
                                   ).c_str()
@@ -592,6 +653,7 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 
   float dr  = 0.;
 
+
   // TODO fill these histograms in cleaner way!
 
   if (fc == FLAVOR_EE) {
@@ -622,6 +684,11 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_pt_all.at(FLAVOR_EE)->Fill(pt_1, weight);
     m_h_pt_0.at(  FLAVOR_EE)->Fill(pt_0, weight);
     m_h_pt_1.at(  FLAVOR_EE)->Fill(pt_1, weight);
+
+    m_h_raw_pt_all.at(FLAVOR_EE)->Fill(pt_0);
+    m_h_raw_pt_all.at(FLAVOR_EE)->Fill(pt_1);
+    m_h_raw_pt_0.at(  FLAVOR_EE)->Fill(pt_0);
+    m_h_raw_pt_1.at(  FLAVOR_EE)->Fill(pt_1);
 
     m_h_eta_all.at(FLAVOR_EE)->Fill(eta_0, weight);
     m_h_eta_all.at(FLAVOR_EE)->Fill(eta_1, weight);
@@ -681,6 +748,11 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_pt_0.at(  FLAVOR_MM)->Fill(pt_0, weight);
     m_h_pt_1.at(  FLAVOR_MM)->Fill(pt_1, weight);
 
+    m_h_raw_pt_all.at(FLAVOR_MM)->Fill(pt_0);
+    m_h_raw_pt_all.at(FLAVOR_MM)->Fill(pt_1);
+    m_h_raw_pt_0.at(  FLAVOR_MM)->Fill(pt_0);
+    m_h_raw_pt_1.at(  FLAVOR_MM)->Fill(pt_1);
+
     m_h_eta_all.at(FLAVOR_MM)->Fill(eta_0, weight);
     m_h_eta_all.at(FLAVOR_MM)->Fill(eta_1, weight);
     m_h_eta_0.at(  FLAVOR_MM)->Fill(eta_0, weight);
@@ -715,6 +787,12 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = mu_list->at(0)->getPt()/1.e3;
 
+    if (pt_0 < pt_1) {
+      float tmp = pt_0;
+      pt_0 = pt_1;
+      pt_1 = tmp;
+    }
+
     eta_0 = el_list->at(0)->getEta();
     eta_1 = mu_list->at(0)->getEta();
 
@@ -739,6 +817,11 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_pt_all.at(FLAVOR_EM)->Fill(pt_1, weight);
     m_h_pt_0.at(  FLAVOR_EM)->Fill(pt_0, weight);
     m_h_pt_1.at(  FLAVOR_EM)->Fill(pt_1, weight);
+
+    m_h_raw_pt_all.at(FLAVOR_EM)->Fill(pt_0);
+    m_h_raw_pt_all.at(FLAVOR_EM)->Fill(pt_1);
+    m_h_raw_pt_0.at(  FLAVOR_EM)->Fill(pt_0);
+    m_h_raw_pt_1.at(  FLAVOR_EM)->Fill(pt_1);
 
     m_h_eta_all.at(FLAVOR_EM)->Fill(eta_0, weight);
     m_h_eta_all.at(FLAVOR_EM)->Fill(eta_1, weight);
@@ -790,6 +873,11 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   m_h_pt_all.at(FLAVOR_NONE)->Fill(pt_1, weight);
   m_h_pt_0.at(  FLAVOR_NONE)->Fill(pt_0, weight);
   m_h_pt_1.at(  FLAVOR_NONE)->Fill(pt_1, weight);
+
+  m_h_raw_pt_all.at(FLAVOR_NONE)->Fill(pt_0);
+  m_h_raw_pt_all.at(FLAVOR_NONE)->Fill(pt_1);
+  m_h_raw_pt_0.at(  FLAVOR_NONE)->Fill(pt_0);
+  m_h_raw_pt_1.at(  FLAVOR_NONE)->Fill(pt_1);
 
   m_h_eta_all.at(FLAVOR_NONE)->Fill(eta_0, weight);
   m_h_eta_all.at(FLAVOR_NONE)->Fill(eta_1, weight);
@@ -846,6 +934,10 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     m_h_pt_0.at(  fc_it)->Write();
     m_h_pt_1.at(  fc_it)->Write();
 
+    m_h_raw_pt_all.at(fc_it)->Write();
+    m_h_raw_pt_0.at(  fc_it)->Write();
+    m_h_raw_pt_1.at(  fc_it)->Write();
+
     // write eta histograms
     m_h_eta_all.at(fc_it)->Write();
     m_h_eta_0.at(  fc_it)->Write();
@@ -884,9 +976,9 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins + num_jet_min;
 
-  const int   pt_bins = 100;
+  const int   pt_bins = 2000;
   const float pt_min  = 0.;
-  const float pt_max  = 1000.;
+  const float pt_max  = 2000.;
 
   const int dr_bins = 60;
   const float dr_min = 0.;
@@ -1186,9 +1278,9 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
     m_h_eta_0.at(  fc_it)->Fill(eta_0, weight);
     m_h_eta_1.at(  fc_it)->Fill(eta_1, weight);
 
-    (pass(eta_0, eta_1) ? (m_h_eta_event_passfail.at(fc_it)->Fill(1., weight)) : 
+    (pass(eta_0, eta_1) ? (m_h_eta_event_passfail.at(fc_it)->Fill(1., weight)) :
      (m_h_eta_event_passfail.at(fc_it)->Fill(0., weight)));
-    
+
     (abs(eta_0) < 2.4 ? (m_h_fiducial_single_pass.at(fc_it)->Fill(pt_0, weight)) :
      (m_h_fiducial_single_fail.at(fc_it)->Fill(pt_0, weight)));
 
@@ -1227,7 +1319,7 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
     m_h_dr_jj.at(fc_it)->Write();
     m_h_dphi_jj.at(fc_it)->Write();
     m_h_deta_jj.at(fc_it)->Write();
-    
+
     m_h_eta_all.at(fc_it)->Write();
     m_h_eta_0.at(  fc_it)->Write();
     m_h_eta_1.at(  fc_it)->Write();
@@ -1251,7 +1343,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
   const float dphi_min = 0.;
   const float dphi_max = 3.2;
 
-  const int   met_sig_bins = 100;
+  const int   met_sig_bins = 50;
   const float met_sig_min  = 0;
   const float met_sig_max  = 500;
 

@@ -74,6 +74,7 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
+      std::vector<TH1F*> m_h_flavor_channel;
       std::vector<TH1F*> m_h_mll;
       std::vector<TH1F*> m_h_mt2;
       std::vector<TH1F*> m_h_ptll;
@@ -109,6 +110,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
+
+      std::vector<TH1F*> m_h_raw_pt_all;
+      std::vector<TH1F*> m_h_raw_pt_0;
+      std::vector<TH1F*> m_h_raw_pt_1;
 
       std::vector<TH1F*> m_h_eta_all;
       std::vector<TH1F*> m_h_eta_0;

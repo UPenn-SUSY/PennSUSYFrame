@@ -274,6 +274,18 @@ namespace PennSusyFrame
     public:
       ObjectCleaning();
 
+      void  setEEConeSize(double val) { m_ee_cone_size = val; }
+      void  setEJConeSize(double val) { m_ej_cone_size = val; }
+      void  setMJConeSize(double val) { m_mj_cone_size = val; }
+      void  setETConeSize(double val) { m_et_cone_size = val; }
+      void  setMTConeSize(double val) { m_mt_cone_size = val; }
+      void  setJEConeSize(double val) { m_je_cone_size = val; }
+      void  setJMConeSize(double val) { m_jm_cone_size = val; }
+      void  setEMConeSize(double val) { m_em_cone_size = val; }
+      void  setMMConeSize(double val) { m_mm_cone_size = val; }
+      void  setTJConeSize(double val) { m_tj_cone_size = val; }
+      void  setSFOSMllMin(double val) { m_sfos_mll_min = val; }
+
       void fullObjectCleaning( PennSusyFrame::ElectronContainer&
                              , PennSusyFrame::MuonContainer&
                              , PennSusyFrame::TauContainer&
@@ -296,6 +308,10 @@ namespace PennSusyFrame
                            , std::vector<PennSusyFrame::Electron*>&
                            );
       void ejOverlapRemoval( const std::vector<PennSusyFrame::Electron*>&
+                           , const std::vector<PennSusyFrame::Jet*>&
+                           , std::vector<PennSusyFrame::Jet*>&
+                           );
+      void mjOverlapRemoval( const std::vector<PennSusyFrame::Muon*>&
                            , const std::vector<PennSusyFrame::Jet*>&
                            , std::vector<PennSusyFrame::Jet*>&
                            );
@@ -342,6 +358,7 @@ namespace PennSusyFrame
     private:
       double m_ee_cone_size;
       double m_ej_cone_size;
+      double m_mj_cone_size;
       double m_et_cone_size;
       double m_mt_cone_size;
       double m_je_cone_size;

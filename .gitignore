@@ -10,3 +10,4 @@ cf.root
 jo.*.xml
 *.root
 lib/*
+LSF*/

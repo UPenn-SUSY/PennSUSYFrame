@@ -72,6 +72,21 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeEvent()
      && m_pass_bl_pairing
      && m_pass_z_veto
      ) {
+    // std::cout << "finalizeEvent():"
+    //           << "\n\tevent: "             << m_event.getEventNumber()
+    //           << "\n\tweight: "            << m_event_weight
+    //           << "\n\t\tmc event weight: " << m_mc_event_weight
+    //           << "\n\t\tpile up sf: "      << m_pile_up_sf
+    //           << "\n\t\tx-sec weight: "    << m_xsec_weight
+    //           << "\n\t\tlepton sf: "       << m_lepton_sf
+    //           << "\n\t\tb-tag sf: "        << m_btag_sf
+    //           << "\n\tmbl 0: mbl_0: "      << m_bl_0->getMbl()
+    //           << "\n\tmbl 0: mbl_0: "      << m_bl_1->getMbl()
+    //           << "\n\tht baseline: "       << m_event_quantities.getHtBaseline()
+    //           << "\n\tmet et: "            << m_met.getMetEt()
+    //           << "\n\tmet sig: "           << m_met.getMetSigBaseline()
+    //           << "\n";
+
     fillNtuple( m_bl_0
               , m_bl_1
               , m_event_weight
