@@ -94,6 +94,13 @@ void PennSusyFrame::EwkAnalysis::prepareSelection()
 {
   PennSusyFrameCore::prepareSelection();
 
+  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1,0.07);
+  m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1,0.13);
+
+  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1,0.06);
+  m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.14);
+  m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.4);
+
   std::cout << "preparing selection\n";
 
 
