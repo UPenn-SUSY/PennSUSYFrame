@@ -398,6 +398,8 @@ namespace PennSusyFrame
       void setClE(double val) { m_cl_E = val; }
       void setClEta(double val) { m_cl_eta = val; }
       void setClPhi(double val) { m_cl_phi = val; }
+      void setD3PDEta(double val) { m_d3pd_eta = val; }
+      void setD3PDPhi(double val) { m_d3pd_phi = val; }
       void setD0(double val) { m_d0 = val; }
       void setSigD0(double val) { m_sig_d0 = val; }
       void setZ0(double val) { m_z0 = val; }
@@ -416,6 +418,8 @@ namespace PennSusyFrame
       double getClE() const { return m_cl_E; }
       double getClEta() const { return m_cl_eta; }
       double getClPhi() const { return m_cl_phi; }
+      double getD3PDEta() const { return m_d3pd_eta; }
+      double getD3PDPhi() const { return m_d3pd_phi; }
       double getD0() const { return m_d0; }
       double getSigD0() const { return m_sig_d0; }
       double getD0Significance() const { return m_d0/m_sig_d0; }
@@ -443,6 +447,8 @@ namespace PennSusyFrame
       double m_cl_E;
       double m_cl_eta;
       double m_cl_phi;
+      double m_d3pd_eta;
+      double m_d3pd_phi;
       double m_d0;
       double m_sig_d0;
       double m_z0;
