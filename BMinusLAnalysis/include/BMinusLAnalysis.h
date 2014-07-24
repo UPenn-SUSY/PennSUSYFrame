@@ -14,7 +14,7 @@
 // =============================================================================
 namespace PennSusyFrame
 {
-  enum BMINUSL_HIST_LEVELS {  BMINUSL_HIST_BASIC_CLEANING
+  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
                            , BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_ZVETO
                            , BMINUSL_HIST_GE_4_OBJECTS

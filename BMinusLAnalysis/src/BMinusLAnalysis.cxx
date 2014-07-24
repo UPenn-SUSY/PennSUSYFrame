@@ -544,7 +544,6 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
                                                 , m_electrons.getCollection(EL_SELECTED)
                                                 , m_muons.getCollection(MU_SELECTED)
-                                                // , m_jets.getCollection(JET_B)
                                                 , m_jets.getCollection(JET_SELECTED)
                                                 , *m_bl_0
                                                 , *m_bl_1
@@ -580,9 +579,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Apply met cut
   m_pass_met = ( PennSusyFrame::passCut( m_met.getMetEt()
-                                          , m_met_min
-                                          , m_met_max
-                                          )
+                                       , m_met_min
+                                       , m_met_max
+                                       )
                   );
   m_pass_event = (m_pass_event && m_pass_met);
   if (m_crit_cut_met && !m_pass_met) return;
@@ -613,14 +612,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_cosmic_mu_veto
      && m_pass_hfor
      && m_pass_mc_overlap
-     // && m_pass_ge_2_lep
-     // && m_pass_2_lep
-     // && m_pass_signal_lep
-     // && m_pass_ge_2_b_jet
-     // && m_pass_eq_2_b_jet
-     // && m_pass_bl_pairing
-     // && m_pass_z_veto
-     // && m_pass_met
      ) {
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_BASIC_CLEANING
                    , m_bl_0
@@ -628,8 +619,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , ( m_mc_event_weight
                      * m_pile_up_sf
                      * m_xsec_weight
-                     // * m_lepton_sf
-                     // * m_btag_sf
                      )
                    );
   }
@@ -664,15 +653,13 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , m_event_weight
                    );
   }
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    // fill histograms for GE_4_OBJECTS hist level
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  // fill histograms for GE_4_OBJECTS hist level
   fillHistHandles( PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS
-		   , m_bl_0
-		   , m_bl_1
-		   , m_event_weight
-		   );
-
-//}
+                 , m_bl_0
+                 , m_bl_1
+                 , m_event_weight
+                 );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for ZVETO hist level
@@ -712,7 +699,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     //           << "\n\tmet et: "            << m_met.getMetEt()
     //           << "\n\tmet sig: "           << m_met.getMetSigBaseline()
     //           << "\n";
-
 
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_ZVETO
                    , m_bl_0
@@ -1225,8 +1211,9 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     if (m_pass_eq_2_b_jet) ++m_num_events_passing_eq_2_b_jet;
     if (m_pass_bl_pairing) ++m_num_events_passing_bl_pairing;
 
-    if (m_pass_bl_pairing && (!m_pass_2_lep || !m_pass_ge_2_b_jet))
+    if (m_pass_bl_pairing && (!m_pass_2_lep || !m_pass_ge_2_b_jet)) {
       ++m_num_events_passing_bl_pairing_but_not_lep_or_b;
+    }
   }
 }
 
@@ -1808,7 +1795,7 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                                     , *bl_0
                                                                     , *bl_1
                                                                     , m_mc_truth
-								    , m_truth_match_tool
+                                                                    , m_truth_match_tool
                                                                     , weight
                                                                     );
   }

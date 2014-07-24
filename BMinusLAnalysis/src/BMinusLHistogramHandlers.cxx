@@ -1723,7 +1723,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
    // compute deltaR between objects in bl pairs
    float dr_bl_0 = bl_0.getDr();
    float dr_bl_1 = bl_1.getDr();
-  
+
    // get lepton and pt from bl pairs
    float pt_lep_bl_0 = bl_0.getLepton()->getPt()/1.e3;
    float pt_lep_bl_1 = bl_1.getLepton()->getPt()/1.e3;
@@ -1747,15 +1747,15 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   // compute deltaPhi between objects in anti bl pairs
   float dphi_bl_anti_pair_0 = bl_anti_pair_0.getDphi();
   float dphi_bl_anti_pair_1 = bl_anti_pair_1.getDphi();
-  
+
   // compute deltaEta between objects in anti bl pairs
   float deta_bl_anti_pair_0 = bl_anti_pair_0.getDeta();
   float deta_bl_anti_pair_1 = bl_anti_pair_1.getDeta();
- 
+
   // compute deltaR between objects in anti bl pairs
   float dr_bl_anti_pair_0 = bl_anti_pair_0.getDr();
   float dr_bl_anti_pair_1 = bl_anti_pair_1.getDr();
- 
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // are the pairs from the same parent?
   bool same_parent_pair_0 = PennSusyFrame::sameParent( event
@@ -1782,7 +1782,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
                                                           , bl_anti_pair_1.getJet()
                                                           , mc_truth
                                                           );
- 
+
   bool same_parent_lep_0, same_parent_lep_1;
   if (pt_lep_bl_0 >= pt_lep_bl_1) {
     same_parent_lep_0 = same_parent_pair_0;
@@ -1792,7 +1792,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     same_parent_lep_0 = same_parent_pair_1;
     same_parent_lep_1 = same_parent_pair_0;
   }
- 
+
   bool same_parent_jet_0, same_parent_jet_1;
   if (pt_b_bl_0 >= pt_b_bl_1) {
     same_parent_jet_0 = same_parent_pair_0;
@@ -1831,10 +1831,10 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   // for resolution histos
   const TLorentzVector* tlv_l_0= bl_0.getLepton()->getTlv();
   const TLorentzVector* tlv_l_1= bl_1.getLepton()->getTlv();
-  
+
   int truth_index_0 = truth_match_tool.getIndex(tlv_l_0);
   int truth_index_1 = truth_match_tool.getIndex(tlv_l_1);
-  
+
   // d(R) plots
   const PennSusyFrame::Particle* lep_0 = bl_0.getLepton();
   const PennSusyFrame::Particle* lep_1 = bl_1.getLepton();
@@ -2070,12 +2070,12 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     }
     if (!same_parent_anti_pair_0 && !same_parent_anti_pair_1) {
       m_h_mbl_ratio_diff_parent_pairing.at(fc_it)->Fill(mbl_anti_pair_1/mbl_anti_pair_0, weight);
-    }    
+    }
 
     // fill resolution histograms
     if (truth_index_0 != -1 && truth_index_1 != -1) {
       // muons: pt for both, BUT:
-      // electrons: calo measures Et. What we call reco pt 
+      // electrons: calo measures Et. What we call reco pt
       // is actually Et. So for a meaningful comparison,
       // get truth Et but keep reco pt.
       float pt_truth_0 = 0.;

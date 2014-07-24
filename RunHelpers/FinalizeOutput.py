@@ -22,7 +22,7 @@ def finalizeOutput(job_script_dir, output_dir, flat_ntuples):
 
     if not pass_check_output:
         print 'did not pass output check, bailiing before merging the files'
-        # return False
+        return False
 
     # next, merge the the files in output directory
     RunHelpers.mergeOutputFiles(output_dir, flat_ntuples)
