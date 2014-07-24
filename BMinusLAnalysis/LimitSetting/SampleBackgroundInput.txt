@@ -1,0 +1,16 @@
+#name of column,type of variation,SR
+
+# Nominal
+nominal,ttbar,2.8
+nominal,st,0.15
+nominal,Zhf,0.11
+
+# MCSTAT
+MCstat,ttbar,0.10
+MCstat,st,0.17
+MCstat,Zhf,0.05
+
+# generic systematic
+alpha_generic,ttbar,symRel,0.30
+alpha_generic,st,symRel,0.30
+alpha_generic,Zhf,symRel,0.30
