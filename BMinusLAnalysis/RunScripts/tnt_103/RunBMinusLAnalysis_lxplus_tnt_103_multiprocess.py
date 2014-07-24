@@ -45,13 +45,13 @@ if __name__ == '__main__':
     full_sim_mc_samples = {
                           }
     fast_sim_mc_samples = {
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2'                  , 'num_jobs':50}
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'         , 'num_jobs':30}
-                          , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'               , 'num_jobs':30}
-                          , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'             , 'num_jobs':30}
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2'                  , 'num_jobs':60}
+                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'         , 'num_jobs':50}
+                          , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'               , 'num_jobs':50}
+                          , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'             , 'num_jobs':50}
                           , 167755:{'label':'167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter'           , 'num_jobs':5}
-                          , 167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':20}
-                          , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':20}
+                          , 167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':50}
+                          , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':30}
                           , 167803:{'label':'167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter'      , 'num_jobs':5}
                           , 167809:{'label':'167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter'         , 'num_jobs':10}
                           , 167812:{'label':'167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter'       , 'num_jobs':10}
@@ -66,6 +66,7 @@ if __name__ == '__main__':
                           , 180546:{'label':'180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter'         , 'num_jobs':10}
                           , 180549:{'label':'180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter'       , 'num_jobs':5}
                           , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
+                          , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
                           , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200'  , 'num_jobs':1}
                           , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300'  , 'num_jobs':1}
                           , 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400'  , 'num_jobs':1}
@@ -75,6 +76,17 @@ if __name__ == '__main__':
                           , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'num_jobs':1}
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
+
+                          # 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
+                          # 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200'  , 'num_jobs':1}
+                          # 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300'  , 'num_jobs':1}
+                          # 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400'  , 'num_jobs':1}
+                          # 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500'  , 'num_jobs':1}
+                          # 202637:{'label':'202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600'  , 'num_jobs':1}
+                          # 202638:{'label':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700'  , 'num_jobs':1}
+                          # 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'num_jobs':1}
+                          # 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
+                          # 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
