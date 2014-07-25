@@ -19,61 +19,17 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_ZVETO
                            , BMINUSL_HIST_GE_4_OBJECTS
 
-                           , BMINUSL_HIST_OPT_500_MBL
-                           , BMINUSL_HIST_OPT_500_HT
-                           , BMINUSL_HIST_OPT_500_MET
-                           , BMINUSL_HIST_OPT_500_MBL_HT
-                           , BMINUSL_HIST_OPT_500_MBL_MET
-                           , BMINUSL_HIST_OPT_500_HT_MET
-                           , BMINUSL_HIST_OPT_500
-
-                           , BMINUSL_HIST_OPT_600_MBL
-                           , BMINUSL_HIST_OPT_600_HT
-                           , BMINUSL_HIST_OPT_600_MET
-                           , BMINUSL_HIST_OPT_600_MBL_HT
-                           , BMINUSL_HIST_OPT_600_MBL_MET
-                           , BMINUSL_HIST_OPT_600_HT_MET
-                           , BMINUSL_HIST_OPT_600
-
-                           , BMINUSL_HIST_OPT_700_MBL
-                           , BMINUSL_HIST_OPT_700_HT
-                           , BMINUSL_HIST_OPT_700_MET
-                           , BMINUSL_HIST_OPT_700_MBL_HT
-                           , BMINUSL_HIST_OPT_700_MBL_MET
-                           , BMINUSL_HIST_OPT_700_HT_MET
-                           , BMINUSL_HIST_OPT_700
-
-                           , BMINUSL_HIST_OPT_800_MBL
-                           , BMINUSL_HIST_OPT_800_HT
-                           , BMINUSL_HIST_OPT_800_MET
-                           , BMINUSL_HIST_OPT_800_MBL_HT
-                           , BMINUSL_HIST_OPT_800_MBL_MET
-                           , BMINUSL_HIST_OPT_800_HT_MET
-                           , BMINUSL_HIST_OPT_800
-
-                           , BMINUSL_HIST_OPT_900_MBL
-                           , BMINUSL_HIST_OPT_900_HT
-                           , BMINUSL_HIST_OPT_900_MET
-                           , BMINUSL_HIST_OPT_900_MBL_HT
-                           , BMINUSL_HIST_OPT_900_MBL_MET
-                           , BMINUSL_HIST_OPT_900_HT_MET
-                           , BMINUSL_HIST_OPT_900
-
-                           , BMINUSL_HIST_OPT_1000_MBL
-                           , BMINUSL_HIST_OPT_1000_HT
-                           , BMINUSL_HIST_OPT_1000_MET
-                           , BMINUSL_HIST_OPT_1000_MBL_HT
-                           , BMINUSL_HIST_OPT_1000_MBL_MET
-                           , BMINUSL_HIST_OPT_1000_HT_MET
-                           , BMINUSL_HIST_OPT_1000
-
-                           , BMINUSL_HIST_OPT_SMOOTHED_MBL
-                           , BMINUSL_HIST_OPT_SMOOTHED_HT
-                           , BMINUSL_HIST_OPT_SMOOTHED_MET
-                           , BMINUSL_HIST_OPT_SMOOTHED_MBL_HT
-                           , BMINUSL_HIST_OPT_SMOOTHED_MBL_MET
-                           , BMINUSL_HIST_OPT_SMOOTHED_HT_MET
-                           , BMINUSL_HIST_OPT_SMOOTHED
+                           , BMINUSL_HIST_OPT_MBL
+                           , BMINUSL_HIST_OPT_MET
+                           , BMINUSL_HIST_OPT_MBL_MET
+                           , BMINUSL_HIST_OPT_MBL_MET_HT_100
+                           , BMINUSL_HIST_OPT_MBL_MET_HT_200
+                           , BMINUSL_HIST_OPT_MBL_MET_HT_300
+                           , BMINUSL_HIST_OPT_MBL_MET_HT_400
+                           , BMINUSL_HIST_OPT_MBL_MET_HT_500
+                           , BMINUSL_HIST_OPT_MBL_MET_HT_600
+                           , BMINUSL_HIST_OPT_MBL_MET_HT_700
+                           , BMINUSL_HIST_OPT_MBL_MET_HT_800
 
                            , BMINUSL_HIST_N
                            };
@@ -83,61 +39,17 @@ namespace PennSusyFrame
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_GE_4_OBJECTS"
 
-                                                   , "BMINUSL_OPT_500_MBL"
-                                                   , "BMINUSL_OPT_500_HT"
-                                                   , "BMINUSL_OPT_500_MET"
-                                                   , "BMINUSL_OPT_500_MBL_HT"
-                                                   , "BMINUSL_OPT_500_MBL_MET"
-                                                   , "BMINUSL_OPT_500_HT_MET"
-                                                   , "BMINUSL_OPT_500"
-
-                                                   , "BMINUSL_OPT_600_MBL"
-                                                   , "BMINUSL_OPT_600_HT"
-                                                   , "BMINUSL_OPT_600_MET"
-                                                   , "BMINUSL_OPT_600_MBL_HT"
-                                                   , "BMINUSL_OPT_600_MBL_MET"
-                                                   , "BMINUSL_OPT_600_HT_MET"
-                                                   , "BMINUSL_OPT_600"
-
-                                                   , "BMINUSL_OPT_700_MBL"
-                                                   , "BMINUSL_OPT_700_HT"
-                                                   , "BMINUSL_OPT_700_MET"
-                                                   , "BMINUSL_OPT_700_MBL_HT"
-                                                   , "BMINUSL_OPT_700_MBL_MET"
-                                                   , "BMINUSL_OPT_700_HT_MET"
-                                                   , "BMINUSL_OPT_700"
-
-                                                   , "BMINUSL_OPT_800_MBL"
-                                                   , "BMINUSL_OPT_800_HT"
-                                                   , "BMINUSL_OPT_800_MET"
-                                                   , "BMINUSL_OPT_800_MBL_HT"
-                                                   , "BMINUSL_OPT_800_MBL_MET"
-                                                   , "BMINUSL_OPT_800_HT_MET"
-                                                   , "BMINUSL_OPT_800"
-
-                                                   , "BMINUSL_OPT_900_MBL"
-                                                   , "BMINUSL_OPT_900_HT"
-                                                   , "BMINUSL_OPT_900_MET"
-                                                   , "BMINUSL_OPT_900_MBL_HT"
-                                                   , "BMINUSL_OPT_900_MBL_MET"
-                                                   , "BMINUSL_OPT_900_HT_MET"
-                                                   , "BMINUSL_OPT_900"
-
-                                                   , "BMINUSL_OPT_1000_MBL"
-                                                   , "BMINUSL_OPT_1000_HT"
-                                                   , "BMINUSL_OPT_1000_MET"
-                                                   , "BMINUSL_OPT_1000_MBL_HT"
-                                                   , "BMINUSL_OPT_1000_MBL_MET"
-                                                   , "BMINUSL_OPT_1000_HT_MET"
-                                                   , "BMINUSL_OPT_1000"
-
-                                                   , "BMINUSL_OPT_SMOOTHED_MBL"
-                                                   , "BMINUSL_OPT_SMOOTHED_HT"
-                                                   , "BMINUSL_OPT_SMOOTHED_MET"
-                                                   , "BMINUSL_OPT_SMOOTHED_MBL_HT"
-                                                   , "BMINUSL_OPT_SMOOTHED_MBL_MET"
-                                                   , "BMINUSL_OPT_SMOOTHED_HT_MET"
-                                                   , "BMINUSL_OPT_SMOOTHED"
+                                                   , "BMINUSL_OPT_MBL"
+                                                   , "BMINUSL_OPT_MET"
+                                                   , "BMINUSL_OPT_MBL_MET"
+                                                   , "BMINUSL_OPT_MBL_MET_HT_100"
+                                                   , "BMINUSL_OPT_MBL_MET_HT_200"
+                                                   , "BMINUSL_OPT_MBL_MET_HT_300"
+                                                   , "BMINUSL_OPT_MBL_MET_HT_400"
+                                                   , "BMINUSL_OPT_MBL_MET_HT_500"
+                                                   , "BMINUSL_OPT_MBL_MET_HT_600"
+                                                   , "BMINUSL_OPT_MBL_MET_HT_700"
+                                                   , "BMINUSL_OPT_MBL_MET_HT_800"
 
                                                    , "BMINUSL_N"
                                                    };

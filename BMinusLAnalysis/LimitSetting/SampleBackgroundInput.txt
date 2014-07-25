@@ -1,14 +1,14 @@
-#name of column,type of variation,SR
+#name of column,type of variation,CR,SR
 
 # Nominal
-nominal,ttbar,2.8
-nominal,st,0.15
-nominal,Zhf,0.11
+nominal,ttbar,100,2.8
+nominal,st,100,0.15
+nominal,Zhf,100,0.11
 
 # MCSTAT
-MCstat,ttbar,0.10
-MCstat,st,0.17
-MCstat,Zhf,0.05
+MCstat,ttbar,symRel,0.10
+MCstat,st,symRel,0.17
+MCstat,Zhf,symRel,0.05
 
 # generic systematic
 alpha_generic,ttbar,symRel,0.30
