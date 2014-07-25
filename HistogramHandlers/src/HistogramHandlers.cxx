@@ -275,7 +275,7 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   pt_bins = 2000;
+  const int   pt_bins = 200;
   const float pt_min  = 0.;
   const float pt_max  = 2000.;
 
@@ -976,7 +976,7 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins + num_jet_min;
 
-  const int   pt_bins = 2000;
+  const int   pt_bins = 200;
   const float pt_min  = 0.;
   const float pt_max  = 2000.;
 
@@ -994,7 +994,7 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
 
   const int   eta_bins = 50;
   const float eta_min = -5.;
-  const float eta_max = -5.;
+  const float eta_max = +5.;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {

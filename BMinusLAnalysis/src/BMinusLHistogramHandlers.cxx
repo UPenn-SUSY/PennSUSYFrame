@@ -22,7 +22,7 @@ static const float pt_max  = 1000.;
 
 static const int   eta_bins = 50;
 static const float eta_min = -5.;
-static const float eta_max = 5.;
+static const float eta_max = +5.;
 
 static const int   mbl_bins = 60;
 static const float mbl_min  = 0.;
