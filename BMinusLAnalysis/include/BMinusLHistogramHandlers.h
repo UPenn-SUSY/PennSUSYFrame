@@ -215,12 +215,17 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_same_parent_pairing_jet_0; //~ ~
       std::vector<TH1F*> m_h_same_parent_pairing_jet_1; //~ ~
 
-      std::vector<TH2F*> m_h_lep_pt_resolution_all; //~ ~
-      std::vector<TH2F*> m_h_lep_pt_resolution_0; //~ ~
-      std::vector<TH2F*> m_h_lep_pt_resolution_1; //~ ~
-      std::vector<TH2F*> m_h_lep_E_resolution_all; //~ ~
-      std::vector<TH2F*> m_h_lep_E_resolution_0; //~ ~
-      std::vector<TH2F*> m_h_lep_E_resolution_1; //~ ~
+      std::vector<TH2F*> m_h_b_jet_E_resolution_all; //~ ~
+      std::vector<TH2F*> m_h_b_jet_E_resolution_0; //~ ~
+      std::vector<TH2F*> m_h_b_jet_E_resolution_1; //~ ~
+
+      std::vector<TH2F*> m_h_electron_E_resolution_all; //~ ~
+      std::vector<TH2F*> m_h_electron_E_resolution_0; //~ ~
+      std::vector<TH2F*> m_h_electron_E_resolution_1; //~ ~
+
+      std::vector<TH2F*> m_h_muon_inverse_pt_resolution_all; //~ ~
+      std::vector<TH2F*> m_h_muon_inverse_pt_resolution_0; //~ ~
+      std::vector<TH2F*> m_h_muon_inverse_pt_resolution_1; //~ ~
 
       // mbl for differnt pairing algorithms
       std::vector<TH1F*> m_h_mbl_same_parent_pairing; //~ ~
