@@ -1993,13 +1993,11 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   // for resolution histos
   const TLorentzVector* tlv_l_0= bl_0.getLepton()->getTlv();
   const TLorentzVector* tlv_l_1= bl_1.getLepton()->getTlv();  
-  const TLorentzVector* tlv_b_0= bl_0.getJet()->getTlv();
-  const TLorentzVector* tlv_b_1= bl_1.getJet()->getTlv();
   
   int truth_index_l_0 = truth_match_tool.getIndex(tlv_l_0);
   int truth_index_l_1 = truth_match_tool.getIndex(tlv_l_1);
-  int truth_index_b_0 = truth_match_tool.getIndex(tlv_b_0);
-  int truth_index_b_1 = truth_match_tool.getIndex(tlv_b_1);
+  int truth_index_b_0 = PennSusyFrame::getJetParentIndex(bl_0.getJet(), mc_truth);
+  int truth_index_b_1 = PennSusyFrame::getJetParentIndex(bl_1.getJet(), mc_truth);
   
   // d(R) plots
   const PennSusyFrame::Particle* lep_0 = bl_0.getLepton();
