@@ -85,6 +85,10 @@ class HistHandle(object):
         print '    num_entries: %s -- integral: %s' % (h.GetEntries(), h.Integral())
         h.Sumw2()
 
+        # if 1D hist, recover overflow bin!
+        if isinstance(h, ROOT.TH1F) or isinstance(h, ROOT.TH1D):
+            hh.Helper.recoverOverflow(h)
+
         # add hist to HistHandle internal histogram
         if self.hist == None:
             self.hist = h.Clone(self.unique_name)
