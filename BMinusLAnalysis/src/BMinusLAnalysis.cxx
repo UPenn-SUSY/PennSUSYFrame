@@ -106,6 +106,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   // EL_BASELINE
   m_electron_selectors.at(EL_BASELINE).setElectronQuality(EL_QUALITY_MEDPP);
   m_electron_selectors.at(EL_BASELINE).setPtCut(m_min_el_pt_baseline, m_max_el_pt_baseline);
+  m_electron_selectors.at(EL_BASELINE).setD0SignificanceCut(-1, 3);
+  m_electron_selectors.at(EL_BASELINE).setZ0SignThetaCut(-1, 0.4);
 
   // EL_SIGNAL
   m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_MEDPP);
@@ -116,6 +118,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
 
   // MU_BASELINE
   m_muon_selectors.at(MU_BASELINE).setPtCut(m_min_mu_pt_baseline, m_max_mu_pt_baseline);
+  m_muon_selectors.at(MU_BASELINE).setD0SignificanceCut(-1, 3.);
+  m_muon_selectors.at(MU_BASELINE).setZ0SignThetaCut(-1, 1.);
 
   // MU_SIGNAL
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);

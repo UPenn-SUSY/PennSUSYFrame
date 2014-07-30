@@ -231,7 +231,7 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
-    m_h_flavor_channel.at(fc_it)->Fill(fc);
+    m_h_flavor_channel.at(fc_it)->Fill(fc, weight);
 
     m_h_mll.at(fc_it)->Fill(mll, weight);
     m_h_mt2.at(fc_it)->Fill(mt2, weight);

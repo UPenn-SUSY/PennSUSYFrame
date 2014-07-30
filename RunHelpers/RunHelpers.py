@@ -375,7 +375,7 @@ def runLxBatchMultiProcess( run_analysis_fun
                                , '%s/%s' % (os.environ['PWD'], this_job_file_name)
                                , os.environ['PWD']
                                ]
-        # subprocess.call(batch_submit_command)
+        subprocess.call(batch_submit_command)
 
     # make sym link to output dir
     if not sym_link_name == '':
