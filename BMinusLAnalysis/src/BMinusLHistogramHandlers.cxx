@@ -1996,8 +1996,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   
   int truth_index_l_0 = truth_match_tool.getIndex(tlv_l_0);
   int truth_index_l_1 = truth_match_tool.getIndex(tlv_l_1);
-  int truth_index_b_0 = PennSusyFrame::getJetParentIndex(bl_0.getJet(), mc_truth);
-  int truth_index_b_1 = PennSusyFrame::getJetParentIndex(bl_1.getJet(), mc_truth);
+  int truth_index_b_0 = PennSusyFrame::matchJetToBQuark(bl_0.getJet(), mc_truth);
+  int truth_index_b_1 = PennSusyFrame::matchJetToBQuark(bl_1.getJet(), mc_truth);
   
   // d(R) plots
   const PennSusyFrame::Particle* lep_0 = bl_0.getLepton();
