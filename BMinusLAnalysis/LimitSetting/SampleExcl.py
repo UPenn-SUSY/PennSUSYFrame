@@ -628,6 +628,14 @@ if doExclusion and 'sigSamples' in dir():
         # New top level cfg
         myTopLvl = configMgr.addFitConfigClone(bkt,"Sig_%s"%sig)
 
+        ### this_sig_sample = Sample(sig, kPink)
+        ### this_sig_sample.setFileList(sigFiles)
+        ### this_sig_sample.setNormByTheory()
+        ### this_sig_sample.setStatConfig(True)
+        ### this_sig_sample.setNormFactor('mu_SIG', 1., 0., 5.)
+        ### myTopLvl.addSamples(this_sig_sample)
+        ### myTopLvl.setSignalSample(this_sig_sample)
+
         # # Figure out which sample we are dealing with
         # setList = open('/afs/cern.ch/atlas/project/cern/susy2/SPyRoot/susy12a_razor_p1328/HistFitter/data/MJ_datasets.txt','r')
         # setName = None
@@ -1048,4 +1056,4 @@ if doExclusion and 'sigSamples' in dir():
         # else:
         #     print 'WARNING: No signal regions will be used (they were all turned off for some reason)'
 
-print 'done with my shit'
+print 'done with my stuff'
