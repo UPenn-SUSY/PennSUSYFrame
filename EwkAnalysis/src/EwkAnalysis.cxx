@@ -49,6 +49,10 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
                                                      , m_crit_cut_dphi_ll(false)
                                                      , m_crit_cut_b_veto(false)
                                                      , m_crit_cut_num_jet(false)
+						     , m_crit_cut_pt_ll(false)
+						     , m_crit_cut_ht(false)
+						     , m_crit_cut_mll(false)
+						     , m_crit_cut_mt2(false)
 						     , m_print_event_details(false)  
                                                      , m_sfos_mll_min(-1)
                                                      , m_sfos_mll_max(-1)
@@ -60,14 +64,26 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
                                                      , m_dphi_ll_max(-1)						     
                                                      , m_num_light_jets_min(-1)
                                                      , m_num_light_jets_max(-1)
+						     , m_pt_ll_min(-1)
+						     , m_pt_ll_max(-1)
+						     , m_ht_min(-1)
+						     , m_ht_max(-1)
+						     , m_mll_min(-1)
+						     , m_mll_max(-1)
+						     , m_mt2_min(-1)
+						     , m_mt2_max(-1)
 						     
 {
   // set defaults
   setSFOSMllCut(20.e3, -1);
   setEmmaMtCut(-1, 50.e3);
-  setMetRelCut(40.e3, -1);
+  setMetRelCut(60.e3, -1);
   setDphillCut(1.3, -1);
   setNumLightJetsCut(1, -1);
+  setMt2Cut(-1, 35);
+  setPtllCut(-1, 25);
+  setMllCut(-1, 75);
+  setHtCut(-1, 65);
 }
 
 // -----------------------------------------------------------------------------
@@ -94,11 +110,26 @@ void PennSusyFrame::EwkAnalysis::prepareSelection()
 {
   PennSusyFrameCore::prepareSelection();
 
+  m_electron_selectors.at(EL_BASELINE).setPtCut(10.e3, -1);
+  m_electron_selectors.at(EL_BASELINE).setEtaCut(-2.47, 2.47);
+  m_electron_selectors.at(EL_BASELINE).setElectronQuality(EL_QUALITY_MEDPP);
+
   m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1,0.07);
   m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1,0.13);
+  m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1,3);
+  m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
+  m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
+  //  m_electron_selectors.at(EL_SIGNAL).
+
+  m_muon_selectors.at(MU_BASELINE).setPtCut(10.e3, -1);
+
 
   m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1,0.06);
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.14);
+  m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
+  m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
+
+
   m_muon_selectors.at(MU_BASELINE).setEtaCut(-1, 2.4);
 
   std::cout << "preparing selection\n";
@@ -311,9 +342,24 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   m_pass_event = (m_pass_event && pass_ge_2_lep);
   if (m_crit_cut_ge_2_lep && !pass_ge_2_lep) return;
   if (m_pass_event) {
+
+
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_GE_2_BASELINE_LEPTONS);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_GE_2_BASELINE_LEPTONS, m_event_weight);
   }
+
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // tau veto
+  // TODO validate tau veto
+  bool pass_tau_veto = (m_taus.num(TAU_SIGNAL) == 0);
+  m_pass_event = (m_pass_event && pass_tau_veto);
+  if (m_crit_cut_tau_veto && !pass_tau_veto) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TAU_VETO);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TAU_VETO, m_event_weight);
+  }
+
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // == 2 baseline leptons cut
@@ -322,8 +368,15 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_crit_cut_2_lep && !pass_2_lep) return;
   if (m_pass_event) {
     {
+
+
+      
       m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EQ_2_BASELINE_LEPTONS);
       m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EQ_2_BASELINE_LEPTONS, m_event_weight);
+
+      
+      m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EQ_2_BASELINE_LEPTONS);
+      m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EQ_2_BASELINE_LEPTONS, m_event_weight);
     }
   }
 
@@ -351,33 +404,14 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MLL_SFOS);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MLL_SFOS, m_event_weight);
+
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MLL_SFOS);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MLL_SFOS, m_event_weight);
+   
   }
+  else if(m_event.getEventNumber() == 3987 || m_event.getEventNumber() == 2914 || m_event.getEventNumber() == 2322 )  std::cout<<m_event.getEventNumber()<<" Failed SFOS"<<std::endl;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get number of signal leptons
-  int num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // == 2 signal lepton cut
-  bool pass_signal_lep = (num_signal_leptons == 2);
-  m_pass_event = (m_pass_event && pass_signal_lep);
-  if (m_crit_cut_signal_lep && !pass_signal_lep) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EQ_2_SIGNAL_LEPTON);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // lepton scale factor
-  // TODO validate lepton sf
-  m_event_weight *= m_event_quantities.getLeptonSF();
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_LEP_SF);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_LEP_SF, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_LEP_SF);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_LEP_SF, m_event_weight);
-  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // phase space cut
@@ -391,7 +425,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE, m_event_weight);
   }
-
+  else if(m_event.getEventNumber() == 3987 || m_event.getEventNumber() == 2914 || m_event.getEventNumber() == 2322) std::cout<<m_event.getEventNumber()<<" Failed phase space"<<std::endl;
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // trigger cut
   // TODO validate trigger cut
@@ -409,6 +443,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TRIGGER);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER, m_event_weight);
   }
+  else if(m_event.getEventNumber() == 3987  || m_event.getEventNumber() == 2914 || m_event.getEventNumber() == 2322) std::cout<<m_event.getEventNumber()<<" Failed trigger"<<std::endl;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // trigger matching
@@ -429,6 +464,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TRIGGER_MATCHING);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER_MATCHING, m_event_weight);
   }
+  else if(m_event.getEventNumber() == 3987 || m_event.getEventNumber() == 2914|| m_event.getEventNumber() == 2322) std::cout<<m_event.getEventNumber()<<" Failed trigger matching"<<std::endl;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // TODO implement trigger SF
@@ -441,54 +477,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER_WEIGHT, m_event_weight);
   }
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tau veto
-  // TODO validate tau veto
-  bool pass_tau_veto = (m_taus.num(TAU_SIGNAL) == 0);
-  m_pass_event = (m_pass_event && pass_tau_veto);
-  if (m_crit_cut_tau_veto && !pass_tau_veto) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TAU_VETO);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TAU_VETO, m_event_weight);
 
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TAU_VETO);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TAU_VETO, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // check for SS leptons
-  // TODO validate SS leptons requirement
-  bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
-  m_pass_event = (m_pass_event && pass_ss);
-  if (m_crit_cut_ss && !pass_ss) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_SS);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_SS, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_SS);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_SS, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // check for prompt leptons
-  // TODO validate check for prompt leptons
-  bool pass_prompt_leptons = (m_is_data || m_event.getPromptLeptons());
-  m_pass_event = (m_pass_event && pass_prompt_leptons);
-  if (m_crit_cut_prompt_leptons && !pass_prompt_leptons) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PROMPT_LEP);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PROMPT_LEP, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP, m_event_weight);
-  }
-
- // fill histograms for ZVETO hist level
-  if (m_pass_event) {
-    fillHistHandles( PennSusyFrame::EWK_HIST_ZVETO
-		     , m_event_weight
-		     );
-  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // require no charge flip
@@ -505,25 +494,96 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NO_CHARGE_FLIP);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_NO_CHARGE_FLIP, m_event_weight);
   }
+  else if(m_event.getEventNumber() == 3987 || m_event.getEventNumber() == 2914|| m_event.getEventNumber() == 2322) std::cout<<m_event.getEventNumber()<<" Failed charge flip"<<std::endl;
+
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // emma mt cut
-  // TODO validate emma mt cut
-  bool pass_emma_mt = ( PennSusyFrame::passCut( m_event_quantities.getEmmaMt()
-                                              , m_emma_mt_min
-                                              , m_emma_mt_max
-                                              )
-                      );
-  m_pass_event = (m_pass_event && pass_emma_mt);
-  if (m_crit_cut_emma_mt && !pass_emma_mt) return;
+  // check for prompt leptons
+  // TODO validate check for prompt leptons
+  bool pass_prompt_leptons = (m_is_data || m_event.getPromptLeptons());
+  m_pass_event = (m_pass_event && pass_prompt_leptons);
+  if (m_crit_cut_prompt_leptons && !pass_prompt_leptons) return;
   if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EMMA_MT);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EMMA_MT, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PROMPT_LEP);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PROMPT_LEP, m_event_weight);
 
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EMMA_MT);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EMMA_MT, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP, m_event_weight);
+  }
+  else if(m_event.getEventNumber() == 3987 || m_event.getEventNumber() == 2914 || m_event.getEventNumber() == 2322) std::cout<<m_event.getEventNumber()<<" Failed prompt leptons"<<std::endl;
+
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get number of signal leptons
+  int num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // == 2 signal lepton cut
+  bool pass_signal_lep = (num_signal_leptons == 2);
+  m_pass_event = (m_pass_event && pass_signal_lep);
+  if (m_crit_cut_signal_lep && !pass_signal_lep) return;
+  if (m_pass_event) {
+    //std::cout<<m_event.getRunNumber()<<"\t"<<m_event.getEventNumber()<<std::endl;
+
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EQ_2_SIGNAL_LEPTON);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EQ_2_SIGNAL_LEPTON);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
+    
   }
 
+  else if(m_event.getEventNumber() == 3987 || m_event.getEventNumber() == 2914 || m_event.getEventNumber() == 2322) std::cout<<m_event.getEventNumber()<<" Failed signal leptons"<<std::endl;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // lepton scale factor
+  // TODO validate lepton sf
+  m_event_weight *= m_event_quantities.getLeptonSF();
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_LEP_SF);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_LEP_SF, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_LEP_SF);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_LEP_SF, m_event_weight);
+  }
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // check for SS leptons
+  // TODO validate SS leptons requirement
+  bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
+  m_pass_event = (m_pass_event && pass_ss);
+  if (m_crit_cut_ss && !pass_ss) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_SS);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_SS, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_SS);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_SS, m_event_weight);
+  }
+ // fill histograms for ZVETO hist level
+  if (m_pass_event) {
+    fillHistHandles( PennSusyFrame::EWK_HIST_ZVETO
+		     , m_event_weight
+		     );
+  }
+
+//  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  // emma mt cut
+//  // TODO validate emma mt cut
+//  bool pass_emma_mt = ( PennSusyFrame::passCut( m_event_quantities.getEmmaMt()
+//                                              , m_emma_mt_min
+//                                              , m_emma_mt_max
+//                                              )
+//                      );
+//  m_pass_event = (m_pass_event && pass_emma_mt);
+//  if (m_crit_cut_emma_mt && !pass_emma_mt) return;
+//  if (m_pass_event) {
+//    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EMMA_MT);
+//    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EMMA_MT, m_event_weight);
+//
+//    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EMMA_MT);
+//    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EMMA_MT, m_event_weight);
+//  }
+//
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // met rel cut
   // TODO validate met-rel cut
@@ -559,6 +619,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_DPHI_LL);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_DPHI_LL, m_event_weight);
   }
+
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // b jet veto
@@ -613,6 +674,83 @@ void PennSusyFrame::EwkAnalysis::processEvent()
                                                          )
                                 );
 				   
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // pt_ll cut
+  // TODO validate ptll cut
+  bool pass_pt_ll = ( PennSusyFrame::passCut( m_event_quantities.getPtll()
+                                              , m_pt_ll_min
+                                              , m_pt_ll_max
+                                              )
+                      );
+  m_pass_event = (m_pass_event && pass_pt_ll);
+  if (m_crit_cut_pt_ll && !pass_pt_ll) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PT_LL);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PT_LL, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PT_LL);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PT_LL, m_event_weight);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // ht cut
+  // TODO validate ht cut
+  bool pass_ht = ( PennSusyFrame::passCut( m_event_quantities.getHtSignal()
+                                              , m_ht_min
+                                              , m_ht_max
+                                              )
+                      );
+  m_pass_event = (m_pass_event && pass_ht);
+  if (m_crit_cut_ht && !pass_ht) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_HT);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_HT, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_HT);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_HT, m_event_weight);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // mll cut
+  // TODO validate ptll cut
+  bool pass_mll = ( PennSusyFrame::passCut( m_event_quantities.getMll()
+                                              , m_mll_min
+                                              , m_mll_max
+                                              )
+                      );
+  m_pass_event = (m_pass_event && pass_mll);
+  if (m_crit_cut_mll && !pass_mll) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MLL);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MLL, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MLL);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MLL, m_event_weight);
+  }
+
+
+
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // mt2 cut
+  // TODO validate mt2 cut
+  bool pass_mt2 = ( PennSusyFrame::passCut( m_event_quantities.getMt2()
+                                              , m_mt2_min
+                                              , m_mt2_max
+                                              )
+                      );
+  m_pass_event = (m_pass_event && pass_mt2);
+  if (m_crit_cut_mt2 && !pass_mt2) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MT2);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MT2, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MT2);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MT2, m_event_weight);
+  }
+
+
+
 
   //Print detailed Event Quantites 
 
@@ -703,28 +841,32 @@ void PennSusyFrame::EwkAnalysis::fillHistHandles( PennSusyFrame::EWK_HIST_LEVELS
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::printEventDetails()
 {
-  m_event.print();
-  m_event_quantities.print();
-  m_vertices.print(VERTEX_ALL);
-  m_vertices.print(VERTEX_GT_2);
+  int evt_num = m_event.getEventNumber();
+  if (evt_num == 3472 || evt_num == 3287)
+    {
+      m_event.print();
+      m_event_quantities.print();
+      m_vertices.print(VERTEX_ALL);
+      m_vertices.print(VERTEX_GT_2);
+      
 
+      m_electrons.print(EL_ALL);
+      m_muons.print(MU_ALL);
+      m_jets.print(JET_ALL);
+      m_met.print();
+      m_taus.print(TAU_ALL);
+      
+      m_electrons.print(EL_GOOD);
+      m_muons.print(MU_GOOD);
+      m_jets.print(JET_GOOD);
+      m_taus.print(TAU_GOOD);
 
-  m_electrons.print(EL_ALL);
-  m_muons.print(MU_ALL);
-  m_jets.print(JET_ALL);
-  m_met.print();
-  m_taus.print(TAU_ALL);
+      m_electrons.print(EL_SIGNAL);
+      m_muons.print(MU_SIGNAL);
+      m_jets.print(JET_ALL_SIGNAL);
+      m_taus.print(TAU_SIGNAL);
 
-  m_electrons.print(EL_GOOD);
-  m_muons.print(MU_GOOD);
-  m_jets.print(JET_GOOD);
-  m_taus.print(TAU_GOOD);
-
-  m_electrons.print(EL_SIGNAL);
-  m_muons.print(MU_SIGNAL);
-  m_jets.print(JET_ALL_SIGNAL);
-  //  m_taus.print(TAU_SIGNAL);
-
-  std::cout<<"\n"<<std::endl;
+      std::cout<<"\n"<<std::endl;
+    }
 
 }

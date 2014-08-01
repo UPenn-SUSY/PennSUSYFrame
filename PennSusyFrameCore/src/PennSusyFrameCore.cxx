@@ -266,10 +266,10 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   std::cout << "Processing " << nentries << " events\n";
 
   // set up progress bar
-  ProgressBar progress_bar(nentries, 100, m_fancy_progress_bar);
-  if (m_process_label != "")
-    progress_bar.setProcessLabel(m_process_label);
-
+//ProgressBar progress_bar(nentries, 100, m_fancy_progress_bar);
+//if (m_process_label != "")
+//  progress_bar.setProcessLabel(m_process_label);
+//
   // Actually loop over events
   for (Long64_t jentry=0; jentry != nentries; ++jentry) {
     // if (jentry == 1000) break;
@@ -277,7 +277,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     Long64_t this_entry = m_start_entry + jentry;
 
     // check progress in the progress bar
-    progress_bar.checkProgress(this_entry);
+    //progress_bar.checkProgress(this_entry);
 
     // get entry from tree
     Long64_t ientry = LoadTree(this_entry);
@@ -714,6 +714,11 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                                 )
                                );
   }
+  else //data
+    {
+
+      m_event.setPromptLeptons(true);
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -736,11 +741,11 @@ void PennSusyFrame::PennSusyFrameCore::getSelectedObjects()
 // -----------------------------------------------------------------------------
 FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel(bool exclusive_flavor_channel)
 {
-  // size_t num_el = m_electrons.num(EL_GOOD);
-  // size_t num_mu = m_muons.num(MU_GOOD);
-  size_t num_el = m_electrons.num(EL_SELECTED);
-  size_t num_mu = m_muons.num(MU_SELECTED);
-
+  size_t num_el = m_electrons.num(EL_GOOD);
+  size_t num_mu = m_muons.num(MU_GOOD);
+//  size_t num_el = m_electrons.num(EL_SELECTED);
+//  size_t num_mu = m_muons.num(MU_SELECTED);
+//
   if (num_el + num_mu < 2) return FLAVOR_NONE;
 
   if (!exclusive_flavor_channel && num_el+num_mu > 2) {

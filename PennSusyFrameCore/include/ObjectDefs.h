@@ -353,10 +353,10 @@ namespace PennSusyFrame
       double getRawEtIso() const { return m_raw_et_iso; }
       double getPtIso() const { return m_pt_iso; }
       double getEtIso() const { return m_et_iso; }
-      double getRawPtIsoRatio() const { return m_raw_pt_iso/getPt(); }
-      double getRawEtIsoRatio() const { return m_raw_et_iso/getPt(); }
-      double getPtIsoRatio() const { return m_pt_iso/getPt(); }
-      double getEtIsoRatio() const { return m_et_iso/getPt(); }
+      double getRawPtIsoRatio() const { return m_raw_pt_iso/(min(60.e3, getPt())); }
+      double getRawEtIsoRatio() const { return m_raw_et_iso/(min(60.e3, getPt())); }
+      double getPtIsoRatio() const { return m_pt_iso/(min(60.e3, getPt())); }
+      double getEtIsoRatio() const { return m_et_iso/(min(60.e3, getPt())); }
 
       virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -878,6 +878,7 @@ namespace PennSusyFrame
       void setPdgId(std::vector<int>* val)     { m_mc_pdg_id         = val; }
       void setStatus(std::vector<int>* val)    { m_mc_status         = val; }
       void setBarcode(std::vector<int>* val)   { m_mc_barcode        = val; }
+      void setMuonBarcode(std::vector<int>* val) { m_muon_barcode    = val; }
       void setVxBarcode(std::vector<int>* val) { m_mc_vx_barcode     = val; }
       void setParentIndex(std::vector<std::vector<int> >* val) { m_mc_parent_index = val; }
       void setChildIndex(std::vector<std::vector<int> >* val)  { m_mc_child_index  = val; }
@@ -897,6 +898,7 @@ namespace PennSusyFrame
       std::vector<int>* getPdgId()     const { return m_mc_pdg_id; }
       std::vector<int>* getStatus()    const { return m_mc_status; }
       std::vector<int>* getBarcode()   const { return m_mc_barcode; }
+      std::vector<int>* getMuonBarcode() const { return m_muon_barcode; }
       std::vector<int>* getVxBarcode() const { return m_mc_vx_barcode; }
       std::vector<std::vector<int> >* getParentIndex() const { return m_mc_parent_index; }
       std::vector<std::vector<int> >* getChildIndex()  const { return m_mc_child_index; }
@@ -920,6 +922,7 @@ namespace PennSusyFrame
       std::vector<int>* m_mc_pdg_id;
       std::vector<int>* m_mc_status;
       std::vector<int>* m_mc_barcode;
+      std::vector<int>* m_muon_barcode;
       std::vector<int>* m_mc_vx_barcode;
       std::vector<std::vector<int> >* m_mc_parent_index;
       std::vector<std::vector<int> >* m_mc_child_index;

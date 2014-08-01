@@ -959,7 +959,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // mu_staco_truth_type = 0;
   // mu_staco_type = 0;
   // muonTruth_PDGID = 0;
-  // muonTruth_barcode = 0;
+  muonTruth_barcode = 0;
   // muonTruth_charge = 0;
   // muonTruth_eta = 0;
   // muonTruth_m = 0;
@@ -4252,7 +4252,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_nucone40_trk500MeV", &el_nucone40_trk500MeV, &b_el_nucone40_trk500MeV);
   // turnOnBranch(tree, "el_nucone40_zpv05", &el_nucone40_zpv05, &b_el_nucone40_zpv05);
   // turnOnBranch(tree, "el_originbkg", &el_originbkg, &b_el_originbkg);
-  // turnOnBranch(tree, "el_phi", &el_phi, &b_el_phi);
+  //turnOnBranch(tree, "el_phi", &el_phi, &b_el_phi);
   // turnOnBranch(tree, "el_phis0", &el_phis0, &b_el_phis0);
   // turnOnBranch(tree, "el_phis1", &el_phis1, &b_el_phis1);
   // turnOnBranch(tree, "el_phis2", &el_phis2, &b_el_phis2);
@@ -4855,7 +4855,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "muonError", &muonError, &b_muonError);
   // turnOnBranch(tree, "muonFlags", &muonFlags, &b_muonFlags);
   // turnOnBranch(tree, "muonTruth_PDGID", &muonTruth_PDGID, &b_muonTruth_PDGID);
-  // turnOnBranch(tree, "muonTruth_barcode", &muonTruth_barcode, &b_muonTruth_barcode);
+  turnOnBranch(tree, "muonTruth_barcode", &muonTruth_barcode, &b_muonTruth_barcode);
   // turnOnBranch(tree, "muonTruth_charge", &muonTruth_charge, &b_muonTruth_charge);
   // turnOnBranch(tree, "muonTruth_eta", &muonTruth_eta, &b_muonTruth_eta);
   // turnOnBranch(tree, "muonTruth_m", &muonTruth_m, &b_muonTruth_m);
@@ -8128,7 +8128,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_depth", &el_depth);
   // m_output_tree->Branch( "el_emaxs1", &el_emaxs1);
   // m_output_tree->Branch( "el_errz", &el_errz);
-  // m_output_tree->Branch( "el_eta", &el_eta);
+  //m_output_tree->Branch( "el_eta", &el_eta);
   // m_output_tree->Branch( "el_etaSampling1", &el_etaSampling1);
   // m_output_tree->Branch( "el_etacorrmag", &el_etacorrmag);
   // m_output_tree->Branch( "el_etap", &el_etap);
@@ -8817,7 +8817,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "muonError", &muonError);
   // m_output_tree->Branch( "muonFlags", &muonFlags);
   // m_output_tree->Branch( "muonTruth_PDGID", &muonTruth_PDGID);
-  // m_output_tree->Branch( "muonTruth_barcode", &muonTruth_barcode);
+  m_output_tree->Branch( "muonTruth_barcode", &muonTruth_barcode);
   // m_output_tree->Branch( "muonTruth_charge", &muonTruth_charge);
   // m_output_tree->Branch( "muonTruth_eta", &muonTruth_eta);
   // m_output_tree->Branch( "muonTruth_m", &muonTruth_m);
