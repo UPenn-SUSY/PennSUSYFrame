@@ -1,5 +1,6 @@
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libApplyJetCalibration.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libApplyJetResolutionSmearing.so
+LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libBCHCleaningTool.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libCalibrationDataInterface.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libChargeFlip.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libDGTriggerReweight.so

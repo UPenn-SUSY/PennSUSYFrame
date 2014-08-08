@@ -68,13 +68,15 @@ PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)
   m_egamma_sf_dir = maindir + "/../ElectronEfficiencyCorrection/data/";
 
   // initialize reco sf
-  m_reco_file_name = m_egamma_sf_dir + "efficiencySF.offline.RecoTrk.2012.8TeV.rel17p2.v04.root";
+  m_reco_file_name = m_egamma_sf_dir + "efficiencySF.offline.RecoTrk.2012.8TeV.rel17p2.GEO20.v08.root";
+  //TODO make sure these are the right files
+
   std::cout << "Adding file to Egamma reco sf tool: " << m_reco_file_name << "\n";
   m_eg_reco_sf.addFileName(m_reco_file_name);
   m_eg_reco_sf.initialize();
 
   // initialize tight sf
-  m_tight_file_name = m_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v04.root";
+  m_tight_file_name = m_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v07.root";
   std::cout << "Adding file to Egamma tight sf tool: " << m_tight_file_name << "\n";
   m_eg_tight_sf.addFileName(m_tight_file_name);
   m_eg_tight_sf.initialize();

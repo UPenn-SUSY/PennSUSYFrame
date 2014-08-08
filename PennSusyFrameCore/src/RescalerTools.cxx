@@ -125,7 +125,8 @@ void PennSusyFrame::MuonRescalerTool::init()
   m_mcp_smear = new MuonSmear::SmearingClass( "Data12"
                                             , "staco"
                                             , "q_pT"
-                                            , "Rel17.2Repro"
+					      //, "Rel17.2Repro"
+					      , "Rel17.2Sum13" //updated as of susytools 3-16
                                             , m_muon_momentum_dir
                                             );
 }
@@ -161,17 +162,17 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
       if (m_smearing_function == "") {
         // if combined muon
         if (p->getIsCombined()) {
-          m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu_eta, p->getCharge());
+          m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu_eta, p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTCB();
         }
         // else if segment tagged muon
         else if (p->getIsSegmentTagged()) {
-          m_mcp_smear->Event(pt_id, mu_eta, "ID", p->getCharge());
+          m_mcp_smear->Event(pt_id, mu_eta, "ID", p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTID();
         }
         // else if ms only muon
         else {
-          m_mcp_smear->Event(pt_ms, mu_eta, "MS", p->getCharge());
+          m_mcp_smear->Event(pt_ms, mu_eta, "MS", p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTMS();
         }
       }
@@ -240,7 +241,7 @@ void PennSusyFrame::JetRescalerTool::init()
     mc_type = "MC12a";
   }
 
-  m_jet_calibration = new JetCalibrationTool( jet_algorithm
+  m_jet_calibration = new JetAnalysisCalib::JetCalibrationTool( jet_algorithm
                                             , jes_config_file
                                             , m_is_data
                                             );

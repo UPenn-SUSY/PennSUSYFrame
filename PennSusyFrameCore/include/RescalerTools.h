@@ -29,8 +29,9 @@ namespace MuonSmear
 {
   class SmearingClass;
 }
-
-class JetCalibrationTool;
+namespace JetAnalysisCalib { 
+  class JetCalibrationTool;
+}
 
 // =============================================================================
 namespace PennSusyFrame
@@ -98,7 +99,7 @@ namespace PennSusyFrame
       bool m_is_data;
       bool m_is_af2;
 
-      JetCalibrationTool* m_jet_calibration;
+      JetAnalysisCalib::JetCalibrationTool* m_jet_calibration;
   };
 
   // =============================================================================

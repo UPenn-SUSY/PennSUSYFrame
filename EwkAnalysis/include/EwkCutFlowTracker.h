@@ -45,9 +45,9 @@ enum EWK_CUTS { EWK_CUT_ALL
               , EWK_CUT_BREAK_5
 	      , EWK_CUT_MET_REL
               , EWK_CUT_DPHI_LL
+              , EWK_CUT_NUM_JET
               , EWK_CUT_B_VETO
               , EWK_CUT_B_TAG_SF
-              , EWK_CUT_NUM_JET
 	      , EWK_CUT_PT_LL
 	      , EWK_CUT_HT
 	      , EWK_CUT_MLL
@@ -93,9 +93,9 @@ const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
 					//, "EWK_EMMA_MT"
                                       , "EWK_MET_REL"
                                       , "EWK_DPHI_LL"
+                                      , "EWK_NUM_JET"
                                       , "EWK_B_VETO"
                                       , "EWK_B_TAG_SF"
-                                      , "EWK_NUM_JET"
 				      , "EWK_CUT_PT_LL"
 				      , "EWK_CUT_HT"
 				      , "EWK_CUT_MLL"

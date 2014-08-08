@@ -2727,6 +2727,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
     turnOnBranch(tree, "muonTruth_origin", &muonTruth_origin, &b_muonTruth_origin);
     turnOnBranch(tree, "muonTruth_type", &muonTruth_type, &b_muonTruth_type);
     turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label, &b_jet_AntiKt4LCTopo_flavor_truth_label);
+    turnOnBranch(tree, "muonTruth_barcode", &muonTruth_barcode, &b_muonTruth_barcode);
   }
 
   // turnOnBranch(tree, "EF_e24vhi_loose1_mu8", &EF_e24vhi_loose1_mu8, &b_EF_e24vhi_loose1_mu8);
@@ -4855,7 +4856,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "muonError", &muonError, &b_muonError);
   // turnOnBranch(tree, "muonFlags", &muonFlags, &b_muonFlags);
   // turnOnBranch(tree, "muonTruth_PDGID", &muonTruth_PDGID, &b_muonTruth_PDGID);
-  turnOnBranch(tree, "muonTruth_barcode", &muonTruth_barcode, &b_muonTruth_barcode);
+
   // turnOnBranch(tree, "muonTruth_charge", &muonTruth_charge, &b_muonTruth_charge);
   // turnOnBranch(tree, "muonTruth_eta", &muonTruth_eta, &b_muonTruth_eta);
   // turnOnBranch(tree, "muonTruth_m", &muonTruth_m, &b_muonTruth_m);
