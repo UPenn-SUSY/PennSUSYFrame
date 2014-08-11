@@ -1746,7 +1746,7 @@ namespace PennSusyFrame
     // std::vector<float>   *el_depth;
     // std::vector<float>   *el_emaxs1;
     // std::vector<float>   *el_errz;
-    //std::vector<float>   *el_eta;
+    std::vector<float>   *el_eta;
     // std::vector<float>   *el_etaSampling1;
     // std::vector<float>   *el_etacorrmag;
     // std::vector<float>   *el_etap;
@@ -1776,7 +1776,7 @@ namespace PennSusyFrame
     // std::vector<float>   *el_nucone30_zpv05;
     // std::vector<float>   *el_nucone40;
     // std::vector<float>   *el_nucone40_zpv05;
-    //    std::vector<float>   *el_phi;
+    std::vector<float>   *el_phi;
     // std::vector<float>   *el_phis0;
     // std::vector<float>   *el_phis1;
     // std::vector<float>   *el_phis2;
@@ -5582,7 +5582,7 @@ namespace PennSusyFrame
     // TBranch        *b_el_depth;   //!
     // TBranch        *b_el_emaxs1;   //!
     // TBranch        *b_el_errz;   //!
-    //TBranch        *b_el_eta;   //!
+    TBranch        *b_el_eta;   //!
     // TBranch        *b_el_etaSampling1;   //!
     // TBranch        *b_el_etacorrmag;   //!
     // TBranch        *b_el_etap;   //!
@@ -5668,7 +5668,7 @@ namespace PennSusyFrame
     // TBranch        *b_el_nucone40_trk500MeV;   //!
     // TBranch        *b_el_nucone40_zpv05;   //!
     // TBranch        *b_el_originbkg;   //!
-    //    TBranch        *b_el_phi;   //!
+    TBranch        *b_el_phi;   //!
     // TBranch        *b_el_phis0;   //!
     // TBranch        *b_el_phis1;   //!
     // TBranch        *b_el_phis2;   //!

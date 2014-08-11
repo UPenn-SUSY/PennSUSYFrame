@@ -289,7 +289,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_depth = 0;
   // el_emaxs1 = 0;
   // el_errz = 0;
-  // el_eta = 0;
+  el_eta = 0;
   // el_etaSampling1 = 0;
   // el_etacorrmag = 0;
   // el_etap = 0;
@@ -375,7 +375,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_nucone40_trk500MeV = 0;
   // el_nucone40_zpv05 = 0;
   // el_originbkg = 0;
-  // el_phi = 0;
+  el_phi = 0;
   // el_phis0 = 0;
   // el_phis1 = 0;
   // el_phis2 = 0;
@@ -4167,7 +4167,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_depth", &el_depth, &b_el_depth);
   // turnOnBranch(tree, "el_emaxs1", &el_emaxs1, &b_el_emaxs1);
   // turnOnBranch(tree, "el_errz", &el_errz, &b_el_errz);
-  // turnOnBranch(tree, "el_eta", &el_eta, &b_el_eta);
+  turnOnBranch(tree, "el_eta", &el_eta, &b_el_eta);
   // turnOnBranch(tree, "el_etaSampling1", &el_etaSampling1, &b_el_etaSampling1);
   // turnOnBranch(tree, "el_etacorrmag", &el_etacorrmag, &b_el_etacorrmag);
   // turnOnBranch(tree, "el_etap", &el_etap, &b_el_etap);
@@ -4253,7 +4253,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_nucone40_trk500MeV", &el_nucone40_trk500MeV, &b_el_nucone40_trk500MeV);
   // turnOnBranch(tree, "el_nucone40_zpv05", &el_nucone40_zpv05, &b_el_nucone40_zpv05);
   // turnOnBranch(tree, "el_originbkg", &el_originbkg, &b_el_originbkg);
-  //turnOnBranch(tree, "el_phi", &el_phi, &b_el_phi);
+  turnOnBranch(tree, "el_phi", &el_phi, &b_el_phi);
   // turnOnBranch(tree, "el_phis0", &el_phis0, &b_el_phis0);
   // turnOnBranch(tree, "el_phis1", &el_phis1, &b_el_phis1);
   // turnOnBranch(tree, "el_phis2", &el_phis2, &b_el_phis2);
@@ -8129,7 +8129,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_depth", &el_depth);
   // m_output_tree->Branch( "el_emaxs1", &el_emaxs1);
   // m_output_tree->Branch( "el_errz", &el_errz);
-  //m_output_tree->Branch( "el_eta", &el_eta);
+  m_output_tree->Branch( "el_eta", &el_eta);
   // m_output_tree->Branch( "el_etaSampling1", &el_etaSampling1);
   // m_output_tree->Branch( "el_etacorrmag", &el_etacorrmag);
   // m_output_tree->Branch( "el_etap", &el_etap);
@@ -8215,7 +8215,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_nucone40_trk500MeV", &el_nucone40_trk500MeV);
   // m_output_tree->Branch( "el_nucone40_zpv05", &el_nucone40_zpv05);
   // m_output_tree->Branch( "el_originbkg", &el_originbkg);
-  // m_output_tree->Branch( "el_phi", &el_phi);
+  m_output_tree->Branch( "el_phi", &el_phi);
   // m_output_tree->Branch( "el_phis0", &el_phis0);
   // m_output_tree->Branch( "el_phis1", &el_phis1);
   // m_output_tree->Branch( "el_phis2", &el_phis2);
