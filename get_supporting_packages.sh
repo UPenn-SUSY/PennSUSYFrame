@@ -108,6 +108,20 @@ $ROOTCOREDIR/scripts/clean.sh
 $ROOTCOREDIR/scripts/compile.sh
 $ROOTCOREDIR/scripts/build.sh
 
+# ------------------------------------------------------------------------------
+# This is a little bit gross -- we will link the rootcore libs to the directory
+# where they are expected
+# get directory where the libs are stored (named after arch)
+arch_lib_dir=$(ls ${ROOTCOREDIR}/lib/ | grep $(uname -m) | sed -r 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g' )
+#              |                        |                  |
+#              |                        |                  +- remove color if grep or ls want to be too pretty for their own good :-)
+#              |                        +-------------------- grep for directory which includes this arch in the name
+#              +--------------------------------------------- Look in ROOTCOREDIR/lib
+# link all the files from the arch dir to the lib dir (where we expect them to be in the makefiles)
+ln -s ${ROOTCOREDIR}/lib/$arch_lib_dir/* ${ROOTCOREDIR}/lib/
+# yuck!
+
+# ------------------------------------------------------------------------------
 # echo "Build finished! Moving RootCore.par to proper location"
 # cd ${ROOTCOREDIR}/..
 # # mv RootCore.par ${SFRAME_LIB_PATH}
