@@ -80,6 +80,8 @@ def passCuts(event, cut_type = ''):
     mbl_cut_1000 = 0.6567
     mbl_cut_test = 0.3
 
+    mbl_cut_cand_sr = 0.6
+
     ht_cut_600  = 433.1818
     ht_cut_700  = 527.3617
     ht_cut_800  = 589.8870
@@ -87,12 +89,22 @@ def passCuts(event, cut_type = ''):
     ht_cut_1000 = 882.0773
     ht_cut_test = 100
 
+    ht_cut_cand_sr_100 = 100
+    ht_cut_cand_sr_200 = 200
+    ht_cut_cand_sr_300 = 300
+    ht_cut_cand_sr_400 = 400
+    ht_cut_cand_sr_500 = 500
+    ht_cut_cand_sr_600 = 600
+    ht_cut_cand_sr_700 = 700
+
     met_cut_600  = 20.5685
     met_cut_700  = 33.1530
     met_cut_800  = 44.1847
     met_cut_900  = 65.3685
     met_cut_1000 = 36.9973
     met_cut_test = 10
+
+    met_cut_cand_sr = 7.
 
     if cut_type == '600':
         # 600
@@ -172,6 +184,118 @@ def passCuts(event, cut_type = ''):
         return True
     if cut_type == '1000_met':
         if met_sig  > met_cut_1000 : return False
+        return True
+
+    if cut_type == 'cand_sr_100':
+        # sr_cand_100
+        if mbl_asym > mbl_cut_cand_sr    : return False
+        if ht       < ht_cut_cand_sr_100 : return False
+        if met_sig  > met_cut_cand_sr    : return False
+        return True
+    if cut_type == 'cand_sr_100_mbl':
+        if mbl_asym > mbl_cut_cand_sr : return False
+        return True
+    if cut_type == 'cand_sr_100_ht':
+        if ht       < ht_cut_cand_sr_100  : return False
+        return True
+    if cut_type == 'cand_sr_100_met':
+        if met_sig  > met_cut_cand_sr : return False
+        return True
+
+    if cut_type == 'cand_sr_200':
+        # sr_cand_200
+        if mbl_asym > mbl_cut_cand_sr    : return False
+        if ht       < ht_cut_cand_sr_200 : return False
+        if met_sig  > met_cut_cand_sr    : return False
+        return True
+    if cut_type == 'cand_sr_200_mbl':
+        if mbl_asym > mbl_cut_cand_sr : return False
+        return True
+    if cut_type == 'cand_sr_200_ht':
+        if ht       < ht_cut_cand_sr_200  : return False
+        return True
+    if cut_type == 'cand_sr_200_met':
+        if met_sig  > met_cut_cand_sr : return False
+        return True
+
+    if cut_type == 'cand_sr_300':
+        # sr_cand_300
+        if mbl_asym > mbl_cut_cand_sr    : return False
+        if ht       < ht_cut_cand_sr_300 : return False
+        if met_sig  > met_cut_cand_sr    : return False
+        return True
+    if cut_type == 'cand_sr_300_mbl':
+        if mbl_asym > mbl_cut_cand_sr : return False
+        return True
+    if cut_type == 'cand_sr_300_ht':
+        if ht       < ht_cut_cand_sr_300  : return False
+        return True
+    if cut_type == 'cand_sr_300_met':
+        if met_sig  > met_cut_cand_sr : return False
+        return True
+
+    if cut_type == 'cand_sr_400':
+        # sr_cand_400
+        if mbl_asym > mbl_cut_cand_sr    : return False
+        if ht       < ht_cut_cand_sr_400 : return False
+        if met_sig  > met_cut_cand_sr    : return False
+        return True
+    if cut_type == 'cand_sr_400_mbl':
+        if mbl_asym > mbl_cut_cand_sr : return False
+        return True
+    if cut_type == 'cand_sr_400_ht':
+        if ht       < ht_cut_cand_sr_400  : return False
+        return True
+    if cut_type == 'cand_sr_400_met':
+        if met_sig  > met_cut_cand_sr : return False
+        return True
+
+    if cut_type == 'cand_sr_500':
+        # sr_cand_500
+        if mbl_asym > mbl_cut_cand_sr    : return False
+        if ht       < ht_cut_cand_sr_500 : return False
+        if met_sig  > met_cut_cand_sr    : return False
+        return True
+    if cut_type == 'cand_sr_500_mbl':
+        if mbl_asym > mbl_cut_cand_sr : return False
+        return True
+    if cut_type == 'cand_sr_500_ht':
+        if ht       < ht_cut_cand_sr_500  : return False
+        return True
+    if cut_type == 'cand_sr_500_met':
+        if met_sig  > met_cut_cand_sr : return False
+        return True
+
+    if cut_type == 'cand_sr_600':
+        # sr_cand_600
+        if mbl_asym > mbl_cut_cand_sr    : return False
+        if ht       < ht_cut_cand_sr_600 : return False
+        if met_sig  > met_cut_cand_sr    : return False
+        return True
+    if cut_type == 'cand_sr_600_mbl':
+        if mbl_asym > mbl_cut_cand_sr : return False
+        return True
+    if cut_type == 'cand_sr_600_ht':
+        if ht       < ht_cut_cand_sr_600  : return False
+        return True
+    if cut_type == 'cand_sr_600_met':
+        if met_sig  > met_cut_cand_sr : return False
+        return True
+
+    if cut_type == 'cand_sr_700':
+        # sr_cand_700
+        if mbl_asym > mbl_cut_cand_sr    : return False
+        if ht       < ht_cut_cand_sr_700 : return False
+        if met_sig  > met_cut_cand_sr    : return False
+        return True
+    if cut_type == 'cand_sr_700_mbl':
+        if mbl_asym > mbl_cut_cand_sr : return False
+        return True
+    if cut_type == 'cand_sr_700_ht':
+        if ht       < ht_cut_cand_sr_700  : return False
+        return True
+    if cut_type == 'cand_sr_700_met':
+        if met_sig  > met_cut_cand_sr : return False
         return True
 
     if cut_type == 'test':
@@ -404,11 +528,17 @@ def drawCompareCanvas( background_hist_dict
     b_int_no_cuts = bkg_no_cuts.Integral()
     s_int_no_cuts = sig_no_cuts.Integral()
 
+    bkg_stat_uncert_no_cuts = 1/math.sqrt(b_entries_no_cuts)
+    bkg_syst_uncert_no_cuts = 0.30
+    bkg_total_uncert_no_cuts = math.sqrt(bkg_stat_uncert_no_cuts**2 + bkg_syst_uncert_no_cuts**2)
+    zn_no_cuts = 0
+
     text_no_cut_0 = ROOT.TText(0.60, 0.85, 'Only basic cleaning')
     text_no_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %0.2f (raw: %d)'   % (b_int_no_cuts, b_entries_no_cuts))
     text_no_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %0.2f (raw: %d)'       % (s_int_no_cuts, s_entries_no_cuts))
     text_no_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %0.2f' % \
             ( s_int_no_cuts/ math.sqrt( s_int_no_cuts + b_int_no_cuts ) ) if (s_int_no_cuts + b_int_no_cuts) > 0 else 0 )
+    text_no_cut_4 = ROOT.TText(0.60, 0.65, 'Zn: %0.2f' % zn_no_cuts)
 
     text_no_cut_1.SetTextColor(ROOT.kBlue)
     text_no_cut_2.SetTextColor(ROOT.kRed)
@@ -417,11 +547,13 @@ def drawCompareCanvas( background_hist_dict
     text_no_cut_1.SetNDC()
     text_no_cut_2.SetNDC()
     text_no_cut_3.SetNDC()
+    text_no_cut_4.SetNDC()
 
     text_no_cut_0.Draw()
     text_no_cut_1.Draw()
     text_no_cut_2.Draw()
     text_no_cut_3.Draw()
+    text_no_cut_4.Draw()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     c.cd(2)
@@ -443,11 +575,18 @@ def drawCompareCanvas( background_hist_dict
     b_int_cuts = bkg_w_cuts.Integral()
     s_int_cuts = sig_w_cuts.Integral()
 
+    bkg_stat_uncert_cuts = 1/math.sqrt(b_entries_cuts)
+    bkg_syst_uncert_cuts = 0.30
+    bkg_total_uncert_cuts = math.sqrt(bkg_stat_uncert_cuts**2 + bkg_syst_uncert_cuts**2)
+    zn_cuts = 0
+
+
     text_cut_0 = ROOT.TText(0.60, 0.85, 'Full selection')
     text_cut_1 = ROOT.TText(0.60, 0.80, 'Background: %0.2f (raw: %d)' % (b_int_cuts, b_entries_cuts))
     text_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %0.2f (raw: %d)'     % (s_int_cuts, s_entries_cuts))
     text_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %0.2f' % \
             ( s_int_cuts/ math.sqrt( s_int_cuts + b_int_cuts ) ) if (s_int_cuts + b_int_cuts) > 0 else 0 )
+    text_cut_4 = ROOT.TText(0.60, 0.65, 'Zn: %0.2f' % zn_cuts)
 
     text_cut_1.SetTextColor(ROOT.kBlue)
     text_cut_2.SetTextColor(ROOT.kRed)
@@ -456,11 +595,13 @@ def drawCompareCanvas( background_hist_dict
     text_cut_1.SetNDC()
     text_cut_2.SetNDC()
     text_cut_3.SetNDC()
+    text_cut_4.SetNDC()
 
     text_cut_0.Draw()
     text_cut_1.Draw()
     text_cut_2.Draw()
     text_cut_3.Draw()
+    text_cut_4.Draw()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     c.Write()

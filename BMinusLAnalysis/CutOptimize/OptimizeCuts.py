@@ -62,17 +62,17 @@ def doOptimize(f_name_sig, f_name_bkg_list, tag):
     # factory.AddVariable( "ptll"        , "ptll"        , 'GeV' , 'F')
 
     # factory.AddVariable( "met_et"      , "met_et"      , 'GeV' , 'F')
-    # factory.AddVariable( "met_rel"     , "met_rel"     , 'GeV' , 'F')
+    factory.AddVariable( "met_rel"     , "met_rel"     , 'GeV' , 'F')
 
     # factory.AddVariable( "ht_all"      , "ht_all"      , 'GeV' , 'F')
     # factory.AddVariable( "ht_baseline" , "ht_baseline" , 'GeV' , 'F')
     # factory.AddVariable( "ht_good"     , "ht_good"     , 'GeV' , 'F')
     factory.AddVariable( "ht_signal"   , "ht_signal"   , 'GeV' , 'F')
 
-    # factory.AddVariable( "met_sig_all      := met_et/sqrt(ht_all)"      , "met_sig_all"      , '' , 'F')
-    # factory.AddVariable( "met_sig_baseline := met_et/sqrt(ht_baseline)" , "met_sig_baseline" , '' , 'F')
-    # factory.AddVariable( "met_sig_good     := met_et/sqrt(ht_good)"     , "met_sig_good"     , '' , 'F')
-    factory.AddVariable( "met_sig_signal   := met_et/sqrt(ht_signal)"   , "met_sig_signal"   , '' , 'F')
+    # factory.AddVariable( "met_sig_all      := met_et/sqrt(ht_all)"      , "met_sig_all"      , 'GeV^{1/2}' , 'F')
+    # factory.AddVariable( "met_sig_baseline := met_et/sqrt(ht_baseline)" , "met_sig_baseline" , 'GeV^{1/2}' , 'F')
+    # factory.AddVariable( "met_sig_good     := met_et/sqrt(ht_good)"     , "met_sig_good"     , 'GeV^{1/2}' , 'F')
+    factory.AddVariable( "met_sig_signal   := met_et/sqrt(ht_signal)"   , "met_sig_signal"   , 'GeV^{1/2}' , 'F')
 
     # factory.AddVariable( "pt_l_0"      , "pt_l_0"      , 'GeV' , 'F')
     # factory.AddVariable( "pt_l_1"      , "pt_l_1"      , 'GeV' , 'F')
@@ -192,7 +192,6 @@ def main():
 
     results = []
     for i, fnsl in enumerate(f_name_sig_list):
-        # results.append(doOptimize( f_name_sig_list[0], f_name_bkg_list, i))
         results.append(doOptimize( fnsl, f_name_bkg_list, i))
 
     print '==============================================================================='

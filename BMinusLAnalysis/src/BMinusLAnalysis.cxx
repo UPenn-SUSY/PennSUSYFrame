@@ -85,7 +85,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
 
   m_object_cleaning.setEEConeSize(0.05);
   m_object_cleaning.setEJConeSize(0.20);
-  m_object_cleaning.setMJConeSize(0.20); // not done by default
+  // m_object_cleaning.setMJConeSize(0.20); // not done by default
+  m_object_cleaning.setMJConeSize(0.00);
   m_object_cleaning.setETConeSize(0.00);
   m_object_cleaning.setMTConeSize(0.00);
   m_object_cleaning.setJEConeSize(0.40);
@@ -694,7 +695,8 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     double met_sig = m_met.getMetSigSignal();
 
     bool pass_sr_mbl     = (mbl_asym < 0.60 );
-    bool pass_sr_met_sig = (met_sig  < 7.*10*sqrt(10) );
+    // bool pass_sr_met_sig = (met_sig  < 7.*10*sqrt(10) );
+    bool pass_sr_met_sig = (met_sig  < 7. );
 
     bool pass_sr_ht_100 = (ht > 100.0 );
     bool pass_sr_ht_200 = (ht > 200.0 );
@@ -797,16 +799,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
        && pass_sr_ht_700
        ) {
       fillHistHandles( PennSusyFrame::BMINUSL_HIST_OPT_MBL_MET_HT_700
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
-    if (  pass_sr_mbl
-       && pass_sr_met_sig
-       && pass_sr_ht_800
-       ) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_OPT_MBL_MET_HT_800
                      , m_bl_0
                      , m_bl_1
                      , m_event_weight

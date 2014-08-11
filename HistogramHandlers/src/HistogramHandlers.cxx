@@ -1345,7 +1345,8 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
 
   const int   met_sig_bins = 50;
   const float met_sig_min  = 0;
-  const float met_sig_max  = 500;
+  // const float met_sig_max  = 500;
+  const float met_sig_max  = 30;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -1384,7 +1385,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                          ).c_str()
                                        , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                         + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                         + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                          ).c_str()
                                        , met_sig_bins, met_sig_min, met_sig_max
                                        )
@@ -1396,7 +1397,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                               ).c_str()
                                             , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                              + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                              + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                               ).c_str()
                                             , met_sig_bins, met_sig_min, met_sig_max
                                             )
@@ -1408,7 +1409,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                           ).c_str()
                                         , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                          + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                           ).c_str()
                                         , met_sig_bins, met_sig_min, met_sig_max
                                         )
@@ -1420,7 +1421,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                             ).c_str()
                                           , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                             + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                            + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                             ).c_str()
                                           , met_sig_bins, met_sig_min, met_sig_max
                                           )
