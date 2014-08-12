@@ -58,7 +58,16 @@ double PennSusyFrame::PileUpScaleFactorTool::getPileupScaleFactor( const PennSus
   if (pile_up_sf < 0.) pile_up_sf = 0.;
   return pile_up_sf;
 }
-
+// -----------------------------------------------------------------------------
+int PennSusyFrame::PileUpScaleFactorTool::getRandomRunNumber(int run_number, double mu)
+{
+  return m_pile_up_reweight->GetRandomRunNumber(run_number, mu);
+}
+// -----------------------------------------------------------------------------
+int PennSusyFrame::PileUpScaleFactorTool::getRandomLumiBlockNumber(int run_number)
+{
+  return m_pile_up_reweight->GetRandomLumiBlockNumber(run_number);
+}
 // =============================================================================
 // -----------------------------------------------------------------------------
 PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)

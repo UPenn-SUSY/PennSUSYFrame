@@ -4,8 +4,9 @@
 
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsList.h"
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsListReader.h"
-#include "RootCore/TileTripReader/TileTripReader/TTileTripReader.h"
 #include "RootCore/SUSYTools/SUSYTools/HforToolD3PD.h"
+#include "RootCore/BCHCleaningTool/BCHCleaningTool/BCHCleaningToolRoot.h"
+#include "RootCore/TileTripReader/TileTripReader/TTileTripReader.h"
 
 #include <vector>
 
@@ -129,9 +130,10 @@ bool PennSusyFrame::TileHotSpotTool::inTileHotSpot(float eta, float phi)
 // =============================================================================
 PennSusyFrame::TileTripTool::TileTripTool() : m_tile_trip_reader(0)
 {
-  m_tile_trip_file = "${ROOTCOREDIR}/../TileTripReader/data/CompleteTripList_2011-2012.root"; 
+  m_tile_trip_file =" ${ROOTCOREDIR}/../TileTripReader/data/CompleteTripList_2011-2012.root"; 
   m_tile_trip_reader = new Root::TTileTripReader("myTripReader");
   m_tile_trip_reader->setTripFile(m_tile_trip_file.c_str());
+
 }
 
 // -----------------------------------------------------------------------------
@@ -147,6 +149,11 @@ bool PennSusyFrame::TileTripTool::passTileTrip(const PennSusyFrame::Event& event
                                        , event.getLumiBlock()
                                        , event.getEventNumber()
                                        );
+}
+// -----------------------------------------------------------------------------
+Root::TTileTripReader* PennSusyFrame::TileTripTool::getTileTripReaderTool()
+{
+  return m_tile_trip_reader;
 }
 
 // =============================================================================
@@ -203,6 +210,57 @@ bool PennSusyFrame::HFORTool::passHFOR(const PennSusyFrame::MCTruth& mc_truth)
   return (hfor_type != 4);
 }
 
+// =============================================================================
+PennSusyFrame::BCHCleaningTool::BCHCleaningTool() : m_bch_tool(0)
+{
+
+}
+// -----------------------------------------------------------------------------
+PennSusyFrame::BCHCleaningTool::~BCHCleaningTool()
+{
+  if (m_bch_tool) delete m_bch_tool;
+}
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::JetContainer& jets, int run_number, int lumi_block)
+{
+ 
+  bool pass_cleaning = true;
+
+  //compute the cleaning;
+  //Loop through the Jets and check each...if one fails, reject the event
+
+  const std::vector<PennSusyFrame::Jet*>* jet_good = jets.getCollection(JET_GOOD);
+  
+  size_t n_jets = jet_good->size();
+  for (size_t jet_it = 0; jet_it != n_jets; ++jet_it) {
+    pass_cleaning = pass_cleaning && passBCHCleaning(jet_good->at(jet_it), run_number, lumi_block);
+    if(!pass_cleaning) break;
+      
+  }
+  
+  return pass_cleaning;  
+}
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::Jet* jet, int run_number, int lumi_block)
+{
+  return !(m_bch_tool->IsBadTightBCH(run_number, lumi_block, jet->getEta(), jet->getPhi(), 
+				     jet->getBchCorr(), jet->getEmf(), jet->getPt()));
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::BCHCleaningTool::init(const PennSusyFrame::Event& event, PennSusyFrame::TileTripTool& tile_trip)
+{
+  //initialize bch tool
+  
+  m_bch_tool = new BCHTool::BCHCleaningToolRoot();
+
+  m_bch_file = " ${ROOTCOREDIR}/../BCHCleaningTool/share/FractionsRejectedJetsMC.root";
+
+  Root::TTileTripReader* tile_trip_root_tool = tile_trip.getTileTripReaderTool();
+ 
+  m_bch_tool->InitializeTool(event.getIsData(), tile_trip_root_tool, m_bch_file);
+
+}
 // =============================================================================
 bool PennSusyFrame::passSherpaWWOverlapRemoval( const PennSusyFrame::Event&
                                               , const PennSusyFrame::MCTruth& mc_truth

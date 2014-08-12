@@ -105,6 +105,7 @@ namespace PennSusyFrame
       bool m_crit_cut_tile_trip;
       bool m_crit_cut_bad_jet_veto;
       bool m_crit_cut_calo_problem_jet;
+      bool m_crit_cut_bch_cleaning;
       bool m_crit_cut_primary_vertex;
       bool m_crit_cut_bad_mu_veto;
       bool m_crit_cut_cosmic_mu_veto;
@@ -137,7 +138,7 @@ namespace PennSusyFrame
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
-
+      PennSusyFrame::BCHCleaningTool m_bch_cleaning_tool;
       PennSusyFrame::ChargeFlipTool m_charge_flip_tool;
 
       PennSusyFrame::MatrixMethodTool m_matrix_method_tool;

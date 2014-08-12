@@ -27,6 +27,7 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
                                                      , m_crit_cut_tile_trip(false)
                                                      , m_crit_cut_bad_jet_veto(false)
                                                      , m_crit_cut_calo_problem_jet(false)
+						     , m_crit_cut_bch_cleaning(false)
                                                      , m_crit_cut_primary_vertex(false)
                                                      , m_crit_cut_bad_mu_veto(false)
                                                      , m_crit_cut_cosmic_mu_veto(false)
@@ -106,6 +107,7 @@ void PennSusyFrame::EwkAnalysis::prepareTools()
   }
 
   m_charge_flip_tool.init();
+  m_bch_cleaning_tool.init(m_event, m_tile_trip_tool);
 }
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::prepareSelection()
@@ -298,6 +300,35 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_CALO_PROBLEM_JET);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_CALO_PROBLEM_JET, m_event_weight);
   }
+  
+  //generate random run number and lbn for BCH tool taken from SUSYTools
+        
+  int run_number = -999;
+  int lumi_block = -999;
+
+  if (m_is_data)
+    {
+      run_number = m_event.getRunNumber();
+      lumi_block = m_event.getLumiBlock();
+    }
+  else
+    {                           
+      run_number =  m_pile_up_sf_tool.getRandomRunNumber(m_event.getRunNumber(),m_event.getAverageIntPerXing());
+      if (run_number!=0) lumi_block =  m_pile_up_sf_tool.getRandomLumiBlockNumber(run_number);
+    }
+
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //BCH Cleaning cut
+  bool pass_bch_cleaning = (run_number!=0 && m_bch_cleaning_tool.passBCHCleaning(m_jets, run_number, lumi_block));
+  m_pass_event = (m_pass_event && pass_bch_cleaning);
+  if (m_crit_cut_bch_cleaning && !pass_bch_cleaning) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BCH_CLEANING);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BCH_CLEANING, m_event_weight);
+
+  }
+
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // primary vertex cut
