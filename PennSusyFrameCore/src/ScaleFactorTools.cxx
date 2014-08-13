@@ -17,8 +17,11 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   // m_pile_up_data_file = maindir + "/../MultiLep/data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643_grl_v61.root";
   // m_pile_up_mc_file   = maindir + "/../PileupReweighting/share/mc12ab_defaults.prw.root";
   std::string maindir = getenv("BASE_WORK_DIR");
+  //This is the full year pile up file
   m_pile_up_data_file = maindir + "/RootCore/MultiLep/data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643_grl_v61.root";
   m_pile_up_mc_file   = maindir + "/RootCore/PileupReweighting/share/mc12ab_defaults.prw.root";
+  //This is the 13 fb-1 file
+  //m_pile_up_data_file = maindir + "/RootCore/MultiLep/data/ilumicalc_histograms_EF_2e12Tvh_loose1_200841-210308.root";
 
   std::cout << "initializing PileUpScaleFactorTool\n"
             << "\tMC file: "   << m_pile_up_mc_file   << "\n"

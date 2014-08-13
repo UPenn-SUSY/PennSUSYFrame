@@ -65,6 +65,10 @@ static const int   ht_bins = 10;
 static const float ht_min  = 0;
 static const float ht_max  = 5000;
 
+static const int resolution_bins = 40;
+static const float resolution_min = 0.;
+static const float resolution_max = 2000.;
+
 // =============================================================================
 PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
 {
@@ -487,6 +491,7 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                          );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     m_h_mbbll.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                    + "__mbbll"
                                    + "__"
@@ -608,6 +613,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 
       m_h_b_jet_eta_all.at(fc_it)->Fill(eta_b_0, weight);
       m_h_b_jet_eta_0.at(  fc_it)->Fill(eta_b_0, weight);
+
     }
 
     // fill sub-leading jet pt and dphi_bb histograms
@@ -621,6 +627,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
 
       m_h_b_jet_eta_all.at(fc_it)->Fill(eta_b_1, weight);
       m_h_b_jet_eta_1.at(  fc_it)->Fill(eta_b_1, weight);
+
     }
 
     // fill mbl histograms
@@ -716,12 +723,11 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_ptbl_diff.at(fc_it)->Write();
     m_h_ptbl_2d.at(fc_it)->Write();
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_mbbll.at(fc_it)->Write();
     m_h_ptbbll.at(fc_it)->Write();
+    
   }
 }
-
 
 // =============================================================================
 PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
@@ -791,47 +797,6 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                  , dr_bins, dr_min, dr_max
                                  )
                        );
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // initialize b jet dr histograms
-    m_h_b_jet_dr_q_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__b_jet_dr_q_all"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "#DeltaR(b jet, b quark) - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + " ; #DeltaR(b jet, b quark) ; Entries"
-                                            ).c_str()
-                                          , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
-                                          )
-                                );
-
-    m_h_b_jet_dr_q_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + "__b_jet_dr_q_0"
-                                          + "__"
-                                          + name_tag
-                                          ).c_str()
-                                        , ( "#DeltaR(b jet, b quark) - "
-                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + " ; #DeltaR(b jet, b quark) ; Entries"
-                                          ).c_str()
-                                        , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
-                                        )
-                              );
-
-    m_h_b_jet_dr_q_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + "__b_jet_dr_q_1"
-                                        + "__"
-                                        + name_tag
-                                        ).c_str()
-                                      , ( "#DeltaR(b jet, b quark) - "
-                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; #DeltaR(b jet, b quark) ; Entries"
-                                        ).c_str()
-                                      , dr_jet_quark_bins, dr_jet_quark_min, dr_jet_quark_max
-                                      )
-                            );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -913,6 +878,19 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                       )
                             );
 
+    m_h_b_jet_from_stop_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+							  + "__b_jet_from_stop_raw_pt_all"
+							  + "__"
+							  + name_tag
+							  ).c_str()
+							, ( "p_{T} - "
+							    + FLAVOR_CHANNEL_STRINGS[fc_it]
+							    + " ; p_{T} [GeV] ; Entries"
+							    ).c_str()
+							, pt_bins, pt_min, pt_max
+							)
+					      );
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_both_from_stop_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + "__b_jet_both_from_stop_pt_all"
@@ -952,6 +930,32 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                      , pt_bins, pt_min, pt_max
                                                      )
                                            );
+
+    m_h_b_jet_both_from_stop_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__b_jet_both_from_stop_raw_pt_all"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "p_{T} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; p_{T} [GeV] ; Entries"
+                                          ).c_str()
+                                        , pt_bins, pt_min, pt_max
+                                        )
+                              );
+
+    m_h_b_jet_both_from_stop_raw_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__b_jet_both_from_stop_raw_pt_1"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "p_{T}^{1} - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; p_{T}^{1} [GeV] ; Entries"
+                                        ).c_str()
+                                      , pt_bins, pt_min, pt_max
+                                      )
+                            );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize lepton from stop pt histograms
@@ -993,6 +997,18 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                               , pt_bins, pt_min, pt_max
                                               )
                                     );
+    m_h_lep_from_stop_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_from_stop_raw_pt_all"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "p_{T} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; p_{T} [GeV] ; Entries"
+                                          ).c_str()
+                                        , pt_bins, pt_min, pt_max
+                                        )
+                              );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_lep_both_from_stop_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -1033,6 +1049,32 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                    , pt_bins, pt_min, pt_max
                                                    )
                                          );
+
+    m_h_lep_both_from_stop_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_both_from_stop_raw_pt_all"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "p_{T} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; p_{T} [GeV] ; Entries"
+                                          ).c_str()
+                                        , pt_bins, pt_min, pt_max
+                                        )
+                              );
+
+    m_h_lep_both_from_stop_raw_pt_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__lep_both_from_stop_raw_pt_1"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "p_{T}^{1} - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; p_{T}^{1} [GeV] ; Entries"
+                                        ).c_str()
+                                      , pt_bins, pt_min, pt_max
+                                      )
+                            );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_mult_pt_all.push_back( new TH2F ( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -1076,6 +1118,34 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                             , 4, 1, 5
                                             )
                                           );
+
+    m_h_b_jet_mult_raw_pt_all.push_back( new TH2F ( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						+ "__b_jet_mult_raw_pt_all"
+						+ "__"
+						+ name_tag
+						).c_str()
+					       ,( " p_{T}^{all} - "
+						  + FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "; p_{T}^{all} [GeV] ; Entries"
+						  ).c_str()
+					       , pt_bins, pt_min, pt_max
+						, 4, 1, 5
+					       )
+				    );
+
+    m_h_b_jet_mult_raw_pt_1.push_back( new TH2F ( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						+ "__b_jet_mult_raw_pt_1"
+						+ "__"
+						+ name_tag
+						).c_str()
+					       ,( " p_{T}^{1} - "
+						  + FLAVOR_CHANNEL_STRINGS[fc_it]
+						  +  " ; p_{T}^{1} [GeV] ; Entries"
+						  ).c_str()
+					       , pt_bins, pt_min, pt_max
+						, 4, 1, 5
+					       )
+				    );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // mbl vs ht plots
@@ -1139,6 +1209,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                         , pt_bins, pt_min, pt_max
                                         )
                                     );
+
     m_h_b_jet1vl1_pt_eff.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                               + "__b_jet1vl1_pt_eff"
                                               + "__"
@@ -1152,6 +1223,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                             , pt_bins, pt_min, pt_max
                                             )
                                   );
+
     m_h_b_jet1vl1_pt_num.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                               + "__b_jet1vl1_pt_num"
                                               + "__"
@@ -1179,6 +1251,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                             , pt_bins, pt_min, pt_max
                                             )
                                   );
+
     m_h_b_jet1vl1_raw_pt_eff.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                   + "__b_jet1vl1_raw_pt_eff"
                                                   + "__"
@@ -1192,6 +1265,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                 , pt_bins, pt_min, pt_max
                                                 )
                                       );    
+
     m_h_b_jet1vl1_raw_pt_num.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
             + "__b_jet1vl1_raw_pt_num"
             + "__"
@@ -1205,6 +1279,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
           pt_bins, pt_min, pt_max
           )
         );
+
     m_h_b_jet1vl1_all_from_stop_pt.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
             + "__b_jet1vl1_all_from_stop_pt"
             + "__"
@@ -1218,7 +1293,6 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
           pt_bins, pt_min, pt_max
           )
         );
-
 
     m_h_b_jet1vl1_all_from_stop_pt_eff.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
             + "__b_jet1vl1_all_from_stop_pt_eff"
@@ -1248,6 +1322,48 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
           )
         );
 
+    m_h_b_jet1vl1_all_from_stop_raw_pt.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					    + "__b_jet1vl1_all_from_stop_raw_pt"
+					    + "__"
+					    + name_tag
+					    ).c_str(),
+					  ("p_{T}_b_jet1vl1 - "
+					   + FLAVOR_CHANNEL_STRINGS[fc_it]
+					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
+					   ).c_str(),
+					  pt_bins, pt_min, pt_max,
+					  pt_bins, pt_min, pt_max
+					  )
+				);
+
+    m_h_b_jet1vl1_all_from_stop_raw_pt_eff.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					    + "__b_jet1vl1_all_from_stop_raw_pt_eff"
+					    + "__"
+					    + name_tag
+					    ).c_str(),
+					  ("p_{T}_b_jet1vl1 - "
+					   + FLAVOR_CHANNEL_STRINGS[fc_it]
+					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
+					   ).c_str(),
+					  pt_bins, pt_min, pt_max,
+					  pt_bins, pt_min, pt_max
+					  )
+				);
+
+    m_h_b_jet1vl1_all_from_stop_raw_pt_num.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					    + "__b_jet1vl1_all_from_stop_raw_pt_num"
+					    + "__"
+					    + name_tag
+					    ).c_str(),
+					  ("p_{T}_b_jet1vl1 - "
+					   + FLAVOR_CHANNEL_STRINGS[fc_it]
+					   + " ; p_{T}^{l} ; p_{T}^{b jet}"
+					   ).c_str(),
+					  pt_bins, pt_min, pt_max,
+					  pt_bins, pt_min, pt_max
+					  )
+				);
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mbl anti-pairing histograms
     m_h_mbl_anti_pairing_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -1273,8 +1389,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                 + " ; m_{bl}^{0} [GeV] ; Entries"
                                                 ).c_str()
                                               , mbl_bins, mbl_min, mbl_max
-                                              )
-                                    );
+						)
+				      );
 
     m_h_mbl_anti_pairing_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                 + "__mbl_anti_pairing_1"
@@ -1456,84 +1572,130 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    m_h_lep_pt_resolution_all.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                   + "__lep_pt_resolution_all"
+    m_h_b_jet_E_resolution_all.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + "__b_jet_E_resolution_all"
                                                    + "__"
                                                    +name_tag
                                                    ).c_str()
-                                                 , ("p_{T} Resolution - ordered by m_{bl} (unless fc_em)- "
+                                                 , ("Energy Resolution - "
                                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                     + " ; Resolution ; p_{T}^{truth}"
+                                                     + " ; Resolution ; E^{truth}"
                                                      ).c_str()
                                                  , 100 , -1. , 1.
-                                                 , 50, 0., 2000.
+						   , resolution_bins, resolution_min, resolution_max
                                                  )
                                              );
-    m_h_lep_pt_resolution_0.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                 + "__lep_pt_resolution_0"
+
+    m_h_b_jet_E_resolution_0.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__b_jet_E_resolution_0"
                                                  + "__"
                                                  +name_tag
                                                  ).c_str()
-                                               , ("p_{T}^{0} Resolution - ordered by m_{bl} (unless fc_em)- "
+                                               , ("E^{0} Resolution - "
                                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                   + " ; Resolution ; p_{T}^{truth}"
+                                                   + " ; Resolution ; E^{truth}"
                                                    ).c_str()
                                                , 100 , -1. , 1.
-                                               , 50, 0., 2000.
+						   , resolution_bins, resolution_min, resolution_max
                                                )
                                            );
-    m_h_lep_pt_resolution_1.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                 + "__lep_pt_resolution_1"
+
+    m_h_b_jet_E_resolution_1.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__b_jet_E_resolution_1"
                                                  + "__"
                                                  +name_tag
                                                  ).c_str()
-                                               , ("p_{T}^{1} Resolution - ordered by m_{bl} (unless fc_em)- "
+                                               , ("E^{1} Resolution - "
                                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                   + " ; Resolution ; p_{T}^{truth}"
+                                                   + " ; Resolution ; E^{truth}"
                                                    ).c_str()
                                                , 100, -1. , 1.
-                                               , 50, 0., 2000.
+						   , resolution_bins, resolution_min, resolution_max
                                                )
                                            );
-    m_h_lep_E_resolution_all.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                  + "__lep_E_resolution_all"
-                                                  + "__"
-                                                  +name_tag
-                                                  ).c_str()
-                                                , ("p_{T} Resolution - ordered by m_{bl} (unless fc_em)- "
-                                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                    + " ; Resolution ; p_{T}^{truth}"
-                                                    ).c_str()
-                                                , 100 , -1. , 1.
-                                                , 50, 0., 2000.
-                                                )
-                                            );
-    m_h_lep_E_resolution_0.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                + "__lep_E_resolution_0"
-                                                + "__"
-                                                +name_tag
-                                                ).c_str()
-                                              , ("p_{T}^{1} Resolution - ordered by m_{bl} (unless fc_em)- "
-                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                  + " ; Resolution ; p_{T}^{truth}"
-                                                  ).c_str()
-                                              , 100 , -1. , 1.
-                                              , 50, 0., 2000.
-                                              )
-                                          );
-    m_h_lep_E_resolution_1.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                + "__lep_E_resolution_1"
-                                                + "__"
-                                                +name_tag
-                                                ).c_str()
-                                              , ("p_{T}^{1} Resolution - ordered by m_{bl} (unless fc_em)- "
-                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                  + " ; Resolution ; p_{T}^{truth}"
-                                                  ).c_str()
-                                              , 100, -1. , 1.
-                                              , 50, 0., 2000.
-                                              )
-                                          );
+    m_h_electron_E_resolution_all.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + "__electron_E_resolution_all"
+                                                   + "__"
+                                                   +name_tag
+                                                   ).c_str()
+                                                 , ("Energy Resolution - "
+                                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + " ; Resolution ; E^{truth}"
+                                                     ).c_str()
+                                                 , 100 , -1. , 1.
+						   , resolution_bins, resolution_min, resolution_max
+                                                 )
+                                             );
+
+    m_h_electron_E_resolution_0.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__electron_E_resolution_0"
+                                                 + "__"
+                                                 +name_tag
+                                                 ).c_str()
+                                               , ("E^{0} Resolution - "
+                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + " ; Resolution ; E^{truth}"
+                                                   ).c_str()
+                                               , 100 , -1. , 1.
+						   , resolution_bins, resolution_min, resolution_max
+                                               )
+                                           );
+
+    m_h_electron_E_resolution_1.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__electron_E_resolution_1"
+                                                 + "__"
+                                                 +name_tag
+                                                 ).c_str()
+                                               , ("E^{1} Resolution - "
+                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + " ; Resolution ; E^{truth}"
+                                                   ).c_str()
+                                               , 100, -1. , 1.
+						   , resolution_bins, resolution_min, resolution_max
+                                               )
+                                           );
+
+    m_h_muon_inverse_pt_resolution_all.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + "__muon_inverse_pt_resolution_all"
+                                                   + "__"
+                                                   +name_tag
+                                                   ).c_str()
+                                                 , ("(p_{T})^{-1} Resolution - "
+                                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + " ; Resolution ; (p_{T}^{truth})^{-1}"
+                                                     ).c_str()
+                                                 , 100 , -1. , 1.
+						   , resolution_bins, resolution_min, resolution_max
+                                                 )
+                                             );
+
+    m_h_muon_inverse_pt_resolution_0.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__muon_inverse_pt_resolution_0"
+                                                 + "__"
+                                                 +name_tag
+                                                 ).c_str()
+                                               , ("(p_{T}^{0})^{-1} Resolution - "
+                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + " ; Resolution ; (p_{T}^{truth})^{-1}"
+                                                   ).c_str()
+                                               , 100 , -1. , 1.
+						   , resolution_bins, resolution_min, resolution_max
+                                               )
+                                           );
+
+    m_h_muon_inverse_pt_resolution_1.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__muon_inverse_pt_resolution_1"
+                                                 + "__"
+                                                 +name_tag
+                                                 ).c_str()
+                                               , ("(p_{T}^{1})^{-1} Resolution - "
+                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + " ; Resolution ; (p_{T}^{truth})^{-1}"
+                                                   ).c_str()
+                                               , 100, -1. , 1.
+						   , resolution_bins, resolution_min, resolution_max
+                                               )
+                                           );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mbl for same/diff parent pairing histograms
@@ -1830,10 +1992,12 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
 
   // for resolution histos
   const TLorentzVector* tlv_l_0= bl_0.getLepton()->getTlv();
-  const TLorentzVector* tlv_l_1= bl_1.getLepton()->getTlv();
+  const TLorentzVector* tlv_l_1= bl_1.getLepton()->getTlv();  
   
-  int truth_index_0 = truth_match_tool.getIndex(tlv_l_0);
-  int truth_index_1 = truth_match_tool.getIndex(tlv_l_1);
+  int truth_index_l_0 = truth_match_tool.getIndex(tlv_l_0);
+  int truth_index_l_1 = truth_match_tool.getIndex(tlv_l_1);
+  int truth_index_b_0 = PennSusyFrame::getJetParentIndex(bl_0.getJet(), mc_truth);
+  int truth_index_b_1 = PennSusyFrame::getJetParentIndex(bl_1.getJet(), mc_truth);
   
   // d(R) plots
   const PennSusyFrame::Particle* lep_0 = bl_0.getLepton();
@@ -1892,11 +2056,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
       if (jet_from_stop_0) {
         m_h_b_jet_from_stop_pt_all.at(fc_it)->Fill(pt_b_0, weight);
         m_h_b_jet_from_stop_pt_0.at(  fc_it)->Fill(pt_b_0, weight);
-      }
-
-      if (dr_jet_q_0 >= 0) {
-        m_h_b_jet_dr_q_all.at(fc_it)->Fill(dr_jet_q_0, weight);
-        m_h_b_jet_dr_q_0.at(  fc_it)->Fill(dr_jet_q_0, weight);
+        m_h_b_jet_from_stop_raw_pt_all.at(fc_it)->Fill(pt_b_0);
       }
     }
 
@@ -1909,11 +2069,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
       if (jet_from_stop_1) {
         m_h_b_jet_from_stop_pt_all.at(fc_it)->Fill(pt_b_1, weight);
         m_h_b_jet_from_stop_pt_1.at(  fc_it)->Fill(pt_b_1, weight);
-      }
-
-      if (dr_jet_q_1 >= 0) {
-        m_h_b_jet_dr_q_all.at(fc_it)->Fill(dr_jet_q_1, weight);
-        m_h_b_jet_dr_q_1.at(  fc_it)->Fill(dr_jet_q_1, weight);
+        m_h_b_jet_from_stop_raw_pt_all.at(fc_it)->Fill(pt_b_1);
       }
 
       m_h_b_jet1vl1_pt.at(fc_it)->Fill(pt_l_1, pt_b_1, weight);
@@ -1924,8 +2080,12 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
         m_h_b_jet_both_from_stop_pt_all.at(fc_it)->Fill(pt_b_1, weight);
         m_h_b_jet_both_from_stop_pt_0.at(  fc_it)->Fill(pt_b_0, weight);
         m_h_b_jet_both_from_stop_pt_1.at(  fc_it)->Fill(pt_b_1, weight);
+        m_h_b_jet_both_from_stop_raw_pt_all.at(fc_it)->Fill(pt_b_0);
+        m_h_b_jet_both_from_stop_raw_pt_all.at(fc_it)->Fill(pt_b_1);
+        m_h_b_jet_both_from_stop_raw_pt_1.at(  fc_it)->Fill(pt_b_1);
         if (num_lep_from_stop >=2)
           m_h_b_jet1vl1_all_from_stop_pt.at(fc_it)->Fill(pt_l_1, pt_b_1, weight);
+          m_h_b_jet1vl1_all_from_stop_raw_pt.at(fc_it)->Fill(pt_l_1, pt_b_1);
       }
     }
 
@@ -1933,16 +2093,21 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     if (lepton_from_stop_0) {
       m_h_lep_from_stop_pt_all.at(fc_it)->Fill(pt_l_0, weight);
       m_h_lep_from_stop_pt_0.at(  fc_it)->Fill(pt_l_0, weight);
+      m_h_lep_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_0);
     }
     if (lepton_from_stop_1) {
       m_h_lep_from_stop_pt_all.at(fc_it)->Fill(pt_l_1, weight);
       m_h_lep_from_stop_pt_1.at(  fc_it)->Fill(pt_l_1, weight);
+      m_h_lep_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_1);
     }
     if (lepton_from_stop_0 && lepton_from_stop_1) {
       m_h_lep_both_from_stop_pt_all.at(fc_it)->Fill(pt_l_0, weight);
       m_h_lep_both_from_stop_pt_all.at(fc_it)->Fill(pt_l_1, weight);
       m_h_lep_both_from_stop_pt_0.at(  fc_it)->Fill(pt_l_0, weight);
       m_h_lep_both_from_stop_pt_1.at(  fc_it)->Fill(pt_l_1, weight);
+      m_h_lep_both_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_0);
+      m_h_lep_both_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_1);
+      m_h_lep_both_from_stop_raw_pt_1.at(  fc_it)->Fill(pt_l_1);
     }
 
     // fill jet multiplicity pt plots
@@ -1951,18 +2116,27 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 2, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 2, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 2, weight);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 2);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 2);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 2);
     }
     if (num_jet ==3) {
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_0, 3, weight);
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 3, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 3, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 3, weight);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 3);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 3);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 3);
     }
     if (num_jet ==4) {
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_0, 4, weight);
       m_h_b_jet_mult_pt_all.at(fc_it)->Fill(pt_b_1, 4, weight);
       m_h_b_jet_mult_pt_0.at(  fc_it)->Fill(pt_b_0, 4, weight);
       m_h_b_jet_mult_pt_1.at(  fc_it)->Fill(pt_b_1, 4, weight);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_0, 4);
+      m_h_b_jet_mult_raw_pt_all.at(fc_it)->Fill(pt_b_1, 4);
+      m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Fill(pt_b_1, 4);
     }
 
     // fill mbl histograms
@@ -2072,99 +2246,104 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
       m_h_mbl_ratio_diff_parent_pairing.at(fc_it)->Fill(mbl_anti_pair_1/mbl_anti_pair_0, weight);
     }    
 
+    // -----------------------------------------------------------------------------
     // fill resolution histograms
-    if (truth_index_0 != -1 && truth_index_1 != -1) {
-      // muons: pt for both, BUT:
-      // electrons: calo measures Et. What we call reco pt 
-      // is actually Et. So for a meaningful comparison,
-      // get truth Et but keep reco pt.
-      float pt_truth_0 = 0.;
-      float pt_truth_1 = 0.;
-      float E_truth_0 = 0.;
-      float E_truth_1 = 0.;
-      // set reco pt's
-      float pt_l_0 = bl_0.getLepton()->getPt()/1.e3;
-      float pt_l_1 = bl_1.getLepton()->getPt()/1.e3;
-      // set truth pt's
-      if (mc_truth.getPdgId()->at(truth_index_0) == 11) { //electron
-        TLorentzVector tlv_truth_0;
-        tlv_truth_0.SetPtEtaPhiM( mc_truth.getPt()->at(truth_index_0)
-                                , mc_truth.getEta()->at(truth_index_0)
-                                , mc_truth.getPhi()->at(truth_index_0)
-                                , mc_truth.getM()->at(truth_index_0)
+    //  -- for jets:
+    if (truth_index_b_0 != -1 && truth_index_b_1 != -1) {
+      // set reco E's
+      float E_b_reco_0 = bl_0.getJet()->getE()/1.e3;
+      float E_b_reco_1 = bl_1.getJet()->getE()/1.e3;
+      // set truth E's
+      TLorentzVector tlv_b_truth_0;
+      TLorentzVector tlv_b_truth_1;
+      tlv_b_truth_0.SetPtEtaPhiM( mc_truth.getPt()->at(truth_index_b_0)
+                                , mc_truth.getEta()->at(truth_index_b_0)
+                                , mc_truth.getPhi()->at(truth_index_b_0)
+                                , mc_truth.getM()->at(truth_index_b_0)
                                 );
-        pt_truth_0 = tlv_truth_0.Et()/1.e3;
-        E_truth_0 = tlv_truth_0.E()/1.e3;
-      }
-      else {
-        pt_truth_0 = mc_truth.getPt()->at(truth_index_0)/1.e3;
-      }
-      if (mc_truth.getPdgId()->at(truth_index_1) == 11) {
-        TLorentzVector tlv_truth_1;
-        tlv_truth_1.SetPtEtaPhiM( mc_truth.getPt()->at(truth_index_1)
-                                , mc_truth.getEta()->at(truth_index_1)
-                                , mc_truth.getPhi()->at(truth_index_1)
-                                , mc_truth.getM()->at(truth_index_1)
-                                );
-        pt_truth_1 = tlv_truth_1.Et()/1.e3;
-        E_truth_1 = tlv_truth_1.E()/1.e3;
-      }
-      else {
-        pt_truth_1 = mc_truth.getPt()->at(truth_index_1)/1.e3;
-      }
-      float resolution_0 = (pt_l_0 - pt_truth_0)/pt_truth_0;
-      float resolution_1 = (pt_l_1 - pt_truth_1)/pt_truth_1;
-      float resolutionE_0 = 0.;
-      float resolutionE_1 = 0.;
-      if (E_truth_0 != 0.) {
-        resolutionE_0 = (pt_l_0 - E_truth_0)/E_truth_0;
-      }
-      if (E_truth_1 != 0.) {
-        resolutionE_1 = (pt_l_1 - E_truth_1)/E_truth_1;
-      }
+      tlv_b_truth_1.SetPtEtaPhiM( mc_truth.getPt()->at(truth_index_b_1)
+				, mc_truth.getEta()->at(truth_index_b_1)
+				, mc_truth.getPhi()->at(truth_index_b_1)
+				, mc_truth.getM()->at(truth_index_b_1)
+				);
+      float E_b_truth_0 = tlv_b_truth_0.E()/1.e3;
+      float E_b_truth_1 = tlv_b_truth_1.E()/1.e3;
 
-      if (FLAVOR_CHANNEL_STRINGS[fc_it] == "flavor_em") {
-        // I want to keep electrons, muons separated;
-        // so graphs labeled "leading" will be electrons,
-        // graphs labeled "subleading" will be muons.
-        // This looks confusing below, filling 0 with 1
-        // and vice versa. But I think this is correct.
-        if (bl_0.getLepton()->isElectron()) {
-          //fill pt res with electrons
-          m_h_lep_pt_resolution_all.at(fc_it)->Fill(resolution_0, pt_truth_0, weight);
-          m_h_lep_pt_resolution_0.at(fc_it)->Fill(resolution_0, pt_truth_0, weight);
-          //fill pt res with muons
-          m_h_lep_pt_resolution_all.at(fc_it)->Fill(resolution_1, pt_truth_1, weight);
-          m_h_lep_pt_resolution_1.at(fc_it)->Fill(resolution_1, pt_truth_1, weight);
-          //fill e res with electrons
-          m_h_lep_E_resolution_all.at(fc_it)->Fill(resolutionE_0, E_truth_0, weight);
-          // not filling E_resolution_0 because this will be redundant... won't fill again.
-        }
-        if (bl_1.getLepton()->isElectron()) {
-          //fill pt res with muons
-          m_h_lep_pt_resolution_all.at(fc_it)->Fill(resolution_0, pt_truth_0, weight);
-          m_h_lep_pt_resolution_1.at(fc_it)->Fill(resolution_0, pt_truth_0, weight);
-          //fill pt res with electrons
-          m_h_lep_pt_resolution_all.at(fc_it)->Fill(resolution_1, pt_truth_1, weight);
-          m_h_lep_pt_resolution_0.at(fc_it)->Fill(resolution_1, pt_truth_1, weight);
-          //fill e res with electrons
-          m_h_lep_E_resolution_all.at(fc_it)->Fill(resolutionE_1, E_truth_1, weight);
-          // not filling E_resolution_0 because this will be redundant... won't fill again.
-        }
+      float resolution_b_0 = (E_b_reco_0 - E_b_truth_0)/E_b_truth_0;
+      float resolution_b_1 = (E_b_reco_1 - E_b_truth_1)/E_b_truth_1;
+
+      m_h_b_jet_E_resolution_all.at(fc_it)->Fill(resolution_b_0, E_b_truth_0, weight);
+      m_h_b_jet_E_resolution_all.at(fc_it)->Fill(resolution_b_1, E_b_truth_1, weight);
+      m_h_b_jet_E_resolution_0.at(  fc_it)->Fill(resolution_b_0, E_b_truth_0, weight);
+      m_h_b_jet_E_resolution_1.at(  fc_it)->Fill(resolution_b_1, E_b_truth_1, weight);
+    }
+
+    // -- for leptons:
+    if (truth_index_l_0 != -1 && truth_index_l_1 != -1) {
+      TLorentzVector tlv_l_truth_0;
+      TLorentzVector tlv_l_truth_1;
+      tlv_l_truth_0.SetPtEtaPhiM( mc_truth.getPt()->at(truth_index_l_0)
+				, mc_truth.getEta()->at(truth_index_l_0)
+				, mc_truth.getPhi()->at(truth_index_l_0)
+				, mc_truth.getM()->at(truth_index_l_0)
+				);
+      tlv_l_truth_1.SetPtEtaPhiM( mc_truth.getPt()->at(truth_index_l_1)
+                                , mc_truth.getEta()->at(truth_index_l_1)
+                                , mc_truth.getPhi()->at(truth_index_l_1)
+                                , mc_truth.getM()->at(truth_index_l_1)
+                                );
+      //  -- for electrons:
+      if (fc == FLAVOR_EE) {
+        float E_l_truth_0 = tlv_l_truth_0.E()/1.e3;
+        float E_l_truth_1 = tlv_l_truth_1.E()/1.e3;
+	float E_l_reco_0 = bl_0.getLepton()->getE()/1.e3;
+	float E_l_reco_1 = bl_1.getLepton()->getE()/1.e3;
+
+	float resolution_l_0 = (E_l_reco_0 - E_l_truth_0)/E_l_truth_0;
+	float resolution_l_1 = (E_l_reco_1 - E_l_truth_1)/E_l_truth_1;
+
+	m_h_electron_E_resolution_all.at(fc_it)->Fill(resolution_l_0, E_l_truth_0, weight);
+	m_h_electron_E_resolution_all.at(fc_it)->Fill(resolution_l_1, E_l_truth_1, weight);
+	m_h_electron_E_resolution_0.at(  fc_it)->Fill(resolution_l_0, E_l_truth_0, weight);
+	m_h_electron_E_resolution_1.at(  fc_it)->Fill(resolution_l_1, E_l_truth_1, weight);
       }
+      // -- for muons:
+      else if (fc == FLAVOR_MM) {
+        float pt_l_truth_0 = mc_truth.getPt()->at(truth_index_l_0)/1.e3;
+        float pt_l_truth_1 = mc_truth.getPt()->at(truth_index_l_1)/1.e3;
+	float pt_l_reco_0 = bl_0.getLepton()->getPt()/1.e3;
+	float pt_l_reco_1 = bl_1.getLepton()->getPt()/1.e3;
+
+	float resolution_l_0 = (1./pt_l_reco_0 - 1./pt_l_truth_0)*pt_l_truth_0;
+	float resolution_l_1 = (1./pt_l_reco_1 - 1./pt_l_truth_1)*pt_l_truth_1;
+
+	m_h_muon_inverse_pt_resolution_all.at(fc_it)->Fill(resolution_l_0, pt_l_truth_0, weight);
+	m_h_muon_inverse_pt_resolution_all.at(fc_it)->Fill(resolution_l_1, pt_l_truth_1, weight);
+	m_h_muon_inverse_pt_resolution_0.at(  fc_it)->Fill(resolution_l_0, pt_l_truth_0, weight);
+	m_h_muon_inverse_pt_resolution_1.at(  fc_it)->Fill(resolution_l_1, pt_l_truth_1, weight);
+      }
+      // -- for e,mu events:
       else {
-        m_h_lep_pt_resolution_all.at(fc_it)->Fill(resolution_0, pt_truth_0, weight);
-        m_h_lep_pt_resolution_all.at(fc_it)->Fill(resolution_1, pt_truth_1, weight);
-        m_h_lep_pt_resolution_0.at(fc_it)->Fill(resolution_0, pt_truth_0, weight);
-        m_h_lep_pt_resolution_1.at(fc_it)->Fill(resolution_1, pt_truth_1, weight);
-        if (bl_0.getLepton()->isElectron()) {
-          m_h_lep_E_resolution_all.at(fc_it)->Fill(resolutionE_0, E_truth_0, weight);
-          m_h_lep_E_resolution_0.at(fc_it)->Fill(resolutionE_0, E_truth_0, weight);
-        }
-        if (bl_1.getLepton()->isElectron()) {
-          m_h_lep_E_resolution_all.at(fc_it)->Fill(resolutionE_1, E_truth_1, weight);
-          m_h_lep_E_resolution_1.at(fc_it)->Fill(resolutionE_1, E_truth_1, weight);
-        }
+	float E_e_truth,  pt_m_truth, E_e_reco, pt_m_reco;
+	// find out which is el, which is mu
+	if (mc_truth.getPdgId()->at(truth_index_l_0) == 11) {
+	  E_e_truth  = tlv_l_truth_0.E()/1.e3;
+	  E_e_reco   = bl_0.getLepton()->getE()/1.e3;
+	  pt_m_truth = mc_truth.getPt()->at(truth_index_l_1)/1.e3;
+	  pt_m_reco  = bl_1.getLepton()->getPt()/1.e3;
+	}
+	else { 
+	  E_e_truth  = tlv_l_truth_1.E()/1.e3;
+	  E_e_reco   = bl_1.getLepton()->getE()/1.e3;
+	  pt_m_truth = mc_truth.getPt()->at(truth_index_l_0)/1.e3;
+	  pt_m_reco  = bl_0.getLepton()->getPt()/1.e3;
+	}
+	
+	float resolution_e = (E_e_reco - E_e_truth)/E_e_truth;
+	float resolution_m = (1./pt_m_reco - 1./pt_m_truth)*pt_m_truth;
+
+	m_h_electron_E_resolution_all.at(fc_it)->Fill(resolution_e, E_e_truth, weight);
+	m_h_muon_inverse_pt_resolution_all.at(fc_it)->Fill(resolution_m, pt_m_truth, weight);
       }
     }
   }
@@ -2235,26 +2414,34 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     m_h_b_jet_from_stop_pt_all.at(fc_it)->Write();
     m_h_b_jet_from_stop_pt_0.at(  fc_it)->Write();
     m_h_b_jet_from_stop_pt_1.at(  fc_it)->Write();
+    m_h_b_jet_from_stop_raw_pt_all.at(fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_both_from_stop_pt_all.at(fc_it)->Write();
     m_h_b_jet_both_from_stop_pt_0.at(  fc_it)->Write();
     m_h_b_jet_both_from_stop_pt_1.at(  fc_it)->Write();
+    m_h_b_jet_both_from_stop_raw_pt_all.at(fc_it)->Write();
+    m_h_b_jet_both_from_stop_raw_pt_1.at(  fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_lep_from_stop_pt_all.at(fc_it)->Write();
     m_h_lep_from_stop_pt_0.at(  fc_it)->Write();
     m_h_lep_from_stop_pt_1.at(  fc_it)->Write();
+    m_h_lep_from_stop_raw_pt_all.at(fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_lep_both_from_stop_pt_all.at(fc_it)->Write();
     m_h_lep_both_from_stop_pt_0.at(  fc_it)->Write();
     m_h_lep_both_from_stop_pt_1.at(  fc_it)->Write();
+    m_h_lep_both_from_stop_raw_pt_all.at(fc_it)->Write();
+    m_h_lep_both_from_stop_raw_pt_1.at(  fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_mult_pt_all.at(fc_it)->Write();
     m_h_b_jet_mult_pt_0.at(  fc_it)->Write();
     m_h_b_jet_mult_pt_1.at(  fc_it)->Write();
+    m_h_b_jet_mult_raw_pt_all.at(fc_it)->Write();
+    m_h_b_jet_mult_raw_pt_1.at(  fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_mbl_vs_ht_all.at(fc_it)->Write();
@@ -2272,16 +2459,6 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     m_h_b_jet1vl1_pt_eff.at(fc_it)->Write();
     m_h_b_jet1vl1_pt_num.at(fc_it)->Write();
 
-    raw = 1;
-    m_h_b_jet1vl1_raw_pt.at(fc_it)->Write();
-    calcEff2d( m_h_b_jet1vl1_raw_pt.at(fc_it)
-             , m_h_b_jet1vl1_raw_pt_eff.at(fc_it)
-             , m_h_b_jet1vl1_raw_pt_num.at(fc_it)
-             , raw
-             );
-    m_h_b_jet1vl1_raw_pt_num.at(fc_it)->Write();
-
-    raw = 0;
     m_h_b_jet1vl1_all_from_stop_pt.at(fc_it)->Write();
     calcEff2d( m_h_b_jet1vl1_all_from_stop_pt.at(fc_it)
              , m_h_b_jet1vl1_all_from_stop_pt_eff.at(fc_it)
@@ -2290,6 +2467,25 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
              );
     m_h_b_jet1vl1_all_from_stop_pt_eff.at(fc_it)->Write();
     m_h_b_jet1vl1_all_from_stop_pt_num.at(fc_it)->Write();
+
+    raw = 1;
+    m_h_b_jet1vl1_raw_pt.at(fc_it)->Write();
+    calcEff2d( m_h_b_jet1vl1_raw_pt.at(fc_it)
+             , m_h_b_jet1vl1_raw_pt_eff.at(fc_it)
+             , m_h_b_jet1vl1_raw_pt_num.at(fc_it)
+             , raw
+             );
+    m_h_b_jet1vl1_raw_pt_eff.at(fc_it)->Write();
+    m_h_b_jet1vl1_raw_pt_num.at(fc_it)->Write();
+
+    m_h_b_jet1vl1_all_from_stop_raw_pt.at(fc_it)->Write();
+    calcEff2d( m_h_b_jet1vl1_all_from_stop_raw_pt.at(fc_it)
+             , m_h_b_jet1vl1_all_from_stop_raw_pt_eff.at(fc_it)
+             , m_h_b_jet1vl1_all_from_stop_raw_pt_num.at(fc_it)
+             , raw
+             );
+    m_h_b_jet1vl1_all_from_stop_raw_pt_eff.at(fc_it)->Write();
+    m_h_b_jet1vl1_all_from_stop_raw_pt_num.at(fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_mbl_anti_pairing_all.at(fc_it)->Write();
@@ -2315,12 +2511,17 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     // m_h_same_parent_pairing_astp.at(fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    m_h_lep_pt_resolution_all.at(fc_it)->Write();
-    m_h_lep_pt_resolution_0.at(fc_it)->Write();
-    m_h_lep_pt_resolution_1.at(fc_it)->Write();
-    m_h_lep_E_resolution_all.at(fc_it)->Write();
-    m_h_lep_E_resolution_0.at(fc_it)->Write();
-    m_h_lep_E_resolution_1.at(fc_it)->Write();
+    m_h_b_jet_E_resolution_all.at(fc_it)->Write();
+    m_h_b_jet_E_resolution_0.at(  fc_it)->Write();
+    m_h_b_jet_E_resolution_1.at(  fc_it)->Write();
+
+    m_h_electron_E_resolution_all.at(fc_it)->Write();
+    m_h_electron_E_resolution_0.at(  fc_it)->Write();
+    m_h_electron_E_resolution_1.at(  fc_it)->Write();
+
+    m_h_muon_inverse_pt_resolution_all.at(fc_it)->Write();
+    m_h_muon_inverse_pt_resolution_0.at(  fc_it)->Write();
+    m_h_muon_inverse_pt_resolution_1.at(  fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_mbl_same_parent_pairing.at(fc_it)->Write();
