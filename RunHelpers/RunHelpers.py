@@ -271,11 +271,13 @@ def runLocalMultiprocess( run_analysis_fun
                         , out_dir
                         , flat_ntuples
                         , sym_link_name
+                        , do_merge = True
                         ):
     p = Pool(num_processes)
     p.map(run_analysis_fun, data_set_dicts)
 
-    mergeOutputFiles(out_dir, flat_ntuples)
+    if do_merge:
+        mergeOutputFiles(out_dir, flat_ntuples)
     moveToLinkedDir(out_dir, sym_link_name)
 
 # ------------------------------------------------------------------------------

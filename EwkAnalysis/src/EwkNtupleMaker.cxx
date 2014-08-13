@@ -228,7 +228,7 @@ void PennSusyFrame::EwkNtupleMaker::processEvent()
   bool pass_2_lep = (num_good_leptons == 2);
   m_pass_event = (m_pass_event && pass_2_lep);
   if (m_crit_cut_2_lep && !pass_2_lep) return;
-
+  
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // mll SFOS cut
   bool pass_mll_sfos = ( PennSusyFrame::passCut( m_event_quantities.getMll()
@@ -296,13 +296,12 @@ void PennSusyFrame::EwkNtupleMaker::processEvent()
   bool pass_tau_veto = (m_taus.num(TAU_SIGNAL) == 0);
   m_pass_event = (m_pass_event && pass_tau_veto);
   if (m_crit_cut_tau_veto && !pass_tau_veto) return;
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check for SS leptons
   // TODO validate SS leptons requirement
-  /*bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
-  m_pass_event = (m_pass_event && pass_ss);
-  if (m_crit_cut_ss && !pass_ss) return;*/
+  //bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
+  //m_pass_event = (m_pass_event && pass_ss);
+  //if (m_crit_cut_ss && !pass_ss) return;
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check for prompt leptons
@@ -310,6 +309,7 @@ void PennSusyFrame::EwkNtupleMaker::processEvent()
   bool pass_prompt_leptons = (m_is_data || m_event.getPromptLeptons());
   m_pass_event = (m_pass_event && pass_prompt_leptons);
   if (m_crit_cut_prompt_leptons && !pass_prompt_leptons) return;
+
 
   // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // // check for stream overlap
@@ -326,7 +326,7 @@ void PennSusyFrame::EwkNtupleMaker::processEvent()
                              );
   m_pass_event = (m_pass_event && pass_no_charge_flip);
   if (m_crit_cut_no_charge_flip && !pass_no_charge_flip) return;
-
+  
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // emma mt cut
   // TODO validate emma mt cut
