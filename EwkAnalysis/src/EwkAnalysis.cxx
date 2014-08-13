@@ -260,6 +260,16 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // primary vertex cut
+  bool pass_primary_vertex = PennSusyFrame::passPrimaryVertex(m_vertices);
+  m_pass_event = (m_pass_event && pass_primary_vertex);
+  if (m_crit_cut_primary_vertex && !pass_primary_vertex) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX, m_event_weight);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // tile hot spot cut
   // TODO validate tile hot spot cut
   bool pass_tile_hot_spot = PennSusyFrame::TileHotSpotTool::passTileHotSpot(m_event, m_jets);
@@ -329,16 +339,6 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   }
 
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // primary vertex cut
-  bool pass_primary_vertex = PennSusyFrame::passPrimaryVertex(m_vertices);
-  m_pass_event = (m_pass_event && pass_primary_vertex);
-  if (m_crit_cut_primary_vertex && !pass_primary_vertex) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX, m_event_weight);
-  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // bad muon cut

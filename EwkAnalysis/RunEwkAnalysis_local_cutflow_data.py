@@ -37,7 +37,7 @@ for fl in file_list:
 
 # ==============================================================================
 ewa = ROOT.PennSusyFrame.EwkAnalysis(t)
-ewa.setPrintEventDetails(True)
+ewa.setPrintEventDetails(False)
 #ewa.setMaxNumEvents(10)
 ewa.setIsData()
 ewa.prepareTools()
