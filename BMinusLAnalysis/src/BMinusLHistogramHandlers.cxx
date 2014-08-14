@@ -33,19 +33,19 @@ static const float mbl_max  = 1200.;
 //                                                                      , mbl_bins
 //                                                                      );
 
-static const int dr_bins = 60;
+static const int   dr_bins = 60;
 static const float dr_min = 0.;
 static const float dr_max = 6.0;
 
-static const int  dr_jet_quark_bins = 50;
+static const int   dr_jet_quark_bins = 50;
 static const float dr_jet_quark_min = 0.0;
 static const float dr_jet_quark_max = 0.5;
 
-static const int dphi_bins = 32;
+static const int   dphi_bins = 32;
 static const float dphi_min = 0.;
 static const float dphi_max = 3.2;
 
-static const int deta_bins = 50;
+static const int   deta_bins = 50;
 static const float deta_min = 0.;
 static const float deta_max = 5.0;
 
@@ -61,9 +61,9 @@ static const int   ptbbll_bins = 50;
 static const float ptbbll_min  = 0.;
 static const float ptbbll_max  = 1000;
 
-static const int   ht_bins = 10;
+static const int   ht_bins = 30;
 static const float ht_min  = 0;
-static const float ht_max  = 5000;
+static const float ht_max  = 3000;
 
 // =============================================================================
 PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)

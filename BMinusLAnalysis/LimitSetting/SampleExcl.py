@@ -23,7 +23,7 @@ ROOT.SetAtlasStyle()
 # Flags to control which fit is executed
 #---------------------------------------
 useStat = True
-doValidation = True
+doValidation = False
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -67,7 +67,6 @@ if configMgr.readFromTree:
     print 'reading from trees!'
     # TODO point to my files instead of default ones!!!
     bgdFiles.append("samples/tutorial/SusyFitterTree_OneSoftEle_BG_v3.root")
-    bgdFiles.append("samples/tutorial/SusyFitterTree_OneSoftMuo_BG_v3.root")
     if myFitType==FitType.Exclusion:
         # 1-step simplified model
         sigFiles.append("samples/tutorial/SusyFitterTree_p832_GG-One-Step_soft_v1.root")
@@ -75,35 +74,29 @@ else:
     print 'not reading from trees -- getting input from cache!'
     bgdFiles = ["data/"+configMgr.analysisName+".root"]
 
+# ------------------------------------------------------------------------------
 # Dictionnary of cuts for Tree->hist
-#CR
+# SR
 # TODO replace with my SR definitions
-configMgr.cutsDict["SR_ee"] = "(lep1Pt >= 40 && lep2Pt >= 40 && n&& met>180 && met<250 && mt>40 && mt<80 && nB2Jet==0 && jet1Pt>130 && jet2Pt>25  && AnalysisType==7) || (lep1Pt < 25 && lep2Pt<10 && met>180 && met<250 && mt>40 && mt<80 && nB2Jet==0 && jet1Pt>130 && jet2Pt>25  && AnalysisType==6)"
-configMgr.cutsDict["SR_mm"] = "(lep1Pt >= 40 && lep2Pt >= 40 && n&& met>180 && met<250 && mt>40 && mt<80 && nB2Jet>0 && jet1Pt>130 && jet2Pt>25 && AnalysisType==6)   || (lep1Pt < 20 && lep2Pt<10 && met>180 && met<250 && mt>40 && mt<80 && nB2Jet>0 && jet1Pt>130 && jet2Pt>25 && AnalysisType==7)"
-configMgr.cutsDict["SR_em"] = "(lep1Pt >= 40 && lep2Pt >= 40 && n&& met>180 && met<250 && mt>40 && mt<80 && nB2Jet>0 && jet1Pt>130 && jet2Pt>25 && AnalysisType==6)   || (lep1Pt < 20 && lep2Pt<10 && met>180 && met<250 && mt>40 && mt<80 && nB2Jet>0 && jet1Pt>130 && jet2Pt>25 && AnalysisType==7)"
-#VR
+base_sr_str = "((lep1Pt >= 40 && lep2Pt >= 40 && AnalysisType==7) || (lep1Pt < 25 && lep2Pt<10 && AnalysisType==6))"
+
+configMgr.cutsDict["SR"] = base_sr_str
+
+# VR
 # TODO replace with my VR definitions
-configMgr.cutsDict["VR_ee"] = "(lep1Pt < 25 && lep2Pt<10 && met>180 && met<250 && mt>80 && mt<100 && jet1Pt>130 && jet2Pt>25 && AnalysisType==6) || (lep1Pt < 20 && lep2Pt<10 && met>180 && met<250 && mt>80 && mt<100 && jet1Pt>130 && jet2Pt>25 && AnalysisType==7)"
-configMgr.cutsDict["VR_mm"] = "(lep1Pt < 25 && lep2Pt<10 && met>180 && met<250 && mt>80 && mt<100 && jet1Pt>130 && jet2Pt>25 && AnalysisType==6) || (lep1Pt < 20 && lep2Pt<10 && met>180 && met<250 && mt>80 && mt<100 && jet1Pt>130 && jet2Pt>25 && AnalysisType==7)"
-configMgr.cutsDict["VR_em"] = "(lep1Pt < 25 && lep2Pt<10 && met>180 && met<250 && mt>80 && mt<100 && jet1Pt>130 && jet2Pt>25 && AnalysisType==6) || (lep1Pt < 20 && lep2Pt<10 && met>180 && met<250 && mt>80 && mt<100 && jet1Pt>130 && jet2Pt>25 && AnalysisType==7)"
-#SR
+base_vr_str =  "((lep1Pt < 25 && lep2Pt<10 && AnalysisType==6) || (lep1Pt < 20 && lep2Pt<10 && AnalysisType==7))"
+
+configMgr.cutsDict["VR"] = base_vr_str
+
+# CR
 # TODO replace with my CR definitions
-configMgr.cutsDict["CR_top"] = "((lep1Pt < 20 && lep2Pt<10 && met>250 && mt>100 && jet1Pt>130 && jet2Pt>25 && AnalysisType==7) || (lep1Pt < 25 && lep2Pt<10 && met>250 && mt>100 && jet1Pt>130 && jet2Pt>25 && AnalysisType==6))"
+base_cr_str = "((lep1Pt < 20 && lep2Pt<10 && AnalysisType==7) || (lep1Pt < 25 && lep2Pt<10 && AnalysisType==6))"
 
+configMgr.cutsDict["CR_top"] = base_cr_str
 
+# ------------------------------------------------------------------------------
 # Tuples of nominal weights without and with b-jet selection
 configMgr.weights = ("genWeight","eventWeight","leptonWeight","triggerWeight","truthWptWeight","bTagWeight2Jet")
-# configMgr.weights = ("weight")
-
-ktScaleWHighWeights = ("genWeight","eventWeight","ktfacUpWeightW","bTagWeight2Jet")
-ktScaleWLowWeights  = ("genWeight","eventWeight","ktfacDownWeightW","bTagWeight2Jet")
-
-ktScaleTopHighWeights = ("genWeight","eventWeight","ktfacUpWeightTop","bTagWeight2Jet")
-ktScaleTopLowWeights = ("genWeight","eventWeight","ktfacDownWeightTop","bTagWeight2Jet")
-
-# QCD weights without and with b-jet selection
-configMgr.weightsQCD = "qcdWeight"
-configMgr.weightsQCDWithB = "qcdBWeight"
 
 #--------------------
 # List of systematics
@@ -118,10 +111,7 @@ gen_syst = Systematic( "gen_syst"
                      )
 
 # JES uncertainty as shapeSys - one systematic per region (combine WR and TR), merge samples
-jes = Systematic("JES","_NoSys","_JESup","_JESdown","tree","overallNormHistoSys")
-
-# statWRwz  = Systematic("SLWR_wz", "_NoSys","","","tree","shapeStat")
-# statWRtop = Systematic("SLWR_top","_NoSys","","","tree","shapeStat")
+# jes = Systematic("JES","_NoSys","_JESup","_JESdown","tree","overallNormHistoSys")
 
 # name of nominal histogram for systematics
 configMgr.nomName = "_NoSys"
@@ -132,25 +122,11 @@ topSample.setNormFactor("mu_Top",1.,0.,5.)
 topSample.setStatConfig(useStat)
 topSample.setNormRegions([("CR_top","nJet")])
 
-wzSample = Sample("WZ",kAzure+1)
-wzSample.setNormFactor("mu_WZ",1.,0.,5.)
-wzSample.setStatConfig(useStat)
-wzSample.setNormRegions([("CR_top","nJet")])
-
-bgSample = Sample("BG",kYellow-3)
-bgSample.setNormFactor("mu_BG",1.,0.,5.)
-bgSample.setStatConfig(useStat)
-bgSample.setNormRegions([("CR_top","nJet")])
-
-qcdSample = Sample("QCD",kGray+1)
-qcdSample.setQCD(True,"histoSys")
-qcdSample.setStatConfig(useStat)
-
 dataSample = Sample("Data",kBlack)
 dataSample.setData()
 
 # set the file from which the samples should be taken
-for sam in [topSample, wzSample, bgSample, qcdSample, dataSample]:
+for sam in [topSample, dataSample]:
         sam.setFileList(bgdFiles)
 
 #Binnings
@@ -158,21 +134,6 @@ nJetBinLowHard = 3
 nJetBinLowSoft = 2
 nJetBinHighTR = 10
 nJetBinHighWR = 10
-
-nBJetBinLow = 0
-nBJetBinHigh = 4
-
-meffNBins = 6
-meffBinLow = 400.
-meffBinHigh = 1600.
-
-meffNBinsSR4 = 4
-meffBinLowSR4 = 800.
-meffBinHighSR4 = 1600.
-
-lepPtNBins = 6
-lepPtLow = 20.
-lepPtHigh = 600.
 
 srNBins = 1
 srBinLow = 0.5
@@ -186,11 +147,10 @@ if useStat:
     bkt.statErrThreshold=0.05
 else:
     bkt.statErrThreshold=None
-bkt.addSamples([topSample,wzSample,qcdSample,bgSample,dataSample])
+bkt.addSamples([topSample,dataSample])
 
 # Systematics to be applied globally within this topLevel
 bkt.getSample("Top").addSystematic(gen_syst)
-bkt.getSample("WZ").addSystematic(gen_syst)
 
 meas = bkt.addMeasurement( name = "NormalMeasurement"
                          , lumi = 1.0
@@ -215,7 +175,7 @@ n_jet_cr_top = bkt.addChannel( "nJet"
 n_jet_cr_top.hasB = True
 n_jet_cr_top.hasBQCD = False
 n_jet_cr_top.useOverflowBin = False
-n_jet_cr_top.addSystematic(jes)
+# n_jet_cr_top.addSystematic(jes)
 
 bkt.setBkgConstrainChannels([n_jet_cr_top])
 
@@ -248,32 +208,15 @@ n_jet_cr_top.ATLASLabelText = "Work in progress"
 if doValidation:
     print 'Setting up validation regions!'
     # VR
-    # additional VRs if using soft lep CRs
-    n_jet_vr_ee = bkt.addChannel( "nJet"
-                                , ["VR_ee"]
-                                , nJetBinHighTR-nJetBinLowSoft
-                                , nJetBinLowSoft
-                                , nJetBinHighTR
-                                )
-    n_jet_vr_mm = bkt.addChannel( "nJet"
-                                , ["VR_mm"]
-                                , nJetBinHighTR-nJetBinLowSoft
-                                , nJetBinLowSoft
-                                , nJetBinHighTR
-                                )
-    n_jet_vr_em = bkt.addChannel( "nJet"
-                                , ["VR_em"]
-                                , nJetBinHighTR-nJetBinLowSoft
-                                , nJetBinLowSoft
-                                , nJetBinHighTR
-                                )
-    n_jet_vr_ee.addSystematic(jes)
-    n_jet_vr_mm.addSystematic(jes)
-    n_jet_vr_em.addSystematic(jes)
+    n_jet_vr = bkt.addChannel( "nJet"
+                             , ["VR"]
+                             , nJetBinHighTR-nJetBinLowSoft
+                             , nJetBinLowSoft
+                             , nJetBinHighTR
+                             )
+    # n_jet_vr.addSystematic(jes)
 
-    bkt.setValidationChannels( [ n_jet_vr_ee
-                               , n_jet_vr_mm
-                               , n_jet_vr_em
+    bkt.setValidationChannels( [ n_jet_vr
                                ]
                              )
 
@@ -285,9 +228,9 @@ if myFitType==FitType.Discovery:
     discovery = configMgr.addFitConfigClone(bkt,"Discovery")
 
     # s1l2jT = signal region/channel
-    ssChannel = discovery.addChannel("cuts",["SS"],srNBins,srBinLow,srBinHigh)
-    ssChannel.addSystematic(jes)
-    ssChannel.addDiscoverySamples(["SS"],[1.],[0.],[100.],[kMagenta])
+    ssChannel = discovery.addChannel("cuts",["SR"],srNBins,srBinLow,srBinHigh)
+    # ssChannel.addSystematic(jes)
+    ssChannel.addDiscoverySamples(["SR"],[1.],[0.],[100.],[kMagenta])
     discovery.setSignalChannels([ssChannel])
 
 #-----------------------------
@@ -309,13 +252,23 @@ if myFitType==FitType.Exclusion:
 
         # s1l2j using met/meff
         if doValidation:
-            mm2J = myTopLvl.getChannel("met/meff2Jet",["SS"])
-            iPop=myTopLvl.validationChannels.index("SS_metmeff2Jet")
+            print 'do validation plots for exclusion'
+            # mm2J = myTopLvl.getChannel("met/meff2Jet",["SR"])
+            mm2J = myTopLvl.getChannel("nJet",["SR"])
+            iPop=myTopLvl.validationChannels.index("SR_metmeff2Jet")
             myTopLvl.validationChannels.pop(iPop)
         else:
-            mm2J = myTopLvl.addChannel("met/meff2Jet",["SS"],5,0.2,0.7)
+            print "don't do validation plots for exclusion"
+            # mm2J = myTopLvl.addChannel("met/meff2Jet",["SR"],5,0.2,0.7)
+            # mm2J = myTopLvl.addChannel("nJet",["SR"],5,0.2,0.7)
+            mm2J = myTopLvl.addChannel( "nJet"
+                                      , ["SR"]
+                                      , nJetBinHighWR-nJetBinLowSoft
+                                      , nJetBinLowSoft
+                                      , nJetBinHighWR
+                                      )
             mm2J.useOverflowBin=True
-            mm2J.addSystematic(jes)
+            # mm2J.addSystematic(jes)
             pass
         myTopLvl.setSignalChannels([mm2J])
 
@@ -341,21 +294,6 @@ entry.SetFillStyle(bkt.errorFillStyle)
 entry = leg.AddEntry("","t#bar{t}","lf")
 entry.SetLineColor(topSample.color)
 entry.SetFillColor(topSample.color)
-entry.SetFillStyle(compFillStyle)
-#
-entry = leg.AddEntry("","WZ","lf")
-entry.SetLineColor(wzSample.color)
-entry.SetFillColor(wzSample.color)
-entry.SetFillStyle(compFillStyle)
-#
-entry = leg.AddEntry("","multijets (data estimate)","lf")
-entry.SetLineColor(qcdSample.color)
-entry.SetFillColor(qcdSample.color)
-entry.SetFillStyle(compFillStyle)
-#
-entry = leg.AddEntry("","single top & diboson","lf")
-entry.SetLineColor(bgSample.color)
-entry.SetFillColor(bgSample.color)
 entry.SetFillStyle(compFillStyle)
 #
 if myFitType==FitType.Exclusion:

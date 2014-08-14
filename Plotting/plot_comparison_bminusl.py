@@ -21,6 +21,22 @@ def main():
                                           , input_file_list = [ "%s/BMinusL.dummy_hists.root" % hist_dir
                                                               ]
                                           )
+
+    ec_data = hh.Container.EntryContainer( label = 'data (Scaled to 21 fb^{-1}'
+                                         , fill_color = ROOT.kBlack
+                                         , input_file_list = [ '%s/BMinusL.periodA_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodB_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodC_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodD_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodE_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodA_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodB_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodC_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodD_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodE_muon.hists.root' % hist_dir
+                                                             ]
+                                         )
+
     # ec_ttbar = hh.Container.EntryContainer(  label = 'ttbar'
     #                                       # , fill_color = ROOT.kAzure+8
     #                                       , fill_color = ROOT.kGreen+2
@@ -180,8 +196,10 @@ def main():
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Collect EntryContainer into InputContainers
     ic_numerator = hh.Container.InputContainer( name = 'dummy'
-                                              , entry_list = [ec_dummy]
-                                              , lumi_target = 0.
+    # ic_numerator = hh.Container.InputContainer( name = 'data'
+                                              , entry_list = [ec_data]
+                                              # , lumi_target = 21/13.
+                                              , lumi_target = 0
                                               )
     ic_denominator = hh.Container.InputContainer( name = 'Background'
                                                 , entry_list = [ec_ttbar, ec_Zbb, ec_single_top]
@@ -205,17 +223,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-
-
-
-# BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.hists.root
-# BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.hists.root
-# BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.hists.root
-# BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.hists.root
-# BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.hists.root
-# BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.hists.root
-# BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root
-# BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.hists.root
-# BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.hists.root
-# BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.hists.root
-# BMinusL.dummy_hists.root

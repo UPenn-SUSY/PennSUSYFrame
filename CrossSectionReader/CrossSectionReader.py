@@ -13,7 +13,7 @@ def getCrossSection( target_dsid
         if l[0] == '#': continue
 
         splits = l.split()
-        print splits
+        # print splits
         dsid = int(splits[0])
 
         if dsid == target_dsid:

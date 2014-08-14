@@ -40,8 +40,14 @@ namespace PennSusyFrame
       virtual void prepareTools();
 
       // TODO move accessor to cxx file
-      virtual void setIsData() { m_is_data = true; }
-      virtual void setIsMC()   { m_is_data = false; }
+      virtual void setIsData(bool val = true) { m_is_data = val; }
+      virtual void setIsMC(  bool val = true) { m_is_data = !val; }
+
+      virtual void setIsEgammaStream(bool val = true) { m_is_egamma_stream = val; }
+      virtual void setIsMuonStream(  bool val = true) { m_is_egamma_stream = !val; }
+
+      virtual void setIsBlind(   bool val = true) { m_is_blind = val; }
+      virtual void setIsNotBlind(bool val = true) { m_is_blind = !val; }
 
       virtual void setFullSim() { m_is_af2 = false; }
       virtual void setAf2() {     m_is_af2 = true; }
@@ -91,6 +97,8 @@ namespace PennSusyFrame
       unsigned int m_start_entry;
       int m_max_num_events;
       bool m_is_data;
+      bool m_is_egamma_stream;
+      bool m_is_blind;
       bool m_is_af2;
       double m_event_weight;
       bool m_pass_event;

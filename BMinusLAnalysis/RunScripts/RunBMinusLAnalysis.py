@@ -31,10 +31,15 @@ print 'done loading libraries'
 def runBMinusLAnalysisFun(data_set_dict):
     print '================================================================================'
     print 'label: %s'       % data_set_dict['label']
-    print 'file_list: %s'   % data_set_dict['file_list']
-    print 'is data: %s'     % data_set_dict['is_data']
-    print 'is full sim: %s' % data_set_dict['is_full_sim']
+    # print 'file_list: %s'   % data_set_dict['file_list']
     print 'dsid: %s'        % data_set_dict['dsid']
+
+    print 'is data: %s'     % data_set_dict['is_data']
+
+    if data_set_dict['is_data']:
+        print 'is egamma stream: %s' % data_set_dict['is_egamma_stream']
+    else:
+        print 'is full sim: %s' % data_set_dict['is_full_sim']
 
     print 'total number jobs: %s' % data_set_dict['total_num_jobs']
     print 'this job number: %s' % data_set_dict['job_num']
@@ -45,6 +50,7 @@ def runBMinusLAnalysisFun(data_set_dict):
     print 'About to run BMinusLAnalysis'
     runBMinusLAnalysis( file_list             = data_set_dict['file_list']
                       , is_data               = data_set_dict['is_data']
+                      , is_egamma_stream      = data_set_dict['is_egamma_stream']
                       , is_full_sim           = data_set_dict['is_full_sim']
                       , tree_name             = 'TNT'
                       , dsid                  = data_set_dict['dsid']
@@ -61,6 +67,7 @@ def runBMinusLAnalysisFun(data_set_dict):
 # ------------------------------------------------------------------------------
 def runBMinusLAnalysis( file_list
                       , is_data
+                      , is_egamma_stream
                       , is_full_sim
                       , tree_name             = 'susy'
                       , dsid                  = 1
@@ -96,6 +103,11 @@ def runBMinusLAnalysis( file_list
     # set is data or MC
     if is_data:
         bmla.setIsData()
+
+        if is_egamma_stream:
+            bmla.setIsEgammaStream()
+        else:
+            bmla.setIsMuonStream()
     else:
         bmla.setIsMC()
 
@@ -161,8 +173,8 @@ def runBMinusLAnalysis( file_list
 
     # Set cut values
     print 'set cuts'
-    lep_pt_cut = 10.e3
-    jet_pt_cut = 10.e3
+    lep_pt_cut = 40.e3
+    jet_pt_cut = 40.e3
     bmla.setElPtCut(  lep_pt_cut, -1     )
     bmla.setMuPtCut(  lep_pt_cut, -1     )
     bmla.setBJetPtCut(jet_pt_cut, -1     )
@@ -172,6 +184,9 @@ def runBMinusLAnalysis( file_list
     bmla.setMV1Cut(0.3511)
     # 70% working point
     # bmla.setMV1Cut(0.7892)
+
+    # Turn off detailed B-L histograms
+    bmla.setDoDetailedBLHists(False)
 
     # prepare tools and run analysis loop
     print 'preparing tools'

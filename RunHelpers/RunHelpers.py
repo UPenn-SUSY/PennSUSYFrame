@@ -90,6 +90,7 @@ def getTChain(file_list, tree_name):
 def makeDataSetDict( label_base
                    , file_list_path
                    , is_data
+                   , is_egamma_stream
                    , is_full_sim
                    , dsid
                    , job_num=0
@@ -107,6 +108,7 @@ def makeDataSetDict( label_base
     return { 'label':label
            , 'file_list':file_list
            , 'is_data':is_data
+           , 'is_egamma_stream':is_egamma_stream
            , 'is_full_sim':is_full_sim
            , 'dsid':dsid
            , 'job_num':job_num
@@ -118,6 +120,7 @@ def makeDataSetDict( label_base
 def makeDataSetDictList( label_base
                        , file_list_path
                        , is_data
+                       , is_egamma_stream
                        , is_full_sim
                        , dsid
                        , total_num_jobs = 1
@@ -136,14 +139,15 @@ def makeDataSetDictList( label_base
 
     data_set_dict_list = []
     for tnj in xrange(total_num_jobs):
-        this_data_set_dict = makeDataSetDict( label_base     = label_base
-                                            , file_list_path = file_list_path
-                                            , is_data        = is_data
-                                            , is_full_sim    = is_full_sim
-                                            , dsid           = dsid
-                                            , job_num        = tnj
-                                            , total_num_jobs = total_num_jobs
-                                            , out_dir        = out_dir
+        this_data_set_dict = makeDataSetDict( label_base       = label_base
+                                            , file_list_path   = file_list_path
+                                            , is_data          = is_data
+                                            , is_egamma_stream = is_egamma_stream
+                                            , is_full_sim      = is_full_sim
+                                            , dsid             = dsid
+                                            , job_num          = tnj
+                                            , total_num_jobs   = total_num_jobs
+                                            , out_dir          = out_dir
                                             )
         this_data_set_dict['total_num_events']  = total_num_events
         this_data_set_dict['total_num_entries'] = total_num_entries
@@ -175,23 +179,26 @@ def addSamplesToList( sample_dict
                     , data_set_dicts
                     , file_list_path
                     , is_data
+                    , is_egamma_stream
                     , is_full_sim
                     , dsid
                     , out_dir
                     ):
-    these_data_set_dicts = makeDataSetDictList( label_base     = sample_dict['label']
-                                              , file_list_path = file_list_path
-                                              , is_data        = is_data
-                                              , is_full_sim    = is_full_sim
-                                              , dsid           = dsid
-                                              , total_num_jobs = sample_dict['num_jobs']
-                                              , out_dir        = out_dir
+    these_data_set_dicts = makeDataSetDictList( label_base       = sample_dict['label']
+                                              , file_list_path   = file_list_path
+                                              , is_data          = is_data
+                                              , is_egamma_stream = is_egamma_stream
+                                              , is_full_sim      = is_full_sim
+                                              , dsid             = dsid
+                                              , total_num_jobs   = sample_dict['num_jobs']
+                                              , out_dir          = out_dir
                                               )
     for tdsd in these_data_set_dicts:
         data_set_dicts.append(tdsd)
 
 # ------------------------------------------------------------------------------
-def addAllSamplesToList( data_samples
+def addAllSamplesToList( egamma_data_samples
+                       , muon_data_samples
                        , full_sim_mc_samples
                        , fast_sim_mc_samples
                        , file_list_path_base
@@ -199,43 +206,60 @@ def addAllSamplesToList( data_samples
                        ):
     data_set_dicts = []
 
-    # add data samples
-    for dsid in data_samples:
-        addSamplesToList( sample_dict    = data_samples[dsid]
-                        , data_set_dicts = data_set_dicts
-                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
-                                                         , data_samples[dsid]['label']
-                                                         )
-                        , is_data        = True
-                        , is_full_sim    = False
-                        , dsid           = dsid
-                        , out_dir        = out_dir
+    # add egamma stream data samples
+    for dsid in egamma_data_samples:
+        addSamplesToList( sample_dict      = egamma_data_samples[dsid]
+                        , data_set_dicts   = data_set_dicts
+                        , file_list_path   = '%s.%s.txt' % ( file_list_path_base
+                                                           , egamma_data_samples[dsid]['label']
+                                                           )
+                        , is_data          = True
+                        , is_egamma_stream = True
+                        , is_full_sim      = False
+                        , dsid             = dsid
+                        , out_dir          = out_dir
+                        )
+
+    # add muon stream data samples
+    for dsid in muon_data_samples:
+        addSamplesToList( sample_dict      = muon_data_samples[dsid]
+                        , data_set_dicts   = data_set_dicts
+                        , file_list_path   = '%s.%s.txt' % ( file_list_path_base
+                                                           , muon_data_samples[dsid]['label']
+                                                           )
+                        , is_data          = True
+                        , is_egamma_stream = False
+                        , is_full_sim      = False
+                        , dsid             = dsid
+                        , out_dir          = out_dir
                         )
 
     # add full sim samples
     for dsid in full_sim_mc_samples:
-        addSamplesToList( sample_dict    = full_sim_mc_samples[dsid]
-                        , data_set_dicts = data_set_dicts
-                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
-                                                         , full_sim_mc_samples[dsid]['label']
-                                                         )
-                        , is_data        = False
-                        , is_full_sim    = True
-                        , dsid           = dsid
-                        , out_dir        = out_dir
+        addSamplesToList( sample_dict      = full_sim_mc_samples[dsid]
+                        , data_set_dicts   = data_set_dicts
+                        , file_list_path   = '%s.%s.txt' % ( file_list_path_base
+                                                           , full_sim_mc_samples[dsid]['label']
+                                                           )
+                        , is_data          = False
+                        , is_egamma_stream = False
+                        , is_full_sim      = True
+                        , dsid             = dsid
+                        , out_dir          = out_dir
                         )
 
     # add fast sim samples
     for dsid in fast_sim_mc_samples:
-        addSamplesToList( sample_dict    = fast_sim_mc_samples[dsid]
-                        , data_set_dicts = data_set_dicts
-                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
-                                                         , fast_sim_mc_samples[dsid]['label']
-                                                         )
-                        , is_data        = False
-                        , is_full_sim    = False
-                        , dsid           = dsid
-                        , out_dir        = out_dir
+        addSamplesToList( sample_dict      = fast_sim_mc_samples[dsid]
+                        , data_set_dicts   = data_set_dicts
+                        , file_list_path   = '%s.%s.txt' % ( file_list_path_base
+                                                           , fast_sim_mc_samples[dsid]['label']
+                                                           )
+                        , is_data          = False
+                        , is_egamma_stream = False
+                        , is_full_sim      = False
+                        , dsid             = dsid
+                        , out_dir          = out_dir
                         )
 
     # return the list of data set dictionaries
@@ -375,6 +399,7 @@ def runLxBatchMultiProcess( run_analysis_fun
                                , '%s/%s' % (os.environ['PWD'], this_job_file_name)
                                , os.environ['PWD']
                                ]
+        print batch_submit_command
         subprocess.call(batch_submit_command)
 
     # make sym link to output dir
