@@ -67,7 +67,7 @@ namespace PennSusyFrame
       void setCritCutTriggerMatch(   bool val) { m_crit_cut_trigger_match = val;    }
       void setCritCutPromptLeptons(  bool val) { m_crit_cut_prompt_leptons = val;   }
       void setCritCutStreamOverlap(  bool val) { m_crit_cut_stream_overlap = val;   }
-      
+      void setCritCutBCHCleaning(    bool val) { m_crit_cut_bch_cleaning = val;     }
 
 
       void setSFOSMllCut(double min, double max) { m_sfos_mll_min = min; m_sfos_mll_max = max; }

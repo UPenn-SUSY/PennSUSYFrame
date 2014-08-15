@@ -68,6 +68,10 @@ int PennSusyFrame::PileUpScaleFactorTool::getRandomLumiBlockNumber(int run_numbe
 {
   return m_pile_up_reweight->GetRandomLumiBlockNumber(run_number);
 }
+void PennSusyFrame::PileUpScaleFactorTool::setRandomSeed(int seed)
+{
+  m_pile_up_reweight->SetRandomSeed(seed);
+}
 // =============================================================================
 // -----------------------------------------------------------------------------
 PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)

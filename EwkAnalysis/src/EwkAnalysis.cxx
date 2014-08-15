@@ -227,6 +227,18 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // tile trip cut
+  // TODO validate tile trip cut
+  bool pass_tile_trip = m_tile_trip_tool.passTileTrip(m_event);
+  m_pass_event = (m_pass_event && pass_tile_trip);
+  if (m_crit_cut_tile_trip && !pass_tile_trip) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_TRIP);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_TRIP, m_event_weight);
+  }
+
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // incomplete event cut
   // TODO validate incomplete event cut
   bool pass_incomplete_event = PennSusyFrame::passIncompleteEvent(m_event);
@@ -260,16 +272,6 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // primary vertex cut
-  bool pass_primary_vertex = PennSusyFrame::passPrimaryVertex(m_vertices);
-  m_pass_event = (m_pass_event && pass_primary_vertex);
-  if (m_crit_cut_primary_vertex && !pass_primary_vertex) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // tile hot spot cut
   // TODO validate tile hot spot cut
   bool pass_tile_hot_spot = PennSusyFrame::TileHotSpotTool::passTileHotSpot(m_event, m_jets);
@@ -279,18 +281,6 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_HOT_SPOT);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_HOT_SPOT, m_event_weight);
   }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tile trip cut
-  // TODO validate tile trip cut
-  bool pass_tile_trip = m_tile_trip_tool.passTileTrip(m_event);
-  m_pass_event = (m_pass_event && pass_tile_trip);
-  if (m_crit_cut_tile_trip && !pass_tile_trip) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_TRIP);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_TRIP, m_event_weight);
-  }
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // bad jet veto
   bool pass_bad_jet_veto = (m_jets.num(JET_BAD) == 0);
@@ -322,21 +312,37 @@ void PennSusyFrame::EwkAnalysis::processEvent()
       lumi_block = m_event.getLumiBlock();
     }
   else
-    {                           
+    {                         
+      //set the seed so that the bch cleaning random number is reproducible 
+
+      int seed = 314159+(m_event.getEventNumber())+2718*(m_mc_truth.getChannelNumber());
+
+      m_pile_up_sf_tool.setRandomSeed(seed);
+  
       run_number =  m_pile_up_sf_tool.getRandomRunNumber(m_event.getRunNumber(),m_event.getAverageIntPerXing());
-      if (run_number!=0) lumi_block =  m_pile_up_sf_tool.getRandomLumiBlockNumber(run_number);
+      if (run_number>0) lumi_block =  m_pile_up_sf_tool.getRandomLumiBlockNumber(run_number);
     }
 
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //BCH Cleaning cut
-  bool pass_bch_cleaning = (run_number!=0 && m_bch_cleaning_tool.passBCHCleaning(m_jets, run_number, lumi_block));
+  bool pass_bch_cleaning = (run_number>0 && m_bch_cleaning_tool.passBCHCleaning(m_jets, run_number, lumi_block));
   m_pass_event = (m_pass_event && pass_bch_cleaning);
   if (m_crit_cut_bch_cleaning && !pass_bch_cleaning) return;
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BCH_CLEANING);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BCH_CLEANING, m_event_weight);
 
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // primary vertex cut
+  bool pass_primary_vertex = PennSusyFrame::passPrimaryVertex(m_vertices);
+  m_pass_event = (m_pass_event && pass_primary_vertex);
+  if (m_crit_cut_primary_vertex && !pass_primary_vertex) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX, m_event_weight);
   }
 
 

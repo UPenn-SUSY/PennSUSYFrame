@@ -1836,7 +1836,7 @@ namespace PennSusyFrame
     // std::vector<float>   *el_zvertex;
     // std::vector<float>   *jet_AntiKt4LCTopo_ActiveArea;
     // std::vector<float>   *jet_AntiKt4LCTopo_BAD_CELLS_CORR_E;
-    // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_CELL;
+    std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_CELL;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_DOTX;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL;
     // std::vector<float>   *jet_AntiKt4LCTopo_E;
@@ -5746,7 +5746,7 @@ namespace PennSusyFrame
     // TBranch        *b_isTestBeam;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_ActiveArea;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BAD_CELLS_CORR_E;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_CELL;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_CELL;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_DOTX;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_E;   //!

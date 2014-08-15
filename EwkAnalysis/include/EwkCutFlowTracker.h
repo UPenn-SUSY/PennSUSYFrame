@@ -15,19 +15,19 @@ enum EWK_CUTS { EWK_CUT_ALL
               , EWK_CUT_BREAK_1
               , EWK_CUT_GRL
               , EWK_CUT_INCOMPLETE_EVENT
+              , EWK_CUT_TILE_TRIP
               , EWK_CUT_LAR_ERROR
               , EWK_CUT_TILE_ERROR
-	      , EWK_CUT_PRIMARY_VERTEX
               , EWK_CUT_TILE_HOT_SPOT
-              , EWK_CUT_TILE_TRIP
               , EWK_CUT_BAD_JET_VETO
               , EWK_CUT_CALO_PROBLEM_JET
 	      , EWK_CUT_BCH_CLEANING
+              , EWK_CUT_BREAK_2
+	      , EWK_CUT_PRIMARY_VERTEX
               , EWK_CUT_BAD_MUON
               , EWK_CUT_COSMIC_MUON_VETO
               , EWK_CUT_HFOR
               , EWK_CUT_MC_OVERLAP
-              , EWK_CUT_BREAK_2
               , EWK_CUT_GE_2_BASELINE_LEPTONS
 	      , EWK_CUT_TAU_VETO  
 	      , EWK_CUT_BREAK_3
@@ -63,19 +63,19 @@ const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
                                       , "BREAK"
                                       , "EWK_CUT_GRL"
                                       , "EWK_CUT_INCOMPLETE_EVENT"
+                                      , "EWK_CUT_TILE_TRIP"
                                       , "EWK_CUT_LAR_ERROR"
                                       , "EWK_CUT_TILE_ERROR"
-                                      , "EWK_CUT_PRIMARY_VERTEX"
                                       , "EWK_CUT_TILE_HOT_SPOT"
-                                      , "EWK_CUT_TILE_TRIP"
-                                      , "EWK_CUT_BAD_JET_VETO"
+				      , "EWK_CUT_BAD_JET_VETO"
                                       , "EWK_CUT_CALO_PROBLEM_JET"
 				      , "EWK_CUT_BCH_CLEANING"	
+                                      , "BREAK"
+				      , "EWK_CUT_PRIMARY_VERTEX"
                                       , "EWK_CUT_BAD_MUON"
                                       , "EWK_CUT_COSMIC_MUON_VETO"
                                       , "EWK_CUT_HFOR"
                                       , "EWK_CUT_MC_OVERLAP"
-                                      , "BREAK"
                                       , "EWK_CUT_GE_2_BASELINE_LEPTONS"
 				      , "EWK_CUT_TAU_VETO"    
 				      , "BREAK"                  

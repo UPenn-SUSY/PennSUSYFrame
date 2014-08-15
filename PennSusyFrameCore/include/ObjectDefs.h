@@ -654,6 +654,7 @@ namespace PennSusyFrame
       void setJvf(double val) { m_jvf = val; }
       void setMv1(double val) { m_mv1 = val; }
       void setBchCorr(double val) { m_bch_corr = val; }
+      void setBchCorrCell(double val) { m_bch_corr_cell = val; }
       void setDphiMet(double val) { m_dphi_met = val; }
 
       void setEmf(            double val) { m_emf               = val; }
@@ -686,6 +687,7 @@ namespace PennSusyFrame
       double getJvf()           const { return m_jvf; }
       double getMv1()           const { return m_mv1; }
       double getBchCorr()       const { return m_bch_corr; }
+      double getBchCorrCell()   const { return m_bch_corr_cell; }
       double getDphiMet()       const { return m_dphi_met; }
 
       double getEmf()             const { return m_emf; }
@@ -729,6 +731,7 @@ namespace PennSusyFrame
       double m_jvf;
       double m_mv1;
       double m_bch_corr;
+      double m_bch_corr_cell;
       double m_dphi_met;
 
       double m_emf;
