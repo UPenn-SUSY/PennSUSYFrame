@@ -46,6 +46,7 @@ def runBMinusLAnalysisFun(data_set_dict):
 
     print 'total num events: %s' % data_set_dict['total_num_events']
     print 'total num entries: %s' % data_set_dict['total_num_entries']
+    print 'sum of event weights: %s' % data_set_dict['sum_mc_event_weights']
 
     print 'About to run BMinusLAnalysis'
     runBMinusLAnalysis( file_list             = data_set_dict['file_list']
@@ -61,6 +62,7 @@ def runBMinusLAnalysisFun(data_set_dict):
                       , total_num_jobs        = data_set_dict['total_num_jobs']
                       , total_num_events      = data_set_dict['total_num_events']
                       , total_num_entries     = data_set_dict['total_num_entries']
+                      , sum_mc_event_weights  = data_set_dict['sum_mc_event_weights']
                       , out_dir               = data_set_dict['out_dir']
                       )
 
@@ -78,6 +80,7 @@ def runBMinusLAnalysis( file_list
                       , total_num_jobs        = 1
                       , total_num_events      = 0
                       , total_num_entries     = 0
+                      , sum_mc_event_weights  = 0
                       , out_dir               = './'
                       ):
     # ==============================================================================
@@ -118,8 +121,9 @@ def runBMinusLAnalysis( file_list
         bmla.setKFactor(     xsec_dict['kfac'])
         bmla.setFilterEff(   xsec_dict['eff'])
 
-        bmla.setTotalNumEntries(    total_num_entries )
-        bmla.setNumGeneratedEvents( total_num_events  )
+        bmla.setTotalNumEntries(    total_num_entries    )
+        bmla.setNumGeneratedEvents( total_num_events     )
+        bmla.setSumMCEventWeights(  sum_mc_event_weights )
 
     # set is full sim/fast sim
     if is_full_sim:

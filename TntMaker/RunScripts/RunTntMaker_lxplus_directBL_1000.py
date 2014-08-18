@@ -20,6 +20,7 @@ if __name__ == '__main__':
                                # , file_list_path = '%s/EosFileLists/local/raw_d3pd.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.txt' % os.environ['BASE_WORK_DIR']
                                , file_list_path = 'EosFileLists/local/raw_d3pd.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.txt'
                                , is_data = False
+                               , is_egamma_stream = False
                                , is_full_sim = False
                                , dsid = 202641
                                , out_dir = 'local_tnt'

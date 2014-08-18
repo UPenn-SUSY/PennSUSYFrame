@@ -262,3 +262,59 @@ bool PennSusyFrame::passZOverlapRemoval(const PennSusyFrame::MCTruth& mc_truth)
 
   return true;
 }
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::passSherpaZMassiveCBOverlapRemoval( const PennSusyFrame::MCTruth& mc_truth
+                                                      , const PennSusyFrame::EventLevelQuantities& event_level_quantities
+                                                      )
+{
+  unsigned int dsid = mc_truth.getChannelNumber();
+  bool is_sherpa_z_massivecb = (  ( dsid >= 167749 && dsid <= 167757)
+                               || ( dsid >= 167797 && dsid <= 167805)
+                               || ( dsid >= 167809 && dsid <= 167817)
+                               || ( dsid >= 167821 && dsid <= 167829)
+                               || ( dsid >= 167833 && dsid <= 167841)
+                               || ( dsid >= 180543 && dsid <= 180551)
+                               );
+  if (!is_sherpa_z_massivecb) return true;
+
+  // massiveCB samples cover m_Z > 40 GeV
+  if (event_level_quantities.getMll() < 40000) return false;
+
+  // each massiveCB samples covers a different pt_z range
+  float z_pt = event_level_quantities.getPtll()/1000.;
+  if ( (dsid >= 167749 && dsid <= 167757) && (false       || z_pt > 40. ) ) return false;
+  if ( (dsid >= 167797 && dsid <= 167805) && (z_pt < 70.  || z_pt > 140.) ) return false;
+  if ( (dsid >= 167809 && dsid <= 167817) && (z_pt < 140. || z_pt > 280.) ) return false;
+  if ( (dsid >= 167821 && dsid <= 167829) && (z_pt < 280. || z_pt > 500.) ) return false;
+  if ( (dsid >= 167833 && dsid <= 167841) && (z_pt < 500. || false      ) ) return false;
+  if ( (dsid >= 180543 && dsid <= 180551) && (z_pt < 40.  || z_pt > 70. ) ) return false;
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::passSherpaDYOverlapRemoval( const PennSusyFrame::MCTruth& mc_truth
+                                              , const PennSusyFrame::EventLevelQuantities& event_level_quantities
+                                              )
+{
+  unsigned int dsid = mc_truth.getChannelNumber();
+  bool is_sherpa_dy = ( dsid >= 173041 && dsid <= 173046 );
+  if (!is_sherpa_dy) return true;
+
+  // sherpa dy samples each cover an m_Z range
+  float m_z = event_level_quantities.getMll()/1000.;
+
+  if (  ( (dsid == 173041) || (dsid == 173043) || (dsid == 173045) )
+      && ( (m_z < 8.) || (m_z > 15.) )
+      ) {
+    return false;
+  }
+  if (  ( (dsid == 173042) || (dsid == 173044) || (dsid == 173046) )
+     && ( (m_z < 15.) || (m_z > 40.) )
+     ) {
+    return false;
+  }
+
+  return true;
+}

@@ -27,6 +27,12 @@ namespace PennSusyFrame
     Bool_t          EF_e24vh_medium1_e7_medium1;
     Bool_t          EF_mu18_tight_e7_medium1;
     Bool_t          EF_mu18_tight_mu8_EFFS;
+
+    Bool_t          EF_mu24i_tight;
+    Bool_t          EF_mu36_tight;
+    Bool_t          EF_mu24_tight_mu6_EFFS;
+    Bool_t          EF_e24vhi_medium1;
+
     Float_t         Eventshape_rhoKt4LC;
     Float_t         MET_Egamma10NoTau_CellOut_etx;
     Float_t         MET_Egamma10NoTau_CellOut_ety;
@@ -148,6 +154,11 @@ namespace PennSusyFrame
     std::vector<int>     *trig_EF_trigmuonef_EF_mu18_tight;
     std::vector<int>     *trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
     std::vector<int>     *trig_EF_trigmuonef_EF_mu8;
+    std::vector<int>     *trig_EF_trigmuonef_EF_mu24i_tight;
+    std::vector<int>     *trig_EF_trigmuonef_EF_mu36_tight;
+    std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS;
+    std::vector<int>     *trig_EF_el_EF_e24vhi_medium1;
+    std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight;
     std::vector<int>     *vx_nTracks;
     std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wet;
     std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wpx;
@@ -563,7 +574,6 @@ namespace PennSusyFrame
     // Bool_t          EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;
     // Bool_t          EF_e24vh_tight1_e15_NoCut_Zee;
     // Bool_t          EF_e24vhi_loose1_mu8;
-    // Bool_t          EF_e24vhi_medium1;
     // Bool_t          EF_e45_etcut;
     // Bool_t          EF_e45_medium1;
     // Bool_t          EF_e5_tight1;
@@ -857,12 +867,9 @@ namespace PennSusyFrame
     // Bool_t          EF_mu24_tight_MG;
     // Bool_t          EF_mu24_tight_MuonEF;
     // Bool_t          EF_mu24_tight_b35_mediumEF_j35_a4tchad;
-    // Bool_t          EF_mu24_tight_mu6_EFFS;
-    // Bool_t          EF_mu24i_tight;
     // Bool_t          EF_mu24i_tight_MG;
     // Bool_t          EF_mu24i_tight_MuonEF;
     // Bool_t          EF_mu24i_tight_l2muonSA;
-    // Bool_t          EF_mu36_tight;
     // Bool_t          EF_mu40_MSonly_barrel_tight;
     // Bool_t          EF_mu40_muCombTag_NoEF;
     // Bool_t          EF_mu40_slow_outOfTime_tight;
@@ -3260,7 +3267,6 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;
     // std::vector<int>     *trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee;
     // std::vector<int>     *trig_EF_el_EF_e24vhi_loose1_mu8;
-    // std::vector<int>     *trig_EF_el_EF_e24vhi_medium1;
     // std::vector<int>     *trig_EF_el_EF_e45_etcut;
     // std::vector<int>     *trig_EF_el_EF_e45_medium1;
     // std::vector<int>     *trig_EF_el_EF_e5_tight1;
@@ -3586,7 +3592,6 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_medium;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad;
@@ -3596,12 +3601,9 @@ namespace PennSusyFrame
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight_MG;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight_MuonEF;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu24i_tight;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24i_tight_MG;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24i_tight_MuonEF;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu36_tight;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF;
     // std::vector<int>     *trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight;
@@ -3984,6 +3986,12 @@ namespace PennSusyFrame
     TBranch        *b_EF_e24vh_medium1_e7_medium1;   //!
     TBranch        *b_EF_mu18_tight_e7_medium1;   //!
     TBranch        *b_EF_mu18_tight_mu8_EFFS;   //!
+
+    TBranch        *b_EF_mu24i_tight;   //!
+    TBranch        *b_EF_mu36_tight;   //!
+    TBranch        *b_EF_mu24_tight_mu6_EFFS;   //!
+    TBranch        *b_EF_e24vhi_medium1;   //!
+
     TBranch        *b_EventNumber;   //!
     TBranch        *b_Eventshape_rhoKt4LC;   //!
     TBranch        *b_MET_Egamma10NoTau_CellOut_etx;   //!
@@ -4133,6 +4141,11 @@ namespace PennSusyFrame
     TBranch        *b_trig_EF_trigmuonef_EF_mu18_tight;   //!
     TBranch        *b_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;   //!
     TBranch        *b_trig_EF_trigmuonef_EF_mu8;   //!
+    TBranch        *b_trig_EF_trigmuonef_EF_mu24i_tight;   //!
+    TBranch        *b_trig_EF_trigmuonef_EF_mu36_tight;   //!
+    TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS;   //!
+    TBranch        *b_trig_EF_el_EF_e24vhi_medium1;   //!
+    TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight;   //!
     TBranch        *b_trig_EF_trigmuonef_track_CB_eta;   //!
     TBranch        *b_trig_EF_trigmuonef_track_CB_hasCB;   //!
     TBranch        *b_trig_EF_trigmuonef_track_CB_phi;   //!
@@ -4508,7 +4521,6 @@ namespace PennSusyFrame
     // TBranch        *b_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;   //!
     // TBranch        *b_EF_e24vh_tight1_e15_NoCut_Zee;   //!
     // TBranch        *b_EF_e24vhi_loose1_mu8;   //!
-    // TBranch        *b_EF_e24vhi_medium1;   //!
     // TBranch        *b_EF_e45_etcut;   //!
     // TBranch        *b_EF_e45_medium1;   //!
     // TBranch        *b_EF_e5_tight1;   //!
@@ -4802,12 +4814,9 @@ namespace PennSusyFrame
     // TBranch        *b_EF_mu24_tight_MG;   //!
     // TBranch        *b_EF_mu24_tight_MuonEF;   //!
     // TBranch        *b_EF_mu24_tight_b35_mediumEF_j35_a4tchad;   //!
-    // TBranch        *b_EF_mu24_tight_mu6_EFFS;   //!
-    // TBranch        *b_EF_mu24i_tight;   //!
     // TBranch        *b_EF_mu24i_tight_MG;   //!
     // TBranch        *b_EF_mu24i_tight_MuonEF;   //!
     // TBranch        *b_EF_mu24i_tight_l2muonSA;   //!
-    // TBranch        *b_EF_mu36_tight;   //!
     // TBranch        *b_EF_mu40_MSonly_barrel_tight;   //!
     // TBranch        *b_EF_mu40_muCombTag_NoEF;   //!
     // TBranch        *b_EF_mu40_slow_outOfTime_tight;   //!
@@ -6964,7 +6973,6 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad;   //!
     // TBranch        *b_trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee;   //!
     // TBranch        *b_trig_EF_el_EF_e24vhi_loose1_mu8;   //!
-    // TBranch        *b_trig_EF_el_EF_e24vhi_medium1;   //!
     // TBranch        *b_trig_EF_el_EF_e45_etcut;   //!
     // TBranch        *b_trig_EF_el_EF_e45_medium1;   //!
     // TBranch        *b_trig_EF_el_EF_e5_tight1;   //!
@@ -7627,7 +7635,6 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_medium;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad;   //!
@@ -7637,12 +7644,9 @@ namespace PennSusyFrame
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight_MG;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight_MuonEF;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu24i_tight;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24i_tight_MG;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24i_tight_MuonEF;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu36_tight;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF;   //!
     // TBranch        *b_trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight;   //!
@@ -7929,8 +7933,8 @@ namespace PennSusyFrame
     virtual void     Init(TTree *tree);
     virtual void     ConfigureOutput(std::string out_file_name, std::string out_tree_name);
     virtual void     FillEvent();
-    virtual void     FinalizeOutput(int num_generated_events = -1);
-    virtual void     writeNumEvents(int num_generated_events = -1);
+    virtual void     FinalizeOutput(int num_generated_events = -1, float sum_event_weights = -1);
+    virtual void     writeNumEvents(int num_generated_events = -1, float sum_event_weights = -1);
     virtual Bool_t   Notify();
     virtual void     Show(Long64_t entry = -1);
 

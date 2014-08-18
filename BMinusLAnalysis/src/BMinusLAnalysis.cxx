@@ -325,9 +325,9 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // mc overlap cut
-  m_pass_mc_overlap = (  PennSusyFrame::passSherpaWWOverlapRemoval(m_event, m_mc_truth)
-                         && PennSusyFrame::passZOverlapRemoval(m_mc_truth)
-                         );
+  m_pass_mc_overlap = (  PennSusyFrame::passSherpaZMassiveCBOverlapRemoval(m_mc_truth, m_event_quantities)
+                      && PennSusyFrame::passSherpaDYOverlapRemoval(m_mc_truth, m_event_quantities)
+                      );
   m_pass_event = (m_pass_event && m_pass_mc_overlap);
   if (m_crit_cut_mc_overlap && !m_pass_mc_overlap) return;
   fillTrackers(BMINUSL_CUT_MC_OVERLAP);

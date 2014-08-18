@@ -51,26 +51,29 @@ def readFileList(file_path):
         total_num_events += int(splits[1])
         total_entries    += int(splits[2])
 
+        sum_mc_event_weights = float(splits[3]) if len(splits) > 3 else total_num_events
+
     return { 'file_list':file_list
            , 'total_num_events':total_num_events
            , 'total_entries':total_entries
+           , 'sum_mc_event_weights':sum_mc_event_weights
            }
 
-# ------------------------------------------------------------------------------
-def getFileListFromFile(file_path):
-    file_list = []
-
-    f = file(file_path)
-    for l in f.readlines():
-        l = l.strip('\n')
-        splits = l.split()
-        file_list.append( { 'file_name':splits[0]
-                          , 'total_num_events':splits[1]
-                          , 'total_entries':splits[2]
-                          }
-                        )
-
-    return file_list
+## # ------------------------------------------------------------------------------
+## def getFileListFromFile(file_path):
+##     file_list = []
+##
+##     f = file(file_path)
+##     for l in f.readlines():
+##         l = l.strip('\n')
+##         splits = l.split()
+##         file_list.append( { 'file_name':splits[0]
+##                           , 'total_num_events':splits[1]
+##                           , 'total_entries':splits[2]
+##                           }
+##                         )
+##
+##     return file_list
 
 # ------------------------------------------------------------------------------
 def getFileListFromGridInput(grid_input_string):
@@ -129,13 +132,15 @@ def makeDataSetDictList( label_base
     total_num_entries = 0
 
     print 'getting raw events for %s' % label_base
-    data_set_input    = readFileList('%s/%s' % (os.environ['BASE_WORK_DIR'], file_list_path))
-    file_list         = data_set_input['file_list']
-    total_num_events  = data_set_input['total_num_events']
-    total_num_entries = data_set_input['total_entries']
+    data_set_input       = readFileList('%s/%s' % (os.environ['BASE_WORK_DIR'], file_list_path))
+    file_list            = data_set_input['file_list']
+    total_num_events     = data_set_input['total_num_events']
+    total_num_entries    = data_set_input['total_entries']
+    sum_mc_event_weights = data_set_input['sum_mc_event_weights']
 
     print 'total num events: %s' % total_num_events
     print 'total entries: %s' % total_num_entries
+    print 'sum mc event weights: %s' % sum_mc_event_weights
 
     data_set_dict_list = []
     for tnj in xrange(total_num_jobs):
@@ -149,8 +154,9 @@ def makeDataSetDictList( label_base
                                             , total_num_jobs   = total_num_jobs
                                             , out_dir          = out_dir
                                             )
-        this_data_set_dict['total_num_events']  = total_num_events
-        this_data_set_dict['total_num_entries'] = total_num_entries
+        this_data_set_dict['total_num_events']     = total_num_events
+        this_data_set_dict['total_num_entries']    = total_num_entries
+        this_data_set_dict['sum_mc_event_weights'] = sum_mc_event_weights
         data_set_dict_list.append(this_data_set_dict)
 
     return data_set_dict_list
@@ -297,10 +303,12 @@ def runLocalMultiprocess( run_analysis_fun
                         , sym_link_name
                         ):
     p = Pool(num_processes)
+    print run_analysis_fun
+    print data_set_dicts
     p.map(run_analysis_fun, data_set_dicts)
 
-    mergeOutputFiles(out_dir, flat_ntuples)
-    moveToLinkedDir(out_dir, sym_link_name)
+    # mergeOutputFiles(out_dir, flat_ntuples)
+    # moveToLinkedDir(out_dir, sym_link_name)
 
 # ------------------------------------------------------------------------------
 def writeLxBatchScript( run_analysis_fun
