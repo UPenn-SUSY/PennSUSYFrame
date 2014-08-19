@@ -13,6 +13,7 @@
 namespace PennSusyFrame
 {
   class Event;
+  class EventLevelQuantities;
   class Jet;
   class JetContainer;
   class VertexContainer;
@@ -105,9 +106,9 @@ namespace PennSusyFrame
 
   // =============================================================================
   bool passSherpaWWOverlapRemoval(const PennSusyFrame::Event&, const PennSusyFrame::MCTruth&);
-
-  // =============================================================================
-  bool passZOverlapRemoval(const PennSusyFrame::MCTruth&);
+  bool passZOverlapRemoval(               const PennSusyFrame::MCTruth&);
+  bool passSherpaZMassiveCBOverlapRemoval(const PennSusyFrame::MCTruth&, const PennSusyFrame::EventLevelQuantities&);
+  bool passSherpaDYOverlapRemoval(        const PennSusyFrame::MCTruth&, const PennSusyFrame::EventLevelQuantities&);
 }
 
 // Include the implementation:

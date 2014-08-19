@@ -1338,7 +1338,7 @@ void PennSusyFrame::Met::doWeightFix( std::vector<float>& wet
 double PennSusyFrame::Met::calculateMetSig( double met, double ht)
 {
   if (ht == 0.) return (met == 0.) ? 0. : 999999.;
-  return met/sqrt(ht);
+  return (met/1000.)/sqrt(ht/1000.);
 }
 
 // -----------------------------------------------------------------------------

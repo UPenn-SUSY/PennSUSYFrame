@@ -165,6 +165,11 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   trig_EF_trigmuonef_EF_mu18_tight = 0;
   trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS = 0;
   trig_EF_trigmuonef_EF_mu8 = 0;
+  trig_EF_trigmuonef_EF_mu24i_tight = 0;
+  trig_EF_trigmuonef_EF_mu36_tight = 0;
+  trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS = 0;
+  trig_EF_el_EF_e24vhi_medium1 = 0;
+  trig_EF_trigmuonef_EF_mu24_tight = 0;
   trig_EF_trigmuonef_track_CB_eta = 0;
   trig_EF_trigmuonef_track_CB_hasCB = 0;
   trig_EF_trigmuonef_track_CB_phi = 0;
@@ -1634,7 +1639,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad = 0;
   // trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee = 0;
   // trig_EF_el_EF_e24vhi_loose1_mu8 = 0;
-  // trig_EF_el_EF_e24vhi_medium1 = 0;
   // trig_EF_el_EF_e45_etcut = 0;
   // trig_EF_el_EF_e45_medium1 = 0;
   // trig_EF_el_EF_e5_tight1 = 0;
@@ -2266,7 +2270,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw = 0;
   // trig_EF_trigmuonef_EF_mu24_medium = 0;
   // trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight = 0;
-  // trig_EF_trigmuonef_EF_mu24_tight = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad = 0;
@@ -2276,12 +2279,9 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // trig_EF_trigmuonef_EF_mu24_tight_MG = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_MuonEF = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad = 0;
-  // trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS = 0;
-  // trig_EF_trigmuonef_EF_mu24i_tight = 0;
   // trig_EF_trigmuonef_EF_mu24i_tight_MG = 0;
   // trig_EF_trigmuonef_EF_mu24i_tight_MuonEF = 0;
   // trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA = 0;
-  // trig_EF_trigmuonef_EF_mu36_tight = 0;
   // trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight = 0;
   // trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF = 0;
   // trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight = 0;
@@ -2564,6 +2564,12 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "EF_e24vh_medium1_e7_medium1", &EF_e24vh_medium1_e7_medium1, &b_EF_e24vh_medium1_e7_medium1);
   turnOnBranch(tree, "EF_mu18_tight_e7_medium1", &EF_mu18_tight_e7_medium1, &b_EF_mu18_tight_e7_medium1);
   turnOnBranch(tree, "EF_mu18_tight_mu8_EFFS", &EF_mu18_tight_mu8_EFFS, &b_EF_mu18_tight_mu8_EFFS);
+
+  turnOnBranch(tree, "EF_mu24i_tight", &EF_mu24i_tight, &b_EF_mu24i_tight);
+  turnOnBranch(tree, "EF_mu36_tight", &EF_mu36_tight, &b_EF_mu36_tight);
+  turnOnBranch(tree, "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS, &b_EF_mu24_tight_mu6_EFFS);
+  turnOnBranch(tree, "EF_e24vhi_medium1", &EF_e24vhi_medium1, &b_EF_e24vhi_medium1);
+
   turnOnBranch(tree, "EventNumber", &EventNumber, &b_EventNumber);
   turnOnBranch(tree, "Eventshape_rhoKt4LC", &Eventshape_rhoKt4LC, &b_Eventshape_rhoKt4LC);
   turnOnBranch(tree, "MET_Egamma10NoTau_CellOut_etx", &MET_Egamma10NoTau_CellOut_etx, &b_MET_Egamma10NoTau_CellOut_etx);
@@ -2688,6 +2694,11 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu18_tight", &trig_EF_trigmuonef_EF_mu18_tight, &b_trig_EF_trigmuonef_EF_mu18_tight);
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS", &trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS, &b_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS);
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu8", &trig_EF_trigmuonef_EF_mu8, &b_trig_EF_trigmuonef_EF_mu8);
+  turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight", &trig_EF_trigmuonef_EF_mu24i_tight, &b_trig_EF_trigmuonef_EF_mu24i_tight);
+  turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight, &b_trig_EF_trigmuonef_EF_mu36_tight);
+  turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS, &b_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
+  turnOnBranch(tree, "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1, &b_trig_EF_el_EF_e24vhi_medium1);
+  turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight, &b_trig_EF_trigmuonef_EF_mu24_tight);
   turnOnBranch(tree, "trig_EF_trigmuonef_track_CB_eta", &trig_EF_trigmuonef_track_CB_eta, &b_trig_EF_trigmuonef_track_CB_eta);
   turnOnBranch(tree, "trig_EF_trigmuonef_track_CB_hasCB", &trig_EF_trigmuonef_track_CB_hasCB, &b_trig_EF_trigmuonef_track_CB_hasCB);
   turnOnBranch(tree, "trig_EF_trigmuonef_track_CB_phi", &trig_EF_trigmuonef_track_CB_phi, &b_trig_EF_trigmuonef_track_CB_phi);
@@ -3092,7 +3103,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "EF_e24vh_medium1_TRT", &EF_e24vh_medium1_TRT, &b_EF_e24vh_medium1_TRT);
   // turnOnBranch(tree, "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &EF_e24vh_medium1_b35_mediumEF_j35_a4tchad, &b_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
   // turnOnBranch(tree, "EF_e24vh_tight1_e15_NoCut_Zee", &EF_e24vh_tight1_e15_NoCut_Zee, &b_EF_e24vh_tight1_e15_NoCut_Zee);
-  // turnOnBranch(tree, "EF_e24vhi_medium1", &EF_e24vhi_medium1, &b_EF_e24vhi_medium1);
   // turnOnBranch(tree, "EF_e45_etcut", &EF_e45_etcut, &b_EF_e45_etcut);
   // turnOnBranch(tree, "EF_e45_medium1", &EF_e45_medium1, &b_EF_e45_medium1);
   // turnOnBranch(tree, "EF_e5_tight1", &EF_e5_tight1, &b_EF_e5_tight1);
@@ -3386,12 +3396,9 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "EF_mu24_tight_MG", &EF_mu24_tight_MG, &b_EF_mu24_tight_MG);
   // turnOnBranch(tree, "EF_mu24_tight_MuonEF", &EF_mu24_tight_MuonEF, &b_EF_mu24_tight_MuonEF);
   // turnOnBranch(tree, "EF_mu24_tight_b35_mediumEF_j35_a4tchad", &EF_mu24_tight_b35_mediumEF_j35_a4tchad, &b_EF_mu24_tight_b35_mediumEF_j35_a4tchad);
-  // turnOnBranch(tree, "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS, &b_EF_mu24_tight_mu6_EFFS);
-  // turnOnBranch(tree, "EF_mu24i_tight", &EF_mu24i_tight, &b_EF_mu24i_tight);
   // turnOnBranch(tree, "EF_mu24i_tight_MG", &EF_mu24i_tight_MG, &b_EF_mu24i_tight_MG);
   // turnOnBranch(tree, "EF_mu24i_tight_MuonEF", &EF_mu24i_tight_MuonEF, &b_EF_mu24i_tight_MuonEF);
   // turnOnBranch(tree, "EF_mu24i_tight_l2muonSA", &EF_mu24i_tight_l2muonSA, &b_EF_mu24i_tight_l2muonSA);
-  // turnOnBranch(tree, "EF_mu36_tight", &EF_mu36_tight, &b_EF_mu36_tight);
   // turnOnBranch(tree, "EF_mu40_MSonly_barrel_tight", &EF_mu40_MSonly_barrel_tight, &b_EF_mu40_MSonly_barrel_tight);
   // turnOnBranch(tree, "EF_mu40_muCombTag_NoEF", &EF_mu40_muCombTag_NoEF, &b_EF_mu40_muCombTag_NoEF);
   // turnOnBranch(tree, "EF_mu40_slow_outOfTime_tight", &EF_mu40_slow_outOfTime_tight, &b_EF_mu40_slow_outOfTime_tight);
@@ -5548,7 +5555,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad, &b_trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee", &trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee, &b_trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vhi_loose1_mu8", &trig_EF_el_EF_e24vhi_loose1_mu8, &b_trig_EF_el_EF_e24vhi_loose1_mu8);
-  // turnOnBranch(tree, "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1, &b_trig_EF_el_EF_e24vhi_medium1);
   // turnOnBranch(tree, "trig_EF_el_EF_e45_etcut", &trig_EF_el_EF_e45_etcut, &b_trig_EF_el_EF_e45_etcut);
   // turnOnBranch(tree, "trig_EF_el_EF_e45_medium1", &trig_EF_el_EF_e45_medium1, &b_trig_EF_el_EF_e45_medium1);
   // turnOnBranch(tree, "trig_EF_el_EF_e5_tight1", &trig_EF_el_EF_e5_tight1, &b_trig_EF_el_EF_e5_tight1);
@@ -6211,7 +6217,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw", &trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw, &b_trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_medium", &trig_EF_trigmuonef_EF_mu24_medium, &b_trig_EF_trigmuonef_EF_mu24_medium);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight", &trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight, &b_trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight);
-  // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight, &b_trig_EF_trigmuonef_EF_mu24_tight);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad, &b_trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad, &b_trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad, &b_trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad);
@@ -6221,12 +6226,9 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_MG", &trig_EF_trigmuonef_EF_mu24_tight_MG, &b_trig_EF_trigmuonef_EF_mu24_tight_MG);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_MuonEF", &trig_EF_trigmuonef_EF_mu24_tight_MuonEF, &b_trig_EF_trigmuonef_EF_mu24_tight_MuonEF);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad, &b_trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad);
-  // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS, &b_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
-  // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight", &trig_EF_trigmuonef_EF_mu24i_tight, &b_trig_EF_trigmuonef_EF_mu24i_tight);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight_MG", &trig_EF_trigmuonef_EF_mu24i_tight_MG, &b_trig_EF_trigmuonef_EF_mu24i_tight_MG);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight_MuonEF", &trig_EF_trigmuonef_EF_mu24i_tight_MuonEF, &b_trig_EF_trigmuonef_EF_mu24i_tight_MuonEF);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA", &trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA, &b_trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA);
-  // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight, &b_trig_EF_trigmuonef_EF_mu36_tight);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight", &trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight, &b_trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF", &trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF, &b_trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight", &trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight, &b_trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight);
@@ -6525,6 +6527,12 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "EF_e24vh_medium1_e7_medium1", &EF_e24vh_medium1_e7_medium1);
   m_output_tree->Branch( "EF_mu18_tight_e7_medium1", &EF_mu18_tight_e7_medium1);
   m_output_tree->Branch( "EF_mu18_tight_mu8_EFFS", &EF_mu18_tight_mu8_EFFS);
+
+  m_output_tree->Branch( "EF_mu24i_tight", &EF_mu24i_tight);
+  m_output_tree->Branch( "EF_mu36_tight", &EF_mu36_tight);
+  m_output_tree->Branch( "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS);
+  m_output_tree->Branch( "EF_e24vhi_medium1", &EF_e24vhi_medium1);
+
   m_output_tree->Branch( "EventNumber", &EventNumber);
   m_output_tree->Branch( "Eventshape_rhoKt4LC", &Eventshape_rhoKt4LC);
   m_output_tree->Branch( "MET_Egamma10NoTau_CellOut_etx", &MET_Egamma10NoTau_CellOut_etx);
@@ -6650,6 +6658,11 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu18_tight", &trig_EF_trigmuonef_EF_mu18_tight);
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS", &trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS);
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu8", &trig_EF_trigmuonef_EF_mu8);
+  m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight", &trig_EF_trigmuonef_EF_mu24i_tight);
+  m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight);
+  m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
+  m_output_tree->Branch( "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1);
+  m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight);
   m_output_tree->Branch( "trig_EF_trigmuonef_track_CB_eta", &trig_EF_trigmuonef_track_CB_eta);
   m_output_tree->Branch( "trig_EF_trigmuonef_track_CB_hasCB", &trig_EF_trigmuonef_track_CB_hasCB);
   m_output_tree->Branch( "trig_EF_trigmuonef_track_CB_phi", &trig_EF_trigmuonef_track_CB_phi);
@@ -7054,7 +7067,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "EF_e24vh_medium1_TRT", &EF_e24vh_medium1_TRT);
   // m_output_tree->Branch( "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
   // m_output_tree->Branch( "EF_e24vh_tight1_e15_NoCut_Zee", &EF_e24vh_tight1_e15_NoCut_Zee);
-  // m_output_tree->Branch( "EF_e24vhi_medium1", &EF_e24vhi_medium1);
   // m_output_tree->Branch( "EF_e45_etcut", &EF_e45_etcut);
   // m_output_tree->Branch( "EF_e45_medium1", &EF_e45_medium1);
   // m_output_tree->Branch( "EF_e5_tight1", &EF_e5_tight1);
@@ -7348,12 +7360,9 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "EF_mu24_tight_MG", &EF_mu24_tight_MG);
   // m_output_tree->Branch( "EF_mu24_tight_MuonEF", &EF_mu24_tight_MuonEF);
   // m_output_tree->Branch( "EF_mu24_tight_b35_mediumEF_j35_a4tchad", &EF_mu24_tight_b35_mediumEF_j35_a4tchad);
-  // m_output_tree->Branch( "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS);
-  // m_output_tree->Branch( "EF_mu24i_tight", &EF_mu24i_tight);
   // m_output_tree->Branch( "EF_mu24i_tight_MG", &EF_mu24i_tight_MG);
   // m_output_tree->Branch( "EF_mu24i_tight_MuonEF", &EF_mu24i_tight_MuonEF);
   // m_output_tree->Branch( "EF_mu24i_tight_l2muonSA", &EF_mu24i_tight_l2muonSA);
-  // m_output_tree->Branch( "EF_mu36_tight", &EF_mu36_tight);
   // m_output_tree->Branch( "EF_mu40_MSonly_barrel_tight", &EF_mu40_MSonly_barrel_tight);
   // m_output_tree->Branch( "EF_mu40_muCombTag_NoEF", &EF_mu40_muCombTag_NoEF);
   // m_output_tree->Branch( "EF_mu40_slow_outOfTime_tight", &EF_mu40_slow_outOfTime_tight);
@@ -9510,7 +9519,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
   // m_output_tree->Branch( "trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee", &trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee);
   // m_output_tree->Branch( "trig_EF_el_EF_e24vhi_loose1_mu8", &trig_EF_el_EF_e24vhi_loose1_mu8);
-  // m_output_tree->Branch( "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1);
   // m_output_tree->Branch( "trig_EF_el_EF_e45_etcut", &trig_EF_el_EF_e45_etcut);
   // m_output_tree->Branch( "trig_EF_el_EF_e45_medium1", &trig_EF_el_EF_e45_medium1);
   // m_output_tree->Branch( "trig_EF_el_EF_e5_tight1", &trig_EF_el_EF_e5_tight1);
@@ -10173,7 +10181,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw", &trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_medium", &trig_EF_trigmuonef_EF_mu24_medium);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight", &trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight);
-  // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad);
@@ -10183,12 +10190,9 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_MG", &trig_EF_trigmuonef_EF_mu24_tight_MG);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_MuonEF", &trig_EF_trigmuonef_EF_mu24_tight_MuonEF);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad);
-  // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
-  // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight", &trig_EF_trigmuonef_EF_mu24i_tight);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight_MG", &trig_EF_trigmuonef_EF_mu24i_tight_MG);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight_MuonEF", &trig_EF_trigmuonef_EF_mu24i_tight_MuonEF);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA", &trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA);
-  // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight", &trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF", &trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight", &trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight);
@@ -10476,7 +10480,9 @@ void PennSusyFrame::D3PDReader::FillEvent()
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::D3PDReader::FinalizeOutput(int num_generated_events)
+void PennSusyFrame::D3PDReader::FinalizeOutput( int   num_generated_events
+                                              , float sum_mc_event_weights
+                                              )
 {
   m_output_tree->Write();
 
@@ -10490,12 +10496,19 @@ void PennSusyFrame::D3PDReader::FinalizeOutput(int num_generated_events)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::D3PDReader::writeNumEvents(int num_generated_events)
+void PennSusyFrame::D3PDReader::writeNumEvents( int   num_generated_events
+                                              , float sum_mc_event_weights
+                                              )
 {
   TVectorF num_events(1);
   if (num_generated_events < 0) num_events[0] = getNumEvents();
   else                          num_events[0] = num_generated_events;
   num_events.Write("TotalNumEvents");
+
+  TVectorF sum_weights(1);
+  if (sum_mc_event_weights < 0) sum_weights[0] = num_events[0];
+  else                          sum_weights[0] = sum_mc_event_weights;
+  sum_weights.Write("SumMCEventWeights");
 }
 
 // -----------------------------------------------------------------------------

@@ -21,6 +21,8 @@
 PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry(0)
                                                                  , m_max_num_events(-1)
                                                                  , m_is_data(true)
+                                                                 , m_is_egamma_stream(true)
+                                                                 , m_is_blind(true)
                                                                  , m_is_af2(false)
                                                                  , m_event_weight(1.)
                                                                  , m_x_sec(1.)
@@ -29,6 +31,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_xsec_weight(1.)
                                                                  , m_num_entries(-1)
                                                                  , m_num_generated_events(-1)
+                                                                 , m_sum_mc_event_weights(-1)
                                                                  , m_fancy_progress_bar(true)
                                                                  , m_process_label("")
                                                                  , m_mv1_cut_value(0.3511)
@@ -305,14 +308,21 @@ void PennSusyFrame::PennSusyFrameCore::beginRun()
       m_num_generated_events = m_d3pd_reader->getNumEvents();
       std::cout << m_num_generated_events << "\n";
     }
+    if (m_sum_mc_event_weights <= 0) {
+      std::cout << "setting sum of mc event weights to the number of generated events: ";
+      m_sum_mc_event_weights = m_num_generated_events;
+      std::cout << m_sum_mc_event_weights << "\n";
+    }
 
     // m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_d3pd_reader->getNumEvents();
-    m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_num_generated_events;
-    std::cout << "\n\tx sec: " << m_x_sec
-              << "\n\tk factor: " << m_k_factor
-              << "\n\tfilter eff: " << m_filter_eff
-              << "\n\tnum_gen events: " << m_num_generated_events
-              << "\n\t\tx section weight: " << m_xsec_weight
+    // m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_num_generated_events;
+    m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_sum_mc_event_weights;
+    std::cout << "\n\tx sec: "                   << m_x_sec
+              << "\n\tk factor: "                << m_k_factor
+              << "\n\tfilter eff: "              << m_filter_eff
+              << "\n\tnum gen events: "          << m_num_generated_events
+              << "\n\tsum of mc event weights: " << m_sum_mc_event_weights
+              << "\n\t\tx section weight: "      << m_xsec_weight
               << "\n";
   }
 }
@@ -815,5 +825,5 @@ void PennSusyFrame::PennSusyFrameCore::writeTnt()
     std::cout << m_num_generated_events << "\n";
   }
 
-  m_d3pd_reader->FinalizeOutput(m_num_generated_events);
+  m_d3pd_reader->FinalizeOutput(m_num_generated_events, m_sum_mc_event_weights);
 }

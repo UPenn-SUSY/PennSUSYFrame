@@ -40,8 +40,14 @@ namespace PennSusyFrame
       virtual void prepareTools();
 
       // TODO move accessor to cxx file
-      virtual void setIsData() { m_is_data = true; }
-      virtual void setIsMC()   { m_is_data = false; }
+      virtual void setIsData(bool val = true) { m_is_data = val; }
+      virtual void setIsMC(  bool val = true) { m_is_data = !val; }
+
+      virtual void setIsEgammaStream(bool val = true) { m_is_egamma_stream = val; }
+      virtual void setIsMuonStream(  bool val = true) { m_is_egamma_stream = !val; }
+
+      virtual void setIsBlind(   bool val = true) { m_is_blind = val; }
+      virtual void setIsNotBlind(bool val = true) { m_is_blind = !val; }
 
       virtual void setFullSim() { m_is_af2 = false; }
       virtual void setAf2() {     m_is_af2 = true; }
@@ -53,8 +59,9 @@ namespace PennSusyFrame
       virtual void setKFactor(     float val) { m_k_factor = val; }
       virtual void setFilterEff(   float val) { m_filter_eff = val; }
 
-      virtual void setTotalNumEntries(int val) { m_num_entries = val; }
-      virtual void setNumGeneratedEvents(int val) { m_num_generated_events = val; }
+      virtual void setTotalNumEntries(   int   val) { m_num_entries          = val; }
+      virtual void setNumGeneratedEvents(int   val) { m_num_generated_events = val; }
+      virtual void setSumMCEventWeights( float val) { m_sum_mc_event_weights = val; }
 
       virtual void setFancyProgressBar(bool val) { m_fancy_progress_bar = val; }
       virtual void setProcessLabel(std::string val) { m_process_label = val; }
@@ -91,6 +98,8 @@ namespace PennSusyFrame
       unsigned int m_start_entry;
       int m_max_num_events;
       bool m_is_data;
+      bool m_is_egamma_stream;
+      bool m_is_blind;
       bool m_is_af2;
       double m_event_weight;
       bool m_pass_event;
@@ -100,8 +109,9 @@ namespace PennSusyFrame
       float m_filter_eff;
       float m_xsec_weight;
 
-      int m_num_entries;
-      int m_num_generated_events;
+      int   m_num_entries;
+      int   m_num_generated_events;
+      float m_sum_mc_event_weights;
 
       bool m_fancy_progress_bar;
       std::string m_process_label;

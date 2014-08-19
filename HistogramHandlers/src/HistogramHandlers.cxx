@@ -8,6 +8,63 @@
 #include "TH1.h"
 
 // =============================================================================
+static const int   mll_bins = 50;
+static const float mll_min  = 0.;
+static const float mll_max  = 1000.;
+
+static const int   mt2_bins = 50;
+static const float mt2_min  = 0.;
+static const float mt2_max  = 500.;
+
+static const int   ptll_bins = 50;
+static const float ptll_min  = 0.;
+static const float ptll_max  = 2000.;
+
+static const int   ht_bins = 30;
+static const float ht_min  = 0;
+static const float ht_max  = 3000;
+
+static const int   pt_bins = 75;
+static const float pt_min  = 0.;
+static const float pt_max  = 1500.;
+
+static const int   eta_bins = 50;
+static const float eta_min = -5.;
+static const float eta_max = +5.;
+
+static const int   ptiso_bins = 120;
+static const float ptiso_min  = 0.;
+static const float ptiso_max  = 3.;
+
+static const int   etiso_bins = 140;
+static const float etiso_min  = -0.5;
+static const float etiso_max  = 3.;
+
+static const int   dr_bins = 60;
+static const float dr_min = 0.;
+static const float dr_max = 6.0;
+
+static const int   dphi_bins = 32;
+static const float dphi_min = 0.;
+static const float dphi_max = 3.2;
+
+static const int   deta_bins = 50;
+static const float deta_min = 0.;
+static const float deta_max = 5.0;
+
+static const int   num_jet_bins = 10;
+static const float num_jet_min  = -0.5;
+static const float num_jet_max  = num_jet_bins + num_jet_min;
+
+static const int   met_et_bins = 25;
+static const float met_et_min  = 0.;
+static const float met_et_max  = 500.;
+
+static const int   met_sig_bins = 30;
+static const float met_sig_min  = 0;
+static const float met_sig_max  = 30;
+
+// =============================================================================
 PennSusyFrame::HistogramHandler::HistogramHandler(std::string)
 { }
 
@@ -60,23 +117,6 @@ void PennSusyFrame::HistogramHandler::write(TDirectory*)
 PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
-
-  const int   mll_bins = 50;
-  const float mll_min  = 0.;
-  const float mll_max  = 1000.;
-
-  const int   mt2_bins = 50;
-  const float mt2_min  = 0.;
-  const float mt2_max  = 500.;
-
-  const int   ptll_bins = 50;
-  const float ptll_min  = 0.;
-  const float ptll_max  = 2000.;
-
-  // const int   ht_bins = 100;
-  const int   ht_bins = 50;
-  const float ht_min  = 0;
-  const float ht_max  = 5000;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -231,7 +271,7 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
-    m_h_flavor_channel.at(fc_it)->Fill(fc);
+    m_h_flavor_channel.at(fc_it)->Fill(fc, weight);
 
     m_h_mll.at(fc_it)->Fill(mll, weight);
     m_h_mt2.at(fc_it)->Fill(mt2, weight);
@@ -274,34 +314,6 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
 PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
-
-  const int   pt_bins = 2000;
-  const float pt_min  = 0.;
-  const float pt_max  = 2000.;
-
-  const int   eta_bins = 50;
-  const float eta_min = -5.;
-  const float eta_max = +5.;
-
-  const int   ptiso_bins = 30;
-  const float ptiso_min  = 0.;
-  const float ptiso_max  = 3.;
-
-  const int   etiso_bins = 40;
-  const float etiso_min  = -1.;
-  const float etiso_max  = 3.;
-
-  const int dr_bins = 60;
-  const float dr_min = 0.;
-  const float dr_max = 6.0;
-
-  const int dphi_bins = 32;
-  const float dphi_min = 0.;
-  const float dphi_max = 3.2;
-
-  const int deta_bins = 50;
-  const float deta_min = 0.;
-  const float deta_max = 5.0;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -972,30 +984,6 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   num_jet_bins = 10;
-  const float num_jet_min  = -0.5;
-  const float num_jet_max  = num_jet_bins + num_jet_min;
-
-  const int   pt_bins = 2000;
-  const float pt_min  = 0.;
-  const float pt_max  = 2000.;
-
-  const int dr_bins = 60;
-  const float dr_min = 0.;
-  const float dr_max = 6.0;
-
-  const int dphi_bins = 32;
-  const float dphi_min = 0.;
-  const float dphi_max = 3.2;
-
-  const int deta_bins = 50;
-  const float deta_min = 0.;
-  const float deta_max = 5.0;
-
-  const int   eta_bins = 50;
-  const float eta_min = -5.;
-  const float eta_max = -5.;
-
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1335,18 +1323,6 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   met_et_bins = 100;
-  const float met_et_min  = 0.;
-  const float met_et_max  = 500.;
-
-  const int dphi_bins = 32;
-  const float dphi_min = 0.;
-  const float dphi_max = 3.2;
-
-  const int   met_sig_bins = 50;
-  const float met_sig_min  = 0;
-  const float met_sig_max  = 500;
-
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1384,7 +1360,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                          ).c_str()
                                        , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                         + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                         + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                          ).c_str()
                                        , met_sig_bins, met_sig_min, met_sig_max
                                        )
@@ -1396,7 +1372,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                               ).c_str()
                                             , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                              + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                              + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                               ).c_str()
                                             , met_sig_bins, met_sig_min, met_sig_max
                                             )
@@ -1408,7 +1384,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                           ).c_str()
                                         , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                          + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                           ).c_str()
                                         , met_sig_bins, met_sig_min, met_sig_max
                                         )
@@ -1420,7 +1396,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                             ).c_str()
                                           , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                             + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                            + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                             ).c_str()
                                           , met_sig_bins, met_sig_min, met_sig_max
                                           )

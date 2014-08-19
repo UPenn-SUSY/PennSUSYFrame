@@ -239,7 +239,7 @@ namespace PennSusyFrame
       std::vector<int>*   getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()       const { return m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS; }
       std::vector<int>*   getTrig_EF_trigmuonef_EF_mu8()                       const { return m_trig_EF_trigmuonef_EF_mu8; }
       std::vector<std::vector<int> >*   getTrig_EF_trigmuonef_track_CB_hasCB() const { return m_trig_EF_trigmuonef_track_CB_hasCB; }
-    
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       bool m_EF_2e12Tvh_loose1;

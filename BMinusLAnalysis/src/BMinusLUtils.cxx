@@ -293,6 +293,8 @@ int PennSusyFrame::getLeptonParentIndex( const PennSusyFrame::Lepton* lep
 
     lep_parent_index   = tau_parent_index;
     lep_parent_barcode = tau_parent_barcode;
+  // protect from negative indices
+  if (lep_parent_index < 0) return -1;
     lep_parent_pdgid   = mc_truth.getPdgId()->at(lep_parent_index);
 
     // if (verbose) {
