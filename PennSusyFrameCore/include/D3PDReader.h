@@ -27,12 +27,10 @@ namespace PennSusyFrame
     Bool_t          EF_e24vh_medium1_e7_medium1;
     Bool_t          EF_mu18_tight_e7_medium1;
     Bool_t          EF_mu18_tight_mu8_EFFS;
-
     Bool_t          EF_mu24i_tight;
     Bool_t          EF_mu36_tight;
     Bool_t          EF_mu24_tight_mu6_EFFS;
     Bool_t          EF_e24vhi_medium1;
-
     Float_t         Eventshape_rhoKt4LC;
     Float_t         MET_Egamma10NoTau_CellOut_etx;
     Float_t         MET_Egamma10NoTau_CellOut_ety;
@@ -57,6 +55,8 @@ namespace PennSusyFrame
     std::vector<float>   *el_cl_eta;
     std::vector<float>   *el_cl_phi;
     std::vector<float>   *el_cl_pt;
+    std::vector<float>   *el_eta;
+    std::vector<float>   *el_phi;
     std::vector<float>   *el_ptcone30;
     std::vector<float>   *el_topoEtcone30_corrected;
     std::vector<float>   *el_trackIPEstimate_d0_unbiasedpvunbiased;
@@ -69,6 +69,7 @@ namespace PennSusyFrame
     std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPy;
     std::vector<float>   *jet_AntiKt4LCTopo_ActiveAreaPz;
     std::vector<float>   *jet_AntiKt4LCTopo_AverageLArQF;
+    std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_CELL;
     std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_JET;
     std::vector<float>   *jet_AntiKt4LCTopo_HECQuality;
     std::vector<float>   *jet_AntiKt4LCTopo_LArQuality;
@@ -197,6 +198,7 @@ namespace PennSusyFrame
     std::vector<std::vector<int> > *mc_parents;
     std::vector<int>     *mu_staco_truth_barcode;
     std::vector<int>     *mu_staco_truth_motherbarcode;
+    std::vector<int>     *muonTruth_barcode;
     std::vector<int>     *muonTruth_origin;
     std::vector<int>     *muonTruth_type;
     std::vector<int>     *jet_AntiKt4LCTopo_flavor_truth_label;
@@ -1753,7 +1755,6 @@ namespace PennSusyFrame
     // std::vector<float>   *el_depth;
     // std::vector<float>   *el_emaxs1;
     // std::vector<float>   *el_errz;
-    // std::vector<float>   *el_eta;
     // std::vector<float>   *el_etaSampling1;
     // std::vector<float>   *el_etacorrmag;
     // std::vector<float>   *el_etap;
@@ -1783,7 +1784,6 @@ namespace PennSusyFrame
     // std::vector<float>   *el_nucone30_zpv05;
     // std::vector<float>   *el_nucone40;
     // std::vector<float>   *el_nucone40_zpv05;
-    // std::vector<float>   *el_phi;
     // std::vector<float>   *el_phis0;
     // std::vector<float>   *el_phis1;
     // std::vector<float>   *el_phis2;
@@ -1843,7 +1843,6 @@ namespace PennSusyFrame
     // std::vector<float>   *el_zvertex;
     // std::vector<float>   *jet_AntiKt4LCTopo_ActiveArea;
     // std::vector<float>   *jet_AntiKt4LCTopo_BAD_CELLS_CORR_E;
-    // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_CELL;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_DOTX;
     // std::vector<float>   *jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL;
     // std::vector<float>   *jet_AntiKt4LCTopo_E;
@@ -3118,7 +3117,6 @@ namespace PennSusyFrame
     // std::vector<int>     *mu_staco_truth_type;
     // std::vector<int>     *mu_staco_type;
     // std::vector<int>     *muonTruth_PDGID;
-    // std::vector<int>     *muonTruth_barcode;
     // std::vector<int>     *ph_author;
     // std::vector<int>     *ph_convFlag;
     // std::vector<int>     *ph_convtrk1nBLHits;
@@ -3986,12 +3984,10 @@ namespace PennSusyFrame
     TBranch        *b_EF_e24vh_medium1_e7_medium1;   //!
     TBranch        *b_EF_mu18_tight_e7_medium1;   //!
     TBranch        *b_EF_mu18_tight_mu8_EFFS;   //!
-
     TBranch        *b_EF_mu24i_tight;   //!
     TBranch        *b_EF_mu36_tight;   //!
     TBranch        *b_EF_mu24_tight_mu6_EFFS;   //!
     TBranch        *b_EF_e24vhi_medium1;   //!
-
     TBranch        *b_EventNumber;   //!
     TBranch        *b_Eventshape_rhoKt4LC;   //!
     TBranch        *b_MET_Egamma10NoTau_CellOut_etx;   //!
@@ -4014,6 +4010,8 @@ namespace PennSusyFrame
     TBranch        *b_el_cl_eta;   //!
     TBranch        *b_el_cl_phi;   //!
     TBranch        *b_el_cl_pt;   //!
+    TBranch        *b_el_eta;   //!
+    TBranch        *b_el_phi;   //!
     TBranch        *b_el_mediumPP;   //!
     TBranch        *b_el_n;   //!
     TBranch        *b_el_nSiHits;   //!
@@ -4034,6 +4032,7 @@ namespace PennSusyFrame
     TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPy;   //!
     TBranch        *b_jet_AntiKt4LCTopo_ActiveAreaPz;   //!
     TBranch        *b_jet_AntiKt4LCTopo_AverageLArQF;   //!
+    TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_CELL;   //!
     TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_JET;   //!
     TBranch        *b_jet_AntiKt4LCTopo_HECQuality;   //!
     TBranch        *b_jet_AntiKt4LCTopo_LArQuality;   //!
@@ -4111,6 +4110,7 @@ namespace PennSusyFrame
     TBranch        *b_mu_staco_truth_barcode;   //!
     TBranch        *b_mu_staco_truth_motherbarcode;   //!
     TBranch        *b_mu_staco_z0_exPV;   //!
+    TBranch        *b_muonTruth_barcode;   //!
     TBranch        *b_muonTruth_origin;   //!
     TBranch        *b_muonTruth_type;   //!
     TBranch        *b_tau_EleBDTLoose;   //!
@@ -5591,7 +5591,6 @@ namespace PennSusyFrame
     // TBranch        *b_el_depth;   //!
     // TBranch        *b_el_emaxs1;   //!
     // TBranch        *b_el_errz;   //!
-    // TBranch        *b_el_eta;   //!
     // TBranch        *b_el_etaSampling1;   //!
     // TBranch        *b_el_etacorrmag;   //!
     // TBranch        *b_el_etap;   //!
@@ -5677,7 +5676,6 @@ namespace PennSusyFrame
     // TBranch        *b_el_nucone40_trk500MeV;   //!
     // TBranch        *b_el_nucone40_zpv05;   //!
     // TBranch        *b_el_originbkg;   //!
-    // TBranch        *b_el_phi;   //!
     // TBranch        *b_el_phis0;   //!
     // TBranch        *b_el_phis1;   //!
     // TBranch        *b_el_phis2;   //!
@@ -5755,7 +5753,6 @@ namespace PennSusyFrame
     // TBranch        *b_isTestBeam;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_ActiveArea;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BAD_CELLS_CORR_E;   //!
-    // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_CELL;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_DOTX;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL;   //!
     // TBranch        *b_jet_AntiKt4LCTopo_E;   //!
@@ -6280,7 +6277,6 @@ namespace PennSusyFrame
     // TBranch        *b_muonError;   //!
     // TBranch        *b_muonFlags;   //!
     // TBranch        *b_muonTruth_PDGID;   //!
-    // TBranch        *b_muonTruth_barcode;   //!
     // TBranch        *b_muonTruth_charge;   //!
     // TBranch        *b_muonTruth_eta;   //!
     // TBranch        *b_muonTruth_m;   //!
