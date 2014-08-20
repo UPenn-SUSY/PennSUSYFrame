@@ -10486,7 +10486,8 @@ void PennSusyFrame::D3PDReader::FinalizeOutput( int   num_generated_events
 {
   m_output_tree->Write();
 
-  writeNumEvents();
+  // writeNumEvents();
+  writeNumEvents(num_generated_events, sum_mc_event_weights);
   // TVectorF num_events(1);
   // num_events[0] = getNumEvents();
   // num_events.Write("TotalNumEvents");
