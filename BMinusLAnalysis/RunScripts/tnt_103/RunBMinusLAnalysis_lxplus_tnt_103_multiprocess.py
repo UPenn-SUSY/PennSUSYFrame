@@ -41,27 +41,27 @@ if __name__ == '__main__':
     print 'getting file list'
 
     egamma_data_samples = {
-                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':10}
-                          , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':20}
-                          , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':20}
-                          , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':15}
-                          , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':30}
+                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':5 }
+                          , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':10}
+                          , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':10}
+                          , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':8 }
+                          , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':15}
                           }
     muon_data_samples = {
-                          'periodA_muon':{'label':'periodA_muon', 'num_jobs':10}
-                        , 'periodB_muon':{'label':'periodB_muon', 'num_jobs':20}
-                        , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':20}
-                        , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':15}
-                        , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':30}
+                          'periodA_muon':{'label':'periodA_muon', 'num_jobs':5 }
+                        , 'periodB_muon':{'label':'periodB_muon', 'num_jobs':10}
+                        , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':10}
+                        , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':8 }
+                        , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':15}
                         }
     full_sim_mc_samples = {
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':200}
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':100}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR', 'num_jobs':50}
+                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR', 'num_jobs':30}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':50}
@@ -165,17 +165,16 @@ if __name__ == '__main__':
                           , 161305:{'label':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'num_jobs':1}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100' , 'num_jobs':1}
-                          , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100' , 'num_jobs':1}
-                          , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200' , 'num_jobs':1}
-                          , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300' , 'num_jobs':1}
-                          , 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400' , 'num_jobs':1}
-                          , 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500' , 'num_jobs':1}
-                          , 202637:{'label':'202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600' , 'num_jobs':1}
-                          , 202638:{'label':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700' , 'num_jobs':1}
-                          , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
-                          , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900' , 'num_jobs':1}
-                          , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
+                          , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
+                          , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200'  , 'num_jobs':1}
+                          , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300'  , 'num_jobs':1}
+                          , 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400'  , 'num_jobs':1}
+                          , 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500'  , 'num_jobs':1}
+                          , 202637:{'label':'202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600'  , 'num_jobs':1}
+                          , 202638:{'label':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700'  , 'num_jobs':1}
+                          , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'num_jobs':1}
+                          , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
+                          , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           # 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100' , 'num_jobs':1}
@@ -196,7 +195,8 @@ if __name__ == '__main__':
                                                    , muon_data_samples   = muon_data_samples
                                                    , full_sim_mc_samples = full_sim_mc_samples
                                                    , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
+                                                   # , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
+                                                   , file_list_path_base = 'EosFileLists/tnt_103_w_weights/tnt_103'
                                                    , out_dir = out_dir
                                                    )
 
@@ -210,11 +210,12 @@ if __name__ == '__main__':
                                        , sym_link_name    = './NextPlotDir.BMinusL'
                                        )
     else:
-        RunHelpers.runLxBatchMultiProcess( run_analysis_fun     = RunBMinusLAnalysis.runBMinusLAnalysisFun
-                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
-                                        , run_analysis_fun_file = 'RunBMinusLAnalysis'
-                                        , data_set_dicts        = data_set_dicts
-                                        , out_dir               = out_dir
-                                        , queue                 = '1nh'
-                                        , sym_link_name         = './NextPlotDir.BMinusL'
-                                        )
+        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLAnalysis.runBMinusLAnalysisFun
+                                         , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                         , run_analysis_fun_file = 'RunBMinusLAnalysis'
+                                         , data_set_dicts        = data_set_dicts
+                                         , out_dir               = out_dir
+                                         , queue                 = '1nh'
+                                         , sym_link_name         = './NextPlotDir.BMinusL'
+                                         , job_dir               = 'LatestRunDir_bminuslanalysis'
+                                         )

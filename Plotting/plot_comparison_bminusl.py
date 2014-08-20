@@ -102,66 +102,74 @@ def main():
     #                                     )
     ec_Zbb = hh.Container.EntryContainer( label = 'Z/#gamma^{*}'
                                         , fill_color = ROOT.kRed+1
-                                        , input_file_list = [ '%s/BMinusL.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.hists.root'                % hist_dir
-                                                            , '%s/BMinusL.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.hists.root'           % hist_dir
-                                                            , '%s/BMinusL.167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto.hists.root'             % hist_dir
-                                                            , '%s/BMinusL.167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter.hists.root'              % hist_dir
-                                                            , '%s/BMinusL.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.hists.root'         % hist_dir
-                                                            , '%s/BMinusL.167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto.hists.root'           % hist_dir
-                                                            , '%s/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.hists.root'            % hist_dir
-                                                            , '%s/BMinusL.167756.Sherpa_CT10_ZtautauMassiveCBPt0_CFilterBVeto.hists.root'       % hist_dir
-                                                            , '%s/BMinusL.167757.Sherpa_CT10_ZtautauMassiveCBPt0_CVetoBVeto.hists.root'         % hist_dir
-
-                                                            , '%s/BMinusL.167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter.hists.root'           % hist_dir
-                                                            , '%s/BMinusL.167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto.hists.root'      % hist_dir
-                                                            , '%s/BMinusL.167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto.hists.root'        % hist_dir
-                                                            , '%s/BMinusL.167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter.hists.root'         % hist_dir
-                                                            , '%s/BMinusL.167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto.hists.root'    % hist_dir
-                                                            , '%s/BMinusL.167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto.hists.root'      % hist_dir
-                                                            , '%s/BMinusL.167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter.hists.root'       % hist_dir
-                                                            , '%s/BMinusL.167804.Sherpa_CT10_ZtautauMassiveCBPt70_140_CFilterBVeto.hists.root'  % hist_dir
-                                                            , '%s/BMinusL.167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto.hists.root'    % hist_dir
-
+                                        , input_file_list = [
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                              '%s/BMinusL.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.hists.root'                % hist_dir
+                                                            , '%s/BMinusL.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.hists.root'            % hist_dir
                                                             , '%s/BMinusL.167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter.hists.root'          % hist_dir
-                                                            , '%s/BMinusL.167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto.hists.root'     % hist_dir
-                                                            , '%s/BMinusL.167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto.hists.root'       % hist_dir
-                                                            , '%s/BMinusL.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.hists.root'        % hist_dir
-                                                            , '%s/BMinusL.167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto.hists.root'   % hist_dir
-                                                            , '%s/BMinusL.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.hists.root'     % hist_dir
-                                                            , '%s/BMinusL.167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter.hists.root'      % hist_dir
-                                                            , '%s/BMinusL.167816.Sherpa_CT10_ZtautauMassiveCBPt140_280_CFilterBVeto.hists.root' % hist_dir
-                                                            , '%s/BMinusL.167817.Sherpa_CT10_ZtautauMassiveCBPt140_280_CVetoBVeto.hists.root'   % hist_dir
-
+                                                            , '%s/BMinusL.167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter.hists.root'           % hist_dir
                                                             , '%s/BMinusL.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.hists.root'          % hist_dir
-                                                            , '%s/BMinusL.167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto.hists.root'     % hist_dir
-                                                            , '%s/BMinusL.167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto.hists.root'       % hist_dir
-                                                            , '%s/BMinusL.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.hists.root'        % hist_dir
-                                                            , '%s/BMinusL.167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto.hists.root'   % hist_dir
-                                                            , '%s/BMinusL.167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto.hists.root'     % hist_dir
-                                                            , '%s/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.hists.root'      % hist_dir
-                                                            , '%s/BMinusL.167828.Sherpa_CT10_ZtautauMassiveCBPt280_500_CFilterBVeto.hists.root' % hist_dir
-                                                            , '%s/BMinusL.167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto.hists.root'   % hist_dir
-
                                                             , '%s/BMinusL.167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter.hists.root'              % hist_dir
-                                                            , '%s/BMinusL.167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto.hists.root'         % hist_dir
-                                                            , '%s/BMinusL.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.hists.root'           % hist_dir
+
+                                                            , '%s/BMinusL.167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter.hists.root'              % hist_dir
+                                                            , '%s/BMinusL.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.hists.root'          % hist_dir
+                                                            , '%s/BMinusL.167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter.hists.root'         % hist_dir
+                                                            , '%s/BMinusL.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.hists.root'        % hist_dir
+                                                            , '%s/BMinusL.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.hists.root'        % hist_dir
                                                             , '%s/BMinusL.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.hists.root'            % hist_dir
-                                                            , '%s/BMinusL.167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto.hists.root'       % hist_dir
-                                                            , '%s/BMinusL.167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto.hists.root'         % hist_dir
+
+                                                            , '%s/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.hists.root'            % hist_dir
+                                                            , '%s/BMinusL.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.hists.root'        % hist_dir
+                                                            , '%s/BMinusL.167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter.hists.root'      % hist_dir
+                                                            , '%s/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.hists.root'      % hist_dir
                                                             , '%s/BMinusL.167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter.hists.root'          % hist_dir
+
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                            , '%s/BMinusL.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.hists.root'           % hist_dir
+                                                            , '%s/BMinusL.180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto.hists.root'      % hist_dir
+                                                            , '%s/BMinusL.167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto.hists.root'         % hist_dir
+
+                                                            , '%s/BMinusL.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.hists.root'         % hist_dir
+                                                            , '%s/BMinusL.180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto.hists.root'    % hist_dir
+                                                            , '%s/BMinusL.167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto.hists.root'       % hist_dir
+
+                                                            , '%s/BMinusL.167756.Sherpa_CT10_ZtautauMassiveCBPt0_CFilterBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.167804.Sherpa_CT10_ZtautauMassiveCBPt70_140_CFilterBVeto.hists.root'  % hist_dir
+                                                            , '%s/BMinusL.167816.Sherpa_CT10_ZtautauMassiveCBPt140_280_CFilterBVeto.hists.root' % hist_dir
+                                                            , '%s/BMinusL.167828.Sherpa_CT10_ZtautauMassiveCBPt280_500_CFilterBVeto.hists.root' % hist_dir
                                                             , '%s/BMinusL.167840.Sherpa_CT10_ZtautauMassiveCBPt500_CFilterBVeto.hists.root'     % hist_dir
+
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                            , '%s/BMinusL.167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto.hists.root'             % hist_dir
+                                                            , '%s/BMinusL.180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto.hists.root'         % hist_dir
+                                                            , '%s/BMinusL.167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto.hists.root'        % hist_dir
+                                                            , '%s/BMinusL.167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.hists.root'           % hist_dir
+
+                                                            , '%s/BMinusL.167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto.hists.root'           % hist_dir
+                                                            , '%s/BMinusL.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto.hists.root'      % hist_dir
+                                                            , '%s/BMinusL.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto.hists.root'         % hist_dir
+
+                                                            , '%s/BMinusL.167757.Sherpa_CT10_ZtautauMassiveCBPt0_CVetoBVeto.hists.root'         % hist_dir
+                                                            , '%s/BMinusL.180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto.hists.root'    % hist_dir
+                                                            , '%s/BMinusL.167817.Sherpa_CT10_ZtautauMassiveCBPt140_280_CVetoBVeto.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto.hists.root'   % hist_dir
                                                             , '%s/BMinusL.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.hists.root'       % hist_dir
 
-                                                            , '%s/BMinusL.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.hists.root'            % hist_dir
-                                                            , '%s/BMinusL.180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto.hists.root'       % hist_dir
-                                                            , '%s/BMinusL.180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto.hists.root'         % hist_dir
-                                                            , '%s/BMinusL.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.hists.root'          % hist_dir
-                                                            , '%s/BMinusL.180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto.hists.root'     % hist_dir
-                                                            , '%s/BMinusL.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.hists.root'       % hist_dir
-                                                            , '%s/BMinusL.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.hists.root'        % hist_dir
-                                                            , '%s/BMinusL.180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto.hists.root'   % hist_dir
-                                                            , '%s/BMinusL.180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto.hists.root'     % hist_dir
-
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                                                             , '%s/BMinusL.173041.Sherpa_CT10_DYeeM08to15.hists.root'                            % hist_dir
                                                             , '%s/BMinusL.173042.Sherpa_CT10_DYeeM15to40.hists.root'                            % hist_dir
 

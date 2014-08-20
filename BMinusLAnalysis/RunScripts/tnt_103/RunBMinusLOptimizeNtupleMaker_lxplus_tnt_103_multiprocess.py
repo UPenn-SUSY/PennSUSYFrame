@@ -40,27 +40,29 @@ if __name__ == '__main__':
 
     print 'getting file list'
 
-    data_samples = {
-                   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                     'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':10}
-                   , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':20}
-                   , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':20}
-                   , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':15}
-                   , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':30}
-                   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                   , 'periodA_muon':{'label':'periodA_muon', 'num_jobs':10}
-                   , 'periodB_muon':{'label':'periodB_muon', 'num_jobs':20}
-                   , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':20}
-                   , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':15}
-                   , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':30}
-                   }
+    egamma_data_samples = {
+                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':10}
+                          , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':20}
+                          , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':20}
+                          , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':15}
+                          , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':30}
+                          }
+    muon_data_samples = {
+                          'periodA_muon':{'label':'periodA_muon', 'num_jobs':10}
+                        , 'periodB_muon':{'label':'periodB_muon', 'num_jobs':20}
+                        , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':20}
+                        , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':15}
+                        , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':30}
+                        }
     full_sim_mc_samples = {
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2'                  , 'num_jobs':200}
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':200}
+
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'         , 'num_jobs':50}
+                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR', 'num_jobs':50}
+
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'               , 'num_jobs':50}
                           , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'             , 'num_jobs':50}
@@ -95,10 +97,12 @@ if __name__ == '__main__':
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # add data samples
-    data_set_dicts = RunHelpers.addAllSamplesToList( data_samples = data_samples
+    data_set_dicts = RunHelpers.addAllSamplesToList( egamma_data_samples = egamma_data_samples
+                                                   , muon_data_samples   = muon_data_samples
                                                    , full_sim_mc_samples = full_sim_mc_samples
                                                    , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
+                                                   # , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
+                                                   , file_list_path_base = 'EosFileLists/tnt_103_w_weights/tnt_103'
                                                    , out_dir = out_dir
                                                    )
 
@@ -119,4 +123,5 @@ if __name__ == '__main__':
                                         , out_dir               = out_dir
                                         , queue                 = '1nh'
                                         , sym_link_name         = './NextOptNtupDir.BMinusL'
+                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker'
                                         )

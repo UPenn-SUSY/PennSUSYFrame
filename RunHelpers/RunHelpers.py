@@ -38,8 +38,9 @@ def getFileListFromDir(file_path):
 # ------------------------------------------------------------------------------
 def readFileList(file_path):
     file_list = []
-    total_num_events = 0
-    total_entries = 0
+    total_num_events     = 0
+    total_entries        = 0
+    sum_mc_event_weights = 0.
 
     print 'reading file: %s' % file_path
     f = file(file_path)
@@ -51,7 +52,9 @@ def readFileList(file_path):
         total_num_events += int(splits[1])
         total_entries    += int(splits[2])
 
-        sum_mc_event_weights = float(splits[3]) if len(splits) > 3 else total_num_events
+        # increment the sum of mc event weights -- if this entry is not filled
+        # in the EosFileList, increment with the total number of events
+        sum_mc_event_weights += float(splits[3]) if len(splits) > 3 else int(splits[1])
 
     return { 'file_list':file_list
            , 'total_num_events':total_num_events
@@ -381,12 +384,13 @@ def runLxBatchMultiProcess( run_analysis_fun
                           , out_dir
                           , queue         = '1nh'
                           , sym_link_name = ''
+                          , job_dir       = 'LatestRunDir'
                           ):
     print 'runLxBatchMultiProcess()'
     print '  out dir: ' , out_dir
 
     # create directory for new run scripts
-    job_dir = 'LatestRunDir'
+    # job_dir = 'LatestRunDir'
     safeRemoveDir(job_dir)
     safeMakeDir(job_dir)
 
