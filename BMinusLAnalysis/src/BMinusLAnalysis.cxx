@@ -770,11 +770,11 @@ bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
   else {
     return true;
 
-    // // MC trigger decision
-    // if (m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
-    // if (m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
-    // if (m_trigger.getEF_mu18_tight_mu8_EFFS())      return true;
-    // if (m_trigger.getEF_mu18_tight_e7_medium1())    return true;
+    // MC trigger decision
+    if (m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
+    if (m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
+    if (m_trigger.getEF_mu18_tight_mu8_EFFS())      return true;
+    if (m_trigger.getEF_mu18_tight_e7_medium1())    return true;
   }
 
   return false;
