@@ -70,6 +70,8 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   el_cl_eta = 0;
   el_cl_phi = 0;
   el_cl_pt = 0;
+  el_eta = 0;
+  el_phi = 0;
   el_mediumPP = 0;
   el_nSiHits = 0;
   el_ptcone30 = 0;
@@ -85,6 +87,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   jet_AntiKt4LCTopo_ActiveAreaPy = 0;
   jet_AntiKt4LCTopo_ActiveAreaPz = 0;
   jet_AntiKt4LCTopo_AverageLArQF = 0;
+  jet_AntiKt4LCTopo_BCH_CORR_CELL = 0;
   jet_AntiKt4LCTopo_BCH_CORR_JET = 0;
   jet_AntiKt4LCTopo_HECQuality = 0;
   jet_AntiKt4LCTopo_LArQuality = 0;
@@ -201,6 +204,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   mc_vx_barcode = 0;
   mu_staco_truth_barcode = 0;
   mu_staco_truth_motherbarcode = 0;
+  muonTruth_barcode = 0;
   muonTruth_origin = 0;
   muonTruth_type = 0;
   jet_AntiKt4LCTopo_flavor_truth_label = 0;
@@ -294,7 +298,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_depth = 0;
   // el_emaxs1 = 0;
   // el_errz = 0;
-  // el_eta = 0;
   // el_etaSampling1 = 0;
   // el_etacorrmag = 0;
   // el_etap = 0;
@@ -380,7 +383,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_nucone40_trk500MeV = 0;
   // el_nucone40_zpv05 = 0;
   // el_originbkg = 0;
-  // el_phi = 0;
   // el_phis0 = 0;
   // el_phis1 = 0;
   // el_phis2 = 0;
@@ -453,7 +455,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_zvertex = 0;
   // jet_AntiKt4LCTopo_ActiveArea = 0;
   // jet_AntiKt4LCTopo_BAD_CELLS_CORR_E = 0;
-  // jet_AntiKt4LCTopo_BCH_CORR_CELL = 0;
   // jet_AntiKt4LCTopo_BCH_CORR_DOTX = 0;
   // jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL = 0;
   // jet_AntiKt4LCTopo_E = 0;
@@ -964,7 +965,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // mu_staco_truth_type = 0;
   // mu_staco_type = 0;
   // muonTruth_PDGID = 0;
-  // muonTruth_barcode = 0;
   // muonTruth_charge = 0;
   // muonTruth_eta = 0;
   // muonTruth_m = 0;
@@ -2592,6 +2592,8 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "el_cl_eta", &el_cl_eta, &b_el_cl_eta);
   turnOnBranch(tree, "el_cl_phi", &el_cl_phi, &b_el_cl_phi);
   turnOnBranch(tree, "el_cl_pt", &el_cl_pt, &b_el_cl_pt);
+  turnOnBranch(tree, "el_eta", &el_eta, &b_el_eta);
+  turnOnBranch(tree, "el_phi", &el_phi, &b_el_phi);
   turnOnBranch(tree, "el_mediumPP", &el_mediumPP, &b_el_mediumPP);
   turnOnBranch(tree, "el_n", &el_n, &b_el_n);
   turnOnBranch(tree, "el_nSiHits", &el_nSiHits, &b_el_nSiHits);
@@ -2608,6 +2610,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "jet_AntiKt4LCTopo_ActiveAreaPy", &jet_AntiKt4LCTopo_ActiveAreaPy, &b_jet_AntiKt4LCTopo_ActiveAreaPy);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_ActiveAreaPz", &jet_AntiKt4LCTopo_ActiveAreaPz, &b_jet_AntiKt4LCTopo_ActiveAreaPz);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_AverageLArQF", &jet_AntiKt4LCTopo_AverageLArQF, &b_jet_AntiKt4LCTopo_AverageLArQF);
+  turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL, &b_jet_AntiKt4LCTopo_BCH_CORR_CELL);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_JET", &jet_AntiKt4LCTopo_BCH_CORR_JET, &b_jet_AntiKt4LCTopo_BCH_CORR_JET);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_HECQuality", &jet_AntiKt4LCTopo_HECQuality, &b_jet_AntiKt4LCTopo_HECQuality);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_LArQuality", &jet_AntiKt4LCTopo_LArQuality, &b_jet_AntiKt4LCTopo_LArQuality);
@@ -2735,6 +2738,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
     turnOnBranch(tree, "mc_vx_barcode", &mc_vx_barcode, &b_mc_vx_barcode);
     turnOnBranch(tree, "mu_staco_truth_barcode", &mu_staco_truth_barcode, &b_mu_staco_truth_barcode);
     turnOnBranch(tree, "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode, &b_mu_staco_truth_motherbarcode);
+    turnOnBranch(tree, "muonTruth_barcode", &muonTruth_barcode, &b_muonTruth_barcode);
     turnOnBranch(tree, "muonTruth_origin", &muonTruth_origin, &b_muonTruth_origin);
     turnOnBranch(tree, "muonTruth_type", &muonTruth_type, &b_muonTruth_type);
     turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label, &b_jet_AntiKt4LCTopo_flavor_truth_label);
@@ -4173,7 +4177,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_depth", &el_depth, &b_el_depth);
   // turnOnBranch(tree, "el_emaxs1", &el_emaxs1, &b_el_emaxs1);
   // turnOnBranch(tree, "el_errz", &el_errz, &b_el_errz);
-  // turnOnBranch(tree, "el_eta", &el_eta, &b_el_eta);
   // turnOnBranch(tree, "el_etaSampling1", &el_etaSampling1, &b_el_etaSampling1);
   // turnOnBranch(tree, "el_etacorrmag", &el_etacorrmag, &b_el_etacorrmag);
   // turnOnBranch(tree, "el_etap", &el_etap, &b_el_etap);
@@ -4259,7 +4262,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_nucone40_trk500MeV", &el_nucone40_trk500MeV, &b_el_nucone40_trk500MeV);
   // turnOnBranch(tree, "el_nucone40_zpv05", &el_nucone40_zpv05, &b_el_nucone40_zpv05);
   // turnOnBranch(tree, "el_originbkg", &el_originbkg, &b_el_originbkg);
-  // turnOnBranch(tree, "el_phi", &el_phi, &b_el_phi);
   // turnOnBranch(tree, "el_phis0", &el_phis0, &b_el_phis0);
   // turnOnBranch(tree, "el_phis1", &el_phis1, &b_el_phis1);
   // turnOnBranch(tree, "el_phis2", &el_phis2, &b_el_phis2);
@@ -4337,7 +4339,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "isTestBeam", &isTestBeam, &b_isTestBeam);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_ActiveArea", &jet_AntiKt4LCTopo_ActiveArea, &b_jet_AntiKt4LCTopo_ActiveArea);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_BAD_CELLS_CORR_E", &jet_AntiKt4LCTopo_BAD_CELLS_CORR_E, &b_jet_AntiKt4LCTopo_BAD_CELLS_CORR_E);
-  // turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL, &b_jet_AntiKt4LCTopo_BCH_CORR_CELL);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_DOTX", &jet_AntiKt4LCTopo_BCH_CORR_DOTX, &b_jet_AntiKt4LCTopo_BCH_CORR_DOTX);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL", &jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL, &b_jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_E", &jet_AntiKt4LCTopo_E, &b_jet_AntiKt4LCTopo_E);
@@ -4862,7 +4863,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "muonError", &muonError, &b_muonError);
   // turnOnBranch(tree, "muonFlags", &muonFlags, &b_muonFlags);
   // turnOnBranch(tree, "muonTruth_PDGID", &muonTruth_PDGID, &b_muonTruth_PDGID);
-  // turnOnBranch(tree, "muonTruth_barcode", &muonTruth_barcode, &b_muonTruth_barcode);
   // turnOnBranch(tree, "muonTruth_charge", &muonTruth_charge, &b_muonTruth_charge);
   // turnOnBranch(tree, "muonTruth_eta", &muonTruth_eta, &b_muonTruth_eta);
   // turnOnBranch(tree, "muonTruth_m", &muonTruth_m, &b_muonTruth_m);
@@ -6555,6 +6555,8 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "el_cl_eta", &el_cl_eta);
   m_output_tree->Branch( "el_cl_phi", &el_cl_phi);
   m_output_tree->Branch( "el_cl_pt", &el_cl_pt);
+  m_output_tree->Branch( "el_eta", &el_eta);
+  m_output_tree->Branch( "el_phi", &el_phi);
   m_output_tree->Branch( "el_mediumPP", &el_mediumPP);
   m_output_tree->Branch( "el_n", &el_n);
   m_output_tree->Branch( "el_nSiHits", &el_nSiHits);
@@ -6572,6 +6574,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "jet_AntiKt4LCTopo_ActiveAreaPy", &jet_AntiKt4LCTopo_ActiveAreaPy);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_ActiveAreaPz", &jet_AntiKt4LCTopo_ActiveAreaPz);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_AverageLArQF", &jet_AntiKt4LCTopo_AverageLArQF);
+  m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_JET", &jet_AntiKt4LCTopo_BCH_CORR_JET);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_HECQuality", &jet_AntiKt4LCTopo_HECQuality);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_LArQuality", &jet_AntiKt4LCTopo_LArQuality);
@@ -6699,6 +6702,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
     m_output_tree->Branch( "mc_vx_barcode", &mc_vx_barcode);
     m_output_tree->Branch( "mu_staco_truth_barcode", &mu_staco_truth_barcode);
     m_output_tree->Branch( "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode);
+    m_output_tree->Branch( "muonTruth_barcode", &muonTruth_barcode);
     m_output_tree->Branch( "muonTruth_origin", &muonTruth_origin);
     m_output_tree->Branch( "muonTruth_type", &muonTruth_type);
     m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label);
@@ -8137,7 +8141,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_depth", &el_depth);
   // m_output_tree->Branch( "el_emaxs1", &el_emaxs1);
   // m_output_tree->Branch( "el_errz", &el_errz);
-  // m_output_tree->Branch( "el_eta", &el_eta);
   // m_output_tree->Branch( "el_etaSampling1", &el_etaSampling1);
   // m_output_tree->Branch( "el_etacorrmag", &el_etacorrmag);
   // m_output_tree->Branch( "el_etap", &el_etap);
@@ -8223,7 +8226,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_nucone40_trk500MeV", &el_nucone40_trk500MeV);
   // m_output_tree->Branch( "el_nucone40_zpv05", &el_nucone40_zpv05);
   // m_output_tree->Branch( "el_originbkg", &el_originbkg);
-  // m_output_tree->Branch( "el_phi", &el_phi);
   // m_output_tree->Branch( "el_phis0", &el_phis0);
   // m_output_tree->Branch( "el_phis1", &el_phis1);
   // m_output_tree->Branch( "el_phis2", &el_phis2);
@@ -8301,7 +8303,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "isTestBeam", &isTestBeam);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_ActiveArea", &jet_AntiKt4LCTopo_ActiveArea);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_BAD_CELLS_CORR_E", &jet_AntiKt4LCTopo_BAD_CELLS_CORR_E);
-  // m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_DOTX", &jet_AntiKt4LCTopo_BCH_CORR_DOTX);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL", &jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_E", &jet_AntiKt4LCTopo_E);
@@ -8826,7 +8827,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "muonError", &muonError);
   // m_output_tree->Branch( "muonFlags", &muonFlags);
   // m_output_tree->Branch( "muonTruth_PDGID", &muonTruth_PDGID);
-  // m_output_tree->Branch( "muonTruth_barcode", &muonTruth_barcode);
   // m_output_tree->Branch( "muonTruth_charge", &muonTruth_charge);
   // m_output_tree->Branch( "muonTruth_eta", &muonTruth_eta);
   // m_output_tree->Branch( "muonTruth_m", &muonTruth_m);
@@ -10486,7 +10486,8 @@ void PennSusyFrame::D3PDReader::FinalizeOutput( int   num_generated_events
 {
   m_output_tree->Write();
 
-  writeNumEvents();
+  // writeNumEvents();
+  writeNumEvents(num_generated_events, sum_mc_event_weights);
   // TVectorF num_events(1);
   // num_events[0] = getNumEvents();
   // num_events.Write("TotalNumEvents");

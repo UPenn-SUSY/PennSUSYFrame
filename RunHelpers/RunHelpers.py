@@ -304,6 +304,7 @@ def runLocalMultiprocess( run_analysis_fun
                         , out_dir
                         , flat_ntuples
                         , sym_link_name
+                        , do_merge = True
                         ):
     p = Pool(num_processes)
     print run_analysis_fun
