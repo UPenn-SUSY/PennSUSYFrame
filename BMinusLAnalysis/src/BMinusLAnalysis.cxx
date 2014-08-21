@@ -753,7 +753,7 @@ bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
       // egamma stream
       if (m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
       if (m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
-      if (m_trigger.getEF_mu18_tight_e7_medium1()) return true;
+      if (m_trigger.getEF_mu18_tight_e7_medium1())    return true;
     }
     if (!m_is_egamma_stream || !m_is_data) {
       // muon stream
