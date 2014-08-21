@@ -24,6 +24,8 @@ def get_list_of_keys(d):
     list_of_hists = [key.GetName() for key in d.GetListOfKeys()]
     if 'TotalNumEvents' in list_of_hists:
         list_of_hists.remove('TotalNumEvents')
+    if 'SumMCEventWeights' in list_of_hists:
+        list_of_hists.remove('SumMCEventWeights')
     return list_of_hists
 
 # ------------------------------------------------------------------------------
