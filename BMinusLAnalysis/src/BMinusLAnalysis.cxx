@@ -373,6 +373,11 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   fillTrackers(BMINUSL_CUT_PHASE);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // apply trigger weight
+  // TODO apply trigger weight
+  fillTrackers(BMINUSL_CUT_TRIGGER_WEIGHT);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // get number of b jets
   int num_b_jets = m_jets.num(JET_B);
 
