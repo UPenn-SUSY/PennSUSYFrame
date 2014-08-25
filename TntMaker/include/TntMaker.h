@@ -28,19 +28,19 @@ namespace PennSusyFrame
       void setOutTntFileName(std::string val) { m_out_tnt_file_name = val; }
 
       void setCritCutIncompleteEvent(bool val) { m_crit_cut_incomplete_event = val; }
-      void setCritCutLarError(       bool val) { m_crit_cut_lar_error = val;        }
-      void setCritCutTileError(      bool val) { m_crit_cut_tile_error = val;       }
-      void setCritCutTileHotSpot(    bool val) { m_crit_cut_tile_hot_spot = val;    }
-      void setCritCutTileTrip(       bool val) { m_crit_cut_tile_trip = val;        }
-      void setCritCutBadJetVeto(     bool val) { m_crit_cut_bad_jet_veto = val;     }
+      void setCritCutLarError(       bool val) { m_crit_cut_lar_error        = val; }
+      void setCritCutTileError(      bool val) { m_crit_cut_tile_error       = val; }
+      void setCritCutTileHotSpot(    bool val) { m_crit_cut_tile_hot_spot    = val; }
+      void setCritCutTileTrip(       bool val) { m_crit_cut_tile_trip        = val; }
+      void setCritCutBadJetVeto(     bool val) { m_crit_cut_bad_jet_veto     = val; }
       void setCritCutCaloProblemJet( bool val) { m_crit_cut_calo_problem_jet = val; }
-      void setCritCutPrimaryVertex(  bool val) { m_crit_cut_primary_vertex = val;   }
-      void setCritCutBadMuonVeto(    bool val) { m_crit_cut_bad_mu_veto = val;      }
-      void setCritCutCosmicMuonVeto( bool val) { m_crit_cut_cosmic_mu_veto = val;   }
-      void setCritCutHFOR(           bool val) { m_crit_cut_hfor = val;             }
-      void setCritCutMcOverlap(      bool val) { m_crit_cut_mc_overlap = val;       }
-      void setCritCutGe2Lepton(      bool val) { m_crit_cut_ge_2_lep = val;         }
-      void setCritCut2Lepton(        bool val) { m_crit_cut_2_lep = val;            }
+      void setCritCutPrimaryVertex(  bool val) { m_crit_cut_primary_vertex   = val; }
+      void setCritCutBadMuonVeto(    bool val) { m_crit_cut_bad_mu_veto      = val; }
+      void setCritCutCosmicMuonVeto( bool val) { m_crit_cut_cosmic_mu_veto   = val; }
+      void setCritCutHFOR(           bool val) { m_crit_cut_hfor             = val; }
+      void setCritCutMcOverlap(      bool val) { m_crit_cut_mc_overlap       = val; }
+      void setCritCutGe2Lepton(      bool val) { m_crit_cut_ge_2_lep         = val; }
+      void setCritCut2Lepton(        bool val) { m_crit_cut_2_lep            = val; }
 
     protected:
       std::string m_out_tnt_file_name;

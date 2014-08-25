@@ -10,6 +10,7 @@
 
 #pragma link C++ class PennSusyFrame::BMinusLAnalysis+;
 #pragma link C++ class PennSusyFrame::BMinusLOptimizeNtupleMaker+;
+#pragma link C++ class PennSusyFrame::BMinusLTTNTMaker+;
 
 #endif // __CINT__
 
