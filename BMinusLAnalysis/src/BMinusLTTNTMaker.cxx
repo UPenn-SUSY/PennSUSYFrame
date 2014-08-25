@@ -36,14 +36,9 @@ void PennSusyFrame::BMinusLTTNTMaker::beginRun()
   // prepare selection
   prepareSelection();
 
+  std::cout << "configuring TNT with name: " << m_out_ntuple_file_name << "\n";
   configureTnt(m_out_ntuple_file_name, "BMinusLTTNT");
 }
-
-// // -----------------------------------------------------------------------------
-// void PennSusyFrame::BMinusLTTNTMaker::initializeEvent()
-// {
-//   PennSusyFrame::BMinusLAnalysis::initializeEvent();
-// }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLTTNTMaker::finalizeEvent()
@@ -59,14 +54,14 @@ void PennSusyFrame::BMinusLTTNTMaker::finalizeEvent()
      && m_pass_primary_vertex
      && m_pass_bad_mu_veto
      && m_pass_cosmic_mu_veto
-     && m_pass_hfor
-     && m_pass_mc_overlap
+     // && m_pass_hfor
+     // && m_pass_mc_overlap
      && m_pass_ge_2_lep
-     && m_pass_2_lep
+     // && m_pass_2_lep
      // && m_pass_signal_lep
      && m_pass_ge_2_b_jet
      // && m_pass_eq_2_b_jet
-     && m_pass_bl_pairing
+     // && m_pass_bl_pairing
      // && m_pass_z_veto
      ) {
     // std::cout << "finalizeEvent():"
@@ -81,7 +76,7 @@ void PennSusyFrame::BMinusLTTNTMaker::finalizeEvent()
     //           << "\n\tmbl 0: mbl_0: "      << m_bl_1->getMbl()
     //           << "\n\tht baseline: "       << m_event_quantities.getHtBaseline()
     //           << "\n\tmet et: "            << m_met.getMetEt()
-    //           << "\n\tmet sig: "           << m_met.getMetSigBaseline()
+    //           // << "\n\tmet sig: "           << m_met.getMetSigBaseline()
     //           << "\n";
     fillTnt();
   }
@@ -90,5 +85,6 @@ void PennSusyFrame::BMinusLTTNTMaker::finalizeEvent()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLTTNTMaker::finalizeRun()
 {
+  std::cout << "BMinusLTTNTMaker::finalizeRun()\n";
   writeTnt();
 }

@@ -116,9 +116,13 @@ def runBMinusLTTNTMaker( file_list
         bmlttntm.setKFactor(     xsec_dict['kfac'])
         bmlttntm.setFilterEff(   xsec_dict['eff'])
 
+        print 'Setting TotalNumEntries:   '  , total_num_entries
+        print 'Setting NumGeneratedEvents: ' , total_num_events
+        print 'Setting SumMCEventWeights:  ' , sum_mc_event_weights
+
         bmlttntm.setTotalNumEntries(    total_num_entries )
         bmlttntm.setNumGeneratedEvents( total_num_events  )
-        bmla.setSumMCEventWeights(  sum_mc_event_weights )
+        bmlttntm.setSumMCEventWeights(  sum_mc_event_weights )
 
     # set is full sim/fast sim
     if is_full_sim:
@@ -142,7 +146,7 @@ def runBMinusLTTNTMaker( file_list
     out_ntup_file_name = '%s/BMinusL.' % out_dir
     if out_file_special_name is not None:
         out_ntup_file_name += '%s.' % out_file_special_name
-    out_ntup_file_name += 'ntup'
+    out_ntup_file_name += 'tnt'
     if total_num_jobs > 1:
         out_ntup_file_name += '.%d_of_%d' % (job_num, total_num_jobs)
     out_ntup_file_name += '.root'

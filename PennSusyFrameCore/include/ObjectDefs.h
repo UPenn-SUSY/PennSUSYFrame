@@ -900,7 +900,6 @@ namespace PennSusyFrame
       std::vector<int>* getMuType() const { return m_mc_mu_type; }
       std::vector<float>* getCharge() const { return m_mc_charge; }
 
-
       void writeFullTruthRecord(std::string out_file_name);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -10510,6 +10510,10 @@ void PennSusyFrame::D3PDReader::writeNumEvents( int   num_generated_events
   if (sum_mc_event_weights < 0) sum_weights[0] = num_events[0];
   else                          sum_weights[0] = sum_mc_event_weights;
   sum_weights.Write("SumMCEventWeights");
+  std::cout << "writeNumEvents()"
+            << "\n\t -- num events passed: "   << num_generated_events << " -- num events written: "   << num_events[0]
+            << "\n\t -- sum mc event weihts: " << sum_mc_event_weights << " -- sum mc event weights: " << sum_weights[0]
+            << "\n";
 }
 
 // -----------------------------------------------------------------------------

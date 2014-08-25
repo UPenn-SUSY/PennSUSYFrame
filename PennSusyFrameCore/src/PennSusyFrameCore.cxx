@@ -825,5 +825,9 @@ void PennSusyFrame::PennSusyFrameCore::writeTnt()
     std::cout << m_num_generated_events << "\n";
   }
 
+  std::cout << "writeTnt():"
+            << "\n\t-- total num events:    " << m_num_generated_events
+            << "\n\t-- sum mc event weight: " << m_sum_mc_event_weights
+            << "\n";
   m_d3pd_reader->FinalizeOutput(m_num_generated_events, m_sum_mc_event_weights);
 }

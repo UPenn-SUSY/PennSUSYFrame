@@ -109,6 +109,8 @@ namespace PennSusyFrame
   bool passZOverlapRemoval(               const PennSusyFrame::MCTruth&);
   bool passSherpaZMassiveCBOverlapRemoval(const PennSusyFrame::MCTruth&, const PennSusyFrame::EventLevelQuantities&);
   bool passSherpaDYOverlapRemoval(        const PennSusyFrame::MCTruth&, const PennSusyFrame::EventLevelQuantities&);
+
+  float findTruthLevelZPt(const PennSusyFrame::MCTruth&);
 }
 
 // Include the implementation:

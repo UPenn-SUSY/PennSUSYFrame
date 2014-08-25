@@ -1,0 +1,3 @@
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.146854.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp4Excl_Mll10to60.tnt_103.140704215500/user.bjackson.035813._00001.Tnt.root        180000        520
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.146854.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp4Excl_Mll10to60.tnt_103.140704215500/user.bjackson.035813._00002.Tnt.root        166100        451
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.146854.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp4Excl_Mll10to60.tnt_103.140704215500/user.bjackson.035813._00003.Tnt.root        20000        59

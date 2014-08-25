@@ -25,7 +25,7 @@ namespace PennSusyFrame
       virtual ~BMinusLTTNTMaker();
 
       virtual void beginRun();
-      virtual void initializeEvent();
+      // virtual void initializeEvent();
       virtual void finalizeEvent();
       virtual void finalizeRun();
 
