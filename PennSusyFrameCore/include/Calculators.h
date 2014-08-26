@@ -12,6 +12,7 @@ namespace PennSusyFrame
   class Muon;
   class Jet;
   class Met;
+  class MCTruth;
 }
 
 // =============================================================================
@@ -61,7 +62,7 @@ namespace PennSusyFrame
 
   // ---------------------------------------------------------------------------
   // dR calculator
-  double getDr(const PennSusyFrame::Particle* 
+  double getDr(const PennSusyFrame::Particle*
 	       ,const PennSusyFrame::Particle*
 	       );
   double calcDr(double deta, double dphi);
@@ -79,6 +80,9 @@ namespace PennSusyFrame
               , const std::vector<PennSusyFrame::Muon*>*
               , const std::vector<PennSusyFrame::Jet*>*
               );
+
+  // ---------------------------------------------------------------------------
+  double calculateTtbarPtReweight(const PennSusyFrame::MCTruth&);
 }
 
 // Include the implementation:

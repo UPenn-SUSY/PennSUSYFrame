@@ -53,7 +53,8 @@ def runBMinusLAnalysisFun(data_set_dict):
                       , is_data               = data_set_dict['is_data']
                       , is_egamma_stream      = data_set_dict['is_egamma_stream']
                       , is_full_sim           = data_set_dict['is_full_sim']
-                      , tree_name             = 'TNT'
+                      # , tree_name             = 'TNT'
+                      , tree_name             = 'BMinusLTTNT'
                       , dsid                  = data_set_dict['dsid']
                       , out_file_special_name = data_set_dict['label']
                       , is_tnt                = True
@@ -92,7 +93,11 @@ def runBMinusLAnalysis( file_list
         total_num_events = getTotalNumEvents(file_list, is_tnt)
 
     print "Adding files to TChain"
+    print '  Tree name: ' , tree_name
     t = RunHelpers.getTChain(file_list, tree_name)
+    print 'tchain'
+    print t
+    print t.GetEntries()
 
     # ==============================================================================
     print 'Creating BMinusLAnalysis object'

@@ -41,6 +41,7 @@ enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   // , BMINUSL_CUT_EQ_2_B_JET
                   , BMINUSL_CUT_B_TAG_SF
                   , BMINUSL_CUT_BL_PAIRING
+                  , BMINUSL_CUT_TTBAR_WEIGHT
                   , BMINUSL_CUT_BREAK_4
                   , BMINUSL_CUT_ZVETO
                   // , BMINUSL_CUT_MET
@@ -80,6 +81,7 @@ const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           // , "BMINUSL_CUT_EQ_2_B_JET"
                                           , "BMINUSL_CUT_B_TAG_SF"
                                           , "BMINUSL_CUT_BL_PAIRING"
+                                          , "BMINUSL_CUT_TTBAR_WEIGHT"
                                           , "BREAK"
                                           , "BMINUSL_CUT_ZVETO"
                                           // , "BMINUSL_CUT_MET"

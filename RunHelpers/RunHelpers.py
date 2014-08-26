@@ -311,8 +311,8 @@ def runLocalMultiprocess( run_analysis_fun
     print data_set_dicts
     p.map(run_analysis_fun, data_set_dicts)
 
-    # mergeOutputFiles(out_dir, flat_ntuples)
-    # moveToLinkedDir(out_dir, sym_link_name)
+    mergeOutputFiles(out_dir, flat_ntuples)
+    moveToLinkedDir(out_dir , sym_link_name)
 
 # ------------------------------------------------------------------------------
 def writeLxBatchScript( run_analysis_fun

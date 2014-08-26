@@ -175,6 +175,7 @@ namespace PennSusyFrame
       // double m_xsec_weight;
       double m_lepton_sf;
       double m_btag_sf;
+      double m_ttbar_pt_weight;
 
       bool m_pass_grl;
       bool m_pass_incomplete_event;

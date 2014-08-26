@@ -174,6 +174,7 @@ void PennSusyFrame::BMinusLAnalysis::initializeEvent()
   m_pile_up_sf      = 1.;
   m_lepton_sf       = 1.;
   m_btag_sf         = 1.;
+  m_ttbar_pt_weight = 1.;
 
   m_pass_grl              = false;
   m_pass_incomplete_event = false;
@@ -411,6 +412,12 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   fillTrackers(BMINUSL_CUT_BL_PAIRING);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // ttbar pt reweight
+  m_ttbar_pt_weight = calculateTtbarPtReweight(m_mc_truth);
+  m_event_weight *= m_ttbar_pt_weight;
+  fillTrackers(BMINUSL_CUT_TTBAR_WEIGHT);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do z veto fo SFOS lepton pairs
   m_pass_z_veto = true;
   if (  m_event.getFlavorChannel() == FLAVOR_EE
@@ -548,13 +555,13 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      // && m_pass_z_veto
      ) {
     double mbl_asym = (m_bl_0->getMbl() - m_bl_1->getMbl()) / (m_bl_0->getMbl() + m_bl_1->getMbl());
-    double ht = m_event_quantities.getHtSignal() / 1.e3;
-    double met_sig = m_met.getMetSigSignal();
+    double ht       = m_event_quantities.getHtSignal() / 1.e3;
+    double met_sig  = m_met.getMetSigSignal();
 
     bool pass_mbl_3     = (mbl_asym < 0.30 );
     bool pass_mbl_6     = (mbl_asym < 0.60 );
 
-    bool pass_met_sig_7      = (met_sig  < 7. );
+    bool pass_met_sig_7 = (met_sig  < 7. );
 
     bool pass_ht_500 = (ht > 500.0 );
     bool pass_ht_600 = (ht > 600.0 );
