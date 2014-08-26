@@ -32,6 +32,7 @@ enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   , BMINUSL_CUT_GE_2_SIGNAL_LEPTON
                   // , BMINUSL_CUT_EQ_2_SIGNAL_LEPTON
                   , BMINUSL_CUT_LEP_SF
+                  , BMINUSL_CUT_OS_LEP
                   , BMINUSL_CUT_BREAK_5
                   , BMINUSL_CUT_TRIGGER
                   , BMINUSL_CUT_PHASE
@@ -72,6 +73,7 @@ const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           , "BMINUSL_CUT_GE_2_SIGNAL_LEPTON"
                                           // , "BMINUSL_CUT_EQ_2_SIGNAL_LEPTON"
                                           , "BMINUSL_CUT_LEP_SF"
+                                          , "BMINUSL_CUT_OS_LEP"
                                           , "BREAK"
                                           , "BMINUSL_CUT_TRIGGER"
                                           , "BMINUSL_CUT_PHASE"

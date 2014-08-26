@@ -35,6 +35,7 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
                                                              , m_crit_cut_ge_2_lep(false)
                                                              , m_crit_cut_2_lep(false)
                                                              , m_crit_cut_signal_lep(false)
+                                                             , m_crit_cut_os_lep(false)
                                                              , m_crit_cut_b_jets(false)
                                                              , m_crit_cut_z_veto(false)
                                                              , m_crit_cut_met(false)
@@ -192,6 +193,7 @@ void PennSusyFrame::BMinusLAnalysis::initializeEvent()
   m_pass_ge_2_lep         = false;
   m_pass_2_lep            = false;
   m_pass_signal_lep       = false;
+  m_pass_os               = false;
   m_pass_trigger          = false;
   m_pass_phase            = false;
   m_pass_ge_2_b_jet       = false;
@@ -361,6 +363,13 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   m_event_weight *= m_lepton_sf;
   fillTrackers(BMINUSL_CUT_LEP_SF);
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // require OS leptons
+  m_pass_os = (m_event.getSignChannel() == SIGN_OS);
+  m_pass_event = (m_pass_event && m_pass_os);
+  if (m_crit_cut_os_lep && !m_pass_os) return;
+  fillTrackers(BMINUSL_CUT_OS_LEP);
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check trigger
   m_pass_trigger = passBMinusLTrigger();
@@ -477,6 +486,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_ge_2_lep
      // && m_pass_2_lep
      && m_pass_signal_lep
+     && m_pass_os
      && m_pass_trigger
      && m_pass_ge_2_b_jet
      // && m_pass_eq_2_b_jet
@@ -516,6 +526,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_ge_2_lep
      // && m_pass_2_lep
      && m_pass_signal_lep
+     && m_pass_os
      && m_pass_trigger
      && m_pass_ge_2_b_jet
      // && m_pass_eq_2_b_jet
@@ -548,6 +559,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_ge_2_lep
      // && m_pass_2_lep
      && m_pass_signal_lep
+     && m_pass_os
      && m_pass_trigger
      && m_pass_ge_2_b_jet
      // && m_pass_eq_2_b_jet
