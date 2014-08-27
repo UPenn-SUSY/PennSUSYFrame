@@ -16,6 +16,10 @@ namespace PennSusyFrame
 {
   enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
                            , BMINUSL_HIST_BL_PAIRING
+                           , BMINUSL_HIST_BL_PAIRING_EE_TRIG
+                           , BMINUSL_HIST_BL_PAIRING_MM_TRIG
+                           , BMINUSL_HIST_BL_PAIRING_EM_TRIG_1
+                           , BMINUSL_HIST_BL_PAIRING_EM_TRIG_2
                            , BMINUSL_HIST_ZVETO
                            , BMINUSL_HIST_GE_4_OBJECTS
 
@@ -42,6 +46,10 @@ namespace PennSusyFrame
 
   const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
                                                    , "BMINUSL_BL_PAIRING"
+                                                   , "BMINUSL_BL_PAIRING_EE_TRIG"
+                                                   , "BMINUSL_BL_PAIRING_MM_TRIG"
+                                                   , "BMINUSL_BL_PAIRING_EM_TRIG_1"
+                                                   , "BMINUSL_BL_PAIRING_EM_TRIG_2"
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_GE_4_OBJECTS"
 

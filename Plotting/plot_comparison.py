@@ -57,9 +57,10 @@ def plotComparisons( ic_numerator
     dirs = hh.Helper.getListOfDirs(file_list)
     num_dirs = len(dirs)
     for d_it, d in enumerate(dirs):
-        if not d == 'BMINUSL_BL_PAIRING':
-            print 'skipping directory: ' , d
-            continue
+        # if not d == 'BMINUSL_BL_PAIRING':
+        # if not 'BMINUSL_BL_PAIRING' in d:
+        #     print 'skipping directory: ' , d
+        #     continue
 
         print 'Printing histograms for cut dir: %s (%d of %d)' % (d, d_it, num_dirs)
         out_file.cd()

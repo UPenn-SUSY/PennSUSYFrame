@@ -498,6 +498,35 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , m_bl_1
                    , m_event_weight
                    );
+
+    if (m_trigger.getEF_e24vh_medium1_e7_medium1()) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EE_TRIG
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
+    }
+    if (m_trigger.getEF_mu18_tight_mu8_EFFS()) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_MM_TRIG
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
+    }
+    if (m_trigger.getEF_e12Tvh_medium1_mu8()) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EM_TRIG_1
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
+    }
+    if (m_trigger.getEF_mu18_tight_e7_medium1()) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EM_TRIG_2
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
+    }
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -771,30 +800,37 @@ bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
 {
-  if (m_is_data) {
-    // data trigger decision
-    if (m_is_egamma_stream || !m_is_data) {
-      // egamma stream
-      if (m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
-      if (m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
-      if (m_trigger.getEF_mu18_tight_e7_medium1())    return true;
-    }
-    if (!m_is_egamma_stream || !m_is_data) {
-      // muon stream
-      if (m_trigger.getEF_mu18_tight_mu8_EFFS())   return true;
-      if (m_trigger.getEF_e12Tvh_medium1_mu8())    return true;
-      if (m_trigger.getEF_mu18_tight_e7_medium1()) return true;
-    }
-  }
-  else {
-    return true;
+  FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
 
-    // MC trigger decision
-    if (m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
-    if (m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
-    if (m_trigger.getEF_mu18_tight_mu8_EFFS())      return true;
-    if (m_trigger.getEF_mu18_tight_e7_medium1())    return true;
-  }
+  if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
+  if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu18_tight_mu8_EFFS())      return true;
+  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
+  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu18_tight_e7_medium1())    return true;
+
+  // if (m_is_data) {
+  //   // data trigger decision
+  //   if (m_is_egamma_stream || !m_is_data) {
+  //     // egamma stream
+  //     if (m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
+  //     if (m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
+  //     if (m_trigger.getEF_mu18_tight_e7_medium1())    return true;
+  //   }
+  //   if (!m_is_egamma_stream || !m_is_data) {
+  //     // muon stream
+  //     if (m_trigger.getEF_mu18_tight_mu8_EFFS())   return true;
+  //     if (m_trigger.getEF_e12Tvh_medium1_mu8())    return true;
+  //     if (m_trigger.getEF_mu18_tight_e7_medium1()) return true;
+  //   }
+  // }
+  // else {
+  //   return true;
+
+  //   // MC trigger decision
+  //   if (m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
+  //   if (m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
+  //   if (m_trigger.getEF_mu18_tight_mu8_EFFS())      return true;
+  //   if (m_trigger.getEF_mu18_tight_e7_medium1())    return true;
+  // }
 
   return false;
 }
