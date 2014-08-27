@@ -22,7 +22,7 @@ def main():
                                                               ]
                                           )
 
-    ec_data = hh.Container.EntryContainer( label = 'data (13 fb^{-1} scaled to 21 fb^{-1})'
+    ec_data = hh.Container.EntryContainer( label = 'Data (13 fb^{-1} scaled to 21 fb^{-1})'
                                          , fill_color = ROOT.kBlack
                                          , input_file_list = [ '%s/BMinusL.periodA_egamma.hists.root' % hist_dir
                                                              , '%s/BMinusL.periodB_egamma.hists.root' % hist_dir
@@ -279,12 +279,13 @@ def main():
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Collect EntryContainer into InputContainers
     # ic_numerator = hh.Container.InputContainer( name = 'dummy'
-    ic_numerator = hh.Container.InputContainer( name = 'data'
+    ic_numerator = hh.Container.InputContainer( name = 'Data'
                                               , entry_list = [ec_data]
                                               , lumi_target = 21/13.
                                               # , lumi_target = 0
                                               )
-    ic_denominator = hh.Container.InputContainer( name = 'Background'
+    # ic_denominator = hh.Container.InputContainer( name = 'Background'
+    ic_denominator = hh.Container.InputContainer( name = 'Bkg'
                                                 , entry_list = [ec_ttbar, ec_single_top, ec_Zbb, ec_ttv, ec_higgs]
                                                 , lumi_target = 21000
                                                 )

@@ -62,12 +62,16 @@ class CanvasInfo(object):
     """
     # --------------------------------------------------------------------------
     def __init__( self
-                , width = 600
-                , height = 600
-                , left_margin   = 0.16
-                , right_margin  = 0.09
-                , top_margin    = 0.05
-                , bottom_margin = 0.16
+                , width  = hh.default_canv_width
+                , height = hh.default_canv_height
+                # , left_margin   = 0.16
+                # , right_margin  = 0.09
+                # , top_margin    = 0.05
+                # , bottom_margin = 0.16
+                , left_margin   = hh.default_pad_left_margin
+                , right_margin  = hh.default_pad_right_margin
+                , top_margin    = hh.default_pad_top_margin
+                , bottom_margin = hh.default_pad_bottom_margin
                 , log_x = False
                 , log_y = False
                 , log_z = False
