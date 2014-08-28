@@ -13,6 +13,9 @@ sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
 
 # ------------------------------------------------------------------------------
+RunBMinusLOptimizeNtupleMaker.input_tree_name = "BMinusLTTNT"
+
+# ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
 user_input = sys.argv[1] if len(sys.argv) > 1 else 1
 num_processes = 1
