@@ -20,19 +20,18 @@ def skipHist(dir_name, hist_name):
       return True
 
   # # if 'flavor_all'   in hist_name: return True
-  if 'flavor_ee'    in hist_name: return True
-  if 'flavor_mm'    in hist_name: return True
-  if 'flavor_em'    in hist_name: return True
-  if 'flavor_error' in hist_name: return True
-  if 'jet_fiducial' in hist_name: return True
-  if 'mt2'          in hist_name: return True
-  if 'met'          in hist_name: return True
-  if 'b_jet'        in hist_name: return True
-  if 'bl_d'         in hist_name: return True
-  if 'dphi_bb'      in hist_name: return True
-  if 'jet_'         in hist_name: return True
-  if 'lep_'         in hist_name: return True
-  if 'flavor' not in hist_name: return True
+  # if 'flavor_ee'    in hist_name: return True
+  # if 'flavor_mm'    in hist_name: return True
+  # if 'flavor_em'    in hist_name: return True
+  # if 'flavor_error' in hist_name: return True
+  # if 'jet_fiducial' in hist_name: return True
+  # if 'mt2'          in hist_name: return True
+  # if 'met'          in hist_name: return True
+  # if 'b_jet'        in hist_name: return True
+  # if 'bl_d'         in hist_name: return True
+  # if 'dphi_bb'      in hist_name: return True
+  # if 'jet_'         in hist_name: return True
+  # if 'lep_'         in hist_name: return True
 
   return False
 
@@ -58,10 +57,10 @@ def plotComparisons( ic_numerator
     dirs = hh.Helper.getListOfDirs(file_list)
     num_dirs = len(dirs)
     for d_it, d in enumerate(dirs):
-        # if not d == 'BMINUSL_BL_PAIRING':
-        if not 'BMINUSL_BL_PAIRING' in d:
-            print 'skipping directory: ' , d
-            continue
+        # # if not d == 'BMINUSL_BL_PAIRING':
+        # if not 'BMINUSL_BL_PAIRING' in d:
+        #     print 'skipping directory: ' , d
+        #     continue
 
         print 'Printing histograms for cut dir: %s (%d of %d)' % (d, d_it, num_dirs)
         out_file.cd()

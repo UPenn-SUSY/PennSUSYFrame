@@ -27,6 +27,10 @@ static const float eta_max = +5.;
 static const int   mbl_bins = 60;
 static const float mbl_min  = 0.;
 static const float mbl_max  = 1200.;
+
+static const int   mbl_coarse_bins = 4;
+static const float mbl_bin_edges[mbl_coarse_bins+1] = {0, 100, 300, 500, 1200};
+
 // TODO use these variable bin widths to set mbl histogram -- need to get weights in each bin correct first
 // const std::vector<float> mbl_bin_edges[mbl_bins] = generateLogBinning( mbl_min
 //                                                                      , mbl_max
@@ -421,6 +425,60 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                   )
                         );
 
+    m_h_mbl_coarse_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__mbl_coarse_all"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "m_{bl} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; m_{bl} [GeV] ; Entries"
+                                     ).c_str()
+                                   , mbl_coarse_bins, mbl_bin_edges
+                                   )
+                         );
+
+    m_h_mbl_coarse_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "__mbl_coarse_0"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "m_{bl}^{0} - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; m_{bl}^{0} [GeV] ; Entries"
+                                   ).c_str()
+                                 , mbl_coarse_bins, mbl_bin_edges
+                                 )
+                       );
+
+    m_h_mbl_coarse_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "__mbl_coarse_1"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "m_{bl}^{1} - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; m_{bl}^{1} [GeV] ; Entries"
+                                   ).c_str()
+                                 , mbl_coarse_bins, mbl_bin_edges
+                                 )
+                       );
+
+    m_h_mbl_coarse_2d.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__mbl_coarse_2d"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "m_{bl}^{1} vs m_{bl}^{0} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; m_{bl}^{0} [GeV] "
+                                    + " ; m_{bl}^{1} [GeV]"
+                                    ).c_str()
+                                  , mbl_coarse_bins, mbl_bin_edges
+                                  , mbl_coarse_bins, mbl_bin_edges
+                                  )
+                        );
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize ptbl histograms
     m_h_ptbl_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -640,6 +698,12 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_mbl_asym.at(fc_it)->Fill((mbl_0-mbl_1)/(mbl_0+mbl_1), weight);
     m_h_mbl_2d.at(fc_it)->Fill(mbl_0, mbl_1, weight);
 
+    m_h_mbl_coarse_all.at(fc_it)->Fill(mbl_0, weight);
+    m_h_mbl_coarse_all.at(fc_it)->Fill(mbl_1, weight);
+    m_h_mbl_coarse_0.at(  fc_it)->Fill(mbl_0, weight);
+    m_h_mbl_coarse_1.at(  fc_it)->Fill(mbl_1, weight);
+    m_h_mbl_coarse_2d.at(fc_it)->Fill(mbl_0, mbl_1, weight);
+
     // fill ptbl histograms
     m_h_ptbl_all.at(fc_it)->Fill(ptbl_0, weight);
     m_h_ptbl_all.at(fc_it)->Fill(ptbl_1, weight);
@@ -715,6 +779,11 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_mbl_ratio.at(fc_it)->Write();
     m_h_mbl_asym.at(fc_it)->Write();
     m_h_mbl_2d.at(fc_it)->Write();
+
+    m_h_mbl_coarse_all.at(fc_it)->Write();
+    m_h_mbl_coarse_0.at(  fc_it)->Write();
+    m_h_mbl_coarse_1.at(  fc_it)->Write();
+    m_h_mbl_coarse_2d.at(fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_ptbl_all.at(fc_it)->Write();

@@ -24,6 +24,10 @@ static const int   ht_bins = 30;
 static const float ht_min  = 0;
 static const float ht_max  = 3000;
 
+static const int   npv_bins = 60;
+static const float npv_min  = -0.5;
+static const float npv_max  = npv_bins + npv_min;
+
 static const int   pt_bins = 75;
 static const float pt_min  = 0.;
 static const float pt_max  = 1500.;
@@ -32,13 +36,17 @@ static const int   eta_bins = 50;
 static const float eta_min = -5.;
 static const float eta_max = +5.;
 
-static const int   ptiso_bins = 120;
+// static const int   ptiso_bins = 120;
+static const int   ptiso_bins = 80;
 static const float ptiso_min  = 0.;
-static const float ptiso_max  = 3.;
+// static const float ptiso_max  = 3.;
+static const float ptiso_max  = 2.;
 
-static const int   etiso_bins = 140;
+// static const int   etiso_bins = 140;
+static const int   etiso_bins = 100;
 static const float etiso_min  = -0.5;
-static const float etiso_max  = 3.;
+// static const float etiso_max  = 3.;
+static const float etiso_max  = 2.;
 
 static const int   dr_bins = 60;
 static const float dr_min = 0.;
@@ -236,6 +244,19 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                                      , ht_bins, ht_min, ht_max
                                      )
                            );
+
+    m_h_npv.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + "__npv"
+                                 + "__"
+                                 + name_tag
+                                 ).c_str()
+                               , ( "NPV - "
+                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + " ; NPV ; Entries"
+                                 ).c_str()
+                               , npv_bins, npv_min, npv_max
+                               )
+                     );
   }
 }
 
@@ -267,19 +288,22 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
   float ht_good     = event_level_quantities.getHtGood()/1.e3;
   float ht_signal   = event_level_quantities.getHtSignal()/1.e3;
 
+  int npv = event.getAverageIntPerXing();
+
   // loop over all flavor channels
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
     m_h_flavor_channel.at(fc_it)->Fill(fc, weight);
 
-    m_h_mll.at(fc_it)->Fill(mll, weight);
-    m_h_mt2.at(fc_it)->Fill(mt2, weight);
-    m_h_ptll.at(fc_it)->Fill(ptll, weight);
+    m_h_mll.at(fc_it)->Fill(        mll        , weight);
+    m_h_mt2.at(fc_it)->Fill(        mt2        , weight);
+    m_h_ptll.at(fc_it)->Fill(       ptll       , weight);
     m_h_ht_all.at(fc_it)->Fill(     ht_all     , weight);
     m_h_ht_baseline.at(fc_it)->Fill(ht_baseline, weight);
     m_h_ht_good.at(fc_it)->Fill(    ht_good    , weight);
     m_h_ht_signal.at(fc_it)->Fill(  ht_signal  , weight);
+    m_h_npv.at(fc_it)->Fill(        npv        , weight);
   }
 }
 
@@ -307,6 +331,7 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
     m_h_ht_baseline.at(fc_it)->Write();
     m_h_ht_good.at(fc_it)->Write();
     m_h_ht_signal.at(fc_it)->Write();
+    m_h_npv.at(fc_it)->Write();
   }
 }
 

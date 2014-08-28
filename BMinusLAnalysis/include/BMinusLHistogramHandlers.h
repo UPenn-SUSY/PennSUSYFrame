@@ -89,6 +89,11 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_asym; //~ ~
       std::vector<TH2F*> m_h_mbl_2d; //~ ~
 
+      std::vector<TH1F*> m_h_mbl_coarse_all; //~ ~
+      std::vector<TH1F*> m_h_mbl_coarse_0; //~ ~
+      std::vector<TH1F*> m_h_mbl_coarse_1; //~ ~
+      std::vector<TH2F*> m_h_mbl_coarse_2d; //~ ~
+
       // various ptbl plots
       std::vector<TH1F*> m_h_ptbl_all; //~ ~
       std::vector<TH1F*> m_h_ptbl_0; //~ ~

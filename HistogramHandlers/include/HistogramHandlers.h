@@ -82,6 +82,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_ht_baseline;
       std::vector<TH1F*> m_h_ht_good;
       std::vector<TH1F*> m_h_ht_signal;
+
+      std::vector<TH1F*> m_h_npv;
   };
 
   // =============================================================================
@@ -119,7 +121,7 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_eta_0;
       std::vector<TH1F*> m_h_eta_1;
       std::vector<TH1F*> m_h_eta_event_passfail;
-      
+
       std::vector<TH1F*> m_h_ptiso_all;
       std::vector<TH1F*> m_h_ptiso_0;
       std::vector<TH1F*> m_h_ptiso_1;

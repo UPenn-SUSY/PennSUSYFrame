@@ -47,7 +47,7 @@ def readFileList(file_path):
     for l in f.readlines():
         l = l.strip('\n')
         splits = l.split()
-        print splits
+        # print splits
         file_list.append( splits[0])
         total_num_events += int(splits[1])
         total_entries    += int(splits[2])
@@ -285,8 +285,8 @@ def mergeOutputFiles(out_dir, flat_files):
 
     all_files_in_out_dir = glob.glob('%s/*.root' % abs_path)
     all_files_in_out_dir = glob.glob('%s/*.root' % abs_path)
-    print all_files_in_out_dir[0]
-    print dummy_file_name
+    # print all_files_in_out_dir[0]
+    # print dummy_file_name
     os.symlink(all_files_in_out_dir[0], dummy_file_name)
 
 # ------------------------------------------------------------------------------
@@ -307,8 +307,8 @@ def runLocalMultiprocess( run_analysis_fun
                         , do_merge = True
                         ):
     p = Pool(num_processes)
-    print run_analysis_fun
-    print data_set_dicts
+    # print run_analysis_fun
+    # print data_set_dicts
     p.map(run_analysis_fun, data_set_dicts)
 
     mergeOutputFiles(out_dir, flat_ntuples)
@@ -321,9 +321,9 @@ def writeLxBatchScript( run_analysis_fun
                       , data_set_dict
                       , job_dir
                       ):
-    print 'writeLxBatchScript()'
-    print run_analysis_fun
-    print run_analysis_fun.__name__
+    # print 'writeLxBatchScript()'
+    # print run_analysis_fun
+    # print run_analysis_fun.__name__
 
     job_py_name = '%s/lx_batch_job.%s.%d_of_%d.py' % ( job_dir
                                                      , data_set_dict['label']

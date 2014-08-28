@@ -116,7 +116,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_MEDPP);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
-  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, -1);
+  // m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, -1);
+  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.2);
   m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, -1);
 
   // MU_BASELINE
@@ -127,7 +128,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   // MU_SIGNAL
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
-  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, -1);
+  // m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, -1);
+  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.2);
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, -1);
 
   // JET_B

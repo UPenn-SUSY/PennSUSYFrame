@@ -46,7 +46,8 @@ def runBMinusLOptimizeNtupleMakerFun(data_set_dict):
     runBMinusLOptimizeNtupleMaker( file_list             = data_set_dict['file_list']
                                  , is_data               = data_set_dict['is_data']
                                  , is_full_sim           = data_set_dict['is_full_sim']
-                                 , tree_name             = 'TNT'
+                                 # , tree_name             = 'TNT'
+                                 , tree_name             = 'BMinusLTTNT'
                                  , dsid                  = data_set_dict['dsid']
                                  , out_file_special_name = data_set_dict['label']
                                  , is_tnt                = True

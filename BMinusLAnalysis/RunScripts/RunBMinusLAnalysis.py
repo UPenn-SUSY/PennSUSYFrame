@@ -159,7 +159,7 @@ def runBMinusLAnalysis( file_list
     bmla.setOutHistFileName(out_hist_file_name)
 
     # Set critical cuts
-    print 'setting critical cuts'
+    # print 'setting critical cuts'
     bmla.setCritCutGrl(            1)
     bmla.setCritCutIncompleteEvent(1)
     bmla.setCritCutLarError(       1)
@@ -181,7 +181,7 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutBLPairing(      0)
 
     # Set cut values
-    print 'set cuts'
+    # print 'set cuts'
     lep_pt_cut = 40.e3
     jet_pt_cut = 40.e3
     bmla.setElPtCut(  lep_pt_cut, -1     )
