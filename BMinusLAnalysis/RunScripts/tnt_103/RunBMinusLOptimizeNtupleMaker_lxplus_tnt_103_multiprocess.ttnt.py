@@ -58,6 +58,8 @@ if __name__ == '__main__':
                         , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':2}
                         }
     full_sim_mc_samples = {
+                            173045:{'label':'173045.Sherpa_CT10_DYtautauM08to15' , 'num_jobs':1}
+                          , 173046:{'label':'173046.Sherpa_CT10_DYtautauM15to40' , 'num_jobs':1}
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -145,9 +147,6 @@ if __name__ == '__main__':
 
                           , 173043:{'label':'173043.Sherpa_CT10_DYmumuM08to15'   , 'num_jobs':1}
                           , 173044:{'label':'173044.Sherpa_CT10_DYmumuM15to40'   , 'num_jobs':1}
-
-                          , 173045:{'label':'173045.Sherpa_CT10_DYtautauM08to15' , 'num_jobs':1}
-                          , 173046:{'label':'173046.Sherpa_CT10_DYtautauM15to40' , 'num_jobs':1}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}

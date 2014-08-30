@@ -208,9 +208,10 @@ double PennSusyFrame::calculateTtbarPtReweight(const PennSusyFrame::MCTruth& mc_
   unsigned int num_mc_truth_objects = mc_truth.getN();
   for (unsigned int mc_it = 0; mc_it != num_mc_truth_objects; ++mc_it) {
     // get the pdgid of this objects -- skip if not a top or not status code 3
+    if (mc_truth.getStatus()->at(mc_it) != 3) continue;
+
     int this_pdgid = mc_truth.getPdgId()->at(mc_it);
     if ( fabs(this_pdgid) != 6 ) continue;
-    if (mc_truth.getStatus()->at(mc_it) != 3) continue;
 
     if (this_pdgid == 6) {
       found_top = true;

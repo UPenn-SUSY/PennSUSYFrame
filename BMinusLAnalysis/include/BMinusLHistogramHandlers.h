@@ -248,6 +248,38 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_bl_deta_same_parent_pairing; //~ ~
       std::vector<TH1F*> m_h_bl_deta_diff_parent_pairing; //~ ~
   };
+
+  // =============================================================================
+  // = Weight Hists
+  // =============================================================================
+  class WeightHists : public HistogramHandler
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      WeightHists(std::string name_tag = "");
+      virtual ~WeightHists();
+
+      virtual void FillSpecial( const PennSusyFrame::Event& event
+                              , float cross_section_weight
+                              , float mc_event_weight
+                              , float pile_up_weight
+                              , float lep_sf
+                              , float btag_sf
+                              , float ttbar_pt_weight
+                              , float weight
+                              );
+      virtual void write(TDirectory*);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::vector<TH1F*> m_h_cross_section_weight;
+      std::vector<TH1F*> m_h_mc_event_weight;
+      std::vector<TH1F*> m_h_pile_up_weight;
+      std::vector<TH1F*> m_h_lep_sf;
+      std::vector<TH1F*> m_h_btag_sf;
+      std::vector<TH1F*> m_h_ttbar_pt_weight;
+      std::vector<TH1F*> m_h_total_weight;
+  };
 }
 
 #endif

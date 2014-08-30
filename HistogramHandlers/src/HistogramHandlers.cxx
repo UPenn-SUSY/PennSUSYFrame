@@ -1343,6 +1343,7 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
     m_h_fiducial_event_fail.at(fc_it)->Write();
   }
 }
+
 // =============================================================================
 PennSusyFrame::MetHists::MetHists(std::string name_tag)
 {

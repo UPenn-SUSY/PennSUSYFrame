@@ -118,6 +118,10 @@ void PennSusyFrame::PennSusyFrameCore::prepareTools()
   m_taus.init(m_is_data, m_is_af2);
   m_jets.init(m_is_data, m_is_af2);
 
+  if (m_is_af2) m_egamma_sf_tool.setAf2();
+  else          m_egamma_sf_tool.setFullSim();
+
+  m_egamma_sf_tool.init();
   m_b_tag_sf_tool.init(m_mv1_cut_value);
 }
 

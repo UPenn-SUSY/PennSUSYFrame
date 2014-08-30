@@ -75,6 +75,8 @@ PennSusyFrame::BMinusLAnalysis::~BMinusLAnalysis()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::prepareTools()
 {
+  m_egamma_sf_tool.setMediumPP();
+
   PennSusyFrameCore::prepareTools();
 
   std::string base_dir = getenv("BASE_WORK_DIR");
@@ -163,6 +165,7 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::MetHists(             PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
 
     m_bminusl_histogram_handler.push_back(         new PennSusyFrame::BMinusLHists(        PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
+    m_weight_histogram_handler.push_back(          new PennSusyFrame::WeightHists(         PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
     if (m_do_detailed_bl_hists) {
       m_bminusl_detailed_histogram_handler.push_back(new PennSusyFrame::BMinusLDetailedHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
     }
@@ -500,47 +503,8 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , m_bl_1
                    , m_event_weight
                    );
-
-    if (m_trigger.getEF_e24vh_medium1_e7_medium1()) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EE_TRIG
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
-    if (m_trigger.getEF_mu18_tight_mu8_EFFS()) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_MM_TRIG
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
-    if (m_trigger.getEF_e12Tvh_medium1_mu8()) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EM_TRIG_1
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
-    if (m_trigger.getEF_mu18_tight_e7_medium1()) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EM_TRIG_2
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
   }
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // fill histograms for GE_4_OBJECTS hist level
-  fillHistHandles( PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS
-                 , m_bl_0
-                 , m_bl_1
-                 , m_event_weight
-                 );
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // fill histograms for ZVETO hist level
   if (  m_pass_grl
      && m_pass_incomplete_event
      && m_pass_lar_error
@@ -558,126 +522,212 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      // && m_pass_2_lep
      && m_pass_signal_lep
      && m_pass_os
-     && m_pass_trigger
-     && m_pass_ge_2_b_jet
-     // && m_pass_eq_2_b_jet
-     && m_pass_bl_pairing
-     && m_pass_z_veto
-     ) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_ZVETO
-                   , m_bl_0
-                   , m_bl_1
-                   , m_event_weight
-                   );
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // fill histograms in signal regions (and N-1 plots)
-  // first, do a baseline cut
-  if (  m_pass_grl
-     && m_pass_incomplete_event
-     && m_pass_lar_error
-     && m_pass_tile_error
-     && m_pass_tile_hot_spot
-     && m_pass_tile_trip
-     && m_pass_bad_jet_veto
-     && m_pass_calo_problem_jet
-     && m_pass_primary_vertex
-     && m_pass_bad_mu_veto
-     && m_pass_cosmic_mu_veto
-     && m_pass_hfor
-     && m_pass_mc_overlap
-     && m_pass_ge_2_lep
-     // && m_pass_2_lep
-     && m_pass_signal_lep
-     && m_pass_os
-     && m_pass_trigger
+     // && m_pass_trigger
      && m_pass_ge_2_b_jet
      // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
      // && m_pass_z_veto
      ) {
-    double mbl_asym = (m_bl_0->getMbl() - m_bl_1->getMbl()) / (m_bl_0->getMbl() + m_bl_1->getMbl());
-    double ht       = m_event_quantities.getHtSignal() / 1.e3;
-    double met_sig  = m_met.getMetSigSignal();
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (1.       ) * (1.               ) );
+    // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_1__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (1.       ) * (m_ttbar_pt_weight) );
+    // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_1__ttbar_0__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (m_btag_sf) * (1.               ) );
+    // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_1__ttbar_1__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (m_btag_sf) * (m_ttbar_pt_weight) );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_0__ttbar_0__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (1.       ) * (1.               ) );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_0__ttbar_1__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (1.       ) * (m_ttbar_pt_weight) );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_0__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (m_btag_sf) * (1.               ) );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (m_btag_sf) * (m_ttbar_pt_weight) );
 
-    bool pass_mbl_3     = (mbl_asym < 0.30 );
-    bool pass_mbl_6     = (mbl_asym < 0.60 );
-
-    bool pass_met_sig_7 = (met_sig  < 7. );
-
-    bool pass_ht_500 = (ht > 500.0 );
-    bool pass_ht_600 = (ht > 600.0 );
-    bool pass_ht_700 = (ht > 700.0 );
-
-    // -------------------------------------------------------------------------
-    // - Fill histograms for SR (don't fill for data if we are blind!)
-    // -------------------------------------------------------------------------
-    if ( !m_is_data || !m_is_blind ) {
-      // all signal regions use z-veto
-      if (m_pass_z_veto) {
-        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        if (pass_mbl_6) {
-          fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6 , m_bl_0 , m_bl_1 , m_event_weight);
-        }
-
-        if (pass_met_sig_7) {
-          fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MET_7 , m_bl_0 , m_bl_1 , m_event_weight);
-        }
-
-        if (pass_mbl_6 && pass_met_sig_7) {
-          fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6_MET_7 , m_bl_0 , m_bl_1 , m_event_weight);
-        }
-
-        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        if (pass_mbl_6 && pass_met_sig_7 && pass_ht_500) {
-          fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6_MET_7_HT_500 , m_bl_0 , m_bl_1 , m_event_weight);
-        }
-        if (pass_mbl_6 && pass_met_sig_7 && pass_ht_600) {
-          fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6_MET_7_HT_600 , m_bl_0 , m_bl_1 , m_event_weight);
-        }
-        if (pass_mbl_6 && pass_met_sig_7 && pass_ht_700) {
-          fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6_MET_7_HT_700 , m_bl_0 , m_bl_1 , m_event_weight);
-        }
-      }
-    }
-
-    // -------------------------------------------------------------------------
-    // - Fill histograms for CR
-    // -------------------------------------------------------------------------
-    // all control regions use z-veto
-    if (m_pass_z_veto) {
-      if (pass_mbl_6 && !pass_met_sig_7 && !pass_ht_600) {
-        fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_MBL_6_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
-      }
-      if (!pass_mbl_6 && !pass_met_sig_7 && !pass_ht_600) {
-        fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_MBL_REV_6_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
-      }
-      if (!pass_mbl_3 && !pass_met_sig_7 && !pass_ht_600) {
-        fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_MBL_REV_3_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
-      }
-    }
-
-    // -------------------------------------------------------------------------
-    // - Fill histograms for VR
-    // -------------------------------------------------------------------------
-    if (!m_pass_z_veto && pass_mbl_6 && !pass_met_sig_7 && !pass_ht_600) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_Z_REV_MBL_6_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
-    }
-    if (!m_pass_z_veto && !pass_mbl_6 && !pass_met_sig_7 && !pass_ht_600) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_Z_REV_MBL_REV_6_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
-    }
-    if (!m_pass_z_veto && !pass_mbl_3 && !pass_met_sig_7 && !pass_ht_600) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_Z_REV_MBL_REV_3_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
-    }
-
-    if (!pass_ht_600) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
-    }
-    if (!m_pass_z_veto && !pass_ht_600) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_Z_REV_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+    if (m_pass_trigger) {
+      // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (1.       ) * (1.               ) );
+      // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_1__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (1.       ) * (m_ttbar_pt_weight) );
+      // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_1__ttbar_0__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (m_btag_sf) * (1.               ) );
+      // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_1__ttbar_1__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (m_btag_sf) * (m_ttbar_pt_weight) );
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_0__ttbar_0__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (1.       ) * (1.               ) );
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_0__ttbar_1__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (1.       ) * (m_ttbar_pt_weight) );
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_0__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (m_btag_sf) * (1.               ) );
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (m_btag_sf) * (m_ttbar_pt_weight) );
     }
   }
+
+
+
+    //~~~ if (m_trigger.getEF_e24vh_medium1_e7_medium1()) {
+    //~~~   fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EE_TRIG
+    //~~~                  , m_bl_0
+    //~~~                  , m_bl_1
+    //~~~                  , m_event_weight
+    //~~~                  );
+    //~~~ }
+    //~~~ if (m_trigger.getEF_mu18_tight_mu8_EFFS()) {
+    //~~~   fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_MM_TRIG
+    //~~~                  , m_bl_0
+    //~~~                  , m_bl_1
+    //~~~                  , m_event_weight
+    //~~~                  );
+    //~~~ }
+    //~~~ if (m_trigger.getEF_e12Tvh_medium1_mu8()) {
+    //~~~   fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EM_TRIG_1
+    //~~~                  , m_bl_0
+    //~~~                  , m_bl_1
+    //~~~                  , m_event_weight
+    //~~~                  );
+    //~~~ }
+    //~~~ if (m_trigger.getEF_mu18_tight_e7_medium1()) {
+    //~~~   fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EM_TRIG_2
+    //~~~                  , m_bl_0
+    //~~~                  , m_bl_1
+    //~~~                  , m_event_weight
+    //~~~                  );
+    //~~~ }
+  //~~~ }
+
+  //~~~ // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //~~~ // fill histograms for GE_4_OBJECTS hist level
+  //~~~ fillHistHandles( PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS
+  //~~~                , m_bl_0
+  //~~~                , m_bl_1
+  //~~~                , m_event_weight
+  //~~~                );
+
+  //~~~ // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //~~~ // fill histograms for ZVETO hist level
+  //~~~ if (  m_pass_grl
+  //~~~    && m_pass_incomplete_event
+  //~~~    && m_pass_lar_error
+  //~~~    && m_pass_tile_error
+  //~~~    && m_pass_tile_hot_spot
+  //~~~    && m_pass_tile_trip
+  //~~~    && m_pass_bad_jet_veto
+  //~~~    && m_pass_calo_problem_jet
+  //~~~    && m_pass_primary_vertex
+  //~~~    && m_pass_bad_mu_veto
+  //~~~    && m_pass_cosmic_mu_veto
+  //~~~    && m_pass_hfor
+  //~~~    && m_pass_mc_overlap
+  //~~~    && m_pass_ge_2_lep
+  //~~~    // && m_pass_2_lep
+  //~~~    && m_pass_signal_lep
+  //~~~    && m_pass_os
+  //~~~    && m_pass_trigger
+  //~~~    && m_pass_ge_2_b_jet
+  //~~~    // && m_pass_eq_2_b_jet
+  //~~~    && m_pass_bl_pairing
+  //~~~    && m_pass_z_veto
+  //~~~    ) {
+  //~~~   fillHistHandles( PennSusyFrame::BMINUSL_HIST_ZVETO
+  //~~~                  , m_bl_0
+  //~~~                  , m_bl_1
+  //~~~                  , m_event_weight
+  //~~~                  );
+  //~~~ }
+
+  //~~~ // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //~~~ // fill histograms in signal regions (and N-1 plots)
+  //~~~ // first, do a baseline cut
+  //~~~ if (  m_pass_grl
+  //~~~    && m_pass_incomplete_event
+  //~~~    && m_pass_lar_error
+  //~~~    && m_pass_tile_error
+  //~~~    && m_pass_tile_hot_spot
+  //~~~    && m_pass_tile_trip
+  //~~~    && m_pass_bad_jet_veto
+  //~~~    && m_pass_calo_problem_jet
+  //~~~    && m_pass_primary_vertex
+  //~~~    && m_pass_bad_mu_veto
+  //~~~    && m_pass_cosmic_mu_veto
+  //~~~    && m_pass_hfor
+  //~~~    && m_pass_mc_overlap
+  //~~~    && m_pass_ge_2_lep
+  //~~~    // && m_pass_2_lep
+  //~~~    && m_pass_signal_lep
+  //~~~    && m_pass_os
+  //~~~    && m_pass_trigger
+  //~~~    && m_pass_ge_2_b_jet
+  //~~~    // && m_pass_eq_2_b_jet
+  //~~~    && m_pass_bl_pairing
+  //~~~    // && m_pass_z_veto
+  //~~~    ) {
+  //~~~   double mbl_asym = (m_bl_0->getMbl() - m_bl_1->getMbl()) / (m_bl_0->getMbl() + m_bl_1->getMbl());
+  //~~~   double ht       = m_event_quantities.getHtSignal() / 1.e3;
+  //~~~   double met_sig  = m_met.getMetSigSignal();
+
+  //~~~   bool pass_mbl_3     = (mbl_asym < 0.30 );
+  //~~~   bool pass_mbl_6     = (mbl_asym < 0.60 );
+
+  //~~~   bool pass_met_sig_7 = (met_sig  < 7. );
+
+  //~~~   bool pass_ht_500 = (ht > 500.0 );
+  //~~~   bool pass_ht_600 = (ht > 600.0 );
+  //~~~   bool pass_ht_700 = (ht > 700.0 );
+
+  //~~~   // -------------------------------------------------------------------------
+  //~~~   // - Fill histograms for SR (don't fill for data if we are blind!)
+  //~~~   // -------------------------------------------------------------------------
+  //~~~   if ( !m_is_data || !m_is_blind ) {
+  //~~~     // all signal regions use z-veto
+  //~~~     if (m_pass_z_veto) {
+  //~~~       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //~~~       if (pass_mbl_6) {
+  //~~~         fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~       }
+
+  //~~~       if (pass_met_sig_7) {
+  //~~~         fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MET_7 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~       }
+
+  //~~~       if (pass_mbl_6 && pass_met_sig_7) {
+  //~~~         fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6_MET_7 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~       }
+
+  //~~~       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //~~~       if (pass_mbl_6 && pass_met_sig_7 && pass_ht_500) {
+  //~~~         fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6_MET_7_HT_500 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~       }
+  //~~~       if (pass_mbl_6 && pass_met_sig_7 && pass_ht_600) {
+  //~~~         fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6_MET_7_HT_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~       }
+  //~~~       if (pass_mbl_6 && pass_met_sig_7 && pass_ht_700) {
+  //~~~         fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR_MBL_6_MET_7_HT_700 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~       }
+  //~~~     }
+  //~~~   }
+
+  //~~~   // -------------------------------------------------------------------------
+  //~~~   // - Fill histograms for CR
+  //~~~   // -------------------------------------------------------------------------
+  //~~~   // all control regions use z-veto
+  //~~~   if (m_pass_z_veto) {
+  //~~~     if (pass_mbl_6 && !pass_met_sig_7 && !pass_ht_600) {
+  //~~~       fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_MBL_6_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~     }
+  //~~~     if (!pass_mbl_6 && !pass_met_sig_7 && !pass_ht_600) {
+  //~~~       fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_MBL_REV_6_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~     }
+  //~~~     if (!pass_mbl_3 && !pass_met_sig_7 && !pass_ht_600) {
+  //~~~       fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_MBL_REV_3_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~     }
+  //~~~   }
+
+  //~~~   // -------------------------------------------------------------------------
+  //~~~   // - Fill histograms for VR
+  //~~~   // -------------------------------------------------------------------------
+  //~~~   if (!m_pass_z_veto && pass_mbl_6 && !pass_met_sig_7 && !pass_ht_600) {
+  //~~~     fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_Z_REV_MBL_6_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~   }
+  //~~~   if (!m_pass_z_veto && !pass_mbl_6 && !pass_met_sig_7 && !pass_ht_600) {
+  //~~~     fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_Z_REV_MBL_REV_6_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~   }
+  //~~~   if (!m_pass_z_veto && !pass_mbl_3 && !pass_met_sig_7 && !pass_ht_600) {
+  //~~~     fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_Z_REV_MBL_REV_3_MET_REV_7_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~   }
+
+  //~~~   if (!pass_ht_600) {
+  //~~~     fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~   }
+  //~~~   if (!m_pass_z_veto && !pass_ht_600) {
+  //~~~     fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_Z_REV_HT_REV_600 , m_bl_0 , m_bl_1 , m_event_weight);
+  //~~~   }
+  //~~~ }
 
   // -------------------------------------------------------------------------
   // - count number of events passing various cuts
@@ -732,6 +782,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
     }
 
     m_bminusl_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
+    m_weight_histogram_handler.at( hist_level)->write(hist_dir_cut_level);
     if (m_do_detailed_bl_hists) {
       m_bminusl_detailed_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
     }
@@ -1124,7 +1175,8 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_SELECTED)));
+    // m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_truth_match_tool.prep(m_mc_truth);
@@ -1321,6 +1373,15 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                            , m_mc_truth
                                                            , weight
                                                            );
+    m_weight_histogram_handler.at(hist_level)->FillSpecial( m_event
+                                                          , m_xsec_weight
+                                                          , m_mc_event_weight
+                                                          , m_pile_up_sf
+                                                          , m_lepton_sf
+                                                          , m_btag_sf
+                                                          , m_ttbar_pt_weight
+                                                          , weight
+                                                          );
 
     // if flagged, fill detailed b-l histograms
     if (m_do_detailed_bl_hists) {
