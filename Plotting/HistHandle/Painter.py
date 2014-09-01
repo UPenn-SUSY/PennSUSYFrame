@@ -84,21 +84,24 @@ class HistPainter(object):
 
         # add numerator
         if self.num_merger is not None:
-            for key in self.num_merger.hist_handles:
+            # for key in self.num_merger.hist_handles:
+            for key in self.num_merger.hist_handles_keys:
                 hist_list.append(self.num_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
                 draw_opt_list.append(self.num_draw_option)
 
         # add denominator
         if self.denom_merger is not None:
-            for key in self.denom_merger.hist_handles:
+            # for key in self.denom_merger.hist_handles:
+            for key in self.denom_merger.hist_handles_keys:
                 hist_list.append(self.denom_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
                 draw_opt_list.append('HIST')
 
         # if there are others to add, add them now
         if self.other_merger is not None:
-            for key in self.other_merger.hist_handles:
+            # for key in self.other_merger.hist_handles:
+            for key in self.other_merger.hist_handles_keys:
                 hist_list.append(self.other_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
                 draw_opt_list.append('HIST')
@@ -119,7 +122,6 @@ class HistPainter(object):
         """
         Generate histogram with the number of entries per component
         """
-        print 'genEntriesHists()'
         label_list  = []
         num_entries = []
         fill_colors = []
@@ -128,7 +130,6 @@ class HistPainter(object):
         line_styles = []
 
         # get entries for numerator
-        print 'finding hist entries for numerator'
         findHistEntries( self.num_merger
                        , label_list
                        , num_entries
@@ -139,7 +140,6 @@ class HistPainter(object):
                        );
 
         # get entries for denominator
-        print 'finding hist entries for denominator'
         findHistEntries( self.denom_merger
                        , label_list
                        , num_entries
@@ -150,7 +150,6 @@ class HistPainter(object):
                        );
 
         # get entries for other
-        print 'finding hist entries for others'
         if self.other_merger is not None:
             findHistEntries( self.other_merger
                            , label_list
@@ -162,11 +161,9 @@ class HistPainter(object):
                            );
 
         num_handles = len(label_list)
-        print 'Number of handles to add to entry histogram: %s' % num_handles
 
         entry_hists = []
         for it in xrange(num_handles):
-            print '\tit: %s' % it
             tmp_hist = ROOT.TH1D( 'entry_hist__%s' % (''.join(random.choice(string.ascii_lowercase) for x in xrange(5)))
                                 , 'num_entries'
                                 , num_handles + 2
@@ -182,9 +179,6 @@ class HistPainter(object):
             tmp_hist.Fill(it, num_entries[it])
 
             for bin_it in xrange(num_handles):
-                print 'bin: %s' % bin_it
-                print '  label:   %s' % label_list[bin_it]
-                print '  entries: %s' % num_entries[bin_it]
                 tmp_hist.GetXaxis().SetBinLabel(bin_it+1, label_list[bin_it])
 
             entry_hists.append(tmp_hist)
@@ -196,7 +190,6 @@ class HistPainter(object):
         """
         Generate histogram with the number of entries per component
         """
-        print 'genRawEntriesHists()'
         label_list  = []
         num_entries = []
         fill_colors = []
@@ -205,7 +198,6 @@ class HistPainter(object):
         line_styles = []
 
         # get raw entries for numerator
-        print 'finding hist raw entries for numerator'
         findHistRawEntries( self.num_merger
                           , label_list
                           , num_entries
@@ -216,7 +208,6 @@ class HistPainter(object):
                           );
 
         # get raw entries for denominator
-        print 'finding hist raw entries for denominator'
         findHistRawEntries( self.denom_merger
                           , label_list
                           , num_entries
@@ -227,7 +218,6 @@ class HistPainter(object):
                           );
 
         # get raw entries for other
-        print 'finding hist raw entries for others'
         if self.other_merger is not None:
             findHistRawEntries( self.other_merger
                               , label_list
@@ -239,11 +229,9 @@ class HistPainter(object):
                               );
 
         num_handles = len(label_list)
-        print 'Number of handles to add to entry histogram: %s' % num_handles
 
         raw_entry_hists = []
         for it in xrange(num_handles):
-            print '\tit: %s' % it
             tmp_hist = ROOT.TH1D( 'entry_hist__%s' % (''.join(random.choice(string.ascii_lowercase) for x in xrange(5)))
                                 , 'num_raw_entries'
                                 , num_handles + 2
@@ -259,9 +247,6 @@ class HistPainter(object):
             tmp_hist.Fill(it, num_entries[it])
 
             for bin_it in xrange(num_handles):
-                print 'bin: %s' % bin_it
-                print '  label:   %s' % label_list[bin_it]
-                print '  raw entries: %s' % num_entries[bin_it]
                 tmp_hist.GetXaxis().SetBinLabel(bin_it+1, label_list[bin_it])
 
             raw_entry_hists.append(tmp_hist)
@@ -591,7 +576,7 @@ def pileHists( hist_list
     if not isinstance(hist_list, list):
         hist_list = [hist_list]
     if draw_opt_list == hh.default:
-        print 'setting the default draw options'
+        # setting the default draw options
         draw_opt_list = ['P']*len(hist_list)
 
     # create canvas
@@ -599,7 +584,7 @@ def pileHists( hist_list
         canvas_options = hh.Objects.canv_linear
     c = canvas_options.create(name)
 
-    # print 'about to set min/max:'
+    # set min/max
     setMin(hist_list, canvas_options.log_y, y_min)
     setMax(hist_list, canvas_options.log_y, y_max)
 
@@ -697,7 +682,6 @@ def calcMax(hist_list, log_y = True):
                               )
                             )
         else:
-            # print 'y_max = 1 (default)'
             y_max = 1
     else:
         y_max += (y_max - y_min)*0.30
