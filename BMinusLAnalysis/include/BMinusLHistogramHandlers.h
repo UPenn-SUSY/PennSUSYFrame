@@ -278,7 +278,34 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_lep_sf;
       std::vector<TH1F*> m_h_btag_sf;
       std::vector<TH1F*> m_h_ttbar_pt_weight;
+      std::vector<TH1F*> m_h_all_but_cross_section_weight;
       std::vector<TH1F*> m_h_total_weight;
+  };
+
+  // =============================================================================
+  // = parent Hists
+  // =============================================================================
+  class ParentHists : public HistogramHandler
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      ParentHists(std::string name_tag = "");
+      virtual ~ParentHists();
+
+      virtual void FillSpecial( const PennSusyFrame::Event& event
+                              , const PennSusyFrame::blPair&
+                              , const PennSusyFrame::blPair&
+                              , const PennSusyFrame::MCTruth&
+                              , float weight
+                              );
+      virtual void write(TDirectory*);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::vector<TH1F*> m_h_parentid_all;
+      std::vector<TH1F*> m_h_parentid_0;
+      std::vector<TH1F*> m_h_parentid_1;
+      std::vector<TH1F*> m_h_ptz_truth;
   };
 }
 

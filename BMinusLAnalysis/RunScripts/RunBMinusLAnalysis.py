@@ -110,7 +110,7 @@ def runBMinusLAnalysis( file_list
 
     print 'configuring BMinusLAnalysis object'
     if out_file_special_name is not None:
-        bmla.setProcessLabel(out_file_special_name)
+        bmla.setProcessLabel(out_file_special_name + '__%d_of_%d' % (job_num, total_num_jobs) )
     bmla.setFancyProgressBar(False)
 
     # set is data or MC
@@ -189,6 +189,8 @@ def runBMinusLAnalysis( file_list
     # print 'set cuts'
     lep_pt_cut = 40.e3
     jet_pt_cut = 40.e3
+    # lep_pt_cut = 20.e3
+    # jet_pt_cut = 20.e3
     bmla.setElPtCut(  lep_pt_cut, -1     )
     bmla.setMuPtCut(  lep_pt_cut, -1     )
     bmla.setBJetPtCut(jet_pt_cut, -1     )

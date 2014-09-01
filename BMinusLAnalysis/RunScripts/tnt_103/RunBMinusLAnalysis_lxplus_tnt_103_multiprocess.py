@@ -46,6 +46,11 @@ if __name__ == '__main__':
                           , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':10}
                           , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':8 }
                           , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':15}
+                          , 'periodG_egamma':{'label':'periodG_egamma', 'num_jobs':15}
+                          , 'periodH_egamma':{'label':'periodH_egamma', 'num_jobs':15}
+                          , 'periodI_egamma':{'label':'periodI_egamma', 'num_jobs':15}
+                          , 'periodJ_egamma':{'label':'periodJ_egamma', 'num_jobs':15}
+                          , 'periodL_egamma':{'label':'periodL_egamma', 'num_jobs':15}
                           }
     muon_data_samples = {
                           'periodA_muon':{'label':'periodA_muon', 'num_jobs':5 }
@@ -53,8 +58,32 @@ if __name__ == '__main__':
                         , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':10}
                         , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':8 }
                         , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':15}
+                        , 'periodG_muon':{'label':'periodG_muon', 'num_jobs':15}
+                        , 'periodH_muon':{'label':'periodH_muon', 'num_jobs':15}
+                        , 'periodI_muon':{'label':'periodI_muon', 'num_jobs':15}
+                        , 'periodJ_muon':{'label':'periodJ_muon', 'num_jobs':15}
+                        , 'periodL_muon':{'label':'periodL_muon', 'num_jobs':15}
                         }
     full_sim_mc_samples = {
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                            173045:{'label':'173045.Sherpa_CT10_DYtautauM08to15' , 'num_jobs':10}
+                          , 173046:{'label':'173046.Sherpa_CT10_DYtautauM15to40' , 'num_jobs':10}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 119353:{'label':'119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW'   , 'num_jobs':1}
+                          , 119354:{'label':'119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj'  , 'num_jobs':1}
+                          , 119355:{'label':'119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ'   , 'num_jobs':1}
+                          , 119356:{'label':'119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj'  , 'num_jobs':1}
+                          , 119583:{'label':'119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW' , 'num_jobs':1}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 160655:{'label':'160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'        , 'num_jobs':1}
+                          , 160705:{'label':'160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'       , 'num_jobs':1}
+                          , 160755:{'label':'160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'            , 'num_jobs':1}
+                          , 160805:{'label':'160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu'            , 'num_jobs':1}
+                          , 161005:{'label':'161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5'  , 'num_jobs':1}
+                          , 161055:{'label':'161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5' , 'num_jobs':1}
+                          , 161105:{'label':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'              , 'num_jobs':1}
+                          , 161155:{'label':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'              , 'num_jobs':1}
+                          , 161305:{'label':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'num_jobs':1}
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -142,27 +171,6 @@ if __name__ == '__main__':
 
                           , 173043:{'label':'173043.Sherpa_CT10_DYmumuM08to15'   , 'num_jobs':10}
                           , 173044:{'label':'173044.Sherpa_CT10_DYmumuM15to40'   , 'num_jobs':10}
-
-                          , 173045:{'label':'173045.Sherpa_CT10_DYtautauM08to15' , 'num_jobs':10}
-                          , 173046:{'label':'173046.Sherpa_CT10_DYtautauM15to40' , 'num_jobs':10}
-
-                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 119353:{'label':'119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW'   , 'num_jobs':1}
-                          , 119354:{'label':'119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj'  , 'num_jobs':1}
-                          , 119355:{'label':'119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ'   , 'num_jobs':1}
-                          , 119356:{'label':'119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj'  , 'num_jobs':1}
-                          , 119583:{'label':'119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW' , 'num_jobs':1}
-
-                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 160655:{'label':'160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'        , 'num_jobs':1}
-                          , 160705:{'label':'160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'       , 'num_jobs':1}
-                          , 160755:{'label':'160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'            , 'num_jobs':1}
-                          , 160805:{'label':'160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu'            , 'num_jobs':1}
-                          , 161005:{'label':'161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5'  , 'num_jobs':1}
-                          , 161055:{'label':'161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5' , 'num_jobs':1}
-                          , 161105:{'label':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'              , 'num_jobs':1}
-                          , 161155:{'label':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'              , 'num_jobs':1}
-                          , 161305:{'label':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'num_jobs':1}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}

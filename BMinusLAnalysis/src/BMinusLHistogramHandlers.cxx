@@ -5,6 +5,7 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/Calculators.h"
 #include "PennSusyFrameCore/include/TruthMatchTools.h"
+#include "PennSusyFrameCore/include/EventSelectors.h"
 
 #include "TFile.h"
 #include "TDirectory.h"
@@ -30,6 +31,10 @@ static const float mbl_max  = 1200.;
 
 static const int   mbl_coarse_bins = 4;
 static const float mbl_bin_edges[mbl_coarse_bins+1] = {0, 100, 300, 500, 1200};
+
+static const int   ptll_bins = 60;
+static const float ptll_min  = 0.;
+static const float ptll_max  = 1200.;
 
 // TODO use these variable bin widths to set mbl histogram -- need to get weights in each bin correct first
 // const std::vector<float> mbl_bin_edges[mbl_bins] = generateLogBinning( mbl_min
@@ -73,9 +78,13 @@ static const int resolution_bins = 40;
 static const float resolution_min = 0.;
 static const float resolution_max = 2000.;
 
-static const int   weight_bins = 100;
-static const float weight_min  = 0.;
-static const float weight_max  = 2.;
+static const int   weight_bins = 200;
+static const float weight_min  = -1.;
+static const float weight_max  = 3.;
+
+static const int   parent_id_bins = 200;
+static const float parent_id_max  = parent_id_bins/2;
+static const float parent_id_min  = -parent_id_max;
 
 // =============================================================================
 PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
@@ -2695,6 +2704,18 @@ PennSusyFrame::WeightHists::WeightHists(std::string name_tag)
                                            , weight_bins, weight_min, weight_max
                                            )
                                  );
+    m_h_all_but_cross_section_weight.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                          + "__weights__all_but_cross_section_weight"
+                                                          + "__"
+                                                          + name_tag
+                                                          ).c_str()
+                                                        , ( "all weight but cross section - "
+                                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                          + " ; weight ; Entries"
+                                                          ).c_str()
+                                                        , weight_bins, weight_min, weight_max
+                                                        )
+                                              );
     m_h_total_weight.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + "__weights__total_weight"
                                           + "__"
@@ -2735,20 +2756,29 @@ void PennSusyFrame::WeightHists::FillSpecial( const PennSusyFrame::Event& event
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
-    m_h_cross_section_weight.at(fc_it)->Fill(cross_section_weight, weight);
-    m_h_mc_event_weight.at(     fc_it)->Fill(mc_event_weight, weight);
-    m_h_pile_up_weight.at(      fc_it)->Fill(pile_up_weight , weight);
-    m_h_lep_sf.at(              fc_it)->Fill(lep_sf         , weight);
-    m_h_btag_sf.at(             fc_it)->Fill(btag_sf        , weight);
-    m_h_ttbar_pt_weight.at(     fc_it)->Fill(ttbar_pt_weight, weight);
-    m_h_total_weight.at(        fc_it)->Fill( ( mc_event_weight
-                                              * pile_up_weight
-                                              * lep_sf
-                                              * btag_sf
-                                              * ttbar_pt_weight
-                                              )
-                                            , weight
-                                            );
+    m_h_cross_section_weight.at(        fc_it)->Fill(cross_section_weight/*, weight*/);
+    m_h_mc_event_weight.at(             fc_it)->Fill(mc_event_weight     /*, weight*/);
+    m_h_pile_up_weight.at(              fc_it)->Fill(pile_up_weight      /*, weight*/);
+    m_h_lep_sf.at(                      fc_it)->Fill(lep_sf              /*, weight*/);
+    m_h_btag_sf.at(                     fc_it)->Fill(btag_sf             /*, weight*/);
+    m_h_ttbar_pt_weight.at(             fc_it)->Fill(ttbar_pt_weight     /*, weight*/);
+    m_h_all_but_cross_section_weight.at(fc_it)->Fill( ( mc_event_weight
+                                                      * pile_up_weight
+                                                      * lep_sf
+                                                      * btag_sf
+                                                      * ttbar_pt_weight
+                                                      )
+                                                    // , weight
+                                                    );
+    m_h_total_weight.at(                fc_it)->Fill( ( mc_event_weight
+                                                      * pile_up_weight
+                                                      * lep_sf
+                                                      * btag_sf
+                                                      * ttbar_pt_weight
+                                                      * cross_section_weight
+                                                      )
+                                                    // , weight
+                                                    );
   }
 }
 
@@ -2768,5 +2798,128 @@ void PennSusyFrame::WeightHists::write(TDirectory* d)
     m_h_btag_sf.at(             fc_it)->Write();
     m_h_ttbar_pt_weight.at(     fc_it)->Write();
     m_h_total_weight.at(        fc_it)->Write();
+  }
+}
+
+// =============================================================================
+PennSusyFrame::ParentHists::ParentHists(std::string name_tag)
+{
+  TH1::SetDefaultSumw2(true);
+
+  // loop over all flavor channels
+  for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize histograms
+    m_h_parentid_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_parent_pdgid_all"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "lepton parent pdgid - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; lepton parent pdgid ; Entries"
+                                          ).c_str()
+                                        , parent_id_bins, parent_id_min, parent_id_max
+                                        )
+                              );
+
+    m_h_parentid_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_parent_pdgid_0"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "lepton parent pdgid - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; lepton 0 parent pdgid ; Entries"
+                                          ).c_str()
+                                        , parent_id_bins, parent_id_min, parent_id_max
+                                        )
+                              );
+
+    m_h_parentid_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_parent_pdgid_1"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "lepton parent pdgid - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; lepton 1 parent pdgid ; Entries"
+                                          ).c_str()
+                                        , parent_id_bins, parent_id_min, parent_id_max
+                                        )
+                              );
+
+    m_h_ptz_truth.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__ptz_truth"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "truth ptz - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; truth ptz [GeV] ; Entries"
+                                       ).c_str()
+                                     , ptll_bins, ptll_min, ptll_max
+                                     )
+                           );
+  }
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::ParentHists::~ParentHists()
+{}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ParentHists::FillSpecial( const PennSusyFrame::Event& event
+                                            , const PennSusyFrame::blPair& bl_0
+                                            , const PennSusyFrame::blPair& bl_1
+                                            , const PennSusyFrame::MCTruth& mc_truth
+                                            , float weight
+                                            )
+{
+  FLAVOR_CHANNEL fc = event.getFlavorChannel();
+
+  if (fc == FLAVOR_NONE) {
+    return;
+  }
+
+  PennSusyFrame::Lepton* lep_0 = bl_0.getLepton();
+  PennSusyFrame::Lepton* lep_1 = bl_1.getLepton();
+
+  if (lep_0 == NULL || lep_1 == NULL) return;
+
+  int lep_parent_index_0 = getLeptonParentIndex(lep_0, mc_truth);
+  int lep_parent_index_1 = getLeptonParentIndex(lep_1, mc_truth);
+  if (lep_parent_index_0 < 0 || lep_parent_index_1 < 0) return;
+
+  int lep_parent_pdgid_0 = mc_truth.getPdgId()->at(lep_parent_index_0);
+  int lep_parent_pdgid_1 = mc_truth.getPdgId()->at(lep_parent_index_1);
+
+  float truth_ptz = PennSusyFrame::findTruthLevelZPt(mc_truth)/1000.;
+
+  // loop over all flavor channels
+  for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
+
+    m_h_parentid_all.at(fc_it)->Fill(lep_parent_pdgid_0, weight);
+    m_h_parentid_all.at(fc_it)->Fill(lep_parent_pdgid_1, weight);
+    m_h_parentid_0.at(  fc_it)->Fill(lep_parent_pdgid_0, weight);
+    m_h_parentid_1.at(  fc_it)->Fill(lep_parent_pdgid_1, weight);
+    m_h_ptz_truth.at(   fc_it)->Fill(truth_ptz         , weight);
+  }
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::ParentHists::write(TDirectory* d)
+{
+  d->cd();
+
+  // loop over all flavor channels
+  for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // write histograms
+    m_h_parentid_all.at(fc_it)->Write();
+    m_h_parentid_0.at(fc_it)->Write();
+    m_h_parentid_1.at(fc_it)->Write();
+    m_h_ptz_truth.at( fc_it)->Write();
   }
 }

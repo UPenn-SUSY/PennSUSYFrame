@@ -326,8 +326,21 @@ bool PennSusyFrame::passSherpaDYOverlapRemoval( const PennSusyFrame::MCTruth& mc
 }
 
 // -----------------------------------------------------------------------------
+// TODO move to calculators
 float PennSusyFrame::findTruthLevelZPt(const PennSusyFrame::MCTruth& mc_truth)
 {
+  // only do this for sherpa Z or sherpa dy samples
+  unsigned int dsid = mc_truth.getChannelNumber();
+  bool is_sherpa_z_massivecb = (  ( dsid >= 167749 && dsid <= 167757)
+                               || ( dsid >= 167797 && dsid <= 167805)
+                               || ( dsid >= 167809 && dsid <= 167817)
+                               || ( dsid >= 167821 && dsid <= 167829)
+                               || ( dsid >= 167833 && dsid <= 167841)
+                               || ( dsid >= 180543 && dsid <= 180551)
+                               || ( dsid >= 173041 && dsid <= 173046)
+                               );
+  if (!is_sherpa_z_massivecb) return -1;
+
   // vector to hold lepton daughters of the Z
   std::vector<unsigned int> daughter_l_index;
 
@@ -393,11 +406,11 @@ float PennSusyFrame::findTruthLevelZPt(const PennSusyFrame::MCTruth& mc_truth)
     return (tlv_0 + tlv_1).Pt();
   }
 
-  std::cout << "num leptons from z: " << daughter_l_index.size() << "\n";
+  // std::cout << "num leptons from z: " << daughter_l_index.size() << "\n";
   if (daughter_l_index.size() != 2) {
-    std::cout << "WARNING!!! Number of leptons from Z is not 2!!!\n";
+    std::cout << "WARNING!!! Number of leptons from Z is not 2!!! -- dsid: " << dsid << "\n";
   }
-  std::cout << "\n\n";
+  // std::cout << "\n\n";
 
   return 0;
 }

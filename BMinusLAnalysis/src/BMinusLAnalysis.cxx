@@ -116,10 +116,11 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
 
   // EL_SIGNAL
   m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_MEDPP);
+  // m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
   // m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, -1);
-  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.2);
+  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.1);
   m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, -1);
 
   // MU_BASELINE
@@ -131,7 +132,7 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
   // m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, -1);
-  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.2);
+  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.1);
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, -1);
 
   // JET_B
@@ -147,6 +148,17 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
 void PennSusyFrame::BMinusLAnalysis::beginRun()
 {
   PennSusyFrameCore::beginRun();
+
+  // // TMP-BJ
+  // std::cout << "================================================================================\n";
+  // std::string out_file_all_name               = ("EVENT_LIST.all."+m_process_label+".txt");
+  // std::string out_file_pass_name              = ("EVENT_LIST.pass."+m_process_label+".txt");
+  // std::string out_file_pass_plus_trigger_name = ("EVENT_LIST.pass_plus_trigger."+m_process_label+".txt");
+  // std::cout << "making file for all event lists:  " << out_file_all_name  << "\n";
+  // std::cout << "making file for pass event lists: " << out_file_pass_name << "\n";
+  // fout_all_events.open( out_file_all_name.c_str() );
+  // fout_pass_events.open(out_file_pass_name.c_str());
+  // fout_pass_plus_trigger_events.open(out_file_pass_plus_trigger_name.c_str());
 
   // prepare selection
   prepareSelection();
@@ -166,6 +178,7 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 
     m_bminusl_histogram_handler.push_back(         new PennSusyFrame::BMinusLHists(        PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
     m_weight_histogram_handler.push_back(          new PennSusyFrame::WeightHists(         PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
+    m_parent_histogram_handler.push_back(          new PennSusyFrame::ParentHists(         PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
     if (m_do_detailed_bl_hists) {
       m_bminusl_detailed_histogram_handler.push_back(new PennSusyFrame::BMinusLDetailedHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
     }
@@ -222,6 +235,9 @@ void PennSusyFrame::BMinusLAnalysis::initializeEvent()
 void PennSusyFrame::BMinusLAnalysis::processEvent()
 {
   initializeEvent();
+
+  // // TMP-BJ
+  // fout_all_events << "Run number: " << m_event.getRunNumber() << " -- Event number: " << m_event.getEventNumber() << "\n";
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Fill cutflow trackers for "all events"
@@ -351,13 +367,19 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   if (m_crit_cut_ge_2_lep && !m_pass_ge_2_lep) return;
   fillTrackers(BMINUSL_CUT_GE_2_BASELINE_LEPTONS);
 
+  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // // >= 2 baseline leptons cut
+  // m_pass_2_lep = (num_good_leptons == 2);
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // get number of signal leptons
   int num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // == 2 signal lepton cut
+  // TODO switch these lins back
   m_pass_signal_lep = (num_signal_leptons >= 2);
+  // m_pass_signal_lep = (num_signal_leptons == 2);
   m_pass_event = (m_pass_event && m_pass_signal_lep);
   if (m_crit_cut_signal_lep && !m_pass_signal_lep) return;
   fillTrackers(BMINUSL_CUT_GE_2_SIGNAL_LEPTON);
@@ -493,6 +515,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_signal_lep
      && m_pass_os
      && m_pass_trigger
+     && m_pass_phase
      && m_pass_ge_2_b_jet
      // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
@@ -523,11 +546,53 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_signal_lep
      && m_pass_os
      // && m_pass_trigger
+     && !m_pass_phase
      && m_pass_ge_2_b_jet
      // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
      // && m_pass_z_veto
      ) {
+       std::cout  << m_process_label
+                  << " -- Run number: " << m_event.getRunNumber()
+                  << " -- Event number: " << m_event.getEventNumber()
+                  << " -- flavor channel: " << m_event.getFlavorChannel()
+                  << " -- phase channel: " << m_event.getPhaseSpace()
+                  << " -- EVENT IN INVALID PHASE SPACE FOR THIS STREAM"
+                  << "\n";
+     }
+
+  if (  m_pass_grl
+     && m_pass_incomplete_event
+     && m_pass_lar_error
+     && m_pass_tile_error
+     && m_pass_tile_hot_spot
+     && m_pass_tile_trip
+     && m_pass_bad_jet_veto
+     && m_pass_calo_problem_jet
+     && m_pass_primary_vertex
+     && m_pass_bad_mu_veto
+     && m_pass_cosmic_mu_veto
+     && m_pass_hfor
+     && m_pass_mc_overlap
+     && m_pass_ge_2_lep
+     // && m_pass_2_lep
+     && m_pass_signal_lep
+     && m_pass_os
+     // && m_pass_trigger
+     && m_pass_phase
+     && m_pass_ge_2_b_jet
+     // && m_pass_eq_2_b_jet
+     && m_pass_bl_pairing
+     // && m_pass_z_veto
+     ) {
+    // // TMP-BJ
+    // fout_pass_events << "Run number: " << m_event.getRunNumber()
+    //                  << " -- Event number: " << m_event.getEventNumber()
+    //                  << " -- flavor channel: " << m_event.getFlavorChannel()
+    //                  << " -- phase channel: " << m_event.getPhaseSpace()
+    //                  << "\n";
+
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_0__btag_0__ttbar_0__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (1.          ) * (1.         ) * (1.       ) * (1.               ) );
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (1.       ) * (1.               ) );
     // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_1__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (1.       ) * (m_ttbar_pt_weight) );
     // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_1__ttbar_0__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (m_btag_sf) * (1.               ) );
@@ -536,8 +601,16 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_0__ttbar_1__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (1.       ) * (m_ttbar_pt_weight) );
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_0__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (m_btag_sf) * (1.               ) );
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (m_btag_sf) * (m_ttbar_pt_weight) );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_1__btag_1__ttbar_1__trig_0, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (1.          ) * (m_lepton_sf) * (m_btag_sf) * (m_ttbar_pt_weight) );
 
     if (m_pass_trigger) {
+      // // TMP-BJ
+      // fout_pass_plus_trigger_events << "Run number: " << m_event.getRunNumber()
+      //                               << " -- Event number: " << m_event.getEventNumber()
+      //                               << " -- flavor channel: " << m_event.getFlavorChannel()
+      //                               << " -- phase channel: " << m_event.getPhaseSpace()
+      //                               << "\n";
+
       // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (1.       ) * (1.               ) );
       // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_1__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (1.       ) * (m_ttbar_pt_weight) );
       // fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_1__ttbar_0__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (1.         ) * (m_btag_sf) * (1.               ) );
@@ -546,6 +619,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
       fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_0__ttbar_1__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (1.       ) * (m_ttbar_pt_weight) );
       fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_0__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (m_btag_sf) * (1.               ) );
       fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (m_pile_up_sf) * (m_lepton_sf) * (m_btag_sf) * (m_ttbar_pt_weight) );
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_1__btag_1__ttbar_1__trig_1, m_bl_0, m_bl_1, (m_xsec_weight) * (m_mc_event_weight) * (1.          ) * (m_lepton_sf) * (m_btag_sf) * (m_ttbar_pt_weight) );
     }
   }
 
@@ -763,6 +837,11 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::finalizeRun()
 {
+  // // TMP-BJ
+  // fout_all_events.close();
+  // fout_pass_events.close();
+  // fout_pass_plus_trigger_events.close();
+
   std::cout << "BMinusLAnalysis::finalizeRun()\n";
   std::cout << "creating output histogram file\n";
   TFile out_hist_file(m_out_hist_file_name.c_str(), "RECREATE");
@@ -783,6 +862,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
 
     m_bminusl_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
     m_weight_histogram_handler.at( hist_level)->write(hist_dir_cut_level);
+    m_parent_histogram_handler.at( hist_level)->write(hist_dir_cut_level);
     if (m_do_detailed_bl_hists) {
       m_bminusl_detailed_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
     }
@@ -1048,18 +1128,18 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
                       );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // TODO can we remove this?
-  std::vector<PennSusyFrame::Jet*> central_jets;
-  central_jets.reserve(m_jets.num(JET_LIGHT) + m_jets.num(JET_B));
-  central_jets.insert( central_jets.end()
-                     , m_jets.getCollection(JET_LIGHT)->begin()
-                     , m_jets.getCollection(JET_LIGHT)->end()
-                     );
-  central_jets.insert( central_jets.end()
-                     , m_jets.getCollection(JET_B)->begin()
-                     , m_jets.getCollection(JET_B)->end()
-                     );
-  m_jets.setCollection(JET_ALL_CENTRAL, central_jets);
+  // // TODO can we remove this?
+  // std::vector<PennSusyFrame::Jet*> central_jets;
+  // central_jets.reserve(m_jets.num(JET_LIGHT) + m_jets.num(JET_B));
+  // central_jets.insert( central_jets.end()
+  //                    , m_jets.getCollection(JET_LIGHT)->begin()
+  //                    , m_jets.getCollection(JET_LIGHT)->end()
+  //                    );
+  // central_jets.insert( central_jets.end()
+  //                    , m_jets.getCollection(JET_B)->begin()
+  //                    , m_jets.getCollection(JET_B)->end()
+  //                    );
+  // m_jets.setCollection(JET_ALL_CENTRAL, central_jets);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // get objects which are selected for this analysis
@@ -1382,6 +1462,14 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                           , m_ttbar_pt_weight
                                                           , weight
                                                           );
+    if (!m_is_data) {
+      m_parent_histogram_handler.at(hist_level)->FillSpecial( m_event
+                                                            , *bl_0
+                                                            , *bl_1
+                                                            , m_mc_truth
+                                                            , weight
+                                                            );
+    }
 
     // if flagged, fill detailed b-l histograms
     if (m_do_detailed_bl_hists) {

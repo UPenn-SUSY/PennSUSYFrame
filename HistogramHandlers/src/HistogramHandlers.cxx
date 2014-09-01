@@ -16,9 +16,9 @@ static const int   mt2_bins = 50;
 static const float mt2_min  = 0.;
 static const float mt2_max  = 500.;
 
-static const int   ptll_bins = 50;
+static const int   ptll_bins = 60;
 static const float ptll_min  = 0.;
-static const float ptll_max  = 2000.;
+static const float ptll_max  = 1200.;
 
 static const int   ht_bins = 30;
 static const float ht_min  = 0;
@@ -71,6 +71,22 @@ static const float met_et_max  = 500.;
 static const int   met_sig_bins = 30;
 static const float met_sig_min  = 0;
 static const float met_sig_max  = 30;
+
+static const int   d0_bins = 40;
+static const float d0_max  = 1.;
+static const float d0_min  = -d0_max;
+
+static const int   d0sig_bins = 70;
+static const float d0sig_max  = 3.5;
+static const float d0sig_min  = -d0sig_max;
+
+static const int   z0_bins = 100;
+static const float z0_max  = 2.;
+static const float z0_min  = -z0_max;
+
+static const int   z0sintheta_bins = 120;
+static const float z0sintheta_max  = 1.2;
+static const float z0sintheta_min  = -z0sintheta_max;
 
 // =============================================================================
 PennSusyFrame::HistogramHandler::HistogramHandler(std::string)
@@ -382,6 +398,7 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                                 , pt_bins, pt_min, pt_max
                                 )
                       );
+
     m_h_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__lep_raw_pt_all"
                                     + "__"
@@ -650,6 +667,166 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 						 ,pt_bins, pt_min, pt_max
 						 )
 				       );
+
+    // initialize d0 histograms
+    m_h_d0_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__lep_d0_all"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "d_{0} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; d_{0} [mm] ; Entries"
+                                    ).c_str()
+                                  , d0_bins, d0_min, d0_max
+                                  )
+                        );
+
+    m_h_d0_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_d0_0"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "d_{0}^{0} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; d_{0}^{0} [mm] ; Entries"
+                                  ).c_str()
+                                , d0_bins, d0_min, d0_max
+                                )
+                      );
+
+    m_h_d0_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_d0_1"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "d_{0}^{1} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; d_{0}^{1} [mm] ; Entries"
+                                  ).c_str()
+                                , d0_bins, d0_min, d0_max
+                                )
+                      );
+
+    // initialize d0 significance histograms
+    m_h_d0sig_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__lep_d0sig_all"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "d_{0} - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; d_{0} significance [mm] ; Entries"
+                                       ).c_str()
+                                     , d0sig_bins, d0sig_min, d0sig_max
+                                     )
+                           );
+
+    m_h_d0sig_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_d0sig_0"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "d_{0}^{0} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; d_{0}^{0} significance [mm] ; Entries"
+                                     ).c_str()
+                                   , d0sig_bins, d0sig_min, d0sig_max
+                                   )
+                         );
+
+    m_h_d0sig_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_d0sig_1"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "d_{0}^{1} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; d_{0}^{1} significance [mm] ; Entries"
+                                     ).c_str()
+                                   , d0sig_bins, d0sig_min, d0sig_max
+                                   )
+                         );
+
+    // initialize z0 histograms
+    m_h_z0_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__lep_z0_all"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "d_{0} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; z_{0} [mm] ; Entries"
+                                    ).c_str()
+                                  , z0_bins, z0_min, z0_max
+                                  )
+                        );
+
+    m_h_z0_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_z0_0"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "d_{0}^{0} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; z_{0}^{0} [mm] ; Entries"
+                                  ).c_str()
+                                , z0_bins, z0_min, z0_max
+                                )
+                      );
+
+    m_h_z0_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_z0_1"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "d_{0}^{1} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; z_{0}^{1} [mm] ; Entries"
+                                  ).c_str()
+                                , z0_bins, z0_min, z0_max
+                                )
+                      );
+
+    // initialize z0sin(theta) histograms
+    m_h_z0sintheta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__lep_z0sintheta_all"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "d_{0} - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; z_{0} sin(#theta) [mm] ; Entries"
+                                            ).c_str()
+                                          , z0sintheta_bins, z0sintheta_min, z0sintheta_max
+                                          )
+                                );
+
+    m_h_z0sintheta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_z0sintheta_0"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "d_{0}^{0} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; z_{0}^{0} sin(#theta) [mm] ; Entries"
+                                          ).c_str()
+                                        , z0sintheta_bins, z0sintheta_min, z0sintheta_max
+                                        )
+                              );
+
+    m_h_z0sintheta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_z0sintheta_1"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "d_{0}^{1} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; z_{0}^{1} sin(#theta) [mm] ; Entries"
+                                          ).c_str()
+                                        , z0sintheta_bins, z0sintheta_min, z0sintheta_max
+                                        )
+                              );
   }
 }
 
@@ -690,6 +867,17 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 
   float dr  = 0.;
 
+  float d0_0 = 0.;
+  float d0_1 = 0.;
+
+  float d0sig_0 = 0.;
+  float d0sig_1 = 0.;
+
+  float z0_0 = 0.;
+  float z0_1 = 0.;
+
+  float z0sintheta_0 = 0.;
+  float z0sintheta_1 = 0.;
 
   // TODO fill these histograms in cleaner way!
 
@@ -715,6 +903,18 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     deta = fabs(eta_0 - eta_1);
 
     dr = sqrt(dphi*dphi + deta*deta);
+
+    d0_0 = el_list->at(0)->getD0();
+    d0_1 = el_list->at(1)->getD0();
+
+    d0sig_0 = el_list->at(0)->getD0Significance();
+    d0sig_1 = el_list->at(1)->getD0Significance();
+
+    z0_0 = el_list->at(0)->getZ0();
+    z0_1 = el_list->at(1)->getZ0();
+
+    z0sintheta_0 = el_list->at(0)->getZ0SinTheta();
+    z0sintheta_1 = el_list->at(1)->getZ0SinTheta();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_EE)->Fill(pt_0, weight);
@@ -754,6 +954,26 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
                         m_h_fiducial_single_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
     (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_EE)->Fill(pt_1, weight) :
                           m_h_fiducial_event_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
+
+    m_h_d0_all.at(FLAVOR_EE)->Fill(d0_0, weight);
+    m_h_d0_all.at(FLAVOR_EE)->Fill(d0_1, weight);
+    m_h_d0_0.at(  FLAVOR_EE)->Fill(d0_0, weight);
+    m_h_d0_1.at(  FLAVOR_EE)->Fill(d0_1, weight);
+
+    m_h_d0sig_all.at(FLAVOR_EE)->Fill(d0sig_0, weight);
+    m_h_d0sig_all.at(FLAVOR_EE)->Fill(d0sig_1, weight);
+    m_h_d0sig_0.at(  FLAVOR_EE)->Fill(d0sig_0, weight);
+    m_h_d0sig_1.at(  FLAVOR_EE)->Fill(d0sig_1, weight);
+
+    m_h_z0_all.at(FLAVOR_EE)->Fill(z0_0, weight);
+    m_h_z0_all.at(FLAVOR_EE)->Fill(z0_1, weight);
+    m_h_z0_0.at(  FLAVOR_EE)->Fill(z0_0, weight);
+    m_h_z0_1.at(  FLAVOR_EE)->Fill(z0_1, weight);
+
+    m_h_z0sintheta_all.at(FLAVOR_EE)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_all.at(FLAVOR_EE)->Fill(z0sintheta_1, weight);
+    m_h_z0sintheta_0.at(  FLAVOR_EE)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_1.at(  FLAVOR_EE)->Fill(z0sintheta_1, weight);
   }
 
   else if (fc == FLAVOR_MM) {
@@ -778,6 +998,18 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     deta = fabs(eta_0 - eta_1);
 
     dr = sqrt(dphi*dphi + deta*deta);
+
+    d0_0 = mu_list->at(0)->getD0();
+    d0_1 = mu_list->at(1)->getD0();
+
+    d0sig_0 = mu_list->at(0)->getD0Significance();
+    d0sig_1 = mu_list->at(1)->getD0Significance();
+
+    z0_0 = mu_list->at(0)->getZ0();
+    z0_1 = mu_list->at(1)->getZ0();
+
+    z0sintheta_0 = mu_list->at(0)->getZ0SinTheta();
+    z0sintheta_1 = mu_list->at(1)->getZ0SinTheta();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_MM)->Fill(pt_0, weight);
@@ -819,6 +1051,25 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_MM)->Fill(pt_1, weight) :
                           m_h_fiducial_event_fail.at(FLAVOR_MM)->Fill(pt_1, weight));
 
+    m_h_d0_all.at(FLAVOR_MM)->Fill(d0_0, weight);
+    m_h_d0_all.at(FLAVOR_MM)->Fill(d0_1, weight);
+    m_h_d0_0.at(  FLAVOR_MM)->Fill(d0_0, weight);
+    m_h_d0_1.at(  FLAVOR_MM)->Fill(d0_1, weight);
+
+    m_h_d0sig_all.at(FLAVOR_MM)->Fill(d0sig_0, weight);
+    m_h_d0sig_all.at(FLAVOR_MM)->Fill(d0sig_1, weight);
+    m_h_d0sig_0.at(  FLAVOR_MM)->Fill(d0sig_0, weight);
+    m_h_d0sig_1.at(  FLAVOR_MM)->Fill(d0sig_1, weight);
+
+    m_h_z0_all.at(FLAVOR_MM)->Fill(z0_0, weight);
+    m_h_z0_all.at(FLAVOR_MM)->Fill(z0_1, weight);
+    m_h_z0_0.at(  FLAVOR_MM)->Fill(z0_0, weight);
+    m_h_z0_1.at(  FLAVOR_MM)->Fill(z0_1, weight);
+
+    m_h_z0sintheta_all.at(FLAVOR_MM)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_all.at(FLAVOR_MM)->Fill(z0sintheta_1, weight);
+    m_h_z0sintheta_0.at(  FLAVOR_MM)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_1.at(  FLAVOR_MM)->Fill(z0sintheta_1, weight);
   }
   else {
     pt_0 = el_list->at(0)->getPt()/1.e3;
@@ -849,6 +1100,18 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 
     dr = sqrt(dphi*dphi + deta*deta);
 
+    d0_0 = el_list->at(0)->getD0();
+    d0_1 = mu_list->at(0)->getD0();
+
+    d0sig_0 = el_list->at(0)->getD0Significance();
+    d0sig_1 = mu_list->at(0)->getD0Significance();
+
+    z0_0 = el_list->at(0)->getZ0();
+    z0_1 = mu_list->at(0)->getZ0();
+
+    z0sintheta_0 = el_list->at(0)->getZ0SinTheta();
+    z0sintheta_1 = mu_list->at(0)->getZ0SinTheta();
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_EM)->Fill(pt_0, weight);
     m_h_pt_all.at(FLAVOR_EM)->Fill(pt_1, weight);
@@ -878,9 +1141,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_etiso_0.at(  FLAVOR_EM)->Fill(etiso_0, weight);
     m_h_etiso_1.at(  FLAVOR_EM)->Fill(etiso_1, weight);
 
-    m_h_dr_ll.at(FLAVOR_MM)->Fill(dr, weight);
-    m_h_dphi_ll.at(FLAVOR_MM)->Fill(dphi, weight);
-    m_h_deta_ll.at(FLAVOR_MM)->Fill(deta, weight);
+    m_h_dr_ll.at(FLAVOR_EM)->Fill(dr, weight);
+    m_h_dphi_ll.at(FLAVOR_EM)->Fill(dphi, weight);
+    m_h_deta_ll.at(FLAVOR_EM)->Fill(deta, weight);
 
     (abs(eta_0) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_EM)->Fill(pt_0, weight) :
                         m_h_fiducial_single_fail.at(FLAVOR_EM)->Fill(pt_0, weight));
@@ -889,6 +1152,25 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_EM)->Fill(pt_1, weight) :
                           m_h_fiducial_event_fail.at(FLAVOR_EM)->Fill(pt_1, weight));
 
+    m_h_d0_all.at(FLAVOR_EM)->Fill(d0_0, weight);
+    m_h_d0_all.at(FLAVOR_EM)->Fill(d0_1, weight);
+    m_h_d0_0.at(  FLAVOR_EM)->Fill(d0_0, weight);
+    m_h_d0_1.at(  FLAVOR_EM)->Fill(d0_1, weight);
+
+    m_h_d0sig_all.at(FLAVOR_EM)->Fill(d0sig_0, weight);
+    m_h_d0sig_all.at(FLAVOR_EM)->Fill(d0sig_1, weight);
+    m_h_d0sig_0.at(  FLAVOR_EM)->Fill(d0sig_0, weight);
+    m_h_d0sig_1.at(  FLAVOR_EM)->Fill(d0sig_1, weight);
+
+    m_h_z0_all.at(FLAVOR_EM)->Fill(z0_0, weight);
+    m_h_z0_all.at(FLAVOR_EM)->Fill(z0_1, weight);
+    m_h_z0_0.at(  FLAVOR_EM)->Fill(z0_0, weight);
+    m_h_z0_1.at(  FLAVOR_EM)->Fill(z0_1, weight);
+
+    m_h_z0sintheta_all.at(FLAVOR_EM)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_all.at(FLAVOR_EM)->Fill(z0sintheta_1, weight);
+    m_h_z0sintheta_0.at(  FLAVOR_EM)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_1.at(  FLAVOR_EM)->Fill(z0sintheta_1, weight);
   }
 
   if (pt_1 > pt_0) {
@@ -903,6 +1185,22 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     float etiso_tmp = etiso_0;
     etiso_0 = etiso_1;
     etiso_1 = etiso_tmp;
+
+    float d0_tmp = d0_0;
+    d0_0 = d0_1;
+    d0_1 = d0_tmp;
+
+    float d0sig_tmp = d0sig_0;
+    d0sig_0 = d0sig_1;
+    d0sig_1 = d0sig_tmp;
+
+    float z0_tmp = z0_0;
+    z0_0 = z0_1;
+    z0_1 = z0_tmp;
+
+    float z0sintheta_tmp = z0sintheta_0;
+    z0sintheta_0 = z0sintheta_1;
+    z0sintheta_1 = z0sintheta_tmp;
   }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -945,6 +1243,25 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_NONE)->Fill(pt_1, weight) :
                         m_h_fiducial_event_fail.at(FLAVOR_NONE)->Fill(pt_1, weight));
 
+  m_h_d0_all.at(FLAVOR_NONE)->Fill(d0_0, weight);
+  m_h_d0_all.at(FLAVOR_NONE)->Fill(d0_1, weight);
+  m_h_d0_0.at(  FLAVOR_NONE)->Fill(d0_0, weight);
+  m_h_d0_1.at(  FLAVOR_NONE)->Fill(d0_1, weight);
+
+  m_h_d0sig_all.at(FLAVOR_NONE)->Fill(d0sig_0, weight);
+  m_h_d0sig_all.at(FLAVOR_NONE)->Fill(d0sig_1, weight);
+  m_h_d0sig_0.at(  FLAVOR_NONE)->Fill(d0sig_0, weight);
+  m_h_d0sig_1.at(  FLAVOR_NONE)->Fill(d0sig_1, weight);
+
+  m_h_z0_all.at(FLAVOR_NONE)->Fill(z0_0, weight);
+  m_h_z0_all.at(FLAVOR_NONE)->Fill(z0_1, weight);
+  m_h_z0_0.at(  FLAVOR_NONE)->Fill(z0_0, weight);
+  m_h_z0_1.at(  FLAVOR_NONE)->Fill(z0_1, weight);
+
+  m_h_z0sintheta_all.at(FLAVOR_NONE)->Fill(z0sintheta_0, weight);
+  m_h_z0sintheta_all.at(FLAVOR_NONE)->Fill(z0sintheta_1, weight);
+  m_h_z0sintheta_0.at(  FLAVOR_NONE)->Fill(z0sintheta_0, weight);
+  m_h_z0sintheta_1.at(  FLAVOR_NONE)->Fill(z0sintheta_1, weight);
 }
 
 // -----------------------------------------------------------------------------
@@ -1001,6 +1318,26 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     m_h_fiducial_single_fail.at(fc_it)->Write();
     m_h_fiducial_event_pass.at(fc_it)->Write();
     m_h_fiducial_event_fail.at(fc_it)->Write();
+
+    // write d0 histograms
+    m_h_d0_all.at(fc_it)->Write();
+    m_h_d0_0.at(fc_it)->Write();
+    m_h_d0_1.at(fc_it)->Write();
+
+    // write d0 significance histograms
+    m_h_d0sig_all.at(fc_it)->Write();
+    m_h_d0sig_0.at(fc_it)->Write();
+    m_h_d0sig_1.at(fc_it)->Write();
+
+    // write z0 histograms
+    m_h_z0_all.at(fc_it)->Write();
+    m_h_z0_0.at(fc_it)->Write();
+    m_h_z0_1.at(fc_it)->Write();
+
+    // write z0sin(theta) histograms
+    m_h_z0sintheta_all.at(fc_it)->Write();
+    m_h_z0sintheta_0.at(fc_it)->Write();
+    m_h_z0sintheta_1.at(fc_it)->Write();
   }
 }
 

@@ -46,6 +46,11 @@ if __name__ == '__main__':
                           , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':20}
                           , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':15}
                           , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':30}
+                          , 'periodG_egamma':{'label':'periodG_egamma', 'num_jobs':30}
+                          , 'periodH_egamma':{'label':'periodH_egamma', 'num_jobs':30}
+                          , 'periodI_egamma':{'label':'periodI_egamma', 'num_jobs':30}
+                          , 'periodJ_egamma':{'label':'periodJ_egamma', 'num_jobs':30}
+                          , 'periodL_egamma':{'label':'periodL_egamma', 'num_jobs':30}
                           }
     muon_data_samples = {
                           'periodA_muon':{'label':'periodA_muon', 'num_jobs':10}
@@ -53,6 +58,11 @@ if __name__ == '__main__':
                         , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':20}
                         , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':15}
                         , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':30}
+                        , 'periodG_muon':{'label':'periodG_muon', 'num_jobs':30}
+                        , 'periodH_muon':{'label':'periodH_muon', 'num_jobs':30}
+                        , 'periodI_muon':{'label':'periodI_muon', 'num_jobs':30}
+                        , 'periodJ_muon':{'label':'periodJ_muon', 'num_jobs':30}
+                        , 'periodL_muon':{'label':'periodL_muon', 'num_jobs':30}
                         }
     full_sim_mc_samples = {
                           }

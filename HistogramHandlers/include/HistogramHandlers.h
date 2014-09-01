@@ -138,6 +138,22 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_fiducial_single_fail;
       std::vector<TH1F*> m_h_fiducial_event_pass;
       std::vector<TH1F*> m_h_fiducial_event_fail;
+
+      std::vector<TH1F*> m_h_d0_all;
+      std::vector<TH1F*> m_h_d0_0;
+      std::vector<TH1F*> m_h_d0_1;
+
+      std::vector<TH1F*> m_h_d0sig_all;
+      std::vector<TH1F*> m_h_d0sig_0;
+      std::vector<TH1F*> m_h_d0sig_1;
+
+      std::vector<TH1F*> m_h_z0_all;
+      std::vector<TH1F*> m_h_z0_0;
+      std::vector<TH1F*> m_h_z0_1;
+
+      std::vector<TH1F*> m_h_z0sintheta_all;
+      std::vector<TH1F*> m_h_z0sintheta_0;
+      std::vector<TH1F*> m_h_z0sintheta_1;
   };
 
   // =============================================================================

@@ -4,6 +4,7 @@
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
+#include <fstream>
 
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 #include "PennSusyFrameCore/include/EventSelectors.h"
@@ -17,6 +18,7 @@ namespace PennSusyFrame
   enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
                            , BMINUSL_HIST_BL_PAIRING
 
+                           , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_0__btag_0__ttbar_0__trig_0
                            , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_0
                            // , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_1
                            // , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_1__trig_0
@@ -33,6 +35,8 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_0__trig_1
                            , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_0
                            , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_1
+                           , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_1__btag_1__ttbar_1__trig_0
+                           , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_1__btag_1__ttbar_1__trig_1
 
 
                            //~~~ , BMINUSL_HIST_BL_PAIRING_EE_TRIG
@@ -66,6 +70,7 @@ namespace PennSusyFrame
   const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
                                                    , "BMINUSL_BL_PAIRING"
 
+                                                   , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_0__btag_0__ttbar_0__trig_0"
                                                    , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_0"
                                                    // , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_1"
                                                    // , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_1__trig_0"
@@ -82,6 +87,8 @@ namespace PennSusyFrame
                                                    , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_0__trig_1"
                                                    , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_0"
                                                    , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_1"
+                                                   , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_1__btag_1__ttbar_1__trig_0"
+                                                   , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_0__lep_1__btag_1__ttbar_1__trig_1"
 
                                                    //~~~ , "BMINUSL_BL_PAIRING_EE_TRIG"
                                                    //~~~ , "BMINUSL_BL_PAIRING_MM_TRIG"
@@ -213,6 +220,7 @@ namespace PennSusyFrame
 
       std::vector<PennSusyFrame::BMinusLHists*> m_bminusl_histogram_handler;
       std::vector<PennSusyFrame::WeightHists*>  m_weight_histogram_handler;
+      std::vector<PennSusyFrame::ParentHists*>  m_parent_histogram_handler;
       std::vector<PennSusyFrame::BMinusLDetailedHists*> m_bminusl_detailed_histogram_handler;
 
       PennSusyFrame::blPair* m_bl_0;
@@ -270,6 +278,11 @@ namespace PennSusyFrame
       unsigned int m_num_events_passing_eq_2_b_jet;
       unsigned int m_num_events_passing_bl_pairing;
       unsigned int m_num_events_passing_bl_pairing_but_not_lep_or_b;
+
+      // TMP-BJ
+      ofstream fout_all_events;
+      ofstream fout_pass_events;
+      ofstream fout_pass_plus_trigger_events;
 
     private:
   };
