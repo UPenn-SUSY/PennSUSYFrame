@@ -29,6 +29,19 @@ double PennSusyFrame::getMll( FLAVOR_CHANNEL flavor_channel
 }
 
 // -----------------------------------------------------------------------------
+// mjj calculator
+double PennSusyFrame::getMjj(const std::vector<PennSusyFrame::Jet*>* jet)
+{
+  double mjj = 0.;
+
+  if (jet->size() >= 2) {
+    mjj = calcMll(jet->at(0), jet->at(1));
+  }
+
+  return mjj;
+}
+
+// -----------------------------------------------------------------------------
 // ptll calculator
 double PennSusyFrame::getPtll( FLAVOR_CHANNEL flavor_channel
                              , const std::vector<PennSusyFrame::Electron*>* el
@@ -48,6 +61,19 @@ double PennSusyFrame::getPtll( FLAVOR_CHANNEL flavor_channel
   }
 
   return ptll;
+}
+
+// -----------------------------------------------------------------------------
+// ptjj calculator
+double PennSusyFrame::getPtjj(const std::vector<PennSusyFrame::Jet*>* jet)
+{
+  double ptjj = 0.;
+
+  if (jet->size() >= 2) {
+    ptjj = calcPtll(jet->at(0), jet->at(1));
+  }
+
+  return ptjj;
 }
 
 // -----------------------------------------------------------------------------

@@ -24,6 +24,7 @@ namespace PennSusyFrame
                , const std::vector<PennSusyFrame::Electron*>*
                , const std::vector<PennSusyFrame::Muon*>*
                );
+  double getMjj(const std::vector<PennSusyFrame::Jet*>*);
   template <class T1, class T2>
     double calcMll(const T1*, const T2*);
 
@@ -35,6 +36,7 @@ namespace PennSusyFrame
                 , const std::vector<PennSusyFrame::Electron*>*
                 , const std::vector<PennSusyFrame::Muon*>*
                 );
+  double getPtjj(const std::vector<PennSusyFrame::Jet*>*);
   template <class T1, class T2>
     double calcPtll(const T1*, const T2*);
 

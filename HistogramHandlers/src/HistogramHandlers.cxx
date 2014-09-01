@@ -12,6 +12,10 @@ static const int   mll_bins = 50;
 static const float mll_min  = 0.;
 static const float mll_max  = 1000.;
 
+static const int   mbb_bins = 50;
+static const float mbb_min  = 0.;
+static const float mbb_max  = 1000.;
+
 static const int   mt2_bins = 50;
 static const float mt2_min  = 0.;
 static const float mt2_max  = 500.;
@@ -19,6 +23,10 @@ static const float mt2_max  = 500.;
 static const int   ptll_bins = 60;
 static const float ptll_min  = 0.;
 static const float ptll_max  = 1200.;
+
+static const int   ptbb_bins = 60;
+static const float ptbb_min  = 0.;
+static const float ptbb_max  = 1200.;
 
 static const int   ht_bins = 30;
 static const float ht_min  = 0;
@@ -178,6 +186,21 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                      );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize mbb histograms
+    m_h_mbb.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + "__mbb"
+                                 + "__"
+                                 + name_tag
+                                 ).c_str()
+                               , ( "m_{bb} - "
+                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + " ; m_{bb} [GeV] ; Entries"
+                                 ).c_str()
+                               , mbb_bins, mbb_min, mbb_max
+                               )
+                     );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mt2 histograms
     m_h_mt2.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                  + "__mt2"
@@ -204,6 +227,21 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                                   + " ; p_{T}^{ll} [GeV] ; Entries"
                                   ).c_str()
                                 , ptll_bins, ptll_min, ptll_max
+                                )
+                      );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize ptbb histograms
+    m_h_ptbb.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__ptbb"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "p_{T}^{bb} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; p_{T}^{bb} [GeV] ; Entries"
+                                  ).c_str()
+                                , ptbb_bins, ptbb_min, ptbb_max
                                 )
                       );
 
@@ -295,9 +333,11 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
   if (fc == FLAVOR_NONE) return;
 
   float mll = event_level_quantities.getMll()/1.e3;
+  float mbb = event_level_quantities.getMbb()/1.e3;
   float mt2 = event_level_quantities.getMt2()/1.e3;
 
   float ptll = event_level_quantities.getPtll()/1.e3;
+  float ptbb = event_level_quantities.getPtbb()/1.e3;
 
   float ht_all      = event_level_quantities.getHtAll()/1.e3;
   float ht_baseline = event_level_quantities.getHtBaseline()/1.e3;
@@ -313,8 +353,10 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
     m_h_flavor_channel.at(fc_it)->Fill(fc, weight);
 
     m_h_mll.at(fc_it)->Fill(        mll        , weight);
+    m_h_mbb.at(fc_it)->Fill(        mbb        , weight);
     m_h_mt2.at(fc_it)->Fill(        mt2        , weight);
     m_h_ptll.at(fc_it)->Fill(       ptll       , weight);
+    m_h_ptbb.at(fc_it)->Fill(       ptbb       , weight);
     m_h_ht_all.at(fc_it)->Fill(     ht_all     , weight);
     m_h_ht_baseline.at(fc_it)->Fill(ht_baseline, weight);
     m_h_ht_good.at(fc_it)->Fill(    ht_good    , weight);
@@ -336,11 +378,17 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
     // write mll histograms
     m_h_mll.at(fc_it)->Write();
 
+    // write mbb histograms
+    m_h_mbb.at(fc_it)->Write();
+
     // write mt2 histograms
     m_h_mt2.at(fc_it)->Write();
 
     //write ptll histograms
     m_h_ptll.at(fc_it)->Write();
+
+    //write ptbb histograms
+    m_h_ptbb.at(fc_it)->Write();
 
     //write ht histograms
     m_h_ht_all.at(fc_it)->Write();

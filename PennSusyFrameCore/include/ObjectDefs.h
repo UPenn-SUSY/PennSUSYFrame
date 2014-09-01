@@ -123,7 +123,9 @@ namespace PennSusyFrame
 
       // TODO move accessors to cxx file
       void setMll(double val)           { m_mll = val; }
+      void setMbb(double val)           { m_mbb = val; }
       void setPtll(double val)          { m_ptll = val; }
+      void setPtbb(double val)          { m_ptbb = val; }
       void setMt2(double val)           { m_mt2 = val; }
       void setEmmaMt(double val)        { m_emma_mt = val; }
       void setDphill(double val)        { m_dphi_ll = val; }
@@ -141,7 +143,9 @@ namespace PennSusyFrame
 
       // TODO move accessors to cxx file
       double getMll()           const { return m_mll; }
+      double getMbb()           const { return m_mbb; }
       double getPtll()          const { return m_ptll; }
+      double getPtbb()          const { return m_ptbb; }
       double getMt2()           const { return m_mt2; }
       double getEmmaMt()        const { return m_emma_mt; }
       double getDphill()        const { return m_dphi_ll; }
@@ -161,7 +165,9 @@ namespace PennSusyFrame
 
     protected:
       double m_mll;
+      double m_mbb;
       double m_ptll;
+      double m_ptbb;
       double m_mt2;
       double m_emma_mt;
       double m_dphi_ll;

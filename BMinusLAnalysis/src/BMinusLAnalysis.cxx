@@ -1190,13 +1190,17 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
                                                   )
                            );
 
+  m_event_quantities.setMbb(PennSusyFrame::getMjj(m_jets.getCollection(JET_B)));
+
   m_event_quantities.setPtll( PennSusyFrame::getPtll( m_event.getFlavorChannel()
                                                     , m_electrons.getCollection(EL_SELECTED)
                                                     , m_muons.getCollection(MU_SELECTED)
                                                     )
                             );
 
-  m_event_quantities.setMt2 (PennSusyFrame::getMt2( m_event.getFlavorChannel()
+  m_event_quantities.setPtbb(PennSusyFrame::getPtjj(m_jets.getCollection(JET_B)));
+
+  m_event_quantities.setMt2( PennSusyFrame::getMt2( m_event.getFlavorChannel()
                                                   , &m_met
                                                   , m_electrons.getCollection(EL_SELECTED)
                                                   , m_muons.getCollection(MU_SELECTED)
