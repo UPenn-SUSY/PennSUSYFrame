@@ -19,6 +19,15 @@ import RunHelpers
 # ==============================================================================
 # ntuple tree name
 input_tree_name = 'TNT'
+lep_pt_cut = 40.e3
+jet_pt_cut = 40.e3
+
+# 90% working point
+# btag_working_point = 0.0617
+# 80% working point
+btag_working_point = 0.3511
+# 70% working point
+# btag_working_point = 0.7892
 
 # ==============================================================================
 print 'loading packages'
@@ -187,19 +196,10 @@ def runBMinusLAnalysis( file_list
 
     # Set cut values
     # print 'set cuts'
-    lep_pt_cut = 40.e3
-    jet_pt_cut = 40.e3
-    # lep_pt_cut = 20.e3
-    # jet_pt_cut = 20.e3
     bmla.setElPtCut(  lep_pt_cut, -1     )
     bmla.setMuPtCut(  lep_pt_cut, -1     )
     bmla.setBJetPtCut(jet_pt_cut, -1     )
-    # 90% working point
-    # bmla.setMV1Cut(0.0617)
-    # 80% working point
-    bmla.setMV1Cut(0.3511)
-    # 70% working point
-    # bmla.setMV1Cut(0.7892)
+    bmla.setMV1Cut(btag_working_point)
 
     # Turn off detailed B-L histograms
     bmla.setDoDetailedBLHists(False)
