@@ -38,16 +38,91 @@ std::vector<float> PennSusyFrame::HistogramHandler::generateLogBinning( float mi
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event&
+void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event& event
                                           , const PennSusyFrame::EventLevelQuantities&
-                                          , const std::vector<PennSusyFrame::Electron*>*
-                                          , const std::vector<PennSusyFrame::Muon*>*
-                                          , const std::vector<PennSusyFrame::Jet*>*
+                                          , const std::vector<PennSusyFrame::Electron*>* el_list
+                                          , const std::vector<PennSusyFrame::Muon*>* mu_list 
+                                          , const std::vector<PennSusyFrame::Jet*>* jet_list
                                           , const PennSusyFrame::Met&
                                           , float
                                           )
 {
   // do nothing
+
+  /// ERASE THIS BEFORE COMMITTING!
+  FLAVOR_CHANNEL fc = event.getFlavorChannel();
+  double dr_lj00, dr_lj01, dr_lj10, dr_lj11;
+  if (fc == FLAVOR_EE) {
+    dr_lj00 = PennSusyFrame::getDr(el_list->at(0), jet_list->at(0));
+    dr_lj01 = PennSusyFrame::getDr(el_list->at(0), jet_list->at(1));
+    dr_lj10 = PennSusyFrame::getDr(el_list->at(1), jet_list->at(0));
+    dr_lj11 = PennSusyFrame::getDr(el_list->at(1), jet_list->at(1));
+
+    if (dr_lj00 < 0.4) {
+      std::cout << "HI THERE! This is a low dR(e,j) event! "	\
+		<< "\n\t dR(e,j) = " << dr_lj00				\
+		<< "\n\t Number of leptons = " << el_list->size() \
+		<< "\n\t Reco flavor channel = "  << "ee"		\
+		<<  "\n";
+    }
+    if (dr_lj01 < 0.4) {
+      std::cout << "HI THERE! This is a low dR(e,j) event! "\
+		<< "\n\t dR(e,j) = " << dr_lj01 \
+		<< "\n\t Number of leptons = " << el_list->size() \
+		<< "\n\t Reco flavor channel = "  << "ee" \
+		<<  "\n";
+    }
+    if (dr_lj10 < 0.4) {
+      std::cout << "HI THERE! This is a low dR(e,j) event! "\
+		<< "\n\t dR(e,j) = " << dr_lj10 \
+		<< "\n\t Number of leptons = " << el_list->size() \
+		<< "\n\t Reco flavor channel = "  << "ee" \
+		<<  "\n";
+    }
+    if (dr_lj11 < 0.4) {
+      std::cout << "HI THERE! This is a low dR(e,j) event! "\
+		<< "\n\t dR(e,j) = " << dr_lj11 \
+		<< "\n\t Number of leptons = " << el_list->size() \
+		<< "\n\t Reco flavor channel = "  << "ee" \
+		<<  "\n";
+    }
+  }
+
+  else if (fc == FLAVOR_MM) {
+    dr_lj00 = PennSusyFrame::getDr(mu_list->at(0), jet_list->at(0));
+    dr_lj01 = PennSusyFrame::getDr(mu_list->at(0), jet_list->at(1));
+    dr_lj10 = PennSusyFrame::getDr(mu_list->at(1), jet_list->at(0));
+    dr_lj11 = PennSusyFrame::getDr(mu_list->at(1), jet_list->at(1));
+
+    if (dr_lj00 < 0.4) {
+      std::cout << "HI THERE! This is a low dR(m,j) event! "	\
+		<< "\n\t dR(m,j) = " << dr_lj00 \
+		<< "\n\t Number of leptons = " << mu_list->size() \
+		<< "\n\t Reco flavor channel = "  << "mm"		\
+		<<  "\n";
+    }
+    if (dr_lj01 < 0.4) {
+      std::cout << "HI THERE! This is a low dR(m,j) event! "\
+		<< "\n\t dR(m,j) = " << dr_lj01 \
+		<< "\n\t Number of leptons = " << mu_list->size() \
+		<< "\n\t Reco flavor channel = "  << "mm" \
+		<<  "\n";
+    }
+    if (dr_lj10 < 0.4) {
+      std::cout << "HI THERE! This is a low dR(m,j) event! "\
+		<< "\n\t dR(m,j) = " << dr_lj10 \
+		<< "\n\t Number of leptons = " << mu_list->size() \
+		<< "\n\t Reco flavor channel = "  << "mm" \
+		<<  "\n";
+    }
+    if (dr_lj11 < 0.4) {
+      std::cout << "HI THERE! This is a low dR(m,j) event! "\
+		<< "\n\t dR(m,j) = " << dr_lj11 \
+		<< "\n\t Number of leptons = " << mu_list->size() \
+		<< "\n\t Reco flavor channel = "  << "mm" \
+		<<  "\n";
+    }
+  }
 }
 
 // -----------------------------------------------------------------------------

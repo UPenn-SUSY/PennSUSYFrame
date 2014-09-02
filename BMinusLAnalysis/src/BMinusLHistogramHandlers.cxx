@@ -737,8 +737,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize dr histograms
-    m_h_dr_ee.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_ee"
+    m_h_dr_ee_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_ee_from_stop"
                                    + "__"
                                    + name_tag
                                    ).c_str()
@@ -749,8 +749,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                  , dr_bins, dr_min, dr_max
                                  )
                        );
-    m_h_dr_mm.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_mm"
+    m_h_dr_mm_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_mm_from_stop"
                                    + "__"
                                    + name_tag
                                    ).c_str()
@@ -761,8 +761,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                  , dr_bins, dr_min, dr_max
                                  )
                        );
-    m_h_dr_em.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_em"
+    m_h_dr_em_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_em_from_stop"
                                    + "__"
                                    + name_tag
                                    ).c_str()
@@ -773,8 +773,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                  , dr_bins, dr_min, dr_max
                                  )
                        );
-    m_h_dr_ej.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_ej"
+    m_h_dr_ej_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_ej_from_stop"
                                    + "__"
                                    + name_tag
                                    ).c_str()
@@ -785,8 +785,69 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                  , dr_bins, dr_min, dr_max
                                  )
                        );
-    m_h_dr_mj.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_mj"
+    m_h_dr_mj_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_mj_from_stop"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(m,j) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(m,j) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+
+    m_h_dr_ee_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_ee_not_from_stop"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(e,e) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(e,e) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+    m_h_dr_mm_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_mm_not_from_stop"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(m,m) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(m,m) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+    m_h_dr_em_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_em_not_from_stop"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(e,m) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(e,m) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+    m_h_dr_ej_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_ej_not_from_stop"
+                                   + "__"
+                                   + name_tag
+                                   ).c_str()
+                                 , ( "#DeltaR(e,j) - "
+                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + " ; #DeltaR(e,j) ; Entries"
+                                   ).c_str()
+                                 , dr_bins, dr_min, dr_max
+                                 )
+                       );
+    m_h_dr_mj_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                   + "___dr_mj_not_from_stop"
                                    + "__"
                                    + name_tag
                                    ).c_str()
@@ -1990,6 +2051,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   if (lepton_from_stop_0) ++num_lep_from_stop;
   if (lepton_from_stop_1) ++num_lep_from_stop;
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // for resolution histos
   const TLorentzVector* tlv_l_0= bl_0.getLepton()->getTlv();
   const TLorentzVector* tlv_l_1= bl_1.getLepton()->getTlv();  
@@ -1999,13 +2061,15 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   int truth_index_b_0 = PennSusyFrame::matchJetToBQuark(bl_0.getJet(), mc_truth);
   int truth_index_b_1 = PennSusyFrame::matchJetToBQuark(bl_1.getJet(), mc_truth);
   
-  // d(R) plots
-  const PennSusyFrame::Particle* lep_0 = bl_0.getLepton();
-  const PennSusyFrame::Particle* lep_1 = bl_1.getLepton();
-  const PennSusyFrame::Particle* jet_0 = b_jet_list->at(0);
-  const PennSusyFrame::Particle* jet_1 = b_jet_list->at(1);
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // d(R) histograms
+  const PennSusyFrame::Lepton* lep_0 = bl_0.getLepton();
+  const PennSusyFrame::Lepton* lep_1 = bl_1.getLepton();
+  const PennSusyFrame::Jet* jet_0 = b_jet_list->at(0);
+  const PennSusyFrame::Jet* jet_1 = b_jet_list->at(1);
   double  dr_ll, dr_lj00, dr_lj01, dr_lj10, dr_lj11;
-  dr_ll = PennSusyFrame::getDr(lep_0, lep_1);
+
+  dr_ll   = PennSusyFrame::getDr(lep_0, lep_1);
   dr_lj00 = PennSusyFrame::getDr(lep_0, jet_0);
   dr_lj01 = PennSusyFrame::getDr(lep_0, jet_1);
   dr_lj10 = PennSusyFrame::getDr(lep_1, jet_0);
@@ -2017,35 +2081,153 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     if (fc_it == FLAVOR_ERROR_1) continue;
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // fill dr histograms
+
     if (fc == FLAVOR_EE) {
-      m_h_dr_ee.at(fc_it)->Fill(dr_ll,   weight);
-      m_h_dr_ej.at(fc_it)->Fill(dr_lj00, weight);
-      m_h_dr_ej.at(fc_it)->Fill(dr_lj01, weight);
-      m_h_dr_ej.at(fc_it)->Fill(dr_lj10, weight);
-      m_h_dr_ej.at(fc_it)->Fill(dr_lj11, weight);
+      if (lepton_from_stop_0 && lepton_from_stop_1) m_h_dr_ee_from_stop.at(fc_it)->Fill(dr_ll, weight);
+      else m_h_dr_ee_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
+      // find closest jet to electron 0 and see if both are from stop
+      if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
+	if (lepton_from_stop_0 && jet_from_stop_0) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+      }
+      else { // aka, if dr_lj01 is min
+	if (lepton_from_stop_0 && jet_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+      }
+      // find closest jet to electron 1 and see if both are from stop
+      if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
+	if (lepton_from_stop_1 && jet_from_stop_0) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+      }
+      else { // aka, if dr_lj11 is min
+	if (lepton_from_stop_1 && jet_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+      }
     }
+
     else if (fc == FLAVOR_MM) {
-      m_h_dr_mm.at(fc_it)->Fill(dr_ll,   weight);
-      m_h_dr_mj.at(fc_it)->Fill(dr_lj00, weight);
-      m_h_dr_mj.at(fc_it)->Fill(dr_lj01, weight);
-      m_h_dr_mj.at(fc_it)->Fill(dr_lj10, weight);
-      m_h_dr_mj.at(fc_it)->Fill(dr_lj11, weight);
-    }
-    else {
-      m_h_dr_em.at(fc_it)->Fill(dr_ll, weight);
-      if (bl_0.getLepton()->isElectron() ) { // ie, if lep_0 is electron
-        m_h_dr_ej.at(fc_it)->Fill(dr_lj00, weight);
-        m_h_dr_ej.at(fc_it)->Fill(dr_lj01, weight);
-        m_h_dr_mj.at(fc_it)->Fill(dr_lj10, weight);
-        m_h_dr_mj.at(fc_it)->Fill(dr_lj11, weight);
+      if (lepton_from_stop_0 && lepton_from_stop_1) m_h_dr_mm_from_stop.at(fc_it)->Fill(dr_ll, weight);
+      else m_h_dr_mm_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
+      // find closest jet to muon 0 and see if both are from stop
+      if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
+	if (lepton_from_stop_0 && jet_from_stop_0) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
       }
-      else {
-        m_h_dr_ej.at(fc_it)->Fill(dr_lj10, weight);
-        m_h_dr_ej.at(fc_it)->Fill(dr_lj11, weight);
-        m_h_dr_mj.at(fc_it)->Fill(dr_lj00, weight);
-        m_h_dr_mj.at(fc_it)->Fill(dr_lj01, weight);
+      else { // aka, if dr_lj01 is min
+	if (lepton_from_stop_0 && jet_from_stop_1) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+      }
+      // find closest jet to muon 1 and see if both are from stop
+      if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
+	if (lepton_from_stop_1 && jet_from_stop_0) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+      }
+      else { // aka, if dr_lj11 is min
+	if (lepton_from_stop_1 && jet_from_stop_1) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
       }
     }
+
+    else { // FLAVORCHANNEL EM
+      if (lepton_from_stop_0 && lepton_from_stop_1) m_h_dr_em_from_stop.at(fc_it)->Fill(dr_ll, weight);
+      else m_h_dr_em_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
+      // find closest jet to lep_0 and see if both are from stop -- see if lep is e or m
+      if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
+	if (lepton_from_stop_0 && jet_from_stop_0) {
+	  if (lep_0->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+	  else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+	}
+	else {
+	  if (lep_0->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+	}
+      }
+      else { // aka, if dr_lj01 is min
+	if (lepton_from_stop_0 && jet_from_stop_1) {
+	  if (lep_0->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+	  else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+	}
+	else {
+	  if (lep_0->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+	}
+      }
+      // find closest jet to lep_1 and see if both are from stop -- see if lep is e or m
+      if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
+	if (lepton_from_stop_1 && jet_from_stop_0) {
+	  if (lep_1->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+	  else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+	}
+	else {
+	  if (lep_1->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+	}
+      }
+      else { // aka, if dr_lj11 is min
+	if (lepton_from_stop_1 && jet_from_stop_1) {
+	  if (lep_1->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+	  else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+	}
+	else {
+	  if (lep_1->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+	}
+      }
+    }
+
+    // old version:
+    // if (lepton_from_stop_0 && lepton_from_stop_1) {                 // if leptons are from stop
+    // 	if      (fc == FLAVOR_EE) m_h_dr_ee_from_stop.at(fc_it)->Fill(dr_ll_from_stop,   weight);
+    // 	else if (fc == FLAVOR_MM) m_h_dr_mm_from_stop.at(fc_it)->Fill(dr_ll_from_stop,   weight);
+    // 	else                      m_h_dr_em_from_stop.at(fc_it)->Fill(dr_ll_from_stop,   weight);
+    // 	if (jet_from_stop_0 && jet_from_stop_1) {                   // if jets are also from stop
+    // 	  if (fc == FLAVOR_EE) {
+    // 	    m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_array_from_stop[0], weight);
+    // 	    m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_array_from_stop[1], weight);
+    // 	  }
+    // 	  else if (fc == FLAVOR_MM) {
+    // 	    m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_array_from_stop[0], weight);
+    // 	    m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_array_from_stop[1], weight);
+    // 	  }
+    // 	  else {
+    // 	    if (bl_0.getLepton()->isElectron() ) { // if lep_0 is electron
+    // 	      m_h_dr_ej_from_stop.at(fc_it)->Fill(std::min(dr_lj00_from_stop, dr_lj01_from_stop), weight);
+    // 	      m_h_dr_mj_from_stop.at(fc_it)->Fill(std::min(dr_lj10_from_stop, dr_lj11_from_stop), weight);
+    // 	    }
+    // 	    else {                                 // if lep_1 is electron
+    // 	      m_h_dr_ej_from_stop.at(fc_it)->Fill(std::min(dr_lj10_from_stop, dr_lj11_from_stop), weight);
+    // 	      m_h_dr_mj_from_stop.at(fc_it)->Fill(std::min(dr_lj00_from_stop, dr_lj01_from_stop), weight);
+    // 	    }
+    // 	  }
+    // 	}
+    // }
+    // else {                                                          // if one or both leptons are NOT from stop
+    // 	if      (fc == FLAVOR_EE) m_h_dr_ee_not_from_stop.at(fc_it)->Fill(dr_ll_not_from_stop,   weight);
+    // 	else if (fc == FLAVOR_MM) m_h_dr_mm_not_from_stop.at(fc_it)->Fill(dr_ll_not_from_stop,   weight);
+    // 	else                      m_h_dr_em_not_from_stop.at(fc_it)->Fill(dr_ll_not_from_stop,   weight);
+    // 	if (jet_from_stop_0 == false || jet_from_stop_1 == false) { // if one or both jets are also NOT from stop
+    // 	  if (fc == FLAVOR_EE) {
+    // 	    m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_array_not_from_stop[0], weight);
+    // 	    m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_array_not_from_stop[1], weight);
+    // 	  }
+    // 	  else if (fc == FLAVOR_MM) {
+    // 	    m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_array_not_from_stop[0], weight);
+    // 	    m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_array_not_from_stop[1], weight);
+    // 	  }
+    // 	  else {
+    // 	    if (bl_0.getLepton()->isElectron() ) { // if lep_0 is electron
+    // 	      m_h_dr_ej_not_from_stop.at(fc_it)->Fill(std::min(dr_lj00_not_from_stop, dr_lj01_not_from_stop), weight);
+    // 	      m_h_dr_mj_not_from_stop.at(fc_it)->Fill(std::min(dr_lj10_not_from_stop, dr_lj11_not_from_stop), weight);
+    // 	    }
+    // 	    else {                                 // if lep_1 is electron
+    // 	      m_h_dr_ej_not_from_stop.at(fc_it)->Fill(std::min(dr_lj10_not_from_stop, dr_lj11_not_from_stop), weight);
+    // 	      m_h_dr_mj_not_from_stop.at(fc_it)->Fill(std::min(dr_lj00_not_from_stop, dr_lj01_not_from_stop), weight);
+    // 	    }
+    // 	  }
+    // 	}
+    // }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // fill leading jet pt histograms
@@ -2399,11 +2581,17 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     if (FLAVOR_CHANNEL_STRINGS[fc_it] == "flavor_error") continue;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    m_h_dr_ee.at(fc_it)->Write();
-    m_h_dr_mm.at(fc_it)->Write();
-    m_h_dr_em.at(fc_it)->Write();
-    m_h_dr_ej.at(fc_it)->Write();
-    m_h_dr_mj.at(fc_it)->Write();
+    m_h_dr_ee_from_stop.at(fc_it)->Write();
+    m_h_dr_mm_from_stop.at(fc_it)->Write();
+    m_h_dr_em_from_stop.at(fc_it)->Write();
+    m_h_dr_ej_from_stop.at(fc_it)->Write();
+    m_h_dr_mj_from_stop.at(fc_it)->Write();
+
+    m_h_dr_ee_not_from_stop.at(fc_it)->Write();
+    m_h_dr_mm_not_from_stop.at(fc_it)->Write();
+    m_h_dr_em_not_from_stop.at(fc_it)->Write();
+    m_h_dr_ej_not_from_stop.at(fc_it)->Write();
+    m_h_dr_mj_not_from_stop.at(fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_raw_pt_all.at(fc_it)->Write();

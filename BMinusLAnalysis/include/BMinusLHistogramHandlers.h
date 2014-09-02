@@ -127,11 +127,17 @@ namespace PennSusyFrame
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       // dR between leptons and jets broken down by flavor
-      std::vector<TH1F*> m_h_dr_ee; //~ ~
-      std::vector<TH1F*> m_h_dr_mm; //~ ~
-      std::vector<TH1F*> m_h_dr_em; //~ ~
-      std::vector<TH1F*> m_h_dr_ej; //~ ~
-      std::vector<TH1F*> m_h_dr_mj; //~ ~
+      std::vector<TH1F*> m_h_dr_ee_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_mm_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_em_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_ej_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_mj_from_stop; //~ ~
+
+      std::vector<TH1F*> m_h_dr_ee_not_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_mm_not_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_em_not_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_ej_not_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_mj_not_from_stop; //~ ~
 
       // dR between jet and b quark which is matched to jet
       std::vector<TH1F*> m_h_b_jet_dr_q_all; //~ ~
