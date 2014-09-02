@@ -102,7 +102,9 @@ if __name__ == '__main__':
                             117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':50}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR', 'num_jobs':15}
+                          , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l' , 'num_jobs':5 }
+                          , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'             , 'num_jobs':5 }
+                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'    , 'num_jobs':10}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':20}

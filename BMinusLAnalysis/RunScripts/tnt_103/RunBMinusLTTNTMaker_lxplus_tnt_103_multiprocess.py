@@ -13,16 +13,16 @@ sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
 
 # ------------------------------------------------------------------------------
-RunBMinusLAnalysis.input_tree_name = "TNT"
-RunBMinusLAnalysis.lep_pt_cut = 20.e3
-RunBMinusLAnalysis.jet_pt_cut = 20.e3
+RunBMinusLTTNTMaker.input_tree_name = "TNT"
+RunBMinusLTTNTMaker.lep_pt_cut = 20.e3
+RunBMinusLTTNTMaker.jet_pt_cut = 20.e3
 
 # 90% working point
-# RunBMinusLAnalysis.btag_working_point = 0.0617
+# RunBMinusLTTNTMaker.btag_working_point = 0.0617
 # 80% working point
-RunBMinusLAnalysis.btag_working_point = 0.3511
+RunBMinusLTTNTMaker.btag_working_point = 0.3511
 # 70% working point
-# RunBMinusLAnalysis.btag_working_point = 0.7892
+# RunBMinusLTTNTMaker.btag_working_point = 0.7892
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
@@ -53,28 +53,28 @@ if __name__ == '__main__':
     print 'getting file list'
 
     egamma_data_samples = {
-                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':5}
-                          , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':5}
-                          , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':5}
-                          , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':5}
-                          , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':5}
-                          , 'periodG_egamma':{'label':'periodG_egamma', 'num_jobs':5}
-                          , 'periodH_egamma':{'label':'periodH_egamma', 'num_jobs':5}
-                          , 'periodI_egamma':{'label':'periodI_egamma', 'num_jobs':5}
-                          , 'periodJ_egamma':{'label':'periodJ_egamma', 'num_jobs':5}
-                          , 'periodL_egamma':{'label':'periodL_egamma', 'num_jobs':5}
+                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':3}
+                          , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':3}
+                          , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':3}
+                          , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':3}
+                          , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':3}
+                          , 'periodG_egamma':{'label':'periodG_egamma', 'num_jobs':3}
+                          , 'periodH_egamma':{'label':'periodH_egamma', 'num_jobs':3}
+                          , 'periodI_egamma':{'label':'periodI_egamma', 'num_jobs':3}
+                          , 'periodJ_egamma':{'label':'periodJ_egamma', 'num_jobs':3}
+                          , 'periodL_egamma':{'label':'periodL_egamma', 'num_jobs':3}
                           }
     muon_data_samples = {
-                          'periodA_muon':{'label':'periodA_muon', 'num_jobs':5}
-                        , 'periodB_muon':{'label':'periodB_muon', 'num_jobs':5}
-                        , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':5}
-                        , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':5}
-                        , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':5}
-                        , 'periodG_muon':{'label':'periodG_muon', 'num_jobs':5}
-                        , 'periodH_muon':{'label':'periodH_muon', 'num_jobs':5}
-                        , 'periodI_muon':{'label':'periodI_muon', 'num_jobs':5}
-                        , 'periodJ_muon':{'label':'periodJ_muon', 'num_jobs':5}
-                        , 'periodL_muon':{'label':'periodL_muon', 'num_jobs':5}
+                          'periodA_muon':{'label':'periodA_muon', 'num_jobs':3}
+                        , 'periodB_muon':{'label':'periodB_muon', 'num_jobs':3}
+                        , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':3}
+                        , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':3}
+                        , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':3}
+                        , 'periodG_muon':{'label':'periodG_muon', 'num_jobs':3}
+                        , 'periodH_muon':{'label':'periodH_muon', 'num_jobs':3}
+                        , 'periodI_muon':{'label':'periodI_muon', 'num_jobs':3}
+                        , 'periodJ_muon':{'label':'periodJ_muon', 'num_jobs':3}
+                        , 'periodL_muon':{'label':'periodL_muon', 'num_jobs':3}
                         }
     full_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -99,19 +99,21 @@ if __name__ == '__main__':
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':50}
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':100}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR', 'num_jobs':15}
+                          , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l' , 'num_jobs':5 }
+                          , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'             , 'num_jobs':5 }
+                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'    , 'num_jobs':10}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':20}
-                          , 167750:{'label':'167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'           , 'num_jobs':20}
-                          , 167751:{'label':'167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto'             , 'num_jobs':20}
+                          , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':15}
+                          , 167750:{'label':'167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'           , 'num_jobs':15}
+                          , 167751:{'label':'167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto'             , 'num_jobs':15}
 
-                          , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'              , 'num_jobs':20}
-                          , 167753:{'label':'167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto'         , 'num_jobs':20}
-                          , 167754:{'label':'167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto'           , 'num_jobs':20}
+                          , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'              , 'num_jobs':15}
+                          , 167753:{'label':'167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto'         , 'num_jobs':15}
+                          , 167754:{'label':'167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto'           , 'num_jobs':15}
 
                           , 167755:{'label':'167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter'            , 'num_jobs':1}
                           , 167756:{'label':'167756.Sherpa_CT10_ZtautauMassiveCBPt0_CFilterBVeto'       , 'num_jobs':1}

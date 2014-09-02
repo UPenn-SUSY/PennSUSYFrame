@@ -17,6 +17,19 @@ sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
 
 # ==============================================================================
+# ntuple tree name
+input_tree_name = 'TNT'
+lep_pt_cut = 40.e3
+jet_pt_cut = 40.e3
+
+# 90% working point
+# btag_working_point = 0.0617
+# 80% working point
+btag_working_point = 0.3511
+# 70% working point
+# btag_working_point = 0.7892
+
+# ==============================================================================
 print 'loading packages'
 ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
 print 'loading libraries'
@@ -53,7 +66,7 @@ def runBMinusLTTNTMakerFun(data_set_dict):
                        , is_data               = data_set_dict['is_data']
                        , is_egamma_stream      = data_set_dict['is_egamma_stream']
                        , is_full_sim           = data_set_dict['is_full_sim']
-                       , tree_name             = 'TNT'
+                       , tree_name             = input_tree_name
                        , dsid                  = data_set_dict['dsid']
                        , out_file_special_name = data_set_dict['label']
                        , is_tnt                = True
@@ -175,18 +188,10 @@ def runBMinusLTTNTMaker( file_list
     # bmlttntm.setCritCutBLPairing(      0)
 
     # Set cut values
-    print 'set cuts'
-    lep_pt_cut = 40.e3
-    jet_pt_cut = 40.e3
     bmlttntm.setElPtCut(  lep_pt_cut, -1     )
     bmlttntm.setMuPtCut(  lep_pt_cut, -1     )
     bmlttntm.setBJetPtCut(jet_pt_cut, -1     )
-    # 90% working point
-    # bmla.setMV1Cut(0.0617)
-    # 80% working point
-    bmlttntm.setMV1Cut(0.3511)
-    # 70% working point
-    # bmlttntm.setMV1Cut(0.7892)
+    bmlttntm.setMV1Cut(btag_working_point)
 
     # prepare tools and run analysis loop
     print 'preparing tools'
