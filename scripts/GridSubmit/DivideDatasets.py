@@ -73,16 +73,20 @@ def fillUserLists(user_list, ds_list):
 # ------------------------------------------------------------------------------
 def main():
     user_list = [
-                  UserData('evelyn' , 800)
-                , UserData('brett'  , 500)
-                , UserData('liz'    , 500)
-                , UserData('leigh'  , 700)
-                , UserData('emma'   , 700)
+                  UserData('evelyn'       , 800)
+                , UserData('brett_part1'  , 200)
+                , UserData('liz_part1'    , 200)
+                , UserData('leigh_part1'  , 200)
+                , UserData('emma_part1'   , 200)
+                , UserData('brett_part2'  , 0  )
+                , UserData('liz_part2'    , 500)
+                , UserData('leigh_part2'  , 500)
+                , UserData('emma_part2'   , 500)
                 ]
     total_space = reduce( lambda a, b: a+b , [x.max_size for x in user_list] )
     print 'total available space: ' , total_space
 
-    ds_list = getDSList('dataset_sizes.tnt_105.txt')
+    ds_list = getDSList('ContainerSizes.TNT_106.txt')
 
     fillUserLists(user_list, ds_list)
 

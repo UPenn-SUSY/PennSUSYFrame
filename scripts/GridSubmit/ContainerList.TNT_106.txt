@@ -34,6 +34,7 @@ user.bjackson.116601.gg2ZZJimmy_AUET2CT10_ZZ4e.tnt_106_Tnt.root/
 user.bjackson.116602.gg2ZZJimmy_AUET2CT10_ZZ4mu.tnt_106_Tnt.root/
 user.bjackson.116603.gg2ZZJimmy_AUET2CT10_ZZ2e2mu.tnt_106_Tnt.root/
 user.bjackson.117050.PowhegPythia_P2011C_ttbar.tnt_106_Tnt.root/
+user.bjackson.117650.AlpgenPythia_P2011C_ZeeNp0.tnt_106_Tnt.root/
 user.bjackson.117651.AlpgenPythia_P2011C_ZeeNp1.tnt_106_Tnt.root/
 user.bjackson.117652.AlpgenPythia_P2011C_ZeeNp2.tnt_106_Tnt.root/
 user.bjackson.117653.AlpgenPythia_P2011C_ZeeNp3.tnt_106_Tnt.root/
@@ -414,6 +415,7 @@ user.bjackson.periodA_muon.tnt_106_Tnt.root/
 user.bjackson.periodB_egamma.tnt_106_Tnt.root/
 user.bjackson.periodB_muon.tnt_106_Tnt.root/
 user.bjackson.periodC_egamma.tnt_106_Tnt.root/
+user.bjackson.periodD_egamma.tnt_106_Tnt.root/
 user.bjackson.periodD_muon.tnt_106_Tnt.root/
 user.bjackson.periodE_egamma.tnt_106_Tnt.root/
 user.bjackson.periodE_muon.tnt_106_Tnt.root/
@@ -421,6 +423,9 @@ user.bjackson.periodG_egamma.tnt_106_Tnt.root/
 user.bjackson.periodG_muon.tnt_106_Tnt.root/
 user.bjackson.periodH_egamma.tnt_106_Tnt.root/
 user.bjackson.periodH_muon.tnt_106_Tnt.root/
+user.bjackson.periodI_egamma.tnt_106_Tnt.root/
 user.bjackson.periodI_muon.tnt_106_Tnt.root/
+user.bjackson.periodJ_egamma.tnt_106_Tnt.root/
 user.bjackson.periodJ_muon.tnt_106_Tnt.root/
 user.bjackson.periodL_egamma.tnt_106_Tnt.root/
+user.bjackson.periodL_muon.tnt_106_Tnt.root/
