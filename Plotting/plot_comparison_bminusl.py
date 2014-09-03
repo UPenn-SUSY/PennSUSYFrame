@@ -198,7 +198,9 @@ def main():
     #                                            )
     ec_single_top = hh.Container.EntryContainer( label = 'Single top'
                                                , fill_color = ROOT.kGreen-1
-                                               , input_file_list = [ "%s/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.hists.root" % hist_dir
+                                               , input_file_list = [ "%s/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.hists.root"    % hist_dir
+                                                                   , "%s/BMinusL.110119.PowhegPythia_P2011C_st_schan_lep.hists.root"             % hist_dir
+                                                                   , "%s/BMinusL.110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l.hists.root" % hist_dir
                                                                    ]
                                                )
 
