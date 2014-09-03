@@ -1,1 +1,1 @@
-../../SafeTTNTDir/BMinusL.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt.root    149900    4    31779.858124
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt.root    149900    4    31779.858124

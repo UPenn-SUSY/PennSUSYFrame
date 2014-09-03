@@ -1,1 +1,1 @@
-../../SafeTTNTDir/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.tnt.root    14992666    1    14992666.0
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.tnt.root    14992666    1    14992666.0

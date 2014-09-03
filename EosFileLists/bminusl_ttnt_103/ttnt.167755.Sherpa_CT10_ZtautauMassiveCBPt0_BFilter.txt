@@ -1,1 +1,1 @@
-../../SafeTTNTDir/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.tnt.root    3997994    20    996278.307291
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.tnt.root    3997994    20    996278.307291

@@ -1,1 +1,1 @@
-../../SafeTTNTDir/BMinusL.110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l.tnt.root    8984067    120    120
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l.tnt.root    8984067    120    120

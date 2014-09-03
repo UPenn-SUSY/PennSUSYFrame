@@ -10,9 +10,11 @@
 import glob
 import ROOT
 
+import os
+
 # ------------------------------------------------------------------------------
 # MODIFY THESE LINES!!!
-ttnt_header = '../../SafeTTNTDir/BMinusL.'
+ttnt_header = '%s/../../SafeTTNTDir/BMinusL.' % os.getcwd()
 old_eos_file_list_header = '../tnt_103_w_weights/tnt_103'
 ttnt_file_list = glob.glob('%s*tnt.root' % ttnt_header)
 

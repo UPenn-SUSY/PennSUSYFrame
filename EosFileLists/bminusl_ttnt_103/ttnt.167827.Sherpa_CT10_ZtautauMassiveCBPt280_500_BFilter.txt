@@ -1,1 +1,1 @@
-../../SafeTTNTDir/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.tnt.root    209897    216    42470.0291794
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.tnt.root    209897    216    42470.0291794
