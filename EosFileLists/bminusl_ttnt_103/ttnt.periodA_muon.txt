@@ -1,1 +1,1 @@
-/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.periodA_muon.tnt.root    20880400    454    454
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.periodA_muon.tnt.root    20880400    454    20880400

@@ -53,7 +53,7 @@ for tfl in ttnt_file_list:
 
     skimmed_events = getNumEntries(tfl)
     if sum_mc_events == 0:
-        sum_mc_events = skimmed_events
+        sum_mc_events = total_num_events
 
     print 'total_num_events: ' , total_num_events
     print 'skimmed_events  : ' , skimmed_events

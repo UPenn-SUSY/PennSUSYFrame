@@ -1,1 +1,1 @@
-/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.tnt.root    20000    6    6
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.tnt.root    20000    6    20000
