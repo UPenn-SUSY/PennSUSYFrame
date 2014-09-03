@@ -30,6 +30,17 @@ class UserData(object):
             print '    %s' % ds.name
         print ''
 
+    def printUserDataSetsToFile(self, out_file_name):
+        out_file = file(out_file_name, 'w')
+        out_file.write('user name: %s\n'         % self.user_name)
+        out_file.write('  max size: %s\n'        % self.max_size)
+        out_file.write('  allocated size: %s \n' % self.current_size)
+        out_file.write('  number samples: %s \n' % len(self.ds_list))
+        out_file.write('\n')
+        for ds in self.ds_list:
+            out_file.write('    %s\n' % ds.name)
+        out_file.close()
+
 # ==============================================================================
 class DataSet(object):
     def __init__(self, ds_name, num_files, ds_size):
@@ -92,6 +103,7 @@ def main():
 
     for user in user_list:
         user.printUserDataSets()
+        user.printUserDataSetsToFile('files.%s.txt' % user.user_name)
 
 # ==============================================================================
 if __name__ == '__main__':
