@@ -46,6 +46,9 @@ namespace PennSusyFrame
       virtual void setFullSim() { m_is_af2 = false; }
       virtual void setAf2() {     m_is_af2 = true; }
 
+      virtual void setIsMC12a() { m_is_mc12b = false; }
+      virtual void setIsMC12b() { m_is_mc12b = true; }
+
       virtual void setStartEntry(unsigned int val) { m_start_entry = val; }
       virtual void setMaxNumEvents(int val)        { m_max_num_events = val; }
 
@@ -92,6 +95,7 @@ namespace PennSusyFrame
       int m_max_num_events;
       bool m_is_data;
       bool m_is_af2;
+      bool m_is_mc12b;
       double m_event_weight;
       bool m_pass_event;
 

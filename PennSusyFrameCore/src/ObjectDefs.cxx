@@ -785,7 +785,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   }
 
   setParticleIndex(jet_index);
-
+  
   setConstScaleE(  reader->jet_AntiKt4LCTopo_constscale_E->at(m_particle_index));
   setConstScaleEta(reader->jet_AntiKt4LCTopo_constscale_eta->at(m_particle_index));
   setConstScalePhi(reader->jet_AntiKt4LCTopo_constscale_phi->at(m_particle_index));
@@ -809,7 +809,6 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setAvgLarQf(       reader->jet_AntiKt4LCTopo_AverageLArQF->at(m_particle_index));
   setNegativeE(      reader->jet_AntiKt4LCTopo_NegativeE->at(m_particle_index));
   setLarQuality(     reader->jet_AntiKt4LCTopo_LArQuality->at(m_particle_index));
-
   setMetStatusWord(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord->at(m_particle_index));
   setMetWet(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet->at(m_particle_index));
   setMetWpx(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx->at(m_particle_index));

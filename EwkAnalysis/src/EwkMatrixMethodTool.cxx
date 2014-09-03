@@ -3,20 +3,29 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include <vector>
 #include <string>
-#include "RootCore/SusyMatrixMethod/SusyMatrixMethod/DiLeptonMatrixMethod.h"
-#include "RootCore/SusyMatrixMethod/SusyMatrixMethod/FakeRegions.h"
+//#include "RootCore/SusyMatrixMethod/SusyMatrixMethod/DiLeptonMatrixMethod.h"
+//#include "RootCore/SusyMatrixMethod/SusyMatrixMethod/FakeRegions.h"
+
+#include "RootCore/DileptonMatrixMethod/DileptonMatrixMethod/DileptonMatrixMethod.h"
+#include "RootCore/DileptonMatrixMethod/DileptonMatrixMethod/Lepton.h"
 
 // -----------------------------------------------------------------------------
 PennSusyFrame::MatrixMethodTool::MatrixMethodTool() 
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
-  m_fake_rate_file = root_core_dir + "/../SusyMatrixMethod/data/FinalFakeHist_Jan_02.root";
+  //m_fake_rate_file = root_core_dir + "/../SusyMatrixMethod/data/FinalFakeHist_Jan_02.root";
+  m_fake_rate_file = root_core_dir + "/../DileptonMatrixMethod/data/FakeMatrix_Jul_25_tight_05.root";
+
+
+  std::vector<std::string> region_names; 
+  region_names.push_back("ssinc1j");
 
   m_matrix_method.configure(m_fake_rate_file
-			    , SusyMatrixMethod::PT
-			    , SusyMatrixMethod::PT
-			    , SusyMatrixMethod::PT
-			    , SusyMatrixMethod::PT
+			    , region_names
+			    , susy::fake::Parametrization::PT
+			    , susy::fake::Parametrization::PT
+			    , susy::fake::Parametrization::PT
+			    , susy::fake::Parametrization::PT
 			    );
   
 
@@ -36,7 +45,7 @@ double PennSusyFrame::MatrixMethodTool::getSF( FLAVOR_CHANNEL flavor_channel
 
   //should be passed baseline muons and electrons
 
-  double fake_rate_sf = 1.;
+  double fake_rate_sf = 0.;
 
   if(flavor_channel == FLAVOR_NONE) return fake_rate_sf;
 
@@ -105,13 +114,15 @@ double PennSusyFrame::MatrixMethodTool::getSF( FLAVOR_CHANNEL flavor_channel
    
   }
 
-  fake_rate_sf = m_matrix_method.getTotalFake( is_tight_0, is_electron_0, pt_0, eta_0
-                                                       , is_tight_1, is_electron_1, pt_1, eta_1
-                                                       // , SusyMatrixMethod::FR_SRSSjets
-					               , susy::fake::CR_SsEwk
-                                                       , Met.getMetRel()
-                                                       , SusyMatrixMethod::SYS_NONE
-					       );
+  susy::fake::Lepton lepton_0(is_tight_0, is_electron_0, pt_0, eta_0);
+  susy::fake::Lepton lepton_1(is_tight_1, is_electron_1, pt_1, eta_1);
+
+
+fake_rate_sf = m_matrix_method.getTotalFake( lepton_0, lepton_1,
+					     m_matrix_method.getIndexRegion("ssinc1j")
+					     , Met.getMetRel()
+					     , susy::fake::Systematic::SYS_NOM
+					     );
 
   return fake_rate_sf;
 }

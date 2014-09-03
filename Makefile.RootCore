@@ -30,3 +30,4 @@ LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libTrigRootAnalysis.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libTriggerMatch.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libegammaAnalysisUtils.so
 LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libegammaEvent.so
+LOCAL_LIBS_PATH += ${ROOTCOREDIR}/lib/libDileptonMatrixMethod.so

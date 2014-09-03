@@ -32,8 +32,13 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   m_pile_up_reweight->SetDefaultChannel(0);
   m_pile_up_reweight->AddConfigFile(m_pile_up_mc_file);
 
-  m_pile_up_reweight->SetDataScaleFactors(1/1.11);
+  //  m_pile_up_reweight->SetDataScaleFactors(1/1.11);
+  m_pile_up_reweight->SetDataScaleFactors(1/1.09);  
+  /*TO DO double check this number as I'm still confused after reading the twiki
+    InDetTrackingPerformaceGuidelines*/
   m_pile_up_reweight->AddLumiCalcFile(m_pile_up_data_file);
+
+  //m_pile_up_reweight->SetUnrepresentedDataAction(2);
 
   int is_good = m_pile_up_reweight->Initialize();
   if (is_good != 0) {
@@ -262,7 +267,7 @@ PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
   std::string base_work_dir = getenv("BASE_WORK_DIR");
-  m_calibration_file   = base_work_dir + "/data/BTagCalibration.env";
+  m_calibration_file   = root_core_dir + "/data/BTagCalibration.env";
   m_calibration_folder = root_core_dir + "/../SUSYTools/data/";
 }
 

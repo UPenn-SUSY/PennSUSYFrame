@@ -85,12 +85,12 @@ namespace PennSusyFrame
   class JetRescalerTool
   {
     public:
-      JetRescalerTool(bool is_data, bool is_af2);
-      ~JetRescalerTool();
-
-      void init();
-
-      TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
+    JetRescalerTool(bool is_data, bool is_af2, bool is_mc12b);
+    ~JetRescalerTool();
+    
+    void init();
+    
+    TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
                                      , const PennSusyFrame::Event*
                                      , int num_vertices_ge_2_tracks
                                      );
@@ -98,7 +98,7 @@ namespace PennSusyFrame
     private:
       bool m_is_data;
       bool m_is_af2;
-
+      bool m_is_mc12b;
       JetAnalysisCalib::JetCalibrationTool* m_jet_calibration;
   };
 
@@ -115,6 +115,7 @@ namespace PennSusyFrame
     private:
       bool m_is_data;
       bool m_is_af2;
+      
   };
 }
 
