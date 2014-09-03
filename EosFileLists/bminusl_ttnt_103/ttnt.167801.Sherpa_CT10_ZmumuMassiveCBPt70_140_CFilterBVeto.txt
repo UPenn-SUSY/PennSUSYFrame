@@ -1,0 +1,1 @@
+../../SafeTTNTDir/BMinusL.167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto.tnt.root    1000000    580    238084.323426

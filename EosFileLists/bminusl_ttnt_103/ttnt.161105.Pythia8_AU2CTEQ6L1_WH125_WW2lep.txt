@@ -1,0 +1,1 @@
+../../SafeTTNTDir/BMinusL.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.tnt.root    20000    2    2

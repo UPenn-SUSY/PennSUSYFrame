@@ -1,0 +1,1 @@
+../../SafeTTNTDir/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.tnt.root    100000    3099    3099

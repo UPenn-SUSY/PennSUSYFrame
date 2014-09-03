@@ -1,0 +1,1 @@
+../../SafeTTNTDir/BMinusL.periodC_egamma.tnt.root    35563254    810    810
