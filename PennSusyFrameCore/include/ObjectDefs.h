@@ -123,7 +123,9 @@ namespace PennSusyFrame
 
       // TODO move accessors to cxx file
       void setMll(double val)           { m_mll = val; }
+      void setMbb(double val)           { m_mbb = val; }
       void setPtll(double val)          { m_ptll = val; }
+      void setPtbb(double val)          { m_ptbb = val; }
       void setMt2(double val)           { m_mt2 = val; }
       void setEmmaMt(double val)        { m_emma_mt = val; }
       void setDphill(double val)        { m_dphi_ll = val; }
@@ -141,7 +143,9 @@ namespace PennSusyFrame
 
       // TODO move accessors to cxx file
       double getMll()           const { return m_mll; }
+      double getMbb()           const { return m_mbb; }
       double getPtll()          const { return m_ptll; }
+      double getPtbb()          const { return m_ptbb; }
       double getMt2()           const { return m_mt2; }
       double getEmmaMt()        const { return m_emma_mt; }
       double getDphill()        const { return m_dphi_ll; }
@@ -161,7 +165,9 @@ namespace PennSusyFrame
 
     protected:
       double m_mll;
+      double m_mbb;
       double m_ptll;
+      double m_ptbb;
       double m_mt2;
       double m_emma_mt;
       double m_dphi_ll;
@@ -239,7 +245,7 @@ namespace PennSusyFrame
       std::vector<int>*   getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()       const { return m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS; }
       std::vector<int>*   getTrig_EF_trigmuonef_EF_mu8()                       const { return m_trig_EF_trigmuonef_EF_mu8; }
       std::vector<std::vector<int> >*   getTrig_EF_trigmuonef_track_CB_hasCB() const { return m_trig_EF_trigmuonef_track_CB_hasCB; }
-    
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       bool m_EF_2e12Tvh_loose1;
@@ -910,7 +916,6 @@ namespace PennSusyFrame
       std::vector<int>* getMuOrigin() const { return m_mc_mu_origin; }
       std::vector<int>* getMuType() const { return m_mc_mu_type; }
       std::vector<float>* getCharge() const { return m_mc_charge; }
-
 
       void writeFullTruthRecord(std::string out_file_name);
 

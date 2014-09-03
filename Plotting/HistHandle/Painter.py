@@ -56,7 +56,7 @@ class HistPainter(object):
             self.name = num.hist_name
 
         self.canvas = None
-        self.ratio_canvas = None
+        # self.ratio_canvas = None
 
         self.num_draw_option   = num_draw_option
         self.denom_draw_option = denom_draw_option
@@ -66,8 +66,8 @@ class HistPainter(object):
     def __del__(self):
         if not self.canvas is None:
             self.canvas.Close()
-        if not self.ratio_canvas is None:
-            self.ratio_canvas.Close()
+        # if not self.ratio_canvas is None:
+        #     self.ratio_canvas.Close()
 
     # --------------------------------------------------------------------------
     def genLegend( self, name = 'leg', full_canvas = False):
@@ -81,22 +81,27 @@ class HistPainter(object):
         hist_list = []
         label_list = []
         draw_opt_list = []
+
         # add numerator
         if self.num_merger is not None:
-            for key in self.num_merger.hist_handles:
+            # for key in self.num_merger.hist_handles:
+            for key in self.num_merger.hist_handles_keys:
                 hist_list.append(self.num_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
-                # print 'adding numerator option to legend: %s' % self.num_draw_option
                 draw_opt_list.append(self.num_draw_option)
+
         # add denominator
         if self.denom_merger is not None:
-            for key in self.denom_merger.hist_handles:
+            # for key in self.denom_merger.hist_handles:
+            for key in self.denom_merger.hist_handles_keys:
                 hist_list.append(self.denom_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
                 draw_opt_list.append('HIST')
+
         # if there are others to add, add them now
         if self.other_merger is not None:
-            for key in self.other_merger.hist_handles:
+            # for key in self.other_merger.hist_handles:
+            for key in self.other_merger.hist_handles_keys:
                 hist_list.append(self.other_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
                 draw_opt_list.append('HIST')
@@ -117,7 +122,6 @@ class HistPainter(object):
         """
         Generate histogram with the number of entries per component
         """
-        print 'genEntriesHists()'
         label_list  = []
         num_entries = []
         fill_colors = []
@@ -126,43 +130,40 @@ class HistPainter(object):
         line_styles = []
 
         # get entries for numerator
-        print 'finding hist entries for numerator'
-        self.findHistEntries( self.num_merger
-                            , label_list
-                            , num_entries
-                            , fill_colors
-                            , line_colors
-                            , line_widths
-                            , line_styles
-                            );
+        findHistEntries( self.num_merger
+                       , label_list
+                       , num_entries
+                       , fill_colors
+                       , line_colors
+                       , line_widths
+                       , line_styles
+                       );
+
         # get entries for denominator
-        print 'finding hist entries for denominator'
-        self.findHistEntries( self.denom_merger
-                            , label_list
-                            , num_entries
-                            , fill_colors
-                            , line_colors
-                            , line_widths
-                            , line_styles
-                            );
+        findHistEntries( self.denom_merger
+                       , label_list
+                       , num_entries
+                       , fill_colors
+                       , line_colors
+                       , line_widths
+                       , line_styles
+                       );
+
         # get entries for other
-        print 'finding hist entries for others'
         if self.other_merger is not None:
-            self.findHistEntries( self.other_merger
-                                , label_list
-                                , num_entries
-                                , fill_colors
-                                , line_colors
-                                , line_widths
-                                , line_styles
-                                );
+            findHistEntries( self.other_merger
+                           , label_list
+                           , num_entries
+                           , fill_colors
+                           , line_colors
+                           , line_widths
+                           , line_styles
+                           );
 
         num_handles = len(label_list)
-        print 'Number of handles to add to entry histogram: %s' % num_handles
 
         entry_hists = []
         for it in xrange(num_handles):
-            print '\tit: %s' % it
             tmp_hist = ROOT.TH1D( 'entry_hist__%s' % (''.join(random.choice(string.ascii_lowercase) for x in xrange(5)))
                                 , 'num_entries'
                                 , num_handles + 2
@@ -178,9 +179,6 @@ class HistPainter(object):
             tmp_hist.Fill(it, num_entries[it])
 
             for bin_it in xrange(num_handles):
-                print 'bin: %s' % bin_it
-                print '  label:   %s' % label_list[bin_it]
-                print '  entries: %s' % num_entries[bin_it]
                 tmp_hist.GetXaxis().SetBinLabel(bin_it+1, label_list[bin_it])
 
             entry_hists.append(tmp_hist)
@@ -192,7 +190,6 @@ class HistPainter(object):
         """
         Generate histogram with the number of entries per component
         """
-        print 'genRawEntriesHists()'
         label_list  = []
         num_entries = []
         fill_colors = []
@@ -201,43 +198,40 @@ class HistPainter(object):
         line_styles = []
 
         # get raw entries for numerator
-        print 'finding hist raw entries for numerator'
-        self.findHistRawEntries( self.num_merger
-                               , label_list
-                               , num_entries
-                               , fill_colors
-                               , line_colors
-                               , line_widths
-                               , line_styles
-                               );
+        findHistRawEntries( self.num_merger
+                          , label_list
+                          , num_entries
+                          , fill_colors
+                          , line_colors
+                          , line_widths
+                          , line_styles
+                          );
+
         # get raw entries for denominator
-        print 'finding hist raw entries for denominator'
-        self.findHistRawEntries( self.denom_merger
-                               , label_list
-                               , num_entries
-                               , fill_colors
-                               , line_colors
-                               , line_widths
-                               , line_styles
-                               );
+        findHistRawEntries( self.denom_merger
+                          , label_list
+                          , num_entries
+                          , fill_colors
+                          , line_colors
+                          , line_widths
+                          , line_styles
+                          );
+
         # get raw entries for other
-        print 'finding hist raw entries for others'
         if self.other_merger is not None:
-            self.findHistRawEntries( self.other_merger
-                                   , label_list
-                                   , num_entries
-                                   , fill_colors
-                                   , line_colors
-                                   , line_widths
-                                   , line_styles
-                                   );
+            findHistRawEntries( self.other_merger
+                              , label_list
+                              , num_entries
+                              , fill_colors
+                              , line_colors
+                              , line_widths
+                              , line_styles
+                              );
 
         num_handles = len(label_list)
-        print 'Number of handles to add to entry histogram: %s' % num_handles
 
         raw_entry_hists = []
         for it in xrange(num_handles):
-            print '\tit: %s' % it
             tmp_hist = ROOT.TH1D( 'entry_hist__%s' % (''.join(random.choice(string.ascii_lowercase) for x in xrange(5)))
                                 , 'num_raw_entries'
                                 , num_handles + 2
@@ -253,60 +247,11 @@ class HistPainter(object):
             tmp_hist.Fill(it, num_entries[it])
 
             for bin_it in xrange(num_handles):
-                print 'bin: %s' % bin_it
-                print '  label:   %s' % label_list[bin_it]
-                print '  raw entries: %s' % num_entries[bin_it]
                 tmp_hist.GetXaxis().SetBinLabel(bin_it+1, label_list[bin_it])
 
             raw_entry_hists.append(tmp_hist)
 
         return raw_entry_hists
-
-    # ------------------------------------------------------------------------------
-    # TODO move out of class definition
-    def findHistEntries( self
-                       , merger
-                       , label_list
-                       , num_entries
-                       , fill_colors
-                       , line_colors
-                       , line_widths
-                       , line_styles
-                       ):
-        for key in merger.hist_handles:
-            label_list.append(hh.Helper.genLegendLabel(key))
-            this_hist_to_integrate = merger.hist_handles[key].hist
-            if isinstance(this_hist_to_integrate, ROOT.TH1I) or isinstance(this_hist_to_integrate, ROOT.TH1F) or isinstance(this_hist_to_integrate, ROOT.TH1D):
-                this_num_bins = merger.hist_handles[key].hist.GetNbinsX()
-                num_entries.append( merger.hist_handles[key].hist.Integral( 0
-                                                                          , this_num_bins+1
-                                                                          )
-                                  )
-            else:
-                num_entries.append(merger.hist_handles[key].hist.Integral())
-            fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
-            line_colors.append(merger.hist_handles[key].hist_info.line_color)
-            line_widths.append(merger.hist_handles[key].hist_info.line_width)
-            line_styles.append(merger.hist_handles[key].hist_info.line_style)
-
-    # ------------------------------------------------------------------------------
-    # TODO move out of class definition
-    def findHistRawEntries( self
-                          , merger
-                          , label_list
-                          , num_entries
-                          , fill_colors
-                          , line_colors
-                          , line_widths
-                          , line_styles
-                          ):
-        for key in merger.hist_handles:
-            label_list.append(hh.Helper.genLegendLabel(key))
-            num_entries.append(merger.hist_handles[key].hist.GetEntries())
-            fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
-            line_colors.append(merger.hist_handles[key].hist_info.line_color)
-            line_widths.append(merger.hist_handles[key].hist_info.line_width)
-            line_styles.append(merger.hist_handles[key].hist_info.line_style)
 
     # ------------------------------------------------------------------------------
     def genLegendCanvas(self):
@@ -499,14 +444,64 @@ class HistPainter(object):
                  , canvas_options
                  )
 
-        # TODO get and draw ratio plot
-
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # Draw Legend
         if legend:
-            # self.ratio_stuff['top_pad'].cd()
             self.legend = self.genLegend()
             self.legend.Draw()
         drawLabels(int_lumi = int_lumi, prod_type = prod_type)
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # resize plot on canvas to fit ratio below
+        pad_plot = self.canvas.GetPad(0)
+        pad_plot.SetBottomMargin(hh.default_ratio_pad_size)
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # Create and draw pad for ratio plot
+        pad_ratio = ROOT.TPad("pad_ratio","pad_ratio",0,0,1,hh.default_ratio_pad_size)
+        pad_ratio.SetTopMargin(  0)
+        pad_ratio.SetLeftMargin(  hh.default_pad_left_margin  )
+        pad_ratio.SetRightMargin( hh.default_pad_right_margin )
+        pad_ratio.SetBottomMargin(hh.default_pad_bottom_margin/(hh.default_ratio_pad_size*2))
+        pad_ratio.Draw()
+        pad_ratio.cd()
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # create ratio plot
+        self.ratio = self.num_merger.hist_sum.Clone('%s__ratio' % self.name)
+        self.ratio.Divide(self.denom_merger.hist_sum)
+
+        # set y-axis ranges for ratio plot
+        self.ratio.SetMaximum(1.6)
+        self.ratio.SetMinimum(0.5)
+
+        # set axis label sizes
+        # *1.0 and *0.7 because magic numbers are magic
+        self.ratio.SetLabelSize(hh.default_label_size/hh.default_ratio_pad_size*1.0 , 'x')
+        self.ratio.SetLabelSize(hh.default_label_size/hh.default_ratio_pad_size*0.7 , 'y')
+
+        # set axis title sizes
+        # *1.0 and *0.9 because magic numbers are magic
+        self.ratio.SetTitleSize(hh.default_label_size/hh.default_ratio_pad_size*1.0 , 'x')
+        self.ratio.SetTitleSize(hh.default_label_size/hh.default_ratio_pad_size*0.9 , 'y')
+
+        # set axis title offsets
+        # again, magic numbers are magic
+        self.ratio.SetTitleOffset(1.0, 'x')
+        self.ratio.SetTitleOffset(1.3*hh.default_ratio_pad_size, 'y')
+        self.ratio.SetTitleOffset(0.8, 'z')
+
+        # set y-axis title for ratio plot
+        self.ratio.GetYaxis().SetTitle('%s/%s' % (self.num_merger.hist_info.name , self.denom_merger.hist_info.name))
+
+        # don't draw every tick mark
+        self.ratio.GetYaxis().SetNdivisions(4,8,0)
+
+        # set marker style for ratio plot
+        self.ratio.SetMarkerStyle(21)
+
+        # finally draw :-)
+        self.ratio.Draw("ep")
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
@@ -581,7 +576,7 @@ def pileHists( hist_list
     if not isinstance(hist_list, list):
         hist_list = [hist_list]
     if draw_opt_list == hh.default:
-        print 'setting the default draw options'
+        # setting the default draw options
         draw_opt_list = ['P']*len(hist_list)
 
     # create canvas
@@ -589,10 +584,7 @@ def pileHists( hist_list
         canvas_options = hh.Objects.canv_linear
     c = canvas_options.create(name)
 
-    # print 'about to set min/max:'
-    # print 'hist list:'
-    # for hl in hist_list:
-    #     print '      %s -- %s' % (hl, hl.GetName())
+    # set min/max
     setMin(hist_list, canvas_options.log_y, y_min)
     setMax(hist_list, canvas_options.log_y, y_max)
 
@@ -635,17 +627,16 @@ def setMax(hist_list, log_y = False, y_max = hh.default):
 
 # ------------------------------------------------------------------------------
 def calcMin(hist_list, log_y = True):
-    # print 'calcMin()'
+    # don't do anything for empty list
     if len(hist_list) == 0: return 0.
-    # print hist_list
 
+    # find extrema
     # TODO come up with better algorithm
     extremes = getExtrema(hist_list, log_y)
     y_min = min(extremes)
     y_max = max(extremes)
 
     # add in a buffer on top and bottom
-    # if log_y and y_min > 0 and y_max > 0:
     if log_y:
         if y_min > 0 and y_max > 0:
             y_min = math.pow( 10
@@ -667,49 +658,35 @@ def calcMin(hist_list, log_y = True):
 
 # ------------------------------------------------------------------------------
 def calcMax(hist_list, log_y = True):
-    # print '-----------------------------------------'
-    # print 'calcMax(log_y = %s)' % log_y
-    # print '- - - - - - - - - - - - - - - - - - - - -'
+    # don't do anything for empty list
     if len(hist_list) == 0: return 0.
 
+    # find extrema
     # TODO come up with better algorithm
     extremes = getExtrema(hist_list, log_y)
     y_min = min(extremes)
     y_max = max(extremes)
 
-    # print 'extremes: %s' % extremes
-    # print 'y_min: %s' % y_min
-    # print 'y_max: %s' % y_max
-
     # add in a buffer on top and bottom
-    # if log_y and y_min > 0 and y_max > 0:
     if log_y:
-        # print 'set y_max for log'
         if y_min > 0 and y_max > 0:
-            # print 'getting new y_max for m_min > 0 && y_max > 0'
             y_max = math.pow( 10
                             , ( math.log(y_max, 10)
                               + (math.log(y_max, 10) - math.log(y_min, 10))*0.75
                               )
                             )
         elif y_max > 0:
-            # print 'getting new y_max for m_min < 0 && y_max > 0'
             y_max = math.pow( 10
                             , ( math.log(y_max, 10)
                               + (math.log(y_max, 10))*0.75
                               )
                             )
         else:
-            # print 'y_max = 1 (default)'
             y_max = 1
     else:
-        # print 'set y_max for linear'
         y_max += (y_max - y_min)*0.30
         y_max = max(y_max, 0.)
 
-    # return value for max
-    # print 'new y_max: %s' % y_max
-    # print '========================================='
     return y_max
 
 # ------------------------------------------------------------------------------
@@ -724,31 +701,19 @@ def getExtrema(hist_list, log_y = True):
         local_max = None
 
         h_tmp = h
-        # print '----------------------------------'
-        # print type(h)
-        # print type(h_tmp)
         if isinstance(h_tmp, ROOT.THStack): continue
         if isinstance(h_tmp, ROOT.TGraph):  continue
         if isinstance(h_tmp, ROOT.TGraphErrors): continue
 
-        # print type(h_tmp)
-        # num_bins = h_tmp.GetXaxis().GetNbins()
         num_bins = h_tmp.GetXaxis().GetNbins() + 2
         if isinstance(h_tmp, ROOT.TH2D) or isinstance(h_tmp, ROOT.TH2F):
             num_bins *= (h_tmp.GetYaxis().GetNbins()+2)
 
-        # print 'got number of bins:'
-        # print '  x: %s' % h_tmp.GetXaxis().GetNbins()
-        # print '  y: %s' % h_tmp.GetYaxis().GetNbins()
-        # print '  tot: %s' % num_bins
+        # loop through bins, and look for extrema
         for b in xrange(0, num_bins):
             bin_content = h_tmp.GetBinContent(b)
             bin_content_up   = bin_content + h_tmp.GetBinError(b)
             bin_content_down = bin_content - h_tmp.GetBinError(b)
-
-            # print 'bin_content: %s' % bin_content
-            # print 'bin_content_up: %s' % bin_content_up
-            # print 'bin_content_down: %s' % bin_content_down
 
             # check if this bin is a minimum
             if local_min is None or bin_content_down < local_min:
@@ -764,8 +729,7 @@ def getExtrema(hist_list, log_y = True):
                 if bin_content_up > 0:
                     local_max = bin_content_up
 
-        # print 'local min: %s' % local_min
-        # print 'local max: %s' % local_max
+        # if valid max and/or min, add these to the extrema list
         if not local_min is None:
             extrema.append(local_min)
         if not local_max is None:
@@ -775,7 +739,7 @@ def getExtrema(hist_list, log_y = True):
         extrema = [0.01, 0.1] if log_y else [0., 1.]
     return extrema
 
-# # ------------------------------------------------------------------------------
+# # ----------------------------------------------------------------------------
 # def draw2DMaps( map_array
 #               , contour_levels = [1.64]
 #               , lumi           = None
@@ -939,3 +903,45 @@ def draw2DHist(h, label):
     c = hh.canv_opt_2d.create(label)
     h.Draw('COLZ')
     return c
+
+# ------------------------------------------------------------------------------
+def findHistEntries( merger
+                   , label_list
+                   , num_entries
+                   , fill_colors
+                   , line_colors
+                   , line_widths
+                   , line_styles
+                   ):
+    for key in merger.hist_handles:
+        label_list.append(hh.Helper.genLegendLabel(key))
+        this_hist_to_integrate = merger.hist_handles[key].hist
+        if isinstance(this_hist_to_integrate, ROOT.TH1I) or isinstance(this_hist_to_integrate, ROOT.TH1F) or isinstance(this_hist_to_integrate, ROOT.TH1D):
+            this_num_bins = merger.hist_handles[key].hist.GetNbinsX()
+            num_entries.append( merger.hist_handles[key].hist.Integral( 0
+                                                                      , this_num_bins+1
+                                                                      )
+                              )
+        else:
+            num_entries.append(merger.hist_handles[key].hist.Integral())
+        fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
+        line_colors.append(merger.hist_handles[key].hist_info.line_color)
+        line_widths.append(merger.hist_handles[key].hist_info.line_width)
+        line_styles.append(merger.hist_handles[key].hist_info.line_style)
+
+# ------------------------------------------------------------------------------
+def findHistRawEntries( merger
+                      , label_list
+                      , num_entries
+                      , fill_colors
+                      , line_colors
+                      , line_widths
+                      , line_styles
+                      ):
+    for key in merger.hist_handles:
+        label_list.append(hh.Helper.genLegendLabel(key))
+        num_entries.append(merger.hist_handles[key].hist.GetEntries())
+        fill_colors.append(merger.hist_handles[key].hist_info.fill_color)
+        line_colors.append(merger.hist_handles[key].hist_info.line_color)
+        line_widths.append(merger.hist_handles[key].hist_info.line_width)
+        line_styles.append(merger.hist_handles[key].hist_info.line_style)

@@ -58,10 +58,14 @@ namespace PennSusyFrame
     // -----------------------------------------------------------------------------
     public:
       EgammaScaleFactorTool();
+      void init();
 
       // TODO move accessors to cxx file
       void setFullSim() { m_is_af2 = false; }
       void setAf2()     { m_is_af2 = true; }
+
+      void setTightPP()  { m_is_tightpp = true;  }
+      void setMediumPP() { m_is_tightpp = false; }
 
       double getSF( const PennSusyFrame::Event&
                   , const PennSusyFrame::Electron*
@@ -70,15 +74,19 @@ namespace PennSusyFrame
     // -----------------------------------------------------------------------------
     private:
       bool m_is_af2;
+      bool m_is_tightpp;
 
       std::string m_egamma_sf_dir;
       std::string m_reco_file_name;
       std::string m_tight_file_name;
+      std::string m_medium_file_name;
       // std::string m_trigger_file_name;
 
       Root::TElectronEfficiencyCorrectionTool m_eg_reco_sf;
-      Root::TElectronEfficiencyCorrectionTool m_eg_tight_sf;
+      Root::TElectronEfficiencyCorrectionTool m_eg_id_sf;
       // Root::TElectronEfficiencyCorrectionTool m_eg_trigger_sf;
+
+      PATCore::ParticleDataType::DataType m_data_type;
   };
 
   // =============================================================================

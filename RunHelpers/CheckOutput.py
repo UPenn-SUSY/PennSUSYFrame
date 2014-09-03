@@ -11,6 +11,8 @@ import glob
 import sys
 import re
 
+import ROOT
+
 # ------------------------------------------------------------------------------
 def getListOfRunJobs(job_script_dir):
     # get list of job scripts
@@ -48,6 +50,7 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
         cleaned_list_of_output_file.append(loof)
 
     # list to store missing output files
+    list_of_broken_output  = []
     list_of_missing_output = []
 
     # for each sample in the list of samples, check if there is output
@@ -61,15 +64,28 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
                 # does the file name contain the sample name?
                 if sample_name in cloof:
                     # if yes, does it also have the correct job number?
-                    if num_jobs == 1 or '%d_of_%d' % (this_job, num_jobs) in cloof:
+                    if num_jobs == 1 or '.%d_of_%d.' % (this_job, num_jobs) in cloof:
                         # output is found :-)
                         found_match = True
                         break
             if found_match:
-                print 'Found output for %s -- job %d of %d' % ( sample_name
-                                                                , this_job
-                                                                , num_jobs
-                                                                )
+                print 'Found output for %s -- job %d of %d -- %s' % ( sample_name
+                                                                    , this_job
+                                                                    , num_jobs
+                                                                    , cloof
+                                                                    )
+                # check if file is readable
+                print '%s/%s' % (output_dir, cloof)
+                test_instance = ROOT.TFile.Open('%s/%s' % (output_dir, cloof))
+                if test_instance.IsZombie():
+                    print 'Output file is a zombie %s -- job %d of %d' % ( sample_name
+                                                                         , this_job
+                                                                         , num_jobs
+                                                                         )
+                    print '\tZombie files want your brains!'
+                    list_of_missing_output.append('%s.%d_of_%d' % (sample_name, this_job, num_jobs) )
+
+                test_instance.Close()
             else:
                 # output not found :-(
                 print 'Missing output for %s -- job %d of %d' % ( sample_name

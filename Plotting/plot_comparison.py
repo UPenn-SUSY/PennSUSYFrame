@@ -18,6 +18,33 @@ def skipHist(dir_name, hist_name):
   if 'em' in dir_name:
     if 'el_1' in hist_name or 'mu_1' in hist_name:
       return True
+
+  # # # if 'flavor_all'   in hist_name: return True
+  # if 'flavor_ee'    in hist_name: return True
+  # if 'flavor_mm'    in hist_name: return True
+  # if 'flavor_em'    in hist_name: return True
+  # if 'flavor_error' in hist_name: return True
+  # if 'jet_fiducial' in hist_name: return True
+  # if 'mt2'          in hist_name: return True
+  # if 'met'          in hist_name: return True
+  # if 'b_jet'        in hist_name: return True
+  # if 'bl_d'         in hist_name: return True
+  # if 'dphi_bb'      in hist_name: return True
+  # if 'jet_'         in hist_name: return True
+  # if 'lep_'         in hist_name: return True
+  # if 'lep_raw'      in hist_name: return True
+  # if 'met_d'        in hist_name: return True
+
+  # if 'mll'        in hist_name: return True
+  # if 'ptll'        in hist_name: return True
+  # if 'ht'        in hist_name: return True
+  # if 'npv'        in hist_name: return True
+  # if 'weights__'        in hist_name: return True
+  # if 'mbbll'        in hist_name: return True
+  # if 'ptbbll'        in hist_name: return True
+  # if 'mbl'        in hist_name: return True
+  # if 'ptbl'        in hist_name: return True
+
   return False
 
 # ------------------------------------------------------------------------------
@@ -42,6 +69,14 @@ def plotComparisons( ic_numerator
     dirs = hh.Helper.getListOfDirs(file_list)
     num_dirs = len(dirs)
     for d_it, d in enumerate(dirs):
+        # # if not 'BMINUSL_BL_PAIRING' in d:
+        # if not d == 'BMINUSL_BL_PAIRING':
+        #     print 'skipping directory: ' , d
+        #     continue
+        # if 'pu_0' in d:
+        #     print 'skipping directory: ' , d
+        #     continue
+
         print 'Printing histograms for cut dir: %s (%d of %d)' % (d, d_it, num_dirs)
         out_file.cd()
         out_file.mkdir(d)
@@ -69,7 +104,6 @@ def plotComparisons( ic_numerator
                                                      , other = hm_other
                                                      )
 
-                # print 'Log'
                 pile_test_stack = hist_painter.pileAndRatio( num_type       = hh.Objects.plain_hist
                                                            , denom_type     = hh.Objects.stack_hist
                                                            , canvas_options = hh.Objects.canv_log_y
@@ -79,7 +113,6 @@ def plotComparisons( ic_numerator
                 pile_test_stack.Write('%s__log' % h)
                 pile_test_stack.Close()
 
-                # print 'Linear'
                 pile_test_stack = hist_painter.pileAndRatio(
                         num_type       = hh.Objects.plain_hist,
                         denom_type     = hh.Objects.stack_hist,
@@ -136,8 +169,6 @@ def plotComparisons( ic_numerator
             #     # denom_canv = hh.Painter.draw2DHist(hm_denom.hist_sum, hm_denom.hist_name)
             #     # denom_canv.Write('%s__denom' % hm_denom.hist_name)
             #     # denom_canv.Close()
-
-
 
     out_file.Close()
 

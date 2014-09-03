@@ -40,18 +40,45 @@ if __name__ == '__main__':
 
     print 'getting file list'
 
-    data_samples = {
-                   }
+    egamma_data_samples = {
+                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':10}
+                          , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':20}
+                          , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':20}
+                          , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':15}
+                          , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':30}
+                          , 'periodG_egamma':{'label':'periodG_egamma', 'num_jobs':30}
+                          , 'periodH_egamma':{'label':'periodH_egamma', 'num_jobs':30}
+                          , 'periodI_egamma':{'label':'periodI_egamma', 'num_jobs':30}
+                          , 'periodJ_egamma':{'label':'periodJ_egamma', 'num_jobs':30}
+                          , 'periodL_egamma':{'label':'periodL_egamma', 'num_jobs':30}
+                          }
+    muon_data_samples = {
+                          'periodA_muon':{'label':'periodA_muon', 'num_jobs':10}
+                        , 'periodB_muon':{'label':'periodB_muon', 'num_jobs':20}
+                        , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':20}
+                        , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':15}
+                        , 'periodE_muon':{'label':'periodE_muon', 'num_jobs':30}
+                        , 'periodG_muon':{'label':'periodG_muon', 'num_jobs':30}
+                        , 'periodH_muon':{'label':'periodH_muon', 'num_jobs':30}
+                        , 'periodI_muon':{'label':'periodI_muon', 'num_jobs':30}
+                        , 'periodJ_muon':{'label':'periodJ_muon', 'num_jobs':30}
+                        , 'periodL_muon':{'label':'periodL_muon', 'num_jobs':30}
+                        }
     full_sim_mc_samples = {
                           }
     fast_sim_mc_samples = {
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2'                  , 'num_jobs':50}
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'         , 'num_jobs':30}
-                          , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'               , 'num_jobs':30}
-                          , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'             , 'num_jobs':30}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':200}
+
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR', 'num_jobs':50}
+
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'               , 'num_jobs':50}
+                          , 167752:{'label':'167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'             , 'num_jobs':50}
                           , 167755:{'label':'167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter'           , 'num_jobs':5}
-                          , 167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':20}
-                          , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':20}
+                          , 167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':50}
+                          , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':30}
                           , 167803:{'label':'167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter'      , 'num_jobs':5}
                           , 167809:{'label':'167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter'         , 'num_jobs':10}
                           , 167812:{'label':'167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter'       , 'num_jobs':10}
@@ -65,6 +92,7 @@ if __name__ == '__main__':
                           , 180543:{'label':'180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter'           , 'num_jobs':10}
                           , 180546:{'label':'180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter'         , 'num_jobs':10}
                           , 180549:{'label':'180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter'       , 'num_jobs':5}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
                           , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200'  , 'num_jobs':1}
                           , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300'  , 'num_jobs':1}
@@ -79,10 +107,12 @@ if __name__ == '__main__':
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # add data samples
-    data_set_dicts = RunHelpers.addAllSamplesToList( data_samples = data_samples
+    data_set_dicts = RunHelpers.addAllSamplesToList( egamma_data_samples = egamma_data_samples
+                                                   , muon_data_samples   = muon_data_samples
                                                    , full_sim_mc_samples = full_sim_mc_samples
                                                    , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
+                                                   # , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
+                                                   , file_list_path_base = 'EosFileLists/tnt_103_w_weights/tnt_103'
                                                    , out_dir = out_dir
                                                    )
 
@@ -103,4 +133,5 @@ if __name__ == '__main__':
                                         , out_dir               = out_dir
                                         , queue                 = '1nh'
                                         , sym_link_name         = './NextOptNtupDir.BMinusL'
+                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker'
                                         )

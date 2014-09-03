@@ -38,39 +38,45 @@ def getFileListFromDir(file_path):
 # ------------------------------------------------------------------------------
 def readFileList(file_path):
     file_list = []
-    total_num_events = 0
-    total_entries = 0
+    total_num_events     = 0
+    total_entries        = 0
+    sum_mc_event_weights = 0.
 
     print 'reading file: %s' % file_path
     f = file(file_path)
     for l in f.readlines():
         l = l.strip('\n')
         splits = l.split()
-        print splits
+        # print splits
         file_list.append( splits[0])
         total_num_events += int(splits[1])
         total_entries    += int(splits[2])
 
+        # increment the sum of mc event weights -- if this entry is not filled
+        # in the EosFileList, increment with the total number of events
+        sum_mc_event_weights += float(splits[3]) if len(splits) > 3 else int(splits[1])
+
     return { 'file_list':file_list
            , 'total_num_events':total_num_events
            , 'total_entries':total_entries
+           , 'sum_mc_event_weights':sum_mc_event_weights
            }
 
-# ------------------------------------------------------------------------------
-def getFileListFromFile(file_path):
-    file_list = []
-
-    f = file(file_path)
-    for l in f.readlines():
-        l = l.strip('\n')
-        splits = l.split()
-        file_list.append( { 'file_name':splits[0]
-                          , 'total_num_events':splits[1]
-                          , 'total_entries':splits[2]
-                          }
-                        )
-
-    return file_list
+## # ------------------------------------------------------------------------------
+## def getFileListFromFile(file_path):
+##     file_list = []
+##
+##     f = file(file_path)
+##     for l in f.readlines():
+##         l = l.strip('\n')
+##         splits = l.split()
+##         file_list.append( { 'file_name':splits[0]
+##                           , 'total_num_events':splits[1]
+##                           , 'total_entries':splits[2]
+##                           }
+##                         )
+##
+##     return file_list
 
 # ------------------------------------------------------------------------------
 def getFileListFromGridInput(grid_input_string):
@@ -90,6 +96,7 @@ def getTChain(file_list, tree_name):
 def makeDataSetDict( label_base
                    , file_list_path
                    , is_data
+                   , is_egamma_stream
                    , is_full_sim
                    , dsid
                    , job_num=0
@@ -107,6 +114,7 @@ def makeDataSetDict( label_base
     return { 'label':label
            , 'file_list':file_list
            , 'is_data':is_data
+           , 'is_egamma_stream':is_egamma_stream
            , 'is_full_sim':is_full_sim
            , 'dsid':dsid
            , 'job_num':job_num
@@ -118,6 +126,7 @@ def makeDataSetDict( label_base
 def makeDataSetDictList( label_base
                        , file_list_path
                        , is_data
+                       , is_egamma_stream
                        , is_full_sim
                        , dsid
                        , total_num_jobs = 1
@@ -126,27 +135,31 @@ def makeDataSetDictList( label_base
     total_num_entries = 0
 
     print 'getting raw events for %s' % label_base
-    data_set_input    = readFileList('%s/%s' % (os.environ['BASE_WORK_DIR'], file_list_path))
-    file_list         = data_set_input['file_list']
-    total_num_events  = data_set_input['total_num_events']
-    total_num_entries = data_set_input['total_entries']
+    data_set_input       = readFileList('%s/%s' % (os.environ['BASE_WORK_DIR'], file_list_path))
+    file_list            = data_set_input['file_list']
+    total_num_events     = data_set_input['total_num_events']
+    total_num_entries    = data_set_input['total_entries']
+    sum_mc_event_weights = data_set_input['sum_mc_event_weights']
 
     print 'total num events: %s' % total_num_events
     print 'total entries: %s' % total_num_entries
+    print 'sum mc event weights: %s' % sum_mc_event_weights
 
     data_set_dict_list = []
     for tnj in xrange(total_num_jobs):
-        this_data_set_dict = makeDataSetDict( label_base     = label_base
-                                            , file_list_path = file_list_path
-                                            , is_data        = is_data
-                                            , is_full_sim    = is_full_sim
-                                            , dsid           = dsid
-                                            , job_num        = tnj
-                                            , total_num_jobs = total_num_jobs
-                                            , out_dir        = out_dir
+        this_data_set_dict = makeDataSetDict( label_base       = label_base
+                                            , file_list_path   = file_list_path
+                                            , is_data          = is_data
+                                            , is_egamma_stream = is_egamma_stream
+                                            , is_full_sim      = is_full_sim
+                                            , dsid             = dsid
+                                            , job_num          = tnj
+                                            , total_num_jobs   = total_num_jobs
+                                            , out_dir          = out_dir
                                             )
-        this_data_set_dict['total_num_events']  = total_num_events
-        this_data_set_dict['total_num_entries'] = total_num_entries
+        this_data_set_dict['total_num_events']     = total_num_events
+        this_data_set_dict['total_num_entries']    = total_num_entries
+        this_data_set_dict['sum_mc_event_weights'] = sum_mc_event_weights
         data_set_dict_list.append(this_data_set_dict)
 
     return data_set_dict_list
@@ -175,23 +188,26 @@ def addSamplesToList( sample_dict
                     , data_set_dicts
                     , file_list_path
                     , is_data
+                    , is_egamma_stream
                     , is_full_sim
                     , dsid
                     , out_dir
                     ):
-    these_data_set_dicts = makeDataSetDictList( label_base     = sample_dict['label']
-                                              , file_list_path = file_list_path
-                                              , is_data        = is_data
-                                              , is_full_sim    = is_full_sim
-                                              , dsid           = dsid
-                                              , total_num_jobs = sample_dict['num_jobs']
-                                              , out_dir        = out_dir
+    these_data_set_dicts = makeDataSetDictList( label_base       = sample_dict['label']
+                                              , file_list_path   = file_list_path
+                                              , is_data          = is_data
+                                              , is_egamma_stream = is_egamma_stream
+                                              , is_full_sim      = is_full_sim
+                                              , dsid             = dsid
+                                              , total_num_jobs   = sample_dict['num_jobs']
+                                              , out_dir          = out_dir
                                               )
     for tdsd in these_data_set_dicts:
         data_set_dicts.append(tdsd)
 
 # ------------------------------------------------------------------------------
-def addAllSamplesToList( data_samples
+def addAllSamplesToList( egamma_data_samples
+                       , muon_data_samples
                        , full_sim_mc_samples
                        , fast_sim_mc_samples
                        , file_list_path_base
@@ -199,43 +215,60 @@ def addAllSamplesToList( data_samples
                        ):
     data_set_dicts = []
 
-    # add data samples
-    for dsid in data_samples:
-        addSamplesToList( sample_dict    = data_samples[dsid]
-                        , data_set_dicts = data_set_dicts
-                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
-                                                         , data_samples[dsid]['label']
-                                                         )
-                        , is_data        = True
-                        , is_full_sim    = False
-                        , dsid           = dsid
-                        , out_dir        = out_dir
+    # add egamma stream data samples
+    for dsid in egamma_data_samples:
+        addSamplesToList( sample_dict      = egamma_data_samples[dsid]
+                        , data_set_dicts   = data_set_dicts
+                        , file_list_path   = '%s.%s.txt' % ( file_list_path_base
+                                                           , egamma_data_samples[dsid]['label']
+                                                           )
+                        , is_data          = True
+                        , is_egamma_stream = True
+                        , is_full_sim      = False
+                        , dsid             = dsid
+                        , out_dir          = out_dir
+                        )
+
+    # add muon stream data samples
+    for dsid in muon_data_samples:
+        addSamplesToList( sample_dict      = muon_data_samples[dsid]
+                        , data_set_dicts   = data_set_dicts
+                        , file_list_path   = '%s.%s.txt' % ( file_list_path_base
+                                                           , muon_data_samples[dsid]['label']
+                                                           )
+                        , is_data          = True
+                        , is_egamma_stream = False
+                        , is_full_sim      = False
+                        , dsid             = dsid
+                        , out_dir          = out_dir
                         )
 
     # add full sim samples
     for dsid in full_sim_mc_samples:
-        addSamplesToList( sample_dict    = full_sim_mc_samples[dsid]
-                        , data_set_dicts = data_set_dicts
-                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
-                                                         , full_sim_mc_samples[dsid]['label']
-                                                         )
-                        , is_data        = False
-                        , is_full_sim    = True
-                        , dsid           = dsid
-                        , out_dir        = out_dir
+        addSamplesToList( sample_dict      = full_sim_mc_samples[dsid]
+                        , data_set_dicts   = data_set_dicts
+                        , file_list_path   = '%s.%s.txt' % ( file_list_path_base
+                                                           , full_sim_mc_samples[dsid]['label']
+                                                           )
+                        , is_data          = False
+                        , is_egamma_stream = False
+                        , is_full_sim      = True
+                        , dsid             = dsid
+                        , out_dir          = out_dir
                         )
 
     # add fast sim samples
     for dsid in fast_sim_mc_samples:
-        addSamplesToList( sample_dict    = fast_sim_mc_samples[dsid]
-                        , data_set_dicts = data_set_dicts
-                        , file_list_path = '%s.%s.txt' % ( file_list_path_base
-                                                         , fast_sim_mc_samples[dsid]['label']
-                                                         )
-                        , is_data        = False
-                        , is_full_sim    = False
-                        , dsid           = dsid
-                        , out_dir        = out_dir
+        addSamplesToList( sample_dict      = fast_sim_mc_samples[dsid]
+                        , data_set_dicts   = data_set_dicts
+                        , file_list_path   = '%s.%s.txt' % ( file_list_path_base
+                                                           , fast_sim_mc_samples[dsid]['label']
+                                                           )
+                        , is_data          = False
+                        , is_egamma_stream = False
+                        , is_full_sim      = False
+                        , dsid             = dsid
+                        , out_dir          = out_dir
                         )
 
     # return the list of data set dictionaries
@@ -252,8 +285,8 @@ def mergeOutputFiles(out_dir, flat_files):
 
     all_files_in_out_dir = glob.glob('%s/*.root' % abs_path)
     all_files_in_out_dir = glob.glob('%s/*.root' % abs_path)
-    print all_files_in_out_dir[0]
-    print dummy_file_name
+    # print all_files_in_out_dir[0]
+    # print dummy_file_name
     os.symlink(all_files_in_out_dir[0], dummy_file_name)
 
 # ------------------------------------------------------------------------------
@@ -274,11 +307,12 @@ def runLocalMultiprocess( run_analysis_fun
                         , do_merge = True
                         ):
     p = Pool(num_processes)
+    # print run_analysis_fun
+    # print data_set_dicts
     p.map(run_analysis_fun, data_set_dicts)
 
-    if do_merge:
-        mergeOutputFiles(out_dir, flat_ntuples)
-    moveToLinkedDir(out_dir, sym_link_name)
+    mergeOutputFiles(out_dir, flat_ntuples)
+    moveToLinkedDir(out_dir , sym_link_name)
 
 # ------------------------------------------------------------------------------
 def writeLxBatchScript( run_analysis_fun
@@ -287,9 +321,9 @@ def writeLxBatchScript( run_analysis_fun
                       , data_set_dict
                       , job_dir
                       ):
-    print 'writeLxBatchScript()'
-    print run_analysis_fun
-    print run_analysis_fun.__name__
+    # print 'writeLxBatchScript()'
+    # print run_analysis_fun
+    # print run_analysis_fun.__name__
 
     job_py_name = '%s/lx_batch_job.%s.%d_of_%d.py' % ( job_dir
                                                      , data_set_dict['label']
@@ -351,12 +385,13 @@ def runLxBatchMultiProcess( run_analysis_fun
                           , out_dir
                           , queue         = '1nh'
                           , sym_link_name = ''
+                          , job_dir       = 'LatestRunDir'
                           ):
     print 'runLxBatchMultiProcess()'
     print '  out dir: ' , out_dir
 
     # create directory for new run scripts
-    job_dir = 'LatestRunDir'
+    # job_dir = 'LatestRunDir'
     safeRemoveDir(job_dir)
     safeMakeDir(job_dir)
 
@@ -372,12 +407,12 @@ def runLxBatchMultiProcess( run_analysis_fun
         print ''
 
         # submit this job to lxbatch!
-        # batch_submit_command = [ 'echo' , '${BASE_WORK_DIR}/RunHelpers/SubmitPythonToBatch.sh'
         batch_submit_command = [ '%s/RunHelpers/SubmitPythonToBatch.sh' % os.environ['PWD']
                                , queue
                                , '%s/%s' % (os.environ['PWD'], this_job_file_name)
                                , os.environ['PWD']
                                ]
+        print batch_submit_command
         subprocess.call(batch_submit_command)
 
     # make sym link to output dir

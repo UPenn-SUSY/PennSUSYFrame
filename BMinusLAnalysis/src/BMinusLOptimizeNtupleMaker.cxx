@@ -65,14 +65,17 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeEvent()
      && m_pass_hfor
      && m_pass_mc_overlap
      && m_pass_ge_2_lep
-     && m_pass_2_lep
+     // && m_pass_2_lep
      && m_pass_signal_lep
+     && m_pass_os
+     && m_pass_trigger
      && m_pass_ge_2_b_jet
      // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
      && m_pass_z_veto
      ) {
-    // std::cout << "finalizeEvent():"
+    // // std::cout << "finalizeEvent():"
+    // std::cout << "Filling ntuple:"
     //           << "\n\tevent: "             << m_event.getEventNumber()
     //           << "\n\tweight: "            << m_event_weight
     //           << "\n\t\tmc event weight: " << m_mc_event_weight

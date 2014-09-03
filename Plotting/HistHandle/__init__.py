@@ -9,7 +9,7 @@ from array import array
 __author__ = 'Brett Jackson'
 __email__ = 'brett.david.jackson@cern.ch'
 
-default = object()
+default      = object()
 ignore_zeros = object()
 
 left  = object()
@@ -18,6 +18,20 @@ equal = object()
 
 HIST_1D = object()
 HIST_2D = object()
+
+# default margins
+default_canv_width        = 600
+default_canv_height       = 800
+
+default_ratio_pad_size = 0.25
+
+default_pad_left_margin   = 0.16
+default_pad_right_margin  = 0.09
+default_pad_top_margin    = 0.05
+default_pad_bottom_margin = 0.16
+
+default_label_size = 0.04
+default_title_size = 0.05
 
 #------------------------------------------------------------------------------
 # import modules
@@ -68,9 +82,9 @@ gStyle.SetTextFont(font)
 
 # gStyle.SetPaintTextFormat('5.3f')
 # set font sizes
-gStyle.SetLabelSize(0.04, 'xyz')
-gStyle.SetTitleSize(0.04, 'xyz')
-gStyle.SetTitleSize(0.05, 't')
+gStyle.SetLabelSize(default_label_size, 'xyz')
+gStyle.SetTitleSize(default_label_size, 'xyz')
+gStyle.SetTitleSize(default_title_size, 't')
 
 # title offset
 gStyle.SetTitleOffset(1.2, 'x')

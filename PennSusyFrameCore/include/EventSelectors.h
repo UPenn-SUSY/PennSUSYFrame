@@ -14,6 +14,7 @@
 namespace PennSusyFrame
 {
   class Event;
+  class EventLevelQuantities;
   class Jet;
   class JetContainer;
   class VertexContainer;
@@ -112,31 +113,28 @@ namespace PennSusyFrame
 
   // =============================================================================
   bool passSherpaWWOverlapRemoval(const PennSusyFrame::Event&, const PennSusyFrame::MCTruth&);
+  bool passZOverlapRemoval(               const PennSusyFrame::MCTruth&);
+  bool passSherpaZMassiveCBOverlapRemoval(const PennSusyFrame::MCTruth&, const PennSusyFrame::EventLevelQuantities&);
+  bool passSherpaDYOverlapRemoval(        const PennSusyFrame::MCTruth&, const PennSusyFrame::EventLevelQuantities&);
+  float findTruthLevelZPt(const PennSusyFrame::MCTruth&);
 
-  // =============================================================================
-  bool passZOverlapRemoval(const PennSusyFrame::MCTruth&);
-
-  // =============================================================================
+  // ===========================================================================
   class BCHCleaningTool
   {
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  public:
-    BCHCleaningTool();
-    ~BCHCleaningTool();
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      BCHCleaningTool();
+      ~BCHCleaningTool();
 
-    bool passBCHCleaning(const PennSusyFrame::JetContainer&, int, int);
-    bool passBCHCleaning(const PennSusyFrame::Jet*, int, int);
-    void init(const PennSusyFrame::Event&, PennSusyFrame::TileTripTool&);
+      bool passBCHCleaning(const PennSusyFrame::JetContainer&, int, int);
+      bool passBCHCleaning(const PennSusyFrame::Jet*, int, int);
+      void init(const PennSusyFrame::Event&, PennSusyFrame::TileTripTool&);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  private:
-    BCHTool::BCHCleaningToolRoot* m_bch_tool;	
-    std::string m_bch_file;
-    
-    
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      BCHTool::BCHCleaningToolRoot* m_bch_tool;
+      std::string m_bch_file;
   };
-
-
 }
 
 // Include the implementation:

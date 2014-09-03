@@ -1,0 +1,17 @@
+user.bjackson.110119.PowhegPythia_P2011C_st_schan_lep.tnt_106_Tnt.root/
+user.bjackson.110140.PowhegPythia_P2011C_st_Wtchan_incl_DR.af2.tnt_106_Tnt.root/
+user.bjackson.117050.PowhegPythia_P2011C_ttbar.af2.tnt_106_Tnt.root/
+user.bjackson.117650.AlpgenPythia_P2011C_ZeeNp0.tnt_106_Tnt.root/
+user.bjackson.126933.PowhegPythia8_AU2CT10_WpWm_tm.tnt_106_Tnt.root/
+user.bjackson.126935.PowhegPythia8_AU2CT10_WpWm_mt.tnt_106_Tnt.root/
+user.bjackson.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.tnt_106_Tnt.root/
+user.bjackson.167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto.tnt_106_Tnt.root/
+user.bjackson.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.tnt_106_Tnt.root/
+user.bjackson.180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto.tnt_106_Tnt.root/
+user.bjackson.180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto.tnt_106_Tnt.root/
+user.bjackson.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.tnt_106_Tnt.root/
+user.bjackson.periodC_muon.tnt_106_Tnt.root/
+user.bjackson.periodD_egamma.tnt_106_Tnt.root/
+user.bjackson.periodI_egamma.tnt_106_Tnt.root/
+user.bjackson.periodJ_egamma.tnt_106_Tnt.root/
+user.bjackson.periodL_muon.tnt_106_Tnt.root/

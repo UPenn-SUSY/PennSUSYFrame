@@ -322,3 +322,139 @@ bool PennSusyFrame::passZOverlapRemoval(const PennSusyFrame::MCTruth& mc_truth)
 
   return true;
 }
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::passSherpaZMassiveCBOverlapRemoval( const PennSusyFrame::MCTruth& mc_truth
+                                                      , const PennSusyFrame::EventLevelQuantities& event_level_quantities
+                                                      )
+{
+  // check sample dsid and skip if not sherpa Z**MassiveCBPt0 sample
+  unsigned int dsid = mc_truth.getChannelNumber();
+  bool is_sherpa_z_massivecb = (dsid >= 167749 && dsid <= 167757);
+  if (!is_sherpa_z_massivecb) return true;
+
+  // each massiveCB samples covers a different pt_z range
+  float z_pt = findTruthLevelZPt(mc_truth)/1000.;
+  if ( dsid >= 167749 && dsid <= 167757 && z_pt > 40. ) return false;
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::passSherpaDYOverlapRemoval( const PennSusyFrame::MCTruth& mc_truth
+                                              , const PennSusyFrame::EventLevelQuantities& event_level_quantities
+                                              )
+{
+  // TODO remove this function and calls to it
+  return true;
+
+  unsigned int dsid = mc_truth.getChannelNumber();
+  bool is_sherpa_dy = ( dsid >= 173041 && dsid <= 173046 );
+  if (!is_sherpa_dy) return true;
+
+  // sherpa dy samples each cover an m_Z range
+  float m_z = event_level_quantities.getMll()/1000.;
+
+  if (  ( (dsid == 173041) || (dsid == 173043) || (dsid == 173045) )
+      && ( (m_z < 8.) || (m_z > 15.) )
+      ) {
+    return false;
+  }
+  if (  ( (dsid == 173042) || (dsid == 173044) || (dsid == 173046) )
+     && ( (m_z < 15.) || (m_z > 40.) )
+     ) {
+    return false;
+  }
+
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+// TODO move to calculators
+float PennSusyFrame::findTruthLevelZPt(const PennSusyFrame::MCTruth& mc_truth)
+{
+  // only do this for sherpa Z or sherpa dy samples
+  unsigned int dsid = mc_truth.getChannelNumber();
+  bool is_sherpa_z_massivecb = (  ( dsid >= 167749 && dsid <= 167757)
+                               || ( dsid >= 167797 && dsid <= 167805)
+                               || ( dsid >= 167809 && dsid <= 167817)
+                               || ( dsid >= 167821 && dsid <= 167829)
+                               || ( dsid >= 167833 && dsid <= 167841)
+                               || ( dsid >= 180543 && dsid <= 180551)
+                               || ( dsid >= 173041 && dsid <= 173046)
+                               );
+  if (!is_sherpa_z_massivecb) return -1;
+
+  // vector to hold lepton daughters of the Z
+  std::vector<unsigned int> daughter_l_index;
+
+  // loop through objects in the truth record
+  unsigned int num_mc_truth_objects = mc_truth.getN();
+  for (unsigned int mc_it = 0; mc_it != num_mc_truth_objects; ++mc_it) {
+    // get the pdgid of this objects -- skip if not a lepton
+    int this_pdgid = mc_truth.getPdgId()->at(mc_it);
+    if (  fabs(this_pdgid) != 11
+       && fabs(this_pdgid) != 13
+       && fabs(this_pdgid) != 15
+       ) {
+      continue;
+    }
+
+    // get the number of parents of this object
+    size_t num_parents = mc_truth.getParentIndex()->at(mc_it).size();
+    if (num_parents == 0) continue;
+
+    // look at the parents -- if the parent is a lepton, or something > 25, the
+    // parent of this lepton is probably not a Z
+    bool from_z = true;
+    for (size_t parent_it = 0; parent_it != num_parents; ++parent_it) {
+      int this_parent_index = mc_truth.getParentIndex()->at(mc_it).at(parent_it);
+      int this_parent_pdgid = ( this_parent_index >= 0
+                              ? mc_truth.getPdgId()->at(this_parent_index)
+                              : -1
+                              );
+      if (  fabs(this_parent_pdgid) == 11
+         || fabs(this_parent_pdgid) == 13
+         || fabs(this_parent_pdgid) == 15
+         || fabs(this_parent_pdgid) >  25
+         ) {
+        // if we found a parent that isn't a lepton or pdgid > 25, we assume we
+        // found a lepton from the Z, and can stop :-)
+        from_z = false;
+        break;
+      }
+    }
+
+    // if from the z, store the index of the lepton
+    if (from_z) {
+      daughter_l_index.push_back(mc_it);
+    }
+  }
+
+  // if we found two daughter leptons, calculate and return the ptll
+  if (daughter_l_index.size() == 2) {
+    TLorentzVector tlv_0;
+    TLorentzVector tlv_1;
+
+    tlv_0.SetPtEtaPhiM( mc_truth.getPt()->at( daughter_l_index.at(0))
+                      , mc_truth.getEta()->at(daughter_l_index.at(0))
+                      , mc_truth.getPhi()->at(daughter_l_index.at(0))
+                      , mc_truth.getM()->at(  daughter_l_index.at(0))
+                      );
+    tlv_1.SetPtEtaPhiM( mc_truth.getPt()->at( daughter_l_index.at(1))
+                      , mc_truth.getEta()->at(daughter_l_index.at(1))
+                      , mc_truth.getPhi()->at(daughter_l_index.at(1))
+                      , mc_truth.getM()->at(  daughter_l_index.at(1))
+                      );
+
+    return (tlv_0 + tlv_1).Pt();
+  }
+
+  // std::cout << "num leptons from z: " << daughter_l_index.size() << "\n";
+  if (daughter_l_index.size() != 2) {
+    std::cout << "WARNING!!! Number of leptons from Z is not 2!!! -- dsid: " << dsid << "\n";
+  }
+  // std::cout << "\n\n";
+
+  return 0;
+}

@@ -1,0 +1,4 @@
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_103_v2_z_bfilter//user.bjackson.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.tnt_103.140708185311/user.bjackson.036701._00001.Tnt.root    150000    118518    30459.4243275
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_103_v2_z_bfilter//user.bjackson.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.tnt_103.140708185311/user.bjackson.036701._00002.Tnt.root    29999    23808    6084.85269693
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_103_v2_z_bfilter//user.bjackson.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.tnt_103.140708185327/user.bjackson.036701._00003.Tnt.root    20000    15741    4058.31909848
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_103_v2_z_bfilter//user.bjackson.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.tnt_103.140708185342/user.bjackson.036701._00004.Tnt.root    20000    15754    4068.55407695

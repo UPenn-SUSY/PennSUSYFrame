@@ -29,6 +29,19 @@ double PennSusyFrame::getMll( FLAVOR_CHANNEL flavor_channel
 }
 
 // -----------------------------------------------------------------------------
+// mjj calculator
+double PennSusyFrame::getMjj(const std::vector<PennSusyFrame::Jet*>* jet)
+{
+  double mjj = 0.;
+
+  if (jet->size() >= 2) {
+    mjj = calcMll(jet->at(0), jet->at(1));
+  }
+
+  return mjj;
+}
+
+// -----------------------------------------------------------------------------
 // ptll calculator
 double PennSusyFrame::getPtll( FLAVOR_CHANNEL flavor_channel
                              , const std::vector<PennSusyFrame::Electron*>* el
@@ -48,6 +61,19 @@ double PennSusyFrame::getPtll( FLAVOR_CHANNEL flavor_channel
   }
 
   return ptll;
+}
+
+// -----------------------------------------------------------------------------
+// ptjj calculator
+double PennSusyFrame::getPtjj(const std::vector<PennSusyFrame::Jet*>* jet)
+{
+  double ptjj = 0.;
+
+  if (jet->size() >= 2) {
+    ptjj = calcPtll(jet->at(0), jet->at(1));
+  }
+
+  return ptjj;
 }
 
 // -----------------------------------------------------------------------------
@@ -184,4 +210,68 @@ double PennSusyFrame::getHt( const std::vector<PennSusyFrame::Electron*>* el_lis
   }
 
   return ht;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::calculateTtbarPtReweight(const PennSusyFrame::MCTruth& mc_truth)
+{
+  unsigned int dsid = mc_truth.getChannelNumber();
+  if (dsid != 117050) return 1.;
+
+  // Reweighting based on differential cross section measurement ATLAS-CONF-2013-099
+  // to be applied to ttbar Powheg+P6+P2011C sample (117050)
+  // used in strong 1l- and 1-tau and stop 0- and 1-lepton analyses
+  // ttbarpt is the pt of the ttbar system ( = (top + antitop).Pt(), top and antitop being the appropriate 4-vectors) in MeV, obtained using tops/antitops with
+  // status 3 from the mc truth record
+
+  // look for top anti-top pair
+  bool found_top  = false;
+  bool found_atop = false;
+  TLorentzVector tlv_top;
+  TLorentzVector tlv_atop;
+
+  // loop through objects in the truth record
+  unsigned int num_mc_truth_objects = mc_truth.getN();
+  for (unsigned int mc_it = 0; mc_it != num_mc_truth_objects; ++mc_it) {
+    // get the pdgid of this objects -- skip if not a top or not status code 3
+    if (mc_truth.getStatus()->at(mc_it) != 3) continue;
+
+    int this_pdgid = mc_truth.getPdgId()->at(mc_it);
+    if ( fabs(this_pdgid) != 6 ) continue;
+
+    if (this_pdgid == 6) {
+      found_top = true;
+      tlv_top.SetPtEtaPhiM( mc_truth.getPt()->at( mc_it)
+                          , mc_truth.getEta()->at(mc_it)
+                          , mc_truth.getPhi()->at(mc_it)
+                          , mc_truth.getM()->at(  mc_it)
+                          );
+    }
+    else if (this_pdgid == -6) {
+      found_atop = true;
+      tlv_atop.SetPtEtaPhiM( mc_truth.getPt()->at( mc_it)
+                           , mc_truth.getEta()->at(mc_it)
+                           , mc_truth.getPhi()->at(mc_it)
+                           , mc_truth.getM()->at(  mc_it)
+                           );
+    }
+  }
+
+  float weight = 1.;
+
+  // if we found the top and anti-top, construct ttbar-pt and then weight
+  if (found_top && found_atop) {
+    float ttbar_pt = (tlv_top+tlv_atop).Pt();
+
+    if (ttbar_pt/1000. < 40.)
+      weight = (1./1.011850 + 1./0.994193)/2.;
+    else if (ttbar_pt/1000. < 170.)
+      weight = (1./1.095920 + 1./1.034480)/2.;
+    else if (ttbar_pt/1000. < 340.)
+      weight = (1./1.407280 + 1./1.319110)/2.;
+    else
+      weight = (1./1.799380 + 1./1.710780)/2.;
+  }
+
+  return weight;
 }

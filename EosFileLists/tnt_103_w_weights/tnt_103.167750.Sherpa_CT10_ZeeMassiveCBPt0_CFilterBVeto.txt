@@ -1,0 +1,7 @@
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.tnt_103.140708183629/user.bjackson.036604._00001.Tnt.root    1109998    448758    500787.542082
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.tnt_103.140708183629/user.bjackson.036604._00002.Tnt.root    1069997    431182    482129.956313
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.tnt_103.140708183629/user.bjackson.036604._00003.Tnt.root    320000    128384    144526.421209
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.tnt_103.140708183647/user.bjackson.036604._00004.Tnt.root    220000    89074    99120.2823369
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.tnt_103.140708183647/user.bjackson.036604._00005.Tnt.root    80000    31926    36086.9511922
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.tnt_103.140709113906/user.bjackson.036604._00007.Tnt.root    150000    60812    67870.9796318
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.tnt_103.140709113906/user.bjackson.036604._00008.Tnt.root    50000    20063    22415.6408064
