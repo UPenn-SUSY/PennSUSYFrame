@@ -240,15 +240,6 @@ namespace PennSusyFrame
       double m_min_b_jet_pt_baseline;
       double m_max_b_jet_pt_baseline;
 
-      // unsigned int m_num_events_passing_basic_cleaning;
-      // unsigned int m_num_events_passing_ge_2_lep;
-      // unsigned int m_num_events_passing_2_lep;
-      // unsigned int m_num_events_passing_signal_lep;
-      // unsigned int m_num_events_passing_ge_2_b_jet;
-      // unsigned int m_num_events_passing_eq_2_b_jet;
-      // unsigned int m_num_events_passing_bl_pairing;
-      // unsigned int m_num_events_passing_bl_pairing_but_not_lep_or_b;
-
     private:
   };
 }

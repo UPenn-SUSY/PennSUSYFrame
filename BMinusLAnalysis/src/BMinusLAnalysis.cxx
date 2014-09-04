@@ -49,14 +49,6 @@ PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::Pe
                                                              , m_max_mu_pt_baseline(-1)
                                                              , m_min_b_jet_pt_baseline(20.e3)
                                                              , m_max_b_jet_pt_baseline(-1)
-                                                             // , m_num_events_passing_basic_cleaning(0)
-                                                             // , m_num_events_passing_ge_2_lep(0)
-                                                             // , m_num_events_passing_2_lep(0)
-                                                             // , m_num_events_passing_signal_lep(0)
-                                                             // , m_num_events_passing_ge_2_b_jet(0)
-                                                             // , m_num_events_passing_eq_2_b_jet(0)
-                                                             // , m_num_events_passing_bl_pairing(0)
-                                                             // , m_num_events_passing_bl_pairing_but_not_lep_or_b(0)
 {
 }
 
@@ -836,36 +828,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                      );
     }
   }
-
-  // // -------------------------------------------------------------------------
-  // // - count number of events passing various cuts
-  // // -------------------------------------------------------------------------
-  // if (  m_pass_grl
-  //    && m_pass_incomplete_event
-  //    && m_pass_lar_error
-  //    && m_pass_tile_error
-  //    && m_pass_tile_hot_spot
-  //    && m_pass_tile_trip
-  //    && m_pass_bad_jet_veto
-  //    && m_pass_calo_problem_jet
-  //    && m_pass_primary_vertex
-  //    && m_pass_bad_mu_veto
-  //    && m_pass_cosmic_mu_veto
-  //    && m_pass_hfor
-  //    && m_pass_mc_overlap
-  //    ) {
-  //   ++m_num_events_passing_basic_cleaning;
-  //   if (m_pass_ge_2_lep  ) ++m_num_events_passing_ge_2_lep;
-  //   // if (m_pass_2_lep     ) ++m_num_events_passing_2_lep;
-  //   if (m_pass_signal_lep) ++m_num_events_passing_signal_lep;
-  //   if (m_pass_ge_2_b_jet) ++m_num_events_passing_ge_2_b_jet;
-  //   if (m_pass_eq_2_b_jet) ++m_num_events_passing_eq_2_b_jet;
-  //   if (m_pass_bl_pairing) ++m_num_events_passing_bl_pairing;
-
-  //   if (m_pass_bl_pairing && (!m_pass_ge_2_lep || !m_pass_ge_2_b_jet)) {
-  //     ++m_num_events_passing_bl_pairing_but_not_lep_or_b;
-  //   }
-  // }
 }
 
 // -----------------------------------------------------------------------------
@@ -902,17 +864,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
 
   m_raw_cutflow_tracker.printToScreen();
   m_cutflow_tracker.printToScreen();
-
-  // std::cout << "\nnum events passing basic cleaning: " << m_num_events_passing_basic_cleaning
-  //           << "\nnum events passing >= 2 lep: "       << m_num_events_passing_ge_2_lep   << " :: " << float(m_num_events_passing_ge_2_lep  ) / m_num_events_passing_basic_cleaning
-  //           << "\nnum events passing 2 lep: "          << m_num_events_passing_2_lep      << " :: " << float(m_num_events_passing_2_lep     ) / m_num_events_passing_basic_cleaning
-  //           << "\nnum events passing signal lep: "     << m_num_events_passing_signal_lep << " :: " << float(m_num_events_passing_signal_lep) / m_num_events_passing_basic_cleaning
-  //           << "\nnum events passing >= 2 b jets: "    << m_num_events_passing_ge_2_b_jet << " :: " << float(m_num_events_passing_ge_2_b_jet) / m_num_events_passing_basic_cleaning
-  //           << "\nnum events passing 2 b jets: "       << m_num_events_passing_eq_2_b_jet << " :: " << float(m_num_events_passing_eq_2_b_jet) / m_num_events_passing_basic_cleaning
-  //           << "\nnum events passing bl pairing: "     << m_num_events_passing_bl_pairing << " :: " << float(m_num_events_passing_bl_pairing) / m_num_events_passing_basic_cleaning
-  //           << "\nnum events passing bl pairing when it should not: " << m_num_events_passing_bl_pairing_but_not_lep_or_b << " :: " << float(m_num_events_passing_bl_pairing_but_not_lep_or_b) / m_num_events_passing_basic_cleaning
-  //           << "\n\n";
-
 }
 
 // -----------------------------------------------------------------------------
