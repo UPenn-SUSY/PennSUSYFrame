@@ -12,17 +12,17 @@ import RunBMinusLTTNTMaker
 sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
 
-# ------------------------------------------------------------------------------
-RunBMinusLTTNTMaker.input_tree_name = "TNT"
-RunBMinusLTTNTMaker.lep_pt_cut = 20.e3
-RunBMinusLTTNTMaker.jet_pt_cut = 20.e3
-
-# 90% working point
-# RunBMinusLTTNTMaker.btag_working_point = 0.0617
-# 80% working point
-RunBMinusLTTNTMaker.btag_working_point = 0.3511
-# 70% working point
-# RunBMinusLTTNTMaker.btag_working_point = 0.7892
+# # ------------------------------------------------------------------------------
+# RunBMinusLTTNTMaker.input_tree_name = "TNT"
+# RunBMinusLTTNTMaker.lep_pt_cut = 20.e3
+# RunBMinusLTTNTMaker.jet_pt_cut = 20.e3
+# 
+# # 90% working point
+# # RunBMinusLTTNTMaker.btag_working_point = 0.0617
+# # 80% working point
+# RunBMinusLTTNTMaker.btag_working_point = 0.3511
+# # 70% working point
+# # RunBMinusLTTNTMaker.btag_working_point = 0.7892
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
@@ -209,6 +209,10 @@ if __name__ == '__main__':
                           # 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
                           # 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900' , 'num_jobs':1}
                           # 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
+
+                          #   167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':10}
+                          # , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':10}
+                          # , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -229,7 +233,7 @@ if __name__ == '__main__':
                                        , num_processes    = num_processes
                                        , out_dir          = out_dir
                                        , flat_ntuples     = False
-                                       , sym_link_name    = './NextPlotDir.BMinusL'
+                                       , sym_link_name    = './NextTTNTDir.BMinusL'
                                        )
     else:
         RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLTTNTMaker.runBMinusLTTNTMakerFun
