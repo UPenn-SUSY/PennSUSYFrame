@@ -23,7 +23,8 @@ ROOT.SetAtlasStyle()
 # Flags to control which fit is executed
 #---------------------------------------
 useStat = True
-doValidation = False
+# doValidation = False
+doValidation = True
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -52,8 +53,9 @@ configMgr.nPoints=20
 configMgr.analysisName = "SampleExcl"
 
 # Scaling calculated by outputLumi / inputLumi
-configMgr.inputLumi = 0.001 # Luminosity of input TTree after weighting
-configMgr.outputLumi = 20.3  # Luminosity required for output histograms
+configMgr.inputLumi = 0.001    # Luminosity of input TTree after weighting
+configMgr.outputLumi = 13.0    # Luminosity required for output histograms
+# configMgr.outputLumi = 21.0    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
 
 configMgr.histCacheFile = "data/"+configMgr.analysisName+".root"
@@ -65,11 +67,10 @@ bgdFiles = []
 sigFiles = []
 if configMgr.readFromTree:
     print 'reading from trees!'
-    # TODO point to my files instead of default ones!!!
-    bgdFiles.append("samples/tutorial/SusyFitterTree_OneSoftEle_BG_v3.root")
+    bgdFiles.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
     if myFitType==FitType.Exclusion:
         # 1-step simplified model
-        sigFiles.append("samples/tutorial/SusyFitterTree_p832_GG-One-Step_soft_v1.root")
+        sigFiles.append("${BASE_WORK_DIR}/HistFitterNtuples/SignalHistFitterTrees.root")
 else:
     print 'not reading from trees -- getting input from cache!'
     bgdFiles = ["data/"+configMgr.analysisName+".root"]
@@ -78,25 +79,28 @@ else:
 # Dictionnary of cuts for Tree->hist
 # SR
 # TODO replace with my SR definitions
-base_sr_str = "((lep1Pt >= 40 && lep2Pt >= 40 && AnalysisType==7) || (lep1Pt < 25 && lep2Pt<10 && AnalysisType==6))"
+# base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 600) && (met_et/sqrt(ht_signal) <= 7) )"
+# base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 200) && (met_et/sqrt(ht_signal) <= 7) )"
+base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.8) && (ht_signal >= 200) && (met_et/sqrt(ht_signal) <= 8) )"
 
 configMgr.cutsDict["SR"] = base_sr_str
 
 # VR
 # TODO replace with my VR definitions
-base_vr_str =  "((lep1Pt < 25 && lep2Pt<10 && AnalysisType==6) || (lep1Pt < 20 && lep2Pt<10 && AnalysisType==7))"
+base_vr_str = "( (ht_signal <= 600) )"
 
 configMgr.cutsDict["VR"] = base_vr_str
 
 # CR
 # TODO replace with my CR definitions
-base_cr_str = "((lep1Pt < 20 && lep2Pt<10 && AnalysisType==7) || (lep1Pt < 25 && lep2Pt<10 && AnalysisType==6))"
+# base_cr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 600) && (met_et/sqrt(ht_signal) >= 7) )"
+base_cr_str = "( (ht_signal <= 200) )"
 
 configMgr.cutsDict["CR_top"] = base_cr_str
 
 # ------------------------------------------------------------------------------
-# Tuples of nominal weights without and with b-jet selection
-configMgr.weights = ("genWeight","eventWeight","leptonWeight","triggerWeight","truthWptWeight","bTagWeight2Jet")
+# lists of nominal weights
+configMgr.weights = ["weight"]
 
 #--------------------
 # List of systematics
@@ -117,23 +121,40 @@ gen_syst = Systematic( "gen_syst"
 configMgr.nomName = "_NoSys"
 
 # List of samples and their plotting colours
-topSample = Sample("Top",kGreen-9)
-topSample.setNormFactor("mu_Top",1.,0.,5.)
-topSample.setStatConfig(useStat)
-topSample.setNormRegions([("CR_top","nJet")])
+ttbarSample = Sample("ttbar",kGreen-9)
+ttbarSample.setNormFactor("mu_ttbar",1.,0.,5.)
+ttbarSample.setStatConfig(useStat)
+ttbarSample.setNormRegions([("CR_top","mbl_0")])
+# ttbarSample.setNormRegions([("CR_top","ptll")])
 
-dataSample = Sample("Data",kBlack)
+singleTopSample = Sample("Single top",kAzure-9)
+singleTopSample.setNormFactor("mu_st",1.,0.,5.)
+singleTopSample.setStatConfig(useStat)
+singleTopSample.setNormRegions([("CR_top","mbl_0")])
+# singleTopSample.setNormRegions([("CR_top","ptll")])
+
+zSample = Sample("Z",kRed-9)
+zSample.setNormFactor("mu_z",1.,0.,5.)
+zSample.setStatConfig(useStat)
+zSample.setNormRegions([("CR_top","mbl_0")])
+# zSample.setNormRegions([("CR_top","ptll")])
+
+dataSample = Sample("data",kBlack)
 dataSample.setData()
 
 # set the file from which the samples should be taken
-for sam in [topSample, dataSample]:
+for sam in [ttbarSample, singleTopSample, zSample, dataSample]:
         sam.setFileList(bgdFiles)
 
 #Binnings
-nJetBinLowHard = 3
-nJetBinLowSoft = 2
-nJetBinHighTR = 10
-nJetBinHighWR = 10
+# mbl_bin = 60
+mbl_bin = 6
+mbl_min = 0
+mbl_max = 1200
+
+mll_bin = 25
+mll_min = 0
+mll_max = 500
 
 srNBins = 1
 srBinLow = 0.5
@@ -147,10 +168,11 @@ if useStat:
     bkt.statErrThreshold=0.05
 else:
     bkt.statErrThreshold=None
-bkt.addSamples([topSample,dataSample])
+bkt.addSamples([ttbarSample, singleTopSample, zSample, dataSample])
 
 # Systematics to be applied globally within this topLevel
-bkt.getSample("Top").addSystematic(gen_syst)
+bkt.getSample("ttbar").addSystematic(gen_syst)
+bkt.getSample("Z"    ).addSystematic(gen_syst)
 
 meas = bkt.addMeasurement( name = "NormalMeasurement"
                          , lumi = 1.0
@@ -166,18 +188,40 @@ meas.addParamSetting( "mu_BG"
 # Constraining regions - statistically independent
 #-------------------------------------------------
 # Add Top CR for background
-n_jet_cr_top = bkt.addChannel( "nJet"
-                             , ["CR_top"]
-                             , nJetBinHighWR-nJetBinLowSoft
-                             , nJetBinLowSoft
-                             , nJetBinHighWR
-                             )
-n_jet_cr_top.hasB = True
-n_jet_cr_top.hasBQCD = False
-n_jet_cr_top.useOverflowBin = False
-# n_jet_cr_top.addSystematic(jes)
+mbl_0_cr_top = bkt.addChannel( "mbl_0"
+                           , ["CR_top"]
+                           , mbl_bin
+                           , mbl_min
+                           , mbl_max
+                           )
+mbl_0_cr_top.hasB = True
+mbl_0_cr_top.hasBQCD = False
+mbl_0_cr_top.useOverflowBin = False
+# mbl_0_cr_top.addSystematic(jes)
 
-bkt.setBkgConstrainChannels([n_jet_cr_top])
+mbl_1_cr_top = bkt.addChannel( "mbl_1"
+                           , ["CR_top"]
+                           , mbl_bin
+                           , mbl_min
+                           , mbl_max
+                           )
+mbl_1_cr_top.hasB = True
+mbl_1_cr_top.hasBQCD = False
+mbl_1_cr_top.useOverflowBin = False
+# mbl_1_cr_top.addSystematic(jes)
+
+mll_cr_top = bkt.addChannel( "mll"
+                           , ["CR_top"]
+                           , mll_bin
+                           , mll_min
+                           , mll_max
+                           )
+mll_cr_top.hasB = True
+mll_cr_top.hasBQCD = False
+mll_cr_top.useOverflowBin = False
+# mll_cr_top.addSystematic(jes)
+
+bkt.setBkgConstrainChannels([mbl_0_cr_top, mbl_1_cr_top, mll_cr_top])
 
 ###############################
 #                             #
@@ -193,14 +237,32 @@ bkt.errorLineStyle = kDashed
 bkt.errorLineColor = kBlue-5
 
 # Set Channel titleX, titleY, minY, maxY, logY
-n_jet_cr_top.minY = 0.5
-n_jet_cr_top.maxY = 5000
-n_jet_cr_top.titleX = "n jets"
-n_jet_cr_top.titleY = "Entries"
-n_jet_cr_top.logY = True
-n_jet_cr_top.ATLASLabelX = 0.25
-n_jet_cr_top.ATLASLabelY = 0.85
-n_jet_cr_top.ATLASLabelText = "Work in progress"
+mbl_0_cr_top.minY = 0.5
+# mbl_0_cr_top.maxY = 50000
+mbl_0_cr_top.titleX = "mbl^{0} [GeV]"
+mbl_0_cr_top.titleY = "Entries"
+mbl_0_cr_top.logY = True
+mbl_0_cr_top.ATLASLabelX = 0.25
+mbl_0_cr_top.ATLASLabelY = 0.85
+mbl_0_cr_top.ATLASLabelText = "Work in progress"
+
+mbl_1_cr_top.minY = 0.5
+# mbl_1_cr_top.maxY = 50000
+mbl_1_cr_top.titleX = "mbl^{1} [GeV]"
+mbl_1_cr_top.titleY = "Entries"
+mbl_1_cr_top.logY = True
+mbl_1_cr_top.ATLASLabelX = 0.25
+mbl_1_cr_top.ATLASLabelY = 0.85
+mbl_1_cr_top.ATLASLabelText = "Work in progress"
+
+mll_cr_top.minY = 0.5
+# mll_cr_top.maxY = 50000
+mll_cr_top.titleX = "mll [GeV]"
+mll_cr_top.titleY = "Entries"
+mll_cr_top.logY = True
+mll_cr_top.ATLASLabelX = 0.25
+mll_cr_top.ATLASLabelY = 0.85
+mll_cr_top.ATLASLabelText = "Work in progress"
 
 #--------------------------------------------------------------
 # Validation regions - not necessarily statistically independent
@@ -208,15 +270,29 @@ n_jet_cr_top.ATLASLabelText = "Work in progress"
 if doValidation:
     print 'Setting up validation regions!'
     # VR
-    n_jet_vr = bkt.addChannel( "nJet"
+    mbl_0_vr = bkt.addChannel( "mbl_0"
                              , ["VR"]
-                             , nJetBinHighTR-nJetBinLowSoft
-                             , nJetBinLowSoft
-                             , nJetBinHighTR
+                             , mbl_bin
+                             , mbl_min
+                             , mbl_max
                              )
-    # n_jet_vr.addSystematic(jes)
+    mbl_1_vr = bkt.addChannel( "mbl_1"
+                             , ["VR"]
+                             , mbl_bin
+                             , mbl_min
+                             , mbl_max
+                             )
+    mll_vr = bkt.addChannel( "mll_1"
+                           , ["VR"]
+                           , mll_bin
+                           , mll_min
+                           , mll_max
+                           )
+    # mbl_vr.addSystematic(jes)
 
-    bkt.setValidationChannels( [ n_jet_vr
+    bkt.setValidationChannels( [ mbl_0_vr
+                               , mbl_1_vr
+                               , mll_vr
                                ]
                              )
 
@@ -224,6 +300,8 @@ if doValidation:
 # Discovery fit
 #**************
 if myFitType==FitType.Discovery:
+    print 'ERROR!!! DISCOVERY FIT IS NOT YET CONFIGURED!!!'
+
     print 'Setting up discovery fit!'
     discovery = configMgr.addFitConfigClone(bkt,"Discovery")
 
@@ -238,7 +316,7 @@ if myFitType==FitType.Discovery:
 #-----------------------------
 if myFitType==FitType.Exclusion:
     print 'Setting up exclusion fit!'
-    sigSamples=["SM_GG_onestepCC_425_385_345"]
+    sigSamples=["sig_500"]
     for sig in sigSamples:
         myTopLvl = configMgr.addFitConfigClone(bkt,"Sig_%s"%sig)
 
@@ -253,24 +331,26 @@ if myFitType==FitType.Exclusion:
         # s1l2j using met/meff
         if doValidation:
             print 'do validation plots for exclusion'
-            # mm2J = myTopLvl.getChannel("met/meff2Jet",["SR"])
-            mm2J = myTopLvl.getChannel("nJet",["SR"])
-            iPop=myTopLvl.validationChannels.index("SR_metmeff2Jet")
+            mbl_0_sr = myTopLvl.getChannel("mbl_0",["SR"])
+            iPop=myTopLvl.validationChannels.index("SR_mbl")
             myTopLvl.validationChannels.pop(iPop)
         else:
             print "don't do validation plots for exclusion"
-            # mm2J = myTopLvl.addChannel("met/meff2Jet",["SR"],5,0.2,0.7)
-            # mm2J = myTopLvl.addChannel("nJet",["SR"],5,0.2,0.7)
-            mm2J = myTopLvl.addChannel( "nJet"
-                                      , ["SR"]
-                                      , nJetBinHighWR-nJetBinLowSoft
-                                      , nJetBinLowSoft
-                                      , nJetBinHighWR
-                                      )
-            mm2J.useOverflowBin=True
-            # mm2J.addSystematic(jes)
-            pass
-        myTopLvl.setSignalChannels([mm2J])
+            mbl_0_sr = myTopLvl.addChannel( "mbl_0"
+                                          , ["SR"]
+                                          , mbl_bin
+                                          , mbl_min
+                                          , mbl_max
+                                          )
+            mbl_1_sr = myTopLvl.addChannel( "mbl_1"
+                                          , ["SR"]
+                                          , mbl_bin
+                                          , mbl_min
+                                          , mbl_max
+                                          )
+            mbl_0_sr.useOverflowBin=True
+            # mbl.addSystematic(jes)
+        myTopLvl.setSignalChannels([mbl_0_sr, mbl_1_sr])
 
 # Create TLegend (AK: TCanvas is needed for that, but it gets deleted afterwards)
 c = TCanvas()
@@ -281,7 +361,7 @@ leg.SetFillColor(0)
 leg.SetBorderSize(0)
 #
 entry = TLegendEntry()
-entry = leg.AddEntry("","Data 2011 (#sqrt{s}=7 TeV)","p")
+entry = leg.AddEntry("","Data 2012 (#sqrt{s}=8 TeV)","p")
 entry.SetMarkerColor(bkt.dataColor)
 entry.SetMarkerStyle(20)
 #
@@ -292,8 +372,18 @@ entry.SetFillColor(bkt.errorFillColor)
 entry.SetFillStyle(bkt.errorFillStyle)
 #
 entry = leg.AddEntry("","t#bar{t}","lf")
-entry.SetLineColor(topSample.color)
-entry.SetFillColor(topSample.color)
+entry.SetLineColor(ttbarSample.color)
+entry.SetFillColor(ttbarSample.color)
+entry.SetFillStyle(compFillStyle)
+#
+entry = leg.AddEntry("","Single top","lf")
+entry.SetLineColor(singleTopSample.color)
+entry.SetFillColor(singleTopSample.color)
+entry.SetFillStyle(compFillStyle)
+#
+entry = leg.AddEntry("","Z/#gamma*","lf")
+entry.SetLineColor(zSample.color)
+entry.SetFillColor(zSample.color)
 entry.SetFillStyle(compFillStyle)
 #
 if myFitType==FitType.Exclusion:
@@ -301,7 +391,6 @@ if myFitType==FitType.Exclusion:
     entry.SetLineColor(kPink)
     entry.SetFillColor(kPink)
     entry.SetFillStyle(compFillStyle)
-
 
 # Set legend for fitConfig
 bkt.tLegend = leg
