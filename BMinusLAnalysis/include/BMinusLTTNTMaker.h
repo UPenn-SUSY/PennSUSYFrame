@@ -24,6 +24,7 @@ namespace PennSusyFrame
       BMinusLTTNTMaker(TTree *tree=0);
       virtual ~BMinusLTTNTMaker();
 
+      virtual void prepareTools();
       virtual void beginRun();
       // virtual void initializeEvent();
       virtual void finalizeEvent();
