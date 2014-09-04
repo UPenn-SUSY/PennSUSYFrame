@@ -24,6 +24,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_is_egamma_stream(true)
                                                                  , m_is_blind(true)
                                                                  , m_is_af2(false)
+								 , m_is_mc12b(true)  
                                                                  , m_event_weight(1.)
                                                                  , m_x_sec(1.)
                                                                  , m_k_factor(1.)
@@ -116,7 +117,7 @@ void PennSusyFrame::PennSusyFrameCore::prepareTools()
   m_electrons.init(m_is_data, m_is_af2);
   m_muons.init(m_is_data);
   m_taus.init(m_is_data, m_is_af2);
-  m_jets.init(m_is_data, m_is_af2);
+  m_jets.init(m_is_data, m_is_af2, m_is_mc12b);
 
   if (m_is_af2) m_egamma_sf_tool.setAf2();
   else          m_egamma_sf_tool.setFullSim();
@@ -502,7 +503,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   m_muons.setCollection( MU_COSMIC
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_COSMIC)
                                                      // , m_muons.getCollection(MU_GOOD)
-                                                     , m_muons.getCollection(MU_SELECTED)
+                                                     , m_muons.getCollection(MU_GOOD)
                                                      )
                        );
 
