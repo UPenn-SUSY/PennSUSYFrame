@@ -1,0 +1,5 @@
+user name: emma_part2
+  max size: 500
+  allocated size: 0 
+  number samples: 0 
+
