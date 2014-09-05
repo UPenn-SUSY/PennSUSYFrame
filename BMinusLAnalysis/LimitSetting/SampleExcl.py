@@ -57,6 +57,8 @@ configMgr.nPoints=10
 
 # First define HistFactory attributes
 configMgr.analysisName = "SampleExcl"
+configMgr.histCacheFile = "data/"+configMgr.analysisName+".root"
+configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 
 # Scaling calculated by outputLumi / inputLumi
 configMgr.inputLumi = 0.001    # Luminosity of input TTree after weighting
@@ -64,9 +66,6 @@ configMgr.outputLumi = 13.0    # Luminosity required for output histograms
 # configMgr.outputLumi = 21.0    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
 
-configMgr.histCacheFile = "data/"+configMgr.analysisName+".root"
-
-configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 
 # Set the files to read from
 bkg_files = []
@@ -123,13 +122,7 @@ configMgr.nomName = "_NoSys"
 # - List of systematics
 # ---------------------
 # generic systematic -- placeholder for now
-gen_syst = Systematic( "gen_syst"
-                     , configMgr.weights
-                     , 1.0 + 0.30
-                     , 1.0 - 0.30
-                     , "user"
-                     , "userOverallSys"
-                     )
+gen_syst = Systematic( "gen_syst" , configMgr.weights , 1.0 + 0.30 , 1.0 - 0.30 , "user" , "userOverallSys" )
 
 # JES uncertainty as shapeSys - one systematic per region (combine WR and TR), merge samples
 # jes = Systematic("JES","_NoSys","_JESup","_JESdown","tree","overallNormHistoSys")
@@ -143,24 +136,21 @@ sample_list = []
 ttbar_sample = Sample( "ttbar" , kGreen-2 )
 ttbar_sample.setNormFactor("mu_ttbar",1.,0.,5.)
 ttbar_sample.setStatConfig(use_stat)
-# TODO pick norm region more carefully
-ttbar_sample.setNormRegions([("CR_top","mbl_0")])
+ttbar_sample.setNormByTheory()
 sample_list.append(ttbar_sample)
 
 # single top
 single_top_sample = Sample( "SingleTop" , kGreen-1 )
 single_top_sample.setNormFactor("mu_st",1.,0.,5.)
 single_top_sample.setStatConfig(use_stat)
-# TODO pick norm region more carefully
-single_top_sample.setNormRegions([("CR_top","mbl_0")])
+single_top_sample.setNormByTheory()
 sample_list.append(single_top_sample)
 
 # Z/gamma*
 z_sample = Sample( "Z" , kRed+1 )
 z_sample.setNormFactor("mu_z",1.,0.,5.)
 z_sample.setStatConfig(use_stat)
-# TODO pick norm region more carefully
-z_sample.setNormRegions([("CR_top","mbl_0")])
+z_sample.setNormByTheory()
 sample_list.append(z_sample)
 
 # data
@@ -170,8 +160,8 @@ sample_list.append(data_sample)
 
 # set the file from which the samples should be taken
 # for sam in [ ttbarSample, singleTopSample, zSample, dataSample]:
-for sam in sample_list:
-    sam.setFileList(bkg_files)
+for sl in sample_list:
+    sl.setFileList(bkg_files)
 
 # ----------
 # - Binnings
@@ -200,9 +190,9 @@ srBinHigh = 1.5
 # **************
 background_config = configMgr.addFitConfig("BkgOnly")
 if use_stat:
-    background_config.statErrThreshold=0.05
+    background_config.statErrThreshold = 0.05
 else:
-    background_config.statErrThreshold=None
+    background_config.statErrThreshold = None
 background_config.addSamples(sample_list)
 
 # Systematics to be applied globally within this topLevel
@@ -219,12 +209,12 @@ meas.addPOI("mu_SIG")
 cr_list = []
 # Add Top CR for background
 cr_list.append( background_config.addChannel( "mbl_0" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
-# cr_list.append( background_config.addChannel( "mbl_1" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
-# cr_list.append( background_config.addChannel( "mll"   , ["CR_top"] , mll_bin , mll_min , mll_max ) )
-#
-# cr_list.append( background_config.addChannel( "mbl_0" , ["CR_tmp"] , mbl_bin , mbl_min , mbl_max ) )
-# cr_list.append( background_config.addChannel( "mbl_1" , ["CR_tmp"] , mbl_bin , mbl_min , mbl_max ) )
-# cr_list.append( background_config.addChannel( "mll"   , ["CR_tmp"] , mll_bin , mll_min , mll_max ) )
+cr_list.append( background_config.addChannel( "mbl_1" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
+cr_list.append( background_config.addChannel( "mll"   , ["CR_top"] , mll_bin , mll_min , mll_max ) )
+
+cr_list.append( background_config.addChannel( "mbl_0" , ["CR_tmp"] , mbl_bin , mbl_min , mbl_max ) )
+cr_list.append( background_config.addChannel( "mbl_1" , ["CR_tmp"] , mbl_bin , mbl_min , mbl_max ) )
+cr_list.append( background_config.addChannel( "mll"   , ["CR_tmp"] , mll_bin , mll_min , mll_max ) )
 
 background_config.setBkgConstrainChannels(cr_list)
 
@@ -255,48 +245,64 @@ vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
     vr_list.append( background_config.addChannel( 'mbl_0', ['VR'], mbl_bin, mbl_min, mbl_max ) )
-    # vr_list.append( background_config.addChannel( 'mbl_1', ['VR'], mbl_bin, mbl_min, mbl_max ) )
-    # vr_list.append( background_config.addChannel( 'mll'  , ['VR'], mll_bin, mll_min, mll_max ) )
+    vr_list.append( background_config.addChannel( 'mbl_1', ['VR'], mbl_bin, mbl_min, mbl_max ) )
+    vr_list.append( background_config.addChannel( 'mll'  , ['VR'], mll_bin, mll_min, mll_max ) )
+
+
+    for vr in vr_list:
+        vr.useOverflowBin = True
 
     background_config.setValidationChannels( vr_list )
 
-# ***************
-# * Discovery fit
-# ***************
-if myFitType==FitType.Discovery:
+# ------------------------------------------------------------------------------
+# - set up SRs
+# ------------------------------------------------------------------------------
+if not myFitType == FitType.Discovery:
+    sr_list = []
+    sr_list.append( background_config.addChannel( "mbl_0", ["SR"], mbl_bin, mbl_min, mbl_max ) )
+    sr_list.append( background_config.addChannel("mbl_1", ["SR"], mbl_bin, mbl_min, mbl_max ) )
+
+    for sr in sr_list:
+        sr.useUnderflowBin = True
+        sr.useOverflowBin  = True
+        sr.logY = True
+
+    background_config.setSignalChannels(sr_list)
+
+
+# ---------------
+# - Discovery fit
+# ---------------
+if myFitType == FitType.Discovery:
     print 'ERROR!!! DISCOVERY FIT IS NOT YET CONFIGURED!!!'
-
-    print 'Setting up discovery fit!'
-    discovery_config = configMgr.addFitConfigClone(background_config,"Discovery")
-
-    # s1l2jT = signal region/channel
-    ssChannel = discovery_config.addChannel("cuts",["SR"],srNBins,srBinLow,srBinHigh)
-    # ssChannel.addSystematic(jes)
-    ssChannel.addDiscoverySamples(["SR"],[1.],[0.],[100.],[kMagenta])
-    discovery_config.setSignalChannels([ssChannel])
 
 # -------------------------------------------------------
 # - Exclusion fits (1-step simplified model in this case)
 # -------------------------------------------------------
-if myFitType==FitType.Exclusion:
+if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
-    sigSamples=["sig_500"]
-    sr_list = []
-    for sig in sigSamples:
-        exclusion_config = configMgr.addFitConfigClone(background_config,"Sig_%s"%sig)
+    # sig_sample_list=['sig_500', 'sig_800']
+    sig_sample_list=['sig_500']
+    sig_samples = []
+    for sig in sig_sample_list:
+        # TODO most examples of HistFitter config files seems to create a clone config like this -- I'm not sure why, but this doesn't seem to work for me. Either fix, or remove
+        # exclusion_sr_config = configMgr.addFitConfigClone( background_config , "Sig_excl_%s" % sig )
+        # exclusion_sr_config = configMgr.addFitConfigClone( background_config , "Exclusion_%s" % sig )
 
-        sigSample = Sample(sig,kViolet+5)
-        sigSample.setFileList(sig_files)
-        sigSample.setNormByTheory()
-        sigSample.setStatConfig(use_stat)
-        sigSample.setNormFactor("mu_SIG",1.,0.,5.)
-        exclusion_config.addSamples(sigSample)
-        exclusion_config.setSignalSample(sigSample)
+        sig_sample = Sample(sig, kViolet+5)
+        sig_sample.setStatConfig(use_stat)
+        sig_sample.setFileList(sig_files)
+        sig_sample.setNormByTheory()
+        sig_sample.setNormFactor("mu_SIG", 1., 0., 5.)
 
-        sr_list.append( exclusion_config.addChannel( "mbl_0", ["SR"], mbl_bin, mbl_min, mbl_max ) )
-        # sr_list.append( exclusion_config.addChannel( "mbl_1", ["SR"], mbl_bin, mbl_min, mbl_max ) )
+        # TODO most examples of HistFitter config files seems to create a clone config like this -- I'm not sure why, but this doesn't seem to work for me. Either fix, or remove
+        # exclusion_sr_config.addSamples(sig_sample)
+        # exclusion_sr_config.setSignalSample(sig_sample)
+        # exclusion_sr_config.setSignalChannels(sr_list)
 
-        exclusion_config.setSignalChannels(sr_list)
+        background_config.addSamples(sig_sample)
+        background_config.setSignalSample(sig_sample)
+        background_config.setSignalChannels(sr_list)
 
 # ----------------
 # - Create TLegend
@@ -304,45 +310,45 @@ if myFitType==FitType.Exclusion:
 # TCanvas is needed for that, but it gets deleted afterwards
 c = TCanvas()
 compFillStyle = 1001 # see ROOT for Fill styles
-leg = TLegend(0.6,0.475,0.9,0.925,"")
+leg = TLegend(0.6, 0.475, 0.9, 0.925, "")
 leg.SetFillStyle(0)
 leg.SetFillColor(0)
 leg.SetBorderSize(0)
 
 # Data entry
 entry = TLegendEntry()
-entry = leg.AddEntry("","Data 2012 (#sqrt{s}=8 TeV)","p")
+entry = leg.AddEntry("", "Data 2012 (#sqrt{s}=8 TeV)", "p")
 entry.SetMarkerColor(background_config.dataColor)
 entry.SetMarkerStyle(20)
 
 # Total PDF
-entry = leg.AddEntry("","Total pdf","lf")
+entry = leg.AddEntry("", "Total pdf", "lf")
 entry.SetLineColor(background_config.totalPdfColor)
 entry.SetLineWidth(2)
 entry.SetFillColor(background_config.errorFillColor)
 entry.SetFillStyle(background_config.errorFillStyle)
 
 # ttbar entry
-entry = leg.AddEntry("","t#bar{t}","lf")
+entry = leg.AddEntry("", "t#bar{t}", "lf")
 entry.SetLineColor(ttbar_sample.color)
 entry.SetFillColor(ttbar_sample.color)
 entry.SetFillStyle(compFillStyle)
 
 # Single top entry
-entry = leg.AddEntry("","Single top","lf")
+entry = leg.AddEntry("", "Single top", "lf")
 entry.SetLineColor(single_top_sample.color)
 entry.SetFillColor(single_top_sample.color)
 entry.SetFillStyle(compFillStyle)
 
 # Z/gamma* entry
-entry = leg.AddEntry("","Z/#gamma*","lf")
+entry = leg.AddEntry("", "Z/#gamma*", "lf")
 entry.SetLineColor(z_sample.color)
 entry.SetFillColor(z_sample.color)
 entry.SetFillStyle(compFillStyle)
 
 # If exclusion mode, add signal entry
 if myFitType==FitType.Exclusion:
-    entry = leg.AddEntry("","signal","lf")
+    entry = leg.AddEntry("", "signal", "lf")
     entry.SetLineColor(kViolet+5)
     entry.SetFillColor(kViolet+5)
     entry.SetFillStyle(compFillStyle)
@@ -350,7 +356,9 @@ if myFitType==FitType.Exclusion:
 # Set legend for fitConfig
 background_config.tLegend = leg
 if myFitType==FitType.Exclusion:
-    exclusion_config.tLegend = leg
+    # TODO most examples of HistFitter config files seems to create a clone config like this -- I'm not sure why, but this doesn't seem to work for me. Either fix, or remove
+    # exclusion_sr_config.tLegend = leg
+    background_config.tLegend = leg
 c.Close()
 
 print 'done with my stuff'
