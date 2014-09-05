@@ -13,18 +13,17 @@ gROOT.LoadMacro("./macros/AtlasStyle.C")
 import ROOT
 ROOT.SetAtlasStyle()
 
-#---------------------------------------------------------------------------------------------
-# Some flags for overridding normal execution and telling ROOT to shut up... use with caution!
-#---------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------
+# - Some flags for overridding normal execution and telling ROOT to shut up... use with caution!
+# ----------------------------------------------------------------------------------------------
 #gROOT.ProcessLine("gErrorIgnoreLevel=10001;")
 #configMgr.plotHistos = True
 
-#---------------------------------------
-# Flags to control which fit is executed
-#---------------------------------------
-useStat = True
-# doValidation = False
-doValidation = True
+# ----------------------------------------
+# - Flags to control which fit is executed
+# ----------------------------------------
+use_stat = True
+do_validation = True
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -36,18 +35,25 @@ elif myFitType == FitType.Background:
 else:
     print '  fit type: Undefined :('
 
-#-------------------------------
-# Parameters for hypothesis test
-#-------------------------------
-#configMgr.doHypoTest=False
-#configMgr.nTOYs=1000
-configMgr.calculatorType=2
-configMgr.testStatType=3
-configMgr.nPoints=20
+# -----------------------------------------------------------------------
+# - cannot do validation and exclusion/discovery at the same time for now
+# -----------------------------------------------------------------------
+if myFitType == FitType.Discovery or myFitType == FitType.Exclusion:
+    print 'turning off validation for discovery or exclusion'
+    do_validation = False
 
-#--------------------------------
-# Now we start to build the model
-#--------------------------------
+# --------------------------------
+# - Parameters for hypothesis test
+# --------------------------------
+#configMgr.doHypoTest=False
+configMgr.nTOYs=10000
+configMgr.calculatorType=2 # use 2 for asymptotic, 0 for toys
+configMgr.testStatType=3
+configMgr.nPoints=10
+
+# ---------------------------------
+# - Now we start to build the model
+# ---------------------------------
 
 # First define HistFactory attributes
 configMgr.analysisName = "SampleExcl"
@@ -63,24 +69,24 @@ configMgr.histCacheFile = "data/"+configMgr.analysisName+".root"
 configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 
 # Set the files to read from
-bgdFiles = []
-sigFiles = []
+bkg_files = []
+sig_files = []
 if configMgr.readFromTree:
     print 'reading from trees!'
-    bgdFiles.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
+    bkg_files.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
     if myFitType==FitType.Exclusion:
         # 1-step simplified model
-        sigFiles.append("${BASE_WORK_DIR}/HistFitterNtuples/SignalHistFitterTrees.root")
+        sig_files.append("${BASE_WORK_DIR}/HistFitterNtuples/SignalHistFitterTrees.root")
 else:
     print 'not reading from trees -- getting input from cache!'
-    bgdFiles = ["data/"+configMgr.analysisName+".root"]
+    bkg_files = ["data/"+configMgr.analysisName+".root"]
 
-# ------------------------------------------------------------------------------
-# Dictionnary of cuts for Tree->hist
+# ------------------------------------
+# - Dictionnary of cuts for Tree->hist
+# ------------------------------------
 # SR
 # TODO replace with my SR definitions
 # base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 600) && (met_et/sqrt(ht_signal) <= 7) )"
-# base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 200) && (met_et/sqrt(ht_signal) <= 7) )"
 base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.8) && (ht_signal >= 200) && (met_et/sqrt(ht_signal) <= 8) )"
 
 configMgr.cutsDict["SR"] = base_sr_str
@@ -94,17 +100,28 @@ configMgr.cutsDict["VR"] = base_vr_str
 # CR
 # TODO replace with my CR definitions
 # base_cr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 600) && (met_et/sqrt(ht_signal) >= 7) )"
-base_cr_str = "( (ht_signal <= 200) )"
+base_cr_top_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 200) && (met_et/sqrt(ht_signal) >= 7) )"
+# base_cr_str = "( (ht_signal <= 200) )"
 
-configMgr.cutsDict["CR_top"] = base_cr_str
+configMgr.cutsDict["CR_top"] = base_cr_top_str
 
-# ------------------------------------------------------------------------------
-# lists of nominal weights
+# CR_TMP
+# TODO replace tmp CR with real CR
+base_cr_tmp_str = "( (ht_signal <= 200) )"
+
+configMgr.cutsDict["CR_tmp"] = base_cr_tmp_str
+
+# --------------------------
+# - lists of nominal weights
+# --------------------------
 configMgr.weights = ["weight"]
 
-#--------------------
-# List of systematics
-#--------------------
+# name of nominal histogram for systematics
+configMgr.nomName = "_NoSys"
+
+# ---------------------
+# - List of systematics
+# ---------------------
 # generic systematic -- placeholder for now
 gen_syst = Systematic( "gen_syst"
                      , configMgr.weights
@@ -117,111 +134,99 @@ gen_syst = Systematic( "gen_syst"
 # JES uncertainty as shapeSys - one systematic per region (combine WR and TR), merge samples
 # jes = Systematic("JES","_NoSys","_JESup","_JESdown","tree","overallNormHistoSys")
 
-# name of nominal histogram for systematics
-configMgr.nomName = "_NoSys"
+# --------------------------------------------
+# - List of samples and their plotting colours
+# --------------------------------------------
+sample_list = []
 
-# List of samples and their plotting colours
-ttbarSample = Sample("ttbar",kGreen-9)
-ttbarSample.setNormFactor("mu_ttbar",1.,0.,5.)
-ttbarSample.setStatConfig(useStat)
-ttbarSample.setNormRegions([("CR_top","mbl_0")])
-# ttbarSample.setNormRegions([("CR_top","ptll")])
+# ttbar
+ttbar_sample = Sample( "ttbar" , kGreen-2 )
+ttbar_sample.setNormFactor("mu_ttbar",1.,0.,5.)
+ttbar_sample.setStatConfig(use_stat)
+# TODO pick norm region more carefully
+ttbar_sample.setNormRegions([("CR_top","mbl_0")])
+sample_list.append(ttbar_sample)
 
-singleTopSample = Sample("Single top",kAzure-9)
-singleTopSample.setNormFactor("mu_st",1.,0.,5.)
-singleTopSample.setStatConfig(useStat)
-singleTopSample.setNormRegions([("CR_top","mbl_0")])
-# singleTopSample.setNormRegions([("CR_top","ptll")])
+# single top
+single_top_sample = Sample( "SingleTop" , kGreen-1 )
+single_top_sample.setNormFactor("mu_st",1.,0.,5.)
+single_top_sample.setStatConfig(use_stat)
+# TODO pick norm region more carefully
+single_top_sample.setNormRegions([("CR_top","mbl_0")])
+sample_list.append(single_top_sample)
 
-zSample = Sample("Z",kRed-9)
-zSample.setNormFactor("mu_z",1.,0.,5.)
-zSample.setStatConfig(useStat)
-zSample.setNormRegions([("CR_top","mbl_0")])
-# zSample.setNormRegions([("CR_top","ptll")])
+# Z/gamma*
+z_sample = Sample( "Z" , kRed+1 )
+z_sample.setNormFactor("mu_z",1.,0.,5.)
+z_sample.setStatConfig(use_stat)
+# TODO pick norm region more carefully
+z_sample.setNormRegions([("CR_top","mbl_0")])
+sample_list.append(z_sample)
 
-dataSample = Sample("data",kBlack)
-dataSample.setData()
+# data
+data_sample = Sample("data",kBlack)
+data_sample.setData()
+sample_list.append(data_sample)
 
 # set the file from which the samples should be taken
-for sam in [ttbarSample, singleTopSample, zSample, dataSample]:
-        sam.setFileList(bgdFiles)
+# for sam in [ ttbarSample, singleTopSample, zSample, dataSample]:
+for sam in sample_list:
+    sam.setFileList(bkg_files)
 
-#Binnings
+# ----------
+# - Binnings
+# ----------
+# TODO reset the binning and add more histograms
+
+# mbl binning
 # mbl_bin = 60
 mbl_bin = 6
 mbl_min = 0
 mbl_max = 1200
 
-mll_bin = 25
+# mll binning
+# mll_bin = 25
+mll_bin = 5
 mll_min = 0
 mll_max = 500
 
+# SR binning (this is just a single bin cut and count binning)
 srNBins = 1
 srBinLow = 0.5
 srBinHigh = 1.5
 
-#************
-#Bkg only fit
-#************
-bkt = configMgr.addFitConfig("BkgOnly")
-if useStat:
-    bkt.statErrThreshold=0.05
+# **************
+# * Bkg only fit
+# **************
+background_config = configMgr.addFitConfig("BkgOnly")
+if use_stat:
+    background_config.statErrThreshold=0.05
 else:
-    bkt.statErrThreshold=None
-bkt.addSamples([ttbarSample, singleTopSample, zSample, dataSample])
+    background_config.statErrThreshold=None
+background_config.addSamples(sample_list)
 
 # Systematics to be applied globally within this topLevel
-bkt.getSample("ttbar").addSystematic(gen_syst)
-bkt.getSample("Z"    ).addSystematic(gen_syst)
+background_config.getSample("ttbar"    ).addSystematic(gen_syst)
+background_config.getSample("SingleTop").addSystematic(gen_syst)
+background_config.getSample("Z"        ).addSystematic(gen_syst)
 
-meas = bkt.addMeasurement( name = "NormalMeasurement"
-                         , lumi = 1.0
-                         , lumiErr = 0.039
-                         )
+meas = background_config.addMeasurement(name = "NormalMeasurement", lumi = 1.0, lumiErr = 0.039 )
 meas.addPOI("mu_SIG")
-meas.addParamSetting( "mu_BG"
-                    , True
-                    , 1
-                    )
 
-#-------------------------------------------------
-# Constraining regions - statistically independent
-#-------------------------------------------------
+# --------------------------------------------------
+# - Constraining regions - statistically independent
+# --------------------------------------------------
+cr_list = []
 # Add Top CR for background
-mbl_0_cr_top = bkt.addChannel( "mbl_0"
-                           , ["CR_top"]
-                           , mbl_bin
-                           , mbl_min
-                           , mbl_max
-                           )
-mbl_0_cr_top.hasB = True
-mbl_0_cr_top.hasBQCD = False
-mbl_0_cr_top.useOverflowBin = False
-# mbl_0_cr_top.addSystematic(jes)
+cr_list.append( background_config.addChannel( "mbl_0" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
+# cr_list.append( background_config.addChannel( "mbl_1" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
+# cr_list.append( background_config.addChannel( "mll"   , ["CR_top"] , mll_bin , mll_min , mll_max ) )
+#
+# cr_list.append( background_config.addChannel( "mbl_0" , ["CR_tmp"] , mbl_bin , mbl_min , mbl_max ) )
+# cr_list.append( background_config.addChannel( "mbl_1" , ["CR_tmp"] , mbl_bin , mbl_min , mbl_max ) )
+# cr_list.append( background_config.addChannel( "mll"   , ["CR_tmp"] , mll_bin , mll_min , mll_max ) )
 
-mbl_1_cr_top = bkt.addChannel( "mbl_1"
-                           , ["CR_top"]
-                           , mbl_bin
-                           , mbl_min
-                           , mbl_max
-                           )
-mbl_1_cr_top.hasB = True
-mbl_1_cr_top.hasBQCD = False
-mbl_1_cr_top.useOverflowBin = False
-# mbl_1_cr_top.addSystematic(jes)
-
-mll_cr_top = bkt.addChannel( "mll"
-                           , ["CR_top"]
-                           , mll_bin
-                           , mll_min
-                           , mll_max
-                           )
-mll_cr_top.hasB = True
-mll_cr_top.hasBQCD = False
-mll_cr_top.useOverflowBin = False
-# mll_cr_top.addSystematic(jes)
-
-bkt.setBkgConstrainChannels([mbl_0_cr_top, mbl_1_cr_top, mll_cr_top])
+background_config.setBkgConstrainChannels(cr_list)
 
 ###############################
 #                             #
@@ -229,173 +234,123 @@ bkt.setBkgConstrainChannels([mbl_0_cr_top, mbl_1_cr_top, mll_cr_top])
 #                             #
 ###############################
 # Set global plotting colors/styles
-bkt.dataColor = dataSample.color
-bkt.totalPdfColor = kBlue
-bkt.errorFillColor = kBlue-5
-bkt.errorFillStyle = 3004
-bkt.errorLineStyle = kDashed
-bkt.errorLineColor = kBlue-5
+background_config.dataColor      = data_sample.color
+background_config.totalPdfColor  = kBlue
+background_config.errorFillColor = kBlue-5
+background_config.errorFillStyle = 3004
+background_config.errorLineStyle = kDashed
+background_config.errorLineColor = kBlue-5
 
-# Set Channel titleX, titleY, minY, maxY, logY
-mbl_0_cr_top.minY = 0.5
-# mbl_0_cr_top.maxY = 50000
-mbl_0_cr_top.titleX = "mbl^{0} [GeV]"
-mbl_0_cr_top.titleY = "Entries"
-mbl_0_cr_top.logY = True
-mbl_0_cr_top.ATLASLabelX = 0.25
-mbl_0_cr_top.ATLASLabelY = 0.85
-mbl_0_cr_top.ATLASLabelText = "Work in progress"
+for crl in cr_list:
+    crl.titleY = "Entries"
+    crl.logY = True
+    crl.ATLASLabelX = 0.25
+    crl.ATLASLabelY = 0.85
+    crl.ATLASLabelText = "Work in progress"
 
-mbl_1_cr_top.minY = 0.5
-# mbl_1_cr_top.maxY = 50000
-mbl_1_cr_top.titleX = "mbl^{1} [GeV]"
-mbl_1_cr_top.titleY = "Entries"
-mbl_1_cr_top.logY = True
-mbl_1_cr_top.ATLASLabelX = 0.25
-mbl_1_cr_top.ATLASLabelY = 0.85
-mbl_1_cr_top.ATLASLabelText = "Work in progress"
-
-mll_cr_top.minY = 0.5
-# mll_cr_top.maxY = 50000
-mll_cr_top.titleX = "mll [GeV]"
-mll_cr_top.titleY = "Entries"
-mll_cr_top.logY = True
-mll_cr_top.ATLASLabelX = 0.25
-mll_cr_top.ATLASLabelY = 0.85
-mll_cr_top.ATLASLabelText = "Work in progress"
-
-#--------------------------------------------------------------
-# Validation regions - not necessarily statistically independent
-#--------------------------------------------------------------
-if doValidation:
+# ---------------------------------------------------------------
+# - Validation regions - not necessarily statistically independent
+# ---------------------------------------------------------------
+vr_list = []
+if do_validation:
     print 'Setting up validation regions!'
-    # VR
-    mbl_0_vr = bkt.addChannel( "mbl_0"
-                             , ["VR"]
-                             , mbl_bin
-                             , mbl_min
-                             , mbl_max
-                             )
-    mbl_1_vr = bkt.addChannel( "mbl_1"
-                             , ["VR"]
-                             , mbl_bin
-                             , mbl_min
-                             , mbl_max
-                             )
-    mll_vr = bkt.addChannel( "mll_1"
-                           , ["VR"]
-                           , mll_bin
-                           , mll_min
-                           , mll_max
-                           )
-    # mbl_vr.addSystematic(jes)
+    vr_list.append( background_config.addChannel( 'mbl_0', ['VR'], mbl_bin, mbl_min, mbl_max ) )
+    # vr_list.append( background_config.addChannel( 'mbl_1', ['VR'], mbl_bin, mbl_min, mbl_max ) )
+    # vr_list.append( background_config.addChannel( 'mll'  , ['VR'], mll_bin, mll_min, mll_max ) )
 
-    bkt.setValidationChannels( [ mbl_0_vr
-                               , mbl_1_vr
-                               , mll_vr
-                               ]
-                             )
+    background_config.setValidationChannels( vr_list )
 
-#**************
-# Discovery fit
-#**************
+# ***************
+# * Discovery fit
+# ***************
 if myFitType==FitType.Discovery:
     print 'ERROR!!! DISCOVERY FIT IS NOT YET CONFIGURED!!!'
 
     print 'Setting up discovery fit!'
-    discovery = configMgr.addFitConfigClone(bkt,"Discovery")
+    discovery_config = configMgr.addFitConfigClone(background_config,"Discovery")
 
     # s1l2jT = signal region/channel
-    ssChannel = discovery.addChannel("cuts",["SR"],srNBins,srBinLow,srBinHigh)
+    ssChannel = discovery_config.addChannel("cuts",["SR"],srNBins,srBinLow,srBinHigh)
     # ssChannel.addSystematic(jes)
     ssChannel.addDiscoverySamples(["SR"],[1.],[0.],[100.],[kMagenta])
-    discovery.setSignalChannels([ssChannel])
+    discovery_config.setSignalChannels([ssChannel])
 
-#-----------------------------
-# Exclusion fits (1-step simplified model in this case)
-#-----------------------------
+# -------------------------------------------------------
+# - Exclusion fits (1-step simplified model in this case)
+# -------------------------------------------------------
 if myFitType==FitType.Exclusion:
     print 'Setting up exclusion fit!'
     sigSamples=["sig_500"]
+    sr_list = []
     for sig in sigSamples:
-        myTopLvl = configMgr.addFitConfigClone(bkt,"Sig_%s"%sig)
+        exclusion_config = configMgr.addFitConfigClone(background_config,"Sig_%s"%sig)
 
-        sigSample = Sample(sig,kPink)
-        sigSample.setFileList(sigFiles)
+        sigSample = Sample(sig,kViolet+5)
+        sigSample.setFileList(sig_files)
         sigSample.setNormByTheory()
-        sigSample.setStatConfig(useStat)
+        sigSample.setStatConfig(use_stat)
         sigSample.setNormFactor("mu_SIG",1.,0.,5.)
-        myTopLvl.addSamples(sigSample)
-        myTopLvl.setSignalSample(sigSample)
+        exclusion_config.addSamples(sigSample)
+        exclusion_config.setSignalSample(sigSample)
 
-        # s1l2j using met/meff
-        if doValidation:
-            print 'do validation plots for exclusion'
-            mbl_0_sr = myTopLvl.getChannel("mbl_0",["SR"])
-            iPop=myTopLvl.validationChannels.index("SR_mbl")
-            myTopLvl.validationChannels.pop(iPop)
-        else:
-            print "don't do validation plots for exclusion"
-            mbl_0_sr = myTopLvl.addChannel( "mbl_0"
-                                          , ["SR"]
-                                          , mbl_bin
-                                          , mbl_min
-                                          , mbl_max
-                                          )
-            mbl_1_sr = myTopLvl.addChannel( "mbl_1"
-                                          , ["SR"]
-                                          , mbl_bin
-                                          , mbl_min
-                                          , mbl_max
-                                          )
-            mbl_0_sr.useOverflowBin=True
-            # mbl.addSystematic(jes)
-        myTopLvl.setSignalChannels([mbl_0_sr, mbl_1_sr])
+        sr_list.append( exclusion_config.addChannel( "mbl_0", ["SR"], mbl_bin, mbl_min, mbl_max ) )
+        # sr_list.append( exclusion_config.addChannel( "mbl_1", ["SR"], mbl_bin, mbl_min, mbl_max ) )
 
-# Create TLegend (AK: TCanvas is needed for that, but it gets deleted afterwards)
+        exclusion_config.setSignalChannels(sr_list)
+
+# ----------------
+# - Create TLegend
+# ----------------
+# TCanvas is needed for that, but it gets deleted afterwards
 c = TCanvas()
 compFillStyle = 1001 # see ROOT for Fill styles
 leg = TLegend(0.6,0.475,0.9,0.925,"")
 leg.SetFillStyle(0)
 leg.SetFillColor(0)
 leg.SetBorderSize(0)
-#
+
+# Data entry
 entry = TLegendEntry()
 entry = leg.AddEntry("","Data 2012 (#sqrt{s}=8 TeV)","p")
-entry.SetMarkerColor(bkt.dataColor)
+entry.SetMarkerColor(background_config.dataColor)
 entry.SetMarkerStyle(20)
-#
+
+# Total PDF
 entry = leg.AddEntry("","Total pdf","lf")
-entry.SetLineColor(bkt.totalPdfColor)
+entry.SetLineColor(background_config.totalPdfColor)
 entry.SetLineWidth(2)
-entry.SetFillColor(bkt.errorFillColor)
-entry.SetFillStyle(bkt.errorFillStyle)
-#
+entry.SetFillColor(background_config.errorFillColor)
+entry.SetFillStyle(background_config.errorFillStyle)
+
+# ttbar entry
 entry = leg.AddEntry("","t#bar{t}","lf")
-entry.SetLineColor(ttbarSample.color)
-entry.SetFillColor(ttbarSample.color)
+entry.SetLineColor(ttbar_sample.color)
+entry.SetFillColor(ttbar_sample.color)
 entry.SetFillStyle(compFillStyle)
-#
+
+# Single top entry
 entry = leg.AddEntry("","Single top","lf")
-entry.SetLineColor(singleTopSample.color)
-entry.SetFillColor(singleTopSample.color)
+entry.SetLineColor(single_top_sample.color)
+entry.SetFillColor(single_top_sample.color)
 entry.SetFillStyle(compFillStyle)
-#
+
+# Z/gamma* entry
 entry = leg.AddEntry("","Z/#gamma*","lf")
-entry.SetLineColor(zSample.color)
-entry.SetFillColor(zSample.color)
+entry.SetLineColor(z_sample.color)
+entry.SetFillColor(z_sample.color)
 entry.SetFillStyle(compFillStyle)
-#
+
+# If exclusion mode, add signal entry
 if myFitType==FitType.Exclusion:
     entry = leg.AddEntry("","signal","lf")
-    entry.SetLineColor(kPink)
-    entry.SetFillColor(kPink)
+    entry.SetLineColor(kViolet+5)
+    entry.SetFillColor(kViolet+5)
     entry.SetFillStyle(compFillStyle)
 
 # Set legend for fitConfig
-bkt.tLegend = leg
+background_config.tLegend = leg
 if myFitType==FitType.Exclusion:
-    myTopLvl.tLegend = leg
+    exclusion_config.tLegend = leg
 c.Close()
 
 print 'done with my stuff'
