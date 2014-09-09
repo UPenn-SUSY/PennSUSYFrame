@@ -14,6 +14,15 @@ import RunHelpers
 
 # ------------------------------------------------------------------------------
 RunBMinusLOptimizeNtupleMaker.input_tree_name = "BMinusLTTNT"
+RunBMinusLOptimizeNtupleMaker.lep_pt_cut = 40.e3
+RunBMinusLOptimizeNtupleMaker.jet_pt_cut = 40.e3
+
+# 90% working point
+# RunBMinusLOptimizeNtupleMaker.btag_working_point = 0.0617
+# 80% working point
+RunBMinusLOptimizeNtupleMaker.btag_working_point = 0.3511
+# 70% working point
+# RunBMinusLOptimizeNtupleMaker.btag_working_point = 0.7892
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
@@ -38,6 +47,7 @@ out_dir = '%s/hists/bminusl_opt_ntup_%04d_%02d_%02d__%02d_%02d' % ( os.environ['
 print out_dir
 
 # ==============================================================================
+
 if __name__ == '__main__':
     RunHelpers.safeMakeDir(out_dir)
 
@@ -68,15 +78,34 @@ if __name__ == '__main__':
                         , 'periodL_muon':{'label':'periodL_muon', 'num_jobs':2}
                         }
     full_sim_mc_samples = {
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             173045:{'label':'173045.Sherpa_CT10_DYtautauM08to15' , 'num_jobs':1}
                           , 173046:{'label':'173046.Sherpa_CT10_DYtautauM15to40' , 'num_jobs':1}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 119353:{'label':'119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW'   , 'num_jobs':1}
+                          , 119354:{'label':'119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj'  , 'num_jobs':1}
+                          , 119355:{'label':'119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ'   , 'num_jobs':1}
+                          , 119356:{'label':'119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj'  , 'num_jobs':1}
+                          , 119583:{'label':'119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW' , 'num_jobs':1}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 160655:{'label':'160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'        , 'num_jobs':1}
+                          , 160705:{'label':'160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'       , 'num_jobs':1}
+                          , 160755:{'label':'160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'            , 'num_jobs':1}
+                          , 160805:{'label':'160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu'            , 'num_jobs':1}
+                          , 161005:{'label':'161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5'  , 'num_jobs':1}
+                          , 161055:{'label':'161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5' , 'num_jobs':1}
+                          , 161105:{'label':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'              , 'num_jobs':1}
+                          , 161155:{'label':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'              , 'num_jobs':1}
+                          , 161305:{'label':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'num_jobs':1}
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':5}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR', 'num_jobs':2}
+                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'          , 'num_jobs':2}
+                          , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l'       , 'num_jobs':2}
+                          , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'                   , 'num_jobs':2}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':3}
@@ -177,10 +206,8 @@ if __name__ == '__main__':
                                                    , muon_data_samples   = muon_data_samples
                                                    , full_sim_mc_samples = full_sim_mc_samples
                                                    , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   # , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
-                                                   # , file_list_path_base = 'EosFileLists/tnt_103_w_weights/tnt_103'
-                                                   , file_list_path_base = 'EosFileLists/bminusl_ttnt_103/tnt_103'
-                                                   , out_dir = out_dir
+                                                   , file_list_path_base = 'EosFileLists/bminusl_ttnt_103/ttnt'
+                                                   , out_dir             = out_dir
                                                    )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
