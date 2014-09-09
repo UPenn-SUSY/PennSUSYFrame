@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6/SafeTTNTDir/BMinusL.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.tnt.root    129897    329    27596.657074

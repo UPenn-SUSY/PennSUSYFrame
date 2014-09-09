@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6/SafeTTNTDir/BMinusL.167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto.tnt.root    499693    10    109397.493265

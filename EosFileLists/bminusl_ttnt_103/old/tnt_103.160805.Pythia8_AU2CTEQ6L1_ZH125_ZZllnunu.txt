@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6/SafeTTNTDir/BMinusL.160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu.tnt.root    20000    35    20000

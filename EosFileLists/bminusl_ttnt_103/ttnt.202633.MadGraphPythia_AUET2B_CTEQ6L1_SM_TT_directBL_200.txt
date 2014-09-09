@@ -1,1 +1,1 @@
-/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.tnt.root    100000    25389    100000
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.14.slc6/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.tnt.root    100000    27160    100000
