@@ -21,6 +21,8 @@ import RunHelpers
 input_tree_name = 'TNT'
 lep_pt_cut = 40.e3
 jet_pt_cut = 40.e3
+# lep_pt_cut = 20.e3
+# jet_pt_cut = 20.e3
 
 # 90% working point
 # btag_working_point = 0.0617
