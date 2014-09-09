@@ -84,31 +84,25 @@ else:
 # - Dictionnary of cuts for Tree->hist
 # ------------------------------------
 # SR
-# TODO replace with my SR definitions
-# base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 600) && (met_et/sqrt(ht_signal) <= 7) )"
-base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.8) && (ht_signal >= 200) && (met_et/sqrt(ht_signal) <= 8) )"
+base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 600) && (met_et/sqrt(ht_signal) <= 7) )"
 
 configMgr.cutsDict["SR"] = base_sr_str
 
 # VR
-# TODO replace with my VR definitions
 base_vr_str = "( (ht_signal <= 600) )"
 
 configMgr.cutsDict["VR"] = base_vr_str
 
 # CR
-# TODO replace with my CR definitions
-# base_cr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 600) && (met_et/sqrt(ht_signal) >= 7) )"
-base_cr_top_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 200) && (met_et/sqrt(ht_signal) >= 7) )"
-# base_cr_str = "( (ht_signal <= 200) )"
+base_cr_top_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 600) && (met_et/sqrt(ht_signal) >= 7) )"
 
 configMgr.cutsDict["CR_top"] = base_cr_top_str
 
 # CR_TMP
 # TODO replace tmp CR with real CR
-base_cr_tmp_str = "( (ht_signal <= 200) )"
+base_cr_z_str = "( (ht_signal <= 200) )"
 
-configMgr.cutsDict["CR_tmp"] = base_cr_tmp_str
+# configMgr.cutsDict["CR_Z"] = base_cr_z_str
 
 # --------------------------
 # - lists of nominal weights
@@ -159,7 +153,6 @@ data_sample.setData()
 sample_list.append(data_sample)
 
 # set the file from which the samples should be taken
-# for sam in [ ttbarSample, singleTopSample, zSample, dataSample]:
 for sl in sample_list:
     sl.setFileList(bkg_files)
 
@@ -209,12 +202,12 @@ meas.addPOI("mu_SIG")
 cr_list = []
 # Add Top CR for background
 cr_list.append( background_config.addChannel( "mbl_0" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
-cr_list.append( background_config.addChannel( "mbl_1" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
-cr_list.append( background_config.addChannel( "mll"   , ["CR_top"] , mll_bin , mll_min , mll_max ) )
+# cr_list.append( background_config.addChannel( "mbl_1" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
+# cr_list.append( background_config.addChannel( "mll"   , ["CR_top"] , mll_bin , mll_min , mll_max ) )
 
-cr_list.append( background_config.addChannel( "mbl_0" , ["CR_tmp"] , mbl_bin , mbl_min , mbl_max ) )
-cr_list.append( background_config.addChannel( "mbl_1" , ["CR_tmp"] , mbl_bin , mbl_min , mbl_max ) )
-cr_list.append( background_config.addChannel( "mll"   , ["CR_tmp"] , mll_bin , mll_min , mll_max ) )
+# cr_list.append( background_config.addChannel( "mbl_0" , ["CR_Z"] , mbl_bin , mbl_min , mbl_max ) )
+# cr_list.append( background_config.addChannel( "mbl_1" , ["CR_Z"] , mbl_bin , mbl_min , mbl_max ) )
+# cr_list.append( background_config.addChannel( "mll"   , ["CR_Z"] , mll_bin , mll_min , mll_max ) )
 
 background_config.setBkgConstrainChannels(cr_list)
 
@@ -245,8 +238,8 @@ vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
     vr_list.append( background_config.addChannel( 'mbl_0', ['VR'], mbl_bin, mbl_min, mbl_max ) )
-    vr_list.append( background_config.addChannel( 'mbl_1', ['VR'], mbl_bin, mbl_min, mbl_max ) )
-    vr_list.append( background_config.addChannel( 'mll'  , ['VR'], mll_bin, mll_min, mll_max ) )
+    # vr_list.append( background_config.addChannel( 'mbl_1', ['VR'], mbl_bin, mbl_min, mbl_max ) )
+    # vr_list.append( background_config.addChannel( 'mll'  , ['VR'], mll_bin, mll_min, mll_max ) )
 
 
     for vr in vr_list:
@@ -258,9 +251,10 @@ if do_validation:
 # - set up SRs
 # ------------------------------------------------------------------------------
 if not myFitType == FitType.Discovery:
+# if myFitType == FitType.Exclusion:
     sr_list = []
     sr_list.append( background_config.addChannel( "mbl_0", ["SR"], mbl_bin, mbl_min, mbl_max ) )
-    sr_list.append( background_config.addChannel("mbl_1", ["SR"], mbl_bin, mbl_min, mbl_max ) )
+    # sr_list.append( background_config.addChannel( "mbl_1", ["SR"], mbl_bin, mbl_min, mbl_max ) )
 
     for sr in sr_list:
         sr.useUnderflowBin = True
@@ -281,12 +275,12 @@ if myFitType == FitType.Discovery:
 # -------------------------------------------------------
 if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
-    # sig_sample_list=['sig_500', 'sig_800']
-    sig_sample_list=['sig_500']
+    sig_sample_list=['sig_500', 'sig_800', 'sig_1000']
+    # sig_sample_list=['sig_500']
     sig_samples = []
     for sig in sig_sample_list:
-        # TODO most examples of HistFitter config files seems to create a clone config like this -- I'm not sure why, but this doesn't seem to work for me. Either fix, or remove
-        # exclusion_sr_config = configMgr.addFitConfigClone( background_config , "Sig_excl_%s" % sig )
+        print 'setting up signal sample: ' , sig
+        exclusion_sr_config = configMgr.addFitConfigClone( background_config , "Sig_excl_%s" % sig )
         # exclusion_sr_config = configMgr.addFitConfigClone( background_config , "Exclusion_%s" % sig )
 
         sig_sample = Sample(sig, kViolet+5)
@@ -295,14 +289,9 @@ if myFitType == FitType.Exclusion:
         sig_sample.setNormByTheory()
         sig_sample.setNormFactor("mu_SIG", 1., 0., 5.)
 
-        # TODO most examples of HistFitter config files seems to create a clone config like this -- I'm not sure why, but this doesn't seem to work for me. Either fix, or remove
-        # exclusion_sr_config.addSamples(sig_sample)
-        # exclusion_sr_config.setSignalSample(sig_sample)
-        # exclusion_sr_config.setSignalChannels(sr_list)
-
-        background_config.addSamples(sig_sample)
-        background_config.setSignalSample(sig_sample)
-        background_config.setSignalChannels(sr_list)
+        exclusion_sr_config.addSamples(sig_sample)
+        exclusion_sr_config.setSignalSample(sig_sample)
+        exclusion_sr_config.setSignalChannels(sr_list)
 
 # ----------------
 # - Create TLegend
@@ -356,9 +345,7 @@ if myFitType==FitType.Exclusion:
 # Set legend for fitConfig
 background_config.tLegend = leg
 if myFitType==FitType.Exclusion:
-    # TODO most examples of HistFitter config files seems to create a clone config like this -- I'm not sure why, but this doesn't seem to work for me. Either fix, or remove
-    # exclusion_sr_config.tLegend = leg
-    background_config.tLegend = leg
+    exclusion_sr_config.tLegend = leg
 c.Close()
 
 print 'done with my stuff'
