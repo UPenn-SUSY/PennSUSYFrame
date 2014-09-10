@@ -51,4 +51,10 @@ Next, we want to draw limit contours! First, we need to take our output workspac
 python LimitHelpers/MakeSampleListFiles.py
 ```
 
-This creates a text file called ```SampleExcl_Output_hypotest__1_harvest_list```. 
+This creates a text file called ```SampleExcl_Output_hypotest__1_harvest_list```, and a helper script called ```summary_harvest_tree_description.py```. 
+
+Now, we can make a sample CLs plot! This script will read the output from the previous step, and plot the CLs value for each mass.
+```
+python  LimitHelpers/MakeSamplePValuePlot.py
+evince SamplePValue.pdf
+```
