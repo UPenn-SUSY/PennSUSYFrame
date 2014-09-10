@@ -8,11 +8,11 @@ Download and install HistFitter
 
 ```bash
 source SetupHistFitter.sh
-cd HistFitter
-source setup.sh
-cd src
-make
-cd ..
 ```
 
+Make link of relevant scripts in the appropriate places
+-------------------------------------------------------
+```bash
+ln -s ${PWD}/../LimitHelpers/ .
+```
 
