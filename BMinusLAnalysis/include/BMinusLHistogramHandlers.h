@@ -221,6 +221,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_same_parent_pairing_jet_0; //~ ~
       std::vector<TH1F*> m_h_same_parent_pairing_jet_1; //~ ~
 
+      std::vector<TH2F*> m_h_flavor_channel_tvr;
+
       std::vector<TH2F*> m_h_b_jet_E_resolution_all; //~ ~
       std::vector<TH2F*> m_h_b_jet_E_resolution_0; //~ ~
       std::vector<TH2F*> m_h_b_jet_E_resolution_1; //~ ~

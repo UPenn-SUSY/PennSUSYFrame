@@ -1631,6 +1631,29 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                      )
                                            );
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_h_flavor_channel_tvr.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__flavor_channel_tvr"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "Flavor Channel - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "; Reco Flavor Channel ; Truth Flavor Channel"
+                                            ).c_str()
+                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                          )
+                                );
+    for (int flavor_it = 0; flavor_it != FLAVOR_N; ++flavor_it) {
+      m_h_flavor_channel_tvr.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
+                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                           );
+      m_h_flavor_channel_tvr.at(fc_it)->GetYaxis()->SetBinLabel( flavor_it+1
+                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                           );
+    }
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_E_resolution_all.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -2075,6 +2098,9 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   dr_lj10 = PennSusyFrame::getDr(lep_1, jet_0);
   dr_lj11 = PennSusyFrame::getDr(lep_1, jet_1);
 
+  // find truth flavor channel
+  FLAVOR_CHANNEL truth_fc = PennSusyFrame::getTruthFC(mc_truth);
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // loop over all flavor channels and fill histograms
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -2105,6 +2131,30 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
 	if (lepton_from_stop_1 && jet_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj11, weight);
 	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
       }
+      // debugging... these print statements should go right after those in HistogramHandler.
+      // do it a bit differently than this structure; this might help a bit
+      // to see if multiple dR's in a single event are very small...?
+      std::cout << "hey there... this is lj00 = " << dr_lj00			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = ee " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_0 \
+		<< "\n\t jet from stop? " << jet_from_stop_0 \
+		<< "\n... this is lj01 = "       << dr_lj01				\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = ee " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_0 \
+		<< "\n\t jet from stop? " << jet_from_stop_1 \
+		<< "\n... this is lj10 = "       << dr_lj10				\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = ee " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_1 \
+		<< "\n\t jet from stop? " << jet_from_stop_0 \
+		<< "\n... this is lj11 = "       << dr_lj11				\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = ee " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_1 \
+		<< "\n\t jet from stop? " << jet_from_stop_1 \
+		<< "\n" ;
     }
 
     else if (fc == FLAVOR_MM) {
@@ -2128,6 +2178,27 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
 	if (lepton_from_stop_1 && jet_from_stop_1) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj11, weight);
 	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
       }
+      std::cout << "hey there... this is lj00 = " << dr_lj00			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = mm " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_0 \
+		<< "\n\t jet from stop? " << jet_from_stop_0 \
+		<< "\n... this is lj01 = "       << dr_lj01			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = mm " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_0 \
+		<< "\n\t jet from stop? " << jet_from_stop_1 \
+		<< "\n... this is lj10 = "       << dr_lj10			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = mm " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_1 \
+		<< "\n\t jet from stop? " << jet_from_stop_0 \
+		<< "\n... this is lj11 = "       << dr_lj11			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = mm " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_1 \
+		<< "\n\t jet from stop? " << jet_from_stop_1 \
+		<< "\n" ;
     }
 
     else { // FLAVORCHANNEL EM
@@ -2175,6 +2246,27 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
 	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
 	}
       }
+      std::cout << "hey there... this is lj00 = " << dr_lj00			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = em " \
+		<< "\n\t lep from stop? " << lepton_from_stop_0 \
+		<< "\n\t jet from stop? " << jet_from_stop_0 \
+		<< "\n... this is lj01 = "       << dr_lj01			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = em "\
+		<< "\n\t lep from stop? " << lepton_from_stop_0 \
+		<< "\n\t jet from stop? " << jet_from_stop_1 \
+		<< "\n... this is lj10 = "       << dr_lj10			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = em "\
+		<< "\n\t lep from stop? " << lepton_from_stop_1 \
+		<< "\n\t jet from stop? " << jet_from_stop_0 \
+		<< "\n... this is lj11 = "       << dr_lj11			\
+		<< "\n\t Truth flavor channel = " << FLAVOR_CHANNEL_STRINGS[truth_fc]	\
+		<< "\n\t Reco flavor channel = em " 	\
+		<< "\n\t lep from stop? " << lepton_from_stop_1 \
+		<< "\n\t jet from stop? " << jet_from_stop_1 \
+		<< "\n" ;
     }
 
     // old version:
@@ -2427,6 +2519,10 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     if (!same_parent_anti_pair_0 && !same_parent_anti_pair_1) {
       m_h_mbl_ratio_diff_parent_pairing.at(fc_it)->Fill(mbl_anti_pair_1/mbl_anti_pair_0, weight);
     }    
+
+    // -----------------------------------------------------------------------------
+    // fill truth v. reco flavor channel histos.
+    m_h_flavor_channel_tvr.at(fc_it)->Fill(fc, truth_fc);
 
     // -----------------------------------------------------------------------------
     // fill resolution histograms
@@ -2698,6 +2794,8 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     // m_h_same_parent_pairing_stop.at(fc_it)->Write();
     // m_h_same_parent_pairing_astp.at(fc_it)->Write();
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_h_flavor_channel_tvr.at(fc_it)->Write();
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_E_resolution_all.at(fc_it)->Write();
     m_h_b_jet_E_resolution_0.at(  fc_it)->Write();

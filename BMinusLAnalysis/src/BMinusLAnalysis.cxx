@@ -83,28 +83,29 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
               );
   }
 
-  // m_object_cleaning.setEEConeSize(0.05);
-  // m_object_cleaning.setEJConeSize(0.20);
-  // m_object_cleaning.setMJConeSize(0.20); // not done by default
-  // m_object_cleaning.setETConeSize(0.00);
-  // m_object_cleaning.setMTConeSize(0.00);
-  // m_object_cleaning.setJEConeSize(0.40); // m_object_cleaning.setJMConeSize(0.40);
-  // m_object_cleaning.setEMConeSize(0.01);
-  // m_object_cleaning.setMMConeSize(0.05);
-  // m_object_cleaning.setTJConeSize(0.00);
-  // m_object_cleaning.setSFOSMllMin(12.e3);
-
-  m_object_cleaning.setEEConeSize(0.0);
-  m_object_cleaning.setEJConeSize(0.0);
-  m_object_cleaning.setMJConeSize(0.0); // not done by default
-  m_object_cleaning.setETConeSize(0.0);
-  m_object_cleaning.setMTConeSize(0.0);
-  m_object_cleaning.setJEConeSize(0.0);
-  m_object_cleaning.setJMConeSize(0.0);
-  m_object_cleaning.setEMConeSize(0.0);
-  m_object_cleaning.setMMConeSize(0.0);
-  m_object_cleaning.setTJConeSize(0.0);
+  m_object_cleaning.setEEConeSize(0.05);
+  m_object_cleaning.setEJConeSize(0.20);
+  m_object_cleaning.setMJConeSize(0.20); // not done by default
+  m_object_cleaning.setETConeSize(0.00);
+  m_object_cleaning.setMTConeSize(0.00);
+  m_object_cleaning.setJEConeSize(0.40); // m_object_cleaning.setJMConeSize(0.40);
+  m_object_cleaning.setJMConeSize(0.40);
+  m_object_cleaning.setEMConeSize(0.01);
+  m_object_cleaning.setMMConeSize(0.05);
+  m_object_cleaning.setTJConeSize(0.00);
   m_object_cleaning.setSFOSMllMin(12.e3);
+
+  // m_object_cleaning.setEEConeSize(0.0);
+  // m_object_cleaning.setEJConeSize(0.0);
+  // m_object_cleaning.setMJConeSize(0.0); // not done by default
+  // m_object_cleaning.setETConeSize(0.0);
+  // m_object_cleaning.setMTConeSize(0.0);
+  // m_object_cleaning.setJEConeSize(0.0);
+  // m_object_cleaning.setJMConeSize(0.0);
+  // m_object_cleaning.setEMConeSize(0.0);
+  // m_object_cleaning.setMMConeSize(0.0);
+  // m_object_cleaning.setTJConeSize(0.0);
+  // m_object_cleaning.setSFOSMllMin(12.e3);
 }
 
 // -----------------------------------------------------------------------------
@@ -544,11 +545,19 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   m_bl_0 = new PennSusyFrame::blPair();
   m_bl_1 = new PennSusyFrame::blPair();
 
-  m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
-                                                , m_electrons.getCollection(EL_SELECTED)
-                                                , m_muons.getCollection(MU_SELECTED)
+  // m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
+  //                                               , m_electrons.getCollection(EL_SELECTED)
+  //                                               , m_muons.getCollection(MU_SELECTED)
+  //                                               // , m_jets.getCollection(JET_B)
+  //                                               , m_jets.getCollection(JET_SELECTED)
+  //                                               , *m_bl_0
+  //                                               , *m_bl_1
+  //                                               );
+  if (m_pass_event)  m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
+                                                , m_electrons.getCollection(EL_GOOD)
+                                                , m_muons.getCollection(MU_GOOD)
                                                 // , m_jets.getCollection(JET_B)
-                                                , m_jets.getCollection(JET_SELECTED)
+                                                , m_jets.getCollection(JET_GOOD)
                                                 , *m_bl_0
                                                 , *m_bl_1
                                                 );
@@ -1723,10 +1732,19 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
 {
   size_t num_hists = m_histogram_handlers.at(hist_level).size();
   for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+    // m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
+    //                                                      , m_event_quantities
+    //                                                      , m_electrons.getCollection(EL_SELECTED)
+    //                                                      , m_muons.getCollection(MU_SELECTED)
+    //                                                      // , m_jets.getCollection(JET_SELECTED)
+    //                                                      , m_jets.getCollection(JET_B)
+    //                                                      , m_met
+    //                                                      , weight
+    //                                                      );
     m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
                                                          , m_event_quantities
-                                                         , m_electrons.getCollection(EL_SELECTED)
-                                                         , m_muons.getCollection(MU_SELECTED)
+                                                         , m_electrons.getCollection(EL_GOOD)
+                                                         , m_muons.getCollection(MU_GOOD)
                                                          // , m_jets.getCollection(JET_SELECTED)
                                                          , m_jets.getCollection(JET_B)
                                                          , m_met
