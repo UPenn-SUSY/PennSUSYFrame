@@ -18,6 +18,7 @@ ROOT.SetAtlasStyle()
 # ----------------------------------------------------------------------------------------------
 #gROOT.ProcessLine("gErrorIgnoreLevel=10001;")
 #configMgr.plotHistos = True
+configMgr.blindSR = True
 
 # ----------------------------------------
 # - Flags to control which fit is executed
@@ -62,8 +63,8 @@ configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 
 # Scaling calculated by outputLumi / inputLumi
 configMgr.inputLumi = 0.001    # Luminosity of input TTree after weighting
-configMgr.outputLumi = 13.0    # Luminosity required for output histograms
-# configMgr.outputLumi = 21.0    # Luminosity required for output histograms
+# configMgr.outputLumi = 13.0    # Luminosity required for output histograms
+configMgr.outputLumi = 21.0    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
 
 
@@ -84,25 +85,22 @@ else:
 # - Dictionnary of cuts for Tree->hist
 # ------------------------------------
 # SR
-base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 600) && (met_et/sqrt(ht_signal) <= 7) )"
-
+base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 600) && (met_et/sqrt(ht_signal) <= 7) && (fabs(mll - 91) > 10) )"
 configMgr.cutsDict["SR"] = base_sr_str
 
 # VR
 base_vr_str = "( (ht_signal <= 600) )"
-
-configMgr.cutsDict["VR"] = base_vr_str
+configMgr.cutsDict["VR_no_Z"] = '( %s && (fabs(mll - 91) > 10) )' % base_vr_str
+configMgr.cutsDict["VR_w_Z"]  = '( %s && (fabs(mll - 91) < 10) )' % base_vr_str
 
 # CR
-base_cr_top_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 600) && (met_et/sqrt(ht_signal) >= 7) )"
-
+base_cr_top_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 600) && (met_et/sqrt(ht_signal) >= 7) && (fabs(mll - 91) > 10) )"
 configMgr.cutsDict["CR_top"] = base_cr_top_str
 
 # CR_TMP
 # TODO replace tmp CR with real CR
-base_cr_z_str = "( (ht_signal <= 200) )"
-
-# configMgr.cutsDict["CR_Z"] = base_cr_z_str
+base_cr_z_str = "( (ht_signal <= 600) && (fabs(mll - 91) < 10) )"
+configMgr.cutsDict["CR_Z"] = base_cr_z_str
 
 # --------------------------
 # - lists of nominal weights
@@ -168,10 +166,24 @@ mbl_min = 0
 mbl_max = 1200
 
 # mll binning
-# mll_bin = 25
-mll_bin = 5
+mll_bin = 20
 mll_min = 0
 mll_max = 500
+
+# ht binning
+ht_bin = 20
+ht_min = 0
+ht_max = 1000
+
+# mbl asym binning
+mbl_asym_bin = 5
+mbl_asym_min = 0
+mbl_asym_max = 1.
+
+# mbl asym binning
+met_sig_bin = 10
+met_sig_min = 0
+met_sig_max = 500
 
 # SR binning (this is just a single bin cut and count binning)
 srNBins = 1
@@ -201,13 +213,19 @@ meas.addPOI("mu_SIG")
 # --------------------------------------------------
 cr_list = []
 # Add Top CR for background
-cr_list.append( background_config.addChannel( "mbl_0" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
-# cr_list.append( background_config.addChannel( "mbl_1" , ["CR_top"] , mbl_bin , mbl_min , mbl_max ) )
-# cr_list.append( background_config.addChannel( "mll"   , ["CR_top"] , mll_bin , mll_min , mll_max ) )
+cr_list.append( background_config.addChannel( "mbl_0"                         , ["CR_top"] , mbl_bin      , mbl_min      , mbl_max      ) )
+# cr_list.append( background_config.addChannel( "mbl_1"                         , ["CR_top"] , mbl_bin      , mbl_min      , mbl_max      ) )
+cr_list.append( background_config.addChannel( "mll"                           , ["CR_top"] , mll_bin      , mll_min      , mll_max      ) )
+cr_list.append( background_config.addChannel( "ht_signal"                     , ["CR_top"] , ht_bin       , ht_min       , ht_max       ) )
+# cr_list.append( background_config.addChannel( '((mbl_0-mbl_1)/(mbl_0+mbl_1))' , ['CR_top'] , mbl_asym_bin , mbl_asym_min , mbl_asym_max ) )
+# cr_list.append( background_config.addChannel( '(met_et/sqrt(ht_signal))'      , ['CR_top'] , met_sig_bin  , met_sig_min  , met_sig_max  ) )
 
-# cr_list.append( background_config.addChannel( "mbl_0" , ["CR_Z"] , mbl_bin , mbl_min , mbl_max ) )
-# cr_list.append( background_config.addChannel( "mbl_1" , ["CR_Z"] , mbl_bin , mbl_min , mbl_max ) )
-# cr_list.append( background_config.addChannel( "mll"   , ["CR_Z"] , mll_bin , mll_min , mll_max ) )
+cr_list.append( background_config.addChannel( "mbl_0"                         , ["CR_Z"] , mbl_bin      , mbl_min      , mbl_max      ) )
+# cr_list.append( background_config.addChannel( "mbl_1"                         , ["CR_Z"] , mbl_bin      , mbl_min      , mbl_max      ) )
+cr_list.append( background_config.addChannel( "mll"                           , ["CR_Z"] , mll_bin      , mll_min      , mll_max      ) )
+cr_list.append( background_config.addChannel( "ht_signal"                     , ["CR_Z"] , ht_bin       , ht_min       , ht_max       ) )
+# cr_list.append( background_config.addChannel( '((mbl_0-mbl_1)/(mbl_0+mbl_1))' , ['CR_Z'] , mbl_asym_bin , mbl_asym_min , mbl_asym_max ) )
+# cr_list.append( background_config.addChannel( '(met_et/sqrt(ht_signal))'      , ['CR_Z'] , met_sig_bin  , met_sig_min  , met_sig_max  ) )
 
 background_config.setBkgConstrainChannels(cr_list)
 
@@ -237,9 +255,13 @@ for crl in cr_list:
 vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
-    vr_list.append( background_config.addChannel( 'mbl_0', ['VR'], mbl_bin, mbl_min, mbl_max ) )
-    # vr_list.append( background_config.addChannel( 'mbl_1', ['VR'], mbl_bin, mbl_min, mbl_max ) )
-    # vr_list.append( background_config.addChannel( 'mll'  , ['VR'], mll_bin, mll_min, mll_max ) )
+    vr_list.append( background_config.addChannel( 'mbl_0', ['VR_w_Z'], mbl_bin, mbl_min, mbl_max ) )
+    # vr_list.append( background_config.addChannel( 'mbl_1', ['VR_w_Z'], mbl_bin, mbl_min, mbl_max ) )
+    vr_list.append( background_config.addChannel( 'mll'  , ['VR_w_Z'], mll_bin, mll_min, mll_max ) )
+
+    vr_list.append( background_config.addChannel( 'mbl_0', ['VR_no_Z'], mbl_bin, mbl_min, mbl_max ) )
+    # vr_list.append( background_config.addChannel( 'mbl_1', ['VR_no_Z'], mbl_bin, mbl_min, mbl_max ) )
+    vr_list.append( background_config.addChannel( 'mll'  , ['VR_no_Z'], mll_bin, mll_min, mll_max ) )
 
 
     for vr in vr_list:
@@ -263,7 +285,6 @@ if not myFitType == FitType.Discovery:
 
     background_config.setSignalChannels(sr_list)
 
-
 # ---------------
 # - Discovery fit
 # ---------------
@@ -275,7 +296,7 @@ if myFitType == FitType.Discovery:
 # -------------------------------------------------------
 if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
-    sig_sample_list=['sig_500', 'sig_800', 'sig_1000']
+    sig_sample_list=['sig_500', 'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
     # sig_sample_list=['sig_500']
     sig_samples = []
     for sig in sig_sample_list:
