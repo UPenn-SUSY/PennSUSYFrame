@@ -65,31 +65,12 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeEvent()
      && m_pass_hfor
      && m_pass_mc_overlap
      && m_pass_ge_2_lep
-     // && m_pass_2_lep
      && m_pass_signal_lep
      && m_pass_os
      && m_pass_trigger
      && m_pass_ge_2_b_jet
-     // && m_pass_eq_2_b_jet
      && m_pass_bl_pairing
-     && m_pass_z_veto
      ) {
-    // // std::cout << "finalizeEvent():"
-    // std::cout << "Filling ntuple:"
-    //           << "\n\tevent: "             << m_event.getEventNumber()
-    //           << "\n\tweight: "            << m_event_weight
-    //           << "\n\t\tmc event weight: " << m_mc_event_weight
-    //           << "\n\t\tpile up sf: "      << m_pile_up_sf
-    //           << "\n\t\tx-sec weight: "    << m_xsec_weight
-    //           << "\n\t\tlepton sf: "       << m_lepton_sf
-    //           << "\n\t\tb-tag sf: "        << m_btag_sf
-    //           << "\n\tmbl 0: mbl_0: "      << m_bl_0->getMbl()
-    //           << "\n\tmbl 0: mbl_0: "      << m_bl_1->getMbl()
-    //           << "\n\tht baseline: "       << m_event_quantities.getHtBaseline()
-    //           << "\n\tmet et: "            << m_met.getMetEt()
-    //           << "\n\tmet sig: "           << m_met.getMetSigBaseline()
-    //           << "\n";
-
     fillNtuple( m_bl_0
               , m_bl_1
               , m_event_weight
@@ -108,6 +89,8 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeRun()
 void PennSusyFrame::BMinusLOptimizeNtupleMaker::clearVariables()
 {
   m_weight = 1.;
+
+  m_flavor_channel = FLAVOR_NONE;
 
   m_mbl_0 = 0 ;
   m_mbl_1 = 0 ;
@@ -160,6 +143,8 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
   // connect branches for output
   m_output_tree->Branch( "weight" , &m_weight);
 
+  m_output_tree->Branch( "flavor_channel" , &m_flavor_channel);
+
   m_output_tree->Branch( "mbl_0" , &m_mbl_0);
   m_output_tree->Branch( "mbl_1" , &m_mbl_1);
   m_output_tree->Branch( "mbbll" , &m_mbbll);
@@ -207,6 +192,8 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
                                                           )
 {
   m_weight = weight;
+
+  m_flavor_channel = m_event.getFlavorChannel();
 
   m_mbl_0 = bl_0->getMbl()/1.e3;
   m_mbl_1 = bl_1->getMbl()/1.e3;

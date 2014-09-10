@@ -68,35 +68,10 @@ void PennSusyFrame::BMinusLTTNTMaker::finalizeEvent()
      && m_pass_tile_error
      && m_pass_tile_hot_spot
      && m_pass_tile_trip
-     // && m_pass_bad_jet_veto
-     // && m_pass_calo_problem_jet
      && m_pass_primary_vertex
-     // && m_pass_bad_mu_veto
-     // && m_pass_cosmic_mu_veto
-     // && m_pass_hfor
-     // && m_pass_mc_overlap
      && m_pass_ge_2_lep
-     // && m_pass_2_lep
-     // && m_pass_signal_lep
      && m_pass_ge_2_b_jet
-     // && m_pass_eq_2_b_jet
-     // && m_pass_bl_pairing
-     // && m_pass_z_veto
      ) {
-    // std::cout << "finalizeEvent():"
-    //           << "\n\tevent: "             << m_event.getEventNumber()
-    //           << "\n\tweight: "            << m_event_weight
-    //           << "\n\t\tmc event weight: " << m_mc_event_weight
-    //           << "\n\t\tpile up sf: "      << m_pile_up_sf
-    //           << "\n\t\tx-sec weight: "    << m_xsec_weight
-    //           << "\n\t\tlepton sf: "       << m_lepton_sf
-    //           << "\n\t\tb-tag sf: "        << m_btag_sf
-    //           << "\n\tmbl 0: mbl_0: "      << m_bl_0->getMbl()
-    //           << "\n\tmbl 0: mbl_0: "      << m_bl_1->getMbl()
-    //           << "\n\tht baseline: "       << m_event_quantities.getHtBaseline()
-    //           << "\n\tmet et: "            << m_met.getMetEt()
-    //           // << "\n\tmet sig: "           << m_met.getMetSigBaseline()
-    //           << "\n";
     fillTnt();
   }
 }
