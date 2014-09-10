@@ -6,6 +6,13 @@ Download and install HistFitter
 
 - First, we need to download HistFitter
 
-```bash
+# ```bash
 source SetupHistFitter.sh
-```
+cd HistFitter
+source setup.sh
+cd src
+make
+cd ..
+# ```
+
+
