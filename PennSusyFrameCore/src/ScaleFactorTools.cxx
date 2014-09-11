@@ -42,13 +42,14 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   /*TO DO double check this number as I'm still confused after reading the twiki
     InDetTrackingPerformaceGuidelines*/
   m_pile_up_reweight->AddLumiCalcFile(m_pile_up_data_file);
-
-  //m_pile_up_reweight->SetUnrepresentedDataAction(2);
-
+  m_pile_up_reweight->SetUnrepresentedDataAction(2);
   int is_good = m_pile_up_reweight->Initialize();
   if (is_good != 0) {
     std::cout << "FATAL: Problem in PileUp initialization::isGood = "
               << is_good << "\n";
+  }
+  else {
+    std::cout<< "Initilize of Pileup Tool good"<<std::endl;
   }
 }
 
@@ -106,8 +107,8 @@ void PennSusyFrame::EgammaScaleFactorTool::init()
   m_eg_reco_sf.initialize();
 
   // initialize sf tight++ or medium++
-  m_tight_file_name  = m_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v04.root";
-  m_medium_file_name = m_egamma_sf_dir + "efficiencySF.offline.Medium.2012.8TeV.rel17p2.v04.root";
+  m_tight_file_name  = m_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v07.root";
+  m_medium_file_name = m_egamma_sf_dir + "efficiencySF.offline.Medium.2012.8TeV.rel17p2.v07.root";
 
   std::string the_file_name = ( m_is_tightpp ? m_tight_file_name : m_medium_file_name );
   std::cout << "Adding file to Egamma id sf tool: " << the_file_name << "\n";
