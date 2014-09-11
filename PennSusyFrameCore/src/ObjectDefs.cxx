@@ -120,7 +120,7 @@ void PennSusyFrame::EventLevelQuantities::print() const
             <<std::setw(17)<<left<< "lepton sf: " << std::setw(20)<<left<<m_lepton_sf
             <<std::setw(17)<<left<< "trigger sf: " << std::setw(20)<<left<<m_trigger_weight
             <<std::setw(17)<<left<< "b tag sf: " << std::setw(20)<<left<<m_b_tag_sf
-            <<"\n";
+	    <<"\n"<<std::setw(17)<<left<< "pile up sf: "<< std::setw(20)<<left<<m_pile_up_sf<<"\n";
 }
 
 // =============================================================================

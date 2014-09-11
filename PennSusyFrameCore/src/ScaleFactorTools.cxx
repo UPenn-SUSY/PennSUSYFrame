@@ -285,7 +285,7 @@ PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
   std::string base_work_dir = getenv("BASE_WORK_DIR");
-  m_calibration_file   = root_core_dir + "/data/BTagCalibration.env";
+  m_calibration_file   = root_core_dir + "/../SUSYTools/data/BTagCalibration.env";
   m_calibration_folder = root_core_dir + "/../SUSYTools/data/";
 }
 
