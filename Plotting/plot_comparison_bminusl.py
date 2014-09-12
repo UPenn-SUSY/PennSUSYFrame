@@ -391,35 +391,34 @@ def main():
     # ic_numerator = hh.Container.InputContainer( name = 'dummy'
     ic_numerator = hh.Container.InputContainer( name = 'Data'
                                               , entry_list = [ec_data]
-                                              # , lumi_target = 21/13.
                                               , lumi_target = 1
                                               # , lumi_target = 0
                                               )
     # ic_denominator = hh.Container.InputContainer( name = 'Background'
     ic_denominator = hh.Container.InputContainer( name = 'Bkg'
-                                                # , entry_list = [ec_ttbar, ec_single_top, ec_Zbb, ec_ttv, ec_higgs]
                                                 , entry_list = [ ec_ttbar
                                                                , ec_single_top
-                                                               , ec_Zbpt0_40
-                                                               , ec_Zbpt40_70
-                                                               , ec_Zbpt70_140
-                                                               , ec_Zbpt140_280
-                                                               , ec_Zbpt280_500
-                                                               , ec_Zbpt500
-                                                               , ec_Zc
-                                                               , ec_Zl
-                                                               , ec_DY
+                                                               , ec_Zbb
+                                                               # , ec_Zbpt0_40
+                                                               # , ec_Zbpt40_70
+                                                               # , ec_Zbpt70_140
+                                                               # , ec_Zbpt140_280
+                                                               # , ec_Zbpt280_500
+                                                               # , ec_Zbpt500
+                                                               # , ec_Zc
+                                                               # , ec_Zl
+                                                               # , ec_DY
                                                                , ec_ttv
                                                                , ec_higgs
                                                                ]
-                                                # , entry_list = [ec_ttbar, ec_single_top, ec_Zbb]
                                                 , lumi_target = 21000
-                                                # , lumi_target = 13000
                                                 )
     ic_signal = hh.Container.InputContainer( name = 'Signal'
-                                           , entry_list = [ec_bl_500, ec_bl_800, ec_bl_1000]
+                                           , entry_list = [ ec_bl_500
+                                                          , ec_bl_800
+                                                          , ec_bl_1000
+                                                          ]
                                            , lumi_target = 21000
-                                           # , lumi_target = 13000
                                            )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
