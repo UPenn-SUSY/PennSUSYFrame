@@ -18,36 +18,21 @@ namespace PennSusyFrame
   enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
                            , BMINUSL_HIST_BL_PAIRING
 
-                           , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_0
-                           , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_0__ttbar_0__trig_0
-                           , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_0__trig_0
-                           , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_0
-                           , BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_1
+                           // , BMINUSL_HIST_BL_PAIRING_EE_TRIG
+                           // , BMINUSL_HIST_BL_PAIRING_MM_TRIG
+                           // , BMINUSL_HIST_BL_PAIRING_EM_TRIG_1
+                           // , BMINUSL_HIST_BL_PAIRING_EM_TRIG_2
 
-                           , BMINUSL_HIST_BL_PAIRING_EE_TRIG
-                           , BMINUSL_HIST_BL_PAIRING_MM_TRIG
-                           , BMINUSL_HIST_BL_PAIRING_EM_TRIG_1
-                           , BMINUSL_HIST_BL_PAIRING_EM_TRIG_2
-                           , BMINUSL_HIST_ZVETO
+                           , BMINUSL_HIST_Z_VETO
                            , BMINUSL_HIST_GE_4_OBJECTS
 
-                           , BMINUSL_HIST_SR_MBL_6
-                           , BMINUSL_HIST_SR_MET_7
-                           , BMINUSL_HIST_SR_MBL_6_MET_7
-                           , BMINUSL_HIST_SR_MBL_6_MET_7_HT_500
-                           , BMINUSL_HIST_SR_MBL_6_MET_7_HT_600
-                           , BMINUSL_HIST_SR_MBL_6_MET_7_HT_700
-
-                           , BMINUSL_HIST_CR_MBL_6_MET_REV_7_HT_REV_600
-                           , BMINUSL_HIST_CR_MBL_REV_6_MET_REV_7_HT_REV_600
-                           , BMINUSL_HIST_CR_MBL_REV_3_MET_REV_7_HT_REV_600
-
-                           , BMINUSL_HIST_VR_Z_REV_MBL_6_MET_REV_7_HT_REV_600
-                           , BMINUSL_HIST_VR_Z_REV_MBL_REV_6_MET_REV_7_HT_REV_600
-                           , BMINUSL_HIST_VR_Z_REV_MBL_REV_3_MET_REV_7_HT_REV_600
-
-                           , BMINUSL_HIST_VR_HT_REV_600
-                           , BMINUSL_HIST_VR_Z_REV_HT_REV_600
+                           , BMINUSL_HIST_SR
+                           , BMINUSL_HIST_CR_TOP
+                           , BMINUSL_HIST_CR_Z
+                           , BMINUSL_HIST_VR_1
+                           , BMINUSL_HIST_VR_2
+                           , BMINUSL_HIST_VR_3
+                           , BMINUSL_HIST_VR_4
 
                            , BMINUSL_HIST_N
                            };
@@ -55,35 +40,21 @@ namespace PennSusyFrame
   const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
                                                    , "BMINUSL_BL_PAIRING"
 
-                                                   , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_0__btag_0__ttbar_0__trig_0"
-                                                   , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_0__ttbar_0__trig_0"
-                                                   , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_0__trig_0"
-                                                   , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_0"
-                                                   , "BMINUSL_HIST_BL_PAIRING__xsec_1__mc_1__pu_1__lep_1__btag_1__ttbar_1__trig_1"
+                                                   // , "BMINUSL_BL_PAIRING_EE_TRIG"
+                                                   // , "BMINUSL_BL_PAIRING_MM_TRIG"
+                                                   // , "BMINUSL_BL_PAIRING_EM_TRIG_1"
+                                                   // , "BMINUSL_BL_PAIRING_EM_TRIG_2"
 
-                                                   , "BMINUSL_BL_PAIRING_EE_TRIG" , "BMINUSL_BL_PAIRING_MM_TRIG"
-                                                   , "BMINUSL_BL_PAIRING_EM_TRIG_1"
-                                                   , "BMINUSL_BL_PAIRING_EM_TRIG_2"
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_GE_4_OBJECTS"
 
-                                                   , "BMINUSL_SR_MBL_6"
-                                                   , "BMINUSL_SR_MET_7"
-                                                   , "BMINUSL_SR_MBL_6_MET_7"
-                                                   , "BMINUSL_SR_MBL_6_MET_7_HT_500"
-                                                   , "BMINUSL_SR_MBL_6_MET_7_HT_600"
-                                                   , "BMINUSL_SR_MBL_6_MET_7_HT_700"
-
-                                                   , "BMINUSL_CR_MBL_6_MET_REV_7_HT_REV_600"
-                                                   , "BMINUSL_CR_MBL_REV_6_MET_REV_7_HT_REV_600"
-                                                   , "BMINUSL_CR_MBL_REV_3_MET_REV_7_HT_REV_600"
-
-                                                   , "BMINUSL_VR_Z_REV_MBL_6_MET_REV_7_HT_REV_600"
-                                                   , "BMINUSL_VR_Z_REV_MBL_REV_6_MET_REV_7_HT_REV_600"
-                                                   , "BMINUSL_VR_Z_REV_MBL_REV_3_MET_REV_7_HT_REV_600"
-
-                                                   , "BMINUSL_VR_HT_REV_600"
-                                                   , "BMINUSL_VR_Z_REV_HT_REV_600"
+                                                   , "BMINUSL_HIST_SR"
+                                                   , "BMINUSL_HIST_CR_TOP"
+                                                   , "BMINUSL_HIST_CR_Z"
+                                                   , "BMINUSL_HIST_VR_1"
+                                                   , "BMINUSL_HIST_VR_2"
+                                                   , "BMINUSL_HIST_VR_3"
+                                                   , "BMINUSL_HIST_VR_4"
 
                                                    , "BMINUSL_N"
                                                    };
