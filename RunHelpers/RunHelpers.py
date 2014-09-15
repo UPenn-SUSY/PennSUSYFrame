@@ -338,8 +338,7 @@ def writeLxBatchScript( run_analysis_fun
     job_py_file.write('\n')
 
     # ugly stuff to set the environment correctly
-   # job_py_file.write('os.chdir("/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6")\n')
-    job_py_file.write('os.chdir("/afs/cern.ch/user/e/ehines/workdir/PennSUSYFrame/")\n')
+    job_py_file.write('os.chdir("%s")\n' % os.environ['BASE_WORK_DIR'] )
     job_py_file.write('setup_command = ["bash", "-c", "source SetupEnvironment.sh && env"]\n')
     job_py_file.write('proc = subprocess.Popen(setup_command, stdout = subprocess.PIPE)\n')
     job_py_file.write('for line in proc.stdout:\n')
