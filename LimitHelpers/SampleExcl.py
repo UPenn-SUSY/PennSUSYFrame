@@ -243,6 +243,7 @@ background_config.errorLineStyle = kDashed
 background_config.errorLineColor = kBlue-5
 
 for crl in cr_list:
+    crl.useOverflowBin = True
     crl.titleY = "Entries"
     crl.logY = True
     crl.ATLASLabelX = 0.25
@@ -281,7 +282,11 @@ if not myFitType == FitType.Discovery:
     for sr in sr_list:
         sr.useUnderflowBin = True
         sr.useOverflowBin  = True
+        sr.titleY = "Entries"
         sr.logY = True
+        sr.ATLASLabelX = 0.25
+        sr.ATLASLabelY = 0.85
+        sr.ATLASLabelText = "Work in progress"
 
     background_config.setSignalChannels(sr_list)
 
