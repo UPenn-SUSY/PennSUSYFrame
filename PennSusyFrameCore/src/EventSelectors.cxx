@@ -243,9 +243,6 @@ bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::JetCon
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::Jet* jet, int run_number, int lumi_block)
 {
-  //std::cout<<"bch_jet: "<<jet->getBchCorr()<<" bch_cell: "<<jet->getBchCorrCell()<<std::endl;
-
-  // std::cout<<"run_number: "<<run_number<<" lumi_block: "<<lumi_block<<" eta: "<<jet->getEta()<<" phi: "<<jet->getPhi()<<" pt: "<<jet->getPt()<<std::endl;
 
   bool pass = !(m_bch_tool->IsBadTightBCH(run_number, lumi_block, jet->getEta(), jet->getPhi(), 
 					  jet->getBchCorrCell(), jet->getEmf(), jet->getPt()));

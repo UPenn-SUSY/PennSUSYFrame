@@ -70,8 +70,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   el_cl_eta = 0;
   el_cl_phi = 0;
   el_cl_pt = 0;
-  el_eta = 0;
-  el_phi = 0;
   el_mediumPP = 0;
   el_nSiHits = 0;
   el_ptcone30 = 0;
@@ -87,7 +85,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   jet_AntiKt4LCTopo_ActiveAreaPy = 0;
   jet_AntiKt4LCTopo_ActiveAreaPz = 0;
   jet_AntiKt4LCTopo_AverageLArQF = 0;
-  jet_AntiKt4LCTopo_BCH_CORR_CELL = 0;
   jet_AntiKt4LCTopo_BCH_CORR_JET = 0;
   jet_AntiKt4LCTopo_HECQuality = 0;
   jet_AntiKt4LCTopo_LArQuality = 0;
@@ -168,11 +165,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   trig_EF_trigmuonef_EF_mu18_tight = 0;
   trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS = 0;
   trig_EF_trigmuonef_EF_mu8 = 0;
-  trig_EF_trigmuonef_EF_mu24i_tight = 0;
-  trig_EF_trigmuonef_EF_mu36_tight = 0;
-  trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS = 0;
-  trig_EF_el_EF_e24vhi_medium1 = 0;
-  trig_EF_trigmuonef_EF_mu24_tight = 0;
   trig_EF_trigmuonef_track_CB_eta = 0;
   trig_EF_trigmuonef_track_CB_hasCB = 0;
   trig_EF_trigmuonef_track_CB_phi = 0;
@@ -204,7 +196,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   mc_vx_barcode = 0;
   mu_staco_truth_barcode = 0;
   mu_staco_truth_motherbarcode = 0;
-  muonTruth_barcode = 0;
   muonTruth_origin = 0;
   muonTruth_type = 0;
   jet_AntiKt4LCTopo_flavor_truth_label = 0;
@@ -298,6 +289,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_depth = 0;
   // el_emaxs1 = 0;
   // el_errz = 0;
+  el_eta = 0;
   // el_etaSampling1 = 0;
   // el_etacorrmag = 0;
   // el_etap = 0;
@@ -383,6 +375,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_nucone40_trk500MeV = 0;
   // el_nucone40_zpv05 = 0;
   // el_originbkg = 0;
+  el_phi = 0;
   // el_phis0 = 0;
   // el_phis1 = 0;
   // el_phis2 = 0;
@@ -455,6 +448,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // el_zvertex = 0;
   // jet_AntiKt4LCTopo_ActiveArea = 0;
   // jet_AntiKt4LCTopo_BAD_CELLS_CORR_E = 0;
+  jet_AntiKt4LCTopo_BCH_CORR_CELL = 0;
   // jet_AntiKt4LCTopo_BCH_CORR_DOTX = 0;
   // jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL = 0;
   // jet_AntiKt4LCTopo_E = 0;
@@ -965,6 +959,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // mu_staco_truth_type = 0;
   // mu_staco_type = 0;
   // muonTruth_PDGID = 0;
+  muonTruth_barcode = 0;
   // muonTruth_charge = 0;
   // muonTruth_eta = 0;
   // muonTruth_m = 0;
@@ -1639,6 +1634,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad = 0;
   // trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee = 0;
   // trig_EF_el_EF_e24vhi_loose1_mu8 = 0;
+  // trig_EF_el_EF_e24vhi_medium1 = 0;
   // trig_EF_el_EF_e45_etcut = 0;
   // trig_EF_el_EF_e45_medium1 = 0;
   // trig_EF_el_EF_e5_tight1 = 0;
@@ -2270,6 +2266,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw = 0;
   // trig_EF_trigmuonef_EF_mu24_medium = 0;
   // trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight = 0;
+  // trig_EF_trigmuonef_EF_mu24_tight = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad = 0;
@@ -2279,9 +2276,12 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // trig_EF_trigmuonef_EF_mu24_tight_MG = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_MuonEF = 0;
   // trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad = 0;
+  // trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS = 0;
+  // trig_EF_trigmuonef_EF_mu24i_tight = 0;
   // trig_EF_trigmuonef_EF_mu24i_tight_MG = 0;
   // trig_EF_trigmuonef_EF_mu24i_tight_MuonEF = 0;
   // trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA = 0;
+  // trig_EF_trigmuonef_EF_mu36_tight = 0;
   // trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight = 0;
   // trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF = 0;
   // trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight = 0;
@@ -2564,12 +2564,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "EF_e24vh_medium1_e7_medium1", &EF_e24vh_medium1_e7_medium1, &b_EF_e24vh_medium1_e7_medium1);
   turnOnBranch(tree, "EF_mu18_tight_e7_medium1", &EF_mu18_tight_e7_medium1, &b_EF_mu18_tight_e7_medium1);
   turnOnBranch(tree, "EF_mu18_tight_mu8_EFFS", &EF_mu18_tight_mu8_EFFS, &b_EF_mu18_tight_mu8_EFFS);
-
-  turnOnBranch(tree, "EF_mu24i_tight", &EF_mu24i_tight, &b_EF_mu24i_tight);
-  turnOnBranch(tree, "EF_mu36_tight", &EF_mu36_tight, &b_EF_mu36_tight);
-  turnOnBranch(tree, "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS, &b_EF_mu24_tight_mu6_EFFS);
-  turnOnBranch(tree, "EF_e24vhi_medium1", &EF_e24vhi_medium1, &b_EF_e24vhi_medium1);
-
   turnOnBranch(tree, "EventNumber", &EventNumber, &b_EventNumber);
   turnOnBranch(tree, "Eventshape_rhoKt4LC", &Eventshape_rhoKt4LC, &b_Eventshape_rhoKt4LC);
   turnOnBranch(tree, "MET_Egamma10NoTau_CellOut_etx", &MET_Egamma10NoTau_CellOut_etx, &b_MET_Egamma10NoTau_CellOut_etx);
@@ -2592,8 +2586,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "el_cl_eta", &el_cl_eta, &b_el_cl_eta);
   turnOnBranch(tree, "el_cl_phi", &el_cl_phi, &b_el_cl_phi);
   turnOnBranch(tree, "el_cl_pt", &el_cl_pt, &b_el_cl_pt);
-  turnOnBranch(tree, "el_eta", &el_eta, &b_el_eta);
-  turnOnBranch(tree, "el_phi", &el_phi, &b_el_phi);
   turnOnBranch(tree, "el_mediumPP", &el_mediumPP, &b_el_mediumPP);
   turnOnBranch(tree, "el_n", &el_n, &b_el_n);
   turnOnBranch(tree, "el_nSiHits", &el_nSiHits, &b_el_nSiHits);
@@ -2610,7 +2602,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "jet_AntiKt4LCTopo_ActiveAreaPy", &jet_AntiKt4LCTopo_ActiveAreaPy, &b_jet_AntiKt4LCTopo_ActiveAreaPy);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_ActiveAreaPz", &jet_AntiKt4LCTopo_ActiveAreaPz, &b_jet_AntiKt4LCTopo_ActiveAreaPz);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_AverageLArQF", &jet_AntiKt4LCTopo_AverageLArQF, &b_jet_AntiKt4LCTopo_AverageLArQF);
-  turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL, &b_jet_AntiKt4LCTopo_BCH_CORR_CELL);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_JET", &jet_AntiKt4LCTopo_BCH_CORR_JET, &b_jet_AntiKt4LCTopo_BCH_CORR_JET);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_HECQuality", &jet_AntiKt4LCTopo_HECQuality, &b_jet_AntiKt4LCTopo_HECQuality);
   turnOnBranch(tree, "jet_AntiKt4LCTopo_LArQuality", &jet_AntiKt4LCTopo_LArQuality, &b_jet_AntiKt4LCTopo_LArQuality);
@@ -2697,11 +2688,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu18_tight", &trig_EF_trigmuonef_EF_mu18_tight, &b_trig_EF_trigmuonef_EF_mu18_tight);
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS", &trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS, &b_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS);
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu8", &trig_EF_trigmuonef_EF_mu8, &b_trig_EF_trigmuonef_EF_mu8);
-  turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight", &trig_EF_trigmuonef_EF_mu24i_tight, &b_trig_EF_trigmuonef_EF_mu24i_tight);
-  turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight, &b_trig_EF_trigmuonef_EF_mu36_tight);
-  turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS, &b_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
-  turnOnBranch(tree, "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1, &b_trig_EF_el_EF_e24vhi_medium1);
-  turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight, &b_trig_EF_trigmuonef_EF_mu24_tight);
   turnOnBranch(tree, "trig_EF_trigmuonef_track_CB_eta", &trig_EF_trigmuonef_track_CB_eta, &b_trig_EF_trigmuonef_track_CB_eta);
   turnOnBranch(tree, "trig_EF_trigmuonef_track_CB_hasCB", &trig_EF_trigmuonef_track_CB_hasCB, &b_trig_EF_trigmuonef_track_CB_hasCB);
   turnOnBranch(tree, "trig_EF_trigmuonef_track_CB_phi", &trig_EF_trigmuonef_track_CB_phi, &b_trig_EF_trigmuonef_track_CB_phi);
@@ -2738,7 +2724,6 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
     turnOnBranch(tree, "mc_vx_barcode", &mc_vx_barcode, &b_mc_vx_barcode);
     turnOnBranch(tree, "mu_staco_truth_barcode", &mu_staco_truth_barcode, &b_mu_staco_truth_barcode);
     turnOnBranch(tree, "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode, &b_mu_staco_truth_motherbarcode);
-    turnOnBranch(tree, "muonTruth_barcode", &muonTruth_barcode, &b_muonTruth_barcode);
     turnOnBranch(tree, "muonTruth_origin", &muonTruth_origin, &b_muonTruth_origin);
     turnOnBranch(tree, "muonTruth_type", &muonTruth_type, &b_muonTruth_type);
     turnOnBranch(tree, "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label, &b_jet_AntiKt4LCTopo_flavor_truth_label);
@@ -3108,6 +3093,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "EF_e24vh_medium1_TRT", &EF_e24vh_medium1_TRT, &b_EF_e24vh_medium1_TRT);
   // turnOnBranch(tree, "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &EF_e24vh_medium1_b35_mediumEF_j35_a4tchad, &b_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
   // turnOnBranch(tree, "EF_e24vh_tight1_e15_NoCut_Zee", &EF_e24vh_tight1_e15_NoCut_Zee, &b_EF_e24vh_tight1_e15_NoCut_Zee);
+  // turnOnBranch(tree, "EF_e24vhi_medium1", &EF_e24vhi_medium1, &b_EF_e24vhi_medium1);
   // turnOnBranch(tree, "EF_e45_etcut", &EF_e45_etcut, &b_EF_e45_etcut);
   // turnOnBranch(tree, "EF_e45_medium1", &EF_e45_medium1, &b_EF_e45_medium1);
   // turnOnBranch(tree, "EF_e5_tight1", &EF_e5_tight1, &b_EF_e5_tight1);
@@ -3401,9 +3387,12 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "EF_mu24_tight_MG", &EF_mu24_tight_MG, &b_EF_mu24_tight_MG);
   // turnOnBranch(tree, "EF_mu24_tight_MuonEF", &EF_mu24_tight_MuonEF, &b_EF_mu24_tight_MuonEF);
   // turnOnBranch(tree, "EF_mu24_tight_b35_mediumEF_j35_a4tchad", &EF_mu24_tight_b35_mediumEF_j35_a4tchad, &b_EF_mu24_tight_b35_mediumEF_j35_a4tchad);
+  // turnOnBranch(tree, "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS, &b_EF_mu24_tight_mu6_EFFS);
+  // turnOnBranch(tree, "EF_mu24i_tight", &EF_mu24i_tight, &b_EF_mu24i_tight);
   // turnOnBranch(tree, "EF_mu24i_tight_MG", &EF_mu24i_tight_MG, &b_EF_mu24i_tight_MG);
   // turnOnBranch(tree, "EF_mu24i_tight_MuonEF", &EF_mu24i_tight_MuonEF, &b_EF_mu24i_tight_MuonEF);
   // turnOnBranch(tree, "EF_mu24i_tight_l2muonSA", &EF_mu24i_tight_l2muonSA, &b_EF_mu24i_tight_l2muonSA);
+  // turnOnBranch(tree, "EF_mu36_tight", &EF_mu36_tight, &b_EF_mu36_tight);
   // turnOnBranch(tree, "EF_mu40_MSonly_barrel_tight", &EF_mu40_MSonly_barrel_tight, &b_EF_mu40_MSonly_barrel_tight);
   // turnOnBranch(tree, "EF_mu40_muCombTag_NoEF", &EF_mu40_muCombTag_NoEF, &b_EF_mu40_muCombTag_NoEF);
   // turnOnBranch(tree, "EF_mu40_slow_outOfTime_tight", &EF_mu40_slow_outOfTime_tight, &b_EF_mu40_slow_outOfTime_tight);
@@ -4178,6 +4167,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_depth", &el_depth, &b_el_depth);
   // turnOnBranch(tree, "el_emaxs1", &el_emaxs1, &b_el_emaxs1);
   // turnOnBranch(tree, "el_errz", &el_errz, &b_el_errz);
+  turnOnBranch(tree, "el_eta", &el_eta, &b_el_eta);
   // turnOnBranch(tree, "el_etaSampling1", &el_etaSampling1, &b_el_etaSampling1);
   // turnOnBranch(tree, "el_etacorrmag", &el_etacorrmag, &b_el_etacorrmag);
   // turnOnBranch(tree, "el_etap", &el_etap, &b_el_etap);
@@ -4263,6 +4253,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "el_nucone40_trk500MeV", &el_nucone40_trk500MeV, &b_el_nucone40_trk500MeV);
   // turnOnBranch(tree, "el_nucone40_zpv05", &el_nucone40_zpv05, &b_el_nucone40_zpv05);
   // turnOnBranch(tree, "el_originbkg", &el_originbkg, &b_el_originbkg);
+  turnOnBranch(tree, "el_phi", &el_phi, &b_el_phi);
   // turnOnBranch(tree, "el_phis0", &el_phis0, &b_el_phis0);
   // turnOnBranch(tree, "el_phis1", &el_phis1, &b_el_phis1);
   // turnOnBranch(tree, "el_phis2", &el_phis2, &b_el_phis2);
@@ -4340,6 +4331,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "isTestBeam", &isTestBeam, &b_isTestBeam);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_ActiveArea", &jet_AntiKt4LCTopo_ActiveArea, &b_jet_AntiKt4LCTopo_ActiveArea);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_BAD_CELLS_CORR_E", &jet_AntiKt4LCTopo_BAD_CELLS_CORR_E, &b_jet_AntiKt4LCTopo_BAD_CELLS_CORR_E);
+  turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL, &b_jet_AntiKt4LCTopo_BCH_CORR_CELL);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_DOTX", &jet_AntiKt4LCTopo_BCH_CORR_DOTX, &b_jet_AntiKt4LCTopo_BCH_CORR_DOTX);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL", &jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL, &b_jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL);
   // turnOnBranch(tree, "jet_AntiKt4LCTopo_E", &jet_AntiKt4LCTopo_E, &b_jet_AntiKt4LCTopo_E);
@@ -4864,6 +4856,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "muonError", &muonError, &b_muonError);
   // turnOnBranch(tree, "muonFlags", &muonFlags, &b_muonFlags);
   // turnOnBranch(tree, "muonTruth_PDGID", &muonTruth_PDGID, &b_muonTruth_PDGID);
+
   // turnOnBranch(tree, "muonTruth_charge", &muonTruth_charge, &b_muonTruth_charge);
   // turnOnBranch(tree, "muonTruth_eta", &muonTruth_eta, &b_muonTruth_eta);
   // turnOnBranch(tree, "muonTruth_m", &muonTruth_m, &b_muonTruth_m);
@@ -5556,6 +5549,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad, &b_trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee", &trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee, &b_trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee);
   // turnOnBranch(tree, "trig_EF_el_EF_e24vhi_loose1_mu8", &trig_EF_el_EF_e24vhi_loose1_mu8, &b_trig_EF_el_EF_e24vhi_loose1_mu8);
+  // turnOnBranch(tree, "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1, &b_trig_EF_el_EF_e24vhi_medium1);
   // turnOnBranch(tree, "trig_EF_el_EF_e45_etcut", &trig_EF_el_EF_e45_etcut, &b_trig_EF_el_EF_e45_etcut);
   // turnOnBranch(tree, "trig_EF_el_EF_e45_medium1", &trig_EF_el_EF_e45_medium1, &b_trig_EF_el_EF_e45_medium1);
   // turnOnBranch(tree, "trig_EF_el_EF_e5_tight1", &trig_EF_el_EF_e5_tight1, &b_trig_EF_el_EF_e5_tight1);
@@ -6218,6 +6212,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw", &trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw, &b_trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_medium", &trig_EF_trigmuonef_EF_mu24_medium, &b_trig_EF_trigmuonef_EF_mu24_medium);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight", &trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight, &b_trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight);
+  // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight, &b_trig_EF_trigmuonef_EF_mu24_tight);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad, &b_trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad, &b_trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad, &b_trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad);
@@ -6227,9 +6222,12 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_MG", &trig_EF_trigmuonef_EF_mu24_tight_MG, &b_trig_EF_trigmuonef_EF_mu24_tight_MG);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_MuonEF", &trig_EF_trigmuonef_EF_mu24_tight_MuonEF, &b_trig_EF_trigmuonef_EF_mu24_tight_MuonEF);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad, &b_trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad);
+  // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS, &b_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
+  // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight", &trig_EF_trigmuonef_EF_mu24i_tight, &b_trig_EF_trigmuonef_EF_mu24i_tight);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight_MG", &trig_EF_trigmuonef_EF_mu24i_tight_MG, &b_trig_EF_trigmuonef_EF_mu24i_tight_MG);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight_MuonEF", &trig_EF_trigmuonef_EF_mu24i_tight_MuonEF, &b_trig_EF_trigmuonef_EF_mu24i_tight_MuonEF);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA", &trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA, &b_trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA);
+  // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight, &b_trig_EF_trigmuonef_EF_mu36_tight);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight", &trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight, &b_trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF", &trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF, &b_trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF);
   // turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight", &trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight, &b_trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight);
@@ -6528,12 +6526,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "EF_e24vh_medium1_e7_medium1", &EF_e24vh_medium1_e7_medium1);
   m_output_tree->Branch( "EF_mu18_tight_e7_medium1", &EF_mu18_tight_e7_medium1);
   m_output_tree->Branch( "EF_mu18_tight_mu8_EFFS", &EF_mu18_tight_mu8_EFFS);
-
-  m_output_tree->Branch( "EF_mu24i_tight", &EF_mu24i_tight);
-  m_output_tree->Branch( "EF_mu36_tight", &EF_mu36_tight);
-  m_output_tree->Branch( "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS);
-  m_output_tree->Branch( "EF_e24vhi_medium1", &EF_e24vhi_medium1);
-
   m_output_tree->Branch( "EventNumber", &EventNumber);
   m_output_tree->Branch( "Eventshape_rhoKt4LC", &Eventshape_rhoKt4LC);
   m_output_tree->Branch( "MET_Egamma10NoTau_CellOut_etx", &MET_Egamma10NoTau_CellOut_etx);
@@ -6556,8 +6548,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "el_cl_eta", &el_cl_eta);
   m_output_tree->Branch( "el_cl_phi", &el_cl_phi);
   m_output_tree->Branch( "el_cl_pt", &el_cl_pt);
-  m_output_tree->Branch( "el_eta", &el_eta);
-  m_output_tree->Branch( "el_phi", &el_phi);
   m_output_tree->Branch( "el_mediumPP", &el_mediumPP);
   m_output_tree->Branch( "el_n", &el_n);
   m_output_tree->Branch( "el_nSiHits", &el_nSiHits);
@@ -6575,7 +6565,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "jet_AntiKt4LCTopo_ActiveAreaPy", &jet_AntiKt4LCTopo_ActiveAreaPy);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_ActiveAreaPz", &jet_AntiKt4LCTopo_ActiveAreaPz);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_AverageLArQF", &jet_AntiKt4LCTopo_AverageLArQF);
-  m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_JET", &jet_AntiKt4LCTopo_BCH_CORR_JET);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_HECQuality", &jet_AntiKt4LCTopo_HECQuality);
   m_output_tree->Branch( "jet_AntiKt4LCTopo_LArQuality", &jet_AntiKt4LCTopo_LArQuality);
@@ -6662,11 +6651,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu18_tight", &trig_EF_trigmuonef_EF_mu18_tight);
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS", &trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS);
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu8", &trig_EF_trigmuonef_EF_mu8);
-  m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight", &trig_EF_trigmuonef_EF_mu24i_tight);
-  m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight);
-  m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
-  m_output_tree->Branch( "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1);
-  m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight);
   m_output_tree->Branch( "trig_EF_trigmuonef_track_CB_eta", &trig_EF_trigmuonef_track_CB_eta);
   m_output_tree->Branch( "trig_EF_trigmuonef_track_CB_hasCB", &trig_EF_trigmuonef_track_CB_hasCB);
   m_output_tree->Branch( "trig_EF_trigmuonef_track_CB_phi", &trig_EF_trigmuonef_track_CB_phi);
@@ -6703,7 +6687,6 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
     m_output_tree->Branch( "mc_vx_barcode", &mc_vx_barcode);
     m_output_tree->Branch( "mu_staco_truth_barcode", &mu_staco_truth_barcode);
     m_output_tree->Branch( "mu_staco_truth_motherbarcode", &mu_staco_truth_motherbarcode);
-    m_output_tree->Branch( "muonTruth_barcode", &muonTruth_barcode);
     m_output_tree->Branch( "muonTruth_origin", &muonTruth_origin);
     m_output_tree->Branch( "muonTruth_type", &muonTruth_type);
     m_output_tree->Branch( "jet_AntiKt4LCTopo_flavor_truth_label", &jet_AntiKt4LCTopo_flavor_truth_label);
@@ -7072,6 +7055,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "EF_e24vh_medium1_TRT", &EF_e24vh_medium1_TRT);
   // m_output_tree->Branch( "EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
   // m_output_tree->Branch( "EF_e24vh_tight1_e15_NoCut_Zee", &EF_e24vh_tight1_e15_NoCut_Zee);
+  // m_output_tree->Branch( "EF_e24vhi_medium1", &EF_e24vhi_medium1);
   // m_output_tree->Branch( "EF_e45_etcut", &EF_e45_etcut);
   // m_output_tree->Branch( "EF_e45_medium1", &EF_e45_medium1);
   // m_output_tree->Branch( "EF_e5_tight1", &EF_e5_tight1);
@@ -7365,9 +7349,12 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "EF_mu24_tight_MG", &EF_mu24_tight_MG);
   // m_output_tree->Branch( "EF_mu24_tight_MuonEF", &EF_mu24_tight_MuonEF);
   // m_output_tree->Branch( "EF_mu24_tight_b35_mediumEF_j35_a4tchad", &EF_mu24_tight_b35_mediumEF_j35_a4tchad);
+  // m_output_tree->Branch( "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS);
+  // m_output_tree->Branch( "EF_mu24i_tight", &EF_mu24i_tight);
   // m_output_tree->Branch( "EF_mu24i_tight_MG", &EF_mu24i_tight_MG);
   // m_output_tree->Branch( "EF_mu24i_tight_MuonEF", &EF_mu24i_tight_MuonEF);
   // m_output_tree->Branch( "EF_mu24i_tight_l2muonSA", &EF_mu24i_tight_l2muonSA);
+  // m_output_tree->Branch( "EF_mu36_tight", &EF_mu36_tight);
   // m_output_tree->Branch( "EF_mu40_MSonly_barrel_tight", &EF_mu40_MSonly_barrel_tight);
   // m_output_tree->Branch( "EF_mu40_muCombTag_NoEF", &EF_mu40_muCombTag_NoEF);
   // m_output_tree->Branch( "EF_mu40_slow_outOfTime_tight", &EF_mu40_slow_outOfTime_tight);
@@ -8142,6 +8129,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_depth", &el_depth);
   // m_output_tree->Branch( "el_emaxs1", &el_emaxs1);
   // m_output_tree->Branch( "el_errz", &el_errz);
+  m_output_tree->Branch( "el_eta", &el_eta);
   // m_output_tree->Branch( "el_etaSampling1", &el_etaSampling1);
   // m_output_tree->Branch( "el_etacorrmag", &el_etacorrmag);
   // m_output_tree->Branch( "el_etap", &el_etap);
@@ -8227,6 +8215,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "el_nucone40_trk500MeV", &el_nucone40_trk500MeV);
   // m_output_tree->Branch( "el_nucone40_zpv05", &el_nucone40_zpv05);
   // m_output_tree->Branch( "el_originbkg", &el_originbkg);
+  m_output_tree->Branch( "el_phi", &el_phi);
   // m_output_tree->Branch( "el_phis0", &el_phis0);
   // m_output_tree->Branch( "el_phis1", &el_phis1);
   // m_output_tree->Branch( "el_phis2", &el_phis2);
@@ -8304,6 +8293,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "isTestBeam", &isTestBeam);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_ActiveArea", &jet_AntiKt4LCTopo_ActiveArea);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_BAD_CELLS_CORR_E", &jet_AntiKt4LCTopo_BAD_CELLS_CORR_E);
+  m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_CELL", &jet_AntiKt4LCTopo_BCH_CORR_CELL);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_DOTX", &jet_AntiKt4LCTopo_BCH_CORR_DOTX);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL", &jet_AntiKt4LCTopo_BCH_CORR_JET_FORCELL);
   // m_output_tree->Branch( "jet_AntiKt4LCTopo_E", &jet_AntiKt4LCTopo_E);
@@ -8828,6 +8818,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "muonError", &muonError);
   // m_output_tree->Branch( "muonFlags", &muonFlags);
   // m_output_tree->Branch( "muonTruth_PDGID", &muonTruth_PDGID);
+  m_output_tree->Branch( "muonTruth_barcode", &muonTruth_barcode);
   // m_output_tree->Branch( "muonTruth_charge", &muonTruth_charge);
   // m_output_tree->Branch( "muonTruth_eta", &muonTruth_eta);
   // m_output_tree->Branch( "muonTruth_m", &muonTruth_m);
@@ -9520,6 +9511,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad", &trig_EF_el_EF_e24vh_medium1_b35_mediumEF_j35_a4tchad);
   // m_output_tree->Branch( "trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee", &trig_EF_el_EF_e24vh_tight1_e15_NoCut_Zee);
   // m_output_tree->Branch( "trig_EF_el_EF_e24vhi_loose1_mu8", &trig_EF_el_EF_e24vhi_loose1_mu8);
+  // m_output_tree->Branch( "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1);
   // m_output_tree->Branch( "trig_EF_el_EF_e45_etcut", &trig_EF_el_EF_e45_etcut);
   // m_output_tree->Branch( "trig_EF_el_EF_e45_medium1", &trig_EF_el_EF_e45_medium1);
   // m_output_tree->Branch( "trig_EF_el_EF_e5_tight1", &trig_EF_el_EF_e5_tight1);
@@ -10182,6 +10174,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw", &trig_EF_trigmuonef_EF_mu24_j65_a4tchad_EFxe60_tclcw);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_medium", &trig_EF_trigmuonef_EF_mu24_medium);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight", &trig_EF_trigmuonef_EF_mu24_muCombTag_NoEF_tight);
+  // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_2j35_a4tchad);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_3j35_a4tchad);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_4j35_a4tchad);
@@ -10191,9 +10184,12 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_MG", &trig_EF_trigmuonef_EF_mu24_tight_MG);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_MuonEF", &trig_EF_trigmuonef_EF_mu24_tight_MuonEF);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad", &trig_EF_trigmuonef_EF_mu24_tight_b35_mediumEF_j35_a4tchad);
+  // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
+  // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight", &trig_EF_trigmuonef_EF_mu24i_tight);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight_MG", &trig_EF_trigmuonef_EF_mu24i_tight_MG);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight_MuonEF", &trig_EF_trigmuonef_EF_mu24i_tight_MuonEF);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA", &trig_EF_trigmuonef_EF_mu24i_tight_l2muonSA);
+  // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight", &trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF", &trig_EF_trigmuonef_EF_mu40_muCombTag_NoEF);
   // m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight", &trig_EF_trigmuonef_EF_mu40_slow_outOfTime_tight);
@@ -10481,13 +10477,12 @@ void PennSusyFrame::D3PDReader::FillEvent()
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::D3PDReader::FinalizeOutput( int   num_generated_events
-                                              , float sum_mc_event_weights
-                                              )
+void PennSusyFrame::D3PDReader::FinalizeOutput( int num_generated_events
+     					      , float sum_mc_event_weights
+     					      )    
 {
   m_output_tree->Write();
 
-  // writeNumEvents();
   writeNumEvents(num_generated_events, sum_mc_event_weights);
   // TVectorF num_events(1);
   // num_events[0] = getNumEvents();
@@ -10498,9 +10493,9 @@ void PennSusyFrame::D3PDReader::FinalizeOutput( int   num_generated_events
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::D3PDReader::writeNumEvents( int   num_generated_events
-                                              , float sum_mc_event_weights
-                                              )
+void PennSusyFrame::D3PDReader::writeNumEvents( int num_generated_events
+     					      , float sum_mc_event_weights
+					      )					      
 {
   TVectorF num_events(1);
   if (num_generated_events < 0) num_events[0] = getNumEvents();
@@ -10509,12 +10504,13 @@ void PennSusyFrame::D3PDReader::writeNumEvents( int   num_generated_events
 
   TVectorF sum_weights(1);
   if (sum_mc_event_weights < 0) sum_weights[0] = num_events[0];
-  else                          sum_weights[0] = sum_mc_event_weights;
+  else sum_weights[0] = sum_mc_event_weights;
   sum_weights.Write("SumMCEventWeights");
   std::cout << "writeNumEvents()"
-            << "\n\t -- num events passed: "   << num_generated_events << " -- num events written: "   << num_events[0]
-            << "\n\t -- sum mc event weihts: " << sum_mc_event_weights << " -- sum mc event weights: " << sum_weights[0]
-            << "\n";
+  << "\n\t -- num events passed: " << num_generated_events << " -- num events written: " << num_events[0]
+  << "\n\t -- sum mc event weihts: " << sum_mc_event_weights << " -- sum mc event weights: " << sum_weights[0]
+  << "\n";
+
 }
 
 // -----------------------------------------------------------------------------

@@ -672,9 +672,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     size_t el_term = m_electrons.num(EL_SELECTED);
     const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_SELECTED);
     for (size_t el_it = 0; el_it != el_term; ++el_it) {
+
       lepton_sf *= m_egamma_sf_tool.getSF(m_event, el_list->at(el_it));
     }
-
     // size_t mu_term = m_muons.num(MU_GOOD);
     // const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_GOOD);
     size_t mu_term = m_muons.num(MU_SELECTED);

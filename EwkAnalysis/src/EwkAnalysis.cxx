@@ -348,10 +348,10 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BCH_CLEANING);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BCH_CLEANING, m_event_weight);
-
+    
   }
-
-
+  
+  
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // bad muon cut
   bool pass_bad_mu_veto = (m_muons.num(MU_BAD) == 0);
@@ -489,9 +489,10 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE, m_event_weight);
+    printEventDetails();
   }
 
-
+  
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // TODO implement trigger SF
@@ -570,7 +571,7 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER_MATCHING, m_event_weight);
   }
 
-  bool do_fake_estimate = true;
+  bool do_fake_estimate = false;
 
   if(do_fake_estimate)
     {
@@ -652,9 +653,12 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 	m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_VETO, m_event_weight);
       }
       
-     
+      if (m_pass_event)  fillHistHandles( PennSusyFrame::EWK_HIST_FAKE_CR, m_event_weight);
+      
       return;
     }
+
+  //End fake control region
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check for prompt leptons

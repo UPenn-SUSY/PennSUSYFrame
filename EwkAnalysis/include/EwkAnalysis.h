@@ -19,11 +19,13 @@ namespace PennSusyFrame
 
   enum EWK_HIST_LEVELS { EWK_HIST_ZVETO
                        , EWK_HIST_MET
+		       , EWK_HIST_FAKE_CR	 
                        , EWK_HIST_N
   };
 
   const std::string EWK_HIST_LEVEL_STRINGS[] = { "EWK_ZVETO"
                                                , "EWK_MET"
+					       , "EWK_FAKE_CR"	 
                                                };
 
 
