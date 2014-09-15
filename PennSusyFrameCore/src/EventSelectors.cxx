@@ -4,8 +4,9 @@
 
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsList.h"
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsListReader.h"
-#include "RootCore/TileTripReader/TileTripReader/TTileTripReader.h"
 #include "RootCore/SUSYTools/SUSYTools/HforToolD3PD.h"
+#include "RootCore/BCHCleaningTool/BCHCleaningTool/BCHCleaningToolRoot.h"
+#include "RootCore/TileTripReader/TileTripReader/TTileTripReader.h"
 
 #include <vector>
 
@@ -129,9 +130,10 @@ bool PennSusyFrame::TileHotSpotTool::inTileHotSpot(float eta, float phi)
 // =============================================================================
 PennSusyFrame::TileTripTool::TileTripTool() : m_tile_trip_reader(0)
 {
-  m_tile_trip_file = "${ROOTCOREDIR}/../TileTripReader/data/CompleteTripList_2011-2012.root"; 
+  m_tile_trip_file =" ${ROOTCOREDIR}/../TileTripReader/data/CompleteTripList_2011-2012.root"; 
   m_tile_trip_reader = new Root::TTileTripReader("myTripReader");
   m_tile_trip_reader->setTripFile(m_tile_trip_file.c_str());
+
 }
 
 // -----------------------------------------------------------------------------
@@ -147,6 +149,11 @@ bool PennSusyFrame::TileTripTool::passTileTrip(const PennSusyFrame::Event& event
                                        , event.getLumiBlock()
                                        , event.getEventNumber()
                                        );
+}
+// -----------------------------------------------------------------------------
+Root::TTileTripReader* PennSusyFrame::TileTripTool::getTileTripReaderTool()
+{
+  return m_tile_trip_reader;
 }
 
 // =============================================================================
@@ -203,6 +210,60 @@ bool PennSusyFrame::HFORTool::passHFOR(const PennSusyFrame::MCTruth& mc_truth)
   return (hfor_type != 4);
 }
 
+// =============================================================================
+PennSusyFrame::BCHCleaningTool::BCHCleaningTool() : m_bch_tool(0)
+{
+
+}
+// -----------------------------------------------------------------------------
+PennSusyFrame::BCHCleaningTool::~BCHCleaningTool()
+{
+  if (m_bch_tool) delete m_bch_tool;
+}
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::JetContainer& jets, int run_number, int lumi_block)
+{
+ 
+  bool pass_cleaning = true;
+
+  //compute the cleaning;
+  //Loop through the Jets and check each...if one fails, reject the event
+
+  const std::vector<PennSusyFrame::Jet*>* jet_good = jets.getCollection(JET_GOOD);
+  
+  size_t n_jets = jet_good->size();
+  for (size_t jet_it = 0; jet_it != n_jets; ++jet_it) {
+    pass_cleaning = pass_cleaning && passBCHCleaning(jet_good->at(jet_it), run_number, lumi_block);
+    if(!pass_cleaning) break;
+      
+  }
+  
+  return pass_cleaning;  
+}
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::Jet* jet, int run_number, int lumi_block)
+{
+
+  bool pass = !(m_bch_tool->IsBadTightBCH(run_number, lumi_block, jet->getEta(), jet->getPhi(), 
+					  jet->getBchCorrCell(), jet->getEmf(), jet->getPt()));
+
+  return pass;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::BCHCleaningTool::init(const PennSusyFrame::Event& event, PennSusyFrame::TileTripTool& tile_trip)
+{
+  //initialize bch tool
+  
+  m_bch_tool = new BCHTool::BCHCleaningToolRoot();
+
+  m_bch_file = " ${ROOTCOREDIR}/../BCHCleaningTool/share/FractionsRejectedJetsMC.root";
+
+  Root::TTileTripReader* tile_trip_root_tool = tile_trip.getTileTripReaderTool();
+ 
+  m_bch_tool->InitializeTool(event.getIsData(), tile_trip_root_tool, m_bch_file);
+
+}
 // =============================================================================
 bool PennSusyFrame::passSherpaWWOverlapRemoval( const PennSusyFrame::Event&
                                               , const PennSusyFrame::MCTruth& mc_truth
@@ -268,30 +329,14 @@ bool PennSusyFrame::passSherpaZMassiveCBOverlapRemoval( const PennSusyFrame::MCT
                                                       , const PennSusyFrame::EventLevelQuantities& event_level_quantities
                                                       )
 {
+  // check sample dsid and skip if not sherpa Z**MassiveCBPt0 sample
   unsigned int dsid = mc_truth.getChannelNumber();
-  bool is_sherpa_z_massivecb = (  ( dsid >= 167749 && dsid <= 167757)
-                               // || ( dsid >= 167797 && dsid <= 167805)
-                               // || ( dsid >= 167809 && dsid <= 167817)
-                               // || ( dsid >= 167821 && dsid <= 167829)
-                               // || ( dsid >= 167833 && dsid <= 167841)
-                               // || ( dsid >= 180543 && dsid <= 180551)
-                               );
+  bool is_sherpa_z_massivecb = (dsid >= 167749 && dsid <= 167757);
   if (!is_sherpa_z_massivecb) return true;
 
-  // // massiveCB samples cover m_Z > 40 GeV
-  // if (event_level_quantities.getMll() < 40000) return false;
-
   // each massiveCB samples covers a different pt_z range
-  // float z_pt = event_level_quantities.getPtll()/1000.;
   float z_pt = findTruthLevelZPt(mc_truth)/1000.;
   if ( dsid >= 167749 && dsid <= 167757 && z_pt > 40. ) return false;
-
-  // if ( (dsid >= 167749 && dsid <= 167757) && (false       || z_pt > 40. ) ) return false;
-  // if ( (dsid >= 167797 && dsid <= 167805) && (z_pt < 70.  || z_pt > 140.) ) return false;
-  // if ( (dsid >= 167809 && dsid <= 167817) && (z_pt < 140. || z_pt > 280.) ) return false;
-  // if ( (dsid >= 167821 && dsid <= 167829) && (z_pt < 280. || z_pt > 500.) ) return false;
-  // if ( (dsid >= 167833 && dsid <= 167841) && (z_pt < 500. || false      ) ) return false;
-  // if ( (dsid >= 180543 && dsid <= 180551) && (z_pt < 40.  || z_pt > 70. ) ) return false;
 
   return true;
 }

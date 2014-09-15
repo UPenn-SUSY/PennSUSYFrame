@@ -37,13 +37,19 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   m_pile_up_reweight->SetDefaultChannel(0);
   m_pile_up_reweight->AddConfigFile(m_pile_up_mc_file);
 
-  m_pile_up_reweight->SetDataScaleFactors(1/1.11);
+  //  m_pile_up_reweight->SetDataScaleFactors(1/1.11);
+  m_pile_up_reweight->SetDataScaleFactors(1/1.09);  
+  /*TO DO double check this number as I'm still confused after reading the twiki
+    InDetTrackingPerformaceGuidelines*/
   m_pile_up_reweight->AddLumiCalcFile(m_pile_up_data_file);
-
+  m_pile_up_reweight->SetUnrepresentedDataAction(2);
   int is_good = m_pile_up_reweight->Initialize();
   if (is_good != 0) {
     std::cout << "FATAL: Problem in PileUp initialization::isGood = "
               << is_good << "\n";
+  }
+  else {
+    std::cout<< "Initilize of Pileup Tool good"<<std::endl;
   }
 }
 
@@ -66,7 +72,20 @@ double PennSusyFrame::PileUpScaleFactorTool::getPileupScaleFactor( const PennSus
   if (pile_up_sf < 0.) pile_up_sf = 0.;
   return pile_up_sf;
 }
-
+// -----------------------------------------------------------------------------
+int PennSusyFrame::PileUpScaleFactorTool::getRandomRunNumber(int run_number, double mu)
+{
+  return m_pile_up_reweight->GetRandomRunNumber(run_number, mu);
+}
+// -----------------------------------------------------------------------------
+int PennSusyFrame::PileUpScaleFactorTool::getRandomLumiBlockNumber(int run_number)
+{
+  return m_pile_up_reweight->GetRandomLumiBlockNumber(run_number);
+}
+void PennSusyFrame::PileUpScaleFactorTool::setRandomSeed(int seed)
+{
+  m_pile_up_reweight->SetRandomSeed(seed);
+}
 // =============================================================================
 // -----------------------------------------------------------------------------
 PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)
@@ -80,14 +99,16 @@ PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)
 void PennSusyFrame::EgammaScaleFactorTool::init()
 {
   // initialize reco sf
-  m_reco_file_name = m_egamma_sf_dir + "efficiencySF.offline.RecoTrk.2012.8TeV.rel17p2.v04.root";
+  m_reco_file_name = m_egamma_sf_dir + "efficiencySF.offline.RecoTrk.2012.8TeV.rel17p2.GEO20.v08.root";
+  //TODO make sure these are the right files
+
   std::cout << "Adding file to Egamma reco sf tool: " << m_reco_file_name << "\n";
   m_eg_reco_sf.addFileName(m_reco_file_name);
   m_eg_reco_sf.initialize();
 
   // initialize sf tight++ or medium++
-  m_tight_file_name  = m_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v04.root";
-  m_medium_file_name = m_egamma_sf_dir + "efficiencySF.offline.Medium.2012.8TeV.rel17p2.v04.root";
+  m_tight_file_name  = m_egamma_sf_dir + "efficiencySF.offline.Tight.2012.8TeV.rel17p2.v07.root";
+  m_medium_file_name = m_egamma_sf_dir + "efficiencySF.offline.Medium.2012.8TeV.rel17p2.v07.root";
 
   std::string the_file_name = ( m_is_tightpp ? m_tight_file_name : m_medium_file_name );
   std::cout << "Adding file to Egamma id sf tool: " << the_file_name << "\n";
@@ -264,7 +285,7 @@ PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
   std::string base_work_dir = getenv("BASE_WORK_DIR");
-  m_calibration_file   = base_work_dir + "/data/BTagCalibration.env";
+  m_calibration_file   = root_core_dir + "/../SUSYTools/data/BTagCalibration.env";
   m_calibration_folder = root_core_dir + "/../SUSYTools/data/";
 }
 

@@ -120,7 +120,7 @@ void PennSusyFrame::EventLevelQuantities::print() const
             <<std::setw(17)<<left<< "lepton sf: " << std::setw(20)<<left<<m_lepton_sf
             <<std::setw(17)<<left<< "trigger sf: " << std::setw(20)<<left<<m_trigger_weight
             <<std::setw(17)<<left<< "b tag sf: " << std::setw(20)<<left<<m_b_tag_sf
-            <<"\n";
+	    <<"\n"<<std::setw(17)<<left<< "pile up sf: "<< std::setw(20)<<left<<m_pile_up_sf<<"\n";
 }
 
 // =============================================================================
@@ -431,6 +431,9 @@ PennSusyFrame::Electron::Electron( const PennSusyFrame::D3PDReader* reader
   setClEta(reader->el_cl_eta->at(el_index));
   setClPhi(reader->el_cl_phi->at(el_index));
 
+//  setD3PDEta(reader->el_eta->at(el_index));
+//  setD3PDPhi(reader->el_phi->at(el_index));
+
   setD0(   reader->el_trackIPEstimate_d0_unbiasedpvunbiased->at(el_index));
   setSigD0(reader->el_trackIPEstimate_sigd0_unbiasedpvunbiased->at(el_index));
   setZ0(   reader->el_trackIPEstimate_z0_unbiasedpvunbiased->at(el_index));
@@ -479,7 +482,10 @@ void PennSusyFrame::Electron::updateIsolation( const PennSusyFrame::Event* event
 void PennSusyFrame::Electron::print() const
 {
   Lepton::print();
-  std::cout <<std::setw(17)<<left<< "raw pt iso: " << std::setw(20)<<left<<m_raw_pt_iso
+  std::cout <<std::setw(17)<<left<< "cluster E: "  << std::setw(20)<<left<<m_cl_E
+	    <<std::setw(17)<<left<< "cluster eta: "<< std::setw(20)<<left<<m_cl_eta
+	    <<std::setw(17)<<left<< "cluster phi: "<< std::setw(20)<<left<<m_cl_phi
+            <<std::setw(17)<<left<< "raw pt iso: " << std::setw(20)<<left<<m_raw_pt_iso
             <<std::setw(17)<<left<< "raw et iso: " <<  std::setw(20)<<left<<m_raw_et_iso
             <<"\n"
             <<std::setw(17)<<left<< "pt iso: " <<  std::setw(20)<<left<<m_pt_iso
@@ -603,8 +609,8 @@ PennSusyFrame::Muon::Muon( const PennSusyFrame::D3PDReader* reader
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Muon::updateIsolation( const PennSusyFrame::Event* /*event*/
-                                         , int /*num_vertices*/
+void PennSusyFrame::Muon::updateIsolation( const PennSusyFrame::Event* event
+                                         , int num_vertices
                                          )
 {
   // pt iso correction
@@ -614,12 +620,21 @@ void PennSusyFrame::Muon::updateIsolation( const PennSusyFrame::Event* /*event*/
   // setPtIso(m_raw_pt_iso - pt_slope*num_vertices);
   setPtIso(m_raw_pt_iso);
 
-  // et iso correction
-  // float et_slope = 0.;
-  // if (event->getIsData()) et_slope = 0.;
-  // else                    et_slope = 0.;
-  // setEtIso(m_raw_et_iso - et_slope*num_vertices);
-  setEtIso(m_raw_et_iso);
+  //et iso correction
+  float et_lin_slope = 0.;
+  float et_sq_slope = 0;
+  if (event->getIsData()) 
+    {
+      et_lin_slope = 64.8;
+      et_sq_slope = 0.98;
+    }
+  else
+    {
+      et_lin_slope = 69.2;
+      et_sq_slope = 0.76;
+    }
+  setEtIso(m_raw_et_iso - et_lin_slope*num_vertices - et_sq_slope*num_vertices*num_vertices);
+  // setEtIso(m_raw_et_iso);
 }
 
 // -----------------------------------------------------------------------------
@@ -770,7 +785,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   }
 
   setParticleIndex(jet_index);
-
+  
   setConstScaleE(  reader->jet_AntiKt4LCTopo_constscale_E->at(m_particle_index));
   setConstScaleEta(reader->jet_AntiKt4LCTopo_constscale_eta->at(m_particle_index));
   setConstScalePhi(reader->jet_AntiKt4LCTopo_constscale_phi->at(m_particle_index));
@@ -782,6 +797,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setJvf(          reader->jet_AntiKt4LCTopo_jvtxf->at(m_particle_index));
   setMv1(          reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
   setBchCorr(      reader->jet_AntiKt4LCTopo_BCH_CORR_JET->at(m_particle_index));
+  setBchCorrCell(  reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
 
   setEmf(            reader->jet_AntiKt4LCTopo_emfrac->at(m_particle_index));
   setSumPtTrk(       reader->jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV->at(m_particle_index));
@@ -793,7 +809,6 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setAvgLarQf(       reader->jet_AntiKt4LCTopo_AverageLArQF->at(m_particle_index));
   setNegativeE(      reader->jet_AntiKt4LCTopo_NegativeE->at(m_particle_index));
   setLarQuality(     reader->jet_AntiKt4LCTopo_LArQuality->at(m_particle_index));
-
   setMetStatusWord(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_statusWord->at(m_particle_index));
   setMetWet(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wet->at(m_particle_index));
   setMetWpx(reader->jet_AntiKt4LCTopo_MET_Egamma10NoTau_wpx->at(m_particle_index));
@@ -1117,9 +1132,13 @@ void PennSusyFrame::Met::addElectrons(const std::vector<PennSusyFrame::Electron*
     //           << "\t\tel phi: " << (*el_it)->getPhi()
     //           << "\n";
     el_pt.push_back( (*el_it)->getPt() );
+
     el_eta.push_back((*el_it)->getEta());
     el_phi.push_back((*el_it)->getPhi());
 
+//    el_eta.push_back((*el_it)->getD3PDEta());
+//    el_phi.push_back((*el_it)->getD3PDPhi());
+//
     // get MET status word for this electron
     el_status_word.push_back((*el_it)->getMetStatusWord());
 
@@ -1324,12 +1343,12 @@ void PennSusyFrame::Met::doWeightFix( std::vector<float>& wet
       if (  wpx[cl] < 0.5 * wet[cl]
          || wpx[cl] > 2   * wet[cl]
          ) {
-        wpx[cl] = wet[cl];
+	wpx[cl] = wet[cl];
       }
       if (  wpy[cl] < 0.5 * wet[cl]
          || wpy[cl] > 2   * wet[cl]
          ) {
-        wpy[cl] = wet[cl];
+	wpy[cl] = wet[cl];
       }
     }
 }
@@ -1367,6 +1386,7 @@ PennSusyFrame::MCTruth::MCTruth() : m_mc_pt(0)
                                   , m_mc_pdg_id(0)
                                   , m_mc_status(0)
                                   , m_mc_barcode(0)
+				  , m_muon_barcode(0)
                                   , m_mc_vx_barcode(0)
                                   , m_mc_parent_index(0)
                                   , m_mc_child_index(0)
@@ -1388,6 +1408,7 @@ void PennSusyFrame::MCTruth::clear()
   m_mc_pdg_id = 0;
   m_mc_status = 0;
   m_mc_barcode = 0;
+  m_muon_barcode = 0;
   m_mc_vx_barcode = 0;
   m_mc_parent_index = 0;
   m_mc_child_index = 0;
@@ -1410,6 +1431,7 @@ void PennSusyFrame::MCTruth::getEvent(const PennSusyFrame::D3PDReader* reader)
   setPdgId(        reader->mc_pdgId);
   setStatus(       reader->mc_status);
   setBarcode(      reader->mc_barcode);
+  setMuonBarcode(  reader->muonTruth_barcode);
   setVxBarcode(    reader->mc_vx_barcode);
   setParentIndex(  reader->mc_parent_index);
   setChildIndex(   reader->mc_child_index );

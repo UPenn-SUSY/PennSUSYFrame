@@ -71,7 +71,7 @@ bool PennSusyFrame::ElectronSelector::passAllCuts(const PennSusyFrame::Electron*
     return false;
 
   // check electron eta
-  if (!PennSusyFrame::passCut(fabs(p->getClEta()), m_min_eta, m_max_eta))
+  if (!PennSusyFrame::passCut(fabs(p->getEta()), m_min_eta, m_max_eta))
     return false;
 
   // check electron d0 significance

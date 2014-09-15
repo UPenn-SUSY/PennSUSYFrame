@@ -24,6 +24,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_is_egamma_stream(true)
                                                                  , m_is_blind(true)
                                                                  , m_is_af2(false)
+								 , m_is_mc12b(true)  
                                                                  , m_event_weight(1.)
                                                                  , m_x_sec(1.)
                                                                  , m_k_factor(1.)
@@ -116,7 +117,7 @@ void PennSusyFrame::PennSusyFrameCore::prepareTools()
   m_electrons.init(m_is_data, m_is_af2);
   m_muons.init(m_is_data);
   m_taus.init(m_is_data, m_is_af2);
-  m_jets.init(m_is_data, m_is_af2);
+  m_jets.init(m_is_data, m_is_af2, m_is_mc12b);
 
   if (m_is_af2) m_egamma_sf_tool.setAf2();
   else          m_egamma_sf_tool.setFullSim();
@@ -273,10 +274,10 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   std::cout << "Processing " << nentries << " events\n";
 
   // set up progress bar
-  ProgressBar progress_bar(nentries, 100, m_fancy_progress_bar);
-  if (m_process_label != "")
-    progress_bar.setProcessLabel(m_process_label);
-
+//ProgressBar progress_bar(nentries, 100, m_fancy_progress_bar);
+//if (m_process_label != "")
+//  progress_bar.setProcessLabel(m_process_label);
+//
   // Actually loop over events
   for (Long64_t jentry=0; jentry != nentries; ++jentry) {
     // if (jentry == 1000) break;
@@ -284,7 +285,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     Long64_t this_entry = m_start_entry + jentry;
 
     // check progress in the progress bar
-    progress_bar.checkProgress(this_entry);
+    //progress_bar.checkProgress(this_entry);
 
     // get entry from tree
     Long64_t ientry = LoadTree(this_entry);
@@ -502,7 +503,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   m_muons.setCollection( MU_COSMIC
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_COSMIC)
                                                      // , m_muons.getCollection(MU_GOOD)
-                                                     , m_muons.getCollection(MU_SELECTED)
+                                                     , m_muons.getCollection(MU_GOOD)
                                                      )
                        );
 
@@ -671,9 +672,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     size_t el_term = m_electrons.num(EL_SELECTED);
     const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_SELECTED);
     for (size_t el_it = 0; el_it != el_term; ++el_it) {
+
       lepton_sf *= m_egamma_sf_tool.getSF(m_event, el_list->at(el_it));
     }
-
     // size_t mu_term = m_muons.num(MU_GOOD);
     // const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_GOOD);
     size_t mu_term = m_muons.num(MU_SELECTED);
@@ -728,6 +729,11 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
                                                                 )
                                );
   }
+  else //data
+    {
+
+      m_event.setPromptLeptons(true);
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -750,11 +756,11 @@ void PennSusyFrame::PennSusyFrameCore::getSelectedObjects()
 // -----------------------------------------------------------------------------
 FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel(bool exclusive_flavor_channel)
 {
-  // size_t num_el = m_electrons.num(EL_GOOD);
-  // size_t num_mu = m_muons.num(MU_GOOD);
-  size_t num_el = m_electrons.num(EL_SELECTED);
-  size_t num_mu = m_muons.num(MU_SELECTED);
-
+  size_t num_el = m_electrons.num(EL_GOOD);
+  size_t num_mu = m_muons.num(MU_GOOD);
+//  size_t num_el = m_electrons.num(EL_SELECTED);
+//  size_t num_mu = m_muons.num(MU_SELECTED);
+//
   if (num_el + num_mu < 2) return FLAVOR_NONE;
 
   if (!exclusive_flavor_channel && num_el+num_mu > 2) {

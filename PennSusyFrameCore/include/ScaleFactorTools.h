@@ -39,6 +39,9 @@ namespace PennSusyFrame
       double getPileupScaleFactor( const PennSusyFrame::Event&
                                  , const PennSusyFrame::MCTruth&
                                  );
+      int getRandomRunNumber( int, double);
+      int getRandomLumiBlockNumber( int );
+      void setRandomSeed(int);
     // -----------------------------------------------------------------------------
     private:
       std::string m_data_hist_name;

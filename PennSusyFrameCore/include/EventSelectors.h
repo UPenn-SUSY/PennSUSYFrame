@@ -9,6 +9,7 @@
 #include "RootCore/GoodRunsLists/GoodRunsLists/TGoodRunsListReader.h"
 #include "RootCore/SUSYTools/SUSYTools/HforToolD3PD.h"
 
+
 // =============================================================================
 namespace PennSusyFrame
 {
@@ -23,6 +24,11 @@ namespace PennSusyFrame
 namespace Root
 {
   class TTileTripReader;
+}
+
+namespace BCHTool
+{
+  class BCHCleaningToolRoot;
 }
 
 // =============================================================================
@@ -78,6 +84,7 @@ namespace PennSusyFrame
     public:
       TileTripTool();
       ~TileTripTool();
+      Root::TTileTripReader* getTileTripReaderTool();
 
       bool passTileTrip(const PennSusyFrame::Event&);
 
@@ -109,8 +116,25 @@ namespace PennSusyFrame
   bool passZOverlapRemoval(               const PennSusyFrame::MCTruth&);
   bool passSherpaZMassiveCBOverlapRemoval(const PennSusyFrame::MCTruth&, const PennSusyFrame::EventLevelQuantities&);
   bool passSherpaDYOverlapRemoval(        const PennSusyFrame::MCTruth&, const PennSusyFrame::EventLevelQuantities&);
-
   float findTruthLevelZPt(const PennSusyFrame::MCTruth&);
+
+  // ===========================================================================
+  class BCHCleaningTool
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      BCHCleaningTool();
+      ~BCHCleaningTool();
+
+      bool passBCHCleaning(const PennSusyFrame::JetContainer&, int, int);
+      bool passBCHCleaning(const PennSusyFrame::Jet*, int, int);
+      void init(const PennSusyFrame::Event&, PennSusyFrame::TileTripTool&);
+
+      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      BCHTool::BCHCleaningToolRoot* m_bch_tool;
+      std::string m_bch_file;
+  };
 }
 
 // Include the implementation:

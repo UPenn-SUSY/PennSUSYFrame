@@ -23,6 +23,7 @@ INCLUDES += -I${ROOTCOREDIR}/../MuonEfficiencyCorrections/
 INCLUDES += -I${ROOTCOREDIR}/../DGTriggerReweight/
 INCLUDES += -I${ROOTCOREDIR}/../ReweightUtils/
 INCLUDES += -I${ROOTCOREDIR}/../SusyMatrixMethod/
+INCLUDES += -I${ROOTCOREDIR}/../DileptonMatrixMethod/
 
 # Include the generic compilation rules
 include $(PWD)/../Makefile.common

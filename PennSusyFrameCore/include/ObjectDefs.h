@@ -359,10 +359,10 @@ namespace PennSusyFrame
       double getRawEtIso() const { return m_raw_et_iso; }
       double getPtIso() const { return m_pt_iso; }
       double getEtIso() const { return m_et_iso; }
-      double getRawPtIsoRatio() const { return m_raw_pt_iso/getPt(); }
-      double getRawEtIsoRatio() const { return m_raw_et_iso/getPt(); }
-      double getPtIsoRatio() const { return m_pt_iso/getPt(); }
-      double getEtIsoRatio() const { return m_et_iso/getPt(); }
+      double getRawPtIsoRatio() const { return m_raw_pt_iso/(min(60.e3, getPt())); }
+      double getRawEtIsoRatio() const { return m_raw_et_iso/(min(60.e3, getPt())); }
+      double getPtIsoRatio() const { return m_pt_iso/(min(60.e3, getPt())); }
+      double getEtIsoRatio() const { return m_et_iso/(min(60.e3, getPt())); }
 
       virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -404,6 +404,8 @@ namespace PennSusyFrame
       void setClE(double val) { m_cl_E = val; }
       void setClEta(double val) { m_cl_eta = val; }
       void setClPhi(double val) { m_cl_phi = val; }
+      void setD3PDEta(double val) { m_d3pd_eta = val; }
+      void setD3PDPhi(double val) { m_d3pd_phi = val; }
       void setD0(double val) { m_d0 = val; }
       void setSigD0(double val) { m_sig_d0 = val; }
       void setZ0(double val) { m_z0 = val; }
@@ -422,6 +424,8 @@ namespace PennSusyFrame
       double getClE() const { return m_cl_E; }
       double getClEta() const { return m_cl_eta; }
       double getClPhi() const { return m_cl_phi; }
+      double getD3PDEta() const { return m_d3pd_eta; }
+      double getD3PDPhi() const { return m_d3pd_phi; }
       double getD0() const { return m_d0; }
       double getSigD0() const { return m_sig_d0; }
       double getD0Significance() const { return m_d0/m_sig_d0; }
@@ -449,6 +453,8 @@ namespace PennSusyFrame
       double m_cl_E;
       double m_cl_eta;
       double m_cl_phi;
+      double m_d3pd_eta;
+      double m_d3pd_phi;
       double m_d0;
       double m_sig_d0;
       double m_z0;
@@ -654,6 +660,7 @@ namespace PennSusyFrame
       void setJvf(double val) { m_jvf = val; }
       void setMv1(double val) { m_mv1 = val; }
       void setBchCorr(double val) { m_bch_corr = val; }
+      void setBchCorrCell(double val) { m_bch_corr_cell = val; }
       void setDphiMet(double val) { m_dphi_met = val; }
 
       void setEmf(            double val) { m_emf               = val; }
@@ -686,6 +693,7 @@ namespace PennSusyFrame
       double getJvf()           const { return m_jvf; }
       double getMv1()           const { return m_mv1; }
       double getBchCorr()       const { return m_bch_corr; }
+      double getBchCorrCell()   const { return m_bch_corr_cell; }
       double getDphiMet()       const { return m_dphi_met; }
 
       double getEmf()             const { return m_emf; }
@@ -729,6 +737,7 @@ namespace PennSusyFrame
       double m_jvf;
       double m_mv1;
       double m_bch_corr;
+      double m_bch_corr_cell;
       double m_dphi_met;
 
       double m_emf;
@@ -878,6 +887,7 @@ namespace PennSusyFrame
       void setPdgId(std::vector<int>* val)     { m_mc_pdg_id         = val; }
       void setStatus(std::vector<int>* val)    { m_mc_status         = val; }
       void setBarcode(std::vector<int>* val)   { m_mc_barcode        = val; }
+      void setMuonBarcode(std::vector<int>* val) { m_muon_barcode    = val; }
       void setVxBarcode(std::vector<int>* val) { m_mc_vx_barcode     = val; }
       void setParentIndex(std::vector<std::vector<int> >* val) { m_mc_parent_index = val; }
       void setChildIndex(std::vector<std::vector<int> >* val)  { m_mc_child_index  = val; }
@@ -897,6 +907,7 @@ namespace PennSusyFrame
       std::vector<int>* getPdgId()     const { return m_mc_pdg_id; }
       std::vector<int>* getStatus()    const { return m_mc_status; }
       std::vector<int>* getBarcode()   const { return m_mc_barcode; }
+      std::vector<int>* getMuonBarcode() const { return m_muon_barcode; }
       std::vector<int>* getVxBarcode() const { return m_mc_vx_barcode; }
       std::vector<std::vector<int> >* getParentIndex() const { return m_mc_parent_index; }
       std::vector<std::vector<int> >* getChildIndex()  const { return m_mc_child_index; }
@@ -919,6 +930,7 @@ namespace PennSusyFrame
       std::vector<int>* m_mc_pdg_id;
       std::vector<int>* m_mc_status;
       std::vector<int>* m_mc_barcode;
+      std::vector<int>* m_muon_barcode;
       std::vector<int>* m_mc_vx_barcode;
       std::vector<std::vector<int> >* m_mc_parent_index;
       std::vector<std::vector<int> >* m_mc_child_index;

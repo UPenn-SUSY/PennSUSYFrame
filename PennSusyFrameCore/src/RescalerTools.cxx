@@ -125,7 +125,8 @@ void PennSusyFrame::MuonRescalerTool::init()
   m_mcp_smear = new MuonSmear::SmearingClass( "Data12"
                                             , "staco"
                                             , "q_pT"
-                                            , "Rel17.2Repro"
+					      //, "Rel17.2Repro"
+					      , "Rel17.2Sum13" //updated as of susytools 3-16
                                             , m_muon_momentum_dir
                                             );
 }
@@ -161,17 +162,17 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
       if (m_smearing_function == "") {
         // if combined muon
         if (p->getIsCombined()) {
-          m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu_eta, p->getCharge());
+          m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu_eta, p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTCB();
         }
         // else if segment tagged muon
         else if (p->getIsSegmentTagged()) {
-          m_mcp_smear->Event(pt_id, mu_eta, "ID", p->getCharge());
+          m_mcp_smear->Event(pt_id, mu_eta, "ID", p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTID();
         }
         // else if ms only muon
         else {
-          m_mcp_smear->Event(pt_ms, mu_eta, "MS", p->getCharge());
+          m_mcp_smear->Event(pt_ms, mu_eta, "MS", p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTMS();
         }
       }
@@ -204,9 +205,10 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
 // =============================================================================
 // = JetRescalerTool
 // =============================================================================
-PennSusyFrame::JetRescalerTool::JetRescalerTool(bool is_data, bool is_af2) : m_is_data(is_data)
-                                                                           , m_is_af2(is_af2)
-                                                                           , m_jet_calibration(0)
+PennSusyFrame::JetRescalerTool::JetRescalerTool(bool is_data, bool is_af2, bool is_mc_12b) : m_is_data(is_data)
+											   , m_is_af2(is_af2)
+											   , m_is_mc12b(is_mc_12b)  
+											   , m_jet_calibration(0)
 {
   init();
 }
@@ -227,20 +229,39 @@ void PennSusyFrame::JetRescalerTool::init()
   std::string jes_config_file;
   std::string mc_type = "";
   if (m_is_af2) {
-    std::cout << "setting up JES for AF2\n";
-    jes_config_file = ( root_core_dir
-                      + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config"
-                      );
-    mc_type = "AFII";
-  } else {
-    std::cout << "setting up JES for full sim\n";
-    jes_config_file = ( root_core_dir
-                      + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config"
-                      );
-    mc_type = "MC12a";
+    if(!m_is_mc12b) {
+      std::cout << "setting up JES for MC12a AF2\n";
+      jes_config_file = ( root_core_dir
+			  + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config"
+			  );
+      mc_type = "AFII MC12a";
+    }
+    else {
+      std::cout << "setting up JES for MC12b AF2\n";
+      jes_config_file = ( root_core_dir
+			  + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_MC12b_AFII_Sep23.config"
+			  );
+      mc_type = "AFII MC12b";
+    }
+  } 
+  else {
+    if(!m_is_mc12b) {
+      std::cout << "setting up JES for MC12a full sim\n";
+      jes_config_file = ( root_core_dir
+			  + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config"
+			  );
+      mc_type = "MC12a";
+    }
+    else {
+      std::cout << "setting up JES for MC12b full sim\n";
+      jes_config_file = ( root_core_dir
+			  + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_MC12b_Sep23.config"
+			  );
+      mc_type = "MC12b";
+    }
   }
 
-  m_jet_calibration = new JetCalibrationTool( jet_algorithm
+  m_jet_calibration = new JetAnalysisCalib::JetCalibrationTool( jet_algorithm
                                             , jes_config_file
                                             , m_is_data
                                             );

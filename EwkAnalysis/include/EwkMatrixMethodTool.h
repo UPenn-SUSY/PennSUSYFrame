@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
-#include "RootCore/SusyMatrixMethod/SusyMatrixMethod/DiLeptonMatrixMethod.h"
+#include "RootCore/DileptonMatrixMethod/DileptonMatrixMethod/DileptonMatrixMethod.h"
 
 
 // =============================================================================
@@ -40,7 +40,7 @@ namespace PennSusyFrame
       // TODO make this configurable
       std::string m_fake_rate_file;
 
-      SusyMatrixMethod::DiLeptonMatrixMethod m_matrix_method;
+      susy::fake::DileptonMatrixMethod m_matrix_method;
   };
 }
 
