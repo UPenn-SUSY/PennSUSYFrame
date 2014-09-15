@@ -1,7 +1,0 @@
-// Dear emacs, this is -*- c++ -*-
-#ifndef SusyDiLeptonCutFlowCycle_icc
-#define SusyDiLeptonCutFlowCycle_icc
-
-// ----------------------------------------------------------------------------
-
-#endif // SusyDiLeptonCutFlowCycle_icc
