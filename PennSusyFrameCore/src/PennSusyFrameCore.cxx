@@ -24,7 +24,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_is_egamma_stream(true)
                                                                  , m_is_blind(true)
                                                                  , m_is_af2(false)
-								 , m_is_mc12b(true)  
+                                                                 , m_is_mc12b(true)
                                                                  , m_event_weight(1.)
                                                                  , m_x_sec(1.)
                                                                  , m_k_factor(1.)
@@ -248,14 +248,11 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     std::cout << "Chain is empty - cannot loop over events :-(\n";
     return;
   }
-  // if (fChain == 0) {
-  //   std::cout << "Chain is empty - cannot loop over events :-(\n";
-  //   return;
-  // }
 
   // run beginRun() function to prepare tools
   beginRun();
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // find number of total events to looper over
   // TODO clean up this code!!!
   Long64_t total_nentries = m_num_entries;
@@ -263,6 +260,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     total_nentries = m_d3pd_reader->getNumEvents();
   }
   Long64_t nentries = total_nentries;
+
   // if we set the max # events, require we don't go over this number
   if (m_max_num_events > 0 && m_max_num_events < nentries) {
     nentries = m_max_num_events;
@@ -273,11 +271,12 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   }
   std::cout << "Processing " << nentries << " events\n";
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // set up progress bar
-//ProgressBar progress_bar(nentries, 100, m_fancy_progress_bar);
-//if (m_process_label != "")
-//  progress_bar.setProcessLabel(m_process_label);
-//
+  ProgressBar progress_bar(nentries, 100, m_fancy_progress_bar);
+  if (m_process_label != "")
+    progress_bar.setProcessLabel(m_process_label);
+
   // Actually loop over events
   for (Long64_t jentry=0; jentry != nentries; ++jentry) {
     // if (jentry == 1000) break;
@@ -285,7 +284,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     Long64_t this_entry = m_start_entry + jentry;
 
     // check progress in the progress bar
-    //progress_bar.checkProgress(this_entry);
+    progress_bar.checkProgress(this_entry);
 
     // get entry from tree
     Long64_t ientry = LoadTree(this_entry);

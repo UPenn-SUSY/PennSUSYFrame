@@ -47,7 +47,6 @@ def readFileList(file_path):
     for l in f.readlines():
         l = l.strip('\n')
         splits = l.split()
-        # print splits
         file_list.append( splits[0])
         total_num_events += int(splits[1])
         total_entries    += int(splits[2])
@@ -62,22 +61,6 @@ def readFileList(file_path):
            , 'sum_mc_event_weights':sum_mc_event_weights
            }
 
-## # ------------------------------------------------------------------------------
-## def getFileListFromFile(file_path):
-##     file_list = []
-##
-##     f = file(file_path)
-##     for l in f.readlines():
-##         l = l.strip('\n')
-##         splits = l.split()
-##         file_list.append( { 'file_name':splits[0]
-##                           , 'total_num_events':splits[1]
-##                           , 'total_entries':splits[2]
-##                           }
-##                         )
-##
-##     return file_list
-
 # ------------------------------------------------------------------------------
 def getFileListFromGridInput(grid_input_string):
     file_list = grid_input_string.split(',')
@@ -87,7 +70,7 @@ def getFileListFromGridInput(grid_input_string):
 def getTChain(file_list, tree_name):
     t = ROOT.TChain(tree_name)
     for fl in file_list:
-        print 'Adding file: %s' % fl
+        # print 'Adding file: %s' % fl
         t.AddFile(fl)
     return t
 
@@ -285,8 +268,6 @@ def mergeOutputFiles(out_dir, flat_files):
 
     all_files_in_out_dir = glob.glob('%s/*.root' % abs_path)
     all_files_in_out_dir = glob.glob('%s/*.root' % abs_path)
-    # print all_files_in_out_dir[0]
-    # print dummy_file_name
     os.symlink(all_files_in_out_dir[0], dummy_file_name)
 
 # ------------------------------------------------------------------------------
@@ -307,8 +288,6 @@ def runLocalMultiprocess( run_analysis_fun
                         , do_merge = True
                         ):
     p = Pool(num_processes)
-    # print run_analysis_fun
-    # print data_set_dicts
     p.map(run_analysis_fun, data_set_dicts)
 
     mergeOutputFiles(out_dir, flat_ntuples)
@@ -321,10 +300,6 @@ def writeLxBatchScript( run_analysis_fun
                       , data_set_dict
                       , job_dir
                       ):
-    # print 'writeLxBatchScript()'
-    # print run_analysis_fun
-    # print run_analysis_fun.__name__
-
     job_py_name = '%s/lx_batch_job.%s.%d_of_%d.py' % ( job_dir
                                                      , data_set_dict['label']
                                                      , data_set_dict['job_num']
@@ -338,8 +313,7 @@ def writeLxBatchScript( run_analysis_fun
     job_py_file.write('\n')
 
     # ugly stuff to set the environment correctly
-   # job_py_file.write('os.chdir("/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6")\n')
-    job_py_file.write('os.chdir("/afs/cern.ch/user/e/ehines/workdir/PennSUSYFrame/")\n')
+    job_py_file.write('os.chdir("%s")\n' % os.environ['BASE_WORK_DIR'] )
     job_py_file.write('setup_command = ["bash", "-c", "source SetupEnvironment.sh && env"]\n')
     job_py_file.write('proc = subprocess.Popen(setup_command, stdout = subprocess.PIPE)\n')
     job_py_file.write('for line in proc.stdout:\n')
@@ -392,20 +366,17 @@ def runLxBatchMultiProcess( run_analysis_fun
     print '  out dir: ' , out_dir
 
     # create directory for new run scripts
-    # job_dir = 'LatestRunDir'
     safeRemoveDir(job_dir)
     safeMakeDir(job_dir)
 
     # write script for each lxbatch job
     for dsd in data_set_dicts:
-        print 'dsd: ' , dsd
         this_job_file_name = writeLxBatchScript( run_analysis_fun
                                                , run_analysis_fun_loc
                                                , run_analysis_fun_file
                                                , dsd
                                                , job_dir
                                                )
-        print ''
 
         # submit this job to lxbatch!
         batch_submit_command = [ '%s/RunHelpers/SubmitPythonToBatch.sh' % os.environ['PWD']
@@ -413,7 +384,6 @@ def runLxBatchMultiProcess( run_analysis_fun
                                , '%s/%s' % (os.environ['PWD'], this_job_file_name)
                                , os.environ['PWD']
                                ]
-        print batch_submit_command
         subprocess.call(batch_submit_command)
 
     # make sym link to output dir

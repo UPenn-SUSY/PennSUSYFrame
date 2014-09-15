@@ -785,7 +785,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   }
 
   setParticleIndex(jet_index);
-  
+
   setConstScaleE(  reader->jet_AntiKt4LCTopo_constscale_E->at(m_particle_index));
   setConstScaleEta(reader->jet_AntiKt4LCTopo_constscale_eta->at(m_particle_index));
   setConstScalePhi(reader->jet_AntiKt4LCTopo_constscale_phi->at(m_particle_index));
@@ -797,7 +797,9 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setJvf(          reader->jet_AntiKt4LCTopo_jvtxf->at(m_particle_index));
   setMv1(          reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
   setBchCorr(      reader->jet_AntiKt4LCTopo_BCH_CORR_JET->at(m_particle_index));
-  setBchCorrCell(  reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
+
+  // TODO uncomment once new TNTs are available
+  // setBchCorrCell(  reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
 
   setEmf(            reader->jet_AntiKt4LCTopo_emfrac->at(m_particle_index));
   setSumPtTrk(       reader->jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV->at(m_particle_index));
