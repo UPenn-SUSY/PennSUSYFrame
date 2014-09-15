@@ -799,7 +799,7 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
   setBchCorr(      reader->jet_AntiKt4LCTopo_BCH_CORR_JET->at(m_particle_index));
 
   // TODO uncomment once new TNTs are available
-  setBchCorrCell(  reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
+  // setBchCorrCell(  reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
 
   setEmf(            reader->jet_AntiKt4LCTopo_emfrac->at(m_particle_index));
   setSumPtTrk(       reader->jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV->at(m_particle_index));
