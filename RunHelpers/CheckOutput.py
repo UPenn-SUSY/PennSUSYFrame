@@ -13,6 +13,8 @@ import re
 
 import ROOT
 
+ROOT.gROOT.LoadMacro('${BASE_WORK_DIR}/RunHelpers/CheckForZombie.C')
+
 # ------------------------------------------------------------------------------
 def getListOfRunJobs(job_script_dir):
     # get list of job scripts
@@ -76,16 +78,14 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
                                                                     )
                 # check if file is readable
                 print '%s/%s' % (output_dir, cloof)
-                test_instance = ROOT.TFile.Open('%s/%s' % (output_dir, cloof))
-                if test_instance.IsZombie():
+                is_zombie = ROOT.CheckForZombie('%s/%s' % (output_dir, cloof))
+                if is_zombie:
                     print 'Output file is a zombie %s -- job %d of %d' % ( sample_name
                                                                          , this_job
                                                                          , num_jobs
                                                                          )
                     print '\tZombie files want your brains!'
-                    list_of_missing_output.append('%s.%d_of_%d' % (sample_name, this_job, num_jobs) )
-
-                test_instance.Close()
+                    list_of_missing_output.append('%s.%d_of_%d -- is zombie' % (sample_name, this_job, num_jobs) )
             else:
                 # output not found :-(
                 print 'Missing output for %s -- job %d of %d' % ( sample_name

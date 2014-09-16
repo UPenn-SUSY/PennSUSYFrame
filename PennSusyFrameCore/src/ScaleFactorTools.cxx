@@ -13,9 +13,6 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   m_mc_hist_name   = "MCPileupReweighting";
 
   // set data and mc pile up files
-  // std::string maindir = getenv("ROOTCOREDIR");
-  // m_pile_up_data_file = maindir + "/../MultiLep/data/ilumicalc_histograms_EF_2e12Tvh_loose1_200842-215643_grl_v61.root";
-  // m_pile_up_mc_file   = maindir + "/../PileupReweighting/share/mc12ab_defaults.prw.root";
   std::string maindir = getenv("BASE_WORK_DIR");
 
   //This is the full year pile up file
@@ -38,7 +35,7 @@ PennSusyFrame::PileUpScaleFactorTool::PileUpScaleFactorTool() : m_pile_up_reweig
   m_pile_up_reweight->AddConfigFile(m_pile_up_mc_file);
 
   //  m_pile_up_reweight->SetDataScaleFactors(1/1.11);
-  m_pile_up_reweight->SetDataScaleFactors(1/1.09);  
+  m_pile_up_reweight->SetDataScaleFactors(1/1.09);
   /*TO DO double check this number as I'm still confused after reading the twiki
     InDetTrackingPerformaceGuidelines*/
   m_pile_up_reweight->AddLumiCalcFile(m_pile_up_data_file);
@@ -127,13 +124,7 @@ double PennSusyFrame::EgammaScaleFactorTool::getSF( const PennSusyFrame::Event& 
                                                   )
 {
   float cl_eta = el->getClEta();
-  float pt = el->getPt();
-
-  // PATCore::ParticleDataType::DataType data_type = ( m_is_af2
-  //                                                 ? PATCore::ParticleDataType::Fast
-  //                                                 : PATCore::ParticleDataType::Full
-  //                                                 );
-
+  float pt     = el->getPt();
 
   Root::TResult result_reco = m_eg_reco_sf.calculate( m_data_type
   					                                        , event.getRunNumber()
