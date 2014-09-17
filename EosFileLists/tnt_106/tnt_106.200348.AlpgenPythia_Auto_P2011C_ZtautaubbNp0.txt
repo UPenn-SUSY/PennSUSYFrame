@@ -1,0 +1,12 @@
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000001.Tnt.root        10000        295
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000002.Tnt.root        10000        310
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000003.Tnt.root        10000        278
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000004.Tnt.root        10000        282
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000005.Tnt.root        10000        286
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000006.Tnt.root        10000        279
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000007.Tnt.root        10000        296
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000008.Tnt.root        10000        278
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000009.Tnt.root        10000        309
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000010.Tnt.root        10000        320
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000011.Tnt.root        160000        4630
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root.924997/user.bjackson.043579._000012.Tnt.root        40000        1150

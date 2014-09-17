@@ -1,0 +1,74 @@
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000001.Tnt.root        9931        177
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000002.Tnt.root        716        18
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000003.Tnt.root        7100        143
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000004.Tnt.root        7972        172
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000005.Tnt.root        10701        209
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000006.Tnt.root        10897        214
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000007.Tnt.root        11379        220
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000008.Tnt.root        11324        219
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000009.Tnt.root        11826        
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000011.Tnt.root        81791        2178
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000015.Tnt.root        110421        4116
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000016.Tnt.root        459488        18860
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000017.Tnt.root        497892        
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000018.Tnt.root        625328        17237
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000023.Tnt.root        430203        17656
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000024.Tnt.root        116231        
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000025.Tnt.root        454278        19218
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000026.Tnt.root        434032        
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000027.Tnt.root        461373        
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000028.Tnt.root        15942        681
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000029.Tnt.root        460301        19261
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000030.Tnt.root        481891        20306
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000031.Tnt.root        258506        11079
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000032.Tnt.root        462348        18397
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000033.Tnt.root                20566
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000034.Tnt.root        124133        5290
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000035.Tnt.root        476833        20483
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000036.Tnt.root        493925        21131
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000037.Tnt.root        519311        22212
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000038.Tnt.root        541081        22888
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000039.Tnt.root        194914        8221
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000040.Tnt.root        420368        17754
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000041.Tnt.root        463692        19954
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000042.Tnt.root        111417        4813
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000043.Tnt.root        472468        20433
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000044.Tnt.root        537469        23546
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000045.Tnt.root        459219        4019
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000046.Tnt.root        489789        20555
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000047.Tnt.root        525982        22914
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000048.Tnt.root        227260        
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000051.Tnt.root        240060        9181
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000052.Tnt.root        465702        19587
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000053.Tnt.root        556442        16090
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000054.Tnt.root        662980        12826
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000055.Tnt.root        431160        17928
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000056.Tnt.root        444631        19251
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000057.Tnt.root        456926        19496
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000058.Tnt.root        479289        20488
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000059.Tnt.root        498482        21117
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000060.Tnt.root        538383        22917
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000061.Tnt.root        146856        6235
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000062.Tnt.root        461606        19539
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000063.Tnt.root        476656        20224
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000064.Tnt.root        526858        22669
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000065.Tnt.root        402025        17216
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000066.Tnt.root        275332        11587
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921836/user.bjackson.043181._000067.Tnt.root        52858        57
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921900/user.bjackson.043181._000010.Tnt.root        99        11
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921900/user.bjackson.043181._000068.Tnt.root        280934        11719
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921900/user.bjackson.043181._000069.Tnt.root        320892        13806
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921900/user.bjackson.043181._000070.Tnt.root        325549        13453
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921900/user.bjackson.043181._000071.Tnt.root        326118        13956
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921900/user.bjackson.043181._000072.Tnt.root        350765        14872
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921900/user.bjackson.043181._000073.Tnt.root        339851        14607
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.921900/user.bjackson.043181._000074.Tnt.root        29700        1250
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000012.Tnt.root        41714        1242
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000013.Tnt.root        347350        11364
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000014.Tnt.root        233808        8989
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000019.Tnt.root        298544        12159
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000020.Tnt.root        318352        13357
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000021.Tnt.root        335617        14048
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000022.Tnt.root        93253        4024
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000049.Tnt.root        63144        64
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.periodA_egamma.tnt_106_Tnt.root.930650/user.bjackson.043181._000050.Tnt.root        87522        2493
