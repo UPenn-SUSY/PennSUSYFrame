@@ -122,44 +122,53 @@ namespace PennSusyFrame
       void init();
 
       // TODO move accessors to cxx file
-      void setMll(double val)           { m_mll = val; }
-      void setMbb(double val)           { m_mbb = val; }
-      void setPtll(double val)          { m_ptll = val; }
-      void setPtbb(double val)          { m_ptbb = val; }
-      void setMt2(double val)           { m_mt2 = val; }
-      void setEmmaMt(double val)        { m_emma_mt = val; }
-      void setDphill(double val)        { m_dphi_ll = val; }
-      void setHtAll(double val)         { m_ht_all = val; }
-      void setHtBaseline(double val)    { m_ht_baseline = val; }
-      void setHtGood(double val)        { m_ht_good = val; }
-      void setHtSignal(double val)      { m_ht_signal = val; }
-      void setMcEventWeight(double val) { m_mc_event_weight = val; }
-      void setPileUpSF(double val)      { m_pile_up_sf = val; }
-      void setLeptonSF(double val)      { m_lepton_sf = val; }
-      void setTriggerWeight(double val) { m_trigger_weight = val; }
-      void setBTagSF(double val)        { m_b_tag_sf = val; }
-      void setCFWeight(double val)      { m_cf_weight = val; }
-      void setFakeWeight(double val)    { m_fake_weight = val; }
+      void setMll(                double val) { m_mll                   = val; }
+      void setMbb(                double val) { m_mbb                   = val; }
+      void setPtll(               double val) { m_ptll                  = val; }
+      void setPtbb(               double val) { m_ptbb                  = val; }
+      void setMt2(                double val) { m_mt2                   = val; }
+      void setEmmaMt(             double val) { m_emma_mt               = val; }
+      void setDphill(             double val) { m_dphi_ll               = val; }
+      void setHtAll(              double val) { m_ht_all                = val; }
+      void setHtBaseline(         double val) { m_ht_baseline           = val; }
+      void setHtGood(             double val) { m_ht_good               = val; }
+      void setHtSignal(           double val) { m_ht_signal             = val; }
+      void setMcEventWeight(      double val) { m_mc_event_weight       = val; }
+      void setPileUpSF(           double val) { m_pile_up_sf            = val; }
+      void setLeptonSF(           double val) { m_lepton_sf             = val; }
+      void setLeptonSFEgammaUp(   double val) { m_lepton_sf_egamma_up   = val; }
+      void setLeptonSFEgammaDown( double val) { m_lepton_sf_egamma_down = val; }
+      void setLeptonSFMuonUp(     double val) { m_lepton_sf_muon_up     = val; }
+      void setLeptonSFMuonDown(   double val) { m_lepton_sf_muon_down   = val; }
+      void setTriggerWeight(      double val) { m_trigger_weight        = val; }
+      void setBTagSF(             double val) { m_b_tag_sf              = val; }
+      void setCFWeight(           double val) { m_cf_weight             = val; }
+      void setFakeWeight(         double val) { m_fake_weight           = val; }
+
 
       // TODO move accessors to cxx file
-      double getMll()           const { return m_mll; }
-      double getMbb()           const { return m_mbb; }
-      double getPtll()          const { return m_ptll; }
-      double getPtbb()          const { return m_ptbb; }
-      double getMt2()           const { return m_mt2; }
-      double getEmmaMt()        const { return m_emma_mt; }
-      double getDphill()        const { return m_dphi_ll; }
-      double getHtAll()         const { return m_ht_all; }
-      double getHtBaseline()    const { return m_ht_baseline; }
-      double getHtGood()        const { return m_ht_good; }
-      double getHtSignal()      const { return m_ht_signal; }
-      double getMcEventWeight() const { return m_mc_event_weight; }
-      double getPileUpSF()      const { return m_pile_up_sf; }
-      double getLeptonSF()      const { return m_lepton_sf; }
-      double getTriggerWeight() const { return m_trigger_weight; }
-      double getBTagSF()        const { return m_b_tag_sf; }
-      double getCFWeight()      const { return m_cf_weight; }
-      double getFakeWeight()    const { return m_fake_weight; }
+      double getMll()                const { return m_mll;                   }
+      double getMbb()                const { return m_mbb;                   }
+      double getPtll()               const { return m_ptll;                  }
+      double getPtbb()               const { return m_ptbb;                  }
+      double getMt2()                const { return m_mt2;                   }
+      double getEmmaMt()             const { return m_emma_mt;               }
+      double getDphill()             const { return m_dphi_ll;               }
+      double getHtAll()              const { return m_ht_all;                }
+      double getHtBaseline()         const { return m_ht_baseline;           }
+      double getHtGood()             const { return m_ht_good;               }
+      double getHtSignal()           const { return m_ht_signal;             }
+      double getMcEventWeight()      const { return m_mc_event_weight;       }
+      double getPileUpSF()           const { return m_pile_up_sf;            }
+      double getLeptonSFEgammaUp()   const { return m_lepton_sf_egamma_up;   }
+      double getLeptonSFEgammaDown() const { return m_lepton_sf_egamma_down; }
+      double getLeptonSFMuonUp()     const { return m_lepton_sf_muon_up;     }
+      double getLeptonSFMuonDown()   const { return m_lepton_sf_muon_down;   }
+      double getLeptonSF()           const { return m_lepton_sf;             }
+      double getTriggerWeight()      const { return m_trigger_weight;        }
+      double getBTagSF()             const { return m_b_tag_sf;              }
+      double getCFWeight()           const { return m_cf_weight;             }
+      double getFakeWeight()         const { return m_fake_weight;           }
 
       void print() const;
 
@@ -178,6 +187,10 @@ namespace PennSusyFrame
       double m_mc_event_weight;
       double m_pile_up_sf;
       double m_lepton_sf;
+      double m_lepton_sf_egamma_up;
+      double m_lepton_sf_egamma_down;
+      double m_lepton_sf_muon_up;
+      double m_lepton_sf_muon_down;
       double m_trigger_weight;
       double m_b_tag_sf;
       double m_cf_weight;

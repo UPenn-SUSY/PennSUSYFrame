@@ -28,10 +28,10 @@ class triggerReweight2Lep;
 // =============================================================================
 namespace PennSusyFrame
 {
-  // =============================================================================
+  // ===========================================================================
   class PileUpScaleFactorTool
   {
-    // -----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     public:
       PileUpScaleFactorTool();
       ~PileUpScaleFactorTool();
@@ -42,7 +42,7 @@ namespace PennSusyFrame
       int getRandomRunNumber( int, double);
       int getRandomLumiBlockNumber( int );
       void setRandomSeed(int);
-    // -----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     private:
       std::string m_data_hist_name;
       std::string m_mc_hist_name;
@@ -52,10 +52,10 @@ namespace PennSusyFrame
       Root::TPileupReweighting* m_pile_up_reweight;
   };
 
-  // =============================================================================
+  // ===========================================================================
   class EgammaScaleFactorTool
   {
-    // -----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     public:
       EgammaScaleFactorTool();
       void init();
@@ -68,15 +68,21 @@ namespace PennSusyFrame
       void setMediumPP() { m_is_tightpp = false; }
 
       void clear();
-      void prep( const PennSusyFrame::Event&
-               , const PennSusyFrame::Electron*
-               );
-
+      void   prep( const PennSusyFrame::Event&
+                 , const PennSusyFrame::Electron*
+                 );
       double getSF( const PennSusyFrame::Event&
                   , const PennSusyFrame::Electron*
+                  , bool  do_reco = true
+                  , bool  do_id   = true
                   );
+      double getUncert( const PennSusyFrame::Event&
+                      , const PennSusyFrame::Electron*
+                      , bool  do_reco = true
+                      , bool  do_id   = true
+                      );
 
-    // -----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     private:
       bool m_is_af2;
       bool m_is_tightpp;

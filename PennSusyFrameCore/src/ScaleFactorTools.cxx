@@ -155,12 +155,39 @@ void PennSusyFrame::EgammaScaleFactorTool::prep( const PennSusyFrame::Event& eve
 // -----------------------------------------------------------------------------
 double PennSusyFrame::EgammaScaleFactorTool::getSF( const PennSusyFrame::Event& event
                                                   , const PennSusyFrame::Electron* el
+                                                  , bool do_reco
+                                                  , bool do_id
                                                   )
 {
   if (!m_is_prepped) {
     prep(event, el);
   }
-  return ( m_result_reco.getScaleFactor() * m_result_id.getScaleFactor() );
+
+  double sf = 1.;
+  if (do_reco) sf *= m_result_reco.getScaleFactor();
+  if (do_id  ) sf *= m_result_id.getScaleFactor();
+  return sf;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::EgammaScaleFactorTool::getUncert( const PennSusyFrame::Event& event
+                                                      , const PennSusyFrame::Electron* el
+                                                      , bool do_reco
+                                                      , bool do_id
+                                                      )
+{
+  if (!m_is_prepped) {
+    prep(event, el);
+  }
+
+  // shortcut if all systematics are turned off
+  if (do_reco == false && do_id == false) return 0.;
+
+  double uncert_sq = 0.;
+
+  if (do_reco) uncert_sq += pow(m_result_reco.getTotalUncertainty(), 2);
+  if (do_id  ) uncert_sq += pow(m_result_id.getTotalUncertainty()  , 2);
+  return sqrt(uncert_sq);
 }
 
 // =============================================================================
