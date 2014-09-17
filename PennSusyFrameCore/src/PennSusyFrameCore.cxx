@@ -711,9 +711,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
     m_event_quantities.setTriggerWeight(m_trigger_weight_tool.getWeight( m_event.getFlavorChannel()
-                                                                       // , m_electrons.getCollection(EL_GOOD)
-                                                                       // , m_muons.getCollection(MU_GOOD)
-                                                                       // , m_jets.getCollection(JET_GOOD)
                                                                        , m_electrons.getCollection(EL_SELECTED)
                                                                        , m_muons.getCollection(MU_SELECTED)
                                                                        , m_jets.getCollection(JET_SELECTED)
@@ -724,8 +721,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    // m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
-    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_SELECTED)));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_truth_match_tool.prep(m_mc_truth);
@@ -733,8 +731,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // check for prompt leptons
     m_event.setPromptLeptons( m_truth_match_tool.isRealLeptonEvent( m_event.getFlavorChannel()
-                                                                  // , m_electrons.getCollection(EL_GOOD)
-                                                                  // , m_muons.getCollection(MU_GOOD)
                                                                   , m_electrons.getCollection(EL_SELECTED)
                                                                   , m_muons.getCollection(MU_SELECTED)
                                                                   , m_mc_truth
@@ -744,8 +740,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // get the truth sign channel of the two leptons
     m_event.setTruthSignChannel( m_truth_match_tool.getTruthSign( m_event.getFlavorChannel()
-                                                                // , m_electrons.getCollection(EL_GOOD)
-                                                                // , m_muons.getCollection(MU_GOOD)
                                                                 , m_electrons.getCollection(EL_SELECTED)
                                                                 , m_muons.getCollection(MU_SELECTED)
                                                                 , m_mc_truth
