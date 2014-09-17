@@ -82,13 +82,17 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
     echo "Full eos path: $full_eos_path"
     python ../GetNumberUnskimmedEvents.py ${full_eos_path}
     python ../GetNumberEntries.py         ${full_eos_path}
+    python ../GetSumEventWeights.py       ${full_eos_path}
+
     total_num_events=$(  cat tmp_events.txt  )
     total_num_entries=$( cat tmp_entries.txt )
+    sum_event_weights=$( cat tmp_weights.txt )
     rm tmp_events.txt
     rm tmp_entries.txt
+    rm tmp_weights.txt
 
-    echo "${full_eos_path}        ${total_num_events}        ${total_num_entries}"
-    echo "${full_eos_path}        ${total_num_events}        ${total_num_entries}" >> ${out_file_name}
+    echo "${full_eos_path}        ${total_num_events}        ${total_num_entries}        ${sum_event_weights}"
+    echo "${full_eos_path}        ${total_num_events}        ${total_num_entries}        ${sum_event_weights}" >> ${out_file_name}
     total_num_files=$(( $total_num_files + 1 ))
   done
   total_num_eos_dirs=$(( $total_num_eos_dirs + 1 ))
