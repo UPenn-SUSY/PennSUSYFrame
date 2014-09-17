@@ -67,6 +67,11 @@ namespace PennSusyFrame
       void setTightPP()  { m_is_tightpp = true;  }
       void setMediumPP() { m_is_tightpp = false; }
 
+      void clear();
+      void prep( const PennSusyFrame::Event&
+               , const PennSusyFrame::Electron*
+               );
+
       double getSF( const PennSusyFrame::Event&
                   , const PennSusyFrame::Electron*
                   );
@@ -75,6 +80,8 @@ namespace PennSusyFrame
     private:
       bool m_is_af2;
       bool m_is_tightpp;
+
+      bool m_is_prepped;
 
       std::string m_egamma_sf_dir;
       std::string m_reco_file_name;
@@ -87,6 +94,9 @@ namespace PennSusyFrame
       // Root::TElectronEfficiencyCorrectionTool m_eg_trigger_sf;
 
       PATCore::ParticleDataType::DataType m_data_type;
+
+      Root::TResult m_result_reco;
+      Root::TResult m_result_id;
   };
 
   // =============================================================================

@@ -355,6 +355,8 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
   m_muons.clear();
   m_taus.clear();
   m_jets.clear();
+
+  m_egamma_sf_tool.clear();
 }
 
 // -----------------------------------------------------------------------------

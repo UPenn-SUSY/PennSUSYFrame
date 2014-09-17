@@ -69,30 +69,36 @@ double PennSusyFrame::PileUpScaleFactorTool::getPileupScaleFactor( const PennSus
   if (pile_up_sf < 0.) pile_up_sf = 0.;
   return pile_up_sf;
 }
+
 // -----------------------------------------------------------------------------
 int PennSusyFrame::PileUpScaleFactorTool::getRandomRunNumber(int run_number, double mu)
 {
   return m_pile_up_reweight->GetRandomRunNumber(run_number, mu);
 }
+
 // -----------------------------------------------------------------------------
 int PennSusyFrame::PileUpScaleFactorTool::getRandomLumiBlockNumber(int run_number)
 {
   return m_pile_up_reweight->GetRandomLumiBlockNumber(run_number);
 }
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::PileUpScaleFactorTool::setRandomSeed(int seed)
 {
   m_pile_up_reweight->SetRandomSeed(seed);
 }
+
 // =============================================================================
-// -----------------------------------------------------------------------------
 PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)
                                                               , m_is_tightpp(true)
+                                                              , m_is_prepped(false)
 {
   // get directory for SF files
   std::string maindir = getenv("ROOTCOREDIR");
   m_egamma_sf_dir = maindir + "/../ElectronEfficiencyCorrection/data/";
 }
 
+// -----------------------------------------------------------------------------
 void PennSusyFrame::EgammaScaleFactorTool::init()
 {
   // initialize reco sf
@@ -119,31 +125,45 @@ void PennSusyFrame::EgammaScaleFactorTool::init()
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::EgammaScaleFactorTool::getSF( const PennSusyFrame::Event& event
-                                                  , const PennSusyFrame::Electron* el
-                                                  )
+void PennSusyFrame::EgammaScaleFactorTool::clear()
+{
+  m_is_prepped = false;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EgammaScaleFactorTool::prep( const PennSusyFrame::Event& event
+                                               , const PennSusyFrame::Electron* el
+                                               )
 {
   float cl_eta = el->getClEta();
   float pt     = el->getPt();
 
-  Root::TResult result_reco = m_eg_reco_sf.calculate( m_data_type
-  					                                        , event.getRunNumber()
-  					                                        , cl_eta
-  					                                        , pt
-                                                    );
-  Root::TResult result_id = m_eg_id_sf.calculate( m_data_type
-  					                                    , event.getRunNumber()
-  					                                    , cl_eta
-  					                                    , pt
-                                                );
+  m_result_reco = m_eg_reco_sf.calculate( m_data_type
+                                        , event.getRunNumber()
+                                        , cl_eta
+                                        , pt
+                                        );
+  m_result_id = m_eg_id_sf.calculate( m_data_type
+  					                        , event.getRunNumber()
+  					                        , cl_eta
+  					                        , pt
+                                    );
 
-  return ( result_reco.getScaleFactor()
-         * result_id.getScaleFactor()
-         );
+  m_is_prepped = true;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::EgammaScaleFactorTool::getSF( const PennSusyFrame::Event& event
+                                                  , const PennSusyFrame::Electron* el
+                                                  )
+{
+  if (!m_is_prepped) {
+    prep(event, el);
+  }
+  return ( m_result_reco.getScaleFactor() * m_result_id.getScaleFactor() );
 }
 
 // =============================================================================
-// -----------------------------------------------------------------------------
 PennSusyFrame::MuonScaleFactorTool::MuonScaleFactorTool() : m_muon_sf(0)
 {
   // get default path for muon SF directory. This comes from SUSYTools
