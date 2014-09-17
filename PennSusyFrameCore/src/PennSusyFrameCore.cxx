@@ -666,11 +666,11 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set lepton SF
-    double lepton_sf = 1.;
+    double lepton_sf             = 1.;
     double lepton_sf_egamma_down = 1.;
     double lepton_sf_egamma_up   = 1.;
-    double lepton_sf_muon_down = 1.;
-    double lepton_sf_muon_up   = 1.;
+    double lepton_sf_muon_down   = 1.;
+    double lepton_sf_muon_up     = 1.;
 
     // size_t el_term = m_electrons.num(EL_GOOD);
     // const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_GOOD);
@@ -692,7 +692,8 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_SELECTED);
     for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
       double this_lep_sf        = m_muon_sf_tool.getSF(mu_list->at(mu_it));
-      double this_lep_sf_uncert = 0;
+      double this_lep_sf_uncert = 1.;
+      // double this_lep_sf_uncert = m_muon_sf_tool.getUncert(mu_list->at(mu_it));
 
       lepton_sf             *= this_lep_sf;
       lepton_sf_egamma_down *= this_lep_sf;
@@ -701,7 +702,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
       lepton_sf_muon_up     *= (this_lep_sf + this_lep_sf_uncert);
     }
 
-    m_event_quantities.setLeptonSF(lepton_sf);
+    m_event_quantities.setLeptonSF(          lepton_sf            );
     m_event_quantities.setLeptonSFEgammaUp(  lepton_sf_egamma_up  );
     m_event_quantities.setLeptonSFEgammaDown(lepton_sf_egamma_down);
     m_event_quantities.setLeptonSFMuonUp(    lepton_sf_muon_up    );
