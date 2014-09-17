@@ -849,7 +849,6 @@ void PennSusyFrame::Jet::print() const
 
   std::cout << "\t\tMV1: " << m_mv1
             << "\n";
-
 }
 
 // -----------------------------------------------------------------------------
@@ -877,7 +876,6 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::Jet::isBad()
 {
-
   double pt          = getPt();
   double chf         = (pt != 0 ? m_sum_pt_trk/pt : 0.);
   double lar_qf_frac = m_avg_lar_qf/65535.;
