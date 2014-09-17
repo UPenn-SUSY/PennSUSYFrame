@@ -721,9 +721,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_SELECTED)));
-    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_SELECTED)));
-    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_SELECTED), m_mc_truth));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_truth_match_tool.prep(m_mc_truth);

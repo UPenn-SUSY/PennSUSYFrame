@@ -2704,6 +2704,18 @@ PennSusyFrame::WeightHists::WeightHists(std::string name_tag)
                                            , weight_bins, weight_min, weight_max
                                            )
                                  );
+    m_h_total_weight.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__total_weight"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "total weight - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; weight ; Entries"
+                                          ).c_str()
+                                        , weight_bins, weight_min, weight_max
+                                        )
+                              );
     m_h_all_but_cross_section_weight.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                           + "__weights__all_but_cross_section_weight"
                                                           + "__"
@@ -2716,14 +2728,155 @@ PennSusyFrame::WeightHists::WeightHists(std::string name_tag)
                                                         , weight_bins, weight_min, weight_max
                                                         )
                                               );
-    m_h_total_weight.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + "__weights__total_weight"
+
+    m_h_lep_sf_egamma_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                              + "__weights__lep_sf_egamma_up"
+                                              + "__"
+                                              + name_tag
+                                              ).c_str()
+                                            , ( "lep_sf - "
+                                              + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                              + " ; weight ; Entries"
+                                              ).c_str()
+                                            , weight_bins, weight_min, weight_max
+                                            )
+                                  );
+    m_h_lep_sf_egamma_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__weights__lep_sf_egamma_down"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "lep_sf - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; weight ; Entries"
+                                                ).c_str()
+                                              , weight_bins, weight_min, weight_max
+                                              )
+                                    );
+
+    m_h_lep_sf_muon_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__weights__lep_sf_muon_up"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "lep_sf - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; weight ; Entries"
+                                            ).c_str()
+                                          , weight_bins, weight_min, weight_max
+                                          )
+                                );
+    m_h_lep_sf_muon_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                              + "__weights__lep_sf_muon_down"
+                                              + "__"
+                                              + name_tag
+                                              ).c_str()
+                                            , ( "lep_sf - "
+                                              + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                              + " ; weight ; Entries"
+                                              ).c_str()
+                                            , weight_bins, weight_min, weight_max
+                                            )
+                                  );
+
+
+    m_h_lep_sf_ratio_egamma_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                              + "__weights__lep_sf_ratio_egamma_up"
+                                              + "__"
+                                              + name_tag
+                                              ).c_str()
+                                            , ( "lep_sf - "
+                                              + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                              + " ; ratio ; Entries"
+                                              ).c_str()
+                                            , weight_bins, weight_min, weight_max
+                                            )
+                                  );
+    m_h_lep_sf_ratio_egamma_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__weights__lep_sf_ratio_egamma_down"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "lep_sf - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; ratio ; Entries"
+                                                ).c_str()
+                                              , weight_bins, weight_min, weight_max
+                                              )
+                                    );
+
+    m_h_lep_sf_ratio_muon_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__weights__lep_sf_ratio_muon_up"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "lep_sf - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; ratio ; Entries"
+                                            ).c_str()
+                                          , weight_bins, weight_min, weight_max
+                                          )
+                                );
+    m_h_lep_sf_ratio_muon_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                              + "__weights__lep_sf_ratio_muon_down"
+                                              + "__"
+                                              + name_tag
+                                              ).c_str()
+                                            , ( "lep_sf - "
+                                              + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                              + " ; ratio ; Entries"
+                                              ).c_str()
+                                            , weight_bins, weight_min, weight_max
+                                            )
+                                  );
+
+    m_h_btag_sf_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__weights__btag_sf_up"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "btag_sf - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; weight ; Entries"
+                                        ).c_str()
+                                      , weight_bins, weight_min, weight_max
+                                      )
+                            );
+
+    m_h_btag_sf_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__btag_sf_down"
                                           + "__"
                                           + name_tag
                                           ).c_str()
-                                        , ( "total weight - "
+                                        , ( "btag_sf - "
                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + " ; weight ; Entries"
+                                          ).c_str()
+                                        , weight_bins, weight_min, weight_max
+                                        )
+                              );
+
+    m_h_btag_sf_ratio_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__weights__btag_sf_ratio_up"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "btag_sf - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; ratio ; Entries"
+                                        ).c_str()
+                                      , weight_bins, weight_min, weight_max
+                                      )
+                            );
+
+    m_h_btag_sf_ratio_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__btag_sf_ratio_down"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "btag_sf - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; ratio ; Entries"
                                           ).c_str()
                                         , weight_bins, weight_min, weight_max
                                         )
@@ -2737,13 +2890,9 @@ PennSusyFrame::WeightHists::~WeightHists()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::WeightHists::FillSpecial( const PennSusyFrame::Event& event
+                                            , const PennSusyFrame::EventLevelQuantities& event_quantities
                                             , float cross_section_weight
-                                            , float mc_event_weight
-                                            , float pile_up_weight
-                                            , float lep_sf
-                                            , float btag_sf
                                             , float ttbar_pt_weight
-                                            , float weight
                                             )
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
@@ -2756,29 +2905,43 @@ void PennSusyFrame::WeightHists::FillSpecial( const PennSusyFrame::Event& event
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
-    m_h_cross_section_weight.at(        fc_it)->Fill(cross_section_weight/*, weight*/);
-    m_h_mc_event_weight.at(             fc_it)->Fill(mc_event_weight     /*, weight*/);
-    m_h_pile_up_weight.at(              fc_it)->Fill(pile_up_weight      /*, weight*/);
-    m_h_lep_sf.at(                      fc_it)->Fill(lep_sf              /*, weight*/);
-    m_h_btag_sf.at(                     fc_it)->Fill(btag_sf             /*, weight*/);
-    m_h_ttbar_pt_weight.at(             fc_it)->Fill(ttbar_pt_weight     /*, weight*/);
-    m_h_all_but_cross_section_weight.at(fc_it)->Fill( ( mc_event_weight
-                                                      * pile_up_weight
-                                                      * lep_sf
-                                                      * btag_sf
+    m_h_cross_section_weight.at(fc_it)->Fill(cross_section_weight                );
+    m_h_mc_event_weight.at(     fc_it)->Fill(event_quantities.getMcEventWeight() );
+    m_h_pile_up_weight.at(      fc_it)->Fill(event_quantities.getPileUpSF()      );
+    m_h_lep_sf.at(              fc_it)->Fill(event_quantities.getLeptonSF()      );
+    m_h_btag_sf.at(             fc_it)->Fill(event_quantities.getBTagSF()        );
+    m_h_ttbar_pt_weight.at(     fc_it)->Fill(ttbar_pt_weight                     );
+    m_h_total_weight.at(fc_it)->Fill( ( event_quantities.getMcEventWeight()
+                                      * event_quantities.getPileUpSF()
+                                      * event_quantities.getLeptonSF()
+                                      * event_quantities.getBTagSF()
+                                      * ttbar_pt_weight
+                                      * cross_section_weight
+                                      )
+                                    );
+    m_h_all_but_cross_section_weight.at(fc_it)->Fill( ( event_quantities.getMcEventWeight()
+                                                      * event_quantities.getPileUpSF()
+                                                      * event_quantities.getLeptonSF()
+                                                      * event_quantities.getBTagSF()
                                                       * ttbar_pt_weight
                                                       )
-                                                    // , weight
                                                     );
-    m_h_total_weight.at(                fc_it)->Fill( ( mc_event_weight
-                                                      * pile_up_weight
-                                                      * lep_sf
-                                                      * btag_sf
-                                                      * ttbar_pt_weight
-                                                      * cross_section_weight
-                                                      )
-                                                    // , weight
-                                                    );
+
+    m_h_lep_sf_egamma_up.at(  fc_it)->Fill(event_quantities.getLeptonSFEgammaUp()  );
+    m_h_lep_sf_egamma_down.at(fc_it)->Fill(event_quantities.getLeptonSFEgammaDown());
+    m_h_lep_sf_muon_up.at(    fc_it)->Fill(event_quantities.getLeptonSFMuonUp()    );
+    m_h_lep_sf_muon_down.at(  fc_it)->Fill(event_quantities.getLeptonSFMuonDown()  );
+
+    m_h_lep_sf_ratio_egamma_up.at(  fc_it)->Fill(event_quantities.getLeptonSFEgammaUp()   / event_quantities.getLeptonSF());
+    m_h_lep_sf_ratio_egamma_down.at(fc_it)->Fill(event_quantities.getLeptonSFEgammaDown() / event_quantities.getLeptonSF());
+    m_h_lep_sf_ratio_muon_up.at(    fc_it)->Fill(event_quantities.getLeptonSFMuonUp()     / event_quantities.getLeptonSF());
+    m_h_lep_sf_ratio_muon_down.at(  fc_it)->Fill(event_quantities.getLeptonSFMuonDown()   / event_quantities.getLeptonSF());
+
+    m_h_btag_sf_up.at(  fc_it)->Fill(event_quantities.getBTagSFUp()  );
+    m_h_btag_sf_down.at(fc_it)->Fill(event_quantities.getBTagSFDown());
+
+    m_h_btag_sf_ratio_up.at(  fc_it)->Fill(event_quantities.getBTagSFUp()   / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_down.at(fc_it)->Fill(event_quantities.getBTagSFDown() / event_quantities.getBTagSF());
   }
 }
 
@@ -2798,6 +2961,23 @@ void PennSusyFrame::WeightHists::write(TDirectory* d)
     m_h_btag_sf.at(             fc_it)->Write();
     m_h_ttbar_pt_weight.at(     fc_it)->Write();
     m_h_total_weight.at(        fc_it)->Write();
+    m_h_all_but_cross_section_weight.at(fc_it)->Write();
+
+    m_h_lep_sf_egamma_up.at(  fc_it)->Write();
+    m_h_lep_sf_egamma_down.at(fc_it)->Write();
+    m_h_lep_sf_muon_up.at(    fc_it)->Write();
+    m_h_lep_sf_muon_down.at(  fc_it)->Write();
+
+    m_h_lep_sf_ratio_egamma_up.at(  fc_it)->Write();
+    m_h_lep_sf_ratio_egamma_down.at(fc_it)->Write();
+    m_h_lep_sf_ratio_muon_up.at(    fc_it)->Write();
+    m_h_lep_sf_ratio_muon_down.at(  fc_it)->Write();
+
+    m_h_btag_sf_up.at(  fc_it)->Write();
+    m_h_btag_sf_down.at(fc_it)->Write();
+
+    m_h_btag_sf_ratio_up.at(  fc_it)->Write();
+    m_h_btag_sf_ratio_down.at(fc_it)->Write();
   }
 }
 

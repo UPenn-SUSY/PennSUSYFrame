@@ -162,15 +162,26 @@ namespace PennSusyFrame
 
       void init(float mv1_cut_value = 0.3511);
 
-      void prep(const std::vector<PennSusyFrame::Jet*>*);
+      void prep( const std::vector<PennSusyFrame::Jet*>*
+               , const PennSusyFrame::MCTruth&
+               );
       void clear();
 
-      double getSF(        const std::vector<PennSusyFrame::Jet*>*);
-      double getUncertDown(const std::vector<PennSusyFrame::Jet*>*);
-      double getUncertUp(  const std::vector<PennSusyFrame::Jet*>*);
+      double getSF( const std::vector<PennSusyFrame::Jet*>*
+                  , const PennSusyFrame::MCTruth&
+                  );
+      double getUncertDown( const std::vector<PennSusyFrame::Jet*>*
+                          , const PennSusyFrame::MCTruth&
+                          );
+      double getUncertUp( const std::vector<PennSusyFrame::Jet*>*
+                        , const PennSusyFrame::MCTruth&
+                        );
 
     // -----------------------------------------------------------------------------
     private:
+      // TODO move to better place
+      static bool isSherpa(int run_number);
+
       std::string m_calibration_file;
       std::string m_calibration_folder;
 

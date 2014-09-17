@@ -260,13 +260,9 @@ namespace PennSusyFrame
       virtual ~WeightHists();
 
       virtual void FillSpecial( const PennSusyFrame::Event& event
+                              , const PennSusyFrame::EventLevelQuantities& event_quantities
                               , float cross_section_weight
-                              , float mc_event_weight
-                              , float pile_up_weight
-                              , float lep_sf
-                              , float btag_sf
                               , float ttbar_pt_weight
-                              , float weight
                               );
       virtual void write(TDirectory*);
 
@@ -278,8 +274,24 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_lep_sf;
       std::vector<TH1F*> m_h_btag_sf;
       std::vector<TH1F*> m_h_ttbar_pt_weight;
-      std::vector<TH1F*> m_h_all_but_cross_section_weight;
       std::vector<TH1F*> m_h_total_weight;
+      std::vector<TH1F*> m_h_all_but_cross_section_weight;
+
+      std::vector<TH1F*> m_h_lep_sf_egamma_up;
+      std::vector<TH1F*> m_h_lep_sf_egamma_down;
+      std::vector<TH1F*> m_h_lep_sf_muon_up;
+      std::vector<TH1F*> m_h_lep_sf_muon_down;
+
+      std::vector<TH1F*> m_h_lep_sf_ratio_egamma_up;
+      std::vector<TH1F*> m_h_lep_sf_ratio_egamma_down;
+      std::vector<TH1F*> m_h_lep_sf_ratio_muon_up;
+      std::vector<TH1F*> m_h_lep_sf_ratio_muon_down;
+
+      std::vector<TH1F*> m_h_btag_sf_up;
+      std::vector<TH1F*> m_h_btag_sf_down;
+
+      std::vector<TH1F*> m_h_btag_sf_ratio_up;
+      std::vector<TH1F*> m_h_btag_sf_ratio_down;
   };
 
   // =============================================================================

@@ -380,8 +380,12 @@ PennSusyFrame::BTagScaleFactorTool::~BTagScaleFactorTool()
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::BTagScaleFactorTool::prep(const std::vector<PennSusyFrame::Jet*>* jets)
+void PennSusyFrame::BTagScaleFactorTool::prep( const std::vector<PennSusyFrame::Jet*>* jets
+                                             , const PennSusyFrame::MCTruth& mc_truth
+                                             )
 {
+  bool is_sherpa = isSherpa(mc_truth.getChannelNumber());
+
   // vectors to hold jet info for valid jets
   std::vector<float> pt_btag;
   std::vector<float> eta_btag;
@@ -408,6 +412,7 @@ void PennSusyFrame::BTagScaleFactorTool::prep(const std::vector<PennSusyFrame::J
                                                              , eta_btag
                                                              , val_btag
                                                              , pdgid_btag
+                                                             , is_sherpa
                                                              );
   m_b_tag_weight_result = b_tag_weight.first;
 
@@ -421,31 +426,118 @@ void PennSusyFrame::BTagScaleFactorTool::clear()
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::BTagScaleFactorTool::getSF(const std::vector<PennSusyFrame::Jet*>* jets)
+double PennSusyFrame::BTagScaleFactorTool::getSF( const std::vector<PennSusyFrame::Jet*>* jets
+                                                , const PennSusyFrame::MCTruth& mc_truth
+                                                )
 {
   if (!m_is_prepped) {
-    prep(jets);
+    prep(jets, mc_truth);
   }
 
   return m_b_tag_weight_result.at(0);
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::BTagScaleFactorTool::getUncertDown(const std::vector<PennSusyFrame::Jet*>* jets)
+double PennSusyFrame::BTagScaleFactorTool::getUncertDown( const std::vector<PennSusyFrame::Jet*>* jets
+                                                        , const PennSusyFrame::MCTruth& mc_truth
+                                                        )
 {
   if (!m_is_prepped) {
-    prep(jets);
+    prep(jets, mc_truth);
   }
 
   return m_b_tag_weight_result.at(1);
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::BTagScaleFactorTool::getUncertUp(const std::vector<PennSusyFrame::Jet*>* jets)
+double PennSusyFrame::BTagScaleFactorTool::getUncertUp( const std::vector<PennSusyFrame::Jet*>* jets
+                                                      , const PennSusyFrame::MCTruth& mc_truth
+                                                      )
 {
   if (!m_is_prepped) {
-    prep(jets);
+    prep(jets, mc_truth);
   }
 
   return m_b_tag_weight_result.at(4);
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::BTagScaleFactorTool::isSherpa(int run_number)
+{
+  // TODO this looks stupid. make a more reasonable test
+  return (  (run_number == 126988)
+         || (run_number == 126989)
+         || (run_number == 147194)
+         || (run_number == 147195)
+         || (run_number == 147196)
+         || (run_number == 147770)
+         || (run_number == 147771)
+         || (run_number == 147772)
+         || (run_number == 157814)
+         || (run_number == 157815)
+         || (run_number == 157816)
+         || (run_number == 157817)
+         || (run_number == 157818)
+         || (run_number == 157819)
+         || (run_number == 167749)
+         || (run_number == 167750)
+         || (run_number == 167751)
+         || (run_number == 167752)
+         || (run_number == 167753)
+         || (run_number == 167754)
+         || (run_number == 167755)
+         || (run_number == 167756)
+         || (run_number == 167757)
+         || (run_number == 167797)
+         || (run_number == 167798)
+         || (run_number == 167799)
+         || (run_number == 167800)
+         || (run_number == 167801)
+         || (run_number == 167802)
+         || (run_number == 167803)
+         || (run_number == 167804)
+         || (run_number == 167805)
+         || (run_number == 167809)
+         || (run_number == 167810)
+         || (run_number == 167811)
+         || (run_number == 167812)
+         || (run_number == 167813)
+         || (run_number == 167814)
+         || (run_number == 167815)
+         || (run_number == 167816)
+         || (run_number == 167817)
+         || (run_number == 167821)
+         || (run_number == 167822)
+         || (run_number == 167823)
+         || (run_number == 167824)
+         || (run_number == 167825)
+         || (run_number == 167826)
+         || (run_number == 167827)
+         || (run_number == 167828)
+         || (run_number == 167829)
+         || (run_number == 167833)
+         || (run_number == 167834)
+         || (run_number == 167835)
+         || (run_number == 167836)
+         || (run_number == 167837)
+         || (run_number == 167838)
+         || (run_number == 167839)
+         || (run_number == 167840)
+         || (run_number == 167841)
+         || (run_number == 173041)
+         || (run_number == 173042)
+         || (run_number == 173043)
+         || (run_number == 173044)
+         || (run_number == 173045)
+         || (run_number == 173046)
+         || (run_number == 180543)
+         || (run_number == 180544)
+         || (run_number == 180545)
+         || (run_number == 180546)
+         || (run_number == 180547)
+         || (run_number == 180548)
+         || (run_number == 180549)
+         || (run_number == 180550)
+         || (run_number == 180551)
+         );
 }

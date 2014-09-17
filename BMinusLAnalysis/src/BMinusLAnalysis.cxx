@@ -1044,9 +1044,9 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_GOOD)));
-    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_GOOD)));
-    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_GOOD)));
+    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_GOOD), m_mc_truth));
+    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_GOOD), m_mc_truth));
+    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_GOOD), m_mc_truth));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // prepare truth match tool
@@ -1245,13 +1245,9 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                            , weight
                                                            );
     m_weight_histogram_handler.at(hist_level)->FillSpecial( m_event
+                                                          , m_event_quantities
                                                           , m_xsec_weight
-                                                          , m_mc_event_weight
-                                                          , m_pile_up_sf
-                                                          , m_lepton_sf
-                                                          , m_btag_sf
                                                           , m_ttbar_pt_weight
-                                                          , weight
                                                           );
     if (!m_is_data) {
       m_parent_histogram_handler.at(hist_level)->FillSpecial( m_event
