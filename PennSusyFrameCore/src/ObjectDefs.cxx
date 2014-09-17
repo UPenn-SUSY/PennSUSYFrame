@@ -80,7 +80,9 @@ void PennSusyFrame::Event::print() const
 // = EventLevelQuantities
 // =============================================================================
 PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
+                                                            , m_mbb(0.)
                                                             , m_ptll(0.)
+                                                            , m_ptbb(0.)
                                                             , m_mt2(0.)
                                                             , m_emma_mt(0.)
                                                             , m_dphi_ll(0.)
@@ -91,10 +93,16 @@ PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
                                                             , m_mc_event_weight(1.)
                                                             , m_pile_up_sf(1.)
                                                             , m_lepton_sf(1.)
+                                                            , m_lepton_sf_egamma_up(1.)
+                                                            , m_lepton_sf_egamma_down(1.)
+                                                            , m_lepton_sf_muon_up(1.)
+                                                            , m_lepton_sf_muon_down(1.)
                                                             , m_trigger_weight(1.)
                                                             , m_b_tag_sf(1.)
-							    , m_cf_weight(0.)
-							    , m_fake_weight(0.)  
+                                                            , m_b_tag_sf_up(1.)
+                                                            , m_b_tag_sf_down(1.)
+                                                            , m_cf_weight(0.)
+                                                            , m_fake_weight(0.)
 {}
 
 // -----------------------------------------------------------------------------
@@ -104,23 +112,25 @@ void PennSusyFrame::EventLevelQuantities::init() {}
 void PennSusyFrame::EventLevelQuantities::print() const
 {
   std::cout << "================= Printing event level quantities: =================\n";
-  std::cout <<std::setw(17)<<left<< "mll: " << std::setw(20)<<left<<m_mll
-            <<std::setw(17)<<left<< "ptll: " << std::setw(20)<<left<<m_ptll
-            <<std::setw(17)<<left<< "mt2: " << std::setw(20)<<left<<m_mt2
+  std::cout << std::setw(17) << left << "mll: "  << std::setw(20) << left << m_mll
+            << std::setw(17) << left << "ptll: " << std::setw(20) << left << m_ptll
+            << std::setw(17) << left << "mt2: "  << std::setw(20) << left << m_mt2
             << "\n"
-            <<std::setw(17)<<left<< "emma mt: " << std::setw(20)<<left<<m_emma_mt
-            <<std::setw(17)<<left<< "dphi_ll: " << std::setw(20)<<left<<m_dphi_ll
-            <<"\n"
-            <<std::setw(17)<<left<< "ht(all): " << std::setw(20)<<left<<m_ht_all
-            <<std::setw(17)<<left<< "ht(baseline): " << std::setw(20)<<left<<m_ht_baseline
-            <<std::setw(17)<<left<< "ht(good): " << std::setw(20)<<left<<m_ht_good
-            <<std::setw(17)<<left<< "ht(signal): " << std::setw(20)<<left<<m_ht_signal
+            << std::setw(17) << left << "emma mt: " << std::setw(20) << left << m_emma_mt
+            << std::setw(17) << left << "dphi_ll: " << std::setw(20) << left << m_dphi_ll
             << "\n"
-            <<std::setw(17)<<left<< "mc event weight: " << std::setw(20)<<left<<m_mc_event_weight
-            <<std::setw(17)<<left<< "lepton sf: " << std::setw(20)<<left<<m_lepton_sf
-            <<std::setw(17)<<left<< "trigger sf: " << std::setw(20)<<left<<m_trigger_weight
-            <<std::setw(17)<<left<< "b tag sf: " << std::setw(20)<<left<<m_b_tag_sf
-	    <<"\n"<<std::setw(17)<<left<< "pile up sf: "<< std::setw(20)<<left<<m_pile_up_sf<<"\n";
+            << std::setw(17) << left << "ht(all): "      << std::setw(20) << left << m_ht_all
+            << std::setw(17) << left << "ht(baseline): " << std::setw(20) << left << m_ht_baseline
+            << std::setw(17) << left << "ht(good): "     << std::setw(20) << left << m_ht_good
+            << std::setw(17) << left << "ht(signal): "   << std::setw(20) << left << m_ht_signal
+            <<  "\n"
+            << std::setw(17) << left << "mc event weight: " << std::setw(20) << left << m_mc_event_weight
+            << std::setw(17) << left << "lepton sf: "       << std::setw(20) << left << m_lepton_sf
+            << std::setw(17) << left << "trigger sf: "      << std::setw(20) << left << m_trigger_weight
+            << std::setw(17) << left << "b tag sf: "        << std::setw(20) << left << m_b_tag_sf
+            << "\n"
+            << std::setw(17) << left << "pile up sf: " << std::setw(20) << left << m_pile_up_sf
+            << "\n";
 }
 
 // =============================================================================
@@ -380,7 +390,7 @@ void PennSusyFrame::Lepton::updateIsolation(const PennSusyFrame::Event*, int) {}
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Lepton::print() const
 {
-  std::cout <<std::setw(8)<<left<< "lepton " << m_particle_index << ":: ";
+  std::cout << std::setw(8) << left << "lepton " << m_particle_index << ":: ";
   if (m_is_electron)          std::cout <<std::setw(20)<<left<< "electron";
   else if (m_is_light_lepton) std::cout <<std::setw(20)<<left<< "muon";
   else                        std::cout <<std::setw(20)<<left<< "tau";
@@ -482,15 +492,15 @@ void PennSusyFrame::Electron::updateIsolation( const PennSusyFrame::Event* event
 void PennSusyFrame::Electron::print() const
 {
   Lepton::print();
-  std::cout <<std::setw(17)<<left<< "cluster E: "  << std::setw(20)<<left<<m_cl_E
-	    <<std::setw(17)<<left<< "cluster eta: "<< std::setw(20)<<left<<m_cl_eta
-	    <<std::setw(17)<<left<< "cluster phi: "<< std::setw(20)<<left<<m_cl_phi
-            <<std::setw(17)<<left<< "raw pt iso: " << std::setw(20)<<left<<m_raw_pt_iso
-            <<std::setw(17)<<left<< "raw et iso: " <<  std::setw(20)<<left<<m_raw_et_iso
-            <<"\n"
-            <<std::setw(17)<<left<< "pt iso: " <<  std::setw(20)<<left<<m_pt_iso
-            <<std::setw(17)<<left<< "et iso: " <<  std::setw(20)<<left<<m_et_iso
-            <<"\n\n";
+  std::cout << std::setw(17) <<left << "cluster E: "   << std::setw(20) << left << m_cl_E
+            << std::setw(17) <<left << "cluster eta: " << std::setw(20) << left << m_cl_eta
+            << std::setw(17) <<left << "cluster phi: " << std::setw(20) << left << m_cl_phi
+            << std::setw(17) <<left << "raw pt iso: "  << std::setw(20) << left << m_raw_pt_iso
+            << std::setw(17) <<left << "raw et iso: "  << std::setw(20) << left << m_raw_et_iso
+            << "\n"
+            << std::setw(17) << left << "pt iso: " <<  std::setw(20) << left << m_pt_iso
+            << std::setw(17) << left << "et iso: " <<  std::setw(20) << left << m_et_iso
+            << "\n\n";
 }
 
 // -----------------------------------------------------------------------------
@@ -839,7 +849,6 @@ void PennSusyFrame::Jet::print() const
 
   std::cout << "\t\tMV1: " << m_mv1
             << "\n";
-
 }
 
 // -----------------------------------------------------------------------------
@@ -867,7 +876,6 @@ void PennSusyFrame::Jet::setJetTlv( const PennSusyFrame::D3PDReader* reader
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::Jet::isBad()
 {
-
   double pt          = getPt();
   double chf         = (pt != 0 ? m_sum_pt_trk/pt : 0.);
   double lar_qf_frac = m_avg_lar_qf/65535.;

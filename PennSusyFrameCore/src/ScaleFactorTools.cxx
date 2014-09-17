@@ -69,30 +69,36 @@ double PennSusyFrame::PileUpScaleFactorTool::getPileupScaleFactor( const PennSus
   if (pile_up_sf < 0.) pile_up_sf = 0.;
   return pile_up_sf;
 }
+
 // -----------------------------------------------------------------------------
 int PennSusyFrame::PileUpScaleFactorTool::getRandomRunNumber(int run_number, double mu)
 {
   return m_pile_up_reweight->GetRandomRunNumber(run_number, mu);
 }
+
 // -----------------------------------------------------------------------------
 int PennSusyFrame::PileUpScaleFactorTool::getRandomLumiBlockNumber(int run_number)
 {
   return m_pile_up_reweight->GetRandomLumiBlockNumber(run_number);
 }
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::PileUpScaleFactorTool::setRandomSeed(int seed)
 {
   m_pile_up_reweight->SetRandomSeed(seed);
 }
+
 // =============================================================================
-// -----------------------------------------------------------------------------
 PennSusyFrame::EgammaScaleFactorTool::EgammaScaleFactorTool() : m_is_af2(false)
                                                               , m_is_tightpp(true)
+                                                              , m_is_prepped(false)
 {
   // get directory for SF files
   std::string maindir = getenv("ROOTCOREDIR");
   m_egamma_sf_dir = maindir + "/../ElectronEfficiencyCorrection/data/";
 }
 
+// -----------------------------------------------------------------------------
 void PennSusyFrame::EgammaScaleFactorTool::init()
 {
   // initialize reco sf
@@ -119,31 +125,72 @@ void PennSusyFrame::EgammaScaleFactorTool::init()
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::EgammaScaleFactorTool::getSF( const PennSusyFrame::Event& event
-                                                  , const PennSusyFrame::Electron* el
-                                                  )
+void PennSusyFrame::EgammaScaleFactorTool::clear()
+{
+  m_is_prepped = false;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EgammaScaleFactorTool::prep( const PennSusyFrame::Event& event
+                                               , const PennSusyFrame::Electron* el
+                                               )
 {
   float cl_eta = el->getClEta();
   float pt     = el->getPt();
 
-  Root::TResult result_reco = m_eg_reco_sf.calculate( m_data_type
-  					                                        , event.getRunNumber()
-  					                                        , cl_eta
-  					                                        , pt
-                                                    );
-  Root::TResult result_id = m_eg_id_sf.calculate( m_data_type
-  					                                    , event.getRunNumber()
-  					                                    , cl_eta
-  					                                    , pt
-                                                );
+  m_result_reco = m_eg_reco_sf.calculate( m_data_type
+                                        , event.getRunNumber()
+                                        , cl_eta
+                                        , pt
+                                        );
+  m_result_id = m_eg_id_sf.calculate( m_data_type
+  					                        , event.getRunNumber()
+  					                        , cl_eta
+  					                        , pt
+                                    );
 
-  return ( result_reco.getScaleFactor()
-         * result_id.getScaleFactor()
-         );
+  m_is_prepped = true;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::EgammaScaleFactorTool::getSF( const PennSusyFrame::Event& event
+                                                  , const PennSusyFrame::Electron* el
+                                                  , bool do_reco
+                                                  , bool do_id
+                                                  )
+{
+  if (!m_is_prepped) {
+    prep(event, el);
+  }
+
+  double sf = 1.;
+  if (do_reco) sf *= m_result_reco.getScaleFactor();
+  if (do_id  ) sf *= m_result_id.getScaleFactor();
+  return sf;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::EgammaScaleFactorTool::getUncert( const PennSusyFrame::Event& event
+                                                      , const PennSusyFrame::Electron* el
+                                                      , bool do_reco
+                                                      , bool do_id
+                                                      )
+{
+  if (!m_is_prepped) {
+    prep(event, el);
+  }
+
+  // shortcut if all systematics are turned off
+  if (do_reco == false && do_id == false) return 0.;
+
+  double uncert_sq = 0.;
+
+  if (do_reco) uncert_sq += pow(m_result_reco.getTotalUncertainty(), 2);
+  if (do_id  ) uncert_sq += pow(m_result_id.getTotalUncertainty()  , 2);
+  return sqrt(uncert_sq);
 }
 
 // =============================================================================
-// -----------------------------------------------------------------------------
 PennSusyFrame::MuonScaleFactorTool::MuonScaleFactorTool() : m_muon_sf(0)
 {
   // get default path for muon SF directory. This comes from SUSYTools
@@ -182,8 +229,16 @@ double PennSusyFrame::MuonScaleFactorTool::getSF(const PennSusyFrame::Muon* mu)
   return m_muon_sf->scaleFactor(mu->getCharge(), *mu->getTlv());
 }
 
-// =============================================================================
 // -----------------------------------------------------------------------------
+double PennSusyFrame::MuonScaleFactorTool::getUncert(const PennSusyFrame::Muon* mu)
+{
+  // add the systematic and statistical uncertainties linearly because it describes how the efficiency scale factors are shifter after a modified tag-and-probe selection
+  return ( m_muon_sf->scaleFactorUncertainty(          mu->getCharge(), *mu->getTlv()) // stat uncertainty
+         + m_muon_sf->scaleFactorSystematicUncertainty(mu->getCharge(), *mu->getTlv()) // syst uncertainty
+         );
+}
+
+// =============================================================================
 PennSusyFrame::TriggerWeightTool::TriggerWeightTool() : m_trigger_reweight(0)
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
@@ -273,6 +328,7 @@ double PennSusyFrame::TriggerWeightTool::getWeight( FLAVOR_CHANNEL flavor_channe
 
 // =============================================================================
 PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(0)
+                                                          , m_is_prepped(false)
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
   std::string base_work_dir = getenv("BASE_WORK_DIR");
@@ -324,7 +380,7 @@ PennSusyFrame::BTagScaleFactorTool::~BTagScaleFactorTool()
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::BTagScaleFactorTool::getSF(const std::vector<PennSusyFrame::Jet*>* jets)
+void PennSusyFrame::BTagScaleFactorTool::prep(const std::vector<PennSusyFrame::Jet*>* jets)
 {
   // vectors to hold jet info for valid jets
   std::vector<float> pt_btag;
@@ -353,5 +409,43 @@ double PennSusyFrame::BTagScaleFactorTool::getSF(const std::vector<PennSusyFrame
                                                              , val_btag
                                                              , pdgid_btag
                                                              );
-  return b_tag_weight.first.at(0);
+  m_b_tag_weight_result = b_tag_weight.first;
+
+  m_is_prepped = true;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::BTagScaleFactorTool::clear()
+{
+  m_is_prepped = false;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getSF(const std::vector<PennSusyFrame::Jet*>* jets)
+{
+  if (!m_is_prepped) {
+    prep(jets);
+  }
+
+  return m_b_tag_weight_result.at(0);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getUncertDown(const std::vector<PennSusyFrame::Jet*>* jets)
+{
+  if (!m_is_prepped) {
+    prep(jets);
+  }
+
+  return m_b_tag_weight_result.at(1);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getUncertUp(const std::vector<PennSusyFrame::Jet*>* jets)
+{
+  if (!m_is_prepped) {
+    prep(jets);
+  }
+
+  return m_b_tag_weight_result.at(4);
 }

@@ -991,22 +991,45 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
     m_event_quantities.setPileUpSF(m_pile_up_sf_tool.getPileupScaleFactor(m_event, m_mc_truth));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // TODO move this into function to avoid code duplication
     // set lepton SF
-    double lepton_sf = 1.;
+    double lepton_sf             = 1.;
+    double lepton_sf_egamma_down = 1.;
+    double lepton_sf_egamma_up   = 1.;
+    double lepton_sf_muon_down   = 1.;
+    double lepton_sf_muon_up     = 1.;
 
     size_t el_term = m_electrons.num(EL_SELECTED);
     const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_SELECTED);
     for (size_t el_it = 0; el_it != el_term; ++el_it) {
-      lepton_sf *= m_egamma_sf_tool.getSF(m_event, el_list->at(el_it));
+      double this_lep_sf        = m_egamma_sf_tool.getSF(    m_event, el_list->at(el_it));
+      double this_lep_sf_uncert = m_egamma_sf_tool.getUncert(m_event, el_list->at(el_it));
+
+      lepton_sf             *= this_lep_sf;
+      lepton_sf_egamma_down *= (this_lep_sf - this_lep_sf_uncert);
+      lepton_sf_egamma_up   *= (this_lep_sf + this_lep_sf_uncert);
+      lepton_sf_muon_down   *= this_lep_sf;
+      lepton_sf_muon_up     *= this_lep_sf;
     }
 
     size_t mu_term = m_muons.num(MU_SELECTED);
     const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_SELECTED);
     for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
-      lepton_sf *= m_muon_sf_tool.getSF(mu_list->at(mu_it));
+      double this_lep_sf        = m_muon_sf_tool.getSF(mu_list->at(mu_it));
+      double this_lep_sf_uncert = m_muon_sf_tool.getUncert(mu_list->at(mu_it));
+
+      lepton_sf             *= this_lep_sf;
+      lepton_sf_egamma_down *= this_lep_sf;
+      lepton_sf_egamma_up   *= this_lep_sf;
+      lepton_sf_muon_down   *= (this_lep_sf - this_lep_sf_uncert);
+      lepton_sf_muon_up     *= (this_lep_sf + this_lep_sf_uncert);
     }
 
-    m_event_quantities.setLeptonSF(lepton_sf);
+    m_event_quantities.setLeptonSF(          lepton_sf            );
+    m_event_quantities.setLeptonSFEgammaUp(  lepton_sf_egamma_up  );
+    m_event_quantities.setLeptonSFEgammaDown(lepton_sf_egamma_down);
+    m_event_quantities.setLeptonSFMuonUp(    lepton_sf_muon_up    );
+    m_event_quantities.setLeptonSFMuonDown(  lepton_sf_muon_down  );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
@@ -1021,7 +1044,9 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
+    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_GOOD)));
+    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_GOOD)));
+    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_GOOD)));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // prepare truth match tool

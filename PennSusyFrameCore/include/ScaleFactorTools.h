@@ -28,10 +28,10 @@ class triggerReweight2Lep;
 // =============================================================================
 namespace PennSusyFrame
 {
-  // =============================================================================
+  // ===========================================================================
   class PileUpScaleFactorTool
   {
-    // -----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     public:
       PileUpScaleFactorTool();
       ~PileUpScaleFactorTool();
@@ -42,7 +42,7 @@ namespace PennSusyFrame
       int getRandomRunNumber( int, double);
       int getRandomLumiBlockNumber( int );
       void setRandomSeed(int);
-    // -----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     private:
       std::string m_data_hist_name;
       std::string m_mc_hist_name;
@@ -52,10 +52,10 @@ namespace PennSusyFrame
       Root::TPileupReweighting* m_pile_up_reweight;
   };
 
-  // =============================================================================
+  // ===========================================================================
   class EgammaScaleFactorTool
   {
-    // -----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     public:
       EgammaScaleFactorTool();
       void init();
@@ -67,14 +67,27 @@ namespace PennSusyFrame
       void setTightPP()  { m_is_tightpp = true;  }
       void setMediumPP() { m_is_tightpp = false; }
 
+      void clear();
+      void   prep( const PennSusyFrame::Event&
+                 , const PennSusyFrame::Electron*
+                 );
       double getSF( const PennSusyFrame::Event&
                   , const PennSusyFrame::Electron*
+                  , bool  do_reco = true
+                  , bool  do_id   = true
                   );
+      double getUncert( const PennSusyFrame::Event&
+                      , const PennSusyFrame::Electron*
+                      , bool  do_reco = true
+                      , bool  do_id   = true
+                      );
 
-    // -----------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     private:
       bool m_is_af2;
       bool m_is_tightpp;
+
+      bool m_is_prepped;
 
       std::string m_egamma_sf_dir;
       std::string m_reco_file_name;
@@ -87,6 +100,9 @@ namespace PennSusyFrame
       // Root::TElectronEfficiencyCorrectionTool m_eg_trigger_sf;
 
       PATCore::ParticleDataType::DataType m_data_type;
+
+      Root::TResult m_result_reco;
+      Root::TResult m_result_id;
   };
 
   // =============================================================================
@@ -97,7 +113,8 @@ namespace PennSusyFrame
       MuonScaleFactorTool();
       ~MuonScaleFactorTool();
 
-      double getSF(const PennSusyFrame::Muon*);
+      double getSF(    const PennSusyFrame::Muon*);
+      double getUncert(const PennSusyFrame::Muon*);
 
     // -----------------------------------------------------------------------------
     private:
@@ -145,7 +162,12 @@ namespace PennSusyFrame
 
       void init(float mv1_cut_value = 0.3511);
 
-      double getSF(const std::vector<PennSusyFrame::Jet*>*);
+      void prep(const std::vector<PennSusyFrame::Jet*>*);
+      void clear();
+
+      double getSF(        const std::vector<PennSusyFrame::Jet*>*);
+      double getUncertDown(const std::vector<PennSusyFrame::Jet*>*);
+      double getUncertUp(  const std::vector<PennSusyFrame::Jet*>*);
 
     // -----------------------------------------------------------------------------
     private:
@@ -153,6 +175,9 @@ namespace PennSusyFrame
       std::string m_calibration_folder;
 
       BTagCalib* m_b_tag_calibration;
+      bool m_is_prepped;
+
+      std::vector<float> m_b_tag_weight_result;
   };
 }
 

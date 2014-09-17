@@ -355,6 +355,9 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
   m_muons.clear();
   m_taus.clear();
   m_jets.clear();
+
+  m_egamma_sf_tool.clear();
+  m_b_tag_sf_tool.clear();
 }
 
 // -----------------------------------------------------------------------------
@@ -664,32 +667,50 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set lepton SF
-    double lepton_sf = 1.;
+    double lepton_sf             = 1.;
+    double lepton_sf_egamma_down = 1.;
+    double lepton_sf_egamma_up   = 1.;
+    double lepton_sf_muon_down   = 1.;
+    double lepton_sf_muon_up     = 1.;
 
     // size_t el_term = m_electrons.num(EL_GOOD);
     // const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_GOOD);
     size_t el_term = m_electrons.num(EL_SELECTED);
     const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_SELECTED);
     for (size_t el_it = 0; el_it != el_term; ++el_it) {
+      double this_lep_sf        = m_egamma_sf_tool.getSF(    m_event, el_list->at(el_it));
+      double this_lep_sf_uncert = m_egamma_sf_tool.getUncert(m_event, el_list->at(el_it));
 
-      lepton_sf *= m_egamma_sf_tool.getSF(m_event, el_list->at(el_it));
+      lepton_sf             *= this_lep_sf;
+      lepton_sf_egamma_down *= (this_lep_sf - this_lep_sf_uncert);
+      lepton_sf_egamma_up   *= (this_lep_sf + this_lep_sf_uncert);
+      lepton_sf_muon_down   *= this_lep_sf;
+      lepton_sf_muon_up     *= this_lep_sf;
     }
     // size_t mu_term = m_muons.num(MU_GOOD);
     // const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_GOOD);
     size_t mu_term = m_muons.num(MU_SELECTED);
     const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_SELECTED);
     for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
-      lepton_sf *= m_muon_sf_tool.getSF(mu_list->at(mu_it));
+      double this_lep_sf        = m_muon_sf_tool.getSF(mu_list->at(mu_it));
+      double this_lep_sf_uncert = m_muon_sf_tool.getUncert(mu_list->at(mu_it));
+
+      lepton_sf             *= this_lep_sf;
+      lepton_sf_egamma_down *= this_lep_sf;
+      lepton_sf_egamma_up   *= this_lep_sf;
+      lepton_sf_muon_down   *= (this_lep_sf - this_lep_sf_uncert);
+      lepton_sf_muon_up     *= (this_lep_sf + this_lep_sf_uncert);
     }
 
-    m_event_quantities.setLeptonSF(lepton_sf);
+    m_event_quantities.setLeptonSF(          lepton_sf            );
+    m_event_quantities.setLeptonSFEgammaUp(  lepton_sf_egamma_up  );
+    m_event_quantities.setLeptonSFEgammaDown(lepton_sf_egamma_down);
+    m_event_quantities.setLeptonSFMuonUp(    lepton_sf_muon_up    );
+    m_event_quantities.setLeptonSFMuonDown(  lepton_sf_muon_down  );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
     m_event_quantities.setTriggerWeight(m_trigger_weight_tool.getWeight( m_event.getFlavorChannel()
-                                                                       // , m_electrons.getCollection(EL_GOOD)
-                                                                       // , m_muons.getCollection(MU_GOOD)
-                                                                       // , m_jets.getCollection(JET_GOOD)
                                                                        , m_electrons.getCollection(EL_SELECTED)
                                                                        , m_muons.getCollection(MU_SELECTED)
                                                                        , m_jets.getCollection(JET_SELECTED)
@@ -700,8 +721,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    // m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
-    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_SELECTED)));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_truth_match_tool.prep(m_mc_truth);
@@ -709,8 +731,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // check for prompt leptons
     m_event.setPromptLeptons( m_truth_match_tool.isRealLeptonEvent( m_event.getFlavorChannel()
-                                                                  // , m_electrons.getCollection(EL_GOOD)
-                                                                  // , m_muons.getCollection(MU_GOOD)
                                                                   , m_electrons.getCollection(EL_SELECTED)
                                                                   , m_muons.getCollection(MU_SELECTED)
                                                                   , m_mc_truth
@@ -720,8 +740,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // get the truth sign channel of the two leptons
     m_event.setTruthSignChannel( m_truth_match_tool.getTruthSign( m_event.getFlavorChannel()
-                                                                // , m_electrons.getCollection(EL_GOOD)
-                                                                // , m_muons.getCollection(MU_GOOD)
                                                                 , m_electrons.getCollection(EL_SELECTED)
                                                                 , m_muons.getCollection(MU_SELECTED)
                                                                 , m_mc_truth
