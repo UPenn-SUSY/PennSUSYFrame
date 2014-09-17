@@ -1016,8 +1016,7 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
     const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_SELECTED);
     for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
       double this_lep_sf        = m_muon_sf_tool.getSF(mu_list->at(mu_it));
-      double this_lep_sf_uncert = 1.;
-      // double this_lep_sf_uncert = m_muon_sf_tool.getUncert(mu_list->at(mu_it));
+      double this_lep_sf_uncert = m_muon_sf_tool.getUncert(mu_list->at(mu_it));
 
       lepton_sf             *= this_lep_sf;
       lepton_sf_egamma_down *= this_lep_sf;

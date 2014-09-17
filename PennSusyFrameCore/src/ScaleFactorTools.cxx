@@ -229,8 +229,16 @@ double PennSusyFrame::MuonScaleFactorTool::getSF(const PennSusyFrame::Muon* mu)
   return m_muon_sf->scaleFactor(mu->getCharge(), *mu->getTlv());
 }
 
-// =============================================================================
 // -----------------------------------------------------------------------------
+double PennSusyFrame::MuonScaleFactorTool::getUncert(const PennSusyFrame::Muon* mu)
+{
+  // add the systematic and statistical uncertainties linearly because it describes how the efficiency scale factors are shifter after a modified tag-and-probe selection
+  return ( m_muon_sf->scaleFactorUncertainty(          mu->getCharge(), *mu->getTlv()) // stat uncertainty
+         + m_muon_sf->scaleFactorSystematicUncertainty(mu->getCharge(), *mu->getTlv()) // syst uncertainty
+         );
+}
+
+// =============================================================================
 PennSusyFrame::TriggerWeightTool::TriggerWeightTool() : m_trigger_reweight(0)
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");

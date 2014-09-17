@@ -113,7 +113,8 @@ namespace PennSusyFrame
       MuonScaleFactorTool();
       ~MuonScaleFactorTool();
 
-      double getSF(const PennSusyFrame::Muon*);
+      double getSF(    const PennSusyFrame::Muon*);
+      double getUncert(const PennSusyFrame::Muon*);
 
     // -----------------------------------------------------------------------------
     private:
