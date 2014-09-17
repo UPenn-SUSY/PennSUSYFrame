@@ -1,1 +1,0 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6/SafeTTNTDir/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.tnt.root    10000    4354    10000
