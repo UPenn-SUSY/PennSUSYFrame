@@ -1,11 +1,11 @@
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000001.Tnt.root        9999        139
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000002.Tnt.root        10000        157
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000003.Tnt.root        10000        158
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000004.Tnt.root        10000        138
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000005.Tnt.root        10000        137
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000006.Tnt.root        10000        126
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000007.Tnt.root        10000        146
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000008.Tnt.root        10000        133
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000009.Tnt.root        10000        
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000010.Tnt.root        10000        148
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000011.Tnt.root        100000        1363
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000001.Tnt.root        9999        139        9998
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000002.Tnt.root                157        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000003.Tnt.root        10000        158        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000004.Tnt.root        10000        138        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000005.Tnt.root        10000        137        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000006.Tnt.root        10000        126        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000007.Tnt.root        10000        146        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000008.Tnt.root        10000        133        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000009.Tnt.root        10000        147        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000010.Tnt.root        10000        148        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root.926515/user.bjackson.043886._000011.Tnt.root        100000        1363        99999
