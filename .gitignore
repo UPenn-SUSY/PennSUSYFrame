@@ -11,3 +11,4 @@ jo.*.xml
 *.root
 lib/*
 LSF*/
+*_C.d
