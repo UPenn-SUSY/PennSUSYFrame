@@ -1245,13 +1245,9 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                            , weight
                                                            );
     m_weight_histogram_handler.at(hist_level)->FillSpecial( m_event
+                                                          , m_event_quantities
                                                           , m_xsec_weight
-                                                          , m_mc_event_weight
-                                                          , m_pile_up_sf
-                                                          , m_lepton_sf
-                                                          , m_btag_sf
                                                           , m_ttbar_pt_weight
-                                                          , weight
                                                           );
     if (!m_is_data) {
       m_parent_histogram_handler.at(hist_level)->FillSpecial( m_event
