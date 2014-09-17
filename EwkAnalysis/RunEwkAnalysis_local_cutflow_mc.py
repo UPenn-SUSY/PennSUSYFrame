@@ -39,6 +39,16 @@ ewa = ROOT.PennSusyFrame.EwkAnalysis(t)
 ewa.setPrintEventDetails(False)
 #ewa.setMaxNumEvents(10)
 ewa.setIsMC()
+xsec_dict = CrossSectionReader.getCrossSection(105200)
+if xsec_dict is None:
+    print 'Failed to CrossSection'
+    exit
+ewa.setCrossSection(xsec_dict['xsec'])
+ewa.setKFactor(     xsec_dict['kfac'])
+ewa.setFilterEff(   xsec_dict['eff'])
+
+#ewa.setTotalNumEntries(    total_num_entries )
+ewa.setNumGeneratedEvents(14990603)
 ewa.prepareTools()
 ewa.Loop()
 

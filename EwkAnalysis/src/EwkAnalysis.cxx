@@ -532,6 +532,20 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_TAG_SF, m_event_weight);
   }
 
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // x sec sf
+  // TODO validate x sec SF
+  float target_lumi = 20281.4; // in pb-1
+
+  m_event_weight *= m_xsec_weight;
+  m_event_weight *= target_lumi;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_X_SEC_SF);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_X_SEC_SF, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_X_SEC_SF);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_X_SEC_SF, m_event_weight);
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // trigger cut
@@ -1000,6 +1014,7 @@ void PennSusyFrame::EwkAnalysis::printEventDetails()
 {
   m_event.print();
   m_event_quantities.print();
+  std::cout<<"xsec: "<<m_x_sec<<" kfactor: "<<m_k_factor<<" x_sec_weight: "<<m_xsec_weight<<std::endl;
   //  m_vertices.print(VERTEX_ALL);
   //  m_vertices.print(VERTEX_GT_2);
   //  
