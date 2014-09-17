@@ -1,1 +1,0 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6/SafeTTNTDir/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.tnt.root    98111892    448295    98111892

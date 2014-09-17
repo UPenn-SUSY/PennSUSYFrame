@@ -1,1 +1,0 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.14.slc6/SafeTTNTDir/BMinusL.161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5.tnt.root    500000    48    500000
