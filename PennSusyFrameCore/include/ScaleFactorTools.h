@@ -162,7 +162,12 @@ namespace PennSusyFrame
 
       void init(float mv1_cut_value = 0.3511);
 
-      double getSF(const std::vector<PennSusyFrame::Jet*>*);
+      void prep(const std::vector<PennSusyFrame::Jet*>*);
+      void clear();
+
+      double getSF(        const std::vector<PennSusyFrame::Jet*>*);
+      double getUncertDown(const std::vector<PennSusyFrame::Jet*>*);
+      double getUncertUp(  const std::vector<PennSusyFrame::Jet*>*);
 
     // -----------------------------------------------------------------------------
     private:
@@ -170,6 +175,9 @@ namespace PennSusyFrame
       std::string m_calibration_folder;
 
       BTagCalib* m_b_tag_calibration;
+      bool m_is_prepped;
+
+      std::vector<float> m_b_tag_weight_result;
   };
 }
 

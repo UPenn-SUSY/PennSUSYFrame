@@ -357,6 +357,7 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
   m_jets.clear();
 
   m_egamma_sf_tool.clear();
+  m_b_tag_sf_tool.clear();
 }
 
 // -----------------------------------------------------------------------------

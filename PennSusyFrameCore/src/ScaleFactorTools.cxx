@@ -328,6 +328,7 @@ double PennSusyFrame::TriggerWeightTool::getWeight( FLAVOR_CHANNEL flavor_channe
 
 // =============================================================================
 PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(0)
+                                                          , m_is_prepped(false)
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
   std::string base_work_dir = getenv("BASE_WORK_DIR");
@@ -379,7 +380,7 @@ PennSusyFrame::BTagScaleFactorTool::~BTagScaleFactorTool()
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::BTagScaleFactorTool::getSF(const std::vector<PennSusyFrame::Jet*>* jets)
+void PennSusyFrame::BTagScaleFactorTool::prep(const std::vector<PennSusyFrame::Jet*>* jets)
 {
   // vectors to hold jet info for valid jets
   std::vector<float> pt_btag;
@@ -408,5 +409,43 @@ double PennSusyFrame::BTagScaleFactorTool::getSF(const std::vector<PennSusyFrame
                                                              , val_btag
                                                              , pdgid_btag
                                                              );
-  return b_tag_weight.first.at(0);
+  m_b_tag_weight_result = b_tag_weight.first;
+
+  m_is_prepped = true;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::BTagScaleFactorTool::clear()
+{
+  m_is_prepped = false;
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getSF(const std::vector<PennSusyFrame::Jet*>* jets)
+{
+  if (!m_is_prepped) {
+    prep(jets);
+  }
+
+  return m_b_tag_weight_result.at(0);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getUncertDown(const std::vector<PennSusyFrame::Jet*>* jets)
+{
+  if (!m_is_prepped) {
+    prep(jets);
+  }
+
+  return m_b_tag_weight_result.at(1);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getUncertUp(const std::vector<PennSusyFrame::Jet*>* jets)
+{
+  if (!m_is_prepped) {
+    prep(jets);
+  }
+
+  return m_b_tag_weight_result.at(4);
 }
