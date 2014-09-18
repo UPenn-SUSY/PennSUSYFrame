@@ -1453,6 +1453,25 @@ void PennSusyFrame::MCTruth::getEvent(const PennSusyFrame::D3PDReader* reader)
 }
 
 // -----------------------------------------------------------------------------
+bool PennSusyFrame::MCTruth::isSherpa() const
+{
+  // this is a list of the sherpa samples we use. If we add new sherpa samples,
+  // they should be added here
+  return (  (m_mc_channel_number >= 126988 && m_mc_channel_number <= 126989)
+         || (m_mc_channel_number >= 147194 && m_mc_channel_number <= 147196)
+         || (m_mc_channel_number >= 147770 && m_mc_channel_number <= 147772)
+         || (m_mc_channel_number >= 157814 && m_mc_channel_number <= 157819)
+         || (m_mc_channel_number >= 167749 && m_mc_channel_number <= 167757)
+         || (m_mc_channel_number >= 167797 && m_mc_channel_number <= 167805)
+         || (m_mc_channel_number >= 167809 && m_mc_channel_number <= 167817)
+         || (m_mc_channel_number >= 167821 && m_mc_channel_number <= 167829)
+         || (m_mc_channel_number >= 167833 && m_mc_channel_number <= 167841)
+         || (m_mc_channel_number >= 173041 && m_mc_channel_number <= 173046)
+         || (m_mc_channel_number >= 180543 && m_mc_channel_number <= 180551)
+         );
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::MCTruth::writeFullTruthRecord(std::string out_file_name)
 {
   std::ofstream fout;

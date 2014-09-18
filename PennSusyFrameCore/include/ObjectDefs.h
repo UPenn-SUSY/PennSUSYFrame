@@ -916,6 +916,8 @@ namespace PennSusyFrame
       void setMuType(std::vector<int>* val)   { m_mc_mu_type = val; }
       void setCharge(std::vector<float>* val) { m_mc_charge = val; }
 
+      bool isSherpa() const;
+
       // TODO move accessors to cxx file
       unsigned int getChannelNumber()  const { return m_mc_channel_number; }
       unsigned int getN()              const { return m_mc_n; }
