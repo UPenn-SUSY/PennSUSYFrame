@@ -1,5 +1,35 @@
 user name: brett_part2
-  max size: 0
-  allocated size: 0 
-  number samples: 0 
+  max size: 500
+  allocated size: 233.746562355 
+  number samples: 30 
 
+    user.bjackson.110119.PowhegPythia_P2011C_st_schan_lep.tnt_106_Tnt.root/
+    user.bjackson.110140.PowhegPythia_P2011C_st_Wtchan_incl_DR.af2.tnt_106_Tnt.root/
+    user.bjackson.117050.PowhegPythia_P2011C_ttbar.af2.tnt_106_Tnt.root/
+    user.bjackson.126933.PowhegPythia8_AU2CT10_WpWm_tm.tnt_106_Tnt.root/
+    user.bjackson.126935.PowhegPythia8_AU2CT10_WpWm_mt.tnt_106_Tnt.root/
+    user.bjackson.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.tnt_106_Tnt.root/
+    user.bjackson.167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.177997.Sherpa_CT10_llnunu_WW_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.177999.Sherpa_CT10_llnunu_ZZ_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.179974.Sherpa_CT10_lllnu_WZ_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.179975.Sherpa_CT10_lnununu_WZ_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto.tnt_106_Tnt.root/
+    user.bjackson.180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.183585.Sherpa_CT10_ZWtoeeqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183586.Sherpa_CT10_ZZtoeeqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183587.Sherpa_CT10_ZWtomumuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183588.Sherpa_CT10_ZZtomumuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183589.Sherpa_CT10_ZWtotautauqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183590.Sherpa_CT10_ZZtotautauqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183591.Sherpa_CT10_ZWtonunuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183592.Sherpa_CT10_ZZtonunuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183734.Sherpa_CT10_WWtoenuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183735.Sherpa_CT10_WZtoenuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183736.Sherpa_CT10_WWtomunuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183737.Sherpa_CT10_WZtomunuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183738.Sherpa_CT10_WWtotaunuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.183739.Sherpa_CT10_WZtotaunuqq_MassiveCB.tnt_106_v2_Tnt.root/
+    user.bjackson.periodC_muon.tnt_106_Tnt.root/
