@@ -231,7 +231,6 @@ namespace PennSusyFrame
       std::vector<TH2F*> m_h_flavor_channel_tvr_lepnotfromstop;
       std::vector<TH2F*> m_h_flavor_channel_tvr_jetfromstop;
       std::vector<TH2F*> m_h_flavor_channel_tvr_jetnotfromstop;
-      std::vector<TH2F*> m_h_flavor_channel_lep_gainloss;
 
       std::vector<TH2F*> m_h_b_jet_E_resolution_all; //~ ~
       std::vector<TH2F*> m_h_b_jet_E_resolution_0; //~ ~

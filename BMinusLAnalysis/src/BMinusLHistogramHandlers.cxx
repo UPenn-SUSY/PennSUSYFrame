@@ -1745,19 +1745,6 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                           , FLAVOR_N, -0.5, FLAVOR_N - 0.5
                                           )
                                 );
-    m_h_flavor_channel_lep_gainloss.push_back( new TH2F ( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-							    + "__flavor_channel_lep_gainloss"
-							    + "__"
-							    + name_tag
-							    ).c_str()
-							  , ("Flavor Channel - "
-							     + FLAVOR_CHANNEL_STRINGS[fc_it]
-							     + "; +1 gained mu, -1 gained el ; Truth Flavor Channel"
-							     ).c_str()
-							  , 3, -1.5, +1.5
-							  , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-							  )
-					       );
 
     for (int flavor_it = 0; flavor_it != FLAVOR_N; ++flavor_it) {
       m_h_flavor_channel_tvr.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
@@ -1788,9 +1775,6 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                            , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
                                                            );
       m_h_flavor_channel_tvr_jetnotfromstop.at(fc_it)->GetYaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
-      m_h_flavor_channel_lep_gainloss.at(fc_it)->GetYaxis()->SetBinLabel( flavor_it+1
                                                            , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
                                                            );
     }
@@ -2711,18 +2695,6 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     if (jet_from_stop_0 && jet_from_stop_1) m_h_flavor_channel_tvr_jetfromstop.at(fc_it)->Fill(fc,truth_fc);
     else  m_h_flavor_channel_tvr_jetnotfromstop.at(fc_it)->Fill(fc,truth_fc);
 
-    // fill truth fc v. lep gainloss histos.
-    if (fc == truth_fc) m_h_flavor_channel_lep_gainloss.at(fc_it)->Fill(0.,truth_fc);
-    else if ( (fc == truth_fc +3)          // ee -> em
-	      ||  (fc == truth_fc -2) ) {  // em -> mm
-	    m_h_flavor_channel_lep_gainloss.at(fc_it)->Fill(1.,truth_fc);
-    }
-    else if ( (fc == truth_fc -3)          // em -> ee
-	      ||  (fc == truth_fc +2) ) {  // mm -> em
-      m_h_flavor_channel_lep_gainloss.at(fc_it)->Fill(-1.,truth_fc);
-    }
-
-
     // -----------------------------------------------------------------------------
     // fill resolution histograms
     //  -- for jets:
@@ -3004,7 +2976,6 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     m_h_flavor_channel_tvr_lepnotfromstop.at(fc_it)->Write();
     m_h_flavor_channel_tvr_jetfromstop.at(fc_it)->Write();
     m_h_flavor_channel_tvr_jetnotfromstop.at(fc_it)->Write();
-    m_h_flavor_channel_lep_gainloss.at(fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_E_resolution_all.at(fc_it)->Write();
