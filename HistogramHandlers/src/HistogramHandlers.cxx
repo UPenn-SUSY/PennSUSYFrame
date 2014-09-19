@@ -127,11 +127,11 @@ std::vector<float> PennSusyFrame::HistogramHandler::generateLogBinning( float mi
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event&
+void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event& event
                                           , const PennSusyFrame::EventLevelQuantities&
-                                          , const std::vector<PennSusyFrame::Electron*>*
-                                          , const std::vector<PennSusyFrame::Muon*>*
-                                          , const std::vector<PennSusyFrame::Jet*>*
+                                          , const std::vector<PennSusyFrame::Electron*>* el_list
+                                          , const std::vector<PennSusyFrame::Muon*>* mu_list 
+                                          , const std::vector<PennSusyFrame::Jet*>* jet_list
                                           , const PennSusyFrame::Met&
                                           , float
                                           )

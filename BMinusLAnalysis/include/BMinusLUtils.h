@@ -3,7 +3,7 @@
 
 // =============================================================================
 #include <vector>
-
+#include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 // =============================================================================
 namespace PennSusyFrame
 {
@@ -160,6 +160,11 @@ namespace PennSusyFrame
   float calcPtbbll( const PennSusyFrame::blPair&
                   , const PennSusyFrame::blPair&
                   );
+
+  // ---------------------------------------------------------------------------
+  
+  FLAVOR_CHANNEL getTruthFC(const PennSusyFrame::MCTruth&);
+
 }
 
 #endif
