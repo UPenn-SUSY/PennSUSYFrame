@@ -8,6 +8,7 @@
 #include "RootCore/egammaAnalysisUtils/egammaAnalysisUtils/EnergyRescalerUpgrade.h"
 #include "RootCore/MuonMomentumCorrections/MuonMomentumCorrections/SmearingClass.h"
 #include "RootCore/ApplyJetCalibration/ApplyJetCalibration/ApplyJetCalibration.h"
+#include "RootCore/ApplyJetResolutionSmearing/ApplyJetResolutionSmearing/ApplyJetSmearing.h";
 
 // =============================================================================
 // = ElectronRescalerTool
@@ -206,9 +207,10 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
 // = JetRescalerTool
 // =============================================================================
 PennSusyFrame::JetRescalerTool::JetRescalerTool(bool is_data, bool is_af2, bool is_mc_12b) : m_is_data(is_data)
-											   , m_is_af2(is_af2)
-											   , m_is_mc12b(is_mc_12b)  
-											   , m_jet_calibration(0)
+                                                                                           , m_is_af2(is_af2)
+                                                                                           , m_is_mc12b(is_mc_12b)  
+                                                                                           , m_jet_calibration(0)
+                                                                                           , m_jer_smearing(0)
 {
   init();
 }
@@ -218,6 +220,8 @@ PennSusyFrame::JetRescalerTool::~JetRescalerTool()
 {
   if (m_jet_calibration)
     delete m_jet_calibration;
+  if (m_jer_smearing)
+    delete m_jer_smearing;
 }
 
 // -----------------------------------------------------------------------------
@@ -226,46 +230,54 @@ void PennSusyFrame::JetRescalerTool::init()
   std::string jet_algorithm = "AntiKt4LCTopo";
   std::string root_core_dir = getenv("ROOTCOREDIR");
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // configure Jet calibration tool
   std::string jes_config_file;
   std::string mc_type = "";
   if (m_is_af2) {
     if(!m_is_mc12b) {
       std::cout << "setting up JES for MC12a AF2\n";
       jes_config_file = ( root_core_dir
-			  + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config"
-			  );
+                        + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_AFII_Jan13.config"
+                        );
       mc_type = "AFII MC12a";
     }
     else {
       std::cout << "setting up JES for MC12b AF2\n";
       jes_config_file = ( root_core_dir
-			  + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_MC12b_AFII_Sep23.config"
-			  );
+                        + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_MC12b_AFII_Sep23.config"
+                        );
       mc_type = "AFII MC12b";
     }
-  } 
+  }
   else {
     if(!m_is_mc12b) {
       std::cout << "setting up JES for MC12a full sim\n";
       jes_config_file = ( root_core_dir
-			  + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config"
-			  );
+                        + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_Jan13.config"
+                        );
       mc_type = "MC12a";
     }
     else {
       std::cout << "setting up JES for MC12b full sim\n";
       jes_config_file = ( root_core_dir
-			  + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_MC12b_Sep23.config"
-			  );
+                        + "/../ApplyJetCalibration/data/CalibrationConfigs/JES_Full2012dataset_Preliminary_MC12b_Sep23.config"
+                        );
       mc_type = "MC12b";
     }
   }
 
   m_jet_calibration = new JetAnalysisCalib::JetCalibrationTool( jet_algorithm
-                                            , jes_config_file
-                                            , m_is_data
-                                            );
+                                                              , jes_config_file
+                                                              , m_is_data
+                                                              );
   m_jet_calibration->UseGeV(false);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // configure JER smearing tool
+  std::string jer_config_file = root_core_dir + "RootCore/JetResolution/share/JERProviderPlots_2012.root";
+  m_jer_smearing = new JetSmearingTool(jet_algorithm, jer_config_file);
+  m_jer_smearing->init();
 }
 
 // -----------------------------------------------------------------------------
@@ -286,6 +298,37 @@ TLorentzVector PennSusyFrame::JetRescalerTool::getCalibratedTlv( const PennSusyF
                                                     , event->getAverageIntPerXing()
                                                     , num_vertices_ge_2_tracks
                                                     );
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::JetRescalerTool::applyJER( PennSusyFrame::Jet* j
+                                             , bool is_af2
+                                             )
+{
+  // don't apply JER if pT < 20 GeV
+  if (j->getPt() < 20.e3) return;
+
+  // get jet tlv
+  TLorentzVector this_tlv;
+  this_tlv.SetPtEtaPhiE( j->getPt()
+                       , j->getEta()
+                       , j->getPhi()
+                       , j->getE()
+                       );
+
+  // use jet phi to define seed for random number
+  int seed = int(fabs(j->getPhi()*1.e5));
+  if (!seed) ++seed;
+  // m_my_jer->SetSeed(seed);
+
+  // // apply 
+  // if (is_af2)
+  //   m_my_jer->SmearJet_Syst_AFII(j->getTlv());
+  // else
+  //   m_myJER->SmearJet_Syst(j->getTlv());
+
+  // update jet tlv
+  j->setTlv(this_tlv);
 }
 
 // =============================================================================
