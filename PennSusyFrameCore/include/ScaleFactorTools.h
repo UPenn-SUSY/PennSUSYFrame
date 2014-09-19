@@ -179,9 +179,6 @@ namespace PennSusyFrame
 
     // -----------------------------------------------------------------------------
     private:
-      // TODO move to better place
-      static bool isSherpa(int run_number);
-
       std::string m_calibration_file;
       std::string m_calibration_folder;
 

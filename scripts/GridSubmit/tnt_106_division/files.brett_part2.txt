@@ -1,5 +1,0 @@
-user name: brett_part2
-  max size: 0
-  allocated size: 0 
-  number samples: 0 
-
