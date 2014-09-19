@@ -19,6 +19,7 @@
 // -----------------------------------------------------------------------------
 PennSusyFrame::EwkNtupleMaker::EwkNtupleMaker(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
                                                      , m_out_ntuple_file_name("EwkNtup.root")
+                                                     , m_do_baseline_skim(false)
                                                      , m_crit_cut_grl(false)
                                                      , m_crit_cut_incomplete_event(false)
                                                      , m_crit_cut_lar_error(false)
@@ -57,7 +58,6 @@ PennSusyFrame::EwkNtupleMaker::EwkNtupleMaker(TTree* tree) : PennSusyFrame::Penn
                                                      , m_met_rel_max(-1)
                                                      , m_dphi_ll_min(-1)
                                                      , m_dphi_ll_max(-1)
-                                                     , doBaselineSkim(false)
 {
   // set defaults
   /*setSFOSMllCut(20.e3, -1);
@@ -228,7 +228,7 @@ void PennSusyFrame::EwkNtupleMaker::processEvent()
   bool pass_2_lep = (num_good_leptons == 2);
   m_pass_event = (m_pass_event && pass_2_lep);
   if (m_crit_cut_2_lep && !pass_2_lep) return;
-  
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // mll SFOS cut
   bool pass_mll_sfos = ( PennSusyFrame::passCut( m_event_quantities.getMll()
@@ -245,10 +245,10 @@ void PennSusyFrame::EwkNtupleMaker::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // == 2 signal lepton cut
-  if (!doBaselineSkim){
-  bool pass_signal_lep = (num_signal_leptons == 2);
-  m_pass_event = (m_pass_event && pass_signal_lep);
-  if (m_crit_cut_signal_lep && !pass_signal_lep) return;
+  if (!m_do_baseline_skim){
+    bool pass_signal_lep = (num_signal_leptons == 2);
+    m_pass_event = (m_pass_event && pass_signal_lep);
+    if (m_crit_cut_signal_lep && !pass_signal_lep) return;
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -439,24 +439,24 @@ void PennSusyFrame::EwkNtupleMaker::clearVariables()
 
   m_met_et  = 0 ;
   m_met_rel = 0 ;
-	
+
   m_el_pt.clear();
   m_el_eta.clear();
   m_el_phi.clear();
-	
+
   m_mu_pt.clear();
   m_mu_eta.clear();
   m_mu_phi.clear();
-	
+
   m_lep_pt.clear();
   m_lep_eta.clear();
   m_lep_phi.clear();
   m_lep_signal.clear();
-	
+
   m_jet_pt.clear();
   m_jet_eta.clear();
   m_jet_phi.clear();
-	
+
   m_ljet_pt.clear();
   m_ljet_eta.clear();
   m_ljet_phi.clear();
@@ -485,52 +485,51 @@ void PennSusyFrame::EwkNtupleMaker::configureOutput( std::string out_file_name
   m_output_tree->Branch( "isEE" , &m_isEE);
   m_output_tree->Branch( "isEM" , &m_isEM);
   m_output_tree->Branch( "isMM" , &m_isMM);
-	
+
   m_output_tree->Branch( "n_el" , &m_num_el);
   m_output_tree->Branch( "n_mu" , &m_num_mu);
-	
+
   m_output_tree->Branch( "el_pt" , &m_el_pt);
   m_output_tree->Branch( "el_eta" , &m_el_eta);
   m_output_tree->Branch( "el_phi" , &m_el_phi);
-	
+
   m_output_tree->Branch( "mu_pt" , &m_mu_pt);
   m_output_tree->Branch( "mu_eta" , &m_mu_eta);
   m_output_tree->Branch( "mu_phi" , &m_mu_phi);
-	
+
   m_output_tree->Branch( "lep_pt" , &m_lep_pt);
   m_output_tree->Branch( "lep_eta" , &m_lep_eta);
   m_output_tree->Branch( "lep_phi" , &m_lep_phi);
   m_output_tree->Branch( "lep_signal" , &m_lep_signal);
-	
+
   m_output_tree->Branch( "jet_pt" , &m_jet_pt);
   m_output_tree->Branch( "jet_eta" , &m_jet_eta);
   m_output_tree->Branch( "jet_phi" , &m_jet_phi);
-	
+
   m_output_tree->Branch( "ljet_pt" , &m_ljet_pt);
   m_output_tree->Branch( "ljet_eta" , &m_ljet_eta);
   m_output_tree->Branch( "ljet_phi" , &m_ljet_phi);
-                                                                   
+
   m_output_tree->Branch( "mll"  , &m_mll);
   m_output_tree->Branch( "ptll" , &m_ptll);
   m_output_tree->Branch( "mt" , &m_mt);
   m_output_tree->Branch( "mt2" , &m_mt2);
   m_output_tree->Branch( "dphill" , &m_dphill);
-                                        
+
   m_output_tree->Branch( "met_et"  , &m_met_et);
   m_output_tree->Branch( "met_rel" , &m_met_rel);
   m_output_tree->Branch( "met_phi" , &m_met_phi);
 
-                                        
+
   m_output_tree->Branch( "ht_signal"   , &m_ht_signal);
   m_output_tree->Branch( "n_ljets" , &m_num_light_jets);
   m_output_tree->Branch( "n_fjets" , &m_num_forward_jets);
-	m_output_tree->Branch( "n_jets" , &m_num_jets);
+  m_output_tree->Branch( "n_jets" , &m_num_jets);
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkNtupleMaker::fillNtuple( float weight)
 {
-	
   m_el_pt   = getSelectionPt ((std::vector<PennSusyFrame::Particle*>*)m_electrons.getCollection(EL_GOOD));
   m_el_signal   = getSelectionSignal ((std::vector<PennSusyFrame::Particle*>*)m_electrons.getCollection(EL_GOOD));
   m_mu_signal   = getSelectionSignal ((std::vector<PennSusyFrame::Particle*>*)m_muons.getCollection(MU_GOOD));
@@ -545,60 +544,60 @@ void PennSusyFrame::EwkNtupleMaker::fillNtuple( float weight)
   m_mu_phi  = getSelectionPhi((std::vector<PennSusyFrame::Particle*>*)m_muons.getCollection(MU_GOOD));
   m_jet_phi = getSelectionPhi((std::vector<PennSusyFrame::Particle*>*)m_jets.getCollection(JET_GOOD));
   m_ljet_phi = getSelectionPhi((std::vector<PennSusyFrame::Particle*>*)m_jets.getCollection(JET_LIGHT));
-	
+
   m_weight = weight;
   m_event_quantities.setCFWeight(m_charge_flip_tool.getSF( m_event.getFlavorChannel()
-															, m_electrons.getCollection(EL_GOOD)
-															, m_muons.getCollection(MU_GOOD)));
+        , m_electrons.getCollection(EL_GOOD)
+        , m_muons.getCollection(MU_GOOD)));
   m_cfweight = m_event_quantities.getCFWeight();
   m_event_number = m_event.getEventNumber();
   m_run_number = m_event.getRunNumber();
-	
+
   m_isSS = (m_event.getSignChannel()==SIGN_SS);
   m_num_el = m_electrons.num(EL_GOOD);
   m_num_mu = m_muons.num(MU_GOOD);
-	
+
   m_isEE = m_num_el == 2;
   m_isEM = m_num_el == 1 && m_num_mu == 1;
   m_isMM = m_num_mu == 2;
-	
 
 
-	
-	if (m_isEE){
-		if (m_el_pt[0] > m_el_pt[1])
-			getSortLepPts(0,1,m_el_pt, m_el_eta, m_el_phi, m_el_signal);
-		else 
-			getSortLepPts(1,0,m_el_pt, m_el_eta, m_el_phi, m_el_signal);
-		
-	}else if (m_isMM){
-		if (m_mu_pt[0] > m_mu_pt[1])
-			getSortLepPts(0,1,m_mu_pt, m_mu_eta, m_mu_phi, m_mu_signal);
-		else 
-			getSortLepPts(1,0,m_mu_pt, m_mu_eta, m_mu_phi, m_mu_signal);
-		
-	}else if (m_isEM){
-		if (m_mu_pt[0] > m_el_pt[0]){
-			m_lep_pt.push_back( m_mu_pt[0]);
-			m_lep_eta.push_back(m_mu_eta[0]);
-			m_lep_phi.push_back(m_mu_phi[0]);
-			m_lep_signal.push_back(m_mu_signal[0]);
-			m_lep_pt.push_back( m_el_pt[0]);
-			m_lep_eta.push_back(m_el_eta[0]);
-			m_lep_phi.push_back(m_el_phi[0]);
-			m_lep_signal.push_back(m_el_signal[0]);
-		}else{
-			m_lep_pt.push_back( m_el_pt[0]);
-			m_lep_eta.push_back(m_el_eta[0]);
-			m_lep_phi.push_back(m_el_phi[0]);
-			m_lep_signal.push_back(m_el_signal[0]);
-			m_lep_pt.push_back( m_mu_pt[0]);
-			m_lep_eta.push_back(m_mu_eta[0]);
-			m_lep_phi.push_back(m_mu_phi[0]);
-			m_lep_signal.push_back(m_mu_signal[0]);
-		}
-	}
-	
+
+
+  if (m_isEE){
+    if (m_el_pt[0] > m_el_pt[1])
+      getSortLepPts(0,1,m_el_pt, m_el_eta, m_el_phi, m_el_signal);
+    else 
+      getSortLepPts(1,0,m_el_pt, m_el_eta, m_el_phi, m_el_signal);
+
+  }else if (m_isMM){
+    if (m_mu_pt[0] > m_mu_pt[1])
+      getSortLepPts(0,1,m_mu_pt, m_mu_eta, m_mu_phi, m_mu_signal);
+    else 
+      getSortLepPts(1,0,m_mu_pt, m_mu_eta, m_mu_phi, m_mu_signal);
+
+  }else if (m_isEM){
+    if (m_mu_pt[0] > m_el_pt[0]){
+      m_lep_pt.push_back( m_mu_pt[0]);
+      m_lep_eta.push_back(m_mu_eta[0]);
+      m_lep_phi.push_back(m_mu_phi[0]);
+      m_lep_signal.push_back(m_mu_signal[0]);
+      m_lep_pt.push_back( m_el_pt[0]);
+      m_lep_eta.push_back(m_el_eta[0]);
+      m_lep_phi.push_back(m_el_phi[0]);
+      m_lep_signal.push_back(m_el_signal[0]);
+    }else{
+      m_lep_pt.push_back( m_el_pt[0]);
+      m_lep_eta.push_back(m_el_eta[0]);
+      m_lep_phi.push_back(m_el_phi[0]);
+      m_lep_signal.push_back(m_el_signal[0]);
+      m_lep_pt.push_back( m_mu_pt[0]);
+      m_lep_eta.push_back(m_mu_eta[0]);
+      m_lep_phi.push_back(m_mu_phi[0]);
+      m_lep_signal.push_back(m_mu_signal[0]);
+    }
+  }
+
   m_mll  = m_event_quantities.getMll()/1.e3;
   m_ptll = m_event_quantities.getPtll()/1.e3;
   m_mt = m_event_quantities.getEmmaMt();
@@ -614,51 +613,57 @@ void PennSusyFrame::EwkNtupleMaker::fillNtuple( float weight)
   m_num_light_jets= m_jets.num(JET_LIGHT);
   m_num_jets= m_jets.num(JET_GOOD);
   m_num_forward_jets= m_jets.num(JET_FORWARD);
-	
+
   // fill output tree
   m_output_tree->Fill();
 }
 
-void PennSusyFrame::EwkNtupleMaker::getSortLepPts(float i1, float i2,
-												  std::vector<float> pt, 
-												  std::vector<float> eta, 
-												  std::vector<float> phi ,std::vector<bool> signal){
-	m_lep_pt.push_back( pt[i1]);
-	m_lep_eta.push_back(eta[i1]);
-	m_lep_phi.push_back(phi[i1]);
-	m_lep_signal.push_back(signal[i1]);
-	m_lep_pt.push_back( pt[i2]);
-	m_lep_eta.push_back(eta[i2]);
-	m_lep_phi.push_back(phi[i2]);
-	m_lep_signal.push_back(signal[i2]);
-
-
+void PennSusyFrame::EwkNtupleMaker::getSortLepPts( float i1
+                                                 , float i2
+                                                 , std::vector<float> pt
+                                                 , std::vector<float> eta
+                                                 , std::vector<float> phi
+                                                 , std::vector<bool> signal
+                                                 ){
+  m_lep_pt.push_back( pt[i1]);
+  m_lep_eta.push_back(eta[i1]);
+  m_lep_phi.push_back(phi[i1]);
+  m_lep_signal.push_back(signal[i1]);
+  m_lep_pt.push_back( pt[i2]);
+  m_lep_eta.push_back(eta[i2]);
+  m_lep_phi.push_back(phi[i2]);
+  m_lep_signal.push_back(signal[i2]);
 }
 
 std::vector<bool> PennSusyFrame::EwkNtupleMaker::getSelectionSignal(std::vector<PennSusyFrame::Particle*>* obj){
-	std::vector<bool> sig;
-	for (unsigned int i = 0; i < obj->size(); i++)
-		sig.push_back(obj->at(i)->getIsSignal());
-	return sig;
+  std::vector<bool> sig;
+  for (unsigned int i = 0; i < obj->size(); i++) {
+    sig.push_back(obj->at(i)->getIsSignal());
+  }
+  return sig;
 }
 
 std::vector<float> PennSusyFrame::EwkNtupleMaker::getSelectionPt(std::vector<PennSusyFrame::Particle*>* obj){
-	std::vector<float> pt;
-	for (unsigned int i = 0; i < obj->size(); i++)
-		pt.push_back(obj->at(i)->getPt());
-	return pt;
+  std::vector<float> pt;
+  for (unsigned int i = 0; i < obj->size(); i++) {
+    pt.push_back(obj->at(i)->getPt());
+  }
+  return pt;
 }
 
 std::vector<float> PennSusyFrame::EwkNtupleMaker::getSelectionEta(std::vector<PennSusyFrame::Particle*>* obj){
-	std::vector<float> eta;
-	for (unsigned int i = 0; i < obj->size(); i++)
-		eta.push_back(obj->at(i)->getEta());
-	return eta;
+  std::vector<float> eta;
+  for (unsigned int i = 0; i < obj->size(); i++) {
+    eta.push_back(obj->at(i)->getEta());
+  }
+  return eta;
 }
 
-std::vector<float> PennSusyFrame::EwkNtupleMaker::getSelectionPhi(std::vector<PennSusyFrame::Particle*>* obj){
-	std::vector<float> phi;
-	for (unsigned int i = 0; i < obj->size(); i++)
-		phi.push_back(obj->at(i)->getPhi());
-	return phi;
+std::vector<float> PennSusyFrame::EwkNtupleMaker::getSelectionPhi(std::vector<PennSusyFrame::Particle*>* obj)
+{
+  std::vector<float> phi;
+  for (unsigned int i = 0; i < obj->size(); i++) {
+    phi.push_back(obj->at(i)->getPhi());
+  }
+  return phi;
 }

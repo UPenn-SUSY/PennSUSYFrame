@@ -32,7 +32,8 @@ namespace PennSusyFrame
       void fillNtuple( float weight);
       std::string m_out_ntuple_file_name;
 
-	  bool doBaselineSkim;
+      bool m_do_baseline_skim;
+
       bool m_crit_cut_grl;
       bool m_crit_cut_incomplete_event;
       bool m_crit_cut_lar_error;
@@ -86,55 +87,55 @@ namespace PennSusyFrame
       double m_dphi_ll_max;
 
       int m_num_light_jets;
-	  int m_num_forward_jets;
-	  int m_num_jets;
-	  int m_num_el;
-	  int m_num_mu;
-	  
-	  
-	  TFile* m_output_file;
+      int m_num_forward_jets;
+      int m_num_jets;
+      int m_num_el;
+      int m_num_mu;
+
+
+      TFile* m_output_file;
       TTree* m_output_tree;
-	
-	  int m_event_number;
-	  int m_run_number;
-	  bool m_isSS;
-	  bool m_isEE;
-	  bool m_isEM;
-	  bool m_isMM;
-	  float m_weight;
-	  float m_cfweight;
-	  float m_mll;
+
+      int m_event_number;
+      int m_run_number;
+      bool m_isSS;
+      bool m_isEE;
+      bool m_isEM;
+      bool m_isMM;
+      float m_weight;
+      float m_cfweight;
+      float m_mll;
       float m_ptll;
-	  float m_mt;
-	  float m_mt2;
-	  float m_dphill;
-	  
-	  std::vector<float> m_el_pt;
-	  std::vector<float> m_el_eta;
-	  std::vector<float> m_el_phi;
-	  std::vector<bool> m_el_signal;
-	  
-	  std::vector<float> m_mu_pt;
-	  std::vector<float> m_mu_eta;
-	  std::vector<float> m_mu_phi;
-	  std::vector<bool> m_mu_signal;
-	  
-	  std::vector<float> m_lep_pt;
-	  std::vector<float> m_lep_eta;
-	  std::vector<float> m_lep_phi;
-	  std::vector<bool> m_lep_signal;
-	  
-	  std::vector<float> m_jet_pt;
-	  std::vector<float> m_jet_eta;
-	  std::vector<float> m_jet_phi;
-	  
-	  std::vector<float> m_ljet_pt;	  
-	  std::vector<float> m_ljet_eta;
-	  std::vector<float> m_ljet_phi;
+      float m_mt;
+      float m_mt2;
+      float m_dphill;
+
+      std::vector<float> m_el_pt;
+      std::vector<float> m_el_eta;
+      std::vector<float> m_el_phi;
+      std::vector<bool> m_el_signal;
+
+      std::vector<float> m_mu_pt;
+      std::vector<float> m_mu_eta;
+      std::vector<float> m_mu_phi;
+      std::vector<bool> m_mu_signal;
+
+      std::vector<float> m_lep_pt;
+      std::vector<float> m_lep_eta;
+      std::vector<float> m_lep_phi;
+      std::vector<bool> m_lep_signal;
+
+      std::vector<float> m_jet_pt;
+      std::vector<float> m_jet_eta;
+      std::vector<float> m_jet_phi;
+
+      std::vector<float> m_ljet_pt;	  
+      std::vector<float> m_ljet_eta;
+      std::vector<float> m_ljet_phi;
 
       float m_met_et;
       float m_met_rel;
-	  float m_met_phi;
+      float m_met_phi;
 
       float m_ht_signal;
 
