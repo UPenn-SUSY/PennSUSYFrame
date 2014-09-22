@@ -58,6 +58,27 @@ namespace PennSusyFrame
 
                                                    , "BMINUSL_N"
                                                    };
+  enum BMINUSL_DR_HIST_LEVELS { BMINUSL_NO_OR
+			      , BMINUSL_EE_OR
+			      , BMINUSL_EJ_OR
+			      , BMINUSL_MJ_OR
+			      , BMINUSL_JE_OR
+			      , BMINUSL_JM_OR
+			      , BMINUSL_EM_OR
+			      , BMINUSL_MM_OR
+				, BMINUSL_DR_HIST_N
+  };
+
+  const std::string BMINUSL_DR_HIST_LEVEL_STRINGS[] = { "BMINUSL_NO_OR"
+						      , "BMINUSL_EE_OR"
+						      , "BMINUSL_EJ_OR"
+						      , "BMINUSL_MJ_OR"
+						      , "BMINUSL_JE_OR"
+						      , "BMINUSL_JM_OR"
+						      , "BMINUSL_EM_OR"
+						      , "BMINUSL_MM_OR"
+						      , "BMINUSL_DR_HIST_N"
+  };
 
   // ---------------------------------------------------------------------------
   class blPair;
@@ -115,6 +136,12 @@ namespace PennSusyFrame
       void setMuPtCut(  float min, float max) { m_min_mu_pt_baseline    = min ; m_max_mu_pt_baseline    = max; }
       void setBJetPtCut(float min, float max) { m_min_b_jet_pt_baseline = min ; m_max_b_jet_pt_baseline = max; }
 
+      void filldRHistHandles(   BMINUSL_DR_HIST_LEVELS
+			      , const std::vector<PennSusyFrame::Electron*>&
+			      , const std::vector<PennSusyFrame::Muon*>&
+			      , const std::vector<PennSusyFrame::Jet*>&
+				);
+
     protected:
       virtual void constructObjects();
       virtual void getSelectedObjects();
@@ -124,6 +151,7 @@ namespace PennSusyFrame
                           , const PennSusyFrame::blPair*
                           , float weight
                           );
+
       std::string m_out_hist_file_name;
 
       PennSusyFrame::LeptonKinematicsHists m_lep_hists;
@@ -163,6 +191,7 @@ namespace PennSusyFrame
       std::vector<PennSusyFrame::WeightHists*>  m_weight_histogram_handler;
       std::vector<PennSusyFrame::ParentHists*>  m_parent_histogram_handler;
       std::vector<PennSusyFrame::BMinusLDetailedHists*> m_bminusl_detailed_histogram_handler;
+      std::vector<PennSusyFrame::DRHists*> m_bminusl_dr_histogram_handler;
 
       PennSusyFrame::blPair* m_bl_0;
       PennSusyFrame::blPair* m_bl_1;

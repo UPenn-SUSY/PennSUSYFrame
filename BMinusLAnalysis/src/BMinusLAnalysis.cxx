@@ -160,6 +160,7 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
   if (m_do_detailed_bl_hists) {
     m_bminusl_detailed_histogram_handler.reserve(BMINUSL_HIST_N);
   }
+  m_bminusl_dr_histogram_handler.reserve(BMINUSL_DR_HIST_N);
 
   for (unsigned int hist_level = 0; hist_level != BMINUSL_HIST_N; ++hist_level) {
     std::cout << "creating histograms with hist level: " << hist_level << " -- " << PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level] << "\n";
@@ -175,6 +176,10 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
     if (m_do_detailed_bl_hists) {
       m_bminusl_detailed_histogram_handler.push_back(new PennSusyFrame::BMinusLDetailedHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]));
     }
+  }
+
+  for (unsigned int dr_hist_level=0; dr_hist_level != BMINUSL_DR_HIST_N; ++ dr_hist_level) {
+    m_bminusl_dr_histogram_handler.push_back(new PennSusyFrame::DRHists(PennSusyFrame::BMINUSL_DR_HIST_LEVEL_STRINGS[dr_hist_level]));
   }
 }
 
@@ -693,6 +698,11 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
     if (m_do_detailed_bl_hists) {
       m_bminusl_detailed_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
     }
+  }
+
+  for (unsigned int dr_hist_level=0; dr_hist_level != BMINUSL_DR_HIST_N; ++dr_hist_level) {
+    TDirectory* dr_hist_dir = out_hist_file.mkdir(PennSusyFrame::BMINUSL_DR_HIST_LEVEL_STRINGS[dr_hist_level].c_str());
+    m_bminusl_dr_histogram_handler.at(dr_hist_level)->write(dr_hist_dir);
   }
 
   out_hist_file.Close();
@@ -1302,5 +1312,23 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                                       , weight
                                                                       );
     }
+  }
+}
+// -----------------------------------------------------------------------------
+void PennSusyFrame::BMinusLAnalysis::filldRHistHandles(
+						     PennSusyFrame::BMINUSL_DR_HIST_LEVELS hist_level
+						     , const std::vector<PennSusyFrame::Electron*>& electrons
+						     , const std::vector<PennSusyFrame::Muon*>& muons
+						     , const std::vector<PennSusyFrame::Jet*>& jets
+						       ) {
+  // loop through basic histogram handlers to fill
+  size_t num_hists = m_bminusl_dr_histogram_handler.at(hist_level).size();
+  for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
+    m_bminusl_dr_histogram_handler.at(hist_level).at(hist_it)->FilldR( m_event
+								     , electrons
+								     , muons
+								     , jets
+								     , m_mc_truth
+                                                         );
   }
 }
