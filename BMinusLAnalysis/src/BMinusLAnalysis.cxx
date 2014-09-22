@@ -545,22 +545,22 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   m_bl_0 = new PennSusyFrame::blPair();
   m_bl_1 = new PennSusyFrame::blPair();
 
-  // m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
-  //                                               , m_electrons.getCollection(EL_SELECTED)
-  //                                               , m_muons.getCollection(MU_SELECTED)
-  //                                               // , m_jets.getCollection(JET_B)
-  //                                               , m_jets.getCollection(JET_SELECTED)
-  //                                               , *m_bl_0
-  //                                               , *m_bl_1
-  //                                               );
-  if (m_pass_event)  m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
-                                                , m_electrons.getCollection(EL_GOOD)
-                                                , m_muons.getCollection(MU_GOOD)
+  m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
+                                                , m_electrons.getCollection(EL_SELECTED)
+                                                , m_muons.getCollection(MU_SELECTED)
                                                 // , m_jets.getCollection(JET_B)
-                                                , m_jets.getCollection(JET_GOOD)
+                                                , m_jets.getCollection(JET_SELECTED)
                                                 , *m_bl_0
                                                 , *m_bl_1
                                                 );
+  // if (m_pass_event)  m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
+  //                                               , m_electrons.getCollection(EL_GOOD)
+  //                                               , m_muons.getCollection(MU_GOOD)
+  //                                               // , m_jets.getCollection(JET_B)
+  //                                               , m_jets.getCollection(JET_GOOD)
+  //                                               , *m_bl_0
+  //                                               , *m_bl_1
+  //                                               );
   m_pass_event = (m_pass_event && m_pass_bl_pairing);
   if (m_crit_cut_bl_pairing && !m_pass_bl_pairing) return;
   if (m_pass_event) {
@@ -1732,24 +1732,24 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
 {
   size_t num_hists = m_histogram_handlers.at(hist_level).size();
   for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-    // m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
-    //                                                      , m_event_quantities
-    //                                                      , m_electrons.getCollection(EL_SELECTED)
-    //                                                      , m_muons.getCollection(MU_SELECTED)
-    //                                                      // , m_jets.getCollection(JET_SELECTED)
-    //                                                      , m_jets.getCollection(JET_B)
-    //                                                      , m_met
-    //                                                      , weight
-    //                                                      );
     m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
                                                          , m_event_quantities
-                                                         , m_electrons.getCollection(EL_GOOD)
-                                                         , m_muons.getCollection(MU_GOOD)
+                                                         , m_electrons.getCollection(EL_SELECTED)
+                                                         , m_muons.getCollection(MU_SELECTED)
                                                          // , m_jets.getCollection(JET_SELECTED)
                                                          , m_jets.getCollection(JET_B)
                                                          , m_met
                                                          , weight
                                                          );
+    // m_histogram_handlers.at(hist_level).at(hist_it)->Fill( m_event
+    //                                                      , m_event_quantities
+    //                                                      , m_electrons.getCollection(EL_GOOD)
+    //                                                      , m_muons.getCollection(MU_GOOD)
+    //                                                      // , m_jets.getCollection(JET_SELECTED)
+    //                                                      , m_jets.getCollection(JET_B)
+    //                                                      , m_met
+    //                                                      , weight
+    //                                                      );
   }
 
   if (m_pass_bl_pairing) {
