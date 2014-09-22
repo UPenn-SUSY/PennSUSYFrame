@@ -725,19 +725,19 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     
   }
 
-//  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-//  // check for SS leptons
-//  // TODO validate SS leptons requirement
-//  bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
-//  m_pass_event = (m_pass_event && pass_ss);
-//  if (m_crit_cut_ss && !pass_ss) return;
-//  if (m_pass_event) {
-//    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_SS);
-//    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_SS, m_event_weight);
-//
-//    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_SS);
-//    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_SS, m_event_weight);
-//  }
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // check for SS leptons
+  // TODO validate SS leptons requirement
+  bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
+  m_pass_event = (m_pass_event && pass_ss);
+  if (m_crit_cut_ss && !pass_ss) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_SS);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_SS, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_SS);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_SS, m_event_weight);
+  }
 // // fill histograms for ZVETO hist level
 //  if (m_pass_event) {
 //    fillHistHandles( PennSusyFrame::EWK_HIST_ZVETO
