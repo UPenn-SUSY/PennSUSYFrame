@@ -21,6 +21,33 @@ def main():
                                           , input_file_list = [ "%s/BMinusL.dummy_hists.root" % hist_dir
                                                               ]
                                           )
+
+    # ec_data = hh.Container.EntryContainer( label = 'Data (13 fb^{-1} scaled to 21 fb^{-1})'
+    ec_data = hh.Container.EntryContainer( label = 'Data (21 fb^{-1})'
+                                         , fill_color = ROOT.kBlack
+                                         , input_file_list = [ '%s/BMinusL.periodA_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodB_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodC_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodD_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodE_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodG_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodH_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodI_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodJ_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodL_egamma.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodA_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodB_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodC_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodD_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodE_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodG_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodH_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodI_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodJ_muon.hists.root' % hist_dir
+                                                             , '%s/BMinusL.periodL_muon.hists.root' % hist_dir
+                                                             ]
+                                         )
+
     # ec_ttbar = hh.Container.EntryContainer(  label = 'ttbar'
     #                                       # , fill_color = ROOT.kAzure+8
     #                                       , fill_color = ROOT.kGreen+2
@@ -39,6 +66,17 @@ def main():
                                           , input_file_list = [ "%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.hists.root" % hist_dir
                                                               ]
                                           )
+
+    ec_ttv = hh.Container.EntryContainer( label = 'ttV'
+                                        , fill_color = ROOT.kAzure+8
+                                        , input_file_list = [ '%s/BMinusL.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj.hists.root'  % hist_dir
+                                                            , '%s/BMinusL.119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj.hists.root'  % hist_dir
+                                                            , '%s/BMinusL.119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW.hists.root' % hist_dir
+                                                            ]
+                                        )
+
 
     # ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
     #                                     , fill_color = ROOT.kRed+1
@@ -73,26 +111,84 @@ def main():
     #                                                         , "%s/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root" % hist_dir
     #                                                         ]
     #                                     )
-    ec_Zbb = hh.Container.EntryContainer( label = 'Zbb'
+    ec_Zbb = hh.Container.EntryContainer( label = 'Z/#gamma^{*}'
                                         , fill_color = ROOT.kRed+1
-                                        , input_file_list = [ "%s/BMinusL.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.hists.root" % hist_dir
-                                                            , "%s/BMinusL.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.hists.root" % hist_dir
+                                        , input_file_list = [
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                              '%s/BMinusL.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.hists.root'                % hist_dir
+                                                            , '%s/BMinusL.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.hists.root'            % hist_dir
+                                                            , '%s/BMinusL.167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter.hists.root'          % hist_dir
+                                                            , '%s/BMinusL.167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter.hists.root'           % hist_dir
+                                                            , '%s/BMinusL.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.hists.root'          % hist_dir
+                                                            , '%s/BMinusL.167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter.hists.root'              % hist_dir
+
+                                                            , '%s/BMinusL.167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter.hists.root'              % hist_dir
+                                                            , '%s/BMinusL.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.hists.root'          % hist_dir
+                                                            , '%s/BMinusL.167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter.hists.root'         % hist_dir
+                                                            , '%s/BMinusL.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.hists.root'        % hist_dir
+                                                            , '%s/BMinusL.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.hists.root'        % hist_dir
+                                                            , '%s/BMinusL.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.hists.root'            % hist_dir
+
+                                                            # , '%s/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.hists.root'            % hist_dir
+                                                            # , '%s/BMinusL.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.hists.root'        % hist_dir
+                                                            # , '%s/BMinusL.167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter.hists.root'       % hist_dir
+                                                            # , '%s/BMinusL.167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter.hists.root'      % hist_dir
+                                                            # , '%s/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.hists.root'      % hist_dir
+                                                            # , '%s/BMinusL.167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter.hists.root'          % hist_dir
+
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                            , '%s/BMinusL.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.hists.root'           % hist_dir
+                                                            , '%s/BMinusL.180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto.hists.root'      % hist_dir
+                                                            , '%s/BMinusL.167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto.hists.root'         % hist_dir
+
+                                                            , '%s/BMinusL.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.hists.root'         % hist_dir
+                                                            , '%s/BMinusL.180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto.hists.root'    % hist_dir
+                                                            , '%s/BMinusL.167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto.hists.root'       % hist_dir
+
+                                                            # , '%s/BMinusL.167756.Sherpa_CT10_ZtautauMassiveCBPt0_CFilterBVeto.hists.root'       % hist_dir
+                                                            # , '%s/BMinusL.180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto.hists.root'   % hist_dir
+                                                            # , '%s/BMinusL.167804.Sherpa_CT10_ZtautauMassiveCBPt70_140_CFilterBVeto.hists.root'  % hist_dir
+                                                            # , '%s/BMinusL.167816.Sherpa_CT10_ZtautauMassiveCBPt140_280_CFilterBVeto.hists.root' % hist_dir
+                                                            # , '%s/BMinusL.167828.Sherpa_CT10_ZtautauMassiveCBPt280_500_CFilterBVeto.hists.root' % hist_dir
+                                                            # , '%s/BMinusL.167840.Sherpa_CT10_ZtautauMassiveCBPt500_CFilterBVeto.hists.root'     % hist_dir
+
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                            , '%s/BMinusL.167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto.hists.root'             % hist_dir
+                                                            , '%s/BMinusL.180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto.hists.root'         % hist_dir
+                                                            , '%s/BMinusL.167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto.hists.root'        % hist_dir
+                                                            , '%s/BMinusL.167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.hists.root'           % hist_dir
+
+                                                            , '%s/BMinusL.167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto.hists.root'           % hist_dir
+                                                            , '%s/BMinusL.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto.hists.root'      % hist_dir
+                                                            , '%s/BMinusL.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto.hists.root'         % hist_dir
+
+                                                            # , '%s/BMinusL.167757.Sherpa_CT10_ZtautauMassiveCBPt0_CVetoBVeto.hists.root'         % hist_dir
+                                                            # , '%s/BMinusL.180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto.hists.root'     % hist_dir
+                                                            # , '%s/BMinusL.167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto.hists.root'    % hist_dir
+                                                            # , '%s/BMinusL.167817.Sherpa_CT10_ZtautauMassiveCBPt140_280_CVetoBVeto.hists.root'   % hist_dir
+                                                            # , '%s/BMinusL.167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto.hists.root'   % hist_dir
+                                                            # , '%s/BMinusL.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.hists.root'       % hist_dir
+
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                            , '%s/BMinusL.173041.Sherpa_CT10_DYeeM08to15.hists.root'                            % hist_dir
+                                                            , '%s/BMinusL.173042.Sherpa_CT10_DYeeM15to40.hists.root'                            % hist_dir
+
+                                                            , '%s/BMinusL.173043.Sherpa_CT10_DYmumuM08to15.hists.root'                          % hist_dir
+                                                            , '%s/BMinusL.173044.Sherpa_CT10_DYmumuM15to40.hists.root'                          % hist_dir
+
+                                                            , '%s/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.hists.root'                        % hist_dir
+                                                            , '%s/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.hists.root'                        % hist_dir
                                                             ]
                                         )
     # ec_single_top = hh.Container.EntryContainer( label = 'Single top'
@@ -102,9 +198,25 @@ def main():
     #                                            )
     ec_single_top = hh.Container.EntryContainer( label = 'Single top'
                                                , fill_color = ROOT.kGreen-1
-                                               , input_file_list = [ "%s/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.hists.root" % hist_dir
+                                               , input_file_list = [ "%s/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.hists.root"    % hist_dir
+                                                                   , "%s/BMinusL.110119.PowhegPythia_P2011C_st_schan_lep.hists.root"             % hist_dir
+                                                                   , "%s/BMinusL.110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l.hists.root" % hist_dir
                                                                    ]
                                                )
+
+    ec_higgs = hh.Container.EntryContainer( label = 'higgs'
+                                          , fill_color = ROOT.kOrange-5
+                                          , input_file_list = [ '%s/BMinusL.160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu.hists.root'        % hist_dir
+                                                              , '%s/BMinusL.160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu.hists.root'       % hist_dir
+                                                              , '%s/BMinusL.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.hists.root'            % hist_dir
+                                                              , '%s/BMinusL.160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu.hists.root'            % hist_dir
+                                                              , '%s/BMinusL.161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5.hists.root'  % hist_dir
+                                                              , '%s/BMinusL.161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5.hists.root' % hist_dir
+                                                              , '%s/BMinusL.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.hists.root'              % hist_dir
+                                                              , '%s/BMinusL.161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep.hists.root'              % hist_dir
+                                                              , '%s/BMinusL.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.hists.root'        % hist_dir
+                                                              ]
+                                          )
 
     ec_bl_100 = hh.Container.EntryContainer( label = 'B-L stop (100 GeV)'
                                            , line_color = ROOT.kMagenta
@@ -177,18 +289,135 @@ def main():
                                                                ]
                                            )
 
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    ec_Zbpt0_40 = hh.Container.EntryContainer( label = 'Zbpt0_40'
+                                             , fill_color = ROOT.kRed+1
+                                             , input_file_list = [
+                                                             '%s/BMinusL.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.hists.root'                % hist_dir
+                                                           , '%s/BMinusL.167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter.hists.root'              % hist_dir
+                                                                 ]
+                                             )
+    ec_Zbpt40_70 = hh.Container.EntryContainer( label = 'Zbpt40_70'
+                                              , fill_color = ROOT.kRed+2
+                                              , input_file_list = [
+                                                                    '%s/BMinusL.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.hists.root'            % hist_dir
+                                                                  , '%s/BMinusL.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.hists.root'          % hist_dir
+                                                                  ]
+                                              )
+    ec_Zbpt70_140 = hh.Container.EntryContainer( label = 'Zbpt70_140'
+                                               , fill_color = ROOT.kRed+3
+                                               , input_file_list = [
+                                                                     '%s/BMinusL.167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter.hists.root'           % hist_dir
+                                                                   , '%s/BMinusL.167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter.hists.root'         % hist_dir
+                                                                   ]
+                                               )
+    ec_Zbpt140_280 = hh.Container.EntryContainer( label = 'Zbpt140_280'
+                                                , fill_color = ROOT.kRed+4
+                                                , input_file_list = [
+                                                                      '%s/BMinusL.167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter.hists.root'          % hist_dir
+                                                                    , '%s/BMinusL.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.hists.root'        % hist_dir
+                                                                    ]
+                                                )
+    ec_Zbpt280_500 = hh.Container.EntryContainer( label = 'Zbpt280_500'
+                                                , fill_color = ROOT.kViolet+1
+                                                , input_file_list = [
+                                                                      '%s/BMinusL.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.hists.root'          % hist_dir
+                                                                    , '%s/BMinusL.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.hists.root'        % hist_dir
+                                                                    ]
+                                                )
+    ec_Zbpt500 = hh.Container.EntryContainer( label = 'Zbpt500'
+                                            , fill_color = ROOT.kViolet+2
+                                            , input_file_list = [
+                                                                  '%s/BMinusL.167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter.hists.root'              % hist_dir
+                                                                , '%s/BMinusL.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.hists.root'            % hist_dir
+                                                                ]
+                                            )
+    ec_Zc = hh.Container.EntryContainer( label = 'Zc'
+                                       , fill_color = ROOT.kViolet+3
+                                       , input_file_list = [
+                                                            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                              '%s/BMinusL.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.hists.root'           % hist_dir
+                                                            , '%s/BMinusL.180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto.hists.root'       % hist_dir
+                                                            , '%s/BMinusL.167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto.hists.root'      % hist_dir
+                                                            , '%s/BMinusL.167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto.hists.root'         % hist_dir
+
+                                                            , '%s/BMinusL.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.hists.root'         % hist_dir
+                                                            , '%s/BMinusL.180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto.hists.root'     % hist_dir
+                                                            , '%s/BMinusL.167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto.hists.root'    % hist_dir
+                                                            , '%s/BMinusL.167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto.hists.root'   % hist_dir
+                                                            , '%s/BMinusL.167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto.hists.root'       % hist_dir
+                                                            ]
+                                            )
+    ec_Zl = hh.Container.EntryContainer( label = 'Zl'
+                                       , fill_color = ROOT.kViolet+4
+                                       , input_file_list = [
+                                                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                             '%s/BMinusL.167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto.hists.root'             % hist_dir
+                                                           , '%s/BMinusL.180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto.hists.root'         % hist_dir
+                                                           , '%s/BMinusL.167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto.hists.root'        % hist_dir
+                                                           , '%s/BMinusL.167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto.hists.root'       % hist_dir
+                                                           , '%s/BMinusL.167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto.hists.root'       % hist_dir
+                                                           , '%s/BMinusL.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.hists.root'           % hist_dir
+
+                                                           , '%s/BMinusL.167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto.hists.root'           % hist_dir
+                                                           , '%s/BMinusL.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.hists.root'       % hist_dir
+                                                           , '%s/BMinusL.167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto.hists.root'      % hist_dir
+                                                           , '%s/BMinusL.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.hists.root'     % hist_dir
+                                                           , '%s/BMinusL.167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto.hists.root'     % hist_dir
+                                                           , '%s/BMinusL.167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto.hists.root'         % hist_dir
+                                                           ]
+                                       )
+    ec_DY = hh.Container.EntryContainer( label = 'DY'
+                                       , fill_color = ROOT.kOrange
+                                       , input_file_list = [
+                                                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                             '%s/BMinusL.173041.Sherpa_CT10_DYeeM08to15.hists.root'                            % hist_dir
+                                                           , '%s/BMinusL.173042.Sherpa_CT10_DYeeM15to40.hists.root'                            % hist_dir
+
+                                                           , '%s/BMinusL.173043.Sherpa_CT10_DYmumuM08to15.hists.root'                          % hist_dir
+                                                           , '%s/BMinusL.173044.Sherpa_CT10_DYmumuM15to40.hists.root'                          % hist_dir
+
+                                                           , '%s/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.hists.root'                        % hist_dir
+                                                           , '%s/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.hists.root'                        % hist_dir
+                                                           ]
+                                       )
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Collect EntryContainer into InputContainers
-    ic_numerator = hh.Container.InputContainer( name = 'dummy'
-                                              , entry_list = [ec_dummy]
-                                              , lumi_target = 0.
+    # ic_numerator = hh.Container.InputContainer( name = 'dummy'
+    ic_numerator = hh.Container.InputContainer( name = 'Data'
+                                              , entry_list = [ec_data]
+                                              , lumi_target = 1
+                                              # , lumi_target = 0
                                               )
-    ic_denominator = hh.Container.InputContainer( name = 'Background'
-                                                , entry_list = [ec_ttbar, ec_Zbb, ec_single_top]
+    # ic_denominator = hh.Container.InputContainer( name = 'Background'
+    ic_denominator = hh.Container.InputContainer( name = 'Bkg'
+                                                , entry_list = [ ec_ttbar
+                                                               , ec_single_top
+                                                               , ec_Zbb
+                                                               # , ec_Zbpt0_40
+                                                               # , ec_Zbpt40_70
+                                                               # , ec_Zbpt70_140
+                                                               # , ec_Zbpt140_280
+                                                               # , ec_Zbpt280_500
+                                                               # , ec_Zbpt500
+                                                               # , ec_Zc
+                                                               # , ec_Zl
+                                                               # , ec_DY
+                                                               , ec_ttv
+                                                               , ec_higgs
+                                                               ]
                                                 , lumi_target = 21000
                                                 )
     ic_signal = hh.Container.InputContainer( name = 'Signal'
-                                           , entry_list = [ec_bl_500, ec_bl_800, ec_bl_1000]
+                                           , entry_list = [ ec_bl_500
+                                                          , ec_bl_800
+                                                          , ec_bl_1000
+                                                          ]
                                            , lumi_target = 21000
                                            )
 
@@ -204,18 +433,3 @@ def main():
 # ==============================================================================
 if __name__ == '__main__':
     main()
-
-
-
-
-# BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.hists.root
-# BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.hists.root
-# BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.hists.root
-# BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.hists.root
-# BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.hists.root
-# BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.hists.root
-# BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root
-# BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.hists.root
-# BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.hists.root
-# BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.hists.root
-# BMinusL.dummy_hists.root

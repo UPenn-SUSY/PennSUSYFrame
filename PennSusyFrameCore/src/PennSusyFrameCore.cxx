@@ -21,7 +21,10 @@
 PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry(0)
                                                                  , m_max_num_events(-1)
                                                                  , m_is_data(true)
+                                                                 , m_is_egamma_stream(true)
+                                                                 , m_is_blind(true)
                                                                  , m_is_af2(false)
+                                                                 , m_is_mc12b(true)
                                                                  , m_event_weight(1.)
                                                                  , m_x_sec(1.)
                                                                  , m_k_factor(1.)
@@ -29,6 +32,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_xsec_weight(1.)
                                                                  , m_num_entries(-1)
                                                                  , m_num_generated_events(-1)
+                                                                 , m_sum_mc_event_weights(-1)
                                                                  , m_fancy_progress_bar(true)
                                                                  , m_process_label("")
                                                                  , m_mv1_cut_value(0.3511)
@@ -113,8 +117,12 @@ void PennSusyFrame::PennSusyFrameCore::prepareTools()
   m_electrons.init(m_is_data, m_is_af2);
   m_muons.init(m_is_data);
   m_taus.init(m_is_data, m_is_af2);
-  m_jets.init(m_is_data, m_is_af2);
+  m_jets.init(m_is_data, m_is_af2, m_is_mc12b);
 
+  if (m_is_af2) m_egamma_sf_tool.setAf2();
+  else          m_egamma_sf_tool.setFullSim();
+
+  m_egamma_sf_tool.init();
   m_b_tag_sf_tool.init(m_mv1_cut_value);
 }
 
@@ -240,14 +248,11 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     std::cout << "Chain is empty - cannot loop over events :-(\n";
     return;
   }
-  // if (fChain == 0) {
-  //   std::cout << "Chain is empty - cannot loop over events :-(\n";
-  //   return;
-  // }
 
   // run beginRun() function to prepare tools
   beginRun();
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // find number of total events to looper over
   // TODO clean up this code!!!
   Long64_t total_nentries = m_num_entries;
@@ -255,6 +260,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
     total_nentries = m_d3pd_reader->getNumEvents();
   }
   Long64_t nentries = total_nentries;
+
   // if we set the max # events, require we don't go over this number
   if (m_max_num_events > 0 && m_max_num_events < nentries) {
     nentries = m_max_num_events;
@@ -265,6 +271,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
   }
   std::cout << "Processing " << nentries << " events\n";
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // set up progress bar
   ProgressBar progress_bar(nentries, 100, m_fancy_progress_bar);
   if (m_process_label != "")
@@ -305,14 +312,21 @@ void PennSusyFrame::PennSusyFrameCore::beginRun()
       m_num_generated_events = m_d3pd_reader->getNumEvents();
       std::cout << m_num_generated_events << "\n";
     }
+    if (m_sum_mc_event_weights <= 0) {
+      std::cout << "setting sum of mc event weights to the number of generated events: ";
+      m_sum_mc_event_weights = m_num_generated_events;
+      std::cout << m_sum_mc_event_weights << "\n";
+    }
 
     // m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_d3pd_reader->getNumEvents();
-    m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_num_generated_events;
-    std::cout << "\n\tx sec: " << m_x_sec
-              << "\n\tk factor: " << m_k_factor
-              << "\n\tfilter eff: " << m_filter_eff
-              << "\n\tnum_gen events: " << m_num_generated_events
-              << "\n\t\tx section weight: " << m_xsec_weight
+    // m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_num_generated_events;
+    m_xsec_weight = m_x_sec * m_k_factor * m_filter_eff / m_sum_mc_event_weights;
+    std::cout << "\n\tx sec: "                   << m_x_sec
+              << "\n\tk factor: "                << m_k_factor
+              << "\n\tfilter eff: "              << m_filter_eff
+              << "\n\tnum gen events: "          << m_num_generated_events
+              << "\n\tsum of mc event weights: " << m_sum_mc_event_weights
+              << "\n\t\tx section weight: "      << m_xsec_weight
               << "\n";
   }
 }
@@ -341,6 +355,9 @@ void PennSusyFrame::PennSusyFrameCore::clearObjects()
   m_muons.clear();
   m_taus.clear();
   m_jets.clear();
+
+  m_egamma_sf_tool.clear();
+  m_b_tag_sf_tool.clear();
 }
 
 // -----------------------------------------------------------------------------
@@ -488,7 +505,7 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
   m_muons.setCollection( MU_COSMIC
                        , PennSusyFrame::selectObjects( m_muon_selectors.at(MU_COSMIC)
                                                      // , m_muons.getCollection(MU_GOOD)
-                                                     , m_muons.getCollection(MU_SELECTED)
+                                                     , m_muons.getCollection(MU_GOOD)
                                                      )
                        );
 
@@ -650,32 +667,50 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set lepton SF
-    double lepton_sf = 1.;
+    double lepton_sf             = 1.;
+    double lepton_sf_egamma_down = 1.;
+    double lepton_sf_egamma_up   = 1.;
+    double lepton_sf_muon_down   = 1.;
+    double lepton_sf_muon_up     = 1.;
 
     // size_t el_term = m_electrons.num(EL_GOOD);
     // const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_GOOD);
     size_t el_term = m_electrons.num(EL_SELECTED);
     const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_SELECTED);
     for (size_t el_it = 0; el_it != el_term; ++el_it) {
-      lepton_sf *= m_egamma_sf_tool.getSF(m_event, el_list->at(el_it));
-    }
+      double this_lep_sf        = m_egamma_sf_tool.getSF(    m_event, el_list->at(el_it));
+      double this_lep_sf_uncert = m_egamma_sf_tool.getUncert(m_event, el_list->at(el_it));
 
+      lepton_sf             *= this_lep_sf;
+      lepton_sf_egamma_down *= (this_lep_sf - this_lep_sf_uncert);
+      lepton_sf_egamma_up   *= (this_lep_sf + this_lep_sf_uncert);
+      lepton_sf_muon_down   *= this_lep_sf;
+      lepton_sf_muon_up     *= this_lep_sf;
+    }
     // size_t mu_term = m_muons.num(MU_GOOD);
     // const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_GOOD);
     size_t mu_term = m_muons.num(MU_SELECTED);
     const std::vector<PennSusyFrame::Muon*>* mu_list = m_muons.getCollection(MU_SELECTED);
     for (size_t mu_it = 0; mu_it != mu_term; ++mu_it) {
-      lepton_sf *= m_muon_sf_tool.getSF(mu_list->at(mu_it));
+      double this_lep_sf        = m_muon_sf_tool.getSF(mu_list->at(mu_it));
+      double this_lep_sf_uncert = m_muon_sf_tool.getUncert(mu_list->at(mu_it));
+
+      lepton_sf             *= this_lep_sf;
+      lepton_sf_egamma_down *= this_lep_sf;
+      lepton_sf_egamma_up   *= this_lep_sf;
+      lepton_sf_muon_down   *= (this_lep_sf - this_lep_sf_uncert);
+      lepton_sf_muon_up     *= (this_lep_sf + this_lep_sf_uncert);
     }
 
-    m_event_quantities.setLeptonSF(lepton_sf);
+    m_event_quantities.setLeptonSF(          lepton_sf            );
+    m_event_quantities.setLeptonSFEgammaUp(  lepton_sf_egamma_up  );
+    m_event_quantities.setLeptonSFEgammaDown(lepton_sf_egamma_down);
+    m_event_quantities.setLeptonSFMuonUp(    lepton_sf_muon_up    );
+    m_event_quantities.setLeptonSFMuonDown(  lepton_sf_muon_down  );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set trigger weight
     m_event_quantities.setTriggerWeight(m_trigger_weight_tool.getWeight( m_event.getFlavorChannel()
-                                                                       // , m_electrons.getCollection(EL_GOOD)
-                                                                       // , m_muons.getCollection(MU_GOOD)
-                                                                       // , m_jets.getCollection(JET_GOOD)
                                                                        , m_electrons.getCollection(EL_SELECTED)
                                                                        , m_muons.getCollection(MU_SELECTED)
                                                                        , m_jets.getCollection(JET_SELECTED)
@@ -686,8 +721,9 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    // m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_GOOD)));
-    m_event_quantities.setBTagSF(m_b_tag_sf_tool.getSF(m_jets.getCollection(JET_SELECTED)));
+    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_SELECTED), m_mc_truth));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_truth_match_tool.prep(m_mc_truth);
@@ -695,8 +731,6 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // check for prompt leptons
     m_event.setPromptLeptons( m_truth_match_tool.isRealLeptonEvent( m_event.getFlavorChannel()
-                                                                  // , m_electrons.getCollection(EL_GOOD)
-                                                                  // , m_muons.getCollection(MU_GOOD)
                                                                   , m_electrons.getCollection(EL_SELECTED)
                                                                   , m_muons.getCollection(MU_SELECTED)
                                                                   , m_mc_truth
@@ -706,14 +740,17 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // get the truth sign channel of the two leptons
     m_event.setTruthSignChannel( m_truth_match_tool.getTruthSign( m_event.getFlavorChannel()
-                                                                // , m_electrons.getCollection(EL_GOOD)
-                                                                // , m_muons.getCollection(MU_GOOD)
                                                                 , m_electrons.getCollection(EL_SELECTED)
                                                                 , m_muons.getCollection(MU_SELECTED)
                                                                 , m_mc_truth
                                                                 )
                                );
   }
+  else //data
+    {
+
+      m_event.setPromptLeptons(true);
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -736,11 +773,11 @@ void PennSusyFrame::PennSusyFrameCore::getSelectedObjects()
 // -----------------------------------------------------------------------------
 FLAVOR_CHANNEL PennSusyFrame::PennSusyFrameCore::findFlavorChannel(bool exclusive_flavor_channel)
 {
-  // size_t num_el = m_electrons.num(EL_GOOD);
-  // size_t num_mu = m_muons.num(MU_GOOD);
-  size_t num_el = m_electrons.num(EL_SELECTED);
-  size_t num_mu = m_muons.num(MU_SELECTED);
-
+  size_t num_el = m_electrons.num(EL_GOOD);
+  size_t num_mu = m_muons.num(MU_GOOD);
+//  size_t num_el = m_electrons.num(EL_SELECTED);
+//  size_t num_mu = m_muons.num(MU_SELECTED);
+//
   if (num_el + num_mu < 2) return FLAVOR_NONE;
 
   if (!exclusive_flavor_channel && num_el+num_mu > 2) {
@@ -815,5 +852,9 @@ void PennSusyFrame::PennSusyFrameCore::writeTnt()
     std::cout << m_num_generated_events << "\n";
   }
 
-  m_d3pd_reader->FinalizeOutput(m_num_generated_events);
+  std::cout << "writeTnt():"
+            << "\n\t-- total num events:    " << m_num_generated_events
+            << "\n\t-- sum mc event weight: " << m_sum_mc_event_weights
+            << "\n";
+  m_d3pd_reader->FinalizeOutput(m_num_generated_events, m_sum_mc_event_weights);
 }

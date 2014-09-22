@@ -42,6 +42,15 @@ def getNumEventsFromFile(root_file):
     return tne
 
 # ------------------------------------------------------------------------------
+def getSumEventWeightsFromFile(root_file):
+    print 'getting sum of mc event weights from file: %s' % root_file
+    f = ROOT.TFile(root_file)
+    sew_obj = f.Get('SumMCEventWeights')
+    sew = sew_obj[0] if sew_obj else 0.
+    f.Close()
+    return sew
+
+# ------------------------------------------------------------------------------
 def copyDir(source_file, target_file, dir_name):
     # mkdir in target file
     target_file.cd()
@@ -59,7 +68,11 @@ def copyDir(source_file, target_file, dir_name):
         obj.Write()
 
 # ------------------------------------------------------------------------------
-def makeNewCleanFile(messy_file_name, new_file_name, total_num_events):
+def makeNewCleanFile( messy_file_name
+                    , new_file_name
+                    , total_num_events
+                    , total_sum_event_weights
+                    ):
     # get messy file
     messy_file = ROOT.TFile(messy_file_name)
     messy_file.ReadAll()
@@ -72,6 +85,7 @@ def makeNewCleanFile(messy_file_name, new_file_name, total_num_events):
         # skip TotalNumEvents elements -- we will write this by hand
         element_name = element.GetName()
         if element_name == "TotalNumEvents": continue
+        if element_name == "SumMCEventWeights": continue
         print 'element name: ', element_name
 
         # else this is a directory -- copy it!
@@ -82,6 +96,10 @@ def makeNewCleanFile(messy_file_name, new_file_name, total_num_events):
     total_num_events_object = ROOT.TVectorF(1)
     total_num_events_object[0] = total_num_events
     total_num_events_object.Write('TotalNumEvents')
+
+    total_sum_event_weights_object = ROOT.TVectorF(1)
+    total_sum_event_weights_object[0] = total_sum_event_weights
+    total_sum_event_weights_object.Write('SumMCEventWeights')
 
     # clean up
     new_file.Close()
@@ -109,15 +127,21 @@ def mergeFilesWithDirs(dir, this_tag):
     command_list.extend(this_file_list)
     subprocess.call(command_list)
 
-    # get the total number of events from list of files
+    # get the total number of events and sum event weights from list of files
     total_num_events = 0
+    total_sum_event_weights = 0
     for tfl in this_file_list:
         total_num_events += getNumEventsFromFile(tfl)
+        total_sum_event_weights += getSumEventWeightsFromFile(tfl)
         print '  ', total_num_events
+        print '  ', total_sum_event_weights
 
     # make a new clean file with one TotalNumEvents entry
-    makeNewCleanFile(messy_file_name, new_file_name, total_num_events)
-
+    makeNewCleanFile( messy_file_name
+                    , new_file_name
+                    , total_num_events
+                    , total_sum_event_weights
+                    )
 
 # ------------------------------------------------------------------------------
 def haddFilesMatchingTag(dir, list_of_tags, flat_files = False):

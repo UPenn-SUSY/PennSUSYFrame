@@ -1,0 +1,39 @@
+user name: brett_part1
+  max size: 200
+  allocated size: 199.981922545 
+  number samples: 34 
+
+    user.bjackson.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.tnt_106_Tnt.root/
+    user.bjackson.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.tnt_106_Tnt.root/
+    user.bjackson.167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto.tnt_106_Tnt.root/
+    user.bjackson.167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.tnt_106_Tnt.root/
+    user.bjackson.167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto.tnt_106_Tnt.root/
+    user.bjackson.167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.167828.Sherpa_CT10_ZtautauMassiveCBPt280_500_CFilterBVeto.tnt_106_Tnt.root/
+    user.bjackson.167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter.tnt_106_Tnt.root/
+    user.bjackson.167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto.tnt_106_Tnt.root/
+    user.bjackson.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.tnt_106_Tnt.root/
+    user.bjackson.167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter.tnt_106_Tnt.root/
+    user.bjackson.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt_106_Tnt.root/
+    user.bjackson.173041.Sherpa_CT10_DYeeM08to15.tnt_106_Tnt.root/
+    user.bjackson.173042.Sherpa_CT10_DYeeM15to40.tnt_106_Tnt.root/
+    user.bjackson.173043.Sherpa_CT10_DYmumuM08to15.tnt_106_Tnt.root/
+    user.bjackson.173045.Sherpa_CT10_DYtautauM08to15.tnt_106_Tnt.root/
+    user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root/
+    user.bjackson.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.tnt_106_Tnt.root/
+    user.bjackson.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.tnt_106_Tnt.root/
+    user.bjackson.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.tnt_106_Tnt.root/
+    user.bjackson.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.tnt_106_Tnt.root/
+    user.bjackson.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.tnt_106_Tnt.root/
+    user.bjackson.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.tnt_106_Tnt.root/
+    user.bjackson.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.tnt_106_Tnt.root/
+    user.bjackson.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.tnt_106_Tnt.root/
+    user.bjackson.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.tnt_106_Tnt.root/
+    user.bjackson.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.tnt_106_Tnt.root/
+    user.bjackson.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.tnt_106_Tnt.root/
+    user.bjackson.180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto.tnt_106_Tnt.root/
+    user.bjackson.180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto.tnt_106_Tnt.root/
+    user.bjackson.180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto.tnt_106_Tnt.root/

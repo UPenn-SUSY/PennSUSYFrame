@@ -122,46 +122,65 @@ namespace PennSusyFrame
       void init();
 
       // TODO move accessors to cxx file
-      void setMll(double val)           { m_mll = val; }
-      void setPtll(double val)          { m_ptll = val; }
-      void setMt2(double val)           { m_mt2 = val; }
-      void setEmmaMt(double val)        { m_emma_mt = val; }
-      void setDphill(double val)        { m_dphi_ll = val; }
-      void setHtAll(double val)         { m_ht_all = val; }
-      void setHtBaseline(double val)    { m_ht_baseline = val; }
-      void setHtGood(double val)        { m_ht_good = val; }
-      void setHtSignal(double val)      { m_ht_signal = val; }
-      void setMcEventWeight(double val) { m_mc_event_weight = val; }
-      void setPileUpSF(double val)      { m_pile_up_sf = val; }
-      void setLeptonSF(double val)      { m_lepton_sf = val; }
-      void setTriggerWeight(double val) { m_trigger_weight = val; }
-      void setBTagSF(double val)        { m_b_tag_sf = val; }
-      void setCFWeight(double val)      { m_cf_weight = val; }
-      void setFakeWeight(double val)    { m_fake_weight = val; }
+      void setMll(                double val) { m_mll                   = val; }
+      void setMbb(                double val) { m_mbb                   = val; }
+      void setPtll(               double val) { m_ptll                  = val; }
+      void setPtbb(               double val) { m_ptbb                  = val; }
+      void setMt2(                double val) { m_mt2                   = val; }
+      void setEmmaMt(             double val) { m_emma_mt               = val; }
+      void setDphill(             double val) { m_dphi_ll               = val; }
+      void setHtAll(              double val) { m_ht_all                = val; }
+      void setHtBaseline(         double val) { m_ht_baseline           = val; }
+      void setHtGood(             double val) { m_ht_good               = val; }
+      void setHtSignal(           double val) { m_ht_signal             = val; }
+      void setMcEventWeight(      double val) { m_mc_event_weight       = val; }
+      void setPileUpSF(           double val) { m_pile_up_sf            = val; }
+      void setLeptonSF(           double val) { m_lepton_sf             = val; }
+      void setLeptonSFEgammaUp(   double val) { m_lepton_sf_egamma_up   = val; }
+      void setLeptonSFEgammaDown( double val) { m_lepton_sf_egamma_down = val; }
+      void setLeptonSFMuonUp(     double val) { m_lepton_sf_muon_up     = val; }
+      void setLeptonSFMuonDown(   double val) { m_lepton_sf_muon_down   = val; }
+      void setTriggerWeight(      double val) { m_trigger_weight        = val; }
+      void setBTagSF(             double val) { m_b_tag_sf              = val; }
+      void setBTagSFUp(           double val) { m_b_tag_sf_up           = val; }
+      void setBTagSFDown(         double val) { m_b_tag_sf_down         = val; }
+      void setCFWeight(           double val) { m_cf_weight             = val; }
+      void setFakeWeight(         double val) { m_fake_weight           = val; }
+
 
       // TODO move accessors to cxx file
-      double getMll()           const { return m_mll; }
-      double getPtll()          const { return m_ptll; }
-      double getMt2()           const { return m_mt2; }
-      double getEmmaMt()        const { return m_emma_mt; }
-      double getDphill()        const { return m_dphi_ll; }
-      double getHtAll()         const { return m_ht_all; }
-      double getHtBaseline()    const { return m_ht_baseline; }
-      double getHtGood()        const { return m_ht_good; }
-      double getHtSignal()      const { return m_ht_signal; }
-      double getMcEventWeight() const { return m_mc_event_weight; }
-      double getPileUpSF()      const { return m_pile_up_sf; }
-      double getLeptonSF()      const { return m_lepton_sf; }
-      double getTriggerWeight() const { return m_trigger_weight; }
-      double getBTagSF()        const { return m_b_tag_sf; }
-      double getCFWeight()      const { return m_cf_weight; }
-      double getFakeWeight()    const { return m_fake_weight; }
+      double getMll()                const { return m_mll;                   }
+      double getMbb()                const { return m_mbb;                   }
+      double getPtll()               const { return m_ptll;                  }
+      double getPtbb()               const { return m_ptbb;                  }
+      double getMt2()                const { return m_mt2;                   }
+      double getEmmaMt()             const { return m_emma_mt;               }
+      double getDphill()             const { return m_dphi_ll;               }
+      double getHtAll()              const { return m_ht_all;                }
+      double getHtBaseline()         const { return m_ht_baseline;           }
+      double getHtGood()             const { return m_ht_good;               }
+      double getHtSignal()           const { return m_ht_signal;             }
+      double getMcEventWeight()      const { return m_mc_event_weight;       }
+      double getPileUpSF()           const { return m_pile_up_sf;            }
+      double getLeptonSFEgammaUp()   const { return m_lepton_sf_egamma_up;   }
+      double getLeptonSFEgammaDown() const { return m_lepton_sf_egamma_down; }
+      double getLeptonSFMuonUp()     const { return m_lepton_sf_muon_up;     }
+      double getLeptonSFMuonDown()   const { return m_lepton_sf_muon_down;   }
+      double getLeptonSF()           const { return m_lepton_sf;             }
+      double getTriggerWeight()      const { return m_trigger_weight;        }
+      double getBTagSF()             const { return m_b_tag_sf;              }
+      double getBTagSFUp()           const { return m_b_tag_sf_up;           }
+      double getBTagSFDown()         const { return m_b_tag_sf_down;         }
+      double getCFWeight()           const { return m_cf_weight;             }
+      double getFakeWeight()         const { return m_fake_weight;           }
 
       void print() const;
 
     protected:
       double m_mll;
+      double m_mbb;
       double m_ptll;
+      double m_ptbb;
       double m_mt2;
       double m_emma_mt;
       double m_dphi_ll;
@@ -172,8 +191,14 @@ namespace PennSusyFrame
       double m_mc_event_weight;
       double m_pile_up_sf;
       double m_lepton_sf;
+      double m_lepton_sf_egamma_up;
+      double m_lepton_sf_egamma_down;
+      double m_lepton_sf_muon_up;
+      double m_lepton_sf_muon_down;
       double m_trigger_weight;
       double m_b_tag_sf;
+      double m_b_tag_sf_up;
+      double m_b_tag_sf_down;
       double m_cf_weight;
       double m_fake_weight;
   };
@@ -239,7 +264,7 @@ namespace PennSusyFrame
       std::vector<int>*   getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()       const { return m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS; }
       std::vector<int>*   getTrig_EF_trigmuonef_EF_mu8()                       const { return m_trig_EF_trigmuonef_EF_mu8; }
       std::vector<std::vector<int> >*   getTrig_EF_trigmuonef_track_CB_hasCB() const { return m_trig_EF_trigmuonef_track_CB_hasCB; }
-    
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       bool m_EF_2e12Tvh_loose1;
@@ -353,10 +378,10 @@ namespace PennSusyFrame
       double getRawEtIso() const { return m_raw_et_iso; }
       double getPtIso() const { return m_pt_iso; }
       double getEtIso() const { return m_et_iso; }
-      double getRawPtIsoRatio() const { return m_raw_pt_iso/getPt(); }
-      double getRawEtIsoRatio() const { return m_raw_et_iso/getPt(); }
-      double getPtIsoRatio() const { return m_pt_iso/getPt(); }
-      double getEtIsoRatio() const { return m_et_iso/getPt(); }
+      double getRawPtIsoRatio() const { return m_raw_pt_iso/(min(60.e3, getPt())); }
+      double getRawEtIsoRatio() const { return m_raw_et_iso/(min(60.e3, getPt())); }
+      double getPtIsoRatio() const { return m_pt_iso/(min(60.e3, getPt())); }
+      double getEtIsoRatio() const { return m_et_iso/(min(60.e3, getPt())); }
 
       virtual void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -398,6 +423,8 @@ namespace PennSusyFrame
       void setClE(double val) { m_cl_E = val; }
       void setClEta(double val) { m_cl_eta = val; }
       void setClPhi(double val) { m_cl_phi = val; }
+      void setD3PDEta(double val) { m_d3pd_eta = val; }
+      void setD3PDPhi(double val) { m_d3pd_phi = val; }
       void setD0(double val) { m_d0 = val; }
       void setSigD0(double val) { m_sig_d0 = val; }
       void setZ0(double val) { m_z0 = val; }
@@ -416,6 +443,8 @@ namespace PennSusyFrame
       double getClE() const { return m_cl_E; }
       double getClEta() const { return m_cl_eta; }
       double getClPhi() const { return m_cl_phi; }
+      double getD3PDEta() const { return m_d3pd_eta; }
+      double getD3PDPhi() const { return m_d3pd_phi; }
       double getD0() const { return m_d0; }
       double getSigD0() const { return m_sig_d0; }
       double getD0Significance() const { return m_d0/m_sig_d0; }
@@ -443,6 +472,8 @@ namespace PennSusyFrame
       double m_cl_E;
       double m_cl_eta;
       double m_cl_phi;
+      double m_d3pd_eta;
+      double m_d3pd_phi;
       double m_d0;
       double m_sig_d0;
       double m_z0;
@@ -648,6 +679,7 @@ namespace PennSusyFrame
       void setJvf(double val) { m_jvf = val; }
       void setMv1(double val) { m_mv1 = val; }
       void setBchCorr(double val) { m_bch_corr = val; }
+      void setBchCorrCell(double val) { m_bch_corr_cell = val; }
       void setDphiMet(double val) { m_dphi_met = val; }
 
       void setEmf(            double val) { m_emf               = val; }
@@ -680,6 +712,7 @@ namespace PennSusyFrame
       double getJvf()           const { return m_jvf; }
       double getMv1()           const { return m_mv1; }
       double getBchCorr()       const { return m_bch_corr; }
+      double getBchCorrCell()   const { return m_bch_corr_cell; }
       double getDphiMet()       const { return m_dphi_met; }
 
       double getEmf()             const { return m_emf; }
@@ -723,6 +756,7 @@ namespace PennSusyFrame
       double m_jvf;
       double m_mv1;
       double m_bch_corr;
+      double m_bch_corr_cell;
       double m_dphi_met;
 
       double m_emf;
@@ -872,6 +906,7 @@ namespace PennSusyFrame
       void setPdgId(std::vector<int>* val)     { m_mc_pdg_id         = val; }
       void setStatus(std::vector<int>* val)    { m_mc_status         = val; }
       void setBarcode(std::vector<int>* val)   { m_mc_barcode        = val; }
+      void setMuonBarcode(std::vector<int>* val) { m_muon_barcode    = val; }
       void setVxBarcode(std::vector<int>* val) { m_mc_vx_barcode     = val; }
       void setParentIndex(std::vector<std::vector<int> >* val) { m_mc_parent_index = val; }
       void setChildIndex(std::vector<std::vector<int> >* val)  { m_mc_child_index  = val; }
@@ -880,6 +915,8 @@ namespace PennSusyFrame
       void setMuOrigin(std::vector<int>* val) { m_mc_mu_origin = val; }
       void setMuType(std::vector<int>* val)   { m_mc_mu_type = val; }
       void setCharge(std::vector<float>* val) { m_mc_charge = val; }
+
+      bool isSherpa() const;
 
       // TODO move accessors to cxx file
       unsigned int getChannelNumber()  const { return m_mc_channel_number; }
@@ -891,6 +928,7 @@ namespace PennSusyFrame
       std::vector<int>* getPdgId()     const { return m_mc_pdg_id; }
       std::vector<int>* getStatus()    const { return m_mc_status; }
       std::vector<int>* getBarcode()   const { return m_mc_barcode; }
+      std::vector<int>* getMuonBarcode() const { return m_muon_barcode; }
       std::vector<int>* getVxBarcode() const { return m_mc_vx_barcode; }
       std::vector<std::vector<int> >* getParentIndex() const { return m_mc_parent_index; }
       std::vector<std::vector<int> >* getChildIndex()  const { return m_mc_child_index; }
@@ -899,7 +937,6 @@ namespace PennSusyFrame
       std::vector<int>* getMuOrigin() const { return m_mc_mu_origin; }
       std::vector<int>* getMuType() const { return m_mc_mu_type; }
       std::vector<float>* getCharge() const { return m_mc_charge; }
-
 
       void writeFullTruthRecord(std::string out_file_name);
 
@@ -914,6 +951,7 @@ namespace PennSusyFrame
       std::vector<int>* m_mc_pdg_id;
       std::vector<int>* m_mc_status;
       std::vector<int>* m_mc_barcode;
+      std::vector<int>* m_muon_barcode;
       std::vector<int>* m_mc_vx_barcode;
       std::vector<std::vector<int> >* m_mc_parent_index;
       std::vector<std::vector<int> >* m_mc_child_index;

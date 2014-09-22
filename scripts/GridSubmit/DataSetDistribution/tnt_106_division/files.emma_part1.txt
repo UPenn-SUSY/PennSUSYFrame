@@ -1,0 +1,15 @@
+user name: emma_part1
+  max size: 200
+  allocated size: 199.996544336 
+  number samples: 10 
+
+    user.bjackson.105861.PowhegPythia_AUET2BCT10_ttbar_LeptonFilter.tnt_106_Tnt.root/
+    user.bjackson.116603.gg2ZZJimmy_AUET2CT10_ZZ2e2mu.tnt_106_Tnt.root/
+    user.bjackson.126937.PowhegPythia8_AU2CT10_ZZ_4e_mll4_2pt5.tnt_106_Tnt.root/
+    user.bjackson.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5.tnt_106_Tnt.root/
+    user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_106_Tnt.root/
+    user.bjackson.126940.PowhegPythia8_AU2CT10_ZZ_4mu_mll4_2pt5.tnt_106_Tnt.root/
+    user.bjackson.126942.PowhegPythia8_AU2CT10_ZZ_4tau_mll4_2pt5.tnt_106_Tnt.root/
+    user.bjackson.126949.PowhegPythia8_AU2CT10_ZZllnunu_ee_mll4.tnt_106_Tnt.root/
+    user.bjackson.157814.Sherpa_CT10_VVtoeeqq.tnt_106_Tnt.root/
+    user.bjackson.144876.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_10.tnt_106_Tnt.root/

@@ -133,7 +133,7 @@ namespace PennSusyFrame
       JetContainer();
       ~JetContainer();
 
-      void init(bool is_data, bool is_af2);
+      void init(bool is_data, bool is_af2, bool is_mc12b);
       void updateWithMet(const PennSusyFrame::Met&);
 
       void clear();

@@ -1,0 +1,4 @@
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.tnt_103.140704211853/user.bjackson.035604._00001.Tnt.root        109999        19426
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.tnt_103.140704211853/user.bjackson.035604._00002.Tnt.root        100000        17724
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.tnt_103.140704211853/user.bjackson.035604._00003.Tnt.root        99999        17493
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.tnt_103.140704211853/user.bjackson.035604._00004.Tnt.root        89999        15972

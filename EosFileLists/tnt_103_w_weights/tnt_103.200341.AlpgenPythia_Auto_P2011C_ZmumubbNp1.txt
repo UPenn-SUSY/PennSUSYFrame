@@ -1,0 +1,5 @@
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.tnt_103_v2.140712115009/user.bjackson.036849._00001.Tnt.root        159999        102460
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.tnt_103_v2.140712115009/user.bjackson.036849._00002.Tnt.root        150000        95713
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.tnt_103_v2.140712115009/user.bjackson.036849._00003.Tnt.root        139999        90004
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.tnt_103_v2.140712115009/user.bjackson.036849._00004.Tnt.root        140000        89600
+root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.tnt_103_v2.140712115009/user.bjackson.036849._00005.Tnt.root        109899        70300

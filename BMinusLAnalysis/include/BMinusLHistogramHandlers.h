@@ -89,6 +89,11 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_asym; //~ ~
       std::vector<TH2F*> m_h_mbl_2d; //~ ~
 
+      std::vector<TH1F*> m_h_mbl_coarse_all; //~ ~
+      std::vector<TH1F*> m_h_mbl_coarse_0; //~ ~
+      std::vector<TH1F*> m_h_mbl_coarse_1; //~ ~
+      std::vector<TH2F*> m_h_mbl_coarse_2d; //~ ~
+
       // various ptbl plots
       std::vector<TH1F*> m_h_ptbl_all; //~ ~
       std::vector<TH1F*> m_h_ptbl_0; //~ ~
@@ -259,6 +264,77 @@ namespace PennSusyFrame
 
       std::vector<TH1F*> m_h_bl_deta_same_parent_pairing; //~ ~
       std::vector<TH1F*> m_h_bl_deta_diff_parent_pairing; //~ ~
+  };
+
+  // =============================================================================
+  // = Weight Hists
+  // =============================================================================
+  class WeightHists : public HistogramHandler
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      WeightHists(std::string name_tag = "");
+      virtual ~WeightHists();
+
+      virtual void FillSpecial( const PennSusyFrame::Event& event
+                              , const PennSusyFrame::EventLevelQuantities& event_quantities
+                              , float cross_section_weight
+                              , float ttbar_pt_weight
+                              );
+      virtual void write(TDirectory*);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::vector<TH1F*> m_h_cross_section_weight;
+      std::vector<TH1F*> m_h_mc_event_weight;
+      std::vector<TH1F*> m_h_pile_up_weight;
+      std::vector<TH1F*> m_h_lep_sf;
+      std::vector<TH1F*> m_h_btag_sf;
+      std::vector<TH1F*> m_h_ttbar_pt_weight;
+      std::vector<TH1F*> m_h_total_weight;
+      std::vector<TH1F*> m_h_all_but_cross_section_weight;
+
+      std::vector<TH1F*> m_h_lep_sf_egamma_up;
+      std::vector<TH1F*> m_h_lep_sf_egamma_down;
+      std::vector<TH1F*> m_h_lep_sf_muon_up;
+      std::vector<TH1F*> m_h_lep_sf_muon_down;
+
+      std::vector<TH1F*> m_h_lep_sf_ratio_egamma_up;
+      std::vector<TH1F*> m_h_lep_sf_ratio_egamma_down;
+      std::vector<TH1F*> m_h_lep_sf_ratio_muon_up;
+      std::vector<TH1F*> m_h_lep_sf_ratio_muon_down;
+
+      std::vector<TH1F*> m_h_btag_sf_up;
+      std::vector<TH1F*> m_h_btag_sf_down;
+
+      std::vector<TH1F*> m_h_btag_sf_ratio_up;
+      std::vector<TH1F*> m_h_btag_sf_ratio_down;
+  };
+
+  // =============================================================================
+  // = parent Hists
+  // =============================================================================
+  class ParentHists : public HistogramHandler
+  {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public:
+      ParentHists(std::string name_tag = "");
+      virtual ~ParentHists();
+
+      virtual void FillSpecial( const PennSusyFrame::Event& event
+                              , const PennSusyFrame::blPair&
+                              , const PennSusyFrame::blPair&
+                              , const PennSusyFrame::MCTruth&
+                              , float weight
+                              );
+      virtual void write(TDirectory*);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    private:
+      std::vector<TH1F*> m_h_parentid_all;
+      std::vector<TH1F*> m_h_parentid_0;
+      std::vector<TH1F*> m_h_parentid_1;
+      std::vector<TH1F*> m_h_ptz_truth;
   };
 }
 

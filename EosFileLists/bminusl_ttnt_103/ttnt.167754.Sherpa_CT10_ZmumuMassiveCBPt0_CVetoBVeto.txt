@@ -1,0 +1,1 @@
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.21/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto.tnt.root    4983999    57    2630175.9812

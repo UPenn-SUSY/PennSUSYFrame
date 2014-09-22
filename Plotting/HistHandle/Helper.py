@@ -24,6 +24,8 @@ def get_list_of_keys(d):
     list_of_hists = [key.GetName() for key in d.GetListOfKeys()]
     if 'TotalNumEvents' in list_of_hists:
         list_of_hists.remove('TotalNumEvents')
+    if 'SumMCEventWeights' in list_of_hists:
+        list_of_hists.remove('SumMCEventWeights')
     return list_of_hists
 
 # ------------------------------------------------------------------------------
@@ -308,3 +310,23 @@ def makeLegend( hist_list
                 opt = 'F'
         leg.AddEntry(h, label=lab, option=opt)
     return leg
+
+# ------------------------------------------------------------------------------
+def recoverOverflow(h):
+    # get the total number of bins and entries
+    total_bins = h.GetNbinsX()
+    total_entries = h.GetEntries()
+
+    # find the bin edges
+    x_bins = [h.GetBinLowEdge(i+1) for i in xrange(total_bins)]
+
+    # get the number of entries from the overflow bin
+    overflow = h.GetBinContent(total_bins+1)
+
+    # move the overflow bin to the last bin in the plot
+    h.SetBinContent(total_bins+1, 0)
+    h.Fill(x_bins[total_bins-1], overflow)
+
+    # fix the number of entries
+    h.SetEntries(total_entries)
+

@@ -97,15 +97,12 @@ bool PennSusyFrame::TruthMatchTool::isRealMuon( const PennSusyFrame::Muon* mu
                                               , const PennSusyFrame::MCTruth& mc_truth
                                               )
 {
-  return true;
 
   int mu_origin = 0;
   int mu_type = 0;
-
   int mu_truth_index = matchBarcode( mu->getTruthBarcode()
-                                   , mc_truth.getBarcode()
+                                   , mc_truth.getMuonBarcode()
                                    );
-
   if (mu_truth_index != -1) {
     mu_origin = mc_truth.getMuOrigin()->at(mu_truth_index);
     mu_type   = mc_truth.getMuType()->at(mu_truth_index);
@@ -116,9 +113,10 @@ bool PennSusyFrame::TruthMatchTool::isRealMuon( const PennSusyFrame::Muon* mu
                                         , mu_type
                                         );
   bool is_real_lep = (lep_type == RecoTruthMatch::PROMPT);
+
   return is_real_lep;
 }
-
+//TODO:::::double check this is the right muon truth
 // -----------------------------------------------------------------------------
 SIGN_CHANNEL PennSusyFrame::TruthMatchTool::getTruthSign( FLAVOR_CHANNEL flavor_channel
                                                         , const std::vector<PennSusyFrame::Electron*>* el

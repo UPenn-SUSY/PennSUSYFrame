@@ -128,7 +128,9 @@ class InputContainer(object):
 
         print 'getting HistHandle objects'
         hist_handle_dict = {}
+        hist_handle_key_list = []
         for e in self.entries:
+            hist_handle_key_list.append(e.label)
             hist_handle_dict[e.label] = e.genHistHandle( dir_name
                                                        , hist_name
                                                        , lumi_modeled = self.lumi_modeled
@@ -138,6 +140,7 @@ class InputContainer(object):
         tmp = hh.Merger.HistMerger( dir_name
                                   , hist_name
                                   , hist_handle_dict
+                                  , hist_handle_key_list
                                   , self.hist_info
                                   )
         tmp.genMergedHist()

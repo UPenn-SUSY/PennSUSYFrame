@@ -17,6 +17,21 @@ sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
 
 # ==============================================================================
+# ntuple tree name
+input_tree_name = 'TNT'
+lep_pt_cut = 40.e3
+jet_pt_cut = 40.e3
+# lep_pt_cut = 20.e3
+# jet_pt_cut = 20.e3
+
+# 90% working point
+# btag_working_point = 0.0617
+# 80% working point
+btag_working_point = 0.3511
+# 70% working point
+# btag_working_point = 0.7892
+
+# ==============================================================================
 print 'loading packages'
 ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")
 print 'loading libraries'
@@ -31,22 +46,31 @@ print 'done loading libraries'
 def runBMinusLAnalysisFun(data_set_dict):
     print '================================================================================'
     print 'label: %s'       % data_set_dict['label']
-    print 'file_list: %s'   % data_set_dict['file_list']
-    print 'is data: %s'     % data_set_dict['is_data']
-    print 'is full sim: %s' % data_set_dict['is_full_sim']
+    # print 'file_list: %s'   % data_set_dict['file_list']
     print 'dsid: %s'        % data_set_dict['dsid']
+
+    print 'is data: %s'     % data_set_dict['is_data']
+
+    if data_set_dict['is_data']:
+        print 'is egamma stream: %s' % data_set_dict['is_egamma_stream']
+    else:
+        print 'is full sim: %s' % data_set_dict['is_full_sim']
 
     print 'total number jobs: %s' % data_set_dict['total_num_jobs']
     print 'this job number: %s' % data_set_dict['job_num']
 
     print 'total num events: %s' % data_set_dict['total_num_events']
     print 'total num entries: %s' % data_set_dict['total_num_entries']
+    print 'sum of event weights: %s' % data_set_dict['sum_mc_event_weights']
 
     print 'About to run BMinusLAnalysis'
     runBMinusLAnalysis( file_list             = data_set_dict['file_list']
                       , is_data               = data_set_dict['is_data']
+                      , is_egamma_stream      = data_set_dict['is_egamma_stream']
                       , is_full_sim           = data_set_dict['is_full_sim']
-                      , tree_name             = 'TNT'
+                      , tree_name             = input_tree_name
+                      # , tree_name             = 'TNT'
+                      # , tree_name             = 'BMinusLTTNT'
                       , dsid                  = data_set_dict['dsid']
                       , out_file_special_name = data_set_dict['label']
                       , is_tnt                = True
@@ -55,12 +79,14 @@ def runBMinusLAnalysisFun(data_set_dict):
                       , total_num_jobs        = data_set_dict['total_num_jobs']
                       , total_num_events      = data_set_dict['total_num_events']
                       , total_num_entries     = data_set_dict['total_num_entries']
+                      , sum_mc_event_weights  = data_set_dict['sum_mc_event_weights']
                       , out_dir               = data_set_dict['out_dir']
                       )
 
 # ------------------------------------------------------------------------------
 def runBMinusLAnalysis( file_list
                       , is_data
+                      , is_egamma_stream
                       , is_full_sim
                       , tree_name             = 'susy'
                       , dsid                  = 1
@@ -71,6 +97,7 @@ def runBMinusLAnalysis( file_list
                       , total_num_jobs        = 1
                       , total_num_events      = 0
                       , total_num_entries     = 0
+                      , sum_mc_event_weights  = 0
                       , out_dir               = './'
                       ):
     # ==============================================================================
@@ -82,7 +109,10 @@ def runBMinusLAnalysis( file_list
         total_num_events = getTotalNumEvents(file_list, is_tnt)
 
     print "Adding files to TChain"
+    print '  Tree name: ' , tree_name
     t = RunHelpers.getTChain(file_list, tree_name)
+    print t
+    print t.GetEntries()
 
     # ==============================================================================
     print 'Creating BMinusLAnalysis object'
@@ -90,12 +120,17 @@ def runBMinusLAnalysis( file_list
 
     print 'configuring BMinusLAnalysis object'
     if out_file_special_name is not None:
-        bmla.setProcessLabel(out_file_special_name)
+        bmla.setProcessLabel(out_file_special_name + '__%d_of_%d' % (job_num, total_num_jobs) )
     bmla.setFancyProgressBar(False)
 
     # set is data or MC
     if is_data:
         bmla.setIsData()
+
+        if is_egamma_stream:
+            bmla.setIsEgammaStream()
+        else:
+            bmla.setIsMuonStream()
     else:
         bmla.setIsMC()
 
@@ -106,8 +141,9 @@ def runBMinusLAnalysis( file_list
         bmla.setKFactor(     xsec_dict['kfac'])
         bmla.setFilterEff(   xsec_dict['eff'])
 
-        bmla.setTotalNumEntries(    total_num_entries )
-        bmla.setNumGeneratedEvents( total_num_events  )
+        bmla.setTotalNumEntries(    total_num_entries    )
+        bmla.setNumGeneratedEvents( total_num_events     )
+        bmla.setSumMCEventWeights(  sum_mc_event_weights )
 
     # set is full sim/fast sim
     if is_full_sim:
@@ -138,7 +174,7 @@ def runBMinusLAnalysis( file_list
     bmla.setOutHistFileName(out_hist_file_name)
 
     # Set critical cuts
-    print 'setting critical cuts'
+    # print 'setting critical cuts'
     bmla.setCritCutGrl(            1)
     bmla.setCritCutIncompleteEvent(1)
     bmla.setCritCutLarError(       1)
@@ -160,18 +196,14 @@ def runBMinusLAnalysis( file_list
     bmla.setCritCutBLPairing(      0)
 
     # Set cut values
-    print 'set cuts'
-    lep_pt_cut = 10.e3
-    jet_pt_cut = 10.e3
+    # print 'set cuts'
     bmla.setElPtCut(  lep_pt_cut, -1     )
     bmla.setMuPtCut(  lep_pt_cut, -1     )
     bmla.setBJetPtCut(jet_pt_cut, -1     )
-    # 90% working point
-    # bmla.setMV1Cut(0.0617)
-    # 80% working point
-    bmla.setMV1Cut(0.3511)
-    # 70% working point
-    # bmla.setMV1Cut(0.7892)
+    bmla.setMV1Cut(btag_working_point)
+
+    # Turn off detailed B-L histograms
+    bmla.setDoDetailedBLHists(False)
 
     # prepare tools and run analysis loop
     print 'preparing tools'

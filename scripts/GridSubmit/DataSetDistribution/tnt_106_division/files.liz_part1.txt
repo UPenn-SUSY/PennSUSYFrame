@@ -1,0 +1,23 @@
+user name: liz_part1
+  max size: 200
+  allocated size: 199.997933703 
+  number samples: 18 
+
+    user.bjackson.173044.Sherpa_CT10_DYmumuM15to40.tnt_106_Tnt.root/
+    user.bjackson.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.tnt_106_Tnt.root/
+    user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root/
+    user.bjackson.periodA_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodA_muon.tnt_106_Tnt.root/
+    user.bjackson.periodB_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodB_muon.tnt_106_Tnt.root/
+    user.bjackson.periodC_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodD_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodD_muon.tnt_106_Tnt.root/
+    user.bjackson.periodE_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodG_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodG_muon.tnt_106_Tnt.root/
+    user.bjackson.116600.gg2ZZJimmy_AUET2CT10_ZZ4lep.tnt_106_Tnt.root/
+    user.bjackson.126951.PowhegPythia8_AU2CT10_ZZllnunu_tt_mll4.tnt_106_Tnt.root/
+    user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_106_Tnt.root/
+    user.bjackson.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt_106_Tnt.root/
+    user.bjackson.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.tnt_106_Tnt.root/

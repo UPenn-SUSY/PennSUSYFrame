@@ -1,9 +1,0 @@
-// Dear emacs, this is -*- c++ -*-
-#ifndef CommonTools_EmmaMtTool_icc
-#define CommonTools_EmmaMtTool_icc
-
-// =============================================================================
-namespace CommonTools {
-  // do nothing
-}
-#endif // CommonTools_EmmaMtTool_icc

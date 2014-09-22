@@ -19,11 +19,13 @@ namespace PennSusyFrame
 
   enum EWK_HIST_LEVELS { EWK_HIST_ZVETO
                        , EWK_HIST_MET
+		       , EWK_HIST_FAKE_CR	 
                        , EWK_HIST_N
   };
 
   const std::string EWK_HIST_LEVEL_STRINGS[] = { "EWK_ZVETO"
                                                , "EWK_MET"
+					       , "EWK_FAKE_CR"	 
                                                };
 
 
@@ -67,12 +69,18 @@ namespace PennSusyFrame
       void setCritCutTriggerMatch(   bool val) { m_crit_cut_trigger_match = val;    }
       void setCritCutPromptLeptons(  bool val) { m_crit_cut_prompt_leptons = val;   }
       void setCritCutStreamOverlap(  bool val) { m_crit_cut_stream_overlap = val;   }
+      void setCritCutBCHCleaning(    bool val) { m_crit_cut_bch_cleaning = val;     }
+
 
       void setSFOSMllCut(double min, double max) { m_sfos_mll_min = min; m_sfos_mll_max = max; }
       void setEmmaMtCut(double min, double max)  { m_emma_mt_min = min; m_emma_mt_max = max; }
       void setMetRelCut(double min, double max)  { m_met_rel_min = min; m_met_rel_max = max; }
       void setDphillCut(double min, double max)  { m_dphi_ll_min = min; m_dphi_ll_max = max; }
       void setNumLightJetsCut(double min, double max) { m_num_light_jets_min = min; m_num_light_jets_max = max; }
+      void setPtllCut(double min, double max) {m_pt_ll_min = min; m_pt_ll_max = max;}
+      void setHtCut(double min, double max) {m_ht_min = min; m_ht_max = max;}
+      void setMllCut(double min, double max) {m_mll_min = min; m_mll_max = max;}
+      void setMt2Cut(double min, double max) {m_mt2_min = min; m_mt2_max = max;}
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
@@ -99,6 +107,7 @@ namespace PennSusyFrame
       bool m_crit_cut_tile_trip;
       bool m_crit_cut_bad_jet_veto;
       bool m_crit_cut_calo_problem_jet;
+      bool m_crit_cut_bch_cleaning;
       bool m_crit_cut_primary_vertex;
       bool m_crit_cut_bad_mu_veto;
       bool m_crit_cut_cosmic_mu_veto;
@@ -121,13 +130,17 @@ namespace PennSusyFrame
       bool m_crit_cut_dphi_ll;
       bool m_crit_cut_b_veto;
       bool m_crit_cut_num_jet;
+      bool m_crit_cut_pt_ll;
+      bool m_crit_cut_ht;
+      bool m_crit_cut_mll;
+      bool m_crit_cut_mt2;
 
       bool m_print_event_details;
 
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
-
+      PennSusyFrame::BCHCleaningTool m_bch_cleaning_tool;
       PennSusyFrame::ChargeFlipTool m_charge_flip_tool;
 
       PennSusyFrame::MatrixMethodTool m_matrix_method_tool;
@@ -149,6 +162,18 @@ namespace PennSusyFrame
 
       int m_num_light_jets_min;
       int m_num_light_jets_max;
+
+      double m_pt_ll_min;
+      double m_pt_ll_max;
+      
+      double m_ht_min;
+      double m_ht_max;
+      
+      double m_mll_min;
+      double m_mll_max;
+
+      double m_mt2_min;
+      double m_mt2_max;
 
       std::vector<PennSusyFrame::EwkHists*> m_ewk_histogram_handler;
 

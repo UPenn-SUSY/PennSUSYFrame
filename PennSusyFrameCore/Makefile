@@ -19,7 +19,9 @@ INCLUDES += -I${ROOTCOREDIR}/../PATCore/
 INCLUDES += -I${ROOTCOREDIR}/../MuonEfficiencyCorrections/
 INCLUDES += -I${ROOTCOREDIR}/../DGTriggerReweight/
 INCLUDES += -I${ROOTCOREDIR}/../ReweightUtils/
-
+INCLUDES += -I${ROOTCOREDIR}/../BCHCleaningTool/
+INCLUDES += -I${ROOTCOREDIR}/../TileTripReader/
+INCLUDES += -I${ROOTCOREDIR}/../JetResolution/
 # Include the generic compilation rules
 include $(PWD)/../Makefile.common
 

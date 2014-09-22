@@ -1,0 +1,21 @@
+user name: leigh_part1
+  max size: 200
+  allocated size: 199.939631914 
+  number samples: 16 
+
+    user.bjackson.periodE_muon.tnt_106_Tnt.root/
+    user.bjackson.periodH_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodH_muon.tnt_106_Tnt.root/
+    user.bjackson.periodI_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodI_muon.tnt_106_Tnt.root/
+    user.bjackson.periodJ_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodJ_muon.tnt_106_Tnt.root/
+    user.bjackson.periodL_egamma.tnt_106_Tnt.root/
+    user.bjackson.periodL_muon.tnt_106_Tnt.root/
+    user.bjackson.105860.PowhegJimmy_AUET2CT10_ttbar_LeptonFilter.tnt_106_Tnt.root/
+    user.bjackson.116601.gg2ZZJimmy_AUET2CT10_ZZ4e.tnt_106_Tnt.root/
+    user.bjackson.116602.gg2ZZJimmy_AUET2CT10_ZZ4mu.tnt_106_Tnt.root/
+    user.bjackson.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.tnt_106_Tnt.root/
+    user.bjackson.144871.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_5.tnt_106_Tnt.root/
+    user.bjackson.144873.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_7.tnt_106_Tnt.root/
+    user.bjackson.157954.Herwigpp_UEEE3_CTEQ6L1_simplifiedModel_wA_slep_noWcascade_39.tnt_106_Tnt.root/

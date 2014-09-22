@@ -8,6 +8,95 @@
 #include "TH1.h"
 
 // =============================================================================
+static const int   mll_bins = 50;
+static const float mll_min  = 0.;
+static const float mll_max  = 1000.;
+
+static const int   mbb_bins = 50;
+static const float mbb_min  = 0.;
+static const float mbb_max  = 1000.;
+
+static const int   mt2_bins = 50;
+static const float mt2_min  = 0.;
+static const float mt2_max  = 500.;
+
+static const int   ptll_bins = 60;
+static const float ptll_min  = 0.;
+static const float ptll_max  = 1200.;
+
+static const int   ptbb_bins = 60;
+static const float ptbb_min  = 0.;
+static const float ptbb_max  = 1200.;
+
+static const int   ht_bins = 30;
+static const float ht_min  = 0;
+static const float ht_max  = 3000;
+
+static const int   npv_bins = 60;
+static const float npv_min  = -0.5;
+static const float npv_max  = npv_bins + npv_min;
+
+static const int   pt_bins = 75;
+static const float pt_min  = 0.;
+static const float pt_max  = 1500.;
+
+static const int   eta_bins = 50;
+static const float eta_min = -5.;
+static const float eta_max = +5.;
+
+// static const int   ptiso_bins = 120;
+static const int   ptiso_bins = 80;
+static const float ptiso_min  = 0.;
+// static const float ptiso_max  = 3.;
+static const float ptiso_max  = 2.;
+
+// static const int   etiso_bins = 140;
+static const int   etiso_bins = 100;
+static const float etiso_min  = -0.5;
+// static const float etiso_max  = 3.;
+static const float etiso_max  = 2.;
+
+static const int   dr_bins = 60;
+static const float dr_min = 0.;
+static const float dr_max = 6.0;
+
+static const int   dphi_bins = 32;
+static const float dphi_min = 0.;
+static const float dphi_max = 3.2;
+
+static const int   deta_bins = 50;
+static const float deta_min = 0.;
+static const float deta_max = 5.0;
+
+static const int   num_jet_bins = 10;
+static const float num_jet_min  = -0.5;
+static const float num_jet_max  = num_jet_bins + num_jet_min;
+
+static const int   met_et_bins = 25;
+static const float met_et_min  = 0.;
+static const float met_et_max  = 500.;
+
+static const int   met_sig_bins = 30;
+static const float met_sig_min  = 0;
+static const float met_sig_max  = 30;
+
+static const int   d0_bins = 40;
+static const float d0_max  = 1.;
+static const float d0_min  = -d0_max;
+
+static const int   d0sig_bins = 70;
+static const float d0sig_max  = 3.5;
+static const float d0sig_min  = -d0sig_max;
+
+static const int   z0_bins = 100;
+static const float z0_max  = 2.;
+static const float z0_min  = -z0_max;
+
+static const int   z0sintheta_bins = 120;
+static const float z0sintheta_max  = 1.2;
+static const float z0sintheta_min  = -z0sintheta_max;
+
+// =============================================================================
 PennSusyFrame::HistogramHandler::HistogramHandler(std::string)
 { }
 
@@ -61,23 +150,6 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
-  const int   mll_bins = 50;
-  const float mll_min  = 0.;
-  const float mll_max  = 1000.;
-
-  const int   mt2_bins = 50;
-  const float mt2_min  = 0.;
-  const float mt2_max  = 500.;
-
-  const int   ptll_bins = 50;
-  const float ptll_min  = 0.;
-  const float ptll_max  = 2000.;
-
-  // const int   ht_bins = 100;
-  const int   ht_bins = 50;
-  const float ht_min  = 0;
-  const float ht_max  = 5000;
-
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     m_h_flavor_channel.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -114,6 +186,21 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                      );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize mbb histograms
+    m_h_mbb.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + "__mbb"
+                                 + "__"
+                                 + name_tag
+                                 ).c_str()
+                               , ( "m_{bb} - "
+                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + " ; m_{bb} [GeV] ; Entries"
+                                 ).c_str()
+                               , mbb_bins, mbb_min, mbb_max
+                               )
+                     );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mt2 histograms
     m_h_mt2.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                  + "__mt2"
@@ -140,6 +227,21 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                                   + " ; p_{T}^{ll} [GeV] ; Entries"
                                   ).c_str()
                                 , ptll_bins, ptll_min, ptll_max
+                                )
+                      );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize ptbb histograms
+    m_h_ptbb.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__ptbb"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "p_{T}^{bb} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; p_{T}^{bb} [GeV] ; Entries"
+                                  ).c_str()
+                                , ptbb_bins, ptbb_min, ptbb_max
                                 )
                       );
 
@@ -196,6 +298,19 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                                      , ht_bins, ht_min, ht_max
                                      )
                            );
+
+    m_h_npv.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + "__npv"
+                                 + "__"
+                                 + name_tag
+                                 ).c_str()
+                               , ( "NPV - "
+                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                 + " ; NPV ; Entries"
+                                 ).c_str()
+                               , npv_bins, npv_min, npv_max
+                               )
+                     );
   }
 }
 
@@ -218,28 +333,35 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
   if (fc == FLAVOR_NONE) return;
 
   float mll = event_level_quantities.getMll()/1.e3;
+  float mbb = event_level_quantities.getMbb()/1.e3;
   float mt2 = event_level_quantities.getMt2()/1.e3;
 
   float ptll = event_level_quantities.getPtll()/1.e3;
+  float ptbb = event_level_quantities.getPtbb()/1.e3;
 
   float ht_all      = event_level_quantities.getHtAll()/1.e3;
   float ht_baseline = event_level_quantities.getHtBaseline()/1.e3;
   float ht_good     = event_level_quantities.getHtGood()/1.e3;
   float ht_signal   = event_level_quantities.getHtSignal()/1.e3;
 
+  int npv = event.getAverageIntPerXing();
+
   // loop over all flavor channels
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
-    m_h_flavor_channel.at(fc_it)->Fill(fc);
+    m_h_flavor_channel.at(fc_it)->Fill(fc, weight);
 
-    m_h_mll.at(fc_it)->Fill(mll, weight);
-    m_h_mt2.at(fc_it)->Fill(mt2, weight);
-    m_h_ptll.at(fc_it)->Fill(ptll, weight);
+    m_h_mll.at(fc_it)->Fill(        mll        , weight);
+    m_h_mbb.at(fc_it)->Fill(        mbb        , weight);
+    m_h_mt2.at(fc_it)->Fill(        mt2        , weight);
+    m_h_ptll.at(fc_it)->Fill(       ptll       , weight);
+    m_h_ptbb.at(fc_it)->Fill(       ptbb       , weight);
     m_h_ht_all.at(fc_it)->Fill(     ht_all     , weight);
     m_h_ht_baseline.at(fc_it)->Fill(ht_baseline, weight);
     m_h_ht_good.at(fc_it)->Fill(    ht_good    , weight);
     m_h_ht_signal.at(fc_it)->Fill(  ht_signal  , weight);
+    m_h_npv.at(fc_it)->Fill(        npv        , weight);
   }
 }
 
@@ -256,17 +378,24 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
     // write mll histograms
     m_h_mll.at(fc_it)->Write();
 
+    // write mbb histograms
+    m_h_mbb.at(fc_it)->Write();
+
     // write mt2 histograms
     m_h_mt2.at(fc_it)->Write();
 
     //write ptll histograms
     m_h_ptll.at(fc_it)->Write();
 
+    //write ptbb histograms
+    m_h_ptbb.at(fc_it)->Write();
+
     //write ht histograms
     m_h_ht_all.at(fc_it)->Write();
     m_h_ht_baseline.at(fc_it)->Write();
     m_h_ht_good.at(fc_it)->Write();
     m_h_ht_signal.at(fc_it)->Write();
+    m_h_npv.at(fc_it)->Write();
   }
 }
 
@@ -274,34 +403,6 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
 PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
-
-  const int   pt_bins = 2000;
-  const float pt_min  = 0.;
-  const float pt_max  = 2000.;
-
-  const int   eta_bins = 50;
-  const float eta_min = -5.;
-  const float eta_max = +5.;
-
-  const int   ptiso_bins = 30;
-  const float ptiso_min  = 0.;
-  const float ptiso_max  = 3.;
-
-  const int   etiso_bins = 40;
-  const float etiso_min  = -1.;
-  const float etiso_max  = 3.;
-
-  const int dr_bins = 60;
-  const float dr_min = 0.;
-  const float dr_max = 6.0;
-
-  const int dphi_bins = 32;
-  const float dphi_min = 0.;
-  const float dphi_max = 3.2;
-
-  const int deta_bins = 50;
-  const float deta_min = 0.;
-  const float deta_max = 5.0;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -345,6 +446,7 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                                 , pt_bins, pt_min, pt_max
                                 )
                       );
+
     m_h_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__lep_raw_pt_all"
                                     + "__"
@@ -613,6 +715,166 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
 						 ,pt_bins, pt_min, pt_max
 						 )
 				       );
+
+    // initialize d0 histograms
+    m_h_d0_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__lep_d0_all"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "d_{0} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; d_{0} [mm] ; Entries"
+                                    ).c_str()
+                                  , d0_bins, d0_min, d0_max
+                                  )
+                        );
+
+    m_h_d0_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_d0_0"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "d_{0}^{0} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; d_{0}^{0} [mm] ; Entries"
+                                  ).c_str()
+                                , d0_bins, d0_min, d0_max
+                                )
+                      );
+
+    m_h_d0_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_d0_1"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "d_{0}^{1} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; d_{0}^{1} [mm] ; Entries"
+                                  ).c_str()
+                                , d0_bins, d0_min, d0_max
+                                )
+                      );
+
+    // initialize d0 significance histograms
+    m_h_d0sig_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + "__lep_d0sig_all"
+                                       + "__"
+                                       + name_tag
+                                       ).c_str()
+                                     , ( "d_{0} - "
+                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                       + " ; d_{0} significance [mm] ; Entries"
+                                       ).c_str()
+                                     , d0sig_bins, d0sig_min, d0sig_max
+                                     )
+                           );
+
+    m_h_d0sig_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_d0sig_0"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "d_{0}^{0} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; d_{0}^{0} significance [mm] ; Entries"
+                                     ).c_str()
+                                   , d0sig_bins, d0sig_min, d0sig_max
+                                   )
+                         );
+
+    m_h_d0sig_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_d0sig_1"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "d_{0}^{1} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; d_{0}^{1} significance [mm] ; Entries"
+                                     ).c_str()
+                                   , d0sig_bins, d0sig_min, d0sig_max
+                                   )
+                         );
+
+    // initialize z0 histograms
+    m_h_z0_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + "__lep_z0_all"
+                                    + "__"
+                                    + name_tag
+                                    ).c_str()
+                                  , ( "d_{0} - "
+                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                    + " ; z_{0} [mm] ; Entries"
+                                    ).c_str()
+                                  , z0_bins, z0_min, z0_max
+                                  )
+                        );
+
+    m_h_z0_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_z0_0"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "d_{0}^{0} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; z_{0}^{0} [mm] ; Entries"
+                                  ).c_str()
+                                , z0_bins, z0_min, z0_max
+                                )
+                      );
+
+    m_h_z0_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + "__lep_z0_1"
+                                  + "__"
+                                  + name_tag
+                                  ).c_str()
+                                , ( "d_{0}^{1} - "
+                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                  + " ; z_{0}^{1} [mm] ; Entries"
+                                  ).c_str()
+                                , z0_bins, z0_min, z0_max
+                                )
+                      );
+
+    // initialize z0sin(theta) histograms
+    m_h_z0sintheta_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__lep_z0sintheta_all"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "d_{0} - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; z_{0} sin(#theta) [mm] ; Entries"
+                                            ).c_str()
+                                          , z0sintheta_bins, z0sintheta_min, z0sintheta_max
+                                          )
+                                );
+
+    m_h_z0sintheta_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_z0sintheta_0"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "d_{0}^{0} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; z_{0}^{0} sin(#theta) [mm] ; Entries"
+                                          ).c_str()
+                                        , z0sintheta_bins, z0sintheta_min, z0sintheta_max
+                                        )
+                              );
+
+    m_h_z0sintheta_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__lep_z0sintheta_1"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "d_{0}^{1} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; z_{0}^{1} sin(#theta) [mm] ; Entries"
+                                          ).c_str()
+                                        , z0sintheta_bins, z0sintheta_min, z0sintheta_max
+                                        )
+                              );
   }
 }
 
@@ -653,6 +915,17 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 
   float dr  = 0.;
 
+  float d0_0 = 0.;
+  float d0_1 = 0.;
+
+  float d0sig_0 = 0.;
+  float d0sig_1 = 0.;
+
+  float z0_0 = 0.;
+  float z0_1 = 0.;
+
+  float z0sintheta_0 = 0.;
+  float z0sintheta_1 = 0.;
 
   // TODO fill these histograms in cleaner way!
 
@@ -678,6 +951,18 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     deta = fabs(eta_0 - eta_1);
 
     dr = sqrt(dphi*dphi + deta*deta);
+
+    d0_0 = el_list->at(0)->getD0();
+    d0_1 = el_list->at(1)->getD0();
+
+    d0sig_0 = el_list->at(0)->getD0Significance();
+    d0sig_1 = el_list->at(1)->getD0Significance();
+
+    z0_0 = el_list->at(0)->getZ0();
+    z0_1 = el_list->at(1)->getZ0();
+
+    z0sintheta_0 = el_list->at(0)->getZ0SinTheta();
+    z0sintheta_1 = el_list->at(1)->getZ0SinTheta();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_EE)->Fill(pt_0, weight);
@@ -717,6 +1002,26 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
                         m_h_fiducial_single_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
     (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_EE)->Fill(pt_1, weight) :
                           m_h_fiducial_event_fail.at(FLAVOR_EE)->Fill(pt_1, weight));
+
+    m_h_d0_all.at(FLAVOR_EE)->Fill(d0_0, weight);
+    m_h_d0_all.at(FLAVOR_EE)->Fill(d0_1, weight);
+    m_h_d0_0.at(  FLAVOR_EE)->Fill(d0_0, weight);
+    m_h_d0_1.at(  FLAVOR_EE)->Fill(d0_1, weight);
+
+    m_h_d0sig_all.at(FLAVOR_EE)->Fill(d0sig_0, weight);
+    m_h_d0sig_all.at(FLAVOR_EE)->Fill(d0sig_1, weight);
+    m_h_d0sig_0.at(  FLAVOR_EE)->Fill(d0sig_0, weight);
+    m_h_d0sig_1.at(  FLAVOR_EE)->Fill(d0sig_1, weight);
+
+    m_h_z0_all.at(FLAVOR_EE)->Fill(z0_0, weight);
+    m_h_z0_all.at(FLAVOR_EE)->Fill(z0_1, weight);
+    m_h_z0_0.at(  FLAVOR_EE)->Fill(z0_0, weight);
+    m_h_z0_1.at(  FLAVOR_EE)->Fill(z0_1, weight);
+
+    m_h_z0sintheta_all.at(FLAVOR_EE)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_all.at(FLAVOR_EE)->Fill(z0sintheta_1, weight);
+    m_h_z0sintheta_0.at(  FLAVOR_EE)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_1.at(  FLAVOR_EE)->Fill(z0sintheta_1, weight);
   }
 
   else if (fc == FLAVOR_MM) {
@@ -741,6 +1046,18 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     deta = fabs(eta_0 - eta_1);
 
     dr = sqrt(dphi*dphi + deta*deta);
+
+    d0_0 = mu_list->at(0)->getD0();
+    d0_1 = mu_list->at(1)->getD0();
+
+    d0sig_0 = mu_list->at(0)->getD0Significance();
+    d0sig_1 = mu_list->at(1)->getD0Significance();
+
+    z0_0 = mu_list->at(0)->getZ0();
+    z0_1 = mu_list->at(1)->getZ0();
+
+    z0sintheta_0 = mu_list->at(0)->getZ0SinTheta();
+    z0sintheta_1 = mu_list->at(1)->getZ0SinTheta();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_MM)->Fill(pt_0, weight);
@@ -782,6 +1099,25 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_MM)->Fill(pt_1, weight) :
                           m_h_fiducial_event_fail.at(FLAVOR_MM)->Fill(pt_1, weight));
 
+    m_h_d0_all.at(FLAVOR_MM)->Fill(d0_0, weight);
+    m_h_d0_all.at(FLAVOR_MM)->Fill(d0_1, weight);
+    m_h_d0_0.at(  FLAVOR_MM)->Fill(d0_0, weight);
+    m_h_d0_1.at(  FLAVOR_MM)->Fill(d0_1, weight);
+
+    m_h_d0sig_all.at(FLAVOR_MM)->Fill(d0sig_0, weight);
+    m_h_d0sig_all.at(FLAVOR_MM)->Fill(d0sig_1, weight);
+    m_h_d0sig_0.at(  FLAVOR_MM)->Fill(d0sig_0, weight);
+    m_h_d0sig_1.at(  FLAVOR_MM)->Fill(d0sig_1, weight);
+
+    m_h_z0_all.at(FLAVOR_MM)->Fill(z0_0, weight);
+    m_h_z0_all.at(FLAVOR_MM)->Fill(z0_1, weight);
+    m_h_z0_0.at(  FLAVOR_MM)->Fill(z0_0, weight);
+    m_h_z0_1.at(  FLAVOR_MM)->Fill(z0_1, weight);
+
+    m_h_z0sintheta_all.at(FLAVOR_MM)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_all.at(FLAVOR_MM)->Fill(z0sintheta_1, weight);
+    m_h_z0sintheta_0.at(  FLAVOR_MM)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_1.at(  FLAVOR_MM)->Fill(z0sintheta_1, weight);
   }
   else {
     pt_0 = el_list->at(0)->getPt()/1.e3;
@@ -812,6 +1148,18 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 
     dr = sqrt(dphi*dphi + deta*deta);
 
+    d0_0 = el_list->at(0)->getD0();
+    d0_1 = mu_list->at(0)->getD0();
+
+    d0sig_0 = el_list->at(0)->getD0Significance();
+    d0sig_1 = mu_list->at(0)->getD0Significance();
+
+    z0_0 = el_list->at(0)->getZ0();
+    z0_1 = mu_list->at(0)->getZ0();
+
+    z0sintheta_0 = el_list->at(0)->getZ0SinTheta();
+    z0sintheta_1 = mu_list->at(0)->getZ0SinTheta();
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_pt_all.at(FLAVOR_EM)->Fill(pt_0, weight);
     m_h_pt_all.at(FLAVOR_EM)->Fill(pt_1, weight);
@@ -841,9 +1189,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_etiso_0.at(  FLAVOR_EM)->Fill(etiso_0, weight);
     m_h_etiso_1.at(  FLAVOR_EM)->Fill(etiso_1, weight);
 
-    m_h_dr_ll.at(FLAVOR_MM)->Fill(dr, weight);
-    m_h_dphi_ll.at(FLAVOR_MM)->Fill(dphi, weight);
-    m_h_deta_ll.at(FLAVOR_MM)->Fill(deta, weight);
+    m_h_dr_ll.at(FLAVOR_EM)->Fill(dr, weight);
+    m_h_dphi_ll.at(FLAVOR_EM)->Fill(dphi, weight);
+    m_h_deta_ll.at(FLAVOR_EM)->Fill(deta, weight);
 
     (abs(eta_0) < 2.4 ? m_h_fiducial_single_pass.at(FLAVOR_EM)->Fill(pt_0, weight) :
                         m_h_fiducial_single_fail.at(FLAVOR_EM)->Fill(pt_0, weight));
@@ -852,6 +1200,25 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_EM)->Fill(pt_1, weight) :
                           m_h_fiducial_event_fail.at(FLAVOR_EM)->Fill(pt_1, weight));
 
+    m_h_d0_all.at(FLAVOR_EM)->Fill(d0_0, weight);
+    m_h_d0_all.at(FLAVOR_EM)->Fill(d0_1, weight);
+    m_h_d0_0.at(  FLAVOR_EM)->Fill(d0_0, weight);
+    m_h_d0_1.at(  FLAVOR_EM)->Fill(d0_1, weight);
+
+    m_h_d0sig_all.at(FLAVOR_EM)->Fill(d0sig_0, weight);
+    m_h_d0sig_all.at(FLAVOR_EM)->Fill(d0sig_1, weight);
+    m_h_d0sig_0.at(  FLAVOR_EM)->Fill(d0sig_0, weight);
+    m_h_d0sig_1.at(  FLAVOR_EM)->Fill(d0sig_1, weight);
+
+    m_h_z0_all.at(FLAVOR_EM)->Fill(z0_0, weight);
+    m_h_z0_all.at(FLAVOR_EM)->Fill(z0_1, weight);
+    m_h_z0_0.at(  FLAVOR_EM)->Fill(z0_0, weight);
+    m_h_z0_1.at(  FLAVOR_EM)->Fill(z0_1, weight);
+
+    m_h_z0sintheta_all.at(FLAVOR_EM)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_all.at(FLAVOR_EM)->Fill(z0sintheta_1, weight);
+    m_h_z0sintheta_0.at(  FLAVOR_EM)->Fill(z0sintheta_0, weight);
+    m_h_z0sintheta_1.at(  FLAVOR_EM)->Fill(z0sintheta_1, weight);
   }
 
   if (pt_1 > pt_0) {
@@ -866,6 +1233,22 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     float etiso_tmp = etiso_0;
     etiso_0 = etiso_1;
     etiso_1 = etiso_tmp;
+
+    float d0_tmp = d0_0;
+    d0_0 = d0_1;
+    d0_1 = d0_tmp;
+
+    float d0sig_tmp = d0sig_0;
+    d0sig_0 = d0sig_1;
+    d0sig_1 = d0sig_tmp;
+
+    float z0_tmp = z0_0;
+    z0_0 = z0_1;
+    z0_1 = z0_tmp;
+
+    float z0sintheta_tmp = z0sintheta_0;
+    z0sintheta_0 = z0sintheta_1;
+    z0sintheta_1 = z0sintheta_tmp;
   }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -908,6 +1291,25 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   (pass(eta_0, eta_1) ? m_h_fiducial_event_pass.at(FLAVOR_NONE)->Fill(pt_1, weight) :
                         m_h_fiducial_event_fail.at(FLAVOR_NONE)->Fill(pt_1, weight));
 
+  m_h_d0_all.at(FLAVOR_NONE)->Fill(d0_0, weight);
+  m_h_d0_all.at(FLAVOR_NONE)->Fill(d0_1, weight);
+  m_h_d0_0.at(  FLAVOR_NONE)->Fill(d0_0, weight);
+  m_h_d0_1.at(  FLAVOR_NONE)->Fill(d0_1, weight);
+
+  m_h_d0sig_all.at(FLAVOR_NONE)->Fill(d0sig_0, weight);
+  m_h_d0sig_all.at(FLAVOR_NONE)->Fill(d0sig_1, weight);
+  m_h_d0sig_0.at(  FLAVOR_NONE)->Fill(d0sig_0, weight);
+  m_h_d0sig_1.at(  FLAVOR_NONE)->Fill(d0sig_1, weight);
+
+  m_h_z0_all.at(FLAVOR_NONE)->Fill(z0_0, weight);
+  m_h_z0_all.at(FLAVOR_NONE)->Fill(z0_1, weight);
+  m_h_z0_0.at(  FLAVOR_NONE)->Fill(z0_0, weight);
+  m_h_z0_1.at(  FLAVOR_NONE)->Fill(z0_1, weight);
+
+  m_h_z0sintheta_all.at(FLAVOR_NONE)->Fill(z0sintheta_0, weight);
+  m_h_z0sintheta_all.at(FLAVOR_NONE)->Fill(z0sintheta_1, weight);
+  m_h_z0sintheta_0.at(  FLAVOR_NONE)->Fill(z0sintheta_0, weight);
+  m_h_z0sintheta_1.at(  FLAVOR_NONE)->Fill(z0sintheta_1, weight);
 }
 
 // -----------------------------------------------------------------------------
@@ -964,6 +1366,26 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     m_h_fiducial_single_fail.at(fc_it)->Write();
     m_h_fiducial_event_pass.at(fc_it)->Write();
     m_h_fiducial_event_fail.at(fc_it)->Write();
+
+    // write d0 histograms
+    m_h_d0_all.at(fc_it)->Write();
+    m_h_d0_0.at(fc_it)->Write();
+    m_h_d0_1.at(fc_it)->Write();
+
+    // write d0 significance histograms
+    m_h_d0sig_all.at(fc_it)->Write();
+    m_h_d0sig_0.at(fc_it)->Write();
+    m_h_d0sig_1.at(fc_it)->Write();
+
+    // write z0 histograms
+    m_h_z0_all.at(fc_it)->Write();
+    m_h_z0_0.at(fc_it)->Write();
+    m_h_z0_1.at(fc_it)->Write();
+
+    // write z0sin(theta) histograms
+    m_h_z0sintheta_all.at(fc_it)->Write();
+    m_h_z0sintheta_0.at(fc_it)->Write();
+    m_h_z0sintheta_1.at(fc_it)->Write();
   }
 }
 
@@ -971,30 +1393,6 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
 PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
-
-  const int   num_jet_bins = 10;
-  const float num_jet_min  = -0.5;
-  const float num_jet_max  = num_jet_bins + num_jet_min;
-
-  const int   pt_bins = 2000;
-  const float pt_min  = 0.;
-  const float pt_max  = 2000.;
-
-  const int dr_bins = 60;
-  const float dr_min = 0.;
-  const float dr_max = 6.0;
-
-  const int dphi_bins = 32;
-  const float dphi_min = 0.;
-  const float dphi_max = 3.2;
-
-  const int deta_bins = 50;
-  const float deta_min = 0.;
-  const float deta_max = 5.0;
-
-  const int   eta_bins = 50;
-  const float eta_min = -5.;
-  const float eta_max = -5.;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -1330,22 +1728,11 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
     m_h_fiducial_event_fail.at(fc_it)->Write();
   }
 }
+
 // =============================================================================
 PennSusyFrame::MetHists::MetHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
-
-  const int   met_et_bins = 100;
-  const float met_et_min  = 0.;
-  const float met_et_max  = 500.;
-
-  const int dphi_bins = 32;
-  const float dphi_min = 0.;
-  const float dphi_max = 3.2;
-
-  const int   met_sig_bins = 50;
-  const float met_sig_min  = 0;
-  const float met_sig_max  = 500;
 
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
@@ -1384,7 +1771,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                          ).c_str()
                                        , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                         + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                         + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                          ).c_str()
                                        , met_sig_bins, met_sig_min, met_sig_max
                                        )
@@ -1396,7 +1783,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                               ).c_str()
                                             , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                              + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                              + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                               ).c_str()
                                             , met_sig_bins, met_sig_min, met_sig_max
                                             )
@@ -1408,7 +1795,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                           ).c_str()
                                         , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                          + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                           ).c_str()
                                         , met_sig_bins, met_sig_min, met_sig_max
                                         )
@@ -1420,7 +1807,7 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                             ).c_str()
                                           , ( "E_{T}^{miss}/#sqrt{H_{T}} - "
                                             + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + " ; E_{T}^{miss}/#sqrt{H_{T}} ; Entries"
+                                            + " ; E_{T}^{miss}/#sqrt{H_{T}} [GeV^{1/2}] ; Entries"
                                             ).c_str()
                                           , met_sig_bins, met_sig_min, met_sig_max
                                           )

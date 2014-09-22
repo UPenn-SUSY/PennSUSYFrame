@@ -29,8 +29,10 @@ namespace MuonSmear
 {
   class SmearingClass;
 }
-
-class JetCalibrationTool;
+namespace JetAnalysisCalib {
+  class JetCalibrationTool;
+}
+class JetSmearingTool;
 
 // =============================================================================
 namespace PennSusyFrame
@@ -84,21 +86,23 @@ namespace PennSusyFrame
   class JetRescalerTool
   {
     public:
-      JetRescalerTool(bool is_data, bool is_af2);
-      ~JetRescalerTool();
+    JetRescalerTool(bool is_data, bool is_af2, bool is_mc12b);
+    ~JetRescalerTool();
 
-      void init();
+    void init();
 
-      TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
+    TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
                                      , const PennSusyFrame::Event*
                                      , int num_vertices_ge_2_tracks
                                      );
+    void applyJER(PennSusyFrame::Jet*, bool is_af2);
 
     private:
       bool m_is_data;
       bool m_is_af2;
-
-      JetCalibrationTool* m_jet_calibration;
+      bool m_is_mc12b;
+      JetAnalysisCalib::JetCalibrationTool* m_jet_calibration;
+      JetSmearingTool* m_jer_smearing;
   };
 
   // =============================================================================
@@ -114,6 +118,7 @@ namespace PennSusyFrame
     private:
       bool m_is_data;
       bool m_is_af2;
+      
   };
 }
 

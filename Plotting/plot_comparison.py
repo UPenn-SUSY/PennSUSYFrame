@@ -11,6 +11,7 @@ def skipHist(dir_name, hist_name):
   TODO update for new naming schemes
   """
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # skip lepton flavors that don't match with the flavor channel
   if 'ee' in dir_name and 'mu_' in hist_name:
     return True
   if 'mm' in dir_name and 'el_' in hist_name:
@@ -18,6 +19,9 @@ def skipHist(dir_name, hist_name):
   if 'em' in dir_name:
     if 'el_1' in hist_name or 'mu_1' in hist_name:
       return True
+
+  if 'flavor_error' in hist_name: return True
+
   return False
 
 # ------------------------------------------------------------------------------
@@ -42,6 +46,11 @@ def plotComparisons( ic_numerator
     dirs = hh.Helper.getListOfDirs(file_list)
     num_dirs = len(dirs)
     for d_it, d in enumerate(dirs):
+        # skip directories with the string "_TRIG" in their name
+        if '_TRIG' in d:
+            print 'skipping directory: ', d
+            continue
+
         print 'Printing histograms for cut dir: %s (%d of %d)' % (d, d_it, num_dirs)
         out_file.cd()
         out_file.mkdir(d)
@@ -69,7 +78,6 @@ def plotComparisons( ic_numerator
                                                      , other = hm_other
                                                      )
 
-                # print 'Log'
                 pile_test_stack = hist_painter.pileAndRatio( num_type       = hh.Objects.plain_hist
                                                            , denom_type     = hh.Objects.stack_hist
                                                            , canvas_options = hh.Objects.canv_log_y
@@ -79,7 +87,6 @@ def plotComparisons( ic_numerator
                 pile_test_stack.Write('%s__log' % h)
                 pile_test_stack.Close()
 
-                # print 'Linear'
                 pile_test_stack = hist_painter.pileAndRatio(
                         num_type       = hh.Objects.plain_hist,
                         denom_type     = hh.Objects.stack_hist,
@@ -136,8 +143,6 @@ def plotComparisons( ic_numerator
             #     # denom_canv = hh.Painter.draw2DHist(hm_denom.hist_sum, hm_denom.hist_name)
             #     # denom_canv.Write('%s__denom' % hm_denom.hist_name)
             #     # denom_canv.Close()
-
-
 
     out_file.Close()
 

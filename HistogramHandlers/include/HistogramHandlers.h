@@ -75,13 +75,17 @@ namespace PennSusyFrame
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       std::vector<TH1F*> m_h_flavor_channel;
+      std::vector<TH1F*> m_h_mbb;
       std::vector<TH1F*> m_h_mll;
       std::vector<TH1F*> m_h_mt2;
       std::vector<TH1F*> m_h_ptll;
+      std::vector<TH1F*> m_h_ptbb;
       std::vector<TH1F*> m_h_ht_all;
       std::vector<TH1F*> m_h_ht_baseline;
       std::vector<TH1F*> m_h_ht_good;
       std::vector<TH1F*> m_h_ht_signal;
+
+      std::vector<TH1F*> m_h_npv;
   };
 
   // =============================================================================
@@ -119,7 +123,7 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_eta_0;
       std::vector<TH1F*> m_h_eta_1;
       std::vector<TH1F*> m_h_eta_event_passfail;
-      
+
       std::vector<TH1F*> m_h_ptiso_all;
       std::vector<TH1F*> m_h_ptiso_0;
       std::vector<TH1F*> m_h_ptiso_1;
@@ -136,6 +140,22 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_fiducial_single_fail;
       std::vector<TH1F*> m_h_fiducial_event_pass;
       std::vector<TH1F*> m_h_fiducial_event_fail;
+
+      std::vector<TH1F*> m_h_d0_all;
+      std::vector<TH1F*> m_h_d0_0;
+      std::vector<TH1F*> m_h_d0_1;
+
+      std::vector<TH1F*> m_h_d0sig_all;
+      std::vector<TH1F*> m_h_d0sig_0;
+      std::vector<TH1F*> m_h_d0sig_1;
+
+      std::vector<TH1F*> m_h_z0_all;
+      std::vector<TH1F*> m_h_z0_0;
+      std::vector<TH1F*> m_h_z0_1;
+
+      std::vector<TH1F*> m_h_z0sintheta_all;
+      std::vector<TH1F*> m_h_z0sintheta_0;
+      std::vector<TH1F*> m_h_z0sintheta_1;
   };
 
   // =============================================================================

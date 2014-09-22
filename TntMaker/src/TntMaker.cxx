@@ -64,6 +64,9 @@ void PennSusyFrame::TntMaker::beginRun()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::TntMaker::processEvent()
 {
+  // increment the mc event weight counter
+  m_sum_mc_event_weights += m_event_quantities.getMcEventWeight();
+
   // // -----------------------------------------------------------------------------
   // m_event.setTriggerPhase( PennSusyFrame::getTriggerPhase( m_electrons.getCollection(EL_GOOD)
   //                                                        , m_muons.getCollection(MU_GOOD)

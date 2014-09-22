@@ -10,9 +10,9 @@ if [[ ! -e RootCore ]] ; then
 fi
 cd RootCore
 if [ "x$CERN_USER" = "x" ]; then
-  svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-14 SUSYTools
+  svn co svn+ssh://svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-21 SUSYTools
 else
-  svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-14 SUSYTools
+  svn co svn+ssh://${CERN_USER}@svn.cern.ch/reps/atlasoff/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-03-21 SUSYTools
 fi
 python SUSYTools/python/install.py
 
@@ -108,6 +108,20 @@ $ROOTCOREDIR/scripts/clean.sh
 $ROOTCOREDIR/scripts/compile.sh
 $ROOTCOREDIR/scripts/build.sh
 
+# ------------------------------------------------------------------------------
+# This is a little bit gross -- we will link the rootcore libs to the directory
+# where they are expected
+# get directory where the libs are stored (named after arch)
+arch_lib_dir=$(\ls ${ROOTCOREDIR}/lib/ | grep --color=never $(uname -m) )
+#              |                        |     |
+#              |                        |     +- remove color if grep want to be too pretty for its own good :-)
+#              |                        +-------------------- grep for directory which includes this arch in the name
+#              +--------------------------------------------- Look in ROOTCOREDIR/lib
+# link all the files from the arch dir to the lib dir (where we expect them to be in the makefiles)
+ln -s ${ROOTCOREDIR}/lib/$arch_lib_dir/* ${ROOTCOREDIR}/lib/
+# yuck!
+
+# ------------------------------------------------------------------------------
 # echo "Build finished! Moving RootCore.par to proper location"
 # cd ${ROOTCOREDIR}/..
 # # mv RootCore.par ${SFRAME_LIB_PATH}

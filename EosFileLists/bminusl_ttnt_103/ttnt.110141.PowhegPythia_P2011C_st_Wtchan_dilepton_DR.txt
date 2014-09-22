@@ -1,0 +1,1 @@
+/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.21/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.tnt.root    9987494    93545    9987494

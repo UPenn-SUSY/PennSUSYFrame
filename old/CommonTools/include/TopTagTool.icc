@@ -1,9 +1,0 @@
-// Dear emacs, this is -*- c++ -*-
-#ifndef CommonTools_TopTagTool_icc
-#define CommonTools_TopTagTool_icc
-
-// =============================================================================
-namespace CommonTools {
-
-}
-#endif // CommonTools_TopTagTool_icc
