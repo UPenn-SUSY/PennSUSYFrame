@@ -13,58 +13,16 @@
 #include "PennSusyFrameCore/include/Calculators.h"
 #include "PennSusyFrameCore/include/SelectorHelpers.h"
 #include "EwkAnalysis/include/EwkTrigger.h"
+
 #include "EwkAnalysis/include/EwkCutFlowTracker.h"
 #include "PennSusyFrameCore/include/D3PDReader.h"
 
 // -----------------------------------------------------------------------------
-PennSusyFrame::EwkNtupleMaker::EwkNtupleMaker(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
+PennSusyFrame::EwkNtupleMaker::EwkNtupleMaker(TTree* tree) : PennSusyFrame::EwkAnalysis::EwkAnalysis(tree)
                                                      , m_out_ntuple_file_name("EwkNtup.root")
-                                                     , m_crit_cut_grl(false)
-                                                     , m_crit_cut_incomplete_event(false)
-                                                     , m_crit_cut_lar_error(false)
-                                                     , m_crit_cut_tile_error(false)
-                                                     , m_crit_cut_tile_hot_spot(false)
-                                                     , m_crit_cut_tile_trip(false)
-                                                     , m_crit_cut_bad_jet_veto(false)
-                                                     , m_crit_cut_calo_problem_jet(false)
-                                                     , m_crit_cut_primary_vertex(false)
-                                                     , m_crit_cut_bad_mu_veto(false)
-                                                     , m_crit_cut_cosmic_mu_veto(false)
-                                                     , m_crit_cut_hfor(false)
-                                                     , m_crit_cut_mc_overlap(false)
-                                                     , m_crit_cut_ge_2_lep(false)
-                                                     , m_crit_cut_2_lep(false)
-                                                     , m_crit_cut_mll_sfos(false)
-                                                     , m_crit_cut_signal_lep(false)
-                                                     , m_crit_cut_phase_space(false)
-                                                     , m_crit_cut_trigger(false)
-                                                     , m_crit_cut_trigger_match(false)
-                                                     , m_crit_cut_tau_veto(false)
-                                                     , m_crit_cut_ss(false)
-                                                     , m_crit_cut_prompt_leptons(false)
-                                                     , m_crit_cut_stream_overlap(false)
-                                                     , m_crit_cut_no_charge_flip(false)
-                                                     , m_crit_cut_emma_mt(false)
-                                                     , m_crit_cut_met_rel(false)
-                                                     , m_crit_cut_dphi_ll(false)
-                                                     , m_crit_cut_b_veto(false)
-                                                     , m_crit_cut_num_jet(false)
-                                                     , m_sfos_mll_min(-1)
-                                                     , m_sfos_mll_max(-1)
-                                                     , m_emma_mt_min(-1)
-                                                     , m_emma_mt_max(-1)
-                                                     , m_met_rel_min(-1)
-                                                     , m_met_rel_max(-1)
-                                                     , m_dphi_ll_min(-1)
-                                                     , m_dphi_ll_max(-1)
                                                      , doBaselineSkim(false)
 {
-  // set defaults
-  /*setSFOSMllCut(20.e3, -1);
-  setEmmaMtCut(-1, 50.e3);
-  setMetRelCut(40.e3, -1);
-  setDphillCut(1.3, -1);
-  setNumLightJetsCut(1, -1);*/
+	
 }
 
 // -----------------------------------------------------------------------------
@@ -72,31 +30,9 @@ PennSusyFrame::EwkNtupleMaker::~EwkNtupleMaker()
 {}
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::EwkNtupleMaker::prepareTools()
-{
-  PennSusyFrameCore::prepareTools();
-
-  std::string base_dir = getenv("BASE_WORK_DIR");
-  if (m_is_data) {
-    // TODO make this configurable
-    m_grl.init( base_dir
-              + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
-              );
-  }
-
-  m_charge_flip_tool.init();
-}
-// -----------------------------------------------------------------------------
-void PennSusyFrame::EwkNtupleMaker::prepareSelection()
-{
-  PennSusyFrameCore::prepareSelection();
-  std::cout << "preparing selection\n";
-}
-// -----------------------------------------------------------------------------
 void PennSusyFrame::EwkNtupleMaker::beginRun()
 {
-  PennSusyFrameCore::beginRun();
-  prepareSelection();
+  EwkAnalysis::beginRun();
   configureOutput(m_out_ntuple_file_name, "optimize");
 }
 
@@ -104,319 +40,39 @@ void PennSusyFrame::EwkNtupleMaker::beginRun()
 void PennSusyFrame::EwkNtupleMaker::processEvent()
 {
   clearVariables();
-  m_event_weight = 1.;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // set mc event weight
-  // TODO validate MC event weight
-  m_event_weight *= m_event_quantities.getMcEventWeight();
+	m_event_weight = 1.;
+	EwkAnalysis::processEvent();
+	
+		// get number of signal leptons
+	int num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// == 2 signal lepton cut
+	if(!doBaselineSkim){
+		bool pass_signal_lep = (num_signal_leptons == 2);
+		m_pass_event = (m_pass_event && pass_signal_lep);
+		if (m_crit_cut_signal_lep && !pass_signal_lep) return;
+	}
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// b jet veto
+	
+	// TODO validate b veto cut
+	bool pass_b_veto = (m_jets.num(JET_B) == 0);
+	m_pass_event = (m_pass_event && pass_b_veto);
+	if (m_crit_cut_b_veto && !pass_b_veto) return;
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // set pile up weight
-  // TODO validate pile up weight
-  m_event_weight *= m_event_quantities.getPileUpSF();
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// get charge flip weight
+	// TODO move this to more sensible location
+	m_event_quantities.setCFWeight(m_charge_flip_tool.getSF( m_event.getFlavorChannel()
+															, m_electrons.getCollection(EL_GOOD)
+															, m_muons.getCollection(MU_GOOD)));
 
-  // -----------------------------------------------------------------------------
-  m_event.setTriggerPhase( PennSusyFrame::getTriggerPhase( m_electrons.getCollection(EL_GOOD)
-                                                         , m_muons.getCollection(MU_GOOD)
-                                                         )
-                         );
-  m_event.setPhaseSpace(PennSusyFrame::getPhaseSpaceFromTriggerPhase(m_event.getTriggerPhase()));
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // GRL cut
-  // TODO validate grl cut
-  // only check grl cut on data
-  bool pass_grl = (!m_is_data || m_grl.passEvent(m_event));
-  m_pass_event = (m_pass_event && pass_grl);
-  if (m_crit_cut_grl && !pass_grl) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // incomplete event cut
-  // TODO validate incomplete event cut
-  bool pass_incomplete_event = PennSusyFrame::passIncompleteEvent(m_event);
-  m_pass_event = (m_pass_event && pass_incomplete_event);
-  if (m_crit_cut_incomplete_event && !pass_incomplete_event) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // LAr error cut
-  // TODO validate LAr error cut
-  bool pass_lar_error = PennSusyFrame::passLarError(m_event);
-  m_pass_event = (m_pass_event && pass_lar_error);
-  if (m_crit_cut_lar_error && !pass_lar_error) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tile error cut
-  // TODO validate tile error cut
-  bool pass_tile_error = PennSusyFrame::passTileError(m_event);
-  m_pass_event = (m_pass_event && pass_tile_error);
-  if (m_crit_cut_tile_error && !pass_tile_error) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tile hot spot cut
-  // TODO validate tile hot spot cut
-  bool pass_tile_hot_spot = PennSusyFrame::TileHotSpotTool::passTileHotSpot(m_event, m_jets);
-  m_pass_event = (m_pass_event && pass_tile_hot_spot);
-  if (m_crit_cut_tile_hot_spot && !pass_tile_hot_spot) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tile trip cut
-  // TODO validate tile trip cut
-  bool pass_tile_trip = m_tile_trip_tool.passTileTrip(m_event);
-  m_pass_event = (m_pass_event && pass_tile_trip);
-  if (m_crit_cut_tile_trip && !pass_tile_trip) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // bad jet veto
-  bool pass_bad_jet_veto = (m_jets.num(JET_BAD) == 0);
-  m_pass_event = (m_pass_event && pass_bad_jet_veto);
-  if (m_crit_cut_bad_jet_veto && !pass_bad_jet_veto) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // calo problem jet cut
-  bool pass_calo_problem_jet = (m_jets.num(JET_CALO_PROBLEM) == 0);
-  m_pass_event = (m_pass_event && pass_calo_problem_jet);
-  if (m_crit_cut_calo_problem_jet && !pass_calo_problem_jet) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // primary vertex cut
-  bool pass_primary_vertex = PennSusyFrame::passPrimaryVertex(m_vertices);
-  m_pass_event = (m_pass_event && pass_primary_vertex);
-  if (m_crit_cut_primary_vertex && !pass_primary_vertex) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // bad muon cut
-  bool pass_bad_mu_veto = (m_muons.num(MU_BAD) == 0);
-  m_pass_event = (m_pass_event && pass_bad_mu_veto);
-  if (m_crit_cut_bad_mu_veto && !pass_bad_mu_veto) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // cosmic muon veto
-  bool pass_cosmic_mu_veto = (m_muons.num(MU_COSMIC) == 0);
-  m_pass_event = (m_pass_event && pass_cosmic_mu_veto);
-  if (m_crit_cut_cosmic_mu_veto && !pass_cosmic_mu_veto) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // HFOR cut
-  // TODO validate HFOR cut
-  bool pass_hfor = m_hfor_tool.passHFOR(m_mc_truth);
-  m_pass_event = (m_pass_event && pass_hfor);
-  if (m_crit_cut_hfor && !pass_hfor) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // mc overlap cut
-  // TODO validate mc overlap cut
-  bool pass_mc_overlap = (  PennSusyFrame::passSherpaWWOverlapRemoval(m_event, m_mc_truth)
-                         && PennSusyFrame::passZOverlapRemoval(m_mc_truth)
-                         );
-  m_pass_event = (m_pass_event && pass_mc_overlap);
-  if (m_crit_cut_mc_overlap && !pass_mc_overlap) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get number of good leptons
-  int num_good_leptons = m_electrons.num(EL_GOOD) + m_muons.num(MU_GOOD);
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // >= 2 baseline leptons cut
-  bool pass_ge_2_lep = (num_good_leptons >= 2);
-  m_pass_event = (m_pass_event && pass_ge_2_lep);
-  if (m_crit_cut_ge_2_lep && !pass_ge_2_lep) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // == 2 baseline leptons cut
-
-  bool pass_2_lep = (num_good_leptons == 2);
-  m_pass_event = (m_pass_event && pass_2_lep);
-  if (m_crit_cut_2_lep && !pass_2_lep) return;
-  
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // mll SFOS cut
-  bool pass_mll_sfos = ( PennSusyFrame::passCut( m_event_quantities.getMll()
-                                               , m_sfos_mll_min
-                                               , m_sfos_mll_max
-                                               )
-                       );
-  m_pass_event = (m_pass_event && pass_mll_sfos);
-  if (m_crit_cut_mll_sfos && !pass_mll_sfos) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get number of signal leptons
-  int num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // == 2 signal lepton cut
-  if (!doBaselineSkim){
-  bool pass_signal_lep = (num_signal_leptons == 2);
-  m_pass_event = (m_pass_event && pass_signal_lep);
-  if (m_crit_cut_signal_lep && !pass_signal_lep) return;
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // lepton scale factor
-  // TODO validate lepton sf
-  m_event_weight *= m_event_quantities.getLeptonSF();
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // phase space cut
-  bool pass_phase_space = (m_event.getTriggerPhase() != TRIG_NONE);
-  m_pass_event = (m_pass_event && pass_phase_space);
-  if (m_crit_cut_phase_space && !pass_phase_space) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // trigger cut
-  // TODO validate trigger cut
-  bool pass_trigger = (  !m_is_data
-                      || PennSusyFrame::passAnyTrigger( m_event
-                                                      , m_trigger
-                                                      )
-                      );
-  m_pass_event = (m_pass_event && pass_trigger);
-  if (m_crit_cut_trigger && !pass_trigger) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // trigger matching
-  // TODO validate trigger matching
-  bool pass_trigger_match = (  !m_is_data
-                            || PennSusyFrame::passTriggerMatching( m_event
-                                                                 , m_trigger
-                                                                 , m_electrons.getCollection(EL_GOOD)
-                                                                 , m_muons.getCollection(MU_GOOD)
-                                                                 )
-                            );
-  m_pass_event = (m_pass_event && pass_trigger_match);
-  if (m_crit_cut_trigger_match && !pass_trigger_match) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // TODO implement trigger SF
-  m_event_weight *= m_event_quantities.getTriggerWeight();
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tau veto
-  // TODO validate tau veto
-  bool pass_tau_veto = (m_taus.num(TAU_SIGNAL) == 0);
-  m_pass_event = (m_pass_event && pass_tau_veto);
-  if (m_crit_cut_tau_veto && !pass_tau_veto) return;
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // check for SS leptons
-  // TODO validate SS leptons requirement
-  //bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
-  //m_pass_event = (m_pass_event && pass_ss);
-  //if (m_crit_cut_ss && !pass_ss) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // check for prompt leptons
-  // TODO validate check for prompt leptons
-  bool pass_prompt_leptons = (m_is_data || m_event.getPromptLeptons());
-  m_pass_event = (m_pass_event && pass_prompt_leptons);
-  if (m_crit_cut_prompt_leptons && !pass_prompt_leptons) return;
-
-
-  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // // check for stream overlap
-  // // TODO implement check for stream overlap
-  // bool pass_stream_overlap = true;
-  // m_pass_event = (m_pass_event && pass_stream_overlap);
-  // if (m_crit_cut_stream_overlap && !pass_stream_overlap) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // require no charge flip
-  // TODO validate no charge flip cut
-  bool pass_no_charge_flip = (  m_is_data
-                             || m_event.getTruthSignChannel() == m_event.getSignChannel()
-                             );
-  m_pass_event = (m_pass_event && pass_no_charge_flip);
-  if (m_crit_cut_no_charge_flip && !pass_no_charge_flip) return;
-  
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // emma mt cut
-  // TODO validate emma mt cut
-  /*bool pass_emma_mt = ( PennSusyFrame::passCut( m_event_quantities.getEmmaMt()
-                                              , m_emma_mt_min
-                                              , m_emma_mt_max
-                                              )
-                      );
-  m_pass_event = (m_pass_event && pass_emma_mt);
-  if (m_crit_cut_emma_mt && !pass_emma_mt) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // met rel cut
-  // TODO validate met-rel cut
-  bool pass_met_rel = ( PennSusyFrame::passCut( m_met.getMetRel()
-                                              , m_met_rel_min
-                                              , m_met_rel_max
-                                              )
-                      );
-  m_pass_event = (m_pass_event && pass_met_rel);
-  if (m_crit_cut_met_rel && !pass_met_rel) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // dphi_ll cut
-  // TODO validate dphill cut
-  bool pass_dphi_ll = ( PennSusyFrame::passCut( m_event_quantities.getDphill()
-                                              , m_dphi_ll_min
-                                              , m_dphi_ll_max
-                                              )
-                      );
-  m_pass_event = (m_pass_event && pass_dphi_ll);
-  if (m_crit_cut_dphi_ll && !pass_dphi_ll) return;*/
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // b jet veto
-  // TODO validate b veto cut
-  bool pass_b_veto = (m_jets.num(JET_B) == 0);
-  m_pass_event = (m_pass_event && pass_b_veto);
-  if (m_crit_cut_b_veto && !pass_b_veto) return;
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // b tag sf
-  // TODO validate b tag SF
-  m_event_weight *= m_event_quantities.getBTagSF();
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // # light jet cut
-  // TODO validate light jet cut
-  /*bool pass_num_jet = ( PennSusyFrame::passCut( static_cast<int>(m_jets.num(JET_LIGHT))
-                                              , m_num_light_jets_min
-                                              , m_num_light_jets_max
-                                              )
-                      );
-  m_pass_event = (m_pass_event && pass_num_jet);
-  if (m_crit_cut_num_jet && !pass_num_jet) return;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get charge flip weight
-  // TODO move this to more sensible location
-  m_event_quantities.setCFWeight(m_charge_flip_tool.getSF( m_event.getFlavorChannel()
-                                                         , m_electrons.getCollection(EL_GOOD)
-                                                         , m_muons.getCollection(MU_GOOD)
-                                                         )
-                                );*/
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // fill histograms
-  // TODO reimpliment filling histograms after bugs are worked out
-  // if (m_pass_event) {
-  //   size_t num_hists = m_histogram_handlers.size();
-  //   for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-  //     m_histogram_handlers.at(hist_it)->Fill( m_event
-  //                                           , m_event_quantities
-  //                                           , m_electrons.getCollection(EL_GOOD)
-  //                                           , m_muons.getCollection(MU_GOOD)
-  //                                           , m_jets.getCollection(JET_GOOD)
-  //                                           , m_met
-  //                                           , m_event_weight
-  //                                           );
-  //   }
-  // }
-  
-  if (m_pass_event) {
+  if (m_pass_event /*&& m_met.getMetRel()/1.e3 > 30*/) {
     fillNtuple( m_event_weight);
   }
-}
-
-// -----------------------------------------------------------------------------
-void PennSusyFrame::EwkNtupleMaker::finalizeEvent()
-{
-  // fillTnt();
 }
 
 // -----------------------------------------------------------------------------
@@ -425,8 +81,8 @@ void PennSusyFrame::EwkNtupleMaker::finalizeRun()
   std::cout<< "EwkNtupleMaker::finalizeRun()\n";
   m_output_file->Write();
   m_output_file->Close();
-
-  // writeTnt();
+	EwkAnalysis::m_raw_cutflow_tracker.printToScreen();
+	EwkAnalysis::m_cutflow_tracker.printToScreen();
 }
 
 void PennSusyFrame::EwkNtupleMaker::clearVariables()

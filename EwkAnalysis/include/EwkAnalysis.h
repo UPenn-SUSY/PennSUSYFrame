@@ -43,6 +43,8 @@ namespace PennSusyFrame
       virtual void processEvent();
       virtual void finalizeEvent();
       virtual void finalizeRun();
+	  
+	  void doBaselineCuts();
 
       void setOutTntFileName(std::string val) { m_out_tnt_file_name = val; }
 
