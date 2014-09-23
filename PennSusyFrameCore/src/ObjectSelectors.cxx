@@ -4,7 +4,6 @@
 #include "PennSusyFrameCore/include/ObjectContainers.h"
 #include "PennSusyFrameCore/include/SelectorHelpers.h"
 
-#include "BMinusLAnalysis/include/BMinusLAnalysis.h"
 #include <iostream>
 
 // =============================================================================
@@ -449,42 +448,21 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSu
                                                       , std::vector<PennSusyFrame::Jet*>& output_jets_bad
                                                       )
 {
-  PennSusyFrame::BMinusLAnalysis::filldRHistHandles(PennSusyFrame::BMINUSL_NO_OR
-						    , *input_electrons
-						    , *input_muons
-						    , *input_jets_good
-						    );
   // do ee overlap removal
   std::vector<PennSusyFrame::Electron*> el_temp_1;
   eeOverlapRemoval(*input_electrons, el_temp_1);
-  // ... and fill dR histograms
-  PennSusyFrame::BMinusLAnalysis::filldRHistHandles(PennSusyFrame::BMINUSL_EE_OR
-						    , el_temp_1
-						    , *input_muons
-						    , *input_jets_good
-						    );
 
   // do ej overlap removal
   std::vector<PennSusyFrame::Jet*> jet_good_temp_1;
   std::vector<PennSusyFrame::Jet*> jet_bad_temp_1;
   ejOverlapRemoval(el_temp_1, *input_jets_good, jet_good_temp_1);
   ejOverlapRemoval(el_temp_1, *input_jets_bad , jet_bad_temp_1 );
-  PennSusyFrame::BMinusLAnalysis::filldRHistHandles(PennSusyFrame::BMINUSL_EJ_OR
-						    , el_temp_1
-						    , *input_muons
-						    , jet_good_temp_1
-						    );
 
   // do mj overlap removal
   std::vector<PennSusyFrame::Jet*> jet_good_temp_2;
   std::vector<PennSusyFrame::Jet*> jet_bad_temp_2;
   mjOverlapRemoval(*input_muons, jet_good_temp_1, jet_good_temp_2);
   mjOverlapRemoval(*input_muons, jet_bad_temp_1 , jet_bad_temp_2 );
-  PennSusyFrame::BMinusLAnalysis::filldRHistHandles(PennSusyFrame::BMINUSL_MJ_OR
-						    , el_temp_1
-						    , *input_muons
-						    , jet_good_temp_2
-						    );
 
   // do et overlap removal
   std::vector<PennSusyFrame::Tau*> tau_temp_1;
@@ -499,41 +477,21 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSu
   std::vector<PennSusyFrame::Electron*> el_temp_3;
   jeOverlapRemoval(jet_good_temp_2, el_temp_1, el_temp_2);
   jeOverlapRemoval(jet_bad_temp_2 , el_temp_2, el_temp_3);
-  PennSusyFrame::BMinusLAnalysis::filldRHistHandles(PennSusyFrame::BMINUSL_JE_OR
-						    , el_temp_2
-						    , *input_muons
-						    , jet_good_temp_2
-						    );
 
   // do jm overlap removal
   std::vector<PennSusyFrame::Muon*> mu_temp_1;
   std::vector<PennSusyFrame::Muon*> mu_temp_2;
   jmOverlapRemoval(jet_good_temp_2, *input_muons, mu_temp_1);
   jmOverlapRemoval(jet_bad_temp_2 , mu_temp_1   , mu_temp_2);
-  PennSusyFrame::BMinusLAnalysis::filldRHistHandles(PennSusyFrame::BMINUSL_JM_OR
-						    , el_temp_2
-						    , mu_temp_1
-						    , jet_good_temp_2
-						    );
 
   // do em overlap removal
   std::vector<PennSusyFrame::Electron*> el_temp_4;
   std::vector<PennSusyFrame::Muon*> mu_temp_3;
   emOverlapRemoval(el_temp_3, mu_temp_2, el_temp_4, mu_temp_3);
-  PennSusyFrame::BMinusLAnalysis::filldRHistHandles(PennSusyFrame::BMINUSL_EM_OR
-						    , el_temp_4
-						    , mu_temp_3
-						    , jet_good_temp_2
-						    );
 
   // do mm overlap removal
   std::vector<PennSusyFrame::Muon*> mu_temp_4;
   mmOverlapRemoval(mu_temp_3, mu_temp_4);
-  PennSusyFrame::BMinusLAnalysis::filldRHistHandles(PennSusyFrame::BMINUSL_MM_OR
-						    , el_temp_4
-						    , mu_temp_4
-						    , jet_good_temp_2
-						    );
 
   // do SFOS mll cut
   std::vector<PennSusyFrame::Electron*> el_temp_5;

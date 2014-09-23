@@ -14,7 +14,7 @@
 #include "PennSusyFrameCore/include/Calculators.h"
 #include "PennSusyFrameCore/include/D3PDReader.h"
 #include "PennSusyFrameCore/include/SelectorHelpers.h"
-
+#include "PennSusyFrameCore/include/ObjectSelectors.h"
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
                                                              , m_out_hist_file_name("BMinusL.hists.root")
@@ -160,7 +160,6 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
   if (m_do_detailed_bl_hists) {
     m_bminusl_detailed_histogram_handler.reserve(BMINUSL_HIST_N);
   }
-  m_bminusl_dr_histogram_handler.reserve(BMINUSL_DR_HIST_N);
 
   for (unsigned int hist_level = 0; hist_level != BMINUSL_HIST_N; ++hist_level) {
     std::cout << "creating histograms with hist level: " << hist_level << " -- " << PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level] << "\n";
@@ -178,9 +177,7 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
     }
   }
 
-  for (unsigned int dr_hist_level=0; dr_hist_level != BMINUSL_DR_HIST_N; ++ dr_hist_level) {
-    m_bminusl_dr_histogram_handler.push_back(new PennSusyFrame::DRHists(PennSusyFrame::BMINUSL_DR_HIST_LEVEL_STRINGS[dr_hist_level]));
-  }
+  m_dr.PennSusyFrame::DRStudies::beginRun();
 }
 
 // -----------------------------------------------------------------------------
@@ -678,6 +675,12 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
   std::cout << "creating output histogram file\n";
   TFile out_hist_file(m_out_hist_file_name.c_str(), "RECREATE");
 
+  //signed int dr_hist_level=0; dr_hist_level != PennSusyFrame::BMINUSL_DR_HIST_N; ++dr_hist_level) {/
+  //TDirectory* dr_hist_dir = out_hist_file.mkdir(PennSusyFrame::BMINUSL_DR_HIST_LEVEL_STRINGS[dr_hist_level].c_str());
+  //m_bminusl_dr_histogram_handler.at(dr_hist_level)->write(dr_hist_dir);
+  //}
+
+
   m_d3pd_reader->writeNumEvents();
 
   std::cout << "about to write histograms to file\n";
@@ -700,10 +703,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
     }
   }
 
-  for (unsigned int dr_hist_level=0; dr_hist_level != BMINUSL_DR_HIST_N; ++dr_hist_level) {
-    TDirectory* dr_hist_dir = out_hist_file.mkdir(PennSusyFrame::BMINUSL_DR_HIST_LEVEL_STRINGS[dr_hist_level].c_str());
-    m_bminusl_dr_histogram_handler.at(dr_hist_level)->write(dr_hist_dir);
-  }
+  m_dr.finalizeRun(m_out_hist_file_name);
 
   out_hist_file.Close();
   std::cout << "file is closed!\n";
@@ -852,6 +852,12 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
                                       , m_jets
                                       );
 
+  // replicate overlap removal to fill dR histograms
+  m_dr.PennSusyFrame::DRStudies::reproduceFullObjectCleaning( m_electrons.getCollection(EL_BASELINE)
+							 , m_muons.getCollection(MU_BASELINE)
+							 , m_jets.getCollection(JET_BASELINE_GOOD)
+							 , m_jets.getCollection(JET_BASELINE_BAD)
+							 );
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_met.prep( m_d3pd_reader
             , m_event
@@ -1315,20 +1321,117 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
   }
 }
 // -----------------------------------------------------------------------------
-void PennSusyFrame::BMinusLAnalysis::filldRHistHandles(
-						     PennSusyFrame::BMINUSL_DR_HIST_LEVELS hist_level
+// -------- DR Studies ---------------------------------------------------------
+// -----------------------------------------------------------------------------
+void PennSusyFrame::DRStudies::beginRun() {
+  m_bminusl_dr_histogram_handler.reserve(BMINUSL_DR_HIST_N);
+  for (unsigned int dr_hist_level=0; dr_hist_level != BMINUSL_DR_HIST_N; ++ dr_hist_level) {
+    m_bminusl_dr_histogram_handler.push_back(new PennSusyFrame::DRHists(BMINUSL_DR_HIST_LEVEL_STRINGS[dr_hist_level]));
+  }
+}
+
+void PennSusyFrame::DRStudies::finalizeRun(std::string m_out_hist_file_name) {
+  std::string file_name = m_out_hist_file_name + "__DR";
+    //  TFile out_hist_file(m_out_hist_file_name.c_str()+"__DR", "RECREATE");
+  TFile out_hist_file(file_name.c_str(), "RECREATE");
+  
+  for (unsigned int dr_hist_level=0; dr_hist_level != PennSusyFrame::BMINUSL_DR_HIST_N; ++dr_hist_level) {
+    TDirectory* dr_hist_dir = out_hist_file.mkdir(PennSusyFrame::BMINUSL_DR_HIST_LEVEL_STRINGS[dr_hist_level].c_str());
+    m_bminusl_dr_histogram_handler.at(dr_hist_level)->write(dr_hist_dir);
+  }
+  out_hist_file.Close();
+}
+
+void PennSusyFrame::DRStudies::reproduceFullObjectCleaning(const std::vector<PennSusyFrame::Electron*>* input_electrons
+							   , const std::vector<PennSusyFrame::Muon*>* input_muons
+							   , const std::vector<PennSusyFrame::Jet*>* input_jets_good
+							   , const std::vector<PennSusyFrame::Jet*>* input_jets_bad
+							   ) {
+  // fill hist with no OR
+  filldRHistHandles(PennSusyFrame::BMINUSL_NO_OR
+		    , *input_electrons
+		    , *input_muons
+		    , *input_jets_good);
+
+  // do ee overlap removal
+  std::vector<PennSusyFrame::Electron*> el_temp_1;
+  PennSusyFrame::ObjectCleaning::eeOverlapRemoval(*input_electrons, el_temp_1);
+  filldRHistHandles(PennSusyFrame::BMINUSL_EE_OR
+		    , el_temp_1
+		    , *input_muons
+		    , *input_jets_good);
+
+  // do ej overlap removal
+  std::vector<PennSusyFrame::Jet*> jet_good_temp_1;
+  std::vector<PennSusyFrame::Jet*> jet_bad_temp_1;
+  PennSusyFrame::ObjectCleaning::ejOverlapRemoval(el_temp_1, *input_jets_good, jet_good_temp_1);
+  PennSusyFrame::ObjectCleaning::ejOverlapRemoval(el_temp_1, *input_jets_bad, jet_bad_temp_1);
+  filldRHistHandles(PennSusyFrame::BMINUSL_EJ_OR
+		    , el_temp_1
+		    , *input_muons
+		    , jet_good_temp_1);
+
+  // do mj overlap removal
+  std::vector<PennSusyFrame::Jet*> jet_good_temp_2;
+  std::vector<PennSusyFrame::Jet*> jet_bad_temp_2;
+  PennSusyFrame::ObjectCleaning::mjOverlapRemoval(*input_muons, jet_good_temp_1, jet_good_temp_2);
+  PennSusyFrame::ObjectCleaning::mjOverlapRemoval(*input_muons, jet_bad_temp_1, jet_bad_temp_2);
+  filldRHistHandles(PennSusyFrame::BMINUSL_MJ_OR
+		    , el_temp_1
+		    , *input_muons
+		    , jet_good_temp_2);
+
+  // do je overlap removal
+  std::vector<PennSusyFrame::Electron*> el_temp_2;
+  std::vector<PennSusyFrame::Electron*> el_temp_3;
+  PennSusyFrame::ObjectCleaning::jeOverlapRemoval(jet_good_temp_2, el_temp_1, el_temp_2);
+  PennSusyFrame::ObjectCleaning::jeOverlapRemoval(jet_bad_temp_2 , el_temp_2, el_temp_3);
+  filldRHistHandles(PennSusyFrame::BMINUSL_JE_OR
+		    , el_temp_2
+		    , *input_muons
+		    , jet_good_temp_2
+		    );
+
+  // do jm overlap removal
+  std::vector<PennSusyFrame::Muon*> mu_temp_1;
+  std::vector<PennSusyFrame::Muon*> mu_temp_2;
+  PennSusyFrame::ObjectCleaning::jmOverlapRemoval(jet_good_temp_2, *input_muons, mu_temp_1);
+  PennSusyFrame::ObjectCleaning::jmOverlapRemoval(jet_bad_temp_2 , mu_temp_1   , mu_temp_2);
+  filldRHistHandles(PennSusyFrame::BMINUSL_JM_OR
+		    , el_temp_2
+		    , mu_temp_1
+		    , jet_good_temp_2);
+
+  // do em overlap removal
+  std::vector<PennSusyFrame::Electron*> el_temp_4;
+  std::vector<PennSusyFrame::Muon*> mu_temp_3;
+  PennSusyFrame::ObjectCleaning::emOverlapRemoval(el_temp_3, mu_temp_2, el_temp_4, mu_temp_3);
+  filldRHistHandles(PennSusyFrame::BMINUSL_EM_OR
+		    , el_temp_4
+		    , mu_temp_3
+		    , jet_good_temp_2
+		    );
+
+  // do mm overlap removal
+  std::vector<PennSusyFrame::Muon*> mu_temp_4;
+  PennSusyFrame::ObjectCleaning::mmOverlapRemoval(mu_temp_3, mu_temp_4);
+  filldRHistHandles(PennSusyFrame::BMINUSL_MM_OR
+		    , el_temp_4
+		    , mu_temp_4
+		    , jet_good_temp_2);
+}
+
+void PennSusyFrame::DRStudies::filldRHistHandles(
+						     BMINUSL_DR_HIST_LEVELS hist_level
 						     , const std::vector<PennSusyFrame::Electron*>& electrons
 						     , const std::vector<PennSusyFrame::Muon*>& muons
 						     , const std::vector<PennSusyFrame::Jet*>& jets
 						       ) {
   // loop through basic histogram handlers to fill
-  size_t num_hists = m_bminusl_dr_histogram_handler.at(hist_level).size();
-  for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-    m_bminusl_dr_histogram_handler.at(hist_level).at(hist_it)->FilldR( m_event
-								     , electrons
-								     , muons
-								     , jets
-								     , m_mc_truth
+  m_bminusl_dr_histogram_handler.at(hist_level)->FilldR( m_event
+							 , electrons
+							 , muons
+							 , jets
+							 , m_mc_truth
                                                          );
   }
-}
