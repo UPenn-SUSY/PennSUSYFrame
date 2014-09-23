@@ -44,7 +44,9 @@ namespace PennSusyFrame
       virtual void finalizeEvent();
       virtual void finalizeRun();
 	  
-	  void doBaselineCuts();
+      void doBaselineCuts();
+      void doFakeCR();
+      void doSignalLeptonCuts();
 
       void setOutTntFileName(std::string val) { m_out_tnt_file_name = val; }
 
