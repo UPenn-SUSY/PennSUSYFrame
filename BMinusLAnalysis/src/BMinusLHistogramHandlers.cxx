@@ -2321,14 +2321,14 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   // dr_lj10 = PennSusyFrame::getDr(lep_1, jet_0);
   // dr_lj11 = PennSusyFrame::getDr(lep_1, jet_1);
 
-  // // find truth flavor channel
-  // FLAVOR_CHANNEL truth_fc = PennSusyFrame::getTruthFC(mc_truth);
+  // find truth flavor channel
+  //  FLAVOR_CHANNEL truth_fc = PennSusyFrame::getTruthFC(mc_truth);
 
-  // // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // // loop over all flavor channels and fill histograms
-  // for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
-  //   if (fc_it == FLAVOR_ERROR_1) continue;
-  //   if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // loop over all flavor channels and fill histograms
+  for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    if (fc_it == FLAVOR_ERROR_1) continue;
+    if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
   //   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //   // fill dr histograms
@@ -3572,7 +3572,7 @@ void PennSusyFrame::ParentHists::write(TDirectory* d)
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::DRHists::DRHists(std::string name_tag)
+PennSusyFrame::DRHists::DRHists(std::string name_tag)
 {
   TH1::SetDefaultSumw2(true);
 
@@ -3857,52 +3857,58 @@ PennSusyFrame::DRHists::~DRHists()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
-                                                     , const std::vector<PennSusyFrame::Electron*>* el_list
-                                                     , const std::vector<PennSusyFrame::Muon*>* mu_list
-                                                     , const std::vector<PennSusyFrame::Jet*>* b_jet_list
+                                                     , const std::vector<PennSusyFrame::Electron*>& el_list
+                                                     , const std::vector<PennSusyFrame::Muon*>& mu_list
+                                                     , const std::vector<PennSusyFrame::Jet*>& b_jet_list
 				                     , const PennSusyFrame::MCTruth& mc_truth
-
                                                      )
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
 
   // bail out if the flavor channel is not reasonable
   if (fc == FLAVOR_NONE || fc == FLAVOR_ERROR_1) return;
+  if (el_list.size() + mu_list.size() <2 ) return;
+  if (b_jet_list.size() < 2) return;
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // calculate a bunch of things used in filling histograms
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
-  const PennSusyFrame::Lepton* lep_0, lep_1;
-  const PennSusyFrame::Jet* jet_0 = b_jet_list->at(0);
-  const PennSusyFrame::Jet* jet_1 = b_jet_list->at(1);
+
+  PennSusyFrame::Lepton* lep_0;
+  PennSusyFrame::Lepton* lep_1;
+  const PennSusyFrame::Jet* jet_0 = b_jet_list.at(0);
+  const PennSusyFrame::Jet* jet_1 = b_jet_list.at(1);
 
   if (jet_0->getPt() < jet_1->getPt()){
-    jet_0 = b_jet_list->at(1);
-    jet_1 = b_jet_list->at(0);
+    jet_0 = b_jet_list.at(1);
+    jet_1 = b_jet_list.at(0);
   }
+
   if (fc == FLAVOR_EE) {
-    lep_0 = el_list->at(0);
-    lep_1 = el_list->at(1);
+    lep_0 = el_list.at(0);
+    lep_1 = el_list.at(1);
     if (lep_0->getPt() < lep_1->getPt()) {
-      lep_0 = el_list->at(1);
-      lep_1 = el_list->at(0);
+      lep_0 = el_list.at(1);
+      lep_1 = el_list.at(0);
     }
   }
   else if (fc == FLAVOR_MM) {
-    lep_0 = mu_list->at(0);
-    lep_1 = mu_list->at(1);
+    lep_0 = mu_list.at(0);
+    lep_1 = mu_list.at(1);
     if (lep_0->getPt() < lep_1->getPt()) {
-      lep_0 = mu_list->at(1);
-      lep_1 = mu_list->at(0);
+      lep_0 = mu_list.at(1);
+      lep_1 = mu_list.at(0);
     }
   }
   else if (fc == FLAVOR_EM) {
-    lep_0 = el_list->at(0);
-    lep_1 = mu_list->at(0);
+      lep_0 = el_list.at(0);
+      lep_1 = mu_list.at(0);
     if (lep_0->getPt() < lep_1->getPt()) {
-      lep_0 = mu_list->at(0);
-      lep_1 = el_list->at(0);
+      lep_0 = mu_list.at(0);
+      lep_1 = el_list.at(0);
     }
+  }
+  else {
+    return;
   }
 
   double  dr_ll, dr_lj00, dr_lj01, dr_lj10, dr_lj11;
@@ -3936,12 +3942,12 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
     // fill dr(leading lep, closest object) histograms
     double dr_leadinglep_jclosest    = 100.;
     double dr_subleadinglep_jclosest = 100.;
-    for (unsigned int jet_it =0 ; jet_it != b_jet_list->size() ; ++jet_it) {
-      if (PennSusyFrame::getDr(lep_0 , b_jet_list->at(jet_it) ) < dr_leadinglep_jclosest) {
-	dr_leadinglep_jclosest = PennSusyFrame::getDr(lep_0, b_jet_list->at(jet_it));
+    for (unsigned int jet_it =0 ; jet_it != b_jet_list.size() ; ++jet_it) {
+      if (PennSusyFrame::getDr(lep_0 , b_jet_list.at(jet_it) ) < dr_leadinglep_jclosest) {
+	dr_leadinglep_jclosest = PennSusyFrame::getDr(lep_0, b_jet_list.at(jet_it));
       }
-      if (PennSusyFrame::getDr(lep_1 , b_jet_list->at(jet_it) ) < dr_subleadinglep_jclosest) {
-	dr_subleadinglep_jclosest = PennSusyFrame::getDr(lep_1, b_jet_list->at(jet_it));
+      if (PennSusyFrame::getDr(lep_1 , b_jet_list.at(jet_it) ) < dr_subleadinglep_jclosest) {
+	dr_subleadinglep_jclosest = PennSusyFrame::getDr(lep_1, b_jet_list.at(jet_it));
       }
     }
     double  dr_leadinglep_closest = std::min( dr_leadinglep_jclosest
@@ -3962,7 +3968,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
     if (fc == FLAVOR_EE) {
       if (lepton_from_stop_0 && lepton_from_stop_1) m_h_dr_ee_from_stop.at(fc_it)->Fill(dr_ll, weight);
       else m_h_dr_ee_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
-      // find closest jet to electron 0 and see if both are from stop
+      // find closest jet to electron 0 and see if lepton is from stop
       if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
 	if (lepton_from_stop_0) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj00, weight);
 	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
@@ -3971,7 +3977,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
 	if (lepton_from_stop_0) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj01, weight);
 	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
       }
-      // find closest jet to electron 1 and see if both are from stop
+      // find closest jet to electron 1 and see if lepton is from stop
       if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
 	if (lepton_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj10, weight);
 	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
@@ -3985,7 +3991,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
     else if (fc == FLAVOR_MM) {
       if (lepton_from_stop_0 && lepton_from_stop_1) m_h_dr_mm_from_stop.at(fc_it)->Fill(dr_ll, weight);
       else m_h_dr_mm_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
-      // find closest jet to muon 0 and see if both are from stop
+      // find closest jet to muon 0 and see if lepton is from stop
       if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
 	if (lepton_from_stop_0) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj00, weight);
 	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
@@ -3994,7 +4000,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
 	if (lepton_from_stop_0) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj01, weight);
 	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
       }
-      // find closest jet to muon 1 and see if both are from stop
+      // find closest jet to muon 1 and see if lepton is from stop
       if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
 	if (lepton_from_stop_1) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj10, weight);
 	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
@@ -4008,7 +4014,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
     else { // FLAVORCHANNEL EM
       if (lepton_from_stop_0 && lepton_from_stop_1) m_h_dr_em_from_stop.at(fc_it)->Fill(dr_ll, weight);
       else m_h_dr_em_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
-      // find closest jet to lep_0 and see if both are from stop -- see if lep is e or m
+      // find closest jet to lep_0 and see if lepton is from stop -- see if lep is e or m
       if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
 	if (lepton_from_stop_0) {
 	  if (lep_0->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj00, weight);
@@ -4029,7 +4035,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
 	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
 	}
       }
-      // find closest jet to lep_1 and see if both are from stop -- see if lep is e or m
+      // find closest jet to lep_1 and see if lepton is from stop -- see if lep is e or m
       if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
 	if (lepton_from_stop_1) {
 	  if (lep_1->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj10, weight);

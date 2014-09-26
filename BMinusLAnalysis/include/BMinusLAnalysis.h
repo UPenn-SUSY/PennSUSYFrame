@@ -83,23 +83,28 @@ namespace PennSusyFrame
   // ---------------------------------------------------------------------------
   class blPair;
   // ===========================================================================
-  class DRStudies : public PennSusyFrame::PennSusyFrameCore
+  class DRStudies 
     {
     public:
       DRStudies();
       virtual ~DRStudies();
 
-      void beginRun();
+      void init();
       void finalizeRun(std::string);
 
-      void reproduceFullObjectCleaning(const std::vector<PennSusyFrame::Electron*>*
+      void reproduceFullObjectCleaning(const PennSusyFrame::Event& 
+				       , const PennSusyFrame::MCTruth& 
+				       , PennSusyFrame::ObjectCleaning
+				       , const std::vector<PennSusyFrame::Electron*>*
 				       , const std::vector<PennSusyFrame::Muon*>*
 				       , const std::vector<PennSusyFrame::Jet*>*
 				       , const std::vector<PennSusyFrame::Jet*>*
 				       );
 
     protected:
-      void filldRHistHandles(   BMINUSL_DR_HIST_LEVELS
+      void filldRHistHandles( BMINUSL_DR_HIST_LEVELS
+			      , const PennSusyFrame::Event& 
+			      , const PennSusyFrame::MCTruth&
 			      , const std::vector<PennSusyFrame::Electron*>&
 			      , const std::vector<PennSusyFrame::Muon*>&
 			      , const std::vector<PennSusyFrame::Jet*>&
