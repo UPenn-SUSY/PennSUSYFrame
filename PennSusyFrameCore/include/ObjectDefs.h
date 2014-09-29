@@ -160,7 +160,6 @@ namespace PennSusyFrame
       double getBTagSF()        const { return m_b_tag_sf; }
       double getCFWeight()      const { return m_cf_weight; }
       double getFakeWeight()    const { return m_fake_weight; }
-
       void print() const;
 
     protected:
@@ -182,6 +181,7 @@ namespace PennSusyFrame
       double m_b_tag_sf;
       double m_cf_weight;
       double m_fake_weight;
+
   };
 
   // =============================================================================

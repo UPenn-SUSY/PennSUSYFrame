@@ -2,6 +2,7 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 
 #include <vector>
+#include <algorithm>
 
 // =============================================================================
 static const double PI = 3.14159265359;
@@ -138,8 +139,7 @@ double PennSusyFrame::getDphill( FLAVOR_CHANNEL flavor_channel
   }
 
   return 0;
-}
-
+} 
 // -----------------------------------------------------------------------------
 double PennSusyFrame::calcDphi(double phi_0, double phi_1) {
   phi_0 = TVector2::Phi_0_2pi(phi_0);
@@ -274,4 +274,95 @@ double PennSusyFrame::calculateTtbarPtReweight(const PennSusyFrame::MCTruth& mc_
   }
 
   return weight;
+}
+// -----------------------------------------------------------------------------
+double PennSusyFrame::getPtRatioLepJet(FLAVOR_CHANNEL flavor_channel
+                        , const std::vector<PennSusyFrame::Electron*>* el
+                        , const std::vector<PennSusyFrame::Muon*>* mu
+                        , const std::vector<PennSusyFrame::Jet*>* jet
+                        )
+{
+  double pt_ratio = 0;
+  
+  if (jet->size() == 0) 
+    {
+      std::cout<<"WARNING No Jets, setting jet/lep ratio to 0\n";
+      return 0.;
+    }
+  
+  double jet_pt = jet->at(0)->getPt();
+  double lep_pt = 0.;
+
+  if (flavor_channel == FLAVOR_EE) {
+    lep_pt = el->at(0)->getPt();
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    lep_pt = mu->at(0)->getPt();
+  }
+  else if (flavor_channel == FLAVOR_EM) {
+    lep_pt = max( mu->at(0)->getPt(),  el->at(0)->getPt());
+  }
+
+  pt_ratio = lep_pt/jet_pt;
+
+  return pt_ratio;
+
+}
+// -----------------------------------------------------------------------------
+double PennSusyFrame::getLeadingMt(  FLAVOR_CHANNEL flavor_channel
+                                       , const std::vector<PennSusyFrame::Electron*>* el
+                                       , const std::vector<PennSusyFrame::Muon*>* mu
+                                       , const PennSusyFrame::Met* met
+                                      )
+{
+
+  const TVector2* met_vec = met->getMetVec();
+  
+  if (flavor_channel == FLAVOR_EE) {
+    return calcMt((el->at(0)->getTlv()), met_vec);
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    return calcMt((mu->at(0)->getTlv()), met_vec);
+  }
+  else if (flavor_channel == FLAVOR_EM) {
+    if ( (mu->at(0)->getPt())  >  (el->at(0)->getPt()) ) return calcMt( (mu->at(0)->getTlv()), met_vec);
+    else return calcMt(el->at(0)->getTlv(), met_vec);
+  }
+  
+  else return 0.;
+  
+}
+// -----------------------------------------------------------------------------
+double PennSusyFrame::getSubleadingMt(  FLAVOR_CHANNEL flavor_channel
+                                       , const std::vector<PennSusyFrame::Electron*>* el
+                                       , const std::vector<PennSusyFrame::Muon*>* mu
+                                       , const PennSusyFrame::Met* met
+                                      )
+{
+
+ 
+  const TVector2* met_vec = met->getMetVec();
+  if (flavor_channel == FLAVOR_EE) {
+    return calcMt((el->at(1)->getTlv()), met_vec);
+  }
+  else if (flavor_channel == FLAVOR_MM) {
+    return calcMt((mu->at(1)->getTlv()), met_vec);
+  }
+  else if (flavor_channel == FLAVOR_EM) {
+    if ( (mu->at(0)->getPt())  <  (el->at(0)->getPt()) ) return calcMt( (mu->at(0)->getTlv()), met_vec);
+    else return calcMt(el->at(0)->getTlv(), met_vec);
+  }
+  else return 0.;
+  
+  
+}
+// -----------------------------------------------------------------------------
+double PennSusyFrame::calcMt(const TLorentzVector* tlv
+                             , const TVector2* met_vec
+                             )
+{
+  float delta_phi = TVector2::Phi_mpi_pi(met_vec->Phi() - tlv->Phi());
+  double mt = sqrt( 2*tlv->Pt()*met_vec->Mod()*(1-cos( delta_phi)));
+  return mt;
+
 }

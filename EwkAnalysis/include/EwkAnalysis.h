@@ -13,6 +13,8 @@
 #include "EwkAnalysis/include/EwkChargeFlipTool.h"
 #include "EwkAnalysis/include/EwkMatrixMethodTool.h"
 
+#include "TMVA/Reader.h"
+
 // =============================================================================
 namespace PennSusyFrame
 {
@@ -180,6 +182,22 @@ namespace PennSusyFrame
       double m_mt2_max;
 
       std::vector<PennSusyFrame::EwkHists*> m_ewk_histogram_handler;
+
+      TMVA::Reader m_tmva_reader;
+
+      //Stupid variables for evaluating the bdt b/c root and TMVA are stupid
+
+      float m_tmva_mll;
+      float m_tmva_met_rel;
+      float m_tmva_dphi_ll;
+      float m_tmva_ht;
+      float m_tmva_mt2;
+      float m_tmva_mtr1;
+      float m_tmva_mtr2;
+      float m_tmva_pt_ll;
+      float m_tmva_met_pt_jet;
+      float m_tmva_pt_lep_jet;
+      float m_tmva_dphi_met_jet;
 
     private:
 

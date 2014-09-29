@@ -108,6 +108,21 @@ void PennSusyFrame::EwkAnalysis::prepareTools()
 
   m_charge_flip_tool.init();
   m_bch_cleaning_tool.init(m_event, m_tile_trip_tool);
+
+  m_tmva_reader.AddVariable("Mll", &m_tmva_mll);
+  m_tmva_reader.AddVariable("METrel", &m_tmva_met_rel);
+  m_tmva_reader.AddVariable("DphiLL", &m_tmva_dphi_ll);
+  m_tmva_reader.AddVariable("Ht", &m_tmva_ht);
+  m_tmva_reader.AddVariable("MT2", &m_tmva_mt2);
+  m_tmva_reader.AddVariable("Mtr1", &m_tmva_mtr1);
+  m_tmva_reader.AddVariable("Mtr2", &m_tmva_mtr2);
+  m_tmva_reader.AddVariable("pTll", &m_tmva_pt_ll);
+  m_tmva_reader.AddVariable("METpTjet", &m_tmva_met_pt_jet);
+  m_tmva_reader.AddVariable("PtLepJet", &m_tmva_pt_lep_jet);
+  m_tmva_reader.AddVariable("DphiMETjet", &m_tmva_dphi_met_jet);
+
+  std::string tmvaWeightFile = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20_ISR.xml";
+  m_tmva_reader.BookMVA("BDTD method for this signal", tmvaWeightFile);
 }
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::prepareSelection()
@@ -324,7 +339,42 @@ void PennSusyFrame::EwkAnalysis::processEvent()
                                                          , m_muons.getCollection(MU_GOOD)
                                                          )
                                 );
-				   
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get BDT score
+  // TODO validate BDT Score
+  
+
+  //For now only eval BDT if passes selection up to here.
+
+  if (m_pass_event)    {
+    m_tmva_mll = m_event_quantities.getMll();
+    m_tmva_met_rel = m_met.getMetRel();
+    m_tmva_dphi_ll = m_event_quantities.getDphill();
+    m_tmva_ht = m_event_quantities.getHtSignal();
+    m_tmva_mt2 = m_event_quantities.getMt2();
+    m_tmva_pt_ll = m_event_quantities.getPtll();
+    m_tmva_mtr1 = PennSusyFrame::getLeadingMt(m_event.getFlavorChannel()
+                               , m_electrons.getCollection(EL_SIGNAL)
+                               , m_muons.getCollection(MU_SIGNAL)
+                               , &m_met);
+    m_tmva_mtr2 = PennSusyFrame::getSubleadingMt(m_event.getFlavorChannel()
+                                  , m_electrons.getCollection(EL_SIGNAL)
+                                  , m_muons.getCollection(MU_SIGNAL)
+                                  , &m_met);
+    bool is_isr = true;
+    if (is_isr)
+      {
+        m_tmva_met_pt_jet = m_met.getMetEt()/(m_jets.getCollection(JET_ALL_SIGNAL)->at(0)->getPt());
+        m_tmva_pt_lep_jet = PennSusyFrame::getPtRatioLepJet( m_event.getFlavorChannel()
+                                                             , m_electrons.getCollection(EL_SIGNAL)
+                                                             , m_muons.getCollection(MU_SIGNAL)
+                                                             , m_jets.getCollection(JET_ALL_SIGNAL)
+                                                             );
+        m_tmva_dphi_met_jet = m_met.getDPhi(m_jets.getCollection(JET_ALL_SIGNAL)->at(0));
+      }
+    double bdt_score = m_tmva_reader.EvaluateMVA("BDTD method for this signal");
+    std::cout<<"BDT score: "<<bdt_score<<std::endl;
+  }
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // pt_ll cut
   // TODO validate ptll cut
@@ -713,7 +763,7 @@ void PennSusyFrame::EwkAnalysis::doBaselineCuts()
     
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE, m_event_weight);
-    printEventDetails();
+   
   }
   
   
