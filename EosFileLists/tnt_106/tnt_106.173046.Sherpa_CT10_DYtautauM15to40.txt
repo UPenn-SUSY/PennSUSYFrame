@@ -4,7 +4,7 @@ root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.923772/user.bjackson.043427._000004.Tnt.root        10000        10        9999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.923772/user.bjackson.043427._000005.Tnt.root        10000        8        9999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.923772/user.bjackson.043427._000006.Tnt.root        10000        10        9999
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.923772/user.bjackson.043427._000007.Tnt.root        10000                9999
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.923772/user.bjackson.043427._000007.Tnt.root        10000        15        9999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.923772/user.bjackson.043427._000008.Tnt.root        10000        13        9999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.923772/user.bjackson.043427._000009.Tnt.root        10000        4        9999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.923772/user.bjackson.043427._000010.Tnt.root        10000        12        9999
@@ -49,7 +49,7 @@ root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000019.Tnt.root        169999        199        169998
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000020.Tnt.root        160000        185        159999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000021.Tnt.root        149999        153        149998
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000022.Tnt.root        160000                159999
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000022.Tnt.root        160000        196        159999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000023.Tnt.root        160000        163        159999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000024.Tnt.root        170000        193        169999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000025.Tnt.root        149999        183        149998
@@ -60,7 +60,7 @@ root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000073.Tnt.root        170000        214        169999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000074.Tnt.root        170000        192        169999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000075.Tnt.root        169999        215        169998
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000076.Tnt.root        169999        213        
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000076.Tnt.root        169999        213        169998
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000077.Tnt.root        160000        196        159999
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000078.Tnt.root        159999        197        159998
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.173046.Sherpa_CT10_DYtautauM15to40.tnt_106_Tnt.root.931404/user.bjackson.043427._000079.Tnt.root        160000        177        159999

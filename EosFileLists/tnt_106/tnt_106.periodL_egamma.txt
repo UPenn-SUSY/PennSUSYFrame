@@ -1,13 +1,13 @@
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1032582/user.bjackson.043193._000129.Tnt.root        1163750        53851        1163749
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1032582/user.bjackson.043193._000130.Tnt.root        802047        38081        802046
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1032582/user.bjackson.043193._000131.Tnt.root        1075946        48125        1075945
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1032582/user.bjackson.043193._000132.Tnt.root        1189895        55076        
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1032582/user.bjackson.043193._000132.Tnt.root        1189895        55076        1189894
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1032582/user.bjackson.043193._000133.Tnt.root        1261240        59993        1261239
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1049461/user.bjackson.043193._000145.Tnt.root        1020019        43782        1020018
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1049461/user.bjackson.043193._000146.Tnt.root        1162499        53898        1162498
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1049461/user.bjackson.043193._000147.Tnt.root        802309        37991        802308
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1151430/user.bjackson.043193._000202.Tnt.root        1084022        49098        1084021
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1151430/user.bjackson.043193._000203.Tnt.root        416645                416644
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1151430/user.bjackson.043193._000203.Tnt.root        416645        19409        416644
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1151430/user.bjackson.043193._000204.Tnt.root        1033664        45887        1033663
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.1151430/user.bjackson.043193._000205.Tnt.root        91225        4121        91224
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.921204/user.bjackson.043193._000001.Tnt.root        10394        417        10393
@@ -38,7 +38,7 @@ root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.929472/user.bjackson.043193._000046.Tnt.root        286859        12496        286858
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.929472/user.bjackson.043193._000047.Tnt.root        296231        13278        296230
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.929472/user.bjackson.043193._000048.Tnt.root        312079        14286        312078
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.929472/user.bjackson.043193._000049.Tnt.root        317703                317702
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.929472/user.bjackson.043193._000049.Tnt.root        317703        14671        317702
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.929534/user.bjackson.043193._000122.Tnt.root        1056175        47288        1056174
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.929534/user.bjackson.043193._000123.Tnt.root        555301        25517        555300
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_egamma.tnt_106_Tnt.root.929540/user.bjackson.043193._000058.Tnt.root        433004        19533        433003
