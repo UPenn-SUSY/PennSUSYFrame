@@ -17,6 +17,11 @@ def checkEntry(line_string):
         print 'ERROR: Line has ' , len(splits) , ' entries'
         print '    line: ' , cleaned_line
         return False
+    for s in splits:
+        if 'ERROR' in s:
+            print 'ERROR: Line has an error in one of the entries'
+            print '    line: ' , cleaned_line
+            return False
     return True
 
 #-------------------------------------------------------------------------------
