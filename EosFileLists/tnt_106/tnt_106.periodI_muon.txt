@@ -14,7 +14,7 @@ root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tn
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.1113370/user.bjackson.043213._000098.Tnt.root        35581        3469        35580
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.1133158/user.bjackson.043213._000105.Tnt.root        996129        101469        996128
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.992954/user.bjackson.043213._000011.Tnt.root        6376        547        6375
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.992954/user.bjackson.043213._000012.Tnt.root                602        6220
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.992954/user.bjackson.043213._000012.Tnt.root        6221        602        6220
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.992954/user.bjackson.043213._000013.Tnt.root        7806        723        7805
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.992954/user.bjackson.043213._000014.Tnt.root        8179        821        8178
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.992954/user.bjackson.043213._000015.Tnt.root        8188        824        8187
@@ -30,12 +30,12 @@ root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tn
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.992954/user.bjackson.043213._000066.Tnt.root        159907        16254        159906
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.992954/user.bjackson.043213._000086.Tnt.root        176408        17918        176407
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000034.Tnt.root        554707        55480        554706
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000036.Tnt.root        240824        23513        
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000036.Tnt.root        240824        23513        240823
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000059.Tnt.root        978839        97328        978838
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000060.Tnt.root        1000538        101194        1000537
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000061.Tnt.root        1150040        116833        1150039
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000062.Tnt.root        450451        45575        450450
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000087.Tnt.root        978050                978049
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000087.Tnt.root        978050        97143        978049
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000088.Tnt.root        970913        98289        970912
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000089.Tnt.root        893278        91300        893277
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodI_muon.tnt_106_Tnt.root.993827/user.bjackson.043213._000090.Tnt.root        970493        96820        970492
