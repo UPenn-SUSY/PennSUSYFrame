@@ -2,6 +2,7 @@
 #define PennSusyFrame_Calculators_h
 
 #include <vector>
+#include "TLorentzVector.h"
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 
 // =============================================================================
@@ -60,6 +61,7 @@ namespace PennSusyFrame
                   , const std::vector<PennSusyFrame::Electron*>*
                   , const std::vector<PennSusyFrame::Muon*>*
                   );
+
   double calcDphi(double phi_0, double phi_1);
 
   // ---------------------------------------------------------------------------
@@ -85,7 +87,29 @@ namespace PennSusyFrame
 
   // ---------------------------------------------------------------------------
   double calculateTtbarPtReweight(const PennSusyFrame::MCTruth&);
+  // ---------------------------------------------------------------------------
+  double getPtRatioLepJet(FLAVOR_CHANNEL
+                  , const std::vector<PennSusyFrame::Electron*>*
+                  , const std::vector<PennSusyFrame::Muon*>*
+                  , const std::vector<PennSusyFrame::Jet*>*
+                          );
+// ---------------------------------------------------------------------------
+  double getLeadingMt(FLAVOR_CHANNEL
+                  , const std::vector<PennSusyFrame::Electron*>*
+                  , const std::vector<PennSusyFrame::Muon*>*
+                  , const PennSusyFrame::Met*
+                      );
+  double getSubleadingMt(FLAVOR_CHANNEL
+                  , const std::vector<PennSusyFrame::Electron*>*
+                  , const std::vector<PennSusyFrame::Muon*>*
+                  , const PennSusyFrame::Met*
+                      );
+  double calcMt(const TLorentzVector *
+                 , const TVector2 *
+                );
+  
 }
+
 
 // Include the implementation:
 #ifndef __CINT__

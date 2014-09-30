@@ -371,6 +371,7 @@ bool PennSusyFrame::VertexSelector::passAllCuts(const PennSusyFrame::Vertex* p)
   if ( !PennSusyFrame::passCut( p->getNumTracks()
                               , m_min_num_tracks
                               , m_max_num_tracks
+				, true
                               )
      )
     return false;

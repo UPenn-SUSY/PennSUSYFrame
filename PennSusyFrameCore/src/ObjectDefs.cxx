@@ -103,6 +103,7 @@ PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
                                                             , m_b_tag_sf_down(1.)
                                                             , m_cf_weight(0.)
                                                             , m_fake_weight(0.)
+
 {}
 
 // -----------------------------------------------------------------------------
