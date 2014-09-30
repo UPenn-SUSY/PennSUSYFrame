@@ -1024,6 +1024,8 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
     size_t el_term = m_electrons.num(EL_SELECTED);
     const std::vector<PennSusyFrame::Electron*>* el_list = m_electrons.getCollection(EL_SELECTED);
     for (size_t el_it = 0; el_it != el_term; ++el_it) {
+      m_egamma_sf_tool.clear();
+
       double this_lep_sf        = m_egamma_sf_tool.getSF(    m_event, el_list->at(el_it));
       double this_lep_sf_uncert = m_egamma_sf_tool.getUncert(m_event, el_list->at(el_it));
 
