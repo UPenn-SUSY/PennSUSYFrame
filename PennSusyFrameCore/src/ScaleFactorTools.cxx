@@ -144,10 +144,10 @@ void PennSusyFrame::EgammaScaleFactorTool::prep( const PennSusyFrame::Event& eve
                                         , pt
                                         );
   m_result_id = m_eg_id_sf.calculate( m_data_type
-  					                        , event.getRunNumber()
-  					                        , cl_eta
-  					                        , pt
-                                    );
+                                      , event.getRunNumber()
+                                      , cl_eta
+                                      , pt
+                                      );
 
   m_is_prepped = true;
 }
@@ -189,7 +189,6 @@ double PennSusyFrame::EgammaScaleFactorTool::getUncert( const PennSusyFrame::Eve
   if (do_id  ) uncert_sq += pow(m_result_id.getTotalUncertainty()  , 2);
   return sqrt(uncert_sq);
 }
-
 // =============================================================================
 PennSusyFrame::MuonScaleFactorTool::MuonScaleFactorTool() : m_muon_sf(0)
 {
