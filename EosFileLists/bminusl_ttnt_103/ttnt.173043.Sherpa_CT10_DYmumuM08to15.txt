@@ -1,1 +1,0 @@
-/afs/cern.ch/work/b/bjackson/public/PennSUSYFrame.00.03.21/EosFileLists/bminusl_ttnt_103/../../SafeTTNTDir/BMinusL.173043.Sherpa_CT10_DYmumuM08to15.tnt.root    4996000    179    4996000.0

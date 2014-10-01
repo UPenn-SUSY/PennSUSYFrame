@@ -770,8 +770,11 @@ void PennSusyFrame::EwkAnalysis::doBaselineCuts()
   // TODO validate x sec SF
   float target_lumi = 20281.4; // in pb-1
   
-  m_event_weight *= m_xsec_weight;
-  m_event_weight *= target_lumi;
+  if(!m_is_data)
+    {
+      m_event_weight *= m_xsec_weight;
+      m_event_weight *= target_lumi;
+    }
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_X_SEC_SF);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_X_SEC_SF, m_event_weight);
@@ -960,8 +963,8 @@ void PennSusyFrame::EwkAnalysis::doFakeCR()
   // ----------------------------------------------------------------------------
   // cut on the BDT
 
-  float bdt_score_min = -999;
-  float bdt_score_max = -0.1;
+  double bdt_score_min = -999;
+  double bdt_score_max = -0.1;
 
   bool pass_bdt_fake_cr = (PennSusyFrame::passCut(m_bdt_score,
                                                   bdt_score_min,
@@ -969,8 +972,11 @@ void PennSusyFrame::EwkAnalysis::doFakeCR()
                                                   ));
   pass_fake_cr = (pass_fake_cr && pass_bdt_fake_cr);
                                     
-  if (pass_fake_cr)  fillHistHandles( PennSusyFrame::EWK_HIST_FAKE_CR, event_fake_weight);
-  
+  if (pass_fake_cr)  
+    {
+      std::cout<<"bdt score: "<<m_bdt_score<<std::endl;
+      fillHistHandles( PennSusyFrame::EWK_HIST_FAKE_CR, event_fake_weight);
+    }
   return;
 }
 

@@ -1,5 +1,0 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126932.PowhegPythia8_AU2CT10_WpWm_mm.tnt_102.140307233413/user.bjackson.034532._00002.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126932.PowhegPythia8_AU2CT10_WpWm_mm.tnt_102.140307233434/user.bjackson.034532._00003.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126932.PowhegPythia8_AU2CT10_WpWm_mm.tnt_102.140307233434/user.bjackson.034532._00004.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126932.PowhegPythia8_AU2CT10_WpWm_mm.tnt_102.140307233434/user.bjackson.034532._00005.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126932.PowhegPythia8_AU2CT10_WpWm_mm.tnt_102.140309202958/user.bjackson.034532._00006.Tnt.root

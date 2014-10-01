@@ -1,2 +1,0 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102_v3/user.bjackson.146853.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp3Excl_Mll10to60.tnt_102_v3.140606122832/user.bjackson.035278._00001.Tnt.root        139399        187
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102_v3/user.bjackson.146853.AlpgenJimmy_Auto_AUET2CTEQ6L1_ZtautauNp3Excl_Mll10to60.tnt_102_v3.140606122832/user.bjackson.035278._00002.Tnt.root        5000        8

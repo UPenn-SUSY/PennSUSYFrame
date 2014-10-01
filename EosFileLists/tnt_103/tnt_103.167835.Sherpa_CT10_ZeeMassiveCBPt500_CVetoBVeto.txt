@@ -1,2 +1,0 @@
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.tnt_103.140708185925/user.bjackson.036736._00001.Tnt.root        50000        40154
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.tnt_103.140708185940/user.bjackson.036736._00002.Tnt.root        79897        63964

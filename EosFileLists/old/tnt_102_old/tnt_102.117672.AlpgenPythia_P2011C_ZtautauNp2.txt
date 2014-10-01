@@ -1,2 +1,0 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.117672.AlpgenPythia_P2011C_ZtautauNp2.tnt_102.140307234945/user.bjackson.034622._00001.Tnt.root
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.117672.AlpgenPythia_P2011C_ZtautauNp2.tnt_102.140307234945/user.bjackson.034622._00002.Tnt.root

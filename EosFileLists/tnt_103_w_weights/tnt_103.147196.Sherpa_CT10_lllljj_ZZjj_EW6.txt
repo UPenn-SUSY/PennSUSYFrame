@@ -1,2 +1,0 @@
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.147196.Sherpa_CT10_lllljj_ZZjj_EW6.tnt_103.140704213220/user.bjackson.035708._00001.Tnt.root        140000        45401
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.147196.Sherpa_CT10_lllljj_ZZjj_EW6.tnt_103.140704213220/user.bjackson.035708._00002.Tnt.root        47500        15403

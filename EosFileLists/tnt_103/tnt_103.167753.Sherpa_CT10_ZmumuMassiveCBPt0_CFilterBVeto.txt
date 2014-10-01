@@ -1,8 +1,0 @@
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.tnt_103.140708183905/user.bjackson.036616._00001.Tnt.root        149999        82831
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.tnt_103.140708183905/user.bjackson.036616._00002.Tnt.root        50000        27473
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.tnt_103.140708183936/user.bjackson.036616._00003.Tnt.root        598998        330592
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.tnt_103.140708183936/user.bjackson.036616._00004.Tnt.root        560000        307793
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.tnt_103.140708183936/user.bjackson.036616._00005.Tnt.root        539999        297366
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.tnt_103.140708183936/user.bjackson.036616._00006.Tnt.root        540000        296565
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.tnt_103.140708183936/user.bjackson.036616._00007.Tnt.root        529999        291045
-root://eosatlas///eos/atlas/user/e/etolley/tnt_103/user.bjackson.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.tnt_103.140708183936/user.bjackson.036616._00008.Tnt.root        29000        16020

@@ -1,1 +1,0 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep.tnt_102.140307231214/user.bjackson.034421._00001.Tnt.root        20000        5891

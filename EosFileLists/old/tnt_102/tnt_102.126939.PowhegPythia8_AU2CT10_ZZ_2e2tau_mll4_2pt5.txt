@@ -1,8 +1,0 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_102.140308003438/user.bjackson.034725._00001.Tnt.root        139900        44897
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_102.140308003438/user.bjackson.034725._00002.Tnt.root        130000        41619
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_102.140308003438/user.bjackson.034725._00003.Tnt.root        30000        9246
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_102.140308003457/user.bjackson.034725._00004.Tnt.root        489998        155666
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_102.140308003457/user.bjackson.034725._00005.Tnt.root        10000        3192
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_102.140308003515/user.bjackson.034725._00006.Tnt.root        139999        44660
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_102.140308003515/user.bjackson.034725._00007.Tnt.root        130000        41231
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.126939.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_2pt5.tnt_102.140308003515/user.bjackson.034725._00008.Tnt.root        30000        9508

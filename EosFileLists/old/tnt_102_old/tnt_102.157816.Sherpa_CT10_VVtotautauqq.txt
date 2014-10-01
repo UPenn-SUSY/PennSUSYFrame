@@ -1,2 +1,0 @@
-root://eosatlas///eos/atlas/user/e/ehines/tnt_102/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_102.140308003904/user.bjackson.034748._00001.Tnt.root
-root://eosatlas///eos/atlas/user/e/ehines/tnt_102/user.bjackson.157816.Sherpa_CT10_VVtotautauqq.tnt_102.140308003904/user.bjackson.034748._00002.Tnt.root
