@@ -1,0 +1,37 @@
+#name of column,type of variation,,SR
+#
+# Nominal
+nominal,202632,1,10
+nominal,202633,1,10
+nominal,202634,1,10
+nominal,202635,1,10
+nominal,202636,1,10
+nominal,202637,1,10
+nominal,202638,1,10
+nominal,202639,1,10
+nominal,202640,1,10
+nominal,202641,1,10
+#
+# MCSTAT
+MCstat,202632,symRel,0.10
+MCstat,202633,symRel,0.17
+MCstat,202634,symRel,0.05
+MCstat,202635,symRel,0.05
+MCstat,202636,symRel,0.05
+MCstat,202637,symRel,0.05
+MCstat,202638,symRel,0.05
+MCstat,202639,symRel,0.05
+MCstat,202640,symRel,0.05
+MCstat,202641,symRel,0.05
+#
+# generic systematic
+alpha_generic,202632,symRel,0.30
+alpha_generic,202633,symRel,0.30
+alpha_generic,202634,symRel,0.30
+alpha_generic,202635,symRel,0.30
+alpha_generic,202636,symRel,0.30
+alpha_generic,202637,symRel,0.30
+alpha_generic,202638,symRel,0.30
+alpha_generic,202639,symRel,0.30
+alpha_generic,202640,symRel,0.30
+alpha_generic,202641,symRel,0.30

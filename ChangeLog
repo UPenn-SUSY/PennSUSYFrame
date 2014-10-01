@@ -1,0 +1,36 @@
+2012-11-01 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Added check for sign channel
+	* Implimented trigger matching in cut flow cycle
+	* Added variables to flag cuts as critical
+
+2012-10-31 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Updates to event description class
+	* Collecting all enums into a single header
+	* Updates to cut flow cycle - Starting to make cuts!
+	* Updated handling of Trigger bits in event description
+
+2012-10-29 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Added event description class
+
+2012-10-26 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Updated trigger matching in TriggerCutTool
+
+2012-10-25 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Added Trigger handle class
+	* Added TriggerVec handle class
+	* Added placeholders for most of cut flow
+
+2012-10-24 Elizabeth Hines <Elizabeth.Hines@cern.ch>
+	* Added EventCleaningTool
+
+2012-10-24 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Fixed jet calibration cuts
+	* Added checks for first event cleaning cuts
+	* Fixed SFOS removal in object cleaning
+	* Removed unused selection tool
+	* Added TriggerCutTool
+
+2012-10-22 Brett Jackson <Brett.David.Jackson@cern.ch>
+	* Created ChangeLog
+	* Implemented object selection
+	* Added object cleaning - overlap removal + SFOS removal

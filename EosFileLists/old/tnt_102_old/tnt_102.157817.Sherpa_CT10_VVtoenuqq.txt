@@ -1,0 +1,5 @@
+root://eosatlas///eos/atlas/user/e/ehines/tnt_102/user.bjackson.157817.Sherpa_CT10_VVtoenuqq.tnt_102.140307233906/user.bjackson.034556._00001.Tnt.root
+root://eosatlas///eos/atlas/user/e/ehines/tnt_102/user.bjackson.157817.Sherpa_CT10_VVtoenuqq.tnt_102.140307233906/user.bjackson.034556._00002.Tnt.root
+root://eosatlas///eos/atlas/user/e/ehines/tnt_102/user.bjackson.157817.Sherpa_CT10_VVtoenuqq.tnt_102.140307233906/user.bjackson.034556._00003.Tnt.root
+root://eosatlas///eos/atlas/user/e/ehines/tnt_102/user.bjackson.157817.Sherpa_CT10_VVtoenuqq.tnt_102.140307233906/user.bjackson.034556._00004.Tnt.root
+root://eosatlas///eos/atlas/user/e/ehines/tnt_102/user.bjackson.157817.Sherpa_CT10_VVtoenuqq.tnt_102.140307233906/user.bjackson.034556._00005.Tnt.root

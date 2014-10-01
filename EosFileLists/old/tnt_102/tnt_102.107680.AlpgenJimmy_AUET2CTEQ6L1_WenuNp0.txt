@@ -1,0 +1,8 @@
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.tnt_102.140307231702/user.bjackson.034446._00001.Tnt.root        450000        150
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.tnt_102.140307231702/user.bjackson.034446._00002.Tnt.root        420000        173
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.tnt_102.140307231702/user.bjackson.034446._00003.Tnt.root        89900        41
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.tnt_102.140307231722/user.bjackson.034446._00004.Tnt.root        659893        236
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.tnt_102.140307231722/user.bjackson.034446._00005.Tnt.root        619967        219
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.tnt_102.140307231722/user.bjackson.034446._00006.Tnt.root        599997        243
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.tnt_102.140307231722/user.bjackson.034446._00007.Tnt.root        609961        225
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_102/user.bjackson.107680.AlpgenJimmy_AUET2CTEQ6L1_WenuNp0.tnt_102.140307231722/user.bjackson.034446._00008.Tnt.root        10000        3
