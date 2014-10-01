@@ -33,7 +33,7 @@ def main():
     if total_num_entries > 0:
         out_file.write('%d' % total_num_entries)
     else:
-        out_file.write('error')
+        out_file.write('ERROR')
     out_file.close()
 
 #===============================================================================

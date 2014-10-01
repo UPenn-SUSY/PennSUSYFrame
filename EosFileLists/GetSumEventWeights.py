@@ -33,7 +33,7 @@ def main():
     if sum_event_weights > 0:
         out_file.write('%d' % sum_event_weights)
     else:
-        out_file.write('error')
+        out_file.write('ERROR')
     out_file.close()
 
 #===============================================================================
