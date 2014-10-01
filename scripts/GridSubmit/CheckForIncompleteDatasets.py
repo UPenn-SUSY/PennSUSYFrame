@@ -188,10 +188,7 @@ def checkEosFilesInDirectory(dir_path):
     data_sizes = getDatasetSizes(is_data = True )
     mc_sizes   = getDatasetSizes(is_data = False)
 
-    # TODO remove
-    pp = pprint.PrettyPrinter(indent = 2)
-    # pp.pprint(mc_sizes)
-
+    # list to store message for missing samples
     mismatch_message_list = []
 
     # get list of eos files and loop over them
@@ -205,8 +202,6 @@ def checkEosFilesInDirectory(dir_path):
         # get the dsid and dataset name from the sample name
         dsid    = sample_splits[1]
         ds_name = sample_splits[2] if 'period' not in dsid else dsid
-
-        # if not dsid == '105200': continue
 
         # if this is data, we compare to the data list
         if 'period' in ds_name:
@@ -227,8 +222,6 @@ def checkEosFilesInDirectory(dir_path):
 
         # if this is mc, we compare to the mc list
         else:
-            # print '%s -- %s -- %s' % (sample_name , dsid, ds_name)
-
             # get number events from eos file -- this is only done once
             num_events_eos = getEventDataFromEosFileList(fl)['total_events']
 
@@ -239,22 +232,16 @@ def checkEosFilesInDirectory(dir_path):
             num_events_best_match = 0
             for mc_sizes_key in mc_sizes.keys():
                 if dsid in mc_sizes_key:
-                    # print 'found match -- ' , mc_sizes_key
                     found_match = True
 
                     # check the number of events in the container from the ami file
                     num_events_cont = mc_sizes[mc_sizes_key]['total_events']
 
                     this_diff = abs(num_events_cont - num_events_eos)
-                    # print '  num events cont: ' , num_events_cont
-                    # print '  this diff: ' , this_diff
-                    # print '  old min diff: ' , min_diff
                     if this_diff < min_diff:
-                        # print ' this is the new min diff'
                         min_diff = this_diff
                         best_match = '%s.%s' % (dsid, ds_name)
                         num_events_best_match = num_events_cont
-                    # print '  min diff: ' , min_diff
 
             if num_events_eos != num_events_best_match:
                 mismatch_message_list.append( constructMismatchMessage( best_match
