@@ -226,6 +226,8 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   //For now only eval BDT if passes selection up to here.
 
   if (m_pass_event)    {
+
+    //std::cout<<"ABOUT TO GET BDT SCORE"<<std::endl;
     m_tmva_mll = m_event_quantities.getMll();
     m_tmva_met_rel = m_met.getMetRel();
     m_tmva_dphi_ll = m_event_quantities.getDphill();
@@ -233,26 +235,33 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_tmva_mt2 = m_event_quantities.getMt2();
     m_tmva_pt_ll = m_event_quantities.getPtll();
     m_tmva_mtr1 = PennSusyFrame::getLeadingMt(m_event.getFlavorChannel()
-                               , m_electrons.getCollection(EL_SIGNAL)
-                               , m_muons.getCollection(MU_SIGNAL)
+                               , m_electrons.getCollection(EL_SELECTED)
+                               , m_muons.getCollection(MU_SELECTED)
                                , &m_met);
     m_tmva_mtr2 = PennSusyFrame::getSubleadingMt(m_event.getFlavorChannel()
-                                  , m_electrons.getCollection(EL_SIGNAL)
-                                  , m_muons.getCollection(MU_SIGNAL)
+                                  , m_electrons.getCollection(EL_SELECTED)
+                                  , m_muons.getCollection(MU_SELECTED)
                                   , &m_met);
-    bool is_isr = true;
+    bool is_isr = m_jets.getCollection(JET_ALL_SIGNAL)->size() > 0;
     if (is_isr)
       {
         m_tmva_met_pt_jet = m_met.getMetEt()/(m_jets.getCollection(JET_ALL_SIGNAL)->at(0)->getPt());
         m_tmva_pt_lep_jet = PennSusyFrame::getPtRatioLepJet( m_event.getFlavorChannel()
-                                                             , m_electrons.getCollection(EL_SIGNAL)
-                                                             , m_muons.getCollection(MU_SIGNAL)
+                                                             , m_electrons.getCollection(EL_SELECTED)
+                                                             , m_muons.getCollection(MU_SELECTED)
                                                              , m_jets.getCollection(JET_ALL_SIGNAL)
                                                              );
         m_tmva_dphi_met_jet = m_met.getDPhi(m_jets.getCollection(JET_ALL_SIGNAL)->at(0));
       }
+
+    else 
+      {
+        m_tmva_met_pt_jet = 0.;
+        m_tmva_pt_lep_jet = 0.;
+        m_tmva_dphi_met_jet = 0.;
+      }
     m_bdt_score = m_tmva_reader.EvaluateMVA("BDTD method for this signal");
-    //    std::cout<<"BDT score: "<<m_bdt_score<<std::endl;
+    //std::cout<<"BDT score: "<<m_bdt_score<<std::endl;
   }
 
   if(m_do_fake_cr) doFakeCR();
@@ -959,9 +968,9 @@ void PennSusyFrame::EwkAnalysis::doFakeCR()
 
   // ----------------------------------------------------------------------------
   // cut on the BDT
-
-  float bdt_score_min = -999;
-  float bdt_score_max = -0.1;
+  
+  double bdt_score_min = -999;
+  double bdt_score_max = -0.1;
 
   bool pass_bdt_fake_cr = (PennSusyFrame::passCut(m_bdt_score,
                                                   bdt_score_min,
