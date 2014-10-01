@@ -39,7 +39,9 @@ namespace PennSusyFrame
                               , const std::vector<PennSusyFrame::Jet*>* jets
                               , float weight
                               );      
-
+      void FillBDT( const PennSusyFrame::Event& event
+                    , float bdt_score
+                    , float weight);
       virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -55,6 +57,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_all;
       std::vector<TH1F*> m_h_mbl_0;
       std::vector<TH1F*> m_h_mbl_1;
+
+      std::vector<TH1F*> m_h_bdt_score;
   };
 }
 

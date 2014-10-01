@@ -54,7 +54,10 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
 						     , m_crit_cut_ht(false)
 						     , m_crit_cut_mll(false)
 						     , m_crit_cut_mt2(false)
-						     , m_print_event_details(false)  
+						     , m_do_fake_est(false)
+                                                     , m_do_fake_cr(false)  
+                                                     , m_do_cf_est(false)  
+                                                     , m_print_event_details(false)  
                                                      , m_sfos_mll_min(-1)
                                                      , m_sfos_mll_max(-1)
                                                      , m_emma_mt_min(-1)
@@ -73,6 +76,8 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
 						     , m_mll_max(-1)
 						     , m_mt2_min(-1)
 						     , m_mt2_max(-1)
+                                                     , m_bdt_score(-999.)  
+                                                       
 						     
 {
   // set defaults
@@ -181,16 +186,17 @@ void PennSusyFrame::EwkAnalysis::beginRun()
   PennSusyFrameCore::beginRun();
 
   prepareSelection();
+  //std::cout<<"size to resize to: "<<EWK_HIST_N<<std::endl;
   m_histogram_handlers.resize(EWK_HIST_N);
-  
+    
   for (unsigned int hist_level = 0; hist_level != EWK_HIST_N; ++hist_level) {
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::EventLevelHists(      PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::LeptonKinematicsHists(PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::JetKinematicsHists(   PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::MetHists(             PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]) );
-   
+    
     m_ewk_histogram_handler.push_back(new PennSusyFrame::EwkHists(PennSusyFrame::EWK_HIST_LEVEL_STRINGS[hist_level]));
- }
+  }
 
 
   // configureTnt(m_out_tnt_file_name, "TNT");
@@ -200,6 +206,7 @@ void PennSusyFrame::EwkAnalysis::beginRun()
 void PennSusyFrame::EwkAnalysis::processEvent()
 {
   m_event_weight = 1.;
+  m_bdt_score = -999;
 
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_ALL);
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_ALL, m_event_weight);
@@ -211,9 +218,44 @@ void PennSusyFrame::EwkAnalysis::processEvent()
 
   doBaselineCuts();
 
-  bool do_fake_cr = false;
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get BDT score
+  // TODO validate BDT Score
+  
 
-  if(do_fake_cr) doFakeCR();
+  //For now only eval BDT if passes selection up to here.
+
+  if (m_pass_event)    {
+    m_tmva_mll = m_event_quantities.getMll();
+    m_tmva_met_rel = m_met.getMetRel();
+    m_tmva_dphi_ll = m_event_quantities.getDphill();
+    m_tmva_ht = m_event_quantities.getHtSignal();
+    m_tmva_mt2 = m_event_quantities.getMt2();
+    m_tmva_pt_ll = m_event_quantities.getPtll();
+    m_tmva_mtr1 = PennSusyFrame::getLeadingMt(m_event.getFlavorChannel()
+                               , m_electrons.getCollection(EL_SIGNAL)
+                               , m_muons.getCollection(MU_SIGNAL)
+                               , &m_met);
+    m_tmva_mtr2 = PennSusyFrame::getSubleadingMt(m_event.getFlavorChannel()
+                                  , m_electrons.getCollection(EL_SIGNAL)
+                                  , m_muons.getCollection(MU_SIGNAL)
+                                  , &m_met);
+    bool is_isr = true;
+    if (is_isr)
+      {
+        m_tmva_met_pt_jet = m_met.getMetEt()/(m_jets.getCollection(JET_ALL_SIGNAL)->at(0)->getPt());
+        m_tmva_pt_lep_jet = PennSusyFrame::getPtRatioLepJet( m_event.getFlavorChannel()
+                                                             , m_electrons.getCollection(EL_SIGNAL)
+                                                             , m_muons.getCollection(MU_SIGNAL)
+                                                             , m_jets.getCollection(JET_ALL_SIGNAL)
+                                                             );
+        m_tmva_dphi_met_jet = m_met.getDPhi(m_jets.getCollection(JET_ALL_SIGNAL)->at(0));
+      }
+    m_bdt_score = m_tmva_reader.EvaluateMVA("BDTD method for this signal");
+    //    std::cout<<"BDT score: "<<m_bdt_score<<std::endl;
+  }
+
+  if(m_do_fake_cr) doFakeCR();
 
   doSignalLeptonCuts();
 
@@ -233,68 +275,13 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_SS);
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_SS, m_event_weight);
   }
-// // fill histograms for ZVETO hist level
-//  if (m_pass_event) {
-//    fillHistHandles( PennSusyFrame::EWK_HIST_ZVETO
-//		     , m_event_weight
-//		     );
-//  }
-//
-//  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-//  // emma mt cut
-//  // TODO validate emma mt cut
-//  bool pass_emma_mt = ( PennSusyFrame::passCut( m_event_quantities.getEmmaMt()
-//                                              , m_emma_mt_min
-//                                              , m_emma_mt_max
-//                                              )
-//                      );
-//  m_pass_event = (m_pass_event && pass_emma_mt);
-//  if (m_crit_cut_emma_mt && !pass_emma_mt) return;
-//  if (m_pass_event) {
-//    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EMMA_MT);
-//    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EMMA_MT, m_event_weight);
-//
-//    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EMMA_MT);
-//    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EMMA_MT, m_event_weight);
-//  }
 
-//  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-//  // met rel cut
-//  // TODO validate met-rel cut
-//  bool pass_met_rel = ( PennSusyFrame::passCut( m_met.getMetRel()
-//                                              , m_met_rel_min
-//                                              , m_met_rel_max
-//                                              )
-//                      );
-//  m_pass_event = (m_pass_event && pass_met_rel);
-//  if (m_crit_cut_met_rel && !pass_met_rel) return;
-//  if (m_pass_event) {
-//    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MET_REL);
-//    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MET_REL, m_event_weight);
-//
-//    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MET_REL);
-//    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MET_REL, m_event_weight);
-//  }
-//
-//  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-//  // dphi_ll cut
-//  // TODO validate dphill cut
-//  bool pass_dphi_ll = ( PennSusyFrame::passCut( m_event_quantities.getDphill()
-//                                              , m_dphi_ll_min
-//                                              , m_dphi_ll_max
-//                                              )
-//                      );
-//  m_pass_event = (m_pass_event && pass_dphi_ll);
-//  if (m_crit_cut_dphi_ll && !pass_dphi_ll) return;
-//  if (m_pass_event) {
-//    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_DPHI_LL);
-//    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_DPHI_LL, m_event_weight);
-//
-//    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_DPHI_LL);
-//    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_DPHI_LL, m_event_weight);
-//  }
-//
-//
+  // fill histograms for 2 SS lep hist level
+  if (m_pass_event) {
+    fillHistHandles( PennSusyFrame::EWK_HIST_2SS_SIG_LEP
+		     , m_event_weight
+		     );
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // # light jet cut
@@ -330,6 +317,13 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_VETO, m_event_weight);
   }
 
+  // fill histograms for 2 SS lep hist level
+  if (m_pass_event) {
+    fillHistHandles( PennSusyFrame::EWK_HIST_1_LIGHT_JET
+		     , m_event_weight
+		     );
+  }
+
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // get charge flip weight
@@ -339,42 +333,9 @@ void PennSusyFrame::EwkAnalysis::processEvent()
                                                          , m_muons.getCollection(MU_GOOD)
                                                          )
                                 );
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get BDT score
-  // TODO validate BDT Score
-  
 
-  //For now only eval BDT if passes selection up to here.
+  if (m_do_cf_est) m_event_weight *= m_event_quantities.getCFWeight();
 
-  if (m_pass_event)    {
-    m_tmva_mll = m_event_quantities.getMll();
-    m_tmva_met_rel = m_met.getMetRel();
-    m_tmva_dphi_ll = m_event_quantities.getDphill();
-    m_tmva_ht = m_event_quantities.getHtSignal();
-    m_tmva_mt2 = m_event_quantities.getMt2();
-    m_tmva_pt_ll = m_event_quantities.getPtll();
-    m_tmva_mtr1 = PennSusyFrame::getLeadingMt(m_event.getFlavorChannel()
-                               , m_electrons.getCollection(EL_SIGNAL)
-                               , m_muons.getCollection(MU_SIGNAL)
-                               , &m_met);
-    m_tmva_mtr2 = PennSusyFrame::getSubleadingMt(m_event.getFlavorChannel()
-                                  , m_electrons.getCollection(EL_SIGNAL)
-                                  , m_muons.getCollection(MU_SIGNAL)
-                                  , &m_met);
-    bool is_isr = true;
-    if (is_isr)
-      {
-        m_tmva_met_pt_jet = m_met.getMetEt()/(m_jets.getCollection(JET_ALL_SIGNAL)->at(0)->getPt());
-        m_tmva_pt_lep_jet = PennSusyFrame::getPtRatioLepJet( m_event.getFlavorChannel()
-                                                             , m_electrons.getCollection(EL_SIGNAL)
-                                                             , m_muons.getCollection(MU_SIGNAL)
-                                                             , m_jets.getCollection(JET_ALL_SIGNAL)
-                                                             );
-        m_tmva_dphi_met_jet = m_met.getDPhi(m_jets.getCollection(JET_ALL_SIGNAL)->at(0));
-      }
-    double bdt_score = m_tmva_reader.EvaluateMVA("BDTD method for this signal");
-    std::cout<<"BDT score: "<<bdt_score<<std::endl;
-  }
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // pt_ll cut
   // TODO validate ptll cut
@@ -917,66 +878,67 @@ void PennSusyFrame::EwkAnalysis::doSignalLeptonCuts()
 void PennSusyFrame::EwkAnalysis::doFakeCR()
 {
   
-  m_event_weight *= m_event_quantities.getFakeWeight();
+  double event_fake_weight = m_event_weight * m_event_quantities.getFakeWeight();
   
+  bool pass_fake_cr = m_pass_event;
   
   // Define Fake control regions
   
-  //  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // met rel cut
-  // Reverse Cut
-  bool pass_met_rel = !( PennSusyFrame::passCut( m_met.getMetRel()
-                                                 , m_met_rel_min
-                                                 , m_met_rel_max
-                                                 )
-                         );
-  m_pass_event = (m_pass_event && pass_met_rel);
-  if (m_crit_cut_met_rel && !pass_met_rel) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MET_REL);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MET_REL, m_event_weight);
-    
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MET_REL);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MET_REL, m_event_weight);
-  }
+//  //  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  // met rel cut
+//  // Reverse Cut
+//  bool pass_met_rel = !( PennSusyFrame::passCut( m_met.getMetRel()
+//                                                 , m_met_rel_min
+//                                                 , m_met_rel_max
+//                                                 )
+//                         );
+//  pass_fake_cr = (pass_fake_cr && pass_met_rel);
+//  if (m_crit_cut_met_rel && !pass_met_rel) return;
+//  if (pass_fake_cr) {
+//   // m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MET_REL);
+//   // m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MET_REL, m_event_weight);
+//   // 
+//   // m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MET_REL);
+//   // m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MET_REL, m_event_weight);
+//  }
+//  
+//  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//  // dphi_ll cut
+//  // TODO validate dphill cut
+//  bool pass_dphi_ll = ( PennSusyFrame::passCut( m_event_quantities.getDphill()
+//                                                , m_dphi_ll_min
+//                                                , m_dphi_ll_max
+//                                                )
+//                        );
+//  pass_fake_cr = (pass_fake_cr && pass_dphi_ll);
+//  if (m_crit_cut_dphi_ll && !pass_dphi_ll) return;
+//  if (pass_fake_cr) {
+//   // m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_DPHI_LL);
+//   // m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_DPHI_LL, m_event_weight);
+//   // 
+//   // m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_DPHI_LL);
+//   // m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_DPHI_LL, m_event_weight);
+//		}
+//  
+  
   
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // dphi_ll cut
-  // TODO validate dphill cut
-  bool pass_dphi_ll = ( PennSusyFrame::passCut( m_event_quantities.getDphill()
-                                                , m_dphi_ll_min
-                                                , m_dphi_ll_max
-                                                )
-                        );
-  m_pass_event = (m_pass_event && pass_dphi_ll);
-  if (m_crit_cut_dphi_ll && !pass_dphi_ll) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_DPHI_LL);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_DPHI_LL, m_event_weight);
-    
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_DPHI_LL);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_DPHI_LL, m_event_weight);
-		}
-  
-  
-  
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// # light jet cut
-		// TODO validate light jet cut
+  // # light jet cut
+  // TODO validate light jet cut
   bool pass_num_jet = ( PennSusyFrame::passCut( static_cast<int>(m_jets.num(JET_LIGHT)+static_cast<int>(m_jets.num(JET_FORWARD))+static_cast<int>(m_jets.num(JET_B)) )
                                                 , m_num_light_jets_min
                                                 , m_num_light_jets_max
-													 , true	
+                                                , true	
                                                 )
                         );
-  m_pass_event = (m_pass_event && pass_num_jet);
+  pass_fake_cr = (pass_fake_cr && pass_num_jet);
   if (m_crit_cut_num_jet && !pass_num_jet) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_NUM_JET);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_NUM_JET, m_event_weight);
-    
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NUM_JET);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_NUM_JET, m_event_weight);
+  if (pass_fake_cr) {
+   // m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_NUM_JET);
+   // m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_NUM_JET, m_event_weight);
+   // 
+   // m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NUM_JET);
+   // m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_NUM_JET, m_event_weight);
   }
   
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -984,17 +946,30 @@ void PennSusyFrame::EwkAnalysis::doFakeCR()
   
   // TODO validate b veto cut
   bool pass_b_veto = (m_jets.num(JET_B) == 0);
-  m_pass_event = (m_pass_event && pass_b_veto);
+  pass_fake_cr = (pass_fake_cr && pass_b_veto);
   if (m_crit_cut_b_veto && !pass_b_veto) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_B_VETO);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_B_VETO, m_event_weight);
-    
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_B_VETO);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_VETO, m_event_weight);
+  if (pass_fake_cr) {
+  //  m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_B_VETO);
+  //  m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_B_VETO, m_event_weight);
+  //  
+  //  m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_B_VETO);
+  //  m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_VETO, m_event_weight);
   }
   
-  if (m_pass_event)  fillHistHandles( PennSusyFrame::EWK_HIST_FAKE_CR, m_event_weight);
+
+  // ----------------------------------------------------------------------------
+  // cut on the BDT
+
+  float bdt_score_min = -999;
+  float bdt_score_max = -0.1;
+
+  bool pass_bdt_fake_cr = (PennSusyFrame::passCut(m_bdt_score,
+                                                  bdt_score_min,
+                                                  bdt_score_max
+                                                  ));
+  pass_fake_cr = (pass_fake_cr && pass_bdt_fake_cr);
+                                    
+  if (pass_fake_cr)  fillHistHandles( PennSusyFrame::EWK_HIST_FAKE_CR, event_fake_weight);
   
   return;
 }
@@ -1030,7 +1005,7 @@ void PennSusyFrame::EwkAnalysis::finalizeRun()
       m_histogram_handlers.at(hist_level).at(hist_it)->write(hist_dir_cut_level);
     }
     
-    //m_ewk_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
+    m_ewk_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
   }
   std::cout << "done writing histograms to file\n";
 
@@ -1066,6 +1041,8 @@ void PennSusyFrame::EwkAnalysis::fillHistHandles( PennSusyFrame::EWK_HIST_LEVELS
 //                                                        , m_mc_truth
 //                                                        , weight
 //                                                        );
+
+  m_ewk_histogram_handler.at(hist_level)->FillBDT(m_event, m_bdt_score, weight);
 }
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::printEventDetails()

@@ -19,13 +19,17 @@
 namespace PennSusyFrame
 {
 
-  enum EWK_HIST_LEVELS { EWK_HIST_ZVETO
+  enum EWK_HIST_LEVELS { EWK_HIST_2SS_SIG_LEP
+                       , EWK_HIST_1_LIGHT_JET  
+                       , EWK_HIST_ZVETO
                        , EWK_HIST_MET
 		       , EWK_HIST_FAKE_CR	 
                        , EWK_HIST_N
   };
 
-  const std::string EWK_HIST_LEVEL_STRINGS[] = { "EWK_ZVETO"
+  const std::string EWK_HIST_LEVEL_STRINGS[] = { "EWK_2SS_SIG_LEP"
+                                               , "EWK_1_LIGHT_JET"
+                                               , "EWK_ZVETO"
                                                , "EWK_MET"
 					       , "EWK_FAKE_CR"	 
                                                };
@@ -90,6 +94,11 @@ namespace PennSusyFrame
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
+      void setDoFakeEst(bool val)  {m_do_fake_est = val;}
+      void setDoFakeCR(bool val)   {m_do_fake_cr = val;}
+      
+      void setDoChargeFlipEst(bool val) {m_do_cf_est = val;}
+
       void setPrintEventDetails(bool val) { m_print_event_details = val; }
 
     protected:
@@ -141,6 +150,10 @@ namespace PennSusyFrame
       bool m_crit_cut_mll;
       bool m_crit_cut_mt2;
 
+      bool m_do_fake_est;
+      bool m_do_fake_cr;
+      bool m_do_cf_est;
+      
       bool m_print_event_details;
 
       PennSusyFrame::GrlTool m_grl;
@@ -181,6 +194,8 @@ namespace PennSusyFrame
       double m_mt2_min;
       double m_mt2_max;
 
+      double m_bdt_score;
+
       std::vector<PennSusyFrame::EwkHists*> m_ewk_histogram_handler;
 
       TMVA::Reader m_tmva_reader;
@@ -198,6 +213,8 @@ namespace PennSusyFrame
       float m_tmva_met_pt_jet;
       float m_tmva_pt_lep_jet;
       float m_tmva_dphi_met_jet;
+
+      
 
     private:
 

@@ -20,6 +20,10 @@ PennSusyFrame::EwkHists::EwkHists(std::string name_tag)
   const float pt_min  = 0.;
   const float pt_max  = 500.;
 
+  const int bdt_bins = 100;
+  const float bdt_min = -1;
+  const float bdt_max = 1;
+
 //  const int   mbl_bins = 50;
 //  const float mbl_min  = 0.;
 //  const float mbl_max  = 500.;
@@ -42,8 +46,22 @@ PennSusyFrame::EwkHists::EwkHists(std::string name_tag)
 					, pt_bins, pt_min, pt_max
 					)
 			      );
+
+    m_h_bdt_score.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                         + "__bdt_score"
+                                         + "__"
+                                         + name_tag
+                                         ).c_str()
+                                       , ( "BDT Score "
+                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                           + " ; BDT Score ; Entries"
+                                           ).c_str()
+                                       , bdt_bins, bdt_min, bdt_max
+                                       )
+                             );
     
   }
+
 }
 
 // -----------------------------------------------------------------------------
@@ -92,7 +110,20 @@ void PennSusyFrame::EwkHists::FillSpecial( const PennSusyFrame::Event& event
   }
 }
 
+void PennSusyFrame::EwkHists::FillBDT( const PennSusyFrame::Event& event
+                                       , float bdt_score
+                                       , float weight
+                                       )
+{
+  FLAVOR_CHANNEL fc = event.getFlavorChannel(); 
+  for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    if (fc_it == FLAVOR_ERROR_1) continue;
+    if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
+    
+    m_h_bdt_score.at(fc_it)->Fill(bdt_score, weight);
 
+  }
+}
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkHists::write(TDirectory* d)
@@ -103,6 +134,7 @@ void PennSusyFrame::EwkHists::write(TDirectory* d)
     {
 
       m_h_jet_sum_pt.at(fc_it)->Write();
+      m_h_bdt_score.at(fc_it)->Write();
     }
   
 
