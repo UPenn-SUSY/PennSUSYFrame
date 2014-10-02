@@ -194,12 +194,20 @@ namespace PennSusyFrame
       double m_mt2_min;
       double m_mt2_max;
 
-      double m_bdt_score;
+      double m_bdt_score_m20isr;
+      double m_bdt_score_m20noisr;
+      double m_bdt_score_m35isr;
+      double m_bdt_score_m35noisr;
+      double m_bdt_score_m65isr;
+      double m_bdt_score_m65noisr;
+      double m_bdt_score_m100isr;
+      double m_bdt_score_m100noisr;
+
 
       std::vector<PennSusyFrame::EwkHists*> m_ewk_histogram_handler;
 
-      TMVA::Reader m_tmva_reader;
-
+      TMVA::Reader m_tmva_reader_isr;
+      TMVA::Reader m_tmva_reader_noisr;
       //Stupid variables for evaluating the bdt b/c root and TMVA are stupid
 
       float m_tmva_mll;

@@ -76,7 +76,14 @@ PennSusyFrame::EwkAnalysis::EwkAnalysis(TTree* tree) : PennSusyFrame::PennSusyFr
 						     , m_mll_max(-1)
 						     , m_mt2_min(-1)
 						     , m_mt2_max(-1)
-                                                     , m_bdt_score(-999.)  
+                                                     , m_bdt_score_m20isr(-999.)  
+                                                     , m_bdt_score_m20noisr(-999.)  
+                                                     , m_bdt_score_m35isr(-999.)  
+                                                     , m_bdt_score_m35noisr(-999.)  
+                                                     , m_bdt_score_m65isr(-999.)  
+                                                     , m_bdt_score_m65noisr(-999.)  
+                                                     , m_bdt_score_m100isr(-999.)  
+                                                     , m_bdt_score_m100noisr(-999.)  
                                                        
 						     
 {
@@ -114,21 +121,51 @@ void PennSusyFrame::EwkAnalysis::prepareTools()
   m_charge_flip_tool.init();
   m_bch_cleaning_tool.init(m_event, m_tile_trip_tool);
 
-  m_tmva_reader.AddVariable("Mll", &m_tmva_mll);
-  m_tmva_reader.AddVariable("METrel", &m_tmva_met_rel);
-  m_tmva_reader.AddVariable("DphiLL", &m_tmva_dphi_ll);
-  m_tmva_reader.AddVariable("Ht", &m_tmva_ht);
-  m_tmva_reader.AddVariable("MT2", &m_tmva_mt2);
-  m_tmva_reader.AddVariable("Mtr1", &m_tmva_mtr1);
-  m_tmva_reader.AddVariable("Mtr2", &m_tmva_mtr2);
-  m_tmva_reader.AddVariable("pTll", &m_tmva_pt_ll);
-  m_tmva_reader.AddVariable("METpTjet", &m_tmva_met_pt_jet);
-  m_tmva_reader.AddVariable("PtLepJet", &m_tmva_pt_lep_jet);
-  m_tmva_reader.AddVariable("DphiMETjet", &m_tmva_dphi_met_jet);
+  m_tmva_reader_isr.AddVariable("Mll", &m_tmva_mll);
+  m_tmva_reader_isr.AddVariable("METrel", &m_tmva_met_rel);
+  m_tmva_reader_isr.AddVariable("DphiLL", &m_tmva_dphi_ll);
+  m_tmva_reader_isr.AddVariable("Ht", &m_tmva_ht);
+  m_tmva_reader_isr.AddVariable("MT2", &m_tmva_mt2);
+  m_tmva_reader_isr.AddVariable("Mtr1", &m_tmva_mtr1);
+  m_tmva_reader_isr.AddVariable("Mtr2", &m_tmva_mtr2);
+  m_tmva_reader_isr.AddVariable("pTll", &m_tmva_pt_ll);
+  m_tmva_reader_isr.AddVariable("METpTjet", &m_tmva_met_pt_jet);
+  m_tmva_reader_isr.AddVariable("PtLepJet", &m_tmva_pt_lep_jet);
+  m_tmva_reader_isr.AddVariable("DphiMETjet", &m_tmva_dphi_met_jet);
 
-  std::string tmvaWeightFile = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20_ISR.xml";
-  m_tmva_reader.BookMVA("BDTD method for this signal", tmvaWeightFile);
+  m_tmva_reader_noisr.AddVariable("Mll", &m_tmva_mll);
+  m_tmva_reader_noisr.AddVariable("METrel", &m_tmva_met_rel);
+  m_tmva_reader_noisr.AddVariable("DphiLL", &m_tmva_dphi_ll);
+  m_tmva_reader_noisr.AddVariable("Ht", &m_tmva_ht);
+  m_tmva_reader_noisr.AddVariable("MT2", &m_tmva_mt2);
+  m_tmva_reader_noisr.AddVariable("Mtr1", &m_tmva_mtr1);
+  m_tmva_reader_noisr.AddVariable("Mtr2", &m_tmva_mtr2);
+  m_tmva_reader_noisr.AddVariable("pTll", &m_tmva_pt_ll);
+
+
+  std::string tmvaWeightFile_m20_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20_ISR.xml";
+  std::string tmvaWeightFile_m20_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20_noISR.xml";
+  std::string tmvaWeightFile_m35_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM35_ISR.xml";
+  std::string tmvaWeightFile_m35_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM35_noISR.xml";
+  std::string tmvaWeightFile_m65_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM65_ISR.xml";
+  std::string tmvaWeightFile_m65_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM65_noISR.xml";
+  std::string tmvaWeightFile_m100_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM100_ISR.xml";
+  std::string tmvaWeightFile_m100_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM100_noISR.xml";
+
+
+  m_tmva_reader_isr.BookMVA("m20_isr signal", tmvaWeightFile_m20_isr);
+  m_tmva_reader_isr.BookMVA("m35_isr signal", tmvaWeightFile_m35_isr);
+  m_tmva_reader_isr.BookMVA("m65_isr signal", tmvaWeightFile_m65_isr);
+  m_tmva_reader_isr.BookMVA("m100_isr signal", tmvaWeightFile_m100_isr);
+ 
+  m_tmva_reader_noisr.BookMVA("m20_noisr signal", tmvaWeightFile_m20_noisr);
+  m_tmva_reader_noisr.BookMVA("m35_noisr signal", tmvaWeightFile_m35_noisr);
+  m_tmva_reader_noisr.BookMVA("m65_noisr signal", tmvaWeightFile_m65_noisr);
+  m_tmva_reader_noisr.BookMVA("m100_noisr signal", tmvaWeightFile_m100_noisr);
+
 }
+
+
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::prepareSelection()
 {
@@ -206,7 +243,15 @@ void PennSusyFrame::EwkAnalysis::beginRun()
 void PennSusyFrame::EwkAnalysis::processEvent()
 {
   m_event_weight = 1.;
-  m_bdt_score = -999;
+
+  m_bdt_score_m20isr = -999;
+  m_bdt_score_m20noisr = -999;
+  m_bdt_score_m35isr = -999;
+  m_bdt_score_m35noisr = -999;
+  m_bdt_score_m65isr = -999;
+  m_bdt_score_m65noisr = -999;
+  m_bdt_score_m100isr = -999;
+  m_bdt_score_m100noisr = -999;
 
   m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_ALL);
   m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_ALL, m_event_weight);
@@ -260,8 +305,27 @@ void PennSusyFrame::EwkAnalysis::processEvent()
         m_tmva_pt_lep_jet = 0.;
         m_tmva_dphi_met_jet = 0.;
       }
-    m_bdt_score = m_tmva_reader.EvaluateMVA("BDTD method for this signal");
-    //std::cout<<"BDT score: "<<m_bdt_score<<std::endl;
+
+    m_bdt_score_m20isr = m_tmva_reader_isr.EvaluateMVA("m20_isr signal");
+    m_bdt_score_m35isr = m_tmva_reader_isr.EvaluateMVA("m35_isr signal");
+    m_bdt_score_m65isr = m_tmva_reader_isr.EvaluateMVA("m65_isr signal");
+    m_bdt_score_m100isr = m_tmva_reader_isr.EvaluateMVA("m100_isr signal");
+    
+    m_bdt_score_m20noisr = m_tmva_reader_noisr.EvaluateMVA("m20_noisr signal");
+    m_bdt_score_m35noisr = m_tmva_reader_noisr.EvaluateMVA("m35_noisr signal");
+    m_bdt_score_m65noisr = m_tmva_reader_noisr.EvaluateMVA("m65_noisr signal");
+    m_bdt_score_m100noisr = m_tmva_reader_noisr.EvaluateMVA("m100_noisr signal");
+
+
+    std::cout<<"BDT score: "<<m_bdt_score_m20isr<<std::endl;
+    std::cout<<"BDT score: "<<m_bdt_score_m20noisr<<std::endl;
+    std::cout<<"BDT score: "<<m_bdt_score_m35isr<<std::endl;
+    std::cout<<"BDT score: "<<m_bdt_score_m35noisr<<std::endl;
+    std::cout<<"BDT score: "<<m_bdt_score_m65isr<<std::endl;
+    std::cout<<"BDT score: "<<m_bdt_score_m65noisr<<std::endl;
+    std::cout<<"BDT score: "<<m_bdt_score_m100isr<<std::endl;
+    std::cout<<"BDT score: "<<m_bdt_score_m100noisr<<std::endl;
+    std::cout<<std::endl;
   }
 
   if(m_do_fake_cr) doFakeCR();
@@ -778,9 +842,11 @@ void PennSusyFrame::EwkAnalysis::doBaselineCuts()
   // x sec sf
   // TODO validate x sec SF
   float target_lumi = 20281.4; // in pb-1
-  
-  m_event_weight *= m_xsec_weight;
-  m_event_weight *= target_lumi;
+  if(!m_is_data)
+    {
+      m_event_weight *= m_xsec_weight;
+      m_event_weight *= target_lumi;
+    }
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_X_SEC_SF);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_X_SEC_SF, m_event_weight);
@@ -972,7 +1038,7 @@ void PennSusyFrame::EwkAnalysis::doFakeCR()
   double bdt_score_min = -999;
   double bdt_score_max = -0.1;
 
-  bool pass_bdt_fake_cr = (PennSusyFrame::passCut(m_bdt_score,
+  bool pass_bdt_fake_cr = (PennSusyFrame::passCut(m_bdt_score_m20isr,
                                                   bdt_score_min,
                                                   bdt_score_max
                                                   ));
@@ -1051,7 +1117,7 @@ void PennSusyFrame::EwkAnalysis::fillHistHandles( PennSusyFrame::EWK_HIST_LEVELS
 //                                                        , weight
 //                                                        );
 
-  m_ewk_histogram_handler.at(hist_level)->FillBDT(m_event, m_bdt_score, weight);
+  m_ewk_histogram_handler.at(hist_level)->FillBDT(m_event, m_bdt_score_m20isr, weight);
 }
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::printEventDetails()
