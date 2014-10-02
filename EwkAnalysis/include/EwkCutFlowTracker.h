@@ -45,15 +45,21 @@ enum EWK_CUTS { EWK_CUT_ALL
 	      , EWK_CUT_BREAK_4
               , EWK_CUT_EQ_2_SIGNAL_LEPTON           
               , EWK_CUT_SS
-              , EWK_CUT_BREAK_5
-	      , EWK_CUT_MET_REL
-              , EWK_CUT_DPHI_LL
+              , EWK_CUT_Z_VETO
               , EWK_CUT_NUM_JET
               , EWK_CUT_B_VETO
-	      , EWK_CUT_PT_LL
-	      , EWK_CUT_HT
-	      , EWK_CUT_MLL
-	      , EWK_CUT_MT2
+              , EWK_CUT_BREAK_5
+              , EWK_CUT_FAKE_CR
+              , EWK_CUT_BREAK_6
+              , EWK_CUT_SR_M20_ISR
+              , EWK_CUT_SR_M35_ISR
+              , EWK_CUT_SR_M65_ISR
+              , EWK_CUT_SR_M100_ISR
+              , EWK_CUT_BREAK_7
+              , EWK_CUT_SR_M20_NOISR
+              , EWK_CUT_SR_M35_NOISR
+              , EWK_CUT_SR_M65_NOISR
+              , EWK_CUT_SR_M100_NOISR
               , EWK_CUT_N
               };
 const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
@@ -93,18 +99,22 @@ const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
 				      , "EWK_NO_CHARGE_FLIP"
 				      , "BREAK"
                                       , "EWK_CUT_EQ_2_SIGNAL_LEPTON"
-
 				      , "EWK_SS"
-                                      , "BREAK"
-					//, "EWK_EMMA_MT"
-                                      , "EWK_MET_REL"
-                                      , "EWK_DPHI_LL"
-                                      , "EWK_NUM_JET"
+                                      , "EWK_Z_VETO"
+                                      , "EWK_NUM_JETS"
                                       , "EWK_B_VETO"
-				      , "EWK_CUT_PT_LL"
-				      , "EWK_CUT_HT"
-				      , "EWK_CUT_MLL"
-				      , "EWK_CUT_MT2"
+                                      , "BREAK"
+                                      , "EWK_FAKE_CR"
+                                      , "BREAK"
+                                      , "EWK_SR_M20_ISR"
+                                      , "EWK_SR_M35_ISR"
+                                      , "EWK_SR_M65_ISR"
+                                      , "EWK_SR_M100_ISR"
+                                      , "BREAK"
+                                      , "EWK_SR_M20_NOISR"
+                                      , "EWK_SR_M35_NOISR"
+                                      , "EWK_SR_M65_NOISR"
+                                      , "EWK_SR_M100_NOISR"
                                       };
 
 // =============================================================================

@@ -21,17 +21,29 @@ namespace PennSusyFrame
 
   enum EWK_HIST_LEVELS { EWK_HIST_2SS_SIG_LEP
                        , EWK_HIST_1_LIGHT_JET  
-                       , EWK_HIST_ZVETO
-                       , EWK_HIST_MET
-		       , EWK_HIST_FAKE_CR	 
+		       , EWK_HIST_FAKE_CR
+                       , EWK_HIST_SR_M20_ISR
+                       , EWK_HIST_SR_M35_ISR
+                       , EWK_HIST_SR_M65_ISR
+                       , EWK_HIST_SR_M100_ISR
+                       , EWK_HIST_SR_M20_NOISR
+                       , EWK_HIST_SR_M35_NOISR
+                       , EWK_HIST_SR_M65_NOISR
+                       , EWK_HIST_SR_M100_NOISR
                        , EWK_HIST_N
   };
 
   const std::string EWK_HIST_LEVEL_STRINGS[] = { "EWK_2SS_SIG_LEP"
                                                , "EWK_1_LIGHT_JET"
-                                               , "EWK_ZVETO"
-                                               , "EWK_MET"
 					       , "EWK_FAKE_CR"	 
+                                               , "EWK_SR_M20_ISR"
+                                               , "EWK_SR_M35_ISR"
+                                               , "EWK_SR_M65_ISR"
+                                               , "EWK_SR_M100_ISR"
+                                               , "EWK_SR_M20_NOISR"
+                                               , "EWK_SR_M35_NOISR"
+                                               , "EWK_SR_M65_NOISR"
+                                               , "EWK_SR_M100_NOISR"
                                                };
 
 
@@ -99,7 +111,10 @@ namespace PennSusyFrame
       
       void setDoChargeFlipEst(bool val) {m_do_cf_est = val;}
 
+
       void setPrintEventDetails(bool val) { m_print_event_details = val; }
+
+      
 
     protected:
       std::string m_out_tnt_file_name;
@@ -112,6 +127,11 @@ namespace PennSusyFrame
 			  );
 
       void printEventDetails();
+
+      void getBDTScores();
+
+      void doISRSR();
+      void doNoISRSR();
 
 
       bool m_crit_cut_grl;
@@ -153,6 +173,9 @@ namespace PennSusyFrame
       bool m_do_fake_est;
       bool m_do_fake_cr;
       bool m_do_cf_est;
+
+      bool m_do_isr_sr;
+      bool m_do_noisr_sr;
       
       bool m_print_event_details;
 
