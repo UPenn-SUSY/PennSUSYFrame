@@ -15,7 +15,7 @@ def getSumEventWeights(in_file_name):
     f = ROOT.TFile.Open(in_file_name)
     sum_event_weights_vector = f.Get('SumMCEventWeights')
 
-    sum_event_weights = 0
+    sum_event_weights = None
     if sum_event_weights_vector:
         sum_event_weights = int(sum_event_weights_vector[0])
     else:
@@ -30,7 +30,7 @@ def main():
     sum_event_weights = getSumEventWeights(in_file_name)
 
     out_file=file('tmp_weights.txt', 'w')
-    if sum_event_weights > 0:
+    if sum_event_weights is not None:
         out_file.write('%d' % sum_event_weights)
     else:
         out_file.write('ERROR')
