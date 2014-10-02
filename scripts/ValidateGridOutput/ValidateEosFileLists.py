@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import glob
 
 #-------------------------------------------------------------------------------
@@ -18,7 +19,7 @@ def checkEntry(line_string):
         print '    line: ' , cleaned_line
         return False
     for s in splits:
-        if 'ERROR' in s:
+        if 'error' in s.lower():
             print 'ERROR: Line has an error in one of the entries'
             print '    line: ' , cleaned_line
             return False
@@ -45,7 +46,8 @@ def checkFile(file_name):
 
 #-------------------------------------------------------------------------------
 def main():
-    file_list = glob.glob('*.txt')
+    eos_file_list_dir = '%s/EosFileLists/tnt_106/' % os.environ['BASE_WORK_DIR']
+    file_list = glob.glob('%s/*.txt' % eos_file_list_dir)
     bad_files = []
     for f in file_list:
         print 'Checking file: ' , f

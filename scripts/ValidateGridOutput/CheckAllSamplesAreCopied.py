@@ -11,6 +11,9 @@ Usage:
 import os
 import glob
 import pprint
+
+import sys
+sys.path.append('%s/scripts/GridSubmit/' % os.environ['BASE_WORK_DIR']) 
 import GenerateGridSubmitScripts as GridSubmit
 
 #-------------------------------------------------------------------------------
