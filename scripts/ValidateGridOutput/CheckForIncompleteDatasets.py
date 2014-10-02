@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #===============================================================================
-#= This scrip will look through the eos file lists, and verify that the "total
+#= This script will look through the eos file lists, and verify that the "total
 #= number of events" run over to produce the skim are accounted for.
 #= usage:
 #=   TODO add usage information

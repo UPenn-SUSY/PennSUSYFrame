@@ -15,7 +15,8 @@ def getUnskimmedEvents(in_file_name):
     f = ROOT.TFile.Open(in_file_name)
     total_num_unskimmed_events_vector = f.Get('TotalNumEvents')
 
-    total_num_unskimmed_events = 0
+    total_num_unskimmed_events = None
+
     if total_num_unskimmed_events_vector:
         total_num_unskimmed_events = int(total_num_unskimmed_events_vector[0])
     else:
@@ -30,7 +31,7 @@ def main():
     total_num_unskimmed_events = getUnskimmedEvents(in_file_name)
 
     out_file=file('tmp_events.txt', 'w')
-    if total_num_unskimmed_events > 0:
+    if total_num_unskimmed_events is not None:
         out_file.write('%d' % total_num_unskimmed_events)
     else:
         out_file.write('ERROR')

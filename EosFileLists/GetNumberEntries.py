@@ -15,7 +15,7 @@ def getTotalNumEntries(in_file_name):
     f = ROOT.TFile.Open(in_file_name)
     t = f.Get('TNT')
 
-    total_num_entries = 0
+    total_num_entries = None
     if t:
         total_num_entries = t.GetEntries()
     else:
@@ -30,7 +30,7 @@ def main():
     total_num_entries = getTotalNumEntries(in_file_name)
 
     out_file=file('tmp_entries.txt', 'w')
-    if total_num_entries > 0:
+    if total_num_entries is not None:
         out_file.write('%d' % total_num_entries)
     else:
         out_file.write('ERROR')
