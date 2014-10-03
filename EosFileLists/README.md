@@ -2,6 +2,7 @@ EosFileLists
 ============
 This directory contains the file lists required for running our analysis code. The format of these scripts is:
 
+----------------------------------------------------------------------------------------
 | Path to file | Total number of events | Number events in skim | Sum of event weights |
 
 There should be one file for each sample.
@@ -61,3 +62,7 @@ EstimateMCEventWeights.py
 This script was used for an older round of TNTs where the sum of event weights was not included as an entry in the TNT.
 This script was used to estimate the total sum of event weights from the events included in the skim.
 This is probably not needed any more.
+
+How to go from grid output to eos file lists
+--------------------------------------------
+TODO fill this in
