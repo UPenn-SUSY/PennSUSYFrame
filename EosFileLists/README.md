@@ -2,7 +2,9 @@ EosFileLists
 ============
 This directory contains the file lists required for running our analysis code. The format of these scripts is:
 
-path_to_file  total_number_of_events  number_events_in_skim sum_of_event_weights
+```
+<path_to_file>  <total_number_of_events>  <number_events_in_skim> <sum_of_event_weights>
+```
 
 There should be one file for each sample.
 
