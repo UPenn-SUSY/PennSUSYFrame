@@ -17,57 +17,141 @@ def putTreeInFile(out_file, in_tree, sample_name):
     return new_tree
 
 # ------------------------------------------------------------------------------
+def writeSingleSampleToTmpFile( out_file_name
+                              , sample_name
+                              , optimize_tree_entry
+                              , cut_str = ''
+                              , tree_name = 'hft'
+                              ):
+    out_file = ROOT.TFile('tmp__%s' % out_file_name, 'RECREATE')
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    print 'adding sample: ', sample_name
+
+    # ROOT is the worst...
+    # We want to take the "optimize" tree from each file, and add it to a
+    # TList which will ultimately be merged into a final file
+    # First need to loop through the files and get and rename the trees
+    # Also need to keep track of the files because root gets confused if the
+    # TFiles go out of scope
+    tmp_file_list = []
+    tmp_tree_list = []
+    for i, file_name in enumerate(optimize_tree_entry):
+        print 'getting file: ', file_name
+        this_file = ROOT.TFile(file_name)
+        this_tree = this_file.Get('optimize')
+        this_tree.SetName('optimize_%s' % i)
+        tmp_file_list.append(this_file)
+
+        if cut_str != '':
+            out_file.cd()
+            this_tree = this_tree.CopyTree(cut_str)
+        tmp_tree_list.append(this_tree)
+
+    # Now, loop over the trees, and add them to our TList
+    final_tree_list = ROOT.TList()
+    for ttl in tmp_tree_list:
+        final_tree_list.Add(ttl)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    out_file.cd()
+
+    # Print the number of entries per tree to make sure trees are being
+    # added correctly
+    print 'tree sizes!'
+    for ftl in final_tree_list:
+        print ftl.GetName() , ' -- entries: ' , ftl.GetEntries()
+
+    # finally merge trees
+    new_tree = ROOT.TTree.MergeTrees(final_tree_list)
+    new_tree.SetName(tree_name)
+
+    # more printing to make sure the trees are added correctly
+    print 'new tree: ' , new_tree.GetEntries()
+    print ''
+
+    # write to file
+    new_tree.Write()
+    out_file.Close()
+
+# ------------------------------------------------------------------------------
+def mergeTmpTreesToOutput( out_file_name
+                         , list_of_tmp_trees
+                         ):
+    out_file = ROOT.TFile(out_file_name, 'RECREATE')
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # ROOT is the worst...
+    # We want to take the "optimize" tree from each file, and add it to a
+    # TList which will ultimately be merged into a final file
+    # First need to loop through the files and get and rename the trees
+    # Also need to keep track of the files because root gets confused if the
+    # TFiles go out of scope
+    tmp_file_list = []
+    tmp_tree_list = []
+    for i, lott in enumerate(list_of_tmp_trees):
+        # print 'getting file: ', file_name
+        this_file = ROOT.TFile('tmp__%s.root' % lott)
+        this_tree = this_file.Get(lott)
+        tmp_file_list.append(this_file)
+        tmp_tree_list.append(this_tree)
+
+    # Now, ...
+    out_file.cd()
+    out_tree_list = []
+    for ttl in tmp_tree_list:
+        tmp_tree = ttl.CloneTree()
+        out_tree_list.append(tmp_tree)
+        tmp_tree.Write()
+
+    # write to file
+    # new_tree.Write()
+    out_file.Close()
+
+# ------------------------------------------------------------------------------
 def writeTreesToHistFitterFile(out_file_name, optimize_tree_dict):
     out_file = ROOT.TFile(out_file_name, 'RECREATE')
 
     buffer_of_trees = []
+    list_of_tmp_trees = []
     out_file.ls()
     for sample_name in optimize_tree_dict:
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         print 'adding sample: ', sample_name
+        writeSingleSampleToTmpFile( '%s.root' % sample_name
+                                  , sample_name
+                                  , optimize_tree_dict[sample_name]
+                                  , ''
+                                  , sample_name
+                                  )
+        list_of_tmp_trees.append(sample_name)
 
-        # ROOT is the worst...
-        # We want to take the "optimize" tree from each file, and add it to a
-        # TList which will ultimately be merged into a final file
-        # First need to loop through the files and get and rename the trees
-        # Also need to keep track of the files because root gets confused if the
-        # TFiles go out of scope
-        tmp_file_list = []
-        tmp_tree_list = []
-        for i, file_name in enumerate(optimize_tree_dict[sample_name]):
-            print 'getting file: ', file_name
-            this_file = ROOT.TFile(file_name)
-            this_tree = this_file.Get('optimize')
-            this_tree.SetName('optimize_%s' % i)
-            tmp_file_list.append(this_file)
-            tmp_tree_list.append(this_tree)
+        writeSingleSampleToTmpFile( 'ee_%s.root' % sample_name
+                                  , sample_name
+                                  , optimize_tree_dict[sample_name]
+                                  , 'is_ee'
+                                  , 'ee_' + sample_name
+                                  )
+        list_of_tmp_trees.append('ee_' + sample_name)
 
-        # Now, loop over the trees, and add them to our TList
-        final_tree_list = ROOT.TList()
-        for ttl in tmp_tree_list:
-            final_tree_list.Add(ttl)
+        writeSingleSampleToTmpFile( 'mm_%s.root' % sample_name
+                                  , sample_name
+                                  , optimize_tree_dict[sample_name]
+                                  , 'is_mm'
+                                  , 'mm_' + sample_name
+                                  )
+        list_of_tmp_trees.append('mm_' + sample_name)
 
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        out_file.cd()
+        writeSingleSampleToTmpFile( 'em_%s.root' % sample_name
+                                  , sample_name
+                                  , optimize_tree_dict[sample_name]
+                                  , 'is_em'
+                                  , 'em_' + sample_name
+                                  )
+        list_of_tmp_trees.append('em_' + sample_name)
 
-        # Print the number of entries per tree to make sure trees are being
-        # added correctly
-        print 'tree sizes!'
-        for ftl in final_tree_list:
-            print ftl.GetName() , ' -- entries: ' , ftl.GetEntries()
+    mergeTmpTreesToOutput( out_file_name, list_of_tmp_trees )
 
-        # finally merge trees
-        new_tree = ROOT.TTree.MergeTrees(final_tree_list)
-        new_tree.SetName(sample_name)
-
-        # more printing to make sure the trees are added correctly
-        print 'new tree: ' , new_tree.GetEntries()
-        print ''
-
-        # write to file
-        new_tree.Write()
-
-    out_file.Close()
 
 # ------------------------------------------------------------------------------
 def main():
