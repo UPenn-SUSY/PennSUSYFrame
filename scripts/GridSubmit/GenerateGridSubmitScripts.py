@@ -71,7 +71,7 @@ def generateDSDictList():
 
     # Powheg+Pythia
     ds_dict_list.append( { 'tag':'117050.PowhegPythia_P2011C_ttbar'                  , 'ds':'mc12_8TeV.117050.PowhegPythia_P2011C_ttbar.merge.NTUP_SUSY.e1728_s1773_s1776_r3658_r3549_p1512/'            , 'is_data':0 , 'is_full_mc':1 } )
-    ds_dict_list.append( { 'tag':'117050.PowhegPythia_P2011C_ttbar.af2'              , 'ds':'mc12_8TeV.117050.PowhegPythia_P2011C_ttbar.merge.AOD.e1727_a188_a171_r3549/'                                , 'is_data':0 , 'is_full_mc':0 } )
+    ds_dict_list.append( { 'tag':'117050.PowhegPythia_P2011C_ttbar.af2'              , 'ds':'mc12_8TeV.117050.PowhegPythia_P2011C_ttbar.merge.NTUP_SUSY.e1727_a188_a171_r3549_p1512/'                    , 'is_data':0 , 'is_full_mc':0 } )
     ds_dict_list.append( { 'tag':'105861.PowhegPythia_AUET2BCT10_ttbar_LeptonFilter' , 'ds':'mc12_8TeV.105861.PowhegPythia_AUET2BCT10_ttbar_LeptonFilter.merge.NTUP_SUSY.e1317_a159_a165_r3549_p1512/'   , 'is_data':0 , 'is_full_mc':0 } )
 
     # powheg+jimmy
