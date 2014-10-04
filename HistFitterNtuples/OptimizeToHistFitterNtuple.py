@@ -238,25 +238,3 @@ def main():
 # ==============================================================================
 if __name__ == "__main__":
     main()
-
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.173041.Sherpa_CT10_DYeeM08to15.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.173042.Sherpa_CT10_DYeeM15to40.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.173043.Sherpa_CT10_DYmumuM08to15.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.173044.Sherpa_CT10_DYmumuM15to40.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.ntup.root
-# ${BASE_WORK_DIR}//NextOptNtupDir.BMinusL/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.ntup.root
-# 
