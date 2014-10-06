@@ -1,3 +1,0 @@
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.110805.AlpgenPythia_P2011C_ZeeccNp0.tnt_106_Tnt.root.932170/user.bjackson.043475._000011.Tnt.root        229899        93293        229898
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.110805.AlpgenPythia_P2011C_ZeeccNp0.tnt_106_Tnt.root.932170/user.bjackson.043475._000012.Tnt.root        220000        88756        219999
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.110805.AlpgenPythia_P2011C_ZeeccNp0.tnt_106_Tnt.root.932170/user.bjackson.043475._000013.Tnt.root        54500        22076        54499

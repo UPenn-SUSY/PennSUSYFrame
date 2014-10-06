@@ -1,1 +1,0 @@
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.tnt_106_Tnt.root.929184/user.bjackson.044525._000001.Tnt.root        100000        73110        99999
