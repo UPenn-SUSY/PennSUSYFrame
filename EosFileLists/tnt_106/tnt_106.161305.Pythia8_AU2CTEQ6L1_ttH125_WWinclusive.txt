@@ -1,6 +1,0 @@
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.tnt_106_Tnt.root.921963/user.bjackson.043244._000001.Tnt.root        10000        2578        10068
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.tnt_106_Tnt.root.921963/user.bjackson.043244._000002.Tnt.root        10000        2441        10047
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.tnt_106_Tnt.root.921963/user.bjackson.043244._000003.Tnt.root        10000        2546        10057
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.tnt_106_Tnt.root.921963/user.bjackson.043244._000004.Tnt.root        10000        2543        10036
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.tnt_106_Tnt.root.921963/user.bjackson.043244._000005.Tnt.root        10000        2484        10064
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_106_part2/user.bjackson.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.tnt_106_Tnt.root.921963/user.bjackson.043244._000006.Tnt.root        10000        2498        10071
