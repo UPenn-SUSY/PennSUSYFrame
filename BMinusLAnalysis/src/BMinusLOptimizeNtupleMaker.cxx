@@ -92,6 +92,10 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::clearVariables()
 
   m_flavor_channel = FLAVOR_NONE;
 
+  m_is_ee = false;
+  m_is_mm = false;
+  m_is_em = false;
+
   m_mbl_0 = 0 ;
   m_mbl_1 = 0 ;
 
@@ -145,6 +149,10 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
 
   m_output_tree->Branch( "flavor_channel" , &m_flavor_channel);
 
+  m_output_tree->Branch( "is_ee" , &m_is_ee);
+  m_output_tree->Branch( "is_mm" , &m_is_mm);
+  m_output_tree->Branch( "is_em" , &m_is_em);
+
   m_output_tree->Branch( "mbl_0" , &m_mbl_0);
   m_output_tree->Branch( "mbl_1" , &m_mbl_1);
   m_output_tree->Branch( "mbbll" , &m_mbbll);
@@ -194,6 +202,10 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   m_weight = weight;
 
   m_flavor_channel = m_event.getFlavorChannel();
+
+  m_is_ee = (m_event.getFlavorChannel() == FLAVOR_EE);
+  m_is_mm = (m_event.getFlavorChannel() == FLAVOR_MM);
+  m_is_em = (m_event.getFlavorChannel() == FLAVOR_EM);
 
   m_mbl_0 = bl_0->getMbl()/1.e3;
   m_mbl_1 = bl_1->getMbl()/1.e3;
