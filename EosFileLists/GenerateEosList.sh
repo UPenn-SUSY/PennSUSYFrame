@@ -70,6 +70,12 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
     echo "Full eos path: $full_eos_path"
 
     #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # On first pass, try getting all numbers
+    python ../GetAllNumbersFromTnt.py ${full_eos_path}
+
+    #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # If that failed on any piece, try again for each piece individually
+
     # Get the number of unskimmed events
     counter=0
     while [[ ! -f tmp_events.txt ]] ; do

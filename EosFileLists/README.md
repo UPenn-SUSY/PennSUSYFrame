@@ -34,6 +34,15 @@ An example is shown here:
 source ../GenerateLocalList.sh ttnt_106 /afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/SafeTTNTDir/
 ```
 
+GetAllNumbersFromTnt.py
+-------------------
+Script to get the number of entries, total number of unskimmed events, and the sum of event weights in the TNT tree. This will output three text files called tmp_entries.txt, tmp_events.txt, and tmp_weights.txt.
+The syntax is:
+```
+python GetAllNumbersFromTnt.py <path to file>
+```
+
+
 GetNumberEntries.py
 -------------------
 Script to get the number of entries in the TNT tree. This will output a text file called tmp_entries.txt.
