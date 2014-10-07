@@ -86,21 +86,36 @@ else:
 # ------------------------------------
 # SR
 base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 600) && (met_et/sqrt(ht_signal) <= 7) && (fabs(mll - 91) > 10) )"
-configMgr.cutsDict["SR"] = base_sr_str
+configMgr.cutsDict["SR_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
 
 # VR
 base_vr_str = "( (ht_signal <= 600) )"
-configMgr.cutsDict["VR_no_Z"] = '( %s && (fabs(mll - 91) > 10) )' % base_vr_str
-configMgr.cutsDict["VR_w_Z"]  = '( %s && (fabs(mll - 91) < 10) )' % base_vr_str
+configMgr.cutsDict["VR_no_Z"]    = '( %s && (fabs(mll - 91) > 10) )'          % base_vr_str
+configMgr.cutsDict["VR_no_Z_ee"] = '( %s && (fabs(mll - 91) > 10) && is_ee )' % base_vr_str
+configMgr.cutsDict["VR_no_Z_mm"] = '( %s && (fabs(mll - 91) > 10) && is_mm )' % base_vr_str
+configMgr.cutsDict["VR_no_Z_em"] = '( %s && (fabs(mll - 91) > 10) && is_em )' % base_vr_str
 
-# CR
+configMgr.cutsDict["VR_w_Z"]     = '( %s && (fabs(mll - 91) < 10) )'          % base_vr_str
+configMgr.cutsDict["VR_w_Z_ee"]  = '( %s && (fabs(mll - 91) < 10) && is_ee )' % base_vr_str
+configMgr.cutsDict["VR_w_Z_mm"]  = '( %s && (fabs(mll - 91) < 10) && is_mm )' % base_vr_str
+
+configMgr.cutsDict["VR_llbb"]    = '( 1 )'
+configMgr.cutsDict["VR_llbb_ee"] = '( 1 && is_ee )'
+configMgr.cutsDict["VR_llbb_mm"] = '( 1 && is_mm )'
+configMgr.cutsDict["VR_llbb_em"] = '( 1 && is_em )'
+
+# CR_top
 base_cr_top_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 600) && (met_et/sqrt(ht_signal) >= 7) && (fabs(mll - 91) > 10) )"
-configMgr.cutsDict["CR_top"] = base_cr_top_str
+configMgr.cutsDict["CR_top_ee"] = '(%s && is_ee)' % base_cr_top_str
+configMgr.cutsDict["CR_top_mm"] = '(%s && is_mm)' % base_cr_top_str
+configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
 
-# CR_TMP
-# TODO replace tmp CR with real CR
+# CR_Z
 base_cr_z_str = "( (ht_signal <= 600) && (fabs(mll - 91) < 10) )"
-configMgr.cutsDict["CR_Z"] = base_cr_z_str
+configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
+configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
 
 # --------------------------
 # - lists of nominal weights
@@ -125,25 +140,69 @@ gen_syst = Systematic( "gen_syst" , configMgr.weights , 1.0 + 0.30 , 1.0 - 0.30 
 sample_list = []
 
 # ttbar
-ttbar_sample = Sample( "ttbar" , kGreen-2 )
-ttbar_sample.setNormFactor("mu_ttbar",1.,0.,5.)
-ttbar_sample.setStatConfig(use_stat)
-ttbar_sample.setNormByTheory()
-sample_list.append(ttbar_sample)
+# ttbar_sample = Sample( "ttbar" , kGreen-2 )
+ttbar_ee_sample = Sample( "ee_ttbar" , kGreen-1 )
+ttbar_mm_sample = Sample( "mm_ttbar" , kGreen-2 )
+ttbar_em_sample = Sample( "em_ttbar" , kGreen-3 )
+
+# ttbar_sample.setNormFactor("mu_ttbar",1.,0.,5.)
+ttbar_ee_sample.setNormFactor("mu_ttbar_ee",1.,0.,5.)
+ttbar_mm_sample.setNormFactor("mu_ttbar_mm",1.,0.,5.)
+ttbar_em_sample.setNormFactor("mu_ttbar_em",1.,0.,5.)
+
+# ttbar_sample.setStatConfig(use_stat)
+ttbar_ee_sample.setStatConfig(use_stat)
+ttbar_mm_sample.setStatConfig(use_stat)
+ttbar_em_sample.setStatConfig(use_stat)
+
+# sample_list.append(ttbar_sample)
+sample_list.append(ttbar_ee_sample)
+sample_list.append(ttbar_mm_sample)
+sample_list.append(ttbar_em_sample)
+
 
 # single top
-single_top_sample = Sample( "SingleTop" , kGreen-1 )
-single_top_sample.setNormFactor("mu_st",1.,0.,5.)
-single_top_sample.setStatConfig(use_stat)
-single_top_sample.setNormByTheory()
-sample_list.append(single_top_sample)
+# single_top_sample    = Sample( "SingleTop" , kGreen-1 )
+single_top_ee_sample = Sample( "ee_SingleTop" , kCyan-1 )
+single_top_mm_sample = Sample( "mm_SingleTop" , kCyan-2 )
+single_top_em_sample = Sample( "em_SingleTop" , kCyan-3 )
+
+# single_top_sample.setStatConfig(   use_stat)
+single_top_ee_sample.setStatConfig(use_stat)
+single_top_mm_sample.setStatConfig(use_stat)
+single_top_em_sample.setStatConfig(use_stat)
+
+# single_top_sample.setNormByTheory()
+single_top_ee_sample.setNormByTheory()
+single_top_mm_sample.setNormByTheory()
+single_top_em_sample.setNormByTheory()
+
+# sample_list.append(single_top_sample)
+sample_list.append(single_top_ee_sample)
+sample_list.append(single_top_mm_sample)
+sample_list.append(single_top_em_sample)
 
 # Z/gamma*
-z_sample = Sample( "Z" , kRed+1 )
-z_sample.setNormFactor("mu_z",1.,0.,5.)
-z_sample.setStatConfig(use_stat)
-z_sample.setNormByTheory()
-sample_list.append(z_sample)
+# z_sample = Sample( "Z" , kRed+1 )
+z_ee_sample = Sample( "ee_Z" , kRed+1 )
+z_mm_sample = Sample( "mm_Z" , kRed+2 )
+z_em_sample = Sample( "em_Z" , kRed+3 )
+
+# z_sample.setNormFactor("mu_z",1.,0.,5.)
+z_ee_sample.setNormFactor("mu_z_ee",1.,0.,5.)
+z_mm_sample.setNormFactor("mu_z_mm",1.,0.,5.)
+# z_em_sample.setNormFactor("mu_z_em",1.,0.,5.)
+z_em_sample.setNormByTheory()
+
+# z_sample.setStatConfig(use_stat)
+z_ee_sample.setStatConfig(use_stat)
+z_mm_sample.setStatConfig(use_stat)
+z_em_sample.setStatConfig(use_stat)
+
+# sample_list.append(z_sample)
+sample_list.append(z_ee_sample)
+sample_list.append(z_mm_sample)
+sample_list.append(z_em_sample)
 
 # data
 data_sample = Sample("data",kBlack)
@@ -159,31 +218,82 @@ for sl in sample_list:
 # ----------
 # TODO reset the binning and add more histograms
 
+# pt binning
+pt_bin = 10
+pt_min = 0
+pt_max = 500
+
+# mbbll binning
+mbbll_bin = 6
+mbbll_min = 0
+mbbll_max = 1200
+
 # mbl binning
-# mbl_bin = 60
 mbl_bin = 6
 mbl_min = 0
 mbl_max = 1200
 
+# ptbl binning
+ptbl_bin = 6
+ptbl_min = 0
+ptbl_max = 600
+
+# ptll binning
+ptll_bin = 6
+ptll_min = 0
+ptll_max = 600
+
+# ptbbll binning
+ptbbll_bin = 6
+ptbbll_min = 0
+ptbbll_max = 600
+
 # mll binning
-mll_bin = 20
+mll_bin = 10
 mll_min = 0
 mll_max = 500
 
+mll_inz_bin = 6
+mll_inz_min = 75
+mll_inz_max = 105
+
 # ht binning
-ht_bin = 20
+# ht_bin = 20
+# ht_min = 0
+# ht_max = 1000
+ht_bin = 6
 ht_min = 0
-ht_max = 1000
+ht_max = 600
 
 # mbl asym binning
 mbl_asym_bin = 5
 mbl_asym_min = 0
 mbl_asym_max = 1.
 
-# mbl asym binning
+# met significance binning
 met_sig_bin = 10
 met_sig_min = 0
 met_sig_max = 500
+
+# met et binning
+met_et_bin = 5
+met_et_min = 0
+met_et_max = 100
+
+# dphi binning
+dphi_bin = 8
+dphi_min = 0
+dphi_max = 3.2
+
+# deta binning
+deta_bin = 4
+deta_min = 0
+deta_max = 4
+
+# dr binning
+dr_bin = 4
+dr_min = 0
+dr_max = 4
 
 # SR binning (this is just a single bin cut and count binning)
 srNBins = 1
@@ -201,9 +311,18 @@ else:
 background_config.addSamples(sample_list)
 
 # Systematics to be applied globally within this topLevel
-background_config.getSample("ttbar"    ).addSystematic(gen_syst)
-background_config.getSample("SingleTop").addSystematic(gen_syst)
-background_config.getSample("Z"        ).addSystematic(gen_syst)
+# background_config.getSample("ttbar"    ).addSystematic(gen_syst)
+background_config.getSample("ee_ttbar" ).addSystematic(gen_syst)
+background_config.getSample("mm_ttbar" ).addSystematic(gen_syst)
+background_config.getSample("em_ttbar" ).addSystematic(gen_syst)
+# background_config.getSample("SingleTop").addSystematic(gen_syst)
+background_config.getSample("ee_SingleTop").addSystematic(gen_syst)
+background_config.getSample("mm_SingleTop").addSystematic(gen_syst)
+background_config.getSample("em_SingleTop").addSystematic(gen_syst)
+# background_config.getSample("Z"        ).addSystematic(gen_syst)
+background_config.getSample("ee_Z"        ).addSystematic(gen_syst)
+background_config.getSample("mm_Z"        ).addSystematic(gen_syst)
+background_config.getSample("em_Z"        ).addSystematic(gen_syst)
 
 meas = background_config.addMeasurement(name = "NormalMeasurement", lumi = 1.0, lumiErr = 0.039 )
 meas.addPOI("mu_SIG")
@@ -213,19 +332,19 @@ meas.addPOI("mu_SIG")
 # --------------------------------------------------
 cr_list = []
 # Add Top CR for background
-cr_list.append( background_config.addChannel( "mbl_0"                         , ["CR_top"] , mbl_bin      , mbl_min      , mbl_max      ) )
-# cr_list.append( background_config.addChannel( "mbl_1"                         , ["CR_top"] , mbl_bin      , mbl_min      , mbl_max      ) )
-cr_list.append( background_config.addChannel( "mll"                           , ["CR_top"] , mll_bin      , mll_min      , mll_max      ) )
-cr_list.append( background_config.addChannel( "ht_signal"                     , ["CR_top"] , ht_bin       , ht_min       , ht_max       ) )
-# cr_list.append( background_config.addChannel( '((mbl_0-mbl_1)/(mbl_0+mbl_1))' , ['CR_top'] , mbl_asym_bin , mbl_asym_min , mbl_asym_max ) )
-# cr_list.append( background_config.addChannel( '(met_et/sqrt(ht_signal))'      , ['CR_top'] , met_sig_bin  , met_sig_min  , met_sig_max  ) )
+for cr_name in ['CR_top_', 'CR_Z_']:
+    for flavor_channel in ['ee', 'mm', 'em']:
+        if cr_name  == 'CR_Z_' and flavor_channel == 'em': continue
 
-cr_list.append( background_config.addChannel( "mbl_0"                         , ["CR_Z"] , mbl_bin      , mbl_min      , mbl_max      ) )
-# cr_list.append( background_config.addChannel( "mbl_1"                         , ["CR_Z"] , mbl_bin      , mbl_min      , mbl_max      ) )
-cr_list.append( background_config.addChannel( "mll"                           , ["CR_Z"] , mll_bin      , mll_min      , mll_max      ) )
-cr_list.append( background_config.addChannel( "ht_signal"                     , ["CR_Z"] , ht_bin       , ht_min       , ht_max       ) )
-# cr_list.append( background_config.addChannel( '((mbl_0-mbl_1)/(mbl_0+mbl_1))' , ['CR_Z'] , mbl_asym_bin , mbl_asym_min , mbl_asym_max ) )
-# cr_list.append( background_config.addChannel( '(met_et/sqrt(ht_signal))'      , ['CR_Z'] , met_sig_bin  , met_sig_min  , met_sig_max  ) )
+        cr_list.append( background_config.addChannel( "mbl_0"                         , ['%s%s' % (cr_name, flavor_channel)] , mbl_bin      , mbl_min      , mbl_max      ) )
+        cr_list.append( background_config.addChannel( "mbl_1"                         , ['%s%s' % (cr_name, flavor_channel)] , mbl_bin      , mbl_min      , mbl_max      ) )
+        if cr_name == 'CR_Z_':
+            cr_list.append( background_config.addChannel( "mll"                       , ['%s%s' % (cr_name, flavor_channel)] , mll_inz_bin  , mll_inz_min  , mll_inz_max  ) )
+        else:
+            cr_list.append( background_config.addChannel( "mll"                       , ['%s%s' % (cr_name, flavor_channel)] , mll_bin      , mll_min      , mll_max      ) )
+        cr_list.append( background_config.addChannel( "ht_signal"                     , ['%s%s' % (cr_name, flavor_channel)] , ht_bin       , ht_min       , ht_max       ) )
+        # cr_list.append( background_config.addChannel( '((mbl_0-mbl_1)/(mbl_0+mbl_1))' , ['%s%s' % (cr_name, flavor_channel)] , mbl_asym_bin , mbl_asym_min , mbl_asym_max ) )
+        # cr_list.append( background_config.addChannel( '(met_et/sqrt(ht_signal))'      , ['%s%s' % (cr_name, flavor_channel)] , met_sig_bin  , met_sig_min  , met_sig_max  ) )
 
 background_config.setBkgConstrainChannels(cr_list)
 
@@ -256,14 +375,39 @@ for crl in cr_list:
 vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
-    vr_list.append( background_config.addChannel( 'mbl_0', ['VR_w_Z'], mbl_bin, mbl_min, mbl_max ) )
-    # vr_list.append( background_config.addChannel( 'mbl_1', ['VR_w_Z'], mbl_bin, mbl_min, mbl_max ) )
-    vr_list.append( background_config.addChannel( 'mll'  , ['VR_w_Z'], mll_bin, mll_min, mll_max ) )
+    for vr_name in ['VR_w_Z', 'VR_no_Z', 'VR_llbb']:
+        for flavor_channel in ['', '_ee', '_mm', '_em']:
+            if vr_name  == 'VR_w_Z' and flavor_channel == '_em': continue
 
-    vr_list.append( background_config.addChannel( 'mbl_0', ['VR_no_Z'], mbl_bin, mbl_min, mbl_max ) )
-    # vr_list.append( background_config.addChannel( 'mbl_1', ['VR_no_Z'], mbl_bin, mbl_min, mbl_max ) )
-    vr_list.append( background_config.addChannel( 'mll'  , ['VR_no_Z'], mll_bin, mll_min, mll_max ) )
-
+            vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
+            vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
+            # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
+            # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
+            # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
+            # vr_list.append( background_config.addChannel( 'ptbbll'   , ['%s%s' % (vr_name, flavor_channel)], ptbbll_bin, ptbbll_min, ptbbll_max ) )
+            if vr_name == 'VR_w_Z':
+                vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_inz_bin , mll_inz_min , mll_inz_max ) )
+            else:
+                vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_bin     , mll_min     , mll_max     ) )
+            # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
+            vr_list.append( background_config.addChannel( 'met_et'   , ['%s%s' % (vr_name, flavor_channel)], met_et_bin, met_et_min, met_et_max ) )
+            vr_list.append( background_config.addChannel( 'ht_signal', ['%s%s' % (vr_name, flavor_channel)], ht_bin    , ht_min    , ht_max     ) )
+            vr_list.append( background_config.addChannel( 'pt_l_0'   , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
+            vr_list.append( background_config.addChannel( 'pt_l_1'   , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
+            vr_list.append( background_config.addChannel( 'pt_b_0'   , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
+            vr_list.append( background_config.addChannel( 'pt_b_1'   , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
+            # vr_list.append( background_config.addChannel( 'dphi_bl_0', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            # vr_list.append( background_config.addChannel( 'dphi_bl_1', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            # vr_list.append( background_config.addChannel( 'deta_bl_0', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            # vr_list.append( background_config.addChannel( 'deta_bl_1', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            # vr_list.append( background_config.addChannel( 'dr_bl_0'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            # vr_list.append( background_config.addChannel( 'dr_bl_1'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            # vr_list.append( background_config.addChannel( 'dphi_ll'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            # vr_list.append( background_config.addChannel( 'deta_ll'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            # vr_list.append( background_config.addChannel( 'dr_ll'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            # vr_list.append( background_config.addChannel( 'dphi_bb'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            # vr_list.append( background_config.addChannel( 'deta_bb'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            # vr_list.append( background_config.addChannel( 'dr_bb'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
 
     for vr in vr_list:
         vr.useOverflowBin = True
@@ -276,8 +420,9 @@ if do_validation:
 if not myFitType == FitType.Discovery:
 # if myFitType == FitType.Exclusion:
     sr_list = []
-    sr_list.append( background_config.addChannel( "mbl_0", ["SR"], mbl_bin, mbl_min, mbl_max ) )
-    # sr_list.append( background_config.addChannel( "mbl_1", ["SR"], mbl_bin, mbl_min, mbl_max ) )
+    for flavor_channel in ['ee', 'mm', 'em']:
+        sr_list.append( background_config.addChannel( "mbl_0", ["SR_%s" % flavor_channel], mbl_bin, mbl_min, mbl_max ) )
+        sr_list.append( background_config.addChannel( "mbl_1", ["SR_%s" % flavor_channel], mbl_bin, mbl_min, mbl_max ) )
 
     for sr in sr_list:
         sr.useUnderflowBin = True
@@ -344,21 +489,66 @@ entry.SetFillColor(background_config.errorFillColor)
 entry.SetFillStyle(background_config.errorFillStyle)
 
 # ttbar entry
-entry = leg.AddEntry("", "t#bar{t}", "lf")
-entry.SetLineColor(ttbar_sample.color)
-entry.SetFillColor(ttbar_sample.color)
+# entry = leg.AddEntry("", "t#bar{t}", "lf")
+# entry.SetLineColor(ttbar_sample.color)
+# entry.SetFillColor(ttbar_sample.color)
+# entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "t#bar{t} ee", "lf")
+entry.SetLineColor(ttbar_ee_sample.color)
+entry.SetFillColor(ttbar_ee_sample.color)
+entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "t#bar{t} mm", "lf")
+entry.SetLineColor(ttbar_mm_sample.color)
+entry.SetFillColor(ttbar_mm_sample.color)
+entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "t#bar{t} em", "lf")
+entry.SetLineColor(ttbar_em_sample.color)
+entry.SetFillColor(ttbar_em_sample.color)
 entry.SetFillStyle(compFillStyle)
 
 # Single top entry
-entry = leg.AddEntry("", "Single top", "lf")
-entry.SetLineColor(single_top_sample.color)
-entry.SetFillColor(single_top_sample.color)
+# entry = leg.AddEntry("", "Single top", "lf")
+# entry.SetLineColor(single_top_sample.color)
+# entry.SetFillColor(single_top_sample.color)
+# entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "Single top (ee)", "lf")
+entry.SetLineColor(single_top_ee_sample.color)
+entry.SetFillColor(single_top_ee_sample.color)
+entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "Single top (mm)", "lf")
+entry.SetLineColor(single_top_mm_sample.color)
+entry.SetFillColor(single_top_mm_sample.color)
+entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "Single top (em)", "lf")
+entry.SetLineColor(single_top_em_sample.color)
+entry.SetFillColor(single_top_em_sample.color)
 entry.SetFillStyle(compFillStyle)
 
 # Z/gamma* entry
-entry = leg.AddEntry("", "Z/#gamma*", "lf")
-entry.SetLineColor(z_sample.color)
-entry.SetFillColor(z_sample.color)
+# entry = leg.AddEntry("", "Z/#gamma*", "lf")
+# entry.SetLineColor(z_sample.color)
+# entry.SetFillColor(z_sample.color)
+# entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "Z/#gamma* (ee)", "lf")
+entry.SetLineColor(z_ee_sample.color)
+entry.SetFillColor(z_ee_sample.color)
+entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "Z/#gamma* (mm)", "lf")
+entry.SetLineColor(z_mm_sample.color)
+entry.SetFillColor(z_mm_sample.color)
+entry.SetFillStyle(compFillStyle)
+
+entry = leg.AddEntry("", "Z/#gamma* (em)", "lf")
+entry.SetLineColor(z_em_sample.color)
+entry.SetFillColor(z_em_sample.color)
 entry.SetFillStyle(compFillStyle)
 
 # If exclusion mode, add signal entry
