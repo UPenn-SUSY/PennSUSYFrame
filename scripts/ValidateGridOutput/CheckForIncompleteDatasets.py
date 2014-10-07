@@ -203,6 +203,8 @@ def checkEosFilesInDirectory(dir_path):
         dsid    = sample_splits[1]
         ds_name = sample_splits[2] if 'period' not in dsid else dsid
 
+        # if not dsid == '117050': continue
+
         # if this is data, we compare to the data list
         if 'period' in ds_name:
             period_letter = ds_name.split('_')[0].replace('period', '')
@@ -246,7 +248,7 @@ def checkEosFilesInDirectory(dir_path):
             if num_events_eos != num_events_best_match:
                 mismatch_message_list.append( constructMismatchMessage( best_match
                                                                       , num_events_eos
-                                                                      , num_events_cont
+                                                                      , num_events_best_match
                                                                       )
                                             )
 
