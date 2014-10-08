@@ -32,7 +32,7 @@ def finalizeOutput(job_script_dir, output_dir, flat_ntuples):
 def main():
     job_script_dir = sys.argv[1]
     output_dir     = sys.argv[2]
-    flat_ntuples   = False if len(sys.argv) < 4 else sys.argv[3] 
+    flat_ntuples   = False if len(sys.argv) < 4 else sys.argv[3]
     if flat_ntuples == '1' :
         flat_ntuples = True
     else:
