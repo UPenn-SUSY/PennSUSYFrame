@@ -13,10 +13,13 @@ This script checks if all the output of a set of jobs exists and then merges the
 Usage:
 ```
 ./RunHelpers/FinalizeOutput.py <location of run scripts> <location of output>
+
+# If your output is a list of flat ntuples, you want to add the flat ntuple flag (the final "1")
+./RunHelpers/FinalizeOutput.py <location of run scripts> <location of output> 1
 ```
 or, within a python script:
 ```
-FinalizeOutput.finalizeOutput(job_script_dir, output_dir)
+FinalizeOutput.finalizeOutput(job_script_dir, output_dir, flat_ntuples)
 ```
 
 CheckOutput.py
