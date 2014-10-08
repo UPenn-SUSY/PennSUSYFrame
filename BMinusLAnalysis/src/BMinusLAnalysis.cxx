@@ -751,10 +751,17 @@ bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
 {
   FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
 
-  if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
-  if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu18_tight_mu8_EFFS())      return true;
-  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
-  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu18_tight_e7_medium1())    return true;
+  if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vhi_medium1()) return true;
+  if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu24i_tight())    return true;
+  // if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu36_tight())     return true;
+  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_e24vhi_medium1()) return true;
+  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu24i_tight())    return true;
+  // if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu36_tight())     return true;
+
+  // if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vh_medium1_e7_medium1()) return true;
+  // if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu18_tight_mu8_EFFS())      return true;
+  // if (flavor_channel == FLAVOR_EM && m_trigger.getEF_e12Tvh_medium1_mu8())       return true;
+  // if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu18_tight_e7_medium1())    return true;
 
   return false;
 }
