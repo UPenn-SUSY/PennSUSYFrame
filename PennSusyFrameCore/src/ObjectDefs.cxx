@@ -309,7 +309,6 @@ double PennSusyFrame::Particle::getEta() const
     std::cout << "WARNING! eta requested, but not set\n";
     return 0.;
   }
-
   return m_tlv.Eta();
 }
 
@@ -320,7 +319,6 @@ double PennSusyFrame::Particle::getPhi() const
     std::cout << "WARNING! phi requested, but not set\n";
     return 0.;
   }
-
   return m_tlv.Phi();
 }
 
