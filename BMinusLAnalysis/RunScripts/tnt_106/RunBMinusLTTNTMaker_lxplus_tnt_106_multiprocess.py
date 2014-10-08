@@ -108,7 +108,6 @@ if __name__ == '__main__':
                           , 183590:{'label':'183590.Sherpa_CT10_ZZtotautauqq_MassiveCB' , 'num_jobs':10}
                           , 183591:{'label':'183591.Sherpa_CT10_ZWtonunuqq_MassiveCB'   , 'num_jobs':10}
                           , 183592:{'label':'183592.Sherpa_CT10_ZZtonunuqq_MassiveCB'   , 'num_jobs':10}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':5}
                           , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
@@ -126,12 +125,10 @@ if __name__ == '__main__':
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2', 'num_jobs':100}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l' , 'num_jobs':5 }
                           , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'             , 'num_jobs':5 }
                           , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'    , 'num_jobs':10}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':15}
                           , 167750:{'label':'167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'           , 'num_jobs':15}

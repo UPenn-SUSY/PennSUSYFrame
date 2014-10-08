@@ -50,6 +50,9 @@ namespace PennSusyFrame
       // variables to store to optimize ntuple
       float m_weight;
 
+      float m_btag_sf_up_frac;
+      float m_btag_sf_down_frac;
+
       int m_flavor_channel;
 
       bool m_is_ee;
@@ -58,10 +61,12 @@ namespace PennSusyFrame
 
       float m_mbl_0;
       float m_mbl_1;
+      float m_mbl_asym;
       float m_mbbll;
 
       float m_ptbl_0;
       float m_ptbl_1;
+      float m_ptbl_asym;
       float m_ptbbll;
 
       float m_mll;
@@ -69,6 +74,7 @@ namespace PennSusyFrame
 
       float m_met_et;
       float m_met_rel;
+      float m_met_sig_signal;
 
       float m_ht_all;
       float m_ht_baseline;
