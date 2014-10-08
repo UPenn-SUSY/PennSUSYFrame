@@ -11,8 +11,8 @@ import sys
 import ROOT
 
 #-------------------------------------------------------------------------------
-def getTotalNumEntriesFromFile(f):
-    t = f.Get('TNT')
+def getTotalNumEntriesFromFile(f, tree_name = 'TNT'):
+    t = f.Get(tree_name)
 
     total_num_entries = None
     if t:
@@ -47,9 +47,9 @@ def getSumEventWeightsFromFile(f):
     return sum_event_weights
 
 #-------------------------------------------------------------------------------
-def getTotalNumEntries(in_file_name):
+def getTotalNumEntries(in_file_name, tree_name = 'TNT'):
     f = ROOT.TFile.Open(in_file_name)
-    total_num_entries = getTotalNumEntriesFromFile(f)
+    total_num_entries = getTotalNumEntriesFromFile(f, tree_name)
     f.Close()
     return total_num_entries
 
@@ -71,10 +71,14 @@ def getSumEventWeights(in_file_name):
 def main():
     # get file name and open root file
     in_file_name = sys.argv[1]
+    tree_name = 'TNT'
+    if len(sys.argv) > 2:
+        tree_name = sys.argv[2]
+
     f = ROOT.TFile.Open(in_file_name)
 
     # get numbers from file
-    total_num_entries          = getTotalNumEntriesFromFile(f)
+    total_num_entries          = getTotalNumEntriesFromFile(f, tree_name)
     total_num_unskimmed_events = getUnskimmedEventsFromFile(f)
     sum_event_weights          = getSumEventWeightsFromFile(f)
 

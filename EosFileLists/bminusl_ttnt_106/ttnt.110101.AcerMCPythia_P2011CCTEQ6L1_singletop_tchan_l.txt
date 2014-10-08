@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l.tnt.root    8984067    1085    7692583.0

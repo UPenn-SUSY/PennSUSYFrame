@@ -11,9 +11,9 @@ import sys
 import ROOT
 
 #-------------------------------------------------------------------------------
-def getTotalNumEntries(in_file_name):
+def getTotalNumEntries(in_file_name, tree_name = 'TNT'):
     f = ROOT.TFile.Open(in_file_name)
-    t = f.Get('TNT')
+    t = f.Get(tree_name)
 
     total_num_entries = None
     if t:
@@ -27,7 +27,11 @@ def getTotalNumEntries(in_file_name):
 #-------------------------------------------------------------------------------
 def main():
     in_file_name = sys.argv[1]
-    total_num_entries = getTotalNumEntries(in_file_name)
+    tree_name = 'TNT'
+    if len(sys.argv) > 2:
+        tree_name = sys.argv[2]
+
+    total_num_entries = getTotalNumEntries(in_file_name, tree_name)
 
     out_file=file('tmp_entries.txt', 'w')
     if total_num_entries is not None:
