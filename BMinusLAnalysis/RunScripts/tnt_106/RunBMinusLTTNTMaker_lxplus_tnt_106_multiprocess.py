@@ -213,16 +213,16 @@ if __name__ == '__main__':
                           , 173044:{'label':'173044.Sherpa_CT10_DYmumuM15to40'   , 'num_jobs':5}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 183585:{'label':'183585.Sherpa_CT10_ZWtoeeqq_MassiveCB'    , num_jobs:10}
-                          , 183586:{'label':'183586.Sherpa_CT10_ZZtoeeqq_MassiveCB'    , num_jobs:10}
-                          , 183587:{'label':'183587.Sherpa_CT10_ZWtomumuqq_MassiveCB'  , num_jobs:10}
-                          , 183588:{'label':'183588.Sherpa_CT10_ZZtomumuqq_MassiveCB'  , num_jobs:10}
-                          , 183734:{'label':'183734.Sherpa_CT10_WWtoenuqq_MassiveCB'   , num_jobs:10}
-                          , 183735:{'label':'183735.Sherpa_CT10_WZtoenuqq_MassiveCB'   , num_jobs:10}
-                          , 183736:{'label':'183736.Sherpa_CT10_WWtomunuqq_MassiveCB'  , num_jobs:10}
-                          , 183737:{'label':'183737.Sherpa_CT10_WZtomunuqq_MassiveCB'  , num_jobs:10}
-                          , 183738:{'label':'183738.Sherpa_CT10_WWtotaunuqq_MassiveCB' , num_jobs:10}
-                          , 183739:{'label':'183739.Sherpa_CT10_WZtotaunuqq_MassiveCB' , num_jobs:10}
+                          , 183585:{'label':'183585.Sherpa_CT10_ZWtoeeqq_MassiveCB'    , 'num_jobs':10}
+                          , 183586:{'label':'183586.Sherpa_CT10_ZZtoeeqq_MassiveCB'    , 'num_jobs':10}
+                          , 183587:{'label':'183587.Sherpa_CT10_ZWtomumuqq_MassiveCB'  , 'num_jobs':10}
+                          , 183588:{'label':'183588.Sherpa_CT10_ZZtomumuqq_MassiveCB'  , 'num_jobs':10}
+                          , 183734:{'label':'183734.Sherpa_CT10_WWtoenuqq_MassiveCB'   , 'num_jobs':10}
+                          , 183735:{'label':'183735.Sherpa_CT10_WZtoenuqq_MassiveCB'   , 'num_jobs':10}
+                          , 183736:{'label':'183736.Sherpa_CT10_WWtomunuqq_MassiveCB'  , 'num_jobs':10}
+                          , 183737:{'label':'183737.Sherpa_CT10_WZtomunuqq_MassiveCB'  , 'num_jobs':10}
+                          , 183738:{'label':'183738.Sherpa_CT10_WWtotaunuqq_MassiveCB' , 'num_jobs':10}
+                          , 183739:{'label':'183739.Sherpa_CT10_WZtotaunuqq_MassiveCB' , 'num_jobs':10}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
@@ -259,8 +259,7 @@ if __name__ == '__main__':
                                                    , muon_data_samples   = muon_data_samples
                                                    , full_sim_mc_samples = full_sim_mc_samples
                                                    , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   # , file_list_path_base = 'EosFileLists/tnt_103/tnt_103'
-                                                   , file_list_path_base = 'EosFileLists/tnt_103_w_weights/tnt_103'
+                                                   , file_list_path_base = 'EosFileLists/tnt_106/tnt_106'
                                                    , out_dir = out_dir
                                                    )
 
@@ -283,10 +282,4 @@ if __name__ == '__main__':
                                          , sym_link_name         = './NextTTNTDir.BMinusL'
                                          , job_dir               = 'LatestRunDir_bminuslttntmaker'
                                          )
-
-
-160155.PowhegPythia8_AU2CT10_ggH125_ZZ4lep.txt
-160205.PowhegPythia8_AU2CT10_VBFH125_ZZ4lep.txt
-160255.Pythia8_AU2CTEQ6L1_WH125_ZZ4lep.txt
-160305.Pythia8_AU2CTEQ6L1_ZH125_ZZ4lep.txt
 
