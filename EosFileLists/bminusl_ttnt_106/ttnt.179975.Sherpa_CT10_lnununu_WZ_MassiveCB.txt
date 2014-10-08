@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.179975.Sherpa_CT10_lnununu_WZ_MassiveCB.tnt.root    359999    4    359987.0

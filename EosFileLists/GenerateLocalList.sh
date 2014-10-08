@@ -151,7 +151,6 @@ for local_dir in $(\ls ${LOCAL_PATH}); do
     total_num_files=$(( $total_num_files + 1 ))
   done
   total_num_local_dirs=$(( $total_num_local_dirs + 1 ))
-  echo ''
 done
 
 echo "total num files: $total_num_files"

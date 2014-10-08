@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.tnt.root    300000    1    299988.0

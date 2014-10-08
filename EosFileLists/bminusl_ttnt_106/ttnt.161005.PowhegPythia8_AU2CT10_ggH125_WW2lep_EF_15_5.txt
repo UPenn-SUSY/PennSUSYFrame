@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5.tnt.root    500000    61    499986.0
