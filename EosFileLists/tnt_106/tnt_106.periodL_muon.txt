@@ -6,7 +6,7 @@ root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tn
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.1013139/user.bjackson.043223._000085.Tnt.root        168236        16865        168235
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.1180576/user.bjackson.043223._000121.Tnt.root        1027004        103098        1027003
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.1180576/user.bjackson.043223._000122.Tnt.root        976843        99446        976842
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.1180576/user.bjackson.043223._000123.Tnt.root        66498                66497
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.1180576/user.bjackson.043223._000123.Tnt.root        66498        6804        66497
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.921510/user.bjackson.043223._000001.Tnt.root        8237        586        8236
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.921510/user.bjackson.043223._000002.Tnt.root        8960        635        8959
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.921510/user.bjackson.043223._000003.Tnt.root        9082        605        9081
@@ -28,7 +28,7 @@ root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tn
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.976785/user.bjackson.043223._000050.Tnt.root        999258        99672        999257
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.976785/user.bjackson.043223._000051.Tnt.root        290776        29331        290775
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.976785/user.bjackson.043223._000052.Tnt.root        1005310        100524        1005309
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.976785/user.bjackson.043223._000053.Tnt.root        320438        32344        
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.976785/user.bjackson.043223._000053.Tnt.root        320438        32344        320437
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.976785/user.bjackson.043223._000054.Tnt.root        999544        100367        999543
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.976785/user.bjackson.043223._000055.Tnt.root        939974        95589        939973
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_106/user.bjackson.periodL_muon.tnt_106_Tnt.root.976785/user.bjackson.043223._000056.Tnt.root        944518        95928        944517

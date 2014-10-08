@@ -4,7 +4,7 @@ root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.Alp
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_106_Tnt.root.927850/user.bjackson.043568._000004.Tnt.root        10000        6561        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_106_Tnt.root.927850/user.bjackson.043568._000005.Tnt.root        10000        6636        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_106_Tnt.root.927850/user.bjackson.043568._000006.Tnt.root        10000        6595        9999
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_106_Tnt.root.927850/user.bjackson.043568._000007.Tnt.root                6634        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_106_Tnt.root.927850/user.bjackson.043568._000007.Tnt.root        10000        6634        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_106_Tnt.root.927850/user.bjackson.043568._000008.Tnt.root        10000        6563        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_106_Tnt.root.927850/user.bjackson.043568._000009.Tnt.root        10000        6604        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0.tnt_106_Tnt.root.927850/user.bjackson.043568._000010.Tnt.root        10000        6590        9999

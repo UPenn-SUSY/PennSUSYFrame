@@ -1,8 +1,8 @@
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000001.Tnt.root        10000        404        2206
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000002.Tnt.root        10000        388        
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000002.Tnt.root        10000        388        2211
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000003.Tnt.root        10000        370        2203
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000004.Tnt.root        10000        374        2204
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000005.Tnt.root        10000        392        
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000005.Tnt.root        10000        392        2203
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000006.Tnt.root        10000        359        2211
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000007.Tnt.root        10000        381        2206
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106/user.bjackson.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.tnt_106_Tnt.root.925569/user.bjackson.043612._000008.Tnt.root        10000        402        2211

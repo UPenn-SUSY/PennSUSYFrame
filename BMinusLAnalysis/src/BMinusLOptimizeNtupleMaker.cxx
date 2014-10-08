@@ -90,21 +90,30 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::clearVariables()
 {
   m_weight = 1.;
 
+  m_btag_sf_up_frac   = 1;
+  m_btag_sf_down_frac = 1;
+
   m_flavor_channel = FLAVOR_NONE;
 
-  m_mbl_0 = 0 ;
-  m_mbl_1 = 0 ;
+  m_is_ee = false;
+  m_is_mm = false;
+  m_is_em = false;
 
-  m_ptbl_0 = 0 ;
-  m_ptbl_1 = 0 ;
+  m_mbl_0    = 0 ;
+  m_mbl_1    = 0 ;
+  m_mbl_asym = 0 ;
+  m_mbbll    = 0 ;
 
-  m_mbbll  = 0 ;
-  m_ptbbll = 0 ;
+  m_ptbl_0    = 0 ;
+  m_ptbl_1    = 0 ;
+  m_ptbl_asym = 0 ;
+  m_ptbbll    = 0 ;
 
   m_mll = 0 ;
 
   m_met_et  = 0 ;
   m_met_rel = 0 ;
+  m_met_sig_signal = 0;
 
   m_ht_all      = 0 ;
   m_ht_baseline = 0 ;
@@ -143,21 +152,31 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
   // connect branches for output
   m_output_tree->Branch( "weight" , &m_weight);
 
+  m_output_tree->Branch( "btag_sf_up_frac"   , &m_btag_sf_up_frac  );
+  m_output_tree->Branch( "btag_sf_down_frac" , &m_btag_sf_down_frac);
+
   m_output_tree->Branch( "flavor_channel" , &m_flavor_channel);
 
-  m_output_tree->Branch( "mbl_0" , &m_mbl_0);
-  m_output_tree->Branch( "mbl_1" , &m_mbl_1);
-  m_output_tree->Branch( "mbbll" , &m_mbbll);
+  m_output_tree->Branch( "is_ee" , &m_is_ee);
+  m_output_tree->Branch( "is_mm" , &m_is_mm);
+  m_output_tree->Branch( "is_em" , &m_is_em);
 
-  m_output_tree->Branch( "ptbl_0" , &m_ptbl_0);
-  m_output_tree->Branch( "ptbl_1" , &m_ptbl_1);
-  m_output_tree->Branch( "ptbbll" , &m_ptbbll);
+  m_output_tree->Branch( "mbl_0"    , &m_mbl_0);
+  m_output_tree->Branch( "mbl_1"    , &m_mbl_1);
+  m_output_tree->Branch( "mbl_asym" , &m_mbl_asym);
+  m_output_tree->Branch( "mbbll"    , &m_mbbll);
+
+  m_output_tree->Branch( "ptbl_0"    , &m_ptbl_0);
+  m_output_tree->Branch( "ptbl_1"    , &m_ptbl_1);
+  m_output_tree->Branch( "ptbl_asym" , &m_ptbl_asym);
+  m_output_tree->Branch( "ptbbll"    , &m_ptbbll);
 
   m_output_tree->Branch( "mll"  , &m_mll);
   m_output_tree->Branch( "ptll" , &m_ptll);
 
-  m_output_tree->Branch( "met_et"  , &m_met_et);
-  m_output_tree->Branch( "met_rel" , &m_met_rel);
+  m_output_tree->Branch( "met_et"         , &m_met_et);
+  m_output_tree->Branch( "met_rel"        , &m_met_rel);
+  m_output_tree->Branch( "met_sig_signal" , &m_met_sig_signal);
 
   m_output_tree->Branch( "ht_all"      , &m_ht_all);
   m_output_tree->Branch( "ht_baseline" , &m_ht_baseline);
@@ -193,22 +212,31 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
 {
   m_weight = weight;
 
+  m_btag_sf_up_frac   = m_event_quantities.getBTagSFUp()  /m_event_quantities.getBTagSF();
+  m_btag_sf_down_frac = m_event_quantities.getBTagSFDown()/m_event_quantities.getBTagSF();
+
   m_flavor_channel = m_event.getFlavorChannel();
 
-  m_mbl_0 = bl_0->getMbl()/1.e3;
-  m_mbl_1 = bl_1->getMbl()/1.e3;
+  m_is_ee = (m_event.getFlavorChannel() == FLAVOR_EE);
+  m_is_mm = (m_event.getFlavorChannel() == FLAVOR_MM);
+  m_is_em = (m_event.getFlavorChannel() == FLAVOR_EM);
+
+  m_mbl_0   = bl_0->getMbl()/1.e3;
+  m_mbl_1   = bl_1->getMbl()/1.e3;
+  m_mbl_asym = (bl_0->getMbl() - bl_1->getMbl()) / (bl_0->getMbl() + bl_1->getMbl());
+  m_mbbll  = PennSusyFrame::calcMbbll( *bl_0, *bl_1)/1.e3;
 
   m_ptbl_0 = bl_0->getPtbl()/1.e3;
   m_ptbl_1 = bl_1->getPtbl()/1.e3;
-
-  m_mbbll  = PennSusyFrame::calcMbbll( *bl_0, *bl_1)/1.e3;
+  m_ptbl_asym = (bl_0->getPtbl() - bl_1->getPtbl()) / (bl_0->getPtbl() + bl_1->getPtbl());
   m_ptbbll = PennSusyFrame::calcPtbbll(*bl_0, *bl_1)/1.e3;
 
   m_mll  = m_event_quantities.getMll()/1.e3;
   m_ptll = m_event_quantities.getPtll()/1.e3;
 
-  m_met_et  = m_met.getMetEt() /1.e3;
-  m_met_rel = m_met.getMetRel()/1.e3;
+  m_met_et         = m_met.getMetEt() /1.e3;
+  m_met_rel        = m_met.getMetRel()/1.e3;
+  m_met_sig_signal = (m_met.getMetEt()/sqrt(m_event_quantities.getHtGood())) * sqrt(1.e3) ;
 
   m_ht_all      = m_event_quantities.getHtAll()/1.e3;
   m_ht_baseline = m_event_quantities.getHtBaseline()/1.e3;

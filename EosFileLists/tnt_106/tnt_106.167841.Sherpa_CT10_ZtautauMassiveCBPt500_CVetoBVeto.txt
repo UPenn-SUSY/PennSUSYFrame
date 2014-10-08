@@ -1,5 +1,5 @@
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt_106_Tnt.root.926066/user.bjackson.043771._000001.Tnt.root        10000        948        2113
-root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt_106_Tnt.root.926066/user.bjackson.043771._000002.Tnt.root                922        2112
+root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt_106_Tnt.root.926066/user.bjackson.043771._000002.Tnt.root        10000        922        2112
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt_106_Tnt.root.926066/user.bjackson.043771._000003.Tnt.root        10000        964        2122
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt_106_Tnt.root.926066/user.bjackson.043771._000004.Tnt.root        10000        936        2122
 root://eosatlas///eos/atlas/user/b/bjackson/tnt_106/user.bjackson.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.tnt_106_Tnt.root.926066/user.bjackson.043771._000005.Tnt.root        10000        948        2111

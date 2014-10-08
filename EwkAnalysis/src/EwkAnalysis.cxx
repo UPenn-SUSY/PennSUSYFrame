@@ -108,6 +108,21 @@ void PennSusyFrame::EwkAnalysis::prepareTools()
 
   m_charge_flip_tool.init();
   m_bch_cleaning_tool.init(m_event, m_tile_trip_tool);
+
+  m_tmva_reader.AddVariable("Mll", &m_tmva_mll);
+  m_tmva_reader.AddVariable("METrel", &m_tmva_met_rel);
+  m_tmva_reader.AddVariable("DphiLL", &m_tmva_dphi_ll);
+  m_tmva_reader.AddVariable("Ht", &m_tmva_ht);
+  m_tmva_reader.AddVariable("MT2", &m_tmva_mt2);
+  m_tmva_reader.AddVariable("Mtr1", &m_tmva_mtr1);
+  m_tmva_reader.AddVariable("Mtr2", &m_tmva_mtr2);
+  m_tmva_reader.AddVariable("pTll", &m_tmva_pt_ll);
+  m_tmva_reader.AddVariable("METpTjet", &m_tmva_met_pt_jet);
+  m_tmva_reader.AddVariable("PtLepJet", &m_tmva_pt_lep_jet);
+  m_tmva_reader.AddVariable("DphiMETjet", &m_tmva_dphi_met_jet);
+
+  std::string tmvaWeightFile = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20_ISR.xml";
+  m_tmva_reader.BookMVA("BDTD method for this signal", tmvaWeightFile);
 }
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::prepareSelection()
@@ -193,537 +208,31 @@ void PennSusyFrame::EwkAnalysis::processEvent()
     printEventDetails();
       }
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // set mc event weight
-  // TODO validate MC event weight
-  m_event_weight *= m_event_quantities.getMcEventWeight();
-  m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MC_EVENT_WEIGHT);
-  m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MC_EVENT_WEIGHT, m_event_weight);
+
+  doBaselineCuts();
+
+  bool do_fake_cr = false;
+
+  if(do_fake_cr) doFakeCR();
+
+  doSignalLeptonCuts();
+
+
+  //Signal Region Stuff from Here down:
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // set pile up weight
-  // TODO validate pile up weight
-  m_event_weight *= m_event_quantities.getPileUpSF();
-  m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PILEUP_WEIGHT);
-  m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PILEUP_WEIGHT, m_event_weight);
-
-  // -----------------------------------------------------------------------------
-  m_event.setTriggerPhase( PennSusyFrame::getTriggerPhase( m_electrons.getCollection(EL_GOOD)
-                                                         , m_muons.getCollection(MU_GOOD)
-                                                         )
-                         );
-  m_event.setPhaseSpace(PennSusyFrame::getPhaseSpaceFromTriggerPhase(m_event.getTriggerPhase()));
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // GRL cut
-  // TODO validate grl cut
-  // only check grl cut on data
-  bool pass_grl = (!m_is_data || m_grl.passEvent(m_event));
-  m_pass_event = (m_pass_event && pass_grl);
-  if (m_crit_cut_grl && !pass_grl) return;
+  // check for SS leptons
+  // TODO validate SS leptons requirement
+  bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
+  m_pass_event = (m_pass_event && pass_ss);
+  if (m_crit_cut_ss && !pass_ss) return;
   if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_GRL);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_GRL, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_SS);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_SS, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_SS);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_SS, m_event_weight);
   }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tile trip cut
-  // TODO validate tile trip cut
-  bool pass_tile_trip = m_tile_trip_tool.passTileTrip(m_event);
-  m_pass_event = (m_pass_event && pass_tile_trip);
-  if (m_crit_cut_tile_trip && !pass_tile_trip) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_TRIP);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_TRIP, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // incomplete event cut
-  // TODO validate incomplete event cut
-  bool pass_incomplete_event = PennSusyFrame::passIncompleteEvent(m_event);
-  m_pass_event = (m_pass_event && pass_incomplete_event);
-  if (m_crit_cut_incomplete_event && !pass_incomplete_event) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_INCOMPLETE_EVENT);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_INCOMPLETE_EVENT, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // LAr error cut
-  // TODO validate LAr error cut
-  bool pass_lar_error = PennSusyFrame::passLarError(m_event);
-  m_pass_event = (m_pass_event && pass_lar_error);
-  if (m_crit_cut_lar_error && !pass_lar_error) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_LAR_ERROR);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_LAR_ERROR, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tile error cut
-  // TODO validate tile error cut
-  bool pass_tile_error = PennSusyFrame::passTileError(m_event);
-  m_pass_event = (m_pass_event && pass_tile_error);
-  if (m_crit_cut_tile_error && !pass_tile_error) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_ERROR);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_ERROR, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // primary vertex cut
-  bool pass_primary_vertex = PennSusyFrame::passPrimaryVertex(m_vertices);
-  m_pass_event = (m_pass_event && pass_primary_vertex);
-  if (m_crit_cut_primary_vertex && !pass_primary_vertex) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tile hot spot cut
-  // TODO validate tile hot spot cut
-  bool pass_tile_hot_spot = PennSusyFrame::TileHotSpotTool::passTileHotSpot(m_event, m_jets);
-  m_pass_event = (m_pass_event && pass_tile_hot_spot);
-  if (m_crit_cut_tile_hot_spot && !pass_tile_hot_spot) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_HOT_SPOT);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_HOT_SPOT, m_event_weight);
-  }
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // bad jet veto
-  bool pass_bad_jet_veto = (m_jets.num(JET_BAD) == 0);
-  m_pass_event = (m_pass_event && pass_bad_jet_veto);
-  if (m_crit_cut_bad_jet_veto && !pass_bad_jet_veto) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BAD_JET_VETO);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BAD_JET_VETO, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // calo problem jet cut
-  bool pass_calo_problem_jet = (m_jets.num(JET_CALO_PROBLEM) == 0);
-  m_pass_event = (m_pass_event && pass_calo_problem_jet);
-  if (m_crit_cut_calo_problem_jet && !pass_calo_problem_jet) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_CALO_PROBLEM_JET);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_CALO_PROBLEM_JET, m_event_weight);
-  }
-  
-
-
-  //generate random run number and lbn for BCH tool taken from SUSYTools
-        
-  int run_number = -999;
-  int lumi_block = -999;
-
-  int seed = -999;
-
-  if (m_is_data)
-    {
-      run_number = m_event.getRunNumber();
-      lumi_block = m_event.getLumiBlock();
-    }
-  else
-    {                         
-      //set the seed so that the bch cleaning random number is reproducible 
-
-      seed = 314159+(m_event.getEventNumber())+2718*(m_mc_truth.getChannelNumber());
-
-      m_pile_up_sf_tool.setRandomSeed(seed);
-  
-      run_number =  m_pile_up_sf_tool.getRandomRunNumber(m_event.getRunNumber(),m_event.getAverageIntPerXing());
-      if (run_number>0) lumi_block =  m_pile_up_sf_tool.getRandomLumiBlockNumber(run_number);
-    }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  //BCH Cleaning cut
-  bool pass_bch_cleaning = (run_number>0 && m_bch_cleaning_tool.passBCHCleaning(m_jets, run_number, lumi_block));
-  m_pass_event = (m_pass_event && pass_bch_cleaning);
-  if (m_crit_cut_bch_cleaning && !pass_bch_cleaning) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BCH_CLEANING);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BCH_CLEANING, m_event_weight);
-    
-  }
-  
-  
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // bad muon cut
-  bool pass_bad_mu_veto = (m_muons.num(MU_BAD) == 0);
-  m_pass_event = (m_pass_event && pass_bad_mu_veto);
-  if (m_crit_cut_bad_mu_veto && !pass_bad_mu_veto) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BAD_MUON);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BAD_MUON, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // cosmic muon veto
-  bool pass_cosmic_mu_veto = (m_muons.num(MU_COSMIC) == 0);
-  m_pass_event = (m_pass_event && pass_cosmic_mu_veto);
-  if (m_crit_cut_cosmic_mu_veto && !pass_cosmic_mu_veto) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_COSMIC_MUON_VETO);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_COSMIC_MUON_VETO, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // HFOR cut
-  // TODO validate HFOR cut
-  bool pass_hfor = m_hfor_tool.passHFOR(m_mc_truth);
-  m_pass_event = (m_pass_event && pass_hfor);
-  if (m_crit_cut_hfor && !pass_hfor) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_HFOR);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_HFOR, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // mc overlap cut
-  // TODO validate mc overlap cut
-  bool pass_mc_overlap = (  PennSusyFrame::passSherpaWWOverlapRemoval(m_event, m_mc_truth)
-                         && PennSusyFrame::passZOverlapRemoval(m_mc_truth)
-                         );
-  m_pass_event = (m_pass_event && pass_mc_overlap);
-  if (m_crit_cut_mc_overlap && !pass_mc_overlap) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MC_OVERLAP);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MC_OVERLAP, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get number of good leptons
-  int num_good_leptons = m_electrons.num(EL_GOOD) + m_muons.num(MU_GOOD);
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // >= 2 baseline leptons cut
-  bool pass_ge_2_lep = (num_good_leptons >= 2);
-  m_pass_event = (m_pass_event && pass_ge_2_lep);
-  if (m_crit_cut_ge_2_lep && !pass_ge_2_lep) return;
-  if (m_pass_event) {
-
-
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_GE_2_BASELINE_LEPTONS);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_GE_2_BASELINE_LEPTONS, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // tau veto
-  // TODO validate tau veto
-  bool pass_tau_veto = (m_taus.num(TAU_SIGNAL) == 0);
-  m_pass_event = (m_pass_event && pass_tau_veto);
-  if (m_crit_cut_tau_veto && !pass_tau_veto) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TAU_VETO);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TAU_VETO, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // == 2 baseline leptons cut
-  bool pass_2_lep = (num_good_leptons == 2);
-  m_pass_event = (m_pass_event && pass_2_lep);
-  if (m_crit_cut_2_lep && !pass_2_lep) return;
-  if (m_pass_event) {
-    {
-
-
-      
-      m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EQ_2_BASELINE_LEPTONS);
-      m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EQ_2_BASELINE_LEPTONS, m_event_weight);
-
-      
-      m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EQ_2_BASELINE_LEPTONS);
-      m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EQ_2_BASELINE_LEPTONS, m_event_weight);
-    }
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get fake weight
-
-  m_event_quantities.setFakeWeight(m_matrix_method_tool.getSF(m_event.getFlavorChannel()
-							      , m_electrons.getCollection(EL_GOOD)
-							      , m_muons.getCollection(MU_GOOD)
-							      , m_met
-							      )
-				   );
-
-
-  //std::cout<<"Fake Weight: "<<m_event_quantities.getFakeWeight()<<std::endl;
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // mll SFOS cut
-  bool pass_mll_sfos = ( PennSusyFrame::passCut( m_event_quantities.getMll()
-                                               , m_sfos_mll_min
-                                               , m_sfos_mll_max
-                                               )
-                       );
-  m_pass_event = (m_pass_event && pass_mll_sfos);
-  if (m_crit_cut_mll_sfos && !pass_mll_sfos) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MLL_SFOS);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MLL_SFOS, m_event_weight);
-
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MLL_SFOS);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MLL_SFOS, m_event_weight);
-   
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // phase space cut
-  bool pass_phase_space = (m_event.getTriggerPhase() != TRIG_NONE);
-  m_pass_event = (m_pass_event && pass_phase_space);
-  if (m_crit_cut_phase_space && !pass_phase_space) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PHASE_SPACE);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PHASE_SPACE, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE, m_event_weight);
-    printEventDetails();
-  }
-
-  
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // TODO implement trigger SF
-  m_event_weight *= m_event_quantities.getTriggerWeight();
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TRIGGER_WEIGHT);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TRIGGER_WEIGHT, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TRIGGER_WEIGHT);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER_WEIGHT, m_event_weight);
-  }
-
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // lepton scale factor
-  // TODO validate lepton sf
-  m_event_weight *= m_event_quantities.getLeptonSF();
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_LEP_SF);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_LEP_SF, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_LEP_SF);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_LEP_SF, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // b tag sf
-  // TODO validate b tag SF
-  m_event_weight *= m_event_quantities.getBTagSF();
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_B_TAG_SF);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_B_TAG_SF, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_B_TAG_SF);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_TAG_SF, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // trigger cut
-  // TODO validate trigger cut
-  bool pass_trigger = (  !m_is_data
-                      || PennSusyFrame::passAnyTrigger( m_event
-                                                      , m_trigger
-                                                      )
-                      );
-  m_pass_event = (m_pass_event && pass_trigger);
-  if (m_crit_cut_trigger && !pass_trigger) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TRIGGER);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TRIGGER, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TRIGGER);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // trigger matching
-  // TODO validate trigger matching
-  bool pass_trigger_match = (  !m_is_data
-                            || PennSusyFrame::passTriggerMatching( m_event
-                                                                 , m_trigger
-                                                                 , m_electrons.getCollection(EL_GOOD)
-                                                                 , m_muons.getCollection(MU_GOOD)
-                                                                 )
-                            );
-  m_pass_event = (m_pass_event && pass_trigger_match);
-  if (m_crit_cut_trigger_match && !pass_trigger_match) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TRIGGER_MATCHING);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TRIGGER_MATCHING, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TRIGGER_MATCHING);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER_MATCHING, m_event_weight);
-  }
-
-  bool do_fake_estimate = false;
-
-  if(do_fake_estimate)
-    {
-
-      m_event_weight *= m_event_quantities.getFakeWeight();
-
-
-      // Define Fake control regions
-
-      //  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      // met rel cut
-      // Reverse Cut
-      bool pass_met_rel = !( PennSusyFrame::passCut( m_met.getMetRel()
-						    , m_met_rel_min
-						    , m_met_rel_max
-						    )
-			    );
-      m_pass_event = (m_pass_event && pass_met_rel);
-      if (m_crit_cut_met_rel && !pass_met_rel) return;
-      if (m_pass_event) {
-	m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MET_REL);
-	m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MET_REL, m_event_weight);
-	
-	m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MET_REL);
-	m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MET_REL, m_event_weight);
-      }
-
-      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      // dphi_ll cut
-      // TODO validate dphill cut
-      bool pass_dphi_ll = ( PennSusyFrame::passCut( m_event_quantities.getDphill()
-						    , m_dphi_ll_min
-						    , m_dphi_ll_max
-						    )
-			    );
-      m_pass_event = (m_pass_event && pass_dphi_ll);
-      if (m_crit_cut_dphi_ll && !pass_dphi_ll) return;
-      if (m_pass_event) {
-	m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_DPHI_LL);
-	m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_DPHI_LL, m_event_weight);
-	
-	m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_DPHI_LL);
-	m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_DPHI_LL, m_event_weight);
-      }
-      
-
-
-      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      // # light jet cut
-      // TODO validate light jet cut
-      bool pass_num_jet = ( PennSusyFrame::passCut( static_cast<int>(m_jets.num(JET_LIGHT)+static_cast<int>(m_jets.num(JET_FORWARD))+static_cast<int>(m_jets.num(JET_B)) )
-						    , m_num_light_jets_min
-						    , m_num_light_jets_max
-						    , true	
-						    )
-			    );
-      m_pass_event = (m_pass_event && pass_num_jet);
-      if (m_crit_cut_num_jet && !pass_num_jet) return;
-      if (m_pass_event) {
-	m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_NUM_JET);
-	m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_NUM_JET, m_event_weight);
-	
-	m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NUM_JET);
-	m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_NUM_JET, m_event_weight);
-      }
-
-      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      // b jet veto
-      
-      // TODO validate b veto cut
-      bool pass_b_veto = (m_jets.num(JET_B) == 0);
-      m_pass_event = (m_pass_event && pass_b_veto);
-      if (m_crit_cut_b_veto && !pass_b_veto) return;
-      if (m_pass_event) {
-	m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_B_VETO);
-	m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_B_VETO, m_event_weight);
-	
-	m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_B_VETO);
-	m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_VETO, m_event_weight);
-      }
-      
-      if (m_pass_event)  fillHistHandles( PennSusyFrame::EWK_HIST_FAKE_CR, m_event_weight);
-      
-      return;
-    }
-
-  //End fake control region
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // check for prompt leptons
-  // TODO validate check for prompt leptons
-  bool pass_prompt_leptons = (m_is_data || m_event.getPromptLeptons());
-  m_pass_event = (m_pass_event && pass_prompt_leptons);
-  if (m_crit_cut_prompt_leptons && !pass_prompt_leptons) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PROMPT_LEP);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PROMPT_LEP, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP, m_event_weight);
-  }
-
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // require no charge flip
-  // TODO validate no charge flip cut
-  bool pass_no_charge_flip = (  m_is_data
-                             || m_event.getTruthSignChannel() == m_event.getSignChannel()
-                             );
-  m_pass_event = (m_pass_event && pass_no_charge_flip);
-  if (m_crit_cut_no_charge_flip && !pass_no_charge_flip) return;
-  if (m_pass_event) {
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_NO_CHARGE_FLIP);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_NO_CHARGE_FLIP, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NO_CHARGE_FLIP);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_NO_CHARGE_FLIP, m_event_weight);
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // get number of signal leptons
-  int num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // == 2 signal lepton cut
-  bool pass_signal_lep = (num_signal_leptons == 2);
-  m_pass_event = (m_pass_event && pass_signal_lep);
-  if (m_crit_cut_signal_lep && !pass_signal_lep) return;
-  if (m_pass_event) {
-
-
-    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EQ_2_SIGNAL_LEPTON);
-    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
-
-    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EQ_2_SIGNAL_LEPTON);
-    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
-    
-  }
-
-//  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-//  // check for SS leptons
-//  // TODO validate SS leptons requirement
-//  bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
-//  m_pass_event = (m_pass_event && pass_ss);
-//  if (m_crit_cut_ss && !pass_ss) return;
-//  if (m_pass_event) {
-//    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_SS);
-//    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_SS, m_event_weight);
-//
-//    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_SS);
-//    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_SS, m_event_weight);
-//  }
 // // fill histograms for ZVETO hist level
 //  if (m_pass_event) {
 //    fillHistHandles( PennSusyFrame::EWK_HIST_ZVETO
@@ -830,7 +339,42 @@ void PennSusyFrame::EwkAnalysis::processEvent()
                                                          , m_muons.getCollection(MU_GOOD)
                                                          )
                                 );
-				   
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get BDT score
+  // TODO validate BDT Score
+  
+
+  //For now only eval BDT if passes selection up to here.
+
+  if (m_pass_event)    {
+    m_tmva_mll = m_event_quantities.getMll();
+    m_tmva_met_rel = m_met.getMetRel();
+    m_tmva_dphi_ll = m_event_quantities.getDphill();
+    m_tmva_ht = m_event_quantities.getHtSignal();
+    m_tmva_mt2 = m_event_quantities.getMt2();
+    m_tmva_pt_ll = m_event_quantities.getPtll();
+    m_tmva_mtr1 = PennSusyFrame::getLeadingMt(m_event.getFlavorChannel()
+                               , m_electrons.getCollection(EL_SIGNAL)
+                               , m_muons.getCollection(MU_SIGNAL)
+                               , &m_met);
+    m_tmva_mtr2 = PennSusyFrame::getSubleadingMt(m_event.getFlavorChannel()
+                                  , m_electrons.getCollection(EL_SIGNAL)
+                                  , m_muons.getCollection(MU_SIGNAL)
+                                  , &m_met);
+    bool is_isr = true;
+    if (is_isr)
+      {
+        m_tmva_met_pt_jet = m_met.getMetEt()/(m_jets.getCollection(JET_ALL_SIGNAL)->at(0)->getPt());
+        m_tmva_pt_lep_jet = PennSusyFrame::getPtRatioLepJet( m_event.getFlavorChannel()
+                                                             , m_electrons.getCollection(EL_SIGNAL)
+                                                             , m_muons.getCollection(MU_SIGNAL)
+                                                             , m_jets.getCollection(JET_ALL_SIGNAL)
+                                                             );
+        m_tmva_dphi_met_jet = m_met.getDPhi(m_jets.getCollection(JET_ALL_SIGNAL)->at(0));
+      }
+    double bdt_score = m_tmva_reader.EvaluateMVA("BDTD method for this signal");
+    std::cout<<"BDT score: "<<bdt_score<<std::endl;
+  }
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // pt_ll cut
   // TODO validate ptll cut
@@ -929,6 +473,534 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   // }
 }
 
+void PennSusyFrame::EwkAnalysis::doBaselineCuts()
+{
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // set mc event weight
+  // TODO validate MC event weight
+  m_event_weight *= m_event_quantities.getMcEventWeight();
+  m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MC_EVENT_WEIGHT);
+  m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MC_EVENT_WEIGHT, m_event_weight);
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // set pile up weight
+  // TODO validate pile up weight
+  m_event_weight *= m_event_quantities.getPileUpSF();
+  m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PILEUP_WEIGHT);
+  m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PILEUP_WEIGHT, m_event_weight);
+  
+  // -----------------------------------------------------------------------------
+  m_event.setTriggerPhase( PennSusyFrame::getTriggerPhase( m_electrons.getCollection(EL_GOOD)
+                                                           , m_muons.getCollection(MU_GOOD)
+                                                           )
+                           );
+  m_event.setPhaseSpace(PennSusyFrame::getPhaseSpaceFromTriggerPhase(m_event.getTriggerPhase()));
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // GRL cut
+  // TODO validate grl cut
+  // only check grl cut on data
+  bool pass_grl = (!m_is_data || m_grl.passEvent(m_event));
+  m_pass_event = (m_pass_event && pass_grl);
+  if (m_crit_cut_grl && !pass_grl) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_GRL);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_GRL, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // tile trip cut
+  // TODO validate tile trip cut
+  bool pass_tile_trip = m_tile_trip_tool.passTileTrip(m_event);
+  m_pass_event = (m_pass_event && pass_tile_trip);
+  if (m_crit_cut_tile_trip && !pass_tile_trip) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_TRIP);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_TRIP, m_event_weight);
+  }
+  
+	
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // incomplete event cut
+  // TODO validate incomplete event cut
+  bool pass_incomplete_event = PennSusyFrame::passIncompleteEvent(m_event);
+  m_pass_event = (m_pass_event && pass_incomplete_event);
+  if (m_crit_cut_incomplete_event && !pass_incomplete_event) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_INCOMPLETE_EVENT);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_INCOMPLETE_EVENT, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // LAr error cut
+  // TODO validate LAr error cut
+  bool pass_lar_error = PennSusyFrame::passLarError(m_event);
+  m_pass_event = (m_pass_event && pass_lar_error);
+  if (m_crit_cut_lar_error && !pass_lar_error) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_LAR_ERROR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_LAR_ERROR, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // tile error cut
+  // TODO validate tile error cut
+  bool pass_tile_error = PennSusyFrame::passTileError(m_event);
+  m_pass_event = (m_pass_event && pass_tile_error);
+  if (m_crit_cut_tile_error && !pass_tile_error) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_ERROR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_ERROR, m_event_weight);
+  }
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // primary vertex cut
+  bool pass_primary_vertex = PennSusyFrame::passPrimaryVertex(m_vertices);
+  m_pass_event = (m_pass_event && pass_primary_vertex);
+  if (m_crit_cut_primary_vertex && !pass_primary_vertex) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PRIMARY_VERTEX, m_event_weight);
+  }
+	
+	
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // tile hot spot cut
+  // TODO validate tile hot spot cut
+  bool pass_tile_hot_spot = PennSusyFrame::TileHotSpotTool::passTileHotSpot(m_event, m_jets);
+  m_pass_event = (m_pass_event && pass_tile_hot_spot);
+  if (m_crit_cut_tile_hot_spot && !pass_tile_hot_spot) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TILE_HOT_SPOT);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TILE_HOT_SPOT, m_event_weight);
+  }
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // bad jet veto
+  bool pass_bad_jet_veto = (m_jets.num(JET_BAD) == 0);
+  m_pass_event = (m_pass_event && pass_bad_jet_veto);
+  if (m_crit_cut_bad_jet_veto && !pass_bad_jet_veto) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BAD_JET_VETO);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BAD_JET_VETO, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // calo problem jet cut
+  bool pass_calo_problem_jet = (m_jets.num(JET_CALO_PROBLEM) == 0);
+  m_pass_event = (m_pass_event && pass_calo_problem_jet);
+  if (m_crit_cut_calo_problem_jet && !pass_calo_problem_jet) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_CALO_PROBLEM_JET);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_CALO_PROBLEM_JET, m_event_weight);
+  }
+  
+  
+  
+  //generate random run number and lbn for BCH tool taken from SUSYTools
+  
+  int run_number = -999;
+  int lumi_block = -999;
+  
+  int seed = -999;
+  
+  if (m_is_data)
+    {
+      run_number = m_event.getRunNumber();
+      lumi_block = m_event.getLumiBlock();
+    }
+  else
+    {                         
+      //set the seed so that the bch cleaning random number is reproducible 
+      seed = 314159+(m_event.getEventNumber())+2718*(m_mc_truth.getChannelNumber());
+      m_pile_up_sf_tool.setRandomSeed(seed);
+      
+      run_number =  m_pile_up_sf_tool.getRandomRunNumber(m_event.getRunNumber(),m_event.getAverageIntPerXing());
+      if (run_number>0) lumi_block =  m_pile_up_sf_tool.getRandomLumiBlockNumber(run_number);
+    }	
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  //BCH Cleaning cut
+  bool pass_bch_cleaning = (run_number>0 && m_bch_cleaning_tool.passBCHCleaning(m_jets, run_number, lumi_block));
+  m_pass_event = (m_pass_event && pass_bch_cleaning);
+  if (m_crit_cut_bch_cleaning && !pass_bch_cleaning) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BCH_CLEANING);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BCH_CLEANING, m_event_weight);
+		
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // bad muon cut
+  bool pass_bad_mu_veto = (m_muons.num(MU_BAD) == 0);
+  m_pass_event = (m_pass_event && pass_bad_mu_veto);
+  if (m_crit_cut_bad_mu_veto && !pass_bad_mu_veto) return;
+  if (m_pass_event) {
+		m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_BAD_MUON);
+		m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_BAD_MUON, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // cosmic muon veto
+  bool pass_cosmic_mu_veto = (m_muons.num(MU_COSMIC) == 0);
+  m_pass_event = (m_pass_event && pass_cosmic_mu_veto);
+  if (m_crit_cut_cosmic_mu_veto && !pass_cosmic_mu_veto) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_COSMIC_MUON_VETO);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_COSMIC_MUON_VETO, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // HFOR cut
+  // TODO validate HFOR cut
+  bool pass_hfor = m_hfor_tool.passHFOR(m_mc_truth);
+  m_pass_event = (m_pass_event && pass_hfor);
+  if (m_crit_cut_hfor && !pass_hfor) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_HFOR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_HFOR, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // mc overlap cut
+  // TODO validate mc overlap cut
+  bool pass_mc_overlap = (  PennSusyFrame::passSherpaWWOverlapRemoval(m_event, m_mc_truth)
+                            && PennSusyFrame::passZOverlapRemoval(m_mc_truth)
+                            );
+  m_pass_event = (m_pass_event && pass_mc_overlap);
+  if (m_crit_cut_mc_overlap && !pass_mc_overlap) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MC_OVERLAP);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MC_OVERLAP, m_event_weight);
+  }
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get number of good leptons
+  int num_good_leptons = m_electrons.num(EL_GOOD) + m_muons.num(MU_GOOD);
+        
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // >= 2 baseline leptons cut
+  bool pass_ge_2_lep = (num_good_leptons >= 2);
+  m_pass_event = (m_pass_event && pass_ge_2_lep);
+  if (m_crit_cut_ge_2_lep && !pass_ge_2_lep) return;
+  if (m_pass_event) {
+    
+		
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_GE_2_BASELINE_LEPTONS);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_GE_2_BASELINE_LEPTONS, m_event_weight);
+  }
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // tau veto
+  // TODO validate tau veto
+  bool pass_tau_veto = (m_taus.num(TAU_SIGNAL) == 0);
+  m_pass_event = (m_pass_event && pass_tau_veto);
+  if (m_crit_cut_tau_veto && !pass_tau_veto) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TAU_VETO);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TAU_VETO, m_event_weight);
+  }
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // == 2 baseline leptons cut
+  bool pass_2_lep = (num_good_leptons == 2);
+  m_pass_event = (m_pass_event && pass_2_lep);
+  if (m_crit_cut_2_lep && !pass_2_lep) return;
+  if (m_pass_event) {
+    {
+      
+      m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EQ_2_BASELINE_LEPTONS);
+      m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EQ_2_BASELINE_LEPTONS, m_event_weight);
+      
+      
+      m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EQ_2_BASELINE_LEPTONS);
+      m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EQ_2_BASELINE_LEPTONS, m_event_weight);
+    }
+  }
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get fake weight
+  
+  m_event_quantities.setFakeWeight(m_matrix_method_tool.getSF(m_event.getFlavorChannel()
+                                                              , m_electrons.getCollection(EL_GOOD)
+                                                              , m_muons.getCollection(MU_GOOD)
+                                                              , m_met
+                                                              )
+                                   );
+  
+  
+  //std::cout<<"Fake Weight: "<<m_event_quantities.getFakeWeight()<<std::endl;
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // mll SFOS cut
+  bool pass_mll_sfos = ( PennSusyFrame::passCut( m_event_quantities.getMll()
+                                                 , m_sfos_mll_min
+                                                 , m_sfos_mll_max
+                                                 )
+                         );
+  m_pass_event = (m_pass_event && pass_mll_sfos);
+  if (m_crit_cut_mll_sfos && !pass_mll_sfos) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MLL_SFOS);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MLL_SFOS, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MLL_SFOS);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MLL_SFOS, m_event_weight);
+    
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // phase space cut
+  bool pass_phase_space = (m_event.getTriggerPhase() != TRIG_NONE);
+  m_pass_event = (m_pass_event && pass_phase_space);
+  if (m_crit_cut_phase_space && !pass_phase_space) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PHASE_SPACE);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PHASE_SPACE, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PHASE_SPACE, m_event_weight);
+   
+  }
+  
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // TODO implement trigger SF
+  m_event_weight *= m_event_quantities.getTriggerWeight();
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TRIGGER_WEIGHT);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TRIGGER_WEIGHT, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TRIGGER_WEIGHT);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER_WEIGHT, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // lepton scale factor
+  // TODO validate lepton sf
+  m_event_weight *= m_event_quantities.getLeptonSF();
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_LEP_SF);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_LEP_SF, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_LEP_SF);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_LEP_SF, m_event_weight);
+  }
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // b tag sf
+	// TODO validate b tag SF
+  m_event_weight *= m_event_quantities.getBTagSF();
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_B_TAG_SF);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_B_TAG_SF, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_B_TAG_SF);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_TAG_SF, m_event_weight);
+  }
+	
+  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // x sec sf
+  // TODO validate x sec SF
+  float target_lumi = 20281.4; // in pb-1
+  
+  m_event_weight *= m_xsec_weight;
+  m_event_weight *= target_lumi;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_X_SEC_SF);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_X_SEC_SF, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_X_SEC_SF);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_X_SEC_SF, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // trigger cut
+  // TODO validate trigger cut
+  bool pass_trigger = (  !m_is_data
+                         || PennSusyFrame::passAnyTrigger( m_event
+                                                           , m_trigger
+                                                           )
+                         );
+  m_pass_event = (m_pass_event && pass_trigger);
+  if (m_crit_cut_trigger && !pass_trigger) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TRIGGER);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TRIGGER, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TRIGGER);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // trigger matching
+  // TODO validate trigger matching
+  bool pass_trigger_match = (  !m_is_data
+                               || PennSusyFrame::passTriggerMatching( m_event
+                                                                      , m_trigger
+                                                                      , m_electrons.getCollection(EL_GOOD)
+                                                                      , m_muons.getCollection(MU_GOOD)
+                                                                      )
+                               );
+  m_pass_event = (m_pass_event && pass_trigger_match);
+  if (m_crit_cut_trigger_match && !pass_trigger_match) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_TRIGGER_MATCHING);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_TRIGGER_MATCHING, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_TRIGGER_MATCHING);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_TRIGGER_MATCHING, m_event_weight);
+  }
+  
+}
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EwkAnalysis::doSignalLeptonCuts()
+{
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // check for prompt leptons
+  // TODO validate check for prompt leptons
+  bool pass_prompt_leptons = (m_is_data || m_event.getPromptLeptons());
+  m_pass_event = (m_pass_event && pass_prompt_leptons);
+  if (m_crit_cut_prompt_leptons && !pass_prompt_leptons) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_PROMPT_LEP);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_PROMPT_LEP, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_PROMPT_LEP, m_event_weight);
+  }
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // require no charge flip
+  // TODO validate no charge flip cut
+  bool pass_no_charge_flip = (  m_is_data
+                                || m_event.getTruthSignChannel() == m_event.getSignChannel()
+                                );
+  m_pass_event = (m_pass_event && pass_no_charge_flip);
+  if (m_crit_cut_no_charge_flip && !pass_no_charge_flip) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_NO_CHARGE_FLIP);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_NO_CHARGE_FLIP, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NO_CHARGE_FLIP);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_NO_CHARGE_FLIP, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // get number of signal leptons
+  int num_signal_leptons = m_electrons.num(EL_SIGNAL) + m_muons.num(MU_SIGNAL);
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // == 2 signal lepton cut
+  bool pass_signal_lep = (num_signal_leptons == 2);
+  m_pass_event = (m_pass_event && pass_signal_lep);
+  if (m_crit_cut_signal_lep && !pass_signal_lep) return;
+  if (m_pass_event) {
+    
+
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EQ_2_SIGNAL_LEPTON);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EQ_2_SIGNAL_LEPTON);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EQ_2_SIGNAL_LEPTON, m_event_weight);
+    
+  }
+
+}
+// -----------------------------------------------------------------------------	
+void PennSusyFrame::EwkAnalysis::doFakeCR()
+{
+  
+  m_event_weight *= m_event_quantities.getFakeWeight();
+  
+  
+  // Define Fake control regions
+  
+  //  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // met rel cut
+  // Reverse Cut
+  bool pass_met_rel = !( PennSusyFrame::passCut( m_met.getMetRel()
+                                                 , m_met_rel_min
+                                                 , m_met_rel_max
+                                                 )
+                         );
+  m_pass_event = (m_pass_event && pass_met_rel);
+  if (m_crit_cut_met_rel && !pass_met_rel) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_MET_REL);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_MET_REL, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_MET_REL);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_MET_REL, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // dphi_ll cut
+  // TODO validate dphill cut
+  bool pass_dphi_ll = ( PennSusyFrame::passCut( m_event_quantities.getDphill()
+                                                , m_dphi_ll_min
+                                                , m_dphi_ll_max
+                                                )
+                        );
+  m_pass_event = (m_pass_event && pass_dphi_ll);
+  if (m_crit_cut_dphi_ll && !pass_dphi_ll) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_DPHI_LL);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_DPHI_LL, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_DPHI_LL);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_DPHI_LL, m_event_weight);
+		}
+  
+  
+  
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// # light jet cut
+		// TODO validate light jet cut
+  bool pass_num_jet = ( PennSusyFrame::passCut( static_cast<int>(m_jets.num(JET_LIGHT)+static_cast<int>(m_jets.num(JET_FORWARD))+static_cast<int>(m_jets.num(JET_B)) )
+                                                , m_num_light_jets_min
+                                                , m_num_light_jets_max
+													 , true	
+                                                )
+                        );
+  m_pass_event = (m_pass_event && pass_num_jet);
+  if (m_crit_cut_num_jet && !pass_num_jet) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_NUM_JET);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_NUM_JET, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_NUM_JET);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_NUM_JET, m_event_weight);
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // b jet veto
+  
+  // TODO validate b veto cut
+  bool pass_b_veto = (m_jets.num(JET_B) == 0);
+  m_pass_event = (m_pass_event && pass_b_veto);
+  if (m_crit_cut_b_veto && !pass_b_veto) return;
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_B_VETO);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_B_VETO, m_event_weight);
+    
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_B_VETO);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_B_VETO, m_event_weight);
+  }
+  
+  if (m_pass_event)  fillHistHandles( PennSusyFrame::EWK_HIST_FAKE_CR, m_event_weight);
+  
+  return;
+}
+
+//End fake control region
+
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::finalizeEvent()
 {
@@ -1000,6 +1072,7 @@ void PennSusyFrame::EwkAnalysis::printEventDetails()
 {
   m_event.print();
   m_event_quantities.print();
+  std::cout<<"xsec: "<<m_x_sec<<" kfactor: "<<m_k_factor<<" x_sec_weight: "<<m_xsec_weight<<std::endl;
   //  m_vertices.print(VERTEX_ALL);
   //  m_vertices.print(VERTEX_GT_2);
   //  

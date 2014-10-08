@@ -37,6 +37,7 @@ enum EWK_CUTS { EWK_CUT_ALL
               , EWK_CUT_TRIGGER_WEIGHT  
               , EWK_CUT_LEP_SF 
               , EWK_CUT_B_TAG_SF
+	      , EWK_CUT_X_SEC_SF
               , EWK_CUT_TRIGGER
               , EWK_CUT_TRIGGER_MATCHING
               , EWK_CUT_PROMPT_LEP
@@ -85,6 +86,7 @@ const std::string EWK_CUT_STRINGS[] = { "EWK_CUT_ALL"
                                       , "EWK_CUT_TRIGGER_WEIGHT"
                                       , "EWK_CUT_LEP_SF"
                                       , "EWK_B_TAG_SF"
+				      , "EWK_X_SEC_SF"
                                       , "EWK_CUT_TRIGGER"
                                       , "EWK_CUT_TRIGGER_MATCHING"
 				      , "EWK_PROMPT_LEP"

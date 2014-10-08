@@ -37,7 +37,7 @@ The command line options are the following:
 - -w: Create workspace
 - -f: Peform fit
 - -F: What fit to perform. excl = exclussion fit
-- -D: Draw plots. Currently set to draw distributions in SR/CR before and after fit.
+- -D: Draw plots. Currently set to draw distributions in SR/CR before and after fit. Options include ['allPlots', 'before', 'after', 'corrMatrix', 'sepComponents', 'likelihood'].
 
 This takes a couple of minutes, but  when it  completes, the output will be located in the results directory with the prefix "SampleExcl." 
 

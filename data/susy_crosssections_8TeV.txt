@@ -262,6 +262,20 @@
 164439	MadGraphPythia_AUET2BCTEQ6L1_ttbargammaPt80_noAllHad	0.092363 1.000000	1.000000	1.000000
 174382	MadGraphPythia_AUET2BCTEQ6L1_ttbargammaPt80_AllHad	0.068599 1.000000	1.000000	1.000000
 #
+# single top + gamma
+#
+202621  WhizardPythia_P2011CCTEQ6L1_singletop_tchan_gamma       0.187298        1.000000        0.121980        1.000000
+202622  WhizardPythia_P2011CCTEQ6L1_singletop_tchan_gammaDec    0.313866      1.000000        0.012927        1.000000
+202623  WhizardPythia_P2011CCTEQ6L1_tW_dilep_gamma      0.012915        1.000000        0.164370        1.000000
+202624  WhizardPythia_P2011CCTEQ6L1_tW_dilep_gammatDec  0.014538        1.000000        0.028748        1.000000
+202625  WhizardPythia_P2011CCTEQ6L1_tW_dilep_gammaWDec  0.010405        1.000000        0.075489        1.000000
+202626  WhizardPythia_P2011CCTEQ6L1_tW_tlepWhad_gamma   0.025825        1.000000        0.162440        1.000000
+202627  WhizardPythia_P2011CCTEQ6L1_tW_tlepWhad_gammatDec       0.029084        1.000000        0.027609        1.000000
+202628  WhizardPythia_P2011CCTEQ6L1_tW_tlepWhad_gammaWDec       0.011594        1.000000        0.064709        1.000000
+202629  WhizardPythia_P2011CCTEQ6L1_tW_thadWlep_gamma   0.025817        1.000000        0.161780        1.000000
+202630  WhizardPythia_P2011CCTEQ6L1_tW_thadWlep_gammatDec       0.020127        1.000000        0.041977        1.000000
+202631  WhizardPythia_P2011CCTEQ6L1_tW_thadWlep_gammaWDec       0.020788        1.000000        0.075740        1.000000
+#
 # single top+V
 #
 179991  MadGraphPythia_AUET2B_CTEQ6L1_tZ_Wtchan_Zll_PythiaDecays  0.0041303  1.000000  1.000000  0.50
@@ -1010,7 +1024,7 @@
 185394  Sherpa_CT10_lnln_ls_QCD_MassiveCB       0.016078        1.000000        1.000000        1.000000
 185395  Sherpa_CT10_lnln_ls_EWKQCD_MassiveCB    0.054596        1.000000        1.000000        1.000000
 185396  Sherpa_CT10_lllnu_WZ_EWK_MassiveCB      0.082102        1.000000        1.000000        1.000000
-185397  Sherpa_CT10_lllnu_WZ_l10_MassiveCB      12.317000       1.000000        0.240410        1.000000
+185397  Sherpa_CT10_lllnu_WZ_l10_MassiveCB      9.74456       1.000000        0.240410        1.000000
 147191	Sherpa_CT10_lnlnjj_WWjj_ls_EW6	0.022536	1.000000 	1.000000 	1.000000 
 147192	Sherpa_CT10_lnln_WW_ls	0.013813	1.000000 	1.000000 	1.000000 
 147193	Sherpa_CT10_lnlnjj_WWjj_EW6	0.095881	1.000000 	1.000000 	1.000000 
@@ -1526,3 +1540,7 @@
 186319	wA_slep_c1n2_500_0_n1_0_0_xsl_0_95	0.0125250418	1.0	1.0	1.0
 186290	wA_slep_c1n2_112_5_n1_12_5_xsl_0_95	7.3264307976	1.0	1.0	1.0
 186327	wA_slep_c1n2_575_0_n1_425_0_xsl_0_95	0.0058650539	1.0	1.0	1.0
+#High statistics no slep grid near diagonal
+127994  wA_noslep_C1N2_100_0_N1_75_0_2L         0.375           1.0     0.45    1.0
+127995  wA_noslep_C1N2_125_0_N1_100_0_2L        0.160           1.0     0.46    1.0
+127996  wA_noslep_C1N2_200_0_N1_150_0_2L        0.026           1.0     0.67    1.0

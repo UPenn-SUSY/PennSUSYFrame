@@ -1,8 +1,8 @@
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000001.Tnt.root        10000        5774        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000002.Tnt.root        10000        5719        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000003.Tnt.root        10000        5738        9999
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000004.Tnt.root        10000        5738        
-root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000005.Tnt.root        10000                9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000004.Tnt.root        10000        5738        9999
+root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000005.Tnt.root        10000        5649        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000006.Tnt.root        10000        5655        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000007.Tnt.root        10000        5708        9999
 root://eosatlas///eos/atlas/user/e/ehines/tnt_106_part2/user.bjackson.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.tnt_106_Tnt.root.924994/user.bjackson.043577._000008.Tnt.root        9500        5385        9499
