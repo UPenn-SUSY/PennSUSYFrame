@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2.tnt.root    99402892    555351    99398906.0
