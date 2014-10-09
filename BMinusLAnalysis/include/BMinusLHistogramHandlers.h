@@ -131,24 +131,6 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
-      /* // dR between leading lep and closest object */
-      /* std::vector<TH1D*> m_h_dr_leadinglep_closest_fc_match; */
-      /* std::vector<TH1D*> m_h_dr_leadinglep_closest_fc_mismatch; */
-      /* std::vector<TH1D*> m_h_dr_subleadinglep_closest_fc_match; */
-      /* std::vector<TH1D*> m_h_dr_subleadinglep_closest_fc_mismatch; */
-      /* // dR between leptons and jets broken down by flavor */
-      /* std::vector<TH1F*> m_h_dr_ee_from_stop; //~ ~ */
-      /* std::vector<TH1F*> m_h_dr_mm_from_stop; //~ ~ */
-      /* std::vector<TH1F*> m_h_dr_em_from_stop; //~ ~ */
-      /* std::vector<TH1F*> m_h_dr_ej_from_stop; //~ ~ */
-      /* std::vector<TH1F*> m_h_dr_mj_from_stop; //~ ~ */
-
-      /* std::vector<TH1F*> m_h_dr_ee_not_from_stop; //~ ~ */
-      /* std::vector<TH1F*> m_h_dr_mm_not_from_stop; //~ ~ */
-      /* std::vector<TH1F*> m_h_dr_em_not_from_stop; //~ ~ */
-      /* std::vector<TH1F*> m_h_dr_ej_not_from_stop; //~ ~ */
-      /* std::vector<TH1F*> m_h_dr_mj_not_from_stop; //~ ~ */
-
       // dR between jet and b quark which is matched to jet
       std::vector<TH1F*> m_h_b_jet_dr_q_all; //~ ~
       std::vector<TH1F*> m_h_b_jet_dr_q_0; //~ ~
@@ -230,12 +212,6 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_same_parent_pairing_lep_1; //~ ~
       std::vector<TH1F*> m_h_same_parent_pairing_jet_0; //~ ~
       std::vector<TH1F*> m_h_same_parent_pairing_jet_1; //~ ~
-
-      /* std::vector<TH2F*> m_h_flavor_channel_tvr; */
-      /* std::vector<TH2F*> m_h_flavor_channel_tvr_lepfromstop; */
-      /* std::vector<TH2F*> m_h_flavor_channel_tvr_lepnotfromstop; */
-      /* std::vector<TH2F*> m_h_flavor_channel_tvr_jetfromstop; */
-      /* std::vector<TH2F*> m_h_flavor_channel_tvr_jetnotfromstop; */
 
       std::vector<TH2F*> m_h_b_jet_E_resolution_all; //~ ~
       std::vector<TH2F*> m_h_b_jet_E_resolution_0; //~ ~
@@ -362,17 +338,18 @@ namespace PennSusyFrame
       std::vector<TH1D*> m_h_dr_leadinglep_closest_fc_mismatch;
       std::vector<TH1D*> m_h_dr_subleadinglep_closest_fc_match;
       std::vector<TH1D*> m_h_dr_subleadinglep_closest_fc_mismatch;
+
       // dR between leptons and jets broken down by flavor
-      std::vector<TH1F*> m_h_dr_ee_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_mm_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_em_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_ej_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_mj_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_ee_not_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_mm_not_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_em_not_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_ej_not_from_stop; //~ ~
-      std::vector<TH1F*> m_h_dr_mj_not_from_stop; //~ ~
+      std::vector<TH1F*> m_h_dr_ee_from_stop;
+      std::vector<TH1F*> m_h_dr_mm_from_stop;
+      std::vector<TH1F*> m_h_dr_em_from_stop;
+      std::vector<TH1F*> m_h_dr_ej_from_stop;
+      std::vector<TH1F*> m_h_dr_mj_from_stop;
+      std::vector<TH1F*> m_h_dr_ee_not_from_stop;
+      std::vector<TH1F*> m_h_dr_mm_not_from_stop;
+      std::vector<TH1F*> m_h_dr_em_not_from_stop;
+      std::vector<TH1F*> m_h_dr_ej_not_from_stop;
+      std::vector<TH1F*> m_h_dr_mj_not_from_stop;
 
       std::vector<TH2F*> m_h_flavor_channel_tvr;
       std::vector<TH2F*> m_h_flavor_channel_tvr_lepfromstop;
