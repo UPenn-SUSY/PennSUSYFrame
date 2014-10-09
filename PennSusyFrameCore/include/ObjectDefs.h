@@ -215,90 +215,110 @@ namespace PennSusyFrame
       void getEvent(const PennSusyFrame::D3PDReader*);
 
       // TODO move accessors to cxx file
-      void setEF_2e12Tvh_loose1(bool val)           { m_EF_2e12Tvh_loose1           = val; }
-      void setEF_e24vh_medium1_e7_medium1(bool val) { m_EF_e24vh_medium1_e7_medium1 = val; }
-      void setEF_2mu13(bool val)                    { m_EF_2mu13                    = val; }
-      void setEF_mu18_tight_mu8_EFFS(bool val)      { m_EF_mu18_tight_mu8_EFFS      = val; }
-      void setEF_e12Tvh_medium1_mu8(bool val)       { m_EF_e12Tvh_medium1_mu8       = val; }
-      void setEF_mu18_tight_e7_medium1(bool val)    { m_EF_mu18_tight_e7_medium1    = val; }
+      void setEF_2e12Tvh_loose1(           bool val) { m_EF_2e12Tvh_loose1           = val; }
+      void setEF_2mu13(                    bool val) { m_EF_2mu13                    = val; }
+      void setEF_e12Tvh_medium1_mu8(       bool val) { m_EF_e12Tvh_medium1_mu8       = val; }
+      void setEF_e24vh_medium1_e7_medium1( bool val) { m_EF_e24vh_medium1_e7_medium1 = val; }
+      void setEF_mu18_tight_e7_medium1(    bool val) { m_EF_mu18_tight_e7_medium1    = val; }
+      void setEF_mu18_tight_mu8_EFFS(      bool val) { m_EF_mu18_tight_mu8_EFFS      = val; }
+      void setEF_mu24i_tight(              bool val) { m_EF_mu24i_tight              = val; }
+      void setEF_mu36_tight(               bool val) { m_EF_mu36_tight               = val; }
+      void setEF_mu24_tight_mu6_EFFS(      bool val) { m_EF_mu24_tight_mu6_EFFS      = val; }
+      void setEF_e24vhi_medium1(           bool val) { m_EF_e24vhi_medium1           = val; }
 
-      void setTrig_EF_el_E(                             std::vector<float>* val) { m_trig_EF_el_E                                    = val; }
-      void setTrig_EF_el_EF_e12Tvh_loose1(              std::vector<int>* val)   { m_trig_EF_el_EF_e12Tvh_loose1                     = val; }
-      void setTrig_EF_el_EF_e12Tvh_medium1(             std::vector<int>* val)   { m_trig_EF_el_EF_e12Tvh_medium1                    = val; }
-      void setTrig_EF_el_EF_e24vh_medium1(              std::vector<int>* val)   { m_trig_EF_el_EF_e24vh_medium1                     = val; }
-      void setTrig_EF_el_EF_e24vh_medium1_e7_medium1(   std::vector<int>* val)   { m_trig_EF_el_EF_e24vh_medium1_e7_medium1          = val; }
-      void setTrig_EF_el_EF_e7T_medium1(                std::vector<int>* val)   { m_trig_EF_el_EF_e7T_medium1                       = val; }
-      void setTrig_EF_el_px(                            std::vector<float>* val) { m_trig_EF_el_px                                   = val; }
-      void setTrig_EF_el_py(                            std::vector<float>* val) { m_trig_EF_el_py                                   = val; }
-      void setTrig_EF_el_pz(                            std::vector<float>* val) { m_trig_EF_el_pz                                   = val; }
-      void setTrig_EF_trigmuonef_EF_mu13(               std::vector<int>* val)   { m_trig_EF_trigmuonef_EF_mu13                      = val; }
-      void setTrig_EF_trigmuonef_EF_mu18_tight(         std::vector<int>* val)   { m_trig_EF_trigmuonef_EF_mu18_tight                = val; }
-      void setTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS(std::vector<int>* val)   { m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS       = val; }
-      void setTrig_EF_trigmuonef_EF_mu8(                std::vector<int>* val)   { m_trig_EF_trigmuonef_EF_mu8                       = val; }
-      void setTrig_EF_trigmuonef_track_CB_eta(          std::vector<std::vector<float> >* val) { m_trig_EF_trigmuonef_track_CB_eta   = val; }
-      void setTrig_EF_trigmuonef_track_CB_hasCB(        std::vector<std::vector<int> >* val)   { m_trig_EF_trigmuonef_track_CB_hasCB = val; }
-      void setTrig_EF_trigmuonef_track_CB_phi(          std::vector<std::vector<float> >* val) { m_trig_EF_trigmuonef_track_CB_phi   = val; }
-      void setTrig_EF_trigmuonef_track_CB_pt (          std::vector<std::vector<float> >* val) { m_trig_EF_trigmuonef_track_CB_pt    = val; }
+      void setTrig_EF_el_E(                              std::vector<float>*               val) { m_trig_EF_el_E                              = val; }
+      void setTrig_EF_el_px(                             std::vector<float>*               val) { m_trig_EF_el_px                             = val; }
+      void setTrig_EF_el_py(                             std::vector<float>*               val) { m_trig_EF_el_py                             = val; }
+      void setTrig_EF_el_pz(                             std::vector<float>*               val) { m_trig_EF_el_pz                             = val; }
+      void setTrig_EF_el_EF_e12Tvh_loose1(               std::vector<int>*                 val) { m_trig_EF_el_EF_e12Tvh_loose1               = val; }
+      void setTrig_EF_el_EF_e12Tvh_medium1(              std::vector<int>*                 val) { m_trig_EF_el_EF_e12Tvh_medium1              = val; }
+      void setTrig_EF_el_EF_e24vh_medium1(               std::vector<int>*                 val) { m_trig_EF_el_EF_e24vh_medium1               = val; }
+      void setTrig_EF_el_EF_e24vh_medium1_e7_medium1(    std::vector<int>*                 val) { m_trig_EF_el_EF_e24vh_medium1_e7_medium1    = val; }
+      void setTrig_EF_el_EF_e7T_medium1(                 std::vector<int>*                 val) { m_trig_EF_el_EF_e7T_medium1                 = val; }
+      void setTrig_EF_trigmuonef_EF_mu13(                std::vector<int>*                 val) { m_trig_EF_trigmuonef_EF_mu13                = val; }
+      void setTrig_EF_trigmuonef_EF_mu18_tight(          std::vector<int>*                 val) { m_trig_EF_trigmuonef_EF_mu18_tight          = val; }
+      void setTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS( std::vector<int>*                 val) { m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS = val; }
+      void setTrig_EF_trigmuonef_EF_mu8(                 std::vector<int>*                 val) { m_trig_EF_trigmuonef_EF_mu8                 = val; }
+      void setTrig_EF_trigmuonef_EF_mu24i_tight(         std::vector<int>*                 val) { m_trig_EF_trigmuonef_EF_mu24i_tight         = val; }
+      void setTrig_EF_trigmuonef_EF_mu36_tight(          std::vector<int>*                 val) { m_trig_EF_trigmuonef_EF_mu36_tight          = val; }
+      void setTrig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS( std::vector<int>*                 val) { m_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS = val; }
+      void setTrig_EF_el_EF_e24vhi_medium1(              std::vector<int>*                 val) { m_trig_EF_el_EF_e24vhi_medium1              = val; }
+      void setTrig_EF_trigmuonef_EF_mu24_tight(          std::vector<int>*                 val) { m_trig_EF_trigmuonef_EF_mu24_tight          = val; }
+      void setTrig_EF_trigmuonef_track_CB_eta(           std::vector<std::vector<float> >* val) { m_trig_EF_trigmuonef_track_CB_eta           = val; }
+      void setTrig_EF_trigmuonef_track_CB_phi(           std::vector<std::vector<float> >* val) { m_trig_EF_trigmuonef_track_CB_phi           = val; }
+      void setTrig_EF_trigmuonef_track_CB_pt(            std::vector<std::vector<float> >* val) { m_trig_EF_trigmuonef_track_CB_pt            = val; }
+      void setTrig_EF_trigmuonef_track_CB_hasCB(         std::vector<std::vector<int> >*   val) { m_trig_EF_trigmuonef_track_CB_hasCB         = val; }
 
       // TODO move accessors to cxx file
-      bool getEF_2e12Tvh_loose1()           const { return m_EF_2e12Tvh_loose1; }
+      bool getEF_2e12Tvh_loose1()           const { return m_EF_2e12Tvh_loose1;           }
+      bool getEF_2mu13()                    const { return m_EF_2mu13;                    }
+      bool getEF_e12Tvh_medium1_mu8()       const { return m_EF_e12Tvh_medium1_mu8;       }
       bool getEF_e24vh_medium1_e7_medium1() const { return m_EF_e24vh_medium1_e7_medium1; }
-      bool getEF_2mu13()                    const { return m_EF_2mu13; }
-      bool getEF_mu18_tight_mu8_EFFS()      const { return m_EF_mu18_tight_mu8_EFFS; }
-      bool getEF_e12Tvh_medium1_mu8()       const { return m_EF_e12Tvh_medium1_mu8; }
-      bool getEF_mu18_tight_e7_medium1()    const { return m_EF_mu18_tight_e7_medium1; }
+      bool getEF_mu18_tight_e7_medium1()    const { return m_EF_mu18_tight_e7_medium1;    }
+      bool getEF_mu18_tight_mu8_EFFS()      const { return m_EF_mu18_tight_mu8_EFFS;      }
+      bool getEF_mu24i_tight()              const { return m_EF_mu24i_tight;              }
+      bool getEF_mu36_tight()               const { return m_EF_mu36_tight;               }
+      bool getEF_mu24_tight_mu6_EFFS()      const { return m_EF_mu24_tight_mu6_EFFS;      }
+      bool getEF_e24vhi_medium1()           const { return m_EF_e24vhi_medium1;           }
 
-      std::vector<float>* getTrig_EF_el_px()                                   const { return m_trig_EF_el_px; }
-      std::vector<float>* getTrig_EF_el_py()                                   const { return m_trig_EF_el_py; }
-      std::vector<float>* getTrig_EF_el_pz()                                   const { return m_trig_EF_el_pz; }
-      std::vector<std::vector<float> >* getTrig_EF_trigmuonef_track_CB_eta()   const { return m_trig_EF_trigmuonef_track_CB_eta; }
-      std::vector<std::vector<float> >* getTrig_EF_trigmuonef_track_CB_phi()   const { return m_trig_EF_trigmuonef_track_CB_phi; }
-      std::vector<std::vector<float> >* getTrig_EF_trigmuonef_track_CB_pt ()   const { return m_trig_EF_trigmuonef_track_CB_pt; }
-      std::vector<float>* getTrig_EF_el_E()                                    const { return m_trig_EF_el_E; }
-      std::vector<int>*   getTrig_EF_el_EF_e12Tvh_loose1()                     const { return m_trig_EF_el_EF_e12Tvh_loose1; }
-      std::vector<int>*   getTrig_EF_el_EF_e12Tvh_medium1()                    const { return m_trig_EF_el_EF_e12Tvh_medium1; }
-      std::vector<int>*   getTrig_EF_el_EF_e24vh_medium1()                     const { return m_trig_EF_el_EF_e24vh_medium1; }
-      std::vector<int>*   getTrig_EF_el_EF_e24vh_medium1_e7_medium1()          const { return m_trig_EF_el_EF_e24vh_medium1_e7_medium1; }
-      std::vector<int>*   getTrig_EF_el_EF_e7T_medium1()                       const { return m_trig_EF_el_EF_e7T_medium1; }
-      std::vector<int>*   getTrig_EF_trigmuonef_EF_mu13()                      const { return m_trig_EF_trigmuonef_EF_mu13; }
-      std::vector<int>*   getTrig_EF_trigmuonef_EF_mu18_tight()                const { return m_trig_EF_trigmuonef_EF_mu18_tight; }
-      std::vector<int>*   getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()       const { return m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS; }
-      std::vector<int>*   getTrig_EF_trigmuonef_EF_mu8()                       const { return m_trig_EF_trigmuonef_EF_mu8; }
-      std::vector<std::vector<int> >*   getTrig_EF_trigmuonef_track_CB_hasCB() const { return m_trig_EF_trigmuonef_track_CB_hasCB; }
+      std::vector<float>*               getTrig_EF_el_E()                              const { return m_trig_EF_el_E;                              }
+      std::vector<float>*               getTrig_EF_el_px()                             const { return m_trig_EF_el_px;                             }
+      std::vector<float>*               getTrig_EF_el_py()                             const { return m_trig_EF_el_py;                             }
+      std::vector<float>*               getTrig_EF_el_pz()                             const { return m_trig_EF_el_pz;                             }
+      std::vector<int>*                 getTrig_EF_el_EF_e12Tvh_loose1()               const { return m_trig_EF_el_EF_e12Tvh_loose1;               }
+      std::vector<int>*                 getTrig_EF_el_EF_e12Tvh_medium1()              const { return m_trig_EF_el_EF_e12Tvh_medium1;              }
+      std::vector<int>*                 getTrig_EF_el_EF_e24vh_medium1()               const { return m_trig_EF_el_EF_e24vh_medium1;               }
+      std::vector<int>*                 getTrig_EF_el_EF_e24vh_medium1_e7_medium1()    const { return m_trig_EF_el_EF_e24vh_medium1_e7_medium1;    }
+      std::vector<int>*                 getTrig_EF_el_EF_e7T_medium1()                 const { return m_trig_EF_el_EF_e7T_medium1;                 }
+      std::vector<int>*                 getTrig_EF_trigmuonef_EF_mu13()                const { return m_trig_EF_trigmuonef_EF_mu13;                }
+      std::vector<int>*                 getTrig_EF_trigmuonef_EF_mu18_tight()          const { return m_trig_EF_trigmuonef_EF_mu18_tight;          }
+      std::vector<int>*                 getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS() const { return m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS; }
+      std::vector<int>*                 getTrig_EF_trigmuonef_EF_mu8()                 const { return m_trig_EF_trigmuonef_EF_mu8;                 }
+      std::vector<int>*                 getTrig_EF_trigmuonef_EF_mu24i_tight()         const { return m_trig_EF_trigmuonef_EF_mu24i_tight;         }
+      std::vector<int>*                 getTrig_EF_trigmuonef_EF_mu36_tight()          const { return m_trig_EF_trigmuonef_EF_mu36_tight;          }
+      std::vector<int>*                 getTrig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS() const { return m_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS; }
+      std::vector<int>*                 getTrig_EF_el_EF_e24vhi_medium1()              const { return m_trig_EF_el_EF_e24vhi_medium1;              }
+      std::vector<int>*                 getTrig_EF_trigmuonef_EF_mu24_tight()          const { return m_trig_EF_trigmuonef_EF_mu24_tight;          }
+      std::vector<std::vector<float> >* getTrig_EF_trigmuonef_track_CB_eta()           const { return m_trig_EF_trigmuonef_track_CB_eta;           }
+      std::vector<std::vector<float> >* getTrig_EF_trigmuonef_track_CB_phi()           const { return m_trig_EF_trigmuonef_track_CB_phi;           }
+      std::vector<std::vector<float> >* getTrig_EF_trigmuonef_track_CB_pt()            const { return m_trig_EF_trigmuonef_track_CB_pt;            }
+      std::vector<std::vector<int> >*   getTrig_EF_trigmuonef_track_CB_hasCB()         const { return m_trig_EF_trigmuonef_track_CB_hasCB;         }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       bool m_EF_2e12Tvh_loose1;
-      bool m_EF_e24vh_medium1_e7_medium1;
       bool m_EF_2mu13;
-      bool m_EF_mu18_tight_mu8_EFFS;
       bool m_EF_e12Tvh_medium1_mu8;
+      bool m_EF_e24vh_medium1_e7_medium1;
       bool m_EF_mu18_tight_e7_medium1;
+      bool m_EF_mu18_tight_mu8_EFFS;
+      bool m_EF_mu24i_tight;
+      bool m_EF_mu36_tight;
+      bool m_EF_mu24_tight_mu6_EFFS;
+      bool m_EF_e24vhi_medium1;
 
-      std::vector<float>* m_trig_EF_el_px;
-      std::vector<float>* m_trig_EF_el_py;
-      std::vector<float>* m_trig_EF_el_pz;
-      std::vector<std::vector<float> >* m_trig_EF_trigmuonef_track_CB_eta;
-      std::vector<std::vector<float> >* m_trig_EF_trigmuonef_track_CB_phi;
-      std::vector<std::vector<float> >* m_trig_EF_trigmuonef_track_CB_pt;
-      std::vector<float>* m_trig_EF_el_E;
-      std::vector<int>* m_trig_EF_el_EF_e12Tvh_loose1;
-      std::vector<int>* m_trig_EF_el_EF_e12Tvh_medium1;
-      std::vector<int>* m_trig_EF_el_EF_e24vh_medium1;
-      std::vector<int>* m_trig_EF_el_EF_e24vh_medium1_e7_medium1;
-      std::vector<int>* m_trig_EF_el_EF_e7T_medium1;
-      std::vector<int>* m_trig_EF_trigmuonef_EF_mu13;
-      std::vector<int>* m_trig_EF_trigmuonef_EF_mu18_tight;
-      std::vector<int>* m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
-      std::vector<int>* m_trig_EF_trigmuonef_EF_mu8;
-      std::vector<std::vector<int> >* m_trig_EF_trigmuonef_track_CB_hasCB;
-
-
-  // trig_EF_el_EF_e12Tvh_loose1
-  // trig_EF_el_EF_e24vh_medium1
-  // trig_EF_el_EF_e24vh_medium1
-  // trig_EF_el_EF_e24vh_medium1_e7_medium1
-
+      std::vector<float>*                m_trig_EF_el_E;
+      std::vector<float>*                m_trig_EF_el_px;
+      std::vector<float>*                m_trig_EF_el_py;
+      std::vector<float>*                m_trig_EF_el_pz;
+      std::vector<int>*                  m_trig_EF_el_EF_e12Tvh_loose1;
+      std::vector<int>*                  m_trig_EF_el_EF_e12Tvh_medium1;
+      std::vector<int>*                  m_trig_EF_el_EF_e24vh_medium1;
+      std::vector<int>*                  m_trig_EF_el_EF_e24vh_medium1_e7_medium1;
+      std::vector<int>*                  m_trig_EF_el_EF_e7T_medium1;
+      std::vector<int>*                  m_trig_EF_trigmuonef_EF_mu13;
+      std::vector<int>*                  m_trig_EF_trigmuonef_EF_mu18_tight;
+      std::vector<int>*                  m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS;
+      std::vector<int>*                  m_trig_EF_trigmuonef_EF_mu8;
+      std::vector<int>*                  m_trig_EF_trigmuonef_EF_mu24i_tight;
+      std::vector<int>*                  m_trig_EF_trigmuonef_EF_mu36_tight;
+      std::vector<int>*                  m_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS;
+      std::vector<int>*                  m_trig_EF_el_EF_e24vhi_medium1;
+      std::vector<int>*                  m_trig_EF_trigmuonef_EF_mu24_tight;
+      std::vector<std::vector<float> >*  m_trig_EF_trigmuonef_track_CB_eta;
+      std::vector<std::vector<float> >*  m_trig_EF_trigmuonef_track_CB_phi;
+      std::vector<std::vector<float> >*  m_trig_EF_trigmuonef_track_CB_pt;
+      std::vector<std::vector<int> >*    m_trig_EF_trigmuonef_track_CB_hasCB;
   };
 
   // =============================================================================
