@@ -15,6 +15,7 @@
 #include "PennSusyFrameCore/include/D3PDReader.h"
 #include "PennSusyFrameCore/include/SelectorHelpers.h"
 #include "PennSusyFrameCore/include/ObjectSelectors.h"
+
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
                                                              , m_out_hist_file_name("BMinusL.hists.root")
@@ -973,14 +974,14 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // replicate overlap removal to fill dR histograms
-  m_dr.PennSusyFrame::DRStudies::reproduceFullObjectCleaning(m_event
-							     , m_mc_truth
-							     , m_object_cleaning
-							     , m_electrons.getCollection(EL_BASELINE)
-							     , m_muons.getCollection(MU_BASELINE)
-							     , m_jets.getCollection(JET_BASELINE_GOOD)
-							     , m_jets.getCollection(JET_BASELINE_BAD)
-							     );
+  m_dr.PennSusyFrame::DRStudies::reproduceFullObjectCleaning( m_event
+                                                            , m_mc_truth
+                                                            , m_object_cleaning
+                                                            , m_electrons.getCollection(EL_BASELINE)
+                                                            , m_muons.getCollection(MU_BASELINE)
+                                                            , m_jets.getCollection(JET_BASELINE_GOOD)
+                                                            , m_jets.getCollection(JET_BASELINE_BAD)
+                                                            );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // compute mll

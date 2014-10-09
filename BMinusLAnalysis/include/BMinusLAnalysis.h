@@ -17,12 +17,6 @@ namespace PennSusyFrame
 {
   enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
                            , BMINUSL_HIST_BL_PAIRING
-
-                           // , BMINUSL_HIST_BL_PAIRING_EE_TRIG
-                           // , BMINUSL_HIST_BL_PAIRING_MM_TRIG
-                           // , BMINUSL_HIST_BL_PAIRING_EM_TRIG_1
-                           // , BMINUSL_HIST_BL_PAIRING_EM_TRIG_2
-
                            , BMINUSL_HIST_Z_VETO
                            , BMINUSL_HIST_GE_4_OBJECTS
 
@@ -39,12 +33,6 @@ namespace PennSusyFrame
 
   const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
                                                    , "BMINUSL_BL_PAIRING"
-
-                                                   // , "BMINUSL_BL_PAIRING_EE_TRIG"
-                                                   // , "BMINUSL_BL_PAIRING_MM_TRIG"
-                                                   // , "BMINUSL_BL_PAIRING_EM_TRIG_1"
-                                                   // , "BMINUSL_BL_PAIRING_EM_TRIG_2"
-
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_GE_4_OBJECTS"
 
@@ -59,32 +47,33 @@ namespace PennSusyFrame
                                                    , "BMINUSL_N"
                                                    };
       enum BMINUSL_DR_HIST_LEVELS { BMINUSL_NO_OR
-				    , BMINUSL_EE_OR
-				    , BMINUSL_EJ_OR
-				    , BMINUSL_MJ_OR
-				    , BMINUSL_JE_OR
-				    , BMINUSL_JM_OR
-				    , BMINUSL_EM_OR
-				    , BMINUSL_MM_OR
-				    , BMINUSL_DR_HIST_N
-      };
+                                  , BMINUSL_EE_OR
+                                  , BMINUSL_EJ_OR
+                                  , BMINUSL_MJ_OR
+                                  , BMINUSL_JE_OR
+                                  , BMINUSL_JM_OR
+                                  , BMINUSL_EM_OR
+                                  , BMINUSL_MM_OR
+                                  , BMINUSL_DR_HIST_N
+                                  };
 
       const std::string BMINUSL_DR_HIST_LEVEL_STRINGS[] = { "BMINUSL_NO_OR"
-							    , "BMINUSL_EE_OR"
-							    , "BMINUSL_EJ_OR"
-							    , "BMINUSL_MJ_OR"
-							    , "BMINUSL_JE_OR"
-							    , "BMINUSL_JM_OR"
-							    , "BMINUSL_EM_OR"
-							    , "BMINUSL_MM_OR"
-							    , "BMINUSL_DR_HIST_N"
-      };
+                                                          , "BMINUSL_EE_OR"
+                                                          , "BMINUSL_EJ_OR"
+                                                          , "BMINUSL_MJ_OR"
+                                                          , "BMINUSL_JE_OR"
+                                                          , "BMINUSL_JM_OR"
+                                                          , "BMINUSL_EM_OR"
+                                                          , "BMINUSL_MM_OR"
+                                                          , "BMINUSL_DR_HIST_N"
+                                                          };
 
   // ---------------------------------------------------------------------------
   class blPair;
+
   // ===========================================================================
-  class DRStudies 
-    {
+  class DRStudies
+  {
     public:
       DRStudies();
       virtual ~DRStudies();
@@ -92,26 +81,27 @@ namespace PennSusyFrame
       void init();
       void finalizeRun(std::string);
 
-      void reproduceFullObjectCleaning(const PennSusyFrame::Event& 
-				       , const PennSusyFrame::MCTruth& 
-				       , PennSusyFrame::ObjectCleaning
-				       , const std::vector<PennSusyFrame::Electron*>*
-				       , const std::vector<PennSusyFrame::Muon*>*
-				       , const std::vector<PennSusyFrame::Jet*>*
-				       , const std::vector<PennSusyFrame::Jet*>*
-				       );
+      void reproduceFullObjectCleaning( const PennSusyFrame::Event&
+                                      , const PennSusyFrame::MCTruth&
+                                      , PennSusyFrame::ObjectCleaning
+                                      , const std::vector<PennSusyFrame::Electron*>*
+                                      , const std::vector<PennSusyFrame::Muon*>*
+                                      , const std::vector<PennSusyFrame::Jet*>*
+                                      , const std::vector<PennSusyFrame::Jet*>*
+                                      );
 
     protected:
       void filldRHistHandles( BMINUSL_DR_HIST_LEVELS
-			      , const PennSusyFrame::Event& 
-			      , const PennSusyFrame::MCTruth&
-			      , const std::vector<PennSusyFrame::Electron*>&
-			      , const std::vector<PennSusyFrame::Muon*>&
-			      , const std::vector<PennSusyFrame::Jet*>&
-				);
+                            , const PennSusyFrame::Event&
+                            , const PennSusyFrame::MCTruth&
+                            , const std::vector<PennSusyFrame::Electron*>&
+                            , const std::vector<PennSusyFrame::Muon*>&
+                            , const std::vector<PennSusyFrame::Jet*>&
+                            );
       std::vector<PennSusyFrame::DRHists*> m_bminusl_dr_histogram_handler;
 
     };
+
   // ===========================================================================
   class BMinusLAnalysis : public PennSusyFrame::PennSusyFrameCore
   {
@@ -220,7 +210,6 @@ namespace PennSusyFrame
 
       double m_mc_event_weight;
       double m_pile_up_sf;
-      // double m_xsec_weight;
       double m_lepton_sf;
       double m_btag_sf;
       double m_ttbar_pt_weight;
@@ -265,7 +254,6 @@ namespace PennSusyFrame
     private:
       DRStudies m_dr;
   };
-
 }
 
 #endif
