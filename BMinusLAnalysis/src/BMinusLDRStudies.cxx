@@ -43,13 +43,13 @@ void PennSusyFrame::BMinusLDRStudies::finalizeEvent()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // replicate overlap removal to fill dR histograms
   reproduceFullObjectCleaning( m_event
-                             , m_mc_truth
-                             , m_object_cleaning
-                             , m_electrons.getCollection(EL_BASELINE)
-                             , m_muons.getCollection(MU_BASELINE)
-                             , m_jets.getCollection(JET_BASELINE_GOOD)
-                             , m_jets.getCollection(JET_BASELINE_BAD)
-                             );
+  			      , m_mc_truth
+ 			      , m_object_cleaning
+  			      , m_electrons.getCollection(EL_BASELINE)
+ 		              , m_muons.getCollection(MU_BASELINE)
+ 			      , m_jets.getCollection(JET_BASELINE_GOOD)
+ 			      , m_jets.getCollection(JET_BASELINE_BAD)
+ 			      );
 }
 
 // -----------------------------------------------------------------------------
