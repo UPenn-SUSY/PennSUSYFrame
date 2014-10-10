@@ -15,7 +15,7 @@ import os
 # ------------------------------------------------------------------------------
 # MODIFY THESE LINES!!!
 # A little hacky, but make sure to keep the trailing "." in the ttnt header!!!
-ttnt_header = '%s/TTNTNtuples/BMinusL.' % os.environ['BASE_WORK_DIR']
+ttnt_header = '%s/../TTNTNtuples_106/BMinusL.' % os.environ['BASE_WORK_DIR']
 old_eos_file_list_header = '../tnt_106/tnt_106'
 ttnt_file_list = glob.glob('%s*tnt.root' % ttnt_header)
 tree_name = 'BMinusLTTNT'

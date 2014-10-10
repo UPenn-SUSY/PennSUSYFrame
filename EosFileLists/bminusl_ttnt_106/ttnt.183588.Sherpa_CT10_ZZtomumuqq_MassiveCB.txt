@@ -1,1 +1,1 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.183588.Sherpa_CT10_ZZtomumuqq_MassiveCB.tnt.root    120000    383    119989.0
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_106/BMinusL.183588.Sherpa_CT10_ZZtomumuqq_MassiveCB.tnt.root    120000    383    119989.0

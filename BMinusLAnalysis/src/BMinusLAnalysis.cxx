@@ -91,18 +91,6 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
   m_object_cleaning.setMMConeSize(0.05);
   m_object_cleaning.setTJConeSize(0.00);
   m_object_cleaning.setSFOSMllMin(12.e3);
-
-  // m_object_cleaning.setEEConeSize(0.0);
-  // m_object_cleaning.setEJConeSize(0.0);
-  // m_object_cleaning.setMJConeSize(0.0); // not done by default
-  // m_object_cleaning.setETConeSize(0.0);
-  // m_object_cleaning.setMTConeSize(0.0);
-  // m_object_cleaning.setJEConeSize(0.0);
-  // m_object_cleaning.setJMConeSize(0.0);
-  // m_object_cleaning.setEMConeSize(0.0);
-  // m_object_cleaning.setMMConeSize(0.0);
-  // m_object_cleaning.setTJConeSize(0.0);
-  // m_object_cleaning.setSFOSMllMin(12.e3);
 }
 
 // -----------------------------------------------------------------------------
@@ -435,14 +423,6 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
                                                 , *m_bl_0
                                                 , *m_bl_1
                                                 );
-  // if (m_pass_event)  m_pass_bl_pairing = PennSusyFrame::doBLPairing( m_event
-  //                                               , m_electrons.getCollection(EL_GOOD)
-  //                                               , m_muons.getCollection(MU_GOOD)
-  //                                               // , m_jets.getCollection(JET_B)
-  //                                               , m_jets.getCollection(JET_GOOD)
-  //                                               , *m_bl_0
-  //                                               , *m_bl_1
-  //                                               );
   m_pass_event = (m_pass_event && m_pass_bl_pairing);
   if (m_crit_cut_bl_pairing && !m_pass_bl_pairing) return;
   fillTrackers(BMINUSL_CUT_BL_PAIRING);

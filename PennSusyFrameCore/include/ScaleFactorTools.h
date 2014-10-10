@@ -179,6 +179,8 @@ namespace PennSusyFrame
 
     // -----------------------------------------------------------------------------
     private:
+      bool m_do_btag_sf;
+
       std::string m_calibration_file;
       std::string m_calibration_folder;
 
