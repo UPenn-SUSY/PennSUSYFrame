@@ -518,6 +518,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_signal_lep
      && m_pass_os
      && m_pass_trigger
+     && m_pass_phase
      && m_pass_ge_2_b_jet
      && m_pass_bl_pairing
      && m_pass_z_veto
@@ -545,6 +546,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_signal_lep
      && m_pass_os
      && m_pass_trigger
+     && m_pass_phase
      && m_pass_ge_2_b_jet
      && m_pass_bl_pairing
      ) {

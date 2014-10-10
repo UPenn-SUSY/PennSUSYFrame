@@ -25,13 +25,13 @@ else:
     run_local = True
 
 today_date = datetime.datetime.now()
-out_dir = '%s/hists/bminusl_hists_%04d_%02d_%02d__%02d_%02d' % ( os.environ['PWD']
-                                                               , today_date.year
-                                                               , today_date.month
-                                                               , today_date.day
-                                                               , today_date.hour
-                                                               , today_date.minute
-                                                               )
+out_dir = '%s/hists/bminusl_loose_jets_hists_%04d_%02d_%02d__%02d_%02d' % ( os.environ['PWD']
+                                                                          , today_date.year
+                                                                          , today_date.month
+                                                                          , today_date.day
+                                                                          , today_date.hour
+                                                                          , today_date.minute
+                                                                          )
 print out_dir
 
 # ==============================================================================
@@ -53,7 +53,7 @@ if __name__ == '__main__':
                           , 'periodL_egamma':{'label':'periodL_egamma', 'num_jobs':5}
                           }
     muon_data_samples = {
-                          'periodA_muon':{'label':'periodA_muon', 'num_jobs':5}
+                        'periodA_muon':{'label':'periodA_muon', 'num_jobs':5}
                         , 'periodB_muon':{'label':'periodB_muon', 'num_jobs':5}
                         , 'periodC_muon':{'label':'periodC_muon', 'num_jobs':5}
                         , 'periodD_muon':{'label':'periodD_muon', 'num_jobs':5}
@@ -87,7 +87,7 @@ if __name__ == '__main__':
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':50}
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2', 'num_jobs':50}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l' , 'num_jobs':5 }
@@ -196,7 +196,7 @@ if __name__ == '__main__':
                           # # 202638:{'label':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700' , 'num_jobs':1}
                           # # 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
                           # # 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900' , 'num_jobs':1}
-                          # # 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
+                          # 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
 
                           #   167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':10}
                           # , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':10}
@@ -223,7 +223,7 @@ if __name__ == '__main__':
                                        , sym_link_name    = './NextPlotDir.BMinusL.LooseJets'
                                        )
     else:
-        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLAnalysisLooseJets.runBMinusLAnalysisFun
+        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLAnalysisLooseJets.runBMinusLAnalysisLooseJetsFun
                                          , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
                                          , run_analysis_fun_file = 'RunBMinusLAnalysisLooseJets'
                                          , data_set_dicts        = data_set_dicts

@@ -16,7 +16,6 @@ namespace PennSusyFrame
 {
   enum BMINUSL_LOOSE_HIST_LEVELS { BMINUSL_LLJJ_HIST_BL_PAIRING
                                  , BMINUSL_LLJJ_HIST_Z_VETO
-                                 , BMINUSL_LLJJ_HIST_GE_4_OBJECTS
                                  , BMINUSL_LLJJ_HIST_SR
                                  , BMINUSL_LLJJ_HIST_CR_TOP
                                  , BMINUSL_LLJJ_HIST_CR_Z
@@ -27,7 +26,6 @@ namespace PennSusyFrame
 
                                  , BMINUSL_LLBJ_HIST_BL_PAIRING
                                  , BMINUSL_LLBJ_HIST_Z_VETO
-                                 , BMINUSL_LLBJ_HIST_GE_4_OBJECTS
                                  , BMINUSL_LLBJ_HIST_SR
                                  , BMINUSL_LLBJ_HIST_CR_TOP
                                  , BMINUSL_LLBJ_HIST_CR_Z
@@ -73,9 +71,11 @@ namespace PennSusyFrame
       BMinusLAnalysisLooseJets(TTree *tree=0);
       virtual ~BMinusLAnalysisLooseJets();
 
+      virtual void beginRun();
       virtual void initializeEvent();
       virtual void processEvent();
       virtual void finalizeEvent();
+      virtual void finalizeRun();
 
     protected:
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -101,6 +101,9 @@ namespace PennSusyFrame
 
       bool m_pass_lljj_pairing;
       bool m_pass_llbj_pairing;
+
+      float m_lljj_ht_signal;
+      float m_llbj_ht_signal;
 
     private:
   };
