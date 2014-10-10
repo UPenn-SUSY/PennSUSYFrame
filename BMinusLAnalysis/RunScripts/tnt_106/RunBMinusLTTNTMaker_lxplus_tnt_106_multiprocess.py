@@ -12,18 +12,6 @@ import RunBMinusLTTNTMaker
 sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
 
-# # ------------------------------------------------------------------------------
-# RunBMinusLTTNTMaker.input_tree_name = "TNT"
-# RunBMinusLTTNTMaker.lep_pt_cut = 20.e3
-# RunBMinusLTTNTMaker.jet_pt_cut = 20.e3
-# 
-# # 90% working point
-# # RunBMinusLTTNTMaker.btag_working_point = 0.0617
-# # 80% working point
-# RunBMinusLTTNTMaker.btag_working_point = 0.3511
-# # 70% working point
-# # RunBMinusLTTNTMaker.btag_working_point = 0.7892
-
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
 user_input = sys.argv[1] if len(sys.argv) > 1 else 1
