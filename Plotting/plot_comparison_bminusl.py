@@ -301,6 +301,7 @@ def main():
                                               )
     # ic_denominator = hh.Container.InputContainer( name = 'Background'
     ic_denominator = hh.Container.InputContainer( name = 'Bkg'
+                                                # , entry_list = [ ec_ttbar_mcatnlo
                                                 , entry_list = [ ec_ttbar_powheg
                                                                , ec_single_top_all_channels
                                                                , ec_Zgamma_sherpa
