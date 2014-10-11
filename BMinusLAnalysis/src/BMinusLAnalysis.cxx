@@ -495,50 +495,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     fillHistHandles(PennSusyFrame::BMINUSL_HIST_BL_PAIRING , m_bl_0 , m_bl_1 , m_event_weight);
   }
 
-  /*
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (  m_pass_grl
-     && m_pass_incomplete_event
-     && m_pass_lar_error
-     && m_pass_tile_error
-     && m_pass_tile_hot_spot
-     && m_pass_tile_trip
-     && m_pass_bad_jet_veto
-     && m_pass_calo_problem_jet
-     && m_pass_primary_vertex
-     && m_pass_bad_mu_veto
-     && m_pass_cosmic_mu_veto
-     && m_pass_hfor
-     && m_pass_mc_overlap
-     && m_pass_ge_2_lep
-     && m_pass_signal_lep
-     && m_pass_os
-     && m_pass_phase
-     && m_pass_ge_2_b_jet
-     && m_pass_bl_pairing
-     ) {
-    // Fill histograms for events passing the ee trigger
-    if (m_trigger.getEF_e24vh_medium1_e7_medium1()) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EE_TRIG , m_bl_0 , m_bl_1 , m_event_weight);
-    }
-
-    // Fill histograms for events passing the mm trigger
-    if (m_trigger.getEF_mu18_tight_mu8_EFFS()) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_BL_PAIRING_MM_TRIG , m_bl_0 , m_bl_1 , m_event_weight);
-    }
-
-    // fill histograms for events passing the em1 trigger
-    if (m_trigger.getEF_e12Tvh_medium1_mu8()) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EM_TRIG_1 , m_bl_0 , m_bl_1 , m_event_weight);
-    }
-
-    // fill histograms for events passing the em2 trigger
-    if (m_trigger.getEF_mu18_tight_e7_medium1()) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_BL_PAIRING_EM_TRIG_2 , m_bl_0 , m_bl_1 , m_event_weight);
-    }
-  }
-  */
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for GE_4_OBJECTS hist level
   fillHistHandles(PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS , m_bl_0 , m_bl_1 , m_event_weight);
@@ -562,6 +518,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_signal_lep
      && m_pass_os
      && m_pass_trigger
+     && m_pass_phase
      && m_pass_ge_2_b_jet
      && m_pass_bl_pairing
      && m_pass_z_veto
@@ -589,6 +546,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_signal_lep
      && m_pass_os
      && m_pass_trigger
+     && m_pass_phase
      && m_pass_ge_2_b_jet
      && m_pass_bl_pairing
      ) {
