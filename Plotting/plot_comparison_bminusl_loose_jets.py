@@ -83,10 +83,10 @@ def main():
                                                                    , "%s/BMinusL.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1.hists.root" % hist_dir
                                                                    , "%s/BMinusL.200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2.hists.root" % hist_dir
                                                                    , "%s/BMinusL.200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl.hists.root" % hist_dir
-                                                                   , "%s/BMinusL.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.hists.root" % hist_dir
-                                                                   , "%s/BMinusL.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.hists.root" % hist_dir
-                                                                   , "%s/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.hists.root" % hist_dir
-                                                                   , "%s/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root" % hist_dir
+                                                                   # , "%s/BMinusL.200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0.hists.root" % hist_dir
+                                                                   # , "%s/BMinusL.200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1.hists.root" % hist_dir
+                                                                   # , "%s/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.hists.root" % hist_dir
+                                                                   # , "%s/BMinusL.200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl.hists.root" % hist_dir
                                                                    ]
                                                )
     ec_Zgamma_sherpa = hh.Container.EntryContainer( label = 'Z/#gamma^{*}'
@@ -165,8 +165,8 @@ def main():
                                                                       , '%s/BMinusL.173043.Sherpa_CT10_DYmumuM08to15.hists.root'                          % hist_dir
                                                                       , '%s/BMinusL.173044.Sherpa_CT10_DYmumuM15to40.hists.root'                          % hist_dir
 
-                                                                      , '%s/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.hists.root'                        % hist_dir
-                                                                      , '%s/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.hists.root'                        % hist_dir
+                                                                      # , '%s/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.hists.root'                        % hist_dir
+                                                                      # , '%s/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.hists.root'                        % hist_dir
                                                                       ]
                                                   )
 
@@ -321,7 +321,7 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Actually plot comparisons
-    out_file_name = 'compare_plots.b_minus_l.root'
+    out_file_name = 'compare_plots.b_minus_l.loose_jets.root'
     pc.plotComparisons( ic_numerator   = ic_numerator
                       , ic_denominator = ic_denominator
                       , ic_other       = ic_signal
