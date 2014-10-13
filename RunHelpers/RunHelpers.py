@@ -85,6 +85,7 @@ def makeDataSetDict( label_base
                    , job_num=0
                    , total_num_jobs = 1
                    , out_dir = './'
+                   , job_type = ''
                    ):
     label = '%s' % (label_base)
 
@@ -103,6 +104,7 @@ def makeDataSetDict( label_base
            , 'job_num':job_num
            , 'total_num_jobs':total_num_jobs
            , 'out_dir':out_dir
+           , 'job_type':job_type  
            }
 
 # ------------------------------------------------------------------------------
@@ -114,6 +116,7 @@ def makeDataSetDictList( label_base
                        , dsid
                        , total_num_jobs = 1
                        , out_dir = './'
+                       , job_type = ''
                        ):
     total_num_entries = 0
 
@@ -139,6 +142,7 @@ def makeDataSetDictList( label_base
                                             , job_num          = tnj
                                             , total_num_jobs   = total_num_jobs
                                             , out_dir          = out_dir
+                                            , job_type         = job_type  
                                             )
         this_data_set_dict['total_num_events']     = total_num_events
         this_data_set_dict['total_num_entries']    = total_num_entries
@@ -160,7 +164,8 @@ def safeRemoveDir(dir_name):
         rm_dir = None
         while not rm_dir in ['y', 'Y', 'n', 'N']:
             rm_dir = raw_input('actually remove %s? [y,n]: ' % dir_name)
-        if rm_dir:
+        print rm_dir    
+        if rm_dir == 'y' or rm_dir == 'Y':
             if os.path.islink(dir_name):
                 os.remove(dir_name)
             else:
@@ -175,6 +180,7 @@ def addSamplesToList( sample_dict
                     , is_full_sim
                     , dsid
                     , out_dir
+                    , job_type
                     ):
     these_data_set_dicts = makeDataSetDictList( label_base       = sample_dict['label']
                                               , file_list_path   = file_list_path
@@ -184,6 +190,7 @@ def addSamplesToList( sample_dict
                                               , dsid             = dsid
                                               , total_num_jobs   = sample_dict['num_jobs']
                                               , out_dir          = out_dir
+                                              , job_type         = job_type  
                                               )
     for tdsd in these_data_set_dicts:
         data_set_dicts.append(tdsd)
@@ -195,6 +202,7 @@ def addAllSamplesToList( egamma_data_samples
                        , fast_sim_mc_samples
                        , file_list_path_base
                        , out_dir
+                       , job_type  
                        ):
     data_set_dicts = []
 
@@ -210,6 +218,7 @@ def addAllSamplesToList( egamma_data_samples
                         , is_full_sim      = False
                         , dsid             = dsid
                         , out_dir          = out_dir
+                        , job_type         = job_type
                         )
 
     # add muon stream data samples
@@ -224,6 +233,7 @@ def addAllSamplesToList( egamma_data_samples
                         , is_full_sim      = False
                         , dsid             = dsid
                         , out_dir          = out_dir
+                        , job_type         = job_type  
                         )
 
     # add full sim samples
@@ -238,6 +248,7 @@ def addAllSamplesToList( egamma_data_samples
                         , is_full_sim      = True
                         , dsid             = dsid
                         , out_dir          = out_dir
+                        , job_type         = job_type
                         )
 
     # add fast sim samples
@@ -252,6 +263,7 @@ def addAllSamplesToList( egamma_data_samples
                         , is_full_sim      = False
                         , dsid             = dsid
                         , out_dir          = out_dir
+                        , job_type         = job_type  
                         )
 
     # return the list of data set dictionaries
@@ -274,6 +286,10 @@ def mergeOutputFiles(out_dir, flat_files):
 def moveToLinkedDir(out_dir, pointer_dir):
     abs_path_out     = os.path.abspath(out_dir)
     abs_path_pointer = os.path.abspath(pointer_dir)
+
+    print "in move to linked dir"
+    print abs_path_out
+    print abs_path_pointer
 
     safeRemoveDir(abs_path_pointer)
     os.symlink(abs_path_out, abs_path_pointer)
@@ -299,9 +315,10 @@ def writeLxBatchScript( run_analysis_fun
                       , run_analysis_fun_file
                       , data_set_dict
                       , job_dir
-                      ):
-    job_py_name = '%s/lx_batch_job.%s.%d_of_%d.py' % ( job_dir
+                        ):
+    job_py_name = '%s/lx_batch_job.%s.%s.%d_of_%d.py' % ( job_dir
                                                      , data_set_dict['label']
+                                                     , data_set_dict['job_type']     
                                                      , data_set_dict['job_num']
                                                      , data_set_dict['total_num_jobs']
                                                      )

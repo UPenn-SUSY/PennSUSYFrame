@@ -42,6 +42,15 @@ namespace PennSusyFrame
       void FillBDT( const PennSusyFrame::Event& event
                     , float bdt_score
                     , float weight);
+      void FillIsr(const PennSusyFrame::Event& event
+		   , const PennSusyFrame::EventLevelQuantities& event_level_quantities
+		   , const std::vector<PennSusyFrame::Electron*>*
+		   , const std::vector<PennSusyFrame::Muon*>*
+		   , const std::vector<PennSusyFrame::Jet*>*
+		   , const PennSusyFrame::Met&
+		   , float weight
+		   );
+
       virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -59,6 +68,13 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_mbl_1;
 
       std::vector<TH1F*> m_h_bdt_score;
+
+      std::vector<TH1F*> m_h_mtr1;
+      std::vector<TH1F*> m_h_mtr2;
+
+      std::vector<TH1F*> m_h_ratio_met_jet;
+      std::vector<TH1F*> m_h_ratio_lep_jet;
+      std::vector<TH1F*> m_h_dphi_met_jet;
   };
 }
 

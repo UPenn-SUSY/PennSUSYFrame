@@ -26,6 +26,8 @@ class EntryContainer(object):
                 , line_style = 1
                 , marker_style = 20
                 , input_file_list = []
+                , lumi_modeled = 1
+                , lumi_target = 1  
                 ):
         self.label           = label
         self.fill_color      = fill_color
@@ -34,6 +36,10 @@ class EntryContainer(object):
         self.line_style      = line_style
         self.marker_style    = marker_style
         self.input_file_list = input_file_list
+        self.lumi_modeled    = lumi_modeled
+        self.lumi_target     = lumi_target
+
+        self.scaled_to_lumi = (self.lumi_modeled == self.lumi_target)
 
         self.file_list = [ ROOT.TFile(ifl) for ifl in self.input_file_list ]
         print self.file_list
@@ -60,6 +66,14 @@ class EntryContainer(object):
                                    , lumi_modeled
                                    , lumi_target
                                    )
+    # --------------------------------------------------------------------------
+    def scaleToLumi(self):
+        if not self.scaled_to_lumi:
+            lumi_scale = self.target_lumi/self.lumi_modeled_in_file
+            # print 'scaling to lumi: modeled: %s - target: %s - sf: %s' % (self.lumi_modeled_in_file, self.target_lumi, lumi_scale)
+            self.scale(lumi_scale)
+            self.scaled_to_lumi = True
+
 
 # ==============================================================================
 class InputContainer(object):
@@ -133,8 +147,8 @@ class InputContainer(object):
             hist_handle_key_list.append(e.label)
             hist_handle_dict[e.label] = e.genHistHandle( dir_name
                                                        , hist_name
-                                                       , lumi_modeled = self.lumi_modeled
-                                                       , lumi_target  = self.lumi_target
+                                                       , lumi_modeled = e.lumi_modeled
+                                                       , lumi_target  = e.lumi_target
                                                        )
         # generate HistMerger object
         tmp = hh.Merger.HistMerger( dir_name

@@ -63,6 +63,7 @@ def getListOfDirs(d):
     for f in d:
         print 'Checking key list in file: %s' % f.GetName()
         key_list_test = set(get_list_of_keys(f))
+        print key_list_test
         key_list_test = removeBadDirs(key_list_test)
 
         if key_list_ref == None:

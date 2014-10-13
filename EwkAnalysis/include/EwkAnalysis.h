@@ -30,6 +30,14 @@ namespace PennSusyFrame
                        , EWK_HIST_SR_M35_NOISR
                        , EWK_HIST_SR_M65_NOISR
                        , EWK_HIST_SR_M100_NOISR
+		       , EWK_HIST_VR_M20_ISR
+                       , EWK_HIST_VR_M35_ISR
+                       , EWK_HIST_VR_M65_ISR
+                       , EWK_HIST_VR_M100_ISR
+                       , EWK_HIST_VR_M20_NOISR
+                       , EWK_HIST_VR_M35_NOISR
+                       , EWK_HIST_VR_M65_NOISR
+                       , EWK_HIST_VR_M100_NOISR
                        , EWK_HIST_N
   };
 
@@ -44,6 +52,14 @@ namespace PennSusyFrame
                                                , "EWK_SR_M35_NOISR"
                                                , "EWK_SR_M65_NOISR"
                                                , "EWK_SR_M100_NOISR"
+					       , "EWK_VR_M20_ISR"
+                                               , "EWK_VR_M35_ISR"
+                                               , "EWK_VR_M65_ISR"
+                                               , "EWK_VR_M100_ISR"
+                                               , "EWK_VR_M20_NOISR"
+                                               , "EWK_VR_M35_NOISR"
+                                               , "EWK_VR_M65_NOISR"
+                                               , "EWK_VR_M100_NOISR"
                                                };
 
 
