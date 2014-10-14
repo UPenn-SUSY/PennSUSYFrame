@@ -323,14 +323,6 @@ void PennSusyFrame::JetRescalerTool::applyJER( TLorentzVector& tlv
   // don't apply JER if pT < 20 GeV
   if (tlv.Pt() < 20.e3) return;
 
-  // // get jet tlv
-  // TLorentzVector this_tlv;
-  // this_tlv.SetPtEtaPhiE( raw_tlv->Pt()
-  //                      , raw_tlv->Eta()
-  //                      , raw_tlv->Phi()
-  //                      , raw_tlv->E()
-  //                      );
-
   // use jet phi to define seed for random number
   int seed = int(fabs(tlv.Phi()*1.e5));
   if (!seed) ++seed;

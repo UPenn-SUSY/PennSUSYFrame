@@ -68,6 +68,7 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeEvent()
      && m_pass_signal_lep
      && m_pass_os
      && m_pass_trigger
+     && m_pass_phase
      && m_pass_ge_2_b_jet
      && m_pass_bl_pairing
      ) {
@@ -223,7 +224,7 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
 
   m_mbl_0   = bl_0->getMbl()/1.e3;
   m_mbl_1   = bl_1->getMbl()/1.e3;
-  m_mbl_asym = (bl_0->getMbl() - bl_1->getMbl()) / (bl_0->getMbl() + bl_1->getMbl());
+  m_mbl_asym = (m_mbl_0 - m_mbl_1) / (m_mbl_0 + m_mbl_1);
   m_mbbll  = PennSusyFrame::calcMbbll( *bl_0, *bl_1)/1.e3;
 
   m_ptbl_0 = bl_0->getPtbl()/1.e3;

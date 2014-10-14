@@ -858,6 +858,10 @@ void PennSusyFrame::BMinusLAnalysis::constructObjects()
                                                     , m_jets.getCollection(JET_GOOD)
                                                     )
                       );
+  // select all signal jets
+  m_jets.setCollection( JET_ALL_SIGNAL
+                      , *m_jets.getCollection(JET_B)
+                      );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // get objects which are selected for this analysis

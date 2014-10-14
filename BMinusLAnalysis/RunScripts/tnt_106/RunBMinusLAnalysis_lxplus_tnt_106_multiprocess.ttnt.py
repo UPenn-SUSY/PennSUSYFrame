@@ -16,8 +16,6 @@ import RunHelpers
 RunBMinusLAnalysis.input_tree_name = "BMinusLTTNT"
 RunBMinusLAnalysis.lep_pt_cut = 40.e3
 RunBMinusLAnalysis.jet_pt_cut = 40.e3
-# RunBMinusLAnalysis.lep_pt_cut = 20.e3
-# RunBMinusLAnalysis.jet_pt_cut = 20.e3
 
 # 90% working point
 # RunBMinusLAnalysis.btag_working_point = 0.0617
@@ -56,7 +54,7 @@ if __name__ == '__main__':
 
     egamma_data_samples = {
                             'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':1}
-                          , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':2}
+                          , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':1}
                           , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':1}
                           , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':1}
                           , 'periodE_egamma':{'label':'periodE_egamma', 'num_jobs':1}
