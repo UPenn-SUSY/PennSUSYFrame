@@ -3295,7 +3295,6 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // calculate a bunch of things used in filling histograms
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
   PennSusyFrame::Lepton* lep_0;
   PennSusyFrame::Lepton* lep_1;
   const PennSusyFrame::Jet* jet_0 = b_jet_list.at(0);
@@ -3333,7 +3332,6 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
   else {
     return;
   }
-
   double  dr_ll, dr_lj00, dr_lj01, dr_lj10, dr_lj11;
 
   dr_ll   = PennSusyFrame::getDr(lep_0, lep_1);
@@ -3480,6 +3478,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
 	}
       }
     }
+
     // -----------------------------------------------------------------------------
     // fill truth v. reco flavor channel histos.
     m_h_flavor_channel_tvr.at(fc_it)->Fill(fc, truth_fc);
