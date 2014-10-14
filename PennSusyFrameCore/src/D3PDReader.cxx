@@ -671,7 +671,7 @@ bool PennSusyFrame::D3PDReader::checkStatus()
 {
   std::cout << "checkStatus()\n";
   if (fChain == 0) {
-    // std::cout << "Chain is empty - cannot loop over events :-(\n";
+    std::cout << "Chain is empty - cannot loop over events :-(\n";
     return false;
   }
   return true;

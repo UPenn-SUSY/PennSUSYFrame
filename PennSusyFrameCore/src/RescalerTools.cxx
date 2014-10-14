@@ -206,11 +206,20 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
 // =============================================================================
 // = JetRescalerTool
 // =============================================================================
-PennSusyFrame::JetRescalerTool::JetRescalerTool(bool is_data, bool is_af2, bool is_mc_12b) : m_is_data(is_data)
-                                                                                           , m_is_af2(is_af2)
-                                                                                           , m_is_mc12b(is_mc_12b)  
-                                                                                           , m_jet_calibration(0)
-                                                                                           , m_jer_smearing(0)
+PennSusyFrame::JetRescalerTool::JetRescalerTool( bool is_data
+                                               , bool is_af2
+                                               , bool is_mc_12b
+                                               , bool do_jer
+                                               , bool do_jes_up
+                                               , bool do_jes_down
+                                               ) : m_is_data(is_data)
+                                                 , m_is_af2(is_af2)
+                                                 , m_is_mc12b(is_mc_12b)
+                                                 , m_do_jer(do_jer)
+                                                 , m_do_jes_up(do_jes_up)
+                                                 , m_do_jes_down(do_jes_down)
+                                                 , m_jet_calibration(0)
+                                                 , m_jer_smearing(0)
 {
   init();
 }
@@ -286,49 +295,52 @@ TLorentzVector PennSusyFrame::JetRescalerTool::getCalibratedTlv( const PennSusyF
                                                                , int num_vertices_ge_2_tracks
                                                                )
 {
-  return m_jet_calibration->ApplyJetAreaOffsetEtaJES( p->getConstScaleE()
-                                                    , p->getConstScaleEta()
-                                                    , p->getConstScalePhi()
-                                                    , p->getConstScaleM()
-                                                    , p->getActiveAreaPx()
-                                                    , p->getActiveAreaPy()
-                                                    , p->getActiveAreaPz()
-                                                    , p->getActiveAreaE()
-                                                    , event->getEventShapeRhoKt4LC()
-                                                    , event->getAverageIntPerXing()
-                                                    , num_vertices_ge_2_tracks
-                                                    );
+  TLorentzVector calibrated_tlv =  m_jet_calibration->ApplyJetAreaOffsetEtaJES( p->getConstScaleE()
+                                                                              , p->getConstScaleEta()
+                                                                              , p->getConstScalePhi()
+                                                                              , p->getConstScaleM()
+                                                                              , p->getActiveAreaPx()
+                                                                              , p->getActiveAreaPy()
+                                                                              , p->getActiveAreaPz()
+                                                                              , p->getActiveAreaE()
+                                                                              , event->getEventShapeRhoKt4LC()
+                                                                              , event->getAverageIntPerXing()
+                                                                              , num_vertices_ge_2_tracks
+                                                                              );
+
+  if (m_do_jer) {
+    applyJER(calibrated_tlv, m_is_af2);
+  }
+
+  return calibrated_tlv;
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::JetRescalerTool::applyJER( PennSusyFrame::Jet* j
+void PennSusyFrame::JetRescalerTool::applyJER( TLorentzVector& tlv
                                              , bool is_af2
                                              )
 {
   // don't apply JER if pT < 20 GeV
-  if (j->getPt() < 20.e3) return;
+  if (tlv.Pt() < 20.e3) return;
 
-  // get jet tlv
-  TLorentzVector this_tlv;
-  this_tlv.SetPtEtaPhiE( j->getPt()
-                       , j->getEta()
-                       , j->getPhi()
-                       , j->getE()
-                       );
+  // // get jet tlv
+  // TLorentzVector this_tlv;
+  // this_tlv.SetPtEtaPhiE( raw_tlv->Pt()
+  //                      , raw_tlv->Eta()
+  //                      , raw_tlv->Phi()
+  //                      , raw_tlv->E()
+  //                      );
 
   // use jet phi to define seed for random number
-  int seed = int(fabs(j->getPhi()*1.e5));
+  int seed = int(fabs(tlv.Phi()*1.e5));
   if (!seed) ++seed;
-  // m_my_jer->SetSeed(seed);
+  m_jer_smearing->SetSeed(seed);
 
-  // // apply 
-  // if (is_af2)
-  //   m_my_jer->SmearJet_Syst_AFII(j->getTlv());
-  // else
-  //   m_myJER->SmearJet_Syst(j->getTlv());
-
-  // update jet tlv
-  j->setTlv(this_tlv);
+  // apply jet smearing
+  if (is_af2)
+    m_jer_smearing->SmearJet_Syst_AFII(tlv);
+  else
+    m_jer_smearing->SmearJet_Syst(tlv);
 }
 
 // =============================================================================
