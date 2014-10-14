@@ -122,11 +122,11 @@ def printToTable(out_file_name, cut_vars, sample_info):
         for cut_itr, cv in enumerate(cut_vars):
             this_line += '$%s$' % si['cut_strings'][cut_itr]
             this_line += ' & '
-        this_line += '%f' % si['num_sig']
+        this_line += '%0.2f' % si['num_sig']
         this_line += ' & '
-        this_line += '%f' % si['num_bkg']
+        this_line += '%0.2f' % si['num_bkg']
         this_line += ' & '
-        this_line += '%f' % si['significance']
+        this_line += '%0.2f' % si['significance']
         this_line += ' \\\\\n'
 
         out_file.write(this_line)

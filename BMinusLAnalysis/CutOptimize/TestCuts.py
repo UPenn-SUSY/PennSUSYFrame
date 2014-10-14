@@ -5,10 +5,7 @@ import math
 import sys
 import ROOT
 import array
-
-# ------------------------------------------------------------------------------
-cut_level = sys.argv[1] if len(sys.argv) > 1 else ''
-print 'cut level: "%s"' % cut_level
+import itertools
 
 # ------------------------------------------------------------------------------
 mbl_bins = [0, 50, 100, 200, 300, 450, 600, 1500]
@@ -68,261 +65,18 @@ def prepareForPlotting(h_dict, syst_frac_unc):
     return uncert_graph
 
 # ------------------------------------------------------------------------------
-def passCuts(event, cut_type = ''):
+def passCuts(event, ht_cut, mbl_asym_cut, met_sig_cut):
     mbl_asym = (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1)
     ht = event.ht_signal
     met_sig = event.met_et/math.sqrt(ht)
 
-    mbl_cut_600  = 0.5913
-    mbl_cut_700  = 0.6863
-    mbl_cut_800  = 0.5540
-    mbl_cut_900  = 0.6770
-    mbl_cut_1000 = 0.6567
-    mbl_cut_test = 0.3
-
-    mbl_cut_cand_sr = 0.6
-
-    ht_cut_600  = 433.1818
-    ht_cut_700  = 527.3617
-    ht_cut_800  = 589.8870
-    ht_cut_900  = 683.0847
-    ht_cut_1000 = 882.0773
-    ht_cut_test = 100
-
-    ht_cut_cand_sr_100 = 100
-    ht_cut_cand_sr_200 = 200
-    ht_cut_cand_sr_300 = 300
-    ht_cut_cand_sr_400 = 400
-    ht_cut_cand_sr_500 = 500
-    ht_cut_cand_sr_600 = 600
-    ht_cut_cand_sr_700 = 700
-
-    met_cut_600  = 20.5685
-    met_cut_700  = 33.1530
-    met_cut_800  = 44.1847
-    met_cut_900  = 65.3685
-    met_cut_1000 = 36.9973
-    met_cut_test = 10
-
-    met_cut_cand_sr = 7.
-
-    if cut_type == '600':
-        # 600
-        if mbl_asym > mbl_cut_600 : return False
-        if ht       < ht_cut_600  : return False
-        if met_sig  > met_cut_600 : return False
-        return True
-    if cut_type == '600_mbl':
-        if mbl_asym > mbl_cut_600 : return False
-        return True
-    if cut_type == '600_ht':
-        if ht       < ht_cut_600  : return False
-        return True
-    if cut_type == '600_met':
-        if met_sig  > met_cut_600 : return False
-        return True
-
-    if cut_type == '700':
-        # 700
-        if mbl_asym > mbl_cut_700 : return False
-        if ht       < ht_cut_700  : return False
-        if met_sig  > met_cut_700 : return False
-        return True
-    if cut_type == '700_mbl':
-        if mbl_asym > mbl_cut_700 : return False
-        return True
-    if cut_type == '700_ht':
-        if ht       < ht_cut_700  : return False
-        return True
-    if cut_type == '700_met':
-        if met_sig  > met_cut_700 : return False
-        return True
-
-    if cut_type == '800':
-        # 800
-        if mbl_asym > mbl_cut_800 : return False
-        if ht       < ht_cut_800  : return False
-        if met_sig  > met_cut_800 : return False
-        return True
-    if cut_type == '800_mbl':
-        if mbl_asym > mbl_cut_800 : return False
-        return True
-    if cut_type == '800_ht':
-        if ht       < ht_cut_800  : return False
-        return True
-    if cut_type == '800_met':
-        if met_sig  > met_cut_800 : return False
-        return True
-
-    if cut_type == '900':
-        # 900
-        if mbl_asym > mbl_cut_900 : return False
-        if ht       < ht_cut_900  : return False
-        if met_sig  > met_cut_900 : return False
-        return True
-    if cut_type == '900_mbl':
-        if mbl_asym > mbl_cut_900 : return False
-        return True
-    if cut_type == '900_ht':
-        if ht       < ht_cut_900  : return False
-        return True
-    if cut_type == '900_met':
-        if met_sig  > met_cut_900 : return False
-        return True
-
-    if cut_type == '1000':
-        # 1000
-        if mbl_asym > mbl_cut_1000 : return False
-        if ht       < ht_cut_1000  : return False
-        if met_sig  > met_cut_1000 : return False
-        return True
-    if cut_type == '1000_mbl':
-        if mbl_asym > mbl_cut_1000 : return False
-        return True
-    if cut_type == '1000_ht':
-        if ht       < ht_cut_1000  : return False
-        return True
-    if cut_type == '1000_met':
-        if met_sig  > met_cut_1000 : return False
-        return True
-
-    if cut_type == 'cand_sr_100':
-        # sr_cand_100
-        if mbl_asym > mbl_cut_cand_sr    : return False
-        if ht       < ht_cut_cand_sr_100 : return False
-        if met_sig  > met_cut_cand_sr    : return False
-        return True
-    if cut_type == 'cand_sr_100_mbl':
-        if mbl_asym > mbl_cut_cand_sr : return False
-        return True
-    if cut_type == 'cand_sr_100_ht':
-        if ht       < ht_cut_cand_sr_100  : return False
-        return True
-    if cut_type == 'cand_sr_100_met':
-        if met_sig  > met_cut_cand_sr : return False
-        return True
-
-    if cut_type == 'cand_sr_200':
-        # sr_cand_200
-        if mbl_asym > mbl_cut_cand_sr    : return False
-        if ht       < ht_cut_cand_sr_200 : return False
-        if met_sig  > met_cut_cand_sr    : return False
-        return True
-    if cut_type == 'cand_sr_200_mbl':
-        if mbl_asym > mbl_cut_cand_sr : return False
-        return True
-    if cut_type == 'cand_sr_200_ht':
-        if ht       < ht_cut_cand_sr_200  : return False
-        return True
-    if cut_type == 'cand_sr_200_met':
-        if met_sig  > met_cut_cand_sr : return False
-        return True
-
-    if cut_type == 'cand_sr_300':
-        # sr_cand_300
-        if mbl_asym > mbl_cut_cand_sr    : return False
-        if ht       < ht_cut_cand_sr_300 : return False
-        if met_sig  > met_cut_cand_sr    : return False
-        return True
-    if cut_type == 'cand_sr_300_mbl':
-        if mbl_asym > mbl_cut_cand_sr : return False
-        return True
-    if cut_type == 'cand_sr_300_ht':
-        if ht       < ht_cut_cand_sr_300  : return False
-        return True
-    if cut_type == 'cand_sr_300_met':
-        if met_sig  > met_cut_cand_sr : return False
-        return True
-
-    if cut_type == 'cand_sr_400':
-        # sr_cand_400
-        if mbl_asym > mbl_cut_cand_sr    : return False
-        if ht       < ht_cut_cand_sr_400 : return False
-        if met_sig  > met_cut_cand_sr    : return False
-        return True
-    if cut_type == 'cand_sr_400_mbl':
-        if mbl_asym > mbl_cut_cand_sr : return False
-        return True
-    if cut_type == 'cand_sr_400_ht':
-        if ht       < ht_cut_cand_sr_400  : return False
-        return True
-    if cut_type == 'cand_sr_400_met':
-        if met_sig  > met_cut_cand_sr : return False
-        return True
-
-    if cut_type == 'cand_sr_500':
-        # sr_cand_500
-        if mbl_asym > mbl_cut_cand_sr    : return False
-        if ht       < ht_cut_cand_sr_500 : return False
-        if met_sig  > met_cut_cand_sr    : return False
-        return True
-    if cut_type == 'cand_sr_500_mbl':
-        if mbl_asym > mbl_cut_cand_sr : return False
-        return True
-    if cut_type == 'cand_sr_500_ht':
-        if ht       < ht_cut_cand_sr_500  : return False
-        return True
-    if cut_type == 'cand_sr_500_met':
-        if met_sig  > met_cut_cand_sr : return False
-        return True
-
-    if cut_type == 'cand_sr_600':
-        # sr_cand_600
-        if mbl_asym > mbl_cut_cand_sr    : return False
-        if ht       < ht_cut_cand_sr_600 : return False
-        if met_sig  > met_cut_cand_sr    : return False
-        return True
-    if cut_type == 'cand_sr_600_mbl':
-        if mbl_asym > mbl_cut_cand_sr : return False
-        return True
-    if cut_type == 'cand_sr_600_ht':
-        if ht       < ht_cut_cand_sr_600  : return False
-        return True
-    if cut_type == 'cand_sr_600_met':
-        if met_sig  > met_cut_cand_sr : return False
-        return True
-
-    if cut_type == 'cand_sr_700':
-        # sr_cand_700
-        if mbl_asym > mbl_cut_cand_sr    : return False
-        if ht       < ht_cut_cand_sr_700 : return False
-        if met_sig  > met_cut_cand_sr    : return False
-        return True
-    if cut_type == 'cand_sr_700_mbl':
-        if mbl_asym > mbl_cut_cand_sr : return False
-        return True
-    if cut_type == 'cand_sr_700_ht':
-        if ht       < ht_cut_cand_sr_700  : return False
-        return True
-    if cut_type == 'cand_sr_700_met':
-        if met_sig  > met_cut_cand_sr : return False
-        return True
-
-    if cut_type == 'test':
-        # test
-        if mbl_asym > mbl_cut_test : return False
-        if ht       < ht_cut_test  : return False
-        if met_sig  > met_cut_test : return False
-        return True
-    if cut_type == 'test_mbl':
-        if mbl_asym > mbl_cut_test : return False
-        return True
-    if cut_type == 'test_ht':
-        if ht       < ht_cut_test  : return False
-        return True
-    if cut_type == 'test_met':
-        if met_sig  > met_cut_test : return False
-        return True
-
-    print 'bogus'
-    # bogus
-    if (event.mbl_0 - event.mbl_1) / (event.mbl_0 + event.mbl_1) > 1 : return False
-    if event.ht_signal < 1000: return False
-    if event.met_et/math.sqrt(event.ht_signal) > 100 : return False
+    if ht       < ht_cut      : return False
+    if mbl_asym > mbl_asym_cut: return False
+    if met_sig  > met_sig_cut : return False
     return True
 
 # ------------------------------------------------------------------------------
-def produceMblPlots(in_file_name, tag):
+def produceMblPlots(in_file_name, tag, ht_cut, mbl_asym_cut, met_sig_cut):
     print 'getting mbl plot for ', tag
 
     f = ROOT.TFile.Open(in_file_name)
@@ -402,7 +156,7 @@ def produceMblPlots(in_file_name, tag):
         h_ht_no_cut.Fill(     event.ht_signal                        , weight)
         h_met_sig_no_cut.Fill(event.met_et/math.sqrt(event.ht_signal), weight)
 
-        if (passCuts(event, cut_level)):
+        if (passCuts(event, ht_cut, mbl_asym_cut, met_sig_cut )):
             h_raw_mbl_w_cut.Fill(    event.mbl_0                            )
             h_raw_mbl_w_cut.Fill(    event.mbl_1                            )
             h_raw_ht_w_cut.Fill(     event.ht_signal                        )
@@ -520,7 +274,6 @@ def drawCompareCanvas( background_hist_dict
     bkg_no_cuts.Draw('histSAME')
     sig_no_cuts.Draw('histSAME')
     bkg_no_cuts_uncert.Draw('2')
-    # sig_no_cuts_uncert.Draw('a2SAME')
 
     b_entries_no_cuts = bkg_no_cuts.GetEntries()
     s_entries_no_cuts = sig_no_cuts.GetEntries()
@@ -607,24 +360,24 @@ def drawCompareCanvas( background_hist_dict
     c.Write()
 
 # ------------------------------------------------------------------------------
-def main():
-    ROOT.gStyle.SetOptStat(0)
-
+def prodcueAndDrawPlots(ht_cut, mbl_asym_cut, met_sig_cut):
     base_path = '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/'
 
-    ttbar       = produceMblPlots('%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.ntup.root'                  % base_path, 'ttbar')
-    signal_100  = produceMblPlots('%s/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.ntup.root'  % base_path, 'signal_100' )
-    signal_200  = produceMblPlots('%s/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.ntup.root'  % base_path, 'signal_200' )
-    signal_300  = produceMblPlots('%s/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.ntup.root'  % base_path, 'signal_300' )
-    signal_400  = produceMblPlots('%s/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.ntup.root'  % base_path, 'signal_400' )
-    signal_500  = produceMblPlots('%s/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root'  % base_path, 'signal_500' )
-    signal_600  = produceMblPlots('%s/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.ntup.root'  % base_path, 'signal_600' )
-    signal_700  = produceMblPlots('%s/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.ntup.root'  % base_path, 'signal_700' )
-    signal_800  = produceMblPlots('%s/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.ntup.root'  % base_path, 'signal_800' )
-    signal_900  = produceMblPlots('%s/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.ntup.root'  % base_path, 'signal_900' )
-    signal_1000 = produceMblPlots('%s/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root' % base_path, 'signal_1000')
+    cut_tag = 'ht_%s__mbl_asym_%s__met_sig_%s' % (ht_cut, mbl_asym_cut, met_sig_cut)
 
-    out_file = ROOT.TFile.Open('out.root', 'recreate')
+    ttbar       = produceMblPlots('%s/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2.ntup.root'                     % base_path, 'ttbar'      , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_100  = produceMblPlots('%s/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.ntup.root'  % base_path, 'signal_100' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_200  = produceMblPlots('%s/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.ntup.root'  % base_path, 'signal_200' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_300  = produceMblPlots('%s/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.ntup.root'  % base_path, 'signal_300' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_400  = produceMblPlots('%s/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.ntup.root'  % base_path, 'signal_400' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_500  = produceMblPlots('%s/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root'  % base_path, 'signal_500' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_600  = produceMblPlots('%s/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.ntup.root'  % base_path, 'signal_600' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_700  = produceMblPlots('%s/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.ntup.root'  % base_path, 'signal_700' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_800  = produceMblPlots('%s/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.ntup.root'  % base_path, 'signal_800' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_900  = produceMblPlots('%s/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.ntup.root'  % base_path, 'signal_900' , ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+    signal_1000 = produceMblPlots('%s/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root' % base_path, 'signal_1000', ht_cut=ht_cut, mbl_asym_cut=mbl_asym_cut, met_sig_cut=met_sig_cut)
+
+    out_file = ROOT.TFile.Open('out_%s.root' % cut_tag , 'recreate')
 
     drawCompareCanvas(ttbar, signal_100 , 'mbl', 'ttbar_T100' , out_file)
     drawCompareCanvas(ttbar, signal_200 , 'mbl', 'ttbar_T200' , out_file)
@@ -660,6 +413,22 @@ def main():
     drawCompareCanvas(ttbar, signal_1000, 'met_sig', 'ttbar_T1000', out_file)
 
     out_file.Close()
+
+# ------------------------------------------------------------------------------
+def main():
+    ROOT.gStyle.SetOptStat(0)
+
+    ht_cut       = [1000, 1100, 1200]
+    mbl_asym_cut = [0.35, 0.40]
+    met_sig_cut  = [20]
+
+    print ht_cut
+    print mbl_asym_cut
+    print met_sig_cut
+
+    for ht_val, mbl_val, met_val in itertools.product(ht_cut, mbl_asym_cut, met_sig_cut):
+        print ht_val, ' - ', mbl_val, ' - ', met_val
+        prodcueAndDrawPlots(ht_cut=ht_val, mbl_asym_cut=mbl_val, met_sig_cut=met_val)
 
 # ==============================================================================
 if __name__ == "__main__":
