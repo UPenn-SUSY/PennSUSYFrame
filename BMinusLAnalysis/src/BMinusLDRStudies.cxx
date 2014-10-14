@@ -42,19 +42,35 @@ void PennSusyFrame::BMinusLDRStudies::finalizeEvent()
 {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // replicate overlap removal to fill dR histograms
+  if (m_electrons.getCollection(EL_ALL)->size() + m_muons.getCollection(MU_ALL)->size() < 2) return;
+  if (m_jets.getCollection(JET_ALL)->size() < 2) return;
+
+//  reproduceFullObjectCleaning( m_event
+//                             , m_mc_truth
+//                             , m_object_cleaning
+//                             , m_electrons.getCollection(EL_BASELINE)
+//                             , m_muons.getCollection(MU_BASELINE)
+//                             , m_jets.getCollection(JET_BASELINE_GOOD)
+//                             , m_jets.getCollection(JET_BASELINE_BAD)
+//                             );
+
+// reproduce bad overlap removal plots (before we changed the OR procedure):
   reproduceFullObjectCleaning( m_event
-  			      , m_mc_truth
- 			      , m_object_cleaning
-  			      , m_electrons.getCollection(EL_BASELINE)
- 		              , m_muons.getCollection(MU_BASELINE)
- 			      , m_jets.getCollection(JET_BASELINE_GOOD)
- 			      , m_jets.getCollection(JET_BASELINE_BAD)
- 			      );
+			     , m_mc_truth
+                             , m_object_cleaning
+                             , m_electrons.getCollection(EL_ALL)
+                             , m_muons.getCollection(MU_ALL)
+                             , m_jets.getCollection(JET_ALL)
+			     , m_jets.getCollection(JET_ALL) 
+                              );
+  // There is no jet_all_good and jet_all_bad, but I don't want to change the whole code. 
+  // So just give it jet_all twice.
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLDRStudies::finalizeRun()
 {
+
   TFile out_hist_file(m_out_hist_file_name.c_str(), "RECREATE");
 
   for (unsigned int dr_hist_level=0; dr_hist_level != PennSusyFrame::BMINUSL_DR_HIST_N; ++dr_hist_level) {
@@ -66,7 +82,7 @@ void PennSusyFrame::BMinusLDRStudies::finalizeRun()
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSusyFrame::Event& m_event
+void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning(  PennSusyFrame::Event& m_event
                                                                  , const PennSusyFrame::MCTruth& m_mc_truth
                                                                  , PennSusyFrame::ObjectCleaning m_object_cleaning
                                                                  , const std::vector<PennSusyFrame::Electron*>* input_electrons
@@ -75,6 +91,8 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSus
                                                                  , const std::vector<PennSusyFrame::Jet*>* input_jets_bad
                                                                  )
 {
+
+  FLAVOR_CHANNEL fc = m_event.getFlavorChannel();
   // fill hist with no OR
   filldRHistHandles( PennSusyFrame::BMINUSL_NO_OR
                    , m_event
@@ -87,6 +105,9 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSus
   // do ee overlap removal
   std::vector<PennSusyFrame::Electron*> el_temp_1;
   m_object_cleaning.eeOverlapRemoval(*input_electrons, el_temp_1);
+  fc = checkFlavorChannel(m_event, el_temp_1, *input_muons);
+  m_event.setFlavorChannel(fc);
+  if (fc == FLAVOR_NONE) return;
   filldRHistHandles( PennSusyFrame::BMINUSL_EE_OR
                    , m_event
                    , m_mc_truth
@@ -100,6 +121,7 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSus
   std::vector<PennSusyFrame::Jet*> jet_bad_temp_1;
   m_object_cleaning.ejOverlapRemoval(el_temp_1, *input_jets_good, jet_good_temp_1);
   m_object_cleaning.ejOverlapRemoval(el_temp_1, *input_jets_bad, jet_bad_temp_1);
+  if (jet_good_temp_1.size() < 2) return;
   filldRHistHandles( PennSusyFrame::BMINUSL_EJ_OR
                    , m_event
                    , m_mc_truth
@@ -113,6 +135,7 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSus
   std::vector<PennSusyFrame::Jet*> jet_bad_temp_2;
   m_object_cleaning.mjOverlapRemoval(*input_muons, jet_good_temp_1, jet_good_temp_2);
   m_object_cleaning.mjOverlapRemoval(*input_muons, jet_bad_temp_1, jet_bad_temp_2);
+  if (jet_good_temp_2.size() < 2) return;
   filldRHistHandles( PennSusyFrame::BMINUSL_MJ_OR
                    , m_event
                    , m_mc_truth
@@ -126,6 +149,9 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSus
   std::vector<PennSusyFrame::Electron*> el_temp_3;
   m_object_cleaning.jeOverlapRemoval(jet_good_temp_2, el_temp_1, el_temp_2);
   m_object_cleaning.jeOverlapRemoval(jet_bad_temp_2 , el_temp_2, el_temp_3);
+  fc = checkFlavorChannel(m_event, el_temp_2, *input_muons);
+  m_event.setFlavorChannel(fc);
+  if (fc == FLAVOR_NONE) return;
   filldRHistHandles( PennSusyFrame::BMINUSL_JE_OR
                    , m_event
                    , m_mc_truth
@@ -139,6 +165,9 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSus
   std::vector<PennSusyFrame::Muon*> mu_temp_2;
   m_object_cleaning.jmOverlapRemoval(jet_good_temp_2, *input_muons, mu_temp_1);
   m_object_cleaning.jmOverlapRemoval(jet_bad_temp_2 , mu_temp_1   , mu_temp_2);
+  fc = checkFlavorChannel(m_event, el_temp_2, mu_temp_1);
+  m_event.setFlavorChannel(fc);
+  if (fc == FLAVOR_NONE) return;
   filldRHistHandles( PennSusyFrame::BMINUSL_JM_OR
                    , m_event
                    , m_mc_truth
@@ -151,6 +180,9 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSus
   std::vector<PennSusyFrame::Electron*> el_temp_4;
   std::vector<PennSusyFrame::Muon*> mu_temp_3;
   m_object_cleaning.emOverlapRemoval(el_temp_3, mu_temp_2, el_temp_4, mu_temp_3);
+  fc = checkFlavorChannel(m_event, el_temp_4, mu_temp_3);
+  m_event.setFlavorChannel(fc);
+  if (fc == FLAVOR_NONE) return;
   filldRHistHandles( PennSusyFrame::BMINUSL_EM_OR
                    , m_event
                    , m_mc_truth
@@ -162,6 +194,9 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( const PennSus
   // do mm overlap removal
   std::vector<PennSusyFrame::Muon*> mu_temp_4;
   m_object_cleaning.mmOverlapRemoval(mu_temp_3, mu_temp_4);
+  fc = checkFlavorChannel(m_event, el_temp_4, mu_temp_4);
+  m_event.setFlavorChannel(fc);
+  if (fc == FLAVOR_NONE) return;
   filldRHistHandles( PennSusyFrame::BMINUSL_MM_OR
                    , m_event
                    , m_mc_truth
@@ -185,4 +220,31 @@ void PennSusyFrame::BMinusLDRStudies::filldRHistHandles( BMINUSL_DR_HIST_LEVELS 
                                                        , jets
                                                        , m_mc_truth
                                                        );
+}
+
+FLAVOR_CHANNEL  PennSusyFrame::BMinusLDRStudies::checkFlavorChannel(PennSusyFrame::Event& m_event
+							 , const std::vector<PennSusyFrame::Electron*>& el_list
+							 , const std::vector<PennSusyFrame::Muon*>& mu_list
+							 )
+{
+  FLAVOR_CHANNEL fc = m_event.getFlavorChannel();
+  if (fc == FLAVOR_EE && el_list.size() < 2) {
+    if (el_list.size() == 1 && mu_list.size() > 0) return FLAVOR_EM;
+    else if (el_list.size() ==0 && mu_list.size() > 1) return FLAVOR_MM;
+    else return FLAVOR_NONE;
+  }
+
+  if (fc == FLAVOR_MM && mu_list.size() < 2) {
+    if (mu_list.size() == 1 && el_list.size() > 0) return FLAVOR_EM;
+    else if (mu_list.size() ==0 && el_list.size() > 1) return FLAVOR_EE;
+    else return FLAVOR_NONE;
+  }
+
+  if (fc == FLAVOR_EM && (mu_list.size() < 1 || el_list.size() < 1) ) {
+    if (mu_list.size() < 1 && el_list.size() > 1) return FLAVOR_EE;
+    else if (el_list.size() < 1 && mu_list.size() > 1) return FLAVOR_MM;
+    else return FLAVOR_NONE;
+  }
+
+  return fc;
 }

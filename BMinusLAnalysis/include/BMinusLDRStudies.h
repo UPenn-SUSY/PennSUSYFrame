@@ -52,7 +52,7 @@ namespace PennSusyFrame
       virtual void finalizeEvent();
       virtual void finalizeRun();
 
-      void reproduceFullObjectCleaning( const PennSusyFrame::Event&
+      void reproduceFullObjectCleaning( PennSusyFrame::Event&
                                       , const PennSusyFrame::MCTruth&
                                       , PennSusyFrame::ObjectCleaning
                                       , const std::vector<PennSusyFrame::Electron*>*
@@ -69,6 +69,12 @@ namespace PennSusyFrame
                             , const std::vector<PennSusyFrame::Muon*>&
                             , const std::vector<PennSusyFrame::Jet*>&
                             );
+
+      FLAVOR_CHANNEL checkFlavorChannel(PennSusyFrame::Event&
+					, const std::vector<PennSusyFrame::Electron*>&
+					, const std::vector<PennSusyFrame::Muon*>&
+					);
+
       std::vector<PennSusyFrame::DRHists*> m_bminusl_dr_histogram_handler;
   };
 }
