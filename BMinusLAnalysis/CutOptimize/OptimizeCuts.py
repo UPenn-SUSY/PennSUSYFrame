@@ -155,10 +155,10 @@ def doOptimize(f_name_sig, f_name_bkg_list, tag):
                       , 'Cuts'
                       , ( "!H"
                         + ":!V"
-                        + ":FitMethod=MC"
-                        + ":SampleSize=2000"
+                        # + ":FitMethod=MC"
+                        # + ":SampleSize=2000"
                         # + ":SampleSize=200000"
-                        # + ":FitMethod=GA"
+                        + ":FitMethod=GA"
                         + ":EffSel"
                         + ":VarProp=FSmart"
                         )
