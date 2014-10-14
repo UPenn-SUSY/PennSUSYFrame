@@ -65,7 +65,7 @@ def doOptimize(f_name_sig, f_name_bkg_list, tag):
     # factory.AddVariable( "ptll"        , "ptll"        , 'GeV' , 'F')
 
     # factory.AddVariable( "met_et"      , "met_et"      , 'GeV' , 'F')
-    factory.AddVariable( "met_rel"     , "met_rel"     , 'GeV' , 'F')
+    # factory.AddVariable( "met_rel"     , "met_rel"     , 'GeV' , 'F')
 
     # factory.AddVariable( "ht_all"      , "ht_all"      , 'GeV' , 'F')
     # factory.AddVariable( "ht_baseline" , "ht_baseline" , 'GeV' , 'F')
@@ -155,10 +155,10 @@ def doOptimize(f_name_sig, f_name_bkg_list, tag):
                       , 'Cuts'
                       , ( "!H"
                         + ":!V"
-                        # + ":FitMethod=MC"
-                        # + ":SampleSize=2000"
+                        + ":FitMethod=MC"
+                        + ":SampleSize=2000"
                         # + ":SampleSize=200000"
-                        + ":FitMethod=GA"
+                        # + ":FitMethod=GA"
                         + ":EffSel"
                         + ":VarProp=FSmart"
                         )
@@ -191,7 +191,9 @@ def main():
                       , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.ntup.root'
                       , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root'
                       ]
-    f_name_bkg_list = [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.ntup.root' ]
+    f_name_bkg_list = [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2.ntup.root'
+                      # , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2.ntup.root'
+                      ]
 
     results = []
     for i, fnsl in enumerate(f_name_sig_list):
@@ -208,9 +210,106 @@ def main():
         ro.readAndDisplayCutOpt( 'weights_%s/TMVAClassification_Cuts.weights.xml' % it
                                , r['total_sig']
                                , r['total_bkg']
+                               , out_file_name = 'results_sig_%d.txt' % it
                                )
         print ''
 
 # ==============================================================================
 if __name__ == '__main__':
     main()
+
+## ../../NextOptNtupDir.BMinusL/BMinusL.110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.110119.PowhegPythia_P2011C_st_schan_lep.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167756.Sherpa_CT10_ZtautauMassiveCBPt0_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167757.Sherpa_CT10_ZtautauMassiveCBPt0_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167804.Sherpa_CT10_ZtautauMassiveCBPt70_140_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167816.Sherpa_CT10_ZtautauMassiveCBPt140_280_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167817.Sherpa_CT10_ZtautauMassiveCBPt140_280_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167828.Sherpa_CT10_ZtautauMassiveCBPt280_500_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167840.Sherpa_CT10_ZtautauMassiveCBPt500_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.173041.Sherpa_CT10_DYeeM08to15.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.173042.Sherpa_CT10_DYeeM15to40.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.173043.Sherpa_CT10_DYmumuM08to15.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.173044.Sherpa_CT10_DYmumuM15to40.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.177997.Sherpa_CT10_llnunu_WW_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.177999.Sherpa_CT10_llnunu_ZZ_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.179974.Sherpa_CT10_lllnu_WZ_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.179975.Sherpa_CT10_lnununu_WZ_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183585.Sherpa_CT10_ZWtoeeqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183586.Sherpa_CT10_ZZtoeeqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183587.Sherpa_CT10_ZWtomumuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183588.Sherpa_CT10_ZZtomumuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183589.Sherpa_CT10_ZWtotautauqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183590.Sherpa_CT10_ZZtotautauqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183591.Sherpa_CT10_ZWtonunuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183592.Sherpa_CT10_ZZtonunuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183734.Sherpa_CT10_WWtoenuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183735.Sherpa_CT10_WZtoenuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183736.Sherpa_CT10_WWtomunuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183737.Sherpa_CT10_WZtomunuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183738.Sherpa_CT10_WWtotaunuqq_MassiveCB.ntup.root
+## ../../NextOptNtupDir.BMinusL/BMinusL.183739.Sherpa_CT10_WZtotaunuqq_MassiveCB.ntup.root
