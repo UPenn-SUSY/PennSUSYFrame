@@ -86,7 +86,13 @@ namespace PennSusyFrame
   class JetRescalerTool
   {
     public:
-    JetRescalerTool(bool is_data, bool is_af2, bool is_mc12b);
+    JetRescalerTool( bool is_data
+                   , bool is_af2
+                   , bool is_mc12b
+                   , bool do_jer      = false
+                   , bool do_jes_up   = false
+                   , bool do_jes_down = false
+                   );
     ~JetRescalerTool();
 
     void init();
@@ -95,12 +101,16 @@ namespace PennSusyFrame
                                      , const PennSusyFrame::Event*
                                      , int num_vertices_ge_2_tracks
                                      );
-    void applyJER(PennSusyFrame::Jet*, bool is_af2);
+    // void applyJER(PennSusyFrame::Jet*, bool is_af2);
+    void applyJER(TLorentzVector&, bool is_af2);
 
     private:
       bool m_is_data;
       bool m_is_af2;
       bool m_is_mc12b;
+      bool m_do_jer;
+      bool m_do_jes_up;
+      bool m_do_jes_down;
       JetAnalysisCalib::JetCalibrationTool* m_jet_calibration;
       JetSmearingTool* m_jer_smearing;
   };
@@ -118,7 +128,6 @@ namespace PennSusyFrame
     private:
       bool m_is_data;
       bool m_is_af2;
-      
   };
 }
 

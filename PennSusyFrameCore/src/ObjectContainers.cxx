@@ -339,10 +339,25 @@ PennSusyFrame::JetContainer::~JetContainer()
 }
 
 // ----------------------------------------------------------------------------
-void PennSusyFrame::JetContainer::init(bool is_data, bool is_af2, bool is_mc12b)
+void PennSusyFrame::JetContainer::init( bool is_data
+                                      , bool is_af2
+                                      , bool is_mc12b
+                                      , bool do_jer
+                                      , bool do_jes_up
+                                      , bool do_jes_down
+                                      )
 {
   m_is_data = is_data;
-  m_jet_rescaler = new PennSusyFrame::JetRescalerTool(is_data, is_af2, is_mc12b);
+  m_do_jer      = do_jer;
+  m_do_jes_up   = do_jes_up;
+  m_do_jes_down = do_jes_down;
+  m_jet_rescaler = new PennSusyFrame::JetRescalerTool( is_data
+                                                     , is_af2
+                                                     , is_mc12b
+                                                     , do_jer
+                                                     , do_jes_up
+                                                     , do_jes_down
+                                                     );
 }
 
 // -----------------------------------------------------------------------------

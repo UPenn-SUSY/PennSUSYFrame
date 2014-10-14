@@ -233,9 +233,16 @@ if __name__ == '__main__':
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
 
-                          # # TEST INPUT -- comment all but this for a quick test that things will run at all
-                          # 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
+                          ## # TEST INPUT -- comment all but this for a quick test that things will run at all
+                          ## 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Define what systematics (if any) to include in this run
+    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
+                                             , do_jes_up   = False
+                                             , do_jes_down = False
+                                             )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # add data samples
@@ -245,7 +252,11 @@ if __name__ == '__main__':
                                                    , fast_sim_mc_samples = fast_sim_mc_samples
                                                    , file_list_path_base = 'EosFileLists/bminusl_ttnt_106/ttnt'
                                                    , out_dir             = out_dir
+                                                   , syst_struct         = syst_struct
                                                    )
+
+
+    print data_set_dicts
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if run_local:

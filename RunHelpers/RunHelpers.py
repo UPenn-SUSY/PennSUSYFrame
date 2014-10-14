@@ -114,6 +114,7 @@ def makeDataSetDictList( label_base
                        , dsid
                        , total_num_jobs = 1
                        , out_dir = './'
+                       , syst_struct = None
                        ):
     total_num_entries = 0
 
@@ -143,6 +144,7 @@ def makeDataSetDictList( label_base
         this_data_set_dict['total_num_events']     = total_num_events
         this_data_set_dict['total_num_entries']    = total_num_entries
         this_data_set_dict['sum_mc_event_weights'] = sum_mc_event_weights
+        this_data_set_dict['syst_struct']          = syst_struct
         data_set_dict_list.append(this_data_set_dict)
 
     return data_set_dict_list
@@ -175,6 +177,7 @@ def addSamplesToList( sample_dict
                     , is_full_sim
                     , dsid
                     , out_dir
+                    , syst_struct = None
                     ):
     these_data_set_dicts = makeDataSetDictList( label_base       = sample_dict['label']
                                               , file_list_path   = file_list_path
@@ -184,6 +187,7 @@ def addSamplesToList( sample_dict
                                               , dsid             = dsid
                                               , total_num_jobs   = sample_dict['num_jobs']
                                               , out_dir          = out_dir
+                                              , syst_struct      = syst_struct
                                               )
     for tdsd in these_data_set_dicts:
         data_set_dicts.append(tdsd)
@@ -195,6 +199,7 @@ def addAllSamplesToList( egamma_data_samples
                        , fast_sim_mc_samples
                        , file_list_path_base
                        , out_dir
+                       , syst_struct = None
                        ):
     data_set_dicts = []
 
@@ -210,6 +215,7 @@ def addAllSamplesToList( egamma_data_samples
                         , is_full_sim      = False
                         , dsid             = dsid
                         , out_dir          = out_dir
+                        , syst_struct      = syst_struct
                         )
 
     # add muon stream data samples
@@ -224,6 +230,7 @@ def addAllSamplesToList( egamma_data_samples
                         , is_full_sim      = False
                         , dsid             = dsid
                         , out_dir          = out_dir
+                        , syst_struct      = syst_struct
                         )
 
     # add full sim samples
@@ -238,6 +245,7 @@ def addAllSamplesToList( egamma_data_samples
                         , is_full_sim      = True
                         , dsid             = dsid
                         , out_dir          = out_dir
+                        , syst_struct      = syst_struct
                         )
 
     # add fast sim samples
@@ -252,6 +260,7 @@ def addAllSamplesToList( egamma_data_samples
                         , is_full_sim      = False
                         , dsid             = dsid
                         , out_dir          = out_dir
+                        , syst_struct      = syst_struct
                         )
 
     # return the list of data set dictionaries
@@ -389,3 +398,19 @@ def runLxBatchMultiProcess( run_analysis_fun
     # make sym link to output dir
     if not sym_link_name == '':
         moveToLinkedDir(out_dir, sym_link_name)
+
+# ------------------------------------------------------------------------------
+class SystematicStruct(object):
+    def __init__( self
+                , do_jer
+                , do_jes_up
+                , do_jes_down
+                ):
+        self.do_jer      = do_jer
+        self.do_jes_up   = do_jes_up
+        self.do_jes_down = do_jes_down
+
+    def configureAnalysisObject(self, analysis_obj):
+        analysis_obj.setDoJer(    self.do_jer)
+        analysis_obj.setDoJesUp(  self.do_jes_up)
+        analysis_obj.setDoJesDown(self.do_jes_down)

@@ -36,8 +36,13 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_fancy_progress_bar(true)
                                                                  , m_process_label("")
                                                                  , m_mv1_cut_value(0.3511)
+                                                                 // , m_do_jer(false)
+                                                                 , m_do_jer(true)
+                                                                 , m_do_jes_up(false)
+                                                                 , m_do_jes_down(false)
                                                                  , m_d3pd_reader(0)
 {
+  std::cout << "PennSusyFrameCore()\n";
   // if parameter tree is not specified (or zero), connect the file
   // used to generate this class and read the Tree.
   Init(tree);
@@ -64,7 +69,6 @@ PennSusyFrame::PennSusyFrameCore::~PennSusyFrameCore()
       }
     }
   }
-
 }
 
 // -----------------------------------------------------------------------------
@@ -87,6 +91,7 @@ Long64_t PennSusyFrame::PennSusyFrameCore::LoadTree(Long64_t entry)
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::Init(TTree* tree)
 {
+  std::cout << "Init()\n";
   m_tree = tree;
   prepareSelection();
   Notify();
@@ -117,7 +122,13 @@ void PennSusyFrame::PennSusyFrameCore::prepareTools()
   m_electrons.init(m_is_data, m_is_af2);
   m_muons.init(m_is_data);
   m_taus.init(m_is_data, m_is_af2);
-  m_jets.init(m_is_data, m_is_af2, m_is_mc12b);
+  m_jets.init( m_is_data
+             , m_is_af2
+             , m_is_mc12b
+             , m_do_jer
+             , m_do_jes_up
+             , m_do_jes_down
+             );
 
   if (m_is_af2) m_egamma_sf_tool.setAf2();
   else          m_egamma_sf_tool.setFullSim();

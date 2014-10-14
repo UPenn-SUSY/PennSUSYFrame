@@ -71,6 +71,10 @@ namespace PennSusyFrame
 
       virtual void setMV1Cut(float val) { m_mv1_cut_value = val; }
 
+      virtual void setDoJer(    bool val) { m_do_jer      = val; }
+      virtual void setDoJesUp(  bool val) { m_do_jes_up   = val; }
+      virtual void setDoJesDown(bool val) { m_do_jes_down = val; }
+
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       virtual void prepareSelection();
 
@@ -121,6 +125,11 @@ namespace PennSusyFrame
       std::string m_process_label;
 
       float m_mv1_cut_value;
+
+      // boolians to turn on systematic shifts
+      bool m_do_jer;
+      bool m_do_jes_up;
+      bool m_do_jes_down;
 
       TTree* m_tree;
       PennSusyFrame::D3PDReader* m_d3pd_reader;
