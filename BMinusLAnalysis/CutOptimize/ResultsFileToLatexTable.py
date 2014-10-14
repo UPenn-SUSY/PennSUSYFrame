@@ -58,8 +58,8 @@ def getSampleInfo(sample_file_name):
 
         # background efficiency info
         if splits[0] == 'bkg eff':
-            eff_sig = float(splits[1].split()[0])
-            num_sig = float(splits[2])
+            eff_bkg = float(splits[1].split()[0])
+            num_bkg = float(splits[2])
 
         # significance
         if splits[0] == 'significance':
@@ -73,11 +73,11 @@ def getSampleInfo(sample_file_name):
             upper_is_inf = re.search('inf', cut_info_splits[2])
 
             if not lower_is_inf and upper_is_inf:
-                cut_strings.append('> %f' % float(cut_info_splits[0]))
+                cut_strings.append('\\ge %0.2f' % float(cut_info_splits[0]))
             elif lower_is_inf and not upper_is_inf:
-                cut_strings.append('< %f' % float(cut_info_splits[2]))
+                cut_strings.append('\\le %0.2f' % float(cut_info_splits[2]))
             elif not lower_is_inf and not upper_is_inf:
-                cut_strings.append('%f < x < %f' % (float(cut_info_splits[0]), float(cut_info_splits[2])))
+                cut_strings.append('%0.2f \\le x \\le %0.2f' % (float(cut_info_splits[0]), float(cut_info_splits[2])))
             else:
                 cut_strings.append('--')
 
@@ -93,14 +93,45 @@ def getSampleInfo(sample_file_name):
 def printToTable(out_file_name, cut_vars, sample_info):
     out_file = file(out_file_name, 'w')
 
-    # header line
-    header_line = '\\begin{tabular}{c|'
-    for i in xrange(len(cut_vars)):
-        header_line += 'c'
-    header_line += '|ccc}\n'
-    out_file.write(header_line)
+    file_header = '\\documentclass[14pt]{article}\n\\usepackage{ctable}\n\n\\begin{document}\n\n'
+    out_file.write(file_header)
 
-    out_file.write('\\end{tabular}\n')
+    for i, cv in enumerate(cut_vars):
+        clean_name = cv.replace('_', '\_').replace('^', '\^')
+        out_file.write('var %d: %s\n\n' % (i, clean_name))
+    out_file.write('\n')
+
+    # header line
+    table_header_line = '\\begin{tabular}{c|'
+    for i in xrange(len(cut_vars)):
+        table_header_line += 'c'
+    table_header_line += '|cc|c}\n'
+    out_file.write(table_header_line)
+
+    # title line for table
+    title_line = '\\toprule\nSample & '
+    for i, cv in enumerate(cut_vars):
+        # title_line += cv
+        title_line += 'var %d' % i
+        title_line += ' & '
+    title_line += ' num sig & num bkg & Significance \\\\\n\\midrule\n'
+    out_file.write(title_line)
+
+    for i, si in enumerate(sample_info):
+        this_line = '%d & ' % i
+        for cut_itr, cv in enumerate(cut_vars):
+            this_line += '$%s$' % si['cut_strings'][cut_itr]
+            this_line += ' & '
+        this_line += '%f' % si['num_sig']
+        this_line += ' & '
+        this_line += '%f' % si['num_bkg']
+        this_line += ' & '
+        this_line += '%f' % si['significance']
+        this_line += ' \\\\\n'
+
+        out_file.write(this_line)
+
+    out_file.write('\\bottomrule\n\\end{tabular}\n\n\\end{document}\n')
 
 def main():
     # get list of files:
