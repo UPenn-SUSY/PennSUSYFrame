@@ -331,7 +331,7 @@ def drawCompareCanvas( background_hist_dict
     bkg_stat_uncert_cuts = 1/math.sqrt(b_entries_cuts)
     bkg_syst_uncert_cuts = 0.30
     bkg_total_uncert_cuts = math.sqrt(bkg_stat_uncert_cuts**2 + bkg_syst_uncert_cuts**2)
-    zn_cuts = 0
+    # zn_cuts = 0
 
 
     text_cut_0 = ROOT.TText(0.60, 0.85, 'Full selection')
@@ -339,7 +339,7 @@ def drawCompareCanvas( background_hist_dict
     text_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %0.2f (raw: %d)'     % (s_int_cuts, s_entries_cuts))
     text_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %0.2f' % \
             ( s_int_cuts/ math.sqrt( s_int_cuts + b_int_cuts ) ) if (s_int_cuts + b_int_cuts) > 0 else 0 )
-    text_cut_4 = ROOT.TText(0.60, 0.65, 'Zn: %0.2f' % zn_cuts)
+    # text_cut_4 = ROOT.TText(0.60, 0.65, 'Zn: %0.2f' % zn_cuts)
 
     text_cut_1.SetTextColor(ROOT.kBlue)
     text_cut_2.SetTextColor(ROOT.kRed)
@@ -348,16 +348,24 @@ def drawCompareCanvas( background_hist_dict
     text_cut_1.SetNDC()
     text_cut_2.SetNDC()
     text_cut_3.SetNDC()
-    text_cut_4.SetNDC()
+    # text_cut_4.SetNDC()
 
     text_cut_0.Draw()
     text_cut_1.Draw()
     text_cut_2.Draw()
     text_cut_3.Draw()
-    text_cut_4.Draw()
+    # text_cut_4.Draw()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     c.Write()
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    info_dump = file('cut_result_info__%s.txt' % tag, 'w')
+    info_dump.write('Background: %0.2f\n' % b_int_cuts)
+    info_dump.write('Signal: %0.2f\n'     % s_int_cuts)
+    info_dump.write('S/#sqrt{S+B}: %0.2f\n' % \
+            ( s_int_cuts/ math.sqrt( s_int_cuts + b_int_cuts ) ) if (s_int_cuts + b_int_cuts) > 0 else 0 )
+    info_dump.close()
 
 # ------------------------------------------------------------------------------
 def prodcueAndDrawPlots(ht_cut, mbl_asym_cut, met_sig_cut):
@@ -379,38 +387,38 @@ def prodcueAndDrawPlots(ht_cut, mbl_asym_cut, met_sig_cut):
 
     out_file = ROOT.TFile.Open('out_%s.root' % cut_tag , 'recreate')
 
-    drawCompareCanvas(ttbar, signal_100 , 'mbl', 'ttbar_T100' , out_file)
-    drawCompareCanvas(ttbar, signal_200 , 'mbl', 'ttbar_T200' , out_file)
-    drawCompareCanvas(ttbar, signal_300 , 'mbl', 'ttbar_T300' , out_file)
-    drawCompareCanvas(ttbar, signal_400 , 'mbl', 'ttbar_T400' , out_file)
-    drawCompareCanvas(ttbar, signal_500 , 'mbl', 'ttbar_T500' , out_file)
-    drawCompareCanvas(ttbar, signal_600 , 'mbl', 'ttbar_T600' , out_file)
-    drawCompareCanvas(ttbar, signal_700 , 'mbl', 'ttbar_T700' , out_file)
-    drawCompareCanvas(ttbar, signal_800 , 'mbl', 'ttbar_T800' , out_file)
-    drawCompareCanvas(ttbar, signal_900 , 'mbl', 'ttbar_T900' , out_file)
-    drawCompareCanvas(ttbar, signal_1000, 'mbl', 'ttbar_T1000', out_file)
+    drawCompareCanvas(ttbar, signal_100 , 'mbl', 'ttbar_T100__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_200 , 'mbl', 'ttbar_T200__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_300 , 'mbl', 'ttbar_T300__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_400 , 'mbl', 'ttbar_T400__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_500 , 'mbl', 'ttbar_T500__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_600 , 'mbl', 'ttbar_T600__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_700 , 'mbl', 'ttbar_T700__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_800 , 'mbl', 'ttbar_T800__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_900 , 'mbl', 'ttbar_T900__%s'  % cut_tag , out_file)
+    drawCompareCanvas(ttbar, signal_1000, 'mbl', 'ttbar_T1000__%s' % cut_tag, out_file)
 
-    drawCompareCanvas(ttbar, signal_100 , 'ht', 'ttbar_T100' , out_file)
-    drawCompareCanvas(ttbar, signal_200 , 'ht', 'ttbar_T200' , out_file)
-    drawCompareCanvas(ttbar, signal_300 , 'ht', 'ttbar_T300' , out_file)
-    drawCompareCanvas(ttbar, signal_400 , 'ht', 'ttbar_T400' , out_file)
-    drawCompareCanvas(ttbar, signal_500 , 'ht', 'ttbar_T500' , out_file)
-    drawCompareCanvas(ttbar, signal_600 , 'ht', 'ttbar_T600' , out_file)
-    drawCompareCanvas(ttbar, signal_700 , 'ht', 'ttbar_T700' , out_file)
-    drawCompareCanvas(ttbar, signal_800 , 'ht', 'ttbar_T800' , out_file)
-    drawCompareCanvas(ttbar, signal_900 , 'ht', 'ttbar_T900' , out_file)
-    drawCompareCanvas(ttbar, signal_1000, 'ht', 'ttbar_T1000', out_file)
+    drawCompareCanvas(ttbar, signal_100 , 'ht', 'ttbar_T100__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_200 , 'ht', 'ttbar_T200__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_300 , 'ht', 'ttbar_T300__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_400 , 'ht', 'ttbar_T400__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_500 , 'ht', 'ttbar_T500__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_600 , 'ht', 'ttbar_T600__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_700 , 'ht', 'ttbar_T700__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_800 , 'ht', 'ttbar_T800__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_900 , 'ht', 'ttbar_T900__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_1000, 'ht', 'ttbar_T1000__%s' % cut_tag, out_file)
 
-    drawCompareCanvas(ttbar, signal_100 , 'met_sig', 'ttbar_T100' , out_file)
-    drawCompareCanvas(ttbar, signal_200 , 'met_sig', 'ttbar_T200' , out_file)
-    drawCompareCanvas(ttbar, signal_300 , 'met_sig', 'ttbar_T300' , out_file)
-    drawCompareCanvas(ttbar, signal_400 , 'met_sig', 'ttbar_T400' , out_file)
-    drawCompareCanvas(ttbar, signal_500 , 'met_sig', 'ttbar_T500' , out_file)
-    drawCompareCanvas(ttbar, signal_600 , 'met_sig', 'ttbar_T600' , out_file)
-    drawCompareCanvas(ttbar, signal_700 , 'met_sig', 'ttbar_T700' , out_file)
-    drawCompareCanvas(ttbar, signal_800 , 'met_sig', 'ttbar_T800' , out_file)
-    drawCompareCanvas(ttbar, signal_900 , 'met_sig', 'ttbar_T900' , out_file)
-    drawCompareCanvas(ttbar, signal_1000, 'met_sig', 'ttbar_T1000', out_file)
+    drawCompareCanvas(ttbar, signal_100 , 'met_sig', 'ttbar_T100__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_200 , 'met_sig', 'ttbar_T200__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_300 , 'met_sig', 'ttbar_T300__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_400 , 'met_sig', 'ttbar_T400__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_500 , 'met_sig', 'ttbar_T500__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_600 , 'met_sig', 'ttbar_T600__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_700 , 'met_sig', 'ttbar_T700__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_800 , 'met_sig', 'ttbar_T800__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_900 , 'met_sig', 'ttbar_T900__%s'  % cut_tag, out_file)
+    drawCompareCanvas(ttbar, signal_1000, 'met_sig', 'ttbar_T1000__%s' % cut_tag, out_file)
 
     out_file.Close()
 
