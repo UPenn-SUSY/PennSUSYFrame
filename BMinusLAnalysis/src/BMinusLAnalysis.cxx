@@ -555,17 +555,17 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     double ht       = m_event_quantities.getHtSignal() / 1.e3;
     double met_sig  = m_met.getMetSigSignal();
 
-    bool mbl_ge_3     = (mbl_asym >= 0.30 );
-    bool mbl_le_6     = (mbl_asym <= 0.60 );
-    bool met_sig_le_7 = (met_sig  <= 7.   );
-    bool ht_ge_600    = (ht >= 600.0      );
+    // bool mbl_ge_3      = (mbl_asym >= 0.30   );
+    bool mbl_le_4      = (mbl_asym <= 0.40   );
+    bool met_sig_le_10 = (met_sig  <= 10.    );
+    bool ht_ge_1100    = (ht       >= 1100.0 );
 
     // -------------------------------------------------------------------------
     // - Fill histograms for SR (don't fill for data if we are blind!)
     // -------------------------------------------------------------------------
     if ( !m_is_data || !m_is_blind ) {
       // signal region cuts
-      if (m_pass_z_veto && mbl_le_6 && met_sig_le_7 && ht_ge_600) {
+      if (m_pass_z_veto && mbl_le_4 && met_sig_le_10 && ht_ge_1100) {
         fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR , m_bl_0 , m_bl_1 , m_event_weight);
       }
     }
@@ -574,32 +574,32 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     // - Fill histograms for CR and VR
     // -------------------------------------------------------------------------
     // CR top region cuts
-    if (m_pass_z_veto && mbl_ge_3 && !met_sig_le_7 && !ht_ge_600) {
+    if (m_pass_z_veto && mbl_le_4 && !met_sig_le_10 && !ht_ge_1100) {
       fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_TOP , m_bl_0 , m_bl_1 , m_event_weight);
     }
 
     // CR Z region cuts
-    if (!m_pass_z_veto && mbl_le_6 && met_sig_le_7 && !ht_ge_600) {
+    if (!m_pass_z_veto && mbl_le_4 && met_sig_le_10 && !ht_ge_1100) {
       fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_Z , m_bl_0 , m_bl_1 , m_event_weight);
     }
 
     // VR 1 region cuts
-    if (m_pass_z_veto && !mbl_ge_3 && met_sig_le_7 && !ht_ge_600) {
+    if (m_pass_z_veto && mbl_le_4 && met_sig_le_10 && !ht_ge_1100) {
       fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_1 , m_bl_0 , m_bl_1 , m_event_weight);
     }
 
     // VR 2 region cuts
-    if (m_pass_z_veto && !mbl_ge_3 && !ht_ge_600) {
+    if (m_pass_z_veto && !mbl_le_4 && !ht_ge_1100) {
       fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_2 , m_bl_0 , m_bl_1 , m_event_weight);
     }
 
     // VR 3 region cuts
-    if (!m_pass_z_veto && mbl_le_6 && !met_sig_le_7 && !ht_ge_600) {
+    if (!m_pass_z_veto && mbl_le_4 && !met_sig_le_10 && !ht_ge_1100) {
       fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_3 , m_bl_0 , m_bl_1 , m_event_weight);
     }
 
     // VR 4 region cuts
-    if (!m_pass_z_veto && !mbl_le_6 && !ht_ge_600) {
+    if (!m_pass_z_veto && !mbl_le_4 && !ht_ge_1100) {
       fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_4 , m_bl_0 , m_bl_1 , m_event_weight);
     }
   }
