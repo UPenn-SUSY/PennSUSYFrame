@@ -162,7 +162,7 @@ def safeRemoveDir(dir_name):
         rm_dir = None
         while not rm_dir in ['y', 'Y', 'n', 'N']:
             rm_dir = raw_input('actually remove %s? [y,n]: ' % dir_name)
-        if rm_dir:
+        if rm_dir.lower() == 'y':
             if os.path.islink(dir_name):
                 os.remove(dir_name)
             else:
