@@ -427,8 +427,8 @@ def main():
     ROOT.gStyle.SetOptStat(0)
 
     ht_cut       = [1000, 1100, 1200]
-    mbl_asym_cut = [0.35, 0.40]
-    met_sig_cut  = [20]
+    mbl_asym_cut = [0.30, 0.35, 0.40]
+    met_sig_cut  = [10, 15, 20]
 
     print ht_cut
     print mbl_asym_cut
