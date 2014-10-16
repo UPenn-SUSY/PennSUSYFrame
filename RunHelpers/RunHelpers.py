@@ -125,9 +125,9 @@ def makeDataSetDictList( label_base
     total_num_entries    = data_set_input['total_entries']
     sum_mc_event_weights = data_set_input['sum_mc_event_weights']
 
-    print 'total num events: %s' % total_num_events
-    print 'total entries: %s' % total_num_entries
-    print 'sum mc event weights: %s' % sum_mc_event_weights
+    print '  total num events: %s' % total_num_events
+    print '  total entries: %s' % total_num_entries
+    print '  sum mc event weights: %s' % sum_mc_event_weights
 
     data_set_dict_list = []
     for tnj in xrange(total_num_jobs):
@@ -147,6 +147,7 @@ def makeDataSetDictList( label_base
         this_data_set_dict['syst_struct']          = syst_struct
         data_set_dict_list.append(this_data_set_dict)
 
+    print ''
     return data_set_dict_list
 
 # ------------------------------------------------------------------------------
