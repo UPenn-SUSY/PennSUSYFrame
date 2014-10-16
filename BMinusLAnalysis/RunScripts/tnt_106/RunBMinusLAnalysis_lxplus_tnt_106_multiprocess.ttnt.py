@@ -253,9 +253,6 @@ if __name__ == '__main__':
                                                    , syst_struct         = syst_struct
                                                    )
 
-
-    print data_set_dicts
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if run_local:
         RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLAnalysis.runBMinusLAnalysisFun
