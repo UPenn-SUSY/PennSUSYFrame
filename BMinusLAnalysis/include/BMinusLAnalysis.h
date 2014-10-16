@@ -115,8 +115,6 @@ namespace PennSusyFrame
 
       std::string m_out_hist_file_name;
 
-      PennSusyFrame::LeptonKinematicsHists m_lep_hists;
-
       bool m_do_detailed_bl_hists;
 
       bool m_crit_cut_grl;
