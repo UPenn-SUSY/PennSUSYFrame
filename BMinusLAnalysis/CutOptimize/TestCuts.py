@@ -331,7 +331,9 @@ def drawCompareCanvas( background_hist_dict
     bkg_stat_uncert_cuts = 1/math.sqrt(b_entries_cuts)
     bkg_syst_uncert_cuts = 0.30
     bkg_total_uncert_cuts = math.sqrt(bkg_stat_uncert_cuts**2 + bkg_syst_uncert_cuts**2)
-    # zn_cuts = 0
+
+    b_rel_uncert = math.sqrt(0.3**2 + 1/b_entries_cuts)
+    zn_cuts = ROOT.RooStats.NumberCountingUtils.BinomialExpZ(s_int_cuts, b_int_cuts, b_rel_uncert)
 
 
     text_cut_0 = ROOT.TText(0.60, 0.85, 'Full selection')
@@ -339,7 +341,7 @@ def drawCompareCanvas( background_hist_dict
     text_cut_2 = ROOT.TText(0.60, 0.75, 'Signal: %0.2f (raw: %d)'     % (s_int_cuts, s_entries_cuts))
     text_cut_3 = ROOT.TText(0.60, 0.70, 'S/#sqrt{S+B}: %0.2f' % \
             ( s_int_cuts/ math.sqrt( s_int_cuts + b_int_cuts ) ) if (s_int_cuts + b_int_cuts) > 0 else 0 )
-    # text_cut_4 = ROOT.TText(0.60, 0.65, 'Zn: %0.2f' % zn_cuts)
+    text_cut_4 = ROOT.TText(0.60, 0.65, 'Zn: %0.2f' % zn_cuts)
 
     text_cut_1.SetTextColor(ROOT.kBlue)
     text_cut_2.SetTextColor(ROOT.kRed)
@@ -348,23 +350,24 @@ def drawCompareCanvas( background_hist_dict
     text_cut_1.SetNDC()
     text_cut_2.SetNDC()
     text_cut_3.SetNDC()
-    # text_cut_4.SetNDC()
+    text_cut_4.SetNDC()
 
     text_cut_0.Draw()
     text_cut_1.Draw()
     text_cut_2.Draw()
     text_cut_3.Draw()
-    # text_cut_4.Draw()
+    text_cut_4.Draw()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     c.Write()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    info_dump = file('cut_result_info__%s.txt' % tag, 'w')
+    info_dump = file('results/cut_result_info__%s.txt' % tag, 'w')
     info_dump.write('Background: %0.2f\n' % b_int_cuts)
     info_dump.write('Signal: %0.2f\n'     % s_int_cuts)
     info_dump.write('S/#sqrt{S+B}: %0.2f\n' % \
             ( s_int_cuts/ math.sqrt( s_int_cuts + b_int_cuts ) ) if (s_int_cuts + b_int_cuts) > 0 else 0 )
+    info_dump.write('Zn: %0.2f\n' % zn_cuts)
     info_dump.close()
 
 # ------------------------------------------------------------------------------
@@ -428,7 +431,7 @@ def main():
 
     ht_cut       = [1000, 1100, 1200]
     mbl_asym_cut = [0.30, 0.35, 0.40]
-    met_sig_cut  = [10, 15, 20]
+    met_sig_cut  = [10, 15, 20, 100]
 
     print ht_cut
     print mbl_asym_cut

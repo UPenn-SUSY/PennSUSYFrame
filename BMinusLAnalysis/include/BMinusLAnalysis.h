@@ -27,6 +27,9 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_VR_2
                            , BMINUSL_HIST_VR_3
                            , BMINUSL_HIST_VR_4
+                           , BMINUSL_HIST_VR_5
+                           , BMINUSL_HIST_VR_6
+                           , BMINUSL_HIST_VR_7
 
                            , BMINUSL_HIST_N
                            };
@@ -36,13 +39,16 @@ namespace PennSusyFrame
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_GE_4_OBJECTS"
 
-                                                   , "BMINUSL_HIST_SR"
-                                                   , "BMINUSL_HIST_CR_TOP"
-                                                   , "BMINUSL_HIST_CR_Z"
-                                                   , "BMINUSL_HIST_VR_1"
-                                                   , "BMINUSL_HIST_VR_2"
-                                                   , "BMINUSL_HIST_VR_3"
-                                                   , "BMINUSL_HIST_VR_4"
+                                                   , "BMINUSL_SR"
+                                                   , "BMINUSL_CR_TOP"
+                                                   , "BMINUSL_CR_Z"
+                                                   , "BMINUSL_VR_1"
+                                                   , "BMINUSL_VR_2"
+                                                   , "BMINUSL_VR_3"
+                                                   , "BMINUSL_VR_4"
+                                                   , "BMINUSL_VR_5"
+                                                   , "BMINUSL_VR_6"
+                                                   , "BMINUSL_VR_7"
 
                                                    , "BMINUSL_N"
                                                    };
