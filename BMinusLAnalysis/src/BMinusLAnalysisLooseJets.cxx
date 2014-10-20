@@ -264,17 +264,17 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       double lljj_ht       = m_lljj_ht_signal / 1.e3;
       double lljj_met_sig  = m_met.getMetEt()/sqrt(lljj_ht)/1.e3;
 
-      bool lljj_mbl_ge_3     = (lljj_mbl_asym >= 0.30 );
-      bool lljj_mbl_le_6     = (lljj_mbl_asym <= 0.60 );
-      bool lljj_met_sig_le_7 = (lljj_met_sig  <= 7.   );
-      bool lljj_ht_ge_600    = (lljj_ht >= 600.0      );
+      bool lljj_ht_ge_1100   = (lljj_ht       >= 1100.0 );
+      bool lljj_ht_ge_500    = (lljj_ht       >= 500.0  );
+      bool lljj_mbl_le_4     = (lljj_mbl_asym <= 0.40   );
+      bool lljj_met_sig_ge_4 = (lljj_met_sig  >= 4.     );
 
       // -------------------------------------------------------------------------
       // - Fill histograms for SR (don't fill for data if we are blind!)
       // -------------------------------------------------------------------------
       if ( !m_is_data || !m_is_blind ) {
         // signal region cuts
-        if (m_pass_z_veto && lljj_mbl_le_6 && lljj_met_sig_le_7 && lljj_ht_ge_600) {
+        if (m_pass_z_veto && lljj_ht_ge_1100 && lljj_mbl_le_4) {
           fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_SR
                          , m_electrons.getCollection(EL_SELECTED)
                          , m_muons.getCollection(MU_SELECTED)
@@ -290,7 +290,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       // - Fill histograms for CR and VR
       // -------------------------------------------------------------------------
       // CR top region cuts
-      if (m_pass_z_veto && lljj_mbl_ge_3 && !lljj_met_sig_le_7 && !lljj_ht_ge_600) {
+      if (m_pass_z_veto && !lljj_ht_ge_500 && lljj_mbl_le_4 && lljj_met_sig_ge_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_CR_TOP
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -302,7 +302,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // CR Z region cuts
-      if (!m_pass_z_veto && lljj_mbl_le_6 && lljj_met_sig_le_7 && !lljj_ht_ge_600) {
+      if (!m_pass_z_veto && !lljj_ht_ge_500 && lljj_mbl_le_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_CR_Z
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -314,7 +314,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // VR 1 region cuts
-      if (m_pass_z_veto && !lljj_mbl_ge_3 && lljj_met_sig_le_7 && !lljj_ht_ge_600) {
+      if (m_pass_z_veto && lljj_ht_ge_500 && !lljj_ht_ge_1100 && lljj_mbl_le_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_VR_1
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -326,7 +326,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // VR 2 region cuts
-      if (m_pass_z_veto && !lljj_mbl_ge_3 && !lljj_ht_ge_600) {
+      if (m_pass_z_veto && lljj_ht_ge_500 && !lljj_ht_ge_1100 && !lljj_mbl_le_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_VR_2
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -338,7 +338,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // VR 3 region cuts
-      if (!m_pass_z_veto && lljj_mbl_le_6 && !lljj_met_sig_le_7 && !lljj_ht_ge_600) {
+      if (m_pass_z_veto && !lljj_ht_ge_500 && lljj_mbl_le_4 && !lljj_met_sig_ge_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_VR_3
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -350,8 +350,44 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // VR 4 region cuts
-      if (!m_pass_z_veto && !lljj_mbl_le_6 && !lljj_ht_ge_600) {
+      if (m_pass_z_veto && !lljj_ht_ge_500 && lljj_mbl_le_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_VR_4
+                       , m_electrons.getCollection(EL_SELECTED)
+                       , m_muons.getCollection(MU_SELECTED)
+                       , m_jets.getCollection(JET_GOOD)
+                       , m_lljj_jl_0
+                       , m_lljj_jl_1
+                       , lljj_weight
+                       );
+      }
+
+      // VR 5 region cuts
+      if (!m_pass_z_veto && lljj_ht_ge_500 && !lljj_ht_ge_1100 && lljj_mbl_le_4) {
+        fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_VR_5
+                       , m_electrons.getCollection(EL_SELECTED)
+                       , m_muons.getCollection(MU_SELECTED)
+                       , m_jets.getCollection(JET_GOOD)
+                       , m_lljj_jl_0
+                       , m_lljj_jl_1
+                       , lljj_weight
+                       );
+      }
+
+      // VR 6 region cuts
+      if (!m_pass_z_veto && lljj_ht_ge_500 && !lljj_ht_ge_1100 && !lljj_mbl_le_4) {
+        fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_VR_6
+                       , m_electrons.getCollection(EL_SELECTED)
+                       , m_muons.getCollection(MU_SELECTED)
+                       , m_jets.getCollection(JET_GOOD)
+                       , m_lljj_jl_0
+                       , m_lljj_jl_1
+                       , lljj_weight
+                       );
+      }
+
+      // VR 7 region cuts
+      if (!m_pass_z_veto && !lljj_ht_ge_500 && !lljj_mbl_le_4) {
+        fillHistHandles( PennSusyFrame::BMINUSL_LLJJ_HIST_VR_7
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
                        , m_jets.getCollection(JET_GOOD)
@@ -367,17 +403,18 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       double llbj_ht       = m_llbj_ht_signal / 1.e3;
       double llbj_met_sig  = m_met.getMetEt()/sqrt(llbj_ht)/1.e3;
 
-      bool llbj_mbl_ge_3     = (llbj_mbl_asym >= 0.30 );
-      bool llbj_mbl_le_6     = (llbj_mbl_asym <= 0.60 );
-      bool llbj_met_sig_le_7 = (llbj_met_sig  <= 7.   );
-      bool llbj_ht_ge_600    = (llbj_ht >= 600.0      );
+      bool llbj_ht_ge_1100   = (llbj_ht       >= 1100.0 );
+      bool llbj_ht_ge_500    = (llbj_ht       >= 500.0  );
+      bool llbj_mbl_le_4     = (llbj_mbl_asym <= 0.40   );
+      bool llbj_met_sig_ge_4 = (llbj_met_sig  >= 4.     );
+
 
       // -------------------------------------------------------------------------
       // - Fill histograms for SR (don't fill for data if we are blind!)
       // -------------------------------------------------------------------------
       if ( !m_is_data || !m_is_blind ) {
         // signal region cuts
-        if (m_pass_z_veto && llbj_mbl_le_6 && llbj_met_sig_le_7 && llbj_ht_ge_600) {
+        if (m_pass_z_veto && llbj_ht_ge_1100 && llbj_mbl_le_4) {
           fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_SR
                          , m_electrons.getCollection(EL_SELECTED)
                          , m_muons.getCollection(MU_SELECTED)
@@ -393,7 +430,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       // - Fill histograms for CR and VR
       // -------------------------------------------------------------------------
       // CR top region cuts
-      if (m_pass_z_veto && llbj_mbl_ge_3 && !llbj_met_sig_le_7 && !llbj_ht_ge_600) {
+      if (m_pass_z_veto && !llbj_ht_ge_500 && llbj_mbl_le_4 && llbj_met_sig_ge_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_CR_TOP
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -405,7 +442,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // CR Z region cuts
-      if (!m_pass_z_veto && llbj_mbl_le_6 && llbj_met_sig_le_7 && !llbj_ht_ge_600) {
+      if (!m_pass_z_veto && !llbj_ht_ge_500 && llbj_mbl_le_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_CR_Z
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -417,7 +454,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // VR 1 region cuts
-      if (m_pass_z_veto && !llbj_mbl_ge_3 && llbj_met_sig_le_7 && !llbj_ht_ge_600) {
+      if (m_pass_z_veto && llbj_ht_ge_500 && !llbj_ht_ge_1100 && llbj_mbl_le_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_VR_1
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -429,7 +466,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // VR 2 region cuts
-      if (m_pass_z_veto && !llbj_mbl_ge_3 && !llbj_ht_ge_600) {
+      if (m_pass_z_veto && llbj_ht_ge_500 && !llbj_ht_ge_1100 && !llbj_mbl_le_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_VR_2
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -441,7 +478,7 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // VR 3 region cuts
-      if (!m_pass_z_veto && llbj_mbl_le_6 && !llbj_met_sig_le_7 && !llbj_ht_ge_600) {
+      if (m_pass_z_veto && !llbj_ht_ge_500 && llbj_mbl_le_4 && !llbj_met_sig_ge_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_VR_3
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
@@ -453,8 +490,43 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeEvent()
       }
 
       // VR 4 region cuts
-      if (!m_pass_z_veto && !llbj_mbl_le_6 && !llbj_ht_ge_600) {
+      if (m_pass_z_veto && !llbj_ht_ge_500 && llbj_mbl_le_4) {
         fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_VR_4
+                       , m_electrons.getCollection(EL_SELECTED)
+                       , m_muons.getCollection(MU_SELECTED)
+                       , &m_llbj_jet_collection
+                       , m_llbj_jl_0
+                       , m_llbj_jl_1
+                       , m_event_weight
+                       );
+      }
+      // VR 5 region cuts
+      if (!m_pass_z_veto && llbj_ht_ge_500 && !llbj_ht_ge_1100 && llbj_mbl_le_4) {
+        fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_VR_5
+                       , m_electrons.getCollection(EL_SELECTED)
+                       , m_muons.getCollection(MU_SELECTED)
+                       , &m_llbj_jet_collection
+                       , m_llbj_jl_0
+                       , m_llbj_jl_1
+                       , m_event_weight
+                       );
+      }
+
+      // VR 6 region cuts
+      if (!m_pass_z_veto && llbj_ht_ge_500 && !llbj_ht_ge_1100 && !llbj_mbl_le_4) {
+        fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_VR_6
+                       , m_electrons.getCollection(EL_SELECTED)
+                       , m_muons.getCollection(MU_SELECTED)
+                       , &m_llbj_jet_collection
+                       , m_llbj_jl_0
+                       , m_llbj_jl_1
+                       , m_event_weight
+                       );
+      }
+
+      // VR 7 region cuts
+      if (!m_pass_z_veto && !llbj_ht_ge_500 && !llbj_mbl_le_4) {
+        fillHistHandles( PennSusyFrame::BMINUSL_LLBJ_HIST_VR_7
                        , m_electrons.getCollection(EL_SELECTED)
                        , m_muons.getCollection(MU_SELECTED)
                        , &m_llbj_jet_collection
