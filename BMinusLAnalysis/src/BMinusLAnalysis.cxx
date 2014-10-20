@@ -688,14 +688,26 @@ PHASE_SPACE PennSusyFrame::BMinusLAnalysis::getPhaseSpace()
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
 {
-  PHASE_SPACE phase_space = m_event.getPhaseSpace();
+  FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
 
   // for MC, only check for phase != none
-  if (!m_is_data) return (phase_space != PHASE_NONE);
+  if (!m_is_data) return (flavor_channel != FLAVOR_NONE);
 
-  // for data check that phase matches with data stream
-  if (m_is_egamma_stream  && ( phase_space == PHASE_EE || phase_space == PHASE_EM )) return true;
-  if (!m_is_egamma_stream && ( phase_space == PHASE_MM || phase_space == PHASE_ME )) return true;
+  // EE MM can only come from egamma and muon streams respectively
+  if (m_is_egamma_stream  && flavor_channel == FLAVOR_EE) return true;
+  if (!m_is_egamma_stream && flavor_channel == FLAVOR_MM) return true;
+
+  // if EM stream, check trigger. if pass the single electron trigger, take from
+  // egamma stream. Only take EM events from muons stream if the event fails the
+  // electron trigger
+  if (m_is_egamma_stream && flavor_channel == FLAVOR_EM) {
+    return m_trigger.getEF_e24vhi_medium1();
+  }
+  if (!m_is_egamma_stream && flavor_channel == FLAVOR_EM) {
+    return (  m_trigger.getEF_mu24i_tight()
+           && !m_trigger.getEF_e24vhi_medium1()
+           );
+  }
 
   return false;
 }
