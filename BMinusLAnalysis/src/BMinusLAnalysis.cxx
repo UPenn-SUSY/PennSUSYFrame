@@ -688,6 +688,29 @@ PHASE_SPACE PennSusyFrame::BMinusLAnalysis::getPhaseSpace()
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
 {
+  // get the phase space of this event
+  PHASE_SPACE phase_space = m_event.getPhaseSpace();
+
+  // for MC, only check for phase != none   // for MC, only check for phase != none
+  if (!m_is_data) return (phase_space != PHASE_NONE);
+
+  // for data check that phase matches with data stream
+  if (  m_is_egamma_stream
+     && (phase_space == PHASE_EE || phase_space == PHASE_EM)
+     ) {
+    return true;
+  }
+  if (  !m_is_egamma_stream
+     && (phase_space == PHASE_MM || phase_space == PHASE_ME)
+     ) {
+    return true;
+  }
+
+  return false;
+
+  /*
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // TODO replace the above overlap removal with the one below after debugging
   FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
 
   // for MC, only check for phase != none
@@ -703,6 +726,7 @@ bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
   if (m_is_egamma_stream && flavor_channel == FLAVOR_EM) {
     return m_trigger.getEF_e24vhi_medium1();
   }
+
   if (!m_is_egamma_stream && flavor_channel == FLAVOR_EM) {
     return (  m_trigger.getEF_mu24i_tight()
            && !m_trigger.getEF_e24vhi_medium1()
@@ -710,6 +734,7 @@ bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
   }
 
   return false;
+  */
 }
 
 // -----------------------------------------------------------------------------
