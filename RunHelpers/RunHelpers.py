@@ -286,7 +286,8 @@ def moveToLinkedDir(out_dir, pointer_dir):
     abs_path_pointer = os.path.abspath(pointer_dir)
 
     safeRemoveDir(abs_path_pointer)
-    os.symlink(abs_path_out, abs_path_pointer)
+    if os.path.exists(abs_path_pointer):
+        os.symlink(abs_path_out, abs_path_pointer)
 
 # ------------------------------------------------------------------------------
 def runLocalMultiprocess( run_analysis_fun
