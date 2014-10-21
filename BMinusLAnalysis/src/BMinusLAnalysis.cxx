@@ -179,6 +179,7 @@ void PennSusyFrame::BMinusLAnalysis::initializeEvent()
   m_mc_event_weight = 1.;
   m_pile_up_sf      = 1.;
   m_lepton_sf       = 1.;
+  m_trigger_sf      = 1.;
   m_btag_sf         = 1.;
   m_ttbar_pt_weight = 1.;
 
@@ -395,7 +396,15 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // apply trigger weight
-  // TODO apply trigger weight
+  // TODO validate trigger weight
+  if (!m_is_data) {
+    m_trigger_sf = m_bminusl_trigger_sf_tool.getSF( m_event
+                                                  , m_pile_up_sf_tool
+                                                  , m_electrons.getCollection(EL_SELECTED)
+                                                  , m_muons.getCollection(MU_SELECTED)
+                                                  );
+  }
+  m_event_weight *= m_trigger_sf;
   fillTrackers(BMINUSL_CUT_TRIGGER_WEIGHT);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

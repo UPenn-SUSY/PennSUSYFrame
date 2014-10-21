@@ -166,6 +166,7 @@ namespace PennSusyFrame
       double m_mc_event_weight;
       double m_pile_up_sf;
       double m_lepton_sf;
+      double m_trigger_sf;
       double m_btag_sf;
       double m_ttbar_pt_weight;
 

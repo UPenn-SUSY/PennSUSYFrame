@@ -9,8 +9,10 @@ class LeptonTriggerSF;
 
 namespace PennSusyFrame
 {
+  class Event;
   class Electron;
   class Muon;
+  class PileUpScaleFactorTool;
 }
 
 // =============================================================================
@@ -23,8 +25,10 @@ class BMinusLTriggerScaleFactor
 
     void init();
 
-    double getSF( std::vector<PennSusyFrame::Electron*>*
-                , std::vector<PennSusyFrame::Muon*>*
+    double getSF( const PennSusyFrame::Event
+                , PennSusyFrame::PileUpScaleFactorTool&
+                , const std::vector<PennSusyFrame::Electron*>*
+                , const std::vector<PennSusyFrame::Muon*>*
                 );
 
   // ---------------------------------------------------------------------------
