@@ -68,18 +68,23 @@ PennSusyFrame::BMinusLAnalysis::~BMinusLAnalysis()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::prepareTools()
 {
+  // set electron quality level in egamma SF tool
   m_egamma_sf_tool.setMediumPP();
 
+  // prepare tools
   PennSusyFrameCore::prepareTools();
+  m_bminusl_trigger_sf_tool.init();
 
+  // set up grl
+  // TODO make this configurable
   std::string base_dir = getenv("BASE_WORK_DIR");
   if (m_is_data) {
-    // TODO make this configurable
     m_grl.init( base_dir
               + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
               );
   }
 
+  // set up overlap removal
   m_object_cleaning.setEEConeSize(0.05);
   m_object_cleaning.setEJConeSize(0.20);
   m_object_cleaning.setMJConeSize(0.00);

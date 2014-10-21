@@ -11,6 +11,7 @@
 #include "HistogramHandlers/include/HistogramHandlers.h"
 #include "BMinusLAnalysis/include/BMinusLCutFlowTracker.h"
 #include "BMinusLAnalysis/include/BMinusLHistogramHandlers.h"
+#include "BMinusLAnalysis/include/BMinusLTriggerScaleFactor.h"
 
 // =============================================================================
 namespace PennSusyFrame
@@ -148,6 +149,8 @@ namespace PennSusyFrame
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
+
+      BMinusLTriggerScaleFactor m_bminusl_trigger_sf_tool;
 
       BMinusLCutFlowTracker m_raw_cutflow_tracker;
       BMinusLCutFlowTracker m_cutflow_tracker;
