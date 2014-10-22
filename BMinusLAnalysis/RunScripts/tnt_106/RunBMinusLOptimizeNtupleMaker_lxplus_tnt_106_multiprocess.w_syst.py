@@ -99,7 +99,7 @@ if __name__ == '__main__':
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':50}
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2', 'num_jobs':50}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'          , 'num_jobs':20}

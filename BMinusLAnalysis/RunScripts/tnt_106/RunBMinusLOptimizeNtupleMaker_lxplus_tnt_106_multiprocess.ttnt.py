@@ -48,7 +48,7 @@ print out_dir
 
 # ==============================================================================
 if __name__ == '__main__':
-    RunHelpers.safeMakeDir(out_dir)
+    # RunHelpers.safeMakeDir(out_dir)
 
     print 'getting file list'
 
@@ -232,8 +232,8 @@ if __name__ == '__main__':
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
 
-                          #   # TEST input
-                          #   202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
+                          ## # TEST input
+                          ## 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
