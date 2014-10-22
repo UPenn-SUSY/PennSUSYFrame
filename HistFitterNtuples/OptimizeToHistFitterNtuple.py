@@ -155,7 +155,7 @@ def writeTreesToHistFitterFile(out_file_name, optimize_tree_dict):
 
 # ------------------------------------------------------------------------------
 def main():
-    bkg_optimize_tree_dict = { 'ttbar_NoSys'     : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2_v2.ntup.root' ]
+    bkg_optimize_tree_dict = { 'ttbar_NoSys'     : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2.ntup.root' ]
                              , 'SingleTop_NoSys' : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l.ntup.root'
                                                    , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.110119.PowhegPythia_P2011C_st_schan_lep.ntup.root'
                                                    , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.ntup.root'
