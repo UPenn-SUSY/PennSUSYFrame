@@ -147,6 +147,13 @@ def makeDataSetDictList( label_base
         this_data_set_dict['syst_struct']          = syst_struct
         data_set_dict_list.append(this_data_set_dict)
 
+        if syst_struct.do_jer:
+            this_data_set_dict['label'] += '__JER'
+        if syst_struct.do_jes_up:
+            this_data_set_dict['label'] += '__JES_UP'
+        if syst_struct.do_jes_down:
+            this_data_set_dict['label'] += '__JES_DOWN'
+
     print ''
     return data_set_dict_list
 
@@ -298,6 +305,9 @@ def runLocalMultiprocess( run_analysis_fun
                         , sym_link_name
                         , do_merge = True
                         ):
+    # make output directory
+    safeMakeDir(out_dir)
+
     p = Pool(num_processes)
     p.map(run_analysis_fun, data_set_dicts)
 
@@ -379,6 +389,9 @@ def runLxBatchMultiProcess( run_analysis_fun
     # create directory for new run scripts
     safeRemoveDir(job_dir)
     safeMakeDir(job_dir)
+
+    # make output directory
+    safeMakeDir(out_dir)
 
     # write script for each lxbatch job
     for dsd in data_set_dicts:

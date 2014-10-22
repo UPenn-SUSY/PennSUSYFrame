@@ -308,9 +308,6 @@ void PennSusyFrame::JetRescalerTool::init()
   std::string jes_file       = "JES_2012/Moriond2013/InsituJES2012_14NP.config";
   std::string jes_path       = root_core_dir + "/../JetUncertainties/share/";
 
-  // std::string mc_type_string = "MC12a";
-  // if(m_isAtlfast) mc_type_string = "AFII";
-
   m_jes_tool = new MultijetJESUncertaintyProvider( multi_jes_file
                                                  , jes_file
                                                  , jet_algorithm

@@ -48,7 +48,7 @@ print out_dir
 
 # ==============================================================================
 if __name__ == '__main__':
-    RunHelpers.safeMakeDir(out_dir)
+    # RunHelpers.safeMakeDir(out_dir)
 
     print 'getting file list'
 
@@ -105,7 +105,6 @@ if __name__ == '__main__':
                           , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'          , 'num_jobs':20}
                           , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l'       , 'num_jobs':20}
                           , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'                   , 'num_jobs':20}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':30}
                           , 167750:{'label':'167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'           , 'num_jobs':10}
@@ -200,31 +199,129 @@ if __name__ == '__main__':
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # add data samples
-    data_set_dicts = RunHelpers.addAllSamplesToList( egamma_data_samples = egamma_data_samples
-                                                   , muon_data_samples   = muon_data_samples
-                                                   , full_sim_mc_samples = full_sim_mc_samples
-                                                   , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   , file_list_path_base = 'EosFileLists/tnt_106/tnt_106'
-                                                   , out_dir             = out_dir
-                                                   )
+    # Define what systematics to include in this run and construct dictionary
+    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
+                                             , do_jes_up   = False
+                                             , do_jes_down = False
+                                             )
+    data_set_dicts_nominal = RunHelpers.addAllSamplesToList(
+            egamma_data_samples = egamma_data_samples,
+            muon_data_samples   = muon_data_samples,
+            full_sim_mc_samples = full_sim_mc_samples,
+            fast_sim_mc_samples = fast_sim_mc_samples,
+            file_list_path_base = 'EosFileLists/tnt_106/tnt_106',
+            out_dir             = out_dir + '__NOMINAL',
+            syst_struct         = syst_struct)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Define what systematics to include in this run and construct dictionary
+    syst_struct = RunHelpers.SystematicStruct( do_jer      = True
+                                             , do_jes_up   = False
+                                             , do_jes_down = False
+                                             )
+    data_set_dicts_jer = RunHelpers.addAllSamplesToList(
+            egamma_data_samples = egamma_data_samples,
+            muon_data_samples   = muon_data_samples,
+            full_sim_mc_samples = full_sim_mc_samples,
+            fast_sim_mc_samples = fast_sim_mc_samples,
+            file_list_path_base = 'EosFileLists/tnt_106/tnt_106',
+            out_dir             = out_dir + '__JER',
+            syst_struct         = syst_struct)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Define what systematics to include in this run and construct dictionary
+    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
+                                             , do_jes_up   = True
+                                             , do_jes_down = False
+                                             )
+    data_set_dicts_jes_up = RunHelpers.addAllSamplesToList(
+            egamma_data_samples = egamma_data_samples,
+            muon_data_samples   = muon_data_samples,
+            full_sim_mc_samples = full_sim_mc_samples,
+            fast_sim_mc_samples = fast_sim_mc_samples,
+            file_list_path_base = 'EosFileLists/tnt_106/tnt_106',
+            out_dir             = out_dir + '__JES_UP',
+            syst_struct         = syst_struct)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Define what systematics to include in this run and construct dictionary
+    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
+                                             , do_jes_up   = False
+                                             , do_jes_down = True
+                                             )
+    data_set_dicts_jes_down = RunHelpers.addAllSamplesToList(
+            egamma_data_samples = egamma_data_samples,
+            muon_data_samples   = muon_data_samples,
+            full_sim_mc_samples = full_sim_mc_samples,
+            fast_sim_mc_samples = fast_sim_mc_samples,
+            file_list_path_base = 'EosFileLists/tnt_106/tnt_106',
+            out_dir             = out_dir + '__JES_DOWN',
+            syst_struct         = syst_struct)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if run_local:
         RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
-                                       , data_set_dicts   = data_set_dicts
+                                       , data_set_dicts   = data_set_dicts_nominal
                                        , num_processes    = num_processes
-                                       , out_dir          = out_dir
+                                       , out_dir          = out_dir + '__NOMINAL'
                                        , flat_ntuples     = True
-                                       , sym_link_name    = './NextOptNtupDir.BMinusL'
+                                       , sym_link_name    = './NextOptNtupDir.BMinusL.NOMINAL'
+                                       )
+        RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
+                                       , data_set_dicts   = data_set_dicts_jer
+                                       , num_processes    = num_processes
+                                       , out_dir          = out_dir + '__JER'
+                                       , flat_ntuples     = True
+                                       , sym_link_name    = './NextOptNtupDir.BMinusL.JER'
+                                       )
+        RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
+                                       , data_set_dicts   = data_set_dicts_jes_up
+                                       , num_processes    = num_processes
+                                       , out_dir          = out_dir + '__JES_UP'
+                                       , flat_ntuples     = True
+                                       , sym_link_name    = './NextOptNtupDir.BMinusL.JES_UP'
+                                       )
+        RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
+                                       , data_set_dicts   = data_set_dicts_jes_down
+                                       , num_processes    = num_processes
+                                       , out_dir          = out_dir + '__JES_DOWN'
+                                       , flat_ntuples     = True
+                                       , sym_link_name    = './NextOptNtupDir.BMinusL.JES_DOWN'
                                        )
     else:
         RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
                                         , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
                                         , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
-                                        , data_set_dicts        = data_set_dicts
-                                        , out_dir               = out_dir
+                                        , data_set_dicts        = data_set_dicts_nominal
+                                        , out_dir               = out_dir + '__NOMINAL'
                                         , queue                 = '1nh'
-                                        , sym_link_name         = './NextOptNtupDir.BMinusL'
-                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker'
+                                        , sym_link_name         = './NextOptNtupDir.BMinusL.NOMINAL'
+                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.NOMINAL'
+                                        )
+        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
+                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                        , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
+                                        , data_set_dicts        = data_set_dicts_jer
+                                        , out_dir               = out_dir + '__JER'
+                                        , queue                 = '1nh'
+                                        , sym_link_name         = './NextOptNtupDir.BMinusL.JER'
+                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JER'
+                                        )
+        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
+                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                        , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
+                                        , data_set_dicts        = data_set_dicts_jes_up
+                                        , out_dir               = out_dir + '__JES_UP'
+                                        , queue                 = '1nh'
+                                        , sym_link_name         = './NextOptNtupDir.BMinusL.JES_UP'
+                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JES_UP'
+                                        )
+        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
+                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                        , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
+                                        , data_set_dicts        = data_set_dicts_jes_down
+                                        , out_dir               = out_dir + '__JES_DOWN'
+                                        , queue                 = '1nh'
+                                        , sym_link_name         = './NextOptNtupDir.BMinusL.JES_DOWN'
+                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JES_DOWN'
                                         )
