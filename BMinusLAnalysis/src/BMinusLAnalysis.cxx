@@ -175,13 +175,14 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::initializeEvent()
 {
-  m_event_weight    = 1.;
-  m_mc_event_weight = 1.;
-  m_pile_up_sf      = 1.;
-  m_lepton_sf       = 1.;
-  m_trigger_sf      = 1.;
-  m_btag_sf         = 1.;
-  m_ttbar_pt_weight = 1.;
+  m_event_weight          = 1.;
+  m_mc_event_weight       = 1.;
+  m_pile_up_sf            = 1.;
+  m_lepton_sf             = 1.;
+  m_trigger_sf            = 1.;
+  m_btag_sf               = 1.;
+  m_ttbar_pt_weight       = 1.;
+  m_fudge_k_factor_weight = 1.;
 
   m_pass_grl              = false;
   m_pass_incomplete_event = false;
@@ -244,6 +245,16 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   // set cross section weight
   m_event_weight *= m_xsec_weight;
   fillTrackers(BMINUSL_CUT_XSEC_WEIGHT);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // fudge k-factor
+  m_fudge_k_factor_weight = (m_is_data ? 1
+                                       : getFudgeKFactor( m_is_data
+                                                        , m_mc_truth.getChannelNumber()
+                                                        )
+                            );
+  m_event_weight *= m_fudge_k_factor_weight;
+  fillTrackers(BMINUSL_CUT_FUDGE_K_FACTOR_WEIGHT);
 
   // -----------------------------------------------------------------------------
   m_event.setPhaseSpace(getPhaseSpace());
@@ -479,8 +490,16 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_hfor
      && m_pass_mc_overlap
      ) {
-    float this_weight = m_mc_event_weight*m_pile_up_sf*m_xsec_weight;
-    fillHistHandles(PennSusyFrame::BMINUSL_HIST_BASIC_CLEANING , m_bl_0 , m_bl_1 , this_weight);
+    float this_weight = ( m_mc_event_weight
+                        * m_pile_up_sf
+                        * m_xsec_weight
+                        * m_fudge_k_factor_weight
+                        );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BASIC_CLEANING
+                   , m_bl_0
+                   , m_bl_1
+                   , this_weight
+                   );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -506,12 +525,20 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_ge_2_b_jet
      && m_pass_bl_pairing
      ) {
-    fillHistHandles(PennSusyFrame::BMINUSL_HIST_BL_PAIRING , m_bl_0 , m_bl_1 , m_event_weight);
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for GE_4_OBJECTS hist level
-  fillHistHandles(PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS , m_bl_0 , m_bl_1 , m_event_weight);
+  fillHistHandles( PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS
+                 , m_bl_0
+                 , m_bl_1
+                 , m_event_weight
+                 );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for ZVETO hist level
@@ -537,7 +564,11 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_bl_pairing
      && m_pass_z_veto
      ) {
-    fillHistHandles(PennSusyFrame::BMINUSL_HIST_Z_VETO , m_bl_0 , m_bl_1 , m_event_weight);
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_Z_VETO
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -565,7 +596,9 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      && m_pass_bl_pairing
      ) {
 
-    double mbl_asym = (m_bl_0->getMbl() - m_bl_1->getMbl()) / (m_bl_0->getMbl() + m_bl_1->getMbl());
+    double mbl_asym = ( (m_bl_0->getMbl() - m_bl_1->getMbl())
+                      / (m_bl_0->getMbl() + m_bl_1->getMbl())
+                      );
     double ht       = m_event_quantities.getHtSignal() / 1.e3;
     double met_sig  = m_met.getMetSigSignal();
 
@@ -580,7 +613,11 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     if ( !m_is_data || !m_is_blind ) {
       // signal region cuts
       if (m_pass_z_veto && ht_ge_1100 && mbl_le_4) {
-        fillHistHandles(PennSusyFrame::BMINUSL_HIST_SR, m_bl_0 , m_bl_1 , m_event_weight);
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
       }
     }
 
@@ -589,47 +626,83 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     // -------------------------------------------------------------------------
     // CR top region cuts
     if (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && met_sig_ge_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_TOP, m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
     // CR Z region cuts
     if (!m_pass_z_veto && !ht_ge_500 && mbl_le_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_CR_Z, m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
     // VR 1 region cuts
     if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_1 , m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
     // VR 2 region cuts
     if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_2 , m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_2
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
     // VR 3 region cuts
     if (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && !met_sig_ge_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_3 , m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_3
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
     // VR 4 region cuts
     if (m_pass_z_veto && !ht_ge_500 && mbl_le_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_4 , m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_4
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
     // VR 5 region cuts
     if (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_5 , m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_5
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
     // VR 6 region cuts
     if (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_6 , m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_6
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
     // VR 7 region cuts
     if (!m_pass_z_veto && !ht_ge_500 && !mbl_le_4) {
-      fillHistHandles(PennSusyFrame::BMINUSL_HIST_VR_7 , m_bl_0 , m_bl_1 , m_event_weight);
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_7
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
   }
 }

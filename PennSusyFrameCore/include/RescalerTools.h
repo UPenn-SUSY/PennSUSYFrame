@@ -98,11 +98,12 @@ namespace PennSusyFrame
     void init();
 
     TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
-                                     , const PennSusyFrame::Event*
-                                     , int num_vertices_ge_2_tracks
-                                     );
+                                   , const PennSusyFrame::Event*
+                                   , int num_vertices_ge_2_tracks
+                                   );
     // void applyJER(PennSusyFrame::Jet*, bool is_af2);
     void applyJER(TLorentzVector&, bool is_af2);
+    void applyJES(TLorentzVector&, bool is_af2);
 
     private:
       bool m_is_data;

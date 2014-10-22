@@ -162,9 +162,10 @@ namespace PennSusyFrame
                   );
 
   // ---------------------------------------------------------------------------
-  
   FLAVOR_CHANNEL getTruthFC(const PennSusyFrame::MCTruth&);
 
+  // ---------------------------------------------------------------------------
+  double getFudgeKFactor(bool is_data, int dsid);
 }
 
 #endif

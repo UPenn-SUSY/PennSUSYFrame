@@ -169,6 +169,7 @@ namespace PennSusyFrame
       double m_trigger_sf;
       double m_btag_sf;
       double m_ttbar_pt_weight;
+      double m_fudge_k_factor_weight;
 
       bool m_pass_grl;
       bool m_pass_incomplete_event;

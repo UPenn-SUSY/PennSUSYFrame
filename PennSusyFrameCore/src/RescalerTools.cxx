@@ -335,6 +335,14 @@ void PennSusyFrame::JetRescalerTool::applyJER( TLorentzVector& tlv
     m_jer_smearing->SmearJet_Syst(tlv);
 }
 
+// -----------------------------------------------------------------------------
+void PennSusyFrame::JetRescalerTool::applyJES( TLorentzVector& // tlv
+                                             , bool // is_af2
+                                             )
+{
+
+}
+
 // =============================================================================
 // = TauRescalerTool
 // =============================================================================
