@@ -148,70 +148,26 @@ sample_list = []
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ttbar
 ttbar_sample = Sample( "ttbar" , kGreen+2 )
-# ttbar_ee_sample = Sample( "ee_ttbar" , kGreen-1 )
-# ttbar_mm_sample = Sample( "mm_ttbar" , kGreen-2 )
-# ttbar_em_sample = Sample( "em_ttbar" , kGreen-3 )
 
 ttbar_sample.setNormFactor("mu_ttbar",1.,0.,5.)
-# ttbar_ee_sample.setNormFactor("mu_ttbar_ee",1.,0.,5.)
-# ttbar_mm_sample.setNormFactor("mu_ttbar_mm",1.,0.,5.)
-# ttbar_em_sample.setNormFactor("mu_ttbar_em",1.,0.,5.)
-
 ttbar_sample.setStatConfig(use_stat)
-# ttbar_ee_sample.setStatConfig(use_stat)
-# ttbar_mm_sample.setStatConfig(use_stat)
-# ttbar_em_sample.setStatConfig(use_stat)
-
 sample_list.append(ttbar_sample)
-# sample_list.append(ttbar_ee_sample)
-# sample_list.append(ttbar_mm_sample)
-# sample_list.append(ttbar_em_sample)
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # single top
 single_top_sample = Sample( "SingleTop" , kGreen-1 )
-# single_top_ee_sample = Sample( "ee_SingleTop" , kCyan-1 )
-# single_top_mm_sample = Sample( "mm_SingleTop" , kCyan-2 )
-# single_top_em_sample = Sample( "em_SingleTop" , kCyan-3 )
 
 single_top_sample.setStatConfig(   use_stat)
-# single_top_ee_sample.setStatConfig(use_stat)
-# single_top_mm_sample.setStatConfig(use_stat)
-# single_top_em_sample.setStatConfig(use_stat)
-
 single_top_sample.setNormByTheory()
-# single_top_ee_sample.setNormByTheory()
-# single_top_mm_sample.setNormByTheory()
-# single_top_em_sample.setNormByTheory()
-
 sample_list.append(single_top_sample)
-# sample_list.append(single_top_ee_sample)
-# sample_list.append(single_top_mm_sample)
-# sample_list.append(single_top_em_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Z/gamma*
 z_sample = Sample( "Z" , kRed+1 )
-# z_ee_sample = Sample( "ee_Z" , kRed+1 )
-# z_mm_sample = Sample( "mm_Z" , kRed+2 )
-# z_em_sample = Sample( "em_Z" , kRed+3 )
 
 z_sample.setNormFactor("mu_z",1.,0.,5.)
-# z_ee_sample.setNormFactor("mu_z_ee",1.,0.,5.)
-# z_mm_sample.setNormFactor("mu_z_mm",1.,0.,5.)
-# # z_em_sample.setNormFactor("mu_z_em",1.,0.,5.)
-# z_em_sample.setNormByTheory()
-
 z_sample.setStatConfig(use_stat)
-# z_ee_sample.setStatConfig(use_stat)
-# z_mm_sample.setStatConfig(use_stat)
-# z_em_sample.setStatConfig(use_stat)
-
 sample_list.append(z_sample)
-# sample_list.append(z_ee_sample)
-# sample_list.append(z_mm_sample)
-# sample_list.append(z_em_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ttV
@@ -297,12 +253,13 @@ mll_inz_min = 75
 mll_inz_max = 105
 
 # ht binning
-ht_bin = 30
+ht_bin = 11
 ht_min = 0
-ht_max = 3000
-# ht_bin = 6
-# ht_min = 0
-# ht_max = 600
+ht_max = 1100
+
+ht_sr_bin = 19
+ht_sr_min = 1100
+ht_sr_max = 3000
 
 # mbl asym binning
 mbl_asym_bin = 5
@@ -356,16 +313,6 @@ background_config.getSample("Z"        ).addSystematic(gen_syst)
 background_config.getSample("ttV"      ).addSystematic(gen_syst)
 background_config.getSample("Diboson"  ).addSystematic(gen_syst)
 background_config.getSample("Higgs"    ).addSystematic(gen_syst)
-
-# background_config.getSample("ee_ttbar" ).addSystematic(gen_syst)
-# background_config.getSample("mm_ttbar" ).addSystematic(gen_syst)
-# background_config.getSample("em_ttbar" ).addSystematic(gen_syst)
-# background_config.getSample("ee_SingleTop").addSystematic(gen_syst)
-# background_config.getSample("mm_SingleTop").addSystematic(gen_syst)
-# background_config.getSample("em_SingleTop").addSystematic(gen_syst)
-# background_config.getSample("ee_Z"        ).addSystematic(gen_syst)
-# background_config.getSample("mm_Z"        ).addSystematic(gen_syst)
-# background_config.getSample("em_Z"        ).addSystematic(gen_syst)
 
 meas = background_config.addMeasurement(name = "NormalMeasurement", lumi = 1.0, lumiErr = 0.039 )
 meas.addPOI("mu_SIG")
@@ -497,12 +444,12 @@ if myFitType == FitType.Discovery:
 if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
     sig_sample_list=['sig_500', 'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
+    # sig_sample_list=['sig_1000']
     # sig_sample_list=['sig_500']
     sig_samples = []
     for sig in sig_sample_list:
         print 'setting up signal sample: ' , sig
         exclusion_sr_config = configMgr.addFitConfigClone( background_config , "Sig_excl_%s" % sig )
-        # exclusion_sr_config = configMgr.addFitConfigClone( background_config , "Exclusion_%s" % sig )
 
         sig_sample = Sample(sig, kViolet+5)
         sig_sample.setStatConfig(use_stat)
@@ -544,62 +491,17 @@ entry.SetLineColor(ttbar_sample.color)
 entry.SetFillColor(ttbar_sample.color)
 entry.SetFillStyle(compFillStyle)
 
-# entry = leg.AddEntry("", "t#bar{t} ee", "lf")
-# entry.SetLineColor(ttbar_ee_sample.color)
-# entry.SetFillColor(ttbar_ee_sample.color)
-# entry.SetFillStyle(compFillStyle)
-# 
-# entry = leg.AddEntry("", "t#bar{t} mm", "lf")
-# entry.SetLineColor(ttbar_mm_sample.color)
-# entry.SetFillColor(ttbar_mm_sample.color)
-# entry.SetFillStyle(compFillStyle)
-# 
-# entry = leg.AddEntry("", "t#bar{t} em", "lf")
-# entry.SetLineColor(ttbar_em_sample.color)
-# entry.SetFillColor(ttbar_em_sample.color)
-# entry.SetFillStyle(compFillStyle)
-
 # Z/gamma* entry
 entry = leg.AddEntry("", "Z/#gamma*", "lf")
 entry.SetLineColor(z_sample.color)
 entry.SetFillColor(z_sample.color)
 entry.SetFillStyle(compFillStyle)
 
-# entry = leg.AddEntry("", "Z/#gamma* (ee)", "lf")
-# entry.SetLineColor(z_ee_sample.color)
-# entry.SetFillColor(z_ee_sample.color)
-# entry.SetFillStyle(compFillStyle)
-# 
-# entry = leg.AddEntry("", "Z/#gamma* (mm)", "lf")
-# entry.SetLineColor(z_mm_sample.color)
-# entry.SetFillColor(z_mm_sample.color)
-# entry.SetFillStyle(compFillStyle)
-# 
-# entry = leg.AddEntry("", "Z/#gamma* (em)", "lf")
-# entry.SetLineColor(z_em_sample.color)
-# entry.SetFillColor(z_em_sample.color)
-# entry.SetFillStyle(compFillStyle)
-
 # Single top entry
 entry = leg.AddEntry("", "Single top", "lf")
 entry.SetLineColor(single_top_sample.color)
 entry.SetFillColor(single_top_sample.color)
 entry.SetFillStyle(compFillStyle)
-
-# entry = leg.AddEntry("", "Single top (ee)", "lf")
-# entry.SetLineColor(single_top_ee_sample.color)
-# entry.SetFillColor(single_top_ee_sample.color)
-# entry.SetFillStyle(compFillStyle)
-# 
-# entry = leg.AddEntry("", "Single top (mm)", "lf")
-# entry.SetLineColor(single_top_mm_sample.color)
-# entry.SetFillColor(single_top_mm_sample.color)
-# entry.SetFillStyle(compFillStyle)
-# 
-# entry = leg.AddEntry("", "Single top (em)", "lf")
-# entry.SetLineColor(single_top_em_sample.color)
-# entry.SetFillColor(single_top_em_sample.color)
-# entry.SetFillStyle(compFillStyle)
 
 # ttV entry
 entry = leg.AddEntry("", "ttV", "lf")
