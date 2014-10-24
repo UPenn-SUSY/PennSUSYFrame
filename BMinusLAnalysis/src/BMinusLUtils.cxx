@@ -3,6 +3,8 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/Calculators.h"
 
+#include <iostream>
+
 // -----------------------------------------------------------------------------
 PennSusyFrame::blPair::blPair() : m_jet(0)
                                 , m_lep(0)
@@ -726,5 +728,22 @@ FLAVOR_CHANNEL PennSusyFrame::getTruthFC(const PennSusyFrame::MCTruth& mc_truth)
     std::cout << "WARNING!! More than 2 leptons with stop parent!! \n" ;
     return FLAVOR_NONE;
   }
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::getFudgeKFactor(bool is_data, int dsid)
+{
+  if (is_data) return 1.;
+
+  if (  (dsid >= 167749 && dsid <= 167757)
+     || (dsid >= 167797 && dsid <= 167805)
+     || (dsid >= 167809 && dsid <= 167817)
+     || (dsid >= 167821 && dsid <= 167829)
+     || (dsid >= 167833 && dsid <= 167841)
+     || (dsid >= 180543 && dsid <= 180551)
+     ) {
+    return 1.3086;
+  }
+  return 1.;
 }
 

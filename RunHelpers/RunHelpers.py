@@ -125,9 +125,9 @@ def makeDataSetDictList( label_base
     total_num_entries    = data_set_input['total_entries']
     sum_mc_event_weights = data_set_input['sum_mc_event_weights']
 
-    print 'total num events: %s' % total_num_events
-    print 'total entries: %s' % total_num_entries
-    print 'sum mc event weights: %s' % sum_mc_event_weights
+    print '  total num events: %s' % total_num_events
+    print '  total entries: %s' % total_num_entries
+    print '  sum mc event weights: %s' % sum_mc_event_weights
 
     data_set_dict_list = []
     for tnj in xrange(total_num_jobs):
@@ -147,6 +147,14 @@ def makeDataSetDictList( label_base
         this_data_set_dict['syst_struct']          = syst_struct
         data_set_dict_list.append(this_data_set_dict)
 
+        if syst_struct.do_jer:
+            this_data_set_dict['label'] += '__JER'
+        if syst_struct.do_jes_up:
+            this_data_set_dict['label'] += '__JES_UP'
+        if syst_struct.do_jes_down:
+            this_data_set_dict['label'] += '__JES_DOWN'
+
+    print ''
     return data_set_dict_list
 
 # ------------------------------------------------------------------------------
@@ -162,7 +170,7 @@ def safeRemoveDir(dir_name):
         rm_dir = None
         while not rm_dir in ['y', 'Y', 'n', 'N']:
             rm_dir = raw_input('actually remove %s? [y,n]: ' % dir_name)
-        if rm_dir:
+        if rm_dir.lower() == 'y':
             if os.path.islink(dir_name):
                 os.remove(dir_name)
             else:
@@ -285,7 +293,8 @@ def moveToLinkedDir(out_dir, pointer_dir):
     abs_path_pointer = os.path.abspath(pointer_dir)
 
     safeRemoveDir(abs_path_pointer)
-    os.symlink(abs_path_out, abs_path_pointer)
+    if not os.path.exists(abs_path_pointer):
+        os.symlink(abs_path_out, abs_path_pointer)
 
 # ------------------------------------------------------------------------------
 def runLocalMultiprocess( run_analysis_fun
@@ -296,6 +305,9 @@ def runLocalMultiprocess( run_analysis_fun
                         , sym_link_name
                         , do_merge = True
                         ):
+    # make output directory
+    safeMakeDir(out_dir)
+
     p = Pool(num_processes)
     p.map(run_analysis_fun, data_set_dicts)
 
@@ -377,6 +389,9 @@ def runLxBatchMultiProcess( run_analysis_fun
     # create directory for new run scripts
     safeRemoveDir(job_dir)
     safeMakeDir(job_dir)
+
+    # make output directory
+    safeMakeDir(out_dir)
 
     # write script for each lxbatch job
     for dsd in data_set_dicts:

@@ -24,11 +24,15 @@ def getCutVal(cut_str):
     return '%.4f' % cut_val
 
 # ------------------------------------------------------------------------------
-def readAndDisplayCutOpt(xml_name, tot_sig, tot_bkg):
+def readAndDisplayCutOpt(xml_name, tot_sig, tot_bkg, out_file_name='results.txt'):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    out_file = file(out_file_name, 'w')
     print 'tot signal: ' , tot_sig
     print 'tot background: ' , tot_bkg
     print ''
+    out_file.write('tot signal: %s\n'     % tot_sig)
+    out_file.write('tot background: %s\n' % tot_bkg)
+    out_file.write('\n')
 
     f = file(xml_name, 'r')
     xml_doc = minidom.parse(f)
@@ -47,7 +51,13 @@ def readAndDisplayCutOpt(xml_name, tot_sig, tot_bkg):
                                   , variable_elements.item(var_it).getAttribute('Expression')
                                   , variable_elements.item(var_it).getAttribute('Unit')
                                   )
+        out_file.write( 'var_%d: %s [%s]\n' % ( var_it
+                                              , variable_elements.item(var_it).getAttribute('Expression')
+                                              , variable_elements.item(var_it).getAttribute('Unit')
+                                              )
+                      )
     print ''
+    out_file.write('\n')
 
 
     all_weight_elements = xml_doc.getElementsByTagName('Weights')[0].getElementsByTagName('Bin')
@@ -81,12 +91,26 @@ def readAndDisplayCutOpt(xml_name, tot_sig, tot_bkg):
         print ''
         print 'cuts:'
 
+        out_file.write( '--------------------------------------------------------------------------------\n' )
+        out_file.write( 'Found the best cut working point:\n' )
+        out_file.write( '  it: %s\n' % best_it )
+        out_file.write( '  sig eff: %.4f - events: %.2f\n' % (best_sig_eff, best_exp_sig) )
+        out_file.write( '  bkg eff: %.4f - events: %.2f\n' % (best_bkg_eff, best_exp_bkg) )
+        out_file.write( '  significance: %.4f\n' % max_significance )
+        out_file.write( '\n' )
+        out_file.write( 'cuts:\n' )
+
         cut_it = 0
         while cuts.hasAttribute('cutMin_%d' % cut_it):
             print '  %s < var_%d < %s' % ( getCutVal(cuts.getAttribute('cutMin_%d' % cut_it))
                                          , cut_it
                                          , getCutVal(cuts.getAttribute('cutMax_%d' % cut_it))
                                          )
+            out_file.write( '  %s < var_%d < %s\n' % ( getCutVal(cuts.getAttribute('cutMin_%d' % cut_it))
+                                                     , cut_it
+                                                     , getCutVal(cuts.getAttribute('cutMax_%d' % cut_it))
+                                                     )
+                          )
             cut_it += 1
 
 # ------------------------------------------------------------------------------
