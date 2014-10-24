@@ -40,10 +40,10 @@ namespace PennSusyFrame
 
   // ---------------------------------------------------------------------------
   class blPair;
-  
+
   // ===========================================================================
   class BMinusLDRStudies : public PennSusyFrame::BMinusLAnalysis
-    {
+  {
     public:
       BMinusLDRStudies(TTree *tree=0);
       virtual ~BMinusLDRStudies();
