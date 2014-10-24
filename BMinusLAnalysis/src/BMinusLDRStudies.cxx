@@ -90,7 +90,6 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( PennSusyFrame
                                                                  , const std::vector<PennSusyFrame::Jet*>* input_jets_bad
                                                                  )
 {
-
   FLAVOR_CHANNEL fc = m_event.getFlavorChannel();
   // fill hist with no OR
   filldRHistHandles( PennSusyFrame::BMINUSL_NO_OR
