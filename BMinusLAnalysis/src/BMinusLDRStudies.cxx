@@ -70,7 +70,6 @@ void PennSusyFrame::BMinusLDRStudies::finalizeEvent()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLDRStudies::finalizeRun()
 {
-
   TFile out_hist_file(m_out_hist_file_name.c_str(), "RECREATE");
 
   for (unsigned int dr_hist_level=0; dr_hist_level != PennSusyFrame::BMINUSL_DR_HIST_N; ++dr_hist_level) {
