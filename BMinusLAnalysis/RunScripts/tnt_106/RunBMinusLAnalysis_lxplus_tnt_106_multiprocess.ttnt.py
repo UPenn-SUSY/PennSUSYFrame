@@ -26,7 +26,7 @@ RunBMinusLAnalysis.btag_working_point = 0.3511
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
-user_input = sys.argv[1] if len(sys.argv) > 1 else 1
+user_input = sys.argv[1] if len(sys.argv) > 1 else "1"
 num_processes = 1
 queue = '1nh'
 if "nm" in user_input or "nh" in user_input or "nd" in user_input:
