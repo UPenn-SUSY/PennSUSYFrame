@@ -235,14 +235,14 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   m_mll  = m_event_quantities.getMll()/1.e3;
   m_ptll = m_event_quantities.getPtll()/1.e3;
 
-  m_met_et         = m_met.getMetEt() /1.e3;
-  m_met_rel        = m_met.getMetRel()/1.e3;
-  m_met_sig_signal = (m_met.getMetEt()/sqrt(m_event_quantities.getHtGood())) * sqrt(1.e3) ;
-
   m_ht_all      = m_event_quantities.getHtAll()/1.e3;
   m_ht_baseline = m_event_quantities.getHtBaseline()/1.e3;
   m_ht_good     = m_event_quantities.getHtGood()/1.e3;
   m_ht_signal   = m_event_quantities.getHtSignal()/1.e3;
+
+  m_met_et         = m_met.getMetEt() /1.e3;
+  m_met_rel        = m_met.getMetRel()/1.e3;
+  m_met_sig_signal = m_met_et/sqrt(m_ht_signal);
 
   m_pt_l_0 = bl_0->getLepton()->getPt();
   m_pt_l_1 = bl_1->getLepton()->getPt();
