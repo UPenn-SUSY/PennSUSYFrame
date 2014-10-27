@@ -619,6 +619,27 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                        , m_event_weight
                        );
       }
+      if (m_pass_z_veto && mbl_le_4) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_HT
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+      if (m_pass_z_veto && ht_ge_1100) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_MBL_ASYM
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+      if (ht_ge_1100 && mbl_le_4) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_Z_VETO
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
     }
 
     // -------------------------------------------------------------------------

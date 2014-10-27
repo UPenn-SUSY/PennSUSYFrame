@@ -22,6 +22,9 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_GE_4_OBJECTS
 
                            , BMINUSL_HIST_SR
+                           , BMINUSL_HIST_SR_MINUS_HT
+                           , BMINUSL_HIST_SR_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_SR_MINUS_Z_VETO
                            , BMINUSL_HIST_CR_TOP
                            , BMINUSL_HIST_CR_Z
                            , BMINUSL_HIST_VR_1
@@ -41,6 +44,9 @@ namespace PennSusyFrame
                                                    , "BMINUSL_GE_4_OBJECTS"
 
                                                    , "BMINUSL_SR"
+                                                   , "BMINUSL_SR_MINUS_HT"
+                                                   , "BMINUSL_SR_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_SR_MINUS_Z_VETO"
                                                    , "BMINUSL_CR_TOP"
                                                    , "BMINUSL_CR_Z"
                                                    , "BMINUSL_VR_1"
