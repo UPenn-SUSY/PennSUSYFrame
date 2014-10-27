@@ -36,22 +36,22 @@ static const int   npv_bins = 60;
 static const float npv_min  = -0.5;
 static const float npv_max  = npv_bins + npv_min;
 
-static const int   pt_bins = 75;
+static const int   pt_bins = 20;
 static const float pt_min  = 0.;
-static const float pt_max  = 1500.;
+static const float pt_max  = 1000.;
 
 static const int   eta_bins = 50;
 static const float eta_min = -5.;
 static const float eta_max = +5.;
 
 // static const int   ptiso_bins = 120;
-static const int   ptiso_bins = 80;
+static const int   ptiso_bins = 20;
 static const float ptiso_min  = 0.;
 // static const float ptiso_max  = 3.;
-static const float ptiso_max  = 2.;
+static const float ptiso_max  = 0.4;
 
 // static const int   etiso_bins = 140;
-static const int   etiso_bins = 100;
+static const int   etiso_bins = 50;
 static const float etiso_min  = -0.5;
 // static const float etiso_max  = 3.;
 static const float etiso_max  = 2.;
