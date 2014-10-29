@@ -13,3 +13,6 @@ lib/*
 LSF*/
 *_C.d
 core.*
+LatestRunDir_*
+Next*Dir*
+*.bak
