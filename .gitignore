@@ -17,3 +17,6 @@ LatestRunDir_*
 Next*Dir*
 *.bak
 HistFitter/*
+BMinusLAnalysis/BMinusLAnalysis
+EwkAnalysis/EwkAnalysis
+ProgressBar/TestProgressBar
