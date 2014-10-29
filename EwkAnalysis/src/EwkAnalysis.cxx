@@ -145,14 +145,14 @@ void PennSusyFrame::EwkAnalysis::prepareTools()
   m_tmva_reader_noisr.AddVariable("pTll", &m_tmva_pt_ll);
 
 
-  std::string tmvaWeightFile_m20_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20_ISR.xml";
-  std::string tmvaWeightFile_m20_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20_noISR.xml";
-  std::string tmvaWeightFile_m35_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM35_ISR.xml";
-  std::string tmvaWeightFile_m35_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM35_noISR.xml";
-  std::string tmvaWeightFile_m65_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM65_ISR.xml";
-  std::string tmvaWeightFile_m65_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM65_noISR.xml";
-  std::string tmvaWeightFile_m100_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM100_ISR.xml";
-  std::string tmvaWeightFile_m100_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM100_noISR.xml";
+  std::string tmvaWeightFile_m20_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20ISR.xml";
+  std::string tmvaWeightFile_m20_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM20noISR.xml";
+  std::string tmvaWeightFile_m35_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM35ISR.xml";
+  std::string tmvaWeightFile_m35_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM35noISR.xml";
+  std::string tmvaWeightFile_m65_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM65ISR.xml";
+  std::string tmvaWeightFile_m65_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM65noISR.xml";
+  std::string tmvaWeightFile_m100_isr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM100ISR.xml";
+  std::string tmvaWeightFile_m100_noisr = base_dir + "/data/BDT/TMVAClassification_BDTD.weights_dM100noISR.xml";
 
 
   m_tmva_reader_isr.BookMVA("m20_isr signal", tmvaWeightFile_m20_isr);
@@ -179,6 +179,8 @@ void PennSusyFrame::EwkAnalysis::prepareSelection()
 
   m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1,0.07);
   m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1,0.13);
+  //  m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1,0.05);
+  //m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1,0.11);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1,3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
   m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
@@ -189,6 +191,10 @@ void PennSusyFrame::EwkAnalysis::prepareSelection()
 
   m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1,0.06);
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.14);
+//  m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1,0.05);
+  //m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, 0.11);
+
+
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
 
@@ -275,10 +281,20 @@ void PennSusyFrame::EwkAnalysis::processEvent()
   if (m_pass_event)  getBDTScores();
 
   // Make the Z veto for EE
-  bool pass_z_veto =(m_event.getFlavorChannel() == FLAVOR_EE) && ( (m_event_quantities.getMll() < 75.e3)  
-                                                                   || (m_event_quantities.getMll() > 100.e3) );
-  pass_z_veto = m_pass_event && pass_z_veto;
+  bool pass_z_veto =(m_event.getFlavorChannel() != FLAVOR_EE) || ((m_event_quantities.getMll() < 75.e3)  
+								  || (m_event_quantities.getMll() > 100.e3) );
 
+  // passes if not ee channel or if ee channel if not in z window
+  m_pass_event = m_pass_event && pass_z_veto;
+
+  if (m_pass_event) {
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_EE_Z_VETO);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_EE_Z_VETO, m_event_weight);
+
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_EE_Z_VETO);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_EE_Z_VETO, m_event_weight);
+  }
+ 
 
   if(m_do_fake_cr) doFakeCR();
 
@@ -295,19 +311,24 @@ void PennSusyFrame::EwkAnalysis::processEvent()
                                  );
   
   if (m_do_cf_est) m_event_weight *= m_event_quantities.getCFWeight();
-
+  //std::cout<<"flavor channel: "<<m_event.getFlavorChannel()<<" cf: "<<m_event_quantities.getCFWeight()<<std::endl;;
   
   //Signal Region Stuff from Here down:
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // check for SS leptons
   // TODO validate SS leptons requirement
-  
+
+  bool pass_ss  = true;
+
   if (!m_do_cf_est){ //we'll use weighted OS for CF
-    bool pass_ss = (m_event.getSignChannel() == SIGN_SS);
-    m_pass_event = (m_pass_event && pass_ss);
-    if (m_crit_cut_ss && !pass_ss) return;
+    pass_ss = (m_event.getSignChannel() == SIGN_SS);
   }
+  else{
+    pass_ss = (m_event.getSignChannel() == SIGN_OS);
+  }    
+  m_pass_event = (m_pass_event && pass_ss);
+  if (m_crit_cut_ss && !pass_ss) return;
   if (m_pass_event) {
     m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_SS);
     m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_SS, m_event_weight);
@@ -776,20 +797,20 @@ void PennSusyFrame::EwkAnalysis::doSignalLeptonCuts()
 void PennSusyFrame::EwkAnalysis::getBDTScores()
 {
   //std::cout<<"ABOUT TO GET BDT SCORE"<<std::endl;
-  m_tmva_mll = m_event_quantities.getMll();
-  m_tmva_met_rel = m_met.getMetRel();
+  m_tmva_mll = m_event_quantities.getMll()/1.e3;
+  m_tmva_met_rel = m_met.getMetRel()/1.e3;
   m_tmva_dphi_ll = m_event_quantities.getDphill();
-  m_tmva_ht = m_event_quantities.getHtSignal();
-  m_tmva_mt2 = m_event_quantities.getMt2();
-  m_tmva_pt_ll = m_event_quantities.getPtll();
+  m_tmva_ht = m_event_quantities.getHtSignal()/1.e3;
+  m_tmva_mt2 = m_event_quantities.getMt2()/1.e3;
+  m_tmva_pt_ll = m_event_quantities.getPtll()/1.e3;
   m_tmva_mtr1 = PennSusyFrame::getLeadingMt(m_event.getFlavorChannel()
                                             , m_electrons.getCollection(EL_SELECTED)
                                             , m_muons.getCollection(MU_SELECTED)
-                                            , &m_met);
+                                            , &m_met)/1.e3;
   m_tmva_mtr2 = PennSusyFrame::getSubleadingMt(m_event.getFlavorChannel()
                                                , m_electrons.getCollection(EL_SELECTED)
                                                , m_muons.getCollection(MU_SELECTED)
-                                               , &m_met);
+                                               , &m_met)/1.e3;
   bool is_isr = m_jets.getCollection(JET_ALL_SIGNAL)->size() > 0;
   if (is_isr)
     {
@@ -919,7 +940,7 @@ void PennSusyFrame::EwkAnalysis::finalizeRun()
     
     size_t num_hists = m_histogram_handlers.at(hist_level).size();
     for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
-      std::cout << "\twriting histogram handler " << hist_it << " to file\n";
+      //std::cout << "\twriting histogram handler " << hist_it << " to file\n";
       m_histogram_handlers.at(hist_level).at(hist_it)->write(hist_dir_cut_level);
     }
     
@@ -981,12 +1002,27 @@ void PennSusyFrame::EwkAnalysis::doISRSR()
   }
 
 
-  double m20_Isr_cut = 0.0726;
-  double m35_Isr_cut = 0.0753;
-  double m65_Isr_cut = 0.1006;
-  double m100_Isr_cut = 0.1276;
+  double m20_Isr_cut = 0.06;
+  double m35_Isr_cut = 0.076;
+  double m65_Isr_cut = 0.092;
+  double m100_Isr_cut = 0.092;
 
   double bdt_max = 999999;
+
+
+
+  double m20_Isr_vr_min_cut = 0.024;
+  double m20_Isr_vr_max_cut = 0.124; 
+
+  double m35_Isr_vr_min_cut = 0.088;
+  double m35_Isr_vr_max_cut = 0.188; 
+
+  double m65_Isr_vr_min_cut = 0.04;
+  double m65_Isr_vr_max_cut = 0.14; 
+
+  double m100_Isr_vr_min_cut = 0.056;
+  double m100_Isr_vr_max_cut = 0.156; 
+
 
   bool pass_m20_isr_cut = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m20isr
                                                                   , m20_Isr_cut
@@ -1009,23 +1045,30 @@ void PennSusyFrame::EwkAnalysis::doISRSR()
 
 
 
-  bool pass_m20_isr_cr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m20isr
-								 , -0.07
-								 , 0.0726
-								 ));
-  bool pass_m35_isr_cr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m35isr
-								 , -0.07
-								 , 0.0753
+  //std::cout<<m_pass_event<<" cut: "<<(PennSusyFrame::passCut(m_bdt_score_m20isr
+  //								 , m20_Isr_vr_min_cut
+  //								 , m20_Isr_vr_max_cut
+  //							     ))<<std::endl;
+
+  bool pass_m20_isr_vr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m20isr
+								 , m20_Isr_vr_min_cut
+								 , m20_Isr_vr_max_cut
 								 ));
 
-  bool pass_m65_isr_cr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m65isr
-								 , -0.04
-								 , 0.1006
+  //std::cout<<"after AND: "<<m_pass_event<<std::endl<<std::endl;
+  bool pass_m35_isr_vr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m35isr
+								 , m35_Isr_vr_min_cut
+								 , m35_Isr_vr_max_cut
 								 ));
 
-  bool pass_m100_isr_cr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m100isr
-								 , -0.01
-								 , 0.1276
+  bool pass_m65_isr_vr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m65isr
+								 , m65_Isr_vr_min_cut
+								 , m65_Isr_vr_max_cut
+								 ));
+
+  bool pass_m100_isr_vr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m100isr
+								  , m100_Isr_vr_min_cut
+								  , m100_Isr_vr_max_cut
 								 ));
 
 
@@ -1033,24 +1076,61 @@ void PennSusyFrame::EwkAnalysis::doISRSR()
   if (pass_m20_isr_cut)  fillHistHandles( PennSusyFrame::EWK_HIST_SR_M20_ISR, m_event_weight);
   if (pass_m35_isr_cut)  fillHistHandles( PennSusyFrame::EWK_HIST_SR_M35_ISR, m_event_weight);
   if (pass_m65_isr_cut)  fillHistHandles( PennSusyFrame::EWK_HIST_SR_M65_ISR, m_event_weight);
-  if (pass_m100_isr_cut)  fillHistHandles( PennSusyFrame::EWK_HIST_SR_M100_ISR, m_event_weight); 
+  if (pass_m100_isr_cut) fillHistHandles( PennSusyFrame::EWK_HIST_SR_M100_ISR, m_event_weight); 
 
                                     
-  if (pass_m20_isr_cr)  fillHistHandles( PennSusyFrame::EWK_HIST_VR_M20_ISR, m_event_weight);
-  if (pass_m35_isr_cr)  fillHistHandles( PennSusyFrame::EWK_HIST_VR_M35_ISR, m_event_weight);
-  if (pass_m65_isr_cr)  fillHistHandles( PennSusyFrame::EWK_HIST_VR_M65_ISR, m_event_weight);
-  if (pass_m100_isr_cr)  fillHistHandles( PennSusyFrame::EWK_HIST_VR_M100_ISR, m_event_weight); 
-
+  if (pass_m20_isr_vr){
+    fillHistHandles( PennSusyFrame::EWK_HIST_VR_M20_ISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_VR_M20_ISR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_VR_M20_ISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_VR_M20_ISR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_VR_M20_ISR, m_event_weight);
+  }
+  if (pass_m35_isr_vr){
+    fillHistHandles( PennSusyFrame::EWK_HIST_VR_M35_ISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_VR_M35_ISR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_VR_M35_ISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_VR_M35_ISR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_VR_M35_ISR, m_event_weight);
+  }
+  if (pass_m65_isr_vr) {  
+    fillHistHandles( PennSusyFrame::EWK_HIST_VR_M65_ISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_VR_M65_ISR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_VR_M65_ISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_VR_M65_ISR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_VR_M65_ISR, m_event_weight);
+  }
+  if (pass_m100_isr_vr){ 
+    fillHistHandles( PennSusyFrame::EWK_HIST_VR_M100_ISR, m_event_weight); 
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_VR_M100_ISR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_VR_M100_ISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_VR_M100_ISR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_VR_M100_ISR, m_event_weight);
+  }
 
 }
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::doNoISRSR()
 {
 
-  double m20_noIsr_cut = 0.0741;
-  double m35_noIsr_cut = 0.0753;
-  double m65_noIsr_cut = 0.1199;
-  double m100_noIsr_cut = 0.1210;
+  double m20_noIsr_cut = 0.156;
+  double m35_noIsr_cut = 0.188;
+  double m65_noIsr_cut = 0.124;
+  double m100_noIsr_cut = 0.124;
+
+
+  double m20_noIsr_vr_min_cut = 0.024;
+  double m20_noIsr_vr_max_cut = 0.124; 
+
+  double m35_noIsr_vr_min_cut = 0.088;
+  double m35_noIsr_vr_max_cut = 0.188; 
+
+  double m65_noIsr_vr_min_cut = 0.04;
+  double m65_noIsr_vr_max_cut = 0.14; 
+
+  double m100_noIsr_vr_min_cut = 0.056;
+  double m100_noIsr_vr_max_cut = 0.156; 
+
 
   double bdt_max = 999999;
 
@@ -1076,23 +1156,23 @@ void PennSusyFrame::EwkAnalysis::doNoISRSR()
 
 
   bool pass_m20_noisr_vr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m20noisr
-                                                                    , -0.07
-                                                                    , 0.741 
-                                                                    ));
+								   , m20_noIsr_vr_min_cut
+								   , m20_noIsr_vr_max_cut
+								   ));
   bool pass_m35_noisr_vr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m35noisr
-                                                                    , -0.06
-                                                                    , 0.891 
+								   , m35_noIsr_vr_min_cut
+								   , m35_noIsr_vr_max_cut
                                                                     ));
   
   bool pass_m65_noisr_vr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m65noisr
-                                                                    , -0.02
-                                                                    , 0.1199
-                                                                    ));
+								   , m65_noIsr_vr_min_cut
+								   , m65_noIsr_vr_max_cut
+								   ));
   
   bool pass_m100_noisr_vr = m_pass_event && (PennSusyFrame::passCut(m_bdt_score_m100noisr
-                                                                     , -0.02
-                                                                     , 0.1210
-                                                                     ));
+								    , m100_noIsr_vr_min_cut
+								    , m100_noIsr_vr_max_cut
+								    ));
 
   
   if (pass_m20_noisr_cut)  fillHistHandles( PennSusyFrame::EWK_HIST_SR_M20_NOISR, m_event_weight);
@@ -1100,10 +1180,34 @@ void PennSusyFrame::EwkAnalysis::doNoISRSR()
   if (pass_m65_noisr_cut)  fillHistHandles( PennSusyFrame::EWK_HIST_SR_M65_NOISR, m_event_weight);
   if (pass_m100_noisr_cut)  fillHistHandles( PennSusyFrame::EWK_HIST_SR_M100_NOISR, m_event_weight); 
 
-  if (pass_m20_noisr_vr)  fillHistHandles( PennSusyFrame::EWK_HIST_VR_M20_NOISR, m_event_weight);
-  if (pass_m35_noisr_vr)  fillHistHandles( PennSusyFrame::EWK_HIST_VR_M35_NOISR, m_event_weight);
-  if (pass_m65_noisr_vr)  fillHistHandles( PennSusyFrame::EWK_HIST_VR_M65_NOISR, m_event_weight);
-  if (pass_m100_noisr_vr)  fillHistHandles( PennSusyFrame::EWK_HIST_VR_M100_NOISR, m_event_weight); 
+  if (pass_m20_noisr_vr){  
+    fillHistHandles( PennSusyFrame::EWK_HIST_VR_M20_NOISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_VR_M20_NOISR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_VR_M20_NOISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_VR_M20_NOISR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_VR_M20_NOISR, m_event_weight);
+  }
+  if (pass_m35_noisr_vr) { 
+    fillHistHandles( PennSusyFrame::EWK_HIST_VR_M35_NOISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_VR_M35_NOISR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_VR_M35_NOISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_VR_M35_NOISR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_VR_M35_NOISR, m_event_weight);
+  }
+  if (pass_m65_noisr_vr)  {
+    fillHistHandles( PennSusyFrame::EWK_HIST_VR_M65_NOISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_VR_M65_NOISR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_VR_M65_NOISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_VR_M65_NOISR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_VR_M65_NOISR, m_event_weight);
+  }
+  if (pass_m100_noisr_vr)  {
+    fillHistHandles( PennSusyFrame::EWK_HIST_VR_M100_NOISR, m_event_weight); 
+    m_raw_cutflow_tracker.fillHist(FLAVOR_NONE, EWK_CUT_VR_M100_NOISR);
+    m_cutflow_tracker.fillHist(    FLAVOR_NONE, EWK_CUT_VR_M100_NOISR, m_event_weight);
+    m_raw_cutflow_tracker.fillHist(m_event.getPhaseSpace(), EWK_CUT_VR_M100_NOISR);
+    m_cutflow_tracker.fillHist(    m_event.getPhaseSpace(), EWK_CUT_VR_M100_NOISR, m_event_weight);
+  }
 
 
 }
@@ -1142,6 +1246,15 @@ void PennSusyFrame::EwkAnalysis::fillHistHandles( PennSusyFrame::EWK_HIST_LEVELS
 						  , m_met
 						  , weight
 						  );
+  m_ewk_histogram_handler.at(hist_level)->FillNoIsr(m_event
+						  , m_event_quantities
+						  , m_electrons.getCollection(EL_GOOD)
+						  , m_muons.getCollection(MU_GOOD)
+						  , m_jets.getCollection(JET_ALL_SIGNAL)
+						  , m_met
+						  , weight
+						  );
+
 }
 // -----------------------------------------------------------------------------
 void PennSusyFrame::EwkAnalysis::printEventDetails()

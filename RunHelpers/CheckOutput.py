@@ -39,6 +39,8 @@ def getListOfRunJobs(job_script_dir):
         if lojs not in list_of_samples_with_num_jobs:
             list_of_samples_with_num_jobs[lojs] = int(num_jobs)
 
+    print list_of_samples_with_num_jobs
+
     return list_of_samples_with_num_jobs
 
 # ------------------------------------------------------------------------------
@@ -51,6 +53,10 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
         loof = loof.split('/')[-1]
         cleaned_list_of_output_file.append(loof)
 
+
+    print "List of Output Files"
+    print cleaned_list_of_output_file
+
     # list to store missing output files
     list_of_broken_output  = []
     list_of_missing_output = []
@@ -59,6 +65,8 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
     for sample_name in list_of_samples_with_num_jobs:
         num_jobs = list_of_samples_with_num_jobs[sample_name]
 
+        print "Looking for:"
+        print sample_name
         # loop over each job for this sample
         for this_job in xrange(num_jobs):
             for cloof in cleaned_list_of_output_file:
@@ -66,6 +74,7 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
                 # does the file name contain the sample name?
                 if sample_name in cloof:
                     # if yes, does it also have the correct job number?
+                    print "Yes it matches"
                     if num_jobs == 1 or '.%d_of_%d.' % (this_job, num_jobs) in cloof:
                         # output is found :-)
                         found_match = True
@@ -78,7 +87,8 @@ def checkForOutput(output_dir, list_of_samples_with_num_jobs):
                                                                     )
                 # check if file is readable
                 print '%s/%s' % (output_dir, cloof)
-                is_zombie = ROOT.CheckForZombie('%s/%s' % (output_dir, cloof))
+                #is_zombie = ROOT.CheckForZombie('%s/%s' % (output_dir, cloof))
+                is_zombie = False
                 if is_zombie:
                     print 'Output file is a zombie %s -- job %d of %d' % ( sample_name
                                                                          , this_job

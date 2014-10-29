@@ -40,6 +40,8 @@ double PennSusyFrame::MatrixMethodTool::getSF( FLAVOR_CHANNEL flavor_channel
                                            , const std::vector<PennSusyFrame::Electron*>* el
                                            , const std::vector<PennSusyFrame::Muon*>* mu
 					   , const PennSusyFrame::Met Met     
+					       //, bool do_sys
+					       //, bool up_sys
                                            )
 {
 
@@ -117,12 +119,39 @@ double PennSusyFrame::MatrixMethodTool::getSF( FLAVOR_CHANNEL flavor_channel
   susy::fake::Lepton lepton_0(is_tight_0, is_electron_0, pt_0, eta_0);
   susy::fake::Lepton lepton_1(is_tight_1, is_electron_1, pt_1, eta_1);
 
+  
 
-fake_rate_sf = m_matrix_method.getTotalFake( lepton_0, lepton_1,
-					     m_matrix_method.getIndexRegion("ssinc1j")
-					     , Met.getMetRel()
-					     , susy::fake::Systematic::SYS_NOM
-					     );
+  fake_rate_sf = m_matrix_method.getTotalFake( lepton_0, lepton_1,
+					       m_matrix_method.getIndexRegion("ssinc1j")
+					       , Met.getMetRel()
+					       , susy::fake::Systematic::SYS_NOM
+					       //, susy::fake::Systematic::SYS_EL_RE_UP	
+					       //, susy::fake::Systematic::SYS_EL_RE_DOWN	
+					       //, susy::fake::Systematic::SYS_EL_FR_UP	
+					       //, susy::fake::Systematic::SYS_EL_FR_DOWN	
+					       //, susy::fake::Systematic::SYS_MU_RE_UP	
+					       //, susy::fake::Systematic::SYS_MU_RE_DOWN	
+					       //, susy::fake::Systematic::SYS_MU_FR_UP	
+					       //, susy::fake::Systematic::SYS_MU_FR_DOWN	
+					       //, susy::fake::Systematic::SYS_N_USER		
+					       //, susy::fake::Systematic::SYS_EL_DATAMC_UP    
+					       //, susy::fake::Systematic::SYS_EL_DATAMC_DOWN  
+					       //, susy::fake::Systematic::SYS_MU_DATAMC_UP    
+					       //, susy::fake::Systematic::SYS_MU_DATAMC_DOWN  
+					       //, susy::fake::Systematic::SYS_EL_FR_STAT_UP   
+					       //, susy::fake::Systematic::SYS_EL_FR_STAT_DOWN 
+					       //, susy::fake::Systematic::SYS_MU_FR_STAT_UP   
+					       //, susy::fake::Systematic::SYS_MU_FR_STAT_DOWN 
+					       //, susy::fake::Systematic::SYS_EL_ETA          
+					       //, susy::fake::Systematic::SYS_MU_ETA          
+					       //, susy::fake::Systematic::SYS_EL_HFLF_UP      
+					       //, susy::fake::Systematic::SYS_EL_HFLF_DOWN    
+					       //, susy::fake::Systematic::SYS_EL_REG_UP       
+					       //, susy::fake::Systematic::SYS_EL_REG_DOWN     
+					       //, susy::fake::Systematic::SYS_MU_REG_UP       
+					       //, susy::fake::Systematic::SYS_MU_REG_DOWN     
+					       
+					       );
 
   return fake_rate_sf;
 }

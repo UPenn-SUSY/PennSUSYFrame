@@ -183,9 +183,11 @@ def main():
     target_dir = sys.argv[1]
 
     flat_files = sys.argv[2] if len(sys.argv) > 2 else False
-    flat_files = False if flat_files == '0' else True
+    if not isinstance(flat_files,bool):
+        flat_files = False if flat_files == '0' else True
     print target_dir
     print flat_files
+    
 
     runAutoHaddOnDir(target_dir , flat_files)
 

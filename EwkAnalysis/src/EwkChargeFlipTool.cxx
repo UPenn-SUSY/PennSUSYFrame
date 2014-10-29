@@ -9,7 +9,8 @@
 PennSusyFrame::ChargeFlipTool::ChargeFlipTool() : m_charge_flip(0)
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
-  m_charge_flip_map_file = root_core_dir + "/../ChargeFlip/data/chargeflip_map.root";
+  //m_charge_flip_map_file = root_core_dir + "/../ChargeFlip/data/19aug14_chargeflip_map.root";
+  m_charge_flip_map_file = root_core_dir + "/../ChargeFlip/data/d0_new2d_chargeflip_map.root";
 }
 
 // -----------------------------------------------------------------------------

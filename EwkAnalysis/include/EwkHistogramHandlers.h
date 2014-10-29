@@ -51,6 +51,16 @@ namespace PennSusyFrame
 		   , float weight
 		   );
 
+      void FillNoIsr(const PennSusyFrame::Event& event
+		   , const PennSusyFrame::EventLevelQuantities& event_level_quantities
+		   , const std::vector<PennSusyFrame::Electron*>*
+		   , const std::vector<PennSusyFrame::Muon*>*
+		   , const std::vector<PennSusyFrame::Jet*>*
+		   , const PennSusyFrame::Met&
+		   , float weight
+		   );
+
+
       virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

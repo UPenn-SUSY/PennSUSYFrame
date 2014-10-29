@@ -40,6 +40,7 @@ ewa = ROOT.PennSusyFrame.EwkAnalysis(t)
 ewa.setPrintEventDetails(False)
 #ewa.setMaxNumEvents(10)
 ewa.setIsData()
+ewa.setDoChargeFlipEst(True)
 ewa.prepareTools()
 ewa.Loop()
 

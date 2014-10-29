@@ -17,20 +17,20 @@ PennSusyFrame::EwkHists::EwkHists(std::string name_tag)
   const float num_jet_min  = -0.5;
   const float num_jet_max  = num_jet_bins - num_jet_min;
 
-  const int   pt_bins = 50;
+  const int   pt_bins = 15;
   const float pt_min  = 0.;
-  const float pt_max  = 500.;
+  const float pt_max  = 400.;
 
-  const int bdt_bins = 100;
+  const int bdt_bins = 30;
   const float bdt_min = -1;
   const float bdt_max = 1;
 
-  static const int   dphi_bins = 32;
+  static const int   dphi_bins = 15;
   static const float dphi_min = 0.;
-  static const float dphi_max = 3.2;
+  static const float dphi_max = 4;
 
 
-  static const int ratio_bins = 200;
+  static const int ratio_bins = 15;
   static const float ratio_min = 0;
   static const float ratio_max = 10;
 
@@ -219,9 +219,44 @@ void PennSusyFrame::EwkHists::FillIsr(const PennSusyFrame::Event& event
     
     m_h_ratio_met_jet.at(fc_it)->Fill(ratio_met_pt_jet, weight);
     m_h_ratio_lep_jet.at(fc_it)->Fill(ratio_lep_jet, weight);
-    m_h_dphi_met_jet.at(fc_it)->Fill(dphi_met_jet);
+    m_h_dphi_met_jet.at(fc_it)->Fill(dphi_met_jet, weight);
 
   } 
+
+}
+// -----------------------------------------------------------------------------
+void PennSusyFrame::EwkHists::FillNoIsr(const PennSusyFrame::Event& event
+                                         , const PennSusyFrame::EventLevelQuantities& event_level_quantities
+                                         , const std::vector<PennSusyFrame::Electron*>* electrons
+                                         , const std::vector<PennSusyFrame::Muon*>* muons
+                                         , const std::vector<PennSusyFrame::Jet*>* jets
+                                         , const PennSusyFrame::Met& met
+                                         , float weight
+					)
+{
+
+
+  FLAVOR_CHANNEL fc = event.getFlavorChannel(); 
+  for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    
+    if (fc_it == FLAVOR_ERROR_1) continue;
+    if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
+    
+
+    float mtr1 = PennSusyFrame::getLeadingMt(event.getFlavorChannel()
+					     , electrons
+					     , muons
+					     , &met);
+    
+    float mtr2 = PennSusyFrame::getSubleadingMt(event.getFlavorChannel()
+						, electrons
+						, muons
+						, &met);
+    
+    
+    m_h_mtr1.at(fc_it)->Fill(mtr1,weight);
+    m_h_mtr2.at(fc_it)->Fill(mtr2,weight);
+  }
 
 }
 // -----------------------------------------------------------------------------
@@ -250,6 +285,9 @@ void PennSusyFrame::EwkHists::write(TDirectory* d)
 
       m_h_jet_sum_pt.at(fc_it)->Write();
       m_h_bdt_score.at(fc_it)->Write();
+
+      m_h_mtr1.at(fc_it)->Write();
+      m_h_mtr2.at(fc_it)->Write();
 
       m_h_ratio_met_jet.at(fc_it)->Write();
       m_h_ratio_lep_jet.at(fc_it)->Write();

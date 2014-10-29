@@ -8,41 +8,41 @@
 #include "TH1.h"
 
 // =============================================================================
-static const int   mll_bins = 50;
+static const int   mll_bins = 15;
 static const float mll_min  = 0.;
-static const float mll_max  = 1000.;
+static const float mll_max  = 400.;
 
 static const int   mbb_bins = 50;
 static const float mbb_min  = 0.;
 static const float mbb_max  = 1000.;
 
-static const int   mt2_bins = 50;
+static const int   mt2_bins = 15;
 static const float mt2_min  = 0.;
-static const float mt2_max  = 500.;
+static const float mt2_max  = 400.;
 
-static const int   ptll_bins = 60;
+static const int   ptll_bins = 15;
 static const float ptll_min  = 0.;
-static const float ptll_max  = 1200.;
+static const float ptll_max  = 400.;
 
 static const int   ptbb_bins = 60;
 static const float ptbb_min  = 0.;
 static const float ptbb_max  = 1200.;
 
-static const int   ht_bins = 30;
+static const int   ht_bins = 15;
 static const float ht_min  = 0;
-static const float ht_max  = 3000;
+static const float ht_max  = 400;
 
 static const int   npv_bins = 60;
 static const float npv_min  = -0.5;
 static const float npv_max  = npv_bins + npv_min;
 
-static const int   pt_bins = 75;
+static const int   pt_bins = 15;
 static const float pt_min  = 0.;
-static const float pt_max  = 1500.;
+static const float pt_max  = 400.;
 
-static const int   eta_bins = 50;
-static const float eta_min = -5.;
-static const float eta_max = +5.;
+static const int   eta_bins = 15;
+static const float eta_min = -3.;
+static const float eta_max = 3.;
 
 // static const int   ptiso_bins = 120;
 static const int   ptiso_bins = 80;
@@ -60,9 +60,9 @@ static const int   dr_bins = 60;
 static const float dr_min = 0.;
 static const float dr_max = 6.0;
 
-static const int   dphi_bins = 32;
+static const int   dphi_bins = 15;
 static const float dphi_min = 0.;
-static const float dphi_max = 3.2;
+static const float dphi_max = 4;
 
 static const int   deta_bins = 50;
 static const float deta_min = 0.;
@@ -72,9 +72,9 @@ static const int   num_jet_bins = 10;
 static const float num_jet_min  = -0.5;
 static const float num_jet_max  = num_jet_bins + num_jet_min;
 
-static const int   met_et_bins = 25;
+static const int   met_et_bins = 15;
 static const float met_et_min  = 0.;
-static const float met_et_max  = 500.;
+static const float met_et_max  = 400.;
 
 static const int   met_sig_bins = 30;
 static const float met_sig_min  = 0;
