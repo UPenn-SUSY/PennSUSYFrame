@@ -13,6 +13,12 @@ gROOT.LoadMacro("./macros/AtlasStyle.C")
 import ROOT
 ROOT.SetAtlasStyle()
 
+# ------------------------------------------------------------------------------
+# import functions to do scaling
+import sys
+sys.path.append('%s/LimitHelpers/' % os.environ['BASE_WORK_DIR'])
+import FlavorChannelScaling as scaling
+
 # ----------------------------------------------------------------------------------------------
 # - Some flags for overridding normal execution and telling ROOT to shut up... use with caution!
 # ----------------------------------------------------------------------------------------------
@@ -25,6 +31,9 @@ configMgr.blindSR = True
 # ----------------------------------------
 use_stat = True
 do_validation = True
+
+single_bin_regions = True
+single_bin_signal  = True
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -85,39 +94,58 @@ else:
 # - Dictionnary of cuts for Tree->hist
 # ------------------------------------
 # SR
-base_sr_str = "( (mbl_asym <= 0.4) && (ht_signal >= 1100) && (fabs(mll - 91) > 10) )"
+base_sr_str = "(ht_signal >= 1100)"
+base_sr_str += " && (mbl_asym <= 0.4)"
+base_sr_str += " && (fabs(mll - 91) > 10)"
 configMgr.cutsDict["SR_ee"] = '(%s && is_ee)' % base_sr_str
 configMgr.cutsDict["SR_mm"] = '(%s && is_mm)' % base_sr_str
 configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
 
 # CR_top
-# base_cr_top_str = "( (mbl_asym <= 0.4) && (ht_signal <= 500) && (met_sig_signal >= 4) && (fabs(mll - 91) > 10) )"
-base_cr_top_str = "( (mbl_asym <= 0.4) && (ht_signal <= 500) && (met_et/sqrt(ht_signal) >= 4) && (fabs(mll - 91) > 10) )"
+# base_cr_top_str = "( (mbl_asym <= 0.4) && (ht_signal <= 500) && (met_et/sqrt(ht_signal) >= 4) && (fabs(mll - 91) > 10) )"
+base_cr_top_str = "(ht_signal <= 500)"
+base_cr_top_str += " && (mbl_asym <= 0.4)"
+base_cr_top_str += " && (met_sig_signal >= 4)"
+base_cr_top_str += " && (fabs(mll - 91) > 10)"
 configMgr.cutsDict["CR_top_ee"] = '(%s && is_ee)' % base_cr_top_str
 configMgr.cutsDict["CR_top_mm"] = '(%s && is_mm)' % base_cr_top_str
 configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
 
 # CR_Z
-base_cr_z_str = "( (mbl_asym <= 0.4) && (ht_signal <= 500) && (fabs(mll - 91) < 10) )"
+base_cr_z_str = "(ht_signal <= 500)"
+base_cr_z_str += " && (mbl_asym <= 0.4)"
+base_cr_z_str += " && (fabs(mll - 91) < 10)"
 configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
 configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
 
-# VR
-base_vr_1_str = "( (mbl_asym <= 0.4) && (ht_signal >= 500) && (ht_signal <= 1100) && (fabs(mll - 91) > 10) )"
+# VR 1
+base_vr_1_str = "(ht_signal >= 500)"
+base_vr_1_str += " && (ht_signal <= 1100)"
+base_vr_1_str += " && (mbl_asym <= 0.4)"
+base_vr_1_str += " && (fabs(mll - 91) > 10)"
 configMgr.cutsDict["VR_1_ee"] = '(%s && is_ee)' % base_vr_1_str
 configMgr.cutsDict["VR_1_mm"] = '(%s && is_mm)' % base_vr_1_str
 configMgr.cutsDict["VR_1_em"] = '(%s && is_em)' % base_vr_1_str
 
-base_vr_3_str = "( (mbl_asym <= 0.4) && (ht_signal <= 500) && (met_et/sqrt(ht_signal) <= 4) && (fabs(mll - 91) > 10) )"
-# base_vr_3_str = "( (mbl_asym <= 0.4) && (ht_signal <= 500) && (met_sig_signal <= 4) && (fabs(mll - 91) > 10) )"
+# VR 3
+# base_vr_3_str = "( (mbl_asym <= 0.4) && (ht_signal <= 500) && (met_et/sqrt(ht_signal) <= 4) && (fabs(mll - 91) > 10) )"
+base_vr_3_str = "(ht_signal <= 500)"
+base_vr_3_str += " && (mbl_asym <= 0.4)"
+base_vr_3_str += " && (met_sig_signal <= 4)"
+base_vr_3_str += " && (fabs(mll - 91) > 10)"
 configMgr.cutsDict["VR_3_ee"] = '(%s && is_ee)' % base_vr_3_str
 configMgr.cutsDict["VR_3_mm"] = '(%s && is_mm)' % base_vr_3_str
 configMgr.cutsDict["VR_3_em"] = '(%s && is_em)' % base_vr_3_str
 
-base_vr_5_str = "( (mbl_asym <= 0.4) && (ht_signal >= 500) && (ht_signal <= 1100) && (fabs(mll - 91) < 10) )"
+# VR 5
+base_vr_5_str = "(ht_signal >= 500)"
+base_vr_5_str += " && (ht_signal <= 1100)"
+base_vr_5_str += " && (mbl_asym <= 0.4)"
+base_vr_5_str += " && (fabs(mll - 91) < 10)"
 configMgr.cutsDict["VR_5_ee"] = '(%s && is_ee)' % base_vr_5_str
 configMgr.cutsDict["VR_5_mm"] = '(%s && is_mm)' % base_vr_5_str
 
+# VR llbb
 configMgr.cutsDict["VR_llbb"]    = '( 1 )'
 configMgr.cutsDict["VR_llbb_ee"] = '( 1 && is_ee )'
 configMgr.cutsDict["VR_llbb_mm"] = '( 1 && is_mm )'
@@ -126,6 +154,16 @@ configMgr.cutsDict["VR_llbb_em"] = '( 1 && is_em )'
 # --------------------------
 # - lists of nominal weights
 # --------------------------
+flavor_scale_factors = scaling.getFlavorScaleFactorsFromBR( br_e=0.1
+                                                          , br_m=0.9
+                                                          , br_t=0.
+                                                          )
+# TODO figure out how to only apply this weight for signal samples
+# configMgr.weights = ["weight*( (is_ee*%f) + (is_mm*%f) + (is_em*%f) )" % ( flavor_scale_factors['ee']
+#                                                                          , flavor_scale_factors['mm']
+#                                                                          , flavor_scale_factors['em']
+#                                                                          )
+#                     ]
 configMgr.weights = ["weight"]
 
 # name of nominal histogram for systematics
@@ -134,11 +172,13 @@ configMgr.nomName = "_NoSys"
 # ---------------------
 # - List of systematics
 # ---------------------
+# TODO replace general systematic with real systematics
+
 # generic systematic -- placeholder for now
 gen_syst = Systematic( "gen_syst" , configMgr.weights , 1.0 + 0.30 , 1.0 - 0.30 , "user" , "userOverallSys" )
 
 # JES uncertainty as shapeSys - one systematic per region (combine WR and TR), merge samples
-# jes = Systematic("JES","_NoSys","_JESup","_JESdown","tree","overallNormHistoSys")
+# jes = Systematic("JER","_JESup","_JESdown","tree","overallNormHistoSys")
 
 # --------------------------------------------
 # - List of samples and their plotting colours
@@ -214,80 +254,80 @@ flavor_channel_min = -0.5
 flavor_channel_max = flavor_channel_min + flavor_channel_bin
 
 # pt binning
-pt_bin = 10
+pt_bin = 10 if not single_bin_regions else 1
 pt_min = 0
 pt_max = 500
 
 # mbbll binning
-mbbll_bin = 6
+mbbll_bin = 6 if not single_bin_regions else 1
 mbbll_min = 0
 mbbll_max = 1200
 
 # mbl binning
-mbl_bin = 6
+mbl_bin = 6 if not single_bin_regions else 1
 mbl_min = 0
 mbl_max = 1200
 
 # ptbl binning
-ptbl_bin = 6
+ptbl_bin = 6 if not single_bin_regions else 1
 ptbl_min = 0
 ptbl_max = 600
 
 # ptll binning
-ptll_bin = 6
+ptll_bin = 6 if not single_bin_regions else 1
 ptll_min = 0
 ptll_max = 600
 
 # ptbbll binning
-ptbbll_bin = 6
+ptbbll_bin = 6 if not single_bin_regions else 1
 ptbbll_min = 0
 ptbbll_max = 600
 
 # mll binning
-mll_bin = 10
+mll_bin = 10 if not single_bin_regions else 1
 mll_min = 0
 mll_max = 500
 
-mll_inz_bin = 6
+mll_inz_bin = 6 if not single_bin_regions else 1
 mll_inz_min = 75
 mll_inz_max = 105
 
 # ht binning
-ht_bin = 11
+ht_bin = 11 if not single_bin_regions else 1
 ht_min = 0
 ht_max = 1100
 
-ht_sr_bin = 19
+ht_sr_bin = 19 if not single_bin_regions else 1
 ht_sr_min = 1100
 ht_sr_max = 3000
 
 # mbl asym binning
-mbl_asym_bin = 5
+mbl_asym_bin = 5 if not single_bin_regions else 1
 mbl_asym_min = 0
 mbl_asym_max = 1.
 
 # met significance binning
-met_sig_bin = 10
+met_sig_bin = 10 if not single_bin_regions else 1
 met_sig_min = 0
 met_sig_max = 500
 
 # met et binning
-met_et_bin = 5
+met_et_bin = 5 if not single_bin_regions else 1
 met_et_min = 0
 met_et_max = 100
 
 # dphi binning
-dphi_bin = 8
+dphi_bin = 8 if not single_bin_regions else 1
 dphi_min = 0
 dphi_max = 3.2
 
 # deta binning
-deta_bin = 4
+deta_bin = 4 if not single_bin_regions else 1
 deta_min = 0
 deta_max = 4
 
 # dr binning
-dr_bin = 4
+dr_bin = 4 if not single_bin_regions else 1
 dr_min = 0
 dr_max = 4
 
@@ -328,14 +368,14 @@ for cr_name in ['CR_top_', 'CR_Z_']:
 
         # cr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (cr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
         cr_list.append( background_config.addChannel( "mbl_0"         , ['%s%s' % (cr_name, flavor_channel)], mbl_bin           , mbl_min           , mbl_max           ) )
-        cr_list.append( background_config.addChannel( "mbl_1"         , ['%s%s' % (cr_name, flavor_channel)], mbl_bin           , mbl_min           , mbl_max           ) )
-        if cr_name == 'CR_Z_':
-            cr_list.append( background_config.addChannel( "mll"       , ['%s%s' % (cr_name, flavor_channel)], mll_inz_bin       , mll_inz_min       , mll_inz_max       ) )
-        else:
-            cr_list.append( background_config.addChannel( "mll"       , ['%s%s' % (cr_name, flavor_channel)], mll_bin           , mll_min           , mll_max           ) )
-        cr_list.append( background_config.addChannel( "ht_signal"     , ['%s%s' % (cr_name, flavor_channel)], ht_bin            , ht_min            , ht_max            ) )
-        # cr_list.append( background_config.addChannel( 'mbl_asym'      , ['%s%s' % (cr_name, flavor_channel)], mbl_asym_bin      , mbl_asym_min      , mbl_asym_max      ) )
-        # cr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (cr_name, flavor_channel)], met_sig_bin       , met_sig_min       , met_sig_max       ) )
+        ## cr_list.append( background_config.addChannel( "mbl_1"         , ['%s%s' % (cr_name, flavor_channel)], mbl_bin           , mbl_min           , mbl_max           ) )
+        ## if cr_name == 'CR_Z_':
+        ##     cr_list.append( background_config.addChannel( "mll"       , ['%s%s' % (cr_name, flavor_channel)], mll_inz_bin       , mll_inz_min       , mll_inz_max       ) )
+        ## else:
+        ##     cr_list.append( background_config.addChannel( "mll"       , ['%s%s' % (cr_name, flavor_channel)], mll_bin           , mll_min           , mll_max           ) )
+        ## cr_list.append( background_config.addChannel( "ht_signal"     , ['%s%s' % (cr_name, flavor_channel)], ht_bin            , ht_min            , ht_max            ) )
+        ## cr_list.append( background_config.addChannel( 'mbl_asym'      , ['%s%s' % (cr_name, flavor_channel)], mbl_asym_bin      , mbl_asym_min      , mbl_asym_max      ) )
+        ## cr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (cr_name, flavor_channel)], met_sig_bin       , met_sig_min       , met_sig_max       ) )
 
 background_config.setBkgConstrainChannels(cr_list)
 
@@ -376,35 +416,35 @@ if do_validation:
             # vr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (vr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
 
             vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
-            vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
-            # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
-            # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
-            # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
-            # vr_list.append( background_config.addChannel( 'ptbbll'   , ['%s%s' % (vr_name, flavor_channel)], ptbbll_bin, ptbbll_min, ptbbll_max ) )
-            if vr_name == 'VR_5':
-                vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_inz_bin , mll_inz_min , mll_inz_max ) )
-            else:
-                vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_bin     , mll_min     , mll_max     ) )
-            # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
-            vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin, met_et_min, met_et_max ) )
+            ## vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
+            ## # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbbll'   , ['%s%s' % (vr_name, flavor_channel)], ptbbll_bin, ptbbll_min, ptbbll_max ) )
+            ## if vr_name == 'VR_5':
+            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_inz_bin , mll_inz_min , mll_inz_max ) )
+            ## else:
+            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_bin     , mll_min     , mll_max     ) )
+            ## # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
+            ## vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin, met_et_min, met_et_max ) )
             ## vr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (vr_name, flavor_channel)], met_sig_bin, met_sig_min, met_sig_max ) )
-            vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin    , ht_min    , ht_max     ) )
-            vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
-            vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
-            vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
-            vr_list.append( background_config.addChannel( 'pt_b_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'dphi_bl_0', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'dphi_bl_1', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'deta_bl_0', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'deta_bl_1', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'dr_bl_0'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'dr_bl_1'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'dphi_ll'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'deta_ll'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'dr_ll'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'dphi_bb'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'deta_bb'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'dr_bb'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin    , ht_min    , ht_max     ) )
+            ## vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
+            ## vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
+            ## vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
+            ## vr_list.append( background_config.addChannel( 'pt_b_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin    , pt_min    , pt_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_0', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_1', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_0', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_1', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_0'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_1'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_ll'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_ll'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_ll'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bb'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bb'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bb'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
 
     for vr in vr_list:
         vr.useOverflowBin = True
@@ -418,8 +458,22 @@ if not myFitType == FitType.Discovery:
 # if myFitType == FitType.Exclusion:
     sr_list = []
     for flavor_channel in ['ee', 'mm', 'em']:
-        sr_list.append( background_config.addChannel( "mbl_0", ["SR_%s" % flavor_channel], mbl_bin, mbl_min, mbl_max ) )
-        sr_list.append( background_config.addChannel( "mbl_1", ["SR_%s" % flavor_channel], mbl_bin, mbl_min, mbl_max ) )
+        this_sr_name = "SR_%s" % flavor_channel
+        this_mbl_bin = mbl_bin if not single_bin_signal and not single_bin_regions else 1
+        sr_list.append( background_config.addChannel( "mbl_0"
+                                                    , [ this_sr_name]
+                                                    , this_mbl_bin
+                                                    , mbl_min
+                                                    , mbl_max
+                                                    )
+                      )
+        # sr_list.append( background_config.addChannel( "mbl_1"
+        #                                             , [ this_sr_name]
+        #                                             , this_mbl_bin
+        #                                             , mbl_min
+        #                                             , mbl_max
+        #                                             )
+        #               )
 
     for sr in sr_list:
         sr.useUnderflowBin = True
