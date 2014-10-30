@@ -338,15 +338,21 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // HFOR cut
-  m_pass_hfor = m_hfor_tool.passHFOR(m_mc_truth);
+  m_pass_hfor = (m_is_data || m_hfor_tool.passHFOR(m_mc_truth));
   m_pass_event = (m_pass_event && m_pass_hfor);
   if (m_crit_cut_hfor && !m_pass_hfor) return;
   fillTrackers(BMINUSL_CUT_HFOR);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // mc overlap cut
-  m_pass_mc_overlap = (  PennSusyFrame::passSherpaZMassiveCBOverlapRemoval(m_mc_truth, m_event_quantities)
-                      && PennSusyFrame::passSherpaDYOverlapRemoval(m_mc_truth, m_event_quantities)
+  m_pass_mc_overlap = (  m_is_data
+                      || (  PennSusyFrame::passSherpaZMassiveCBOverlapRemoval( m_mc_truth
+                                                                             , m_event_quantities
+                                                                             )
+                         && PennSusyFrame::passSherpaDYOverlapRemoval( m_mc_truth
+                                                                     , m_event_quantities
+                                                                     )
+                         )
                       );
   m_pass_event = (m_pass_event && m_pass_mc_overlap);
   if (m_crit_cut_mc_overlap && !m_pass_mc_overlap) return;
