@@ -85,37 +85,92 @@ else:
 # - Dictionnary of cuts for Tree->hist
 # ------------------------------------
 # SR
-base_sr_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) <= 0.6) && (ht_signal >= 600) && (met_et/sqrt(ht_signal) <= 7) && (fabs(mll - 91) > 10) )"
-configMgr.cutsDict["SR_ee"] = '(%s && is_ee)' % base_sr_str
-configMgr.cutsDict["SR_mm"] = '(%s && is_mm)' % base_sr_str
-configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
+#isr
+base_sr_str_m20_isr = "(  )"
+configMgr.cutsDict["SR_m20_isr_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_m20_isr_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_m20_isr_em"] = '(%s && is_em)' % base_sr_str
+
+base_sr_str_m35_isr = "(  )"
+configMgr.cutsDict["SR_m35_isr_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_m35_isr_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_m35_isr_em"] = '(%s && is_em)' % base_sr_str
+
+base_sr_str_m65_isr = "(  )"
+configMgr.cutsDict["SR_m65_isr_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_m65_isr_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_m65_isr_em"] = '(%s && is_em)' % base_sr_str
+
+base_sr_str_m100_isr = "(  )"
+configMgr.cutsDict["SR_m100_isr_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_m100_isr_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_m100_isr_em"] = '(%s && is_em)' % base_sr_str
+
+#no_isr
+base_sr_str_m20_no_isr = "(  )"
+configMgr.cutsDict["SR_m20_no_isr_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_m20_no_isr_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_m20_no_isr_em"] = '(%s && is_em)' % base_sr_str
+
+base_sr_str_m35_no_isr = "(  )"
+configMgr.cutsDict["SR_m35_no_isr_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_m35_no_isr_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_m35_no_isr_em"] = '(%s && is_em)' % base_sr_str
+
+base_sr_str_m65_no_isr = "(  )"
+configMgr.cutsDict["SR_m65_no_isr_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_m65_no_isr_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_m65_no_isr_em"] = '(%s && is_em)' % base_sr_str
+
+base_sr_str_m100_no_isr = "(  )"
+configMgr.cutsDict["SR_m100_no_isr_ee"] = '(%s && is_ee)' % base_sr_str
+configMgr.cutsDict["SR_m100_no_isr_mm"] = '(%s && is_mm)' % base_sr_str
+configMgr.cutsDict["SR_m100_no_isr_em"] = '(%s && is_em)' % base_sr_str
+
 
 # VR
-base_vr_str = "( (ht_signal <= 600) )"
-configMgr.cutsDict["VR_no_Z"]    = '( %s && (fabs(mll - 91) > 10) )'          % base_vr_str
-configMgr.cutsDict["VR_no_Z_ee"] = '( %s && (fabs(mll - 91) > 10) && is_ee )' % base_vr_str
-configMgr.cutsDict["VR_no_Z_mm"] = '( %s && (fabs(mll - 91) > 10) && is_mm )' % base_vr_str
-configMgr.cutsDict["VR_no_Z_em"] = '( %s && (fabs(mll - 91) > 10) && is_em )' % base_vr_str
 
-configMgr.cutsDict["VR_w_Z"]     = '( %s && (fabs(mll - 91) < 10) )'          % base_vr_str
-configMgr.cutsDict["VR_w_Z_ee"]  = '( %s && (fabs(mll - 91) < 10) && is_ee )' % base_vr_str
-configMgr.cutsDict["VR_w_Z_mm"]  = '( %s && (fabs(mll - 91) < 10) && is_mm )' % base_vr_str
+base_vr_str_m20_isr = "(  )"
+configMgr.cutsDict["VR_m20_isr_ee"] = '(%s && is_ee)' % base_vr_str_m20_isr
+configMgr.cutsDict["VR_m20_isr_mm"] = '(%s && is_mm)' % base_vr_str_m20_isr
+configMgr.cutsDict["VR_m20_isr_em"] = '(%s && is_em)' % base_vr_str_m20_isr
 
-configMgr.cutsDict["VR_llbb"]    = '( 1 )'
-configMgr.cutsDict["VR_llbb_ee"] = '( 1 && is_ee )'
-configMgr.cutsDict["VR_llbb_mm"] = '( 1 && is_mm )'
-configMgr.cutsDict["VR_llbb_em"] = '( 1 && is_em )'
+base_vr_str_m35_isr = "(  )"
+configMgr.cutsDict["VR_m35_isr_ee"] = '(%s && is_ee)' % base_vr_str_m35_isr
+configMgr.cutsDict["VR_m35_isr_mm"] = '(%s && is_mm)' % base_vr_str_m35_isr
+configMgr.cutsDict["VR_m35_isr_em"] = '(%s && is_em)' % base_vr_str_m35_isr
 
-# CR_top
-base_cr_top_str = "( ((mbl_0-mbl_1)/(mbl_0+mbl_1) >= 0.3) && (ht_signal <= 600) && (met_et/sqrt(ht_signal) >= 7) && (fabs(mll - 91) > 10) )"
-configMgr.cutsDict["CR_top_ee"] = '(%s && is_ee)' % base_cr_top_str
-configMgr.cutsDict["CR_top_mm"] = '(%s && is_mm)' % base_cr_top_str
-configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
+base_vr_str_m65_isr = "(  )"
+configMgr.cutsDict["VR_m65_isr_ee"] = '(%s && is_ee)' % base_vr_str_m65_isr
+configMgr.cutsDict["VR_m65_isr_mm"] = '(%s && is_mm)' % base_vr_str_m65_isr
+configMgr.cutsDict["VR_m65_isr_em"] = '(%s && is_em)' % base_vr_str_m65_isr
 
-# CR_Z
-base_cr_z_str = "( (ht_signal <= 600) && (fabs(mll - 91) < 10) )"
-configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
-configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
+base_vr_str_m100_isr = "(  )"
+configMgr.cutsDict["VR_m100_isr_ee"] = '(%s && is_ee)' % base_vr_str_m100_isr
+configMgr.cutsDict["VR_m100_isr_mm"] = '(%s && is_mm)' % base_vr_str_m100_isr
+configMgr.cutsDict["VR_m100_isr_em"] = '(%s && is_em)' % base_vr_str_m100_isr
+
+#no_isr
+base_vr_str_m20_no_isr = "(  )"
+configMgr.cutsDict["VR_m20_no_isr_ee"] = '(%s && is_ee)' % base_vr_str_m20_no_isr
+configMgr.cutsDict["VR_m20_no_isr_mm"] = '(%s && is_mm)' % base_vr_str_m20_no_isr
+configMgr.cutsDict["VR_m20_no_isr_em"] = '(%s && is_em)' % base_vr_str_m20_no_isr
+
+base_vr_str_m35_no_isr = "(  )"
+configMgr.cutsDict["VR_m35_no_isr_ee"] = '(%s && is_ee)' % base_vr_str_m35_no_isr
+configMgr.cutsDict["VR_m35_no_isr_mm"] = '(%s && is_mm)' % base_vr_str_m35_no_isr
+configMgr.cutsDict["VR_m35_no_isr_em"] = '(%s && is_em)' % base_vr_str_m35_no_isr
+
+base_vr_str_m65_no_isr = "(  )"
+configMgr.cutsDict["VR_m65_no_isr_ee"] = '(%s && is_ee)' % base_vr_str_m65_no_isr
+configMgr.cutsDict["VR_m65_no_isr_mm"] = '(%s && is_mm)' % base_vr_str_m65_no_isr
+configMgr.cutsDict["VR_m65_no_isr_em"] = '(%s && is_em)' % base_vr_str_m65_no_isr
+
+base_vr_str_m100_no_isr = "(  )"
+configMgr.cutsDict["VR_m100_no_isr_ee"] = '(%s && is_ee)' % base_vr_str_m100_no_isr
+configMgr.cutsDict["VR_m100_no_isr_mm"] = '(%s && is_mm)' % base_vr_str_m100_no_isr
+configMgr.cutsDict["VR_m100_no_isr_em"] = '(%s && is_em)' % base_vr_str_m100_no_isr
+
 
 # --------------------------
 # - lists of nominal weights
