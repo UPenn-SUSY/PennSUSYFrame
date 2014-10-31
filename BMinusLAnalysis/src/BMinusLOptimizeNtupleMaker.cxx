@@ -301,7 +301,7 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   m_dr_bb   = sqrt(m_dphi_bb*m_dphi_bb + m_deta_bb*m_deta_bb);
 
   bool ht_ge_1100    = (m_ht_signal      >= 1100.0);
-  bool ht_ge_700     = (m_ht_signal      >= 700.0);
+  bool ht_ge_800     = (m_ht_signal      >= 800.0);
   bool ht_ge_500     = (m_ht_signal      >= 500.0 );
   bool mbl_le_4      = (m_mbl_asym       <= 0.40  );
   bool met_sig_ge_4  = (m_met_sig_signal >= 4.    );
@@ -312,13 +312,13 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   }
   m_is_cr_top = (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && met_sig_ge_4);
   m_is_cr_z   = (!m_pass_z_veto && !ht_ge_500 && mbl_le_4);
-  m_is_vr_1   = (m_pass_z_veto && ht_ge_500 && !ht_ge_700 && mbl_le_4);
-  m_is_vr_2   = (m_pass_z_veto && ht_ge_500 && !ht_ge_700 && !mbl_le_4);
+  m_is_vr_1   = (m_pass_z_veto && ht_ge_500 && !ht_ge_800 && mbl_le_4 && met_sig_ge_4);
+  // m_is_vr_2   = (m_pass_z_veto && ht_ge_500 && !ht_ge_700 && !mbl_le_4);
   m_is_vr_3   = (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && !met_sig_ge_4);
-  m_is_vr_4   = (m_pass_z_veto && !ht_ge_500 && mbl_le_4);
+  // m_is_vr_4   = (m_pass_z_veto && !ht_ge_500 && mbl_le_4);
   m_is_vr_5   = (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4);
-  m_is_vr_6   = (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_4);
-  m_is_vr_7   = (!m_pass_z_veto && !ht_ge_500 && !mbl_le_4);
+  // m_is_vr_6   = (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_4);
+  // m_is_vr_7   = (!m_pass_z_veto && !ht_ge_500 && !mbl_le_4);
 
   // fill output tree
   m_output_tree->Fill();

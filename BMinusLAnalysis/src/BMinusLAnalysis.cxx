@@ -673,7 +673,6 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
     }
 
     // VR 1 region cuts
-    // if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4 && met_sig_ge_4) {
     if (m_pass_z_veto && ht_ge_500 && !ht_ge_800 && mbl_le_4 && met_sig_ge_4) {
       fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1
                      , m_bl_0
