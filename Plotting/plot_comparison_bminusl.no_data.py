@@ -321,7 +321,7 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Actually plot comparisons
-    out_file_name = 'compare_plots.b_minus_l.root'
+    out_file_name = 'compare_plots.b_minus_l.no_data.root'
     pc.plotComparisons( ic_numerator   = ic_numerator
                       , ic_denominator = ic_denominator
                       , ic_other       = ic_signal
