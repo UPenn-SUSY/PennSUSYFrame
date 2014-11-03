@@ -30,6 +30,7 @@ def main():
     tree_name = 'TNT'
     if len(sys.argv) > 2:
         tree_name = sys.argv[2]
+    print "getting tree: ", tree_name
 
     total_num_entries = getTotalNumEntries(in_file_name, tree_name)
 
