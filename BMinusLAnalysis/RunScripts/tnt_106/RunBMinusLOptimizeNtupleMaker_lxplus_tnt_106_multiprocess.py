@@ -96,16 +96,40 @@ if __name__ == '__main__':
                           , 161105:{'label':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'              , 'num_jobs':1}
                           , 161155:{'label':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'              , 'num_jobs':1}
                           , 161305:{'label':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'num_jobs':1}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 105200:{'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter' , 'num_jobs':10}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 177997:{'label':'177997.Sherpa_CT10_llnunu_WW_MassiveCB'      , 'num_jobs':5}
+                          , 177999:{'label':'177999.Sherpa_CT10_llnunu_ZZ_MassiveCB'      , 'num_jobs':5}
+                          , 179974:{'label':'179974.Sherpa_CT10_lllnu_WZ_MassiveCB'       , 'num_jobs':5}
+                          , 179975:{'label':'179975.Sherpa_CT10_lnununu_WZ_MassiveCB'     , 'num_jobs':5}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 183589:{'label':'183589.Sherpa_CT10_ZWtotautauqq_MassiveCB' , 'num_jobs':5}
+                          , 183590:{'label':'183590.Sherpa_CT10_ZZtotautauqq_MassiveCB' , 'num_jobs':5}
+                          , 183591:{'label':'183591.Sherpa_CT10_ZWtonunuqq_MassiveCB'   , 'num_jobs':5}
+                          , 183592:{'label':'183592.Sherpa_CT10_ZZtonunuqq_MassiveCB'   , 'num_jobs':5}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':5}
+                          , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
+                          , 200334:{'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':5}
+                          , 200335:{'label':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'num_jobs':5}
+                          , 200340:{'label':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'num_jobs':5}
+                          , 200341:{'label':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'num_jobs':5}
+                          , 200342:{'label':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'num_jobs':5}
+                          , 200343:{'label':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'num_jobs':5}
+                          , 200348:{'label':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'num_jobs':5}
+                          , 200349:{'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'num_jobs':5}
+                          , 200350:{'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':5}
+                          , 200351:{'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':5}
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':50}
+                            117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2', 'num_jobs':50}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'          , 'num_jobs':20}
                           , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l'       , 'num_jobs':20}
                           , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'                   , 'num_jobs':20}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':30}
                           , 167750:{'label':'167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'           , 'num_jobs':10}
@@ -187,6 +211,17 @@ if __name__ == '__main__':
                           , 173044:{'label':'173044.Sherpa_CT10_DYmumuM15to40'   , 'num_jobs':10}
 
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          , 183585:{'label':'183585.Sherpa_CT10_ZWtoeeqq_MassiveCB'    , 'num_jobs':1}
+                          , 183586:{'label':'183586.Sherpa_CT10_ZZtoeeqq_MassiveCB'    , 'num_jobs':1}
+                          , 183587:{'label':'183587.Sherpa_CT10_ZWtomumuqq_MassiveCB'  , 'num_jobs':1}
+                          , 183588:{'label':'183588.Sherpa_CT10_ZZtomumuqq_MassiveCB'  , 'num_jobs':1}
+                          , 183734:{'label':'183734.Sherpa_CT10_WWtoenuqq_MassiveCB'   , 'num_jobs':1}
+                          , 183735:{'label':'183735.Sherpa_CT10_WZtoenuqq_MassiveCB'   , 'num_jobs':1}
+                          , 183736:{'label':'183736.Sherpa_CT10_WWtomunuqq_MassiveCB'  , 'num_jobs':1}
+                          , 183737:{'label':'183737.Sherpa_CT10_WZtomunuqq_MassiveCB'  , 'num_jobs':1}
+                          , 183738:{'label':'183738.Sherpa_CT10_WWtotaunuqq_MassiveCB' , 'num_jobs':1}
+                          , 183739:{'label':'183739.Sherpa_CT10_WZtotaunuqq_MassiveCB' , 'num_jobs':1}
+                          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
                           , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200'  , 'num_jobs':1}
                           , 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300'  , 'num_jobs':1}
@@ -200,6 +235,13 @@ if __name__ == '__main__':
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Define what systematics (if any) to include in this run
+    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
+                                             , do_jes_up   = False
+                                             , do_jes_down = False
+                                             )
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # add data samples
     data_set_dicts = RunHelpers.addAllSamplesToList( egamma_data_samples = egamma_data_samples
                                                    , muon_data_samples   = muon_data_samples
@@ -207,6 +249,7 @@ if __name__ == '__main__':
                                                    , fast_sim_mc_samples = fast_sim_mc_samples
                                                    , file_list_path_base = 'EosFileLists/tnt_106/tnt_106'
                                                    , out_dir             = out_dir
+                                                   , syst_struct         = syst_struct
                                                    )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

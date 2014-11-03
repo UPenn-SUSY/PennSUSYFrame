@@ -238,10 +238,10 @@ if __name__ == '__main__':
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary
-    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
-                                             , do_jes_up   = False
-                                             , do_jes_down = False
-                                             )
+    syst_struct_nominal = RunHelpers.SystematicStruct( do_jer      = False
+                                                     , do_jes_up   = False
+                                                     , do_jes_down = False
+                                                     )
     data_set_dicts_nominal = RunHelpers.addAllSamplesToList(
             egamma_data_samples = egamma_data_samples,
             muon_data_samples   = muon_data_samples,
@@ -249,14 +249,14 @@ if __name__ == '__main__':
             fast_sim_mc_samples = fast_sim_mc_samples,
             file_list_path_base = 'EosFileLists/bminusl_ttnt_106/ttnt',
             out_dir             = out_dir + '__NOMINAL',
-            syst_struct         = syst_struct)
+            syst_struct         = syst_struct_nominal)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary
-    syst_struct = RunHelpers.SystematicStruct( do_jer      = True
-                                             , do_jes_up   = False
-                                             , do_jes_down = False
-                                             )
+    syst_struct_jer = RunHelpers.SystematicStruct( do_jer      = True
+                                                 , do_jes_up   = False
+                                                 , do_jes_down = False
+                                                 )
     data_set_dicts_jer = RunHelpers.addAllSamplesToList(
             egamma_data_samples = egamma_data_samples,
             muon_data_samples   = muon_data_samples,
@@ -264,14 +264,14 @@ if __name__ == '__main__':
             fast_sim_mc_samples = fast_sim_mc_samples,
             file_list_path_base = 'EosFileLists/bminusl_ttnt_106/ttnt',
             out_dir             = out_dir + '__JER',
-            syst_struct         = syst_struct)
+            syst_struct         = syst_struct_jer)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary
-    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
-                                             , do_jes_up   = True
-                                             , do_jes_down = False
-                                             )
+    syst_struct_jes_up = RunHelpers.SystematicStruct( do_jer      = False
+                                                    , do_jes_up   = True
+                                                    , do_jes_down = False
+                                                    )
     data_set_dicts_jes_up = RunHelpers.addAllSamplesToList(
             egamma_data_samples = egamma_data_samples,
             muon_data_samples   = muon_data_samples,
@@ -279,14 +279,14 @@ if __name__ == '__main__':
             fast_sim_mc_samples = fast_sim_mc_samples,
             file_list_path_base = 'EosFileLists/bminusl_ttnt_106/ttnt',
             out_dir             = out_dir + '__JES_UP',
-            syst_struct         = syst_struct)
+            syst_struct         = syst_struct_jes_up)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary
-    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
-                                             , do_jes_up   = False
-                                             , do_jes_down = True
-                                             )
+    syst_struct_jes_down = RunHelpers.SystematicStruct( do_jer      = False
+                                                      , do_jes_up   = False
+                                                      , do_jes_down = True
+                                                      )
     data_set_dicts_jes_down = RunHelpers.addAllSamplesToList(
             egamma_data_samples = egamma_data_samples,
             muon_data_samples   = muon_data_samples,
@@ -294,7 +294,7 @@ if __name__ == '__main__':
             fast_sim_mc_samples = fast_sim_mc_samples,
             file_list_path_base = 'EosFileLists/bminusl_ttnt_106/ttnt',
             out_dir             = out_dir + '__JES_DOWN',
-            syst_struct         = syst_struct)
+            syst_struct         = syst_struct_jes_down)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if run_local:
