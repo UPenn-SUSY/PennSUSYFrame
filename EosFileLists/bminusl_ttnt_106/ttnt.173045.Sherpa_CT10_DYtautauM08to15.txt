@@ -1,1 +1,1 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.tnt.root    4999693    1    4999651.0
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_106/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.tnt.root    4999693    1    4999651.0

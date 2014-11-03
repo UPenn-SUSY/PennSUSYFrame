@@ -1,1 +1,1 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.tnt.root    50000    1    49999.0
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_106/BMinusL.200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2.tnt.root    50000    1    49999.0

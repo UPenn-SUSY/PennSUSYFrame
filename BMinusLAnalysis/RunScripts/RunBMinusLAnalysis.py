@@ -68,6 +68,7 @@ def runBMinusLAnalysisFun(data_set_dict):
                       , is_data               = data_set_dict['is_data']
                       , is_egamma_stream      = data_set_dict['is_egamma_stream']
                       , is_full_sim           = data_set_dict['is_full_sim']
+                      , syst_struct           = data_set_dict['syst_struct']
                       , tree_name             = input_tree_name
                       # , tree_name             = 'TNT'
                       # , tree_name             = 'BMinusLTTNT'
@@ -88,6 +89,7 @@ def runBMinusLAnalysis( file_list
                       , is_data
                       , is_egamma_stream
                       , is_full_sim
+                      , syst_struct           = None
                       , tree_name             = 'susy'
                       , dsid                  = 1
                       , out_file_special_name = None
@@ -111,8 +113,6 @@ def runBMinusLAnalysis( file_list
     print "Adding files to TChain"
     print '  Tree name: ' , tree_name
     t = RunHelpers.getTChain(file_list, tree_name)
-    print t
-    print t.GetEntries()
 
     # ==============================================================================
     print 'Creating BMinusLAnalysis object'
@@ -149,6 +149,12 @@ def runBMinusLAnalysis( file_list
     if is_full_sim:
         bmla.setFullSim()
 
+    # turn on systematics
+    if syst_struct:
+        bmla.setDoJer(    syst_struct.do_jer     )
+        bmla.setDoJesUp(  syst_struct.do_jes_up  )
+        bmla.setDoJesDown(syst_struct.do_jes_down)
+
     # set start entry and max number events
     if total_num_jobs > 1:
         print 'total num jobs (%s) > 1' % total_num_jobs
@@ -165,6 +171,12 @@ def runBMinusLAnalysis( file_list
     # set out histogram file name
     print 'setting histogram names'
     out_hist_file_name = '%s/BMinusL.' % out_dir
+
+    if syst_struct:
+        if syst_struct.do_jer     : out_hist_file_name += 'jer.'
+        if syst_struct.do_jes_up  : out_hist_file_name += 'jes_up.'
+        if syst_struct.do_jes_down: out_hist_file_name += 'jes_down.'
+
     if out_file_special_name is not None:
         out_hist_file_name += '%s.' % out_file_special_name
     out_hist_file_name += 'hists'

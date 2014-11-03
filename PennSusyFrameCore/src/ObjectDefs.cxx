@@ -138,13 +138,10 @@ void PennSusyFrame::EventLevelQuantities::print() const
 // = Trigger
 // =============================================================================
 // -----------------------------------------------------------------------------
-PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_px(0)
+PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_E(0)
+                                  , m_trig_EF_el_px(0)
                                   , m_trig_EF_el_py(0)
                                   , m_trig_EF_el_pz(0)
-                                  , m_trig_EF_trigmuonef_track_CB_eta(0)
-                                  , m_trig_EF_trigmuonef_track_CB_phi(0)
-                                  , m_trig_EF_trigmuonef_track_CB_pt(0)
-                                  , m_trig_EF_el_E(0)
                                   , m_trig_EF_el_EF_e12Tvh_loose1(0)
                                   , m_trig_EF_el_EF_e12Tvh_medium1(0)
                                   , m_trig_EF_el_EF_e24vh_medium1(0)
@@ -154,6 +151,14 @@ PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_px(0)
                                   , m_trig_EF_trigmuonef_EF_mu18_tight(0)
                                   , m_trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS(0)
                                   , m_trig_EF_trigmuonef_EF_mu8(0)
+                                  , m_trig_EF_trigmuonef_EF_mu24i_tight(0)
+                                  , m_trig_EF_trigmuonef_EF_mu36_tight(0)
+                                  , m_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS(0)
+                                  , m_trig_EF_el_EF_e24vhi_medium1(0)
+                                  , m_trig_EF_trigmuonef_EF_mu24_tight(0)
+                                  , m_trig_EF_trigmuonef_track_CB_eta(0)
+                                  , m_trig_EF_trigmuonef_track_CB_phi(0)
+                                  , m_trig_EF_trigmuonef_track_CB_pt(0)
                                   , m_trig_EF_trigmuonef_track_CB_hasCB(0)
 {}
 
@@ -161,33 +166,41 @@ PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_px(0)
 void PennSusyFrame::Trigger::init() {}
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader
-                                     )
+void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
 {
-  setEF_2e12Tvh_loose1(          reader->EF_2e12Tvh_loose1);
-  setEF_e24vh_medium1_e7_medium1(reader->EF_e24vh_medium1_e7_medium1);
-  setEF_2mu13(                   reader->EF_2mu13);
-  setEF_mu18_tight_mu8_EFFS(     reader->EF_mu18_tight_mu8_EFFS);
-  setEF_e12Tvh_medium1_mu8(      reader->EF_e12Tvh_medium1_mu8);
-  setEF_mu18_tight_e7_medium1(   reader->EF_mu18_tight_e7_medium1);
+  setEF_2e12Tvh_loose1(           reader->EF_2e12Tvh_loose1);
+  setEF_2mu13(                    reader->EF_2mu13);
+  setEF_e12Tvh_medium1_mu8(       reader->EF_e12Tvh_medium1_mu8);
+  setEF_e24vh_medium1_e7_medium1( reader->EF_e24vh_medium1_e7_medium1);
+  setEF_mu18_tight_e7_medium1(    reader->EF_mu18_tight_e7_medium1);
+  setEF_mu18_tight_mu8_EFFS(      reader->EF_mu18_tight_mu8_EFFS);
+  setEF_mu24i_tight(              reader->EF_mu24i_tight);
+  setEF_mu36_tight(               reader->EF_mu36_tight);
+  setEF_mu24_tight_mu6_EFFS(      reader->EF_mu24_tight_mu6_EFFS);
+  setEF_e24vhi_medium1(           reader->EF_e24vhi_medium1);
 
-  setTrig_EF_el_E(                             reader->trig_EF_el_E);
-  setTrig_EF_el_EF_e12Tvh_loose1(              reader->trig_EF_el_EF_e12Tvh_loose1);
-  setTrig_EF_el_EF_e12Tvh_medium1(             reader->trig_EF_el_EF_e12Tvh_medium1);
-  setTrig_EF_el_EF_e24vh_medium1(              reader->trig_EF_el_EF_e24vh_medium1);
-  setTrig_EF_el_EF_e24vh_medium1_e7_medium1(   reader->trig_EF_el_EF_e24vh_medium1_e7_medium1);
-  setTrig_EF_el_EF_e7T_medium1(                reader->trig_EF_el_EF_e7T_medium1);
-  setTrig_EF_el_px(                            reader->trig_EF_el_px);
-  setTrig_EF_el_py(                            reader->trig_EF_el_py);
-  setTrig_EF_el_pz(                            reader->trig_EF_el_pz);
-  setTrig_EF_trigmuonef_EF_mu13(               reader->trig_EF_trigmuonef_EF_mu13);
-  setTrig_EF_trigmuonef_EF_mu18_tight(         reader->trig_EF_trigmuonef_EF_mu18_tight);
-  setTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS(reader->trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS);
-  setTrig_EF_trigmuonef_EF_mu8(                reader->trig_EF_trigmuonef_EF_mu8);
-  setTrig_EF_trigmuonef_track_CB_eta(          reader->trig_EF_trigmuonef_track_CB_eta);
-  setTrig_EF_trigmuonef_track_CB_hasCB(        reader->trig_EF_trigmuonef_track_CB_hasCB);
-  setTrig_EF_trigmuonef_track_CB_phi(          reader->trig_EF_trigmuonef_track_CB_phi);
-  setTrig_EF_trigmuonef_track_CB_pt (          reader->trig_EF_trigmuonef_track_CB_pt);
+  setTrig_EF_el_E(                              reader->trig_EF_el_E);
+  setTrig_EF_el_px(                             reader->trig_EF_el_px);
+  setTrig_EF_el_py(                             reader->trig_EF_el_py);
+  setTrig_EF_el_pz(                             reader->trig_EF_el_pz);
+  setTrig_EF_el_EF_e12Tvh_loose1(               reader->trig_EF_el_EF_e12Tvh_loose1);
+  setTrig_EF_el_EF_e12Tvh_medium1(              reader->trig_EF_el_EF_e12Tvh_medium1);
+  setTrig_EF_el_EF_e24vh_medium1(               reader->trig_EF_el_EF_e24vh_medium1);
+  setTrig_EF_el_EF_e24vh_medium1_e7_medium1(    reader->trig_EF_el_EF_e24vh_medium1_e7_medium1);
+  setTrig_EF_el_EF_e7T_medium1(                 reader->trig_EF_el_EF_e7T_medium1);
+  setTrig_EF_trigmuonef_EF_mu13(                reader->trig_EF_trigmuonef_EF_mu13);
+  setTrig_EF_trigmuonef_EF_mu18_tight(          reader->trig_EF_trigmuonef_EF_mu18_tight);
+  setTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS( reader->trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS);
+  setTrig_EF_trigmuonef_EF_mu8(                 reader->trig_EF_trigmuonef_EF_mu8);
+  setTrig_EF_trigmuonef_EF_mu24i_tight(         reader->trig_EF_trigmuonef_EF_mu24i_tight);
+  setTrig_EF_trigmuonef_EF_mu36_tight(          reader->trig_EF_trigmuonef_EF_mu36_tight);
+  setTrig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS( reader->trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
+  setTrig_EF_el_EF_e24vhi_medium1(              reader->trig_EF_el_EF_e24vhi_medium1);
+  setTrig_EF_trigmuonef_EF_mu24_tight(          reader->trig_EF_trigmuonef_EF_mu24_tight);
+  setTrig_EF_trigmuonef_track_CB_eta(           reader->trig_EF_trigmuonef_track_CB_eta);
+  setTrig_EF_trigmuonef_track_CB_phi(           reader->trig_EF_trigmuonef_track_CB_phi);
+  setTrig_EF_trigmuonef_track_CB_pt(            reader->trig_EF_trigmuonef_track_CB_pt);
+  setTrig_EF_trigmuonef_track_CB_hasCB(         reader->trig_EF_trigmuonef_track_CB_hasCB);
 }
 
 // =============================================================================
@@ -310,7 +323,6 @@ double PennSusyFrame::Particle::getEta() const
     std::cout << "WARNING! eta requested, but not set\n";
     return 0.;
   }
-
   return m_tlv.Eta();
 }
 
@@ -321,7 +333,6 @@ double PennSusyFrame::Particle::getPhi() const
     std::cout << "WARNING! phi requested, but not set\n";
     return 0.;
   }
-
   return m_tlv.Phi();
 }
 

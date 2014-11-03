@@ -300,7 +300,7 @@ double PennSusyFrame::TriggerWeightTool::getWeight( FLAVOR_CHANNEL flavor_channe
 
     trigger_weight = m_trigger_reweight->triggerReweightMM( mu_pt_0, mu_eta_0, mu_phi_0, mu_is_comb_0
                                                           , mu_pt_1, mu_eta_1, mu_phi_1, mu_is_comb_1
-							    , 0 //sys
+                                                          , 0 //sys
                                                           , num_vert
                                                           , met.getMetEt()
                                                           , 0
@@ -327,7 +327,8 @@ double PennSusyFrame::TriggerWeightTool::getWeight( FLAVOR_CHANNEL flavor_channe
 }
 
 // =============================================================================
-PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(0)
+PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_do_btag_sf(true)
+                                                          , m_b_tag_calibration(0)
                                                           , m_is_prepped(false)
 {
   std::string root_core_dir = getenv("ROOTCOREDIR");
@@ -340,6 +341,11 @@ PennSusyFrame::BTagScaleFactorTool::BTagScaleFactorTool() : m_b_tag_calibration(
 void PennSusyFrame::BTagScaleFactorTool::init(float mv1_cut_value)
 {
   std::cout << "Init b tag scale factor tool\n";
+
+  if (mv1_cut_value < 0) {
+    m_do_btag_sf = false;
+    return;
+  }
 
   if (m_b_tag_calibration != 0)  {
     delete m_b_tag_calibration;
@@ -366,10 +372,6 @@ void PennSusyFrame::BTagScaleFactorTool::init(float mv1_cut_value)
                                      , false  // use_jvf
                                      , cut_value
                                      );
-
-  // m_b_tag_calibration = new BTagCalib( "MV1" , m_calibration_file , m_calibration_folder , cut_string , false  , cut_value);
-
-  // BTagCalibTool       = new BTagCalib( "MV1" , m_calibration_file , m_calibration_folder , "0_7892"   , useJVF , 0.7892   )
 }
 
 // -----------------------------------------------------------------------------
@@ -384,35 +386,42 @@ void PennSusyFrame::BTagScaleFactorTool::prep( const std::vector<PennSusyFrame::
                                              , const PennSusyFrame::MCTruth& mc_truth
                                              )
 {
-  // vectors to hold jet info for valid jets
-  std::vector<float> pt_btag;
-  std::vector<float> eta_btag;
-  std::vector<float> val_btag;
-  std::vector<int>   pdgid_btag;
+  if (m_do_btag_sf) {
+    // vectors to hold jet info for valid jets
+    std::vector<float> pt_btag;
+    std::vector<float> eta_btag;
+    std::vector<float> val_btag;
+    std::vector<int>   pdgid_btag;
 
-  size_t jet_term = jets->size();
-  for (size_t jet_it = 0; jet_it != jet_term; ++jet_it) {
-    float jet_pt = jets->at(jet_it)->getPt();
-    float jet_eta = jets->at(jet_it)->getEta();
+    size_t jet_term = jets->size();
+    for (size_t jet_it = 0; jet_it != jet_term; ++jet_it) {
+      float jet_pt = jets->at(jet_it)->getPt();
+      float jet_eta = jets->at(jet_it)->getEta();
 
-    // remove jets out of range for b-tagging
-    if (jet_pt < 20.e3 || fabs(jet_eta) > 2.4) continue;
+      // remove jets out of range for b-tagging
+      if (jet_pt < 20.e3 || fabs(jet_eta) > 2.4) continue;
 
-    pt_btag.push_back(jet_pt);
-    eta_btag.push_back(jet_eta);
-    val_btag.push_back(jets->at(jet_it)->getMv1());
-    pdgid_btag.push_back(jets->at(jet_it)->getFlavorTruthLabel());
+      pt_btag.push_back(jet_pt);
+      eta_btag.push_back(jet_eta);
+      val_btag.push_back(jets->at(jet_it)->getMv1());
+      pdgid_btag.push_back(jets->at(jet_it)->getFlavorTruthLabel());
+    }
+
+    // calculate b tag weight
+    std::pair<std::vector<float>, std::vector<float> > b_tag_weight;
+    b_tag_weight = m_b_tag_calibration->BTagCalibrationFunction( pt_btag
+                                                               , eta_btag
+                                                               , val_btag
+                                                               , pdgid_btag
+                                                               , mc_truth.isSherpa()
+                                                               );
+    m_b_tag_weight_result = b_tag_weight.first;
   }
-
-  // calculate b tag weight
-  std::pair<std::vector<float>, std::vector<float> > b_tag_weight;
-  b_tag_weight = m_b_tag_calibration->BTagCalibrationFunction( pt_btag
-                                                             , eta_btag
-                                                             , val_btag
-                                                             , pdgid_btag
-                                                             , mc_truth.isSherpa()
-                                                             );
-  m_b_tag_weight_result = b_tag_weight.first;
+  else {
+    // this vector may be too short, but it won't segfault for now
+    m_b_tag_weight_result.resize(6);
+    std::fill(m_b_tag_weight_result.begin(), m_b_tag_weight_result.end(), 1.);
+  }
 
   m_is_prepped = true;
 }

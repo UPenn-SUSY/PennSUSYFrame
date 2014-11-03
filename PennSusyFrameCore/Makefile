@@ -22,6 +22,8 @@ INCLUDES += -I${ROOTCOREDIR}/../ReweightUtils/
 INCLUDES += -I${ROOTCOREDIR}/../BCHCleaningTool/
 INCLUDES += -I${ROOTCOREDIR}/../TileTripReader/
 INCLUDES += -I${ROOTCOREDIR}/../JetResolution/
+INCLUDES += -I${ROOTCOREDIR}/../JetUncertainties/
+
 # Include the generic compilation rules
 include $(PWD)/../Makefile.common
 

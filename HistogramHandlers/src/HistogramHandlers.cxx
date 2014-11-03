@@ -933,9 +933,6 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = el_list->at(1)->getPt()/1.e3;
 
-    eta_0 = el_list->at(0)->getEta();
-    eta_1 = el_list->at(1)->getEta();
-
     ptiso_0 = el_list->at(0)->getPtIsoRatio();
     ptiso_1 = el_list->at(1)->getPtIsoRatio();
 

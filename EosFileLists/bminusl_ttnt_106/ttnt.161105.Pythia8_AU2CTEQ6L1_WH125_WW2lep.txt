@@ -1,1 +1,1 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.tnt.root    20000    4    19999.0
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_106/BMinusL.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.tnt.root    20000    4    19999.0

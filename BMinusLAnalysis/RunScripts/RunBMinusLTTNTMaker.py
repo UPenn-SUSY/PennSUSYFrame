@@ -29,6 +29,8 @@ btag_working_point = 0.3511
 # 70% working point
 # btag_working_point = 0.7892
 
+# btag_working_point = -1
+
 # ==============================================================================
 print 'loading packages'
 ROOT.gROOT.ProcessLine(".x ${ROOTCOREDIR}/scripts/load_packages.C")

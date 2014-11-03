@@ -1,1 +1,1 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.periodE_muon.tnt.root    50916756    1935    50916565.0
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_106/BMinusL.periodE_muon.tnt.root    50916756    1935    50916565.0

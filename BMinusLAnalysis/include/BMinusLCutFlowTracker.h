@@ -9,10 +9,13 @@
 // =============================================================================
 enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   , BMINUSL_CUT_BREAK_0
+                  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                   , BMINUSL_CUT_MC_EVENT_WEIGHT
                   , BMINUSL_CUT_PILEUP_WEIGHT
                   , BMINUSL_CUT_XSEC_WEIGHT
+                  , BMINUSL_CUT_FUDGE_K_FACTOR_WEIGHT
                   , BMINUSL_CUT_BREAK_1
+                  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                   , BMINUSL_CUT_GRL
                   , BMINUSL_CUT_INCOMPLETE_EVENT
                   , BMINUSL_CUT_LAR_ERROR
@@ -27,6 +30,7 @@ enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   , BMINUSL_CUT_HFOR
                   , BMINUSL_CUT_MC_OVERLAP
                   , BMINUSL_CUT_BREAK_2
+                  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                   , BMINUSL_CUT_GE_2_BASELINE_LEPTONS
                   // , BMINUSL_CUT_EQ_2_BASELINE_LEPTONS
                   , BMINUSL_CUT_GE_2_SIGNAL_LEPTON
@@ -38,22 +42,27 @@ enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   , BMINUSL_CUT_PHASE
                   , BMINUSL_CUT_TRIGGER_WEIGHT
                   , BMINUSL_CUT_BREAK_3
+                  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                   , BMINUSL_CUT_GE_2_B_JET
                   // , BMINUSL_CUT_EQ_2_B_JET
                   , BMINUSL_CUT_B_TAG_SF
                   , BMINUSL_CUT_BL_PAIRING
                   , BMINUSL_CUT_TTBAR_WEIGHT
                   , BMINUSL_CUT_BREAK_4
+                  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                   , BMINUSL_CUT_ZVETO
                   // , BMINUSL_CUT_MET
                   , BMINUSL_CUT_N
                   };
 const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           , "BREAK"
+                                          // - - - - - - - - - - - - - - - - - -
                                           , "BMINUSL_CUT_MC_EVENT_WEIGHT"
                                           , "BMINUSL_CUT_PILEUP_WEIGHT"
                                           , "BMINUSL_CUT_XSEC_WEIGHT"
+                                          , "BMINUSL_CUT_FUDGE_K_FACTOR_WEIGHT"
                                           , "BREAK"
+                                          // - - - - - - - - - - - - - - - - - -
                                           , "BMINUSL_CUT_GRL"
                                           , "BMINUSL_CUT_INCOMPLETE_EVENT"
                                           , "BMINUSL_CUT_LAR_ERROR"
@@ -68,6 +77,7 @@ const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           , "BMINUSL_CUT_HFOR"
                                           , "BMINUSL_CUT_MC_OVERLAP"
                                           , "BREAK"
+                                          // - - - - - - - - - - - - - - - - - -
                                           , "BMINUSL_CUT_GE_2_BASELINE_LEPTONS"
                                           // , "BMINUSL_CUT_EQ_2_BASELINE_LEPTONS"
                                           , "BMINUSL_CUT_GE_2_SIGNAL_LEPTON"
@@ -75,16 +85,19 @@ const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           , "BMINUSL_CUT_LEP_SF"
                                           , "BMINUSL_CUT_OS_LEP"
                                           , "BREAK"
+                                          // - - - - - - - - - - - - - - - - - -
                                           , "BMINUSL_CUT_TRIGGER"
                                           , "BMINUSL_CUT_PHASE"
                                           , "BMINUSL_CUT_TRIGGER_WEIGHT"
                                           , "BREAK"
+                                          // - - - - - - - - - - - - - - - - - -
                                           , "BMINUSL_CUT_GE_2_B_JET"
                                           // , "BMINUSL_CUT_EQ_2_B_JET"
                                           , "BMINUSL_CUT_B_TAG_SF"
                                           , "BMINUSL_CUT_BL_PAIRING"
                                           , "BMINUSL_CUT_TTBAR_WEIGHT"
                                           , "BREAK"
+                                          // - - - - - - - - - - - - - - - - - -
                                           , "BMINUSL_CUT_ZVETO"
                                           // , "BMINUSL_CUT_MET"
                                           };

@@ -12,3 +12,4 @@ jo.*.xml
 lib/*
 LSF*/
 *_C.d
+core.*

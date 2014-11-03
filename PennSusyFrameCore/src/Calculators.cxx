@@ -151,17 +151,18 @@ double PennSusyFrame::calcDphi(double phi_0, double phi_1) {
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::getDr(  const PennSusyFrame::Particle* p1
-			    , const PennSusyFrame::Particle* p2
-			    )
-{ 
+double PennSusyFrame::getDr( const PennSusyFrame::Particle* p1
+                           , const PennSusyFrame::Particle* p2
+                           )
+{
   double eta_1 = p1->getEta();
-  double phi_1 = p1->getPhi();
   double eta_2 = p2->getEta();
-  double phi_2 = p2->getPhi();
-
   double deta = fabs(eta_1 - eta_2);
+
+  double phi_1 = p1->getPhi();
+  double phi_2 = p2->getPhi();
   double dphi = calcDphi(phi_1, phi_2);
+
   return PennSusyFrame::calcDr(deta, dphi);
 }
 

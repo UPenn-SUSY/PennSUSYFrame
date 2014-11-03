@@ -117,6 +117,7 @@ def makeDataSetDictList( label_base
                        , total_num_jobs = 1
                        , out_dir = './'
                        , job_type = ''
+                       , syst_struct = None
                        ):
     total_num_entries = 0
 
@@ -127,9 +128,9 @@ def makeDataSetDictList( label_base
     total_num_entries    = data_set_input['total_entries']
     sum_mc_event_weights = data_set_input['sum_mc_event_weights']
 
-    print 'total num events: %s' % total_num_events
-    print 'total entries: %s' % total_num_entries
-    print 'sum mc event weights: %s' % sum_mc_event_weights
+    print '  total num events: %s' % total_num_events
+    print '  total entries: %s' % total_num_entries
+    print '  sum mc event weights: %s' % sum_mc_event_weights
 
     data_set_dict_list = []
     for tnj in xrange(total_num_jobs):
@@ -147,8 +148,17 @@ def makeDataSetDictList( label_base
         this_data_set_dict['total_num_events']     = total_num_events
         this_data_set_dict['total_num_entries']    = total_num_entries
         this_data_set_dict['sum_mc_event_weights'] = sum_mc_event_weights
+        this_data_set_dict['syst_struct']          = syst_struct
         data_set_dict_list.append(this_data_set_dict)
 
+        if syst_struct.do_jer:
+            this_data_set_dict['label'] += '__JER'
+        if syst_struct.do_jes_up:
+            this_data_set_dict['label'] += '__JES_UP'
+        if syst_struct.do_jes_down:
+            this_data_set_dict['label'] += '__JES_DOWN'
+
+    print ''
     return data_set_dict_list
 
 # ------------------------------------------------------------------------------
@@ -164,8 +174,7 @@ def safeRemoveDir(dir_name):
         rm_dir = None
         while not rm_dir in ['y', 'Y', 'n', 'N']:
             rm_dir = raw_input('actually remove %s? [y,n]: ' % dir_name)
-        print rm_dir    
-        if rm_dir == 'y' or rm_dir == 'Y':
+        if rm_dir.lower() == 'y':
             if os.path.islink(dir_name):
                 os.remove(dir_name)
             else:
@@ -181,6 +190,7 @@ def addSamplesToList( sample_dict
                     , dsid
                     , out_dir
                     , job_type
+                    , syst_struct = None
                     ):
     these_data_set_dicts = makeDataSetDictList( label_base       = sample_dict['label']
                                               , file_list_path   = file_list_path
@@ -191,6 +201,7 @@ def addSamplesToList( sample_dict
                                               , total_num_jobs   = sample_dict['num_jobs']
                                               , out_dir          = out_dir
                                               , job_type         = job_type  
+                                              , syst_struct      = syst_struct
                                               )
     for tdsd in these_data_set_dicts:
         data_set_dicts.append(tdsd)
@@ -203,6 +214,7 @@ def addAllSamplesToList( egamma_data_samples
                        , file_list_path_base
                        , out_dir
                        , job_type  
+                       , syst_struct = None
                        ):
     data_set_dicts = []
 
@@ -219,6 +231,7 @@ def addAllSamplesToList( egamma_data_samples
                         , dsid             = dsid
                         , out_dir          = out_dir
                         , job_type         = job_type
+                        , syst_struct      = syst_struct
                         )
 
     # add muon stream data samples
@@ -234,6 +247,7 @@ def addAllSamplesToList( egamma_data_samples
                         , dsid             = dsid
                         , out_dir          = out_dir
                         , job_type         = job_type  
+                        , syst_struct      = syst_struct
                         )
 
     # add full sim samples
@@ -249,6 +263,7 @@ def addAllSamplesToList( egamma_data_samples
                         , dsid             = dsid
                         , out_dir          = out_dir
                         , job_type         = job_type
+                        , syst_struct      = syst_struct
                         )
 
     # add fast sim samples
@@ -264,6 +279,7 @@ def addAllSamplesToList( egamma_data_samples
                         , dsid             = dsid
                         , out_dir          = out_dir
                         , job_type         = job_type  
+                        , syst_struct      = syst_struct
                         )
 
     # return the list of data set dictionaries
@@ -292,7 +308,8 @@ def moveToLinkedDir(out_dir, pointer_dir):
     print abs_path_pointer
 
     safeRemoveDir(abs_path_pointer)
-    os.symlink(abs_path_out, abs_path_pointer)
+    if not os.path.exists(abs_path_pointer):
+        os.symlink(abs_path_out, abs_path_pointer)
 
 # ------------------------------------------------------------------------------
 def runLocalMultiprocess( run_analysis_fun
@@ -303,6 +320,9 @@ def runLocalMultiprocess( run_analysis_fun
                         , sym_link_name
                         , do_merge = True
                         ):
+    # make output directory
+    safeMakeDir(out_dir)
+
     p = Pool(num_processes)
     p.map(run_analysis_fun, data_set_dicts)
 
@@ -386,6 +406,9 @@ def runLxBatchMultiProcess( run_analysis_fun
     safeRemoveDir(job_dir)
     safeMakeDir(job_dir)
 
+    # make output directory
+    safeMakeDir(out_dir)
+
     # write script for each lxbatch job
     for dsd in data_set_dicts:
         this_job_file_name = writeLxBatchScript( run_analysis_fun
@@ -406,3 +429,19 @@ def runLxBatchMultiProcess( run_analysis_fun
     # make sym link to output dir
     if not sym_link_name == '':
         moveToLinkedDir(out_dir, sym_link_name)
+
+# ------------------------------------------------------------------------------
+class SystematicStruct(object):
+    def __init__( self
+                , do_jer
+                , do_jes_up
+                , do_jes_down
+                ):
+        self.do_jer      = do_jer
+        self.do_jes_up   = do_jes_up
+        self.do_jes_down = do_jes_down
+
+    def configureAnalysisObject(self, analysis_obj):
+        analysis_obj.setDoJer(    self.do_jer)
+        analysis_obj.setDoJesUp(  self.do_jes_up)
+        analysis_obj.setDoJesDown(self.do_jes_down)

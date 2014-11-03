@@ -68,6 +68,7 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::finalizeEvent()
      && m_pass_signal_lep
      && m_pass_os
      && m_pass_trigger
+     && m_pass_phase
      && m_pass_ge_2_b_jet
      && m_pass_bl_pairing
      ) {
@@ -223,7 +224,7 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
 
   m_mbl_0   = bl_0->getMbl()/1.e3;
   m_mbl_1   = bl_1->getMbl()/1.e3;
-  m_mbl_asym = (bl_0->getMbl() - bl_1->getMbl()) / (bl_0->getMbl() + bl_1->getMbl());
+  m_mbl_asym = (m_mbl_0 - m_mbl_1) / (m_mbl_0 + m_mbl_1);
   m_mbbll  = PennSusyFrame::calcMbbll( *bl_0, *bl_1)/1.e3;
 
   m_ptbl_0 = bl_0->getPtbl()/1.e3;
@@ -234,14 +235,14 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   m_mll  = m_event_quantities.getMll()/1.e3;
   m_ptll = m_event_quantities.getPtll()/1.e3;
 
-  m_met_et         = m_met.getMetEt() /1.e3;
-  m_met_rel        = m_met.getMetRel()/1.e3;
-  m_met_sig_signal = (m_met.getMetEt()/sqrt(m_event_quantities.getHtGood())) * sqrt(1.e3) ;
-
   m_ht_all      = m_event_quantities.getHtAll()/1.e3;
   m_ht_baseline = m_event_quantities.getHtBaseline()/1.e3;
   m_ht_good     = m_event_quantities.getHtGood()/1.e3;
   m_ht_signal   = m_event_quantities.getHtSignal()/1.e3;
+
+  m_met_et         = m_met.getMetEt() /1.e3;
+  m_met_rel        = m_met.getMetRel()/1.e3;
+  m_met_sig_signal = m_met_et/sqrt(m_ht_signal);
 
   m_pt_l_0 = bl_0->getLepton()->getPt();
   m_pt_l_1 = bl_1->getLepton()->getPt();

@@ -3,6 +3,8 @@
 #include "PennSusyFrameCore/include/ObjectDefs.h"
 #include "PennSusyFrameCore/include/Calculators.h"
 
+#include <iostream>
+
 // -----------------------------------------------------------------------------
 PennSusyFrame::blPair::blPair() : m_jet(0)
                                 , m_lep(0)
@@ -674,9 +676,10 @@ FLAVOR_CHANNEL PennSusyFrame::getTruthFC(const PennSusyFrame::MCTruth& mc_truth)
   for (unsigned int mc_it = 0; mc_it != num_mc_truth_objects; mc_it ++) {
     // get the pdgid of objects ... only care about leptons
     int this_pdgid = mc_truth.getPdgId()->at(mc_it);
-    if ( fabs(this_pdgid) != 11 
-      && fabs(this_pdgid) != 13 
-      && fabs(this_pdgid) != 15 ) {
+    if (  fabs(this_pdgid) != 11
+       && fabs(this_pdgid) != 13
+       && fabs(this_pdgid) != 15
+       ) {
       continue ;
     }
     // get number of parents of this particle...
@@ -685,28 +688,31 @@ FLAVOR_CHANNEL PennSusyFrame::getTruthFC(const PennSusyFrame::MCTruth& mc_truth)
     // look at the parents...
     for (size_t parent_it = 0; parent_it != num_parents ; parent_it++) {
       int this_parent_index = mc_truth.getParentIndex()->at(mc_it).at(parent_it);
-      int this_parent_pdgid = (this_parent_index >= 0
-			       ? mc_truth.getPdgId()->at(this_parent_index)
-			       : -1
-			       );
+      int this_parent_pdgid = ( this_parent_index >= 0
+                              ? mc_truth.getPdgId()->at(this_parent_index)
+                              : -1
+                              );
       if (fabs(this_parent_pdgid) > 1.e6) {
-	// then it's a stop parent-- store lep pdgid
-	daughter_l_index.push_back(fabs(this_pdgid));
+        // then it's a stop parent-- store lep pdgid
+        daughter_l_index.push_back(fabs(this_pdgid));
       }
     }
   }
   // find flavor channel this corresponds to
   if (daughter_l_index.size() == 2 ) {
-    if (daughter_l_index.at(0) == 11
-     && daughter_l_index.at(1) == 11 ) {
+    if (  daughter_l_index.at(0) == 11
+       && daughter_l_index.at(1) == 11
+       ) {
       return FLAVOR_EE;
     }
-    else if (daughter_l_index.at(0) == 13
-	  && daughter_l_index.at(1) == 13 ) {
+    else if (  daughter_l_index.at(0) == 13
+            && daughter_l_index.at(1) == 13
+            ) {
       return FLAVOR_MM;
     }
-    else if ((daughter_l_index.at(0) == 11 && daughter_l_index.at(1) == 13)
-	  || (daughter_l_index.at(0) == 13 && daughter_l_index.at(1) == 11) ) {
+    else if (  (daughter_l_index.at(0) == 11 && daughter_l_index.at(1) == 13)
+            || (daughter_l_index.at(0) == 13 && daughter_l_index.at(1) == 11)
+            ) {
       return FLAVOR_EM;
     }
     else { //taus?
@@ -722,5 +728,22 @@ FLAVOR_CHANNEL PennSusyFrame::getTruthFC(const PennSusyFrame::MCTruth& mc_truth)
     std::cout << "WARNING!! More than 2 leptons with stop parent!! \n" ;
     return FLAVOR_NONE;
   }
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::getFudgeKFactor(bool is_data, int dsid)
+{
+  if (is_data) return 1.;
+
+  if (  (dsid >= 167749 && dsid <= 167757)
+     || (dsid >= 167797 && dsid <= 167805)
+     || (dsid >= 167809 && dsid <= 167817)
+     || (dsid >= 167821 && dsid <= 167829)
+     || (dsid >= 167833 && dsid <= 167841)
+     || (dsid >= 180543 && dsid <= 180551)
+     ) {
+    return 1.3086;
+  }
+  return 1.;
 }
 

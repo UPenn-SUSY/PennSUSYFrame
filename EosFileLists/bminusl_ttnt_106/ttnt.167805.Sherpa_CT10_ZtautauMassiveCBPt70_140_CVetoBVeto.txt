@@ -1,1 +1,1 @@
-/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/TTNTNtuples/BMinusL.167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto.tnt.root    1999693    2    509215.0
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_106/BMinusL.167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto.tnt.root    1999693    2    509215.0

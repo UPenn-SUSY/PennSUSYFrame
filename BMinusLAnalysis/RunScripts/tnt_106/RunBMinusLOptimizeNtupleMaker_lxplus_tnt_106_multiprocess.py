@@ -47,7 +47,6 @@ out_dir = '%s/hists/bminusl_opt_ntup_%04d_%02d_%02d__%02d_%02d' % ( os.environ['
 print out_dir
 
 # ==============================================================================
-
 if __name__ == '__main__':
     RunHelpers.safeMakeDir(out_dir)
 

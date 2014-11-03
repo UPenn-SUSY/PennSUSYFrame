@@ -9,6 +9,7 @@
 #include "RootCore/MuonMomentumCorrections/MuonMomentumCorrections/SmearingClass.h"
 #include "RootCore/ApplyJetCalibration/ApplyJetCalibration/ApplyJetCalibration.h"
 #include "RootCore/ApplyJetResolutionSmearing/ApplyJetResolutionSmearing/ApplyJetSmearing.h";
+#include "RootCore/JetUncertainties/JetUncertainties/MultijetJESUncertaintyProvider.h"
 
 // =============================================================================
 // = ElectronRescalerTool
@@ -35,11 +36,16 @@ void PennSusyFrame::ElectronRescalerTool::init()
   // directory with energy rescale data
   // get default path for egamma SF directory.  This comes from SUSYTools
   std::string root_core_dir = getenv("ROOTCOREDIR");
-  std::string energy_rescale_data = root_core_dir + "/../egammaAnalysisUtils/share/EnergyRescalerData.root";
+  std::string energy_rescale_data = ( root_core_dir
+                                    + "/../egammaAnalysisUtils/share/EnergyRescalerData.root"
+                                    );
   std::cout << "initializing ElectronRescalerTool -- energy_rescale_data: "
             << energy_rescale_data << "\n";
 
-  m_e_rescale = new egRescaler::EnergyRescalerUpgrade(energy_rescale_data, "2012", "es2012");
+  m_e_rescale = new egRescaler::EnergyRescalerUpgrade( energy_rescale_data
+                                                     , "2012"
+                                                     , "es2012"
+                                                     );
 }
 
 // -----------------------------------------------------------------------------
@@ -206,11 +212,21 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
 // =============================================================================
 // = JetRescalerTool
 // =============================================================================
-PennSusyFrame::JetRescalerTool::JetRescalerTool(bool is_data, bool is_af2, bool is_mc_12b) : m_is_data(is_data)
-                                                                                           , m_is_af2(is_af2)
-                                                                                           , m_is_mc12b(is_mc_12b)  
-                                                                                           , m_jet_calibration(0)
-                                                                                           , m_jer_smearing(0)
+PennSusyFrame::JetRescalerTool::JetRescalerTool( bool is_data
+                                               , bool is_af2
+                                               , bool is_mc_12b
+                                               , bool do_jer
+                                               , bool do_jes_up
+                                               , bool do_jes_down
+                                               ) : m_is_data(is_data)
+                                                 , m_is_af2(is_af2)
+                                                 , m_is_mc12b(is_mc_12b)
+                                                 , m_do_jer(do_jer)
+                                                 , m_do_jes_up(do_jes_up)
+                                                 , m_do_jes_down(do_jes_down)
+                                                 , m_jet_calibration(0)
+                                                 , m_jer_smearing(0)
+                                                 , m_jes_tool(0)
 {
   init();
 }
@@ -222,6 +238,8 @@ PennSusyFrame::JetRescalerTool::~JetRescalerTool()
     delete m_jet_calibration;
   if (m_jer_smearing)
     delete m_jer_smearing;
+  if (m_jes_tool)
+    delete m_jes_tool;
 }
 
 // -----------------------------------------------------------------------------
@@ -274,61 +292,126 @@ void PennSusyFrame::JetRescalerTool::init()
   m_jet_calibration->UseGeV(false);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // only configure JER and JES if we are in MC
+  if (m_is_data) return;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // configure JER smearing tool
-  std::string jer_config_file = root_core_dir + "RootCore/JetResolution/share/JERProviderPlots_2012.root";
+  std::string jer_config_file = root_core_dir + "../JetResolution/share/JERProviderPlots_2012.root";
   m_jer_smearing = new JetSmearingTool(jet_algorithm, jer_config_file);
   m_jer_smearing->init();
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // configure JES tool
+  //
+  std::string multi_jes_file = "JES_2012/Moriond2013/MultijetJES_2012.config";
+  std::string jes_file       = "JES_2012/Moriond2013/InsituJES2012_14NP.config";
+  std::string jes_path       = root_core_dir + "/../JetUncertainties/share/";
+
+  m_jes_tool = new MultijetJESUncertaintyProvider( multi_jes_file
+                                                 , jes_file
+                                                 , jet_algorithm
+                                                 , m_is_af2 ? "AFII" : "MC12a"
+                                                 , jes_path
+                                                 );
 }
 
 // -----------------------------------------------------------------------------
 TLorentzVector PennSusyFrame::JetRescalerTool::getCalibratedTlv( const PennSusyFrame::Jet* p
                                                                , const PennSusyFrame::Event* event
-                                                               , int num_vertices_ge_2_tracks
+                                                               , int   num_vertices_ge_2_tracks
                                                                )
 {
-  return m_jet_calibration->ApplyJetAreaOffsetEtaJES( p->getConstScaleE()
-                                                    , p->getConstScaleEta()
-                                                    , p->getConstScalePhi()
-                                                    , p->getConstScaleM()
-                                                    , p->getActiveAreaPx()
-                                                    , p->getActiveAreaPy()
-                                                    , p->getActiveAreaPz()
-                                                    , p->getActiveAreaE()
-                                                    , event->getEventShapeRhoKt4LC()
-                                                    , event->getAverageIntPerXing()
-                                                    , num_vertices_ge_2_tracks
-                                                    );
+  TLorentzVector calibrated_tlv =  m_jet_calibration->ApplyJetAreaOffsetEtaJES( p->getConstScaleE()
+                                                                              , p->getConstScaleEta()
+                                                                              , p->getConstScalePhi()
+                                                                              , p->getConstScaleM()
+                                                                              , p->getActiveAreaPx()
+                                                                              , p->getActiveAreaPy()
+                                                                              , p->getActiveAreaPz()
+                                                                              , p->getActiveAreaE()
+                                                                              , event->getEventShapeRhoKt4LC()
+                                                                              , event->getAverageIntPerXing()
+                                                                              , num_vertices_ge_2_tracks
+                                                                              );
+
+  if (!m_is_data) {
+    if (m_do_jer) {
+      applyJER(calibrated_tlv);
+    }
+    if (m_do_jes_up || m_do_jes_down) {
+      applyJES( calibrated_tlv
+              , p->getFlavorTruthLabel()
+              , num_vertices_ge_2_tracks
+              , event->getAverageIntPerXing()
+              );
+    }
+  }
+
+  return calibrated_tlv;
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::JetRescalerTool::applyJER( PennSusyFrame::Jet* j
-                                             , bool is_af2
-                                             )
+void PennSusyFrame::JetRescalerTool::applyJER(TLorentzVector& tlv)
 {
   // don't apply JER if pT < 20 GeV
-  if (j->getPt() < 20.e3) return;
-
-  // get jet tlv
-  TLorentzVector this_tlv;
-  this_tlv.SetPtEtaPhiE( j->getPt()
-                       , j->getEta()
-                       , j->getPhi()
-                       , j->getE()
-                       );
+  if (tlv.Pt() < 20.e3) return;
 
   // use jet phi to define seed for random number
-  int seed = int(fabs(j->getPhi()*1.e5));
+  int seed = int(fabs(tlv.Phi()*1.e5));
   if (!seed) ++seed;
-  // m_my_jer->SetSeed(seed);
+  m_jer_smearing->SetSeed(seed);
 
-  // // apply 
-  // if (is_af2)
-  //   m_my_jer->SmearJet_Syst_AFII(j->getTlv());
-  // else
-  //   m_myJER->SmearJet_Syst(j->getTlv());
+  // apply jet smearing
+  if (m_is_af2)
+    m_jer_smearing->SmearJet_Syst_AFII(tlv);
+  else
+    m_jer_smearing->SmearJet_Syst(tlv);
+}
 
-  // update jet tlv
-  j->setTlv(this_tlv);
+// -----------------------------------------------------------------------------
+void PennSusyFrame::JetRescalerTool::applyJES( TLorentzVector& tlv
+                                             , int flavor_truth_label
+                                             , int num_vert_ge_2_trk
+                                             , float mu
+                                             )
+{
+  /// JES HANDLING
+  double uncertainty = 0.;
+  double factor = 1.;
+  bool is_b_jet = (flavor_truth_label == 5);
+  float f_closeby = 0;
+
+  double old_pt  = tlv.Pt();
+  double old_eta = tlv.Eta();
+  double old_e   = tlv.E();
+
+  if(m_do_jes_up) {
+    uncertainty = m_jes_tool->getRelUncert( old_pt
+                                          , old_eta
+                                          , f_closeby
+                                          , true
+                                          , num_vert_ge_2_trk
+                                          , mu
+                                          , is_b_jet
+                                          );
+  }
+  if(m_do_jes_down) {
+    uncertainty = m_jes_tool->getRelUncert( old_pt
+                                          , old_eta
+                                          , f_closeby
+                                          , false
+                                          , num_vert_ge_2_trk
+                                          , mu
+                                          , is_b_jet
+                                          );
+    factor=-1;
+  }
+
+  double new_pt = old_pt*(1 + (factor*uncertainty));
+  double new_e  = old_e*( 1 + (factor*uncertainty));
+
+  tlv.SetPtEtaPhiE(new_pt, old_eta, tlv.Phi(), new_e);
 }
 
 // =============================================================================
