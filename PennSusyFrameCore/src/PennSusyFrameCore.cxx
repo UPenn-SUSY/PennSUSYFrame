@@ -37,7 +37,7 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_process_label("")
                                                                  , m_mv1_cut_value(0.3511)
                                                                  // , m_do_jer(false)
-                                                                 , m_do_jer(true)
+                                                                 , m_do_jer(false)
                                                                  , m_do_jes_up(false)
                                                                  , m_do_jes_down(false)
                                                                  , m_d3pd_reader(0)

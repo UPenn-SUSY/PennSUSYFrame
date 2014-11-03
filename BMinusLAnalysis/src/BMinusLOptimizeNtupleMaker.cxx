@@ -36,7 +36,7 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::beginRun()
   PennSusyFrameCore::beginRun();
 
   // prepare selection
-  prepareSelection();
+  BMinusLAnalysis::prepareSelection();
 
   configureOutput(m_out_ntuple_file_name, "optimize");
 }
@@ -173,16 +173,16 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
   m_output_tree->Branch( "is_mm" , &m_is_mm);
   m_output_tree->Branch( "is_em" , &m_is_em);
 
-  m_output_tree->Branch( "m_is_sr"    , &m_is_sr    );
-  m_output_tree->Branch( "m_is_cr_top", &m_is_cr_top);
-  m_output_tree->Branch( "m_is_cr_z"  , &m_is_cr_z  );
-  m_output_tree->Branch( "m_is_vr_1"  , &m_is_vr_1  );
-  m_output_tree->Branch( "m_is_vr_2"  , &m_is_vr_2  );
-  m_output_tree->Branch( "m_is_vr_3"  , &m_is_vr_3  );
-  m_output_tree->Branch( "m_is_vr_4"  , &m_is_vr_4  );
-  m_output_tree->Branch( "m_is_vr_5"  , &m_is_vr_5  );
-  m_output_tree->Branch( "m_is_vr_6"  , &m_is_vr_6  );
-  m_output_tree->Branch( "m_is_vr_7"  , &m_is_vr_7  );
+  m_output_tree->Branch( "is_sr"    , &m_is_sr    );
+  m_output_tree->Branch( "is_cr_top", &m_is_cr_top);
+  m_output_tree->Branch( "is_cr_z"  , &m_is_cr_z  );
+  m_output_tree->Branch( "is_vr_1"  , &m_is_vr_1  );
+  m_output_tree->Branch( "is_vr_2"  , &m_is_vr_2  );
+  m_output_tree->Branch( "is_vr_3"  , &m_is_vr_3  );
+  m_output_tree->Branch( "is_vr_4"  , &m_is_vr_4  );
+  m_output_tree->Branch( "is_vr_5"  , &m_is_vr_5  );
+  m_output_tree->Branch( "is_vr_6"  , &m_is_vr_6  );
+  m_output_tree->Branch( "is_vr_7"  , &m_is_vr_7  );
 
   m_output_tree->Branch( "mbl_0"    , &m_mbl_0);
   m_output_tree->Branch( "mbl_1"    , &m_mbl_1);

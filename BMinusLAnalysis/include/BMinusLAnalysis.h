@@ -16,8 +16,7 @@
 // =============================================================================
 namespace PennSusyFrame
 {
-  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
-                           , BMINUSL_HIST_BL_PAIRING
+  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_Z_VETO
                            , BMINUSL_HIST_GE_4_OBJECTS
 
@@ -28,20 +27,13 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_CR_TOP
                            , BMINUSL_HIST_CR_Z
                            , BMINUSL_HIST_VR_1
-                           // , BMINUSL_HIST_VR_2_600
-                           // , BMINUSL_HIST_VR_2_700
                            , BMINUSL_HIST_VR_3
-                           // , BMINUSL_HIST_VR_4_600
-                           // , BMINUSL_HIST_VR_4_700
                            , BMINUSL_HIST_VR_5
-                           // , BMINUSL_HIST_VR_6
-                           // , BMINUSL_HIST_VR_7
 
                            , BMINUSL_HIST_N
                            };
 
-  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
-                                                   , "BMINUSL_BL_PAIRING"
+  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_GE_4_OBJECTS"
 
@@ -52,14 +44,8 @@ namespace PennSusyFrame
                                                    , "BMINUSL_CR_TOP"
                                                    , "BMINUSL_CR_Z"
                                                    , "BMINUSL_VR_1"
-                                                   // , "BMINUSL_VR_2_600"
-                                                   // , "BMINUSL_VR_2_700"
                                                    , "BMINUSL_VR_3"
-                                                   // , "BMINUSL_VR_4_600"
-                                                   // , "BMINUSL_VR_4_700"
                                                    , "BMINUSL_VR_5"
-                                                   // , "BMINUSL_VR_6"
-                                                   // , "BMINUSL_VR_7"
 
                                                    , "BMINUSL_N"
                                                    };
