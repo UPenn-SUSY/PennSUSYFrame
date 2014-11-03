@@ -21,3 +21,4 @@ BMinusLAnalysis/BMinusLAnalysis
 EwkAnalysis/EwkAnalysis
 ProgressBar/TestProgressBar
 BMinusLAnalysis/RunScripts/tnt_106/RunBMinusLAnalysis_lxplus_tnt_106_multiprocess.test.py
+RunBMinusLOptimizeNtupleMaker_lxplus_tnt_106_multiprocess.test.py
