@@ -57,7 +57,7 @@ configMgr.nPoints=10
 # ---------------------------------
 
 # First define HistFactory attributes
-configMgr.analysisName = "SampleExcl"
+configMgr.analysisName = "2L_SS"
 configMgr.histCacheFile = "data/"+configMgr.analysisName+".root"
 configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 
@@ -273,82 +273,83 @@ for sl in sample_list:
 # ----------
 # TODO reset the binning and add more histograms
 
-# pt binning
-pt_bin = 10
-pt_min = 0
-pt_max = 500
-
-# mbbll binning
-mbbll_bin = 6
-mbbll_min = 0
-mbbll_max = 1200
-
-# mbl binning
-mbl_bin = 6
-mbl_min = 0
-mbl_max = 1200
-
-# ptbl binning
-ptbl_bin = 6
-ptbl_min = 0
-ptbl_max = 600
-
-# ptll binning
-ptll_bin = 6
-ptll_min = 0
-ptll_max = 600
-
-# ptbbll binning
-ptbbll_bin = 6
-ptbbll_min = 0
-ptbbll_max = 600
-
-# mll binning
-mll_bin = 10
-mll_min = 0
-mll_max = 500
-
-mll_inz_bin = 6
-mll_inz_min = 75
-mll_inz_max = 105
-
-# ht binning
-# ht_bin = 20
-# ht_min = 0
-# ht_max = 1000
-ht_bin = 6
-ht_min = 0
-ht_max = 600
-
-# mbl asym binning
-mbl_asym_bin = 5
-mbl_asym_min = 0
-mbl_asym_max = 1.
-
-# met significance binning
-met_sig_bin = 10
-met_sig_min = 0
-met_sig_max = 500
-
-# met et binning
-met_et_bin = 5
-met_et_min = 0
-met_et_max = 100
-
-# dphi binning
-dphi_bin = 8
-dphi_min = 0
-dphi_max = 3.2
-
-# deta binning
-deta_bin = 4
-deta_min = 0
-deta_max = 4
-
-# dr binning
-dr_bin = 4
-dr_min = 0
-dr_max = 4
+### pt binning
+##pt_bin = 10
+##pt_min = 0
+##pt_max = 500
+##
+### mbbll binning
+##mbbll_bin = 6
+##mbbll_min = 0
+##mbbll_max = 1200
+##
+### mbl binning
+##mbl_bin = 6
+##mbl_min = 0
+##mbl_max = 1200
+##
+### ptbl binning
+##ptbl_bin = 6
+##ptbl_min = 0
+##ptbl_max = 600
+##
+### ptll binning
+##ptll_bin = 6
+##ptll_min = 0
+##ptll_max = 600
+##
+### ptbbll binning
+##ptbbll_bin = 6
+##ptbbll_min = 0
+##ptbbll_max = 600
+##
+### mll binning
+##mll_bin = 10
+##mll_min = 0
+##mll_max = 500
+##
+##mll_inz_bin = 6
+##mll_inz_min = 75
+##mll_inz_max = 105
+##
+### ht binning
+### ht_bin = 20
+### ht_min = 0
+### ht_max = 1000
+##ht_bin = 6
+##ht_min = 0
+##ht_max = 600
+##
+### mbl asym binning
+##mbl_asym_bin = 5
+##mbl_asym_min = 0
+##mbl_asym_max = 1.
+##
+### met significance binning
+##met_sig_bin = 10
+##met_sig_min = 0
+##met_sig_max = 500
+##
+### met et binning
+##met_et_bin = 5
+##met_et_min = 0
+##met_et_max = 100
+##
+### dphi binning
+##dphi_bin = 8
+##dphi_min = 0
+##dphi_max = 3.2
+##
+### deta binning
+##deta_bin = 4
+##deta_min = 0
+##deta_max = 4
+##
+### dr binning
+##dr_bin = 4
+##dr_min = 0
+##dr_max = 4
+##
 
 # SR binning (this is just a single bin cut and count binning)
 srNBins = 1
