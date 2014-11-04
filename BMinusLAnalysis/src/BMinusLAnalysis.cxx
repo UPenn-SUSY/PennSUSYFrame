@@ -542,7 +542,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
   double met_sig  = m_met.getMetSigSignal();
 
   bool ht_ge_1100    = (ht       >= 1100.0 );
-  bool ht_ge_800     = (ht       >= 800.0 );
+  bool ht_ge_700     = (ht       >= 700.0 );
   bool ht_ge_500     = (ht       >= 500.0 );
   bool mbl_le_4      = (mbl_asym <= 0.40   );
   bool met_sig_ge_4  = (met_sig  >= 4.     );
@@ -604,7 +604,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
   }
 
   // VR 1 region cuts
-  if (m_pass_z_veto && ht_ge_500 && !ht_ge_800 && mbl_le_4 && met_sig_ge_4) {
+  if (m_pass_z_veto && ht_ge_500 && !ht_ge_700 && mbl_le_4 && met_sig_ge_4) {
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1
                     , m_bl_0
                     , m_bl_1
