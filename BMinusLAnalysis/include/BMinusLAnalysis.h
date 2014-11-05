@@ -77,6 +77,7 @@ namespace PennSusyFrame
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
+      void setDoZKFactor(bool val) { m_do_z_k_factor = val; }
       void setDoDetailedBLHists(bool val = true) { m_do_detailed_bl_hists = val; }
 
       void setCritCutGrl(            bool val) { m_crit_cut_grl              = val; }
@@ -118,6 +119,7 @@ namespace PennSusyFrame
 
       std::string m_out_hist_file_name;
 
+      bool m_do_z_k_factor;
       bool m_do_detailed_bl_hists;
 
       bool m_crit_cut_grl;

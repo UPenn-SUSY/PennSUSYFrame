@@ -19,6 +19,7 @@
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
                                                              , m_out_hist_file_name("BMinusL.hists.root")
+                                                             , m_do_z_k_factor(true)
                                                              , m_do_detailed_bl_hists(false)
                                                              , m_crit_cut_grl(false)
                                                              , m_crit_cut_incomplete_event(false)
@@ -248,10 +249,13 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fudge k-factor
-  m_fudge_k_factor_weight = (m_is_data ? 1
-                                       : getFudgeKFactor( m_is_data
-                                                        , m_mc_truth.getChannelNumber()
-                                                        )
+  m_fudge_k_factor_weight = ( (  m_is_data
+                              || !m_do_z_k_factor
+                              )
+                              ? 1.
+                              : getFudgeKFactor( m_is_data
+                                               , m_mc_truth.getChannelNumber()
+                                               )
                             );
   m_event_weight *= m_fudge_k_factor_weight;
   fillTrackers(BMINUSL_CUT_FUDGE_K_FACTOR_WEIGHT);
