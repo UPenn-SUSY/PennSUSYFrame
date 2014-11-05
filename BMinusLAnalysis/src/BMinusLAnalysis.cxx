@@ -19,6 +19,7 @@
 // -----------------------------------------------------------------------------
 PennSusyFrame::BMinusLAnalysis::BMinusLAnalysis(TTree* tree) : PennSusyFrame::PennSusyFrameCore(tree)
                                                              , m_out_hist_file_name("BMinusL.hists.root")
+                                                             , m_do_z_k_factor(true)
                                                              , m_do_detailed_bl_hists(false)
                                                              , m_crit_cut_grl(false)
                                                              , m_crit_cut_incomplete_event(false)
@@ -248,10 +249,13 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fudge k-factor
-  m_fudge_k_factor_weight = (m_is_data ? 1
-                                       : getFudgeKFactor( m_is_data
-                                                        , m_mc_truth.getChannelNumber()
-                                                        )
+  m_fudge_k_factor_weight = ( (  m_is_data
+                              || !m_do_z_k_factor
+                              )
+                              ? 1.
+                              : getFudgeKFactor( m_is_data
+                                               , m_mc_truth.getChannelNumber()
+                                               )
                             );
   m_event_weight *= m_fudge_k_factor_weight;
   fillTrackers(BMINUSL_CUT_FUDGE_K_FACTOR_WEIGHT);
@@ -338,15 +342,21 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // HFOR cut
-  m_pass_hfor = m_hfor_tool.passHFOR(m_mc_truth);
+  m_pass_hfor = (m_is_data || m_hfor_tool.passHFOR(m_mc_truth));
   m_pass_event = (m_pass_event && m_pass_hfor);
   if (m_crit_cut_hfor && !m_pass_hfor) return;
   fillTrackers(BMINUSL_CUT_HFOR);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // mc overlap cut
-  m_pass_mc_overlap = (  PennSusyFrame::passSherpaZMassiveCBOverlapRemoval(m_mc_truth, m_event_quantities)
-                      && PennSusyFrame::passSherpaDYOverlapRemoval(m_mc_truth, m_event_quantities)
+  m_pass_mc_overlap = (  m_is_data
+                      || (  PennSusyFrame::passSherpaZMassiveCBOverlapRemoval( m_mc_truth
+                                                                             , m_event_quantities
+                                                                             )
+                         && PennSusyFrame::passSherpaDYOverlapRemoval( m_mc_truth
+                                                                     , m_event_quantities
+                                                                     )
+                         )
                       );
   m_pass_event = (m_pass_event && m_pass_mc_overlap);
   if (m_crit_cut_mc_overlap && !m_pass_mc_overlap) return;
@@ -466,72 +476,14 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
      ) {
     m_pass_z_veto = ( fabs(m_event_quantities.getMll() - 91.e3) > 10.e3 );
   }
-  m_pass_event = (m_pass_event && m_pass_z_veto);
+  // m_pass_event = (m_pass_event && m_pass_z_veto);
   if (m_crit_cut_z_veto && !m_pass_z_veto) return;
-  fillTrackers(BMINUSL_CUT_ZVETO);
+  // fillTrackers(BMINUSL_CUT_ZVETO);
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
 {
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // fill histograms for BASIC_CLEANING hist level
-  if (  m_pass_grl
-     && m_pass_incomplete_event
-     && m_pass_lar_error
-     && m_pass_tile_error
-     && m_pass_tile_hot_spot
-     && m_pass_tile_trip
-     && m_pass_bad_jet_veto
-     && m_pass_calo_problem_jet
-     && m_pass_primary_vertex
-     && m_pass_bad_mu_veto
-     && m_pass_cosmic_mu_veto
-     && m_pass_hfor
-     && m_pass_mc_overlap
-     ) {
-    float this_weight = ( m_mc_event_weight
-                        * m_pile_up_sf
-                        * m_xsec_weight
-                        * m_fudge_k_factor_weight
-                        );
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BASIC_CLEANING
-                   , m_bl_0
-                   , m_bl_1
-                   , this_weight
-                   );
-  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // fill histograms for BL_PAIRING hist level
-  if (  m_pass_grl
-     && m_pass_incomplete_event
-     && m_pass_lar_error
-     && m_pass_tile_error
-     && m_pass_tile_hot_spot
-     && m_pass_tile_trip
-     && m_pass_bad_jet_veto
-     && m_pass_calo_problem_jet
-     && m_pass_primary_vertex
-     && m_pass_bad_mu_veto
-     && m_pass_cosmic_mu_veto
-     && m_pass_hfor
-     && m_pass_mc_overlap
-     && m_pass_ge_2_lep
-     && m_pass_signal_lep
-     && m_pass_os
-     && m_pass_trigger
-     && m_pass_phase
-     && m_pass_ge_2_b_jet
-     && m_pass_bl_pairing
-     ) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING
-                   , m_bl_0
-                   , m_bl_1
-                   , m_event_weight
-                   );
-  }
-
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for GE_4_OBJECTS hist level
   fillHistHandles( PennSusyFrame::BMINUSL_HIST_GE_4_OBJECTS
@@ -540,30 +492,43 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                  , m_event_weight
                  );
 
+  // If we don't pass any of the basic cleaning cuts, do not fill the remaining
+  // levels
+  if (  !m_pass_grl
+     || !m_pass_incomplete_event
+     || !m_pass_lar_error
+     || !m_pass_tile_error
+     || !m_pass_tile_hot_spot
+     || !m_pass_tile_trip
+     || !m_pass_bad_jet_veto
+     || !m_pass_calo_problem_jet
+     || !m_pass_primary_vertex
+     || !m_pass_bad_mu_veto
+     || !m_pass_cosmic_mu_veto
+     || !m_pass_hfor
+     || !m_pass_mc_overlap
+     || !m_pass_ge_2_lep
+     || !m_pass_signal_lep
+     || !m_pass_os
+     || !m_pass_trigger
+     || !m_pass_phase
+     || !m_pass_ge_2_b_jet
+     || !m_pass_bl_pairing
+     ) {
+    return;
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // fill histograms for BL_PAIRING hist level
+  fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING
+                  , m_bl_0
+                  , m_bl_1
+                  , m_event_weight
+                  );
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for ZVETO hist level
-  if (  m_pass_grl
-     && m_pass_incomplete_event
-     && m_pass_lar_error
-     && m_pass_tile_error
-     && m_pass_tile_hot_spot
-     && m_pass_tile_trip
-     && m_pass_bad_jet_veto
-     && m_pass_calo_problem_jet
-     && m_pass_primary_vertex
-     && m_pass_bad_mu_veto
-     && m_pass_cosmic_mu_veto
-     && m_pass_hfor
-     && m_pass_mc_overlap
-     && m_pass_ge_2_lep
-     && m_pass_signal_lep
-     && m_pass_os
-     && m_pass_trigger
-     && m_pass_phase
-     && m_pass_ge_2_b_jet
-     && m_pass_bl_pairing
-     && m_pass_z_veto
-     ) {
+  if (m_pass_z_veto) {
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_Z_VETO
                    , m_bl_0
                    , m_bl_1
@@ -573,137 +538,100 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms in signal regions (and N-1 plots)
-  // first, do a baseline cut
-  if (  m_pass_grl
-     && m_pass_incomplete_event
-     && m_pass_lar_error
-     && m_pass_tile_error
-     && m_pass_tile_hot_spot
-     && m_pass_tile_trip
-     && m_pass_bad_jet_veto
-     && m_pass_calo_problem_jet
-     && m_pass_primary_vertex
-     && m_pass_bad_mu_veto
-     && m_pass_cosmic_mu_veto
-     && m_pass_hfor
-     && m_pass_mc_overlap
-     && m_pass_ge_2_lep
-     && m_pass_signal_lep
-     && m_pass_os
-     && m_pass_trigger
-     && m_pass_phase
-     && m_pass_ge_2_b_jet
-     && m_pass_bl_pairing
-     ) {
 
-    double mbl_asym = ( (m_bl_0->getMbl() - m_bl_1->getMbl())
-                      / (m_bl_0->getMbl() + m_bl_1->getMbl())
+  double mbl_asym = ( (m_bl_0->getMbl() - m_bl_1->getMbl())
+                    / (m_bl_0->getMbl() + m_bl_1->getMbl())
+                    );
+  double ht       = m_event_quantities.getHtSignal() / 1.e3;
+  double met_sig  = m_met.getMetSigSignal();
+
+  bool ht_ge_1100    = (ht       >= 1100.0 );
+  bool ht_ge_700     = (ht       >= 700.0 );
+  bool ht_ge_500     = (ht       >= 500.0 );
+  bool mbl_le_4      = (mbl_asym <= 0.40   );
+  bool met_sig_ge_4  = (met_sig  >= 4.     );
+
+  // -------------------------------------------------------------------------
+  // - Fill histograms for SR (don't fill for data if we are blind!)
+  // -------------------------------------------------------------------------
+  if ( !m_is_data || !m_is_blind ) {
+    // signal region cuts
+    if (m_pass_z_veto && ht_ge_1100 && mbl_le_4) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR
+                      , m_bl_0
+                      , m_bl_1
+                      , m_event_weight
                       );
-    double ht       = m_event_quantities.getHtSignal() / 1.e3;
-    double met_sig  = m_met.getMetSigSignal();
-
-    bool ht_ge_1100    = (ht       >= 1100.0 );
-    bool ht_ge_500     = (ht       >= 500.0 );
-    bool mbl_le_4      = (mbl_asym <= 0.40   );
-    bool met_sig_ge_4  = (met_sig  >= 4.     );
-
-    // -------------------------------------------------------------------------
-    // - Fill histograms for SR (don't fill for data if we are blind!)
-    // -------------------------------------------------------------------------
-    if ( !m_is_data || !m_is_blind ) {
-      // signal region cuts
-      if (m_pass_z_veto && ht_ge_1100 && mbl_le_4) {
-        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR
-                       , m_bl_0
-                       , m_bl_1
-                       , m_event_weight
-                       );
-      }
     }
-
-    // -------------------------------------------------------------------------
-    // - Fill histograms for CR and VR
-    // -------------------------------------------------------------------------
-    // CR top region cuts
-    if (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && met_sig_ge_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
+    if (m_pass_z_veto && mbl_le_4) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_HT
+                      , m_bl_0
+                      , m_bl_1
+                      , m_event_weight
+                      );
     }
-
-    // CR Z region cuts
-    if (!m_pass_z_veto && !ht_ge_500 && mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
+    if (m_pass_z_veto && ht_ge_1100) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_MBL_ASYM
+                      , m_bl_0
+                      , m_bl_1
+                      , m_event_weight
+                      );
     }
-
-    // VR 1 region cuts
-    if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
+    if (ht_ge_1100 && mbl_le_4) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_Z_VETO
+                      , m_bl_0
+                      , m_bl_1
+                      , m_event_weight
+                      );
     }
+  }
 
-    // VR 2 region cuts
-    if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_2
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
+  // -------------------------------------------------------------------------
+  // - Fill histograms for CR and VR
+  // -------------------------------------------------------------------------
+  // CR top region cuts
+  if (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
 
-    // VR 3 region cuts
-    if (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && !met_sig_ge_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_3
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
+  // CR Z region cuts
+  if (!m_pass_z_veto && !ht_ge_500 && mbl_le_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
 
-    // VR 4 region cuts
-    if (m_pass_z_veto && !ht_ge_500 && mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_4
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
+  // VR 1 region cuts
+  if (m_pass_z_veto && ht_ge_500 && !ht_ge_700 && mbl_le_4 && met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
 
-    // VR 5 region cuts
-    if (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_5
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
+  // VR 3 region cuts
+  if (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && !met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_3
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
 
-    // VR 6 region cuts
-    if (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_6
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
-
-    // VR 7 region cuts
-    if (!m_pass_z_veto && !ht_ge_500 && !mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_7
-                     , m_bl_0
-                     , m_bl_1
-                     , m_event_weight
-                     );
-    }
+  // VR 5 region cuts
+  if (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_5
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
   }
 }
 

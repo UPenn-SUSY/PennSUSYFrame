@@ -125,7 +125,6 @@ if __name__ == '__main__':
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2', 'num_jobs':5}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'          , 'num_jobs':2}
                           , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l'       , 'num_jobs':2}
@@ -232,7 +231,7 @@ if __name__ == '__main__':
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
 
-                          ## # TEST input
+                          ## # TEST INPUT -- comment all but this for a quick test that things will run at all
                           ## 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
 

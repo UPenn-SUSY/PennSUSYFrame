@@ -21,8 +21,6 @@ import RunHelpers
 input_tree_name = 'TNT'
 lep_pt_cut = 40.e3
 jet_pt_cut = 40.e3
-# lep_pt_cut = 20.e3
-# jet_pt_cut = 20.e3
 
 # 90% working point
 # btag_working_point = 0.0617
@@ -70,8 +68,6 @@ def runBMinusLAnalysisFun(data_set_dict):
                       , is_full_sim           = data_set_dict['is_full_sim']
                       , syst_struct           = data_set_dict['syst_struct']
                       , tree_name             = input_tree_name
-                      # , tree_name             = 'TNT'
-                      # , tree_name             = 'BMinusLTTNT'
                       , dsid                  = data_set_dict['dsid']
                       , out_file_special_name = data_set_dict['label']
                       , is_tnt                = True
@@ -213,6 +209,9 @@ def runBMinusLAnalysis( file_list
     bmla.setMuPtCut(  lep_pt_cut, -1     )
     bmla.setBJetPtCut(jet_pt_cut, -1     )
     bmla.setMV1Cut(btag_working_point)
+
+    # Turn on/off Z fudge factor
+    bmla.setDoZKFactor(True)
 
     # Turn off detailed B-L histograms
     bmla.setDoDetailedBLHists(False)

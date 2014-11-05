@@ -296,8 +296,8 @@ def main():
     # ic_numerator = hh.Container.InputContainer( name = 'dummy'
     ic_numerator = hh.Container.InputContainer( name = 'Data'
                                               , entry_list = [ec_data]
-                                              , lumi_target = 1
-                                              # , lumi_target = 0
+                                              # , lumi_target = 1
+                                              , lumi_target = 0
                                               )
     # ic_denominator = hh.Container.InputContainer( name = 'Background'
     ic_denominator = hh.Container.InputContainer( name = 'Bkg'
@@ -321,7 +321,7 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Actually plot comparisons
-    out_file_name = 'compare_plots.b_minus_l.root'
+    out_file_name = 'compare_plots.b_minus_l.no_data.root'
     pc.plotComparisons( ic_numerator   = ic_numerator
                       , ic_denominator = ic_denominator
                       , ic_other       = ic_signal

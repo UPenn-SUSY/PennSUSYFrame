@@ -312,8 +312,12 @@ def main():
                                                 , lumi_target = 21000
                                                 )
     ic_signal = hh.Container.InputContainer( name = 'Signal'
-                                           , entry_list = [ ec_bl_500
+                                           , entry_list = [ ec_bl_400
+                                                          , ec_bl_500
+                                                          , ec_bl_600
+                                                          , ec_bl_700
                                                           , ec_bl_800
+                                                          , ec_bl_900
                                                           , ec_bl_1000
                                                           ]
                                            , lumi_target = 21000
@@ -321,7 +325,7 @@ def main():
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Actually plot comparisons
-    out_file_name = 'compare_plots.b_minus_l.root'
+    out_file_name = 'compare_plots.b_minus_l.all_sig.root'
     pc.plotComparisons( ic_numerator   = ic_numerator
                       , ic_denominator = ic_denominator
                       , ic_other       = ic_signal

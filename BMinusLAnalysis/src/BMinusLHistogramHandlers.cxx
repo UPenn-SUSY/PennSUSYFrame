@@ -17,7 +17,7 @@ static const int   num_jet_bins = 6;
 static const float num_jet_min  = -0.5;
 static const float num_jet_max  = num_jet_bins + num_jet_min;
 
-static const int   pt_bins = 100;
+static const int   pt_bins = 20;
 static const float pt_min  = 0.;
 static const float pt_max  = 1000.;
 
@@ -25,14 +25,14 @@ static const int   eta_bins = 50;
 static const float eta_min = -5.;
 static const float eta_max = +5.;
 
-static const int   mbl_bins = 60;
+static const int   mbl_bins = 24;
 static const float mbl_min  = 0.;
 static const float mbl_max  = 1200.;
 
 static const int   mbl_coarse_bins = 4;
 static const float mbl_bin_edges[mbl_coarse_bins+1] = {0, 100, 300, 500, 1200};
 
-static const int   ptll_bins = 60;
+static const int   ptll_bins = 24;
 static const float ptll_min  = 0.;
 static const float ptll_max  = 1200.;
 
