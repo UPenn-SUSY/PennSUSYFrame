@@ -172,6 +172,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   trig_EF_trigmuonef_EF_mu36_tight = 0;
   trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS = 0;
   trig_EF_el_EF_e24vhi_medium1 = 0;
+  trig_EF_el_EF_e60_medium1 = 0;
   trig_EF_trigmuonef_EF_mu24_tight = 0;
   trig_EF_trigmuonef_track_CB_eta = 0;
   trig_EF_trigmuonef_track_CB_hasCB = 0;
@@ -227,6 +228,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "EF_mu36_tight", &EF_mu36_tight, &b_EF_mu36_tight);
   turnOnBranch(tree, "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS, &b_EF_mu24_tight_mu6_EFFS);
   turnOnBranch(tree, "EF_e24vhi_medium1", &EF_e24vhi_medium1, &b_EF_e24vhi_medium1);
+  turnOnBranch(tree, "EF_e60_medium1", &EF_e60_medium1, &b_EF_e60_medium1);
 
   turnOnBranch(tree, "EventNumber", &EventNumber, &b_EventNumber);
   turnOnBranch(tree, "Eventshape_rhoKt4LC", &Eventshape_rhoKt4LC, &b_Eventshape_rhoKt4LC);
@@ -359,6 +361,7 @@ void PennSusyFrame::D3PDReader::Init(TTree *tree)
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight, &b_trig_EF_trigmuonef_EF_mu36_tight);
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS, &b_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
   turnOnBranch(tree, "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1, &b_trig_EF_el_EF_e24vhi_medium1);
+  turnOnBranch(tree, "trig_EF_el_EF_e60_medium1", &trig_EF_el_EF_e60_medium1, &b_trig_EF_el_EF_e60_medium1);
   turnOnBranch(tree, "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight, &b_trig_EF_trigmuonef_EF_mu24_tight);
   turnOnBranch(tree, "trig_EF_trigmuonef_track_CB_eta", &trig_EF_trigmuonef_track_CB_eta, &b_trig_EF_trigmuonef_track_CB_eta);
   turnOnBranch(tree, "trig_EF_trigmuonef_track_CB_hasCB", &trig_EF_trigmuonef_track_CB_hasCB, &b_trig_EF_trigmuonef_track_CB_hasCB);
@@ -426,6 +429,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "EF_mu36_tight", &EF_mu36_tight);
   m_output_tree->Branch( "EF_mu24_tight_mu6_EFFS", &EF_mu24_tight_mu6_EFFS);
   m_output_tree->Branch( "EF_e24vhi_medium1", &EF_e24vhi_medium1);
+  m_output_tree->Branch( "EF_e60_medium1", &EF_e60_medium1);
 
   m_output_tree->Branch( "EventNumber", &EventNumber);
   m_output_tree->Branch( "Eventshape_rhoKt4LC", &Eventshape_rhoKt4LC);
@@ -559,6 +563,7 @@ void PennSusyFrame::D3PDReader::ConfigureOutput( std::string out_file_name
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu36_tight", &trig_EF_trigmuonef_EF_mu36_tight);
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS", &trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
   m_output_tree->Branch( "trig_EF_el_EF_e24vhi_medium1", &trig_EF_el_EF_e24vhi_medium1);
+  m_output_tree->Branch( "trig_EF_el_EF_e60_medium1", &trig_EF_el_EF_e60_medium1);
   m_output_tree->Branch( "trig_EF_trigmuonef_EF_mu24_tight", &trig_EF_trigmuonef_EF_mu24_tight);
   m_output_tree->Branch( "trig_EF_trigmuonef_track_CB_eta", &trig_EF_trigmuonef_track_CB_eta);
   m_output_tree->Branch( "trig_EF_trigmuonef_track_CB_hasCB", &trig_EF_trigmuonef_track_CB_hasCB);

@@ -1845,6 +1845,58 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                        , deta_bins, deta_min, deta_max
                                                        )
                                              );
+
+    //=================================================================
+    // FOR TRIGGER STUFF
+    //=================================================================
+    m_h_single_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					       + "__single_triggers_passed"
+					       + "__"
+					       + name_tag
+					       ).c_str()
+					     , ( "Triggers Passed - "
+						 + FLAVOR_CHANNEL_STRINGS[fc_it]
+						 + " ;  ; Entries"
+						 ).c_str()
+					     , TRIGGERS_N+1, -0.5, TRIGGERS_N + 0.5
+					     )
+				   );
+    m_h_doubleAND_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					       + "__doubleAND_triggers_passed"
+					       + "__"
+					       + name_tag
+					       ).c_str()
+					     , ( "Triggers Passed - "
+						 + FLAVOR_CHANNEL_STRINGS[fc_it]
+						 + " ;  ; Entries"
+						 ).c_str()
+						       , 56, -0.5, 55.5
+					     )
+				   );
+    m_h_doubleOR_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					       + "__doubleOR_triggers_passed"
+					       + "__"
+					       + name_tag
+					       ).c_str()
+					     , ( "Triggers Passed - "
+						 + FLAVOR_CHANNEL_STRINGS[fc_it]
+						 + " ;  ; Entries"
+						 ).c_str()
+					     , 56, -0.5, 55.5
+					     )
+				   );
+    int bin_counter = 1;
+    for (int it = 0; it != TRIGGERS_N; ++it) {
+      m_h_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
+      for (int jt = it+1; jt != TRIGGERS_N; ++jt) {
+	m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" AND "+TRIGGER_STRINGS[jt]).c_str());
+	m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" OR "+TRIGGER_STRINGS[jt]).c_str());
+	++bin_counter;
+      }
+    }
+    m_h_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(TRIGGERS_N+1, "None");
+    m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
+    m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
   }
 }
 
@@ -1860,6 +1912,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
                                                      , const PennSusyFrame::blPair& bl_1
                                                      , const PennSusyFrame::MCTruth& mc_truth
                                                      , PennSusyFrame::TruthMatchTool& truth_match_tool
+						     , PennSusyFrame::Trigger m_trigger
                                                      , float weight
                                                      )
 {
@@ -2325,6 +2378,44 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
         m_h_muon_inverse_pt_resolution_all.at(fc_it)->Fill(resolution_m, pt_m_truth, weight);
       }
     }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //    Triggers histograms
+    bool triggers_passed[] = {m_trigger.getEF_2e12Tvh_loose1()            //0
+			      ,m_trigger.getEF_e24vh_medium1_e7_medium1() //1
+			      ,m_trigger.getEF_e24vhi_medium1()           //2
+			      , m_trigger.getEF_e60_medium1()             //3
+			      , m_trigger.getEF_e12Tvh_medium1_mu8()      //4
+			      , m_trigger.getEF_mu18_tight_e7_medium1()   //5
+			      , m_trigger.getEF_mu24i_tight()             //6
+			      , m_trigger.getEF_mu36_tight()              //7
+			      , m_trigger.getEF_2mu13()                   //8
+			      , m_trigger.getEF_mu18_tight_mu8_EFFS()     //9
+			      , m_trigger.getEF_mu24_tight_mu6_EFFS()    //10
+    };
+
+    int bin_counter = 0;
+    bool any_trigger_passed = false;
+    for (int it = 0; it != TRIGGERS_N; ++it) {
+      if (triggers_passed[it]) {
+	  m_h_single_triggers_passed.at(fc_it)->Fill(float(it), weight);
+	  any_trigger_passed = true;
+	}
+      for (int jt = it+1; jt != TRIGGERS_N; ++jt) {
+	if (triggers_passed[it] && triggers_passed[jt]) {
+	  m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+	}
+	if (triggers_passed[it] || triggers_passed[jt]) {
+	  m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+	}
+	++bin_counter;
+      }
+    }
+    if (!any_trigger_passed) { // if no trigger passed, fill "None"
+      m_h_single_triggers_passed.at(fc_it)->Fill(TRIGGERS_N, weight);
+      m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    }
   }
 }
 
@@ -2510,6 +2601,10 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
 
     m_h_bl_deta_same_parent_pairing.at(fc_it)->Write();
     m_h_bl_deta_diff_parent_pairing.at(fc_it)->Write();
+
+    m_h_single_triggers_passed.at(fc_it)->Write();
+    m_h_doubleAND_triggers_passed.at(fc_it)->Write();
+    m_h_doubleOR_triggers_passed.at(fc_it)->Write();
   }
 }
 

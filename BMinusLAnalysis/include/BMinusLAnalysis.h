@@ -19,6 +19,7 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_Z_VETO
                            , BMINUSL_HIST_GE_4_OBJECTS
+                           , BMINUSL_HIST_NO_WEIGHTS
 
                            , BMINUSL_HIST_SR
                            , BMINUSL_HIST_CR_TOP
@@ -35,6 +36,7 @@ namespace PennSusyFrame
                                                    , "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_GE_4_OBJECTS"
+                                                   , "BMINUSL_NO_WEIGHTS"
 
                                                    , "BMINUSL_HIST_SR"
                                                    , "BMINUSL_HIST_CR_TOP"
@@ -140,6 +142,8 @@ namespace PennSusyFrame
       bool m_crit_cut_bl_pairing;
       bool m_crit_cut_z_veto;
       bool m_crit_cut_met;
+
+      bool m_no_weights;
 
       PennSusyFrame::GrlTool m_grl;
       PennSusyFrame::TileTripTool m_tile_trip_tool;
