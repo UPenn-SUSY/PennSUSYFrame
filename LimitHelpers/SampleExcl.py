@@ -32,9 +32,8 @@ configMgr.blindSR = True
 use_stat = True
 do_validation = True
 
-# single_bin_regions = True
 single_bin_regions = False
-single_bin_signal  = True
+single_bin_signal  = False
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -109,6 +108,7 @@ configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
 # base_cr_top_str += " && (met_sig_signal >= 4)"
 # base_cr_top_str += " && (fabs(mll - 91) > 10)"
 base_cr_top_str = "is_cr_top"
+configMgr.cutsDict["CR_top_all"] = base_cr_top_str
 configMgr.cutsDict["CR_top_ee"] = '(%s && is_ee)' % base_cr_top_str
 configMgr.cutsDict["CR_top_mm"] = '(%s && is_mm)' % base_cr_top_str
 configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
@@ -118,6 +118,7 @@ configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
 # base_cr_z_str += " && (mbl_asym <= 0.4)"
 # base_cr_z_str += " && (fabs(mll - 91) < 10)"
 base_cr_z_str = "is_cr_z"
+configMgr.cutsDict["CR_Z_all"] = base_cr_z_str
 configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
 configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
 
@@ -422,34 +423,70 @@ if do_validation:
 
             vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
             vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
-            # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
-            # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
-            # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
-            # vr_list.append( background_config.addChannel( 'ptbbll'   , ['%s%s' % (vr_name, flavor_channel)], ptbbll_bin, ptbbll_min, ptbbll_max ) )
-            if vr_name == 'VR_5':
-                vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_inz_bin , mll_inz_min, mll_inz_max ) )
-            else:
-                vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_bin     , mll_min    , mll_max     ) )
-            # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
-            vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin , met_et_min , met_et_max  ) )
-            vr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (vr_name, flavor_channel)], met_sig_bin, met_sig_min, met_sig_max ) )
-            vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
-            vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            vr_list.append( background_config.addChannel( 'pt_b_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## # vr_list.append( background_config.addChannel( 'dphi_bl_0', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'dphi_bl_1', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'deta_bl_0', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'deta_bl_1', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'dr_bl_0'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'dr_bl_1'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'dphi_ll'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'deta_ll'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'dr_ll'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'dphi_bb'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'deta_bb'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'dr_bb'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbbll'   , ['%s%s' % (vr_name, flavor_channel)], ptbbll_bin, ptbbll_min, ptbbll_max ) )
+            ## if vr_name == 'VR_5':
+            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_inz_bin , mll_inz_min, mll_inz_max ) )
+            ## else:
+            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_bin     , mll_min    , mll_max     ) )
+            ## # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
+            ## vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin , met_et_min , met_et_max  ) )
+            ## vr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (vr_name, flavor_channel)], met_sig_bin, met_sig_min, met_sig_max ) )
+            ## vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
+            ## vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
+            ## vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
+            ## vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
+            ## vr_list.append( background_config.addChannel( 'pt_b_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_0', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_1', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_0', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_1', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_0'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_1'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_ll'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_ll'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_ll'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bb'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bb'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bb'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+
+    for vr_name in ['CR_top_', 'CR_Z_']:
+        for flavor_channel in ['all', 'ee', 'mm', 'em']:
+            if vr_name  == 'CR_Z_' and flavor_channel == 'em': continue
+            vr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (vr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
+
+            ## vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
+            ## vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
+            ## # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
+            ## # vr_list.append( background_config.addChannel( 'ptbbll'   , ['%s%s' % (vr_name, flavor_channel)], ptbbll_bin, ptbbll_min, ptbbll_max ) )
+            ## if vr_name == 'VR_5':
+            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_inz_bin , mll_inz_min, mll_inz_max ) )
+            ## else:
+            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_bin     , mll_min    , mll_max     ) )
+            ## # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
+            ## vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin , met_et_min , met_et_max  ) )
+            ## vr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (vr_name, flavor_channel)], met_sig_bin, met_sig_min, met_sig_max ) )
+            ## vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
+            ## vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
+            ## vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
+            ## vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
+            ## vr_list.append( background_config.addChannel( 'pt_b_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_0', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_1', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_0', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_1', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_0'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_1'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_ll'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_ll'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_ll'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dphi_bb'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'deta_bb'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
+            ## ## # vr_list.append( background_config.addChannel( 'dr_bb'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
 
     for vr in vr_list:
         vr.useOverflowBin = True

@@ -51,6 +51,9 @@ def makePValuePlot(input_file_name):
     x_min, x_max = getMinMax(x_vals)
     y_min, y_max = getMinMax(y_vals)
 
+    print y_vals
+    print 'ymin: ', y_min, ' ymax: ', y_max
+
     # make line to mark p = 0.05
     line = ROOT.TLine(x_min, 0.05, x_max, 0.05)
     line.SetLineColor(ROOT.kRed)

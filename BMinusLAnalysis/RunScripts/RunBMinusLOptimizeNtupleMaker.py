@@ -210,6 +210,9 @@ def runBMinusLOptimizeNtupleMaker( file_list
     bmlonm.setBJetPtCut(jet_pt_cut, -1     )
     bmlonm.setMV1Cut(btag_working_point)
 
+    # Turn on/off Z fudge factor
+    bmlonm.setDoZKFactor(True)
+
     # prepare tools and run analysis loop
     print 'preparing tools'
     bmlonm.prepareTools()
