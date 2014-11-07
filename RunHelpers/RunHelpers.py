@@ -7,6 +7,7 @@ import shutil
 import datetime
 from multiprocessing import Pool
 import subprocess
+import pickle
 
 import ROOT
 
@@ -321,16 +322,20 @@ def writeLxBatchScript( run_analysis_fun
                       , data_set_dict
                       , job_dir
                       ):
+    # copy data_set_dict so we can modify it
+    this_data_set_dict = data_set_dict
+
     job_py_name = '%s/lx_batch_job.%s.%d_of_%d.py' % ( job_dir
-                                                     , data_set_dict['label']
-                                                     , data_set_dict['job_num']
-                                                     , data_set_dict['total_num_jobs']
+                                                     , this_data_set_dict['label']
+                                                     , this_data_set_dict['job_num']
+                                                     , this_data_set_dict['total_num_jobs']
                                                      )
     job_py_file = file(job_py_name, 'w')
     job_py_file.write('#!/usr/bin/env python\n')
     job_py_file.write('\n')
     job_py_file.write('import subprocess\n')
     job_py_file.write('import os\n')
+    job_py_file.write('import sys\n')
     job_py_file.write('\n')
 
     # ugly stuff to set the environment correctly
@@ -343,27 +348,56 @@ def writeLxBatchScript( run_analysis_fun
     job_py_file.write('proc.communicate()\n')
     # /ugly stuff
 
+    # more ugly stuff to handle the systematics structure
+    if this_data_set_dict['syst_struct'] is not None:
+        # pickle systematic struct object for later reading
+        syst_struct_pickle = '%s/syst_pickle.%s.%d_of_%d.p' % ( job_dir
+                                                              , this_data_set_dict['label']
+                                                              , this_data_set_dict['job_num']
+                                                              , this_data_set_dict['total_num_jobs']
+                                                              )
+        pickleSystStruct(this_data_set_dict['syst_struct'], syst_struct_pickle)
+
+        # modify the syst_struct element in the dictionary
+        this_data_set_dict['syst_struct'] = 'this_syst_struct'
+        job_py_file.write('\n')
+
+        # read the pickled syst struct
+        job_py_file.write('import pickle\n')
+        job_py_file.write('sys.path.append("%s/RunHelpers/" % os.environ["BASE_WORK_DIR"])\n')
+        job_py_file.write('import RunHelpers\n')
+        job_py_file.write('this_syst_struct = pickle.load(file("%s", "rb"))\n' % syst_struct_pickle)
+        job_py_file.write('print "this_syst_struct"\n')
+        job_py_file.write('print this_syst_struct\n')
+        job_py_file.write('this_syst_struct.printInfo()\n')
+    # /more ugly stuff
+
     # import the py file with function
     job_py_file.write('\n')
-    job_py_file.write('import sys\n')
     job_py_file.write('sys.path.append("%s")\n' % run_analysis_fun_loc)
     job_py_file.write('import %s\n' % run_analysis_fun_file)
     job_py_file.write('\n')
     job_py_file.write( 'print "running %s on the dataset %s (%d of %d)"' % ( run_analysis_fun.__name__
-                                                                           , data_set_dict['label']
-                                                                           , data_set_dict['job_num']
-                                                                           , data_set_dict['total_num_jobs']
+                                                                           , this_data_set_dict['label']
+                                                                           , this_data_set_dict['job_num']
+                                                                           , this_data_set_dict['total_num_jobs']
                                                                            )
                      )
     job_py_file.write('\n')
 
     # call the run analysis function
-    job_py_file.write('%s.%s(%s)\n' % ( run_analysis_fun_file
-                                      , run_analysis_fun.__name__
-                                      , data_set_dict
-                                      )
-                  )
-    job_py_file.write('\n')
+    job_py_file.write('%s.%s(\n' % ( run_analysis_fun_file
+                                   , run_analysis_fun.__name__
+                                   )
+                     )
+    for i, tdsd in enumerate(this_data_set_dict):
+        leader = ' ' if i == 0 else ','
+        value = this_data_set_dict[tdsd]
+        if isinstance(value, str) and not tdsd == 'syst_struct':
+            value = '"%s"' % value
+        job_py_file.write("    %s '%s':%s\n" % (leader, tdsd, value)
+                         )
+    job_py_file.write(')\n\n')
 
     # close file
     job_py_file.close()
@@ -408,6 +442,12 @@ def runLxBatchMultiProcess( run_analysis_fun
                                , '%s/%s' % (os.environ['PWD'], this_job_file_name)
                                , os.environ['PWD']
                                ]
+
+        print '-----------------------------------------'
+        print 'batch submit command:'
+        print batch_submit_command
+        print ''
+
         subprocess.call(batch_submit_command)
 
     # make sym link to output dir
@@ -429,3 +469,13 @@ class SystematicStruct(object):
         analysis_obj.setDoJer(    self.do_jer)
         analysis_obj.setDoJesUp(  self.do_jes_up)
         analysis_obj.setDoJesDown(self.do_jes_down)
+
+    def printInfo(self):
+        print 'Do JER: ', self.do_jer
+        print 'Do JES_UP: ', self.do_jes_up
+        print 'Do JES_DOWN: ', self.do_jes_down
+
+# ------------------------------------------------------------------------------
+def pickleSystStruct(this_struct, out_file_name):
+    pickle.dump(this_struct, file(out_file_name, 'wb'))
+
