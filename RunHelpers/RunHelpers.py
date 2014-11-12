@@ -391,12 +391,13 @@ def writeLxBatchScript( run_analysis_fun
                                    )
                      )
     for i, tdsd in enumerate(this_data_set_dict):
-        leader = ' ' if i == 0 else ','
+        leader = '{' if i == 0 else ','
         value = this_data_set_dict[tdsd]
         if isinstance(value, str) and not tdsd == 'syst_struct':
             value = '"%s"' % value
         job_py_file.write("    %s '%s':%s\n" % (leader, tdsd, value)
                          )
+    job_py_file.write("    }\n")
     job_py_file.write(')\n\n')
 
     # close file

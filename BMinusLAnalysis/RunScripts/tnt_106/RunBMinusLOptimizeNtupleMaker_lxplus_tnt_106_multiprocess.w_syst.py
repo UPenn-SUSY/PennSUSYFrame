@@ -53,7 +53,7 @@ if __name__ == '__main__':
     print 'getting file list'
 
     egamma_data_samples = {
-                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':10}
+                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':11}
                           , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':20}
                           , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':20}
                           , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':15}
@@ -196,6 +196,8 @@ if __name__ == '__main__':
                           , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'num_jobs':1}
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
+
+                          ### 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -290,38 +292,38 @@ if __name__ == '__main__':
                                        )
     else:
         RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
-                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
-                                        , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
-                                        , data_set_dicts        = data_set_dicts_nominal
-                                        , out_dir               = out_dir + '__NOMINAL'
-                                        , queue                 = '1nh'
-                                        , sym_link_name         = './NextOptNtupDir.BMinusL.NOMINAL'
-                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.NOMINAL'
-                                        )
+                                         , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                         , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
+                                         , data_set_dicts        = data_set_dicts_nominal
+                                         , out_dir               = out_dir + '__NOMINAL'
+                                         , queue                 = '1nh'
+                                         , sym_link_name         = './NextOptNtupDir.BMinusL.NOMINAL'
+                                         , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.NOMINAL'
+                                         )
         RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
-                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
-                                        , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
-                                        , data_set_dicts        = data_set_dicts_jer
-                                        , out_dir               = out_dir + '__JER'
-                                        , queue                 = '1nh'
-                                        , sym_link_name         = './NextOptNtupDir.BMinusL.JER'
-                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JER'
-                                        )
+                                         , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                         , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
+                                         , data_set_dicts        = data_set_dicts_jer
+                                         , out_dir               = out_dir + '__JER'
+                                         , queue                 = '1nh'
+                                         , sym_link_name         = './NextOptNtupDir.BMinusL.JER'
+                                         , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JER'
+                                         )
         RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
-                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
-                                        , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
-                                        , data_set_dicts        = data_set_dicts_jes_up
-                                        , out_dir               = out_dir + '__JES_UP'
-                                        , queue                 = '1nh'
-                                        , sym_link_name         = './NextOptNtupDir.BMinusL.JES_UP'
-                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JES_UP'
-                                        )
+                                         , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                         , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
+                                         , data_set_dicts        = data_set_dicts_jes_up
+                                         , out_dir               = out_dir + '__JES_UP'
+                                         , queue                 = '1nh'
+                                         , sym_link_name         = './NextOptNtupDir.BMinusL.JES_UP'
+                                         , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JES_UP'
+                                         )
         RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
-                                        , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
-                                        , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
-                                        , data_set_dicts        = data_set_dicts_jes_down
-                                        , out_dir               = out_dir + '__JES_DOWN'
-                                        , queue                 = '1nh'
-                                        , sym_link_name         = './NextOptNtupDir.BMinusL.JES_DOWN'
-                                        , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JES_DOWN'
-                                        )
+                                         , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
+                                         , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
+                                         , data_set_dicts        = data_set_dicts_jes_down
+                                         , out_dir               = out_dir + '__JES_DOWN'
+                                         , queue                 = '1nh'
+                                         , sym_link_name         = './NextOptNtupDir.BMinusL.JES_DOWN'
+                                         , job_dir               = 'LatestRunDir_bminusloptimizentuplemaker.JES_DOWN'
+                                         )
