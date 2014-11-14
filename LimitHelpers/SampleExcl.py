@@ -30,10 +30,10 @@ configMgr.blindSR = True
 # - Flags to control which fit is executed
 # ----------------------------------------
 use_stat = True
-do_validation = True
+do_validation = False
 
-single_bin_regions = False
-single_bin_signal  = False
+single_bin_regions = True
+single_bin_signal  = True
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -128,6 +128,7 @@ configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
 # base_vr_1_str += " && (mbl_asym <= 0.4)"
 # base_vr_1_str += " && (fabs(mll - 91) > 10)"
 base_vr_1_str = "is_vr_1"
+configMgr.cutsDict["VR_1_all"] = base_vr_1_str
 configMgr.cutsDict["VR_1_ee"] = '(%s && is_ee)' % base_vr_1_str
 configMgr.cutsDict["VR_1_mm"] = '(%s && is_mm)' % base_vr_1_str
 configMgr.cutsDict["VR_1_em"] = '(%s && is_em)' % base_vr_1_str
@@ -138,6 +139,7 @@ configMgr.cutsDict["VR_1_em"] = '(%s && is_em)' % base_vr_1_str
 # base_vr_3_str += " && (met_sig_signal <= 4)"
 # base_vr_3_str += " && (fabs(mll - 91) > 10)"
 base_vr_3_str = "is_vr_3"
+configMgr.cutsDict["VR_3_all"] = base_vr_3_str
 configMgr.cutsDict["VR_3_ee"] = '(%s && is_ee)' % base_vr_3_str
 configMgr.cutsDict["VR_3_mm"] = '(%s && is_mm)' % base_vr_3_str
 configMgr.cutsDict["VR_3_em"] = '(%s && is_em)' % base_vr_3_str
@@ -148,14 +150,15 @@ configMgr.cutsDict["VR_3_em"] = '(%s && is_em)' % base_vr_3_str
 # base_vr_5_str += " && (mbl_asym <= 0.4)"
 # base_vr_5_str += " && (fabs(mll - 91) < 10)"
 base_vr_5_str = "is_vr_5"
+configMgr.cutsDict["VR_5_all"] = base_vr_5_str
 configMgr.cutsDict["VR_5_ee"] = '(%s && is_ee)' % base_vr_5_str
 configMgr.cutsDict["VR_5_mm"] = '(%s && is_mm)' % base_vr_5_str
 
 # VR llbb
-configMgr.cutsDict["VR_llbb"]    = '( 1 )'
-configMgr.cutsDict["VR_llbb_ee"] = '( 1 && is_ee )'
-configMgr.cutsDict["VR_llbb_mm"] = '( 1 && is_mm )'
-configMgr.cutsDict["VR_llbb_em"] = '( 1 && is_em )'
+# configMgr.cutsDict["VR_llbb_all"]    = '( 1 )'
+# configMgr.cutsDict["VR_llbb_ee"] = '( 1 && is_ee )'
+# configMgr.cutsDict["VR_llbb_mm"] = '( 1 && is_mm )'
+# configMgr.cutsDict["VR_llbb_em"] = '( 1 && is_em )'
 
 # --------------------------
 # - lists of nominal weights
@@ -185,6 +188,8 @@ gen_syst = Systematic( "gen_syst" , configMgr.weights , 1.0 + 0.30 , 1.0 - 0.30 
 
 # JES uncertainty as shapeSys - one systematic per region (combine WR and TR), merge samples
 # jes = Systematic("JER","_JESup","_JESdown","tree","overallNormHistoSys")
+
+btag_sf_uncert = Systematic('btag_sf', configMgr.weights, ('weight', 'btag_sf_down_frac'), ('weight', 'btag_sf_up_frac'), 'weight', 'overallSys')
 
 # --------------------------------------------
 # - List of samples and their plotting colours
@@ -224,12 +229,12 @@ ttv_sample.setNormByTheory()
 sample_list.append(ttv_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# diboson
-diboson_sample = Sample( "Diboson" , kSpring-4 )
-
-diboson_sample.setStatConfig(use_stat)
-diboson_sample.setNormByTheory()
-sample_list.append(diboson_sample)
+## # diboson
+## diboson_sample = Sample( "Diboson" , kSpring-4 )
+## 
+## diboson_sample.setStatConfig(use_stat)
+## diboson_sample.setNormByTheory()
+## sample_list.append(diboson_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # higgs
@@ -352,13 +357,20 @@ else:
     background_config.statErrThreshold = None
 background_config.addSamples(sample_list)
 
-# Systematics to be applied globally within this topLevel
-background_config.getSample("ttbar"    ).addSystematic(gen_syst)
-background_config.getSample("SingleTop").addSystematic(gen_syst)
-background_config.getSample("Z"        ).addSystematic(gen_syst)
-background_config.getSample("ttV"      ).addSystematic(gen_syst)
-background_config.getSample("Diboson"  ).addSystematic(gen_syst)
-background_config.getSample("Higgs"    ).addSystematic(gen_syst)
+# # Systematics to be applied globally within this topLevel
+# background_config.getSample("ttbar"    ).addSystematic(gen_syst)
+# background_config.getSample("SingleTop").addSystematic(gen_syst)
+# background_config.getSample("Z"        ).addSystematic(gen_syst)
+# background_config.getSample("ttV"      ).addSystematic(gen_syst)
+# ## background_config.getSample("Diboson"  ).addSystematic(gen_syst)
+# background_config.getSample("Higgs"    ).addSystematic(gen_syst)
+
+background_config.getSample("ttbar"    ).addSystematic(btag_sf_uncert)
+background_config.getSample("SingleTop").addSystematic(btag_sf_uncert)
+background_config.getSample("Z"        ).addSystematic(btag_sf_uncert)
+background_config.getSample("ttV"      ).addSystematic(btag_sf_uncert)
+## background_config.getSample("Diboson"  ).addSystematic(btag_sf_uncert)
+background_config.getSample("Higgs"    ).addSystematic(btag_sf_uncert)
 
 meas = background_config.addMeasurement(name = "NormalMeasurement", lumi = 1.0, lumiErr = 0.039 )
 meas.addPOI("mu_SIG")
@@ -369,7 +381,8 @@ meas.addPOI("mu_SIG")
 cr_list = []
 # Add Top CR for background
 for cr_name in ['CR_top_', 'CR_Z_']:
-    for flavor_channel in ['ee', 'mm', 'em']:
+    # for flavor_channel in ['ee', 'mm', 'em']:
+    for flavor_channel in ['all']:
         if cr_name  == 'CR_Z_' and flavor_channel == 'em': continue
 
         # cr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (cr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
@@ -415,11 +428,12 @@ if do_validation:
     # for vr_name in ['VR_1' , 'VR_3' , 'VR_5' , 'VR_llbb']:
     for vr_name in ['VR_1' , 'VR_3' , 'VR_5']:
     # for vr_name in ['VR_1']:
-        for flavor_channel in ['', '_ee', '_mm', '_em']:
+        for flavor_channel in ['_all', '_ee', '_mm', '_em']:
             if not vr_name == 'VR_llbb' and flavor_channel == '': continue
             if vr_name  == 'VR_5' and flavor_channel == '_em': continue
 
-            vr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (vr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
+            if flavor_channel == '_all':
+                vr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (vr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
 
             vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
             vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
@@ -434,7 +448,7 @@ if do_validation:
             ## # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
             ## vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin , met_et_min , met_et_max  ) )
             ## vr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (vr_name, flavor_channel)], met_sig_bin, met_sig_min, met_sig_max ) )
-            ## vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
+            vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
             ## vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
             ## vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
             ## vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
@@ -455,10 +469,12 @@ if do_validation:
     for vr_name in ['CR_top_', 'CR_Z_']:
         for flavor_channel in ['all', 'ee', 'mm', 'em']:
             if vr_name  == 'CR_Z_' and flavor_channel == 'em': continue
-            vr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (vr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
+            if flavor_channel == 'all':
+                vr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (vr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
 
-            ## vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
-            ## vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
+            if not flavor_channel == 'all':
+                vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
+            vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
             ## # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
             ## # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
             ## # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
@@ -470,7 +486,7 @@ if do_validation:
             ## # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
             ## vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin , met_et_min , met_et_max  ) )
             ## vr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (vr_name, flavor_channel)], met_sig_bin, met_sig_min, met_sig_max ) )
-            ## vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
+            vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
             ## vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
             ## vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
             ## vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
@@ -605,11 +621,11 @@ entry.SetLineColor(ttv_sample.color)
 entry.SetFillColor(ttv_sample.color)
 entry.SetFillStyle(compFillStyle)
 
-# Diboson entry
-entry = leg.AddEntry("", "Diboson", "lf")
-entry.SetLineColor(diboson_sample.color)
-entry.SetFillColor(diboson_sample.color)
-entry.SetFillStyle(compFillStyle)
+## # Diboson entry
+## entry = leg.AddEntry("", "Diboson", "lf")
+## entry.SetLineColor(diboson_sample.color)
+## entry.SetFillColor(diboson_sample.color)
+## entry.SetFillStyle(compFillStyle)
 
 # Higgs entry
 entry = leg.AddEntry("", "Higgs", "lf")
