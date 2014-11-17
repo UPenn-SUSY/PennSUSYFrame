@@ -5,6 +5,8 @@
 # =
 # = usage: python OptimizeToHistFitterNtuple.py
 # ==============================================================================
+import os
+import glob
 import ROOT
 
 # ------------------------------------------------------------------------------
@@ -152,132 +154,156 @@ def writeTreesToHistFitterFile(out_file_name, optimize_tree_dict):
 
     mergeTmpTreesToOutput( out_file_name, list_of_tmp_trees )
 
+# ------------------------------------------------------------------------------
+def constructPathList(paths_to_glob):
+    path_list = []
+    for ptg in paths_to_glob:
+        path_list.extend(glob.glob(ptg))
+    return path_list
 
 # ------------------------------------------------------------------------------
 def main():
-    bkg_optimize_tree_dict = { 'ttbar_NoSys'     : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2.ntup.root' ]
-                             , 'ttV_NoSys'       : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW.ntup.root'
-                                                   ]
-                             , 'SingleTop_NoSys' : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.110119.PowhegPythia_P2011C_st_schan_lep.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR.ntup.root'
-                                                   ]
-                             , 'Z_NoSys'         : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.173041.Sherpa_CT10_DYeeM08to15.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.173042.Sherpa_CT10_DYeeM15to40.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.173043.Sherpa_CT10_DYmumuM08to15.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.173044.Sherpa_CT10_DYmumuM15to40.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.173045.Sherpa_CT10_DYtautauM08to15.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.173046.Sherpa_CT10_DYtautauM15to40.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.ntup.root'
-                                                   ]
-                             , 'Diboson_NoSys'   : [ "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.177997.Sherpa_CT10_llnunu_WW_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.177999.Sherpa_CT10_llnunu_ZZ_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.179974.Sherpa_CT10_lllnu_WZ_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.179975.Sherpa_CT10_lnununu_WZ_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183585.Sherpa_CT10_ZWtoeeqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183586.Sherpa_CT10_ZZtoeeqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183587.Sherpa_CT10_ZWtomumuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183588.Sherpa_CT10_ZZtomumuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183589.Sherpa_CT10_ZWtotautauqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183590.Sherpa_CT10_ZZtotautauqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183591.Sherpa_CT10_ZWtonunuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183592.Sherpa_CT10_ZZtonunuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183734.Sherpa_CT10_WWtoenuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183735.Sherpa_CT10_WZtoenuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183736.Sherpa_CT10_WWtomunuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183737.Sherpa_CT10_WZtomunuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183738.Sherpa_CT10_WWtotaunuqq_MassiveCB.ntup.root"
-                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183739.Sherpa_CT10_WZtotaunuqq_MassiveCB.ntup.root"
-                                                   ]
-                             , 'Higgs_NoSys'     : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive.ntup.root'
-                                                   ]
-                             , 'data'            : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodA_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodA_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodB_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodB_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodC_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodC_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodD_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodD_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodE_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodE_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodG_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodG_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodH_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodH_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodI_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodI_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodJ_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodJ_muon.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodL_egamma.ntup.root'
-                                                   , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.periodL_muon.ntup.root'
-                                                   ]
-                             }
+    opt_ntup_dir_list = glob.glob('%s/NextOptNtupDir.BMinusL.*' % os.environ['BASE_WORK_DIR'])
 
-    sig_optimize_tree_dict = { 'sig_100_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100.ntup.root' ]
-                             , 'sig_200_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200.ntup.root' ]
-                             , 'sig_300_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300.ntup.root' ]
-                             , 'sig_400_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.ntup.root' ]
-                             , 'sig_500_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500.ntup.root' ]
-                             , 'sig_600_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.ntup.root' ]
-                             , 'sig_700_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.ntup.root' ]
-                             , 'sig_800_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800.ntup.root' ]
-                             , 'sig_900_NoSys' :['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.ntup.root' ]
-                             , 'sig_1000_NoSys':['${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000.ntup.root']
-                             }
+    bkg_optimize_tree_dict = {}
+    sig_optimize_tree_dict = {}
+    for opt_ntup_dir in opt_ntup_dir_list:
+        print '--------------------------------------------'
+        print 'opt ntup dir: ', opt_ntup_dir
+
+        syst_tag = opt_ntup_dir.split('.')[-1]
+        if syst_tag == 'NOMINAL': syst_tag = 'NoSys'
+        print 'syst tag: ', syst_tag
+
+        bkg_optimize_tree_dict['ttbar_%s' % syst_tag] = constructPathList(['%s/BMinusL.*117050.PowhegPythia_P2011C_ttbar.af2*.ntup.root' % opt_ntup_dir])
+
+        bkg_optimize_tree_dict['ttV_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW*.ntup.root' % opt_ntup_dir
+                                                                         , '%s/BMinusL.*119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj*.ntup.root' % opt_ntup_dir
+                                                                         , '%s/BMinusL.*119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ*.ntup.root' % opt_ntup_dir
+                                                                         , '%s/BMinusL.*119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj*.ntup.root' % opt_ntup_dir
+                                                                         , '%s/BMinusL.*119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW*.ntup.root' % opt_ntup_dir
+                                                                         ]
+                                                                       )
+        bkg_optimize_tree_dict['SingleTop_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l*.ntup.root' % opt_ntup_dir
+                                                                               , '%s/BMinusL.*110119.PowhegPythia_P2011C_st_schan_lep*.ntup.root' % opt_ntup_dir
+                                                                               , '%s/BMinusL.*110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR*.ntup.root' % opt_ntup_dir
+                                                                               ]
+                                                                             )
+        bkg_optimize_tree_dict['Z_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*173041.Sherpa_CT10_DYeeM08to15*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*173042.Sherpa_CT10_DYeeM15to40*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*173043.Sherpa_CT10_DYmumuM08to15*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*173044.Sherpa_CT10_DYmumuM15to40*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*173045.Sherpa_CT10_DYtautauM08to15*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*173046.Sherpa_CT10_DYtautauM15to40*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                       , '%s/BMinusL.*180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
+                                                                       ]
+                                                                     )
+        bkg_optimize_tree_dict['Diboson_%s' % syst_tag] = constructPathList( [ "%s/BMinusL.*177997.Sherpa_CT10_llnunu_WW_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*177999.Sherpa_CT10_llnunu_ZZ_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*179974.Sherpa_CT10_lllnu_WZ_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*179975.Sherpa_CT10_lnununu_WZ_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183585.Sherpa_CT10_ZWtoeeqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183586.Sherpa_CT10_ZZtoeeqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183587.Sherpa_CT10_ZWtomumuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183588.Sherpa_CT10_ZZtomumuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183589.Sherpa_CT10_ZWtotautauqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183590.Sherpa_CT10_ZZtotautauqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183591.Sherpa_CT10_ZWtonunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183592.Sherpa_CT10_ZZtonunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183734.Sherpa_CT10_WWtoenuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183735.Sherpa_CT10_WZtoenuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183736.Sherpa_CT10_WWtomunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183737.Sherpa_CT10_WZtomunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183738.Sherpa_CT10_WWtotaunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             , "%s/BMinusL.*183739.Sherpa_CT10_WZtotaunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+                                                                             ]
+                                                                           )
+        bkg_optimize_tree_dict['Higgs_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive*.ntup.root' % opt_ntup_dir
+                                                                           ]
+                                                                         )
+        if syst_tag == 'NoSys':
+            bkg_optimize_tree_dict['data'] = constructPathList( [ '%s/BMinusL.periodA_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodA_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodB_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodB_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodC_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodC_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodD_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodD_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodE_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodE_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodG_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodG_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodH_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodH_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodI_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodI_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodJ_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodJ_muon.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodL_egamma.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.periodL_muon.ntup.root' % opt_ntup_dir
+                                                                ]
+                                                              )
+
+        sig_optimize_tree_dict['sig_100_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_200_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_300_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_400_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_500_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_600_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_700_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_800_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_900_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900*.ntup.root'  % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_1000_%s' % syst_tag] = constructPathList(['%s/BMinusL.*202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000*.ntup.root' % opt_ntup_dir])
 
     writeTreesToHistFitterFile('BackgroundHistFitterTrees.root', bkg_optimize_tree_dict)
     writeTreesToHistFitterFile('SignalHistFitterTrees.root'    , sig_optimize_tree_dict)
