@@ -188,6 +188,8 @@ gen_syst = Systematic( "gen_syst" , configMgr.weights , 1.0 + 0.30 , 1.0 - 0.30 
 
 # JES uncertainty as shapeSys - one systematic per region (combine WR and TR), merge samples
 # jes = Systematic("JER","_JESup","_JESdown","tree","overallNormHistoSys")
+jes_uncert = Systematic("JES", '_NoSys', "_JES_UP", "_JES_DOWN", "tree", "overallSys")
+jer_uncert = Systematic('JER', '_NoSys', '_JER'   , '_JER'     , 'tree', 'histoSysOneSide')
 
 btag_sf_uncert = Systematic('btag_sf', configMgr.weights, ('weight', 'btag_sf_down_frac'), ('weight', 'btag_sf_up_frac'), 'weight', 'overallSys')
 
@@ -229,12 +231,12 @@ ttv_sample.setNormByTheory()
 sample_list.append(ttv_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-## # diboson
-## diboson_sample = Sample( "Diboson" , kSpring-4 )
-## 
-## diboson_sample.setStatConfig(use_stat)
-## diboson_sample.setNormByTheory()
-## sample_list.append(diboson_sample)
+# diboson
+diboson_sample = Sample( "Diboson" , kSpring-4 )
+
+diboson_sample.setStatConfig(use_stat)
+diboson_sample.setNormByTheory()
+sample_list.append(diboson_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # higgs
@@ -357,20 +359,10 @@ else:
     background_config.statErrThreshold = None
 background_config.addSamples(sample_list)
 
-# # Systematics to be applied globally within this topLevel
-# background_config.getSample("ttbar"    ).addSystematic(gen_syst)
-# background_config.getSample("SingleTop").addSystematic(gen_syst)
-# background_config.getSample("Z"        ).addSystematic(gen_syst)
-# background_config.getSample("ttV"      ).addSystematic(gen_syst)
-# ## background_config.getSample("Diboson"  ).addSystematic(gen_syst)
-# background_config.getSample("Higgs"    ).addSystematic(gen_syst)
-
-background_config.getSample("ttbar"    ).addSystematic(btag_sf_uncert)
-background_config.getSample("SingleTop").addSystematic(btag_sf_uncert)
-background_config.getSample("Z"        ).addSystematic(btag_sf_uncert)
-background_config.getSample("ttV"      ).addSystematic(btag_sf_uncert)
-## background_config.getSample("Diboson"  ).addSystematic(btag_sf_uncert)
-background_config.getSample("Higgs"    ).addSystematic(btag_sf_uncert)
+# Systematics to be applied globally within this topLevel
+background_config.addSystematic(btag_sf_uncert)
+background_config.addSystematic(jes_uncert)
+background_config.addSystematic(jer_uncert)
 
 meas = background_config.addMeasurement(name = "NormalMeasurement", lumi = 1.0, lumiErr = 0.039 )
 meas.addPOI("mu_SIG")
@@ -621,11 +613,11 @@ entry.SetLineColor(ttv_sample.color)
 entry.SetFillColor(ttv_sample.color)
 entry.SetFillStyle(compFillStyle)
 
-## # Diboson entry
-## entry = leg.AddEntry("", "Diboson", "lf")
-## entry.SetLineColor(diboson_sample.color)
-## entry.SetFillColor(diboson_sample.color)
-## entry.SetFillStyle(compFillStyle)
+# Diboson entry
+entry = leg.AddEntry("", "Diboson", "lf")
+entry.SetLineColor(diboson_sample.color)
+entry.SetFillColor(diboson_sample.color)
+entry.SetFillStyle(compFillStyle)
 
 # Higgs entry
 entry = leg.AddEntry("", "Higgs", "lf")
