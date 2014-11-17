@@ -216,25 +216,25 @@ def main():
                                                    , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto.ntup.root'
                                                    , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter.ntup.root'
                                                    ]
-                             # , 'Diboson_NoSys'   : [ "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.177997.Sherpa_CT10_llnunu_WW_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.177999.Sherpa_CT10_llnunu_ZZ_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.179974.Sherpa_CT10_lllnu_WZ_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.179975.Sherpa_CT10_lnununu_WZ_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183585.Sherpa_CT10_ZWtoeeqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183586.Sherpa_CT10_ZZtoeeqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183587.Sherpa_CT10_ZWtomumuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183588.Sherpa_CT10_ZZtomumuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183589.Sherpa_CT10_ZWtotautauqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183590.Sherpa_CT10_ZZtotautauqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183591.Sherpa_CT10_ZWtonunuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183592.Sherpa_CT10_ZZtonunuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183734.Sherpa_CT10_WWtoenuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183735.Sherpa_CT10_WZtoenuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183736.Sherpa_CT10_WWtomunuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183737.Sherpa_CT10_WZtomunuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183738.Sherpa_CT10_WWtotaunuqq_MassiveCB.ntup.root"
-                             #                       , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183739.Sherpa_CT10_WZtotaunuqq_MassiveCB.ntup.root"
-                             #                       ]
+                             , 'Diboson_NoSys'   : [ "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.177997.Sherpa_CT10_llnunu_WW_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.177999.Sherpa_CT10_llnunu_ZZ_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.179974.Sherpa_CT10_lllnu_WZ_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.179975.Sherpa_CT10_lnununu_WZ_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183585.Sherpa_CT10_ZWtoeeqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183586.Sherpa_CT10_ZZtoeeqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183587.Sherpa_CT10_ZWtomumuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183588.Sherpa_CT10_ZZtomumuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183589.Sherpa_CT10_ZWtotautauqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183590.Sherpa_CT10_ZZtotautauqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183591.Sherpa_CT10_ZWtonunuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183592.Sherpa_CT10_ZZtonunuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183734.Sherpa_CT10_WWtoenuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183735.Sherpa_CT10_WZtoenuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183736.Sherpa_CT10_WWtomunuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183737.Sherpa_CT10_WZtomunuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183738.Sherpa_CT10_WWtotaunuqq_MassiveCB.ntup.root"
+                                                   , "${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.183739.Sherpa_CT10_WZtotaunuqq_MassiveCB.ntup.root"
+                                                   ]
                              , 'Higgs_NoSys'     : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu.ntup.root'
                                                    , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu.ntup.root'
                                                    , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu.ntup.root'
