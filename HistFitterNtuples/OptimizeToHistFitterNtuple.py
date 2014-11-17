@@ -156,7 +156,6 @@ def writeTreesToHistFitterFile(out_file_name, optimize_tree_dict):
 # ------------------------------------------------------------------------------
 def main():
     bkg_optimize_tree_dict = { 'ttbar_NoSys'     : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.117050.PowhegPythia_P2011C_ttbar.af2.ntup.root' ]
-
                              , 'ttV_NoSys'       : [ '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW.ntup.root'
                                                    , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj.ntup.root'
                                                    , '${BASE_WORK_DIR}/NextOptNtupDir.BMinusL.NOMINAL/BMinusL.119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ.ntup.root'
