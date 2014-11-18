@@ -205,7 +205,7 @@ sample_list.append(single_top_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Z/gamma*
-z_sample = Sample( "Z" , kRed+1 )
+z_sample = Sample( "ZGamma" , kRed+1 )
 
 z_sample.setNormFactor("mu_z",1.,0.,5.)
 z_sample.setStatConfig(use_stat)

@@ -189,56 +189,56 @@ def main():
                                                                                , '%s/BMinusL.*110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR*.ntup.root' % opt_ntup_dir
                                                                                ]
                                                                              )
-        bkg_optimize_tree_dict['Z_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*173041.Sherpa_CT10_DYeeM08to15*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*173042.Sherpa_CT10_DYeeM15to40*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*173043.Sherpa_CT10_DYmumuM08to15*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*173044.Sherpa_CT10_DYmumuM15to40*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*173045.Sherpa_CT10_DYtautauM08to15*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*173046.Sherpa_CT10_DYtautauM15to40*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto*.ntup.root' % opt_ntup_dir
-                                                                       , '%s/BMinusL.*180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
-                                                                       ]
-                                                                     )
+        bkg_optimize_tree_dict['ZGamma_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*173041.Sherpa_CT10_DYeeM08to15*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*173042.Sherpa_CT10_DYeeM15to40*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*173043.Sherpa_CT10_DYmumuM08to15*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*173044.Sherpa_CT10_DYmumuM15to40*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*173045.Sherpa_CT10_DYtautauM08to15*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*173046.Sherpa_CT10_DYtautauM15to40*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto*.ntup.root' % opt_ntup_dir
+                                                                            , '%s/BMinusL.*180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
+                                                                            ]
+                                                                          )
         bkg_optimize_tree_dict['Diboson_%s' % syst_tag] = constructPathList( [ "%s/BMinusL.*177997.Sherpa_CT10_llnunu_WW_MassiveCB*.ntup.root" % opt_ntup_dir
                                                                              , "%s/BMinusL.*177999.Sherpa_CT10_llnunu_ZZ_MassiveCB*.ntup.root" % opt_ntup_dir
                                                                              , "%s/BMinusL.*179974.Sherpa_CT10_lllnu_WZ_MassiveCB*.ntup.root" % opt_ntup_dir
