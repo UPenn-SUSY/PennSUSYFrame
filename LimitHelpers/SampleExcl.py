@@ -30,7 +30,7 @@ configMgr.blindSR = True
 # - Flags to control which fit is executed
 # ----------------------------------------
 use_stat = True
-do_validation = False
+do_validation = True
 
 single_bin_regions = True
 single_bin_signal  = True
@@ -121,17 +121,6 @@ base_cr_z_str = "is_cr_z"
 configMgr.cutsDict["CR_Z_all"] = base_cr_z_str
 configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
 configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
-
-# VR 1
-# base_vr_1_str = "(ht_signal >= 500)"
-# base_vr_1_str += " && (ht_signal <= 1100)"
-# base_vr_1_str += " && (mbl_asym <= 0.4)"
-# base_vr_1_str += " && (fabs(mll - 91) > 10)"
-base_vr_1_str = "is_vr_1"
-configMgr.cutsDict["VR_1_all"] = base_vr_1_str
-configMgr.cutsDict["VR_1_ee"] = '(%s && is_ee)' % base_vr_1_str
-configMgr.cutsDict["VR_1_mm"] = '(%s && is_mm)' % base_vr_1_str
-configMgr.cutsDict["VR_1_em"] = '(%s && is_em)' % base_vr_1_str
 
 # VR 3
 # base_vr_3_str = "(ht_signal <= 500)"
@@ -417,9 +406,7 @@ for crl in cr_list:
 vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
-    # for vr_name in ['VR_1' , 'VR_3' , 'VR_5' , 'VR_llbb']:
-    for vr_name in ['VR_1' , 'VR_3' , 'VR_5']:
-    # for vr_name in ['VR_1']:
+    for vr_name in ['VR_3' , 'VR_5']:
         for flavor_channel in ['_all', '_ee', '_mm', '_em']:
             if not vr_name == 'VR_llbb' and flavor_channel == '': continue
             if vr_name  == 'VR_5' and flavor_channel == '_em': continue
