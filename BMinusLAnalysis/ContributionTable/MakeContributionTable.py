@@ -1,4 +1,17 @@
 #!/usr/bin/env python
+"""
+This script is used to generate a latex table showing the contribution of each
+process in each region. This script runs on a root file containing canvases
+created using the Plotting package. Specifically, it takes advantage of the
+__entries canvas which show the number of expected entries in each region.
+
+usage:
+    python scripts/ContributionTable/MakeContributionTable.py compare_plots.b_minus_l.root
+
+Note: This package requires pandas be installed! I have not gotten this working
+on lxplus, but haven't really tried very hard. I simply copy the root file to my
+laptop and run from there.
+"""
 
 import ROOT
 import pandas
