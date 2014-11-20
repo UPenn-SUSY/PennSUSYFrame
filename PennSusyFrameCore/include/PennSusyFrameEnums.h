@@ -223,17 +223,17 @@ const std::string TAU_MU_LEVEL_STRINGS[] = { "tau_mu_none"
                                            };
 
 // list of strings with names of triggers
-enum TRIGGERS { EF_2e12Tvh_loose1 = 0
-		,EF_e24vh_medium1_e7_medium1
-		,EF_e24vhi_medium1
-		,EF_e60_medium1
-		,EF_e12Tvh_medium1_mu8
-		,EF_mu18_tight_e7_medium1
-		,EF_mu24i_tight
-		,EF_mu36_tight
-		,EF_2mu13
-		,EF_mu18_tight_mu8_EFFS
-		,EF_mu24_tight_mu6_EFFS
+enum TRIGGERS { trig_EF_2e12Tvh_loose1 = 0
+		,trig_EF_e24vh_medium1_e7_medium1
+		,trig_EF_e24vhi_medium1
+		,trig_EF_e60_medium1
+		,trig_EF_e12Tvh_medium1_mu8
+		,trig_EF_mu18_tight_e7_medium1
+		,trig_EF_mu24i_tight
+		,trig_EF_mu36_tight
+		,trig_EF_2mu13
+		,trig_EF_mu18_tight_mu8_EFFS
+		,trig_EF_mu24_tight_mu6_EFFS
 		,TRIGGERS_N
 };
 const std::string TRIGGER_STRINGS[] = { "EF_2e12Tvh_loose1"            //0

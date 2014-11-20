@@ -242,7 +242,7 @@ def main():
                                                                ]
                                            )
     ec_bl_400 = hh.Container.EntryContainer( label = 'B-L stop (400 GeV)'
-                                           , line_color = ROOT.kGreen+2
+                                           , line_color = ROOT.kTeal-2
                                            , line_width = 4
                                            # , line_style = 4
                                            , input_file_list = [ "%s/BMinusL.202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400.hists.root" % hist_dir
@@ -256,14 +256,14 @@ def main():
                                                                ]
                                            )
     ec_bl_600 = hh.Container.EntryContainer( label = 'B-L stop (600 GeV)'
-                                           , line_color = ROOT.kGreen+2
+                                           , line_color = ROOT.kOrange-3
                                            , line_width = 4
                                            # , line_style = 4
                                            , input_file_list = [ "%s/BMinusL.202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600.hists.root" % hist_dir
                                                                ]
                                            )
     ec_bl_700 = hh.Container.EntryContainer( label = 'B-L stop (700 GeV)'
-                                           , line_color = ROOT.kGreen+2
+                                           , line_color = ROOT.kYellow-2
                                            , line_width = 4
                                            # , line_style = 4
                                            , input_file_list = [ "%s/BMinusL.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.hists.root" % hist_dir
@@ -277,7 +277,7 @@ def main():
                                                                ]
                                            )
     ec_bl_900 = hh.Container.EntryContainer( label = 'B-L stop (900 GeV)'
-                                           , line_color = ROOT.kGreen+2
+                                           , line_color = ROOT.kMagenta+4
                                            , line_width = 4
                                            # , line_style = 4
                                            , input_file_list = [ "%s/BMinusL.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.hists.root" % hist_dir

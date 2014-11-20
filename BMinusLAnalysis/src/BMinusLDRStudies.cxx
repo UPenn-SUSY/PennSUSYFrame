@@ -54,23 +54,22 @@ void PennSusyFrame::BMinusLDRStudies::finalizeEvent()
 //                             , m_jets.getCollection(JET_BASELINE_BAD)
 //                             );
 
-// reproduce bad overlap removal plots (before we changed the OR procedure):
+  // reproduce bad overlap removal plots (before we changed the OR procedure):
   reproduceFullObjectCleaning( m_event
-			     , m_mc_truth
+                             , m_mc_truth
                              , m_object_cleaning
                              , m_electrons.getCollection(EL_ALL)
                              , m_muons.getCollection(MU_ALL)
                              , m_jets.getCollection(JET_ALL)
-			     , m_jets.getCollection(JET_ALL) 
-                              );
-  // There is no jet_all_good and jet_all_bad, but I don't want to change the whole code. 
+                             , m_jets.getCollection(JET_ALL)
+                             );
+  // There is no jet_all_good and jet_all_bad, but I don't want to change the whole code.
   // So just give it jet_all twice.
 }
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLDRStudies::finalizeRun()
 {
-
   TFile out_hist_file(m_out_hist_file_name.c_str(), "RECREATE");
 
   for (unsigned int dr_hist_level=0; dr_hist_level != PennSusyFrame::BMINUSL_DR_HIST_N; ++dr_hist_level) {
@@ -82,7 +81,7 @@ void PennSusyFrame::BMinusLDRStudies::finalizeRun()
 }
 
 // -----------------------------------------------------------------------------
-void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning(  PennSusyFrame::Event& m_event
+void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning( PennSusyFrame::Event& m_event
                                                                  , const PennSusyFrame::MCTruth& m_mc_truth
                                                                  , PennSusyFrame::ObjectCleaning m_object_cleaning
                                                                  , const std::vector<PennSusyFrame::Electron*>* input_electrons
@@ -91,7 +90,6 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning(  PennSusyFram
                                                                  , const std::vector<PennSusyFrame::Jet*>* input_jets_bad
                                                                  )
 {
-
   FLAVOR_CHANNEL fc = m_event.getFlavorChannel();
   // fill hist with no OR
   filldRHistHandles( PennSusyFrame::BMINUSL_NO_OR
@@ -207,12 +205,12 @@ void PennSusyFrame::BMinusLDRStudies::reproduceFullObjectCleaning(  PennSusyFram
 }
 
 void PennSusyFrame::BMinusLDRStudies::filldRHistHandles( BMINUSL_DR_HIST_LEVELS hist_level
-                                                , const PennSusyFrame::Event& m_event
-                                                , const PennSusyFrame::MCTruth& m_mc_truth
-                                                , const std::vector<PennSusyFrame::Electron*>& electrons
-                                                , const std::vector<PennSusyFrame::Muon*>& muons
-                                                , const std::vector<PennSusyFrame::Jet*>& jets
-                                                )
+                                                       , const PennSusyFrame::Event& m_event
+                                                       , const PennSusyFrame::MCTruth& m_mc_truth
+                                                       , const std::vector<PennSusyFrame::Electron*>& electrons
+                                                       , const std::vector<PennSusyFrame::Muon*>& muons
+                                                       , const std::vector<PennSusyFrame::Jet*>& jets
+                                                       )
 {
   m_bminusl_dr_histogram_handler.at(hist_level)->FilldR( m_event
                                                        , electrons
@@ -222,10 +220,10 @@ void PennSusyFrame::BMinusLDRStudies::filldRHistHandles( BMINUSL_DR_HIST_LEVELS 
                                                        );
 }
 
-FLAVOR_CHANNEL  PennSusyFrame::BMinusLDRStudies::checkFlavorChannel(PennSusyFrame::Event& m_event
-							 , const std::vector<PennSusyFrame::Electron*>& el_list
-							 , const std::vector<PennSusyFrame::Muon*>& mu_list
-							 )
+FLAVOR_CHANNEL PennSusyFrame::BMinusLDRStudies::checkFlavorChannel( PennSusyFrame::Event& m_event
+                                                                  , const std::vector<PennSusyFrame::Electron*>& el_list
+                                                                  , const std::vector<PennSusyFrame::Muon*>& mu_list
+                                                                  )
 {
   FLAVOR_CHANNEL fc = m_event.getFlavorChannel();
   if (fc == FLAVOR_EE && el_list.size() < 2) {

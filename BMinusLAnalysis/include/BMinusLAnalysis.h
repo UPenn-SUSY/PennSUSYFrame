@@ -11,40 +11,43 @@
 #include "HistogramHandlers/include/HistogramHandlers.h"
 #include "BMinusLAnalysis/include/BMinusLCutFlowTracker.h"
 #include "BMinusLAnalysis/include/BMinusLHistogramHandlers.h"
+#include "BMinusLAnalysis/include/BMinusLTriggerScaleFactor.h"
 
 // =============================================================================
 namespace PennSusyFrame
 {
-  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BASIC_CLEANING
-                           , BMINUSL_HIST_BL_PAIRING
+  enum BMINUSL_HIST_LEVELS { BMINUSL_HIST_BL_PAIRING
                            , BMINUSL_HIST_Z_VETO
                            , BMINUSL_HIST_GE_4_OBJECTS
                            , BMINUSL_HIST_NO_WEIGHTS
 
                            , BMINUSL_HIST_SR
+                           , BMINUSL_HIST_SR_MINUS_HT
+                           , BMINUSL_HIST_SR_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_SR_MINUS_Z_VETO
                            , BMINUSL_HIST_CR_TOP
                            , BMINUSL_HIST_CR_Z
                            , BMINUSL_HIST_VR_1
-                           , BMINUSL_HIST_VR_2
                            , BMINUSL_HIST_VR_3
-                           , BMINUSL_HIST_VR_4
+                           , BMINUSL_HIST_VR_5
 
                            , BMINUSL_HIST_N
                            };
 
-  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BASIC_CLEANING"
-                                                   , "BMINUSL_BL_PAIRING"
+  const std::string BMINUSL_HIST_LEVEL_STRINGS[] = { "BMINUSL_BL_PAIRING"
                                                    , "BMINUSL_ZVETO"
                                                    , "BMINUSL_GE_4_OBJECTS"
                                                    , "BMINUSL_NO_WEIGHTS"
 
-                                                   , "BMINUSL_HIST_SR"
-                                                   , "BMINUSL_HIST_CR_TOP"
-                                                   , "BMINUSL_HIST_CR_Z"
-                                                   , "BMINUSL_HIST_VR_1"
-                                                   , "BMINUSL_HIST_VR_2"
-                                                   , "BMINUSL_HIST_VR_3"
-                                                   , "BMINUSL_HIST_VR_4"
+                                                   , "BMINUSL_SR"
+                                                   , "BMINUSL_SR_MINUS_HT"
+                                                   , "BMINUSL_SR_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_SR_MINUS_Z_VETO"
+                                                   , "BMINUSL_CR_TOP"
+                                                   , "BMINUSL_CR_Z"
+                                                   , "BMINUSL_VR_1"
+                                                   , "BMINUSL_VR_3"
+                                                   , "BMINUSL_VR_5"
 
                                                    , "BMINUSL_N"
                                                    };
@@ -76,6 +79,7 @@ namespace PennSusyFrame
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
+      void setDoZKFactor(bool val) { m_do_z_k_factor = val; }
       void setDoDetailedBLHists(bool val = true) { m_do_detailed_bl_hists = val; }
 
       void setCritCutGrl(            bool val) { m_crit_cut_grl              = val; }
@@ -117,8 +121,7 @@ namespace PennSusyFrame
 
       std::string m_out_hist_file_name;
 
-      PennSusyFrame::LeptonKinematicsHists m_lep_hists;
-
+      bool m_do_z_k_factor;
       bool m_do_detailed_bl_hists;
 
       bool m_crit_cut_grl;
@@ -149,6 +152,8 @@ namespace PennSusyFrame
       PennSusyFrame::TileTripTool m_tile_trip_tool;
       PennSusyFrame::HFORTool m_hfor_tool;
 
+      BMinusLTriggerScaleFactor m_bminusl_trigger_sf_tool;
+
       BMinusLCutFlowTracker m_raw_cutflow_tracker;
       BMinusLCutFlowTracker m_cutflow_tracker;
 
@@ -163,8 +168,10 @@ namespace PennSusyFrame
       double m_mc_event_weight;
       double m_pile_up_sf;
       double m_lepton_sf;
+      double m_trigger_sf;
       double m_btag_sf;
       double m_ttbar_pt_weight;
+      double m_fudge_k_factor_weight;
 
       bool m_pass_grl;
       bool m_pass_incomplete_event;

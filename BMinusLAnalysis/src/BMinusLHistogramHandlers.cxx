@@ -17,7 +17,7 @@ static const int   num_jet_bins = 6;
 static const float num_jet_min  = -0.5;
 static const float num_jet_max  = num_jet_bins + num_jet_min;
 
-static const int   pt_bins = 100;
+static const int   pt_bins = 20;
 static const float pt_min  = 0.;
 static const float pt_max  = 1000.;
 
@@ -25,14 +25,14 @@ static const int   eta_bins = 50;
 static const float eta_min = -5.;
 static const float eta_max = +5.;
 
-static const int   mbl_bins = 60;
+static const int   mbl_bins = 24;
 static const float mbl_min  = 0.;
 static const float mbl_max  = 1200.;
 
 static const int   mbl_coarse_bins = 4;
 static const float mbl_bin_edges[mbl_coarse_bins+1] = {0, 100, 300, 500, 1200};
 
-static const int   ptll_bins = 60;
+static const int   ptll_bins = 24;
 static const float ptll_min  = 0.;
 static const float ptll_max  = 1200.;
 
@@ -816,6 +816,58 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
   TH1::SetDefaultSumw2(true);
 
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+
+    m_h_lep_pt_v_flavor_channel.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__lep_pt_v_flavor_channel"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "Flavor Channel - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "; Flavor Channel ; p_{T}^{l1}"
+                                            ).c_str()
+                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+						     , pt_bins, pt_min, pt_max
+                                          )
+                                );
+    m_h_el_pt_v_flavor_channel.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__el_pt_v_flavor_channel"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "Flavor Channel - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "; Flavor Channel ; p_{T}^{el}"
+                                            ).c_str()
+                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+						     , pt_bins, pt_min, pt_max
+                                          )
+                                );
+    m_h_mu_pt_v_flavor_channel.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__mu_pt_v_flavor_channel"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "Flavor Channel - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "; Flavor Channel ; p_{T}^{mu}"
+                                            ).c_str()
+                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+						     , pt_bins, pt_min, pt_max
+                                          )
+                                );
+    for (int flavor_it = 0; flavor_it != FLAVOR_N; ++flavor_it) {
+      m_h_lep_pt_v_flavor_channel.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
+                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                           );
+      m_h_el_pt_v_flavor_channel.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
+                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                           );
+      m_h_mu_pt_v_flavor_channel.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
+                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                           );
+    }
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_raw_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                           + "__b_jet_raw_pt_all"
@@ -1870,7 +1922,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 						 + FLAVOR_CHANNEL_STRINGS[fc_it]
 						 + " ;  ; Entries"
 						 ).c_str()
-						       , 56, -0.5, 55.5
+						       , 58, -0.5, 57.5
 					     )
 				   );
     m_h_doubleOR_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -1882,21 +1934,176 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 						 + FLAVOR_CHANNEL_STRINGS[fc_it]
 						 + " ;  ; Entries"
 						 ).c_str()
-					     , 56, -0.5, 55.5
+					     , 58, -0.5, 57.5
 					     )
 				   );
+    // 2d : subleading lepton pt v. triggers
+    m_h_lep_pt_v_single_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+							       + "__lep_pt_v_single_triggers_passed"
+							       + "__"
+							       + name_tag
+							       ).c_str()
+							     , ( "Triggers Passed - "
+								 + FLAVOR_CHANNEL_STRINGS[fc_it]
+								 + " ;  ; subleading lepton pt [GeV]"
+								 ).c_str()
+							     , TRIGGERS_N+1, -0.5, TRIGGERS_N + 0.5
+							     , pt_bins, pt_min, pt_max
+							     )
+						   );
+    m_h_lep_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+								  + "__lep_pt_v_doubleAND_triggers_passed"
+								  + "__"
+								  + name_tag
+								  ).c_str()
+								, ( "Triggers Passed - "
+								    + FLAVOR_CHANNEL_STRINGS[fc_it]
+								    + " ;  ; subleading lepton pt [GeV]"
+								    ).c_str()
+								, 58, -0.5, 57.5
+								, pt_bins, pt_min, pt_max
+								)
+						      );
+    m_h_lep_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+								 + "__lep_pt_v_doubleOR_triggers_passed"
+								 + "__"
+								 + name_tag
+								 ).c_str()
+							       , ( "Triggers Passed - "
+								   + FLAVOR_CHANNEL_STRINGS[fc_it]
+								   + " ;  ; subleading lepton pt [GeV]"
+								   ).c_str()
+							       , 58, -0.5, 57.5
+							       , pt_bins, pt_min, pt_max
+							       )
+						     );
+    m_h_el_pt_v_single_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+							       + "__el_pt_v_single_triggers_passed"
+							       + "__"
+							       + name_tag
+							       ).c_str()
+							     , ( "Triggers Passed - "
+								 + FLAVOR_CHANNEL_STRINGS[fc_it]
+								 + " ;  ; electron pt [GeV]"
+								 ).c_str()
+							     , TRIGGERS_N+1, -0.5, TRIGGERS_N + 0.5
+							     , pt_bins, pt_min, pt_max
+							     )
+						   );
+    m_h_el_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+								  + "__el_pt_v_doubleAND_triggers_passed"
+								  + "__"
+								  + name_tag
+								  ).c_str()
+								, ( "Triggers Passed - "
+								    + FLAVOR_CHANNEL_STRINGS[fc_it]
+								    + " ;  ; electron pt [GeV]"
+								    ).c_str()
+								, 58, -0.5, 57.5
+								, pt_bins, pt_min, pt_max
+								)
+						      );
+    m_h_el_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+								 + "__el_pt_v_doubleOR_triggers_passed"
+								 + "__"
+								 + name_tag
+								 ).c_str()
+							       , ( "Triggers Passed - "
+								   + FLAVOR_CHANNEL_STRINGS[fc_it]
+								   + " ;  ; electron pt [GeV]"
+								   ).c_str()
+							       , 58, -0.5, 57.5
+							       , pt_bins, pt_min, pt_max
+							       )
+						     );
+    m_h_mu_pt_v_single_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+							       + "__mu_pt_v_single_triggers_passed"
+							       + "__"
+							       + name_tag
+							       ).c_str()
+							     , ( "Triggers Passed - "
+								 + FLAVOR_CHANNEL_STRINGS[fc_it]
+								 + " ;  ; muon pt [GeV]"
+								 ).c_str()
+							     , TRIGGERS_N+1, -0.5, TRIGGERS_N + 0.5
+							     , pt_bins, pt_min, pt_max
+							     )
+						   );
+    m_h_mu_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+								  + "__mu_pt_v_doubleAND_triggers_passed"
+								  + "__"
+								  + name_tag
+								  ).c_str()
+								, ( "Triggers Passed - "
+								    + FLAVOR_CHANNEL_STRINGS[fc_it]
+								    + " ;  ; muon pt [GeV]"
+								    ).c_str()
+								, 58, -0.5, 57.5
+								, pt_bins, pt_min, pt_max
+								)
+						      );
+    m_h_mu_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+								 + "__mu_pt_v_doubleOR_triggers_passed"
+								 + "__"
+								 + name_tag
+								 ).c_str()
+							       , ( "Triggers Passed - "
+								   + FLAVOR_CHANNEL_STRINGS[fc_it]
+								   + " ;  ; muon pt [GeV]"
+								   ).c_str()
+							       , 58, -0.5, 57.5
+							       , pt_bins, pt_min, pt_max
+							       )
+						     );
     int bin_counter = 1;
     for (int it = 0; it != TRIGGERS_N; ++it) {
       m_h_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
+      m_h_lep_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
+      m_h_el_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
+      m_h_mu_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
       for (int jt = it+1; jt != TRIGGERS_N; ++jt) {
 	m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" AND "+TRIGGER_STRINGS[jt]).c_str());
 	m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" OR "+TRIGGER_STRINGS[jt]).c_str());
+	m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" AND "+TRIGGER_STRINGS[jt]).c_str());
+	m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" OR "+TRIGGER_STRINGS[jt]).c_str());
+	m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" AND "+TRIGGER_STRINGS[jt]).c_str());
+	m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" OR "+TRIGGER_STRINGS[jt]).c_str());
+	m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" AND "+TRIGGER_STRINGS[jt]).c_str());
+	m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" OR "+TRIGGER_STRINGS[jt]).c_str());
 	++bin_counter;
       }
     }
+    // two last interesting cases:
+    m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
+    m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
+    m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
+    m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
+    m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
+    m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
+    m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
+    m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
+    ++bin_counter;
+    m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
+    m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
+    m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
+    m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
+    m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
+    m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
+    m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
+    m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
+    ++bin_counter;
     m_h_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(TRIGGERS_N+1, "None");
     m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
     m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
+    m_h_lep_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(TRIGGERS_N+1, "None");
+    m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
+    m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
+    m_h_el_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(TRIGGERS_N+1, "None");
+    m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
+    m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
+    m_h_mu_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(TRIGGERS_N+1, "None");
+    m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
+    m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
   }
 }
 
@@ -2079,6 +2286,18 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     if (fc_it == FLAVOR_ERROR_1) continue;
     if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
 
+    m_h_lep_pt_v_flavor_channel.at(fc_it)->Fill(fc, pt_l_1, weight);
+    if (fc == FLAVOR_EM) {
+      if (bl_0.getLepton()->isElectron()) {
+	m_h_el_pt_v_flavor_channel.at(fc_it)->Fill(fc, bl_0.getLepton()->getPt()/1.e3, weight);
+	m_h_mu_pt_v_flavor_channel.at(fc_it)->Fill(fc, bl_1.getLepton()->getPt()/1.e3, weight);
+      }
+      else {
+	m_h_el_pt_v_flavor_channel.at(fc_it)->Fill(fc, bl_1.getLepton()->getPt()/1.e3, weight);
+	m_h_mu_pt_v_flavor_channel.at(fc_it)->Fill(fc, bl_0.getLepton()->getPt()/1.e3, weight);
+      }
+    }
+      
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // fill leading jet pt histograms
     if (num_jet > 0) {
@@ -2398,23 +2617,135 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     bool any_trigger_passed = false;
     for (int it = 0; it != TRIGGERS_N; ++it) {
       if (triggers_passed[it]) {
-	  m_h_single_triggers_passed.at(fc_it)->Fill(float(it), weight);
 	  any_trigger_passed = true;
+	  m_h_single_triggers_passed.at(fc_it)->Fill(float(it), weight);
+	  m_h_lep_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), pt_l_1, weight);
+	  if (fc == FLAVOR_EM) {
+	    if (bl_0.getLepton()->isElectron()) {
+	      m_h_el_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), bl_0.getLepton()->getPt()/1.e3, weight);
+	      m_h_mu_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), bl_1.getLepton()->getPt()/1.e3, weight);
+	    }
+	    else {
+	      m_h_el_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), bl_1.getLepton()->getPt()/1.e3, weight);
+	      m_h_mu_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), bl_0.getLepton()->getPt()/1.e3, weight);
+	    }
+	  }
 	}
       for (int jt = it+1; jt != TRIGGERS_N; ++jt) {
 	if (triggers_passed[it] && triggers_passed[jt]) {
 	  m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+	  m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+	  if (fc == FLAVOR_EM) {
+	    if (bl_0.getLepton()->isElectron()) {
+	      m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	      m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	    }		  
+	    else {	  
+	      m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	      m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	    }
+	  }
 	}
 	if (triggers_passed[it] || triggers_passed[jt]) {
 	  m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+	  m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+	  if (fc == FLAVOR_EM) {
+	    if (bl_0.getLepton()->isElectron()) {
+	      m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	      m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	    }		  
+	    else {	  
+	      m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	      m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	    }
+	  }
 	}
 	++bin_counter;
       }
     }
+    // two last interesting OR cases between three triggers:
+    if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu24i_tight()) {
+      m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+	if (bl_0.getLepton()->isElectron()) {
+	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	}		  
+	else {	  
+	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	}
+      }
+    }
+    // do the AND case as well, just to keep bin counter consistent
+    if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu24i_tight()) {
+      m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+	if (bl_0.getLepton()->isElectron()) {
+	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	}		  
+	else {	  
+	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	}
+      }
+    }
+    ++bin_counter;
+
+    if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu36_tight()) {
+      m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+	if (bl_0.getLepton()->isElectron()) {
+	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	}		  
+	else {	  
+	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	}
+      }
+    }
+    if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu36_tight()) {
+      m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+	if (bl_0.getLepton()->isElectron()) {
+	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	}		  
+	else {	  
+	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	}
+      }
+    }
+    ++bin_counter;
+
     if (!any_trigger_passed) { // if no trigger passed, fill "None"
       m_h_single_triggers_passed.at(fc_it)->Fill(TRIGGERS_N, weight);
       m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
       m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_single_triggers_passed.at(fc_it)->Fill(TRIGGERS_N, pt_l_1, weight);
+      m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+	if (bl_0.getLepton()->isElectron()) {
+	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	}		  
+	else {	  
+	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+	}
+      }
     }
   }
 }
@@ -2468,6 +2799,9 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (FLAVOR_CHANNEL_STRINGS[fc_it] == "flavor_error") continue;
 
+    m_h_lep_pt_v_flavor_channel.at(fc_it)->Write();
+    m_h_el_pt_v_flavor_channel.at(fc_it)->Write();
+    m_h_mu_pt_v_flavor_channel.at(fc_it)->Write();
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_raw_pt_all.at(fc_it)->Write();
     m_h_b_jet_raw_pt_0.at(  fc_it)->Write();
@@ -2605,6 +2939,15 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     m_h_single_triggers_passed.at(fc_it)->Write();
     m_h_doubleAND_triggers_passed.at(fc_it)->Write();
     m_h_doubleOR_triggers_passed.at(fc_it)->Write();
+    m_h_lep_pt_v_single_triggers_passed.at(fc_it)->Write();
+    m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Write();
+    m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Write();
+    m_h_el_pt_v_single_triggers_passed.at(fc_it)->Write();
+    m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Write();
+    m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Write();
+    m_h_mu_pt_v_single_triggers_passed.at(fc_it)->Write();
+    m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Write();
+    m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Write();
   }
 }
 
@@ -3097,273 +3440,273 @@ PennSusyFrame::DRHists::DRHists(std::string name_tag)
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize dr histograms
-    m_h_dr_leadinglep_closest_fc_match.push_back( new TH1D( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						    + "__dr_leadinglep_closest_fc_match"
-						    + "__"
-						    + name_tag
-						    ).c_str()
-						   , ("#DeltaR(l0,closest object) - "
-						      + FLAVOR_CHANNEL_STRINGS[fc_it]
-						      + " ; #DeltaR(lep0,closest) ; Entries"
-						      ).c_str()
-						   , dr_bins, dr_min, dr_max
-						   )
-					 );
-    m_h_dr_leadinglep_closest_fc_mismatch.push_back( new TH1D( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						    + "__dr_leadinglep_closest_fc_mismatch"
-						    + "__"
-						    + name_tag
-						    ).c_str()
-						   , ("#DeltaR(l0,closest object) - "
-						      + FLAVOR_CHANNEL_STRINGS[fc_it]
-						      + " ; #DeltaR(lep0,closest) ; Entries"
-						      ).c_str()
-						   , dr_bins, dr_min, dr_max
-						   )
-					 );
-    m_h_dr_subleadinglep_closest_fc_match.push_back( new TH1D( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						    + "__dr_subleadinglep_closest_fc_match"
-						    + "__"
-						    + name_tag
-						    ).c_str()
-						   , ("#DeltaR(l1,closest object) - "
-						      + FLAVOR_CHANNEL_STRINGS[fc_it]
-						      + " ; #DeltaR(lep1,closest) ; Entries"
-						      ).c_str()
-						   , dr_bins, dr_min, dr_max
-						   )
-					 );
-    m_h_dr_subleadinglep_closest_fc_mismatch.push_back( new TH1D( (FLAVOR_CHANNEL_STRINGS[fc_it]
-						    + "__dr_subleadinglep_closest_fc_mismatch"
-						    + "__"
-						    + name_tag
-						    ).c_str()
-						   , ("#DeltaR(l1,closest object) - "
-						      + FLAVOR_CHANNEL_STRINGS[fc_it]
-						      + " ; #DeltaR(lep1,closest) ; Entries"
-						      ).c_str()
-						   , dr_bins, dr_min, dr_max
-						   )
-					 );
+    m_h_dr_leadinglep_closest_fc_match.push_back( new TH1D( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                            + "__dr_leadinglep_closest_fc_match"
+                                                            + "__"
+                                                            + name_tag
+                                                            ).c_str()
+                                                          , ("#DeltaR(l0,closest object) - "
+                                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                            + " ; #DeltaR(lep0,closest) ; Entries"
+                                                            ).c_str()
+                                                          , dr_bins, dr_min, dr_max
+                                                          )
+                                                );
+    m_h_dr_leadinglep_closest_fc_mismatch.push_back( new TH1D( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                               + "__dr_leadinglep_closest_fc_mismatch"
+                                                               + "__"
+                                                               + name_tag
+                                                               ).c_str()
+                                                             , ("#DeltaR(l0,closest object) - "
+                                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                               + " ; #DeltaR(lep0,closest) ; Entries"
+                                                               ).c_str()
+                                                             , dr_bins, dr_min, dr_max
+                                                             )
+                                                   );
+    m_h_dr_subleadinglep_closest_fc_match.push_back( new TH1D( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                               + "__dr_subleadinglep_closest_fc_match"
+                                                               + "__"
+                                                               + name_tag
+                                                               ).c_str()
+                                                             , ("#DeltaR(l1,closest object) - "
+                                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                               + " ; #DeltaR(lep1,closest) ; Entries"
+                                                               ).c_str()
+                                                             , dr_bins, dr_min, dr_max
+                                                             )
+                                                   );
+    m_h_dr_subleadinglep_closest_fc_mismatch.push_back( new TH1D( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                                  + "__dr_subleadinglep_closest_fc_mismatch"
+                                                                  + "__"
+                                                                  + name_tag
+                                                                  ).c_str()
+                                                                , ("#DeltaR(l1,closest object) - "
+                                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                                  + " ; #DeltaR(lep1,closest) ; Entries"
+                                                                  ).c_str()
+                                                                , dr_bins, dr_min, dr_max
+                                                                )
+                                                      );
     m_h_dr_ee_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_ee_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(e,e) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(e,e) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                             + "___dr_ee_from_stop"
+                                             + "__"
+                                             + name_tag
+                                             ).c_str()
+                                           , ( "#DeltaR(e,e) - "
+                                             + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                             + " ; #DeltaR(e,e) ; Entries"
+                                             ).c_str()
+                                           , dr_bins, dr_min, dr_max
+                                           )
+                                 );
     m_h_dr_mm_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_mm_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(m,m) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(m,m) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                             + "___dr_mm_from_stop"
+                                             + "__"
+                                             + name_tag
+                                             ).c_str()
+                                           , ( "#DeltaR(m,m) - "
+                                             + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                             + " ; #DeltaR(m,m) ; Entries"
+                                             ).c_str()
+                                           , dr_bins, dr_min, dr_max
+                                           )
+                                 );
     m_h_dr_em_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_em_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(e,m) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(e,m) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                             + "___dr_em_from_stop"
+                                             + "__"
+                                             + name_tag
+                                             ).c_str()
+                                           , ( "#DeltaR(e,m) - "
+                                             + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                             + " ; #DeltaR(e,m) ; Entries"
+                                             ).c_str()
+                                           , dr_bins, dr_min, dr_max
+                                           )
+                                 );
     m_h_dr_ej_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_ej_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(e,j) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(e,j) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                             + "___dr_ej_from_stop"
+                                             + "__"
+                                             + name_tag
+                                             ).c_str()
+                                           , ( "#DeltaR(e,j) - "
+                                             + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                             + " ; #DeltaR(e,j) ; Entries"
+                                             ).c_str()
+                                           , dr_bins, dr_min, dr_max
+                                           )
+                                 );
     m_h_dr_mj_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_mj_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(m,j) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(m,j) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                             + "___dr_mj_from_stop"
+                                             + "__"
+                                             + name_tag
+                                             ).c_str()
+                                           , ( "#DeltaR(m,j) - "
+                                             + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                             + " ; #DeltaR(m,j) ; Entries"
+                                             ).c_str()
+                                           , dr_bins, dr_min, dr_max
+                                           )
+                                 );
 
     m_h_dr_ee_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_ee_not_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(e,e) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(e,e) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                                 + "___dr_ee_not_from_stop"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "#DeltaR(e,e) - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; #DeltaR(e,e) ; Entries"
+                                                 ).c_str()
+                                               , dr_bins, dr_min, dr_max
+                                               )
+                                     );
     m_h_dr_mm_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_mm_not_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(m,m) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(m,m) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                                 + "___dr_mm_not_from_stop"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "#DeltaR(m,m) - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; #DeltaR(m,m) ; Entries"
+                                                 ).c_str()
+                                               , dr_bins, dr_min, dr_max
+                                               )
+                                     );
     m_h_dr_em_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_em_not_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(e,m) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(e,m) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                                 + "___dr_em_not_from_stop"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "#DeltaR(e,m) - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; #DeltaR(e,m) ; Entries"
+                                                 ).c_str()
+                                               , dr_bins, dr_min, dr_max
+                                               )
+                                     );
     m_h_dr_ej_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_ej_not_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(e,j) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(e,j) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                                 + "___dr_ej_not_from_stop"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "#DeltaR(e,j) - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; #DeltaR(e,j) ; Entries"
+                                                 ).c_str()
+                                               , dr_bins, dr_min, dr_max
+                                               )
+                                     );
     m_h_dr_mj_not_from_stop.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + "___dr_mj_not_from_stop"
-                                   + "__"
-                                   + name_tag
-                                   ).c_str()
-                                 , ( "#DeltaR(m,j) - "
-                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #DeltaR(m,j) ; Entries"
-                                   ).c_str()
-                                 , dr_bins, dr_min, dr_max
-                                 )
-                       );
+                                                 + "___dr_mj_not_from_stop"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "#DeltaR(m,j) - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; #DeltaR(m,j) ; Entries"
+                                                 ).c_str()
+                                               , dr_bins, dr_min, dr_max
+                                               )
+                                     );
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_flavor_channel_tvr.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__flavor_channel_tvr"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "Flavor Channel - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "; Reco Flavor Channel ; Truth Flavor Channel"
-                                            ).c_str()
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          )
-                                );
+                                                + "__flavor_channel_tvr"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "Flavor Channel - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "; Reco Flavor Channel ; Truth Flavor Channel"
+                                                ).c_str()
+                                              , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                              , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                              )
+                                    );
     m_h_flavor_channel_tvr_lepfromstop.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__flavor_channel_tvr_lepfromstop"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "Flavor Channel - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "; Reco Flavor Channel ; Truth Flavor Channel"
-                                            ).c_str()
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          )
-                                );
+                                                            + "__flavor_channel_tvr_lepfromstop"
+                                                            + "__"
+                                                            + name_tag
+                                                            ).c_str()
+                                                          , ( "Flavor Channel - "
+                                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                            + "; Reco Flavor Channel ; Truth Flavor Channel"
+                                                            ).c_str()
+                                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                          )
+                                                );
     m_h_flavor_channel_tvr_lepnotfromstop.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__flavor_channel_tvr_lepnotfromstop"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "Flavor Channel - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "; Reco Flavor Channel ; Truth Flavor Channel"
-                                            ).c_str()
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          )
-                                );
+                                                               + "__flavor_channel_tvr_lepnotfromstop"
+                                                               + "__"
+                                                               + name_tag
+                                                               ).c_str()
+                                                             , ( "Flavor Channel - "
+                                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                               + "; Reco Flavor Channel ; Truth Flavor Channel"
+                                                               ).c_str()
+                                                             , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                             , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                             )
+                                                   );
     m_h_flavor_channel_tvr_jetfromstop.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__flavor_channel_tvr_jetfromstop"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "Flavor Channel - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "; Reco Flavor Channel ; Truth Flavor Channel"
-                                            ).c_str()
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          )
-                                );
+                                                            + "__flavor_channel_tvr_jetfromstop"
+                                                            + "__"
+                                                            + name_tag
+                                                            ).c_str()
+                                                          , ( "Flavor Channel - "
+                                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                            + "; Reco Flavor Channel ; Truth Flavor Channel"
+                                                            ).c_str()
+                                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                          )
+                                                );
     m_h_flavor_channel_tvr_jetnotfromstop.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__flavor_channel_tvr_jetnotfromstop"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "Flavor Channel - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "; Reco Flavor Channel ; Truth Flavor Channel"
-                                            ).c_str()
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          )
-                                );
+                                                               + "__flavor_channel_tvr_jetnotfromstop"
+                                                               + "__"
+                                                               + name_tag
+                                                               ).c_str()
+                                                             , ( "Flavor Channel - "
+                                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                               + "; Reco Flavor Channel ; Truth Flavor Channel"
+                                                               ).c_str()
+                                                             , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                             , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                             )
+                                                   );
 
     for (int flavor_it = 0; flavor_it != FLAVOR_N; ++flavor_it) {
       m_h_flavor_channel_tvr.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                               , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                               );
       m_h_flavor_channel_tvr.at(fc_it)->GetYaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                               , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                               );
       m_h_flavor_channel_tvr_lepfromstop.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                                           );
       m_h_flavor_channel_tvr_lepfromstop.at(fc_it)->GetYaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                                           );
       m_h_flavor_channel_tvr_lepnotfromstop.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                                              , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                                              );
       m_h_flavor_channel_tvr_lepnotfromstop.at(fc_it)->GetYaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                                              , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                                              );
       m_h_flavor_channel_tvr_jetfromstop.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                                           );
       m_h_flavor_channel_tvr_jetfromstop.at(fc_it)->GetYaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                                           );
       m_h_flavor_channel_tvr_jetnotfromstop.at(fc_it)->GetXaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                                              , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                                              );
       m_h_flavor_channel_tvr_jetnotfromstop.at(fc_it)->GetYaxis()->SetBinLabel( flavor_it+1
-                                                           , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
-                                                           );
+                                                                              , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
+                                                                              );
     }
 
   }
@@ -3375,11 +3718,11 @@ PennSusyFrame::DRHists::~DRHists()
 
 // -----------------------------------------------------------------------------
 void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
-                                                     , const std::vector<PennSusyFrame::Electron*>& el_list
-                                                     , const std::vector<PennSusyFrame::Muon*>& mu_list
-                                                     , const std::vector<PennSusyFrame::Jet*>& b_jet_list
-				                     , const PennSusyFrame::MCTruth& mc_truth
-                                                     )
+                                   , const std::vector<PennSusyFrame::Electron*>& el_list
+                                   , const std::vector<PennSusyFrame::Muon*>& mu_list
+                                   , const std::vector<PennSusyFrame::Jet*>& b_jet_list
+                                   , const PennSusyFrame::MCTruth& mc_truth
+                                   )
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
 
@@ -3387,6 +3730,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
   if (fc == FLAVOR_NONE || fc == FLAVOR_ERROR_1) return;
   if (el_list.size() + mu_list.size() <2 ) return;
   if (b_jet_list.size() < 2) return;
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // calculate a bunch of things used in filling histograms
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -3460,18 +3804,18 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
     double dr_subleadinglep_jclosest = 100.;
     for (unsigned int jet_it =0 ; jet_it != b_jet_list.size() ; ++jet_it) {
       if (PennSusyFrame::getDr(lep_0 , b_jet_list.at(jet_it) ) < dr_leadinglep_jclosest) {
-	dr_leadinglep_jclosest = PennSusyFrame::getDr(lep_0, b_jet_list.at(jet_it));
+        dr_leadinglep_jclosest = PennSusyFrame::getDr(lep_0, b_jet_list.at(jet_it));
       }
       if (PennSusyFrame::getDr(lep_1 , b_jet_list.at(jet_it) ) < dr_subleadinglep_jclosest) {
-	dr_subleadinglep_jclosest = PennSusyFrame::getDr(lep_1, b_jet_list.at(jet_it));
+        dr_subleadinglep_jclosest = PennSusyFrame::getDr(lep_1, b_jet_list.at(jet_it));
       }
     }
     double  dr_leadinglep_closest = std::min( dr_leadinglep_jclosest
-					      ,dr_ll
-					      );
+        ,dr_ll
+        );
     double dr_subleadinglep_closest = std::min( dr_subleadinglep_jclosest
-					   ,dr_ll
-					    );
+        ,dr_ll
+        );
     if (fc_it == truth_fc)  {
       m_h_dr_leadinglep_closest_fc_match.at(   fc_it)->Fill(   dr_leadinglep_closest, weight);
       m_h_dr_subleadinglep_closest_fc_match.at(fc_it)->Fill(dr_subleadinglep_closest, weight);
@@ -3486,21 +3830,21 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
       else m_h_dr_ee_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
       // find closest jet to electron 0 and see if lepton is from stop
       if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
-	if (lepton_from_stop_0) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj00, weight);
-	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+        if (lepton_from_stop_0) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+        else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
       }
       else { // aka, if dr_lj01 is min
-	if (lepton_from_stop_0) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj01, weight);
-	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+        if (lepton_from_stop_0) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+        else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
       }
       // find closest jet to electron 1 and see if lepton is from stop
       if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
-	if (lepton_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj10, weight);
-	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+        if (lepton_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+        else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
       }
       else { // aka, if dr_lj11 is min
-	if (lepton_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj11, weight);
-	else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+        if (lepton_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+        else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
       }
     }
 
@@ -3509,21 +3853,21 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
       else m_h_dr_mm_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
       // find closest jet to muon 0 and see if lepton is from stop
       if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
-	if (lepton_from_stop_0) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj00, weight);
-	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+        if (lepton_from_stop_0) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+        else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
       }
       else { // aka, if dr_lj01 is min
-	if (lepton_from_stop_0) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj01, weight);
-	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+        if (lepton_from_stop_0) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+        else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
       }
       // find closest jet to muon 1 and see if lepton is from stop
       if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
-	if (lepton_from_stop_1) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj10, weight);
-	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+        if (lepton_from_stop_1) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+        else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
       }
       else { // aka, if dr_lj11 is min
-	if (lepton_from_stop_1) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj11, weight);
-	else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+        if (lepton_from_stop_1) m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+        else   m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
       }
     }
 
@@ -3532,45 +3876,45 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
       else m_h_dr_em_not_from_stop.at(fc_it)->Fill(dr_ll, weight);
       // find closest jet to lep_0 and see if lepton is from stop -- see if lep is e or m
       if (dr_lj00 == std::min(dr_lj00, dr_lj01) ) {
-	if (lepton_from_stop_0) {
-	  if (lep_0->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj00, weight);
-	  else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj00, weight);
-	}
-	else {
-	  if (lep_0->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
-	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
-	}
+        if (lepton_from_stop_0) {
+          if (lep_0->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+          else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+        }
+        else {
+          if (lep_0->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+          else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj00, weight);
+        }
       }
       else { // aka, if dr_lj01 is min
-	if (lepton_from_stop_0) {
-	  if (lep_0->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj01, weight);
-	  else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj01, weight);
-	}
-	else {
-	  if (lep_0->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
-	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
-	}
+        if (lepton_from_stop_0) {
+          if (lep_0->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+          else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+        }
+        else {
+          if (lep_0->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+          else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj01, weight);
+        }
       }
       // find closest jet to lep_1 and see if lepton is from stop -- see if lep is e or m
       if (dr_lj10 == std::min(dr_lj10, dr_lj11) ) {
-	if (lepton_from_stop_1) {
-	  if (lep_1->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj10, weight);
-	  else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj10, weight);
-	}
-	else {
-	  if (lep_1->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
-	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
-	}
+        if (lepton_from_stop_1) {
+          if (lep_1->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+          else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+        }
+        else {
+          if (lep_1->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+          else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj10, weight);
+        }
       }
       else { // aka, if dr_lj11 is min
-	if (lepton_from_stop_1) {
-	  if (lep_1->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj11, weight);
-	  else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj11, weight);
-	}
-	else {
-	  if (lep_1->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
-	  else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
-	}
+        if (lepton_from_stop_1) {
+          if (lep_1->isElectron()) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+          else m_h_dr_mj_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+        }
+        else {
+          if (lep_1->isElectron()) m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+          else m_h_dr_mj_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+        }
       }
     }
 
@@ -3592,7 +3936,6 @@ void PennSusyFrame::DRHists::write(TDirectory* d)
   // loop over all flavor channels
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (FLAVOR_CHANNEL_STRINGS[fc_it] == "flavor_error") continue;
-
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_dr_leadinglep_closest_fc_match.at(   fc_it)->Write();
     m_h_dr_leadinglep_closest_fc_mismatch.at(fc_it)->Write();
@@ -3616,6 +3959,5 @@ void PennSusyFrame::DRHists::write(TDirectory* d)
     m_h_flavor_channel_tvr_lepnotfromstop.at(fc_it)->Write();
     m_h_flavor_channel_tvr_jetfromstop.at(fc_it)->Write();
     m_h_flavor_channel_tvr_jetnotfromstop.at(fc_it)->Write();
- 
   }
 }

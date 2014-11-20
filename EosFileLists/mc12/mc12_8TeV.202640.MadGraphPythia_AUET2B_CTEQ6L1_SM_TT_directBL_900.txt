@@ -1,0 +1,1 @@
+root://eosatlas///eos/atlas/user/b/bjackson/mc12/mc12_8TeV.202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900.merge.NTUP_SUSY.e2808_a220_a205_r4540_p1512_tid01475315_00/NTUP_SUSY.01475315._000001.root.1        10000        10000        10000

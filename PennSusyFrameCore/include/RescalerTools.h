@@ -33,6 +33,7 @@ namespace JetAnalysisCalib {
   class JetCalibrationTool;
 }
 class JetSmearingTool;
+class MultijetJESUncertaintyProvider;
 
 // =============================================================================
 namespace PennSusyFrame
@@ -98,11 +99,16 @@ namespace PennSusyFrame
     void init();
 
     TLorentzVector getCalibratedTlv( const PennSusyFrame::Jet*
-                                     , const PennSusyFrame::Event*
-                                     , int num_vertices_ge_2_tracks
-                                     );
+                                   , const PennSusyFrame::Event*
+                                   , int num_vertices_ge_2_tracks
+                                   );
     // void applyJER(PennSusyFrame::Jet*, bool is_af2);
-    void applyJER(TLorentzVector&, bool is_af2);
+    void applyJER(TLorentzVector&);
+    void applyJES( TLorentzVector&
+                 , int flavor_truth_label
+                 , int num_vert_ge_2_trk
+                 , float mu
+                 );
 
     private:
       bool m_is_data;
@@ -113,6 +119,7 @@ namespace PennSusyFrame
       bool m_do_jes_down;
       JetAnalysisCalib::JetCalibrationTool* m_jet_calibration;
       JetSmearingTool* m_jer_smearing;
+      MultijetJESUncertaintyProvider* m_jes_tool;
   };
 
   // =============================================================================

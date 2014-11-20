@@ -16,6 +16,7 @@ namespace PennSusyFrame
 {
   enum BMINUSL_LOOSE_HIST_LEVELS { BMINUSL_LLJJ_HIST_BL_PAIRING
                                  , BMINUSL_LLJJ_HIST_Z_VETO
+
                                  , BMINUSL_LLJJ_HIST_SR
                                  , BMINUSL_LLJJ_HIST_CR_TOP
                                  , BMINUSL_LLJJ_HIST_CR_Z
@@ -23,6 +24,9 @@ namespace PennSusyFrame
                                  , BMINUSL_LLJJ_HIST_VR_2
                                  , BMINUSL_LLJJ_HIST_VR_3
                                  , BMINUSL_LLJJ_HIST_VR_4
+                                 , BMINUSL_LLJJ_HIST_VR_5
+                                 , BMINUSL_LLJJ_HIST_VR_6
+                                 , BMINUSL_LLJJ_HIST_VR_7
 
                                  , BMINUSL_LLBJ_HIST_BL_PAIRING
                                  , BMINUSL_LLBJ_HIST_Z_VETO
@@ -33,6 +37,9 @@ namespace PennSusyFrame
                                  , BMINUSL_LLBJ_HIST_VR_2
                                  , BMINUSL_LLBJ_HIST_VR_3
                                  , BMINUSL_LLBJ_HIST_VR_4
+                                 , BMINUSL_LLBJ_HIST_VR_5
+                                 , BMINUSL_LLBJ_HIST_VR_6
+                                 , BMINUSL_LLBJ_HIST_VR_7
 
                                  , BMINUSL_LOOSE_HIST_N
                                  };
@@ -46,6 +53,9 @@ namespace PennSusyFrame
                                                          , "BMINUSL_LLJJ_HIST_VR_2"
                                                          , "BMINUSL_LLJJ_HIST_VR_3"
                                                          , "BMINUSL_LLJJ_HIST_VR_4"
+                                                         , "BMINUSL_LLJJ_HIST_VR_5"
+                                                         , "BMINUSL_LLJJ_HIST_VR_6"
+                                                         , "BMINUSL_LLJJ_HIST_VR_7"
 
                                                          , "BMINUSL_LLBJ_BL_PAIRING"
                                                          , "BMINUSL_LLBJ_ZVETO"
@@ -56,6 +66,9 @@ namespace PennSusyFrame
                                                          , "BMINUSL_LLBJ_HIST_VR_2"
                                                          , "BMINUSL_LLBJ_HIST_VR_3"
                                                          , "BMINUSL_LLBJ_HIST_VR_4"
+                                                         , "BMINUSL_LLBJ_HIST_VR_5"
+                                                         , "BMINUSL_LLBJ_HIST_VR_6"
+                                                         , "BMINUSL_LLBJ_HIST_VR_7"
 
                                                          , "BMINUSL_LOOSE_N"
                                                          };

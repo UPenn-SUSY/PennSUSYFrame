@@ -68,8 +68,6 @@ def runBMinusLAnalysisFun(data_set_dict):
                       , is_full_sim           = data_set_dict['is_full_sim']
                       , syst_struct           = data_set_dict['syst_struct']
                       , tree_name             = input_tree_name
-                      # , tree_name             = 'TNT'
-                      # , tree_name             = 'BMinusLTTNT'
                       , dsid                  = data_set_dict['dsid']
                       , out_file_special_name = data_set_dict['label']
                       , is_tnt                = True
@@ -111,8 +109,6 @@ def runBMinusLAnalysis( file_list
     print "Adding files to TChain"
     print '  Tree name: ' , tree_name
     t = RunHelpers.getTChain(file_list, tree_name)
-    print t
-    print t.GetEntries()
 
     # ==============================================================================
     print 'Creating BMinusLAnalysis object'
@@ -214,8 +210,11 @@ def runBMinusLAnalysis( file_list
     bmla.setBJetPtCut(jet_pt_cut, -1     )
     bmla.setMV1Cut(btag_working_point)
 
-    # Turn on detailed B-L histograms
-    bmla.setDoDetailedBLHists(True)
+    # Turn on/off Z fudge factor
+    bmla.setDoZKFactor(True)
+
+    # Turn on/off detailed B-L histograms
+    bmla.setDoDetailedBLHists(False)
 
     # prepare tools and run analysis loop
     print 'preparing tools'

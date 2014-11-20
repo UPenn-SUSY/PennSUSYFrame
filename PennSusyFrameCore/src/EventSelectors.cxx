@@ -223,22 +223,20 @@ PennSusyFrame::BCHCleaningTool::~BCHCleaningTool()
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::JetContainer& jets, int run_number, int lumi_block)
 {
- 
   bool pass_cleaning = true;
 
   //compute the cleaning;
   //Loop through the Jets and check each...if one fails, reject the event
 
   const std::vector<PennSusyFrame::Jet*>* jet_good = jets.getCollection(JET_GOOD);
-  
+
   size_t n_jets = jet_good->size();
   for (size_t jet_it = 0; jet_it != n_jets; ++jet_it) {
     pass_cleaning = pass_cleaning && passBCHCleaning(jet_good->at(jet_it), run_number, lumi_block);
     if(!pass_cleaning) break;
-      
   }
-  
-  return pass_cleaning;  
+
+  return pass_cleaning;
 }
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::Jet* jet, int run_number, int lumi_block)
@@ -254,13 +252,13 @@ bool PennSusyFrame::BCHCleaningTool::passBCHCleaning(const PennSusyFrame::Jet* j
 void PennSusyFrame::BCHCleaningTool::init(const PennSusyFrame::Event& event, PennSusyFrame::TileTripTool& tile_trip)
 {
   //initialize bch tool
-  
+
   m_bch_tool = new BCHTool::BCHCleaningToolRoot();
 
   m_bch_file = " ${ROOTCOREDIR}/../BCHCleaningTool/share/FractionsRejectedJetsMC.root";
 
   Root::TTileTripReader* tile_trip_root_tool = tile_trip.getTileTripReaderTool();
- 
+
   m_bch_tool->InitializeTool(event.getIsData(), tile_trip_root_tool, m_bch_file);
 
 }
