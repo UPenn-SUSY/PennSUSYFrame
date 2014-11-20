@@ -148,12 +148,13 @@ def makeDataSetDictList( label_base
         this_data_set_dict['syst_struct']          = syst_struct
         data_set_dict_list.append(this_data_set_dict)
 
-        if syst_struct.do_jer:
-            this_data_set_dict['label'] += '__JER'
-        if syst_struct.do_jes_up:
-            this_data_set_dict['label'] += '__JES_UP'
-        if syst_struct.do_jes_down:
-            this_data_set_dict['label'] += '__JES_DOWN'
+        if syst_struct is not None:
+            if syst_struct.do_jer:
+                this_data_set_dict['label'] += '__JER'
+            if syst_struct.do_jes_up:
+                this_data_set_dict['label'] += '__JES_UP'
+            if syst_struct.do_jes_down:
+                this_data_set_dict['label'] += '__JES_DOWN'
 
     print ''
     return data_set_dict_list

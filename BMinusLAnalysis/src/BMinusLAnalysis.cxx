@@ -534,6 +534,8 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , m_bl_1
                    , m_event_weight
                    );
+    // also fill with no weights applied
+    fillHistHandles(PennSusyFrame::BMINUSL_HIST_NO_WEIGHTS, m_bl_0, m_bl_1, 1.);
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1304,6 +1306,7 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                                       , *bl_1
                                                                       , m_mc_truth
                                                                       , m_truth_match_tool
+                                                                      , m_trigger
                                                                       , weight
                                                                       );
     }

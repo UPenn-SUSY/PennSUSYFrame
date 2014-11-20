@@ -94,19 +94,12 @@ else:
 # - Dictionnary of cuts for Tree->hist
 # ------------------------------------
 # SR
-# base_sr_str = "(ht_signal >= 1100)"
-# base_sr_str += " && (mbl_asym <= 0.4)"
-# base_sr_str += " && (fabs(mll - 91) > 10)"
 base_sr_str = "is_sr"
 configMgr.cutsDict["SR_ee"] = '(%s && is_ee)' % base_sr_str
 configMgr.cutsDict["SR_mm"] = '(%s && is_mm)' % base_sr_str
 configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
 
 # CR_top
-# base_cr_top_str = "(ht_signal <= 500)"
-# base_cr_top_str += " && (mbl_asym <= 0.4)"
-# base_cr_top_str += " && (met_sig_signal >= 4)"
-# base_cr_top_str += " && (fabs(mll - 91) > 10)"
 base_cr_top_str = "is_cr_top"
 configMgr.cutsDict["CR_top_all"] = base_cr_top_str
 configMgr.cutsDict["CR_top_ee"] = '(%s && is_ee)' % base_cr_top_str
@@ -114,19 +107,12 @@ configMgr.cutsDict["CR_top_mm"] = '(%s && is_mm)' % base_cr_top_str
 configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
 
 # CR_Z
-# base_cr_z_str = "(ht_signal <= 500)"
-# base_cr_z_str += " && (mbl_asym <= 0.4)"
-# base_cr_z_str += " && (fabs(mll - 91) < 10)"
 base_cr_z_str = "is_cr_z"
 configMgr.cutsDict["CR_Z_all"] = base_cr_z_str
 configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
 configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
 
 # VR 3
-# base_vr_3_str = "(ht_signal <= 500)"
-# base_vr_3_str += " && (mbl_asym <= 0.4)"
-# base_vr_3_str += " && (met_sig_signal <= 4)"
-# base_vr_3_str += " && (fabs(mll - 91) > 10)"
 base_vr_3_str = "is_vr_3"
 configMgr.cutsDict["VR_3_all"] = base_vr_3_str
 configMgr.cutsDict["VR_3_ee"] = '(%s && is_ee)' % base_vr_3_str
@@ -134,20 +120,10 @@ configMgr.cutsDict["VR_3_mm"] = '(%s && is_mm)' % base_vr_3_str
 configMgr.cutsDict["VR_3_em"] = '(%s && is_em)' % base_vr_3_str
 
 # VR 5
-# base_vr_5_str = "(ht_signal >= 500)"
-# base_vr_5_str += " && (ht_signal <= 1100)"
-# base_vr_5_str += " && (mbl_asym <= 0.4)"
-# base_vr_5_str += " && (fabs(mll - 91) < 10)"
 base_vr_5_str = "is_vr_5"
 configMgr.cutsDict["VR_5_all"] = base_vr_5_str
 configMgr.cutsDict["VR_5_ee"] = '(%s && is_ee)' % base_vr_5_str
 configMgr.cutsDict["VR_5_mm"] = '(%s && is_mm)' % base_vr_5_str
-
-# VR llbb
-# configMgr.cutsDict["VR_llbb_all"]    = '( 1 )'
-# configMgr.cutsDict["VR_llbb_ee"] = '( 1 && is_ee )'
-# configMgr.cutsDict["VR_llbb_mm"] = '( 1 && is_mm )'
-# configMgr.cutsDict["VR_llbb_em"] = '( 1 && is_em )'
 
 # --------------------------
 # - lists of nominal weights

@@ -53,7 +53,7 @@ if __name__ == '__main__':
     print 'getting file list'
 
     egamma_data_samples = {
-                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':11}
+                            'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':10}
                           , 'periodB_egamma':{'label':'periodB_egamma', 'num_jobs':20}
                           , 'periodC_egamma':{'label':'periodC_egamma', 'num_jobs':20}
                           , 'periodD_egamma':{'label':'periodD_egamma', 'num_jobs':15}

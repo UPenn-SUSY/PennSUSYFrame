@@ -213,7 +213,7 @@ def runBMinusLAnalysis( file_list
     # Turn on/off Z fudge factor
     bmla.setDoZKFactor(True)
 
-    # Turn off detailed B-L histograms
+    # Turn on/off detailed B-L histograms
     bmla.setDoDetailedBLHists(False)
 
     # prepare tools and run analysis loop

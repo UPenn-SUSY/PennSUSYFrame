@@ -100,12 +100,10 @@ if __name__ == '__main__':
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2_v2', 'num_jobs':50}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l' , 'num_jobs':5 }
                           , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'             , 'num_jobs':5 }
                           , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'    , 'num_jobs':10}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':20}
                           , 167750:{'label':'167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'           , 'num_jobs':20}
@@ -178,14 +176,12 @@ if __name__ == '__main__':
                           , 180549:{'label':'180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter'        , 'num_jobs':1}
                           , 180550:{'label':'180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto'   , 'num_jobs':1}
                           , 180551:{'label':'180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto'     , 'num_jobs':1}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 173041:{'label':'173041.Sherpa_CT10_DYeeM08to15'     , 'num_jobs':5}
                           , 173042:{'label':'173042.Sherpa_CT10_DYeeM15to40'     , 'num_jobs':5}
 
                           , 173043:{'label':'173043.Sherpa_CT10_DYmumuM08to15'   , 'num_jobs':5}
                           , 173044:{'label':'173044.Sherpa_CT10_DYmumuM15to40'   , 'num_jobs':5}
-
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
                           , 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200'  , 'num_jobs':1}

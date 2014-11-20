@@ -155,6 +155,7 @@ PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_E(0)
                                   , m_trig_EF_trigmuonef_EF_mu36_tight(0)
                                   , m_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS(0)
                                   , m_trig_EF_el_EF_e24vhi_medium1(0)
+                                  , m_trig_EF_el_EF_e60_medium1(0)
                                   , m_trig_EF_trigmuonef_EF_mu24_tight(0)
                                   , m_trig_EF_trigmuonef_track_CB_eta(0)
                                   , m_trig_EF_trigmuonef_track_CB_phi(0)
@@ -178,6 +179,8 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
   setEF_mu36_tight(               reader->EF_mu36_tight);
   setEF_mu24_tight_mu6_EFFS(      reader->EF_mu24_tight_mu6_EFFS);
   setEF_e24vhi_medium1(           reader->EF_e24vhi_medium1);
+  // TODO uncomment when we turn this on in the TNTs
+  // setEF_e60_medium1(              reader->EF_e60_medium1);
 
   setTrig_EF_el_E(                              reader->trig_EF_el_E);
   setTrig_EF_el_px(                             reader->trig_EF_el_px);
@@ -196,6 +199,8 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
   setTrig_EF_trigmuonef_EF_mu36_tight(          reader->trig_EF_trigmuonef_EF_mu36_tight);
   setTrig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS( reader->trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
   setTrig_EF_el_EF_e24vhi_medium1(              reader->trig_EF_el_EF_e24vhi_medium1);
+  // TODO uncomment when we turn this on in the TNTs
+  // setTrig_EF_el_EF_e60_medium1(                 reader->trig_EF_el_EF_e60_medium1);
   setTrig_EF_trigmuonef_EF_mu24_tight(          reader->trig_EF_trigmuonef_EF_mu24_tight);
   setTrig_EF_trigmuonef_track_CB_eta(           reader->trig_EF_trigmuonef_track_CB_eta);
   setTrig_EF_trigmuonef_track_CB_phi(           reader->trig_EF_trigmuonef_track_CB_phi);
@@ -808,21 +813,18 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
 
   setParticleIndex(jet_index);
 
-  setConstScaleE(  reader->jet_AntiKt4LCTopo_constscale_E->at(m_particle_index));
-  setConstScaleEta(reader->jet_AntiKt4LCTopo_constscale_eta->at(m_particle_index));
-  setConstScalePhi(reader->jet_AntiKt4LCTopo_constscale_phi->at(m_particle_index));
-  setConstScaleM(  reader->jet_AntiKt4LCTopo_constscale_m->at(m_particle_index));
-  setActiveAreaPx( reader->jet_AntiKt4LCTopo_ActiveAreaPx->at(m_particle_index));
-  setActiveAreaPy( reader->jet_AntiKt4LCTopo_ActiveAreaPy->at(m_particle_index));
-  setActiveAreaPz( reader->jet_AntiKt4LCTopo_ActiveAreaPz->at(m_particle_index));
-  setActiveAreaE(  reader->jet_AntiKt4LCTopo_ActiveAreaE->at(m_particle_index));
-  setJvf(          reader->jet_AntiKt4LCTopo_jvtxf->at(m_particle_index));
-  setMv1(          reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
-  setBchCorr(      reader->jet_AntiKt4LCTopo_BCH_CORR_JET->at(m_particle_index));
-
-  // TODO uncomment once new TNTs are available
-  // setBchCorrCell(  reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
-
+  setConstScaleE(    reader->jet_AntiKt4LCTopo_constscale_E->at(m_particle_index));
+  setConstScaleEta(  reader->jet_AntiKt4LCTopo_constscale_eta->at(m_particle_index));
+  setConstScalePhi(  reader->jet_AntiKt4LCTopo_constscale_phi->at(m_particle_index));
+  setConstScaleM(    reader->jet_AntiKt4LCTopo_constscale_m->at(m_particle_index));
+  setActiveAreaPx(   reader->jet_AntiKt4LCTopo_ActiveAreaPx->at(m_particle_index));
+  setActiveAreaPy(   reader->jet_AntiKt4LCTopo_ActiveAreaPy->at(m_particle_index));
+  setActiveAreaPz(   reader->jet_AntiKt4LCTopo_ActiveAreaPz->at(m_particle_index));
+  setActiveAreaE(    reader->jet_AntiKt4LCTopo_ActiveAreaE->at(m_particle_index));
+  setJvf(            reader->jet_AntiKt4LCTopo_jvtxf->at(m_particle_index));
+  setMv1(            reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
+  setBchCorr(        reader->jet_AntiKt4LCTopo_BCH_CORR_JET->at(m_particle_index));
+  setBchCorrCell(    reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
   setEmf(            reader->jet_AntiKt4LCTopo_emfrac->at(m_particle_index));
   setSumPtTrk(       reader->jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV->at(m_particle_index));
 

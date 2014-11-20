@@ -3,6 +3,7 @@
 
 // =============================================================================
 #include <vector>
+#include <string>
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 #include "HistogramHandlers/include/HistogramHandlers.h"
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
@@ -123,6 +124,7 @@ namespace PennSusyFrame
                               , const PennSusyFrame::blPair&
                               , const PennSusyFrame::MCTruth&
                               , PennSusyFrame::TruthMatchTool&
+                              , PennSusyFrame::Trigger m_trigger
                               , float weight
                               );
       virtual void write(TDirectory*);
@@ -132,6 +134,10 @@ namespace PennSusyFrame
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       // dR between jet and b quark which is matched to jet
+      std::vector<TH2F*> m_h_lep_pt_v_flavor_channel;
+      std::vector<TH2F*> m_h_el_pt_v_flavor_channel;
+      std::vector<TH2F*> m_h_mu_pt_v_flavor_channel;
+
       std::vector<TH1F*> m_h_b_jet_dr_q_all; //~ ~
       std::vector<TH1F*> m_h_b_jet_dr_q_0; //~ ~
       std::vector<TH1F*> m_h_b_jet_dr_q_1; //~ ~
@@ -240,6 +246,21 @@ namespace PennSusyFrame
 
       std::vector<TH1F*> m_h_bl_deta_same_parent_pairing; //~ ~
       std::vector<TH1F*> m_h_bl_deta_diff_parent_pairing; //~ ~
+
+      // trigger studies
+      std::vector<TH1F*> m_h_single_triggers_passed;
+      std::vector<TH1F*> m_h_doubleAND_triggers_passed;
+      std::vector<TH1F*> m_h_doubleOR_triggers_passed;
+      std::vector<TH2F*> m_h_lep_pt_v_single_triggers_passed;
+      std::vector<TH2F*> m_h_lep_pt_v_doubleAND_triggers_passed;
+      std::vector<TH2F*> m_h_lep_pt_v_doubleOR_triggers_passed;
+      std::vector<TH2F*> m_h_el_pt_v_single_triggers_passed;
+      std::vector<TH2F*> m_h_el_pt_v_doubleAND_triggers_passed;
+      std::vector<TH2F*> m_h_el_pt_v_doubleOR_triggers_passed;
+      std::vector<TH2F*> m_h_mu_pt_v_single_triggers_passed;
+      std::vector<TH2F*> m_h_mu_pt_v_doubleAND_triggers_passed;
+      std::vector<TH2F*> m_h_mu_pt_v_doubleOR_triggers_passed;
+
   };
 
   // =============================================================================
