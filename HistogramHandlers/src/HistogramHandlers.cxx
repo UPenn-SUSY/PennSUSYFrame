@@ -6,6 +6,7 @@
 #include "TFile.h"
 #include "TDirectory.h"
 #include "TH1.h"
+#include "TAxis.h"
 
 // =============================================================================
 static const int   mll_bins = 50;
@@ -95,6 +96,21 @@ static const float z0_min  = -z0_max;
 static const int   z0sintheta_bins = 120;
 static const float z0sintheta_max  = 1.2;
 static const float z0sintheta_min  = -z0sintheta_max;
+
+// =============================================================================
+void PennSusyFrame::setBinLabel( TH1* hist
+                               , int bin_number
+                               , std::string label
+                               , int axis
+                               )
+{
+  TAxis* the_axis = 0;
+  if (axis == 1) the_axis = hist->GetXaxis();
+  else if (axis == 2) the_axis = hist->GetYaxis();
+  else the_axis = hist->GetXaxis();
+
+  the_axis->SetBinLabel(bin_number, label.c_str());
+}
 
 // =============================================================================
 PennSusyFrame::HistogramHandler::HistogramHandler(std::string)

@@ -17,7 +17,7 @@ call_from=$3
 echo "submitting $script_path to the queue $batch_queue"
 
 # setup env
-submit_command="source .bashrc"
+submit_command="source ~/.bashrc"
 
 # move to directory if specified in user inputs
 if [[ ! $call_from == "" ]] ; then
