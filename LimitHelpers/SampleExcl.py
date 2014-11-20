@@ -32,8 +32,8 @@ configMgr.blindSR = True
 use_stat = True
 do_validation = True
 
-single_bin_regions = True
-single_bin_signal  = True
+single_bin_regions = False
+single_bin_signal  = False
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
