@@ -68,7 +68,7 @@ gStyle.SetTitleX(.1)
 
 # grid lines
 # gStyle.SetPadGridX(1);
-gStyle.SetPadGridY(1);
+# gStyle.SetPadGridY(1);
 
 ## set times fonts
 font = 42 # Helvetica
