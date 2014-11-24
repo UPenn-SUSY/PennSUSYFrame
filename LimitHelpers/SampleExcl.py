@@ -1,11 +1,12 @@
-################################################################
-## In principle all you have to setup is defined in this file ##
-################################################################
+# =============================================================
+# = In principle all you have to setup is defined in this file
+# =============================================================
 from configManager import configMgr
 from ROOT import kBlack,kWhite,kGray,kRed,kPink,kMagenta,kViolet,kBlue,kAzure,kCyan,kTeal,kGreen,kSpring,kYellow,kOrange,kDashed,kSolid,kDotted
 from configWriter import fitConfig,Measurement,Channel,Sample
 from systematic import Systematic
 from math import sqrt
+import itertools
 
 # Setup for ATLAS plotting
 from ROOT import gROOT, TLegend, TLegendEntry, TCanvas
@@ -18,22 +19,25 @@ ROOT.SetAtlasStyle()
 import sys
 sys.path.append('%s/LimitHelpers/' % os.environ['BASE_WORK_DIR'])
 import FlavorChannelScaling as scaling
+import SampleExclBinning as binning
 
-# ----------------------------------------------------------------------------------------------
-# - Some flags for overridding normal execution and telling ROOT to shut up... use with caution!
-# ----------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# Some flags for overridding normal execution and telling ROOT to shut up...
+# - use with caution!
 #gROOT.ProcessLine("gErrorIgnoreLevel=10001;")
 #configMgr.plotHistos = True
 configMgr.blindSR = True
 
-# ----------------------------------------
-# - Flags to control which fit is executed
-# ----------------------------------------
-use_stat = True
-do_validation = True
+# ------------------------------------------------------------------------------
+# Flags to tune the stop branching ratios
+stop_br_e = 0.5
+stop_br_m = 0.5
+stop_br_t = 0.0
 
-single_bin_regions = False
-single_bin_signal  = False
+# ------------------------------------------------------------------------------
+# Flags to control which fit is executed
+use_stat = True
+do_validation = False
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -45,9 +49,8 @@ elif myFitType == FitType.Background:
 else:
     print '  fit type: Undefined :('
 
-# -----------------------------------------------------------------------
-# - cannot do validation and exclusion/discovery at the same time for now
-# -----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# cannot do validation and exclusion/discovery at the same time for now
 if myFitType == FitType.Discovery or myFitType == FitType.Exclusion:
     print 'turning off validation for discovery or exclusion'
     do_validation = False
@@ -61,18 +64,17 @@ configMgr.calculatorType=2 # use 2 for asymptotic, 0 for toys
 configMgr.testStatType=3
 configMgr.nPoints=10
 
-# ---------------------------------
-# - Now we start to build the model
-# ---------------------------------
-
-# First define HistFactory attributes
-configMgr.analysisName = "SampleExcl"
+# ------------------------------------------------------------------------------
+# First, define HistFactory attributes
+configMgr.analysisName = '_'.join(["SampleExcl",
+                                   'bre', str(int(100*stop_br_e)),
+                                   'brm', str(int(100*stop_br_m)),
+                                   'brt', str(int(100*stop_br_t))])
 configMgr.histCacheFile = "data/"+configMgr.analysisName+".root"
 configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 
 # Scaling calculated by outputLumi / inputLumi
 configMgr.inputLumi = 0.001    # Luminosity of input TTree after weighting
-# configMgr.outputLumi = 13.0    # Luminosity required for output histograms
 configMgr.outputLumi = 21.0    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
 
@@ -84,7 +86,6 @@ if configMgr.readFromTree:
     print 'reading from trees!'
     bkg_files.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
     if myFitType==FitType.Exclusion:
-        # 1-step simplified model
         sig_files.append("${BASE_WORK_DIR}/HistFitterNtuples/SignalHistFitterTrees.root")
 else:
     print 'not reading from trees -- getting input from cache!'
@@ -125,43 +126,60 @@ configMgr.cutsDict["VR_5_all"] = base_vr_5_str
 configMgr.cutsDict["VR_5_ee"] = '(%s && is_ee)' % base_vr_5_str
 configMgr.cutsDict["VR_5_mm"] = '(%s && is_mm)' % base_vr_5_str
 
-# --------------------------
-# - lists of nominal weights
-# --------------------------
-flavor_scale_factors = scaling.getFlavorScaleFactorsFromBR( br_e=0.1
-                                                          , br_m=0.9
-                                                          , br_t=0.
-                                                          )
-# TODO figure out how to only apply this weight for signal samples
-# configMgr.weights = ["weight*( (is_ee*%f) + (is_mm*%f) + (is_em*%f) )" % ( flavor_scale_factors['ee']
-#                                                                          , flavor_scale_factors['mm']
-#                                                                          , flavor_scale_factors['em']
-#                                                                          )
-#                     ]
-configMgr.weights = ["weight"]
+# ------------------------------------------------------------------------------
+# Lists of nominal weights
+flavor_scale_factors = scaling.getFlavorScaleFactorsFromBR(br_e=stop_br_e,
+                                                           br_m=stop_br_m,
+                                                           br_t=stop_br_t)
+nominal_weight_bkg = 'weight'
+nominal_weight_sig = "%s*( (is_ee*%f) + (is_mm*%f) + (is_em*%f) )" % (nominal_weight_bkg,
+                                                                      flavor_scale_factors['ee'],
+                                                                      flavor_scale_factors['mm'],
+                                                                      flavor_scale_factors['em'])
+print ('BJ WEIGHT!!! nominal bkg: ', nominal_weight_bkg)
+print ('BJ WEIGHT!!! nominal sig: ', nominal_weight_sig)
+
+# apply nominal weight to all samples
+configMgr.weights = [nominal_weight_bkg]
 
 # name of nominal histogram for systematics
 configMgr.nomName = "_NoSys"
 
-# ---------------------
-# - List of systematics
-# ---------------------
-# TODO replace general systematic with real systematics
-
-# generic systematic -- placeholder for now
-gen_syst = Systematic( "gen_syst" , configMgr.weights , 1.0 + 0.30 , 1.0 - 0.30 , "user" , "userOverallSys" )
-
+# ------------------------------------------------------------------------------
+# List of systematics
 # JES uncertainty as shapeSys - one systematic per region (combine WR and TR), merge samples
-# jes = Systematic("JER","_JESup","_JESdown","tree","overallNormHistoSys")
-jes_uncert = Systematic("JES", '_NoSys', "_JES_UP", "_JES_DOWN", "tree", "overallSys")
-jer_uncert = Systematic('JER', '_NoSys', '_JER'   , '_JER'     , 'tree', 'histoSysOneSide')
+jes_uncert = Systematic(name = "JES",
+                        nominal = '_NoSys',
+                        high = '_JES_UP',
+                        low = '_JES_DOWN',
+                        type = 'tree',
+                        method = 'overallSys')
+jer_uncert = Systematic(name = 'JER',
+                        nominal = '_NoSys',
+                        high = '_JER',
+                        low = '_JER',
+                        type = 'tree',
+                        method = 'normHistoSysOneSide')
 
-btag_sf_uncert = Systematic('btag_sf', configMgr.weights, ('weight', 'btag_sf_down_frac'), ('weight', 'btag_sf_up_frac'), 'weight', 'overallSys')
+btag_sf_uncert_bkg = Systematic(name = 'btag_sf_bkg',
+                                nominal = nominal_weight_bkg,
+                                high = [nominal_weight_bkg, 'btag_sf_down_frac'],
+                                low = [nominal_weight_bkg, 'btag_sf_up_frac'],
+                                type = 'weight',
+                                method = 'overallSys')
+btag_sf_uncert_sig = Systematic(name = 'btag_sf_sig',
+                                nominal = nominal_weight_sig,
+                                high = [nominal_weight_sig, 'btag_sf_down_frac'],
+                                low = [nominal_weight_sig, 'btag_sf_up_frac'],
+                                type = 'weight',
+                                method = 'overallSys')
 
 # --------------------------------------------
 # - List of samples and their plotting colours
 # --------------------------------------------
-sample_list = []
+sample_list_bkg  = []
+sample_list_data = []
+sample_list_sig  = []
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ttbar
@@ -169,15 +187,7 @@ ttbar_sample = Sample( "ttbar" , kGreen+2 )
 
 ttbar_sample.setNormFactor("mu_ttbar",1.,0.,5.)
 ttbar_sample.setStatConfig(use_stat)
-sample_list.append(ttbar_sample)
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# single top
-single_top_sample = Sample( "SingleTop" , kGreen-1 )
-
-single_top_sample.setStatConfig(   use_stat)
-single_top_sample.setNormByTheory()
-sample_list.append(single_top_sample)
+sample_list_bkg.append(ttbar_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Z/gamma*
@@ -185,7 +195,15 @@ z_sample = Sample( "ZGamma" , kRed+1 )
 
 z_sample.setNormFactor("mu_z",1.,0.,5.)
 z_sample.setStatConfig(use_stat)
-sample_list.append(z_sample)
+sample_list_bkg.append(z_sample)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# single top
+single_top_sample = Sample( "SingleTop" , kGreen-1 )
+
+single_top_sample.setStatConfig(   use_stat)
+single_top_sample.setNormByTheory()
+sample_list_bkg.append(single_top_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # ttV
@@ -193,7 +211,7 @@ ttv_sample = Sample( "ttV" , kAzure+8 )
 
 ttv_sample.setStatConfig(use_stat)
 ttv_sample.setNormByTheory()
-sample_list.append(ttv_sample)
+sample_list_bkg.append(ttv_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # diboson
@@ -201,7 +219,7 @@ diboson_sample = Sample( "Diboson" , kSpring-4 )
 
 diboson_sample.setStatConfig(use_stat)
 diboson_sample.setNormByTheory()
-sample_list.append(diboson_sample)
+sample_list_bkg.append(diboson_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # higgs
@@ -209,158 +227,79 @@ higgs_sample = Sample( "Higgs" , kOrange-5 )
 
 higgs_sample.setStatConfig(use_stat)
 higgs_sample.setNormByTheory()
-sample_list.append(higgs_sample)
+sample_list_bkg.append(higgs_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # data
 data_sample = Sample("data",kBlack)
 data_sample.setData()
-sample_list.append(data_sample)
+sample_list_data.append(data_sample)
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # set the file from which the samples should be taken
-for sl in sample_list:
+for sl in itertools.chain(sample_list_bkg, sample_list_data):
     sl.setFileList(bkg_files)
 
-# ----------
-# - Binnings
-# ----------
-# TODO reset the binning and add more histograms
+# ------------------------------------------------------------------------------
+# add systematics to each of the samples
+def addSystematic(sample_list, syst_list):
+    for sample in sample_list:
+        for syst in syst_list:
+            sample.addSystematic(syst)
 
-# flavor channel binning
-flavor_channel_bin = 5
-flavor_channel_min = -0.5
-flavor_channel_max = flavor_channel_min + flavor_channel_bin
+# background systematics
+addSystematic(sample_list_bkg,
+              [btag_sf_uncert_bkg,
+               jes_uncert,
+               jer_uncert])
 
-# pt binning
-pt_bin = 10 if not single_bin_regions else 1
-pt_min = 0
-pt_max = 500
-
-# mbbll binning
-mbbll_bin = 6 if not single_bin_regions else 1
-mbbll_min = 0
-mbbll_max = 1200
-
-# mbl binning
-mbl_bin = 6 if not single_bin_regions else 1
-mbl_min = 0
-mbl_max = 1200
-
-# ptbl binning
-ptbl_bin = 6 if not single_bin_regions else 1
-ptbl_min = 0
-ptbl_max = 600
-
-# ptll binning
-ptll_bin = 6 if not single_bin_regions else 1
-ptll_min = 0
-ptll_max = 600
-
-# ptbbll binning
-ptbbll_bin = 6 if not single_bin_regions else 1
-ptbbll_min = 0
-ptbbll_max = 600
-
-# mll binning
-mll_bin = 10 if not single_bin_regions else 1
-mll_min = 0
-mll_max = 500
-
-mll_inz_bin = 6 if not single_bin_regions else 1
-mll_inz_min = 75
-mll_inz_max = 105
-
-# ht binning
-ht_bin = 11 if not single_bin_regions else 1
-ht_min = 0
-ht_max = 1100
-
-ht_sr_bin = 19 if not single_bin_regions else 1
-ht_sr_min = 1100
-ht_sr_max = 3000
-
-# mbl asym binning
-mbl_asym_bin = 5 if not single_bin_regions else 1
-mbl_asym_min = 0
-mbl_asym_max = 1.
-
-# met significance binning
-met_sig_bin = 10 if not single_bin_regions else 1
-met_sig_min = 0
-met_sig_max = 500
-
-# met et binning
-met_et_bin = 5 if not single_bin_regions else 1
-met_et_min = 0
-met_et_max = 100
-
-# dphi binning
-dphi_bin = 8 if not single_bin_regions else 1
-dphi_min = 0
-dphi_max = 3.2
-
-# deta binning
-deta_bin = 4 if not single_bin_regions else 1
-deta_min = 0
-deta_max = 4
-
-# dr binning
-dr_bin = 4 if not single_bin_regions else 1
-dr_min = 0
-dr_max = 4
-
-# SR binning (this is just a single bin cut and count binning)
-srNBins = 1
-srBinLow = 0.5
-srBinHigh = 1.5
-
-# **************
-# * Bkg only fit
-# **************
+# ------------------------------------------------------------------------------
+# Configure the background only fit
 background_config = configMgr.addFitConfig("BkgOnly")
 if use_stat:
     background_config.statErrThreshold = 0.05
 else:
     background_config.statErrThreshold = None
-background_config.addSamples(sample_list)
+background_config.addSamples(sample_list_bkg)
+background_config.addSamples(sample_list_data)
 
-# Systematics to be applied globally within this topLevel
-background_config.addSystematic(btag_sf_uncert)
-background_config.addSystematic(jes_uncert)
-background_config.addSystematic(jer_uncert)
-
-meas = background_config.addMeasurement(name = "NormalMeasurement", lumi = 1.0, lumiErr = 0.039 )
+meas = background_config.addMeasurement(name = "NormalMeasurement",
+                                        lumi = 1.0,
+                                        lumiErr = 0.039)
 meas.addPOI("mu_SIG")
 
-# --------------------------------------------------
+# ------------------------------------------------------------------------------
+def addChannel(config, expression, name, binning):
+    """
+    Helper function to add a channel to the fit config - this is just a wrapper
+    around the HistFitter addChannel function
+    """
+    return config.addChannel(expression,
+                             [name],
+                             binning['bin'],
+                             binning['min'],
+                             binning['max'])
+
+# ------------------------------------------------------------------------------
 # - Constraining regions - statistically independent
-# --------------------------------------------------
 cr_list = []
 # Add Top CR for background
 for cr_name in ['CR_top_', 'CR_Z_']:
-    # for flavor_channel in ['ee', 'mm', 'em']:
     for flavor_channel in ['all']:
         if cr_name  == 'CR_Z_' and flavor_channel == 'em': continue
 
-        # cr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (cr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
-        cr_list.append( background_config.addChannel( "mbl_0"         , ['%s%s' % (cr_name, flavor_channel)], mbl_bin           , mbl_min           , mbl_max           ) )
-        ## cr_list.append( background_config.addChannel( "mbl_1"         , ['%s%s' % (cr_name, flavor_channel)], mbl_bin           , mbl_min           , mbl_max           ) )
-        ## if cr_name == 'CR_Z_':
-        ##     cr_list.append( background_config.addChannel( "mll"       , ['%s%s' % (cr_name, flavor_channel)], mll_inz_bin       , mll_inz_min       , mll_inz_max       ) )
-        ## else:
-        ##     cr_list.append( background_config.addChannel( "mll"       , ['%s%s' % (cr_name, flavor_channel)], mll_bin           , mll_min           , mll_max           ) )
-        ## cr_list.append( background_config.addChannel( "ht_signal"     , ['%s%s' % (cr_name, flavor_channel)], ht_bin            , ht_min            , ht_max            ) )
-        ## cr_list.append( background_config.addChannel( 'mbl_asym'      , ['%s%s' % (cr_name, flavor_channel)], mbl_asym_bin      , mbl_asym_min      , mbl_asym_max      ) )
-        ## cr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (cr_name, flavor_channel)], met_sig_bin       , met_sig_min       , met_sig_max       ) )
+        this_name = ''.join([cr_name, flavor_channel])
+
+        cr_list.append(addChannel(background_config,
+                                  'mbl_0',
+                                  this_name,
+                                  binning.mbl))
 
 background_config.setBkgConstrainChannels(cr_list)
 
-###############################
-#                             #
-#    Example new cosmetics    #
-#                             #
-###############################
-# Set global plotting colors/styles
+# ------------------------------------------------------------------------------
+# Background only fit cosmetics
+# Global plotting colors/styles
 background_config.dataColor      = data_sample.color
 background_config.totalPdfColor  = kBlue
 background_config.errorFillColor = kBlue-5
@@ -376,9 +315,8 @@ for crl in cr_list:
     crl.ATLASLabelY = 0.85
     crl.ATLASLabelText = "Work in progress"
 
-# ---------------------------------------------------------------
-# - Validation regions - not necessarily statistically independent
-# ---------------------------------------------------------------
+# ______________________________________________________________________________
+# Construct Validation regions
 vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
@@ -387,106 +325,74 @@ if do_validation:
             if not vr_name == 'VR_llbb' and flavor_channel == '': continue
             if vr_name  == 'VR_5' and flavor_channel == '_em': continue
 
-            if flavor_channel == '_all':
-                vr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (vr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
+            # unique name for this VR/flavor channel combination
+            this_name = ''.join(vr_name, flavor_channel)
 
-            vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
-            vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
-            ## # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
-            ## # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'ptbbll'   , ['%s%s' % (vr_name, flavor_channel)], ptbbll_bin, ptbbll_min, ptbbll_max ) )
-            ## if vr_name == 'VR_5':
-            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_inz_bin , mll_inz_min, mll_inz_max ) )
-            ## else:
-            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_bin     , mll_min    , mll_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
-            ## vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin , met_et_min , met_et_max  ) )
-            ## vr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (vr_name, flavor_channel)], met_sig_bin, met_sig_min, met_sig_max ) )
-            vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
-            ## vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## vr_list.append( background_config.addChannel( 'pt_b_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_0', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_1', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_0', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_1', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_0'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_1'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dphi_ll'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'deta_ll'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dr_ll'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dphi_bb'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'deta_bb'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dr_bb'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+            # add VR plots
+            if flavor_channel == '_all':
+                vr_list.append(addChannel(background_config,
+                                          'flavor_channel',
+                                          this_name,
+                                          binning.flavor_channel))
+
+            vr_list.append(addChannel(background_config,
+                                      'mbl_0',
+                                      this_vr_name,
+                                      binning.mbl))
+            vr_list.append(addChannel(background_config,
+                                      'mbl_1',
+                                      this_vr_name,
+                                      binning.mbl))
+            vr_list.append(addChannel(background_config,
+                                      'ht_signal',
+                                      this_vr_name,
+                                      binning.ht))
 
     for vr_name in ['CR_top_', 'CR_Z_']:
         for flavor_channel in ['all', 'ee', 'mm', 'em']:
             if vr_name  == 'CR_Z_' and flavor_channel == 'em': continue
+
+            # unique name for this VR/flavor channel combination
+            this_vr_name = ''.join(vr_name, flavor_channel)
+
+            # add VR plots
             if flavor_channel == 'all':
-                vr_list.append( background_config.addChannel( "flavor_channel", ['%s%s' % (vr_name, flavor_channel)], flavor_channel_bin, flavor_channel_min, flavor_channel_max) )
+                vr_list.append(addChannel(background_config,
+                                          'flavor_channel',
+                                          this_vr_name,
+                                          binning.flavor_channel))
 
             if not flavor_channel == 'all':
-                vr_list.append( background_config.addChannel( 'mbl_0'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
-            vr_list.append( background_config.addChannel( 'mbl_1'    , ['%s%s' % (vr_name, flavor_channel)], mbl_bin   , mbl_min   , mbl_max    ) )
-            ## # vr_list.append( background_config.addChannel( 'mbbll'    , ['%s%s' % (vr_name, flavor_channel)], mbbll_bin , mbbll_min , mbbll_max  ) )
-            ## # vr_list.append( background_config.addChannel( 'ptbl_0'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'ptbl_1'   , ['%s%s' % (vr_name, flavor_channel)], ptbl_bin  , ptbl_min  , ptbl_max   ) )
-            ## # vr_list.append( background_config.addChannel( 'ptbbll'   , ['%s%s' % (vr_name, flavor_channel)], ptbbll_bin, ptbbll_min, ptbbll_max ) )
-            ## if vr_name == 'VR_5':
-            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_inz_bin , mll_inz_min, mll_inz_max ) )
-            ## else:
-            ##     vr_list.append( background_config.addChannel( 'mll'      , ['%s%s' % (vr_name, flavor_channel)], mll_bin     , mll_min    , mll_max     ) )
-            ## # vr_list.append( background_config.addChannel( 'ptll'     , ['%s%s' % (vr_name, flavor_channel)], ptll_bin  , ptll_min  , ptll_max   ) )
-            ## vr_list.append( background_config.addChannel( 'met_et'        , ['%s%s' % (vr_name, flavor_channel)], met_et_bin , met_et_min , met_et_max  ) )
-            ## vr_list.append( background_config.addChannel( 'met_sig_signal', ['%s%s' % (vr_name, flavor_channel)], met_sig_bin, met_sig_min, met_sig_max ) )
-            vr_list.append( background_config.addChannel( 'ht_signal'     , ['%s%s' % (vr_name, flavor_channel)], ht_bin     , ht_min     , ht_max      ) )
-            ## vr_list.append( background_config.addChannel( 'pt_l_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## vr_list.append( background_config.addChannel( 'pt_l_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## vr_list.append( background_config.addChannel( 'pt_b_0'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## vr_list.append( background_config.addChannel( 'pt_b_1'        , ['%s%s' % (vr_name, flavor_channel)], pt_bin     , pt_min     , pt_max      ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_0', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dphi_bl_1', ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_0', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'deta_bl_1', ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_0'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dr_bl_1'  , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dphi_ll'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'deta_ll'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dr_ll'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dphi_bb'  , ['%s%s' % (vr_name, flavor_channel)], dphi_bin  , dphi_min  , dphi_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'deta_bb'  , ['%s%s' % (vr_name, flavor_channel)], deta_bin  , deta_min  , deta_max   ) )
-            ## ## # vr_list.append( background_config.addChannel( 'dr_bb'    , ['%s%s' % (vr_name, flavor_channel)], dr_bin    , dr_min    , dr_max     ) )
+                vr_list.append(addChannel(background_config,
+                                          'mbl_0',
+                                          this_vr_name,
+                                          binning.mbl))
+            vr_list.append(addChannel(background_config,
+                                      'mbl_1',
+                                      this_vr_name,
+                                      binning.mbl))
+            vr_list.append(addChannel(background_config,
+                                      'ht_signal',
+                                      this_vr_name,
+                                      binning.ht))
 
+    # turn on overflow bin for all VR plots
     for vr in vr_list:
         vr.useOverflowBin = True
 
-    background_config.setValidationChannels( vr_list )
+    background_config.setValidationChannels(vr_list)
 
 # ------------------------------------------------------------------------------
-# - set up SRs
-# ------------------------------------------------------------------------------
+# set up SRs
 if not myFitType == FitType.Discovery:
-# if myFitType == FitType.Exclusion:
     sr_list = []
     for flavor_channel in ['ee', 'mm', 'em']:
-        this_sr_name = "SR_%s" % flavor_channel
-        this_mbl_bin = mbl_bin if not single_bin_signal and not single_bin_regions else 1
-        sr_list.append( background_config.addChannel( "mbl_0"
-                                                    , [ this_sr_name]
-                                                    , this_mbl_bin
-                                                    , mbl_min
-                                                    , mbl_max
-                                                    )
-                      )
-        # sr_list.append( background_config.addChannel( "mbl_1"
-        #                                             , [ this_sr_name]
-        #                                             , this_mbl_bin
-        #                                             , mbl_min
-        #                                             , mbl_max
-        #                                             )
-        #               )
+        this_sr_name = ''.join(("SR_", flavor_channel))
+        print 'this sr name: ' , this_sr_name
+        sr_list.append(addChannel(background_config,
+                                  "mbl_0",
+                                  this_sr_name,
+                                  binning.mbl))
 
     for sr in sr_list:
         sr.useUnderflowBin = True
@@ -511,8 +417,7 @@ if myFitType == FitType.Discovery:
 if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
     sig_sample_list=['sig_500', 'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
-    # sig_sample_list=['sig_1000']
-    # sig_sample_list=['sig_500']
+    # sig_sample_list=['sig_800']
     sig_samples = []
     for sig in sig_sample_list:
         print 'setting up signal sample: ' , sig
@@ -524,14 +429,21 @@ if myFitType == FitType.Exclusion:
         sig_sample.setNormByTheory()
         sig_sample.setNormFactor("mu_SIG", 1., 0., 5.)
 
+        sig_sample.weights = [nominal_weight_sig]
+
+        print ('BJ WEIGHTS!!! bkg:', btag_sf_uncert_bkg)
+        print ('BJ WEIGHTS!!! sig:', btag_sf_uncert_sig)
+        addSystematic([sig_sample],
+                      [btag_sf_uncert_sig,
+                       jes_uncert,
+                       jer_uncert])
+
         exclusion_sr_config.addSamples(sig_sample)
         exclusion_sr_config.setSignalSample(sig_sample)
-        exclusion_sr_config.setSignalChannels(sr_list)
 
-# ----------------
-# - Create TLegend
-# ----------------
-# TCanvas is needed for that, but it gets deleted afterwards
+# ------------------------------------------------------------------------------
+# Create TLegend for our plots
+# TCanvas is needed for this, but it gets deleted afterwards
 c = TCanvas()
 compFillStyle = 1001 # see ROOT for Fill styles
 leg = TLegend(0.6, 0.475, 0.9, 0.925, "")
