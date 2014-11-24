@@ -94,6 +94,8 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::clearVariables()
   m_btag_sf_up_frac   = 1;
   m_btag_sf_down_frac = 1;
 
+  m_is_signal = false;
+
   m_flavor_channel = FLAVOR_NONE;
 
   m_is_ee = false;
@@ -167,6 +169,8 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
   m_output_tree->Branch( "btag_sf_up_frac"   , &m_btag_sf_up_frac  );
   m_output_tree->Branch( "btag_sf_down_frac" , &m_btag_sf_down_frac);
 
+  m_output_tree->Branch( "is_signal" , &m_is_signal);
+
   m_output_tree->Branch( "flavor_channel" , &m_flavor_channel);
 
   m_output_tree->Branch( "is_ee" , &m_is_ee);
@@ -238,7 +242,14 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   m_btag_sf_up_frac   = m_event_quantities.getBTagSFUp()  /m_event_quantities.getBTagSF();
   m_btag_sf_down_frac = m_event_quantities.getBTagSFDown()/m_event_quantities.getBTagSF();
 
-  m_flavor_channel = m_event.getFlavorChannel();
+  // TODO we don't relaly want to do this every event. leave for now while looking for cleaner way to implement the branching fraction scaling ,but if this is the permanent solution :-(, make this cleaner.
+  if (!m_is_data) {
+    unsigned int channel_number = m_mc_truth.getChannelNumber();
+    m_is_signal = (  channel_number >= 202632
+                  && channel_number <= 202641
+                  );
+    m_flavor_channel = m_event.getFlavorChannel();
+  }
 
   m_is_ee = (m_event.getFlavorChannel() == FLAVOR_EE);
   m_is_mm = (m_event.getFlavorChannel() == FLAVOR_MM);

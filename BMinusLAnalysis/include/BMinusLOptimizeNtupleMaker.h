@@ -53,6 +53,8 @@ namespace PennSusyFrame
       float m_btag_sf_up_frac;
       float m_btag_sf_down_frac;
 
+      bool  m_is_signal;
+
       int m_flavor_channel;
 
       bool m_is_ee;
