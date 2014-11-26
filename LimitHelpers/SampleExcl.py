@@ -144,16 +144,11 @@ flavor_scale_factors = scaling.getFlavorScaleFactorsFromBR(br_e=stop_br_e,
                                                            br_m=stop_br_m,
                                                            br_t=stop_br_t)
 nominal_weight_bkg = 'weight'
-# nominal_weight_sig = "%s*( (is_ee*%f) + (is_mm*%f) + (is_em*%f) )" % (nominal_weight_bkg,
-#                                                                       flavor_scale_factors['ee'],
-#                                                                       flavor_scale_factors['mm'],
-#                                                                       flavor_scale_factors['em'])
 nominal_weight_sig = ''.join([nominal_weight_bkg,
-                              '*( (', str(flavor_scale_factors['ee']),
-                              ') + (', str(flavor_scale_factors['mm']),
-                              ') + (', str(flavor_scale_factors['em']),
+                              '*(  (is_ee*', str(flavor_scale_factors['ee']),
+                              ') + (is_mm*', str(flavor_scale_factors['mm']),
+                              ') + (is_em*', str(flavor_scale_factors['em']),
                               ') )'])
-
 
 # apply nominal weight to all samples
 configMgr.weights = [nominal_weight_bkg]
@@ -443,7 +438,7 @@ if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
     sig_sample_list=['sig_100', 'sig_200', 'sig_300', 'sig_400', 'sig_500',
                      'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
-    # sig_sample_list=['sig_800']
+    # sig_sample_list=['sig_1000']
     sig_samples = []
     for sig in sig_sample_list:
         print 'setting up signal sample: ' , sig
