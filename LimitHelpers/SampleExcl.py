@@ -159,7 +159,6 @@ configMgr.nomName = "_NoSys"
 
 # ------------------------------------------------------------------------------
 # List of systematics
-# JES uncertainty as shapeSys - one systematic per region (combine WR and TR), merge samples
 jes_uncert = Systematic(name = "JES",
                         nominal = '_NoSys',
                         high = '_JES_UP',
@@ -442,7 +441,8 @@ if myFitType == FitType.Exclusion:
     sig_samples = []
     for sig in sig_sample_list:
         print 'setting up signal sample: ' , sig
-        exclusion_sr_config = configMgr.addFitConfigClone( background_config , "Sig_excl_%s" % sig )
+        exclusion_sr_config = configMgr.addFitConfigClone(background_config,
+                                                          "Sig_excl_%s" % sig)
 
         sig_sample = Sample(sig, kViolet+5)
         sig_sample.setStatConfig(use_stat)
