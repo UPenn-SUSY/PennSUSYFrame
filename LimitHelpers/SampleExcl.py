@@ -14,12 +14,15 @@ gROOT.LoadMacro("./macros/AtlasStyle.C")
 import ROOT
 ROOT.SetAtlasStyle()
 
+
 # ------------------------------------------------------------------------------
 # import functions to do scaling
+import os
 import sys
 sys.path.append('%s/LimitHelpers/' % os.environ['BASE_WORK_DIR'])
 import FlavorChannelScaling as scaling
 import SampleExclBinning as binning
+
 
 # ------------------------------------------------------------------------------
 # Some flags for overridding normal execution and telling ROOT to shut up...
@@ -28,11 +31,16 @@ import SampleExclBinning as binning
 #configMgr.plotHistos = True
 configMgr.blindSR = True
 
+
 # ------------------------------------------------------------------------------
 # Flags to tune the stop branching ratios
-stop_br_e = 0.5
-stop_br_m = 0.5
-stop_br_t = 0.0
+# stop_br_e = 0.5
+# stop_br_m = 0.5
+# stop_br_t = 0.0
+
+print 'stop br e: ', stop_br_e
+print 'stop br m: ', stop_br_m
+print 'stop br t: ', stop_br_t
 
 # ------------------------------------------------------------------------------
 # Flags to control which fit is executed
@@ -49,11 +57,13 @@ elif myFitType == FitType.Background:
 else:
     print '  fit type: Undefined :('
 
+
 # ------------------------------------------------------------------------------
 # cannot do validation and exclusion/discovery at the same time for now
 if myFitType == FitType.Discovery or myFitType == FitType.Exclusion:
     print 'turning off validation for discovery or exclusion'
     do_validation = False
+
 
 # --------------------------------
 # - Parameters for hypothesis test
@@ -63,6 +73,7 @@ configMgr.nTOYs=10000
 configMgr.calculatorType=2 # use 2 for asymptotic, 0 for toys
 configMgr.testStatType=3
 configMgr.nPoints=10
+
 
 # ------------------------------------------------------------------------------
 # First, define HistFactory attributes
@@ -78,7 +89,6 @@ configMgr.inputLumi = 0.001    # Luminosity of input TTree after weighting
 configMgr.outputLumi = 21.0    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
 
-
 # Set the files to read from
 bkg_files = []
 sig_files = []
@@ -90,6 +100,7 @@ if configMgr.readFromTree:
 else:
     print 'not reading from trees -- getting input from cache!'
     bkg_files = ["data/"+configMgr.analysisName+".root"]
+
 
 # ------------------------------------
 # - Dictionnary of cuts for Tree->hist
@@ -126,24 +137,30 @@ configMgr.cutsDict["VR_5_all"] = base_vr_5_str
 configMgr.cutsDict["VR_5_ee"] = '(%s && is_ee)' % base_vr_5_str
 configMgr.cutsDict["VR_5_mm"] = '(%s && is_mm)' % base_vr_5_str
 
+
 # ------------------------------------------------------------------------------
 # Lists of nominal weights
 flavor_scale_factors = scaling.getFlavorScaleFactorsFromBR(br_e=stop_br_e,
                                                            br_m=stop_br_m,
                                                            br_t=stop_br_t)
 nominal_weight_bkg = 'weight'
-nominal_weight_sig = "%s*( (is_ee*%f) + (is_mm*%f) + (is_em*%f) )" % (nominal_weight_bkg,
-                                                                      flavor_scale_factors['ee'],
-                                                                      flavor_scale_factors['mm'],
-                                                                      flavor_scale_factors['em'])
-print ('BJ WEIGHT!!! nominal bkg: ', nominal_weight_bkg)
-print ('BJ WEIGHT!!! nominal sig: ', nominal_weight_sig)
+# nominal_weight_sig = "%s*( (is_ee*%f) + (is_mm*%f) + (is_em*%f) )" % (nominal_weight_bkg,
+#                                                                       flavor_scale_factors['ee'],
+#                                                                       flavor_scale_factors['mm'],
+#                                                                       flavor_scale_factors['em'])
+nominal_weight_sig = ''.join([nominal_weight_bkg,
+                              '*( (', str(flavor_scale_factors['ee']),
+                              ') + (', str(flavor_scale_factors['mm']),
+                              ') + (', str(flavor_scale_factors['em']),
+                              ') )'])
+
 
 # apply nominal weight to all samples
 configMgr.weights = [nominal_weight_bkg]
 
 # name of nominal histogram for systematics
 configMgr.nomName = "_NoSys"
+
 
 # ------------------------------------------------------------------------------
 # List of systematics
@@ -173,6 +190,7 @@ btag_sf_uncert_sig = Systematic(name = 'btag_sf_sig',
                                 low = [nominal_weight_sig, 'btag_sf_up_frac'],
                                 type = 'weight',
                                 method = 'overallSys')
+
 
 # --------------------------------------------
 # - List of samples and their plotting colours
@@ -240,6 +258,7 @@ sample_list_data.append(data_sample)
 for sl in itertools.chain(sample_list_bkg, sample_list_data):
     sl.setFileList(bkg_files)
 
+
 # ------------------------------------------------------------------------------
 # add systematics to each of the samples
 def addSystematic(sample_list, syst_list):
@@ -252,6 +271,7 @@ addSystematic(sample_list_bkg,
               [btag_sf_uncert_bkg,
                jes_uncert,
                jer_uncert])
+
 
 # ------------------------------------------------------------------------------
 # Configure the background only fit
@@ -268,6 +288,7 @@ meas = background_config.addMeasurement(name = "NormalMeasurement",
                                         lumiErr = 0.039)
 meas.addPOI("mu_SIG")
 
+
 # ------------------------------------------------------------------------------
 def addChannel(config, expression, name, binning):
     """
@@ -279,6 +300,7 @@ def addChannel(config, expression, name, binning):
                              binning['bin'],
                              binning['min'],
                              binning['max'])
+
 
 # ------------------------------------------------------------------------------
 # - Constraining regions - statistically independent
@@ -297,6 +319,7 @@ for cr_name in ['CR_top_', 'CR_Z_']:
 
 background_config.setBkgConstrainChannels(cr_list)
 
+
 # ------------------------------------------------------------------------------
 # Background only fit cosmetics
 # Global plotting colors/styles
@@ -314,6 +337,7 @@ for crl in cr_list:
     crl.ATLASLabelX = 0.25
     crl.ATLASLabelY = 0.85
     crl.ATLASLabelText = "Work in progress"
+
 
 # ______________________________________________________________________________
 # Construct Validation regions
@@ -382,6 +406,7 @@ if do_validation:
 
     background_config.setValidationChannels(vr_list)
 
+
 # ------------------------------------------------------------------------------
 # set up SRs
 if not myFitType == FitType.Discovery:
@@ -405,18 +430,19 @@ if not myFitType == FitType.Discovery:
 
     background_config.setSignalChannels(sr_list)
 
-# ---------------
-# - Discovery fit
-# ---------------
+
+# ------------------------------------------------------------------------------
+# Configure discovery fit
 if myFitType == FitType.Discovery:
     print 'ERROR!!! DISCOVERY FIT IS NOT YET CONFIGURED!!!'
 
-# -------------------------------------------------------
-# - Exclusion fits (1-step simplified model in this case)
-# -------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Configure exclusion fits
 if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
-    sig_sample_list=['sig_500', 'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
+    sig_sample_list=['sig_100', 'sig_200', 'sig_300', 'sig_400', 'sig_500',
+                     'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
     # sig_sample_list=['sig_800']
     sig_samples = []
     for sig in sig_sample_list:
@@ -431,8 +457,6 @@ if myFitType == FitType.Exclusion:
 
         sig_sample.weights = [nominal_weight_sig]
 
-        print ('BJ WEIGHTS!!! bkg:', btag_sf_uncert_bkg)
-        print ('BJ WEIGHTS!!! sig:', btag_sf_uncert_sig)
         addSystematic([sig_sample],
                       [btag_sf_uncert_sig,
                        jes_uncert,
@@ -440,6 +464,7 @@ if myFitType == FitType.Exclusion:
 
         exclusion_sr_config.addSamples(sig_sample)
         exclusion_sr_config.setSignalSample(sig_sample)
+
 
 # ------------------------------------------------------------------------------
 # Create TLegend for our plots
