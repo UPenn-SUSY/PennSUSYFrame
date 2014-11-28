@@ -34,9 +34,9 @@ configMgr.blindSR = True
 
 # ------------------------------------------------------------------------------
 # Flags to tune the stop branching ratios
-# stop_br_e = 0.5
-# stop_br_m = 0.5
-# stop_br_t = 0.0
+if 'stop_br_e' not in vars(): stop_br_e = 0.5
+if 'stop_br_m' not in vars(): stop_br_m = 0.5
+if 'stop_br_t' not in vars(): stop_br_t = 0.0
 
 print 'stop br e: ', stop_br_e
 print 'stop br m: ', stop_br_m

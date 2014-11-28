@@ -2,8 +2,8 @@
 # ==============================================================================
 
 # stearing boolians to determine if we have single binned or multi-binned fit
-single_bin_regions = False
-single_bin_signal  = False
+single_bin_regions = True
+single_bin_signal  = True
 
 if single_bin_regions:
     single_bin_signal = True
