@@ -94,12 +94,31 @@ def plot_cls_triangle(result_df, out_file_name):
     cb.set_label('CL_{S}')
 
     # write plot to file
-    plt.savefig(out_file_name)
+    plt.savefig(out_file_name, bbox_inches = 'tight')
     plt.close()
 
 
 # ------------------------------------------------------------------------------
-def plot_mass_limit_triangle(result_df, out_file_name):
+# TODO if this works, try and understand what is going on!
+class MidpointNormalize(mpl.colors.Normalize):
+    def __init__(self, vmin=None, vmax=None, midpoint=None, clip=False):
+        self.midpoint = midpoint
+        mpl.colors.Normalize.__init__(self, vmin, vmax, clip)
+
+    def __call__(self, value, clip=None):
+        # I'm ignoring masked values and all kinds of edge cases to make a
+        # simple example...
+        x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
+        return np.ma.masked_array(np.interp(value, x, y))
+
+
+# ------------------------------------------------------------------------------
+def plot_mass_limit_triangle(result_df,
+                             out_file_name,
+                             cmap_string,
+                             vmin = 0,
+                             vmax = 1000,
+                             midpoint = 800):
     """
     Function takes a data frame, with branching ratios, masses, and CLs values.
     Constructs a triangle with showing the maximum mass which is excluded at
@@ -108,6 +127,8 @@ def plot_mass_limit_triangle(result_df, out_file_name):
     # extract the rows of the data frame which are excluded using the cls metric
     limit_df = result_df[result_df['cls'] < 0.05]
 
+    norm = MidpointNormalize(vmin = vmin, vmax = vmax, midpoint = midpoint)
+
     # Construct plot
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -115,11 +136,10 @@ def plot_mass_limit_triangle(result_df, out_file_name):
     my_plot = plt.hexbin(x = limit_df['bre'],
                          y = limit_df['brt'],
                          C = limit_df['mass'],
-                         cmap = plt.cm.YlGnBu,
+                         cmap = plt.get_cmap(cmap_string),
                          reduce_C_function = np.max,
                          gridsize = (20, 20),
-                         vmin = 0.,
-                         vmax = 1000)
+                         norm = norm)
     plt.axis([0, 1.1, 0, 1.1])
     plt.xlabel('Br(\\tilde{t} \\rightarrow be)')
     plt.ylabel('Br(\\tilde{t} \\rightarrow b\\tau)')
@@ -129,10 +149,11 @@ def plot_mass_limit_triangle(result_df, out_file_name):
 
     # add color bar to right side
     cb = plt.colorbar(my_plot, spacing = 'uniform')
+    cb.set_ticks(range(vmin, vmax+1, 100))
     cb.set_label('Stop mass [GeV]')
 
     # write plot to file
-    plt.savefig(out_file_name)
+    plt.savefig(out_file_name, bbox_inches = 'tight')
     plt.close()
 
 
@@ -222,8 +243,11 @@ def make_p_value_plots():
                              '.pdf'))
         plot_cls_triangle_root(results[results['mass'] == mass], file_name)
 
-    # make plot of mass limit in branching ratio triangle
-    plot_mass_limit_triangle(results, 'mass_limit.pdf')
+    # make mass plot - reasonable options for color map:
+    #   - hot_r, gist_heat_r, afmhot_r, GnBu,
+    plot_mass_limit_triangle(results,
+                             ''.join(['mass_limit.pdf']),
+                             'hot_r')
 
     # make cls vs mass plot for each choice of branching ratios
     for br_e, br_t, br_m in itertools.product(results['bre'].unique(),
@@ -238,6 +262,8 @@ def make_p_value_plots():
                                      (results['brm'] == br_m) &
                                      (results['brt'] == br_t)],
                              file_name)
+
+    print 'All done! Exiting!'
 
 
 # ==============================================================================
