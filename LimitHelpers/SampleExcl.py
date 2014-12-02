@@ -45,7 +45,7 @@ print 'stop br t: ', stop_br_t
 # ------------------------------------------------------------------------------
 # Flags to control which fit is executed
 use_stat = True
-do_validation = False
+do_validation = True
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -302,6 +302,7 @@ cr_list = []
 # Add Top CR for background
 for cr_name in ['CR_top_', 'CR_Z_']:
     for flavor_channel in ['all']:
+    # for flavor_channel in ['ee', 'mm', 'em']:
         if cr_name  == 'CR_Z_' and flavor_channel == 'em': continue
 
         this_name = ''.join([cr_name, flavor_channel])
@@ -344,13 +345,13 @@ if do_validation:
             if vr_name  == 'VR_5' and flavor_channel == '_em': continue
 
             # unique name for this VR/flavor channel combination
-            this_name = ''.join(vr_name, flavor_channel)
+            this_vr_name = ''.join([vr_name, flavor_channel])
 
             # add VR plots
             if flavor_channel == '_all':
                 vr_list.append(addChannel(background_config,
                                           'flavor_channel',
-                                          this_name,
+                                          this_vr_name,
                                           binning.flavor_channel))
 
             vr_list.append(addChannel(background_config,
@@ -371,7 +372,7 @@ if do_validation:
             if vr_name  == 'CR_Z_' and flavor_channel == 'em': continue
 
             # unique name for this VR/flavor channel combination
-            this_vr_name = ''.join(vr_name, flavor_channel)
+            this_vr_name = ''.join([vr_name, flavor_channel])
 
             # add VR plots
             if flavor_channel == 'all':
@@ -381,6 +382,7 @@ if do_validation:
                                           binning.flavor_channel))
 
             if not flavor_channel == 'all':
+            # if flavor_channel == 'all':
                 vr_list.append(addChannel(background_config,
                                           'mbl_0',
                                           this_vr_name,
