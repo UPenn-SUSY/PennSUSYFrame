@@ -2,8 +2,8 @@
 # ==============================================================================
 
 # stearing boolians to determine if we have single binned or multi-binned fit
-single_bin_regions = True
-single_bin_signal  = True
+single_bin_regions = False
+single_bin_signal  = False
 
 if single_bin_regions:
     single_bin_signal = True
@@ -12,6 +12,10 @@ if single_bin_regions:
 flavor_channel_bin = 5
 flavor_channel_min = -0.5
 flavor_channel_max = flavor_channel_min + flavor_channel_bin
+
+flavor_channel = {'bin':flavor_channel_bin,
+                  'min':flavor_channel_min,
+                  'max':flavor_channel_max}
 
 # pt binning
 pt = {'bin':10 if not single_bin_regions else 1,
