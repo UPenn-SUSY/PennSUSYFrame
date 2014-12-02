@@ -205,13 +205,14 @@ def runBMinusLOptimizeNtupleMaker( file_list
 
     # Set cut values
     # print 'set cuts'
-    bmlonm.setElPtCut(  lep_pt_cut, -1     )
-    bmlonm.setMuPtCut(  lep_pt_cut, -1     )
-    bmlonm.setBJetPtCut(jet_pt_cut, -1     )
+    bmlonm.setElPtCut(  lep_pt_cut, -1 )
+    bmlonm.setMuPtCut(  lep_pt_cut, -1 )
+    bmlonm.setBJetPtCut(jet_pt_cut, -1 )
     bmlonm.setMV1Cut(btag_working_point)
 
     # Turn on/off Z fudge factor
-    bmlonm.setDoZKFactor(True)
+    # bmlonm.setDoZKFactor(True)
+    bmlonm.setDoZKFactor(False)
 
     # prepare tools and run analysis loop
     print 'preparing tools'

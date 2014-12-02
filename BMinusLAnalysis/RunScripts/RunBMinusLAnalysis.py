@@ -211,7 +211,8 @@ def runBMinusLAnalysis( file_list
     bmla.setMV1Cut(btag_working_point)
 
     # Turn on/off Z fudge factor
-    bmla.setDoZKFactor(True)
+    # bmla.setDoZKFactor(True)
+    bmla.setDoZKFactor(False)
 
     # Turn on/off detailed B-L histograms
     bmla.setDoDetailedBLHists(False)
