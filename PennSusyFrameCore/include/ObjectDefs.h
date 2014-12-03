@@ -988,6 +988,51 @@ namespace PennSusyFrame
       std::vector<int>* m_mc_mu_type;
       std::vector<float>* m_mc_charge;
   };
+
+  struct SystematicStruct {
+    SystematicStruct();
+
+    // boolians to turn on systematic shifts
+    bool m_do_jer;
+    bool m_do_jes_up;
+    bool m_do_jes_down;
+    bool m_do_effective_np_1_up;
+    bool m_do_effective_np_1_down;
+    bool m_do_effective_np_2_up;
+    bool m_do_effective_np_2_down;
+    bool m_do_effective_np_3_up;
+    bool m_do_effective_np_3_down;
+    bool m_do_effective_np_4_up;
+    bool m_do_effective_np_4_down;
+    bool m_do_effective_np_5_up;
+    bool m_do_effective_np_5_down;
+    bool m_do_effective_np_6_up;
+    bool m_do_effective_np_6_down;
+    bool m_do_eta_intercalibration_modelling_up;
+    bool m_do_eta_intercalibration_modelling_down;
+    bool m_do_eta_intercalibration_statand_method_up;
+    bool m_do_eta_intercalibration_statand_method_down;
+    bool m_do_single_particle_high_pt_up;
+    bool m_do_single_particle_high_pt_down;
+    bool m_do_relative_non_closure_pythia8_up;
+    bool m_do_relative_non_closure_pythia8_down;
+    bool m_do_pile_up_offset_term_mu_up;
+    bool m_do_pile_up_offset_term_mu_down;
+    bool m_do_pile_up_offset_term_npv_up;
+    bool m_do_pile_up_offset_term_npv_down;
+    bool m_do_pile_up_pt_term_up;
+    bool m_do_pile_up_pt_term_down;
+    bool m_do_pile_up_rho_topology_up;
+    bool m_do_pile_up_rho_topology_down;
+    bool m_do_closeby_up;
+    bool m_do_closeby_down;
+    bool m_do_flavor_comp_uncert_up;
+    bool m_do_flavor_comp_uncert_down;
+    bool m_do_flavor_response_uncert_up;
+    bool m_do_flavor_response_uncert_down;
+    bool m_do_bjes_up;
+    bool m_do_bjes_down;
+  };
 }
 
 // Include the implementation:
