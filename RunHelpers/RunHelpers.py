@@ -457,25 +457,30 @@ def runLxBatchMultiProcess( run_analysis_fun
         moveToLinkedDir(out_dir, sym_link_name)
 
 # ------------------------------------------------------------------------------
+syst_list = { 'do_jer':'JER'
+            , 'do_jes_up':'JES_UP'
+            , 'do_jes_down':'JES_DOWN'
+            }
+
+# ------------------------------------------------------------------------------
 class SystematicStruct(object):
-    def __init__( self
-                , do_jer
-                , do_jes_up
-                , do_jes_down
-                ):
-        self.do_jer      = do_jer
-        self.do_jes_up   = do_jes_up
-        self.do_jes_down = do_jes_down
+    def __init__(self):
+        self.syst_list = {syst:False for syst in syst_list.keys()}
 
     def configureAnalysisObject(self, analysis_obj):
-        analysis_obj.setDoJer(    self.do_jer)
-        analysis_obj.setDoJesUp(  self.do_jes_up)
-        analysis_obj.setDoJesDown(self.do_jes_down)
+        # TODO configure systematic struct and pass it to the analysis_obj
+        pass
 
     def printInfo(self):
-        print 'Do JER: ', self.do_jer
-        print 'Do JES_UP: ', self.do_jes_up
-        print 'Do JES_DOWN: ', self.do_jes_down
+        for syst_name, syst_value in self.syst_list.items():
+            print ': '.join([syst_list[syst_name], str(syst_value)])
+
+    def getRunName(self):
+        name = '.'.join([syst_list[syst_name] for syst_name, syst_value in
+            self.syst_list.items() if syst_value])
+        if name == '':
+            name = 'NOMINAL'
+        return name
 
 # ------------------------------------------------------------------------------
 def pickleSystStruct(this_struct, out_file_name):
