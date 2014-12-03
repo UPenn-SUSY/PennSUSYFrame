@@ -45,7 +45,7 @@ print 'stop br t: ', stop_br_t
 # ------------------------------------------------------------------------------
 # Flags to control which fit is executed
 use_stat = True
-do_validation = True
+do_validation = False
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -90,10 +90,14 @@ configMgr.outputLumi = 21.0    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
 
 # Set the files to read from
+data_files = []
 bkg_files = []
 sig_files = []
 if configMgr.readFromTree:
     print 'reading from trees!'
+    data_files.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
+    # data_files.append("${BASE_WORK_DIR}/HistFitterNtuples/ArtificialData.ttbar_1.ZGamma_1.root")
+    # data_files.append("${BASE_WORK_DIR}/HistFitterNtuples/ArtificialData.ttbar_5.ZGamma_1.root")
     bkg_files.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
     if myFitType==FitType.Exclusion:
         sig_files.append("${BASE_WORK_DIR}/HistFitterNtuples/SignalHistFitterTrees.root")
@@ -119,7 +123,8 @@ configMgr.cutsDict["CR_top_mm"] = '(%s && is_mm)' % base_cr_top_str
 configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
 
 # CR_Z
-base_cr_z_str = "is_cr_z"
+# base_cr_z_str = "is_cr_z"
+base_cr_z_str = "is_cr_z && (met_sig_signal <= 3)"
 configMgr.cutsDict["CR_Z_all"] = base_cr_z_str
 configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
 configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
@@ -194,52 +199,59 @@ sample_list_data = []
 sample_list_sig  = []
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# ttbar
-ttbar_sample = Sample( "ttbar" , kGreen+2 )
+# Other
+other_sample = Sample("Other", kAzure+8)
+other_sample.setStatConfig(use_stat)
+other_sample.setNormByTheory()
+sample_list_bkg.append(other_sample)
 
-ttbar_sample.setNormFactor("mu_ttbar",1.,0.,5.)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ttbar
+ttbar_sample = Sample("ttbar", kGreen+2)
+
+ttbar_sample.setNormFactor("mu_ttbar", 1, 0, 100)
 ttbar_sample.setStatConfig(use_stat)
 sample_list_bkg.append(ttbar_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Z/gamma*
-z_sample = Sample( "ZGamma" , kRed+1 )
+z_sample = Sample("ZGamma", kRed+1 )
 
-z_sample.setNormFactor("mu_z",1.,0.,5.)
+z_sample.setNormFactor("mu_z", 1, 0, 100)
 z_sample.setStatConfig(use_stat)
 sample_list_bkg.append(z_sample)
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# single top
-single_top_sample = Sample( "SingleTop" , kGreen-1 )
-
-single_top_sample.setStatConfig(   use_stat)
-single_top_sample.setNormByTheory()
-sample_list_bkg.append(single_top_sample)
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# ttV
-ttv_sample = Sample( "ttV" , kAzure+8 )
-
-ttv_sample.setStatConfig(use_stat)
-ttv_sample.setNormByTheory()
-sample_list_bkg.append(ttv_sample)
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# diboson
-diboson_sample = Sample( "Diboson" , kSpring-4 )
-
-diboson_sample.setStatConfig(use_stat)
-diboson_sample.setNormByTheory()
-sample_list_bkg.append(diboson_sample)
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# higgs
-higgs_sample = Sample( "Higgs" , kOrange-5 )
-
-higgs_sample.setStatConfig(use_stat)
-higgs_sample.setNormByTheory()
-sample_list_bkg.append(higgs_sample)
+### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### # single top
+### single_top_sample = Sample("SingleTop", kGreen-1)
+### 
+### single_top_sample.setStatConfig(use_stat)
+### single_top_sample.setNormByTheory()
+### sample_list_bkg.append(single_top_sample)
+### 
+### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### # ttV
+### ttv_sample = Sample("ttV", kAzure+8)
+### 
+### ttv_sample.setStatConfig(use_stat)
+### ttv_sample.setNormByTheory()
+### sample_list_bkg.append(ttv_sample)
+### 
+### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### # diboson
+### diboson_sample = Sample("Diboson", kSpring-4)
+### 
+### diboson_sample.setStatConfig(use_stat)
+### diboson_sample.setNormByTheory()
+### sample_list_bkg.append(diboson_sample)
+### 
+### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### # higgs
+### higgs_sample = Sample("Higgs", kOrange-5)
+### 
+### higgs_sample.setStatConfig(use_stat)
+### higgs_sample.setNormByTheory()
+### sample_list_bkg.append(higgs_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # data
@@ -249,8 +261,12 @@ sample_list_data.append(data_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # set the file from which the samples should be taken
-for sl in itertools.chain(sample_list_bkg, sample_list_data):
+# for sl in itertools.chain(sample_list_bkg, sample_list_data):
+for sl in sample_list_bkg:
     sl.setFileList(bkg_files)
+
+for sl in sample_list_data:
+    sl.setFileList(data_files)
 
 
 # ------------------------------------------------------------------------------
@@ -339,7 +355,7 @@ for crl in cr_list:
 vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
-    for vr_name in ['VR_3' , 'VR_5']:
+    for vr_name in ['VR_3', 'VR_5']:
         for flavor_channel in ['_all', '_ee', '_mm', '_em']:
             if not vr_name == 'VR_llbb' and flavor_channel == '': continue
             if vr_name  == 'VR_5' and flavor_channel == '_em': continue
@@ -409,7 +425,7 @@ if not myFitType == FitType.Discovery:
     sr_list = []
     for flavor_channel in ['ee', 'mm', 'em']:
         this_sr_name = ''.join(("SR_", flavor_channel))
-        print 'this sr name: ' , this_sr_name
+        print 'this sr name: ', this_sr_name
         sr_list.append(addChannel(background_config,
                                   "mbl_0",
                                   this_sr_name,
@@ -424,7 +440,10 @@ if not myFitType == FitType.Discovery:
         sr.ATLASLabelY = 0.85
         sr.ATLASLabelText = "Work in progress"
 
-    background_config.setSignalChannels(sr_list)
+    if myFitType == FitType.Exclusion:
+        background_config.setSignalChannels(sr_list)
+    else:
+        background_config.setValidationChannels(sr_list)
 
 
 # ------------------------------------------------------------------------------
@@ -442,7 +461,7 @@ if myFitType == FitType.Exclusion:
     # sig_sample_list=['sig_1000']
     sig_samples = []
     for sig in sig_sample_list:
-        print 'setting up signal sample: ' , sig
+        print 'setting up signal sample: ', sig
         exclusion_sr_config = configMgr.addFitConfigClone(background_config,
                                                           "Sig_excl_%s" % sig)
 
@@ -498,29 +517,35 @@ entry.SetLineColor(z_sample.color)
 entry.SetFillColor(z_sample.color)
 entry.SetFillStyle(compFillStyle)
 
-# Single top entry
-entry = leg.AddEntry("", "Single top", "lf")
-entry.SetLineColor(single_top_sample.color)
-entry.SetFillColor(single_top_sample.color)
+# Other background entry
+entry = leg.AddEntry("", "Other", "lf")
+entry.SetLineColor(other_sample.color)
+entry.SetFillColor(other_sample.color)
 entry.SetFillStyle(compFillStyle)
 
-# ttV entry
-entry = leg.AddEntry("", "ttV", "lf")
-entry.SetLineColor(ttv_sample.color)
-entry.SetFillColor(ttv_sample.color)
-entry.SetFillStyle(compFillStyle)
-
-# Diboson entry
-entry = leg.AddEntry("", "Diboson", "lf")
-entry.SetLineColor(diboson_sample.color)
-entry.SetFillColor(diboson_sample.color)
-entry.SetFillStyle(compFillStyle)
-
-# Higgs entry
-entry = leg.AddEntry("", "Higgs", "lf")
-entry.SetLineColor(higgs_sample.color)
-entry.SetFillColor(higgs_sample.color)
-entry.SetFillStyle(compFillStyle)
+### # Single top entry
+### entry = leg.AddEntry("", "Single top", "lf")
+### entry.SetLineColor(single_top_sample.color)
+### entry.SetFillColor(single_top_sample.color)
+### entry.SetFillStyle(compFillStyle)
+### 
+### # ttV entry
+### entry = leg.AddEntry("", "ttV", "lf")
+### entry.SetLineColor(ttv_sample.color)
+### entry.SetFillColor(ttv_sample.color)
+### entry.SetFillStyle(compFillStyle)
+### 
+### # Diboson entry
+### entry = leg.AddEntry("", "Diboson", "lf")
+### entry.SetLineColor(diboson_sample.color)
+### entry.SetFillColor(diboson_sample.color)
+### entry.SetFillStyle(compFillStyle)
+### 
+### # Higgs entry
+### entry = leg.AddEntry("", "Higgs", "lf")
+### entry.SetLineColor(higgs_sample.color)
+### entry.SetFillColor(higgs_sample.color)
+### entry.SetFillStyle(compFillStyle)
 
 # If exclusion mode, add signal entry
 if myFitType==FitType.Exclusion:
