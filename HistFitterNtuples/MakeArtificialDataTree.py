@@ -19,9 +19,10 @@ rand = ROOT.TRandom3(datetime.datetime.now().microsecond)
 def fillArtificialDataTree(in_file):
     # create output file and tree
     file_name_tag = '.'.join(['_'.join([k,str(v)]) for k, v in process_list.items()])
-    out_file_name = '.'.join(['ArtificialData.', file_name_tag, 'root'])
+    out_file_name = '.'.join(['ArtificialData', file_name_tag, 'root'])
     out_file = ROOT.TFile(out_file_name, 'RECREATE')
-    out_tree = ROOT.TTree('ArtificialData', 'ArtificialData')
+    # out_tree = ROOT.TTree('ArtificialData', 'ArtificialData')
+    out_tree = ROOT.TTree('data', 'data')
 
     # create variables for branches
     mbl_0 = array.array('d', [0])
