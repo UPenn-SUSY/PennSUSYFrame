@@ -229,16 +229,14 @@ if __name__ == '__main__':
                           , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'num_jobs':1}
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
-
-                          ## # TEST input
-                          ## 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary
     data_set_dicts = {}
 
-    for syst in itertools.chain([None], RunHelpers.syst_list):
+    systematic_runs = itertools.chain([None], RunHelpers.syst_list)
+    for syst in systematic_runs:
         syst_struct = RunHelpers.SystematicStruct()
         if syst is not None:
             syst_struct.setSyst(syst, True)
