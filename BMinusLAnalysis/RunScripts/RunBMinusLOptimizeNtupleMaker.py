@@ -115,7 +115,6 @@ def runBMinusLOptimizeNtupleMaker( file_list
     bmlonm = ROOT.PennSusyFrame.BMinusLOptimizeNtupleMaker(t)
 
     print 'configuring BMinusLOptimizeNtupleMaker object'
-    print 'creating process label'
     if out_file_special_name is not None:
         process_label = ''.join( [ out_file_special_name
                                  , '__'
@@ -246,4 +245,3 @@ def runBMinusLOptimizeNtupleMaker( file_list
     # ==============================================================================
     print ''
     print ''
-
