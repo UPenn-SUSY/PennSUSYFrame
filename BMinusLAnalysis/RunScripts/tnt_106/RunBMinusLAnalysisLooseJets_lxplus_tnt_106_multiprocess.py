@@ -5,6 +5,7 @@ from multiprocessing import Pool
 import time
 import sys
 import datetime
+import itertools
 
 sys.path.append('%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR'])
 import RunBMinusLAnalysisLooseJets
@@ -14,7 +15,7 @@ import RunHelpers
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
-user_input = sys.argv[1] if len(sys.argv) > 1 else 1
+user_input = sys.argv[1] if len(sys.argv) > 1 else "1"
 num_processes = 1
 queue = '1nh'
 if "nm" in user_input or "nh" in user_input or "nd" in user_input:
@@ -36,8 +37,6 @@ print out_dir
 
 # ==============================================================================
 if __name__ == '__main__':
-    RunHelpers.safeMakeDir(out_dir)
-
     print 'getting file list'
 
     egamma_data_samples = {
@@ -85,7 +84,7 @@ if __name__ == '__main__':
                           , 161155:{'label':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'              , 'num_jobs':1}
                           , 161305:{'label':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'num_jobs':1}
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 105200:{'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter' , 'num_jobs':10}
+                          ## , 105200:{'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter' , 'num_jobs':10}
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 177997:{'label':'177997.Sherpa_CT10_llnunu_WW_MassiveCB'      , 'num_jobs':5}
                           , 177999:{'label':'177999.Sherpa_CT10_llnunu_ZZ_MassiveCB'      , 'num_jobs':5}
@@ -97,26 +96,26 @@ if __name__ == '__main__':
                           , 183591:{'label':'183591.Sherpa_CT10_ZWtonunuqq_MassiveCB'   , 'num_jobs':5}
                           , 183592:{'label':'183592.Sherpa_CT10_ZZtonunuqq_MassiveCB'   , 'num_jobs':5}
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':5}
-                          , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
-                          , 200334:{'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':5}
-                          , 200335:{'label':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'num_jobs':5}
-                          , 200340:{'label':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'num_jobs':5}
-                          , 200341:{'label':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'num_jobs':5}
-                          , 200342:{'label':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'num_jobs':5}
-                          , 200343:{'label':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'num_jobs':5}
-                          , 200348:{'label':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'num_jobs':5}
-                          , 200349:{'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'num_jobs':5}
-                          , 200350:{'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':5}
-                          , 200351:{'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':5}
+                          ## , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':5}
+                          ## , 200333:{'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':5}
+                          ## , 200334:{'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':5}
+                          ## , 200335:{'label':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'num_jobs':5}
+                          ## , 200340:{'label':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'num_jobs':5}
+                          ## , 200341:{'label':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'num_jobs':5}
+                          ## , 200342:{'label':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'num_jobs':5}
+                          ## , 200343:{'label':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'num_jobs':5}
+                          ## , 200348:{'label':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'num_jobs':5}
+                          ## , 200349:{'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'num_jobs':5}
+                          ## , 200350:{'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':5}
+                          ## , 200351:{'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':5}
                           }
     fast_sim_mc_samples = {
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2', 'num_jobs':50}
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'    , 'num_jobs':10}
-                          , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l' , 'num_jobs':5 }
-                          , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'             , 'num_jobs':5 }
+                          , 110141:{'label':'110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR'          , 'num_jobs':10}
+                          , 110101:{'label':'110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l'       , 'num_jobs':5 }
+                          , 110119:{'label':'110119.PowhegPythia_P2011C_st_schan_lep'                   , 'num_jobs':5 }
                           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                           , 167749:{'label':'167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'                , 'num_jobs':20}
                           , 167750:{'label':'167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'           , 'num_jobs':20}
@@ -218,49 +217,68 @@ if __name__ == '__main__':
                           , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'num_jobs':1}
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
-                          # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          # # 202632:{'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100' , 'num_jobs':1}
-                          # # 202633:{'label':'202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200' , 'num_jobs':1}
-                          # # 202634:{'label':'202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300' , 'num_jobs':1}
-                          # # 202635:{'label':'202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400' , 'num_jobs':1}
-                          # # 202636:{'label':'202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500' , 'num_jobs':1}
-                          # # 202637:{'label':'202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600' , 'num_jobs':1}
-                          # # 202638:{'label':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700' , 'num_jobs':1}
-                          # # 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800' , 'num_jobs':1}
-                          # # 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900' , 'num_jobs':1}
-                          # 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000', 'num_jobs':1}
-
-                          #   167797:{'label':'167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'          , 'num_jobs':10}
-                          # , 167800:{'label':'167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'        , 'num_jobs':10}
-                          # , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # add data samples
-    data_set_dicts = RunHelpers.addAllSamplesToList( egamma_data_samples = egamma_data_samples
-                                                   , muon_data_samples   = muon_data_samples
-                                                   , full_sim_mc_samples = full_sim_mc_samples
-                                                   , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   , file_list_path_base = 'EosFileLists/tnt_106/tnt_106'
-                                                   , out_dir = out_dir
-                                                   )
+    # Define what systematics to include in this run and construct dictionary
+    data_set_dicts = {}
+
+    systematic_runs = [None]
+    for syst in systematic_runs:
+        syst_struct = RunHelpers.SystematicStruct()
+        if syst is not None:
+            syst_struct.setSyst(syst, True)
+        syst_tag = syst_struct.getRunName()
+
+        syst_struct.printInfo()
+        print syst_tag
+
+
+        data_set_dicts[syst_tag] = RunHelpers.addAllSamplesToList(
+                egamma_data_samples = egamma_data_samples,
+                muon_data_samples   = muon_data_samples,
+                full_sim_mc_samples = full_sim_mc_samples,
+                fast_sim_mc_samples = fast_sim_mc_samples,
+                file_list_path_base = 'EosFileLists/tnt_106/tnt_106',
+                out_dir             = '__'.join([out_dir, syst_tag]),
+                syst_struct         = syst_struct)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if run_local:
-        RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLAnalysisLooseJets.runBMinusLAnalysisLooseJetsFun
-                                       , data_set_dicts   = data_set_dicts
-                                       , num_processes    = num_processes
-                                       , out_dir          = out_dir
-                                       , flat_ntuples     = False
-                                       , sym_link_name    = './NextPlotDir.BMinusL.LooseJets'
-                                       )
-    else:
-        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLAnalysisLooseJets.runBMinusLAnalysisLooseJetsFun
-                                         , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
-                                         , run_analysis_fun_file = 'RunBMinusLAnalysisLooseJets'
-                                         , data_set_dicts        = data_set_dicts
-                                         , out_dir               = out_dir
-                                         , queue                 = '1nh'
-                                         , sym_link_name         = './NextPlotDir.BMinusL.LooseJets'
-                                         , job_dir               = 'LatestRunDir_bminuslanalysis_loose_jets'
-                                         )
+    for syst, the_dicts in data_set_dicts.items():
+        print syst, ' -- ', the_dicts
+
+        this_out_dir = '__'.join([out_dir, syst])
+        this_sym_link_name = ''.join(['./NextPlotDir.BMinusL.', syst])
+        print 'this sym link name: ', this_sym_link_name
+
+        this_run_analysis_fun = RunBMinusLAnalysisLooseJets.runBMinusLAnalysisLooseJetsFun
+
+        if run_local:
+            RunHelpers.runLocalMultiprocess( run_analysis_fun = this_run_analysis_fun
+                                           , data_set_dicts   = the_dicts
+                                           , num_processes    = num_processes
+                                           , out_dir          = this_out_dir
+                                           , flat_ntuples     = False
+                                           , sym_link_name    = this_sym_link_name
+                                           )
+
+        else:
+            run_analysis_fun_loc  = '/'.join( [ os.environ['BASE_WORK_DIR']
+                                              , 'BMinusLAnalysis'
+                                              , 'RunScripts/'
+                                              ]
+                                            )
+            this_job_dir = '.'.join( [ 'LatestRunDir_bminuslanalysis'
+                                     , syst
+                                     ]
+                                   )
+
+            RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = this_run_analysis_fun
+                                             , run_analysis_fun_loc  = run_analysis_fun_loc
+                                             , run_analysis_fun_file = 'RunBMinusLAnalysisLooseJets'
+                                             , data_set_dicts        = the_dicts
+                                             , out_dir               = this_out_dir
+                                             , queue                 = queue
+                                             , sym_link_name         = this_sym_link_name
+                                             , job_dir               = this_job_dir
+                                             )
