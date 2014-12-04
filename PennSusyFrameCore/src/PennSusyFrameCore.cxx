@@ -36,10 +36,6 @@ PennSusyFrame::PennSusyFrameCore::PennSusyFrameCore(TTree* tree) : m_start_entry
                                                                  , m_fancy_progress_bar(true)
                                                                  , m_process_label("")
                                                                  , m_mv1_cut_value(0.3511)
-                                                                 // , m_do_jer(false)
-                                                                 , m_do_jer(false)
-                                                                 , m_do_jes_up(false)
-                                                                 , m_do_jes_down(false)
                                                                  , m_d3pd_reader(0)
 {
   std::cout << "PennSusyFrameCore()\n";
@@ -112,6 +108,13 @@ Bool_t PennSusyFrame::PennSusyFrameCore::Notify()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::PennSusyFrameCore::prepareTools()
 {
+  std::cout << "preparing tool!\n";
+  std::cout << "systematics this run: \n"
+            << "  do jer: "      << m_syst_struct.getSyst("do_jer")      << "\n"
+            << "  do jes up: "   << m_syst_struct.getSyst("do_jes_up")   << "\n"
+            << "  do jes down: " << m_syst_struct.getSyst("do_jes_down") << "\n"
+            << "\n";
+
   // m_d3pd_reader->Init(tree);
   m_d3pd_reader = new PennSusyFrame::D3PDReader(m_tree, m_is_data);
 
@@ -125,9 +128,7 @@ void PennSusyFrame::PennSusyFrameCore::prepareTools()
   m_jets.init( m_is_data
              , m_is_af2
              , m_is_mc12b
-             , m_do_jer
-             , m_do_jes_up
-             , m_do_jes_down
+             , &m_syst_struct
              );
 
   if (m_is_af2) m_egamma_sf_tool.setAf2();
@@ -290,7 +291,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 
   // Actually loop over events
   for (Long64_t jentry=0; jentry != nentries; ++jentry) {
-    // if (jentry == 1000) break;
+    // if (jentry == 100) break;
 
     Long64_t this_entry = m_start_entry + jentry;
 

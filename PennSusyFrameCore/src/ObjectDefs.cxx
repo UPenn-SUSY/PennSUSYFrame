@@ -1513,45 +1513,58 @@ void PennSusyFrame::MCTruth::writeFullTruthRecord(std::string out_file_name)
 }
 
 // =============================================================================
-PennSusyFrame::SystematicStruct::SystematicStruct() : m_do_jer(false)
-                                                    , m_do_jes_up(false)
-                                                    , m_do_jes_down(false)
-                                                    , m_do_effective_np_1_up(false)
-                                                    , m_do_effective_np_1_down(false)
-                                                    , m_do_effective_np_2_up(false)
-                                                    , m_do_effective_np_2_down(false)
-                                                    , m_do_effective_np_3_up(false)
-                                                    , m_do_effective_np_3_down(false)
-                                                    , m_do_effective_np_4_up(false)
-                                                    , m_do_effective_np_4_down(false)
-                                                    , m_do_effective_np_5_up(false)
-                                                    , m_do_effective_np_5_down(false)
-                                                    , m_do_effective_np_6_up(false)
-                                                    , m_do_effective_np_6_down(false)
-                                                    , m_do_eta_intercalibration_modelling_up(false)
-                                                    , m_do_eta_intercalibration_modelling_down(false)
-                                                    , m_do_eta_intercalibration_statand_method_up(false)
-                                                    , m_do_eta_intercalibration_statand_method_down(false)
-                                                    , m_do_single_particle_high_pt_up(false)
-                                                    , m_do_single_particle_high_pt_down(false)
-                                                    , m_do_relative_non_closure_pythia8_up(false)
-                                                    , m_do_relative_non_closure_pythia8_down(false)
-                                                    , m_do_pile_up_offset_term_mu_up(false)
-                                                    , m_do_pile_up_offset_term_mu_down(false)
-                                                    , m_do_pile_up_offset_term_npv_up(false)
-                                                    , m_do_pile_up_offset_term_npv_down(false)
-                                                    , m_do_pile_up_pt_term_up(false)
-                                                    , m_do_pile_up_pt_term_down(false)
-                                                    , m_do_pile_up_rho_topology_up(false)
-                                                    , m_do_pile_up_rho_topology_down(false)
-                                                    , m_do_closeby_up(false)
-                                                    , m_do_closeby_down(false)
-                                                    , m_do_flavor_comp_uncert_up(false)
-                                                    , m_do_flavor_comp_uncert_down(false)
-                                                    , m_do_flavor_response_uncert_up(false)
-                                                    , m_do_flavor_response_uncert_down(false)
-                                                    , m_do_bjes_up(false)
-                                                    , m_do_bjes_down(false)
+PennSusyFrame::SystematicStruct::SystematicStruct()
 {
-  // do nothing
+  do_syst["do_jer"] = false;
+  do_syst["do_jes_up"] = false;
+  do_syst["do_jes_down"] = false;
+  do_syst["do_effective_np_1_up"] = false;
+  do_syst["do_effective_np_1_down"] = false;
+  do_syst["do_effective_np_2_up"] = false;
+  do_syst["do_effective_np_2_down"] = false;
+  do_syst["do_effective_np_3_up"] = false;
+  do_syst["do_effective_np_3_down"] = false;
+  do_syst["do_effective_np_4_up"] = false;
+  do_syst["do_effective_np_4_down"] = false;
+  do_syst["do_effective_np_5_up"] = false;
+  do_syst["do_effective_np_5_down"] = false;
+  do_syst["do_effective_np_6_up"] = false;
+  do_syst["do_effective_np_6_down"] = false;
+  do_syst["do_eta_intercalibration_modelling_up"] = false;
+  do_syst["do_eta_intercalibration_modelling_down"] = false;
+  do_syst["do_eta_intercalibration_statand_method_up"] = false;
+  do_syst["do_eta_intercalibration_statand_method_down"] = false;
+  do_syst["do_single_particle_high_pt_up"] = false;
+  do_syst["do_single_particle_high_pt_down"] = false;
+  do_syst["do_relative_non_closure_pythia8_up"] = false;
+  do_syst["do_relative_non_closure_pythia8_down"] = false;
+  do_syst["do_pile_up_offset_term_mu_up"] = false;
+  do_syst["do_pile_up_offset_term_mu_down"] = false;
+  do_syst["do_pile_up_offset_term_npv_up"] = false;
+  do_syst["do_pile_up_offset_term_npv_down"] = false;
+  do_syst["do_pile_up_pt_term_up"] = false;
+  do_syst["do_pile_up_pt_term_down"] = false;
+  do_syst["do_pile_up_rho_topology_up"] = false;
+  do_syst["do_pile_up_rho_topology_down"] = false;
+  do_syst["do_closeby_up"] = false;
+  do_syst["do_closeby_down"] = false;
+  do_syst["do_flavor_comp_uncert_up"] = false;
+  do_syst["do_flavor_comp_uncert_down"] = false;
+  do_syst["do_flavor_response_uncert_up"] = false;
+  do_syst["do_flavor_response_uncert_down"] = false;
+  do_syst["do_bjes_up"] = false;
+  do_syst["do_bjes_down"] = false;
 }
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::SystematicStruct::setSyst(std::string syst, bool val)
+{
+  do_syst[syst] = val;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::SystematicStruct::getSyst(std::string syst)
+{
+  return do_syst[syst];
+}
+

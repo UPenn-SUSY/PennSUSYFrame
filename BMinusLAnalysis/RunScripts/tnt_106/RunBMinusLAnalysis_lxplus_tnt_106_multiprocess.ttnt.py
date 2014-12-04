@@ -48,8 +48,6 @@ print out_dir
 
 # ==============================================================================
 if __name__ == '__main__':
-    RunHelpers.safeMakeDir(out_dir)
-
     print 'getting file list'
 
     egamma_data_samples = {
@@ -230,45 +228,67 @@ if __name__ == '__main__':
                           , 202639:{'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'num_jobs':1}
                           , 202640:{'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
                           , 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
-
-                          ## # TEST INPUT -- comment all but this for a quick test that things will run at all
-                          ## 202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
                           }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # Define what systematics (if any) to include in this run
-    syst_struct = RunHelpers.SystematicStruct( do_jer      = False
-                                             , do_jes_up   = False
-                                             , do_jes_down = False
+    # Define what systematics to include in this run and construct dictionary
+    data_set_dicts = {}
+
+    for syst in [None]:
+        syst_struct = RunHelpers.SystematicStruct()
+        if syst is not None:
+            syst_struct.setSyst(syst, True)
+        syst_tag = syst_struct.getRunName()
+
+        syst_struct.printInfo()
+        print syst_tag
+
+
+        data_set_dicts[syst_tag] = RunHelpers.addAllSamplesToList(
+                egamma_data_samples = egamma_data_samples,
+                muon_data_samples   = muon_data_samples,
+                full_sim_mc_samples = full_sim_mc_samples,
+                fast_sim_mc_samples = fast_sim_mc_samples,
+                file_list_path_base = 'EosFileLists/bminusl_ttnt_106/ttnt',
+                out_dir             = '__'.join([out_dir, syst_tag]),
+                syst_struct         = syst_struct)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    for syst, the_dicts in data_set_dicts.items():
+        print syst, ' -- ', the_dicts
+
+        this_out_dir = '__'.join([out_dir, syst])
+        this_sym_link_name = ''.join(['./NextPlotDir.BMinusL.', syst])
+        print 'this sym link name: ', this_sym_link_name
+
+        this_run_analysis_fun = RunBMinusLAnalysis.runBMinusLAnalysisFun
+
+        if run_local:
+            RunHelpers.runLocalMultiprocess( run_analysis_fun = this_run_analysis_fun
+                                           , data_set_dicts   = the_dicts
+                                           , num_processes    = num_processes
+                                           , out_dir          = this_out_dir
+                                           , flat_ntuples     = False
+                                           , sym_link_name    = this_sym_link_name
+                                           )
+
+        else:
+            run_analysis_fun_loc  = '/'.join( [ os.environ['BASE_WORK_DIR']
+                                              , 'BMinusLAnalysis'
+                                              , 'RunScripts/'
+                                              ]
+                                            )
+            this_job_dir = '.'.join( [ 'LatestRunDir_bminuslanalysis'
+                                     , syst
+                                     ]
+                                   )
+
+            RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = this_run_analysis_fun
+                                             , run_analysis_fun_loc  = run_analysis_fun_loc
+                                             , run_analysis_fun_file = 'RunBMinusLAnalysis'
+                                             , data_set_dicts        = the_dicts
+                                             , out_dir               = this_out_dir
+                                             , queue                 = queue
+                                             , sym_link_name         = this_sym_link_name
+                                             , job_dir               = this_job_dir
                                              )
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # add data samples
-    data_set_dicts = RunHelpers.addAllSamplesToList( egamma_data_samples = egamma_data_samples
-                                                   , muon_data_samples   = muon_data_samples
-                                                   , full_sim_mc_samples = full_sim_mc_samples
-                                                   , fast_sim_mc_samples = fast_sim_mc_samples
-                                                   , file_list_path_base = 'EosFileLists/bminusl_ttnt_106/ttnt'
-                                                   , out_dir             = out_dir
-                                                   , syst_struct         = syst_struct
-                                                   )
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if run_local:
-        RunHelpers.runLocalMultiprocess( run_analysis_fun = RunBMinusLAnalysis.runBMinusLAnalysisFun
-                                       , data_set_dicts   = data_set_dicts
-                                       , num_processes    = num_processes
-                                       , out_dir          = out_dir
-                                       , flat_ntuples     = False
-                                       , sym_link_name    = './NextPlotDir.BMinusL'
-                                       )
-    else:
-        RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = RunBMinusLAnalysis.runBMinusLAnalysisFun
-                                         , run_analysis_fun_loc  = '%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR']
-                                         , run_analysis_fun_file = 'RunBMinusLAnalysis'
-                                         , data_set_dicts        = data_set_dicts
-                                         , out_dir               = out_dir
-                                         , queue                 = '1nh'
-                                         , sym_link_name         = './NextPlotDir.BMinusL'
-                                         , job_dir               = 'LatestRunDir_bminuslanalysis'
-                                         )

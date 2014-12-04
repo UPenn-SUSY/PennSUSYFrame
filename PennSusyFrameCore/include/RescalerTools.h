@@ -23,6 +23,7 @@ namespace PennSusyFrame
   class Muon;
   class Jet;
   class Vertex;
+  struct SystematicStruct;
 }
 
 namespace MuonSmear
@@ -90,9 +91,7 @@ namespace PennSusyFrame
     JetRescalerTool( bool is_data
                    , bool is_af2
                    , bool is_mc12b
-                   , bool do_jer      = false
-                   , bool do_jes_up   = false
-                   , bool do_jes_down = false
+                   , PennSusyFrame::SystematicStruct* syst_struct = 0
                    );
     ~JetRescalerTool();
 
@@ -102,7 +101,6 @@ namespace PennSusyFrame
                                    , const PennSusyFrame::Event*
                                    , int num_vertices_ge_2_tracks
                                    );
-    // void applyJER(PennSusyFrame::Jet*, bool is_af2);
     void applyJER(TLorentzVector&);
     void applyJES( TLorentzVector&
                  , int flavor_truth_label
@@ -114,9 +112,9 @@ namespace PennSusyFrame
       bool m_is_data;
       bool m_is_af2;
       bool m_is_mc12b;
-      bool m_do_jer;
-      bool m_do_jes_up;
-      bool m_do_jes_down;
+
+      SystematicStruct* m_syst_struct;
+
       JetAnalysisCalib::JetCalibrationTool* m_jet_calibration;
       JetSmearingTool* m_jer_smearing;
       MultijetJESUncertaintyProvider* m_jes_tool;

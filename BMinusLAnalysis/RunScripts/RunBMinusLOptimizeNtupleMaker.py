@@ -43,23 +43,22 @@ print 'done loading libraries'
 # ------------------------------------------------------------------------------
 def runBMinusLOptimizeNtupleMakerFun(data_set_dict):
     print '================================================================================'
-    print 'label: %s'       % data_set_dict['label']
-    # print 'file_list: %s'   % data_set_dict['file_list']
-    print 'dsid: %s'        % data_set_dict['dsid']
+    print 'label: ', data_set_dict['label']
+    print 'dsid: ', data_set_dict['dsid']
 
-    print 'is data: %s'     % data_set_dict['is_data']
+    print 'is data: ', data_set_dict['is_data']
 
     if data_set_dict['is_data']:
-        print 'is egamma stream: %s' % data_set_dict['is_egamma_stream']
+        print 'is egamma stream: ', data_set_dict['is_egamma_stream']
     else:
-        print 'is full sim: %s' % data_set_dict['is_full_sim']
+        print 'is full sim: ', data_set_dict['is_full_sim']
 
-    print 'total number jobs: %s' % data_set_dict['total_num_jobs']
-    print 'this job number: %s' % data_set_dict['job_num']
+    print 'total number jobs: ', data_set_dict['total_num_jobs']
+    print 'this job number: ', data_set_dict['job_num']
 
-    print 'total num events: %s' % data_set_dict['total_num_events']
-    print 'total num entries: %s' % data_set_dict['total_num_entries']
-    print 'sum of event weights: %s' % data_set_dict['sum_mc_event_weights']
+    print 'total num events: ', data_set_dict['total_num_events']
+    print 'total num entries: ', data_set_dict['total_num_entries']
+    print 'sum of event weights: ', data_set_dict['sum_mc_event_weights']
 
     print 'About to run BMinusLOptimizeNtupleMaker'
     runBMinusLOptimizeNtupleMaker( file_list             = data_set_dict['file_list']
@@ -99,8 +98,9 @@ def runBMinusLOptimizeNtupleMaker( file_list
                                  , out_dir               = './'
                                  ):
     # ==============================================================================
-    # If the num events are not set and we are running over TNTs, get the total NumEvents
-    print 'total num events: %s' % total_num_events
+    # If the num events are not set and we are running over TNTs, get the total
+    #   NumEvents
+    print 'total num events: ', total_num_events
     if total_num_events == 0 and is_tnt:
         print 'Getting total num unskimmed events'
         print '  -- this is slow. you should do this once per data set - not for each stream!'
@@ -115,11 +115,21 @@ def runBMinusLOptimizeNtupleMaker( file_list
     bmlonm = ROOT.PennSusyFrame.BMinusLOptimizeNtupleMaker(t)
 
     print 'configuring BMinusLOptimizeNtupleMaker object'
+    print 'creating process label'
     if out_file_special_name is not None:
-        bmlonm.setProcessLabel(out_file_special_name + '__%d_of_%d' % (job_num, total_num_jobs) )
+        process_label = ''.join( [ out_file_special_name
+                                 , '__'
+                                 , str(job_num)
+                                 , '_of_'
+                                 , str(total_num_jobs)
+                                 ]
+                               )
+        bmlonm.setProcessLabel(process_label)
+
     bmlonm.setFancyProgressBar(False)
 
     # set is data or MC
+    #   if MC, we need to set various other things like cross section, k-factor, ...
     if is_data:
         bmlonm.setIsData()
 
@@ -146,43 +156,56 @@ def runBMinusLOptimizeNtupleMaker( file_list
         bmlonm.setFullSim()
 
     # turn on systematics
+    syst_tag = ''
     if syst_struct:
-        bmlonm.setDoJer(    syst_struct.do_jer     )
-        bmlonm.setDoJesUp(  syst_struct.do_jes_up  )
-        bmlonm.setDoJesDown(syst_struct.do_jes_down)
+        print 'turning on systematics'
+        syst_struct.configureAnalysisObject(bmlonm)
+
+        syst_tag = ''.join([syst_struct.getRunName(), '.'])
 
     # set start entry and max number events
     if total_num_jobs > 1:
-        print 'total num jobs (%s) > 1' % total_num_jobs
-        this_job_events = int(math.ceil( float(total_num_entries) / total_num_jobs ))
+        print 'total num jobs (', total_num_jobs, ') > 1'
+        this_job_events = int( math.ceil( float(total_num_entries)
+                                        / total_num_jobs
+                                        )
+                             )
         this_job_start = job_num*this_job_events
 
-        print 'total num entries; %s' % total_num_entries
-        print 'setting max num events: %s' % this_job_events
+        print 'total num entries: ', total_num_entries
+        print 'setting max num events: ', this_job_events
         print type(this_job_events)
         bmlonm.setMaxNumEvents(this_job_events)
-        print 'setting start entry: %s' % this_job_start
+        print 'setting start entry: ', this_job_start
         bmlonm.setStartEntry(this_job_start)
 
-    # set out histogram file name
-    print 'setting histogram names'
-    out_ntup_file_name = '%s/BMinusL.' % out_dir
+    # set out ntuple file name
+    # base name
+    out_ntup_file_name = [out_dir, '/', 'BMinusL.', syst_tag]
 
-    if syst_struct:
-        if syst_struct.do_jer     : out_ntup_file_name += 'jer.'
-        if syst_struct.do_jes_up  : out_ntup_file_name += 'jes_up.'
-        if syst_struct.do_jes_down: out_ntup_file_name += 'jes_down.'
-
+    # append any special tags
     if out_file_special_name is not None:
-        out_ntup_file_name += '%s.' % out_file_special_name
-    out_ntup_file_name += 'ntup'
+        out_ntup_file_name.extend([out_file_special_name, '.'])
+
+    # append 'ntup' tag
+    out_ntup_file_name.append('ntup')
+
+    # append job number
     if total_num_jobs > 1:
-        out_ntup_file_name += '.%d_of_%d' % (job_num, total_num_jobs)
-    out_ntup_file_name += '.root'
-    bmlonm.setOutNtupleFileName(out_ntup_file_name)
+        out_ntup_file_name.extend( ['.'
+                                   , str(job_num)
+                                   , '_of_'
+                                   , str(total_num_jobs)
+                                   ]
+                                 )
+
+    # this is a root file
+    out_ntup_file_name.append('.root')
+
+    # set output file name in analyzer
+    bmlonm.setOutNtupleFileName(''.join(out_ntup_file_name))
 
     # Set critical cuts
-    # print 'setting critical cuts'
     bmlonm.setCritCutGrl(            1)
     bmlonm.setCritCutIncompleteEvent(1)
     bmlonm.setCritCutLarError(       1)
@@ -204,7 +227,6 @@ def runBMinusLOptimizeNtupleMaker( file_list
     bmlonm.setCritCutBLPairing(      0)
 
     # Set cut values
-    # print 'set cuts'
     bmlonm.setElPtCut(  lep_pt_cut, -1 )
     bmlonm.setMuPtCut(  lep_pt_cut, -1 )
     bmlonm.setBJetPtCut(jet_pt_cut, -1 )
@@ -217,10 +239,11 @@ def runBMinusLOptimizeNtupleMaker( file_list
     # prepare tools and run analysis loop
     print 'preparing tools'
     bmlonm.prepareTools()
-    print 'looping -- %s' % out_file_special_name
+    print 'looping -- ', out_file_special_name
     bmlonm.Loop()
-    print 'done looping -- %s' % out_file_special_name
+    print 'done looping -- ', out_file_special_name
 
     # ==============================================================================
     print ''
     print ''
+
