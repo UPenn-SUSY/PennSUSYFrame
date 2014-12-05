@@ -7,6 +7,8 @@ import sys
 import datetime
 import itertools
 
+import SampleDicts
+
 sys.path.append('%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR'])
 import RunBMinusLOptimizeNtupleMaker
 
@@ -51,22 +53,12 @@ print out_dir
 if __name__ == '__main__':
     print 'getting file list'
 
-    egamma_data_samples = {
-                          #   'periodA_egamma':{'label':'periodA_egamma', 'num_jobs':10}
-                          }
-    muon_data_samples = {
-                        #   'periodA_muon':{'label':'periodA_muon', 'num_jobs':10}
-                        }
-    full_sim_mc_samples = {
-                          # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          # , 200332:{'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':5}
-                          }
-    fast_sim_mc_samples = {
-                          ## # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                          ##   117050:{'label':'117050.PowhegPythia_P2011C_ttbar.af2', 'num_jobs':50}
-
-                          202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}
-                          }
+    egamma_data_samples = {}
+    muon_data_samples = {}
+    full_sim_mc_samples = {}
+    fast_sim_mc_samples = SampleDicts.getFastSimSamples( job_multiplier = 1
+                                                       , test_subset = True
+                                                       )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary

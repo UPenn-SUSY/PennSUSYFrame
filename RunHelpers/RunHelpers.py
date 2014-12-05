@@ -463,7 +463,7 @@ def runLxBatchMultiProcess( run_analysis_fun
         print batch_submit_command
         print ''
 
-        # subprocess.call(batch_submit_command)
+        subprocess.call(batch_submit_command)
 
     # make sym link to output dir
     if not sym_link_name == '':
