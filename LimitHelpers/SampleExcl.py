@@ -206,12 +206,12 @@ other_sample.setNormByTheory()
 sample_list_bkg.append(other_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# ttbar
-ttbar_sample = Sample("ttbar", kGreen+2)
+# single top
+single_top_sample = Sample("SingleTop", kGreen-1)
 
-ttbar_sample.setNormFactor("mu_ttbar", 1, 0, 100)
-ttbar_sample.setStatConfig(use_stat)
-sample_list_bkg.append(ttbar_sample)
+single_top_sample.setStatConfig(use_stat)
+single_top_sample.setNormByTheory()
+sample_list_bkg.append(single_top_sample)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Z/gamma*
@@ -221,14 +221,14 @@ z_sample.setNormFactor("mu_z", 1, 0, 100)
 z_sample.setStatConfig(use_stat)
 sample_list_bkg.append(z_sample)
 
-### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-### # single top
-### single_top_sample = Sample("SingleTop", kGreen-1)
-### 
-### single_top_sample.setStatConfig(use_stat)
-### single_top_sample.setNormByTheory()
-### sample_list_bkg.append(single_top_sample)
-### 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ttbar
+ttbar_sample = Sample("ttbar", kGreen+2)
+
+ttbar_sample.setNormFactor("mu_ttbar", 1, 0, 100)
+ttbar_sample.setStatConfig(use_stat)
+sample_list_bkg.append(ttbar_sample)
+
 ### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### # ttV
 ### ttv_sample = Sample("ttV", kAzure+8)
@@ -517,30 +517,30 @@ entry.SetLineColor(z_sample.color)
 entry.SetFillColor(z_sample.color)
 entry.SetFillStyle(compFillStyle)
 
+# Single top entry
+entry = leg.AddEntry("", "Single top", "lf")
+entry.SetLineColor(single_top_sample.color)
+entry.SetFillColor(single_top_sample.color)
+entry.SetFillStyle(compFillStyle)
+
 # Other background entry
 entry = leg.AddEntry("", "Other", "lf")
 entry.SetLineColor(other_sample.color)
 entry.SetFillColor(other_sample.color)
 entry.SetFillStyle(compFillStyle)
 
-### # Single top entry
-### entry = leg.AddEntry("", "Single top", "lf")
-### entry.SetLineColor(single_top_sample.color)
-### entry.SetFillColor(single_top_sample.color)
-### entry.SetFillStyle(compFillStyle)
-### 
 ### # ttV entry
 ### entry = leg.AddEntry("", "ttV", "lf")
 ### entry.SetLineColor(ttv_sample.color)
 ### entry.SetFillColor(ttv_sample.color)
 ### entry.SetFillStyle(compFillStyle)
-### 
+###
 ### # Diboson entry
 ### entry = leg.AddEntry("", "Diboson", "lf")
 ### entry.SetLineColor(diboson_sample.color)
 ### entry.SetFillColor(diboson_sample.color)
 ### entry.SetFillStyle(compFillStyle)
-### 
+###
 ### # Higgs entry
 ### entry = leg.AddEntry("", "Higgs", "lf")
 ### entry.SetLineColor(higgs_sample.color)
