@@ -276,9 +276,6 @@ def main():
                                                                            , '%s/BMinusL.*119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ*.ntup.root' % opt_ntup_dir
                                                                            , '%s/BMinusL.*119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj*.ntup.root' % opt_ntup_dir
                                                                            , '%s/BMinusL.*119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*110101.AcerMCPythia_P2011CCTEQ6L1_singletop_tchan_l*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*110119.PowhegPythia_P2011C_st_schan_lep*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR*.ntup.root' % opt_ntup_dir
                                                                            , "%s/BMinusL.*177997.Sherpa_CT10_llnunu_WW_MassiveCB*.ntup.root" % opt_ntup_dir
                                                                            , "%s/BMinusL.*177999.Sherpa_CT10_llnunu_ZZ_MassiveCB*.ntup.root" % opt_ntup_dir
                                                                            , "%s/BMinusL.*179974.Sherpa_CT10_lllnu_WZ_MassiveCB*.ntup.root" % opt_ntup_dir
