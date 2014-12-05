@@ -7,10 +7,9 @@ import sys
 import datetime
 import itertools
 
-import SampleDicts
-
 sys.path.append('%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR'])
 import RunBMinusLAnalysis
+import SamplesDicts
 
 sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
@@ -53,10 +52,10 @@ print out_dir
 if __name__ == '__main__':
     print 'getting file list'
 
-    egamma_data_samples = SampleDicts.getEgammaDataSamples(job_multiplier = 5)
-    muon_data_samples = SampleDicts.getMuonDataSamples(job_multiplier = 5)
-    full_sim_mc_samples = SampleDicts.getFullSimSamples(job_multiplier = 5)
-    fast_sim_mc_samples = SampleDicts.getFastSimSamples(job_multiplier = 5)
+    egamma_data_samples = SamplesDicts.getEgammaDataSamples(job_multiplier = 5)
+    muon_data_samples = SamplesDicts.getMuonDataSamples(job_multiplier = 5)
+    full_sim_mc_samples = SamplesDicts.getFullSimSamples(job_multiplier = 5)
+    fast_sim_mc_samples = SamplesDicts.getFastSimSamples(job_multiplier = 5)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary

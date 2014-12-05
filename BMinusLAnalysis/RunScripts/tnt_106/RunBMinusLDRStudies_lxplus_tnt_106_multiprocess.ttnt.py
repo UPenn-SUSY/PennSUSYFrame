@@ -9,6 +9,7 @@ import itertools
 
 sys.path.append('%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR'])
 import RunBMinusLDRStudies
+import SamplesDicts
 
 sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
@@ -54,9 +55,9 @@ if __name__ == '__main__':
     egamma_data_samples = {}
     muon_data_samples = {}
     full_sim_mc_samples = {}
-    fast_sim_mc_samples = SampleDicts.getFastSimSamples( job_multiplier = 1
-                                                       , signal_only = True
-                                                       )
+    fast_sim_mc_samples = SamplesDicts.getFastSimSamples( job_multiplier = 1
+                                                        , signal_only = True
+                                                        )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary
