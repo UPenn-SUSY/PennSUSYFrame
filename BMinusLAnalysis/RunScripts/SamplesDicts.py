@@ -62,15 +62,15 @@ def getFullSimSamples(job_multiplier = 1, test_subset = False):
         samples[173046] = {'label':'173046.Sherpa_CT10_DYtautauM15to40' , 'num_jobs':1}
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        samplpe[160655] = {'label':'160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'        , 'num_jobs':1}
-        samplpe[160705] = {'label':'160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'       , 'num_jobs':1}
-        samplpe[160755] = {'label':'160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'            , 'num_jobs':1}
-        samplpe[160805] = {'label':'160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu'            , 'num_jobs':1}
-        samplpe[161005] = {'label':'161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5'  , 'num_jobs':1}
-        samplpe[161055] = {'label':'161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5' , 'num_jobs':1}
-        samplpe[161105] = {'label':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'              , 'num_jobs':1}
-        samplpe[161155] = {'label':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'              , 'num_jobs':1}
-        samplpe[161305] = {'label':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'num_jobs':1}
+        samples[160655] = {'label':'160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'        , 'num_jobs':1}
+        samples[160705] = {'label':'160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'       , 'num_jobs':1}
+        samples[160755] = {'label':'160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'            , 'num_jobs':1}
+        samples[160805] = {'label':'160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu'            , 'num_jobs':1}
+        samples[161005] = {'label':'161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5'  , 'num_jobs':1}
+        samples[161055] = {'label':'161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5' , 'num_jobs':1}
+        samples[161105] = {'label':'161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'              , 'num_jobs':1}
+        samples[161155] = {'label':'161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'              , 'num_jobs':1}
+        samples[161305] = {'label':'161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'        , 'num_jobs':1}
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         ## samples[105200] = {'label':'105200.McAtNloJimmy_CT10_ttbar_LeptonFilter' , 'num_jobs':2*job_multiplier}
@@ -101,7 +101,7 @@ def getFullSimSamples(job_multiplier = 1, test_subset = False):
         ## samples[200350] = {'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':1*job_multiplier}
         ## samples[200351] = {'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':1*job_multiplier}
 
-    return sample
+    return samples
 
 # ------------------------------------------------------------------------------
 def getFastSimSamples( job_multiplier = 1
@@ -114,7 +114,7 @@ def getFastSimSamples( job_multiplier = 1
     test_subset: Only return a dcitionary with a single test sample
     signal_only: Return a dictionary only containing signal samples
     """
-    sample = {202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}}
+    samples = {202641:{'label':'202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000' , 'num_jobs':1}}
 
     if not test_subset:
             samples[202632] = {'label':'202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100'  , 'num_jobs':1}
@@ -160,9 +160,9 @@ def getFastSimSamples( job_multiplier = 1
         samples[167804] = {'label':'167804.Sherpa_CT10_ZtautauMassiveCBPt70_140_CFilterBVeto'  , 'num_jobs':1}
         samples[167805] = {'label':'167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto'    , 'num_jobs':1}
 
-        samples[167809] = {'label':'167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter'          , 'num_jobs':1*job_multiplier
-        samples[167810] = {'label':'167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto'     , 'num_jobs':1*job_multiplier
-        samples[167811] = {'label':'167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto'       , 'num_jobs':1*job_multiplier
+        samples[167809] = {'label':'167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter'          , 'num_jobs':1*job_multiplier}
+        samples[167810] = {'label':'167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto'     , 'num_jobs':1*job_multiplier}
+        samples[167811] = {'label':'167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto'       , 'num_jobs':1*job_multiplier}
 
         samples[167812] = {'label':'167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter'        , 'num_jobs':1*job_multiplier}
         samples[167813] = {'label':'167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto'   , 'num_jobs':1*job_multiplier}
@@ -227,4 +227,4 @@ def getFastSimSamples( job_multiplier = 1
         samples[183738] = {'label':'183738.Sherpa_CT10_WWtotaunuqq_MassiveCB' , 'num_jobs':1}
         samples[183739] = {'label':'183739.Sherpa_CT10_WZtotaunuqq_MassiveCB' , 'num_jobs':1}
 
-    return sample
+    return samples
