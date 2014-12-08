@@ -116,7 +116,6 @@ def writeTreesToHistFitterFile(out_file_name, optimize_tree_dict):
 
     buffer_of_trees = []
     list_of_tmp_trees = []
-    out_file.ls()
     for sample_name in optimize_tree_dict:
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         print 'adding sample: ', sample_name
@@ -128,29 +127,29 @@ def writeTreesToHistFitterFile(out_file_name, optimize_tree_dict):
                                   )
         list_of_tmp_trees.append(sample_name)
 
-        writeSingleSampleToTmpFile( 'ee_%s.root' % sample_name
-                                  , sample_name
-                                  , optimize_tree_dict[sample_name]
-                                  , 'is_ee'
-                                  , 'ee_' + sample_name
-                                  )
-        list_of_tmp_trees.append('ee_' + sample_name)
+        # writeSingleSampleToTmpFile( 'ee_%s.root' % sample_name
+        #                           , sample_name
+        #                           , optimize_tree_dict[sample_name]
+        #                           , 'is_ee'
+        #                           , 'ee_' + sample_name
+        #                           )
+        # list_of_tmp_trees.append('ee_' + sample_name)
 
-        writeSingleSampleToTmpFile( 'mm_%s.root' % sample_name
-                                  , sample_name
-                                  , optimize_tree_dict[sample_name]
-                                  , 'is_mm'
-                                  , 'mm_' + sample_name
-                                  )
-        list_of_tmp_trees.append('mm_' + sample_name)
+        # writeSingleSampleToTmpFile( 'mm_%s.root' % sample_name
+        #                           , sample_name
+        #                           , optimize_tree_dict[sample_name]
+        #                           , 'is_mm'
+        #                           , 'mm_' + sample_name
+        #                           )
+        # list_of_tmp_trees.append('mm_' + sample_name)
 
-        writeSingleSampleToTmpFile( 'em_%s.root' % sample_name
-                                  , sample_name
-                                  , optimize_tree_dict[sample_name]
-                                  , 'is_em'
-                                  , 'em_' + sample_name
-                                  )
-        list_of_tmp_trees.append('em_' + sample_name)
+        # writeSingleSampleToTmpFile( 'em_%s.root' % sample_name
+        #                           , sample_name
+        #                           , optimize_tree_dict[sample_name]
+        #                           , 'is_em'
+        #                           , 'em_' + sample_name
+        #                           )
+        # list_of_tmp_trees.append('em_' + sample_name)
 
     mergeTmpTreesToOutput( out_file_name, list_of_tmp_trees )
 
@@ -163,7 +162,8 @@ def constructPathList(paths_to_glob):
 
 # ------------------------------------------------------------------------------
 def main():
-    opt_ntup_dir_list = glob.glob('%s/NextOptNtupDir.BMinusL.*' % os.environ['BASE_WORK_DIR'])
+    opt_ntup_dir_list = glob.glob('%s/NextOptNtupDir.BMinusL.*' %
+                                  os.environ['BASE_WORK_DIR'])
 
     bkg_optimize_tree_dict = {}
     sig_optimize_tree_dict = {}
@@ -172,7 +172,8 @@ def main():
         print 'opt ntup dir: ', opt_ntup_dir
 
         syst_tag = opt_ntup_dir.split('.')[-1]
-        if syst_tag == 'NOMINAL': syst_tag = 'NoSys'
+        if syst_tag == 'NOMINAL':
+            syst_tag = 'NoSys'
         print 'syst tag: ', syst_tag
 
         bkg_optimize_tree_dict['ttbar_%s' % syst_tag] = constructPathList(['%s/BMinusL.*117050.PowhegPythia_P2011C_ttbar.af2*.ntup.root' % opt_ntup_dir])
@@ -239,37 +240,37 @@ def main():
                                                                             , '%s/BMinusL.*180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter*.ntup.root' % opt_ntup_dir
                                                                             ]
                                                                           )
-        bkg_optimize_tree_dict['Diboson_%s' % syst_tag] = constructPathList( [ "%s/BMinusL.*177997.Sherpa_CT10_llnunu_WW_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*177999.Sherpa_CT10_llnunu_ZZ_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*179974.Sherpa_CT10_lllnu_WZ_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*179975.Sherpa_CT10_lnununu_WZ_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183585.Sherpa_CT10_ZWtoeeqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183586.Sherpa_CT10_ZZtoeeqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183587.Sherpa_CT10_ZWtomumuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183588.Sherpa_CT10_ZZtomumuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183589.Sherpa_CT10_ZWtotautauqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183590.Sherpa_CT10_ZZtotautauqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183591.Sherpa_CT10_ZWtonunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183592.Sherpa_CT10_ZZtonunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183734.Sherpa_CT10_WWtoenuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183735.Sherpa_CT10_WZtoenuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183736.Sherpa_CT10_WWtomunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183737.Sherpa_CT10_WZtomunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183738.Sherpa_CT10_WWtotaunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             , "%s/BMinusL.*183739.Sherpa_CT10_WZtotaunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
-                                                                             ]
-                                                                           )
-        bkg_optimize_tree_dict['Higgs_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep*.ntup.root' % opt_ntup_dir
-                                                                           , '%s/BMinusL.*161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive*.ntup.root' % opt_ntup_dir
-                                                                           ]
-                                                                         )
+        # bkg_optimize_tree_dict['Diboson_%s' % syst_tag] = constructPathList( [ "%s/BMinusL.*177997.Sherpa_CT10_llnunu_WW_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*177999.Sherpa_CT10_llnunu_ZZ_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*179974.Sherpa_CT10_lllnu_WZ_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*179975.Sherpa_CT10_lnununu_WZ_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183585.Sherpa_CT10_ZWtoeeqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183586.Sherpa_CT10_ZZtoeeqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183587.Sherpa_CT10_ZWtomumuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183588.Sherpa_CT10_ZZtomumuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183589.Sherpa_CT10_ZWtotautauqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183590.Sherpa_CT10_ZZtotautauqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183591.Sherpa_CT10_ZWtonunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183592.Sherpa_CT10_ZZtonunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183734.Sherpa_CT10_WWtoenuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183735.Sherpa_CT10_WZtoenuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183736.Sherpa_CT10_WWtomunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183737.Sherpa_CT10_WZtomunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183738.Sherpa_CT10_WWtotaunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      , "%s/BMinusL.*183739.Sherpa_CT10_WZtotaunuqq_MassiveCB*.ntup.root" % opt_ntup_dir
+        #                                                                      ]
+        #                                                                    )
+        # bkg_optimize_tree_dict['Higgs_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu*.ntup.root' % opt_ntup_dir
+        #                                                                    , '%s/BMinusL.*160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu*.ntup.root' % opt_ntup_dir
+        #                                                                    , '%s/BMinusL.*160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu*.ntup.root' % opt_ntup_dir
+        #                                                                    , '%s/BMinusL.*160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu*.ntup.root' % opt_ntup_dir
+        #                                                                    , '%s/BMinusL.*161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5*.ntup.root' % opt_ntup_dir
+        #                                                                    , '%s/BMinusL.*161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5*.ntup.root' % opt_ntup_dir
+        #                                                                    , '%s/BMinusL.*161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep*.ntup.root' % opt_ntup_dir
+        #                                                                    , '%s/BMinusL.*161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep*.ntup.root' % opt_ntup_dir
+        #                                                                    , '%s/BMinusL.*161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive*.ntup.root' % opt_ntup_dir
+        #                                                                    ]
+        #                                                                  )
 
         bkg_optimize_tree_dict['Other_%s' % syst_tag] = constructPathList( [ '%s/BMinusL.*119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW*.ntup.root' % opt_ntup_dir
                                                                            , '%s/BMinusL.*119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj*.ntup.root' % opt_ntup_dir
@@ -307,28 +308,30 @@ def main():
                                                                          )
 
         if syst_tag == 'NoSys':
-            bkg_optimize_tree_dict['data'] = constructPathList( [ '%s/BMinusL.periodA_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodA_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodB_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodB_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodC_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodC_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodD_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodD_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodE_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodE_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodG_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodG_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodH_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodH_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodI_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodI_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodJ_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodJ_muon.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodL_egamma.ntup.root' % opt_ntup_dir
-                                                                , '%s/BMinusL.periodL_muon.ntup.root' % opt_ntup_dir
+            print 'adding data to dict'
+            bkg_optimize_tree_dict['data'] = constructPathList( [ '%s/BMinusL.NOMINAL.periodA_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodB_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodC_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodD_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodE_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodG_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodH_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodI_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodJ_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodL_egamma__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodA_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodB_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodC_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodD_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodE_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodG_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodH_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodI_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodJ_muon__NOMINAL.ntup.root' % opt_ntup_dir
+                                                                , '%s/BMinusL.NOMINAL.periodL_muon__NOMINAL.ntup.root' % opt_ntup_dir
                                                                 ]
                                                               )
+            print bkg_optimize_tree_dict
 
         sig_optimize_tree_dict['sig_100_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100*.ntup.root'  % opt_ntup_dir])
         sig_optimize_tree_dict['sig_200_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200*.ntup.root'  % opt_ntup_dir])
