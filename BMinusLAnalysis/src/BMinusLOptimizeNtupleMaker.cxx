@@ -242,14 +242,15 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   m_btag_sf_up_frac   = m_event_quantities.getBTagSFUp()  /m_event_quantities.getBTagSF();
   m_btag_sf_down_frac = m_event_quantities.getBTagSFDown()/m_event_quantities.getBTagSF();
 
-  // TODO we don't relaly want to do this every event. leave for now while looking for cleaner way to implement the branching fraction scaling ,but if this is the permanent solution :-(, make this cleaner.
+  // TODO we don't relaly want to do this every event. leave for now while looking for cleaner way to implement the branching fraction scaling, but if this is the permanent solution :-(, make this cleaner.
   if (!m_is_data) {
     unsigned int channel_number = m_mc_truth.getChannelNumber();
     m_is_signal = (  channel_number >= 202632
                   && channel_number <= 202641
                   );
-    m_flavor_channel = m_event.getFlavorChannel();
   }
+
+  m_flavor_channel = m_event.getFlavorChannel();
 
   m_is_ee = (m_event.getFlavorChannel() == FLAVOR_EE);
   m_is_mm = (m_event.getFlavorChannel() == FLAVOR_MM);
