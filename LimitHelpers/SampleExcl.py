@@ -45,7 +45,7 @@ print 'stop br t: ', stop_br_t
 # ------------------------------------------------------------------------------
 # Flags to control which fit is executed
 use_stat = True
-do_validation = False
+do_validation = True
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -123,8 +123,8 @@ configMgr.cutsDict["CR_top_mm"] = '(%s && is_mm)' % base_cr_top_str
 configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
 
 # CR_Z
-# base_cr_z_str = "is_cr_z"
-base_cr_z_str = "is_cr_z && (met_sig_signal <= 3)"
+base_cr_z_str = "is_cr_z"
+# base_cr_z_str = "is_cr_z && (met_sig_signal <= 3)"
 configMgr.cutsDict["CR_Z_all"] = base_cr_z_str
 configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
 configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
