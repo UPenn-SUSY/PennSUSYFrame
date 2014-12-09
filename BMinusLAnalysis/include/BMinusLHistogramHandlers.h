@@ -301,11 +301,19 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_lep_sf_ratio_muon_up;
       std::vector<TH1F*> m_h_lep_sf_ratio_muon_down;
 
-      std::vector<TH1F*> m_h_btag_sf_up;
-      std::vector<TH1F*> m_h_btag_sf_down;
+      std::vector<TH1F*> m_h_btag_sf_b_up;
+      std::vector<TH1F*> m_h_btag_sf_b_down;
+      std::vector<TH1F*> m_h_btag_sf_c_up;
+      std::vector<TH1F*> m_h_btag_sf_c_down;
+      std::vector<TH1F*> m_h_btag_sf_l_up;
+      std::vector<TH1F*> m_h_btag_sf_l_down;
 
-      std::vector<TH1F*> m_h_btag_sf_ratio_up;
-      std::vector<TH1F*> m_h_btag_sf_ratio_down;
+      std::vector<TH1F*> m_h_btag_sf_ratio_b_up;
+      std::vector<TH1F*> m_h_btag_sf_ratio_b_down;
+      std::vector<TH1F*> m_h_btag_sf_ratio_c_up;
+      std::vector<TH1F*> m_h_btag_sf_ratio_c_down;
+      std::vector<TH1F*> m_h_btag_sf_ratio_l_up;
+      std::vector<TH1F*> m_h_btag_sf_ratio_l_down;
   };
 
   // =============================================================================

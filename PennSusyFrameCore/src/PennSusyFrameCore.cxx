@@ -733,9 +733,13 @@ void PennSusyFrame::PennSusyFrameCore::constructObjects()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // set b tag weight
-    m_event_quantities.setBTagSF(    m_b_tag_sf_tool.getSF(        m_jets.getCollection(JET_SELECTED), m_mc_truth));
-    m_event_quantities.setBTagSFUp(  m_b_tag_sf_tool.getUncertUp(  m_jets.getCollection(JET_SELECTED), m_mc_truth));
-    m_event_quantities.setBTagSFDown(m_b_tag_sf_tool.getUncertDown(m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSF(     m_b_tag_sf_tool.getSF(         m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFBUp(  m_b_tag_sf_tool.getUncertBUp(  m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFCUp(  m_b_tag_sf_tool.getUncertCUp(  m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFLUp(  m_b_tag_sf_tool.getUncertLUp(  m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFBDown(m_b_tag_sf_tool.getUncertBDown(m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFCDown(m_b_tag_sf_tool.getUncertCDown(m_jets.getCollection(JET_SELECTED), m_mc_truth));
+    m_event_quantities.setBTagSFLDown(m_b_tag_sf_tool.getUncertLDown(m_jets.getCollection(JET_SELECTED), m_mc_truth));
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_truth_match_tool.prep(m_mc_truth);

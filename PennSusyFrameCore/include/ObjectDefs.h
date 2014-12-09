@@ -143,11 +143,14 @@ namespace PennSusyFrame
       void setLeptonSFMuonDown(   double val) { m_lepton_sf_muon_down   = val; }
       void setTriggerWeight(      double val) { m_trigger_weight        = val; }
       void setBTagSF(             double val) { m_b_tag_sf              = val; }
-      void setBTagSFUp(           double val) { m_b_tag_sf_up           = val; }
-      void setBTagSFDown(         double val) { m_b_tag_sf_down         = val; }
+      void setBTagSFBUp(          double val) { m_b_tag_sf_b_up         = val; }
+      void setBTagSFBDown(        double val) { m_b_tag_sf_b_down       = val; }
+      void setBTagSFCUp(          double val) { m_b_tag_sf_c_up         = val; }
+      void setBTagSFCDown(        double val) { m_b_tag_sf_c_down       = val; }
+      void setBTagSFLUp(          double val) { m_b_tag_sf_l_up         = val; }
+      void setBTagSFLDown(        double val) { m_b_tag_sf_l_down       = val; }
       void setCFWeight(           double val) { m_cf_weight             = val; }
       void setFakeWeight(         double val) { m_fake_weight           = val; }
-
 
       // TODO move accessors to cxx file
       double getMll()                const { return m_mll;                   }
@@ -170,8 +173,12 @@ namespace PennSusyFrame
       double getLeptonSF()           const { return m_lepton_sf;             }
       double getTriggerWeight()      const { return m_trigger_weight;        }
       double getBTagSF()             const { return m_b_tag_sf;              }
-      double getBTagSFUp()           const { return m_b_tag_sf_up;           }
-      double getBTagSFDown()         const { return m_b_tag_sf_down;         }
+      double getBTagSFBUp()          const { return m_b_tag_sf_b_up;           }
+      double getBTagSFBDown()        const { return m_b_tag_sf_b_down;         }
+      double getBTagSFCUp()          const { return m_b_tag_sf_c_up;           }
+      double getBTagSFCDown()        const { return m_b_tag_sf_c_down;         }
+      double getBTagSFLUp()          const { return m_b_tag_sf_l_up;           }
+      double getBTagSFLDown()        const { return m_b_tag_sf_l_down;         }
       double getCFWeight()           const { return m_cf_weight;             }
       double getFakeWeight()         const { return m_fake_weight;           }
 
@@ -198,8 +205,15 @@ namespace PennSusyFrame
       double m_lepton_sf_muon_down;
       double m_trigger_weight;
       double m_b_tag_sf;
-      double m_b_tag_sf_up;
-      double m_b_tag_sf_down;
+      double m_b_tag_sf_b_up;
+      double m_b_tag_sf_b_down;
+
+      double m_b_tag_sf_c_up;
+      double m_b_tag_sf_c_down;
+
+      double m_b_tag_sf_l_up;
+      double m_b_tag_sf_l_down;
+
       double m_cf_weight;
       double m_fake_weight;
 

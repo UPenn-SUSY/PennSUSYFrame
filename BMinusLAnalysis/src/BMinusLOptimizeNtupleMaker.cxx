@@ -91,8 +91,12 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::clearVariables()
 {
   m_weight = 1.;
 
-  m_btag_sf_up_frac   = 1;
-  m_btag_sf_down_frac = 1;
+  m_btag_sf_b_up_frac   = 1;
+  m_btag_sf_b_down_frac = 1;
+  m_btag_sf_c_up_frac   = 1;
+  m_btag_sf_c_down_frac = 1;
+  m_btag_sf_l_up_frac   = 1;
+  m_btag_sf_l_down_frac = 1;
 
   m_is_signal = false;
 
@@ -166,8 +170,12 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
   // connect branches for output
   m_output_tree->Branch( "weight" , &m_weight);
 
-  m_output_tree->Branch( "btag_sf_up_frac"   , &m_btag_sf_up_frac  );
-  m_output_tree->Branch( "btag_sf_down_frac" , &m_btag_sf_down_frac);
+  m_output_tree->Branch( "btag_sf_b_up_frac"   , &m_btag_sf_b_up_frac  );
+  m_output_tree->Branch( "btag_sf_b_down_frac" , &m_btag_sf_b_down_frac);
+  m_output_tree->Branch( "btag_sf_c_up_frac"   , &m_btag_sf_c_up_frac  );
+  m_output_tree->Branch( "btag_sf_c_down_frac" , &m_btag_sf_c_down_frac);
+  m_output_tree->Branch( "btag_sf_l_up_frac"   , &m_btag_sf_l_up_frac  );
+  m_output_tree->Branch( "btag_sf_l_down_frac" , &m_btag_sf_l_down_frac);
 
   m_output_tree->Branch( "is_signal" , &m_is_signal);
 
@@ -239,8 +247,12 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
 {
   m_weight = weight;
 
-  m_btag_sf_up_frac   = m_event_quantities.getBTagSFUp()  /m_event_quantities.getBTagSF();
-  m_btag_sf_down_frac = m_event_quantities.getBTagSFDown()/m_event_quantities.getBTagSF();
+  m_btag_sf_b_up_frac   = m_event_quantities.getBTagSFBUp()  /m_event_quantities.getBTagSF();
+  m_btag_sf_b_down_frac = m_event_quantities.getBTagSFBDown()/m_event_quantities.getBTagSF();
+  m_btag_sf_c_up_frac   = m_event_quantities.getBTagSFCUp()  /m_event_quantities.getBTagSF();
+  m_btag_sf_c_down_frac = m_event_quantities.getBTagSFCDown()/m_event_quantities.getBTagSF();
+  m_btag_sf_l_up_frac   = m_event_quantities.getBTagSFLUp()  /m_event_quantities.getBTagSF();
+  m_btag_sf_l_down_frac = m_event_quantities.getBTagSFLDown()/m_event_quantities.getBTagSF();
 
   // TODO we don't relaly want to do this every event. leave for now while looking for cleaner way to implement the branching fraction scaling, but if this is the permanent solution :-(, make this cleaner.
   if (!m_is_data) {

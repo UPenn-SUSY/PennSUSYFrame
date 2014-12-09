@@ -50,10 +50,16 @@ namespace PennSusyFrame
       // variables to store to optimize ntuple
       float m_weight;
 
-      float m_btag_sf_up_frac;
-      float m_btag_sf_down_frac;
+      float m_btag_sf_b_up_frac;
+      float m_btag_sf_b_down_frac;
 
-      bool  m_is_signal;
+      float m_btag_sf_c_up_frac;
+      float m_btag_sf_c_down_frac;
+
+      float m_btag_sf_l_up_frac;
+      float m_btag_sf_l_down_frac;
+
+      bool m_is_signal;
 
       int m_flavor_channel;
 

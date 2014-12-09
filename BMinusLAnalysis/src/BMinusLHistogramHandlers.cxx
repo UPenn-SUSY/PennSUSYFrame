@@ -3285,21 +3285,8 @@ PennSusyFrame::WeightHists::WeightHists(std::string name_tag)
                                             )
                                   );
 
-    m_h_btag_sf_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + "__weights__btag_sf_up"
-                                        + "__"
-                                        + name_tag
-                                        ).c_str()
-                                      , ( "btag_sf - "
-                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; weight ; Entries"
-                                        ).c_str()
-                                      , weight_bins, weight_min, weight_max
-                                      )
-                            );
-
-    m_h_btag_sf_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + "__weights__btag_sf_down"
+    m_h_btag_sf_b_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__btag_sf_b_up"
                                           + "__"
                                           + name_tag
                                           ).c_str()
@@ -3311,31 +3298,148 @@ PennSusyFrame::WeightHists::WeightHists(std::string name_tag)
                                         )
                               );
 
-    m_h_btag_sf_ratio_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + "__weights__btag_sf_ratio_up"
-                                        + "__"
-                                        + name_tag
-                                        ).c_str()
-                                      , ( "btag_sf - "
-                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; ratio ; Entries"
-                                        ).c_str()
-                                      , weight_bins, weight_min, weight_max
-                                      )
-                            );
+    m_h_btag_sf_b_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__weights__btag_sf_b_down"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "btag_sf - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; weight ; Entries"
+                                            ).c_str()
+                                          , weight_bins, weight_min, weight_max
+                                          )
+                                );
 
-    m_h_btag_sf_ratio_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + "__weights__btag_sf_ratio_down"
+    m_h_btag_sf_c_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__btag_sf_c_up"
                                           + "__"
                                           + name_tag
                                           ).c_str()
                                         , ( "btag_sf - "
                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + " ; ratio ; Entries"
+                                          + " ; weight ; Entries"
                                           ).c_str()
                                         , weight_bins, weight_min, weight_max
                                         )
                               );
+
+    m_h_btag_sf_c_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__weights__btag_sf_c_down"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "btag_sf - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; weight ; Entries"
+                                            ).c_str()
+                                          , weight_bins, weight_min, weight_max
+                                          )
+                                );
+
+    m_h_btag_sf_l_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__btag_sf_l_up"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "btag_sf - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; weight ; Entries"
+                                          ).c_str()
+                                        , weight_bins, weight_min, weight_max
+                                        )
+                              );
+
+    m_h_btag_sf_l_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__weights__btag_sf_l_down"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "btag_sf - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; weight ; Entries"
+                                            ).c_str()
+                                          , weight_bins, weight_min, weight_max
+                                          )
+                                );
+
+    m_h_btag_sf_ratio_b_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__weights__btag_sf_ratio_b_up"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "btag_sf - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; ratio ; Entries"
+                                                ).c_str()
+                                              , weight_bins, weight_min, weight_max
+                                              )
+                                    );
+
+    m_h_btag_sf_ratio_b_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__weights__btag_sf_ratio_b_down"
+                                                  + "__"
+                                                  + name_tag
+                                                  ).c_str()
+                                                , ( "btag_sf - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; ratio ; Entries"
+                                                  ).c_str()
+                                                , weight_bins, weight_min, weight_max
+                                                )
+                                      );
+
+    m_h_btag_sf_ratio_c_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__weights__btag_sf_ratio_c_up"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "btag_sf - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; ratio ; Entries"
+                                                ).c_str()
+                                              , weight_bins, weight_min, weight_max
+                                              )
+                                    );
+
+    m_h_btag_sf_ratio_c_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__weights__btag_sf_ratio_c_down"
+                                                  + "__"
+                                                  + name_tag
+                                                  ).c_str()
+                                                , ( "btag_sf - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; ratio ; Entries"
+                                                  ).c_str()
+                                                , weight_bins, weight_min, weight_max
+                                                )
+                                      );
+
+    m_h_btag_sf_ratio_l_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__weights__btag_sf_ratio_l_up"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "btag_sf - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; ratio ; Entries"
+                                                ).c_str()
+                                              , weight_bins, weight_min, weight_max
+                                              )
+                                    );
+
+    m_h_btag_sf_ratio_l_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__weights__btag_sf_ratio_l_down"
+                                                  + "__"
+                                                  + name_tag
+                                                  ).c_str()
+                                                , ( "btag_sf - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; ratio ; Entries"
+                                                  ).c_str()
+                                                , weight_bins, weight_min, weight_max
+                                                )
+                                      );
   }
 }
 
@@ -3392,11 +3496,19 @@ void PennSusyFrame::WeightHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_lep_sf_ratio_muon_up.at(    fc_it)->Fill(event_quantities.getLeptonSFMuonUp()     / event_quantities.getLeptonSF());
     m_h_lep_sf_ratio_muon_down.at(  fc_it)->Fill(event_quantities.getLeptonSFMuonDown()   / event_quantities.getLeptonSF());
 
-    m_h_btag_sf_up.at(  fc_it)->Fill(event_quantities.getBTagSFUp()  );
-    m_h_btag_sf_down.at(fc_it)->Fill(event_quantities.getBTagSFDown());
+    m_h_btag_sf_b_up.at(  fc_it)->Fill(event_quantities.getBTagSFBUp()  );
+    m_h_btag_sf_b_down.at(fc_it)->Fill(event_quantities.getBTagSFBDown());
+    m_h_btag_sf_c_up.at(  fc_it)->Fill(event_quantities.getBTagSFCUp()  );
+    m_h_btag_sf_c_down.at(fc_it)->Fill(event_quantities.getBTagSFCDown());
+    m_h_btag_sf_l_up.at(  fc_it)->Fill(event_quantities.getBTagSFLUp()  );
+    m_h_btag_sf_l_down.at(fc_it)->Fill(event_quantities.getBTagSFLDown());
 
-    m_h_btag_sf_ratio_up.at(  fc_it)->Fill(event_quantities.getBTagSFUp()   / event_quantities.getBTagSF());
-    m_h_btag_sf_ratio_down.at(fc_it)->Fill(event_quantities.getBTagSFDown() / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_b_up.at(  fc_it)->Fill(event_quantities.getBTagSFBUp()   / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_b_down.at(fc_it)->Fill(event_quantities.getBTagSFBDown() / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_c_up.at(  fc_it)->Fill(event_quantities.getBTagSFCUp()   / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_c_down.at(fc_it)->Fill(event_quantities.getBTagSFCDown() / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_l_up.at(  fc_it)->Fill(event_quantities.getBTagSFLUp()   / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_l_down.at(fc_it)->Fill(event_quantities.getBTagSFLDown() / event_quantities.getBTagSF());
   }
 }
 
@@ -3428,11 +3540,19 @@ void PennSusyFrame::WeightHists::write(TDirectory* d)
     m_h_lep_sf_ratio_muon_up.at(    fc_it)->Write();
     m_h_lep_sf_ratio_muon_down.at(  fc_it)->Write();
 
-    m_h_btag_sf_up.at(  fc_it)->Write();
-    m_h_btag_sf_down.at(fc_it)->Write();
+    m_h_btag_sf_b_up.at(  fc_it)->Write();
+    m_h_btag_sf_b_down.at(fc_it)->Write();
+    m_h_btag_sf_c_up.at(  fc_it)->Write();
+    m_h_btag_sf_c_down.at(fc_it)->Write();
+    m_h_btag_sf_l_up.at(  fc_it)->Write();
+    m_h_btag_sf_l_down.at(fc_it)->Write();
 
-    m_h_btag_sf_ratio_up.at(  fc_it)->Write();
-    m_h_btag_sf_ratio_down.at(fc_it)->Write();
+    m_h_btag_sf_ratio_b_up.at(  fc_it)->Write();
+    m_h_btag_sf_ratio_b_down.at(fc_it)->Write();
+    m_h_btag_sf_ratio_c_up.at(  fc_it)->Write();
+    m_h_btag_sf_ratio_c_down.at(fc_it)->Write();
+    m_h_btag_sf_ratio_l_up.at(  fc_it)->Write();
+    m_h_btag_sf_ratio_l_down.at(fc_it)->Write();
   }
 }
 
