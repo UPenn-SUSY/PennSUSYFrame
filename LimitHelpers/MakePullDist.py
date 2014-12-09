@@ -14,9 +14,10 @@ def myGetSampleColor(sample):
     if sample == "ttbar":     return ROOT.kGreen+2
     if sample == "SingleTop": return ROOT.kGreen-1
     if sample == "ZGamma":    return ROOT.kRed+1
-    if sample == "ttV":       return ROOT.kAzure+8
-    if sample == "Diboson":   return ROOT.kSpring-4
-    if sample == "Higgs":     return ROOT.kOrange-5
+    if sample == "Other":       return ROOT.kAzure+8
+    # if sample == "ttV":       return ROOT.kAzure+8
+    # if sample == "Diboson":   return ROOT.kSpring-4
+    # if sample == "Higgs":     return ROOT.kOrange-5
     return ROOT.kBlack
 pullPlotUtils.getSampleColor = myGetSampleColor
 
@@ -48,7 +49,8 @@ rename_dict = { 'CR_top_all_mbl_0':'CR Top'
               }
 
 # ------------------------------------------------------------------------------
-sample_string = 'ttbar,ZGamma,SingleTop,ttV,Diboson,Higgs'
+# sample_string = 'ttbar,ZGamma,SingleTop,ttV,Diboson,Higgs'
+sample_string = 'ttbar,ZGamma,SingleTop,Other'
 
 # ------------------------------------------------------------------------------
 def renamePulls(tag):
