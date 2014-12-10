@@ -45,7 +45,7 @@ print 'stop br t: ', stop_br_t
 # ------------------------------------------------------------------------------
 # Flags to control which fit is executed
 use_stat = True
-do_validation = True
+do_validation = False
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -96,6 +96,7 @@ sig_files = []
 if configMgr.readFromTree:
     print 'reading from trees!'
     data_files.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
+    # the below samples are artificial data for validation purposes
     # data_files.append("${BASE_WORK_DIR}/HistFitterNtuples/ArtificialData.ttbar_1.ZGamma_1.root")
     # data_files.append("${BASE_WORK_DIR}/HistFitterNtuples/ArtificialData.ttbar_5.ZGamma_1.root")
     bkg_files.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
@@ -164,12 +165,30 @@ configMgr.nomName = "_NoSys"
 
 # ------------------------------------------------------------------------------
 # List of systematics
-jes_uncert = Systematic(name = "JES",
-                        nominal = '_NoSys',
-                        high = '_JES_UP',
-                        low = '_JES_DOWN',
-                        type = 'tree',
-                        method = 'overallSys')
+# jes_uncert_names = ['JES']
+jes_uncert_names = ['EFFECTIVE_NP_1',
+                    'EFFECTIVE_NP_2',
+                    'EFFECTIVE_NP_3',
+                    'EFFECTIVE_NP_4',
+                    'EFFECTIVE_NP_5',
+                    'EFFECTIVE_NP_6',
+                    'ETA_INTERCALIBRATION_MODELLING',
+                    'ETA_INTERCALIBRATION_STATAND_METHOD',
+                    'SINGLE_PARTICLE_HIGH_PT',
+                    'PILE_UP_OFFSET_TERM_MU',
+                    'PILE_UP_OFFSET_TERM_NPV',
+                    'PILE_UP_PT_TERM',
+                    'PILE_UP_RHO_TOPOLOGY',
+                    'FLAVOR_COMP_UNCERT',
+                    'FLAVOR_RESPONSE_UNCERT',
+                    'BJES']
+jes_uncert_list = [Systematic(name = syst,
+                              nominal = '_NoSys',
+                              high = ''.join(['_', syst, '_UP']),
+                              low = ''.join(['_', syst, '_DOWN']),
+                              type = 'tree',
+                              method = 'overallSys') for syst in jes_uncert_names]
+
 jer_uncert = Systematic(name = 'JER',
                         nominal = '_NoSys',
                         high = '_JER',
@@ -177,19 +196,21 @@ jer_uncert = Systematic(name = 'JER',
                         type = 'tree',
                         method = 'normHistoSysOneSide')
 
-btag_sf_uncert_bkg = Systematic(name = 'btag_sf_bkg',
-                                nominal = nominal_weight_bkg,
-                                high = [nominal_weight_bkg, 'btag_sf_down_frac'],
-                                low = [nominal_weight_bkg, 'btag_sf_up_frac'],
-                                type = 'weight',
-                                method = 'overallSys')
-btag_sf_uncert_sig = Systematic(name = 'btag_sf_sig',
-                                nominal = nominal_weight_sig,
-                                high = [nominal_weight_sig, 'btag_sf_down_frac'],
-                                low = [nominal_weight_sig, 'btag_sf_up_frac'],
-                                type = 'weight',
-                                method = 'overallSys')
-
+btag_sf_uncert_names = ['btag_sf']
+btag_sf_uncert_bkg_list = [Systematic(name = '_'.join([syst, 'bkg']),
+                                      nominal = nominal_weight_bkg,
+                                      high = [nominal_weight_bkg, '_'.join([syst, 'up', 'frac'])],
+                                      low = [nominal_weight_bkg, '_'.join([syst, 'down', 'frac'])],
+                                      type = 'weight',
+                                      method = 'overallSys')
+                           for syst in btag_sf_uncert_names]
+btag_sf_uncert_sig_list = [Systematic(name = '_'.join([syst, 'sig']),
+                                      nominal = nominal_weight_sig,
+                                      high = [nominal_weight_sig, '_'.join([syst, 'up', 'frac'])],
+                                      low = [nominal_weight_sig, '_'.join([syst, 'down', 'frac'])],
+                                      type = 'weight',
+                                      method = 'overallSys')
+                           for syst in btag_sf_uncert_names]
 
 # --------------------------------------------
 # - List of samples and their plotting colours
@@ -278,10 +299,9 @@ def addSystematic(sample_list, syst_list):
 
 # background systematics
 addSystematic(sample_list_bkg,
-              [btag_sf_uncert_bkg,
-               jes_uncert,
-               jer_uncert])
-
+              (btag_sf_uncert_bkg_list +
+               jes_uncert_list +
+               [jer_uncert]))
 
 # ------------------------------------------------------------------------------
 # Configure the background only fit
@@ -297,7 +317,6 @@ meas = background_config.addMeasurement(name = "NormalMeasurement",
                                         lumi = 1.0,
                                         lumiErr = 0.039)
 meas.addPOI("mu_SIG")
-
 
 # ------------------------------------------------------------------------------
 def addChannel(config, expression, name, binning):
@@ -398,7 +417,6 @@ if do_validation:
                                           binning.flavor_channel))
 
             if not flavor_channel == 'all':
-            # if flavor_channel == 'all':
                 vr_list.append(addChannel(background_config,
                                           'mbl_0',
                                           this_vr_name,
@@ -474,9 +492,9 @@ if myFitType == FitType.Exclusion:
         sig_sample.weights = [nominal_weight_sig]
 
         addSystematic([sig_sample],
-                      [btag_sf_uncert_sig,
-                       jes_uncert,
-                       jer_uncert])
+                      (btag_sf_uncert_sig_list +
+                      jes_uncert_list +
+                      [jer_uncert]))
 
         exclusion_sr_config.addSamples(sig_sample)
         exclusion_sr_config.setSignalSample(sig_sample)
