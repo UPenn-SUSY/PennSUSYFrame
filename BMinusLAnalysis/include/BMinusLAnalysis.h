@@ -63,7 +63,6 @@ namespace PennSusyFrame
 
                                                    , "BMINUSL_SR_TIGHT_MBL_ASYM"
                                                    , "BMINUSL_SR_MINUS_HT_TIGHT_MBL_ASYM"
-                                                   , "BMINUSL_SR_MINUS_MBL_ASYM_TIGHT_MBL_ASYM"
                                                    , "BMINUSL_SR_MINUS_Z_VETO_TIGHT_MBL_ASYM"
                                                    , "BMINUSL_CR_TOP_TIGHT_MBL_ASYM"
                                                    , "BMINUSL_CR_Z_TIGHT_MBL_ASYM"
