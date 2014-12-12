@@ -157,7 +157,8 @@ void PennSusyFrame::BMinusLAnalysis::beginRun()
   }
 
   for (unsigned int hist_level = 0; hist_level != BMINUSL_HIST_N; ++hist_level) {
-    std::cout << "creating histograms with hist level: " << hist_level << " -- " << PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level] << "\n";
+    std::cout << "creating histograms with hist level: " << hist_level
+              << " -- " << PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level] << "\n";
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::HistogramHandler(     PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::EventLevelHists(      PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
     m_histogram_handlers.at(hist_level).push_back( new PennSusyFrame::LeptonKinematicsHists(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level]) );
@@ -551,6 +552,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
   bool ht_ge_700     = (ht       >= 700.0 );
   bool ht_ge_500     = (ht       >= 500.0 );
   bool mbl_le_4      = (mbl_asym <= 0.40   );
+  bool mbl_le_2      = (mbl_asym <= 0.20   );
   bool met_sig_ge_4  = (met_sig  >= 4.     );
 
   // -------------------------------------------------------------------------
@@ -586,6 +588,29 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                       , m_event_weight
                       );
     }
+
+    // signal region cuts (right mbl asym)
+    if (m_pass_z_veto && ht_ge_1100 && mbl_le_2) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_TIGHT_MBL_ASYM
+                      , m_bl_0
+                      , m_bl_1
+                      , m_event_weight
+                      );
+    }
+    if (m_pass_z_veto && mbl_le_2) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_HT_TIGHT_MBL_ASYM
+                      , m_bl_0
+                      , m_bl_1
+                      , m_event_weight
+                      );
+    }
+    if (ht_ge_1100 && mbl_le_2) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_Z_VETO_TIGHT_MBL_ASYM
+                      , m_bl_0
+                      , m_bl_1
+                      , m_event_weight
+                      );
+    }
   }
 
   // -------------------------------------------------------------------------
@@ -610,8 +635,16 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
   }
 
   // VR 1 region cuts
-  if (m_pass_z_veto && ht_ge_500 && !ht_ge_700 && mbl_le_4 && met_sig_ge_4) {
+  if (m_pass_z_veto && !ht_ge_500 && !mbl_le_4) {
     fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
+
+  if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_2
                     , m_bl_0
                     , m_bl_1
                     , m_event_weight
@@ -635,6 +668,60 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                     , m_event_weight
                     );
   }
+
+
+  // CR top region cuts
+  if (m_pass_z_veto && !ht_ge_500 && mbl_le_2 && met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_TIGHT_MBL_ASYM
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
+
+  // CR Z region cuts
+  if (!m_pass_z_veto && !ht_ge_500 && mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_TIGHT_MBL_ASYM
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
+
+  // VR 1 region cuts
+  if (m_pass_z_veto && !ht_ge_500 && !mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1_TIGHT_MBL_ASYM
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
+
+  if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_2_TIGHT_MBL_ASYM
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
+
+  // VR 3 region cuts
+  if (m_pass_z_veto && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_3_TIGHT_MBL_ASYM
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
+
+  // VR 5 region cuts
+  if (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_5_TIGHT_MBL_ASYM
+                    , m_bl_0
+                    , m_bl_1
+                    , m_event_weight
+                    );
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -651,7 +738,8 @@ void PennSusyFrame::BMinusLAnalysis::finalizeRun()
       ; hist_level != BMINUSL_HIST_N
       ; ++hist_level
       ) {
-    TDirectory* hist_dir_cut_level = out_hist_file.mkdir(PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level].c_str());
+    TDirectory* hist_dir_cut_level = out_hist_file.mkdir(
+        PennSusyFrame::BMINUSL_HIST_LEVEL_STRINGS[hist_level].c_str());
 
     size_t num_hists = m_histogram_handlers.at(hist_level).size();
     for (size_t hist_it = 0; hist_it != num_hists; ++hist_it) {
