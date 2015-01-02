@@ -36,7 +36,7 @@ class EntryContainer(object):
         self.input_file_list = input_file_list
 
         self.file_list = [ ROOT.TFile(ifl) for ifl in self.input_file_list ]
-        print self.file_list
+        # print self.file_list
 
         self.hist_info = hh.Objects.HistInfo( self.label
                                             , fill_color = self.fill_color
@@ -121,12 +121,12 @@ class InputContainer(object):
                      , dir_name
                      , hist_name
                      ):
-        print 'Creating HistMerger object for:'
-        print '\tName:      %s' % self.name
-        print '\tDirectory: %s' % dir_name
-        print '\tHist:      %s' % hist_name
+        # print 'Creating HistMerger object for:'
+        # print '\tName:      %s' % self.name
+        # print '\tDirectory: %s' % dir_name
+        # print '\tHist:      %s' % hist_name
 
-        print 'getting HistHandle objects'
+        # print 'getting HistHandle objects'
         hist_handle_dict = {}
         hist_handle_key_list = []
         for e in self.entries:
@@ -154,7 +154,6 @@ def getListOfFiles(input_container_list = []):
     for icl in input_container_list:
         for e in icl.entries:
             for fl in e.file_list:
-                print fl
                 file_list.append(fl)
 
     # I think this is the same as above, but test before uncommenting
