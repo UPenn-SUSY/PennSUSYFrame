@@ -13,6 +13,10 @@ static const int   mll_bins = 50;
 static const float mll_min  = 0.;
 static const float mll_max  = 1000.;
 
+static const int   mll_detailed_bins = 30;
+static const float mll_detailed_min  = 60.;
+static const float mll_detailed_max  = 120.;
+
 static const int   mbb_bins = 50;
 static const float mbb_min  = 0.;
 static const float mbb_max  = 1000.;
@@ -201,6 +205,21 @@ PennSusyFrame::EventLevelHists::EventLevelHists(std::string name_tag)
                                )
                      );
 
+    m_h_mll_detailed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__mll_detailed"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "m_{ll} - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; m_{ll} [GeV] ; Entries"
+                                          ).c_str()
+                                        , mll_detailed_bins
+                                        , mll_detailed_min
+                                        , mll_detailed_max
+                                        )
+                              );
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mbb histograms
     m_h_mbb.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -368,16 +387,17 @@ void PennSusyFrame::EventLevelHists::Fill( const PennSusyFrame::Event& event
 
     m_h_flavor_channel.at(fc_it)->Fill(fc, weight);
 
-    m_h_mll.at(fc_it)->Fill(        mll        , weight);
-    m_h_mbb.at(fc_it)->Fill(        mbb        , weight);
-    m_h_mt2.at(fc_it)->Fill(        mt2        , weight);
-    m_h_ptll.at(fc_it)->Fill(       ptll       , weight);
-    m_h_ptbb.at(fc_it)->Fill(       ptbb       , weight);
-    m_h_ht_all.at(fc_it)->Fill(     ht_all     , weight);
-    m_h_ht_baseline.at(fc_it)->Fill(ht_baseline, weight);
-    m_h_ht_good.at(fc_it)->Fill(    ht_good    , weight);
-    m_h_ht_signal.at(fc_it)->Fill(  ht_signal  , weight);
-    m_h_npv.at(fc_it)->Fill(        npv        , weight);
+    m_h_mll.at(fc_it)->Fill(         mll        , weight);
+    m_h_mll_detailed.at(fc_it)->Fill(mll        , weight);
+    m_h_mbb.at(fc_it)->Fill(         mbb        , weight);
+    m_h_mt2.at(fc_it)->Fill(         mt2        , weight);
+    m_h_ptll.at(fc_it)->Fill(        ptll       , weight);
+    m_h_ptbb.at(fc_it)->Fill(        ptbb       , weight);
+    m_h_ht_all.at(fc_it)->Fill(      ht_all     , weight);
+    m_h_ht_baseline.at(fc_it)->Fill( ht_baseline, weight);
+    m_h_ht_good.at(fc_it)->Fill(     ht_good    , weight);
+    m_h_ht_signal.at(fc_it)->Fill(   ht_signal  , weight);
+    m_h_npv.at(fc_it)->Fill(         npv        , weight);
   }
 }
 
@@ -393,6 +413,7 @@ void PennSusyFrame::EventLevelHists::write(TDirectory* d)
 
     // write mll histograms
     m_h_mll.at(fc_it)->Write();
+    m_h_mll_detailed.at(fc_it)->Write();
 
     // write mbb histograms
     m_h_mbb.at(fc_it)->Write();
