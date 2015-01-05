@@ -17,58 +17,60 @@ namespace PennSusyFrame
   enum BMINUSL_LOOSE_HIST_LEVELS { BMINUSL_LLJJ_HIST_BL_PAIRING
                                  , BMINUSL_LLJJ_HIST_Z_VETO
 
-                                 , BMINUSL_LLJJ_HIST_SR
+                                 , BMINUSL_LLJJ_HIST_SR_1
+                                 , BMINUSL_LLJJ_HIST_SR_2
+
                                  , BMINUSL_LLJJ_HIST_CR_TOP
                                  , BMINUSL_LLJJ_HIST_CR_Z
-                                 , BMINUSL_LLJJ_HIST_VR_1
-                                 , BMINUSL_LLJJ_HIST_VR_2
-                                 , BMINUSL_LLJJ_HIST_VR_3
-                                 , BMINUSL_LLJJ_HIST_VR_4
-                                 , BMINUSL_LLJJ_HIST_VR_5
-                                 , BMINUSL_LLJJ_HIST_VR_6
-                                 , BMINUSL_LLJJ_HIST_VR_7
+
+                                 , BMINUSL_LLJJ_HIST_VR_TOP_1
+                                 , BMINUSL_LLJJ_HIST_VR_TOP_2
+                                 , BMINUSL_LLJJ_HIST_VR_TOP_3
+                                 , BMINUSL_LLJJ_HIST_VR_Z
 
                                  , BMINUSL_LLBJ_HIST_BL_PAIRING
                                  , BMINUSL_LLBJ_HIST_Z_VETO
-                                 , BMINUSL_LLBJ_HIST_SR
+                                 , BMINUSL_LLBJ_HIST_SR_1
+                                 , BMINUSL_LLBJ_HIST_SR_2
+
                                  , BMINUSL_LLBJ_HIST_CR_TOP
                                  , BMINUSL_LLBJ_HIST_CR_Z
-                                 , BMINUSL_LLBJ_HIST_VR_1
-                                 , BMINUSL_LLBJ_HIST_VR_2
-                                 , BMINUSL_LLBJ_HIST_VR_3
-                                 , BMINUSL_LLBJ_HIST_VR_4
-                                 , BMINUSL_LLBJ_HIST_VR_5
-                                 , BMINUSL_LLBJ_HIST_VR_6
-                                 , BMINUSL_LLBJ_HIST_VR_7
+
+                                 , BMINUSL_LLBJ_HIST_VR_TOP_1
+                                 , BMINUSL_LLBJ_HIST_VR_TOP_2
+                                 , BMINUSL_LLBJ_HIST_VR_TOP_3
+                                 , BMINUSL_LLBJ_HIST_VR_Z
 
                                  , BMINUSL_LOOSE_HIST_N
                                  };
 
   const std::string BMINUSL_LOOSE_HIST_LEVEL_STRINGS[] = { "BMINUSL_LLJJ_BL_PAIRING"
                                                          , "BMINUSL_LLJJ_ZVETO"
-                                                         , "BMINUSL_LLJJ_HIST_SR"
+
+                                                         , "BMINUSL_LLJJ_HIST_SR_1"
+                                                         , "BMINUSL_LLJJ_HIST_SR_2"
+
                                                          , "BMINUSL_LLJJ_HIST_CR_TOP"
                                                          , "BMINUSL_LLJJ_HIST_CR_Z"
-                                                         , "BMINUSL_LLJJ_HIST_VR_1"
-                                                         , "BMINUSL_LLJJ_HIST_VR_2"
-                                                         , "BMINUSL_LLJJ_HIST_VR_3"
-                                                         , "BMINUSL_LLJJ_HIST_VR_4"
-                                                         , "BMINUSL_LLJJ_HIST_VR_5"
-                                                         , "BMINUSL_LLJJ_HIST_VR_6"
-                                                         , "BMINUSL_LLJJ_HIST_VR_7"
+
+                                                         , "BMINUSL_LLJJ_HIST_VR_TOP_1"
+                                                         , "BMINUSL_LLJJ_HIST_VR_TOP_2"
+                                                         , "BMINUSL_LLJJ_HIST_VR_TOP_3"
+                                                         , "BMINUSL_LLJJ_HIST_VR_Z"
 
                                                          , "BMINUSL_LLBJ_BL_PAIRING"
                                                          , "BMINUSL_LLBJ_ZVETO"
-                                                         , "BMINUSL_LLBJ_HIST_SR"
+
+                                                         , "BMINUSL_LLBJ_HIST_SR_1"
+                                                         , "BMINUSL_LLBJ_HIST_SR_2"
+
                                                          , "BMINUSL_LLBJ_HIST_CR_TOP"
                                                          , "BMINUSL_LLBJ_HIST_CR_Z"
-                                                         , "BMINUSL_LLBJ_HIST_VR_1"
-                                                         , "BMINUSL_LLBJ_HIST_VR_2"
-                                                         , "BMINUSL_LLBJ_HIST_VR_3"
-                                                         , "BMINUSL_LLBJ_HIST_VR_4"
-                                                         , "BMINUSL_LLBJ_HIST_VR_5"
-                                                         , "BMINUSL_LLBJ_HIST_VR_6"
-                                                         , "BMINUSL_LLBJ_HIST_VR_7"
+
+                                                         , "BMINUSL_LLBJ_HIST_VR_TOP_1"
+                                                         , "BMINUSL_LLBJ_HIST_VR_TOP_2"
+                                                         , "BMINUSL_LLBJ_HIST_VR_TOP_3"
+                                                         , "BMINUSL_LLBJ_HIST_VR_Z"
 
                                                          , "BMINUSL_LOOSE_N"
                                                          };

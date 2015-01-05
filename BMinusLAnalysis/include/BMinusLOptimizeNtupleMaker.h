@@ -67,16 +67,14 @@ namespace PennSusyFrame
       bool m_is_mm;
       bool m_is_em;
 
-      bool m_is_sr;
+      bool m_is_sr_1;
+      bool m_is_sr_2;
       bool m_is_cr_top;
       bool m_is_cr_z;
-      bool m_is_vr_1;
-      bool m_is_vr_2;
-      bool m_is_vr_3;
-      bool m_is_vr_4;
-      bool m_is_vr_5;
-      bool m_is_vr_6;
-      bool m_is_vr_7;
+      bool m_is_vr_top_1;
+      bool m_is_vr_top_2;
+      bool m_is_vr_top_3;
+      bool m_is_vr_z;
 
       float m_mbl_0;
       float m_mbl_1;
