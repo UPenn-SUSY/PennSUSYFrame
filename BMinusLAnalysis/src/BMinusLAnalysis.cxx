@@ -81,7 +81,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
   std::string base_dir = getenv("BASE_WORK_DIR");
   if (m_is_data) {
     m_grl.init( base_dir
-              + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
+              // + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
+              + "/data/data12_8TeV.periodAllYear_DetStatus-v61-pro14-02_DQDefects-00-01-00_PHYS_StandardGRL_All_Good.xml"
               );
   }
 
@@ -983,12 +984,17 @@ bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
 {
   FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
 
+  // ee flavor channel
   if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vhi_medium1()) return true;
+
+  // mumu flavor channel
   if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu24i_tight())    return true;
-  // if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu36_tight())     return true;
+  if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu36_tight())     return true;
+
+  // emu flavor channel
   if (flavor_channel == FLAVOR_EM && m_trigger.getEF_e24vhi_medium1()) return true;
   if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu24i_tight())    return true;
-  // if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu36_tight())     return true;
+  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu36_tight())     return true;
 
   return false;
 }
