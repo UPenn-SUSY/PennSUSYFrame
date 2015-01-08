@@ -12,7 +12,7 @@ def main():
     ROOT.gROOT.SetBatch()
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    hist_dir = '${BASE_WORK_DIR}/NextPlotDir.BMinusL.LooseJets'
+    hist_dif = '${BASE_WORK_DIR}/NextPlotDir.BMinusL.LooseJets.NOMINAL'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # construct EntryContainer objects
