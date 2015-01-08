@@ -16,15 +16,20 @@ def constructFileList(hist_dir, sample_list, syst_tag):
             for sample in sample_list]
 
 # ------------------------------------------------------------------------------
-def generateEntryContainers(syst_tag = 'NOMINAL'):
+def generateEntryContainers( syst_tag = 'NOMINAL'
+                           , hist_dir_mc   = None
+                           , hist_dir_data = None
+                           ):
     # construct histogram dir
-    hist_dir_data = '${BASE_WORK_DIR}/NextPlotDir.BMinusL.NOMINAL'
-    hist_dir = ''.join(['${BASE_WORK_DIR}/NextPlotDir.BMinusL.', syst_tag])
+    if hist_dir_mc is None:
+        hist_dir_mc = ''.join(['${BASE_WORK_DIR}/NextPlotDir.BMinusL.', syst_tag])
+    if hist_dir_data is None:
+        hist_dir_data = ''.join(['${BASE_WORK_DIR}/NextPlotDir.BMinusL.', syst_tag])
 
     # dummy container
     ec_dummy = hh.Container.EntryContainer( label = 'dummy'
                                           , fill_color = ROOT.kBlack
-                                          , input_file_list = constructFileList( hist_dir = hist_dir
+                                          , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                , syst_tag = None
                                                                                , sample_list = ['dummy_hists']
                                                                                )
@@ -64,14 +69,14 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
     # ttbar
     # ec_ttbar_mcatnlo = hh.Container.EntryContainer(  label = 'ttbar'
     #                                               , fill_color = ROOT.kGreen+2
-    #                                               , input_file_list = constructFileList( hist_dir = hist_dir
+    #                                               , input_file_list = constructFileList( hist_dir = hist_dir_mc
     #                                                                                    , syst_tag = syst_tag
     #                                                                                    , sample_list = ['105200.McAtNloJimmy_CT10_ttbar_LeptonFilter']
     #                                                                                    )
     #                                               )
     ec_ttbar_powheg = hh.Container.EntryContainer( label = 'ttbar'
                                                  , fill_color = ROOT.kGreen+2
-                                                 , input_file_list = constructFileList( hist_dir = hist_dir
+                                                 , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                       , syst_tag = syst_tag
                                                                                       , sample_list = ["117050.PowhegPythia_P2011C_ttbar.af2"]
                                                                                       )
@@ -82,7 +87,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
     # # zbb
     # ec_Zbb_alpgen = hh.Container.EntryContainer( label = 'Zbb'
     #                                            , fill_color = ROOT.kRed+1
-    #                                            , input_file_list = constructFileList( hist_dir = hist_dir
+    #                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
     #                                                                                 , syst_tag = syst_tag
     #                                                                                 , sample_list = [ "200332.AlpgenPythia_Auto_P2011C_ZeebbNp0"
     #                                                                                                 , "200333.AlpgenPythia_Auto_P2011C_ZeebbNp1"
@@ -104,7 +109,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
     # Zgamma
     ec_Zgamma_sherpa = hh.Container.EntryContainer( label = 'Z/#gamma^{*}'
                                                   , fill_color = ROOT.kRed+1
-                                                  , input_file_list =  constructFileList( hist_dir = hist_dir
+                                                  , input_file_list =  constructFileList( hist_dir = hist_dir_mc
                                                                                         , syst_tag = syst_tag
                                                                                         , sample_list = [
                                                                                                         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -190,7 +195,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
     # single top
     ec_single_top_all_channels = hh.Container.EntryContainer( label = 'Single top'
                                                             , fill_color = ROOT.kGreen-1
-                                                            , input_file_list = constructFileList( hist_dir = hist_dir
+                                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                                  , syst_tag = syst_tag
                                                                                                  , sample_list = [ "110141.PowhegPythia_P2011C_st_Wtchan_dilepton_DR"
                                                                                                                  , "110119.PowhegPythia_P2011C_st_schan_lep"
@@ -203,7 +208,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
     # other
     ec_other = hh.Container.EntryContainer( label = 'Other'
                                           , fill_color = ROOT.kAzure+8
-                                          , input_file_list = constructFileList( hist_dir = hist_dir
+                                          , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                , syst_tag = syst_tag
                                                                                , sample_list = [ '119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW'
                                                                                                , '119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj'
@@ -245,7 +250,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
     # ttV
     ec_ttv = hh.Container.EntryContainer( label = 'ttV'
                                         , fill_color = ROOT.kAzure+8
-                                        , input_file_list = constructFileList( hist_dir = hist_dir
+                                        , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                              , syst_tag = syst_tag
                                                                              , sample_list = [ '119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW'
                                                                                              , '119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj'
@@ -260,7 +265,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
     # diboson
     ec_diboson = hh.Container.EntryContainer( label = 'Diboson'
                                             , fill_color = ROOT.kSpring-4
-                                            , input_file_list = constructFileList( hist_dir = hist_dir
+                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                  , syst_tag = syst_tag
                                                                                  , sample_list = [ "177997.Sherpa_CT10_llnunu_WW_MassiveCB"
                                                                                                  , "177999.Sherpa_CT10_llnunu_ZZ_MassiveCB"
@@ -288,7 +293,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
     # higgs
     ec_higgs = hh.Container.EntryContainer( label = 'higgs'
                                           , fill_color = ROOT.kOrange-5
-                                          , input_file_list = constructFileList( hist_dir = hist_dir
+                                          , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                , syst_tag = syst_tag
                                                                                , sample_list = [ '160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'
                                                                                                , '160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'
@@ -309,7 +314,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kMagenta
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100"
                                                                                                 ]
@@ -319,7 +324,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200"
                                                                                                 ]
@@ -329,7 +334,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300"
                                                                                                 ]
@@ -339,7 +344,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kTeal-2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400"
                                                                                                 ]
@@ -349,7 +354,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kBlue+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500"
                                                                                                 ]
@@ -359,7 +364,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kOrange-3
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600"
                                                                                                 ]
@@ -369,7 +374,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kYellow-2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700"
                                                                                                 ]
@@ -379,7 +384,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kMagenta
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800"
                                                                                                 ]
@@ -389,7 +394,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kMagenta+4
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900"
                                                                                                 ]
@@ -399,7 +404,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                            , line_color = ROOT.kCyan+2
                                            , line_width = 4
                                            # , line_style = 4
-                                           , input_file_list = constructFileList( hist_dir = hist_dir
+                                           , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000"
                                                                                                 ]
