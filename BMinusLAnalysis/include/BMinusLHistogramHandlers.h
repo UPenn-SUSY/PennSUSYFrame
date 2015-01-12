@@ -124,7 +124,7 @@ namespace PennSusyFrame
                               , const PennSusyFrame::blPair&
                               , const PennSusyFrame::MCTruth&
                               , PennSusyFrame::TruthMatchTool&
-			      , PennSusyFrame::Trigger m_trigger
+                              , PennSusyFrame::Trigger m_trigger
                               , float weight
                               );
       virtual void write(TDirectory*);
@@ -139,7 +139,6 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
-
       // dR between jet and b quark which is matched to jet
       std::vector<TH2F*> m_h_lep_pt_v_flavor_channel;
       std::vector<TH2F*> m_h_el_pt_v_flavor_channel;

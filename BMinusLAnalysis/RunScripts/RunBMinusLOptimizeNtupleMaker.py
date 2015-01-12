@@ -169,9 +169,9 @@ def runBMinusLOptimizeNtupleMaker( file_list
     out_ntup_file_name = '%s/BMinusL.' % out_dir
 
     if syst_struct:
-        if syst_struct.do_jer     : out_hist_file_name += 'jer.'
-        if syst_struct.do_jes_up  : out_hist_file_name += 'jes_up.'
-        if syst_struct.do_jes_down: out_hist_file_name += 'jes_down.'
+        if syst_struct.do_jer     : out_ntup_file_name += 'jer.'
+        if syst_struct.do_jes_up  : out_ntup_file_name += 'jes_up.'
+        if syst_struct.do_jes_down: out_ntup_file_name += 'jes_down.'
 
     if out_file_special_name is not None:
         out_ntup_file_name += '%s.' % out_file_special_name
@@ -209,6 +209,9 @@ def runBMinusLOptimizeNtupleMaker( file_list
     bmlonm.setMuPtCut(  lep_pt_cut, -1     )
     bmlonm.setBJetPtCut(jet_pt_cut, -1     )
     bmlonm.setMV1Cut(btag_working_point)
+
+    # Turn on/off Z fudge factor
+    bmlonm.setDoZKFactor(True)
 
     # prepare tools and run analysis loop
     print 'preparing tools'

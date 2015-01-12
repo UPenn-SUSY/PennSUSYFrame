@@ -206,9 +206,9 @@ def runBMinusLAnalysis( file_list
 
     # Set cut values
     # print 'set cuts'
-    bmla.setElPtCut(  lep_pt_cut, -1     )
-    bmla.setMuPtCut(  lep_pt_cut, -1     )
-    bmla.setBJetPtCut(jet_pt_cut, -1     )
+    bmla.setElPtCut(  lep_pt_cut, -1 )
+    bmla.setMuPtCut(  lep_pt_cut, -1 )
+    bmla.setBJetPtCut(jet_pt_cut, -1 )
     bmla.setMV1Cut(btag_working_point)
 
     # Turn on/off Z fudge factor

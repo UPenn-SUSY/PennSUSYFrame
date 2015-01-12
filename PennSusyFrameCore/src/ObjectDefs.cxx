@@ -170,43 +170,45 @@ void PennSusyFrame::Trigger::init() {}
 // -----------------------------------------------------------------------------
 void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
 {
-  setEF_2e12Tvh_loose1(             reader->EF_2e12Tvh_loose1);
-  setEF_2mu13(                      reader->EF_2mu13);
-  setEF_e12Tvh_medium1_mu8(         reader->EF_e12Tvh_medium1_mu8);
-  setEF_e24vh_medium1_e7_medium1(   reader->EF_e24vh_medium1_e7_medium1);
-  setEF_mu18_tight_e7_medium1(      reader->EF_mu18_tight_e7_medium1);
-  setEF_mu18_tight_mu8_EFFS(        reader->EF_mu18_tight_mu8_EFFS);
-  setEF_mu24i_tight(                reader->EF_mu24i_tight);
-  setEF_mu36_tight(                 reader->EF_mu36_tight);
-  setEF_mu24_tight_mu6_EFFS(        reader->EF_mu24_tight_mu6_EFFS);
-  setEF_e24vhi_medium1(             reader->EF_e24vhi_medium1);
-  //  setEF_e60_medium1(                reader->EF_e60_medium1);
-  //  setEF_mu40_MSonly_barrel_tight(   reader->EF_mu40_MSonly_barrel_tight);
+  setEF_2e12Tvh_loose1(           reader->EF_2e12Tvh_loose1);
+  setEF_2mu13(                    reader->EF_2mu13);
+  setEF_e12Tvh_medium1_mu8(       reader->EF_e12Tvh_medium1_mu8);
+  setEF_e24vh_medium1_e7_medium1( reader->EF_e24vh_medium1_e7_medium1);
+  setEF_mu18_tight_e7_medium1(    reader->EF_mu18_tight_e7_medium1);
+  setEF_mu18_tight_mu8_EFFS(      reader->EF_mu18_tight_mu8_EFFS);
+  setEF_mu24i_tight(              reader->EF_mu24i_tight);
+  setEF_mu36_tight(               reader->EF_mu36_tight);
+  setEF_mu24_tight_mu6_EFFS(      reader->EF_mu24_tight_mu6_EFFS);
+  setEF_e24vhi_medium1(           reader->EF_e24vhi_medium1);
+  // TODO uncomment when we turn this on in the TNTs
+  // setEF_e60_medium1(              reader->EF_e60_medium1);
+  // setEF_mu40_MSonly_barrel_tight(   reader->EF_mu40_MSonly_barrel_tight);
 
-  setTrig_EF_el_E(                                    reader->trig_EF_el_E);
-  setTrig_EF_el_px(                                   reader->trig_EF_el_px);
-  setTrig_EF_el_py(                                   reader->trig_EF_el_py);
-  setTrig_EF_el_pz(                                   reader->trig_EF_el_pz);
-  setTrig_EF_el_EF_e12Tvh_loose1(                     reader->trig_EF_el_EF_e12Tvh_loose1);
-  setTrig_EF_el_EF_e12Tvh_medium1(                    reader->trig_EF_el_EF_e12Tvh_medium1);
-  setTrig_EF_el_EF_e24vh_medium1(                     reader->trig_EF_el_EF_e24vh_medium1);
-  setTrig_EF_el_EF_e24vh_medium1_e7_medium1(          reader->trig_EF_el_EF_e24vh_medium1_e7_medium1);
-  setTrig_EF_el_EF_e7T_medium1(                       reader->trig_EF_el_EF_e7T_medium1);
-  setTrig_EF_trigmuonef_EF_mu13(                      reader->trig_EF_trigmuonef_EF_mu13);
-  setTrig_EF_trigmuonef_EF_mu18_tight(                reader->trig_EF_trigmuonef_EF_mu18_tight);
-  setTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS(       reader->trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS);
-  setTrig_EF_trigmuonef_EF_mu8(                       reader->trig_EF_trigmuonef_EF_mu8);
-  setTrig_EF_trigmuonef_EF_mu24i_tight(               reader->trig_EF_trigmuonef_EF_mu24i_tight);
-  setTrig_EF_trigmuonef_EF_mu36_tight(                reader->trig_EF_trigmuonef_EF_mu36_tight);
-  setTrig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS(       reader->trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
-  setTrig_EF_el_EF_e24vhi_medium1(                    reader->trig_EF_el_EF_e24vhi_medium1);
-  //  setTrig_EF_el_EF_e60_medium1(                       reader->trig_EF_el_EF_e60_medium1);
-  //  setTrig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight(  reader->trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight);
-  setTrig_EF_trigmuonef_EF_mu24_tight(                reader->trig_EF_trigmuonef_EF_mu24_tight);
-  setTrig_EF_trigmuonef_track_CB_eta(                 reader->trig_EF_trigmuonef_track_CB_eta);
-  setTrig_EF_trigmuonef_track_CB_phi(                 reader->trig_EF_trigmuonef_track_CB_phi);
-  setTrig_EF_trigmuonef_track_CB_pt(                  reader->trig_EF_trigmuonef_track_CB_pt);
-  setTrig_EF_trigmuonef_track_CB_hasCB(               reader->trig_EF_trigmuonef_track_CB_hasCB);
+  setTrig_EF_el_E(                              reader->trig_EF_el_E);
+  setTrig_EF_el_px(                             reader->trig_EF_el_px);
+  setTrig_EF_el_py(                             reader->trig_EF_el_py);
+  setTrig_EF_el_pz(                             reader->trig_EF_el_pz);
+  setTrig_EF_el_EF_e12Tvh_loose1(               reader->trig_EF_el_EF_e12Tvh_loose1);
+  setTrig_EF_el_EF_e12Tvh_medium1(              reader->trig_EF_el_EF_e12Tvh_medium1);
+  setTrig_EF_el_EF_e24vh_medium1(               reader->trig_EF_el_EF_e24vh_medium1);
+  setTrig_EF_el_EF_e24vh_medium1_e7_medium1(    reader->trig_EF_el_EF_e24vh_medium1_e7_medium1);
+  setTrig_EF_el_EF_e7T_medium1(                 reader->trig_EF_el_EF_e7T_medium1);
+  setTrig_EF_trigmuonef_EF_mu13(                reader->trig_EF_trigmuonef_EF_mu13);
+  setTrig_EF_trigmuonef_EF_mu18_tight(          reader->trig_EF_trigmuonef_EF_mu18_tight);
+  setTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS( reader->trig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS);
+  setTrig_EF_trigmuonef_EF_mu8(                 reader->trig_EF_trigmuonef_EF_mu8);
+  setTrig_EF_trigmuonef_EF_mu24i_tight(         reader->trig_EF_trigmuonef_EF_mu24i_tight);
+  setTrig_EF_trigmuonef_EF_mu36_tight(          reader->trig_EF_trigmuonef_EF_mu36_tight);
+  setTrig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS( reader->trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS);
+  setTrig_EF_el_EF_e24vhi_medium1(              reader->trig_EF_el_EF_e24vhi_medium1);
+  // TODO uncomment when we turn this on in the TNTs
+  // setTrig_EF_el_EF_e60_medium1(                 reader->trig_EF_el_EF_e60_medium1);
+  // setTrig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight(  reader->trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight);
+  setTrig_EF_trigmuonef_EF_mu24_tight(          reader->trig_EF_trigmuonef_EF_mu24_tight);
+  setTrig_EF_trigmuonef_track_CB_eta(           reader->trig_EF_trigmuonef_track_CB_eta);
+  setTrig_EF_trigmuonef_track_CB_phi(           reader->trig_EF_trigmuonef_track_CB_phi);
+  setTrig_EF_trigmuonef_track_CB_pt(            reader->trig_EF_trigmuonef_track_CB_pt);
+  setTrig_EF_trigmuonef_track_CB_hasCB(         reader->trig_EF_trigmuonef_track_CB_hasCB);
 }
 
 // =============================================================================
@@ -814,21 +816,18 @@ PennSusyFrame::Jet::Jet( const PennSusyFrame::D3PDReader* reader
 
   setParticleIndex(jet_index);
 
-  setConstScaleE(  reader->jet_AntiKt4LCTopo_constscale_E->at(m_particle_index));
-  setConstScaleEta(reader->jet_AntiKt4LCTopo_constscale_eta->at(m_particle_index));
-  setConstScalePhi(reader->jet_AntiKt4LCTopo_constscale_phi->at(m_particle_index));
-  setConstScaleM(  reader->jet_AntiKt4LCTopo_constscale_m->at(m_particle_index));
-  setActiveAreaPx( reader->jet_AntiKt4LCTopo_ActiveAreaPx->at(m_particle_index));
-  setActiveAreaPy( reader->jet_AntiKt4LCTopo_ActiveAreaPy->at(m_particle_index));
-  setActiveAreaPz( reader->jet_AntiKt4LCTopo_ActiveAreaPz->at(m_particle_index));
-  setActiveAreaE(  reader->jet_AntiKt4LCTopo_ActiveAreaE->at(m_particle_index));
-  setJvf(          reader->jet_AntiKt4LCTopo_jvtxf->at(m_particle_index));
-  setMv1(          reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
-  setBchCorr(      reader->jet_AntiKt4LCTopo_BCH_CORR_JET->at(m_particle_index));
-
-  // TODO uncomment once new TNTs are available
-  // setBchCorrCell(  reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
-
+  setConstScaleE(    reader->jet_AntiKt4LCTopo_constscale_E->at(m_particle_index));
+  setConstScaleEta(  reader->jet_AntiKt4LCTopo_constscale_eta->at(m_particle_index));
+  setConstScalePhi(  reader->jet_AntiKt4LCTopo_constscale_phi->at(m_particle_index));
+  setConstScaleM(    reader->jet_AntiKt4LCTopo_constscale_m->at(m_particle_index));
+  setActiveAreaPx(   reader->jet_AntiKt4LCTopo_ActiveAreaPx->at(m_particle_index));
+  setActiveAreaPy(   reader->jet_AntiKt4LCTopo_ActiveAreaPy->at(m_particle_index));
+  setActiveAreaPz(   reader->jet_AntiKt4LCTopo_ActiveAreaPz->at(m_particle_index));
+  setActiveAreaE(    reader->jet_AntiKt4LCTopo_ActiveAreaE->at(m_particle_index));
+  setJvf(            reader->jet_AntiKt4LCTopo_jvtxf->at(m_particle_index));
+  setMv1(            reader->jet_AntiKt4LCTopo_flavor_weight_MV1->at(m_particle_index));
+  setBchCorr(        reader->jet_AntiKt4LCTopo_BCH_CORR_JET->at(m_particle_index));
+  setBchCorrCell(    reader->jet_AntiKt4LCTopo_BCH_CORR_CELL->at(m_particle_index));
   setEmf(            reader->jet_AntiKt4LCTopo_emfrac->at(m_particle_index));
   setSumPtTrk(       reader->jet_AntiKt4LCTopo_sumPtTrk_pv0_500MeV->at(m_particle_index));
 

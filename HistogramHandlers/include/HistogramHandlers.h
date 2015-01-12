@@ -3,12 +3,14 @@
 
 // =============================================================================
 #include <vector>
+#include <string>
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 
 // =============================================================================
 class TFile;
 class TDirectory;
 class TH1F;
+class TH1;
 
 namespace PennSusyFrame
 {
@@ -23,6 +25,10 @@ namespace PennSusyFrame
 // =============================================================================
 namespace PennSusyFrame
 {
+  // helper function to set the bin label
+  // axis = 1: x 2: y else: x
+  void setBinLabel( TH1*, int bin_number, std::string label, int axis = 1);
+
   // ===========================================================================
   // = HistogramHandler - used as parent class for other histograms
   // ===========================================================================

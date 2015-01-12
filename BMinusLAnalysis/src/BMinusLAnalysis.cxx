@@ -722,6 +722,7 @@ bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
   }
 
   return false;
+
   /*
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // TODO replace the above overlap removal with the one below after debugging
@@ -1305,7 +1306,7 @@ void PennSusyFrame::BMinusLAnalysis::fillHistHandles( PennSusyFrame::BMINUSL_HIS
                                                                       , *bl_1
                                                                       , m_mc_truth
                                                                       , m_truth_match_tool
-								      , m_trigger
+                                                                      , m_trigger
                                                                       , weight
                                                                       );
     }
