@@ -74,7 +74,7 @@ if __name__ == '__main__':
         print syst, ' -- ', the_dicts
 
         this_out_dir = '__'.join([out_dir, syst])
-        this_sym_link_name = ''.join(['./NextPlotDir.BMinusL.', syst])
+        this_sym_link_name = ''.join(['./NextPlotDir.BMinusL.LooseJets.', syst])
         print 'this sym link name: ', this_sym_link_name
 
         this_run_analysis_fun = RunBMinusLAnalysisLooseJets.runBMinusLAnalysisLooseJetsFun
@@ -94,7 +94,7 @@ if __name__ == '__main__':
                                               , 'RunScripts/'
                                               ]
                                             )
-            this_job_dir = '.'.join( [ 'LatestRunDir_bminuslanalysis'
+            this_job_dir = '.'.join( [ 'LatestRunDir_bminuslanalysis.loosejets'
                                      , syst
                                      ]
                                    )
