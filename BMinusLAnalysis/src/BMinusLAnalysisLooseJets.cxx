@@ -84,6 +84,8 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::beginRun()
 // -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLAnalysisLooseJets::initializeEvent()
 {
+  BMinusLAnalysis::initializeEvent();
+
   m_pass_lljj_pairing = false;
   m_pass_llbj_pairing = false;
 
@@ -559,7 +561,8 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::fillHistHandles( PennSusyFrame::BM
   }
 
   // fill b-l histograms
-  if (m_pass_bl_pairing) {
+  // if (m_pass_bl_pairing) {
+  if (bl_0 != 0 && bl_1 != 0) {
     m_bminusl_histogram_handler.at(hist_level)->FillSpecial( m_event
                                                            , m_jets.getCollection(JET_B)
                                                            , *bl_0
