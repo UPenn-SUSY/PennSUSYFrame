@@ -47,20 +47,20 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_VR_TOP_3
                            , BMINUSL_HIST_VR_Z
 
-                           , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_HT
-                           , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM
-                           , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MET_SIG
-                           , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW
+                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_HT
+                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM
+                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MET_SIG
+                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW
 
-                           , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_HT
-                           , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MBL_ASYM
-                           , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MET_SIG
-                           , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW
+                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_HT
+                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MBL_ASYM
+                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MET_SIG
+                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW
 
-                           , BMINUSL_HIST_VR_TOP_1_WIDE_Z_WINDOW
-                           , BMINUSL_HIST_VR_TOP_2_WIDE_Z_WINDOW
-                           , BMINUSL_HIST_VR_TOP_3_WIDE_Z_WINDOW
-                           , BMINUSL_HIST_VR_Z_WIDE_Z_WINDOW
+                           // , BMINUSL_HIST_VR_TOP_1_WIDE_Z_WINDOW
+                           // , BMINUSL_HIST_VR_TOP_2_WIDE_Z_WINDOW
+                           // , BMINUSL_HIST_VR_TOP_3_WIDE_Z_WINDOW
+                           // , BMINUSL_HIST_VR_Z_WIDE_Z_WINDOW
 
                            , BMINUSL_HIST_N
                            };
@@ -96,20 +96,20 @@ namespace PennSusyFrame
                                                    , "BMINUSL_VR_TOP_3"
                                                    , "BMINUSL_VR_Z"
 
-                                                   , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_HT"
-                                                   , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM"
-                                                   , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_MET_SIG"
-                                                   , "BMINUSL_CR_TOP_WIDE_Z_WINDOW"
+                                                   // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_HT"
+                                                   // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM"
+                                                   // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_MET_SIG"
+                                                   // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW"
 
-                                                   , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_HT"
-                                                   , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_MBL_ASYM"
-                                                   , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_MET_SIG"
-                                                   , "BMINUSL_CR_Z_WIDE_Z_WINDOW"
+                                                   // , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_HT"
+                                                   // , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_MBL_ASYM"
+                                                   // , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_MET_SIG"
+                                                   // , "BMINUSL_CR_Z_WIDE_Z_WINDOW"
 
-                                                   , "BMINUSL_VR_TOP_1_WIDE_Z_WINDOW"
-                                                   , "BMINUSL_VR_TOP_2_WIDE_Z_WINDOW"
-                                                   , "BMINUSL_VR_TOP_3_WIDE_Z_WINDOW"
-                                                   , "BMINUSL_VR_Z_WIDE_Z_WINDOW"
+                                                   // , "BMINUSL_VR_TOP_1_WIDE_Z_WINDOW"
+                                                   // , "BMINUSL_VR_TOP_2_WIDE_Z_WINDOW"
+                                                   // , "BMINUSL_VR_TOP_3_WIDE_Z_WINDOW"
+                                                   // , "BMINUSL_VR_Z_WIDE_Z_WINDOW"
 
                                                    , "BMINUSL_N"
                                                    };
