@@ -48,7 +48,7 @@ static const float eta_max = +5.;
 static const int   ptiso_bins = 20;
 static const float ptiso_min  = 0.;
 // static const float ptiso_max  = 3.;
-static const float ptiso_max  = 0.4;
+static const float ptiso_max  = 0.2;
 
 // static const int   etiso_bins = 140;
 static const int   etiso_bins = 50;
@@ -408,6 +408,19 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt histograms
+    m_h_num_lep.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+				       + "__num_lep"
+				       + "__"
+				       + name_tag
+				       ).c_str()
+				     , ( "num_lep - "
+					 + FLAVOR_CHANNEL_STRINGS[fc_it]
+					 + " ; num_lep ; Entries"
+					 ).c_str()
+				     , 4, -0.5, 3.5
+				     )
+			   );
+
     m_h_pt_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                     + "__lep_pt_all"
                                     + "__"
@@ -576,6 +589,32 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                                    , ( "p_{T}^{cone30,1}/p_{T} - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
                                      + " ; p_{T}^{cone30,1}/p_{T} ; Entries"
+                                     ).c_str()
+                                   , ptiso_bins, ptiso_min, ptiso_max
+                                   )
+                         );
+
+    m_h_ptiso_max_denomminpt.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_ptiso_max_denomminpt"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "p_{T}^{cone30}/min(60 GeV , p_{T}) - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; p_{T}^{cone30}/min(60 GeV, p_{T}) ; Entries"
+                                     ).c_str()
+                                   , ptiso_bins, ptiso_min, ptiso_max
+                                   )
+                         );
+
+    m_h_ptiso_max_denompt.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + "__lep_ptiso_max_denompt"
+                                     + "__"
+                                     + name_tag
+                                     ).c_str()
+                                   , ( "p_{T}^{cone30}/p_{T} - "
+                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                     + " ; p_{T}^{cone30}/p_{T} ; Entries"
                                      ).c_str()
                                    , ptiso_bins, ptiso_min, ptiso_max
                                    )
@@ -896,11 +935,16 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 
   if (fc == FLAVOR_NONE) return;
 
+  size_t num_lep = el_list->size() + mu_list->size();
+  if (num_lep < 2) return;
+
   float pt_0 = 0.;
   float pt_1 = 0.;
 
   float ptiso_0 = 0.;
   float ptiso_1 = 0.;
+  float ptiso_0_denompt = 0.;
+  float ptiso_1_denompt = 0.;
 
   float etiso_0 = 0.;
   float etiso_1 = 0.;
@@ -928,13 +972,16 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   float z0sintheta_1 = 0.;
 
   // TODO fill these histograms in cleaner way!
-
   if (fc == FLAVOR_EE) {
+    m_h_num_lep.at(FLAVOR_EE)->Fill(num_lep, weight);
+
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = el_list->at(1)->getPt()/1.e3;
 
     ptiso_0 = el_list->at(0)->getPtIsoRatio();
     ptiso_1 = el_list->at(1)->getPtIsoRatio();
+    ptiso_0_denompt = el_list->at(0)->getPtIso()/(pt_0*1.e3);
+    ptiso_1_denompt = el_list->at(1)->getPtIso()/(pt_1*1.e3);
 
     etiso_0 = el_list->at(0)->getEtIsoRatio();
     etiso_1 = el_list->at(1)->getEtIsoRatio();
@@ -983,6 +1030,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_ptiso_all.at(FLAVOR_EE)->Fill(ptiso_1, weight);
     m_h_ptiso_0.at(  FLAVOR_EE)->Fill(ptiso_0, weight);
     m_h_ptiso_1.at(  FLAVOR_EE)->Fill(ptiso_1, weight);
+    m_h_ptiso_max_denomminpt.at(FLAVOR_EE)->Fill(max(ptiso_0,ptiso_1), weight);
+    m_h_ptiso_max_denompt.at(   FLAVOR_EE)->Fill(max(ptiso_0_denompt,ptiso_1_denompt), weight);
 
     m_h_etiso_all.at(FLAVOR_EE)->Fill(etiso_0, weight);
     m_h_etiso_all.at(FLAVOR_EE)->Fill(etiso_1, weight);
@@ -1019,9 +1068,12 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_z0sintheta_all.at(FLAVOR_EE)->Fill(z0sintheta_1, weight);
     m_h_z0sintheta_0.at(  FLAVOR_EE)->Fill(z0sintheta_0, weight);
     m_h_z0sintheta_1.at(  FLAVOR_EE)->Fill(z0sintheta_1, weight);
+    
   }
 
   else if (fc == FLAVOR_MM) {
+    m_h_num_lep.at(FLAVOR_MM)->Fill(num_lep, weight);
+
     pt_0 = mu_list->at(0)->getPt()/1.e3;
     pt_1 = mu_list->at(1)->getPt()/1.e3;
 
@@ -1030,6 +1082,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
 
     ptiso_0 = mu_list->at(0)->getPtIsoRatio();
     ptiso_1 = mu_list->at(1)->getPtIsoRatio();
+    ptiso_0_denompt = mu_list->at(0)->getPtIso()/(pt_0*1.e3);
+    ptiso_1_denompt = mu_list->at(1)->getPtIso()/(pt_1*1.e3);
 
     etiso_0 = mu_list->at(0)->getEtIsoRatio();
     etiso_1 = mu_list->at(1)->getEtIsoRatio();
@@ -1079,6 +1133,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_ptiso_all.at(FLAVOR_MM)->Fill(ptiso_1, weight);
     m_h_ptiso_0.at(  FLAVOR_MM)->Fill(ptiso_0, weight);
     m_h_ptiso_1.at(  FLAVOR_MM)->Fill(ptiso_1, weight);
+    m_h_ptiso_max_denomminpt.at(FLAVOR_MM)->Fill(max(ptiso_0,ptiso_1), weight);
+    m_h_ptiso_max_denompt.at(   FLAVOR_MM)->Fill(max(ptiso_0_denompt,ptiso_1_denompt), weight);
 
     m_h_etiso_all.at(FLAVOR_MM)->Fill(etiso_0, weight);
     m_h_etiso_all.at(FLAVOR_MM)->Fill(etiso_1, weight);
@@ -1120,6 +1176,9 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     pt_0 = el_list->at(0)->getPt()/1.e3;
     pt_1 = mu_list->at(0)->getPt()/1.e3;
 
+    ptiso_0_denompt = el_list->at(0)->getPtIso()/(pt_0*1.e3);
+    ptiso_1_denompt = mu_list->at(0)->getPtIso()/(pt_1*1.e3);
+
     if (pt_0 < pt_1) {
       float tmp = pt_0;
       pt_0 = pt_1;
@@ -1158,6 +1217,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     z0sintheta_1 = mu_list->at(0)->getZ0SinTheta();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_h_num_lep.at(FLAVOR_EM)->Fill(num_lep, weight);
+
     m_h_pt_all.at(FLAVOR_EM)->Fill(pt_0, weight);
     m_h_pt_all.at(FLAVOR_EM)->Fill(pt_1, weight);
     m_h_pt_0.at(  FLAVOR_EM)->Fill(pt_0, weight);
@@ -1180,6 +1241,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
     m_h_ptiso_all.at(FLAVOR_EM)->Fill(ptiso_1, weight);
     m_h_ptiso_0.at(  FLAVOR_EM)->Fill(ptiso_0, weight);
     m_h_ptiso_1.at(  FLAVOR_EM)->Fill(ptiso_1, weight);
+    m_h_ptiso_max_denomminpt.at(FLAVOR_EM)->Fill(max(ptiso_0,ptiso_1), weight);
+    m_h_ptiso_max_denompt.at(   FLAVOR_EM)->Fill(max(ptiso_0_denompt, ptiso_1_denompt), weight);
 
     m_h_etiso_all.at(FLAVOR_EM)->Fill(etiso_0, weight);
     m_h_etiso_all.at(FLAVOR_EM)->Fill(etiso_1, weight);
@@ -1249,6 +1312,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_h_num_lep.at(FLAVOR_NONE)->Fill(num_lep, weight);
+
   m_h_pt_all.at(FLAVOR_NONE)->Fill(pt_0, weight);
   m_h_pt_all.at(FLAVOR_NONE)->Fill(pt_1, weight);
   m_h_pt_0.at(  FLAVOR_NONE)->Fill(pt_0, weight);
@@ -1271,6 +1336,8 @@ void PennSusyFrame::LeptonKinematicsHists::Fill( const PennSusyFrame::Event& eve
   m_h_ptiso_all.at(FLAVOR_NONE)->Fill(ptiso_1, weight);
   m_h_ptiso_0.at(  FLAVOR_NONE)->Fill(ptiso_0, weight);
   m_h_ptiso_1.at(  FLAVOR_NONE)->Fill(ptiso_1, weight);
+  m_h_ptiso_max_denomminpt.at(FLAVOR_NONE)->Fill(max(ptiso_0,ptiso_1), weight);
+  m_h_ptiso_max_denompt.at(   FLAVOR_NONE)->Fill(max(ptiso_0_denompt,ptiso_1_denompt), weight);
 
   m_h_etiso_all.at(FLAVOR_NONE)->Fill(etiso_0, weight);
   m_h_etiso_all.at(FLAVOR_NONE)->Fill(etiso_1, weight);
@@ -1329,6 +1396,8 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // write pt histograms
+    m_h_num_lep.at(fc_it)->Write();
+
     m_h_pt_all.at(fc_it)->Write();
     m_h_pt_0.at(  fc_it)->Write();
     m_h_pt_1.at(  fc_it)->Write();
@@ -1347,6 +1416,8 @@ void PennSusyFrame::LeptonKinematicsHists::write(TDirectory* d)
     m_h_ptiso_all.at(fc_it)->Write();
     m_h_ptiso_0.at(  fc_it)->Write();
     m_h_ptiso_1.at(  fc_it)->Write();
+    m_h_ptiso_max_denomminpt.at(fc_it)->Write();
+    m_h_ptiso_max_denompt.at(fc_it)->Write();
 
     // write etiso histograms
     m_h_etiso_all.at(fc_it)->Write();
@@ -1609,6 +1680,7 @@ void PennSusyFrame::JetKinematicsHists::Fill( const PennSusyFrame::Event& event
   if (fc == FLAVOR_NONE) return;
 
   size_t num_jet = jet_list->size();
+  if (num_jet < 2) return;
 
   float pt_0 = 0.;
   float pt_1 = 0.;

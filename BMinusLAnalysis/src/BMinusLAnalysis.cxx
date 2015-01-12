@@ -117,7 +117,6 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   // m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
-  // m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, -1);
   m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.1);
   m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, -1);
 
@@ -129,7 +128,6 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   // MU_SIGNAL
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
-  // m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, -1);
   m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.1);
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, -1);
 
@@ -756,6 +754,8 @@ bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
 {
+  // leigh hack: want to check how many events actually pass trigger.
+  return true;
   FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
 
   if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vhi_medium1()) return true;

@@ -45,26 +45,26 @@ void PennSusyFrame::BMinusLDRStudies::finalizeEvent()
   if (m_electrons.getCollection(EL_ALL)->size() + m_muons.getCollection(MU_ALL)->size() < 2) return;
   if (m_jets.getCollection(JET_ALL)->size() < 2) return;
 
-//  reproduceFullObjectCleaning( m_event
-//                             , m_mc_truth
-//                             , m_object_cleaning
-//                             , m_electrons.getCollection(EL_BASELINE)
-//                             , m_muons.getCollection(MU_BASELINE)
-//                             , m_jets.getCollection(JET_BASELINE_GOOD)
-//                             , m_jets.getCollection(JET_BASELINE_BAD)
-//                             );
+ reproduceFullObjectCleaning( m_event
+                            , m_mc_truth
+                            , m_object_cleaning
+                            , m_electrons.getCollection(EL_BASELINE)
+                            , m_muons.getCollection(MU_BASELINE)
+                            , m_jets.getCollection(JET_BASELINE_GOOD)
+                            , m_jets.getCollection(JET_BASELINE_BAD)
+                            );
 
-  // reproduce bad overlap removal plots (before we changed the OR procedure):
-  reproduceFullObjectCleaning( m_event
-                             , m_mc_truth
-                             , m_object_cleaning
-                             , m_electrons.getCollection(EL_ALL)
-                             , m_muons.getCollection(MU_ALL)
-                             , m_jets.getCollection(JET_ALL)
-                             , m_jets.getCollection(JET_ALL)
-                             );
-  // There is no jet_all_good and jet_all_bad, but I don't want to change the whole code.
-  // So just give it jet_all twice.
+  // // reproduce bad overlap removal plots (before we changed the OR procedure):
+  // reproduceFullObjectCleaning( m_event
+  //                            , m_mc_truth
+  //                            , m_object_cleaning
+  //                            , m_electrons.getCollection(EL_ALL)
+  //                            , m_muons.getCollection(MU_ALL)
+  //                            , m_jets.getCollection(JET_ALL)
+  //                            , m_jets.getCollection(JET_ALL)
+  //                            );
+  // // There is no jet_all_good and jet_all_bad, but I don't want to change the whole code.
+  // // So just give it jet_all twice.
 }
 
 // -----------------------------------------------------------------------------
@@ -217,6 +217,7 @@ void PennSusyFrame::BMinusLDRStudies::filldRHistHandles( BMINUSL_DR_HIST_LEVELS 
                                                        , muons
                                                        , jets
                                                        , m_mc_truth
+							 , m_trigger
                                                        );
 }
 

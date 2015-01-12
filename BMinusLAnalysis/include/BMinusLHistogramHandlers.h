@@ -130,6 +130,12 @@ namespace PennSusyFrame
       virtual void write(TDirectory*);
       virtual bool pass(float eta_0, float eta_1, float eta_0_l, float eta_1_l);
       void calcEff2d(TH2F*, TH2F*, TH2F*, bool raw);
+      virtual void passTriggerMatching(const PennSusyFrame::Event& event
+				       , const PennSusyFrame::Trigger trigger
+				       , const PennSusyFrame::blPair& bl_0
+				       , const PennSusyFrame::blPair& bl_1
+				       , bool trigger_matching[12]
+				       );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
@@ -174,6 +180,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_lep_both_from_stop_raw_pt_all; //~ ~
       std::vector<TH1F*> m_h_lep_both_from_stop_raw_pt_1; //~ ~
 
+      // lepton pt isolation
+      std::vector<TH1F*> m_h_ptiso_all_lep_from_stop;
+      std::vector<TH1F*> m_h_ptiso_all_lep_not_from_stop;
+
       // jet multiplicity vs pT for b jets
       std::vector<TH2F*> m_h_b_jet_mult_pt_all; //~ ~
       std::vector<TH2F*> m_h_b_jet_mult_pt_0; //~ ~
@@ -185,6 +195,7 @@ namespace PennSusyFrame
       std::vector<TH2F*> m_h_mbl_vs_ht_all; //~ ~
       std::vector<TH2F*> m_h_mbl_vs_ht_0; //~ ~
       std::vector<TH2F*> m_h_mbl_vs_ht_1; //~ ~
+      std::vector<TH1F*> m_h_mbl_asym_after_ht_cut; //~ ~
 
       // 2d histograms of lepton and bjet pt for efficiency studies
       std::vector<TH2F*> m_h_b_jet1vl1_pt; //~ ~
@@ -261,7 +272,7 @@ namespace PennSusyFrame
       std::vector<TH2F*> m_h_mu_pt_v_single_triggers_passed;
       std::vector<TH2F*> m_h_mu_pt_v_doubleAND_triggers_passed;
       std::vector<TH2F*> m_h_mu_pt_v_doubleOR_triggers_passed;
-
+      std::vector<TH1F*> m_h_single_trigger_matching_passed;
   };
 
   // =============================================================================
@@ -350,6 +361,7 @@ namespace PennSusyFrame
                               , const std::vector<PennSusyFrame::Muon*>&
                               , const std::vector<PennSusyFrame::Jet*>&
 				, const PennSusyFrame::MCTruth&
+				, PennSusyFrame::Trigger m_trigger
                               );
       virtual void write(TDirectory*);
 
@@ -378,6 +390,11 @@ namespace PennSusyFrame
       std::vector<TH2F*> m_h_flavor_channel_tvr_lepnotfromstop;
       std::vector<TH2F*> m_h_flavor_channel_tvr_jetfromstop;
       std::vector<TH2F*> m_h_flavor_channel_tvr_jetnotfromstop;
+
+      std::vector<TH1F*> m_h_dr_ereco_mutrig_all;
+      std::vector<TH1F*> m_h_dr_breco_mutrig_all;
+
+      std::vector<TH1F*> m_h_muon_qoverpratio;
   };
 }
 

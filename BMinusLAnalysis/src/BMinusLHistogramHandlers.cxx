@@ -6,6 +6,7 @@
 #include "PennSusyFrameCore/include/Calculators.h"
 #include "PennSusyFrameCore/include/TruthMatchTools.h"
 #include "PennSusyFrameCore/include/EventSelectors.h"
+#include "PennSusyFrameCore/include/TriggerHelpers.h"
 
 #include "TFile.h"
 #include "TDirectory.h"
@@ -1264,6 +1265,19 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                        )
                              );
 
+    m_h_mbl_asym_after_ht_cut.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+						     + "__mbl_asym_after_ht_cut"
+						     + "__"
+						     + name_tag
+						     ).c_str()
+						   , ( "(m_{bl}^{0} - m_{bl}^{1})/(m_{bl}^{0} + m_{bl}^{1}) - "
+						       + FLAVOR_CHANNEL_STRINGS[fc_it]
+						       + " ; (m_{bl}^{0} - m_{bl}^{1})/(m_{bl}^{0} + m_{bl}^{1}) ; Entries "
+						       ).c_str()
+						   , mbl_ratio_bins, mbl_ratio_min, mbl_ratio_max
+						   )
+					 );
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize pt_b1vl1 histograms
     m_h_b_jet1vl1_pt.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -1433,6 +1447,34 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                               , pt_bins, pt_min, pt_max
                                                               )
                                                     );
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize pt isolation histos, checking lepton parenthood
+    m_h_ptiso_all_lep_from_stop.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						      + "__ptiso_all_lep_from_stop"
+						      + "__"
+						      + name_tag
+						      ).c_str()
+						     , ( "ptiso_all_lep_from_stop - "
+							 + FLAVOR_CHANNEL_STRINGS[fc_it]
+							 + " ; p_{T}^{cone30} / min(60 GeV, p_{T}) ; Entries"
+							 ).c_str()
+						     , 20, 0., 0.2
+						     )
+					   );
+
+    m_h_ptiso_all_lep_not_from_stop.push_back( new TH1F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						      + "__ptiso_all_lep_not_from_stop"
+						      + "__"
+						      + name_tag
+						      ).c_str()
+						     , ( "ptiso_all_lep_not_from_stop - "
+							 + FLAVOR_CHANNEL_STRINGS[fc_it]
+							 + " ; p_{T}^{cone30} / min(60 GeV, p_{T}) ; Entries"
+							 ).c_str()
+						     , 20, 0., 0.2
+						     )
+					   );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // initialize mbl anti-pairing histograms
@@ -1922,7 +1964,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 						 + FLAVOR_CHANNEL_STRINGS[fc_it]
 						 + " ;  ; Entries"
 						 ).c_str()
-						       , 58, -0.5, 57.5
+						       , 76, -0.5, 75.5
 					     )
 				   );
     m_h_doubleOR_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -1934,7 +1976,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 						 + FLAVOR_CHANNEL_STRINGS[fc_it]
 						 + " ;  ; Entries"
 						 ).c_str()
-					     , 58, -0.5, 57.5
+					     , 76, -0.5, 75.5
 					     )
 				   );
     // 2d : subleading lepton pt v. triggers
@@ -1960,7 +2002,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 								    + FLAVOR_CHANNEL_STRINGS[fc_it]
 								    + " ;  ; subleading lepton pt [GeV]"
 								    ).c_str()
-								, 58, -0.5, 57.5
+								, 76, -0.5, 75.5
 								, pt_bins, pt_min, pt_max
 								)
 						      );
@@ -1973,7 +2015,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 								   + FLAVOR_CHANNEL_STRINGS[fc_it]
 								   + " ;  ; subleading lepton pt [GeV]"
 								   ).c_str()
-							       , 58, -0.5, 57.5
+							       , 76, -0.5, 75.5
 							       , pt_bins, pt_min, pt_max
 							       )
 						     );
@@ -1999,7 +2041,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 								    + FLAVOR_CHANNEL_STRINGS[fc_it]
 								    + " ;  ; electron pt [GeV]"
 								    ).c_str()
-								, 58, -0.5, 57.5
+								, 76, -0.5, 75.5
 								, pt_bins, pt_min, pt_max
 								)
 						      );
@@ -2012,7 +2054,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 								   + FLAVOR_CHANNEL_STRINGS[fc_it]
 								   + " ;  ; electron pt [GeV]"
 								   ).c_str()
-							       , 58, -0.5, 57.5
+							       , 76, -0.5, 75.5
 							       , pt_bins, pt_min, pt_max
 							       )
 						     );
@@ -2038,7 +2080,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 								    + FLAVOR_CHANNEL_STRINGS[fc_it]
 								    + " ;  ; muon pt [GeV]"
 								    ).c_str()
-								, 58, -0.5, 57.5
+								, 76, -0.5, 75.5
 								, pt_bins, pt_min, pt_max
 								)
 						      );
@@ -2051,16 +2093,29 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 								   + FLAVOR_CHANNEL_STRINGS[fc_it]
 								   + " ;  ; muon pt [GeV]"
 								   ).c_str()
-							       , 58, -0.5, 57.5
+							       , 76, -0.5, 75.5
 							       , pt_bins, pt_min, pt_max
 							       )
 						     );
+    m_h_single_trigger_matching_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+					       + "__single_trigger_matching_passed"
+					       + "__"
+					       + name_tag
+					       ).c_str()
+					     , ( "Triggers Passed and Trigger Matching Passed- "
+						 + FLAVOR_CHANNEL_STRINGS[fc_it]
+						 + " ;  ; Entries"
+						 ).c_str()
+					     , TRIGGERS_N+1, -0.5, TRIGGERS_N + 0.5
+					     )
+				   );
     int bin_counter = 1;
     for (int it = 0; it != TRIGGERS_N; ++it) {
       m_h_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
       m_h_lep_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
       m_h_el_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
       m_h_mu_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
+      m_h_single_trigger_matching_passed.at(fc_it)->GetXaxis()->SetBinLabel(it+1, (TRIGGER_STRINGS[it]).c_str());
       for (int jt = it+1; jt != TRIGGERS_N; ++jt) {
 	m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" AND "+TRIGGER_STRINGS[jt]).c_str());
 	m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, (TRIGGER_STRINGS[it]+" OR "+TRIGGER_STRINGS[jt]).c_str());
@@ -2073,25 +2128,43 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 	++bin_counter;
       }
     }
-    // two last interesting cases:
-    m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
-    m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
-    m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
-    m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
-    m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
-    m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
-    m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
-    m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
-    ++bin_counter;
-    m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
-    m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
-    m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
-    m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
-    m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
-    m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
-    m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
-    m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
-    ++bin_counter;
+    // three last interesting cases:
+    // m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(         bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
+    // m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
+    // m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
+    // m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight");
+    // m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(          bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
+    // m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
+    // m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(  bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
+    // m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(  bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight");
+    // ++bin_counter;
+    // m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(         bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
+    // m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
+    // m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
+    // m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight");
+    // m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(          bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
+    // m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
+    // m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(  bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
+    // m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(  bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight");
+    // ++bin_counter;
+    // m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(         bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu40_MSonly_barrel_tight");
+    // m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu40_MSonly_barrel_tight");
+    // m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu40_MSonly_barrel_tight");
+    // m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu40_MSonly_barrel_tight");
+    // m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(          bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu40_MSonly_barrel_tight");
+    // m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu40_MSonly_barrel_tight");
+    // m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(  bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu40_MSonly_barrel_tight");
+    // m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(  bin_counter, "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu40_MSonly_barrel_tight");
+    // ++bin_counter;
+    // m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(         bin_counter, "EF_mu24i_tight AND EF_mu36_tight AND EF_mu40_MSonly_barrel_tight");
+    // m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "EF_mu24i_tight AND EF_mu36_tight AND EF_mu40_MSonly_barrel_tight");
+    // m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_mu24i_tight AND EF_mu36_tight AND EF_mu40_MSonly_barrel_tight");
+    // m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_mu24i_tight AND EF_mu36_tight AND EF_mu40_MSonly_barrel_tight");
+    // m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(          bin_counter, "EF_mu24i_tight OR EF_mu36_tight OR EF_mu40_MSonly_barrel_tight");
+    // m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel( bin_counter, "EF_mu24i_tight OR EF_mu36_tight OR EF_mu40_MSonly_barrel_tight");
+    // m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(  bin_counter, "EF_mu24i_tight OR EF_mu36_tight OR EF_mu40_MSonly_barrel_tight");
+    // m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(  bin_counter, "EF_mu24i_tight OR EF_mu36_tight OR EF_mu40_MSonly_barrel_tight");
+    // ++bin_counter;
     m_h_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(TRIGGERS_N+1, "None");
     m_h_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
     m_h_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
@@ -2104,6 +2177,7 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
     m_h_mu_pt_v_single_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(TRIGGERS_N+1, "None");
     m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
     m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->GetXaxis()->SetBinLabel(bin_counter, "None");
+    m_h_single_trigger_matching_passed.at(fc_it)->GetXaxis()->SetBinLabel(TRIGGERS_N+1, "None");
   }
 }
 
@@ -2144,8 +2218,13 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     pt_l_1 = tmp;
   }
 
+  // lepton pt isolation
+  float ptiso_0 = bl_0.getLepton()->getPtIsoRatio();
+  float ptiso_1 = bl_1.getLepton()->getPtIsoRatio();
+
   // get ht
   float ht_baseline = event_level_quantities.getHtBaseline()/1.e3;
+  float ht_signal = event_level_quantities.getHtSignal()/1.e3;
 
   // compute mbl
   float mbl_0 = bl_0.getMbl()/1.e3;
@@ -2345,11 +2424,21 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
       m_h_lep_from_stop_pt_all.at(fc_it)->Fill(pt_l_0, weight);
       m_h_lep_from_stop_pt_0.at(  fc_it)->Fill(pt_l_0, weight);
       m_h_lep_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_0);
+
+      m_h_ptiso_all_lep_from_stop.at(fc_it)->Fill(ptiso_0, weight);
+    }
+    else {
+      m_h_ptiso_all_lep_not_from_stop.at(fc_it)->Fill(ptiso_0, weight);
     }
     if (lepton_from_stop_1) {
       m_h_lep_from_stop_pt_all.at(fc_it)->Fill(pt_l_1, weight);
       m_h_lep_from_stop_pt_1.at(  fc_it)->Fill(pt_l_1, weight);
       m_h_lep_from_stop_raw_pt_all.at(fc_it)->Fill(pt_l_1);
+
+      m_h_ptiso_all_lep_from_stop.at(fc_it)->Fill(ptiso_1, weight);
+    }
+    else {
+      m_h_ptiso_all_lep_not_from_stop.at(fc_it)->Fill(ptiso_1, weight);
     }
     if (lepton_from_stop_0 && lepton_from_stop_1) {
       m_h_lep_both_from_stop_pt_all.at(fc_it)->Fill(pt_l_0, weight);
@@ -2395,6 +2484,10 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     m_h_mbl_vs_ht_all.at(fc_it)->Fill(ht_baseline, mbl_1, weight);
     m_h_mbl_vs_ht_0.at(  fc_it)->Fill(ht_baseline, mbl_0, weight);
     m_h_mbl_vs_ht_1.at(  fc_it)->Fill(ht_baseline, mbl_1, weight);
+
+    if (ht_signal >= 1100.0) {
+      m_h_mbl_asym_after_ht_cut.at(fc_it)->Fill((mbl_0-mbl_1)/(mbl_0+mbl_1), weight);
+    }
 
     // fill mbl for anti-pairs histograms
     m_h_mbl_anti_pairing_all.at(fc_it)->Fill(mbl_anti_pair_0, weight);
@@ -2600,18 +2693,23 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     //    Triggers histograms
-    bool triggers_passed[] = {m_trigger.getEF_2e12Tvh_loose1()            //0
-			      ,m_trigger.getEF_e24vh_medium1_e7_medium1() //1
-			      ,m_trigger.getEF_e24vhi_medium1()           //2
-			      , m_trigger.getEF_e60_medium1()             //3
-			      , m_trigger.getEF_e12Tvh_medium1_mu8()      //4
-			      , m_trigger.getEF_mu18_tight_e7_medium1()   //5
-			      , m_trigger.getEF_mu24i_tight()             //6
-			      , m_trigger.getEF_mu36_tight()              //7
-			      , m_trigger.getEF_2mu13()                   //8
-			      , m_trigger.getEF_mu18_tight_mu8_EFFS()     //9
-			      , m_trigger.getEF_mu24_tight_mu6_EFFS()    //10
+    bool triggers_passed[] = {m_trigger.getEF_2e12Tvh_loose1()               //0
+			      ,m_trigger.getEF_e24vh_medium1_e7_medium1()    //1
+			      ,m_trigger.getEF_e24vhi_medium1()              //2
+			      //			      , m_trigger.getEF_e60_medium1()                //3
+			      , m_trigger.getEF_e12Tvh_medium1_mu8()         //4
+			      , m_trigger.getEF_mu18_tight_e7_medium1()      //5
+			      , m_trigger.getEF_mu24i_tight()                //6
+			      , m_trigger.getEF_mu36_tight()                 //7
+			      , m_trigger.getEF_2mu13()                      //8
+			      , m_trigger.getEF_mu18_tight_mu8_EFFS()        //9
+			      , m_trigger.getEF_mu24_tight_mu6_EFFS()       //10
+			      //			      , m_trigger.getEF_mu40_MSonly_barrel_tight()  //11
     };
+
+    // trigger matching
+    bool trigger_matching[12];
+    passTriggerMatching(event, m_trigger, bl_0, bl_1, trigger_matching);
 
     int bin_counter = 0;
     bool any_trigger_passed = false;
@@ -2620,6 +2718,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
 	  any_trigger_passed = true;
 	  m_h_single_triggers_passed.at(fc_it)->Fill(float(it), weight);
 	  m_h_lep_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), pt_l_1, weight);
+	  if (trigger_matching[it])  m_h_single_trigger_matching_passed.at(fc_it)->Fill(float(it), weight);
 	  if (fc == FLAVOR_EM) {
 	    if (bl_0.getLepton()->isElectron()) {
 	      m_h_el_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), bl_0.getLepton()->getPt()/1.e3, weight);
@@ -2664,66 +2763,126 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
       }
     }
     // two last interesting OR cases between three triggers:
-    if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu24i_tight()) {
-      m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
-      m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
-      if (fc == FLAVOR_EM) {
-	if (bl_0.getLepton()->isElectron()) {
-	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-	}		  
-	else {	  
-	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-	}
-      }
-    }
-    // do the AND case as well, just to keep bin counter consistent
-    if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu24i_tight()) {
-      m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
-      m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
-      if (fc == FLAVOR_EM) {
-	if (bl_0.getLepton()->isElectron()) {
-	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-	}		  
-	else {	  
-	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-	}
-      }
-    }
-    ++bin_counter;
+    // if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu24i_tight()) {
+    //   m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    //   m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+    //   if (fc == FLAVOR_EM) {
+    // 	if (bl_0.getLepton()->isElectron()) {
+    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	}		  
+    // 	else {	  
+    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	}
+    //   }
+    // }
+    // // do the AND case as well, just to keep bin counter consistent
+    // if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu24i_tight()) {
+    //   m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    //   m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+    //   if (fc == FLAVOR_EM) {
+    // 	if (bl_0.getLepton()->isElectron()) {
+    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	}		  
+    // 	else {	  
+    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	}
+    //   }
+    // }
+    // ++bin_counter;
 
-    if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu36_tight()) {
-      m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
-      m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
-      if (fc == FLAVOR_EM) {
-	if (bl_0.getLepton()->isElectron()) {
-	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-	}		  
-	else {	  
-	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-	}
-      }
-    }
-    if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu36_tight()) {
-      m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
-      m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
-      if (fc == FLAVOR_EM) {
-	if (bl_0.getLepton()->isElectron()) {
-	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-	}		  
-	else {	  
-	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-	}
-      }
-    }
-    ++bin_counter;
+    // if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu36_tight()) {
+    //   m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    //   m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+    //   if (fc == FLAVOR_EM) {
+    // 	if (bl_0.getLepton()->isElectron()) {
+    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	}		  
+    // 	else {	  
+    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	}
+    //   }
+    // }
+    // if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu36_tight()) {
+    //   m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    //   m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+    //   if (fc == FLAVOR_EM) {
+    // 	if (bl_0.getLepton()->isElectron()) {
+    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	}		  
+    // 	else {	  
+    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	}
+    //   }
+    // }
+    // ++bin_counter;
+
+    // if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu40_MSonly_barrel_tight()) {
+    //   m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    //   m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+    //   if (fc == FLAVOR_EM) {
+    // 	if (bl_0.getLepton()->isElectron()) {
+    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	}		  
+    // 	else {	  
+    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	}
+    //   }
+    // }
+    // if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu40_MSonly_barrel_tight()) {
+    //   m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    //   m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+    //   if (fc == FLAVOR_EM) {
+    // 	if (bl_0.getLepton()->isElectron()) {
+    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	}		  
+    // 	else {	  
+    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	}
+    //   }
+    // }
+    // ++bin_counter;
+
+    // if (m_trigger.getEF_mu24i_tight() || m_trigger.getEF_mu36_tight() || m_trigger.getEF_mu40_MSonly_barrel_tight()) {
+    //   m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    //   m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+    //   if (fc == FLAVOR_EM) {
+    // 	if (bl_0.getLepton()->isElectron()) {
+    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	}		  
+    // 	else {	  
+    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	}
+    //   }
+    // }
+    // if (m_trigger.getEF_mu24i_tight() && m_trigger.getEF_mu36_tight() && m_trigger.getEF_mu40_MSonly_barrel_tight()) {
+    //   m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+    //   m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+    //   if (fc == FLAVOR_EM) {
+    // 	if (bl_0.getLepton()->isElectron()) {
+    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	}		  
+    // 	else {	  
+    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    // 	}
+    //   }
+    // }
+    // ++bin_counter;
 
     if (!any_trigger_passed) { // if no trigger passed, fill "None"
       m_h_single_triggers_passed.at(fc_it)->Fill(TRIGGERS_N, weight);
@@ -2791,6 +2950,223 @@ void PennSusyFrame::BMinusLDetailedHists::calcEff2d( TH2F* pt_2d
 }
 
 // -----------------------------------------------------------------------------
+void PennSusyFrame::BMinusLDetailedHists::passTriggerMatching( const PennSusyFrame::Event& event
+							       , const PennSusyFrame::Trigger trigger
+							       , const PennSusyFrame::blPair& bl_0
+							       , const PennSusyFrame::blPair& bl_1
+							       , bool trigger_matching [12]
+)
+{
+  FLAVOR_CHANNEL fc = event.getFlavorChannel();
+
+  std::vector<PennSusyFrame::Electron*>* el_list = new std::vector<PennSusyFrame::Electron*>;
+  std::vector<PennSusyFrame::Muon*>*     mu_list = new std::vector<PennSusyFrame::Muon*>;
+
+  if (fc == FLAVOR_EE) {
+    el_list->push_back((PennSusyFrame::Electron*)bl_0.getLepton());
+    el_list->push_back((PennSusyFrame::Electron*)bl_1.getLepton());
+    trigger_matching[0] = PennSusyFrame::matchElectronList(el_list
+							   , trigger.getTrig_EF_el_EF_e12Tvh_loose1()
+							   , trigger.getTrig_EF_el_px()
+							   , trigger.getTrig_EF_el_py()
+							   , trigger.getTrig_EF_el_pz()
+							   , trigger.getTrig_EF_el_E()
+							   , 2     // num to match
+							   , 0.15  // dr for match
+							   , 0     // min pt
+							   );
+    trigger_matching[1] = PennSusyFrame::matchElectronList(el_list
+							   , trigger.getTrig_EF_el_EF_e24vh_medium1_e7_medium1()
+							   , trigger.getTrig_EF_el_px()
+							   , trigger.getTrig_EF_el_py()
+							   , trigger.getTrig_EF_el_pz()
+							   , trigger.getTrig_EF_el_E()
+							   , 2     // num to match
+							   , 0.15  // dr for match
+							   , 0     // min pt
+							   );
+    trigger_matching[2] = PennSusyFrame::matchElectronList(el_list
+							   , trigger.getTrig_EF_el_EF_e24vhi_medium1()
+							   , trigger.getTrig_EF_el_px()
+							   , trigger.getTrig_EF_el_py()
+							   , trigger.getTrig_EF_el_pz()
+							   , trigger.getTrig_EF_el_E()
+							   , 1     // num to match
+							   , 0.15  // dr for match
+							   , 0     // min pt
+							   );
+    // trigger_matching[3] = PennSusyFrame::matchElectronList(el_list
+    // 							   , trigger.getTrig_EF_el_EF_e60_medium1()
+    // 							   , trigger.getTrig_EF_el_px()
+    // 							   , trigger.getTrig_EF_el_py()
+    // 							   , trigger.getTrig_EF_el_pz()
+    // 							   , trigger.getTrig_EF_el_E()
+    // 							   , 1     // num to match
+    // 							   , 0.15  // dr for match
+    // 							   , 0     // min pt
+    // 							   );
+    for (int i=4; i!=12; ++i) trigger_matching[i] = false;
+  }
+
+  else if (fc == FLAVOR_MM) {
+    mu_list->push_back((PennSusyFrame::Muon*)bl_0.getLepton());
+    mu_list->push_back((PennSusyFrame::Muon*)bl_1.getLepton());
+
+    for (int i=0; i!=6; ++i) trigger_matching[i] = false;
+
+    trigger_matching[6] = PennSusyFrame::matchMuonList(mu_list
+						       , trigger.getTrig_EF_trigmuonef_EF_mu24i_tight()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						       , 1
+						       , 0.15
+						       , 0
+						       );
+    trigger_matching[7] = PennSusyFrame::matchMuonList(mu_list
+						       , trigger.getTrig_EF_trigmuonef_EF_mu36_tight()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						       , 1
+						       , 0.15
+						       , 0
+						       );
+    trigger_matching[8] = PennSusyFrame::matchMuonList(mu_list
+						       , trigger.getTrig_EF_trigmuonef_EF_mu13()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						       , 2
+						       , 0.15
+						       , 0
+						       );
+    trigger_matching[9] = PennSusyFrame::matchMuonList(mu_list
+						       , trigger.getTrig_EF_trigmuonef_EF_mu18_tight_mu8_EFFS()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						       , 2
+						       , 0.15
+						       , 0
+						       );
+    trigger_matching[10] = PennSusyFrame::matchMuonList(mu_list
+						       , trigger.getTrig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						       , 2
+						       , 0.15
+						       , 0
+						       );
+    // trigger_matching[11] = PennSusyFrame::matchMuonList(mu_list
+    // 						       , trigger.getTrig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight()
+    // 						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+    // 						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+    // 						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+    // 						       , 1
+    // 						       , 0.15
+    // 						       , 0
+    // 						       );
+  }
+  else if (fc == FLAVOR_EM) {
+    if (bl_0.getLepton()->isElectron()) {
+      el_list->push_back((PennSusyFrame::Electron*)bl_0.getLepton());
+      mu_list->push_back((PennSusyFrame::Muon*)bl_1.getLepton());
+    }	     
+    else {   
+      el_list->push_back((PennSusyFrame::Electron*)bl_1.getLepton());
+      mu_list->push_back((PennSusyFrame::Muon*)bl_0.getLepton());
+    }
+
+    for (int i=0; i!=2; ++i) trigger_matching[i] = false;
+
+    trigger_matching[2] = PennSusyFrame::matchElectronList(el_list
+							   , trigger.getTrig_EF_el_EF_e24vhi_medium1()
+							   , trigger.getTrig_EF_el_px()
+							   , trigger.getTrig_EF_el_py()
+							   , trigger.getTrig_EF_el_pz()
+							   , trigger.getTrig_EF_el_E()
+							   , 1     // num to match
+							   , 0.15  // dr for match
+							   , 0     // min pt
+							   );
+    // trigger_matching[3] = PennSusyFrame::matchElectronList(el_list
+    // 							   , trigger.getTrig_EF_el_EF_e60_medium1()
+    // 							   , trigger.getTrig_EF_el_px()
+    // 							   , trigger.getTrig_EF_el_py()
+    // 							   , trigger.getTrig_EF_el_pz()
+    // 							   , trigger.getTrig_EF_el_E()
+    // 							   , 1     // num to match
+    // 							   , 0.15  // dr for match
+    // 							   , 0     // min pt
+    // 							   );
+
+    bool pass_electron_match = PennSusyFrame::matchElectronList(el_list
+							   , trigger.getTrig_EF_el_EF_e12Tvh_loose1()
+							   , trigger.getTrig_EF_el_px()
+							   , trigger.getTrig_EF_el_py()
+							   , trigger.getTrig_EF_el_pz()
+							   , trigger.getTrig_EF_el_E()
+							   , 1     // num to match
+							   , 0.15  // dr for match
+							   , 0     // min pt
+							   );
+    bool pass_muon_match = PennSusyFrame::matchMuonList(mu_list
+						       , trigger.getTrig_EF_trigmuonef_EF_mu8()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						       , 1
+						       , 0.15
+						       , 0
+						       );
+    trigger_matching[4] = (pass_electron_match && pass_muon_match);
+    pass_electron_match = PennSusyFrame::matchElectronList(el_list
+							   , trigger.getTrig_EF_el_EF_e7T_medium1()
+							   , trigger.getTrig_EF_el_px()
+							   , trigger.getTrig_EF_el_py()
+							   , trigger.getTrig_EF_el_pz()
+							   , trigger.getTrig_EF_el_E()
+							   , 1     // num to match
+							   , 0.15  // dr for match
+							   , 0     // min pt
+							   );
+    pass_muon_match = PennSusyFrame::matchMuonList(mu_list
+						   , trigger.getTrig_EF_trigmuonef_EF_mu18_tight()
+						   , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						   , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						   , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						   , 1
+						   , 0.15
+						   , 0
+						   );
+    trigger_matching[5] = (pass_electron_match && pass_muon_match);
+
+    trigger_matching[6] = PennSusyFrame::matchMuonList(mu_list
+						       , trigger.getTrig_EF_trigmuonef_EF_mu24i_tight()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						       , 1
+						       , 0.15
+						       , 0
+						       );
+    trigger_matching[7] = PennSusyFrame::matchMuonList(mu_list
+						       , trigger.getTrig_EF_trigmuonef_EF_mu36_tight()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_pt()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_eta()
+						       , trigger.getTrig_EF_trigmuonef_track_CB_phi()
+						       , 1
+						       , 0.15
+						       , 0
+						       );
+
+    for (int i=8; i!=12; ++i) trigger_matching[i] = false;
+  }
+}
+
+// -----------------------------------------------------------------------------
 void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
 {
   d->cd();
@@ -2833,6 +3209,8 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     m_h_lep_both_from_stop_raw_pt_all.at(fc_it)->Write();
     m_h_lep_both_from_stop_raw_pt_1.at(  fc_it)->Write();
 
+    m_h_ptiso_all_lep_from_stop.at(fc_it)->Write();
+    m_h_ptiso_all_lep_not_from_stop.at(fc_it)->Write();
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_b_jet_mult_pt_all.at(fc_it)->Write();
     m_h_b_jet_mult_pt_0.at(  fc_it)->Write();
@@ -2844,6 +3222,7 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     m_h_mbl_vs_ht_all.at(fc_it)->Write();
     m_h_mbl_vs_ht_0.at(  fc_it)->Write();
     m_h_mbl_vs_ht_1.at(  fc_it)->Write();
+    m_h_mbl_asym_after_ht_cut.at(fc_it)->Write();
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     bool raw = 0;
@@ -2948,6 +3327,7 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     m_h_mu_pt_v_single_triggers_passed.at(fc_it)->Write();
     m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Write();
     m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Write();
+    m_h_single_trigger_matching_passed.at(fc_it)->Write();
   }
 }
 
@@ -3708,7 +4088,45 @@ PennSusyFrame::DRHists::DRHists(std::string name_tag)
                                                                               , FLAVOR_CHANNEL_STRINGS[flavor_it].c_str()
                                                                               );
     }
+    m_h_dr_ereco_mutrig_all.push_back(new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "dr_ereco_mutrig_all"
+						  + "__"
+						  + name_tag
+						  ).c_str()
+						, ("dr_ereco_mutrig_all - "
+						   + FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + " ; #DeltaR(e^{reco}, mu^{trig}) ; Entries"
+						   ).c_str()
+						, dr_bins, dr_min, dr_max
+						)
+				      );
+    m_h_dr_breco_mutrig_all.push_back(new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + "dr_breco_mutrig_all"
+						  + "__"
+						  + name_tag
+						  ).c_str()
+						, ("dr_breco_mutrig_all - "
+						   + FLAVOR_CHANNEL_STRINGS[fc_it]
+						   + " ; #DeltaR(b^{reco}, mu^{trig}) ; Entries"
+						   ).c_str()
+						, dr_bins, dr_min, dr_max
+						)
+				      );
 
+    // ==================================================
+    // muon resolution cut efficiency
+    m_h_muon_qoverpratio.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+						+ "__muon_qoverpratio"
+						+ "__"
+						+ name_tag
+						).c_str()
+					      , ( "Muon QOverPRatio - "
+						  + FLAVOR_CHANNEL_STRINGS[fc_it]
+						  + " ; ; Events"
+						  ).c_str()
+					      , 20, 0., 1.
+					      )
+				    );
   }
 }
 
@@ -3722,6 +4140,7 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
                                    , const std::vector<PennSusyFrame::Muon*>& mu_list
                                    , const std::vector<PennSusyFrame::Jet*>& b_jet_list
                                    , const PennSusyFrame::MCTruth& mc_truth
+				     , PennSusyFrame::Trigger m_trigger
                                    )
 {
   FLAVOR_CHANNEL fc = event.getFlavorChannel();
@@ -3791,6 +4210,13 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
   FLAVOR_CHANNEL truth_fc = PennSusyFrame::getTruthFC(mc_truth);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // muon q over p ratio
+  float max_q_over_p_ratio=0;
+  for (unsigned int mu_it=0; mu_it != mu_list.size(); ++mu_it) {
+    float q_over_p_ratio = mu_list.at(mu_it)->getQOverPRatio();
+    if (q_over_p_ratio > max_q_over_p_ratio) max_q_over_p_ratio = q_over_p_ratio;
+  }
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // loop over all flavor channels and fill histograms
   for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     if (fc_it == FLAVOR_ERROR_1) continue;
@@ -3845,6 +4271,27 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
       else { // aka, if dr_lj11 is min
         if (lepton_from_stop_1) m_h_dr_ej_from_stop.at(fc_it)->Fill(dr_lj11, weight);
         else   m_h_dr_ej_not_from_stop.at(fc_it)->Fill(dr_lj11, weight);
+      }
+
+      // get Delta(R) between electrons and muon trigger object
+      // for mu36_tight trigger.
+      std::vector<float> dr_ereco_mutrig = PennSusyFrame::getDrParticleMuonTrigger((std::vector<PennSusyFrame::Particle*>&)el_list
+										   ,m_trigger.getTrig_EF_trigmuonef_EF_mu36_tight()
+										   ,m_trigger.getTrig_EF_trigmuonef_track_CB_pt()
+										   ,m_trigger.getTrig_EF_trigmuonef_track_CB_eta()
+										   ,m_trigger.getTrig_EF_trigmuonef_track_CB_phi()
+										   );
+      std::vector<float> dr_breco_mutrig = PennSusyFrame::getDrParticleMuonTrigger((std::vector<PennSusyFrame::Particle*>&)b_jet_list
+										   ,m_trigger.getTrig_EF_trigmuonef_EF_mu36_tight()
+										   ,m_trigger.getTrig_EF_trigmuonef_track_CB_pt()
+										   ,m_trigger.getTrig_EF_trigmuonef_track_CB_eta()
+										   ,m_trigger.getTrig_EF_trigmuonef_track_CB_phi()
+										   );
+      for (int dr_it=0; dr_it!=dr_ereco_mutrig.size(); ++dr_it) {
+	m_h_dr_ereco_mutrig_all.at(FLAVOR_EE)->Fill(dr_ereco_mutrig[dr_it], weight);
+      }
+      for (int dr_it=0; dr_it!=dr_breco_mutrig.size(); ++dr_it) {
+	m_h_dr_breco_mutrig_all.at(FLAVOR_EE)->Fill(dr_breco_mutrig[dr_it], weight);
       }
     }
 
@@ -3925,6 +4372,8 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
     else m_h_flavor_channel_tvr_lepnotfromstop.at(fc_it)->Fill(fc, truth_fc);
     if (jet_from_stop_0 && jet_from_stop_1) m_h_flavor_channel_tvr_jetfromstop.at(fc_it)->Fill(fc,truth_fc);
     else  m_h_flavor_channel_tvr_jetnotfromstop.at(fc_it)->Fill(fc,truth_fc);
+
+    if (mu_list.size() != 0) m_h_muon_qoverpratio.at(fc_it)->Fill(max_q_over_p_ratio);
   }
 }
 
@@ -3959,5 +4408,10 @@ void PennSusyFrame::DRHists::write(TDirectory* d)
     m_h_flavor_channel_tvr_lepnotfromstop.at(fc_it)->Write();
     m_h_flavor_channel_tvr_jetfromstop.at(fc_it)->Write();
     m_h_flavor_channel_tvr_jetnotfromstop.at(fc_it)->Write();
+
+    m_h_dr_ereco_mutrig_all.at(fc_it)->Write();
+    m_h_dr_breco_mutrig_all.at(fc_it)->Write();
+
+    m_h_muon_qoverpratio.at(fc_it)->Write();
   }
 }

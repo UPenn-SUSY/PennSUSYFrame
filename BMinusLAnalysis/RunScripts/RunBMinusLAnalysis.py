@@ -18,7 +18,8 @@ import RunHelpers
 
 # ==============================================================================
 # ntuple tree name
-input_tree_name = 'TNT'
+#input_tree_name = 'TNT'
+input_tree_name = 'susy'
 lep_pt_cut = 40.e3
 jet_pt_cut = 40.e3
 
@@ -214,7 +215,7 @@ def runBMinusLAnalysis( file_list
     bmla.setDoZKFactor(True)
 
     # Turn on/off detailed B-L histograms
-    bmla.setDoDetailedBLHists(False)
+    bmla.setDoDetailedBLHists(True)
 
     # prepare tools and run analysis loop
     print 'preparing tools'

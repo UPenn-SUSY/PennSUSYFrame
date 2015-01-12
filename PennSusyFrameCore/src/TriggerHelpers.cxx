@@ -190,3 +190,53 @@ bool PennSusyFrame::matchMuon( const PennSusyFrame::Muon* mu
                       , pt_cut
                       );
 }
+
+// -----------------------------------------------------------------------------
+std::vector<float> PennSusyFrame::getDrParticleMuonTrigger( const std::vector<PennSusyFrame::Particle*>& particles
+							    , const std::vector<int>* trigger_chain
+							    , const std::vector<std::vector<float> >* online_pt
+							    , const std::vector<std::vector<float> >* online_eta
+							    , const std::vector<std::vector<float> >* online_phi
+							    )
+{
+  float min_dR=10.;
+  std::vector<float> dR_list;
+  size_t offline_term = particles.size();
+
+  // get vector of TLV objects
+  std::vector<const TLorentzVector*> off_tlv;
+  // loop over all offline objects
+  for (size_t offline_it = 0; offline_it != offline_term; ++offline_it) {
+    off_tlv.push_back(particles.at(offline_it)->getTlv());
+
+    // loop over all online trigger objects
+    size_t trig_term = trigger_chain->size();
+    for (size_t trig_it = 0; trig_it != trig_term; ++trig_it) {
+      // first check trigger decision of this trigger object
+      //   do not match to triggers that do not fire!
+      if (trigger_chain->at(trig_it) == 0) continue;
+
+      // loop over online objects
+      size_t online_term = online_pt->at(trig_it).size();
+      for (size_t online_it = 0; online_it != online_term; ++online_it) {
+	// get online tlv
+	TLorentzVector on_tlv;
+	on_tlv.SetPtEtaPhiM( std::max( static_cast<float>(1.)
+				       , online_pt->at(trig_it).at(online_it)
+				       )
+			     , online_eta->at(trig_it).at(online_it)
+			     , online_phi->at(trig_it).at(online_it)
+			     , 0.
+			     );
+
+	// find dR between offline and nearest online objects
+	float dR = off_tlv.at(offline_it)->DeltaR(on_tlv);
+	if (dR < min_dR) min_dR = dR;
+
+	dR_list.push_back(off_tlv.at(offline_it)->DeltaR(on_tlv));
+      }
+    }
+    dR_list.push_back(min_dR);
+  }
+  return dR_list;
+}

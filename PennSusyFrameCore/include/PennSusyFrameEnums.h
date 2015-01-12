@@ -226,7 +226,7 @@ const std::string TAU_MU_LEVEL_STRINGS[] = { "tau_mu_none"
 enum TRIGGERS { trig_EF_2e12Tvh_loose1 = 0
 		,trig_EF_e24vh_medium1_e7_medium1
 		,trig_EF_e24vhi_medium1
-		,trig_EF_e60_medium1
+		//		,trig_EF_e60_medium1
 		,trig_EF_e12Tvh_medium1_mu8
 		,trig_EF_mu18_tight_e7_medium1
 		,trig_EF_mu24i_tight
@@ -234,18 +234,20 @@ enum TRIGGERS { trig_EF_2e12Tvh_loose1 = 0
 		,trig_EF_2mu13
 		,trig_EF_mu18_tight_mu8_EFFS
 		,trig_EF_mu24_tight_mu6_EFFS
+		//		,trig_EF_mu40_MSonly_barrel_tight
 		,TRIGGERS_N
 };
-const std::string TRIGGER_STRINGS[] = { "EF_2e12Tvh_loose1"            //0
-					,"EF_e24vh_medium1_e7_medium1" //1
-					,"EF_e24vhi_medium1"           //2
-					, "EF_e60_medium1"             //3
-					, "EF_e12Tvh_medium1_mu8"      //4
-					, "EF_mu18_tight_e7_medium1"   //5
-					, "EF_mu24i_tight"             //6
-					, "EF_mu36_tight"              //7
-					, "EF_2mu13"                   //8
-					, "EF_mu18_tight_mu8_EFFS"     //9
-					, "EF_mu24_tight_mu6_EFFS"    //10
+const std::string TRIGGER_STRINGS[] = { "EF_2e12Tvh_loose1"               //0
+					,"EF_e24vh_medium1_e7_medium1"    //1
+					,"EF_e24vhi_medium1"              //2
+					//					, "EF_e60_medium1"                //3
+					, "EF_e12Tvh_medium1_mu8"         //4
+					, "EF_mu18_tight_e7_medium1"      //5
+					, "EF_mu24i_tight"                //6
+					, "EF_mu36_tight"                 //7
+					, "EF_2mu13"                      //8
+					, "EF_mu18_tight_mu8_EFFS"        //9
+					, "EF_mu24_tight_mu6_EFFS"       //10
+					//					, "EF_mu40_MSonly_barrel_tight"  //11
 };
 #endif
