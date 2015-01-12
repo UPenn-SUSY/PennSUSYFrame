@@ -291,7 +291,7 @@ void PennSusyFrame::PennSusyFrameCore::Loop()
 
   // Actually loop over events
   for (Long64_t jentry=0; jentry != nentries; ++jentry) {
-    // if (jentry == 100) break;
+    // if (jentry == 50000) break;
 
     Long64_t this_entry = m_start_entry + jentry;
 
