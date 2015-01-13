@@ -119,6 +119,8 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
+      std::vector<TH1F*> m_h_num_lep;
+
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
@@ -139,6 +141,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_ptiso_all;
       std::vector<TH1F*> m_h_ptiso_0;
       std::vector<TH1F*> m_h_ptiso_1;
+      std::vector<TH1F*> m_h_ptiso_max_denomminpt;
+      std::vector<TH1F*> m_h_ptiso_max_denompt;
 
       std::vector<TH1F*> m_h_etiso_all;
       std::vector<TH1F*> m_h_etiso_0;
