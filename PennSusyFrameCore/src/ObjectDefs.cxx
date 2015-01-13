@@ -159,8 +159,7 @@ PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_E(0)
                                   , m_trig_EF_trigmuonef_EF_mu36_tight(0)
                                   , m_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS(0)
                                   , m_trig_EF_el_EF_e24vhi_medium1(0)
-				  , m_trig_EF_el_EF_e60_medium1(0)
-				  , m_trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight(0)
+                                  , m_trig_EF_el_EF_e60_medium1(0)
                                   , m_trig_EF_trigmuonef_EF_mu24_tight(0)
                                   , m_trig_EF_trigmuonef_track_CB_eta(0)
                                   , m_trig_EF_trigmuonef_track_CB_phi(0)
@@ -186,7 +185,6 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
   setEF_e24vhi_medium1(           reader->EF_e24vhi_medium1);
   // TODO uncomment when we turn this on in the TNTs
   // setEF_e60_medium1(              reader->EF_e60_medium1);
-  // setEF_mu40_MSonly_barrel_tight(   reader->EF_mu40_MSonly_barrel_tight);
 
   setTrig_EF_el_E(                              reader->trig_EF_el_E);
   setTrig_EF_el_px(                             reader->trig_EF_el_px);
@@ -207,7 +205,6 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
   setTrig_EF_el_EF_e24vhi_medium1(              reader->trig_EF_el_EF_e24vhi_medium1);
   // TODO uncomment when we turn this on in the TNTs
   // setTrig_EF_el_EF_e60_medium1(                 reader->trig_EF_el_EF_e60_medium1);
-  // setTrig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight(  reader->trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight);
   setTrig_EF_trigmuonef_EF_mu24_tight(          reader->trig_EF_trigmuonef_EF_mu24_tight);
   setTrig_EF_trigmuonef_track_CB_eta(           reader->trig_EF_trigmuonef_track_CB_eta);
   setTrig_EF_trigmuonef_track_CB_phi(           reader->trig_EF_trigmuonef_track_CB_phi);
