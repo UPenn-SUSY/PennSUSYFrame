@@ -60,11 +60,24 @@ namespace PennSusyFrame
                                       , const std::vector<PennSusyFrame::Jet*>*
                                       , const std::vector<PennSusyFrame::Jet*>*
                                       );
+      void reproduceFullObjectCleaning( PennSusyFrame::Event&
+                                      , PennSusyFrame::ObjectCleaning
+                                      , const std::vector<PennSusyFrame::Electron*>*
+                                      , const std::vector<PennSusyFrame::Muon*>*
+                                      , const std::vector<PennSusyFrame::Jet*>*
+                                      , const std::vector<PennSusyFrame::Jet*>*
+                                      );
 
     protected:
       void filldRHistHandles( BMINUSL_DR_HIST_LEVELS
                             , const PennSusyFrame::Event&
                             , const PennSusyFrame::MCTruth&
+                            , const std::vector<PennSusyFrame::Electron*>&
+                            , const std::vector<PennSusyFrame::Muon*>&
+                            , const std::vector<PennSusyFrame::Jet*>&
+                            );
+      void filldRHistHandles( BMINUSL_DR_HIST_LEVELS
+                            , const PennSusyFrame::Event&
                             , const std::vector<PennSusyFrame::Electron*>&
                             , const std::vector<PennSusyFrame::Muon*>&
                             , const std::vector<PennSusyFrame::Jet*>&
