@@ -136,9 +136,7 @@ namespace PennSusyFrame
       void init( bool is_data
                , bool is_af2
                , bool is_mc12b
-               , bool do_jer      = false
-               , bool do_jes_up   = false
-               , bool do_jes_down = false
+               , PennSusyFrame::SystematicStruct* syst_struct = 0
                );
       void updateWithMet(const PennSusyFrame::Met&);
 
@@ -156,9 +154,6 @@ namespace PennSusyFrame
       std::vector<std::vector<PennSusyFrame::Jet*> > m_user_lists;
 
       bool m_is_data;
-      bool m_do_jer;
-      bool m_do_jes_up;
-      bool m_do_jes_down;
       PennSusyFrame::JetRescalerTool* m_jet_rescaler;
   };
 }

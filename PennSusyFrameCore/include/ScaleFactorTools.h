@@ -170,12 +170,24 @@ namespace PennSusyFrame
       double getSF( const std::vector<PennSusyFrame::Jet*>*
                   , const PennSusyFrame::MCTruth&
                   );
-      double getUncertDown( const std::vector<PennSusyFrame::Jet*>*
-                          , const PennSusyFrame::MCTruth&
-                          );
-      double getUncertUp( const std::vector<PennSusyFrame::Jet*>*
-                        , const PennSusyFrame::MCTruth&
-                        );
+      double getUncertBDown( const std::vector<PennSusyFrame::Jet*>*
+                           , const PennSusyFrame::MCTruth&
+                           );
+      double getUncertCDown( const std::vector<PennSusyFrame::Jet*>*
+                           , const PennSusyFrame::MCTruth&
+                           );
+      double getUncertLDown( const std::vector<PennSusyFrame::Jet*>*
+                           , const PennSusyFrame::MCTruth&
+                           );
+      double getUncertBUp( const std::vector<PennSusyFrame::Jet*>*
+                         , const PennSusyFrame::MCTruth&
+                         );
+      double getUncertCUp( const std::vector<PennSusyFrame::Jet*>*
+                         , const PennSusyFrame::MCTruth&
+                         );
+      double getUncertLUp( const std::vector<PennSusyFrame::Jet*>*
+                         , const PennSusyFrame::MCTruth&
+                         );
 
     // -----------------------------------------------------------------------------
     private:

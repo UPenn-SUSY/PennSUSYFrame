@@ -42,7 +42,7 @@ def myBoxText(x, y, boxsize, mcolor, text):
     x2=x-0.3
     x1=x2-boxsize
 
-    print "x1= %f x2= %f y1= %f y2= %f \n" % (x1,x2,y1,y2)
+    # print "x1= %f x2= %f y1= %f y2= %f \n" % (x1,x2,y1,y2)
 
     mbox = TPave(x1,y1,x2,y2,0,"NDC")
 
@@ -71,7 +71,7 @@ def myMarkerText(x, y, color, mstyle, text, msize=2.):
     #marker.PaintMarker(x-(0.4*tsize),y)
     marker.Print()
 
-    print str(x-(0.4*tsize)) + ' -- ' + str(y)
+    # print str(x-(0.4*tsize)) + ' -- ' + str(y)
 
     l = TLatex()
     l.SetTextAlign(12)

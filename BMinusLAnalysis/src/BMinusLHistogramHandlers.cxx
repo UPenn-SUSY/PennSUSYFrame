@@ -22,6 +22,10 @@ static const int   pt_bins = 20;
 static const float pt_min  = 0.;
 static const float pt_max  = 1000.;
 
+static const int   pt_detailed_bins = 40;
+static const float pt_detailed_min  = 0.;
+static const float pt_detailed_max  = 200.;
+
 static const int   eta_bins = 50;
 static const float eta_min = -5.;
 static const float eta_max = +5.;
@@ -262,6 +266,45 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                       , pt_bins, pt_min, pt_max
                                       )
                             );
+
+    m_h_b_jet_pt_detailed_all.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + "__b_jet_pt_detailed_all"
+                                                   + "__"
+                                                   + name_tag
+                                                   ).c_str()
+                                                 , ( "p_{T} - "
+                                                   + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                   + " ; p_{T} [GeV] ; Entries"
+                                                   ).c_str()
+                                                 , pt_detailed_bins, pt_detailed_min, pt_detailed_max
+                                                 )
+                                       );
+
+    m_h_b_jet_pt_detailed_0.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__b_jet_pt_detailed_0"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "p_{T}^{0} - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; p_{T}^{0} [GeV] ; Entries"
+                                                 ).c_str()
+                                               , pt_detailed_bins, pt_detailed_min, pt_detailed_max
+                                               )
+                                     );
+
+    m_h_b_jet_pt_detailed_1.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + "__b_jet_pt_detailed_1"
+                                                 + "__"
+                                                 + name_tag
+                                                 ).c_str()
+                                               , ( "p_{T}^{1} - "
+                                                 + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                 + " ; p_{T}^{1} [GeV] ; Entries"
+                                                 ).c_str()
+                                               , pt_detailed_bins, pt_detailed_min, pt_detailed_max
+                                               )
+                                     );
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_dr_bb.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
@@ -682,6 +725,10 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     if (num_jet > 0) {
       m_h_b_jet_pt_all.at(fc_it)->Fill(pt_b_0, weight);
       m_h_b_jet_pt_0.at(  fc_it)->Fill(pt_b_0, weight);
+      if (pt_b_0 > pt_detailed_min && pt_b_0 < pt_detailed_max) {
+        m_h_b_jet_pt_detailed_all.at(fc_it)->Fill(pt_b_0, weight);
+        m_h_b_jet_pt_detailed_0.at(  fc_it)->Fill(pt_b_0, weight);
+      }
 
       m_h_b_jet_eta_all.at(fc_it)->Fill(eta_b_0, weight);
       m_h_b_jet_eta_0.at(  fc_it)->Fill(eta_b_0, weight);
@@ -692,6 +739,10 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
     if (num_jet > 1) {
       m_h_b_jet_pt_all.at(fc_it)->Fill(pt_b_1 , weight);
       m_h_b_jet_pt_1.at(  fc_it)->Fill(pt_b_1 , weight);
+      if (pt_b_1 > pt_detailed_min && pt_b_1 < pt_detailed_max) {
+        m_h_b_jet_pt_detailed_all.at(fc_it)->Fill(pt_b_1, weight);
+        m_h_b_jet_pt_detailed_1.at(  fc_it)->Fill(pt_b_1, weight);
+      }
 
       m_h_dr_bb.at  (fc_it)->Fill(dr_bb  , weight);
       m_h_dphi_bb.at(fc_it)->Fill(dphi_bb, weight);
@@ -775,6 +826,10 @@ void PennSusyFrame::BMinusLHists::write(TDirectory* d)
     m_h_b_jet_pt_0.at(  fc_it)->Write();
     m_h_b_jet_pt_1.at(  fc_it)->Write();
 
+    m_h_b_jet_pt_detailed_all.at(fc_it)->Write();
+    m_h_b_jet_pt_detailed_0.at(  fc_it)->Write();
+    m_h_b_jet_pt_detailed_1.at(  fc_it)->Write();
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     m_h_dr_bb.at(fc_it)->Write();
     m_h_dphi_bb.at(fc_it)->Write();
@@ -819,44 +874,44 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
 
     m_h_lep_pt_v_flavor_channel.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__lep_pt_v_flavor_channel"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "Flavor Channel - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "; Flavor Channel ; p_{T}^{l1}"
-                                            ).c_str()
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          , pt_bins, pt_min, pt_max
-          )
-                                );
+                                                     + "__lep_pt_v_flavor_channel"
+                                                     + "__"
+                                                     + name_tag
+                                                     ).c_str()
+                                                   , ( "Flavor Channel - "
+                                                     + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                     + "; Flavor Channel ; p_{T}^{l1}"
+                                                     ).c_str()
+                                                   , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                   , pt_bins, pt_min, pt_max
+                                                   )
+                                         );
     m_h_el_pt_v_flavor_channel.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__el_pt_v_flavor_channel"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "Flavor Channel - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "; Flavor Channel ; p_{T}^{el}"
-                                            ).c_str()
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          , pt_bins, pt_min, pt_max
-                                          )
-                                );
+                                                    + "__el_pt_v_flavor_channel"
+                                                    + "__"
+                                                    + name_tag
+                                                    ).c_str()
+                                                  , ( "Flavor Channel - "
+                                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                    + "; Flavor Channel ; p_{T}^{el}"
+                                                    ).c_str()
+                                                  , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                  , pt_bins, pt_min, pt_max
+                                                  )
+                                        );
     m_h_mu_pt_v_flavor_channel.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "__mu_pt_v_flavor_channel"
-                                            + "__"
-                                            + name_tag
-                                            ).c_str()
-                                          , ( "Flavor Channel - "
-                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                            + "; Flavor Channel ; p_{T}^{mu}"
-                                            ).c_str()
-                                          , FLAVOR_N, -0.5, FLAVOR_N - 0.5
-                                          , pt_bins, pt_min, pt_max
-                                          )
-                                );
+                                                    + "__mu_pt_v_flavor_channel"
+                                                    + "__"
+                                                    + name_tag
+                                                    ).c_str()
+                                                  , ( "Flavor Channel - "
+                                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                    + "; Flavor Channel ; p_{T}^{mu}"
+                                                    ).c_str()
+                                                  , FLAVOR_N, -0.5, FLAVOR_N - 0.5
+                                                  , pt_bins, pt_min, pt_max
+                                                  )
+                                        );
     for (int flavor_it = 0; flavor_it != FLAVOR_N; ++flavor_it) {
       PennSusyFrame::setBinLabel( m_h_lep_pt_v_flavor_channel.at(fc_it)
                                 , flavor_it+1
@@ -3747,21 +3802,8 @@ PennSusyFrame::WeightHists::WeightHists(std::string name_tag)
                                             )
                                   );
 
-    m_h_btag_sf_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + "__weights__btag_sf_up"
-                                        + "__"
-                                        + name_tag
-                                        ).c_str()
-                                      , ( "btag_sf - "
-                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; weight ; Entries"
-                                        ).c_str()
-                                      , weight_bins, weight_min, weight_max
-                                      )
-                            );
-
-    m_h_btag_sf_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + "__weights__btag_sf_down"
+    m_h_btag_sf_b_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__btag_sf_b_up"
                                           + "__"
                                           + name_tag
                                           ).c_str()
@@ -3773,31 +3815,148 @@ PennSusyFrame::WeightHists::WeightHists(std::string name_tag)
                                         )
                               );
 
-    m_h_btag_sf_ratio_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + "__weights__btag_sf_ratio_up"
-                                        + "__"
-                                        + name_tag
-                                        ).c_str()
-                                      , ( "btag_sf - "
-                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; ratio ; Entries"
-                                        ).c_str()
-                                      , weight_bins, weight_min, weight_max
-                                      )
-                            );
+    m_h_btag_sf_b_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__weights__btag_sf_b_down"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "btag_sf - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; weight ; Entries"
+                                            ).c_str()
+                                          , weight_bins, weight_min, weight_max
+                                          )
+                                );
 
-    m_h_btag_sf_ratio_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + "__weights__btag_sf_ratio_down"
+    m_h_btag_sf_c_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__btag_sf_c_up"
                                           + "__"
                                           + name_tag
                                           ).c_str()
                                         , ( "btag_sf - "
                                           + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                          + " ; ratio ; Entries"
+                                          + " ; weight ; Entries"
                                           ).c_str()
                                         , weight_bins, weight_min, weight_max
                                         )
                               );
+
+    m_h_btag_sf_c_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__weights__btag_sf_c_down"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "btag_sf - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; weight ; Entries"
+                                            ).c_str()
+                                          , weight_bins, weight_min, weight_max
+                                          )
+                                );
+
+    m_h_btag_sf_l_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + "__weights__btag_sf_l_up"
+                                          + "__"
+                                          + name_tag
+                                          ).c_str()
+                                        , ( "btag_sf - "
+                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                          + " ; weight ; Entries"
+                                          ).c_str()
+                                        , weight_bins, weight_min, weight_max
+                                        )
+                              );
+
+    m_h_btag_sf_l_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__weights__btag_sf_l_down"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "btag_sf - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; weight ; Entries"
+                                            ).c_str()
+                                          , weight_bins, weight_min, weight_max
+                                          )
+                                );
+
+    m_h_btag_sf_ratio_b_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__weights__btag_sf_ratio_b_up"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "btag_sf - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; ratio ; Entries"
+                                                ).c_str()
+                                              , weight_bins, weight_min, weight_max
+                                              )
+                                    );
+
+    m_h_btag_sf_ratio_b_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__weights__btag_sf_ratio_b_down"
+                                                  + "__"
+                                                  + name_tag
+                                                  ).c_str()
+                                                , ( "btag_sf - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; ratio ; Entries"
+                                                  ).c_str()
+                                                , weight_bins, weight_min, weight_max
+                                                )
+                                      );
+
+    m_h_btag_sf_ratio_c_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__weights__btag_sf_ratio_c_up"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "btag_sf - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; ratio ; Entries"
+                                                ).c_str()
+                                              , weight_bins, weight_min, weight_max
+                                              )
+                                    );
+
+    m_h_btag_sf_ratio_c_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__weights__btag_sf_ratio_c_down"
+                                                  + "__"
+                                                  + name_tag
+                                                  ).c_str()
+                                                , ( "btag_sf - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; ratio ; Entries"
+                                                  ).c_str()
+                                                , weight_bins, weight_min, weight_max
+                                                )
+                                      );
+
+    m_h_btag_sf_ratio_l_up.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + "__weights__btag_sf_ratio_l_up"
+                                                + "__"
+                                                + name_tag
+                                                ).c_str()
+                                              , ( "btag_sf - "
+                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                + " ; ratio ; Entries"
+                                                ).c_str()
+                                              , weight_bins, weight_min, weight_max
+                                              )
+                                    );
+
+    m_h_btag_sf_ratio_l_down.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + "__weights__btag_sf_ratio_l_down"
+                                                  + "__"
+                                                  + name_tag
+                                                  ).c_str()
+                                                , ( "btag_sf - "
+                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                                  + " ; ratio ; Entries"
+                                                  ).c_str()
+                                                , weight_bins, weight_min, weight_max
+                                                )
+                                      );
   }
 }
 
@@ -3854,11 +4013,19 @@ void PennSusyFrame::WeightHists::FillSpecial( const PennSusyFrame::Event& event
     m_h_lep_sf_ratio_muon_up.at(    fc_it)->Fill(event_quantities.getLeptonSFMuonUp()     / event_quantities.getLeptonSF());
     m_h_lep_sf_ratio_muon_down.at(  fc_it)->Fill(event_quantities.getLeptonSFMuonDown()   / event_quantities.getLeptonSF());
 
-    m_h_btag_sf_up.at(  fc_it)->Fill(event_quantities.getBTagSFUp()  );
-    m_h_btag_sf_down.at(fc_it)->Fill(event_quantities.getBTagSFDown());
+    m_h_btag_sf_b_up.at(  fc_it)->Fill(event_quantities.getBTagSFBUp()  );
+    m_h_btag_sf_b_down.at(fc_it)->Fill(event_quantities.getBTagSFBDown());
+    m_h_btag_sf_c_up.at(  fc_it)->Fill(event_quantities.getBTagSFCUp()  );
+    m_h_btag_sf_c_down.at(fc_it)->Fill(event_quantities.getBTagSFCDown());
+    m_h_btag_sf_l_up.at(  fc_it)->Fill(event_quantities.getBTagSFLUp()  );
+    m_h_btag_sf_l_down.at(fc_it)->Fill(event_quantities.getBTagSFLDown());
 
-    m_h_btag_sf_ratio_up.at(  fc_it)->Fill(event_quantities.getBTagSFUp()   / event_quantities.getBTagSF());
-    m_h_btag_sf_ratio_down.at(fc_it)->Fill(event_quantities.getBTagSFDown() / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_b_up.at(  fc_it)->Fill(event_quantities.getBTagSFBUp()   / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_b_down.at(fc_it)->Fill(event_quantities.getBTagSFBDown() / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_c_up.at(  fc_it)->Fill(event_quantities.getBTagSFCUp()   / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_c_down.at(fc_it)->Fill(event_quantities.getBTagSFCDown() / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_l_up.at(  fc_it)->Fill(event_quantities.getBTagSFLUp()   / event_quantities.getBTagSF());
+    m_h_btag_sf_ratio_l_down.at(fc_it)->Fill(event_quantities.getBTagSFLDown() / event_quantities.getBTagSF());
   }
 }
 
@@ -3890,11 +4057,19 @@ void PennSusyFrame::WeightHists::write(TDirectory* d)
     m_h_lep_sf_ratio_muon_up.at(    fc_it)->Write();
     m_h_lep_sf_ratio_muon_down.at(  fc_it)->Write();
 
-    m_h_btag_sf_up.at(  fc_it)->Write();
-    m_h_btag_sf_down.at(fc_it)->Write();
+    m_h_btag_sf_b_up.at(  fc_it)->Write();
+    m_h_btag_sf_b_down.at(fc_it)->Write();
+    m_h_btag_sf_c_up.at(  fc_it)->Write();
+    m_h_btag_sf_c_down.at(fc_it)->Write();
+    m_h_btag_sf_l_up.at(  fc_it)->Write();
+    m_h_btag_sf_l_down.at(fc_it)->Write();
 
-    m_h_btag_sf_ratio_up.at(  fc_it)->Write();
-    m_h_btag_sf_ratio_down.at(fc_it)->Write();
+    m_h_btag_sf_ratio_b_up.at(  fc_it)->Write();
+    m_h_btag_sf_ratio_b_down.at(fc_it)->Write();
+    m_h_btag_sf_ratio_c_up.at(  fc_it)->Write();
+    m_h_btag_sf_ratio_c_down.at(fc_it)->Write();
+    m_h_btag_sf_ratio_l_up.at(  fc_it)->Write();
+    m_h_btag_sf_ratio_l_down.at(fc_it)->Write();
   }
 }
 

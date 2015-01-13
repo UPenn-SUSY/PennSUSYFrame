@@ -33,7 +33,6 @@ namespace PennSusyFrame
     Bool_t          EF_e24vhi_medium1;
     // TODO uncomment when we turn this on in the TNTs
     // Bool_t          EF_e60_medium1;
-    // Bool_t          EF_mu40_MSonly_barrel_tight;
     Float_t         Eventshape_rhoKt4LC;
     Float_t         MET_Egamma10NoTau_CellOut_etx;
     Float_t         MET_Egamma10NoTau_CellOut_ety;
@@ -164,7 +163,6 @@ namespace PennSusyFrame
     std::vector<int>     *trig_EF_el_EF_e24vhi_medium1;
     // TODO uncomment when we turn this on in the TNTs
     // std::vector<int>     *trig_EF_el_EF_e60_medium1;
-    // std::vector<int>     *trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight;
     std::vector<int>     *trig_EF_trigmuonef_EF_mu24_tight;
     std::vector<int>     *vx_nTracks;
     std::vector<std::vector<float> > *el_MET_Egamma10NoTau_wet;
@@ -222,7 +220,6 @@ namespace PennSusyFrame
     TBranch        *b_EF_e24vhi_medium1;   //!
     // TODO uncomment when we turn this on in the TNTs
     // TBranch        *b_EF_e60_medium1;   //!
-    // TBranch        *b_EF_mu40_MSonly_barrel_tight;   //!
     TBranch        *b_EventNumber;   //!
     TBranch        *b_Eventshape_rhoKt4LC;   //!
     TBranch        *b_MET_Egamma10NoTau_CellOut_etx;   //!
@@ -382,7 +379,6 @@ namespace PennSusyFrame
     TBranch        *b_trig_EF_el_EF_e24vhi_medium1;   //!
     // TODO uncomment when we turn this on in the TNTs
     // TBranch        *b_trig_EF_el_EF_e60_medium1;   //!
-    // TBranch        *b_trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight;   //!
     TBranch        *b_trig_EF_trigmuonef_EF_mu24_tight;   //!
     TBranch        *b_trig_EF_trigmuonef_track_CB_eta;   //!
     TBranch        *b_trig_EF_trigmuonef_track_CB_hasCB;   //!

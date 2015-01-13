@@ -20,6 +20,7 @@ class TBranch;
 namespace PennSusyFrame
 {
   class D3PDReader;
+  struct SystematicStruct;
 }
 
 // =============================================================================
@@ -71,9 +72,7 @@ namespace PennSusyFrame
 
       virtual void setMV1Cut(float val) { m_mv1_cut_value = val; }
 
-      virtual void setDoJer(    bool val) { m_do_jer      = val; }
-      virtual void setDoJesUp(  bool val) { m_do_jes_up   = val; }
-      virtual void setDoJesDown(bool val) { m_do_jes_down = val; }
+      SystematicStruct * getSystematicStruct() { return &m_syst_struct; }
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       virtual void prepareSelection();
@@ -126,10 +125,50 @@ namespace PennSusyFrame
 
       float m_mv1_cut_value;
 
+      // struct to determine the systematics for this run
+      SystematicStruct m_syst_struct;
+
       // boolians to turn on systematic shifts
-      bool m_do_jer;
-      bool m_do_jes_up;
-      bool m_do_jes_down;
+      // bool m_do_jer;
+      // bool m_do_jes_up;
+      // bool m_do_jes_down;
+
+      // bool m_do_effectivenp_1Up;
+      // bool m_do_effectivenp_1Down;
+      // bool m_do_effectivenp_2Up;
+      // bool m_do_effectivenp_2Down;
+      // bool m_do_effectivenp_3Up;
+      // bool m_do_effectivenp_3Down;
+      // bool m_do_effectivenp_4Up;
+      // bool m_do_effectivenp_4Down;
+      // bool m_do_effectivenp_5Up;
+      // bool m_do_effectivenp_5Down;
+      // bool m_do_effectivenp_6Up;
+      // bool m_do_effectivenp_6Down;
+      // bool m_do_etaintercalibration_modellingUp;
+      // bool m_do_etaintercalibration_modellingDown;
+      // bool m_do_etaintercalibration_statandmethodUp;
+      // bool m_do_etaintercalibration_statandmethodDown;
+      // bool m_do_singleparticle_highptUp;
+      // bool m_do_singleparticle_highptDown;
+      // bool m_do_relativenonclosure_pythia8Up;
+      // bool m_do_relativenonclosure_pythia8Down;
+      // bool m_do_pileupoffsettermmuup;
+      // bool m_do_pileupoffsettermmudown;
+      // bool m_do_pileupoffsettermnpvup;
+      // bool m_do_pileupoffsettermnpvdown;
+      // bool m_do_pileuppttermup;
+      // bool m_do_pileuppttermdown;
+      // bool m_do_pileuprhotopologyup;
+      // bool m_do_pileuprhotopologydown;
+      // bool m_do_closebyup;
+      // bool m_do_closebydown;
+      // bool m_do_flavorcompuncertup;
+      // bool m_do_flavorcompuncertdown;
+      // bool m_do_flavorresponseuncertup;
+      // bool m_do_flavorresponseuncertdown;
+      // bool m_do_bjesup;
+      // bool m_do_bjesdown;
 
       TTree* m_tree;
       PennSusyFrame::D3PDReader* m_d3pd_reader;

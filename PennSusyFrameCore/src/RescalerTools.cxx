@@ -103,9 +103,8 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledEt(const PennSusyFrame::E
 // = MuonRescalerTool
 // =============================================================================
 PennSusyFrame::MuonRescalerTool::MuonRescalerTool(bool is_data) : m_is_data(is_data)
-								, m_mcp_smear(0) 
+                                                                , m_mcp_smear(0)
                                                                 , m_smearing_function("")
-								 
 {
   init();
 }
@@ -115,7 +114,6 @@ PennSusyFrame::MuonRescalerTool::~MuonRescalerTool()
 {
   if (m_mcp_smear)
     delete m_mcp_smear;
-    
 }
 
 // -----------------------------------------------------------------------------
@@ -215,15 +213,11 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
 PennSusyFrame::JetRescalerTool::JetRescalerTool( bool is_data
                                                , bool is_af2
                                                , bool is_mc_12b
-                                               , bool do_jer
-                                               , bool do_jes_up
-                                               , bool do_jes_down
+                                               , PennSusyFrame::SystematicStruct* syst_struct
                                                ) : m_is_data(is_data)
                                                  , m_is_af2(is_af2)
                                                  , m_is_mc12b(is_mc_12b)
-                                                 , m_do_jer(do_jer)
-                                                 , m_do_jes_up(do_jes_up)
-                                                 , m_do_jes_down(do_jes_down)
+                                                 , m_syst_struct(syst_struct)
                                                  , m_jet_calibration(0)
                                                  , m_jer_smearing(0)
                                                  , m_jes_tool(0)
@@ -322,24 +316,62 @@ TLorentzVector PennSusyFrame::JetRescalerTool::getCalibratedTlv( const PennSusyF
                                                                , int   num_vertices_ge_2_tracks
                                                                )
 {
-  TLorentzVector calibrated_tlv =  m_jet_calibration->ApplyJetAreaOffsetEtaJES( p->getConstScaleE()
-                                                                              , p->getConstScaleEta()
-                                                                              , p->getConstScalePhi()
-                                                                              , p->getConstScaleM()
-                                                                              , p->getActiveAreaPx()
-                                                                              , p->getActiveAreaPy()
-                                                                              , p->getActiveAreaPz()
-                                                                              , p->getActiveAreaE()
-                                                                              , event->getEventShapeRhoKt4LC()
-                                                                              , event->getAverageIntPerXing()
-                                                                              , num_vertices_ge_2_tracks
-                                                                              );
+  TLorentzVector calibrated_tlv = m_jet_calibration->ApplyJetAreaOffsetEtaJES( p->getConstScaleE()
+                                                                             , p->getConstScaleEta()
+                                                                             , p->getConstScalePhi()
+                                                                             , p->getConstScaleM()
+                                                                             , p->getActiveAreaPx()
+                                                                             , p->getActiveAreaPy()
+                                                                             , p->getActiveAreaPz()
+                                                                             , p->getActiveAreaE()
+                                                                             , event->getEventShapeRhoKt4LC()
+                                                                             , event->getAverageIntPerXing()
+                                                                             , num_vertices_ge_2_tracks
+                                                                             );
 
-  if (!m_is_data) {
-    if (m_do_jer) {
+  if (!m_is_data && m_syst_struct != 0) {
+    if (m_syst_struct->getSyst("do_jer")) {
       applyJER(calibrated_tlv);
     }
-    if (m_do_jes_up || m_do_jes_down) {
+    if (  m_syst_struct->getSyst("do_jes_up")
+       || m_syst_struct->getSyst("do_jes_down")
+       || m_syst_struct->getSyst("do_effective_np_1_up")
+       || m_syst_struct->getSyst("do_effective_np_1_down")
+       || m_syst_struct->getSyst("do_effective_np_2_up")
+       || m_syst_struct->getSyst("do_effective_np_2_down")
+       || m_syst_struct->getSyst("do_effective_np_3_up")
+       || m_syst_struct->getSyst("do_effective_np_3_down")
+       || m_syst_struct->getSyst("do_effective_np_4_up")
+       || m_syst_struct->getSyst("do_effective_np_4_down")
+       || m_syst_struct->getSyst("do_effective_np_5_up")
+       || m_syst_struct->getSyst("do_effective_np_5_down")
+       || m_syst_struct->getSyst("do_effective_np_6_up")
+       || m_syst_struct->getSyst("do_effective_np_6_down")
+       || m_syst_struct->getSyst("do_eta_intercalibration_modelling_up")
+       || m_syst_struct->getSyst("do_eta_intercalibration_modelling_down")
+       || m_syst_struct->getSyst("do_eta_intercalibration_statand_method_up")
+       || m_syst_struct->getSyst("do_eta_intercalibration_statand_method_down")
+       || m_syst_struct->getSyst("do_single_particle_high_pt_up")
+       || m_syst_struct->getSyst("do_single_particle_high_pt_down")
+       || m_syst_struct->getSyst("do_relative_non_closure_pythia8_up")
+       || m_syst_struct->getSyst("do_relative_non_closure_pythia8_down")
+       || m_syst_struct->getSyst("do_pile_up_offset_term_mu_up")
+       || m_syst_struct->getSyst("do_pile_up_offset_term_mu_down")
+       || m_syst_struct->getSyst("do_pile_up_offset_term_npv_up")
+       || m_syst_struct->getSyst("do_pile_up_offset_term_npv_down")
+       || m_syst_struct->getSyst("do_pile_up_pt_term_up")
+       || m_syst_struct->getSyst("do_pile_up_pt_term_down")
+       || m_syst_struct->getSyst("do_pile_up_rho_topology_up")
+       || m_syst_struct->getSyst("do_pile_up_rho_topology_down")
+       || m_syst_struct->getSyst("do_closeby_up")
+       || m_syst_struct->getSyst("do_closeby_down")
+       || m_syst_struct->getSyst("do_flavor_comp_uncert_up")
+       || m_syst_struct->getSyst("do_flavor_comp_uncert_down")
+       || m_syst_struct->getSyst("do_flavor_response_uncert_up")
+       || m_syst_struct->getSyst("do_flavor_response_uncert_down")
+       || m_syst_struct->getSyst("do_bjes_up")
+       || m_syst_struct->getSyst("do_bjes_down")
+       ) {
       applyJES( calibrated_tlv
               , p->getFlavorTruthLabel()
               , num_vertices_ge_2_tracks
@@ -386,7 +418,7 @@ void PennSusyFrame::JetRescalerTool::applyJES( TLorentzVector& tlv
   double old_eta = tlv.Eta();
   double old_e   = tlv.E();
 
-  if(m_do_jes_up) {
+  if(m_syst_struct->getSyst("do_jes_up")) {
     uncertainty = m_jes_tool->getRelUncert( old_pt
                                           , old_eta
                                           , f_closeby
@@ -396,7 +428,7 @@ void PennSusyFrame::JetRescalerTool::applyJES( TLorentzVector& tlv
                                           , is_b_jet
                                           );
   }
-  if(m_do_jes_down) {
+  if(m_syst_struct->getSyst("do_jes_down")) {
     uncertainty = m_jes_tool->getRelUncert( old_pt
                                           , old_eta
                                           , f_closeby
@@ -405,7 +437,275 @@ void PennSusyFrame::JetRescalerTool::applyJES( TLorentzVector& tlv
                                           , mu
                                           , is_b_jet
                                           );
-    factor=-1;
+    factor = -1;
+  }
+
+  // effectiveNP_1
+  if (m_syst_struct->getSyst("do_effective_np_1_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_1"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_effective_np_1_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_1"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // effectiveNP_2
+  if (m_syst_struct->getSyst("do_effective_np_2_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_2"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_effective_np_2_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_2"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // EffectiveNP_3
+  if (m_syst_struct->getSyst("do_effective_np_3_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_3"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_effective_np_3_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_3"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // EffectiveNP_4
+  if (m_syst_struct->getSyst("do_effective_np_4_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_4"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_effective_np_4_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_4"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // EffectiveNP_5
+  if (m_syst_struct->getSyst("do_effective_np_5_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_5"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_effective_np_5_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_5"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // EffectiveNP_6restTerm
+  if (m_syst_struct->getSyst("do_effective_np_6_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_6restTerm"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_effective_np_6_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EffectiveNP_6restTerm"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // EtaIntercalibration_Modelling
+  if (m_syst_struct->getSyst("do_eta_intercalibration_modelling_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EtaIntercalibration_Modelling"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_eta_intercalibration_modelling_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EtaIntercalibration_Modelling"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // EtaIntercalibration_StatAndMethod
+  if (m_syst_struct->getSyst("do_eta_intercalibration_statand_method_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EtaIntercalibration_StatAndMethod"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_eta_intercalibration_statand_method_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "EtaIntercalibration_StatAndMethod"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // SingleParticle_HighPt
+  if (m_syst_struct->getSyst("do_single_particle_high_pt_up")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "SingleParticle_HighPt"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+  }
+  if (m_syst_struct->getSyst("do_single_particle_high_pt_down")) {
+    uncertainty = m_jes_tool->getRelUncertComponent( "SingleParticle_HighPt"
+                                                   , old_pt
+                                                   , old_eta
+                                                   );
+    factor = -1;
+  }
+
+  // RelativeNonClosure_pythia8
+  if (m_syst_struct->getSyst("do_relative_non_closure_pythia8_up")) {
+    if (m_is_af2) {
+      uncertainty = m_jes_tool->getRelUncertComponent( "RelativeNonClosure_AFII"
+                                                     , old_pt
+                                                     , old_eta
+                                                     );
+    }
+    else {
+      uncertainty = m_jes_tool->getRelUncertComponent( "RelativeNonClosure_Pythia8"
+                                                     , old_pt
+                                                     , old_eta
+                                                     );
+    }
+  }
+  if (m_syst_struct->getSyst("do_relative_non_closure_pythia8_down")) {
+    if (m_is_af2) {
+      uncertainty = m_jes_tool->getRelUncertComponent( "RelativeNonClosure_AFII"
+                                                     , old_pt
+                                                     , old_eta
+                                                     );
+    }
+    else {
+      uncertainty = m_jes_tool->getRelUncertComponent( "RelativeNonClosure_Pythia8"
+                                                     , old_pt
+                                                     , old_eta
+                                                     );
+    }
+    factor = -1;
+  }
+
+  // pile up offset term mu
+  if (m_syst_struct->getSyst("do_pile_up_offset_term_mu_up")) {
+    uncertainty = m_jes_tool->getRelMuOffsetTerm(old_pt, old_eta, mu);
+  }
+  if (m_syst_struct->getSyst("do_pile_up_offset_term_mu_down")) {
+    uncertainty = m_jes_tool->getRelMuOffsetTerm(old_pt, old_eta, mu);
+    factor = -1;
+  }
+
+  // pile up offset term npv
+  if (m_syst_struct->getSyst("do_pile_up_offset_term_npv_up")) {
+    uncertainty = m_jes_tool->getRelNPVOffsetTerm( old_pt
+                                                 , old_eta
+                                                 , num_vert_ge_2_trk
+                                                 );
+  }
+  if (m_syst_struct->getSyst("do_pile_up_offset_term_npv_down")) {
+    uncertainty = m_jes_tool->getRelNPVOffsetTerm( old_pt
+                                                 , old_eta
+                                                 , num_vert_ge_2_trk
+                                                 );
+    factor = -1;
+  }
+
+  // pile up pt term
+  if (m_syst_struct->getSyst("do_pile_up_pt_term_up")) {
+    uncertainty = m_jes_tool->getRelPileupPtTerm( old_pt
+                                                , old_eta
+                                                , num_vert_ge_2_trk
+                                                , mu
+                                                );
+  }
+  if (m_syst_struct->getSyst("do_pile_up_pt_term_down")) {
+    uncertainty = m_jes_tool->getRelPileupPtTerm( old_pt
+                                                , old_eta
+                                                , num_vert_ge_2_trk
+                                                , mu
+                                                );
+    factor = -1;
+  }
+
+  // pile up rho topology
+  if (m_syst_struct->getSyst("do_pile_up_rho_topology_up")) {
+    uncertainty = m_jes_tool->getRelPileupRhoTopology( old_pt
+                                                     , old_eta
+                                                     );
+  }
+  if (m_syst_struct->getSyst("do_pile_up_rho_topology_down")) {
+    uncertainty = m_jes_tool->getRelPileupRhoTopology( old_pt
+                                                     , old_eta
+                                                     );
+    factor = -1;
+  }
+
+  // close by
+  if (m_syst_struct->getSyst("do_closeby_up")) {
+    uncertainty = m_jes_tool->getRelClosebyUncert(old_pt, f_closeby);
+  }
+  if (m_syst_struct->getSyst("do_closeby_down")) {
+    uncertainty = m_jes_tool->getRelClosebyUncert(old_pt, f_closeby);
+    factor = -1;
+  }
+
+  // flavor comp
+  if (m_syst_struct->getSyst("do_flavor_comp_uncert_up")) {
+    // only apply to non b-jets
+    uncertainty = (!is_b_jet) ? m_jes_tool->getRelFlavorCompUncert(old_pt,old_eta,true)
+                              : 0;
+  }
+  if (m_syst_struct->getSyst("do_flavor_comp_uncert_down")) {
+    // only apply to non b-jets
+    uncertainty = (!is_b_jet) ? m_jes_tool->getRelFlavorCompUncert(old_pt,old_eta,true)
+                              : 0;
+    factor = -1;
+  }
+
+  // flavor response
+  if (m_syst_struct->getSyst("do_flavor_response_uncert_up")) {
+    // only apply to non b-jets
+    uncertainty = (!is_b_jet) ? m_jes_tool->getRelFlavorResponseUncert(old_pt,old_eta)
+                              : 0;
+  }
+  if (m_syst_struct->getSyst("do_flavor_response_uncert_down")) {
+    // only apply to non b-jets
+    uncertainty = (!is_b_jet) ? m_jes_tool->getRelFlavorResponseUncert(old_pt,old_eta)
+                              : 0;
+    factor = -1;
+  }
+
+  // b jes
+  if (m_syst_struct->getSyst("do_bjes_up")) {
+    // only apply to b-jets
+    uncertainty = (is_b_jet) ? m_jes_tool->getRelBJESUncert(old_pt,old_eta)
+                             : 0;
+  }
+  if (m_syst_struct->getSyst("do_bjes_down")) {
+    // only apply to b-jets
+    uncertainty = (is_b_jet) ? m_jes_tool->getRelBJESUncert(old_pt,old_eta)
+                             : 0;
+    factor = -1;
   }
 
   double new_pt = old_pt*(1 + (factor*uncertainty));

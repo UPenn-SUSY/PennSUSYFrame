@@ -445,9 +445,9 @@ double PennSusyFrame::BTagScaleFactorTool::getSF( const std::vector<PennSusyFram
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::BTagScaleFactorTool::getUncertDown( const std::vector<PennSusyFrame::Jet*>* jets
-                                                        , const PennSusyFrame::MCTruth& mc_truth
-                                                        )
+double PennSusyFrame::BTagScaleFactorTool::getUncertBDown( const std::vector<PennSusyFrame::Jet*>* jets
+                                                         , const PennSusyFrame::MCTruth& mc_truth
+                                                         )
 {
   if (!m_is_prepped) {
     prep(jets, mc_truth);
@@ -457,13 +457,61 @@ double PennSusyFrame::BTagScaleFactorTool::getUncertDown( const std::vector<Penn
 }
 
 // -----------------------------------------------------------------------------
-double PennSusyFrame::BTagScaleFactorTool::getUncertUp( const std::vector<PennSusyFrame::Jet*>* jets
-                                                      , const PennSusyFrame::MCTruth& mc_truth
-                                                      )
+double PennSusyFrame::BTagScaleFactorTool::getUncertCDown( const std::vector<PennSusyFrame::Jet*>* jets
+                                                         , const PennSusyFrame::MCTruth& mc_truth
+                                                         )
+{
+  if (!m_is_prepped) {
+    prep(jets, mc_truth);
+  }
+
+  return m_b_tag_weight_result.at(2);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getUncertLDown( const std::vector<PennSusyFrame::Jet*>* jets
+                                                         , const PennSusyFrame::MCTruth& mc_truth
+                                                         )
+{
+  if (!m_is_prepped) {
+    prep(jets, mc_truth);
+  }
+
+  return m_b_tag_weight_result.at(3);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getUncertBUp( const std::vector<PennSusyFrame::Jet*>* jets
+                                                       , const PennSusyFrame::MCTruth& mc_truth
+                                                       )
 {
   if (!m_is_prepped) {
     prep(jets, mc_truth);
   }
 
   return m_b_tag_weight_result.at(4);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getUncertCUp( const std::vector<PennSusyFrame::Jet*>* jets
+                                                       , const PennSusyFrame::MCTruth& mc_truth
+                                                       )
+{
+  if (!m_is_prepped) {
+    prep(jets, mc_truth);
+  }
+
+  return m_b_tag_weight_result.at(5);
+}
+
+// -----------------------------------------------------------------------------
+double PennSusyFrame::BTagScaleFactorTool::getUncertLUp( const std::vector<PennSusyFrame::Jet*>* jets
+                                                       , const PennSusyFrame::MCTruth& mc_truth
+                                                       )
+{
+  if (!m_is_prepped) {
+    prep(jets, mc_truth);
+  }
+
+  return m_b_tag_weight_result.at(6);
 }
