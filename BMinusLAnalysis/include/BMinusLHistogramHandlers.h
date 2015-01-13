@@ -362,6 +362,12 @@ namespace PennSusyFrame
 				, const PennSusyFrame::MCTruth&
 				, PennSusyFrame::Trigger m_trigger
                               );
+      virtual void FilldR(      const PennSusyFrame::Event& event
+			      , const std::vector<PennSusyFrame::Electron*>&
+                              , const std::vector<PennSusyFrame::Muon*>&
+                              , const std::vector<PennSusyFrame::Jet*>&
+				, PennSusyFrame::Trigger m_trigger
+                              );
       virtual void write(TDirectory*);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
