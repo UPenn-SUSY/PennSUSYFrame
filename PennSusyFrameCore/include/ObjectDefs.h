@@ -173,12 +173,12 @@ namespace PennSusyFrame
       double getLeptonSF()           const { return m_lepton_sf;             }
       double getTriggerWeight()      const { return m_trigger_weight;        }
       double getBTagSF()             const { return m_b_tag_sf;              }
-      double getBTagSFBUp()          const { return m_b_tag_sf_b_up;           }
-      double getBTagSFBDown()        const { return m_b_tag_sf_b_down;         }
-      double getBTagSFCUp()          const { return m_b_tag_sf_c_up;           }
-      double getBTagSFCDown()        const { return m_b_tag_sf_c_down;         }
-      double getBTagSFLUp()          const { return m_b_tag_sf_l_up;           }
-      double getBTagSFLDown()        const { return m_b_tag_sf_l_down;         }
+      double getBTagSFBUp()          const { return m_b_tag_sf_b_up;         }
+      double getBTagSFBDown()        const { return m_b_tag_sf_b_down;       }
+      double getBTagSFCUp()          const { return m_b_tag_sf_c_up;         }
+      double getBTagSFCDown()        const { return m_b_tag_sf_c_down;       }
+      double getBTagSFLUp()          const { return m_b_tag_sf_l_up;         }
+      double getBTagSFLDown()        const { return m_b_tag_sf_l_down;       }
       double getCFWeight()           const { return m_cf_weight;             }
       double getFakeWeight()         const { return m_fake_weight;           }
 
