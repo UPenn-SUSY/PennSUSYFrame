@@ -210,10 +210,12 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                                                                                , '119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ'
                                                                                                , '119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj'
                                                                                                , '119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW'
+
                                                                                                , "177997.Sherpa_CT10_llnunu_WW_MassiveCB"
                                                                                                , "177999.Sherpa_CT10_llnunu_ZZ_MassiveCB"
                                                                                                , "179974.Sherpa_CT10_lllnu_WZ_MassiveCB"
                                                                                                , "179975.Sherpa_CT10_lnununu_WZ_MassiveCB"
+
                                                                                                , "183585.Sherpa_CT10_ZWtoeeqq_MassiveCB"
                                                                                                , "183586.Sherpa_CT10_ZZtoeeqq_MassiveCB"
                                                                                                , "183587.Sherpa_CT10_ZWtomumuqq_MassiveCB"
@@ -228,6 +230,7 @@ def generateEntryContainers(syst_tag = 'NOMINAL'):
                                                                                                , "183737.Sherpa_CT10_WZtomunuqq_MassiveCB"
                                                                                                , "183738.Sherpa_CT10_WWtotaunuqq_MassiveCB"
                                                                                                , "183739.Sherpa_CT10_WZtotaunuqq_MassiveCB"
+
                                                                                                , '160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'
                                                                                                , '160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'
                                                                                                , '160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'
