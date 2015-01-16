@@ -109,6 +109,8 @@ def runBMinusLAnalysis( file_list
     print "Adding files to TChain"
     print '  Tree name: ' , tree_name
     t = RunHelpers.getTChain(file_list, tree_name)
+    print t
+    print t.GetEntries()
 
     # ==============================================================================
     print 'Creating BMinusLAnalysis object'

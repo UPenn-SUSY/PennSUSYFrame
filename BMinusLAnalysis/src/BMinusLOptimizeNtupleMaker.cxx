@@ -106,16 +106,14 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::clearVariables()
   m_is_mm = false;
   m_is_em = false;
 
-  m_is_sr     = false;
-  m_is_cr_top = false;
-  m_is_cr_z   = false;
-  m_is_vr_1   = false;
-  m_is_vr_2   = false;
-  m_is_vr_3   = false;
-  m_is_vr_4   = false;
-  m_is_vr_5   = false;
-  m_is_vr_6   = false;
-  m_is_vr_7   = false;
+  m_is_sr_1     = false;
+  m_is_sr_2     = false;
+  m_is_cr_top   = false;
+  m_is_cr_z     = false;
+  m_is_vr_top_1 = false;
+  m_is_vr_top_2 = false;
+  m_is_vr_top_3 = false;
+  m_is_vr_z     = false;
 
   m_mbl_0    = 0 ;
   m_mbl_1    = 0 ;
@@ -185,16 +183,14 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
   m_output_tree->Branch( "is_mm" , &m_is_mm);
   m_output_tree->Branch( "is_em" , &m_is_em);
 
-  m_output_tree->Branch( "is_sr"    , &m_is_sr    );
-  m_output_tree->Branch( "is_cr_top", &m_is_cr_top);
-  m_output_tree->Branch( "is_cr_z"  , &m_is_cr_z  );
-  m_output_tree->Branch( "is_vr_1"  , &m_is_vr_1  );
-  m_output_tree->Branch( "is_vr_2"  , &m_is_vr_2  );
-  m_output_tree->Branch( "is_vr_3"  , &m_is_vr_3  );
-  m_output_tree->Branch( "is_vr_4"  , &m_is_vr_4  );
-  m_output_tree->Branch( "is_vr_5"  , &m_is_vr_5  );
-  m_output_tree->Branch( "is_vr_6"  , &m_is_vr_6  );
-  m_output_tree->Branch( "is_vr_7"  , &m_is_vr_7  );
+  m_output_tree->Branch( "is_sr_1"    , &m_is_sr_1    );
+  m_output_tree->Branch( "is_sr_2"    , &m_is_sr_2    );
+  m_output_tree->Branch( "is_cr_top"  , &m_is_cr_top  );
+  m_output_tree->Branch( "is_cr_z"    , &m_is_cr_z    );
+  m_output_tree->Branch( "is_vr_top_1", &m_is_vr_top_1);
+  m_output_tree->Branch( "is_vr_top_2", &m_is_vr_top_2);
+  m_output_tree->Branch( "is_vr_top_3", &m_is_vr_top_3);
+  m_output_tree->Branch( "is_vr_z"    , &m_is_vr_z    );
 
   m_output_tree->Branch( "mbl_0"    , &m_mbl_0);
   m_output_tree->Branch( "mbl_1"    , &m_mbl_1);
@@ -325,20 +321,22 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   m_dr_bb   = sqrt(m_dphi_bb*m_dphi_bb + m_deta_bb*m_deta_bb);
 
   bool ht_ge_1100    = (m_ht_signal      >= 1100.0);
-  bool ht_ge_700     = (m_ht_signal      >= 700.0);
   bool ht_ge_500     = (m_ht_signal      >= 500.0 );
-  bool mbl_le_4      = (m_mbl_asym       <= 0.40  );
+  bool mbl_le_2      = (m_mbl_asym       <= 0.20  );
   bool met_sig_ge_4  = (m_met_sig_signal >= 4.    );
 
   // don't include SR in data if we are blinded
   if ( !m_is_data || !m_is_blind) {
-    m_is_sr = (m_pass_z_veto && ht_ge_1100 && mbl_le_4);
+    m_is_sr_1 = (m_pass_z_veto && mbl_le_2 && ht_ge_1100);
+    m_is_sr_2 = (m_pass_z_veto && mbl_le_2 && ht_ge_500 && !ht_ge_1100);
   }
-  m_is_cr_top = (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && met_sig_ge_4);
-  m_is_cr_z   = (!m_pass_z_veto && !ht_ge_500 && mbl_le_4);
-  m_is_vr_1   = (m_pass_z_veto && ht_ge_500 && !ht_ge_700 && mbl_le_4 && met_sig_ge_4);
-  m_is_vr_3   = (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && !met_sig_ge_4);
-  m_is_vr_5   = (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4);
+  m_is_cr_top   = (m_pass_z_veto && !ht_ge_500 && mbl_le_2 && met_sig_ge_4);
+  m_is_cr_z     = (!m_pass_z_veto && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4);
+
+  m_is_vr_top_1 = (m_pass_z_veto  && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4);
+  m_is_vr_top_2 = (m_pass_z_veto  && !ht_ge_500 && !mbl_le_2);
+  m_is_vr_top_3 = (m_pass_z_veto  && ht_ge_500  && met_sig_ge_4 && !mbl_le_2);
+  m_is_vr_z     = (!m_pass_z_veto && ht_ge_500  && mbl_le_2);
 
   // fill output tree
   m_output_tree->Fill();

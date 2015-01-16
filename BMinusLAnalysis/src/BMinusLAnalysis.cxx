@@ -81,7 +81,8 @@ void PennSusyFrame::BMinusLAnalysis::prepareTools()
   std::string base_dir = getenv("BASE_WORK_DIR");
   if (m_is_data) {
     m_grl.init( base_dir
-              + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
+              // + "/data/data12_8TeV.periodAllYear_DetStatus-v58-pro14-01_DQDefects-00-00-33_PHYS_StandardGRL_All_Good.xml"
+              + "/data/data12_8TeV.periodAllYear_DetStatus-v61-pro14-02_DQDefects-00-01-00_PHYS_StandardGRL_All_Good.xml"
               );
   }
 
@@ -117,7 +118,6 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   // m_electron_selectors.at(EL_SIGNAL).setElectronQuality(EL_QUALITY_TIGHTPP);
   m_electron_selectors.at(EL_SIGNAL).setD0SignificanceCut(-1, 3);
   m_electron_selectors.at(EL_SIGNAL).setZ0SignThetaCut(-1, 0.4);
-  // m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, -1);
   m_electron_selectors.at(EL_SIGNAL).setPtIsoCut(-1, 0.1);
   m_electron_selectors.at(EL_SIGNAL).setEtIsoCut(-1, -1);
 
@@ -129,7 +129,6 @@ void PennSusyFrame::BMinusLAnalysis::prepareSelection()
   // MU_SIGNAL
   m_muon_selectors.at(MU_SIGNAL).setD0SignificanceCut(-1, 3.);
   m_muon_selectors.at(MU_SIGNAL).setZ0SignThetaCut(-1, 1.);
-  // m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, -1);
   m_muon_selectors.at(MU_SIGNAL).setPtIsoCut(-1, 0.1);
   m_muon_selectors.at(MU_SIGNAL).setEtIsoCut(-1, -1);
 
@@ -472,10 +471,12 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // do z veto fo SFOS lepton pairs
   m_pass_z_veto = true;
+  // m_pass_wide_z_veto = true;
   if (  m_event.getFlavorChannel() == FLAVOR_EE
      || m_event.getFlavorChannel() == FLAVOR_MM
      ) {
     m_pass_z_veto = ( fabs(m_event_quantities.getMll() - 91.e3) > 10.e3 );
+    // m_pass_wide_z_veto = ( fabs(m_event_quantities.getMll() - 91.e3) > 20.e3 );
   }
   // m_pass_event = (m_pass_event && m_pass_z_veto);
   if (m_crit_cut_z_veto && !m_pass_z_veto) return;
@@ -522,10 +523,10 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for BL_PAIRING hist level
   fillHistHandles( PennSusyFrame::BMINUSL_HIST_BL_PAIRING
-                  , m_bl_0
-                  , m_bl_1
-                  , m_event_weight
-                  );
+                 , m_bl_0
+                 , m_bl_1
+                 , m_event_weight
+                 );
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // fill histograms for ZVETO hist level
@@ -535,8 +536,13 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , m_bl_1
                    , m_event_weight
                    );
+
     // also fill with no weights applied
-    fillHistHandles(PennSusyFrame::BMINUSL_HIST_NO_WEIGHTS, m_bl_0, m_bl_1, 1.);
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_NO_WEIGHTS
+                   , m_bl_0
+                   , m_bl_1
+                   , 1.
+                   );
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -549,9 +555,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
   double met_sig  = m_met.getMetSigSignal();
 
   bool ht_ge_1100    = (ht       >= 1100.0 );
-  bool ht_ge_700     = (ht       >= 700.0 );
   bool ht_ge_500     = (ht       >= 500.0 );
-  bool mbl_le_4      = (mbl_asym <= 0.40   );
   bool mbl_le_2      = (mbl_asym <= 0.20   );
   bool met_sig_ge_4  = (met_sig  >= 4.     );
 
@@ -559,169 +563,300 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
   // - Fill histograms for SR (don't fill for data if we are blind!)
   // -------------------------------------------------------------------------
   if ( !m_is_data || !m_is_blind ) {
-    // signal region cuts
-    if (m_pass_z_veto && ht_ge_1100 && mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR
-                      , m_bl_0
-                      , m_bl_1
-                      , m_event_weight
-                      );
-    }
-    if (m_pass_z_veto && mbl_le_4) {
+    // signal region - hT cut
+    if (m_pass_z_veto && mbl_le_2) {
       fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_HT
-                      , m_bl_0
-                      , m_bl_1
-                      , m_event_weight
-                      );
-    }
-    if (m_pass_z_veto && ht_ge_1100) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_MBL_ASYM
-                      , m_bl_0
-                      , m_bl_1
-                      , m_event_weight
-                      );
-    }
-    if (ht_ge_1100 && mbl_le_4) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_Z_VETO
-                      , m_bl_0
-                      , m_bl_1
-                      , m_event_weight
-                      );
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
     }
 
-    // signal region cuts (right mbl asym)
-    if (m_pass_z_veto && ht_ge_1100 && mbl_le_2) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_TIGHT_MBL_ASYM
-                      , m_bl_0
-                      , m_bl_1
-                      , m_event_weight
-                      );
+    // signal regions - mbl asym cut
+    if (m_pass_z_veto) {
+      if (ht_ge_1100) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_1_MINUS_MBL_ASYM
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+      else if (ht_ge_500) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_2_MINUS_MBL_ASYM
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
     }
+
+    // signal regions - z veto
+    if (mbl_le_2) {
+      if (ht_ge_1100) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_1_MINUS_Z_VETO
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+      else if (ht_ge_500) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_2_MINUS_Z_VETO
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+    }
+
+    // signal regions
     if (m_pass_z_veto && mbl_le_2) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_HT_TIGHT_MBL_ASYM
-                      , m_bl_0
-                      , m_bl_1
-                      , m_event_weight
-                      );
-    }
-    if (ht_ge_1100 && mbl_le_2) {
-      fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_MINUS_Z_VETO_TIGHT_MBL_ASYM
-                      , m_bl_0
-                      , m_bl_1
-                      , m_event_weight
-                      );
+      if (ht_ge_1100) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_1
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+      else if (ht_ge_500) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_2
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
     }
   }
 
   // -------------------------------------------------------------------------
   // - Fill histograms for CR and VR
   // -------------------------------------------------------------------------
-  // CR top region cuts
-  if (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && met_sig_ge_4) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
+  // Top CR - hT
+  if ( !m_is_data || !m_is_blind ) {
+    // blind because SR is a subset of this region
+    if (m_pass_z_veto && mbl_le_2 && met_sig_ge_4) {
+      fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_MINUS_HT
+                     , m_bl_0
+                     , m_bl_1
+                     , m_event_weight
+                     );
+    }
   }
 
-  // CR Z region cuts
-  if (!m_pass_z_veto && !ht_ge_500 && mbl_le_4) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
+  // Top CR - mbl asym
+  if (m_pass_z_veto && !ht_ge_500 && met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_MINUS_MBL_ASYM
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
   }
 
-  // VR 1 region cuts
-  if (m_pass_z_veto && !ht_ge_500 && !mbl_le_4) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
+  // Top CR - met sig
+  if (m_pass_z_veto && !ht_ge_500 && mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_MINUS_MET_SIG
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
   }
-
-  if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_4) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_2
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
-  }
-
-  // VR 3 region cuts
-  if (m_pass_z_veto && !ht_ge_500 && mbl_le_4 && !met_sig_ge_4) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_3
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
-  }
-
-  // VR 5 region cuts
-  if (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_4) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_5
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
-  }
-
 
   // CR top region cuts
   if (m_pass_z_veto && !ht_ge_500 && mbl_le_2 && met_sig_ge_4) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_TIGHT_MBL_ASYM
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
+  }
+
+  // CR Z region cuts - hT cut
+  if (!m_pass_z_veto && mbl_le_2 && !met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_MINUS_HT
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
+  }
+
+  // CR Z region cuts - mbl asym cut
+  if (!m_pass_z_veto && !ht_ge_500 && !met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_MINUS_MBL_ASYM
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
+  }
+
+  // CR Z region cuts - met sig cut
+  if (!m_pass_z_veto && !ht_ge_500 && mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_MINUS_MET_SIG
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
   }
 
   // CR Z region cuts
-  if (!m_pass_z_veto && !ht_ge_500 && mbl_le_2) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_TIGHT_MBL_ASYM
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
+  if (!m_pass_z_veto && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
   }
 
-  // VR 1 region cuts
-  if (m_pass_z_veto && !ht_ge_500 && !mbl_le_2) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_1_TIGHT_MBL_ASYM
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
-  }
-
-  if (m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && !mbl_le_2) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_2_TIGHT_MBL_ASYM
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
-  }
-
-  // VR 3 region cuts
+  // VR TOP 1 region cuts
   if (m_pass_z_veto && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_3_TIGHT_MBL_ASYM
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_TOP_1
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
   }
 
-  // VR 5 region cuts
-  if (!m_pass_z_veto && ht_ge_500 && !ht_ge_1100 && mbl_le_2) {
-    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_5_TIGHT_MBL_ASYM
-                    , m_bl_0
-                    , m_bl_1
-                    , m_event_weight
-                    );
+  // VR TOP 2 region cuts
+  if (m_pass_z_veto && !ht_ge_500 && !mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_TOP_2
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
   }
+
+  // VR TOP 3 region cuts
+  if (m_pass_z_veto && ht_ge_500 && met_sig_ge_4 && !mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_TOP_3
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
+  }
+
+  // VR Z region cuts
+  if (!m_pass_z_veto && ht_ge_500 && mbl_le_2) {
+    fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_Z
+                   , m_bl_0
+                   , m_bl_1
+                   , m_event_weight
+                   );
+  }
+
+
+
+
+  // // -------------------------------------------------------------------------
+  // // - Fill histograms for CR and VR
+  // // -------------------------------------------------------------------------
+  // // Top CR - hT
+  // if ( !m_is_data || !m_is_blind ) {
+  //   // blind because SR is a subset of this region
+  //   if (m_pass_wide_z_veto && mbl_le_2 && met_sig_ge_4) {
+  //     fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_HT
+  //                    , m_bl_0
+  //                    , m_bl_1
+  //                    , m_event_weight
+  //                    );
+  //   }
+  // }
+
+  // // Top CR - mbl asym
+  // if (m_pass_wide_z_veto && !ht_ge_500 && met_sig_ge_4) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // Top CR - met sig
+  // if (m_pass_wide_z_veto && !ht_ge_500 && mbl_le_2) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MET_SIG
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // CR top region cuts
+  // if (m_pass_wide_z_veto && !ht_ge_500 && mbl_le_2 && met_sig_ge_4) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // CR Z region cuts - hT cut
+  // if (!m_pass_wide_z_veto && mbl_le_2 && !met_sig_ge_4) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_HT
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // CR Z region cuts - mbl asym cut
+  // if (!m_pass_wide_z_veto && !ht_ge_500 && !met_sig_ge_4) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MBL_ASYM
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // CR Z region cuts - met sig cut
+  // if (!m_pass_wide_z_veto && !ht_ge_500 && mbl_le_2) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MET_SIG
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // CR Z region cuts
+  // if (!m_pass_wide_z_veto && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // VR TOP 1 region cuts
+  // if (m_pass_wide_z_veto && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_TOP_1_WIDE_Z_WINDOW
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // VR TOP 2 region cuts
+  // if (m_pass_wide_z_veto && !ht_ge_500 && !mbl_le_2) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_TOP_2_WIDE_Z_WINDOW
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // VR TOP 3 region cuts
+  // if (m_pass_wide_z_veto && ht_ge_500 && met_sig_ge_4 && !mbl_le_2) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_TOP_3_WIDE_Z_WINDOW
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
+
+  // // VR Z region cuts
+  // if (!m_pass_wide_z_veto && ht_ge_500 && mbl_le_2) {
+  //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_VR_Z_WIDE_Z_WINDOW
+  //                  , m_bl_0
+  //                  , m_bl_1
+  //                  , m_event_weight
+  //                  );
+  // }
 }
 
 // -----------------------------------------------------------------------------
@@ -847,12 +982,17 @@ bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
 {
   FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
 
+  // ee flavor channel
   if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vhi_medium1()) return true;
+
+  // mumu flavor channel
   if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu24i_tight())    return true;
-  // if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu36_tight())     return true;
+  if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu36_tight())     return true;
+
+  // emu flavor channel
   if (flavor_channel == FLAVOR_EM && m_trigger.getEF_e24vhi_medium1()) return true;
   if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu24i_tight())    return true;
-  // if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu36_tight())     return true;
+  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu36_tight())     return true;
 
   return false;
 }

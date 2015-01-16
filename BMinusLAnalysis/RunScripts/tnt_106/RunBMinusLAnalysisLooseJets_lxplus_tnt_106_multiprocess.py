@@ -40,10 +40,10 @@ print out_dir
 if __name__ == '__main__':
     print 'getting file list'
 
-    egamma_data_samples = SamplesDicts.getEgammaDataSamples(job_multiplier = 5)
-    muon_data_samples = SamplesDicts.getMuonDataSamples(job_multiplier = 5)
-    full_sim_mc_samples = SamplesDicts.getFullSimSamples(job_multiplier = 5)
-    fast_sim_mc_samples = SamplesDicts.getFastSimSamples(job_multiplier = 5)
+    egamma_data_samples = SamplesDicts.getEgammaDataSamples(job_multiplier = 1)
+    muon_data_samples   = SamplesDicts.getMuonDataSamples(job_multiplier = 1)
+    full_sim_mc_samples = SamplesDicts.getFullSimSamples(job_multiplier = 1)
+    fast_sim_mc_samples = SamplesDicts.getFastSimSamples(job_multiplier = 1)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         print syst, ' -- ', the_dicts
 
         this_out_dir = '__'.join([out_dir, syst])
-        this_sym_link_name = ''.join(['./NextPlotDir.BMinusL.', syst])
+        this_sym_link_name = ''.join(['./NextPlotDir.BMinusL.LooseJets.', syst])
         print 'this sym link name: ', this_sym_link_name
 
         this_run_analysis_fun = RunBMinusLAnalysisLooseJets.runBMinusLAnalysisLooseJetsFun
@@ -94,7 +94,7 @@ if __name__ == '__main__':
                                               , 'RunScripts/'
                                               ]
                                             )
-            this_job_dir = '.'.join( [ 'LatestRunDir_bminuslanalysis'
+            this_job_dir = '.'.join( [ 'LatestRunDir_bminuslanalysis.loosejets'
                                      , syst
                                      ]
                                    )

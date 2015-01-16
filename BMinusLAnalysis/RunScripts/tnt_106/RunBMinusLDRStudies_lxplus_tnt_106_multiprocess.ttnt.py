@@ -52,8 +52,8 @@ print out_dir
 if __name__ == '__main__':
     print 'getting file list'
 
-    egamma_data_samples = {}
-    muon_data_samples = {}
+    egamma_data_samples = SamplesDicts.getEgammaDataSamples(job_multiplier = 1)
+    muon_data_samples = SamplesDicts.getMuonDataSamples(job_multiplier = 1)
     full_sim_mc_samples = {}
     fast_sim_mc_samples = SamplesDicts.getFastSimSamples( job_multiplier = 1
                                                         , signal_only = True
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         this_sym_link_name = ''.join(['./NextPlotDir.DRStudies.BMinusL.', syst])
         print 'this sym link name: ', this_sym_link_name
 
-        this_run_analysis_fun = RunBMinusLAnalysis.runBMinusLDRStudiesFun
+        this_run_analysis_fun = RunBMinusLDRStudies.runBMinusLDRStudiesFun
 
         if run_local:
             RunHelpers.runLocalMultiprocess( run_analysis_fun = this_run_analysis_fun

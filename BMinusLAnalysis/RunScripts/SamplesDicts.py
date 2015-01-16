@@ -88,18 +88,18 @@ def getFullSimSamples(job_multiplier = 1, test_subset = False):
         samples[183592] = {'label':'183592.Sherpa_CT10_ZZtonunuqq_MassiveCB'   , 'num_jobs':1*job_multiplier}
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        ## samples[200332] = {'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':1*job_multiplier}
-        ## samples[200333] = {'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':1*job_multiplier}
-        ## samples[200334] = {'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':1*job_multiplier}
-        ## samples[200335] = {'label':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'num_jobs':1*job_multiplier}
-        ## samples[200340] = {'label':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'num_jobs':1*job_multiplier}
-        ## samples[200341] = {'label':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'num_jobs':1*job_multiplier}
-        ## samples[200342] = {'label':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'num_jobs':1*job_multiplier}
-        ## samples[200343] = {'label':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'num_jobs':1*job_multiplier}
-        ## samples[200348] = {'label':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'num_jobs':1*job_multiplier}
-        ## samples[200349] = {'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'num_jobs':1*job_multiplier}
-        ## samples[200350] = {'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':1*job_multiplier}
-        ## samples[200351] = {'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':1*job_multiplier}
+        samples[200332] = {'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':1*job_multiplier}
+        samples[200333] = {'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':1*job_multiplier}
+        samples[200334] = {'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':1*job_multiplier}
+        samples[200335] = {'label':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'num_jobs':1*job_multiplier}
+        samples[200340] = {'label':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'num_jobs':1*job_multiplier}
+        samples[200341] = {'label':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'num_jobs':1*job_multiplier}
+        samples[200342] = {'label':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'num_jobs':1*job_multiplier}
+        samples[200343] = {'label':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'num_jobs':1*job_multiplier}
+        samples[200348] = {'label':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'num_jobs':1*job_multiplier}
+        samples[200349] = {'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'num_jobs':1*job_multiplier}
+        samples[200350] = {'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':1*job_multiplier}
+        samples[200351] = {'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':1*job_multiplier}
 
     return samples
 

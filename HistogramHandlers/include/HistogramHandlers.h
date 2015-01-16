@@ -82,7 +82,9 @@ namespace PennSusyFrame
     private:
       std::vector<TH1F*> m_h_flavor_channel;
       std::vector<TH1F*> m_h_mbb;
+      std::vector<TH1F*> m_h_mbb_detailed;
       std::vector<TH1F*> m_h_mll;
+      std::vector<TH1F*> m_h_mll_detailed;
       std::vector<TH1F*> m_h_mt2;
       std::vector<TH1F*> m_h_ptll;
       std::vector<TH1F*> m_h_ptbb;
@@ -117,9 +119,15 @@ namespace PennSusyFrame
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
+      std::vector<TH1F*> m_h_num_lep;
+
       std::vector<TH1F*> m_h_pt_all;
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
+
+      std::vector<TH1F*> m_h_pt_detailed_all;
+      std::vector<TH1F*> m_h_pt_detailed_0;
+      std::vector<TH1F*> m_h_pt_detailed_1;
 
       std::vector<TH1F*> m_h_raw_pt_all;
       std::vector<TH1F*> m_h_raw_pt_0;
@@ -133,6 +141,8 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_ptiso_all;
       std::vector<TH1F*> m_h_ptiso_0;
       std::vector<TH1F*> m_h_ptiso_1;
+      std::vector<TH1F*> m_h_ptiso_max_denomminpt;
+      std::vector<TH1F*> m_h_ptiso_max_denompt;
 
       std::vector<TH1F*> m_h_etiso_all;
       std::vector<TH1F*> m_h_etiso_0;
@@ -193,6 +203,10 @@ namespace PennSusyFrame
       std::vector<TH1F*> m_h_pt_0;
       std::vector<TH1F*> m_h_pt_1;
 
+      std::vector<TH1F*> m_h_pt_detailed_all;
+      std::vector<TH1F*> m_h_pt_detailed_0;
+      std::vector<TH1F*> m_h_pt_detailed_1;
+
       std::vector<TH1F*> m_h_dr_jj;
       std::vector<TH1F*> m_h_dphi_jj;
       std::vector<TH1F*> m_h_deta_jj;
@@ -231,7 +245,9 @@ namespace PennSusyFrame
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private:
       std::vector<TH1F*> m_h_met_et;
+      std::vector<TH1F*> m_h_met_et_detailed;
       std::vector<TH1F*> m_h_met_rel;
+      std::vector<TH1F*> m_h_met_rel_detailed;
       std::vector<TH1F*> m_h_met_sig_all;
       std::vector<TH1F*> m_h_met_sig_baseline;
       std::vector<TH1F*> m_h_met_sig_good;

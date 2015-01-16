@@ -7,6 +7,7 @@
 // =============================================================================
 namespace PennSusyFrame
 {
+  class Particle;
   class Electron;
   class Muon;
   class Trigger;
@@ -51,6 +52,12 @@ namespace PennSusyFrame
                 , double dr_cut
                 , double pt_cut
                 );
+  std::vector<float> getDrParticleMuonTrigger( const std::vector<PennSusyFrame::Particle*>& particles
+					       , const std::vector<int>* trigger_chain
+					       , const std::vector<std::vector<float> >* online_pt
+					       , const std::vector<std::vector<float> >* online_eta
+					       , const std::vector<std::vector<float> >* online_phi
+					       );
 }
 
 #endif
