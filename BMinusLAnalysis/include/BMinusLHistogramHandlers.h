@@ -272,6 +272,8 @@ namespace PennSusyFrame
       std::vector<TH2F*> m_h_mu_pt_v_doubleAND_triggers_passed;
       std::vector<TH2F*> m_h_mu_pt_v_doubleOR_triggers_passed;
       std::vector<TH1F*> m_h_single_trigger_matching_passed;
+
+      std::vector<TH2F*> m_h_lep_eta_all_trigmatch;
   };
 
   // =============================================================================

@@ -1958,55 +1958,32 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                   , TRIGGERS_N+1, -0.5, TRIGGERS_N + 0.5
                                                   )
                                               );
-    // m_h_doubleAND_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 					       + "__doubleAND_triggers_passed"
-    // 					       + "__"
-    // 					       + name_tag
-    // 					       ).c_str()
-    // 					     , ( "Triggers Passed - "
-    // 						 + FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 						 + " ;  ; Entries"
-    // 						 ).c_str()
-    // 						       , 76, -0.5, 75.5
-    // 					     )
-    // 				   );
-    // m_h_doubleOR_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 					       + "__doubleOR_triggers_passed"
-    // 					       + "__"
-    // 					       + name_tag
-    // 					       ).c_str()
-    // 					     , ( "Triggers Passed - "
-    // 						 + FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 						 + " ;  ; Entries"
-    // 						 ).c_str()
-    // 					     , 76, -0.5, 75.5
-    // 					     )
-    // 				   );
     m_h_doubleAND_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                       + "__doubleAND_triggers_passed"
-                                                       + "__"
-                                                       + name_tag
-                                                       ).c_str()
-                                                     , ( "Triggers Passed - "
-                                                       + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                       + " ;  ; Entries"
-                                                       ).c_str()
-                                                     , 58, -0.5, 57.5
-                                                     )
-                                           );
+    					       + "__doubleAND_triggers_passed"
+    					       + "__"
+    					       + name_tag
+    					       ).c_str()
+    					     , ( "Triggers Passed - "
+    						 + FLAVOR_CHANNEL_STRINGS[fc_it]
+    						 + " ;  ; Entries"
+    						 ).c_str()
+    						       //, 76, -0.5, 75.5
+						       , 59, -0.5, 58.5
+    					     )
+    				   );
     m_h_doubleOR_triggers_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                      + "__doubleOR_triggers_passed"
-                                                      + "__"
-                                                      + name_tag
-                                                      ).c_str()
-                                                    , ( "Triggers Passed - "
-                                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                      + " ;  ; Entries"
-                                                      ).c_str()
-                                                    , 58, -0.5, 57.5
-                                                    )
-                                          );
-
+    					       + "__doubleOR_triggers_passed"
+    					       + "__"
+    					       + name_tag
+    					       ).c_str()
+    					     , ( "Triggers Passed - "
+    						 + FLAVOR_CHANNEL_STRINGS[fc_it]
+    						 + " ;  ; Entries"
+    						 ).c_str()
+						      //, 76, -0.5, 75.5
+						      , 59, -0.5, 58.5
+    					     )
+    				   );
     // 2d : subleading lepton pt v. triggers
     m_h_lep_pt_v_single_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                              + "__lep_pt_v_single_triggers_passed"
@@ -2021,58 +1998,34 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                            , pt_bins, pt_min, pt_max
                                                            )
                                                  );
-    // m_h_lep_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								  + "__lep_pt_v_doubleAND_triggers_passed"
-    // 								  + "__"
-    // 								  + name_tag
-    // 								  ).c_str()
-    // 								, ( "Triggers Passed - "
-    // 								    + FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								    + " ;  ; subleading lepton pt [GeV]"
-    // 								    ).c_str()
-    // 								, 76, -0.5, 75.5
-    // 								, pt_bins, pt_min, pt_max
-    // 								)
-    // 						      );
-    // m_h_lep_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								 + "__lep_pt_v_doubleOR_triggers_passed"
-    // 								 + "__"
-    // 								 + name_tag
-    // 								 ).c_str()
-    // 							       , ( "Triggers Passed - "
-    // 								   + FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								   + " ;  ; subleading lepton pt [GeV]"
-    // 								   ).c_str()
-    // 							       , 76, -0.5, 75.5
-    // 							       , pt_bins, pt_min, pt_max
-    // 							       )
-    // 						     );
     m_h_lep_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                                + "__lep_pt_v_doubleAND_triggers_passed"
-                                                                + "__"
-                                                                + name_tag
-                                                                ).c_str()
-                                                              , ( "Triggers Passed - "
-                                                                + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                                + " ;  ; subleading lepton pt [GeV]"
-                                                                ).c_str()
-                                                              , 58, -0.5, 57.5
-                                                              , pt_bins, pt_min, pt_max
-                                                              )
-                                                    );
+    								  + "__lep_pt_v_doubleAND_triggers_passed"
+    								  + "__"
+    								  + name_tag
+    								  ).c_str()
+    								, ( "Triggers Passed - "
+    								    + FLAVOR_CHANNEL_STRINGS[fc_it]
+    								    + " ;  ; subleading lepton pt [GeV]"
+    								    ).c_str()
+    								//, 76, -0.5, 75.5
+								, 59, -0.5, 58.5
+    								, pt_bins, pt_min, pt_max
+    								)
+    						      );
     m_h_lep_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                               + "__lep_pt_v_doubleOR_triggers_passed"
-                                                               + "__"
-                                                               + name_tag
-                                                               ).c_str()
-                                                             , ( "Triggers Passed - "
-                                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                               + " ;  ; subleading lepton pt [GeV]"
-                                                               ).c_str()
-                                                             , 58, -0.5, 57.5
-                                                             , pt_bins, pt_min, pt_max
-                                                             )
-                                                   );
+    								 + "__lep_pt_v_doubleOR_triggers_passed"
+    								 + "__"
+    								 + name_tag
+    								 ).c_str()
+    							       , ( "Triggers Passed - "
+    								   + FLAVOR_CHANNEL_STRINGS[fc_it]
+    								   + " ;  ; subleading lepton pt [GeV]"
+    								   ).c_str()
+    							       //, 76, -0.5, 75.5
+							       , 59, -0.5, 58.5
+    							       , pt_bins, pt_min, pt_max
+    							       )
+    						     );
     m_h_el_pt_v_single_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                             + "__el_pt_v_single_triggers_passed"
                                                             + "__"
@@ -2086,58 +2039,34 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                           , pt_bins, pt_min, pt_max
                                                           )
                                                 );
-    // m_h_el_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								  + "__el_pt_v_doubleAND_triggers_passed"
-    // 								  + "__"
-    // 								  + name_tag
-    // 								  ).c_str()
-    // 								, ( "Triggers Passed - "
-    // 								    + FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								    + " ;  ; electron pt [GeV]"
-    // 								    ).c_str()
-    // 								, 76, -0.5, 75.5
-    // 								, pt_bins, pt_min, pt_max
-    // 								)
-    // 						      );
-    // m_h_el_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								 + "__el_pt_v_doubleOR_triggers_passed"
-    // 								 + "__"
-    // 								 + name_tag
-    // 								 ).c_str()
-    // 							       , ( "Triggers Passed - "
-    // 								   + FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								   + " ;  ; electron pt [GeV]"
-    // 								   ).c_str()
-    // 							       , 76, -0.5, 75.5
-    // 							       , pt_bins, pt_min, pt_max
-    // 							       )
-    // 						     );
     m_h_el_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                               + "__el_pt_v_doubleAND_triggers_passed"
-                                                               + "__"
-                                                               + name_tag
-                                                               ).c_str()
-                                                             , ( "Triggers Passed - "
-                                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                               + " ;  ; electron pt [GeV]"
-                                                               ).c_str()
-                                                             , 58, -0.5, 57.5
-                                                             , pt_bins, pt_min, pt_max
-                                                             )
-                                                   );
+    								  + "__el_pt_v_doubleAND_triggers_passed"
+    								  + "__"
+    								  + name_tag
+    								  ).c_str()
+    								, ( "Triggers Passed - "
+    								    + FLAVOR_CHANNEL_STRINGS[fc_it]
+    								    + " ;  ; electron pt [GeV]"
+    								    ).c_str()
+							       , 59, -0.5, 58.5
+							       //	, 76, -0.5, 75.5
+    								, pt_bins, pt_min, pt_max
+    								)
+    						      );
     m_h_el_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                              + "__el_pt_v_doubleOR_triggers_passed"
-                                                              + "__"
-                                                              + name_tag
-                                                              ).c_str()
-                                                            , ( "Triggers Passed - "
-                                                              + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                              + " ;  ; electron pt [GeV]"
-                                                              ).c_str()
-                                                            , 58, -0.5, 57.5
-                                                            , pt_bins, pt_min, pt_max
-                                                            )
-                                                  );
+    								 + "__el_pt_v_doubleOR_triggers_passed"
+    								 + "__"
+    								 + name_tag
+    								 ).c_str()
+    							       , ( "Triggers Passed - "
+    								   + FLAVOR_CHANNEL_STRINGS[fc_it]
+    								   + " ;  ; electron pt [GeV]"
+    								   ).c_str()
+							      , 59, -0.5, 58.5
+							      //, 76, -0.5, 75.5
+    							       , pt_bins, pt_min, pt_max
+    							       )
+    						     );
     m_h_mu_pt_v_single_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
                                                             + "__mu_pt_v_single_triggers_passed"
                                                             + "__"
@@ -2151,32 +2080,34 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                                           , pt_bins, pt_min, pt_max
                                                           )
                                                 );
-    // m_h_mu_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								  + "__mu_pt_v_doubleAND_triggers_passed"
-    // 								  + "__"
-    // 								  + name_tag
-    // 								  ).c_str()
-    // 								, ( "Triggers Passed - "
-    // 								    + FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								    + " ;  ; muon pt [GeV]"
-    // 								    ).c_str()
-    // 								, 76, -0.5, 75.5
-    // 								, pt_bins, pt_min, pt_max
-    // 								)
-    // 						      );
-    // m_h_mu_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								 + "__mu_pt_v_doubleOR_triggers_passed"
-    // 								 + "__"
-    // 								 + name_tag
-    // 								 ).c_str()
-    // 							       , ( "Triggers Passed - "
-    // 								   + FLAVOR_CHANNEL_STRINGS[fc_it]
-    // 								   + " ;  ; muon pt [GeV]"
-    // 								   ).c_str()
-    // 							       , 76, -0.5, 75.5
-    // 							       , pt_bins, pt_min, pt_max
-    // 							       )
-    // 						     );
+    m_h_mu_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+    								  + "__mu_pt_v_doubleAND_triggers_passed"
+    								  + "__"
+    								  + name_tag
+    								  ).c_str()
+    								, ( "Triggers Passed - "
+    								    + FLAVOR_CHANNEL_STRINGS[fc_it]
+    								    + " ;  ; muon pt [GeV]"
+    								    ).c_str()
+							       //	, 76, -0.5, 75.5
+							       , 59, -0.5, 58.5
+    								, pt_bins, pt_min, pt_max
+    								)
+    						      );
+    m_h_mu_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+    								 + "__mu_pt_v_doubleOR_triggers_passed"
+    								 + "__"
+    								 + name_tag
+    								 ).c_str()
+    							       , ( "Triggers Passed - "
+    								   + FLAVOR_CHANNEL_STRINGS[fc_it]
+    								   + " ;  ; muon pt [GeV]"
+    								   ).c_str()
+							      //, 76, -0.5, 75.5
+							      , 59, -0.5, 58.5
+    							       , pt_bins, pt_min, pt_max
+    							       )
+    						     );
     m_h_single_trigger_matching_passed.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
 					       + "__single_trigger_matching_passed"
 					       + "__"
@@ -2189,32 +2120,20 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
 					     , TRIGGERS_N+1, -0.5, TRIGGERS_N + 0.5
 					     )
 				   );
-    m_h_mu_pt_v_doubleAND_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                               + "__mu_pt_v_doubleAND_triggers_passed"
-                                                               + "__"
-                                                               + name_tag
-                                                               ).c_str()
-                                                             , ( "Triggers Passed - "
-                                                               + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                               + " ;  ; muon pt [GeV]"
-                                                               ).c_str()
-                                                             , 58, -0.5, 57.5
-                                                             , pt_bins, pt_min, pt_max
-                                                             )
-                                                   );
-    m_h_mu_pt_v_doubleOR_triggers_passed.push_back( new TH2F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                              + "__mu_pt_v_doubleOR_triggers_passed"
-                                                              + "__"
-                                                              + name_tag
-                                                              ).c_str()
-                                                            , ( "Triggers Passed - "
-                                                              + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                              + " ;  ; muon pt [GeV]"
-                                                              ).c_str()
-                                                            , 58, -0.5, 57.5
-                                                            , pt_bins, pt_min, pt_max
-                                                            )
-                                                  );
+
+    m_h_lep_eta_all_trigmatch.push_back( new TH2F( (FLAVOR_CHANNEL_STRINGS[fc_it]
+						    + "__lep_eta_all_trigmatch"
+						    + "__"
+						    + name_tag
+						    ).c_str()
+						   , ( "Lepton eta distribution after trigger matching- "
+						       + FLAVOR_CHANNEL_STRINGS[fc_it]
+						       + " ; ; #eta"
+						       ).c_str()
+						   , TRIGGERS_N+1, -0.5, TRIGGERS_N + 0.5
+						   , eta_bins, eta_min, eta_max
+						   )
+					 );
     int bin_counter = 1;
     for (int it = 0; it != TRIGGERS_N; ++it) {
       PennSusyFrame::setBinLabel( m_h_single_triggers_passed.at(fc_it)
@@ -2229,6 +2148,14 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                                 , it+1
                                 , TRIGGER_STRINGS[it]);
       PennSusyFrame::setBinLabel( m_h_mu_pt_v_single_triggers_passed.at(fc_it)
+                                , it+1
+                                , TRIGGER_STRINGS[it]
+                                );
+      PennSusyFrame::setBinLabel( m_h_single_trigger_matching_passed.at(fc_it)
+                                , it+1
+                                , TRIGGER_STRINGS[it]
+                                );
+      PennSusyFrame::setBinLabel( m_h_lep_eta_all_trigmatch.at(fc_it)
                                 , it+1
                                 , TRIGGER_STRINGS[it]
                                 );
@@ -2304,7 +2231,6 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                               );
     ++ bin_counter;
 
-
     PennSusyFrame::setBinLabel( m_h_doubleAND_triggers_passed.at(fc_it)
                               , bin_counter
                               , "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu36_tight"
@@ -2336,6 +2262,40 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
     PennSusyFrame::setBinLabel( m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)
                               , bin_counter
                               , "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu36_tight"
+                              );
+    ++bin_counter;
+
+    PennSusyFrame::setBinLabel( m_h_doubleAND_triggers_passed.at(fc_it)
+                              , bin_counter
+                              , "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight AND EF_mu36_tight"
+                              );
+    PennSusyFrame::setBinLabel( m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)
+                              , bin_counter
+                              , "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight AND EF_mu36_tight"
+                              );
+    PennSusyFrame::setBinLabel( m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)
+                              , bin_counter
+                              , "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight AND EF_mu36_tight"
+                              );
+    PennSusyFrame::setBinLabel( m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)
+                              , bin_counter
+                              , "EF_e24vhi_medium1 AND EF_e60_medium1 AND EF_mu24i_tight AND EF_mu36_tight"
+                              );
+    PennSusyFrame::setBinLabel( m_h_doubleOR_triggers_passed.at(fc_it)
+                              , bin_counter
+                              , "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight OR EF_mu36_tight"
+                              );
+    PennSusyFrame::setBinLabel( m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)
+                              , bin_counter
+                              , "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight OR EF_mu36_tight"
+                              );
+    PennSusyFrame::setBinLabel( m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)
+                              , bin_counter
+                              , "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight OR EF_mu36_tight"
+                              );
+    PennSusyFrame::setBinLabel( m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)
+                              , bin_counter
+                              , "EF_e24vhi_medium1 OR EF_e60_medium1 OR EF_mu24i_tight OR EF_mu36_tight"
                               );
     ++bin_counter;
 
@@ -2387,6 +2347,8 @@ PennSusyFrame::BMinusLDetailedHists::BMinusLDetailedHists(std::string name_tag)
                               , bin_counter
                               , "None"
                               );
+
+    std::cout<<"trigger histo bin counter = "<< bin_counter << "\n";
   }
 }
 
@@ -2442,6 +2404,10 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
   // compute deltaPhi between objects in bl pairs
   float dphi_bl_0 = bl_0.getDphi();
   float dphi_bl_1 = bl_1.getDphi();
+
+  // compute eta of leptons
+  float eta_l_0 = bl_0.getLepton()->getEta();
+  float eta_l_1 = bl_1.getLepton()->getEta();
 
   // compute deltaEta between objects in bl pairs
   float deta_bl_0 = bl_0.getDeta();
@@ -2905,7 +2871,7 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     bool triggers_passed[] = {m_trigger.getEF_2e12Tvh_loose1()               //0
 			      ,m_trigger.getEF_e24vh_medium1_e7_medium1()    //1
 			      ,m_trigger.getEF_e24vhi_medium1()              //2
-			      //			      , m_trigger.getEF_e60_medium1()                //3
+			      , m_trigger.getEF_e60_medium1()                //3
 			      , m_trigger.getEF_e12Tvh_medium1_mu8()         //4
 			      , m_trigger.getEF_mu18_tight_e7_medium1()      //5
 			      , m_trigger.getEF_mu24i_tight()                //6
@@ -2927,7 +2893,11 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
 	  any_trigger_passed = true;
 	  m_h_single_triggers_passed.at(fc_it)->Fill(float(it), weight);
 	  m_h_lep_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), pt_l_1, weight);
-	  if (trigger_matching[it])  m_h_single_trigger_matching_passed.at(fc_it)->Fill(float(it), weight);
+	  if (trigger_matching[it]){
+	    m_h_single_trigger_matching_passed.at(fc_it)->Fill(float(it), weight);
+	    m_h_lep_eta_all_trigmatch.at(fc_it)->Fill(float(it), eta_l_0, weight);
+	    m_h_lep_eta_all_trigmatch.at(fc_it)->Fill(float(it), eta_l_1, weight);
+	  }
 	  if (fc == FLAVOR_EM) {
 	    if (bl_0.getLepton()->isElectron()) {
 	      m_h_el_pt_v_single_triggers_passed.at(fc_it)->Fill(float(it), bl_0.getLepton()->getPt()/1.e3, weight);
@@ -2971,67 +2941,97 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
         ++bin_counter;
       }
     }
-    // two last interesting OR cases between three triggers:
-    // if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu24i_tight()) {
-    //   m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
-    //   m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
-    //   if (fc == FLAVOR_EM) {
-    // 	if (bl_0.getLepton()->isElectron()) {
-    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	}		  
-    // 	else {	  
-    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-    // 	}
-    //   }
-    // }
-    // // do the AND case as well, just to keep bin counter consistent
-    // if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu24i_tight()) {
-    //   m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
-    //   m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
-    //   if (fc == FLAVOR_EM) {
-    // 	if (bl_0.getLepton()->isElectron()) {
-    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	}		  
-    // 	else {	  
-    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-    // 	}
-    //   }
-    // }
-    // ++bin_counter;
+    //two last interesting OR cases between three triggers:
+    if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu24i_tight()) {
+      m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+    	if (bl_0.getLepton()->isElectron()) {
+    	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	}		  
+    	else {	  
+    	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	}
+      }
+    }
+    // do the AND case as well, just to keep bin counter consistent
+    if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu24i_tight()) {
+      m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+    	if (bl_0.getLepton()->isElectron()) {
+    	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	}		  
+    	else {	  
+    	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	}
+      }
+    }
+    ++bin_counter;
 
-    // if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu36_tight()) {
-    //   m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
-    //   m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
-    //   if (fc == FLAVOR_EM) {
-    // 	if (bl_0.getLepton()->isElectron()) {
-    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	}		  
-    // 	else {	  
-    // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-    // 	}
-    //   }
-    // }
-    // if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu36_tight()) {
-    //   m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
-    //   m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
-    //   if (fc == FLAVOR_EM) {
-    // 	if (bl_0.getLepton()->isElectron()) {
-    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	}		  
-    // 	else {	  
-    // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
-    // 	}
-    //   }
-    // }
-    // ++bin_counter;
+    if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu36_tight()) {
+      m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+    	if (bl_0.getLepton()->isElectron()) {
+    	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	}		  
+    	else {	  
+    	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	}
+      }
+    }
+    if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu36_tight()) {
+      m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+    	if (bl_0.getLepton()->isElectron()) {
+    	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	}		  
+    	else {	  
+    	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	}
+      }
+    }
+    ++bin_counter;
+
+    if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu24i_tight() || m_trigger.getEF_mu36_tight()) {
+      m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+    	if (bl_0.getLepton()->isElectron()) {
+    	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	}		  
+    	else {	  
+    	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	}
+      }
+    }
+    if (m_trigger.getEF_e24vhi_medium1() && m_trigger.getEF_e60_medium1() && m_trigger.getEF_mu24i_tight() && m_trigger.getEF_mu36_tight()) {
+      m_h_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
+      m_h_lep_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), pt_l_1, weight);
+      if (fc == FLAVOR_EM) {
+    	if (bl_0.getLepton()->isElectron()) {
+    	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	}		  
+    	else {	  
+    	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
+    	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
+    	}
+      }
+    }
+    ++bin_counter;
 
     // if (m_trigger.getEF_e24vhi_medium1() || m_trigger.getEF_e60_medium1() || m_trigger.getEF_mu40_MSonly_barrel_tight()) {
     //   m_h_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), weight);
@@ -3204,16 +3204,16 @@ void PennSusyFrame::BMinusLDetailedHists::passTriggerMatching( const PennSusyFra
 							   , 0.15  // dr for match
 							   , 0     // min pt
 							   );
-    // trigger_matching[3] = PennSusyFrame::matchElectronList(el_list
-    // 							   , trigger.getTrig_EF_el_EF_e60_medium1()
-    // 							   , trigger.getTrig_EF_el_px()
-    // 							   , trigger.getTrig_EF_el_py()
-    // 							   , trigger.getTrig_EF_el_pz()
-    // 							   , trigger.getTrig_EF_el_E()
-    // 							   , 1     // num to match
-    // 							   , 0.15  // dr for match
-    // 							   , 0     // min pt
-    // 							   );
+    trigger_matching[3] = PennSusyFrame::matchElectronList(el_list
+    							   , trigger.getTrig_EF_el_EF_e60_medium1()
+    							   , trigger.getTrig_EF_el_px()
+    							   , trigger.getTrig_EF_el_py()
+    							   , trigger.getTrig_EF_el_pz()
+    							   , trigger.getTrig_EF_el_E()
+    							   , 1     // num to match
+    							   , 0.15  // dr for match
+    							   , 0     // min pt
+    							   );
     for (int i=4; i!=12; ++i) trigger_matching[i] = false;
   }
 
@@ -3300,16 +3300,16 @@ void PennSusyFrame::BMinusLDetailedHists::passTriggerMatching( const PennSusyFra
 							   , 0.15  // dr for match
 							   , 0     // min pt
 							   );
-    // trigger_matching[3] = PennSusyFrame::matchElectronList(el_list
-    // 							   , trigger.getTrig_EF_el_EF_e60_medium1()
-    // 							   , trigger.getTrig_EF_el_px()
-    // 							   , trigger.getTrig_EF_el_py()
-    // 							   , trigger.getTrig_EF_el_pz()
-    // 							   , trigger.getTrig_EF_el_E()
-    // 							   , 1     // num to match
-    // 							   , 0.15  // dr for match
-    // 							   , 0     // min pt
-    // 							   );
+    trigger_matching[3] = PennSusyFrame::matchElectronList(el_list
+    							   , trigger.getTrig_EF_el_EF_e60_medium1()
+    							   , trigger.getTrig_EF_el_px()
+    							   , trigger.getTrig_EF_el_py()
+    							   , trigger.getTrig_EF_el_pz()
+    							   , trigger.getTrig_EF_el_E()
+    							   , 1     // num to match
+    							   , 0.15  // dr for match
+    							   , 0     // min pt
+    							   );
 
     bool pass_electron_match = PennSusyFrame::matchElectronList(el_list
 							   , trigger.getTrig_EF_el_EF_e12Tvh_loose1()
@@ -3537,6 +3537,7 @@ void PennSusyFrame::BMinusLDetailedHists::write(TDirectory* d)
     m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Write();
     m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Write();
     m_h_single_trigger_matching_passed.at(fc_it)->Write();
+    m_h_lep_eta_all_trigmatch.at(fc_it)->Write();
   }
 }
 

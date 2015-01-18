@@ -755,8 +755,7 @@ bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
 {
-  // leigh hack: want to check how many events actually pass trigger.
-  return true;
+  //  return true; // for trigger efficiency studies
   FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
 
   if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vhi_medium1()) return true;
