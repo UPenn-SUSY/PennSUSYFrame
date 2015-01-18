@@ -149,12 +149,10 @@ def makeDataSetDictList( label_base
         data_set_dict_list.append(this_data_set_dict)
 
         if syst_struct is not None:
-            if syst_struct.do_jer:
-                this_data_set_dict['label'] += '__JER'
-            if syst_struct.do_jes_up:
-                this_data_set_dict['label'] += '__JES_UP'
-            if syst_struct.do_jes_down:
-                this_data_set_dict['label'] += '__JES_DOWN'
+            this_data_set_dict['label'] += ''.join( [ '__'
+                                                    , syst_struct.getRunName()
+                                                    ]
+                                                  )
 
     print ''
     return data_set_dict_list
@@ -307,10 +305,19 @@ def runLocalMultiprocess( run_analysis_fun
                         , sym_link_name
                         , do_merge = True
                         ):
+    print 'runLocalMultiprocess()'
+    print 'num_processes: ', num_processes
+    print 'run_analysis_fun: ', run_analysis_fun
+    print 'data_set_dicts  : ', data_set_dicts
+    print 'out_dir         : ', out_dir
+    print 'sym_link_name   : ', sym_link_name
     # make output directory
     safeMakeDir(out_dir)
 
+    print 'creating pool object'
     p = Pool(num_processes)
+    print 'calling p.map'
+    print 'data set dicts: ', data_set_dicts
     p.map(run_analysis_fun, data_set_dicts)
 
     mergeOutputFiles(out_dir, flat_ntuples)
@@ -439,9 +446,15 @@ def runLxBatchMultiProcess( run_analysis_fun
                                                )
 
         # submit this job to lxbatch!
-        batch_submit_command = [ '%s/RunHelpers/SubmitPythonToBatch.sh' % os.environ['PWD']
+        batch_submit_command = [ ''.join( [ os.environ['PWD']
+                                          , '/RunHelpers/SubmitPythonToBatch.sh'
+                                          ]
+                                        )
                                , queue
-                               , '%s/%s' % (os.environ['PWD'], this_job_file_name)
+                               , '/'.join( [ os.environ['PWD']
+                                           , this_job_file_name
+                                           ]
+                                         )
                                , os.environ['PWD']
                                ]
 
@@ -457,25 +470,76 @@ def runLxBatchMultiProcess( run_analysis_fun
         moveToLinkedDir(out_dir, sym_link_name)
 
 # ------------------------------------------------------------------------------
+syst_list = { 'do_jer':'JER'
+            , 'do_jes_up':'JES_UP'
+            , 'do_jes_down':'JES_DOWN'
+            , 'do_effective_np_1_up':'EFFECTIVE_NP_1_UP'
+            , 'do_effective_np_1_down':'EFFECTIVE_NP_1_DOWN'
+            , 'do_effective_np_2_up':'EFFECTIVE_NP_2_UP'
+            , 'do_effective_np_2_down':'EFFECTIVE_NP_2_DOWN'
+            , 'do_effective_np_3_up':'EFFECTIVE_NP_3_UP'
+            , 'do_effective_np_3_down':'EFFECTIVE_NP_3_DOWN'
+            , 'do_effective_np_4_up':'EFFECTIVE_NP_4_UP'
+            , 'do_effective_np_4_down':'EFFECTIVE_NP_4_DOWN'
+            , 'do_effective_np_5_up':'EFFECTIVE_NP_5_UP'
+            , 'do_effective_np_5_down':'EFFECTIVE_NP_5_DOWN'
+            , 'do_effective_np_6_up':'EFFECTIVE_NP_6_UP'
+            , 'do_effective_np_6_down':'EFFECTIVE_NP_6_DOWN'
+            , 'do_eta_intercalibration_modelling_up':'ETA_INTERCALIBRATION_MODELLING_UP'
+            , 'do_eta_intercalibration_modelling_down':'ETA_INTERCALIBRATION_MODELLING_DOWN'
+            , 'do_eta_intercalibration_statand_method_up':'ETA_INTERCALIBRATION_STATAND_METHOD_UP'
+            , 'do_eta_intercalibration_statand_method_down':'ETA_INTERCALIBRATION_STATAND_METHOD_DOWN'
+            , 'do_single_particle_high_pt_up':'SINGLE_PARTICLE_HIGH_PT_UP'
+            , 'do_single_particle_high_pt_down':'SINGLE_PARTICLE_HIGH_PT_DOWN'
+            # , 'do_relative_non_closure_pythia8_up':'RELATIVE_NON_CLOSURE_PYTHIA8_UP'
+            # , 'do_relative_non_closure_pythia8_down':'RELATIVE_NON_CLOSURE_PYTHIA8_DOWN'
+            , 'do_pile_up_offset_term_mu_up':'PILE_UP_OFFSET_TERM_MU_UP'
+            , 'do_pile_up_offset_term_mu_down':'PILE_UP_OFFSET_TERM_MU_DOWN'
+            , 'do_pile_up_offset_term_npv_up':'PILE_UP_OFFSET_TERM_NPV_UP'
+            , 'do_pile_up_offset_term_npv_down':'PILE_UP_OFFSET_TERM_NPV_DOWN'
+            , 'do_pile_up_pt_term_up':'PILE_UP_PT_TERM_UP'
+            , 'do_pile_up_pt_term_down':'PILE_UP_PT_TERM_DOWN'
+            , 'do_pile_up_rho_topology_up':'PILE_UP_RHO_TOPOLOGY_UP'
+            , 'do_pile_up_rho_topology_down':'PILE_UP_RHO_TOPOLOGY_DOWN'
+            # , 'do_closeby_up':'CLOSEBY_UP'
+            # , 'do_closeby_down':'CLOSEBY_DOWN'
+            , 'do_flavor_comp_uncert_up':'FLAVOR_COMP_UNCERT_UP'
+            , 'do_flavor_comp_uncert_down':'FLAVOR_COMP_UNCERT_DOWN'
+            , 'do_flavor_response_uncert_up':'FLAVOR_RESPONSE_UNCERT_UP'
+            , 'do_flavor_response_uncert_down':'FLAVOR_RESPONSE_UNCERT_DOWN'
+            , 'do_bjes_up':'BJES_UP'
+            , 'do_bjes_down':'BJES_DOWN'
+            }
+
+# ------------------------------------------------------------------------------
 class SystematicStruct(object):
-    def __init__( self
-                , do_jer
-                , do_jes_up
-                , do_jes_down
-                ):
-        self.do_jer      = do_jer
-        self.do_jes_up   = do_jes_up
-        self.do_jes_down = do_jes_down
+    def __init__(self):
+        self.syst_list = {syst:False for syst in syst_list.keys()}
+
+    def setSyst(self, syst, val):
+        if not syst in syst_list:
+            print syst, ' is not a registered systematic!'
+            return
+        self.syst_list[syst] = val
 
     def configureAnalysisObject(self, analysis_obj):
-        analysis_obj.setDoJer(    self.do_jer)
-        analysis_obj.setDoJesUp(  self.do_jes_up)
-        analysis_obj.setDoJesDown(self.do_jes_down)
+        # extract systematic(C++) struct from analysis object
+        analysis_syst_struct = analysis_obj.getSystematicStruct()
+
+        # turn on each systematic flagged as true
+        for syst in [k for k, v in self.syst_list.items() if v]:
+            analysis_syst_struct.setSyst(syst, 1)
 
     def printInfo(self):
-        print 'Do JER: ', self.do_jer
-        print 'Do JES_UP: ', self.do_jes_up
-        print 'Do JES_DOWN: ', self.do_jes_down
+        for syst_name, syst_value in self.syst_list.items():
+            print ': '.join([syst_list[syst_name], str(syst_value)])
+
+    def getRunName(self):
+        name = '.'.join([syst_list[syst_name] for syst_name, syst_value in
+            self.syst_list.items() if syst_value])
+        if name == '':
+            name = 'NOMINAL'
+        return name
 
 # ------------------------------------------------------------------------------
 def pickleSystStruct(this_struct, out_file_name):

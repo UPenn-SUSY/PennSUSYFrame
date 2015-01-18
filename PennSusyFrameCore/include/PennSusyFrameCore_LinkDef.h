@@ -10,6 +10,8 @@
 
 #pragma link C++ class PennSusyFrame::PennSusyFrameCore+;
 // #pragma link C++ class PennSusyFrame::D3PDReader+;
+//
+#pragma link C++ class PennSusyFrame::SystematicStruct+;
 
 // #pragma link C++ class std::vector<std::vector<int>>+;
 #pragma link C++ class std::vector<std::vector<unsigned int> >+;

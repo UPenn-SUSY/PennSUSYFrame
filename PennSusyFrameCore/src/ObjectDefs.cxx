@@ -99,8 +99,12 @@ PennSusyFrame::EventLevelQuantities::EventLevelQuantities() : m_mll(0.)
                                                             , m_lepton_sf_muon_down(1.)
                                                             , m_trigger_weight(1.)
                                                             , m_b_tag_sf(1.)
-                                                            , m_b_tag_sf_up(1.)
-                                                            , m_b_tag_sf_down(1.)
+                                                            , m_b_tag_sf_b_up(1.)
+                                                            , m_b_tag_sf_b_down(1.)
+                                                            , m_b_tag_sf_c_up(1.)
+                                                            , m_b_tag_sf_c_down(1.)
+                                                            , m_b_tag_sf_l_up(1.)
+                                                            , m_b_tag_sf_l_down(1.)
                                                             , m_cf_weight(0.)
                                                             , m_fake_weight(0.)
 
@@ -155,8 +159,7 @@ PennSusyFrame::Trigger::Trigger() : m_trig_EF_el_E(0)
                                   , m_trig_EF_trigmuonef_EF_mu36_tight(0)
                                   , m_trig_EF_trigmuonef_EF_mu24_tight_mu6_EFFS(0)
                                   , m_trig_EF_el_EF_e24vhi_medium1(0)
-				  , m_trig_EF_el_EF_e60_medium1(0)
-				  , m_trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight(0)
+                                  , m_trig_EF_el_EF_e60_medium1(0)
                                   , m_trig_EF_trigmuonef_EF_mu24_tight(0)
                                   , m_trig_EF_trigmuonef_track_CB_eta(0)
                                   , m_trig_EF_trigmuonef_track_CB_phi(0)
@@ -182,7 +185,6 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
   setEF_e24vhi_medium1(           reader->EF_e24vhi_medium1);
   // TODO uncomment when we turn this on in the TNTs
   // setEF_e60_medium1(              reader->EF_e60_medium1);
-  // setEF_mu40_MSonly_barrel_tight(   reader->EF_mu40_MSonly_barrel_tight);
 
   setTrig_EF_el_E(                              reader->trig_EF_el_E);
   setTrig_EF_el_px(                             reader->trig_EF_el_px);
@@ -203,7 +205,6 @@ void PennSusyFrame::Trigger::getEvent(const PennSusyFrame::D3PDReader* reader)
   setTrig_EF_el_EF_e24vhi_medium1(              reader->trig_EF_el_EF_e24vhi_medium1);
   // TODO uncomment when we turn this on in the TNTs
   // setTrig_EF_el_EF_e60_medium1(                 reader->trig_EF_el_EF_e60_medium1);
-  // setTrig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight(  reader->trig_EF_trigmuonef_EF_mu40_MSonly_barrel_tight);
   setTrig_EF_trigmuonef_EF_mu24_tight(          reader->trig_EF_trigmuonef_EF_mu24_tight);
   setTrig_EF_trigmuonef_track_CB_eta(           reader->trig_EF_trigmuonef_track_CB_eta);
   setTrig_EF_trigmuonef_track_CB_phi(           reader->trig_EF_trigmuonef_track_CB_phi);
@@ -1514,3 +1515,60 @@ void PennSusyFrame::MCTruth::writeFullTruthRecord(std::string out_file_name)
 
   fout.close();
 }
+
+// =============================================================================
+PennSusyFrame::SystematicStruct::SystematicStruct()
+{
+  do_syst["do_jer"] = false;
+  do_syst["do_jes_up"] = false;
+  do_syst["do_jes_down"] = false;
+  do_syst["do_effective_np_1_up"] = false;
+  do_syst["do_effective_np_1_down"] = false;
+  do_syst["do_effective_np_2_up"] = false;
+  do_syst["do_effective_np_2_down"] = false;
+  do_syst["do_effective_np_3_up"] = false;
+  do_syst["do_effective_np_3_down"] = false;
+  do_syst["do_effective_np_4_up"] = false;
+  do_syst["do_effective_np_4_down"] = false;
+  do_syst["do_effective_np_5_up"] = false;
+  do_syst["do_effective_np_5_down"] = false;
+  do_syst["do_effective_np_6_up"] = false;
+  do_syst["do_effective_np_6_down"] = false;
+  do_syst["do_eta_intercalibration_modelling_up"] = false;
+  do_syst["do_eta_intercalibration_modelling_down"] = false;
+  do_syst["do_eta_intercalibration_statand_method_up"] = false;
+  do_syst["do_eta_intercalibration_statand_method_down"] = false;
+  do_syst["do_single_particle_high_pt_up"] = false;
+  do_syst["do_single_particle_high_pt_down"] = false;
+  do_syst["do_relative_non_closure_pythia8_up"] = false;
+  do_syst["do_relative_non_closure_pythia8_down"] = false;
+  do_syst["do_pile_up_offset_term_mu_up"] = false;
+  do_syst["do_pile_up_offset_term_mu_down"] = false;
+  do_syst["do_pile_up_offset_term_npv_up"] = false;
+  do_syst["do_pile_up_offset_term_npv_down"] = false;
+  do_syst["do_pile_up_pt_term_up"] = false;
+  do_syst["do_pile_up_pt_term_down"] = false;
+  do_syst["do_pile_up_rho_topology_up"] = false;
+  do_syst["do_pile_up_rho_topology_down"] = false;
+  do_syst["do_closeby_up"] = false;
+  do_syst["do_closeby_down"] = false;
+  do_syst["do_flavor_comp_uncert_up"] = false;
+  do_syst["do_flavor_comp_uncert_down"] = false;
+  do_syst["do_flavor_response_uncert_up"] = false;
+  do_syst["do_flavor_response_uncert_down"] = false;
+  do_syst["do_bjes_up"] = false;
+  do_syst["do_bjes_down"] = false;
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::SystematicStruct::setSyst(std::string syst, bool val)
+{
+  do_syst[syst] = val;
+}
+
+// -----------------------------------------------------------------------------
+bool PennSusyFrame::SystematicStruct::getSyst(std::string syst)
+{
+  return do_syst[syst];
+}
+

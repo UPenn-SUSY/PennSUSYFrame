@@ -23,7 +23,7 @@ prod_labels = { 'modeA':'#tilde{#chi}_{1}^{#pm}#tilde{#chi}_{2}^{0} production'
 # ==============================================================================
 class HistPainter(object):
     """
-    docstring
+    master class to do histogram painting
     """
     # --------------------------------------------------------------------------
     def __init__( self
@@ -502,6 +502,14 @@ class HistPainter(object):
 
         # finally draw :-)
         self.ratio.Draw("ep")
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # draw dashed line at ratio = 1
+        x_min = self.ratio.GetXaxis().GetXmin()
+        x_max = self.ratio.GetXaxis().GetXmax()
+        self.ratio_line = ROOT.TLine(x_min, 1., x_max, 1.)
+        self.ratio_line.SetLineStyle(ROOT.kDashed)
+        self.ratio_line.Draw()
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
