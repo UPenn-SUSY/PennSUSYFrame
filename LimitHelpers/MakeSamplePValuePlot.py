@@ -59,22 +59,38 @@ def read_hypo_test_results():
 
 
 # ------------------------------------------------------------------------------
+# TODO if this works, try and understand what is going on!
+class MidpointNormalize(mpl.colors.Normalize):
+    def __init__(self, vmin=None, vmax=None, midpoint=None, clip=False):
+        self.midpoint = midpoint
+        mpl.colors.Normalize.__init__(self, vmin, vmax, clip)
+
+    def __call__(self, value, clip=None):
+        x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
+        return np.ma.masked_array(np.interp(value, x, y))
+
+
+# ------------------------------------------------------------------------------
 def plot_cls_triangle(result_df, out_file_name):
     """
     Function takes a data frame, with branching ratios and CLs values.
     Constructs a triangle with showing the CLs for each branching ratio choice
     """
+    norm = MidpointNormalize(vmin = 0., vmax = 0.10, midpoint = 0.05)
+
     fig = plt.figure()
     ax = fig.add_subplot(111)
     plt.plot([0,1], [1,0], color = '0.75', linestyle = '--')
     my_plot = plt.hexbin( x = result_df['bre'],
                           y = result_df['brt'],
                           C = result_df['cls'],
-                          cmap = plt.cm.BuGn_r,
+                          # cmap = plt.cm.BuGn_r,
+                          cmap = plt.cm.RdYlBu,
                           reduce_C_function = np.max,
                           gridsize = (20, 20),
-                          vmin = 0.,
-                          vmax = 0.10)
+                          norm = norm)
+                          # vmin = 0.,
+                          # vmax = 0.10)
     plt.axis([0, 1.1, 0, 1.1])
     plt.xlabel('Br(\\tilde{t} \\rightarrow be)')
     plt.ylabel('Br(\\tilde{t} \\rightarrow b\\tau)')
@@ -96,20 +112,6 @@ def plot_cls_triangle(result_df, out_file_name):
     # write plot to file
     plt.savefig(out_file_name, bbox_inches = 'tight')
     plt.close()
-
-
-# ------------------------------------------------------------------------------
-# TODO if this works, try and understand what is going on!
-class MidpointNormalize(mpl.colors.Normalize):
-    def __init__(self, vmin=None, vmax=None, midpoint=None, clip=False):
-        self.midpoint = midpoint
-        mpl.colors.Normalize.__init__(self, vmin, vmax, clip)
-
-    def __call__(self, value, clip=None):
-        # I'm ignoring masked values and all kinds of edge cases to make a
-        # simple example...
-        x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
-        return np.ma.masked_array(np.interp(value, x, y))
 
 
 # ------------------------------------------------------------------------------
