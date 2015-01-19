@@ -40,6 +40,7 @@ enum BMINUSL_CUTS { BMINUSL_CUT_ALL
                   , BMINUSL_CUT_BREAK_5
                   , BMINUSL_CUT_TRIGGER
                   , BMINUSL_CUT_PHASE
+                  , BMINUSL_CUT_TRIGGER_MATCH
                   , BMINUSL_CUT_TRIGGER_WEIGHT
                   , BMINUSL_CUT_BREAK_3
                   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -88,6 +89,7 @@ const std::string BMINUSL_CUT_STRINGS[] = { "BMINUSL_CUT_ALL"
                                           // - - - - - - - - - - - - - - - - - -
                                           , "BMINUSL_CUT_TRIGGER"
                                           , "BMINUSL_CUT_PHASE"
+                                          , "BMINUSL_CUT_TRIGGER_MATCH"
                                           , "BMINUSL_CUT_TRIGGER_WEIGHT"
                                           , "BREAK"
                                           // - - - - - - - - - - - - - - - - - -

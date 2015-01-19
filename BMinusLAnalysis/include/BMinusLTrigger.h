@@ -3,6 +3,7 @@
 
 #include "PennSusyFrameCore/include/PennSusyFrameEnums.h"
 #include "PennSusyFrameCore/include/TriggerHelpers.h"
+#include <vector>
 
 // =============================================================================
 namespace PennSusyFrame
@@ -14,6 +15,26 @@ namespace PennSusyFrame
 // =============================================================================
 namespace PennSusyFrame
 {
+  bool passBMinusLTrigger( const PennSusyFrame::Event&
+                         , const PennSusyFrame::Trigger&
+                         );
+
+  bool passBMinusLTriggerMatch( const PennSusyFrame::Event&
+                              , const PennSusyFrame::Trigger&
+                              , const std::vector<PennSusyFrame::Electron*>*
+                              , const std::vector<PennSusyFrame::Muon*>*
+                              );
+  bool passEETriggerMatching( const PennSusyFrame::Trigger&
+                            , const std::vector<PennSusyFrame::Electron*>*
+                            );
+  bool passMMTriggerMatching( const PennSusyFrame::Trigger&
+                            , const std::vector<PennSusyFrame::Muon*>*
+                            );
+  bool passEMTriggerMatching( const PennSusyFrame::Trigger&
+                            , const std::vector<PennSusyFrame::Electron*>*
+                            , const std::vector<PennSusyFrame::Muon*>*
+                            );
+
   // // check trigger phase space
   // TRIG_PHASE getTriggerPhase( const std::vector<PennSusyFrame::Electron*>*
   //                           , const std::vector<PennSusyFrame::Muon*>*
