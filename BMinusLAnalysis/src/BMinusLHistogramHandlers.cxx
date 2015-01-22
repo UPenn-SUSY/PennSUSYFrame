@@ -782,7 +782,7 @@ void PennSusyFrame::BMinusLHists::FillSpecial( const PennSusyFrame::Event& event
   }
 }
 
-// ----------------------------------------------------------------------------- 
+// -----------------------------------------------------------------------------
 bool PennSusyFrame::BMinusLHists::pass(float eta_b_0, float eta_b_1, float eta_l_0, float eta_l_1)
 {
   if (  abs(eta_b_0) < 2.4
@@ -3004,8 +3004,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     	if (bl_0.getLepton()->isElectron()) {
     	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    	}		  
-    	else {	  
+    	}
+    	else {
     	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	}
@@ -3019,8 +3019,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     	if (bl_0.getLepton()->isElectron()) {
     	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    	}		  
-    	else {	  
+    	}
+    	else {
     	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	}
@@ -3035,8 +3035,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     	if (bl_0.getLepton()->isElectron()) {
     	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    	}		  
-    	else {	  
+    	}
+    	else {
     	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	}
@@ -3049,8 +3049,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     	if (bl_0.getLepton()->isElectron()) {
     	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    	}		  
-    	else {	  
+    	}
+    	else {
     	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	}
@@ -3065,8 +3065,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     	if (bl_0.getLepton()->isElectron()) {
     	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    	}		  
-    	else {	  
+    	}
+    	else {
     	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	}
@@ -3079,8 +3079,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     	if (bl_0.getLepton()->isElectron()) {
     	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    	}		  
-    	else {	  
+    	}
+    	else {
     	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     	}
@@ -3095,8 +3095,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     // 	if (bl_0.getLepton()->isElectron()) {
     // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	}		  
-    // 	else {	  
+    // 	}
+    // 	else {
     // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     // 	}
@@ -3109,8 +3109,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     // 	if (bl_0.getLepton()->isElectron()) {
     // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	}		  
-    // 	else {	  
+    // 	}
+    // 	else {
     // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     // 	}
@@ -3125,8 +3125,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     // 	if (bl_0.getLepton()->isElectron()) {
     // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	}		  
-    // 	else {	  
+    // 	}
+    // 	else {
     // 	  m_h_el_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     // 	  m_h_mu_pt_v_doubleOR_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     // 	}
@@ -3139,8 +3139,8 @@ void PennSusyFrame::BMinusLDetailedHists::FillSpecial( const PennSusyFrame::Even
     // 	if (bl_0.getLepton()->isElectron()) {
     // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
-    // 	}		  
-    // 	else {	  
+    // 	}
+    // 	else {
     // 	  m_h_el_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_1.getLepton()->getPt()/1.e3, weight);
     // 	  m_h_mu_pt_v_doubleAND_triggers_passed.at(fc_it)->Fill(float(bin_counter), bl_0.getLepton()->getPt()/1.e3, weight);
     // 	}
@@ -3337,8 +3337,8 @@ void PennSusyFrame::BMinusLDetailedHists::passTriggerMatching( const PennSusyFra
     if (bl_0.getLepton()->isElectron()) {
       el_list->push_back((PennSusyFrame::Electron*)bl_0.getLepton());
       mu_list->push_back((PennSusyFrame::Muon*)bl_1.getLepton());
-    }	     
-    else {   
+    }
+    else {
       el_list->push_back((PennSusyFrame::Electron*)bl_1.getLepton());
       mu_list->push_back((PennSusyFrame::Muon*)bl_0.getLepton());
     }
@@ -4832,8 +4832,8 @@ void PennSusyFrame::DRHists::FilldR( const PennSusyFrame::Event& event
   // bool jet_from_stop_1 = (fabs(getJetParentPdgId(jet_1, mc_truth, dr_jet_q_1)) > 1.e6);
   // bool lepton_from_stop_0 = (fabs(getLeptonParentPdgId(lep_0, mc_truth)) > 1.e6);
   // bool lepton_from_stop_1 = (fabs(getLeptonParentPdgId(lep_1, mc_truth)) > 1.e6);
-  bool jet_from_stop_0 =    false; 
-  bool jet_from_stop_1 =    false; 
+  bool jet_from_stop_0 =    false;
+  bool jet_from_stop_1 =    false;
   bool lepton_from_stop_0 = false;
   bool lepton_from_stop_1 = false;
 
