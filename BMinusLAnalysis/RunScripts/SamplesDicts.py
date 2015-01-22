@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-def getEgammaDataSamples(job_multiplier = 1, test_subset = False):
+def getEgammaDataSamples(job_multiplier=1, test_subset=False):
     """
     Get dictionary of egamma data samples
     job_multiplier: Multiplier for splitting the samples into fewer jobs
@@ -21,7 +21,7 @@ def getEgammaDataSamples(job_multiplier = 1, test_subset = False):
     return samples
 
 # ------------------------------------------------------------------------------
-def getMuonDataSamples(job_multiplier = 1, test_subset = False):
+def getMuonDataSamples(job_multiplier=1, test_subset=False):
     """
     Get dictionary of muon data samples
     job_multiplier: Multiplier for splitting the samples into fewer jobs
@@ -43,7 +43,7 @@ def getMuonDataSamples(job_multiplier = 1, test_subset = False):
     return samples
 
 # ------------------------------------------------------------------------------
-def getFullSimSamples(job_multiplier = 1, test_subset = False):
+def getFullSimSamples(job_multiplier=1, test_subset=False, include_backup=False):
     """
     Get dictionary of full sim samples
     job_multiplier: Multiplier for splitting the samples into fewer jobs
@@ -101,12 +101,71 @@ def getFullSimSamples(job_multiplier = 1, test_subset = False):
         samples[200350] = {'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':1*job_multiplier}
         samples[200351] = {'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':1*job_multiplier}
 
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        samples[167767] = {'label':'167767.Sherpa_CT10_WtaunuMassiveCBPt70_140_BFilter'          , 'num_jobs':1}
+        samples[167768] = {'label':'167768.Sherpa_CT10_WtaunuMassiveCBPt70_140_CJetFilterBVeto'  , 'num_jobs':1}
+        samples[167769] = {'label':'167769.Sherpa_CT10_WtaunuMassiveCBPt70_140_CJetVetoBVeto'    , 'num_jobs':1}
+
+        samples[167776] = {'label':'167776.Sherpa_CT10_WtaunuMassiveCBPt140_280_BFilter'         , 'num_jobs':1}
+        samples[167777] = {'label':'167777.Sherpa_CT10_WtaunuMassiveCBPt140_280_CJetFilterBVeto' , 'num_jobs':1}
+        samples[167778] = {'label':'167778.Sherpa_CT10_WtaunuMassiveCBPt140_280_CJetVetoBVeto'   , 'num_jobs':1}
+
+        samples[167779] = {'label':'167779.Sherpa_CT10_WenuMassiveCBPt280_500_BFilter'           , 'num_jobs':1}
+        samples[167780] = {'label':'167780.Sherpa_CT10_WenuMassiveCBPt280_500_CJetFilterBVeto'   , 'num_jobs':1}
+        samples[167781] = {'label':'167781.Sherpa_CT10_WenuMassiveCBPt280_500_CJetVetoBVeto'     , 'num_jobs':1}
+
+        samples[167782] = {'label':'167782.Sherpa_CT10_WmunuMassiveCBPt280_500_BFilter'          , 'num_jobs':1}
+        samples[167783] = {'label':'167783.Sherpa_CT10_WmunuMassiveCBPt280_500_CJetFilterBVeto'  , 'num_jobs':1}
+        samples[167784] = {'label':'167784.Sherpa_CT10_WmunuMassiveCBPt280_500_CJetVetoBVeto'    , 'num_jobs':1}
+
+        samples[167785] = {'label':'167785.Sherpa_CT10_WtaunuMassiveCBPt280_500_BFilter'         , 'num_jobs':1}
+        samples[167786] = {'label':'167786.Sherpa_CT10_WtaunuMassiveCBPt280_500_CJetFilterBVeto' , 'num_jobs':1}
+        samples[167787] = {'label':'167787.Sherpa_CT10_WtaunuMassiveCBPt280_500_CJetVetoBVeto'   , 'num_jobs':1}
+
+        samples[167791] = {'label':'167791.Sherpa_CT10_WmunuMassiveCBPt500_BFilter'              , 'num_jobs':1}
+        samples[167792] = {'label':'167792.Sherpa_CT10_WmunuMassiveCBPt500_CJetFilterBVeto'      , 'num_jobs':1}
+        samples[167793] = {'label':'167793.Sherpa_CT10_WmunuMassiveCBPt500_CJetVetoBVeto'        , 'num_jobs':1}
+
+        samples[167794] = {'label':'167794.Sherpa_CT10_WtaunuMassiveCBPt500_BFilter'             , 'num_jobs':1}
+        samples[167795] = {'label':'167795.Sherpa_CT10_WtaunuMassiveCBPt500_CJetFilterBVeto'     , 'num_jobs':1}
+        samples[167796] = {'label':'167796.Sherpa_CT10_WtaunuMassiveCBPt500_CJetVetoBVeto'       , 'num_jobs':1}
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        if include_backup:
+            samples[200332] = {'label':'200332.AlpgenPythia_Auto_P2011C_ZeebbNp0'         , 'num_jobs':1}
+            samples[200333] = {'label':'200333.AlpgenPythia_Auto_P2011C_ZeebbNp1'         , 'num_jobs':1}
+            samples[200334] = {'label':'200334.AlpgenPythia_Auto_P2011C_ZeebbNp2'         , 'num_jobs':1}
+            samples[200335] = {'label':'200335.AlpgenPythia_Auto_P2011C_ZeebbNp3incl'     , 'num_jobs':1}
+            samples[200340] = {'label':'200340.AlpgenPythia_Auto_P2011C_ZmumubbNp0'       , 'num_jobs':1}
+            samples[200341] = {'label':'200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1'       , 'num_jobs':1}
+            samples[200342] = {'label':'200342.AlpgenPythia_Auto_P2011C_ZmumubbNp2'       , 'num_jobs':1}
+            samples[200343] = {'label':'200343.AlpgenPythia_Auto_P2011C_ZmumubbNp3incl'   , 'num_jobs':1}
+            samples[200348] = {'label':'200348.AlpgenPythia_Auto_P2011C_ZtautaubbNp0'     , 'num_jobs':1}
+            samples[200349] = {'label':'200349.AlpgenPythia_Auto_P2011C_ZtautaubbNp1'     , 'num_jobs':1}
+            samples[200350] = {'label':'200350.AlpgenPythia_Auto_P2011C_ZtautaubbNp2'     , 'num_jobs':1}
+            samples[200351] = {'label':'200351.AlpgenPythia_Auto_P2011C_ZtautaubbNp3incl' , 'num_jobs':1}
+
+            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            samples[110805] = { 'label':'110805.AlpgenPythia_P2011C_ZeeccNp0'     , 'num_jobs':1*job_multiplier}
+            samples[110806] = { 'label':'110806.AlpgenPythia_P2011C_ZeeccNp1'     , 'num_jobs':1*job_multiplier}
+            samples[110807] = { 'label':'110807.AlpgenPythia_P2011C_ZeeccNp2'     , 'num_jobs':1}
+            samples[110808] = { 'label':'110808.AlpgenPythia_P2011C_ZeeccNp3'     , 'num_jobs':1}
+            samples[110809] = { 'label':'110809.AlpgenPythia_P2011C_ZmumuccNp0'   , 'num_jobs':1*job_multiplier}
+            samples[110810] = { 'label':'110810.AlpgenPythia_P2011C_ZmumuccNp1'   , 'num_jobs':1*job_multiplier}
+            samples[110811] = { 'label':'110811.AlpgenPythia_P2011C_ZmumuccNp2'   , 'num_jobs':1}
+            samples[110812] = { 'label':'110812.AlpgenPythia_P2011C_ZmumuccNp3'   , 'num_jobs':1}
+            samples[110813] = { 'label':'110813.AlpgenPythia_P2011C_ZtautauccNp0' , 'num_jobs':1*job_multiplier}
+            samples[110814] = { 'label':'110814.AlpgenPythia_P2011C_ZtautauccNp1' , 'num_jobs':1*job_multiplier}
+            samples[110815] = { 'label':'110815.AlpgenPythia_P2011C_ZtautauccNp2' , 'num_jobs':1}
+            samples[110816] = { 'label':'110816.AlpgenPythia_P2011C_ZtautauccNp3' , 'num_jobs':1}
+
     return samples
 
 # ------------------------------------------------------------------------------
-def getFastSimSamples( job_multiplier = 1
-                     , test_subset = False
-                     , signal_only = False
+def getFastSimSamples( job_multiplier=1
+                     , test_subset=False
+                     , signal_only=False
+                     , include_backup=False
                      ):
     """
     Get dictionary of fast sim samples
@@ -227,4 +286,51 @@ def getFastSimSamples( job_multiplier = 1
         samples[183738] = {'label':'183738.Sherpa_CT10_WWtotaunuqq_MassiveCB' , 'num_jobs':1}
         samples[183739] = {'label':'183739.Sherpa_CT10_WZtotaunuqq_MassiveCB' , 'num_jobs':1}
 
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        samples[167740] = {'label':'167740.Sherpa_CT10_WenuMassiveCBPt0_BFilter'                , 'num_jobs':1}
+        samples[167741] = {'label':'167741.Sherpa_CT10_WenuMassiveCBPt0_CJetFilterBVeto'        , 'num_jobs':1}
+        samples[167742] = {'label':'167742.Sherpa_CT10_WenuMassiveCBPt0_CJetVetoBVeto'          , 'num_jobs':1}
+
+        samples[167743] = {'label':'167743.Sherpa_CT10_WmunuMassiveCBPt0_BFilter'               , 'num_jobs':1}
+        samples[167744] = {'label':'167744.Sherpa_CT10_WmunuMassiveCBPt0_CJetFilterBVeto'       , 'num_jobs':1}
+        samples[167745] = {'label':'167745.Sherpa_CT10_WmunuMassiveCBPt0_CJetVetoBVeto'         , 'num_jobs':1}
+
+        samples[167746] = {'label':'167746.Sherpa_CT10_WtaunuMassiveCBPt0_BFilter'              , 'num_jobs':1}
+        samples[167747] = {'label':'167747.Sherpa_CT10_WtaunuMassiveCBPt0_CJetFilterBVeto'      , 'num_jobs':1}
+        samples[167748] = {'label':'167748.Sherpa_CT10_WtaunuMassiveCBPt0_CJetVetoBVeto'        , 'num_jobs':1}
+
+        samples[167761] = {'label':'167761.Sherpa_CT10_WenuMassiveCBPt70_140_BFilter'           , 'num_jobs':1}
+        samples[167762] = {'label':'167762.Sherpa_CT10_WenuMassiveCBPt70_140_CJetFilterBVeto'   , 'num_jobs':1}
+        samples[167763] = {'label':'167763.Sherpa_CT10_WenuMassiveCBPt70_140_CJetVetoBVeto'     , 'num_jobs':1}
+
+        samples[167764] = {'label':'167764.Sherpa_CT10_WmunuMassiveCBPt70_140_BFilter'          , 'num_jobs':1}
+        samples[167765] = {'label':'167765.Sherpa_CT10_WmunuMassiveCBPt70_140_CJetFilterBVeto'  , 'num_jobs':1}
+        samples[167766] = {'label':'167766.Sherpa_CT10_WmunuMassiveCBPt70_140_CJetVetoBVeto'    , 'num_jobs':1}
+
+        samples[167770] = {'label':'167770.Sherpa_CT10_WenuMassiveCBPt140_280_BFilter'          , 'num_jobs':1}
+        samples[167771] = {'label':'167771.Sherpa_CT10_WenuMassiveCBPt140_280_CJetFilterBVeto'  , 'num_jobs':1}
+        samples[167772] = {'label':'167772.Sherpa_CT10_WenuMassiveCBPt140_280_CJetVetoBVeto'    , 'num_jobs':1}
+
+        samples[167773] = {'label':'167773.Sherpa_CT10_WmunuMassiveCBPt140_280_BFilter'         , 'num_jobs':1}
+        samples[167774] = {'label':'167774.Sherpa_CT10_WmunuMassiveCBPt140_280_CJetFilterBVeto' , 'num_jobs':1}
+        samples[167775] = {'label':'167775.Sherpa_CT10_WmunuMassiveCBPt140_280_CJetVetoBVeto'   , 'num_jobs':1}
+
+        samples[167788] = {'label':'167788.Sherpa_CT10_WenuMassiveCBPt500_BFilter'              , 'num_jobs':1}
+        samples[167789] = {'label':'167789.Sherpa_CT10_WenuMassiveCBPt500_CJetFilterBVeto'      , 'num_jobs':1}
+        samples[167790] = {'label':'167790.Sherpa_CT10_WenuMassiveCBPt500_CJetVetoBVeto'        , 'num_jobs':1}
+
+        samples[180534] = {'label':'180534.Sherpa_CT10_WenuMassiveCBPt40_70_BFilter'            , 'num_jobs':1}
+        samples[180535] = {'label':'180535.Sherpa_CT10_WenuMassiveCBPt40_70_CJetFilterBVeto'    , 'num_jobs':1}
+        samples[180536] = {'label':'180536.Sherpa_CT10_WenuMassiveCBPt40_70_CJetVetoBVeto'      , 'num_jobs':1}
+
+        samples[180537] = {'label':'180537.Sherpa_CT10_WmunuMassiveCBPt40_70_BFilter'           , 'num_jobs':1}
+        samples[180538] = {'label':'180538.Sherpa_CT10_WmunuMassiveCBPt40_70_CJetFilterBVeto'   , 'num_jobs':1}
+        samples[180539] = {'label':'180539.Sherpa_CT10_WmunuMassiveCBPt40_70_CJetVetoBVeto'     , 'num_jobs':1}
+
+        samples[180540] = {'label':'180540.Sherpa_CT10_WtaunuMassiveCBPt40_70_BFilter'          , 'num_jobs':1}
+        samples[180541] = {'label':'180541.Sherpa_CT10_WtaunuMassiveCBPt40_70_CJetFilterBVeto'  , 'num_jobs':1}
+        samples[180542] = {'label':'180542.Sherpa_CT10_WtaunuMassiveCBPt40_70_CJetVetoBVeto'    , 'num_jobs':1}
+
+
     return samples
+
