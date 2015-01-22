@@ -12,7 +12,7 @@ bool PennSusyFrame::passBMinusLTrigger( const PennSusyFrame::Event& event
 
   // ee flavor channel
   if (flavor_channel == FLAVOR_EE && trigger.getEF_e24vhi_medium1()) return true;
-  // if (flavor_channel == FLAVOR_EE && trigger.getEF_e60_medium1())    return true;
+  if (flavor_channel == FLAVOR_EE && trigger.getEF_e60_medium1())    return true;
 
   // mumu flavor channel
   if (flavor_channel == FLAVOR_MM && trigger.getEF_mu24i_tight())    return true;
@@ -68,20 +68,20 @@ bool PennSusyFrame::passEETriggerMatching( const PennSusyFrame::Trigger& trigger
                                                             )
                          );
   }
-  // if (trigger.getEF_e60_medium1()) {
-  //   pass_trigger_match = (  pass_trigger_match
-  //                        || PennSusyFrame::matchElectronList( electrons
-  //                                                           , trigger.getTrig_EF_el_EF_e60_medium1()
-  //                                                           , trigger.getTrig_EF_el_px()
-  //                                                           , trigger.getTrig_EF_el_py()
-  //                                                           , trigger.getTrig_EF_el_pz()
-  //                                                           , trigger.getTrig_EF_el_E()
-  //                                                           , 1    // number matches
-  //                                                           , 0.15 // dr for match
-  //                                                           , 0    // min pt
-  //                                                           )
-  //                        );
-  // }
+  if (trigger.getEF_e60_medium1()) {
+    pass_trigger_match = (  pass_trigger_match
+                         || PennSusyFrame::matchElectronList( electrons
+                                                            , trigger.getTrig_EF_el_EF_e60_medium1()
+                                                            , trigger.getTrig_EF_el_px()
+                                                            , trigger.getTrig_EF_el_py()
+                                                            , trigger.getTrig_EF_el_pz()
+                                                            , trigger.getTrig_EF_el_E()
+                                                            , 1    // number matches
+                                                            , 0.15 // dr for match
+                                                            , 0    // min pt
+                                                            )
+                         );
+  }
 
   return pass_trigger_match;
 }
@@ -145,20 +145,20 @@ bool PennSusyFrame::passEMTriggerMatching( const PennSusyFrame::Trigger& trigger
                                                             )
                          );
   }
-  // if (trigger.getEF_e60_medium1()) {
-  //   pass_trigger_match = (  pass_trigger_match
-  //                        || PennSusyFrame::matchElectronList( electrons
-  //                                                           , trigger.getTrig_EF_el_EF_e60_medium1()
-  //                                                           , trigger.getTrig_EF_el_px()
-  //                                                           , trigger.getTrig_EF_el_py()
-  //                                                           , trigger.getTrig_EF_el_pz()
-  //                                                           , trigger.getTrig_EF_el_E()
-  //                                                           , 1    // number matches
-  //                                                           , 0.15 // dr for match
-  //                                                           , 0    // min pt
-  //                                                           )
-  //                        );
-  // }
+  if (trigger.getEF_e60_medium1()) {
+    pass_trigger_match = (  pass_trigger_match
+                         || PennSusyFrame::matchElectronList( electrons
+                                                            , trigger.getTrig_EF_el_EF_e60_medium1()
+                                                            , trigger.getTrig_EF_el_px()
+                                                            , trigger.getTrig_EF_el_py()
+                                                            , trigger.getTrig_EF_el_pz()
+                                                            , trigger.getTrig_EF_el_E()
+                                                            , 1    // number matches
+                                                            , 0.15 // dr for match
+                                                            , 0    // min pt
+                                                            )
+                         );
+  }
   if (trigger.getTrig_EF_trigmuonef_EF_mu24i_tight()) {
     pass_trigger_match = (  pass_trigger_match
                          || matchMuonList( muons
