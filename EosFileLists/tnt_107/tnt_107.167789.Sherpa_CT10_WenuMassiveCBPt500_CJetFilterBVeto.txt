@@ -1,0 +1,1 @@
+root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.167789.Sherpa_CT10_WenuMassiveCBPt500_CJetFilterBVeto.tnt_107_Tnt.root.14292502/user.bjackson.4613542._000001.Tnt.root        10000        424        2043

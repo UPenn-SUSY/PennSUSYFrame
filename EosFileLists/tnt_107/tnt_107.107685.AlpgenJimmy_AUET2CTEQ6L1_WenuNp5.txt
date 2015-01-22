@@ -1,0 +1,2 @@
+root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.107685.AlpgenJimmy_AUET2CTEQ6L1_WenuNp5.tnt_107_Tnt.root.14294789/user.bjackson.4613692._000001.Tnt.root        10000        101        9999
+root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.107685.AlpgenJimmy_AUET2CTEQ6L1_WenuNp5.tnt_107_Tnt.root.14294789/user.bjackson.4613692._000002.Tnt.root.2        60000        519        59999
