@@ -61,7 +61,7 @@ def checkSamplesAreCopied(eos_file_list_dir):
 
 #-------------------------------------------------------------------------------
 def main():
-    eos_file_list_dir = '%s/EosFileLists/tnt_106/' % os.environ['BASE_WORK_DIR']
+    eos_file_list_dir = '%s/EosFileLists/tnt_107/' % os.environ['BASE_WORK_DIR']
     checkSamplesAreCopied(eos_file_list_dir)
 
 #===============================================================================

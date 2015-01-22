@@ -1,0 +1,2 @@
+root://eosatlas///eos/atlas/user/e/ehines/tnt_107/user.bjackson.167840.Sherpa_CT10_ZtautauMassiveCBPt500_CFilterBVeto.tnt_107_Tnt.root.14294634/user.bjackson.4613683._000001.Tnt.root        10000        1034        2078
+root://eosatlas///eos/atlas/user/e/ehines/tnt_107/user.bjackson.167840.Sherpa_CT10_ZtautauMassiveCBPt500_CFilterBVeto.tnt_107_Tnt.root.14294675/user.bjackson.4613683._000002.Tnt.root        49997        5331        10375

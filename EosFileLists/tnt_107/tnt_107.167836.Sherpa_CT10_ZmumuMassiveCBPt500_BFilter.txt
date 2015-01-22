@@ -1,0 +1,2 @@
+root://eosatlas///eos/atlas/user/e/ehines/tnt_107/user.bjackson.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.tnt_107_Tnt.root.14294599/user.bjackson.4613678._000001.Tnt.root        10000        8932        2015
+root://eosatlas///eos/atlas/user/e/ehines/tnt_107/user.bjackson.167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter.tnt_107_Tnt.root.14294621/user.bjackson.4613678._000002.Tnt.root        90000        80097        18175

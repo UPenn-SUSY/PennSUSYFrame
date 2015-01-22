@@ -1,6 +1,7 @@
 #include "BMinusLAnalysis/include/BMinusLAnalysis.h"
 #include "BMinusLAnalysis/include/BMinusLUtils.h"
 #include "BMinusLAnalysis/include/BMinusLHistogramHandlers.h"
+#include "BMinusLAnalysis/include/BMinusLTrigger.h"
 #include "PennSusyFrameCore/include/PennSusyFrameCore.h"
 
 #include <iostream>
@@ -204,6 +205,7 @@ void PennSusyFrame::BMinusLAnalysis::initializeEvent()
   m_pass_os               = false;
   m_pass_trigger          = false;
   m_pass_phase            = false;
+  m_pass_trigger_match    = false;
   m_pass_ge_2_b_jet       = false;
   m_pass_eq_2_b_jet       = false;
   m_pass_bl_pairing       = false;
@@ -405,7 +407,7 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Check trigger
-  m_pass_trigger = passBMinusLTrigger();
+  m_pass_trigger = PennSusyFrame::passBMinusLTrigger(m_event, m_trigger);
   m_pass_event = (m_pass_event && m_pass_trigger);
   fillTrackers(BMINUSL_CUT_TRIGGER);
 
@@ -416,8 +418,13 @@ void PennSusyFrame::BMinusLAnalysis::processEvent()
   fillTrackers(BMINUSL_CUT_PHASE);
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // Check trigger matching
+  m_pass_trigger_match = passTriggerMatch();
+  m_pass_event = (m_pass_event && m_pass_trigger_match);
+  fillTrackers(BMINUSL_CUT_TRIGGER_MATCH);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // apply trigger weight
-  // TODO validate trigger weight
   if (!m_is_data) {
     m_trigger_sf = m_bminusl_trigger_sf_tool.getSF( m_event
                                                   , m_pile_up_sf_tool
@@ -514,6 +521,7 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
      || !m_pass_os
      || !m_pass_trigger
      || !m_pass_phase
+     || !m_pass_trigger_match
      || !m_pass_ge_2_b_jet
      || !m_pass_bl_pairing
      ) {
@@ -977,24 +985,36 @@ bool PennSusyFrame::BMinusLAnalysis::passPhaseSpace()
   */
 }
 
+// // -----------------------------------------------------------------------------
+// bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
+// {
+//   FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
+// 
+//   // ee flavor channel
+//   if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vhi_medium1()) return true;
+// 
+//   // mumu flavor channel
+//   if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu24i_tight())    return true;
+//   if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu36_tight())     return true;
+// 
+//   // emu flavor channel
+//   if (flavor_channel == FLAVOR_EM && m_trigger.getEF_e24vhi_medium1()) return true;
+//   if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu24i_tight())    return true;
+//   if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu36_tight())     return true;
+// 
+//   return false;
+// }
+
 // -----------------------------------------------------------------------------
-bool PennSusyFrame::BMinusLAnalysis::passBMinusLTrigger()
+bool PennSusyFrame::BMinusLAnalysis::passTriggerMatch()
 {
-  FLAVOR_CHANNEL flavor_channel = m_event.getFlavorChannel();
+  if (!m_is_data) return true;
 
-  // ee flavor channel
-  if (flavor_channel == FLAVOR_EE && m_trigger.getEF_e24vhi_medium1()) return true;
-
-  // mumu flavor channel
-  if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu24i_tight())    return true;
-  if (flavor_channel == FLAVOR_MM && m_trigger.getEF_mu36_tight())     return true;
-
-  // emu flavor channel
-  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_e24vhi_medium1()) return true;
-  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu24i_tight())    return true;
-  if (flavor_channel == FLAVOR_EM && m_trigger.getEF_mu36_tight())     return true;
-
-  return false;
+  return PennSusyFrame::passBMinusLTriggerMatch( m_event
+                                               , m_trigger
+                                               , m_electrons.getCollection(EL_SELECTED)
+                                               , m_muons.getCollection(MU_SELECTED)
+                                               );
 }
 
 // -----------------------------------------------------------------------------

@@ -1,0 +1,1 @@
+root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700.tnt_107_Tnt.root.14297768/user.bjackson.4613990._000001.Tnt.root.2        40000        35832        39999

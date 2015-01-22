@@ -46,7 +46,7 @@ def checkFile(file_name):
 
 #-------------------------------------------------------------------------------
 def main():
-    eos_file_list_dir = '%s/EosFileLists/tnt_106/' % os.environ['BASE_WORK_DIR']
+    eos_file_list_dir = '%s/EosFileLists/tnt_107/' % os.environ['BASE_WORK_DIR']
     file_list = glob.glob('%s/*.txt' % eos_file_list_dir)
     bad_files = []
     for f in file_list:

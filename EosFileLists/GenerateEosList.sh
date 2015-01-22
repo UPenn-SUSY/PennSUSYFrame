@@ -93,7 +93,7 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
       while [[ ! -f tmp_events.txt ]] ; do
         counter=$[ $counter+1 ]
         python ../GetNumberUnskimmedEvents.py ${full_eos_path}
-        if [[ $counter == "10" ]] ; then
+        if [[ $counter == "3" ]] ; then
           echo "Error getting unskimmed events for ${full_eos_path}"
           break
         fi
@@ -105,7 +105,7 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
       while [[ ! -f tmp_entries.txt ]] ; do
         counter=$[ $counter+1 ]
         python ../GetNumberEntries.py ${full_eos_path}
-        if [[ $counter == "10" ]] ; then
+        if [[ $counter == "3" ]] ; then
           echo "Error getting number of entries for ${full_eos_path}"
           break
         fi
@@ -117,7 +117,7 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
       while [[ ! -f tmp_weights.txt ]] ; do
         counter=$[ $counter+1 ]
         python ../GetSumEventWeights.py ${full_eos_path}
-        if [[ $counter == "10" ]] ; then
+        if [[ $counter == "3" ]] ; then
           echo "Error getting sum of event weights for ${full_eos_path}"
           break
         fi
@@ -128,7 +128,7 @@ for eos_dir in $(eos ls ${EOS_PATH}); do
       while [[ ! -f tmp_entries.txt ]] ; do
         counter=$[ $counter+1 ]
         python ../GetNumberEntries.py ${full_eos_path} susy
-        if [[ $counter == "10" ]] ; then
+        if [[ $counter == "3" ]] ; then
           echo "Error getting number of entries for ${full_eos_path}"
           break
         fi

@@ -11,7 +11,7 @@ import pprint
 import glob
 
 #-------------------------------------------------------------------------------
-tnt_dir = '%s/EosFileLists/tnt_106' % os.environ['BASE_WORK_DIR']
+tnt_dir = '%s/EosFileLists/tnt_107' % os.environ['BASE_WORK_DIR']
 
 ami_data_file_name = "%s/data/ami_data12.txt" % os.environ['BASE_WORK_DIR']
 ami_mc_file_name   = "%s/data/ami_mc12.txt"   % os.environ['BASE_WORK_DIR']
@@ -149,11 +149,13 @@ def getEventDataFromEosFileList(file_name):
     sum_mc_event_weight = 0.
 
     for l in f.readlines():
+        if 'ERROR' in l: continue
+
         splits = l.rstrip('\n').split()
         total_events        += int(splits[1])
         num_entries         += int(splits[2])
         sum_mc_event_weight += float(splits[3])
-    
+
     f.close()
 
     return { 'total_events':total_events
@@ -162,7 +164,7 @@ def getEventDataFromEosFileList(file_name):
            }
 
 #-------------------------------------------------------------------------------
-# 
+#
 def constructMismatchMessage(ds_name, total_events_eos, total_events_container):
     diff = total_events_container - total_events_eos
     percent_diff = 100*diff/float(total_events_container) if total_events_container else 0

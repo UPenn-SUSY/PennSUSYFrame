@@ -1,0 +1,2 @@
+root://eosatlas///eos/atlas/user/e/ehines/tnt_107/user.bjackson.167788.Sherpa_CT10_WenuMassiveCBPt500_BFilter.tnt_107_Tnt.root.14292495/user.bjackson.4613541._000001.Tnt.root        10000        1202        2020
+root://eosatlas///eos/atlas/user/e/ehines/tnt_107/user.bjackson.167788.Sherpa_CT10_WenuMassiveCBPt500_BFilter.tnt_107_Tnt.root.14292513/user.bjackson.4613541._000002.Tnt.root        90000        10760        18187

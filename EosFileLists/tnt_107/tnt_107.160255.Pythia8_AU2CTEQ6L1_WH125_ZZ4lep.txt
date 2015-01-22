@@ -1,0 +1,2 @@
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.160255.Pythia8_AU2CTEQ6L1_WH125_ZZ4lep.tnt_107_Tnt.root.14290260/user.bjackson.4613365._000001.Tnt.root        50000        34952        49999
+root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.160255.Pythia8_AU2CTEQ6L1_WH125_ZZ4lep.tnt_107_Tnt.root.14290277/user.bjackson.4613365._000002.Tnt.root        50000        34696        49999

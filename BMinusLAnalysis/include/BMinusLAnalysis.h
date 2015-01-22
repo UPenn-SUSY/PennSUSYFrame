@@ -137,7 +137,8 @@ namespace PennSusyFrame
       void fillTrackers(BMINUSL_CUTS);
       PHASE_SPACE getPhaseSpace();
       bool passPhaseSpace();
-      bool passBMinusLTrigger();
+      // bool passBMinusLTrigger();
+      bool passTriggerMatch();
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
 
@@ -254,6 +255,7 @@ namespace PennSusyFrame
       bool m_pass_os;
       bool m_pass_trigger;
       bool m_pass_phase;
+      bool m_pass_trigger_match;
       bool m_pass_ge_2_b_jet;
       bool m_pass_eq_2_b_jet;
       bool m_pass_bl_pairing;
