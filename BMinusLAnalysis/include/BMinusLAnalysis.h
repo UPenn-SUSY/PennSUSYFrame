@@ -37,10 +37,16 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_CR_TOP_MINUS_MET_SIG
                            , BMINUSL_HIST_CR_TOP
 
+                           , BMINUSL_HIST_CR_TOP_CRACK
+                           , BMINUSL_HIST_CR_TOP_NO_CRACK
+
                            , BMINUSL_HIST_CR_Z_MINUS_HT
                            , BMINUSL_HIST_CR_Z_MINUS_MBL_ASYM
                            , BMINUSL_HIST_CR_Z_MINUS_MET_SIG
                            , BMINUSL_HIST_CR_Z
+
+                           , BMINUSL_HIST_CR_Z_CRACK
+                           , BMINUSL_HIST_CR_Z_NO_CRACK
 
                            , BMINUSL_HIST_VR_TOP_1
                            , BMINUSL_HIST_VR_TOP_2
@@ -86,10 +92,16 @@ namespace PennSusyFrame
                                                    , "BMINUSL_CR_TOP_MINUS_MET_SIG"
                                                    , "BMINUSL_CR_TOP"
 
+                                                   , "BMINUSL_CR_TOP_CRACK"
+                                                   , "BMINUSL_CR_TOP_NO_CRACK"
+
                                                    , "BMINUSL_CR_Z_MINUS_HT"
                                                    , "BMINUSL_CR_Z_MINUS_MBL_ASYM"
                                                    , "BMINUSL_CR_Z_MINUS_MET_SIG"
                                                    , "BMINUSL_CR_Z"
+
+                                                   , "BMINUSL_CR_Z_CRACK"
+                                                   , "BMINUSL_CR_Z_NO_CRACK"
 
                                                    , "BMINUSL_VR_TOP_1"
                                                    , "BMINUSL_VR_TOP_2"

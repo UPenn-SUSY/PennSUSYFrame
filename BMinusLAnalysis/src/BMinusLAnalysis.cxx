@@ -675,6 +675,27 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , m_bl_1
                    , m_event_weight
                    );
+
+    if (m_bl_0 != 0 && m_bl_1 != 0) {
+      double lep_eta_0 = fabs(m_bl_0->getLepton()->getEta());
+      double lep_eta_1 = fabs(m_bl_1->getLepton()->getEta());
+      if (  (lep_eta_0 > 0.8 && lep_eta_0 < 1.2)
+         || (lep_eta_1 > 0.8 && lep_eta_1 < 1.2)
+         ) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_CRACK
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+      else {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_TOP_NO_CRACK
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+    }
   }
 
   // CR Z region cuts - hT cut
@@ -711,6 +732,27 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                    , m_bl_1
                    , m_event_weight
                    );
+
+    if (m_bl_0 != 0 && m_bl_1 != 0) {
+      double lep_eta_0 = fabs(m_bl_0->getLepton()->getEta());
+      double lep_eta_1 = fabs(m_bl_1->getLepton()->getEta());
+      if (  (lep_eta_0 > 0.8 && lep_eta_0 < 1.2)
+         || (lep_eta_1 > 0.8 && lep_eta_1 < 1.2)
+         ) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_CRACK
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+      else {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_CR_Z_NO_CRACK
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
+    }
   }
 
   // VR TOP 1 region cuts
