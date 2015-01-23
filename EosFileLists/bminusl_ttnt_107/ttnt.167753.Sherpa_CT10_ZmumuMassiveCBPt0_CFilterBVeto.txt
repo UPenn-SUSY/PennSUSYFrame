@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_107/BMinusL.167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto__NOMINAL.tnt.root    2527996    311    1215921.0

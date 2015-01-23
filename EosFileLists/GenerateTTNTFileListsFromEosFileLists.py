@@ -15,8 +15,8 @@ import os
 # ------------------------------------------------------------------------------
 # MODIFY THESE LINES!!!
 # A little hacky, but make sure to keep the trailing "." in the ttnt header!!!
-ttnt_header = '%s/../TTNTNtuples_106/BMinusL.' % os.environ['BASE_WORK_DIR']
-old_eos_file_list_header = '../tnt_106/tnt_106'
+ttnt_header = '%s/../TTNTNtuples_107/BMinusL.' % os.environ['BASE_WORK_DIR']
+old_eos_file_list_header = '../tnt_107/tnt_107'
 ttnt_file_list = glob.glob('%s*tnt.root' % ttnt_header)
 tree_name = 'BMinusLTTNT'
 
@@ -32,7 +32,10 @@ def getNumEntries(in_file, tree_name = 'BMinusLTTNT'):
 for tfl in ttnt_file_list:
     print 'file: ' , tfl
 
-    tag = tfl.replace('.tnt.root', '').replace(ttnt_header, '')
+    tag = tfl
+    tag = tag.replace('.tnt.root', '')
+    tag = tag.replace(ttnt_header, '')
+    tag = tag.replace('__NOMINAL', '')
     print 'tag: ' , tag
 
     old_eos_list_file_name = '%s.%s.txt' % (old_eos_file_list_header, tag)

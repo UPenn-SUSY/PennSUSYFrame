@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_107/BMinusL.200341.AlpgenPythia_Auto_P2011C_ZmumubbNp1__NOMINAL.tnt.root    699897    1911    699882.0
