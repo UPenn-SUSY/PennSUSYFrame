@@ -28,7 +28,8 @@ def makeSampleListFiles(input_file_name):
 
 # ------------------------------------------------------------------------------
 def main():
-    input_file_list = glob.glob('results/*hypotest.root')
+    # input_file_list = glob.glob('results/*hypotest.root')
+    input_file_list = glob.glob('results/excl/*hypotest.root')
     for ifl in input_file_list:
         print 'Making sample list files for ', ifl
         makeSampleListFiles(ifl)
