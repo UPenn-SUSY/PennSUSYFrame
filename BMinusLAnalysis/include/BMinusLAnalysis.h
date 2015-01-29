@@ -32,41 +32,51 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_SR_1
                            , BMINUSL_HIST_SR_2
 
+                           , BMINUSL_HIST_SR_V2_1
+                           , BMINUSL_HIST_SR_V2_2
+                           , BMINUSL_HIST_SR_V2_3
+
+                           , BMINUSL_HIST_SR_V3_1
+                           , BMINUSL_HIST_SR_V3_2
+                           , BMINUSL_HIST_SR_V3_3
+
                            , BMINUSL_HIST_CR_TOP_MINUS_HT
                            , BMINUSL_HIST_CR_TOP_MINUS_MBL_ASYM
                            , BMINUSL_HIST_CR_TOP_MINUS_MET_SIG
                            , BMINUSL_HIST_CR_TOP
 
-                           , BMINUSL_HIST_CR_TOP_CRACK
-                           , BMINUSL_HIST_CR_TOP_NO_CRACK
+                           // , BMINUSL_HIST_CR_TOP_CRACK
+                           // , BMINUSL_HIST_CR_TOP_NO_CRACK
+
+                           , BMINUSL_HIST_CR_TOP_V2_MINUS_HT
+                           , BMINUSL_HIST_CR_TOP_V2_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_CR_TOP_V2_MINUS_MET_SIG
+                           , BMINUSL_HIST_CR_TOP_V2
 
                            , BMINUSL_HIST_CR_Z_MINUS_HT
                            , BMINUSL_HIST_CR_Z_MINUS_MBL_ASYM
                            , BMINUSL_HIST_CR_Z_MINUS_MET_SIG
                            , BMINUSL_HIST_CR_Z
 
-                           , BMINUSL_HIST_CR_Z_CRACK
-                           , BMINUSL_HIST_CR_Z_NO_CRACK
+                           // , BMINUSL_HIST_CR_Z_CRACK
+                           // , BMINUSL_HIST_CR_Z_NO_CRACK
+
+                           , BMINUSL_HIST_CR_Z_V2_MINUS_HT
+                           , BMINUSL_HIST_CR_Z_V2_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_CR_Z_V2_MINUS_MET_SIG
+                           , BMINUSL_HIST_CR_Z_V2
 
                            , BMINUSL_HIST_VR_TOP_1
                            , BMINUSL_HIST_VR_TOP_2
                            , BMINUSL_HIST_VR_TOP_3
+                           , BMINUSL_HIST_VR_TOP_4
                            , BMINUSL_HIST_VR_Z
 
-                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_HT
-                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM
-                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MET_SIG
-                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW
-
-                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_HT
-                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MBL_ASYM
-                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MET_SIG
-                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW
-
-                           // , BMINUSL_HIST_VR_TOP_1_WIDE_Z_WINDOW
-                           // , BMINUSL_HIST_VR_TOP_2_WIDE_Z_WINDOW
-                           // , BMINUSL_HIST_VR_TOP_3_WIDE_Z_WINDOW
-                           // , BMINUSL_HIST_VR_Z_WIDE_Z_WINDOW
+                           , BMINUSL_HIST_VR_TOP_V2_1
+                           , BMINUSL_HIST_VR_TOP_V2_2
+                           , BMINUSL_HIST_VR_TOP_V2_3
+                           , BMINUSL_HIST_VR_TOP_V2_4
+                           , BMINUSL_HIST_VR_Z_V2
 
                            , BMINUSL_HIST_N
                            };
@@ -87,26 +97,51 @@ namespace PennSusyFrame
                                                    , "BMINUSL_SR_1"
                                                    , "BMINUSL_SR_2"
 
+                                                   , "BMINUSL_SR_v2_1"
+                                                   , "BMINUSL_SR_v2_2"
+                                                   , "BMINUSL_SR_v2_3"
+
+                                                   , "BMINUSL_SR_v3_1"
+                                                   , "BMINUSL_SR_v3_2"
+                                                   , "BMINUSL_SR_v3_3"
+
                                                    , "BMINUSL_CR_TOP_MINUS_HT"
                                                    , "BMINUSL_CR_TOP_MINUS_MBL_ASYM"
                                                    , "BMINUSL_CR_TOP_MINUS_MET_SIG"
                                                    , "BMINUSL_CR_TOP"
 
-                                                   , "BMINUSL_CR_TOP_CRACK"
-                                                   , "BMINUSL_CR_TOP_NO_CRACK"
+                                                   , "BMINUSL_CR_TOP_v2_MINUS_HT"
+                                                   , "BMINUSL_CR_TOP_v2_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_CR_TOP_v2_MINUS_MET_SIG"
+                                                   , "BMINUSL_CR_TOP_v2"
+
+                                                   // , "BMINUSL_CR_TOP_CRACK"
+                                                   // , "BMINUSL_CR_TOP_NO_CRACK"
 
                                                    , "BMINUSL_CR_Z_MINUS_HT"
                                                    , "BMINUSL_CR_Z_MINUS_MBL_ASYM"
                                                    , "BMINUSL_CR_Z_MINUS_MET_SIG"
                                                    , "BMINUSL_CR_Z"
 
-                                                   , "BMINUSL_CR_Z_CRACK"
-                                                   , "BMINUSL_CR_Z_NO_CRACK"
+                                                   , "BMINUSL_CR_Z_v2_MINUS_HT"
+                                                   , "BMINUSL_CR_Z_v2_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_CR_Z_v2_MINUS_MET_SIG"
+                                                   , "BMINUSL_CR_Z_v2"
+
+                                                   // , "BMINUSL_CR_Z_CRACK"
+                                                   // , "BMINUSL_CR_Z_NO_CRACK"
 
                                                    , "BMINUSL_VR_TOP_1"
                                                    , "BMINUSL_VR_TOP_2"
                                                    , "BMINUSL_VR_TOP_3"
+                                                   , "BMINUSL_VR_TOP_4"
                                                    , "BMINUSL_VR_Z"
+
+                                                   , "BMINUSL_VR_TOP_1_v2"
+                                                   , "BMINUSL_VR_TOP_2_v2"
+                                                   , "BMINUSL_VR_TOP_3_v2"
+                                                   , "BMINUSL_VR_TOP_4_v2"
+                                                   , "BMINUSL_VR_Z_v2"
 
                                                    // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_HT"
                                                    // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM"

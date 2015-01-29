@@ -26,6 +26,8 @@ def main():
                                                                , entry_containers['ec_Zgamma_sherpa']
                                                                , entry_containers['ec_single_top_all_channels']
                                                                , entry_containers['ec_other']
+                                                               # , entry_containers['ec_ZZ']
+                                                               # , entry_containers['ec_other_no_ZZ']
                                                                ]
                                                 , lumi_target = 21000
                                                 )

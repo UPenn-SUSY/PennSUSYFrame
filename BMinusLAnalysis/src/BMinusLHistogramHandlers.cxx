@@ -156,9 +156,9 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                          + "__"
                                          + name_tag
                                          ).c_str()
-                                       , ( "#DeltaR(b,l) - "
+                                       , ( "#Delta#phi(b,l) - "
                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                         + " ; #DeltaR(b,l) ; Entries"
+                                         + " ; #Delta#phi(b,l) ; Entries"
                                          ).c_str()
                                        , dphi_bins, dphi_min, dphi_max
                                        )
@@ -168,9 +168,9 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                        + "__"
                                        + name_tag
                                        ).c_str()
-                                     , ( "#DeltaR(b,l) - "
+                                     , ( "#Delta#phi(b,l) - "
                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                       + " ; #DeltaR(b,l) ; Entries"
+                                       + " ; #Delta#phi(b,l) ; Entries"
                                        ).c_str()
                                      , dphi_bins, dphi_min, dphi_max
                                      )
@@ -180,9 +180,9 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                        + "__"
                                        + name_tag
                                        ).c_str()
-                                     , ( "#DeltaR(b,l) - "
+                                     , ( "#Delta#phi(b,l) - "
                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                       + " ; #DeltaR(b,l) ; Entries"
+                                       + " ; #Delta#phi(b,l) ; Entries"
                                        ).c_str()
                                      , dphi_bins, dphi_min, dphi_max
                                      )
@@ -194,9 +194,9 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                          + "__"
                                          + name_tag
                                          ).c_str()
-                                       , ( "#DeltaR(b,l) - "
+                                       , ( "#Delta#eta(b,l) - "
                                          + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                         + " ; #DeltaR(b,l) ; Entries"
+                                         + " ; #Delta#eta(b,l) ; Entries"
                                          ).c_str()
                                        , deta_bins, deta_min, deta_max
                                        )
@@ -206,9 +206,9 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                        + "__"
                                        + name_tag
                                        ).c_str()
-                                     , ( "#DeltaR(b,l) - "
+                                     , ( "#Delta#eta(b,l) - "
                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                       + " ; #DeltaR(b,l) ; Entries"
+                                       + " ; #Delta#eta(b,l) ; Entries"
                                        ).c_str()
                                      , deta_bins, deta_min, deta_max
                                      )
@@ -218,9 +218,9 @@ PennSusyFrame::BMinusLHists::BMinusLHists(std::string name_tag)
                                        + "__"
                                        + name_tag
                                        ).c_str()
-                                     , ( "#DeltaR(b,l) - "
+                                     , ( "#Delta#eta(b,l) - "
                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                       + " ; #DeltaR(b,l) ; Entries"
+                                       + " ; #Delta#eta(b,l) ; Entries"
                                        ).c_str()
                                      , deta_bins, deta_min, deta_max
                                      )
