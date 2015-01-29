@@ -27,6 +27,8 @@ def createTableFromRegionContributions(region_df):
                                         )
                                       # remove VR 1 for now
                                       & ~region_df['Region'].str.contains('_VR_1')
+                                      # remove regions with cur on crack
+                                      & ~region_df['Region'].str.contains('_CRACK')
                                       ].unique()
 
     # get sample names

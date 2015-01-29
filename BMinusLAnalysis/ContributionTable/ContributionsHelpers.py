@@ -82,9 +82,13 @@ def getRegionTitle(region_name):
         this_region_string = 'Top CR'
     if this_region_string == 'CR Z':
         this_region_string = 'Z CR'
-    if this_region_string == 'VR 3':
-        this_region_string = 'Top VR'
-    if this_region_string == 'VR 5':
+    if this_region_string == 'VR TOP 1':
+        this_region_string = 'Top VR 1'
+    if this_region_string == 'VR TOP 2':
+        this_region_string = 'Top VR 2'
+    if this_region_string == 'VR TOP 3':
+        this_region_string = 'Top VR 3'
+    if this_region_string == 'VR Z':
         this_region_string = 'Z VR'
     return this_region_string
 
