@@ -127,12 +127,12 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
                                                                                                         , '167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter'
                                                                                                         , '167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter'
 
-                                                                                                        # , '167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter'
-                                                                                                        # , '180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter'
-                                                                                                        # , '167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter'
-                                                                                                        # , '167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter'
-                                                                                                        # , '167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter'
-                                                                                                        # , '167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter'
+                                                                                                        , '167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter'
+                                                                                                        , '180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter'
+                                                                                                        , '167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter'
+                                                                                                        , '167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter'
+                                                                                                        , '167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter'
+                                                                                                        , '167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter'
 
                                                                                                         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                                                                                                         , '167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'
@@ -149,12 +149,12 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
                                                                                                         , '167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto'
                                                                                                         , '167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto'
 
-                                                                                                        # , '167756.Sherpa_CT10_ZtautauMassiveCBPt0_CFilterBVeto'
-                                                                                                        # , '180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto'
-                                                                                                        # , '167804.Sherpa_CT10_ZtautauMassiveCBPt70_140_CFilterBVeto'
-                                                                                                        # , '167816.Sherpa_CT10_ZtautauMassiveCBPt140_280_CFilterBVeto'
-                                                                                                        # , '167828.Sherpa_CT10_ZtautauMassiveCBPt280_500_CFilterBVeto'
-                                                                                                        # , '167840.Sherpa_CT10_ZtautauMassiveCBPt500_CFilterBVeto'
+                                                                                                        , '167756.Sherpa_CT10_ZtautauMassiveCBPt0_CFilterBVeto'
+                                                                                                        , '180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto'
+                                                                                                        , '167804.Sherpa_CT10_ZtautauMassiveCBPt70_140_CFilterBVeto'
+                                                                                                        , '167816.Sherpa_CT10_ZtautauMassiveCBPt140_280_CFilterBVeto'
+                                                                                                        , '167828.Sherpa_CT10_ZtautauMassiveCBPt280_500_CFilterBVeto'
+                                                                                                        , '167840.Sherpa_CT10_ZtautauMassiveCBPt500_CFilterBVeto'
 
                                                                                                         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                                                                                                         , '167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto'
@@ -171,12 +171,12 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
                                                                                                         , '167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto'
                                                                                                         , '167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto'
 
-                                                                                                        # , '167757.Sherpa_CT10_ZtautauMassiveCBPt0_CVetoBVeto'
-                                                                                                        # , '180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto'
-                                                                                                        # , '167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto'
-                                                                                                        # , '167817.Sherpa_CT10_ZtautauMassiveCBPt140_280_CVetoBVeto'
-                                                                                                        # , '167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto'
-                                                                                                        # , '167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto'
+                                                                                                        , '167757.Sherpa_CT10_ZtautauMassiveCBPt0_CVetoBVeto'
+                                                                                                        , '180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto'
+                                                                                                        , '167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto'
+                                                                                                        , '167817.Sherpa_CT10_ZtautauMassiveCBPt140_280_CVetoBVeto'
+                                                                                                        , '167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto'
+                                                                                                        , '167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto'
 
                                                                                                         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                                                                                                         , '173041.Sherpa_CT10_DYeeM08to15'
@@ -245,9 +245,97 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
                                                                                                , '161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'
                                                                                                , '161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'
                                                                                                , '161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'
+
+                                                                                               , '167740.Sherpa_CT10_WenuMassiveCBPt0_BFilter'
+                                                                                               , '167741.Sherpa_CT10_WenuMassiveCBPt0_CJetFilterBVeto'
+                                                                                               , '167742.Sherpa_CT10_WenuMassiveCBPt0_CJetVetoBVeto'
+
+                                                                                               , '167743.Sherpa_CT10_WmunuMassiveCBPt0_BFilter'
+                                                                                               , '167744.Sherpa_CT10_WmunuMassiveCBPt0_CJetFilterBVeto'
+                                                                                               , '167745.Sherpa_CT10_WmunuMassiveCBPt0_CJetVetoBVeto'
+
+                                                                                               , '167746.Sherpa_CT10_WtaunuMassiveCBPt0_BFilter'
+                                                                                               , '167747.Sherpa_CT10_WtaunuMassiveCBPt0_CJetFilterBVeto'
+                                                                                               , '167748.Sherpa_CT10_WtaunuMassiveCBPt0_CJetVetoBVeto'
+
+                                                                                               , '167761.Sherpa_CT10_WenuMassiveCBPt70_140_BFilter'
+                                                                                               , '167762.Sherpa_CT10_WenuMassiveCBPt70_140_CJetFilterBVeto'
+                                                                                               , '167763.Sherpa_CT10_WenuMassiveCBPt70_140_CJetVetoBVeto'
+
+                                                                                               , '167764.Sherpa_CT10_WmunuMassiveCBPt70_140_BFilter'
+                                                                                               , '167765.Sherpa_CT10_WmunuMassiveCBPt70_140_CJetFilterBVeto'
+                                                                                               , '167766.Sherpa_CT10_WmunuMassiveCBPt70_140_CJetVetoBVeto'
+
+                                                                                               , '167767.Sherpa_CT10_WtaunuMassiveCBPt70_140_BFilter'
+                                                                                               , '167768.Sherpa_CT10_WtaunuMassiveCBPt70_140_CJetFilterBVeto'
+                                                                                               , '167769.Sherpa_CT10_WtaunuMassiveCBPt70_140_CJetVetoBVeto'
+
+                                                                                               , '167770.Sherpa_CT10_WenuMassiveCBPt140_280_BFilter'
+                                                                                               , '167771.Sherpa_CT10_WenuMassiveCBPt140_280_CJetFilterBVeto'
+                                                                                               , '167772.Sherpa_CT10_WenuMassiveCBPt140_280_CJetVetoBVeto'
+
+                                                                                               , '167773.Sherpa_CT10_WmunuMassiveCBPt140_280_BFilter'
+                                                                                               , '167774.Sherpa_CT10_WmunuMassiveCBPt140_280_CJetFilterBVeto'
+                                                                                               , '167775.Sherpa_CT10_WmunuMassiveCBPt140_280_CJetVetoBVeto'
+
+                                                                                               , '167776.Sherpa_CT10_WtaunuMassiveCBPt140_280_BFilter'
+                                                                                               , '167777.Sherpa_CT10_WtaunuMassiveCBPt140_280_CJetFilterBVeto'
+                                                                                               , '167778.Sherpa_CT10_WtaunuMassiveCBPt140_280_CJetVetoBVeto'
+
+                                                                                               , '167779.Sherpa_CT10_WenuMassiveCBPt280_500_BFilter'
+                                                                                               , '167780.Sherpa_CT10_WenuMassiveCBPt280_500_CJetFilterBVeto'
+                                                                                               , '167781.Sherpa_CT10_WenuMassiveCBPt280_500_CJetVetoBVeto'
+
+                                                                                               , '167782.Sherpa_CT10_WmunuMassiveCBPt280_500_BFilter'
+                                                                                               , '167783.Sherpa_CT10_WmunuMassiveCBPt280_500_CJetFilterBVeto'
+                                                                                               , '167784.Sherpa_CT10_WmunuMassiveCBPt280_500_CJetVetoBVeto'
+
+                                                                                               , '167785.Sherpa_CT10_WtaunuMassiveCBPt280_500_BFilter'
+                                                                                               , '167786.Sherpa_CT10_WtaunuMassiveCBPt280_500_CJetFilterBVeto'
+                                                                                               , '167787.Sherpa_CT10_WtaunuMassiveCBPt280_500_CJetVetoBVeto'
+
+                                                                                               , '167788.Sherpa_CT10_WenuMassiveCBPt500_BFilter'
+                                                                                               , '167789.Sherpa_CT10_WenuMassiveCBPt500_CJetFilterBVeto'
+                                                                                               , '167790.Sherpa_CT10_WenuMassiveCBPt500_CJetVetoBVeto'
+
+                                                                                               , '167791.Sherpa_CT10_WmunuMassiveCBPt500_BFilter'
+                                                                                               , '167792.Sherpa_CT10_WmunuMassiveCBPt500_CJetFilterBVeto'
+                                                                                               , '167793.Sherpa_CT10_WmunuMassiveCBPt500_CJetVetoBVeto'
+
+                                                                                               , '167794.Sherpa_CT10_WtaunuMassiveCBPt500_BFilter'
+                                                                                               , '167795.Sherpa_CT10_WtaunuMassiveCBPt500_CJetFilterBVeto'
+                                                                                               , '167796.Sherpa_CT10_WtaunuMassiveCBPt500_CJetVetoBVeto'
+
+                                                                                               , '180534.Sherpa_CT10_WenuMassiveCBPt40_70_BFilter'
+                                                                                               , '180535.Sherpa_CT10_WenuMassiveCBPt40_70_CJetFilterBVeto'
+                                                                                               , '180536.Sherpa_CT10_WenuMassiveCBPt40_70_CJetVetoBVeto'
+
+                                                                                               , '180537.Sherpa_CT10_WmunuMassiveCBPt40_70_BFilter'
+                                                                                               , '180538.Sherpa_CT10_WmunuMassiveCBPt40_70_CJetFilterBVeto'
+                                                                                               , '180539.Sherpa_CT10_WmunuMassiveCBPt40_70_CJetVetoBVeto'
+
+                                                                                               , '180540.Sherpa_CT10_WtaunuMassiveCBPt40_70_BFilter'
+                                                                                               , '180541.Sherpa_CT10_WtaunuMassiveCBPt40_70_CJetFilterBVeto'
+                                                                                               , '180542.Sherpa_CT10_WtaunuMassiveCBPt40_70_CJetVetoBVeto'
                                                                                                ]
                                                                                )
                                           )
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # other
+    ec_ZZ = hh.Container.EntryContainer( label = 'ZZ'
+                                       , fill_color = ROOT.kMagenta
+                                       , input_file_list = constructFileList( hist_dir = hist_dir_mc
+                                                                            , syst_tag = syst_tag
+                                                                            , sample_list = [ "177999.Sherpa_CT10_llnunu_ZZ_MassiveCB"
+
+                                                                                            , "183586.Sherpa_CT10_ZZtoeeqq_MassiveCB"
+                                                                                            , "183588.Sherpa_CT10_ZZtomumuqq_MassiveCB"
+                                                                                            , "183590.Sherpa_CT10_ZZtotautauqq_MassiveCB"
+                                                                                            , "183592.Sherpa_CT10_ZZtonunuqq_MassiveCB"
+                                                                                            ]
+                                                                            )
+                                       )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # ttV
@@ -291,6 +379,122 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
                                                                                                  ]
                                                                                  )
                                             )
+
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # other
+    ec_other_no_ZZ = hh.Container.EntryContainer( label = 'Other'
+                                                , fill_color = ROOT.kAzure+8
+                                                , input_file_list = constructFileList( hist_dir = hist_dir_mc
+                                                                                     , syst_tag = syst_tag
+                                                                                     , sample_list = [ '119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW'
+                                                                                                     , '119354.MadGraphPythia_AUET2BCTEQ6L1_ttbarWj'
+                                                                                                     , '119355.MadGraphPythia_AUET2BCTEQ6L1_ttbarZ'
+                                                                                                     , '119356.MadGraphPythia_AUET2BCTEQ6L1_ttbarZj'
+                                                                                                     , '119583.MadgraphPythia_AUET2B_CTEQ6L1_ttbarWW'
+
+                                                                                                     , "177997.Sherpa_CT10_llnunu_WW_MassiveCB"
+                                                                                                     , "179974.Sherpa_CT10_lllnu_WZ_MassiveCB"
+                                                                                                     , "179975.Sherpa_CT10_lnununu_WZ_MassiveCB"
+
+                                                                                                     , "183585.Sherpa_CT10_ZWtoeeqq_MassiveCB"
+                                                                                                     , "183587.Sherpa_CT10_ZWtomumuqq_MassiveCB"
+                                                                                                     , "183589.Sherpa_CT10_ZWtotautauqq_MassiveCB"
+                                                                                                     , "183591.Sherpa_CT10_ZWtonunuqq_MassiveCB"
+                                                                                                     , "183592.Sherpa_CT10_ZZtonunuqq_MassiveCB"
+                                                                                                     , "183734.Sherpa_CT10_WWtoenuqq_MassiveCB"
+                                                                                                     , "183735.Sherpa_CT10_WZtoenuqq_MassiveCB"
+                                                                                                     , "183736.Sherpa_CT10_WWtomunuqq_MassiveCB"
+                                                                                                     , "183737.Sherpa_CT10_WZtomunuqq_MassiveCB"
+                                                                                                     , "183738.Sherpa_CT10_WWtotaunuqq_MassiveCB"
+                                                                                                     , "183739.Sherpa_CT10_WZtotaunuqq_MassiveCB"
+
+                                                                                                     , '160655.PowhegPythia8_AU2CT10_ggH125_ZZllnunu'
+                                                                                                     , '160705.PowhegPythia8_AU2CT10_VBFH125_ZZllnunu'
+                                                                                                     , '160755.Pythia8_AU2CTEQ6L1_WH125_ZZllnunu'
+                                                                                                     , '160805.Pythia8_AU2CTEQ6L1_ZH125_ZZllnunu'
+                                                                                                     , '161005.PowhegPythia8_AU2CT10_ggH125_WW2lep_EF_15_5'
+                                                                                                     , '161055.PowhegPythia8_AU2CT10_VBFH125_WW2lep_EF_15_5'
+                                                                                                     , '161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep'
+                                                                                                     , '161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep'
+                                                                                                     , '161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive'
+
+                                                                                                     , '167740.Sherpa_CT10_WenuMassiveCBPt0_BFilter'
+                                                                                                     , '167741.Sherpa_CT10_WenuMassiveCBPt0_CJetFilterBVeto'
+                                                                                                     , '167742.Sherpa_CT10_WenuMassiveCBPt0_CJetVetoBVeto'
+
+                                                                                                     , '167743.Sherpa_CT10_WmunuMassiveCBPt0_BFilter'
+                                                                                                     , '167744.Sherpa_CT10_WmunuMassiveCBPt0_CJetFilterBVeto'
+                                                                                                     , '167745.Sherpa_CT10_WmunuMassiveCBPt0_CJetVetoBVeto'
+
+                                                                                                     , '167746.Sherpa_CT10_WtaunuMassiveCBPt0_BFilter'
+                                                                                                     , '167747.Sherpa_CT10_WtaunuMassiveCBPt0_CJetFilterBVeto'
+                                                                                                     , '167748.Sherpa_CT10_WtaunuMassiveCBPt0_CJetVetoBVeto'
+
+                                                                                                     , '167761.Sherpa_CT10_WenuMassiveCBPt70_140_BFilter'
+                                                                                                     , '167762.Sherpa_CT10_WenuMassiveCBPt70_140_CJetFilterBVeto'
+                                                                                                     , '167763.Sherpa_CT10_WenuMassiveCBPt70_140_CJetVetoBVeto'
+
+                                                                                                     , '167764.Sherpa_CT10_WmunuMassiveCBPt70_140_BFilter'
+                                                                                                     , '167765.Sherpa_CT10_WmunuMassiveCBPt70_140_CJetFilterBVeto'
+                                                                                                     , '167766.Sherpa_CT10_WmunuMassiveCBPt70_140_CJetVetoBVeto'
+
+                                                                                                     , '167767.Sherpa_CT10_WtaunuMassiveCBPt70_140_BFilter'
+                                                                                                     , '167768.Sherpa_CT10_WtaunuMassiveCBPt70_140_CJetFilterBVeto'
+                                                                                                     , '167769.Sherpa_CT10_WtaunuMassiveCBPt70_140_CJetVetoBVeto'
+
+                                                                                                     , '167770.Sherpa_CT10_WenuMassiveCBPt140_280_BFilter'
+                                                                                                     , '167771.Sherpa_CT10_WenuMassiveCBPt140_280_CJetFilterBVeto'
+                                                                                                     , '167772.Sherpa_CT10_WenuMassiveCBPt140_280_CJetVetoBVeto'
+
+                                                                                                     , '167773.Sherpa_CT10_WmunuMassiveCBPt140_280_BFilter'
+                                                                                                     , '167774.Sherpa_CT10_WmunuMassiveCBPt140_280_CJetFilterBVeto'
+                                                                                                     , '167775.Sherpa_CT10_WmunuMassiveCBPt140_280_CJetVetoBVeto'
+
+                                                                                                     , '167776.Sherpa_CT10_WtaunuMassiveCBPt140_280_BFilter'
+                                                                                                     , '167777.Sherpa_CT10_WtaunuMassiveCBPt140_280_CJetFilterBVeto'
+                                                                                                     , '167778.Sherpa_CT10_WtaunuMassiveCBPt140_280_CJetVetoBVeto'
+
+                                                                                                     , '167779.Sherpa_CT10_WenuMassiveCBPt280_500_BFilter'
+                                                                                                     , '167780.Sherpa_CT10_WenuMassiveCBPt280_500_CJetFilterBVeto'
+                                                                                                     , '167781.Sherpa_CT10_WenuMassiveCBPt280_500_CJetVetoBVeto'
+
+                                                                                                     , '167782.Sherpa_CT10_WmunuMassiveCBPt280_500_BFilter'
+                                                                                                     , '167783.Sherpa_CT10_WmunuMassiveCBPt280_500_CJetFilterBVeto'
+                                                                                                     , '167784.Sherpa_CT10_WmunuMassiveCBPt280_500_CJetVetoBVeto'
+
+                                                                                                     , '167785.Sherpa_CT10_WtaunuMassiveCBPt280_500_BFilter'
+                                                                                                     , '167786.Sherpa_CT10_WtaunuMassiveCBPt280_500_CJetFilterBVeto'
+                                                                                                     , '167787.Sherpa_CT10_WtaunuMassiveCBPt280_500_CJetVetoBVeto'
+
+                                                                                                     , '167788.Sherpa_CT10_WenuMassiveCBPt500_BFilter'
+                                                                                                     , '167789.Sherpa_CT10_WenuMassiveCBPt500_CJetFilterBVeto'
+                                                                                                     , '167790.Sherpa_CT10_WenuMassiveCBPt500_CJetVetoBVeto'
+
+                                                                                                     , '167791.Sherpa_CT10_WmunuMassiveCBPt500_BFilter'
+                                                                                                     , '167792.Sherpa_CT10_WmunuMassiveCBPt500_CJetFilterBVeto'
+                                                                                                     , '167793.Sherpa_CT10_WmunuMassiveCBPt500_CJetVetoBVeto'
+
+                                                                                                     , '167794.Sherpa_CT10_WtaunuMassiveCBPt500_BFilter'
+                                                                                                     , '167795.Sherpa_CT10_WtaunuMassiveCBPt500_CJetFilterBVeto'
+                                                                                                     , '167796.Sherpa_CT10_WtaunuMassiveCBPt500_CJetVetoBVeto'
+
+                                                                                                     , '180534.Sherpa_CT10_WenuMassiveCBPt40_70_BFilter'
+                                                                                                     , '180535.Sherpa_CT10_WenuMassiveCBPt40_70_CJetFilterBVeto'
+                                                                                                     , '180536.Sherpa_CT10_WenuMassiveCBPt40_70_CJetVetoBVeto'
+
+                                                                                                     , '180537.Sherpa_CT10_WmunuMassiveCBPt40_70_BFilter'
+                                                                                                     , '180538.Sherpa_CT10_WmunuMassiveCBPt40_70_CJetFilterBVeto'
+                                                                                                     , '180539.Sherpa_CT10_WmunuMassiveCBPt40_70_CJetVetoBVeto'
+
+                                                                                                     , '180540.Sherpa_CT10_WtaunuMassiveCBPt40_70_BFilter'
+                                                                                                     , '180541.Sherpa_CT10_WtaunuMassiveCBPt40_70_CJetFilterBVeto'
+                                                                                                     , '180542.Sherpa_CT10_WtaunuMassiveCBPt40_70_CJetVetoBVeto'
+                                                                                                     ]
+                                                                                     )
+                                                )
+
+
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # higgs

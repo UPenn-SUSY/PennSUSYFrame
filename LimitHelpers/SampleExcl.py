@@ -45,7 +45,7 @@ print 'stop br t: ', stop_br_t
 # ------------------------------------------------------------------------------
 # Flags to control which fit is executed
 use_stat = True
-do_validation = False
+do_validation = True
 
 print 'Analysis configurations:'
 if myFitType == FitType.Exclusion:
@@ -111,7 +111,7 @@ else:
 # - Dictionnary of cuts for Tree->hist
 # ------------------------------------
 # SR
-base_sr_str = "is_sr"
+base_sr_str = "is_sr_1"
 configMgr.cutsDict["SR_ee"] = '(%s && is_ee)' % base_sr_str
 configMgr.cutsDict["SR_mm"] = '(%s && is_mm)' % base_sr_str
 configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
@@ -130,18 +130,32 @@ configMgr.cutsDict["CR_Z_all"] = base_cr_z_str
 configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
 configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
 
-# VR 3
-base_vr_3_str = "is_vr_3"
-configMgr.cutsDict["VR_3_all"] = base_vr_3_str
-configMgr.cutsDict["VR_3_ee"] = '(%s && is_ee)' % base_vr_3_str
-configMgr.cutsDict["VR_3_mm"] = '(%s && is_mm)' % base_vr_3_str
-configMgr.cutsDict["VR_3_em"] = '(%s && is_em)' % base_vr_3_str
+# VR top 1
+base_vr_top_1_str = "is_vr_top_1"
+configMgr.cutsDict["VR_top_1_all"] = base_vr_top_1_str
+configMgr.cutsDict["VR_top_1_ee"] = '(%s && is_ee)' % base_vr_top_1_str
+configMgr.cutsDict["VR_top_1_mm"] = '(%s && is_mm)' % base_vr_top_1_str
+configMgr.cutsDict["VR_top_1_em"] = '(%s && is_em)' % base_vr_top_1_str
+
+# VR top 2
+base_vr_top_2_str = "is_vr_top_2"
+configMgr.cutsDict["VR_top_2_all"] = base_vr_top_2_str
+configMgr.cutsDict["VR_top_2_ee"] = '(%s && is_ee)' % base_vr_top_2_str
+configMgr.cutsDict["VR_top_2_mm"] = '(%s && is_mm)' % base_vr_top_2_str
+configMgr.cutsDict["VR_top_2_em"] = '(%s && is_em)' % base_vr_top_2_str
+
+# VR top 3
+base_vr_top_3_str = "is_vr_top_3"
+configMgr.cutsDict["VR_top_3_all"] = base_vr_top_3_str
+configMgr.cutsDict["VR_top_3_ee"] = '(%s && is_ee)' % base_vr_top_3_str
+configMgr.cutsDict["VR_top_3_mm"] = '(%s && is_mm)' % base_vr_top_3_str
+configMgr.cutsDict["VR_top_3_em"] = '(%s && is_em)' % base_vr_top_3_str
 
 # VR 5
-base_vr_5_str = "is_vr_5"
-configMgr.cutsDict["VR_5_all"] = base_vr_5_str
-configMgr.cutsDict["VR_5_ee"] = '(%s && is_ee)' % base_vr_5_str
-configMgr.cutsDict["VR_5_mm"] = '(%s && is_mm)' % base_vr_5_str
+base_vr_z_str = "is_vr_z"
+configMgr.cutsDict["VR_Z_all"] = base_vr_z_str
+configMgr.cutsDict["VR_Z_ee"] = '(%s && is_ee)' % base_vr_z_str
+configMgr.cutsDict["VR_Z_mm"] = '(%s && is_mm)' % base_vr_z_str
 
 
 # ------------------------------------------------------------------------------
@@ -182,6 +196,7 @@ jes_uncert_names = ['EFFECTIVE_NP_1',
                     'FLAVOR_COMP_UNCERT',
                     'FLAVOR_RESPONSE_UNCERT',
                     'BJES']
+
 jes_uncert_list = [Systematic(name = syst,
                               nominal = '_NoSys',
                               high = ''.join(['_', syst, '_UP']),
@@ -196,7 +211,7 @@ jer_uncert = Systematic(name = 'JER',
                         type = 'tree',
                         method = 'normHistoSysOneSide')
 
-btag_sf_uncert_names = ['btag_sf']
+btag_sf_uncert_names = ['btag_sf_b', 'btag_sf_c', 'btag_sf_l']
 btag_sf_uncert_bkg_list = [Systematic(name = '_'.join([syst, 'bkg']),
                                       nominal = nominal_weight_bkg,
                                       high = [nominal_weight_bkg, '_'.join([syst, 'up', 'frac'])],
@@ -374,10 +389,11 @@ for crl in cr_list:
 vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
-    for vr_name in ['VR_3', 'VR_5']:
+    # for vr_name in ['VR_3', 'VR_5']:
+    for vr_name in ['VR_top_1', 'VR_top_2', 'VR_top_3', 'VR_Z']:
         for flavor_channel in ['_all', '_ee', '_mm', '_em']:
             if not vr_name == 'VR_llbb' and flavor_channel == '': continue
-            if vr_name  == 'VR_5' and flavor_channel == '_em': continue
+            if vr_name  == 'VR_Z' and flavor_channel == '_em': continue
 
             # unique name for this VR/flavor channel combination
             this_vr_name = ''.join([vr_name, flavor_channel])
@@ -474,8 +490,9 @@ if myFitType == FitType.Discovery:
 # Configure exclusion fits
 if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
-    sig_sample_list=['sig_100', 'sig_200', 'sig_300', 'sig_400', 'sig_500',
-                     'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
+    # sig_sample_list=['sig_100', 'sig_200', 'sig_300', 'sig_400', 'sig_500',
+    #                  'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
+    sig_sample_list=['sig_500', 'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
     # sig_sample_list=['sig_1000']
     sig_samples = []
     for sig in sig_sample_list:
@@ -581,3 +598,4 @@ c.Close()
 print 'done with my stuff'
 print '--------------------------------------------------------------------------------'
 print ''
+
