@@ -14,7 +14,8 @@ import re
 
 
 # ------------------------------------------------------------------------------
-def extractRegionContributions(sample_file_name):
+def extractRegionContributions(sample_file_name,
+                               entries_hist_name='entries'):
     print 'extracting region contributions from file: ', sample_file_name
     # get region list from this sample file
     sample_file = ROOT.TFile.Open(sample_file_name)
@@ -26,7 +27,7 @@ def extractRegionContributions(sample_file_name):
     # for each region in the list, extract the number of expected events
     for rl in region_list:
         this_tree = sample_file.Get(rl)
-        this_entries_canv = this_tree.Get('__entries')
+        this_entries_canv = this_tree.Get(''.join(['__', entries_hist_name]))
 
         # one primitive histogram for each process
         primitives = this_entries_canv.GetListOfPrimitives()

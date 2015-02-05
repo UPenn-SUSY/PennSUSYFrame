@@ -77,7 +77,8 @@ def createTableFromRegionContributions(region_df):
     print '\\midrule'
     total_bkg_string = ['Total']
     for region in region_names:
-        if region in subset_regions:
+        # if region in subset_regions:
+        if region in region_names:
             total_bkg_string.append(' & ')
             total_bkg_string.append('\multirow{2}{*}{')
             total_bkg_string.append(helpers.getNumString(region_bkg_totals[region], 1))
@@ -131,6 +132,7 @@ def main(sample_name):
 # ==============================================================================
 if __name__ == '__main__':
     # get input sample name
-    test_sample_name = sys.argv[1] if len(sys.argv) > 1 else '${BASE_WORK_DIR}/compare_plots.b_minus_l.root'
+    test_sample_name = (sys.argv[1] if len(sys.argv) > 1
+            else '${BASE_WORK_DIR}/compare_plots.b_minus_l.root')
     main(test_sample_name)
 
