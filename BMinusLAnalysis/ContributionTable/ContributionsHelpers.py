@@ -14,35 +14,50 @@ import re
 
 
 # ------------------------------------------------------------------------------
-def extractRegionContributions(sample_file_name,
-                               entries_hist_name='entries'):
+def extractRegionContributions(sample_file_name):
     print 'extracting region contributions from file: ', sample_file_name
     # get region list from this sample file
     sample_file = ROOT.TFile.Open(sample_file_name)
     region_list = [k.GetName() for k in sample_file.GetListOfKeys()]
 
     # construct region contributions data frame
-    cont_df = pandas.DataFrame(columns = ('Region', 'Sample', 'Count'))
+    cont_df = pandas.DataFrame(columns = ('region', 'sample', 'count', 'raw'))
 
     # for each region in the list, extract the number of expected events
     for rl in region_list:
         this_tree = sample_file.Get(rl)
-        this_entries_canv = this_tree.Get(''.join(['__', entries_hist_name]))
+        this_entries_canvas = this_tree.Get('__entries')
+        this_raw_entries_canvas = this_tree.Get('__raw_entries')
 
-        # one primitive histogram for each process
-        primitives = this_entries_canv.GetListOfPrimitives()
-        for p in primitives:
-            # loop over each bin to find the non-empty one
-            num_bins = p.GetNbinsX()
-            for bin_it in xrange(1,num_bins+1):
-                bin_label = p.GetXaxis().GetBinLabel(bin_it)
-                if 'Data' in bin_label: continue
-                bin_content = p.GetBinContent(bin_it)
+        # local function to extract the entries from a canvas
+        def extract_entries(canvas, column = 'Count'):
+            # one primitive histogram for each process
+            primitives = canvas.GetListOfPrimitives()
+            for p in primitives:
+                # loop over each bin to find the non-empty one
+                num_bins = p.GetNbinsX()
+                for bin_it in xrange(1,num_bins+1):
+                    bin_label = p.GetXaxis().GetBinLabel(bin_it)
 
-                # add non-empty bin to data frame
-                if not bin_content == 0:
-                    this_df_entry = [rl, bin_label, bin_content]
-                    cont_df.loc[cont_df.shape[0]] = this_df_entry
+                    # We don't want data events in this data frame
+                    if 'Data' in bin_label: continue
+                    bin_content = p.GetBinContent(bin_it)
+
+                    # add non-empty bin to data frame
+                    if not bin_content == 0:
+                        # If this combination of region and sample is not in the data frame, add a default row
+                        if cont_df[cont_df['region'] == rl][cont_df['sample'] == bin_label].empty:
+                            this_df_entry = [rl, bin_label, 0, 0]
+                            cont_df.loc[cont_df.shape[0]] = this_df_entry
+
+                        # update the entry with this bin content
+                        cont_df.loc[(cont_df['region'] == rl) &
+                                    (cont_df['sample'] == bin_label),
+                                    column.lower()] = bin_content
+
+        extract_entries(this_entries_canvas, 'count')
+        extract_entries(this_raw_entries_canvas, 'raw')
+
     return cont_df
 
 
@@ -76,21 +91,19 @@ def getNumString(number, num_digits):
 
 
 # ------------------------------------------------------------------------------
-def getRegionTitle(region_name):
+def getRegionTitle(region_name, region_titles=None):
     this_region_string = region_name.replace('BMINUSL_', '')
     this_region_string = this_region_string.replace('_', ' ')
-    if this_region_string == 'CR TOP':
-        this_region_string = 'Top CR'
-    if this_region_string == 'CR Z':
-        this_region_string = 'Z CR'
-    if this_region_string == 'VR TOP 1':
-        this_region_string = 'Top VR 1'
-    if this_region_string == 'VR TOP 2':
-        this_region_string = 'Top VR 2'
-    if this_region_string == 'VR TOP 3':
-        this_region_string = 'Top VR 3'
-    if this_region_string == 'VR Z':
-        this_region_string = 'Z VR'
+
+    # if region titles is not provided, use the default titles
+    if region_titles is None:
+        region_titles = {"CR TOP":"Top CR", "CR Z":"Z CR",
+                         "VR TOP 1":"Top VR 1", "VR TOP 2":"Top VR 2",
+                         "VR TOP 3":"Top VR 3", "VR Z":"Z VR"}
+
+    if this_region_string in region_titles:
+        this_region_string = region_titles[this_region_string]
+
     return this_region_string
 
 
