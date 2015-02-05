@@ -106,55 +106,102 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::clearVariables()
   m_is_mm = false;
   m_is_em = false;
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_is_sr_1     = false;
   m_is_sr_2     = false;
+
+  m_is_sr_ht_1100_mbl_200 = false;
+  m_is_sr_ht_1100_mbl_400 = false;
+  m_is_sr_ht_1100_mbl_600 = false;
+  m_is_sr_ht_1100_mbl_800 = false;
+
+  m_is_sr_ht_1000_mbl_200 = false;
+  m_is_sr_ht_1000_mbl_400 = false;
+  m_is_sr_ht_1000_mbl_600 = false;
+  m_is_sr_ht_1000_mbl_800 = false;
+
+  m_is_sr_ht_900_mbl_200 = false;
+  m_is_sr_ht_900_mbl_400 = false;
+  m_is_sr_ht_900_mbl_600 = false;
+  m_is_sr_ht_900_mbl_800 = false;
+
+  m_is_sr_ht_800_mbl_200 = false;
+  m_is_sr_ht_800_mbl_400 = false;
+  m_is_sr_ht_800_mbl_600 = false;
+  m_is_sr_ht_800_mbl_800 = false;
+
+  m_is_sr_ht_700_mbl_200 = false;
+  m_is_sr_ht_700_mbl_400 = false;
+  m_is_sr_ht_700_mbl_600 = false;
+  m_is_sr_ht_700_mbl_800 = false;
+
+  m_is_sr_ht_600_mbl_200 = false;
+  m_is_sr_ht_600_mbl_400 = false;
+  m_is_sr_ht_600_mbl_600 = false;
+  m_is_sr_ht_600_mbl_800 = false;
+
+  m_is_sr_ht_500_mbl_200 = false;
+  m_is_sr_ht_500_mbl_400 = false;
+  m_is_sr_ht_500_mbl_600 = false;
+  m_is_sr_ht_500_mbl_800 = false;
+
   m_is_cr_top   = false;
   m_is_cr_z     = false;
+
+  m_is_cr_top_mbl_200 = false;
+  m_is_cr_z_mbl_200 = false;
+
   m_is_vr_top_1 = false;
   m_is_vr_top_2 = false;
   m_is_vr_top_3 = false;
   m_is_vr_z     = false;
 
-  m_mbl_0    = 0 ;
-  m_mbl_1    = 0 ;
-  m_mbl_asym = 0 ;
-  m_mbbll    = 0 ;
+  m_is_vr_top_mbl_200_1 = false;
+  m_is_vr_top_mbl_200_2 = false;
+  m_is_vr_top_mbl_200_3 = false;
+  m_is_vr_z_mbl_200     = false;
 
-  m_ptbl_0    = 0 ;
-  m_ptbl_1    = 0 ;
-  m_ptbl_asym = 0 ;
-  m_ptbbll    = 0 ;
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  m_mbl_0    = 0;
+  m_mbl_1    = 0;
+  m_mbl_asym = 0;
+  m_mbbll    = 0;
 
-  m_mll = 0 ;
+  m_ptbl_0    = 0;
+  m_ptbl_1    = 0;
+  m_ptbl_asym = 0;
+  m_ptbbll    = 0;
 
-  m_met_et  = 0 ;
-  m_met_rel = 0 ;
+  m_mll = 0;
+
+  m_met_et  = 0;
+  m_met_rel = 0;
   m_met_sig_signal = 0;
 
-  m_ht_all      = 0 ;
-  m_ht_baseline = 0 ;
-  m_ht_good     = 0 ;
-  m_ht_signal   = 0 ;
+  m_ht_all      = 0;
+  m_ht_baseline = 0;
+  m_ht_good     = 0;
+  m_ht_signal   = 0;
 
-  m_pt_l_0 = 0 ;
-  m_pt_l_1 = 0 ;
-  m_pt_b_0 = 0 ;
-  m_pt_b_1 = 0 ;
+  m_pt_l_0 = 0;
+  m_pt_l_1 = 0;
+  m_pt_b_0 = 0;
+  m_pt_b_1 = 0;
 
-  m_dphi_bl_0 = 0 ;
-  m_dphi_bl_1 = 0 ;
-  m_deta_bl_0 = 0 ;
-  m_deta_bl_1 = 0 ;
-  m_dr_bl_0 = 0 ;
-  m_dr_bl_1 = 0 ;
+  m_dphi_bl_0 = 0;
+  m_dphi_bl_1 = 0;
+  m_deta_bl_0 = 0;
+  m_deta_bl_1 = 0;
+  m_dr_bl_0 = 0;
+  m_dr_bl_1 = 0;
 
-  m_dphi_ll = 0 ;
-  m_deta_ll = 0 ;
-  m_dr_ll = 0 ;
+  m_dphi_ll = 0;
+  m_deta_ll = 0;
+  m_dr_ll = 0;
 
-  m_dphi_bb = 0 ;
-  m_deta_bb = 0 ;
-  m_dr_bb = 0 ;
+  m_dphi_bb = 0;
+  m_deta_bb = 0;
+  m_dr_bb = 0;
 }
 
 // -----------------------------------------------------------------------------
@@ -183,15 +230,62 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::configureOutput( std::string out
   m_output_tree->Branch( "is_mm" , &m_is_mm);
   m_output_tree->Branch( "is_em" , &m_is_em);
 
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_output_tree->Branch( "is_sr_1"    , &m_is_sr_1    );
   m_output_tree->Branch( "is_sr_2"    , &m_is_sr_2    );
+
+  m_output_tree->Branch( "is_sr_ht_1100_mbl_200", &m_is_sr_ht_1100_mbl_200);
+  m_output_tree->Branch( "is_sr_ht_1100_mbl_400", &m_is_sr_ht_1100_mbl_400);
+  m_output_tree->Branch( "is_sr_ht_1100_mbl_600", &m_is_sr_ht_1100_mbl_600);
+  m_output_tree->Branch( "is_sr_ht_1100_mbl_800", &m_is_sr_ht_1100_mbl_800);
+
+  m_output_tree->Branch( "is_sr_ht_1000_mbl_200", &m_is_sr_ht_1000_mbl_200);
+  m_output_tree->Branch( "is_sr_ht_1000_mbl_400", &m_is_sr_ht_1000_mbl_400);
+  m_output_tree->Branch( "is_sr_ht_1000_mbl_600", &m_is_sr_ht_1000_mbl_600);
+  m_output_tree->Branch( "is_sr_ht_1000_mbl_800", &m_is_sr_ht_1000_mbl_800);
+
+  m_output_tree->Branch( "is_sr_ht_900_mbl_200", &m_is_sr_ht_900_mbl_200);
+  m_output_tree->Branch( "is_sr_ht_900_mbl_400", &m_is_sr_ht_900_mbl_400);
+  m_output_tree->Branch( "is_sr_ht_900_mbl_600", &m_is_sr_ht_900_mbl_600);
+  m_output_tree->Branch( "is_sr_ht_900_mbl_800", &m_is_sr_ht_900_mbl_800);
+
+  m_output_tree->Branch( "is_sr_ht_800_mbl_200", &m_is_sr_ht_800_mbl_200);
+  m_output_tree->Branch( "is_sr_ht_800_mbl_400", &m_is_sr_ht_800_mbl_400);
+  m_output_tree->Branch( "is_sr_ht_800_mbl_600", &m_is_sr_ht_800_mbl_600);
+  m_output_tree->Branch( "is_sr_ht_800_mbl_800", &m_is_sr_ht_800_mbl_800);
+
+  m_output_tree->Branch( "is_sr_ht_700_mbl_200", &m_is_sr_ht_700_mbl_200);
+  m_output_tree->Branch( "is_sr_ht_700_mbl_400", &m_is_sr_ht_700_mbl_400);
+  m_output_tree->Branch( "is_sr_ht_700_mbl_600", &m_is_sr_ht_700_mbl_600);
+  m_output_tree->Branch( "is_sr_ht_700_mbl_800", &m_is_sr_ht_700_mbl_800);
+
+  m_output_tree->Branch( "is_sr_ht_600_mbl_200", &m_is_sr_ht_600_mbl_200);
+  m_output_tree->Branch( "is_sr_ht_600_mbl_400", &m_is_sr_ht_600_mbl_400);
+  m_output_tree->Branch( "is_sr_ht_600_mbl_600", &m_is_sr_ht_600_mbl_600);
+  m_output_tree->Branch( "is_sr_ht_600_mbl_800", &m_is_sr_ht_600_mbl_800);
+
+  m_output_tree->Branch( "is_sr_ht_500_mbl_200", &m_is_sr_ht_500_mbl_200);
+  m_output_tree->Branch( "is_sr_ht_500_mbl_400", &m_is_sr_ht_500_mbl_400);
+  m_output_tree->Branch( "is_sr_ht_500_mbl_600", &m_is_sr_ht_500_mbl_600);
+  m_output_tree->Branch( "is_sr_ht_500_mbl_800", &m_is_sr_ht_500_mbl_800);
+
   m_output_tree->Branch( "is_cr_top"  , &m_is_cr_top  );
   m_output_tree->Branch( "is_cr_z"    , &m_is_cr_z    );
+
+  m_output_tree->Branch( "is_cr_top_mbl_200", &m_is_cr_top_mbl_200);
+  m_output_tree->Branch( "is_cr_z_mbl_200", &m_is_cr_z_mbl_200);
+
   m_output_tree->Branch( "is_vr_top_1", &m_is_vr_top_1);
   m_output_tree->Branch( "is_vr_top_2", &m_is_vr_top_2);
   m_output_tree->Branch( "is_vr_top_3", &m_is_vr_top_3);
   m_output_tree->Branch( "is_vr_z"    , &m_is_vr_z    );
 
+  m_output_tree->Branch( "is_vr_top_mbl_200_1", &m_is_vr_top_mbl_200_1);
+  m_output_tree->Branch( "is_vr_top_mbl_200_2", &m_is_vr_top_mbl_200_2);
+  m_output_tree->Branch( "is_vr_top_mbl_200_3", &m_is_vr_top_mbl_200_3);
+  m_output_tree->Branch( "is_vr_z_mbl_200", &m_is_vr_z_mbl_200);
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   m_output_tree->Branch( "mbl_0"    , &m_mbl_0);
   m_output_tree->Branch( "mbl_1"    , &m_mbl_1);
   m_output_tree->Branch( "mbl_asym" , &m_mbl_asym);
@@ -321,22 +415,91 @@ void PennSusyFrame::BMinusLOptimizeNtupleMaker::fillNtuple( const PennSusyFrame:
   m_dr_bb   = sqrt(m_dphi_bb*m_dphi_bb + m_deta_bb*m_deta_bb);
 
   bool ht_ge_1100    = (m_ht_signal      >= 1100.0);
+  bool ht_ge_1000    = (m_ht_signal      >= 1000.0);
+  bool ht_ge_900     = (m_ht_signal      >= 900.0 );
+  bool ht_ge_800     = (m_ht_signal      >= 800.0 );
+  bool ht_ge_700     = (m_ht_signal      >= 700.0 );
+  bool ht_ge_600     = (m_ht_signal      >= 600.0 );
   bool ht_ge_500     = (m_ht_signal      >= 500.0 );
+
   bool mbl_le_2      = (m_mbl_asym       <= 0.20  );
   bool met_sig_ge_4  = (m_met_sig_signal >= 4.    );
+
+  bool bl_mass_0_ge_200 = (m_mbl_0 > 200);
+  bool bl_mass_0_ge_400 = (m_mbl_0 > 400);
+  bool bl_mass_0_ge_600 = (m_mbl_0 > 600);
+  bool bl_mass_0_ge_800 = (m_mbl_0 > 800);
 
   // don't include SR in data if we are blinded
   if ( !m_is_data || !m_is_blind) {
     m_is_sr_1 = (m_pass_z_veto && mbl_le_2 && ht_ge_1100);
     m_is_sr_2 = (m_pass_z_veto && mbl_le_2 && ht_ge_500 && !ht_ge_1100);
+
+    if (m_pass_z_veto && mbl_le_2 && ht_ge_1100) {
+      m_is_sr_ht_1100_mbl_200 = bl_mass_0_ge_200;
+      m_is_sr_ht_1100_mbl_400 = bl_mass_0_ge_400;
+      m_is_sr_ht_1100_mbl_600 = bl_mass_0_ge_600;
+      m_is_sr_ht_1100_mbl_800 = bl_mass_0_ge_800;
+    }
+    if (m_pass_z_veto && mbl_le_2 && ht_ge_1000) {
+      m_is_sr_ht_1000_mbl_200 = bl_mass_0_ge_200;
+      m_is_sr_ht_1000_mbl_400 = bl_mass_0_ge_400;
+      m_is_sr_ht_1000_mbl_600 = bl_mass_0_ge_600;
+      m_is_sr_ht_1000_mbl_800 = bl_mass_0_ge_800;
+    }
+    if (m_pass_z_veto && mbl_le_2 && ht_ge_900) {
+      m_is_sr_ht_900_mbl_200 = bl_mass_0_ge_200;
+      m_is_sr_ht_900_mbl_400 = bl_mass_0_ge_400;
+      m_is_sr_ht_900_mbl_600 = bl_mass_0_ge_600;
+      m_is_sr_ht_900_mbl_800 = bl_mass_0_ge_800;
+    }
+    if (m_pass_z_veto && mbl_le_2 && ht_ge_800) {
+      m_is_sr_ht_800_mbl_200 = bl_mass_0_ge_200;
+      m_is_sr_ht_800_mbl_400 = bl_mass_0_ge_400;
+      m_is_sr_ht_800_mbl_600 = bl_mass_0_ge_600;
+      m_is_sr_ht_800_mbl_800 = bl_mass_0_ge_800;
+    }
+    if (m_pass_z_veto && mbl_le_2 && ht_ge_700) {
+      m_is_sr_ht_700_mbl_200 = bl_mass_0_ge_200;
+      m_is_sr_ht_700_mbl_400 = bl_mass_0_ge_400;
+      m_is_sr_ht_700_mbl_600 = bl_mass_0_ge_600;
+      m_is_sr_ht_700_mbl_800 = bl_mass_0_ge_800;
+    }
+    if (m_pass_z_veto && mbl_le_2 && ht_ge_600) {
+      m_is_sr_ht_600_mbl_200 = bl_mass_0_ge_200;
+      m_is_sr_ht_600_mbl_400 = bl_mass_0_ge_400;
+      m_is_sr_ht_600_mbl_600 = bl_mass_0_ge_600;
+      m_is_sr_ht_600_mbl_800 = bl_mass_0_ge_800;
+    }
+    if (m_pass_z_veto && mbl_le_2 && ht_ge_500) {
+      m_is_sr_ht_500_mbl_200 = bl_mass_0_ge_200;
+      m_is_sr_ht_500_mbl_400 = bl_mass_0_ge_400;
+      m_is_sr_ht_500_mbl_600 = bl_mass_0_ge_600;
+      m_is_sr_ht_500_mbl_800 = bl_mass_0_ge_800;
+    }
   }
-  m_is_cr_top   = (m_pass_z_veto && !ht_ge_500 && mbl_le_2 && met_sig_ge_4);
-  m_is_cr_z     = (!m_pass_z_veto && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4);
+
+  m_is_cr_top = (m_pass_z_veto && !ht_ge_500 && mbl_le_2 && met_sig_ge_4);
+  m_is_cr_z   = (!m_pass_z_veto && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4);
+
+  m_is_cr_top_mbl_200 = (m_pass_z_veto && !ht_ge_500 && mbl_le_2 &&
+                         met_sig_ge_4 && bl_mass_0_ge_200);
+  m_is_cr_z_mbl_200 = (!m_pass_z_veto && !ht_ge_500 && mbl_le_2 &&
+                       !met_sig_ge_4 && bl_mass_0_ge_200);
 
   m_is_vr_top_1 = (m_pass_z_veto  && !ht_ge_500 && mbl_le_2 && !met_sig_ge_4);
   m_is_vr_top_2 = (m_pass_z_veto  && !ht_ge_500 && !mbl_le_2);
   m_is_vr_top_3 = (m_pass_z_veto  && ht_ge_500  && met_sig_ge_4 && !mbl_le_2);
   m_is_vr_z     = (!m_pass_z_veto && ht_ge_500  && mbl_le_2);
+
+  m_is_vr_top_mbl_200_1 = (m_pass_z_veto  && !ht_ge_500 && mbl_le_2 &&
+                           !met_sig_ge_4 && bl_mass_0_ge_200);
+  m_is_vr_top_mbl_200_2 = (m_pass_z_veto  && !ht_ge_500 && !mbl_le_2 &&
+                           bl_mass_0_ge_200);
+  m_is_vr_top_mbl_200_3 = (m_pass_z_veto  && ht_ge_500 && met_sig_ge_4 &&
+                           !mbl_le_2 && bl_mass_0_ge_200);
+  m_is_vr_z_mbl_200 = (!m_pass_z_veto && ht_ge_500 && mbl_le_2 &&
+                       bl_mass_0_ge_200);
 
   // fill output tree
   m_output_tree->Fill();

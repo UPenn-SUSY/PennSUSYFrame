@@ -32,13 +32,40 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_SR_1
                            , BMINUSL_HIST_SR_2
 
-                           , BMINUSL_HIST_SR_V2_1
-                           , BMINUSL_HIST_SR_V2_2
-                           , BMINUSL_HIST_SR_V2_3
+                           , BMINUSL_HIST_SR_HT_1100_MBL_200
+                           , BMINUSL_HIST_SR_HT_1100_MBL_400
+                           , BMINUSL_HIST_SR_HT_1100_MBL_600
+                           , BMINUSL_HIST_SR_HT_1100_MBL_800
 
-                           , BMINUSL_HIST_SR_V3_1
-                           , BMINUSL_HIST_SR_V3_2
-                           , BMINUSL_HIST_SR_V3_3
+                           , BMINUSL_HIST_SR_HT_1000_MBL_200
+                           , BMINUSL_HIST_SR_HT_1000_MBL_400
+                           , BMINUSL_HIST_SR_HT_1000_MBL_600
+                           , BMINUSL_HIST_SR_HT_1000_MBL_800
+
+                           , BMINUSL_HIST_SR_HT_900_MBL_200
+                           , BMINUSL_HIST_SR_HT_900_MBL_400
+                           , BMINUSL_HIST_SR_HT_900_MBL_600
+                           , BMINUSL_HIST_SR_HT_900_MBL_800
+
+                           , BMINUSL_HIST_SR_HT_800_MBL_200
+                           , BMINUSL_HIST_SR_HT_800_MBL_400
+                           , BMINUSL_HIST_SR_HT_800_MBL_600
+                           , BMINUSL_HIST_SR_HT_800_MBL_800
+
+                           , BMINUSL_HIST_SR_HT_700_MBL_200
+                           , BMINUSL_HIST_SR_HT_700_MBL_400
+                           , BMINUSL_HIST_SR_HT_700_MBL_600
+                           , BMINUSL_HIST_SR_HT_700_MBL_800
+
+                           , BMINUSL_HIST_SR_HT_600_MBL_200
+                           , BMINUSL_HIST_SR_HT_600_MBL_400
+                           , BMINUSL_HIST_SR_HT_600_MBL_600
+                           , BMINUSL_HIST_SR_HT_600_MBL_800
+
+                           , BMINUSL_HIST_SR_HT_500_MBL_200
+                           , BMINUSL_HIST_SR_HT_500_MBL_400
+                           , BMINUSL_HIST_SR_HT_500_MBL_600
+                           , BMINUSL_HIST_SR_HT_500_MBL_800
 
                            , BMINUSL_HIST_CR_TOP_MINUS_HT
                            , BMINUSL_HIST_CR_TOP_MINUS_MBL_ASYM
@@ -48,10 +75,10 @@ namespace PennSusyFrame
                            // , BMINUSL_HIST_CR_TOP_CRACK
                            // , BMINUSL_HIST_CR_TOP_NO_CRACK
 
-                           , BMINUSL_HIST_CR_TOP_V2_MINUS_HT
-                           , BMINUSL_HIST_CR_TOP_V2_MINUS_MBL_ASYM
-                           , BMINUSL_HIST_CR_TOP_V2_MINUS_MET_SIG
-                           , BMINUSL_HIST_CR_TOP_V2
+                           , BMINUSL_HIST_CR_TOP_MBL_200_MINUS_HT
+                           , BMINUSL_HIST_CR_TOP_MBL_200_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_CR_TOP_MBL_200_MINUS_MET_SIG
+                           , BMINUSL_HIST_CR_TOP_MBL_200
 
                            , BMINUSL_HIST_CR_Z_MINUS_HT
                            , BMINUSL_HIST_CR_Z_MINUS_MBL_ASYM
@@ -61,10 +88,10 @@ namespace PennSusyFrame
                            // , BMINUSL_HIST_CR_Z_CRACK
                            // , BMINUSL_HIST_CR_Z_NO_CRACK
 
-                           , BMINUSL_HIST_CR_Z_V2_MINUS_HT
-                           , BMINUSL_HIST_CR_Z_V2_MINUS_MBL_ASYM
-                           , BMINUSL_HIST_CR_Z_V2_MINUS_MET_SIG
-                           , BMINUSL_HIST_CR_Z_V2
+                           , BMINUSL_HIST_CR_Z_MBL_200_MINUS_HT
+                           , BMINUSL_HIST_CR_Z_MBL_200_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_CR_Z_MBL_200_MINUS_MET_SIG
+                           , BMINUSL_HIST_CR_Z_MBL_200
 
                            , BMINUSL_HIST_VR_TOP_1
                            , BMINUSL_HIST_VR_TOP_2
@@ -72,11 +99,11 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_VR_TOP_4
                            , BMINUSL_HIST_VR_Z
 
-                           , BMINUSL_HIST_VR_TOP_V2_1
-                           , BMINUSL_HIST_VR_TOP_V2_2
-                           , BMINUSL_HIST_VR_TOP_V2_3
-                           , BMINUSL_HIST_VR_TOP_V2_4
-                           , BMINUSL_HIST_VR_Z_V2
+                           , BMINUSL_HIST_VR_TOP_MBL_200_1
+                           , BMINUSL_HIST_VR_TOP_MBL_200_2
+                           , BMINUSL_HIST_VR_TOP_MBL_200_3
+                           , BMINUSL_HIST_VR_TOP_MBL_200_4
+                           , BMINUSL_HIST_VR_Z_MBL_200
 
                            , BMINUSL_HIST_N
                            };
@@ -97,23 +124,50 @@ namespace PennSusyFrame
                                                    , "BMINUSL_SR_1"
                                                    , "BMINUSL_SR_2"
 
-                                                   , "BMINUSL_SR_v2_1"
-                                                   , "BMINUSL_SR_v2_2"
-                                                   , "BMINUSL_SR_v2_3"
+                                                   , "BMINUSL_SR_HT_1100_MBL_200"
+                                                   , "BMINUSL_SR_HT_1100_MBL_400"
+                                                   , "BMINUSL_SR_HT_1100_MBL_600"
+                                                   , "BMINUSL_SR_HT_1100_MBL_800"
 
-                                                   , "BMINUSL_SR_v3_1"
-                                                   , "BMINUSL_SR_v3_2"
-                                                   , "BMINUSL_SR_v3_3"
+                                                   , "BMINUSL_SR_HT_1000_MBL_200"
+                                                   , "BMINUSL_SR_HT_1000_MBL_400"
+                                                   , "BMINUSL_SR_HT_1000_MBL_600"
+                                                   , "BMINUSL_SR_HT_1000_MBL_800"
+
+                                                   , "BMINUSL_SR_HT_900_MBL_200"
+                                                   , "BMINUSL_SR_HT_900_MBL_400"
+                                                   , "BMINUSL_SR_HT_900_MBL_600"
+                                                   , "BMINUSL_SR_HT_900_MBL_800"
+
+                                                   , "BMINUSL_SR_HT_800_MBL_200"
+                                                   , "BMINUSL_SR_HT_800_MBL_400"
+                                                   , "BMINUSL_SR_HT_800_MBL_600"
+                                                   , "BMINUSL_SR_HT_800_MBL_800"
+
+                                                   , "BMINUSL_SR_HT_700_MBL_200"
+                                                   , "BMINUSL_SR_HT_700_MBL_400"
+                                                   , "BMINUSL_SR_HT_700_MBL_600"
+                                                   , "BMINUSL_SR_HT_700_MBL_800"
+
+                                                   , "BMINUSL_SR_HT_600_MBL_200"
+                                                   , "BMINUSL_SR_HT_600_MBL_400"
+                                                   , "BMINUSL_SR_HT_600_MBL_600"
+                                                   , "BMINUSL_SR_HT_600_MBL_800"
+
+                                                   , "BMINUSL_SR_HT_500_MBL_200"
+                                                   , "BMINUSL_SR_HT_500_MBL_400"
+                                                   , "BMINUSL_SR_HT_500_MBL_600"
+                                                   , "BMINUSL_SR_HT_500_MBL_800"
 
                                                    , "BMINUSL_CR_TOP_MINUS_HT"
                                                    , "BMINUSL_CR_TOP_MINUS_MBL_ASYM"
                                                    , "BMINUSL_CR_TOP_MINUS_MET_SIG"
                                                    , "BMINUSL_CR_TOP"
 
-                                                   , "BMINUSL_CR_TOP_v2_MINUS_HT"
-                                                   , "BMINUSL_CR_TOP_v2_MINUS_MBL_ASYM"
-                                                   , "BMINUSL_CR_TOP_v2_MINUS_MET_SIG"
-                                                   , "BMINUSL_CR_TOP_v2"
+                                                   , "BMINUSL_CR_TOP_MBL_200_MINUS_HT"
+                                                   , "BMINUSL_CR_TOP_MBL_200_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_CR_TOP_MBL_200_MINUS_MET_SIG"
+                                                   , "BMINUSL_CR_TOP_MBL_200"
 
                                                    // , "BMINUSL_CR_TOP_CRACK"
                                                    // , "BMINUSL_CR_TOP_NO_CRACK"
@@ -123,10 +177,10 @@ namespace PennSusyFrame
                                                    , "BMINUSL_CR_Z_MINUS_MET_SIG"
                                                    , "BMINUSL_CR_Z"
 
-                                                   , "BMINUSL_CR_Z_v2_MINUS_HT"
-                                                   , "BMINUSL_CR_Z_v2_MINUS_MBL_ASYM"
-                                                   , "BMINUSL_CR_Z_v2_MINUS_MET_SIG"
-                                                   , "BMINUSL_CR_Z_v2"
+                                                   , "BMINUSL_CR_Z_MBL_200_MINUS_HT"
+                                                   , "BMINUSL_CR_Z_MBL_200_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_CR_Z_MBL_200_MINUS_MET_SIG"
+                                                   , "BMINUSL_CR_Z_MBL_200"
 
                                                    // , "BMINUSL_CR_Z_CRACK"
                                                    // , "BMINUSL_CR_Z_NO_CRACK"
@@ -137,11 +191,11 @@ namespace PennSusyFrame
                                                    , "BMINUSL_VR_TOP_4"
                                                    , "BMINUSL_VR_Z"
 
-                                                   , "BMINUSL_VR_TOP_1_v2"
-                                                   , "BMINUSL_VR_TOP_2_v2"
-                                                   , "BMINUSL_VR_TOP_3_v2"
-                                                   , "BMINUSL_VR_TOP_4_v2"
-                                                   , "BMINUSL_VR_Z_v2"
+                                                   , "BMINUSL_VR_TOP_1_MBL_200"
+                                                   , "BMINUSL_VR_TOP_2_MBL_200"
+                                                   , "BMINUSL_VR_TOP_3_MBL_200"
+                                                   , "BMINUSL_VR_TOP_4_MBL_200"
+                                                   , "BMINUSL_VR_Z_MBL_200"
 
                                                    // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_HT"
                                                    // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM"

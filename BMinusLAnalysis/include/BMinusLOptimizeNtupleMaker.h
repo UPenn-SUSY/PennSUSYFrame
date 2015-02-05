@@ -69,12 +69,57 @@ namespace PennSusyFrame
 
       bool m_is_sr_1;
       bool m_is_sr_2;
+
+      bool m_is_sr_ht_1100_mbl_200;
+      bool m_is_sr_ht_1100_mbl_400;
+      bool m_is_sr_ht_1100_mbl_600;
+      bool m_is_sr_ht_1100_mbl_800;
+
+      bool m_is_sr_ht_1000_mbl_200;
+      bool m_is_sr_ht_1000_mbl_400;
+      bool m_is_sr_ht_1000_mbl_600;
+      bool m_is_sr_ht_1000_mbl_800;
+
+      bool m_is_sr_ht_900_mbl_200;
+      bool m_is_sr_ht_900_mbl_400;
+      bool m_is_sr_ht_900_mbl_600;
+      bool m_is_sr_ht_900_mbl_800;
+
+      bool m_is_sr_ht_800_mbl_200;
+      bool m_is_sr_ht_800_mbl_400;
+      bool m_is_sr_ht_800_mbl_600;
+      bool m_is_sr_ht_800_mbl_800;
+
+      bool m_is_sr_ht_700_mbl_200;
+      bool m_is_sr_ht_700_mbl_400;
+      bool m_is_sr_ht_700_mbl_600;
+      bool m_is_sr_ht_700_mbl_800;
+
+      bool m_is_sr_ht_600_mbl_200;
+      bool m_is_sr_ht_600_mbl_400;
+      bool m_is_sr_ht_600_mbl_600;
+      bool m_is_sr_ht_600_mbl_800;
+
+      bool m_is_sr_ht_500_mbl_200;
+      bool m_is_sr_ht_500_mbl_400;
+      bool m_is_sr_ht_500_mbl_600;
+      bool m_is_sr_ht_500_mbl_800;
+
       bool m_is_cr_top;
       bool m_is_cr_z;
+
+      bool m_is_cr_top_mbl_200;
+      bool m_is_cr_z_mbl_200;
+
       bool m_is_vr_top_1;
       bool m_is_vr_top_2;
       bool m_is_vr_top_3;
       bool m_is_vr_z;
+
+      bool m_is_vr_top_mbl_200_1;
+      bool m_is_vr_top_mbl_200_2;
+      bool m_is_vr_top_mbl_200_3;
+      bool m_is_vr_z_mbl_200;
 
       float m_mbl_0;
       float m_mbl_1;
