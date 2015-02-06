@@ -12,7 +12,6 @@ import ROOT
 import pandas
 import re
 
-
 # ------------------------------------------------------------------------------
 def extractRegionContributions(sample_file_name):
     print 'extracting region contributions from file: ', sample_file_name
