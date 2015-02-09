@@ -14,7 +14,6 @@ laptop and run from there.
 """
 
 import sys
-import re
 import ContributionsHelpers as helpers
 import math
 from collections import OrderedDict
@@ -22,26 +21,12 @@ from collections import OrderedDict
 from ROOT import RooStats
 
 # ------------------------------------------------------------------------------
-def sortRegionName(region_names_list, region_dict=None):
-    if region_dict is None:
-        region_names_list.sort()
-    else:
-        region_names_list = [r for r in region_dict if r in region_names_list]
-
-    return region_names_list
-
-# ------------------------------------------------------------------------------
-def sortSampleNames(sample_name_list):
-    convert = lambda text: int(text) if text.isdigit() else text
-    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
-    return sorted(sample_name_list, key = alphanum_key)
-
-# ------------------------------------------------------------------------------
 def createTableFromRegionContributions(region_df, regions_dict=None,
                                        do_zn_sig=False, do_s_sqrt_b=False,
                                        for_slides=False, **kwargs):
+    # get the region names from the data frame, and sort based on regions_dict
     region_names = region_df['region'].unique()
-    region_names = sortRegionName(region_names, regions_dict)
+    region_names = helpers.sortRegionName(region_names, regions_dict)
 
     # get sample names
     bkg_sample_names = region_df[
@@ -49,13 +34,10 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
     sig_sample_names = region_df[
         region_df['sample'].str.contains('stop')]['sample'].unique()
 
-    bkg_sample_names = sortSampleNames(bkg_sample_names)
-    sig_sample_names = sortSampleNames(sig_sample_names)
+    bkg_sample_names = helpers.sortSampleNames(bkg_sample_names)
+    sig_sample_names = helpers.sortSampleNames(sig_sample_names)
 
-    # create sums of background contributions
-    region_bkg_totals = {rn:0 for rn in region_names}
-    region_bkg_uncert = {rn:0 for rn in region_names}
-
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print latex table header or start of slide
     if for_slides:
         slide_title = kwargs['title'] if 'title' in kwargs else '...'
@@ -69,6 +51,7 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
         print '\\centering{'
     print '\\begin{tabular}{c|%s}' % ('c'*len(region_names))
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print title line
     print '\\toprule'
     title_string = []
@@ -78,6 +61,7 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
     title_string.append(' \\\\')
     print ''.join(title_string)
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print individual bkg sample contributions
     print '\\midrule'
     for sample in bkg_sample_names:
@@ -91,49 +75,44 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
             if region in subset_regions:
                 region_entries = sample_subset[sample_subset.region ==
                                                region].iloc[0]['count']
-                region_raw_entries = sample_subset[sample_subset.region ==
-                                                   region].iloc[0]['raw']
             sample_cont_string.append(' & ')
             sample_cont_string.append(helpers.getNumString(region_entries, 1))
-
-            # add to the region background total
-            region_bkg_totals[region] += region_entries
-
-            # add to the region background uncertainty
-            this_uncert_sq = (1/region_raw_entries if region_raw_entries != 0
-                              else 0)
-            this_uncert_sq += 0.30**2
-            this_uncert_sq *= region_entries**2
-            region_bkg_uncert[region] = math.sqrt(region_bkg_uncert[region]**2 +
-                                                  this_uncert_sq)
 
         sample_cont_string.append(' \\\\')
         print ''.join(sample_cont_string)
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # get the total region contributions and the uncertainty - to be used later
+    region_contributions = helpers.getTotalRegionContribution(region_df,
+                                                              bkg_sample_names,
+                                                              region_names)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print total background contributions
     print '\\midrule'
-    total_bkg_string = ['Total']
+    bkg_total_string = ['Total']
+    bkg_uncert_string = ['background']
     for region in region_names:
         # if region in subset_regions:
         if region in region_names:
-            total_bkg_string.append(' & ')
-            total_bkg_string.append(
-                helpers.getNumString(region_bkg_totals[region], 1))
-    total_bkg_string.append(' \\\\')
-    print ''.join(total_bkg_string)
-    # print 'background \\\\'
+            bkg_total_string.append(' & ')
+            bkg_total_string.append(
+                helpers.getNumString(region_contributions[
+                                         region_contributions.region ==
+                                            region].iloc[0]['total'], 1))
 
-    total_bkg_string = ['background']
-    for region in region_names:
-        # if region in subset_regions:
-        if region in region_names:
-            total_bkg_string.append(' & ($\\pm$ ')
-            total_bkg_string.append(
-                helpers.getNumString(region_bkg_uncert[region], 1))
-            total_bkg_string.append(')')
-    total_bkg_string.append(' \\\\')
-    print ''.join(total_bkg_string)
+            bkg_uncert_string.append(' & ($\\pm$ ')
+            bkg_uncert_string.append(
+                helpers.getNumString(region_contributions[
+                                         region_contributions.region ==
+                                            region].iloc[0]['uncertainty'], 1))
+            bkg_uncert_string.append(')')
+    bkg_total_string.append(' \\\\')
+    bkg_uncert_string.append(' \\\\')
+    print ''.join(bkg_total_string)
+    print ''.join(bkg_uncert_string)
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print signal contributions
     print '\\midrule'
     for sample in sig_sample_names:
@@ -157,29 +136,32 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
             # append the number of signal events to the signal count string
             signal_cont_string.append(helpers.getNumString(this_value, 1))
 
+            bkg_total = region_contributions[region_contributions.region ==
+                                                region].iloc[0]['total']
+            bkg_uncert = region_contributions[region_contributions.region ==
+                                                region].iloc[0]['uncertainty']
+
             # append the signal/backround ratio to the rel content string
             signal_rel_cont_string.append(' (')
-            signal_rel_cont_string.append(helpers.getNumString((
-                this_value/region_bkg_totals[region]), 1))
+            signal_rel_cont_string.append(helpers.getNumString(
+                ( this_value/bkg_total), 1))
             signal_rel_cont_string.append(')')
 
             # append the zn value to the zn string
             if 'SR' in region:
                 zn = RooStats.NumberCountingUtils.BinomialExpZ(this_value,
-                                                      region_bkg_totals[region],
-                                                      (region_bkg_uncert[region]/
-                                                       region_bkg_totals[region]))
+                                                               bkg_total,
+                                                               (bkg_uncert/
+                                                                bkg_total))
                 signal_zn_string.append(''.join(['{\color{green}',
                                                  helpers.getNumString(zn, 1),
                                                  '}']))
             else:
                 signal_zn_string.append('-')
 
-
             # append the s/sqrt(b + uncertainty) to the s/sqrt(b) string
             if 'SR' in region:
-                s_over_sqrt_b = this_value/math.sqrt(region_bkg_totals[region] +
-                                                     region_bkg_uncert[region])
+                s_over_sqrt_b = this_value/math.sqrt(bkg_total + bkg_uncert)
                 signal_s_sqrt_b_string.append(
                     ''.join(['{\color{blue}',
                              helpers.getNumString(s_over_sqrt_b, 1),
@@ -187,7 +169,7 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
             else:
                 signal_s_sqrt_b_string.append('-')
 
-        # Print lines
+        # Print signal contribution and significance lines
         print ''.join(signal_cont_string)
         print '\\\\'
         print ''.join(signal_rel_cont_string)
@@ -199,12 +181,12 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
             print ''.join(signal_zn_string)
         print '\\vspace{1ex} \\\\'
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # print end of table
     print '\\bottomrule'
-
     print '\\end{tabular}'
     if for_slides:
         print '};'
-
         print '% \\begin{scope}[x={(image.south east)}, y={(image.north west)}]'
         print '%   \\draw[red, ultra thick, rounded corners] (0.78, 0.00) rectangle (1.00, 0.48);'
         print
@@ -221,57 +203,33 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
         print '\\end{itemize}'
         print
         print '\\end{frame}'
-
     else:
         print '}'
         print '\\caption{TODO add caption here!}'
         print '\\label{tab:XXX}'
         print '\\end{table}'
 
-
-# ------------------------------------------------------------------------------
-def cleanDataFrame(df):
-    """
-    Clean the data frame by removing extraneous pieces of the region names, and
-    dropping the regions we don't care about
-    :param df: data frame to be cleaned
-    :return: cleaned data frame
-    """
-    df.loc[:,'region'] = df['region'].str.replace('BMINUSL_', '')
-    df.loc[:,'region'] = df['region'].str.replace('_', ' ')
-
-    df = df[~df['region'].str.contains('MINUS') &
-            ~df['region'].str.contains('CRACK') &
-            ~df['region'].str.contains('PAIRING') &
-            ~df['region'].str.contains('OBJECTS') &
-            ~df['region'].str.contains('ZVETO') &
-            ~df['region'].str.contains('WEIGHTS') ]
-
-    return df
-
 # ------------------------------------------------------------------------------
 def main(sample_name):
     region_df = helpers.extractRegionContributions(test_sample_name)
+    region_df = helpers.cleanDataFrame(region_df)
 
-    region_df = helpers.extractRegionContributions(test_sample_name)
-    region_df = cleanDataFrame(region_df)
-
-    print '% ============================================================'
-    print '% = Original regions'
-    print '% ============================================================'
-    regions_dict = OrderedDict([('CR TOP', 'Top CR'),
-                                ('CR Z', 'Z CR'),
-                                ('VR TOP 1', 'Top VR 1'),
-                                ('VR TOP 2', 'Top VR 2'),
-                                ('VR TOP 3', 'Top VR 3'),
-                                ('VR TOP 4', 'Top VR 4'),
-                                ('VR Z', 'Z VR'),
-                                ('SR 1', 'SR')
-                                ])
-    createTableFromRegionContributions(region_df, regions_dict,
-                                       do_s_sqrt_b=True, do_zn_sig=True,
-                                       for_slides=True,
-                                       title='Original regions')
+    # print '% ============================================================'
+    # print '% = Original regions'
+    # print '% ============================================================'
+    # regions_dict = OrderedDict([('CR TOP', 'Top CR'),
+    #                             ('CR Z', 'Z CR'),
+    #                             ('VR TOP 1', 'Top VR 1'),
+    #                             ('VR TOP 2', 'Top VR 2'),
+    #                             ('VR TOP 3', 'Top VR 3'),
+    #                             ('VR TOP 4', 'Top VR 4'),
+    #                             ('VR Z', 'Z VR'),
+    #                             ('SR 1', 'SR')
+    #                             ])
+    # createTableFromRegionContributions(region_df, regions_dict,
+    #                                    do_s_sqrt_b=True, do_zn_sig=True,
+    #                                    for_slides=True,
+    #                                    title='Original regions')
 
     def printTableHtSlice(ht):
         print
@@ -298,12 +256,12 @@ def main(sample_name):
                                            title=this_title)
 
     printTableHtSlice(1100)
-    printTableHtSlice(1000)
-    printTableHtSlice(900)
-    printTableHtSlice(800)
-    printTableHtSlice(700)
-    printTableHtSlice(600)
-    printTableHtSlice(500)
+    # printTableHtSlice(1000)
+    # printTableHtSlice(900)
+    # printTableHtSlice(800)
+    # printTableHtSlice(700)
+    # printTableHtSlice(600)
+    # printTableHtSlice(500)
 
 # ==============================================================================
 if __name__ == '__main__':
