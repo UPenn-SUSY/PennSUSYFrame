@@ -7,8 +7,8 @@ import pandas
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-mpl.rcParams['text.usetex']=True
-mpl.rcParams['text.latex.unicode']=True
+# mpl.rcParams['text.usetex']=True
+# mpl.rcParams['text.latex.unicode']=True
 import ROOT
 import array
 
@@ -20,14 +20,16 @@ ROOT.gStyle.SetOptStat(0)
 # ------------------------------------------------------------------------------
 def extract_branching_ratios(file_name):
     splits = file_name.split('_')
-    return {'bre': int(splits[2]) / 100.,
-            'brm': int(splits[4]) / 100.,
-            'brt': int(splits[6]) / 100.}
+    return {'br':{'bre': int(splits[2]) / 100.,
+                  'brm': int(splits[4]) / 100.,
+                  'brt': int(splits[6]) / 100.},
+            'sr': int(splits[11])}
 
 
 # ------------------------------------------------------------------------------
 def read_hypo_test_results():
-    results = pandas.DataFrame(columns=('mass', 'bre', 'brm', 'brt', 'cls'))
+    results = pandas.DataFrame(columns=('mass', 'bre', 'brm', 'brt',
+                                        'sr', 'cls'))
 
     # TEMPORARY: only keep a selection of points for now to keep a clean
     # readable plot
@@ -40,6 +42,9 @@ def read_hypo_test_results():
     for fl in file_list:
         branching_ratios = extract_branching_ratios(fl)
 
+        # skip points that are not allowed
+        if branching_ratios['br'] not in allowed_points: continue
+
         this_tree = tree_summary.harvesttree(fl)
         for entry in this_tree:
             # extract the mass and CLS from this entry of the tree
@@ -48,12 +53,12 @@ def read_hypo_test_results():
 
             # create list for this data frame entry and append to the end
             this_df_entry = [this_mass,
-                             branching_ratios['bre'],
-                             branching_ratios['brm'],
-                             branching_ratios['brt'],
+                             branching_ratios['br']['bre'],
+                             branching_ratios['br']['brm'],
+                             branching_ratios['br']['brt'],
+                             branching_ratios['sr'],
                              this_cls]
-            if (branching_ratios in allowed_points):
-                results.loc[results.shape[0]] = this_df_entry
+            results.loc[results.shape[0]] = this_df_entry
 
     return results.sort('mass')
 
@@ -92,8 +97,8 @@ def plot_cls_triangle(result_df, out_file_name):
                           # vmin = 0.,
                           # vmax = 0.10)
     plt.axis([0, 1.1, 0, 1.1])
-    plt.xlabel('Br(\\tilde{t} \\rightarrow be)')
-    plt.ylabel('Br(\\tilde{t} \\rightarrow b\\tau)')
+    plt.xlabel('$Br(\\tilde{t} \\rightarrow be)$')
+    plt.ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$')
     plt.grid(True)
     plt.xticks([i*0.25 for i in xrange(5)])
     plt.yticks([i*0.25 for i in xrange(5)])
@@ -143,8 +148,8 @@ def plot_mass_limit_triangle(result_df,
                          gridsize = (20, 20),
                          norm = norm)
     plt.axis([0, 1.1, 0, 1.1])
-    plt.xlabel('Br(\\tilde{t} \\rightarrow be)')
-    plt.ylabel('Br(\\tilde{t} \\rightarrow b\\tau)')
+    plt.xlabel('$Br(\\tilde{t} \\rightarrow be)$')
+    plt.ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$')
     plt.grid(True)
     plt.xticks([i*0.25 for i in xrange(5)])
     plt.yticks([i*0.25 for i in xrange(5)])
@@ -160,30 +165,48 @@ def plot_mass_limit_triangle(result_df,
 
 
 # ------------------------------------------------------------------------------
-def plot_cls_triangle_root(result_df, out_file_name):
+def plot_region_choice_triangle(result_df,
+                                out_file_name):
     """
-    Function takes a data frame, with branching ratios and CLs values.
-    Constructs a triangle with showing the CLs for each branching ratio choice
+    TODO update this docstring
+    Function takes a data frame, with branching ratios, masses, and CLs values.
+    Constructs a triangle with showing the maximum mass which is excluded at
+    each point in the branching ratio triangle.
     """
-    # get the x,y,z value
-    x_values , y_values, z_values = (result_df['bre'],
-                                     result_df['brt'],
-                                     result_df['cls'])
+    values_to_plot = []
+    for bre, brt in itertools.product(result_df['bre'].unique(),
+                                      result_df['brt'].unique()):
+        subset = result_df[(result_df['bre'] == bre) &
+                           (result_df['brt'] == brt)]
+        if subset.empty: continue
 
-    c = ROOT.TCanvas('c')
-    cls = ROOT.TH2F('cls',
-                    ';'.join(('',
-                              'Br(#tilde{t} #rightarrow be)',
-                              'Br(#tilde{t} #rightarrow b#tau)')),
-                    110, 0, 1.1,
-                    110, 0, 1.1)
+        region = subset.sort(columns='cls').iloc[0]['sr']
 
-    for x, y, z in zip(x_values, y_values, z_values):
-        cls.Fill(x, y, z)
+        values_to_plot.append({'bre':bre, 'brt':brt, 'region':region})
 
-    # Draw and print to file
-    cls.Draw('TEXT')
-    c.Print(out_file_name)
+    # Construct plot
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    plt.plot([-0.05,1.05], [1.05,-0.05], color = '0.75', linestyle = '--')
+
+    plt.axis([-.05, 1.1, -.05, 1.1])
+    plt.xlabel('$Br(\\tilde{t} \\rightarrow be)$')
+    plt.ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$')
+    plt.grid(True)
+    plt.xticks([i*0.25 for i in xrange(5)])
+    plt.yticks([i*0.25 for i in xrange(5)])
+
+    # draw region
+    for value in values_to_plot:
+        ax.text(value['bre'], value['brt'], value['region'],
+                horizontalalignment='center',
+                verticalalignment='center',
+                bbox={'facecolor':'white', 'alpha':0.5,
+                      'boxstyle':'round'})
+
+    # write plot to file
+    plt.savefig(out_file_name, bbox_inches = 'tight')
+    plt.close()
 
 
 # ------------------------------------------------------------------------------
@@ -195,16 +218,29 @@ def plot_single_cls_plot(result_df, out_file_name):
     # skip if data frame has no entries
     if len(result_df) == 0: return
 
-    # extract mass and cls values from data frame
-    x_values = result_df['mass']
-    y_values = result_df['cls']
+    col_names = ['mass']
+    sr_names = [str(sr) for sr in result_df['sr'].unique()]
+    col_names.extend(sr_names)
+    df_to_draw = pandas.DataFrame(columns=col_names)
 
-    # plot the figure
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
+    for mass in result_df['mass'].unique():
+        cls_values = [result_df[(result_df['mass'] == mass) &
+                                (result_df['sr'] == int(sr))].iloc[0]['cls']
+                      for sr in sr_names]
+
+        this_entry = [mass]
+        this_entry.extend(cls_values)
+        df_to_draw.loc[df_to_draw.shape[0]] = this_entry
+
+
+    df_to_draw = df_to_draw.set_index('mass').sort()
+
+    # # plot the figure
+    # fig = plt.figure()
+    ax = df_to_draw.plot()
+
     plt.xlabel('Stop mass [GeV]')
     plt.ylabel('CL_{S}')
-    plt.plot(x_values, y_values)
 
     # add line at 0.05, where we place our limit
     plt.axhline(0.05, color = 'r', linestyle = '--')
@@ -221,6 +257,9 @@ def plot_single_cls_plot(result_df, out_file_name):
             verticalalignment = 'top',
             transform=ax.transAxes)
 
+    # ax.set_yscale('log')
+    ax.legend(loc='upper right', fancybox=True, framealpha=0.8)
+
     # write plot to file
     plt.savefig(out_file_name, bbox_inches = 'tight')
     plt.close()
@@ -232,34 +271,41 @@ def make_p_value_plots():
     results = read_hypo_test_results()
 
     # make triangle plot for each stop mass
-    for mass in results['mass'].unique():
+    for mass, sr in itertools.product(results['mass'].unique(),
+                                      results['sr'].unique()):
+        print 'mass:', mass, ' -- sr: ', sr
         file_name = ''.join(('cls_vs_br',
                              '_m_', str(mass),
+                             '_sr_', str(sr),
                              '.pdf'))
-        plot_cls_triangle(results[results['mass'] == mass], file_name)
-
-    # make triangle plot for each stop mass
-    for mass in results['mass'].unique():
-        file_name = ''.join(('cls_vs_br_text',
-                             '_m_', str(mass),
-                             '.pdf'))
-        plot_cls_triangle_root(results[results['mass'] == mass], file_name)
+        plot_cls_triangle(results[(results['mass'] == mass) &
+                                  (results['sr'] == sr)],
+                          file_name)
 
     # make mass plot - reasonable options for color map:
     #   - hot_r, gist_heat_r, afmhot_r, GnBu,
     plot_mass_limit_triangle(results,
-                             ''.join(['mass_limit.pdf']),
+                             'mass_limit.pdf',
                              'hot_r')
+
+    # make plot of region choice for each mass
+    for mass in results['mass'].unique():
+        print 'mass:', mass
+        file_name = ''.join(('region_choice_vs_br',
+                             '_m_', str(mass),
+                             '.pdf'))
+        plot_region_choice_triangle(results[results['mass'] == mass], file_name)
 
     # make cls vs mass plot for each choice of branching ratios
     for br_e, br_t, br_m in itertools.product(results['bre'].unique(),
                                               results['brt'].unique(),
                                               results['brm'].unique()):
+        print 'bre: ', br_e, ' - brm: ', br_m, ' - brt: ', br_t
         file_name = ''.join(['cls_vs_m',
-                             '_br_e_', str(int(br_e*100)),
-                             '_br_m_', str(int(br_m*100)),
-                             '_br_t_', str(int(br_t*100)),
-                             '.pdf'])
+                         '_br_e_', str(int(br_e*100)),
+                         '_br_m_', str(int(br_m*100)),
+                         '_br_t_', str(int(br_t*100)),
+                         '.pdf'])
         plot_single_cls_plot(results[(results['bre'] == br_e) &
                                      (results['brm'] == br_m) &
                                      (results['brt'] == br_t)],
