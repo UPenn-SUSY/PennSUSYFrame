@@ -37,10 +37,12 @@ configMgr.blindSR = True
 if 'stop_br_e' not in vars(): stop_br_e = 0.5
 if 'stop_br_m' not in vars(): stop_br_m = 0.5
 if 'stop_br_t' not in vars(): stop_br_t = 0.0
+if 'test_sr' not in vars(): test_sr = 'sr_ht_1100_mbl_400'
 
 print 'stop br e: ', stop_br_e
 print 'stop br m: ', stop_br_m
 print 'stop br t: ', stop_br_t
+print 'signal region: ', test_sr
 
 # ------------------------------------------------------------------------------
 # Flags to control which fit is executed
@@ -80,7 +82,8 @@ configMgr.nPoints=10
 configMgr.analysisName = '_'.join(["SampleExcl",
                                    'bre', str(int(100*stop_br_e)),
                                    'brm', str(int(100*stop_br_m)),
-                                   'brt', str(int(100*stop_br_t))])
+                                   'brt', str(int(100*stop_br_t)),
+                                   test_sr])
 configMgr.histCacheFile = "data/"+configMgr.analysisName+".root"
 configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 
@@ -111,48 +114,55 @@ else:
 # - Dictionnary of cuts for Tree->hist
 # ------------------------------------
 # SR
-base_sr_str = "is_sr_1"
+# base_sr_str = "is_sr_1"
+base_sr_str = '_'.join(["is", test_sr])
 configMgr.cutsDict["SR_ee"] = '(%s && is_ee)' % base_sr_str
 configMgr.cutsDict["SR_mm"] = '(%s && is_mm)' % base_sr_str
 configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
 
 # CR_top
-base_cr_top_str = "is_cr_top"
+# base_cr_top_str = "is_cr_top"
+base_cr_top_str = "is_cr_top_mbl_200"
 configMgr.cutsDict["CR_top_all"] = base_cr_top_str
 configMgr.cutsDict["CR_top_ee"] = '(%s && is_ee)' % base_cr_top_str
 configMgr.cutsDict["CR_top_mm"] = '(%s && is_mm)' % base_cr_top_str
 configMgr.cutsDict["CR_top_em"] = '(%s && is_em)' % base_cr_top_str
 
 # CR_Z
-base_cr_z_str = "is_cr_z"
+# base_cr_z_str = "is_cr_z"
+base_cr_z_str = "is_cr_z_mbl_200"
 # base_cr_z_str = "is_cr_z && (met_sig_signal <= 3)"
 configMgr.cutsDict["CR_Z_all"] = base_cr_z_str
 configMgr.cutsDict["CR_Z_ee"] = '(%s && is_ee)' % base_cr_z_str
 configMgr.cutsDict["CR_Z_mm"] = '(%s && is_mm)' % base_cr_z_str
 
 # VR top 1
-base_vr_top_1_str = "is_vr_top_1"
+# base_vr_top_1_str = "is_vr_top_1"
+base_vr_top_1_str = "is_vr_top_mbl_200_1"
 configMgr.cutsDict["VR_top_1_all"] = base_vr_top_1_str
 configMgr.cutsDict["VR_top_1_ee"] = '(%s && is_ee)' % base_vr_top_1_str
 configMgr.cutsDict["VR_top_1_mm"] = '(%s && is_mm)' % base_vr_top_1_str
 configMgr.cutsDict["VR_top_1_em"] = '(%s && is_em)' % base_vr_top_1_str
 
 # VR top 2
-base_vr_top_2_str = "is_vr_top_2"
+# base_vr_top_2_str = "is_vr_top_2"
+base_vr_top_2_str = "is_vr_top_mbl_200_2"
 configMgr.cutsDict["VR_top_2_all"] = base_vr_top_2_str
 configMgr.cutsDict["VR_top_2_ee"] = '(%s && is_ee)' % base_vr_top_2_str
 configMgr.cutsDict["VR_top_2_mm"] = '(%s && is_mm)' % base_vr_top_2_str
 configMgr.cutsDict["VR_top_2_em"] = '(%s && is_em)' % base_vr_top_2_str
 
 # VR top 3
-base_vr_top_3_str = "is_vr_top_3"
+# base_vr_top_3_str = "is_vr_top_3"
+base_vr_top_3_str = "is_vr_top_mbl_200_3"
 configMgr.cutsDict["VR_top_3_all"] = base_vr_top_3_str
 configMgr.cutsDict["VR_top_3_ee"] = '(%s && is_ee)' % base_vr_top_3_str
 configMgr.cutsDict["VR_top_3_mm"] = '(%s && is_mm)' % base_vr_top_3_str
 configMgr.cutsDict["VR_top_3_em"] = '(%s && is_em)' % base_vr_top_3_str
 
-# VR 5
-base_vr_z_str = "is_vr_z"
+# VR Z
+# base_vr_z_str = "is_vr_z"
+base_vr_z_str = "is_vr_z_mbl_200"
 configMgr.cutsDict["VR_Z_all"] = base_vr_z_str
 configMgr.cutsDict["VR_Z_ee"] = '(%s && is_ee)' % base_vr_z_str
 configMgr.cutsDict["VR_Z_mm"] = '(%s && is_mm)' % base_vr_z_str
