@@ -112,7 +112,7 @@ def plot_cls_triangle(result_df, out_file_name):
 
     # add color bar to right side
     cb = plt.colorbar(my_plot, spacing = 'uniform', extend = 'max')
-    cb.set_label('CL_{S}')
+    cb.set_label('$CL_{S}$')
 
     # write plot to file
     plt.savefig(out_file_name, bbox_inches = 'tight')
@@ -219,7 +219,7 @@ def plot_single_cls_plot(result_df, out_file_name):
     if len(result_df) == 0: return
 
     col_names = ['mass']
-    sr_names = [str(sr) for sr in result_df['sr'].unique()]
+    sr_names = [str(sr) for sr in sorted(result_df['sr'].unique())]
     col_names.extend(sr_names)
     df_to_draw = pandas.DataFrame(columns=col_names)
 
@@ -235,12 +235,11 @@ def plot_single_cls_plot(result_df, out_file_name):
 
     df_to_draw = df_to_draw.set_index('mass').sort()
 
-    # # plot the figure
-    # fig = plt.figure()
+    # plot the figure
     ax = df_to_draw.plot()
 
     plt.xlabel('Stop mass [GeV]')
-    plt.ylabel('CL_{S}')
+    plt.ylabel('$CL_{S}$')
 
     # add line at 0.05, where we place our limit
     plt.axhline(0.05, color = 'r', linestyle = '--')
@@ -253,7 +252,8 @@ def plot_single_cls_plot(result_df, out_file_name):
                             '$Br(\\tilde{t} \\rightarrow b\\tau) = $',
                             str(result_df['brt'].iloc[0])))
     ax.text(0.1, 0.9, label_string,
-            bbox={'facecolor':'white', 'alpha':0.8, 'pad':10},
+            bbox={'facecolor':'white', 'alpha':0.8,
+                  'boxstyle':'round'},
             verticalalignment = 'top',
             transform=ax.transAxes)
 
