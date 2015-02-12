@@ -78,12 +78,23 @@ configMgr.nPoints=10
 
 
 # ------------------------------------------------------------------------------
-# First, define HistFactory attributes
-configMgr.analysisName = '_'.join(["SampleExcl",
-                                   'bre', str(int(100*stop_br_e)),
-                                   'brm', str(int(100*stop_br_m)),
-                                   'brt', str(int(100*stop_br_t)),
-                                   test_sr])
+# construct the analysis name
+analysis_name = []
+if myFitType == FitType.Background:
+    analysis_name.append('SampleBkg')
+elif myFitType == FitType.Exclusion:
+    analysis_name.append("SampleExcl")
+elif myFitType == FitType.Discovery:
+    analysis_name.append("SampleDisc")
+
+analysis_name.extend(['bre', str(int(100*stop_br_e)),
+                      'brm', str(int(100*stop_br_m)),
+                      'brt', str(int(100*stop_br_t))])
+if myFitType == FitType.Exclusion:
+    analysis_name.append(test_sr)
+
+# Define HistFactory attributes
+configMgr.analysisName = '_'.join(analysis_name)
 configMgr.histCacheFile = "data/"+configMgr.analysisName+".root"
 configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 
@@ -103,7 +114,7 @@ if configMgr.readFromTree:
     # data_files.append("${BASE_WORK_DIR}/HistFitterNtuples/ArtificialData.ttbar_1.ZGamma_1.root")
     # data_files.append("${BASE_WORK_DIR}/HistFitterNtuples/ArtificialData.ttbar_5.ZGamma_1.root")
     bkg_files.append("${BASE_WORK_DIR}/HistFitterNtuples/BackgroundHistFitterTrees.root")
-    if myFitType==FitType.Exclusion:
+    if myFitType == FitType.Exclusion:
         sig_files.append("${BASE_WORK_DIR}/HistFitterNtuples/SignalHistFitterTrees.root")
 else:
     print 'not reading from trees -- getting input from cache!'
@@ -113,12 +124,21 @@ else:
 # ------------------------------------
 # - Dictionnary of cuts for Tree->hist
 # ------------------------------------
+if myFitType == FitType.Background:
+    for sr_label in ['ht_1100_mbl_400', 'ht_1100_mbl_600']:
+        base_sr_str = '_'.join(['is_sr', sr_label])
+        configMgr.cutsDict['_'.join(["SR", sr_label, "all"])] = '(%s)' % base_sr_str
+        configMgr.cutsDict['_'.join(["SR", sr_label, "ee"])]  = '(%s && is_ee)' % base_sr_str
+        configMgr.cutsDict['_'.join(["SR", sr_label, "mm"])]  = '(%s && is_mm)' % base_sr_str
+        configMgr.cutsDict['_'.join(["SR", sr_label, "em"])]  = '(%s && is_em)' % base_sr_str
+
 # SR
-# base_sr_str = "is_sr_1"
-base_sr_str = '_'.join(["is", test_sr])
-configMgr.cutsDict["SR_ee"] = '(%s && is_ee)' % base_sr_str
-configMgr.cutsDict["SR_mm"] = '(%s && is_mm)' % base_sr_str
-configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
+if myFitType == FitType.Exclusion:
+    base_sr_str = '_'.join(["is", test_sr])
+    # configMgr.cutsDict["SR_all"] = '(%s)' % base_sr_str
+    configMgr.cutsDict["SR_ee"] = '(%s && is_ee)' % base_sr_str
+    configMgr.cutsDict["SR_mm"] = '(%s && is_mm)' % base_sr_str
+    configMgr.cutsDict["SR_em"] = '(%s && is_em)' % base_sr_str
 
 # CR_top
 # base_cr_top_str = "is_cr_top"
@@ -143,6 +163,10 @@ configMgr.cutsDict["VR_top_1_all"] = base_vr_top_1_str
 configMgr.cutsDict["VR_top_1_ee"] = '(%s && is_ee)' % base_vr_top_1_str
 configMgr.cutsDict["VR_top_1_mm"] = '(%s && is_mm)' % base_vr_top_1_str
 configMgr.cutsDict["VR_top_1_em"] = '(%s && is_em)' % base_vr_top_1_str
+
+print '-'*80
+print 'configMgr.cutDict:'
+print configMgr.cutsDict
 
 # VR top 2
 # base_vr_top_2_str = "is_vr_top_2"
@@ -278,23 +302,23 @@ sample_list_bkg.append(ttbar_sample)
 ### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### # ttV
 ### ttv_sample = Sample("ttV", kAzure+8)
-### 
+###
 ### ttv_sample.setStatConfig(use_stat)
 ### ttv_sample.setNormByTheory()
 ### sample_list_bkg.append(ttv_sample)
-### 
+###
 ### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### # diboson
 ### diboson_sample = Sample("Diboson", kSpring-4)
-### 
+###
 ### diboson_sample.setStatConfig(use_stat)
 ### diboson_sample.setNormByTheory()
 ### sample_list_bkg.append(diboson_sample)
-### 
+###
 ### # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ### # higgs
 ### higgs_sample = Sample("Higgs", kOrange-5)
-### 
+###
 ### higgs_sample.setStatConfig(use_stat)
 ### higgs_sample.setNormByTheory()
 ### sample_list_bkg.append(higgs_sample)
@@ -399,7 +423,6 @@ for crl in cr_list:
 vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
-    # for vr_name in ['VR_3', 'VR_5']:
     for vr_name in ['VR_top_1', 'VR_top_2', 'VR_top_3', 'VR_Z']:
         for flavor_channel in ['_all', '_ee', '_mm', '_em']:
             if not vr_name == 'VR_llbb' and flavor_channel == '': continue
@@ -467,12 +490,13 @@ if do_validation:
 # set up SRs
 if not myFitType == FitType.Discovery:
     sr_list = []
-    for flavor_channel in ['ee', 'mm', 'em']:
-        this_sr_name = ''.join(("SR_", flavor_channel))
-        print 'this sr name: ', this_sr_name
+    for region_name in configMgr.cutsDict.keys():
+        if 'SR' not in region_name: continue
+
+        print 'this sr name: ', region_name
         sr_list.append(addChannel(background_config,
                                   "mbl_0",
-                                  this_sr_name,
+                                  region_name,
                                   binning.mbl))
 
     for sr in sr_list:
@@ -593,7 +617,7 @@ entry.SetFillStyle(compFillStyle)
 ### entry.SetFillStyle(compFillStyle)
 
 # If exclusion mode, add signal entry
-if myFitType==FitType.Exclusion:
+if myFitType == FitType.Exclusion:
     entry = leg.AddEntry("", "signal", "lf")
     entry.SetLineColor(kViolet+5)
     entry.SetFillColor(kViolet+5)
@@ -601,7 +625,7 @@ if myFitType==FitType.Exclusion:
 
 # Set legend for fitConfig
 background_config.tLegend = leg
-if myFitType==FitType.Exclusion:
+if myFitType == FitType.Exclusion:
     exclusion_sr_config.tLegend = leg
 c.Close()
 
