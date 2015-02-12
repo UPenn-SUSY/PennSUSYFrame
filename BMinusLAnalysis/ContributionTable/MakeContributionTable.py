@@ -256,12 +256,12 @@ def main(sample_name):
                                            title=this_title)
 
     printTableHtSlice(1100)
-    # printTableHtSlice(1000)
-    # printTableHtSlice(900)
-    # printTableHtSlice(800)
-    # printTableHtSlice(700)
-    # printTableHtSlice(600)
-    # printTableHtSlice(500)
+    printTableHtSlice(1000)
+    printTableHtSlice(900)
+    printTableHtSlice(800)
+    printTableHtSlice(700)
+    printTableHtSlice(600)
+    printTableHtSlice(500)
 
 # ==============================================================================
 if __name__ == '__main__':
