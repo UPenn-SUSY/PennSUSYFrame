@@ -33,7 +33,10 @@ def main():
                                                 )
     ic_signal = hh.Container.InputContainer( name = 'Signal'
                                            , entry_list = [ entry_containers['ec_bl_500']
+                                                          , entry_containers['ec_bl_600']
+                                                          , entry_containers['ec_bl_700']
                                                           , entry_containers['ec_bl_800']
+                                                          , entry_containers['ec_bl_900']
                                                           , entry_containers['ec_bl_1000']
                                                           ]
                                            , lumi_target = 21000

@@ -20,6 +20,7 @@ def makeSampleListFiles(input_file_name):
     cut_str = '1'
 
     prefix = constructPrefix(input_file_name)
+    print 'prefix: ', prefix
 
     out_file = ROOT.CollectAndWriteHypoTestResults(input_file_name,
                                                    format,
