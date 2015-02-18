@@ -241,27 +241,24 @@ def main(sample_name):
                                     ('VR TOP 1 MBL 200', 'Top VR 1'),
                                     ('VR TOP 2 MBL 200', 'Top VR 2'),
                                     ('VR TOP 3 MBL 200', 'Top VR 3'),
-                                    ('VR TOP 4 MBL 200', 'Top VR 4'),
                                     ('VR Z MBL 200', 'Z VR'),
-                                    (' '.join(['SR HT', str(ht), 'MBL 200']), 'SR 200'),
                                     (' '.join(['SR HT', str(ht), 'MBL 400']), 'SR 400'),
                                     (' '.join(['SR HT', str(ht), 'MBL 600']), 'SR 600'),
-                                    (' '.join(['SR HT', str(ht), 'MBL 800']), 'SR 800'),
                                     ])
         this_title=''.join(['$\\Mbl\\ge 200$ GeV and $h_\\mathrm{T} \\ge ',
                             str(ht), '$ GeV'])
         createTableFromRegionContributions(region_df, regions_dict,
-                                           do_s_sqrt_b=True, do_zn_sig=True,
-                                           for_slides=True,
+                                           # do_s_sqrt_b=True, do_zn_sig=True,
+                                           # for_slides=True,
                                            title=this_title)
 
     printTableHtSlice(1100)
-    printTableHtSlice(1000)
-    printTableHtSlice(900)
-    printTableHtSlice(800)
-    printTableHtSlice(700)
-    printTableHtSlice(600)
-    printTableHtSlice(500)
+    # printTableHtSlice(1000)
+    # printTableHtSlice(900)
+    # printTableHtSlice(800)
+    # printTableHtSlice(700)
+    # printTableHtSlice(600)
+    # printTableHtSlice(500)
 
 # ==============================================================================
 if __name__ == '__main__':

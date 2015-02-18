@@ -25,6 +25,7 @@ def cleanDataFrame(df):
     df.loc[:,'region'] = df['region'].str.replace('_', ' ')
 
     df = df[~df['region'].str.contains('MINUS') &
+            ~df['region'].str.contains('PARTIAL') &
             ~df['region'].str.contains('CRACK') &
             ~df['region'].str.contains('PAIRING') &
             ~df['region'].str.contains('OBJECTS') &
