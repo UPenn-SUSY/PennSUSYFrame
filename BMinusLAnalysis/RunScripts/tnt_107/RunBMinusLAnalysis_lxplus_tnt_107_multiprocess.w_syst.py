@@ -8,27 +8,27 @@ import datetime
 import itertools
 
 sys.path.append('%s/BMinusLAnalysis/RunScripts/' % os.environ['BASE_WORK_DIR'])
-import RunBMinusLOptimizeNtupleMaker
+import RunBMinusLAnalysis
 import SamplesDicts
 
 sys.path.append('%s/RunHelpers/' % os.environ['BASE_WORK_DIR'])
 import RunHelpers
 
 # ------------------------------------------------------------------------------
-RunBMinusLOptimizeNtupleMaker.input_tree_name = "TNT"
-RunBMinusLOptimizeNtupleMaker.lep_pt_cut = 40.e3
-RunBMinusLOptimizeNtupleMaker.jet_pt_cut = 40.e3
+RunBMinusLAnalysis.input_tree_name = "TNT"
+RunBMinusLAnalysis.lep_pt_cut = 40.e3
+RunBMinusLAnalysis.jet_pt_cut = 40.e3
 
 # 90% working point
-# RunBMinusLOptimizeNtupleMaker.btag_working_point = 0.0617
+# RunBMinusLAnalysis.btag_working_point = 0.0617
 # 80% working point
-RunBMinusLOptimizeNtupleMaker.btag_working_point = 0.3511
+RunBMinusLAnalysis.btag_working_point = 0.3511
 # 70% working point
-# RunBMinusLOptimizeNtupleMaker.btag_working_point = 0.7892
+# RunBMinusLAnalysis.btag_working_point = 0.7892
 
 # ------------------------------------------------------------------------------
 # get number of parallel processes from command line inputs
-user_input = sys.argv[1] if len(sys.argv) > 1 else 1
+user_input = sys.argv[1] if len(sys.argv) > 1 else "1"
 num_processes = 1
 queue = '1nh'
 if "nm" in user_input or "nh" in user_input or "nd" in user_input:
@@ -39,13 +39,13 @@ else:
     run_local = True
 
 today_date = datetime.datetime.now()
-out_dir = '%s/hists/bminusl_opt_ntup_%04d_%02d_%02d__%02d_%02d' % ( os.environ['PWD']
-                                                                  , today_date.year
-                                                                  , today_date.month
-                                                                  , today_date.day
-                                                                  , today_date.hour
-                                                                  , today_date.minute
-                                                                  )
+out_dir = '%s/hists/bminusl_hists_%04d_%02d_%02d__%02d_%02d' % ( os.environ['PWD']
+                                                               , today_date.year
+                                                               , today_date.month
+                                                               , today_date.day
+                                                               , today_date.hour
+                                                               , today_date.minute
+                                                               )
 print out_dir
 
 # ==============================================================================
@@ -86,17 +86,17 @@ if __name__ == '__main__':
         print syst, ' -- ', the_dicts
 
         this_out_dir = '__'.join([out_dir, syst])
-        this_sym_link_name = ''.join(['./NextOptNtupDir.BMinusL.', syst])
+        this_sym_link_name = ''.join(['./NextPlotDir.BMinusL.', syst])
         print 'this sym link name: ', this_sym_link_name
 
-        this_run_analysis_fun = RunBMinusLOptimizeNtupleMaker.runBMinusLOptimizeNtupleMakerFun
+        this_run_analysis_fun = RunBMinusLAnalysis.runBMinusLAnalysisFun
 
         if run_local:
             RunHelpers.runLocalMultiprocess( run_analysis_fun = this_run_analysis_fun
                                            , data_set_dicts   = the_dicts
                                            , num_processes    = num_processes
                                            , out_dir          = this_out_dir
-                                           , flat_ntuples     = True
+                                           , flat_ntuples     = False
                                            , sym_link_name    = this_sym_link_name
                                            )
 
@@ -106,14 +106,14 @@ if __name__ == '__main__':
                                               , 'RunScripts/'
                                               ]
                                             )
-            this_job_dir = '.'.join( [ 'LatestRunDir_bminusloptimizentuplemaker'
+            this_job_dir = '.'.join( [ 'LatestRunDir_bminuslanalysis'
                                      , syst
                                      ]
                                    )
 
             RunHelpers.runLxBatchMultiProcess( run_analysis_fun      = this_run_analysis_fun
                                              , run_analysis_fun_loc  = run_analysis_fun_loc
-                                             , run_analysis_fun_file = 'RunBMinusLOptimizeNtupleMaker'
+                                             , run_analysis_fun_file = 'RunBMinusLAnalysis'
                                              , data_set_dicts        = the_dicts
                                              , out_dir               = this_out_dir
                                              , queue                 = queue
