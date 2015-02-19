@@ -72,7 +72,8 @@ def renamePulls(tag):
 # ------------------------------------------------------------------------------
 # make the basic pull plot!
 print 'making basic pull plot'
-pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR.pickle'
+# pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR.pickle'
+pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR_SR.pickle'
                            , regionList = [ 'CR_top_all_mbl_0'
                                           , 'CR_Z_all_mbl_0'
                                           , 'VR_top_1_all_mbl_0'
