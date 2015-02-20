@@ -25,6 +25,7 @@ for line in f.readlines():
     if input_ds.find('#')==0: continue # double protection never hurt
 
     tmp = input_ds.replace('user.bjackson.','').replace('.evgen.EVNT','').replace('/','').replace('.v1.131124','').replace('_AU2CT10','').replace('.v0.131219','').replace('v0.140715_EXT0','').replace('AUET2B_CTEQ6L1_','')
+    tmp = tmp.replace('mc12_8TeV.', '').replace('_EXT0', '').replace('MassiveCB', '')
 
     output_ds = user+tmp+skimversion
     rootoutfile = 'truth_histograms.root'
