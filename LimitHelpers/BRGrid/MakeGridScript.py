@@ -1,7 +1,7 @@
 import itertools
 
 # br_points = range(0,101, 25)
-br_points = range(0,101, 25)
+br_points = range(0,101, 10)
 br_points.append(33)
 sr_options = ['sr_ht_1100_mbl_400', 'sr_ht_1100_mbl_600']
 

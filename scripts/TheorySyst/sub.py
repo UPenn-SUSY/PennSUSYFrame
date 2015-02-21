@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 user="user.bjackson."
-skimversion=".plots_150128_v1"
+skimversion=".plots_150220_v1"
 import getopt,os,sys
 
 verbose=True
