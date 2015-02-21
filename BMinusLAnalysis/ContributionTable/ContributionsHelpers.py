@@ -25,6 +25,7 @@ def cleanDataFrame(df):
     df.loc[:,'region'] = df['region'].str.replace('_', ' ')
 
     df = df[~df['region'].str.contains('MINUS') &
+            ~df['region'].str.contains('PARTIAL') &
             ~df['region'].str.contains('CRACK') &
             ~df['region'].str.contains('PAIRING') &
             ~df['region'].str.contains('OBJECTS') &
@@ -79,6 +80,97 @@ def extractRegionContributions(sample_file_name):
 
         extract_entries(this_entries_canvas, 'count')
         extract_entries(this_raw_entries_canvas, 'raw')
+
+    return cont_df
+
+# ------------------------------------------------------------------------------
+def extractRegionContributionsSystematicTree(sample_file_name,
+                                             target_lumi=21e3):
+    print 'extracting region contributions from file: ', sample_file_name
+    # get region list from this sample file
+    sample_file = ROOT.TFile.Open(sample_file_name)
+    tree_list = [k.GetName() for k in sample_file.GetListOfKeys()]
+    # drop repeated tree names because root is dumb :-(
+    tree_list = list(set(tree_list))
+
+    # construct region contributions data frame
+    cont_df = pandas.DataFrame(columns = ('systematic',
+                                          'region',
+                                          'sample',
+                                          'count',
+                                          'raw'))
+
+    # hard code this for now because time is short!
+    region_boolians = {'SR 400':'is_sr_ht_1100_mbl_400',
+                       'SR 600':'is_sr_ht_1100_mbl_600',
+                       'CR Top':'is_cr_top_mbl_200',
+                       'CR Z':'is_cr_z',
+                       'VR Top 1':'is_vr_top_mbl_200_1',
+                       'VR Top 2':'is_vr_top_mbl_200_2',
+                       'VR Top 3':'is_vr_top_mbl_200_3',
+                       'VR Z':'is_vr_z_mbl_200'
+                       }
+
+    weight_systs = {'btag_sf_b_up':'btag_sf_b_up_frac',
+                    'btag_sf_b_down':'btag_sf_b_down_frac',
+                    'btag_sf_c_up':'btag_sf_c_up_frac',
+                    'btag_sf_c_down':'btag_sf_c_down_frac',
+                    'btag_sf_l_up':'btag_sf_l_up_frac',
+                    'btag_sf_l_down':'btag_sf_l_down_frac'
+                    }
+
+    print '-'*80
+    for tl in tree_list:
+        # For now, only do NoSys to save time
+        if 'NoSys' not in tl: continue
+
+        # get tree from file by name
+        this_tree = sample_file.Get(tl)
+
+        # extract the sample name and systematic name from the tree name
+        sample_name = tl.split('_')[0]
+        syst_name = tl.replace(sample_name, '').strip('_')
+
+        # ttV is included in "other" and 'ttV'. We only want to include it once
+        if sample_name == 'ttV': continue
+
+        # zeroed out counters to keep track of then number of events
+        count = {r:0. for r in region_boolians.keys()}
+        raw = {r:0. for r in region_boolians.keys()}
+
+        # for the nominal tree, add the weight systematics to the dictionary
+        # so we can count them at the same time
+        if syst_name == 'NoSys':
+            syst_count = {ws:count.copy() for ws in weight_systs.keys()}
+
+        # event loop to count number of events in each region
+        for i, event in enumerate(this_tree):
+            for region, boolian in region_boolians.items():
+                if getattr(event, boolian):
+                    # extra norm factor for consistency with other plots/tables
+                    norm_factor = 1.3855 if sample_name == 'ZGamma' else 1.
+
+                    count[region] += target_lumi*event.weight*norm_factor
+                    raw[region] += 1
+
+                    if syst_name == 'NoSys':
+                        for ws, weight_name in weight_systs.items():
+                            syst_count[ws][region] += (target_lumi*
+                                                       event.weight*
+                                                       getattr(event,
+                                                               weight_name)*
+                                                       norm_factor)
+
+
+        for r in region_boolians.keys():
+            this_entry = [syst_name, r, sample_name, count[r], raw[r]]
+            cont_df.loc[cont_df.shape[0]] = this_entry
+
+            if syst_name == 'NoSys':
+                for ws in weight_systs.keys():
+                    this_syst_entry = [ws, r, sample_name,
+                                       syst_count[ws][r], raw[r]]
+                    cont_df.loc[cont_df.shape[0]] = this_syst_entry
 
     return cont_df
 

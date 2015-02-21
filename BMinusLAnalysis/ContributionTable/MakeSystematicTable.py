@@ -17,6 +17,7 @@ import sys
 import ContributionsHelpers as helpers
 import math
 from collections import OrderedDict
+import argparse
 
 from ROOT import RooStats
 
@@ -210,9 +211,22 @@ def createTableFromRegionContributions(region_df, regions_dict=None,
         print '\\end{table}'
 
 # ------------------------------------------------------------------------------
-def main(sample_name):
-    region_df = helpers.extractRegionContributions(test_sample_name)
-    region_df = helpers.cleanDataFrame(region_df)
+def main(bkg_name, sig_name):
+    print "bkg name: ", bkg_name
+    print "sig name: ", sig_name
+
+    bkg_region_df = helpers.extractRegionContributionsSystematicTree(bkg_name)
+    sig_region_df = helpers.extractRegionContributionsSystematicTree(sig_name)
+
+    print '-'*80
+    print 'bkg region df'
+    print bkg_region_df
+    print
+    print '-'*80
+    print 'sig region df'
+    print sig_region_df
+
+    return
 
     # print '% ============================================================'
     # print '% = Original regions'
@@ -265,7 +279,15 @@ def main(sample_name):
 # ==============================================================================
 if __name__ == '__main__':
     # get input sample name
-    test_sample_name = (sys.argv[1] if len(sys.argv) > 1
-            else '${BASE_WORK_DIR}/compare_plots.b_minus_l.root')
-    main(test_sample_name)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--bkg', action='store', type=str)
+    parser.add_argument('--sig', action='store', type=str)
+
+    args = parser.parse_args()
+
+    print args
+
+    # bkg_sample_name = (sys.argv[1] if len(sys.argv) > 1
+    #         else '${BASE_WORK_DIR}/compare_plots.b_minus_l.root')
+    main(args.bkg, args.sig)
 
