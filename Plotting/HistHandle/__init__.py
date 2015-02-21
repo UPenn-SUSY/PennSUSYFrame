@@ -28,7 +28,7 @@ default_ratio_pad_size = 0.25
 default_pad_left_margin   = 0.16
 default_pad_right_margin  = 0.09
 default_pad_top_margin    = 0.05
-default_pad_bottom_margin = 0.16
+default_pad_bottom_margin = 0.20
 
 default_label_size = 0.04
 default_title_size = 0.05

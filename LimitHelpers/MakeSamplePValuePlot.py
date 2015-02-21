@@ -173,6 +173,7 @@ def plot_region_choice_triangle(result_df,
     Constructs a triangle with showing the maximum mass which is excluded at
     each point in the branching ratio triangle.
     """
+    region_colors = {400:'green', 600:'blue'}
     values_to_plot = []
     for bre, brt in itertools.product(result_df['bre'].unique(),
                                       result_df['brt'].unique()):
@@ -181,8 +182,10 @@ def plot_region_choice_triangle(result_df,
         if subset.empty: continue
 
         region = subset.sort(columns='cls').iloc[0]['sr']
+        color = region_colors[region] if region in region_colors else 'white'
 
-        values_to_plot.append({'bre':bre, 'brt':brt, 'region':region})
+        values_to_plot.append({'bre':bre, 'brt':brt, 'region':region,
+                               'color':color})
 
     # Construct plot
     fig = plt.figure()
@@ -201,7 +204,7 @@ def plot_region_choice_triangle(result_df,
         ax.text(value['bre'], value['brt'], value['region'],
                 horizontalalignment='center',
                 verticalalignment='center',
-                bbox={'facecolor':'white', 'alpha':0.5,
+                bbox={'facecolor':value['color'], 'alpha':0.5,
                       'boxstyle':'round'})
 
     # write plot to file
@@ -270,23 +273,23 @@ def make_p_value_plots():
     # get results from hypothesis test
     results = read_hypo_test_results()
 
-    # make triangle plot for each stop mass
-    for mass, sr in itertools.product(results['mass'].unique(),
-                                      results['sr'].unique()):
-        print 'mass:', mass, ' -- sr: ', sr
-        file_name = ''.join(('cls_vs_br',
-                             '_m_', str(mass),
-                             '_sr_', str(sr),
-                             '.pdf'))
-        plot_cls_triangle(results[(results['mass'] == mass) &
-                                  (results['sr'] == sr)],
-                          file_name)
-
-    # make mass plot - reasonable options for color map:
-    #   - hot_r, gist_heat_r, afmhot_r, GnBu,
-    plot_mass_limit_triangle(results,
-                             'mass_limit.pdf',
-                             'hot_r')
+    # # make triangle plot for each stop mass
+    # for mass, sr in itertools.product(results['mass'].unique(),
+    #                                   results['sr'].unique()):
+    #     print 'mass:', mass, ' -- sr: ', sr
+    #     file_name = ''.join(('cls_vs_br',
+    #                          '_m_', str(mass),
+    #                          '_sr_', str(sr),
+    #                          '.pdf'))
+    #     plot_cls_triangle(results[(results['mass'] == mass) &
+    #                               (results['sr'] == sr)],
+    #                       file_name)
+    #
+    # # make mass plot - reasonable options for color map:
+    # #   - hot_r, gist_heat_r, afmhot_r, GnBu,
+    # plot_mass_limit_triangle(results,
+    #                          'mass_limit.pdf',
+    #                          'hot_r')
 
     # make plot of region choice for each mass
     for mass in results['mass'].unique():
@@ -296,20 +299,20 @@ def make_p_value_plots():
                              '.pdf'))
         plot_region_choice_triangle(results[results['mass'] == mass], file_name)
 
-    # make cls vs mass plot for each choice of branching ratios
-    for br_e, br_t, br_m in itertools.product(results['bre'].unique(),
-                                              results['brt'].unique(),
-                                              results['brm'].unique()):
-        print 'bre: ', br_e, ' - brm: ', br_m, ' - brt: ', br_t
-        file_name = ''.join(['cls_vs_m',
-                         '_br_e_', str(int(br_e*100)),
-                         '_br_m_', str(int(br_m*100)),
-                         '_br_t_', str(int(br_t*100)),
-                         '.pdf'])
-        plot_single_cls_plot(results[(results['bre'] == br_e) &
-                                     (results['brm'] == br_m) &
-                                     (results['brt'] == br_t)],
-                             file_name)
+    # # make cls vs mass plot for each choice of branching ratios
+    # for br_e, br_t, br_m in itertools.product(results['bre'].unique(),
+    #                                           results['brt'].unique(),
+    #                                           results['brm'].unique()):
+    #     print 'bre: ', br_e, ' - brm: ', br_m, ' - brt: ', br_t
+    #     file_name = ''.join(['cls_vs_m',
+    #                      '_br_e_', str(int(br_e*100)),
+    #                      '_br_m_', str(int(br_m*100)),
+    #                      '_br_t_', str(int(br_t*100)),
+    #                      '.pdf'])
+    #     plot_single_cls_plot(results[(results['bre'] == br_e) &
+    #                                  (results['brm'] == br_m) &
+    #                                  (results['brt'] == br_t)],
+    #                          file_name)
 
     print 'All done! Exiting!'
 

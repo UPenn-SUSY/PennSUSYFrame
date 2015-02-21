@@ -14,7 +14,6 @@ gROOT.LoadMacro("./macros/AtlasStyle.C")
 import ROOT
 ROOT.SetAtlasStyle()
 
-
 # ------------------------------------------------------------------------------
 # import functions to do scaling
 import os
@@ -23,14 +22,12 @@ sys.path.append('%s/LimitHelpers/' % os.environ['BASE_WORK_DIR'])
 import FlavorChannelScaling as scaling
 import SampleExclBinning as binning
 
-
 # ------------------------------------------------------------------------------
 # Some flags for overridding normal execution and telling ROOT to shut up...
 # - use with caution!
 #gROOT.ProcessLine("gErrorIgnoreLevel=10001;")
 #configMgr.plotHistos = True
 configMgr.blindSR = True
-
 
 # ------------------------------------------------------------------------------
 # Flags to tune the stop branching ratios
@@ -59,13 +56,11 @@ elif myFitType == FitType.Background:
 else:
     print '  fit type: Undefined :('
 
-
 # ------------------------------------------------------------------------------
 # cannot do validation and exclusion/discovery at the same time for now
 if myFitType == FitType.Discovery or myFitType == FitType.Exclusion:
     print 'turning off validation for discovery or exclusion'
     do_validation = False
-
 
 # --------------------------------
 # - Parameters for hypothesis test
@@ -75,7 +70,6 @@ configMgr.nTOYs=10000
 configMgr.calculatorType=2 # use 2 for asymptotic, 0 for toys
 configMgr.testStatType=3
 configMgr.nPoints=10
-
 
 # ------------------------------------------------------------------------------
 # construct the analysis name
@@ -261,6 +255,39 @@ btag_sf_uncert_sig_list = [Systematic(name = '_'.join([syst, 'sig']),
                                       method = 'overallSys')
                            for syst in btag_sf_uncert_names]
 
+
+# --------------------------------------------
+# - Additional systematics to apply
+# --------------------------------------------
+ht_extrapolation_uncert = Systematic(name = 'ht_etrapolation',
+                                     nominal = nominal_weight_bkg,
+                                     high = [nominal_weight_bkg, '(1+0.5*(ht_signal>500))'],
+                                     low  = [nominal_weight_bkg, '(1-0.5*(ht_signal>500))'],
+                                     type = 'weight',
+                                     method = 'overallSys')
+
+# --------------------------------------------
+# - Signal cross section uncertainty
+# --------------------------------------------
+signal_xsec_rel_uncert = {'sig_100':0.161085,
+                          'sig_200':0.149147,
+                          'sig_300':0.146905,
+                          'sig_400':0.142848,
+                          'sig_500':0.149611,
+                          'sig_600':0.166406,
+                          'sig_700':0.184146,
+                          'sig_800':0.20516,
+                          'sig_900':0.239439,
+                          'sig_1000':0.276595,
+                          'sig_1100':0.318291}
+signal_xsec_uncert = {sig_name:Systematic(name = '_'.join(['signal_xsec',sig_name]),
+                                          nominal=nominal_weight_sig,
+                                          high=[nominal_weight_sig, ''.join(['(1+', str(signal_xsec_rel_uncert[sig_name]), ')'])],
+                                          low=[ nominal_weight_sig, ''.join(['(1-', str(signal_xsec_rel_uncert[sig_name]), ')'])],
+                                          type='weight',
+                                          method='overallSys')
+                      for sig_name in signal_xsec_rel_uncert.keys()}
+
 # --------------------------------------------
 # - List of samples and their plotting colours
 # --------------------------------------------
@@ -351,6 +378,9 @@ addSystematic(sample_list_bkg,
               (btag_sf_uncert_bkg_list +
                jes_uncert_list +
                [jer_uncert]))
+               # [jer_uncert, ht_extrapolation_uncert]))
+addSystematic([z_sample],
+              ([ht_extrapolation_uncert]))
 
 # ------------------------------------------------------------------------------
 # Configure the background only fit
@@ -368,16 +398,16 @@ meas = background_config.addMeasurement(name = "NormalMeasurement",
 meas.addPOI("mu_SIG")
 
 # ------------------------------------------------------------------------------
-def addChannel(config, expression, name, binning):
+def addChannel(config, expression, name, the_binning):
     """
     Helper function to add a channel to the fit config - this is just a wrapper
     around the HistFitter addChannel function
     """
     return config.addChannel(expression,
                              [name],
-                             binning['bin'],
-                             binning['min'],
-                             binning['max'])
+                             the_binning['bin'],
+                             the_binning['min'],
+                             the_binning['max'])
 
 
 # ------------------------------------------------------------------------------
@@ -394,10 +424,12 @@ for cr_name in ['CR_top_', 'CR_Z_']:
         cr_list.append(addChannel(background_config,
                                   'mbl_0',
                                   this_name,
-                                  binning.mbl))
+                                  binning.get_binning('mbl',
+                                                      single_bin=binning.single_bin_regions)))
+        cr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+        cr_list[-1].logY = False
 
 background_config.setBkgConstrainChannels(cr_list)
-
 
 # ------------------------------------------------------------------------------
 # Background only fit cosmetics
@@ -417,15 +449,15 @@ for crl in cr_list:
     crl.ATLASLabelY = 0.85
     crl.ATLASLabelText = "Work in progress"
 
-
 # ______________________________________________________________________________
 # Construct Validation regions
 vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
+    # for vr_name in ['VR_top_3', 'VR_Z']:
+    #     for flavor_channel in ['_all']:
     for vr_name in ['VR_top_1', 'VR_top_2', 'VR_top_3', 'VR_Z']:
         for flavor_channel in ['_all', '_ee', '_mm', '_em']:
-            if not vr_name == 'VR_llbb' and flavor_channel == '': continue
             if vr_name  == 'VR_Z' and flavor_channel == '_em': continue
 
             # unique name for this VR/flavor channel combination
@@ -436,48 +468,64 @@ if do_validation:
                 vr_list.append(addChannel(background_config,
                                           'flavor_channel',
                                           this_vr_name,
-                                          binning.flavor_channel))
+                                          binning.get_binning('flavor_channel',
+                                                              single_bin=False)))
+            vr_list[-1].titleX = 'Flavor Channel'
 
             vr_list.append(addChannel(background_config,
                                       'mbl_0',
                                       this_vr_name,
-                                      binning.mbl))
+                                      binning.get_binning('mbl',
+                                                          single_bin=False)))
+            vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
             vr_list.append(addChannel(background_config,
                                       'mbl_1',
                                       this_vr_name,
-                                      binning.mbl))
+                                      binning.get_binning('mbl',
+                                                          single_bin=False)))
+            vr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
             vr_list.append(addChannel(background_config,
                                       'ht_signal',
                                       this_vr_name,
-                                      binning.ht))
+                                      binning.get_binning('ht',
+                                                          single_bin=False)))
+            vr_list[-1].titleX = 'H_{T} [GeV]'
 
-    for vr_name in ['CR_top_', 'CR_Z_']:
-        for flavor_channel in ['all', 'ee', 'mm', 'em']:
-            if vr_name  == 'CR_Z_' and flavor_channel == 'em': continue
+    for cr_name in ['CR_top', 'CR_Z']:
+        # for flavor_channel in ['_all']:
+        for flavor_channel in ['_all', '_ee', '_mm', '_em']:
+            if cr_name  == 'CR_Z' and flavor_channel == '_em': continue
 
-            # unique name for this VR/flavor channel combination
-            this_vr_name = ''.join([vr_name, flavor_channel])
+            # unique name for this CR/flavor channel combination
+            this_cr_name = ''.join([cr_name, flavor_channel])
 
-            # add VR plots
-            if flavor_channel == 'all':
+            # add CR plots
+            if flavor_channel == '_all':
                 vr_list.append(addChannel(background_config,
                                           'flavor_channel',
-                                          this_vr_name,
-                                          binning.flavor_channel))
-
-            if not flavor_channel == 'all':
+                                          this_cr_name,
+                                          binning.get_binning('flavor_channel',
+                                                              single_bin=False)))
+                vr_list[-1].titleX = 'Flavor Channel'
+            else:
                 vr_list.append(addChannel(background_config,
-                                          'mbl_0',
-                                          this_vr_name,
-                                          binning.mbl))
+                                        'mbl_0',
+                                        this_cr_name,
+                                        binning.get_binning('mbl',
+                                                            single_bin=False)))
+                vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
             vr_list.append(addChannel(background_config,
                                       'mbl_1',
-                                      this_vr_name,
-                                      binning.mbl))
+                                      this_cr_name,
+                                      binning.get_binning('mbl',
+                                                          single_bin=False)))
+            vr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
             vr_list.append(addChannel(background_config,
                                       'ht_signal',
-                                      this_vr_name,
-                                      binning.ht))
+                                      this_cr_name,
+                                      binning.get_binning('ht',
+                                                          single_bin=False)))
+            vr_list[-1].titleX = 'H_{T} [GeV]'
 
     # turn on overflow bin for all VR plots
     for vr in vr_list:
@@ -497,7 +545,8 @@ if not myFitType == FitType.Discovery:
         sr_list.append(addChannel(background_config,
                                   "mbl_0",
                                   region_name,
-                                  binning.mbl))
+                                  binning.get_binning('mbl',
+                                                      single_bin=binning.single_bin_signal)))
 
     for sr in sr_list:
         sr.useUnderflowBin = True
@@ -527,7 +576,9 @@ if myFitType == FitType.Exclusion:
     # sig_sample_list=['sig_100', 'sig_200', 'sig_300', 'sig_400', 'sig_500',
     #                  'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
     sig_sample_list=['sig_500', 'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
+    # sig_sample_list=['sig_900']
     # sig_sample_list=['sig_1000']
+
     sig_samples = []
     for sig in sig_sample_list:
         print 'setting up signal sample: ', sig
@@ -547,8 +598,14 @@ if myFitType == FitType.Exclusion:
                       jes_uncert_list +
                       [jer_uncert]))
 
+        if sig in signal_xsec_rel_uncert:
+            addSystematic([sig_sample],
+                          ([signal_xsec_uncert[sig]]))
+
         exclusion_sr_config.addSamples(sig_sample)
         exclusion_sr_config.setSignalSample(sig_sample)
+
+
 
 
 # ------------------------------------------------------------------------------
