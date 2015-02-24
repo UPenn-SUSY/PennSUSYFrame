@@ -5,15 +5,11 @@ import itertools
 
 import pandas
 import numpy as np
-import scipy
-import scipy.interpolate
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import ROOT
-import array
 
 import summary_harvest_tree_description as tree_summary
-
 
 ROOT.gStyle.SetOptStat(0)
 
@@ -95,14 +91,14 @@ def plot_cls_triangle(result_df, out_file_name):
                          reduce_C_function = np.max,
                          gridsize = (10, 4),
                          norm = norm)
-    plt.axis([-.05, 1.1, -.05, 1.1])
+    plt.axis([0.0, 1.0, 0.0, 1.0])
     plt.xlabel('$Br(\\tilde{t} \\rightarrow be)$')
     plt.ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$')
     # plt.grid(True)
     plt.xticks([i*0.25 for i in xrange(5)])
     plt.yticks([i*0.25 for i in xrange(5)])
 
-    plt.plot([0.05,1.05], [1.05,0.05], color = '0.50', linestyle = '--')
+    plt.plot([0.00,1.00], [1.00,0.00], color = '0.50', linestyle = '--')
     plt.plot([0.50,0.33], [0.00,0.33], color = '0.75', linestyle = ':')
     plt.plot([0.00,0.33], [0.50,0.33], color = '0.75', linestyle = ':')
     plt.plot([0.50,0.33], [0.50,0.33], color = '0.75', linestyle = ':')
@@ -111,7 +107,7 @@ def plot_cls_triangle(result_df, out_file_name):
     label_string = ''.join(('Stop mass = ',
                             str(result_df['mass'].iloc[0]),
                             ' GeV'))
-    ax.text(0.55, 1.0, label_string,
+    ax.text(0.55, 0.9, label_string,
             bbox={'boxstyle':'round', 'facecolor':'white', 'alpha':0.8})
 
     # add color bar to right side
@@ -147,13 +143,17 @@ def plot_cls_triangle_with_contour(result_df, out_file_name):
     brt_values = limit_df.index.values
     cls_values = limit_df.values
 
+    # relpace NAN values with 1
+    nan_values = np.isnan(cls_values)
+    cls_values[nan_values] = 1
+
     bre, brt = np.meshgrid(bre_values, brt_values)
 
     # Construct plot
     fig = plt.figure()
     ax = fig.add_subplot(111)
     my_cont = plt.pcolor(bre, brt, cls_values, cmap=plt.cm.RdYlBu,
-                             norm=norm)
+                         norm=norm)
     cset2 = plt.contour(bre, brt, cls_values, levels_for_contour_lines,
                         colors = 'k', linewidths=2,
                         hold='on')
@@ -189,6 +189,72 @@ def plot_cls_triangle_with_contour(result_df, out_file_name):
     # write plot to file
     plt.savefig(out_file_name, bbox_inches = 'tight')
     plt.close()
+# ------------------------------------------------------------------------------
+def plot_limit_contours(result_df, out_file_name):
+    """
+    Function takes a data frame, with branching ratios and CLs values.
+    Constructs a triangle with showing the CLs for each branching ratio choice
+    """
+    print 'plotting limit contours!'
+    return
+
+    # limit_df = result_df
+    #
+    # levels_for_contour_lines = [-1, 0.05, 10]
+    # levels = [x/100. for x in range(0, 100)]
+    #
+    # limit_df = limit_df.pivot('brt', 'bre', 'cls')
+    #
+    # bre_values = limit_df.columns.values
+    # brt_values = limit_df.index.values
+    # cls_values = limit_df.values
+    #
+    # # relpace NAN values with 1
+    # nan_values = np.isnan(cls_values)
+    # cls_values[nan_values] = 1
+    #
+    # bre, brt = np.meshgrid(bre_values, brt_values)
+    #
+    # # Construct plot
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111)
+    # my_cont = plt.pcolor(bre, brt, cls_values, cmap=plt.cm.RdYlBu,
+    #                          norm=norm)
+    # cset2 = plt.contour(bre, brt, cls_values, levels_for_contour_lines,
+    #                     colors = 'k', linewidths=2,
+    #                     hold='on')
+    #
+    #
+    #
+    # plt.axis([0.0, 1.0, 0.0, 1.0])
+    # plt.xlabel('$Br(\\tilde{t} \\rightarrow be)$')
+    # plt.ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$')
+    #
+    # plt.plot([0.00,1.00], [1.00,0.00], color = '0.50', linestyle = '--')
+    # plt.plot([0.50,0.33], [0.00,0.33], color = '0.75', linestyle = ':')
+    # plt.plot([0.00,0.33], [0.50,0.33], color = '0.75', linestyle = ':')
+    # plt.plot([0.50,0.33], [0.50,0.33], color = '0.75', linestyle = ':')
+    #
+    # # add label with stop mass for this plot
+    # label_string = ''.join(('Stop mass = ',
+    #                         str(result_df['mass'].iloc[0]),
+    #                         ' GeV'))
+    # ax.text(0.55, 0.90, label_string,
+    #         bbox={'boxstyle':'round', 'facecolor':'white', 'alpha':0.8})
+    #
+    # # add color bar to right side
+    # cb = plt.colorbar(my_cont, spacing = 'uniform', extend = 'max')
+    # cb.set_label('$CL_{S}$')
+    #
+    # # mask off upper triangle
+    # mask_points = np.array([[0,1], [1,0], [1,1]])
+    # mask = plt.Polygon(mask_points, closed=True, fc = 'white',
+    #                    edgecolor = 'white')
+    # ax.add_patch(mask)
+    #
+    # # write plot to file
+    # plt.savefig(out_file_name, bbox_inches = 'tight')
+    # plt.close()
 
 # ------------------------------------------------------------------------------
 def plot_mass_limit_triangle(result_df,
@@ -296,6 +362,10 @@ def plot_mass_limit_triangle_with_contours(result_df,
     brt_values = limit_df.index.values
     mass_values = limit_df.values
 
+    # relpace NAN values with 1
+    nan_values = np.isnan(mass_values)
+    mass_values[nan_values] = 0
+
     bre, brt = np.meshgrid(bre_values, brt_values)
 
     # Construct plot
@@ -316,11 +386,11 @@ def plot_mass_limit_triangle_with_contours(result_df,
     plt.plot([0.00,0.33], [0.50,0.33], color = '0.75', linestyle = ':')
     plt.plot([0.50,0.33], [0.50,0.33], color = '0.75', linestyle = ':')
 
-    # # add color bar to right side
-    # # cb = plt.colorbar(my_cont_for_color_bar, spacing = 'uniform')
-    # cb = plt.colorbar(my_cont, spacing = 'uniform')
-    # cb.set_ticks(range(vmin, vmax+1, 100))
-    # cb.set_label('Stop mass [GeV]')
+    # add color bar to right side
+    # cb = plt.colorbar(my_cont_for_color_bar, spacing = 'uniform')
+    cb = plt.colorbar(my_cont, spacing = 'uniform')
+    cb.set_ticks(range(vmin, vmax+1, 100))
+    cb.set_label('Stop mass [GeV]')
 
     # mask off upper triangle
     mask_points = np.array([[0,1], [1,0], [1,1]])
@@ -448,57 +518,59 @@ def make_p_value_plots():
     # get results from hypothesis test
     results = read_hypo_test_results()
 
-    # make triangle plot for each stop mass
-    for mass, sr in itertools.product(results['mass'].unique(),
-                                      results['sr'].unique()):
-        print 'mass:', mass, ' -- sr: ', sr
-        file_name = ''.join(('cls_vs_br',
-                             '_m_', str(mass),
-                             '_sr_', str(sr),
-                             '.pdf'))
-        plot_cls_triangle(results[(results['mass'] == mass) &
-                                  (results['sr'] == sr)],
-                          file_name)
-        file_name = ''.join(('cls_vs_br',
-                             '_m_', str(mass),
-                             '_sr_', str(sr),
-                             '_contour.pdf'))
-        plot_cls_triangle_with_contour(results[(results['mass'] == mass) &
-                                  (results['sr'] == sr)],
-                          file_name)
+    # # make triangle plot for each stop mass
+    # for mass, sr in itertools.product(results['mass'].unique(),
+    #                                   results['sr'].unique()):
+    #     print 'mass:', mass, ' -- sr: ', sr
+    #     file_name = ''.join(('cls_vs_br',
+    #                          '_m_', str(int(mass)),
+    #                          '_sr_', str(sr),
+    #                          '.pdf'))
+    #     plot_cls_triangle(results[(results['mass'] == mass) &
+    #                               (results['sr'] == sr)],
+    #                       file_name)
+    #     file_name = ''.join(('cls_vs_br',
+    #                          '_m_', str(int(mass)),
+    #                          '_sr_', str(sr),
+    #                          '_contour.pdf'))
+    #     plot_cls_triangle_with_contour(results[(results['mass'] == mass) &
+    #                               (results['sr'] == sr)],
+    #                       file_name)
+    #
+    # # make mass plot - reasonable options for color map:
+    # #   - hot_r, gist_heat_r, afmhot_r, GnBu,
+    # plot_mass_limit_triangle(results,
+    #                          'mass_limit.pdf',
+    #                          'hot_r')
 
-    # make mass plot - reasonable options for color map:
-    #   - hot_r, gist_heat_r, afmhot_r, GnBu,
-    plot_mass_limit_triangle(results,
-                             'mass_limit.pdf',
-                             'hot_r')
+    plot_limit_contours(results, 'limit_contours.pdf')
 
-    plot_mass_limit_triangle_with_contours(results,
-                             'mass_limit_contour.pdf',
-                             'hot_r')
-
-    # make plot of region choice for each mass
-    for mass in results['mass'].unique():
-        print 'mass:', mass
-        file_name = ''.join(('region_choice_vs_br',
-                             '_m_', str(mass),
-                             '.pdf'))
-        plot_region_choice_triangle(results[results['mass'] == mass], file_name)
-
-    # make cls vs mass plot for each choice of branching ratios
-    for br_e, br_t, br_m in itertools.product(results['bre'].unique(),
-                                              results['brt'].unique(),
-                                              results['brm'].unique()):
-        print 'bre: ', br_e, ' - brm: ', br_m, ' - brt: ', br_t
-        file_name = ''.join(['cls_vs_m',
-                         '_br_e_', str(int(br_e*100)),
-                         '_br_m_', str(int(br_m*100)),
-                         '_br_t_', str(int(br_t*100)),
-                         '.pdf'])
-        plot_single_cls_plot(results[(results['bre'] == br_e) &
-                                     (results['brm'] == br_m) &
-                                     (results['brt'] == br_t)],
-                             file_name)
+    # plot_mass_limit_triangle_with_contours(results,
+    #                          'mass_limit_contour.pdf',
+    #                          'hot_r')
+    #
+    # # make plot of region choice for each mass
+    # for mass in results['mass'].unique():
+    #     print 'mass:', mass
+    #     file_name = ''.join(('region_choice_vs_br',
+    #                          '_m_', str(int(mass)),
+    #                          '.pdf'))
+    #     plot_region_choice_triangle(results[results['mass'] == mass], file_name)
+    #
+    # # make cls vs mass plot for each choice of branching ratios
+    # for br_e, br_t, br_m in itertools.product(results['bre'].unique(),
+    #                                           results['brt'].unique(),
+    #                                           results['brm'].unique()):
+    #     print 'bre: ', br_e, ' - brm: ', br_m, ' - brt: ', br_t
+    #     file_name = ''.join(['cls_vs_m',
+    #                      '_br_e_', str(int(br_e*100)),
+    #                      '_br_m_', str(int(br_m*100)),
+    #                      '_br_t_', str(int(br_t*100)),
+    #                      '.pdf'])
+    #     plot_single_cls_plot(results[(results['bre'] == br_e) &
+    #                                  (results['brm'] == br_m) &
+    #                                  (results['brt'] == br_t)],
+    #                          file_name)
 
     print 'All done! Exiting!'
 

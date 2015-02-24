@@ -13,268 +13,162 @@ on lxplus, but haven't really tried very hard. I simply copy the root file to my
 laptop and run from there.
 """
 
-import sys
 import ContributionsHelpers as helpers
-import math
 from collections import OrderedDict
 import argparse
+import pickle
 
-from ROOT import RooStats
 
 # ------------------------------------------------------------------------------
-def createTableFromRegionContributions(region_df, regions_dict=None,
-                                       do_zn_sig=False, do_s_sqrt_b=False,
-                                       for_slides=False, **kwargs):
-    # get the region names from the data frame, and sort based on regions_dict
-    region_names = region_df['region'].unique()
-    region_names = helpers.sortRegionName(region_names, regions_dict)
+def write_single_table_line(df, systematic, sample_list, write_total):
+    # first subset the DF to include only the systematic of interest and the
+    # nominal runs
+    subset = df[df['systematic'].isin([systematic, 'NoSys'])]
 
-    # get sample names
-    bkg_sample_names = region_df[
-        -region_df['sample'].str.contains('stop')]['sample'].unique()
-    sig_sample_names = region_df[
-        region_df['sample'].str.contains('stop')]['sample'].unique()
+    # Start creating the table line with the systematic name
+    table_line = [systematic.replace('_', '\_').lower()]
 
-    bkg_sample_names = helpers.sortSampleNames(bkg_sample_names)
-    sig_sample_names = helpers.sortSampleNames(sig_sample_names)
+    # counters for totals
+    total = 0.
+    nominal_total = 0.
+
+    # step through the samples in the sample list
+    for sample in sample_list:
+        count = subset[(subset['systematic'] == systematic) &
+                       (subset['sample'] == sample)].iloc[0]['count']
+        nominal_count = subset[(subset['systematic'] == 'NoSys') &
+                               (subset['sample'] == sample)].iloc[0]['count']
+        total += count
+        nominal_total += nominal_count
+
+        if systematic == 'NoSys':
+            table_line.append(helpers.getNumString(count, 2))
+        else:
+            count = (count - nominal_count)
+            table_line.append(helpers.getNumString(count, 2, force_sign=True))
+
+    if write_total:
+        if systematic == 'NoSys':
+            table_line.append(helpers.getNumString(total, 2))
+        else:
+            total = (total - nominal_total)
+            table_line.append(helpers.getNumString(total, 2, force_sign=True))
+
+    print ' & '.join(table_line)
+    print '\\\\'
+
+# ------------------------------------------------------------------------------
+def create_systematic_table(region_df, is_signal=False):
+    # extract the samples names from the signal and background data frames
+    sample_names = region_df['sample'].unique()
+    if is_signal:
+        sample_names = helpers.sortSampleNames(sample_names)
+
+    systematic_names = region_df['systematic'].unique()
+    systematic_names = helpers.sortSystematicNames(systematic_names)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # print latex table header or start of slide
-    if for_slides:
-        slide_title = kwargs['title'] if 'title' in kwargs else '...'
-        print '\\begin{frame}'
-        print ''.join(['\\frametitle{',slide_title,'}'])
-        print '\\resizebox{\\linewidth}{!}{'
-        print '\\begin{tikzpicture}'
-        print '\\node[anchor=south west, inner sep=0] (image) at (0,0) {'
+    # print latex table header
+    print '\\begin{table}[h]'
+    print '\\centering{'
+    if is_signal:
+        print '\\begin{tabular}{c|%s}' % ('c'*len(sample_names))
     else:
-        print '\\begin{table}'
-        print '\\centering{'
-    print '\\begin{tabular}{c|%s}' % ('c'*len(region_names))
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # print title line
+        print '\\begin{tabular}{c|%s|c}' % ('c'*len(sample_names))
     print '\\toprule'
-    title_string = []
-    for region in region_names:
-        title_string.append(' & ')
-        title_string.append(helpers.getRegionTitle(region, regions_dict))
-    title_string.append(' \\\\')
-    print ''.join(title_string)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # print individual bkg sample contributions
+    # print header line
+    header_line = ['Systematic']
+    header_line.extend([helpers.getSampleTitle(sn) for sn in sample_names])
+    if not is_signal:
+        header_line.extend(['Bkg total'])
+    print ' & '.join(header_line)
+    print '\\\\'
     print '\\midrule'
-    for sample in bkg_sample_names:
-        sample_cont_string = [helpers.getSampleTitle(sample)]
-
-        sample_subset = region_df[region_df.sample == sample]
-        subset_regions = sample_subset.region.unique()
-        for region in region_names:
-            region_entries = 0
-            region_raw_entries = 0
-            if region in subset_regions:
-                region_entries = sample_subset[sample_subset.region ==
-                                               region].iloc[0]['count']
-            sample_cont_string.append(' & ')
-            sample_cont_string.append(helpers.getNumString(region_entries, 1))
-
-        sample_cont_string.append(' \\\\')
-        print ''.join(sample_cont_string)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # get the total region contributions and the uncertainty - to be used later
-    region_contributions = helpers.getTotalRegionContribution(region_df,
-                                                              bkg_sample_names,
-                                                              region_names)
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # print total background contributions
-    print '\\midrule'
-    bkg_total_string = ['Total']
-    bkg_uncert_string = ['background']
-    for region in region_names:
-        # if region in subset_regions:
-        if region in region_names:
-            bkg_total_string.append(' & ')
-            bkg_total_string.append(
-                helpers.getNumString(region_contributions[
-                                         region_contributions.region ==
-                                            region].iloc[0]['total'], 1))
-
-            bkg_uncert_string.append(' & ($\\pm$ ')
-            bkg_uncert_string.append(
-                helpers.getNumString(region_contributions[
-                                         region_contributions.region ==
-                                            region].iloc[0]['uncertainty'], 1))
-            bkg_uncert_string.append(')')
-    bkg_total_string.append(' \\\\')
-    bkg_uncert_string.append(' \\\\')
-    print ''.join(bkg_total_string)
-    print ''.join(bkg_uncert_string)
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # print signal contributions
-    print '\\midrule'
-    for sample in sig_sample_names:
-        signal_cont_string = ['\multirow{2}{*}{', sample, '}']
-        signal_rel_cont_string = ['']
-        signal_zn_string = ['{\color{green}$Z_N$}']
-        signal_s_sqrt_b_string = ['{\color{blue}$s/\\sqrt{b + \Delta b}$}']
-
-        sample_subset = region_df[region_df.sample == sample]
-        subset_regions = sample_subset.region.unique()
-        for region in region_names:
-            this_value = 0
-            if region in subset_regions:
-                this_value = sample_subset[
-                    sample_subset.region == region].iloc[0]['count']
-            signal_cont_string.append(' & ')
-            signal_rel_cont_string.append(' & ')
-            signal_zn_string.append(' & ')
-            signal_s_sqrt_b_string.append(' & ')
-
-            # append the number of signal events to the signal count string
-            signal_cont_string.append(helpers.getNumString(this_value, 1))
-
-            bkg_total = region_contributions[region_contributions.region ==
-                                                region].iloc[0]['total']
-            bkg_uncert = region_contributions[region_contributions.region ==
-                                                region].iloc[0]['uncertainty']
-
-            # append the signal/backround ratio to the rel content string
-            signal_rel_cont_string.append(' (')
-            signal_rel_cont_string.append(helpers.getNumString(
-                ( this_value/bkg_total), 1))
-            signal_rel_cont_string.append(')')
-
-            # append the zn value to the zn string
-            if 'SR' in region:
-                zn = RooStats.NumberCountingUtils.BinomialExpZ(this_value,
-                                                               bkg_total,
-                                                               (bkg_uncert/
-                                                                bkg_total))
-                signal_zn_string.append(''.join(['{\color{green}',
-                                                 helpers.getNumString(zn, 1),
-                                                 '}']))
-            else:
-                signal_zn_string.append('-')
-
-            # append the s/sqrt(b + uncertainty) to the s/sqrt(b) string
-            if 'SR' in region:
-                s_over_sqrt_b = this_value/math.sqrt(bkg_total + bkg_uncert)
-                signal_s_sqrt_b_string.append(
-                    ''.join(['{\color{blue}',
-                             helpers.getNumString(s_over_sqrt_b, 1),
-                             '}']))
-            else:
-                signal_s_sqrt_b_string.append('-')
-
-        # Print signal contribution and significance lines
-        print ''.join(signal_cont_string)
-        print '\\\\'
-        print ''.join(signal_rel_cont_string)
-        if do_s_sqrt_b:
-            print '\\\\'
-            print ''.join(signal_s_sqrt_b_string)
-        if do_zn_sig:
-            print '\\\\'
-            print ''.join(signal_zn_string)
-        print '\\vspace{1ex} \\\\'
+    # print body of table
+    for systematic in systematic_names:
+        write_single_table_line(df=region_df, systematic=systematic,
+                                sample_list=sample_names,
+                                write_total=not is_signal)
+        if systematic == 'NoSys':
+            print '\\midrule'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print end of table
     print '\\bottomrule'
     print '\\end{tabular}'
-    if for_slides:
-        print '};'
-        print '% \\begin{scope}[x={(image.south east)}, y={(image.north west)}]'
-        print '%   \\draw[red, ultra thick, rounded corners] (0.78, 0.00) rectangle (1.00, 0.48);'
-        print
-        print '%   % \\draw[help lines,xstep=.1,ystep=.1] (0,0) grid (1,1);'
-        print '%   % \\foreach \\x in {0,1,...,9} { \\node [anchor=north] at (\\x/10,0) {0.\\x}; }'
-        print '%   % \\foreach \\y in {0,1,...,9} { \\node [anchor=east] at (0,\\y/10) {0.\\y}; }'
-        print
-        print '% \\end{scope}'
-        print '\\end{tikzpicture}'
-        print '}'
-        print
-        print '\\begin{itemize}'
-        print '\\item ...'
-        print '\\end{itemize}'
-        print
-        print '\\end{frame}'
-    else:
-        print '}'
-        print '\\caption{TODO add caption here!}'
-        print '\\label{tab:XXX}'
-        print '\\end{table}'
+    print '}'
+    print '\\end{table}'
+    print '\n'*2
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # float barrier to make pdf pretty :-)
+    print '\\FloatBarrier'
+    print '\\pagebreak'
+    print
+    print
 
 # ------------------------------------------------------------------------------
-def main(bkg_name, sig_name):
+def main(bkg_name, sig_name, read_from_pickle=False):
     print "bkg name: ", bkg_name
     print "sig name: ", sig_name
 
-    bkg_region_df = helpers.extractRegionContributionsSystematicTree(bkg_name)
-    sig_region_df = helpers.extractRegionContributionsSystematicTree(sig_name)
+    if read_from_pickle:
+        with open('bkg_df.pickle', 'rb') as bkg_handle:
+            bkg_region_df = pickle.load(bkg_handle)
+        with open('sig_df.pickle', 'rb') as sig_handle:
+            sig_region_df = pickle.load(sig_handle)
+    else:
+        # extract data frames for each region/sample
+        bkg_region_df = helpers.extractRegionContributionsSystematicTree(bkg_name)
+        sig_region_df = helpers.extractRegionContributionsSystematicTree(sig_name)
 
-    print '-'*80
-    print 'bkg region df'
-    print bkg_region_df
-    print
-    print '-'*80
-    print 'sig region df'
-    print sig_region_df
+        with open('bkg_df.pickle', 'wb') as bkg_handle:
+            pickle.dump(bkg_region_df, bkg_handle)
+        with open('sig_df.pickle', 'wb') as sig_handle:
+            pickle.dump(sig_region_df, sig_handle)
 
-    return
+    sample_drop_list = ['_'.join(['sig', str(drop_mass)]) for drop_mass
+                        in range(100, 401, 100)]
+    sample_drop_list.append('data')
+    sample_drop_list.extend(['sig_600', 'sig_700'])
 
-    # print '% ============================================================'
-    # print '% = Original regions'
-    # print '% ============================================================'
-    # regions_dict = OrderedDict([('CR TOP', 'Top CR'),
-    #                             ('CR Z', 'Z CR'),
-    #                             ('VR TOP 1', 'Top VR 1'),
-    #                             ('VR TOP 2', 'Top VR 2'),
-    #                             ('VR TOP 3', 'Top VR 3'),
-    #                             ('VR TOP 4', 'Top VR 4'),
-    #                             ('VR Z', 'Z VR'),
-    #                             ('SR 1', 'SR')
-    #                             ])
-    # createTableFromRegionContributions(region_df, regions_dict,
-    #                                    do_s_sqrt_b=True, do_zn_sig=True,
-    #                                    for_slides=True,
-    #                                    title='Original regions')
+    systematic_drop_list = ['JES_UP', 'JES_DOWN']
 
-    def printTableHtSlice(ht):
-        print
-        print '% ============================================================'
-        print '% = ht ', ht
-        print '% ============================================================'
-        regions_dict = OrderedDict([('CR TOP MBL 200', 'Top CR'),
-                                    ('CR Z MBL 200', 'Z CR'),
-                                    ('VR TOP 1 MBL 200', 'Top VR 1'),
-                                    ('VR TOP 2 MBL 200', 'Top VR 2'),
-                                    ('VR TOP 3 MBL 200', 'Top VR 3'),
-                                    ('VR Z MBL 200', 'Z VR'),
-                                    (' '.join(['SR HT', str(ht), 'MBL 200']), 'SR 200'),
-                                    (' '.join(['SR HT', str(ht), 'MBL 400']), 'SR 400'),
-                                    (' '.join(['SR HT', str(ht), 'MBL 600']), 'SR 600'),
-                                    (' '.join(['SR HT', str(ht), 'MBL 800']), 'SR 800'),
-                                    ])
-        this_title=''.join(['$\\Mbl\\ge 200$ GeV and $h_\\mathrm{T} \\ge ',
-                            str(ht), '$ GeV'])
-        createTableFromRegionContributions(region_df, regions_dict,
-                                           do_s_sqrt_b=False, do_zn_sig=True,
-                                           for_slides=True,
-                                           title=this_title)
+    bkg_region_df = bkg_region_df[
+        ~bkg_region_df['sample'].isin(sample_drop_list)]
+    sig_region_df = sig_region_df[
+        ~sig_region_df['sample'].isin(sample_drop_list)]
 
-    printTableHtSlice(1100)
-    # printTableHtSlice(1000)
-    # printTableHtSlice(900)
-    # printTableHtSlice(800)
-    # printTableHtSlice(700)
-    # printTableHtSlice(600)
-    # printTableHtSlice(500)
+    bkg_region_df = bkg_region_df[
+        ~bkg_region_df['systematic'].isin(systematic_drop_list)]
+    sig_region_df = sig_region_df[
+        ~sig_region_df['systematic'].isin(systematic_drop_list)]
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    regions_dict = OrderedDict([('CR Top', 'Top CR'),
+                                ('CR Z', 'Z CR'),
+                                ('VR Top 1', 'Top VR 1'),
+                                ('VR Top 2', 'Top VR 2'),
+                                ('VR Top 3', 'Top VR 3'),
+                                ('VR Z', 'Z VR'),
+                                ('SR 400', 'SR 400'),
+                                ('SR 600', 'SR 600')])
+
+    for region_key, region_name in regions_dict.items():
+        print '\\section{', region_name, '}'
+        this_bkg_region_df = bkg_region_df[
+            bkg_region_df['region'] == region_key]
+        this_sig_region_df = sig_region_df[
+            sig_region_df['region'] == region_key]
+
+        create_systematic_table(region_df=this_bkg_region_df, is_signal=False)
+        if 'SR' in region_key:
+            create_systematic_table(region_df=this_sig_region_df,
+                                    is_signal=True)
 
 # ==============================================================================
 if __name__ == '__main__':
@@ -285,9 +179,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    print args
-
-    # bkg_sample_name = (sys.argv[1] if len(sys.argv) > 1
-    #         else '${BASE_WORK_DIR}/compare_plots.b_minus_l.root')
-    main(args.bkg, args.sig)
+    main(args.bkg, args.sig, read_from_pickle=True)
 
