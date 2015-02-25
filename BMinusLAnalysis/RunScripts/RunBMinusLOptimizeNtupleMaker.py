@@ -154,6 +154,9 @@ def runBMinusLOptimizeNtupleMaker( file_list
     if is_full_sim:
         bmlonm.setFullSim()
 
+    # set unblind!
+    bmlonm.setIsBlind(False)
+
     # turn on systematics
     syst_tag = ''
     if syst_struct:
