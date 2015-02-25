@@ -156,6 +156,9 @@ def runBMinusLAnalysis( file_list
     if is_full_sim:
         bmla.setFullSim()
 
+    # set unblind!
+    bmla.setIsBlind(False)
+
     # turn on systematics
     syst_tag = ''
     if syst_struct:
