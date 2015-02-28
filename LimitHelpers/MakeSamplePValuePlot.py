@@ -4,16 +4,17 @@ import glob
 import itertools
 
 import sys
+import pickle
+
 import pandas
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import ROOT
 
+# import ROOT
 import summary_harvest_tree_description as tree_summary
 
-ROOT.gStyle.SetOptStat(0)
-
+# ROOT.gStyle.SetOptStat(0)
 
 # ------------------------------------------------------------------------------
 def extract_branching_ratios(file_name):
@@ -43,7 +44,10 @@ def read_results_directory(dir_name):
     col_names_to_float = [col for col in results.columns if col != 'sr']
     results[col_names_to_float] = results[col_names_to_float].astype(float)
 
-    file_list = glob.glob('/'.join([dir_name, 'SampleExcl_*_harvest_list']))
+    file_list = glob.glob(
+        '/'.join([dir_name,
+                  'SampleExcl_*fixSigXSecNominal*_harvest_list']))
+
     for fl in file_list:
         branching_ratios = extract_branching_ratios(fl)
 
@@ -52,9 +56,6 @@ def read_results_directory(dir_name):
             # extract the mass and CLS from this entry of the tree
             this_mass = int(entry.mst)
             this_cls = entry.CLs
-
-            # TODO This is only here for testing purposes! remove when we have real observed CLs values
-            if 'observed' in dir_name: this_cls += 0.03
 
             # create list for this data frame entry and append to the end
             this_df_entry = [this_mass,
@@ -104,19 +105,24 @@ class MidpointNormalize(mpl.colors.Normalize):
 
 # ------------------------------------------------------------------------------
 def plot_styling(ax):
-    plt.axis([0.0, 1.0, 0.0, 1.0])
+    # plt.axis([0.0, 1.0, 0.0, 1.0])
+    ax.set_xlim((0,1))
+    ax.set_ylim((0,1))
 
-    plt.xlabel('$Br(\\tilde{t} \\rightarrow be)$', fontsize=14)
-    plt.ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$', fontsize=14)
+    ax.set_xlabel('$Br(\\tilde{t} \\rightarrow be)$', fontsize=14)
+    ax.set_ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$', fontsize=14)
 
     plt.xticks([i * 0.25 for i in xrange(5)])
     plt.yticks([i * 0.25 for i in xrange(5)])
+    # plt.xticks([i * 0.05 for i in xrange(21)])
+    # plt.yticks([i * 0.05 for i in xrange(21)])
     plt.grid(False)
+    # plt.grid(True)
 
-    plt.plot([0.00, 1.00], [1.00, 0.00], color='0.50', linestyle='--')
-    plt.plot([0.50, 0.33], [0.00, 0.33], color='0.75', linestyle=':')
-    plt.plot([0.00, 0.33], [0.50, 0.33], color='0.75', linestyle=':')
-    plt.plot([0.50, 0.33], [0.50, 0.33], color='0.75', linestyle=':')
+    ax.plot([0.00, 1.00], [1.00, 0.00], color='0.50', linestyle='--')
+    ax.plot([0.50, 0.33], [0.00, 0.33], color='0.75', linestyle=':')
+    ax.plot([0.00, 0.33], [0.50, 0.33], color='0.75', linestyle=':')
+    ax.plot([0.50, 0.33], [0.50, 0.33], color='0.75', linestyle=':')
 
     # mask off upper triangle
     mask_points = np.array([[0, 1], [1, 0], [1, 1]])
@@ -222,8 +228,8 @@ def plot_cls_triangle(result_df, out_file_name, draw_obs=True):
                          y=result_df['brt'],
                          C=result_df[cls_val],
                          cmap=plt.cm.RdYlBu,
-                         reduce_C_function=np.max,
-                         gridsize=(10, 4),
+                         reduce_C_function=np.min,
+                         gridsize=10,
                          norm=norm)
 
     # Add label with stop mass for this plot
@@ -300,12 +306,85 @@ def plot_cls_triangle_with_contour(result_df, out_file_name):
 
 
 # ------------------------------------------------------------------------------
+def smooth_limit_values(values, minimum_neighbors=4):
+    """
+    Smooth the contents of a np array to get rid of NANs. This smoothing
+     function simply replaces the NAN with the average of the neighbors
+    :param values: 2D ndarray of the CLs values to be smoothed
+    :param minimum_neighbors: Minimum number of valid neighbors needed
+     to smooth this point
+    :return: smoothed 2D ndarray
+    """
+    print 'smooth limit values - min neighbors: ', minimum_neighbors
+    num_rows = len(values)
+    num_cols = len(values[0])
+
+    # find the nan values in the ndarray
+    nan_value = np.isnan(values)
+    if sum(sum(nan_value)) == 0:
+        return values
+
+    # helper local function to check if a neighbor is valid
+    def neighbor_valid(row, col):
+        if row <= 0: return False
+        if col <= 0: return False
+        if row >= num_rows: return False
+        if col >= num_cols: return False
+
+        if np.isnan(values[row, col]): return False
+        if values[row, col] > 2: return False
+
+        return True
+
+    # get the locations of the NANs and loop over them
+    nan_indices = np.where(nan_value)
+    num_replaced = 0
+    for row_nan, col_nan in zip(np.nditer(nan_indices[0]),
+                                np.nditer(nan_indices[1])):
+        valid_l = neighbor_valid(row_nan-1, col_nan)
+        valid_r = neighbor_valid(row_nan+1, col_nan)
+        valid_u = neighbor_valid(row_nan, col_nan+1)
+        valid_d = neighbor_valid(row_nan, col_nan-1)
+
+        valid_lu = neighbor_valid(row_nan-1, col_nan+1)
+        valid_ld = neighbor_valid(row_nan-1, col_nan-1)
+        valid_ru = neighbor_valid(row_nan+1, col_nan+1)
+        valid_rd = neighbor_valid(row_nan+1, col_nan-1)
+
+        running_sum = 0
+        if valid_l: running_sum += values[row_nan-1][col_nan]
+        if valid_r: running_sum += values[row_nan+1][col_nan]
+        if valid_u: running_sum += values[row_nan][col_nan+1]
+        if valid_d: running_sum += values[row_nan][col_nan-1]
+
+        if valid_lu: running_sum += values[row_nan-1][col_nan+1]
+        if valid_ld: running_sum += values[row_nan-1][col_nan-1]
+        if valid_ru: running_sum += values[row_nan+1][col_nan+1]
+        if valid_rd: running_sum += values[row_nan+1][col_nan-1]
+
+        num_neighbors = (valid_l  + valid_r  + valid_u  + valid_u +
+                         valid_lu + valid_ld + valid_ru + valid_rd)
+        if num_neighbors >= minimum_neighbors:
+            values[row_nan, col_nan] = running_sum/num_neighbors
+            num_replaced += 1
+
+    print '    replaced ', num_replaced, ' NANs'
+
+    if num_replaced == 0:
+        minimum_neighbors -= 1
+    return smooth_limit_values(values,
+                               minimum_neighbors=minimum_neighbors)
+
+
+# ------------------------------------------------------------------------------
 def plot_limit_contours(result_df, out_file_name):
     """
     Function takes a data frame, with branching ratios and CLs values.
     Constructs a triangle with showing the CLs for each branching ratio choice
     """
     print 'plotting limit contours!'
+
+    result_df = result_df[result_df['mass'] >= 400]
 
     # drop all but the most sensitive row for each mass/br combination
     limit_df = pick_best_expected_sensitivity(result_df)
@@ -320,9 +399,16 @@ def plot_limit_contours(result_df, out_file_name):
                    'exp. limit 95% CL',
                    'exp. limit 68% CL']
 
-    mass_list = limit_df['mass'].unique()
+    mass_list = sorted(limit_df['mass'].unique())
+    print 'mass list: ', mass_list
 
-    for mass in mass_list:
+    x_panels, y_panels = (3,3)
+    fig = plt.figure(figsize=(20,15))
+
+    for panel, mass in enumerate(mass_list):
+        panel += 1
+        if panel >= x_panels: panel += 1
+
         # subset this mass and reshape to make useful for plotting
         mass_subset = limit_df[limit_df['mass'] == mass]
         mass_subset = dict(exp=mass_subset.pivot('brt', 'bre', 'cls_exp'),
@@ -333,18 +419,20 @@ def plot_limit_contours(result_df, out_file_name):
         brt_values = mass_subset['exp'].index.values
         cls_values = {key: subset.values for key, subset in mass_subset.items()}
 
-        # replace NAN values with 1 because no one likes NANs
-        for values in cls_values.values():
-            nan_value = np.isnan(values)
-            values[nan_value] = 999
-            # nan_values = np.isnan(cls_values)
-            # cls_values[nan_values] = 999
-
         bre, brt = np.meshgrid(bre_values, brt_values)
 
+        forbidden = bre+brt > 1
+        # replace forbidden values with 999
+        for values in cls_values.values():
+            values[forbidden] = 999
+
+        # apply smoothing for additional NANs
+        for values in cls_values.values():
+            values = smooth_limit_values(values, minimum_neighbors=6)
+
         # Construct plot
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
+        sp = plt.subplot(y_panels, x_panels, panel)
+
         exp_cont = plt.contour(bre, brt, cls_values['exp'], exp_levels,
                                colors='blue', linewidths=2,
                                linestyles=cont_styles, hold='on')
@@ -352,37 +440,39 @@ def plot_limit_contours(result_df, out_file_name):
                                colors='red', linewidths=2,
                                linestyles='-', hold='on')
 
-        # label plot objects and  draw legend
-        for it, label in enumerate(cont_labels):
-            exp_cont.collections[it].set_label(label)
-        obs_cont.collections[0].set_label('Observed')
-
-        legend_label_order = [
-            'Observed limit ($\pm 1 \sigma_\mathrm{theory}^\mathrm{SUSY}$)']
-        legend_label_order.extend(cont_labels[1:])
-        legend_label_order.extend(cont_labels[:1])
-
-        legend_object_order = exp_cont.collections
-        legend_object_order = legend_object_order[1:] + legend_object_order[:1]
-        legend_object_order.extend(obs_cont.collections)
-        legend_object_order = legend_object_order[-1:] + legend_object_order[
-                                                         :-1]
-
-        plt.legend(legend_object_order, legend_label_order, frameon=False)
-
         # add label with stop mass for this plot
         label_string = 'Stop mass = %d GeV' % mass
-        ax.text(0.55, 0.60, label_string, fontsize=16,
-                bbox={'boxstyle': 'round', 'facecolor': 'white', 'alpha': 0.8})
+        sp.text(0.25, 0.85, label_string, fontsize=14,
+                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
 
         # default styling
-        plot_styling(ax)
+        plot_styling(sp)
 
-        out_file_name = 'limit_contour_m_%d.pdf' % mass
+        # For the first plot, draw the legend in the top right
+        if panel == 1:
+            legend_sp = plt.subplot(y_panels, x_panels, x_panels)
+            legend_sp.axis('off')
 
-        # write plot to file
-        plt.savefig(out_file_name, bbox_inches='tight')
-        plt.close()
+            # label plot objects and  draw legend
+            for it, label in enumerate(cont_labels):
+                exp_cont.collections[it].set_label(label)
+            obs_cont.collections[0].set_label('Observed')
+
+            legend_label_order = [
+                'Observed limit ($\pm 1 \sigma_\mathrm{theory}^\mathrm{SUSY}$)']
+            legend_label_order.extend(cont_labels[1:])
+            legend_label_order.extend(cont_labels[:1])
+
+            legend_object_order = exp_cont.collections
+            legend_object_order = legend_object_order[1:] + legend_object_order[:1]
+            legend_object_order.extend(obs_cont.collections)
+            legend_object_order = legend_object_order[-1:] + legend_object_order[:-1]
+
+            plt.legend(legend_object_order, legend_label_order, frameon=False,
+                       fontsize=16, loc='upper center')
+
+    plt.savefig('limit_contour.pdf')
+    plt.close()
 
 
 # ------------------------------------------------------------------------------
@@ -422,7 +512,7 @@ def plot_mass_limit_triangle(result_df,
                          C=limit_df['mass'],
                          cmap=plt.get_cmap(cmap_string),
                          reduce_C_function=np.max,
-                         gridsize=(10, 4),
+                         gridsize=10,
                          norm=norm)
 
     # add color bar to right side
@@ -513,6 +603,9 @@ def plot_region_choice_triangle(result_df, out_file_name, mass=None):
     values_to_plot = []
     for bre, brt in itertools.product(result_df['bre'].unique(),
                                       result_df['brt'].unique()):
+        if bre % 0.1 != 0: continue
+        if brt % 0.1 != 0: continue
+
         subset = result_df[(result_df['bre'] == bre) &
                            (result_df['brt'] == brt)]
         if subset.empty: continue
@@ -570,9 +663,15 @@ def plot_single_cls_plot(result_df, out_file_name):
     for mass in result_df['mass'].unique():
         this_entry = [mass]
         for sr, exp_obs in itertools.product(sr_names, ['cls_obs', 'cls_exp']):
+            # cls_value = result_df[(result_df['mass'] == mass) &
+            #                       (result_df['sr'] == int(sr))].iloc[0][exp_obs]
             cls_value = result_df[(result_df['mass'] == mass) &
-                                  (result_df['sr'] == int(sr))].iloc[0][exp_obs]
-            this_entry.append(cls_value)
+                                  (result_df['sr'] == int(sr))][exp_obs]
+            if len(cls_value) > 0:
+                cls_value = cls_value.iloc[0]
+                this_entry.append(cls_value)
+            else:
+                this_entry.append(np.NaN)
 
         df_to_draw.loc[df_to_draw.shape[0]] = this_entry
 
@@ -614,14 +713,23 @@ def plot_single_cls_plot(result_df, out_file_name):
 
 
 # ------------------------------------------------------------------------------
-def make_p_value_plots():
+def make_p_value_plots(read_from_cache=False):
     # get results from hypothesis test
-    results = read_hypo_test_results()
+    if read_from_cache:
+        print 'Reading results from cache'
+        with open('results.pickle', 'rb') as results_file:
+            results = pickle.load(results_file)
+    else:
+        print 'reading results from list files'
+        results = read_hypo_test_results()
+        with open('results.pickle', 'wb') as results_file:
+            pickle.dump(results, results_file)
 
     # # make triangle plot for each stop mass
     # for mass, sr, draw_obs in itertools.product(results['mass'].unique(),
-    # results['sr'].unique(),
+    #                                             results['sr'].unique(),
     #                                             [True, False]):
+    #
     #     print ' '.join(['Making', 'Observed' if draw_obs else 'Expected',
     #                     'Cls triangle for mass: ', str(mass),
     #                     '-- sr: ', str(sr)])
@@ -629,7 +737,8 @@ def make_p_value_plots():
     #     file_name = 'cls_vs_br_m_%d_sr_%d' % (int(mass), sr)
     #     plot_cls_triangle(results[(results['mass'] == mass) &
     #                               (results['sr'] == sr)],
-    #                       file_name)
+    #                       out_file_name=file_name,
+    #                       draw_obs=draw_obs)
     #     # file_name = 'cls_vs_br_m_%d_sr_%d_contour' % (int(mass), sr)
     #     # plot_cls_triangle_with_contour(results[(results['mass'] == mass) &
     #     #                                        (results['sr'] == sr)],
@@ -680,4 +789,5 @@ def make_p_value_plots():
 
 # ==============================================================================
 if __name__ == "__main__":
-    make_p_value_plots()
+    make_p_value_plots(read_from_cache=True)
+
