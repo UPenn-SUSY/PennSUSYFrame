@@ -108,7 +108,7 @@ class MidpointNormalize(mpl.colors.Normalize):
         self.midpoint = midpoint
         mpl.colors.Normalize.__init__(self, vmin, vmax, clip)
 
-    def __call__(self, value):
+    def __call__(self, value, clip=None):
         x, y = [self.vmin, self.midpoint, self.vmax], [0, 0.5, 1]
         return np.ma.masked_array(np.interp(value, x, y))
 
@@ -460,7 +460,8 @@ def plot_cls_triangle(result_df, out_file_name, draw_obs=True):
                          C=result_df[cls_val],
                          cmap=plt.cm.RdYlBu,
                          reduce_C_function=np.min,
-                         gridsize=10,
+                         # gridsize=10,
+                         gridsize=20,
                          norm=norm)
 
     # Add label with stop mass for this plot
@@ -524,20 +525,13 @@ def plot_limit_contours(result_df, out_file_name):
 
         # subset this mass and reshape to make useful for plotting
         mass_subset = limit_df[limit_df['mass'] == mass]
-        mass_subset = dict(exp=mass_subset.pivot('brt', 'bre', 'cls_exp'),
-                           obs=mass_subset.pivot('brt', 'bre', 'cls_obs'))
+        mesh_exp = generate_mesh(mass_subset, 'cls_exp')
+        mesh_obs = generate_mesh(mass_subset, 'cls_obs')
 
         # extract grids of values
-        bre_values = mass_subset['exp'].columns.values
-        brt_values = mass_subset['exp'].index.values
-        cls_values = {key: subset.values for key, subset in mass_subset.items()}
-
-        bre, brt = np.meshgrid(bre_values, brt_values)
-
-        forbidden = bre+brt > 1
-        # replace forbidden values with 999
-        for values in cls_values.values():
-            values[forbidden] = 999
+        bre, brt = mesh_exp['bre'], mesh_exp['brt']
+        cls_values = dict(exp=mesh_exp['values'],
+                          obs=mesh_obs['values'])
 
         # Construct plot
         sp = plt.subplot(y_panels, x_panels, panel)
