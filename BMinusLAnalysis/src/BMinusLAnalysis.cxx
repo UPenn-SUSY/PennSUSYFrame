@@ -608,6 +608,31 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                        , m_bl_1
                        , m_event_weight
                        );
+        if (m_is_data) {
+          std::cout << "Event in SR 400 --"
+                    << " Run number: " << m_event.getRunNumber()
+                    << " Event number: " << m_event.getEventNumber()
+                    << "\n";
+
+          std::cout << "\tmbl_0: " << bl_mass_0 << "\n";
+          std::cout << "\tmbl_1: " << bl_mass_1 << "\n";
+          std::cout << "\tmbl asym: " << mbl_asym << "\n";
+          std::cout << "\tht: " << ht << "\n";
+          std::cout << "\tmet sig: " << met_sig << "\n";
+          std::cout << "\tl0 pt: "  << m_bl_0->getLepton()->getPt() << "\n";
+          std::cout << "\tl0 eta: " << m_bl_0->getLepton()->getEta() << "\n";
+          std::cout << "\tl0 phi: " << m_bl_0->getLepton()->getPhi() << "\n";
+          std::cout << "\tl1 pt: "  << m_bl_1->getLepton()->getPt() << "\n";
+          std::cout << "\tl1 eta: " << m_bl_1->getLepton()->getEta() << "\n";
+          std::cout << "\tl1 phi: " << m_bl_1->getLepton()->getPhi() << "\n";
+          std::cout << "\tb0 pt: "  << m_bl_0->getJet()->getPt() << "\n";
+          std::cout << "\tb0 eta: " << m_bl_0->getJet()->getEta() << "\n";
+          std::cout << "\tb0 phi: " << m_bl_0->getJet()->getPhi() << "\n";
+          std::cout << "\tb1 pt: "  << m_bl_1->getJet()->getPt() << "\n";
+          std::cout << "\tb1 eta: " << m_bl_1->getJet()->getEta() << "\n";
+          std::cout << "\tb1 phi: " << m_bl_1->getJet()->getPhi() << "\n";
+          std::cout << "\n";
+        }
       }
       if (bl_mass_0_ge_600) {
         fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_HT_1100_MBL_600
@@ -615,6 +640,12 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                        , m_bl_1
                        , m_event_weight
                        );
+        if (m_is_data) {
+          std::cout << "Event in SR 600 --"
+                    << " Run number: " << m_event.getRunNumber()
+                    << " Event number: " << m_event.getEventNumber()
+                    << "\n";
+        }
       }
       // if (bl_mass_0_ge_800) {
       //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_HT_1100_MBL_800

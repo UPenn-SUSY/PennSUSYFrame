@@ -1,6 +1,7 @@
 import itertools
 
-br_points = range(0,101, 5)
+br_points = range(0, 101, 5)
+# br_points = range(0, 101, 2)
 # br_points.append(33)
 sr_options = ['sr_ht_1100_mbl_400', 'sr_ht_1100_mbl_600']
 blind_options = [True, False]
@@ -13,6 +14,8 @@ for bre, brm, sr_opt, is_blind in itertools.product(br_points,
                                                     blind_options):
     brt = 100 - bre - brm
     if brt < 0: continue
+    if not bre % 5 == 0 and not bre % 2 == 0: continue
+    if not brt % 5 == 0 and not brt % 2 == 0: continue
     print bre, ' -- ', brm, ' -- ', brt
 
     blind_string = 'blind' if is_blind else 'unblind'

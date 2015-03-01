@@ -25,12 +25,8 @@ import FlavorChannelScaling as scaling
 import SampleExclBinning as binning
 
 # ------------------------------------------------------------------------------
-# Some flags for overridding normal execution and telling ROOT to shut up...
-# - use with caution!
-#gROOT.ProcessLine("gErrorIgnoreLevel=10001;")
-#configMgr.plotHistos = True
-# configMgr.blindSR = True
-configMgr.blindSR = False
+if 'is_blind' not in vars(): is_blind = False
+configMgr.blindSR = is_blind
 
 # ------------------------------------------------------------------------------
 # Flags to tune the stop branching ratios
@@ -44,7 +40,7 @@ print 'stop br e: ', stop_br_e
 print 'stop br m: ', stop_br_m
 print 'stop br t: ', stop_br_t
 print 'signal region: ', test_sr
-# print 'sig xsec variation; ', sig_xsec_variation
+print 'is blind: ', is_blind
 
 # ------------------------------------------------------------------------------
 # Flags to control which fit is executed
@@ -82,7 +78,7 @@ configMgr.testStatType=3
 configMgr.nPoints=10
 
 # do we scale the signal cross section up/down
-configMgr.fixSigXSec = True  # fix SigXSec: 0, +/-1sigma 
+configMgr.fixSigXSec = True  # fix SigXSec: 0, +/-1sigma
 if myFitType == FitType.Background:
     configMgr.fixSigXSec = False
 
@@ -101,6 +97,7 @@ analysis_name.extend(['bre', str(int(100*stop_br_e)),
                       'brt', str(int(100*stop_br_t))])
 if myFitType == FitType.Exclusion:
     analysis_name.append(test_sr)
+analysis_name.append('blind' if is_blind else 'unblind')
 
 # Define HistFactory attributes
 configMgr.analysisName = '_'.join(analysis_name)
@@ -541,7 +538,7 @@ if do_validation:
                                           this_vr_name,
                                           binning.get_binning('flavor_channel',
                                                               single_bin=False)))
-            vr_list[-1].titleX = 'Flavor Channel'
+                vr_list[-1].titleX = 'Flavor Channel'
 
             vr_list.append(addChannel(background_config,
                                       'mbl_0',
@@ -549,12 +546,14 @@ if do_validation:
                                       binning.get_binning('mbl',
                                                           single_bin=False)))
             vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+
             vr_list.append(addChannel(background_config,
                                       'mbl_1',
                                       this_vr_name,
                                       binning.get_binning('mbl',
                                                           single_bin=False)))
             vr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
+
             vr_list.append(addChannel(background_config,
                                       'ht_signal',
                                       this_vr_name,
@@ -564,7 +563,7 @@ if do_validation:
 
             # add theory systematics!
             # this is pretty ugly :-(
-            if 'VR_top_1' in cr_name:   syst_region = 'VR_top_1'
+            if   'VR_top_1' in cr_name: syst_region = 'VR_top_1'
             elif 'VR_top_2' in cr_name: syst_region = 'VR_top_2'
             elif 'VR_top_3' in cr_name: syst_region = 'VR_top_3'
             elif 'VR_Z' in cr_name:     syst_region = 'VR_Z'
@@ -573,14 +572,10 @@ if do_validation:
 
             this_theort_uncert_dict = theory_uncert[syst_region]
             for sample in this_theort_uncert_dict:
-                if sample == 'Top':
-                    this_sample = 'ttbar'
-                elif sample == 'ST':
-                    this_sample = 'SingleTop'
-                elif sample == 'ZX':
-                    this_sample = 'ZGamma'
-                else:
-                    continue
+                if   sample == 'Top': this_sample = 'ttbar'
+                elif sample == 'ST':  this_sample = 'SingleTop'
+                elif sample == 'ZX':  this_sample = 'ZGamma'
+                else:                 continue
 
                 for systematic in this_theort_uncert_dict[sample]:
                     vr_list[-1].getSample(this_sample).addSystematic(systematic)
@@ -609,12 +604,14 @@ if do_validation:
                                         binning.get_binning('mbl',
                                                             single_bin=False)))
                 vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+
             vr_list.append(addChannel(background_config,
                                       'mbl_1',
                                       this_cr_name,
                                       binning.get_binning('mbl',
                                                           single_bin=False)))
             vr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
+
             vr_list.append(addChannel(background_config,
                                       'ht_signal',
                                       this_cr_name,
@@ -626,23 +623,16 @@ if do_validation:
 
             # add theory systematics!
             # this is pretty ugly :-(
-            if 'CR_top' in cr_name:
-                syst_region = 'CR_top'
-            elif 'CR_Z' in cr_name:
-                syst_region = 'CR_Z'
-            else:
-                continue
+            if   'CR_top' in cr_name: syst_region = 'CR_top'
+            elif 'CR_Z' in cr_name:   syst_region = 'CR_Z'
+            else:                     continue
 
             this_theort_uncert_dict = theory_uncert[syst_region]
             for sample in this_theort_uncert_dict:
-                if sample == 'Top':
-                    this_sample = 'ttbar'
-                elif sample == 'ST':
-                    this_sample = 'SingleTop'
-                elif sample == 'ZX':
-                    this_sample = 'ZGamma'
-                else:
-                    continue
+                if   sample == 'Top': this_sample = 'ttbar'
+                elif sample == 'ST':  this_sample = 'SingleTop'
+                elif sample == 'ZX':  this_sample = 'ZGamma'
+                else:                 continue
 
                 for systematic in this_theort_uncert_dict[sample]:
                     vr_list[-1].getSample(this_sample).addSystematic(systematic)
@@ -669,33 +659,43 @@ if not myFitType == FitType.Discovery:
                                   region_name,
                                   binning.get_binning('mbl',
                                                       single_bin=binning.single_bin_signal)))
+        sr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+
         if myFitType == FitType.Background:
             sr_list.append(addChannel(background_config,
                                       "mbl_1",
                                       region_name,
                                       binning.get_binning('mbl',
                                                           single_bin=binning.single_bin_signal)))
+            sr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
 
             sr_list.append(addChannel(background_config,
                                       "mbl_asym",
                                       region_name,
                                       binning.get_binning('mbl_asym',
                                                           single_bin=binning.single_bin_signal)))
+            sr_list[-1].titleX = 'm_{bl} asymmetry'
+
             sr_list.append(addChannel(background_config,
                                       "ht_signal",
                                       region_name,
                                       binning.get_binning('ht_sr',
                                                           single_bin=binning.single_bin_signal)))
+            sr_list[-1].titleX = 'H_{T} [GeV]'
+
             sr_list.append(addChannel(background_config,
                                       "met_sig_signal",
                                       region_name,
                                       binning.get_binning('met_sig',
                                                           single_bin=binning.single_bin_signal)))
+            sr_list[-1].titleX = 'E_{T}^{miss} significance [GeV^{1/2}]'
+
             sr_list.append(addChannel(background_config,
                                       "mll",
                                       region_name,
                                       binning.get_binning('mll',
                                                           single_bin=binning.single_bin_signal)))
+            sr_list[-1].titleX = 'm_{ll} [GeV]'
 
         # add theory systematics!
         # this is pretty ugly :-(
@@ -719,7 +719,8 @@ if not myFitType == FitType.Discovery:
         sr.useUnderflowBin = True
         sr.useOverflowBin  = True
         sr.titleY = "Entries"
-        sr.logY = False
+        sr.logY = True
+        sr.maxY = 5
         sr.ATLASLabelX = 0.25
         sr.ATLASLabelY = 0.85
         sr.ATLASLabelText = "Work in progress"
@@ -741,6 +742,7 @@ if myFitType == FitType.Exclusion:
     print 'Setting up exclusion fit!'
     sig_sample_list=['sig_100', 'sig_200', 'sig_300', 'sig_400', 'sig_500',
                      'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
+    # sig_sample_list=['sig_900']
 
     sig_samples = []
     for sig in sig_sample_list:
