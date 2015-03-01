@@ -19,6 +19,7 @@ import summary_harvest_tree_description as tree_summary
 text_box_style = dict(boxstyle='round', facecolor='white', alpha=0.8)
 # ------------------------------------------------------------------------------
 
+
 # ------------------------------------------------------------------------------
 def extract_branching_ratios(file_name):
     """
@@ -58,7 +59,8 @@ def read_results_directory(dir_name):
             this_cls = entry.CLs
 
             # create list for this data frame entry and append to the end
-            this_df_entry = [this_mass,
+            this_df_entry = [False,
+                             this_mass,
                              branching_ratios['br']['bre'] / 100.,
                              branching_ratios['br']['brm'] / 100.,
                              branching_ratios['br']['brt'] / 100.,
@@ -66,8 +68,9 @@ def read_results_directory(dir_name):
                              this_cls]
             results_list.append(this_df_entry)
 
-    results = pandas.DataFrame(results_list, columns=('mass', 'bre', 'brm',
-                                                      'brt', 'sr', 'cls'))
+    results = pandas.DataFrame(results_list, columns=('extra', 'mass', 'bre',
+                                                      'brm', 'brt', 'sr',
+                                                      'cls'))
     col_names_to_float = [col for col in results.columns if col != 'sr']
     results[col_names_to_float] = results[col_names_to_float].astype(float)
 
@@ -77,6 +80,13 @@ def read_results_directory(dir_name):
 # ------------------------------------------------------------------------------
 def read_hypo_test_results():
     # read results from files
+    """
+    Read the results from the sample list files provided by HistFitter,
+    and return a merged data frame with both expected and observed results
+
+    :return: data frame with expected and observed results
+    :rtype : pandas.DataFrame
+    """
     results_exp = read_results_directory('SampleLists_expected')
     results_obs = read_results_directory('SampleLists_observed')
 
@@ -98,7 +108,6 @@ def read_hypo_test_results():
 
 
 # ------------------------------------------------------------------------------
-# TODO if this works, try and understand what is going on!
 class MidpointNormalize(mpl.colors.Normalize):
     """
     ...
@@ -142,13 +151,50 @@ def plot_styling(ax):
 
 
 # ------------------------------------------------------------------------------
-def fill_in_missing_rows(df):
+def add_atlas_labels(upper_coordinate=0.91,
+                     right_coordinate=0.80,
+                     fontsize=16,
+                     atlas_offset=0.25,
+                     line_spacing=0.05,
+                     left_margin=0.1,
+                     right_margin=0.99,
+                     top_margin=0.92,
+                     bottom_margin=0.1):
     """
-    ...
+    Add label with ATLAS boilerplate
+    :return: None
+    """
+    # update the plot margins
+    plt.subplots_adjust(left=left_margin, right=right_margin, top=top_margin,
+                        bottom=bottom_margin)
+
+    plt.figtext(right_coordinate- atlas_offset, upper_coordinate,
+                'ATLAS', fontsize=fontsize, fontweight='bold', style='italic',
+                verticalalignment='top', horizontalalignment='right')
+    plt.figtext(right_coordinate, upper_coordinate, 'Work in progress',
+                fontsize=fontsize, verticalalignment='top',
+                horizontalalignment='right')
+
+    lumi_text = '$\\int\\,\\mathrm{L dt} = 20.3 \\, \\mathrm{fb}^{-1}$'
+    lumi_text += ', $\\sqrt{s} = 8$ TeV'
+    plt.figtext(right_coordinate, upper_coordinate- line_spacing,
+                lumi_text, fontsize=fontsize-2, verticalalignment='top',
+                horizontalalignment='right')
+
+    production_text = '$\\tilde{t}_1 \\tilde{t}_1}$ production, '
+    production_text += '$\\tilde{t}_1 \\rightarrow b\ell$'
+    plt.figtext(left_margin+0.01, top_margin+0.01, production_text,
+                fontsize=fontsize-2, verticalalignment='bottom',
+                horizontalalignment='left')
+
+# ------------------------------------------------------------------------------
+def fill_in_missing_rows(df, extra_rows=True):
+    """
+    Step through a data frame and look for rows which appear to be missing.
+
     :param df: data frame to fill in missing rows
     :return: filled in data frame
     """
-    # TODO add docstring
     print 'filling in missing rows'
 
     # get list of mass, bre, brt, sr values in the data frame
@@ -172,12 +218,13 @@ def fill_in_missing_rows(df):
 
         if df[(df['mass'] == mass) & (df['sr'] == sr) &
                 (df['bre'] == bre) & (df['brt'] == brt)].empty:
-            rows_to_append.append([mass, bre, (1-bre-brt), brt, sr,
-                                   np.nan, np.nan])
+            rows_to_append.append([extra_rows, mass, bre, (1-bre-brt), brt,
+                                   sr, np.nan, np.nan])
 
     # add new rows to data frame
-    df = df.append(pandas.DataFrame(rows_to_append, columns=df.columns),
-                   ignore_index=True)
+    if len(rows_to_append) > 0:
+        df = df.append(pandas.DataFrame(rows_to_append, columns=df.columns),
+                       ignore_index=True)
 
     return df
 
@@ -185,12 +232,14 @@ def fill_in_missing_rows(df):
 # ------------------------------------------------------------------------------
 def generate_mesh(df, column_name):
     """
+    Generate mesh of points from a data frame - this mesh is used for plotting
+    The rows and columns are made from the bre/brt columns, and the values
+    are taken from a column that is specified.
 
-    :param df:
-    :param column_name:
-    :return:
+    :param df: data frame to convert to mesh grid
+    :param column_name: Column used to fill the values in the mesh grid
+    :return: Dictionary containing the bre, brt, and values mesh grids
     """
-    # TODO write a docstring
     grid_to_mesh = df.pivot('brt', 'bre', column_name)
     bre_values = grid_to_mesh.columns.values
     brt_values = grid_to_mesh.index.values
@@ -205,7 +254,7 @@ def generate_mesh(df, column_name):
 
 
 # ------------------------------------------------------------------------------
-def fill_in_missing_values_in_grid(values, minimum_neighbors=6):
+def fill_in_missing_values_in_grid(values, minimum_neighbors=3):
     """
     Smooth the contents of a np array to get rid of NANs. This smoothing
      function simply replaces the NAN with the average of the neighbors
@@ -215,7 +264,7 @@ def fill_in_missing_values_in_grid(values, minimum_neighbors=6):
      to smooth this point
     :return: smoothed 2D ndarray
     """
-    print 'smooth limit values - min neighbors: ', minimum_neighbors
+    # print 'smooth limit values - min neighbors: ', minimum_neighbors
     # print values
     num_rows = len(values)
     num_cols = len(values[0])
@@ -258,32 +307,50 @@ def fill_in_missing_values_in_grid(values, minimum_neighbors=6):
         valid_ru = neighbor_valid(row_nan+1, col_nan+1)
         valid_rd = neighbor_valid(row_nan+1, col_nan-1)
 
-        running_sum = 0
+        running_sum = 0.
+        num_neighbors = 0.
         if valid_l:
             running_sum += values[row_nan-1][col_nan]
+            num_neighbors += 1
         if valid_r:
             running_sum += values[row_nan+1][col_nan]
+            num_neighbors += 1
         if valid_u:
-            running_sum += values[row_nan][col_nan+1]
+            running_sum += 0.5*values[row_nan][col_nan+1]
+            num_neighbors += 0.5
         if valid_d:
-            running_sum += values[row_nan][col_nan-1]
+            running_sum += 0.5*values[row_nan][col_nan-1]
+            num_neighbors += 0.5
 
         if valid_lu:
-            running_sum += values[row_nan-1][col_nan+1]
+            running_sum += 0.25*values[row_nan-1][col_nan+1]
+            num_neighbors += 0.25
         if valid_ld:
-            running_sum += values[row_nan-1][col_nan-1]
+            running_sum += 0.25*values[row_nan-1][col_nan-1]
+            num_neighbors += 0.25
         if valid_ru:
-            running_sum += values[row_nan+1][col_nan+1]
+            running_sum += 0.25*values[row_nan+1][col_nan+1]
+            num_neighbors += 0.25
         if valid_rd:
-            running_sum += values[row_nan+1][col_nan-1]
+            running_sum += 0.25*values[row_nan+1][col_nan-1]
+            num_neighbors += 0.25
 
-        num_neighbors = (valid_l + valid_r + valid_u + valid_u +
-                         valid_lu + valid_ld + valid_ru + valid_rd)
+        # num_neighbors = (valid_l + valid_r + valid_u + valid_u +
+        #                  valid_lu + valid_ld + valid_ru + valid_rd)
         if num_neighbors >= minimum_neighbors:
+            if num_neighbors == 0:
+                print 'num_neighbors = 0'
+                print '  min neighbors: ', minimum_neighbors
+                print '  row_nan: ', row_nan, ' - col_nan: ', col_nan
+                print '  num_rows: ', num_rows, ' - num_cols: ', num_cols
+                print values[row_nan, col_nan]
+                print values[row_nan+1, col_nan+1]
+                print values[row_nan+2, col_nan+2]
+                print values
             values[row_nan, col_nan] = running_sum/num_neighbors
             num_replaced += 1
 
-    print '    replaced ', num_replaced, ' NANs'
+    # print '    replaced ', num_replaced, ' NANs'
 
     if num_replaced == 0:
         minimum_neighbors -= 1
@@ -292,7 +359,7 @@ def fill_in_missing_values_in_grid(values, minimum_neighbors=6):
 
 
 # ------------------------------------------------------------------------------
-def fill_in_missing_values_in_df(df, column_name):
+def fill_in_missing_values_in_df(df, column_name, minimum_neighbors=3):
     """
     Function to take a data frame df and find/fill in any missing values
 
@@ -325,7 +392,7 @@ def fill_in_missing_values_in_df(df, column_name):
 
         # fill in missing values in the grid
         grid_to_smooth['values'] = fill_in_missing_values_in_grid(
-            grid_to_smooth['values'])
+            grid_to_smooth['values'], minimum_neighbors=minimum_neighbors)
 
         # step through the indices of missing (previously) missing values to
         #  replace the NAN in the data frame
@@ -343,16 +410,67 @@ def fill_in_missing_values_in_df(df, column_name):
     return df
 
 
+# ------------------------------------------------------------------------------
+def double_density(df):
+    """
+    Function which takes a dta frame, and increases the density of points in
+    the branching ratio plane. The points are then filled in by interpolating
+    between the existing points
+
+    :param df: data frame which is to be extended
+    :return: extended data frame
+    """
+    print 'Doubling the point density and interpolating'
+    bre_list = sorted(df['bre'].unique())
+    brt_list = sorted(df['brt'].unique())
+    mass_list = sorted(df['mass'].unique())
+    sr_list = sorted(df['sr'].unique())
+
+    # adding intermediate points to the branding ratio lists
+    bre_list.extend([(a+b)/2. for a, b in zip(bre_list[:-1], bre_list[1:])])
+    brt_list.extend([(a+b)/2. for a, b in zip(brt_list[:-1], brt_list[1:])])
+
+    bre_list = sorted(bre_list)
+    brt_list = sorted(brt_list)
+
+    # step through all combinations and add row for each combination which is
+    #  missing
+    rows_to_append = []
+    for bre, brt, mass, sr in itertools.product(bre_list, brt_list,
+                                                mass_list, sr_list):
+        if bre+brt > 1:
+            continue
+
+        if df[(df['bre'] == bre) & (df['brt'] == brt) &
+              (df['mass'] == mass) & (df['sr'] == sr)].empty:
+            rows_to_append.append([True, mass, bre, (1-bre-brt), brt, sr,
+                                   np.nan, np.nan])
+
+    # append new rows to data frame
+    if len(rows_to_append) > 0:
+        df = df.append(pandas.DataFrame(rows_to_append, columns=df.columns),
+                       ignore_index=True)
+
+    # fill in missing rows and values
+    df = fill_in_missing_rows(df, extra_rows=True)
+    df = fill_in_missing_values_in_df(df, 'cls_exp', minimum_neighbors=2)
+    df = fill_in_missing_values_in_df(df, 'cls_obs', minimum_neighbors=2)
+
+    # return the new data frame with higher density
+    return df
+
 
 # ------------------------------------------------------------------------------
 def pick_best_expected_sensitivity(df):
     """
-
-    :param df:
-    :return:
-    :rtype:
+    Step through a data frame, and for each mass/branching ratio combination,
+    choose the signal region that gives the best expected sensitivity. The
+    expected sensitivity is determined by taking the region with the
+    minimum expected CLs
+    :param df: data frame to process, and search for minimum CLs
+    :return: data frame with only the best sensitivity values included
+    :rtype: pandas.DataFrame
     """
-    # TODO add docstring
     cls_value = 'cls_exp'
 
     # pick the region with the best **expected** sensitivity
@@ -368,7 +486,8 @@ def pick_best_expected_sensitivity(df):
                     (df['brt'] == brt) &
                     (df['mass'] == mass)]
         num_rows = len(subset)
-        if num_rows == 0:
+        # if num_rows == 0:
+        if num_rows < 2:
             continue
 
         # find the minimum cls value and flag the remaining SRs for removal
@@ -410,12 +529,14 @@ def pick_best_expected_sensitivity(df):
 # ------------------------------------------------------------------------------
 def pick_highest_excluded_mass(df, confidence_level):
     """
+    step through a data frame, and for each branching ratio combination,
+     select the highest mass that is excluded to a given confidence level
 
-    :param df:
-    :param confidence_level:
-    :return:
+    :param df: data frame to search
+    :param confidence_level: confidence level to determine the exclusion
+    :return: data frame with only the maximum mass included for each branching
+     ratio
     """
-    # TODO add docstring
     bre_list = df['bre'].unique()
     brt_list = df['brt'].unique()
 
@@ -438,17 +559,17 @@ def pick_highest_excluded_mass(df, confidence_level):
 
 
 # ------------------------------------------------------------------------------
-def plot_cls_triangle(result_df, out_file_name, draw_obs=True):
+def plot_cls_triangle(result_df, out_file_name, draw_obs=True, gridsize=25):
     """
     Function takes a data frame, with branching ratios and CLs values.
     Constructs a triangle with showing the CLs for each branching ratio choice
 
-    :param result_df:
-    :param out_file_name:
-    :param draw_obs:
-    :return:
+    :param result_df: data frame to plot from
+    :param out_file_name: Output file name
+    :param draw_obs: True if observed. False if expected
+    :param gridsize: grid size for the hexbin plot
+    :return: None
     """
-    # TODO write a docstring
     norm = MidpointNormalize(vmin=0., vmax=0.10, midpoint=0.05)
 
     cls_val = 'cls_obs' if draw_obs else 'cls_exp'
@@ -460,16 +581,19 @@ def plot_cls_triangle(result_df, out_file_name, draw_obs=True):
                          C=result_df[cls_val],
                          cmap=plt.cm.RdYlBu,
                          reduce_C_function=np.min,
-                         # gridsize=10,
-                         gridsize=20,
+                         gridsize=gridsize,
                          norm=norm)
 
     # Add label with stop mass for this plot
-    label_string = 'Stop mass = %d GeV\n' % result_df['mass'].iloc[0]
-    label_string += 'Observed' if draw_obs else 'Expected'
-    ax.text(0.65, 0.85, label_string, fontsize=16, verticalalignment='center',
-            horizontalalignment='center', multialignment='center',
-            bbox=text_box_style)
+    mass_label_string = 'Stop mass = %d GeV' % result_df['mass'].iloc[0]
+    ax.text(0.98, 0.82, mass_label_string, fontsize=14, verticalalignment='top',
+            horizontalalignment='right')
+
+    sr_label_string = 'SR %s: ' % result_df['sr'].iloc[0]
+    sr_label_string += 'Observed' if draw_obs else 'Expected'
+    sr_label_string += ' $CL_{S}$'
+    ax.text(0.98, 0.77, sr_label_string, fontsize=14, verticalalignment='top',
+            horizontalalignment='right')
 
     # add color bar to right side
     cb = plt.colorbar(my_plot, spacing='uniform', extend='max')
@@ -477,11 +601,13 @@ def plot_cls_triangle(result_df, out_file_name, draw_obs=True):
 
     # default plot styling
     plot_styling(ax)
+    add_atlas_labels(upper_coordinate=0.90, right_coordinate=0.80,
+                     fontsize=16)
 
     # write plot to file
     full_out_file_name = '%s_%s.pdf' % (out_file_name,
                                         'obs' if draw_obs else 'exp')
-    plt.savefig(full_out_file_name, bbox_inches='tight')
+    plt.savefig(full_out_file_name)
     plt.close()
 
 
@@ -491,17 +617,17 @@ def plot_limit_contours(result_df, out_file_name):
     Function takes a data frame, with branching ratios and CLs values.
     Constructs a triangle with showing the CLs for each branching ratio choice
 
-    :param result_df:
-    :param out_file_name:
-    :return:
+    :param result_df: data frame used to make the plots
+    :param out_file_name: output file name
+    :return: None
     """
-    # TODO write a docstring
     print 'plotting limit contours!'
 
-    result_df = result_df[result_df['mass'] >= 400]
+    result_df = result_df[(result_df['mass'] >= 400)]
 
     # drop all but the most sensitive row for each mass/br combination
     limit_df = pick_best_expected_sensitivity(result_df)
+    # limit_df = result_df
 
     # levels to draw - this is a little ugly, but I want a particular order
     exp_levels = [(1 - 0.99), (1 - 0.95), (1 - 0.68)]
@@ -545,7 +671,7 @@ def plot_limit_contours(result_df, out_file_name):
 
         # add label with stop mass for this plot
         label_string = 'Stop mass = %d GeV' % mass
-        sp.text(0.95, 0.95, label_string, fontsize=14, bbox=text_box_style,
+        sp.text(0.95, 0.95, label_string, fontsize=18, bbox=text_box_style,
                 horizontalalignment='right', verticalalignment='top')
 
         # default styling
@@ -573,7 +699,12 @@ def plot_limit_contours(result_df, out_file_name):
             object_order = object_order[-1:] + object_order[:-1]
 
             plt.legend(object_order, label_order, frameon=False,
-                       fontsize=16, loc='upper center')
+                       fontsize=18, loc='center')
+
+            add_atlas_labels(upper_coordinate=0.95, right_coordinate=0.95,
+                             fontsize=24, atlas_offset=0.15, line_spacing=0.03,
+                             left_margin=0.05, right_margin=0.97,
+                             top_margin=0.95, bottom_margin=0.05)
 
     plt.savefig(out_file_name)
     plt.close()
@@ -586,25 +717,30 @@ def plot_mass_limit_triangle(result_df,
                              cmap_string='hot_r',
                              vmin=0,
                              vmax=1000,
-                             midpoint=800):
+                             midpoint=800,
+                             gridsize=25):
     """
     Function takes a data frame, with branching ratios, masses, and CLs values.
     Constructs a triangle with showing the maximum mass which is excluded at
     each point in the branching ratio triangle.
-    :param result_df:
-    :param out_file_name:
-    :param draw_obs:
-    :param cmap_string:
-    :param vmin:
-    :param vmax:
-    :param midpoint:
+
+    :param result_df: data frame holding data for the plot
+    :param out_file_name: output file name
+    :param draw_obs: True for observed limit. False for expected limit
+    :param cmap_string: color map
+    :param vmin: minimum of color bar
+    :param vmax: maximum of color bar
+    :param midpoint: midpoint of color bar
+    :param gridsize: gridsize for the hexplot
+    :return: None
     """
-    # TODO write a docstring
     # get the correct cls column name
     cls_val = 'cls_obs' if draw_obs else 'cls_exp'
 
     # extract the rows of the data frame which are excluded using the cls metric
+    print 'picking region with best expected sensitivity'
     limit_df = pick_best_expected_sensitivity(result_df)
+    print 'Dropping all rows which are not excluded'
     limit_df = limit_df[limit_df[cls_val] < 0.05]
 
     norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=midpoint)
@@ -617,22 +753,26 @@ def plot_mass_limit_triangle(result_df,
                          C=limit_df['mass'],
                          cmap=plt.get_cmap(cmap_string),
                          reduce_C_function=np.max,
-                         gridsize=10,
+                         gridsize=gridsize,
                          norm=norm)
 
     # add color bar to right side
     cb = plt.colorbar(my_plot, spacing='uniform')
-    cb.set_ticks(range(vmin, vmax + 1, 100))
+    cb.set_ticks(range(vmin, vmax+1, 100))
     cb.set_label('Stop mass [GeV]')
 
     # default plot styling
     plot_styling(ax)
+    add_atlas_labels(upper_coordinate=0.90, right_coordinate=0.80, fontsize=16)
 
     # draw label for observed/expected
-    obs_exp_label_string = "Observed" if draw_obs else "Expected"
-    ax.text(0.65, 0.85, obs_exp_label_string, fontsize=16,
-            verticalalignment='center', horizontalalignment='center',
-            bbox=text_box_style)
+    label_string = "Observed" if draw_obs else "Expected"
+    label_string += ' mass limit'
+    # ax.text(0.65, 0.85, label_string, fontsize=14,
+    #         verticalalignment='center', horizontalalignment='center',
+    #         bbox=text_box_style)
+    ax.text(0.98, 0.82, label_string, fontsize=14, verticalalignment='top',
+            horizontalalignment='right')
 
     # write plot to file
     full_out_file_name = '%s_%s.pdf' % (out_file_name,
@@ -647,8 +787,12 @@ def plot_region_choice_triangle(result_df, out_file_name, mass=None):
     Function takes a data frame, with branching ratios, masses, and CLs values.
     Constructs a triangle with showing the maximum mass which is excluded at
     each point in the branching ratio triangle.
+
+    :param result_df: data frame holding data for plot
+    :param out_file_name: output file name
+    :param mass: Mass for this plot. Only used in the label
+    :return: None
     """
-    # TODO write a docstring
     region_colors = {400: 'green', 600: 'blue'}
     values_to_plot = []
     for bre, brt in itertools.product(result_df['bre'].unique(),
@@ -703,8 +847,11 @@ def plot_single_cls_plot(result_df, out_file_name):
     """
     Function takes a data frame, with masses and CLs values.
     Constructs a plot of the CLs value vs mass.
+
+    :param result_df: data frame containing data for plot
+    :param out_file_name: output file name
+    :return: None
     """
-    # TODO write a docstring
     # skip if data frame has no entries
     if len(result_df) == 0:
         return
@@ -762,24 +909,31 @@ def plot_single_cls_plot(result_df, out_file_name):
 
 
 # ------------------------------------------------------------------------------
-def make_p_value_plots(read_from_cache=False):
+def make_p_value_plots(read_from_cache=False,
+                       update_cache=True,
+                       cache_file_name='results.pickle'):
     """
+    Master function that runs the main flow of the script. This calls other
+    functions which read in data, and draw various plots
 
-    :param read_from_cache:
-    :return:
+    :param read_from_cache: Read from a cached pickle or from the sample
+     list files
+    :param update_cache: update the cached pickle file with the new pickle
+    :param cache_file_name: file name for the pickle
+    :return: None
     """
-    # TODO write a docstring
     # get results from hypothesis test
     if read_from_cache:
         print 'Reading results from cache'
-        with open('results.pickle', 'rb') as results_file:
+        # with open('results.pickle', 'rb') as results_file:
+        with open(cache_file_name, 'rb') as results_file:
             results = pickle.load(results_file)
     else:
         print 'reading results from list files'
         results = read_hypo_test_results()
 
         # fill in missing rows in the results data frame
-        results = fill_in_missing_rows(results)
+        results = fill_in_missing_rows(results, extra_rows=False)
 
         # fill in missing values
         results = fill_in_missing_values_in_df(df=results,
@@ -787,26 +941,40 @@ def make_p_value_plots(read_from_cache=False):
         results = fill_in_missing_values_in_df(df=results,
                                                column_name='cls_obs')
 
-        with open('results.pickle', 'wb') as results_file:
-            pickle.dump(results, results_file)
+        # double the density of points
+        results = double_density(results)
 
-    # make triangle plot for each stop mass
-    for mass, sr, draw_obs in itertools.product(results['mass'].unique(),
-                                                results['sr'].unique(),
-                                                [True, False]):
-        if mass < 400:
-            continue
+        # pickle up result for quicker access later
+        if update_cache:
+            # with open('results.pickle', 'wb') as results_file:
+            with open(cache_file_name, 'wb') as results_file:
+                pickle.dump(results, results_file)
 
-        print ' '.join(['Making', 'Observed' if draw_obs else 'Expected',
-                        'Cls triangle for mass: ', str(mass),
-                        '-- sr: ', str(sr)])
+    # results = double_density(results)
+    # with open('results_2.pickle', 'wb') as results_file:
+    #     pickle.dump(results, results_file)
 
-        # print 'Making CLs triangle for mass:', mass, ' -- sr: ', sr
-        file_name = 'cls_vs_br_m_%d_sr_%d' % (int(mass), sr)
-        plot_cls_triangle(results[(results['mass'] == mass) &
-                                  (results['sr'] == sr)],
-                          out_file_name=file_name,
-                          draw_obs=draw_obs)
+    # subset only points which are not flagged as extra
+    results_no_extras = results[(results['extra'] == False)]
+
+    # # Make triangle plot for each stop mass
+    # for mass, sr, draw_obs in itertools.product(results['mass'].unique(),
+    #                                             results['sr'].unique(),
+    #                                             [True, False]):
+    #     # skip low masses
+    #     if mass < 400:
+    #         continue
+    #
+    #     print ' '.join(['Making', 'Observed' if draw_obs else 'Expected',
+    #                     'Cls triangle for mass: ', str(mass),
+    #                     '-- sr: ', str(sr)])
+    #
+    #     file_name = 'cls_vs_br_m_%d_sr_%d' % (int(mass), sr)
+    #     plot_cls_triangle(results[(results['mass'] == mass) &
+    #                               (results['sr'] == sr)],
+    #                       out_file_name=file_name,
+    #                       draw_obs=draw_obs,
+    #                       gridsize=60)
 
     # # make mass plot - reasonable options for color map:
     # #   - hot_r, gist_heat_r, afmhot_r, GnBu,
@@ -816,37 +984,49 @@ def make_p_value_plots(read_from_cache=False):
     #     plot_mass_limit_triangle(results,
     #                              out_file_name='mass_limit',
     #                              draw_obs=draw_obs,
-    #                              cmap_string='hot_r')
-    #
-    # # make plot of region choice for each mass
-    # for mass in results['mass'].unique():
-    #     print 'Making region choice for mass:', mass
-    #     file_name = ''.join(('region_choice_vs_br',
-    #                          '_m_', str(int(mass)),
-    #                          '.pdf'))
-    #     plot_region_choice_triangle(results[results['mass'] == mass],
-    #                                 file_name, mass)
-    #
-    # # make cls vs mass plot for each choice of branching ratios
-    # for br_e, br_t, br_m in itertools.product(results['bre'].unique(),
-    #                                           results['brt'].unique(),
-    #                                           results['brm'].unique()):
-    #     print 'Making CLs plot for bre: ', br_e, ' brm: ', br_m, ' brt: ', br_t
-    #     file_name = ''.join(['cls_vs_m',
-    #                          '_br_e_', str(int(br_e*100)),
-    #                          '_br_m_', str(int(br_m*100)),
-    #                          '_br_t_', str(int(br_t*100)),
-    #                          '.pdf'])
-    #     plot_single_cls_plot(results[(results['bre'] == br_e) &
-    #                                  (results['brm'] == br_m) &
-    #                                  (results['brt'] == br_t)], file_name)
+    #                              cmap_string='hot_r',
+    #                              gridsize=60)
+    #     plot_mass_limit_triangle(results_no_extras,
+    #                              out_file_name='mass_limit_no_extras',
+    #                              draw_obs=draw_obs,
+    #                              cmap_string='hot_r',
+    #                              gridsize=10)
 
-    # print 'Making limit contours!'
-    plot_limit_contours(results, 'limit_contours.pdf')
+    # # # make plot of region choice for each mass
+    # # for mass in results_no_extras['mass'].unique():
+    # #     print 'Making region choice for mass:', mass
+    # #     file_name = ''.join(('region_choice_vs_br',
+    # #                          '_m_', str(int(mass)),
+    # #                          '.pdf'))
+    # #     plot_region_choice_triangle(
+    # #         results_no_extras[results_no_extras['mass'] == mass],
+    # #         file_name, mass)
+    # #
+    # # # make cls vs mass plot for each choice of branching ratios
+    # # for br_e, br_t, br_m in itertools.product(
+    # #         results_no_extras['bre'].unique(),
+    # #         results_no_extras['brt'].unique(),
+    # #         results_no_extras['brm'].unique()):
+    # #     print 'Making CLs plot for bre: ', br_e, ' brm: ', br_m, ' brt: ', br_t
+    # #     file_name = ''.join(['cls_vs_m',
+    # #                          '_br_e_', str(int(br_e*100)),
+    # #                          '_br_m_', str(int(br_m*100)),
+    # #                          '_br_t_', str(int(br_t*100)),
+    # #                          '.pdf'])
+    # #     plot_single_cls_plot(
+    # #         results_no_extras[(results_no_extras['bre'] == br_e) &
+    # #                           (results_no_extras['brm'] == br_m) &
+    # #                           (results_no_extras['brt'] == br_t)], file_name)
+    #
+    # # # print 'Making limit contours!'
+    plot_limit_contours(results_no_extras, 'limit_contours.pdf')
+    # plot_limit_contours(results, 'limit_contours_with_extras.pdf')
 
     print 'All done! Exiting!'
 
 
 # ==============================================================================
 if __name__ == "__main__":
-    make_p_value_plots(read_from_cache=True)
+    make_p_value_plots(read_from_cache=True,
+                       update_cache=True,
+                       cache_file_name='results_2.pickle')
