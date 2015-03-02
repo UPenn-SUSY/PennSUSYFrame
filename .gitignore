@@ -27,3 +27,6 @@ RunBMinusLOptimizeNtupleMaker_lxplus_tnt_106_multiprocess.test.py
 .asetup.save
 BLStopFit_*py
 BLStopFitGroup_*txt
+run_systs
+run_systs.o
+hists/*
