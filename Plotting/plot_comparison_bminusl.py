@@ -27,7 +27,7 @@ def main():
                                                                , entry_containers['ec_single_top_all_channels']
                                                                , entry_containers['ec_other']
                                                                ]
-                                                , lumi_target = 21000
+                                                , lumi_target = 20300
                                                 )
     ic_signal = hh.Container.InputContainer( name = 'Signal'
                                            , entry_list = [ entry_containers['ec_bl_500']
@@ -37,7 +37,7 @@ def main():
                                                           # , entry_containers['ec_bl_900']
                                                           , entry_containers['ec_bl_1000']
                                                           ]
-                                           , lumi_target = 21000
+                                           , lumi_target = 20300
                                            )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -216,7 +216,7 @@ def main():
                                               )
     ic_denominator = hh.Container.InputContainer( name = 'Background'
                                                 , entry_list = [ec_ttbar, ec_Zbb]
-                                                , lumi_target = 21000
+                                                , lumi_target = 20300
                                                 )
 
     out_file_name = 'compare_plots.test.root'
