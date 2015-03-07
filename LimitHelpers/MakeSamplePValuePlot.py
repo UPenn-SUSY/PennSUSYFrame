@@ -17,7 +17,8 @@ import summary_harvest_tree_description as tree_summary
 
 # ------------------------------------------------------------------------------
 text_box_style = dict(boxstyle='round', facecolor='white', alpha=0.8)
-custom_cmap = mpl.colors.ListedColormap(['white', 'gold', 'white'])
+custom_cmap_band = mpl.colors.ListedColormap(['white', 'gold', 'white'])
+custom_cmap_fill = mpl.colors.ListedColormap(['white', 'powderblue', 'white'])
 # ------------------------------------------------------------------------------
 
 
@@ -151,9 +152,9 @@ def plot_styling(ax, color_bar=True, axis_fontsize=16, forbidden_x=0.21,
     ax.set_ylim((0, 1))
 
     ax.set_xlabel('$Br(\\tilde{t} \\rightarrow be)$',
-                  fontsize=axis_fontsize)
+                  fontsize=axis_fontsize, x=1, ha='right')
     ax.set_ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$',
-                  fontsize=axis_fontsize)
+                  fontsize=axis_fontsize, y=1, ha='right')
 
     plt.xticks([i * 0.2 for i in xrange(6)])
     plt.yticks([i * 0.2 for i in xrange(6)])
@@ -178,7 +179,7 @@ def plot_styling(ax, color_bar=True, axis_fontsize=16, forbidden_x=0.21,
 def add_atlas_labels(upper_coordinate=0.91,
                      right_coordinate=0.80,
                      fontsize=16,
-                     atlas_offset=0.25,
+                     atlas_offset=0.13,
                      line_spacing=0.05,
                      left_margin=0.1,
                      right_margin=0.99,
@@ -195,12 +196,12 @@ def add_atlas_labels(upper_coordinate=0.91,
     plt.figtext(right_coordinate-atlas_offset, upper_coordinate,
                 'ATLAS', fontsize=fontsize, fontweight='bold', style='italic',
                 verticalalignment='top', horizontalalignment='right')
-    plt.figtext(right_coordinate, upper_coordinate, 'Work in progress',
+    plt.figtext(right_coordinate, upper_coordinate, 'Internal',
                 fontsize=fontsize, verticalalignment='top',
                 horizontalalignment='right')
 
     lumi_text = '$\\int\\,\\mathrm{L dt} = 20.3 \\, \\mathrm{fb}^{-1}$'
-    lumi_text += ', $\\sqrt{s} = 8$ TeV'
+    lumi_text += ' $\\sqrt{s} = 8$ TeV'
     plt.figtext(right_coordinate, upper_coordinate-line_spacing,
                 lumi_text, fontsize=fontsize-2, verticalalignment='top',
                 horizontalalignment='right')
@@ -684,17 +685,25 @@ def plot_limit_contours(result_df, out_file_name):
         # Construct plot
         sp = plt.subplot(y_panels, x_panels, panel)
 
+        # expected contour lines
         exp_cont = plt.contour(bre, brt, cls_values['exp'], exp_levels,
                                colors='blue', linewidths=2,
                                linestyles='--', hold='on')
+        # observed contour line
         obs_cont = plt.contour(bre, brt, cls_values['obs'], obs_levels,
                                colors='red', linewidths=2,
                                linestyles='-', hold='on')
+        # fill area under observed contour
+        plt.contourf(bre, brt, cls_values['obs'], obs_levels,
+                     cmap=custom_cmap_fill, hold='on')
+        # expected error bands
         plt.contourf(bre, brt, cls_values['exp'], exp_band_levels,
-                     cmap=custom_cmap, hold='on')
+                     cmap=custom_cmap_band, hold='on')
+        # +1 sigma observed limit
         plt.contour(bre, brt, cls_values['obs_up'], obs_levels,
                     colors='red', linewidths=2,
                     linestyles=':', hold='on')
+        # -1 sigma observed limit
         plt.contour(bre, brt, cls_values['obs_down'],
                     obs_levels, colors='red', linewidths=2,
                     linestyles=':', hold='on')
@@ -705,7 +714,7 @@ def plot_limit_contours(result_df, out_file_name):
                 horizontalalignment='right', verticalalignment='top')
 
         # default styling
-        plot_styling(sp, color_bar=False, axis_fontsize=20)
+        plot_styling(sp, color_bar=False, axis_fontsize=26)
 
         # For the first plot, draw the legend in the top right
         if panel == 1:
@@ -727,7 +736,7 @@ def plot_limit_contours(result_df, out_file_name):
                        loc='center', bbox_to_anchor=[legend_x, legend_y])
 
             add_atlas_labels(upper_coordinate=0.95, right_coordinate=0.96,
-                             fontsize=30, atlas_offset=0.20, line_spacing=0.05,
+                             fontsize=30, atlas_offset=0.10, line_spacing=0.05,
                              left_margin=0.05, right_margin=0.97,
                              top_margin=0.95, bottom_margin=0.05)
 
@@ -814,7 +823,7 @@ def plot_mass_limit_triangle(result_df,
         cb.set_label('Stop mass [GeV]')
 
         # default plot styling
-        plot_styling(ax)
+        plot_styling(ax, axis_fontsize=20)
         add_atlas_labels(upper_coordinate=0.90, right_coordinate=0.80,
                          fontsize=16)
 
@@ -1007,67 +1016,67 @@ def make_p_value_plots(read_from_cache=False,
     # subset only points which are not flagged as extra
     results_no_extras = results[(results['extra'] == False)]
 
-    # Make CLs triangle plot for each stop mass
-    for mass, sr, draw_obs in itertools.product(results['mass'].unique(),
-                                                results['sr'].unique(),
-                                                [True, False]):
-        # skip low masses
-        if mass < 400:
-            continue
-
-        print ' '.join(['Making', 'Observed' if draw_obs else 'Expected',
-                        'Cls triangle for mass: ', str(mass),
-                        '-- sr: ', str(sr)])
-
-        file_name = 'cls_vs_br_m_%d_sr_%d' % (int(mass), sr)
-        plot_cls_triangle(results[(results['mass'] == mass) &
-                                  (results['sr'] == sr)],
-                          out_file_name=file_name,
-                          draw_obs=draw_obs,
-                          gridsize=60)
-
+    # # Make CLs triangle plot for each stop mass
+    # for mass, sr, draw_obs in itertools.product(results['mass'].unique(),
+    #                                             results['sr'].unique(),
+    #                                             [True, False]):
+    #     # skip low masses
+    #     if mass < 400:
+    #         continue
+    #
+    #     print ' '.join(['Making', 'Observed' if draw_obs else 'Expected',
+    #                     'Cls triangle for mass: ', str(mass),
+    #                     '-- sr: ', str(sr)])
+    #
+    #     file_name = 'cls_vs_br_m_%d_sr_%d' % (int(mass), sr)
+    #     plot_cls_triangle(results[(results['mass'] == mass) &
+    #                               (results['sr'] == sr)],
+    #                       out_file_name=file_name,
+    #                       draw_obs=draw_obs,
+    #                       gridsize=60)
+    #
     # make mass plot - reasonable options for color map:
     #   - hot_r, gist_heat_r, afmhot_r, GnBu,
     plot_mass_limit_triangle(results,
-                             out_file_name='mass_limit_60',
+                             out_file_name='mass_limit',
                              # draw_obs=draw_obs,
                              cmap_string='hot_r',
-                             gridsize=60)
+                             gridsize=35)
     plot_mass_limit_triangle(results_no_extras,
                              out_file_name='mass_limit_no_extras',
                              # draw_obs=draw_obs,
                              cmap_string='hot_r',
                              gridsize=10)
 
-    # make plot of region choice for each mass
-    for mass in results_no_extras['mass'].unique():
-        print 'Making region choice for mass:', mass
-        file_name = ''.join(('region_choice_vs_br',
-                             '_m_', str(int(mass)),
-                             '.pdf'))
-        plot_region_choice_triangle(
-            results_no_extras[results_no_extras['mass'] == mass],
-            file_name, mass)
-
-    # make cls vs mass plot for each choice of branching ratios
-    for br_e, br_t, br_m in itertools.product(
-            results_no_extras['bre'].unique(),
-            results_no_extras['brt'].unique(),
-            results_no_extras['brm'].unique()):
-        print 'Making CLs plot for bre: %s, brm: %s, brt: %s' % (br_e,
-                                                                 br_m,
-                                                                 br_t)
-        file_name = ''.join(['cls_vs_m',
-                             '_br_e_', str(int(br_e*100)),
-                             '_br_m_', str(int(br_m*100)),
-                             '_br_t_', str(int(br_t*100)),
-                             '.pdf'])
-        plot_single_cls_plot(
-            results_no_extras[(results_no_extras['bre'] == br_e) &
-                              (results_no_extras['brm'] == br_m) &
-                              (results_no_extras['brt'] == br_t)], file_name)
-
-    # print 'Making limit contours!'
+    # # make plot of region choice for each mass
+    # for mass in results_no_extras['mass'].unique():
+    #     print 'Making region choice for mass:', mass
+    #     file_name = ''.join(('region_choice_vs_br',
+    #                          '_m_', str(int(mass)),
+    #                          '.pdf'))
+    #     plot_region_choice_triangle(
+    #         results_no_extras[results_no_extras['mass'] == mass],
+    #         file_name, mass)
+    #
+    # # make cls vs mass plot for each choice of branching ratios
+    # for br_e, br_t, br_m in itertools.product(
+    #         results_no_extras['bre'].unique(),
+    #         results_no_extras['brt'].unique(),
+    #         results_no_extras['brm'].unique()):
+    #     print 'Making CLs plot for bre: %s, brm: %s, brt: %s' % (br_e,
+    #                                                              br_m,
+    #                                                              br_t)
+    #     file_name = ''.join(['cls_vs_m',
+    #                          '_br_e_', str(int(br_e*100)),
+    #                          '_br_m_', str(int(br_m*100)),
+    #                          '_br_t_', str(int(br_t*100)),
+    #                          '.pdf'])
+    #     plot_single_cls_plot(
+    #         results_no_extras[(results_no_extras['bre'] == br_e) &
+    #                           (results_no_extras['brm'] == br_m) &
+    #                           (results_no_extras['brt'] == br_t)], file_name)
+    #
+    # # print 'Making limit contours!'
     plot_limit_contours(results_no_extras, 'limit_contours.pdf')
     # plot_limit_contours(results, 'limit_contours_with_extras.pdf')
 
