@@ -2,9 +2,11 @@
 
 import glob
 import re
+import sys
 
 import ROOT
 ROOT.gSystem.Load("libSusyFitter.so")
+
 
 # ------------------------------------------------------------------------------
 def constructPrefix(file_name):
@@ -12,6 +14,7 @@ def constructPrefix(file_name):
     tag = re.search('(bre.*)_Output', file_name).group(1)
     prefix = '.'.join(['SampleList', tag])
     return prefix
+
 
 # ------------------------------------------------------------------------------
 def makeSampleListFiles(input_file_name):
@@ -27,14 +30,22 @@ def makeSampleListFiles(input_file_name):
                                                    interpretation,
                                                    cut_str)
 
+
 # ------------------------------------------------------------------------------
 def main():
-    # input_file_list = glob.glob('results/*hypotest.root')
-    input_file_list = glob.glob('results/excl/*hypotest.root')
+    if len(sys.argv) > 1:
+        variation = sys.argv[1]
+    else:
+        variation = 'Nominal'
+
+    input_file_list = glob.glob(
+            'results/excl/*fixSigXSec%s*hypotest.root' % variation)
     for ifl in input_file_list:
+        print '-'*80
         print 'Making sample list files for ', ifl
         makeSampleListFiles(ifl)
         print ''
+
 
 # ==============================================================================
 if __name__ == "__main__":

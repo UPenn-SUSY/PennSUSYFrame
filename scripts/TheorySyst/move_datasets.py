@@ -7,7 +7,7 @@ del_old_files = True
 dsid_mapping = {
 'ttbar_PowhegJimmy':[105860], 'ttbar_PowhegPythia':[105861],
 'McAtNloWt':[108346], 'McAtNlo':[110001],
-'PowPyWtDR':[110141], 'PowPyWtDS':[110143], 'PowJiWtDR':[110145], 'PowJiWtDS':[110147],
+'PowPyWtDR':[110141], 'PowPyWtDS':[110142], 'PowJiWtDR':[110145], 'PowJiWtDS':[110147],
 'ttbar_MorePS':[117209], 'ttbar_LessPS':[117210],
 'AcerMore':[117245], 'AcerLess':[117246], 'AcerWt':[117360,117361,117362],
 'ttbar_Sherpa':[117800], 'ttW':[119353], 'ttWjI':[119354],
@@ -27,7 +27,7 @@ dsid_mapping = {
 'ttWjjI_MF':[176915], 'ttWjjI_LF':[176916], 'ttWjjI_XU':[176917], 'ttWjjI_XD':[176918],
     }
 
-final_dir = '/afs/cern.ch/user/z/zmarshal/work/all_theory_systs/output_hist_files/'
+final_dir = '/afs/cern.ch/user/b/bjackson/work/public/TruthSyst_plots_merge/'
 
 # Go through all the datasets
 for aset in dsid_mapping:
@@ -42,7 +42,7 @@ for aset in dsid_mapping:
     # Make a list of files
     file_list = []
     for dsid in dsid_mapping[aset]:
-        file_list += glob.glob( 'user.zmarshal.mc12_8TeV.'+str(dsid)+'*/*root*' )
+        file_list += glob.glob( 'user.bjackson.'+str(dsid)+'*/*root*' )
     if 0==len(file_list):
         print 'No files found for',aset,'with DSIDs',aset
         continue

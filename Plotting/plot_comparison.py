@@ -5,30 +5,36 @@ import HistHandle as hh
 
 # -----------------------------------------------------------------------------
 def skipHist(dir_name, hist_name):
-  """
-  hack way to avoid plotting nonsense histograms
-  eg. muon pt for ee events
-  TODO update for new naming schemes
-  """
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # skip lepton flavors that don't match with the flavor channel
-  if 'ee' in dir_name and 'mu_' in hist_name:
-    return True
-  if 'mm' in dir_name and 'el_' in hist_name:
-    return True
-  if 'em' in dir_name:
-    if 'el_1' in hist_name or 'mu_1' in hist_name:
-      return True
+    """
+    hack way to avoid plotting nonsense histograms
+    eg. muon pt for ee events
+    TODO update for new naming schemes
+    """
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # skip lepton flavors that don't match with the flavor channel
+    if 'ee' in dir_name and 'mu_' in hist_name:
+        return True
+    if 'mm' in dir_name and 'el_' in hist_name:
+        return True
+    if 'em' in dir_name:
+        if 'el_1' in hist_name or 'mu_1' in hist_name:
+            return True
 
-  if 'flavor_error' in hist_name: return True
+    if 'flavor_error' in hist_name:
+        return True
 
-  return False
+    return False
+
+if 'skipHistMod' in vars():
+    print 'replacing skipHist with skipHistMod'
+    skipHist = skipHistMod
 
 # ------------------------------------------------------------------------------
 def plotComparisons( ic_numerator
                    , ic_denominator
                    , ic_other
                    , out_file_name
+                   , do_ratio=True
                    ):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # root stuff
@@ -62,7 +68,8 @@ def plotComparisons( ic_numerator
         raw_entries_canvas_drawn = False
         entries_canvas_drawn = False
         for it, h in enumerate(these_hists):
-            if skipHist(d,h): continue
+            if skipHist(d,h):
+                continue
 
             out_file.cd(d)
 
@@ -71,6 +78,11 @@ def plotComparisons( ic_numerator
             # hm_other = None
             hm_other = None if ic_other is None else ic_other.genHistMerger(d,h)
 
+            # If this is a 2D histogram, draw as colz plots in separate directory
+            if hm_num.hist_type  is hh.HIST_2D:
+                print 'Not set up to do merged 2D hists for now ... skipping :-('
+                continue
+
             # if this is a 1D histogram, draw as stack with ratio
             if hm_num.hist_type is hh.HIST_1D:
                 hist_painter = hh.Painter.HistPainter( num   = hm_num
@@ -78,20 +90,34 @@ def plotComparisons( ic_numerator
                                                      , other = hm_other
                                                      )
 
-                pile_test_stack = hist_painter.pileAndRatio( num_type       = hh.Objects.plain_hist
-                                                           , denom_type     = hh.Objects.stack_hist
-                                                           , canvas_options = hh.Objects.canv_log_y
-                                                           , legend         = True
-                                                           )
+                if do_ratio:
+                    pile_test_stack = hist_painter.pileAndRatio(
+                            num_type       = hh.Objects.plain_hist,
+                            denom_type     = hh.Objects.stack_hist,
+                            canvas_options = hh.Objects.canv_log_y,
+                            legend         = True)
+                else:
+                    pile_test_stack = hist_painter.pile(
+                            num_type       = hh.Objects.plain_hist,
+                            denom_type     = hh.Objects.stack_hist,
+                            canvas_options = hh.Objects.canv_log_y,
+                            legend         = True)
 
                 pile_test_stack.Write('%s__log' % h)
                 pile_test_stack.Close()
 
-                pile_test_stack = hist_painter.pileAndRatio(
-                        num_type       = hh.Objects.plain_hist,
-                        denom_type     = hh.Objects.stack_hist,
-                        canvas_options = hh.Objects.canv_linear,
-                        legend         = True)
+                if do_ratio:
+                    pile_test_stack = hist_painter.pileAndRatio(
+                            num_type       = hh.Objects.plain_hist,
+                            denom_type     = hh.Objects.stack_hist,
+                            canvas_options = hh.Objects.canv_linear,
+                            legend         = True)
+                else:
+                    pile_test_stack = hist_painter.pile(
+                            num_type       = hh.Objects.plain_hist,
+                            denom_type     = hh.Objects.stack_hist,
+                            canvas_options = hh.Objects.canv_linear,
+                            legend         = True)
 
                 pile_test_stack.Write('%s__lin' % h)
                 pile_test_stack.Close()
@@ -190,7 +216,7 @@ def main():
                                               )
     ic_denominator = hh.Container.InputContainer( name = 'Background'
                                                 , entry_list = [ec_ttbar, ec_Zbb]
-                                                , lumi_target = 21000
+                                                , lumi_target = 20300
                                                 )
 
     out_file_name = 'compare_plots.test.root'

@@ -21,19 +21,22 @@ binning = {'flavor_channel':{'bin':flavor_channel_bin,
            'deta':{    'bin':4 , 'min':0   , 'max':4   },
            'dphi':{    'bin':8 , 'min':0   , 'max':3.2 },
            'dr':{      'bin':4 , 'min':0   , 'max':4   },
-           'ht':{      'bin':11, 'min':0   , 'max':1100},
-           'ht_sr':{   'bin':19, 'min':1100, 'max':3000},
+           'ht_full':{ 'bin':19, 'min':150 , 'max':2000},
+           'ht_low':{  'bin':10, 'min':100 , 'max':500},
+           'ht_mid':{  'bin':6 , 'min':500 , 'max':1100},
+           'ht_sr':{   'bin':9 , 'min':1100, 'max':2000},
            'mbbll':{   'bin':6 , 'min':0   , 'max':1200},
-           'mbl':{     'bin':6 , 'min':0   , 'max':1200},
+           'mbl':{     'bin':6 , 'min':200 , 'max':800},
            'mbl_asym':{'bin':5 , 'min':0   , 'max':1.  },
            'met_et':{  'bin':5 , 'min':0   , 'max':100 },
-           'met_sig':{ 'bin':10, 'min':0   , 'max':500 },
+           'met_sig':{ 'bin':10, 'min':0   , 'max':10  },
            'mll':{     'bin':10, 'min':0   , 'max':500 },
            'mll_in_z':{'bin':6 , 'min':75  , 'max':105 },
            'pt':{      'bin':10, 'min':0   , 'max':500 },
            'ptbbll':{  'bin':6 , 'min':0   , 'max':600 },
            'ptbl':{    'bin':6 , 'min':0   , 'max':600 },
-           'ptll':{    'bin':6 , 'min':0   , 'max':600 }}
+           'ptll':{    'bin':6 , 'min':0   , 'max':600 },
+           'default':{ 'bin':1 , 'min':0   , 'max':1   }}
 
 
 # ------------------------------------------------------------------------------

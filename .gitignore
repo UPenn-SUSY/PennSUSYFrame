@@ -24,3 +24,9 @@ BMinusLAnalysis/RunScripts/tnt_106/RunBMinusLAnalysis_lxplus_tnt_106_multiproces
 RunBMinusLOptimizeNtupleMaker_lxplus_tnt_106_multiprocess.test.py
 .ipynb_checkpoints
 *pdf
+.asetup.save
+BLStopFit_*py
+BLStopFitGroup_*txt
+run_systs
+run_systs.o
+hists/*
