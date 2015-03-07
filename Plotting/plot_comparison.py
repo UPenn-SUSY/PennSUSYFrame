@@ -10,7 +10,7 @@ def skipHist(dir_name, hist_name):
     eg. muon pt for ee events
     TODO update for new naming schemes
     """
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # skip lepton flavors that don't match with the flavor channel
     if 'ee' in dir_name and 'mu_' in hist_name:
         return True
@@ -23,11 +23,19 @@ def skipHist(dir_name, hist_name):
     if 'flavor_error' in hist_name:
         return True
 
-    return False
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    if not 'SR' in dir_name:
+        return True
 
-if 'skipHistMod' in vars():
-    print 'replacing skipHist with skipHistMod'
-    skipHist = skipHistMod
+    if not '_minus_' in dir_name.lower():
+        return True
+
+    hist_list = ['mbl_0', 'mbl_asym', 'ht_signal']
+    keep_hist = [name in hist_name for name in hist_list]
+    if sum(keep_hist) == 0:
+        return True
+
+    return False
 
 # ------------------------------------------------------------------------------
 def plotComparisons( ic_numerator

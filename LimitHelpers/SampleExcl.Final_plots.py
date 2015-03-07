@@ -86,11 +86,11 @@ if myFitType == FitType.Background:
 # construct the analysis name
 analysis_name = []
 if myFitType == FitType.Background:
-    analysis_name.append('SampleBkg')
+    analysis_name.append('SampleBkgFinal')
 elif myFitType == FitType.Exclusion:
-    analysis_name.append("SampleExcl")
+    analysis_name.append("SampleExclFinal")
 elif myFitType == FitType.Discovery:
-    analysis_name.append("SampleDisc")
+    analysis_name.append("SampleDiscFinal")
 
 analysis_name.extend(['bre', str(int(100*stop_br_e)),
                       'brm', str(int(100*stop_br_m)),
@@ -108,6 +108,8 @@ configMgr.outputFileName = "results/"+configMgr.analysisName+"_Output.root"
 configMgr.inputLumi = 0.001    # Luminosity of input TTree after weighting
 configMgr.outputLumi = 20.3    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
+
+# configMgr.plotRatio="none"
 
 # Set the files to read from
 data_files = []
