@@ -1,7 +1,7 @@
 #!/bin/env python
 
 # Run envelopes?  If false, run detailed breakdown
-AllMerged = True
+AllMerged = False
 BigNorm = False # Big normalization region?
 
 import ROOT

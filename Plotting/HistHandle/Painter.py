@@ -354,8 +354,8 @@ class HistPainter(object):
                 hist_list.append(self.denom_merger.hist_stack)
                 draw_opt_list.append('HIST')
                 # TODO add error band back to histograms
-                # hist_list.append(self.denom_merger.error_band)
-                # draw_opt_list.append('E2')
+                hist_list.append(self.denom_merger.error_band)
+                draw_opt_list.append('E2')
 
         # get numerator hists
         if num_type == hh.Objects.piled_hist:
@@ -405,11 +405,11 @@ class HistPainter(object):
         #     if not self.cut_region is None:
         #         self.cut_region.Draw('F')
 
-        # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # if legend:
-        #     self.legend = self.genLegend()
-        #     self.legend.Draw()
-        # drawLabels(int_lumi = int_lumi, prod_type = prod_type)
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        if legend:
+            self.legend = self.genLegend()
+            self.legend.Draw()
+        drawLabels(int_lumi = int_lumi, prod_type = prod_type)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         return self.canvas
@@ -458,11 +458,18 @@ class HistPainter(object):
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Create and draw pad for ratio plot
-        pad_ratio = ROOT.TPad("pad_ratio","pad_ratio",0,0,1,hh.default_ratio_pad_size)
+        pad_ratio = ROOT.TPad( "pad_ratio"
+                             , "pad_ratio"
+                             , 0
+                             , 0
+                             , 1
+                             , hh.default_ratio_pad_size
+                             )
         pad_ratio.SetTopMargin(  0)
         pad_ratio.SetLeftMargin(  hh.default_pad_left_margin  )
         pad_ratio.SetRightMargin( hh.default_pad_right_margin )
-        pad_ratio.SetBottomMargin(hh.default_pad_bottom_margin/(hh.default_ratio_pad_size*2))
+        pad_ratio.SetBottomMargin( hh.default_pad_bottom_margin/
+                                   (hh.default_ratio_pad_size*2))
         pad_ratio.Draw()
         pad_ratio.cd()
 
@@ -492,7 +499,9 @@ class HistPainter(object):
         self.ratio.SetTitleOffset(0.8, 'z')
 
         # set y-axis title for ratio plot
-        self.ratio.GetYaxis().SetTitle('%s/%s' % (self.num_merger.hist_info.name , self.denom_merger.hist_info.name))
+        self.ratio.GetYaxis().SetTitle('%s/%s' %
+                                        ( self.num_merger.hist_info.name
+                                        , self.denom_merger.hist_info.name))
 
         # don't draw every tick mark
         self.ratio.GetYaxis().SetNdivisions(4,8,0)
@@ -502,6 +511,37 @@ class HistPainter(object):
 
         # finally draw :-)
         self.ratio.Draw("ep")
+
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # draw error band on ratio plot
+        rx = []
+        ry = []
+        erx = []
+        ery = []
+
+        num_bins = self.ratio.GetXaxis().GetNbins()
+        for x_itr in xrange(1, num_bins+1):
+            rx.append(self.ratio.GetXaxis().GetBinCenter(x_itr))
+            ry.append(1)
+
+            erx.append(self.ratio.GetBinWidth(x_itr)/2)
+            error = 0
+            if self.denom_merger.hist_sum.GetBinContent(x_itr) > 0:
+                error = (self.denom_merger.hist_sum.GetBinError(x_itr)/
+                         self.denom_merger.hist_sum.GetBinContent(x_itr))
+            # ery.append(self.ratio.GetBinError(x_itr))
+            ery.append(error)
+
+        self.ratio_error = ROOT.TGraphErrors( num_bins
+                                            , array.array('f', rx)
+                                            , array.array('f', ry)
+                                            , array.array('f', erx)
+                                            , array.array('f', ery)
+                                            )
+
+        self.ratio_error.SetFillStyle(3004)
+        self.ratio_error.SetFillColor(1)
+        self.ratio_error.Draw('E2')
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # draw dashed line at ratio = 1

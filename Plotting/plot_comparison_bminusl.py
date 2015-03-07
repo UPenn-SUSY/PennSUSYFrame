@@ -26,17 +26,15 @@ def main():
                                                                , entry_containers['ec_Zgamma_sherpa']
                                                                , entry_containers['ec_single_top_all_channels']
                                                                , entry_containers['ec_other']
-                                                               # , entry_containers['ec_ZZ']
-                                                               # , entry_containers['ec_other_no_ZZ']
                                                                ]
                                                 , lumi_target = 21000
                                                 )
     ic_signal = hh.Container.InputContainer( name = 'Signal'
                                            , entry_list = [ entry_containers['ec_bl_500']
-                                                          , entry_containers['ec_bl_600']
-                                                          , entry_containers['ec_bl_700']
+                                                          # , entry_containers['ec_bl_600']
+                                                          # , entry_containers['ec_bl_700']
                                                           , entry_containers['ec_bl_800']
-                                                          , entry_containers['ec_bl_900']
+                                                          # , entry_containers['ec_bl_900']
                                                           , entry_containers['ec_bl_1000']
                                                           ]
                                            , lumi_target = 21000

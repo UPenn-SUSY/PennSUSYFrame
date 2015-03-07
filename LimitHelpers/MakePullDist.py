@@ -60,7 +60,8 @@ rename_dict = { 'CR_top_all_mbl_0':'CR Top'
 
 # ------------------------------------------------------------------------------
 # sample_string = 'ttbar,ZGamma,SingleTop,ttV,Diboson,Higgs'
-sample_string = 'ttbar,ZGamma,SingleTop,Other'
+sample_string = 'Other,SingleTop,ttbar,ZGamma'
+
 
 # ------------------------------------------------------------------------------
 def renamePulls(tag):

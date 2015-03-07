@@ -615,23 +615,44 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
                     << "\n";
 
           std::cout << "\tmbl_0: " << bl_mass_0 << "\n";
-          std::cout << "\tmbl_1: " << bl_mass_1 << "\n";
-          std::cout << "\tmbl asym: " << mbl_asym << "\n";
-          std::cout << "\tht: " << ht << "\n";
-          std::cout << "\tmet sig: " << met_sig << "\n";
           std::cout << "\tl0 pt: "  << m_bl_0->getLepton()->getPt() << "\n";
           std::cout << "\tl0 eta: " << m_bl_0->getLepton()->getEta() << "\n";
           std::cout << "\tl0 phi: " << m_bl_0->getLepton()->getPhi() << "\n";
-          std::cout << "\tl1 pt: "  << m_bl_1->getLepton()->getPt() << "\n";
-          std::cout << "\tl1 eta: " << m_bl_1->getLepton()->getEta() << "\n";
-          std::cout << "\tl1 phi: " << m_bl_1->getLepton()->getPhi() << "\n";
+          if (m_bl_0->getLepton()->isElectron()) {
+            std::cout << "\tl0 flavor: electron\n";
+          }
+          else {
+            std::cout << "\tl0 flavor: muon\n";
+          }
+          std::cout << "\tl0 charge: " << m_bl_0->getLepton()->getCharge() << "\n";
+
           std::cout << "\tb0 pt: "  << m_bl_0->getJet()->getPt() << "\n";
           std::cout << "\tb0 eta: " << m_bl_0->getJet()->getEta() << "\n";
           std::cout << "\tb0 phi: " << m_bl_0->getJet()->getPhi() << "\n";
+
+          std::cout << "\tmbl_1: " << bl_mass_1 << "\n";
+          std::cout << "\tl1 pt: "  << m_bl_1->getLepton()->getPt() << "\n";
+          std::cout << "\tl1 eta: " << m_bl_1->getLepton()->getEta() << "\n";
+          std::cout << "\tl1 phi: " << m_bl_1->getLepton()->getPhi() << "\n";
+          if (m_bl_1->getLepton()->isElectron()) {
+            std::cout << "\tl1 flavor: electron\n";
+          }
+          else {
+            std::cout << "\tl1 flavor: muon\n";
+          }
+          std::cout << "\tl1 charge: " << m_bl_1->getLepton()->getCharge() << "\n";
+
           std::cout << "\tb1 pt: "  << m_bl_1->getJet()->getPt() << "\n";
           std::cout << "\tb1 eta: " << m_bl_1->getJet()->getEta() << "\n";
           std::cout << "\tb1 phi: " << m_bl_1->getJet()->getPhi() << "\n";
+
+          std::cout << "\tmbl asym: " << mbl_asym << "\n";
+          std::cout << "\tht: " << ht << "\n";
+          std::cout << "\tmet sig: " << met_sig << "\n";
+          std::cout << "\tmet: " << m_met.getMetEt() << "\n";
+          std::cout << "\tmll: " << m_event_quantities.getMll() << "\n";
           std::cout << "\n";
+
         }
       }
       if (bl_mass_0_ge_600) {
