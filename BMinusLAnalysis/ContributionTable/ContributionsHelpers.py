@@ -85,7 +85,7 @@ def extractRegionContributions(sample_file_name):
 
 # ------------------------------------------------------------------------------
 def extractRegionContributionsSystematicTree(sample_file_name,
-                                             target_lumi=21e3):
+                                             target_lumi=20.3e3):
     print 'extracting region contributions from file: ', sample_file_name
     # get region list from this sample file
     sample_file = ROOT.TFile.Open(sample_file_name)
