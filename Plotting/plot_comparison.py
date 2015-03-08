@@ -25,10 +25,6 @@ def skipHist(dir_name, hist_name):
 
     return False
 
-if 'skipHistMod' in vars():
-    print 'replacing skipHist with skipHistMod'
-    skipHist = skipHistMod
-
 # ------------------------------------------------------------------------------
 def plotComparisons( ic_numerator
                    , ic_denominator

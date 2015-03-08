@@ -19,10 +19,10 @@ def ATLASLabel(x, y, color=1, flag = ''):
         f.DrawLatex(x+0.155,y,flag)
 
 def myText(x, y, color, text):
-    #tsize=0.05
+    tsize=0.045
     l = TLatex()
     #l.SetTextAlign(12)
-    #l.SetTextSize(tsize)
+    l.SetTextSize(tsize)
     l.SetNDC()
     l.SetTextColor(color)
     l.DrawLatex(x,y,text)

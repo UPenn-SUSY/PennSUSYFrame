@@ -152,6 +152,8 @@ def getListOfFiles(input_container_list = []):
 
     file_list = []
     for icl in input_container_list:
+        if icl is None:
+            continue
         for e in icl.entries:
             for fl in e.file_list:
                 file_list.append(fl)
