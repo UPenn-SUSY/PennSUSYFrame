@@ -23,17 +23,17 @@ def skipHist(dir_name, hist_name):
     if 'flavor_error' in hist_name:
         return True
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if not 'SR' in dir_name:
-        return True
+    # # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # if not 'SR' in dir_name:
+    #     return True
 
-    if not '_minus_' in dir_name.lower():
-        return True
+    # if not '_minus_' in dir_name.lower():
+    #     return True
 
-    hist_list = ['mbl_0', 'mbl_asym', 'ht_signal']
-    keep_hist = [name in hist_name for name in hist_list]
-    if sum(keep_hist) == 0:
-        return True
+    # hist_list = ['mbl_0', 'mbl_asym', 'ht_signal']
+    # keep_hist = [name in hist_name for name in hist_list]
+    # if sum(keep_hist) == 0:
+    #     return True
 
     return False
 

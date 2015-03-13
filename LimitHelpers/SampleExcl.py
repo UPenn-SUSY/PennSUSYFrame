@@ -128,7 +128,7 @@ else:
 
 
 # ------------------------------------
-# - Dictionnary of cuts for Tree->hist
+# - Dictionary of cuts for Tree->hist
 # ------------------------------------
 if myFitType == FitType.Background:
     for sr_label in ['ht_1100_mbl_400', 'ht_1100_mbl_600']:
@@ -701,6 +701,7 @@ if not myFitType == FitType.Discovery:
         background_config.setSignalChannels(sr_list)
     else:
         background_config.setValidationChannels(sr_list)
+
 
 # ------------------------------------------------------------------------------
 # Configure discovery fit

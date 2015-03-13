@@ -465,29 +465,29 @@ vr_list = []
 if do_validation:
     print 'Setting up validation regions!'
 
-    vr_list.append(addChannel(background_config,
-                              'ht_signal',
-                              'SR_minus_ht',
-                              binning.get_binning('ht_full',
-                                                  single_bin=False)))
-    vr_list[-1].titleX = 'H_{T} [GeV]'
-    vr_list[-1].maxY = 30
+    ## vr_list.append(addChannel(background_config,
+    ##                           'ht_signal',
+    ##                           'SR_minus_ht',
+    ##                           binning.get_binning('ht_full',
+    ##                                               single_bin=False)))
+    ## vr_list[-1].titleX = 'H_{T} [GeV]'
+    ## vr_list[-1].maxY = 30
 
-    vr_list.append(addChannel(background_config,
-                              'mbl_asym',
-                              'SR_minus_mbl_asym',
-                              binning.get_binning('mbl_asym',
-                                                  single_bin=False)))
-    vr_list[-1].titleX = 'm_{bl} asymmetry'
-    # vr_list[-1].maxY = 30
+    ## vr_list.append(addChannel(background_config,
+    ##                           'mbl_asym',
+    ##                           'SR_minus_mbl_asym',
+    ##                           binning.get_binning('mbl_asym',
+    ##                                               single_bin=False)))
+    ## vr_list[-1].titleX = 'm_{bl} asymmetry'
+    ## # vr_list[-1].maxY = 30
 
-    vr_list.append(addChannel(background_config,
-                              'mbl_0',
-                              'SR_minus_mbl',
-                              binning.get_binning('mbl',
-                                                  single_bin=False)))
-    vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
-    vr_list[-1].maxY = 4
+    ## vr_list.append(addChannel(background_config,
+    ##                           'mbl_0',
+    ##                           'SR_minus_mbl',
+    ##                           binning.get_binning('mbl',
+    ##                                               single_bin=False)))
+    ## vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+    ## vr_list[-1].maxY = 4
 
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -499,28 +499,50 @@ if do_validation:
             # unique name for this VR/flavor channel combination
             this_vr_name = ''.join([vr_name, flavor_channel])
 
+            # - - - - - - - - - - -
+            # add VR mbl channel
             vr_list.append(addChannel(background_config,
                                       'mbl_0',
                                       this_vr_name,
                                       binning.get_binning('mbl',
                                                           single_bin=False)))
             vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+            vr_list[-1].titleY = "Entries/100 GeV"
+            vr_list[-1].ATLASLabelX = 0.32
+            vr_list[-1].ATLASLabelY = 0.85
             if vr_name in ['VR_top_3']:
-                vr_list[-1].maxY = 50
+                vr_list[-1].maxY = 55
+            if vr_name in ['VR_Z']:
+                vr_list[-1].maxY = 100
 
+            # - - - - - - - - - - -
+            # add VR ht channel
             if vr_name in ['VR_top_3', 'VR_Z']:
                 vr_list.append(addChannel(background_config,
                                         'ht_signal',
                                         this_vr_name,
-                                        binning.get_binning('ht_mid', single_bin=False)))
+                                        binning.get_binning('ht_mid',
+                                                            single_bin=False)))
+                vr_list[-1].titleY = "Entries/100 GeV"
+                vr_list[-1].ATLASLabelX = 0.32
+                vr_list[-1].ATLASLabelY = 0.85
             else:
                 vr_list.append(addChannel(background_config,
                                         'ht_signal',
                                         this_vr_name,
-                                        binning.get_binning('ht_low', single_bin=False)))
+                                        binning.get_binning('ht_low',
+                                                            single_bin=False)))
+                vr_list[-1].titleY = "Entries/40 GeV"
+                vr_list[-1].ATLASLabelX = 0.65
+                vr_list[-1].ATLASLabelY = 0.85
+
             vr_list[-1].titleX = 'H_{T} [GeV]'
-            if vr_name in ['VR_top_1', 'VR_top_2']:
-                vr_list[-1].maxY = 300
+            if vr_name in ['VR_top_1']:
+                vr_list[-1].maxY = 240
+            if vr_name in ['VR_top_2']:
+                vr_list[-1].maxY = 220
+            if vr_name in ['VR_top_3']:
+                vr_list[-1].maxY = 50
 
             # add theory systematics!
             # this is pretty ugly :-(
@@ -557,23 +579,33 @@ if do_validation:
             # unique name for this CR/flavor channel combination
             this_cr_name = ''.join([cr_name, flavor_channel])
 
+            # - - - - - - - - - - -
+            # add VR mbl0 channel
             vr_list.append(addChannel(background_config,
                                     'mbl_0',
                                     this_cr_name,
                                     binning.get_binning('mbl',
                                                         single_bin=False)))
             vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+            vr_list[-1].titleY = "Entries/100 GeV"
+            vr_list[-1].ATLASLabelX = 0.32
+            vr_list[-1].ATLASLabelY = 0.85
 
+            # - - - - - - - - - - -
+            # add VR ht channel
             vr_list.append(addChannel(background_config,
                                       'ht_signal',
                                       this_cr_name,
                                       binning.get_binning('ht_low',
                                                           single_bin=False)))
             vr_list[-1].titleX = 'H_{T} [GeV]'
+            vr_list[-1].titleY = "Entries/40 GeV"
+            vr_list[-1].ATLASLabelX = 0.65
+            vr_list[-1].ATLASLabelY = 0.85
             if cr_name in ['CR_top']:
-                vr_list[-1].maxY = 160
+                vr_list[-1].maxY = 150
             if cr_name in ['CR_Z']:
-                vr_list[-1].maxY = 140
+                vr_list[-1].maxY = 130
 
             # add theory systematics!
             # this is pretty ugly :-(
@@ -597,11 +629,93 @@ if do_validation:
         vr.useOverflowBin = True
         vr.logY = False
         vr.showLumi = True
-        vr.ATLASLabelX = 0.32
-        vr.ATLASLabelY = 0.88
+        # vr.ATLASLabelX = 0.32
+        # vr.ATLASLabelY = 0.88
         vr.ATLASLabelText = 'Internal'
 
     background_config.setValidationChannels(vr_list)
+
+
+# ------------------------------------------------------------------------------
+# set up SRs
+if not myFitType == FitType.Discovery:
+    sr_list = []
+    for region_name in configMgr.cutsDict.keys():
+        if 'SR' not in region_name:
+            continue
+        if '_minus_' in region_name:
+            continue
+
+        print 'this sr name: ', region_name
+        sr_list.append(addChannel(background_config,
+                                  "mbl_0",
+                                  region_name,
+                                  binning.get_binning('mbl',
+                                                      single_bin=binning.single_bin_signal)))
+        sr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+        sr_list[-1].maxY = 5
+        sr_list[-1].ATLASLabelX = 0.65
+        sr_list[-1].ATLASLabelY = 0.85
+        sr_list[-1].titleY = "Entries/100 GeV"
+
+        if myFitType == FitType.Background:
+            # sr_list.append(addChannel(background_config,
+            #                           "mbl_asym",
+            #                           region_name,
+            #                           binning.get_binning('mbl_asym',
+            #                                               single_bin=binning.single_bin_signal)))
+            # sr_list[-1].titleX = 'm_{bl} asymmetry'
+
+            sr_list.append(addChannel(background_config,
+                                      "ht_signal",
+                                      region_name,
+                                      binning.get_binning('ht_sr',
+                                                          single_bin=binning.single_bin_signal)))
+            sr_list[-1].titleX = 'H_{T} [GeV]'
+            sr_list[-1].maxY = 5
+            sr_list[-1].ATLASLabelX = 0.25
+            sr_list[-1].ATLASLabelY = 0.85
+            sr_list[-1].titleY = "Entries/100 GeV"
+
+        # add theory systematics!
+        # this is pretty ugly :-(
+        if   'mbl_400' in region_name:
+            syst_region = 'SR_400'
+        elif 'mbl_600' in region_name:
+            syst_region = 'SR_600'
+        elif 'mbl_400' in test_sr:
+            syst_region = 'SR_400'
+        elif 'mbl_600' in test_sr:
+            syst_region = 'SR_600'
+        else:
+            continue
+
+        this_theort_uncert_dict = theory_uncert[syst_region]
+        for sample in this_theort_uncert_dict:
+            if   sample == 'Top': this_sample = 'ttbar'
+            elif sample == 'ST':  this_sample = 'SingleTop'
+            elif sample == 'ZX':  this_sample = 'ZGamma'
+            else:                 continue
+
+            for systematic in this_theort_uncert_dict[sample]:
+                sr_list[-1].getSample(this_sample).addSystematic(systematic)
+
+    for sr in sr_list:
+        sr.useUnderflowBin = True
+        sr.useOverflowBin  = True
+        # sr.titleY = "Entries/"
+        sr.logY = False
+        sr.showLumi = True
+        # sr.maxY = 5
+        # sr.ATLASLabelX = 0.25
+        # sr.ATLASLabelY = 0.85
+        sr.ATLASLabelText = "Internal"
+
+    if myFitType == FitType.Exclusion:
+        background_config.setSignalChannels(sr_list)
+    else:
+        background_config.setValidationChannels(sr_list)
+
 
 # ------------------------------------------------------------------------------
 # Configure discovery fit
