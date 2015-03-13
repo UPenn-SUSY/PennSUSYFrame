@@ -90,8 +90,10 @@ def makeFinalPlot(dir_name,
                 bin_size = int(bin_size)
 
             print 'bin size: ' , bin_size
-            # x_spacing = hist.GetXhist.GetXaxis().GetNbins()
-            hist.GetYaxis().SetTitle('Entries/(%s)' % bin_size)
+            hist_name = hist.GetName()
+            unit = 'GeV' if 'asym' not in hist_name.lower() else ''
+            y_axis_title = 'Entries/%s %s' % (bin_size, unit)
+            hist.GetYaxis().SetTitle(y_axis_title)
 
         # step through the denominator hist mergers and draw them
         if hm_denom is not None:
@@ -155,18 +157,19 @@ def makeFinalPlot(dir_name,
         # add ATLAS boilerplate
         label_x = 0.2
         label_y = 0.87
-        delta_y = 0.10
-        if 'mbl_asym' in hist.lower():
-            label_x = 0.25
+        delta_y = 0.09
+        # if 'mbl_asym' in hist.lower():
+        #     label_x = 0.25
 
-        hh.AtlasLabels.ATLASLabel(label_x, label_y, 1, 'Internal')
+        hh.AtlasLabels.ATLASLabel(label_x, label_y, 1, 'Simulation Internal')
         hh.AtlasLabels.myText(label_x, label_y - delta_y, 1,
                               '#intLdt = 20.3 fb^{-1}')
         hh.AtlasLabels.myText(label_x, label_y-1.9*delta_y, 1,
                               '#sqrt{s} = 8 TeV')
 
         # add lines for cuts if it is appropriate
-        def draw_arrow(height, length, cut_value, color, line_size):
+        def draw_arrow(height, length, cut_value, color, line_size_top,
+                       line_min=0):
             arrow_size = 0.01
             arrow_line_width = 3
 
@@ -178,8 +181,9 @@ def makeFinalPlot(dir_name,
             arrow.SetLineColor(color)
             arrow.Draw("SAME>")
 
-            line = ROOT.TLine(cut_value, (1-line_size)*height,
-                              cut_value, (1+line_size)*height)
+            # line = ROOT.TLine(cut_value, (1-line_size)*height,
+            line = ROOT.TLine(cut_value, line_min,
+                              cut_value, (1+line_size_top)*height)
             line.SetLineStyle(1)
             line.SetLineWidth(arrow_line_width)
             line.SetLineColor(color)
@@ -189,17 +193,17 @@ def makeFinalPlot(dir_name,
 
         if '_minus_ht' in dir_name.lower() and 'ht_signal' in hist.lower():
             arrow = draw_arrow(height=200, length=100, cut_value=1100,
-                               color=ROOT.kBlue, line_size=0.5)
+                               color=ROOT.kBlue+3, line_size_top=0.5)
 
         if '_minus_mbl' in dir_name.lower() and 'mbl_0' in hist.lower():
             arrow = draw_arrow(height=13, length=40, cut_value=400,
-                               color=ROOT.kBlue, line_size=0.3)
+                               color=ROOT.kBlue+3, line_size_top=0.3)
             arrow2 = draw_arrow(height=13, length=40, cut_value=600,
-                                color=ROOT.kRed, line_size=0.3)
+                                color=ROOT.kRed+3, line_size_top=0.3)
 
         if '_minus_mbl_asym' in dir_name.lower() and 'mbl_asym' in hist.lower():
             arrow = draw_arrow(height=15, length=-0.04, cut_value=0.20,
-                               color=ROOT.kBlue, line_size=0.2)
+                               color=ROOT.kBlue+3, line_size_top=0.2)
 
         # write to file
         c.Write(canvas_name)

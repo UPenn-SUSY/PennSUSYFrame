@@ -20,6 +20,7 @@ import itertools
 import math
 import pickle
 import pandas
+import sys
 
 from TheoryUncertainties import *
 
@@ -208,7 +209,6 @@ def create_grouped_table(region_df, is_signal=False):
     grouped_df_columns = ['group', 'count', 'diff', 'fractional']
     grouped_df_entries = []
     for group in group_names:
-
         subset = grouped_sample_df[grouped_sample_df['group'] == group]
 
         count = sum(subset['count'])
@@ -241,19 +241,22 @@ def create_grouped_table(region_df, is_signal=False):
     print ' & '.join(header_line)
     print '\\\\'
     print '\\midrule'
+    print 'Uncertainty (\\%)'
+    print '\\\\'
+    print '\\midrule'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print detector related systematics
     for group in group_names:
         table_line = [group.replace('_', '\\_')]
         for sample in sample_names:
-            table_line.append('%d\\%%' %
+            table_line.append('%d' %
                               (100*grouped_sample_df[
                                   (grouped_sample_df['group'] == group) &
                                   (grouped_sample_df['sample'] == sample)
                               ].iloc[0]['fractional']))
 
-        table_line.append('%d\\%%' %
+        table_line.append('%d' %
                           (100*grouped_df[
                               grouped_df['group'] == group
                           ].iloc[0]['fractional']))
@@ -281,20 +284,31 @@ def create_grouped_table(region_df, is_signal=False):
         elif systematic_label == '_multiParton':
             systematic_label = 'Multi-parton'
         elif systematic_label == '_RScales':
-            systematic_label = 'Renormalisation Scale'
+            systematic_label = 'Renormalization Scale'
         elif systematic_label == '_FScales':
-            systematic_label = 'Factorisation Scale'
+            systematic_label = 'Factorization Scale'
         elif systematic_label == '_DiagramSubtr':
             systematic_label = 'Interference with $t\\bar{t}$'
         elif systematic_label == '_ISRFSR':
             systematic_label = 'ISR/FSR'
         elif systematic_label == '_HtExtrapolation':
             systematic_label = '\\Ht\\ extrapolation'
+        elif systematic_label == '_TtbarCrossSection':
+            systematic_label = '$t\\bar{t}$ cross section'
+        elif systematic_label == '_SingleTopCrossSection':
+            systematic_label = '$Wt$ cross section'
+        elif systematic_label == '_Lumi':
+            systematic_label = 'Luminosity'
+        elif systematic_label == '_MCStat':
+            systematic_label = 'MC Statistical'
+        elif systematic_label == '_CRStat':
+            systematic_label = 'CR Statistical'
 
+        # step through the systematics and construct each line of the table
         table_line = [systematic_label]
         for sample in sample_names:
             nominal_yield = nominal_df[
-                (nominal_df['sample'] == this_sample)].iloc[0]['count']
+                (nominal_df['sample'] == sample)].iloc[0]['count']
             total_nominal += nominal_yield
 
             sample_label = sample
@@ -313,7 +327,7 @@ def create_grouped_table(region_df, is_signal=False):
                 total_up += nominal_yield*up_down[0][0]
                 total_down += nominal_yield*up_down[1][0]
 
-                table_line.append('%d\\%%' % (100*average_uncertainty))
+                table_line.append('%d' % (100*average_uncertainty))
             else:
                 table_line.append('-')
 
@@ -322,7 +336,8 @@ def create_grouped_table(region_df, is_signal=False):
 
         average_uncertainty = 0.5*(abs(total_nominal-total_up) +
                                    abs(total_nominal-total_down))
-        table_line.append('%d\\%%' % (100*average_uncertainty))
+        average_uncertainty /= total_nominal
+        table_line.append('%d' % (100*average_uncertainty))
         print ' & '.join(table_line)
         print '\\\\'
 
@@ -341,6 +356,15 @@ def create_grouped_table(region_df, is_signal=False):
     print
     print
 
+
+def get_stat_uncertainties(df):
+    subset = df[df['systematic'] == 'NoSys']
+    raw_counts = subset['raw']
+    stat_uncertainty = [1/math.sqrt(r) if r > 0 else 0 for r in raw_counts]
+    print stat_uncertainty
+
+    subset['stat'] = stat_uncertainty
+    print subset
 
 # ------------------------------------------------------------------------------
 def main(bkg_name, sig_name, read_from_pickle=False):
@@ -361,6 +385,9 @@ def main(bkg_name, sig_name, read_from_pickle=False):
             pickle.dump(bkg_region_df, bkg_handle)
         with open('sig_df.pickle', 'wb') as sig_handle:
             pickle.dump(sig_region_df, sig_handle)
+
+    # get_stat_uncertainties(bkg_region_df)
+    # sys.exit()
 
     sample_drop_list = ['_'.join(['sig', str(drop_mass)]) for drop_mass
                         in range(100, 401, 100)]

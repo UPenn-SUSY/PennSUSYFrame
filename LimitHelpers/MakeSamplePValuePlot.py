@@ -31,10 +31,16 @@ def extract_branching_ratios(file_name):
     """
     local_file_name = file_name.split('/')[-1]
     splits = local_file_name.split('_')
-    return {'br': dict(bre=int(splits[2]),
-                       brm=int(splits[4]),
-                       brt=int(splits[6])),
-            'sr': int(splits[11])}
+
+    br_dict = dict(bre=int(splits[2]), brm=int(splits[4]), brt=int(splits[6]))
+    if br_dict['bre'] == 57:
+        br_dict['bre'] += 1
+    if br_dict['brm'] == 57:
+        br_dict['brm'] += 1
+    if br_dict['brt'] == 57:
+        br_dict['brt'] += 1
+
+    return dict(br=br_dict, sr=int(splits[11]))
 
 
 # ------------------------------------------------------------------------------
@@ -88,12 +94,16 @@ def read_hypo_test_results():
     :return: data frame with expected and observed results
     :rtype : pandas.DataFrame
     """
-    results_exp = read_results_directory('SampleLists_expected')
-    results_obs = read_results_directory('SampleLists_observed')
-    results_obs_up = read_results_directory('SampleLists_observed',
-                                            variation='Up')
-    results_obs_down = read_results_directory('SampleLists_observed',
-                                              variation='Down')
+    results_exp = read_results_directory(
+        'sample_lists_from_batch_sr_*_blind_sig_xsec_Nominal',
+        variation='Nominal')
+    results_obs = read_results_directory(
+        'sample_lists_from_batch_sr_*_unblind_sig_xsec_Nominal',
+        variation='Nominal')
+    results_obs_up = read_results_directory(
+        'sample_lists_from_batch_sr_*_unblind_sig_xsec_Up', variation='Up')
+    results_obs_down = read_results_directory(
+        'sample_lists_from_batch_sr_*_unblind_sig_xsec_Down', variation='Down')
 
     # rename cls to cls_exp
     columns_exp = list(results_exp.columns)
@@ -251,6 +261,8 @@ def fill_in_missing_rows(df, extra_rows=True):
     if len(rows_to_append) > 0:
         df = df.append(pandas.DataFrame(rows_to_append, columns=df.columns),
                        ignore_index=True)
+
+    print 'Number of rows appended: ', len(rows_to_append)
 
     return df
 
@@ -550,7 +562,7 @@ def pick_best_expected_sensitivity(df):
 
 
 # ------------------------------------------------------------------------------
-def pick_highest_excluded_mass(df, confidence_level):
+def pick_highest_excluded_mass(df, cls_val, confidence_level):
     """
     step through a data frame, and for each branching ratio combination,
      select the highest mass that is excluded to a given confidence level
@@ -564,7 +576,7 @@ def pick_highest_excluded_mass(df, confidence_level):
     brt_list = df['brt'].unique()
 
     df = pick_best_expected_sensitivity(df)
-    df = df[df['cls'] <= confidence_level]
+    df = df[df[cls_val] <= confidence_level]
 
     for bre, brt in itertools.product(bre_list, brt_list):
         mass_list = df[(df['bre'] == bre) & (df['brt'] == brt)]['mass'].unique()
@@ -765,6 +777,11 @@ def plot_limit_contours(result_df, out_file_name):
             error_band = plt.Polygon(error_band_points, facecolor='gold', lw=0)
             plt.gca().add_patch(error_band)
 
+            label_string = "All limits at 95% CL"
+            legend_sp.text(0.50, 0.30, label_string, fontsize=20,
+                           verticalalignment='top',
+                           horizontalalignment='center')
+
     plt.savefig(out_file_name)
     plt.close()
 
@@ -802,7 +819,8 @@ def plot_mass_limit_triangle(result_df,
         cls_val = 'cls_obs' if draw_obs else 'cls_exp'
 
         print 'Dropping all rows which are not excluded'
-        this_limit_df = limit_df[limit_df[cls_val] < 0.05]
+        # this_limit_df = limit_df[limit_df[cls_val] < 0.05]
+        this_limit_df = pick_highest_excluded_mass(limit_df, cls_val, 0.05)
 
         norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=midpoint)
 
@@ -829,7 +847,7 @@ def plot_mass_limit_triangle(result_df,
 
         # draw label for observed/expected
         label_string = "Observed" if draw_obs else "Expected"
-        label_string += ' mass limit'
+        label_string += ' 95% CL mass limit'
         ax.text(0.98, 0.82, label_string, fontsize=14, verticalalignment='top',
                 horizontalalignment='right')
 
@@ -1005,7 +1023,7 @@ def make_p_value_plots(read_from_cache=False,
 
         # double the density of points ... twice!!!
         results = double_density(results)
-        results = double_density(results)
+        # results = double_density(results)
 
         # pickle up result for quicker access later
         if update_cache:
@@ -1015,6 +1033,9 @@ def make_p_value_plots(read_from_cache=False,
 
     # subset only points which are not flagged as extra
     results_no_extras = results[(results['extra'] == False)]
+
+    print 'number entries: ', len(results)
+    print 'number entries (no extras): ', len(results_no_extras)
 
     # # Make CLs triangle plot for each stop mass
     # for mass, sr, draw_obs in itertools.product(results['mass'].unique(),
@@ -1034,19 +1055,26 @@ def make_p_value_plots(read_from_cache=False,
     #                       out_file_name=file_name,
     #                       draw_obs=draw_obs,
     #                       gridsize=60)
-    #
+
     # make mass plot - reasonable options for color map:
     #   - hot_r, gist_heat_r, afmhot_r, GnBu,
     plot_mass_limit_triangle(results,
                              out_file_name='mass_limit',
                              # draw_obs=draw_obs,
                              cmap_string='hot_r',
-                             gridsize=35)
+                             gridsize=60)
     plot_mass_limit_triangle(results_no_extras,
                              out_file_name='mass_limit_no_extras',
                              # draw_obs=draw_obs,
                              cmap_string='hot_r',
                              gridsize=10)
+    # for x_spacing, y_spacing in itertools.product(xrange(40, 71, 5),
+    #                                               xrange(40, 71, 5)):
+    #     plot_mass_limit_triangle(results,
+    #                              out_file_name='mass_limit_%d_%d' % (x_spacing,
+    #                                                                  y_spacing),
+    #                              cmap_string='hot_r',
+    #                              gridsize=(x_spacing, y_spacing))
 
     # # make plot of region choice for each mass
     # for mass in results_no_extras['mass'].unique():
@@ -1086,5 +1114,5 @@ def make_p_value_plots(read_from_cache=False,
 # ==============================================================================
 if __name__ == "__main__":
     make_p_value_plots(read_from_cache=True,
-                       update_cache=True,
+                       update_cache=False,
                        cache_file_name='results.pickle')
