@@ -83,8 +83,8 @@ class HistPainter(object):
         draw_opt_list = []
 
         # add numerator
+        # if self.num_merger is not None and self.num_merger.target_lumi > 0.:
         if self.num_merger is not None:
-            # for key in self.num_merger.hist_handles:
             for key in self.num_merger.hist_handles_keys:
                 hist_list.append(self.num_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
@@ -92,7 +92,6 @@ class HistPainter(object):
 
         # add denominator
         if self.denom_merger is not None:
-            # for key in self.denom_merger.hist_handles:
             for key in self.denom_merger.hist_handles_keys:
                 hist_list.append(self.denom_merger.hist_handles[key].hist)
                 label_list.append(hh.Helper.genLegendLabel(key))
@@ -939,10 +938,13 @@ def drawLabels( int_lumi = 0
     docstring
     """
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # hh.AtlasLabels.ATLASLabel(0.20, 0.87, 1, 'Internal')
+    print 'drawing atlas labels'
+    hh.AtlasLabels.ATLASLabel(0.20, 0.87, 1, 'Internal')
     if int_lumi is not None and int_lumi > 0:
+        print 'drawing lumi'
         hh.AtlasLabels.myText(0.20, 0.78, 1, '#intLdt = %s fb^{-1}' % int_lumi)
     if prod_type in prod_labels:
+        print 'drawing prod type'
         hh.AtlasLabels.myText(0.20, 0.70, 1, prod_labels[prod_type])
 
 

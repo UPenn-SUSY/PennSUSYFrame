@@ -27,15 +27,15 @@ class HistMerger(object):
                 , hist_info
                 ):
         """
-        construtor
+        constructor
         """
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.directory = directory
         self.hist_name = hist_name
 
         # create random string to be used as a unique tag
-        unique_tag = ''.join(random.choice(string.ascii_lowercase) \
-                for x in xrange(5))
+        unique_tag = ''.join(random.choice(string.ascii_lowercase)
+                             for x in xrange(5))
         self.unique_name = '%s__%s__%s' % ( directory
                                           , hist_name
                                           , unique_tag

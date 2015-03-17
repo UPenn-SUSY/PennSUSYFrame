@@ -51,9 +51,9 @@ class HistInfo(object):
             hist.SetFillColor(  self.fill_color)
             hist.SetMarkerColor(self.fill_color)
             hist.SetMarkerStyle(self.marker_style)
-        hist.SetLineColor(  self.line_color)
-        hist.SetLineWidth(  self.line_width)
-        hist.SetLineStyle(  self.line_style)
+        hist.SetLineColor(self.line_color)
+        hist.SetLineWidth(self.line_width)
+        hist.SetLineStyle(self.line_style)
 
 # ==============================================================================
 class CanvasInfo(object):

@@ -70,25 +70,25 @@ def renamePulls(tag):
                    , 'histpull_%s.%s' % (tag, extension)
                    )
 
-# # ------------------------------------------------------------------------------
-# # make the basic pull plot!
-# print 'making basic pull plot'
-# # pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR.pickle'
-# pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR_SR.pickle'
-#                            , regionList = [ 'CR_top_all_mbl_0'
-#                                           , 'CR_Z_all_mbl_0'
-#                                           , 'VR_top_1_all_mbl_0'
-#                                           , 'VR_top_2_all_mbl_0'
-#                                           , 'VR_top_3_all_mbl_0'
-#                                           , 'VR_Z_all_mbl_0'
-#                                           ]
-#                            , samples = sample_string
-#                            , renamedRegions = rename_dict
-#                            , outputPrefix = ''
-#                            , doBlind = True
-#                            )
-# 
-# renamePulls('CR_VR')
+# ------------------------------------------------------------------------------
+# make the basic pull plot!
+print 'making basic pull plot'
+# pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR.pickle'
+pullPlotUtils.makePullPlot( obsFilename = 'YieldTable/MyYieldTable.CR_VR_SR.pickle'
+                           , regionList = [ 'CR_top_all_mbl_0'
+                                          , 'CR_Z_all_mbl_0'
+                                          , 'VR_top_1_all_mbl_0'
+                                          , 'VR_top_2_all_mbl_0'
+                                          , 'VR_top_3_all_mbl_0'
+                                          , 'VR_Z_all_mbl_0'
+                                          ]
+                           , samples = sample_string
+                           , renamedRegions = rename_dict
+                           , outputPrefix = ''
+                           , doBlind = True
+                           )
+
+renamePulls('CR_VR')
 
 # ------------------------------------------------------------------------------
 # make the CR detailed pull plot!

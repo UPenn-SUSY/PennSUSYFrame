@@ -85,7 +85,7 @@ def extractRegionContributions(sample_file_name):
 
 # ------------------------------------------------------------------------------
 def extractRegionContributionsSystematicTree(sample_file_name,
-                                             target_lumi=21e3):
+                                             target_lumi=20.3e3):
     print 'extracting region contributions from file: ', sample_file_name
     # get region list from this sample file
     sample_file = ROOT.TFile.Open(sample_file_name)
@@ -120,15 +120,20 @@ def extractRegionContributionsSystematicTree(sample_file_name,
                     }
 
     print '-'*80
-    for tl in tree_list:
+    for tree_it, tl in enumerate(tree_list):
         # For now, only do NoSys to save time
-        if 'NoSys' not in tl: continue
+        # if 'NoSys' not in tl: continue
+        # if 'NoSys' not in tl and 'JER' not in tl: continue
+
+        print 'Reading from tree: ', tl, ' - ', tree_it, ' of ', len(tree_list)
 
         # get tree from file by name
         this_tree = sample_file.Get(tl)
 
         # extract the sample name and systematic name from the tree name
         sample_name = tl.split('_')[0]
+        if sample_name == 'sig':
+            sample_name = '_'.join(tl.split('_')[:2])
         syst_name = tl.replace(sample_name, '').strip('_')
 
         # ttV is included in "other" and 'ttV'. We only want to include it once
@@ -152,7 +157,6 @@ def extractRegionContributionsSystematicTree(sample_file_name,
 
                     count[region] += target_lumi*event.weight*norm_factor
                     raw[region] += 1
-
                     if syst_name == 'NoSys':
                         for ws, weight_name in weight_systs.items():
                             syst_count[ws][region] += (target_lumi*
@@ -176,7 +180,7 @@ def extractRegionContributionsSystematicTree(sample_file_name,
 
 
 # ______________________________________________________________________________
-def getNumString(number, num_digits):
+def getNumString(number, num_digits, force_sign=False):
     """
     Function to take a number and number of digits to display after
     the decimal, and convert to a string of the correct length. If
@@ -186,8 +190,11 @@ def getNumString(number, num_digits):
         return '0'
 
     cutoff = 10**(-num_digits)
-    if number >= cutoff:
-        return ''.join(['{:.', str(num_digits), 'f}']).format(number)
+    if abs(number) >= cutoff:
+        if number > 0 and force_sign:
+            return ''.join(['$+{:.', str(num_digits), 'f}$']).format(number)
+        else:
+            return ''.join(['${:.', str(num_digits), 'f}$']).format(number)
     # do scientific notation
     sci_number = ''.join(['{:.', str(num_digits), 'E}']).format(number)
 
@@ -199,7 +206,10 @@ def getNumString(number, num_digits):
     sci_number = re.sub(r'E(.*)', r' \\cdot 10^{\1}', sci_number)
 
     # add $'s around the number
-    sci_number = ''.join(['$', sci_number, '$'])
+    if number > 0 and force_sign:
+        sci_number = ''.join(['$+', sci_number, '$'])
+    else:
+        sci_number = ''.join(['$', sci_number, '$'])
 
     return sci_number
 
@@ -223,10 +233,15 @@ def getRegionTitle(region_name, region_titles=None):
 
 # ------------------------------------------------------------------------------
 def getSampleTitle(sample_name):
-    if sample_name == 'Z/#gamma^{*}':
+    if sample_name == 'Z/#gamma^{*}' or sample_name == 'ZGamma':
         return '$Z/\\gamma^{*}$'
     if sample_name == 'ttbar':
         return '$t\\bar{t}$'
+    if sample_name == 'SingleTop':
+        return 'Single top'
+    if 'sig_' in sample_name:
+        return '%s GeV' % sample_name.split('_')[1]
+    sample_name = sample_name.replace('_', '\_')
     return sample_name
 
 
@@ -246,10 +261,18 @@ def sortSampleNames(sample_name_list):
     return sorted(sample_name_list, key = alphanum_key)
 
 # ------------------------------------------------------------------------------
-def getTotalRegionContribution(cont_df, sample_names, region_names):
-    # region_totals = {rn:0 for rn in region_names}
-    # region_uncert = {rn:0 for rn in region_names}
+def sortSystematicNames(systematics_name_list):
+    convert = lambda text: int(text) if text.isdigit() else text
+    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
+    systematics_name_list = sorted(systematics_name_list, key = alphanum_key)
 
+    systematics_name_list.insert(0,
+                                 systematics_name_list.pop(
+                                     systematics_name_list.index('NoSys')))
+    return systematics_name_list
+
+# ------------------------------------------------------------------------------
+def getTotalRegionContribution(cont_df, sample_names, region_names):
     # create data frame to hold the totals and uncertainties
     totals_df = pandas.DataFrame(columns = ('region', 'total', 'uncertainty'))
 
