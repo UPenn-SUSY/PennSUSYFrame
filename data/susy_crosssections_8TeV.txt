@@ -1288,6 +1288,7 @@
 202639    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800     0.00289588     1.0    1.0    1.0
 202640    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900     0.00109501     1.0    1.0    1.0
 202641    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000    0.000435490    1.0    1.0    1.0
+205069    MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1100    0.000179699    1.0    1.0    1.0
 #
 # signal grid samples mode A w/ slepton
 144871	modeA_simplified_144871	7.3264307976	1.0	1.0	1.0

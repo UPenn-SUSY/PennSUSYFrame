@@ -92,7 +92,6 @@ def mergeTmpTreesToOutput( out_file_name
     tmp_file_list = []
     tmp_tree_list = []
     for i, lott in enumerate(list_of_tmp_trees):
-        # print 'getting file: ', file_name
         this_file = ROOT.TFile('tmp__%s.root' % lott)
         this_tree = this_file.Get(lott)
         tmp_file_list.append(this_file)
@@ -107,7 +106,6 @@ def mergeTmpTreesToOutput( out_file_name
         tmp_tree.Write()
 
     # write to file
-    # new_tree.Write()
     out_file.Close()
 
 # ------------------------------------------------------------------------------
@@ -126,30 +124,6 @@ def writeTreesToHistFitterFile(out_file_name, optimize_tree_dict):
                                   , sample_name
                                   )
         list_of_tmp_trees.append(sample_name)
-
-        # writeSingleSampleToTmpFile( 'ee_%s.root' % sample_name
-        #                           , sample_name
-        #                           , optimize_tree_dict[sample_name]
-        #                           , 'is_ee'
-        #                           , 'ee_' + sample_name
-        #                           )
-        # list_of_tmp_trees.append('ee_' + sample_name)
-
-        # writeSingleSampleToTmpFile( 'mm_%s.root' % sample_name
-        #                           , sample_name
-        #                           , optimize_tree_dict[sample_name]
-        #                           , 'is_mm'
-        #                           , 'mm_' + sample_name
-        #                           )
-        # list_of_tmp_trees.append('mm_' + sample_name)
-
-        # writeSingleSampleToTmpFile( 'em_%s.root' % sample_name
-        #                           , sample_name
-        #                           , optimize_tree_dict[sample_name]
-        #                           , 'is_em'
-        #                           , 'em_' + sample_name
-        #                           )
-        # list_of_tmp_trees.append('em_' + sample_name)
 
     mergeTmpTreesToOutput( out_file_name, list_of_tmp_trees )
 
@@ -376,6 +350,7 @@ def main():
         sig_optimize_tree_dict['sig_800_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800*.ntup.root'  % opt_ntup_dir])
         sig_optimize_tree_dict['sig_900_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900*.ntup.root'  % opt_ntup_dir])
         sig_optimize_tree_dict['sig_1000_%s' % syst_tag] = constructPathList(['%s/BMinusL.*202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000*.ntup.root' % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_1100_%s' % syst_tag] = constructPathList(['%s/BMinusL.*205069.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1100*.ntup.root' % opt_ntup_dir])
 
     writeTreesToHistFitterFile('BackgroundHistFitterTrees.root', bkg_optimize_tree_dict)
     writeTreesToHistFitterFile('SignalHistFitterTrees.root'    , sig_optimize_tree_dict)

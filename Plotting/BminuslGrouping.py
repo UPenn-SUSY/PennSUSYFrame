@@ -37,7 +37,7 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # data
-    ec_data = hh.Container.EntryContainer( label = 'Data (21 fb^{-1})'
+    ec_data = hh.Container.EntryContainer( label = 'Data'
                                          , fill_color = ROOT.kBlack
                                          , input_file_list = constructFileList( hist_dir = hist_dir_data
                                                                               , syst_tag = 'NOMINAL' # always use nominal for data
