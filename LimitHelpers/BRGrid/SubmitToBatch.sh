@@ -1,6 +1,7 @@
 CONFIG_FILE_LIST=$1
-SOURCE_DIR=$2
-if [[ "$2" == "" ]] ; then
+JOB_TAG=$2
+SOURCE_DIR=$3
+if [[ "$3" == "" ]] ; then
   SOURCE_DIR="/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/HistFitter/"
 fi
 
@@ -27,26 +28,27 @@ for each in $SOURCE_DIR/* ; do
   echo ''
 done
 
+ls
+
 source setup.sh 
 echo "Running HistFitter on $CONFIG_FILE"
-for CONFIG in $(cat $CONFIG_FILE_LIST) ; do
-  HistFitter.py -p -t -w -f -F excl $CONFIG
-done
+while read -r CONFIG ; do
+  echo $CONFIG
+  eval "$CONFIG"
+done < $CONFIG_FILE_LIST
+echo ''
 
 echo "Shifting files around"
-echo $PWD
-ls
-echo ''
 cd results
-echo $PWD
+echo 'before move'
 ls
-echo ''
+
 mkdir excl
-ls
-echo ''
 mv *hypotest.root excl
+
 echo 'after move'
 ls
+
 echo ''
 cd ../
 
@@ -54,12 +56,15 @@ echo "Making sample list files"
 python LimitHelpers/MakeSampleListFiles.py Nominal
 python LimitHelpers/MakeSampleListFiles.py Up
 python LimitHelpers/MakeSampleListFiles.py Down
+echo ''
 
 echo "Moving sample list files to afs directory"
-TARGET_DIR="$SOURCE_DIR/sample_lists_from_batch"
+TARGET_DIR="$SOURCE_DIR/sample_lists_from_batch/batch_$JOB_TAG"
 if [[ ! -d $TARGET_DIR ]] ; then
-  mkdir $TARGET_DIR
+  mkdir -p $TARGET_DIR
 fi
 cp SampleExcl_*_harvest_list $TARGET_DIR
+echo ''
 
 echo "All done!"
+cd ..

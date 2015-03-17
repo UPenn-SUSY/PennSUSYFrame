@@ -595,13 +595,13 @@ void PennSusyFrame::BMinusLAnalysis::finalizeEvent()
   // -------------------------------------------------------------------------
   if ( !m_is_data || !m_is_blind ) {
     if (m_pass_z_veto && mbl_asym_le_2 && ht_ge_1100) {
-      // if (bl_mass_0_ge_200) {
-      //   fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_HT_1100_MBL_200
-      //                  , m_bl_0
-      //                  , m_bl_1
-      //                  , m_event_weight
-      //                  );
-      // }
+      if (bl_mass_0_ge_200) {
+        fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_HT_1100_MBL_200
+                       , m_bl_0
+                       , m_bl_1
+                       , m_event_weight
+                       );
+      }
       if (bl_mass_0_ge_400) {
         fillHistHandles( PennSusyFrame::BMINUSL_HIST_SR_HT_1100_MBL_400
                        , m_bl_0
