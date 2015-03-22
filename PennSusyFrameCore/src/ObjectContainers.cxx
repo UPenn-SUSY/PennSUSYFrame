@@ -23,10 +23,16 @@ PennSusyFrame::ElectronContainer::~ElectronContainer()
 }
 
 // ----------------------------------------------------------------------------
-void PennSusyFrame::ElectronContainer::init(bool is_data, bool is_af2)
+void PennSusyFrame::ElectronContainer::init( bool is_data
+                                           , bool is_af2
+                                           , PennSusyFrame::SystematicStruct* syst_struct
+                                           )
 {
   m_is_data = is_data;
-  m_el_rescaler = new PennSusyFrame::ElectronRescalerTool(is_data, is_af2);
+  m_el_rescaler = new PennSusyFrame::ElectronRescalerTool( is_data
+                                                         , is_af2
+                                                         , syst_struct
+                                                         );
 }
 
 // -----------------------------------------------------------------------------
@@ -131,10 +137,12 @@ PennSusyFrame::MuonContainer::~MuonContainer()
 }
 
 // ----------------------------------------------------------------------------
-void PennSusyFrame::MuonContainer::init(bool is_data)
+void PennSusyFrame::MuonContainer::init( bool is_data
+                                       , PennSusyFrame::SystematicStruct* syst_struct
+                                       )
 {
   m_is_data = is_data;
-  m_mu_rescaler = new PennSusyFrame::MuonRescalerTool(is_data);
+  m_mu_rescaler = new PennSusyFrame::MuonRescalerTool(is_data, syst_struct);
 }
 
 // -----------------------------------------------------------------------------

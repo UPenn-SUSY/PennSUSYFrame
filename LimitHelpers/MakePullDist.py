@@ -74,7 +74,7 @@ def renamePulls(tag):
 # make the basic pull plot!
 print 'making basic pull plot'
 # pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR.pickle'
-pullPlotUtils.makePullPlot( obsFilename = 'YieldTable/MyYieldTable.CR_VR_SR.pickle'
+pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR_SR.pickle'
                            , regionList = [ 'CR_top_all_mbl_0'
                                           , 'CR_Z_all_mbl_0'
                                           , 'VR_top_1_all_mbl_0'
@@ -94,19 +94,19 @@ renamePulls('CR_VR')
 # make the CR detailed pull plot!
 print 'making detailed CR pull plot'
 pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_detail.pickle'
-                           , regionList = [ 'CR_top_all_mbl_0'
-                                          , 'CR_top_ee_mbl_0'
-                                          , 'CR_top_mm_mbl_0'
-                                          , 'CR_top_em_mbl_0'
-                                          , 'CR_Z_all_mbl_0'
-                                          , 'CR_Z_ee_mbl_0'
-                                          , 'CR_Z_mm_mbl_0'
-                                          ]
-                           , samples = sample_string
-                           , renamedRegions = rename_dict
-                           , outputPrefix = ''
-                           , doBlind = True
-                           )
+                          , regionList = [ 'CR_top_all_mbl_0'
+                                         , 'CR_top_ee_mbl_0'
+                                         , 'CR_top_mm_mbl_0'
+                                         , 'CR_top_em_mbl_0'
+                                         , 'CR_Z_all_mbl_0'
+                                         , 'CR_Z_ee_mbl_0'
+                                         , 'CR_Z_mm_mbl_0'
+                                         ]
+                          , samples = sample_string
+                          , renamedRegions = rename_dict
+                          , outputPrefix = ''
+                          , doBlind = True
+                          )
 renamePulls('CR_detailed')
 
 # ------------------------------------------------------------------------------

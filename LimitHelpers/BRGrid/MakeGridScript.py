@@ -3,12 +3,13 @@ import os
 
 # number of branching ratio points and options to loop over
 br_points = range(0, 101, 2)
+# br_points = range(0, 101, 5)
 sr_options = ['sr_ht_1100_mbl_400', 'sr_ht_1100_mbl_600']
 blind_options = [True, False]
 
 # number of files per group
-sub_group_size = 20
-master_group_size = 5
+sub_group_size = 10
+master_group_size = 10
 
 # counters to keep track of grouping
 sub_group_number = 0

@@ -122,8 +122,8 @@ void PennSusyFrame::PennSusyFrameCore::prepareTools()
   m_event_quantities.init();
   m_trigger.init();
   m_vertices.init();
-  m_electrons.init(m_is_data, m_is_af2);
-  m_muons.init(m_is_data);
+  m_electrons.init(m_is_data, m_is_af2, &m_syst_struct);
+  m_muons.init(m_is_data, &m_syst_struct);
   m_taus.init(m_is_data, m_is_af2);
   m_jets.init( m_is_data
              , m_is_af2

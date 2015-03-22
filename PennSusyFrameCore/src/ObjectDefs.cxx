@@ -1556,6 +1556,22 @@ PennSusyFrame::SystematicStruct::SystematicStruct()
   do_syst["do_flavor_response_uncert_down"] = false;
   do_syst["do_bjes_up"] = false;
   do_syst["do_bjes_down"] = false;
+  do_syst["do_zee_all_up"] = false;
+  do_syst["do_zee_all_down"] = false;
+  do_syst["do_r12_stat_up"] = false;
+  do_syst["do_r12_stat_down"] = false;
+  do_syst["do_ps_stat_up"] = false;
+  do_syst["do_ps_stat_down"] = false;
+  do_syst["do_low_pt_up"] = false;
+  do_syst["do_low_pt_down"] = false;
+  do_syst["do_eer_up"] = false;
+  do_syst["do_eer_down"] = false;
+  do_syst["do_ms_low"] = false;
+  do_syst["do_ms_up"] = false;
+  do_syst["do_id_low"] = false;
+  do_syst["do_id_up"] = false;
+  do_syst["do_mu_mom_scale_low"] = false;
+  do_syst["do_mu_mom_scale_up"] = false;
 }
 
 // -----------------------------------------------------------------------------
@@ -1567,6 +1583,8 @@ void PennSusyFrame::SystematicStruct::setSyst(std::string syst, bool val)
 // -----------------------------------------------------------------------------
 bool PennSusyFrame::SystematicStruct::getSyst(std::string syst)
 {
+  std::map<std::string, bool>::iterator it = do_syst.begin();
+  std::map<std::string, bool>::iterator term = do_syst.end();
   return do_syst[syst];
 }
 

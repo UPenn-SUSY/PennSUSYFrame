@@ -488,13 +488,13 @@ if do_validation:
             this_vr_name = ''.join([vr_name, flavor_channel])
 
             # add VR plots
-            # if flavor_channel == '_all':
-            #     vr_list.append(addChannel(background_config,
-            #                               'flavor_channel',
-            #                               this_vr_name,
-            #                               binning.get_binning('flavor_channel',
-            #                                                   single_bin=False)))
-            #     vr_list[-1].titleX = 'Flavor Channel'
+            if flavor_channel == '_all':
+                vr_list.append(addChannel(background_config,
+                                          'flavor_channel',
+                                          this_vr_name,
+                                          binning.get_binning('flavor_channel',
+                                                              single_bin=False)))
+                vr_list[-1].titleX = 'Flavor Channel'
 
             vr_list.append(addChannel(background_config,
                                       'mbl_0',
@@ -503,12 +503,12 @@ if do_validation:
                                                           single_bin=False)))
             vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
 
-            # vr_list.append(addChannel(background_config,
-            #                           'mbl_1',
-            #                           this_vr_name,
-            #                           binning.get_binning('mbl',
-            #                                               single_bin=False)))
-            # vr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
+            vr_list.append(addChannel(background_config,
+                                      'mbl_1',
+                                      this_vr_name,
+                                      binning.get_binning('mbl',
+                                                          single_bin=False)))
+            vr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
 
             if vr_name in ['VR_top_3', 'VR_Z']:
                 vr_list.append(addChannel(background_config,
@@ -560,13 +560,13 @@ if do_validation:
             this_cr_name = ''.join([cr_name, flavor_channel])
 
             # add CR plots
-            # if flavor_channel == '_all':
-            #     vr_list.append(addChannel(background_config,
-            #                               'flavor_channel',
-            #                               this_cr_name,
-            #                               binning.get_binning('flavor_channel',
-            #                                                   single_bin=False)))
-            #     vr_list[-1].titleX = 'Flavor Channel'
+            if flavor_channel == '_all':
+                vr_list.append(addChannel(background_config,
+                                          'flavor_channel',
+                                          this_cr_name,
+                                          binning.get_binning('flavor_channel',
+                                                              single_bin=False)))
+                vr_list[-1].titleX = 'Flavor Channel'
 
             vr_list.append(addChannel(background_config,
                                     'mbl_0',
@@ -575,12 +575,12 @@ if do_validation:
                                                         single_bin=False)))
             vr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
 
-            # vr_list.append(addChannel(background_config,
-            #                           'mbl_1',
-            #                           this_cr_name,
-            #                           binning.get_binning('mbl',
-            #                                               single_bin=False)))
-            # vr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
+            vr_list.append(addChannel(background_config,
+                                      'mbl_1',
+                                      this_cr_name,
+                                      binning.get_binning('mbl',
+                                                          single_bin=False)))
+            vr_list[-1].titleX = 'm_{bl}^{1} [GeV]'
 
             vr_list.append(addChannel(background_config,
                                       'ht_signal',
@@ -716,7 +716,7 @@ if myFitType == FitType.Exclusion:
     # sig_sample_list=['sig_100', 'sig_200', 'sig_300', 'sig_400', 'sig_500',
     #                  'sig_600', 'sig_700', 'sig_800', 'sig_900', 'sig_1000']
     sig_sample_list=['sig_400', 'sig_500', 'sig_600', 'sig_700', 'sig_800',
-                     'sig_900', 'sig_1000']
+                     'sig_900', 'sig_1000', 'sig_1100']
     # sig_sample_list=['sig_900']
 
     sig_samples = []

@@ -27,7 +27,7 @@ if 'sr_' in args.sr:
     sr = args.sr
 else:
     sr = 'sr_ht_1100_mbl_%s' % args.sr
-is_blind = True if args.blind == 1 else False
+is_blind = True if args.blind == '1' else False
 
 # check if config file directory exists. If not, create it
 br_grid_dir = 'BRGrid'

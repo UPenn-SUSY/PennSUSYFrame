@@ -938,13 +938,13 @@ def drawLabels( int_lumi = 0
     docstring
     """
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    print 'drawing atlas labels'
+    # print 'drawing atlas labels'
     hh.AtlasLabels.ATLASLabel(0.20, 0.87, 1, 'Internal')
     if int_lumi is not None and int_lumi > 0:
-        print 'drawing lumi'
+        # print 'drawing lumi'
         hh.AtlasLabels.myText(0.20, 0.78, 1, '#intLdt = %s fb^{-1}' % int_lumi)
     if prod_type in prod_labels:
-        print 'drawing prod type'
+        # print 'drawing prod type'
         hh.AtlasLabels.myText(0.20, 0.70, 1, prod_labels[prod_type])
 
 

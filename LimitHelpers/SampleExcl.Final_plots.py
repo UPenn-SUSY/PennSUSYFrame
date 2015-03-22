@@ -109,7 +109,7 @@ configMgr.inputLumi = 0.001    # Luminosity of input TTree after weighting
 configMgr.outputLumi = 20.3    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
 
-# configMgr.plotRatio="none"
+configMgr.plotRatio="none"
 
 # Set the files to read from
 data_files = []
@@ -457,7 +457,7 @@ for crl in cr_list:
     crl.showLumi = True
     crl.ATLASLabelX = 0.25
     crl.ATLASLabelY = 0.85
-    crl.ATLASLabelText = "Internal"
+    crl.ATLASLabelText = "Preliminary"
 
 # ______________________________________________________________________________
 # Construct Validation regions
@@ -533,7 +533,8 @@ if do_validation:
                                         binning.get_binning('ht_low',
                                                             single_bin=False)))
                 vr_list[-1].titleY = "Entries/40 GeV"
-                vr_list[-1].ATLASLabelX = 0.65
+                # vr_list[-1].ATLASLabelX = 0.65
+                vr_list[-1].ATLASLabelX = 0.55
                 vr_list[-1].ATLASLabelY = 0.85
 
             vr_list[-1].titleX = 'H_{T} [GeV]'
@@ -600,7 +601,8 @@ if do_validation:
                                                           single_bin=False)))
             vr_list[-1].titleX = 'H_{T} [GeV]'
             vr_list[-1].titleY = "Entries/40 GeV"
-            vr_list[-1].ATLASLabelX = 0.65
+            # vr_list[-1].ATLASLabelX = 0.65
+            vr_list[-1].ATLASLabelX = 0.55
             vr_list[-1].ATLASLabelY = 0.85
             if cr_name in ['CR_top']:
                 vr_list[-1].maxY = 150
@@ -631,7 +633,7 @@ if do_validation:
         vr.showLumi = True
         # vr.ATLASLabelX = 0.32
         # vr.ATLASLabelY = 0.88
-        vr.ATLASLabelText = 'Internal'
+        vr.ATLASLabelText = 'Preliminary'
 
     background_config.setValidationChannels(vr_list)
 
@@ -654,7 +656,8 @@ if not myFitType == FitType.Discovery:
                                                       single_bin=binning.single_bin_signal)))
         sr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
         sr_list[-1].maxY = 5
-        sr_list[-1].ATLASLabelX = 0.65
+        # sr_list[-1].ATLASLabelX = 0.65
+        sr_list[-1].ATLASLabelX = 0.55
         sr_list[-1].ATLASLabelY = 0.85
         sr_list[-1].titleY = "Entries/100 GeV"
 
@@ -709,7 +712,7 @@ if not myFitType == FitType.Discovery:
         # sr.maxY = 5
         # sr.ATLASLabelX = 0.25
         # sr.ATLASLabelY = 0.85
-        sr.ATLASLabelText = "Internal"
+        sr.ATLASLabelText = "Preliminary"
 
     if myFitType == FitType.Exclusion:
         background_config.setSignalChannels(sr_list)
@@ -778,7 +781,7 @@ leg.SetBorderSize(0)
 
 # Data entry
 entry = TLegendEntry()
-entry = leg.AddEntry("", "Data 2012 (#sqrt{s}=8 TeV)", "p")
+entry = leg.AddEntry("", "Data", "p")
 entry.SetMarkerColor(background_config.dataColor)
 entry.SetMarkerStyle(20)
 

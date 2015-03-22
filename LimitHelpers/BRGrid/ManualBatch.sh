@@ -12,11 +12,13 @@ pwd
 
 BR_GRID_DIR=/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/HistFitter/LimitHelpers/BRGrid/
 master_group_file=${BR_GRID_DIR}/master_group_set_${JOB_TAG}.txt
-for group_file in $(cat $master_group_file) ; do                                                                                                                                             
+for group_file in $(cat $master_group_file) ; do
+  cd $LOCAL_WORK_DIR
+
   source ${BR_GRID_DIR}/SubmitToBatch.sh ${BR_GRID_DIR}/$group_file $JOB_TAG
-  # cd ..              
+
+  cd $LOCAL_WORK_DIR
   rm -rf HistFitter
   rm -rf HistFitterNtuples
-  rm -rf LimitHelpers                               
+  rm -rf LimitHelpers
 done
-

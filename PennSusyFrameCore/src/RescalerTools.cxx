@@ -14,11 +14,13 @@
 // =============================================================================
 // = ElectronRescalerTool
 // =============================================================================
-// TODO set m_systematics correctly
-PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool(bool is_data, bool is_af2) : m_is_data(is_data)
-                                                                                     , m_is_af2(is_af2)
-                                                                                     , m_systematics(0)
-                                                                                     , m_e_rescale(0)
+PennSusyFrame::ElectronRescalerTool::ElectronRescalerTool( bool is_data
+                                                         , bool is_af2
+                                                         , PennSusyFrame::SystematicStruct* syst_struct
+                                                         ) : m_is_data(is_data)
+                                                           , m_is_af2(is_af2)
+                                                           , m_syst_struct(syst_struct)
+                                                           , m_e_rescale(0)
 {
   init();
 }
@@ -58,18 +60,45 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledE( const PennSusyFrame::E
   double el_cl_phi = p->getClPhi();
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  if (!m_is_data) {
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (!m_is_data && m_syst_struct) {
+    if (  m_syst_struct->getSyst("do_zee_all_up")
+       || m_syst_struct->getSyst("do_zee_all_down")
+       || m_syst_struct->getSyst("do_r12_stat_up")
+       || m_syst_struct->getSyst("do_r12_stat_down")
+       || m_syst_struct->getSyst("do_ps_stat_up")
+       || m_syst_struct->getSyst("do_ps_stat_down")
+       || m_syst_struct->getSyst("do_low_pt_up")
+       || m_syst_struct->getSyst("do_low_pt_down")
+       ) {
+      el_E_corrected = applyEES( el_E_corrected, el_cl_eta);
+    }
+
+
     // Do energy smearing in MC
     int seed = static_cast<int>(1.e+5*fabs(el_cl_phi));
     if (!seed) ++seed;
     m_e_rescale->SetRandomSeed(seed);
 
     // find smearing correction
-    double smearcorr = m_e_rescale->getSmearingCorrection( el_cl_eta
-                                                         , el_E_uncorrected
-                                                         , egRescaler::EnergyRescalerUpgrade::NOMINAL
-                                                         );
+    double smearcorr = 1.;
+    if (m_syst_struct->getSyst("do_eer_up")) {
+      smearcorr = m_e_rescale->getSmearingCorrection( el_cl_eta
+                                                    , el_E_uncorrected
+                                                    , egRescaler::EnergyRescalerUpgrade::ERR_UP
+                                                    );
+    }
+    else if (m_syst_struct->getSyst("do_eer_down")) {
+      smearcorr = m_e_rescale->getSmearingCorrection( el_cl_eta
+                                                    , el_E_uncorrected
+                                                    , egRescaler::EnergyRescalerUpgrade::ERR_DOWN
+                                                    );
+    }
+    else {
+      smearcorr = m_e_rescale->getSmearingCorrection( el_cl_eta
+                                                    , el_E_uncorrected
+                                                    , egRescaler::EnergyRescalerUpgrade::NOMINAL
+                                                    );
+    }
     el_E_corrected *= smearcorr;
 
     // Apply Atlfast specific calibration corrections (Atlfast only)
@@ -99,12 +128,87 @@ double PennSusyFrame::ElectronRescalerTool::getRescaledEt(const PennSusyFrame::E
   return el_Et_corrected;
 }
 
+// -----------------------------------------------------------------------------
+double PennSusyFrame::ElectronRescalerTool::applyEES(double el_e, double el_eta)
+{
+  double da = 0.;
+
+  if (m_syst_struct->getSyst("do_zee_all_up")) {
+    da = m_e_rescale->getAlphaUncertainty( el_eta
+                                         , el_e
+                                         , egRescaler::EnergyRescalerUpgrade::Electron
+                                         , egRescaler::EnergyRescalerUpgrade::ZeeAllUp
+                                         );
+  }
+
+  if (m_syst_struct->getSyst("do_zee_all_down")) {
+    da = m_e_rescale->getAlphaUncertainty( el_eta
+                                         , el_e
+                                         , egRescaler::EnergyRescalerUpgrade::Electron
+                                         , egRescaler::EnergyRescalerUpgrade::ZeeAllDown
+                                         );
+  }
+
+  if (m_syst_struct->getSyst("do_r12_stat_up")) {
+    da = m_e_rescale->getAlphaUncertainty( el_eta
+                                         , el_e
+                                         , egRescaler::EnergyRescalerUpgrade::Electron
+                                         , egRescaler::EnergyRescalerUpgrade::R12StatUp
+                                         );
+  }
+
+  if (m_syst_struct->getSyst("do_r12_stat_down")) {
+    da = m_e_rescale->getAlphaUncertainty( el_eta
+                                         , el_e
+                                         , egRescaler::EnergyRescalerUpgrade::Electron
+                                         , egRescaler::EnergyRescalerUpgrade::R12StatDown
+                                         );
+  }
+
+  if (m_syst_struct->getSyst("do_ps_stat_up")) {
+    da = m_e_rescale->getAlphaUncertainty( el_eta
+                                         , el_e
+                                         , egRescaler::EnergyRescalerUpgrade::Electron
+                                         , egRescaler::EnergyRescalerUpgrade::PSStatUp
+                                         );
+  }
+
+  if (m_syst_struct->getSyst("do_ps_stat_down")) {
+    da = m_e_rescale->getAlphaUncertainty( el_eta
+                                         , el_e
+                                         , egRescaler::EnergyRescalerUpgrade::Electron
+                                         , egRescaler::EnergyRescalerUpgrade::PSStatDown
+                                         );
+  }
+
+  if (m_syst_struct->getSyst("do_low_pt_up")) {
+    da = m_e_rescale->getAlphaUncertainty( el_eta
+                                         , el_e
+                                         , egRescaler::EnergyRescalerUpgrade::Electron
+                                         , egRescaler::EnergyRescalerUpgrade::LowPtUp
+                                         );
+  }
+
+  if (m_syst_struct->getSyst("do_low_pt_down")) {
+    da = m_e_rescale->getAlphaUncertainty( el_eta
+                                         , el_e
+                                         , egRescaler::EnergyRescalerUpgrade::Electron
+                                         , egRescaler::EnergyRescalerUpgrade::LowPtDown
+                                         );
+  }
+
+  return el_e*(1+da);
+}
+
 // =============================================================================
 // = MuonRescalerTool
 // =============================================================================
-PennSusyFrame::MuonRescalerTool::MuonRescalerTool(bool is_data) : m_is_data(is_data)
-                                                                , m_mcp_smear(0)
-                                                                , m_smearing_function("")
+PennSusyFrame::MuonRescalerTool::MuonRescalerTool(bool is_data
+                                                 , PennSusyFrame::SystematicStruct* syst_struct
+                                                 ) : m_is_data(is_data)
+                                                   , m_syst_struct(syst_struct)
+                                                   , m_mcp_smear(0)
+                                                   , m_smearing_function("")
 {
   init();
 }
@@ -134,6 +238,27 @@ void PennSusyFrame::MuonRescalerTool::init()
 					      , "Rel17.2Sum13" //updated as of susytools 3-16
                                             , m_muon_momentum_dir
                                             );
+
+  if (!m_is_data && m_syst_struct) {
+    if (m_syst_struct->getSyst("do_ms_low")) {
+      m_smearing_function = "MSLOW";
+    }
+    if (m_syst_struct->getSyst("do_ms_up")) {
+      m_smearing_function = "MSUP";
+    }
+    if (m_syst_struct->getSyst("do_id_low")) {
+      m_smearing_function = "IDLOW";
+    }
+    if (m_syst_struct->getSyst("do_id_up")) {
+      m_smearing_function = "IDUP";
+    }
+    if (m_syst_struct->getSyst("do_mu_mom_scale_low")) {
+      m_smearing_function = "SCALELOW";
+    }
+    if (m_syst_struct->getSyst("do_mu_mom_scale_up")) {
+      m_smearing_function = "SCALEUP";
+    }
+  }
 }
 
 // -----------------------------------------------------------------------------

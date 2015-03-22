@@ -44,7 +44,10 @@ namespace PennSusyFrame
       ElectronContainer();
       ~ElectronContainer();
 
-      void init(bool is_data, bool is_af2);
+      void init( bool is_data
+               , bool is_af2
+               , PennSusyFrame::SystematicStruct* syst_struct
+               );
       void updateWithMet(const PennSusyFrame::Met&);
       void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
@@ -74,7 +77,9 @@ namespace PennSusyFrame
       MuonContainer();
       ~MuonContainer();
 
-      void init(bool is_data);
+      void init(bool is_data
+               , PennSusyFrame::SystematicStruct* syst_struct = 0
+               );
       void updateWithMet(const PennSusyFrame::Met&);
       void updateIsolation(const PennSusyFrame::Event*, int num_vtx);
 
