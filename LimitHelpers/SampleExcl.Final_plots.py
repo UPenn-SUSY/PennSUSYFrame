@@ -109,7 +109,7 @@ configMgr.inputLumi = 0.001    # Luminosity of input TTree after weighting
 configMgr.outputLumi = 20.3    # Luminosity required for output histograms
 configMgr.setLumiUnits("fb-1")
 
-configMgr.plotRatio="none"
+# configMgr.plotRatio="none"
 
 # Set the files to read from
 data_files = []
@@ -655,6 +655,7 @@ if not myFitType == FitType.Discovery:
                                   binning.get_binning('mbl',
                                                       single_bin=binning.single_bin_signal)))
         sr_list[-1].titleX = 'm_{bl}^{0} [GeV]'
+        sr_list[-1].minY = 0
         sr_list[-1].maxY = 5
         # sr_list[-1].ATLASLabelX = 0.65
         sr_list[-1].ATLASLabelX = 0.55
@@ -675,6 +676,7 @@ if not myFitType == FitType.Discovery:
                                       binning.get_binning('ht_sr',
                                                           single_bin=binning.single_bin_signal)))
             sr_list[-1].titleX = 'H_{T} [GeV]'
+            sr_list[-1].minY = 0
             sr_list[-1].maxY = 5
             sr_list[-1].ATLASLabelX = 0.25
             sr_list[-1].ATLASLabelY = 0.85
@@ -706,7 +708,6 @@ if not myFitType == FitType.Discovery:
     for sr in sr_list:
         sr.useUnderflowBin = True
         sr.useOverflowBin  = True
-        # sr.titleY = "Entries/"
         sr.logY = False
         sr.showLumi = True
         # sr.maxY = 5

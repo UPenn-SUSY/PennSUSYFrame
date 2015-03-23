@@ -288,28 +288,36 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
       if (!seed) ++seed;
       m_mcp_smear->SetSeed(seed);
 
+      // set event information for muon smearing
+      if (p->getIsCombined()) {
+        m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu_eta, p->getCharge(), mu_phi);
+      }
+      else if (p->getIsSegmentTagged()) {
+        m_mcp_smear->Event(pt_id, mu_eta, "ID", p->getCharge(), mu_phi);
+      }
+      else {
+        m_mcp_smear->Event(pt_ms, mu_eta, "MS", p->getCharge(), mu_phi);
+      }
+
       // smear muon based on smearing function
       if (m_smearing_function == "") {
         // if combined muon
         if (p->getIsCombined()) {
-          m_mcp_smear->Event(pt_ms, pt_id, pt_cb, mu_eta, p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTCB();
         }
         // else if segment tagged muon
         else if (p->getIsSegmentTagged()) {
-          m_mcp_smear->Event(pt_id, mu_eta, "ID", p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTID();
         }
         // else if ms only muon
         else {
-          m_mcp_smear->Event(pt_ms, mu_eta, "MS", p->getCharge(), mu_phi);
           my_pt = m_mcp_smear->pTMS();
         }
       }
       else {
-        double pTMS_smeared = 0.;
-        double pTID_smeared = 0.;
-        double pTCB_smeared = 0.;
+        double pTMS_smeared = my_pt;
+        double pTID_smeared = my_pt;
+        double pTCB_smeared = my_pt;
 
         // Valid values for "c_smearing_function":
         //   {"MSLOW", "MSUP", "IDLOW", "IDUP","SCALELOW", "SCALEUP"}
@@ -319,12 +327,15 @@ double PennSusyFrame::MuonRescalerTool::getSmearedPt(const PennSusyFrame::Muon* 
                           , m_smearing_function
                           );
 
-        if (p->getIsCombined())
+        if (p->getIsCombined()) {
           my_pt = pTCB_smeared;
-        else if (p->getIsSegmentTagged())
+        }
+        else if (p->getIsSegmentTagged()) {
           my_pt = pTID_smeared;
-        else
+        }
+        else {
           my_pt = pTMS_smeared;
+        }
       }
     }
   }
