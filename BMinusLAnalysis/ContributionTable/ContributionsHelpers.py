@@ -240,9 +240,9 @@ def getRegionTitle(region_name, region_titles=None):
 
 # ------------------------------------------------------------------------------
 def getSampleTitle(sample_name):
-    if sample_name == 'Z/#gamma^{*}' or sample_name == 'ZGamma':
+    if sample_name == 'Z/#gamma*' or sample_name == 'ZGamma':
         return '$Z/\\gamma^{*}$'
-    if sample_name == 'ttbar':
+    if sample_name == 'ttbar' or sample_name == 't#bar{t}':
         return '$t\\bar{t}$'
     if sample_name == 'SingleTop':
         return 'Single top'
