@@ -44,7 +44,7 @@ def extract_branching_ratios(file_name):
 
 
 # ------------------------------------------------------------------------------
-def read_results_directory(dir_name, variation='Nominal'):
+def read_results_directory(dir_name, variation='Nominal', blind=False):
     """
     Read all the harvest list files in a directory, and construct a data frame
     with the mass, branching ratios, signal region, and CLs values
@@ -52,20 +52,40 @@ def read_results_directory(dir_name, variation='Nominal'):
     :rtype : pandas.DataFrame
     """
     file_list = glob.glob(
-        '%s/SampleExcl_*fixSigXSec%s*_harvest_list' % (dir_name, variation))
+        '%s/SampleExcl_*_%s_*fixSigXSec%s*_harvest_list' % (dir_name,
+                                                            ('blind' if blind
+                                                             else 'unblind'),
+                                                            variation))
 
     results_list = []
 
     for fl in file_list:
         branching_ratios = extract_branching_ratios(fl)
 
-        this_tree = tree_summary.harvesttree(fl)
-        for entry in this_tree:
-            # extract the mass and CLS from this entry of the tree
-            this_mass = int(entry.mst)
-            this_cls = entry.CLs
+        this_tree = tree_summary.harvest_df(fl)
 
-            # create list for this data frame entry and append to the end
+        for entry in this_tree.index:
+            this_mass = this_tree.loc[entry, 'mst']
+            this_cls = this_tree.loc[entry, 'CLs']
+
+            # in rare instances, HistFitter gives bogus results. If these
+            # are found, set the CLs value to NAN
+            if this_cls == 1 or this_cls == 0.5:
+                print '----------'
+                print "An issue was found with this point: "
+                print '  File: ', fl
+                print '  bre: %f brm: %f brt: %f -- SR: %s' % (
+                        (branching_ratios['br']['bre'] / 100.),
+                        (branching_ratios['br']['brm'] / 100.),
+                        (branching_ratios['br']['brt'] / 100.),
+                        branching_ratios['sr'])
+                print '  mass: ', this_mass
+                print '  CLs: ', this_cls
+                print 'Setting value to nan'
+                print
+
+                this_cls = np.nan
+
             this_df_entry = [False,
                              this_mass,
                              branching_ratios['br']['bre'] / 100.,
@@ -94,16 +114,34 @@ def read_hypo_test_results():
     :return: data frame with expected and observed results
     :rtype : pandas.DataFrame
     """
-    results_exp = read_results_directory(
-        'sample_lists_from_batch_sr_*_blind_sig_xsec_Nominal',
-        variation='Nominal')
-    results_obs = read_results_directory(
-        'sample_lists_from_batch_sr_*_unblind_sig_xsec_Nominal',
-        variation='Nominal')
-    results_obs_up = read_results_directory(
-        'sample_lists_from_batch_sr_*_unblind_sig_xsec_Up', variation='Up')
-    results_obs_down = read_results_directory(
-        'sample_lists_from_batch_sr_*_unblind_sig_xsec_Down', variation='Down')
+    sample_list_dir_name = 'sample_lists_from_batch/batch_*/'
+    results_exp = read_results_directory(sample_list_dir_name,
+                                         variation='Nominal', blind=True)
+    results_obs = read_results_directory(sample_list_dir_name,
+                                         variation='Nominal', blind=False)
+    results_obs_up = read_results_directory(sample_list_dir_name,
+                                            variation='Up', blind=False)
+    results_obs_down = read_results_directory(sample_list_dir_name,
+                                              variation='Down', blind=False)
+
+    ## print '-'*60
+    ## print 'results_exp'
+    ## print results_exp
+    ## print
+    ## print '-'*60
+    ## print 'results_obs'
+    ## print results_obs
+    ## print
+    ## print '-'*60
+    ## print 'results_obs_up'
+    ## print results_obs_up
+    ## print
+    ## print '-'*60
+    ## print 'results_obs_down'
+    ## print results_obs_down
+    ## print
+
+    ## sys.exit()
 
     # rename cls to cls_exp
     columns_exp = list(results_exp.columns)
@@ -152,7 +190,7 @@ class MidpointNormalize(mpl.colors.Normalize):
 
 # ------------------------------------------------------------------------------
 def plot_styling(ax, color_bar=True, axis_fontsize=16, forbidden_x=0.21,
-                 forbidden_y=0.80):
+                 forbidden_y=0.80, label_x_axis=True, label_y_axis=True):
     """
     Apply default styling to axis
     :param ax: axis to apply styling
@@ -161,10 +199,12 @@ def plot_styling(ax, color_bar=True, axis_fontsize=16, forbidden_x=0.21,
     ax.set_xlim((0, 1))
     ax.set_ylim((0, 1))
 
-    ax.set_xlabel('$Br(\\tilde{t} \\rightarrow be)$',
-                  fontsize=axis_fontsize, x=1, ha='right')
-    ax.set_ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$',
-                  fontsize=axis_fontsize, y=1, ha='right')
+    if label_x_axis:
+        ax.set_xlabel('$Br(\\tilde{t} \\rightarrow be)$',
+                    fontsize=axis_fontsize, x=1, ha='right')
+    if label_y_axis:
+        ax.set_ylabel('$Br(\\tilde{t} \\rightarrow b\\tau)$',
+                    fontsize=axis_fontsize, y=1, ha='right')
 
     plt.xticks([i * 0.2 for i in xrange(6)])
     plt.yticks([i * 0.2 for i in xrange(6)])
@@ -181,7 +221,7 @@ def plot_styling(ax, color_bar=True, axis_fontsize=16, forbidden_x=0.21,
                        edgecolor='white')
     ax.add_patch(mask)
 
-    plt.text(forbidden_x, forbidden_y, 'Forbidden', fontsize=18,
+    plt.text(forbidden_x, forbidden_y, 'Unphysical', fontsize=18,
              rotation=-41 if color_bar else -37)
 
 
@@ -194,7 +234,8 @@ def add_atlas_labels(upper_coordinate=0.91,
                      left_margin=0.1,
                      right_margin=0.99,
                      top_margin=0.92,
-                     bottom_margin=0.1):
+                     bottom_margin=0.1,
+                     atlas_tag='Internal'):
     """
     Add label with ATLAS boilerplate
     :return: None
@@ -206,12 +247,13 @@ def add_atlas_labels(upper_coordinate=0.91,
     plt.figtext(right_coordinate-atlas_offset, upper_coordinate,
                 'ATLAS', fontsize=fontsize, fontweight='bold', style='italic',
                 verticalalignment='top', horizontalalignment='right')
-    plt.figtext(right_coordinate, upper_coordinate, 'Internal',
+    plt.figtext(right_coordinate, upper_coordinate, atlas_tag,
                 fontsize=fontsize, verticalalignment='top',
                 horizontalalignment='right')
 
-    lumi_text = '$\\int\\,\\mathrm{L dt} = 20.3 \\, \\mathrm{fb}^{-1}$'
-    lumi_text += ' $\\sqrt{s} = 8$ TeV'
+    # lumi_text = '$\\int\\,\\mathrm{L dt} = 20.3 \\, \\mathrm{fb}^{-1}$'
+    # lumi_text += ' $\\sqrt{s} = 8$ TeV'
+    lumi_text = '$\\sqrt{s} = 8$ TeV, 20.3 $\\mathrm{fb}^{-1}$'
     plt.figtext(right_coordinate, upper_coordinate-line_spacing,
                 lumi_text, fontsize=fontsize-2, verticalalignment='top',
                 horizontalalignment='right')
@@ -726,7 +768,9 @@ def plot_limit_contours(result_df, out_file_name):
                 horizontalalignment='right', verticalalignment='top')
 
         # default styling
-        plot_styling(sp, color_bar=False, axis_fontsize=26)
+        plot_styling(sp, color_bar=False, axis_fontsize=26,
+                label_x_axis=(panel == len(mass_list)+1),
+                label_y_axis=(panel == 1))
 
         # For the first plot, draw the legend in the top right
         if panel == 1:
@@ -741,22 +785,23 @@ def plot_limit_contours(result_df, out_file_name):
                 'Expected limit ($\pm 1 \sigma_\mathrm{exp}$)', '...']
 
             # magic to get set up the legend
-            legend_x = 0.45
-            legend_y = 0.50
+            legend_x = 0.48
+            legend_y = 0.45
             object_order = [obs_cont.collections[0], exp_cont.collections[0]]
-            plt.legend(object_order, label_order, frameon=False, fontsize=20,
+            plt.legend(object_order, label_order, frameon=False, fontsize=24,
                        loc='center', bbox_to_anchor=[legend_x, legend_y])
 
             add_atlas_labels(upper_coordinate=0.95, right_coordinate=0.96,
-                             fontsize=30, atlas_offset=0.10, line_spacing=0.05,
+                             fontsize=36, atlas_offset=0.18, line_spacing=0.05,
                              left_margin=0.05, right_margin=0.97,
-                             top_margin=0.95, bottom_margin=0.05)
+                             top_margin=0.95, bottom_margin=0.05,
+                             atlas_tag='Preliminary')
 
             # Ugly hack to get the error bands on the legend
-            overlay_x1 = legend_x - 0.384
-            overlay_x2 = legend_x - 0.305
-            overlap_obs_center = legend_y + 0.065
-            overlap_exp_center = legend_y - 0.054
+            overlay_x1 = legend_x - 0.460
+            overlay_x2 = legend_x - 0.370
+            overlap_obs_center = legend_y + 0.078
+            overlap_exp_center = legend_y - 0.065
             overlay_delta_y = 0.035
 
             plt.plot([overlay_x1, overlay_x2],
@@ -778,7 +823,7 @@ def plot_limit_contours(result_df, out_file_name):
             plt.gca().add_patch(error_band)
 
             label_string = "All limits at 95% CL"
-            legend_sp.text(0.50, 0.30, label_string, fontsize=20,
+            legend_sp.text(0.50, 0.27, label_string, fontsize=24,
                            verticalalignment='top',
                            horizontalalignment='center')
 
@@ -789,11 +834,10 @@ def plot_limit_contours(result_df, out_file_name):
 # ------------------------------------------------------------------------------
 def plot_mass_limit_triangle(result_df,
                              out_file_name,
-                             # draw_obs=True,
                              cmap_string='hot_r',
                              vmin=0,
-                             vmax=1000,
-                             midpoint=800,
+                             vmax=1100,
+                             midpoint=850,
                              gridsize=25):
     """
     Function takes a data frame, with branching ratios, masses, and CLs values.
@@ -819,7 +863,6 @@ def plot_mass_limit_triangle(result_df,
         cls_val = 'cls_obs' if draw_obs else 'cls_exp'
 
         print 'Dropping all rows which are not excluded'
-        # this_limit_df = limit_df[limit_df[cls_val] < 0.05]
         this_limit_df = pick_highest_excluded_mass(limit_df, cls_val, 0.05)
 
         norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=midpoint)
@@ -831,7 +874,8 @@ def plot_mass_limit_triangle(result_df,
                              y=this_limit_df['brt'],
                              C=this_limit_df['mass'],
                              cmap=plt.get_cmap(cmap_string),
-                             reduce_C_function=np.max,
+                             # reduce_C_function=np.max,
+                             reduce_C_function=np.mean,
                              gridsize=gridsize,
                              norm=norm)
 
@@ -849,6 +893,86 @@ def plot_mass_limit_triangle(result_df,
         label_string = "Observed" if draw_obs else "Expected"
         label_string += ' 95% CL mass limit'
         ax.text(0.98, 0.82, label_string, fontsize=14, verticalalignment='top',
+                horizontalalignment='right')
+
+        # write plot to file
+        full_out_file_name = '%s_%s.pdf' % (out_file_name,
+                                            'obs' if draw_obs else 'exp')
+        plt.savefig(full_out_file_name, bbox_inches='tight')
+        plt.close()
+
+
+# ------------------------------------------------------------------------------
+def plot_mass_limit_contours(result_df,
+                             out_file_name,
+                             cmap_string='hot_r',
+                             vmin=0,
+                             vmax=1100,
+                             midpoint=850,
+                             gridsize=25):
+    """
+    Function takes a data frame, with branching ratios, masses, and CLs values.
+    Constructs a triangle with showing the maximum mass which is excluded at
+    each point in the branching ratio triangle.
+
+    :param result_df: data frame holding data for the plot
+    :param out_file_name: output file name
+    :param draw_obs: True for observed limit. False for expected limit
+    :param cmap_string: color map
+    :param vmin: minimum of color bar
+    :param vmax: maximum of color bar
+    :param midpoint: midpoint of color bar
+    :param gridsize: gridsize for the hexplot
+    :return: None
+    """
+    # extract the rows of the data frame which are excluded using the cls metric
+    print 'Picking region with best expected sensitivity'
+    limit_df = pick_best_expected_sensitivity(result_df)
+
+    edges = range(vmin, vmax+1, 100)
+    norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=midpoint)
+
+    for draw_obs in [True, False]:
+        # get the correct cls column name
+        cls_val = 'cls_obs' if draw_obs else 'cls_exp'
+
+        print 'Dropping all rows which are not excluded'
+        this_limit_df = pick_highest_excluded_mass(limit_df, cls_val, 0.05)
+
+        # with open('observed_limit_df.pickle', 'wb') as results_file:
+        #     pickle.dump(this_limit_df, results_file)
+        # with open('observed_limit_df.pickle', 'rb') as results_file:
+        #     this_limit_df = pickle.load(results_file)
+
+        # Construct plot
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+
+        mesh = generate_mesh(this_limit_df, 'mass')
+
+        bre, brt, mass = mesh['bre'], mesh['brt'], mesh['values']
+
+        my_plot = plt.contourf(bre, brt, mass, edges,
+                               cmap=plt.get_cmap(cmap_string), norm=norm)
+
+        contours = plt.contour(bre, brt, mass, edges, colors='white',
+                               linewidths=2, linestyles='-', hold='on')
+
+        # add color bar to right side
+        cb = plt.colorbar(my_plot, spacing='uniform')
+        cb.set_ticks([e+50 for e in edges[:-1]])
+        cb.set_label('Stop mass [GeV]', fontsize=16)
+
+        # default plot styling
+        plot_styling(ax, axis_fontsize=20)
+        add_atlas_labels(upper_coordinate=0.90, right_coordinate=0.80,
+                         atlas_offset=0.21, fontsize=20, line_spacing=0.07,
+                         atlas_tag='Preliminary')
+
+        # draw label for observed/expected
+        label_string = "Observed" if draw_obs else "Expected"
+        label_string += ' 95% CL mass limit'
+        ax.text(0.98, 0.80, label_string, fontsize=16, verticalalignment='top',
                 horizontalalignment='right')
 
         # write plot to file
@@ -986,7 +1110,12 @@ def plot_single_cls_plot(result_df, out_file_name):
 # ------------------------------------------------------------------------------
 def make_p_value_plots(read_from_cache=False,
                        update_cache=True,
-                       cache_file_name='results.pickle'):
+                       cache_file_name='results.pickle',
+                       do_cls_triangles=False,
+                       do_mass_limit_triangle=False,
+                       do_region_choice=False,
+                       do_cls_vs_mass=False,
+                       do_limit_contours=False):
     """
     Master function that runs the main flow of the script. This calls other
     functions which read in data, and draw various plots
@@ -1012,14 +1141,19 @@ def make_p_value_plots(read_from_cache=False,
         print 'done filling in missing rows'
 
         # fill in missing values
+        print 'filling in missing values - exp'
         results = fill_in_missing_values_in_df(df=results,
                                                column_name='cls_exp')
+        print 'filling in missing values - obs'
         results = fill_in_missing_values_in_df(df=results,
                                                column_name='cls_obs')
+        print 'filling in missing values - obs up'
         results = fill_in_missing_values_in_df(df=results,
                                                column_name='cls_obs_up')
+        print 'filling in missing values - obs down'
         results = fill_in_missing_values_in_df(df=results,
                                                column_name='cls_obs_down')
+        print 'done filling in missing values'
 
         # double the density of points ... twice!!!
         results = double_density(results)
@@ -1037,76 +1171,85 @@ def make_p_value_plots(read_from_cache=False,
     print 'number entries: ', len(results)
     print 'number entries (no extras): ', len(results_no_extras)
 
-    # # Make CLs triangle plot for each stop mass
-    # for mass, sr, draw_obs in itertools.product(results['mass'].unique(),
-    #                                             results['sr'].unique(),
-    #                                             [True, False]):
-    #     # skip low masses
-    #     if mass < 400:
-    #         continue
-    #
-    #     print ' '.join(['Making', 'Observed' if draw_obs else 'Expected',
-    #                     'Cls triangle for mass: ', str(mass),
-    #                     '-- sr: ', str(sr)])
-    #
-    #     file_name = 'cls_vs_br_m_%d_sr_%d' % (int(mass), sr)
-    #     plot_cls_triangle(results[(results['mass'] == mass) &
-    #                               (results['sr'] == sr)],
-    #                       out_file_name=file_name,
-    #                       draw_obs=draw_obs,
-    #                       gridsize=60)
+    # Make CLs triangle plot for each stop mass
+    if do_cls_triangles:
+        for mass, sr, draw_obs in itertools.product(results['mass'].unique(),
+                                                    results['sr'].unique(),
+                                                    [True, False]):
+            # skip low masses
+            if mass < 400:
+                continue
+        
+            print ' '.join(['Making', 'Observed' if draw_obs else 'Expected',
+                            'Cls triangle for mass: ', str(mass),
+                            '-- sr: ', str(sr)])
+        
+            file_name = 'cls_vs_br_m_%d_sr_%d' % (int(mass), sr)
+            plot_cls_triangle(results[(results['mass'] == mass) &
+                                      (results['sr'] == sr)],
+                              out_file_name=file_name,
+                              draw_obs=draw_obs,
+                              gridsize=60)
 
     # make mass plot - reasonable options for color map:
     #   - hot_r, gist_heat_r, afmhot_r, GnBu,
-    plot_mass_limit_triangle(results,
-                             out_file_name='mass_limit',
-                             # draw_obs=draw_obs,
-                             cmap_string='hot_r',
-                             gridsize=60)
-    plot_mass_limit_triangle(results_no_extras,
-                             out_file_name='mass_limit_no_extras',
-                             # draw_obs=draw_obs,
-                             cmap_string='hot_r',
-                             gridsize=10)
-    # for x_spacing, y_spacing in itertools.product(xrange(40, 71, 5),
-    #                                               xrange(40, 71, 5)):
-    #     plot_mass_limit_triangle(results,
-    #                              out_file_name='mass_limit_%d_%d' % (x_spacing,
-    #                                                                  y_spacing),
-    #                              cmap_string='hot_r',
-    #                              gridsize=(x_spacing, y_spacing))
+    if do_mass_limit_triangle:
+        ### plot_mass_limit_triangle(results,
+        ###                          out_file_name='mass_limit',
+        ###                          cmap_string='hot_r',
+        ###                          gridsize=60)
+        ### plot_mass_limit_triangle(results_no_extras,
+        ###                          out_file_name='mass_limit_no_extras',
+        ###                          cmap_string='hot_r',
+        ###                          gridsize=10)
+        ### plot_mass_limit_contours(results,
+        ###                          out_file_name='mass_limit_contours',
+        ###                          cmap_string='hot_r')
+        plot_mass_limit_contours(results_no_extras,
+                                 out_file_name='mass_limit_contours_no_extras',
+                                 # cmap_string='hot_r',
+                                 # cmap_string='YlGnBu',
+                                 cmap_string='YlOrRd',
+                                 vmin=450, vmax=1150, midpoint=850)
 
-    # # make plot of region choice for each mass
-    # for mass in results_no_extras['mass'].unique():
-    #     print 'Making region choice for mass:', mass
-    #     file_name = ''.join(('region_choice_vs_br',
-    #                          '_m_', str(int(mass)),
-    #                          '.pdf'))
-    #     plot_region_choice_triangle(
-    #         results_no_extras[results_no_extras['mass'] == mass],
-    #         file_name, mass)
-    #
-    # # make cls vs mass plot for each choice of branching ratios
-    # for br_e, br_t, br_m in itertools.product(
-    #         results_no_extras['bre'].unique(),
-    #         results_no_extras['brt'].unique(),
-    #         results_no_extras['brm'].unique()):
-    #     print 'Making CLs plot for bre: %s, brm: %s, brt: %s' % (br_e,
-    #                                                              br_m,
-    #                                                              br_t)
-    #     file_name = ''.join(['cls_vs_m',
-    #                          '_br_e_', str(int(br_e*100)),
-    #                          '_br_m_', str(int(br_m*100)),
-    #                          '_br_t_', str(int(br_t*100)),
-    #                          '.pdf'])
-    #     plot_single_cls_plot(
-    #         results_no_extras[(results_no_extras['bre'] == br_e) &
-    #                           (results_no_extras['brm'] == br_m) &
-    #                           (results_no_extras['brt'] == br_t)], file_name)
-    #
-    # # print 'Making limit contours!'
-    plot_limit_contours(results_no_extras, 'limit_contours.pdf')
-    # plot_limit_contours(results, 'limit_contours_with_extras.pdf')
+    # make plot of region choice for each mass
+    if do_region_choice:
+        for mass in results_no_extras['mass'].unique():
+            print 'Making region choice for mass:', mass
+            file_name = ''.join(('region_choice_vs_br',
+                                '_m_', str(int(mass)),
+                                '.pdf'))
+            plot_region_choice_triangle(
+                    results_no_extras[results_no_extras['mass'] == mass],
+                    file_name, mass)
+    
+    # make cls vs mass plot for each choice of branching ratios
+    if do_cls_vs_mass:
+        for br_e, br_t, br_m in itertools.product(
+                results_no_extras['bre'].unique(),
+                results_no_extras['brt'].unique(),
+                results_no_extras['brm'].unique()):
+            if not br_e*100 % 10 == 0 or not br_m*100 % 10 == 0:
+                continue
+
+            print 'Making CLs plot for bre: %s, brm: %s, brt: %s' % (br_e,
+                                                                    br_m,
+                                                                    br_t)
+            file_name = ''.join(['cls_vs_m',
+                                '_br_e_', str(int(br_e*100)),
+                                '_br_m_', str(int(br_m*100)),
+                                '_br_t_', str(int(br_t*100)),
+                                '.pdf'])
+            plot_single_cls_plot(
+                results_no_extras[(results_no_extras['bre'] == br_e) &
+                                (results_no_extras['brm'] == br_m) &
+                                (results_no_extras['brt'] == br_t)], file_name)
+    
+    # make limit contours
+    if do_limit_contours:
+        print 'Making limit contours!'
+        plot_limit_contours(results_no_extras, 'limit_contours.pdf')
+        # plot_limit_contours(results, 'limit_contours_with_extras.pdf')
 
     print 'All done! Exiting!'
 
@@ -1115,4 +1258,9 @@ def make_p_value_plots(read_from_cache=False,
 if __name__ == "__main__":
     make_p_value_plots(read_from_cache=True,
                        update_cache=False,
-                       cache_file_name='results.pickle')
+                       cache_file_name='results.pickle',
+                       do_cls_triangles=False,
+                       do_mass_limit_triangle=True,
+                       do_region_choice=False,
+                       do_cls_vs_mass=False,
+                       do_limit_contours=True)

@@ -43,7 +43,8 @@ def extractRegionContributions(sample_file_name):
     region_list = [k.GetName() for k in sample_file.GetListOfKeys()]
 
     # construct region contributions data frame
-    cont_df = pandas.DataFrame(columns = ('region', 'sample', 'count', 'raw'))
+    cont_df = pandas.DataFrame(columns = ('region', 'sample', 'count', 'raw',
+                                          'uncertainty'))
 
     # for each region in the list, extract the number of expected events
     for rl in region_list:
@@ -52,7 +53,7 @@ def extractRegionContributions(sample_file_name):
         this_raw_entries_canvas = this_tree.Get('__raw_entries')
 
         # local function to extract the entries from a canvas
-        def extract_entries(canvas, column = 'Count'):
+        def extract_entries(canvas, column='Count'):
             # one primitive histogram for each process
             primitives = canvas.GetListOfPrimitives()
             for p in primitives:
@@ -70,7 +71,7 @@ def extractRegionContributions(sample_file_name):
                         # If this combination of region and sample is not in
                         # the data frame, add a default row
                         if cont_df[cont_df['region'] == rl][cont_df['sample'] == bin_label].empty:
-                            this_df_entry = [rl, bin_label, 0, 0]
+                            this_df_entry = [rl, bin_label, 0, 0, 0]
                             cont_df.loc[cont_df.shape[0]] = this_df_entry
 
                         # update the entry with this bin content
@@ -80,6 +81,12 @@ def extractRegionContributions(sample_file_name):
 
         extract_entries(this_entries_canvas, 'count')
         extract_entries(this_raw_entries_canvas, 'raw')
+
+    for index in cont_df.index:
+        if cont_df.loc[index, 'raw'] > 0:
+            cont_df.loc[index, 'uncertainty'] = (
+                float(cont_df.loc[index, 'count']) /
+                math.sqrt(cont_df.loc[index, 'raw']))
 
     return cont_df
 
@@ -233,9 +240,9 @@ def getRegionTitle(region_name, region_titles=None):
 
 # ------------------------------------------------------------------------------
 def getSampleTitle(sample_name):
-    if sample_name == 'Z/#gamma^{*}' or sample_name == 'ZGamma':
+    if sample_name == 'Z/#gamma*' or sample_name == 'ZGamma':
         return '$Z/\\gamma^{*}$'
-    if sample_name == 'ttbar':
+    if sample_name == 'ttbar' or sample_name == 't#bar{t}':
         return '$t\\bar{t}$'
     if sample_name == 'SingleTop':
         return 'Single top'

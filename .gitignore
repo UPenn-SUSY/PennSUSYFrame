@@ -31,3 +31,4 @@ run_systs
 run_systs.o
 hists/*
 master_group_set*
+*.pickle
