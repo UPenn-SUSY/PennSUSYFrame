@@ -24,12 +24,18 @@ pullPlotUtils.getSampleColor = myGetSampleColor
 # ------------------------------------------------------------------------------
 # define function to get region colors
 def myGetRegionColor(region):
-    if 'CR_top' in region or 'CR Top' in region:     return ROOT.kGreen-7
-    if 'CR_Z' in region or 'CR Z' in region:         return ROOT.kRed-7
-    if 'VR_Top_1' in region or 'VR Top 1' in region: return ROOT.kGreen-9
-    if 'VR_Top_2' in region or 'VR Top 2' in region: return ROOT.kGreen-5
-    if 'VR_Top_3' in region or 'VR Top 3' in region: return ROOT.kGreen-10
-    if 'VR_Z' in region or 'VR Z' in region:         return ROOT.kRed-9
+    if 'CR_top' in region or 'CR Top' in region:
+        return ROOT.kGreen-7
+    if 'CR_Z' in region or 'CR Z' in region:
+        return ROOT.kRed-7
+    if 'VR_Top_1' in region or 'VR Top 1' in region:
+        return ROOT.kGreen-9
+    if 'VR_Top_2' in region or 'VR Top 2' in region:
+        return ROOT.kGreen-5
+    if 'VR_Top_3' in region or 'VR Top 3' in region:
+        return ROOT.kGreen-10
+    if 'VR_Z' in region or 'VR Z' in region:
+        return ROOT.kRed-9
     return ROOT.kBlack
 pullPlotUtils.getRegionColor = myGetRegionColor
 
@@ -60,7 +66,7 @@ rename_dict = { 'CR_top_all_mbl_0':'CR Top'
 
 # ------------------------------------------------------------------------------
 # sample_string = 'ttbar,ZGamma,SingleTop,ttV,Diboson,Higgs'
-sample_string = 'Other,SingleTop,ttbar,ZGamma'
+sample_string = 'Other,SingleTop,ZGamma,ttbar'
 
 
 # ------------------------------------------------------------------------------
@@ -73,20 +79,19 @@ def renamePulls(tag):
 # ------------------------------------------------------------------------------
 # make the basic pull plot!
 print 'making basic pull plot'
-# pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR.pickle'
 pullPlotUtils.makePullPlot( pickleFilename = 'YieldTable/MyYieldTable.CR_VR_SR.pickle'
-                           , regionList = [ 'CR_top_all_mbl_0'
-                                          , 'CR_Z_all_mbl_0'
-                                          , 'VR_top_1_all_mbl_0'
-                                          , 'VR_top_2_all_mbl_0'
-                                          , 'VR_top_3_all_mbl_0'
-                                          , 'VR_Z_all_mbl_0'
-                                          ]
-                           , samples = sample_string
-                           , renamedRegions = rename_dict
-                           , outputPrefix = ''
-                           , doBlind = True
-                           )
+                          , regionList = [ 'CR_top_all_mbl_0'
+                                         , 'CR_Z_all_mbl_0'
+                                         , 'VR_top_1_all_mbl_0'
+                                         , 'VR_top_2_all_mbl_0'
+                                         , 'VR_top_3_all_mbl_0'
+                                         , 'VR_Z_all_mbl_0'
+                                         ]
+                          , samples = sample_string
+                          , renamedRegions = rename_dict
+                          , outputPrefix = ''
+                          , doBlind = True
+                          )
 
 renamePulls('CR_VR')
 
