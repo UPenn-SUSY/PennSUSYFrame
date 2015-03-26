@@ -40,6 +40,7 @@ def makeFinalPlot(dir_name,
                   out_file,
                   y_max_lin,
                   y_max_log,
+                  y_min_log=None,
                   do_ratio=False):
     out_file.cd()
     out_file.mkdir(dir_name)
@@ -78,6 +79,8 @@ def makeFinalPlot(dir_name,
         def prepareFirstHist(hist):
             if y_scale == 'log':
                 hist.SetMaximum(y_max_log)
+                if y_min_log is not None:
+                    hist.SetMinimum(y_min_log)
             else:
                 hist.SetMaximum(y_max_lin)
 
@@ -109,7 +112,7 @@ def makeFinalPlot(dir_name,
             hm_denom.hist_sum.Draw(option)
 
             hist_list.append(hm_denom.hist_sum)
-            label_list.append('MC background')
+            label_list.append('Total background')
             draw_opt_list.append('L')
 
             # set line width of sub-histograms in stack and add to list for
@@ -161,11 +164,11 @@ def makeFinalPlot(dir_name,
         # if 'mbl_asym' in hist.lower():
         #     label_x = 0.25
 
-        hh.AtlasLabels.ATLASLabel(label_x, label_y, 1, 'Simulation Internal')
+        hh.AtlasLabels.ATLASLabel(label_x, label_y, 1, 'Simulation Preliminary')
         hh.AtlasLabels.myText(label_x, label_y - delta_y, 1,
-                              '#intLdt = 20.3 fb^{-1}')
-        hh.AtlasLabels.myText(label_x, label_y-1.9*delta_y, 1,
-                              '#sqrt{s} = 8 TeV')
+                              '#sqrt{s} = 8 TeV, 20.3 fb^{-1}')
+        # hh.AtlasLabels.myText(label_x, label_y-1.9*delta_y, 1,
+        #                       '#intLdt = 20.3 fb^{-1}')
 
         # add lines for cuts if it is appropriate
         def draw_arrow(height, length, cut_value, color, line_size_top,
@@ -236,6 +239,7 @@ def plotComparisons( ic_numerator
                   out_file=out_file,
                   y_max_lin=60,
                   y_max_log=3000,
+                  y_min_log=0.01,
                   do_ratio=do_ratio)
 
     makeFinalPlot(dir_name='BMINUSL_SR_HT_1100_MBL_400_MINUS_HT',
@@ -246,6 +250,7 @@ def plotComparisons( ic_numerator
                   out_file=out_file,
                   y_max_lin=600,
                   y_max_log=1000000,
+                  y_min_log=0.01,
                   do_ratio=do_ratio)
 
     makeFinalPlot(dir_name='BMINUSL_SR_HT_1100_MBL_400_MINUS_MBL_ASYM',

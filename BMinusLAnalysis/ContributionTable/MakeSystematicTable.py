@@ -170,10 +170,12 @@ def create_grouped_table(region_df, is_signal=False):
                 if test_syst in this_systematic:
                     systematic_group_list[it] = group
 
-                    if systematic_diff_list[it] > 0:
-                        systematic_group_list[it] += '_up'
-                    else:
-                        systematic_group_list[it] += '_down'
+                    if ('_up' in this_systematic.lower() or
+                            '_down' in this_systematic.lower()):
+                        if systematic_diff_list[it] > 0:
+                            systematic_group_list[it] += '_up'
+                        else:
+                            systematic_group_list[it] += '_down'
                     break
 
     systematic_df['nominal'] = nominal_list
@@ -407,16 +409,16 @@ def main(bkg_name, sig_name, read_from_pickle=False):
         ~sig_region_df['systematic'].isin(systematic_drop_list)]
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # regions_dict = OrderedDict([('CR Top', 'Top CR'),
-    #                             ('CR Z', 'Z CR'),
-    #                             ('VR Top 1', 'Top VR 1'),
-    #                             ('VR Top 2', 'Top VR 2'),
-    #                             ('VR Top 3', 'Top VR 3'),
-    #                             ('VR Z', 'Z VR'),
-    #                             ('SR 400', 'SR 400'),
-    #                             ('SR 600', 'SR 600')])
-    regions_dict = OrderedDict([('SR 400', 'SR 400'),
+    regions_dict = OrderedDict([('CR Top', 'Top CR'),
+                                ('CR Z', 'Z CR'),
+                                ('VR Top 1', 'Top VR 1'),
+                                ('VR Top 2', 'Top VR 2'),
+                                ('VR Top 3', 'Top VR 3'),
+                                ('VR Z', 'Z VR'),
+                                ('SR 400', 'SR 400'),
                                 ('SR 600', 'SR 600')])
+    # regions_dict = OrderedDict([('SR 400', 'SR 400'),
+    #                             ('SR 600', 'SR 600')])
 
     for region_key, region_name in regions_dict.items():
         print '\\section{', region_name, '}'
