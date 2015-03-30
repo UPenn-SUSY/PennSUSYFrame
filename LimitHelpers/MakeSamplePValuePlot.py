@@ -1179,11 +1179,11 @@ def make_p_value_plots(read_from_cache=False,
             # skip low masses
             if mass < 400:
                 continue
-        
+
             print ' '.join(['Making', 'Observed' if draw_obs else 'Expected',
                             'Cls triangle for mass: ', str(mass),
                             '-- sr: ', str(sr)])
-        
+
             file_name = 'cls_vs_br_m_%d_sr_%d' % (int(mass), sr)
             plot_cls_triangle(results[(results['mass'] == mass) &
                                       (results['sr'] == sr)],
@@ -1207,8 +1207,6 @@ def make_p_value_plots(read_from_cache=False,
         ###                          cmap_string='hot_r')
         plot_mass_limit_contours(results_no_extras,
                                  out_file_name='mass_limit_contours_no_extras',
-                                 # cmap_string='hot_r',
-                                 # cmap_string='YlGnBu',
                                  cmap_string='YlOrRd',
                                  vmin=450, vmax=1150, midpoint=850)
 
@@ -1222,7 +1220,7 @@ def make_p_value_plots(read_from_cache=False,
             plot_region_choice_triangle(
                     results_no_extras[results_no_extras['mass'] == mass],
                     file_name, mass)
-    
+
     # make cls vs mass plot for each choice of branching ratios
     if do_cls_vs_mass:
         for br_e, br_t, br_m in itertools.product(
@@ -1244,7 +1242,7 @@ def make_p_value_plots(read_from_cache=False,
                 results_no_extras[(results_no_extras['bre'] == br_e) &
                                 (results_no_extras['brm'] == br_m) &
                                 (results_no_extras['brt'] == br_t)], file_name)
-    
+
     # make limit contours
     if do_limit_contours:
         print 'Making limit contours!'
@@ -1259,8 +1257,8 @@ if __name__ == "__main__":
     make_p_value_plots(read_from_cache=True,
                        update_cache=False,
                        cache_file_name='results.pickle',
-                       do_cls_triangles=False,
+                       do_cls_triangles=True,
                        do_mass_limit_triangle=True,
-                       do_region_choice=False,
-                       do_cls_vs_mass=False,
+                       do_region_choice=True,
+                       do_cls_vs_mass=True,
                        do_limit_contours=True)
