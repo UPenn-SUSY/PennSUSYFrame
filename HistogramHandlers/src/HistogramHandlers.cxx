@@ -161,9 +161,9 @@ std::vector<float> PennSusyFrame::HistogramHandler::generateLogBinning( float mi
 // -----------------------------------------------------------------------------
 void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event& event
                                           , const PennSusyFrame::EventLevelQuantities&
-                                          , const std::vector<PennSusyFrame::Electron*>* el_list
-                                          , const std::vector<PennSusyFrame::Muon*>* mu_list 
-                                          , const std::vector<PennSusyFrame::Jet*>* jet_list
+                                          , const std::vector<PennSusyFrame::Electron*>* // el_list
+                                          , const std::vector<PennSusyFrame::Muon*>* // mu_list
+                                          , const std::vector<PennSusyFrame::Jet*>* // jet_list
                                           , const PennSusyFrame::Met&
                                           , float
                                           )
@@ -1981,10 +1981,10 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // write pt histograms
-    m_h_num_jet.at(fc_it)->Write();
-    m_h_pt_all.at( fc_it)->Write();
-    m_h_pt_0.at(   fc_it)->Write();
-    m_h_pt_1.at(   fc_it)->Write();
+    m_h_num_jet.at(      fc_it)->Write();
+    m_h_pt_all.at(       fc_it)->Write();
+    m_h_pt_0.at(         fc_it)->Write();
+    m_h_pt_1.at(         fc_it)->Write();
 
     m_h_pt_detailed_all.at( fc_it)->Write();
     m_h_pt_detailed_0.at(   fc_it)->Write();

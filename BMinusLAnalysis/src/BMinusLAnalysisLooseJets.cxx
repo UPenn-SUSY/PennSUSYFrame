@@ -71,9 +71,6 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::beginRun()
     m_bminusl_histogram_handler.push_back(
         new PennSusyFrame::BMinusLHists(
           PennSusyFrame::BMINUSL_LOOSE_HIST_LEVEL_STRINGS[hist_level]));
-    m_weight_histogram_handler.push_back(
-        new PennSusyFrame::WeightHists(
-          PennSusyFrame::BMINUSL_LOOSE_HIST_LEVEL_STRINGS[hist_level]));
     m_parent_histogram_handler.push_back(
         new PennSusyFrame::ParentHists(
           PennSusyFrame::BMINUSL_LOOSE_HIST_LEVEL_STRINGS[hist_level]));
@@ -570,11 +567,6 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::fillHistHandles( PennSusyFrame::BM
                                                            , m_mc_truth
                                                            , weight
                                                            );
-    m_weight_histogram_handler.at(hist_level)->FillSpecial( m_event
-                                                          , m_event_quantities
-                                                          , m_xsec_weight
-                                                          , m_ttbar_pt_weight
-                                                          );
     if (!m_is_data) {
       m_parent_histogram_handler.at(hist_level)->FillSpecial( m_event
                                                             , *bl_0
@@ -608,7 +600,6 @@ void PennSusyFrame::BMinusLAnalysisLooseJets::finalizeRun()
     }
 
     m_bminusl_histogram_handler.at(hist_level)->write(hist_dir_cut_level);
-    m_weight_histogram_handler.at( hist_level)->write(hist_dir_cut_level);
     m_parent_histogram_handler.at( hist_level)->write(hist_dir_cut_level);
     if (m_do_detailed_bl_hists) {
       m_bminusl_detailed_histogram_handler.at(hist_level)->write(hist_dir_cut_level);

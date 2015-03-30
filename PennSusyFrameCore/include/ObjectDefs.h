@@ -726,8 +726,8 @@ namespace PennSusyFrame
 
       void setEmf(            double val) { m_emf               = val; }
       void setSumPtTrk(       double val) { m_sum_pt_trk        = val; }
-      void setSamplingMax(    double val) { m_sampling_max      = val; } 
-      void setFracSamplingMax(double val) { m_frac_sampling_max = val; } 
+      void setSamplingMax(    double val) { m_sampling_max      = val; }
+      void setFracSamplingMax(double val) { m_frac_sampling_max = val; }
       void setHecQuality(     double val) { m_hec_quality       = val; }
       void setHecf(           double val) { m_hecf              = val; }
       void setAvgLarQf(       double val) { m_avg_lar_qf        = val; }
