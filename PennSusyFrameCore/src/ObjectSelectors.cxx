@@ -51,12 +51,10 @@ PennSusyFrame::ElectronSelector::ElectronSelector() : m_electron_quality(EL_QUAL
 bool PennSusyFrame::ElectronSelector::passAllCuts(const PennSusyFrame::Electron* p)
 {
   // check electron author
-  // TODO do we want this hard coded? do we ever want electrons with author != 1 || 3?
   if (p->getAuthor() != 1 && p->getAuthor() != 3)
     return false;
 
   // check electron OTX cut
-  // TODO do we want this hard coded? do we ever want electrons that fail the OTX cut?
   if (!p->getPassOTX())
     return false;
 
@@ -385,7 +383,6 @@ bool PennSusyFrame::VertexSelector::passAllCuts(const PennSusyFrame::Vertex* p)
 // -----------------------------------------------------------------------------
 PennSusyFrame::ObjectCleaning::ObjectCleaning()
 {
-  // TODO properly set cone sizes and mll threshold
   m_ee_cone_size = 0.05;
   m_ej_cone_size = 0.20;
   m_mj_cone_size = 0.00; // not done by default
@@ -511,14 +508,6 @@ void PennSusyFrame::ObjectCleaning::fullObjectCleaning( const std::vector<PennSu
   output_jets_bad  = jet_bad_temp_3;
   output_muons     = mu_temp_5;
   output_taus      = tau_temp_2;
-
-  // std::cout << "-----------------------------\n"
-  //           << "taus before OLR: " << input_taus.size() << "\n"
-  //           << "taus after el OLR: " << tau_temp_1.size() << "\n"
-  //           << "taus after mu OLR: " << tau_temp_2.size() << "\n"
-  //           << "taus after all OLR: " << output_taus.size() << "\n"
-  //           << "\n";
-
 }
 
 
