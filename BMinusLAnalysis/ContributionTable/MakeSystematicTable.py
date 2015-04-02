@@ -82,8 +82,7 @@ def write_single_table_line(df, systematic, sample_list, write_total):
             total = (total - nominal_total)
             table_line.append(helpers.getNumString(total, 2, force_sign=True))
 
-    print ' & '.join(table_line)
-    print '\\\\'
+    print ' & '.join(table_line) ,  '\\\\'
 
 
 # ------------------------------------------------------------------------------
@@ -112,8 +111,7 @@ def create_systematic_table(region_df, is_signal=False):
     header_line.extend([helpers.getSampleTitle(sn) for sn in sample_names])
     if not is_signal:
         header_line.extend(['Bkg total'])
-    print ' & '.join(header_line)
-    print '\\\\'
+    print ' & '.join(header_line) ,  '\\\\'
     print '\\midrule'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -237,34 +235,42 @@ def create_grouped_table(region_df, is_signal=False):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print header line
     header_line = ['Systematic']
-    header_line.extend([helpers.getSampleTitle(sn) for sn in sample_names])
+    header_line.extend(['\\multirow{2}{*}{%s}' % helpers.getSampleTitle(sn) for
+                        sn in sample_names])
     if not is_signal:
         header_line.extend(['Total'])
-    print ' & '.join(header_line)
-    print '\\\\'
-    print '\\midrule'
-    print 'Uncertainty (\\%)'
-    print '\\\\'
+    print ' & '.join(header_line) , '\\\\'
+    print 'Uncertainty (\\%)' ,  '\\\\'
     print '\\midrule'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print detector related systematics
     for group in group_names:
-        table_line = [group.replace('_', '\\_')]
+        this_group_name = group.replace('_up', '').replace('_down', '')
+        if 'jes' in this_group_name or 'jer' in this_group_name.lower():
+            this_group_name = this_group_name.upper()
+        if 'btag' in this_group_name:
+            this_group_name = '$b$-tagging'
+        table_line = [this_group_name.replace('_', '\\_')]
         for sample in sample_names:
-            table_line.append('%d' %
-                              (100*grouped_sample_df[
-                                  (grouped_sample_df['group'] == group) &
-                                  (grouped_sample_df['sample'] == sample)
-                              ].iloc[0]['fractional']))
+            this_uncertainty = (100*grouped_sample_df[
+                (grouped_sample_df['group'] == group) &
+                (grouped_sample_df['sample'] == sample)
+                ].iloc[0]['fractional'])
+            if 'up' in group:
+                this_uncertainty = '+%d/' % this_uncertainty
+            elif 'down' in group:
+                this_uncertainty = '-%d' % this_uncertainty
+            else:
+                this_uncertainty = '%d' % this_uncertainty
+            table_line.append(this_uncertainty)
 
         table_line.append('%d' %
                           (100*grouped_df[
                               grouped_df['group'] == group
                           ].iloc[0]['fractional']))
 
-        print ' & '.join(table_line)
-        print '\\\\'
+        print ' & '.join(table_line), '\\\\'
 
     print '\\midrule'
 
@@ -340,8 +346,7 @@ def create_grouped_table(region_df, is_signal=False):
                                    abs(total_nominal-total_down))
         average_uncertainty /= total_nominal
         table_line.append('%d' % (100*average_uncertainty))
-        print ' & '.join(table_line)
-        print '\\\\'
+        print ' & '.join(table_line),  '\\\\'
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # print end of table
@@ -433,6 +438,7 @@ def main(bkg_name, sig_name, read_from_pickle=False):
         #                             is_signal=True)
 
         create_grouped_table(region_df=this_bkg_region_df, is_signal=False)
+        create_grouped_table(region_df=this_sig_region_df, is_signal=True)
 
 # ==============================================================================
 if __name__ == '__main__':
