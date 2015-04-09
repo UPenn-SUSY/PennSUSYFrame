@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_107/BMinusL.119353.MadGraphPythia_AUET2BCTEQ6L1_ttbarW__NOMINAL.tnt.root    399997    4788    399984.0

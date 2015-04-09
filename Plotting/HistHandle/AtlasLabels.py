@@ -4,8 +4,9 @@ from ROOT import *
 
 def ATLASLabel(x, y, color=1, flag = ''):
     l = TLatex()
+    tsize=0.040
     #l.SetTextAlign(12)
-    #l.SetTextSize(tsize);
+    l.SetTextSize(tsize);
     l.SetNDC()
     l.SetTextFont(72)
     l.SetTextColor(color)
@@ -15,14 +16,15 @@ def ATLASLabel(x, y, color=1, flag = ''):
         f.SetNDC()
         f.SetTextFont(42)
         f.SetTextColor(color)
-        # f.DrawLatex(x+0.125,y,flag)
-        f.DrawLatex(x+0.155,y,flag)
+        f.SetTextSize(tsize);
+        f.DrawLatex(x+0.110,y,flag)
+        # f.DrawLatex(x+0.155,y,flag)
 
 def myText(x, y, color, text):
-    #tsize=0.05
+    tsize=0.040
     l = TLatex()
     #l.SetTextAlign(12)
-    #l.SetTextSize(tsize)
+    l.SetTextSize(tsize)
     l.SetNDC()
     l.SetTextColor(color)
     l.DrawLatex(x,y,text)

@@ -8,4 +8,3 @@ root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.110805.Alpg
 root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.110805.AlpgenPythia_P2011C_ZeeccNp0.tnt_107_Tnt.root.14293249/user.bjackson.4613580._000008.Tnt.root        10000        4050        9999
 root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.110805.AlpgenPythia_P2011C_ZeeccNp0.tnt_107_Tnt.root.14293249/user.bjackson.4613580._000009.Tnt.root        10000        3984        9999
 root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.110805.AlpgenPythia_P2011C_ZeeccNp0.tnt_107_Tnt.root.14293249/user.bjackson.4613580._000010.Tnt.root        10000        4052        9999
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.110805.AlpgenPythia_P2011C_ZeeccNp0.tnt_107_Tnt.root.14295610/user.bjackson.4613580._000011.Tnt.root.2        ERROR        12320        ERROR

@@ -742,7 +742,7 @@ double PennSusyFrame::getFudgeKFactor(bool is_data, int dsid)
      || (dsid >= 167833 && dsid <= 167841)
      || (dsid >= 180543 && dsid <= 180551)
      ) {
-    return 1.3086;
+    return 1.3855;
   }
   return 1.;
 }

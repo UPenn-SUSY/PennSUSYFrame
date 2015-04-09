@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_107/BMinusL.167781.Sherpa_CT10_WenuMassiveCBPt280_500_CJetVetoBVeto__NOMINAL.tnt.root    499891    3    109648.0

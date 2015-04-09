@@ -184,7 +184,6 @@ root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.147770.Sherpa_C
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.147770.Sherpa_CT10_Zee.tnt_107_Tnt.root.14294104/user.bjackson.4613493._000197.Tnt.root        140000        56468        347646885888
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.147770.Sherpa_CT10_Zee.tnt_107_Tnt.root.14294104/user.bjackson.4613493._000198.Tnt.root        110000        44228        272962109440
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.147770.Sherpa_CT10_Zee.tnt_107_Tnt.root.14294104/user.bjackson.4613493._000204.Tnt.root        149900        60636        371185188864
-root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.147770.Sherpa_CT10_Zee.tnt_107_Tnt.root.14294104/user.bjackson.4613493._000205.Tnt.root        ERROR        26106        ERROR
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.147770.Sherpa_CT10_Zee.tnt_107_Tnt.root.14294104/user.bjackson.4613493._000206.Tnt.root        149999        60561        372035944448
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.147770.Sherpa_CT10_Zee.tnt_107_Tnt.root.14294104/user.bjackson.4613493._000207.Tnt.root        149600        60616        372077035520
 root://eosatlas///eos/atlas/user/l/lschaef/tnt_107/user.bjackson.147770.Sherpa_CT10_Zee.tnt_107_Tnt.root.14294104/user.bjackson.4613493._000208.Tnt.root        140000        56503        347132395520

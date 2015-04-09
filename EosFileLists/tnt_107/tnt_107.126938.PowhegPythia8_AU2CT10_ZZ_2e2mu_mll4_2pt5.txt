@@ -20,4 +20,3 @@ root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.126938.Powh
 root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5.tnt_107_Tnt.root.14293029/user.bjackson.4613417._000020.Tnt.root        119999        61453        119998
 root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5.tnt_107_Tnt.root.14293029/user.bjackson.4613417._000021.Tnt.root        120000        61327        119999
 root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5.tnt_107_Tnt.root.14293029/user.bjackson.4613417._000022.Tnt.root        120000        61564        119999
-root://eosatlas///eos/atlas/user/t/thomsone/tnt_107_v2/user.bjackson.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5.tnt_107_Tnt.root.14293029/user.bjackson.4613417._000023.Tnt.root        ERROR        14032        ERROR

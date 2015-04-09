@@ -21,21 +21,23 @@ def main():
                                               , entry_list = [entry_containers['ec_data']]
                                               , lumi_target = 0
                                               )
-    # ic_denominator = hh.Container.InputContainer( name = 'Background'
     ic_denominator = hh.Container.InputContainer( name = 'Bkg'
                                                 , entry_list = [ entry_containers['ec_ttbar_powheg']
                                                                , entry_containers['ec_Zgamma_sherpa']
                                                                , entry_containers['ec_single_top_all_channels']
                                                                , entry_containers['ec_other']
                                                                ]
-                                                , lumi_target = 21000
+                                                , lumi_target = 20300
                                                 )
     ic_signal = hh.Container.InputContainer( name = 'Signal'
                                            , entry_list = [ entry_containers['ec_bl_500']
+                                                          # , entry_containers['ec_bl_600']
+                                                          # , entry_containers['ec_bl_700']
                                                           , entry_containers['ec_bl_800']
+                                                          # , entry_containers['ec_bl_900']
                                                           , entry_containers['ec_bl_1000']
                                                           ]
-                                           , lumi_target = 21000
+                                           , lumi_target = 20300
                                            )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

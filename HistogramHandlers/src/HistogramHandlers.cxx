@@ -161,9 +161,9 @@ std::vector<float> PennSusyFrame::HistogramHandler::generateLogBinning( float mi
 // -----------------------------------------------------------------------------
 void PennSusyFrame::HistogramHandler::Fill( const PennSusyFrame::Event& event
                                           , const PennSusyFrame::EventLevelQuantities&
-                                          , const std::vector<PennSusyFrame::Electron*>* el_list
-                                          , const std::vector<PennSusyFrame::Muon*>* mu_list 
-                                          , const std::vector<PennSusyFrame::Jet*>* jet_list
+                                          , const std::vector<PennSusyFrame::Electron*>* // el_list
+                                          , const std::vector<PennSusyFrame::Muon*>* // mu_list
+                                          , const std::vector<PennSusyFrame::Jet*>* // jet_list
                                           , const PennSusyFrame::Met&
                                           , float
                                           )
@@ -775,9 +775,9 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                                    + "__"
                                    + name_tag
                                    ).c_str()
-                                 , ( "#deltaR(l,l) - "
+                                 , ( "#DeltaR(l,l) - "
                                    + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                   + " ; #deltaR(l,l) ; Entries"
+                                   + " ; #DeltaR(l,l) ; Entries"
                                    ).c_str()
                                  , dr_bins, dr_min, dr_max
                                  )
@@ -788,9 +788,9 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                                      + "__"
                                      + name_tag
                                      ).c_str()
-                                   , ( "#delta#phi(l,l) - "
+                                   , ( "#Delta#phi(l,l) - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #delta#phi(l,l) ; Entries"
+                                     + " ; #Delta#phi(l,l) ; Entries"
                                      ).c_str()
                                    , dphi_bins, dphi_min, dphi_max
                                    )
@@ -801,9 +801,9 @@ PennSusyFrame::LeptonKinematicsHists::LeptonKinematicsHists(std::string name_tag
                                      + "__"
                                      + name_tag
                                      ).c_str()
-                                   , ( "#delta#eta(l,l) - "
+                                   , ( "#Delta#eta(l,l) - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #delta#eta(l,l) ; Entries"
+                                     + " ; #Delta#eta(l,l) ; Entries"
                                      ).c_str()
                                    , deta_bins, deta_min, deta_max
                                    )
@@ -1710,9 +1710,9 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
                                      + "__"
                                      + name_tag
                                      ).c_str()
-                                   , ( "#delta#R(j,j) - "
+                                   , ( "#Delta#R(j,j) - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #delta#R(j,j) ; Entries"
+                                     + " ; #Delta#R(j,j) ; Entries"
                                      ).c_str()
                                    , dr_bins, dr_min, dr_max
                                    )
@@ -1722,9 +1722,9 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
                                      + "__"
                                      + name_tag
                                      ).c_str()
-                                   , ( "#delta#phi(j,j) - "
+                                   , ( "#Delta#phi(j,j) - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #delta#phi(j,j) ; Entries"
+                                     + " ; #Delta#phi(j,j) ; Entries"
                                      ).c_str()
                                    , dphi_bins, dphi_min, dphi_max
                                    )
@@ -1734,9 +1734,9 @@ PennSusyFrame::JetKinematicsHists::JetKinematicsHists(std::string name_tag)
                                      + "__"
                                      + name_tag
                                      ).c_str()
-                                   , ( "#delta#eta(j,j) - "
+                                   , ( "#Delta#eta(j,j) - "
                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                     + " ; #delta#eta(j,j) ; Entries"
+                                     + " ; #Delta#eta(j,j) ; Entries"
                                      ).c_str()
                                    , deta_bins, deta_min, deta_max
                                    )
@@ -1981,10 +1981,10 @@ void PennSusyFrame::JetKinematicsHists::write(TDirectory* d)
   for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // write pt histograms
-    m_h_num_jet.at(fc_it)->Write();
-    m_h_pt_all.at( fc_it)->Write();
-    m_h_pt_0.at(   fc_it)->Write();
-    m_h_pt_1.at(   fc_it)->Write();
+    m_h_num_jet.at(      fc_it)->Write();
+    m_h_pt_all.at(       fc_it)->Write();
+    m_h_pt_0.at(         fc_it)->Write();
+    m_h_pt_1.at(         fc_it)->Write();
 
     m_h_pt_detailed_all.at( fc_it)->Write();
     m_h_pt_detailed_0.at(   fc_it)->Write();
@@ -2118,9 +2118,9 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                                  + "__"
                                                  + name_tag
                                                  ).c_str()
-                                               , ( "#delta#phi(E_{T}^{miss}, obj) - "
+                                               , ( "#Delta#phi(E_{T}^{miss}, obj) - "
                                                  + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                                 + " ; #delta#phi(E_{T}^{miss},nearest object) ; Entries"
+                                                 + " ; #Delta#phi(E_{T}^{miss},nearest object) ; Entries"
                                                  ).c_str()
                                                , dphi_bins, dphi_min, dphi_max
                                                )
@@ -2131,9 +2131,9 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                         + "__"
                                         + name_tag
                                         ).c_str()
-                                      , ( "#delta#phi(E_{T}^{miss}, nearest jet) - "
+                                      , ( "#Delta#phi(E_{T}^{miss}, nearest jet) - "
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; #delta#phi(E_{T}^{miss},nearest jet) ; Entries"
+                                        + " ; #Delta#phi(E_{T}^{miss},nearest jet) ; Entries"
                                         ).c_str()
                                       , dphi_bins, dphi_min, dphi_max
                                       )
@@ -2144,9 +2144,9 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                         + "__"
                                         + name_tag
                                         ).c_str()
-                                      , ( "#delta#phi(E_{T}^{miss}, next-to-nearest jet) - "
+                                      , ( "#Delta#phi(E_{T}^{miss}, next-to-nearest jet) - "
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; #delta#phi(E_{T}^{miss},next-to-nearest jet) ; Entries"
+                                        + " ; #Delta#phi(E_{T}^{miss},next-to-nearest jet) ; Entries"
                                         ).c_str()
                                       , dphi_bins, dphi_min, dphi_max
                                       )
@@ -2157,9 +2157,9 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                         + "__"
                                         + name_tag
                                         ).c_str()
-                                      , ( "#delta#phi(E_{T}^{miss}, nearest lepton) - "
+                                      , ( "#Delta#phi(E_{T}^{miss}, nearest lepton) - "
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; #delta#phi(E_{T}^{miss},nearest lepton) ; Entries"
+                                        + " ; #Delta#phi(E_{T}^{miss},nearest lepton) ; Entries"
                                         ).c_str()
                                       , dphi_bins, dphi_min, dphi_max
                                       )
@@ -2170,9 +2170,9 @@ PennSusyFrame::MetHists::MetHists(std::string name_tag)
                                         + "__"
                                         + name_tag
                                         ).c_str()
-                                      , ( "#delta#phi(E_{T}^{miss}, next-to-nearest lepton) - "
+                                      , ( "#Delta#phi(E_{T}^{miss}, next-to-nearest lepton) - "
                                         + FLAVOR_CHANNEL_STRINGS[fc_it]
-                                        + " ; #delta#phi(E_{T}^{miss},next-to-nearest lepton) ; Entries"
+                                        + " ; #Delta#phi(E_{T}^{miss},next-to-nearest lepton) ; Entries"
                                         ).c_str()
                                       , dphi_bins, dphi_min, dphi_max
                                       )

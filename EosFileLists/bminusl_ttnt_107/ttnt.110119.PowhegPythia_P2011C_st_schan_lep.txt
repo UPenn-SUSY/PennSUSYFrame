@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_107/BMinusL.110119.PowhegPythia_P2011C_st_schan_lep__NOMINAL.tnt.root    5925993    2076    5925601.0

@@ -2,9 +2,11 @@
 
 import glob
 import re
+import sys
 
 import ROOT
 ROOT.gSystem.Load("libSusyFitter.so")
+
 
 # ------------------------------------------------------------------------------
 def constructPrefix(file_name):
@@ -13,6 +15,7 @@ def constructPrefix(file_name):
     prefix = '.'.join(['SampleList', tag])
     return prefix
 
+
 # ------------------------------------------------------------------------------
 def makeSampleListFiles(input_file_name):
     format = 'hypo_sig_%f'
@@ -20,19 +23,29 @@ def makeSampleListFiles(input_file_name):
     cut_str = '1'
 
     prefix = constructPrefix(input_file_name)
+    print 'prefix: ', prefix
 
     out_file = ROOT.CollectAndWriteHypoTestResults(input_file_name,
                                                    format,
                                                    interpretation,
                                                    cut_str)
 
+
 # ------------------------------------------------------------------------------
 def main():
-    input_file_list = glob.glob('results/*hypotest.root')
+    if len(sys.argv) > 1:
+        variation = sys.argv[1]
+    else:
+        variation = 'Nominal'
+
+    input_file_list = glob.glob(
+            'results/excl/*fixSigXSec%s*hypotest.root' % variation)
     for ifl in input_file_list:
+        print '-'*80
         print 'Making sample list files for ', ifl
         makeSampleListFiles(ifl)
         print ''
+
 
 # ==============================================================================
 if __name__ == "__main__":

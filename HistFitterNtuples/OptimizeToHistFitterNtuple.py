@@ -92,7 +92,6 @@ def mergeTmpTreesToOutput( out_file_name
     tmp_file_list = []
     tmp_tree_list = []
     for i, lott in enumerate(list_of_tmp_trees):
-        # print 'getting file: ', file_name
         this_file = ROOT.TFile('tmp__%s.root' % lott)
         this_tree = this_file.Get(lott)
         tmp_file_list.append(this_file)
@@ -107,7 +106,6 @@ def mergeTmpTreesToOutput( out_file_name
         tmp_tree.Write()
 
     # write to file
-    # new_tree.Write()
     out_file.Close()
 
 # ------------------------------------------------------------------------------
@@ -126,30 +124,6 @@ def writeTreesToHistFitterFile(out_file_name, optimize_tree_dict):
                                   , sample_name
                                   )
         list_of_tmp_trees.append(sample_name)
-
-        # writeSingleSampleToTmpFile( 'ee_%s.root' % sample_name
-        #                           , sample_name
-        #                           , optimize_tree_dict[sample_name]
-        #                           , 'is_ee'
-        #                           , 'ee_' + sample_name
-        #                           )
-        # list_of_tmp_trees.append('ee_' + sample_name)
-
-        # writeSingleSampleToTmpFile( 'mm_%s.root' % sample_name
-        #                           , sample_name
-        #                           , optimize_tree_dict[sample_name]
-        #                           , 'is_mm'
-        #                           , 'mm_' + sample_name
-        #                           )
-        # list_of_tmp_trees.append('mm_' + sample_name)
-
-        # writeSingleSampleToTmpFile( 'em_%s.root' % sample_name
-        #                           , sample_name
-        #                           , optimize_tree_dict[sample_name]
-        #                           , 'is_em'
-        #                           , 'em_' + sample_name
-        #                           )
-        # list_of_tmp_trees.append('em_' + sample_name)
 
     mergeTmpTreesToOutput( out_file_name, list_of_tmp_trees )
 
@@ -304,6 +278,39 @@ def main():
                                                                            , '%s/BMinusL.*161105.Pythia8_AU2CTEQ6L1_WH125_WW2lep*.ntup.root' % opt_ntup_dir
                                                                            , '%s/BMinusL.*161155.Pythia8_AU2CTEQ6L1_ZH125_WW2lep*.ntup.root' % opt_ntup_dir
                                                                            , '%s/BMinusL.*161305.Pythia8_AU2CTEQ6L1_ttH125_WWinclusive*.ntup.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167740.Sherpa_CT10_WenuMassiveCBPt0_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167741.Sherpa_CT10_WenuMassiveCBPt0_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167742.Sherpa_CT10_WenuMassiveCBPt0_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167743.Sherpa_CT10_WmunuMassiveCBPt0_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167744.Sherpa_CT10_WmunuMassiveCBPt0_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167745.Sherpa_CT10_WmunuMassiveCBPt0_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167746.Sherpa_CT10_WtaunuMassiveCBPt0_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167747.Sherpa_CT10_WtaunuMassiveCBPt0_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167748.Sherpa_CT10_WtaunuMassiveCBPt0_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167761.Sherpa_CT10_WenuMassiveCBPt70_140_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167762.Sherpa_CT10_WenuMassiveCBPt70_140_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167763.Sherpa_CT10_WenuMassiveCBPt70_140_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167764.Sherpa_CT10_WmunuMassiveCBPt70_140_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167765.Sherpa_CT10_WmunuMassiveCBPt70_140_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167766.Sherpa_CT10_WmunuMassiveCBPt70_140_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167770.Sherpa_CT10_WenuMassiveCBPt140_280_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167771.Sherpa_CT10_WenuMassiveCBPt140_280_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167772.Sherpa_CT10_WenuMassiveCBPt140_280_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167773.Sherpa_CT10_WmunuMassiveCBPt140_280_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167774.Sherpa_CT10_WmunuMassiveCBPt140_280_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167775.Sherpa_CT10_WmunuMassiveCBPt140_280_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167788.Sherpa_CT10_WenuMassiveCBPt500_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167789.Sherpa_CT10_WenuMassiveCBPt500_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*167790.Sherpa_CT10_WenuMassiveCBPt500_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180534.Sherpa_CT10_WenuMassiveCBPt40_70_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180535.Sherpa_CT10_WenuMassiveCBPt40_70_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180536.Sherpa_CT10_WenuMassiveCBPt40_70_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180537.Sherpa_CT10_WmunuMassiveCBPt40_70_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180538.Sherpa_CT10_WmunuMassiveCBPt40_70_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180539.Sherpa_CT10_WmunuMassiveCBPt40_70_CJetVetoBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180540.Sherpa_CT10_WtaunuMassiveCBPt40_70_BFilter*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180541.Sherpa_CT10_WtaunuMassiveCBPt40_70_CJetFilterBVeto*.root' % opt_ntup_dir
+                                                                           , '%s/BMinusL.*180542.Sherpa_CT10_WtaunuMassiveCBPt40_70_CJetVetoBVeto*.root' % opt_ntup_dir
                                                                            ]
                                                                          )
 
@@ -343,6 +350,7 @@ def main():
         sig_optimize_tree_dict['sig_800_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800*.ntup.root'  % opt_ntup_dir])
         sig_optimize_tree_dict['sig_900_%s'  % syst_tag] = constructPathList(['%s/BMinusL.*202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900*.ntup.root'  % opt_ntup_dir])
         sig_optimize_tree_dict['sig_1000_%s' % syst_tag] = constructPathList(['%s/BMinusL.*202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000*.ntup.root' % opt_ntup_dir])
+        sig_optimize_tree_dict['sig_1100_%s' % syst_tag] = constructPathList(['%s/BMinusL.*205069.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1100*.ntup.root' % opt_ntup_dir])
 
     writeTreesToHistFitterFile('BackgroundHistFitterTrees.root', bkg_optimize_tree_dict)
     writeTreesToHistFitterFile('SignalHistFitterTrees.root'    , sig_optimize_tree_dict)

@@ -20,23 +20,24 @@ HIST_1D = object()
 HIST_2D = object()
 
 # default margins
-default_canv_width        = 600
-default_canv_height       = 800
+default_canv_width = 600
+default_canv_height = 800
 
-default_ratio_pad_size = 0.25
+# default_ratio_pad_size = 0.25
+default_ratio_pad_size = 0.30
 
-default_pad_left_margin   = 0.16
+default_pad_left_margin   = 0.17
 default_pad_right_margin  = 0.09
 default_pad_top_margin    = 0.05
-default_pad_bottom_margin = 0.16
+default_pad_bottom_margin = 0.20
 
-default_label_size = 0.04
-default_title_size = 0.05
+# default_label_size = 0.04
+default_label_size = 0.05
+default_title_size = 0.06
 
 #------------------------------------------------------------------------------
 # import modules
 #------------------------------------------------------------------------------
-# import Handle, Merger, Objects, Painter, parse, Helper, Optimize, AtlasLabels
 import Handle, Merger, Objects, Painter, Container, Helper, AtlasLabels
 
 #------------------------------------------------------------------------------
@@ -83,12 +84,12 @@ gStyle.SetTextFont(font)
 # gStyle.SetPaintTextFormat('5.3f')
 # set font sizes
 gStyle.SetLabelSize(default_label_size, 'xyz')
-gStyle.SetTitleSize(default_label_size, 'xyz')
+gStyle.SetTitleSize(default_title_size, 'xyz')
 gStyle.SetTitleSize(default_title_size, 't')
 
 # title offset
 gStyle.SetTitleOffset(1.2, 'x')
-gStyle.SetTitleOffset(1.5, 'y')
+gStyle.SetTitleOffset(1.3, 'y')
 gStyle.SetTitleOffset(0.8, 'z')
 
 # 2d color palettes

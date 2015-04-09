@@ -43,7 +43,10 @@ namespace PennSusyFrame
   class ElectronRescalerTool
   {
     public:
-      ElectronRescalerTool(bool is_data, bool is_af2);
+      ElectronRescalerTool( bool is_data
+                          , bool is_af2
+                          , PennSusyFrame::SystematicStruct* syst_struct = 0
+                          );
       ~ElectronRescalerTool();
 
       void init();
@@ -51,15 +54,13 @@ namespace PennSusyFrame
       double getRescaledE( const PennSusyFrame::Electron*);
       double getRescaledEt(const PennSusyFrame::Electron*);
 
+      double applyEES(double el_e, double eta);
+
     private:
       bool m_is_data;
       bool m_is_af2;
 
-      // Use configurable flag c_apply_systematics to set:
-      // - 0 (nominal)
-      // - 1 (down)
-      // - 2 (up)
-      int m_systematics;
+      SystematicStruct* m_syst_struct;
 
       egRescaler::EnergyRescalerUpgrade* m_e_rescale;
   };
@@ -68,7 +69,9 @@ namespace PennSusyFrame
   class MuonRescalerTool
   {
     public:
-      MuonRescalerTool(bool is_data);
+      MuonRescalerTool( bool is_data
+                      , PennSusyFrame::SystematicStruct* syst_struct = 0
+                      );
       ~MuonRescalerTool();
 
       void init();
@@ -77,6 +80,8 @@ namespace PennSusyFrame
 
     private:
       bool m_is_data;
+
+      SystematicStruct* m_syst_struct;
 
       std::string m_muon_momentum_dir;
       MuonSmear::SmearingClass* m_mcp_smear;

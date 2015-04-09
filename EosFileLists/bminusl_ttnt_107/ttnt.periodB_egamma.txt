@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_107/BMinusL.periodB_egamma__NOMINAL.tnt.root    130536070    3621    130535722.0

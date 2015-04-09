@@ -192,6 +192,10 @@ def flatten(l, level = 0):
 
 # ------------------------------------------------------------------------------
 def genLegendLabel(key):
+    if key == 'ttbar':
+        return 't#bar{t}'
+    if key == 'Z/#gamma^{*}':
+        return 'Z/#gamma*'
     return key
 
 # ------------------------------------------------------------------------------
@@ -299,7 +303,7 @@ def makeLegend( hist_list
     assert len(hist_list) == len(label_list) == len(draw_options)
     leg = MetaLegend(width=width, height=height, x1=x1, y1=y1, x2=x2, y2=y2)
     for h, lab, opt in zip(hist_list, label_list, draw_options):
-        if not opt in ('P', 'F', 'L'):
+        if not opt.upper() in ('P', 'F', 'L'):
             ## assume opt is of the same format as draw_options used with Draw
             if opt.count('P'):
                 if opt.count('E'):

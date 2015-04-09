@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_107/BMinusL.periodG_muon__NOMINAL.tnt.root    25461809    1019    25461718.0

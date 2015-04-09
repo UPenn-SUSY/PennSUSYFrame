@@ -1,0 +1,1 @@
+/afs/cern.ch/user/b/bjackson/work/public/PennSUSYFrame.00.03.21/../TTNTNtuples_107/BMinusL.173044.Sherpa_CT10_DYmumuM15to40__NOMINAL.tnt.root    14980488    205    14980385.0

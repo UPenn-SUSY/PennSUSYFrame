@@ -21,52 +21,40 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_GE_4_OBJECTS
                            , BMINUSL_HIST_NO_WEIGHTS
 
-                           , BMINUSL_HIST_SR_MINUS_HT
+                           , BMINUSL_HIST_ZREGION_MBL_200
 
-                           , BMINUSL_HIST_SR_1_MINUS_MBL_ASYM
-                           , BMINUSL_HIST_SR_2_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_PARTIAL_SR_HT_1100_Z_VETO
 
-                           , BMINUSL_HIST_SR_1_MINUS_Z_VETO
-                           , BMINUSL_HIST_SR_2_MINUS_Z_VETO
+                           , BMINUSL_HIST_SR_HT_1100_MBL_400_MINUS_HT
+                           , BMINUSL_HIST_SR_HT_1100_MBL_600_MINUS_HT
 
-                           , BMINUSL_HIST_SR_1
-                           , BMINUSL_HIST_SR_2
+                           , BMINUSL_HIST_SR_HT_1100_MBL_400_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_SR_HT_1100_MBL_600_MINUS_MBL_ASYM
 
-                           , BMINUSL_HIST_CR_TOP_MINUS_HT
-                           , BMINUSL_HIST_CR_TOP_MINUS_MBL_ASYM
-                           , BMINUSL_HIST_CR_TOP_MINUS_MET_SIG
-                           , BMINUSL_HIST_CR_TOP
+                           , BMINUSL_HIST_SR_HT_1100_MBL_400_MINUS_Z_VETO
+                           , BMINUSL_HIST_SR_HT_1100_MBL_600_MINUS_Z_VETO
 
-                           , BMINUSL_HIST_CR_TOP_CRACK
-                           , BMINUSL_HIST_CR_TOP_NO_CRACK
+                           , BMINUSL_HIST_SR_HT_1100_MINUS_MBL
 
-                           , BMINUSL_HIST_CR_Z_MINUS_HT
-                           , BMINUSL_HIST_CR_Z_MINUS_MBL_ASYM
-                           , BMINUSL_HIST_CR_Z_MINUS_MET_SIG
-                           , BMINUSL_HIST_CR_Z
+                           , BMINUSL_HIST_SR_HT_1100_MBL_200
+                           , BMINUSL_HIST_SR_HT_1100_MBL_400
+                           , BMINUSL_HIST_SR_HT_1100_MBL_600
 
-                           , BMINUSL_HIST_CR_Z_CRACK
-                           , BMINUSL_HIST_CR_Z_NO_CRACK
+                           , BMINUSL_HIST_CR_TOP_MBL_200_MINUS_HT
+                           , BMINUSL_HIST_CR_TOP_MBL_200_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_CR_TOP_MBL_200_MINUS_MET_SIG
+                           , BMINUSL_HIST_CR_TOP_MBL_200
 
-                           , BMINUSL_HIST_VR_TOP_1
-                           , BMINUSL_HIST_VR_TOP_2
-                           , BMINUSL_HIST_VR_TOP_3
-                           , BMINUSL_HIST_VR_Z
+                           , BMINUSL_HIST_CR_Z_MBL_200_MINUS_HT
+                           , BMINUSL_HIST_CR_Z_MBL_200_MINUS_MBL_ASYM
+                           , BMINUSL_HIST_CR_Z_MBL_200_MINUS_MET_SIG
+                           , BMINUSL_HIST_CR_Z_MBL_200
 
-                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_HT
-                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM
-                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW_MINUS_MET_SIG
-                           // , BMINUSL_HIST_CR_TOP_WIDE_Z_WINDOW
-
-                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_HT
-                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MBL_ASYM
-                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW_MINUS_MET_SIG
-                           // , BMINUSL_HIST_CR_Z_WIDE_Z_WINDOW
-
-                           // , BMINUSL_HIST_VR_TOP_1_WIDE_Z_WINDOW
-                           // , BMINUSL_HIST_VR_TOP_2_WIDE_Z_WINDOW
-                           // , BMINUSL_HIST_VR_TOP_3_WIDE_Z_WINDOW
-                           // , BMINUSL_HIST_VR_Z_WIDE_Z_WINDOW
+                           , BMINUSL_HIST_VR_TOP_MBL_200_1
+                           , BMINUSL_HIST_VR_TOP_MBL_200_2
+                           , BMINUSL_HIST_VR_TOP_MBL_200_3
+                           , BMINUSL_HIST_VR_TOP_MBL_200_4
+                           , BMINUSL_HIST_VR_Z_MBL_200
 
                            , BMINUSL_HIST_N
                            };
@@ -76,52 +64,40 @@ namespace PennSusyFrame
                                                    , "BMINUSL_GE_4_OBJECTS"
                                                    , "BMINUSL_NO_WEIGHTS"
 
-                                                   , "BMINUSL_SR_MINUS_HT"
+                                                   , "BMINUSL_ZREGION_MBL_200"
 
-                                                   , "BMINUSL_SR_1_MINUS_MBL_ASYM"
-                                                   , "BMINUSL_SR_2_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_PARTIAL_SR_HT_1100_Z_VETO"
 
-                                                   , "BMINUSL_SR_1_MINUS_Z_VETO"
-                                                   , "BMINUSL_SR_2_MINUS_Z_VETO"
+                                                   , "BMINUSL_SR_HT_1100_MBL_400_MINUS_HT"
+                                                   , "BMINUSL_SR_HT_1100_MBL_600_MINUS_HT"
 
-                                                   , "BMINUSL_SR_1"
-                                                   , "BMINUSL_SR_2"
+                                                   , "BMINUSL_SR_HT_1100_MBL_400_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_SR_HT_1100_MBL_600_MINUS_MBL_ASYM"
 
-                                                   , "BMINUSL_CR_TOP_MINUS_HT"
-                                                   , "BMINUSL_CR_TOP_MINUS_MBL_ASYM"
-                                                   , "BMINUSL_CR_TOP_MINUS_MET_SIG"
-                                                   , "BMINUSL_CR_TOP"
+                                                   , "BMINUSL_SR_HT_1100_MBL_400_MINUS_Z_VETO"
+                                                   , "BMINUSL_SR_HT_1100_MBL_600_MINUS_Z_VETO"
 
-                                                   , "BMINUSL_CR_TOP_CRACK"
-                                                   , "BMINUSL_CR_TOP_NO_CRACK"
+                                                   , "BMINUSL_SR_HT_1100_MINUS_MBL"
 
-                                                   , "BMINUSL_CR_Z_MINUS_HT"
-                                                   , "BMINUSL_CR_Z_MINUS_MBL_ASYM"
-                                                   , "BMINUSL_CR_Z_MINUS_MET_SIG"
-                                                   , "BMINUSL_CR_Z"
+                                                   , "BMINUSL_SR_HT_1100_MBL_200"
+                                                   , "BMINUSL_SR_HT_1100_MBL_400"
+                                                   , "BMINUSL_SR_HT_1100_MBL_600"
 
-                                                   , "BMINUSL_CR_Z_CRACK"
-                                                   , "BMINUSL_CR_Z_NO_CRACK"
+                                                   , "BMINUSL_CR_TOP_MBL_200_MINUS_HT"
+                                                   , "BMINUSL_CR_TOP_MBL_200_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_CR_TOP_MBL_200_MINUS_MET_SIG"
+                                                   , "BMINUSL_CR_TOP_MBL_200"
 
-                                                   , "BMINUSL_VR_TOP_1"
-                                                   , "BMINUSL_VR_TOP_2"
-                                                   , "BMINUSL_VR_TOP_3"
-                                                   , "BMINUSL_VR_Z"
+                                                   , "BMINUSL_CR_Z_MBL_200_MINUS_HT"
+                                                   , "BMINUSL_CR_Z_MBL_200_MINUS_MBL_ASYM"
+                                                   , "BMINUSL_CR_Z_MBL_200_MINUS_MET_SIG"
+                                                   , "BMINUSL_CR_Z_MBL_200"
 
-                                                   // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_HT"
-                                                   // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_MBL_ASYM"
-                                                   // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW_MINUS_MET_SIG"
-                                                   // , "BMINUSL_CR_TOP_WIDE_Z_WINDOW"
-
-                                                   // , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_HT"
-                                                   // , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_MBL_ASYM"
-                                                   // , "BMINUSL_CR_Z_WIDE_Z_WINDOW_MINUS_MET_SIG"
-                                                   // , "BMINUSL_CR_Z_WIDE_Z_WINDOW"
-
-                                                   // , "BMINUSL_VR_TOP_1_WIDE_Z_WINDOW"
-                                                   // , "BMINUSL_VR_TOP_2_WIDE_Z_WINDOW"
-                                                   // , "BMINUSL_VR_TOP_3_WIDE_Z_WINDOW"
-                                                   // , "BMINUSL_VR_Z_WIDE_Z_WINDOW"
+                                                   , "BMINUSL_VR_TOP_1_MBL_200"
+                                                   , "BMINUSL_VR_TOP_2_MBL_200"
+                                                   , "BMINUSL_VR_TOP_3_MBL_200"
+                                                   , "BMINUSL_VR_TOP_4_MBL_200"
+                                                   , "BMINUSL_VR_Z_MBL_200"
 
                                                    , "BMINUSL_N"
                                                    };
@@ -149,7 +125,6 @@ namespace PennSusyFrame
       void fillTrackers(BMINUSL_CUTS);
       PHASE_SPACE getPhaseSpace();
       bool passPhaseSpace();
-      // bool passBMinusLTrigger();
       bool passTriggerMatch();
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
@@ -233,7 +208,7 @@ namespace PennSusyFrame
       BMinusLCutFlowTracker m_cutflow_tracker;
 
       std::vector<PennSusyFrame::BMinusLHists*> m_bminusl_histogram_handler;
-      std::vector<PennSusyFrame::WeightHists*>  m_weight_histogram_handler;
+      std::vector<PennSusyFrame::JetMultiplicityHists*> m_jet_multiplicity_histogram_handler;
       std::vector<PennSusyFrame::ParentHists*>  m_parent_histogram_handler;
       std::vector<PennSusyFrame::BMinusLDetailedHists*> m_bminusl_detailed_histogram_handler;
 

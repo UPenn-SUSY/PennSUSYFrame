@@ -88,3 +88,48 @@ fit from each of our CR/VRs
 python LimitHelpers/MakePullDist.py
 ```
 
+If you would like to add the ATLAS labels to the pull distributions, add the
+following to the `HistFitter/python/pullPlotUtils.py` file toward the end of
+the `MakeHistPullPlot` function, just before the canvases are printed:
+
+```
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    upperPad.cd()
+
+    font_size = 0.08
+    atlas_label_x = 0.2
+    lumi_label_x = 0.5
+    label_y = 0.75
+    del_x = 0.13*696*gPad.GetWh()/(474*gPad.GetWw())
+    del_y = 0.18*696*gPad.GetWh()/(474*gPad.GetWw())
+
+    atlas_label = ROOT.TLatex()
+    atlas_label.SetNDC()
+    atlas_label.SetTextFont(72)
+    atlas_label.SetTextSize(font_size)
+    atlas_label.DrawLatex(atlas_label_x, label_y, "ATLAS")
+
+    atlas_label_2 = ROOT.TLatex()
+    atlas_label_2.SetNDC()
+    atlas_label_2.SetTextFont(42)
+    atlas_label_2.SetTextSize(font_size)
+    atlas_label_2.DrawLatex(atlas_label_x+del_x, label_y, "Internal")
+
+    lumi_label = ROOT.TLatex()
+    lumi_label.SetNDC()
+    lumi_label.SetTextFont(42)
+    lumi_label.SetTextSize(0.9*font_size)
+    lumi_label.DrawLatex(lumi_label_x, label_y,
+                         "#int Ldt = 20.3 fb^{-1}")
+
+    com_energy_label = ROOT.TLatex()
+    com_energy_label.SetNDC()
+    com_energy_label.SetTextFont(42)
+    com_energy_label.SetTextSize(0.9*font_size)
+    com_energy_label.DrawLatex(lumi_label_x+2*del_x, label_y,
+                               "#sqrt{s} = 8 TeV")
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+```
+
+I know this is pretty gross :-(
+

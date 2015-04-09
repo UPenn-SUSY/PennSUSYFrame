@@ -185,6 +185,7 @@ def getFastSimSamples( job_multiplier=1
             samples[202638] = {'label':'202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700'  , 'num_jobs':1}
             samples[202639] = {'label':'202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800'  , 'num_jobs':1}
             samples[202640] = {'label':'202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900'  , 'num_jobs':1}
+            samples[205069] = {'label':'205069.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1100' , 'num_jobs':1}
 
     if not test_subset and not signal_only:
         samples[117050] = {'label':'117050.PowhegPythia_P2011C_ttbar.af2', 'num_jobs':10*job_multiplier}
