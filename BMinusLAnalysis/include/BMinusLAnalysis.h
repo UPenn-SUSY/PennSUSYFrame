@@ -23,19 +23,7 @@ namespace PennSusyFrame
 
                            , BMINUSL_HIST_ZREGION_MBL_200
 
-                           // , BMINUSL_HIST_PARTIAL_SR_HT_1100
-                           // , BMINUSL_HIST_PARTIAL_SR_MBL_400
-                           // , BMINUSL_HIST_PARTIAL_SR_MBL_600
-                           // , BMINUSL_HIST_PARTIAL_SR_MBL_ASYM_2
-                           // , BMINUSL_HIST_PARTIAL_SR_HT_1100_MBL_400
-                           // , BMINUSL_HIST_PARTIAL_SR_HT_1100_MBL_600
-                           // , BMINUSL_HIST_PARTIAL_SR_HT_1100_MBL_ASYM_2
                            , BMINUSL_HIST_PARTIAL_SR_HT_1100_Z_VETO
-                           // , BMINUSL_HIST_PARTIAL_SR_MBL_400_MBL_ASYM_2
-                           // , BMINUSL_HIST_PARTIAL_SR_MBL_600_MBL_ASYM_2
-                           // , BMINUSL_HIST_PARTIAL_SR_MBL_400_Z_VETO
-                           // , BMINUSL_HIST_PARTIAL_SR_MBL_600_Z_VETO
-                           // , BMINUSL_HIST_PARTIAL_SR_MBL_ASYM_2_Z_VETO
 
                            , BMINUSL_HIST_SR_HT_1100_MBL_400_MINUS_HT
                            , BMINUSL_HIST_SR_HT_1100_MBL_600_MINUS_HT
@@ -51,37 +39,6 @@ namespace PennSusyFrame
                            , BMINUSL_HIST_SR_HT_1100_MBL_200
                            , BMINUSL_HIST_SR_HT_1100_MBL_400
                            , BMINUSL_HIST_SR_HT_1100_MBL_600
-                           // , BMINUSL_HIST_SR_HT_1100_MBL_800
-
-                           // , BMINUSL_HIST_SR_HT_1000_MBL_200
-                           // , BMINUSL_HIST_SR_HT_1000_MBL_400
-                           // , BMINUSL_HIST_SR_HT_1000_MBL_600
-                           // , BMINUSL_HIST_SR_HT_1000_MBL_800
-
-                           // , BMINUSL_HIST_SR_HT_900_MBL_200
-                           // , BMINUSL_HIST_SR_HT_900_MBL_400
-                           // , BMINUSL_HIST_SR_HT_900_MBL_600
-                           // , BMINUSL_HIST_SR_HT_900_MBL_800
-
-                           // , BMINUSL_HIST_SR_HT_800_MBL_200
-                           // , BMINUSL_HIST_SR_HT_800_MBL_400
-                           // , BMINUSL_HIST_SR_HT_800_MBL_600
-                           // , BMINUSL_HIST_SR_HT_800_MBL_800
-
-                           // , BMINUSL_HIST_SR_HT_700_MBL_200
-                           // , BMINUSL_HIST_SR_HT_700_MBL_400
-                           // , BMINUSL_HIST_SR_HT_700_MBL_600
-                           // , BMINUSL_HIST_SR_HT_700_MBL_800
-
-                           // , BMINUSL_HIST_SR_HT_600_MBL_200
-                           // , BMINUSL_HIST_SR_HT_600_MBL_400
-                           // , BMINUSL_HIST_SR_HT_600_MBL_600
-                           // , BMINUSL_HIST_SR_HT_600_MBL_800
-
-                           // , BMINUSL_HIST_SR_HT_500_MBL_200
-                           // , BMINUSL_HIST_SR_HT_500_MBL_400
-                           // , BMINUSL_HIST_SR_HT_500_MBL_600
-                           // , BMINUSL_HIST_SR_HT_500_MBL_800
 
                            , BMINUSL_HIST_CR_TOP_MBL_200_MINUS_HT
                            , BMINUSL_HIST_CR_TOP_MBL_200_MINUS_MBL_ASYM
@@ -109,19 +66,7 @@ namespace PennSusyFrame
 
                                                    , "BMINUSL_ZREGION_MBL_200"
 
-                                                   // , "BMINUSL_PARTIAL_SR_HT_1100"
-                                                   // , "BMINUSL_PARTIAL_SR_MBL_400"
-                                                   // , "BMINUSL_PARTIAL_SR_MBL_600"
-                                                   // , "BMINUSL_PARTIAL_SR_MBL_ASYM_2"
-                                                   // , "BMINUSL_PARTIAL_SR_HT_1100_MBL_400"
-                                                   // , "BMINUSL_PARTIAL_SR_HT_1100_MBL_600"
-                                                   // , "BMINUSL_PARTIAL_SR_HT_1100_MBL_ASYM_2"
                                                    , "BMINUSL_PARTIAL_SR_HT_1100_Z_VETO"
-                                                   // , "BMINUSL_PARTIAL_SR_MBL_400_MBL_ASYM_2"
-                                                   // , "BMINUSL_PARTIAL_SR_MBL_600_MBL_ASYM_2"
-                                                   // , "BMINUSL_PARTIAL_SR_MBL_400_Z_VETO"
-                                                   // , "BMINUSL_PARTIAL_SR_MBL_600_Z_VETO"
-                                                   // , "BMINUSL_PARTIAL_SR_MBL_ASYM_2_Z_VETO"
 
                                                    , "BMINUSL_SR_HT_1100_MBL_400_MINUS_HT"
                                                    , "BMINUSL_SR_HT_1100_MBL_600_MINUS_HT"
@@ -137,37 +82,6 @@ namespace PennSusyFrame
                                                    , "BMINUSL_SR_HT_1100_MBL_200"
                                                    , "BMINUSL_SR_HT_1100_MBL_400"
                                                    , "BMINUSL_SR_HT_1100_MBL_600"
-                                                   // , "BMINUSL_SR_HT_1100_MBL_800"
-
-                                                   // , "BMINUSL_SR_HT_1000_MBL_200"
-                                                   // , "BMINUSL_SR_HT_1000_MBL_400"
-                                                   // , "BMINUSL_SR_HT_1000_MBL_600"
-                                                   // , "BMINUSL_SR_HT_1000_MBL_800"
-
-                                                   // , "BMINUSL_SR_HT_900_MBL_200"
-                                                   // , "BMINUSL_SR_HT_900_MBL_400"
-                                                   // , "BMINUSL_SR_HT_900_MBL_600"
-                                                   // , "BMINUSL_SR_HT_900_MBL_800"
-
-                                                   // , "BMINUSL_SR_HT_800_MBL_200"
-                                                   // , "BMINUSL_SR_HT_800_MBL_400"
-                                                   // , "BMINUSL_SR_HT_800_MBL_600"
-                                                   // , "BMINUSL_SR_HT_800_MBL_800"
-
-                                                   // , "BMINUSL_SR_HT_700_MBL_200"
-                                                   // , "BMINUSL_SR_HT_700_MBL_400"
-                                                   // , "BMINUSL_SR_HT_700_MBL_600"
-                                                   // , "BMINUSL_SR_HT_700_MBL_800"
-
-                                                   // , "BMINUSL_SR_HT_600_MBL_200"
-                                                   // , "BMINUSL_SR_HT_600_MBL_400"
-                                                   // , "BMINUSL_SR_HT_600_MBL_600"
-                                                   // , "BMINUSL_SR_HT_600_MBL_800"
-
-                                                   // , "BMINUSL_SR_HT_500_MBL_200"
-                                                   // , "BMINUSL_SR_HT_500_MBL_400"
-                                                   // , "BMINUSL_SR_HT_500_MBL_600"
-                                                   // , "BMINUSL_SR_HT_500_MBL_800"
 
                                                    , "BMINUSL_CR_TOP_MBL_200_MINUS_HT"
                                                    , "BMINUSL_CR_TOP_MBL_200_MINUS_MBL_ASYM"
@@ -211,7 +125,6 @@ namespace PennSusyFrame
       void fillTrackers(BMINUSL_CUTS);
       PHASE_SPACE getPhaseSpace();
       bool passPhaseSpace();
-      // bool passBMinusLTrigger();
       bool passTriggerMatch();
 
       void setOutHistFileName(std::string val) { m_out_hist_file_name = val; }
@@ -295,7 +208,7 @@ namespace PennSusyFrame
       BMinusLCutFlowTracker m_cutflow_tracker;
 
       std::vector<PennSusyFrame::BMinusLHists*> m_bminusl_histogram_handler;
-      std::vector<PennSusyFrame::WeightHists*>  m_weight_histogram_handler;
+      std::vector<PennSusyFrame::JetMultiplicityHists*> m_jet_multiplicity_histogram_handler;
       std::vector<PennSusyFrame::ParentHists*>  m_parent_histogram_handler;
       std::vector<PennSusyFrame::BMinusLDetailedHists*> m_bminusl_detailed_histogram_handler;
 

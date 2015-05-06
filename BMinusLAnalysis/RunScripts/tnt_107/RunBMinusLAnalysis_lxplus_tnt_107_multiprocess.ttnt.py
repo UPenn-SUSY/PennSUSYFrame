@@ -56,9 +56,10 @@ if __name__ == '__main__':
     full_sim_mc_samples = SamplesDicts.getFullSimSamples(job_multiplier = 1)
     fast_sim_mc_samples = SamplesDicts.getFastSimSamples(job_multiplier = 1)
     # egamma_data_samples = {}
-    # muon_data_samples = SamplesDicts.getMuonDataSamples(job_multiplier = 1)
+    # muon_data_samples   = {}
     # full_sim_mc_samples = {}
-    # fast_sim_mc_samples = {}
+    # fast_sim_mc_samples = SamplesDicts.getFastSimSamples(job_multiplier = 1,
+    #                                                      signal_only=True)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Define what systematics to include in this run and construct dictionary

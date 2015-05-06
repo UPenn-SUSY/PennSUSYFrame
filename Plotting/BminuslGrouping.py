@@ -192,6 +192,93 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
                                                   )
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Zgamma
+    ec_Zgamma_sherpa_no_k_factor = hh.Container.EntryContainer( label = 'Z/#gamma^{*}'
+                                                              , fill_color = ROOT.kRed+1
+                                                              , container_weight = 1/1.3855
+                                                              , input_file_list =  constructFileList( hist_dir = hist_dir_mc
+                                                                                                    , syst_tag = syst_tag
+                                                                                                    , sample_list = [
+                                                                                                                    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                                                                                      '167749.Sherpa_CT10_ZeeMassiveCBPt0_BFilter'
+                                                                                                                    , '180543.Sherpa_CT10_ZeeMassiveCBPt40_70_BFilter'
+                                                                                                                    , '167809.Sherpa_CT10_ZeeMassiveCBPt140_280_BFilter'
+                                                                                                                    , '167797.Sherpa_CT10_ZeeMassiveCBPt70_140_BFilter'
+                                                                                                                    , '167821.Sherpa_CT10_ZeeMassiveCBPt280_500_BFilter'
+                                                                                                                    , '167833.Sherpa_CT10_ZeeMassiveCBPt500_BFilter'
+
+                                                                                                                    , '167752.Sherpa_CT10_ZmumuMassiveCBPt0_BFilter'
+                                                                                                                    , '180546.Sherpa_CT10_ZmumuMassiveCBPt40_70_BFilter'
+                                                                                                                    , '167800.Sherpa_CT10_ZmumuMassiveCBPt70_140_BFilter'
+                                                                                                                    , '167812.Sherpa_CT10_ZmumuMassiveCBPt140_280_BFilter'
+                                                                                                                    , '167824.Sherpa_CT10_ZmumuMassiveCBPt280_500_BFilter'
+                                                                                                                    , '167836.Sherpa_CT10_ZmumuMassiveCBPt500_BFilter'
+
+                                                                                                                    , '167755.Sherpa_CT10_ZtautauMassiveCBPt0_BFilter'
+                                                                                                                    , '180549.Sherpa_CT10_ZtautauMassiveCBPt40_70_BFilter'
+                                                                                                                    , '167803.Sherpa_CT10_ZtautauMassiveCBPt70_140_BFilter'
+                                                                                                                    , '167815.Sherpa_CT10_ZtautauMassiveCBPt140_280_BFilter'
+                                                                                                                    , '167827.Sherpa_CT10_ZtautauMassiveCBPt280_500_BFilter'
+                                                                                                                    , '167839.Sherpa_CT10_ZtautauMassiveCBPt500_BFilter'
+
+                                                                                                                    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                                                                                    , '167750.Sherpa_CT10_ZeeMassiveCBPt0_CFilterBVeto'
+                                                                                                                    , '180544.Sherpa_CT10_ZeeMassiveCBPt40_70_CFilterBVeto'
+                                                                                                                    , '167798.Sherpa_CT10_ZeeMassiveCBPt70_140_CFilterBVeto'
+                                                                                                                    , '167810.Sherpa_CT10_ZeeMassiveCBPt140_280_CFilterBVeto'
+                                                                                                                    , '167822.Sherpa_CT10_ZeeMassiveCBPt280_500_CFilterBVeto'
+                                                                                                                    , '167834.Sherpa_CT10_ZeeMassiveCBPt500_CFilterBVeto'
+
+                                                                                                                    , '167753.Sherpa_CT10_ZmumuMassiveCBPt0_CFilterBVeto'
+                                                                                                                    , '180547.Sherpa_CT10_ZmumuMassiveCBPt40_70_CFilterBVeto'
+                                                                                                                    , '167801.Sherpa_CT10_ZmumuMassiveCBPt70_140_CFilterBVeto'
+                                                                                                                    , '167813.Sherpa_CT10_ZmumuMassiveCBPt140_280_CFilterBVeto'
+                                                                                                                    , '167825.Sherpa_CT10_ZmumuMassiveCBPt280_500_CFilterBVeto'
+                                                                                                                    , '167837.Sherpa_CT10_ZmumuMassiveCBPt500_CFilterBVeto'
+
+                                                                                                                    , '167756.Sherpa_CT10_ZtautauMassiveCBPt0_CFilterBVeto'
+                                                                                                                    , '180550.Sherpa_CT10_ZtautauMassiveCBPt40_70_CFilterBVeto'
+                                                                                                                    , '167804.Sherpa_CT10_ZtautauMassiveCBPt70_140_CFilterBVeto'
+                                                                                                                    , '167816.Sherpa_CT10_ZtautauMassiveCBPt140_280_CFilterBVeto'
+                                                                                                                    , '167828.Sherpa_CT10_ZtautauMassiveCBPt280_500_CFilterBVeto'
+                                                                                                                    , '167840.Sherpa_CT10_ZtautauMassiveCBPt500_CFilterBVeto'
+
+                                                                                                                    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                                                                                    , '167751.Sherpa_CT10_ZeeMassiveCBPt0_CVetoBVeto'
+                                                                                                                    , '180545.Sherpa_CT10_ZeeMassiveCBPt40_70_CVetoBVeto'
+                                                                                                                    , '167799.Sherpa_CT10_ZeeMassiveCBPt70_140_CVetoBVeto'
+                                                                                                                    , '167811.Sherpa_CT10_ZeeMassiveCBPt140_280_CVetoBVeto'
+                                                                                                                    , '167823.Sherpa_CT10_ZeeMassiveCBPt280_500_CVetoBVeto'
+                                                                                                                    , '167835.Sherpa_CT10_ZeeMassiveCBPt500_CVetoBVeto'
+
+                                                                                                                    , '167754.Sherpa_CT10_ZmumuMassiveCBPt0_CVetoBVeto'
+                                                                                                                    , '180548.Sherpa_CT10_ZmumuMassiveCBPt40_70_CVetoBVeto'
+                                                                                                                    , '167802.Sherpa_CT10_ZmumuMassiveCBPt70_140_CVetoBVeto'
+                                                                                                                    , '167814.Sherpa_CT10_ZmumuMassiveCBPt140_280_CVetoBVeto'
+                                                                                                                    , '167826.Sherpa_CT10_ZmumuMassiveCBPt280_500_CVetoBVeto'
+                                                                                                                    , '167838.Sherpa_CT10_ZmumuMassiveCBPt500_CVetoBVeto'
+
+                                                                                                                    , '167757.Sherpa_CT10_ZtautauMassiveCBPt0_CVetoBVeto'
+                                                                                                                    , '180551.Sherpa_CT10_ZtautauMassiveCBPt40_70_CVetoBVeto'
+                                                                                                                    , '167805.Sherpa_CT10_ZtautauMassiveCBPt70_140_CVetoBVeto'
+                                                                                                                    , '167817.Sherpa_CT10_ZtautauMassiveCBPt140_280_CVetoBVeto'
+                                                                                                                    , '167829.Sherpa_CT10_ZtautauMassiveCBPt280_500_CVetoBVeto'
+                                                                                                                    , '167841.Sherpa_CT10_ZtautauMassiveCBPt500_CVetoBVeto'
+
+                                                                                                                    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                                                                                                    , '173041.Sherpa_CT10_DYeeM08to15'
+                                                                                                                    , '173042.Sherpa_CT10_DYeeM15to40'
+
+                                                                                                                    , '173043.Sherpa_CT10_DYmumuM08to15'
+                                                                                                                    , '173044.Sherpa_CT10_DYmumuM15to40'
+
+                                                                                                                    , '173045.Sherpa_CT10_DYtautauM08to15'
+                                                                                                                    , '173046.Sherpa_CT10_DYtautauM15to40'
+                                                                                                                    ]
+                                                                                                    )
+                                                              )
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # single top
     ec_single_top_all_channels = hh.Container.EntryContainer( label = 'Single top'
                                                             , fill_color = ROOT.kGreen-1
@@ -520,7 +607,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_100 = hh.Container.EntryContainer( label = 'B-L stop (100 GeV)'
                                            , line_color = ROOT.kMagenta
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202632.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_100"
@@ -530,7 +616,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_200 = hh.Container.EntryContainer( label = 'B-L stop (200 GeV)'
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202633.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_200"
@@ -540,7 +625,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_300 = hh.Container.EntryContainer( label = 'B-L stop (300 GeV)'
                                            , line_color = ROOT.kGreen+2
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202634.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_300"
@@ -550,7 +634,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_400 = hh.Container.EntryContainer( label = 'B-L stop (400 GeV)'
                                            , line_color = ROOT.kTeal-2
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202635.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_400"
@@ -560,7 +643,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_500 = hh.Container.EntryContainer( label = 'B-L stop (500 GeV)'
                                            , line_color = ROOT.kBlue+2
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202636.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_500"
@@ -570,7 +652,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_600 = hh.Container.EntryContainer( label = 'B-L stop (600 GeV)'
                                            , line_color = ROOT.kOrange-3
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202637.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_600"
@@ -580,7 +661,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_700 = hh.Container.EntryContainer( label = 'B-L stop (700 GeV)'
                                            , line_color = ROOT.kYellow-2
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202638.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_700"
@@ -590,7 +670,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_800 = hh.Container.EntryContainer( label = 'B-L stop (800 GeV)'
                                            , line_color = ROOT.kMagenta
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202639.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_800"
@@ -600,7 +679,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_900 = hh.Container.EntryContainer( label = 'B-L stop (900 GeV)'
                                            , line_color = ROOT.kMagenta+4
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202640.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_900"
@@ -610,7 +688,6 @@ def generateEntryContainers( syst_tag = 'NOMINAL'
     ec_bl_1000 = hh.Container.EntryContainer( label = 'B-L stop (1000 GeV)'
                                            , line_color = ROOT.kCyan+2
                                            , line_width = 4
-                                           # , line_style = 4
                                            , input_file_list = constructFileList( hist_dir = hist_dir_mc
                                                                                 , syst_tag = syst_tag
                                                                                 , sample_list = [ "202641.MadGraphPythia_AUET2B_CTEQ6L1_SM_TT_directBL_1000"

@@ -18,6 +18,10 @@ static const int   num_jet_bins = 6;
 static const float num_jet_min  = -0.5;
 static const float num_jet_max  = num_jet_bins + num_jet_min;
 
+static const int   num_all_jet_bins = 10;
+static const float num_all_jet_min  = -0.5;
+static const float num_all_jet_max  = num_all_jet_bins + num_jet_min;
+
 static const int   pt_bins = 20;
 static const float pt_min  = 0.;
 static const float pt_max  = 1000.;
@@ -5045,5 +5049,104 @@ void PennSusyFrame::DRHists::write(TDirectory* d)
     m_h_dr_breco_mutrig_all.at(fc_it)->Write();
 
     m_h_muon_qoverpratio.at(fc_it)->Write();
+  }
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::JetMultiplicityHists::JetMultiplicityHists(std::string name_tag)
+{
+  TH1::SetDefaultSumw2(true);
+
+  for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // initialize b jet multiplicity histogram
+    m_h_num_jets.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                      + "__jet_mult_num_jets"
+                                      + "__"
+                                      + name_tag
+                                      ).c_str()
+                                    , ( "Jet multiplicity - "
+                                      + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                      + " ; Jet multiplicity ; Entries"
+                                      ).c_str()
+                                    , num_all_jet_bins, num_all_jet_min, num_all_jet_max
+                                    )
+                          );
+
+    m_h_num_b_jets.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + "__jet_mult_num_b_jets"
+                                        + "__"
+                                        + name_tag
+                                        ).c_str()
+                                      , ( "B jet multiplicity - "
+                                        + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                        + " ; B Jet multiplicity ; Entries"
+                                        ).c_str()
+                                      , num_all_jet_bins, num_all_jet_min, num_all_jet_max
+                                      )
+                            );
+
+    m_h_num_light_jets.push_back( new TH1F( ( FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + "__jet_mult_num_light_jets"
+                                            + "__"
+                                            + name_tag
+                                            ).c_str()
+                                          , ( "Light jet multiplicity - "
+                                            + FLAVOR_CHANNEL_STRINGS[fc_it]
+                                            + " ; Light Jet multiplicity ; Entries"
+                                            ).c_str()
+                                          , num_all_jet_bins, num_all_jet_min, num_all_jet_max
+                                          )
+                                );
+  }
+}
+
+// -----------------------------------------------------------------------------
+PennSusyFrame::JetMultiplicityHists::~JetMultiplicityHists()
+{}
+
+// -----------------------------------------------------------------------------
+// identical to above, just wihtout truth info. for data.
+void PennSusyFrame::JetMultiplicityHists::FillSpecial( const PennSusyFrame::Event& event
+                                                     , const std::vector<PennSusyFrame::Jet*>* good_jet_list
+                                                     , const std::vector<PennSusyFrame::Jet*>* b_jet_list
+                                                     , float weight
+                                                     )
+{
+  FLAVOR_CHANNEL fc = event.getFlavorChannel();
+
+  // bail out if the flavor channel is not reasonable
+  if (fc == FLAVOR_NONE || fc == FLAVOR_ERROR_1) return;
+
+  size_t num_jets = good_jet_list->size();
+  size_t num_b_jets = b_jet_list->size();
+  size_t num_light_jets = num_jets - num_b_jets;
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // loop over all flavor channels and fill histograms
+  for (int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    if (fc_it == FLAVOR_ERROR_1) continue;
+    if (fc_it != FLAVOR_NONE && fc_it != fc) continue;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // fill jet multiplicity histograms
+    m_h_num_jets.at(fc_it)->Fill(num_jets, weight);
+    m_h_num_b_jets.at(fc_it)->Fill(num_b_jets, weight);
+    m_h_num_light_jets.at(fc_it)->Fill(num_light_jets, weight);
+  }
+}
+
+// -----------------------------------------------------------------------------
+void PennSusyFrame::JetMultiplicityHists::write(TDirectory* d)
+{
+  d->cd();
+
+  // loop over all flavor channels
+  for (unsigned int fc_it = 0; fc_it != FLAVOR_N; ++fc_it) {
+    if (FLAVOR_CHANNEL_STRINGS[fc_it] == "flavor_error") continue;
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    m_h_num_jets.at(      fc_it)->Write();
+    m_h_num_b_jets.at(    fc_it)->Write();
+    m_h_num_light_jets.at(fc_it)->Write();
   }
 }

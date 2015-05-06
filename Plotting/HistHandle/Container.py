@@ -25,18 +25,19 @@ class EntryContainer(object):
                 , line_width = 2
                 , line_style = 1
                 , marker_style = 20
+                , container_weight = 1.
                 , input_file_list = []
                 ):
-        self.label           = label
-        self.fill_color      = fill_color
-        self.line_color      = line_color
-        self.line_width      = line_width
-        self.line_style      = line_style
-        self.marker_style    = marker_style
-        self.input_file_list = input_file_list
+        self.label            = label
+        self.fill_color       = fill_color
+        self.line_color       = line_color
+        self.line_width       = line_width
+        self.line_style       = line_style
+        self.marker_style     = marker_style
+        self.container_weight = container_weight
+        self.input_file_list  = input_file_list
 
         self.file_list = [ ROOT.TFile(ifl) for ifl in self.input_file_list ]
-        # print self.file_list
 
         self.hist_info = hh.Objects.HistInfo( self.label
                                             , fill_color = self.fill_color
@@ -58,7 +59,8 @@ class EntryContainer(object):
                                    , self.hist_info
                                    , self.file_list
                                    , lumi_modeled
-                                   , lumi_target
+                                   # , lumi_target
+                                   , lumi_target*self.container_weight
                                    )
 
 # ==============================================================================

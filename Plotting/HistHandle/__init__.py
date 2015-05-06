@@ -23,7 +23,8 @@ HIST_2D = object()
 default_canv_width = 600
 default_canv_height = 800
 
-default_ratio_pad_size = 0.25
+# default_ratio_pad_size = 0.25
+default_ratio_pad_size = 0.30
 
 default_pad_left_margin   = 0.17
 default_pad_right_margin  = 0.09
