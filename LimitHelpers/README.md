@@ -133,3 +133,10 @@ the `MakeHistPullPlot` function, just before the canvases are printed:
 
 I know this is pretty gross :-(
 
+## Model indepedent limits
+Some sample scripts are provided to get the model independent limits.
+These are found in the `LimitHelpers/ModelIndependent` directory, and simply wrapers around the `ModelIndependentExcl.py` script.
+You can run the model independent limitis using a command similar to this:
+```
+HistFitter.py -p -t -w -f -F excl LimitHelpers/ModelIndependent/ModelIndependentExcl_sr_ht_1100_mbl_400_all_unblind.py
+```
